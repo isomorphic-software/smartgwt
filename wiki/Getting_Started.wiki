@@ -5,6 +5,6 @@ Gettting Started
 
 The distribution includes a basic "helloworld" sample under the "samples" directory that you can use as a starting point for your project. 
 
-*You must use GWT 1.5.3.* Earlier versions of GWT are not supported.
+*You must use GWT 1.5.3 (or greater).* Earlier versions of GWT are not supported.
 
 If you have any questions, please post them on the SmartGWT forum.
