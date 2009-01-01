@@ -1,0 +1,14 @@
+<HTML>
+<!-- This is a blank html file used by the Isomorphic SmartClient framework -->
+<SCRIPT>
+
+while (!window.isc && document.domain.indexOf(".") != -1) {
+    try {
+        parent.isc; 
+        break;
+    } catch (e) {
+        document.domain = document.domain.replace(/.*?\./, '');
+    }
+}
+</SCRIPT>
+</HTML>
