@@ -1,9 +1,0 @@
-isc.DataSource.create({
-    ID:"WSOperationHeader",
-    fields:{
-        encoding:{name:"encoding"},
-        message:{name:"message"},
-        part:{name:"part"}
-    },
-    addGlobalId:false
-})
