@@ -1,0 +1,15 @@
+<DataSource
+    ID="animals"
+	serverType="sql"
+	tableName="animals"
+    testFileName="animals.data.xml"
+>
+    <fields>
+        <field name="commonName"      title="Animal"             type="text"/>
+        <field name="scientificName"  title="Scientific Name"    type="text"  primaryKey="true"  required="true"/>
+        <field name="lifeSpan"        title="Life Span"          type="text"/>
+        <field name="status"          title="Endangered Status"  type="text"/>
+        <field name="diet"            title="Diet"               type="text"/>
+        <field name="information"     title="Interesting Facts"  type="text"  length="1000"/>
+    </fields>
+</DataSource>
