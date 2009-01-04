@@ -1,0 +1,2343 @@
+<List>
+
+<country>
+    <continent>North America</continent>
+    <countryName>Bermuda</countryName>
+    <countryCode>BD</countryCode>
+    <area>50</area>
+    <population>62099</population>
+    <gdp>1700</gdp>
+    <government>dependent territory of the UK</government>
+    <capital>Hamilton</capital>
+</country>
+<country>
+    <continent>North America</continent>
+    <countryName>United States</countryName>
+    <countryCode>US</countryCode>
+    <area>9372610</area>
+    <population>266476278</population>
+    <gdp>7247700</gdp>
+    <independence>1776-07-04</independence>
+    <government>federal republic</government>
+    <capital>Washington</capital>
+</country>
+<country>
+    <continent>Europe</continent>
+    <countryName>Monaco</countryName>
+    <countryCode>MN</countryCode>
+    <area>1.9</area>
+    <population>31719</population>
+    <gdp>788</gdp>
+    <independence>1419-01-01</independence>
+    <government>constitutional monarchy</government>
+    <capital>Monaco</capital>
+</country>
+<country>
+    <continent>Europe</continent>
+    <countryName>Norway</countryName>
+    <countryCode>NO</countryCode>
+    <area>324220</area>
+    <population>4383807</population>
+    <gdp>106200</gdp>
+    <independence>1905-10-26</independence>
+    <government>constitutional monarchy</government>
+    <capital>Oslo</capital>
+</country>
+<country>
+    <continent>Asia</continent>
+    <countryName>Hong Kong</countryName>
+    <countryCode>HK</countryCode>
+    <area>1040</area>
+    <population>6305413</population>
+    <gdp>152400</gdp>
+    <government>dependent territory of the UK scheduled to revert to China on 1 July 1997</government>
+    <capital>Victoria</capital>
+</country>
+<country>
+    <continent>North America</continent>
+    <countryName>Canada</countryName>
+    <countryCode>CA</countryCode>
+    <area>9976140</area>
+    <population>28820671</population>
+    <gdp>694000</gdp>
+    <independence>1867-07-01</independence>
+    <government>confederation with parliamentary democracy</government>
+    <capital>Ottawa</capital>
+</country>
+<country>
+    <continent>Europe</continent>
+    <countryName>Luxembourg</countryName>
+    <countryCode>LU</countryCode>
+    <area>2586</area>
+    <population>415870</population>
+    <gdp>10000</gdp>
+    <government>constitutional monarchy</government>
+    <capital>Luxembourg</capital>
+</country>
+<country>
+    <continent>Asia</continent>
+    <countryName>United Arab Emirates</countryName>
+    <countryCode>TC</countryCode>
+    <area>75581</area>
+    <population>3057337</population>
+    <gdp>70100</gdp>
+    <independence>1971-12-02</independence>
+    <government>federation with specified powers delegated to the UAE central government and other powers reserved to member emirates</government>
+    <capital>Abu Dhabi</capital>
+</country>
+<country>
+    <continent>Australia/Oceania</continent>
+    <countryName>Australia</countryName>
+    <countryCode>AS</countryCode>
+    <area>7686850</area>
+    <population>18260863</population>
+    <gdp>405400</gdp>
+    <independence>1901-01-01</independence>
+    <government>federal parliamentary state</government>
+    <capital>Canberra</capital>
+</country>
+<country>
+    <continent>Europe</continent>
+    <countryName>Switzerland</countryName>
+    <countryCode>SZ</countryCode>
+    <area>41290</area>
+    <population>7207060</population>
+    <gdp>158500</gdp>
+    <government>federal republic</government>
+    <capital>Bern</capital>
+</country>
+<country>
+    <continent>North America</continent>
+    <countryName>Cayman Islands</countryName>
+    <countryCode>CJ</countryCode>
+    <area>260</area>
+    <population>34646</population>
+    <gdp>750</gdp>
+    <government>dependent territory of the UK</government>
+    <capital>George Town</capital>
+</country>
+<country>
+    <continent>Europe</continent>
+    <countryName>Denmark</countryName>
+    <countryCode>DA</countryCode>
+    <area>43070</area>
+    <population>5249632</population>
+    <gdp>112800</gdp>
+    <government>constitutional monarchy</government>
+    <capital>Copenhagen</capital>
+</country>
+<country>
+    <continent>Asia</continent>
+    <countryName>Japan</countryName>
+    <countryCode>JA</countryCode>
+    <area>377835</area>
+    <population>125449703</population>
+    <gdp>2679200</gdp>
+    <government>constitutional monarchy</government>
+    <capital>Tokyo</capital>
+</country>
+<country>
+    <continent>Europe</continent>
+    <countryName>Liechtenstein</countryName>
+    <countryCode>LS</countryCode>
+    <area>160</area>
+    <population>31122</population>
+    <gdp>630</gdp>
+    <independence>1719-01-23</independence>
+    <government>hereditary constitutional monarchy</government>
+    <capital>Vaduz</capital>
+</country>
+<country>
+    <continent>Europe</continent>
+    <countryName>France</countryName>
+    <countryCode>FR</countryCode>
+    <area>547030</area>
+    <population>58317450</population>
+    <gdp>1173000</gdp>
+    <government>republic</government>
+    <capital>Paris</capital>
+</country>
+<country>
+    <continent>Europe</continent>
+    <countryName>Sweden</countryName>
+    <countryCode>SW</countryCode>
+    <area>449964</area>
+    <population>8900954</population>
+    <gdp>177300</gdp>
+    <government>constitutional monarchy</government>
+    <capital>Stockholm</capital>
+</country>
+<country>
+    <continent>Asia</continent>
+    <countryName>Qatar</countryName>
+    <countryCode>QA</countryCode>
+    <area>11000</area>
+    <population>547761</population>
+    <gdp>10700</gdp>
+    <independence>1971-09-03</independence>
+    <government>traditional monarchy</government>
+    <capital>Doha</capital>
+</country>
+<country>
+    <continent>Europe</continent>
+    <countryName>United Kingdom</countryName>
+    <countryCode>UK</countryCode>
+    <area>244820</area>
+    <population>58489975</population>
+    <gdp>1138400</gdp>
+    <independence>1801-01-01</independence>
+    <government>constitutional monarchy</government>
+    <capital>London</capital>
+</country>
+<country>
+    <continent>Asia</continent>
+    <countryName>Singapore</countryName>
+    <countryCode>SN</countryCode>
+    <area>632.6</area>
+    <population>3396924</population>
+    <gdp>66100</gdp>
+    <independence>1965-08-09</independence>
+    <government>republic within Commonwealth</government>
+    <capital>Singapore</capital>
+</country>
+<country>
+    <continent>Europe</continent>
+    <countryName>Netherlands</countryName>
+    <countryCode>NL</countryCode>
+    <area>37330</area>
+    <population>15568034</population>
+    <gdp>301900</gdp>
+    <independence>1579-01-01</independence>
+    <government>constitutional monarchy</government>
+    <capital>Amsterdam</capital>
+</country>
+<country>
+    <continent>Europe</continent>
+    <countryName>Belgium</countryName>
+    <countryCode>BE</countryCode>
+    <area>30510</area>
+    <population>10170241</population>
+    <gdp>197000</gdp>
+    <independence>1830-10-04</independence>
+    <government>constitutional monarchy</government>
+    <capital>Brussels</capital>
+</country>
+<country>
+    <continent>Europe</continent>
+    <countryName>Italy</countryName>
+    <countryCode>IT</countryCode>
+    <area>301230</area>
+    <population>57460274</population>
+    <gdp>1088600</gdp>
+    <independence>1861-03-17</independence>
+    <government>republic</government>
+    <capital>Rome</capital>
+</country>
+<country>
+    <continent>Europe</continent>
+    <countryName>Austria</countryName>
+    <countryCode>AU</countryCode>
+    <area>83850</area>
+    <population>8023244</population>
+    <gdp>152000</gdp>
+    <independence>1918-11-12</independence>
+    <government>federal republic</government>
+    <capital>Vienna</capital>
+</country>
+<country>
+    <continent>North America</continent>
+    <countryName>Bahamas</countryName>
+    <countryCode>BF</countryCode>
+    <area>13940</area>
+    <population>259367</population>
+    <gdp>4800</gdp>
+    <independence>1973-07-10</independence>
+    <government>commonwealth</government>
+    <capital>Nassau</capital>
+</country>
+<country>
+    <continent>Europe</continent>
+    <countryName>Iceland</countryName>
+    <countryCode>IC</countryCode>
+    <area>103000</area>
+    <population>270292</population>
+    <gdp>5000</gdp>
+    <independence>1944-06-17</independence>
+    <government>republic</government>
+    <capital>Reykjavik</capital>
+</country>
+<country>
+    <continent>Europe</continent>
+    <countryName>Finland</countryName>
+    <countryCode>FI</countryCode>
+    <area>337030</area>
+    <population>5105230</population>
+    <gdp>92400</gdp>
+    <independence>1917-12-06</independence>
+    <government>republic</government>
+    <capital>Helsinki</capital>
+</country>
+<country>
+    <continent>North America</continent>
+    <countryName>Aruba</countryName>
+    <countryCode>AA</countryCode>
+    <area>193</area>
+    <population>67794</population>
+    <gdp>1200</gdp>
+    <government>part of the Dutch realm</government>
+    <capital>Oranjestad</capital>
+</country>
+<country>
+    <continent>Australia/Oceania</continent>
+    <countryName>New Zealand</countryName>
+    <countryCode>NZ</countryCode>
+    <area>268680</area>
+    <population>3547983</population>
+    <gdp>62300</gdp>
+    <independence>1907-09-26</independence>
+    <government>parliamentary democracy</government>
+    <capital>Wellington</capital>
+</country>
+<country>
+    <continent>Europe</continent>
+    <countryName>Germany</countryName>
+    <countryCode>GM</countryCode>
+    <area>356910</area>
+    <population>83536115</population>
+    <gdp>1452200</gdp>
+    <independence>1871-01-18</independence>
+    <government>federal republic</government>
+    <capital>Berlin</capital>
+</country>
+<country>
+    <continent>Europe</continent>
+    <countryName>Faroe Islands</countryName>
+    <countryCode>FO</countryCode>
+    <area>1400</area>
+    <population>43857</population>
+    <gdp>733</gdp>
+    <government>part of the Danish realm</government>
+    <capital>Torshavn</capital>
+</country>
+<country>
+    <continent>Asia</continent>
+    <countryName>Kuwait</countryName>
+    <countryCode>KU</countryCode>
+    <area>17820</area>
+    <population>1950047</population>
+    <gdp>30800</gdp>
+    <independence>1961-06-19</independence>
+    <government>nominal constitutional monarchy</government>
+    <capital>Kuwait</capital>
+</country>
+<country>
+    <continent>Europe</continent>
+    <countryName>San Marino</countryName>
+    <countryCode>SM</countryCode>
+    <area>60</area>
+    <population>24521</population>
+    <gdp>380</gdp>
+    <independence>0301-01-01</independence>
+    <government>republic</government>
+    <capital>San Marino</capital>
+</country>
+<country>
+    <continent>Asia</continent>
+    <countryName>Brunei</countryName>
+    <countryCode>BX</countryCode>
+    <area>5770</area>
+    <population>299939</population>
+    <gdp>4600</gdp>
+    <independence>1984-01-01</independence>
+    <government>constitutional sultanate</government>
+    <capital>Bandar Seri Begawan</capital>
+</country>
+<country>
+    <continent>North America</continent>
+    <countryName>Greenland</countryName>
+    <countryCode>GL</countryCode>
+    <area>2175600</area>
+    <population>58203</population>
+    <gdp>892</gdp>
+    <government>part of the Danish realm</government>
+    <capital>Nuuk</capital>
+</country>
+<country>
+    <continent>Europe</continent>
+    <countryName>Ireland</countryName>
+    <countryCode>EI</countryCode>
+    <area>70280</area>
+    <population>3566833</population>
+    <gdp>54600</gdp>
+    <independence>1921-12-06</independence>
+    <government>republic</government>
+    <capital>Dublin</capital>
+</country>
+<country>
+    <continent>Asia</continent>
+    <countryName>Israel</countryName>
+    <countryCode>IS</countryCode>
+    <area>20770</area>
+    <population>5421995</population>
+    <gdp>80100</gdp>
+    <independence>1948-05-14</independence>
+    <government>republic</government>
+    <capital>Jerusalem</capital>
+</country>
+<country>
+    <continent>Europe</continent>
+    <countryName>Spain</countryName>
+    <countryCode>SP</countryCode>
+    <area>504750</area>
+    <population>39181114</population>
+    <gdp>565000</gdp>
+    <independence>1492-01-01</independence>
+    <government>parliamentary monarchy</government>
+    <capital>Madrid</capital>
+</country>
+<country>
+    <continent>Europe</continent>
+    <countryName>Andorra</countryName>
+    <countryCode>AN</countryCode>
+    <area>450</area>
+    <population>72766</population>
+    <gdp>1000</gdp>
+    <government>parliamentary democracy that retains as its heads of state a coprincipality</government>
+    <capital>Andorra la Vella</capital>
+</country>
+<country>
+    <continent>Asia</continent>
+    <countryName>Taiwan</countryName>
+    <countryCode>TW</countryCode>
+    <area>35980</area>
+    <population>21465881</population>
+    <gdp>290500</gdp>
+    <government>multiparty democratic regime</government>
+    <capital>Taipei</capital>
+</country>
+<country>
+    <continent>Asia</continent>
+    <countryName>South Korea</countryName>
+    <countryCode>KS</countryCode>
+    <area>98480</area>
+    <population>45482291</population>
+    <gdp>590700</gdp>
+    <government>republic</government>
+    <capital>Seoul</capital>
+</country>
+<country>
+    <continent>Asia</continent>
+    <countryName>Macau</countryName>
+    <countryCode>MC</countryCode>
+    <area>16</area>
+    <population>496837</population>
+    <gdp>6400</gdp>
+    <government>overseas territory of Portugal scheduled to revert to China in 1999</government>
+    <capital>Macau</capital>
+</country>
+<country>
+    <continent>Australia/Oceania</continent>
+    <countryName>Guam</countryName>
+    <countryCode>GQ</countryCode>
+    <area>541.3</area>
+    <population>156974</population>
+    <gdp>2000</gdp>
+    <government>organized</government>
+    <capital>Agana</capital>
+</country>
+<country>
+    <continent>North America</continent>
+    <countryName>Trinidad and Tobago</countryName>
+    <countryCode>TD</countryCode>
+    <area>5130</area>
+    <population>1272385</population>
+    <gdp>16200</gdp>
+    <independence>1962-08-31</independence>
+    <government>parliamentary democracy</government>
+    <capital>Port of Spain</capital>
+</country>
+<country>
+    <continent>Asia</continent>
+    <countryName>Bahrain</countryName>
+    <countryCode>BA</countryCode>
+    <area>620</area>
+    <population>590042</population>
+    <gdp>7300</gdp>
+    <independence>1971-08-15</independence>
+    <government>traditional monarchy</government>
+    <capital>Manama</capital>
+</country>
+<country>
+    <continent>North America</continent>
+    <countryName>Virgin Islands</countryName>
+    <countryCode>VQ</countryCode>
+    <area>352</area>
+    <population>97120</population>
+    <gdp>1200</gdp>
+    <government>organized</government>
+    <capital>Charlotte Amalie</capital>
+</country>
+<country>
+    <continent>Europe</continent>
+    <countryName>Portugal</countryName>
+    <countryCode>PO</countryCode>
+    <area>92080</area>
+    <population>9865114</population>
+    <gdp>116200</gdp>
+    <independence>1140-01-01</independence>
+    <government>republic</government>
+    <capital>Lisbon</capital>
+</country>
+<country>
+    <continent>Europe</continent>
+    <countryName>Malta</countryName>
+    <countryCode>MT</countryCode>
+    <area>320</area>
+    <population>375576</population>
+    <gdp>4400</gdp>
+    <independence>1964-09-21</independence>
+    <government>parliamentary democracy</government>
+    <capital>Valletta</capital>
+</country>
+<country>
+    <continent>Europe</continent>
+    <countryName>Slovenia</countryName>
+    <countryCode>SI</countryCode>
+    <area>20256</area>
+    <population>1951443</population>
+    <gdp>22600</gdp>
+    <independence>1991-06-25</independence>
+    <government>emerging democracy</government>
+    <capital>Ljubljana</capital>
+</country>
+<country>
+    <continent>Europe</continent>
+    <countryName>Man</countryName>
+    <countryCode>IM</countryCode>
+    <area>588</area>
+    <population>73837</population>
+    <gdp>780</gdp>
+    <government>British crown dependency</government>
+    <capital>Douglas</capital>
+</country>
+<country>
+    <continent>Asia</continent>
+    <countryName>Cyprus</countryName>
+    <countryCode>CY</countryCode>
+    <area>9250</area>
+    <population>744609</population>
+    <gdp>7800</gdp>
+    <independence>1960-08-16</independence>
+    <government>republic</government>
+    <capital>Nicosia</capital>
+</country>
+<country>
+    <continent>Europe</continent>
+    <countryName>Czech Republic</countryName>
+    <countryCode>EZ</countryCode>
+    <area>78703</area>
+    <population>10321120</population>
+    <gdp>106200</gdp>
+    <independence>1993-01-01</independence>
+    <government>parliamentary democracy</government>
+    <capital>Prague</capital>
+</country>
+<country>
+    <continent>North America</continent>
+    <countryName>British Virgin Islands</countryName>
+    <countryCode>VI</countryCode>
+    <area>150</area>
+    <population>13195</population>
+    <gdp>133</gdp>
+    <government>dependent territory of the UK</government>
+    <capital>Road Town</capital>
+</country>
+<country>
+    <continent>Australia/Oceania</continent>
+    <countryName>Northern Mariana Islands</countryName>
+    <countryCode>CQ</countryCode>
+    <area>477</area>
+    <population>52284</population>
+    <gdp>524</gdp>
+    <government>commonwealth in political union with the US</government>
+    <capital>Saipan</capital>
+</country>
+<country>
+    <continent>North America</continent>
+    <countryName>Saint Pierre and Miquelon</countryName>
+    <countryCode>SB</countryCode>
+    <area>242</area>
+    <population>6809</population>
+    <gdp>68</gdp>
+    <government>territorial collectivity of France</government>
+    <capital>Saint Pierre</capital>
+</country>
+<country>
+    <continent>North America</continent>
+    <countryName>Martinique</countryName>
+    <countryCode>MB</countryCode>
+    <area>1100</area>
+    <population>399151</population>
+    <gdp>3950</gdp>
+    <government>overseas department of France</government>
+    <capital>Fort de France</capital>
+</country>
+<country>
+    <continent>Asia</continent>
+    <countryName>Saudi Arabia</countryName>
+    <countryCode>SA</countryCode>
+    <area>1960582</area>
+    <population>19409058</population>
+    <gdp>189300</gdp>
+    <independence>1932-09-23</independence>
+    <government>monarchy</government>
+    <capital>Riyadh</capital>
+</country>
+<country>
+    <continent>Australia/Oceania</continent>
+    <countryName>Nauru</countryName>
+    <countryCode>NR</countryCode>
+    <area>21</area>
+    <population>10273</population>
+    <gdp>100</gdp>
+    <independence>1968-01-31</independence>
+    <government>republic</government>
+    <capital>no official capital</capital>
+</country>
+<country>
+    <continent>North America</continent>
+    <countryName>Barbados</countryName>
+    <countryCode>BB</countryCode>
+    <area>430</area>
+    <population>257030</population>
+    <gdp>2500</gdp>
+    <independence>1966-11-30</independence>
+    <government>parliamentary democracy</government>
+    <capital>Bridgetown</capital>
+</country>
+<country>
+    <continent>Asia</continent>
+    <countryName>Malaysia</countryName>
+    <countryCode>MY</countryCode>
+    <area>329750</area>
+    <population>19962893</population>
+    <gdp>193600</gdp>
+    <independence>1957-08-31</independence>
+    <government>constitutional monarchy</government>
+    <capital>Kuala Lumpur</capital>
+</country>
+<country>
+    <continent>Europe</continent>
+    <countryName>Greece</countryName>
+    <countryCode>GR</countryCode>
+    <area>131940</area>
+    <population>10538594</population>
+    <gdp>101700</gdp>
+    <independence>1829-01-01</independence>
+    <government>parliamentary republic</government>
+    <capital>Athens</capital>
+</country>
+<country>
+    <continent>Africa</continent>
+    <countryName>Mauritius</countryName>
+    <countryCode>MP</countryCode>
+    <area>1860</area>
+    <population>1140256</population>
+    <gdp>10900</gdp>
+    <independence>1968-03-12</independence>
+    <government>parliamentary democracy</government>
+    <capital>Port Louis</capital>
+</country>
+<country>
+    <continent>North America</continent>
+    <countryName>Netherlands Antilles</countryName>
+    <countryCode>NT</countryCode>
+    <area>960</area>
+    <population>208968</population>
+    <gdp>1920</gdp>
+    <government>part of the Dutch realm</government>
+    <capital>Willemstad</capital>
+</country>
+<country>
+    <continent>South America</continent>
+    <countryName>Venezuela</countryName>
+    <countryCode>VE</countryCode>
+    <area>912050</area>
+    <population>21983188</population>
+    <gdp>195500</gdp>
+    <independence>1811-07-05</independence>
+    <government>republic</government>
+    <capital>Caracas</capital>
+</country>
+<country>
+    <continent>Asia</continent>
+    <countryName>Oman</countryName>
+    <countryCode>MU</countryCode>
+    <area>212460</area>
+    <population>2186548</population>
+    <gdp>19100</gdp>
+    <independence>1650-01-01</independence>
+    <government>monarchy</government>
+    <capital>Muscat</capital>
+</country>
+<country>
+    <continent>Europe</continent>
+    <countryName>Estonia</countryName>
+    <countryCode>EN</countryCode>
+    <area>45100</area>
+    <population>1459428</population>
+    <gdp>12300</gdp>
+    <independence>1991-09-06</independence>
+    <government>republic</government>
+    <capital>Tallinn</capital>
+</country>
+<country>
+    <continent>South America</continent>
+    <countryName>Argentina</countryName>
+    <countryCode>AR</countryCode>
+    <area>2766890</area>
+    <population>34672997</population>
+    <gdp>278500</gdp>
+    <independence>1816-07-09</independence>
+    <government>republic</government>
+    <capital>Buenos Aires</capital>
+</country>
+<country>
+    <continent>South America</continent>
+    <countryName>Chile</countryName>
+    <countryCode>CI</countryCode>
+    <area>756950</area>
+    <population>14333258</population>
+    <gdp>113200</gdp>
+    <independence>1810-09-18</independence>
+    <government>republic</government>
+    <capital>Santiago</capital>
+</country>
+<country>
+    <continent>Australia/Oceania</continent>
+    <countryName>French Polynesia</countryName>
+    <countryCode>FP</countryCode>
+    <area>4167</area>
+    <population>224911</population>
+    <gdp>1760</gdp>
+    <government>overseas territory of France since 1946</government>
+    <capital>Papeete</capital>
+</country>
+<country>
+    <continent>North America</continent>
+    <countryName>Puerto Rico</countryName>
+    <countryCode>RQ</countryCode>
+    <area>9104</area>
+    <population>3819023</population>
+    <gdp>29700</gdp>
+    <government>commonwealth associated with the US</government>
+    <capital>San Juan</capital>
+</country>
+<country>
+    <continent>South America</continent>
+    <countryName>Uruguay</countryName>
+    <countryCode>UY</countryCode>
+    <area>176220</area>
+    <population>3238952</population>
+    <gdp>24400</gdp>
+    <independence>1828-08-25</independence>
+    <government>republic</government>
+    <capital>Montevideo</capital>
+</country>
+<country>
+    <continent>North America</continent>
+    <countryName>Mexico</countryName>
+    <countryCode>MX</countryCode>
+    <area>1972550</area>
+    <population>95772462</population>
+    <gdp>721400</gdp>
+    <independence>1810-09-16</independence>
+    <government>federal republic operating under a centralized government</government>
+    <capital>Mexico</capital>
+</country>
+<country>
+    <continent>Europe</continent>
+    <countryName>Slovakia</countryName>
+    <countryCode>LO</countryCode>
+    <area>48845</area>
+    <population>5374362</population>
+    <gdp>39000</gdp>
+    <independence>1993-01-01</independence>
+    <government>parliamentary democracy</government>
+    <capital>Bratislava</capital>
+</country>
+<country>
+    <continent>Europe</continent>
+    <countryName>Hungary</countryName>
+    <countryCode>HU</countryCode>
+    <area>93030</area>
+    <population>10002541</population>
+    <gdp>72500</gdp>
+    <independence>1001-01-01</independence>
+    <government>republic</government>
+    <capital>Budapest</capital>
+</country>
+<country>
+    <continent>Europe</continent>
+    <countryName>Gibraltar</countryName>
+    <countryCode>GI</countryCode>
+    <area>6.5</area>
+    <population>28765</population>
+    <gdp>205</gdp>
+    <government>dependent territory of the UK</government>
+    <capital>Gibraltar</capital>
+</country>
+<country>
+    <continent>Asia</continent>
+    <countryName>Thailand</countryName>
+    <countryCode>TH</countryCode>
+    <area>514000</area>
+    <population>58851357</population>
+    <gdp>416700</gdp>
+    <independence>1238-01-01</independence>
+    <government>constitutional monarchy</government>
+    <capital>Bangkok</capital>
+</country>
+<country>
+    <continent>North America</continent>
+    <countryName>Antigua and Barbuda</countryName>
+    <countryCode>AC</countryCode>
+    <area>440</area>
+    <population>65647</population>
+    <gdp>425</gdp>
+    <independence>1981-11-01</independence>
+    <government>parliamentary democracy</government>
+    <capital>Saint Johns</capital>
+</country>
+<country>
+    <continent>Africa</continent>
+    <countryName>Libya</countryName>
+    <countryCode>LY</countryCode>
+    <area>1759540</area>
+    <population>5445436</population>
+    <gdp>32900</gdp>
+    <independence>1951-12-24</independence>
+    <government>Jamahiriya in theory</government>
+    <capital>Tripoli</capital>
+</country>
+<country>
+    <continent>Australia/Oceania</continent>
+    <countryName>Fiji</countryName>
+    <countryCode>FJ</countryCode>
+    <area>18270</area>
+    <population>782381</population>
+    <gdp>4700</gdp>
+    <independence>1970-10-10</independence>
+    <government>republic</government>
+    <capital>Suva</capital>
+</country>
+<country>
+    <continent>South America</continent>
+    <countryName>Brazil</countryName>
+    <countryCode>BR</countryCode>
+    <area>8511965</area>
+    <population>162661214</population>
+    <gdp>976800</gdp>
+    <independence>1822-09-07</independence>
+    <government>federal republic</government>
+    <capital>Brasilia</capital>
+</country>
+<country>
+    <continent>Europe</continent>
+    <countryName>Latvia</countryName>
+    <countryCode>LG</countryCode>
+    <area>64100</area>
+    <population>2468982</population>
+    <gdp>14700</gdp>
+    <independence>1991-09-06</independence>
+    <government>republic</government>
+    <capital>Riga</capital>
+</country>
+<country>
+    <continent>Europe</continent>
+    <countryName>Poland</countryName>
+    <countryCode>PL</countryCode>
+    <area>312683</area>
+    <population>38642565</population>
+    <gdp>226700</gdp>
+    <independence>1918-11-11</independence>
+    <government>democratic state</government>
+    <capital>Warsaw</capital>
+</country>
+<country>
+    <continent>Asia</continent>
+    <countryName>Syria</countryName>
+    <countryCode>SY</countryCode>
+    <area>185180</area>
+    <population>15608648</population>
+    <gdp>91200</gdp>
+    <independence>1946-04-17</independence>
+    <government>republic under military regime since March 1963</government>
+    <capital>Damascus</capital>
+</country>
+<country>
+    <continent>North America</continent>
+    <countryName>Turks and Caicos Islands</countryName>
+    <countryCode>TK</countryCode>
+    <area>430</area>
+    <population>14302</population>
+    <gdp>80.8</gdp>
+    <government>dependent territory of the UK</government>
+    <capital>Grand Turk</capital>
+</country>
+<country>
+    <continent>Africa</continent>
+    <countryName>Seychelles</countryName>
+    <countryCode>SE</countryCode>
+    <area>455</area>
+    <population>77575</population>
+    <gdp>430</gdp>
+    <independence>1976-06-29</independence>
+    <government>republic</government>
+    <capital>Victoria</capital>
+</country>
+<country>
+    <continent>Asia</continent>
+    <countryName>Turkey</countryName>
+    <countryCode>TU</countryCode>
+    <area>780580</area>
+    <population>62484478</population>
+    <gdp>345700</gdp>
+    <independence>1923-10-29</independence>
+    <government>republican parliamentary democracy</government>
+    <capital>Ankara</capital>
+</country>
+<country>
+    <continent>Asia</continent>
+    <countryName>Russia</countryName>
+    <countryCode>RS</countryCode>
+    <area>17075200</area>
+    <population>148178487</population>
+    <gdp>796000</gdp>
+    <independence>1991-08-24</independence>
+    <government>federation</government>
+    <capital>Moscow</capital>
+</country>
+<country>
+    <continent>North America</continent>
+    <countryName>Saint Kitts and Nevis</countryName>
+    <countryCode>SC</countryCode>
+    <area>269</area>
+    <population>41369</population>
+    <gdp>220</gdp>
+    <independence>1983-09-19</independence>
+    <government>constitutional monarchy</government>
+    <capital>Basseterre</capital>
+</country>
+<country>
+    <continent>North America</continent>
+    <countryName>Costa Rica</countryName>
+    <countryCode>CS</countryCode>
+    <area>51100</area>
+    <population>3463083</population>
+    <gdp>18400</gdp>
+    <independence>1821-09-15</independence>
+    <government>democratic republic</government>
+    <capital>San Jose</capital>
+</country>
+<country>
+    <continent>South America</continent>
+    <countryName>Colombia</countryName>
+    <countryCode>CO</countryCode>
+    <area>1138910</area>
+    <population>36813161</population>
+    <gdp>192500</gdp>
+    <independence>1810-07-20</independence>
+    <government>republic</government>
+    <capital>Bogota</capital>
+</country>
+<country>
+    <continent>Africa</continent>
+    <countryName>South Africa</countryName>
+    <countryCode>SF</countryCode>
+    <area>1219912</area>
+    <population>41743459</population>
+    <gdp>215000</gdp>
+    <independence>1910-05-31</independence>
+    <government>republic</government>
+    <capital>Pretoria</capital>
+</country>
+<country>
+    <continent>North America</continent>
+    <countryName>Panama</countryName>
+    <countryCode>PM</countryCode>
+    <area>78200</area>
+    <population>2655094</population>
+    <gdp>13600</gdp>
+    <independence>1903-11-03</independence>
+    <government>constitutional republic</government>
+    <capital>Panama</capital>
+</country>
+<country>
+    <continent>Africa</continent>
+    <countryName>Gabon</countryName>
+    <countryCode>GB</countryCode>
+    <area>267670</area>
+    <population>1172798</population>
+    <gdp>6000</gdp>
+    <independence>1960-08-17</independence>
+    <government>republic</government>
+    <capital>Libreville</capital>
+</country>
+<country>
+    <continent>North America</continent>
+    <countryName>Anguilla</countryName>
+    <countryCode>AV</countryCode>
+    <area>91</area>
+    <population>10424</population>
+    <gdp>53</gdp>
+    <government>dependent territory of the UK</government>
+    <capital>The Valley</capital>
+</country>
+<country>
+    <continent>Europe</continent>
+    <countryName>Bulgaria</countryName>
+    <countryCode>BU</countryCode>
+    <area>110910</area>
+    <population>8612757</population>
+    <gdp>43200</gdp>
+    <independence>1908-09-22</independence>
+    <government>emerging democracy</government>
+    <capital>Sofia</capital>
+</country>
+<country>
+    <continent>Asia</continent>
+    <countryName>Iran</countryName>
+    <countryCode>IR</countryCode>
+    <area>1648000</area>
+    <population>66094264</population>
+    <gdp>323500</gdp>
+    <independence>1979-04-01</independence>
+    <government>theocratic republic</government>
+    <capital>Tehran</capital>
+</country>
+<country>
+    <continent>Europe</continent>
+    <countryName>Romania</countryName>
+    <countryCode>RO</countryCode>
+    <area>237500</area>
+    <population>21657162</population>
+    <gdp>105700</gdp>
+    <independence>1881-01-01</independence>
+    <government>republic</government>
+    <capital>Bucharest</capital>
+</country>
+<country>
+    <continent>Asia</continent>
+    <countryName>Lebanon</countryName>
+    <countryCode>LE</countryCode>
+    <area>10400</area>
+    <population>3776317</population>
+    <gdp>18300</gdp>
+    <independence>1943-11-22</independence>
+    <government>republic</government>
+    <capital>Beirut</capital>
+</country>
+<country>
+    <continent>Australia/Oceania</continent>
+    <countryName>Palau</countryName>
+    <countryCode>PS</countryCode>
+    <area>458</area>
+    <population>16952</population>
+    <gdp>81.8</gdp>
+    <independence>1994-10-01</independence>
+    <government>constitutional government in free association with the US</government>
+    <capital>Koror</capital>
+</country>
+<country>
+    <continent>Europe</continent>
+    <countryName>Belarus</countryName>
+    <countryCode>BO</countryCode>
+    <area>207600</area>
+    <population>10415973</population>
+    <gdp>49200</gdp>
+    <independence>1991-08-25</independence>
+    <government>republic</government>
+    <capital>Minsk</capital>
+</country>
+<country>
+    <continent>Asia</continent>
+    <countryName>Jordan</countryName>
+    <countryCode>JO</countryCode>
+    <area>89213</area>
+    <population>4212152</population>
+    <gdp>19300</gdp>
+    <independence>1946-05-25</independence>
+    <government>constitutional monarchy</government>
+    <capital>Amman</capital>
+</country>
+<country>
+    <continent>North America</continent>
+    <countryName>Montserrat</countryName>
+    <countryCode>MH</countryCode>
+    <area>100</area>
+    <population>12771</population>
+    <gdp>55.6</gdp>
+    <government>dependent territory of the UK</government>
+    <capital>Plymouth</capital>
+</country>
+<country>
+    <continent>Africa</continent>
+    <countryName>Tunisia</countryName>
+    <countryCode>TS</countryCode>
+    <area>163610</area>
+    <population>9019687</population>
+    <gdp>37100</gdp>
+    <independence>1956-03-20</independence>
+    <government>republic</government>
+    <capital>Tunis</capital>
+</country>
+<country>
+    <continent>North America</continent>
+    <countryName>Saint Lucia</countryName>
+    <countryCode>ST</countryCode>
+    <area>620</area>
+    <population>157862</population>
+    <gdp>640</gdp>
+    <independence>1979-02-22</independence>
+    <government>parliamentary democracy</government>
+    <capital>Castries</capital>
+</country>
+<country>
+    <continent>Europe</continent>
+    <countryName>Croatia</countryName>
+    <countryCode>HR</countryCode>
+    <area>56538</area>
+    <population>5004112</population>
+    <gdp>20100</gdp>
+    <independence>1991-06-25</independence>
+    <government>parliamentary democracy</government>
+    <capital>Zagreb</capital>
+</country>
+<country>
+    <continent>South America</continent>
+    <countryName>Ecuador</countryName>
+    <countryCode>EC</countryCode>
+    <area>283560</area>
+    <population>11466291</population>
+    <gdp>44600</gdp>
+    <independence>1822-05-24</independence>
+    <government>republic</government>
+    <capital>Quito</capital>
+</country>
+<country>
+    <continent>Africa</continent>
+    <countryName>Algeria</countryName>
+    <countryCode>AG</countryCode>
+    <area>2381740</area>
+    <population>29183032</population>
+    <gdp>108700</gdp>
+    <independence>1962-07-05</independence>
+    <government>republic</government>
+    <capital>Algiers</capital>
+</country>
+<country>
+    <continent>Europe</continent>
+    <countryName>Lithuania</countryName>
+    <countryCode>LH</countryCode>
+    <area>65200</area>
+    <population>3646041</population>
+    <gdp>13300</gdp>
+    <independence>1991-09-06</independence>
+    <government>republic</government>
+    <capital>Vilnius</capital>
+</country>
+<country>
+    <continent>Africa</continent>
+    <countryName>Swaziland</countryName>
+    <countryCode>WZ</countryCode>
+    <area>17360</area>
+    <population>998730</population>
+    <gdp>3600</gdp>
+    <independence>1968-09-06</independence>
+    <government>monarchy</government>
+    <capital>Mbabane</capital>
+</country>
+<country>
+    <continent>South America</continent>
+    <countryName>Peru</countryName>
+    <countryCode>PE</countryCode>
+    <area>1285220</area>
+    <population>24523408</population>
+    <gdp>87000</gdp>
+    <independence>1821-07-28</independence>
+    <government>republic</government>
+    <capital>Lima</capital>
+</country>
+<country>
+    <continent>Asia</continent>
+    <countryName>Sri Lanka</countryName>
+    <countryCode>CE</countryCode>
+    <area>65610</area>
+    <population>18553074</population>
+    <gdp>65600</gdp>
+    <independence>1948-02-04</independence>
+    <government>republic</government>
+    <capital>Colombo</capital>
+</country>
+<country>
+    <continent>Africa</continent>
+    <countryName>Namibia</countryName>
+    <countryCode>WA</countryCode>
+    <area>825418</area>
+    <population>1677243</population>
+    <gdp>5800</gdp>
+    <independence>1990-03-21</independence>
+    <government>republic</government>
+    <capital>Windhoek</capital>
+</country>
+<country>
+    <continent>Asia</continent>
+    <countryName>Indonesia</countryName>
+    <countryCode>ID</countryCode>
+    <area>1919440</area>
+    <population>206611600</population>
+    <gdp>710900</gdp>
+    <independence>1945-08-17</independence>
+    <government>republic</government>
+    <capital>Jakarta</capital>
+</country>
+<country>
+    <continent>Europe</continent>
+    <countryName>Ukraine</countryName>
+    <countryCode>UP</countryCode>
+    <area>603700</area>
+    <population>50864009</population>
+    <gdp>174600</gdp>
+    <independence>1991-12-01</independence>
+    <government>republic</government>
+    <capital>Kiev</capital>
+</country>
+<country>
+    <continent>North America</continent>
+    <countryName>Dominican Republic</countryName>
+    <countryCode>DR</countryCode>
+    <area>48730</area>
+    <population>8088881</population>
+    <gdp>26800</gdp>
+    <independence>1844-02-27</independence>
+    <government>republic</government>
+    <capital>Santo Domingo</capital>
+</country>
+<country>
+    <continent>North America</continent>
+    <countryName>Guatemala</countryName>
+    <countryCode>GT</countryCode>
+    <area>108890</area>
+    <population>11277614</population>
+    <gdp>36700</gdp>
+    <independence>1821-09-15</independence>
+    <government>republic</government>
+    <capital>Guatemala</capital>
+</country>
+<country>
+    <continent>North America</continent>
+    <countryName>Jamaica</countryName>
+    <countryCode>JM</countryCode>
+    <area>10990</area>
+    <population>2595275</population>
+    <gdp>8200</gdp>
+    <independence>1962-08-06</independence>
+    <government>parliamentary democracy</government>
+    <capital>Kingston</capital>
+</country>
+<country>
+    <continent>South America</continent>
+    <countryName>Paraguay</countryName>
+    <countryCode>PA</countryCode>
+    <area>406750</area>
+    <population>5504146</population>
+    <gdp>17000</gdp>
+    <independence>1811-05-14</independence>
+    <government>republic</government>
+    <capital>Asuncion</capital>
+</country>
+<country>
+    <continent>Africa</continent>
+    <countryName>Congo</countryName>
+    <countryCode>CF</countryCode>
+    <area>342000</area>
+    <population>2527841</population>
+    <gdp>7700</gdp>
+    <independence>1960-08-15</independence>
+    <government>republic</government>
+    <capital>Brazzaville</capital>
+</country>
+<country>
+    <continent>Africa</continent>
+    <countryName>Botswana</countryName>
+    <countryCode>BC</countryCode>
+    <area>600370</area>
+    <population>1477630</population>
+    <gdp>4500</gdp>
+    <independence>1966-09-30</independence>
+    <government>parliamentary republic</government>
+    <capital>Gaborone</capital>
+</country>
+<country>
+    <continent>North America</continent>
+    <countryName>Grenada</countryName>
+    <countryCode>GJ</countryCode>
+    <area>340</area>
+    <population>94961</population>
+    <gdp>284</gdp>
+    <independence>1974-02-07</independence>
+    <government>parliamentary democracy</government>
+    <capital>Saint Georges</capital>
+</country>
+<country>
+    <continent>South America</continent>
+    <countryName>Suriname</countryName>
+    <countryCode>NS</countryCode>
+    <area>163270</area>
+    <population>436418</population>
+    <gdp>1300</gdp>
+    <independence>1975-11-25</independence>
+    <government>republic</government>
+    <capital>Paramaribo</capital>
+</country>
+<country>
+    <continent>Africa</continent>
+    <countryName>Morocco</countryName>
+    <countryCode>MO</countryCode>
+    <area>446550</area>
+    <population>29779156</population>
+    <gdp>87400</gdp>
+    <independence>1956-03-02</independence>
+    <government>constitutional monarchy</government>
+    <capital>Rabat</capital>
+</country>
+<country>
+    <continent>Australia/Oceania</continent>
+    <countryName>Cook Islands</countryName>
+    <countryCode>CW</countryCode>
+    <area>240</area>
+    <population>19561</population>
+    <gdp>57</gdp>
+    <government>self governing parliamentary government in free association with New Zealand</government>
+    <capital>Avarua</capital>
+</country>
+<country>
+    <continent>Asia</continent>
+    <countryName>China</countryName>
+    <countryCode>CH</countryCode>
+    <area>9596960</area>
+    <population>1210004956</population>
+    <gdp>3500000</gdp>
+    <government>Communist state</government>
+    <capital>Beijing</capital>
+</country>
+<country>
+    <continent>South America</continent>
+    <countryName>Bolivia</countryName>
+    <countryCode>BL</countryCode>
+    <area>1098580</area>
+    <population>7165257</population>
+    <gdp>20000</gdp>
+    <independence>1825-08-06</independence>
+    <government>republic</government>
+    <capital>La Paz</capital>
+</country>
+<country>
+    <continent>Asia</continent>
+    <countryName>Kazakstan</countryName>
+    <countryCode>KZ</countryCode>
+    <area>2717300</area>
+    <population>16916463</population>
+    <gdp>46900</gdp>
+    <independence>1991-12-16</independence>
+    <government>republic</government>
+    <capital>Almaty</capital>
+</country>
+<country>
+    <continent>Asia</continent>
+    <countryName>Turkmenistan</countryName>
+    <countryCode>TX</countryCode>
+    <area>488100</area>
+    <population>4149283</population>
+    <gdp>11500</gdp>
+    <independence>1991-10-27</independence>
+    <government>republic</government>
+    <capital>Ashgabat</capital>
+</country>
+<country>
+    <continent>Asia</continent>
+    <countryName>Yemen</countryName>
+    <countryCode>YM</countryCode>
+    <area>527970</area>
+    <population>13483178</population>
+    <gdp>37100</gdp>
+    <independence>1990-05-22</independence>
+    <government>republic</government>
+    <capital>Sanaa</capital>
+</country>
+<country>
+    <continent>Africa</continent>
+    <countryName>Egypt</countryName>
+    <countryCode>EG</countryCode>
+    <area>1001450</area>
+    <population>63575107</population>
+    <gdp>171000</gdp>
+    <independence>1922-02-28</independence>
+    <government>republic</government>
+    <capital>Cairo</capital>
+</country>
+<country>
+    <continent>Asia</continent>
+    <countryName>Armenia</countryName>
+    <countryCode>AM</countryCode>
+    <area>29800</area>
+    <population>3463574</population>
+    <gdp>9100</gdp>
+    <independence>1918-05-28</independence>
+    <government>republic</government>
+    <capital>Yerevan</capital>
+</country>
+<country>
+    <continent>North America</continent>
+    <countryName>Belize</countryName>
+    <countryCode>BH</countryCode>
+    <area>22960</area>
+    <population>219296</population>
+    <gdp>575</gdp>
+    <independence>1981-09-21</independence>
+    <government>parliamentary democracy</government>
+    <capital>Belmopan</capital>
+</country>
+<country>
+    <continent>Australia/Oceania</continent>
+    <countryName>Solomon Islands</countryName>
+    <countryCode>BP</countryCode>
+    <area>28450</area>
+    <population>412902</population>
+    <gdp>1000</gdp>
+    <independence>1978-07-07</independence>
+    <government>parliamentary democracy</government>
+    <capital>Honiara</capital>
+</country>
+<country>
+    <continent>Asia</continent>
+    <countryName>Philippines</countryName>
+    <countryCode>RP</countryCode>
+    <area>300000</area>
+    <population>74480848</population>
+    <gdp>179700</gdp>
+    <independence>1946-07-04</independence>
+    <government>republic</government>
+    <capital>Manila</capital>
+</country>
+<country>
+    <continent>North America</continent>
+    <countryName>Dominica</countryName>
+    <countryCode>DO</countryCode>
+    <area>750</area>
+    <population>82926</population>
+    <gdp>200</gdp>
+    <independence>1978-11-03</independence>
+    <government>parliamentary democracy</government>
+    <capital>Roseau</capital>
+</country>
+<country>
+    <continent>Asia</continent>
+    <countryName>Uzbekistan</countryName>
+    <countryCode>UZ</countryCode>
+    <area>447400</area>
+    <population>23418381</population>
+    <gdp>54700</gdp>
+    <independence>1991-08-31</independence>
+    <government>republic</government>
+    <capital>Tashkent</capital>
+</country>
+<country>
+    <continent>Europe</continent>
+    <countryName>Moldova</countryName>
+    <countryCode>MD</countryCode>
+    <area>33700</area>
+    <population>4463847</population>
+    <gdp>10400</gdp>
+    <independence>1991-08-27</independence>
+    <government>republic</government>
+    <capital>Chisinau</capital>
+</country>
+<country>
+    <continent>Asia</continent>
+    <countryName>Papua New Guinea</countryName>
+    <countryCode>PP</countryCode>
+    <area>461690</area>
+    <population>4394537</population>
+    <gdp>10200</gdp>
+    <independence>1975-09-16</independence>
+    <government>parliamentary democracy</government>
+    <capital>Port Moresby</capital>
+</country>
+<country>
+    <continent>South America</continent>
+    <countryName>Guyana</countryName>
+    <countryCode>GY</countryCode>
+    <area>214970</area>
+    <population>712091</population>
+    <gdp>1600</gdp>
+    <independence>1966-05-26</independence>
+    <government>republic</government>
+    <capital>Georgetown</capital>
+</country>
+<country>
+    <continent>Australia/Oceania</continent>
+    <countryName>American Samoa</countryName>
+    <countryCode>AQ</countryCode>
+    <area>199</area>
+    <population>59566</population>
+    <gdp>128</gdp>
+    <government>unincorporated and unorganized territory of the US</government>
+    <capital>Pago Pago</capital>
+</country>
+<country>
+    <continent>Australia/Oceania</continent>
+    <countryName>Tonga</countryName>
+    <countryCode>TN</countryCode>
+    <area>748</area>
+    <population>106466</population>
+    <gdp>228</gdp>
+    <independence>1970-06-04</independence>
+    <government>hereditary constitutional monarchy</government>
+    <capital>Nukualofa</capital>
+</country>
+<country>
+    <continent>Asia</continent>
+    <countryName>Pakistan</countryName>
+    <countryCode>PK</countryCode>
+    <area>803940</area>
+    <population>129275660</population>
+    <gdp>274200</gdp>
+    <independence>1947-08-14</independence>
+    <government>republic</government>
+    <capital>Islamabad</capital>
+</country>
+<country>
+    <continent>North America</continent>
+    <countryName>Saint Vincent and the Grenadines</countryName>
+    <countryCode>VC</countryCode>
+    <area>340</area>
+    <population>118344</population>
+    <gdp>240</gdp>
+    <independence>1979-10-27</independence>
+    <government>constitutional monarchy</government>
+    <capital>Kingstown</capital>
+</country>
+<country>
+    <continent>Asia</continent>
+    <countryName>Mongolia</countryName>
+    <countryCode>MG</countryCode>
+    <area>1565000</area>
+    <population>2496617</population>
+    <gdp>4900</gdp>
+    <independence>1921-03-13</independence>
+    <government>republic</government>
+    <capital>Ulaanbaatar</capital>
+</country>
+<country>
+    <continent>Australia/Oceania</continent>
+    <countryName>Wallis and Futuna</countryName>
+    <countryCode>WF</countryCode>
+    <area>274</area>
+    <population>14659</population>
+    <gdp>28.7</gdp>
+    <government>overseas territory of France</government>
+    <capital>Mata Utu</capital>
+</country>
+<country>
+    <continent>North America</continent>
+    <countryName>El Salvador</countryName>
+    <countryCode>ES</countryCode>
+    <area>21040</area>
+    <population>5828987</population>
+    <gdp>11400</gdp>
+    <independence>1821-09-15</independence>
+    <government>republic</government>
+    <capital>San Salvador</capital>
+</country>
+<country>
+    <continent>Europe</continent>
+    <countryName>Serbia and Montenegro</countryName>
+    <countryCode>YI</countryCode>
+    <area>102350</area>
+    <population>10614558</population>
+    <gdp>20600</gdp>
+    <independence>1992-04-11</independence>
+    <government>republic</government>
+    <capital>Belgrade</capital>
+</country>
+<country>
+    <continent>Australia/Oceania</continent>
+    <countryName>Western Samoa</countryName>
+    <countryCode>WS</countryCode>
+    <area>2860</area>
+    <population>214384</population>
+    <gdp>415</gdp>
+    <independence>1962-01-01</independence>
+    <government>constitutional monarchy under native chief</government>
+    <capital>Apia</capital>
+</country>
+<country>
+    <continent>North America</continent>
+    <countryName>Honduras</countryName>
+    <countryCode>HO</countryCode>
+    <area>112090</area>
+    <population>5605193</population>
+    <gdp>10800</gdp>
+    <independence>1821-09-15</independence>
+    <government>republic</government>
+    <capital>Tegucigalpa</capital>
+</country>
+<country>
+    <continent>Asia</continent>
+    <countryName>Iraq</countryName>
+    <countryCode>IZ</countryCode>
+    <area>437072</area>
+    <population>21422292</population>
+    <gdp>41100</gdp>
+    <independence>1932-10-03</independence>
+    <government>republic</government>
+    <capital>Baghdad</capital>
+</country>
+<country>
+    <continent>North America</continent>
+    <countryName>Nicaragua</countryName>
+    <countryCode>NU</countryCode>
+    <area>129494</area>
+    <population>4272352</population>
+    <gdp>7100</gdp>
+    <independence>1821-09-15</independence>
+    <government>republic</government>
+    <capital>Managua</capital>
+</country>
+<country>
+    <continent>Australia/Oceania</continent>
+    <countryName>Micronesia</countryName>
+    <countryCode>FM</countryCode>
+    <area>702</area>
+    <population>125377</population>
+    <gdp>205</gdp>
+    <independence>1986-11-03</independence>
+    <government>constitutional government in free association with the US</government>
+    <capital>Kolonia</capital>
+</country>
+<country>
+    <continent>Australia/Oceania</continent>
+    <countryName>Marshall Islands</countryName>
+    <countryCode>RM</countryCode>
+    <area>181.3</area>
+    <population>58363</population>
+    <gdp>94</gdp>
+    <independence>1986-10-21</independence>
+    <government>constitutional government in free association with the US</government>
+    <capital>Majuro</capital>
+</country>
+<country>
+    <continent>Africa</continent>
+    <countryName>Zimbabwe</countryName>
+    <countryCode>ZI</countryCode>
+    <area>390580</area>
+    <population>11271314</population>
+    <gdp>18100</gdp>
+    <independence>1980-04-18</independence>
+    <government>parliamentary democracy</government>
+    <capital>Harare</capital>
+</country>
+<country>
+    <continent>Africa</continent>
+    <countryName>Senegal</countryName>
+    <countryCode>SG</countryCode>
+    <area>196190</area>
+    <population>9092749</population>
+    <gdp>14500</gdp>
+    <independence>1960-08-20</independence>
+    <government>republic under multiparty democratic rule</government>
+    <capital>Dakar</capital>
+</country>
+<country>
+    <continent>Asia</continent>
+    <countryName>Azerbaijan</countryName>
+    <countryCode>AJ</countryCode>
+    <area>86600</area>
+    <population>7676953</population>
+    <gdp>11500</gdp>
+    <independence>1991-08-30</independence>
+    <government>republic</government>
+    <capital>Baku</capital>
+</country>
+<country>
+    <continent>Africa</continent>
+    <countryName>Cote dIvoire</countryName>
+    <countryCode>IV</countryCode>
+    <area>322460</area>
+    <population>14762445</population>
+    <gdp>21900</gdp>
+    <independence>1960-08-07</independence>
+    <government>republic</government>
+    <capital>Yamoussoukro</capital>
+</country>
+<country>
+    <continent>Asia</continent>
+    <countryName>India</countryName>
+    <countryCode>IN</countryCode>
+    <area>3287590</area>
+    <population>952107694</population>
+    <gdp>1408700</gdp>
+    <independence>1947-08-15</independence>
+    <government>federal republic</government>
+    <capital>New Delhi</capital>
+</country>
+<country>
+    <continent>Asia</continent>
+    <countryName>Maldives</countryName>
+    <countryCode>MV</countryCode>
+    <area>300</area>
+    <population>270758</population>
+    <gdp>390</gdp>
+    <independence>1965-07-26</independence>
+    <government>republic</government>
+    <capital>Male</capital>
+</country>
+<country>
+    <continent>Africa</continent>
+    <countryName>Lesotho</countryName>
+    <countryCode>LT</countryCode>
+    <area>30350</area>
+    <population>1970781</population>
+    <gdp>2800</gdp>
+    <independence>1966-10-04</independence>
+    <government>modified constitutional monarchy</government>
+    <capital>Maseru</capital>
+</country>
+<country>
+    <continent>Africa</continent>
+    <countryName>Ghana</countryName>
+    <countryCode>GH</countryCode>
+    <area>238540</area>
+    <population>17698271</population>
+    <gdp>25100</gdp>
+    <independence>1957-03-06</independence>
+    <government>constitutional democracy</government>
+    <capital>Accra</capital>
+</country>
+<country>
+    <continent>North America</continent>
+    <countryName>Cuba</countryName>
+    <countryCode>CU</countryCode>
+    <area>110860</area>
+    <population>10951334</population>
+    <gdp>14700</gdp>
+    <independence>1902-05-20</independence>
+    <government>Communist state</government>
+    <capital>Havana</capital>
+</country>
+<country>
+    <continent>Africa</continent>
+    <countryName>Benin</countryName>
+    <countryCode>BN</countryCode>
+    <area>112620</area>
+    <population>5709529</population>
+    <gdp>7600</gdp>
+    <independence>1960-08-01</independence>
+    <government>republic under multiparty democratic rule dropped Marxism Leninism December 1989</government>
+    <capital>Porto Novo</capital>
+</country>
+<country>
+    <continent>Asia</continent>
+    <countryName>Vietnam</countryName>
+    <countryCode>VM</countryCode>
+    <area>329560</area>
+    <population>73976973</population>
+    <gdp>97000</gdp>
+    <independence>1945-09-02</independence>
+    <government>Communist state</government>
+    <capital>Hanoi</capital>
+</country>
+<country>
+    <continent>Africa</continent>
+    <countryName>Nigeria</countryName>
+    <countryCode>NI</countryCode>
+    <area>923770</area>
+    <population>103912489</population>
+    <gdp>135900</gdp>
+    <independence>1960-10-01</independence>
+    <government>military government</government>
+    <capital>Abuja</capital>
+</country>
+<country>
+    <continent>Africa</continent>
+    <countryName>Kenya</countryName>
+    <countryCode>KE</countryCode>
+    <area>582650</area>
+    <population>28176686</population>
+    <gdp>36800</gdp>
+    <independence>1963-12-12</independence>
+    <government>republic</government>
+    <capital>Nairobi</capital>
+</country>
+<country>
+    <continent>Europe</continent>
+    <countryName>Albania</countryName>
+    <countryCode>AL</countryCode>
+    <area>28750</area>
+    <population>3249136</population>
+    <gdp>4100</gdp>
+    <independence>1912-11-28</independence>
+    <government>emerging democracy</government>
+    <capital>Tirane</capital>
+</country>
+<country>
+    <continent>Africa</continent>
+    <countryName>Mauritania</countryName>
+    <countryCode>MR</countryCode>
+    <area>1030700</area>
+    <population>2336048</population>
+    <gdp>2800</gdp>
+    <independence>1960-11-28</independence>
+    <government>republic</government>
+    <capital>Nouakchott</capital>
+</country>
+<country>
+    <continent>Asia</continent>
+    <countryName>Kyrgyzstan</countryName>
+    <countryCode>KG</countryCode>
+    <area>198500</area>
+    <population>4529648</population>
+    <gdp>5400</gdp>
+    <independence>1991-08-31</independence>
+    <government>republic</government>
+    <capital>Bishkek</capital>
+</country>
+<country>
+    <continent>Asia</continent>
+    <countryName>Georgia</countryName>
+    <countryCode>GG</countryCode>
+    <area>69700</area>
+    <population>5219810</population>
+    <gdp>6200</gdp>
+    <independence>1991-04-09</independence>
+    <government>republic</government>
+    <capital>Tbilisi</capital>
+</country>
+<country>
+    <continent>Australia/Oceania</continent>
+    <countryName>Vanuatu</countryName>
+    <countryCode>NH</countryCode>
+    <area>14760</area>
+    <population>177504</population>
+    <gdp>210</gdp>
+    <independence>1980-07-30</independence>
+    <government>republic</government>
+    <capital>Port Vila</capital>
+</country>
+<country>
+    <continent>Asia</continent>
+    <countryName>Bangladesh</countryName>
+    <countryCode>BG</countryCode>
+    <area>144000</area>
+    <population>123062800</population>
+    <gdp>144500</gdp>
+    <independence>1971-12-16</independence>
+    <government>republic</government>
+    <capital>Dhaka</capital>
+</country>
+<country>
+    <continent>Africa</continent>
+    <countryName>Djibouti</countryName>
+    <countryCode>DJ</countryCode>
+    <area>22000</area>
+    <population>427642</population>
+    <gdp>500</gdp>
+    <independence>1977-06-27</independence>
+    <government>republic</government>
+    <capital>Djibouti</capital>
+</country>
+<country>
+    <continent>Africa</continent>
+    <countryName>Cameroon</countryName>
+    <countryCode>CM</countryCode>
+    <area>475440</area>
+    <population>14261557</population>
+    <gdp>16500</gdp>
+    <independence>1960-01-01</independence>
+    <government>unitary republic</government>
+    <capital>Yaounde</capital>
+</country>
+<country>
+    <continent>Asia</continent>
+    <countryName>Nepal</countryName>
+    <countryCode>NP</countryCode>
+    <area>140800</area>
+    <population>22094033</population>
+    <gdp>25200</gdp>
+    <independence>1768-01-01</independence>
+    <government>parliamentary democracy as of 12 May 1991</government>
+    <capital>Kathmandu</capital>
+</country>
+<country>
+    <continent>Australia/Oceania</continent>
+    <countryName>Niue</countryName>
+    <countryCode>NE</countryCode>
+    <area>260</area>
+    <population>2174</population>
+    <gdp>2.4</gdp>
+    <independence>1974-10-19</independence>
+    <government>self governing territory in free association with New Zealand</government>
+    <capital>Alofi</capital>
+</country>
+<country>
+    <continent>Africa</continent>
+    <countryName>Liberia</countryName>
+    <countryCode>LI</countryCode>
+    <area>111370</area>
+    <population>2109789</population>
+    <gdp>2300</gdp>
+    <government>republic</government>
+    <capital>Monrovia</capital>
+</country>
+<country>
+    <continent>Asia</continent>
+    <countryName>Tajikistan</countryName>
+    <countryCode>TI</countryCode>
+    <area>143100</area>
+    <population>5916373</population>
+    <gdp>6400</gdp>
+    <independence>1991-09-09</independence>
+    <government>republic</government>
+    <capital>Dushanbe</capital>
+</country>
+<country>
+    <continent>Asia</continent>
+    <countryName>Laos</countryName>
+    <countryCode>LA</countryCode>
+    <area>236800</area>
+    <population>4975772</population>
+    <gdp>5200</gdp>
+    <independence>1949-07-19</independence>
+    <government>Communist state</government>
+    <capital>Vientiane</capital>
+</country>
+<country>
+    <continent>Asia</continent>
+    <countryName>Burma</countryName>
+    <countryCode>BM</countryCode>
+    <area>678500</area>
+    <population>45975625</population>
+    <gdp>47000</gdp>
+    <independence>1948-01-04</independence>
+    <government>military regime</government>
+    <capital>Rangoon</capital>
+</country>
+<country>
+    <continent>Africa</continent>
+    <countryName>Cape Verde</countryName>
+    <countryCode>CV</countryCode>
+    <area>4030</area>
+    <population>449066</population>
+    <gdp>440</gdp>
+    <independence>1975-07-05</independence>
+    <government>republic</government>
+    <capital>Praia</capital>
+</country>
+<country>
+    <continent>Africa</continent>
+    <countryName>Zambia</countryName>
+    <countryCode>ZA</countryCode>
+    <area>752610</area>
+    <population>9159072</population>
+    <gdp>8900</gdp>
+    <independence>1964-10-24</independence>
+    <government>republic</government>
+    <capital>Lusaka</capital>
+</country>
+<country>
+    <continent>North America</continent>
+    <countryName>Haiti</countryName>
+    <countryCode>HA</countryCode>
+    <area>27750</area>
+    <population>6731539</population>
+    <gdp>6500</gdp>
+    <independence>1804-01-01</independence>
+    <government>republic</government>
+    <capital>Port au Prince</capital>
+</country>
+<country>
+    <continent>Africa</continent>
+    <countryName>Sao Tome and Principe</countryName>
+    <countryCode>TP</countryCode>
+    <area>960</area>
+    <population>144128</population>
+    <gdp>138</gdp>
+    <independence>1975-07-12</independence>
+    <government>republic</government>
+    <capital>Sao Tome</capital>
+</country>
+<country>
+    <continent>Africa</continent>
+    <countryName>Sierra Leone</countryName>
+    <countryCode>SL</countryCode>
+    <area>71740</area>
+    <population>4793121</population>
+    <gdp>4400</gdp>
+    <independence>1961-04-27</independence>
+    <government>constitutional democracy</government>
+    <capital>Freetown</capital>
+</country>
+<country>
+    <continent>Africa</continent>
+    <countryName>Gambia</countryName>
+    <countryCode>GA</countryCode>
+    <area>11300</area>
+    <population>1204984</population>
+    <gdp>1100</gdp>
+    <independence>1965-02-18</independence>
+    <government>republic under multiparty democratic rule</government>
+    <capital>Banjul</capital>
+</country>
+<country>
+    <continent>Europe</continent>
+    <countryName>Macedonia</countryName>
+    <countryCode>MK</countryCode>
+    <area>25333</area>
+    <population>2104035</population>
+    <gdp>1900</gdp>
+    <independence>1991-09-17</independence>
+    <government>emerging democracy</government>
+    <capital>Skopje</capital>
+</country>
+<country>
+    <continent>Asia</continent>
+    <countryName>North Korea</countryName>
+    <countryCode>KN</countryCode>
+    <area>120540</area>
+    <population>23904124</population>
+    <gdp>21500</gdp>
+    <government>Communist state</government>
+    <capital>Pyongyang</capital>
+</country>
+<country>
+    <continent>Africa</continent>
+    <countryName>Togo</countryName>
+    <countryCode>TO</countryCode>
+    <area>56790</area>
+    <population>4570530</population>
+    <gdp>4100</gdp>
+    <independence>1960-04-27</independence>
+    <government>republic under transition to multiparty democratic rule</government>
+    <capital>Lome</capital>
+</country>
+<country>
+    <continent>Africa</continent>
+    <countryName>Guinea</countryName>
+    <countryCode>GV</countryCode>
+    <area>245860</area>
+    <population>7411981</population>
+    <gdp>6500</gdp>
+    <independence>1958-10-02</independence>
+    <government>republic</government>
+    <capital>Conakry</capital>
+</country>
+<country>
+    <continent>Africa</continent>
+    <countryName>Guinea-Bissau</countryName>
+    <countryCode>PU</countryCode>
+    <area>36120</area>
+    <population>1151330</population>
+    <gdp>1000</gdp>
+    <independence>1974-09-10</independence>
+    <government>republic</government>
+    <capital>Bissau</capital>
+</country>
+<country>
+    <continent>Australia/Oceania</continent>
+    <countryName>Kiribati</countryName>
+    <countryCode>KR</countryCode>
+    <area>717</area>
+    <population>80919</population>
+    <gdp>68</gdp>
+    <independence>1979-07-12</independence>
+    <government>republic</government>
+    <capital>Tarawa</capital>
+</country>
+<country>
+    <continent>Africa</continent>
+    <countryName>Madagascar</countryName>
+    <countryCode>MA</countryCode>
+    <area>587040</area>
+    <population>13670507</population>
+    <gdp>11400</gdp>
+    <independence>1960-06-26</independence>
+    <government>republic</government>
+    <capital>Antananarivo</capital>
+</country>
+<country>
+    <continent>Africa</continent>
+    <countryName>Uganda</countryName>
+    <countryCode>UG</countryCode>
+    <area>236040</area>
+    <population>20158176</population>
+    <gdp>16800</gdp>
+    <independence>1962-10-09</independence>
+    <government>republic</government>
+    <capital>Kampala</capital>
+</country>
+<country>
+    <continent>Africa</continent>
+    <countryName>Tanzania</countryName>
+    <countryCode>TZ</countryCode>
+    <area>945090</area>
+    <population>29058470</population>
+    <gdp>23100</gdp>
+    <independence>1964-04-26</independence>
+    <government>republic</government>
+    <capital>Dar es Salaam</capital>
+</country>
+<country>
+    <continent>Africa</continent>
+    <countryName>Sudan</countryName>
+    <countryCode>SU</countryCode>
+    <area>2505810</area>
+    <population>31547543</population>
+    <gdp>25000</gdp>
+    <independence>1956-01-01</independence>
+    <government>transitional previously ruling military junta</government>
+    <capital>Khartoum</capital>
+</country>
+<country>
+    <continent>Australia/Oceania</continent>
+    <countryName>Tuvalu</countryName>
+    <countryCode>TV</countryCode>
+    <area>26</area>
+    <population>10146</population>
+    <gdp>7.8</gdp>
+    <independence>1978-10-01</independence>
+    <government>democracy</government>
+    <capital>Funafuti</capital>
+</country>
+<country>
+    <continent>Africa</continent>
+    <countryName>Central African Republic</countryName>
+    <countryCode>CT</countryCode>
+    <area>622980</area>
+    <population>3274426</population>
+    <gdp>2500</gdp>
+    <independence>1960-08-13</independence>
+    <government>republic</government>
+    <capital>Bangui</capital>
+</country>
+<country>
+    <continent>Africa</continent>
+    <countryName>Equatorial Guinea</countryName>
+    <countryCode>EK</countryCode>
+    <area>28050</area>
+    <population>431282</population>
+    <gdp>325</gdp>
+    <independence>1968-10-12</independence>
+    <government>republic in transition to multiparty democracy</government>
+    <capital>Malabo</capital>
+</country>
+<country>
+    <continent>Africa</continent>
+    <countryName>Malawi</countryName>
+    <countryCode>MI</countryCode>
+    <area>118480</area>
+    <population>9452844</population>
+    <gdp>6900</gdp>
+    <independence>1964-07-06</independence>
+    <government>multiparty democracy</government>
+    <capital>Lilongwe</capital>
+</country>
+<country>
+    <continent>Africa</continent>
+    <countryName>Angola</countryName>
+    <countryCode>AO</countryCode>
+    <area>1246700</area>
+    <population>10342899</population>
+    <gdp>7400</gdp>
+    <independence>1975-11-11</independence>
+    <government>transitional government nominally a multiparty democracy with a strong presidential system</government>
+    <capital>Luanda</capital>
+</country>
+<country>
+    <continent>Asia</continent>
+    <countryName>Bhutan</countryName>
+    <countryCode>BT</countryCode>
+    <area>47000</area>
+    <population>1822625</population>
+    <gdp>1300</gdp>
+    <independence>1949-08-08</independence>
+    <government>monarchy</government>
+    <capital>Thimphu</capital>
+</country>
+<country>
+    <continent>Africa</continent>
+    <countryName>Burkina Faso</countryName>
+    <countryCode>UV</countryCode>
+    <area>274200</area>
+    <population>10623323</population>
+    <gdp>7400</gdp>
+    <independence>1960-08-05</independence>
+    <government>parliamentary</government>
+    <capital>Ouagadougou</capital>
+</country>
+<country>
+    <continent>Africa</continent>
+    <countryName>Mozambique</countryName>
+    <countryCode>MZ</countryCode>
+    <area>801590</area>
+    <population>17877927</population>
+    <gdp>12200</gdp>
+    <independence>1975-06-25</independence>
+    <government>republic</government>
+    <capital>Maputo</capital>
+</country>
+<country>
+    <continent>Africa</continent>
+    <countryName>Burundi</countryName>
+    <countryCode>BY</countryCode>
+    <area>27830</area>
+    <population>5943057</population>
+    <gdp>4000</gdp>
+    <independence>1962-07-01</independence>
+    <government>republic</government>
+    <capital>Bujumbura</capital>
+</country>
+<country>
+    <continent>Africa</continent>
+    <countryName>Comoros</countryName>
+    <countryCode>CN</countryCode>
+    <area>2170</area>
+    <population>569237</population>
+    <gdp>370</gdp>
+    <independence>1975-07-06</independence>
+    <government>independent republic</government>
+    <capital>Moroni</capital>
+</country>
+<country>
+    <continent>Asia</continent>
+    <countryName>Cambodia</countryName>
+    <countryCode>CB</countryCode>
+    <area>181040</area>
+    <population>10861218</population>
+    <gdp>7000</gdp>
+    <independence>1949-11-09</independence>
+    <government>multiparty liberal democracy under a constitutional monarchy established in September 1993</government>
+    <capital>Phnom Penh</capital>
+</country>
+<country>
+    <continent>Africa</continent>
+    <countryName>Niger</countryName>
+    <countryCode>NG</countryCode>
+    <area>1267000</area>
+    <population>9113001</population>
+    <gdp>5500</gdp>
+    <independence>1960-08-03</independence>
+    <government>republic</government>
+    <capital>Niamey</capital>
+</country>
+<country>
+    <continent>Africa</continent>
+    <countryName>Eritrea</countryName>
+    <countryCode>ER</countryCode>
+    <area>121320</area>
+    <population>3427883</population>
+    <gdp>2000</gdp>
+    <independence>1993-05-27</independence>
+    <government>transitional government</government>
+    <capital>Asmara</capital>
+</country>
+<country>
+    <continent>Asia</continent>
+    <countryName>Afghanistan</countryName>
+    <countryCode>AF</countryCode>
+    <area>647500</area>
+    <population>22664136</population>
+    <gdp>12800</gdp>
+    <independence>1919-08-19</independence>
+    <government>transitional government</government>
+    <capital>Kabul</capital>
+</country>
+<country>
+    <continent>Africa</continent>
+    <countryName>Mali</countryName>
+    <countryCode>ML</countryCode>
+    <area>1240000</area>
+    <population>9653261</population>
+    <gdp>5400</gdp>
+    <independence>1960-09-22</independence>
+    <government>republic</government>
+    <capital>Bamako</capital>
+</country>
+<country>
+    <continent>Africa</continent>
+    <countryName>Rwanda</countryName>
+    <countryCode>RW</countryCode>
+    <area>26340</area>
+    <population>6853359</population>
+    <gdp>3800</gdp>
+    <independence>1962-07-01</independence>
+    <government>republic</government>
+    <capital>Kigali</capital>
+</country>
+<country>
+    <continent>Africa</continent>
+    <countryName>Chad</countryName>
+    <countryCode>CD</countryCode>
+    <area>1284000</area>
+    <population>6976845</population>
+    <gdp>3300</gdp>
+    <independence>1960-08-11</independence>
+    <government>republic</government>
+    <capital>NDjamena</capital>
+</country>
+<country>
+    <continent>Africa</continent>
+    <countryName>Ethiopia</countryName>
+    <countryCode>ET</countryCode>
+    <area>1127127</area>
+    <population>57171662</population>
+    <gdp>24200</gdp>
+    <government>federal republic</government>
+    <capital>Addis Ababa</capital>
+</country>
+<country>
+    <continent>Europe</continent>
+    <countryName>Bosnia and Herzegovina</countryName>
+    <countryCode>BK</countryCode>
+    <area>51233</area>
+    <population>2656240</population>
+    <gdp>1000</gdp>
+    <indep_date>1992-04-01</indep_date>
+    <government>emerging democracy</government>
+    <capital>Sarajevo</capital>
+</country>
+<country>
+    <continent>Africa</continent>
+    <countryName>Somalia</countryName>
+    <countryCode>SO</countryCode>
+    <area>637660</area>
+    <population>9639151</population>
+    <gdp>3600</gdp>
+    <independence>1960-07-01</independence>
+    <government>none</government>
+    <capital>Mogadishu</capital>
+</country>
+<country>
+    <continent>Africa</continent>
+    <countryName>Zaire</countryName>
+    <countryCode>CG</countryCode>
+    <area>2345410</area>
+    <population>46498539</population>
+    <gdp>16500</gdp>
+    <independence>1960-06-30</independence>
+    <government>republic with a strong presidential system</government>
+    <capital>Kinshasa</capital>
+</country>
+
+</List>
