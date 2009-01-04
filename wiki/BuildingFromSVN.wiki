@@ -4,7 +4,7 @@
 
 Checking out the SmartGWT source is most useful if you plan to compile SmartGWT yourself. The pre-built SmartGWT distribution already contains all the Java source, so you don't actually need to check it out from the repository just to debug through it. Just tweak your IDE to read source from the SmartGWT jars.
 
-SmartGWT is hosted on [http://code.google.com/hosting/ Google Code] project hosting, so you check out the source for GWT-Ext using a Subversion client as you would for any other project hosted on Google Code:
+SmartGWT is hosted on [http://code.google.com/hosting/ Google Code] project hosting, so you check out the source for SmartGWT using a Subversion client as you would for any other project hosted on Google Code:
 
 {{{ svn checkout http://smartgwt.googlecode.com/svn/trunk/ trunk }}}
 
