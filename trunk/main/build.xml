@@ -59,7 +59,7 @@
                 <!--do not distribute ext-->
                 <!--<exclude name="com/smartgwt/public/**/*"/>-->
             </fileset>
-            <zipgroupfileset dir="${smartgwt.tools.lib}/sc/${smartclient.version}" includes="smartclient.jar" />
+            <zipfileset dirmode="755" filemode="644" src="${smartgwt.tools.lib}/sc/${smartclient.version}/smartclient.jar" />
 
             <fileset dir="${javac.out}"/>
         </gwt.jar>
