@@ -1,17 +1,5 @@
 <project name="common">
 
-<!--
-<taskdef name="fmpp" classname="fmpp.tools.AntTask">
-    <classpath>
-	    <pathelement location="${smartgwt.tools.lib}/fmpp/lib/bsh.jar" />
-	    <pathelement location="${smartgwt.tools.lib}/fmpp/lib/freemarker.jar" />
-	    <pathelement location="${smartgwt.tools.lib}/fmpp/lib/fmpp.jar" />
-	    <pathelement location="${smartgwt.tools.lib}/fmpp/lib/jaxen-1.1.1.jar" />
-	    <pathelement location="${smartgwt.tools.lib}/fmpp/lib/oro.jar" />
-	    <pathelement location="${smartgwt.tools.lib}/fmpp/lib/resolver.jar" />
-    </classpath>
-</taskdef>
--->
         <!-- gwt.build.iscasesensitivefs is true if the filesystem of the
           build machine is case-sensitive, false otherwise.  Update with
           new lines for any supported platforms with case-insensitive
@@ -36,13 +24,15 @@
 
 	<!-- Global Properties -->
 	<property environment="env" />
-	<condition property="smartgwt.version" value="${env.SMARTGWT_VERSION}" else="1.0b1">
+	<condition property="smartgwt.version" value="${env.SMARTGWT_VERSION}" else="1.0b2">
 		<isset property="env.SMARTGWT_VERSION" />
 	</condition>
 
     <condition property="smartgwt.tools.check" value="${env.SMARTGWT_TOOLS}" else="${smartgwt.root}/../tools">
 		<isset property="env.SMARTGWT_TOOLS" />
 	</condition>
+    <property name="smartclient.version" value="7.0b3" />
+
 	<property name="smartgwt.tools" location="${smartgwt.tools.check}" />
 	<property name="smartgwt.tools.lib" location="${smartgwt.tools}/lib" />
 	<property name="smartgwt.tools.antlib" location="${smartgwt.tools}/antlib" />
