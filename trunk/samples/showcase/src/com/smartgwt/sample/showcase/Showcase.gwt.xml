@@ -1,0 +1,14 @@
+<module>
+
+    <inherits name='com.google.gwt.user.User'/>
+	<inherits name="com.google.gwt.core.Core"/>
+	<inherits name="com.google.gwt.user.History"/>
+    
+    <inherits name="com.smartgwt.SmartGwtNoScript"/>
+    <inherits name="com.smartclient.theme.blackops.BlackOpsResources"/>
+    <inherits name="com.smartclient.theme.silverwave.SilverWaveResources"/>
+    <inherits name="com.smartclient.theme.treefrog.TreeFrogResources"/>
+
+    <entry-point class='com.smartgwt.sample.showcase.client.Showcase'/>
+
+</module>
