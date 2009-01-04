@@ -30,7 +30,7 @@ Everything is Java source that can be built with the included SmartGWT [http://a
   then just invoke Ant
      {{{ ant  }}}
 
-* To clean invoke 
+ * To clean invoke 
      {{{ ant  clean}}}
 
   * The SmartGWT build creates a binary distribution in the build/dist  subdirectory of the source root directory. In this example, the distributions would be in ~/smartgwt/trunk/build.
