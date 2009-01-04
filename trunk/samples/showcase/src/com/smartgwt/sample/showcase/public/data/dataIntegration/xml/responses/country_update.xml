@@ -1,0 +1,18 @@
+<!-- XML response to an update request. Should contain details of the updated record
+     which will be integrated into the client data cache. 
+     Normally this response would be generated dynamically on the server. -->
+<country>
+    <countryCode>US</countryCode>    
+    <continent>Saved Value</continent>
+    <countryName>Saved Value</countryName>
+    <capital>Saved Value</capital>
+    
+    <area>9631420</area>
+    <population>298444215</population>
+    <gdp>12360000</gdp>
+    <independence>1776-07-04</independence>
+    <government>federal republic</government>
+    <government_desc>2</government_desc>
+    <member_g8>true</member_g8>
+    <article>http://en.wikipedia.org/wiki/United_states</article>
+</country>
