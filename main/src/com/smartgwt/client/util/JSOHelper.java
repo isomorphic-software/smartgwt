@@ -166,7 +166,7 @@ public class JSOHelper {
     }-*/;
 
     public static native void deleteAttribute(JavaScriptObject elem, String attr) /*-{
-	    if(elem.attr) delete elem.attr;
+	      delete elem[attr];
     }-*/;
 
     public static native void setAttribute(JavaScriptObject elem, String attr, boolean value) /*-{
