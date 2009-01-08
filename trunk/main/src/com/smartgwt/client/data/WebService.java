@@ -15,12 +15,13 @@ public class WebService extends JsObject {
         var self  = this.@com.smartgwt.client.core.JsObject::getJsObj()();
         var paramDataJS = @com.smartgwt.client.util.JSOHelper::convertMapToJavascriptObject(Ljava/util/Map;)(paramData);
 
-        self.callOperation(operationName, paramDataJS, function(data) {
+        self.callOperation(operationName, paramDataJS, resultType, function(data) {
             var dataJ = @com.smartgwt.client.util.JSOHelper::convertToJavaStringArray(Lcom/google/gwt/core/client/JavaScriptObject;)(data);
             callback.@com.smartgwt.client.data.WebServiceCallback::execute([Ljava/lang/String;)(dataJ);
         });
     }-*/;
 
+ 
     /**
      * Set location can be used when the actual URL where a service will be accessible isn't known until runtime, or changes at runtime, hence can't be embedded in the service definition.
      * <br>
