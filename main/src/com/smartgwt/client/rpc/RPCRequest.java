@@ -518,6 +518,18 @@ public class RPCRequest extends DataClass {
         setAttribute("params", params);
     }
 
+    /**
+     * HTTP headers to send, as a mapping Header name -> Header value, eg
+     * { "Content-Type" : "text/xml" }
+     * <p>
+     * Valid with the xmlHttpRequest transport only.
+     *
+     * @param httpHeaders the http headers
+     */
+    public void setHttpHeaders(Map httpHeaders) {
+        setAttribute("httpHeaders", httpHeaders);
+    }
+
 }
 
 
