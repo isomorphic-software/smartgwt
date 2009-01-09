@@ -1043,7 +1043,7 @@ public class DataSource extends BaseClass  implements com.smartgwt.client.data.e
      *
      * @param testData testData Default value is null
      */
-    public void setTestData(DataClass... testData) {
+    public void setTestData(DataClass[] testData) {
         setAttribute("testData", testData, true);
     }
 
