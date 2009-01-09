@@ -26,6 +26,10 @@ public class DataSourceFloatField extends DataSourceField {
         setType(FieldType.FLOAT);
     }
 
+    public DataSourceFloatField(String name) {
+        super(name, FieldType.FLOAT);
+    }
+
     public DataSourceFloatField(String name, String title) {
         super(name, FieldType.FLOAT, title);
     }
