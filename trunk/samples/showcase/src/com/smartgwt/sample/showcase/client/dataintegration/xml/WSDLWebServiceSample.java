@@ -94,8 +94,8 @@ public class WSDLWebServiceSample extends ShowcasePanel {
                  Map data = new LinkedHashMap();
                  data.put("USZip", getValueAsString("ZipCode"));
                  zipCodeService.callOperation("GetInfoByZIP", data, "//CITY", new WebServiceCallback() {
-                     public void execute(String[] data) {
-                         ZipForm.this.setValue("City", data[0]);
+                     public void execute(Object[] data) {
+                         ZipForm.this.setValue("City", (String)data[0]);
                      }
                  });
              }
