@@ -16,8 +16,8 @@ public class WebService extends JsObject {
         var paramDataJS = @com.smartgwt.client.util.JSOHelper::convertMapToJavascriptObject(Ljava/util/Map;)(paramData);
 
         self.callOperation(operationName, paramDataJS, resultType, function(data) {
-            var dataJ = @com.smartgwt.client.util.JSOHelper::convertToJavaStringArray(Lcom/google/gwt/core/client/JavaScriptObject;)(data);
-            callback.@com.smartgwt.client.data.WebServiceCallback::execute([Ljava/lang/String;)(dataJ);
+            var dataJ = @com.smartgwt.client.util.JSOHelper::convertToJavaObjectArray(Lcom/google/gwt/core/client/JavaScriptObject;)(data);
+            callback.@com.smartgwt.client.data.WebServiceCallback::execute([Ljava/lang/Object;)(dataJ);
         });
     }-*/;
 
