@@ -1630,6 +1630,32 @@ public class ListGridField extends DataClass  implements com.smartgwt.client.wid
     }
 
     /**
+     * If this ListGrid is showing a filter row, this property can be used to specify the form item class to use
+     * for the filter form item associated with this field (Only used if this field is not canFilter:false).
+     * <br>
+     *
+     * <b>Note</b>: If this is not specified, the edit-form item type may be derived from the 'editorType' property,
+     * typically inherited from datasource fields, or from the 'type' of the field (showing the appropriate form item for the data-type).
+     *
+     * @param filterEditorType the filter editor type
+     */
+    public void setFilterEditorType(FormItem filterEditorType) {
+        setAttribute("filterEditorType", filterEditorType.getType());
+        JavaScriptObject editorConfig = filterEditorType.getConfig();
+        setAttribute("filterEditorProperties", editorConfig);
+    }
+
+    /**
+     * If this listGrid is showing a filter row, this property can be used to specify a mapping of internal data to/from display
+     * values to be in the appropriate filter row form item.
+     *
+     * @param filterEditorValueMap the filter editor value map
+     */
+    public void setFilterEditorValueMap(Map filterEditorValueMap) {
+        setAttribute("filterEditorValueMap", filterEditorValueMap);
+    }
+
+    /**
      * Array of {@link com.smartgwt.client.widgets.form.validator.Validator} objects for this field.  When the user
      * edits cells in this field, these validators will be applied to the edited value.<br> Note: for databound
      * listGrids, this property may be specified on the  {@link com.smartgwt.client.data.DataSourceField}, enabling both
