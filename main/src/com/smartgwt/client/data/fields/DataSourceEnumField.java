@@ -26,6 +26,10 @@ public class DataSourceEnumField extends DataSourceField {
         setType(FieldType.ENUM);
     }
 
+    public DataSourceEnumField(String name) {
+        super(name, FieldType.ENUM);
+    }
+
     public DataSourceEnumField(String name, String title) {
         super(name, FieldType.ENUM, title);
     }

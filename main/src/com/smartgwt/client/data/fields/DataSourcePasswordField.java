@@ -24,6 +24,10 @@ public class DataSourcePasswordField extends DataSourceField {
         setType(FieldType.PASSWORD);
     }
 
+    public DataSourcePasswordField(String name) {
+        super(name, FieldType.PASSWORD);
+    }
+
     public DataSourcePasswordField(String name, String title) {
         super(name, FieldType.PASSWORD, title);
     }
