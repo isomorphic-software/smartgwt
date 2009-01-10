@@ -26,6 +26,10 @@ public class DataSourceBooleanField extends DataSourceField {
         setType(FieldType.BOOLEAN);
     }
 
+    public DataSourceBooleanField(String name) {
+        super(name, FieldType.BOOLEAN);
+    }
+
     public DataSourceBooleanField(String name, String title) {
         super(name, FieldType.BOOLEAN, title);
     }

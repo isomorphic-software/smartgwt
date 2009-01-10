@@ -26,6 +26,10 @@ public class DataSourceImageField extends DataSourceField {
         setType(FieldType.IMAGE);
     }
 
+    public DataSourceImageField(String name) {
+        super(name, FieldType.IMAGE);
+    }
+
     public DataSourceImageField(String name, String title) {
         super(name, FieldType.IMAGE, title);
     }

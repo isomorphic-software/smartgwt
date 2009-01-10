@@ -26,6 +26,10 @@ public class DataSourceBinaryField extends DataSourceField {
         setType(FieldType.BINARY);
     }
 
+    public DataSourceBinaryField(String name) {
+        super(name, FieldType.BINARY);
+    }
+
     public DataSourceBinaryField(String name, String title) {
         super(name, FieldType.BINARY, title);
     }

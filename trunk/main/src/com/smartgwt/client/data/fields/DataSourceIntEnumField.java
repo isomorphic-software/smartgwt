@@ -26,6 +26,10 @@ public class DataSourceIntEnumField extends DataSourceField {
         setType(FieldType.INTENUM);
     }
 
+    public DataSourceIntEnumField(String name) {
+        super(name, FieldType.INTENUM);
+    }
+
     public DataSourceIntEnumField(String name, String title) {
         super(name, FieldType.INTENUM, title);
     }

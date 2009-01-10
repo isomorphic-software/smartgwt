@@ -26,6 +26,10 @@ public class DataSourceLinkField extends DataSourceField {
         setType(FieldType.LINK);
     }
 
+    public DataSourceLinkField(String name) {
+        super(name, FieldType.LINK);
+    }
+
     public DataSourceLinkField(String name, String title) {
         super(name, FieldType.LINK, title);
     }
