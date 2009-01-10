@@ -517,6 +517,11 @@ public class JSOHelper {
         return (result == null || result === undefined) ? null : result;
     }-*/;
 
+    public static native Object getObjectArrayValue(JavaScriptObject array, int index) /*-{
+        var result = array[index];
+        return (result == null || result === undefined) ? null : result;
+    }-*/;
+
     public static native int getIntArrayValue(JavaScriptObject array, int index) /*-{
         return array[index];
     }-*/;
@@ -554,6 +559,16 @@ public class JSOHelper {
         String[] arr = new String[length];
         for (int i = 0; i < length; i++) {
             arr[i] = getArrayValue(array, i);
+        }
+        return arr;
+    }
+
+    public static Object[] convertToJavaObjectArray(JavaScriptObject array) {
+        if (array == null) return new Object[]{};
+        int length = getArrayLength(array);
+        Object[] arr = new Object[length];
+        for (int i = 0; i < length; i++) {
+            arr[i] = getObjectArrayValue(array, i);
         }
         return arr;
     }
