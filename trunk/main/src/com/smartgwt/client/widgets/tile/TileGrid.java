@@ -411,6 +411,15 @@ public class TileGrid extends TileLayout  implements DataBoundComponent, com.sma
     }
 
     /**
+     * The DataSource that this component should bind to for default fields and for performing {@link com.smartgwt.client.data.DSRequest}. <P> Can be specified as either a DataSource instance or the String ID of a DataSource.
+     *
+     * @return DataSource
+     */
+    public DataSource getDataSource() {
+        return DataSource.getOrCreateRef(getAttributeAsJavaScriptObject("dataSource"));
+    }
+    
+    /**
      * Array of field definitions to control the default rendering of tiles. <P> If not specified, if the DataSource has
      * an {@link com.smartgwt.client.data.DataSource#getIconField iconField}, only the <code>iconField</code> and {@link
      * com.smartgwt.client.data.DataSource#getTitleField titleField} will be shown. Otherwise, all non-{@link

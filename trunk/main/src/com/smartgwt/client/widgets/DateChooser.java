@@ -59,7 +59,8 @@ import com.google.gwt.event.logical.shared.HasHandlers;
     * Simple interactive calendar interface used to pick a date. Used by the {@link com.smartgwt.client.widgets.form.fields.DateItem} class.
 
     */
-public class DateChooser extends Canvas {
+
+public class DateChooser extends Canvas  implements com.smartgwt.client.widgets.events.HasDataChangedHandlers {
 
     public static DateChooser getOrCreateRef(JavaScriptObject jsObj) {
         BaseWidget obj = BaseWidget.getRef(jsObj);
@@ -775,11 +776,33 @@ public class DateChooser extends Canvas {
         }-*/;
 
         /**
-         * Method to override or observe in order to be notified when a user picks a date value. <P> Has no default behavior (so no need to call Super). <P> Use {@link com.smartgwt.client.widgets.DateChooser#getData} to get the current date value.
+         * Add a dataChanged handler.
+         *
+         * @param handler the dataChanged handler
          */
-        public native void dataChanged() /*-{
-            var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
-            self.dataChanged();
+        public HandlerRegistration addDataChangedHandler(com.smartgwt.client.widgets.events.DataChangedHandler handler) {
+            if(manager.getHandlerCount(com.smartgwt.client.widgets.events.DataChangedEvent.getType()) == 0) setupDataChangedEvent();
+            return manager.addHandler(com.smartgwt.client.widgets.events.DataChangedEvent.getType(), handler);
+        }
+        private native void setupDataChangedEvent() /*-{
+            var obj = null;
+            var managerJ = this.@com.smartgwt.client.widgets.BaseWidget::manager;
+            if(this.@com.smartgwt.client.widgets.BaseWidget::isCreated()()) {
+                obj = this.@com.smartgwt.client.widgets.BaseWidget::getJsObj()();
+                obj.addProperties({dataChanged:function(){
+                        var param = {};
+                        var event = @com.smartgwt.client.widgets.events.DataChangedEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
+                        managerJ.@com.google.gwt.event.shared.HandlerManager::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
+                    }
+                });
+            } else {
+                obj = this.@com.smartgwt.client.widgets.BaseWidget::getConfig()();
+                obj.dataChanged = function(){
+                    var param = {};
+                    var event = @com.smartgwt.client.widgets.events.DataChangedEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
+                    managerJ.@com.google.gwt.event.shared.HandlerManager::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
+                };
+            }
         }-*/;
 
     // ********************* Static Methods ***********************

@@ -585,26 +585,6 @@ public class ListGridField extends DataClass  implements com.smartgwt.client.wid
     }
 
     /**
-    * A string of script that, if provided, is evaluated to conditionally determine whether this field should be displayed.  Evaluated on initial draw, then reevaluated on explicit  calls to <code>listGrid.refreshFields()</code> or <code>listGrid.setFields()</code>.  <P> Use 'showIf:"false"' to set a ListGrid field to initially hidden. <P> Note that explicit calls to {@link com.smartgwt.client.widgets.grid.ListGrid#showField} or hideField() will wipe out the <code>showIf</code> expression, as will the end user showing and hiding columns via the {@link com.smartgwt.client.widgets.grid.ListGrid#getShowHeaderContextMenu showHeaderContextMenu}. <P> Also note that fields marked as {@link com.smartgwt.client.data.DataSourceField#getDetail detail} will be hidden by default even if {@link com.smartgwt.client.widgets.grid.ListGrid#getShowDetailFields showDetailFields} is <code>true</code>. To show detail fields inherited from a DataSource, include an explicit field definition for the field and set this property to return <code>true</code>.
-    * <p><b>Note : </b> This is an advanced setting</p>
-    *
-    * @param showIf showIf Default value is null
-    */
-    public void setShowIf(String showIf) {
-        setAttribute("showIf", showIf);
-    }
-    /**
-     * A string of script that, if provided, is evaluated to conditionally determine whether this field should be displayed.  Evaluated on initial draw, then reevaluated on explicit  calls to <code>listGrid.refreshFields()</code> or <code>listGrid.setFields()</code>.  <P> Use 'showIf:"false"' to set a ListGrid field to initially hidden. <P> Note that explicit calls to {@link com.smartgwt.client.widgets.grid.ListGrid#showField} or hideField() will wipe out the <code>showIf</code> expression, as will the end user showing and hiding columns via the {@link com.smartgwt.client.widgets.grid.ListGrid#getShowHeaderContextMenu showHeaderContextMenu}. <P> Also note that fields marked as {@link com.smartgwt.client.data.DataSourceField#getDetail detail} will be hidden by default even if {@link com.smartgwt.client.widgets.grid.ListGrid#getShowDetailFields showDetailFields} is <code>true</code>. To show detail fields inherited from a DataSource, include an explicit field definition for the field and set this property to return <code>true</code>.
-     *
-     *
-     * @return String
-     *
-     */
-    public String getShowIf()  {
-        return getAttributeAsString("showIf");
-    }
-
-    /**
     * Whether this field should be "frozen" for the purposes of horizontal scrolling.  See ${isc.DocUtils.linkForRef('group:frozenFields')}.
     *
     * @param frozen frozen Default value is null
@@ -1588,7 +1568,7 @@ public class ListGridField extends DataClass  implements com.smartgwt.client.wid
     }
 
     public void setHidden(boolean hidden) {
-        setAttribute("hidden", hidden);
+        setAttribute("showIf", hidden ? "true" : "false");
     }
 
     public void setImgDir(String imgDir) {
@@ -1754,6 +1734,29 @@ public class ListGridField extends DataClass  implements com.smartgwt.client.wid
         optionDataSource.getOrCreateJsObj();
         setAttribute("optionDataSource", optionDataSource.getID());
     }
+
+    /**
+     * A function, if provided, is evaluated to conditionally determine whether this field should be displayed. Evaluated on initial draw,
+     * then reevaluated on explicit calls to listGrid.refreshFields() or listGrid.setFields().
+     * <p>
+     * Use 'showIf:"false"' to set a ListGrid field to initially hidden.
+     * <p>
+     * Note that explicit calls to grid.showField() or hideField() will wipe out the showIf expression, as will the end
+     * user showing and hiding columns via the header contextMenu.
+     * <p>
+     * Also note that fields marked as detail:true will be hidden by default even if ListGrid.showDetailFields is true. To show detail fields inherited from a DataSource, include an explicit field definition for the field and set this property to return true.
+
+     * @param showIf showIf criteria
+     */
+    public native void setShowIfCondition(ListGridFieldIfFunction showIf) /*-{
+        var self = this.@com.smartgwt.client.core.DataClass::getJsObj()();
+        self.showIf = function(grid, field, fieldNum) {
+            var gridJ = @com.smartgwt.client.widgets.grid.ListGrid::getOrCreateRef(Lcom/google/gwt/core/client/JavaScriptObject;)(grid);
+            var fieldJ = @com.smartgwt.client.widgets.grid.ListGridField::getOrCreateRef(Lcom/google/gwt/core/client/JavaScriptObject;)(field);        
+            return showIf.@com.smartgwt.client.widgets.grid.ListGridFieldIfFunction::execute(Lcom/smartgwt/client/widgets/grid/ListGrid;Lcom/smartgwt/client/widgets/grid/ListGridField;I)(gridJ, fieldJ, fieldNum);
+
+        };
+    }-*/;
 
 }
 
