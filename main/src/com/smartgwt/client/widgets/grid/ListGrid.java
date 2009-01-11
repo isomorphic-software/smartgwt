@@ -4739,6 +4739,15 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
     }
 
     /**
+     * The DataSource that this component should bind to for default fields and for performing {@link com.smartgwt.client.data.DSRequest}. <P> Can be specified as either a DataSource instance or the String ID of a DataSource.
+     *
+     * @return DataSource
+     */
+    public DataSource getDataSource() {
+        return DataSource.getOrCreateRef(getAttributeAsJavaScriptObject("dataSource"));
+    }    
+
+    /**
      * An array of field objects, specifying the order, layout, formatting, and sorting behavior of each field in the
      * listGrid object.  In ListGrids, the fields array specifies columns.  Each field in the fields array is a
      * ListGridField object.  Any listGrid that will display data should have at least one visible field. <p> If {@link

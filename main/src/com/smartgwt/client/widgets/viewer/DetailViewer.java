@@ -542,6 +542,15 @@ public class DetailViewer extends Canvas  implements DataBoundComponent {
     }
 
     /**
+     * The DataSource that this component should bind to for default fields and for performing {@link com.smartgwt.client.data.DSRequest}. <P> Can be specified as either a DataSource instance or the String ID of a DataSource.
+     *
+     * @return DataSource
+     */
+    public DataSource getDataSource() {
+        return DataSource.getOrCreateRef(getAttributeAsJavaScriptObject("dataSource"));
+    }    
+
+    /**
      * If true, the set of fields given by the "default binding" (see DataBoundComponent.fields) is used, with any
      * fields specified in component.fields acting as overrides that can suppress or modify the display of individual
      * fields, without having to list the entire set of fields that should be shown.

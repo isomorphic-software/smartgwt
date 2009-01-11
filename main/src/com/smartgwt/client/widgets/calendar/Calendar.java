@@ -1041,14 +1041,9 @@ public class Calendar extends Canvas  implements DataBoundComponent, com.smartgw
     // ********************* Static Methods ***********************
 
 
-
-
-
-
-
-
-
-
+
+
+
 
 
     protected native void onInit() /*-{
@@ -1196,6 +1191,17 @@ public class Calendar extends Canvas  implements DataBoundComponent, com.smartgw
 
     public void setDataSource(DataSource dataSource) {
         setAttribute("dataSource", dataSource.getOrCreateJsObj(), true);
+    }
+
+    /**
+    * The DataSource that this component should bind to for default fields and for performing {@link com.smartgwt.client.data.DSRequest}. <P> Can be specified as either a DataSource instance or the String ID of a DataSource.
+    *
+    *
+    * @return DataSource
+    *
+    */
+    public DataSource getDataSource()  {
+         return DataSource.getOrCreateRef(getAttributeAsJavaScriptObject("dataSource"));
     }
 
     public void setShowDayView(Boolean showDayView) throws IllegalStateException {

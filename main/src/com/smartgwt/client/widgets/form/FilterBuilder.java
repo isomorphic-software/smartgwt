@@ -280,6 +280,14 @@ public class FilterBuilder extends Layout {
         setAttribute("dataSource", dataSource.getOrCreateJsObj(), false);
     }
 
+    /**
+     * The DataSource that this component should bind to for default fields and for performing {@link com.smartgwt.client.data.DSRequest}. <P> Can be specified as either a DataSource instance or the String ID of a DataSource.
+     *
+     * @return DataSource
+     */
+    public DataSource getDataSource() {
+        return DataSource.getOrCreateRef(getAttributeAsJavaScriptObject("dataSource"));
+    }
 
     /**
      * How to display and edit the {@link com.smartgwt.client.widgets.form.FilterBuilder#getTopOperator topOperator} for

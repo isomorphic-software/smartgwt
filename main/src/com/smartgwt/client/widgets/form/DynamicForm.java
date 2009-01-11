@@ -1469,6 +1469,17 @@ public class DynamicForm extends Canvas  implements DataBoundComponent, com.smar
         setAttribute("dataSource", dataSource.getOrCreateJsObj(), true);
     }
 
+     /**
+      * The DataSource that this component should bind to for default fields and for performing {@link com.smartgwt.client.data.DSRequest}. <P> Can be specified as either a DataSource instance or the String ID of a DataSource.
+      *
+      *
+      * @return DataSource
+      *
+      */
+     public DataSource getDataSource()  {
+             return DataSource.getOrCreateRef(getAttributeAsJavaScriptObject("dataSource"));
+     }
+
     /**
      * If set at init time, this dynamicForm will be created as a member form for the specified valuesManager.  To
      * update the valuesManager to which a form belongs after init use <code>valuesManager.addMember(form)</code> and

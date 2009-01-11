@@ -205,6 +205,15 @@ public class PickTreeItem extends CanvasItem {
     }
 
     /**
+     * The DataSource that this component should bind to for default fields and for performing {@link com.smartgwt.client.data.DSRequest}. <P> Can be specified as either a DataSource instance or the String ID of a DataSource.
+     *
+     * @return DataSource
+     */
+    public DataSource getDataSource() {
+        return DataSource.getOrCreateRef(getAttributeAsJavaScriptObject("dataSource"));
+    }
+    
+    /**
      * A {@link com.smartgwt.client.widgets.tree.Tree} of options from which the user can select.
      *
      * @param valueTree valueTree Default value is null
