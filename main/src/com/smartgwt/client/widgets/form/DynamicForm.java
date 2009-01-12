@@ -1492,6 +1492,15 @@ public class DynamicForm extends Canvas  implements DataBoundComponent, com.smar
         setAttribute("valuesManager", valuesManager.getOrCreateJsObj(), false);
     }
 
+    /**
+     * Return the ValuesManager for this form.
+     *
+     * @return the ValuesManager
+     */
+    public ValuesManager getValuesManager() {
+        return ValuesManager.getOrCreateRef(getAttributeAsJavaScriptObject("valuesManager"));
+    }
+
 
     /**
      * Set the cellSpacing.
