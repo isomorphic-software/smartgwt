@@ -59,6 +59,10 @@ public class JSOHelper {
     }-*/;
 
     public static JavaScriptObject[] toArray(JavaScriptObject array) {
+        //handle case where a ResultSet is passed
+        if(JSOHelper.getAttributeAsJavaScriptObject(array, "allRows") != null) {
+            array = JSOHelper.getAttributeAsJavaScriptObject(array, "allRows");
+        }
         int length = getJavaScriptObjectArraySize(array);
         JavaScriptObject[] recs = new JavaScriptObject[length];
         for (int i = 0; i < length; i++) {
