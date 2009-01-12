@@ -1,7 +1,6 @@
 package com.smartgwt.client.data;
 
-public abstract class WebServiceCallback {
+public interface WebServiceCallback {
 
-    public void execute(Object[] data) {
-    }
+    void execute(Object[] data);
 }
