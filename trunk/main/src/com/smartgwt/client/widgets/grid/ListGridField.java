@@ -1568,7 +1568,7 @@ public class ListGridField extends DataClass  implements com.smartgwt.client.wid
     }
 
     public void setHidden(boolean hidden) {
-        setAttribute("showIf", hidden ? "true" : "false");
+        setAttribute("showIf", hidden ? "false" : "true");
     }
 
     public void setImgDir(String imgDir) {
