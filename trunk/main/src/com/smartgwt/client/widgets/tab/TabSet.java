@@ -151,25 +151,6 @@ public class TabSet extends Canvas  implements com.smartgwt.client.widgets.tab.e
     }
 
     /**
-    * Specifies the index of the initially selected tab.
-    *
-    * @param selectedTab selectedTab Default value is 0
-    */
-    public void setSelectedTab(int selectedTab) {
-        setAttribute("selectedTab", selectedTab, true);
-    }
-    /**
-     * Specifies the index of the initially selected tab.
-     *
-     *
-     * @return Returns the currently selected tab object.  This is the object literal used to configure the tab, rather than the tab button widget.
-     *
-     */
-    public int getSelectedTab()  {
-        return getAttributeAsInt("selectedTab");
-    }
-
-    /**
     * Should tabs in this tabSet show an icon allowing the user to dismiss the tab by clicking on it directly. May be overridden for individual tabs by setting  {@link com.smartgwt.client.widgets.tab.Tab#getCanClose canClose}.<br> The URL for this icon's image will be derived from  {@link com.smartgwt.client.widgets.tab.TabSet#getCloseTabIcon closeTabIcon} by  default, but may be overridden by explicitly specifying {@link com.smartgwt.client.widgets.tab.Tab#getCloseIcon closeIcon}.
     *
     * @param canCloseTabs canCloseTabs Default value is null
@@ -790,6 +771,15 @@ public class TabSet extends Canvas  implements com.smartgwt.client.widgets.tab.e
 
 
 
+    /**
+    * Specifies the index of the initially selected tab.
+    *
+    * @param selectedTab selectedTab Default value is 0
+    */
+    public void setSelectedTab(int selectedTab) {
+        setAttribute("selectedTab", selectedTab, true);
+    }
+
     public void setTabs(Tab... tabs) {
         for (Tab tab : tabs) {
             addTab(tab);
@@ -995,6 +985,17 @@ public class TabSet extends Canvas  implements com.smartgwt.client.widgets.tab.e
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
         var tabs = @com.smartgwt.client.util.JSOHelper::convertToJavaScriptArray([Ljava/lang/Object;)(ids);
         self.removeTab(tabs);
+    }-*/;
+
+    /**
+     * The currently selected tab.
+     *
+     * @return the currently selected Tab
+     */
+    public native Tab getSelectedTab() /*-{
+        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
+        var ret = self.getSelectedTab();
+        return ret == null ? null : @com.smartgwt.client.core.RefDataClass::getRef(Lcom/google/gwt/core/client/JavaScriptObject;)(ret);
     }-*/;
 
     /**

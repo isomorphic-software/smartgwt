@@ -160,7 +160,7 @@ public class Showcase implements EntryPoint, HistoryListener {
         final Menu contextMenu = createContextMenu();
         mainTabSet.addShowContextMenuHandler(new ShowContextMenuHandler() {
             public void onShowContextMenu(ShowContextMenuEvent event) {
-                int selectedTab = mainTabSet.getSelectedTab();
+                int selectedTab = mainTabSet.getSelectedTabNumber();
                 if (selectedTab != 0) {
                     contextMenu.showContextMenu();
                 }
@@ -243,7 +243,7 @@ public class Showcase implements EntryPoint, HistoryListener {
 
         MenuItemIfFunction enableCondition = new MenuItemIfFunction() {
             public boolean execute(Canvas target, Menu menu, MenuItem item) {
-                int selectedTab = mainTabSet.getSelectedTab();
+                int selectedTab = mainTabSet.getSelectedTabNumber();
                 return selectedTab != 0;
             }
         };
@@ -257,7 +257,7 @@ public class Showcase implements EntryPoint, HistoryListener {
         closeItem.setKeys(closeKey);
         closeItem.addClickHandler(new ClickHandler() {
             public void onClick(MenuItemClickEvent event) {
-                int selectedTab = mainTabSet.getSelectedTab();
+                int selectedTab = mainTabSet.getSelectedTabNumber();
                 mainTabSet.removeTab(selectedTab);
                 mainTabSet.selectTab(selectedTab - 1);
             }
@@ -267,7 +267,7 @@ public class Showcase implements EntryPoint, HistoryListener {
         closeAllButCurrent.setEnableIfCondition(enableCondition);
         closeAllButCurrent.addClickHandler(new ClickHandler() {
             public void onClick(MenuItemClickEvent event) {
-                int selected = mainTabSet.getSelectedTab();
+                int selected = mainTabSet.getSelectedTabNumber();
                 Tab[] tabs = mainTabSet.getTabs();
                 int[] tabsToRemove = new int[tabs.length - 2];
                 int cnt = 0;
