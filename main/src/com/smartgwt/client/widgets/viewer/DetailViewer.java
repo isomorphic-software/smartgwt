@@ -500,6 +500,7 @@ public class DetailViewer extends Canvas  implements DataBoundComponent {
 
 
 
+
     // ********************* Static Methods ***********************
 
 

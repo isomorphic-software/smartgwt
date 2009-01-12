@@ -378,7 +378,7 @@ public class DynamicForm extends Canvas  implements DataBoundComponent, com.smar
     }
 
     /**
-    * Should field errors be written into the form next to the appropriate form items?
+    * If true, field errors are written into the form next to the item(s) where the errors occurred.  Errors may appear as text or just an icon (via {@link com.smartgwt.client.widgets.form.DynamicForm#getShowErrorText showErrorText}:false}. <P> If false, errors are written at the top of the form, in the ${isc.DocUtils.linkForRef('errorItem')}. <P> To do some other kind of error display, override {@link com.smartgwt.client.widgets.form.DynamicForm#showErrors}.
     *
     * @param showInlineErrors showInlineErrors Default value is true
     */
@@ -386,7 +386,7 @@ public class DynamicForm extends Canvas  implements DataBoundComponent, com.smar
         setAttribute("showInlineErrors", showInlineErrors, true);
     }
     /**
-     * Should field errors be written into the form next to the appropriate form items?
+     * If true, field errors are written into the form next to the item(s) where the errors occurred.  Errors may appear as text or just an icon (via {@link com.smartgwt.client.widgets.form.DynamicForm#getShowErrorText showErrorText}:false}. <P> If false, errors are written at the top of the form, in the ${isc.DocUtils.linkForRef('errorItem')}. <P> To do some other kind of error display, override {@link com.smartgwt.client.widgets.form.DynamicForm#showErrors}.
      *
      *
      * @return Boolean
@@ -1107,6 +1107,8 @@ public class DynamicForm extends Canvas  implements DataBoundComponent, com.smar
             var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
             self.cancel(requestProperties.@com.smartgwt.client.core.DataClass::getJsObj()());
         }-*/;
+
+
 
 
 

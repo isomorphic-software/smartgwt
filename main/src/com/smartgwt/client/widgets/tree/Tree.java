@@ -327,6 +327,27 @@ public class Tree extends BaseClass  implements com.smartgwt.client.widgets.tree
     }
 
     /**
+    * If this tree has {@link com.smartgwt.client.widgets.tree.Tree#getModelType modelType}, should nodes in the data array for the tree be dropped if they have an explicitly specified value for the {@link com.smartgwt.client.widgets.tree.Tree#getParentIdField parentIdField} which doesn't match any other nodes in the tree. If set to false these nodes will be added as children of the root node.
+    * <p><b>Note : </b> This is an advanced setting</p>
+    *
+    * @param discardParentlessNodes discardParentlessNodes Default value is false
+    * @throws IllegalStateException this property cannot be changed after the underlying component has been created
+    */
+    public void setDiscardParentlessNodes(Boolean discardParentlessNodes)  throws IllegalStateException {
+        setAttribute("discardParentlessNodes", discardParentlessNodes, false);
+    }
+    /**
+     * If this tree has {@link com.smartgwt.client.widgets.tree.Tree#getModelType modelType}, should nodes in the data array for the tree be dropped if they have an explicitly specified value for the {@link com.smartgwt.client.widgets.tree.Tree#getParentIdField parentIdField} which doesn't match any other nodes in the tree. If set to false these nodes will be added as children of the root node.
+     *
+     *
+     * @return Boolean
+     *
+     */
+    public Boolean getDiscardParentlessNodes()  {
+        return getAttributeAsBoolean("discardParentlessNodes");
+    }
+
+    /**
     * Controls whether a call to {@link com.smartgwt.client.widgets.tree.Tree#getOpenList} includes the root node.  Since view components such as a {@link com.smartgwt.client.widgets.tree.TreeGrid} use <code>getOpenList()</code> to display the currently visible tree, <code>showRoot</code> controls whether the root node is shown to the user. <P> All Trees must have a single, logical root, however, most applications want to show multiple nodes at top level.  <code>showRoot:false</code>, the default setting, prevents the logical root from being shown, so that the displayed tree begins with the children of root. <P> You can set <code>showRoot:true</code> to show the single, logical root node as the only top-level node.  This property is only meaningful for Trees where you supplied a value for {@link com.smartgwt.client.widgets.tree.Tree#getRoot root}, otherwise, you will see an automatically generated root node that is meaningless to the user.
     *
     * @param showRoot showRoot Default value is false

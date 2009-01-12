@@ -211,7 +211,7 @@ public class DSRequest extends RPCRequest {
     }
 
     /**
-    * For "fetch" operations, how search criteria should be interpreted for text fields: either "exact" for exact match, or "substring" for case-insensitive substring match. <p> This setting is respected by the built-in SQLDataSource.  Your custom DataSource implementation can interpret the search criteria passed into "fetch" operations in arbitrary ways; you can safely ignore this flag and use others of your own devising.
+    * For "fetch" operations, how search criteria should be interpreted for text fields: either "exact" for exact match, "startsWith" for matching at the beginning only, or "substring" for case-insensitive substring match. <p> This setting is respected by the built-in SQLDataSource.  Your custom DataSource implementation can interpret the search criteria passed into "fetch" operations in arbitrary ways; you can safely ignore this flag and use others of your own devising.
     *
     * @param textMatchStyle textMatchStyle Default value is "exact"
     */
