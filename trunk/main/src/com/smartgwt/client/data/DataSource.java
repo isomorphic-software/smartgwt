@@ -547,6 +547,26 @@ public class DataSource extends BaseClass  implements com.smartgwt.client.data.e
     }
 
     /**
+    * If set, titles are automatically derived from {@link com.smartgwt.client.data.DataSourceField#getName name} for any  field that does not have a {@link com.smartgwt.client.data.DataSourceField#getTitle title} and is not marked {@link com.smartgwt.client.data.DataSourceField#getHidden hidden}:true.  <P> The following approach is taken: <ul> <li> any underscores (_) become spaces, except a leading underscore <li> if the fieldName is either entirely uppercase or lowercase, all words separate by      spaces are given a leading capital letter.  Example USER_NAME -> "User Name". <li> if there is any use of mixed case, camelCaps convention is assumed, and the field name      is split into separate words based on 1) everywhere an uppercase letter appears after a      lowercase letter 2) everywhere a series of uppercase letters ends.  Letter case will      not be modified, with the exception that the first word will have it's first letter       capitalized.  Example: useHTTPProxy -> "Use HTTP Proxy" </ul>
+    *
+    * @param autoDeriveTitles autoDeriveTitles Default value is true
+    * @throws IllegalStateException this property cannot be changed after the underlying component has been created
+    */
+    public void setAutoDeriveTitles(Boolean autoDeriveTitles)  throws IllegalStateException {
+        setAttribute("autoDeriveTitles", autoDeriveTitles, false);
+    }
+    /**
+     * If set, titles are automatically derived from {@link com.smartgwt.client.data.DataSourceField#getName name} for any  field that does not have a {@link com.smartgwt.client.data.DataSourceField#getTitle title} and is not marked {@link com.smartgwt.client.data.DataSourceField#getHidden hidden}:true.  <P> The following approach is taken: <ul> <li> any underscores (_) become spaces, except a leading underscore <li> if the fieldName is either entirely uppercase or lowercase, all words separate by      spaces are given a leading capital letter.  Example USER_NAME -> "User Name". <li> if there is any use of mixed case, camelCaps convention is assumed, and the field name      is split into separate words based on 1) everywhere an uppercase letter appears after a      lowercase letter 2) everywhere a series of uppercase letters ends.  Letter case will      not be modified, with the exception that the first word will have it's first letter       capitalized.  Example: useHTTPProxy -> "Use HTTP Proxy" </ul>
+     *
+     *
+     * @return Boolean
+     *
+     */
+    public Boolean getAutoDeriveTitles()  {
+        return getAttributeAsBoolean("autoDeriveTitles");
+    }
+
+    /**
     * User-visible name for this DataSource. <P> For example, for the supplyItem DataSource, "Supply Item". <P> Defaults to <code>dataSource.ID</code>.
     *
     * @param title title Default value is dataSource.ID
@@ -674,6 +694,8 @@ public class DataSource extends BaseClass  implements com.smartgwt.client.data.e
             var self = this.@com.smartgwt.client.core.BaseClass::getOrCreateJsObj()();
             self.getLegalChildTags();
         }-*/;
+
+
 
 
 

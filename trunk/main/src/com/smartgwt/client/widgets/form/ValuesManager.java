@@ -129,13 +129,15 @@ public class ValuesManager extends BaseClass {
 
 
         /**
-         * Edit an existing record.  Updates this editors values to match the values of the record  passed in. <P> Subsequent calls to <code>saveData()</code> will use an <code>update</code> rather than an <code>add</code> operation.
+         * Edit an existing record.  Updates this editors values to match the values of the record  passed in. <P> This method will also call {@link com.smartgwt.client.widgets.form.DynamicForm#setSaveOperationType} to ensure  subsequent calls to <code>saveData()</code> will use an <code>update</code> rather than an <code>add</code> operation.
          * @param record the record to be edited as a map of field names to their corresponding values
          */
         public native void editRecord(ListGridRecord record) /*-{
             var self = this.@com.smartgwt.client.core.BaseClass::getOrCreateJsObj()();
             self.editRecord(record.@com.smartgwt.client.core.DataClass::getJsObj()());
         }-*/;
+
+
 
 
 
@@ -305,7 +307,7 @@ public class ValuesManager extends BaseClass {
     // ********************* Static Methods ***********************
 
 
-
+
 
 
 

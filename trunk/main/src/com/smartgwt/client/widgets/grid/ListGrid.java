@@ -200,7 +200,7 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
     }
 
     /**
-    * Whether to include fields marked <code>detail:true</code> from this component's  <code>DataSource</code>. <P> Fields may also be included directly in this component's <code>fields</code> array in which case they will be present regardless of the <code>detail</code> attribute. <p> When this property is <code>true</code>, <code>ListGrid</code>s will include all  detail fields, but they will be initially hidden.  The user may show these fields via the default header context menu ({@link com.smartgwt.client.widgets.grid.ListGrid#getShowHeaderContextMenu showHeaderContextMenu}). Setting this property to false will completely exclude all detail fields from the list grid's fields array, such that they cannot be shown by the user or programmatically. <P> To override the visibility of individual fields, use the standard {@link com.smartgwt.client.widgets.grid.ListGrid#showField}, {@link com.smartgwt.client.widgets.grid.ListGrid#hideField} and {@link com.smartgwt.client.widgets.grid.ListGridField#getShowIf showIf} APIs, for example, set showIf:"true" to show a detail field initially.
+    * Whether to include fields marked <code>detail:true</code> from this component's  <code>DataSource</code>. <P> Fields may also be included directly in this component's <code>fields</code> array in which case they will be present regardless of the <code>detail</code> attribute. <p> When this property is <code>true</code>, <code>ListGrid</code>s will include all  detail fields, but they will be initially hidden.  The user may show these fields via the default header context menu ({@link com.smartgwt.client.widgets.grid.ListGrid#getShowHeaderContextMenu showHeaderContextMenu}). Setting this property to false will completely exclude all detail fields from the list grid's fields array, such that they cannot be shown by the user or programmatically. <P> To override the visibility of individual fields, use the standard {@link com.smartgwt.client.widgets.grid.ListGrid#showField}, {@link com.smartgwt.client.widgets.grid.ListGrid#hideField} and {@link com.smartgwt.client.widgets.grid.ListGridField#showIf} APIs, for example, set showIf:"true" to show a detail field initially.
     *
     * @param showDetailFields showDetailFields Default value is true
     * @throws IllegalStateException this property cannot be changed after the component has been created
@@ -209,7 +209,7 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
         setAttribute("showDetailFields", showDetailFields, false);
     }
     /**
-     * Whether to include fields marked <code>detail:true</code> from this component's  <code>DataSource</code>. <P> Fields may also be included directly in this component's <code>fields</code> array in which case they will be present regardless of the <code>detail</code> attribute. <p> When this property is <code>true</code>, <code>ListGrid</code>s will include all  detail fields, but they will be initially hidden.  The user may show these fields via the default header context menu ({@link com.smartgwt.client.widgets.grid.ListGrid#getShowHeaderContextMenu showHeaderContextMenu}). Setting this property to false will completely exclude all detail fields from the list grid's fields array, such that they cannot be shown by the user or programmatically. <P> To override the visibility of individual fields, use the standard {@link com.smartgwt.client.widgets.grid.ListGrid#showField}, {@link com.smartgwt.client.widgets.grid.ListGrid#hideField} and {@link com.smartgwt.client.widgets.grid.ListGridField#getShowIf showIf} APIs, for example, set showIf:"true" to show a detail field initially.
+     * Whether to include fields marked <code>detail:true</code> from this component's  <code>DataSource</code>. <P> Fields may also be included directly in this component's <code>fields</code> array in which case they will be present regardless of the <code>detail</code> attribute. <p> When this property is <code>true</code>, <code>ListGrid</code>s will include all  detail fields, but they will be initially hidden.  The user may show these fields via the default header context menu ({@link com.smartgwt.client.widgets.grid.ListGrid#getShowHeaderContextMenu showHeaderContextMenu}). Setting this property to false will completely exclude all detail fields from the list grid's fields array, such that they cannot be shown by the user or programmatically. <P> To override the visibility of individual fields, use the standard {@link com.smartgwt.client.widgets.grid.ListGrid#showField}, {@link com.smartgwt.client.widgets.grid.ListGrid#hideField} and {@link com.smartgwt.client.widgets.grid.ListGridField#showIf} APIs, for example, set showIf:"true" to show a detail field initially.
      *
      *
      * @return Boolean
@@ -1399,25 +1399,6 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
     }
              
     /**
-    * Defines a listGrid's clickable-selection behavior. The selection appearcance is governed by {@link com.smartgwt.client.widgets.grid.ListGrid#getSelectionAppearance selectionAppearance}.
-    *
-    * @param selectionType selectionType Default value is Selection.MULTIPLE
-    */
-    public void setSelectionType(SelectionStyle selectionType) {
-        setAttribute("selectionType", selectionType.getValue(), true);
-    }
-    /**
-     * Defines a listGrid's clickable-selection behavior. The selection appearcance is governed by {@link com.smartgwt.client.widgets.grid.ListGrid#getSelectionAppearance selectionAppearance}.
-     *
-     *
-     * @return SelectionStyle
-     *
-     */
-    public SelectionStyle getSelectionType()  {
-        return (SelectionStyle) EnumUtil.getEnum(SelectionStyle.values(), getAttribute("selectionType"));
-    }
-             
-    /**
     * How selection of rows should be presented to the user. <P> If using "checkbox", see also {@link com.smartgwt.client.widgets.grid.ListGrid#getCheckboxField checkboxField} for customization APIs.
     *
     * @param selectionAppearance selectionAppearance Default value is "rowStyle"
@@ -1435,6 +1416,25 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
      */
     public SelectionAppearance getSelectionAppearance()  {
         return (SelectionAppearance) EnumUtil.getEnum(SelectionAppearance.values(), getAttribute("selectionAppearance"));
+    }
+             
+    /**
+    * Defines a listGrid's clickable-selection behavior. The selection appearance is governed by {@link com.smartgwt.client.widgets.grid.ListGrid#getSelectionAppearance selectionAppearance}. If selectionAppearance is "checkbox", this will be "simple", otherwise, this will be "multiple".
+    *
+    * @param selectionType selectionType Default value is null
+    */
+    public void setSelectionType(SelectionStyle selectionType) {
+        setAttribute("selectionType", selectionType.getValue(), true);
+    }
+    /**
+     * Defines a listGrid's clickable-selection behavior. The selection appearance is governed by {@link com.smartgwt.client.widgets.grid.ListGrid#getSelectionAppearance selectionAppearance}. If selectionAppearance is "checkbox", this will be "simple", otherwise, this will be "multiple".
+     *
+     *
+     * @return SelectionStyle
+     *
+     */
+    public SelectionStyle getSelectionType()  {
+        return (SelectionStyle) EnumUtil.getEnum(SelectionStyle.values(), getAttribute("selectionType"));
     }
 
     /**
@@ -1860,6 +1860,7 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
     public int getAnimateRemoveTime()  {
         return getAttributeAsInt("animateRemoveTime");
     }
+ 
 
     /**
     * If we're showing the filterEditor (this.showFilterEditor is true), this property  determines whether this list should be filtered every time the user puts focus in a different field in the filter editor.
@@ -3001,6 +3002,66 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
     }
 
     /**
+    * If we're showing a {@link com.smartgwt.client.widgets.grid.ListGrid#getShowHeaderContextMenu showHeaderContextMenu} for this grid and {@link com.smartgwt.client.widgets.grid.ListGrid#getCanFreezeFields canFreezeFields} is true, this string will be shown as the title for the menu item to freeze a currently unfrozen field. <P> This is a dynamic string - text within <code>\${...}</code> will be evaluated as JS code when the message is displayed, with <code>viewer</code> available as a variable mapped to the ListGrid instance, and <code>field</code> as a variable pointing to the ListGrid field. <P> Default value returns "Freeze " + the field's summary title.
+    * <p><b>Note : </b> This is an advanced setting</p>
+    *
+    * @param freezeFieldText freezeFieldText Default value is "Freeze \${viewer.getSummaryTitle(field)}"
+    */
+    public void setFreezeFieldText(String freezeFieldText) {
+        setAttribute("freezeFieldText", freezeFieldText, true);
+    }
+    /**
+     * If we're showing a {@link com.smartgwt.client.widgets.grid.ListGrid#getShowHeaderContextMenu showHeaderContextMenu} for this grid and {@link com.smartgwt.client.widgets.grid.ListGrid#getCanFreezeFields canFreezeFields} is true, this string will be shown as the title for the menu item to freeze a currently unfrozen field. <P> This is a dynamic string - text within <code>\${...}</code> will be evaluated as JS code when the message is displayed, with <code>viewer</code> available as a variable mapped to the ListGrid instance, and <code>field</code> as a variable pointing to the ListGrid field. <P> Default value returns "Freeze " + the field's summary title.
+     *
+     *
+     * @return String
+     *
+     */
+    public String getFreezeFieldText()  {
+        return getAttributeAsString("freezeFieldText");
+    }
+
+    /**
+    * If we're showing a {@link com.smartgwt.client.widgets.grid.ListGrid#getShowHeaderContextMenu showHeaderContextMenu} for this grid and {@link com.smartgwt.client.widgets.grid.ListGrid#getCanFreezeFields canFreezeFields} is true, this string will be shown as the title for the menu item to unfreeze a currently frozen field. <P> This is a dynamic string - text within <code>\${...}</code> will be evaluated as JS code when the message is displayed, with <code>viewer</code> available as a variable mapped to the ListGrid instance, and <code>field</code> as a variable pointing to the ListGrid field. <P> Default value returns "Unfreeze " + the field's summary title.
+    * <p><b>Note : </b> This is an advanced setting</p>
+    *
+    * @param unfreezeFieldText unfreezeFieldText Default value is "Unfreeze \${viewer.getSummaryTitle(field)}"
+    */
+    public void setUnfreezeFieldText(String unfreezeFieldText) {
+        setAttribute("unfreezeFieldText", unfreezeFieldText, true);
+    }
+    /**
+     * If we're showing a {@link com.smartgwt.client.widgets.grid.ListGrid#getShowHeaderContextMenu showHeaderContextMenu} for this grid and {@link com.smartgwt.client.widgets.grid.ListGrid#getCanFreezeFields canFreezeFields} is true, this string will be shown as the title for the menu item to unfreeze a currently frozen field. <P> This is a dynamic string - text within <code>\${...}</code> will be evaluated as JS code when the message is displayed, with <code>viewer</code> available as a variable mapped to the ListGrid instance, and <code>field</code> as a variable pointing to the ListGrid field. <P> Default value returns "Unfreeze " + the field's summary title.
+     *
+     *
+     * @return String
+     *
+     */
+    public String getUnfreezeFieldText()  {
+        return getAttributeAsString("unfreezeFieldText");
+    }
+
+    /**
+    * If we're showing a {@link com.smartgwt.client.widgets.grid.ListGrid#getShowHeaderContextMenu showHeaderContextMenu} for this grid and {@link com.smartgwt.client.widgets.grid.ListGrid#getCanGroupBy canGroupBy} is true, this string will be shown as the title for the menu item to toggle the group by setting for a field. <P> This is a dynamic string - text within <code>\${...}</code> will be evaluated as JS code when the message is displayed, with <code>viewer</code> available as a variable mapped to the ListGrid instance, and <code>field</code> as a variable pointing to the ListGrid field. <P> Default value returns "Group by " + the field's summary title.
+    * <p><b>Note : </b> This is an advanced setting</p>
+    *
+    * @param groupByText groupByText Default value is "Group by \${viewer.getSummaryTitle(field)}"
+    */
+    public void setGroupByText(String groupByText) {
+        setAttribute("groupByText", groupByText, true);
+    }
+    /**
+     * If we're showing a {@link com.smartgwt.client.widgets.grid.ListGrid#getShowHeaderContextMenu showHeaderContextMenu} for this grid and {@link com.smartgwt.client.widgets.grid.ListGrid#getCanGroupBy canGroupBy} is true, this string will be shown as the title for the menu item to toggle the group by setting for a field. <P> This is a dynamic string - text within <code>\${...}</code> will be evaluated as JS code when the message is displayed, with <code>viewer</code> available as a variable mapped to the ListGrid instance, and <code>field</code> as a variable pointing to the ListGrid field. <P> Default value returns "Group by " + the field's summary title.
+     *
+     *
+     * @return If we're showing a {@link com.smartgwt.client.widgets.grid.ListGrid#getShowHeaderContextMenu showHeaderContextMenu} for this grid and {@link com.smartgwt.client.widgets.grid.ListGrid#getCanGroupBy canGroupBy} is true, this string will be shown as the title for the menu item to toggle the group by setting for a field.<br> Default implementation evaulates and returns the dynamic {@link com.smartgwt.client.widgets.grid.ListGrid#getGroupByText groupByText} string.
+     *
+     */
+    public String getGroupByText()  {
+        return getAttributeAsString("groupByText");
+    }
+
+    /**
     * If we're showing a {@link com.smartgwt.client.widgets.grid.ListGrid#getShowHeaderContextMenu showHeaderContextMenu} for this grid, and {@link com.smartgwt.client.widgets.grid.ListGrid#getIsGrouped isGrouped} is true, this attribute will be shown as the title for the menu item to ungroup the grid.
     *
     * @param ungroupText ungroupText Default value is "Ungroup"
@@ -3596,6 +3657,7 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
 
 
 
+
         /**
          * If the filter editor ({@link com.smartgwt.client.widgets.grid.ListGrid#getShowFilterEditor showFilterEditor}) is visible for this grid,  this method will explictly put focus into the specified field in the filter editor.
          */
@@ -3623,6 +3685,22 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
 
 
 
+        /**
+         * Identifies whether the passed-in field is the specially generated {@link com.smartgwt.client.widgets.grid.ListGrid#getCheckboxField checkboxField} used when ${isc.DocUtils.linkForRef('type:SelectionAppearance')} is "checkbox".  Use this method in your custom event handlers to avoid inappropriately performing actions when the checkboxField is clicked on.
+         * @param field field to test
+         *
+         * @return whether the provided field is the checkbox field
+         */
+        public native Boolean isCheckboxField(ListGridField field) /*-{
+            var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
+            var retVal =self.isCheckboxField(field.@com.smartgwt.client.core.DataClass::getJsObj()());
+            if(retVal == null || retVal === undefined) {
+                return null;
+            } else {
+                return @com.smartgwt.client.util.JSOHelper::toBoolean(Z)(retVal);
+            }
+        }-*/;
+
 
 
 
@@ -3630,7 +3708,7 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
 
 
         /**
-         * Re-evaluates {@link com.smartgwt.client.widgets.grid.ListGridField#getShowIf showIf} for each field, dynamically showing and  hiding the appropriate set of fields
+         * Re-evaluates {@link com.smartgwt.client.widgets.grid.ListGridField#showIf} for each field, dynamically showing and  hiding the appropriate set of fields
          */
         public native void refreshFields() /*-{
             var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
@@ -4104,7 +4182,7 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
         }-*/;
 
         /**
-         * This method overrides {@link com.smartgwt.client.widgets.Canvas#willAcceptDrop} and works as follows:<br> <ul> <li>If {@link com.smartgwt.client.widgets.Canvas#willAcceptDrop} (the superclass definition) returns false, this      method always returns false.</li> <li>If the dragTarget and dropTarget are the same, the user is dragging a record within     this list - this is an attempted drag-reorder. If {@link com.smartgwt.client.widgets.grid.ListGrid#getCanReorderRecords canReorderRecords} is      false, this method returns false.</li> <li>If the dragTarget is some other widget, and {@link com.smartgwt.client.widgets.grid.ListGrid#getCanAcceptDroppedRecords canAcceptDroppedRecords} is      not <code>true</code> this method returns false.</li> <li>If a call to {@link com.smartgwt.client.widgets.grid.ListGrid#getDragData} on the <code>dragTarget</code> fails to return     an record object or an array of records, this method returns false.</li>  <li>If a the drop target record is disabled or has {@link com.smartgwt.client.widgets.grid.ListGridRecord#getCanAcceptDrop canAcceptDrop}      set to false, return false.</li> </ul> Note that this method may be called repeatedly during a drag-drop interaction to update the UI and notify the user as to when they may validly drop data.
+         * This method overrides {@link com.smartgwt.client.widgets.Canvas#willAcceptDrop} and works as follows:<br> <ul> <li>If {@link com.smartgwt.client.widgets.Canvas#willAcceptDrop} (the superclass definition) returns false, this      method always returns false.  This allows ${isc.DocUtils.linkForRef('canvas.dragTypes')} and     {@link com.smartgwt.client.widgets.Canvas#getDropTypes dropTypes} to be used to configure eligibility for drop.  By default,     a ListGrid has no dropTypes configured and so this check will not prevent a drop.</li> <li>If this is a self-drop, that is, the user is dragging a record within this list, this is     an attempted drag-reorder.  If {@link com.smartgwt.client.widgets.grid.ListGrid#getCanReorderRecords canReorderRecords} is      false, this method returns false.</li> <li>If the ${isc.DocUtils.linkForRef('EH.getDragTarget','dragTarget')} is another widget, if     {@link com.smartgwt.client.widgets.grid.ListGrid#getCanAcceptDroppedRecords canAcceptDroppedRecords} is false this method returns false.</li> <li>If a call to {@link com.smartgwt.client.widgets.grid.ListGrid#getDragData} on the <code>dragTarget</code> fails to return     an record object or an array of records, this method returns false.</li>  <li>If a the drop target record is disabled or has {@link com.smartgwt.client.widgets.grid.ListGridRecord#getCanAcceptDrop canAcceptDrop}      set to false, return false.</li> </ul> Note that this method may be called repeatedly during a drag-drop interaction to update the UI and notify the user as to when they may validly drop data.
          *
          * @return true if this component will accept a drop of the dragData
          */
@@ -4156,6 +4234,7 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
             }
             return retVal;
         }-*/;
+
 
 
 
@@ -4254,6 +4333,7 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
 
 
 
+
         /**
          * Handle a click in the list header. <P> By default, calls {@link com.smartgwt.client.widgets.grid.ListGrid#sort} to sort by the field that was clicked, or to reverse the direction of sorting if already sorted by that field.
          * @param fieldNum field number for the header that was clicked
@@ -4297,7 +4377,7 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
 
 
         /**
-         * If we're showing a {@link com.smartgwt.client.widgets.grid.ListGrid#getShowHeaderContextMenu showHeaderContextMenu} for this grid and {@link com.smartgwt.client.widgets.grid.ListGrid#getCanFreezeFields canFreezeFields} is true, this string will be shown as the title for the menu item to toggle whether a field is frozen or unfrozen.<br> Default implementation returns <code>"Freeze "</code> or <code>"Unfreeze "</code> + the field's title.
+         * If we're showing a {@link com.smartgwt.client.widgets.grid.ListGrid#getShowHeaderContextMenu showHeaderContextMenu} for this grid and {@link com.smartgwt.client.widgets.grid.ListGrid#getCanFreezeFields canFreezeFields} is true, this string will be shown as the title for the menu item to toggle whether a field is frozen or unfrozen. <P> Default implementation evaluates and returns {@link com.smartgwt.client.widgets.grid.ListGrid#getFreezeFieldText freezeFieldText} or {@link com.smartgwt.client.widgets.grid.ListGrid#getUnfreezeFieldText unfreezeFieldText} depending on whether the field is currently frozen.
          * @param field field to get the menu item title for
          *
          * @return Title to show in the menu item
@@ -4307,16 +4387,6 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
             return self.getToggleFreezeText(field.@com.smartgwt.client.core.DataClass::getJsObj()());
         }-*/;
 
-        /**
-         * If we're showing a {@link com.smartgwt.client.widgets.grid.ListGrid#getShowHeaderContextMenu showHeaderContextMenu} for this grid and {@link com.smartgwt.client.widgets.grid.ListGrid#getCanGroupBy canGroupBy} is true, this string will be shown as the title for the menu item to toggle the group by setting for a field.<br> Default implementation returns <code>"Group by "</code> + the field's title.
-         * @param field field to get the menu item title for
-         *
-         * @return Title to show in the menu item
-         */
-        public native String getGroupByText(ListGridField field) /*-{
-            var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
-            return self.getGroupByText(field.@com.smartgwt.client.core.DataClass::getJsObj()());
-        }-*/;
 
 
 

@@ -259,7 +259,7 @@ public class DataSourceField extends DataClass {
     }
 
     /**
-    * Whether this field should be completely excluded from this dataSource, as if it had never been defined.  This property only makes sense in DataSources that specify  {@link com.smartgwt.client.data.DataSource#getAutoDeriveSchema autoDeriveSchema} or {@link com.smartgwt.client.data.DataSource#getInheritsFrom inheritsFrom},  because these properties may have caused the dataSource to inherit fields that it doesn't want.
+    * Whether this field should be completely excluded from this dataSource, as if it had never been defined.
     *
     * @param ignore ignore Default value is false
     */
@@ -267,7 +267,7 @@ public class DataSourceField extends DataClass {
         setAttribute("ignore", ignore);
     }
     /**
-     * Whether this field should be completely excluded from this dataSource, as if it had never been defined.  This property only makes sense in DataSources that specify  {@link com.smartgwt.client.data.DataSource#getAutoDeriveSchema autoDeriveSchema} or {@link com.smartgwt.client.data.DataSource#getInheritsFrom inheritsFrom},  because these properties may have caused the dataSource to inherit fields that it doesn't want.
+     * Whether this field should be completely excluded from this dataSource, as if it had never been defined.
      *
      *
      * @return Boolean
@@ -278,7 +278,7 @@ public class DataSourceField extends DataClass {
     }
 
     /**
-    * Whether this field should be considered a "detail" by a ${isc.DocUtils.linkForRef('interface:DataBoundComponent')}. <P> Detail fields won't be shown by default in a DataBoundComponent where  {@link com.smartgwt.client..DataBoundComponent#getShowDetailFields showDetailFields} is false.  This allows for some DataBound components, like a {@link com.smartgwt.client.widgets.grid.ListGrid}, to show a summary view of records which displays only  the most commonly viewed fields by default, while other DataBoundComponents, like a {@link com.smartgwt.client.widgets.viewer.DetailViewer}, show all fields by default. <P> In addition, the ${isc.DocUtils.linkForRef('field.showIf','formItem.showIf')} property is supported in multiple components for conditional visibility - see for example {@link com.smartgwt.client.widgets.grid.ListGridField#getShowIf showIf} and {@link com.smartgwt.client.widgets.form.fields.FormItem#showIf}).
+    * Whether this field should be considered a "detail" by a ${isc.DocUtils.linkForRef('interface:DataBoundComponent')}. <P> Detail fields won't be shown by default in a DataBoundComponent where  {@link com.smartgwt.client..DataBoundComponent#getShowDetailFields showDetailFields} is false.  This allows for some DataBound components, like a {@link com.smartgwt.client.widgets.grid.ListGrid}, to show a summary view of records which displays only  the most commonly viewed fields by default, while other DataBoundComponents, like a {@link com.smartgwt.client.widgets.viewer.DetailViewer}, show all fields by default. <P> In addition, the ${isc.DocUtils.linkForRef('field.showIf','formItem.showIf')} property is supported in multiple components for conditional visibility - see for example {@link com.smartgwt.client.widgets.grid.ListGridField#showIf} and {@link com.smartgwt.client.widgets.form.fields.FormItem#showIf}).
     *
     * @param detail detail Default value is false
     */
@@ -286,7 +286,7 @@ public class DataSourceField extends DataClass {
         setAttribute("detail", detail);
     }
     /**
-     * Whether this field should be considered a "detail" by a ${isc.DocUtils.linkForRef('interface:DataBoundComponent')}. <P> Detail fields won't be shown by default in a DataBoundComponent where  {@link com.smartgwt.client..DataBoundComponent#getShowDetailFields showDetailFields} is false.  This allows for some DataBound components, like a {@link com.smartgwt.client.widgets.grid.ListGrid}, to show a summary view of records which displays only  the most commonly viewed fields by default, while other DataBoundComponents, like a {@link com.smartgwt.client.widgets.viewer.DetailViewer}, show all fields by default. <P> In addition, the ${isc.DocUtils.linkForRef('field.showIf','formItem.showIf')} property is supported in multiple components for conditional visibility - see for example {@link com.smartgwt.client.widgets.grid.ListGridField#getShowIf showIf} and {@link com.smartgwt.client.widgets.form.fields.FormItem#showIf}).
+     * Whether this field should be considered a "detail" by a ${isc.DocUtils.linkForRef('interface:DataBoundComponent')}. <P> Detail fields won't be shown by default in a DataBoundComponent where  {@link com.smartgwt.client..DataBoundComponent#getShowDetailFields showDetailFields} is false.  This allows for some DataBound components, like a {@link com.smartgwt.client.widgets.grid.ListGrid}, to show a summary view of records which displays only  the most commonly viewed fields by default, while other DataBoundComponents, like a {@link com.smartgwt.client.widgets.viewer.DetailViewer}, show all fields by default. <P> In addition, the ${isc.DocUtils.linkForRef('field.showIf','formItem.showIf')} property is supported in multiple components for conditional visibility - see for example {@link com.smartgwt.client.widgets.grid.ListGridField#showIf} and {@link com.smartgwt.client.widgets.form.fields.FormItem#showIf}).
      *
      *
      * @return Boolean
@@ -465,6 +465,63 @@ public class DataSourceField extends DataClass {
      */
     public String getGroup()  {
         return getAttributeAsString("group");
+    }
+
+    /**
+    * For use with the SmartClient server when populating Java Beans / POJOs based on data contained in a DSRequest, <code>javaClass</code> specifies the fully qualified Java className to be created and passed to the setter for the Java Bean Property with the same name as this field.   <code>javaClass</code> is used both when manually calling DataSource.setProperties() and when auto-populating POJO arguments of a {@link com.smartgwt.client..DMI} method. <P> The Java class to create does not normally have to be specified: SmartClient will use Java reflection to inspect the type of argument expected by a setter method and will attempt conversion of inbound data to that type.  As described in the documentation for DataTools.setProperties(), this works for almost all typical cases.  However <code>field.javaClass</code> is useful for: <ul> <li> subobject of abstract or interface type: in this case Java Reflection is not sufficient to discover the concrete type that should be instantiated, and <code>javaClass</code> should be set instead.</li> <li> subobject of Collection or Map type, when Java generics are not used or the Collection member type or Map value type is abstract.  When Java generics are used (for example the setter takes an argument is of type Collection&lt;SomePOJO&gt; or Map&lt;KeyType,SomePOJO&gt;, SmartClient will automatically attempt to convert inbound data to the type of the members of the Collection or values of the Map.  Without generics, <code>javaClass</code> needs to be specified.  Note that <code>javaClass</code> will take precendence over generics if both  are used. Also note that {@link com.smartgwt.client.data.DataSourceField#getJavaCollectionClass javaCollectionClass} can be specified if a particular Collection or Map type is needed, and {@link com.smartgwt.client.data.DataSourceField#getJavaKeyClass javaKeyClass} can be specified for a field of type <code>java.util.Map</code>.</li> </ul>
+    *
+    * @param javaClass javaClass Default value is null
+    */
+    public void setJavaClass(String javaClass) {
+        setAttribute("javaClass", javaClass);
+    }
+    /**
+     * For use with the SmartClient server when populating Java Beans / POJOs based on data contained in a DSRequest, <code>javaClass</code> specifies the fully qualified Java className to be created and passed to the setter for the Java Bean Property with the same name as this field.   <code>javaClass</code> is used both when manually calling DataSource.setProperties() and when auto-populating POJO arguments of a {@link com.smartgwt.client..DMI} method. <P> The Java class to create does not normally have to be specified: SmartClient will use Java reflection to inspect the type of argument expected by a setter method and will attempt conversion of inbound data to that type.  As described in the documentation for DataTools.setProperties(), this works for almost all typical cases.  However <code>field.javaClass</code> is useful for: <ul> <li> subobject of abstract or interface type: in this case Java Reflection is not sufficient to discover the concrete type that should be instantiated, and <code>javaClass</code> should be set instead.</li> <li> subobject of Collection or Map type, when Java generics are not used or the Collection member type or Map value type is abstract.  When Java generics are used (for example the setter takes an argument is of type Collection&lt;SomePOJO&gt; or Map&lt;KeyType,SomePOJO&gt;, SmartClient will automatically attempt to convert inbound data to the type of the members of the Collection or values of the Map.  Without generics, <code>javaClass</code> needs to be specified.  Note that <code>javaClass</code> will take precendence over generics if both  are used. Also note that {@link com.smartgwt.client.data.DataSourceField#getJavaCollectionClass javaCollectionClass} can be specified if a particular Collection or Map type is needed, and {@link com.smartgwt.client.data.DataSourceField#getJavaKeyClass javaKeyClass} can be specified for a field of type <code>java.util.Map</code>.</li> </ul>
+     *
+     *
+     * @return String
+     *
+     */
+    public String getJavaClass()  {
+        return getAttributeAsString("javaClass");
+    }
+
+    /**
+    * See {@link com.smartgwt.client.data.DataSourceField#getJavaClass javaClass} - when auto-populating of Java Beans / POJOs based on  inbound DSRequest data, for a field of type Collection or Map,  <code>javaCollectionClass</code> can  be used to specify a particular concrete class to use.  If not specified, and a concrete Collection or Map class cannot be discovered using Java Reflection,  <code>java.util.ArrayList</code> is used for fields of type Collection, and  <code>org.apache.commons.collections.SequencedHashMap</code> is used for fields of type Map. Note that this value is used even if the target Collection or Map is declared as a concrete class.  So, for example, if you set <code>javaCollectionClass</code> to  <code>java.util.LinkedList</code> but your setter method accepts a  <code>java.util.ArrayList</code>, you will get a ClassCastException.
+    *
+    * @param javaCollectionClass javaCollectionClass Default value is null
+    */
+    public void setJavaCollectionClass(String javaCollectionClass) {
+        setAttribute("javaCollectionClass", javaCollectionClass);
+    }
+    /**
+     * See {@link com.smartgwt.client.data.DataSourceField#getJavaClass javaClass} - when auto-populating of Java Beans / POJOs based on  inbound DSRequest data, for a field of type Collection or Map,  <code>javaCollectionClass</code> can  be used to specify a particular concrete class to use.  If not specified, and a concrete Collection or Map class cannot be discovered using Java Reflection,  <code>java.util.ArrayList</code> is used for fields of type Collection, and  <code>org.apache.commons.collections.SequencedHashMap</code> is used for fields of type Map. Note that this value is used even if the target Collection or Map is declared as a concrete class.  So, for example, if you set <code>javaCollectionClass</code> to  <code>java.util.LinkedList</code> but your setter method accepts a  <code>java.util.ArrayList</code>, you will get a ClassCastException.
+     *
+     *
+     * @return String
+     *
+     */
+    public String getJavaCollectionClass()  {
+        return getAttributeAsString("javaCollectionClass");
+    }
+
+    /**
+    * See {@link com.smartgwt.client.data.DataSourceField#getJavaClass javaClass} - when auto-populating of Java Beans / POJOs based on  inbound DSRequest data, for a field of Map type, <code>javaKeyClass</code> can be used to specify a particular concrete class for the map keys.  If not specified, and a concrete type cannot be discovered using Java Reflection, <code>java.lang.Object</code> is used. Note that <code>javaKeyClass</code> take precedence over generics if both are used.
+    *
+    * @param javaKeyClass javaKeyClass Default value is null
+    */
+    public void setJavaKeyClass(String javaKeyClass) {
+        setAttribute("javaKeyClass", javaKeyClass);
+    }
+    /**
+     * See {@link com.smartgwt.client.data.DataSourceField#getJavaClass javaClass} - when auto-populating of Java Beans / POJOs based on  inbound DSRequest data, for a field of Map type, <code>javaKeyClass</code> can be used to specify a particular concrete class for the map keys.  If not specified, and a concrete type cannot be discovered using Java Reflection, <code>java.lang.Object</code> is used. Note that <code>javaKeyClass</code> take precedence over generics if both are used.
+     *
+     *
+     * @return String
+     *
+     */
+    public String getJavaKeyClass()  {
+        return getAttributeAsString("javaKeyClass");
     }
 
     // ********************* Methods ***********************
