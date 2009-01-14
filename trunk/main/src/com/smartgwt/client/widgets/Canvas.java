@@ -4441,9 +4441,13 @@ public class Canvas extends BaseWidget  implements com.smartgwt.client.widgets.e
 
 
 
-
+
 
 
+
+    public void setVisible(boolean visible) {
+        setVisibility(visible ? Visibility.VISIBLE : Visibility.HIDDEN);   
+    }
 
     /**
      * Size for this component's vertical dimension. <P> Can be a number of pixels, or a percentage like "50%". See
