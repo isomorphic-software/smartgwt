@@ -1475,6 +1475,51 @@ public class ListGridField extends DataClass  implements com.smartgwt.client.wid
 
 
     /**
+     * If this ListGrid is showing a filter row, this property can be used to apply a default value to show in the filter editor for this field.
+     *
+     * @param defaultFilterValue the default filter value
+     */
+    public void setDefaultFilterValue(String defaultFilterValue) {
+        setAttribute("defaultFilterValue", defaultFilterValue);
+    }
+
+    /**
+     * If this ListGrid is showing a filter row, this property can be used to apply a default value to show in the filter editor for this field.
+     *
+     * @param defaultFilterValue the default filter value
+     */
+    public void setDefaultFilterValue(Integer defaultFilterValue) {
+        setAttribute("defaultFilterValue", defaultFilterValue);
+    }
+
+    /**
+     * If this ListGrid is showing a filter row, this property can be used to apply a default value to show in the filter editor for this field.
+     *
+     * @param defaultFilterValue the default filter value
+     */
+    public void setDefaultFilterValue(Float defaultFilterValue) {
+        setAttribute("defaultFilterValue", defaultFilterValue);
+    }
+
+    /**
+     * If this ListGrid is showing a filter row, this property can be used to apply a default value to show in the filter editor for this field.
+     *
+     * @param defaultFilterValue the default filter value
+     */
+    public void setDefaultFilterValue(Boolean defaultFilterValue) {
+        setAttribute("defaultFilterValue", defaultFilterValue);
+    }
+
+    /**
+     * If this ListGrid is showing a filter row, this property can be used to apply a default value to show in the filter editor for this field.
+     *
+     * @param defaultFilterValue the default filter value
+     */
+    public void setDefaultFilterValue(Date defaultFilterValue) {
+        setAttribute("defaultFilterValue", defaultFilterValue);
+    }
+    
+    /**
      * If this field is editable, this property can be used to specify  {@link com.smartgwt.client.widgets.form.fields.FormItem#getIcons
      * icons} to be displayed in the editors displayed for this field <p><b>Note : </b> This is an advanced setting</p>
      *
