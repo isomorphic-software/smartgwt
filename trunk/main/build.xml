@@ -91,7 +91,7 @@
     <target name="test" depends="compile, compile.tests"
             description="Run hosted-mode, web-mode and remoteweb tests for this project.">
         <property.ensure name="distro.built" location="${smartgwt.dev.staging.jar}"
-                         message="GWT Ext must be built before performing any tests.  This can be fixed by running ant in the ${smartgwt.root} directory."/>
+                         message="SmartGWT must be built before performing any tests.  This can be fixed by running ant in the ${smartgwt.root} directory."/>
 
         <!--
               Run hosted and web mode tests for the platform on which this build
