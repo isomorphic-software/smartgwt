@@ -1212,6 +1212,10 @@ public class Calendar extends Canvas  implements DataBoundComponent, com.smartgw
         setAttribute("showWeekView", showWeekView, false);
     }
 
+    public void setShowMonthView(Boolean showMonthView) throws IllegalStateException {
+        setAttribute("showMonthView", showMonthView, false);
+    }
+
 
     public void setShowDatePickerButton(Boolean showDatePickerButton) throws IllegalStateException {
         setAttribute("showDatePickerButton", showDatePickerButton, false);
