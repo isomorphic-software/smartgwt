@@ -19,6 +19,8 @@ Everything is Java source that can be built with the included SmartGWT [http://a
 
  * Install [Apache Ant 1.6.5  http://ant.apache.org/bindownload.cgi] or later. We'll assume that the ant command is in your path.
 
+ * Set the GWT_HOME environment variable to point to your GWT home directory. (supported versions are GWT  1.5.3 and later).
+
  * Check out the SmartGWT prerequisite tools and third-party libraries:
      {{{ ~/smartgwt$ svn checkout http://smartgwt.googlecode.com/svn/tools/ tools }}} 
 
