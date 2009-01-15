@@ -4572,6 +4572,14 @@ public class Canvas extends BaseWidget  implements com.smartgwt.client.widgets.e
         setAttribute("align", align.getValue(), true);
     }
 
+    public int getAbsoluteLeft() {
+        return getPageLeft();
+    }
+
+    public int getAbsoluteTop() {
+        return getPageTop();
+    }
+
     /**
      * Offset of the shadow.  Defaults to half of <code>shadowDepth</code> if unset. <P> Because of the blurred edges, a
      * shadow is larger than the originating component by 2xsoftness.  An <code>shadowOffset</code> of 0 means that the
