@@ -93,11 +93,20 @@
 	<condition property="junit.platform.args" value="-XstartOnFirstThread" else="">
 		<equals arg1="${build.host.platform}" arg2="mac" casesensitive="false" />
 	</condition>
+	
+	
     
     <!--GWT jars location-->
     <property name="gwt.version" value="1.5.3" />
-    <property name="gwt.user.jar" location="${smartgwt.tools.lib}/gwt/${gwt.version}/${build.host.platform}/gwt-user.jar" />
-	<property name="gwt.dev.jar" location="${smartgwt.tools.lib}/gwt/${gwt.version}/${build.host.platform}/gwt-dev-${build.host.platform}.jar" />
+
+	<condition property="gwt_home" value="${env.GWT_HOME}" else="${smartgwt.tools.lib}/gwt/${gwt.version}/${build.host.platform}">
+		<isset property="env.GWT_HOME" />
+	</condition>
+	
+	<echo>Using GWT from : ${gwt_home}</echo>
+	 
+    <property name="gwt.user.jar" location="${gwt_home}/gwt-user.jar" />
+	<property name="gwt.dev.jar" location="${gwt_home}/gwt-dev-${build.host.platform}.jar" />
 
 
     <!-- JUnit support -->
@@ -130,7 +139,7 @@
 	</presetdef>
 
 	<presetdef name="gwt.javac">
-		<javac srcdir="src" destdir="${javac.out}" debug="${javac.debug}" debuglevel="${javac.debuglevel}" source="${javac.source}" nowarn="${javac.nowarn}" encoding="${javac.encoding}" />
+		<javac srcdir="src" destdir="${javac.out}" debug="${javac.debug}" debuglevel="${javac.debuglevel}" source="${javac.source}" nowarn="${javac.nowarn}" encoding="${javac.encoding}" target="1.5"/>
 	</presetdef>
 
 	<presetdef name="gwt.jar">
