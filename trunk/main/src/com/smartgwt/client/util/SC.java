@@ -106,7 +106,7 @@ public class SC {
     }-*/;
 
     public static native void askforValue(String message, ValueCallback callback) /*-{
-            $wnd.isc.askforValue(message, function(value) {
+            $wnd.isc.askForValue(message, function(value) {
                 if(value === undefined) value = null;
                 callback.@com.smartgwt.client.util.ValueCallback::execute(Ljava/lang/String;)(value);
             });
