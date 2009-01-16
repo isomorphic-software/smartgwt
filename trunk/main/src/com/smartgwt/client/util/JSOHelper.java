@@ -325,6 +325,7 @@ public class JSOHelper {
     }
 
     public static JavaScriptObject arrayConvert(Object[] array) {
+        if(array == null) return null;
         JavaScriptObject result = newJSArray(array.length);
 
         for (int i = 0; i < array.length; i++) {
@@ -334,6 +335,7 @@ public class JSOHelper {
     }
 
     public static JavaScriptObject arrayConvert(JavaScriptObject[] array) {
+        if(array == null) return null;
         JavaScriptObject result = newJSArray(array.length);
 
         for (int i = 0; i < array.length; i++) {
@@ -380,6 +382,7 @@ public class JSOHelper {
     }-*/;
 
     public static JavaScriptObject convertToJavaScriptArray(int[] array) {
+        if(array == null) return null;
         JavaScriptObject jsArray = createJavaScriptArray();
         for (int i = 0; i < array.length; i++) {
             JSOHelper.setArrayValue(jsArray, i, array[i]);
@@ -388,6 +391,7 @@ public class JSOHelper {
     }
 
     public static JavaScriptObject convertToJavaScriptDate(Date date) {
+        if(date == null) return null;
         JavaScriptObject dateJS = doConvertToJavaScriptDate(date.getTime());
         return dateJS;
     }
@@ -396,17 +400,8 @@ public class JSOHelper {
         return new $wnd.Date(time);
     }-*/;
 
-    /*public static JavaScriptObject convertToJavaScriptConfigArray(Component[] components) {
-        JavaScriptObject jsArray = createJavaScriptArray();
-        for (int i = 0; i < components.length; i++) {
-            Component component = components[i];
-            JSOHelper.setArrayValue(jsArray, i, component.getConfig());
-        }
-        return jsArray;
-    }*/
-
-
     public static JavaScriptObject convertToJavaScriptArray(Object[] array) {
+        if(array == null) return null;
         JavaScriptObject jsArray = createJavaScriptArray();
         for (int i = 0; i < array.length; i++) {
             Object val = array[i];
@@ -485,7 +480,11 @@ public class JSOHelper {
     }-*/;
 
     public static void setArrayValue(JavaScriptObject array, int index, Date value) {
-        setArrayDateValue(array, index, value.getTime());
+        if(value == null) {
+            setArrayValue(array, index, (String)null);
+        } else {
+            setArrayDateValue(array, index, value.getTime());
+        }
     }
 
     private static native void setArrayDateValue(JavaScriptObject array, int index, double time) /*-{
@@ -603,6 +602,7 @@ public class JSOHelper {
     }
 
     public static JavaScriptObject convertMapToJavascriptObject(Map valueMap) {
+        if(valueMap == null) return null;
         JavaScriptObject valueJS = JSOHelper.createObject();
         for (Iterator iterator = valueMap.keySet().iterator(); iterator.hasNext();) {
             String key = (String) iterator.next();
