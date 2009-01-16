@@ -90,6 +90,14 @@ public abstract class BaseClass {
     public static BaseClass getRef(JavaScriptObject jsObj) {
         return jsObj == null ? null : (BaseClass) JSOHelper.getAttributeAsObject(jsObj, SC.REF);
     }
+	
+	/**
+	 * Destroy this object.
+	 */
+    public native void destroy()/*-{
+		var self = this.@com.smartgwt.client.core.BaseClass::getJsObj()();
+		self.destroy();
+	}-*/;	
 
     private void error(String attribute, String value, boolean allowPostCreate) throws IllegalStateException {
         if (allowPostCreate) {
