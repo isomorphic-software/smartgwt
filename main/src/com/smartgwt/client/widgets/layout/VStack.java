@@ -54,7 +54,7 @@ import com.google.gwt.user.client.Element;
 import com.smartgwt.client.util.JSOHelper;
 import com.smartgwt.client.util.EnumUtil;
 import com.google.gwt.event.shared.*;
-import com.google.gwt.event.logical.shared.HasHandlers;
+import com.google.gwt.event.shared.HasHandlers;
    /**
     * A subclass of Layout that simply stacks members on the vertical axis without trying to manage their height.  On the horizontal axis, any members that do not have explict widths will be sized to match the width of the stack.
 

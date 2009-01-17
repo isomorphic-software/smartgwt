@@ -54,7 +54,7 @@ import com.google.gwt.user.client.Element;
 import com.smartgwt.client.util.JSOHelper;
 import com.smartgwt.client.util.EnumUtil;
 import com.google.gwt.event.shared.*;
-import com.google.gwt.event.logical.shared.HasHandlers;
+import com.google.gwt.event.shared.HasHandlers;
 public class EditorExitEvent extends AbstractSmartEvent<EditorExitHandler>  implements Cancellable {
     private boolean cancel = false;
 
@@ -105,7 +105,7 @@ public class EditorExitEvent extends AbstractSmartEvent<EditorExitHandler>  impl
 
   @SuppressWarnings("unchecked")
   @Override
-  protected final Type<EditorExitHandler> getAssociatedType() {
+  public final Type<EditorExitHandler> getAssociatedType() {
     return TYPE;
   }
 

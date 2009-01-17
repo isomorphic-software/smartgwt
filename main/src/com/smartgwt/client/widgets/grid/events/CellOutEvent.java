@@ -54,7 +54,7 @@ import com.google.gwt.user.client.Element;
 import com.smartgwt.client.util.JSOHelper;
 import com.smartgwt.client.util.EnumUtil;
 import com.google.gwt.event.shared.*;
-import com.google.gwt.event.logical.shared.HasHandlers;
+import com.google.gwt.event.shared.HasHandlers;
 public class CellOutEvent extends GridRowColEvent<CellOutHandler>  implements Cancellable {
     private boolean cancel = false;
 
@@ -105,7 +105,7 @@ public class CellOutEvent extends GridRowColEvent<CellOutHandler>  implements Ca
 
   @SuppressWarnings("unchecked")
   @Override
-  protected final Type<CellOutHandler> getAssociatedType() {
+  public final Type<CellOutHandler> getAssociatedType() {
     return TYPE;
   }
 

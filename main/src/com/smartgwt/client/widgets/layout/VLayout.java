@@ -54,7 +54,7 @@ import com.google.gwt.user.client.Element;
 import com.smartgwt.client.util.JSOHelper;
 import com.smartgwt.client.util.EnumUtil;
 import com.google.gwt.event.shared.*;
-import com.google.gwt.event.logical.shared.HasHandlers;
+import com.google.gwt.event.shared.HasHandlers;
    /**
     * A subclass of Layout that applies a sizing policy along the vertical axis, interpreting  percent and "*" sizes as proportions of the height of the layout. VLayouts will set any  members that do not have explict widths to match the layout.
 

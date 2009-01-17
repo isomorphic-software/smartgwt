@@ -54,7 +54,7 @@ import com.google.gwt.user.client.Element;
 import com.smartgwt.client.util.JSOHelper;
 import com.smartgwt.client.util.EnumUtil;
 import com.google.gwt.event.shared.*;
-import com.google.gwt.event.logical.shared.HasHandlers;
+import com.google.gwt.event.shared.HasHandlers;
    /**
     * The Menu widget class implements interactive menu widgets, with optional icons, submenus, and shortcut keys. <p> A Menu is initialized with an Array of items, specified as menu.data, each of which represents one row in the menu's display and specifies the action to take when that menu item is selected. <p> Generally to create a context menu for a component, provide a Menu instance for the  <code>contextMenu</code> property.  Note that some components have special context menu support because they have distinct regions or because they have a default set of context menu actions available. <p> If you want a button that pops up a menu when clicked, or a bar of such buttons, see the MenuButton and MenuBar classes.
 
