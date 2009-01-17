@@ -54,7 +54,7 @@ import com.google.gwt.user.client.Element;
 import com.smartgwt.client.util.JSOHelper;
 import com.smartgwt.client.util.EnumUtil;
 import com.google.gwt.event.shared.*;
-import com.google.gwt.event.logical.shared.HasHandlers;
+import com.google.gwt.event.shared.HasHandlers;
    /**
     * A Toolbar creates a vertical or horizontal strip of similar components (typically Buttons) and provides managed resizing and reordering behavior over those components. <p> If you are creating a bar with a mixture of different elements (eg some MenuButtons, some Labels, some Buttons, some custom components), you want to use a {@link com.smartgwt.client.widgets.toolbar.ToolStrip}.  A Toolbar is better suited for managing a set of highly similar, interchangeable components, such as ListGrid headers.
 

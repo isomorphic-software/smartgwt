@@ -54,7 +54,7 @@ import com.google.gwt.user.client.Element;
 import com.smartgwt.client.util.JSOHelper;
 import com.smartgwt.client.util.EnumUtil;
 import com.google.gwt.event.shared.*;
-import com.google.gwt.event.logical.shared.HasHandlers;
+import com.google.gwt.event.shared.HasHandlers;
 public class FolderContextClickEvent extends BrowserEvent<FolderContextClickHandler>  implements Cancellable {
     private boolean cancel = false;
 
@@ -105,7 +105,7 @@ public class FolderContextClickEvent extends BrowserEvent<FolderContextClickHand
 
   @SuppressWarnings("unchecked")
   @Override
-  protected final Type<FolderContextClickHandler> getAssociatedType() {
+  public final Type<FolderContextClickHandler> getAssociatedType() {
     return TYPE;
   }
 

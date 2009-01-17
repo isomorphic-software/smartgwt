@@ -54,7 +54,7 @@ import com.google.gwt.user.client.Element;
 import com.smartgwt.client.util.JSOHelper;
 import com.smartgwt.client.util.EnumUtil;
 import com.google.gwt.event.shared.*;
-import com.google.gwt.event.logical.shared.HasHandlers;
+import com.google.gwt.event.shared.HasHandlers;
    /**
     * A DetailViewerRecord is an object literal with properties that define the values for the various fields of a {@link com.smartgwt.client.widgets.viewer.DetailViewer}. <p> For example a DetailViewer that defines the following fields: <pre> fields : [     {name: "field1"},     {name: "field2"} ], </pre> Might have the following data: <pre> data : [     {field1: "foo", field2: "bar"},     {field1: "field1 value", field2: "field2 value"} ] </pre> Each element in the data array above is an instance of DetailViewerRecord - notice that these are specified simply as object literals with properties.
 

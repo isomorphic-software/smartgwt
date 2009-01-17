@@ -54,7 +54,7 @@ import com.google.gwt.user.client.Element;
 import com.smartgwt.client.util.JSOHelper;
 import com.smartgwt.client.util.EnumUtil;
 import com.google.gwt.event.shared.*;
-import com.google.gwt.event.logical.shared.HasHandlers;
+import com.google.gwt.event.shared.HasHandlers;
    /**
     * Shows a set of Tabs.  TabBars are automatically created by TabSets and shouldn't be used directly.  The TabBar is documented for skinning purposes.
 

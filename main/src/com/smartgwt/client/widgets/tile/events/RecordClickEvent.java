@@ -54,7 +54,7 @@ import com.google.gwt.user.client.Element;
 import com.smartgwt.client.util.JSOHelper;
 import com.smartgwt.client.util.EnumUtil;
 import com.google.gwt.event.shared.*;
-import com.google.gwt.event.logical.shared.HasHandlers;
+import com.google.gwt.event.shared.HasHandlers;
 public class RecordClickEvent extends BrowserEvent<RecordClickHandler>  {
 
   /**
@@ -104,7 +104,7 @@ public class RecordClickEvent extends BrowserEvent<RecordClickHandler>  {
 
   @SuppressWarnings("unchecked")
   @Override
-  protected final Type<RecordClickHandler> getAssociatedType() {
+  public final Type<RecordClickHandler> getAssociatedType() {
     return TYPE;
   }
 

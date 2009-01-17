@@ -54,7 +54,7 @@ import com.google.gwt.user.client.Element;
 import com.smartgwt.client.util.JSOHelper;
 import com.smartgwt.client.util.EnumUtil;
 import com.google.gwt.event.shared.*;
-import com.google.gwt.event.logical.shared.HasHandlers;
+import com.google.gwt.event.shared.HasHandlers;
    /**
     * Tabs are specified as objects, not class instances.  For example, when developing in JavaScript, a typical initialization block for a TabSet would look like this: <pre> TabSet.create({     tabs: [         {title: "tab1", pane: "pane1"},         {title: "tab2"}     ] }); </pre> And in XML: <pre> &lt;TabSet&gt;    &lt;tabs&gt;        &lt;Tab title="tab1" pane="pane1"/&gt;        &lt;Tab title="tab2"/&gt;    &lt;/tabs&gt; &lt;/TabSet&gt; </pre>
 

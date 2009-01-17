@@ -54,7 +54,7 @@ import com.google.gwt.user.client.Element;
 import com.smartgwt.client.util.JSOHelper;
 import com.smartgwt.client.util.EnumUtil;
 import com.google.gwt.event.shared.*;
-import com.google.gwt.event.logical.shared.HasHandlers;
+import com.google.gwt.event.shared.HasHandlers;
    /**
     * A Tree is a data model representing a set of objects linked into a hierarchy. <P> A Tree has no visual presentation, it is displayed by a {@link com.smartgwt.client.widgets.tree.TreeGrid} or {@link com.smartgwt.client.widgets.grid.ColumnTree} when supplied as {@link com.smartgwt.client.widgets.tree.TreeGrid#getData data} or {@link com.smartgwt.client.widgets.grid.ColumnTree#getData data}. <P> A Tree can be constructed out of a List of objects with interlinked by IDs or via explicitly specified Arrays of child objects.  See {@link com.smartgwt.client.widgets.tree.Tree#getModelType modelType} for an explanation of how to pass data to a Tree. <P> Typical usage is to call {@link com.smartgwt.client.widgets.tree.TreeGrid#fetchData} to cause automatic creation of a  {@link com.smartgwt.client..ResultTree}, which is a type of Tree that automatically handles loading data on  demand.  For information on DataBinding Trees, see ${isc.DocUtils.linkForRef('group:treeDataBinding')}.
 

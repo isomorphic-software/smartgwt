@@ -54,7 +54,7 @@ import com.google.gwt.user.client.Element;
 import com.smartgwt.client.util.JSOHelper;
 import com.smartgwt.client.util.EnumUtil;
 import com.google.gwt.event.shared.*;
-import com.google.gwt.event.logical.shared.HasHandlers;
+import com.google.gwt.event.shared.HasHandlers;
    /**
     * The TabSet class allows components on several panes to share the same space. The tabs at  the top can be selected by the user to show each pane.  <P> Tabs are configured via the <code>tabs</code> property, each of which has a <code>pane</code> property which will be displayed in the main pane when that tab is selected.
 

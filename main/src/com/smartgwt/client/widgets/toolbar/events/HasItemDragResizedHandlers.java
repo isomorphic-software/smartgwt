@@ -18,7 +18,7 @@ package com.smartgwt.client.widgets.toolbar.events;
 
 import com.smartgwt.client.event.*;
 import com.google.gwt.event.shared.HandlerRegistration;
-import com.google.gwt.event.logical.shared.HasHandlers;
+import com.google.gwt.event.shared.HasHandlers;
 
 public interface HasItemDragResizedHandlers {
     HandlerRegistration addItemDragResizedHandler(ItemDragResizedHandler handler);
