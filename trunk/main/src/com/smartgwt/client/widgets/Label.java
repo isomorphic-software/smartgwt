@@ -54,7 +54,7 @@ import com.google.gwt.user.client.Element;
 import com.smartgwt.client.util.JSOHelper;
 import com.smartgwt.client.util.EnumUtil;
 import com.google.gwt.event.shared.*;
-import com.google.gwt.event.logical.shared.HasHandlers;
+import com.google.gwt.event.shared.HasHandlers;
    /**
     * Labels display a small amount of {@link com.smartgwt.client.widgets.Label#getAlign align} {@link com.smartgwt.client.widgets.Label#getContents contents} with optional {@link com.smartgwt.client.widgets.Label#getIcon icon} and {@link com.smartgwt.client.widgets.Label#getAutoFit autoFit}. <P> For a general-purpose container for HTML content, use {@link com.smartgwt.client.widgets.HTMLFlow} or {@link com.smartgwt.client.widgets.HTMLPane} instead.
 

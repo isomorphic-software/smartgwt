@@ -54,7 +54,7 @@ import com.google.gwt.user.client.Element;
 import com.smartgwt.client.util.JSOHelper;
 import com.smartgwt.client.util.EnumUtil;
 import com.google.gwt.event.shared.*;
-import com.google.gwt.event.logical.shared.HasHandlers;
+import com.google.gwt.event.shared.HasHandlers;
    /**
     * Subclass of the {@link com.smartgwt.client.widgets.Img} class. As with the {@link com.smartgwt.client.widgets.Splitbar} class,   widgets of this class can be displayed as a resize-bar for widgets   in Layouts where showResizeBar is set to true. Provides a different appearance from  the <code>Splitbar</code> class.<br>  To specify the resizeBar class for some layout, use the {@link com.smartgwt.client.widgets.layout.Layout#getResizeBarClass resizeBarClass}  property.
 

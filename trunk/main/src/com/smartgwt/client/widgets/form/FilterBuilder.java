@@ -54,7 +54,7 @@ import com.google.gwt.user.client.Element;
 import com.smartgwt.client.util.JSOHelper;
 import com.smartgwt.client.util.EnumUtil;
 import com.google.gwt.event.shared.*;
-import com.google.gwt.event.logical.shared.HasHandlers;
+import com.google.gwt.event.shared.HasHandlers;
    /**
     * A form that allows the user to input advanced search criteria, including operators on field values such as "less than", and sub-clauses using "AND" and "OR" operators. <P> A FilterBuilder produces an ${isc.DocUtils.linkForRef('object:AdvancedCriteria')} object, which the {@link com.smartgwt.client.data.DataSource} subsystem can use to filter datasets, including the ability to perform such filtering within the browser for datasets that are completely loaded.
 
@@ -274,9 +274,8 @@ public class FilterBuilder extends Layout {
      * DataSource this filter should use for field definitions and available ${isc.DocUtils.linkForRef('object:Operator')}s.
      *
      * @param dataSource dataSource Default value is null
-     * @throws IllegalStateException this property cannot be changed after the component has been created
      */
-    public void setDataSource(DataSource dataSource) throws IllegalStateException {
+    public void setDataSource(DataSource dataSource) {
         setAttribute("dataSource", dataSource.getOrCreateJsObj(), false);
     }
 

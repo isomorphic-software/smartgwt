@@ -54,7 +54,7 @@ import com.google.gwt.user.client.Element;
 import com.smartgwt.client.util.JSOHelper;
 import com.smartgwt.client.util.EnumUtil;
 import com.google.gwt.event.shared.*;
-import com.google.gwt.event.logical.shared.HasHandlers;
+import com.google.gwt.event.shared.HasHandlers;
    /**
     * Header item for a collapsable section in a {@link com.smartgwt.client.widgets.form.DynamicForm}.  Each <code>SectionItem</code> is associated with a number of other <code>item</code>s in the form, which will be shown or hidden as a group when the section is expanded or collapsed.  Clicking on a <code>SectionItem</code> will expand or collapse the section. <P> To make a form where only one section is expanded at a time, set {@link com.smartgwt.client.widgets.form.DynamicForm#getSectionVisibilityMode sectionVisibilityMode} to "mutex".
 

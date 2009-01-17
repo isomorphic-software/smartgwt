@@ -54,7 +54,7 @@ import com.google.gwt.user.client.Element;
 import com.smartgwt.client.util.JSOHelper;
 import com.smartgwt.client.util.EnumUtil;
 import com.google.gwt.event.shared.*;
-import com.google.gwt.event.logical.shared.HasHandlers;
+import com.google.gwt.event.shared.HasHandlers;
    /**
     * The Hover class handles showing a simple SmartClient canvas containing arbitrary HTML, or triggering some other action in response to a user holding the mouse-pointer (or hovering) over a specific widget.
 

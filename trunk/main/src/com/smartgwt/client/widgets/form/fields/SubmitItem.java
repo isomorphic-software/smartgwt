@@ -54,7 +54,7 @@ import com.google.gwt.user.client.Element;
 import com.smartgwt.client.util.JSOHelper;
 import com.smartgwt.client.util.EnumUtil;
 import com.google.gwt.event.shared.*;
-import com.google.gwt.event.logical.shared.HasHandlers;
+import com.google.gwt.event.shared.HasHandlers;
    /**
     * Button that saves the data in the form, by calling <code>DynamicForm.submit()</code>  Behavior depends on the containing form's {@link com.smartgwt.client.widgets.form.DynamicForm#getCanSubmit canSubmit} property.  If <code>form.canSubmit</code> is true, this method will perform a direct submission of the underlying HTML form.<br> Otherwise standard RPC operations will be used to save the changes.
 

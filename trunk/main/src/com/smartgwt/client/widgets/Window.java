@@ -54,7 +54,7 @@ import com.google.gwt.user.client.Element;
 import com.smartgwt.client.util.JSOHelper;
 import com.smartgwt.client.util.EnumUtil;
 import com.google.gwt.event.shared.*;
-import com.google.gwt.event.logical.shared.HasHandlers;
+import com.google.gwt.event.shared.HasHandlers;
    /**
     * A general purpose Window class for implementing dialogs, portlets, alerts, prompts, wizards and desktop-like windowing interfaces. <P> Windows can contain arbitrary SmartClient components, configured via the {@link com.smartgwt.client.widgets.Window#getItems items} property.  Windows may be {@link com.smartgwt.client.widgets.Window#getIsModal isModal} or non-modal. <P> Windows provide a series of highly configurable and skinnable ${isc.DocUtils.linkForRef('type:AutoChild','autoChildren')} including a header, various header controls, footer, and corner resizer. <P> The more specialized {@link com.smartgwt.client.widgets.Dialog} subclass of Window has additional functionality targetted at simple prompts and confirmations, such as buttons with default actions, and single-method ${isc.DocUtils.linkForRef('isc.warn','shortcuts')} for common application dialogs.
 

@@ -54,7 +54,7 @@ import com.google.gwt.user.client.Element;
 import com.smartgwt.client.util.JSOHelper;
 import com.smartgwt.client.util.EnumUtil;
 import com.google.gwt.event.shared.*;
-import com.google.gwt.event.logical.shared.HasHandlers;
+import com.google.gwt.event.shared.HasHandlers;
    /**
     * A StretchImg that behaves like a button, going through up/down/over state transitions in response to user events.  Supports an optional title, and will auto-size to accomodate the title text if <code>overflow</code> is set to "visible". <P> Examples of use include fancy buttons, poplist headers, and tabs.
 

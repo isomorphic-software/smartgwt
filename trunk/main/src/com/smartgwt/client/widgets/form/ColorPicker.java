@@ -54,7 +54,7 @@ import com.google.gwt.user.client.Element;
 import com.smartgwt.client.util.JSOHelper;
 import com.smartgwt.client.util.EnumUtil;
 import com.google.gwt.event.shared.*;
-import com.google.gwt.event.logical.shared.HasHandlers;
+import com.google.gwt.event.shared.HasHandlers;
    /**
     * The ColorPicker widget allows the user to select a color from anywhere in the  color spectrum. It also supports selecting the alpha (opacity) value of the  color.  The picker supports a simple mode - which allows for one-click selection from a standard palette of colors - and a complex mode which allow the user to define any conceivable color. It is possible for the user to switch from simple mode to complex by interacting with the widget.  In general, the widget provides very similar functionality to the color picker dialogs found in graphics packages and other desktop software.
 

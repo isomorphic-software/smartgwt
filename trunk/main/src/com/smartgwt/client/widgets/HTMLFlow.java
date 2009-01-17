@@ -54,7 +54,7 @@ import com.google.gwt.user.client.Element;
 import com.smartgwt.client.util.JSOHelper;
 import com.smartgwt.client.util.EnumUtil;
 import com.google.gwt.event.shared.*;
-import com.google.gwt.event.logical.shared.HasHandlers;
+import com.google.gwt.event.shared.HasHandlers;
    /**
     * Use the HTMLFlow component to display HTML content that should expand to its natural size without scrolling.   <p> HTML content can be loaded and reloaded from a URL via the property <code>contentsURL</code>.  This method of loading is for simple HTML content only; SmartClient components should be loaded via the {@link com.smartgwt.client.widgets.ViewLoader} class. <P> NOTE: Since the size of an HTMLFlow component is determined by its HTML contents, this component will draw at varying sizes if given content of varying size.  When using HTMLFlow components within a Layout, consider what will happen if the HTMLFlow renders at various sizes.  An HTMLFlow which can expand should be placed in a container where other components can render smaller, where the container is allowed to scroll, or where there is padding to expand into.
 
