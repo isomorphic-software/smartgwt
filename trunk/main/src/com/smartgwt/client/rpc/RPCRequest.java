@@ -54,7 +54,7 @@ import com.google.gwt.user.client.Element;
 import com.smartgwt.client.util.JSOHelper;
 import com.smartgwt.client.util.EnumUtil;
 import com.google.gwt.event.shared.*;
-import com.google.gwt.event.logical.shared.HasHandlers;
+import com.google.gwt.event.shared.HasHandlers;
    /**
     * Encapsulates a client/server RPC request.  You'll need to provide an instance of this class (or a constructor for it) to the {@link com.smartgwt.client.rpc.RPCManager#sendRequest} method.  If you use the  {@link com.smartgwt.client.rpc.RPCManager#send} method, an instance of RPCRequest will be created for you.
 

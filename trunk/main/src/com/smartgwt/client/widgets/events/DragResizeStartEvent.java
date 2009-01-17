@@ -54,7 +54,7 @@ import com.google.gwt.user.client.Element;
 import com.smartgwt.client.util.JSOHelper;
 import com.smartgwt.client.util.EnumUtil;
 import com.google.gwt.event.shared.*;
-import com.google.gwt.event.logical.shared.HasHandlers;
+import com.google.gwt.event.shared.HasHandlers;
 public class DragResizeStartEvent extends BrowserEvent<DragResizeStartHandler>  implements Cancellable {
     private boolean cancel = false;
 
@@ -105,7 +105,7 @@ public class DragResizeStartEvent extends BrowserEvent<DragResizeStartHandler>  
 
   @SuppressWarnings("unchecked")
   @Override
-  protected final Type<DragResizeStartHandler> getAssociatedType() {
+  public final Type<DragResizeStartHandler> getAssociatedType() {
     return TYPE;
   }
 

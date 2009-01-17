@@ -54,7 +54,7 @@ import com.google.gwt.user.client.Element;
 import com.smartgwt.client.util.JSOHelper;
 import com.smartgwt.client.util.EnumUtil;
 import com.google.gwt.event.shared.*;
-import com.google.gwt.event.logical.shared.HasHandlers;
+import com.google.gwt.event.shared.HasHandlers;
 public class DateChangedEvent extends BrowserEvent<DateChangedHandler>  {
 
   /**
@@ -104,7 +104,7 @@ public class DateChangedEvent extends BrowserEvent<DateChangedHandler>  {
 
   @SuppressWarnings("unchecked")
   @Override
-  protected final Type<DateChangedHandler> getAssociatedType() {
+  public final Type<DateChangedHandler> getAssociatedType() {
     return TYPE;
   }
 

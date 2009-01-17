@@ -16,7 +16,7 @@
 
 package com.smartgwt.client.widgets.events;
 
-import com.google.gwt.event.logical.shared.HasHandlers;
+import com.google.gwt.event.shared.HasHandlers;
 import com.google.gwt.event.shared.GwtEvent;
 import com.google.gwt.event.shared.HandlerManager;
 
@@ -77,7 +77,7 @@ public class DrawEvent extends GwtEvent<DrawHandler> {
     // field itself does not, so we have to do an unsafe cast here.
     @SuppressWarnings("unchecked")
     @Override
-    protected final Type<DrawHandler> getAssociatedType() {
+    public final Type<DrawHandler> getAssociatedType() {
         return (Type) TYPE;
     }
 
