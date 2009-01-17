@@ -54,7 +54,7 @@ import com.google.gwt.user.client.Element;
 import com.smartgwt.client.util.JSOHelper;
 import com.smartgwt.client.util.EnumUtil;
 import com.google.gwt.event.shared.*;
-import com.google.gwt.event.logical.shared.HasHandlers;
+import com.google.gwt.event.shared.HasHandlers;
 public class IconClickEvent extends BrowserEvent<IconClickHandler>  {
 
   /**
@@ -104,7 +104,7 @@ public class IconClickEvent extends BrowserEvent<IconClickHandler>  {
 
   @SuppressWarnings("unchecked")
   @Override
-  protected final Type<IconClickHandler> getAssociatedType() {
+  public final Type<IconClickHandler> getAssociatedType() {
     return TYPE;
   }
 

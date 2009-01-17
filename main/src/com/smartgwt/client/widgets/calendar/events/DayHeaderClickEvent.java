@@ -54,7 +54,7 @@ import com.google.gwt.user.client.Element;
 import com.smartgwt.client.util.JSOHelper;
 import com.smartgwt.client.util.EnumUtil;
 import com.google.gwt.event.shared.*;
-import com.google.gwt.event.logical.shared.HasHandlers;
+import com.google.gwt.event.shared.HasHandlers;
 public class DayHeaderClickEvent extends BrowserEvent<DayHeaderClickHandler>  {
 
   /**
@@ -104,7 +104,7 @@ public class DayHeaderClickEvent extends BrowserEvent<DayHeaderClickHandler>  {
 
   @SuppressWarnings("unchecked")
   @Override
-  protected final Type<DayHeaderClickHandler> getAssociatedType() {
+  public final Type<DayHeaderClickHandler> getAssociatedType() {
     return TYPE;
   }
 

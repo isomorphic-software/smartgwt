@@ -54,7 +54,7 @@ import com.google.gwt.user.client.Element;
 import com.smartgwt.client.util.JSOHelper;
 import com.smartgwt.client.util.EnumUtil;
 import com.google.gwt.event.shared.*;
-import com.google.gwt.event.logical.shared.HasHandlers;
+import com.google.gwt.event.shared.HasHandlers;
 public class DropMoveEvent extends BrowserEvent<DropMoveHandler>  implements Cancellable {
     private boolean cancel = false;
 
@@ -105,7 +105,7 @@ public class DropMoveEvent extends BrowserEvent<DropMoveHandler>  implements Can
 
   @SuppressWarnings("unchecked")
   @Override
-  protected final Type<DropMoveHandler> getAssociatedType() {
+  public final Type<DropMoveHandler> getAssociatedType() {
     return TYPE;
   }
 
