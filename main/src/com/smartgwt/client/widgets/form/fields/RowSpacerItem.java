@@ -54,7 +54,7 @@ import com.google.gwt.user.client.Element;
 import com.smartgwt.client.util.JSOHelper;
 import com.smartgwt.client.util.EnumUtil;
 import com.google.gwt.event.shared.*;
-import com.google.gwt.event.logical.shared.HasHandlers;
+import com.google.gwt.event.shared.HasHandlers;
    /**
     * Form item that renders as a blank row in the form layout.<br> Set {@link com.smartgwt.client.widgets.form.fields.RowSpacerItem#getStartRow startRow} to <code>false</code> to create a rowSpacer that simply takes up every remaining column in the current row rather than starting a new row.
 

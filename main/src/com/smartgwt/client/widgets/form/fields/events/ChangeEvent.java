@@ -54,7 +54,7 @@ import com.google.gwt.user.client.Element;
 import com.smartgwt.client.util.JSOHelper;
 import com.smartgwt.client.util.EnumUtil;
 import com.google.gwt.event.shared.*;
-import com.google.gwt.event.logical.shared.HasHandlers;
+import com.google.gwt.event.shared.HasHandlers;
 public class ChangeEvent extends AbstractSmartEvent<ChangeHandler>  implements Cancellable {
     private boolean cancel = false;
 
@@ -105,7 +105,7 @@ public class ChangeEvent extends AbstractSmartEvent<ChangeHandler>  implements C
 
   @SuppressWarnings("unchecked")
   @Override
-  protected final Type<ChangeHandler> getAssociatedType() {
+  public final Type<ChangeHandler> getAssociatedType() {
     return TYPE;
   }
 

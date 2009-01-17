@@ -54,7 +54,7 @@ import com.google.gwt.user.client.Element;
 import com.smartgwt.client.util.JSOHelper;
 import com.smartgwt.client.util.EnumUtil;
 import com.google.gwt.event.shared.*;
-import com.google.gwt.event.logical.shared.HasHandlers;
+import com.google.gwt.event.shared.HasHandlers;
 public class ItemHoverEvent extends AbstractSmartEvent<ItemHoverHandler>  {
 
   /**
@@ -104,7 +104,7 @@ public class ItemHoverEvent extends AbstractSmartEvent<ItemHoverHandler>  {
 
   @SuppressWarnings("unchecked")
   @Override
-  protected final Type<ItemHoverHandler> getAssociatedType() {
+  public final Type<ItemHoverHandler> getAssociatedType() {
     return TYPE;
   }
 

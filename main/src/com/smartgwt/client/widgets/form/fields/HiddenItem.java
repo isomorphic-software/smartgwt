@@ -54,7 +54,7 @@ import com.google.gwt.user.client.Element;
 import com.smartgwt.client.util.JSOHelper;
 import com.smartgwt.client.util.EnumUtil;
 import com.google.gwt.event.shared.*;
-import com.google.gwt.event.logical.shared.HasHandlers;
+import com.google.gwt.event.shared.HasHandlers;
    /**
     * HiddenItems track a value but have no visible appearance and do not take up space in the form layout. <P> When using SmartClient databinding it is usually not necessary to use a HiddenItem, since the DynamicForm will track values for which no actual form control exists, and will submit these 'extra' values when {@link com.smartgwt.client.widgets.form.DynamicForm#saveData} is called.  HiddenItems only apply to forms that are submitted like ordinary HTML forms, via the {@link com.smartgwt.client.widgets.form.DynamicForm#submitForm} method.
 

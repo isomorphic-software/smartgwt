@@ -54,7 +54,7 @@ import com.google.gwt.user.client.Element;
 import com.smartgwt.client.util.JSOHelper;
 import com.smartgwt.client.util.EnumUtil;
 import com.google.gwt.event.shared.*;
-import com.google.gwt.event.logical.shared.HasHandlers;
+import com.google.gwt.event.shared.HasHandlers;
    /**
     * RichTextEditing component.  Provides a rich-text editing area along with UI for executing rich-text commands on the text.<br> The HTML generated from this component may vary by browser, and, as with any HTML  value created on the client, we recommend values be sanitized on the server before  storing and displaying to other users.<br> Note: This component has limited support on the Safari browser.
 

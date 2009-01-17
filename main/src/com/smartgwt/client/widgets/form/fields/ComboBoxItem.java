@@ -54,7 +54,7 @@ import com.google.gwt.user.client.Element;
 import com.smartgwt.client.util.JSOHelper;
 import com.smartgwt.client.util.EnumUtil;
 import com.google.gwt.event.shared.*;
-import com.google.gwt.event.logical.shared.HasHandlers;
+import com.google.gwt.event.shared.HasHandlers;
    /**
     * The Combobox is a text input field which can show a list of options via a drop-down PickList. <p> The set of options will be filtered based on the current value in the text field, so only options that match what has been typed so far will be displayed. The set of options can be derived from a ValueMap or dynamically retrieved from a dataSource.  See the ${isc.DocUtils.linkForRef('interface:PickList')} interface for further settings. <P> Note that to select the first option as a default value for the item, {@link com.smartgwt.client.widgets.form.fields.ComboBoxItem#getDefaultToFirstOption defaultToFirstOption} may be set.
 

@@ -54,7 +54,7 @@ import com.google.gwt.user.client.Element;
 import com.smartgwt.client.util.JSOHelper;
 import com.smartgwt.client.util.EnumUtil;
 import com.google.gwt.event.shared.*;
-import com.google.gwt.event.logical.shared.HasHandlers;
+import com.google.gwt.event.shared.HasHandlers;
    /**
     * The Slider class implements a GUI slider widget allowing the user to select a numeric   value from within a range by dragging a visual indicicator up and down a track. <p>  The slider will generate events as the user interacts with it and changes its value.  If slider.sliderTarget is specified, moving the slider thumb generates a custom event named 'sliderMove', sent to the sliderTarget.  If a <code>sliderMove</code> handler stringMethod is defined on the target, it will be   fired when the slider is moved. The second parameter (available via the variable name  <code>eventInfo</code> if the handler is a string) is a pointer back to the slider.  <p>  The slider will also fire a <code>valueChanged()</code> method whenever its value is   changed.  This can be observed or overridden on the Slider instance to perform some action.
 
