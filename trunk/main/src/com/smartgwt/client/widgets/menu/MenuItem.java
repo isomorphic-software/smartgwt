@@ -54,7 +54,7 @@ import com.google.gwt.user.client.Element;
 import com.smartgwt.client.util.JSOHelper;
 import com.smartgwt.client.util.EnumUtil;
 import com.google.gwt.event.shared.*;
-import com.google.gwt.event.logical.shared.HasHandlers;
+import com.google.gwt.event.shared.HasHandlers;
    /**
     * Menu items are specified are object literals, not class instances.  For example, when developing in JavaScript, a typical initialization block for a Menu would look like this: <pre> Menu.create({     data: [         {title: "item1", click: "alert(1)"},         {title: "item2"}     ] }); </pre> And in XML: <pre> &lt;Menu&gt;    &lt;data&gt;        &lt;MenuItem title="item1" click="alert(1)"/&gt;        &lt;MenuItem title="item2"/&gt;    &lt;/data&gt; &lt;/Menu&gt; </pre>
 

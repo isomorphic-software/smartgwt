@@ -54,7 +54,7 @@ import com.google.gwt.user.client.Element;
 import com.smartgwt.client.util.JSOHelper;
 import com.smartgwt.client.util.EnumUtil;
 import com.google.gwt.event.shared.*;
-import com.google.gwt.event.logical.shared.HasHandlers;
+import com.google.gwt.event.shared.HasHandlers;
 public class CellDoubleClickEvent extends GridRowColEvent<CellDoubleClickHandler>  implements Cancellable {
     private boolean cancel = false;
 
@@ -105,7 +105,7 @@ public class CellDoubleClickEvent extends GridRowColEvent<CellDoubleClickHandler
 
   @SuppressWarnings("unchecked")
   @Override
-  protected final Type<CellDoubleClickHandler> getAssociatedType() {
+  public final Type<CellDoubleClickHandler> getAssociatedType() {
     return TYPE;
   }
 

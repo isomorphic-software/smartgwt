@@ -54,7 +54,7 @@ import com.google.gwt.user.client.Element;
 import com.smartgwt.client.util.JSOHelper;
 import com.smartgwt.client.util.EnumUtil;
 import com.google.gwt.event.shared.*;
-import com.google.gwt.event.logical.shared.HasHandlers;
+import com.google.gwt.event.shared.HasHandlers;
 public class RecordDoubleClickEvent extends BrowserEvent<RecordDoubleClickHandler>  {
 
   /**
@@ -104,7 +104,7 @@ public class RecordDoubleClickEvent extends BrowserEvent<RecordDoubleClickHandle
 
   @SuppressWarnings("unchecked")
   @Override
-  protected final Type<RecordDoubleClickHandler> getAssociatedType() {
+  public final Type<RecordDoubleClickHandler> getAssociatedType() {
     return TYPE;
   }
 

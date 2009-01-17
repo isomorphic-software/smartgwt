@@ -54,7 +54,7 @@ import com.google.gwt.user.client.Element;
 import com.smartgwt.client.util.JSOHelper;
 import com.smartgwt.client.util.EnumUtil;
 import com.google.gwt.event.shared.*;
-import com.google.gwt.event.logical.shared.HasHandlers;
+import com.google.gwt.event.shared.HasHandlers;
    /**
     * A container that manages a list of sections of widgets, each with a header.  Sometimes called an "Accordion". <P> SectionStack can be configured so that only one section is visible at a time (similar to MS Outlook's left-hand Nav), or to allow multiple sections to be visible and share the available space.
 

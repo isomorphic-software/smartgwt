@@ -54,7 +54,7 @@ import com.google.gwt.user.client.Element;
 import com.smartgwt.client.util.JSOHelper;
 import com.smartgwt.client.util.EnumUtil;
 import com.google.gwt.event.shared.*;
-import com.google.gwt.event.logical.shared.HasHandlers;
+import com.google.gwt.event.shared.HasHandlers;
    /**
     * A subclass of Canvas that automatically arranges other Canvases according to a layout policy. <br><br> A Layout manages a set of "member" Canvases initialized via the "members" property.  Layouts can have both "members", which are managed by the Layout, and normal Canvas children, which are unmanaged. <br><br> Rather than using the Layout class directly, use the HLayout, VLayout, HStack and VStack classes, which are subclasses of Layout preconfigured for horizontal or vertical stacking, with the "fill" (VLayout) or "none" (VStack) ${isc.DocUtils.linkForRef('type:LayoutPolicy','policies')} already set. <br><br> Layouts and Stacks may be nested to create arbitrarily complex layouts. <br><br> To show a resizer bar after (to the right or bottom of) a layout member, set showResizeBar to true on that member component (not on the HLayout or VLayout).  Resizer bars override membersMargin spacing. <br><br>  Like other Canvas subclasses, Layout and Stack components may have % width and height values. To create a dynamically-resizing layout that occupies the entire page (or entire parent component), set width and height to "100%".
 

@@ -54,7 +54,7 @@ import com.google.gwt.user.client.Element;
 import com.smartgwt.client.util.JSOHelper;
 import com.smartgwt.client.util.EnumUtil;
 import com.google.gwt.event.shared.*;
-import com.google.gwt.event.logical.shared.HasHandlers;
+import com.google.gwt.event.shared.HasHandlers;
    /**
     * A ListGrid is a ${isc.DocUtils.linkForRef('interface:DataBoundComponent')} that displays a list of objects in a grid, where each row represents one object and each cell in the row represents one property.
 
