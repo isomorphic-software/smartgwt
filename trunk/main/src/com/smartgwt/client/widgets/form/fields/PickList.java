@@ -18,6 +18,7 @@ package com.smartgwt.client.widgets.form.fields;
 
 
 import com.smartgwt.client.data.Criteria;
+import com.smartgwt.client.types.TextMatchStyle;
 
 /**
  * Interface to show a drop-down list of pickable options. Used by the {@link com.smartgwt.client.widgets.form.fields.SelectItem}
@@ -316,7 +317,7 @@ public interface PickList {
      *
      * @param textMatchStyle textMatchStyle Default value is "startsWith"
      */
-    public void setTextMatchStyle(Boolean textMatchStyle);
+    public void setTextMatchStyle(TextMatchStyle textMatchStyle);
 
     /**
      * When applying filter criteria to pickList data, what type of matching to use.  Legal values are "substring"
@@ -328,7 +329,7 @@ public interface PickList {
      *
      * @return Boolean
      */
-    public Boolean getTextMatchStyle();
+    public TextMatchStyle getTextMatchStyle();
 
     /**
      * If true, even non-matching options will be shown, with configurable  {@link com.smartgwt.client.widgets.form.fields.PickList#getSeparatorRows
