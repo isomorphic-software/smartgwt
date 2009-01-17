@@ -513,7 +513,7 @@ public class SelectItem extends FormItem  implements PickList {
     // ********************* Static Methods ***********************
 
 
-
+
 
 
 
@@ -820,7 +820,7 @@ public class SelectItem extends FormItem  implements PickList {
      *
      * @param textMatchStyle textMatchStyle Default value is "startsWith"
      */
-    public void setTextMatchStyle(Boolean textMatchStyle) {
+    public void setTextMatchStyle(TextMatchStyle textMatchStyle) {
         setAttribute("textMatchStyle", textMatchStyle);
     }
 
@@ -832,10 +832,10 @@ public class SelectItem extends FormItem  implements PickList {
      * com.smartgwt.client.data.DSRequest#getTextMatchStyle textMatchStyle}. <P> For a non-databound pickList,
      * <code>textMatchStyle</code> is applied by  {@link com.smartgwt.client.widgets.form.fields.PickList#filterClientPickListData}.
      *
-     * @return Boolean
+     * @return TextMatchStyle
      */
-    public Boolean getTextMatchStyle() {
-        return getAttributeAsBoolean("textMatchStyle");
+    public TextMatchStyle getTextMatchStyle() {
+        return TextMatchStyle.valueOf(getAttributeAsString("textMatchStyle"));
     }
 
     /**

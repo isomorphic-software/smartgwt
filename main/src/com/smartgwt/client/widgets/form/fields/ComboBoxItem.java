@@ -584,7 +584,7 @@ public class ComboBoxItem extends FormItem  implements PickList {
      * com.smartgwt.client.data.DSRequest#getTextMatchStyle textMatchStyle}. <P> For a non-databound pickList,
      * <code>textMatchStyle</code> is applied by  {@link com.smartgwt.client.widgets.form.fields.PickList#filterClientPickListData}.
      *
-     * @return Boolean
+     * @return TextMatchStyle
      */
     public TextMatchStyle getTextMatchStyle() {
         return TextMatchStyle.valueOf(getAttributeAsString("textMatchStyle"));
