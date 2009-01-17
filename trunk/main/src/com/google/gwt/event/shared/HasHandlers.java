@@ -14,9 +14,8 @@
  * the License.
  */
 
-package com.google.gwt.event.logical.shared;
+package com.google.gwt.event.shared;
 
-import com.google.gwt.event.shared.HandlerManager;
 
 /**
  * An object that implements this interface has a collection of handlers stored
