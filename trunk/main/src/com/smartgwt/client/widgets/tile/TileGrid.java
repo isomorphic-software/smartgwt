@@ -54,7 +54,7 @@ import com.google.gwt.user.client.Element;
 import com.smartgwt.client.util.JSOHelper;
 import com.smartgwt.client.util.EnumUtil;
 import com.google.gwt.event.shared.*;
-import com.google.gwt.event.logical.shared.HasHandlers;
+import com.google.gwt.event.shared.HasHandlers;
    /**
     * A TileGrid is a ${isc.DocUtils.linkForRef('interface:DataBoundComponent')} that displays a list of objects as a set of "tiles", where each tile represents one object, and the tiles are laid out in a grid with multiple tiles per row.  Each tile displays one or more properties of the object it represents.
 

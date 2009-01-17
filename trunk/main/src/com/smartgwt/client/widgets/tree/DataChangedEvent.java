@@ -54,7 +54,7 @@ import com.google.gwt.user.client.Element;
 import com.smartgwt.client.util.JSOHelper;
 import com.smartgwt.client.util.EnumUtil;
 import com.google.gwt.event.shared.*;
-import com.google.gwt.event.logical.shared.HasHandlers;
+import com.google.gwt.event.shared.HasHandlers;
 public class DataChangedEvent extends AbstractSmartEvent<DataChangedHandler>  {
 
   /**
@@ -104,7 +104,7 @@ public class DataChangedEvent extends AbstractSmartEvent<DataChangedHandler>  {
 
   @SuppressWarnings("unchecked")
   @Override
-  protected final Type<DataChangedHandler> getAssociatedType() {
+  public final Type<DataChangedHandler> getAssociatedType() {
     return TYPE;
   }
 

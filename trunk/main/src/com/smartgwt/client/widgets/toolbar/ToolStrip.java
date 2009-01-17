@@ -54,7 +54,7 @@ import com.google.gwt.user.client.Element;
 import com.smartgwt.client.util.JSOHelper;
 import com.smartgwt.client.util.EnumUtil;
 import com.google.gwt.event.shared.*;
-import com.google.gwt.event.logical.shared.HasHandlers;
+import com.google.gwt.event.shared.HasHandlers;
    /**
     * Base class for creating toolstrips like those found in browsers and office applications: a mixed set of controls including {@link com.smartgwt.client.widgets.ImgButton},  {@link com.smartgwt.client.widgets.Button#getRadioGroup radioGroup}, {@link com.smartgwt.client.widgets.menu.MenuButton}, {@link com.smartgwt.client.widgets.form.fields.ComboBoxItem}, {@link com.smartgwt.client.widgets.layout.LayoutSpacer}, {@link com.smartgwt.client.widgets.Label} and  {@link com.smartgwt.client.widgets.form.fields.SelectItem}.   <P> All of the above components are placed in the {@link com.smartgwt.client.widgets.toolbar.ToolStrip#getMembers members} to form a ToolStrip.  Note that the {@link com.smartgwt.client.widgets.form.fields.FormItem} mentioned above (ComboBox and drop-down selects) need to be placed within a {@link com.smartgwt.client.widgets.form.DynamicForm} as usual. <P> The special strings "separator" and "resizer" can be placed in the members array to create separators and resizers respectively. <P> Also see the ${isc.DocUtils.linkForExampleId('toolstrip')} example in the Feature Explorer.
 

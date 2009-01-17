@@ -54,7 +54,7 @@ import com.google.gwt.user.client.Element;
 import com.smartgwt.client.util.JSOHelper;
 import com.smartgwt.client.util.EnumUtil;
 import com.google.gwt.event.shared.*;
-import com.google.gwt.event.logical.shared.HasHandlers;
+import com.google.gwt.event.shared.HasHandlers;
    /**
     * An object literal with a particular set of properties used to configure the display of and interaction with the columns of a {@link com.smartgwt.client.widgets.tree.TreeGrid}. {@link com.smartgwt.client.widgets.tree.TreeGrid} is a subclass of {@link com.smartgwt.client.widgets.grid.ListGrid} and as a result, for all fields except the field containing the {@link com.smartgwt.client.widgets.tree.Tree} itself (specified by {@link com.smartgwt.client.widgets.tree.TreeGridField#getTreeField treeField}, all properties settable on ${isc.DocUtils.linkForRef('object:ListGridField')} apply to TreeGridField as well. <p> This class documents just those properties that are specific to TreeGridFields - see ${isc.DocUtils.linkForRef('object:ListGridField')} for the set of inherited properties.
 
