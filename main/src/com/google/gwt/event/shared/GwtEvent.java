@@ -1,5 +1,5 @@
 /*
- * Copyright 2008 Google Inc.
+ * Copyright 2009 Google Inc.
  * 
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not
  * use this file except in compliance with the License. You may obtain a copy of
@@ -25,7 +25,6 @@ package com.google.gwt.event.shared;
  * 
  */
 public abstract class GwtEvent<H extends EventHandler> {
-
   /**
    * Type class used to register events with the {@link HandlerManager}.
    * <p>
@@ -36,13 +35,14 @@ public abstract class GwtEvent<H extends EventHandler> {
    * @param <H> handler type
    */
   public static class Type<H> {
+    private static int nextHashCode;
     private final int index;
 
     /**
      * Constructor.
      */
     public Type() {
-      index = HandlerManager.createTypeHashCode();
+      index = ++nextHashCode;
     }
 
     // We override hash code to make it as efficient as possible.
@@ -66,6 +66,14 @@ public abstract class GwtEvent<H extends EventHandler> {
    */
   protected GwtEvent() {
   }
+
+  /**
+   * Returns the type used to register this event. Used by handler manager to
+   * dispatch events to the correct handlers.
+   * 
+   * @return the type
+   */
+  public abstract Type<H> getAssociatedType();
 
   /**
    * Returns the source that last fired this event.
@@ -93,9 +101,8 @@ public abstract class GwtEvent<H extends EventHandler> {
 
   /**
    * The toString() for abstract event is overridden to avoid accidently
-   * including class literals in the the compiled output. Use
-   * {@link GwtEvent} #toDebugString to get more information about the
-   * event.
+   * including class literals in the the compiled output. Use {@link GwtEvent}
+   * #toDebugString to get more information about the event.
    */
   @Override
   public String toString() {
@@ -120,14 +127,6 @@ public abstract class GwtEvent<H extends EventHandler> {
   protected abstract void dispatch(H handler);
 
   /**
-   * Returns the type used to register this event. Used by handler manager to
-   * dispatch events to the correct handlers.
-   * 
-   * @return the type
-   */
-  protected abstract Type<H> getAssociatedType();
-
-  /**
    * Is the event current live?
    * 
    * @return whether the event is live
@@ -137,18 +136,19 @@ public abstract class GwtEvent<H extends EventHandler> {
   }
 
   /**
-   * Revives the event. Used when recycling event instances.
+   * Kill the event. After the event has been killed, users cannot really on its
+   * values or functions being available.
    */
-  protected void revive() {
-    dead = false;
+  protected void kill() {
+    dead = true;
     source = null;
   }
 
   /**
-   * Called after the event manager has finished processing the event.
+   * Revives the event. Used when recycling event instances.
    */
-  void onRelease() {
-    dead = true;
+  protected void revive() {
+    dead = false;
     source = null;
   }
 
