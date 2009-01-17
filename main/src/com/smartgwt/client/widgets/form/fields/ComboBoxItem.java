@@ -409,7 +409,7 @@ public class ComboBoxItem extends FormItem  implements PickList {
     // ********************* Static Methods ***********************
 
 
-
+
 
 
 
@@ -572,8 +572,8 @@ public class ComboBoxItem extends FormItem  implements PickList {
      *
      * @param textMatchStyle textMatchStyle Default value is "startsWith"
      */
-    public void setTextMatchStyle(Boolean textMatchStyle) {
-        setAttribute("textMatchStyle", textMatchStyle);
+    public void setTextMatchStyle(TextMatchStyle textMatchStyle) {
+        setAttribute("textMatchStyle", textMatchStyle.getValue());
     }
 
     /**
@@ -586,8 +586,8 @@ public class ComboBoxItem extends FormItem  implements PickList {
      *
      * @return Boolean
      */
-    public Boolean getTextMatchStyle() {
-        return getAttributeAsBoolean("textMatchStyle");
+    public TextMatchStyle getTextMatchStyle() {
+        return TextMatchStyle.valueOf(getAttributeAsString("textMatchStyle"));
     }
 
     /**
