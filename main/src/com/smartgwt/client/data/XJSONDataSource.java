@@ -54,7 +54,7 @@ import com.google.gwt.user.client.Element;
 import com.smartgwt.client.util.JSOHelper;
 import com.smartgwt.client.util.EnumUtil;
 import com.google.gwt.event.shared.*;
-import com.google.gwt.event.logical.shared.HasHandlers;
+import com.google.gwt.event.shared.HasHandlers;
    /**
     * A DataSource preconfigured to use the ${isc.DocUtils.linkForRef('type:RPCTransport','"scriptInclude"')} transport for cross-domain calls to JSON services, such as those provided by <a href='http://developer.yahoo.net/common/json.html#callbackparam' onclick="window.open('http://developer.yahoo.net/common/json.html#callbackparam');return false;">Yahoo</a>. <P> To use this DataSource, provide the URL of the service as {@link com.smartgwt.client.data.DataSource#getDataURL dataURL}, and provide {@link com.smartgwt.client.data.DataSource#getFields fields} that describe the structure of the part of the returned data that you would like to use. <P> {@link com.smartgwt.client.data.DataSource#getRecordXPath recordXPath} and {@link com.smartgwt.client.data.DataSourceField#getValueXPath valueXPath} can be used to extract data from the structure returned by the service. <P> This XJSONDataSource is really a subclass of DataSource with just a few property settings: <pre>    dataFormat : "json",    dataTransport : "scriptInclude"    callbackParam : "callback" </pre> <P> NOTE: if you use this DataSource to contact Yahoo web services, remember to include output=json in the dataURL, as well as a <a href='http://developer.yahoo.net/' onclick="window.open('http://developer.yahoo.net/');return false;">Yahoo developer ID</a>.
 
