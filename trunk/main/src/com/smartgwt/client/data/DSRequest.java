@@ -54,7 +54,7 @@ import com.google.gwt.user.client.Element;
 import com.smartgwt.client.util.JSOHelper;
 import com.smartgwt.client.util.EnumUtil;
 import com.google.gwt.event.shared.*;
-import com.google.gwt.event.logical.shared.HasHandlers;
+import com.google.gwt.event.shared.HasHandlers;
    /**
     * Request sent to the server to initiate a  DataSource operation.  All properties which are legal on {@link com.smartgwt.client.rpc.RPCRequest} are legal, in addition to the properties listed here.
 

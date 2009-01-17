@@ -54,7 +54,7 @@ import com.google.gwt.user.client.Element;
 import com.smartgwt.client.util.JSOHelper;
 import com.smartgwt.client.util.EnumUtil;
 import com.google.gwt.event.shared.*;
-import com.google.gwt.event.logical.shared.HasHandlers;
+import com.google.gwt.event.shared.HasHandlers;
    /**
     * An operationBinding tells a DataSource how to execute one of the basic DS operations: fetch, add, update, remove. <P> OperationBindings are typically used to declaratively bind a DataSource to a Web Service, by associating each DataSource operation with a Web Service operation, and providing properties such as {@link com.smartgwt.client.data.OperationBinding#getRecordXPath recordXPath} to map web service responses to data expected by a DataSource.
 

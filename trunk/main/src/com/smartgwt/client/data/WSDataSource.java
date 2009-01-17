@@ -54,7 +54,7 @@ import com.google.gwt.user.client.Element;
 import com.smartgwt.client.util.JSOHelper;
 import com.smartgwt.client.util.EnumUtil;
 import com.google.gwt.event.shared.*;
-import com.google.gwt.event.logical.shared.HasHandlers;
+import com.google.gwt.event.shared.HasHandlers;
    /**
     * A WSDataSource is a DataSource that is preconfigured to contact the WSDL-described web service built into the SDK.  WSDataSource is a subclass of DataSource used exactly like a normal DataSource. <P> The WSDL service that WSDataSource contacts can be easily implemented on Java and non-Java backends.  See WSDL Integration for details.
 
