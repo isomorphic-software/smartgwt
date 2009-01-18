@@ -101,7 +101,7 @@ public class Page {
          * Specify the directory for app-specific images. <P> This becomes the default location where any SmartClient component will load images from unless the special "[SKIN]" prefix is used to indicate that an image is part of a skin. <P> Default is "[APP]images/"
          * @param URL New imgDir URL.
          */
-        public native void setAppImgDir(String URL) /*-{
+        public static native void setAppImgDir(String URL) /*-{
             $wnd.isc.Page.setAppImgDir(URL);
         }-*/;
 
@@ -125,7 +125,7 @@ public class Page {
          * Specify the directory for miscellaneous app-specific files <b>other than</b> images, such as {@link com.smartgwt.client.widgets.HTMLFlow#getContentsURL contentsURL}, {@link com.smartgwt.client.widgets.ViewLoader},  XML or JSON flat data files, videos, etc. <P> This URL also becomes available via the prefix "[APPFILES]" for {@link com.smartgwt.client.rpc.RPCRequest#getActionURL actionURL}. <P> Defaults to the value of {@link com.smartgwt.client.util.Page#getAppDir}, that is, the current directory.
          * @param URL New app files URL.
          */
-        public native void setAppFilesDir(String URL) /*-{
+        public static native void setAppFilesDir(String URL) /*-{
             $wnd.isc.Page.setAppFilesDir(URL);
         }-*/;
 
@@ -140,7 +140,7 @@ public class Page {
          * Returns the directory for application-specific files (other than images).
          * @param URL New app files URL.
          */
-        public native void getAppFilesDir(String URL) /*-{
+        public static native void getAppFilesDir(String URL) /*-{
             $wnd.isc.Page.getAppFilesDir(URL);
         }-*/;
 
@@ -155,7 +155,7 @@ public class Page {
          * Specify the root directory for Isomorphic-supplied files.
          * @param URL New IsomorphicDir URL.
          */
-        public native void setIsomorphicDir(String URL) /*-{
+        public static native void setIsomorphicDir(String URL) /*-{
             $wnd.isc.Page.setIsomorphicDir(URL);
         }-*/;
 
@@ -179,7 +179,7 @@ public class Page {
          * Specify the URL for media that's part of the skin
          * @param URL New skinDir URL
          */
-        public native void setSkinDir(String URL) /*-{
+        public static native void setSkinDir(String URL) /*-{
             $wnd.isc.Page.setSkinDir(URL);
         }-*/;
 
@@ -207,7 +207,7 @@ public class Page {
          *
          * @return URL for page-specific images.
          */
-        public native String getSkinImgDir(String imgDir) /*-{
+        public static native String getSkinImgDir(String imgDir) /*-{
             return $wnd.isc.Page.getSkinImgDir(imgDir);
         }-*/;
 
@@ -228,7 +228,7 @@ public class Page {
          *
          * @return URL for the image.
          */
-        public native String getImgURL(String src, String imgDir) /*-{
+        public static native String getImgURL(String src, String imgDir) /*-{
             return $wnd.isc.Page.getImgURL(src, imgDir);
         }-*/;
 
@@ -329,26 +329,8 @@ public class Page {
             return $wnd.isc.Page.getScrollTop();
         }-*/;
 
-        /**
-         * Get the width of the user's screen, in pixels.
-         */
-        public static native void getScreenWidth() /*-{
-            $wnd.isc.Page.getScreenWidth();
-        }-*/;
 
-        /**
-         * Get the height of the user's screen, in pixels.
-         */
-        public static native void getScreenHeight() /*-{
-            $wnd.isc.Page.getScreenHeight();
-        }-*/;
 
-        /**
-         * Go back in the browser's history.<br><br> If the history is empty and the window.opener is set, we assume we're a child window and just close the window.
-         */
-        public static native void goBack() /*-{
-            $wnd.isc.Page.goBack();
-        }-*/;
 
 
 
@@ -363,7 +345,7 @@ public class Page {
          * Check whether the browser is supported by the Isomorphic SmartClient system. Behavior depends upon the value of {@link com.smartgwt.client.util.Page#unsupportedBrowserAction}: <ul> <li><code>"continue"</code> Load the page without notifying the user of potential issues</li> <li><code>"confirm"</code> Notify the user via a standard confirm dialog that their browser is  not supported. Provide options to continue anyway, or redirect to another page. Text of the  confirm dialog is retrieved by calling {@link com.smartgwt.client.util.Page#getUnsupportedBrowserPromptString}.</li> <li><code>"redirect"</code> Automatically redirect to the another URL</li> </ul> If redirecting to another page is necessary, and no explicit URL is provided we will use {@link com.smartgwt.client.util.Page#defaultUnsupportedBrowserURL}. <p> This method is commonly called as part of the +link{@group:skinning,skinning} logic after page load.
          * @param URL URL of redirect page. May include Isomorphic special directories      such as [SKIN].
          */
-        public native void checkBrowserAndRedirect(String URL) /*-{
+        public static native void checkBrowserAndRedirect(String URL) /*-{
             $wnd.isc.Page.checkBrowserAndRedirect(URL);
         }-*/;
 
@@ -427,6 +409,24 @@ public class Page {
          */
         public static native void setTitle(String title) /*-{
             $wnd.isc.Page.setTitle(title);
+        }-*/;
+
+        /**
+         * Get the width of the user's screen, in pixels.
+         *
+         * @return the screen width
+         */
+        public static native int getScreenWidth() /*-{
+            return $wnd.isc.Page.getScreenWidth();
+        }-*/;
+
+        /**
+         * Get the height of the user's screen, in pixels.
+         *
+         * @return the screen height
+         */
+        public static native int getScreenHeight() /*-{
+            return $wnd.isc.Page.getScreenHeight();
         }-*/;
 
 }
