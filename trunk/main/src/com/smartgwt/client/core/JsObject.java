@@ -25,10 +25,15 @@ public class JsObject {
     static {
         LogUtil.setJSNIErrorHandler();
         init();
-
     }
 
     private static native void init() /*-{
+
+        //allow lazy loading of grids to work in hosted mode
+        if(!@com.google.gwt.core.client.GWT::isScript()()){
+            $wnd.Array.LOADING = new Object();
+        }
+
         //handle OSX hosted mode
         if($wnd.isc.Browser.isSafari && @com.google.gwt.core.client.GWT::isScript()) {
             $wnd.isc.Browser.safariVersion = 525;
