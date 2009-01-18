@@ -134,7 +134,11 @@ public abstract class BaseWidget extends Widget implements HasDrawHandlers {
     }-*/;
 
     /**
-     * Return the inner HTML for this canvas. Called when the canvas is drawn or redrawn;       override to customize.
+     * Return the inner HTML for this canvas. Called when the canvas is drawn or redrawn;
+     * override to customize.
+     * <p>
+     * <b>Note</b> : {@link Canvas#setRedrawOnResize} should be set to true for components whose inner HTML
+     * will not automatically reflow to fit the component's new size.
      *
      * @return HTML contents of this canvas
      */

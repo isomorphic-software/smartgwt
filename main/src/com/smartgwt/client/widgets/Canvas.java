@@ -100,7 +100,7 @@ public class Canvas extends BaseWidget  implements com.smartgwt.client.widgets.e
 
 
     public Canvas(){
-        
+        setRedrawOnResize(false);
     }
 
     public Canvas(JavaScriptObject jsObj){
@@ -109,7 +109,7 @@ public class Canvas extends BaseWidget  implements com.smartgwt.client.widgets.e
 
     public Canvas(String id) {
         super(id);
-        
+        setRedrawOnResize(false);
     }
 
     protected native JavaScriptObject create()/*-{
