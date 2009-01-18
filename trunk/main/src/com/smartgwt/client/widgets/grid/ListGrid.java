@@ -5010,6 +5010,28 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
         return self.getTotalRows();
     }-*/;
 
+    /**
+     * Scroll to the specified row number.
+     *
+     * @param rowNum the row num
+     */
+    public void scrollToRow(int rowNum) {
+        int cellHeight = getCellHeight();
+        scrollBodyTo(null, (rowNum - 1) * cellHeight);
+    }
+
+    /**
+     * Scroll the body of the grid to the scified coordinates.
+     *
+     * @param left the left position
+     * @param top the top position
+     */
+    public native void scrollBodyTo(Integer left, Integer top)/*-{
+        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
+        var body = self.body;
+
+        body.scrollTo(left, top);
+     }-*/;
 
     /**
      * Force a field to be shown. NOTE: If a field.showIf expression exists, it will be destroyed.
