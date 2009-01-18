@@ -1887,9 +1887,21 @@ public class FormItem extends RefDataClass  implements com.smartgwt.client.widge
 
 
 
-
-
-
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
     public void setAttribute(String attribute, String value) {
         if (!isCreated()) {
@@ -2233,7 +2245,7 @@ public class FormItem extends RefDataClass  implements com.smartgwt.client.widge
      * @param editorType editorType Default value is null
      */
     public void setEditorType(FormItem editorType) {
-        setAttribute("editorType", editorType);
+        setAttribute("editorType", editorType.getType());
     }
 
     public native Object getValue() /*-{
