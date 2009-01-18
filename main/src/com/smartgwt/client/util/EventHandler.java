@@ -242,13 +242,51 @@ public class EventHandler {
      * @return y-coordinate in page coordinate space
      */
     public static native Integer getMouseDownY() /*-{
-             if($wnd.isc.EventHandler.mouseDownEvent) {
-                var y = $wnd.isc.EventHandler.mouseDownEvent.y;
-                return y == null || y === undefined ? null : @com.smartgwt.client.util.JSOHelper::toInteger(I)(y);
-            } else {
-                return null;
-            }
-        }-*/;
+         if($wnd.isc.EventHandler.mouseDownEvent) {
+            var y = $wnd.isc.EventHandler.mouseDownEvent.y;
+            return y == null || y === undefined ? null : @com.smartgwt.client.util.JSOHelper::toInteger(I)(y);
+        } else {
+            return null;
+        }
+    }-*/;
+
+    /**
+     * Return the name of the key for the event passed in. Note that this is only set reliably for keyboard events.
+     *      <pre>
+     * Strings to identify the various keys on the keyboard.
+     *
+     * For alpha keys, the single (uppercase) character value is used, such as "Q"
+     * For Numeric keys, the number is used as in a single character string, like "1"
+     * Function keys are identified as "f1" - "f12"
+     * Non alpha-numeric character keys (such as the key for "[" / "{") are identified by their unmodified character value (the value obtained by hitting the key without holding shift down), by default - exceptions are listed below.
+     * Additional key names:
+     * - Space
+     * - Tab
+     * - Enter
+     * - Escape
+     * - Backspace
+     * - Insert
+     * - Delete
+     * - Arrow_Up
+     * - Arrow_Down
+     * - Arrow_Left
+     * - Arrow_Right
+     * - Home
+     * - End
+     * - Page_Up
+     * - Page_Down
+     * - Shift
+     * - Ctrl
+     * - Alt
+     * [Note: Some keys may not be available for capture on every platform]
+     * </pre>
+     * @return the key name
+     * @see com.smartgwt.client.types.KeyNames
+     */
+    public static native String getKey() /*-{
+        var keyName = $wnd.isc.EventHandler.getKey();
+        return keyName == undefined ? null : keyName;
+    }-*/;
 
 }
 
