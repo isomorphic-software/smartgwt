@@ -2222,6 +2222,12 @@ public class FormItem extends RefDataClass  implements com.smartgwt.client.widge
         setAttribute("height", height);
     }
 
+    /**
+     * Setting to true causes the FormItem to be immediately redrawn with the new properties
+     * when its value changes
+     *
+     * @param redrawOnChange true to redraw on change. Default is false
+     */
     public void setRedrawOnChange(boolean redrawOnChange) {
         setAttribute("redrawOnChange", redrawOnChange);
     }
@@ -2328,6 +2334,18 @@ public class FormItem extends RefDataClass  implements com.smartgwt.client.widge
         }
     }-*/;
 
+   /**
+    * Causes the FormItem to be redrawn immediately with the new properties.
+    *
+    * @see #setRedrawOnChange(boolean)
+    */
+    public native void redraw() /*-{
+        var self = this.@com.smartgwt.client.core.DataClass::getJsObj()();
+        if(self.setValue) {
+            self.redraw();
+        }
+    }-*/;
+    
     public native Rectangle getIconRect(FormItemIcon icon) /*-{
         var self = this.@com.smartgwt.client.core.DataClass::getJsObj()();
         var iconJS = icon.@com.smartgwt.client.core.DataClass::getJsObj()();
