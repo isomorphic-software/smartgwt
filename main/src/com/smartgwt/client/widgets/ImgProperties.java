@@ -62,6 +62,7 @@ import com.google.gwt.event.shared.HasHandlers;
 public class ImgProperties extends DataClass {
 
     public static ImgProperties getOrCreateRef(JavaScriptObject jsObj) {
+        if(jsObj == null) return null;
         return new ImgProperties(jsObj);
     }
 

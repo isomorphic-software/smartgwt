@@ -62,6 +62,7 @@ import com.google.gwt.event.shared.HasHandlers;
 public class VLayout extends Layout {
 
     public static VLayout getOrCreateRef(JavaScriptObject jsObj) {
+        if(jsObj == null) return null;
         BaseWidget obj = BaseWidget.getRef(jsObj);
         if(obj != null) {
             return (VLayout) obj;

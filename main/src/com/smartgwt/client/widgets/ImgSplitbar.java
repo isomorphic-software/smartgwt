@@ -62,6 +62,7 @@ import com.google.gwt.event.shared.HasHandlers;
 public class ImgSplitbar extends Img {
 
     public static ImgSplitbar getOrCreateRef(JavaScriptObject jsObj) {
+        if(jsObj == null) return null;
         BaseWidget obj = BaseWidget.getRef(jsObj);
         if(obj != null) {
             return (ImgSplitbar) obj;

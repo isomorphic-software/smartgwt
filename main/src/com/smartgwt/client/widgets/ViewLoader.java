@@ -62,6 +62,7 @@ import com.google.gwt.event.shared.HasHandlers;
 public class ViewLoader extends Label {
 
     public static ViewLoader getOrCreateRef(JavaScriptObject jsObj) {
+        if(jsObj == null) return null;
         BaseWidget obj = BaseWidget.getRef(jsObj);
         if(obj != null) {
             return (ViewLoader) obj;

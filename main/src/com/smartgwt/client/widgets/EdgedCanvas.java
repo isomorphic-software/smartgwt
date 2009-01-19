@@ -62,6 +62,7 @@ import com.google.gwt.event.shared.HasHandlers;
 public class EdgedCanvas extends Canvas {
 
     public static EdgedCanvas getOrCreateRef(JavaScriptObject jsObj) {
+        if(jsObj == null) return null;
         BaseWidget obj = BaseWidget.getRef(jsObj);
         if(obj != null) {
             return (EdgedCanvas) obj;

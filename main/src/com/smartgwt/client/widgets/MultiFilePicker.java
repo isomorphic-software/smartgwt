@@ -62,6 +62,7 @@ import com.google.gwt.event.shared.HasHandlers;
 public class MultiFilePicker extends VStack {
 
     public static MultiFilePicker getOrCreateRef(JavaScriptObject jsObj) {
+        if(jsObj == null) return null;
         BaseWidget obj = BaseWidget.getRef(jsObj);
         if(obj != null) {
             return (MultiFilePicker) obj;

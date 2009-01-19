@@ -62,9 +62,9 @@ import com.google.gwt.event.shared.HasHandlers;
 public class SimpleType extends BaseClass {
 
     public static SimpleType getOrCreateRef(JavaScriptObject jsObj) {
+        if(jsObj == null) return null;
         BaseClass obj = BaseClass.getRef(jsObj);
         if(obj != null) {
-
             return (SimpleType) obj;
         } else {
             return new SimpleType(jsObj);

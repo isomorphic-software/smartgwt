@@ -63,6 +63,7 @@ import com.google.gwt.event.shared.HasHandlers;
 public class Slider extends Canvas  implements com.smartgwt.client.widgets.events.HasValueChangedHandlers {
 
     public static Slider getOrCreateRef(JavaScriptObject jsObj) {
+        if(jsObj == null) return null;
         BaseWidget obj = BaseWidget.getRef(jsObj);
         if(obj != null) {
             return (Slider) obj;

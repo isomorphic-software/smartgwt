@@ -62,6 +62,7 @@ import com.google.gwt.event.shared.HasHandlers;
 public class HTMLPane extends HTMLFlow {
 
     public static HTMLPane getOrCreateRef(JavaScriptObject jsObj) {
+        if(jsObj == null) return null;
         BaseWidget obj = BaseWidget.getRef(jsObj);
         if(obj != null) {
             return (HTMLPane) obj;

@@ -63,9 +63,9 @@ import com.google.gwt.event.shared.HasHandlers;
 public class DataSource extends BaseClass  implements com.smartgwt.client.data.events.HasHandleErrorHandlers {
 
     public static DataSource getOrCreateRef(JavaScriptObject jsObj) {
+        if(jsObj == null) return null;
         BaseClass obj = BaseClass.getRef(jsObj);
         if(obj != null) {
-
             return (DataSource) obj;
         } else {
             return new DataSource(jsObj);

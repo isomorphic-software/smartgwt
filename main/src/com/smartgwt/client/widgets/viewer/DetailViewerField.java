@@ -62,6 +62,7 @@ import com.google.gwt.event.shared.HasHandlers;
 public class DetailViewerField extends DataClass {
 
     public static DetailViewerField getOrCreateRef(JavaScriptObject jsObj) {
+        if(jsObj == null) return null;
         return new DetailViewerField(jsObj);
     }
 

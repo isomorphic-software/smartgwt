@@ -66,6 +66,7 @@ import com.google.gwt.event.shared.HasHandlers;
 public class ListGridField extends DataClass  implements com.smartgwt.client.widgets.grid.events.HasCellChangedHandlers, com.smartgwt.client.widgets.grid.events.HasEditorEnterHandlers, com.smartgwt.client.widgets.grid.events.HasEditorExitHandlers, com.smartgwt.client.widgets.grid.events.HasRecordClickHandlers {
 
     public static ListGridField getOrCreateRef(JavaScriptObject jsObj) {
+        if(jsObj == null) return null;
         return new ListGridField(jsObj);
     }
 

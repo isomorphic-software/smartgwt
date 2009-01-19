@@ -63,6 +63,7 @@ import com.google.gwt.event.shared.HasHandlers;
 public class Progressbar extends StretchImg  implements com.smartgwt.client.widgets.events.HasPercentChangedHandlers {
 
     public static Progressbar getOrCreateRef(JavaScriptObject jsObj) {
+        if(jsObj == null) return null;
         BaseWidget obj = BaseWidget.getRef(jsObj);
         if(obj != null) {
             return (Progressbar) obj;

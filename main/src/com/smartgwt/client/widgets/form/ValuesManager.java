@@ -62,9 +62,9 @@ import com.google.gwt.event.shared.HasHandlers;
 public class ValuesManager extends BaseClass {
 
     public static ValuesManager getOrCreateRef(JavaScriptObject jsObj) {
+        if(jsObj == null) return null;
         BaseClass obj = BaseClass.getRef(jsObj);
         if(obj != null) {
-
             return (ValuesManager) obj;
         } else {
             return new ValuesManager(jsObj);
@@ -406,7 +406,7 @@ public class ValuesManager extends BaseClass {
     }-*/;
 
     public native void fetchData() /*-{
-        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
+        var self = this.@com.smartgwt.client.core.BaseClass::getOrCreateJsObj()();
         self.fetchData();
     }-*/;
 

@@ -62,6 +62,7 @@ import com.google.gwt.event.shared.HasHandlers;
 public class RPCRequest extends DataClass {
 
     public static RPCRequest getOrCreateRef(JavaScriptObject jsObj) {
+        if(jsObj == null) return null;
         return new RPCRequest(jsObj);
     }
 

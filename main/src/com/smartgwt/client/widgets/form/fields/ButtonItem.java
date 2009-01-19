@@ -63,6 +63,7 @@ import com.google.gwt.event.shared.HasHandlers;
 public class ButtonItem extends CanvasItem  implements com.smartgwt.client.widgets.form.fields.events.HasClickHandlers {
 
     public static ButtonItem getOrCreateRef(JavaScriptObject jsObj) {
+        if(jsObj == null) return null;
         RefDataClass obj = RefDataClass.getRef(jsObj);
         if(obj != null) {
             obj.setJsObj(jsObj);

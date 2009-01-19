@@ -63,6 +63,7 @@ import com.google.gwt.event.shared.HasHandlers;
 public class Button extends StatefulCanvas  implements com.smartgwt.client.widgets.events.HasIconClickHandlers {
 
     public static Button getOrCreateRef(JavaScriptObject jsObj) {
+        if(jsObj == null) return null;
         BaseWidget obj = BaseWidget.getRef(jsObj);
         if(obj != null) {
             return (Button) obj;

@@ -63,9 +63,9 @@ import com.google.gwt.event.shared.HasHandlers;
 public class Tree extends BaseClass  implements com.smartgwt.client.widgets.tree.HasDataChangedHandlers {
 
     public static Tree getOrCreateRef(JavaScriptObject jsObj) {
+        if(jsObj == null) return null;
         BaseClass obj = BaseClass.getRef(jsObj);
         if(obj != null) {
-
             return (Tree) obj;
         } else {
             return new Tree(jsObj);
@@ -1320,6 +1320,23 @@ public class Tree extends BaseClass  implements com.smartgwt.client.widgets.tree
             objects[i] = obj;
         }
         return objects;
+    }
+
+    /**
+     * A TreeNode and ListGridRecord represent similar datastructures and it is possible
+     * that certain TreeGrid operations return a ListGridRecord since TreeGrid extends ListGrid.
+     * So in order to call several of the methods in this Tree class, you need to coerce
+     * a ListGridRecord to a TreeNode. This can be done by calling this method.
+     *
+     * @param record  the record
+     * @return the TreeNode representation of the record
+     */
+    public static TreeNode nodeForRecord(ListGridRecord record) {
+        if(record instanceof TreeNode) {
+            return (TreeNode) record;
+        } else {
+            return new TreeNode(record.getJsObj());
+        }
     }
 
 }

@@ -62,9 +62,9 @@ import com.google.gwt.event.shared.HasHandlers;
 public class RestDataSource extends DataSource {
 
     public static RestDataSource getOrCreateRef(JavaScriptObject jsObj) {
+        if(jsObj == null) return null;
         BaseClass obj = BaseClass.getRef(jsObj);
         if(obj != null) {
-
             return (RestDataSource) obj;
         } else {
             return new RestDataSource(jsObj);

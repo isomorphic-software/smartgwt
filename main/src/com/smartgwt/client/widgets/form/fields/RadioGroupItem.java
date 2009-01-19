@@ -62,6 +62,7 @@ import com.google.gwt.event.shared.HasHandlers;
 public class RadioGroupItem extends FormItem {
 
     public static RadioGroupItem getOrCreateRef(JavaScriptObject jsObj) {
+        if(jsObj == null) return null;
         return new RadioGroupItem(jsObj);
     }
 

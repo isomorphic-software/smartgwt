@@ -63,6 +63,7 @@ import com.google.gwt.event.shared.HasHandlers;
 public class MenuItem extends ListGridRecord  implements com.smartgwt.client.widgets.menu.events.HasClickHandlers {
 
     public static MenuItem getOrCreateRef(JavaScriptObject jsObj) {
+        if(jsObj == null) return null;
         RefDataClass obj = RefDataClass.getRef(jsObj);
         if(obj != null) {
             obj.setJsObj(jsObj);

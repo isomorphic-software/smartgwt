@@ -62,9 +62,9 @@ import com.google.gwt.event.shared.HasHandlers;
 public class WSDataSource extends DataSource {
 
     public static WSDataSource getOrCreateRef(JavaScriptObject jsObj) {
+        if(jsObj == null) return null;
         BaseClass obj = BaseClass.getRef(jsObj);
         if(obj != null) {
-
             return (WSDataSource) obj;
         } else {
             return new WSDataSource(jsObj);

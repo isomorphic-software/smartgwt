@@ -63,6 +63,7 @@ import com.google.gwt.event.shared.HasHandlers;
 public class DateChooser extends Canvas  implements com.smartgwt.client.widgets.events.HasDataChangedHandlers {
 
     public static DateChooser getOrCreateRef(JavaScriptObject jsObj) {
+        if(jsObj == null) return null;
         BaseWidget obj = BaseWidget.getRef(jsObj);
         if(obj != null) {
             return (DateChooser) obj;
