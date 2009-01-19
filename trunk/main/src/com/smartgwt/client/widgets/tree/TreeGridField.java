@@ -62,6 +62,7 @@ import com.google.gwt.event.shared.HasHandlers;
 public class TreeGridField extends ListGridField {
 
     public static TreeGridField getOrCreateRef(JavaScriptObject jsObj) {
+        if(jsObj == null) return null;
         return new TreeGridField(jsObj);
     }
 

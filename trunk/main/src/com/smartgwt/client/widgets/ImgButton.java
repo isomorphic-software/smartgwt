@@ -62,6 +62,7 @@ import com.google.gwt.event.shared.HasHandlers;
 public class ImgButton extends Img {
 
     public static ImgButton getOrCreateRef(JavaScriptObject jsObj) {
+        if(jsObj == null) return null;
         BaseWidget obj = BaseWidget.getRef(jsObj);
         if(obj != null) {
             return (ImgButton) obj;

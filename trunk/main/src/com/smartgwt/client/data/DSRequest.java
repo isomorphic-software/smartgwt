@@ -62,6 +62,7 @@ import com.google.gwt.event.shared.HasHandlers;
 public class DSRequest extends RPCRequest {
 
     public static DSRequest getOrCreateRef(JavaScriptObject jsObj) {
+        if(jsObj == null) return null;
         return new DSRequest(jsObj);
     }
 

@@ -62,6 +62,7 @@ import com.google.gwt.event.shared.HasHandlers;
 public class FormItemIcon extends DataClass {
 
     public static FormItemIcon getOrCreateRef(JavaScriptObject jsObj) {
+        if(jsObj == null) return null;
         return new FormItemIcon(jsObj);
     }
 

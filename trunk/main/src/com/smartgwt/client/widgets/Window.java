@@ -63,6 +63,7 @@ import com.google.gwt.event.shared.HasHandlers;
 public class Window extends VLayout  implements com.smartgwt.client.widgets.events.HasCloseClickHandlers {
 
     public static Window getOrCreateRef(JavaScriptObject jsObj) {
+        if(jsObj == null) return null;
         BaseWidget obj = BaseWidget.getRef(jsObj);
         if(obj != null) {
             return (Window) obj;

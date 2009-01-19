@@ -64,6 +64,7 @@ import com.google.gwt.event.shared.HasHandlers;
 public class TileGrid extends TileLayout  implements DataBoundComponent, com.smartgwt.client.widgets.tile.events.HasRecordClickHandlers, com.smartgwt.client.widgets.tile.events.HasSelectionChangedHandlers {
 
     public static TileGrid getOrCreateRef(JavaScriptObject jsObj) {
+        if(jsObj == null) return null;
         BaseWidget obj = BaseWidget.getRef(jsObj);
         if(obj != null) {
             return (TileGrid) obj;

@@ -63,6 +63,7 @@ import com.google.gwt.event.shared.HasHandlers;
 public class StretchImgButton extends StretchImg  implements com.smartgwt.client.widgets.events.HasIconClickHandlers {
 
     public static StretchImgButton getOrCreateRef(JavaScriptObject jsObj) {
+        if(jsObj == null) return null;
         BaseWidget obj = BaseWidget.getRef(jsObj);
         if(obj != null) {
             return (StretchImgButton) obj;

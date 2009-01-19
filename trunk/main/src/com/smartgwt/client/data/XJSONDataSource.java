@@ -62,9 +62,9 @@ import com.google.gwt.event.shared.HasHandlers;
 public class XJSONDataSource extends DataSource {
 
     public static XJSONDataSource getOrCreateRef(JavaScriptObject jsObj) {
+        if(jsObj == null) return null;
         BaseClass obj = BaseClass.getRef(jsObj);
         if(obj != null) {
-
             return (XJSONDataSource) obj;
         } else {
             return new XJSONDataSource(jsObj);

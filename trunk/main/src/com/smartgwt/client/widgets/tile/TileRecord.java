@@ -62,6 +62,7 @@ import com.google.gwt.event.shared.HasHandlers;
 public class TileRecord extends DetailViewerRecord  implements Record {
 
     public static TileRecord getOrCreateRef(JavaScriptObject jsObj) {
+        if(jsObj == null) return null;
         RefDataClass obj = RefDataClass.getRef(jsObj);
         if(obj != null) {
             obj.setJsObj(jsObj);

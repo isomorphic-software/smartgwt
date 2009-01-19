@@ -62,6 +62,7 @@ import com.google.gwt.event.shared.HasHandlers;
 public class OperationBinding extends DataClass {
 
     public static OperationBinding getOrCreateRef(JavaScriptObject jsObj) {
+        if(jsObj == null) return null;
         return new OperationBinding(jsObj);
     }
 

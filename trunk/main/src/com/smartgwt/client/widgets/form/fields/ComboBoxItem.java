@@ -62,6 +62,7 @@ import com.google.gwt.event.shared.HasHandlers;
 public class ComboBoxItem extends FormItem  implements PickList {
 
     public static ComboBoxItem getOrCreateRef(JavaScriptObject jsObj) {
+        if(jsObj == null) return null;
         RefDataClass obj = RefDataClass.getRef(jsObj);
         if(obj != null) {
             obj.setJsObj(jsObj);

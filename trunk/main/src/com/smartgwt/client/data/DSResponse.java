@@ -62,6 +62,7 @@ import com.google.gwt.event.shared.HasHandlers;
 public class DSResponse extends RPCResponse {
 
     public static DSResponse getOrCreateRef(JavaScriptObject jsObj) {
+        if(jsObj == null) return null;
         return new DSResponse(jsObj);
     }
 

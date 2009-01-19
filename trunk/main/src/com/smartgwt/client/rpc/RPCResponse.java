@@ -62,6 +62,7 @@ import com.google.gwt.event.shared.HasHandlers;
 public class RPCResponse extends DataClass {
 
     public static RPCResponse getOrCreateRef(JavaScriptObject jsObj) {
+        if(jsObj == null) return null;
         return new RPCResponse(jsObj);
     }
 

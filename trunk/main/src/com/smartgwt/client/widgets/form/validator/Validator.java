@@ -62,6 +62,7 @@ import com.google.gwt.event.shared.HasHandlers;
 public class Validator extends DataClass {
 
     public static Validator getOrCreateRef(JavaScriptObject jsObj) {
+        if(jsObj == null) return null;
         return new Validator(jsObj);
     }
 

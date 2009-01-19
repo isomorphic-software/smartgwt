@@ -62,6 +62,7 @@ import com.google.gwt.event.shared.HasHandlers;
 public class AutoFitTextAreaItem extends TextAreaItem {
 
     public static AutoFitTextAreaItem getOrCreateRef(JavaScriptObject jsObj) {
+        if(jsObj == null) return null;
         RefDataClass obj = RefDataClass.getRef(jsObj);
         if(obj != null) {
             obj.setJsObj(jsObj);

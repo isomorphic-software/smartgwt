@@ -62,6 +62,7 @@ import com.google.gwt.event.shared.HasHandlers;
 public class ImgSectionHeader extends HLayout {
 
     public static ImgSectionHeader getOrCreateRef(JavaScriptObject jsObj) {
+        if(jsObj == null) return null;
         BaseWidget obj = BaseWidget.getRef(jsObj);
         if(obj != null) {
             return (ImgSectionHeader) obj;

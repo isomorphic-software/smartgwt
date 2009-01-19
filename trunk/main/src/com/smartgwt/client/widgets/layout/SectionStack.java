@@ -62,6 +62,7 @@ import com.google.gwt.event.shared.HasHandlers;
 public class SectionStack extends VLayout {
 
     public static SectionStack getOrCreateRef(JavaScriptObject jsObj) {
+        if(jsObj == null) return null;
         BaseWidget obj = BaseWidget.getRef(jsObj);
         if(obj != null) {
             return (SectionStack) obj;

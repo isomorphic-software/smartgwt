@@ -62,6 +62,7 @@ import com.google.gwt.event.shared.HasHandlers;
 public class BlurbItem extends FormItem {
 
     public static BlurbItem getOrCreateRef(JavaScriptObject jsObj) {
+        if(jsObj == null) return null;
         RefDataClass obj = RefDataClass.getRef(jsObj);
         if(obj != null) {
             obj.setJsObj(jsObj);

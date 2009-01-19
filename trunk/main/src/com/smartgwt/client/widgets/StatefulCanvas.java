@@ -62,6 +62,7 @@ import com.google.gwt.event.shared.HasHandlers;
 public class StatefulCanvas extends Canvas {
 
     public static StatefulCanvas getOrCreateRef(JavaScriptObject jsObj) {
+        if(jsObj == null) return null;
         BaseWidget obj = BaseWidget.getRef(jsObj);
         if(obj != null) {
             return (StatefulCanvas) obj;

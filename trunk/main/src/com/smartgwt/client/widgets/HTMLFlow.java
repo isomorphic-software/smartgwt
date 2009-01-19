@@ -63,6 +63,7 @@ import com.google.gwt.event.shared.HasHandlers;
 public class HTMLFlow extends Canvas  implements com.smartgwt.client.widgets.events.HasContentLoadedHandlers {
 
     public static HTMLFlow getOrCreateRef(JavaScriptObject jsObj) {
+        if(jsObj == null) return null;
         BaseWidget obj = BaseWidget.getRef(jsObj);
         if(obj != null) {
             return (HTMLFlow) obj;

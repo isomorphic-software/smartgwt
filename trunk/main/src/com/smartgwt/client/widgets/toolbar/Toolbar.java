@@ -64,6 +64,7 @@ import com.google.gwt.event.shared.HasHandlers;
 public class Toolbar extends Layout  implements com.smartgwt.client.widgets.toolbar.events.HasItemClickHandlers, com.smartgwt.client.widgets.toolbar.events.HasItemDragResizedHandlers {
 
     public static Toolbar getOrCreateRef(JavaScriptObject jsObj) {
+        if(jsObj == null) return null;
         BaseWidget obj = BaseWidget.getRef(jsObj);
         if(obj != null) {
             return (Toolbar) obj;

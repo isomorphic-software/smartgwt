@@ -62,6 +62,7 @@ import com.google.gwt.event.shared.HasHandlers;
 public class SelectItem extends FormItem  implements PickList {
 
     public static SelectItem getOrCreateRef(JavaScriptObject jsObj) {
+        if(jsObj == null) return null;
         RefDataClass obj = RefDataClass.getRef(jsObj);
         if(obj != null) {
             obj.setJsObj(jsObj);
