@@ -50,7 +50,7 @@ public class DropdownListGridSample extends ShowcasePanel {
         item.setValueField("SKU");
         item.setDisplayField("itemName");
         item.setPickListWidth(450);
-        item.setPickListFieldsFields(itemField, unitsField, unitCostField);
+        item.setPickListFields(itemField, unitsField, unitCostField);
 
         form.setItems(item);
 

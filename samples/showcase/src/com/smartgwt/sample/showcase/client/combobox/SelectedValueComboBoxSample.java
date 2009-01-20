@@ -111,7 +111,7 @@ public class SelectedValueComboBoxSample extends ShowcasePanel {
             }
         });
         selectItem2.setPickListWidth(450);
-        selectItem2.setPickListFieldsFields(itemField, unitsField, unitCostField);
+        selectItem2.setPickListFields(itemField, unitsField, unitCostField);
 
         SpinnerItem spinnerItem2 = new SpinnerItem();
         spinnerItem2.setName("Quantity");
