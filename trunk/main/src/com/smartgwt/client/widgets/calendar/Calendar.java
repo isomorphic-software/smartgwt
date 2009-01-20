@@ -18,44 +18,17 @@ package com.smartgwt.client.widgets.calendar;
 
 
 
-import com.smartgwt.client.event.*;
-import com.smartgwt.client.core.*;
-import com.smartgwt.client.types.*;
 import com.smartgwt.client.data.*;
-import com.smartgwt.client.data.events.*;
-import com.smartgwt.client.rpc.*;
 import com.smartgwt.client.widgets.*;
-import com.smartgwt.client.widgets.events.*;
-import com.smartgwt.client.widgets.form.*;
-import com.smartgwt.client.widgets.form.validator.*;
 import com.smartgwt.client.widgets.form.fields.*;
-import com.smartgwt.client.widgets.tile.*;
-import com.smartgwt.client.widgets.tile.events.*;
-import com.smartgwt.client.widgets.grid.*;
-import com.smartgwt.client.widgets.grid.events.*;
-import com.smartgwt.client.widgets.layout.*;
-import com.smartgwt.client.widgets.menu.*;
-import com.smartgwt.client.widgets.tab.*;
-import com.smartgwt.client.widgets.toolbar.*;
-import com.smartgwt.client.widgets.tree.*;
-import com.smartgwt.client.widgets.tree.events.*;
-import com.smartgwt.client.widgets.viewer.*;
-import com.smartgwt.client.widgets.calendar.*;
-import com.smartgwt.client.widgets.calendar.events.*;
 
 import java.util.Date;
-import java.util.List;
-import java.util.Map;
-import java.util.HashMap;
 
-import com.google.gwt.user.client.ui.Widget;
 import com.google.gwt.core.client.JavaScriptObject;
-import com.google.gwt.user.client.Element;
 import com.smartgwt.client.util.JSOHelper;
-import com.smartgwt.client.util.EnumUtil;
 import com.google.gwt.event.shared.*;
-import com.google.gwt.event.shared.HasHandlers;
-   /**
+
+/**
     * The Calendar component provides several different ways for a user to view and edit a set of events. Note that the <b>ISC_Calendar.js</b> module must be loaded to make use of the Calendar class. <P> <b>CalendarEvents</b> <P> Events are represented as ordinary JavaScript Objects (see ${isc.DocUtils.linkForRef('object:CalendarEvent')}).  The Calendar expects to be able to read and write a basic set of properties on events: name, startDate, endDate, description, etc, which can be stored under configurable property names (see eg {@link com.smartgwt.client.widgets.calendar.Calendar#getStartDateField startDateField}. <P> Much like a {@link com.smartgwt.client.widgets.grid.ListGrid} manages it's ListGridRecords, the Calendar can either be passed a ordinary Array of CalendarEvents or can fetch data from a DataSource. <P> If the calendar is bound to a DataSource, event changes by user action or by calling methods will be saved to the DataSource. <P> <b>Navigation</b> <P> The calendar supports a {@link com.smartgwt.client.widgets.calendar.Calendar#getWeekView weekView}, {@link com.smartgwt.client.widgets.calendar.Calendar#getDayView dayView} and {@link com.smartgwt.client.widgets.calendar.Calendar#getMonthView monthView} by default.  The user can navigate using back and forward buttons or via an attached {@link com.smartgwt.client.widgets.calendar.Calendar#getDateChooser dateChooser}. <P> <b>Event Manipulation</b> <P> Events can be created via clicking on the day, week or month views, or via the "Add Event" button.  In the day and week views, the user may click and drag to create an event of a specific duration. <P> Creating an event via click or click and drag pops up the {@link com.smartgwt.client.widgets.calendar.Calendar#getEventDialog eventDialog}, which provides a simple form for quick event entry (only one field, the description, is required by default).   <P> A separate editor called the {@link com.smartgwt.client.widgets.calendar.Calendar#getEventEditor eventEditor} provides an interface for editing all possible properties of an event, including custom properties.  The EventEditor is used whenever a pre-existing event is being edited, and can also be invoked by the user wherever the simpler EventDialog appears. <P> Events can also be programmatically {@link com.smartgwt.client.widgets.calendar.Calendar#addEvent}, {@link com.smartgwt.client.widgets.calendar.Calendar#removeEvent}, or {@link com.smartgwt.client.widgets.calendar.Calendar#updateEvent}.
 
     */
@@ -1042,9 +1015,14 @@ public class Calendar extends Canvas  implements DataBoundComponent, com.smartgw
     // ********************* Static Methods ***********************
 
 
-
-
-
+
+
+
+
+
+
+
+
 
 
     protected native void onInit() /*-{
@@ -1084,7 +1062,7 @@ public class Calendar extends Canvas  implements DataBoundComponent, com.smartgw
      * @throws IllegalStateException this property cannot be changed after the component has been created
      */
     public void setEventEditorFields(FormItem... eventEditorFields) throws IllegalStateException {
-        setAttribute("eventEditorFields", eventEditorFields, false);
+        setAttribute("eventEditorFields", toJsArray(eventEditorFields), false);
     }
     /**
      * The set of fields for the {@link com.smartgwt.client.widgets.calendar.Calendar#getEventEditor eventEditor}. <p> The default set of fields are:  <pre>    {name: "startHours", title: "From", type: "select", width: 60},    {name: "startMinutes", showTitle: false, type: "select", width: 60},    {name: "startAMPM", showTitle: false, type: "select", width: 60},    {name: "invalidDate", type: "blurb", colSpan: 4, visible: false}    {name: "endHours", title: "To", type: "select", width: 60},    {name: "endMinutes", showTitle: false, type: "select", width: 60},    {name: "endAMPM", showTitle: false, type: "select", width: 60},    {name: "name", title: "Name", type: "text", colSpan: 4},    {name: "description", title: "Description", type: "textArea", colSpan: 4, height: 50} </pre> See the Customized Binding example below for more information on altering default datasource  fields within forms.
@@ -1108,8 +1086,21 @@ public class Calendar extends Canvas  implements DataBoundComponent, com.smartgw
      * @throws IllegalStateException this property cannot be changed after the component has been created
      */
     public void setEventDialogFields(FormItem... eventDialogFields) throws IllegalStateException {
-        setAttribute("eventDialogFields", eventDialogFields, false);
+        setAttribute("eventDialogFields", toJsArray(eventDialogFields), false);
     }
+
+    private static JavaScriptObject toJsArray(FormItem[] formItems) {
+        JavaScriptObject jsArray = JSOHelper.createJavaScriptArray();
+        int i = 0;
+        for (FormItem formItem : formItems) {
+            JavaScriptObject config = formItem.getConfig();
+            JSOHelper.setAttribute(config, "type", formItem.getType());
+            JSOHelper.setArrayValue(jsArray, i, config);
+            i++;
+        }
+        return jsArray;
+    }
+    
     /**
      * The set of fields for the {@link com.smartgwt.client.widgets.calendar.Calendar#getEventDialog eventDialog}.  <p> The default set of fields are:  <pre>    {name: "name", title: "Event Name", type: nameType, width: 250 },    {name: "save", title: "Save Event", type: "SubmitItem", endRow: false},    {name: "details", title: "Edit Details", type: "button", startRow: false} </pre> See the Customized Binding example below for more information on altering default datasource  fields within forms.
      *
