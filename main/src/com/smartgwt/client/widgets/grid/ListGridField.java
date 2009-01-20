@@ -1693,6 +1693,18 @@ public class ListGridField extends DataClass  implements com.smartgwt.client.wid
     }
 
     /**
+     * A valueMap to use for editors shown for this field. By default if this is not specified field.valueMap will be used instead.
+     *
+     * <p>
+     * Dynamic valueMaps can be provided by implementing ListGrid.getEditorValueMap().
+     *
+     * @param editorValueMap the editor value map
+     */
+    public void setEditorValueMap(Map editorValueMap) {
+        setAttribute("editorValueMap", editorValueMap);
+    }
+
+    /**
      * Array of {@link com.smartgwt.client.widgets.form.validator.Validator} objects for this field.  When the user
      * edits cells in this field, these validators will be applied to the edited value.<br> Note: for databound
      * listGrids, this property may be specified on the  {@link com.smartgwt.client.data.DataSourceField}, enabling both
