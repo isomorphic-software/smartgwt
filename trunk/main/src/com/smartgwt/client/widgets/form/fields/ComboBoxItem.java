@@ -823,7 +823,7 @@ public class ComboBoxItem extends FormItem  implements PickList {
     //------------------- end PickList -------
 
 
-    public void setPickListFieldsFields(ListGridField... pickListFields) {
+    public void setPickListFields(ListGridField... pickListFields) {
         setAttribute("pickListFields", pickListFields);
     }
 

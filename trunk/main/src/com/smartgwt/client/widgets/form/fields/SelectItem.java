@@ -574,7 +574,7 @@ public class SelectItem extends FormItem  implements PickList {
      *
      * @param pickListFields pickListFields Default value is null
      */
-    public void setPickListFieldsFields(ListGridField... pickListFields) {
+    public void setPickListFields(ListGridField... pickListFields) {
         setAttribute("pickListFields", pickListFields);
     }
 
