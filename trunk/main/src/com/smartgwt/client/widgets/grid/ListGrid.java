@@ -1010,26 +1010,6 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
     }
 
     /**
-    * The base name for the CSS class applied to cells. This style will have "Dark",  "Over", "Selected", or "Disabled" appended to it according to the state of the cell.
-    *
-    * @param baseStyle baseStyle Default value is "cell"
-    * @throws IllegalStateException this property cannot be changed after the component has been created
-    */
-    public void setBaseStyle(String baseStyle)  throws IllegalStateException {
-        setAttribute("baseStyle", baseStyle, false);
-    }
-    /**
-     * The base name for the CSS class applied to cells. This style will have "Dark",  "Over", "Selected", or "Disabled" appended to it according to the state of the cell.
-     *
-     *
-     * @return Return the base stylename for this cell.  Has the following implementation by default: <ul> <li>If {@link com.smartgwt.client.widgets.grid.ListGrid#getEditFailedBaseStyle editFailedBaseStyle} is defined, and the     cell is displaying a validation error return this value.</li> <li>If {@link com.smartgwt.client.widgets.grid.ListGrid#getEditPendingBaseStyle editPendingBaseStyle} is defined, and     the cell is displaying an edit value that has not yet been saved (see      {@link com.smartgwt.client.widgets.grid.ListGrid#getAutoSaveEdits autoSaveEdits}) return this value.</li> <li>Otherwise return {@link com.smartgwt.client.widgets.grid.ListGrid#getRecordBaseStyleProperty recordBaseStyleProperty},     if defined, otherwise {@link com.smartgwt.client.widgets.grid.ListGridField#getBaseStyle baseStyle},      or finally {@link com.smartgwt.client.widgets.grid.ListGrid#getBaseStyle baseStyle}</li> </ul>
-     *
-     */
-    public String getBaseStyle()  {
-        return getAttributeAsString("baseStyle");
-    }
-
-    /**
     * A base name for the CSS class applied to cells when editing has failed.<br>  If this listGrid is editable, this style will be applied to any edited cells for which  validation failed.<br>  As with the default 'baseStyle' property, this style will have "Dark", "Over", "Selected",   or "Disabled" appended to it according to the state of the cell.<br> If null, cells for which editing has failed will be rendered using the normal base style classNames, but with custom CSSText applied as derived from <code>this.editFailedCSSText</code>
     * <p><b>Note : </b> This is an advanced setting</p>
     *
@@ -4798,6 +4778,28 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
         return self._getBaseStyle(record.@com.smartgwt.client.core.DataClass::getJsObj()(), rowNum, colNum);
     }-*/;
+
+      /**
+    * The base name for the CSS class applied to cells. This style will have "Dark",  "Over", "Selected", or "Disabled" appended to it according to the state of the cell.
+    *
+    * @param baseStyle baseStyle Default value is "cell"
+    * @throws IllegalStateException this property cannot be changed after the component has been created
+    */
+    public void setBaseStyle(String baseStyle)  throws IllegalStateException {
+        setAttribute("baseStyle", baseStyle, false);
+    }
+    
+    /**
+     * The base name for the CSS class applied to cells. This style will have "Dark",  "Over", "Selected", or "Disabled" appended to it according to the state of the cell.
+     *
+     *
+     * @return Return the base stylename for this cell.  Has the following implementation by default: <ul> <li>If {@link com.smartgwt.client.widgets.grid.ListGrid#getEditFailedBaseStyle editFailedBaseStyle} is defined, and the     cell is displaying a validation error return this value.</li> <li>If {@link com.smartgwt.client.widgets.grid.ListGrid#getEditPendingBaseStyle editPendingBaseStyle} is defined, and     the cell is displaying an edit value that has not yet been saved (see      {@link com.smartgwt.client.widgets.grid.ListGrid#getAutoSaveEdits autoSaveEdits}) return this value.</li> <li>Otherwise return {@link com.smartgwt.client.widgets.grid.ListGrid#getRecordBaseStyleProperty recordBaseStyleProperty},     if defined, otherwise {@link com.smartgwt.client.widgets.grid.ListGridField#getBaseStyle baseStyle},      or finally {@link com.smartgwt.client.widgets.grid.ListGrid#getBaseStyle baseStyle}</li> </ul>
+     *
+     */
+    public String getBaseStyle()  {
+        return JSOHelper.getAttribute(config, "baseStyle");
+    }
+
 
     /**
      * The DataSource that this component should bind to for default fields and for performing&#010 DataSource
