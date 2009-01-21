@@ -4738,7 +4738,7 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
     protected native String getCellCSSText(ListGridRecord record, int rowNum, int colNum) /*-{
 
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
-        return self._getCellCSSText(record.@com.smartgwt.client.core.DataClass::getJsObj()(), rowNum, colNum);
+        return self._getCellCSSText(record == null ? null : record.@com.smartgwt.client.core.DataClass::getJsObj()(), rowNum, colNum);
     }-*/;
 
     /**
@@ -4776,7 +4776,7 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
      */
     protected native String getBaseStyle(ListGridRecord record, int rowNum, int colNum) /*-{
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
-        return self._getBaseStyle(record.@com.smartgwt.client.core.DataClass::getJsObj()(), rowNum, colNum);
+        return self._getBaseStyle(record == null ? null : record.@com.smartgwt.client.core.DataClass::getJsObj()(), rowNum, colNum);
     }-*/;
 
       /**
