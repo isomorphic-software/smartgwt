@@ -71,7 +71,7 @@ public class WindowHeaderControlsSample extends ShowcasePanel {
         window.setHeight(200);
         window.setCanDragReposition(true);
         window.setCanDragResize(true);
-        window.setHeaderControls(HeaderControls.CLOSE_BUTTON, HeaderControls.MINIMIZE_LABEL, HeaderControls.HEADER_LABLE,  systemSelector);
+        window.setHeaderControls(HeaderControls.CLOSE_BUTTON, HeaderControls.MINIMIZE_BUTTON, HeaderControls.HEADER_LABEL,  systemSelector);
 
         window.addItem(statusReportCanvas);
         statusReportCanvas.setNewStatus("Development");

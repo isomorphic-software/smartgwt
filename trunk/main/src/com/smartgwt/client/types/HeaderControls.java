@@ -20,8 +20,8 @@ package com.smartgwt.client.types;
 public enum HeaderControls implements ValueEnum {
 
     HEADER_ICON("headerIcon"),
-    HEADER_LABLE("headerLabel"),
-    MINIMIZE_LABEL("minimizeButton"),
+    HEADER_LABEL("headerLabel"),
+    MINIMIZE_BUTTON("minimizeButton"),
     MAXIMIZE_BUTTON("maximizeButton"),
 
     CLOSE_BUTTON("closeButton");
