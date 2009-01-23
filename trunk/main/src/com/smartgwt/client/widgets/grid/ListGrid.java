@@ -4812,6 +4812,21 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
     }
 
     /**
+     * If this is an editable listGrid, this property will specify the {@link com.smartgwt.client.widgets.form.fields.DateItem#setInputFormat(String) inputFormat}
+     * applied to editors for fields of type "date"
+     *
+     * 3 character string containing the "M", "D" and "Y" characters to indicate the format of strings being parsed into Date instances via Date.parseInput().
+     *
+     * <p>
+     * As an example - an input format of "MDY" would parse "01/02/1999" to Jan 2nd 1999
+     *
+     * @param dateInputFormat the dateInputFormat
+     */
+    public void setDateInputFormat(String dateInputFormat) {
+        setAttribute("dateInputFormat", "dateInputFormat", true);
+    }
+    
+    /**
      * The DataSource that this component should bind to for default fields and for performing {@link com.smartgwt.client.data.DSRequest}. <P> Can be specified as either a DataSource instance or the String ID of a DataSource.
      *
      * @return DataSource
