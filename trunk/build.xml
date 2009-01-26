@@ -119,13 +119,13 @@
             <zipfileset dirmode="755" filemode="644" src="${smartgwt.tools.lib}/sc/smartclient_tpl.jar"/>
 
 
-            <zipfileset dir="${SC_HOME}/smartclientSDK/isomorphic/skins/BlackOps" includes="*.*" excludes="*.gz"
+            <zipfileset dir="${SC_HOME}/smartclientSDK/isomorphic/skins/BlackOps" includes="**/*.*" excludes="*.gz"
                         prefix="com/smartclient/theme/blackops/public/sc/skins/BlackOps"/>
 
-            <zipfileset dir="${SC_HOME}/smartclientSDK/isomorphic/skins/SilverWave" includes="*.*" excludes="*.gz"
+            <zipfileset dir="${SC_HOME}/smartclientSDK/isomorphic/skins/SilverWave" includes="**/*.*" excludes="*.gz"
                         prefix="com/smartclient/theme/silverwave/public/sc/skins/SilverWave"/>
 
-            <zipfileset dir="${SC_HOME}/smartclientSDK/isomorphic/skins/TreeFrog" includes="*.*" excludes="*.gz"
+            <zipfileset dir="${SC_HOME}/smartclientSDK/isomorphic/skins/TreeFrog" includes="**/*.*" excludes="*.gz"
                         prefix="com/smartclient/theme/treefrog/public/sc/skins/TreeFrog"/>
 
         </zip>
