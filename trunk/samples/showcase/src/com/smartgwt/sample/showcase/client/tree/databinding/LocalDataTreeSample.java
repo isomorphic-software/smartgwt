@@ -2,6 +2,8 @@ package com.smartgwt.sample.showcase.client.tree.databinding;
 
 import com.smartgwt.client.types.TreeModelType;
 import com.smartgwt.client.widgets.Canvas;
+import com.smartgwt.client.widgets.events.DrawHandler;
+import com.smartgwt.client.widgets.events.DrawEvent;
 import com.smartgwt.client.widgets.tree.Tree;
 import com.smartgwt.client.widgets.tree.TreeGrid;
 import com.smartgwt.client.widgets.tree.TreeGridField;
@@ -41,9 +43,8 @@ public class LocalDataTreeSample extends ShowcasePanel {
 
         treeGrid.setFields(field);
 
-        Tree tree = new Tree();
+        final Tree tree = new Tree();
         tree.setModelType(TreeModelType.PARENT);
-        //tree.setRootValue("1");
         tree.setNameProperty("Name");
         tree.setIdField("EmployeeId");
         tree.setParentIdField("ReportsTo");
@@ -56,8 +57,12 @@ public class LocalDataTreeSample extends ShowcasePanel {
         EmployeeTreeNode node5 = new EmployeeTreeNode("264", "189", "Cheryl Pearson");
         tree.setData(new TreeNode[]{root, node2, node3, node4, node5});
 
-        tree.setRoot(root);
-
+        treeGrid.addDrawHandler(new DrawHandler() {
+            public void onDraw(DrawEvent event) {
+                tree.openAll();
+            }
+        });
+        
         treeGrid.setData(tree);
 
         return treeGrid;
