@@ -59,7 +59,8 @@ import com.google.gwt.event.shared.HasHandlers;
     * A form that allows the user to input advanced search criteria, including operators on field values such as "less than", and sub-clauses using "AND" and "OR" operators. <P> A FilterBuilder produces an ${isc.DocUtils.linkForRef('object:AdvancedCriteria')} object, which the {@link com.smartgwt.client.data.DataSource} subsystem can use to filter datasets, including the ability to perform such filtering within the browser for datasets that are completely loaded.
 
     */
-public class FilterBuilder extends Layout {
+
+public class FilterBuilder extends Layout  implements com.smartgwt.client.widgets.form.events.HasFilterChangedHandlers {
 
     public static FilterBuilder getOrCreateRef(JavaScriptObject jsObj) {
         if(jsObj == null) return null;
@@ -247,11 +248,33 @@ public class FilterBuilder extends Layout {
 
 
         /**
-         * Handler fired when there is a change() event fired on any FormItem within the  filterBuilder.
+         * Add a filterChanged handler.
+         *
+         * @param handler the filterChanged handler
          */
-        public native void filterChanged() /*-{
-            var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
-            self.filterChanged();
+        public HandlerRegistration addFilterChangedHandler(com.smartgwt.client.widgets.form.events.FilterChangedHandler handler) {
+            if(manager.getHandlerCount(com.smartgwt.client.widgets.form.events.FilterChangedEvent.getType()) == 0) setupFilterChangedEvent();
+            return manager.addHandler(com.smartgwt.client.widgets.form.events.FilterChangedEvent.getType(), handler);
+        }
+        private native void setupFilterChangedEvent() /*-{
+            var obj = null;
+            var managerJ = this.@com.smartgwt.client.widgets.BaseWidget::manager;
+            if(this.@com.smartgwt.client.widgets.BaseWidget::isCreated()()) {
+                obj = this.@com.smartgwt.client.widgets.BaseWidget::getJsObj()();
+                obj.addProperties({filterChanged:function(){
+                        var param = {};
+                        var event = @com.smartgwt.client.widgets.form.events.FilterChangedEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
+                        managerJ.@com.google.gwt.event.shared.HandlerManager::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
+                    }
+                });
+            } else {
+                obj = this.@com.smartgwt.client.widgets.BaseWidget::getConfig()();
+                obj.filterChanged = function(){
+                    var param = {};
+                    var event = @com.smartgwt.client.widgets.form.events.FilterChangedEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
+                    managerJ.@com.google.gwt.event.shared.HandlerManager::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
+                };
+            }
         }-*/;
 
     // ********************* Static Methods ***********************

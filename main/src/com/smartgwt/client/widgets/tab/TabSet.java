@@ -853,6 +853,40 @@ public class TabSet extends Canvas  implements com.smartgwt.client.widgets.tab.e
     }-*/;
 
     /**
+     * Changes the icon of a tab
+     *
+     * @param tabIndex the tab index
+     * @param iconURL    new icon
+     */
+    public native void setTabIcon(int tabIndex, String iconURL) /*-{
+        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
+        self.setTabIcon(tabIndex, iconURL);
+    }-*/;
+
+    /**
+     * Changes the icon of a tab
+     *
+     * @param ID    the tab ID
+     * @param iconURL new icon
+     */
+    public native void setTabIcon(String ID, String iconURL) /*-{
+        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
+        self.setTabIcon(ID, iconURL);
+    }-*/;
+
+    /**
+     * Changes the icon of a tab
+     *
+     * @param tab   the tab
+     * @param iconURL new icon
+     */
+    public native void setTabIcon(Tab tab, String iconURL) /*-{
+        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
+        var tabJS = tab.@com.smartgwt.client.widgets.tab.Tab::getJsObj()();
+        self.setTabIcon(tabJS, iconURL);
+    }-*/;
+
+    /**
      * If the specified tab is disabled, enable it now.
      *
      * @param tabIndex the tab index
