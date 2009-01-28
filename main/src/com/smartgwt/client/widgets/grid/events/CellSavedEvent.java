@@ -55,12 +55,12 @@ import com.smartgwt.client.util.JSOHelper;
 import com.smartgwt.client.util.EnumUtil;
 import com.google.gwt.event.shared.*;
 import com.google.gwt.event.shared.HasHandlers;
-public class CellChangedEvent extends BrowserEvent<CellChangedHandler>  {
+public class CellSavedEvent extends BrowserEvent<CellSavedHandler>  {
 
   /**
    * Handler type.
    */
-  private static Type<CellChangedHandler> TYPE;
+  private static Type<CellSavedHandler> TYPE;
 
   /**
    * Fires a open event on all registered handlers in the handler manager.If no
@@ -70,12 +70,12 @@ public class CellChangedEvent extends BrowserEvent<CellChangedHandler>  {
    * @param source the source of the handlers
    * @param target the target
    */
-  public static <S extends HasCellChangedHandlers & HasHandlers> void fire(
+  public static <S extends HasCellSavedHandlers & HasHandlers> void fire(
       S source, JavaScriptObject jsObj) {
     if (TYPE != null) {
       HandlerManager handlers = source.getHandlers();
       if (handlers != null) {
-        CellChangedEvent event = new CellChangedEvent(jsObj);
+        CellSavedEvent event = new CellSavedEvent(jsObj);
         handlers.fireEvent(event);
       }
     }
@@ -86,17 +86,17 @@ public class CellChangedEvent extends BrowserEvent<CellChangedHandler>  {
    *
    * @return returns the handler type
    */
-  public static Type<CellChangedHandler> getType() {
+  public static Type<CellSavedHandler> getType() {
     if (TYPE == null) {
-      TYPE = new Type<CellChangedHandler>();
+      TYPE = new Type<CellSavedHandler>();
     }
     return TYPE;
   }
 
 
   @Override
-  protected void dispatch(CellChangedHandler handler) {
-    handler.onCellChanged(this);
+  protected void dispatch(CellSavedHandler handler) {
+    handler.onCellSaved(this);
   }
 
   // Because of type erasure, our static type is
@@ -104,11 +104,11 @@ public class CellChangedEvent extends BrowserEvent<CellChangedHandler>  {
 
   @SuppressWarnings("unchecked")
   @Override
-  public final Type<CellChangedHandler> getAssociatedType() {
+  public final Type<CellSavedHandler> getAssociatedType() {
     return TYPE;
   }
 
-    public CellChangedEvent(JavaScriptObject jsObj) {
+    public CellSavedEvent(JavaScriptObject jsObj) {
         super(jsObj);
     }
 
