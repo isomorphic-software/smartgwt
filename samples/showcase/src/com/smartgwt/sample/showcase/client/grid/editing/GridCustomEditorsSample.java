@@ -11,8 +11,6 @@ import com.smartgwt.client.widgets.grid.CellFormatter;
 import com.smartgwt.client.widgets.grid.ListGrid;
 import com.smartgwt.client.widgets.grid.ListGridField;
 import com.smartgwt.client.widgets.grid.ListGridRecord;
-import com.smartgwt.client.widgets.grid.events.CellChangedHandler;
-import com.smartgwt.client.widgets.grid.events.CellChangedEvent;
 import com.smartgwt.sample.showcase.client.PanelFactory;
 import com.smartgwt.sample.showcase.client.ShowcasePanel;
 import com.smartgwt.sample.showcase.client.data.CountryXmlDS;
@@ -49,11 +47,7 @@ public class GridCustomEditorsSample extends ShowcasePanel {
         countryGrid.setCellHeight(42);
         countryGrid.setWrapCells(true);
         countryGrid.setDataSource(CountryXmlDS.getInstance());
-        countryGrid.addCellChangedHandler(new CellChangedHandler() {
-            public void onCellChanged(CellChangedEvent event) {
-                System.out.println("");
-            }
-        });
+
 
         ListGridField nameField = new ListGridField("countryName", "Country", 100);
         ListGridField governmentField = new ListGridField("government", "Government", 175);
