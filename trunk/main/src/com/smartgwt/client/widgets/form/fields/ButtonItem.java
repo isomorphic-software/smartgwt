@@ -219,6 +219,7 @@ public class ButtonItem extends CanvasItem  implements com.smartgwt.client.widge
     // ********************* Static Methods ***********************
 
 
+
 
 
     /**
@@ -239,6 +240,9 @@ public class ButtonItem extends CanvasItem  implements com.smartgwt.client.widge
         return getAttribute("icon");
     }
 
+    public Canvas getCanvas() {
+        return Button.getOrCreateRef(getAttributeAsJavaScriptObject("canvas"));
+    }
 
 }
 
