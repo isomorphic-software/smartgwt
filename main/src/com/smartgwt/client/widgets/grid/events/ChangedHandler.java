@@ -15,11 +15,9 @@
  */
  
 package com.smartgwt.client.widgets.grid.events;
+import com.google.gwt.event.shared.EventHandler;
 
-import com.smartgwt.client.event.*;
-import com.google.gwt.event.shared.HandlerRegistration;
-import com.google.gwt.event.shared.HasHandlers;
+public interface ChangedHandler extends EventHandler {
 
-public interface HasCellChangedHandlers {
-    HandlerRegistration addCellChangedHandler(CellChangedHandler handler);
+    void onChanged(com.smartgwt.client.widgets.grid.events.ChangedEvent event);
 }
