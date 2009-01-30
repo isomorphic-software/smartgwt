@@ -55,12 +55,12 @@ import com.smartgwt.client.util.JSOHelper;
 import com.smartgwt.client.util.EnumUtil;
 import com.google.gwt.event.shared.*;
 import com.google.gwt.event.shared.HasHandlers;
-public class CellChangedEvent extends AbstractSmartEvent<CellChangedHandler>  {
+public class ChangedEvent extends AbstractSmartEvent<ChangedHandler>  {
 
   /**
    * Handler type.
    */
-  private static Type<CellChangedHandler> TYPE;
+  private static Type<ChangedHandler> TYPE;
 
   /**
    * Fires a open event on all registered handlers in the handler manager.If no
@@ -70,12 +70,12 @@ public class CellChangedEvent extends AbstractSmartEvent<CellChangedHandler>  {
    * @param source the source of the handlers
    * @param target the target
    */
-  public static <S extends HasCellChangedHandlers & HasHandlers> void fire(
+  public static <S extends HasChangedHandlers & HasHandlers> void fire(
       S source, JavaScriptObject jsObj) {
     if (TYPE != null) {
       HandlerManager handlers = source.getHandlers();
       if (handlers != null) {
-        CellChangedEvent event = new CellChangedEvent(jsObj);
+        ChangedEvent event = new ChangedEvent(jsObj);
         handlers.fireEvent(event);
       }
     }
@@ -86,17 +86,17 @@ public class CellChangedEvent extends AbstractSmartEvent<CellChangedHandler>  {
    *
    * @return returns the handler type
    */
-  public static Type<CellChangedHandler> getType() {
+  public static Type<ChangedHandler> getType() {
     if (TYPE == null) {
-      TYPE = new Type<CellChangedHandler>();
+      TYPE = new Type<ChangedHandler>();
     }
     return TYPE;
   }
 
 
   @Override
-  protected void dispatch(CellChangedHandler handler) {
-    handler.onCellChanged(this);
+  protected void dispatch(ChangedHandler handler) {
+    handler.onChanged(this);
   }
 
   // Because of type erasure, our static type is
@@ -104,11 +104,11 @@ public class CellChangedEvent extends AbstractSmartEvent<CellChangedHandler>  {
 
   @SuppressWarnings("unchecked")
   @Override
-  public final Type<CellChangedHandler> getAssociatedType() {
+  public final Type<ChangedHandler> getAssociatedType() {
     return TYPE;
   }
 
-    public CellChangedEvent(JavaScriptObject jsObj) {
+    public ChangedEvent(JavaScriptObject jsObj) {
         super(jsObj);
     }
 
