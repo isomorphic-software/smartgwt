@@ -33,7 +33,7 @@ public class RequiredIfValidator extends Validator {
             }
             var valueJ = $wnd.SmartGWT.convertToJavaType(value);
             return expression.@com.smartgwt.client.widgets.form.validator.RequiredIfFunction::execute(Lcom/smartgwt/client/widgets/form/fields/FormItem;Ljava/lang/Object;)(itemJ, valueJ);
-        }
+        };
     }-*/;
 
 
