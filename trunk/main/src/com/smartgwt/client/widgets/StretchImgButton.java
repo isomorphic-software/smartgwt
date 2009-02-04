@@ -133,10 +133,9 @@ public class StretchImgButton extends StretchImg  implements com.smartgwt.client
     * Change the icon being shown next to the title text.
     *
     * @param icon URL of new icon. Default value is null
-    * @throws IllegalStateException this property cannot be changed after the component has been created
     */
-    public void setIcon(String icon)  throws IllegalStateException {
-        setAttribute("icon", icon, false);
+    public void setIcon(String icon) {
+        setAttribute("icon", icon, true);
     }
     /**
      * Optional icon to be shown with the button title text.   <P> Specify as the partial URL to an image, relative to the imgDir of this component.
@@ -254,10 +253,9 @@ public class StretchImgButton extends StretchImg  implements com.smartgwt.client
     * Optional icon to be shown with the button title text.   <P> Specify as the partial URL to an image, relative to the imgDir of this component.
     *
     * @param iconSpacing iconSpacing Default value is null
-    * @throws IllegalStateException this property cannot be changed after the component has been created
     */
-    public void setIconSpacing(String iconSpacing)  throws IllegalStateException {
-        setAttribute("iconSpacing", iconSpacing, false);
+    public void setIconSpacing(String iconSpacing) {
+        setAttribute("iconSpacing", iconSpacing, true);
     }
     /**
      * Optional icon to be shown with the button title text.   <P> Specify as the partial URL to an image, relative to the imgDir of this component.

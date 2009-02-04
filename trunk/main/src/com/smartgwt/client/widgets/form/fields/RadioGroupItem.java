@@ -103,6 +103,16 @@ public class RadioGroupItem extends FormItem {
 
     // ********************* Methods ***********************
 
+        /**
+         * Disable or Enable a specific option within this radioGroup
+         * @param value value of option to disable
+     * @param disabled true to disable the option, false to enable it
+         */
+        public native void setValueDisabled(Object value, boolean disabled) /*-{
+            var self = this.@com.smartgwt.client.core.DataClass::getJsObj()();
+            self.setValueDisabled(value, disabled);
+        }-*/;
+
     // ********************* Static Methods ***********************
 
 }

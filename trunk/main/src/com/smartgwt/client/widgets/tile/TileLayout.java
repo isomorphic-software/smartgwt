@@ -353,6 +353,25 @@ public class TileLayout extends Canvas {
     public Boolean getAutoWrapLines()  {
         return getAttributeAsBoolean("autoWrapLines");
     }
+             
+    /**
+    * Indicates what to do with data dragged into another DataBoundComponent. See          DragDataAction type for details.
+    *
+    * @param dragDataAction dragDataAction Default value is Canvas.MOVE
+    */
+    public void setDragDataAction(DragDataAction dragDataAction) {
+        setAttribute("dragDataAction", dragDataAction.getValue(), true);
+    }
+    /**
+     * Indicates what to do with data dragged into another DataBoundComponent. See          DragDataAction type for details.
+     *
+     *
+     * @return DragDataAction
+     *
+     */
+    public DragDataAction getDragDataAction()  {
+        return (DragDataAction) EnumUtil.getEnum(DragDataAction.values(), getAttribute("dragDataAction"));
+    }
 
     // ********************* Methods ***********************
 
@@ -391,6 +410,8 @@ public class TileLayout extends Canvas {
             var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
             self.addTile(tile.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()(), index);
         }-*/;
+
+
 
 
 
