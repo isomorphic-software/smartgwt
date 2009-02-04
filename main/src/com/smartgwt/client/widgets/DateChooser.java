@@ -806,6 +806,22 @@ public class DateChooser extends Canvas  implements com.smartgwt.client.widgets.
             }
         }-*/;
 
+        /**
+         * Fired when the user clicks the cancel button in this date chooser. Default implementation clears the date chooser.
+         */
+        public native void cancelClick() /*-{
+            var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
+            self.cancelClick();
+        }-*/;
+
+        /**
+         * Fired when the user clicks the Today button. Default implementation will select the current date in the date chooser, and close if ${isc.DocUtils.linkForRef('dateChooser.autoClose')} is true.
+         */
+        public native void todayClick() /*-{
+            var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
+            self.todayClick();
+        }-*/;
+
     // ********************* Static Methods ***********************
 
 }

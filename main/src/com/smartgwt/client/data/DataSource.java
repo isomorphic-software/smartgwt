@@ -337,7 +337,7 @@ public class DataSource extends BaseClass  implements com.smartgwt.client.data.e
     }
 
     /**
-    * Indicates that for any data being interpreted as DataSource records, only data that corresponds to declared fields should be retained; any extra data should be discarded. <P> For {@link com.smartgwt.client.data.DataSource#getDataFormat dataFormat} data, this means extra properties in selected objects are dropped. <P> By default, for DMI DSResponses, DSResponse.data is filtered on the server to just the set of fields defined on the DataSource.  This type of filtering can also be enabled for non-DMI DSResponses (see the overview in {@link com.smartgwt.client..DMI}).  Setting this property to <code>false</code> disables this filtering for this DataSource only.  This setting overrides the configuration in <code>server.properties</code>.  This setting can be overridden by {@link com.smartgwt.client..ServerObject#getDropExtraFields dropExtraFields}.
+    * Indicates that for server responses, for any data being interpreted as DataSource records,  only data that corresponds to declared fields should be retained; any extra fields should be discarded. <P> For {@link com.smartgwt.client.data.DataSource#getDataFormat dataFormat} data, this means extra properties in selected objects are dropped. <P> By default, for DMI DSResponses, DSResponse.data is filtered on the server to just the set of fields defined on the DataSource.  This type of filtering can also be enabled for non-DMI DSResponses (see the overview in {@link com.smartgwt.client..DMI}).  Setting this property to <code>false</code> disables this filtering for this DataSource only.  This setting overrides the configuration in <code>server.properties</code>.  This setting can be overridden by {@link com.smartgwt.client..ServerObject#getDropExtraFields dropExtraFields}.
     *
     * @param dropExtraFields dropExtraFields Default value is null
     * @throws IllegalStateException this property cannot be changed after the underlying component has been created
@@ -346,7 +346,7 @@ public class DataSource extends BaseClass  implements com.smartgwt.client.data.e
         setAttribute("dropExtraFields", dropExtraFields, false);
     }
     /**
-     * Indicates that for any data being interpreted as DataSource records, only data that corresponds to declared fields should be retained; any extra data should be discarded. <P> For {@link com.smartgwt.client.data.DataSource#getDataFormat dataFormat} data, this means extra properties in selected objects are dropped. <P> By default, for DMI DSResponses, DSResponse.data is filtered on the server to just the set of fields defined on the DataSource.  This type of filtering can also be enabled for non-DMI DSResponses (see the overview in {@link com.smartgwt.client..DMI}).  Setting this property to <code>false</code> disables this filtering for this DataSource only.  This setting overrides the configuration in <code>server.properties</code>.  This setting can be overridden by {@link com.smartgwt.client..ServerObject#getDropExtraFields dropExtraFields}.
+     * Indicates that for server responses, for any data being interpreted as DataSource records,  only data that corresponds to declared fields should be retained; any extra fields should be discarded. <P> For {@link com.smartgwt.client.data.DataSource#getDataFormat dataFormat} data, this means extra properties in selected objects are dropped. <P> By default, for DMI DSResponses, DSResponse.data is filtered on the server to just the set of fields defined on the DataSource.  This type of filtering can also be enabled for non-DMI DSResponses (see the overview in {@link com.smartgwt.client..DMI}).  Setting this property to <code>false</code> disables this filtering for this DataSource only.  This setting overrides the configuration in <code>server.properties</code>.  This setting can be overridden by {@link com.smartgwt.client..ServerObject#getDropExtraFields dropExtraFields}.
      *
      *
      * @return Boolean
@@ -354,6 +354,26 @@ public class DataSource extends BaseClass  implements com.smartgwt.client.data.e
      */
     public Boolean getDropExtraFields()  {
         return getAttributeAsBoolean("dropExtraFields");
+    }
+
+    /**
+    * Analagous to {@link com.smartgwt.client.data.DataSource#getDropExtraFields dropExtraFields}, for data sent to the server.  Setting this attribute to false ensures that for any records in the data object, only fields that correspond to declared dataSource fields will be present on the dsRequest data object passed to {@link com.smartgwt.client.data.DataSource#transformRequest} and ultimately sent to the server.
+    *
+    * @param sendExtraFields sendExtraFields Default value is true
+    * @throws IllegalStateException this property cannot be changed after the underlying component has been created
+    */
+    public void setSendExtraFields(Boolean sendExtraFields)  throws IllegalStateException {
+        setAttribute("sendExtraFields", sendExtraFields, false);
+    }
+    /**
+     * Analagous to {@link com.smartgwt.client.data.DataSource#getDropExtraFields dropExtraFields}, for data sent to the server.  Setting this attribute to false ensures that for any records in the data object, only fields that correspond to declared dataSource fields will be present on the dsRequest data object passed to {@link com.smartgwt.client.data.DataSource#transformRequest} and ultimately sent to the server.
+     *
+     *
+     * @return Boolean
+     *
+     */
+    public Boolean getSendExtraFields()  {
+        return getAttributeAsBoolean("sendExtraFields");
     }
 
     /**
@@ -547,7 +567,7 @@ public class DataSource extends BaseClass  implements com.smartgwt.client.data.e
     }
 
     /**
-    * If set, titles are automatically derived from {@link com.smartgwt.client.data.DataSourceField#getName name} for any  field that does not have a {@link com.smartgwt.client.data.DataSourceField#getTitle title} and is not marked {@link com.smartgwt.client.data.DataSourceField#getHidden hidden}:true.  <P> The following approach is taken: <ul> <li> any underscores (_) become spaces, except a leading underscore <li> if the fieldName is either entirely uppercase or lowercase, all words separate by      spaces are given a leading capital letter.  Example USER_NAME -> "User Name". <li> if there is any use of mixed case, camelCaps convention is assumed, and the field name      is split into separate words based on 1) everywhere an uppercase letter appears after a      lowercase letter 2) everywhere a series of uppercase letters ends.  Letter case will      not be modified, with the exception that the first word will have it's first letter       capitalized.  Example: useHTTPProxy -> "Use HTTP Proxy" </ul>
+    * If set, titles are automatically derived from {@link com.smartgwt.client.data.DataSourceField#getName name} for any  field that does not have a {@link com.smartgwt.client.data.DataSourceField#getTitle title} and is not marked {@link com.smartgwt.client.data.DataSourceField#getHidden hidden}:true, by calling the method {@link com.smartgwt.client.data.DataSource#getAutoTitle}.
     *
     * @param autoDeriveTitles autoDeriveTitles Default value is true
     * @throws IllegalStateException this property cannot be changed after the underlying component has been created
@@ -556,7 +576,7 @@ public class DataSource extends BaseClass  implements com.smartgwt.client.data.e
         setAttribute("autoDeriveTitles", autoDeriveTitles, false);
     }
     /**
-     * If set, titles are automatically derived from {@link com.smartgwt.client.data.DataSourceField#getName name} for any  field that does not have a {@link com.smartgwt.client.data.DataSourceField#getTitle title} and is not marked {@link com.smartgwt.client.data.DataSourceField#getHidden hidden}:true.  <P> The following approach is taken: <ul> <li> any underscores (_) become spaces, except a leading underscore <li> if the fieldName is either entirely uppercase or lowercase, all words separate by      spaces are given a leading capital letter.  Example USER_NAME -> "User Name". <li> if there is any use of mixed case, camelCaps convention is assumed, and the field name      is split into separate words based on 1) everywhere an uppercase letter appears after a      lowercase letter 2) everywhere a series of uppercase letters ends.  Letter case will      not be modified, with the exception that the first word will have it's first letter       capitalized.  Example: useHTTPProxy -> "Use HTTP Proxy" </ul>
+     * If set, titles are automatically derived from {@link com.smartgwt.client.data.DataSourceField#getName name} for any  field that does not have a {@link com.smartgwt.client.data.DataSourceField#getTitle title} and is not marked {@link com.smartgwt.client.data.DataSourceField#getHidden hidden}:true, by calling the method {@link com.smartgwt.client.data.DataSource#getAutoTitle}.
      *
      *
      * @return Boolean
@@ -778,6 +798,7 @@ public class DataSource extends BaseClass  implements com.smartgwt.client.data.e
 
 
 
+
         /**
          * Does this dataSource support the specified "textMatchStyle" when performing a filter operation against a text field.
          * @param textMatchStyle textMatchStyle to check. If passed a null value, assume                                an exact match is being requested.
@@ -830,6 +851,7 @@ public class DataSource extends BaseClass  implements com.smartgwt.client.data.e
             }
             return retVal;
         }-*/;
+
 
 
 

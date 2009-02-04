@@ -749,6 +749,86 @@ public class Calendar extends Canvas  implements DataBoundComponent, com.smartgw
     }
 
     /**
+    * If set to true, enables the auto-arrangement of events that share time in the calendar.  The default is true.
+    *
+    * @param eventAutoArrange eventAutoArrange Default value is true
+    * @throws IllegalStateException this property cannot be changed after the component has been created
+    */
+    public void setEventAutoArrange(Boolean eventAutoArrange)  throws IllegalStateException {
+        setAttribute("eventAutoArrange", eventAutoArrange, false);
+    }
+    /**
+     * If set to true, enables the auto-arrangement of events that share time in the calendar.  The default is true.
+     *
+     *
+     * @return Boolean
+     *
+     */
+    public Boolean getEventAutoArrange()  {
+        return getAttributeAsBoolean("eventAutoArrange");
+    }
+
+    /**
+    * When {@link com.smartgwt.client.widgets.calendar.Calendar#getEventAutoArrange eventAutoArrange} is true, setting eventOverlap to true causes events that  share timeslots to overlap each other by a percentage of their width, specified by  {@link com.smartgwt.client.widgets.calendar.Calendar#getEventOverlapPercent eventOverlapPercent}.  The default is true.
+    *
+    * @param eventOverlap eventOverlap Default value is true
+    * @throws IllegalStateException this property cannot be changed after the component has been created
+    */
+    public void setEventOverlap(Boolean eventOverlap)  throws IllegalStateException {
+        setAttribute("eventOverlap", eventOverlap, false);
+    }
+    /**
+     * When {@link com.smartgwt.client.widgets.calendar.Calendar#getEventAutoArrange eventAutoArrange} is true, setting eventOverlap to true causes events that  share timeslots to overlap each other by a percentage of their width, specified by  {@link com.smartgwt.client.widgets.calendar.Calendar#getEventOverlapPercent eventOverlapPercent}.  The default is true.
+     *
+     *
+     * @return Boolean
+     *
+     */
+    public Boolean getEventOverlap()  {
+        return getAttributeAsBoolean("eventOverlap");
+    }
+
+    /**
+    * The size of the overlap, presented as a percentage of the width of events sharing timeslots
+    *
+    * @param eventOverlapPercent eventOverlapPercent Default value is 10
+    * @throws IllegalStateException this property cannot be changed after the component has been created
+    */
+    public void setEventOverlapPercent(int eventOverlapPercent)  throws IllegalStateException {
+        setAttribute("eventOverlapPercent", eventOverlapPercent, false);
+    }
+    /**
+     * The size of the overlap, presented as a percentage of the width of events sharing timeslots
+     *
+     *
+     * @return int
+     *
+     */
+    public int getEventOverlapPercent()  {
+        return getAttributeAsInt("eventOverlapPercent");
+    }
+
+    /**
+    * When set to true, events that start at the same time will not overlap each other to prevent  events having their close button hidden
+    *
+    * @param eventOverlapIdenticalStartTimes eventOverlapIdenticalStartTimes Default value is false
+    * @throws IllegalStateException this property cannot be changed after the component has been created
+    */
+    public void setEventOverlapIdenticalStartTimes(Boolean eventOverlapIdenticalStartTimes)  throws IllegalStateException {
+        setAttribute("eventOverlapIdenticalStartTimes", eventOverlapIdenticalStartTimes, false);
+    }
+    /**
+     * When set to true, events that start at the same time will not overlap each other to prevent  events having their close button hidden
+     *
+     *
+     * @return Boolean
+     *
+     */
+    public Boolean getEventOverlapIdenticalStartTimes()  {
+        return getAttributeAsBoolean("eventOverlapIdenticalStartTimes");
+    }
+
+    /**
     * If true, when this component is first drawn, automatically call <code>this.fetchData()</code>
     *
     * @param autoFetchData autoFetchData Default value is false
@@ -1042,16 +1122,9 @@ public class Calendar extends Canvas  implements DataBoundComponent, com.smartgw
     // ********************* Static Methods ***********************
 
 
-
-
-
-
-
-
-
-
-
-
+
+
+
 
 
     protected native void onInit() /*-{
@@ -1246,26 +1319,6 @@ public class Calendar extends Canvas  implements DataBoundComponent, com.smartgw
         setAttribute("showAddEventButton", showAddEventButton, false);
     }
 
-    public CalendarEvent[] getData() {	
-        JavaScriptObject dataJS = getAttributeAsJavaScriptObject("data");
-        CalendarEvent[] data = convertToCalendarEventArray(dataJS);
-        return data;
-    }
-
-    private static CalendarEvent[] convertToCalendarEventArray(JavaScriptObject nativeArray) {
-        if (nativeArray == null) {
-            return new CalendarEvent[]{};
-        }
-        JavaScriptObject[] componentsj = JSOHelper.toArray(nativeArray);
-        CalendarEvent[] objects = new CalendarEvent[componentsj.length];
-        for (int i = 0; i < componentsj.length; i++) {
-            JavaScriptObject componentJS = componentsj[i];
-            CalendarEvent obj = (CalendarEvent) RefDataClass.getRef(componentJS);
-            if (obj == null) obj = new CalendarEvent(componentJS);
-            objects[i] = obj;
-        }
-        return objects;
-    }		
 }
 
 

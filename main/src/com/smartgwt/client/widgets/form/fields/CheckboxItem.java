@@ -165,15 +165,15 @@ public class CheckboxItem extends FormItem {
     }
 
     /**
-    * URL for the image to display when this checkbox is unset.  Defaults to matching the unchecked image.
+    * URL for the image to display when this checkbox is unset. Note that if  {@link com.smartgwt.client.widgets.form.fields.CheckboxItem#getShowUnsetImage showUnsetImage} is false or {@link com.smartgwt.client.widgets.form.fields.CheckboxItem#getAllowEmptyValue allowEmptyValue} is false the {@link com.smartgwt.client.widgets.form.fields.CheckboxItem#getUncheckedImage uncheckedImage} will be used for null values rather than this image.
     *
-    * @param unsetImage unsetImage Default value is "[SKIN]/DynamicForm/unchecked.gif"
+    * @param unsetImage unsetImage Default value is "[SKIN]/DynamicForm/unsetcheck.gif"
     */
     public void setUnsetImage(String unsetImage) {
         setAttribute("unsetImage", unsetImage);
     }
     /**
-     * URL for the image to display when this checkbox is unset.  Defaults to matching the unchecked image.
+     * URL for the image to display when this checkbox is unset. Note that if  {@link com.smartgwt.client.widgets.form.fields.CheckboxItem#getShowUnsetImage showUnsetImage} is false or {@link com.smartgwt.client.widgets.form.fields.CheckboxItem#getAllowEmptyValue allowEmptyValue} is false the {@link com.smartgwt.client.widgets.form.fields.CheckboxItem#getUncheckedImage uncheckedImage} will be used for null values rather than this image.
      *
      *
      * @return String
@@ -183,10 +183,41 @@ public class CheckboxItem extends FormItem {
         return getAttributeAsString("unsetImage");
     }
 
+    /**
+    * By default checkboxes allow the user to toggle between true and false values only. Setting this property to true will allow the user to toggle between three values -  <code>true</code>, <code>false</code> and unset.
+    *
+    * @param allowEmptyValue allowEmptyValue Default value is false
+    */
+    public void setAllowEmptyValue(Boolean allowEmptyValue) {
+        setAttribute("allowEmptyValue", allowEmptyValue);
+    }
+    /**
+     * By default checkboxes allow the user to toggle between true and false values only. Setting this property to true will allow the user to toggle between three values -  <code>true</code>, <code>false</code> and unset.
+     *
+     *
+     * @return Boolean
+     *
+     */
+    public Boolean getAllowEmptyValue()  {
+        return getAttributeAsBoolean("allowEmptyValue");
+    }
+
     // ********************* Methods ***********************
 
 
     // ********************* Static Methods ***********************
+
+
+
+
+    /**
+    * Determines what image to display when the value for this checkbox is unset. Set to true to display the {@link com.smartgwt.client.widgets.form.fields.CheckboxItem#getUnsetImage unsetImage} for null values, or false to use the {@link com.smartgwt.client.widgets.form.fields.CheckboxItem#getUncheckedImage uncheckedImage} for both null and explicitly unchecked values. <P> If this attribute is not set, the {@link com.smartgwt.client.widgets.form.fields.CheckboxItem#getUnsetImage unsetImage} for null values if  {@link com.smartgwt.client.widgets.form.fields.CheckboxItem#getAllowEmptyValue allowEmptyValue} is true for this item, otherwise the unchecked image will be used.
+    *
+    * @param showUnsetImage showUnsetImage Default value is IRA
+    */
+    public void setShowUnsetImage(Boolean showUnsetImage) {
+        setAttribute("showUnsetImage", showUnsetImage);
+    }
 
 }
 

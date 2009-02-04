@@ -230,6 +230,17 @@ public class Dialog extends Window {
         setAttribute("toolbarButtons", toolbarButtons, false);
     }
 
+    /**
+    * Style to apply to the message text shown in the center of the dialog
+    * <p><b>Note : </b> This is an advanced setting</p>
+    *
+    * @param messageStyle messageStyle Default value is "normal"
+    * @throws IllegalStateException this property cannot be changed after the component has been created
+    */
+    public void setMessageStyle(String messageStyle)  throws IllegalStateException {
+        setAttribute("messageStyle", messageStyle, false);
+    }
+
 }
 
 

@@ -132,6 +132,7 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
     public Boolean getAutoFetchData()  {
         return getAttributeAsBoolean("autoFetchData");
     }
+ 
 
     /**
     * Whether to speed up dynamic styling at the expense of slightly slower drawing. <P> <code>fastCellUpdates</code> speeds up the dynamic styling system used by rollovers, selections, and custom styling that calls {@link com.smartgwt.client.grid.GridRenderer#refreshCellStyle}, at the cost of slightly slower draw() and redraw() times.
@@ -179,6 +180,27 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
      */
     public Boolean getAutoFetchDisplayMap()  {
         return getAttributeAsBoolean("autoFetchDisplayMap");
+    }
+
+    /**
+    * For grids with a specified ${isc.DocUtils.linkForRef('ListGrid.datasource')}, this property can be set to  <code>true</code> to avoid the grid from attempting to save / retrieve data from the server.  In this case the grid's data should be specified as an array via  the {@link com.smartgwt.client.widgets.grid.ListGrid#getData data} attribute, and the datasource will simply act as a schema to describe the set of fields visible in the grid.  {@link com.smartgwt.client.widgets.grid.ListGrid#getCanEdit canEdit}, or removals via the {@link com.smartgwt.client.widgets.grid.ListGrid#getCanRemoveRecords canRemoveRecords} mechanism will update the local data array rather than attempting to perform operations against the dataSource.
+    * <p><b>Note : </b> This is an advanced setting</p>
+    *
+    * @param saveLocally saveLocally Default value is null
+    * @throws IllegalStateException this property cannot be changed after the component has been created
+    */
+    public void setSaveLocally(Boolean saveLocally)  throws IllegalStateException {
+        setAttribute("saveLocally", saveLocally, false);
+    }
+    /**
+     * For grids with a specified ${isc.DocUtils.linkForRef('ListGrid.datasource')}, this property can be set to  <code>true</code> to avoid the grid from attempting to save / retrieve data from the server.  In this case the grid's data should be specified as an array via  the {@link com.smartgwt.client.widgets.grid.ListGrid#getData data} attribute, and the datasource will simply act as a schema to describe the set of fields visible in the grid.  {@link com.smartgwt.client.widgets.grid.ListGrid#getCanEdit canEdit}, or removals via the {@link com.smartgwt.client.widgets.grid.ListGrid#getCanRemoveRecords canRemoveRecords} mechanism will update the local data array rather than attempting to perform operations against the dataSource.
+     *
+     *
+     * @return Boolean
+     *
+     */
+    public Boolean getSaveLocally()  {
+        return getAttributeAsBoolean("saveLocally");
     }
 
     /**
@@ -1841,7 +1863,6 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
     public int getAnimateRemoveTime()  {
         return getAttributeAsInt("animateRemoveTime");
     }
- 
 
     /**
     * If we're showing the filterEditor (this.showFilterEditor is true), this property  determines whether this list should be filtered every time the user puts focus in a different field in the filter editor.
@@ -2730,15 +2751,15 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
     }
              
     /**
-    * Indicates what to do with data dragged into another listGrid. See          DragDataAction type for details.
+    * Indicates what to do with data dragged into another DataBoundComponent. See          DragDataAction type for details.
     *
-    * @param dragDataAction dragDataAction Default value is ListGrid.MOVE
+    * @param dragDataAction dragDataAction Default value is Canvas.MOVE
     */
     public void setDragDataAction(DragDataAction dragDataAction) {
         setAttribute("dragDataAction", dragDataAction.getValue(), true);
     }
     /**
-     * Indicates what to do with data dragged into another listGrid. See          DragDataAction type for details.
+     * Indicates what to do with data dragged into another DataBoundComponent. See          DragDataAction type for details.
      *
      *
      * @return DragDataAction
@@ -3066,6 +3087,14 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
 
 
 
+
+        /**
+         * Invalidate the current data cache for this databound component via a call to <code>this.data.invalidateCache()</code>. If necessary, this will cause a new fetch to  be performed with the current set of criteria for this component. <P> Has no effect if this component is not showing a set of filtered data.
+         */
+        public native void invalidateCache() /*-{
+            var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
+            self.invalidateCache();
+        }-*/;
 
 
 
@@ -3638,7 +3667,6 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
 
 
 
-
         /**
          * If the filter editor ({@link com.smartgwt.client.widgets.grid.ListGrid#getShowFilterEditor showFilterEditor}) is visible for this grid,  this method will explictly put focus into the specified field in the filter editor.
          */
@@ -4178,22 +4206,22 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
         }-*/;
 
         /**
-         * Simulates a drag / drop type transfer of the selected records in some other grid to this listGrid, without requiring any user interaction. <P> To transfer <b>all</b> data, call grid.selection.selectAll() first. <P> See the ${isc.DocUtils.linkForRef('group:dragging')} documentation for an overview of list grid drag/drop data transfer.
-         * @param sourceGrid source grid from which the records will be tranferred
+         * Simulates a drag / drop type transfer of the selected records in some other component to this component, without requiring any user interaction. <P> To transfer <b>all</b> data in, for example, a {@link com.smartgwt.client.widgets.grid.ListGrid}, call grid.selection.selectAll() first. <P> See the ${isc.DocUtils.linkForRef('group:dragging')} documentation for an overview of list grid drag/drop data transfer.
+         * @param source source component from which the records will be tranferred
          */
-        public native void transferSelectedData(ListGrid sourceGrid) /*-{
+        public native void transferSelectedData(DataBoundComponent source) /*-{
             var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
-            self.transferSelectedData(sourceGrid.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()());
+            self.transferSelectedData(source);
         }-*/;
 
         /**
-         * Simulates a drag / drop type transfer of the selected records in some other grid to this listGrid, without requiring any user interaction. <P> To transfer <b>all</b> data, call grid.selection.selectAll() first. <P> See the ${isc.DocUtils.linkForRef('group:dragging')} documentation for an overview of list grid drag/drop data transfer.
-         * @param sourceGrid source grid from which the records will be tranferred
+         * Simulates a drag / drop type transfer of the selected records in some other component to this component, without requiring any user interaction. <P> To transfer <b>all</b> data in, for example, a {@link com.smartgwt.client.widgets.grid.ListGrid}, call grid.selection.selectAll() first. <P> See the ${isc.DocUtils.linkForRef('group:dragging')} documentation for an overview of list grid drag/drop data transfer.
+         * @param source source component from which the records will be tranferred
      * @param index target index (drop position) of the rows within this grid.
          */
-        public native void transferSelectedData(ListGrid sourceGrid, int index) /*-{
+        public native void transferSelectedData(DataBoundComponent source, int index) /*-{
             var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
-            self.transferSelectedData(sourceGrid.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()(), index);
+            self.transferSelectedData(source, index);
         }-*/;
 
 
