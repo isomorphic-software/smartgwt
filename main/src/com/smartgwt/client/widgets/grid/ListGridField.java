@@ -1740,6 +1740,15 @@ public class ListGridField extends DataClass  implements com.smartgwt.client.wid
     }
 
     /**
+     * When using a valueMap, set multiple to true if a select list box is desired instead of a combobox when editing the cell.
+     *
+     * @param multiple true for select list
+     */
+    public void setMultiple(boolean multiple) {
+        setAttribute("multiple", multiple);
+    }
+
+    /**
      * A valueMap to use for editors shown for this field. By default if this is not specified field.valueMap will be used instead.
      *
      * <p>
