@@ -1122,9 +1122,16 @@ public class Calendar extends Canvas  implements DataBoundComponent, com.smartgw
     // ********************* Static Methods ***********************
 
 
-
-
-
+
+
+
+
+
+
+
+
+
+
 
 
     protected native void onInit() /*-{
@@ -1317,6 +1324,27 @@ public class Calendar extends Canvas  implements DataBoundComponent, com.smartgw
 
     public void setShowAddEventButton(Boolean showAddEventButton) throws IllegalStateException {
         setAttribute("showAddEventButton", showAddEventButton, false);
+    }
+
+    public CalendarEvent[] getData() {
+        JavaScriptObject dataJS = getAttributeAsJavaScriptObject("data");
+        CalendarEvent[] data = convertToCalendarEventArray(dataJS);
+        return data;
+    }
+
+    private static CalendarEvent[] convertToCalendarEventArray(JavaScriptObject nativeArray) {
+        if (nativeArray == null) {
+            return new CalendarEvent[]{};
+        }
+        JavaScriptObject[] componentsj = JSOHelper.toArray(nativeArray);
+        CalendarEvent[] objects = new CalendarEvent[componentsj.length];
+        for (int i = 0; i < componentsj.length; i++) {
+            JavaScriptObject componentJS = componentsj[i];
+            CalendarEvent obj = (CalendarEvent) RefDataClass.getRef(componentJS);
+            if (obj == null) obj = new CalendarEvent(componentJS);
+            objects[i] = obj;
+        }
+        return objects;
     }
 
 }
