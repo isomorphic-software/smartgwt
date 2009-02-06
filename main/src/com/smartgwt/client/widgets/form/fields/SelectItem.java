@@ -910,6 +910,20 @@ public class SelectItem extends FormItem  implements PickList {
     }
 
     // ********************* Methods ***********************
+    
+    /**
+     * Returns the values of a SelectItem with multiple=true as an array of Strings.
+     *
+     * @return value of selection
+     */
+    public native String[] getValues() /*-{
+        var self = this.@com.smartgwt.client.core.DataClass::getJsObj()();
+        var value = self.getValue();
+        if(!$wnd.isA.Array(value)) {
+            value = [value];
+        }
+        return  @com.smartgwt.client.util.JSOHelper::convertToJavaStringArray(Lcom/google/gwt/core/client/JavaScriptObject;)(value);
+    }-*/;
 
     /**
      * Only applies to databound items (see {@link com.smartgwt.client..PickList#getOptionDataSource
