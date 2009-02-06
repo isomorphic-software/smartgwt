@@ -686,6 +686,26 @@ public class DataSource extends BaseClass  implements com.smartgwt.client.data.e
     }
 
     /**
+    * Specifies the fully-qualified name of the DataSource subclass that should be instantiated server-side for this dataSource. This property allows you to write and use custom DataSource  subclasses on the server. <p> One reason you might wish to do this would be to override the validate() method to provide  some arbitrary custom validation (such as complex database lookups, validation embedded in  legacy applications, etc).  It is also possible - though obviously a more substantial task - to override the execute() method in your custom DataSource.  This is one way of creating  a completely customized DataSource implementation. <p> <b>Note:</b> If you use this property, you are responsible for making sure that it refers to a valid server-side class that extends <code>com.isomorphic.datasource.DataSource</code>. If your implementation relies on methods or state only present in certain specialized  subclasses of DataSource (for example, you want the normal behavior and features of a  HibernateDataSource, but with a specialized validate() method), then you shoud extend the  subclass rather than the base class.
+    *
+    * @param serverConstructor serverConstructor Default value is null
+    * @throws IllegalStateException this property cannot be changed after the underlying component has been created
+    */
+    public void setServerConstructor(String serverConstructor)  throws IllegalStateException {
+        setAttribute("serverConstructor", serverConstructor, false);
+    }
+    /**
+     * Specifies the fully-qualified name of the DataSource subclass that should be instantiated server-side for this dataSource. This property allows you to write and use custom DataSource  subclasses on the server. <p> One reason you might wish to do this would be to override the validate() method to provide  some arbitrary custom validation (such as complex database lookups, validation embedded in  legacy applications, etc).  It is also possible - though obviously a more substantial task - to override the execute() method in your custom DataSource.  This is one way of creating  a completely customized DataSource implementation. <p> <b>Note:</b> If you use this property, you are responsible for making sure that it refers to a valid server-side class that extends <code>com.isomorphic.datasource.DataSource</code>. If your implementation relies on methods or state only present in certain specialized  subclasses of DataSource (for example, you want the normal behavior and features of a  HibernateDataSource, but with a specialized validate() method), then you shoud extend the  subclass rather than the base class.
+     *
+     *
+     * @return String
+     *
+     */
+    public String getServerConstructor()  {
+        return getAttributeAsString("serverConstructor");
+    }
+
+    /**
     * [A] If set to true, both client and server-side advanced filtering used by SmartClient will follow SQL99 behavior for dealing with NULL values, which is often counter-intuitive to users. Specifically, when a field has NULL value, all of the following expression are false: <pre>    field == "someValue"  (normally false)    field != "someValue"  (normally true)    not (field == "someValue")   (normally true)    not (field != "someValue")   (normally false) </pre>
     *
     * @param strictSQLFiltering strictSQLFiltering Default value is false
@@ -714,6 +734,7 @@ public class DataSource extends BaseClass  implements com.smartgwt.client.data.e
             var self = this.@com.smartgwt.client.core.BaseClass::getOrCreateJsObj()();
             self.getLegalChildTags();
         }-*/;
+
 
 
 

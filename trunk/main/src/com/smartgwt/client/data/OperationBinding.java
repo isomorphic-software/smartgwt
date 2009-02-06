@@ -268,6 +268,82 @@ public class OperationBinding extends DataClass {
     }
 
     /**
+    * When set, causes the results of the DataSource Operation to be exported to a file, whose  name and format are indicated by {@link com.smartgwt.client.data.OperationBinding#getExportFileName exportFileName} and  {@link com.smartgwt.client.data.OperationBinding#getExportAs exportAs} respectively.  When no exportFilename is provided, the  default is <i>Results</i> and the default value of exportAs is <i>csv</i>.  Once the Operation  completes, {@link com.smartgwt.client.data.OperationBinding#getExportDisplay exportDisplay} specifies whether the  exported data will be downloaded to the file-system or displayed in a new window.   The  default value of exportDisplay is "download" which displays the Save As dialog.  See  ${isc.DocUtils.linkForRef('type:ExportDisplay')} for more information. <P> As well as setting this and other properties on the {@link com.smartgwt.client.data.OperationBinding}, Exports can be  initiated in two other ways.  You can set properties on the dsRequest by passing  <i>requestProperties</i> into {@link com.smartgwt.client.data.DataSource#exportData}.  Note that this method does not support exporting to JSON format (see  <a href=http://forums.smartclient.com/showthread.php?t=235>this post</a> for more detail). Additionally, custom server code may set export-related properties on the  {@link com.smartgwt.client.data.DSResponse}. <P> <b>Format Examples</b> <ul> <li>XML format</li> <pre>     &lt;List&gt;         &lt;Object&gt;             &lt;id&gt;10101&lt;/id&gt;             &lt;displayName&gt;Record 10101&lt;/displayName&gt;         &lt;/Object&gt;    &lt;/List&gt; </pre> <li>JSON Format</li> <pre>     [         { id: 10101, displayName: "Record 10101" }     ] </pre> <li>CSV Format</li> <pre>     id,displayName     10101,"Record 10101" </pre> </ul>
+    *
+    * @param exportResults exportResults Default value is false
+    */
+    public void setExportResults(Boolean exportResults) {
+        setAttribute("exportResults", exportResults);
+    }
+    /**
+     * When set, causes the results of the DataSource Operation to be exported to a file, whose  name and format are indicated by {@link com.smartgwt.client.data.OperationBinding#getExportFileName exportFileName} and  {@link com.smartgwt.client.data.OperationBinding#getExportAs exportAs} respectively.  When no exportFilename is provided, the  default is <i>Results</i> and the default value of exportAs is <i>csv</i>.  Once the Operation  completes, {@link com.smartgwt.client.data.OperationBinding#getExportDisplay exportDisplay} specifies whether the  exported data will be downloaded to the file-system or displayed in a new window.   The  default value of exportDisplay is "download" which displays the Save As dialog.  See  ${isc.DocUtils.linkForRef('type:ExportDisplay')} for more information. <P> As well as setting this and other properties on the {@link com.smartgwt.client.data.OperationBinding}, Exports can be  initiated in two other ways.  You can set properties on the dsRequest by passing  <i>requestProperties</i> into {@link com.smartgwt.client.data.DataSource#exportData}.  Note that this method does not support exporting to JSON format (see  <a href=http://forums.smartclient.com/showthread.php?t=235>this post</a> for more detail). Additionally, custom server code may set export-related properties on the  {@link com.smartgwt.client.data.DSResponse}. <P> <b>Format Examples</b> <ul> <li>XML format</li> <pre>     &lt;List&gt;         &lt;Object&gt;             &lt;id&gt;10101&lt;/id&gt;             &lt;displayName&gt;Record 10101&lt;/displayName&gt;         &lt;/Object&gt;    &lt;/List&gt; </pre> <li>JSON Format</li> <pre>     [         { id: 10101, displayName: "Record 10101" }     ] </pre> <li>CSV Format</li> <pre>     id,displayName     10101,"Record 10101" </pre> </ul>
+     *
+     *
+     * @return Boolean
+     *
+     */
+    public Boolean getExportResults()  {
+        return getAttributeAsBoolean("exportResults");
+    }
+             
+    /**
+    * The format in which the data should be exported.  See ${isc.DocUtils.linkForRef('type:ExportFormat')} for more  information.
+    *
+    * @param exportAs exportAs Default value is "csv"
+    */
+    public void setExportAs(ExportFormat exportAs) {
+        setAttribute("exportAs", exportAs.getValue());
+    }
+    /**
+     * The format in which the data should be exported.  See ${isc.DocUtils.linkForRef('type:ExportFormat')} for more  information.
+     *
+     *
+     * @return ExportFormat
+     *
+     */
+    public ExportFormat getExportAs()  {
+        return (ExportFormat) EnumUtil.getEnum(ExportFormat.values(), getAttribute("exportAs"));
+    }
+
+    /**
+    * The name of the file to save the exported data into.
+    *
+    * @param exportFileName exportFileName Default value is null
+    */
+    public void setExportFileName(String exportFileName) {
+        setAttribute("exportFileName", exportFileName);
+    }
+    /**
+     * The name of the file to save the exported data into.
+     *
+     *
+     * @return String
+     *
+     */
+    public String getExportFileName()  {
+        return getAttributeAsString("exportFileName");
+    }
+             
+    /**
+    * Specifies whether the exported data will be downloaded to the file-system or displayed in a  new window. See ${isc.DocUtils.linkForRef('type:ExportDisplay')} for more information.
+    *
+    * @param exportDisplay exportDisplay Default value is "download"
+    */
+    public void setExportDisplay(ExportDisplay exportDisplay) {
+        setAttribute("exportDisplay", exportDisplay.getValue());
+    }
+    /**
+     * Specifies whether the exported data will be downloaded to the file-system or displayed in a  new window. See ${isc.DocUtils.linkForRef('type:ExportDisplay')} for more information.
+     *
+     *
+     * @return ExportDisplay
+     *
+     */
+    public ExportDisplay getExportDisplay()  {
+        return (ExportDisplay) EnumUtil.getEnum(ExportDisplay.values(), getAttribute("exportDisplay"));
+    }
+
+    /**
     * For an XML or JSON DataSource, XPath expression used to retrieve the objects that will become DataSource records. <p> For example, an "ItemSearch" web service might return a "Results" structure containing metadata along with the set of Items that one might want to display in a grid.  An XPath expression like "/Results/Items" could be used to retrieve just the Items, which would then become DataSource records. <p> For a JSON web service, the <code>recordXPath</code> is applied to the returned JSON data via {@link com.smartgwt.client.util.XMLTools#selectObjects}.  Only limited XPath syntax is allowed; see  {@link com.smartgwt.client.util.XMLTools#selectObjects} for details. <P> For processing XML results, see {@link com.smartgwt.client.data.OperationBinding#getXmlNamespaces xmlNamespaces} for information on the namespaces that are available in this XPath expression. <P> To learn about XPath, try the following search: <a href="http://www.google.com/search?q=xpath+tutorial" target="_blank" >http://www.google.com/search?q=xpath+tutorial</a>
     *
     * @param recordXPath recordXPath Default value is null

@@ -258,6 +258,82 @@ public class DSRequest extends RPCRequest {
         return getAttributeAsBoolean("useFlatHeaderFields");
     }
 
+    /**
+    * When set, causes the results of the DSRequest to be exported to a file, whose name  and format are indicated by {@link com.smartgwt.client.data.DSRequest#getExportFileName exportFileName} and  {@link com.smartgwt.client.data.DSRequest#getExportAs exportAs} respectively.  When no exportFilename is provided, the default is <i>Results</i> and the default value of exportAs is <i>csv</i>.  Once the operation completes,  {@link com.smartgwt.client.data.DSRequest#getExportDisplay exportDisplay} specifies whether the exported data should be downloaded to the file-system or displayed in a new window.  The default value of exportDisplay is "download" which displays the Save As dialog.  See ${isc.DocUtils.linkForRef('type:ExportDisplay')}  for more information. <P> Note that an export initiated using dsRequest properties does not provide support for JSON format (see  <a href=http://forums.smartclient.com/showthread.php?t=235>this post</a> for more detail). <P> As well as setting dsRequest.exportResults and related properties, exports can be initiated in two other ways, via {@link com.smartgwt.client.data.OperationBinding}s and via custom server code which sets  export-related properties on the {@link com.smartgwt.client.data.DSResponse}.  Both of those methods support exporting to JSON format. <P> <b>Format Examples</b> <ul> <li>XML format</li> <pre>     &lt;List&gt;         &lt;Object&gt;             &lt;id&gt;10101&lt;/id&gt;             &lt;displayName&gt;Record 10101&lt;/displayName&gt;         &lt;/Object&gt;    &lt;/List&gt; </pre> <li>JSON Format</li> <pre>     [         { id: 10101, displayName: "Record 10101" }     ] </pre> <li>CSV Format</li> <pre>     id,displayName     10101,"Record 10101" </pre> </ul>
+    *
+    * @param exportResults exportResults Default value is false
+    */
+    public void setExportResults(Boolean exportResults) {
+        setAttribute("exportResults", exportResults);
+    }
+    /**
+     * When set, causes the results of the DSRequest to be exported to a file, whose name  and format are indicated by {@link com.smartgwt.client.data.DSRequest#getExportFileName exportFileName} and  {@link com.smartgwt.client.data.DSRequest#getExportAs exportAs} respectively.  When no exportFilename is provided, the default is <i>Results</i> and the default value of exportAs is <i>csv</i>.  Once the operation completes,  {@link com.smartgwt.client.data.DSRequest#getExportDisplay exportDisplay} specifies whether the exported data should be downloaded to the file-system or displayed in a new window.  The default value of exportDisplay is "download" which displays the Save As dialog.  See ${isc.DocUtils.linkForRef('type:ExportDisplay')}  for more information. <P> Note that an export initiated using dsRequest properties does not provide support for JSON format (see  <a href=http://forums.smartclient.com/showthread.php?t=235>this post</a> for more detail). <P> As well as setting dsRequest.exportResults and related properties, exports can be initiated in two other ways, via {@link com.smartgwt.client.data.OperationBinding}s and via custom server code which sets  export-related properties on the {@link com.smartgwt.client.data.DSResponse}.  Both of those methods support exporting to JSON format. <P> <b>Format Examples</b> <ul> <li>XML format</li> <pre>     &lt;List&gt;         &lt;Object&gt;             &lt;id&gt;10101&lt;/id&gt;             &lt;displayName&gt;Record 10101&lt;/displayName&gt;         &lt;/Object&gt;    &lt;/List&gt; </pre> <li>JSON Format</li> <pre>     [         { id: 10101, displayName: "Record 10101" }     ] </pre> <li>CSV Format</li> <pre>     id,displayName     10101,"Record 10101" </pre> </ul>
+     *
+     *
+     * @return Boolean
+     *
+     */
+    public Boolean getExportResults()  {
+        return getAttributeAsBoolean("exportResults");
+    }
+             
+    /**
+    * The format in which the data should be exported.  See ${isc.DocUtils.linkForRef('type:ExportFormat')} for more  information.
+    *
+    * @param exportAs exportAs Default value is "csv"
+    */
+    public void setExportAs(ExportFormat exportAs) {
+        setAttribute("exportAs", exportAs.getValue());
+    }
+    /**
+     * The format in which the data should be exported.  See ${isc.DocUtils.linkForRef('type:ExportFormat')} for more  information.
+     *
+     *
+     * @return ExportFormat
+     *
+     */
+    public ExportFormat getExportAs()  {
+        return (ExportFormat) EnumUtil.getEnum(ExportFormat.values(), getAttribute("exportAs"));
+    }
+
+    /**
+    * The name of the file to save the exported data into.
+    *
+    * @param exportFileName exportFileName Default value is null
+    */
+    public void setExportFileName(String exportFileName) {
+        setAttribute("exportFileName", exportFileName);
+    }
+    /**
+     * The name of the file to save the exported data into.
+     *
+     *
+     * @return String
+     *
+     */
+    public String getExportFileName()  {
+        return getAttributeAsString("exportFileName");
+    }
+             
+    /**
+    * Specifies whether the exported data will be downloaded to the file-system or displayed in a  new window. See ${isc.DocUtils.linkForRef('type:ExportDisplay')} for more information.
+    *
+    * @param exportDisplay exportDisplay Default value is "download"
+    */
+    public void setExportDisplay(ExportDisplay exportDisplay) {
+        setAttribute("exportDisplay", exportDisplay.getValue());
+    }
+    /**
+     * Specifies whether the exported data will be downloaded to the file-system or displayed in a  new window. See ${isc.DocUtils.linkForRef('type:ExportDisplay')} for more information.
+     *
+     *
+     * @return ExportDisplay
+     *
+     */
+    public ExportDisplay getExportDisplay()  {
+        return (ExportDisplay) EnumUtil.getEnum(ExportDisplay.values(), getAttribute("exportDisplay"));
+    }
+
     // ********************* Methods ***********************
 
     // ********************* Static Methods ***********************

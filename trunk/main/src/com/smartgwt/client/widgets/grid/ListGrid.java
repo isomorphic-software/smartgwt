@@ -1787,7 +1787,7 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
     }
 
     /**
-    * If set, provide UI for the user to remove records from the grid. This is achieved by rendering an additional field in the listGrid which, when clicked, will remove the record associated with the clicked row. <P> By default the field will display the {@link com.smartgwt.client.widgets.grid.ListGrid#getRemoveIcon removeIcon} next to each record, and will be rendered as the leftmost column. Two mechanisms exist to further modify this field: <ul> <li>To change the position of the remove-field, include an explicitly specified field with     the attribute ${isc.DocUtils.linkForRef('isRemoveField','isRemoveField:true')} set. This will then be used as     the remove field instead of adding a field to the beginning of the set of columns.</li> <li>Additional direct configuration of the remove field may be achieved by modifying     {@link com.smartgwt.client.widgets.grid.ListGrid#getRemoveFieldProperties removeFieldProperties}.</li> </ul> <P> If the grid has a DataSource, removal is accomplished via a DSRequest with operationType "remove".  For a grid with simple Array data, the Array is directly modified.
+    * If set, provide UI for the user to remove records from the grid. This is achieved by rendering an additional field in the listGrid which, when clicked, will remove the record associated with the clicked row via a call to {@link com.smartgwt.client.widgets.grid.ListGrid#removeData}. <P> If {@link com.smartgwt.client.widgets.grid.ListGrid#getAnimateRemoveRecord animateRemoveRecord} is true, the removed record will appear to shrink out of view when it is removed. <P> By default the field will display the {@link com.smartgwt.client.widgets.grid.ListGrid#getRemoveIcon removeIcon} next to each record, and will be rendered as the leftmost column. Two mechanisms exist to further modify this field: <ul> <li>To change the position of the remove-field, include an explicitly specified field with     the attribute {@link com.smartgwt.client.widgets.grid.ListGridField#getIsRemoveField isRemoveField} set. This will then     be used as the remove field instead of adding a field to the beginning of the set of     columns.</li> <li>Additional direct configuration of the remove field may be achieved by modifying     {@link com.smartgwt.client.widgets.grid.ListGrid#getRemoveFieldProperties removeFieldProperties}.</li> </ul>
     *
     * @param canRemoveRecords canRemoveRecords Default value is false
     * @throws IllegalStateException this property cannot be changed after the component has been created
@@ -1796,7 +1796,7 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
         setAttribute("canRemoveRecords", canRemoveRecords, false);
     }
     /**
-     * If set, provide UI for the user to remove records from the grid. This is achieved by rendering an additional field in the listGrid which, when clicked, will remove the record associated with the clicked row. <P> By default the field will display the {@link com.smartgwt.client.widgets.grid.ListGrid#getRemoveIcon removeIcon} next to each record, and will be rendered as the leftmost column. Two mechanisms exist to further modify this field: <ul> <li>To change the position of the remove-field, include an explicitly specified field with     the attribute ${isc.DocUtils.linkForRef('isRemoveField','isRemoveField:true')} set. This will then be used as     the remove field instead of adding a field to the beginning of the set of columns.</li> <li>Additional direct configuration of the remove field may be achieved by modifying     {@link com.smartgwt.client.widgets.grid.ListGrid#getRemoveFieldProperties removeFieldProperties}.</li> </ul> <P> If the grid has a DataSource, removal is accomplished via a DSRequest with operationType "remove".  For a grid with simple Array data, the Array is directly modified.
+     * If set, provide UI for the user to remove records from the grid. This is achieved by rendering an additional field in the listGrid which, when clicked, will remove the record associated with the clicked row via a call to {@link com.smartgwt.client.widgets.grid.ListGrid#removeData}. <P> If {@link com.smartgwt.client.widgets.grid.ListGrid#getAnimateRemoveRecord animateRemoveRecord} is true, the removed record will appear to shrink out of view when it is removed. <P> By default the field will display the {@link com.smartgwt.client.widgets.grid.ListGrid#getRemoveIcon removeIcon} next to each record, and will be rendered as the leftmost column. Two mechanisms exist to further modify this field: <ul> <li>To change the position of the remove-field, include an explicitly specified field with     the attribute {@link com.smartgwt.client.widgets.grid.ListGridField#getIsRemoveField isRemoveField} set. This will then     be used as the remove field instead of adding a field to the beginning of the set of     columns.</li> <li>Additional direct configuration of the remove field may be achieved by modifying     {@link com.smartgwt.client.widgets.grid.ListGrid#getRemoveFieldProperties removeFieldProperties}.</li> </ul>
      *
      *
      * @return Boolean
@@ -1846,7 +1846,7 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
     }
 
     /**
-    * When animating record removal  {@link com.smartgwt.client.widgets.grid.ListGrid#getAnimateRemoveRecord animateRemoveRecord}, if  ${isc.DocUtils.linkForRef('listGrid.animateRemoveSpeed')} is not set, this property designates the duration of the animation in ms.
+    * When animating record removal  {@link com.smartgwt.client.widgets.grid.ListGrid#getAnimateRemoveRecord animateRemoveRecord}, if  {@link com.smartgwt.client.widgets.grid.ListGrid#getAnimateRemoveSpeed animateRemoveSpeed} is not set, this property designates the duration of the animation in ms.
     *
     * @param animateRemoveTime animateRemoveTime Default value is 100
     */
@@ -1854,7 +1854,7 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
         setAttribute("animateRemoveTime", animateRemoveTime, true);
     }
     /**
-     * When animating record removal  {@link com.smartgwt.client.widgets.grid.ListGrid#getAnimateRemoveRecord animateRemoveRecord}, if  ${isc.DocUtils.linkForRef('listGrid.animateRemoveSpeed')} is not set, this property designates the duration of the animation in ms.
+     * When animating record removal  {@link com.smartgwt.client.widgets.grid.ListGrid#getAnimateRemoveRecord animateRemoveRecord}, if  {@link com.smartgwt.client.widgets.grid.ListGrid#getAnimateRemoveSpeed animateRemoveSpeed} is not set, this property designates the duration of the animation in ms.
      *
      *
      * @return int
@@ -1862,6 +1862,25 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
      */
     public int getAnimateRemoveTime()  {
         return getAttributeAsInt("animateRemoveTime");
+    }
+
+    /**
+    * When {@link com.smartgwt.client.widgets.grid.ListGrid#getAnimateRemoveRecord animateRemoveRecord}, this property  designates the speed of the animation in pixels per second. Takes presidence over the {@link com.smartgwt.client.widgets.grid.ListGrid#getAnimateRemoveTime animateRemoveTime} property, which allows the developer to specify a duration for the animation rather than a speed.
+    *
+    * @param animateRemoveSpeed animateRemoveSpeed Default value is 200
+    */
+    public void setAnimateRemoveSpeed(int animateRemoveSpeed) {
+        setAttribute("animateRemoveSpeed", animateRemoveSpeed, true);
+    }
+    /**
+     * When {@link com.smartgwt.client.widgets.grid.ListGrid#getAnimateRemoveRecord animateRemoveRecord}, this property  designates the speed of the animation in pixels per second. Takes presidence over the {@link com.smartgwt.client.widgets.grid.ListGrid#getAnimateRemoveTime animateRemoveTime} property, which allows the developer to specify a duration for the animation rather than a speed.
+     *
+     *
+     * @return int
+     *
+     */
+    public int getAnimateRemoveSpeed()  {
+        return getAttributeAsInt("animateRemoveSpeed");
     }
 
     /**
@@ -3085,6 +3104,24 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
     // ********************* Methods ***********************
 
 
+        /**
+         * Uses a "fetch" operation on the current {@link com.smartgwt.client.data.DataSource} to retrieve data that matches the current filter and sort criteria for this component, then exports the  resulting data to a file or window in the requested format. <P> This method takes an optional callback parameter (set to a ${isc.DocUtils.linkForRef('type:DSCallback')}) to fire when the fetch completes. <P>
+         */
+        public native void exportData() /*-{
+            var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
+            self.exportData();
+        }-*/;
+
+        /**
+         * Uses a "fetch" operation on the current {@link com.smartgwt.client.data.DataSource} to retrieve data that matches the current filter and sort criteria for this component, then exports the  resulting data to a file or window in the requested format. <P> This method takes an optional callback parameter (set to a ${isc.DocUtils.linkForRef('type:DSCallback')}) to fire when the fetch completes. <P>
+         * @param callback callback to invoke when a export is complete. Fires                                          only if server contact was required
+     * @param requestProperties additional properties to set on the DSRequest                                            that will be issued
+         */
+        public native void exportData(DSCallback callback, DSRequest requestProperties) /*-{
+            var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
+            self.exportData(callback, requestProperties.@com.smartgwt.client.core.DataClass::getJsObj()());
+        }-*/;
+
 
 
 
@@ -3095,7 +3132,6 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
             var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
             self.invalidateCache();
         }-*/;
-
 
 
 
@@ -4178,6 +4214,7 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
 
 
 
+
         /**
          * Return "title" HTML to display as a drag tracker when the user drags some record.<br> Default implementation will display the cell value for the title field (see  {@link com.smartgwt.client.widgets.grid.ListGrid#getTitleField}) for the record(s) being dragged (including any icons / custom formatting / styling, etc). <p> Note: Only called if {@link com.smartgwt.client.widgets.grid.ListGrid#getDragTrackerMode dragTrackerMode} is set to <code>"title"</code>.
          * @param record First selected record being dragged
@@ -4206,7 +4243,7 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
         }-*/;
 
         /**
-         * Simulates a drag / drop type transfer of the selected records in some other component to this component, without requiring any user interaction. <P> To transfer <b>all</b> data in, for example, a {@link com.smartgwt.client.widgets.grid.ListGrid}, call grid.selection.selectAll() first. <P> See the ${isc.DocUtils.linkForRef('group:dragging')} documentation for an overview of list grid drag/drop data transfer.
+         * Simulates a drag / drop type transfer of the selected records in some other component to this component, without requiring any user interaction.  This method acts on the dropped records  exactly as if they had been dropped in an actual drag / drop interaction, including any  special databound behavior invoked by calling {@link com.smartgwt.client..DataBoundComponent#getDropValues} for each dropped record. <P> To transfer <b>all</b> data in, for example, a {@link com.smartgwt.client.widgets.grid.ListGrid}, call grid.selection.selectAll() first. <P> See the ${isc.DocUtils.linkForRef('group:dragging')} documentation for an overview of list grid drag/drop data transfer.
          * @param source source component from which the records will be tranferred
          */
         public native void transferSelectedData(DataBoundComponent source) /*-{
@@ -4215,7 +4252,7 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
         }-*/;
 
         /**
-         * Simulates a drag / drop type transfer of the selected records in some other component to this component, without requiring any user interaction. <P> To transfer <b>all</b> data in, for example, a {@link com.smartgwt.client.widgets.grid.ListGrid}, call grid.selection.selectAll() first. <P> See the ${isc.DocUtils.linkForRef('group:dragging')} documentation for an overview of list grid drag/drop data transfer.
+         * Simulates a drag / drop type transfer of the selected records in some other component to this component, without requiring any user interaction.  This method acts on the dropped records  exactly as if they had been dropped in an actual drag / drop interaction, including any  special databound behavior invoked by calling {@link com.smartgwt.client..DataBoundComponent#getDropValues} for each dropped record. <P> To transfer <b>all</b> data in, for example, a {@link com.smartgwt.client.widgets.grid.ListGrid}, call grid.selection.selectAll() first. <P> See the ${isc.DocUtils.linkForRef('group:dragging')} documentation for an overview of list grid drag/drop data transfer.
          * @param source source component from which the records will be tranferred
      * @param index target index (drop position) of the rows within this grid.
          */
@@ -4304,6 +4341,7 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
             var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
             return self.getEventColumn(x);
         }-*/;
+
 
 
 

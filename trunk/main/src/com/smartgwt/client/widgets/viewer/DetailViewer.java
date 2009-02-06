@@ -498,6 +498,24 @@ public class DetailViewer extends Canvas  implements DataBoundComponent {
     // ********************* Methods ***********************
 
 
+        /**
+         * Uses a "fetch" operation on the current {@link com.smartgwt.client.data.DataSource} to retrieve data that matches the current filter and sort criteria for this component, then exports the  resulting data to a file or window in the requested format. <P> This method takes an optional callback parameter (set to a ${isc.DocUtils.linkForRef('type:DSCallback')}) to fire when the fetch completes. <P>
+         */
+        public native void exportData() /*-{
+            var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
+            self.exportData();
+        }-*/;
+
+        /**
+         * Uses a "fetch" operation on the current {@link com.smartgwt.client.data.DataSource} to retrieve data that matches the current filter and sort criteria for this component, then exports the  resulting data to a file or window in the requested format. <P> This method takes an optional callback parameter (set to a ${isc.DocUtils.linkForRef('type:DSCallback')}) to fire when the fetch completes. <P>
+         * @param callback callback to invoke when a export is complete. Fires                                          only if server contact was required
+     * @param requestProperties additional properties to set on the DSRequest                                            that will be issued
+         */
+        public native void exportData(DSCallback callback, DSRequest requestProperties) /*-{
+            var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
+            self.exportData(callback, requestProperties.@com.smartgwt.client.core.DataClass::getJsObj()());
+        }-*/;
+
 
 
 

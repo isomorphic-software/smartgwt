@@ -251,6 +251,24 @@ public class TileGrid extends TileLayout  implements DataBoundComponent, com.sma
 
     // ********************* Methods ***********************
 
+        /**
+         * Uses a "fetch" operation on the current {@link com.smartgwt.client.data.DataSource} to retrieve data that matches the current filter and sort criteria for this component, then exports the  resulting data to a file or window in the requested format. <P> This method takes an optional callback parameter (set to a ${isc.DocUtils.linkForRef('type:DSCallback')}) to fire when the fetch completes. <P>
+         */
+        public native void exportData() /*-{
+            var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
+            self.exportData();
+        }-*/;
+
+        /**
+         * Uses a "fetch" operation on the current {@link com.smartgwt.client.data.DataSource} to retrieve data that matches the current filter and sort criteria for this component, then exports the  resulting data to a file or window in the requested format. <P> This method takes an optional callback parameter (set to a ${isc.DocUtils.linkForRef('type:DSCallback')}) to fire when the fetch completes. <P>
+         * @param callback callback to invoke when a export is complete. Fires                                          only if server contact was required
+     * @param requestProperties additional properties to set on the DSRequest                                            that will be issued
+         */
+        public native void exportData(DSCallback callback, DSRequest requestProperties) /*-{
+            var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
+            self.exportData(callback, requestProperties.@com.smartgwt.client.core.DataClass::getJsObj()());
+        }-*/;
+
 
 
 
@@ -340,7 +358,7 @@ public class TileGrid extends TileLayout  implements DataBoundComponent, com.sma
 
 
         /**
-         * Simulates a drag / drop type transfer of the selected records in some other component to this component, without requiring any user interaction. <P> To transfer <b>all</b> data in, for example, a {@link com.smartgwt.client.widgets.grid.ListGrid}, call grid.selection.selectAll() first. <P> See the ${isc.DocUtils.linkForRef('group:dragging')} documentation for an overview of list grid drag/drop data transfer.
+         * Simulates a drag / drop type transfer of the selected records in some other component to this component, without requiring any user interaction.  This method acts on the dropped records  exactly as if they had been dropped in an actual drag / drop interaction, including any  special databound behavior invoked by calling {@link com.smartgwt.client..DataBoundComponent#getDropValues} for each dropped record. <P> To transfer <b>all</b> data in, for example, a {@link com.smartgwt.client.widgets.grid.ListGrid}, call grid.selection.selectAll() first. <P> See the ${isc.DocUtils.linkForRef('group:dragging')} documentation for an overview of list grid drag/drop data transfer.
          * @param source source component from which the records will be tranferred
          */
         public native void transferSelectedData(DataBoundComponent source) /*-{
@@ -349,7 +367,7 @@ public class TileGrid extends TileLayout  implements DataBoundComponent, com.sma
         }-*/;
 
         /**
-         * Simulates a drag / drop type transfer of the selected records in some other component to this component, without requiring any user interaction. <P> To transfer <b>all</b> data in, for example, a {@link com.smartgwt.client.widgets.grid.ListGrid}, call grid.selection.selectAll() first. <P> See the ${isc.DocUtils.linkForRef('group:dragging')} documentation for an overview of list grid drag/drop data transfer.
+         * Simulates a drag / drop type transfer of the selected records in some other component to this component, without requiring any user interaction.  This method acts on the dropped records  exactly as if they had been dropped in an actual drag / drop interaction, including any  special databound behavior invoked by calling {@link com.smartgwt.client..DataBoundComponent#getDropValues} for each dropped record. <P> To transfer <b>all</b> data in, for example, a {@link com.smartgwt.client.widgets.grid.ListGrid}, call grid.selection.selectAll() first. <P> See the ${isc.DocUtils.linkForRef('group:dragging')} documentation for an overview of list grid drag/drop data transfer.
          * @param source source component from which the records will be tranferred
      * @param index target index (drop position) of the rows within this grid.
          */

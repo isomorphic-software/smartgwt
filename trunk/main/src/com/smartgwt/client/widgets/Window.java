@@ -1118,6 +1118,10 @@ public class Window extends VLayout  implements com.smartgwt.client.widgets.even
         setAttribute("headerIconDefaults", headerIconDefaults, true);
     }
 
+    public void setHeaderIconProperties(Map headerIconProperties) {
+        setAttribute("headerIconProperties", headerIconProperties, true);
+    }
+
     /**
      * Sets the Window header icon.
      *
@@ -1126,7 +1130,7 @@ public class Window extends VLayout  implements com.smartgwt.client.widgets.even
     public void setHeaderIcon(String imgSrc) {
         Map map = new HashMap();
         map.put("src", imgSrc);
-        setHeaderIconDefaults(map);
+        setHeaderIconProperties(map);
     }
 
     /**
@@ -1141,7 +1145,7 @@ public class Window extends VLayout  implements com.smartgwt.client.widgets.even
         map.put("src", imgSrc);
         map.put("width", width);
         map.put("height", height);
-        setHeaderIconDefaults(map);
+        setHeaderIconProperties(map);
     }
 
     /**
