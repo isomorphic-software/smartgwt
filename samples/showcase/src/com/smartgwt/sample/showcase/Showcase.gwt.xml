@@ -5,6 +5,7 @@
 	<inherits name="com.google.gwt.user.History"/>
     
     <inherits name="com.smartgwt.SmartGwtNoScript"/>
+    <inherits name="com.smartclient.theme.enterprise.EnterpriseResources"/>
     <inherits name="com.smartclient.theme.blackops.BlackOpsResources"/>
     <inherits name="com.smartclient.theme.silverwave.SilverWaveResources"/>
     <inherits name="com.smartclient.theme.treefrog.TreeFrogResources"/>

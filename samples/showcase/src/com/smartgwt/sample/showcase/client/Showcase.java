@@ -92,8 +92,8 @@ public class Showcase implements EntryPoint, HistoryListener {
 
         mainTabSet = new TabSet();
 
-        //default is 22. required to icrease to that select tab contol dispalys well
-        mainTabSet.setTabBarThickness(24);
+        //default is 22. required to increase to that select tab contol dispalys well
+        mainTabSet.setTabBarThickness(23);
         mainTabSet.setWidth100();
         mainTabSet.setHeight100();
         mainTabSet.setCloseTabIcon("[SKIN]/Window/close.png");
@@ -104,6 +104,7 @@ public class Showcase implements EntryPoint, HistoryListener {
         SelectItem selectItem = new SelectItem();
         selectItem.setWidth(130);
         Map<String, String> valueMap = new LinkedHashMap<String, String>();
+        valueMap.put("Enterprise", "Enterprise");
         valueMap.put("SilverWave", "Silver Wave");
         valueMap.put("BlackOps", "Black Ops");
         valueMap.put("TreeFrog", "Tree Frog");
@@ -112,7 +113,7 @@ public class Showcase implements EntryPoint, HistoryListener {
 
         String currentSkin = Cookies.getCookie("skin");
         if (currentSkin == null) {
-            currentSkin = "SilverWave";
+            currentSkin = "Enterprise";
         }
         selectItem.setDefaultValue(currentSkin);
         selectItem.setShowTitle(false);

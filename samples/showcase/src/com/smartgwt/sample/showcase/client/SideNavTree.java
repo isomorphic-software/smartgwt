@@ -33,22 +33,15 @@ public class SideNavTree extends TreeGrid {
     public SideNavTree() {
         setWidth100();
         setHeight100();
-        //setShowHeader(false);
         setCustomIconProperty("icon");
         setAnimateFolderTime(100);
         setAnimateFolders(true);
         setAnimateFolderSpeed(1000);
         setNodeIcon("silk/application_view_list.png");
-        setShowConnectors(true);
         setShowSortArrow(SortArrow.CORNER);
         setShowAllRecords(true);
         setLoadDataOnDemand(false);
         setCanSort(false);
-        //setShowFilterEditor(true);
-
-        //also works
-        //setDataSource(new ShowcaseDS("side"));
-        //setAutoFetchData(true);
         
         TreeGridField field = new TreeGridField();
         field.setCanFilter(true);
