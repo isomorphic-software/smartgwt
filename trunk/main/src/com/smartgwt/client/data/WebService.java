@@ -68,6 +68,58 @@ public class WebService extends JsObject {
     }-*/;
 
     /**
+     * Retrieve a DataSource that provides read-only access to records returned by a web service operation.
+     * <br>
+     * DataBound Components can be bound to the returned DataSource, and the fetchData() method can be invoked to retrieve data from the web service.
+     * <br>
+     * The returned DataSource is only capable of the "fetch" DataSource operation, not "update", "add" or "remove". To create a DataSource capable of
+     * full read-write access, use DataSource.operationBindings with the wsOperation property set to associate each DataSource operation with a web
+     * service operation.
+     *
+     * @param operationName name of the web service operation to invoke to fetch records
+     * @param resultType  tag or type name of the XML element to be returned as DataSource records
+     * @return dDataSource representing the fetch message of a web service operation
+     */
+    public native DataSource getFetchDS(String operationName, String resultType)/*-{
+        var self  = this.@com.smartgwt.client.core.JsObject::getJsObj()();
+        var ds = self.getFetchDS(operationName, resultType);
+
+        if(ds == null || ds === undefined) {
+            return null;
+        } else {
+            var dsJ = @com.smartgwt.client.data.DataSource::new(Lcom/google/gwt/core/client/JavaScriptObject;)(ds);
+            return dsJ;
+        }
+    }-*/;
+
+    /**
+     * Retrieve a DataSource that provides read-only access to records returned by a web service operation.
+     * <br>
+     * DataBound Components can be bound to the returned DataSource, and the fetchData() method can be invoked to retrieve data from the web service.
+     * <br>
+     * The returned DataSource is only capable of the "fetch" DataSource operation, not "update", "add" or "remove". To create a DataSource capable of
+     * full read-write access, use DataSource.operationBindings with the wsOperation property set to associate each DataSource operation with a web
+     * service operation.
+     *
+     * @param operationName name of the web service operation to invoke to fetch records
+     * @param resultType  tag or type name of the XML element to be returned as DataSource records
+     * @param operationBindingProperties additional properties for the operationType:"fetch" operationBinding which this method automatically creates.
+     *      This can be used to set properties such as {@link com.smartgwt.client.data.OperationBinding#setUseFlatFields(Boolean)}  or {@link com.smartgwt.client.data.OperationBinding#setRecordXPath(String)}
+     * @return dDataSource representing the fetch message of a web service operation
+     */
+    public native DataSource getFetchDS(String operationName, String resultType, OperationBinding operationBindingProperties)/*-{        
+        var self  = this.@com.smartgwt.client.core.JsObject::getJsObj()();
+        var operationBindingPropertiesJS = operationBindingProperties == null ? null : operationBindingProperties.@com.smartgwt.client.data.OperationBinding::getJsObj()();
+        var ds = self.getFetchDS(operationName, resultType);
+        if(ds == null || ds === undefined) {
+            return null;
+        } else {
+            var dsJ = @com.smartgwt.client.data.DataSource::new(Lcom/google/gwt/core/client/JavaScriptObject;)(ds);
+            return dsJ;
+        }
+    }-*/;
+    
+    /**
      * Get the schema definition of any complexType or element of complexType defined in any <schema> blocks in the WSDL file this WebService represents.
      *
      * @param schemaName   name of type or element
