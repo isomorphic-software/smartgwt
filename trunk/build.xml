@@ -82,7 +82,7 @@
                         prefix="com/smartclient/public/sc/schema"/>
 
 
-            <zipfileset dir="${SC_HOME}/smartclientSDK/isomorphic/system/schema" includes="schemaTranslator.xsl"
+            <zipfileset dir="${SC_HOME}/smartclientSDK/isomorphic/system/schema" includes="*.xsl"
                         prefix="com/smartclient/public/sc/system/schema"/>
 
             <zipfileset dir="${SC_HOME}/smartclientSDK/source/client/application" includes="*.js"
@@ -127,12 +127,16 @@
 
             <zipfileset dir="${SC_HOME}/smartclientSDK/isomorphic/skins/TreeFrog" includes="**/*.*" excludes="*.gz"
                         prefix="com/smartclient/theme/treefrog/public/sc/skins/TreeFrog"/>
+						
+			<zipfileset dir="${SC_HOME}/smartclientSDK/isomorphic/skins/Enterprise" includes="**/*.*" excludes="*.gz"
+					                        prefix="com/smartclient/theme/enterprise/public/sc/skins/Enterprise"/>						
 
         </zip>
 
         <!--
         <unjar dest="${smartgwt.root}/main/src" src="${smartgwt.tools.lib}/sc/${SC_VER}/smartclient.jar"/>
-        -->
+		-->
+        
     </target>
 
 
