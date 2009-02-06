@@ -459,7 +459,7 @@ public class SelectItem extends FormItem  implements PickList {
     }
 
     /**
-    * If true, this selectItem will be displayed as a tall list of options, and the user will be able to select multiple options. <P> In this case the logical value of the formItem, as retrieved by  {@link com.smartgwt.client.widgets.form.fields.FormItem#getValue} and set via {@link com.smartgwt.client.widgets.form.fields.FormItem#setValue}, is  an Array of Strings reflecting the selected values.
+    * If true, this selectItem will be displayed as a tall list of options, and the user will be able to select multiple options. <P> In this case the logical value of the formItem, as retrieved by  {@link com.smartgwt.client.widgets.form.fields.FormItem#getValue} and set via {@link com.smartgwt.client.widgets.form.fields.FormItem#setValue}, is  an Array of Strings reflecting the selected values. <P> Note: <code>multiple:true</code> SelectItems do not currently support optionDataSource binding.  You can get around this by calling DataSource.fetchData() directly and creating a valueMap for the item from the resulting array.
     *
     * @param multiple multiple Default value is false
     */
@@ -467,7 +467,7 @@ public class SelectItem extends FormItem  implements PickList {
         setAttribute("multiple", multiple);
     }
     /**
-     * If true, this selectItem will be displayed as a tall list of options, and the user will be able to select multiple options. <P> In this case the logical value of the formItem, as retrieved by  {@link com.smartgwt.client.widgets.form.fields.FormItem#getValue} and set via {@link com.smartgwt.client.widgets.form.fields.FormItem#setValue}, is  an Array of Strings reflecting the selected values.
+     * If true, this selectItem will be displayed as a tall list of options, and the user will be able to select multiple options. <P> In this case the logical value of the formItem, as retrieved by  {@link com.smartgwt.client.widgets.form.fields.FormItem#getValue} and set via {@link com.smartgwt.client.widgets.form.fields.FormItem#setValue}, is  an Array of Strings reflecting the selected values. <P> Note: <code>multiple:true</code> SelectItems do not currently support optionDataSource binding.  You can get around this by calling DataSource.fetchData() directly and creating a valueMap for the item from the resulting array.
      *
      *
      * @return Boolean

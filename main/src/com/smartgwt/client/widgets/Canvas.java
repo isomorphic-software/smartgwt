@@ -2238,6 +2238,27 @@ public class Canvas extends BaseWidget  implements com.smartgwt.client.widgets.e
     }
 
     /**
+    * Opacity of the edges.  Defaults to matching this.opacity. if {@link com.smartgwt.client.widgets.Canvas#setOpacity} is called on a Canvas where edgeOpacity is set, edgeOpacity will be considered a percentage of the parent's opacity (so 50% opaque parent plus edgeOpacity 50 means 25% opaque edges)
+    * Set the {@link com.smartgwt.client.widgets.Canvas#getEdgeOpacity edgeOpacity} and mark the canvas for redraw
+    *
+    * @param edgeOpacity new edge-opacity level. Default value is null
+    * @throws IllegalStateException this property cannot be changed after the component has been created
+    */
+    public void setEdgeOpacity(Integer edgeOpacity)  throws IllegalStateException {
+        setAttribute("edgeOpacity", edgeOpacity, false);
+    }
+    /**
+     * Opacity of the edges.  Defaults to matching this.opacity. if {@link com.smartgwt.client.widgets.Canvas#setOpacity} is called on a Canvas where edgeOpacity is set, edgeOpacity will be considered a percentage of the parent's opacity (so 50% opaque parent plus edgeOpacity 50 means 25% opaque edges)
+     *
+     *
+     * @return Integer
+     *
+     */
+    public Integer getEdgeOpacity()  {
+        return getAttributeAsInt("edgeOpacity");
+    }
+
+    /**
     * Whether to show media in the center section, that is, behind the decorated Canvas.
     *
     * @param edgeShowCenter edgeShowCenter Default value is false
@@ -4427,6 +4448,7 @@ public class Canvas extends BaseWidget  implements com.smartgwt.client.widgets.e
             var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
             return self.linkHTML(href, text, target, ID, tabIndex, accessKey);
         }-*/;
+
 
 
 

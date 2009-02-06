@@ -170,6 +170,27 @@ public class Scrollbar extends StretchImg {
     }
 
     /**
+    * If true, the thumb's appearance changes when the user rolls over it.
+    * <p><b>Note : </b> This is an advanced setting</p>
+    *
+    * @param allowThumbOverState allowThumbOverState Default value is false
+    * @throws IllegalStateException this property cannot be changed after the component has been created
+    */
+    public void setAllowThumbOverState(Boolean allowThumbOverState)  throws IllegalStateException {
+        setAttribute("allowThumbOverState", allowThumbOverState, false);
+    }
+    /**
+     * If true, the thumb's appearance changes when the user rolls over it.
+     *
+     *
+     * @return Boolean
+     *
+     */
+    public Boolean getAllowThumbOverState()  {
+        return getAttributeAsBoolean("allowThumbOverState");
+    }
+
+    /**
     * If true, the scrollbar uses a 5-segment rather than 3-segment image representation, where the 3 interior image segments have the same state (Down, Over, etc), independent of the two outermost image segments.   <P> This allows certain advanced skinning designs where the track-as-such (space in which the thumb may be dragged) has curved endcaps, and is also visually stateful (that is, changes when the mouse goes down, without affecting the appearance of the outermost segments).
     * <p><b>Note : </b> This is an advanced setting</p>
     *

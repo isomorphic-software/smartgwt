@@ -525,6 +525,44 @@ public class DataSourceField extends DataClass {
         return getAttributeAsString("javaKeyClass");
     }
 
+    /**
+    * Optional different field-title used for exports.
+    *
+    * @param exportTitle exportTitle Default value is null
+    */
+    public void setExportTitle(String exportTitle) {
+        setAttribute("exportTitle", exportTitle);
+    }
+    /**
+     * Optional different field-title used for exports.
+     *
+     *
+     * @return String
+     *
+     */
+    public String getExportTitle()  {
+        return getAttributeAsString("exportTitle");
+    }
+
+    /**
+    * Used by the +link{BatchUploader) to map a field in an upload file to this  dataSourceField.  This is only necessary if the dataSourceField's name and title differ  from the name of the field in the upload file (SmartClient will automatically map upload  fields using the dataSourceField's title, if possible, if it does not get a direct match  on field name)
+    *
+    * @param uploadFieldName uploadFieldName Default value is null
+    */
+    public void setUploadFieldName(String uploadFieldName) {
+        setAttribute("uploadFieldName", uploadFieldName);
+    }
+    /**
+     * Used by the +link{BatchUploader) to map a field in an upload file to this  dataSourceField.  This is only necessary if the dataSourceField's name and title differ  from the name of the field in the upload file (SmartClient will automatically map upload  fields using the dataSourceField's title, if possible, if it does not get a direct match  on field name)
+     *
+     *
+     * @return String
+     *
+     */
+    public String getUploadFieldName()  {
+        return getAttributeAsString("uploadFieldName");
+    }
+
     // ********************* Methods ***********************
 
 
