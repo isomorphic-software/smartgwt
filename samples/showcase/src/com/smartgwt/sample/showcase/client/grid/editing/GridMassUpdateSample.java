@@ -65,7 +65,11 @@ public class GridMassUpdateSample extends ShowcasePanel {
                     return null;
                 }
                 NumberFormat nf = NumberFormat.getFormat("0,000");
-                return nf.format(((Number) value).longValue());
+                try {
+                    return nf.format(((Number) value).longValue());
+                } catch (Exception e) {
+                    return value.toString();
+                }
             }
         });
         ListGridField independenceField = new ListGridField("independence", "Independence");

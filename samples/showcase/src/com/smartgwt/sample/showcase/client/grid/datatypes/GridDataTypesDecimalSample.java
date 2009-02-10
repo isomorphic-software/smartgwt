@@ -58,8 +58,13 @@ public class GridDataTypesDecimalSample extends ShowcasePanel {
         gdpField.setType(ListGridFieldType.FLOAT);
         gdpField.setCellFormatter(new CellFormatter() {
             public String format(Object value, ListGridRecord record, int rowNum, int colNum) {
+                if(value == null) return null;
                 NumberFormat nf = NumberFormat.getFormat("#,##0.00");
-                return nf.format(((Number)value).floatValue());
+                try {
+                    return nf.format(((Number)value).floatValue());
+                } catch (Exception e) {
+                    return value.toString();
+                }
             }
         });
 

@@ -63,7 +63,11 @@ public class GridDataBindingMergedFieldsSample extends ShowcasePanel {
         populationField.setCellFormatter(new CellFormatter() {
             public String format(Object value, ListGridRecord record, int rowNum, int colNum) {
                 NumberFormat nf = NumberFormat.getFormat("0,000");
-                return nf.format(((Number)value).longValue());
+                try {
+                    return nf.format(((Number)value).longValue());
+                } catch (Exception e) {
+                    return value.toString();
+                }
             }
         });
         ListGridField gdpField = new ListGridField("gdp", "GDP ($M)");
@@ -71,7 +75,11 @@ public class GridDataBindingMergedFieldsSample extends ShowcasePanel {
         gdpField.setCellFormatter(new CellFormatter() {
             public String format(Object value, ListGridRecord record, int rowNum, int colNum) {
                 NumberFormat nf = NumberFormat.getFormat("#,##0");
-                return nf.format(((Number)value).longValue());
+                try {
+                    return nf.format(((Number)value).longValue());
+                } catch (Exception e) {
+                    return value.toString();
+                }
             }
         });
 

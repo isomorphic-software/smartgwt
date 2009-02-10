@@ -55,7 +55,12 @@ public class DisableSortSample extends ShowcasePanel {
         ListGridField populationField = new ListGridField("population", "Population");
         populationField.setCellFormatter(new CellFormatter() {
             public String format(Object value, ListGridRecord record, int rowNum, int colNum) {
-                return nf.format(((Number) value).longValue());
+                if(value == null) return null;
+                try {
+                    return nf.format(((Number) value).longValue());
+                } catch (Exception e) {
+                    return value.toString();
+                }
             }
         });
         ListGridField areaField = new ListGridField("area", "Area (km&sup2;)");
@@ -63,7 +68,13 @@ public class DisableSortSample extends ShowcasePanel {
         areaField.setCellFormatter(new CellFormatter() {
             public String format(Object value, ListGridRecord record, int rowNum, int colNum) {
                 NumberFormat nf = NumberFormat.getFormat("0,000");
-                String val = nf.format(((Number) value).longValue());
+                if(value == null) return null;
+                String val = null;
+                try {
+                    val = nf.format(((Number) value).longValue());
+                } catch (Exception e) {
+                    return value.toString();
+                }
                 return val + "km&sup2";
             }
         });

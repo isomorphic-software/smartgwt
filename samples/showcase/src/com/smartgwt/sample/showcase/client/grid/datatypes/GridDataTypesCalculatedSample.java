@@ -65,7 +65,11 @@ final ListGridField populationField = new ListGridField("population", "Populatio
                     return null;
                 } else {
                     NumberFormat nf = NumberFormat.getFormat("0,000");
-                    return nf.format(((Number) value).longValue());
+                    try {
+                        return nf.format(((Number) value).longValue());
+                    } catch (Exception e) {
+                        return value.toString();
+                    }
                 }
             }
         });
@@ -79,7 +83,11 @@ final ListGridField populationField = new ListGridField("population", "Populatio
                     return null;
                 } else {
                     NumberFormat nf = NumberFormat.getFormat("#,##0.00");
-                    return nf.format(((Number) value).floatValue());
+                    try {
+                        return nf.format(((Number) value).floatValue());
+                    } catch (Exception e) {
+                        return value.toString();
+                    }
                 }
             }
         });

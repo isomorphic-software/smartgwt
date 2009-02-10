@@ -7,6 +7,7 @@ import com.smartgwt.client.widgets.Canvas;
 import com.smartgwt.client.widgets.form.fields.DateItem;
 import com.smartgwt.client.widgets.form.fields.SpinnerItem;
 import com.smartgwt.client.widgets.form.fields.TextAreaItem;
+import com.smartgwt.client.widgets.form.fields.SelectItem;
 import com.smartgwt.client.widgets.grid.CellFormatter;
 import com.smartgwt.client.widgets.grid.ListGrid;
 import com.smartgwt.client.widgets.grid.ListGridField;
@@ -14,6 +15,9 @@ import com.smartgwt.client.widgets.grid.ListGridRecord;
 import com.smartgwt.sample.showcase.client.PanelFactory;
 import com.smartgwt.sample.showcase.client.ShowcasePanel;
 import com.smartgwt.sample.showcase.client.data.CountryXmlDS;
+
+import java.util.LinkedHashMap;
+import java.util.Map;
 
 public class GridCustomEditorsSample extends ShowcasePanel {
     private static final String DESCRIPTION = "<b>Click</b> on any cell to start editing. The \"Government\", \"Population\", and \"Nationhood\" columns " +
@@ -50,11 +54,27 @@ public class GridCustomEditorsSample extends ShowcasePanel {
 
 
         ListGridField nameField = new ListGridField("countryName", "Country", 100);
+
+        SelectItem countrySelectItem = new SelectItem();
+        countrySelectItem.setName("countryName");
+        countrySelectItem.setPickListWidth(200);
+        countrySelectItem.setMultiple(true);
+
+        Map map = new LinkedHashMap();
+        map.put("India", "India");
+        map.put("IndiaB", "IndiaB");
+        map.put("IndiaC", "IndiaC");
+        nameField.setValueMap(map);
+
+        nameField.setEditorType(countrySelectItem);
+
         ListGridField governmentField = new ListGridField("government", "Government", 175);
+        governmentField.setValueMap(map);
+        governmentField.setEditorType(countrySelectItem);
 
         TextAreaItem textAreaItem = new TextAreaItem();
         textAreaItem.setHeight(70);
-        governmentField.setEditorType(textAreaItem);
+        //governmentField.setEditorType(textAreaItem);
 
         ListGridField populationField = new ListGridField("population", "Population", 100);
         populationField.setEditorType(new SpinnerItem());
@@ -62,8 +82,13 @@ public class GridCustomEditorsSample extends ShowcasePanel {
         populationField.setType(ListGridFieldType.INTEGER);
         populationField.setCellFormatter(new CellFormatter() {
             public String format(Object value, ListGridRecord record, int rowNum, int colNum) {
+                if(value == null) return null;
                 NumberFormat nf = NumberFormat.getFormat("0,000");
-                return nf.format(((Number) value).longValue());
+                try {
+                    return nf.format(((Number) value).longValue());
+                } catch (Exception e) {
+                    return value.toString();
+                }
             }
         });
         ListGridField independenceField = new ListGridField("independence", "Independence", 225);

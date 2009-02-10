@@ -62,8 +62,13 @@ public class GridEditByCellSample extends ShowcasePanel {
         populationField.setType(ListGridFieldType.INTEGER);
         populationField.setCellFormatter(new CellFormatter() {
             public String format(Object value, ListGridRecord record, int rowNum, int colNum) {
-                NumberFormat nf = NumberFormat.getFormat("0,000");
-                return nf.format(((Number) value).longValue());
+                if(value == null) return null;
+                try {
+                    NumberFormat nf = NumberFormat.getFormat("0,000");
+                    return nf.format(((Number) value).longValue());
+                } catch (Exception e) {
+                    return value.toString();
+                }
             }
         });
         ListGridField independenceField = new ListGridField("independence", "Independence");
