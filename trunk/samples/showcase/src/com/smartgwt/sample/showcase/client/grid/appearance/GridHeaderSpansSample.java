@@ -60,8 +60,12 @@ public class GridHeaderSpansSample extends ShowcasePanel {
         populationField.setCellFormatter(new CellFormatter() {
             public String format(Object value, ListGridRecord record, int rowNum, int colNum) {
                 if (value == null) return null;
-                NumberFormat nf = NumberFormat.getFormat("0,000");
-                return nf.format(((Number) value).longValue());
+                try {
+                    NumberFormat nf = NumberFormat.getFormat("0,000");
+                    return nf.format(((Number) value).longValue());
+                } catch (Exception e) {
+                    return value.toString();
+                }
             }
         });
 
@@ -70,8 +74,13 @@ public class GridHeaderSpansSample extends ShowcasePanel {
         areaField.setCellFormatter(new CellFormatter() {
             public String format(Object value, ListGridRecord record, int rowNum, int colNum) {
                 if (value == null) return null;
-                NumberFormat nf = NumberFormat.getFormat("0,000");
-                String val = nf.format(((Number) value).longValue());
+                String val = null;
+                try {
+                    NumberFormat nf = NumberFormat.getFormat("0,000");
+                    val = nf.format(((Number) value).longValue());
+                } catch (Exception e) {
+                    return value.toString();
+                }
                 return val + "km&sup2";
             }
         });
@@ -81,8 +90,12 @@ public class GridHeaderSpansSample extends ShowcasePanel {
         gdpField.setCellFormatter(new CellFormatter() {
             public String format(Object value, ListGridRecord record, int rowNum, int colNum) {
                 if (value == null) return null;
-                NumberFormat nf = NumberFormat.getFormat("0,000");
-                return "$" + nf.format(((Number) value).longValue());
+                try {
+                    NumberFormat nf = NumberFormat.getFormat("0,000");
+                    return "$" + nf.format(((Number) value).longValue());
+                } catch (Exception e) {
+                    return value.toString();
+                }
             }
         });
 

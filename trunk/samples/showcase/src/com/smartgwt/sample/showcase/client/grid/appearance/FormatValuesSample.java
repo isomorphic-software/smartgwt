@@ -61,8 +61,12 @@ public class FormatValuesSample extends ShowcasePanel {
             public String format(Object value, ListGridRecord record, int rowNum, int colNum) {
                 if (value != null) {
 
-                    Date dateValue = (Date) value;
-                    return dateFormatter.format(dateValue);
+                    try {
+                        Date dateValue = (Date) value;
+                        return dateFormatter.format(dateValue);
+                    } catch (Exception e) {
+                        return value.toString();
+                    }
                 } else {
                     return "";
                 }
@@ -73,8 +77,15 @@ public class FormatValuesSample extends ShowcasePanel {
         areaField.setType(ListGridFieldType.INTEGER);
         areaField.setCellFormatter(new CellFormatter() {
             public String format(Object value, ListGridRecord record, int rowNum, int colNum) {
-                NumberFormat nf = NumberFormat.getFormat("0,000");
-                String val = nf.format(((Number) value).longValue());
+                if(value == null) return null;
+
+                String val = null;
+                try {
+                    NumberFormat nf = NumberFormat.getFormat("0,000");
+                    val = nf.format(((Number) value).longValue());
+                } catch (Exception e) {
+                    return value.toString();
+                }
                 return val + "km&sup2";
             }
         });

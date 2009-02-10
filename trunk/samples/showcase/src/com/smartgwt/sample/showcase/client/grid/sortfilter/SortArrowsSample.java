@@ -56,15 +56,26 @@ public class SortArrowsSample extends ShowcasePanel {
         ListGridField populationField = new ListGridField("population", "Population");
         populationField.setCellFormatter(new CellFormatter() {
             public String format(Object value, ListGridRecord record, int rowNum, int colNum) {
-                return nf.format(((Number) value).longValue());
+                if(value == null) return null;
+                try {
+                    return nf.format(((Number) value).longValue());
+                } catch (Exception e) {
+                    return value.toString();
+                }
             }
         });
         ListGridField areaField = new ListGridField("area", "Area (km&sup2;)");
         areaField.setType(ListGridFieldType.INTEGER);
         areaField.setCellFormatter(new CellFormatter() {
             public String format(Object value, ListGridRecord record, int rowNum, int colNum) {
+                if(value == null) return null;
                 NumberFormat nf = NumberFormat.getFormat("0,000");
-                String val = nf.format(((Number) value).longValue());
+                String val = null;
+                try {
+                    val = nf.format(((Number) value).longValue());
+                } catch (Exception e) {
+                    return value.toString();
+                }
                 return val + "km&sup2";
             }
         });
