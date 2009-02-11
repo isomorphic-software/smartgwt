@@ -2,6 +2,7 @@ package com.smartgwt.sample.showcase.client.tree;
 
 import com.smartgwt.client.data.Criteria;
 import com.smartgwt.client.widgets.Canvas;
+import com.smartgwt.client.widgets.layout.VLayout;
 import com.smartgwt.client.widgets.form.SearchForm;
 import com.smartgwt.client.widgets.form.fields.PickTreeItem;
 import com.smartgwt.client.widgets.form.fields.events.ChangedEvent;
@@ -18,6 +19,9 @@ public class TreeEditingSample extends ShowcasePanel {
 	private static final String DESCRIPTION = "" +
             "<p>First choose an employee via the menu to see that employee's direct reports in the ListGrid.</p>" +
             "<p>Click on employees in the tree to edit them, and drag and drop employees to rearrange them. " +
+            "<p>Changing an employee's salary in the grid will be automatically reflected in the tree.</p>" +
+            "<p>Dragging an employee to another manager in the tree will make that employee appear or disappear " +
+            "in the grid if the grid is showing the original or new manager's employees.</p>" +
             "<p>Changes made in the tree or ListGrid are automatically saved to the server and reflected in the other components.</p>";
 
 	public static class Factory implements PanelFactory {
@@ -62,7 +66,6 @@ public class TreeEditingSample extends ShowcasePanel {
 		final ListGrid employeeGrid = new ListGrid();
 		employeeGrid.setWidth(500);
 		employeeGrid.setHeight(250);
-		employeeGrid.setTop(300);
         employeeGrid.setEmptyMessage("Select an Employee from the PickTree Item above.");
 		employeeGrid.setDataSource(EmployeeXmlDS.getInstance());
 		employeeGrid.setCanEdit(true);
@@ -85,15 +88,15 @@ public class TreeEditingSample extends ShowcasePanel {
 		SearchForm searchForm = new SearchForm();
 		searchForm.setWidth(200);
 		searchForm.setHeight(30);
-		searchForm.setTop(270);
 		searchForm.setFields(searchPickTree);
 				
-        Canvas mainView = new Canvas();
+        VLayout mainView = new VLayout(10);
         mainView.setHeight100();
         mainView.setWidth100();
-        mainView.addChild(employeeTree);
-		mainView.addChild(searchForm);
-		mainView.addChild(employeeGrid);
+
+		mainView.addMember(searchForm);
+		mainView.addMember(employeeGrid);
+        mainView.addMember(employeeTree);
 	
 		return mainView;
 	}
