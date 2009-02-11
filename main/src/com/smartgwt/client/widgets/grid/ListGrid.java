@@ -4740,8 +4740,16 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
     // ********************* Static Methods ***********************
 
 
-
-
+
+
+
+
+
+
+
+
+
+
 
     protected native void onInit() /*-{
 
@@ -5433,25 +5441,25 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
     }
 
     /**
-     * Returns the index of the row being edited or null if there is no current edit row.
+     * Returns the index of the row being edited or -1 if there is no current edit row.
      *
      * @return Index of the current edit row
      */
-    public native Integer getEditRow() /*-{
+    public native int getEditRow() /*-{
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
         var ret = self.getEditRow();
-        return @com.smartgwt.client.util.JSOHelper::toInteger(I)(ret);
+        return ret == null ? -1 : ret;
     }-*/;
 
     /**
-     * Returns the index of the column being edited or null if there is no edit col.
+     * Returns the index of the column being edited or -1 if there is no edit col.
      *
      * @return Index of the current edit column
      */
-    public native Integer getEditCol() /*-{
+    public native int getEditCol() /*-{
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
         var ret = self.getEditCol();
-        return @com.smartgwt.client.util.JSOHelper::toInteger(I)(ret);
+        return ret == null ? -1 : ret;
     }-*/;
     
     /**
