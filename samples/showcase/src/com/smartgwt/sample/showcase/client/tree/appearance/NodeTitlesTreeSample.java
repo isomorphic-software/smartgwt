@@ -107,7 +107,4 @@ public class NodeTitlesTreeSample extends ShowcasePanel {
         return DESCRIPTION;
     }
 
-    public String getSourceUrl() {
-        return "source/tree/appearance/NodeTitlesTreeSample.java.html";
-    }
 }
