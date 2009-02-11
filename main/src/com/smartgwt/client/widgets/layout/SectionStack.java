@@ -500,6 +500,74 @@ public class SectionStack extends VLayout {
         container.moveSection(sectionID, position);
     }-*/;
 
+    /**
+     * Returns true if the specified section is expanded, false if it is collapsed.
+     *
+     * @param index position of the section in the SectionStack
+     * @return true if the section is expanded, false if it is not.
+     */
+    public native boolean sectionIsExpanded(int index) /*-{
+	    var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
+	    return self.sectionIsExpanded(index);
+    }-*/;
+
+    /**
+     * Returns true if the specified section is expanded, false if it is collapsed.
+     *
+     * @param sectionID the section ID
+     * @return true if the section is expanded, false if it is not.
+     */
+    public native boolean sectionIsExpanded(String sectionID) /*-{
+        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
+   	    return self.sectionIsExpanded(sectionID);
+    }-*/;
+
+    /**
+     * Returns true if the specified section is visible, false if it is not. A section is visible if it shows a header
+     * and the header is visible or if it has items and the first item is visible. .
+     *
+     * @param index position of the section in the SectionStack
+     * @return ttrue if the section is visible, false if it is not
+     */
+    public native boolean sectionIsVisible(int index) /*-{
+	    var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
+	    return self.sectionIsVisible(index);
+    }-*/;
+
+    /**
+     * Returns true if the specified section is visible, false if it is not. A section is visible if it shows a header
+     * and the header is visible or if it has items and the first item is visible.
+     *
+     * @param sectionID the section ID
+     * @return true if the section is visible, false if it is not
+     */
+    public native boolean sectionIsVisible(String sectionID) /*-{
+        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
+   	    return self.sectionIsVisible(sectionID);
+    }-*/;
+
+    /**
+     * Changes the title of a Section Header.
+     *
+     * @param sectionID ID of the section whose title you want to change
+     * @param newTitle new title for the Section Header
+     */
+    public native void setSectionTitle(String sectionID, String newTitle) /*-{
+        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
+   	    return self.setSectionTitle(sectionID, newTitle);
+    }-*/;
+
+    /**
+     * Changes the title of a Section Header.
+     *
+     * @param index index of the section whose title you want to change
+     * @param newTitle new title for the Section Header
+     */
+    public native void setSectionTitle(int index, String newTitle) /*-{
+        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
+   	    return self.setSectionTitle(index, newTitle);
+    }-*/;
+
 
 }
 

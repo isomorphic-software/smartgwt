@@ -4054,25 +4054,7 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
 
 
 
-        /**
-         * Returns the index of the row being edited or null if there is no current edit row.
-         *
-         * @return Index of the current edit row
-         */
-        public native int getEditRow() /*-{
-            var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
-            return self.getEditRow();
-        }-*/;
 
-        /**
-         * Returns the index of the column being edited or null if there is no edit col.
-         *
-         * @return Index of the current edit column
-         */
-        public native int getEditCol() /*-{
-            var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
-            return self.getEditCol();
-        }-*/;
 
 
         /**
@@ -5450,6 +5432,28 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
         return objects;
     }
 
+    /**
+     * Returns the index of the row being edited or null if there is no current edit row.
+     *
+     * @return Index of the current edit row
+     */
+    public native Integer getEditRow() /*-{
+        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
+        var ret = self.getEditRow();
+        return @com.smartgwt.client.util.JSOHelper::toInteger(I)(ret);
+    }-*/;
+
+    /**
+     * Returns the index of the column being edited or null if there is no edit col.
+     *
+     * @return Index of the current edit column
+     */
+    public native Integer getEditCol() /*-{
+        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
+        var ret = self.getEditCol();
+        return @com.smartgwt.client.util.JSOHelper::toInteger(I)(ret);
+    }-*/;
+    
     /**
      * Uses a "fetch" operation on the current {@link com.smartgwt.client.data.DataSource} to retrieve data that matches
      * the provided criteria, and displays the matching data in this component. <P> If there are a large number of
