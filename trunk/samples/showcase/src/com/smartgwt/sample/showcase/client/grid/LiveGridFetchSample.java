@@ -42,8 +42,8 @@ public class LiveGridFetchSample extends ShowcasePanel {
     public Canvas getViewPanel() {
         DataSource dataSource = ItemSupplyXmlDS.getInstance();
 
-        ListGridField rowNum = new ListGridField("itemName");
-        rowNum.setWidth(70);
+        ListGridField rowNum = new ListGridField("itemNum", "Item No.");
+        rowNum.setWidth(65);
         rowNum.setCellFormatter(new CellFormatter() {
             public String format(Object value, ListGridRecord record, int rowNum, int colNum) {
                 return rowNum +"";

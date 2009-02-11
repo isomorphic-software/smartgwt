@@ -57,7 +57,7 @@ public class ButtonStatesSample extends ShowcasePanel {
         imgButton.setShowDown(false);
         imgButton.setSrc("[SKIN]/Window/minimize.png");
 
-        final Button button = new Button("Disable All");
+        final IButton button = new IButton("Disable All");
         button.setWidth(120);
         button.addClickHandler(new ClickHandler() {
             public void onClick(ClickEvent event) {

@@ -57,7 +57,7 @@ public class PrintingSample extends ShowcasePanel {
 
         SectionStack printStack = new SectionStack();
         printStack.setVisibilityMode(VisibilityMode.MULTIPLE);
-        printStack.setWidth(350);
+        printStack.setWidth(400);
         printStack.setHeight(455);
 
 

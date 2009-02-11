@@ -1,9 +1,9 @@
 package com.smartgwt.sample.showcase.client.forms;
 
 import com.smartgwt.client.core.Rectangle;
-import com.smartgwt.client.widgets.Button;
 import com.smartgwt.client.widgets.Canvas;
 import com.smartgwt.client.widgets.Dialog;
+import com.smartgwt.client.widgets.IButton;
 import com.smartgwt.client.widgets.form.DynamicForm;
 import com.smartgwt.client.widgets.form.fields.FormItemIcon;
 import com.smartgwt.client.widgets.form.fields.TextItem;
@@ -72,21 +72,21 @@ public class CustomPickerSample extends ShowcasePanel {
             bodyDefaults.put("membersMargin", 10);
             dialog.setBodyDefaults(bodyDefaults);
 
-            final Button yes = new Button("YES");
+            final IButton yes = new IButton("YES");
             yes.addClickHandler(new com.smartgwt.client.widgets.events.ClickHandler() {
                 public void onClick(com.smartgwt.client.widgets.events.ClickEvent event) {
                     YesNoMaybeItem.seCurrentValue(yes.getTitle());
                 }
             });
 
-            final Button no = new Button("NO");
+            final IButton no = new IButton("NO");
             no.addClickHandler(new com.smartgwt.client.widgets.events.ClickHandler() {
                 public void onClick(com.smartgwt.client.widgets.events.ClickEvent event) {
                     YesNoMaybeItem.seCurrentValue(no.getTitle());
                 }
             });
 
-            final Button maybe = new Button("MAYBE");
+            final IButton maybe = new IButton("MAYBE");
             maybe.addClickHandler(new com.smartgwt.client.widgets.events.ClickHandler() {
                 public void onClick(com.smartgwt.client.widgets.events.ClickEvent event) {
                     YesNoMaybeItem.seCurrentValue(maybe.getTitle());

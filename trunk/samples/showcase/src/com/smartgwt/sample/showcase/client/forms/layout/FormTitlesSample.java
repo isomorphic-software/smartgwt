@@ -1,8 +1,8 @@
 package com.smartgwt.sample.showcase.client.forms.layout;
 
 import com.smartgwt.client.types.TitleOrientation;
-import com.smartgwt.client.widgets.Button;
 import com.smartgwt.client.widgets.Canvas;
+import com.smartgwt.client.widgets.IButton;
 import com.smartgwt.client.widgets.events.ClickEvent;
 import com.smartgwt.client.widgets.events.ClickHandler;
 import com.smartgwt.client.widgets.form.DynamicForm;
@@ -67,7 +67,7 @@ public class FormTitlesSample extends ShowcasePanel {
 
         form.setFields(new FormItem[] {usernameItem, emailItem, passwordItem, password2Item});
         
-        Button swapButton = new Button("Swap titles");
+        IButton swapButton = new IButton("Swap titles");
         swapButton.setLeft(300);
         swapButton.addClickHandler(new ClickHandler() {
             public void onClick(ClickEvent event) {

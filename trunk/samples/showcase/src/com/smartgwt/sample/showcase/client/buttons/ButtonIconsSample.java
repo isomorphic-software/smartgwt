@@ -41,13 +41,13 @@ public class ButtonIconsSample extends ShowcasePanel {
         findButton.setWidth(120);
         findButton.setIcon("icons/16/find.png");
 
-        final Button saveButton = new Button("Save");
+        final IButton saveButton = new IButton("Save");
         saveButton.setShowRollOver(true);
         saveButton.setIcon("icons/16/icon_add_files.png");
         saveButton.setIconOrientation("right");
         saveButton.setShowDownIcon(true);
 
-        final Button button = new Button("Disable Save");
+        final IButton button = new IButton("Disable Save");
         button.setWidth(120);
         button.setLeft(60);
         button.setTop(45);
