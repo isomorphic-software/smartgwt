@@ -618,6 +618,8 @@ public class JSOHelper {
                 setAttribute(valueJS, key, ((String) value));
             } else if (value instanceof Boolean) {
                 setAttribute(valueJS, key, ((Boolean) value).booleanValue());
+            } else if (value == null) {
+                setNullAttribute(valueJS, key);
             } else {
                 throw new IllegalArgumentException("Unsupported type for attribute " + key + " : " + value);
             }

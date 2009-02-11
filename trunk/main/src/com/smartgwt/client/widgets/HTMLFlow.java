@@ -307,6 +307,7 @@ public class HTMLFlow extends Canvas  implements com.smartgwt.client.widgets.eve
 
 
 
+
 
     /**
      * The default setting of 'null' or 'fragment' indicates that HTML loaded from {@link
@@ -347,6 +348,15 @@ public class HTMLFlow extends Canvas  implements com.smartgwt.client.widgets.eve
      */
     public ContentsType getContentsType() {
         return (ContentsType) EnumUtil.getEnum(ContentsType.values(), getAttribute("contentsType"));
+    }
+
+    /**
+     * Parameters to be sent to the contentsURL when fetching content.
+     *
+     * @param contentsURLParams parameters
+     */
+    public void setContentsURLParams(Map contentsURLParams) {
+        setAttribute("contentsURLParams", contentsURLParams, true);
     }
 
 }
