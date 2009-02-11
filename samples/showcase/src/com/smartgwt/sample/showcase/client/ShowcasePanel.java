@@ -10,6 +10,7 @@ import com.smartgwt.client.widgets.events.ClickEvent;
 import com.smartgwt.client.widgets.events.ClickHandler;
 import com.smartgwt.client.widgets.layout.HLayout;
 import com.smartgwt.client.widgets.layout.VLayout;
+import com.smartgwt.client.widgets.layout.LayoutSpacer;
 import com.smartgwt.client.widgets.tab.Tab;
 import com.smartgwt.client.widgets.tab.TabSet;
 
@@ -27,7 +28,7 @@ public abstract class ShowcasePanel extends VLayout {
             topBar.setHeight(30);
             topBar.setWidth100();
             
-            Canvas spacer = new Canvas();
+            LayoutSpacer spacer = new LayoutSpacer();
             spacer.setWidth100();
             topBar.addMember(spacer);
                
@@ -43,7 +44,7 @@ public abstract class ShowcasePanel extends VLayout {
             });              
             topBar.addMember(sourceButton);
            
-            spacer = new Canvas();
+            spacer = new LayoutSpacer();
             spacer.setWidth(10);
             topBar.addMember(spacer);
 

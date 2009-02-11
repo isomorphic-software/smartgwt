@@ -130,7 +130,4 @@ public class SectionsCustomControlsSample extends ShowcasePanel {
         return DESCRIPTION;
     }
 
-    public String getSourceUrl() {
-        return "source/sections/ExpandCollapseSample.java.html";
-    }
 }
