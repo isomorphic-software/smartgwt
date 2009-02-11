@@ -2,8 +2,8 @@ package com.smartgwt.sample.showcase.client.other;
 
 import com.smartgwt.client.util.BooleanCallback;
 import com.smartgwt.client.util.SC;
-import com.smartgwt.client.widgets.Button;
 import com.smartgwt.client.widgets.Canvas;
+import com.smartgwt.client.widgets.IButton;
 import com.smartgwt.client.widgets.Label;
 import com.smartgwt.client.widgets.events.ClickEvent;
 import com.smartgwt.client.widgets.events.ClickHandler;
@@ -39,7 +39,7 @@ public class DialogsSample extends ShowcasePanel {
         labelAnswer.setWidth(300);
 
 
-        Button buttonConfirm = new Button("Confirm");
+        IButton buttonConfirm = new IButton("Confirm");
         buttonConfirm.addClickHandler(new ClickHandler() {
             public void onClick(ClickEvent event) {
                 SC.confirm("Proceed with Operation get AJAX?", new BooleanCallback() {
@@ -54,7 +54,7 @@ public class DialogsSample extends ShowcasePanel {
             }
         });
 
-        Button buttonAsk = new Button("Ask");
+        IButton buttonAsk = new IButton("Ask");
         buttonAsk.setLeft(150);
         buttonAsk.addClickHandler(new ClickHandler() {
             public void onClick(ClickEvent event) {

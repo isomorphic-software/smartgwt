@@ -2,6 +2,7 @@ package com.smartgwt.sample.showcase.client.forms.layout;
 
 import com.smartgwt.client.widgets.Button;
 import com.smartgwt.client.widgets.Canvas;
+import com.smartgwt.client.widgets.IButton;
 import com.smartgwt.client.widgets.events.ClickEvent;
 import com.smartgwt.client.widgets.events.ClickHandler;
 import com.smartgwt.client.widgets.form.DynamicForm;
@@ -92,7 +93,7 @@ public class FormSplittingSample extends ShowcasePanel {
         
         theTabs.setTabs(item, stock);
         
-        Button submit = new Button();
+        IButton submit = new IButton();
         submit.setTitle("Submit");
         submit.addClickHandler(new ClickHandler() {
 			public void onClick(ClickEvent event) {

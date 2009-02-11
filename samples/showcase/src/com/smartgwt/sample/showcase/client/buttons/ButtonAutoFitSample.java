@@ -37,7 +37,7 @@ public class ButtonAutoFitSample extends ShowcasePanel {
 
         Canvas canvas = new Canvas();
 
-        final Button findButton = new Button("Find Related");
+        final IButton findButton = new IButton("Find Related");
         findButton.setAutoFit(true);
         findButton.setIcon("icons/16/find.png");
 
@@ -53,7 +53,7 @@ public class ButtonAutoFitSample extends ShowcasePanel {
         stack.addMember(searchButton);
         canvas.addChild(stack);
 
-        final Button button = new Button("Change Title");
+        final IButton button = new IButton("Change Title");
         button.setLeft(60);
         button.setTop(45);
         button.addClickHandler(new ClickHandler() {

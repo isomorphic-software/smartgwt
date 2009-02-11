@@ -1,7 +1,7 @@
 package com.smartgwt.sample.showcase.client.forms.layout;
 
-import com.smartgwt.client.widgets.Button;
 import com.smartgwt.client.widgets.Canvas;
+import com.smartgwt.client.widgets.IButton;
 import com.smartgwt.client.widgets.events.ClickEvent;
 import com.smartgwt.client.widgets.events.ClickHandler;
 import com.smartgwt.client.widgets.form.DynamicForm;
@@ -73,7 +73,7 @@ public class FormFillingSample extends ShowcasePanel {
         
         VLayout buttonLayout = new VLayout(10);        
         
-        Button shortMessageButton = new Button("Short message");
+        IButton shortMessageButton = new IButton("Short message");
         shortMessageButton.addClickHandler(new ClickHandler() {
             public void onClick(ClickEvent event) {
                 textCanvas.setContents(textCanvas.getPrefix() + "I'll be in town Saturday.  Give me a call on my cell and" +
@@ -81,7 +81,7 @@ public class FormFillingSample extends ShowcasePanel {
             }
         });
 
-        Button longMessageButton = new Button("Long message");
+        IButton longMessageButton = new IButton("Long message");
         longMessageButton.addClickHandler(new ClickHandler() {
             public void onClick(ClickEvent event) {
                 updateContents(textCanvas);

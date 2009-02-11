@@ -2,8 +2,8 @@ package com.smartgwt.sample.showcase.client.forms.validation;
 
 import com.smartgwt.client.data.DataSource;
 import com.smartgwt.client.data.fields.DataSourceTextField;
-import com.smartgwt.client.widgets.Button;
 import com.smartgwt.client.widgets.Canvas;
+import com.smartgwt.client.widgets.IButton;
 import com.smartgwt.client.widgets.events.ClickEvent;
 import com.smartgwt.client.widgets.events.ClickHandler;
 import com.smartgwt.client.widgets.form.DynamicForm;
@@ -53,7 +53,7 @@ public class FormValueTransformSample extends ShowcasePanel {
         form.setWidth(300);
         form.setDataSource(dataSource);
         
-        Button validateButton = new Button();
+        IButton validateButton = new IButton();
         validateButton.setTitle("Validate");
         validateButton.addClickHandler(new ClickHandler() {
 			public void onClick(ClickEvent event) {
