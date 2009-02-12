@@ -135,7 +135,8 @@ public class EditorExitEvent extends AbstractSmartEvent<EditorExitHandler>  impl
      */
     public  native EditCompletionEvent getEditCompletionEvent() /*-{
         var jsObj = this.@com.smartgwt.client.event.AbstractSmartEvent::jsObj;
-        return @com.smartgwt.client.types.EditCompletionEvent::valueOf(Ljava/lang/String;)(jsObj.editCompletionEvent);
+            var enumValues = @com.smartgwt.client.types.EditCompletionEvent::values()();
+            return @com.smartgwt.client.util.EnumUtil::getEnum([Lcom/smartgwt/client/types/ValueEnum;Ljava/lang/String;)(enumValues, jsObj.editCompletionEvent);
     }-*/;
 
     /**
