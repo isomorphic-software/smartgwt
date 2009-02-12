@@ -32,35 +32,37 @@ public enum EditCompletionEvent implements ValueEnum {
     /**
      * User started editing another row by double  clicking
      */
-    DOUBLE_CLICK("double_click"),
+    DOUBLE_CLICK("doubleClick"),
+
     /**
-     * Enter pressed.
+     * Enter pressed
      */
-    ENTER_KEYPRESS("enter_keypress"),
+    ENTER("enter"),
+
     /**
      * User pressed Escape.
      */
-    ESCAPE_KEYPRESS("escape_keypress"),
+    ESCAPE("escape"),
     /**
      * Up arrow key pressed.
      */
-    UP_ARROW_KEYPRESS("up_arrow_keypress"),
+    ARROW_UP("arrow_up"),
     /**
      * down arrow key.
      */
-    DOWN_ARROW_KEYPRESS("down_arrow_keypress"),
+    ARROW_DOWN("arrow_down"),
     /**
      * User pressed Tab.
      */
-    TAB_KEYPRESS("tab_keypress"),
+    TAB("tab"),
     /**
      * User pressed Shift+Tab.
      */
-    SHIFT_TAB_KEYPRESS("shift_tab_keypress"),
+    SHIFT_TAB("shift_tab"),
     /**
      * Edit moved to a different field (same row)
      */
-    EDIT_FIELD_CHANGE("edit_field_change"),
+    FIELD_CHANGE("field_change"),
     /**
      * Edit completed via explicit function call
      */
