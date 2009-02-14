@@ -48,7 +48,6 @@ public class SimpleSelectSample extends ShowcasePanel {
         selectedCountriesGrid.setFields(selectedCountriesField);
 
         final ListGrid countryGrid = new ListGrid();
-        countryGrid.setSelectionAppearance(SelectionAppearance.CHECKBOX);
         countryGrid.setWidth(500);
         countryGrid.setHeight(224);
         countryGrid.setAlternateRecordStyles(true);
