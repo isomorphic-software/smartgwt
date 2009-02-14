@@ -63,7 +63,7 @@ public class WindowModalitySample extends ShowcasePanel {
                 buttonTouchThis.setTitle("Can't Touch This");
                 final Window winModal = new Window();
                 winModal.setWidth(360);
-                winModal.setHeight(110);
+                winModal.setHeight(115);
                 winModal.setTitle("Modal Window");
                 winModal.setShowMinimizeButton(false);
                 winModal.setIsModal(true);
@@ -81,14 +81,11 @@ public class WindowModalitySample extends ShowcasePanel {
                 form.setLayoutAlign(VerticalAlignment.BOTTOM);
                 TextItem textItem = new TextItem();
                 textItem.setTitle("Text");
-                textItem.setHint("<nobr>A plain text field</nobr>");
                 DateItem dateItem = new DateItem();
                 dateItem.setTitle("Date");
-                dateItem.setHint("<nobr>Picklist based date input</nobr>");
                 DateItem dateItem2 = new DateItem();
                 dateItem2.setTitle("Date");
                 dateItem2.setUseTextField(true);
-                dateItem2.setHint("<nobr>Direct date input</nobr>");
                 form.setFields(new FormItem[] { textItem, dateItem, dateItem2 });
                 winModal.addItem(form);
                 winModal.show();
