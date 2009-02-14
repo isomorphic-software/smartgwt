@@ -1032,7 +1032,7 @@ public class DynamicForm extends Canvas  implements DataBoundComponent, com.smar
     }
 
     /**
-    * If true, when this component is first drawn, automatically call <code>this.fetchData()</code>
+    * If true, when this component is first drawn, automatically call <code>this.fetchData()</code> or <code>this.filterData()</code> depending on {@link com.smartgwt.client.widgets.form.DynamicForm#getAutoFetchAsFilter autoFetchAsFilter}. Criteria for this fetch may be picked up from {@link com.smartgwt.client.widgets.form.DynamicForm#getInitialCriteria initialCriteria}.
     *
     * @param autoFetchData autoFetchData Default value is false
     * @throws IllegalStateException this property cannot be changed after the component has been created
@@ -1041,7 +1041,7 @@ public class DynamicForm extends Canvas  implements DataBoundComponent, com.smar
         setAttribute("autoFetchData", autoFetchData, false);
     }
     /**
-     * If true, when this component is first drawn, automatically call <code>this.fetchData()</code>
+     * If true, when this component is first drawn, automatically call <code>this.fetchData()</code> or <code>this.filterData()</code> depending on {@link com.smartgwt.client.widgets.form.DynamicForm#getAutoFetchAsFilter autoFetchAsFilter}. Criteria for this fetch may be picked up from {@link com.smartgwt.client.widgets.form.DynamicForm#getInitialCriteria initialCriteria}.
      *
      *
      * @return Boolean
@@ -1049,6 +1049,26 @@ public class DynamicForm extends Canvas  implements DataBoundComponent, com.smar
      */
     public Boolean getAutoFetchData()  {
         return getAttributeAsBoolean("autoFetchData");
+    }
+
+    /**
+    * If {@link com.smartgwt.client.widgets.form.DynamicForm#getAutoFetchData autoFetchData} is <code>true</code>, this attribute determines whether the initial fetch operation should be performed via {@link com.smartgwt.client.widgets.form.DynamicForm#fetchData} or {@link com.smartgwt.client.widgets.form.DynamicForm#filterData}
+    *
+    * @param autoFetchAsFilter autoFetchAsFilter Default value is false
+    * @throws IllegalStateException this property cannot be changed after the component has been created
+    */
+    public void setAutoFetchAsFilter(Boolean autoFetchAsFilter)  throws IllegalStateException {
+        setAttribute("autoFetchAsFilter", autoFetchAsFilter, false);
+    }
+    /**
+     * If {@link com.smartgwt.client.widgets.form.DynamicForm#getAutoFetchData autoFetchData} is <code>true</code>, this attribute determines whether the initial fetch operation should be performed via {@link com.smartgwt.client.widgets.form.DynamicForm#fetchData} or {@link com.smartgwt.client.widgets.form.DynamicForm#filterData}
+     *
+     *
+     * @return Boolean
+     *
+     */
+    public Boolean getAutoFetchAsFilter()  {
+        return getAttributeAsBoolean("autoFetchAsFilter");
     }
             
     /**

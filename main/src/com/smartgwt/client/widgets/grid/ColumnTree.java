@@ -109,7 +109,7 @@ public class ColumnTree extends Layout  implements DataBoundComponent {
     }
 
     /**
-    * If true, when this component is first drawn, automatically call <code>this.fetchData()</code>
+    * If true, when this component is first drawn, automatically call <code>this.fetchData()</code> or <code>this.filterData()</code> depending on ${isc.DocUtils.linkForRef('autoFetchAsFilter')}. Criteria for this fetch may be picked up from ${isc.DocUtils.linkForRef('initialCriteria')}.
     *
     * @param autoFetchData autoFetchData Default value is false
     * @throws IllegalStateException this property cannot be changed after the component has been created
@@ -118,7 +118,7 @@ public class ColumnTree extends Layout  implements DataBoundComponent {
         setAttribute("autoFetchData", autoFetchData, false);
     }
     /**
-     * If true, when this component is first drawn, automatically call <code>this.fetchData()</code>
+     * If true, when this component is first drawn, automatically call <code>this.fetchData()</code> or <code>this.filterData()</code> depending on ${isc.DocUtils.linkForRef('autoFetchAsFilter')}. Criteria for this fetch may be picked up from ${isc.DocUtils.linkForRef('initialCriteria')}.
      *
      *
      * @return Boolean

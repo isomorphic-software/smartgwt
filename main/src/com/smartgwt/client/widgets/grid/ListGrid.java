@@ -84,7 +84,8 @@ import com.google.gwt.event.shared.HasHandlers;
 
 
 
-public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgwt.client.widgets.grid.events.HasFieldStateChangedHandlers, com.smartgwt.client.widgets.grid.events.HasEditCompleteHandlers, com.smartgwt.client.widgets.grid.events.HasEditFailedHandlers, com.smartgwt.client.widgets.grid.events.HasEditorExitHandlers, com.smartgwt.client.widgets.grid.events.HasRowEditorEnterHandlers, com.smartgwt.client.widgets.grid.events.HasRowEditorExitHandlers, com.smartgwt.client.widgets.grid.events.HasEditorEnterHandlers, com.smartgwt.client.widgets.grid.events.HasCellSavedHandlers, com.smartgwt.client.widgets.grid.events.HasCellOutHandlers, com.smartgwt.client.widgets.grid.events.HasCellOverHandlers, com.smartgwt.client.widgets.grid.events.HasCellContextClickHandlers, com.smartgwt.client.widgets.grid.events.HasCellMouseDownHandlers, com.smartgwt.client.widgets.grid.events.HasCellMouseUpHandlers, com.smartgwt.client.widgets.grid.events.HasCellClickHandlers, com.smartgwt.client.widgets.grid.events.HasCellDoubleClickHandlers, com.smartgwt.client.widgets.grid.events.HasRowOutHandlers, com.smartgwt.client.widgets.grid.events.HasRowOverHandlers, com.smartgwt.client.widgets.grid.events.HasRowContextClickHandlers, com.smartgwt.client.widgets.grid.events.HasRowMouseDownHandlers, com.smartgwt.client.widgets.grid.events.HasRowMouseUpHandlers, com.smartgwt.client.widgets.grid.events.HasRecordClickHandlers, com.smartgwt.client.widgets.grid.events.HasRecordDoubleClickHandlers, com.smartgwt.client.widgets.grid.events.HasCellHoverHandlers, com.smartgwt.client.widgets.grid.events.HasRowHoverHandlers, com.smartgwt.client.widgets.grid.events.HasSelectionChangedHandlers {
+
+public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgwt.client.widgets.grid.events.HasDataArrivedHandlers, com.smartgwt.client.widgets.grid.events.HasFieldStateChangedHandlers, com.smartgwt.client.widgets.grid.events.HasEditCompleteHandlers, com.smartgwt.client.widgets.grid.events.HasEditFailedHandlers, com.smartgwt.client.widgets.grid.events.HasEditorExitHandlers, com.smartgwt.client.widgets.grid.events.HasRowEditorEnterHandlers, com.smartgwt.client.widgets.grid.events.HasRowEditorExitHandlers, com.smartgwt.client.widgets.grid.events.HasEditorEnterHandlers, com.smartgwt.client.widgets.grid.events.HasCellSavedHandlers, com.smartgwt.client.widgets.grid.events.HasCellOutHandlers, com.smartgwt.client.widgets.grid.events.HasCellOverHandlers, com.smartgwt.client.widgets.grid.events.HasCellContextClickHandlers, com.smartgwt.client.widgets.grid.events.HasCellMouseDownHandlers, com.smartgwt.client.widgets.grid.events.HasCellMouseUpHandlers, com.smartgwt.client.widgets.grid.events.HasCellClickHandlers, com.smartgwt.client.widgets.grid.events.HasCellDoubleClickHandlers, com.smartgwt.client.widgets.grid.events.HasRowOutHandlers, com.smartgwt.client.widgets.grid.events.HasRowOverHandlers, com.smartgwt.client.widgets.grid.events.HasRowContextClickHandlers, com.smartgwt.client.widgets.grid.events.HasRowMouseDownHandlers, com.smartgwt.client.widgets.grid.events.HasRowMouseUpHandlers, com.smartgwt.client.widgets.grid.events.HasRecordClickHandlers, com.smartgwt.client.widgets.grid.events.HasRecordDoubleClickHandlers, com.smartgwt.client.widgets.grid.events.HasCellHoverHandlers, com.smartgwt.client.widgets.grid.events.HasRowHoverHandlers, com.smartgwt.client.widgets.grid.events.HasSelectionChangedHandlers {
 
     public static ListGrid getOrCreateRef(JavaScriptObject jsObj) {
         if(jsObj == null) return null;
@@ -98,7 +99,7 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
 
 
     public ListGrid(){
-        
+        setModalEditing(true);
     }
 
     public ListGrid(JavaScriptObject jsObj){
@@ -114,7 +115,7 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
     // ********************* Properties / Attributes ***********************
 
     /**
-    * If true, when this component is first drawn, automatically call <code>this.fetchData()</code>
+    * If true, when this component is first drawn, automatically call <code>this.fetchData()</code> or <code>this.filterData()</code> depending on {@link com.smartgwt.client.widgets.grid.ListGrid#getAutoFetchAsFilter autoFetchAsFilter}. Criteria for this fetch may be picked up from {@link com.smartgwt.client.widgets.grid.ListGrid#getInitialCriteria initialCriteria}.
     *
     * @param autoFetchData autoFetchData Default value is false
     * @throws IllegalStateException this property cannot be changed after the component has been created
@@ -123,7 +124,7 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
         setAttribute("autoFetchData", autoFetchData, false);
     }
     /**
-     * If true, when this component is first drawn, automatically call <code>this.fetchData()</code>
+     * If true, when this component is first drawn, automatically call <code>this.fetchData()</code> or <code>this.filterData()</code> depending on {@link com.smartgwt.client.widgets.grid.ListGrid#getAutoFetchAsFilter autoFetchAsFilter}. Criteria for this fetch may be picked up from {@link com.smartgwt.client.widgets.grid.ListGrid#getInitialCriteria initialCriteria}.
      *
      *
      * @return Boolean
@@ -1460,6 +1461,86 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
     }
 
     /**
+    * If {@link com.smartgwt.client.widgets.grid.ListGrid#getSelectionAppearance selectionAppearance} is set to <code>"checkbox"</code> this property determines the image to display in the checkbox field for a selected row. If unset, the {@link com.smartgwt.client.widgets.grid.ListGrid#getBooleanTrueImage booleanTrueImage} will be used.
+    * <p><b>Note : </b> This is an advanced setting</p>
+    *
+    * @param checkboxFieldTrueImage checkboxFieldTrueImage Default value is null
+    */
+    public void setCheckboxFieldTrueImage(String checkboxFieldTrueImage) {
+        setAttribute("checkboxFieldTrueImage", checkboxFieldTrueImage, true);
+    }
+    /**
+     * If {@link com.smartgwt.client.widgets.grid.ListGrid#getSelectionAppearance selectionAppearance} is set to <code>"checkbox"</code> this property determines the image to display in the checkbox field for a selected row. If unset, the {@link com.smartgwt.client.widgets.grid.ListGrid#getBooleanTrueImage booleanTrueImage} will be used.
+     *
+     *
+     * @return String
+     *
+     */
+    public String getCheckboxFieldTrueImage()  {
+        return getAttributeAsString("checkboxFieldTrueImage");
+    }
+
+    /**
+    * If {@link com.smartgwt.client.widgets.grid.ListGrid#getSelectionAppearance selectionAppearance} is set to <code>"checkbox"</code> this property determines the image to display in the checkbox field for an unselected row. If unset, the {@link com.smartgwt.client.widgets.grid.ListGrid#getBooleanFalseImage booleanFalseImage} will be used.
+    * <p><b>Note : </b> This is an advanced setting</p>
+    *
+    * @param checkboxFieldFalseImage checkboxFieldFalseImage Default value is null
+    */
+    public void setCheckboxFieldFalseImage(String checkboxFieldFalseImage) {
+        setAttribute("checkboxFieldFalseImage", checkboxFieldFalseImage, true);
+    }
+    /**
+     * If {@link com.smartgwt.client.widgets.grid.ListGrid#getSelectionAppearance selectionAppearance} is set to <code>"checkbox"</code> this property determines the image to display in the checkbox field for an unselected row. If unset, the {@link com.smartgwt.client.widgets.grid.ListGrid#getBooleanFalseImage booleanFalseImage} will be used.
+     *
+     *
+     * @return String
+     *
+     */
+    public String getCheckboxFieldFalseImage()  {
+        return getAttributeAsString("checkboxFieldFalseImage");
+    }
+
+    /**
+    * If {@link com.smartgwt.client.widgets.grid.ListGrid#getSelectionAppearance selectionAppearance} is set to <code>"checkbox"</code> this property may be set to govern the width of the checkbox image displayed to indicate whether a row is selected. If unset, the checkboxField image will be sized to match the {@link com.smartgwt.client.widgets.grid.ListGrid#getBooleanImageWidth booleanImageWidth} for this grid.
+    *
+    * @param checkboxFieldImageWidth checkboxFieldImageWidth Default value is null
+    * @throws IllegalStateException this property cannot be changed after the component has been created
+    */
+    public void setCheckboxFieldImageWidth(Integer checkboxFieldImageWidth)  throws IllegalStateException {
+        setAttribute("checkboxFieldImageWidth", checkboxFieldImageWidth, false);
+    }
+    /**
+     * If {@link com.smartgwt.client.widgets.grid.ListGrid#getSelectionAppearance selectionAppearance} is set to <code>"checkbox"</code> this property may be set to govern the width of the checkbox image displayed to indicate whether a row is selected. If unset, the checkboxField image will be sized to match the {@link com.smartgwt.client.widgets.grid.ListGrid#getBooleanImageWidth booleanImageWidth} for this grid.
+     *
+     *
+     * @return Integer
+     *
+     */
+    public Integer getCheckboxFieldImageWidth()  {
+        return getAttributeAsInt("checkboxFieldImageWidth");
+    }
+
+    /**
+    * If {@link com.smartgwt.client.widgets.grid.ListGrid#getSelectionAppearance selectionAppearance} is set to <code>"checkbox"</code> this property may be set to govern the height of the checkbox image displayed to indicate whether a row is selected. If unset, the checkboxField image will be sized to match the {@link com.smartgwt.client.widgets.grid.ListGrid#getBooleanImageHeight booleanImageHeight} for this grid.
+    *
+    * @param checkboxFieldImageHeight checkboxFieldImageHeight Default value is null
+    * @throws IllegalStateException this property cannot be changed after the component has been created
+    */
+    public void setCheckboxFieldImageHeight(Integer checkboxFieldImageHeight)  throws IllegalStateException {
+        setAttribute("checkboxFieldImageHeight", checkboxFieldImageHeight, false);
+    }
+    /**
+     * If {@link com.smartgwt.client.widgets.grid.ListGrid#getSelectionAppearance selectionAppearance} is set to <code>"checkbox"</code> this property may be set to govern the height of the checkbox image displayed to indicate whether a row is selected. If unset, the checkboxField image will be sized to match the {@link com.smartgwt.client.widgets.grid.ListGrid#getBooleanImageHeight booleanImageHeight} for this grid.
+     *
+     *
+     * @return Integer
+     *
+     */
+    public Integer getCheckboxFieldImageHeight()  {
+        return getAttributeAsInt("checkboxFieldImageHeight");
+    }
+
+    /**
     * Indicates whether the text of the emptyMessage property should be displayed if no data is available.
     *
     * @param showEmptyMessage showEmptyMessage Default value is true
@@ -1649,6 +1730,26 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
      */
     public int getFilterEditorHeight()  {
         return getAttributeAsInt("filterEditorHeight");
+    }
+
+    /**
+    * Determines whether {@link com.smartgwt.client.widgets.grid.ListGrid#filterData} or {@link com.smartgwt.client.widgets.grid.ListGrid#fetchData} should be called when this grid is initially filtered via {@link com.smartgwt.client.widgets.grid.ListGrid#getAutoFetchData autoFetchData}, or filtered by the user via the {@link com.smartgwt.client.widgets.grid.ListGrid#getShowFilterEditor showFilterEditor}.
+    *
+    * @param autoFetchAsFilter autoFetchAsFilter Default value is true
+    * @throws IllegalStateException this property cannot be changed after the component has been created
+    */
+    public void setAutoFetchAsFilter(Boolean autoFetchAsFilter)  throws IllegalStateException {
+        setAttribute("autoFetchAsFilter", autoFetchAsFilter, false);
+    }
+    /**
+     * Determines whether {@link com.smartgwt.client.widgets.grid.ListGrid#filterData} or {@link com.smartgwt.client.widgets.grid.ListGrid#fetchData} should be called when this grid is initially filtered via {@link com.smartgwt.client.widgets.grid.ListGrid#getAutoFetchData autoFetchData}, or filtered by the user via the {@link com.smartgwt.client.widgets.grid.ListGrid#getShowFilterEditor showFilterEditor}.
+     *
+     *
+     * @return Boolean
+     *
+     */
+    public Boolean getAutoFetchAsFilter()  {
+        return getAttributeAsBoolean("autoFetchAsFilter");
     }
 
     /**
@@ -2869,7 +2970,7 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
     }
 
     /**
-    * Width for the {@link com.smartgwt.client.widgets.grid.ListGrid#getBooleanTrueImage booleanTrueImage} and {@link com.smartgwt.client.widgets.grid.ListGrid#getBooleanFalseImage booleanFalseImage}
+    * Width for the {@link com.smartgwt.client.widgets.grid.ListGrid#getBooleanTrueImage booleanTrueImage} and {@link com.smartgwt.client.widgets.grid.ListGrid#getBooleanFalseImage booleanFalseImage}. Note: If {@link com.smartgwt.client.widgets.grid.ListGrid#getBooleanTrueImage booleanTrueImage} is unset, the {@link com.smartgwt.client.widgets.form.fields.CheckboxItem#getCheckedImage checkedImage} will be used to indicate a true value in a boolean field. In this case this property is ignored in favor of {@link com.smartgwt.client.widgets.form.fields.CheckboxItem#getValueIconWidth valueIconWidth}.
     * <p><b>Note : </b> This is an advanced setting</p>
     *
     * @param booleanImageWidth booleanImageWidth Default value is 16
@@ -2878,7 +2979,7 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
         setAttribute("booleanImageWidth", booleanImageWidth, true);
     }
     /**
-     * Width for the {@link com.smartgwt.client.widgets.grid.ListGrid#getBooleanTrueImage booleanTrueImage} and {@link com.smartgwt.client.widgets.grid.ListGrid#getBooleanFalseImage booleanFalseImage}
+     * Width for the {@link com.smartgwt.client.widgets.grid.ListGrid#getBooleanTrueImage booleanTrueImage} and {@link com.smartgwt.client.widgets.grid.ListGrid#getBooleanFalseImage booleanFalseImage}. Note: If {@link com.smartgwt.client.widgets.grid.ListGrid#getBooleanTrueImage booleanTrueImage} is unset, the {@link com.smartgwt.client.widgets.form.fields.CheckboxItem#getCheckedImage checkedImage} will be used to indicate a true value in a boolean field. In this case this property is ignored in favor of {@link com.smartgwt.client.widgets.form.fields.CheckboxItem#getValueIconWidth valueIconWidth}.
      *
      *
      * @return int
@@ -2889,7 +2990,7 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
     }
 
     /**
-    * Height for the {@link com.smartgwt.client.widgets.grid.ListGrid#getBooleanTrueImage booleanTrueImage} and the {@link com.smartgwt.client.widgets.grid.ListGrid#getBooleanFalseImage booleanFalseImage}
+    * Height for the {@link com.smartgwt.client.widgets.grid.ListGrid#getBooleanTrueImage booleanTrueImage} and the {@link com.smartgwt.client.widgets.grid.ListGrid#getBooleanFalseImage booleanFalseImage} Note: If {@link com.smartgwt.client.widgets.grid.ListGrid#getBooleanTrueImage booleanTrueImage} is unset, the {@link com.smartgwt.client.widgets.form.fields.CheckboxItem#getCheckedImage checkedImage} will be used to indicate a true value in a boolean field. In this case this property is ignored in favor of {@link com.smartgwt.client.widgets.form.fields.CheckboxItem#getValueIconHeight valueIconHeight}.
     * <p><b>Note : </b> This is an advanced setting</p>
     *
     * @param booleanImageHeight booleanImageHeight Default value is 16
@@ -2898,7 +2999,7 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
         setAttribute("booleanImageHeight", booleanImageHeight, true);
     }
     /**
-     * Height for the {@link com.smartgwt.client.widgets.grid.ListGrid#getBooleanTrueImage booleanTrueImage} and the {@link com.smartgwt.client.widgets.grid.ListGrid#getBooleanFalseImage booleanFalseImage}
+     * Height for the {@link com.smartgwt.client.widgets.grid.ListGrid#getBooleanTrueImage booleanTrueImage} and the {@link com.smartgwt.client.widgets.grid.ListGrid#getBooleanFalseImage booleanFalseImage} Note: If {@link com.smartgwt.client.widgets.grid.ListGrid#getBooleanTrueImage booleanTrueImage} is unset, the {@link com.smartgwt.client.widgets.form.fields.CheckboxItem#getCheckedImage checkedImage} will be used to indicate a true value in a boolean field. In this case this property is ignored in favor of {@link com.smartgwt.client.widgets.form.fields.CheckboxItem#getValueIconHeight valueIconHeight}.
      *
      *
      * @return int
@@ -3105,7 +3206,7 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
 
 
         /**
-         * Uses a "fetch" operation on the current {@link com.smartgwt.client.data.DataSource} to retrieve data that matches the current filter and sort criteria for this component, then exports the  resulting data to a file or window in the requested format. <P> This method takes an optional callback parameter (set to a ${isc.DocUtils.linkForRef('type:DSCallback')}) to fire when the fetch completes. <P>
+         * Uses a "fetch" operation on the current {@link com.smartgwt.client.data.DataSource} to retrieve data that matches the current filter and sort criteria for this component, then exports the  resulting data to a file or window in the requested format. <P> For more information on exporting data, see {@link com.smartgwt.client.data.DataSource#exportData}.
          */
         public native void exportData() /*-{
             var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
@@ -3113,13 +3214,12 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
         }-*/;
 
         /**
-         * Uses a "fetch" operation on the current {@link com.smartgwt.client.data.DataSource} to retrieve data that matches the current filter and sort criteria for this component, then exports the  resulting data to a file or window in the requested format. <P> This method takes an optional callback parameter (set to a ${isc.DocUtils.linkForRef('type:DSCallback')}) to fire when the fetch completes. <P>
-         * @param callback callback to invoke when a export is complete. Fires                                          only if server contact was required
-     * @param requestProperties additional properties to set on the DSRequest                                            that will be issued
+         * Uses a "fetch" operation on the current {@link com.smartgwt.client.data.DataSource} to retrieve data that matches the current filter and sort criteria for this component, then exports the  resulting data to a file or window in the requested format. <P> For more information on exporting data, see {@link com.smartgwt.client.data.DataSource#exportData}.
+         * @param requestProperties additional properties to set on the DSRequest                                            that will be issued
          */
-        public native void exportData(DSCallback callback, DSRequest requestProperties) /*-{
+        public native void exportData(DSRequest requestProperties) /*-{
             var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
-            self.exportData(callback, requestProperties.@com.smartgwt.client.core.DataClass::getJsObj()());
+            self.exportData(requestProperties.@com.smartgwt.client.core.DataClass::getJsObj()());
         }-*/;
 
 
@@ -4737,19 +4837,43 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
             }
         }-*/;
 
+
+
+        /**
+         * Add a dataArrived handler.
+         *
+         * @param handler the dataArrived handler
+         */
+        public HandlerRegistration addDataArrivedHandler(com.smartgwt.client.widgets.grid.events.DataArrivedHandler handler) {
+            if(manager.getHandlerCount(com.smartgwt.client.widgets.grid.events.DataArrivedEvent.getType()) == 0) setupDataArrivedEvent();
+            return manager.addHandler(com.smartgwt.client.widgets.grid.events.DataArrivedEvent.getType(), handler);
+        }
+        private native void setupDataArrivedEvent() /*-{
+            var obj = null;
+            var managerJ = this.@com.smartgwt.client.widgets.BaseWidget::manager;
+            if(this.@com.smartgwt.client.widgets.BaseWidget::isCreated()()) {
+                obj = this.@com.smartgwt.client.widgets.BaseWidget::getJsObj()();
+                obj.addProperties({dataArrived:function(){
+                        var param = {"startRow" : arguments[0], "endRow" : arguments[1]};
+                        var event = @com.smartgwt.client.widgets.grid.events.DataArrivedEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
+                        managerJ.@com.google.gwt.event.shared.HandlerManager::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
+                    }
+                });
+            } else {
+                obj = this.@com.smartgwt.client.widgets.BaseWidget::getConfig()();
+                obj.dataArrived = function(){
+                    var param = {"startRow" : arguments[0], "endRow" : arguments[1]};
+                    var event = @com.smartgwt.client.widgets.grid.events.DataArrivedEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
+                    managerJ.@com.google.gwt.event.shared.HandlerManager::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
+                };
+            }
+        }-*/;
+
     // ********************* Static Methods ***********************
 
 
-
-
-
-
-
-
-
-
-
-
+
+
 
     protected native void onInit() /*-{
 

@@ -469,6 +469,66 @@ public class Calendar extends Canvas  implements DataBoundComponent, com.smartgw
     }
 
     /**
+    * The name of the end date field in a ${isc.DocUtils.linkForRef('object:CalendarEvent')}.
+    *
+    * @param leadingDateField leadingDateField Default value is "leadingDate"
+    * @throws IllegalStateException this property cannot be changed after the component has been created
+    */
+    public void setLeadingDateField(String leadingDateField)  throws IllegalStateException {
+        setAttribute("leadingDateField", leadingDateField, false);
+    }
+    /**
+     * The name of the end date field in a ${isc.DocUtils.linkForRef('object:CalendarEvent')}.
+     *
+     *
+     * @return String
+     *
+     */
+    public String getLeadingDateField()  {
+        return getAttributeAsString("leadingDateField");
+    }
+
+    /**
+    * The name of the end date field in a ${isc.DocUtils.linkForRef('object:CalendarEvent')}.
+    *
+    * @param trailingDateField trailingDateField Default value is "trailingDate"
+    * @throws IllegalStateException this property cannot be changed after the component has been created
+    */
+    public void setTrailingDateField(String trailingDateField)  throws IllegalStateException {
+        setAttribute("trailingDateField", trailingDateField, false);
+    }
+    /**
+     * The name of the end date field in a ${isc.DocUtils.linkForRef('object:CalendarEvent')}.
+     *
+     *
+     * @return String
+     *
+     */
+    public String getTrailingDateField()  {
+        return getAttributeAsString("trailingDateField");
+    }
+
+    /**
+    * The name of the end date field in a ${isc.DocUtils.linkForRef('object:CalendarEvent')}.
+    *
+    * @param eventTypeField eventTypeField Default value is "eventType"
+    * @throws IllegalStateException this property cannot be changed after the component has been created
+    */
+    public void setEventTypeField(String eventTypeField)  throws IllegalStateException {
+        setAttribute("eventTypeField", eventTypeField, false);
+    }
+    /**
+     * The name of the end date field in a ${isc.DocUtils.linkForRef('object:CalendarEvent')}.
+     *
+     *
+     * @return String
+     *
+     */
+    public String getEventTypeField()  {
+        return getAttributeAsString("eventTypeField");
+    }
+
+    /**
     * The name of the field used to override {@link com.smartgwt.client.widgets.calendar.Calendar#getEventWindowStyle eventWindowStyle} for an individual ${isc.DocUtils.linkForRef('object:CalendarEvent')}.  See {@link com.smartgwt.client.widgets.calendar.CalendarEvent#getEventWindowStyle eventWindowStyle}.
     *
     * @param eventWindowStyleField eventWindowStyleField Default value is "eventWindowStyle"
@@ -829,7 +889,7 @@ public class Calendar extends Canvas  implements DataBoundComponent, com.smartgw
     }
 
     /**
-    * If true, when this component is first drawn, automatically call <code>this.fetchData()</code>
+    * If true, when this component is first drawn, automatically call <code>this.fetchData()</code> or <code>this.filterData()</code> depending on ${isc.DocUtils.linkForRef('autoFetchAsFilter')}. Criteria for this fetch may be picked up from {@link com.smartgwt.client.widgets.calendar.Calendar#getInitialCriteria initialCriteria}.
     *
     * @param autoFetchData autoFetchData Default value is false
     * @throws IllegalStateException this property cannot be changed after the component has been created
@@ -838,7 +898,7 @@ public class Calendar extends Canvas  implements DataBoundComponent, com.smartgw
         setAttribute("autoFetchData", autoFetchData, false);
     }
     /**
-     * If true, when this component is first drawn, automatically call <code>this.fetchData()</code>
+     * If true, when this component is first drawn, automatically call <code>this.fetchData()</code> or <code>this.filterData()</code> depending on ${isc.DocUtils.linkForRef('autoFetchAsFilter')}. Criteria for this fetch may be picked up from {@link com.smartgwt.client.widgets.calendar.Calendar#getInitialCriteria initialCriteria}.
      *
      *
      * @return Boolean
@@ -852,17 +912,6 @@ public class Calendar extends Canvas  implements DataBoundComponent, com.smartgw
 
 
 
-        /**
-         * Create a new event in this calendar instance.
-         * @param startDate start date of event
-     * @param endDate end date of event
-     * @param name name of event
-     * @param description description of event
-         */
-        public native void addEvent(Date startDate, Date endDate, String name, String description) /*-{
-            var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
-            self.addEvent(startDate, endDate, name, description);
-        }-*/;
 
 
 
@@ -1123,7 +1172,7 @@ public class Calendar extends Canvas  implements DataBoundComponent, com.smartgw
 
 
 
-
+
 
 
 
@@ -1248,16 +1297,34 @@ public class Calendar extends Canvas  implements DataBoundComponent, com.smartgw
     public void setInitialCriteria(Criteria initialCriteria) throws IllegalStateException {
         setAttribute("initialCriteria", initialCriteria, false);
     }
+
     /**
-     * Criteria to be used when {@link com.smartgwt.client.widgets.calendar.Calendar#getAutoFetchData autoFetchData} is set.
+     * Create a new event in this calendar instance.
      *
-     *
-     * @return Unhandled-Criteria
-     *
+     * @param startDate   start date of event
+     * @param endDate     end date of event
+     * @param name        name of event
+     * @param description description of event
      */
-/*    public Criteria getInitialCriteria()  {
-        return getAttribute("initialCriteria");
-    }*/
+    public native void addEvent(Date startDate, Date endDate, String name, String description) /*-{
+        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
+        self.addEvent(startDate, endDate, name, description);
+    }-*/;
+
+    /**
+     * Create a new event in this calendar instance.
+     *
+     * @param startDate   start date of event
+     * @param endDate     end date of event
+     * @param name        name of event
+     * @param description description of event
+     * @param otherFields new values of additional fields to be updated
+     */
+    public native void addEvent(Date startDate, Date endDate, String name, String description, Map otherFields) /*-{
+        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
+        var otherFieldsJS = @com.smartgwt.client.util.JSOHelper::convertMapToJavascriptObject(Ljava/util/Map;)(otherFields);
+        self.addEvent(startDate, endDate, name, description, otherFieldsJS);
+    }-*/;
 
     /**
      * Remove an event from this calendar.

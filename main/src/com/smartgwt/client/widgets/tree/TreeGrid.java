@@ -67,7 +67,8 @@ import com.google.gwt.event.shared.HasHandlers;
 
 
 
-public class TreeGrid extends ListGrid  implements DataBoundComponent, com.smartgwt.client.widgets.tree.events.HasFolderOpenedHandlers, com.smartgwt.client.widgets.tree.events.HasFolderClosedHandlers, com.smartgwt.client.widgets.tree.events.HasFolderClickHandlers, com.smartgwt.client.widgets.tree.events.HasLeafClickHandlers, com.smartgwt.client.widgets.tree.events.HasNodeClickHandlers, com.smartgwt.client.widgets.tree.events.HasFolderContextClickHandlers, com.smartgwt.client.widgets.tree.events.HasLeafContextClickHandlers, com.smartgwt.client.widgets.tree.events.HasNodeContextClickHandlers {
+
+public class TreeGrid extends ListGrid  implements DataBoundComponent, com.smartgwt.client.widgets.tree.events.HasDataArrivedHandlers, com.smartgwt.client.widgets.tree.events.HasFolderOpenedHandlers, com.smartgwt.client.widgets.tree.events.HasFolderClosedHandlers, com.smartgwt.client.widgets.tree.events.HasFolderClickHandlers, com.smartgwt.client.widgets.tree.events.HasLeafClickHandlers, com.smartgwt.client.widgets.tree.events.HasNodeClickHandlers, com.smartgwt.client.widgets.tree.events.HasFolderContextClickHandlers, com.smartgwt.client.widgets.tree.events.HasLeafContextClickHandlers, com.smartgwt.client.widgets.tree.events.HasNodeContextClickHandlers {
 
     public static TreeGrid getOrCreateRef(JavaScriptObject jsObj) {
         if(jsObj == null) return null;
@@ -81,7 +82,7 @@ public class TreeGrid extends ListGrid  implements DataBoundComponent, com.smart
 
 
     public TreeGrid(){
-        setAnimateFolderTime(100);setAnimateFolderSpeed(1000);
+        
     }
 
     public TreeGrid(JavaScriptObject jsObj){
@@ -1244,6 +1245,37 @@ public class TreeGrid extends ListGrid  implements DataBoundComponent, com.smart
                     managerJ.@com.google.gwt.event.shared.HandlerManager::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
                     var ret = event.@com.smartgwt.client.event.Cancellable::isCancelled()();
                     return !ret;
+                };
+            }
+        }-*/;
+
+
+        /**
+         * Add a dataArrived handler.
+         *
+         * @param handler the dataArrived handler
+         */
+        public HandlerRegistration addDataArrivedHandler(com.smartgwt.client.widgets.tree.events.DataArrivedHandler handler) {
+            if(manager.getHandlerCount(com.smartgwt.client.widgets.tree.events.DataArrivedEvent.getType()) == 0) setupDataArrivedEvent();
+            return manager.addHandler(com.smartgwt.client.widgets.tree.events.DataArrivedEvent.getType(), handler);
+        }
+        private native void setupDataArrivedEvent() /*-{
+            var obj = null;
+            var managerJ = this.@com.smartgwt.client.widgets.BaseWidget::manager;
+            if(this.@com.smartgwt.client.widgets.BaseWidget::isCreated()()) {
+                obj = this.@com.smartgwt.client.widgets.BaseWidget::getJsObj()();
+                obj.addProperties({dataArrived:function(){
+                        var param = {"parentNode" : arguments[0]};
+                        var event = @com.smartgwt.client.widgets.tree.events.DataArrivedEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
+                        managerJ.@com.google.gwt.event.shared.HandlerManager::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
+                    }
+                });
+            } else {
+                obj = this.@com.smartgwt.client.widgets.BaseWidget::getConfig()();
+                obj.dataArrived = function(){
+                    var param = {"parentNode" : arguments[0]};
+                    var event = @com.smartgwt.client.widgets.tree.events.DataArrivedEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
+                    managerJ.@com.google.gwt.event.shared.HandlerManager::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
                 };
             }
         }-*/;

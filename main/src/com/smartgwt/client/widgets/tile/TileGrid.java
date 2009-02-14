@@ -151,7 +151,7 @@ public class TileGrid extends TileLayout  implements DataBoundComponent, com.sma
     }
 
     /**
-    * If true, when this component is first drawn, automatically call <code>this.fetchData()</code>
+    * If true, when this component is first drawn, automatically call <code>this.fetchData()</code> or <code>this.filterData()</code> depending on {@link com.smartgwt.client.widgets.tile.TileGrid#getAutoFetchAsFilter autoFetchAsFilter}. Criteria for this fetch may be picked up from {@link com.smartgwt.client.widgets.tile.TileGrid#getInitialCriteria initialCriteria}.
     *
     * @param autoFetchData autoFetchData Default value is false
     * @throws IllegalStateException this property cannot be changed after the component has been created
@@ -160,7 +160,7 @@ public class TileGrid extends TileLayout  implements DataBoundComponent, com.sma
         setAttribute("autoFetchData", autoFetchData, false);
     }
     /**
-     * If true, when this component is first drawn, automatically call <code>this.fetchData()</code>
+     * If true, when this component is first drawn, automatically call <code>this.fetchData()</code> or <code>this.filterData()</code> depending on {@link com.smartgwt.client.widgets.tile.TileGrid#getAutoFetchAsFilter autoFetchAsFilter}. Criteria for this fetch may be picked up from {@link com.smartgwt.client.widgets.tile.TileGrid#getInitialCriteria initialCriteria}.
      *
      *
      * @return Boolean
@@ -168,6 +168,26 @@ public class TileGrid extends TileLayout  implements DataBoundComponent, com.sma
      */
     public Boolean getAutoFetchData()  {
         return getAttributeAsBoolean("autoFetchData");
+    }
+
+    /**
+    * If {@link com.smartgwt.client.widgets.tile.TileGrid#getAutoFetchData autoFetchData} is <code>true</code>, this attribute determines whether the initial fetch operation should be performed via {@link com.smartgwt.client.widgets.tile.TileGrid#fetchData} or ${isc.DocUtils.linkForRef('filterData')}
+    *
+    * @param autoFetchAsFilter autoFetchAsFilter Default value is false
+    * @throws IllegalStateException this property cannot be changed after the component has been created
+    */
+    public void setAutoFetchAsFilter(Boolean autoFetchAsFilter)  throws IllegalStateException {
+        setAttribute("autoFetchAsFilter", autoFetchAsFilter, false);
+    }
+    /**
+     * If {@link com.smartgwt.client.widgets.tile.TileGrid#getAutoFetchData autoFetchData} is <code>true</code>, this attribute determines whether the initial fetch operation should be performed via {@link com.smartgwt.client.widgets.tile.TileGrid#fetchData} or ${isc.DocUtils.linkForRef('filterData')}
+     *
+     *
+     * @return Boolean
+     *
+     */
+    public Boolean getAutoFetchAsFilter()  {
+        return getAttributeAsBoolean("autoFetchAsFilter");
     }
              
     /**
@@ -252,7 +272,7 @@ public class TileGrid extends TileLayout  implements DataBoundComponent, com.sma
     // ********************* Methods ***********************
 
         /**
-         * Uses a "fetch" operation on the current {@link com.smartgwt.client.data.DataSource} to retrieve data that matches the current filter and sort criteria for this component, then exports the  resulting data to a file or window in the requested format. <P> This method takes an optional callback parameter (set to a ${isc.DocUtils.linkForRef('type:DSCallback')}) to fire when the fetch completes. <P>
+         * Uses a "fetch" operation on the current {@link com.smartgwt.client.data.DataSource} to retrieve data that matches the current filter and sort criteria for this component, then exports the  resulting data to a file or window in the requested format. <P> For more information on exporting data, see {@link com.smartgwt.client.data.DataSource#exportData}.
          */
         public native void exportData() /*-{
             var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
@@ -260,15 +280,32 @@ public class TileGrid extends TileLayout  implements DataBoundComponent, com.sma
         }-*/;
 
         /**
-         * Uses a "fetch" operation on the current {@link com.smartgwt.client.data.DataSource} to retrieve data that matches the current filter and sort criteria for this component, then exports the  resulting data to a file or window in the requested format. <P> This method takes an optional callback parameter (set to a ${isc.DocUtils.linkForRef('type:DSCallback')}) to fire when the fetch completes. <P>
-         * @param callback callback to invoke when a export is complete. Fires                                          only if server contact was required
-     * @param requestProperties additional properties to set on the DSRequest                                            that will be issued
+         * Uses a "fetch" operation on the current {@link com.smartgwt.client.data.DataSource} to retrieve data that matches the current filter and sort criteria for this component, then exports the  resulting data to a file or window in the requested format. <P> For more information on exporting data, see {@link com.smartgwt.client.data.DataSource#exportData}.
+         * @param requestProperties additional properties to set on the DSRequest                                            that will be issued
          */
-        public native void exportData(DSCallback callback, DSRequest requestProperties) /*-{
+        public native void exportData(DSRequest requestProperties) /*-{
             var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
-            self.exportData(callback, requestProperties.@com.smartgwt.client.core.DataClass::getJsObj()());
+            self.exportData(requestProperties.@com.smartgwt.client.core.DataClass::getJsObj()());
         }-*/;
 
+
+
+
+        /**
+         * Return the first selected record in this component
+         *
+         * @return first selected record, or null if nothing selected
+         */
+        public native TileRecord getSelectedRecord() /*-{
+            var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
+            var ret = self.getSelectedRecord();
+            if(ret == null || ret === undefined) return null;
+            var retVal = @com.smartgwt.client.core.RefDataClass::getRef(Lcom/google/gwt/core/client/JavaScriptObject;)(ret);
+            if(retVal == null) {
+                retVal = @com.smartgwt.client.widgets.tile.TileRecord::new(Lcom/google/gwt/core/client/JavaScriptObject;)(ret);
+            }
+            return retVal;
+        }-*/;
 
 
 
@@ -379,7 +416,7 @@ public class TileGrid extends TileLayout  implements DataBoundComponent, com.sma
     // ********************* Static Methods ***********************
 
 
-
+
 
 
     /**
@@ -779,6 +816,39 @@ public class TileGrid extends TileLayout  implements DataBoundComponent, com.sma
         self.data.sortByProperty(property, ascending);
     }-*/;
 
+    /**
+     * Remove the currently selected records from this component. If this is a databound grid, the records will be removed directly from the DataSource. <P> If no records are selected, no action is taken. The grid will automatically be updated if the record deletion succeeds.
+     */
+    public native void removeSelectedData() /*-{
+        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
+        self.removeSelectedData();
+    }-*/;
+
+    /**
+     * Returns all selected records, as an Array.
+     *
+     * @return list of records, empty list if nothing selected
+     */
+    public native TileRecord[] getSelection() /*-{
+        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
+        var selection =  self.getSelection();
+        return @com.smartgwt.client.widgets.tile.TileGrid::convertToTileRecordArray(Lcom/google/gwt/core/client/JavaScriptObject;)(selection);
+    }-*/;
+
+    private static TileRecord[] convertToTileRecordArray(JavaScriptObject nativeArray) {
+        if (nativeArray == null) {
+            return new TileRecord[]{};
+        }
+        JavaScriptObject[] componentsj = JSOHelper.toArray(nativeArray);
+        TileRecord[] objects = new TileRecord[componentsj.length];
+        for (int i = 0; i < componentsj.length; i++) {
+            JavaScriptObject componentJS = componentsj[i];
+            TileRecord obj = (TileRecord) RefDataClass.getRef(componentJS);
+            if (obj == null) obj = new TileRecord(componentJS);
+            objects[i] = obj;
+        }
+        return objects;
+    }
 
 }
 

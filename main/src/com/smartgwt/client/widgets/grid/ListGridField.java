@@ -588,6 +588,25 @@ public class ListGridField extends DataClass  implements com.smartgwt.client.wid
     }
 
     /**
+    * By default, clicking a link rendered by this item opens it in a new browser window.  You  can alter this behavior by setting this property.  The value of this property will be  passed as the value to the <code>target</code> attribute of the anchor tag used to render  the link. <P> If you set listGridField.target to "javascript", the default behaviour is to catch and  consume mouse-clicks that would result in the link being followed.  Instead, the {@link com.smartgwt.client.widgets.grid.ListGrid#cellClick} event is fired for the containing cell.
+    *
+    * @param target target Default value is "_blank"
+    */
+    public void setTarget(String target) {
+        setAttribute("target", target);
+    }
+    /**
+     * By default, clicking a link rendered by this item opens it in a new browser window.  You  can alter this behavior by setting this property.  The value of this property will be  passed as the value to the <code>target</code> attribute of the anchor tag used to render  the link. <P> If you set listGridField.target to "javascript", the default behaviour is to catch and  consume mouse-clicks that would result in the link being followed.  Instead, the {@link com.smartgwt.client.widgets.grid.ListGrid#cellClick} event is fired for the containing cell.
+     *
+     *
+     * @return String
+     *
+     */
+    public String getTarget()  {
+        return getAttributeAsString("target");
+    }
+
+    /**
     * Whether this field should be "frozen" for the purposes of horizontal scrolling.  See ${isc.DocUtils.linkForRef('group:frozenFields')}.
     *
     * @param frozen frozen Default value is null
