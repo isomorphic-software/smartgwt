@@ -56,7 +56,7 @@ import com.smartgwt.client.util.EnumUtil;
 import com.google.gwt.event.shared.*;
 import com.google.gwt.event.shared.HasHandlers;
    /**
-    * An operationBinding tells a DataSource how to execute one of the basic DS operations: fetch, add, update, remove. <P> OperationBindings are typically used to declaratively bind a DataSource to a Web Service, by associating each DataSource operation with a Web Service operation, and providing properties such as {@link com.smartgwt.client.data.OperationBinding#getRecordXPath recordXPath} to map web service responses to data expected by a DataSource.
+    * An operationBinding tells a DataSource how to execute one of the basic DS operations: fetch, add, update, remove.  See {@link com.smartgwt.client.data.DataSource#getOperationBindings operationBindings}.
 
     */
 public class OperationBinding extends DataClass {
@@ -268,7 +268,7 @@ public class OperationBinding extends DataClass {
     }
 
     /**
-    * When set, causes the results of the DataSource Operation to be exported to a file, whose  name and format are indicated by {@link com.smartgwt.client.data.OperationBinding#getExportFileName exportFileName} and  {@link com.smartgwt.client.data.OperationBinding#getExportAs exportAs} respectively.  When no exportFilename is provided, the  default is <i>Results</i> and the default value of exportAs is <i>csv</i>.  Once the Operation  completes, {@link com.smartgwt.client.data.OperationBinding#getExportDisplay exportDisplay} specifies whether the  exported data will be downloaded to the file-system or displayed in a new window.   The  default value of exportDisplay is "download" which displays the Save As dialog.  See  ${isc.DocUtils.linkForRef('type:ExportDisplay')} for more information. <P> As well as setting this and other properties on the {@link com.smartgwt.client.data.OperationBinding}, Exports can be  initiated in two other ways.  You can set properties on the dsRequest by passing  <i>requestProperties</i> into {@link com.smartgwt.client.data.DataSource#exportData}.  Note that this method does not support exporting to JSON format (see  <a href=http://forums.smartclient.com/showthread.php?t=235>this post</a> for more detail). Additionally, custom server code may set export-related properties on the  {@link com.smartgwt.client.data.DSResponse}. <P> <b>Format Examples</b> <ul> <li>XML format</li> <pre>     &lt;List&gt;         &lt;Object&gt;             &lt;id&gt;10101&lt;/id&gt;             &lt;displayName&gt;Record 10101&lt;/displayName&gt;         &lt;/Object&gt;    &lt;/List&gt; </pre> <li>JSON Format</li> <pre>     [         { id: 10101, displayName: "Record 10101" }     ] </pre> <li>CSV Format</li> <pre>     id,displayName     10101,"Record 10101" </pre> </ul>
+    * When set, causes the results of the DataSource Operation to be exported to a file, whose  name and format are indicated by {@link com.smartgwt.client.data.OperationBinding#getExportFileName exportFileName} and  {@link com.smartgwt.client.data.OperationBinding#getExportAs exportAs} respectively.  When no exportFilename is provided, the  default is <i>Results</i> and the default value of exportAs is <i>csv</i>.  Once the Operation  completes, {@link com.smartgwt.client.data.DSRequest#getExportDisplay exportDisplay} specifies whether the  exported data will be downloaded to the file-system or displayed in a new window.   The  default value of exportDisplay is "download" which displays the Save As dialog.  See  ${isc.DocUtils.linkForRef('type:ExportDisplay')} for more information. <P> The export field-list can also be configured, see {@link com.smartgwt.client.data.DSRequest#getExportFields exportFields}. <P> You can also configure the style of line-breaks to use when generating the output.  See ${isc.DocUtils.linkForRef('type:LineBreakStyle')} for more information. <P> As well as setting this and other properties on the {@link com.smartgwt.client.data.OperationBinding}, Exports can be  initiated in two other ways.  You can set properties on the dsRequest by passing  <i>requestProperties</i> into {@link com.smartgwt.client.data.DataSource#exportData}.  Note that this method does not support exporting to JSON format (see  <a href=http://forums.smartclient.com/showthread.php?t=235>this post</a> for more detail). Additionally, custom server code may set export-related properties on the  {@link com.smartgwt.client.data.DSResponse}. <P> <b>Format Examples</b> <ul> <li>XML format</li> <pre>     &lt;List&gt;         &lt;Object&gt;             &lt;id&gt;10101&lt;/id&gt;             &lt;displayName&gt;Record 10101&lt;/displayName&gt;         &lt;/Object&gt;    &lt;/List&gt; </pre> <li>JSON Format</li> <pre>     [         { id: 10101, displayName: "Record 10101" }     ] </pre> <li>CSV Format</li> <pre>     id,displayName     10101,"Record 10101" </pre> </ul>
     *
     * @param exportResults exportResults Default value is false
     */
@@ -276,7 +276,7 @@ public class OperationBinding extends DataClass {
         setAttribute("exportResults", exportResults);
     }
     /**
-     * When set, causes the results of the DataSource Operation to be exported to a file, whose  name and format are indicated by {@link com.smartgwt.client.data.OperationBinding#getExportFileName exportFileName} and  {@link com.smartgwt.client.data.OperationBinding#getExportAs exportAs} respectively.  When no exportFilename is provided, the  default is <i>Results</i> and the default value of exportAs is <i>csv</i>.  Once the Operation  completes, {@link com.smartgwt.client.data.OperationBinding#getExportDisplay exportDisplay} specifies whether the  exported data will be downloaded to the file-system or displayed in a new window.   The  default value of exportDisplay is "download" which displays the Save As dialog.  See  ${isc.DocUtils.linkForRef('type:ExportDisplay')} for more information. <P> As well as setting this and other properties on the {@link com.smartgwt.client.data.OperationBinding}, Exports can be  initiated in two other ways.  You can set properties on the dsRequest by passing  <i>requestProperties</i> into {@link com.smartgwt.client.data.DataSource#exportData}.  Note that this method does not support exporting to JSON format (see  <a href=http://forums.smartclient.com/showthread.php?t=235>this post</a> for more detail). Additionally, custom server code may set export-related properties on the  {@link com.smartgwt.client.data.DSResponse}. <P> <b>Format Examples</b> <ul> <li>XML format</li> <pre>     &lt;List&gt;         &lt;Object&gt;             &lt;id&gt;10101&lt;/id&gt;             &lt;displayName&gt;Record 10101&lt;/displayName&gt;         &lt;/Object&gt;    &lt;/List&gt; </pre> <li>JSON Format</li> <pre>     [         { id: 10101, displayName: "Record 10101" }     ] </pre> <li>CSV Format</li> <pre>     id,displayName     10101,"Record 10101" </pre> </ul>
+     * When set, causes the results of the DataSource Operation to be exported to a file, whose  name and format are indicated by {@link com.smartgwt.client.data.OperationBinding#getExportFileName exportFileName} and  {@link com.smartgwt.client.data.OperationBinding#getExportAs exportAs} respectively.  When no exportFilename is provided, the  default is <i>Results</i> and the default value of exportAs is <i>csv</i>.  Once the Operation  completes, {@link com.smartgwt.client.data.DSRequest#getExportDisplay exportDisplay} specifies whether the  exported data will be downloaded to the file-system or displayed in a new window.   The  default value of exportDisplay is "download" which displays the Save As dialog.  See  ${isc.DocUtils.linkForRef('type:ExportDisplay')} for more information. <P> The export field-list can also be configured, see {@link com.smartgwt.client.data.DSRequest#getExportFields exportFields}. <P> You can also configure the style of line-breaks to use when generating the output.  See ${isc.DocUtils.linkForRef('type:LineBreakStyle')} for more information. <P> As well as setting this and other properties on the {@link com.smartgwt.client.data.OperationBinding}, Exports can be  initiated in two other ways.  You can set properties on the dsRequest by passing  <i>requestProperties</i> into {@link com.smartgwt.client.data.DataSource#exportData}.  Note that this method does not support exporting to JSON format (see  <a href=http://forums.smartclient.com/showthread.php?t=235>this post</a> for more detail). Additionally, custom server code may set export-related properties on the  {@link com.smartgwt.client.data.DSResponse}. <P> <b>Format Examples</b> <ul> <li>XML format</li> <pre>     &lt;List&gt;         &lt;Object&gt;             &lt;id&gt;10101&lt;/id&gt;             &lt;displayName&gt;Record 10101&lt;/displayName&gt;         &lt;/Object&gt;    &lt;/List&gt; </pre> <li>JSON Format</li> <pre>     [         { id: 10101, displayName: "Record 10101" }     ] </pre> <li>CSV Format</li> <pre>     id,displayName     10101,"Record 10101" </pre> </ul>
      *
      *
      * @return Boolean
@@ -323,24 +323,24 @@ public class OperationBinding extends DataClass {
     public String getExportFileName()  {
         return getAttributeAsString("exportFileName");
     }
-             
+
     /**
-    * Specifies whether the exported data will be downloaded to the file-system or displayed in a  new window. See ${isc.DocUtils.linkForRef('type:ExportDisplay')} for more information.
+    * The style of line-breaks to use in the exported output.  See ${isc.DocUtils.linkForRef('type:LineBreakStyle')} for more information.
     *
-    * @param exportDisplay exportDisplay Default value is "download"
+    * @param lineBreakStyle lineBreakStyle Default value is null
     */
-    public void setExportDisplay(ExportDisplay exportDisplay) {
-        setAttribute("exportDisplay", exportDisplay.getValue());
+    public void setLineBreakStyle(String lineBreakStyle) {
+        setAttribute("lineBreakStyle", lineBreakStyle);
     }
     /**
-     * Specifies whether the exported data will be downloaded to the file-system or displayed in a  new window. See ${isc.DocUtils.linkForRef('type:ExportDisplay')} for more information.
+     * The style of line-breaks to use in the exported output.  See ${isc.DocUtils.linkForRef('type:LineBreakStyle')} for more information.
      *
      *
-     * @return ExportDisplay
+     * @return String
      *
      */
-    public ExportDisplay getExportDisplay()  {
-        return (ExportDisplay) EnumUtil.getEnum(ExportDisplay.values(), getAttribute("exportDisplay"));
+    public String getLineBreakStyle()  {
+        return getAttributeAsString("lineBreakStyle");
     }
 
     /**
@@ -398,6 +398,215 @@ public class OperationBinding extends DataClass {
      */
     public Boolean getUseFlatFields()  {
         return getAttributeAsBoolean("useFlatFields");
+    }
+
+    /**
+    * For a dataSource of {@link com.smartgwt.client.data.DataSource#getServerType serverType} "sql", this  property can be specified on an operationBinding to provide the server with a bespoke SELECT clause to use when constructing the SQL query to perform this operation.  The property should be a comma-separated list of column names and/or expressions, and you  can refer to any function supported by the underlying database.  The server will  insert the text of this property immediately after the "SELECT" token. <p> This property is only applicable to operationBindings of  {@link com.smartgwt.client.data.OperationBinding#getOperationType operationType} "fetch". <p> See the documentation for {@link com.smartgwt.client.data.OperationBinding#getCustomSQL customSQL} for usage examples
+    *
+    * @param selectClause selectClause Default value is null
+    */
+    public void setSelectClause(String selectClause) {
+        setAttribute("selectClause", selectClause);
+    }
+    /**
+     * For a dataSource of {@link com.smartgwt.client.data.DataSource#getServerType serverType} "sql", this  property can be specified on an operationBinding to provide the server with a bespoke SELECT clause to use when constructing the SQL query to perform this operation.  The property should be a comma-separated list of column names and/or expressions, and you  can refer to any function supported by the underlying database.  The server will  insert the text of this property immediately after the "SELECT" token. <p> This property is only applicable to operationBindings of  {@link com.smartgwt.client.data.OperationBinding#getOperationType operationType} "fetch". <p> See the documentation for {@link com.smartgwt.client.data.OperationBinding#getCustomSQL customSQL} for usage examples
+     *
+     *
+     * @return String
+     *
+     */
+    public String getSelectClause()  {
+        return getAttributeAsString("selectClause");
+    }
+
+    /**
+    * For a dataSource of {@link com.smartgwt.client.data.DataSource#getServerType serverType} "sql", this  property can be specified on an operationBinding to provide the server with a bespoke table clause to use when constructing the SQL query to perform this operation.  The property should be a comma-separated list of tables and views, and you can use any special language constructs supported by the underlying database.  The server will  insert the text of this property immediately after the "FROM" token. <p> See the documentation for {@link com.smartgwt.client.data.OperationBinding#getCustomSQL customSQL} for usage examples
+    *
+    * @param tableClause tableClause Default value is null
+    */
+    public void setTableClause(String tableClause) {
+        setAttribute("tableClause", tableClause);
+    }
+    /**
+     * For a dataSource of {@link com.smartgwt.client.data.DataSource#getServerType serverType} "sql", this  property can be specified on an operationBinding to provide the server with a bespoke table clause to use when constructing the SQL query to perform this operation.  The property should be a comma-separated list of tables and views, and you can use any special language constructs supported by the underlying database.  The server will  insert the text of this property immediately after the "FROM" token. <p> See the documentation for {@link com.smartgwt.client.data.OperationBinding#getCustomSQL customSQL} for usage examples
+     *
+     *
+     * @return String
+     *
+     */
+    public String getTableClause()  {
+        return getAttributeAsString("tableClause");
+    }
+
+    /**
+    * For a dataSource of {@link com.smartgwt.client.data.DataSource#getServerType serverType} "sql", this  property can be specified on an operationBinding to provide the server with a bespoke WHERE clause to use when constructing the SQL query to perform this operation.  The property should be a valid expression in the syntax of the underlying database.  The  server will insert the text of this property immediately after the "WHERE" token. <p> You may find the SmartClient-provided <b>$criteria</b> variable of particular use with this property. <p> See the documentation for {@link com.smartgwt.client.data.OperationBinding#getCustomSQL customSQL} for usage examples
+    *
+    * @param whereClause whereClause Default value is null
+    */
+    public void setWhereClause(String whereClause) {
+        setAttribute("whereClause", whereClause);
+    }
+    /**
+     * For a dataSource of {@link com.smartgwt.client.data.DataSource#getServerType serverType} "sql", this  property can be specified on an operationBinding to provide the server with a bespoke WHERE clause to use when constructing the SQL query to perform this operation.  The property should be a valid expression in the syntax of the underlying database.  The  server will insert the text of this property immediately after the "WHERE" token. <p> You may find the SmartClient-provided <b>$criteria</b> variable of particular use with this property. <p> See the documentation for {@link com.smartgwt.client.data.OperationBinding#getCustomSQL customSQL} for usage examples
+     *
+     *
+     * @return String
+     *
+     */
+    public String getWhereClause()  {
+        return getAttributeAsString("whereClause");
+    }
+
+    /**
+    * For a dataSource of {@link com.smartgwt.client.data.DataSource#getServerType serverType} "sql", this  property can be specified on an operationBinding to provide the server with a bespoke ORDER BY clause to use when constructing the SQL query to perform this operation.  The property should be a comma-separated list of column names and/or expressions, forming a valid ORDER BY clause in the syntax of the underlying database.  The server will  insert the text of this property immediately after the "ORDER BY" token. <p> This property is only applicable to operationBindings of  {@link com.smartgwt.client.data.OperationBinding#getOperationType operationType} "fetch". <p> See the documentation for {@link com.smartgwt.client.data.OperationBinding#getCustomSQL customSQL} for usage examples
+    *
+    * @param orderClause orderClause Default value is null
+    */
+    public void setOrderClause(String orderClause) {
+        setAttribute("orderClause", orderClause);
+    }
+    /**
+     * For a dataSource of {@link com.smartgwt.client.data.DataSource#getServerType serverType} "sql", this  property can be specified on an operationBinding to provide the server with a bespoke ORDER BY clause to use when constructing the SQL query to perform this operation.  The property should be a comma-separated list of column names and/or expressions, forming a valid ORDER BY clause in the syntax of the underlying database.  The server will  insert the text of this property immediately after the "ORDER BY" token. <p> This property is only applicable to operationBindings of  {@link com.smartgwt.client.data.OperationBinding#getOperationType operationType} "fetch". <p> See the documentation for {@link com.smartgwt.client.data.OperationBinding#getCustomSQL customSQL} for usage examples
+     *
+     *
+     * @return String
+     *
+     */
+    public String getOrderClause()  {
+        return getAttributeAsString("orderClause");
+    }
+
+    /**
+    * For a dataSource of {@link com.smartgwt.client.data.DataSource#getServerType serverType} "sql", this  property can be specified on an operationBinding to provide the server with a bespoke set of values to add or update,  for use when constructing the SQL query to perform this  operation.  The property should be a one of the following, depending on the  {@link com.smartgwt.client.data.OperationBinding#getOperationType operationType}: <p> For "add" operations, the syntax that would be valid for an INSERT INTO query: a  comma-separated list of column names enclosed in parentheses, followed by a comma-separated list of new values, enclosed in parentheses and preceded by the token "VALUES".  For example: <p> <code>&lt;valuesClause&gt;(name, age) VALUES("Jane Doe", 48)&lt;/valuesClause&gt;</code> <p> For "update" operations, the syntax that would be valid for an UPDATE query: a  comma-separated list of expressions equating a column name to its new value.  For example: <p> <code>&lt;valuesClause&gt;name="Jane Doe", age=48&lt;/valuesClause&gt;</code> <p> You may find the SmartClient-provided <b>$valjues</b> variable of particular use with this property. <p> See the documentation for {@link com.smartgwt.client.data.OperationBinding#getCustomSQL customSQL} for usage examples
+    *
+    * @param valuesClause valuesClause Default value is null
+    */
+    public void setValuesClause(String valuesClause) {
+        setAttribute("valuesClause", valuesClause);
+    }
+    /**
+     * For a dataSource of {@link com.smartgwt.client.data.DataSource#getServerType serverType} "sql", this  property can be specified on an operationBinding to provide the server with a bespoke set of values to add or update,  for use when constructing the SQL query to perform this  operation.  The property should be a one of the following, depending on the  {@link com.smartgwt.client.data.OperationBinding#getOperationType operationType}: <p> For "add" operations, the syntax that would be valid for an INSERT INTO query: a  comma-separated list of column names enclosed in parentheses, followed by a comma-separated list of new values, enclosed in parentheses and preceded by the token "VALUES".  For example: <p> <code>&lt;valuesClause&gt;(name, age) VALUES("Jane Doe", 48)&lt;/valuesClause&gt;</code> <p> For "update" operations, the syntax that would be valid for an UPDATE query: a  comma-separated list of expressions equating a column name to its new value.  For example: <p> <code>&lt;valuesClause&gt;name="Jane Doe", age=48&lt;/valuesClause&gt;</code> <p> You may find the SmartClient-provided <b>$valjues</b> variable of particular use with this property. <p> See the documentation for {@link com.smartgwt.client.data.OperationBinding#getCustomSQL customSQL} for usage examples
+     *
+     *
+     * @return String
+     *
+     */
+    public String getValuesClause()  {
+        return getAttributeAsString("valuesClause");
+    }
+
+    /**
+    * For a dataSource of {@link com.smartgwt.client.data.DataSource#getServerType serverType} "sql" or "hibernate", this  property can be specified on an operationBinding to indicate that the server should run  user-specified SQL, rather than the query it would normally generate to satisfy a  dataSource operation.  This property allows you provide a fully-customized query; an alternative is to provide custom "pieces" to the query generator, via properties such as {@link com.smartgwt.client.data.OperationBinding#getWhereClause whereClause} and {@link com.smartgwt.client.data.OperationBinding#getValuesClause valuesClause}.  See  here. <p> We also make the template variables <b>$criteria</b> and <b>$values</b> available, to give you direct access to the supplied criteria, and to the new field values for update and add operations.  These variables are available to both "sql" and "hibernate" dataSources. <p> Note that you should use this feature with care. In particular, writing customSQL code that makes use of a particular database engine's features or syntax will make your  application less portable. <p> See ${isc.DocUtils.linkForRef('group:customQuerying')} for an overview of writing custom queries and clauses <p> <h3>Examples</h3> An example using the SmartClient-supplied query pieces.  This custom query will give  exactly the same result as the SmartClient-generated query: <p> <code> &lt;operationBinding operationId="customFetch" operationType="fetch"&gt;<br> &nbsp;&nbsp;&lt;customSQL&gt;<br> &nbsp;&nbsp;&nbsp;&nbsp;SELECT $defaultSelectClause FROM $defaultTablesClause &nbsp;&nbsp;&nbsp;&nbsp;WHERE $defaultWhereClause ORDER BY $defaultOrderClause &nbsp;&nbsp;&lt;/customSQL&gt;<br> &lt;/operationBinding&gt;<br> </code> <p> An example using the SmartClient-supplied <b>criteria</b> template variable: <p> <code> &lt;operationBinding operationId="customFetch" operationType="fetch"&gt;<br> &nbsp;&nbsp;&lt;customSQL&gt;<br> &nbsp;&nbsp;&nbsp;&nbsp;SELECT foo, bar, baz FROM MyTable WHERE bar > $criteria.someValue<br> &nbsp;&nbsp;&lt;/customSQL&gt;<br> &lt;/operationBinding&gt;<br> </code> <p> An update example: <p> <code> &lt;operationBinding operationId="myUpdateOp" operationType="update"&gt;<br> &nbsp;&nbsp;&lt;customSQL&gt;<br> &nbsp;&nbsp;&nbsp;&nbsp;UPDATE $defaultTableClause SET $defaultValuesClause WHERE bar <= $criteria.someValue<br> &nbsp;&nbsp;&lt;/customSQL&gt;<br> &lt;/operationBinding&gt;<br> </code>
+    *
+    * @param customSQL customSQL Default value is null
+    */
+    public void setCustomSQL(String customSQL) {
+        setAttribute("customSQL", customSQL);
+    }
+    /**
+     * For a dataSource of {@link com.smartgwt.client.data.DataSource#getServerType serverType} "sql" or "hibernate", this  property can be specified on an operationBinding to indicate that the server should run  user-specified SQL, rather than the query it would normally generate to satisfy a  dataSource operation.  This property allows you provide a fully-customized query; an alternative is to provide custom "pieces" to the query generator, via properties such as {@link com.smartgwt.client.data.OperationBinding#getWhereClause whereClause} and {@link com.smartgwt.client.data.OperationBinding#getValuesClause valuesClause}.  See  here. <p> We also make the template variables <b>$criteria</b> and <b>$values</b> available, to give you direct access to the supplied criteria, and to the new field values for update and add operations.  These variables are available to both "sql" and "hibernate" dataSources. <p> Note that you should use this feature with care. In particular, writing customSQL code that makes use of a particular database engine's features or syntax will make your  application less portable. <p> See ${isc.DocUtils.linkForRef('group:customQuerying')} for an overview of writing custom queries and clauses <p> <h3>Examples</h3> An example using the SmartClient-supplied query pieces.  This custom query will give  exactly the same result as the SmartClient-generated query: <p> <code> &lt;operationBinding operationId="customFetch" operationType="fetch"&gt;<br> &nbsp;&nbsp;&lt;customSQL&gt;<br> &nbsp;&nbsp;&nbsp;&nbsp;SELECT $defaultSelectClause FROM $defaultTablesClause &nbsp;&nbsp;&nbsp;&nbsp;WHERE $defaultWhereClause ORDER BY $defaultOrderClause &nbsp;&nbsp;&lt;/customSQL&gt;<br> &lt;/operationBinding&gt;<br> </code> <p> An example using the SmartClient-supplied <b>criteria</b> template variable: <p> <code> &lt;operationBinding operationId="customFetch" operationType="fetch"&gt;<br> &nbsp;&nbsp;&lt;customSQL&gt;<br> &nbsp;&nbsp;&nbsp;&nbsp;SELECT foo, bar, baz FROM MyTable WHERE bar > $criteria.someValue<br> &nbsp;&nbsp;&lt;/customSQL&gt;<br> &lt;/operationBinding&gt;<br> </code> <p> An update example: <p> <code> &lt;operationBinding operationId="myUpdateOp" operationType="update"&gt;<br> &nbsp;&nbsp;&lt;customSQL&gt;<br> &nbsp;&nbsp;&nbsp;&nbsp;UPDATE $defaultTableClause SET $defaultValuesClause WHERE bar <= $criteria.someValue<br> &nbsp;&nbsp;&lt;/customSQL&gt;<br> &lt;/operationBinding&gt;<br> </code>
+     *
+     *
+     * @return String
+     *
+     */
+    public String getCustomSQL()  {
+        return getAttributeAsString("customSQL");
+    }
+
+    /**
+    * For a dataSource of {@link com.smartgwt.client.data.DataSource#getServerType serverType} "hibernate", this  property can be specified on an operationBinding to indicate that the server should run  user-specified HQL (Hibernate Query Language), rather than the Hibernate criteria query or  <code>saveOrUpdate</code> call it would normally generate to satisfy a dataSource operation via Hibernate.  <p> Note that inserting new records via HQL is often impractical, due to intentional restrictions  in the language (it is only possible to perform an insert expressed in terms of a SELECT; the "VALUES" construct commonly used when inserting new rows singly is not supported).  If you are  intending to use customHQL, we recommend that you avoid doing so for {@link com.smartgwt.client.data.OperationBinding}s  with {@link com.smartgwt.client.data.OperationBinding#getOperationType operationType} "add", unless you have a special  requirement such as a bulk insert; if you need custom queries to perform inserts  on "hibernate" dataSources, we recommend you use {@link com.smartgwt.client.data.OperationBinding#getCustomSQL customSQL}, which is valid for "hibernate" DataSources as well as "sql" dataSources. <p> For other operations on "hibernate" dataSources, however, HQL has the advantage of  being more portable across different database engines than is plain SQL.
+    *
+    * @param customHQL customHQL Default value is null
+    */
+    public void setCustomHQL(String customHQL) {
+        setAttribute("customHQL", customHQL);
+    }
+    /**
+     * For a dataSource of {@link com.smartgwt.client.data.DataSource#getServerType serverType} "hibernate", this  property can be specified on an operationBinding to indicate that the server should run  user-specified HQL (Hibernate Query Language), rather than the Hibernate criteria query or  <code>saveOrUpdate</code> call it would normally generate to satisfy a dataSource operation via Hibernate.  <p> Note that inserting new records via HQL is often impractical, due to intentional restrictions  in the language (it is only possible to perform an insert expressed in terms of a SELECT; the "VALUES" construct commonly used when inserting new rows singly is not supported).  If you are  intending to use customHQL, we recommend that you avoid doing so for {@link com.smartgwt.client.data.OperationBinding}s  with {@link com.smartgwt.client.data.OperationBinding#getOperationType operationType} "add", unless you have a special  requirement such as a bulk insert; if you need custom queries to perform inserts  on "hibernate" dataSources, we recommend you use {@link com.smartgwt.client.data.OperationBinding#getCustomSQL customSQL}, which is valid for "hibernate" DataSources as well as "sql" dataSources. <p> For other operations on "hibernate" dataSources, however, HQL has the advantage of  being more portable across different database engines than is plain SQL.
+     *
+     *
+     * @return String
+     *
+     */
+    public String getCustomHQL()  {
+        return getAttributeAsString("customHQL");
+    }
+
+    /**
+    * For an operationBinding of {@link com.smartgwt.client.data.OperationBinding#getOperationType operationType} "fetch" which specifies no {@link com.smartgwt.client.data.OperationBinding#getOperationId operationId}, this property determines whether the operationBinding  should be used for cache synchronization purposes (ie, to retrieve the record most recently added or changed).  This property has no effect on an operationBinding that specifies an  operationId - see {@link com.smartgwt.client.data.OperationBinding#getCacheSyncOperation cacheSyncOperation}. <p> In order to work correctly with SmartClient's cache synchronization system, an  operationBinding marked useForCacheSync should have the following properties: <ul> <li>Able to complete its retrieval using no context other than the values of the primary key fields declared in the dataSource (these will be provided in the $criteria object passed to  the operation)</li> <li>Returns the entire record, including any values that may require joins to other tables or other complexities</li> </ul> This property is only applicable to DataSources of type "sql".
+    *
+    * @param useForCacheSync useForCacheSync Default value is true
+    */
+    public void setUseForCacheSync(Boolean useForCacheSync) {
+        setAttribute("useForCacheSync", useForCacheSync);
+    }
+    /**
+     * For an operationBinding of {@link com.smartgwt.client.data.OperationBinding#getOperationType operationType} "fetch" which specifies no {@link com.smartgwt.client.data.OperationBinding#getOperationId operationId}, this property determines whether the operationBinding  should be used for cache synchronization purposes (ie, to retrieve the record most recently added or changed).  This property has no effect on an operationBinding that specifies an  operationId - see {@link com.smartgwt.client.data.OperationBinding#getCacheSyncOperation cacheSyncOperation}. <p> In order to work correctly with SmartClient's cache synchronization system, an  operationBinding marked useForCacheSync should have the following properties: <ul> <li>Able to complete its retrieval using no context other than the values of the primary key fields declared in the dataSource (these will be provided in the $criteria object passed to  the operation)</li> <li>Returns the entire record, including any values that may require joins to other tables or other complexities</li> </ul> This property is only applicable to DataSources of type "sql".
+     *
+     *
+     * @return Boolean
+     *
+     */
+    public Boolean getUseForCacheSync()  {
+        return getAttributeAsBoolean("useForCacheSync");
+    }
+
+    /**
+    * For an operationBinding of {@link com.smartgwt.client.data.OperationBinding#getOperationType operationType} "add" or "update", this  property is the {@link com.smartgwt.client.data.OperationBinding#getOperationId operationId} of a "fetch" operationBinding to use  for cache synchronization purposes (ie, to fetch the row most recently added or changed). This property, along with {@link com.smartgwt.client.data.OperationBinding#getUseForCacheSync useForCacheSync} and  {@link com.smartgwt.client.data.OperationBinding#getCanSyncCache canSyncCache} is provided so that you can use custom database operations without sacrificing the benefits of SmartClient's automatic cache synchronization. <p> This property is only applicable to DataSources of type "sql".
+    *
+    * @param cacheSyncOperation cacheSyncOperation Default value is null
+    */
+    public void setCacheSyncOperation(String cacheSyncOperation) {
+        setAttribute("cacheSyncOperation", cacheSyncOperation);
+    }
+    /**
+     * For an operationBinding of {@link com.smartgwt.client.data.OperationBinding#getOperationType operationType} "add" or "update", this  property is the {@link com.smartgwt.client.data.OperationBinding#getOperationId operationId} of a "fetch" operationBinding to use  for cache synchronization purposes (ie, to fetch the row most recently added or changed). This property, along with {@link com.smartgwt.client.data.OperationBinding#getUseForCacheSync useForCacheSync} and  {@link com.smartgwt.client.data.OperationBinding#getCanSyncCache canSyncCache} is provided so that you can use custom database operations without sacrificing the benefits of SmartClient's automatic cache synchronization. <p> This property is only applicable to DataSources of type "sql".
+     *
+     *
+     * @return String
+     *
+     */
+    public String getCacheSyncOperation()  {
+        return getAttributeAsString("cacheSyncOperation");
+    }
+
+    /**
+    * For an operationBinding of {@link com.smartgwt.client.data.OperationBinding#getOperationType operationType} "add" or "update", this  property indicates to the server that cache synchronization will work after this operation has performed its updates, without the need for an explicit  {@link com.smartgwt.client.data.OperationBinding#getCacheSyncOperation cacheSyncOperation}.  This property tells the server that the  default cache sync operation (either a custom one declared with no operationId, as described in the docs for {@link com.smartgwt.client.data.OperationBinding#getUseForCacheSync useForCacheSync}, or the default one that SmartClient generates) will  return the correct record to the client, so the client's cache does not need to be  invalidated. <p> This property is only applicable to DataSources of type "sql".
+    *
+    * @param canSyncCache canSyncCache Default value is null
+    */
+    public void setCanSyncCache(Boolean canSyncCache) {
+        setAttribute("canSyncCache", canSyncCache);
+    }
+    /**
+     * For an operationBinding of {@link com.smartgwt.client.data.OperationBinding#getOperationType operationType} "add" or "update", this  property indicates to the server that cache synchronization will work after this operation has performed its updates, without the need for an explicit  {@link com.smartgwt.client.data.OperationBinding#getCacheSyncOperation cacheSyncOperation}.  This property tells the server that the  default cache sync operation (either a custom one declared with no operationId, as described in the docs for {@link com.smartgwt.client.data.OperationBinding#getUseForCacheSync useForCacheSync}, or the default one that SmartClient generates) will  return the correct record to the client, so the client's cache does not need to be  invalidated. <p> This property is only applicable to DataSources of type "sql".
+     *
+     *
+     * @return Boolean
+     *
+     */
+    public Boolean getCanSyncCache()  {
+        return getAttributeAsBoolean("canSyncCache");
+    }
+
+    /**
+    * Specifies, for this specific operationBinding, whether to qualify column names with table names in any SQL we generate.  Overrides the {@link com.smartgwt.client.data.DataSource#getQualifyColumnNames qualifyColumnNames} property. Only applicable to dataSources of {@link com.smartgwt.client.data.DataSource#getServerType serverType} "sql".
+    *
+    * @param qualifyColumnNames qualifyColumnNames Default value is true
+    */
+    public void setQualifyColumnNames(Boolean qualifyColumnNames) {
+        setAttribute("qualifyColumnNames", qualifyColumnNames);
+    }
+    /**
+     * Specifies, for this specific operationBinding, whether to qualify column names with table names in any SQL we generate.  Overrides the {@link com.smartgwt.client.data.DataSource#getQualifyColumnNames qualifyColumnNames} property. Only applicable to dataSources of {@link com.smartgwt.client.data.DataSource#getServerType serverType} "sql".
+     *
+     *
+     * @return Boolean
+     *
+     */
+    public Boolean getQualifyColumnNames()  {
+        return getAttributeAsBoolean("qualifyColumnNames");
     }
 
     // ********************* Methods ***********************

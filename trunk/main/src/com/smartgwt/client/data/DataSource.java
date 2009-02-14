@@ -492,7 +492,7 @@ public class DataSource extends BaseClass  implements com.smartgwt.client.data.e
     }
 
     /**
-    * Whether to ask as a "client-only" DataSource, which has no permanent storage and never contacts the server, instead using a set of test data to respond to requests in the same manner as a server-based DataSource might. <P> See this discussion for ways to populate a client-only DataSource with test data.
+    * Whether to act as a "client-only" DataSource, which has no permanent storage and never contacts the server, instead using a set of test data to respond to requests in the same manner as a server-based DataSource might. <P> See this discussion for ways to populate a client-only DataSource with test data.
     *
     * @param clientOnly clientOnly Default value is false
     * @throws IllegalStateException this property cannot be changed after the underlying component has been created
@@ -501,7 +501,7 @@ public class DataSource extends BaseClass  implements com.smartgwt.client.data.e
         setAttribute("clientOnly", clientOnly, false);
     }
     /**
-     * Whether to ask as a "client-only" DataSource, which has no permanent storage and never contacts the server, instead using a set of test data to respond to requests in the same manner as a server-based DataSource might. <P> See this discussion for ways to populate a client-only DataSource with test data.
+     * Whether to act as a "client-only" DataSource, which has no permanent storage and never contacts the server, instead using a set of test data to respond to requests in the same manner as a server-based DataSource might. <P> See this discussion for ways to populate a client-only DataSource with test data.
      *
      *
      * @return Boolean

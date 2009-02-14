@@ -563,6 +563,44 @@ public class DataSourceField extends DataClass {
         return getAttributeAsString("uploadFieldName");
     }
 
+    /**
+    * If set, this property indicates that this dataSourceField is only intended for use as context in a {@link com.smartgwt.client.data.OperationBinding#getCustomSQL customSQL} or {@link com.smartgwt.client.data.OperationBinding#getCustomHQL customHQL} operationBinding, and should not be considered by the server when generating SQL or  Hibernate queries to fetch or update data.  A common reason for needing to set this flag is where you have a value that you want to send to the server for use in selection criteria, but that value actually comes from another table. <p> Note that this property only applies to users of the SmartClient server using dataSources of type "sql" or "hibernate".
+    *
+    * @param customSQL customSQL Default value is null
+    */
+    public void setCustomSQL(Boolean customSQL) {
+        setAttribute("customSQL", customSQL);
+    }
+    /**
+     * If set, this property indicates that this dataSourceField is only intended for use as context in a {@link com.smartgwt.client.data.OperationBinding#getCustomSQL customSQL} or {@link com.smartgwt.client.data.OperationBinding#getCustomHQL customHQL} operationBinding, and should not be considered by the server when generating SQL or  Hibernate queries to fetch or update data.  A common reason for needing to set this flag is where you have a value that you want to send to the server for use in selection criteria, but that value actually comes from another table. <p> Note that this property only applies to users of the SmartClient server using dataSources of type "sql" or "hibernate".
+     *
+     *
+     * @return Boolean
+     *
+     */
+    public Boolean getCustomSQL()  {
+        return getAttributeAsBoolean("customSQL");
+    }
+
+    /**
+    * The table name to use when qualifying the column name for this field during server-side SQL query generation.  Only applicable to "sql" dataSources, and only has an effect when  {@link com.smartgwt.client.data.DataSource#getQualifyColumnNames qualifyColumnNames} or {@link com.smartgwt.client.data.OperationBinding#getQualifyColumnNames qualifyColumnNames} is in force. <p> <b>Note:</b> This property is not normally required; the SmartClient server will ordinarily  qualify all column names correctly without assistance. This property is useful when  qualification can't be done automatically - for example, when you have a custom  {@link com.smartgwt.client.data.OperationBinding#getTableClause tableClause} that renames tables in the query using aliases.
+    *
+    * @param tableName tableName Default value is null
+    */
+    public void setTableName(String tableName) {
+        setAttribute("tableName", tableName);
+    }
+    /**
+     * The table name to use when qualifying the column name for this field during server-side SQL query generation.  Only applicable to "sql" dataSources, and only has an effect when  {@link com.smartgwt.client.data.DataSource#getQualifyColumnNames qualifyColumnNames} or {@link com.smartgwt.client.data.OperationBinding#getQualifyColumnNames qualifyColumnNames} is in force. <p> <b>Note:</b> This property is not normally required; the SmartClient server will ordinarily  qualify all column names correctly without assistance. This property is useful when  qualification can't be done automatically - for example, when you have a custom  {@link com.smartgwt.client.data.OperationBinding#getTableClause tableClause} that renames tables in the query using aliases.
+     *
+     *
+     * @return String
+     *
+     */
+    public String getTableName()  {
+        return getAttributeAsString("tableName");
+    }
+
     // ********************* Methods ***********************
 
 

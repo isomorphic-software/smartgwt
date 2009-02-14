@@ -499,7 +499,7 @@ public class DetailViewer extends Canvas  implements DataBoundComponent {
 
 
         /**
-         * Uses a "fetch" operation on the current {@link com.smartgwt.client.data.DataSource} to retrieve data that matches the current filter and sort criteria for this component, then exports the  resulting data to a file or window in the requested format. <P> This method takes an optional callback parameter (set to a ${isc.DocUtils.linkForRef('type:DSCallback')}) to fire when the fetch completes. <P>
+         * Uses a "fetch" operation on the current {@link com.smartgwt.client.data.DataSource} to retrieve data that matches the current filter and sort criteria for this component, then exports the  resulting data to a file or window in the requested format. <P> For more information on exporting data, see {@link com.smartgwt.client.data.DataSource#exportData}.
          */
         public native void exportData() /*-{
             var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
@@ -507,13 +507,12 @@ public class DetailViewer extends Canvas  implements DataBoundComponent {
         }-*/;
 
         /**
-         * Uses a "fetch" operation on the current {@link com.smartgwt.client.data.DataSource} to retrieve data that matches the current filter and sort criteria for this component, then exports the  resulting data to a file or window in the requested format. <P> This method takes an optional callback parameter (set to a ${isc.DocUtils.linkForRef('type:DSCallback')}) to fire when the fetch completes. <P>
-         * @param callback callback to invoke when a export is complete. Fires                                          only if server contact was required
-     * @param requestProperties additional properties to set on the DSRequest                                            that will be issued
+         * Uses a "fetch" operation on the current {@link com.smartgwt.client.data.DataSource} to retrieve data that matches the current filter and sort criteria for this component, then exports the  resulting data to a file or window in the requested format. <P> For more information on exporting data, see {@link com.smartgwt.client.data.DataSource#exportData}.
+         * @param requestProperties additional properties to set on the DSRequest                                            that will be issued
          */
-        public native void exportData(DSCallback callback, DSRequest requestProperties) /*-{
+        public native void exportData(DSRequest requestProperties) /*-{
             var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
-            self.exportData(callback, requestProperties.@com.smartgwt.client.core.DataClass::getJsObj()());
+            self.exportData(requestProperties.@com.smartgwt.client.core.DataClass::getJsObj()());
         }-*/;
 
 

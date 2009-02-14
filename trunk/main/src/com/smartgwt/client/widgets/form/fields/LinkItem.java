@@ -89,7 +89,7 @@ public class LinkItem extends StaticTextItem {
     // ********************* Properties / Attributes ***********************
 
     /**
-    * By default, clicking a link rendered by this item opens it in a new browser window.  You can alter this behavior by setting this property.  The value of this property will be passed as the value to the <code>target</code> attribute of the anchor tag used to render the link.
+    * By default, clicking a link rendered by this item opens it in a new browser window.  You  can alter this behavior by setting this property.  The value of this property will be  passed as the value to the <code>target</code> attribute of the anchor tag used to render  the link. <P> If you set linkItem.target to "javascript", the default behaviour is to catch and consume mouse-clicks that would result in the link being followed.  Instead, the {@link com.smartgwt.client.widgets.form.fields.FormItem#click} event is fired.
     *
     * @param target target Default value is "_blank"
     */
@@ -97,7 +97,7 @@ public class LinkItem extends StaticTextItem {
         setAttribute("target", target);
     }
     /**
-     * By default, clicking a link rendered by this item opens it in a new browser window.  You can alter this behavior by setting this property.  The value of this property will be passed as the value to the <code>target</code> attribute of the anchor tag used to render the link.
+     * By default, clicking a link rendered by this item opens it in a new browser window.  You  can alter this behavior by setting this property.  The value of this property will be  passed as the value to the <code>target</code> attribute of the anchor tag used to render  the link. <P> If you set linkItem.target to "javascript", the default behaviour is to catch and consume mouse-clicks that would result in the link being followed.  Instead, the {@link com.smartgwt.client.widgets.form.fields.FormItem#click} event is fired.
      *
      *
      * @return String
@@ -131,6 +131,13 @@ public class LinkItem extends StaticTextItem {
 
 
     // ********************* Static Methods ***********************
+
+
+
+    public HandlerRegistration addClickHandler(com.smartgwt.client.widgets.form.fields.events.ClickHandler handler) {
+        setTarget("javascript");
+        return super.addClickHandler(handler);
+    }
 
 }
 
