@@ -86,28 +86,28 @@
                         prefix="com/smartclient/public/sc/system/schema"/>
 
             <zipfileset dir="${SC_HOME}/smartclientSDK/source/client/application" includes="*.js"
-                        prefix="com/smartclient/public/sc/system/application"/>
+                        prefix="com/smartclient/public/sc/client/application"/>
             <zipfileset dir="${SC_HOME}/smartclientSDK/source/client/browser" includes="*.js"
-                        prefix="com/smartclient/public/sc/system/browser"/>
+                        prefix="com/smartclient/public/sc/client/browser"/>
             <zipfileset dir="${SC_HOME}/smartclientSDK/source/client/communications" includes="*.js"
-                        prefix="com/smartclient/public/sc/system/communications"/>
+                        prefix="com/smartclient/public/sc/client/communications"/>
             <zipfileset dir="${SC_HOME}/smartclientSDK/source/client/debug" includes="*.js"
-                        prefix="com/smartclient/public/sc/system/debug"/>
+                        prefix="com/smartclient/public/sc/client/debug"/>
             <zipfileset dir="${SC_HOME}/smartclientSDK/source/client/event" includes="*.js"
-                        prefix="com/smartclient/public/sc/system/event"/>
+                        prefix="com/smartclient/public/sc/client/event"/>
             <zipfileset dir="${SC_HOME}/smartclientSDK/source/client/language" includes="*.js"
-                        prefix="com/smartclient/public/sc/system/language"/>
+                        prefix="com/smartclient/public/sc/client/language"/>
             <zipfileset dir="${SC_HOME}/smartclientSDK/source/client/standalone" includes="*.js"
-                        prefix="com/smartclient/public/sc/system/standalone"/>
+                        prefix="com/smartclient/public/sc/client/standalone"/>
             <zipfileset dir="${SC_HOME}/smartclientSDK/source/client/tools" includes="*.js"
-                        prefix="com/smartclient/public/sc/system/tools"/>
+                        prefix="com/smartclient/public/sc/client/tools"/>
             <zipfileset dir="${SC_HOME}/smartclientSDK/source/client/widgets" includes="*.js"
-                        prefix="com/smartclient/public/sc/system/widgets"/>
+                        prefix="com/smartclient/public/sc/client/widgets"/>
             <zipfileset dir="${SC_HOME}/smartclientSDK/source/client/widgets/form" includes="*.js"
-                        prefix="com/smartclient/public/sc/system/widgets/form"/>
+                        prefix="com/smartclient/public/sc/client/widgets/form"/>
 
             <zipfileset dir="${smartgwt.build.out}/temp/schema" includes="*.js"
-                        prefix="com/smartclient/public/sc/system/schema"/>
+                        prefix="com/smartclient/public/sc/client/schema"/>
 
 
             <zipfileset dir="${smartgwt.build.out}/temp" includes="initsc.js"
@@ -133,9 +133,9 @@
 
         </zip>
 
-        <!--
+        <delete dir="${smartgwt.root}/main/src/com/smartclient"/>
         <unjar dest="${smartgwt.root}/main/src" src="${smartgwt.tools.lib}/sc/${SC_VER}/smartclient.jar"/>
-		-->
+	
         
     </target>
 
