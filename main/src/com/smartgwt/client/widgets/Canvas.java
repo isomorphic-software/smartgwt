@@ -5532,7 +5532,16 @@ public class Canvas extends BaseWidget  implements com.smartgwt.client.widgets.e
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
         var childJS= child.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
         self.removeChild(childJS, name);
-    }-*/;    
+    }-*/;
+
+
+    public int getOffsetHeight() {
+        return getVisibleHeight();
+    }
+
+    public int getOffsetWidth() {
+        return getVisibleWidth();
+    }
 
 }
 
