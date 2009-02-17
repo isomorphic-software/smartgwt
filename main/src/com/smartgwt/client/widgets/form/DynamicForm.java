@@ -1930,6 +1930,63 @@ public class DynamicForm extends Canvas  implements DataBoundComponent, com.smar
         self.focusInItem(formItemJS);
     }-*/;
 
+    /**
+     * Setter for validation errors on this form. Errors passed in should be a Map in the format
+     * {fieldName1:errors, fieldName2:errors}
+     *
+     * Where the errors value may be either a string (single error message) or an array of strings (if multiple errors should be applied to the field in question).
+
+     * @param errors  list of errors as a map with the field names as keys
+     * @param showErrors If true redraw form to display errors now. Otherwise errors can be displayed by calling
+     *      {@link DynamicForm#showErrors} <b>Note</b>: When the errors are shown, handleHiddenValidationErrors() will be fired for errors
+     *      on hidden fields, or with no associated formItem.
+     */
+    public native void setErrors(Map errors, boolean showErrors) /*-{
+        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
+        var errorsJS = @com.smartgwt.client.util.JSOHelper::convertMapToJavascriptObject(Ljava/util/Map;)(errors);
+        return self.setErrors(errorsJS, showErrors);
+    }-*/;
+
+    /**
+     * Set field validation error for some field. The showErrors parameter allows the errors to be displayed immediately.
+     * Alternatively, an explicit call to {@link DynamicForm#showFieldErrors} will display the errors for this field.
+     * 
+     * @param fieldName field to apply the new errors to
+     * @param error error to apply to the field in question
+     * @param showErrors If true this method will fall through to DynamicForm.showFieldErrors() to update the display
+     */
+    public native void setFieldErrors(String fieldName, String error, boolean showErrors) /*-{
+        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
+        return self.setFieldErrors(fieldName, error, showErrors);
+    }-*/;
+
+    /**
+     * Set field validation errors for some field. The showErrors parameter allows the errors to be displayed immediately.
+     * Alternatively, an explicit call to {@link DynamicForm#showFieldErrors} will display the errors for this field.
+     *
+     * @param fieldName field to apply the new errors to
+     * @param errors errors to apply to the field in question
+     * @param showErrors If true this method will fall through to DynamicForm.showFieldErrors() to update the display
+     */
+    public native void setFieldErrors(String fieldName, String[] errors, boolean showErrors) /*-{
+        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
+        var errorsJS = @com.smartgwt.client.util.JSOHelper::convertToJavaScriptArray([Ljava/lang/Object;)(errors);
+        return self.setFieldErrors(fieldName, errorsJS, showErrors);
+    }-*/;
+
+    /**
+     * Make a snapshot of the current set of values, so we can reset to them later. Creates a new object, then adds all
+     * non-method properties of values to the new object. Use resetValues() to revert to these values. Note that this
+     * method is automatically called when the values for this form are set programmatically via a call to
+     * DynamicForm.setValues().
+     *
+     * @return copy of current form values
+     */
+    public native JavaScriptObject rememberValues() /*-{
+        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
+        return self.rememberValues();
+    }-*/;
+
 }
 
 
