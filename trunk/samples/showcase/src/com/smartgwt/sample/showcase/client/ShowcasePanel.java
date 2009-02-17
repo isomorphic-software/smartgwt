@@ -121,6 +121,7 @@ public abstract class ShowcasePanel extends VLayout {
         final Window win = new Window();
         win.setTitle("Source");
         win.setHeaderIcon("pieces/16/cube_green.png", 16, 16);
+        win.setKeepInParentRect(true);
 
         int userWidth = com.google.gwt.user.client.Window.getClientWidth() - 20;
         win.setWidth(userWidth < width ? userWidth : width);

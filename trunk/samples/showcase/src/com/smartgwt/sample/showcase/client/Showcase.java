@@ -7,6 +7,7 @@ import com.google.gwt.user.client.HistoryListener;
 import com.google.gwt.user.client.ui.RootPanel;
 import com.smartgwt.client.core.KeyIdentifier;
 import com.smartgwt.client.types.TabBarControls;
+import com.smartgwt.client.types.HeaderControls;
 import com.smartgwt.client.util.SC;
 import com.smartgwt.client.widgets.Canvas;
 import com.smartgwt.client.widgets.ImgButton;
@@ -186,6 +187,8 @@ public class Showcase implements EntryPoint, HistoryListener {
 
         Window window = new Window();
         window.setTitle("SmartGWT Showcase");
+        window.setHeaderControls(HeaderControls.HEADER_LABEL, HeaderControls.MINIMIZE_BUTTON,
+                                    HeaderControls.MAXIMIZE_BUTTON, HeaderControls.CLOSE_BUTTON);
         window.setWidth(500);
         window.setHeight(375);
         window.addItem(tocGrid);
