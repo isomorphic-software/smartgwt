@@ -514,8 +514,17 @@ public class SelectItem extends FormItem  implements PickList {
     // ********************* Static Methods ***********************
 
 
-
-
+
+
+
+
+
+
+
+
+
+
+
 
 
     static {
@@ -528,7 +537,7 @@ public class SelectItem extends FormItem  implements PickList {
             var jObj = this.__ref;
             //if widget was not creatind in java via smartgwt, fallback to old behavior
             if(jObj) {
-                var critJ = jObj.@com.smartgwt.client.widgets.form.fields.SelectItem::getPickListFilterCriteria()();
+                var critJ = jObj.@com.smartgwt.client.widgets.form.fields.SelectItem::getPickListFilterCriteria(Lcom/google/gwt/core/client/JavaScriptObject;)(this);
                 return critJ == null ? {} : critJ.@com.smartgwt.client.data.Criteria::getJsObj()();
             } else {
                 return this.__getPickListFilterCriteria();
@@ -549,8 +558,7 @@ public class SelectItem extends FormItem  implements PickList {
      *
      * @return criteria to be used for databound or local filtering
      */    
-    protected native Criteria getPickListFilterCriteria() /*-{
-        var self = this.@com.smartgwt.client.core.DataClass::getJsObj()();
+    protected native Criteria getPickListFilterCriteria(JavaScriptObject self) /*-{
         var critJS = self.__getPickListFilterCriteria();
         return critJS == null ? null : @com.smartgwt.client.data.Criteria::new(Lcom/google/gwt/core/client/JavaScriptObject;)(critJS);
     }-*/;
