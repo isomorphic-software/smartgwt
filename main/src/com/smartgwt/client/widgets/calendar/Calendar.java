@@ -96,7 +96,7 @@ public class Calendar extends Canvas  implements DataBoundComponent, com.smartgw
     // ********************* Properties / Attributes ***********************
 
     /**
-    * The date for which events are displayed in the day, week, and month tabs of the calendar Default is today.
+    * The date for which events are displayed in the day, week, and month tabs of the calendar. Default is today.
     * Set the current date for which the calendar will display events.
     *
     * @param chosenDate the new date to set as the current date. Default value is 'Today'
@@ -106,7 +106,7 @@ public class Calendar extends Canvas  implements DataBoundComponent, com.smartgw
         setAttribute("chosenDate", chosenDate, false);
     }
     /**
-     * The date for which events are displayed in the day, week, and month tabs of the calendar Default is today.
+     * The date for which events are displayed in the day, week, and month tabs of the calendar. Default is today.
      *
      *
      * @return java.util.Date

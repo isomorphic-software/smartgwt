@@ -1404,8 +1404,9 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
              
     /**
     * How selection of rows should be presented to the user. <P> If using "checkbox", see also {@link com.smartgwt.client.widgets.grid.ListGrid#getCheckboxField checkboxField} for customization APIs.
+    * Changes selectionAppearance on the fly.
     *
-    * @param selectionAppearance selectionAppearance Default value is "rowStyle"
+    * @param selectionAppearance new selection appearance. Default value is "rowStyle"
     * @throws IllegalStateException this property cannot be changed after the component has been created
     */
     public void setSelectionAppearance(SelectionAppearance selectionAppearance)  throws IllegalStateException {
@@ -1424,8 +1425,9 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
              
     /**
     * Defines a listGrid's clickable-selection behavior. The selection appearance is governed by {@link com.smartgwt.client.widgets.grid.ListGrid#getSelectionAppearance selectionAppearance}. If selectionAppearance is "checkbox", this will be "simple", otherwise, this will be "multiple".
+    * Changes selectionType on the fly.
     *
-    * @param selectionType selectionType Default value is null
+    * @param selectionType New selection style.    Note that if {@link com.smartgwt.client.widgets.grid.ListGrid#getSelectionAppearance selectionAppearance} is <code>"checkbox"</code>, only selectionType   "simple" is supported.. Default value is null
     */
     public void setSelectionType(SelectionStyle selectionType) {
         setAttribute("selectionType", selectionType.getValue(), true);
@@ -3785,6 +3787,8 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
                 };
             }
         }-*/;
+
+
 
 
 

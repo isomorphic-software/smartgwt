@@ -609,6 +609,25 @@ public class OperationBinding extends DataClass {
         return getAttributeAsBoolean("qualifyColumnNames");
     }
 
+    /**
+    * If set, every invocation of this operationBinding will invalidate the local cache, forcing a server visit to refresh the data.
+    *
+    * @param invalidateCache invalidateCache Default value is null
+    */
+    public void setInvalidateCache(Boolean invalidateCache) {
+        setAttribute("invalidateCache", invalidateCache);
+    }
+    /**
+     * If set, every invocation of this operationBinding will invalidate the local cache, forcing a server visit to refresh the data.
+     *
+     *
+     * @return Boolean
+     *
+     */
+    public Boolean getInvalidateCache()  {
+        return getAttributeAsBoolean("invalidateCache");
+    }
+
     // ********************* Methods ***********************
 
     // ********************* Static Methods ***********************
