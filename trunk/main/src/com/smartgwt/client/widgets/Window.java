@@ -421,7 +421,7 @@ public class Window extends VLayout  implements com.smartgwt.client.widgets.even
     }
 
     /**
-    * If true, show a header for this Window, including title, closebox, etc.
+    * If true, show a {@link com.smartgwt.client.widgets.Window#getHeader header} for this Window.  <P> Note that in certain Smartclient skins {@link com.smartgwt.client.widgets.Window#getShowHeaderBackground showHeaderBackground} may be set to <code>false</code> and the header's appearance implemented as part of the window's {@link com.smartgwt.client.widgets.Canvas#getShowEdges showEdges}. In this case suppressing the header can be achieved by overriding the edge media as well as setting this property to false. For example, to create a headerless window with a similar appearance to a {@link com.smartgwt.client.widgets.menu.Menu} in the <code><i>TreeFrog</i></code> skin, the following attributes could be used: <pre>      showHeader:false,      edgeImage:"[SKIN]/Menu/m.png",      edgeSize:10, edgeTop:17, edgeBottom:17,      edgeCenterBackgroundColor:"#F7F7F7" </pre>
     * <p><b>Note : </b> This is an advanced setting</p>
     *
     * @param showHeader showHeader Default value is true
@@ -430,7 +430,7 @@ public class Window extends VLayout  implements com.smartgwt.client.widgets.even
         setAttribute("showHeader", showHeader, true);
     }
     /**
-     * If true, show a header for this Window, including title, closebox, etc.
+     * If true, show a {@link com.smartgwt.client.widgets.Window#getHeader header} for this Window.  <P> Note that in certain Smartclient skins {@link com.smartgwt.client.widgets.Window#getShowHeaderBackground showHeaderBackground} may be set to <code>false</code> and the header's appearance implemented as part of the window's {@link com.smartgwt.client.widgets.Canvas#getShowEdges showEdges}. In this case suppressing the header can be achieved by overriding the edge media as well as setting this property to false. For example, to create a headerless window with a similar appearance to a {@link com.smartgwt.client.widgets.menu.Menu} in the <code><i>TreeFrog</i></code> skin, the following attributes could be used: <pre>      showHeader:false,      edgeImage:"[SKIN]/Menu/m.png",      edgeSize:10, edgeTop:17, edgeBottom:17,      edgeCenterBackgroundColor:"#F7F7F7" </pre>
      *
      *
      * @return Boolean

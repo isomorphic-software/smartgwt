@@ -2437,6 +2437,14 @@ public class Canvas extends BaseWidget  implements com.smartgwt.client.widgets.e
 
 
         /**
+         * {@link com.smartgwt.client.widgets.Canvas#destroy} this canvas on a timeout. This method should be used instead of calling <code>canvas.destroy()</code> directly unless there's a reason a the canvas needs to be destroyed synchronously. By using a timeout, this method ensures the <code>destroy()</code> will occur after the current thread of execution completes. This allows you to easily mark canvases for destruction while they're handling events, which must complete before the canvas can be destroyed.
+         */
+        public native void markForDestroy() /*-{
+            var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
+            self.markForDestroy();
+        }-*/;
+
+        /**
          * Adds newChild as a child of this widget, set up a named object reference (i.e., this[name]) to the new widget if name argument is provided, and draw the child if this widget has been drawn already. <P> If newChild has a parent it will be removed from it. If it has a master, it will be detached from it if the master is a child of a different parent. If newChild has peers, they'll be added to this widget as children as well.
          * @param newChild new child canvas to add
          *
