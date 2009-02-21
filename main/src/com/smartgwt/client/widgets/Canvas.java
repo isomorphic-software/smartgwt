@@ -5551,6 +5551,14 @@ public class Canvas extends BaseWidget  implements com.smartgwt.client.widgets.e
         return getVisibleWidth();
     }
 
+    public void setAutoHeight() {
+        setHeight(1);
+    }
+
+    public void setAutoWidth() {
+        setWidth(1);
+    }
+
 }
 
 

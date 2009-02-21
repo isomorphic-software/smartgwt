@@ -1696,7 +1696,7 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
     }
 
     /**
-    * Should this listGrid display a filter row.  If true, this ListGrid    will be drawn with a single editable row, (separate from the body).  Values entered    into this row are used as filter criteria to filter this List's data.
+    * Should this listGrid display a filter row.  If true, this ListGrid will be drawn with a single editable row, (separate from the body) with a filter button. Values entered into this row are used as filter criteria to filter this List's data on enter-keypress or filter button click. {@link com.smartgwt.client.widgets.grid.ListGrid#getAutoFetchAsFilter autoFetchAsFilter} determines whether the filter occurs as a {@link com.smartgwt.client.widgets.grid.ListGrid#fetchData} or {@link com.smartgwt.client.widgets.grid.ListGrid#filterData} call. <P> Note that if {@link com.smartgwt.client.widgets.grid.ListGrid#filterData} or {@link com.smartgwt.client.widgets.grid.ListGrid#fetchData} is called directly while the filter editor is showing, the filter editor values will be updated to reflect the new set of criteria. If you wish to retain the user entered filter criteria and  programatically modify a subset of field values programatically this can be achieved by calling {@link com.smartgwt.client.widgets.grid.ListGrid#getCriteria}, and overlaying your changes onto the current criteria set. <P> Also note that if you call <code>filterData()</code> and pass in criteria for dataSource  fields that are not present in the ListGrid, these criteria will continue to be applied along with the user visible criteria.
     * Setter for the {@link com.smartgwt.client.widgets.grid.ListGrid#getShowFilterEditor showFilterEditor} property. Allows the filter editor to be shown or hidden at runtime.
     *
     * @param showFilterEditor true if the filter editor should be shown, false if it should be hidden. Default value is null
@@ -1705,7 +1705,7 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
         setAttribute("showFilterEditor", showFilterEditor, true);
     }
     /**
-     * Should this listGrid display a filter row.  If true, this ListGrid    will be drawn with a single editable row, (separate from the body).  Values entered    into this row are used as filter criteria to filter this List's data.
+     * Should this listGrid display a filter row.  If true, this ListGrid will be drawn with a single editable row, (separate from the body) with a filter button. Values entered into this row are used as filter criteria to filter this List's data on enter-keypress or filter button click. {@link com.smartgwt.client.widgets.grid.ListGrid#getAutoFetchAsFilter autoFetchAsFilter} determines whether the filter occurs as a {@link com.smartgwt.client.widgets.grid.ListGrid#fetchData} or {@link com.smartgwt.client.widgets.grid.ListGrid#filterData} call. <P> Note that if {@link com.smartgwt.client.widgets.grid.ListGrid#filterData} or {@link com.smartgwt.client.widgets.grid.ListGrid#fetchData} is called directly while the filter editor is showing, the filter editor values will be updated to reflect the new set of criteria. If you wish to retain the user entered filter criteria and  programatically modify a subset of field values programatically this can be achieved by calling {@link com.smartgwt.client.widgets.grid.ListGrid#getCriteria}, and overlaying your changes onto the current criteria set. <P> Also note that if you call <code>filterData()</code> and pass in criteria for dataSource  fields that are not present in the ListGrid, these criteria will continue to be applied along with the user visible criteria.
      *
      *
      * @return Boolean
@@ -3226,6 +3226,18 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
 
 
 
+
+        /**
+         * Retrieves the current criteria for this component (may be null)
+         *
+         * @return current filter criteria
+         */
+        public native Criteria getCriteria() /*-{
+            var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
+            var ret = self.getCriteria();
+            if(ret == null || ret === undefined) return null;
+            return @com.smartgwt.client.data.Criteria::new(Lcom/google/gwt/core/client/JavaScriptObject;)(ret);
+        }-*/;
 
         /**
          * Invalidate the current data cache for this databound component via a call to <code>this.data.invalidateCache()</code>. If necessary, this will cause a new fetch to  be performed with the current set of criteria for this component. <P> Has no effect if this component is not showing a set of filtered data.
