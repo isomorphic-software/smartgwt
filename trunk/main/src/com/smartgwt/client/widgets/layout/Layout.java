@@ -753,14 +753,6 @@ public class Layout extends Canvas {
         }
     }
 
-    public void setAutoHeight() {
-        setHeight("auto");
-    }
-
-    public void setAutoWidth() {
-        setWidth("auto");
-    }
-
     /**
      * Add a canvas to the layout, optionally at a specific position.
      *
