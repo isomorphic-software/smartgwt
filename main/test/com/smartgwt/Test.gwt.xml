@@ -2,13 +2,9 @@
     <inherits name='com.google.gwt.user.User'/>
     <inherits name='com.smartgwt.SmartGwtDebug'/>
 
+    <inherits name='com.smartclient.theme.enterprise.Enterprise'/>
 
-    <inherits name='com.smartclient.theme.silverwave.SilverWave'/>
-
-
-        <stylesheet src='Test.css'/>
+    <stylesheet src='Test.css'/>
 
     <entry-point class='com.smartgwt.client.Test'/>
-
-
 </module>
