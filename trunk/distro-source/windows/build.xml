@@ -10,6 +10,7 @@
 			<!-- jars -->
 
 			<zipfileset file="${smartgwt.build.lib}/smartgwt.jar" prefix="${project.distname}" />
+			<zipfileset file="${smartgwt.build.lib}/smartgwt-skins.jar" prefix="${project.distname}" />
 
 			<!-- raw files -->
 			<zipfileset dir="${project.build}" prefix="${project.distname}" />

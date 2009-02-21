@@ -31,6 +31,7 @@
 
     <!-- Platform shouldn't matter here, just picking one -->
 	<property.ensure name="smartgwt.dev.jar" location="${smartgwt.build.lib}/smartgwt.jar" />
+	<property.ensure name="smartgwt-skins.dev.jar" location="${smartgwt.build.lib}/smartgwt-skins.jar" />
 
     <target name="compile" description="Compile all java files">
 		<mkdir dir="${sample.build}/bin" />
@@ -39,6 +40,7 @@
 				<pathelement location="${gwt.user.jar}" />
 				<pathelement location="${gwt.dev.jar}" />
 				<pathelement location="${smartgwt.dev.jar}" />
+				<pathelement location="${smartgwt-skins.dev.jar}" />
 			</classpath>
 		</gwt.javac>
 	</target>

@@ -63,6 +63,7 @@
 
             <fileset dir="${javac.out}"/>
         </gwt.jar>
+		<copy file="${smartgwt.tools.lib}/sc/${smartclient.version}/smartgwt-skins.jar" todir="${smartgwt.build.lib}"/>
     </target>
 
     <target name="checkstyle" description="Static analysis of source">
