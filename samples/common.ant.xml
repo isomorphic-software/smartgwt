@@ -40,7 +40,6 @@
 				<pathelement location="${gwt.user.jar}" />
 				<pathelement location="${gwt.dev.jar}" />
 				<pathelement location="${smartgwt.dev.jar}" />
-				<pathelement location="${smartgwt-skins.dev.jar}" />
 			</classpath>
 		</gwt.javac>
 	</target>
@@ -55,7 +54,7 @@
 			<targetfiles path="${sample.build}/www/com.smartgwt.sample.${sample.package}.${sample.module}/com.smartgwt.sample.${sample.package}.${sample.module}.nocache.html" />
 			<sequential>
 				<mkdir dir="${sample.build}/www" />
-				<java dir="${sample.build}" classname="com.google.gwt.dev.GWTCompiler" classpath="${sample.build}/src:${gwt.user.jar}:${gwt.dev.jar}:${smartgwt.dev.jar}:" fork="yes" failonerror="true" maxmemory="512m">
+				<java dir="${sample.build}" classname="com.google.gwt.dev.GWTCompiler" classpath="${sample.build}/src:${gwt.user.jar}:${gwt.dev.jar}:${smartgwt.dev.jar}:${smartgwt-skins.dev.jar}" fork="yes" failonerror="true" maxmemory="512m">
 					<arg value="-out" />
 					<arg file="${sample.build}/www" />
 					<arg value="com.smartgwt.sample.${sample.package}.${sample.module}" />
