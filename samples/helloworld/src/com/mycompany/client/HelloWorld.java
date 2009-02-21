@@ -24,15 +24,15 @@ public class HelloWorld implements EntryPoint {
   public void onModuleLoad() {
 
       IButton button = new IButton("Hello World");
-      button.setShowHover();
       button.addClickHandler(new ClickHandler() {
           public void onClick(ClickEvent event) {
               SC.say("Hello World from SmartGWT");
           }
       });
 
-      RootPanel.get().add(button);
-
-
+      button.draw();
+      
+      //or
+      //RootPanel.get().add(button);
   }
 }
