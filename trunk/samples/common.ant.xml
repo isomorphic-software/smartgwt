@@ -19,6 +19,8 @@
 		<copy todir="${sample.build}/src">
 			<fileset dir="src" />
 		</copy>
+		
+	   
 		<!--
         <mkdir dir="${sample.build}/src/com/smartgwt/sample/${sample.package}/public/js/sc" />
         <copy todir="${sample.build}/src/com/smartgwt/sample/${sample.package}/public/js/sc">
@@ -42,6 +44,14 @@
 				<pathelement location="${smartgwt.dev.jar}" />
 			</classpath>
 		</gwt.javac>
+		<java classname="com.smartgwt.sample.showcase.server.GenerateSourceFiles">
+         <arg value="${sample.build}/src/com/smartgwt/sample/showcase/client"/>
+		 <arg value="${sample.build}/src/com/smartgwt/sample/showcase/public/sourcegen"/>
+         <classpath>           
+           <pathelement path="${sample.build}/bin"/>
+         </classpath>
+       </java>
+	   
 	</target>
 
 	<target name="gwtc" description="Compile to JavaScript">
