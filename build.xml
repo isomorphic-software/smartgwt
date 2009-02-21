@@ -117,9 +117,16 @@
                         prefix="com/smartclient/public/sc/system/helpers"/>
 
             <zipfileset dirmode="755" filemode="644" src="${smartgwt.tools.lib}/sc/smartclient_tpl.jar"/>
+						
+			<zipfileset dir="${SC_HOME}/smartclientSDK/isomorphic/skins/Enterprise" includes="**/*.*" excludes="*.gz"
+					                        prefix="com/smartclient/theme/enterprise/public/sc/skins/Enterprise"/>						
 
-
-            <zipfileset dir="${SC_HOME}/smartclientSDK/isomorphic/skins/BlackOps" includes="**/*.*" excludes="*.gz"
+        </zip>
+		
+		<zip destfile="${smartgwt.tools.lib}/sc/${SC_VER}/smartgwt-skins.jar">
+			<zipfileset dirmode="755" filemode="644" src="${smartgwt.tools.lib}/sc/skins_tpl.jar"/>
+			
+			<zipfileset dir="${SC_HOME}/smartclientSDK/isomorphic/skins/BlackOps" includes="**/*.*" excludes="*.gz"
                         prefix="com/smartclient/theme/blackops/public/sc/skins/BlackOps"/>
 
             <zipfileset dir="${SC_HOME}/smartclientSDK/isomorphic/skins/SilverWave" includes="**/*.*" excludes="*.gz"
@@ -127,16 +134,18 @@
 
             <zipfileset dir="${SC_HOME}/smartclientSDK/isomorphic/skins/TreeFrog" includes="**/*.*" excludes="*.gz"
                         prefix="com/smartclient/theme/treefrog/public/sc/skins/TreeFrog"/>
+			
+			<zipfileset dir="${SC_HOME}/smartclientSDK/isomorphic/skins/fleet" includes="**/*.*" excludes="*.gz"
+                        prefix="com/smartclient/theme/fleet/public/sc/skins/fleet"/>
 						
-			<zipfileset dir="${SC_HOME}/smartclientSDK/isomorphic/skins/Enterprise" includes="**/*.*" excludes="*.gz"
-					                        prefix="com/smartclient/theme/enterprise/public/sc/skins/Enterprise"/>						
-
-        </zip>
+		</zip>
 
         <delete dir="${smartgwt.root}/main/src/com/smartclient"/>
         <unjar dest="${smartgwt.root}/main/src" src="${smartgwt.tools.lib}/sc/${SC_VER}/smartclient.jar"/>
 	
-        
+        <!--
+        <unjar dest="${smartgwt.root}/main/src" src="${smartgwt.tools.lib}/sc/${SC_VER}/smartclient.jar"/>
+	-->	
     </target>
 
 
