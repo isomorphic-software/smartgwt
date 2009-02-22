@@ -74,11 +74,8 @@ public class ShowContextMenuEvent extends BrowserEvent<ShowContextMenuHandler>  
   public static <S extends HasShowContextMenuHandlers & HasHandlers> void fire(
       S source, JavaScriptObject jsObj) {
     if (TYPE != null) {
-      HandlerManager handlers = source.getHandlers();
-      if (handlers != null) {
         ShowContextMenuEvent event = new ShowContextMenuEvent(jsObj);
-        handlers.fireEvent(event);
-      }
+        source.fireEvent(event);
     }
   }
 

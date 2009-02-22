@@ -74,11 +74,8 @@ public class DragMoveEvent extends BrowserEvent<DragMoveHandler>  implements Can
   public static <S extends HasDragMoveHandlers & HasHandlers> void fire(
       S source, JavaScriptObject jsObj) {
     if (TYPE != null) {
-      HandlerManager handlers = source.getHandlers();
-      if (handlers != null) {
         DragMoveEvent event = new DragMoveEvent(jsObj);
-        handlers.fireEvent(event);
-      }
+        source.fireEvent(event);
     }
   }
 

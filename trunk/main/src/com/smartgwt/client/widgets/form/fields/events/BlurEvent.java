@@ -73,11 +73,8 @@ public class BlurEvent extends AbstractSmartEvent<BlurHandler>  {
   public static <S extends HasBlurHandlers & HasHandlers> void fire(
       S source, JavaScriptObject jsObj) {
     if (TYPE != null) {
-      HandlerManager handlers = source.getHandlers();
-      if (handlers != null) {
         BlurEvent event = new BlurEvent(jsObj);
-        handlers.fireEvent(event);
-      }
+        source.fireEvent(event);
     }
   }
 

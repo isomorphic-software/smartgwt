@@ -74,11 +74,8 @@ public class MouseDownEvent extends BrowserEvent<MouseDownHandler>  implements C
   public static <S extends HasMouseDownHandlers & HasHandlers> void fire(
       S source, JavaScriptObject jsObj) {
     if (TYPE != null) {
-      HandlerManager handlers = source.getHandlers();
-      if (handlers != null) {
         MouseDownEvent event = new MouseDownEvent(jsObj);
-        handlers.fireEvent(event);
-      }
+        source.fireEvent(event);
     }
   }
 

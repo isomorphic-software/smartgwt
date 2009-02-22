@@ -74,11 +74,8 @@ public class DropMoveEvent extends BrowserEvent<DropMoveHandler>  implements Can
   public static <S extends HasDropMoveHandlers & HasHandlers> void fire(
       S source, JavaScriptObject jsObj) {
     if (TYPE != null) {
-      HandlerManager handlers = source.getHandlers();
-      if (handlers != null) {
         DropMoveEvent event = new DropMoveEvent(jsObj);
-        handlers.fireEvent(event);
-      }
+        source.fireEvent(event);
     }
   }
 

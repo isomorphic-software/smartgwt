@@ -73,11 +73,8 @@ public class IconClickEvent extends BrowserEvent<IconClickHandler>  {
   public static <S extends HasIconClickHandlers & HasHandlers> void fire(
       S source, JavaScriptObject jsObj) {
     if (TYPE != null) {
-      HandlerManager handlers = source.getHandlers();
-      if (handlers != null) {
         IconClickEvent event = new IconClickEvent(jsObj);
-        handlers.fireEvent(event);
-      }
+        source.fireEvent(event);
     }
   }
 

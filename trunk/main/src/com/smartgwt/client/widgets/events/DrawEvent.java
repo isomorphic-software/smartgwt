@@ -51,11 +51,8 @@ public class DrawEvent extends GwtEvent<DrawHandler> {
     public static <S extends HasDrawHandlers & HasHandlers> void fire(
             S source, String ID) {
         if (TYPE != null) {
-            HandlerManager handlers = source.getHandlers();
-            if (handlers != null) {
-                DrawEvent event = new DrawEvent(ID);
-                handlers.fireEvent(event);
-            }
+            DrawEvent event = new DrawEvent(ID);
+            source.fireEvent(event);
         }
     }
 

@@ -714,18 +714,18 @@ public class Button extends StatefulCanvas  implements com.smartgwt.client.widge
          * @param handler the iconClick handler
          */
         public HandlerRegistration addIconClickHandler(com.smartgwt.client.widgets.events.IconClickHandler handler) {
-            if(manager.getHandlerCount(com.smartgwt.client.widgets.events.IconClickEvent.getType()) == 0) setupIconClickEvent();
-            return manager.addHandler(com.smartgwt.client.widgets.events.IconClickEvent.getType(), handler);
+            if(getHandlerCount(com.smartgwt.client.widgets.events.IconClickEvent.getType()) == 0) setupIconClickEvent();
+            return doAddHandler(handler, com.smartgwt.client.widgets.events.IconClickEvent.getType());
         }
         private native void setupIconClickEvent() /*-{
             var obj = null;
-            var managerJ = this.@com.smartgwt.client.widgets.BaseWidget::manager;
+            var selfJ = this;
             if(this.@com.smartgwt.client.widgets.BaseWidget::isCreated()()) {
                 obj = this.@com.smartgwt.client.widgets.BaseWidget::getJsObj()();
                 obj.addProperties({iconClick:function(){
                         var param = {};
                         var event = @com.smartgwt.client.widgets.events.IconClickEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
-                        managerJ.@com.google.gwt.event.shared.HandlerManager::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
+                        selfJ.@com.smartgwt.client.widgets.BaseWidget::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
                     }
                 });
             } else {
@@ -733,7 +733,7 @@ public class Button extends StatefulCanvas  implements com.smartgwt.client.widge
                 obj.iconClick = function(){
                     var param = {};
                     var event = @com.smartgwt.client.widgets.events.IconClickEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
-                    managerJ.@com.google.gwt.event.shared.HandlerManager::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
+                    selfJ.@com.smartgwt.client.widgets.BaseWidget::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
                 };
             }
         }-*/;

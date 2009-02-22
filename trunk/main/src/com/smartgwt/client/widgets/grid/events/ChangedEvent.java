@@ -73,11 +73,8 @@ public class ChangedEvent extends AbstractSmartEvent<ChangedHandler>  {
   public static <S extends HasChangedHandlers & HasHandlers> void fire(
       S source, JavaScriptObject jsObj) {
     if (TYPE != null) {
-      HandlerManager handlers = source.getHandlers();
-      if (handlers != null) {
         ChangedEvent event = new ChangedEvent(jsObj);
-        handlers.fireEvent(event);
-      }
+        source.fireEvent(event);
     }
   }
 

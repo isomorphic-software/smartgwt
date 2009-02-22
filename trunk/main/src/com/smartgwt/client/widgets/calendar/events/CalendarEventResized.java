@@ -73,11 +73,8 @@ public class CalendarEventResized extends BrowserEvent<EventResizedHandler>  {
   public static <S extends HasEventResizedHandlers & HasHandlers> void fire(
       S source, JavaScriptObject jsObj) {
     if (TYPE != null) {
-      HandlerManager handlers = source.getHandlers();
-      if (handlers != null) {
         CalendarEventResized event = new CalendarEventResized(jsObj);
-        handlers.fireEvent(event);
-      }
+        source.fireEvent(event);
     }
   }
 

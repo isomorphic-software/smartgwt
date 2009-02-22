@@ -73,11 +73,8 @@ public class FocusEvent extends AbstractSmartEvent<FocusHandler>  {
   public static <S extends HasFocusHandlers & HasHandlers> void fire(
       S source, JavaScriptObject jsObj) {
     if (TYPE != null) {
-      HandlerManager handlers = source.getHandlers();
-      if (handlers != null) {
         FocusEvent event = new FocusEvent(jsObj);
-        handlers.fireEvent(event);
-      }
+        source.fireEvent(event);
     }
   }
 

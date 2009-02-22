@@ -1327,18 +1327,18 @@ public class DynamicForm extends Canvas  implements DataBoundComponent, com.smar
          * @param handler the itemChanged handler
          */
         public HandlerRegistration addItemChangedHandler(com.smartgwt.client.widgets.form.events.ItemChangedHandler handler) {
-            if(manager.getHandlerCount(com.smartgwt.client.widgets.form.events.ItemChangedEvent.getType()) == 0) setupItemChangedEvent();
-            return manager.addHandler(com.smartgwt.client.widgets.form.events.ItemChangedEvent.getType(), handler);
+            if(getHandlerCount(com.smartgwt.client.widgets.form.events.ItemChangedEvent.getType()) == 0) setupItemChangedEvent();
+            return doAddHandler(handler, com.smartgwt.client.widgets.form.events.ItemChangedEvent.getType());
         }
         private native void setupItemChangedEvent() /*-{
             var obj = null;
-            var managerJ = this.@com.smartgwt.client.widgets.BaseWidget::manager;
+            var selfJ = this;
             if(this.@com.smartgwt.client.widgets.BaseWidget::isCreated()()) {
                 obj = this.@com.smartgwt.client.widgets.BaseWidget::getJsObj()();
                 obj.addProperties({itemChanged:function(){
                         var param = {"item" : arguments[0], "newValue" : arguments[1]};
                         var event = @com.smartgwt.client.widgets.form.events.ItemChangedEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
-                        managerJ.@com.google.gwt.event.shared.HandlerManager::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
+                        selfJ.@com.smartgwt.client.widgets.BaseWidget::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
                     }
                 });
             } else {
@@ -1346,7 +1346,7 @@ public class DynamicForm extends Canvas  implements DataBoundComponent, com.smar
                 obj.itemChanged = function(){
                     var param = {"item" : arguments[0], "newValue" : arguments[1]};
                     var event = @com.smartgwt.client.widgets.form.events.ItemChangedEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
-                    managerJ.@com.google.gwt.event.shared.HandlerManager::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
+                    selfJ.@com.smartgwt.client.widgets.BaseWidget::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
                 };
             }
         }-*/;
@@ -1360,18 +1360,18 @@ public class DynamicForm extends Canvas  implements DataBoundComponent, com.smar
          * @param handler the itemChange handler
          */
         public HandlerRegistration addItemChangeHandler(com.smartgwt.client.widgets.form.events.ItemChangeHandler handler) {
-            if(manager.getHandlerCount(com.smartgwt.client.widgets.form.events.ItemChangeEvent.getType()) == 0) setupItemChangeEvent();
-            return manager.addHandler(com.smartgwt.client.widgets.form.events.ItemChangeEvent.getType(), handler);
+            if(getHandlerCount(com.smartgwt.client.widgets.form.events.ItemChangeEvent.getType()) == 0) setupItemChangeEvent();
+            return doAddHandler(handler, com.smartgwt.client.widgets.form.events.ItemChangeEvent.getType());
         }
         private native void setupItemChangeEvent() /*-{
             var obj = null;
-            var managerJ = this.@com.smartgwt.client.widgets.BaseWidget::manager;
+            var selfJ = this;
             if(this.@com.smartgwt.client.widgets.BaseWidget::isCreated()()) {
                 obj = this.@com.smartgwt.client.widgets.BaseWidget::getJsObj()();
                 obj.addProperties({itemChange:function(){
                         var param = {"item" : arguments[0], "newValue" : arguments[1], "oldValue" : arguments[2]};
                         var event = @com.smartgwt.client.widgets.form.events.ItemChangeEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
-                        managerJ.@com.google.gwt.event.shared.HandlerManager::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
+                        selfJ.@com.smartgwt.client.widgets.BaseWidget::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
                         var ret = event.@com.smartgwt.client.event.Cancellable::isCancelled()();
                         return !ret;
                     }
@@ -1381,7 +1381,7 @@ public class DynamicForm extends Canvas  implements DataBoundComponent, com.smar
                 obj.itemChange = function(){
                     var param = {"item" : arguments[0], "newValue" : arguments[1], "oldValue" : arguments[2]};
                     var event = @com.smartgwt.client.widgets.form.events.ItemChangeEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
-                    managerJ.@com.google.gwt.event.shared.HandlerManager::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
+                    selfJ.@com.smartgwt.client.widgets.BaseWidget::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
                     var ret = event.@com.smartgwt.client.event.Cancellable::isCancelled()();
                     return !ret;
                 };
@@ -1397,18 +1397,18 @@ public class DynamicForm extends Canvas  implements DataBoundComponent, com.smar
          * @param handler the itemKeyPress handler
          */
         public HandlerRegistration addItemKeyPressHandler(com.smartgwt.client.widgets.form.events.ItemKeyPressHandler handler) {
-            if(manager.getHandlerCount(com.smartgwt.client.widgets.form.events.ItemKeyPressEvent.getType()) == 0) setupItemKeyPressEvent();
-            return manager.addHandler(com.smartgwt.client.widgets.form.events.ItemKeyPressEvent.getType(), handler);
+            if(getHandlerCount(com.smartgwt.client.widgets.form.events.ItemKeyPressEvent.getType()) == 0) setupItemKeyPressEvent();
+            return doAddHandler(handler, com.smartgwt.client.widgets.form.events.ItemKeyPressEvent.getType());
         }
         private native void setupItemKeyPressEvent() /*-{
             var obj = null;
-            var managerJ = this.@com.smartgwt.client.widgets.BaseWidget::manager;
+            var selfJ = this;
             if(this.@com.smartgwt.client.widgets.BaseWidget::isCreated()()) {
                 obj = this.@com.smartgwt.client.widgets.BaseWidget::getJsObj()();
                 obj.addProperties({itemKeyPress:function(){
                         var param = {"item" : arguments[0], "keyName" : arguments[1], "characterValue" : arguments[2]};
                         var event = @com.smartgwt.client.widgets.form.events.ItemKeyPressEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
-                        managerJ.@com.google.gwt.event.shared.HandlerManager::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
+                        selfJ.@com.smartgwt.client.widgets.BaseWidget::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
                     }
                 });
             } else {
@@ -1416,7 +1416,7 @@ public class DynamicForm extends Canvas  implements DataBoundComponent, com.smar
                 obj.itemKeyPress = function(){
                     var param = {"item" : arguments[0], "keyName" : arguments[1], "characterValue" : arguments[2]};
                     var event = @com.smartgwt.client.widgets.form.events.ItemKeyPressEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
-                    managerJ.@com.google.gwt.event.shared.HandlerManager::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
+                    selfJ.@com.smartgwt.client.widgets.BaseWidget::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
                 };
             }
         }-*/;
@@ -1429,18 +1429,18 @@ public class DynamicForm extends Canvas  implements DataBoundComponent, com.smar
          * @param handler the submitValues handler
          */
         public HandlerRegistration addSubmitValuesHandler(com.smartgwt.client.widgets.form.events.SubmitValuesHandler handler) {
-            if(manager.getHandlerCount(com.smartgwt.client.widgets.form.events.SubmitValuesEvent.getType()) == 0) setupSubmitValuesEvent();
-            return manager.addHandler(com.smartgwt.client.widgets.form.events.SubmitValuesEvent.getType(), handler);
+            if(getHandlerCount(com.smartgwt.client.widgets.form.events.SubmitValuesEvent.getType()) == 0) setupSubmitValuesEvent();
+            return doAddHandler(handler, com.smartgwt.client.widgets.form.events.SubmitValuesEvent.getType());
         }
         private native void setupSubmitValuesEvent() /*-{
             var obj = null;
-            var managerJ = this.@com.smartgwt.client.widgets.BaseWidget::manager;
+            var selfJ = this;
             if(this.@com.smartgwt.client.widgets.BaseWidget::isCreated()()) {
                 obj = this.@com.smartgwt.client.widgets.BaseWidget::getJsObj()();
                 obj.addProperties({submitValues:function(){
                         var param = {"values" : arguments[0], "form" : arguments[1]};
                         var event = @com.smartgwt.client.widgets.form.events.SubmitValuesEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
-                        managerJ.@com.google.gwt.event.shared.HandlerManager::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
+                        selfJ.@com.smartgwt.client.widgets.BaseWidget::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
                     }
                 });
             } else {
@@ -1448,7 +1448,7 @@ public class DynamicForm extends Canvas  implements DataBoundComponent, com.smar
                 obj.submitValues = function(){
                     var param = {"values" : arguments[0], "form" : arguments[1]};
                     var event = @com.smartgwt.client.widgets.form.events.SubmitValuesEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
-                    managerJ.@com.google.gwt.event.shared.HandlerManager::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
+                    selfJ.@com.smartgwt.client.widgets.BaseWidget::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
                 };
             }
         }-*/;

@@ -253,18 +253,18 @@ public class FilterBuilder extends Layout  implements com.smartgwt.client.widget
          * @param handler the filterChanged handler
          */
         public HandlerRegistration addFilterChangedHandler(com.smartgwt.client.widgets.form.events.FilterChangedHandler handler) {
-            if(manager.getHandlerCount(com.smartgwt.client.widgets.form.events.FilterChangedEvent.getType()) == 0) setupFilterChangedEvent();
-            return manager.addHandler(com.smartgwt.client.widgets.form.events.FilterChangedEvent.getType(), handler);
+            if(getHandlerCount(com.smartgwt.client.widgets.form.events.FilterChangedEvent.getType()) == 0) setupFilterChangedEvent();
+            return doAddHandler(handler, com.smartgwt.client.widgets.form.events.FilterChangedEvent.getType());
         }
         private native void setupFilterChangedEvent() /*-{
             var obj = null;
-            var managerJ = this.@com.smartgwt.client.widgets.BaseWidget::manager;
+            var selfJ = this;
             if(this.@com.smartgwt.client.widgets.BaseWidget::isCreated()()) {
                 obj = this.@com.smartgwt.client.widgets.BaseWidget::getJsObj()();
                 obj.addProperties({filterChanged:function(){
                         var param = {};
                         var event = @com.smartgwt.client.widgets.form.events.FilterChangedEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
-                        managerJ.@com.google.gwt.event.shared.HandlerManager::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
+                        selfJ.@com.smartgwt.client.widgets.BaseWidget::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
                     }
                 });
             } else {
@@ -272,7 +272,7 @@ public class FilterBuilder extends Layout  implements com.smartgwt.client.widget
                 obj.filterChanged = function(){
                     var param = {};
                     var event = @com.smartgwt.client.widgets.form.events.FilterChangedEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
-                    managerJ.@com.google.gwt.event.shared.HandlerManager::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
+                    selfJ.@com.smartgwt.client.widgets.BaseWidget::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
                 };
             }
         }-*/;

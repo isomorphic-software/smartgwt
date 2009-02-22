@@ -73,11 +73,8 @@ public class ItemChangedEvent extends BrowserEvent<ItemChangedHandler>  {
   public static <S extends HasItemChangedHandlers & HasHandlers> void fire(
       S source, JavaScriptObject jsObj) {
     if (TYPE != null) {
-      HandlerManager handlers = source.getHandlers();
-      if (handlers != null) {
         ItemChangedEvent event = new ItemChangedEvent(jsObj);
-        handlers.fireEvent(event);
-      }
+        source.fireEvent(event);
     }
   }
 

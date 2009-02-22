@@ -5,5 +5,6 @@ public class IntegerItem extends FormItem {
 
     public IntegerItem() {
         setType("integer");
+        setAttribute("editorType", "TextItem");
     }
 }

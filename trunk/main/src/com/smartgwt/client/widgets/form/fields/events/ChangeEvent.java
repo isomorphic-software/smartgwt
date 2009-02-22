@@ -74,11 +74,8 @@ public class ChangeEvent extends AbstractSmartEvent<ChangeHandler>  implements C
   public static <S extends HasChangeHandlers & HasHandlers> void fire(
       S source, JavaScriptObject jsObj) {
     if (TYPE != null) {
-      HandlerManager handlers = source.getHandlers();
-      if (handlers != null) {
         ChangeEvent event = new ChangeEvent(jsObj);
-        handlers.fireEvent(event);
-      }
+        source.fireEvent(event);
     }
   }
 

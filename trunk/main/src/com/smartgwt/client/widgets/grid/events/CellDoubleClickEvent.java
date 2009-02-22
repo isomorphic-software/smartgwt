@@ -74,11 +74,8 @@ public class CellDoubleClickEvent extends GridRowColEvent<CellDoubleClickHandler
   public static <S extends HasCellDoubleClickHandlers & HasHandlers> void fire(
       S source, JavaScriptObject jsObj) {
     if (TYPE != null) {
-      HandlerManager handlers = source.getHandlers();
-      if (handlers != null) {
         CellDoubleClickEvent event = new CellDoubleClickEvent(jsObj);
-        handlers.fireEvent(event);
-      }
+        source.fireEvent(event);
     }
   }
 

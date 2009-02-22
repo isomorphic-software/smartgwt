@@ -73,11 +73,8 @@ public class DateChangedEvent extends BrowserEvent<DateChangedHandler>  {
   public static <S extends HasDateChangedHandlers & HasHandlers> void fire(
       S source, JavaScriptObject jsObj) {
     if (TYPE != null) {
-      HandlerManager handlers = source.getHandlers();
-      if (handlers != null) {
         DateChangedEvent event = new DateChangedEvent(jsObj);
-        handlers.fireEvent(event);
-      }
+        source.fireEvent(event);
     }
   }
 

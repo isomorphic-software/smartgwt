@@ -17,6 +17,10 @@
 package com.smartgwt.client.core;
 
 import com.google.gwt.core.client.JavaScriptObject;
+import com.google.gwt.event.shared.HandlerManager;
+import com.google.gwt.event.shared.GwtEvent;
+import com.google.gwt.event.shared.EventHandler;
+import com.google.gwt.event.shared.HandlerRegistration;
 import com.smartgwt.client.types.ValueEnum;
 import com.smartgwt.client.util.JSOHelper;
 import com.smartgwt.client.widgets.BaseWidget;
@@ -171,5 +175,37 @@ public class DataClass extends JsObject {
     
     public String[] getAttributes() {
         return JSOHelper.getProperties(jsObj);
+    }
+
+    //event handling code
+    private HandlerManager manager = null;
+
+    public void fireEvent(GwtEvent<?> event) {
+        if (manager != null) {
+            manager.fireEvent(event);
+        }
+    }
+
+    protected final <H extends EventHandler> HandlerRegistration doAddHandler(
+           final H handler, GwtEvent.Type<H> type) {
+        return ensureHandlers().addHandler(type, handler);
+    }
+
+    /**
+     * Ensures the existence of the handler manager.
+     *
+     * @return the handler manager
+     **/
+    HandlerManager ensureHandlers() {
+        return manager == null ? manager = new HandlerManager(this)
+        : manager;
+    }
+
+    HandlerManager getManager() {
+        return manager;
+    }
+
+    public int getHandlerCount(GwtEvent.Type<?> type) {
+        return manager == null? 0 : manager.getHandlerCount(type);
     }
 }

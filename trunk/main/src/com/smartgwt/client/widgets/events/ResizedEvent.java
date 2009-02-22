@@ -73,11 +73,8 @@ public class ResizedEvent extends BrowserEvent<ResizedHandler>  {
   public static <S extends HasResizedHandlers & HasHandlers> void fire(
       S source, JavaScriptObject jsObj) {
     if (TYPE != null) {
-      HandlerManager handlers = source.getHandlers();
-      if (handlers != null) {
         ResizedEvent event = new ResizedEvent(jsObj);
-        handlers.fireEvent(event);
-      }
+        source.fireEvent(event);
     }
   }
 

@@ -20,6 +20,6 @@ import com.smartgwt.client.event.*;
 import com.google.gwt.event.shared.HandlerRegistration;
 import com.google.gwt.event.shared.HasHandlers;
 
-public interface HasEditCompleteHandlers {
+public interface HasEditCompleteHandlers extends HasHandlers {
     HandlerRegistration addEditCompleteHandler(EditCompleteHandler handler);
 }

@@ -74,11 +74,8 @@ public class MouseOutEvent extends BrowserEvent<MouseOutHandler>  implements Can
   public static <S extends HasMouseOutHandlers & HasHandlers> void fire(
       S source, JavaScriptObject jsObj) {
     if (TYPE != null) {
-      HandlerManager handlers = source.getHandlers();
-      if (handlers != null) {
         MouseOutEvent event = new MouseOutEvent(jsObj);
-        handlers.fireEvent(event);
-      }
+        source.fireEvent(event);
     }
   }
 

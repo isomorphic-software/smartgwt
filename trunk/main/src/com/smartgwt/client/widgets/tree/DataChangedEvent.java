@@ -73,11 +73,8 @@ public class DataChangedEvent extends AbstractSmartEvent<DataChangedHandler>  {
   public static <S extends HasDataChangedHandlers & HasHandlers> void fire(
       S source, JavaScriptObject jsObj) {
     if (TYPE != null) {
-      HandlerManager handlers = source.getHandlers();
-      if (handlers != null) {
         DataChangedEvent event = new DataChangedEvent(jsObj);
-        handlers.fireEvent(event);
-      }
+        source.fireEvent(event);
     }
   }
 

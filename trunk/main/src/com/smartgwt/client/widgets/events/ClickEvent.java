@@ -74,11 +74,8 @@ public class ClickEvent extends BrowserEvent<ClickHandler>  implements Cancellab
   public static <S extends HasClickHandlers & HasHandlers> void fire(
       S source, JavaScriptObject jsObj) {
     if (TYPE != null) {
-      HandlerManager handlers = source.getHandlers();
-      if (handlers != null) {
         ClickEvent event = new ClickEvent(jsObj);
-        handlers.fireEvent(event);
-      }
+        source.fireEvent(event);
     }
   }
 

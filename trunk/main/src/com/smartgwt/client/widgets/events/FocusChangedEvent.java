@@ -73,11 +73,8 @@ public class FocusChangedEvent extends BrowserEvent<FocusChangedHandler>  {
   public static <S extends HasFocusChangedHandlers & HasHandlers> void fire(
       S source, JavaScriptObject jsObj) {
     if (TYPE != null) {
-      HandlerManager handlers = source.getHandlers();
-      if (handlers != null) {
         FocusChangedEvent event = new FocusChangedEvent(jsObj);
-        handlers.fireEvent(event);
-      }
+        source.fireEvent(event);
     }
   }
 

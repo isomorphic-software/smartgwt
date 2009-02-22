@@ -73,11 +73,8 @@ public class SubmitValuesEvent extends BrowserEvent<SubmitValuesHandler>  {
   public static <S extends HasSubmitValuesHandlers & HasHandlers> void fire(
       S source, JavaScriptObject jsObj) {
     if (TYPE != null) {
-      HandlerManager handlers = source.getHandlers();
-      if (handlers != null) {
         SubmitValuesEvent event = new SubmitValuesEvent(jsObj);
-        handlers.fireEvent(event);
-      }
+        source.fireEvent(event);
     }
   }
 

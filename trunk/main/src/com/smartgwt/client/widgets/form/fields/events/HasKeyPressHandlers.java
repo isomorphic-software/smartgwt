@@ -20,6 +20,6 @@ import com.smartgwt.client.event.*;
 import com.google.gwt.event.shared.HandlerRegistration;
 import com.google.gwt.event.shared.HasHandlers;
 
-public interface HasKeyPressHandlers {
+public interface HasKeyPressHandlers extends HasHandlers {
     HandlerRegistration addKeyPressHandler(KeyPressHandler handler);
 }

@@ -73,11 +73,8 @@ public class HoverHiddenEvent extends BrowserEvent<HoverHiddenHandler>  {
   public static <S extends HasHoverHiddenHandlers & HasHandlers> void fire(
       S source, JavaScriptObject jsObj) {
     if (TYPE != null) {
-      HandlerManager handlers = source.getHandlers();
-      if (handlers != null) {
         HoverHiddenEvent event = new HoverHiddenEvent(jsObj);
-        handlers.fireEvent(event);
-      }
+        source.fireEvent(event);
     }
   }
 

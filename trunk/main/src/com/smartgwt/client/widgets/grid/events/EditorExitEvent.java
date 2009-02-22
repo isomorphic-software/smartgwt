@@ -74,11 +74,8 @@ public class EditorExitEvent extends AbstractSmartEvent<EditorExitHandler>  impl
   public static <S extends HasEditorExitHandlers & HasHandlers> void fire(
       S source, JavaScriptObject jsObj) {
     if (TYPE != null) {
-      HandlerManager handlers = source.getHandlers();
-      if (handlers != null) {
         EditorExitEvent event = new EditorExitEvent(jsObj);
-        handlers.fireEvent(event);
-      }
+        source.fireEvent(event);
     }
   }
 

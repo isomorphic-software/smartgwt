@@ -73,11 +73,8 @@ public class KeyPressEvent extends AbstractSmartEvent<KeyPressHandler>  {
   public static <S extends HasKeyPressHandlers & HasHandlers> void fire(
       S source, JavaScriptObject jsObj) {
     if (TYPE != null) {
-      HandlerManager handlers = source.getHandlers();
-      if (handlers != null) {
         KeyPressEvent event = new KeyPressEvent(jsObj);
-        handlers.fireEvent(event);
-      }
+        source.fireEvent(event);
     }
   }
 

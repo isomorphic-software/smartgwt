@@ -318,18 +318,18 @@ public class TileGrid extends TileLayout  implements DataBoundComponent, com.sma
          * @param handler the recordClick handler
          */
         public HandlerRegistration addRecordClickHandler(com.smartgwt.client.widgets.tile.events.RecordClickHandler handler) {
-            if(manager.getHandlerCount(com.smartgwt.client.widgets.tile.events.RecordClickEvent.getType()) == 0) setupRecordClickEvent();
-            return manager.addHandler(com.smartgwt.client.widgets.tile.events.RecordClickEvent.getType(), handler);
+            if(getHandlerCount(com.smartgwt.client.widgets.tile.events.RecordClickEvent.getType()) == 0) setupRecordClickEvent();
+            return doAddHandler(handler, com.smartgwt.client.widgets.tile.events.RecordClickEvent.getType());
         }
         private native void setupRecordClickEvent() /*-{
             var obj = null;
-            var managerJ = this.@com.smartgwt.client.widgets.BaseWidget::manager;
+            var selfJ = this;
             if(this.@com.smartgwt.client.widgets.BaseWidget::isCreated()()) {
                 obj = this.@com.smartgwt.client.widgets.BaseWidget::getJsObj()();
                 obj.addProperties({recordClick:function(){
                         var param = {"viewer" : arguments[0], "tile" : arguments[1], "record" : arguments[2]};
                         var event = @com.smartgwt.client.widgets.tile.events.RecordClickEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
-                        managerJ.@com.google.gwt.event.shared.HandlerManager::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
+                        selfJ.@com.smartgwt.client.widgets.BaseWidget::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
                     }
                 });
             } else {
@@ -337,7 +337,7 @@ public class TileGrid extends TileLayout  implements DataBoundComponent, com.sma
                 obj.recordClick = function(){
                     var param = {"viewer" : arguments[0], "tile" : arguments[1], "record" : arguments[2]};
                     var event = @com.smartgwt.client.widgets.tile.events.RecordClickEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
-                    managerJ.@com.google.gwt.event.shared.HandlerManager::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
+                    selfJ.@com.smartgwt.client.widgets.BaseWidget::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
                 };
             }
         }-*/;
@@ -350,18 +350,18 @@ public class TileGrid extends TileLayout  implements DataBoundComponent, com.sma
          * @param handler the selectionChanged handler
          */
         public HandlerRegistration addSelectionChangedHandler(com.smartgwt.client.widgets.tile.events.SelectionChangedHandler handler) {
-            if(manager.getHandlerCount(com.smartgwt.client.widgets.tile.events.SelectionChangedEvent.getType()) == 0) setupSelectionChangedEvent();
-            return manager.addHandler(com.smartgwt.client.widgets.tile.events.SelectionChangedEvent.getType(), handler);
+            if(getHandlerCount(com.smartgwt.client.widgets.tile.events.SelectionChangedEvent.getType()) == 0) setupSelectionChangedEvent();
+            return doAddHandler(handler, com.smartgwt.client.widgets.tile.events.SelectionChangedEvent.getType());
         }
         private native void setupSelectionChangedEvent() /*-{
             var obj = null;
-            var managerJ = this.@com.smartgwt.client.widgets.BaseWidget::manager;
+            var selfJ = this;
             if(this.@com.smartgwt.client.widgets.BaseWidget::isCreated()()) {
                 obj = this.@com.smartgwt.client.widgets.BaseWidget::getJsObj()();
                 obj.addProperties({selectionChanged:function(){
                         var param = {"record" : arguments[0], "state" : arguments[1]};
                         var event = @com.smartgwt.client.widgets.tile.events.SelectionChangedEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
-                        managerJ.@com.google.gwt.event.shared.HandlerManager::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
+                        selfJ.@com.smartgwt.client.widgets.BaseWidget::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
                     }
                 });
             } else {
@@ -369,7 +369,7 @@ public class TileGrid extends TileLayout  implements DataBoundComponent, com.sma
                 obj.selectionChanged = function(){
                     var param = {"record" : arguments[0], "state" : arguments[1]};
                     var event = @com.smartgwt.client.widgets.tile.events.SelectionChangedEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
-                    managerJ.@com.google.gwt.event.shared.HandlerManager::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
+                    selfJ.@com.smartgwt.client.widgets.BaseWidget::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
                 };
             }
         }-*/;

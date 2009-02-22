@@ -20,6 +20,6 @@ import com.smartgwt.client.event.*;
 import com.google.gwt.event.shared.HandlerRegistration;
 import com.google.gwt.event.shared.HasHandlers;
 
-public interface HasRecordDoubleClickHandlers {
+public interface HasRecordDoubleClickHandlers extends HasHandlers {
     HandlerRegistration addRecordDoubleClickHandler(RecordDoubleClickHandler handler);
 }

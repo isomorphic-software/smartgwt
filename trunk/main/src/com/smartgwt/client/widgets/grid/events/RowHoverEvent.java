@@ -74,11 +74,8 @@ public class RowHoverEvent extends GridRowColEvent<RowHoverHandler>  implements 
   public static <S extends HasRowHoverHandlers & HasHandlers> void fire(
       S source, JavaScriptObject jsObj) {
     if (TYPE != null) {
-      HandlerManager handlers = source.getHandlers();
-      if (handlers != null) {
         RowHoverEvent event = new RowHoverEvent(jsObj);
-        handlers.fireEvent(event);
-      }
+        source.fireEvent(event);
     }
   }
 

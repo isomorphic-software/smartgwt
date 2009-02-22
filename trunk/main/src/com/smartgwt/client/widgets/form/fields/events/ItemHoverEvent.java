@@ -73,11 +73,8 @@ public class ItemHoverEvent extends AbstractSmartEvent<ItemHoverHandler>  {
   public static <S extends HasItemHoverHandlers & HasHandlers> void fire(
       S source, JavaScriptObject jsObj) {
     if (TYPE != null) {
-      HandlerManager handlers = source.getHandlers();
-      if (handlers != null) {
         ItemHoverEvent event = new ItemHoverEvent(jsObj);
-        handlers.fireEvent(event);
-      }
+        source.fireEvent(event);
     }
   }
 

@@ -73,11 +73,8 @@ public class ItemResizedEvent extends BrowserEvent<ItemDragResizedHandler>  {
   public static <S extends HasItemDragResizedHandlers & HasHandlers> void fire(
       S source, JavaScriptObject jsObj) {
     if (TYPE != null) {
-      HandlerManager handlers = source.getHandlers();
-      if (handlers != null) {
         ItemResizedEvent event = new ItemResizedEvent(jsObj);
-        handlers.fireEvent(event);
-      }
+        source.fireEvent(event);
     }
   }
 

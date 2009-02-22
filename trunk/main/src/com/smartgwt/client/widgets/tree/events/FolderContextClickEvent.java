@@ -74,11 +74,8 @@ public class FolderContextClickEvent extends BrowserEvent<FolderContextClickHand
   public static <S extends HasFolderContextClickHandlers & HasHandlers> void fire(
       S source, JavaScriptObject jsObj) {
     if (TYPE != null) {
-      HandlerManager handlers = source.getHandlers();
-      if (handlers != null) {
         FolderContextClickEvent event = new FolderContextClickEvent(jsObj);
-        handlers.fireEvent(event);
-      }
+        source.fireEvent(event);
     }
   }
 

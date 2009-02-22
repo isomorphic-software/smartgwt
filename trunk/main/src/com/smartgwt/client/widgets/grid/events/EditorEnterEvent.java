@@ -73,11 +73,8 @@ public class EditorEnterEvent extends AbstractSmartEvent<EditorEnterHandler>  {
   public static <S extends HasEditorEnterHandlers & HasHandlers> void fire(
       S source, JavaScriptObject jsObj) {
     if (TYPE != null) {
-      HandlerManager handlers = source.getHandlers();
-      if (handlers != null) {
         EditorEnterEvent event = new EditorEnterEvent(jsObj);
-        handlers.fireEvent(event);
-      }
+        source.fireEvent(event);
     }
   }
 

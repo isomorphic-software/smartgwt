@@ -73,11 +73,8 @@ public class RowEditorEnterEvent extends BrowserEvent<RowEditorEnterHandler>  {
   public static <S extends HasRowEditorEnterHandlers & HasHandlers> void fire(
       S source, JavaScriptObject jsObj) {
     if (TYPE != null) {
-      HandlerManager handlers = source.getHandlers();
-      if (handlers != null) {
         RowEditorEnterEvent event = new RowEditorEnterEvent(jsObj);
-        handlers.fireEvent(event);
-      }
+        source.fireEvent(event);
     }
   }
 

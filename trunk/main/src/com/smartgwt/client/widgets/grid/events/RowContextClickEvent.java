@@ -74,11 +74,8 @@ public class RowContextClickEvent extends GridRowColEvent<RowContextClickHandler
   public static <S extends HasRowContextClickHandlers & HasHandlers> void fire(
       S source, JavaScriptObject jsObj) {
     if (TYPE != null) {
-      HandlerManager handlers = source.getHandlers();
-      if (handlers != null) {
         RowContextClickEvent event = new RowContextClickEvent(jsObj);
-        handlers.fireEvent(event);
-      }
+        source.fireEvent(event);
     }
   }
 

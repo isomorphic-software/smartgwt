@@ -73,11 +73,8 @@ public class EditCompleteEvent extends BrowserEvent<EditCompleteHandler>  {
   public static <S extends HasEditCompleteHandlers & HasHandlers> void fire(
       S source, JavaScriptObject jsObj) {
     if (TYPE != null) {
-      HandlerManager handlers = source.getHandlers();
-      if (handlers != null) {
         EditCompleteEvent event = new EditCompleteEvent(jsObj);
-        handlers.fireEvent(event);
-      }
+        source.fireEvent(event);
     }
   }
 

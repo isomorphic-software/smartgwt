@@ -74,11 +74,8 @@ public class RowEditorExitEvent extends BrowserEvent<RowEditorExitHandler>  impl
   public static <S extends HasRowEditorExitHandlers & HasHandlers> void fire(
       S source, JavaScriptObject jsObj) {
     if (TYPE != null) {
-      HandlerManager handlers = source.getHandlers();
-      if (handlers != null) {
         RowEditorExitEvent event = new RowEditorExitEvent(jsObj);
-        handlers.fireEvent(event);
-      }
+        source.fireEvent(event);
     }
   }
 

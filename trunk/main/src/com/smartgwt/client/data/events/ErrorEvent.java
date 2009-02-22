@@ -74,11 +74,8 @@ public class ErrorEvent extends AbstractSmartEvent<HandleErrorHandler>  implemen
   public static <S extends HasHandleErrorHandlers & HasHandlers> void fire(
       S source, JavaScriptObject jsObj) {
     if (TYPE != null) {
-      HandlerManager handlers = source.getHandlers();
-      if (handlers != null) {
         ErrorEvent event = new ErrorEvent(jsObj);
-        handlers.fireEvent(event);
-      }
+        source.fireEvent(event);
     }
   }
 

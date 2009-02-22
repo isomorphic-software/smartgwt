@@ -74,7 +74,7 @@ public class Window extends VLayout  implements com.smartgwt.client.widgets.even
 
 
     public Window(){
-        
+        setShowHeaderIcon(false);
     }
 
     public Window(JavaScriptObject jsObj){
@@ -997,18 +997,18 @@ public class Window extends VLayout  implements com.smartgwt.client.widgets.even
          * @param handler the closeClick handler
          */
         public HandlerRegistration addCloseClickHandler(com.smartgwt.client.widgets.events.CloseClickHandler handler) {
-            if(manager.getHandlerCount(com.smartgwt.client.widgets.events.CloseClientEvent.getType()) == 0) setupCloseClickEvent();
-            return manager.addHandler(com.smartgwt.client.widgets.events.CloseClientEvent.getType(), handler);
+            if(getHandlerCount(com.smartgwt.client.widgets.events.CloseClientEvent.getType()) == 0) setupCloseClickEvent();
+            return doAddHandler(handler, com.smartgwt.client.widgets.events.CloseClientEvent.getType());
         }
         private native void setupCloseClickEvent() /*-{
             var obj = null;
-            var managerJ = this.@com.smartgwt.client.widgets.BaseWidget::manager;
+            var selfJ = this;
             if(this.@com.smartgwt.client.widgets.BaseWidget::isCreated()()) {
                 obj = this.@com.smartgwt.client.widgets.BaseWidget::getJsObj()();
                 obj.addProperties({closeClick:function(){
                         var param = {};
                         var event = @com.smartgwt.client.widgets.events.CloseClientEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
-                        managerJ.@com.google.gwt.event.shared.HandlerManager::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
+                        selfJ.@com.smartgwt.client.widgets.BaseWidget::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
                     }
                 });
             } else {
@@ -1016,7 +1016,7 @@ public class Window extends VLayout  implements com.smartgwt.client.widgets.even
                 obj.closeClick = function(){
                     var param = {};
                     var event = @com.smartgwt.client.widgets.events.CloseClientEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
-                    managerJ.@com.google.gwt.event.shared.HandlerManager::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
+                    selfJ.@com.smartgwt.client.widgets.BaseWidget::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
                 };
             }
         }-*/;
@@ -1024,9 +1024,15 @@ public class Window extends VLayout  implements com.smartgwt.client.widgets.even
     // ********************* Static Methods ***********************
 
 
-
-
-
+
+
+
+
+
+
+
+
+
 
     /**
      * Adds a widget to the window.
@@ -1116,10 +1122,12 @@ public class Window extends VLayout  implements com.smartgwt.client.widgets.even
      */
     public void setHeaderIconDefaults(Map headerIconDefaults) {
         setAttribute("headerIconDefaults", headerIconDefaults, true);
+        setShowHeaderIcon(true);
     }
 
     public void setHeaderIconProperties(Map headerIconProperties) {
         setAttribute("headerIconProperties", headerIconProperties, true);
+        setShowHeaderIcon(true);
     }
 
     /**

@@ -74,11 +74,8 @@ public class CellHoverEvent extends GridRowColEvent<CellHoverHandler>  implement
   public static <S extends HasCellHoverHandlers & HasHandlers> void fire(
       S source, JavaScriptObject jsObj) {
     if (TYPE != null) {
-      HandlerManager handlers = source.getHandlers();
-      if (handlers != null) {
         CellHoverEvent event = new CellHoverEvent(jsObj);
-        handlers.fireEvent(event);
-      }
+        source.fireEvent(event);
     }
   }
 

@@ -74,11 +74,8 @@ public class MouseWheelEvent extends BrowserEvent<MouseWheelHandler>  implements
   public static <S extends HasMouseWheelHandlers & HasHandlers> void fire(
       S source, JavaScriptObject jsObj) {
     if (TYPE != null) {
-      HandlerManager handlers = source.getHandlers();
-      if (handlers != null) {
         MouseWheelEvent event = new MouseWheelEvent(jsObj);
-        handlers.fireEvent(event);
-      }
+        source.fireEvent(event);
     }
   }
 

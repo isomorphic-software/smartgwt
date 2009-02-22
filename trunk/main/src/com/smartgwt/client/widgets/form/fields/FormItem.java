@@ -83,7 +83,6 @@ public class FormItem extends RefDataClass  implements com.smartgwt.client.widge
         }
     }
 
-    protected HandlerManager manager = new HandlerManager(this);
 
     public FormItem(){
         setType("FormItem");setName(com.smartgwt.client.util.SC.generateID());
@@ -1573,17 +1572,17 @@ public class FormItem extends RefDataClass  implements com.smartgwt.client.widge
          * @param handler the itemHover handler
          */
         public HandlerRegistration addItemHoverHandler(com.smartgwt.client.widgets.form.fields.events.ItemHoverHandler handler) {
-            if(manager.getHandlerCount(com.smartgwt.client.widgets.form.fields.events.ItemHoverEvent.getType()) == 0) setupItemHoverEvent();
-            return manager.addHandler(com.smartgwt.client.widgets.form.fields.events.ItemHoverEvent.getType(), handler);
+            if(getHandlerCount(com.smartgwt.client.widgets.form.fields.events.ItemHoverEvent.getType()) == 0) setupItemHoverEvent();
+            return doAddHandler(handler, com.smartgwt.client.widgets.form.fields.events.ItemHoverEvent.getType());
         }
         private native void setupItemHoverEvent() /*-{
             var obj = null;
                 obj = this.@com.smartgwt.client.core.DataClass::getJsObj()();
-                var managerJ = this.@com.smartgwt.client.widgets.form.fields.FormItem::manager;
+                var selfJ = this;
                 obj.itemHover = function(){
                     var param = {"form" : arguments[0], "item" : arguments[1]};
                     var event = @com.smartgwt.client.widgets.form.fields.events.ItemHoverEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
-                    managerJ.@com.google.gwt.event.shared.HandlerManager::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
+                    selfJ.@com.smartgwt.client.core.DataClass::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
                 };
         }-*/;
 
@@ -1595,17 +1594,17 @@ public class FormItem extends RefDataClass  implements com.smartgwt.client.widge
          * @param handler the titleHover handler
          */
         public HandlerRegistration addTitleHoverHandler(com.smartgwt.client.widgets.form.fields.events.TitleHoverHandler handler) {
-            if(manager.getHandlerCount(com.smartgwt.client.widgets.form.fields.events.TitleHoverEvent.getType()) == 0) setupTitleHoverEvent();
-            return manager.addHandler(com.smartgwt.client.widgets.form.fields.events.TitleHoverEvent.getType(), handler);
+            if(getHandlerCount(com.smartgwt.client.widgets.form.fields.events.TitleHoverEvent.getType()) == 0) setupTitleHoverEvent();
+            return doAddHandler(handler, com.smartgwt.client.widgets.form.fields.events.TitleHoverEvent.getType());
         }
         private native void setupTitleHoverEvent() /*-{
             var obj = null;
                 obj = this.@com.smartgwt.client.core.DataClass::getJsObj()();
-                var managerJ = this.@com.smartgwt.client.widgets.form.fields.FormItem::manager;
+                var selfJ = this;
                 obj.titleHover = function(){
                     var param = {"form" : arguments[0], "item" : arguments[1]};
                     var event = @com.smartgwt.client.widgets.form.fields.events.TitleHoverEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
-                    managerJ.@com.google.gwt.event.shared.HandlerManager::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
+                    selfJ.@com.smartgwt.client.core.DataClass::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
                 };
         }-*/;
 
@@ -1683,17 +1682,17 @@ public class FormItem extends RefDataClass  implements com.smartgwt.client.widge
          * @param handler the focus handler
          */
         public HandlerRegistration addFocusHandler(com.smartgwt.client.widgets.form.fields.events.FocusHandler handler) {
-            if(manager.getHandlerCount(com.smartgwt.client.widgets.form.fields.events.FocusEvent.getType()) == 0) setupFocusEvent();
-            return manager.addHandler(com.smartgwt.client.widgets.form.fields.events.FocusEvent.getType(), handler);
+            if(getHandlerCount(com.smartgwt.client.widgets.form.fields.events.FocusEvent.getType()) == 0) setupFocusEvent();
+            return doAddHandler(handler, com.smartgwt.client.widgets.form.fields.events.FocusEvent.getType());
         }
         private native void setupFocusEvent() /*-{
             var obj = null;
                 obj = this.@com.smartgwt.client.core.DataClass::getJsObj()();
-                var managerJ = this.@com.smartgwt.client.widgets.form.fields.FormItem::manager;
+                var selfJ = this;
                 obj.focus = function(){
                     var param = {"form" : arguments[0], "item" : arguments[1]};
                     var event = @com.smartgwt.client.widgets.form.fields.events.FocusEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
-                    managerJ.@com.google.gwt.event.shared.HandlerManager::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
+                    selfJ.@com.smartgwt.client.core.DataClass::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
                 };
         }-*/;
 
@@ -1705,17 +1704,17 @@ public class FormItem extends RefDataClass  implements com.smartgwt.client.widge
          * @param handler the blur handler
          */
         public HandlerRegistration addBlurHandler(com.smartgwt.client.widgets.form.fields.events.BlurHandler handler) {
-            if(manager.getHandlerCount(com.smartgwt.client.widgets.form.fields.events.BlurEvent.getType()) == 0) setupBlurEvent();
-            return manager.addHandler(com.smartgwt.client.widgets.form.fields.events.BlurEvent.getType(), handler);
+            if(getHandlerCount(com.smartgwt.client.widgets.form.fields.events.BlurEvent.getType()) == 0) setupBlurEvent();
+            return doAddHandler(handler, com.smartgwt.client.widgets.form.fields.events.BlurEvent.getType());
         }
         private native void setupBlurEvent() /*-{
             var obj = null;
                 obj = this.@com.smartgwt.client.core.DataClass::getJsObj()();
-                var managerJ = this.@com.smartgwt.client.widgets.form.fields.FormItem::manager;
+                var selfJ = this;
                 obj.blur = function(){
                     var param = {"form" : arguments[0], "item" : arguments[1]};
                     var event = @com.smartgwt.client.widgets.form.fields.events.BlurEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
-                    managerJ.@com.google.gwt.event.shared.HandlerManager::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
+                    selfJ.@com.smartgwt.client.core.DataClass::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
                 };
         }-*/;
 
@@ -1727,17 +1726,17 @@ public class FormItem extends RefDataClass  implements com.smartgwt.client.widge
          * @param handler the click handler
          */
         public HandlerRegistration addClickHandler(com.smartgwt.client.widgets.form.fields.events.ClickHandler handler) {
-            if(manager.getHandlerCount(com.smartgwt.client.widgets.form.fields.events.ClickEvent.getType()) == 0) setupClickEvent();
-            return manager.addHandler(com.smartgwt.client.widgets.form.fields.events.ClickEvent.getType(), handler);
+            if(getHandlerCount(com.smartgwt.client.widgets.form.fields.events.ClickEvent.getType()) == 0) setupClickEvent();
+            return doAddHandler(handler, com.smartgwt.client.widgets.form.fields.events.ClickEvent.getType());
         }
         private native void setupClickEvent() /*-{
             var obj = null;
                 obj = this.@com.smartgwt.client.core.DataClass::getJsObj()();
-                var managerJ = this.@com.smartgwt.client.widgets.form.fields.FormItem::manager;
+                var selfJ = this;
                 obj.click = function(){
                     var param = {"form" : arguments[0], "item" : arguments[1]};
                     var event = @com.smartgwt.client.widgets.form.fields.events.ClickEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
-                    managerJ.@com.google.gwt.event.shared.HandlerManager::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
+                    selfJ.@com.smartgwt.client.core.DataClass::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
                 };
         }-*/;
 
@@ -1749,17 +1748,17 @@ public class FormItem extends RefDataClass  implements com.smartgwt.client.widge
          * @param handler the doubleClick handler
          */
         public HandlerRegistration addDoubleClickHandler(com.smartgwt.client.widgets.form.fields.events.DoubleClickHandler handler) {
-            if(manager.getHandlerCount(com.smartgwt.client.widgets.form.fields.events.DoubleClickEvent.getType()) == 0) setupDoubleClickEvent();
-            return manager.addHandler(com.smartgwt.client.widgets.form.fields.events.DoubleClickEvent.getType(), handler);
+            if(getHandlerCount(com.smartgwt.client.widgets.form.fields.events.DoubleClickEvent.getType()) == 0) setupDoubleClickEvent();
+            return doAddHandler(handler, com.smartgwt.client.widgets.form.fields.events.DoubleClickEvent.getType());
         }
         private native void setupDoubleClickEvent() /*-{
             var obj = null;
                 obj = this.@com.smartgwt.client.core.DataClass::getJsObj()();
-                var managerJ = this.@com.smartgwt.client.widgets.form.fields.FormItem::manager;
+                var selfJ = this;
                 obj.doubleClick = function(){
                     var param = {"form" : arguments[0], "item" : arguments[1]};
                     var event = @com.smartgwt.client.widgets.form.fields.events.DoubleClickEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
-                    managerJ.@com.google.gwt.event.shared.HandlerManager::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
+                    selfJ.@com.smartgwt.client.core.DataClass::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
                 };
         }-*/;
 
@@ -1772,17 +1771,17 @@ public class FormItem extends RefDataClass  implements com.smartgwt.client.widge
          * @param handler the iconClick handler
          */
         public HandlerRegistration addIconClickHandler(com.smartgwt.client.widgets.form.fields.events.IconClickHandler handler) {
-            if(manager.getHandlerCount(com.smartgwt.client.widgets.form.fields.events.IconClickEvent.getType()) == 0) setupIconClickEvent();
-            return manager.addHandler(com.smartgwt.client.widgets.form.fields.events.IconClickEvent.getType(), handler);
+            if(getHandlerCount(com.smartgwt.client.widgets.form.fields.events.IconClickEvent.getType()) == 0) setupIconClickEvent();
+            return doAddHandler(handler, com.smartgwt.client.widgets.form.fields.events.IconClickEvent.getType());
         }
         private native void setupIconClickEvent() /*-{
             var obj = null;
                 obj = this.@com.smartgwt.client.core.DataClass::getJsObj()();
-                var managerJ = this.@com.smartgwt.client.widgets.form.fields.FormItem::manager;
+                var selfJ = this;
                 obj.iconClick = function(){
                     var param = {"form" : arguments[0], "item" : arguments[1], "icon" : arguments[2]};
                     var event = @com.smartgwt.client.widgets.form.fields.events.IconClickEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
-                    managerJ.@com.google.gwt.event.shared.HandlerManager::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
+                    selfJ.@com.smartgwt.client.core.DataClass::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
                 };
         }-*/;
 
@@ -1797,17 +1796,17 @@ public class FormItem extends RefDataClass  implements com.smartgwt.client.widge
          * @param handler the iconKeyPress handler
          */
         public HandlerRegistration addIconKeyPressHandler(com.smartgwt.client.widgets.form.fields.events.IconKeyPressHandler handler) {
-            if(manager.getHandlerCount(com.smartgwt.client.widgets.form.fields.events.IconKeyPressEvent.getType()) == 0) setupIconKeyPressEvent();
-            return manager.addHandler(com.smartgwt.client.widgets.form.fields.events.IconKeyPressEvent.getType(), handler);
+            if(getHandlerCount(com.smartgwt.client.widgets.form.fields.events.IconKeyPressEvent.getType()) == 0) setupIconKeyPressEvent();
+            return doAddHandler(handler, com.smartgwt.client.widgets.form.fields.events.IconKeyPressEvent.getType());
         }
         private native void setupIconKeyPressEvent() /*-{
             var obj = null;
                 obj = this.@com.smartgwt.client.core.DataClass::getJsObj()();
-                var managerJ = this.@com.smartgwt.client.widgets.form.fields.FormItem::manager;
+                var selfJ = this;
                 obj.iconKeyPress = function(){
                     var param = {"keyName" : arguments[0], "character" : arguments[1], "form" : arguments[2], "item" : arguments[3], "icon" : arguments[4]};
                     var event = @com.smartgwt.client.widgets.form.fields.events.IconKeyPressEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
-                    managerJ.@com.google.gwt.event.shared.HandlerManager::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
+                    selfJ.@com.smartgwt.client.core.DataClass::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
                 };
         }-*/;
 
@@ -1821,17 +1820,17 @@ public class FormItem extends RefDataClass  implements com.smartgwt.client.widge
          * @param handler the change handler
          */
         public HandlerRegistration addChangeHandler(com.smartgwt.client.widgets.form.fields.events.ChangeHandler handler) {
-            if(manager.getHandlerCount(com.smartgwt.client.widgets.form.fields.events.ChangeEvent.getType()) == 0) setupChangeEvent();
-            return manager.addHandler(com.smartgwt.client.widgets.form.fields.events.ChangeEvent.getType(), handler);
+            if(getHandlerCount(com.smartgwt.client.widgets.form.fields.events.ChangeEvent.getType()) == 0) setupChangeEvent();
+            return doAddHandler(handler, com.smartgwt.client.widgets.form.fields.events.ChangeEvent.getType());
         }
         private native void setupChangeEvent() /*-{
             var obj = null;
                 obj = this.@com.smartgwt.client.core.DataClass::getJsObj()();
-                var managerJ = this.@com.smartgwt.client.widgets.form.fields.FormItem::manager;
+                var selfJ = this;
                 obj.change = function(){
                     var param = {"form" : arguments[0], "item" : arguments[1], "value" : arguments[2], "oldValue" : arguments[3]};
                     var event = @com.smartgwt.client.widgets.form.fields.events.ChangeEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
-                    managerJ.@com.google.gwt.event.shared.HandlerManager::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
+                    selfJ.@com.smartgwt.client.core.DataClass::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
                 };
         }-*/;
 
@@ -1844,17 +1843,17 @@ public class FormItem extends RefDataClass  implements com.smartgwt.client.widge
          * @param handler the changed handler
          */
         public HandlerRegistration addChangedHandler(com.smartgwt.client.widgets.form.fields.events.ChangedHandler handler) {
-            if(manager.getHandlerCount(com.smartgwt.client.widgets.form.fields.events.ChangedEvent.getType()) == 0) setupChangedEvent();
-            return manager.addHandler(com.smartgwt.client.widgets.form.fields.events.ChangedEvent.getType(), handler);
+            if(getHandlerCount(com.smartgwt.client.widgets.form.fields.events.ChangedEvent.getType()) == 0) setupChangedEvent();
+            return doAddHandler(handler, com.smartgwt.client.widgets.form.fields.events.ChangedEvent.getType());
         }
         private native void setupChangedEvent() /*-{
             var obj = null;
                 obj = this.@com.smartgwt.client.core.DataClass::getJsObj()();
-                var managerJ = this.@com.smartgwt.client.widgets.form.fields.FormItem::manager;
+                var selfJ = this;
                 obj.changed = function(){
                     var param = {"form" : arguments[0], "item" : arguments[1], "value" : arguments[2]};
                     var event = @com.smartgwt.client.widgets.form.fields.events.ChangedEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
-                    managerJ.@com.google.gwt.event.shared.HandlerManager::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
+                    selfJ.@com.smartgwt.client.core.DataClass::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
                 };
         }-*/;
 
@@ -1869,17 +1868,17 @@ public class FormItem extends RefDataClass  implements com.smartgwt.client.widge
          * @param handler the keyPress handler
          */
         public HandlerRegistration addKeyPressHandler(com.smartgwt.client.widgets.form.fields.events.KeyPressHandler handler) {
-            if(manager.getHandlerCount(com.smartgwt.client.widgets.form.fields.events.KeyPressEvent.getType()) == 0) setupKeyPressEvent();
-            return manager.addHandler(com.smartgwt.client.widgets.form.fields.events.KeyPressEvent.getType(), handler);
+            if(getHandlerCount(com.smartgwt.client.widgets.form.fields.events.KeyPressEvent.getType()) == 0) setupKeyPressEvent();
+            return doAddHandler(handler, com.smartgwt.client.widgets.form.fields.events.KeyPressEvent.getType());
         }
         private native void setupKeyPressEvent() /*-{
             var obj = null;
                 obj = this.@com.smartgwt.client.core.DataClass::getJsObj()();
-                var managerJ = this.@com.smartgwt.client.widgets.form.fields.FormItem::manager;
+                var selfJ = this;
                 obj.keyPress = function(){
                     var param = {"item" : arguments[0], "form" : arguments[1], "keyName" : arguments[2], "characterValue" : arguments[3]};
                     var event = @com.smartgwt.client.widgets.form.fields.events.KeyPressEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
-                    managerJ.@com.google.gwt.event.shared.HandlerManager::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
+                    selfJ.@com.smartgwt.client.core.DataClass::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
                 };
         }-*/;
 

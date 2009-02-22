@@ -74,11 +74,8 @@ public class RightMouseDownEvent extends BrowserEvent<RightMouseDownHandler>  im
   public static <S extends HasRightMouseDownHandlers & HasHandlers> void fire(
       S source, JavaScriptObject jsObj) {
     if (TYPE != null) {
-      HandlerManager handlers = source.getHandlers();
-      if (handlers != null) {
         RightMouseDownEvent event = new RightMouseDownEvent(jsObj);
-        handlers.fireEvent(event);
-      }
+        source.fireEvent(event);
     }
   }
 

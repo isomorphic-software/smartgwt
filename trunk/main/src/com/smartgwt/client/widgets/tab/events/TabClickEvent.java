@@ -73,11 +73,8 @@ public class TabClickEvent extends BrowserEvent<TabIconClickHandler>  {
   public static <S extends HasTabIconClickHandlers & HasHandlers> void fire(
       S source, JavaScriptObject jsObj) {
     if (TYPE != null) {
-      HandlerManager handlers = source.getHandlers();
-      if (handlers != null) {
         TabClickEvent event = new TabClickEvent(jsObj);
-        handlers.fireEvent(event);
-      }
+        source.fireEvent(event);
     }
   }
 

@@ -73,7 +73,6 @@ public class ButtonItem extends CanvasItem  implements com.smartgwt.client.widge
         }
     }
 
-    protected HandlerManager manager = new HandlerManager(this);
 
     public ButtonItem(){
         setType("ButtonItem");
@@ -201,17 +200,17 @@ public class ButtonItem extends CanvasItem  implements com.smartgwt.client.widge
          * @param handler the click handler
          */
         public HandlerRegistration addClickHandler(com.smartgwt.client.widgets.form.fields.events.ClickHandler handler) {
-            if(manager.getHandlerCount(com.smartgwt.client.widgets.form.fields.events.ClickEvent.getType()) == 0) setupClickEvent();
-            return manager.addHandler(com.smartgwt.client.widgets.form.fields.events.ClickEvent.getType(), handler);
+            if(getHandlerCount(com.smartgwt.client.widgets.form.fields.events.ClickEvent.getType()) == 0) setupClickEvent();
+            return doAddHandler(handler, com.smartgwt.client.widgets.form.fields.events.ClickEvent.getType());
         }
         private native void setupClickEvent() /*-{
             var obj = null;
                 obj = this.@com.smartgwt.client.core.DataClass::getJsObj()();
-                var managerJ = this.@com.smartgwt.client.widgets.form.fields.ButtonItem::manager;
+                var selfJ = this;
                 obj.click = function(){
                     var param = {"form" : arguments[0], "item" : arguments[1]};
                     var event = @com.smartgwt.client.widgets.form.fields.events.ClickEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
-                    managerJ.@com.google.gwt.event.shared.HandlerManager::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
+                    selfJ.@com.smartgwt.client.core.DataClass::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
                 };
         }-*/;
 

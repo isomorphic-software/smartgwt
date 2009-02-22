@@ -20,6 +20,6 @@ import com.smartgwt.client.event.*;
 import com.google.gwt.event.shared.HandlerRegistration;
 import com.google.gwt.event.shared.HasHandlers;
 
-public interface HasFolderContextClickHandlers {
+public interface HasFolderContextClickHandlers extends HasHandlers {
     HandlerRegistration addFolderContextClickHandler(FolderContextClickHandler handler);
 }

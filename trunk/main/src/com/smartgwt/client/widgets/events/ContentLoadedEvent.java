@@ -73,11 +73,8 @@ public class ContentLoadedEvent extends BrowserEvent<ContentLoadedHandler>  {
   public static <S extends HasContentLoadedHandlers & HasHandlers> void fire(
       S source, JavaScriptObject jsObj) {
     if (TYPE != null) {
-      HandlerManager handlers = source.getHandlers();
-      if (handlers != null) {
         ContentLoadedEvent event = new ContentLoadedEvent(jsObj);
-        handlers.fireEvent(event);
-      }
+        source.fireEvent(event);
     }
   }
 

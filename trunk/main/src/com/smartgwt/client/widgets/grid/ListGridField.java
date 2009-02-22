@@ -72,7 +72,6 @@ public class ListGridField extends DataClass  implements com.smartgwt.client.wid
         return new ListGridField(jsObj);
     }
 
-    protected HandlerManager manager = new HandlerManager(this);
 
     public ListGridField(){
         
@@ -1394,17 +1393,17 @@ public class ListGridField extends DataClass  implements com.smartgwt.client.wid
          * @param handler the editorEnter handler
          */
         public HandlerRegistration addEditorEnterHandler(com.smartgwt.client.widgets.grid.events.EditorEnterHandler handler) {
-            if(manager.getHandlerCount(com.smartgwt.client.widgets.grid.events.EditorEnterEvent.getType()) == 0) setupEditorEnterEvent();
-            return manager.addHandler(com.smartgwt.client.widgets.grid.events.EditorEnterEvent.getType(), handler);
+            if(getHandlerCount(com.smartgwt.client.widgets.grid.events.EditorEnterEvent.getType()) == 0) setupEditorEnterEvent();
+            return doAddHandler(handler, com.smartgwt.client.widgets.grid.events.EditorEnterEvent.getType());
         }
         private native void setupEditorEnterEvent() /*-{
             var obj = null;
                 obj = this.@com.smartgwt.client.core.DataClass::getJsObj()();
-                var managerJ = this.@com.smartgwt.client.widgets.grid.ListGridField::manager;
+                var selfJ = this;
                 obj.editorEnter = function(){
                     var param = {"record" : arguments[0], "value" : arguments[1], "rowNum" : arguments[2], "colNum" : arguments[3], "grid" : arguments[4]};
                     var event = @com.smartgwt.client.widgets.grid.events.EditorEnterEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
-                    managerJ.@com.google.gwt.event.shared.HandlerManager::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
+                    selfJ.@com.smartgwt.client.core.DataClass::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
                 };
         }-*/;
 
@@ -1420,17 +1419,17 @@ public class ListGridField extends DataClass  implements com.smartgwt.client.wid
          * @param handler the editorExit handler
          */
         public HandlerRegistration addEditorExitHandler(com.smartgwt.client.widgets.grid.events.EditorExitHandler handler) {
-            if(manager.getHandlerCount(com.smartgwt.client.widgets.grid.events.EditorExitEvent.getType()) == 0) setupEditorExitEvent();
-            return manager.addHandler(com.smartgwt.client.widgets.grid.events.EditorExitEvent.getType(), handler);
+            if(getHandlerCount(com.smartgwt.client.widgets.grid.events.EditorExitEvent.getType()) == 0) setupEditorExitEvent();
+            return doAddHandler(handler, com.smartgwt.client.widgets.grid.events.EditorExitEvent.getType());
         }
         private native void setupEditorExitEvent() /*-{
             var obj = null;
                 obj = this.@com.smartgwt.client.core.DataClass::getJsObj()();
-                var managerJ = this.@com.smartgwt.client.widgets.grid.ListGridField::manager;
+                var selfJ = this;
                 obj.editorExit = function(){
                     var param = {"editCompletionEvent" : arguments[0], "record" : arguments[1], "newValue" : arguments[2], "rowNum" : arguments[3], "colNum" : arguments[4], "grid" : arguments[5]};
                     var event = @com.smartgwt.client.widgets.grid.events.EditorExitEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
-                    managerJ.@com.google.gwt.event.shared.HandlerManager::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
+                    selfJ.@com.smartgwt.client.core.DataClass::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
                 };
         }-*/;
 
@@ -1440,17 +1439,17 @@ public class ListGridField extends DataClass  implements com.smartgwt.client.wid
          * @param handler the cellChanged handler
          */
         public HandlerRegistration addCellSavedHandler(com.smartgwt.client.widgets.grid.events.CellSavedHandler handler) {
-            if(manager.getHandlerCount(com.smartgwt.client.widgets.grid.events.CellSavedEvent.getType()) == 0) setupCellSavedEvent();
-            return manager.addHandler(com.smartgwt.client.widgets.grid.events.CellSavedEvent.getType(), handler);
+            if(getHandlerCount(com.smartgwt.client.widgets.grid.events.CellSavedEvent.getType()) == 0) setupCellSavedEvent();
+            return doAddHandler(handler, com.smartgwt.client.widgets.grid.events.CellSavedEvent.getType());
         }
         private native void setupCellSavedEvent() /*-{
             var obj = null;
                 obj = this.@com.smartgwt.client.core.DataClass::getJsObj()();
-                var managerJ = this.@com.smartgwt.client.widgets.grid.ListGridField::manager;
+                var selfJ = this;
                 obj.cellChanged = function(){
                     var param = {};
                     var event = @com.smartgwt.client.widgets.grid.events.CellSavedEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
-                    managerJ.@com.google.gwt.event.shared.HandlerManager::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
+                    selfJ.@com.smartgwt.client.core.DataClass::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
                 };
         }-*/;
 
@@ -1467,17 +1466,17 @@ public class ListGridField extends DataClass  implements com.smartgwt.client.wid
          * @param handler the recordClick handler
          */
         public HandlerRegistration addRecordClickHandler(com.smartgwt.client.widgets.grid.events.RecordClickHandler handler) {
-            if(manager.getHandlerCount(com.smartgwt.client.widgets.grid.events.RecordClickEvent.getType()) == 0) setupRecordClickEvent();
-            return manager.addHandler(com.smartgwt.client.widgets.grid.events.RecordClickEvent.getType(), handler);
+            if(getHandlerCount(com.smartgwt.client.widgets.grid.events.RecordClickEvent.getType()) == 0) setupRecordClickEvent();
+            return doAddHandler(handler, com.smartgwt.client.widgets.grid.events.RecordClickEvent.getType());
         }
         private native void setupRecordClickEvent() /*-{
             var obj = null;
                 obj = this.@com.smartgwt.client.core.DataClass::getJsObj()();
-                var managerJ = this.@com.smartgwt.client.widgets.grid.ListGridField::manager;
+                var selfJ = this;
                 obj.recordClick = function(){
                     var param = {"viewer" : arguments[0], "record" : arguments[1], "recordNum" : arguments[2], "field" : arguments[3], "fieldNum" : arguments[4], "value" : arguments[5], "rawValue" : arguments[6]};
                     var event = @com.smartgwt.client.widgets.grid.events.RecordClickEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
-                    managerJ.@com.google.gwt.event.shared.HandlerManager::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
+                    selfJ.@com.smartgwt.client.core.DataClass::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
                 };
         }-*/;
 
@@ -1496,17 +1495,17 @@ public class ListGridField extends DataClass  implements com.smartgwt.client.wid
          * @param handler the change handler
          */
         public HandlerRegistration addChangeHandler(com.smartgwt.client.widgets.grid.events.ChangeHandler handler) {
-            if(manager.getHandlerCount(com.smartgwt.client.widgets.grid.events.ChangeEvent.getType()) == 0) setupChangeEvent();
-            return manager.addHandler(com.smartgwt.client.widgets.grid.events.ChangeEvent.getType(), handler);
+            if(getHandlerCount(com.smartgwt.client.widgets.grid.events.ChangeEvent.getType()) == 0) setupChangeEvent();
+            return doAddHandler(handler, com.smartgwt.client.widgets.grid.events.ChangeEvent.getType());
         }
         private native void setupChangeEvent() /*-{
             var obj = null;
                 obj = this.@com.smartgwt.client.core.DataClass::getJsObj()();
-                var managerJ = this.@com.smartgwt.client.widgets.grid.ListGridField::manager;
+                var selfJ = this;
                 obj.change = function(){
                     var param = {"form" : arguments[0], "item" : arguments[1], "value" : arguments[2], "oldValue" : arguments[3]};
                     var event = @com.smartgwt.client.widgets.grid.events.ChangeEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
-                    managerJ.@com.google.gwt.event.shared.HandlerManager::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
+                    selfJ.@com.smartgwt.client.core.DataClass::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
                 };
         }-*/;
 
@@ -1519,17 +1518,17 @@ public class ListGridField extends DataClass  implements com.smartgwt.client.wid
          * @param handler the changed handler
          */
         public HandlerRegistration addChangedHandler(com.smartgwt.client.widgets.grid.events.ChangedHandler handler) {
-            if(manager.getHandlerCount(com.smartgwt.client.widgets.grid.events.ChangedEvent.getType()) == 0) setupChangedEvent();
-            return manager.addHandler(com.smartgwt.client.widgets.grid.events.ChangedEvent.getType(), handler);
+            if(getHandlerCount(com.smartgwt.client.widgets.grid.events.ChangedEvent.getType()) == 0) setupChangedEvent();
+            return doAddHandler(handler, com.smartgwt.client.widgets.grid.events.ChangedEvent.getType());
         }
         private native void setupChangedEvent() /*-{
             var obj = null;
                 obj = this.@com.smartgwt.client.core.DataClass::getJsObj()();
-                var managerJ = this.@com.smartgwt.client.widgets.grid.ListGridField::manager;
+                var selfJ = this;
                 obj.changed = function(){
                     var param = {"form" : arguments[0], "item" : arguments[1], "value" : arguments[2]};
                     var event = @com.smartgwt.client.widgets.grid.events.ChangedEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
-                    managerJ.@com.google.gwt.event.shared.HandlerManager::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
+                    selfJ.@com.smartgwt.client.core.DataClass::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
                 };
         }-*/;
 

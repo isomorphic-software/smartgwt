@@ -74,11 +74,8 @@ public class ItemClickEvent extends BrowserEvent<ItemClickHandler>  implements C
   public static <S extends HasItemClickHandlers & HasHandlers> void fire(
       S source, JavaScriptObject jsObj) {
     if (TYPE != null) {
-      HandlerManager handlers = source.getHandlers();
-      if (handlers != null) {
         ItemClickEvent event = new ItemClickEvent(jsObj);
-        handlers.fireEvent(event);
-      }
+        source.fireEvent(event);
     }
   }
 

@@ -18,8 +18,7 @@ package com.smartgwt.client.widgets;
 
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.core.client.JavaScriptObject;
-import com.google.gwt.event.shared.HandlerManager;
-import com.google.gwt.event.shared.HandlerRegistration;
+import com.google.gwt.event.shared.*;
 import com.google.gwt.user.client.DOM;
 import com.google.gwt.user.client.Element;
 import com.google.gwt.user.client.Window;
@@ -35,12 +34,11 @@ import com.smartgwt.client.util.JSOHelper;
 import com.smartgwt.client.util.SC;
 import com.smartgwt.client.widgets.events.DrawEvent;
 import com.smartgwt.client.widgets.events.DrawHandler;
-import com.smartgwt.client.widgets.events.HasDrawHandlers;
 
 import java.util.Date;
 import java.util.Map;
 
-public abstract class BaseWidget extends Widget implements HasDrawHandlers {
+public abstract class BaseWidget extends Widget implements HasHandlers {
 
     private Function onRenderFn;
 
@@ -50,17 +48,55 @@ public abstract class BaseWidget extends Widget implements HasDrawHandlers {
 
     private static native void init()/*-{
         $wnd.isc.setAutoDraw(false);
-        //$wnd.isc.autoDraw = false;
-        //$wnd.isc.noAutoDraw = true;
-        //$wnd.isc.Page.setSkinDir("./");
     }-*/;
-
 
     protected String id;
     protected JavaScriptObject config = JSOHelper.createObject();
     protected boolean isElementSet = false;
-    protected HandlerManager manager = new HandlerManager(this);
+
     protected boolean configOnly;
+
+    //event handling code
+    //can be removed when GWT issue http://code.google.com/p/google-web-toolkit/issues/detail?id=3378
+    //is fixed
+    private HandlerManager manager;
+
+    public void fireEvent(GwtEvent<?> event) {
+        if (manager != null) {
+            manager.fireEvent(event);
+        }
+    }
+
+    /**
+     * Adds this handler to the widget.
+     *
+     * @param <H>     the type of handler to add
+     * @param type    the event type
+     * @param handler the handler
+     * @return {@link HandlerRegistration} used to remove the handler
+     */
+    protected final <H extends EventHandler> HandlerRegistration doAddHandler(
+            final H handler, GwtEvent.Type<H> type) {
+        return ensureHandlers().addHandler(type, handler);
+    }
+
+    /**
+     * Ensures the existence of the handler manager.
+     *
+     * @return the handler manager
+     */
+    HandlerManager ensureHandlers() {
+        return manager == null ? manager = new HandlerManager(this)
+                : manager;
+    }
+
+    HandlerManager getManager() {
+        return manager;
+    }
+
+    public int getHandlerCount(GwtEvent.Type<?> type) {
+        return manager == null ? 0 : manager.getHandlerCount(type);
+    }
 
     public BaseWidget() {
         id = SC.generateID();
@@ -167,16 +203,15 @@ public abstract class BaseWidget extends Widget implements HasDrawHandlers {
 
     private void rendered() {
         onDraw();
-        manager.fireEvent(new DrawEvent(getID()));
+        fireEvent(new DrawEvent(getID()));
         if (onRenderFn != null) {
             onRenderFn.execute();
         }
     }
 
     public HandlerRegistration addDrawHandler(DrawHandler handler) {
-        return manager.addHandler(DrawEvent.getType(), handler);
+        return doAddHandler(handler, DrawEvent.getType());
     }
-
 
     protected void onDraw() {
 

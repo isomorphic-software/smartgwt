@@ -73,11 +73,8 @@ public class DoubleClickEvent extends AbstractSmartEvent<DoubleClickHandler>  {
   public static <S extends HasDoubleClickHandlers & HasHandlers> void fire(
       S source, JavaScriptObject jsObj) {
     if (TYPE != null) {
-      HandlerManager handlers = source.getHandlers();
-      if (handlers != null) {
         DoubleClickEvent event = new DoubleClickEvent(jsObj);
-        handlers.fireEvent(event);
-      }
+        source.fireEvent(event);
     }
   }
 
