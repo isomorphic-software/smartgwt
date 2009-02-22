@@ -74,11 +74,8 @@ public class DragStopEvent extends BrowserEvent<DragStopHandler>  implements Can
   public static <S extends HasDragStopHandlers & HasHandlers> void fire(
       S source, JavaScriptObject jsObj) {
     if (TYPE != null) {
-      HandlerManager handlers = source.getHandlers();
-      if (handlers != null) {
         DragStopEvent event = new DragStopEvent(jsObj);
-        handlers.fireEvent(event);
-      }
+        source.fireEvent(event);
     }
   }
 

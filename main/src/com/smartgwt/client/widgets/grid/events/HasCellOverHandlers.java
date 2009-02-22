@@ -20,6 +20,6 @@ import com.smartgwt.client.event.*;
 import com.google.gwt.event.shared.HandlerRegistration;
 import com.google.gwt.event.shared.HasHandlers;
 
-public interface HasCellOverHandlers {
+public interface HasCellOverHandlers extends HasHandlers {
     HandlerRegistration addCellOverHandler(CellOverHandler handler);
 }

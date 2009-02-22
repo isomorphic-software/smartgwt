@@ -18,6 +18,6 @@ package com.smartgwt.client.widgets.events;
 
 import com.google.gwt.event.shared.HandlerRegistration;
 
-public interface HasDrawHandlers<T> {
+public interface HasDrawHandlers<T> extends HasHoverHandlers {
     HandlerRegistration addDrawHandler(DrawHandler handler);
 }

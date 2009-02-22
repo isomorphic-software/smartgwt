@@ -20,6 +20,6 @@ import com.smartgwt.client.event.*;
 import com.google.gwt.event.shared.HandlerRegistration;
 import com.google.gwt.event.shared.HasHandlers;
 
-public interface HasDragStartHandlers {
+public interface HasDragStartHandlers extends HasHandlers {
     HandlerRegistration addDragStartHandler(DragStartHandler handler);
 }

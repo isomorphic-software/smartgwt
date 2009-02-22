@@ -73,7 +73,6 @@ public class MenuItem extends ListGridRecord  implements com.smartgwt.client.wid
         }
     }
 
-    protected HandlerManager manager = new HandlerManager(this);
 
     public MenuItem(){
         
@@ -343,17 +342,17 @@ public class MenuItem extends ListGridRecord  implements com.smartgwt.client.wid
          * @param handler the click handler
          */
         public HandlerRegistration addClickHandler(com.smartgwt.client.widgets.menu.events.ClickHandler handler) {
-            if(manager.getHandlerCount(com.smartgwt.client.widgets.menu.events.MenuItemClickEvent.getType()) == 0) setupClickEvent();
-            return manager.addHandler(com.smartgwt.client.widgets.menu.events.MenuItemClickEvent.getType(), handler);
+            if(getHandlerCount(com.smartgwt.client.widgets.menu.events.MenuItemClickEvent.getType()) == 0) setupClickEvent();
+            return doAddHandler(handler, com.smartgwt.client.widgets.menu.events.MenuItemClickEvent.getType());
         }
         private native void setupClickEvent() /*-{
             var obj = null;
                 obj = this.@com.smartgwt.client.core.DataClass::getJsObj()();
-                var managerJ = this.@com.smartgwt.client.widgets.menu.MenuItem::manager;
+                var selfJ = this;
                 obj.click = function(){
                     var param = {"target" : arguments[0], "item" : arguments[1], "menu" : arguments[2], "colNum" : arguments[3]};
                     var event = @com.smartgwt.client.widgets.menu.events.MenuItemClickEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
-                    managerJ.@com.google.gwt.event.shared.HandlerManager::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
+                    selfJ.@com.smartgwt.client.core.DataClass::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
                 };
         }-*/;
 

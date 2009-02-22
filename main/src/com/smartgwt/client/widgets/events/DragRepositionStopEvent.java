@@ -74,11 +74,8 @@ public class DragRepositionStopEvent extends BrowserEvent<DragRepositionStopHand
   public static <S extends HasDragRepositionStopHandlers & HasHandlers> void fire(
       S source, JavaScriptObject jsObj) {
     if (TYPE != null) {
-      HandlerManager handlers = source.getHandlers();
-      if (handlers != null) {
         DragRepositionStopEvent event = new DragRepositionStopEvent(jsObj);
-        handlers.fireEvent(event);
-      }
+        source.fireEvent(event);
     }
   }
 

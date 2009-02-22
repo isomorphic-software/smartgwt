@@ -72,7 +72,6 @@ public class Tree extends BaseClass  implements com.smartgwt.client.widgets.tree
         }
     }
 
-    protected HandlerManager manager = new HandlerManager(this);
 
     public Tree(){
         
@@ -593,18 +592,18 @@ public class Tree extends BaseClass  implements com.smartgwt.client.widgets.tree
          * @param handler the dataChanged handler
          */
         public HandlerRegistration addDataChangedHandler(com.smartgwt.client.widgets.tree.DataChangedHandler handler) {
-            if(manager.getHandlerCount(com.smartgwt.client.widgets.tree.DataChangedEvent.getType()) == 0) setupDataChangedEvent();
-            return manager.addHandler(com.smartgwt.client.widgets.tree.DataChangedEvent.getType(), handler);
+            if(getHandlerCount(com.smartgwt.client.widgets.tree.DataChangedEvent.getType()) == 0) setupDataChangedEvent();
+            return doAddHandler(handler, com.smartgwt.client.widgets.tree.DataChangedEvent.getType());
         }
         private native void setupDataChangedEvent() /*-{
             var obj = null;
-            var managerJ = this.@com.smartgwt.client.widgets.tree.Tree::manager;
+            var selfJ = this;
             if(this.@com.smartgwt.client.core.BaseClass::isCreated()()) {
                 obj = this.@com.smartgwt.client.core.BaseClass::getJsObj()();
                 obj.addProperties({dataChanged:function(){
                         var param = {};
                         var event = @com.smartgwt.client.widgets.tree.DataChangedEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
-                        managerJ.@com.google.gwt.event.shared.HandlerManager::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
+                        selfJ.@com.smartgwt.client.core.BaseClass::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
                     }
                 });
             } else {
@@ -612,7 +611,7 @@ public class Tree extends BaseClass  implements com.smartgwt.client.widgets.tree
                 obj.dataChanged = function(){
                     var param = {};
                     var event = @com.smartgwt.client.widgets.tree.DataChangedEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
-                    managerJ.@com.google.gwt.event.shared.HandlerManager::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
+                    selfJ.@com.smartgwt.client.core.BaseClass::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
                 };
             }
         }-*/;

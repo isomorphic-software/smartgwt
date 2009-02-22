@@ -74,11 +74,8 @@ public class DropEvent extends BrowserEvent<DropHandler>  implements Cancellable
   public static <S extends HasDropHandlers & HasHandlers> void fire(
       S source, JavaScriptObject jsObj) {
     if (TYPE != null) {
-      HandlerManager handlers = source.getHandlers();
-      if (handlers != null) {
         DropEvent event = new DropEvent(jsObj);
-        handlers.fireEvent(event);
-      }
+        source.fireEvent(event);
     }
   }
 

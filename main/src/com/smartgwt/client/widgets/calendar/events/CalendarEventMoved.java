@@ -73,11 +73,8 @@ public class CalendarEventMoved extends BrowserEvent<EventMovedHandler>  {
   public static <S extends HasEventMovedHandlers & HasHandlers> void fire(
       S source, JavaScriptObject jsObj) {
     if (TYPE != null) {
-      HandlerManager handlers = source.getHandlers();
-      if (handlers != null) {
         CalendarEventMoved event = new CalendarEventMoved(jsObj);
-        handlers.fireEvent(event);
-      }
+        source.fireEvent(event);
     }
   }
 

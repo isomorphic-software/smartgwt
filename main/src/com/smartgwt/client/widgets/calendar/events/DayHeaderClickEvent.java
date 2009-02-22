@@ -73,11 +73,8 @@ public class DayHeaderClickEvent extends BrowserEvent<DayHeaderClickHandler>  {
   public static <S extends HasDayHeaderClickHandlers & HasHandlers> void fire(
       S source, JavaScriptObject jsObj) {
     if (TYPE != null) {
-      HandlerManager handlers = source.getHandlers();
-      if (handlers != null) {
         DayHeaderClickEvent event = new DayHeaderClickEvent(jsObj);
-        handlers.fireEvent(event);
-      }
+        source.fireEvent(event);
     }
   }
 

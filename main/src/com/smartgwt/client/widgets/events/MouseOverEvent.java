@@ -74,11 +74,8 @@ public class MouseOverEvent extends BrowserEvent<MouseOverHandler>  implements C
   public static <S extends HasMouseOverHandlers & HasHandlers> void fire(
       S source, JavaScriptObject jsObj) {
     if (TYPE != null) {
-      HandlerManager handlers = source.getHandlers();
-      if (handlers != null) {
         MouseOverEvent event = new MouseOverEvent(jsObj);
-        handlers.fireEvent(event);
-      }
+        source.fireEvent(event);
     }
   }
 

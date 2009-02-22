@@ -74,11 +74,8 @@ public class FolderClosedEvent extends BrowserEvent<FolderClosedHandler>  implem
   public static <S extends HasFolderClosedHandlers & HasHandlers> void fire(
       S source, JavaScriptObject jsObj) {
     if (TYPE != null) {
-      HandlerManager handlers = source.getHandlers();
-      if (handlers != null) {
         FolderClosedEvent event = new FolderClosedEvent(jsObj);
-        handlers.fireEvent(event);
-      }
+        source.fireEvent(event);
     }
   }
 

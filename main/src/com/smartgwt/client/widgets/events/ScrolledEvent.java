@@ -73,11 +73,8 @@ public class ScrolledEvent extends BrowserEvent<ScrolledHandler>  {
   public static <S extends HasScrolledHandlers & HasHandlers> void fire(
       S source, JavaScriptObject jsObj) {
     if (TYPE != null) {
-      HandlerManager handlers = source.getHandlers();
-      if (handlers != null) {
         ScrolledEvent event = new ScrolledEvent(jsObj);
-        handlers.fireEvent(event);
-      }
+        source.fireEvent(event);
     }
   }
 

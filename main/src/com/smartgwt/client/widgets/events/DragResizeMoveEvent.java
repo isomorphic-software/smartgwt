@@ -74,11 +74,8 @@ public class DragResizeMoveEvent extends BrowserEvent<DragResizeMoveHandler>  im
   public static <S extends HasDragResizeMoveHandlers & HasHandlers> void fire(
       S source, JavaScriptObject jsObj) {
     if (TYPE != null) {
-      HandlerManager handlers = source.getHandlers();
-      if (handlers != null) {
         DragResizeMoveEvent event = new DragResizeMoveEvent(jsObj);
-        handlers.fireEvent(event);
-      }
+        source.fireEvent(event);
     }
   }
 

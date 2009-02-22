@@ -73,11 +73,8 @@ public class PercentChangedEvent extends BrowserEvent<PercentChangedHandler>  {
   public static <S extends HasPercentChangedHandlers & HasHandlers> void fire(
       S source, JavaScriptObject jsObj) {
     if (TYPE != null) {
-      HandlerManager handlers = source.getHandlers();
-      if (handlers != null) {
         PercentChangedEvent event = new PercentChangedEvent(jsObj);
-        handlers.fireEvent(event);
-      }
+        source.fireEvent(event);
     }
   }
 

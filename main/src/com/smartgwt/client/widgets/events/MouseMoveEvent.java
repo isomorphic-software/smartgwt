@@ -74,11 +74,8 @@ public class MouseMoveEvent extends BrowserEvent<MouseMoveHandler>  implements C
   public static <S extends HasMouseMoveHandlers & HasHandlers> void fire(
       S source, JavaScriptObject jsObj) {
     if (TYPE != null) {
-      HandlerManager handlers = source.getHandlers();
-      if (handlers != null) {
         MouseMoveEvent event = new MouseMoveEvent(jsObj);
-        handlers.fireEvent(event);
-      }
+        source.fireEvent(event);
     }
   }
 

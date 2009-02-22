@@ -74,11 +74,8 @@ public class CalendarEventClick extends BrowserEvent<EventClickHandler>  impleme
   public static <S extends HasEventClickHandlers & HasHandlers> void fire(
       S source, JavaScriptObject jsObj) {
     if (TYPE != null) {
-      HandlerManager handlers = source.getHandlers();
-      if (handlers != null) {
         CalendarEventClick event = new CalendarEventClick(jsObj);
-        handlers.fireEvent(event);
-      }
+        source.fireEvent(event);
     }
   }
 

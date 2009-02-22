@@ -73,11 +73,8 @@ public class RecordClickEvent extends BrowserEvent<RecordClickHandler>  {
   public static <S extends HasRecordClickHandlers & HasHandlers> void fire(
       S source, JavaScriptObject jsObj) {
     if (TYPE != null) {
-      HandlerManager handlers = source.getHandlers();
-      if (handlers != null) {
         RecordClickEvent event = new RecordClickEvent(jsObj);
-        handlers.fireEvent(event);
-      }
+        source.fireEvent(event);
     }
   }
 

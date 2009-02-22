@@ -74,11 +74,8 @@ public class DropOutEvent extends BrowserEvent<DropOutHandler>  implements Cance
   public static <S extends HasDropOutHandlers & HasHandlers> void fire(
       S source, JavaScriptObject jsObj) {
     if (TYPE != null) {
-      HandlerManager handlers = source.getHandlers();
-      if (handlers != null) {
         DropOutEvent event = new DropOutEvent(jsObj);
-        handlers.fireEvent(event);
-      }
+        source.fireEvent(event);
     }
   }
 

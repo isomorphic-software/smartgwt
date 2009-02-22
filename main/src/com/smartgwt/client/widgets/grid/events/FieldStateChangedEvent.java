@@ -73,11 +73,8 @@ public class FieldStateChangedEvent extends BrowserEvent<FieldStateChangedHandle
   public static <S extends HasFieldStateChangedHandlers & HasHandlers> void fire(
       S source, JavaScriptObject jsObj) {
     if (TYPE != null) {
-      HandlerManager handlers = source.getHandlers();
-      if (handlers != null) {
         FieldStateChangedEvent event = new FieldStateChangedEvent(jsObj);
-        handlers.fireEvent(event);
-      }
+        source.fireEvent(event);
     }
   }
 

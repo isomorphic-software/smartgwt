@@ -74,11 +74,8 @@ public class CellOutEvent extends GridRowColEvent<CellOutHandler>  implements Ca
   public static <S extends HasCellOutHandlers & HasHandlers> void fire(
       S source, JavaScriptObject jsObj) {
     if (TYPE != null) {
-      HandlerManager handlers = source.getHandlers();
-      if (handlers != null) {
         CellOutEvent event = new CellOutEvent(jsObj);
-        handlers.fireEvent(event);
-      }
+        source.fireEvent(event);
     }
   }
 

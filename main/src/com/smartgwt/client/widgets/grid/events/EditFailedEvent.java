@@ -73,11 +73,8 @@ public class EditFailedEvent extends BrowserEvent<EditFailedHandler>  {
   public static <S extends HasEditFailedHandlers & HasHandlers> void fire(
       S source, JavaScriptObject jsObj) {
     if (TYPE != null) {
-      HandlerManager handlers = source.getHandlers();
-      if (handlers != null) {
         EditFailedEvent event = new EditFailedEvent(jsObj);
-        handlers.fireEvent(event);
-      }
+        source.fireEvent(event);
     }
   }
 

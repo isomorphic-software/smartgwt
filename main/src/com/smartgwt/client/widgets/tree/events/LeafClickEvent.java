@@ -73,11 +73,8 @@ public class LeafClickEvent extends BrowserEvent<LeafClickHandler>  {
   public static <S extends HasLeafClickHandlers & HasHandlers> void fire(
       S source, JavaScriptObject jsObj) {
     if (TYPE != null) {
-      HandlerManager handlers = source.getHandlers();
-      if (handlers != null) {
         LeafClickEvent event = new LeafClickEvent(jsObj);
-        handlers.fireEvent(event);
-      }
+        source.fireEvent(event);
     }
   }
 

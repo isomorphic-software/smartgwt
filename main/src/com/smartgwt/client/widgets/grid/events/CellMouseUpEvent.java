@@ -74,11 +74,8 @@ public class CellMouseUpEvent extends GridRowColEvent<CellMouseUpHandler>  imple
   public static <S extends HasCellMouseUpHandlers & HasHandlers> void fire(
       S source, JavaScriptObject jsObj) {
     if (TYPE != null) {
-      HandlerManager handlers = source.getHandlers();
-      if (handlers != null) {
         CellMouseUpEvent event = new CellMouseUpEvent(jsObj);
-        handlers.fireEvent(event);
-      }
+        source.fireEvent(event);
     }
   }
 

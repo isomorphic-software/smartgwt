@@ -73,11 +73,8 @@ public class TabDeselectedEvent extends BrowserEvent<TabDeselectedHandler>  {
   public static <S extends HasTabDeselectedHandlers & HasHandlers> void fire(
       S source, JavaScriptObject jsObj) {
     if (TYPE != null) {
-      HandlerManager handlers = source.getHandlers();
-      if (handlers != null) {
         TabDeselectedEvent event = new TabDeselectedEvent(jsObj);
-        handlers.fireEvent(event);
-      }
+        source.fireEvent(event);
     }
   }
 

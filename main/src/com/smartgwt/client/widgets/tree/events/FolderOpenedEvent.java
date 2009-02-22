@@ -74,11 +74,8 @@ public class FolderOpenedEvent extends BrowserEvent<FolderOpenedHandler>  implem
   public static <S extends HasFolderOpenedHandlers & HasHandlers> void fire(
       S source, JavaScriptObject jsObj) {
     if (TYPE != null) {
-      HandlerManager handlers = source.getHandlers();
-      if (handlers != null) {
         FolderOpenedEvent event = new FolderOpenedEvent(jsObj);
-        handlers.fireEvent(event);
-      }
+        source.fireEvent(event);
     }
   }
 

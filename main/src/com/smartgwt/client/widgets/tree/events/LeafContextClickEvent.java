@@ -74,11 +74,8 @@ public class LeafContextClickEvent extends BrowserEvent<LeafContextClickHandler>
   public static <S extends HasLeafContextClickHandlers & HasHandlers> void fire(
       S source, JavaScriptObject jsObj) {
     if (TYPE != null) {
-      HandlerManager handlers = source.getHandlers();
-      if (handlers != null) {
         LeafContextClickEvent event = new LeafContextClickEvent(jsObj);
-        handlers.fireEvent(event);
-      }
+        source.fireEvent(event);
     }
   }
 

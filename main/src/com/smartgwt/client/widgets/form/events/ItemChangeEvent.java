@@ -74,11 +74,8 @@ public class ItemChangeEvent extends BrowserEvent<ItemChangeHandler>  implements
   public static <S extends HasItemChangeHandlers & HasHandlers> void fire(
       S source, JavaScriptObject jsObj) {
     if (TYPE != null) {
-      HandlerManager handlers = source.getHandlers();
-      if (handlers != null) {
         ItemChangeEvent event = new ItemChangeEvent(jsObj);
-        handlers.fireEvent(event);
-      }
+        source.fireEvent(event);
     }
   }
 

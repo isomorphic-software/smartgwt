@@ -74,11 +74,8 @@ public class DayBodyClickEvent extends BrowserEvent<DayBodyClickHandler>  implem
   public static <S extends HasDayBodyClickHandlers & HasHandlers> void fire(
       S source, JavaScriptObject jsObj) {
     if (TYPE != null) {
-      HandlerManager handlers = source.getHandlers();
-      if (handlers != null) {
         DayBodyClickEvent event = new DayBodyClickEvent(jsObj);
-        handlers.fireEvent(event);
-      }
+        source.fireEvent(event);
     }
   }
 

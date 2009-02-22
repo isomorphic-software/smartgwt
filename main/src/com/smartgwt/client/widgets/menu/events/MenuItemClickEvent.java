@@ -73,11 +73,8 @@ public class MenuItemClickEvent extends AbstractSmartEvent<ClickHandler>  {
   public static <S extends HasClickHandlers & HasHandlers> void fire(
       S source, JavaScriptObject jsObj) {
     if (TYPE != null) {
-      HandlerManager handlers = source.getHandlers();
-      if (handlers != null) {
         MenuItemClickEvent event = new MenuItemClickEvent(jsObj);
-        handlers.fireEvent(event);
-      }
+        source.fireEvent(event);
     }
   }
 

@@ -73,11 +73,8 @@ public class FolderClickEvent extends BrowserEvent<FolderClickHandler>  {
   public static <S extends HasFolderClickHandlers & HasHandlers> void fire(
       S source, JavaScriptObject jsObj) {
     if (TYPE != null) {
-      HandlerManager handlers = source.getHandlers();
-      if (handlers != null) {
         FolderClickEvent event = new FolderClickEvent(jsObj);
-        handlers.fireEvent(event);
-      }
+        source.fireEvent(event);
     }
   }
 

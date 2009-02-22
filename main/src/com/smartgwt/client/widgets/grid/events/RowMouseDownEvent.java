@@ -74,11 +74,8 @@ public class RowMouseDownEvent extends GridRowColEvent<RowMouseDownHandler>  imp
   public static <S extends HasRowMouseDownHandlers & HasHandlers> void fire(
       S source, JavaScriptObject jsObj) {
     if (TYPE != null) {
-      HandlerManager handlers = source.getHandlers();
-      if (handlers != null) {
         RowMouseDownEvent event = new RowMouseDownEvent(jsObj);
-        handlers.fireEvent(event);
-      }
+        source.fireEvent(event);
     }
   }
 

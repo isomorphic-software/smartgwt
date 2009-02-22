@@ -73,11 +73,8 @@ public class TitleHoverEvent extends AbstractSmartEvent<TitleHoverHandler>  {
   public static <S extends HasTitleHoverHandlers & HasHandlers> void fire(
       S source, JavaScriptObject jsObj) {
     if (TYPE != null) {
-      HandlerManager handlers = source.getHandlers();
-      if (handlers != null) {
         TitleHoverEvent event = new TitleHoverEvent(jsObj);
-        handlers.fireEvent(event);
-      }
+        source.fireEvent(event);
     }
   }
 

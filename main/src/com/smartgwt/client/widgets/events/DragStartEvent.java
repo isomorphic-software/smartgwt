@@ -74,11 +74,8 @@ public class DragStartEvent extends BrowserEvent<DragStartHandler>  implements C
   public static <S extends HasDragStartHandlers & HasHandlers> void fire(
       S source, JavaScriptObject jsObj) {
     if (TYPE != null) {
-      HandlerManager handlers = source.getHandlers();
-      if (handlers != null) {
         DragStartEvent event = new DragStartEvent(jsObj);
-        handlers.fireEvent(event);
-      }
+        source.fireEvent(event);
     }
   }
 

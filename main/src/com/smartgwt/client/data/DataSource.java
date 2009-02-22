@@ -72,7 +72,6 @@ public class DataSource extends BaseClass  implements com.smartgwt.client.data.e
         }
     }
 
-    protected HandlerManager manager = new HandlerManager(this);
 
     public DataSource(){
         
@@ -757,18 +756,18 @@ public class DataSource extends BaseClass  implements com.smartgwt.client.data.e
          * @param handler the handleError handler
          */
         public HandlerRegistration addHandleErrorHandler(com.smartgwt.client.data.events.HandleErrorHandler handler) {
-            if(manager.getHandlerCount(com.smartgwt.client.data.events.ErrorEvent.getType()) == 0) setupHandleErrorEvent();
-            return manager.addHandler(com.smartgwt.client.data.events.ErrorEvent.getType(), handler);
+            if(getHandlerCount(com.smartgwt.client.data.events.ErrorEvent.getType()) == 0) setupHandleErrorEvent();
+            return doAddHandler(handler, com.smartgwt.client.data.events.ErrorEvent.getType());
         }
         private native void setupHandleErrorEvent() /*-{
             var obj = null;
-            var managerJ = this.@com.smartgwt.client.data.DataSource::manager;
+            var selfJ = this;
             if(this.@com.smartgwt.client.core.BaseClass::isCreated()()) {
                 obj = this.@com.smartgwt.client.core.BaseClass::getJsObj()();
                 obj.addProperties({handleError:function(){
                         var param = {"response" : arguments[0], "request" : arguments[1]};
                         var event = @com.smartgwt.client.data.events.ErrorEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
-                        managerJ.@com.google.gwt.event.shared.HandlerManager::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
+                        selfJ.@com.smartgwt.client.core.BaseClass::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
                     }
                 });
             } else {
@@ -776,7 +775,7 @@ public class DataSource extends BaseClass  implements com.smartgwt.client.data.e
                 obj.handleError = function(){
                     var param = {"response" : arguments[0], "request" : arguments[1]};
                     var event = @com.smartgwt.client.data.events.ErrorEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
-                    managerJ.@com.google.gwt.event.shared.HandlerManager::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
+                    selfJ.@com.smartgwt.client.core.BaseClass::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
                 };
             }
         }-*/;

@@ -20,6 +20,6 @@ import com.smartgwt.client.event.*;
 import com.google.gwt.event.shared.HandlerRegistration;
 import com.google.gwt.event.shared.HasHandlers;
 
-public interface HasTabSelectedHandlers {
+public interface HasTabSelectedHandlers extends HasHandlers {
     HandlerRegistration addTabSelectedHandler(TabSelectedHandler handler);
 }

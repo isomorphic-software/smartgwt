@@ -73,11 +73,8 @@ public class DataArrivedEvent extends BrowserEvent<DataArrivedHandler>  {
   public static <S extends HasDataArrivedHandlers & HasHandlers> void fire(
       S source, JavaScriptObject jsObj) {
     if (TYPE != null) {
-      HandlerManager handlers = source.getHandlers();
-      if (handlers != null) {
         DataArrivedEvent event = new DataArrivedEvent(jsObj);
-        handlers.fireEvent(event);
-      }
+        source.fireEvent(event);
     }
   }
 

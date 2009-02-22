@@ -73,11 +73,8 @@ public class NodeClickEvent extends BrowserEvent<NodeClickHandler>  {
   public static <S extends HasNodeClickHandlers & HasHandlers> void fire(
       S source, JavaScriptObject jsObj) {
     if (TYPE != null) {
-      HandlerManager handlers = source.getHandlers();
-      if (handlers != null) {
         NodeClickEvent event = new NodeClickEvent(jsObj);
-        handlers.fireEvent(event);
-      }
+        source.fireEvent(event);
     }
   }
 

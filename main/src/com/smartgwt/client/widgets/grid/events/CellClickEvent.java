@@ -74,11 +74,8 @@ public class CellClickEvent extends GridRowColEvent<CellClickHandler>  implement
   public static <S extends HasCellClickHandlers & HasHandlers> void fire(
       S source, JavaScriptObject jsObj) {
     if (TYPE != null) {
-      HandlerManager handlers = source.getHandlers();
-      if (handlers != null) {
         CellClickEvent event = new CellClickEvent(jsObj);
-        handlers.fireEvent(event);
-      }
+        source.fireEvent(event);
     }
   }
 

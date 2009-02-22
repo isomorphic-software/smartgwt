@@ -73,11 +73,8 @@ public class FilterChangedEvent extends BrowserEvent<FilterChangedHandler>  {
   public static <S extends HasFilterChangedHandlers & HasHandlers> void fire(
       S source, JavaScriptObject jsObj) {
     if (TYPE != null) {
-      HandlerManager handlers = source.getHandlers();
-      if (handlers != null) {
         FilterChangedEvent event = new FilterChangedEvent(jsObj);
-        handlers.fireEvent(event);
-      }
+        source.fireEvent(event);
     }
   }
 

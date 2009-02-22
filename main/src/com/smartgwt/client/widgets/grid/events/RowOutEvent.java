@@ -74,11 +74,8 @@ public class RowOutEvent extends GridRowColEvent<RowOutHandler>  implements Canc
   public static <S extends HasRowOutHandlers & HasHandlers> void fire(
       S source, JavaScriptObject jsObj) {
     if (TYPE != null) {
-      HandlerManager handlers = source.getHandlers();
-      if (handlers != null) {
         RowOutEvent event = new RowOutEvent(jsObj);
-        handlers.fireEvent(event);
-      }
+        source.fireEvent(event);
     }
   }
 

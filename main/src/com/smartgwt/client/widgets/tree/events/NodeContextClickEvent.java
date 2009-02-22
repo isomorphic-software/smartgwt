@@ -74,11 +74,8 @@ public class NodeContextClickEvent extends BrowserEvent<NodeContextClickHandler>
   public static <S extends HasNodeContextClickHandlers & HasHandlers> void fire(
       S source, JavaScriptObject jsObj) {
     if (TYPE != null) {
-      HandlerManager handlers = source.getHandlers();
-      if (handlers != null) {
         NodeContextClickEvent event = new NodeContextClickEvent(jsObj);
-        handlers.fireEvent(event);
-      }
+        source.fireEvent(event);
     }
   }
 

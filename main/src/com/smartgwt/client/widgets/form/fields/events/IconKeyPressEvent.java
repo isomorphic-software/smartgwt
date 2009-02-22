@@ -73,11 +73,8 @@ public class IconKeyPressEvent extends AbstractSmartEvent<IconKeyPressHandler>  
   public static <S extends HasIconKeyPressHandlers & HasHandlers> void fire(
       S source, JavaScriptObject jsObj) {
     if (TYPE != null) {
-      HandlerManager handlers = source.getHandlers();
-      if (handlers != null) {
         IconKeyPressEvent event = new IconKeyPressEvent(jsObj);
-        handlers.fireEvent(event);
-      }
+        source.fireEvent(event);
     }
   }
 

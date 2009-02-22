@@ -73,11 +73,8 @@ public class SelectionEvent extends BrowserEvent<SelectionChangedHandler>  {
   public static <S extends HasSelectionChangedHandlers & HasHandlers> void fire(
       S source, JavaScriptObject jsObj) {
     if (TYPE != null) {
-      HandlerManager handlers = source.getHandlers();
-      if (handlers != null) {
         SelectionEvent event = new SelectionEvent(jsObj);
-        handlers.fireEvent(event);
-      }
+        source.fireEvent(event);
     }
   }
 

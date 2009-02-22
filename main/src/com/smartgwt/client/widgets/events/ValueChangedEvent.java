@@ -73,11 +73,8 @@ public class ValueChangedEvent extends BrowserEvent<ValueChangedHandler>  {
   public static <S extends HasValueChangedHandlers & HasHandlers> void fire(
       S source, JavaScriptObject jsObj) {
     if (TYPE != null) {
-      HandlerManager handlers = source.getHandlers();
-      if (handlers != null) {
         ValueChangedEvent event = new ValueChangedEvent(jsObj);
-        handlers.fireEvent(event);
-      }
+        source.fireEvent(event);
     }
   }
 

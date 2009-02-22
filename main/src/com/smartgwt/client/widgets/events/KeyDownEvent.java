@@ -74,11 +74,8 @@ public class KeyDownEvent extends BrowserEvent<KeyDownHandler>  implements Cance
   public static <S extends HasKeyDownHandlers & HasHandlers> void fire(
       S source, JavaScriptObject jsObj) {
     if (TYPE != null) {
-      HandlerManager handlers = source.getHandlers();
-      if (handlers != null) {
         KeyDownEvent event = new KeyDownEvent(jsObj);
-        handlers.fireEvent(event);
-      }
+        source.fireEvent(event);
     }
   }
 

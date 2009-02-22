@@ -74,11 +74,8 @@ public class RowMouseUpEvent extends GridRowColEvent<RowMouseUpHandler>  impleme
   public static <S extends HasRowMouseUpHandlers & HasHandlers> void fire(
       S source, JavaScriptObject jsObj) {
     if (TYPE != null) {
-      HandlerManager handlers = source.getHandlers();
-      if (handlers != null) {
         RowMouseUpEvent event = new RowMouseUpEvent(jsObj);
-        handlers.fireEvent(event);
-      }
+        source.fireEvent(event);
     }
   }
 

@@ -74,11 +74,8 @@ public class MouseUpEvent extends BrowserEvent<MouseUpHandler>  implements Cance
   public static <S extends HasMouseUpHandlers & HasHandlers> void fire(
       S source, JavaScriptObject jsObj) {
     if (TYPE != null) {
-      HandlerManager handlers = source.getHandlers();
-      if (handlers != null) {
         MouseUpEvent event = new MouseUpEvent(jsObj);
-        handlers.fireEvent(event);
-      }
+        source.fireEvent(event);
     }
   }
 

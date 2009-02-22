@@ -73,11 +73,8 @@ public class CellSavedEvent extends BrowserEvent<CellSavedHandler>  {
   public static <S extends HasCellSavedHandlers & HasHandlers> void fire(
       S source, JavaScriptObject jsObj) {
     if (TYPE != null) {
-      HandlerManager handlers = source.getHandlers();
-      if (handlers != null) {
         CellSavedEvent event = new CellSavedEvent(jsObj);
-        handlers.fireEvent(event);
-      }
+        source.fireEvent(event);
     }
   }
 

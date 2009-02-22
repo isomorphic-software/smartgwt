@@ -74,11 +74,8 @@ public class DropOverEvent extends BrowserEvent<DropOverHandler>  implements Can
   public static <S extends HasDropOverHandlers & HasHandlers> void fire(
       S source, JavaScriptObject jsObj) {
     if (TYPE != null) {
-      HandlerManager handlers = source.getHandlers();
-      if (handlers != null) {
         DropOverEvent event = new DropOverEvent(jsObj);
-        handlers.fireEvent(event);
-      }
+        source.fireEvent(event);
     }
   }
 

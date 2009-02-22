@@ -73,11 +73,8 @@ public class TabCloseClickEvent extends BrowserEvent<CloseClickHandler>  {
   public static <S extends HasCloseClickHandlers & HasHandlers> void fire(
       S source, JavaScriptObject jsObj) {
     if (TYPE != null) {
-      HandlerManager handlers = source.getHandlers();
-      if (handlers != null) {
         TabCloseClickEvent event = new TabCloseClickEvent(jsObj);
-        handlers.fireEvent(event);
-      }
+        source.fireEvent(event);
     }
   }
 

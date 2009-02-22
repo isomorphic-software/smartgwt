@@ -20,6 +20,6 @@ import com.smartgwt.client.event.*;
 import com.google.gwt.event.shared.HandlerRegistration;
 import com.google.gwt.event.shared.HasHandlers;
 
-public interface HasNodeClickHandlers {
+public interface HasNodeClickHandlers extends HasHandlers {
     HandlerRegistration addNodeClickHandler(NodeClickHandler handler);
 }

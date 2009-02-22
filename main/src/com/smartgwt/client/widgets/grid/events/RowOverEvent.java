@@ -74,11 +74,8 @@ public class RowOverEvent extends GridRowColEvent<RowOverHandler>  implements Ca
   public static <S extends HasRowOverHandlers & HasHandlers> void fire(
       S source, JavaScriptObject jsObj) {
     if (TYPE != null) {
-      HandlerManager handlers = source.getHandlers();
-      if (handlers != null) {
         RowOverEvent event = new RowOverEvent(jsObj);
-        handlers.fireEvent(event);
-      }
+        source.fireEvent(event);
     }
   }
 

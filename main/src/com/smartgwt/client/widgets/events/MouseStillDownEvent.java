@@ -74,11 +74,8 @@ public class MouseStillDownEvent extends BrowserEvent<MouseStillDownHandler>  im
   public static <S extends HasMouseStillDownHandlers & HasHandlers> void fire(
       S source, JavaScriptObject jsObj) {
     if (TYPE != null) {
-      HandlerManager handlers = source.getHandlers();
-      if (handlers != null) {
         MouseStillDownEvent event = new MouseStillDownEvent(jsObj);
-        handlers.fireEvent(event);
-      }
+        source.fireEvent(event);
     }
   }
 
