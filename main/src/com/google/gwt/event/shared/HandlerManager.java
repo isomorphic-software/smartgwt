@@ -16,8 +16,6 @@
 package com.google.gwt.event.shared;
 
 import com.google.gwt.event.shared.GwtEvent.Type;
-import com.google.gwt.user.client.Command;
-import com.google.gwt.user.client.ui.RootPanel;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -29,6 +27,14 @@ import java.util.Map;
  * handlers on passed in events.
  */
 public class HandlerManager {
+
+  /**
+   * Interface for queued add/remove operations.
+   */
+  private interface AddOrRemoveCommand {
+    public void execute();
+  }
+
   /**
    * Inner class used to actually contain the handlers.
    */
@@ -78,9 +84,16 @@ public class HandlerManager {
       return l == null ? 0 : l.size();
     }
 
+    private boolean isEventHandled(GwtEvent.Type<?> eventKey) {
+      return map.containsKey(eventKey);
+    }
+
     private <H> void removeHandler(GwtEvent.Type<H> eventKey, H handler) {
       ArrayList<H> l = get(eventKey);
       boolean result = l.remove(handler);
+      if (l.size() == 0) {
+        map.remove(eventKey);
+      }
       assert result : "Tried to remove unknown handler: " + handler + " from "
           + eventKey;
     }
@@ -96,7 +109,7 @@ public class HandlerManager {
   private final Object source;
 
   // Add and remove operations received during dispatch.
-  private List<Command> deferredDeltas;
+  private List<AddOrRemoveCommand> deferredDeltas;
 
   /**
    * Creates a handler manager with the given source. Handlers will be fired in
@@ -139,6 +152,7 @@ public class HandlerManager {
     } else {
       doAdd(type, handler);
     }
+
     return new DefaultHandlerRegistration(this, type, handler);
   }
 
@@ -151,7 +165,6 @@ public class HandlerManager {
    * 
    * @param event the event
    */
-
   public void fireEvent(GwtEvent<?> event) {
     // If it not live we should revive it.
     if (!event.isLive()) {
@@ -205,13 +218,13 @@ public class HandlerManager {
   }
 
   /**
-   * Are there handlers in this manager listening to the given event type?
+   * Does this handler manager handle the given event type?
    * 
-   * @param type the event type
-   * @return are handlers listening on the given event type
+   * @param e the event type
+   * @return whether the given event type is handled
    */
-  public boolean isEventHandled(Type<?> type) {
-    return getHandlerCount(type) > 0;
+  public boolean isEventHandled(Type<?> e) {
+    return registry.isEventHandled(e);
   }
 
   /**
@@ -244,15 +257,12 @@ public class HandlerManager {
    * @return a map of all handlers in this handler manager
    */
   Map<GwtEvent.Type<?>, ArrayList<?>> createHandlerInfo() {
-     //sj this api does not exist in GWT 1.5.3
-    //HandlerManager manager = RootPanel.get().getHandlers();
-    //return manager.registry.map;
-    return null;
+    return registry.map;
   }
 
-  private void defer(Command command) {
+  private void defer(AddOrRemoveCommand command) {
     if (deferredDeltas == null) {
-      deferredDeltas = new ArrayList<Command>();
+      deferredDeltas = new ArrayList<AddOrRemoveCommand>();
     }
     deferredDeltas.add(command);
   }
@@ -269,7 +279,7 @@ public class HandlerManager {
 
   private <H extends EventHandler> void enqueueAdd(final GwtEvent.Type<H> type,
       final H handler) {
-    defer(new Command() {
+    defer(new AddOrRemoveCommand() {
       public void execute() {
         doAdd(type, handler);
       }
@@ -278,7 +288,7 @@ public class HandlerManager {
 
   private <H extends EventHandler> void enqueueRemove(
       final GwtEvent.Type<H> type, final H handler) {
-    defer(new Command() {
+    defer(new AddOrRemoveCommand() {
       public void execute() {
         doRemove(type, handler);
       }
@@ -288,7 +298,7 @@ public class HandlerManager {
   private void handleQueuedAddsAndRemoves() {
     if (deferredDeltas != null) {
       try {
-        for (Command c : deferredDeltas) {
+        for (AddOrRemoveCommand c : deferredDeltas) {
           c.execute();
         }
       } finally {
