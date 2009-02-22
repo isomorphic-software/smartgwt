@@ -3,6 +3,9 @@ package com.smartgwt.sample.showcase.client.forms.controls;
 import com.smartgwt.client.widgets.Canvas;
 import com.smartgwt.client.widgets.form.DynamicForm;
 import com.smartgwt.client.widgets.form.fields.*;
+import com.smartgwt.client.widgets.form.fields.events.ClickHandler;
+import com.smartgwt.client.widgets.form.fields.events.ClickEvent;
+import com.smartgwt.client.util.SC;
 import com.smartgwt.sample.showcase.client.PanelFactory;
 import com.smartgwt.sample.showcase.client.ShowcasePanel;
 
@@ -35,7 +38,16 @@ public class FormVariousControlsSample extends ShowcasePanel {
         TextItem textItem = new TextItem();
         textItem.setTitle("Text");
         textItem.setHint("<nobr>A plain text field</nobr>");
-        
+
+        LinkItem linkItem = new LinkItem("link");
+        linkItem.setTitle("LinkItem");
+        linkItem.setLinkTitle("Click Me");        
+        linkItem.addClickHandler(new ClickHandler() {
+            public void onClick(ClickEvent event) {
+                SC.say("Hello World");
+            }
+        });
+
         TextAreaItem textAreaItem = new TextAreaItem();
         textAreaItem.setTitle("TextArea");
 
@@ -63,6 +75,7 @@ public class FormVariousControlsSample extends ShowcasePanel {
         spinnerItem.setStep(0.5f);
         
         SliderItem sliderItem = new SliderItem();
+        sliderItem.setWidth(300);
         sliderItem.setTitle("Slider");
         sliderItem.setMinValue(0);
         sliderItem.setMaxValue(10);
@@ -75,6 +88,10 @@ public class FormVariousControlsSample extends ShowcasePanel {
         cbItem.setHint("<nobr>A simple combobox</nobr>");
         cbItem.setType("comboBox");
         cbItem.setValueMap("Cat", "Dog", "Giraffe", "Goat", "Marmoset", "Mouse");
+
+        RadioGroupItem radioGroupItem = new RadioGroupItem();
+        radioGroupItem.setTitle("Radio Group");
+        radioGroupItem.setValueMap("Option 1", "Option 2");
         
         SelectItem selectItem = new SelectItem();
         selectItem.setTitle("Select");
@@ -118,8 +135,8 @@ public class FormVariousControlsSample extends ShowcasePanel {
                 "<span style='color:#00FF00;'>Green</span>",
                 "<span style='color:#0000FF;'>Blue</span>");
         
-        form.setFields(textItem, colorPicker, textAreaItem, dateItem, dateItem2, timeItem,
-                spinnerItem, sliderItem, checkboxItem, cbItem,
+        form.setFields(textItem, linkItem, colorPicker, textAreaItem, dateItem, dateItem2, timeItem,
+                spinnerItem, sliderItem, checkboxItem, cbItem, radioGroupItem,
                 selectItem, selectItem2);
 
         return form;
