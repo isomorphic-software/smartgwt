@@ -16,7 +16,10 @@ public class WebService extends JsObject {
         var paramDataJS = @com.smartgwt.client.util.JSOHelper::convertMapToJavascriptObject(Ljava/util/Map;)(paramData);
 
         self.callOperation(operationName, paramDataJS, resultType, function(data) {
-            var dataJ = @com.smartgwt.client.util.JSOHelper::convertToJavaObjectArray(Lcom/google/gwt/core/client/JavaScriptObject;)(data);
+            if(!@com.smartgwt.client.util.JSOHelper::isArray(Lcom/google/gwt/core/client/JavaScriptObject;)(data)) {
+                data = [data];
+            }
+            var dataJ = @com.smartgwt.client.util.JSOHelper::convertToJavaObjectArray(Lcom/google/gwt/core/client/JavaScriptObject;)(data);            
             callback.@com.smartgwt.client.data.WebServiceCallback::execute([Ljava/lang/Object;)(dataJ);
         });
     }-*/;
@@ -152,4 +155,16 @@ public class WebService extends JsObject {
         return ds == null || ds === undefined ? null : @com.smartgwt.client.data.DataSource::new(Lcom/google/gwt/core/client/JavaScriptObject;)(ds);
     }-*/;
 
+    
+    /**
+     * Retrieve a WebService object by the targetNamespace declared on the <wsdl:definitions> element in the WSDL
+     * file from which the WebService was derived.
+     *
+     * @param serviceNamespace uri from the "targetNamespace" attribute of the <wsdl:definitions> element in the WSDL file
+     * @return the requested WebService, or null if not loaded
+     */
+    public static native WebService get(String serviceNamespace) /*-{
+        var ws = $wnd.isc.WebService.get(serviceNamespace);
+        return ws == null ? null : @com.smartgwt.client.data.WebService::new(Lcom/google/gwt/core/client/JavaScriptObject;)(ws);
+    }-*/;
 }
