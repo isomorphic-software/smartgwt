@@ -111,6 +111,7 @@ public class RPCManager {
 
 
 
+
 
 
     /**
@@ -124,6 +125,131 @@ public class RPCManager {
         $wnd.isc.RPCManager.actionURL = actionURL;
     }-*/;
 
+
+    /**
+     * Specifies URL where credentials should be submitted to attempt relogin when session timeout is encountered during a background RPC.
+     * 
+     * @param credentialsURL default value http://localhost:8080/isomorphic/login/loginSuccessMarker.html
+     */
+    public static native void setCredentialsURL(String credentialsURL) /*-{
+        $wnd.isc.RPCManager.credentialsURL = credentialsURL;
+    }-*/;
+
+    /**
+     * If showPrompt is enabled for a given transaction, this is the defaultPrompt to be shown to the user in a modal dialog
+     * while the transaction occurs. May be overridden at the request level via RPCRequest.prompt.
+     * <p>
+     * More targetted default prompts are also supported for certain code-paths. See the following set of
+     * properties for details:
+     *
+     * <ul>
+     * <li>RPCManager.removeDataPrompt</li>
+     * <li>RPCManager.saveDataPrompt</li>
+     * <li>RPCManager.fetchDataPrompt</li>
+     * </ul>
+     * 
+     * @param defaultPrompt the default value is 'Contacting Server...'
+     */
+    public static native void setDefaultPrompt(String defaultPrompt) /*-{
+        $wnd.isc.RPCManager.defaultPrompt = defaultPrompt;
+    }-*/;
+
+    /**
+     * <p>In milliseconds, how long the RPCManager waits for an RPC request to complete before returning an error.
+     * If set to zero, the RPCManager will not enforce a timeout, but note that most browsers enforce their own timeouts
+     * on HTTP requests.</p>
+     *
+     * <p>For the "xmlHttpRequest" transport, this timeout can only happen if the server actually fails to respond within
+     * the specified number of milliseconds. For the "hiddenFrames" transport, this timeout will occur for non-200 (HTTP_OK)
+     * responses.</p>
+     * 
+     * @param defaultTimeout the default value is 240000 [4 minutes]
+     */
+    public static native void setDefaultTimeout(double defaultTimeout) /*-{
+        $wnd.isc.RPCManager.defaultTimeout = defaultTimeout;
+    }-*/;
+
+    /**
+     * Default prompt displayed to the user while an operation is running to fetch data from the server.
+     * Displayed as a result of ListGrid.filterData(), ListGrid.fetchData() and ListGrid.clearCriteria() code paths.
+     *
+     * @param fetchDataPrompt defaults to "Finding Records that match your criteria..."
+     */
+    public static native void setFetchDataPrompt(String fetchDataPrompt) /*-{
+        $wnd.isc.RPCManager.fetchDataPrompt = fetchDataPrompt;
+    }-*/;
+
+    /**
+     * Default prompt displayed to user while an opration is running to remove data from the server.
+     * Displayed as a result of the ListGrid.removeSelectedData() code path.
+     * 
+     * @param removeDataPrompt default value "Deleting Record(s)..."
+     */
+    public static native void setRemoveDataPrompt(String removeDataPrompt) /*-{
+        $wnd.isc.RPCManager.removeDataPrompt = removeDataPrompt;
+    }-*/;
+
+    /**
+     * Default prompt displayed to the user while an opreration is running to save data to the server.
+     * Displayed as a result of the DynamicForm.saveData() code path.
+     *
+     * @param saveDataPrompt default value "Saving form..."
+     */
+    public static native void setSaveDataPrompt(String saveDataPrompt) /*-{
+        $wnd.isc.RPCManager.saveDataPrompt = saveDataPrompt;
+    }-*/;
+
+    /**
+     * Controls the default cursor shown when RPCManager.promptStyle is set to "cursor". Overrideable by RPCRequest.promptCursor.
+     * In Safari, IE 5.5 and Firefox 1.0 the default value is "wait", on all other platforms it is "progress". The reason for this split is that the above-mentioned browsers do not support CSS2.1 - which is required for the "progress" cursor type.
+     *
+     * @param promptCursor default is browser dependant
+     */
+    public static native void setPromptCursor(String promptCursor) /*-{
+        $wnd.isc.RPCManager.promptCursor = promptCursor;
+    }-*/;
+
+    /**
+     * Controls the default prompt style. Overrideable by RPCRequest.promptStyle.
+     * 
+     * @param promptStyle default is {@link com.smartgwt.client.types.PromptStyle#DIALOG}
+     */
+    public static native void setPromptStyle(PromptStyle promptStyle) /*-{
+        $wnd.isc.RPCManager.promptCursor = promptStyle.@com.smartgwt.client.types.PromptStyle::getValue()();
+    }-*/;
+
+    /**
+     * If set to true, the RPCManager will block the UI with a modal dialog containing the text from RPCManager.defaultPrompt (or the per-RPCRequest override) until the RPC to the server completes.
+     *
+     * If set to false, the RPC happens transparently, allowing the user to continue interacting with the UI
+
+     *
+     * @param showPrompt default is false
+     */
+    public static native void setShowPrompt(boolean showPrompt) /*-{
+        $wnd.isc.RPCManager.showPrompt = showPrompt;
+    }-*/;
+
+    /**
+     * Default message displayed to user when an opration fails to return from the server within the timeout period specified by RPCManager.defaultTimeout.
+     * 
+     * @param timeoutErrorMessage default value is "Operation timed out"
+     */
+    public static native void setTimeoutErrorMessage(String timeoutErrorMessage) /*-{
+        $wnd.isc.RPCManager.timeoutErrorMessage = timeoutErrorMessage;
+    }-*/;
+
+    /**
+     * If true, an image is shown to the right of the cursor when RPCRequest.promptStyle is set to "cursor", otherwise the cursor itself is modified via css to the value of RPCRequest.promptCursor. The default is platform-dependent. In Safari, IE 5.5 and Firefox 1.0 the default is true, on all other platforms it is false. The reason for this split is that, the above browsers require that the cursor move before CSS settings are re-evaluated - this means the progress cursor can stick until the user moves the mouse.
+     * <p>
+     * This value can be overridden on a per-request basis via RPCRequest.useCursorTracker.
+
+     * @param useCursorTracking default value is platform-dependant
+     */
+    public static native void setUseCursorTracking(boolean useCursorTracking) /*-{
+        $wnd.isc.RPCManager.useCursorTracking = useCursorTracking;
+    }-*/;
+
     /**
      * Whether to ever attempt to use the "HttpProxy" servlet to enable web service requests to
      * servers other than the origin server.
@@ -133,6 +259,55 @@ public class RPCManager {
     public static native void setUseHttpProxy(Boolean useProxy) /*-{
         $wnd.isc.RPCManager.useHttpProxy = useProxy;
     }-*/;
+
+    /**
+     * The rpcRequest parameter can be used to determine whether the suspended transaction can simply be dropped (eg, it's periodic polling request).
+     * <p>
+     * The rpcResponse parameter has rpcResponse.data set to the raw text of the response that triggered loginRequired(). Some very advanced relogin
+     * strategies may need to inspect the raw response to get information needed for re-authentication.
+     *
+     * @param callback the LoginRequiredCallback
+     */
+    public static native void setLoginRequiredCallback(LoginRequiredCallback callback) /*-{
+        $wnd.isc.RPCManager.addClassProperties({
+            loginRequired : function (transactionNum, response, request) {
+               var responseJ = @com.smartgwt.client.rpc.RPCResponse::new(Lcom/google/gwt/core/client/JavaScriptObject;)(response);
+               var requestJ = @com.smartgwt.client.rpc.RPCRequest::new(Lcom/google/gwt/core/client/JavaScriptObject;)(request);
+               callback.@com.smartgwt.client.rpc.LoginRequiredCallback::loginRequired(ILcom/smartgwt/client/rpc/RPCRequest;Lcom/smartgwt/client/rpc/RPCResponse;)(transactionNum, responseJ, requestJ);
+            }
+        });
+    }-*/;
+
+    /**
+     * By default handleError() always logs a warning. In addition, if response.data was set to a String, a warning dialog will be shown to the user with response.data as the message,
+     * which allows the server to send user error messages back without writing custom client-side error handling.
+     * <p>
+     *
+     * To do custom error handling that is specific to a particular component or type of request, set
+     * RPCRequest.willHandleError and deal with errors in the rpcRequest.callback. To change the default
+     * system-wide error handling, register this callback.
+     * <p>
+     * If you're using the xmlHttpRequest RPCRequest.transport, you can access the HTTP status code  of the response
+     * (eg 404 Not Found or 500 Server Error) as RPCResponse.httpResponseCode.
+     * <p>
+     * For very advanced usage, the response.xmlHttpRequest contains the native XMLHttpRequest object used to make the request.
+     * Accessing this object is subject to possible cross-platform bugs and inconsistencies, and we recommend that you wrap any
+     * access to the XMLHttpRequest object in a try/catch block because some browsers may throw exceptions when certain attributes
+     * of this object are accessed. For example, if you try to access XMLHttpRequest.status (for the HTTP status code) when the
+     * network cable is unpluged in Windows, you'll get an Exception in Firefox.
+     *
+     * @param callback the callback
+     */
+    public static native void setHandleErrorCallback(HandleErrorCallback callback) /*-{
+        $wnd.isc.RPCManager.addClassProperties({
+            handleError : function (response, request) {
+               var responseJ = @com.smartgwt.client.data.DSResponse::new(Lcom/google/gwt/core/client/JavaScriptObject;)(response);
+               var requestJ = @com.smartgwt.client.data.DSRequest::new(Lcom/google/gwt/core/client/JavaScriptObject;)(request);
+               callback.@com.smartgwt.client.rpc.HandleErrorCallback::handleError(Lcom/smartgwt/client/data/DSResponse;Lcom/smartgwt/client/data/DSRequest;)(responseJ, requestJ);
+            }
+        });
+    }-*/;
+
 
 }
 
