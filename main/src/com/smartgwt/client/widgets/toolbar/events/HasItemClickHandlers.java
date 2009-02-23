@@ -21,5 +21,8 @@ import com.google.gwt.event.shared.HandlerRegistration;
 import com.google.gwt.event.shared.HasHandlers;
 
 public interface HasItemClickHandlers extends HasHandlers {
+    /**
+     * Called when one of the buttons recieved a click event
+     */
     HandlerRegistration addItemClickHandler(ItemClickHandler handler);
 }

@@ -21,5 +21,8 @@ import com.google.gwt.event.shared.HandlerRegistration;
 import com.google.gwt.event.shared.HasHandlers;
 
 public interface HasRowContextClickHandlers extends HasHandlers {
+    /**
+     * Called when a row receives a contextclick event.
+     */
     HandlerRegistration addRowContextClickHandler(RowContextClickHandler handler);
 }

@@ -21,5 +21,8 @@ import com.google.gwt.event.shared.HandlerRegistration;
 import com.google.gwt.event.shared.HasHandlers;
 
 public interface HasCellContextClickHandlers extends HasHandlers {
+    /**
+     * Called when a cell receives a contextclick event.
+     */
     HandlerRegistration addCellContextClickHandler(CellContextClickHandler handler);
 }

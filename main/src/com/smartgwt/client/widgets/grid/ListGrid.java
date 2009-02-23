@@ -3286,6 +3286,8 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
 
         /**
          * Add a cellOver handler.
+         * <p>
+         * Called when the mouse pointer enters a cell
          *
          * @param handler the cellOver handler
          */
@@ -3323,6 +3325,8 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
 
         /**
          * Add a rowOver handler.
+         * <p>
+         * Called when the mouse pointer enters a row
          *
          * @param handler the rowOver handler
          */
@@ -3360,6 +3364,8 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
 
         /**
          * Add a cellOut handler.
+         * <p>
+         * Called when the mouse pointer leaves a cell
          *
          * @param handler the cellOut handler
          */
@@ -3397,6 +3403,8 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
 
         /**
          * Add a rowOut handler.
+         * <p>
+         * Called when the mouse pointer leaves a row
          *
          * @param handler the rowOut handler
          */
@@ -3434,6 +3442,8 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
 
         /**
          * Add a cellHover handler.
+         * <p>
+         * Called when the mouse hovers over a cell if this.canHover is true.   Returning false will suppress the hover text from being shown if this.showHover is true.
          *
          * @param handler the cellHover handler
          */
@@ -3471,6 +3481,8 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
 
         /**
          * Add a rowHover handler.
+         * <p>
+         * Called when the mouse hovers over a row if this.canHover is true.   Returning false will suppress the hover text from being shown if this.showHover is true.
          *
          * @param handler the rowHover handler
          */
@@ -3509,6 +3521,8 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
 
         /**
          * Add a cellContextClick handler.
+         * <p>
+         * Called when a cell receives a contextclick event.
          *
          * @param handler the cellContextClick handler
          */
@@ -3546,6 +3560,8 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
 
         /**
          * Add a rowContextClick handler.
+         * <p>
+         * Called when a row receives a contextclick event.
          *
          * @param handler the rowContextClick handler
          */
@@ -3583,6 +3599,8 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
 
         /**
          * Add a cellMouseDown handler.
+         * <p>
+         * Called when a cell receives a mousedown event.
          *
          * @param handler the cellMouseDown handler
          */
@@ -3620,6 +3638,8 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
 
         /**
          * Add a rowMouseDown handler.
+         * <p>
+         * Called when a row receives a mousedown event.
          *
          * @param handler the rowMouseDown handler
          */
@@ -3657,6 +3677,8 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
 
         /**
          * Add a cellMouseUp handler.
+         * <p>
+         * Called when a cell receives a mouseup event.
          *
          * @param handler the cellMouseUp handler
          */
@@ -3694,6 +3716,8 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
 
         /**
          * Add a rowMouseUp handler.
+         * <p>
+         * Called when a row receives a mouseup event.
          *
          * @param handler the rowMouseUp handler
          */
@@ -3731,6 +3755,8 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
 
         /**
          * Add a cellClick handler.
+         * <p>
+         * Called when a cell receives a click event.
          *
          * @param handler the cellClick handler
          */
@@ -3768,6 +3794,8 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
 
         /**
          * Add a cellDoubleClick handler.
+         * <p>
+         * Called when a cell receives a double click event.
          *
          * @param handler the cellDoubleClick handler
          */
@@ -4012,6 +4040,8 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
 
         /**
          * Add a recordClick handler.
+         * <p>
+         * Executed when the listGrid receives a 'click' event on an enabled, non-separator record. The default implementation does nothing -- override to perform some action when any record or field is clicked.<br> A record event handler can be specified either as a function to execute, or as a string of script to evaluate. If the handler is defined as a string of script, all the parameters below will be available as variables for use in the script.<br> To do something specific if a particular field is clicked, add a recordClick method or string of script to that field (same parameters) when you're setting up the list.<br> <b>Notes:</b><ul>  <li>This will not be called if the click is below the last item of the list.</li>  <li>This method is called from the default implementaiton of  {@link com.smartgwt.client.widgets.grid.ListGrid#rowClick}, so if that method is overridden  this method may not be fired.</li></ul>
          *
          * @param handler the recordClick handler
          */
@@ -4049,6 +4079,8 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
 
         /**
          * Add a recordDoubleClick handler.
+         * <p>
+         * Executed when the listGrid receives a 'doubleClick' event on an enabled, non-separator record. The default implementation does nothing -- override to perform some action when any record or field is double clicked.<br> A record event handler can be specified either as a function to execute, or as a string of script to evaluate. If the handler is defined as a string of script, all the parameters below will be available as variables for use in the script.<br> To do something specific if a particular field is double clicked, add a recordDoubleClick method or string of script to that field (same parameters) when you're setting up the list.<br> <b>Notes:</b><ul> <li>This will not be called if the click is below the last item of the list.</li> <li>This method is called from the default implementation of {@link com.smartgwt.client.widgets.grid.ListGrid#rowDoubleClick}, so if that method is overridden this method may not be fired.</li></ul>
          *
          * @param handler the recordDoubleClick handler
          */
@@ -4445,6 +4477,8 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
 
         /**
          * Add a selectionChanged handler.
+         * <p>
+         * Called when (row-based) selection changes within this grid. Note this method fires for each record for which selection is modified - so when a user clicks inside a grid this method will typically fire twice (once for the old record being deselected, and once for the new record being selected).
          *
          * @param handler the selectionChanged handler
          */
@@ -4576,6 +4610,8 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
 
         /**
          * Add a cellChanged handler.
+         * <p>
+         * Fires after user edits have been successfully saved to the server, when the new value doesn't match the value before editing. <p> If you want immediate notification of a changes <b>before</b> changes has been saved to the server, implement {@link com.smartgwt.client.widgets.grid.ListGridField#change} or {@link com.smartgwt.client.widgets.grid.ListGridField#changed} instead. <P> You can supply this method on the listGrid instance or on the listGridField(s) that you want to receive cellChanged events for.  If both a field and the listGrid define a cellChanged method and that field receives an edit save, only the one defined on the field is called.
          *
          * @param handler the cellChanged handler
          */
@@ -4612,6 +4648,8 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
 
         /**
          * Add a editComplete handler.
+         * <p>
+         * Callback fired when inline edits have been successfully saved. <P> No default implementation.
          *
          * @param handler the editComplete handler
          */
@@ -4648,6 +4686,8 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
 
         /**
          * Add a editFailed handler.
+         * <p>
+         * Called when an attempt to save inline edits fails, due to a validation error or other server error. <P> The default implementation of editFailed does nothing for normal validation errors, which are displayed before editFailed() is called.  For any other errors, the default implementation will call {@link com.smartgwt.client.rpc.RPCManager#handleError}, which by default will result in a warning dialog.
          *
          * @param handler the editFailed handler
          */
@@ -4682,6 +4722,8 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
 
         /**
          * Add a editorEnter handler.
+         * <p>
+         * Callback fired when the user starts editing a new cell. <P> This callback is typically used to establish dynamic default values via {@link com.smartgwt.client.widgets.grid.ListGrid#setEditValue} or {@link com.smartgwt.client.widgets.grid.ListGrid#setEditValues}. <P> Can also be overriden on a per-field basis via {@link com.smartgwt.client.widgets.grid.ListGridField#editorEnter}.
          *
          * @param handler the editorEnter handler
          */
@@ -4715,6 +4757,8 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
 
         /**
          * Add a rowEditorEnter handler.
+         * <p>
+         * Callback fired when the user starts editing a new row.
          *
          * @param handler the rowEditorEnter handler
          */
@@ -4750,6 +4794,8 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
 
         /**
          * Add a editorExit handler.
+         * <p>
+         * Callback fired when the user attempts to navigate away from the current edit cell,  or complete the current edit. <P> Return false from this method to cancel the default behavior (Saving / cancelling the current edit / moving to the next edit cell). <P> This callback is typically used to dynamically update values or value maps for related fields (via {@link com.smartgwt.client.widgets.grid.ListGrid#setEditValue} and {@link com.smartgwt.client.widgets.grid.ListGrid#setEditorValueMap} respectively, or to implement custom navigation (via {@link com.smartgwt.client.widgets.grid.ListGrid#startEditing}. <P> Can be overriden at the field level as field.editorExit.
          *
          * @param handler the editorExit handler
          */
@@ -4788,6 +4834,8 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
 
         /**
          * Add a rowEditorExit handler.
+         * <p>
+         * Callback fired when the user attempts to navigate away from the current edit row,  or complete the current edit. <P> Return false from this method to cancel the default behavior (Saving / cancelling the current edit / moving to the next edit cell).
          *
          * @param handler the rowEditorExit handler
          */
@@ -4825,6 +4873,8 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
 
         /**
          * Add a fieldStateChanged handler.
+         * <p>
+         * Notification method executed when columns are resized or reordered, or fields are  shown or hidden. Has no default implementation.
          *
          * @param handler the fieldStateChanged handler
          */
@@ -4857,6 +4907,8 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
 
         /**
          * Add a dataArrived handler.
+         * <p>
+         * Notification method fired when new data arrives from the server to be displayed in this ListGrid, (for example in response to the user scrolling a new set of rows into view). Only applies to databound listGrids where the {@link com.smartgwt.client.widgets.grid.ListGrid#getData data} attribute is a {@link com.smartgwt.client.data.ResultSet}. This ResultSet may have been created manually and applied to the grid via a call to {@link com.smartgwt.client.widgets.grid.ListGrid#setData} or may have been created and automatically assigned if {@link com.smartgwt.client.widgets.grid.ListGrid#fetchData} was used to populate the grid.  This method is fired directly in response to {@link com.smartgwt.client.data.ResultSet#dataArrived} firing on the data object.
          *
          * @param handler the dataArrived handler
          */

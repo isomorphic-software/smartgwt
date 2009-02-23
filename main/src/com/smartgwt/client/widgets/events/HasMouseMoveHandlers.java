@@ -21,5 +21,8 @@ import com.google.gwt.event.shared.HandlerRegistration;
 import com.google.gwt.event.shared.HasHandlers;
 
 public interface HasMouseMoveHandlers extends HasHandlers {
+    /**
+     * Executed when the mouse moves within this widget.  No default implementation.
+     */
     HandlerRegistration addMouseMoveHandler(MouseMoveHandler handler);
 }

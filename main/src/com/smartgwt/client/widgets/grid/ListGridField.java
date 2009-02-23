@@ -1389,6 +1389,8 @@ public class ListGridField extends DataClass  implements com.smartgwt.client.wid
 
         /**
          * Add a editorEnter handler.
+         * <p>
+         * Callback fired when the user first starts editing a cell. <P> This callback is typically used to establish dynamic default values via ${isc.DocUtils.linkForRef('setEditValue')} or ${isc.DocUtils.linkForRef('setEditValues')}.
          *
          * @param handler the editorEnter handler
          */
@@ -1415,6 +1417,8 @@ public class ListGridField extends DataClass  implements com.smartgwt.client.wid
 
         /**
          * Add a editorExit handler.
+         * <p>
+         * Callback fired when the user attempts to navigate away from the current edit cell,  or complete the current edit.<br> Return false from this method to cancel the default behavior (Saving / cancelling the current edit / moving to the next edit cell)
          *
          * @param handler the editorExit handler
          */
@@ -1435,6 +1439,8 @@ public class ListGridField extends DataClass  implements com.smartgwt.client.wid
 
         /**
          * Add a cellChanged handler.
+         * <p>
+         * Callback fired when field changes value as the result of a cell edit.  Fired only on  successful save of edit, when the new value doesn't match the value before editing.<br>  <p>  Same signature as {@link com.smartgwt.client.widgets.grid.ListGrid#cellChanged}, but defined on a per-field basis.
          *
          * @param handler the cellChanged handler
          */
@@ -1462,6 +1468,8 @@ public class ListGridField extends DataClass  implements com.smartgwt.client.wid
 
         /**
          * Add a recordClick handler.
+         * <p>
+         * Executed when this field is clicked on.  Note that if {@link com.smartgwt.client.widgets.grid.ListGrid#recordClick} is also defined, it will be fired for fields that define a recordClick handler if the field-level handler returns true. Return false to prevent the grid-level handler from firing.
          *
          * @param handler the recordClick handler
          */
@@ -1491,6 +1499,8 @@ public class ListGridField extends DataClass  implements com.smartgwt.client.wid
 
         /**
          * Add a change handler.
+         * <p>
+         * If this field is editable, any {@link com.smartgwt.client.widgets.form.fields.FormItem#change} handler specified on the ListGridField will be passed onto the editors for this field.
          *
          * @param handler the change handler
          */
@@ -1514,6 +1524,8 @@ public class ListGridField extends DataClass  implements com.smartgwt.client.wid
 
         /**
          * Add a changed handler.
+         * <p>
+         * If this field is editable, any {@link com.smartgwt.client.widgets.form.fields.FormItem#changed} handler specified on the ListGridField will be passed onto the editors for this field.
          *
          * @param handler the changed handler
          */

@@ -21,5 +21,8 @@ import com.google.gwt.event.shared.HandlerRegistration;
 import com.google.gwt.event.shared.HasHandlers;
 
 public interface HasTabDeselectedHandlers extends HasHandlers {
+    /**
+     * Notification fired when a tab is deselected.
+     */
     HandlerRegistration addTabDeselectedHandler(TabDeselectedHandler handler);
 }

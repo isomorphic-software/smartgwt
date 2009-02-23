@@ -314,6 +314,8 @@ public class TileGrid extends TileLayout  implements DataBoundComponent, com.sma
 
         /**
          * Add a recordClick handler.
+         * <p>
+         * Executed when the tileGrid receives a 'click' event on a tile. The default implementation does nothing -- override to perform some action when any record is clicked.<br> A record event handler can be specified either as a function to execute, or as a string of script to evaluate. If the handler is defined as a string of script, all the parameters below will be available as variables for use in the script.<br> If you want to cancel the click based on the parameters, return false. Otherwise, return  true so that the click event be registered with the tile.
          *
          * @param handler the recordClick handler
          */
@@ -346,6 +348,8 @@ public class TileGrid extends TileLayout  implements DataBoundComponent, com.sma
 
         /**
          * Add a selectionChanged handler.
+         * <p>
+         * Called when selection changes within this tileGrid. Note this method fires for each record for which selection is modified - so when a user clicks inside a tileGrid this method will typically fire twice (once for the old record being deselected, and once for the new record being selected).
          *
          * @param handler the selectionChanged handler
          */

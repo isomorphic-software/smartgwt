@@ -21,5 +21,8 @@ import com.google.gwt.event.shared.HandlerRegistration;
 import com.google.gwt.event.shared.HasHandlers;
 
 public interface HasBlurHandlers extends HasHandlers {
+    /**
+     * Called when this FormItem loses focus.
+     */
     HandlerRegistration addBlurHandler(BlurHandler handler);
 }

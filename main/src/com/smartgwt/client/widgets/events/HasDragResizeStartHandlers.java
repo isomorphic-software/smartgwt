@@ -21,5 +21,8 @@ import com.google.gwt.event.shared.HandlerRegistration;
 import com.google.gwt.event.shared.HasHandlers;
 
 public interface HasDragResizeStartHandlers extends HasHandlers {
+    /**
+     * Executed when resize dragging first starts. No default implementation.   Create this handler to set things up for the drag resize.
+     */
     HandlerRegistration addDragResizeStartHandler(DragResizeStartHandler handler);
 }

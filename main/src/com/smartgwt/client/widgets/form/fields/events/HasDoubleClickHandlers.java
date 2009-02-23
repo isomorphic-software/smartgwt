@@ -21,5 +21,8 @@ import com.google.gwt.event.shared.HandlerRegistration;
 import com.google.gwt.event.shared.HasHandlers;
 
 public interface HasDoubleClickHandlers extends HasHandlers {
+    /**
+     * Called when this FormItem is double-clicked.
+     */
     HandlerRegistration addDoubleClickHandler(DoubleClickHandler handler);
 }

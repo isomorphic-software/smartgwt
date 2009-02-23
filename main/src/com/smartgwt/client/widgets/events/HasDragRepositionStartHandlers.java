@@ -21,5 +21,8 @@ import com.google.gwt.event.shared.HandlerRegistration;
 import com.google.gwt.event.shared.HasHandlers;
 
 public interface HasDragRepositionStartHandlers extends HasHandlers {
+    /**
+     * Executed when dragging first starts. No default implementation.  Create this handler to set things up for the drag reposition.
+     */
     HandlerRegistration addDragRepositionStartHandler(DragRepositionStartHandler handler);
 }

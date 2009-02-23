@@ -21,5 +21,8 @@ import com.google.gwt.event.shared.HandlerRegistration;
 import com.google.gwt.event.shared.HasHandlers;
 
 public interface HasDropMoveHandlers extends HasHandlers {
+    /**
+     * Executed whenever the compatible dragged object is moved over this drop target. You can use this to show a custom visual indication of where the drop would occur within the widget.
+     */
     HandlerRegistration addDropMoveHandler(DropMoveHandler handler);
 }

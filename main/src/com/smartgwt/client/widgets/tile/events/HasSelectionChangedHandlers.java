@@ -21,5 +21,8 @@ import com.google.gwt.event.shared.HandlerRegistration;
 import com.google.gwt.event.shared.HasHandlers;
 
 public interface HasSelectionChangedHandlers extends HasHandlers {
+    /**
+     * Called when selection changes within this tileGrid. Note this method fires for each record for which selection is modified - so when a user clicks inside a tileGrid this method will typically fire twice (once for the old record being deselected, and once for the new record being selected).
+     */
     HandlerRegistration addSelectionChangedHandler(SelectionChangedHandler handler);
 }

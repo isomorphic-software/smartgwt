@@ -21,5 +21,8 @@ import com.google.gwt.event.shared.HandlerRegistration;
 import com.google.gwt.event.shared.HasHandlers;
 
 public interface HasLeafContextClickHandlers extends HasHandlers {
+    /**
+     * This method is called when a context click occurs on a leaf record.
+     */
     HandlerRegistration addLeafContextClickHandler(LeafContextClickHandler handler);
 }

@@ -69,7 +69,7 @@ public class RowMouseUpEvent extends GridRowColEvent<RowMouseUpHandler>  impleme
    *
    * @param <S> The event source
    * @param source the source of the handlers
-   * @param target the target
+   * @param jsObj the native event
    */
   public static <S extends HasRowMouseUpHandlers & HasHandlers> void fire(
       S source, JavaScriptObject jsObj) {

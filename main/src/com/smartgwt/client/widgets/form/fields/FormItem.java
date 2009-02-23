@@ -1568,6 +1568,8 @@ public class FormItem extends RefDataClass  implements com.smartgwt.client.widge
 
         /**
          * Add a itemHover handler.
+         * <p>
+         * Optional stringMethod to fire when the user hovers over this item.  Return false to suppress default behavior of showing a hover canvas containing the  HTML returned by <code>formItem.itemHoverHTML()</code> /   <code>form.itemHoverHTML()</code>.
          *
          * @param handler the itemHover handler
          */
@@ -1590,6 +1592,8 @@ public class FormItem extends RefDataClass  implements com.smartgwt.client.widge
 
         /**
          * Add a titleHover handler.
+         * <p>
+         * Optional stringMethod to fire when the user hovers over this item's title.  Return false to suppress default behavior of showing a hover canvas containing the  HTML returned by <code>formItem.titleHoverHTML()</code> /   <code>form.titleHoverHTML()</code>.
          *
          * @param handler the titleHover handler
          */
@@ -1678,6 +1682,8 @@ public class FormItem extends RefDataClass  implements com.smartgwt.client.widge
 
         /**
          * Add a focus handler.
+         * <p>
+         * Called when this FormItem receives focus.
          *
          * @param handler the focus handler
          */
@@ -1700,6 +1706,8 @@ public class FormItem extends RefDataClass  implements com.smartgwt.client.widge
 
         /**
          * Add a blur handler.
+         * <p>
+         * Called when this FormItem loses focus.
          *
          * @param handler the blur handler
          */
@@ -1722,6 +1730,8 @@ public class FormItem extends RefDataClass  implements com.smartgwt.client.widge
 
         /**
          * Add a click handler.
+         * <p>
+         * Called when this FormItem is clicked on. <P> Note: <code>click()</code> is available on StaticTextItem, BlurbItems, ButtonItem, and derivatives.  Other form items (such as HiddenItem) do not support <code>click()</code>.
          *
          * @param handler the click handler
          */
@@ -1744,6 +1754,8 @@ public class FormItem extends RefDataClass  implements com.smartgwt.client.widge
 
         /**
          * Add a doubleClick handler.
+         * <p>
+         * Called when this FormItem is double-clicked.
          *
          * @param handler the doubleClick handler
          */
@@ -1767,6 +1779,8 @@ public class FormItem extends RefDataClass  implements com.smartgwt.client.widge
 
         /**
          * Add a iconClick handler.
+         * <p>
+         * StringMethod.      Default action to fire when the user clicks on a form item icon. May be overridden      by setting <code>click</code> on the form item icon directly.
          *
          * @param handler the iconClick handler
          */
@@ -1792,6 +1806,8 @@ public class FormItem extends RefDataClass  implements com.smartgwt.client.widge
 
         /**
          * Add a iconKeyPress handler.
+         * <p>
+         * StringMethod.      Default action to fire when an icon has keyboard focus and the user types a key.      May be overridden by setting <code>keyPress</code> on the form item icon directly.
          *
          * @param handler the iconKeyPress handler
          */
@@ -1816,6 +1832,8 @@ public class FormItem extends RefDataClass  implements com.smartgwt.client.widge
 
         /**
          * Add a change handler.
+         * <p>
+         * Called when a FormItem's value is about to change as the result of user interaction.  This method fires after the user performed an action that would change the value of this field, but before the element itself is changed.   <P> Returning false cancels the change.  Note that if what you want to do is <b>transform</b> the user's input, for example, automatically change separator characters to a standard separator character, you should implement {@link com.smartgwt.client.widgets.form.fields.FormItem#transformInput} rather than using a combination of change() and setValue() to accomplish the same thing.  Returning false from <code>change</code> is intended for rejecting input entirely, such as typing invalid characters. <p> Note that if you ask the form for the current value in this handler, you will get the old value because the change has not yet been commited.  The new value is available as a parameter to this method.
          *
          * @param handler the change handler
          */
@@ -1839,6 +1857,8 @@ public class FormItem extends RefDataClass  implements com.smartgwt.client.widge
 
         /**
          * Add a changed handler.
+         * <p>
+         * Called when a FormItem's value has been changed as the result of user interaction.  This method fires after the newly specified value has been stored.
          *
          * @param handler the changed handler
          */
@@ -1864,6 +1884,8 @@ public class FormItem extends RefDataClass  implements com.smartgwt.client.widge
 
         /**
          * Add a keyPress handler.
+         * <p>
+         * StringMethod fired when the user presses a key while focused in this form item.
          *
          * @param handler the keyPress handler
          */

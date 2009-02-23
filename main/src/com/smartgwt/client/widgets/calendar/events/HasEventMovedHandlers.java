@@ -21,5 +21,8 @@ import com.google.gwt.event.shared.HandlerRegistration;
 import com.google.gwt.event.shared.HasHandlers;
 
 public interface HasEventMovedHandlers extends HasHandlers {
+    /**
+     * Called when an event is moved via dragging by a user.  Return false to disallow the move.
+     */
     HandlerRegistration addEventMovedHandler(EventMovedHandler handler);
 }

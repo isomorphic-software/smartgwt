@@ -21,5 +21,8 @@ import com.google.gwt.event.shared.HandlerRegistration;
 import com.google.gwt.event.shared.HasHandlers;
 
 public interface HasNodeClickHandlers extends HasHandlers {
+    /**
+     * This method is called when a leaf or folder record is clicked on.  Note that if you set up a callback for <code>nodeClick()</code> and e.g. {@link com.smartgwt.client.widgets.tree.TreeGrid#leafClick}, then both will fire (in that order) if a leaf is clicked on.
+     */
     HandlerRegistration addNodeClickHandler(NodeClickHandler handler);
 }

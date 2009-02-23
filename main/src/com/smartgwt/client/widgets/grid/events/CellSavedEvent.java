@@ -68,7 +68,7 @@ public class CellSavedEvent extends BrowserEvent<CellSavedHandler>  {
    *
    * @param <S> The event source
    * @param source the source of the handlers
-   * @param target the target
+   * @param jsObj the native event
    */
   public static <S extends HasCellSavedHandlers & HasHandlers> void fire(
       S source, JavaScriptObject jsObj) {

@@ -21,5 +21,8 @@ import com.google.gwt.event.shared.HandlerRegistration;
 import com.google.gwt.event.shared.HasHandlers;
 
 public interface HasHoverHandlers extends HasHandlers {
+    /**
+     * If <code>canHover</code> is true for this widget, the <code>hover</code> string method will be fired when the user hovers over this canvas. If this method returns false, it will suppress the default behavior of showing a hover canvas if <code>this.showHover</code>  is true.
+     */
     HandlerRegistration addHoverHandler(HoverHandler handler);
 }

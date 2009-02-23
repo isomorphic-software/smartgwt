@@ -21,5 +21,8 @@ import com.google.gwt.event.shared.HandlerRegistration;
 import com.google.gwt.event.shared.HasHandlers;
 
 public interface HasClickHandlers extends HasHandlers {
+    /**
+     * Called when this FormItem is clicked on. <P> Note: <code>click()</code> is available on StaticTextItem, BlurbItems, ButtonItem, and derivatives.  Other form items (such as HiddenItem) do not support <code>click()</code>.
+     */
     HandlerRegistration addClickHandler(ClickHandler handler);
 }

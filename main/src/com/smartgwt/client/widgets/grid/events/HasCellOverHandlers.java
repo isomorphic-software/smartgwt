@@ -21,5 +21,8 @@ import com.google.gwt.event.shared.HandlerRegistration;
 import com.google.gwt.event.shared.HasHandlers;
 
 public interface HasCellOverHandlers extends HasHandlers {
+    /**
+     * Called when the mouse pointer enters a cell
+     */
     HandlerRegistration addCellOverHandler(CellOverHandler handler);
 }

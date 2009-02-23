@@ -3056,6 +3056,8 @@ public class Canvas extends BaseWidget  implements com.smartgwt.client.widgets.e
 
         /**
          * Add a resized handler.
+         * <p>
+         * Observable method called whenever a Canvas changes size. Note that if this canvas is {@link com.smartgwt.client.widgets.Canvas#getOverflow overflow}, and is waiting for a queued redraw (see  {@link com.smartgwt.client.widgets.Canvas#isDirty}), the value for {@link com.smartgwt.client.widgets.Canvas#getVisibleWidth} and {@link com.smartgwt.client.widgets.Canvas#getVisibleHeight} will be unreliable until <code>redraw()</code> fires.
          *
          * @param handler the resized handler
          */
@@ -3218,6 +3220,8 @@ public class Canvas extends BaseWidget  implements com.smartgwt.client.widgets.e
 
         /**
          * Add a scrolled handler.
+         * <p>
+         * Notification that this component has just scrolled.  Use with {@link com.smartgwt.client..Class#observe}. <P> Fires for both CSS and {@link com.smartgwt.client.widgets.Scrollbar}.
          *
          * @param handler the scrolled handler
          */
@@ -3400,6 +3404,8 @@ public class Canvas extends BaseWidget  implements com.smartgwt.client.widgets.e
 
         /**
          * Add a hoverHidden handler.
+         * <p>
+         * If {@link com.smartgwt.client.widgets.Canvas#getShowHover showHover} is true for this canvas, this notification method will be fired whenever the hover shown in response to {@link com.smartgwt.client.widgets.Canvas#handleHover} is  hidden. This method may be observed or overridden.
          *
          * @param handler the hoverHidden handler
          */
@@ -3430,6 +3436,8 @@ public class Canvas extends BaseWidget  implements com.smartgwt.client.widgets.e
 
         /**
          * Add a hover handler.
+         * <p>
+         * If <code>canHover</code> is true for this widget, the <code>hover</code> string method will be fired when the user hovers over this canvas. If this method returns false, it will suppress the default behavior of showing a hover canvas if <code>this.showHover</code>  is true.
          *
          * @param handler the hover handler
          */
@@ -3470,6 +3478,8 @@ public class Canvas extends BaseWidget  implements com.smartgwt.client.widgets.e
 
         /**
          * Add a showContextMenu handler.
+         * <p>
+         * Executed when the right mouse button is clicked.  The default implementation of this method auto-creates a {@link com.smartgwt.client.widgets.menu.Menu} from the {@link com.smartgwt.client.widgets.Canvas#getContextMenu contextMenu} property on this component and then calls {@link com.smartgwt.client.widgets.menu.Menu#showContextMenu} on it to show it. <p> If you want to show a standard context menu, you can simply define your Menu and set it as the contextMenu property on your component - you do not need to override this method. <p> If you want to do some other processing before showing a menu or do something else entirely, then you should override this method.  Note that the return value from this method controls whether or not the native browser context menu is shown.
          *
          * @param handler the showContextMenu handler
          */
@@ -3512,6 +3522,8 @@ public class Canvas extends BaseWidget  implements com.smartgwt.client.widgets.e
 
         /**
          * Add a mouseOver handler.
+         * <p>
+         * Executed when mouse enters this widget.  No default implementation.
          *
          * @param handler the mouseOver handler
          */
@@ -3546,6 +3558,8 @@ public class Canvas extends BaseWidget  implements com.smartgwt.client.widgets.e
 
         /**
          * Add a mouseDown handler.
+         * <p>
+         * Executed when the left mouse down is pressed on this widget.  No default implementation.
          *
          * @param handler the mouseDown handler
          */
@@ -3580,6 +3594,8 @@ public class Canvas extends BaseWidget  implements com.smartgwt.client.widgets.e
 
         /**
          * Add a rightMouseDown handler.
+         * <p>
+         * Executed when the right mouse down is pressed on this widget.  No default implementation.
          *
          * @param handler the rightMouseDown handler
          */
@@ -3614,6 +3630,8 @@ public class Canvas extends BaseWidget  implements com.smartgwt.client.widgets.e
 
         /**
          * Add a mouseStillDown handler.
+         * <p>
+         * Executed repeatedly (every {@link com.smartgwt.client.widgets.Canvas#getMouseStillDownDelay mouseStillDownDelay} by default) when the system is idle - i.e. not busy running other scripts - and the left mouse button is held down after having been pressed in the object. This event is not native to JavaScript, but is provided by the ISC system. <p> Note: The event handling system waits {@link com.smartgwt.client.widgets.Canvas#getMouseStillDownInitialDelay mouseStillDownInitialDelay} before calling mouseStillDown for the first time on the widget.  Subsequently the method is called every {@link com.smartgwt.client.widgets.Canvas#getMouseStillDownDelay mouseStillDownDelay}.  Both attributes are configurable per widget instance. <p> This method is called only when the left mouse is held down.
          *
          * @param handler the mouseStillDown handler
          */
@@ -3648,6 +3666,8 @@ public class Canvas extends BaseWidget  implements com.smartgwt.client.widgets.e
 
         /**
          * Add a mouseMove handler.
+         * <p>
+         * Executed when the mouse moves within this widget.  No default implementation.
          *
          * @param handler the mouseMove handler
          */
@@ -3682,6 +3702,8 @@ public class Canvas extends BaseWidget  implements com.smartgwt.client.widgets.e
 
         /**
          * Add a mouseOut handler.
+         * <p>
+         * Executed when the mouse leaves this widget.  No default implementation.
          *
          * @param handler the mouseOut handler
          */
@@ -3716,6 +3738,8 @@ public class Canvas extends BaseWidget  implements com.smartgwt.client.widgets.e
 
         /**
          * Add a mouseUp handler.
+         * <p>
+         * Executed when the left mouse is released on this widget.  No default implementation.
          *
          * @param handler the mouseUp handler
          */
@@ -3750,6 +3774,8 @@ public class Canvas extends BaseWidget  implements com.smartgwt.client.widgets.e
 
         /**
          * Add a click handler.
+         * <p>
+         * Executed when the left mouse is clicked (pressed and then released) on this widget.  No default implementation.
          *
          * @param handler the click handler
          */
@@ -3784,6 +3810,8 @@ public class Canvas extends BaseWidget  implements com.smartgwt.client.widgets.e
 
         /**
          * Add a doubleClick handler.
+         * <p>
+         * Executed when the left mouse button is clicked twice in rapid succession (within {@link com.smartgwt.client.widgets.Canvas#getDoubleClickDelay doubleClickDelay} by default) in this object.
          *
          * @param handler the doubleClick handler
          */
@@ -3818,6 +3846,8 @@ public class Canvas extends BaseWidget  implements com.smartgwt.client.widgets.e
 
         /**
          * Add a mouseWheel handler.
+         * <p>
+         * Executed when the mouse wheel is actuated.
          *
          * @param handler the mouseWheel handler
          */
@@ -3852,6 +3882,8 @@ public class Canvas extends BaseWidget  implements com.smartgwt.client.widgets.e
 
         /**
          * Add a dragRepositionStart handler.
+         * <p>
+         * Executed when dragging first starts. No default implementation.  Create this handler to set things up for the drag reposition.
          *
          * @param handler the dragRepositionStart handler
          */
@@ -3886,6 +3918,8 @@ public class Canvas extends BaseWidget  implements com.smartgwt.client.widgets.e
 
         /**
          * Add a dragRepositionMove handler.
+         * <p>
+         * Executed every time the mouse moves while drag-repositioning. If this method does not return false, the {@link com.smartgwt.client.widgets.Canvas#getDragTarget dragTarget} (or outline if {@link com.smartgwt.client.widgets.Canvas#getDragAppearance dragAppearance} is set to "outline" will automatically be moved as appropriate whenever the mouse moves.
          *
          * @param handler the dragRepositionMove handler
          */
@@ -3920,6 +3954,8 @@ public class Canvas extends BaseWidget  implements com.smartgwt.client.widgets.e
 
         /**
          * Add a dragRepositionStop handler.
+         * <p>
+         * Executed when the mouse button is released at the end of the drag. Your widget can use this opportunity to fire custom code based upon where the mouse button was released, etc.  <p> Returning true from this handler will cause the {@link com.smartgwt.client.widgets.Canvas#getDragTarget dragTarget} (or outline if {@link com.smartgwt.client.widgets.Canvas#getDragAppearance dragAppearance} is set to "outline") to be left in its current location. Returning false from this handler will cause it to snap back to its original location.
          *
          * @param handler the dragRepositionStop handler
          */
@@ -3954,6 +3990,8 @@ public class Canvas extends BaseWidget  implements com.smartgwt.client.widgets.e
 
         /**
          * Add a dragResizeStart handler.
+         * <p>
+         * Executed when resize dragging first starts. No default implementation.   Create this handler to set things up for the drag resize.
          *
          * @param handler the dragResizeStart handler
          */
@@ -3988,6 +4026,8 @@ public class Canvas extends BaseWidget  implements com.smartgwt.client.widgets.e
 
         /**
          * Add a dragResizeMove handler.
+         * <p>
+         * Executed every time the mouse moves while drag-resizing. If this method does not return false, the {@link com.smartgwt.client.widgets.Canvas#getDragTarget dragTarget} (or outline if {@link com.smartgwt.client.widgets.Canvas#getDragAppearance dragAppearance} is set to "outline" will automatically be moved as appropriate whenever the mouse moves.
          *
          * @param handler the dragResizeMove handler
          */
@@ -4022,6 +4062,8 @@ public class Canvas extends BaseWidget  implements com.smartgwt.client.widgets.e
 
         /**
          * Add a dragResizeStop handler.
+         * <p>
+         * Executed when the mouse button is released at the end of the drag resize. Your widget can use this opportunity to fire custom code based upon where the mouse button was released, etc.  <p> Returning true from this handler will cause the {@link com.smartgwt.client.widgets.Canvas#getDragTarget dragTarget} (or outline if {@link com.smartgwt.client.widgets.Canvas#getDragAppearance dragAppearance} is set to "outline") to be left at its current size. Returning false from this handler will cause it to snap back to its original location size
          *
          * @param handler the dragResizeStop handler
          */
@@ -4056,6 +4098,8 @@ public class Canvas extends BaseWidget  implements com.smartgwt.client.widgets.e
 
         /**
          * Add a dragStart handler.
+         * <p>
+         * Executed when dragging first starts. Your widget can use this opportunity to set things up for the drag, such as setting the drag tracker. Returning false from this event handler will cancel the drag action entirely. <p> A drag action is considered to be begin when the mouse has moved {@link com.smartgwt.client.widgets.Canvas#getDragStartDistance dragStartDistance} with the left mouse down.
          *
          * @param handler the dragStart handler
          */
@@ -4090,6 +4134,8 @@ public class Canvas extends BaseWidget  implements com.smartgwt.client.widgets.e
 
         /**
          * Add a dragMove handler.
+         * <p>
+         * Executed every time the mouse moves while dragging this canvas.
          *
          * @param handler the dragMove handler
          */
@@ -4124,6 +4170,8 @@ public class Canvas extends BaseWidget  implements com.smartgwt.client.widgets.e
 
         /**
          * Add a dragStop handler.
+         * <p>
+         * Executed when the mouse button is released at the end of the drag. Your widget can use this opportunity to fire code based on the last location of the drag or reset any visual state that was sent.
          *
          * @param handler the dragStop handler
          */
@@ -4158,6 +4206,8 @@ public class Canvas extends BaseWidget  implements com.smartgwt.client.widgets.e
 
         /**
          * Add a dropOver handler.
+         * <p>
+         * Executed when the compatible dragged object is first moved over this drop target. Your implementation can use this to show a custom visual indication that the object can be dropped here.
          *
          * @param handler the dropOver handler
          */
@@ -4192,6 +4242,8 @@ public class Canvas extends BaseWidget  implements com.smartgwt.client.widgets.e
 
         /**
          * Add a dropMove handler.
+         * <p>
+         * Executed whenever the compatible dragged object is moved over this drop target. You can use this to show a custom visual indication of where the drop would occur within the widget.
          *
          * @param handler the dropMove handler
          */
@@ -4226,6 +4278,8 @@ public class Canvas extends BaseWidget  implements com.smartgwt.client.widgets.e
 
         /**
          * Add a dropOut handler.
+         * <p>
+         * Executed when the dragged object is moved out of the rectangle of this drop target. If you have set a visual indication in dropOver or dropMove, you should reset it to its normal state in dropOut.
          *
          * @param handler the dropOut handler
          */
@@ -4260,6 +4314,8 @@ public class Canvas extends BaseWidget  implements com.smartgwt.client.widgets.e
 
         /**
          * Add a drop handler.
+         * <p>
+         * Executed when the mouse button is released over a compatible drop target at the end of a drag sequence. Your widget should implement whatever it wants to do when receiving a drop here. For example, in a file moving interface, a drop might mean that you should move or copy the dragged file into the folder it was dropped on, or dropping something in a trash can might mean to clear it from the screen.
          *
          * @param handler the drop handler
          */
@@ -4294,6 +4350,8 @@ public class Canvas extends BaseWidget  implements com.smartgwt.client.widgets.e
 
         /**
          * Add a keyDown handler.
+         * <p>
+         * Executed when a key is pressed on a focusable widget ({@link com.smartgwt.client.widgets.Canvas#getCanFocus canFocus}: true).  <P> Use {@link com.smartgwt.client.util.EventHandler#getKey} to find out the ${isc.DocUtils.linkForRef('type:KeyName','keyName')} of the key that was pressed, and use {@link com.smartgwt.client.util.EventHandler#shiftKeyDown} and related functions to determine whether modifier keys were down.
          *
          * @param handler the keyDown handler
          */
@@ -4343,6 +4401,8 @@ public class Canvas extends BaseWidget  implements com.smartgwt.client.widgets.e
 
         /**
          * Add a keyPress handler.
+         * <p>
+         * Executed when a key is pressed and released on a focusable widget ({@link com.smartgwt.client.widgets.Canvas#getCanFocus canFocus}: true).  <P> Use {@link com.smartgwt.client.util.EventHandler#getKey} to find out the ${isc.DocUtils.linkForRef('type:KeyName','keyName')} of the key that was pressed, and use {@link com.smartgwt.client.util.EventHandler#shiftKeyDown} and related functions to determine whether modifier keys were down.
          *
          * @param handler the keyPress handler
          */
@@ -4493,6 +4553,8 @@ public class Canvas extends BaseWidget  implements com.smartgwt.client.widgets.e
 
         /**
          * Add a focusChanged handler.
+         * <p>
+         * Notification function fired when this widget recieves or loses keyboard focus.
          *
          * @param handler the focusChanged handler
          */

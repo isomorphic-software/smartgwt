@@ -21,5 +21,8 @@ import com.google.gwt.event.shared.HandlerRegistration;
 import com.google.gwt.event.shared.HasHandlers;
 
 public interface HasCellOutHandlers extends HasHandlers {
+    /**
+     * Called when the mouse pointer leaves a cell
+     */
     HandlerRegistration addCellOutHandler(CellOutHandler handler);
 }
