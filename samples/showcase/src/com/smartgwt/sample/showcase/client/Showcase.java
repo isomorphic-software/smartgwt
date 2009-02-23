@@ -97,7 +97,6 @@ public class Showcase implements EntryPoint, HistoryListener {
         mainTabSet.setTabBarThickness(23);
         mainTabSet.setWidth100();
         mainTabSet.setHeight100();
-        mainTabSet.setCloseTabIcon("[SKIN]/Window/close.png");
 
         LayoutSpacer layoutSpacer = new LayoutSpacer();
         layoutSpacer.setWidth(5);
@@ -109,6 +108,7 @@ public class Showcase implements EntryPoint, HistoryListener {
         valueMap.put("SilverWave", "Silver Wave");
         valueMap.put("BlackOps", "Black Ops");
         valueMap.put("TreeFrog", "Tree Frog");
+        valueMap.put("fleet", "Fleet");
 
         selectItem.setValueMap(valueMap);
 
