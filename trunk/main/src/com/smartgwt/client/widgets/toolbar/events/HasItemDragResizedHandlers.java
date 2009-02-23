@@ -21,5 +21,8 @@ import com.google.gwt.event.shared.HandlerRegistration;
 import com.google.gwt.event.shared.HasHandlers;
 
 public interface HasItemDragResizedHandlers extends HasHandlers {
+    /**
+     * Observable, overrideable method - called when one of the Toolbar buttons is drag resized.
+     */
     HandlerRegistration addItemDragResizedHandler(ItemDragResizedHandler handler);
 }

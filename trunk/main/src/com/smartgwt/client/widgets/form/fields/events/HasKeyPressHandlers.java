@@ -21,5 +21,8 @@ import com.google.gwt.event.shared.HandlerRegistration;
 import com.google.gwt.event.shared.HasHandlers;
 
 public interface HasKeyPressHandlers extends HasHandlers {
+    /**
+     * StringMethod fired when the user presses a key while focused in this form item.
+     */
     HandlerRegistration addKeyPressHandler(KeyPressHandler handler);
 }

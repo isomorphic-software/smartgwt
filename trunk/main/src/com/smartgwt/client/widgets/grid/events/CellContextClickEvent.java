@@ -69,7 +69,7 @@ public class CellContextClickEvent extends GridRowColEvent<CellContextClickHandl
    *
    * @param <S> The event source
    * @param source the source of the handlers
-   * @param target the target
+   * @param jsObj the native event
    */
   public static <S extends HasCellContextClickHandlers & HasHandlers> void fire(
       S source, JavaScriptObject jsObj) {

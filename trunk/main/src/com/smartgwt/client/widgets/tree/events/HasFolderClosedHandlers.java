@@ -21,5 +21,8 @@ import com.google.gwt.event.shared.HandlerRegistration;
 import com.google.gwt.event.shared.HasHandlers;
 
 public interface HasFolderClosedHandlers extends HasHandlers {
+    /**
+     * This method is called when a folder is closed either via the user manipulating the expand/collapse control in the UI or via {@link com.smartgwt.client.widgets.tree.TreeGrid#closeFolder}.  You can return <code>false</code> to cancel the close.
+     */
     HandlerRegistration addFolderClosedHandler(FolderClosedHandler handler);
 }

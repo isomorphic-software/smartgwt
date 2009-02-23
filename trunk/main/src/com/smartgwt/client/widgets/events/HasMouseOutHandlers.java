@@ -21,5 +21,8 @@ import com.google.gwt.event.shared.HandlerRegistration;
 import com.google.gwt.event.shared.HasHandlers;
 
 public interface HasMouseOutHandlers extends HasHandlers {
+    /**
+     * Executed when the mouse leaves this widget.  No default implementation.
+     */
     HandlerRegistration addMouseOutHandler(MouseOutHandler handler);
 }

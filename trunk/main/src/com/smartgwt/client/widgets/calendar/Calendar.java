@@ -940,6 +940,8 @@ public class Calendar extends Canvas  implements DataBoundComponent, com.smartgw
 
         /**
          * Add a dayBodyClick handler.
+         * <p>
+         * Called when the body area of a day in the month view is clicked on, outside of any links to a particular event. <P> By default, if the user can add events, shows a dialog for adding a new event for that day.  Return false to cancel this action. <P> Not called if the day falls outside the current month and {@link com.smartgwt.client.widgets.calendar.Calendar#getShowOtherDays showOtherDays} is false.
          *
          * @param handler the dayBodyClick handler
          */
@@ -979,6 +981,8 @@ public class Calendar extends Canvas  implements DataBoundComponent, com.smartgw
 
         /**
          * Add a dayHeaderClick handler.
+         * <p>
+         * Called when the header area of a day in the month view is clicked on. <P> By default, moves to the day tab and shows the clicked days events. Return false to cancel this action. <P> Not called if the day falls outside the current month and {@link com.smartgwt.client.widgets.calendar.Calendar#getShowOtherDays showOtherDays} is false.
          *
          * @param handler the dayHeaderClick handler
          */
@@ -1010,6 +1014,8 @@ public class Calendar extends Canvas  implements DataBoundComponent, com.smartgw
 
         /**
          * Add a eventChanged handler.
+         * <p>
+         * Notification fired whenever a user changes an event, whether by dragging the event or by editing it in a dialog. <P> In a calendar with a DataSource, eventChanged() fires <b>after</b> the updated event has been successfully saved to the server
          *
          * @param handler the eventChanged handler
          */
@@ -1042,6 +1048,8 @@ public class Calendar extends Canvas  implements DataBoundComponent, com.smartgw
 
         /**
          * Add a eventClick handler.
+         * <p>
+         * Called whenever an event is clicked on in the day, week or month views. <P> By default a dialog appears showing details for the event, and offering the ability to edit events which are editable.  Return false to cancel the default action.
          *
          * @param handler the eventClick handler
          */
@@ -1078,6 +1086,8 @@ public class Calendar extends Canvas  implements DataBoundComponent, com.smartgw
 
         /**
          * Add a eventMoved handler.
+         * <p>
+         * Called when an event is moved via dragging by a user.  Return false to disallow the move.
          *
          * @param handler the eventMoved handler
          */
@@ -1110,6 +1120,8 @@ public class Calendar extends Canvas  implements DataBoundComponent, com.smartgw
 
         /**
          * Add a eventResized handler.
+         * <p>
+         * Called when an event is resized via dragging by a user.  Return false to disallow the resize.
          *
          * @param handler the eventResized handler
          */
@@ -1140,6 +1152,8 @@ public class Calendar extends Canvas  implements DataBoundComponent, com.smartgw
 
         /**
          * Add a dateChanged handler.
+         * <p>
+         * Fires whenever the user changes the current date, including picking a specific date or navigating to a new week or month.
          *
          * @param handler the dateChanged handler
          */

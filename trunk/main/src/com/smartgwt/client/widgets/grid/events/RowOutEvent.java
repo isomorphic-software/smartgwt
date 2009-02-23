@@ -69,7 +69,7 @@ public class RowOutEvent extends GridRowColEvent<RowOutHandler>  implements Canc
    *
    * @param <S> The event source
    * @param source the source of the handlers
-   * @param target the target
+   * @param jsObj the native event
    */
   public static <S extends HasRowOutHandlers & HasHandlers> void fire(
       S source, JavaScriptObject jsObj) {

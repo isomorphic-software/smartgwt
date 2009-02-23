@@ -21,5 +21,8 @@ import com.google.gwt.event.shared.HandlerRegistration;
 import com.google.gwt.event.shared.HasHandlers;
 
 public interface HasItemClickHandlers extends HasHandlers {
+    /**
+     * Executed when a menu item with no click handler is clicked by the user. This          itemClick handler must be specified as a function. It is passed an item parameter that          is a reference to the clicked menu item.
+     */
     HandlerRegistration addItemClickHandler(ItemClickHandler handler);
 }

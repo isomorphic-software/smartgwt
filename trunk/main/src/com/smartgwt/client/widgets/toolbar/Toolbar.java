@@ -184,6 +184,8 @@ public class Toolbar extends Layout  implements com.smartgwt.client.widgets.tool
 
         /**
          * Add a itemClick handler.
+         * <p>
+         * Called when one of the buttons recieved a click event
          *
          * @param handler the itemClick handler
          */
@@ -216,6 +218,8 @@ public class Toolbar extends Layout  implements com.smartgwt.client.widgets.tool
 
         /**
          * Add a itemDragResized handler.
+         * <p>
+         * Observable, overrideable method - called when one of the Toolbar buttons is drag resized.
          *
          * @param handler the itemDragResized handler
          */

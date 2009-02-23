@@ -21,5 +21,8 @@ import com.google.gwt.event.shared.HandlerRegistration;
 import com.google.gwt.event.shared.HasHandlers;
 
 public interface HasDragResizeMoveHandlers extends HasHandlers {
+    /**
+     * Executed every time the mouse moves while drag-resizing. If this method does not return false, the {@link com.smartgwt.client.widgets.Canvas#getDragTarget dragTarget} (or outline if {@link com.smartgwt.client.widgets.Canvas#getDragAppearance dragAppearance} is set to "outline" will automatically be moved as appropriate whenever the mouse moves.
+     */
     HandlerRegistration addDragResizeMoveHandler(DragResizeMoveHandler handler);
 }

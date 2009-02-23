@@ -21,5 +21,8 @@ import com.google.gwt.event.shared.HandlerRegistration;
 import com.google.gwt.event.shared.HasHandlers;
 
 public interface HasFieldStateChangedHandlers extends HasHandlers {
+    /**
+     * Notification method executed when columns are resized or reordered, or fields are  shown or hidden. Has no default implementation.
+     */
     HandlerRegistration addFieldStateChangedHandler(FieldStateChangedHandler handler);
 }

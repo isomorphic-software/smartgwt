@@ -993,6 +993,8 @@ public class Window extends VLayout  implements com.smartgwt.client.widgets.even
 
         /**
          * Add a closeClick handler.
+         * <p>
+         * Handles a click on the close button of this window. The default implementation hides the window and returns false to cancel bubbling.  Override this method if you want other actions to be taken.
          *
          * @param handler the closeClick handler
          */
@@ -1024,15 +1026,9 @@ public class Window extends VLayout  implements com.smartgwt.client.widgets.even
     // ********************* Static Methods ***********************
 
 
-
-
-
-
-
-
-
-
-
+
+
+
 
     /**
      * Adds a widget to the window.

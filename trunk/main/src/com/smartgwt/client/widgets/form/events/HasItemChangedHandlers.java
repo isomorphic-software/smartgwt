@@ -21,5 +21,8 @@ import com.google.gwt.event.shared.HandlerRegistration;
 import com.google.gwt.event.shared.HasHandlers;
 
 public interface HasItemChangedHandlers extends HasHandlers {
+    /**
+     * Handler fired when there is a changed() event fired on a FormItem within this form. <P> Fires after the change() handler on the FormItem itself, and only if the item did not cancel the change event and chooses to allow it to propagate to the form as a whole.
+     */
     HandlerRegistration addItemChangedHandler(ItemChangedHandler handler);
 }

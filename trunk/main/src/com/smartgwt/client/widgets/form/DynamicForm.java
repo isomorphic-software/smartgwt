@@ -1323,6 +1323,8 @@ public class DynamicForm extends Canvas  implements DataBoundComponent, com.smar
 
         /**
          * Add a itemChanged handler.
+         * <p>
+         * Handler fired when there is a changed() event fired on a FormItem within this form. <P> Fires after the change() handler on the FormItem itself, and only if the item did not cancel the change event and chooses to allow it to propagate to the form as a whole.
          *
          * @param handler the itemChanged handler
          */
@@ -1356,6 +1358,8 @@ public class DynamicForm extends Canvas  implements DataBoundComponent, com.smar
 
         /**
          * Add a itemChange handler.
+         * <p>
+         * Handler fired when there is a change() event fired on a FormItem within this form. <P> Fires after the change() handler on the FormItem itself, and only if the item did not cancel the change event and chooses to allow it to propagate to the form as a whole.
          *
          * @param handler the itemChange handler
          */
@@ -1393,6 +1397,8 @@ public class DynamicForm extends Canvas  implements DataBoundComponent, com.smar
 
         /**
          * Add a itemKeyPress handler.
+         * <p>
+         * Handler fired when a FormItem within this form receives a keypress event. <P> Fires after the keyPress handler on the FormItem itself, and only if the item did not cancel the event and chooses to allow it to propagate to the form as a whole.
          *
          * @param handler the itemKeyPress handler
          */
@@ -1425,6 +1431,8 @@ public class DynamicForm extends Canvas  implements DataBoundComponent, com.smar
 
         /**
          * Add a submitValues handler.
+         * <p>
+         * Triggered when a SubmitItem is included in the form is submitted and gets pressed.
          *
          * @param handler the submitValues handler
          */

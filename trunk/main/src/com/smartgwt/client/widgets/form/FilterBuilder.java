@@ -249,6 +249,8 @@ public class FilterBuilder extends Layout  implements com.smartgwt.client.widget
 
         /**
          * Add a filterChanged handler.
+         * <p>
+         * Handler fired when there is a change() event fired on any FormItem within the  filterBuilder.
          *
          * @param handler the filterChanged handler
          */

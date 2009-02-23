@@ -21,5 +21,8 @@ import com.google.gwt.event.shared.HandlerRegistration;
 import com.google.gwt.event.shared.HasHandlers;
 
 public interface HasRowEditorEnterHandlers extends HasHandlers {
+    /**
+     * Callback fired when the user starts editing a new row.
+     */
     HandlerRegistration addRowEditorEnterHandler(RowEditorEnterHandler handler);
 }

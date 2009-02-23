@@ -21,5 +21,8 @@ import com.google.gwt.event.shared.HandlerRegistration;
 import com.google.gwt.event.shared.HasHandlers;
 
 public interface HasDayBodyClickHandlers extends HasHandlers {
+    /**
+     * Called when the body area of a day in the month view is clicked on, outside of any links to a particular event. <P> By default, if the user can add events, shows a dialog for adding a new event for that day.  Return false to cancel this action. <P> Not called if the day falls outside the current month and {@link com.smartgwt.client.widgets.calendar.Calendar#getShowOtherDays showOtherDays} is false.
+     */
     HandlerRegistration addDayBodyClickHandler(DayBodyClickHandler handler);
 }

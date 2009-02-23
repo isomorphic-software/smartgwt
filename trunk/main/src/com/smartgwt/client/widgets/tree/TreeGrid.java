@@ -972,6 +972,8 @@ public class TreeGrid extends ListGrid  implements DataBoundComponent, com.smart
 
         /**
          * Add a folderOpened handler.
+         * <p>
+         * This method is called when a folder is opened either via the user manipulating the expand/collapse control in the UI or via {@link com.smartgwt.client.widgets.tree.TreeGrid#openFolder}.  You can return <code>false</code> to cancel the open.
          *
          * @param handler the folderOpened handler
          */
@@ -1007,6 +1009,8 @@ public class TreeGrid extends ListGrid  implements DataBoundComponent, com.smart
 
         /**
          * Add a folderClosed handler.
+         * <p>
+         * This method is called when a folder is closed either via the user manipulating the expand/collapse control in the UI or via {@link com.smartgwt.client.widgets.tree.TreeGrid#closeFolder}.  You can return <code>false</code> to cancel the close.
          *
          * @param handler the folderClosed handler
          */
@@ -1044,6 +1048,8 @@ public class TreeGrid extends ListGrid  implements DataBoundComponent, com.smart
 
         /**
          * Add a folderClick handler.
+         * <p>
+         * This method is called when a folder record is clicked on.
          *
          * @param handler the folderClick handler
          */
@@ -1077,6 +1083,8 @@ public class TreeGrid extends ListGrid  implements DataBoundComponent, com.smart
 
         /**
          * Add a leafClick handler.
+         * <p>
+         * This method is called when a leaf record is clicked on.
          *
          * @param handler the leafClick handler
          */
@@ -1110,6 +1118,8 @@ public class TreeGrid extends ListGrid  implements DataBoundComponent, com.smart
 
         /**
          * Add a nodeClick handler.
+         * <p>
+         * This method is called when a leaf or folder record is clicked on.  Note that if you set up a callback for <code>nodeClick()</code> and e.g. {@link com.smartgwt.client.widgets.tree.TreeGrid#leafClick}, then both will fire (in that order) if a leaf is clicked on.
          *
          * @param handler the nodeClick handler
          */
@@ -1143,6 +1153,8 @@ public class TreeGrid extends ListGrid  implements DataBoundComponent, com.smart
 
         /**
          * Add a folderContextClick handler.
+         * <p>
+         * This method is called when a context click occurs on a folder record.
          *
          * @param handler the folderContextClick handler
          */
@@ -1180,6 +1192,8 @@ public class TreeGrid extends ListGrid  implements DataBoundComponent, com.smart
 
         /**
          * Add a leafContextClick handler.
+         * <p>
+         * This method is called when a context click occurs on a leaf record.
          *
          * @param handler the leafContextClick handler
          */
@@ -1217,6 +1231,8 @@ public class TreeGrid extends ListGrid  implements DataBoundComponent, com.smart
 
         /**
          * Add a nodeContextClick handler.
+         * <p>
+         * This method is called when a context click occurs on a leaf or folder record.  Note that if you set up a callback for <code>nodeContextClick()</code> and e.g. {@link com.smartgwt.client.widgets.tree.TreeGrid#leafContextClick}, then both will fire (in that order) if a leaf is contextclicked - unless <code>nodeContextClick()</code> returns false, in which case no further contextClick callbacks will be called.
          *
          * @param handler the nodeContextClick handler
          */
@@ -1252,6 +1268,8 @@ public class TreeGrid extends ListGrid  implements DataBoundComponent, com.smart
 
         /**
          * Add a dataArrived handler.
+         * <p>
+         * Notification method fired whenever this TreeGrid recieves new data nodes from the  dataSource. Only applies to databound TreeGrids where {@link com.smartgwt.client.widgets.tree.TreeGrid#getData data} is a  {@link com.smartgwt.client..ResultTree} - either explicitly created and applied via {@link com.smartgwt.client.widgets.tree.TreeGrid#setData} or automatically generated via a {@link com.smartgwt.client.widgets.tree.TreeGrid#fetchData} call.
          *
          * @param handler the dataArrived handler
          */

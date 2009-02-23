@@ -21,5 +21,8 @@ import com.google.gwt.event.shared.HandlerRegistration;
 import com.google.gwt.event.shared.HasHandlers;
 
 public interface HasFolderClickHandlers extends HasHandlers {
+    /**
+     * This method is called when a folder record is clicked on.
+     */
     HandlerRegistration addFolderClickHandler(FolderClickHandler handler);
 }

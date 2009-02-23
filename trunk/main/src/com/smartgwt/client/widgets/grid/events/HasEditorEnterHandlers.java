@@ -21,5 +21,8 @@ import com.google.gwt.event.shared.HandlerRegistration;
 import com.google.gwt.event.shared.HasHandlers;
 
 public interface HasEditorEnterHandlers extends HasHandlers {
+    /**
+     * Callback fired when the user first starts editing a cell. <P> This callback is typically used to establish dynamic default values via ${isc.DocUtils.linkForRef('setEditValue')} or ${isc.DocUtils.linkForRef('setEditValues')}.
+     */
     HandlerRegistration addEditorEnterHandler(EditorEnterHandler handler);
 }

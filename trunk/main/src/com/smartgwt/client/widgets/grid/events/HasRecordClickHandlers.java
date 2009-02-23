@@ -21,5 +21,8 @@ import com.google.gwt.event.shared.HandlerRegistration;
 import com.google.gwt.event.shared.HasHandlers;
 
 public interface HasRecordClickHandlers extends HasHandlers {
+    /**
+     * Executed when this field is clicked on.  Note that if {@link com.smartgwt.client.widgets.grid.ListGrid#recordClick} is also defined, it will be fired for fields that define a recordClick handler if the field-level handler returns true. Return false to prevent the grid-level handler from firing.
+     */
     HandlerRegistration addRecordClickHandler(RecordClickHandler handler);
 }

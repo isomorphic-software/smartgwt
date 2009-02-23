@@ -68,7 +68,7 @@ public class HoverHiddenEvent extends BrowserEvent<HoverHiddenHandler>  {
    *
    * @param <S> The event source
    * @param source the source of the handlers
-   * @param target the target
+   * @param jsObj the native event
    */
   public static <S extends HasHoverHiddenHandlers & HasHandlers> void fire(
       S source, JavaScriptObject jsObj) {

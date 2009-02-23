@@ -21,5 +21,8 @@ import com.google.gwt.event.shared.HandlerRegistration;
 import com.google.gwt.event.shared.HasHandlers;
 
 public interface HasChangedHandlers extends HasHandlers {
+    /**
+     * Called when a FormItem's value has been changed as the result of user interaction.  This method fires after the newly specified value has been stored.
+     */
     HandlerRegistration addChangedHandler(ChangedHandler handler);
 }

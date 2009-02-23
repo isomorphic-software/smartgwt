@@ -21,5 +21,8 @@ import com.google.gwt.event.shared.HandlerRegistration;
 import com.google.gwt.event.shared.HasHandlers;
 
 public interface HasCloseClickHandlers extends HasHandlers {
+    /**
+     * Handles a click on the close button of this window. The default implementation hides the window and returns false to cancel bubbling.  Override this method if you want other actions to be taken.
+     */
     HandlerRegistration addCloseClickHandler(CloseClickHandler handler);
 }

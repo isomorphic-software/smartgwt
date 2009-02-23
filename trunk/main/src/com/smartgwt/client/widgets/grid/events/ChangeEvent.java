@@ -68,7 +68,7 @@ public class ChangeEvent extends AbstractSmartEvent<ChangeHandler>  {
    *
    * @param <S> The event source
    * @param source the source of the handlers
-   * @param target the target
+   * @param jsObj the native event
    */
   public static <S extends HasChangeHandlers & HasHandlers> void fire(
       S source, JavaScriptObject jsObj) {

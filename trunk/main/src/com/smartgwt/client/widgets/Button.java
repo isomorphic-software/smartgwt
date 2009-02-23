@@ -710,6 +710,8 @@ public class Button extends StatefulCanvas  implements com.smartgwt.client.widge
 
         /**
          * Add a iconClick handler.
+         * <p>
+         * If this button is showing an {@link com.smartgwt.client.widgets.Button#getIcon icon}, a separate click handler for the icon may be defined as <code>this.iconClick</code>. Returning false will suppress the standard button click handling code.
          *
          * @param handler the iconClick handler
          */

@@ -21,5 +21,8 @@ import com.google.gwt.event.shared.HandlerRegistration;
 import com.google.gwt.event.shared.HasHandlers;
 
 public interface HasRowMouseDownHandlers extends HasHandlers {
+    /**
+     * Called when a row receives a mousedown event.
+     */
     HandlerRegistration addRowMouseDownHandler(RowMouseDownHandler handler);
 }

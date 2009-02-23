@@ -21,5 +21,8 @@ import com.google.gwt.event.shared.HandlerRegistration;
 import com.google.gwt.event.shared.HasHandlers;
 
 public interface HasClickHandlers extends HasHandlers {
+    /**
+     * Executed when the left mouse is clicked (pressed and then released) on this widget.  No default implementation.
+     */
     HandlerRegistration addClickHandler(ClickHandler handler);
 }

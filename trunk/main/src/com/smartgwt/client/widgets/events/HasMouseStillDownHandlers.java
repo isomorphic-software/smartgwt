@@ -21,5 +21,8 @@ import com.google.gwt.event.shared.HandlerRegistration;
 import com.google.gwt.event.shared.HasHandlers;
 
 public interface HasMouseStillDownHandlers extends HasHandlers {
+    /**
+     * Executed repeatedly (every {@link com.smartgwt.client.widgets.Canvas#getMouseStillDownDelay mouseStillDownDelay} by default) when the system is idle - i.e. not busy running other scripts - and the left mouse button is held down after having been pressed in the object. This event is not native to JavaScript, but is provided by the ISC system. <p> Note: The event handling system waits {@link com.smartgwt.client.widgets.Canvas#getMouseStillDownInitialDelay mouseStillDownInitialDelay} before calling mouseStillDown for the first time on the widget.  Subsequently the method is called every {@link com.smartgwt.client.widgets.Canvas#getMouseStillDownDelay mouseStillDownDelay}.  Both attributes are configurable per widget instance. <p> This method is called only when the left mouse is held down.
+     */
     HandlerRegistration addMouseStillDownHandler(MouseStillDownHandler handler);
 }

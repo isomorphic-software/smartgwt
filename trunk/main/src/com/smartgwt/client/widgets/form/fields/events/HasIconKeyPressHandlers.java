@@ -21,5 +21,8 @@ import com.google.gwt.event.shared.HandlerRegistration;
 import com.google.gwt.event.shared.HasHandlers;
 
 public interface HasIconKeyPressHandlers extends HasHandlers {
+    /**
+     * StringMethod.      Default action to fire when an icon has keyboard focus and the user types a key.      May be overridden by setting <code>keyPress</code> on the form item icon directly.
+     */
     HandlerRegistration addIconKeyPressHandler(IconKeyPressHandler handler);
 }

@@ -778,6 +778,8 @@ public class DateChooser extends Canvas  implements com.smartgwt.client.widgets.
 
         /**
          * Add a dataChanged handler.
+         * <p>
+         * Method to override or observe in order to be notified when a user picks a date value. <P> Has no default behavior (so no need to call Super). <P> Use {@link com.smartgwt.client.widgets.DateChooser#getData} to get the current date value.
          *
          * @param handler the dataChanged handler
          */

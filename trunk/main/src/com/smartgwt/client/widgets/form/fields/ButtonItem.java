@@ -196,6 +196,8 @@ public class ButtonItem extends CanvasItem  implements com.smartgwt.client.widge
 
         /**
          * Add a click handler.
+         * <p>
+         * Called when a ButtonItem is clicked on.
          *
          * @param handler the click handler
          */

@@ -21,5 +21,8 @@ import com.google.gwt.event.shared.HandlerRegistration;
 import com.google.gwt.event.shared.HasHandlers;
 
 public interface HasTabIconClickHandlers extends HasHandlers {
+    /**
+     * Method fired when the user clicks the icon for a tab, as specified via {@link com.smartgwt.client.widgets.tab.Tab#getIcon icon}. <P> Default behavior will fire <code>icon.click()</code> if specified, with two parameters <code>tab</code> (a pointer to the tab object and <code>tabSet</code> a pointer to the tabSet instance.
+     */
     HandlerRegistration addTabIconClickHandler(TabIconClickHandler handler);
 }

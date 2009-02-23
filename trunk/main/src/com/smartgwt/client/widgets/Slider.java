@@ -653,6 +653,8 @@ public class Slider extends Canvas  implements com.smartgwt.client.widgets.event
 
         /**
          * Add a valueChanged handler.
+         * <p>
+         * This method is called when the slider value changes. This occurs when the setValue method is called, or when the slider is moved. Observe this method to be notified when the slider value changes.
          *
          * @param handler the valueChanged handler
          */

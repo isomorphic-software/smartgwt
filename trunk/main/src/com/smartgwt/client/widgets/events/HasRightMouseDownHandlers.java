@@ -21,5 +21,8 @@ import com.google.gwt.event.shared.HandlerRegistration;
 import com.google.gwt.event.shared.HasHandlers;
 
 public interface HasRightMouseDownHandlers extends HasHandlers {
+    /**
+     * Executed when the right mouse down is pressed on this widget.  No default implementation.
+     */
     HandlerRegistration addRightMouseDownHandler(RightMouseDownHandler handler);
 }
