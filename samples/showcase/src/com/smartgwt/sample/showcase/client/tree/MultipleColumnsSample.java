@@ -3,6 +3,8 @@ package com.smartgwt.sample.showcase.client.tree;
 import com.smartgwt.client.widgets.Canvas;
 import com.smartgwt.client.widgets.tree.TreeGrid;
 import com.smartgwt.client.widgets.tree.TreeGridField;
+import com.smartgwt.client.widgets.tree.events.DataArrivedHandler;
+import com.smartgwt.client.widgets.tree.events.DataArrivedEvent;
 import com.smartgwt.sample.showcase.client.PanelFactory;
 import com.smartgwt.sample.showcase.client.ShowcasePanel;
 import com.smartgwt.sample.showcase.client.data.EmployeeXmlDS;
@@ -33,7 +35,7 @@ public class MultipleColumnsSample extends ShowcasePanel {
 
         EmployeeXmlDS employeesDS = EmployeeXmlDS.getInstance();
 
-        TreeGrid treeGrid = new TreeGrid();
+        final TreeGrid treeGrid = new TreeGrid();
         treeGrid.setCanEdit(true);
         treeGrid.setLoadDataOnDemand(false);
         treeGrid.setWidth(360);
@@ -48,10 +50,15 @@ public class MultipleColumnsSample extends ShowcasePanel {
 
         TreeGridField nameField = new TreeGridField("Name");
         TreeGridField jobField = new TreeGridField("Job");
-        //TODO apply formatCellValue
         TreeGridField salaryField = new TreeGridField("Salary");
 
         treeGrid.setFields(nameField, jobField, salaryField);
+
+        treeGrid.addDataArrivedHandler(new DataArrivedHandler() {
+            public void onDataArrived(DataArrivedEvent event) {
+                treeGrid.getData().openAll();
+            }
+        });
         return treeGrid;
     }
 
