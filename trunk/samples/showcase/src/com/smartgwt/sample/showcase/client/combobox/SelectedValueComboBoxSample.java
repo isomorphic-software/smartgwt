@@ -60,6 +60,7 @@ public class SelectedValueComboBoxSample extends ShowcasePanel {
         headerItem.setDefaultValue("Order Supply Item");
 
         SelectItem selectItem = new SelectItem();
+        selectItem.setDefaultToFirstOption(true); 
         selectItem.setTitle("Item");
         selectItem.setDisplayField("itemName");
         selectItem.setValueField("itemName");
