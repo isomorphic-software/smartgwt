@@ -51,11 +51,16 @@ public enum FieldType implements ValueEnum {
      */
     FLOAT("float"),
     /**
-     * A date, including time of day. Represented on the client as a                    JavaScript <code>Date</code>
-     * object. See ${isc.DocUtils.linkForRef('class:Date')} for&#010 SmartClient extensions to the <code>Date</code>
+     * A date, including time of day. Represented on the client as a JavaScript <code>Date</code>
+     * object.
      * object.
      */
     DATE("date"),
+
+    /**
+     * A date and time, accurate to the second. Represented on the client as a JavaScript Date object. 
+     */
+    DATETIME("datetime"),
     /**
      * A text value constrained to a set of legal values specified by the                    field's
      * ${isc.DocUtils.linkForRef('attr:DataSourceField.valueMap','valueMap')}, as though an&#010

@@ -1909,9 +1909,21 @@ public class FormItem extends RefDataClass  implements com.smartgwt.client.widge
 
 
 
-
-
-
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
     public void setAttribute(String attribute, String value) {
         if (!isCreated()) {
@@ -2213,7 +2225,7 @@ public class FormItem extends RefDataClass  implements com.smartgwt.client.widge
      *
      * @param valueMap the value map
      */
-    public void setValueMap(Map valueMap) {
+    public void setValueMap(java.util.LinkedHashMap valueMap) {
         if (!isCreated()) {
             setAttribute("valueMap", valueMap);
         } else {
