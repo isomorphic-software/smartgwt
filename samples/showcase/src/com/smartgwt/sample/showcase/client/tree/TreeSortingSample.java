@@ -4,6 +4,8 @@ import com.smartgwt.client.widgets.Canvas;
 import com.smartgwt.client.widgets.grid.ListGridRecord;
 import com.smartgwt.client.widgets.tree.TreeGrid;
 import com.smartgwt.client.widgets.tree.TreeGridField;
+import com.smartgwt.client.widgets.tree.events.DataArrivedHandler;
+import com.smartgwt.client.widgets.tree.events.DataArrivedEvent;
 import com.smartgwt.sample.showcase.client.PanelFactory;
 import com.smartgwt.sample.showcase.client.ShowcasePanel;
 import com.smartgwt.sample.showcase.client.data.EmployeeXmlDS;
@@ -34,7 +36,7 @@ public class TreeSortingSample extends ShowcasePanel {
 
     public Canvas getViewPanel() {
         //TODO fix sample
-        TreeGrid treeGrid = new TreeGrid();
+        final TreeGrid treeGrid = new TreeGrid();
         treeGrid.setLoadDataOnDemand(false);
         treeGrid.setWidth(500);
         treeGrid.setHeight(400);
@@ -42,8 +44,7 @@ public class TreeSortingSample extends ShowcasePanel {
         treeGrid.setNodeIcon("icons/16/person.png");
         treeGrid.setFolderIcon("icons/16/person.png");
         treeGrid.setAutoFetchData(true);
-        treeGrid.setCanFreezeFields(true);
-        treeGrid.setCanReparentNodes(true);
+
 
         TreeGridField nameField = new TreeGridField("Name", 150);
         TreeGridField jobField = new TreeGridField("Job", 150);
@@ -51,9 +52,11 @@ public class TreeSortingSample extends ShowcasePanel {
 
         treeGrid.setFields(nameField, jobField, salaryField);
         
-        treeGrid.setShowAllRecords(true);
-        ListGridRecord record = new ListGridRecord();
-//        record.setAttribute("Name", value);
+        treeGrid.addDataArrivedHandler(new DataArrivedHandler() {
+            public void onDataArrived(DataArrivedEvent event) {
+                treeGrid.getData().openAll();
+            }
+        });
         
         return treeGrid;
     }

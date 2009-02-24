@@ -46,6 +46,7 @@ public class UserSizingSample extends ShowcasePanel {
         mainLayout.setDragAppearance(DragAppearance.TARGET);
         mainLayout.setOverflow(Overflow.HIDDEN);
         mainLayout.setCanDragResize(true);
+        mainLayout.setResizeFrom("L", "R");
         mainLayout.setLayoutMargin(10);
         mainLayout.setMembersMargin(10);
         mainLayout.setMinWidth(100);
@@ -56,6 +57,7 @@ public class UserSizingSample extends ShowcasePanel {
         member1.setOverflow(Overflow.HIDDEN);
         member1.setShowEdges(true);
         member1.setCanDragResize(true);
+        member1.setResizeFrom("L", "R");
         member1.setAlign(Alignment.CENTER);
 
         Label member2 = new Label();
@@ -63,6 +65,7 @@ public class UserSizingSample extends ShowcasePanel {
         member2.setOverflow(Overflow.HIDDEN);
         member2.setShowEdges(true);
         member2.setCanDragResize(true);
+        member2.setResizeFrom("L", "R");
         member2.setAlign(Alignment.CENTER);
 
         mainLayout.addMember(member1);

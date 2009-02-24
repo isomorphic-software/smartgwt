@@ -51,8 +51,6 @@ public class WorldXmlDS extends DataSource {
                 gdpField);
 
         setDataURL("ds/test_data/world.data.xml");
-        if(GWT.isScript()) {
-            setClientOnly(true);
-        }
+        setClientOnly(true);
     }
 }

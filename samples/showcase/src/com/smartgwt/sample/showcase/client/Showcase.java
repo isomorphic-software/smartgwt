@@ -103,7 +103,7 @@ public class Showcase implements EntryPoint, HistoryListener {
 
         SelectItem selectItem = new SelectItem();
         selectItem.setWidth(130);
-        Map<String, String> valueMap = new LinkedHashMap<String, String>();
+        LinkedHashMap<String, String> valueMap = new LinkedHashMap<String, String>();
         valueMap.put("Enterprise", "Enterprise");
         valueMap.put("SilverWave", "Silver Wave");
         valueMap.put("BlackOps", "Black Ops");

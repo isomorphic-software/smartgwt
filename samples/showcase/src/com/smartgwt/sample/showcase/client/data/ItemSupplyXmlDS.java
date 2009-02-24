@@ -56,8 +56,6 @@ public class ItemSupplyXmlDS extends DataSource {
                   unitCostField, inStockField, nextShipmentField);
 
         setDataURL("ds/test_data/supplyItem.data.xml");
-        if(GWT.isScript()) {
-            setClientOnly(true);
-        }
+        setClientOnly(true);        
     }
 }
