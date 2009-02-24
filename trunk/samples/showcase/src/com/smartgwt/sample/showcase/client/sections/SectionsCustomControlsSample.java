@@ -52,6 +52,7 @@ public class SectionsCustomControlsSample extends ShowcasePanel {
         ImgButton addButton = new ImgButton();
         addButton.setSrc("[SKIN]actions/add.png");
         addButton.setSize(16);
+        addButton.setShowFocused(false);
         addButton.setShowRollOver(false);
         addButton.setShowDown(false);
         addButton.addClickHandler(new ClickHandler() {
@@ -63,6 +64,7 @@ public class SectionsCustomControlsSample extends ShowcasePanel {
         ImgButton removeButton = new ImgButton();
         removeButton.setSrc("[SKIN]actions/remove.png");
         removeButton.setSize(16);
+        removeButton.setShowFocused(false);
         removeButton.setShowRollOver(false);
         removeButton.setShowDown(false);
         removeButton.addClickHandler(new ClickHandler() {

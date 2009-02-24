@@ -135,7 +135,7 @@ public class FilterSortTilingSample extends ShowcasePanel {
         sortItem.setName("sortBy");
         sortItem.setTitle("Sort By");
 
-        Map valueMap = new LinkedHashMap();
+        LinkedHashMap valueMap = new LinkedHashMap();
         valueMap.put("commonName", "Animal");
         valueMap.put("lifeSpan", "Life Span");
         valueMap.put("status", "Endangered Status");

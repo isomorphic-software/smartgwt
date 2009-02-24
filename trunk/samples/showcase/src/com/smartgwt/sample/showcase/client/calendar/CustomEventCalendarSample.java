@@ -9,9 +9,12 @@ import com.smartgwt.client.widgets.calendar.Calendar;
 import com.smartgwt.client.widgets.form.fields.HeaderItem;
 import com.smartgwt.client.widgets.form.fields.SelectItem;
 import com.smartgwt.client.widgets.form.fields.TextItem;
+import com.smartgwt.client.widgets.form.fields.RadioGroupItem;
 import com.smartgwt.sample.showcase.client.PanelFactory;
 import com.smartgwt.sample.showcase.client.ShowcasePanel;
 import com.smartgwt.sample.showcase.client.data.CalendarData;
+
+import java.util.LinkedHashMap;
 
 public class CustomEventCalendarSample extends ShowcasePanel {
 
@@ -91,6 +94,18 @@ public class CustomEventCalendarSample extends ShowcasePanel {
         reminderUnits.setValueMap("minutes", "hours", "days");
 
         calendar.setEventEditorFields(descItem, eventOptions, repeatsItem, reminderItem, reminderValue, reminderUnits);
+
+        TextItem nameItem = new TextItem();
+        nameItem.setType("text");
+        nameItem.setName("name");
+
+        RadioGroupItem radioGroupItem = new RadioGroupItem("sharing");
+        radioGroupItem.setTitle("Sharing");
+        radioGroupItem.setVertical(false);
+        radioGroupItem.setValueMap("Public", "Private");
+        radioGroupItem.setWidth(50);
+        
+        calendar.setEventDialogFields(nameItem, radioGroupItem);
 
         return calendar;
     }

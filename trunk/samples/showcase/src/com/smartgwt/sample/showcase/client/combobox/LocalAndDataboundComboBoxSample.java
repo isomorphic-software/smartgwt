@@ -44,7 +44,7 @@ public class LocalAndDataboundComboBoxSample extends ShowcasePanel {
         ComboBoxItem bugStatusItem = new ComboBoxItem("bugStatus");
         bugStatusItem.setTitle("Bug Status");
 
-        Map<String, String> valueMap = new LinkedHashMap<String, String>();
+        LinkedHashMap<String, String> valueMap = new LinkedHashMap<String, String>();
         valueMap.put("new", "New");
         valueMap.put("active", "Active");
         valueMap.put("revisit", "Revisit");

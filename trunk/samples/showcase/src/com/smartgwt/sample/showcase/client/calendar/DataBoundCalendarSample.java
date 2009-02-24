@@ -1,7 +1,7 @@
 package com.smartgwt.sample.showcase.client.calendar;
 
 import com.smartgwt.client.data.DataSource;
-import com.smartgwt.client.data.fields.DataSourceDateField;
+import com.smartgwt.client.data.fields.DataSourceDateTimeField;
 import com.smartgwt.client.data.fields.DataSourceSequenceField;
 import com.smartgwt.client.data.fields.DataSourceTextField;
 import com.smartgwt.client.widgets.Canvas;
@@ -43,8 +43,8 @@ public class DataBoundCalendarSample extends ShowcasePanel {
 
         DataSourceTextField nameField = new DataSourceTextField("name");
         DataSourceTextField descField = new DataSourceTextField("description");
-        DataSourceDateField startDateField = new DataSourceDateField("startDate");
-        DataSourceDateField endDateField = new DataSourceDateField("endDate");
+        DataSourceDateTimeField startDateField = new DataSourceDateTimeField("startDate");
+        DataSourceDateTimeField endDateField = new DataSourceDateTimeField("endDate");
 
         eventDS.setFields(eventIdField, nameField, descField, startDateField, endDateField);
         eventDS.setClientOnly(true);

@@ -38,7 +38,7 @@ public class FormMatchValueSample extends ShowcasePanel {
     	
         final DynamicForm form = new DynamicForm();
         form.setWidth(250);
-        
+
         TextItem username = new TextItem();
         username.setName("username");
         username.setTitle("Username");

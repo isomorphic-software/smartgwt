@@ -70,7 +70,7 @@ public class MenuTreeBindingSample extends ShowcasePanel {
 
 		MenuButton bCategory = new MenuButton("Go to category", mCategory);
 		bCategory.setTop(30);
-		bCategory.setWidth(130);
+		bCategory.setWidth(140);
 
 		main.addChild(bCategory);
 

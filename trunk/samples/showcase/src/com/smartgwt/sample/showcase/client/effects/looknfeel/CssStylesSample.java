@@ -11,6 +11,7 @@ import com.smartgwt.sample.showcase.client.ShowcasePanel;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.LinkedHashMap;
 
 public class CssStylesSample extends ShowcasePanel {
 
@@ -50,7 +51,7 @@ public class CssStylesSample extends ShowcasePanel {
         textBox.setWidth(300);
         textBox.setStyleName("exampleStyleOnline");
         
-        Map<String, String> styleMap = new HashMap<String, String>();
+        LinkedHashMap<String, String> styleMap = new LinkedHashMap<String, String>();
         styleMap.put("exampleStyleOnline", "Online");
         styleMap.put("exampleStyleLegal", "Legal");
         styleMap.put("exampleStyleCode", "Code");

@@ -102,7 +102,7 @@ public class ToolStripsSample extends ShowcasePanel {
         fontItem.setShowTitle(false);
         fontItem.setWidth("*");
 
-        Map<String, String> valueMap = new LinkedHashMap<String, String>();
+        LinkedHashMap<String, String> valueMap = new LinkedHashMap<String, String>();
         valueMap.put("courier", "<span style='font-family:courier'>Courier</span>");
         valueMap.put("verdana", "<span style='font-family:verdana'>Verdana</span>");
         valueMap.put("times", "<span style='font-family:times'>Times</span>");

@@ -1,6 +1,7 @@
 package com.smartgwt.sample.showcase.client.data;
 
 import com.smartgwt.sample.showcase.client.DebugConsoleCommand;
+import com.smartgwt.sample.showcase.client.portal.SimplePortalSample;
 import com.smartgwt.sample.showcase.client.basics.components.*;
 import com.smartgwt.sample.showcase.client.basics.html.*;
 import com.smartgwt.sample.showcase.client.basics.interaction.*;
@@ -121,6 +122,14 @@ public class ShowcaseData {
                     new ExplorerTreeNode("Pattern Reuse", "featured-pattern-reuse", "featured-category", "silk/database_table.png", new PatternReuseSample.Factory(), true, idSuffix),
                     new ExplorerTreeNode("XSD DataSource", "featured-xsd-ds", "featured-category", "silk/database_gear.png", new XsdDataSourceSample.Factory(), true, idSuffix),
                     new ExplorerTreeNode("GWT Integration", "featured-gwt-integration", "featured-category", "gwt/icon16.png", new GwtShowcaseSample.Factory(), true, idSuffix),
+                    new ExplorerTreeNode("Portal", "featured-portal", "featured-category", "silk/application_view_tile.png", new SimplePortalSample.Factory(), true, idSuffix),
+
+                    new ExplorerTreeNode("New Samples", "new-category", "root", "silk/bell.png", null, true, idSuffix),
+                    new ExplorerTreeNode("Grid Checkbox Select", "checkboxselect-new-category", "new-category", null, new CheckboxSelectSample.Factory(), true, idSuffix),
+                    new ExplorerTreeNode("Drag Tiles (move)", "tiles-move-new-category", "new-category", null, new DragTilesMoveSample.Factory(), true, idSuffix),
+                    new ExplorerTreeNode("Portal", "portal-new-category", "new-category", "silk/application_view_tile.png", new SimplePortalSample.Factory(), true, idSuffix),
+                    new ExplorerTreeNode("Event Overpping Calendar", "event-overlapping-new-category", "new-category", null, new OverlappingEventsCalendarSample.Factory(), true, idSuffix),
+                    new ExplorerTreeNode("Event Auto-Arranging Calendar", "event-autoarrange-new-category", "new-category", null, new AutoArrangeEventsCalendarSample.Factory(), true, idSuffix),                    
 
                     new ExplorerTreeNode("ComboBox &amp; Family", "combobox-category", "root", "widgets/combo_box.gif", null, true, idSuffix),
                     new ExplorerTreeNode("Styled ComboBox", "styled-combobox-category", "combobox-category", null, new ComboBoxStyledSample.Factory(), true, idSuffix),
@@ -157,6 +166,7 @@ public class ShowcaseData {
                     new ExplorerTreeNode("Rollover", "grid-interaction-rollover", "grid-interaction-category", null, new RolloverSample.Factory(), true, idSuffix),
                     new ExplorerTreeNode("Single Select", "grid-interaction-singleselect", "grid-interaction-category", null, new SingleSelectSample.Factory(), true, idSuffix),
                     new ExplorerTreeNode("Simple Select", "grid-interaction-simpleselect", "grid-interaction-category", null, new SimpleSelectSample.Factory(), true, idSuffix),
+                    new ExplorerTreeNode("Checkbox Select", "grid-interaction-checkboxselect", "grid-interaction-category", null, new CheckboxSelectSample.Factory(), true, idSuffix),
                     new ExplorerTreeNode("Multiple Select", "grid-interaction-multiselect", "grid-interaction-category", null, new MultipleSelectSample.Factory(), true, idSuffix),
                     new ExplorerTreeNode("Drag Select", "grid-interaction-dragselect", "grid-interaction-category", null, new DragSelectSample.Factory(), true, idSuffix),
                     new ExplorerTreeNode("Value Hover Tips", "grid-interaction-value-hover", "grid-interaction-category", null, new ValueHoverTipsSample.Factory(), true, idSuffix),
@@ -290,6 +300,8 @@ public class ShowcaseData {
                     new ExplorerTreeNode("Compact Calendar", "compact-calendar-category", "calendar-category", "widgets/date_time.png", new CompactCalendarSample.Factory(), true, idSuffix),
                     new ExplorerTreeNode("Workday Calendar", "workday-calendar-category", "calendar-category", "crystal/16/actions/5days.png", new WorkdayCalendarSample.Factory(), true, idSuffix),
                     //new ExplorerTreeNode("Custom Event Editing", "custom-editing-calendar-category", "calendar-category", "crystal/16/apps/date.png", new CustomEventCalendarSample.Factory(), true, idSuffix),
+                    new ExplorerTreeNode("Event Auto-Arranging", "event-autoarranging-calendar-category", "calendar-category", "silk/house.png", new AutoArrangeEventsCalendarSample.Factory(), true, idSuffix),
+                    new ExplorerTreeNode("Event Overpping", "event-overlapping-calendar-category", "calendar-category", "silk/house.png", new OverlappingEventsCalendarSample.Factory(), true, idSuffix),
 
                     new ExplorerTreeNode("Data View / Tiling", "tiling-category", "root", "crystal/16/actions/view_icon.png", null, true, idSuffix),
                     new ExplorerTreeNode("Basic", "tiling-basic", "tiling-category", null, new BasicTilingSample.Factory(), true, idSuffix),
@@ -402,6 +414,23 @@ public class ShowcaseData {
                     new ExplorerTreeNode("XPath Binding", "json-integration-category-xpath", "json-integration-category", null, new JsonXPathSample.Factory(), true, idSuffix),
                     new ExplorerTreeNode("Yahoo! JSON Services", "json-integration-category-yahoo", "json-integration-category", "crystal/16/apps/yahoo_protocol.png", new YahooJsonServicesSample.Factory(), true, idSuffix),
 
+
+                    new ExplorerTreeNode("Drag & Drop", "effects-dd-category", "root", "silk/layers.png", null, true, idSuffix),
+                    //new ExplorerTreeNode("Drag List (copy)", "effects-dd-copy-list", "effects-dd-category", null, new DragListCopySample.Factory(), true, idSuffix),
+                    new ExplorerTreeNode("Drag List (move)", "effects-dd-move-list", "effects-dd-category", null, new DragListMoveSample.Factory(), true, idSuffix),
+                    new ExplorerTreeNode("Drag List (select)", "effects-dd-select-list", "effects-dd-category", null, new DragListSelectSample.Factory(), true, idSuffix),
+                    new ExplorerTreeNode("Drag Tiles (move)", "effects-dd-tiles-move", "effects-dd-category", null, new DragTilesMoveSample.Factory(), true, idSuffix),
+
+                    new ExplorerTreeNode("Drag Move", "effects-dd-move", "effects-dd-category", null, new DragMoveImageSample.Factory(), true, idSuffix),
+                    //new ExplorerTreeNode("Drag Reorder", "effects-dd-reorder", "effects-dd-category", null, null, false, idSuffix),
+                    new ExplorerTreeNode("Drag Types", "effects-dd-types", "effects-dd-category", null, new DragTypesSample.Factory(), true, idSuffix),
+                    new ExplorerTreeNode("Drag Create", "effects-dd-create", "effects-dd-category", null, new DragCreateSample.Factory(), true, idSuffix),
+                    new ExplorerTreeNode("Drag Effects", "effects-dd-effects", "effects-dd-category", null, new DragEffectsSample.Factory(), true, idSuffix),
+                    new ExplorerTreeNode("Drag Resize", "effects-dd-resize", "effects-dd-category", null, new DragResizeSample.Factory(), true, idSuffix),
+                    new ExplorerTreeNode("Drag Tracker", "effects-dd-tracker", "effects-dd-category", null, new DragTrackerSample.Factory(), true, idSuffix),
+                    //new ExplorerTreeNode("Drag Pan", "effects-dd-pan", "effects-dd-category", null, new DragPanSample.Factory(), true, idSuffix),
+                    //new ExplorerTreeNode("Snap-to-Grid Dragging", "effects-dd-snap-to-grid", "effects-dd-category", null, null, false, idSuffix),
+
                     new ExplorerTreeNode("Basics", "basics-category", "root", "silk/overlays.png", null, true, idSuffix),
                     new ExplorerTreeNode("Components", "basics-components-category", "basics-category", "pieces/16/cube_blue.png", null, true, idSuffix),
                     new ExplorerTreeNode("Create", "basics-components-create", "basics-components-category", null, new CreateSample.Factory(), true, idSuffix),
@@ -433,21 +462,7 @@ public class ShowcaseData {
                     //new ExplorerTreeNode("Keyboard Events", "basics-interaction-keyboard", "basics-interaction-category", null, null, false, idSuffix),
                     new ExplorerTreeNode("Modality", "basics-interaction-modality", "basics-interaction-category", null, new WindowModalitySample.Factory(), true, idSuffix),
 
-                    new ExplorerTreeNode("Effects", "effects-category", "root", "silk/layers.png", null, true, idSuffix),
-                    new ExplorerTreeNode("Drag & Drop", "effects-dd-category", "effects-category", "pieces/16/cube_blue.png", null, true, idSuffix),
-                    //new ExplorerTreeNode("Drag List (copy)", "effects-dd-copy-list", "effects-dd-category", null, new DragListCopySample.Factory(), true, idSuffix),
-                    new ExplorerTreeNode("Drag List (move)", "effects-dd-move-list", "effects-dd-category", null, new DragListMoveSample.Factory(), true, idSuffix),
-                    new ExplorerTreeNode("Drag List (select)", "effects-dd-select-list", "effects-dd-category", null, new DragListSelectSample.Factory(), true, idSuffix),
-                    new ExplorerTreeNode("Drag Move", "effects-dd-move", "effects-dd-category", null, new DragMoveImageSample.Factory(), true, idSuffix),
-                    //new ExplorerTreeNode("Drag Reorder", "effects-dd-reorder", "effects-dd-category", null, null, false, idSuffix),
-                    new ExplorerTreeNode("Drag Types", "effects-dd-types", "effects-dd-category", null, new DragTypesSample.Factory(), true, idSuffix),
-                    new ExplorerTreeNode("Drag Create", "effects-dd-create", "effects-dd-category", null, new DragCreateSample.Factory(), true, idSuffix),
-                    new ExplorerTreeNode("Drag Effects", "effects-dd-effects", "effects-dd-category", null, new DragEffectsSample.Factory(), true, idSuffix),
-                    new ExplorerTreeNode("Drag Resize", "effects-dd-resize", "effects-dd-category", null, new DragResizeSample.Factory(), true, idSuffix),
-                    new ExplorerTreeNode("Drag Tracker", "effects-dd-tracker", "effects-dd-category", null, new DragTrackerSample.Factory(), true, idSuffix),
-                    //new ExplorerTreeNode("Drag Pan", "effects-dd-pan", "effects-dd-category", null, new DragPanSample.Factory(), true, idSuffix),
-                    //new ExplorerTreeNode("Snap-to-Grid Dragging", "effects-dd-snap-to-grid", "effects-dd-category", null, null, false, idSuffix),
-
+                    new ExplorerTreeNode("Effects", "effects-category", "root", "silk/shape_move_front.png", null, true, idSuffix),
                     new ExplorerTreeNode("Animation", "effects-animation-category", "effects-category", "pieces/16/cube_blue.png", null, true, idSuffix),
                     new ExplorerTreeNode("Animation Playpen", "effects-animation-playpen", "effects-animation-category", null, new AnimationPlaypenSample.Factory(), true, idSuffix),
                     new ExplorerTreeNode("Tree Folders", "effects-animation-tree", "effects-animation-category", null, new AnimateTreeSample.Factory(), true, idSuffix),
