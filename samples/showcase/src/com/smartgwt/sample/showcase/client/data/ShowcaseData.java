@@ -300,8 +300,8 @@ public class ShowcaseData {
                     new ExplorerTreeNode("Compact Calendar", "compact-calendar-category", "calendar-category", "widgets/date_time.png", new CompactCalendarSample.Factory(), true, idSuffix),
                     new ExplorerTreeNode("Workday Calendar", "workday-calendar-category", "calendar-category", "crystal/16/actions/5days.png", new WorkdayCalendarSample.Factory(), true, idSuffix),
                     //new ExplorerTreeNode("Custom Event Editing", "custom-editing-calendar-category", "calendar-category", "crystal/16/apps/date.png", new CustomEventCalendarSample.Factory(), true, idSuffix),
-                    new ExplorerTreeNode("Event Auto-Arranging", "event-autoarranging-calendar-category", "calendar-category", "silk/house.png", new AutoArrangeEventsCalendarSample.Factory(), true, idSuffix),
-                    new ExplorerTreeNode("Event Overpping", "event-overlapping-calendar-category", "calendar-category", "silk/house.png", new OverlappingEventsCalendarSample.Factory(), true, idSuffix),
+                    new ExplorerTreeNode("Event Auto-Arranging", "event-autoarranging-calendar-category", "calendar-category", "silk/5days.png", new AutoArrangeEventsCalendarSample.Factory(), true, idSuffix),
+                    new ExplorerTreeNode("Event Overpping", "event-overlapping-calendar-category", "calendar-category", "silk/5days.png", new OverlappingEventsCalendarSample.Factory(), true, idSuffix),
 
                     new ExplorerTreeNode("Data View / Tiling", "tiling-category", "root", "crystal/16/actions/view_icon.png", null, true, idSuffix),
                     new ExplorerTreeNode("Basic", "tiling-basic", "tiling-category", null, new BasicTilingSample.Factory(), true, idSuffix),

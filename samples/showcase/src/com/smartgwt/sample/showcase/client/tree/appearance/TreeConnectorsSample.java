@@ -3,6 +3,8 @@ package com.smartgwt.sample.showcase.client.tree.appearance;
 import com.smartgwt.client.widgets.Canvas;
 import com.smartgwt.client.widgets.tree.TreeGrid;
 import com.smartgwt.client.widgets.tree.TreeGridField;
+import com.smartgwt.client.widgets.tree.events.DataArrivedHandler;
+import com.smartgwt.client.widgets.tree.events.DataArrivedEvent;
 import com.smartgwt.sample.showcase.client.PanelFactory;
 import com.smartgwt.sample.showcase.client.ShowcasePanel;
 import com.smartgwt.sample.showcase.client.data.EmployeeXmlDS;
@@ -31,7 +33,7 @@ public class TreeConnectorsSample extends ShowcasePanel {
     }
 
     public Canvas getViewPanel() {
-        TreeGrid employeeTree = new TreeGrid();
+        final TreeGrid employeeTree = new TreeGrid();
         employeeTree.setLoadDataOnDemand(false);        
         employeeTree.setWidth(500);
         employeeTree.setHeight(400);
@@ -45,6 +47,12 @@ public class TreeConnectorsSample extends ShowcasePanel {
         employeeTree.setClosedIconSuffix("");     
         employeeTree.setBaseStyle("noBorderCell");
         employeeTree.setFields(new TreeGridField("Name"));
+
+        employeeTree.addDataArrivedHandler(new DataArrivedHandler() {
+            public void onDataArrived(DataArrivedEvent event) {
+                employeeTree.getData().openAll();
+            }
+        });
         
         return employeeTree;
     }

@@ -14,6 +14,8 @@ import com.smartgwt.client.widgets.tree.TreeGrid;
 import com.smartgwt.client.widgets.tree.TreeGridField;
 import com.smartgwt.client.widgets.tree.Tree;
 import com.smartgwt.client.widgets.tree.TreeNode;
+import com.smartgwt.client.widgets.tree.events.DataArrivedHandler;
+import com.smartgwt.client.widgets.tree.events.DataArrivedEvent;
 import com.smartgwt.sample.showcase.client.PanelFactory;
 import com.smartgwt.sample.showcase.client.ShowcasePanel;
 import com.smartgwt.sample.showcase.client.data.EmployeeXmlDS;
@@ -100,6 +102,13 @@ public class NodeTitlesTreeSample extends ShowcasePanel {
         });
 
         treeGrid.setFields(field);
+
+        treeGrid.addDataArrivedHandler(new DataArrivedHandler() {
+            public void onDataArrived(DataArrivedEvent event) {
+                treeGrid.getData().openAll();
+            }
+        });
+
         return treeGrid;
     }
 
