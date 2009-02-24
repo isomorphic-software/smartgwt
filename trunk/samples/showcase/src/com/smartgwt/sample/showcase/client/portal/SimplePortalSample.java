@@ -11,7 +11,7 @@ import com.smartgwt.sample.showcase.client.ShowcasePanel;
 
 public class SimplePortalSample extends ShowcasePanel {
     private static final String DESCRIPTION = "Animations built into SmartGWT layouts can be used to create a drag and drop portal experience. " +
-            "Click on the portlet list to the left to create portlets and see them animate into place. Drag portlets around to new locations and they animate into place. ";
+            "Drag portlets around to new locations and they animate into place. ";
 
     public static class Factory implements PanelFactory {
         private String id;
@@ -127,7 +127,6 @@ public class SimplePortalSample extends ShowcasePanel {
             }
         }
 
-
         public PortalColumn addPortlet(Portlet portlet) {
             // find the column with the fewest portlets
             int fewestPortlets = Integer.MAX_VALUE;
@@ -141,50 +140,6 @@ public class SimplePortalSample extends ShowcasePanel {
             }
             fewestPortletsColumn.addMember(portlet);
             return fewestPortletsColumn;
-        }
-    }
-
-    private class DragPiece extends Img {
-        public DragPiece() {
-            setWidth(48);
-            setHeight(48);
-            setLayoutAlign(Alignment.CENTER);
-            setCanDragReposition(true);
-            setCanDrop(true);
-            setDragAppearance(DragAppearance.TARGET);
-            setAppImgDir("pieces/48/");
-        }
-
-        public DragPiece(String src) {
-            this();
-            setSrc(src);
-        }
-    }
-
-    public static class PartsListGrid extends ListGrid {
-
-        PartsListGrid() {
-            setWidth(150);
-            setCellHeight(24);
-            setImageSize(16);
-            setShowEdges(true);
-            setBorder("0px");
-            setBodyStyleName("normal");
-            setAlternateRecordStyles(true);
-            setShowHeader(false);
-            setLeaveScrollbarGap(false);
-            setEmptyMessage("<br><br>Drag &amp; drop parts here");
-
-            ListGridField partSrcField = new ListGridField("partSrc", 24);
-            partSrcField.setType(ListGridFieldType.IMAGE);
-            partSrcField.setImgDir("pieces/16/");
-
-            ListGridField partNameField = new ListGridField("partName");
-            ListGridField partNumField = new ListGridField("partNum", 20);
-
-            setFields(partSrcField, partNameField, partNumField);
-
-            setTrackerImage(new ImgProperties("pieces/24/cubes_all.png", 24, 24));
         }
     }
 
