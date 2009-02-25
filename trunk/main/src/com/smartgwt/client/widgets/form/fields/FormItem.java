@@ -1925,6 +1925,8 @@ public class FormItem extends RefDataClass  implements com.smartgwt.client.widge
 
 
 
+
+
     public void setAttribute(String attribute, String value) {
         if (!isCreated()) {
             JSOHelper.setAttribute(jsObj, attribute, value);
@@ -2038,6 +2040,113 @@ public class FormItem extends RefDataClass  implements com.smartgwt.client.widge
         }
     }
 
+    public String getAttribute(String attribute) {
+        return getAttributeAsString(attribute);
+    }
+
+    public String getAttributeAsString(String attribute) {
+        if (isCreated()) {
+            return getPropertyAsString(attribute);
+        } else {
+            return JSOHelper.getAttribute(jsObj, attribute);
+        }
+    }
+
+    public Date getAttributeAsDate(String attribute) {
+        if (isCreated()) {
+            return getPropertyAsDate(attribute);
+        } else {
+            return JSOHelper.getAttributeAsDate(jsObj, attribute);
+        }
+    }
+
+    public Double getAttributeAsDouble(String attribute) {
+        if (isCreated()) {
+            return getPropertyAsDouble(attribute);
+        } else {
+            return JSOHelper.getAttributeAsDouble(jsObj, attribute);
+        }
+    }
+
+    public JavaScriptObject getAttributeAsJavaScriptObject(String attribute) {
+        if (isCreated()) {
+            return getPropertyAsJSO(attribute);
+        } else {
+            return JSOHelper.getAttributeAsJavaScriptObject(jsObj, attribute);
+        }
+    }
+
+    public Integer getAttributeAsInt(String attribute) {
+        if (isCreated()) {
+            return getPropertyAsInt(attribute);
+        } else {
+            return JSOHelper.getAttributeAsInt(jsObj, attribute);
+        }
+    }
+
+    public Float getAttributeAsFloat(String attribute) {
+        if (isCreated()) {
+            return getPropertyAsFloat(attribute);
+        } else {
+            return JSOHelper.getAttributeAsFloat(jsObj, attribute);
+        }
+    }
+
+    public Boolean getAttributeAsBoolean(String attribute) {
+        if (isCreated()) {
+            return getPropertyAsBoolean(attribute);
+        } else {
+            return JSOHelper.getAttributeAsBoolean(jsObj, attribute);
+        }
+    }
+
+    private native String getPropertyAsString(String property)/*-{
+        var self = this.@com.smartgwt.client.core.DataClass::getJsObj()();
+        var ret = self.getProperty(property);
+        return ret === undefined ? null : ret;
+    }-*/;
+
+    private native Date getPropertyAsDate(String property)/*-{
+        var self = this.@com.smartgwt.client.core.DataClass::getJsObj()();
+        var ret = self.getProperty(property);
+        return ret == null || ret === undefined ? null : @com.smartgwt.client.util.JSOHelper::toDate(D)(ret.getTime());
+    }-*/;
+
+    private native Integer getPropertyAsInt(String property)/*-{
+        var self = this.@com.smartgwt.client.core.DataClass::getJsObj()();
+        var ret = self.getProperty(property);
+        return ret == null || ret === undefined ? null : @com.smartgwt.client.util.JSOHelper::toInteger(I)(ret);
+    }-*/;
+
+    private native Double getPropertyAsDouble(String property)/*-{
+        var self = this.@com.smartgwt.client.core.DataClass::getJsObj()();
+        var ret = self.getProperty(property);
+        return ret == null || ret === undefined ? null : @com.smartgwt.client.util.JSOHelper::toDouble(D)(ret);
+    }-*/;
+
+    private native Element getPropertyAsElement(String property)/*-{
+        var self = this.@com.smartgwt.client.core.DataClass::getJsObj()();
+        var ret = self.getProperty(property);
+        return ret === undefined ? null : ret;
+    }-*/;
+
+    private native JavaScriptObject getPropertyAsJSO(String property)/*-{
+        var self = this.@com.smartgwt.client.core.DataClass::getJsObj()();
+        var ret = self.getProperty(property);
+        return ret === undefined ? null : ret;
+    }-*/;
+
+    private native Float getPropertyAsFloat(String property)/*-{
+        var self = self.@com.smartgwt.client.core.DataClass::getJsObj()();
+        var ret = widget.getProperty(property);
+        return ret == null || ret === undefined ? null : @com.smartgwt.client.util.JSOHelper::toFloat(F)(ret);
+    }-*/;
+
+    private native Boolean getPropertyAsBoolean(String property)/*-{
+        var self = this.@com.smartgwt.client.core.DataClass::getJsObj()();
+        var ret = self.getProperty(property);
+        return ret == null || ret === undefined ? null : @com.smartgwt.client.util.JSOHelper::toBoolean(Z)(ret);
+    }-*/;
 
     public native void setProperty(String property, String value)/*-{
         var self = this.@com.smartgwt.client.core.DataClass::getJsObj()();

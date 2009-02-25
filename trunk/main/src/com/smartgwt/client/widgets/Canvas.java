@@ -5396,6 +5396,17 @@ public class Canvas extends BaseWidget  implements com.smartgwt.client.widgets.e
         self.setRect(left, top, width, height);
     }-*/;
 
+    /**
+     * Get all four coordinates, relative to the enclosing context, at one.
+     *
+     * @return the Rectangle
+     */
+    public native Rectangle getRect() /*-{
+        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
+        var rect = self.getRect();
+        return @com.smartgwt.client.core.Rectangle::new(IIII)(rect[0], rect[1],rect[2],rect[3]);
+    }-*/;
+
 
     /**
      * Return the full URL for an image to be drawn in this canvas. <P> If the passed URL begins with the special

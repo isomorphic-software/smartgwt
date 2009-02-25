@@ -1465,7 +1465,7 @@ public class DynamicForm extends Canvas  implements DataBoundComponent, com.smar
     // ********************* Static Methods ***********************
 
 
-
+
 
 
 
@@ -1644,7 +1644,24 @@ public class DynamicForm extends Canvas  implements DataBoundComponent, com.smar
      * @return the form fields
      */
     public FormItem[] getFields() {
-        return fields;
+        if(getDataSource() == null) {
+            return fields;
+        } else {
+            return convertToFormItemArray(getAttributeAsJavaScriptObject("fields"));
+        }
+    }
+
+    private static FormItem[] convertToFormItemArray(JavaScriptObject nativeArray) {
+        if (nativeArray == null) {
+            return new FormItem[]{};
+        }
+        JavaScriptObject[] componentsj = JSOHelper.toArray(nativeArray);
+        FormItem[] objects = new FormItem[componentsj.length];
+        for (int i = 0; i < componentsj.length; i++) {
+            JavaScriptObject fieldJS = componentsj[i];
+            objects[i] = FormItemFactory.getFormItem(fieldJS);
+        }
+        return objects;
     }
 
     public FormItem getItem(String name) {
@@ -1657,6 +1674,13 @@ public class DynamicForm extends Canvas  implements DataBoundComponent, com.smar
                 if (name.equals(field.getName())) {
                     return field;
                 }
+            }
+        } else {
+            JavaScriptObject fieldJS = getFieldJS(name);
+            if(fieldJS != null) {
+                return FormItemFactory.getFormItem(fieldJS);
+            } else {
+                return null;
             }
         }
         return null;
