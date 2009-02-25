@@ -2,12 +2,21 @@ package com.smartgwt.sample.showcase.client.portal;
 
 import com.smartgwt.client.types.*;
 import com.smartgwt.client.widgets.*;
+import com.smartgwt.client.widgets.form.fields.TextItem;
+import com.smartgwt.client.widgets.form.fields.StaticTextItem;
+import com.smartgwt.client.widgets.form.fields.ButtonItem;
+import com.smartgwt.client.widgets.form.DynamicForm;
+import com.smartgwt.client.widgets.events.ClickHandler;
+import com.smartgwt.client.widgets.events.ClickEvent;
 import com.smartgwt.client.widgets.grid.ListGrid;
 import com.smartgwt.client.widgets.grid.ListGridField;
 import com.smartgwt.client.widgets.layout.HLayout;
 import com.smartgwt.client.widgets.layout.VStack;
+import com.smartgwt.client.widgets.layout.VLayout;
+import com.smartgwt.client.widgets.layout.LayoutSpacer;
 import com.smartgwt.sample.showcase.client.PanelFactory;
 import com.smartgwt.sample.showcase.client.ShowcasePanel;
+import com.google.gwt.user.client.Random;
 
 public class SimplePortalSample extends ShowcasePanel {
     private static final String DESCRIPTION = "Animations built into SmartGWT layouts can be used to create a drag and drop portal experience. " +
@@ -31,24 +40,138 @@ public class SimplePortalSample extends ShowcasePanel {
         }
     }
 
+    //FCKEditor like colors
+    private static String[] colors = new String[]{
+            "FF6600", "808000", "008000", "008080", "0000FF", "666699",
+            "FF0000", "FF9900", "99CC00", "339966", "33CCCC", "3366FF",
+            "800080", "969696", "FF00FF", "FFCC00", "FFFF00", "00FF00",
+            "00FFFF", "00CCFF", "993366", "C0C0C0", "FF99CC", "FFCC99",
+            "FFFF99", "CCFFCC", "CCFFFF", "99CCFF", "CC99FF", "FFFFFF"
+    };
+
     public Canvas getViewPanel() {
-        PortalLayout portalLayout = new PortalLayout(3);
+        final PortalLayout portalLayout = new PortalLayout(3);
         portalLayout.setWidth100();
         portalLayout.setHeight100();
 
         // create portlets...
-        for (int i = 1; i <= 5; i++) {
+        for (int i = 1; i <= 2; i++) {
             Portlet portlet = new Portlet();
-            portlet.setTitle("Portlet " + i);
+            portlet.setTitle("Portlet");
 
             Label label = new Label();
             label.setAlign(Alignment.CENTER);
             label.setLayoutAlign(VerticalAlignment.CENTER);
-            label.setContents("Portlet " + i + " contents");
+            label.setContents("Portlet contents");
+            label.setBackgroundColor(colors[Random.nextInt(colors.length - 1)]);
             portlet.addItem(label);
             portalLayout.addPortlet(portlet);
         }
-        return portalLayout;
+
+        VLayout vLayout = new VLayout(15);
+
+        final DynamicForm form = new DynamicForm();
+        form.setAutoWidth();
+        form.setNumCols(5);
+
+        final StaticTextItem numColItem = new StaticTextItem();
+        numColItem.setTitle("Columns");
+        numColItem.setValue(portalLayout.getMembers().length);
+
+        ButtonItem addColumn = new ButtonItem("Add Column");
+        addColumn.setAutoFit(true);
+        addColumn.setStartRow(false);
+        addColumn.setEndRow(false);
+
+
+        addColumn.addClickHandler(new com.smartgwt.client.widgets.form.fields.events.ClickHandler() {
+            public void onClick(com.smartgwt.client.widgets.form.fields.events.ClickEvent event) {
+                portalLayout.addMember(new PortalColumn());
+                numColItem.setValue(portalLayout.getMembers().length);
+
+            }
+        });
+
+        ButtonItem removeColumn = new ButtonItem("Remove Column");
+        removeColumn.setAutoFit(true);
+        removeColumn.setStartRow(false);
+        removeColumn.setEndRow(false);
+
+
+        removeColumn.addClickHandler(new com.smartgwt.client.widgets.form.fields.events.ClickHandler() {
+            public void onClick(com.smartgwt.client.widgets.form.fields.events.ClickEvent event) {
+
+                Canvas[] canvases = portalLayout.getMembers();
+                int numMembers = canvases.length;
+                if (numMembers > 0) {
+                    Canvas lastMember = canvases[numMembers - 1];
+                    portalLayout.removeMember(lastMember);
+                    numColItem.setValue(numMembers - 1);
+                }
+
+            }
+        });
+
+        final ButtonItem addPortlet = new ButtonItem("Add Portlet");
+        addPortlet.setAutoFit(true);
+
+        addPortlet.setStartRow(false);
+        addPortlet.setEndRow(false);
+        addPortlet.addClickHandler(new com.smartgwt.client.widgets.form.fields.events.ClickHandler() {
+            public void onClick(com.smartgwt.client.widgets.form.fields.events.ClickEvent event) {
+
+                final Portlet newPortlet = new Portlet();
+                newPortlet.setTitle("Portlet ");
+
+                Label label = new Label();
+                label.setAlign(Alignment.CENTER);
+                label.setLayoutAlign(VerticalAlignment.CENTER);
+                label.setContents("Portlet contents");
+                label.setBackgroundColor(colors[Random.nextInt(colors.length - 1)]);
+                newPortlet.addItem(label);
+
+                newPortlet.setVisible(false);
+                PortalColumn column = portalLayout.addPortlet(newPortlet);
+
+                // also insert a blank spacer element, which will trigger the built-in
+                //  animateMembers layout animation
+                final LayoutSpacer placeHolder = new LayoutSpacer();
+                placeHolder.setRect(newPortlet.getRect());
+                column.addMember(placeHolder, 0); // add to top
+
+                // create an outline around the clicked button
+
+                final Canvas outline = new Canvas();
+                outline.setLeft(form.getAbsoluteLeft() + addPortlet.getLeft());
+                outline.setTop(form.getAbsoluteTop());
+                outline.setWidth(addPortlet.getWidth());
+                outline.setHeight(addPortlet.getHeight());
+                outline.setBorder("2px solid #8289A6");
+                outline.draw();
+                outline.bringToFront();
+
+                outline.animateRect(newPortlet.getPageLeft(), newPortlet.getPageTop(),
+                        newPortlet.getVisibleWidth(), newPortlet.getViewportHeight(),
+                        new AnimationCallback() {
+                            public void execute(boolean earlyFinish) {
+                                // callback at end of animation - destroy placeholder and outline; show the new portlet
+                                placeHolder.destroy();
+                                outline.destroy();
+                                newPortlet.show();
+                            }
+                        }, 750);
+
+
+            }
+        });
+
+
+        form.setItems(numColItem, addColumn, removeColumn, addPortlet);
+
+        vLayout.addMember(form);
+        vLayout.addMember(portalLayout);
+
+        return vLayout;
     }
 
     /**
@@ -96,7 +219,7 @@ public class SimplePortalSample extends ShowcasePanel {
 
             // enable predefined component animation
             setAnimateMembers(true);
-            setAnimateMemberTime(500);
+            setAnimateMemberTime(300);
 
             // enable drop handling
             setCanAcceptDrop(true);
@@ -144,7 +267,7 @@ public class SimplePortalSample extends ShowcasePanel {
     }
 
     public String getIntro() {
-        return DESCRIPTION;
+        return null;
     }
 
 }
