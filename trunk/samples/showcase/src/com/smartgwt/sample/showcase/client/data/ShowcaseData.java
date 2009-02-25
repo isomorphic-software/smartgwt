@@ -128,7 +128,7 @@ public class ShowcaseData {
                     new ExplorerTreeNode("Grid Checkbox Select", "checkboxselect-new-category", "new-category", null, new CheckboxSelectSample.Factory(), true, idSuffix),
                     new ExplorerTreeNode("Drag Tiles (move)", "tiles-move-new-category", "new-category", null, new DragTilesMoveSample.Factory(), true, idSuffix),
                     new ExplorerTreeNode("Portal", "portal-new-category", "new-category", "silk/application_view_tile.png", new SimplePortalSample.Factory(), true, idSuffix),
-                    new ExplorerTreeNode("Event Overpping Calendar", "event-overlapping-new-category", "new-category", null, new OverlappingEventsCalendarSample.Factory(), true, idSuffix),
+                    new ExplorerTreeNode("Event Overlapping Calendar", "event-overlapping-new-category", "new-category", null, new OverlappingEventsCalendarSample.Factory(), true, idSuffix),
                     new ExplorerTreeNode("Event Auto-Arranging Calendar", "event-autoarrange-new-category", "new-category", null, new AutoArrangeEventsCalendarSample.Factory(), true, idSuffix),                    
 
                     new ExplorerTreeNode("ComboBox &amp; Family", "combobox-category", "root", "widgets/combo_box.gif", null, true, idSuffix),
@@ -301,7 +301,7 @@ public class ShowcaseData {
                     new ExplorerTreeNode("Workday Calendar", "workday-calendar-category", "calendar-category", "crystal/16/actions/5days.png", new WorkdayCalendarSample.Factory(), true, idSuffix),
                     //new ExplorerTreeNode("Custom Event Editing", "custom-editing-calendar-category", "calendar-category", "crystal/16/apps/date.png", new CustomEventCalendarSample.Factory(), true, idSuffix),
                     new ExplorerTreeNode("Event Auto-Arranging", "event-autoarranging-calendar-category", "calendar-category", "silk/5days.png", new AutoArrangeEventsCalendarSample.Factory(), true, idSuffix),
-                    new ExplorerTreeNode("Event Overpping", "event-overlapping-calendar-category", "calendar-category", "silk/5days.png", new OverlappingEventsCalendarSample.Factory(), true, idSuffix),
+                    new ExplorerTreeNode("Event Overlapping", "event-overlapping-calendar-category", "calendar-category", "silk/5days.png", new OverlappingEventsCalendarSample.Factory(), true, idSuffix),
 
                     new ExplorerTreeNode("Data View / Tiling", "tiling-category", "root", "crystal/16/actions/view_icon.png", null, true, idSuffix),
                     new ExplorerTreeNode("Basic", "tiling-basic", "tiling-category", null, new BasicTilingSample.Factory(), true, idSuffix),
