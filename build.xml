@@ -139,8 +139,9 @@
 						
 		</zip>
 
+	    <!--
         <delete dir="${smartgwt.root}/main/src/com/smartclient"/>
-		<!--
+		
         <unjar dest="${smartgwt.root}/main/src" src="${smartgwt.tools.lib}/sc/${SC_VER}/smartclient.jar"/>
 		-->
 	
