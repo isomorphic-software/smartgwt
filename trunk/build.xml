@@ -71,7 +71,7 @@
             <zipfileset dir="${SC_HOME}/smartclientSDK/isomorphic/system/modules" includes="*.js"
                         prefix="com/smartclient/public/sc/modules"/>
             <zipfileset dir="${SC_HOME}/smartclientSDK/isomorphic/system/development"
-                        includes="ISC_DBConsole.js,ISC_DeveloperConsole.js,ISC_DocViewer.js,ISC_FileViewer.js,ISC_FileLoader.js,ISC_SyntaxHiliter.js,ISC_Tools.js"
+                        includes="ISC_DBConsole.js,ISC_DeveloperConsole.js,ISC_DocViewer.js,ISC_FileViewer.js,ISC_FileLoader.js,ISC_SyntaxHiliter.js,ISC_Tools.js,ISC_Core.js,ISC_Foundation.js,ISC_Containers.js,ISC_Grids.js,ISC_Forms.js,ISC_DataBinding.js"
                         prefix="com/smartclient/public/sc/system/development"/>
             <zipfileset dir="${SC_HOME}/smartclientSDK/isomorphic/system/helpers" includes="printFrame.*,empty.html,*.css,*.svg"
                         prefix="com/smartclient/public/sc/system/helpers"/>
@@ -177,12 +177,12 @@ window.useSimpleNames = false;
 
 <SCRIPT src=../development/ISC_FileLoader.js?isc_version=${SC_VER}.js></SCRIPT>
 <SCRIPT>isc.FileLoader.modulesDir = "system/development/";</SCRIPT>
-<SCRIPT src=../../modules/ISC_Core.js?isc_version=${SC_VER}.js></SCRIPT>
-<SCRIPT src=../../modules/ISC_Foundation.js?isc_version=${SC_VER}.js></SCRIPT>
-<SCRIPT src=../../modules/ISC_Containers.js?isc_version=${SC_VER}.js></SCRIPT>
-<SCRIPT src=../../modules/ISC_Grids.js?isc_version=${SC_VER}.js></SCRIPT>
-<SCRIPT src=../../modules/ISC_Forms.js?isc_version=${SC_VER}.js></SCRIPT>
-<SCRIPT src=../../modules/ISC_DataBinding.js?isc_version=${SC_VER}.js></SCRIPT>
+<SCRIPT src=../development/ISC_Core.js?isc_version=${SC_VER}.js></SCRIPT>
+<SCRIPT src=../development/ISC_Foundation.js?isc_version=${SC_VER}.js></SCRIPT>
+<SCRIPT src=../development/ISC_Containers.js?isc_version=${SC_VER}.js></SCRIPT>
+<SCRIPT src=../development/ISC_Grids.js?isc_version=${SC_VER}.js></SCRIPT>
+<SCRIPT src=../development/ISC_Forms.js?isc_version=${SC_VER}.js></SCRIPT>
+<SCRIPT src=../development/ISC_DataBinding.js?isc_version=${SC_VER}.js></SCRIPT>
 <SCRIPT src=../development/ISC_Tools.js?isc_version=${SC_VER}.js></SCRIPT>
 
 <SCRIPT type="text/javascript">
