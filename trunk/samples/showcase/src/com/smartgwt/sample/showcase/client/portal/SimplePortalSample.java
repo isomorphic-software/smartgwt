@@ -79,6 +79,7 @@ public class SimplePortalSample extends ShowcasePanel {
         numColItem.setValue(portalLayout.getMembers().length);
 
         ButtonItem addColumn = new ButtonItem("Add Column");
+        addColumn.setIcon("silk/application_side_expand.png");
         addColumn.setAutoFit(true);
         addColumn.setStartRow(false);
         addColumn.setEndRow(false);
@@ -93,6 +94,7 @@ public class SimplePortalSample extends ShowcasePanel {
         });
 
         ButtonItem removeColumn = new ButtonItem("Remove Column");
+        removeColumn.setIcon("silk/application_side_contract.png");
         removeColumn.setAutoFit(true);
         removeColumn.setStartRow(false);
         removeColumn.setEndRow(false);
@@ -113,6 +115,7 @@ public class SimplePortalSample extends ShowcasePanel {
         });
 
         final ButtonItem addPortlet = new ButtonItem("Add Portlet");
+        addPortlet.setIcon("silk/application_view_tile.png");
         addPortlet.setAutoFit(true);
 
         addPortlet.setStartRow(false);
