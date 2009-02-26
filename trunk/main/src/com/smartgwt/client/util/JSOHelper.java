@@ -201,7 +201,9 @@ public class JSOHelper {
     }
 
     private static native void setDateAttribute(JavaScriptObject elem, String attr, double time) /*-{
-        elem[attr] = new $wnd.Date(time);
+        var dateJS = $wnd.Date.create();
+        dateJS.setTime(time);
+        elem[attr] = dateJS;
     }-*/;
 
     public static native void setObjectAttribute(JavaScriptObject elem, String attr, Object object) /*-{
@@ -397,7 +399,9 @@ public class JSOHelper {
     }
 
     private static native JavaScriptObject doConvertToJavaScriptDate(double time) /*-{
-        return new $wnd.Date(time);
+        var dateJS = $wnd.Date.create();
+        dateJS.setTime(time);
+        return dateJS;
     }-*/;
 
     public static JavaScriptObject convertToJavaScriptArray(Object[] array) {
@@ -488,7 +492,9 @@ public class JSOHelper {
     }
 
     private static native void setArrayDateValue(JavaScriptObject array, int index, double time) /*-{
-        array[index] = new $wnd.Date(time);
+        var dateJS = $wnd.Date.create();
+        dateJS.setTime(time);
+        array[index] = dateJS;
     }-*/;
 
     public static native void setArrayValue(JavaScriptObject array, int index, String value) /*-{
