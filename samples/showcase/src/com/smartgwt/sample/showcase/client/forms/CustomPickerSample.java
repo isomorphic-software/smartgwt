@@ -63,12 +63,18 @@ public class CustomPickerSample extends ShowcasePanel {
             dialog.setAutoCenter(true);
             dialog.setIsModal(true);
             dialog.setShowHeader(false);
+            dialog.setShowEdges(false);
+            dialog.setEdgeSize(10);
+            dialog.setWidth(500);
+            dialog.setHeight(400);
+
             dialog.setShowToolbar(false);
             dialog.setWidth(130);
             dialog.setHeight(110);
 
+
             Map bodyDefaults = new HashMap();
-            bodyDefaults.put("layoutMargin", 10);
+            bodyDefaults.put("layoutLeftMargin", 5);
             bodyDefaults.put("membersMargin", 10);
             dialog.setBodyDefaults(bodyDefaults);
 
