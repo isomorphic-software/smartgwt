@@ -1644,10 +1644,10 @@ public class DynamicForm extends Canvas  implements DataBoundComponent, com.smar
      * @return the form fields
      */
     public FormItem[] getFields() {
-        if(getDataSource() == null) {
-            return fields;
-        } else {
+        if(fields == null || getDataSource() != null) {
             return convertToFormItemArray(getAttributeAsJavaScriptObject("fields"));
+        } else {
+            return fields;
         }
     }
 

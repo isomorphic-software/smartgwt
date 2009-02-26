@@ -392,6 +392,22 @@ public class JSOHelper {
         return jsArray;
     }
 
+    private static void doAddToMap(Map map, String key, Object value) {
+        map.put(key, value);
+    }
+
+    public static native Map convertToMap(JavaScriptObject jsObj) /*-{
+        var mapJ = @java.util.LinkedHashMap::new()();
+        for(var k in jsObj) {
+            if($wnd.isA.String(k)){
+                var value = jsObj[k];               
+                var valueJ = $wnd.SmartGWT.convertToJavaType(value);
+                @com.smartgwt.client.util.JSOHelper::doAddToMap(Ljava/util/Map;Ljava/lang/String;Ljava/lang/Object;)(mapJ, k, valueJ);
+            }
+        }
+        return mapJ;
+    }-*/;
+
     public static JavaScriptObject convertToJavaScriptDate(Date date) {
         if(date == null) return null;
         JavaScriptObject dateJS = doConvertToJavaScriptDate(date.getTime());
