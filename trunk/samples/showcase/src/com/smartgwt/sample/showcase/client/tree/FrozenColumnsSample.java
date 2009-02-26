@@ -60,12 +60,6 @@ public class FrozenColumnsSample extends ShowcasePanel {
         treeGrid.setFields(nameField, jobField, employeeTypeField,employeeStatusField,
                 salaryField, genderField, maritalStatusField);
 
-        treeGrid.addDataArrivedHandler(new DataArrivedHandler() {
-            public void onDataArrived(DataArrivedEvent event) {
-                treeGrid.getData().openAll();
-            }
-        });
-
         return treeGrid;
     }
 
