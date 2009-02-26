@@ -4940,8 +4940,18 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
     // ********************* Static Methods ***********************
 
 
-
-
+
+
+
+
+
+
+
+
+
+
+
+
 
     protected native void onInit() /*-{
 
@@ -6271,7 +6281,153 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
         }, requestPropertiesJS);
 
     }-*/;
-    
+
+
+    /**
+     * Returns the current value of a cell. If the cell has an outstanding edit value,
+     * this will be returned, otherwise the underlying value of the record will be returned.
+     *
+     * @param rowNum the row number
+     * @param fieldName the field name
+     *
+     *
+     * @return the edited cell value
+     */
+    public native Object getEditedCell(int rowNum, String fieldName) /*-{
+        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
+        var value = self.getEditedCell(rowNum, fieldName);
+        var valueJ = $wnd.SmartGWT.convertToJavaType(value);
+        return valueJ;
+    }-*/;
+
+    /**
+     * Returns the current value of a cell. If the cell has an outstanding edit value,
+     * this will be returned, otherwise the underlying value of the record will be returned.
+     *
+     * @param rowNum the row number
+     * @param colNum the column number
+     *
+     *
+     * @return the edited cell value
+     */
+    public native Object getEditedCell(int rowNum, int colNum) /*-{
+        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
+        var value = self.getEditedCell(rowNum, colNum);
+        var valueJ = $wnd.SmartGWT.convertToJavaType(value);
+        return valueJ;
+    }-*/;
+
+
+
+    /**
+     * Returns the current value of a cell. If the cell has an outstanding edit value,
+     * this will be returned, otherwise the underlying value of the record will be returned.
+     *
+     * @param record an Object containing values for all the record's primary keys
+     * @param fieldName the field name
+     *
+     *
+     * @return the edited cell value
+     */
+    public native Object getEditedCell(Record record, String fieldName) /*-{
+        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
+        var recordJS = record.@com.smartgwt.client.data.Record::getJsObj()();
+        var value = self.getEditedCell(recordJS, fieldName);
+        var valueJ = $wnd.SmartGWT.convertToJavaType(value);
+        return valueJ;
+    }-*/;
+
+    /**
+     * Returns the current value of a cell. If the cell has an outstanding edit value,
+     * this will be returned, otherwise the underlying value of the record will be returned.
+     *
+     * @param record an Object containing values for all the record's primary keys
+     * @param colNum the column number
+     *
+     *
+     * @return the edited cell value
+     */
+    public native Object getEditedCell(Record record, int colNum) /*-{
+        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
+        var recordJS = record.@com.smartgwt.client.data.Record::getJsObj()();
+        var value = self.getEditedCell(recordJS, colNum);
+        var valueJ = $wnd.SmartGWT.convertToJavaType(value);
+        return valueJ;
+    }-*/;
+
+    /**
+     * Returns the combination of unsaved edits (if any) and original values (if any) for a given row being edited.
+     * <p>
+     *
+     * The returned value is never null, and can be freely modified.
+     *
+     * @param rowNum the row num
+     * @return A copy of the record with unsaved edits included
+     */
+    public native Record getEditedRecord(int rowNum) /*-{
+        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
+        var record = self.getEditedRecord(rowNum);
+        if(record == null || record === undefined) return null;
+        var recordJ = @com.smartgwt.client.widgets.grid.ListGridRecord::getOrCreateRef(Lcom/google/gwt/core/client/JavaScriptObject;)(record);
+        return recordJ;
+    }-*/;
+
+    /**
+     * Returns the current temporary locally stored edit value for some field within a record being edited.
+     * 
+     * @param rowNum index of the row for which the editValue should be returned
+     * @param colNum index of the field for which value should be returned
+     * 
+     * @return   edit value for the field in question
+     */
+    public native Object getEditValue(int rowNum, int colNum) /*-{
+        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
+        var value = self.getEditValue(rowNum, colNum);
+        var valueJ = $wnd.SmartGWT.convertToJavaType(value);
+        return valueJ;
+    }-*/;
+
+    /**
+     * Returns the current temporary locally stored edit value for some field within a record being edited.
+     *
+     * @param rowNum index of the row for which the editValue should be returned
+     * @param fieldName field name for which value should be returned
+     *
+     * @return   edit value for the field in question
+     */
+    public native Object getEditValue(int rowNum, String fieldName) /*-{
+        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
+        var value = self.getEditValue(rowNum, fieldName);
+        var valueJ = $wnd.SmartGWT.convertToJavaType(value);
+        return valueJ;
+    }-*/;
+
+    /**
+     * Returns the current set of unsaved edits for a given row being edited.
+     * 
+     * @param rowNum rowNum of the record being edited
+     * @return current editValues object for the row. This contains the current edit values in {fieldName1:value1, fieldName2:value2} format
+     */
+    public native Map getEditValues(int rowNum) /*-{
+        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
+        var value = self.getEditValues(rowNum, fieldName);
+        var valueJ = @com.smartgwt.client.util.JSOHelper::convertToMap(Lcom/google/gwt/core/client/JavaScriptObject;)(value);
+        return valueJ;
+    }-*/;
+
+    /**
+     * Returns the current set of unsaved edits for a given row being edited.
+     *
+     * @param record an Object containing values for all the record's primary keys
+     * @return current editValues object for the row. This contains the current edit values in {fieldName1:value1, fieldName2:value2} format
+     */
+    public native Map getEditValues(Record record) /*-{
+        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
+        var recordJS = record.@com.smartgwt.client.data.Record::getJsObj()();
+        var value = self.getEditValues(recordJS, fieldName);
+        var valueJ = @com.smartgwt.client.util.JSOHelper::convertToMap(Lcom/google/gwt/core/client/JavaScriptObject;)(value);
+        return valueJ;
+    }-*/;
 
 }
 

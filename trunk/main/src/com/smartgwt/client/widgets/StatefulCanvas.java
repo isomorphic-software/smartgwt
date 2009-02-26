@@ -713,7 +713,6 @@ public class StatefulCanvas extends Canvas {
     // ********************* Static Methods ***********************
 
 
-
 
     public void setTitleStyle(String titleStyle) {
         setAttribute("titleStyle", titleStyle, true);
