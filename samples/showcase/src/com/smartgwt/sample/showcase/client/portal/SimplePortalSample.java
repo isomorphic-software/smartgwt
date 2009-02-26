@@ -143,7 +143,6 @@ public class SimplePortalSample extends ShowcasePanel {
                 column.addMember(placeHolder, 0); // add to top
 
                 // create an outline around the clicked button
-
                 final Canvas outline = new Canvas();
                 outline.setLeft(form.getAbsoluteLeft() + addPortlet.getLeft());
                 outline.setTop(form.getAbsoluteTop());
@@ -163,13 +162,11 @@ public class SimplePortalSample extends ShowcasePanel {
                                 newPortlet.show();
                             }
                         }, 750);
-
-
             }
         });
 
 
-        form.setItems(numColItem, addColumn, removeColumn, addPortlet);
+        form.setItems(numColItem, addPortlet, addColumn, removeColumn);
 
         vLayout.addMember(form);
         vLayout.addMember(portalLayout);
@@ -206,7 +203,6 @@ public class SimplePortalSample extends ShowcasePanel {
             // (since width is determined from the containing layout, not the portlet contents)
             setVPolicy(LayoutPolicy.NONE);
             setOverflow(Overflow.VISIBLE);
-
         }
     }
 
@@ -272,5 +268,4 @@ public class SimplePortalSample extends ShowcasePanel {
     public String getIntro() {
         return null;
     }
-
 }
