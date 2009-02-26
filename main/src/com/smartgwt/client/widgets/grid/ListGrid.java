@@ -6410,7 +6410,7 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
      */
     public native Map getEditValues(int rowNum) /*-{
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
-        var value = self.getEditValues(rowNum, fieldName);
+        var value = self.getEditValues(rowNum);
         var valueJ = @com.smartgwt.client.util.JSOHelper::convertToMap(Lcom/google/gwt/core/client/JavaScriptObject;)(value);
         return valueJ;
     }-*/;
@@ -6424,7 +6424,7 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
     public native Map getEditValues(Record record) /*-{
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
         var recordJS = record.@com.smartgwt.client.data.Record::getJsObj()();
-        var value = self.getEditValues(recordJS, fieldName);
+        var value = self.getEditValues(recordJS);
         var valueJ = @com.smartgwt.client.util.JSOHelper::convertToMap(Lcom/google/gwt/core/client/JavaScriptObject;)(value);
         return valueJ;
     }-*/;
