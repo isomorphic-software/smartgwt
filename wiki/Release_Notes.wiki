@@ -1,8 +1,5 @@
 #labels Featured
-== Release Notes ==
-
-Add your content here.
-
+== SmartGWT Release Notes ==
 
 === 1.0 b2 ===
   * GWT 1.6 M1 and M2 support. GWT 1.5.3 continues to be fully supported
