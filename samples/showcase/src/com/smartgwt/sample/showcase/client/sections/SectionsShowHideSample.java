@@ -115,8 +115,4 @@ public class SectionsShowHideSample extends ShowcasePanel {
     public String getIntro() {
         return DESCRIPTION;
     }
-
-    public String getSourceUrl() {
-        return "source/sections/SectionsShowHideSample.java.html";
-    }
 }

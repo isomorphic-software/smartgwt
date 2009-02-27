@@ -90,8 +90,4 @@ public class ButtonRadioToggleSample extends ShowcasePanel {
     public String getIntro() {
         return DESCRIPTION;
     }
-
-    public String getSourceUrl() {
-        return "source/buttons/ButtonRadioToggleSample.java.html";
-    }
 }

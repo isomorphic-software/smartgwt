@@ -101,8 +101,4 @@ public class SectionsAddRemoveSample extends ShowcasePanel {
     public String getIntro() {
         return DESCRIPTION;
     }
-
-    public String getSourceUrl() {
-        return "source/sections/SectionsAddRemoveSample.java.html";
-    }
 }

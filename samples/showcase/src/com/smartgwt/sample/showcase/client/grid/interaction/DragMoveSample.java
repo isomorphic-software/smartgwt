@@ -79,9 +79,4 @@ public class DragMoveSample extends ShowcasePanel {
     public String getIntro() {
         return DESCRIPTION;
     }
-
-    public String getSourceUrl() {
-        return "source/grid/interaction/DragMoveSample.java.html";
-    }
-
 }

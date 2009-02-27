@@ -79,8 +79,4 @@ public class TabsTitleChangeSample extends ShowcasePanel {
     public String getIntro() {
         return DESCRIPTION;
     }
-
-    public String getSourceUrl() {
-        return "source/tabs/TabsTitleChangeSample.java.html";
-    }
 }

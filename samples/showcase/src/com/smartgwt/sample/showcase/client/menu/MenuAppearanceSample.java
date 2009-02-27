@@ -94,8 +94,4 @@ public class MenuAppearanceSample extends ShowcasePanel {
     public String getIntro() {
         return DESCRIPTION;
     }
-
-    public String getSourceUrl() {
-        return "source/menu/MenuAppearanceSample.java.html";
-    }
 }

@@ -113,8 +113,4 @@ public class ExpandCollapseSample extends ShowcasePanel {
     public String getIntro() {
         return DESCRIPTION;
     }
-
-    public String getSourceUrl() {
-        return "source/sections/ExpandCollapseSample.java.html";
-    }
 }

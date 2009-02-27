@@ -74,8 +74,4 @@ public class MultipleColumnsSample extends ShowcasePanel {
     public String getIntro() {
         return DESCRIPTION;
     }
-
-    public String getSourceUrl() {
-        return "source/tree/appearance/MultipleColumnsSample.java.html";
-    }
 }

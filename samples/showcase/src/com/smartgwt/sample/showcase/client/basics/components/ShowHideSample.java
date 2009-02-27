@@ -80,8 +80,4 @@ public class ShowHideSample extends ShowcasePanel {
     public String getIntro() {
         return DESCRIPTION;
     }
-
-    public String getSourceUrl() {
-        return "source/basics/components/ShowHideSample.java.html";
-    }
 }
