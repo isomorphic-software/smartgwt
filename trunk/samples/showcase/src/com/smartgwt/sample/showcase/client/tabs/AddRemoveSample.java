@@ -99,8 +99,4 @@ public class AddRemoveSample extends ShowcasePanel {
     public String getIntro() {
         return DESCRIPTION;
     }
-
-    public String getSourceUrl() {
-        return "source/tabs/AddRemoveSample.java.html";
-    }
 }

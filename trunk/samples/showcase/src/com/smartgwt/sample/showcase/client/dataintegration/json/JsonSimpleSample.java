@@ -53,8 +53,4 @@ public class JsonSimpleSample extends ShowcasePanel {
     public String getIntro() {
         return DESCRIPTION;
     }
-
-    public String getSourceUrl() {
-        return "source/protocols/json/JsonXPathSample.java.html";
-    }
 }

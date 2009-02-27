@@ -74,8 +74,4 @@ public class NestingSample extends ShowcasePanel {
     public String getIntro() {
         return DESCRIPTION;
     }
-
-    public String getSourceUrl() {
-        return "source/layout/NestingSample.java.html";
-    }
 }

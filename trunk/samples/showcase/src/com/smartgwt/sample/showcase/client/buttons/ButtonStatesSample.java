@@ -93,10 +93,6 @@ public class ButtonStatesSample extends ShowcasePanel {
     public String getIntro() {
         return DESCRIPTION;
     }
-
-    public String getSourceUrl() {
-        return "source/buttons/ButtonStatesSample.java.html";
-    }
 }
 
 

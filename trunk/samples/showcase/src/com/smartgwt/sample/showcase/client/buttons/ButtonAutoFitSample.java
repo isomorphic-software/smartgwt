@@ -71,10 +71,6 @@ public class ButtonAutoFitSample extends ShowcasePanel {
     public String getIntro() {
         return DESCRIPTION;
     }
-
-    public String getSourceUrl() {
-        return "source/buttons/ButtonAutoFitSample.java.html";
-    }
 }
 
 

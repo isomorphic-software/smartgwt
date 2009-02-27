@@ -70,8 +70,4 @@ public class GroupedEditingSample extends ShowcasePanel {
     public String getIntro() {
         return DESCRIPTION;
     }
-
-    public String getSourceUrl() {
-        return "source/grid/grouping/GroupedEditingSample.java.html";
-    }
 }

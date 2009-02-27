@@ -81,8 +81,4 @@ public class TabsAlignSample extends ShowcasePanel {
     public String getIntro() {
         return DESCRIPTION;
     }
-
-    public String getSourceUrl() {
-        return "source/tabs/TabsAlignSample.java.html";
-    }
 }

@@ -59,9 +59,4 @@ public class MultilineSample extends ShowcasePanel {
     public String getIntro() {
         return DESCRIPTION;
     }
-
-    public String getSourceUrl() {
-        return "source/grid/appearance/MultilineSample.java.html";
-    }
-
 }

@@ -71,10 +71,6 @@ public class ButtonAppearanceSample extends ShowcasePanel {
     public String getIntro() {
         return DESCRIPTION;
     }
-
-    public String getSourceUrl() {
-        return "source/buttons/ButtonAppearanceSample.java.html";
-    }
 }
 
 

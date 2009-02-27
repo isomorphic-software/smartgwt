@@ -109,8 +109,4 @@ public class UserSizingSample extends ShowcasePanel {
     public String getIntro() {
         return DESCRIPTION;
     }
-
-    public String getSourceUrl() {
-        return "source/layout/UserSizingSample.java.html";
-    }
 }

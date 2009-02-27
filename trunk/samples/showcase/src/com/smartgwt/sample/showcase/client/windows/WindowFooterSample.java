@@ -59,8 +59,4 @@ public class WindowFooterSample extends ShowcasePanel {
     public String getIntro() {
         return DESCRIPTION;
     }
-
-    public String getSourceUrl() {
-        return "source/windows/WindowFooterSample.java.html";
-    }
 }

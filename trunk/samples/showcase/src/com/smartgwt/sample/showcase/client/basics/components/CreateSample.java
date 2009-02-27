@@ -72,8 +72,4 @@ public class CreateSample extends ShowcasePanel {
     public String getIntro() {
         return DESCRIPTION;
     }
-
-    public String getSourceUrl() {
-        return "source/basics/components/CreateSample.java.html";
-    }
 }
