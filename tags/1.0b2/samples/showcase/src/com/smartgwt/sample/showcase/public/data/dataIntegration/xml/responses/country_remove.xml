@@ -1,0 +1,6 @@
+<!-- XML response to an remove request. Should contain the primary key field of
+     the record that was removed from the server-side data set. 
+     Normally this response would be generated dynamically on the server. -->
+<country>
+    <countryCode>UK</countryCode>
+</country>

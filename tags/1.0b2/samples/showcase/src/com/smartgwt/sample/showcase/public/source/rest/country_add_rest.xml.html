@@ -1,0 +1,48 @@
+<html>
+<head>
+<link rel="stylesheet" href="../../js/sh/SyntaxHighlighter.css" type="text/css" />
+<script src="../../js/sh/shCore.js"></script>
+<script src="../../js/sh/shBrushXml.js"></script>
+<style>
+
+* {
+font-family:Courier New,monospace;
+  padding: 0;
+  margin: 0;
+  white-space: nowrap;
+  font-size: 11px;
+}
+
+.dp-highlighter {
+  white-space: nowrap;
+  overflow: visible;
+  width: 600px;
+  font-size: 11px;
+  font-family:Courier New,monospace;
+}
+</style>
+
+</head>
+<body>
+<textarea name="code" class="xml:nogutter" rows="15" cols="120">
+<!-- XML response to an add request. Should contain details of the newly added
+     record as stored on the server.
+     Normally this response would be generated dynamically on the server. -->
+<response>
+    <status>0</status>
+    <data>
+        <record>
+            <countryCode>A1</countryCode>
+            <countryName>Saved Value</countryName>
+            <capital>Saved Value</capital>
+            <continent>Saved Value</continent>
+        </record>
+    </data>
+</response>
+
+</textarea>
+<script class="javascript">
+dp.SyntaxHighlighter.HighlightAll('code');
+</script>
+</body>
+</html>

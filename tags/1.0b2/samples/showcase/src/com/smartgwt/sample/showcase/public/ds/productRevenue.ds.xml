@@ -1,0 +1,18 @@
+<!-- Multidimensional Datasource Demo - datasource definition -->
+
+<!-- Copyright 2001-2007 Isomorphic Software, Inc. (www.isomorphic.com) All rights reserved. -->
+
+<DataSource
+    ID="productRevenue"
+    serverType="sql"
+>
+    <fields>
+        <field name="cellID"     type="sequence"  hidden="true"      primaryKey="true" />
+        <field name="Scenarios"  type="text"      title="Scenario" />
+        <field name="Time"       type="text"      title="Time"     />
+        <field name="Regions"    type="text"      title="Region"   />
+        <field name="Products"   type="text"      title="Products" />
+        <field name="value"      type="text"      title="Value"    />
+        <field name="_hilite"    type="number" />
+    </fields>
+</DataSource>

@@ -1,0 +1,10 @@
+<DataSource
+    ID="newsFeed"
+    dataURL="http://rss.slashdot.org/Slashdot/slashdot"
+    recordXPath="//default:item"
+>
+    <fields>
+        <field name="title" />
+        <field name="link"  type="link" />
+    </fields>
+</DataSource>
