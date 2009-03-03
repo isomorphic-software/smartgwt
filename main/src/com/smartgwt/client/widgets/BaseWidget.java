@@ -399,7 +399,7 @@ public abstract class BaseWidget extends Widget implements HasHandlers {
     private native String getPropertyAsString(String property)/*-{
         var widget = this.@com.smartgwt.client.widgets.BaseWidget::getJsObj()();
         var ret = widget.getProperty(property);
-        return ret === undefined ? null : ret;
+        return ret === undefined ? null : String(ret) ;
     }-*/;
 
     private native Date getPropertyAsDate(String property)/*-{
