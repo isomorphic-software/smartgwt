@@ -1696,7 +1696,7 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
     }
 
     /**
-    * Should this listGrid display a filter row.  If true, this ListGrid will be drawn with a single editable row, (separate from the body) with a filter button. Values entered into this row are used as filter criteria to filter this List's data on enter-keypress or filter button click. {@link com.smartgwt.client.widgets.grid.ListGrid#getAutoFetchAsFilter autoFetchAsFilter} determines whether the filter occurs as a {@link com.smartgwt.client.widgets.grid.ListGrid#fetchData} or {@link com.smartgwt.client.widgets.grid.ListGrid#filterData} call. <P> Note that if {@link com.smartgwt.client.widgets.grid.ListGrid#filterData} or {@link com.smartgwt.client.widgets.grid.ListGrid#fetchData} is called directly while the filter editor is showing, the filter editor values will be updated to reflect the new set of criteria. If you wish to retain the user entered filter criteria and  programatically modify a subset of field values programatically this can be achieved by calling {@link com.smartgwt.client.widgets.grid.ListGrid#getCriteria}, and overlaying your changes onto the current criteria set. <P> Also note that if you call <code>filterData()</code> and pass in criteria for dataSource  fields that are not present in the ListGrid, these criteria will continue to be applied along with the user visible criteria.
+    * Should this listGrid display a filter row.  If true, this ListGrid will be drawn with a single editable row, (separate from the body) with a filter button. Values entered into this row are used as filter criteria to filter this List's data on enter-keypress or filter button click. {@link com.smartgwt.client.widgets.grid.ListGrid#getAutoFetchAsFilter autoFetchAsFilter} determines whether the filter occurs as a {@link com.smartgwt.client.widgets.grid.ListGrid#fetchData} or {@link com.smartgwt.client.widgets.grid.ListGrid#filterData} call. <P> Note that if {@link com.smartgwt.client.widgets.grid.ListGrid#filterData} or {@link com.smartgwt.client.widgets.grid.ListGrid#fetchData} is called directly while the filter editor is showing, the filter editor values will be updated to reflect the new set of criteria. If you wish to retain the user entered filter criteria and  programatically modify a subset of field values programatically this can be achieved by deriving new criteria by copying the existing set of criteria and adding other changes -  something like this: <pre><code>   var newCriteria = isc.clone(myListGrid.getCriteria());   isc.addProperties(newCriteria, {      field1:"new value1",      field2:"new value2"   });   myListGrid.setCriteria(newCriteria); </code></pre> <P> Also note that if you call <code>filterData()</code> and pass in criteria for dataSource  fields that are not present in the ListGrid, these criteria will continue to be applied along with the user visible criteria.
     * Setter for the {@link com.smartgwt.client.widgets.grid.ListGrid#getShowFilterEditor showFilterEditor} property. Allows the filter editor to be shown or hidden at runtime.
     *
     * @param showFilterEditor true if the filter editor should be shown, false if it should be hidden. Default value is null
@@ -1705,7 +1705,7 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
         setAttribute("showFilterEditor", showFilterEditor, true);
     }
     /**
-     * Should this listGrid display a filter row.  If true, this ListGrid will be drawn with a single editable row, (separate from the body) with a filter button. Values entered into this row are used as filter criteria to filter this List's data on enter-keypress or filter button click. {@link com.smartgwt.client.widgets.grid.ListGrid#getAutoFetchAsFilter autoFetchAsFilter} determines whether the filter occurs as a {@link com.smartgwt.client.widgets.grid.ListGrid#fetchData} or {@link com.smartgwt.client.widgets.grid.ListGrid#filterData} call. <P> Note that if {@link com.smartgwt.client.widgets.grid.ListGrid#filterData} or {@link com.smartgwt.client.widgets.grid.ListGrid#fetchData} is called directly while the filter editor is showing, the filter editor values will be updated to reflect the new set of criteria. If you wish to retain the user entered filter criteria and  programatically modify a subset of field values programatically this can be achieved by calling {@link com.smartgwt.client.widgets.grid.ListGrid#getCriteria}, and overlaying your changes onto the current criteria set. <P> Also note that if you call <code>filterData()</code> and pass in criteria for dataSource  fields that are not present in the ListGrid, these criteria will continue to be applied along with the user visible criteria.
+     * Should this listGrid display a filter row.  If true, this ListGrid will be drawn with a single editable row, (separate from the body) with a filter button. Values entered into this row are used as filter criteria to filter this List's data on enter-keypress or filter button click. {@link com.smartgwt.client.widgets.grid.ListGrid#getAutoFetchAsFilter autoFetchAsFilter} determines whether the filter occurs as a {@link com.smartgwt.client.widgets.grid.ListGrid#fetchData} or {@link com.smartgwt.client.widgets.grid.ListGrid#filterData} call. <P> Note that if {@link com.smartgwt.client.widgets.grid.ListGrid#filterData} or {@link com.smartgwt.client.widgets.grid.ListGrid#fetchData} is called directly while the filter editor is showing, the filter editor values will be updated to reflect the new set of criteria. If you wish to retain the user entered filter criteria and  programatically modify a subset of field values programatically this can be achieved by deriving new criteria by copying the existing set of criteria and adding other changes -  something like this: <pre><code>   var newCriteria = isc.clone(myListGrid.getCriteria());   isc.addProperties(newCriteria, {      field1:"new value1",      field2:"new value2"   });   myListGrid.setCriteria(newCriteria); </code></pre> <P> Also note that if you call <code>filterData()</code> and pass in criteria for dataSource  fields that are not present in the ListGrid, these criteria will continue to be applied along with the user visible criteria.
      *
      *
      * @return Boolean
@@ -3204,6 +3204,120 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
         return getAttributeAsString("ungroupText");
     }
 
+    /**
+    * Adds an item to the header context menu allowing users to launch a dialog to define a new ListGrid field based on values present in other ListGrid fields.
+    *
+    * @param canAddFormulaFields canAddFormulaFields Default value is true
+    */
+    public void setCanAddFormulaFields(Boolean canAddFormulaFields) {
+        setAttribute("canAddFormulaFields", canAddFormulaFields, true);
+    }
+    /**
+     * Adds an item to the header context menu allowing users to launch a dialog to define a new ListGrid field based on values present in other ListGrid fields.
+     *
+     *
+     * @return Boolean
+     *
+     */
+    public Boolean getCanAddFormulaFields()  {
+        return getAttributeAsBoolean("canAddFormulaFields");
+    }
+
+    /**
+    * Text for a menu item allowing users to add a formula field
+    *
+    * @param addFormulaFieldText addFormulaFieldText Default value is "Add Formula field..."
+    */
+    public void setAddFormulaFieldText(String addFormulaFieldText) {
+        setAttribute("addFormulaFieldText", addFormulaFieldText, true);
+    }
+    /**
+     * Text for a menu item allowing users to add a formula field
+     *
+     *
+     * @return String
+     *
+     */
+    public String getAddFormulaFieldText()  {
+        return getAttributeAsString("addFormulaFieldText");
+    }
+
+    /**
+    * Text for a menu item allowing users to edit a formula field
+    *
+    * @param editFormulaFieldText editFormulaFieldText Default value is "Edit Formula field..."
+    */
+    public void setEditFormulaFieldText(String editFormulaFieldText) {
+        setAttribute("editFormulaFieldText", editFormulaFieldText, true);
+    }
+    /**
+     * Text for a menu item allowing users to edit a formula field
+     *
+     *
+     * @return String
+     *
+     */
+    public String getEditFormulaFieldText()  {
+        return getAttributeAsString("editFormulaFieldText");
+    }
+
+    /**
+    * Adds an item to the header context menu allowing users to launch a dialog to define a new ListGrid field based on values present in other ListGrid fields and formatted as specified.
+    *
+    * @param canAddFormattedFields canAddFormattedFields Default value is true
+    */
+    public void setCanAddFormattedFields(Boolean canAddFormattedFields) {
+        setAttribute("canAddFormattedFields", canAddFormattedFields, true);
+    }
+    /**
+     * Adds an item to the header context menu allowing users to launch a dialog to define a new ListGrid field based on values present in other ListGrid fields and formatted as specified.
+     *
+     *
+     * @return Boolean
+     *
+     */
+    public Boolean getCanAddFormattedFields()  {
+        return getAttributeAsBoolean("canAddFormattedFields");
+    }
+
+    /**
+    * Text for a menu item allowing users to add a formula field
+    *
+    * @param addFormattedFieldText addFormattedFieldText Default value is "Add Formatted field..."
+    */
+    public void setAddFormattedFieldText(String addFormattedFieldText) {
+        setAttribute("addFormattedFieldText", addFormattedFieldText, true);
+    }
+    /**
+     * Text for a menu item allowing users to add a formula field
+     *
+     *
+     * @return String
+     *
+     */
+    public String getAddFormattedFieldText()  {
+        return getAttributeAsString("addFormattedFieldText");
+    }
+
+    /**
+    * Text for a menu item allowing users to edit the formatter for a field
+    *
+    * @param editFormattedFieldText editFormattedFieldText Default value is "Edit Formatter..."
+    */
+    public void setEditFormattedFieldText(String editFormattedFieldText) {
+        setAttribute("editFormattedFieldText", editFormattedFieldText, true);
+    }
+    /**
+     * Text for a menu item allowing users to edit the formatter for a field
+     *
+     *
+     * @return String
+     *
+     */
+    public String getEditFormattedFieldText()  {
+        return getAttributeAsString("editFormattedFieldText");
+    }
+
     // ********************* Methods ***********************
 
 
@@ -4372,25 +4486,6 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
             }
         }-*/;
 
-        /**
-         * Simulates a drag / drop type transfer of the selected records in some other component to this component, without requiring any user interaction.  This method acts on the dropped records  exactly as if they had been dropped in an actual drag / drop interaction, including any  special databound behavior invoked by calling {@link com.smartgwt.client..DataBoundComponent#getDropValues} for each dropped record. <P> To transfer <b>all</b> data in, for example, a {@link com.smartgwt.client.widgets.grid.ListGrid}, call grid.selection.selectAll() first. <P> See the ${isc.DocUtils.linkForRef('group:dragging')} documentation for an overview of list grid drag/drop data transfer.
-         * @param source source component from which the records will be tranferred
-         */
-        public native void transferSelectedData(DataBoundComponent source) /*-{
-            var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
-            self.transferSelectedData(source);
-        }-*/;
-
-        /**
-         * Simulates a drag / drop type transfer of the selected records in some other component to this component, without requiring any user interaction.  This method acts on the dropped records  exactly as if they had been dropped in an actual drag / drop interaction, including any  special databound behavior invoked by calling {@link com.smartgwt.client..DataBoundComponent#getDropValues} for each dropped record. <P> To transfer <b>all</b> data in, for example, a {@link com.smartgwt.client.widgets.grid.ListGrid}, call grid.selection.selectAll() first. <P> See the ${isc.DocUtils.linkForRef('group:dragging')} documentation for an overview of list grid drag/drop data transfer.
-         * @param source source component from which the records will be tranferred
-     * @param index target index (drop position) of the rows within this grid.
-         */
-        public native void transferSelectedData(DataBoundComponent source, int index) /*-{
-            var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
-            self.transferSelectedData(source, index);
-        }-*/;
-
 
 
 
@@ -4600,6 +4695,40 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
         public native void setHeaderSpanTitle(String name, String newTitle) /*-{
             var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
             self.setHeaderSpanTitle(name, newTitle);
+        }-*/;
+
+        /**
+         * Convenience method to display a {@link com.smartgwt.client..FormulaBuilder} to create a new Formula Field.  This  is equivalent to calling {@link com.smartgwt.client.widgets.grid.ListGrid#editFormulaField} with no paramater.
+         */
+        public native void addFormulaField() /*-{
+            var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
+            self.addFormulaField();
+        }-*/;
+
+        /**
+         * Method to display a {@link com.smartgwt.client..FormulaBuilder} to create or edit a Formula Field
+         * @param field Field to edit or null to add a new formula field
+         */
+        public native void editFormulaField(ListGridField field) /*-{
+            var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
+            self.editFormulaField(field.@com.smartgwt.client.core.DataClass::getJsObj()());
+        }-*/;
+
+        /**
+         * Convenience method to display a {@link com.smartgwt.client..FormatBuilder} to create a new Formatted Field.  This  is equivalent to calling {@link com.smartgwt.client.widgets.grid.ListGrid#editFormattedField} with no paramater.
+         */
+        public native void addFormattedField() /*-{
+            var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
+            self.addFormattedField();
+        }-*/;
+
+        /**
+         * Method to display a {@link com.smartgwt.client..FormulaBuilder} to create or edit a Formula Field
+         * @param field Field to edit or null to add a new formula field
+         */
+        public native void editFormattedField(ListGridField field) /*-{
+            var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
+            self.editFormattedField(field.@com.smartgwt.client.core.DataClass::getJsObj()());
         }-*/;
 
 
@@ -4940,18 +5069,9 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
     // ********************* Static Methods ***********************
 
 
-
-
-
-
-
-
-
-
-
-
-
-
+
+
+
 
     protected native void onInit() /*-{
 
@@ -6428,6 +6548,25 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
         var valueJ = @com.smartgwt.client.util.JSOHelper::convertToMap(Lcom/google/gwt/core/client/JavaScriptObject;)(value);
         return valueJ;
     }-*/;
+
+        /**
+         * Simulates a drag / drop type transfer of the selected records in some other component to this component, without requiring any user interaction.  This method acts on the dropped records  exactly as if they had been dropped in an actual drag / drop interaction, including any  special databound behavior invoked by calling {@link com.smartgwt.client.widgets.DataBoundComponent#getDropValues} for each dropped record. <P> To transfer <b>all</b> data in, for example, a {@link com.smartgwt.client.widgets.grid.ListGrid}, call grid.selection.selectAll() first. <P> See the ${isc.DocUtils.linkForRef('group:dragging')} documentation for an overview of list grid drag/drop data transfer.
+         * @param source source component from which the records will be tranferred
+         */
+        public native void transferSelectedData(DataBoundComponent source) /*-{
+            var self = this.@com.smartgwt.client.widgets.DataBoundComponent::getOrCreateJsObj()();
+            self.transferSelectedData(source.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()());
+        }-*/;
+
+        /**
+         * Simulates a drag / drop type transfer of the selected records in some other component to this component, without requiring any user interaction.  This method acts on the dropped records  exactly as if they had been dropped in an actual drag / drop interaction, including any  special databound behavior invoked by calling {@link com.smartgwt.client.widgets.DataBoundComponent#getDropValues} for each dropped record. <P> To transfer <b>all</b> data in, for example, a {@link com.smartgwt.client.widgets.grid.ListGrid}, call grid.selection.selectAll() first. <P> See the ${isc.DocUtils.linkForRef('group:dragging')} documentation for an overview of list grid drag/drop data transfer.
+         * @param source source component from which the records will be tranferred
+     * @param index target index (drop position) of the rows within this grid.
+         */
+        public native void transferSelectedData(DataBoundComponent source, int index) /*-{
+            var self = this.@com.smartgwt.client.widgets.DataBoundComponent::getOrCreateJsObj()();
+            self.transferSelectedData(source.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()(), index);
+        }-*/;
 
 }
 

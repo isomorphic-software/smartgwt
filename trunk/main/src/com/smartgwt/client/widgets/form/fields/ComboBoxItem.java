@@ -828,7 +828,22 @@ public class ComboBoxItem extends FormItem  implements PickList {
         setAttribute("pickListFields", pickListFields);
     }
 
-
+    /**
+     * Returns the entire record object associated with the current value for this item (or null if no matching record exists
+     * in the PickList data). Most commonly used for databound pickListItems to retrieve the values of other fields in the record.
+     *
+     * @return the selected record or null
+     */
+    public native ListGridRecord getSelectedRecord() /*-{
+	    var self = this.@com.smartgwt.client.core.DataClass::getJsObj()();
+	    var ret = self.getSelectedRecord();
+	    if(ret == null || ret === undefined) return null;
+	    var retVal = @com.smartgwt.client.core.RefDataClass::getRef(Lcom/google/gwt/core/client/JavaScriptObject;)(ret);
+	    if(retVal == null) {
+	        retVal = @com.smartgwt.client.widgets.grid.ListGridRecord::new(Lcom/google/gwt/core/client/JavaScriptObject;)(ret);
+	    }
+	    return retVal;
+	}-*/;
 
 }
 

@@ -585,7 +585,7 @@ public class TreeGrid extends ListGrid  implements DataBoundComponent, com.smart
     /**
     * This suffix will be appended to the {@link com.smartgwt.client.widgets.tree.TreeGrid#getFolderIcon folderIcon} for closed folders. If {@link com.smartgwt.client.widgets.tree.TreeGrid#getShowOpenIcons showOpenIcons} is set to <code>false</code> this suffix will also be appended to open folders' icons.
     *
-    * @param closedIconSuffix closedIconSuffix Default value is "closed
+    * @param closedIconSuffix closedIconSuffix Default value is "closed"
     */
     public void setClosedIconSuffix(String closedIconSuffix) {
         setAttribute("closedIconSuffix", closedIconSuffix, true);
@@ -892,6 +892,7 @@ public class TreeGrid extends ListGrid  implements DataBoundComponent, com.smart
             var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
             self.recordDoubleClick();
         }-*/;
+
 
 
 

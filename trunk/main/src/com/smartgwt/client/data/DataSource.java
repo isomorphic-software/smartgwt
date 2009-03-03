@@ -750,6 +750,8 @@ public class DataSource extends BaseClass  implements com.smartgwt.client.data.e
 
 
 
+
+
         /**
          * Add a handleError handler.
          * <p>
@@ -770,6 +772,8 @@ public class DataSource extends BaseClass  implements com.smartgwt.client.data.e
                         var param = {"response" : arguments[0], "request" : arguments[1]};
                         var event = @com.smartgwt.client.data.events.ErrorEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
                         selfJ.@com.smartgwt.client.core.BaseClass::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
+                        var ret = event.@com.smartgwt.client.event.Cancellable::isCancelled()();
+                        return !ret;
                     }
                 });
             } else {
@@ -778,6 +782,8 @@ public class DataSource extends BaseClass  implements com.smartgwt.client.data.e
                     var param = {"response" : arguments[0], "request" : arguments[1]};
                     var event = @com.smartgwt.client.data.events.ErrorEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
                     selfJ.@com.smartgwt.client.core.BaseClass::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
+                    var ret = event.@com.smartgwt.client.event.Cancellable::isCancelled()();
+                    return !ret;
                 };
             }
         }-*/;
