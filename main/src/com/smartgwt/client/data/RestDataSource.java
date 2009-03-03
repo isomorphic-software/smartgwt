@@ -127,6 +127,25 @@ public class RestDataSource extends DataSource {
     }
 
     /**
+    * For RestDataSources, {@link com.smartgwt.client.data.RestDataSource#getXmlRecordXPath xmlRecordXPath} and {@link com.smartgwt.client.data.RestDataSource#getJsonRecordXPath jsonRecordXPath} should be used rather than specifying  <code>recordXPath</code> directly. <P> Note that you can also apply record xpath binding via {@link com.smartgwt.client.data.OperationBinding#getRecordXPath recordXPath}.
+    *
+    * @param recordXPath recordXPath Default value is null
+    */
+    public void setRecordXPath(String recordXPath) {
+        setAttribute("recordXPath", recordXPath, true);
+    }
+    /**
+     * For RestDataSources, {@link com.smartgwt.client.data.RestDataSource#getXmlRecordXPath xmlRecordXPath} and {@link com.smartgwt.client.data.RestDataSource#getJsonRecordXPath jsonRecordXPath} should be used rather than specifying  <code>recordXPath</code> directly. <P> Note that you can also apply record xpath binding via {@link com.smartgwt.client.data.OperationBinding#getRecordXPath recordXPath}.
+     *
+     *
+     * @return String
+     *
+     */
+    public String getRecordXPath()  {
+        return getAttributeAsString("recordXPath");
+    }
+
+    /**
     * Default URL to contact to fulfill all DSRequests.   RestDataSources also allow per-operationType dataURLs to be set via <ul> <li>{@link com.smartgwt.client.data.RestDataSource#getFetchDataURL fetchDataURL}</li> <li>{@link com.smartgwt.client.data.RestDataSource#getAddDataURL addDataURL}</li>  <li>{@link com.smartgwt.client.data.RestDataSource#getUpdateDataURL updateDataURL}</li> <li>{@link com.smartgwt.client.data.RestDataSource#getRemoveDataURL removeDataURL}</li> </ul>
     *
     * @param dataURL dataURL Default value is null

@@ -1335,7 +1335,7 @@ public class ListGridField extends DataClass  implements com.smartgwt.client.wid
     }
 
     /**
-    * Allows a boolean or ${isc.DocUtils.linkForRef('type:ValueMap','valueMapped')} field to be edited by simply clicking on it to cycle values. <P> To enable this feature, {@link com.smartgwt.client.widgets.grid.ListGrid#getCanEdit canEdit} must be set to true.  Note that you can enable toggling only (without allowing the user to edit other fields) by just setting {@link com.smartgwt.client.widgets.grid.ListGrid#getEditEvent editEvent}. <P> If {@link com.smartgwt.client.widgets.grid.ListGrid#getEditEvent editEvent} is set to "click", when the user clicks on the field,  the value will be toggled, and inline editing will be triggered as usual. Otherwise the toggled value will be saved immediately to the server, or if  {@link com.smartgwt.client.widgets.grid.ListGrid#getAutoSaveEdits autoSaveEdits} has been set to false, will be stored as an edit value for the record.
+    * Allows a boolean or ${isc.DocUtils.linkForRef('type:ValueMap','valueMapped')} field to be edited without going into edit mode. When this attribute is set, if clicking on the field will change the value - for boolean fields toggling between <code>true</code> and <code>false</code>, and for valueMapped fields, advancing the value to the next option in the valueMap. <P> To enable this feature, {@link com.smartgwt.client.widgets.grid.ListGrid#getCanEdit canEdit} must be set to true.  Note that you can enable toggling only (without allowing the user to edit other fields) by just setting {@link com.smartgwt.client.widgets.grid.ListGrid#getEditEvent editEvent}. <P> If {@link com.smartgwt.client.widgets.grid.ListGrid#getEditEvent editEvent} is set to "click", when the user clicks on the field,  the value will be toggled, and inline editing will be triggered as usual. Otherwise the toggled value will be saved immediately to the server, or if  {@link com.smartgwt.client.widgets.grid.ListGrid#getAutoSaveEdits autoSaveEdits} has been set to false, will be stored as an edit value for the record.
     * <p><b>Note : </b> This is an advanced setting</p>
     *
     * @param canToggle canToggle Default value is null
@@ -1344,7 +1344,7 @@ public class ListGridField extends DataClass  implements com.smartgwt.client.wid
         setAttribute("canToggle", canToggle);
     }
     /**
-     * Allows a boolean or ${isc.DocUtils.linkForRef('type:ValueMap','valueMapped')} field to be edited by simply clicking on it to cycle values. <P> To enable this feature, {@link com.smartgwt.client.widgets.grid.ListGrid#getCanEdit canEdit} must be set to true.  Note that you can enable toggling only (without allowing the user to edit other fields) by just setting {@link com.smartgwt.client.widgets.grid.ListGrid#getEditEvent editEvent}. <P> If {@link com.smartgwt.client.widgets.grid.ListGrid#getEditEvent editEvent} is set to "click", when the user clicks on the field,  the value will be toggled, and inline editing will be triggered as usual. Otherwise the toggled value will be saved immediately to the server, or if  {@link com.smartgwt.client.widgets.grid.ListGrid#getAutoSaveEdits autoSaveEdits} has been set to false, will be stored as an edit value for the record.
+     * Allows a boolean or ${isc.DocUtils.linkForRef('type:ValueMap','valueMapped')} field to be edited without going into edit mode. When this attribute is set, if clicking on the field will change the value - for boolean fields toggling between <code>true</code> and <code>false</code>, and for valueMapped fields, advancing the value to the next option in the valueMap. <P> To enable this feature, {@link com.smartgwt.client.widgets.grid.ListGrid#getCanEdit canEdit} must be set to true.  Note that you can enable toggling only (without allowing the user to edit other fields) by just setting {@link com.smartgwt.client.widgets.grid.ListGrid#getEditEvent editEvent}. <P> If {@link com.smartgwt.client.widgets.grid.ListGrid#getEditEvent editEvent} is set to "click", when the user clicks on the field,  the value will be toggled, and inline editing will be triggered as usual. Otherwise the toggled value will be saved immediately to the server, or if  {@link com.smartgwt.client.widgets.grid.ListGrid#getAutoSaveEdits autoSaveEdits} has been set to false, will be stored as an edit value for the record.
      *
      *
      * @return Boolean
@@ -1434,6 +1434,8 @@ public class ListGridField extends DataClass  implements com.smartgwt.client.wid
                     var param = {"editCompletionEvent" : arguments[0], "record" : arguments[1], "newValue" : arguments[2], "rowNum" : arguments[3], "colNum" : arguments[4], "grid" : arguments[5]};
                     var event = @com.smartgwt.client.widgets.grid.events.EditorExitEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
                     selfJ.@com.smartgwt.client.core.DataClass::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
+                    var ret = event.@com.smartgwt.client.event.Cancellable::isCancelled()();
+                    return !ret;
                 };
         }-*/;
 
@@ -1485,6 +1487,8 @@ public class ListGridField extends DataClass  implements com.smartgwt.client.wid
                     var param = {"viewer" : arguments[0], "record" : arguments[1], "recordNum" : arguments[2], "field" : arguments[3], "fieldNum" : arguments[4], "value" : arguments[5], "rawValue" : arguments[6]};
                     var event = @com.smartgwt.client.widgets.grid.events.RecordClickEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
                     selfJ.@com.smartgwt.client.core.DataClass::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
+                    var ret = event.@com.smartgwt.client.event.Cancellable::isCancelled()();
+                    return !ret;
                 };
         }-*/;
 

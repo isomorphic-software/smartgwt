@@ -311,6 +311,41 @@ public class TileGrid extends TileLayout  implements DataBoundComponent, com.sma
 
 
 
+        /**
+         * Select all records
+         */
+        public native void selectAllRecords() /*-{
+            var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
+            self.selectAllRecords();
+        }-*/;
+
+        /**
+         * Deselect all records
+         */
+        public native void deselectAllRecords() /*-{
+            var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
+            self.deselectAllRecords();
+        }-*/;
+
+        /**
+         * Whether at least one item is selected
+         *
+         * @return true == at least one item is selected        false == nothing at all is selected
+         */
+        public native Boolean anySelected() /*-{
+            var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
+            var retVal =self.anySelected();
+            if(retVal == null || retVal === undefined) {
+                return null;
+            } else {
+                return @com.smartgwt.client.util.JSOHelper::toBoolean(Z)(retVal);
+            }
+        }-*/;
+
+
+
+
+
 
         /**
          * Add a recordClick handler.
@@ -398,29 +433,11 @@ public class TileGrid extends TileLayout  implements DataBoundComponent, com.sma
 
 
 
-        /**
-         * Simulates a drag / drop type transfer of the selected records in some other component to this component, without requiring any user interaction.  This method acts on the dropped records  exactly as if they had been dropped in an actual drag / drop interaction, including any  special databound behavior invoked by calling {@link com.smartgwt.client..DataBoundComponent#getDropValues} for each dropped record. <P> To transfer <b>all</b> data in, for example, a {@link com.smartgwt.client.widgets.grid.ListGrid}, call grid.selection.selectAll() first. <P> See the ${isc.DocUtils.linkForRef('group:dragging')} documentation for an overview of list grid drag/drop data transfer.
-         * @param source source component from which the records will be tranferred
-         */
-        public native void transferSelectedData(DataBoundComponent source) /*-{
-            var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
-            self.transferSelectedData(source);
-        }-*/;
-
-        /**
-         * Simulates a drag / drop type transfer of the selected records in some other component to this component, without requiring any user interaction.  This method acts on the dropped records  exactly as if they had been dropped in an actual drag / drop interaction, including any  special databound behavior invoked by calling {@link com.smartgwt.client..DataBoundComponent#getDropValues} for each dropped record. <P> To transfer <b>all</b> data in, for example, a {@link com.smartgwt.client.widgets.grid.ListGrid}, call grid.selection.selectAll() first. <P> See the ${isc.DocUtils.linkForRef('group:dragging')} documentation for an overview of list grid drag/drop data transfer.
-         * @param source source component from which the records will be tranferred
-     * @param index target index (drop position) of the rows within this grid.
-         */
-        public native void transferSelectedData(DataBoundComponent source, int index) /*-{
-            var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
-            self.transferSelectedData(source, index);
-        }-*/;
 
     // ********************* Static Methods ***********************
 
 
-
+
 
 
     /**
@@ -518,7 +535,7 @@ public class TileGrid extends TileLayout  implements DataBoundComponent, com.sma
     public DataSource getDataSource() {
         return DataSource.getOrCreateRef(getAttributeAsJavaScriptObject("dataSource"));
     }
-    
+
     /**
      * Array of field definitions to control the default rendering of tiles. <P> If not specified, if the DataSource has
      * an {@link com.smartgwt.client.data.DataSource#getIconField iconField}, only the <code>iconField</code> and {@link
@@ -828,6 +845,28 @@ public class TileGrid extends TileLayout  implements DataBoundComponent, com.sma
         self.removeSelectedData();
     }-*/;
 
+
+    /**
+     * Simulates a drag / drop type transfer of the selected records in some other component to this component, without requiring any user interaction.  This method acts on the dropped records  exactly as if they had been dropped in an actual drag / drop interaction, including any  special databound behavior invoked by calling {@link com.smartgwt.client.widgets.DataBoundComponent#getDropValues} for each dropped record. <P> To transfer <b>all</b> data in, for example, a {@link com.smartgwt.client.widgets.grid.ListGrid}, call grid.selection.selectAll() first. <P> See the ${isc.DocUtils.linkForRef('group:dragging')} documentation for an overview of list grid drag/drop data transfer.
+     *
+     * @param source source component from which the records will be tranferred
+     */
+    public native void transferSelectedData(DataBoundComponent source) /*-{
+            var self = this.@com.smartgwt.client.widgets.DataBoundComponent::getOrCreateJsObj()();
+            self.transferSelectedData(source.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()());
+        }-*/;
+
+    /**
+     * Simulates a drag / drop type transfer of the selected records in some other component to this component, without requiring any user interaction.  This method acts on the dropped records  exactly as if they had been dropped in an actual drag / drop interaction, including any  special databound behavior invoked by calling {@link com.smartgwt.client.widgets.DataBoundComponent#getDropValues} for each dropped record. <P> To transfer <b>all</b> data in, for example, a {@link com.smartgwt.client.widgets.grid.ListGrid}, call grid.selection.selectAll() first. <P> See the ${isc.DocUtils.linkForRef('group:dragging')} documentation for an overview of list grid drag/drop data transfer.
+     *
+     * @param source source component from which the records will be tranferred
+     * @param index  target index (drop position) of the rows within this grid.
+     */
+    public native void transferSelectedData(DataBoundComponent source, int index) /*-{
+            var self = this.@com.smartgwt.client.widgets.DataBoundComponent::getOrCreateJsObj()();
+            self.transferSelectedData(source.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()(), index);
+        }-*/;
+
     /**
      * Returns all selected records, as an Array.
      *
@@ -853,6 +892,144 @@ public class TileGrid extends TileLayout  implements DataBoundComponent, com.sma
         }
         return objects;
     }
+
+    /**
+     * Deselect a ${isc.DocUtils.linkForRef('object:Record')} passed in explicitly, or by index. <P> Synonym for
+     * <code>selectRecord(record, false)</code>
+     *
+     * @param record record (or row number) to deselect
+     */
+    public native void deselectRecord(Record record)/*-{
+       var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
+       var recordJS = record.@com.smartgwt.client.data.Record::getJsObj()();
+       self.deselectRecord(recordJS);
+    }-*/;
+
+    /**
+     * Deselect a ${isc.DocUtils.linkForRef('object:Record')} passed in explicitly, or by index. <P> Synonym for
+     * <code>selectRecord(record, false)</code>
+     *
+     * @param record record (or row number) to deselect
+     */
+    public native void deselectRecord(int record)/*-{
+       var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
+       self.selectRecord(record);
+    }-*/;
+
+    /**
+     * Deselect a list of ${isc.DocUtils.linkForRef('object:Record')}s passed in explicitly, or by index. <P> Synonym
+     * for <code>selectRecords(records, false)</code>
+     *
+     * @param records records (or row numbers) to deselect
+     */
+    public native void deselectRecords(int[] records)/*-{
+       var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
+       var recordsJS = @com.smartgwt.client.util.JSOHelper::convertToJavaScriptArray([I)(records);
+       self.deselectRecords(recordsJS);
+    }-*/;
+
+    /**
+     * Deselect a list of ${isc.DocUtils.linkForRef('object:Record')}s passed in explicitly, or by index. <P> Synonym
+     * for <code>selectRecords(records, false)</code>
+     *
+     * @param records records (or row numbers) to deselect
+     */
+    public native void deselectRecords(Record[] records)/*-{
+       var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
+       var recordsJS = @com.smartgwt.client.util.JSOHelper::convertToJavaScriptArray([Ljava/lang/Object;)(records);
+       self.deselectRecords(recordsJS);
+    }-*/;
+
+    /**
+     * Select/deselect a ${isc.DocUtils.linkForRef('object:Record')} passed in explicitly, or by index.
+     *
+     * @param record record (or row number) to select
+     */
+    public native void selectRecord(Record record)/*-{
+       var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
+       var recordJS = record.@com.smartgwt.client.data.Record::getJsObj()();
+       self.selectRecord(recordJS);
+    }-*/;
+
+    /**
+     * Select/deselect a ${isc.DocUtils.linkForRef('object:Record')} passed in explicitly, or by index.
+     *
+     * @param record record (or row number) to select
+     */
+    public native void selectRecord(int record)/*-{
+        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
+        self.selectRecord(record);
+    }-*/;
+
+    /**
+     * Select/deselect a ${isc.DocUtils.linkForRef('object:Record')} passed in explicitly, or by index.
+     *
+     * @param record   record (or row number) to select
+     * @param newState new selection state (if null, defaults to true)
+     */
+    public native void selectRecord(int record, boolean newState)/*-{
+        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
+        self.selectRecord(record, newState);
+    }-*/;
+
+    /**
+     * Select/deselect a ${isc.DocUtils.linkForRef('object:Record')} passed in explicitly, or by index.
+     *
+     * @param record   record (or row number) to select
+     * @param newState new selection state (defaults to true)
+     */
+    public native void selectRecord(Record record, boolean newState)/*-{
+        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
+        var recordJS = record.@com.smartgwt.client.data.Record::getJsObj()();
+        self.selectRecord(recordJS, newState);
+    }-*/;
+
+    /**
+     * Select/deselect a list of ${isc.DocUtils.linkForRef('object:Record')}s passed in explicitly, or by index.
+     *
+     * @param records records (or row numbers) to select
+     */
+    public native void selectRecords(int[] records)/*-{
+        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
+        var recordsJS = @com.smartgwt.client.util.JSOHelper::convertToJavaScriptArray([I)(records);
+        self.selectRecord(recordsJS);
+    }-*/;
+
+    /**
+     * Select/deselect a list of ${isc.DocUtils.linkForRef('object:Record')}s passed in explicitly, or by index.
+     *
+     * @param records records (or row numbers) to select
+     * @param newState new selection state (defaults to true)
+     */
+    public native void selectRecords(int[] records, boolean newState)/*-{
+        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
+        var recordsJS = @com.smartgwt.client.util.JSOHelper::convertToJavaScriptArray([I)(records);
+        self.selectRecords(recordsJS, newState);
+    }-*/;
+
+    /**
+     * Select/deselect a list of ${isc.DocUtils.linkForRef('object:Record')}s passed in explicitly, or by index.
+     *
+     * @param records records (or row numbers) to select
+     */
+    public native void selectRecords(Record[] records)/*-{
+        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
+        var recordsJS = @com.smartgwt.client.util.JSOHelper::convertToJavaScriptArray([Ljava/lang/Object;)(records);
+        self.selectRecords(recordsJS);
+     }-*/;
+
+    /**
+     * Select/deselect a list of ${isc.DocUtils.linkForRef('object:Record')}s passed in explicitly, or by index.
+     *
+     * @param records  records (or row numbers) to select
+     * @param newState new selection state (defaults to true)
+     */
+    public native void selectRecords(Record[] records, boolean newState)/*-{
+        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
+        var recordsJS = @com.smartgwt.client.util.JSOHelper::convertToJavaScriptArray([Ljava/lang/Object;)(records);
+        self.selectRecords(recordsJS, newState);
+     }-*/;
+
 
 }
 
