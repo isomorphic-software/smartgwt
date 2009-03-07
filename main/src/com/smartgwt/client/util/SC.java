@@ -25,12 +25,6 @@ public class SC {
         return $wnd.isc.ClassFactory.getNextGlobalID();
     }-*/;
 
-    public static native String generateID(String className) /*-{
-        var obj = {};
-        obj.Class = className;
-        return $wnd.isc.ClassFactory.getNextGlobalID(obj);
-    }-*/;
-
     public static native String getHome() /*-{
         return $wnd.isomorphicDir;
     }-*/;
