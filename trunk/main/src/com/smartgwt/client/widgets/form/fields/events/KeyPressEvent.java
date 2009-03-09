@@ -152,11 +152,13 @@ public class KeyPressEvent extends AbstractSmartEvent<KeyPressHandler>  {
     /**
      * If this was a character key, this is the numeric value for the character
      *
-     * @return If this was a character key, this is the numeric value for the character
+     * @return If this was a character key, this is the numeric value for the character. Note that
+     * non-character keys like shift, alt, backspace return null
      */
-    public  native int getCharacterValue() /*-{
+    public native Integer getCharacterValue() /*-{
         var jsObj = this.@com.smartgwt.client.event.AbstractSmartEvent::jsObj;
-        return jsObj.characterValue;
+        var ret = jsObj.characterValue;
+        return (ret === undefined || ret == null) ? null : @com.smartgwt.client.util.JSOHelper::toInteger(I)(ret);
     }-*/;
 
 

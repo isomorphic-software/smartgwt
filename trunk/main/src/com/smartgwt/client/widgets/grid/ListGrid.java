@@ -3169,7 +3169,7 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
     * If we're showing a {@link com.smartgwt.client.widgets.grid.ListGrid#getShowHeaderContextMenu showHeaderContextMenu} for this grid and {@link com.smartgwt.client.widgets.grid.ListGrid#getCanGroupBy canGroupBy} is true, this string will be shown as the title for the menu item to toggle the group by setting for a field. <P> This is a dynamic string - text within <code>\${...}</code> will be evaluated as JS code when the message is displayed, with <code>viewer</code> available as a variable mapped to the ListGrid instance, and <code>field</code> as a variable pointing to the ListGrid field. <P> Default value returns "Group by " + the field's summary title.
     * <p><b>Note : </b> This is an advanced setting</p>
     *
-    * @param groupByText groupByText Default value is "Group by \${viewer.getSummaryTitle(field)}"
+    * @param groupByText groupByText Default value is "Group by \${title}"
     */
     public void setGroupByText(String groupByText) {
         setAttribute("groupByText", groupByText, true);
@@ -3226,7 +3226,7 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
     /**
     * Text for a menu item allowing users to add a formula field
     *
-    * @param addFormulaFieldText addFormulaFieldText Default value is "Add Formula field..."
+    * @param addFormulaFieldText addFormulaFieldText Default value is "Add formula column..."
     */
     public void setAddFormulaFieldText(String addFormulaFieldText) {
         setAttribute("addFormulaFieldText", addFormulaFieldText, true);
@@ -3245,7 +3245,7 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
     /**
     * Text for a menu item allowing users to edit a formula field
     *
-    * @param editFormulaFieldText editFormulaFieldText Default value is "Edit Formula field..."
+    * @param editFormulaFieldText editFormulaFieldText Default value is "Edit formula..."
     */
     public void setEditFormulaFieldText(String editFormulaFieldText) {
         setAttribute("editFormulaFieldText", editFormulaFieldText, true);
@@ -3264,10 +3264,10 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
     /**
     * Adds an item to the header context menu allowing users to launch a dialog to define a new ListGrid field based on values present in other ListGrid fields and formatted as specified.
     *
-    * @param canAddFormattedFields canAddFormattedFields Default value is true
+    * @param canAddSummaryFields canAddSummaryFields Default value is true
     */
-    public void setCanAddFormattedFields(Boolean canAddFormattedFields) {
-        setAttribute("canAddFormattedFields", canAddFormattedFields, true);
+    public void setCanAddSummaryFields(Boolean canAddSummaryFields) {
+        setAttribute("canAddSummaryFields", canAddSummaryFields, true);
     }
     /**
      * Adds an item to the header context menu allowing users to launch a dialog to define a new ListGrid field based on values present in other ListGrid fields and formatted as specified.
@@ -3276,17 +3276,17 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
      * @return Boolean
      *
      */
-    public Boolean getCanAddFormattedFields()  {
-        return getAttributeAsBoolean("canAddFormattedFields");
+    public Boolean getCanAddSummaryFields()  {
+        return getAttributeAsBoolean("canAddSummaryFields");
     }
 
     /**
     * Text for a menu item allowing users to add a formula field
     *
-    * @param addFormattedFieldText addFormattedFieldText Default value is "Add Formatted field..."
+    * @param addSummaryFieldText addSummaryFieldText Default value is "Add summary column..."
     */
-    public void setAddFormattedFieldText(String addFormattedFieldText) {
-        setAttribute("addFormattedFieldText", addFormattedFieldText, true);
+    public void setAddSummaryFieldText(String addSummaryFieldText) {
+        setAttribute("addSummaryFieldText", addSummaryFieldText, true);
     }
     /**
      * Text for a menu item allowing users to add a formula field
@@ -3295,17 +3295,17 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
      * @return String
      *
      */
-    public String getAddFormattedFieldText()  {
-        return getAttributeAsString("addFormattedFieldText");
+    public String getAddSummaryFieldText()  {
+        return getAttributeAsString("addSummaryFieldText");
     }
 
     /**
     * Text for a menu item allowing users to edit the formatter for a field
     *
-    * @param editFormattedFieldText editFormattedFieldText Default value is "Edit Formatter..."
+    * @param editSummaryFieldText editSummaryFieldText Default value is "Edit summary format..."
     */
-    public void setEditFormattedFieldText(String editFormattedFieldText) {
-        setAttribute("editFormattedFieldText", editFormattedFieldText, true);
+    public void setEditSummaryFieldText(String editSummaryFieldText) {
+        setAttribute("editSummaryFieldText", editSummaryFieldText, true);
     }
     /**
      * Text for a menu item allowing users to edit the formatter for a field
@@ -3314,8 +3314,8 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
      * @return String
      *
      */
-    public String getEditFormattedFieldText()  {
-        return getAttributeAsString("editFormattedFieldText");
+    public String getEditSummaryFieldText()  {
+        return getAttributeAsString("editSummaryFieldText");
     }
 
     // ********************* Methods ***********************
@@ -4715,20 +4715,20 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
         }-*/;
 
         /**
-         * Convenience method to display a {@link com.smartgwt.client..FormatBuilder} to create a new Formatted Field.  This  is equivalent to calling {@link com.smartgwt.client.widgets.grid.ListGrid#editFormattedField} with no paramater.
+         * Convenience method to display a {@link com.smartgwt.client..SummaryBuilder} to create a new Summary Field.  This  is equivalent to calling {@link com.smartgwt.client.widgets.grid.ListGrid#editSummaryField} with no paramater.
          */
-        public native void addFormattedField() /*-{
+        public native void addSummaryField() /*-{
             var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
-            self.addFormattedField();
+            self.addSummaryField();
         }-*/;
 
         /**
-         * Method to display a {@link com.smartgwt.client..FormulaBuilder} to create or edit a Formula Field
-         * @param field Field to edit or null to add a new formula field
+         * Method to display a {@link com.smartgwt.client..SummaryBuilder} to create or edit a Summary Field
+         * @param field Field to edit or null to add a new summary column
          */
-        public native void editFormattedField(ListGridField field) /*-{
+        public native void editSummaryField(ListGridField field) /*-{
             var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
-            self.editFormattedField(field.@com.smartgwt.client.core.DataClass::getJsObj()());
+            self.editSummaryField(field.@com.smartgwt.client.core.DataClass::getJsObj()());
         }-*/;
 
 

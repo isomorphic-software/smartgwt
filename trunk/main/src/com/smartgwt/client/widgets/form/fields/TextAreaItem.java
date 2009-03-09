@@ -212,7 +212,7 @@ public class TextAreaItem extends FormItem {
     /**
      * Text wrapping style.
      *
-     * @param wrap wrap Default value is TextAreaItem.VIRTUAL
+     * @param wrap wrap Default value is {@link TextAreaWrap#SOFT}
      */
     public void setWrap(TextAreaWrap wrap) {
         setAttribute("wrap", wrap.getValue());

@@ -134,7 +134,6 @@ public class SubmitValuesEvent extends BrowserEvent<SubmitValuesHandler>  {
      *
      * @return the form values
      */
-    //TODO custom
     public  native JavaScriptObject getValues() /*-{
         var jsObj = this.@com.smartgwt.client.event.AbstractSmartEvent::jsObj;
         return jsObj.values;

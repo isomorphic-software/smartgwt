@@ -570,6 +570,33 @@ public class TileGrid extends TileLayout  implements DataBoundComponent, com.sma
         setAttribute("data", data, false);
     }
 
+
+    /**
+     * A List of TileRecord objects, specifying the data to be used to create the tiles.
+     *
+     * @return the records in the TileGrid
+     */
+    public TileRecord[] getData() {
+        JavaScriptObject dataJS = getAttributeAsJavaScriptObject("data");
+        TileRecord[] data = convertToTileRecordRecordArray(dataJS);
+        return data;
+    }
+
+    private static TileRecord[] convertToTileRecordRecordArray(JavaScriptObject nativeArray) {
+        if (nativeArray == null) {
+            return new TileRecord[]{};
+        }
+        JavaScriptObject[] componentsj = JSOHelper.toArray(nativeArray);
+        TileRecord[] objects = new TileRecord[componentsj.length];
+        for (int i = 0; i < componentsj.length; i++) {
+            JavaScriptObject componentJS = componentsj[i];
+            TileRecord obj = (TileRecord) RefDataClass.getRef(componentJS);
+            if (obj == null) obj = new TileRecord(componentJS);
+            objects[i] = obj;
+        }
+        return objects;
+    }
+
     /**
      * Criteria to be used when {@link com.smartgwt.client.widgets.tile.TileGrid#getAutoFetchData autoFetchData} is
      * set.

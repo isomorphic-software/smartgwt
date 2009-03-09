@@ -344,6 +344,25 @@ public class OperationBinding extends DataClass {
     }
 
     /**
+    * Configures {@link com.smartgwt.client.data.DataSource#getPreventHTTPCaching preventHTTPCaching} on a per-operationType basis.
+    *
+    * @param preventHTTPCaching preventHTTPCaching Default value is null
+    */
+    public void setPreventHTTPCaching(Boolean preventHTTPCaching) {
+        setAttribute("preventHTTPCaching", preventHTTPCaching);
+    }
+    /**
+     * Configures {@link com.smartgwt.client.data.DataSource#getPreventHTTPCaching preventHTTPCaching} on a per-operationType basis.
+     *
+     *
+     * @return Boolean
+     *
+     */
+    public Boolean getPreventHTTPCaching()  {
+        return getAttributeAsBoolean("preventHTTPCaching");
+    }
+
+    /**
     * For an XML or JSON DataSource, XPath expression used to retrieve the objects that will become DataSource records. <p> For example, an "ItemSearch" web service might return a "Results" structure containing metadata along with the set of Items that one might want to display in a grid.  An XPath expression like "/Results/Items" could be used to retrieve just the Items, which would then become DataSource records. <p> For a JSON web service, the <code>recordXPath</code> is applied to the returned JSON data via {@link com.smartgwt.client.util.XMLTools#selectObjects}.  Only limited XPath syntax is allowed; see  {@link com.smartgwt.client.util.XMLTools#selectObjects} for details. <P> For processing XML results, see {@link com.smartgwt.client.data.OperationBinding#getXmlNamespaces xmlNamespaces} for information on the namespaces that are available in this XPath expression. <P> To learn about XPath, try the following search: <a href="http://www.google.com/search?q=xpath+tutorial" target="_blank" >http://www.google.com/search?q=xpath+tutorial</a>
     *
     * @param recordXPath recordXPath Default value is null
