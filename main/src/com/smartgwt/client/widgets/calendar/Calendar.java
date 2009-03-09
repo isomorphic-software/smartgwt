@@ -66,7 +66,9 @@ import com.google.gwt.event.shared.HasHandlers;
 
 
 
-public class Calendar extends Canvas  implements DataBoundComponent, com.smartgwt.client.widgets.calendar.events.HasDayBodyClickHandlers, com.smartgwt.client.widgets.calendar.events.HasDayHeaderClickHandlers, com.smartgwt.client.widgets.calendar.events.HasEventChangedHandlers, com.smartgwt.client.widgets.calendar.events.HasEventClickHandlers, com.smartgwt.client.widgets.calendar.events.HasEventMovedHandlers, com.smartgwt.client.widgets.calendar.events.HasEventResizedHandlers, com.smartgwt.client.widgets.calendar.events.HasDateChangedHandlers {
+
+
+public class Calendar extends Canvas  implements DataBoundComponent, com.smartgwt.client.widgets.calendar.events.HasDayBodyClickHandlers, com.smartgwt.client.widgets.calendar.events.HasDayHeaderClickHandlers, com.smartgwt.client.widgets.calendar.events.HasEventChangedHandlers, com.smartgwt.client.widgets.calendar.events.HasEventClickHandlers, com.smartgwt.client.widgets.calendar.events.HasEventMovedHandlers, com.smartgwt.client.widgets.calendar.events.HasEventAddedHandlers, com.smartgwt.client.widgets.calendar.events.HasEventRemovedHandlers, com.smartgwt.client.widgets.calendar.events.HasEventResizedHandlers, com.smartgwt.client.widgets.calendar.events.HasDateChangedHandlers {
 
     public static Calendar getOrCreateRef(JavaScriptObject jsObj) {
         if(jsObj == null) return null;
@@ -730,6 +732,7 @@ public class Calendar extends Canvas  implements DataBoundComponent, com.smartgw
 
     /**
     * Suppresses the display of weekend days in the week and month views, and disallows the creation of events on weekends.  Which days are considered weekends is controlled by {@link com.smartgwt.client..Date#weekendDays}.
+    * Setter for {@link com.smartgwt.client.widgets.calendar.Calendar#getShowWeekends showWeekends} to change this property at runtime.
     *
     * @param showWeekends showWeekends Default value is true
     * @throws IllegalStateException this property cannot be changed after the component has been created
@@ -919,6 +922,7 @@ public class Calendar extends Canvas  implements DataBoundComponent, com.smartgw
 
 
 
+
         /**
          * Move to the next day, week, or month, depending on which tab is selected.
          */
@@ -1042,6 +1046,72 @@ public class Calendar extends Canvas  implements DataBoundComponent, com.smartgw
                 obj.eventChanged = function(){
                     var param = {"event" : arguments[0]};
                     var event = @com.smartgwt.client.widgets.calendar.events.CalendarEventChangedEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
+                    selfJ.@com.smartgwt.client.widgets.BaseWidget::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
+                };
+            }
+        }-*/;
+
+
+        /**
+         * Add a eventRemoved handler.
+         * <p>
+         * Notification fired whenever a user removes an event <P> In a calendar with a DataSource, eventRemoved() fires <b>after</b> the event has been successfully removed from the server
+         *
+         * @param handler the eventRemoved handler
+         */
+        public HandlerRegistration addEventRemovedHandler(com.smartgwt.client.widgets.calendar.events.EventRemovedHandler handler) {
+            if(getHandlerCount(com.smartgwt.client.widgets.calendar.events.CalendarEventRemoved.getType()) == 0) setupEventRemovedEvent();
+            return doAddHandler(handler, com.smartgwt.client.widgets.calendar.events.CalendarEventRemoved.getType());
+        }
+        private native void setupEventRemovedEvent() /*-{
+            var obj = null;
+            var selfJ = this;
+            if(this.@com.smartgwt.client.widgets.BaseWidget::isCreated()()) {
+                obj = this.@com.smartgwt.client.widgets.BaseWidget::getJsObj()();
+                obj.addProperties({eventRemoved:function(){
+                        var param = {"event" : arguments[0]};
+                        var event = @com.smartgwt.client.widgets.calendar.events.CalendarEventRemoved::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
+                        selfJ.@com.smartgwt.client.widgets.BaseWidget::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
+                    }
+                });
+            } else {
+                obj = this.@com.smartgwt.client.widgets.BaseWidget::getConfig()();
+                obj.eventRemoved = function(){
+                    var param = {"event" : arguments[0]};
+                    var event = @com.smartgwt.client.widgets.calendar.events.CalendarEventRemoved::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
+                    selfJ.@com.smartgwt.client.widgets.BaseWidget::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
+                };
+            }
+        }-*/;
+
+
+        /**
+         * Add a eventAdded handler.
+         * <p>
+         * Notification fired whenever a user adds an event. <P> In a calendar with a DataSource, eventAdded() fires <b>after</b> the event has been successfully added to the server
+         *
+         * @param handler the eventAdded handler
+         */
+        public HandlerRegistration addEventAddedHandler(com.smartgwt.client.widgets.calendar.events.EventAddedHandler handler) {
+            if(getHandlerCount(com.smartgwt.client.widgets.calendar.events.CalendarEventAdded.getType()) == 0) setupEventAddedEvent();
+            return doAddHandler(handler, com.smartgwt.client.widgets.calendar.events.CalendarEventAdded.getType());
+        }
+        private native void setupEventAddedEvent() /*-{
+            var obj = null;
+            var selfJ = this;
+            if(this.@com.smartgwt.client.widgets.BaseWidget::isCreated()()) {
+                obj = this.@com.smartgwt.client.widgets.BaseWidget::getJsObj()();
+                obj.addProperties({eventAdded:function(){
+                        var param = {"event" : arguments[0]};
+                        var event = @com.smartgwt.client.widgets.calendar.events.CalendarEventAdded::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
+                        selfJ.@com.smartgwt.client.widgets.BaseWidget::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
+                    }
+                });
+            } else {
+                obj = this.@com.smartgwt.client.widgets.BaseWidget::getConfig()();
+                obj.eventAdded = function(){
+                    var param = {"event" : arguments[0]};
+                    var event = @com.smartgwt.client.widgets.calendar.events.CalendarEventAdded::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
                     selfJ.@com.smartgwt.client.widgets.BaseWidget::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
                 };
             }

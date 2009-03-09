@@ -409,7 +409,7 @@ public class RPCRequest extends DataClass {
     }
 
     /**
-    * For xmlHttp transport + httpMethod: "GET"  only, set to true to force IE to send a conditional GET request even if the browser thinks it has a current cached response.
+    * For xmlHttp transport + httpMethod: "GET" only, set to true to force a conditional GET request even if the browser thinks it has a current cached response.
     * <p><b>Note : </b> This is an advanced setting</p>
     *
     * @param bypassCache bypassCache Default value is false
@@ -418,7 +418,7 @@ public class RPCRequest extends DataClass {
         setAttribute("bypassCache", bypassCache);
     }
     /**
-     * For xmlHttp transport + httpMethod: "GET"  only, set to true to force IE to send a conditional GET request even if the browser thinks it has a current cached response.
+     * For xmlHttp transport + httpMethod: "GET" only, set to true to force a conditional GET request even if the browser thinks it has a current cached response.
      *
      *
      * @return Boolean

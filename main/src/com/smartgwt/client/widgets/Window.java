@@ -1183,6 +1183,20 @@ public class Window extends VLayout  implements com.smartgwt.client.widgets.even
         setAttribute("keepInParentRect", rectangle.getAsJSArray(), true);
     }
 
+    /**
+     * The contents of the Window body. Can be specified three different ways: <ul>
+     * <li>an Array of Canvases that will become the children of the Window's body when it is initialized; the canvases in this array should be created, but not drawn (autodraw: false).</li>
+     * <li>a single canvas that will become a child of the Window body.</li>
+     * <li>a string that will be set as the body's contents.</li>
+     * </ul>
+     *
+     * @return items
+     */
+    public Canvas[] getItems() {
+      return Canvas.convertToCanvasArray(getAttributeAsJavaScriptObject("items"));
+    }
+
+
 }
 
 

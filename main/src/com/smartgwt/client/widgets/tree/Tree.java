@@ -88,7 +88,7 @@ public class Tree extends BaseClass  implements com.smartgwt.client.widgets.tree
     // ********************* Properties / Attributes ***********************
              
     /**
-    * Selects the model used to construct the tree representation.  If the "parent" modelType is used, you can provide the initial parent-linked data set to the tree via the {@link com.smartgwt.client.widgets.tree.Tree#getData data} attribute.  If the "children" modelType is used, you can provide the initial tree structure to the Tree via the {@link com.smartgwt.client.widgets.tree.Tree#getRoot root} attribute.
+    * Selects the model used to construct the tree representation.  See ${isc.DocUtils.linkForRef('type:TreeModelType')} for the available options and their implications. <P> If the "parent" modelType is used, you can provide the initial parent-linked data set to the tree via the {@link com.smartgwt.client.widgets.tree.Tree#getData data} attribute.  If the "children" modelType is used, you can provide the initial tree structure to the Tree via the {@link com.smartgwt.client.widgets.tree.Tree#getRoot root} attribute.
     * <p><b>Note : </b> This is an advanced setting</p>
     *
     * @param modelType modelType Default value is "children"
@@ -97,7 +97,7 @@ public class Tree extends BaseClass  implements com.smartgwt.client.widgets.tree
         setAttribute("modelType", modelType.getValue(), true);
     }
     /**
-     * Selects the model used to construct the tree representation.  If the "parent" modelType is used, you can provide the initial parent-linked data set to the tree via the {@link com.smartgwt.client.widgets.tree.Tree#getData data} attribute.  If the "children" modelType is used, you can provide the initial tree structure to the Tree via the {@link com.smartgwt.client.widgets.tree.Tree#getRoot root} attribute.
+     * Selects the model used to construct the tree representation.  See ${isc.DocUtils.linkForRef('type:TreeModelType')} for the available options and their implications. <P> If the "parent" modelType is used, you can provide the initial parent-linked data set to the tree via the {@link com.smartgwt.client.widgets.tree.Tree#getData data} attribute.  If the "children" modelType is used, you can provide the initial tree structure to the Tree via the {@link com.smartgwt.client.widgets.tree.Tree#getRoot root} attribute.
      *
      *
      * @return TreeModelType
@@ -187,7 +187,7 @@ public class Tree extends BaseClass  implements com.smartgwt.client.widgets.tree
     }
 
     /**
-    * Name of the property that holds the 'name' of a node for the purpose of calculating the path to the node.  By default this is set to {@link com.smartgwt.client.widgets.tree.TreeNode#getName name}.  If the value of the nameProperty of a node (e.g. node.name) is not a string, it will be converted to a string by the Tree via ""+value.
+    * Name of the property on a ${isc.DocUtils.linkForRef('object:TreeNode')} that holds a name for the node that is unique among it's immediate siblings, thus allowing a unique path to be used to identify the node, similar to a file system.  Default value is "name".  See {@link com.smartgwt.client.widgets.tree.TreeNode#getName name} for usage.
     *
     * @param nameProperty nameProperty Default value is "name"
     */
@@ -195,7 +195,7 @@ public class Tree extends BaseClass  implements com.smartgwt.client.widgets.tree
         setAttribute("nameProperty", nameProperty, true);
     }
     /**
-     * Name of the property that holds the 'name' of a node for the purpose of calculating the path to the node.  By default this is set to {@link com.smartgwt.client.widgets.tree.TreeNode#getName name}.  If the value of the nameProperty of a node (e.g. node.name) is not a string, it will be converted to a string by the Tree via ""+value.
+     * Name of the property on a ${isc.DocUtils.linkForRef('object:TreeNode')} that holds a name for the node that is unique among it's immediate siblings, thus allowing a unique path to be used to identify the node, similar to a file system.  Default value is "name".  See {@link com.smartgwt.client.widgets.tree.TreeNode#getName name} for usage.
      *
      *
      * @return String
@@ -206,7 +206,7 @@ public class Tree extends BaseClass  implements com.smartgwt.client.widgets.tree
     }
 
     /**
-    * Name of the property that holds the title of the node as it should be shown to the user.  By default this is set to {@link com.smartgwt.client.widgets.tree.TreeNode#getTitle title}.
+    * Name of the property on a ${isc.DocUtils.linkForRef('object:TreeNode')} that holds the title of the node as it should be shown to the user.  Default value is "title".  See {@link com.smartgwt.client.widgets.tree.TreeNode#getTitle title} for usage.
     *
     * @param titleProperty titleProperty Default value is "title"
     */
@@ -214,7 +214,7 @@ public class Tree extends BaseClass  implements com.smartgwt.client.widgets.tree
         setAttribute("titleProperty", titleProperty, true);
     }
     /**
-     * Name of the property that holds the title of the node as it should be shown to the user.  By default this is set to {@link com.smartgwt.client.widgets.tree.TreeNode#getTitle title}.
+     * Name of the property on a ${isc.DocUtils.linkForRef('object:TreeNode')} that holds the title of the node as it should be shown to the user.  Default value is "title".  See {@link com.smartgwt.client.widgets.tree.TreeNode#getTitle title} for usage.
      *
      *
      * @return String
@@ -225,7 +225,7 @@ public class Tree extends BaseClass  implements com.smartgwt.client.widgets.tree
     }
 
     /**
-    * For trees with modelType "parent", this property specifies the name of the property that contains the unique ID of nodes in this tree. By default this is set to {@link com.smartgwt.client.widgets.tree.TreeNode#getId id}.
+    * Name of the property on a ${isc.DocUtils.linkForRef('object:TreeNode')} that holds an id for the node which is unique across the entire Tree.  Required for all nodes for trees with modelType "parent". Default value is "id".  See {@link com.smartgwt.client.widgets.tree.TreeNode#getId id} for usage.
     * <p><b>Note : </b> This is an advanced setting</p>
     *
     * @param idField idField Default value is "id"
@@ -235,7 +235,7 @@ public class Tree extends BaseClass  implements com.smartgwt.client.widgets.tree
         setAttribute("idField", idField, false);
     }
     /**
-     * For trees with modelType "parent", this property specifies the name of the property that contains the unique ID of nodes in this tree. By default this is set to {@link com.smartgwt.client.widgets.tree.TreeNode#getId id}.
+     * Name of the property on a ${isc.DocUtils.linkForRef('object:TreeNode')} that holds an id for the node which is unique across the entire Tree.  Required for all nodes for trees with modelType "parent". Default value is "id".  See {@link com.smartgwt.client.widgets.tree.TreeNode#getId id} for usage.
      *
      *
      * @return String
@@ -246,7 +246,7 @@ public class Tree extends BaseClass  implements com.smartgwt.client.widgets.tree
     }
 
     /**
-    * For trees with modelType "parent", this property specifies the name of the property that contains the unique parent ID of a node.  By default this is set to {@link com.smartgwt.client.widgets.tree.TreeNode#getParentId parentId}.
+    * For trees with modelType "parent", this property specifies the name of the property that contains the unique parent ID of a node.  Default value is "parentId".  See {@link com.smartgwt.client.widgets.tree.TreeNode#getParentId parentId} for usage.
     * <p><b>Note : </b> This is an advanced setting</p>
     *
     * @param parentIdField parentIdField Default value is "parentId"
@@ -256,7 +256,7 @@ public class Tree extends BaseClass  implements com.smartgwt.client.widgets.tree
         setAttribute("parentIdField", parentIdField, false);
     }
     /**
-     * For trees with modelType "parent", this property specifies the name of the property that contains the unique parent ID of a node.  By default this is set to {@link com.smartgwt.client.widgets.tree.TreeNode#getParentId parentId}.
+     * For trees with modelType "parent", this property specifies the name of the property that contains the unique parent ID of a node.  Default value is "parentId".  See {@link com.smartgwt.client.widgets.tree.TreeNode#getParentId parentId} for usage.
      *
      *
      * @return String

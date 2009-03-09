@@ -172,6 +172,26 @@ public class DataSource extends BaseClass  implements com.smartgwt.client.data.e
     public RPCTransport getDataTransport()  {
         return (RPCTransport) EnumUtil.getEnum(RPCTransport.values(), getAttribute("dataTransport"));
     }
+
+    /**
+    * If set, the DataSource will ensure that it never uses a cached HTTP response, even if the server marks the response as cacheable. <P> Note that this does not disable caching at higher levels in the framework, for example, the caching performed by {@link com.smartgwt.client.data.ResultSet}.
+    *
+    * @param preventHTTPCaching preventHTTPCaching Default value is true
+    * @throws IllegalStateException this property cannot be changed after the underlying component has been created
+    */
+    public void setPreventHTTPCaching(Boolean preventHTTPCaching)  throws IllegalStateException {
+        setAttribute("preventHTTPCaching", preventHTTPCaching, false);
+    }
+    /**
+     * If set, the DataSource will ensure that it never uses a cached HTTP response, even if the server marks the response as cacheable. <P> Note that this does not disable caching at higher levels in the framework, for example, the caching performed by {@link com.smartgwt.client.data.ResultSet}.
+     *
+     *
+     * @return Boolean
+     *
+     */
+    public Boolean getPreventHTTPCaching()  {
+        return getAttributeAsBoolean("preventHTTPCaching");
+    }
              
     /**
     * For a DataSource stored in .xml format on the ISC server, indicates what server-side connector to use to execute requests, that is, what happens if you call dsRequest.execute() in server code.
