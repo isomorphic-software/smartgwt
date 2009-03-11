@@ -7,4 +7,4 @@ The distribution includes a basic "helloworld" sample under the "samples" direct
 
 *You must use GWT 1.5.3 (or greater).* Earlier versions of GWT are not supported.
 
-If you have any questions, please post them on the SmartGWT forum.
+Several tutorials for setting up common development tools (Eclipse, NetBeans, etc) are available as sticky threads on the [http://forums.smartclient.com/forumdisplay.php?f=14 SmartGWT Forums].  This is also the best place to ask technical questions.
