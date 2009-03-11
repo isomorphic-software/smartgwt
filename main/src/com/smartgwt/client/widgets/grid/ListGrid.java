@@ -5069,9 +5069,19 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
     // ********************* Static Methods ***********************
 
 
-
-
-
+
+
+
+
+
+
+
+
+
+
+
+
+
 
     protected native void onInit() /*-{
 
@@ -6568,6 +6578,25 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
             self.transferSelectedData(source.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()(), index);
         }-*/;
 
+
+        /**
+         * Returns a snapshot of the current presentation of this listGrid's fields as  a ${isc.DocUtils.linkForRef('type:listGridFieldState')} object.<br> This object can be passed to {@link com.smartgwt.client.widgets.grid.ListGrid#setFieldState} to reset this grid's fields to the current state.<br> Note that the information stored includes the current width and visibility of each of this  grid's fields.
+         *
+         * @return current state of this grid's fields.
+         */
+        public native String getFieldState() /*-{
+            var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
+            return self.getFieldState();
+        }-*/;
+
+        /**
+         * Sets some presentation properties (visibility, width, userFormula and userSummary) of the  listGrid fields based on the ${isc.DocUtils.linkForRef('type:listGridFieldState')} object passed in.<br> Used to restore previous state retrieved from the grid by a call to {@link com.smartgwt.client.widgets.grid.ListGrid#getFieldState}.
+         * @param fieldState state to apply to the listGrid's fields.
+         */
+        public native void setFieldState(String fieldState) /*-{
+            var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
+            self.setFieldState(fieldState);
+        }-*/;
 }
 
 
