@@ -2,7 +2,6 @@ package com.smartgwt.client.i18n;
 
 /**
  * Interface to represent the messages contained in resource bundle:
- * 	/Users/sjivan/java/smartgwt-svn/trunk/main/src/com/smartgwt/client/i18n/SmartGwtMessages.properties'.
  */
 public interface SmartGwtMessages extends com.google.gwt.i18n.client.Messages {
   
