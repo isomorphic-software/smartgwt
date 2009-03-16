@@ -24,11 +24,12 @@ import com.google.gwt.event.shared.HandlerRegistration;
 import com.smartgwt.client.types.ValueEnum;
 import com.smartgwt.client.util.JSOHelper;
 import com.smartgwt.client.widgets.BaseWidget;
+import com.smartgwt.client.data.Record;
 
 import java.util.Date;
 import java.util.Map;
 
-public class DataClass extends JsObject {
+public class DataClass extends JsObject implements Record {
 
     public DataClass() {
         super(JSOHelper.createObject());
