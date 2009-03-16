@@ -629,10 +629,10 @@ public class JSOHelper {
         for (Iterator iterator = valueMap.keySet().iterator(); iterator.hasNext();) {
             String key = (String) iterator.next();
             Object value = valueMap.get(key);
-            /* if (value instanceof JsObject) {
-              setAttribute(valueJS, key, ((JsObject) value).getJsObj());
-          } else */
-            if (value instanceof Date) {
+            
+            if (value instanceof JavaScriptObject) {
+                setAttribute(valueJS, key, (JavaScriptObject) value);
+            } else if (value instanceof Date) {
                 setAttribute(valueJS, key, ((Date) value));
             } else if (value instanceof Number) {
                 setAttribute(valueJS, key, ((Number) value).doubleValue());
