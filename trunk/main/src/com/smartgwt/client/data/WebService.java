@@ -15,12 +15,13 @@ public class WebService extends JsObject {
         var self  = this.@com.smartgwt.client.core.JsObject::getJsObj()();
         var paramDataJS = @com.smartgwt.client.util.JSOHelper::convertMapToJavascriptObject(Ljava/util/Map;)(paramData);
 
-        self.callOperation(operationName, paramDataJS, resultType, function(data) {
+        self.callOperation(operationName, paramDataJS, resultType, function(data, xmlDoc, rpcResponse, wsRequest) {
             if(!@com.smartgwt.client.util.JSOHelper::isArray(Lcom/google/gwt/core/client/JavaScriptObject;)(data)) {
                 data = [data];
             }
-            var dataJ = @com.smartgwt.client.util.JSOHelper::convertToJavaObjectArray(Lcom/google/gwt/core/client/JavaScriptObject;)(data);            
-            callback.@com.smartgwt.client.data.WebServiceCallback::execute([Ljava/lang/Object;)(dataJ);
+            var dataJ = @com.smartgwt.client.util.JSOHelper::convertToJavaObjectArray(Lcom/google/gwt/core/client/JavaScriptObject;)(data);
+            var resp = @com.smartgwt.client.rpc.RPCResponse::new(Lcom/google/gwt/core/client/JavaScriptObject;)(rpcResponse); 
+            callback.@com.smartgwt.client.data.WebServiceCallback::execute([Ljava/lang/Object;Lcom/google/gwt/core/client/JavaScriptObject;Lcom/smartgwt/client/rpc/RPCResponse;Lcom/google/gwt/core/client/JavaScriptObject;)(dataJ, xmlDoc, resp, wsRequest);
         });
     }-*/;
 
