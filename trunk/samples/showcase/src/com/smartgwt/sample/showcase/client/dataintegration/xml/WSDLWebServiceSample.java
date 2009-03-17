@@ -14,8 +14,10 @@ import com.smartgwt.client.widgets.form.fields.events.ClickEvent;
 import com.smartgwt.client.widgets.form.fields.events.ClickHandler;
 import com.smartgwt.client.widgets.form.fields.events.KeyPressEvent;
 import com.smartgwt.client.widgets.form.fields.events.KeyPressHandler;
+import com.smartgwt.client.rpc.RPCResponse;
 import com.smartgwt.sample.showcase.client.PanelFactory;
 import com.smartgwt.sample.showcase.client.ShowcasePanel;
+import com.google.gwt.core.client.JavaScriptObject;
 
 import java.util.LinkedHashMap;
 import java.util.Map;
@@ -94,7 +96,8 @@ public class WSDLWebServiceSample extends ShowcasePanel {
                  Map data = new LinkedHashMap();
                  data.put("USZip", getValueAsString("ZipCode"));
                  zipCodeService.callOperation("GetInfoByZIP", data, "//CITY", new WebServiceCallback() {
-                     public void execute(Object[] data) {
+
+                     public void execute(Object[] data, JavaScriptObject xmlDoc, RPCResponse rpcResponse, JavaScriptObject wsRequest) {                    
                          ZipForm.this.setValue("City", (String)data[0]);
                      }
                  });
