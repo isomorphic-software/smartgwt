@@ -272,7 +272,7 @@ public class TileGrid extends TileLayout  implements DataBoundComponent, com.sma
     // ********************* Methods ***********************
 
         /**
-         * Uses a "fetch" operation on the current {@link com.smartgwt.client.data.DataSource} to retrieve data that matches the current filter and sort criteria for this component, then exports the  resulting data to a file or window in the requested format. <P> For more information on exporting data, see {@link com.smartgwt.client.data.DataSource#exportData}.
+         * Uses a "fetch" operation on the current {@link com.smartgwt.client..DataBoundComponent#getDataSource dataSource} to  retrieve data that matches the current filter and sort criteria for this component, then  exports the resulting data to a file or window in the requested format. <P> For more information on exporting data, see {@link com.smartgwt.client.data.DataSource#exportData}.
          */
         public native void exportData() /*-{
             var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
@@ -280,7 +280,7 @@ public class TileGrid extends TileLayout  implements DataBoundComponent, com.sma
         }-*/;
 
         /**
-         * Uses a "fetch" operation on the current {@link com.smartgwt.client.data.DataSource} to retrieve data that matches the current filter and sort criteria for this component, then exports the  resulting data to a file or window in the requested format. <P> For more information on exporting data, see {@link com.smartgwt.client.data.DataSource#exportData}.
+         * Uses a "fetch" operation on the current {@link com.smartgwt.client..DataBoundComponent#getDataSource dataSource} to  retrieve data that matches the current filter and sort criteria for this component, then  exports the resulting data to a file or window in the requested format. <P> For more information on exporting data, see {@link com.smartgwt.client.data.DataSource#exportData}.
          * @param requestProperties additional properties to set on the DSRequest                                            that will be issued
          */
         public native void exportData(DSRequest requestProperties) /*-{
@@ -483,13 +483,12 @@ public class TileGrid extends TileLayout  implements DataBoundComponent, com.sma
     }-*/;
 
     /**
-     * When using the default {@link com.smartgwt.client..SimpleTile} class as {@link
-     * com.smartgwt.client.widgets.tile.TileGrid#getTileConstructor tileConstructor}, this method provides the HTML to
+     * This method provides the HTML to
      * be displayed within each tile.  See {@link com.smartgwt.client.widgets.tile.TileGrid#getTile tile}.
      * <p/>
      * <b>This is an override point.</b>
      *
-     * @param tileRecord the tile for which HTML should be retrieved
+     * @param record the tile for which HTML should be retrieved
      * @return HTML contents for the tile, as a String
      */
     protected native String getTileHTML(TileRecord record) /*-{
@@ -761,7 +760,7 @@ public class TileGrid extends TileLayout  implements DataBoundComponent, com.sma
     /**
      * Perform a DataSource "add" operation to add new records to this component's DataSource.
      *
-     * @param newRecord new record
+     * @param record new record
      */
     public native void addData(Record record) /*-{
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
@@ -772,7 +771,7 @@ public class TileGrid extends TileLayout  implements DataBoundComponent, com.sma
     /**
      * Perform a DataSource "add" operation to add new records to this component's DataSource.
      *
-     * @param newRecord new record
+     * @param record new record
      * @param callback  method to call on operation completion
      */
     public native void addData(Record record, DSCallback callback) /*-{
@@ -788,7 +787,7 @@ public class TileGrid extends TileLayout  implements DataBoundComponent, com.sma
     /**
      * Perform a DataSource "add" operation to add new records to this component's DataSource.
      *
-     * @param newRecord         new record
+     * @param record         new record
      * @param callback          method to call on operation completion
      * @param requestProperties additional properties to set on the DSRequest
      *                          that will be issued
@@ -807,7 +806,7 @@ public class TileGrid extends TileLayout  implements DataBoundComponent, com.sma
     /**
      * Perform a DataSource "remove" operation to remove records from this component's DataSource.
      *
-     * @param data primary key values of record to delete,                                           (or complete
+     * @param record primary key values of record to delete,                                           (or complete
      *             record)
      */
     public native void removeData(Record record) /*-{
@@ -819,7 +818,7 @@ public class TileGrid extends TileLayout  implements DataBoundComponent, com.sma
     /**
      * Perform a DataSource "remove" operation to remove records from this component's DataSource.
      *
-     * @param data     primary key values of record to delete,                                           (or complete
+     * @param record     primary key values of record to delete,                                           (or complete
      *                 record)
      * @param callback method to call on operation completion
      */
@@ -836,7 +835,7 @@ public class TileGrid extends TileLayout  implements DataBoundComponent, com.sma
     /**
      * Perform a DataSource "remove" operation to remove records from this component's DataSource.
      *
-     * @param data              primary key values of record to delete,                                           (or
+     * @param record              primary key values of record to delete,                                           (or
      *                          complete record)
      * @param callback          method to call on operation completion
      * @param requestProperties additional properties to set on the DSRequest

@@ -601,6 +601,25 @@ public class DataSourceField extends DataClass {
         return getAttributeAsString("tableName");
     }
 
+    /**
+    * When true, this field can only be used for sorting if the data is entirely client-side.
+    *
+    * @param canSortClientOnly canSortClientOnly Default value is false
+    */
+    public void setCanSortClientOnly(Boolean canSortClientOnly) {
+        setAttribute("canSortClientOnly", canSortClientOnly);
+    }
+    /**
+     * When true, this field can only be used for sorting if the data is entirely client-side.
+     *
+     *
+     * @return Boolean
+     *
+     */
+    public Boolean getCanSortClientOnly()  {
+        return getAttributeAsBoolean("canSortClientOnly");
+    }
+
     // ********************* Methods ***********************
 
 

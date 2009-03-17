@@ -4667,11 +4667,20 @@ public class Canvas extends BaseWidget  implements com.smartgwt.client.widgets.e
     /**
      * Synonmy for {@link #setPrompt(String)}
      *
-     * @param title the title
+     * @param tooltip the tooltip
      */
     public void setTooltip(String tooltip) {
         setPrompt(tooltip);
     }
+
+    /**
+     * Synonmy for {@link #getPrompt()}
+     *
+     * @return  the tooltip
+     */
+    public String getTooltip() {
+        return getPrompt();
+    }   
 
     /**
      * Size for this component's horizontal dimension. <P> Can be a number of pixels, or a percentage like "50%".
