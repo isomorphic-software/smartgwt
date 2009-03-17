@@ -92,6 +92,25 @@ public class TimeItem extends TextItem {
 
     // ********************* Static Methods ***********************
 
+
+    /**
+     * What format should this item's time string be presented in?
+     *
+     * @param displayFormat displayFormat Default value is "toShort24HourTime"
+     */
+    public void setDisplayFormat(DateDisplayFormat displayFormat) {
+        setAttribute("displayFormat", displayFormat.getValue());
+    }
+
+    /**
+     * What format should this item's time string be presented in?
+     *
+     * @return DateDisplayFormat
+     */
+    public DateDisplayFormat getDisplayFormat() {
+        return (DateDisplayFormat) EnumUtil.getEnum(DateDisplayFormat.values(), getAttribute("displayFormat"));
+    }
+
 }
 
 
