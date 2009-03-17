@@ -203,6 +203,25 @@ public class ListGridField extends DataClass  implements com.smartgwt.client.wid
     }
 
     /**
+    * When true, this field can only be used for sorting if the data is entirely client-side.
+    *
+    * @param canSortClientOnly canSortClientOnly Default value is false
+    */
+    public void setCanSortClientOnly(Boolean canSortClientOnly) {
+        setAttribute("canSortClientOnly", canSortClientOnly);
+    }
+    /**
+     * When true, this field can only be used for sorting if the data is entirely client-side.
+     *
+     *
+     * @return Boolean
+     *
+     */
+    public Boolean getCanSortClientOnly()  {
+        return getAttributeAsBoolean("canSortClientOnly");
+    }
+
+    /**
     * Default width and height of value icons in this field. Takes precidence over valueIconWidth, valueIconHeight and valueIconSize specified at the ListGrid level. Can be overridden via {@link com.smartgwt.client.widgets.grid.ListGridField#getValueIconWidth valueIconWidth} and {ListGridField.valueIconHeight}
     *
     * @param valueIconSize valueIconSize Default value is null

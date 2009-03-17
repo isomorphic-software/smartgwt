@@ -725,6 +725,26 @@ public class DataSource extends BaseClass  implements com.smartgwt.client.data.e
     }
 
     /**
+    * For dataSources of {@link com.smartgwt.client.data.DataSource#getServerType serverType} "sql", determines whether we qualify column names with table names in any SQL we generate.  This property can be overridden on specific operationBindings.
+    *
+    * @param qualifyColumnNames qualifyColumnNames Default value is true
+    * @throws IllegalStateException this property cannot be changed after the underlying component has been created
+    */
+    public void setQualifyColumnNames(Boolean qualifyColumnNames)  throws IllegalStateException {
+        setAttribute("qualifyColumnNames", qualifyColumnNames, false);
+    }
+    /**
+     * For dataSources of {@link com.smartgwt.client.data.DataSource#getServerType serverType} "sql", determines whether we qualify column names with table names in any SQL we generate.  This property can be overridden on specific operationBindings.
+     *
+     *
+     * @return Boolean
+     *
+     */
+    public Boolean getQualifyColumnNames()  {
+        return getAttributeAsBoolean("qualifyColumnNames");
+    }
+
+    /**
     * [A] If set to true, both client and server-side advanced filtering used by SmartClient will follow SQL99 behavior for dealing with NULL values, which is often counter-intuitive to users. Specifically, when a field has NULL value, all of the following expression are false: <pre>    field == "someValue"  (normally false)    field != "someValue"  (normally true)    not (field == "someValue")   (normally true)    not (field != "someValue")   (normally false) </pre>
     *
     * @param strictSQLFiltering strictSQLFiltering Default value is false

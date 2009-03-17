@@ -454,58 +454,72 @@ public class ColorPicker extends Window {
 
         /**
          * Returns the Red element of the currently-selected color, as an integer from 0-255
+         *
+         * @return red color component
          */
-        public native void getRed() /*-{
+        public native int getRed() /*-{
             var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
-            self.getRed();
+            return self.getRed();
         }-*/;
 
         /**
          * Returns the Green element of the currently-selected color, as an integer from 0-255
+         *
+         * @return green color component
          */
-        public native void getGreen() /*-{
+        public native int getGreen() /*-{
             var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
-            self.getGreen();
+            return self.getGreen();
         }-*/;
 
         /**
          * Returns the Blue element of the currently-selected color, as an integer from 0-255
+         *
+         * @return blue color component
          */
-        public native void getBlue() /*-{
+        public native int getBlue() /*-{
             var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
-            self.getBlue();
+            return self.getBlue();
         }-*/;
 
         /**
          * Returns the Hue of the currently-selected color, as an integer from 0-239
+         *
+         * @return hue value
          */
-        public native void getHue() /*-{
+        public native int getHue() /*-{
             var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
-            self.getHue();
+            return self.getHue();
         }-*/;
 
         /**
          * Returns the Saturation of the currently-selected color, as an integer from 0-240
+         *
+         * @return saturation value
          */
-        public native void getSaturation() /*-{
+        public native int getSaturation() /*-{
             var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
-            self.getSaturation();
+            return self.getSaturation();
         }-*/;
 
         /**
          * Returns the Luminosity (brightness) of the currently-selected color, as an  integer from 0-240
+         *
+         * @return luminosity value
          */
-        public native void getLuminosity() /*-{
+        public native int getLuminosity() /*-{
             var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
-            self.getLuminosity();
+            return self.getLuminosity();
         }-*/;
 
         /**
          * Returns the currently-selected color, in HTML color representation form, as a string. HTML color representation is a hash sign, followed by the red, green and blue elements of the color in 2-digit hex form - for example "#F17F1D"
+         *
+         * @return HTML color value
          */
-        public native void getHtmlColor() /*-{
+        public native String getHtmlColor() /*-{
             var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
-            self.getHtmlColor();
+            return self.getHtmlColor();
         }-*/;
 
 

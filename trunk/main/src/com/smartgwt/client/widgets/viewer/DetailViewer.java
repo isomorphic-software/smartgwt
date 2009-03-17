@@ -499,7 +499,7 @@ public class DetailViewer extends Canvas  implements DataBoundComponent {
 
 
         /**
-         * Uses a "fetch" operation on the current {@link com.smartgwt.client.data.DataSource} to retrieve data that matches the current filter and sort criteria for this component, then exports the  resulting data to a file or window in the requested format. <P> For more information on exporting data, see {@link com.smartgwt.client.data.DataSource#exportData}.
+         * Uses a "fetch" operation on the current {@link com.smartgwt.client..DataBoundComponent#getDataSource dataSource} to  retrieve data that matches the current filter and sort criteria for this component, then  exports the resulting data to a file or window in the requested format. <P> For more information on exporting data, see {@link com.smartgwt.client.data.DataSource#exportData}.
          */
         public native void exportData() /*-{
             var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
@@ -507,7 +507,7 @@ public class DetailViewer extends Canvas  implements DataBoundComponent {
         }-*/;
 
         /**
-         * Uses a "fetch" operation on the current {@link com.smartgwt.client.data.DataSource} to retrieve data that matches the current filter and sort criteria for this component, then exports the  resulting data to a file or window in the requested format. <P> For more information on exporting data, see {@link com.smartgwt.client.data.DataSource#exportData}.
+         * Uses a "fetch" operation on the current {@link com.smartgwt.client..DataBoundComponent#getDataSource dataSource} to  retrieve data that matches the current filter and sort criteria for this component, then  exports the resulting data to a file or window in the requested format. <P> For more information on exporting data, see {@link com.smartgwt.client.data.DataSource#exportData}.
          * @param requestProperties additional properties to set on the DSRequest                                            that will be issued
          */
         public native void exportData(DSRequest requestProperties) /*-{
@@ -518,6 +518,17 @@ public class DetailViewer extends Canvas  implements DataBoundComponent {
 
 
 
+
+        /**
+         * Get the index of the provided record. <P> Override in subclasses to provide more specific behaviour, for instance, when data holds a large number of records
+         * @param record the record whose index is to be retrieved
+         *
+         * @return indexindex of the record, or -1 if not found
+         */
+        public native int getRecordIndex(Record record) /*-{
+            var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
+            return self.getRecordIndex(record);
+        }-*/;
 
     // ********************* Static Methods ***********************
 

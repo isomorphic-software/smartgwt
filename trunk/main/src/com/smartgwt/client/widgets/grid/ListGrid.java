@@ -3204,125 +3204,11 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
         return getAttributeAsString("ungroupText");
     }
 
-    /**
-    * Adds an item to the header context menu allowing users to launch a dialog to define a new ListGrid field based on values present in other ListGrid fields.
-    *
-    * @param canAddFormulaFields canAddFormulaFields Default value is true
-    */
-    public void setCanAddFormulaFields(Boolean canAddFormulaFields) {
-        setAttribute("canAddFormulaFields", canAddFormulaFields, true);
-    }
-    /**
-     * Adds an item to the header context menu allowing users to launch a dialog to define a new ListGrid field based on values present in other ListGrid fields.
-     *
-     *
-     * @return Boolean
-     *
-     */
-    public Boolean getCanAddFormulaFields()  {
-        return getAttributeAsBoolean("canAddFormulaFields");
-    }
-
-    /**
-    * Text for a menu item allowing users to add a formula field
-    *
-    * @param addFormulaFieldText addFormulaFieldText Default value is "Add formula column..."
-    */
-    public void setAddFormulaFieldText(String addFormulaFieldText) {
-        setAttribute("addFormulaFieldText", addFormulaFieldText, true);
-    }
-    /**
-     * Text for a menu item allowing users to add a formula field
-     *
-     *
-     * @return String
-     *
-     */
-    public String getAddFormulaFieldText()  {
-        return getAttributeAsString("addFormulaFieldText");
-    }
-
-    /**
-    * Text for a menu item allowing users to edit a formula field
-    *
-    * @param editFormulaFieldText editFormulaFieldText Default value is "Edit formula..."
-    */
-    public void setEditFormulaFieldText(String editFormulaFieldText) {
-        setAttribute("editFormulaFieldText", editFormulaFieldText, true);
-    }
-    /**
-     * Text for a menu item allowing users to edit a formula field
-     *
-     *
-     * @return String
-     *
-     */
-    public String getEditFormulaFieldText()  {
-        return getAttributeAsString("editFormulaFieldText");
-    }
-
-    /**
-    * Adds an item to the header context menu allowing users to launch a dialog to define a new ListGrid field based on values present in other ListGrid fields and formatted as specified.
-    *
-    * @param canAddSummaryFields canAddSummaryFields Default value is true
-    */
-    public void setCanAddSummaryFields(Boolean canAddSummaryFields) {
-        setAttribute("canAddSummaryFields", canAddSummaryFields, true);
-    }
-    /**
-     * Adds an item to the header context menu allowing users to launch a dialog to define a new ListGrid field based on values present in other ListGrid fields and formatted as specified.
-     *
-     *
-     * @return Boolean
-     *
-     */
-    public Boolean getCanAddSummaryFields()  {
-        return getAttributeAsBoolean("canAddSummaryFields");
-    }
-
-    /**
-    * Text for a menu item allowing users to add a formula field
-    *
-    * @param addSummaryFieldText addSummaryFieldText Default value is "Add summary column..."
-    */
-    public void setAddSummaryFieldText(String addSummaryFieldText) {
-        setAttribute("addSummaryFieldText", addSummaryFieldText, true);
-    }
-    /**
-     * Text for a menu item allowing users to add a formula field
-     *
-     *
-     * @return String
-     *
-     */
-    public String getAddSummaryFieldText()  {
-        return getAttributeAsString("addSummaryFieldText");
-    }
-
-    /**
-    * Text for a menu item allowing users to edit the formatter for a field
-    *
-    * @param editSummaryFieldText editSummaryFieldText Default value is "Edit summary format..."
-    */
-    public void setEditSummaryFieldText(String editSummaryFieldText) {
-        setAttribute("editSummaryFieldText", editSummaryFieldText, true);
-    }
-    /**
-     * Text for a menu item allowing users to edit the formatter for a field
-     *
-     *
-     * @return String
-     *
-     */
-    public String getEditSummaryFieldText()  {
-        return getAttributeAsString("editSummaryFieldText");
-    }
-
     // ********************* Methods ***********************
 
 
         /**
-         * Uses a "fetch" operation on the current {@link com.smartgwt.client.data.DataSource} to retrieve data that matches the current filter and sort criteria for this component, then exports the  resulting data to a file or window in the requested format. <P> For more information on exporting data, see {@link com.smartgwt.client.data.DataSource#exportData}.
+         * Uses a "fetch" operation on the current {@link com.smartgwt.client..DataBoundComponent#getDataSource dataSource} to  retrieve data that matches the current filter and sort criteria for this component, then  exports the resulting data to a file or window in the requested format. <P> For more information on exporting data, see {@link com.smartgwt.client.data.DataSource#exportData}.
          */
         public native void exportData() /*-{
             var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
@@ -3330,7 +3216,7 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
         }-*/;
 
         /**
-         * Uses a "fetch" operation on the current {@link com.smartgwt.client.data.DataSource} to retrieve data that matches the current filter and sort criteria for this component, then exports the  resulting data to a file or window in the requested format. <P> For more information on exporting data, see {@link com.smartgwt.client.data.DataSource#exportData}.
+         * Uses a "fetch" operation on the current {@link com.smartgwt.client..DataBoundComponent#getDataSource dataSource} to  retrieve data that matches the current filter and sort criteria for this component, then  exports the resulting data to a file or window in the requested format. <P> For more information on exporting data, see {@link com.smartgwt.client.data.DataSource#exportData}.
          * @param requestProperties additional properties to set on the DSRequest                                            that will be issued
          */
         public native void exportData(DSRequest requestProperties) /*-{
@@ -4697,40 +4583,6 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
             self.setHeaderSpanTitle(name, newTitle);
         }-*/;
 
-        /**
-         * Convenience method to display a {@link com.smartgwt.client..FormulaBuilder} to create a new Formula Field.  This  is equivalent to calling {@link com.smartgwt.client.widgets.grid.ListGrid#editFormulaField} with no paramater.
-         */
-        public native void addFormulaField() /*-{
-            var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
-            self.addFormulaField();
-        }-*/;
-
-        /**
-         * Method to display a {@link com.smartgwt.client..FormulaBuilder} to create or edit a Formula Field
-         * @param field Field to edit or null to add a new formula field
-         */
-        public native void editFormulaField(ListGridField field) /*-{
-            var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
-            self.editFormulaField(field.@com.smartgwt.client.core.DataClass::getJsObj()());
-        }-*/;
-
-        /**
-         * Convenience method to display a {@link com.smartgwt.client..SummaryBuilder} to create a new Summary Field.  This  is equivalent to calling {@link com.smartgwt.client.widgets.grid.ListGrid#editSummaryField} with no paramater.
-         */
-        public native void addSummaryField() /*-{
-            var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
-            self.addSummaryField();
-        }-*/;
-
-        /**
-         * Method to display a {@link com.smartgwt.client..SummaryBuilder} to create or edit a Summary Field
-         * @param field Field to edit or null to add a new summary column
-         */
-        public native void editSummaryField(ListGridField field) /*-{
-            var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
-            self.editSummaryField(field.@com.smartgwt.client.core.DataClass::getJsObj()());
-        }-*/;
-
 
 
 
@@ -5069,19 +4921,9 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
     // ********************* Static Methods ***********************
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
+
+
+
 
     protected native void onInit() /*-{
 
@@ -6597,6 +6439,7 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
             var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
             self.setFieldState(fieldState);
         }-*/;
+
 }
 
 
