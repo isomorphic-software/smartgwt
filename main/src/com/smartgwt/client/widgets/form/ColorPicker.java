@@ -59,7 +59,8 @@ import com.google.gwt.event.shared.HasHandlers;
     * The ColorPicker widget allows the user to select a color from anywhere in the  color spectrum. It also supports selecting the alpha (opacity) value of the  color.  The picker supports a simple mode - which allows for one-click selection from a standard palette of colors - and a complex mode which allow the user to define any conceivable color. It is possible for the user to switch from simple mode to complex by interacting with the widget.  In general, the widget provides very similar functionality to the color picker dialogs found in graphics packages and other desktop software.
 
     */
-public class ColorPicker extends Window {
+
+public class ColorPicker extends Window  implements com.smartgwt.client.widgets.form.events.HasColorSelectedHandlers {
 
     public static ColorPicker getOrCreateRef(JavaScriptObject jsObj) {
         if(jsObj == null) return null;
@@ -603,14 +604,38 @@ public class ColorPicker extends Window {
             self.colorChanged();
         }-*/;
 
+
+
         /**
+         * Add a colorSelected handler.
+         * <p>
          * Override this method to be notified when the user selects a color either by clicking a basic color box in simple mode, or by clicking  the OK button in complex mode. It is not intended that client code  call this method.
-         * @param color The color selected, in HTML format
-     * @param opacity The opacity selected, from 0-100.
+         *
+         * @param handler the colorSelected handler
          */
-        public native void colorSelected(String color, int opacity) /*-{
-            var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
-            self.colorSelected(color, opacity);
+        public HandlerRegistration addColorSelectedHandler(com.smartgwt.client.widgets.form.events.ColorSelectedHandler handler) {
+            if(getHandlerCount(com.smartgwt.client.widgets.form.events.ColorSelectedEvent.getType()) == 0) setupColorSelectedEvent();
+            return doAddHandler(handler, com.smartgwt.client.widgets.form.events.ColorSelectedEvent.getType());
+        }
+        private native void setupColorSelectedEvent() /*-{
+            var obj = null;
+            var selfJ = this;
+            if(this.@com.smartgwt.client.widgets.BaseWidget::isCreated()()) {
+                obj = this.@com.smartgwt.client.widgets.BaseWidget::getJsObj()();
+                obj.addProperties({colorSelected:function(){
+                        var param = {"color" : arguments[0], "opacity" : arguments[1]};
+                        var event = @com.smartgwt.client.widgets.form.events.ColorSelectedEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
+                        selfJ.@com.smartgwt.client.widgets.BaseWidget::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
+                    }
+                });
+            } else {
+                obj = this.@com.smartgwt.client.widgets.BaseWidget::getConfig()();
+                obj.colorSelected = function(){
+                    var param = {"color" : arguments[0], "opacity" : arguments[1]};
+                    var event = @com.smartgwt.client.widgets.form.events.ColorSelectedEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
+                    selfJ.@com.smartgwt.client.widgets.BaseWidget::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
+                };
+            }
         }-*/;
 
     // ********************* Static Methods ***********************
