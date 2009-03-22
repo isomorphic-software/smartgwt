@@ -68,7 +68,8 @@ import com.google.gwt.event.shared.HasHandlers;
 
 
 
-public class Calendar extends Canvas  implements DataBoundComponent, com.smartgwt.client.widgets.calendar.events.HasDayBodyClickHandlers, com.smartgwt.client.widgets.calendar.events.HasDayHeaderClickHandlers, com.smartgwt.client.widgets.calendar.events.HasEventChangedHandlers, com.smartgwt.client.widgets.calendar.events.HasEventClickHandlers, com.smartgwt.client.widgets.calendar.events.HasEventMovedHandlers, com.smartgwt.client.widgets.calendar.events.HasEventAddedHandlers, com.smartgwt.client.widgets.calendar.events.HasEventRemovedHandlers, com.smartgwt.client.widgets.calendar.events.HasEventResizedHandlers, com.smartgwt.client.widgets.calendar.events.HasDateChangedHandlers {
+
+public class Calendar extends Canvas  implements DataBoundComponent, com.smartgwt.client.widgets.calendar.events.HasDayBodyClickHandlers, com.smartgwt.client.widgets.calendar.events.HasDayHeaderClickHandlers, com.smartgwt.client.widgets.calendar.events.HasEventChangedHandlers, com.smartgwt.client.widgets.calendar.events.HasEventClickHandlers, com.smartgwt.client.widgets.calendar.events.HasEventRemoveClickHandlers, com.smartgwt.client.widgets.calendar.events.HasEventMovedHandlers, com.smartgwt.client.widgets.calendar.events.HasEventAddedHandlers, com.smartgwt.client.widgets.calendar.events.HasEventRemovedHandlers, com.smartgwt.client.widgets.calendar.events.HasEventResizedHandlers, com.smartgwt.client.widgets.calendar.events.HasDateChangedHandlers {
 
     public static Calendar getOrCreateRef(JavaScriptObject jsObj) {
         if(jsObj == null) return null;
@@ -1122,7 +1123,7 @@ public class Calendar extends Canvas  implements DataBoundComponent, com.smartgw
         /**
          * Add a eventClick handler.
          * <p>
-         * Called whenever an event is clicked on in the day, week or month views. <P> By default a dialog appears showing details for the event, and offering the ability to edit events which are editable.  Return false to cancel the default action.
+         * Called whenever an event is clicked on in the day, week or month views. <P> By default a dialog appears showing details for the event, and offering the ability to edit events which are editable.  Return false to cancel the default action. This is a good place to, for example, show a completely customized event dialog instead of the default one.
          *
          * @param handler the eventClick handler
          */
@@ -1148,6 +1149,44 @@ public class Calendar extends Canvas  implements DataBoundComponent, com.smartgw
                 obj.eventClick = function(){
                     var param = {"event" : arguments[0], "viewName" : arguments[1]};
                     var event = @com.smartgwt.client.widgets.calendar.events.CalendarEventClick::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
+                    selfJ.@com.smartgwt.client.widgets.BaseWidget::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
+                    var ret = event.@com.smartgwt.client.event.Cancellable::isCancelled()();
+                    return !ret;
+                };
+            }
+        }-*/;
+
+
+
+        /**
+         * Add a eventRemoveClick handler.
+         * <p>
+         * Called whenever the close icon of an event is clicked within the day or week view. Return false to cancel the removal, or true to allow it. <P> Implement this method to do something like, for example, showing a confirmation dialog  before an event is removed.
+         *
+         * @param handler the eventRemoveClick handler
+         */
+        public HandlerRegistration addEventRemoveClickHandler(com.smartgwt.client.widgets.calendar.events.EventRemoveClickHandler handler) {
+            if(getHandlerCount(com.smartgwt.client.widgets.calendar.events.CalendarEventRemoveClick.getType()) == 0) setupEventRemoveClickEvent();
+            return doAddHandler(handler, com.smartgwt.client.widgets.calendar.events.CalendarEventRemoveClick.getType());
+        }
+        private native void setupEventRemoveClickEvent() /*-{
+            var obj = null;
+            var selfJ = this;
+            if(this.@com.smartgwt.client.widgets.BaseWidget::isCreated()()) {
+                obj = this.@com.smartgwt.client.widgets.BaseWidget::getJsObj()();
+                obj.addProperties({eventRemoveClick:function(){
+                        var param = {"event" : arguments[0], "viewName" : arguments[1]};
+                        var event = @com.smartgwt.client.widgets.calendar.events.CalendarEventRemoveClick::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
+                        selfJ.@com.smartgwt.client.widgets.BaseWidget::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
+                        var ret = event.@com.smartgwt.client.event.Cancellable::isCancelled()();
+                        return !ret;
+                    }
+                });
+            } else {
+                obj = this.@com.smartgwt.client.widgets.BaseWidget::getConfig()();
+                obj.eventRemoveClick = function(){
+                    var param = {"event" : arguments[0], "viewName" : arguments[1]};
+                    var event = @com.smartgwt.client.widgets.calendar.events.CalendarEventRemoveClick::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
                     selfJ.@com.smartgwt.client.widgets.BaseWidget::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
                     var ret = event.@com.smartgwt.client.event.Cancellable::isCancelled()();
                     return !ret;
@@ -1252,6 +1291,31 @@ public class Calendar extends Canvas  implements DataBoundComponent, com.smartgw
                     var event = @com.smartgwt.client.widgets.calendar.events.DateChangedEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
                     selfJ.@com.smartgwt.client.widgets.BaseWidget::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
                 };
+            }
+        }-*/;
+
+        /**
+         * Gets the day of the week (0-6) that the mouse is currently over.
+         *
+         * @return the day that the mouse is currently over
+         */
+        public native int getActiveDay() /*-{
+            var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
+            return self.getActiveDay();
+        }-*/;
+
+        /**
+         * Gets a date object representing the date over which the mouse is hovering for the current selected view. For month view, the time will be set to midnight of the active day. For dayview and week view, the time will be the rounded to the closest half hour relative to the mouse position.
+         *
+         * @return the date that the mouse is over
+         */
+        public native Date getActiveTime() /*-{
+            var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
+            var retVal =self.getActiveTime();
+            if(retVal == null || retVal === undefined) {
+                return null;
+            } else {
+                return @com.smartgwt.client.util.JSOHelper::toDate(D)(retVal.getTime());
             }
         }-*/;
 

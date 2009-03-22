@@ -6,10 +6,11 @@ package com.smartgwt.client.rpc;
 public interface LoginRequiredCallback {
 
     /**
+     * Called when a session timeout is encountered while trying to do a background RPC.
      *
-     * @param transactionNum
-     * @param request
-     * @param response
+     * @param transactionNum id of the transaction
+     * @param request the first RPCRequest of the transaction
+     * @param response the RPCResponse containing the session timeout response that caused loginRequired() to be invoked
      *
      * @see com.smartgwt.client.rpc.RPCManager#setLoginRequiredCallback
      */

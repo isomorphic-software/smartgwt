@@ -147,7 +147,7 @@ public class SelectItem extends FormItem  implements PickList {
     }
 
     /**
-    * Select the first option as the default value for this SelectItem. If options are derived from a dataSource, the first value returned by the server will be used, otherwise the first value in the valueMap. If enabled, this setting overrides {@link com.smartgwt.client.widgets.form.fields.SelectItem#getDefaultValue defaultValue} and {@link com.smartgwt.client.widgets.form.fields.SelectItem#defaultDynamicValue}.
+    * Select the first option as the default value for this SelectItem.  <P> If options are derived from a dataSource, the first value returned by the server will be used, otherwise the first value in the valueMap.  Note that setting this property to true will trigger a fetch at soon as the form is created, because the form will try to establish a default value at that time. <P> If enabled, this setting overrides {@link com.smartgwt.client.widgets.form.fields.SelectItem#getDefaultValue defaultValue} and {@link com.smartgwt.client.widgets.form.fields.SelectItem#defaultDynamicValue}.
     *
     * @param defaultToFirstOption defaultToFirstOption Default value is false
     */
@@ -155,7 +155,7 @@ public class SelectItem extends FormItem  implements PickList {
         setAttribute("defaultToFirstOption", defaultToFirstOption);
     }
     /**
-     * Select the first option as the default value for this SelectItem. If options are derived from a dataSource, the first value returned by the server will be used, otherwise the first value in the valueMap. If enabled, this setting overrides {@link com.smartgwt.client.widgets.form.fields.SelectItem#getDefaultValue defaultValue} and {@link com.smartgwt.client.widgets.form.fields.SelectItem#defaultDynamicValue}.
+     * Select the first option as the default value for this SelectItem.  <P> If options are derived from a dataSource, the first value returned by the server will be used, otherwise the first value in the valueMap.  Note that setting this property to true will trigger a fetch at soon as the form is created, because the form will try to establish a default value at that time. <P> If enabled, this setting overrides {@link com.smartgwt.client.widgets.form.fields.SelectItem#getDefaultValue defaultValue} and {@link com.smartgwt.client.widgets.form.fields.SelectItem#defaultDynamicValue}.
      *
      *
      * @return Boolean
@@ -361,7 +361,7 @@ public class SelectItem extends FormItem  implements PickList {
     }
 
     /**
-    * If this select item retrieves its options from a <code>dataSource</code>, should options be fetched from the server when the item is first written out, or should this fetch be delayed until the user opens the pickList.
+    * If this select item retrieves its options from a <code>dataSource</code>, should options be fetched from the server when the item is first drawn, or should this fetch be delayed until the user opens the pickList. <P> The default is true in order to allow the user to select a value via keyboard input while keyboard focus is on the SelectItem but the pickList has not actually been shown.
     * <p><b>Note : </b> This is an advanced setting</p>
     *
     * @param autoFetchData autoFetchData Default value is true
@@ -370,7 +370,7 @@ public class SelectItem extends FormItem  implements PickList {
         setAttribute("autoFetchData", autoFetchData);
     }
     /**
-     * If this select item retrieves its options from a <code>dataSource</code>, should options be fetched from the server when the item is first written out, or should this fetch be delayed until the user opens the pickList.
+     * If this select item retrieves its options from a <code>dataSource</code>, should options be fetched from the server when the item is first drawn, or should this fetch be delayed until the user opens the pickList. <P> The default is true in order to allow the user to select a value via keyboard input while keyboard focus is on the SelectItem but the pickList has not actually been shown.
      *
      *
      * @return Boolean
@@ -381,7 +381,7 @@ public class SelectItem extends FormItem  implements PickList {
     }
 
     /**
-    * Specifies an alternative field from which display values should be retrieved for this item.<br> If this item is not databound ({@link com.smartgwt.client.widgets.form.fields.FormItem#getOptionDataSource optionDataSource} is unset), or bound  to the same dataSource as the form as a whole, this is implemented by picking up the value of the specified field from the Form's values object.<br> Otherwise this item will attempt to map its underlying value to a display value by retrieving a record from the {@link com.smartgwt.client.widgets.form.fields.FormItem#getOptionDataSource optionDataSource} where the  {@link com.smartgwt.client.widgets.form.fields.FormItem#getValueField valueField} matches this item's value, and displaying the  <code>displayField</code> value from that record.<br> This essentially enables the specified <code>optionDataSource</code> to be used as a server based ${isc.DocUtils.linkForRef('group:valueMap')}.
+    * Specifies an alternative field from which display values should be retrieved for this item.   <P> The display field can be either another field value in the same record or a field that must be retrieved from a related {@link com.smartgwt.client.widgets.form.fields.FormItem#getOptionDataSource optionDataSource}. <P> If this item is not databound ({@link com.smartgwt.client.widgets.form.fields.FormItem#getOptionDataSource optionDataSource} is unset), or bound  to the same dataSource as the form as a whole, this item will call {@link com.smartgwt.client.widgets.form.DynamicForm#getValue}  the form named after is implemented by picking up the value of the specified field from the Form's values object. <P> Otherwise this item will attempt to map its underlying value to a display value by retrieving a record from the {@link com.smartgwt.client.widgets.form.fields.FormItem#getOptionDataSource optionDataSource} where the  {@link com.smartgwt.client.widgets.form.fields.FormItem#getValueField valueField} matches this item's value, and displaying the  <code>displayField</code> value from that record. <P> This essentially enables the specified <code>optionDataSource</code> to be used as a server based ${isc.DocUtils.linkForRef('group:valueMap')}.
     *
     * @param displayField displayField Default value is null
     */
@@ -389,7 +389,7 @@ public class SelectItem extends FormItem  implements PickList {
         setAttribute("displayField", displayField);
     }
     /**
-     * Specifies an alternative field from which display values should be retrieved for this item.<br> If this item is not databound ({@link com.smartgwt.client.widgets.form.fields.FormItem#getOptionDataSource optionDataSource} is unset), or bound  to the same dataSource as the form as a whole, this is implemented by picking up the value of the specified field from the Form's values object.<br> Otherwise this item will attempt to map its underlying value to a display value by retrieving a record from the {@link com.smartgwt.client.widgets.form.fields.FormItem#getOptionDataSource optionDataSource} where the  {@link com.smartgwt.client.widgets.form.fields.FormItem#getValueField valueField} matches this item's value, and displaying the  <code>displayField</code> value from that record.<br> This essentially enables the specified <code>optionDataSource</code> to be used as a server based ${isc.DocUtils.linkForRef('group:valueMap')}.
+     * Specifies an alternative field from which display values should be retrieved for this item.   <P> The display field can be either another field value in the same record or a field that must be retrieved from a related {@link com.smartgwt.client.widgets.form.fields.FormItem#getOptionDataSource optionDataSource}. <P> If this item is not databound ({@link com.smartgwt.client.widgets.form.fields.FormItem#getOptionDataSource optionDataSource} is unset), or bound  to the same dataSource as the form as a whole, this item will call {@link com.smartgwt.client.widgets.form.DynamicForm#getValue}  the form named after is implemented by picking up the value of the specified field from the Form's values object. <P> Otherwise this item will attempt to map its underlying value to a display value by retrieving a record from the {@link com.smartgwt.client.widgets.form.fields.FormItem#getOptionDataSource optionDataSource} where the  {@link com.smartgwt.client.widgets.form.fields.FormItem#getValueField valueField} matches this item's value, and displaying the  <code>displayField</code> value from that record. <P> This essentially enables the specified <code>optionDataSource</code> to be used as a server based ${isc.DocUtils.linkForRef('group:valueMap')}.
      *
      *
      * @return String
@@ -419,7 +419,7 @@ public class SelectItem extends FormItem  implements PickList {
     }
 
     /**
-    * If <code>filterLocally</code> is set for this item, and this item is showing options  from a dataSource, fetch the entire set of options from the server, and use these values to map the item value to the appropriate display value. Also use <code>"local"</code> type filtering on drop down list of options.<br> This means data will only be fetched once from the server, and then filtered on the client.
+    * If <code>filterLocally</code> is set for this item, and this item is showing options  from a dataSource, fetch the entire set of options from the server, and use these values to map the item value to the appropriate display value. Also use <code>"local"</code> type filtering on drop down list of options. <P> This means data will only be fetched once from the server, and then filtered on the client.
     * <p><b>Note : </b> This is an advanced setting</p>
     *
     * @param filterLocally filterLocally Default value is false
@@ -428,7 +428,7 @@ public class SelectItem extends FormItem  implements PickList {
         setAttribute("filterLocally", filterLocally);
     }
     /**
-     * If <code>filterLocally</code> is set for this item, and this item is showing options  from a dataSource, fetch the entire set of options from the server, and use these values to map the item value to the appropriate display value. Also use <code>"local"</code> type filtering on drop down list of options.<br> This means data will only be fetched once from the server, and then filtered on the client.
+     * If <code>filterLocally</code> is set for this item, and this item is showing options  from a dataSource, fetch the entire set of options from the server, and use these values to map the item value to the appropriate display value. Also use <code>"local"</code> type filtering on drop down list of options. <P> This means data will only be fetched once from the server, and then filtered on the client.
      *
      *
      * @return Boolean

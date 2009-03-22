@@ -270,9 +270,9 @@ public class RPCManager {
      */
     public static native void setLoginRequiredCallback(LoginRequiredCallback callback) /*-{
         $wnd.isc.RPCManager.addClassProperties({
-            loginRequired : function (transactionNum, response, request) {
-               var responseJ = @com.smartgwt.client.rpc.RPCResponse::new(Lcom/google/gwt/core/client/JavaScriptObject;)(response);
+            loginRequired : function (transactionNum, request, response) {
                var requestJ = @com.smartgwt.client.rpc.RPCRequest::new(Lcom/google/gwt/core/client/JavaScriptObject;)(request);
+               var responseJ = @com.smartgwt.client.rpc.RPCResponse::new(Lcom/google/gwt/core/client/JavaScriptObject;)(response);
                callback.@com.smartgwt.client.rpc.LoginRequiredCallback::loginRequired(ILcom/smartgwt/client/rpc/RPCRequest;Lcom/smartgwt/client/rpc/RPCResponse;)(transactionNum, responseJ, requestJ);
             }
         });
