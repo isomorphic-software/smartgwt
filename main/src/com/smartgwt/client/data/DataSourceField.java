@@ -412,6 +412,25 @@ public class DataSourceField extends DataClass {
     }
 
     /**
+    * For a field that is {@link com.smartgwt.client.data.DataSourceField#getMultiple multiple}, controls the name of the XML tag used for each subelement during {@link com.smartgwt.client.data.DataSource#xmlSerialize}. <P> If unset, the default tag name is "value" for a field of simple type, and for a field of DataSource type, is the tagName or ID of the DataSource (as though <code>xmlSerialize()</code> were called on the child DataSource).
+    *
+    * @param childTagName childTagName Default value is null
+    */
+    public void setChildTagName(String childTagName) {
+        setAttribute("childTagName", childTagName);
+    }
+    /**
+     * For a field that is {@link com.smartgwt.client.data.DataSourceField#getMultiple multiple}, controls the name of the XML tag used for each subelement during {@link com.smartgwt.client.data.DataSource#xmlSerialize}. <P> If unset, the default tag name is "value" for a field of simple type, and for a field of DataSource type, is the tagName or ID of the DataSource (as though <code>xmlSerialize()</code> were called on the child DataSource).
+     *
+     *
+     * @return String
+     *
+     */
+    public String getChildTagName()  {
+        return getAttributeAsString("childTagName");
+    }
+
+    /**
     * For use in ${isc.DocUtils.linkForRef('group:componentSchema')} for fields that contain other components, this flag suppresses auto-construction for subcomponents that appear under this field. <P> For example, the {@link com.smartgwt.client.widgets.layout.VLayout} schema sets this for its {@link com.smartgwt.client.widgets.layout.Layout#getMembers members} property, so that when a VLayout is constructed via XML as follows: <pre> &lt;VLayout&gt;     &lt;members&gt;         &lt;ListGrid ID="myGrid" .../&gt;         &lt;Toolstrip ID="myToolStrip" ... /&gt;     &lt;/members&gt; &lt;/VLayout&gt; </pre> The ListGrid and ToolStrip do not construct themselves automatically.  Instead, the VLayout receives the properties of the ListGrid and ToolStrip as ordinary JavaScript Objects, with the special property <code>_constructor</code> set to the name of the class that should be constructed.
     *
     * @param propertiesOnly propertiesOnly Default value is null

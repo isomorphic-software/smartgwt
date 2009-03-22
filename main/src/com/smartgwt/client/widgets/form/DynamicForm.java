@@ -799,7 +799,7 @@ public class DynamicForm extends Canvas  implements DataBoundComponent, com.smar
     }
 
     /**
-    * If this property is set to true, whenever a text based field in this form  ({@link com.smartgwt.client.widgets.form.fields.TextItem}, {@link com.smartgwt.client.widgets.form.fields.TextAreaItem}) is given focus programmatically  (see {@link com.smartgwt.client.widgets.form.DynamicForm#focusInItem}), all text within the item will be selected.<br> May be overridden at the form item level.
+    * If this property is set to true, whenever a text-based field in this form  ({@link com.smartgwt.client.widgets.form.fields.TextItem}, {@link com.smartgwt.client.widgets.form.fields.TextAreaItem}) is given focus programmatically  (see {@link com.smartgwt.client.widgets.form.DynamicForm#focusInItem}), all text within the item will be selected. <P> Note that this flag affects only programmatic focus.  It's the normal behavior of text fields to select all text if the user navigates into them via keyboard, or if the user navigates via mouse, to place the text insertion point at the mouse click, and SmartClient preserves these behaviors.  <code>selectOnFocus</code> if only needed for cases like a form within a pop-up dialog that should have the first field selected. <P> If <code>selectOnFocus</code> is false, the selection is not modified on focus - any previous selection within the item will be maintained. <P> May be overridden at the form item level via {@link com.smartgwt.client.widgets.form.fields.FormItem#getSelectOnFocus selectOnFocus}.
     *
     * @param selectOnFocus selectOnFocus Default value is false
     */
@@ -807,7 +807,7 @@ public class DynamicForm extends Canvas  implements DataBoundComponent, com.smar
         setAttribute("selectOnFocus", selectOnFocus, true);
     }
     /**
-     * If this property is set to true, whenever a text based field in this form  ({@link com.smartgwt.client.widgets.form.fields.TextItem}, {@link com.smartgwt.client.widgets.form.fields.TextAreaItem}) is given focus programmatically  (see {@link com.smartgwt.client.widgets.form.DynamicForm#focusInItem}), all text within the item will be selected.<br> May be overridden at the form item level.
+     * If this property is set to true, whenever a text-based field in this form  ({@link com.smartgwt.client.widgets.form.fields.TextItem}, {@link com.smartgwt.client.widgets.form.fields.TextAreaItem}) is given focus programmatically  (see {@link com.smartgwt.client.widgets.form.DynamicForm#focusInItem}), all text within the item will be selected. <P> Note that this flag affects only programmatic focus.  It's the normal behavior of text fields to select all text if the user navigates into them via keyboard, or if the user navigates via mouse, to place the text insertion point at the mouse click, and SmartClient preserves these behaviors.  <code>selectOnFocus</code> if only needed for cases like a form within a pop-up dialog that should have the first field selected. <P> If <code>selectOnFocus</code> is false, the selection is not modified on focus - any previous selection within the item will be maintained. <P> May be overridden at the form item level via {@link com.smartgwt.client.widgets.form.fields.FormItem#getSelectOnFocus selectOnFocus}.
      *
      *
      * @return Boolean

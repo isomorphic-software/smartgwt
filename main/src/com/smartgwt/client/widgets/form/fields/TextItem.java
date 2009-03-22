@@ -165,7 +165,7 @@ public class TextItem extends FormItem {
     }
 
     /**
-    * If this property is set to true, whenever this item is given focus programmatically  (see {@link com.smartgwt.client.widgets.form.DynamicForm#focusInItem}), all text within the item will be selected.<br> If false, the selection is not modified on focus - any previous selection within the item will be restored.<br> If unset, this property is derived from {@link com.smartgwt.client.widgets.form.DynamicForm#getSelectOnFocus selectOnFocus}
+    * Allows the {@link com.smartgwt.client.widgets.form.DynamicForm#getSelectOnFocus selectOnFocus} behavior to be configured on a per-FormItem basis.  Normally all items in a form default to the value of {@link com.smartgwt.client.widgets.form.DynamicForm#getSelectOnFocus selectOnFocus}.
     *
     * @param selectOnFocus selectOnFocus Default value is null
     */
@@ -173,7 +173,7 @@ public class TextItem extends FormItem {
         setAttribute("selectOnFocus", selectOnFocus);
     }
     /**
-     * If this property is set to true, whenever this item is given focus programmatically  (see {@link com.smartgwt.client.widgets.form.DynamicForm#focusInItem}), all text within the item will be selected.<br> If false, the selection is not modified on focus - any previous selection within the item will be restored.<br> If unset, this property is derived from {@link com.smartgwt.client.widgets.form.DynamicForm#getSelectOnFocus selectOnFocus}
+     * Allows the {@link com.smartgwt.client.widgets.form.DynamicForm#getSelectOnFocus selectOnFocus} behavior to be configured on a per-FormItem basis.  Normally all items in a form default to the value of {@link com.smartgwt.client.widgets.form.DynamicForm#getSelectOnFocus selectOnFocus}.
      *
      *
      * @return Boolean
