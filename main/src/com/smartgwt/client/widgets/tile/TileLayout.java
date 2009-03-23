@@ -449,7 +449,7 @@ public class TileLayout extends Canvas {
     /**
      * Remove a tile from the layout.
      *
-     * @param tileID index or String ID of the tile
+     * @param tileIndex index or String ID of the tile
      * @return whether a tile was found and removed
      */
     public native boolean removeTile(int tileIndex) /*-{
@@ -471,13 +471,21 @@ public class TileLayout extends Canvas {
     /**
      * Remove a tile from the layout.
      *
-     * @param tileID index or String ID of the tile
+     * @param tile index or String ID of the tile
      * @return whether a tile was found and removed
      */
     public native boolean removeTile(Canvas tile) /*-{
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
         var tileJS = tile.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
         return !!self.removeTile(tileJS);
+    }-*/;
+
+    /**
+     * Forces layout out the tiles
+     */
+    public native void layoutTiles() /*-{
+        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
+        self.layoutTiles();
     }-*/;
 
 }
