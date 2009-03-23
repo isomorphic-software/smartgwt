@@ -2,6 +2,7 @@ package com.smartgwt.client.i18n;
 
 /**
  * Interface to represent the messages contained in resource bundle:
+ * 	/Users/sjivan/java/smartgwt-svn/trunk/main/src/com/smartgwt/client/i18n/SmartGwtMessages.properties'.
  */
 public interface SmartGwtMessages extends com.google.gwt.i18n.client.Messages {
   
@@ -13,6 +14,51 @@ public interface SmartGwtMessages extends com.google.gwt.i18n.client.Messages {
   @DefaultMessage("From must be before To")
   @Key("calendar_invalidDateMessage")
   String calendar_invalidDateMessage();
+
+  /**
+   * Translated "Add formula column...".
+   * 
+   * @return translated "Add formula column..."
+   */
+  @DefaultMessage("Add formula column...")
+  @Key("dataBoundComponent_addFormulaFieldText")
+  String dataBoundComponent_addFormulaFieldText();
+
+  /**
+   * Translated "Add sumamry column...".
+   * 
+   * @return translated "Add sumamry column..."
+   */
+  @DefaultMessage("Add sumamry column...")
+  @Key("dataBoundComponent_addSummaryFieldText")
+  String dataBoundComponent_addSummaryFieldText();
+
+  /**
+   * Translated "Edit formula...".
+   * 
+   * @return translated "Edit formula..."
+   */
+  @DefaultMessage("Edit formula...")
+  @Key("dataBoundComponent_editFormulaFieldText")
+  String dataBoundComponent_editFormulaFieldText();
+
+  /**
+   * Translated "Edit summary format...".
+   * 
+   * @return translated "Edit summary format..."
+   */
+  @DefaultMessage("Edit summary format...")
+  @Key("dataBoundComponent_editSummaryFieldText")
+  String dataBoundComponent_editSummaryFieldText();
+
+  /**
+   * Translated "Field is required".
+   * 
+   * @return translated "Field is required"
+   */
+  @DefaultMessage("Field is required")
+  @Key("dataBoundComponent_requiredFieldMessage")
+  String dataBoundComponent_requiredFieldMessage();
 
   /**
    * Translated "Cancel".
@@ -375,6 +421,42 @@ public interface SmartGwtMessages extends com.google.gwt.i18n.client.Messages {
   String dynamicForm_unknownErrorMessage();
 
   /**
+   * Translated "and".
+   * 
+   * @return translated "and"
+   */
+  @DefaultMessage("and")
+  @Key("filterBuilder_radioOptions_and")
+  String filterBuilder_radioOptions_and();
+
+  /**
+   * Translated "not".
+   * 
+   * @return translated "not"
+   */
+  @DefaultMessage("not")
+  @Key("filterBuilder_radioOptions_not")
+  String filterBuilder_radioOptions_not();
+
+  /**
+   * Translated "or".
+   * 
+   * @return translated "or"
+   */
+  @DefaultMessage("or")
+  @Key("filterBuilder_radioOptions_or")
+  String filterBuilder_radioOptions_or();
+
+  /**
+   * Translated "and".
+   * 
+   * @return translated "and"
+   */
+  @DefaultMessage("and")
+  @Key("filterBuilder_topOperator")
+  String filterBuilder_topOperator();
+
+  /**
    * Translated "Auto hide fields used in formula".
    * 
    * @return translated "Auto hide fields used in formula"
@@ -418,6 +500,15 @@ public interface SmartGwtMessages extends com.google.gwt.i18n.client.Messages {
   @DefaultMessage("by Hours")
   @Key("grouping_byHoursTitle")
   String grouping_byHoursTitle();
+
+  /**
+   * Translated "by Milliseconds".
+   * 
+   * @return translated "by Milliseconds"
+   */
+  @DefaultMessage("by Milliseconds")
+  @Key("grouping_byMillisecondsTitle")
+  String grouping_byMillisecondsTitle();
 
   /**
    * Translated "by Minutes".
@@ -483,15 +574,6 @@ public interface SmartGwtMessages extends com.google.gwt.i18n.client.Messages {
   String grouping_byYearTitle();
 
   /**
-   * Translated "by Milliseconds".
-   * 
-   * @return translated "by Milliseconds"
-   */
-  @DefaultMessage("by Milliseconds")
-  @Key("grouping_nyMillisecondsTitle")
-  String grouping_nyMillisecondsTitle();
-
-  /**
    * Translated "Before".
    * 
    * @return translated "Before"
@@ -555,24 +637,6 @@ public interface SmartGwtMessages extends com.google.gwt.i18n.client.Messages {
   String grouping_upcomingTomorrowTitle();
 
   /**
-   * Translated "Add formula column...".
-   * 
-   * @return translated "Add formula column..."
-   */
-  @DefaultMessage("Add formula column...")
-  @Key("listGrid_addFormulaFieldText")
-  String listGrid_addFormulaFieldText();
-
-  /**
-   * Translated "Add sumamry column...".
-   * 
-   * @return translated "Add sumamry column..."
-   */
-  @DefaultMessage("Add sumamry column...")
-  @Key("listGrid_addSummaryFieldText")
-  String listGrid_addSummaryFieldText();
-
-  /**
    * Translated "Cancelling this edit will clear unsaved edit values for this record. Continue?".
    * 
    * @return translated "Cancelling this edit will clear unsaved edit values for this record. Continue?"
@@ -598,24 +662,6 @@ public interface SmartGwtMessages extends com.google.gwt.i18n.client.Messages {
   @DefaultMessage("Save")
   @Key("listGrid_discardEditsSaveButtonTitle")
   String listGrid_discardEditsSaveButtonTitle();
-
-  /**
-   * Translated "Edit formula...".
-   * 
-   * @return translated "Edit formula..."
-   */
-  @DefaultMessage("Edit formula...")
-  @Key("listGrid_editFormulaFieldText")
-  String listGrid_editFormulaFieldText();
-
-  /**
-   * Translated "Edit summary format...".
-   * 
-   * @return translated "Edit summary format..."
-   */
-  @DefaultMessage("Edit summary format...")
-  @Key("listGrid_editSummaryFieldText")
-  String listGrid_editSummaryFieldText();
 
   /**
    * Translated "No items to show.".
@@ -679,15 +725,6 @@ public interface SmartGwtMessages extends com.google.gwt.i18n.client.Messages {
   @DefaultMessage("Loading data...")
   @Key("listGrid_loadingDataMessage")
   String listGrid_loadingDataMessage();
-
-  /**
-   * Translated "Field is required".
-   * 
-   * @return translated "Field is required"
-   */
-  @DefaultMessage("Field is required")
-  @Key("listGrid_requiredFieldMessage")
-  String listGrid_requiredFieldMessage();
 
   /**
    * Translated "Sort Ascending".
@@ -798,6 +835,15 @@ public interface SmartGwtMessages extends com.google.gwt.i18n.client.Messages {
   String operators_equalsTitle();
 
   /**
+   * Translated "greater than or equal to".
+   * 
+   * @return translated "greater than or equal to"
+   */
+  @DefaultMessage("greater than or equal to")
+  @Key("operators_greaterOrEqualTitle")
+  String operators_greaterOrEqualTitle();
+
+  /**
    * Translated "greater than".
    * 
    * @return translated "greater than"
@@ -886,6 +932,15 @@ public interface SmartGwtMessages extends com.google.gwt.i18n.client.Messages {
   @DefaultMessage("is null")
   @Key("operators_isNullTitle")
   String operators_isNullTitle();
+
+  /**
+   * Translated "less than or equal to".
+   * 
+   * @return translated "less than or equal to"
+   */
+  @DefaultMessage("less than or equal to")
+  @Key("operators_lessOrEqualTitle")
+  String operators_lessOrEqualTitle();
 
   /**
    * Translated "less than".

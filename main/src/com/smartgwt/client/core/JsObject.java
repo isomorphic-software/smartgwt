@@ -19,12 +19,14 @@ package com.smartgwt.client.core;
 import com.google.gwt.core.client.JavaScriptObject;
 import com.google.gwt.core.client.GWT;
 import com.smartgwt.client.util.LogUtil;
+import com.smartgwt.client.util.I18nUtil;
 
 public class JsObject {
 
     static {
         LogUtil.setJSNIErrorHandler();
         init();
+        I18nUtil.init();
     }
 
     private static native void init() /*-{
