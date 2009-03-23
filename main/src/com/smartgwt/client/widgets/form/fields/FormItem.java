@@ -2373,6 +2373,15 @@ public class FormItem extends RefDataClass  implements com.smartgwt.client.widge
         setAttribute("editorType", editorType.getType());
     }
 
+    /**
+     * Default prompt (and tooltip-text) for icons
+     *
+     * @param iconPrompt the icon prompt
+     */
+    public void setIconPrompt(String iconPrompt) {
+        setAttribute("iconPrompt", iconPrompt);
+    }
+
     public native Object getValue() /*-{
         var self = this.@com.smartgwt.client.core.DataClass::getJsObj()();
         var value = self.getValue();

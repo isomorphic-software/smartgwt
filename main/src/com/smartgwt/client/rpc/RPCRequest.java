@@ -488,8 +488,37 @@ public class RPCRequest extends DataClass {
         setAttribute("data", data);
     }
 
+    /**
+     * This attribute specifies the payload of the RPCRequest.  When using the SmartClient server, any JavaScript simple
+     * type or arbitrarily nested set of Objects and Arrays can be sent to server and automatically translated to Java
+     * Objects.  Here are the  mapping of JavaScript types to their corresponding server object types:<br><br> <table
+     * class='normal' border='1'>   <tr><td><b>JS Type</b></td>     <td><b>Java Type</b></td> <td><b>C# Type</b></td>
+     * <td><b>Perl Type</b></td></tr>   <tr><td>Object: {}</td>         <td>Map</td>              <td>IDictionary</td>
+     *    <td>Associative Array: {}</td></tr>   <tr><td>Array: []</td>          <td>List</td>             <td>IList</td>
+     *      <td>Array: []</td></tr>   <tr><td>String</td>             <td>String</td>           <td>string</td>
+     * <td>string</td></tr>   <tr><td>Number</td>             <td>Long|Double</td>      <td>long|double</td>
+     * <td>string</td></tr>   <tr><td>Boolean</td>            <td>Boolean</td>          <td>bool</td>
+     * <td>string</td></tr>   <tr><td>Date</td>               <td>java.util.Date</td>   <td>DateTime</td>
+     * <td>string</td></tr>  </table> <br><br> Note that the order of keys/values in the Maps created on the server is
+     * not guaranteed because JavaScript Object literals do not guarantee order. <p> Server->client conversion follows
+     * the this table as well, with some extras.  See the toJS() method on JSTranslater in the server documentation for
+     * a description of additional behaviors. <P> When <b>not</b> communicating with the SmartClient server,
+     * <code>rpcRequest.data</code> becomes simple HTTP parameters or an HTTP request body - see {@link
+     * com.smartgwt.client.rpc.RPCRequest#getUseSimpleHttp useSimpleHttp} for details.
+     *
+     * @param data data Default value is null
+     */
+    public void setData(String data) {
+        setAttribute("data", data);
+    }
+
+
     public JavaScriptObject getData() {
         return getAttributeAsJavaScriptObject("data");
+    }
+
+    public String getDataAsString() {
+        return getAttributeAsString("data");
     }
 
     /**
