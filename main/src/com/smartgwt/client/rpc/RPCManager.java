@@ -128,7 +128,7 @@ public class RPCManager {
 
     /**
      * Specifies URL where credentials should be submitted to attempt relogin when session timeout is encountered during a background RPC.
-     * 
+     *
      * @param credentialsURL default value http://localhost:8080/isomorphic/login/loginSuccessMarker.html
      */
     public static native void setCredentialsURL(String credentialsURL) /*-{
@@ -138,16 +138,16 @@ public class RPCManager {
     /**
      * If showPrompt is enabled for a given transaction, this is the defaultPrompt to be shown to the user in a modal dialog
      * while the transaction occurs. May be overridden at the request level via RPCRequest.prompt.
-     * <p>
+     * <p/>
      * More targetted default prompts are also supported for certain code-paths. See the following set of
      * properties for details:
-     *
+     * <p/>
      * <ul>
      * <li>RPCManager.removeDataPrompt</li>
      * <li>RPCManager.saveDataPrompt</li>
      * <li>RPCManager.fetchDataPrompt</li>
      * </ul>
-     * 
+     *
      * @param defaultPrompt the default value is 'Contacting Server...'
      */
     public static native void setDefaultPrompt(String defaultPrompt) /*-{
@@ -158,11 +158,11 @@ public class RPCManager {
      * <p>In milliseconds, how long the RPCManager waits for an RPC request to complete before returning an error.
      * If set to zero, the RPCManager will not enforce a timeout, but note that most browsers enforce their own timeouts
      * on HTTP requests.</p>
-     *
+     * <p/>
      * <p>For the "xmlHttpRequest" transport, this timeout can only happen if the server actually fails to respond within
      * the specified number of milliseconds. For the "hiddenFrames" transport, this timeout will occur for non-200 (HTTP_OK)
      * responses.</p>
-     * 
+     *
      * @param defaultTimeout the default value is 240000 [4 minutes]
      */
     public static native void setDefaultTimeout(double defaultTimeout) /*-{
@@ -182,7 +182,7 @@ public class RPCManager {
     /**
      * Default prompt displayed to user while an opration is running to remove data from the server.
      * Displayed as a result of the ListGrid.removeSelectedData() code path.
-     * 
+     *
      * @param removeDataPrompt default value "Deleting Record(s)..."
      */
     public static native void setRemoveDataPrompt(String removeDataPrompt) /*-{
@@ -211,7 +211,7 @@ public class RPCManager {
 
     /**
      * Controls the default prompt style. Overrideable by RPCRequest.promptStyle.
-     * 
+     *
      * @param promptStyle default is {@link com.smartgwt.client.types.PromptStyle#DIALOG}
      */
     public static native void setPromptStyle(PromptStyle promptStyle) /*-{
@@ -220,9 +220,8 @@ public class RPCManager {
 
     /**
      * If set to true, the RPCManager will block the UI with a modal dialog containing the text from RPCManager.defaultPrompt (or the per-RPCRequest override) until the RPC to the server completes.
-     *
+     * <p/>
      * If set to false, the RPC happens transparently, allowing the user to continue interacting with the UI
-
      *
      * @param showPrompt default is false
      */
@@ -232,7 +231,7 @@ public class RPCManager {
 
     /**
      * Default message displayed to user when an opration fails to return from the server within the timeout period specified by RPCManager.defaultTimeout.
-     * 
+     *
      * @param timeoutErrorMessage default value is "Operation timed out"
      */
     public static native void setTimeoutErrorMessage(String timeoutErrorMessage) /*-{
@@ -241,9 +240,9 @@ public class RPCManager {
 
     /**
      * If true, an image is shown to the right of the cursor when RPCRequest.promptStyle is set to "cursor", otherwise the cursor itself is modified via css to the value of RPCRequest.promptCursor. The default is platform-dependent. In Safari, IE 5.5 and Firefox 1.0 the default is true, on all other platforms it is false. The reason for this split is that, the above browsers require that the cursor move before CSS settings are re-evaluated - this means the progress cursor can stick until the user moves the mouse.
-     * <p>
+     * <p/>
      * This value can be overridden on a per-request basis via RPCRequest.useCursorTracker.
-
+     *
      * @param useCursorTracking default value is platform-dependant
      */
     public static native void setUseCursorTracking(boolean useCursorTracking) /*-{
@@ -262,7 +261,7 @@ public class RPCManager {
 
     /**
      * The rpcRequest parameter can be used to determine whether the suspended transaction can simply be dropped (eg, it's periodic polling request).
-     * <p>
+     * <p/>
      * The rpcResponse parameter has rpcResponse.data set to the raw text of the response that triggered loginRequired(). Some very advanced relogin
      * strategies may need to inspect the raw response to get information needed for re-authentication.
      *
@@ -281,15 +280,15 @@ public class RPCManager {
     /**
      * By default handleError() always logs a warning. In addition, if response.data was set to a String, a warning dialog will be shown to the user with response.data as the message,
      * which allows the server to send user error messages back without writing custom client-side error handling.
-     * <p>
-     *
+     * <p/>
+     * <p/>
      * To do custom error handling that is specific to a particular component or type of request, set
      * RPCRequest.willHandleError and deal with errors in the rpcRequest.callback. To change the default
      * system-wide error handling, register this callback.
-     * <p>
+     * <p/>
      * If you're using the xmlHttpRequest RPCRequest.transport, you can access the HTTP status code  of the response
      * (eg 404 Not Found or 500 Server Error) as RPCResponse.httpResponseCode.
-     * <p>
+     * <p/>
      * For very advanced usage, the response.xmlHttpRequest contains the native XMLHttpRequest object used to make the request.
      * Accessing this object is subject to possible cross-platform bugs and inconsistencies, and we recommend that you wrap any
      * access to the XMLHttpRequest object in a try/catch block because some browsers may throw exceptions when certain attributes
@@ -306,6 +305,26 @@ public class RPCManager {
                callback.@com.smartgwt.client.rpc.HandleErrorCallback::handleError(Lcom/smartgwt/client/data/DSResponse;Lcom/smartgwt/client/data/DSRequest;)(responseJ, requestJ);
             }
         });
+    }-*/;
+
+    /**
+     * Start queuing requests. When queuing requests, an HTTP request will not be sent to the server until RPCManager.sendQueue() is called.
+     * <p/>
+     * All requests in a given queue must go to the same actionURL and use the same transport (XMLHttp or frames). If a request specifies a different actionURL or transport than that of the requests currently on the queue, it will be sent to the server separately, ahead of the queue, and a warning will be logged to the Developer Console.
+     * <p/>
+     * Note that the server must process all requests sent as part of the queue before any response is sent to the client. You should avoid batching a request that will take a long time to process on the server with any other requests because it will delay the response of all requests in the queue.
+     */
+    public static native void startQueue() /*-{
+        $wnd.isc.RPCManager.startQueue();
+    }-*/;
+
+    /**
+     * Send all currently queued requests to the server. You need only call this method if you are using queuing otherwise your requests are synchronously submitted to the server.
+     * <p>
+     * NOTE: if you aren't the caller who first enables queuing (startQueue() returns true), you should in general avoid calling sendQueue(), because whoever was first to enable queuing may have more requests to add to the same queue.
+     */
+    public static native void sendQueue() /*-{
+        $wnd.isc.RPCManager.sendQueue();
     }-*/;
 
 

@@ -5373,6 +5373,19 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
     }-*/;
 
     /**
+     * Start editing a new row, after the last pre-existing record in the current set of data. This new row will be
+     * saved via the "add" DataSource operation. If editing is already underway elsewhere in the grid, startEditingNew()
+     * behaves just like {@link com.smartgwt.client.widgets.grid.ListGrid#startEditing()}.
+     *
+     * @param defaultValues the default field values for the new record
+     */
+    public native void startEditingNew(Map defaultValues) /*-{
+        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
+        var defaultValuesJS = @com.smartgwt.client.util.JSOHelper::convertMapToJavascriptObject(Ljava/util/Map;)(defaultValues);
+        self.startEditingNew(defaultValuesJS);
+    }-*/;
+
+    /**
      * Given a field or field id, return it's index in the fields array
      *
      * @param fieldID field number or field.name
