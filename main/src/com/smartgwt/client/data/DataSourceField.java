@@ -786,6 +786,7 @@ public class DataSourceField extends DataClass {
      * client-side integration pipeline, so that you can load complex XML documents and have them deserialized into a correctly typed JavaScript object model.
      *
      * @param dataSource the data source
+     * @deprecated use #setTypeAsDataSource 
      */
     public void setType(DataSource dataSource) {
         dataSource.getOrCreateJsObj();
@@ -800,6 +801,27 @@ public class DataSourceField extends DataClass {
 
     public Boolean getCanFilter()  {
         return getAttributeAsBoolean("canFilter");
+    }
+
+    /**
+     * The type can also be the another DataSource, which allows you to model nested structures such as XML documents (in fact, XMLTools.loadXMLSchema()
+     * models XML schema in this way). Nested DataSource declarations affect how XML and JSON data is deserialized into JavaScript objects in the
+     * client-side integration pipeline, so that you can load complex XML documents and have them deserialized into a correctly typed JavaScript object model.
+     *
+     * @param dataSource the data source
+     */
+    public void setTypeAsDataSource(DataSource dataSource) {
+        dataSource.getOrCreateJsObj();
+        setAttribute("type", dataSource.getID());
+    }
+
+    /**
+     * Return the type of the assigned DataSource
+     *
+     * @return the DataSource
+     */
+    public DataSource getTypeAsDataSource() {
+        return DataSource.getOrCreateRef(getAttributeAsJavaScriptObject("type"));
     }
 
 }
