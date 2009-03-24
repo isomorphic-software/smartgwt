@@ -160,7 +160,7 @@ public class KeyPressEvent extends BrowserEvent<KeyPressHandler>  implements Can
      * @return the key name
      * @see com.smartgwt.client.types.KeyNames
      */
-    public String getKey() {
+    public String getKeyName() {
         return com.smartgwt.client.util.EventHandler.getKey();
     }    
 
