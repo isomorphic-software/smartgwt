@@ -126,4 +126,43 @@ public class KeyPressEvent extends BrowserEvent<KeyPressHandler>  implements Can
     }
 
 
+    /**
+     * Return the name of the key for the event passed in. Note that this is only set reliably for keyboard events.
+     * <pre>
+     * Strings to identify the various keys on the keyboard.
+     * <p/>
+     * For alpha keys, the single (uppercase) character value is used, such as "Q"
+     * For Numeric keys, the number is used as in a single character string, like "1"
+     * Function keys are identified as "f1" - "f12"
+     * Non alpha-numeric character keys (such as the key for "[" / "{") are identified by their unmodified character value (the value obtained by hitting the key without holding shift down), by default - exceptions are listed below.
+     * Additional key names:
+     * - Space
+     * - Tab
+     * - Enter
+     * - Escape
+     * - Backspace
+     * - Insert
+     * - Delete
+     * - Arrow_Up
+     * - Arrow_Down
+     * - Arrow_Left
+     * - Arrow_Right
+     * - Home
+     * - End
+     * - Page_Up
+     * - Page_Down
+     * - Shift
+     * - Ctrl
+     * - Alt
+     * [Note: Some keys may not be available for capture on every platform]
+     * </pre>
+     *
+     * @return the key name
+     * @see com.smartgwt.client.types.KeyNames
+     */
+    public String getKey() {
+        return com.smartgwt.client.util.EventHandler.getKey();
+    }    
+
+
 }

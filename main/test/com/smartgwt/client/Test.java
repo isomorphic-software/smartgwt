@@ -25,34 +25,20 @@ package com.smartgwt.client;
 
 import com.google.gwt.core.client.EntryPoint;
 import com.google.gwt.core.client.GWT;
-import com.google.gwt.user.client.ui.RootPanel;
 import com.smartgwt.client.core.KeyIdentifier;
-import com.smartgwt.client.types.Alignment;
-import com.smartgwt.client.types.ListGridFieldType;
-import com.smartgwt.client.types.DragDataAction;
 import com.smartgwt.client.util.KeyCallback;
 import com.smartgwt.client.util.Page;
 import com.smartgwt.client.util.SC;
-import com.smartgwt.client.util.EventHandler;
-import com.smartgwt.client.widgets.grid.ListGrid;
-import com.smartgwt.client.widgets.grid.ListGridField;
-import com.smartgwt.client.widgets.grid.ListGridRecord;
-import com.smartgwt.client.widgets.menu.MenuItem;
-import com.smartgwt.client.widgets.menu.MenuBar;
-import com.smartgwt.client.widgets.menu.Menu;
-import com.smartgwt.client.widgets.menu.MenuButton;
-import com.smartgwt.client.widgets.menu.events.ClickHandler;
-import com.smartgwt.client.widgets.menu.events.MenuItemClickEvent;
-import com.smartgwt.client.widgets.menu.events.ItemClickEvent;
-import com.smartgwt.client.widgets.menu.events.ItemClickHandler;
-import com.smartgwt.client.widgets.Window;
-import com.smartgwt.client.widgets.Label;
 import com.smartgwt.client.widgets.Canvas;
+import com.smartgwt.client.widgets.Label;
+import com.smartgwt.client.widgets.tile.TileLayout;
 import com.smartgwt.client.widgets.events.*;
-import com.smartgwt.client.widgets.layout.HLayout;
-import com.smartgwt.client.widgets.form.DynamicForm;
-import com.smartgwt.client.widgets.form.fields.TextItem;
-import com.smartgwt.client.widgets.form.fields.DateItem;
+import com.smartgwt.client.widgets.form.ColorPicker;
+import com.smartgwt.client.widgets.form.events.ColorSelectedHandler;
+import com.smartgwt.client.widgets.form.events.ColorSelectedEvent;
+import com.smartgwt.client.types.Overflow;
+import com.smartgwt.client.types.TileLayoutPolicy;
+import com.smartgwt.client.types.Cursor;
 
 public class Test implements EntryPoint {
 
@@ -69,21 +55,75 @@ public class Test implements EntryPoint {
             });
         }
 
+        final TileLayout homePanel = new TileLayout();
 
-        Label label = new Label("test");
-        label.setID("mytest");
-        label.setShowEdges(true);
-        label.setCanHover(true);
-        label.setShowRollOver(true);
-        label.addMouseOverHandler(new MouseOverHandler() {
-            public void onMouseOver(MouseOverEvent event) {
-                Label label = (Label) event.getSource();
-                SC.debugger();
-                label.setBaseStyle("textlink");
+/*homePanel.setWidth("100%");
+homePanel.setHeight("100%");
+homePanel.setBackgroundColor("#99FFFF");
+homePanel.setExpandMargins(true);
+homePanel.setLayoutPolicy(TileLayoutPolicy.FIT);
+homePanel.setTileWidth(200);
+homePanel.setTileHeight(250);
+homePanel.setTileMargin(20);
+homePanel.setShowCustomScrollbars(true);
+homePanel.setDragRepositionCursor(Cursor.MOVE);
+homePanel.setCanAcceptDrop(true);
+
+Label test1 = new Label();
+Label test2 = new Label();
+Label test3 = new Label();
+
+test1.setBackgroundColor("Red");
+test2.setBackgroundColor("Red");
+test3.setBackgroundColor("Red");
+
+test1.setCanDragReposition(true);
+test2.setCanDragReposition(true);
+test3.setCanDragReposition(true);
+
+test1.setCanDrag(true);
+test2.setCanDrag(true);
+test3.setCanDrag(true);
+
+test1.setContents("dfdsfsd");
+test2.setCanDrag(true);
+test3.setCanDrag(true);
+
+test1.setContents("1");
+test2.setContents("2");
+test3.setContents("3");
+
+homePanel.addTile(test1);
+homePanel.addTile(test2);                  
+homePanel.addTile(test3);
+
+homePanel.draw();*/
+        TileLayout tile = new TileLayout();
+        tile.setSize("100%", "100%");
+        tile.setTileWidth(50);
+        tile.setTileHeight(50);
+        tile.setLayoutPolicy(TileLayoutPolicy.FLOW);
+        tile.setOverflow(Overflow.VISIBLE);
+        tile.setAutoWrapLines(true);
+        tile.setShowEdges(true);
+        tile.setCanDrag(true);
+        tile.setCanDragReposition(true);
+        tile.setCanAcceptDrop(true);
+        for (int i = 0; i < 50; i++) {
+            Label label = new Label();
+            label.setContents("Tile " + i);
+            label.setAutoWidth();
+            label.setAutoHeight();
+            tile.addTile(label);
+        }
+
+       /* tile.addClickHandler(new ClickHandler() {
+            public void onClick(ClickEvent event) {
+                System.out.println("");
             }
-        });
-
-        label.draw();
+        });*/
+        tile.draw();
+        tile.layoutTiles();
 
     }
 }
