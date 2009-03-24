@@ -39,6 +39,16 @@ public enum DSProtocol implements ValueEnum {
      * HTTP request body with contentType text/xml
      */
     POSTXML("postXML"),
+
+    /**
+     * This setting entirely bypasses the SmartGWT comm system. Instead of the DataSource sending an HTTP request to the server,
+     * the developer is expected to implement DataSource.transformRequest() to perform their own custom data manipulation logic,
+     * and then call DataSource.processResponse() to handle the results of this action.
+     * The user must populate dsRequest.data in the transformRequest method. If call was successful status and data should be filled.
+     * If call was unsuccessful only status should contain error code.
+     */
+    CLIENTCUSTOM("clientCustom"),
+    
     /**
      * Data is serialized as XML via ${isc.DocUtils.linkForRef('method:DataSource.xmlSerialize')}, wrapped in a
      * SOAP&#010   envelope, and POST'd as the HTTP request body with contentType "text/xml".  Generally&#010 only used
