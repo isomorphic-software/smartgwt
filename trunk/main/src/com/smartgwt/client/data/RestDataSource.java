@@ -127,7 +127,7 @@ public class RestDataSource extends DataSource {
     }
 
     /**
-    * For RestDataSources, {@link com.smartgwt.client.data.RestDataSource#getXmlRecordXPath xmlRecordXPath} and {@link com.smartgwt.client.data.RestDataSource#getJsonRecordXPath jsonRecordXPath} should be used rather than specifying  <code>recordXPath</code> directly. <P> Note that you can also apply record xpath binding via {@link com.smartgwt.client.data.OperationBinding#getRecordXPath recordXPath}.
+    * For RestDataSources, by default, either the {@link com.smartgwt.client.data.RestDataSource#getXmlRecordXPath xmlRecordXPath} or  {@link com.smartgwt.client.data.RestDataSource#getJsonRecordXPath jsonRecordXPath} is used by default based on the {@link com.smartgwt.client.data.RestDataSource#getDataFormat dataFormat} setting. <P> Note that you can also apply record xpath binding via {@link com.smartgwt.client.data.OperationBinding#getRecordXPath recordXPath}.
     *
     * @param recordXPath recordXPath Default value is null
     */
@@ -135,7 +135,7 @@ public class RestDataSource extends DataSource {
         setAttribute("recordXPath", recordXPath, true);
     }
     /**
-     * For RestDataSources, {@link com.smartgwt.client.data.RestDataSource#getXmlRecordXPath xmlRecordXPath} and {@link com.smartgwt.client.data.RestDataSource#getJsonRecordXPath jsonRecordXPath} should be used rather than specifying  <code>recordXPath</code> directly. <P> Note that you can also apply record xpath binding via {@link com.smartgwt.client.data.OperationBinding#getRecordXPath recordXPath}.
+     * For RestDataSources, by default, either the {@link com.smartgwt.client.data.RestDataSource#getXmlRecordXPath xmlRecordXPath} or  {@link com.smartgwt.client.data.RestDataSource#getJsonRecordXPath jsonRecordXPath} is used by default based on the {@link com.smartgwt.client.data.RestDataSource#getDataFormat dataFormat} setting. <P> Note that you can also apply record xpath binding via {@link com.smartgwt.client.data.OperationBinding#getRecordXPath recordXPath}.
      *
      *
      * @return String

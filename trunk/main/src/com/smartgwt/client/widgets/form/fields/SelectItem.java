@@ -910,6 +910,26 @@ public class SelectItem extends FormItem  implements PickList {
         setAttribute("separatorRows", separatorRows);
     }
 
+    /**
+     * Default values used when no value is provided for this item. Note that whenever this item's value is cleared by the user
+     * or set to <code>null</code> programatically, it will be reverted to the <code>defaultValues</code>.
+     *
+     * @param defaultValues the defaultValues. Default value is null
+     */
+    public void setDefaultValues(String... defaultValues) {
+        setAttribute("defaultValue", defaultValues);
+    }
+
+    /**
+     * Default values used when no value is provided for this item. Note that whenever this item's value is cleared by the user
+     * or set to <code>null</code> programatically, it will be reverted to the <code>defaultValues</code>.
+     *
+     * @param defaultValues the defaultValues. Default value is null
+     */
+    public void setDefaultValues(Integer... defaultValues) {
+        setAttribute("defaultValue", defaultValues);
+    }
+
     // ********************* Methods ***********************
     
     /**

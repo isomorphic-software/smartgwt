@@ -989,6 +989,26 @@ public class FormItem extends RefDataClass  implements com.smartgwt.client.widge
     }
 
     /**
+    * Default prompt (and tooltip-text) for icons.
+    * <p><b>Note : </b> This is an advanced setting</p>
+    *
+    * @param iconPrompt iconPrompt Default value is ""
+    */
+    public void setIconPrompt(String iconPrompt) {
+        setAttribute("iconPrompt", iconPrompt);
+    }
+    /**
+     * Default prompt (and tooltip-text) for icons.
+     *
+     *
+     * @return String
+     *
+     */
+    public String getIconPrompt()  {
+        return getAttributeAsString("iconPrompt");
+    }
+
+    /**
     * Set to false to suppress writing out any {@link com.smartgwt.client.widgets.form.fields.FormItem#getIcons icons} for this item.
     * <p><b>Note : </b> This is an advanced setting</p>
     *
@@ -2371,15 +2391,6 @@ public class FormItem extends RefDataClass  implements com.smartgwt.client.widge
      */
     public void setEditorType(FormItem editorType) {
         setAttribute("editorType", editorType.getType());
-    }
-
-    /**
-     * Default prompt (and tooltip-text) for icons
-     *
-     * @param iconPrompt the icon prompt
-     */
-    public void setIconPrompt(String iconPrompt) {
-        setAttribute("iconPrompt", iconPrompt);
     }
 
     public native Object getValue() /*-{

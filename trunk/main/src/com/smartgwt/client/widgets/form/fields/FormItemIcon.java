@@ -214,6 +214,26 @@ public class FormItemIcon extends DataClass {
         return getAttributeAsInt("height");
     }
 
+    /**
+    * If set, this property will be displayed as a prompt (and tooltip text) for this form item icon. <P> If unset the form item's <code>iconPrompt</code> property will be used instead.
+    * <p><b>Note : </b> This is an advanced setting</p>
+    *
+    * @param prompt prompt Default value is null
+    */
+    public void setPrompt(String prompt) {
+        setAttribute("prompt", prompt);
+    }
+    /**
+     * If set, this property will be displayed as a prompt (and tooltip text) for this form item icon. <P> If unset the form item's <code>iconPrompt</code> property will be used instead.
+     *
+     *
+     * @return String
+     *
+     */
+    public String getPrompt()  {
+        return getAttributeAsString("prompt");
+    }
+
     // ********************* Methods ***********************
 
         /**

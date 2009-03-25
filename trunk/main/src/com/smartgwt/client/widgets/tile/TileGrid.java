@@ -249,6 +249,25 @@ public class TileGrid extends TileLayout  implements DataBoundComponent, com.sma
     public String getStyleName()  {
         return getAttributeAsString("styleName");
     }
+
+    /**
+    * CSS Style to apply to the drag tracker when dragging occurs on this component.
+    *
+    * @param dragTrackerStyle dragTrackerStyle Default value is "gridDragTracker"
+    */
+    public void setDragTrackerStyle(String dragTrackerStyle) {
+        setAttribute("dragTrackerStyle", dragTrackerStyle, true);
+    }
+    /**
+     * CSS Style to apply to the drag tracker when dragging occurs on this component.
+     *
+     *
+     * @return String
+     *
+     */
+    public String getDragTrackerStyle()  {
+        return getAttributeAsString("dragTrackerStyle");
+    }
              
     /**
     * Indicates what to do with data dragged into another DataBoundComponent. See          DragDataAction type for details.
@@ -430,6 +449,29 @@ public class TileGrid extends TileLayout  implements DataBoundComponent, com.sma
         }-*/;
 
 
+
+
+        /**
+         * Method to return the fieldName which represents the "title" for records in this Component.<br> If this.titleField is explicitly specified it will always be used. Otherwise, default implementation will check {@link com.smartgwt.client.data.DataSource#getTitleField titleField} for databound compounds.<br> For non databound components returns the first defined field name of <code>"title"</code>,  <code>"name"</code>, or <code>"id"</code>. If we dont find any field-names that match these titles, the first field in the component will be used instead.
+         *
+         * @return fieldName for title field for this component.
+         */
+        public native String getTitleField() /*-{
+            var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
+            return self.getTitleField();
+        }-*/;
+
+        /**
+         * Return "title" HTML to display as a drag tracker when the user drags some record.<br> Default implementation will display the cell value for the title field (see  {@link com.smartgwt.client.widgets.grid.ListGrid#getTitleField}) for the record(s) being dragged (including any icons / custom formatting / styling, etc). <p> Note: Only called if {@link com.smartgwt.client.widgets.grid.ListGrid#getDragTrackerMode dragTrackerMode} is set to <code>"title"</code>.
+         * @param record First selected record being dragged
+     * @param rowNum row index of first record being dragged
+         *
+         * @return Title for the row. Default implementation looks at the value of the                  title-field cell for the row.
+         */
+        public native String getDragTrackerTitle(ListGridRecord record, int rowNum) /*-{
+            var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
+            return self.getDragTrackerTitle(record.@com.smartgwt.client.core.DataClass::getJsObj()(), rowNum);
+        }-*/;
 
 
 
