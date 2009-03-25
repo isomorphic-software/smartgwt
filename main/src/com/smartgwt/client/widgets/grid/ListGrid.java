@@ -255,7 +255,7 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
      * Best field to use for a user-visible title for an individual record from this grid. If {@link com.smartgwt.client.widgets.grid.ListGrid#getDataSource dataSource} is non null, this property may be specified on the  dataSource instead. <p> If not explicitly set, titleField looks for fields named "title", "name", and "id"  in that order.  If a field exists with one of those names, it becomes the titleField.   If not, then the first field is designated as the titleField.
      *
      *
-     * @return Method to return the fieldName which represents the "title" for records in this ListGrid.<br> If this.titleField is explicitly specified it will always be used. Otherwise, default implementation will check {@link com.smartgwt.client.data.DataSource#getTitleField titleField} for databound grids.<br> For non dataotherwise returns the first defined field name of <code>"title"</code>,  <code>"name"</code>, or <code>"id"</code>. If we dont find any field-names that match these titles, the first field in the grid will be used instead.
+     * @return Method to return the fieldName which represents the "title" for records in this Component.<br> If this.titleField is explicitly specified it will always be used. Otherwise, default implementation will check {@link com.smartgwt.client.data.DataSource#getTitleField titleField} for databound compounds.<br> For non databound components returns the first defined field name of <code>"title"</code>,  <code>"name"</code>, or <code>"id"</code>. If we dont find any field-names that match these titles, the first field in the component will be used instead.
      *
      */
     public String getTitleField()  {
@@ -3012,7 +3012,7 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
     }
 
     /**
-    * CSS Style to apply to the drag tracker when dragging occurs on this grid.
+    * CSS Style to apply to the drag tracker when dragging occurs on this component.
     *
     * @param dragTrackerStyle dragTrackerStyle Default value is "gridDragTracker"
     */
@@ -3020,7 +3020,7 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
         setAttribute("dragTrackerStyle", dragTrackerStyle, true);
     }
     /**
-     * CSS Style to apply to the drag tracker when dragging occurs on this grid.
+     * CSS Style to apply to the drag tracker when dragging occurs on this component.
      *
      *
      * @return String

@@ -108,6 +108,44 @@ public class CheckboxItem extends FormItem {
     }
 
     /**
+    * CheckboxItem has special behavior for titles, see {@link com.smartgwt.client.widgets.form.fields.CheckboxItem#getLabelAsTitle labelAsTitle}.
+    *
+    * @param showTitle showTitle Default value is true
+    */
+    public void setShowTitle(Boolean showTitle) {
+        setAttribute("showTitle", showTitle);
+    }
+    /**
+     * CheckboxItem has special behavior for titles, see {@link com.smartgwt.client.widgets.form.fields.CheckboxItem#getLabelAsTitle labelAsTitle}.
+     *
+     *
+     * @return Boolean
+     *
+     */
+    public Boolean getShowTitle()  {
+        return getAttributeAsBoolean("showTitle");
+    }
+
+    /**
+    * By default a checkboxItem sets {@link com.smartgwt.client.widgets.form.fields.CheckboxItem#getShowTitle showTitle}:true, and so takes up two cells with the default ${isc.DocUtils.linkForRef('type:TitleOrientation')} of "left" (see form layout overview).  However, the title cell is left blank by default, and the title specified by {@link com.smartgwt.client.widgets.form.fields.FormItem#getTitle title} is shown inside the formItem's cell instead, in an element called the "label". <P> To instead show the title in it's original location, set <code>labelAsTitle:true</code>. You can also set {@link com.smartgwt.client.widgets.form.fields.CheckboxItem#getShowLabel showLabel}:false to suppress the label and/or title altogether.
+    *
+    * @param labelAsTitle labelAsTitle Default value is null
+    */
+    public void setLabelAsTitle(Boolean labelAsTitle) {
+        setAttribute("labelAsTitle", labelAsTitle);
+    }
+    /**
+     * By default a checkboxItem sets {@link com.smartgwt.client.widgets.form.fields.CheckboxItem#getShowTitle showTitle}:true, and so takes up two cells with the default ${isc.DocUtils.linkForRef('type:TitleOrientation')} of "left" (see form layout overview).  However, the title cell is left blank by default, and the title specified by {@link com.smartgwt.client.widgets.form.fields.FormItem#getTitle title} is shown inside the formItem's cell instead, in an element called the "label". <P> To instead show the title in it's original location, set <code>labelAsTitle:true</code>. You can also set {@link com.smartgwt.client.widgets.form.fields.CheckboxItem#getShowLabel showLabel}:false to suppress the label and/or title altogether.
+     *
+     *
+     * @return Boolean
+     *
+     */
+    public Boolean getLabelAsTitle()  {
+        return getAttributeAsBoolean("labelAsTitle");
+    }
+
+    /**
     * Should we should the label text next to the checkbox item.
     *
     * @param showLabel showLabel Default value is true
