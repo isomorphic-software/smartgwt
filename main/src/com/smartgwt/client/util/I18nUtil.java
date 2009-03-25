@@ -184,8 +184,8 @@ public class I18nUtil {
         if($wnd.isc.Calendar) $wnd.isc.Calendar.addProperties({invalidDateMessage: messages.@com.smartgwt.client.i18n.SmartGwtMessages::calendar_invalidDateMessage()()});
 
         if($wnd.isc.FilterBuilder) {
-            $wnd.isc.FilterBuilder.addProperties({filterBuilder_topOperator: messages.@com.smartgwt.client.i18n.SmartGwtMessages::filterBuilder_topOperator()()});
-            $wnd.isc.FilterBuilder.addProperties({filterBuilder_radioOptions: [
+            $wnd.isc.FilterBuilder.addProperties({topOperator: messages.@com.smartgwt.client.i18n.SmartGwtMessages::filterBuilder_topOperator()()});
+            $wnd.isc.FilterBuilder.addProperties({radioOptions: [
                 messages.@com.smartgwt.client.i18n.SmartGwtMessages::filterBuilder_topOperator()(),
                 messages.@com.smartgwt.client.i18n.SmartGwtMessages::filterBuilder_radioOptions_or()(),
                 messages.@com.smartgwt.client.i18n.SmartGwtMessages::filterBuilder_radioOptions_not()()
