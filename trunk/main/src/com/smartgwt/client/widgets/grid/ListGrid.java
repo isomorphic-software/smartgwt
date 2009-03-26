@@ -4129,22 +4129,6 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
 
 
 
-        /**
-         * Can this cell be edited? <P> The default implementation of <code>canEditCell()</code> respects the various property settings affecting editability: {@link com.smartgwt.client.widgets.grid.ListGridField#getCanEdit canEdit} disables editing for a field, a record with the {@link com.smartgwt.client.widgets.grid.ListGrid#getRecordEditProperty recordEditProperty} set to false is not editable, and disabled records are not editable. <P> You can override this method to control editability on a cell-by-cell basis.  For example, if you had a grid that allows editing of "orders", and you had a field "shipDate" that is normally editable, but should not be editable if the order is already "complete", you might implement <code>canEditCell()</code> as follows: <P> <pre>   isc.ListGrid.create({       ...       canEditCell : function (rowNum, colNum) {           var record = this.getRecord(rowNum),               fieldName = this.getFieldName(colNum);           if (fieldName == "shipDate" &&                record.orderStatus == "complete")            {               return false;              }           // use default rules for all other fields           return this.Super("canEditCell", arguments);       }   }); </pre> <P> Notes on providing custom implementations: <ul> <li> In order to allow complete control over editing, <code>canEditCell()</code> is called very frequently.  If you see delays on row to row navigation, check that your implementation is efficient <li> If you change the editability of a cell on the fly, for example, during  {@link com.smartgwt.client.widgets.grid.ListGrid#editorExit} on another cell, call refreshCell() to show or hide the editor <li> If this ListGrid allows new records to be created, <code>canEditCell()</code> may be called when there is no record available.  The values input so far by the user are available via {@link com.smartgwt.client.widgets.grid.ListGrid#getEditValues}.  </ul>
-         * @param rowNum row number for the cell
-     * @param colNum column number of the cell
-         *
-         * @return Whether to allow editing this cell
-         */
-        public native Boolean canEditCell(int rowNum, int colNum) /*-{
-            var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
-            var retVal =self.canEditCell(rowNum, colNum);
-            if(retVal == null || retVal === undefined) {
-                return null;
-            } else {
-                return @com.smartgwt.client.util.JSOHelper::toBoolean(Z)(retVal);
-            }
-        }-*/;
 
         /**
          * Start inline editing at the provided coordinates. <p> Invoked when a cell is editable and the <code>editEvent</code> occurs on that cell.  Can also be invoked explicitly. <P> If this method is called while editing is already in progress, the value from the current editCell will either be stored locally as a temporary edit value, or saved via 'saveEdits()' depending on <code>this.saveByCell</code>, and the position of the new edit cell.<br> Will update the UI to show the editor for the new cell, and put focus in it unless  explicitly suppressed by the optional <code>suppressFocus</code> parameter.
@@ -4967,6 +4951,12 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
             var menuItemsJS = @com.smartgwt.client.util.JSOHelper::convertToJavaScriptArray([Ljava/lang/Object;)(menuItemsJ);
             return menuItemsJS;
         };
+
+        self._canEditCell = self.canEditCell;
+        self.canEditCell = function(rowNum, colNum) {
+            var jObj = this.__ref;
+            return jObj.@com.smartgwt.client.widgets.grid.ListGrid::canEditCell(II)(rowNum, colNum);
+        };
     }-*/;
 
 
@@ -4986,6 +4976,30 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
 
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
         return self._getCellCSSText(record == null ? null : record.@com.smartgwt.client.core.DataClass::getJsObj()(), rowNum, colNum);
+    }-*/;
+
+    /**
+     * Can this cell be edited? <P> The default implementation of <code>canEditCell()</code> respects the various property settings affecting
+     * editability: {@link com.smartgwt.client.widgets.grid.ListGridField#getCanEdit canEdit} disables editing for a field,
+     * a record with the {@link com.smartgwt.client.widgets.grid.ListGrid#getRecordEditProperty recordEditProperty} set to false is not editable,
+     * and disabled records are not editable. <P> You can override this method to control editability on a cell-by-cell basis.
+     * In order to allow complete control over editing, <code>canEditCell()</code> is called very frequently.  If you see delays on row to row navigation,
+     * check that your implementation is efficient <li> If you change the editability of a cell on the fly, for example, during
+     * {@link com.smartgwt.client.widgets.grid.ListGrid#editorExit} on another cell, call refreshCell() to show or hide the editor <li>
+     * If this ListGrid allows new records to be created, <code>canEditCell()</code> may be called when there is no record available.
+     * The values input so far by the user are available via {@link com.smartgwt.client.widgets.grid.ListGrid#getEditValues}.  </ul>
+     *
+     * <p><b>Note: This is an override point</b>
+     *
+     * @param rowNum row number for the cell
+     * @param colNum column number of the cell
+     *
+     * @return Whether to allow editing this cell
+     */
+    protected native boolean canEditCell(int rowNum, int colNum) /*-{
+
+        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
+        return self._canEditCell(rowNum, colNum);
     }-*/;
 
     /**
