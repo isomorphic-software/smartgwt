@@ -1744,6 +1744,17 @@ public class ListGridField extends DataClass  implements com.smartgwt.client.wid
         setAttribute("width", width);
     }
 
+    /**
+     * Return the width of the field. 
+     *
+     * @return the field width as a String
+     */
+    public String getWidth() {
+        return getAttribute("width");
+    }
+
+
+
     public void setHidden(boolean hidden) {
         setAttribute("showIf", hidden ? "false" : "true");
     }
