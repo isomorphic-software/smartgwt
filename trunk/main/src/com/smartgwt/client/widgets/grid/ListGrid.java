@@ -6176,7 +6176,7 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
     /**
      * Freeze the indicated field, so that it remains in place and visible when horizontal scrolling occurs.
      *
-     * @param field
+     * @param fieldName the field name
      */
     public native void freezeField(String fieldName) /*-{
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
@@ -6186,7 +6186,7 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
     /**
      * Freeze the indicated field, so that it remains in place and visible when horizontal scrolling occurs.
      *
-     * @param field
+     * @param colNum the column num
      */
     public native void freezeField(int colNum) /*-{
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
@@ -6196,7 +6196,7 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
     /**
      * Unfreeze a frozen field, so that it will now scroll along with other fields when horizontal scrolling occurs.
      *
-     * @param field
+     * @param fieldName the field name
      */
     public native void unfreezeField(String fieldName) /*-{
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
@@ -6206,7 +6206,7 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
     /**
      * Unfreeze a frozen field, so that it will now scroll along with other fields when horizontal scrolling occurs.
      *
-     * @param field
+     * @param colNum the column num
      */
     public native void unfreezeField(int colNum) /*-{
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();

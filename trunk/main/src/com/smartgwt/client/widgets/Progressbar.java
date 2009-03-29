@@ -170,6 +170,25 @@ public class Progressbar extends StretchImg  implements com.smartgwt.client.widg
         return getAttributeAsBoolean("vertical");
     }
 
+    /**
+    * The base file name for the progressbar image.
+    *
+    * @param src src Default value is "[SKIN]progressbar.gif"
+    */
+    public void setSrc(String src) {
+        setAttribute("src", src, true);
+    }
+    /**
+     * The base file name for the progressbar image.
+     *
+     *
+     * @return String
+     *
+     */
+    public String getSrc()  {
+        return getAttributeAsString("src");
+    }
+
     // ********************* Methods ***********************
 
 

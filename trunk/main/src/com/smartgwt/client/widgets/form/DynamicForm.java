@@ -1567,7 +1567,7 @@ public class DynamicForm extends Canvas  implements DataBoundComponent, com.smar
     }
 
     /**
-     * Set the values.
+     * et the values for this DynamicForm. Member forms will be updated as required by this change. Note that pre-existant values in other fields are cleared out by this. .
      *
      * @param values the values
      */
@@ -1575,11 +1575,37 @@ public class DynamicForm extends Canvas  implements DataBoundComponent, com.smar
         setAttribute("values", values, true);
     }
 
+    /**
+     * Returns the current set of values where each propertyName is the name of a form item in the form, and each property
+     * value is the value held by that form item.
+     *
+     * @return the values
+     */
+    public native Map getValues() /*-{
+        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
+        var value = self.getValues();
+        if(value == null) return null;
+        var valueJ = @com.smartgwt.client.util.JSOHelper::convertToMap(Lcom/google/gwt/core/client/JavaScriptObject;)(value);
+        return valueJ;
+    }-*/;
+
+    /**
+     * Set the value for some field.
+     *
+     * @param fieldName Name of the field being updated
+     * @param value New value.
+     */
     public native void setValue(String fieldName, double value) /*-{
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
         self.setValue(fieldName, value);
     }-*/;
 
+    /**
+     * Set the value for some field.
+     *
+     * @param fieldName Name of the field being updated
+     * @param value New value.
+     */
     public native void setValue(String fieldName, boolean value) /*-{
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
         self.setValue(fieldName, value);
@@ -1980,6 +2006,19 @@ public class DynamicForm extends Canvas  implements DataBoundComponent, com.smar
     }-*/;
 
     /**
+     * Returns the set of errors.
+     *
+     * @return errors. key is field name, value is error. Returns null if no errors are present
+     */
+    public native Map getErrors() /*-{
+        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
+        var value = self.getErrors();
+        if(value == null) return null;
+        var valueJ = @com.smartgwt.client.util.JSOHelper::convertToMap(Lcom/google/gwt/core/client/JavaScriptObject;)(value);
+        return valueJ;
+    }-*/;
+
+    /**
      * Set field validation error for some field. The showErrors parameter allows the errors to be displayed immediately.
      * Alternatively, an explicit call to {@link DynamicForm#showFieldErrors} will display the errors for this field.
      * 
@@ -2006,6 +2045,21 @@ public class DynamicForm extends Canvas  implements DataBoundComponent, com.smar
         return self.setFieldErrors(fieldName, errorsJS, showErrors);
     }-*/;
 
+    /**
+     * Returns any validation errors for some field in this valuesManager. If no errors are present, will return null.
+     *
+     * @param fieldName the field name
+     * @return error messages for the field.
+     */
+    public native String[] getFieldErrors(String fieldName) /*-{
+        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
+        var value = self.getFieldErrors(fieldName);
+        if(value == null) return null;
+        if(!@com.smartgwt.client.util.JSOHelper::isArray(Lcom/google/gwt/core/client/JavaScriptObject;)(data)) {
+            value = [value];
+        }
+        return @com.smartgwt.client.util.JSOHelper::convertToJavaStringArray(Lcom/google/gwt/core/client/JavaScriptObject;)(value);
+    }-*/;
     /**
      * Make a snapshot of the current set of values, so we can reset to them later. Creates a new object, then adds all
      * non-method properties of values to the new object. Use resetValues() to revert to these values. Note that this
