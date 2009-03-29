@@ -6445,24 +6445,66 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
         return valueJ;
     }-*/;
 
-        /**
-         * Simulates a drag / drop type transfer of the selected records in some other component to this component, without requiring any user interaction.  This method acts on the dropped records  exactly as if they had been dropped in an actual drag / drop interaction, including any  special databound behavior invoked by calling {@link com.smartgwt.client.widgets.DataBoundComponent#getDropValues} for each dropped record. <P> To transfer <b>all</b> data in, for example, a {@link com.smartgwt.client.widgets.grid.ListGrid}, call grid.selection.selectAll() first. <P> See the ${isc.DocUtils.linkForRef('group:dragging')} documentation for an overview of list grid drag/drop data transfer.
-         * @param source source component from which the records will be tranferred
-         */
-        public native void transferSelectedData(DataBoundComponent source) /*-{
-            var self = this.@com.smartgwt.client.widgets.DataBoundComponent::getOrCreateJsObj()();
-            self.transferSelectedData(source.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()());
-        }-*/;
+    /**
+     * Simulates a drag / drop type transfer of the selected records in some other component to this component, without requiring any user interaction.  This method acts on the dropped records  exactly as if they had been dropped in an actual drag / drop interaction, including any  special databound behavior invoked by calling {@link com.smartgwt.client.widgets.DataBoundComponent#getDropValues} for each dropped record. <P> To transfer <b>all</b> data in, for example, a {@link com.smartgwt.client.widgets.grid.ListGrid}, call grid.selection.selectAll() first. <P> See the ${isc.DocUtils.linkForRef('group:dragging')} documentation for an overview of list grid drag/drop data transfer.
+     *
+     * @param source source component from which the records will be tranferred
+     */
+    public native void transferSelectedData(DataBoundComponent source) /*-{
+        var self = this.@com.smartgwt.client.widgets.DataBoundComponent::getOrCreateJsObj()();
+        self.transferSelectedData(source.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()());
+    }-*/;
 
-        /**
-         * Simulates a drag / drop type transfer of the selected records in some other component to this component, without requiring any user interaction.  This method acts on the dropped records  exactly as if they had been dropped in an actual drag / drop interaction, including any  special databound behavior invoked by calling {@link com.smartgwt.client.widgets.DataBoundComponent#getDropValues} for each dropped record. <P> To transfer <b>all</b> data in, for example, a {@link com.smartgwt.client.widgets.grid.ListGrid}, call grid.selection.selectAll() first. <P> See the ${isc.DocUtils.linkForRef('group:dragging')} documentation for an overview of list grid drag/drop data transfer.
-         * @param source source component from which the records will be tranferred
-     * @param index target index (drop position) of the rows within this grid.
-         */
-        public native void transferSelectedData(DataBoundComponent source, int index) /*-{
-            var self = this.@com.smartgwt.client.widgets.DataBoundComponent::getOrCreateJsObj()();
-            self.transferSelectedData(source.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()(), index);
-        }-*/;
+    /**
+     * Simulates a drag / drop type transfer of the selected records in some other component to this component, without requiring any user interaction.  This method acts on the dropped records  exactly as if they had been dropped in an actual drag / drop interaction, including any  special databound behavior invoked by calling {@link com.smartgwt.client.widgets.DataBoundComponent#getDropValues} for each dropped record. <P> To transfer <b>all</b> data in, for example, a {@link com.smartgwt.client.widgets.grid.ListGrid}, call grid.selection.selectAll() first. <P> See the ${isc.DocUtils.linkForRef('group:dragging')} documentation for an overview of list grid drag/drop data transfer.
+     *
+     * @param source source component from which the records will be tranferred
+     * @param index  target index (drop position) of the rows within this grid.
+     */
+    public native void transferSelectedData(DataBoundComponent source, int index) /*-{
+        var self = this.@com.smartgwt.client.widgets.DataBoundComponent::getOrCreateJsObj()();
+        self.transferSelectedData(source.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()(), index);
+    }-*/;
+
+    /**
+     * Set the validation errors for some row (replacing any pre-existant validation errors)
+     *
+     * 
+     * @param rowNum row to add validation error for
+     * @param errors validation errors for the row. The key of the map must be the field name, and the value can either be a String error message
+     * or an array of Strings for multiple errors
+     */
+    public native void setRowErrors(int rowNum, Map errors) /*-{
+        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
+        var errorsJS = @com.smartgwt.client.util.JSOHelper::convertMapToJavascriptObject(Ljava/util/Map;)(errors);
+        self.setRowErrors(rowNum, errorsJS);
+    }-*/;
+
+    /**
+     * Set a validation error for some cell.
+     * 
+     * @param rowNum row index of cell to add validation error for
+     * @param fieldName field name of cell to add validation error for
+     * @param errorMessage validation error message
+     */
+    public native void setFieldError(int rowNum, String fieldName, String errorMessage) /*-{
+        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
+        self.setFieldError(rowNum, fieldName, errorMessage);
+    }-*/;
+
+    /**
+     * Set a validation error for some cell.
+     *
+     * @param rowNum row index of cell to add validation error for
+     * @param fieldName field name of cell to add validation error for
+     * @param errorMessages validation error messages
+     */
+    public native void setFieldError(int rowNum, String fieldName, String[] errorMessages) /*-{
+        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
+        var errorsJS = @com.smartgwt.client.util.JSOHelper::convertToJavaScriptArray([Ljava/lang/Object;)(errorMessages);
+        self.setFieldError(rowNum, fieldName, errorsJS);
+    }-*/;
+
 
 }
 
