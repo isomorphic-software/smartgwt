@@ -109,6 +109,25 @@ public class ToolStripResizer extends ImgSplitbar {
     }
 
     /**
+    * Image for resizer
+    *
+    * @param vSrc vSrc Default value is "[SKIN]resizer.png"
+    */
+    public void setVSrc(String vSrc) {
+        setAttribute("vSrc", vSrc, true);
+    }
+    /**
+     * Image for resizer
+     *
+     *
+     * @return String
+     *
+     */
+    public String getVSrc()  {
+        return getAttributeAsString("vSrc");
+    }
+
+    /**
     * Image for horizontal resizer for a vertical Toolstrip
     *
     * @param hSrc hSrc Default value is "[SKIN]hresizer.png"

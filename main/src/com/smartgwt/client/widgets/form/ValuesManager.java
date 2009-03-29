@@ -307,7 +307,7 @@ public class ValuesManager extends BaseClass {
     // ********************* Static Methods ***********************
 
 
-
+
 
 
 
@@ -332,13 +332,47 @@ public class ValuesManager extends BaseClass {
     }
     
     /**
-     * Set the values.
+     * Set the values for this values manager. Member forms will be updated as required by this change.
+     * Note that pre-existant values in other fields are cleared out by this.
      *
      * @param values the values
      */
     public void setValues(Map values) {
         setAttribute("values", values, true);
     }
+
+    /**
+     * Set the value for some field.
+     *
+     * @param fieldName Name of the field being updated
+     * @param value New value.
+     */
+    public native void setValue(String fieldName, String value) /*-{
+        var self = this.@com.smartgwt.client.core.BaseClass::getOrCreateJsObj()();
+        self.setValue(fieldName, value);
+    }-*/;
+
+    /**
+     * Set the value for some field.
+     *
+     * @param fieldName Name of the field being updated
+     * @param value New value.
+     */
+    public native void setValue(String fieldName, double value) /*-{
+        var self = this.@com.smartgwt.client.core.BaseClass::getOrCreateJsObj()();
+        self.setValue(fieldName, value);
+    }-*/;
+
+    /**
+     * Set the value for some field.
+     *
+     * @param fieldName Name of the field being updated
+     * @param value New value.
+     */
+    public native void setValue(String fieldName, boolean value) /*-{
+        var self = this.@com.smartgwt.client.core.BaseClass::getOrCreateJsObj()();
+        self.setValue(fieldName, value);
+    }-*/;
 
     /**
      * Return the value as String
@@ -349,6 +383,20 @@ public class ValuesManager extends BaseClass {
         var self = this.@com.smartgwt.client.core.BaseClass::getOrCreateJsObj()();
         var val = self.getValue(fieldName);
         return val == null || val === undefined ? null : val.toString();
+    }-*/;
+
+    /**
+     * Returns the current set of values for the values manager instance. This includes the values from any form managed by this manager, as well as any values explicitly
+     * applied via ValuesManager.setValues().
+     *
+     * @return the values
+     */
+    public native Map getValues() /*-{
+        var self = this.@com.smartgwt.client.core.BaseClass::getOrCreateJsObj()();
+        var value = self.getValues();
+        if(value == null) return null;
+        var valueJ = @com.smartgwt.client.util.JSOHelper::convertToMap(Lcom/google/gwt/core/client/JavaScriptObject;)(value);
+        return valueJ;
     }-*/;
 
     /**
@@ -403,6 +451,32 @@ public class ValuesManager extends BaseClass {
         var self = this.@com.smartgwt.client.core.BaseClass::getOrCreateJsObj()();
         var memberJS = member.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
         self.addMember(memberJS);
+    }-*/;
+
+    /**
+     * Remove a member form from this valuesManager, so its values are no longer managed by this instance. This does not
+     * clear the values associated with the form from the valuesManager - they will still be available via
+     * valuesManager.getValues(), but will not be updated as the form is manipulated. 
+     *
+     * @param member form to remove from this valuesManager
+     */
+    public native void removeMember(DynamicForm member) /*-{
+        var self = this.@com.smartgwt.client.core.BaseClass::getOrCreateJsObj()();
+        var memberJS = member.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
+        self.removeMember(memberJS);
+    }-*/;
+
+    /**
+     * Remove a member form from this valuesManager, so its values are no longer managed by this instance. This does not
+     * clear the values associated with the form from the valuesManager - they will still be available via
+     * valuesManager.getValues(), but will not be updated as the form is manipulated.
+     *
+     * @param formID ID of the form to remove from this valuesManager
+     */
+    public native void removeMember(String formID) /*-{
+        var self = this.@com.smartgwt.client.core.BaseClass::getOrCreateJsObj()();
+        var memberJS = member.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
+        self.removeMember(memberJS);
     }-*/;
 
     public native void fetchData() /*-{
@@ -659,7 +733,92 @@ public class ValuesManager extends BaseClass {
         }, requestPropertiesJS);
     }-*/;
 
-    
+    /**
+     * Make a snapshot of the current set of values, so we can reset to them later. Creates a new object, then adds all
+     * non-method properties of values to the new object. Use resetValues() to revert to these values. Note that this
+     * method is automatically called when the values for this form are set programmatically via a call to
+     * DynamicForm.setValues().
+     *
+     * @return copy of current form values
+     */
+    public native JavaScriptObject rememberValues() /*-{
+        var self = this.@com.smartgwt.client.core.BaseClass::getOrCreateJsObj()();
+        return self.rememberValues();
+    }-*/;
+
+
+    /**
+     * Setter for validation errors on this form. Errors passed in should be a Map in the format
+     * {fieldName1:errors, fieldName2:errors}
+     *
+     * Where the errors value may be either a string (single error message) or an array of strings (if multiple errors should be applied to the field in question).
+
+     * @param errors  list of errors as a map with the field names as keys
+     * @param showErrors If true redraw form to display errors now. Otherwise errors can be displayed by calling
+     *      {@link ValuesManager#showErrors} <b>Note</b>: When the errors are shown, handleHiddenValidationErrors() will be fired for errors
+     *      on hidden fields, or with no associated formItem.
+     */
+    public native void setErrors(Map errors, boolean showErrors) /*-{
+        var self = this.@com.smartgwt.client.core.BaseClass::getOrCreateJsObj()();
+        var errorsJS = @com.smartgwt.client.util.JSOHelper::convertMapToJavascriptObject(Ljava/util/Map;)(errors);
+        return self.setErrors(errorsJS, showErrors);
+    }-*/;
+
+    /**
+     * Returns the set of errors for this valuesManager.
+     *
+     * @return errors. key is field name, value is error. Returns null if no errors
+     */
+    public native Map getErrors() /*-{
+        var self = this.@com.smartgwt.client.core.BaseClass::getOrCreateJsObj()();
+        var value = self.getErrors();
+        if(value == null) return null;
+        var valueJ = @com.smartgwt.client.util.JSOHelper::convertToMap(Lcom/google/gwt/core/client/JavaScriptObject;)(value);
+        return valueJ;
+    }-*/;
+
+    /**
+     * Set field validation error for some field. The showErrors parameter allows the errors to be displayed immediately.
+     * Alternatively, an explicit call to {@link DynamicForm#showFieldErrors} will display the errors for this field.
+     *
+     * @param fieldName field to apply the new errors to
+     * @param error error to apply to the field in question
+     * @param showErrors If true this method will fall through to DynamicForm.showFieldErrors() to update the display
+     */
+    public native void setFieldErrors(String fieldName, String error, boolean showErrors) /*-{
+        var self = this.@com.smartgwt.client.core.BaseClass::getOrCreateJsObj()();
+        return self.setFieldErrors(fieldName, error, showErrors);
+    }-*/;
+
+    /**
+     * Set field validation errors for some field. The showErrors parameter allows the errors to be displayed immediately.
+     * Alternatively, an explicit call to {@link DynamicForm#showFieldErrors} will display the errors for this field.
+     *
+     * @param fieldName field to apply the new errors to
+     * @param errors errors to apply to the field in question
+     * @param showErrors If true this method will fall through to DynamicForm.showFieldErrors() to update the display
+     */
+    public native void setFieldErrors(String fieldName, String[] errors, boolean showErrors) /*-{
+        var self = this.@com.smartgwt.client.core.BaseClass::getOrCreateJsObj()();
+        var errorsJS = @com.smartgwt.client.util.JSOHelper::convertToJavaScriptArray([Ljava/lang/Object;)(errors);
+        return self.setFieldErrors(fieldName, errorsJS, showErrors);
+    }-*/;
+
+    /**
+     * Returns any validation errors for some field in this valuesManager. If no errors are present, will return null.
+     *
+     * @param fieldName the field name
+     * @return error messages for the field.
+     */
+    public native String[] getFieldErrors(String fieldName) /*-{
+        var self = this.@com.smartgwt.client.core.BaseClass::getOrCreateJsObj()();
+        var value = self.getFieldErrors(fieldName);
+        if(value == null) return null;
+        if(!@com.smartgwt.client.util.JSOHelper::isArray(Lcom/google/gwt/core/client/JavaScriptObject;)(data)) {
+            value = [value];
+        }
+        return @com.smartgwt.client.util.JSOHelper::convertToJavaStringArray(Lcom/google/gwt/core/client/JavaScriptObject;)(value);
+    }-*/;
 
 }
 
