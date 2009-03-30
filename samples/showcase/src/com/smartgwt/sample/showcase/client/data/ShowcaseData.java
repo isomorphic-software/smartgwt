@@ -299,7 +299,7 @@ public class ShowcaseData {
                     new ExplorerTreeNode("Databound Calendar", "databound-calendar-category", "calendar-category", "silk/calendar_view_day.png", new DataBoundCalendarSample.Factory(), true, idSuffix),
                     new ExplorerTreeNode("Compact Calendar", "compact-calendar-category", "calendar-category", "widgets/date_time.png", new CompactCalendarSample.Factory(), true, idSuffix),
                     new ExplorerTreeNode("Workday Calendar", "workday-calendar-category", "calendar-category", "crystal/16/actions/5days.png", new WorkdayCalendarSample.Factory(), true, idSuffix),
-                    //new ExplorerTreeNode("Custom Event Editing", "custom-editing-calendar-category", "calendar-category", "crystal/16/apps/date.png", new CustomEventCalendarSample.Factory(), true, idSuffix),
+                    new ExplorerTreeNode("Custom Event Editing", "custom-editing-calendar-category", "calendar-category", "crystal/16/apps/date.png", new CustomEventCalendarSample.Factory(), true, idSuffix),
                     new ExplorerTreeNode("Event Auto-Arranging", "event-autoarranging-calendar-category", "calendar-category", "crystal/16/actions/5days.png", new AutoArrangeEventsCalendarSample.Factory(), true, idSuffix),
                     new ExplorerTreeNode("Event Overlapping", "event-overlapping-calendar-category", "calendar-category", "crystal/16/actions/5days.png", new OverlappingEventsCalendarSample.Factory(), true, idSuffix),
 
