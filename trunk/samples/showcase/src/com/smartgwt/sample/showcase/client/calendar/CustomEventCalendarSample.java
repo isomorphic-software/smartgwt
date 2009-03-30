@@ -7,19 +7,16 @@ import com.smartgwt.client.data.fields.DataSourceTextField;
 import com.smartgwt.client.widgets.Canvas;
 import com.smartgwt.client.widgets.calendar.Calendar;
 import com.smartgwt.client.widgets.form.fields.HeaderItem;
+import com.smartgwt.client.widgets.form.fields.RadioGroupItem;
 import com.smartgwt.client.widgets.form.fields.SelectItem;
 import com.smartgwt.client.widgets.form.fields.TextItem;
-import com.smartgwt.client.widgets.form.fields.RadioGroupItem;
 import com.smartgwt.sample.showcase.client.PanelFactory;
 import com.smartgwt.sample.showcase.client.ShowcasePanel;
 import com.smartgwt.sample.showcase.client.data.CalendarData;
 
-import java.util.LinkedHashMap;
-
 public class CustomEventCalendarSample extends ShowcasePanel {
 
-    private static final String DESCRIPTION = "<p>Click in an empty cell or in an event to see custom fields in the quick event editor and in the full event editor.</p>" +
-            "<p>Notice how the red event can't be edited; This was specified within the event data itself (see the 'eventData' tab below).</p>";
+    private static final String DESCRIPTION = "<p>This example illustrates how the Calendar event dialog and editor can be completely customized.</p>";
 
 
     public static class Factory implements PanelFactory {
@@ -83,11 +80,13 @@ public class CustomEventCalendarSample extends ShowcasePanel {
         reminderItem.setValueMap("Pop-up", "Email");
 
         TextItem reminderValue = new TextItem();
+        reminderValue.setName("reminderValue");
         reminderValue.setShowTitle(false);
         reminderValue.setWidth(60);
-        //reminderValue.setDefaultValue(10);
+        reminderValue.setDefaultValue(10);
 
         SelectItem reminderUnits = new SelectItem();
+        reminderUnits.setName("reminderUnits");
         reminderUnits.setShowTitle(false);
         reminderUnits.setWidth(70);
         reminderUnits.setDefaultToFirstOption(false);
