@@ -1571,9 +1571,20 @@ public class ListGridField extends DataClass  implements com.smartgwt.client.wid
     // ********************* Static Methods ***********************
 
 
-
-
-
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
     /**
      * If this ListGrid is showing a filter row, this property can be used to apply a default value to show in the filter editor for this field.
@@ -1717,7 +1728,7 @@ public class ListGridField extends DataClass  implements com.smartgwt.client.wid
      * @return String
      */
     public Alignment getAlign() {
-        return Alignment.valueOf(getAttributeAsString("align"));
+        return (Alignment) EnumUtil.getEnum(Alignment.values(), getAttribute("align"));
     }
 
     /**
