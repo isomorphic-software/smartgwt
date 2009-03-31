@@ -292,8 +292,10 @@ public class SectionStack extends VLayout {
 
 
 
-
-
+
+
+
+
 
 
     public void setSections(SectionStackSection... sections) {
@@ -353,7 +355,7 @@ public class SectionStack extends VLayout {
 		var config = this.@com.smartgwt.client.widgets.BaseWidget::config;
 
         if(!config.sections) {
-            config.items = @com.smartgwt.client.util.JSOHelper::createJavaScriptArray()();
+            config.sections = @com.smartgwt.client.util.JSOHelper::createJavaScriptArray()();
         }
         config.sections = config.sections.splice(position,0, componentJS);;
     }-*/;
