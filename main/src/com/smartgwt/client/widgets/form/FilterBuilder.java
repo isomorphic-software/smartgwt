@@ -192,7 +192,7 @@ public class FilterBuilder extends Layout  implements com.smartgwt.client.widget
     /**
     * For operators that check that a value is within a range, text to show between the start and end input fields for specifying the limits of the range.
     *
-    * @param rangeSeparator rangeSeparator Default value is ">>"
+    * @param rangeSeparator rangeSeparator Default value is "and"
     * @throws IllegalStateException this property cannot be changed after the component has been created
     */
     public void setRangeSeparator(String rangeSeparator)  throws IllegalStateException {

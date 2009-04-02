@@ -92,4 +92,3 @@ public class TileRecord extends DetailViewerRecord  implements Record {
 
 
 
-

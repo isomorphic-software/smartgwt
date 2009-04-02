@@ -85,6 +85,26 @@ public class ValuesManager extends BaseClass {
         return $wnd.isc.ValuesManager.create(config);
     }-*/;
     // ********************* Properties / Attributes ***********************
+             
+    /**
+    * Default ${isc.DocUtils.linkForRef('type:DSOperationType')} to be performed when {@link com.smartgwt.client.widgets.form.DynamicForm#saveData} is called. This property is automatically set on a call to {@link com.smartgwt.client.widgets.form.DynamicForm#editRecord} or {@link com.smartgwt.client.widgets.form.DynamicForm#editNewRecord}, or may be set directly via  {@link com.smartgwt.client.widgets.form.DynamicForm#setSaveOperationType}.
+    * Setter for the default ${isc.DocUtils.linkForRef('type:DSOperationType')} when ${isc.DocUtils.linkForRef('DyanmicForm.saveData')} is called. Note that this property can also be set by calling {@link com.smartgwt.client.widgets.form.DynamicForm#editRecord} or  {@link com.smartgwt.client.widgets.form.DynamicForm#editNewRecord}
+    *
+    * @param saveOperationType Operation type to use as a default. Valid values are  <code>"add"</code> or <code>"update"</code>.. Default value is null
+    */
+    public void setSaveOperationType(DSOperationType saveOperationType) {
+        setAttribute("saveOperationType", saveOperationType.getValue(), true);
+    }
+    /**
+     * Default ${isc.DocUtils.linkForRef('type:DSOperationType')} to be performed when {@link com.smartgwt.client.widgets.form.DynamicForm#saveData} is called. This property is automatically set on a call to {@link com.smartgwt.client.widgets.form.DynamicForm#editRecord} or {@link com.smartgwt.client.widgets.form.DynamicForm#editNewRecord}, or may be set directly via  {@link com.smartgwt.client.widgets.form.DynamicForm#setSaveOperationType}.
+     *
+     *
+     * @return Returns the ${isc.DocUtils.linkForRef('type:DSOperationType')} to be performed when {@link com.smartgwt.client.widgets.form.DynamicForm#saveData} is called. Valid options are <code>"add"</code> or <code>"update"</code>. <P> If a {@link com.smartgwt.client.data.DSRequest} configuration object is passed in containing an explicit operationType this will be returned. Otherwise {@link com.smartgwt.client.widgets.form.DynamicForm#getSaveOperationType saveOperationType} will be returned.
+     *
+     */
+    public DSOperationType getSaveOperationType()  {
+        return (DSOperationType) EnumUtil.getEnum(DSOperationType.values(), getAttribute("saveOperationType"));
+    }
 
     /**
     * The error message for a failed validator that does not specify its own errorMessage.

@@ -228,7 +228,26 @@ public class TileGrid extends TileLayout  implements DataBoundComponent, com.sma
     public Boolean getShowAllRecords()  {
         return getAttributeAsBoolean("showAllRecords");
     }
- 
+
+    /**
+    * If set, when the dataset changes due to filtering, sorting or other actions, any tiles that were showing before and after the change will animate from their old positions to their new positions.
+    * <p><b>Note : </b> This is an advanced setting</p>
+    *
+    * @param animateTileChange animateTileChange Default value is true
+    */
+    public void setAnimateTileChange(Boolean animateTileChange) {
+        setAttribute("animateTileChange", animateTileChange, true);
+    }
+    /**
+     * If set, when the dataset changes due to filtering, sorting or other actions, any tiles that were showing before and after the change will animate from their old positions to their new positions.
+     *
+     *
+     * @return Boolean
+     *
+     */
+    public Boolean getAnimateTileChange()  {
+        return getAttributeAsBoolean("animateTileChange");
+    }
 
     /**
     * Style for the overall TileGrid component.
@@ -500,25 +519,6 @@ public class TileGrid extends TileLayout  implements DataBoundComponent, com.sma
 
 
 
-
-    /**
-     * Set the animateTileChange.
-     *
-     * @param animateTileChange the animateTileChange
-     */
-    public void setAnimateTileChange(Boolean animateTileChange) {
-        setAttribute("animateTileChange", animateTileChange, true);
-    }
-
-    /**
-     * Return the animateTileChange.
-     *
-     * @return the animateTileChange
-     */
-    public Boolean getAnimateTileChange() {
-        return getAttributeAsBoolean("animateTileChange");
-    }
-
 
     protected native void onInit() /*-{
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();

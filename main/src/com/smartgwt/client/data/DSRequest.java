@@ -78,14 +78,41 @@ public class DSRequest extends RPCRequest {
     // ********************* Properties / Attributes ***********************
 
     /**
-     * Automatically generated unique ID for this request. This ID will be required by developers  making use of the ${isc.DocUtils.linkForRef('dsProtocol','"clientCustom" dataProtocol')}.
+    * DataSource this DSRequest will act on. <P> This property is generally automatically populated, for example when calling {@link com.smartgwt.client.data.DataSource#fetchData} the dataSource property is set to the target DataSource.
+    *
+    * @param dataSource dataSource Default value is null
+    */
+    public void setDataSource(String dataSource) {
+        setAttribute("dataSource", dataSource);
+    }
+    /**
+     * DataSource this DSRequest will act on. <P> This property is generally automatically populated, for example when calling {@link com.smartgwt.client.data.DataSource#fetchData} the dataSource property is set to the target DataSource.
      *
      *
      * @return String
      *
      */
-    public String getRequestId()  {
-        return getAttributeAsString("requestId");
+    public String getDataSource()  {
+        return getAttributeAsString("dataSource");
+    }
+             
+    /**
+    * Type of operation being performed, "fetch", "add", "remove" or "update". <P> This property is generally automatically populated, for example when calling <code>fetchData()</code> on a DataSource or DataBound component the operationType is automatically set to "fetch".
+    *
+    * @param operationType operationType Default value is null
+    */
+    public void setOperationType(DSOperationType operationType) {
+        setAttribute("operationType", operationType.getValue());
+    }
+    /**
+     * Type of operation being performed, "fetch", "add", "remove" or "update". <P> This property is generally automatically populated, for example when calling <code>fetchData()</code> on a DataSource or DataBound component the operationType is automatically set to "fetch".
+     *
+     *
+     * @return DSOperationType
+     *
+     */
+    public DSOperationType getOperationType()  {
+        return (DSOperationType) EnumUtil.getEnum(DSOperationType.values(), getAttribute("operationType"));
     }
 
     /**
@@ -127,44 +154,6 @@ public class DSRequest extends RPCRequest {
     }
 
     /**
-    * DataSource this DSRequest will act on. <P> This property is generally automatically populated, for example when calling {@link com.smartgwt.client.data.DataSource#fetchData} the dataSource property is set to the target DataSource.
-    *
-    * @param dataSource dataSource Default value is null
-    */
-    public void setDataSource(String dataSource) {
-        setAttribute("dataSource", dataSource);
-    }
-    /**
-     * DataSource this DSRequest will act on. <P> This property is generally automatically populated, for example when calling {@link com.smartgwt.client.data.DataSource#fetchData} the dataSource property is set to the target DataSource.
-     *
-     *
-     * @return String
-     *
-     */
-    public String getDataSource()  {
-        return getAttributeAsString("dataSource");
-    }
-             
-    /**
-    * Type of operation being performed, "fetch", "add", "remove" or "update". <P> This property is generally automatically populated, for example when calling <code>fetchData()</code> on a DataSource or DataBound component the operationType is automatically set to "fetch".
-    *
-    * @param operationType operationType Default value is null
-    */
-    public void setOperationType(DSOperationType operationType) {
-        setAttribute("operationType", operationType.getValue());
-    }
-    /**
-     * Type of operation being performed, "fetch", "add", "remove" or "update". <P> This property is generally automatically populated, for example when calling <code>fetchData()</code> on a DataSource or DataBound component the operationType is automatically set to "fetch".
-     *
-     *
-     * @return DSOperationType
-     *
-     */
-    public DSOperationType getOperationType()  {
-        return (DSOperationType) EnumUtil.getEnum(DSOperationType.values(), getAttribute("operationType"));
-    }
-
-    /**
     * Fieldname to sortBy, prefixed with optional "-" indicating descending sort.  For example, to sort by the field "userName" in ascending order, set <code>sortBy</code> to just "userName".  For descending sort on "userName", set <code>sortBy</code> to "-userName".
     *
     * @param sortBy sortBy Default value is null
@@ -181,6 +170,15 @@ public class DSRequest extends RPCRequest {
      */
     public String getSortBy()  {
         return getAttributeAsString("sortBy");
+    }
+
+    /**
+    * For "fetch" operations, how search criteria should be interpreted for text fields: either "exact" for exact match, "startsWith" for matching at the beginning only, or "substring" for case-insensitive substring match. <p> This setting is respected by the built-in SQLDataSource.  Your custom DataSource implementation can interpret the search criteria passed into "fetch" operations in arbitrary ways; you can safely ignore this flag and use others of your own devising.
+    *
+    * @param textMatchStyle textMatchStyle Default value is "exact"
+    */
+    public void setTextMatchStyle(String textMatchStyle) {
+        setAttribute("textMatchStyle", textMatchStyle);
     }
 
     /**
@@ -212,12 +210,14 @@ public class DSRequest extends RPCRequest {
     }
 
     /**
-    * For "fetch" operations, how search criteria should be interpreted for text fields: either "exact" for exact match, "startsWith" for matching at the beginning only, or "substring" for case-insensitive substring match. <p> This setting is respected by the built-in SQLDataSource.  Your custom DataSource implementation can interpret the search criteria passed into "fetch" operations in arbitrary ways; you can safely ignore this flag and use others of your own devising.
-    *
-    * @param textMatchStyle textMatchStyle Default value is "exact"
-    */
-    public void setTextMatchStyle(String textMatchStyle) {
-        setAttribute("textMatchStyle", textMatchStyle);
+     * Automatically generated unique ID for this request. This ID will be required by developers  making use of the ${isc.DocUtils.linkForRef('dsProtocol','"clientCustom" dataProtocol')}.
+     *
+     *
+     * @return String
+     *
+     */
+    public String getRequestId()  {
+        return getAttributeAsString("requestId");
     }
 
     /**

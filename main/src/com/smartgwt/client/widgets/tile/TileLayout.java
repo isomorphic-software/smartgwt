@@ -253,6 +253,26 @@ public class TileLayout extends Canvas {
     public Boolean getPaddingAsLayoutMargin()  {
         return getAttributeAsBoolean("paddingAsLayoutMargin");
     }
+
+    /**
+    * If set, tiles animate to their new positions when a tile is added, removed, or reordered via drag and drop.
+    * <p><b>Note : </b> This is an advanced setting</p>
+    *
+    * @param animateTileChange animateTileChange Default value is true
+    */
+    public void setAnimateTileChange(Boolean animateTileChange) {
+        setAttribute("animateTileChange", animateTileChange, true);
+    }
+    /**
+     * If set, tiles animate to their new positions when a tile is added, removed, or reordered via drag and drop.
+     *
+     *
+     * @return Boolean
+     *
+     */
+    public Boolean getAnimateTileChange()  {
+        return getAttributeAsBoolean("animateTileChange");
+    }
              
     /**
     * Direction of tiling.  See also ${isc.DocUtils.linkForRef('type:TileLayoutPolicy')}.

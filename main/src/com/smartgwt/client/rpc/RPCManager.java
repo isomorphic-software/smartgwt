@@ -100,8 +100,15 @@ public class RPCManager {
         }-*/;
 
         /**
-         * Resend a transaction to the server. <P> A transaction means a batch of one or more RPCRequests that have already been sent to the server via {@link com.smartgwt.client.rpc.RPCManager#sendQueue}. <P> This is typically used as part of Relogin handling to resend a request that encountered a session timeout.
-         * @param transactionNum id of the transaction to be re-sent
+         * Resend a suspended transaction to the server.  See {@link com.smartgwt.client.rpc.RPCManager#suspendTransaction} for context.   <P> Note that the transaction must have been previously suspended, and in particular suspended validly according to the rules described in the docs for {@link com.smartgwt.client.rpc.RPCManager#suspendTransaction}, or undefined results will occur. <P> You can resend <b>all</b> suspended transactions by calling {@link com.smartgwt.client.rpc.RPCManager#resendTransaction} with no arguments.
+         */
+        public static native void resendTransaction() /*-{
+            $wnd.isc.RPCManager.resendTransaction();
+        }-*/;
+
+        /**
+         * Resend a suspended transaction to the server.  See {@link com.smartgwt.client.rpc.RPCManager#suspendTransaction} for context.   <P> Note that the transaction must have been previously suspended, and in particular suspended validly according to the rules described in the docs for {@link com.smartgwt.client.rpc.RPCManager#suspendTransaction}, or undefined results will occur. <P> You can resend <b>all</b> suspended transactions by calling {@link com.smartgwt.client.rpc.RPCManager#resendTransaction} with no arguments.
+         * @param transactionNum id of the transaction to be re-sent, or null to resend all                              suspended transactions
          */
         public static native void resendTransaction(String transactionNum) /*-{
             $wnd.isc.RPCManager.resendTransaction(transactionNum);
