@@ -146,6 +146,26 @@ public class RestDataSource extends DataSource {
     }
 
     /**
+    * When using dataFormat:"json" and dataProtocol:"postMessage" should we use the {@link com.smartgwt.client..JSONEncoder#getPrettyPrint prettyPrint} feature to enable indented, highly readable JSON messages. <P> True by default because the bandwidth involved is generally neglible and the benefits for troubleshooting are key.
+    *
+    * @param prettyPrintJSON prettyPrintJSON Default value is true
+    * @throws IllegalStateException this property cannot be changed after the underlying component has been created
+    */
+    public void setPrettyPrintJSON(Boolean prettyPrintJSON)  throws IllegalStateException {
+        setAttribute("prettyPrintJSON", prettyPrintJSON, false);
+    }
+    /**
+     * When using dataFormat:"json" and dataProtocol:"postMessage" should we use the {@link com.smartgwt.client..JSONEncoder#getPrettyPrint prettyPrint} feature to enable indented, highly readable JSON messages. <P> True by default because the bandwidth involved is generally neglible and the benefits for troubleshooting are key.
+     *
+     *
+     * @return Boolean
+     *
+     */
+    public Boolean getPrettyPrintJSON()  {
+        return getAttributeAsBoolean("prettyPrintJSON");
+    }
+
+    /**
     * Default URL to contact to fulfill all DSRequests.   RestDataSources also allow per-operationType dataURLs to be set via <ul> <li>{@link com.smartgwt.client.data.RestDataSource#getFetchDataURL fetchDataURL}</li> <li>{@link com.smartgwt.client.data.RestDataSource#getAddDataURL addDataURL}</li>  <li>{@link com.smartgwt.client.data.RestDataSource#getUpdateDataURL updateDataURL}</li> <li>{@link com.smartgwt.client.data.RestDataSource#getRemoveDataURL removeDataURL}</li> </ul>
     *
     * @param dataURL dataURL Default value is null
@@ -292,7 +312,6 @@ public class RestDataSource extends DataSource {
     // ********************* Static Methods ***********************
 
 }
-
 
 
 

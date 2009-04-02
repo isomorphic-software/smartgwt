@@ -1008,24 +1008,24 @@ public class ListGridField extends DataClass  implements com.smartgwt.client.wid
     public String getHeaderTitleStyle()  {
         return getAttributeAsString("headerTitleStyle");
     }
-
+             
     /**
     * Horizontal alignment for cells in this field's column: "left", "right" or "center".<br> If null, alignment is derived from {@link com.smartgwt.client.widgets.grid.ListGridField#getAlign align}. If this field is editable,  the alignment of cells in the body will also be reflected in any editors for the field.
     *
     * @param cellAlign cellAlign Default value is null
     */
-    public void setCellAlign(String cellAlign) {
-        setAttribute("cellAlign", cellAlign);
+    public void setCellAlign(Alignment cellAlign) {
+        setAttribute("cellAlign", cellAlign.getValue());
     }
     /**
      * Horizontal alignment for cells in this field's column: "left", "right" or "center".<br> If null, alignment is derived from {@link com.smartgwt.client.widgets.grid.ListGridField#getAlign align}. If this field is editable,  the alignment of cells in the body will also be reflected in any editors for the field.
      *
      *
-     * @return String
+     * @return Alignment
      *
      */
-    public String getCellAlign()  {
-        return getAttributeAsString("cellAlign");
+    public Alignment getCellAlign()  {
+        return (Alignment) EnumUtil.getEnum(Alignment.values(), getAttribute("cellAlign"));
     }
 
     /**
@@ -1571,20 +1571,9 @@ public class ListGridField extends DataClass  implements com.smartgwt.client.wid
     // ********************* Static Methods ***********************
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+
+
+
 
     /**
      * If this ListGrid is showing a filter row, this property can be used to apply a default value to show in the filter editor for this field.

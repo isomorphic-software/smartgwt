@@ -1322,18 +1322,9 @@ public class Calendar extends Canvas  implements DataBoundComponent, com.smartgw
     // ********************* Static Methods ***********************
 
 
-
-
-
-
-
-
-
-
-
-
-
-
+
+
+
 
 
     protected native void onInit() /*-{
@@ -1405,8 +1396,8 @@ public class Calendar extends Canvas  implements DataBoundComponent, com.smartgw
         int i = 0;
         for (FormItem formItem : formItems) {
             JavaScriptObject config = formItem.getConfig();
-            JSOHelper.setAttribute(config, "type", formItem.getType());
             JSOHelper.setAttribute(config, "name", formItem.getName());
+            JSOHelper.setAttribute(config, "type", formItem.getType());
             JSOHelper.setArrayValue(jsArray, i, config);
             i++;
         }

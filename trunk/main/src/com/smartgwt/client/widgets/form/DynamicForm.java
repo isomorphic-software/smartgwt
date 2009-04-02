@@ -93,6 +93,26 @@ public class DynamicForm extends Canvas  implements DataBoundComponent, com.smar
     // ********************* Properties / Attributes ***********************
              
     /**
+    * Default ${isc.DocUtils.linkForRef('type:DSOperationType')} to be performed when {@link com.smartgwt.client.widgets.form.DynamicForm#saveData} is called. This property is automatically set on a call to {@link com.smartgwt.client.widgets.form.DynamicForm#editRecord} or {@link com.smartgwt.client.widgets.form.DynamicForm#editNewRecord}, or may be set directly via  {@link com.smartgwt.client.widgets.form.DynamicForm#setSaveOperationType}.
+    * Setter for the default ${isc.DocUtils.linkForRef('type:DSOperationType')} when ${isc.DocUtils.linkForRef('DyanmicForm.saveData')} is called. Note that this property can also be set by calling {@link com.smartgwt.client.widgets.form.DynamicForm#editRecord} or  {@link com.smartgwt.client.widgets.form.DynamicForm#editNewRecord}
+    *
+    * @param saveOperationType Operation type to use as a default. Valid values are  <code>"add"</code> or <code>"update"</code>.. Default value is null
+    */
+    public void setSaveOperationType(DSOperationType saveOperationType) {
+        setAttribute("saveOperationType", saveOperationType.getValue(), true);
+    }
+    /**
+     * Default ${isc.DocUtils.linkForRef('type:DSOperationType')} to be performed when {@link com.smartgwt.client.widgets.form.DynamicForm#saveData} is called. This property is automatically set on a call to {@link com.smartgwt.client.widgets.form.DynamicForm#editRecord} or {@link com.smartgwt.client.widgets.form.DynamicForm#editNewRecord}, or may be set directly via  {@link com.smartgwt.client.widgets.form.DynamicForm#setSaveOperationType}.
+     *
+     *
+     * @return Returns the ${isc.DocUtils.linkForRef('type:DSOperationType')} to be performed when {@link com.smartgwt.client.widgets.form.DynamicForm#saveData} is called. Valid options are <code>"add"</code> or <code>"update"</code>. <P> If a {@link com.smartgwt.client.data.DSRequest} configuration object is passed in containing an explicit operationType this will be returned. Otherwise {@link com.smartgwt.client.widgets.form.DynamicForm#getSaveOperationType saveOperationType} will be returned.
+     *
+     */
+    public DSOperationType getSaveOperationType()  {
+        return (DSOperationType) EnumUtil.getEnum(DSOperationType.values(), getAttribute("saveOperationType"));
+    }
+             
+    /**
     * Layout style to use with this form.   <P> The default of "table" uses a tabular layout similar to HTML tables, but with much more powerful control over sizing, item visibility and reflow, overflow handling, etc. <P> <code>itemLayout:"absolute"</code> allows absolute positioning of every form item.  This provides maximum flexibility in placement, with the following limitations:<ul> <li> titles, which normally take up an adjacent cell, are not shown.  Use      StaticTextItems to show titles <li> no automatic reflow when showing or hiding items.  {@link com.smartgwt.client.widgets.form.fields.FormItem#setLeft}      and {@link com.smartgwt.client.widgets.form.fields.FormItem#setTop} can be used for manual reflow. <li> only pixel and percent sizes are allowed, no "*".  Percent widths mean percentage      of the overall form size rather than the column size <li> with different font styling or internationalized titles, items may overlap that did      not overlap in the skin used at design time </ul>
     * <p><b>Note : </b> This is an advanced setting</p>
     *
