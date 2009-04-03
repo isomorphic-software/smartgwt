@@ -87,7 +87,7 @@ public class ValuesManager extends BaseClass {
     // ********************* Properties / Attributes ***********************
              
     /**
-    * Default ${isc.DocUtils.linkForRef('type:DSOperationType')} to be performed when {@link com.smartgwt.client.widgets.form.DynamicForm#saveData} is called. This property is automatically set on a call to {@link com.smartgwt.client.widgets.form.DynamicForm#editRecord} or {@link com.smartgwt.client.widgets.form.DynamicForm#editNewRecord}, or may be set directly via  {@link com.smartgwt.client.widgets.form.DynamicForm#setSaveOperationType}.
+    * Default ${isc.DocUtils.linkForRef('type:DSOperationType')} to be performed when {@link com.smartgwt.client.widgets.form.DynamicForm#saveData} is called. This property is automatically set on a call to {@link com.smartgwt.client.widgets.form.DynamicForm#editRecord} or {@link com.smartgwt.client.widgets.form.DynamicForm#editNewRecord}, or may be set directly via  {@link com.smartgwt.client.widgets.form.DynamicForm#setSaveOperationType}. <P> If <code>saveOperationType</code> is unset, the form will heuristically determine whether an "add" or "update" operation is intended based on whether the primaryKey field is present and editable.
     * Setter for the default ${isc.DocUtils.linkForRef('type:DSOperationType')} when ${isc.DocUtils.linkForRef('DyanmicForm.saveData')} is called. Note that this property can also be set by calling {@link com.smartgwt.client.widgets.form.DynamicForm#editRecord} or  {@link com.smartgwt.client.widgets.form.DynamicForm#editNewRecord}
     *
     * @param saveOperationType Operation type to use as a default. Valid values are  <code>"add"</code> or <code>"update"</code>.. Default value is null
@@ -96,7 +96,7 @@ public class ValuesManager extends BaseClass {
         setAttribute("saveOperationType", saveOperationType.getValue(), true);
     }
     /**
-     * Default ${isc.DocUtils.linkForRef('type:DSOperationType')} to be performed when {@link com.smartgwt.client.widgets.form.DynamicForm#saveData} is called. This property is automatically set on a call to {@link com.smartgwt.client.widgets.form.DynamicForm#editRecord} or {@link com.smartgwt.client.widgets.form.DynamicForm#editNewRecord}, or may be set directly via  {@link com.smartgwt.client.widgets.form.DynamicForm#setSaveOperationType}.
+     * Default ${isc.DocUtils.linkForRef('type:DSOperationType')} to be performed when {@link com.smartgwt.client.widgets.form.DynamicForm#saveData} is called. This property is automatically set on a call to {@link com.smartgwt.client.widgets.form.DynamicForm#editRecord} or {@link com.smartgwt.client.widgets.form.DynamicForm#editNewRecord}, or may be set directly via  {@link com.smartgwt.client.widgets.form.DynamicForm#setSaveOperationType}. <P> If <code>saveOperationType</code> is unset, the form will heuristically determine whether an "add" or "update" operation is intended based on whether the primaryKey field is present and editable.
      *
      *
      * @return Returns the ${isc.DocUtils.linkForRef('type:DSOperationType')} to be performed when {@link com.smartgwt.client.widgets.form.DynamicForm#saveData} is called. Valid options are <code>"add"</code> or <code>"update"</code>. <P> If a {@link com.smartgwt.client.data.DSRequest} configuration object is passed in containing an explicit operationType this will be returned. Otherwise {@link com.smartgwt.client.widgets.form.DynamicForm#getSaveOperationType saveOperationType} will be returned.
@@ -157,6 +157,21 @@ public class ValuesManager extends BaseClass {
             self.editRecord(record.@com.smartgwt.client.core.DataClass::getJsObj()());
         }-*/;
 
+
+        /**
+         * Returns true if {@link com.smartgwt.client.widgets.form.ValuesManager#getSaveOperationType saveOperationType} is currently "add".  See {@link com.smartgwt.client.widgets.form.ValuesManager#getSaveOperationType saveOperationType}.
+         *
+         * @return whether this form will use an "add" operation when saving
+         */
+        public native Boolean isNewRecord() /*-{
+            var self = this.@com.smartgwt.client.core.BaseClass::getOrCreateJsObj()();
+            var retVal =self.isNewRecord();
+            if(retVal == null || retVal === undefined) {
+                return null;
+            } else {
+                return @com.smartgwt.client.util.JSOHelper::toBoolean(Z)(retVal);
+            }
+        }-*/;
 
 
 
