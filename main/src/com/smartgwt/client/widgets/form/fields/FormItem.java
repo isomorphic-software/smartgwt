@@ -1626,7 +1626,7 @@ public class FormItem extends RefDataClass  implements com.smartgwt.client.widge
                 obj = this.@com.smartgwt.client.core.DataClass::getJsObj()();
                 var selfJ = this;
                 obj.titleHover = function(){
-                    var param = {"form" : arguments[0], "item" : arguments[1]};
+                    var param = {"form" : arguments[1], "item" : arguments[0]};
                     var event = @com.smartgwt.client.widgets.form.fields.events.TitleHoverEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
                     selfJ.@com.smartgwt.client.core.DataClass::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
                 };
@@ -1931,9 +1931,23 @@ public class FormItem extends RefDataClass  implements com.smartgwt.client.widge
 
 
 
-
-
-
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
     public void setAttribute(String attribute, String value) {
         if (!isCreated()) {
