@@ -96,6 +96,21 @@ public enum ListGridFieldType implements ValueEnum {
      * the&#010  final URL.
      */
     IMAGE("image"),
+
+    /**
+     * Shows ${isc.DocUtils.linkForRef('attr:ListGridField.icon','field.icon')} in every cell, and also in the header.
+     * Useful for a field that is used as a button, for example, launches a detail&amp;#010 window or removes a row.
+     * Implement a ${isc.DocUtils.linkForRef('method:ListGridField.recordClick','field.recordClick')}&amp;#010 to define a
+     * behavior for the button.&amp;#010 &lt;P&gt;&amp;#010 NOTE: for a field that shows different icons depending on the
+     * field value, see&amp;#010 ${isc.DocUtils.linkForRef('attr:ListGridField.valueIcons')}.&amp;#010 &lt;P&gt;&amp;#010 &lt;code&gt;type:&quot;icon&quot;&lt;/code&gt;
+     * also defaults to a small field width, accomodating just the icon&amp;#010 with padding, and to a blank header title,
+     * so that the header shows the icon only.  &amp;#010 &lt;P&gt;&amp;#010
+     * ${isc.DocUtils.linkForRef('attr:ListGridField.iconWidth','field.iconWidth')} and related properties configure&amp;#010
+     * the size of the icon both in the header and in body cells.&amp;#010 &lt;P&gt; &amp;#010 If you want the icon to appear
+     * only in body cells and not in the header, set&amp;#010 ${isc.DocUtils.linkForRef('attr:ListGridField.cellIcon','field.cellIcon')}
+     * instead, leaving field.icon null.
+     */
+    ICON("icon"),
     /**
      * For viewing, the grid renders a 'view' icon (looking glass) followed by a 'download' icon and then the name of
      * the file is displayed in text.  If the user clicks the&#010 'view' icon, a new browser window is opened and the
