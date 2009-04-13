@@ -505,7 +505,7 @@ public class TileGrid extends TileLayout  implements DataBoundComponent, com.sma
         }-*/;
 
         /**
-         * Returns a snapshot of the current presentation of this grid's fields as  a ${isc.DocUtils.linkForRef('type:listGridFieldState')} object.<br> This object can be passed to {@link com.smartgwt.client.widgets.tile.TileGrid#setFieldState} to reset this grid's fields to the current state.<br> Note that the information stored includes the current width and visibility of each of this  grid's fields.
+         * Returns a snapshot of the current presentation of this grid's fields as  a ${isc.DocUtils.linkForRef('type:listGridFieldState')} object. <P> This object can be passed to {@link com.smartgwt.client.widgets.tile.TileGrid#setFieldState} to reset this grid's fields to the current state. <P> Note that the information stored includes the current width and visibility of each of this  grid's fields.
          *
          * @return current state of this grid's fields.
          */

@@ -935,12 +935,14 @@ public class SelectItem extends FormItem  implements PickList {
     /**
      * Returns the values of a SelectItem with multiple=true as an array of Strings.
      *
-     * @return value of selection
+     * @return value of selection. If no values are selected, and empty array is returned
      */
     public native String[] getValues() /*-{
         var self = this.@com.smartgwt.client.core.DataClass::getJsObj()();
         var value = self.getValue();
-        if(!$wnd.isA.Array(value)) {
+        if(value == null) {
+            value = [];
+        } else if(!$wnd.isA.Array(value)) {
             value = [value];
         }
         return  @com.smartgwt.client.util.JSOHelper::convertToJavaStringArray(Lcom/google/gwt/core/client/JavaScriptObject;)(value);

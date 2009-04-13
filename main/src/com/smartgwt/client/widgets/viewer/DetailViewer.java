@@ -378,7 +378,7 @@ public class DetailViewer extends Canvas  implements DataBoundComponent {
     }
              
     /**
-    * Display format to use for fields specified as type 'date'.  Default is to use the system-wide default normal date format, configured via {@link com.smartgwt.client..Date#setNormalDisplayFormat}.  Specify any valid ${isc.DocUtils.linkForRef('type:DateDisplayFormat')} to  change the format used by this detailViewer.
+    * Display format to use for fields specified as type 'date'.  Default is to use the system-wide default normal date format, configured via {@link com.smartgwt.client..Date#setNormalDisplayFormat}.  Specify any valid ${isc.DocUtils.linkForRef('type:DateDisplayFormat')} to change the format used by this detailViewer.
     *
     * @param dateFormatter dateFormatter Default value is null
     * @throws IllegalStateException this property cannot be changed after the component has been created
@@ -387,7 +387,7 @@ public class DetailViewer extends Canvas  implements DataBoundComponent {
         setAttribute("dateFormatter", dateFormatter.getValue(), false);
     }
     /**
-     * Display format to use for fields specified as type 'date'.  Default is to use the system-wide default normal date format, configured via {@link com.smartgwt.client..Date#setNormalDisplayFormat}.  Specify any valid ${isc.DocUtils.linkForRef('type:DateDisplayFormat')} to  change the format used by this detailViewer.
+     * Display format to use for fields specified as type 'date'.  Default is to use the system-wide default normal date format, configured via {@link com.smartgwt.client..Date#setNormalDisplayFormat}.  Specify any valid ${isc.DocUtils.linkForRef('type:DateDisplayFormat')} to change the format used by this detailViewer.
      *
      *
      * @return DateDisplayFormat

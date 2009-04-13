@@ -268,6 +268,101 @@ public class OperationBinding extends DataClass {
     }
 
     /**
+    * Configures {@link com.smartgwt.client.data.DataSource#getPreventHTTPCaching preventHTTPCaching} on a per-operationType basis.
+    *
+    * @param preventHTTPCaching preventHTTPCaching Default value is null
+    */
+    public void setPreventHTTPCaching(Boolean preventHTTPCaching) {
+        setAttribute("preventHTTPCaching", preventHTTPCaching);
+    }
+    /**
+     * Configures {@link com.smartgwt.client.data.DataSource#getPreventHTTPCaching preventHTTPCaching} on a per-operationType basis.
+     *
+     *
+     * @return Boolean
+     *
+     */
+    public Boolean getPreventHTTPCaching()  {
+        return getAttributeAsBoolean("preventHTTPCaching");
+    }
+
+    /**
+    * Setting <code>useFlatFields</code> on an operationBinding is equivalent to setting {@link com.smartgwt.client.data.DSRequest#getUseFlatFields useFlatFields} on all DataSource requests with the same {@link com.smartgwt.client.data.OperationBinding#getOperationType operationType} as this <code>operationBinding</code>. <P> Typical usage is to combine operationBinding.useFlatFields with  {@link com.smartgwt.client..DataBoundComponent#getUseFlatFields useFlatFields}, with the {@link com.smartgwt.client.widgets.form.SearchForm} bound to the {@link com.smartgwt.client..WebService#getInputDS} of the web service operation set as {@link com.smartgwt.client.data.OperationBinding#getWsOperation wsOperation}.  This allows gratuitous nesting to be consistently bypassed in both the user presentation and in the actual XML messaging. <P> Not that <code>useFlatFields</code> is not generally recommended for use with input messages where multiple simple type fields exist with the same name, however if used in this way, the first field to use a given name wins.  "first" means the first field encountered in a depth first search.  "wins" means only the first field will be available in data binding, and only the first field will be populated in the generated XML message.
+    *
+    * @param useFlatFields useFlatFields Default value is false
+    */
+    public void setUseFlatFields(Boolean useFlatFields) {
+        setAttribute("useFlatFields", useFlatFields);
+    }
+    /**
+     * Setting <code>useFlatFields</code> on an operationBinding is equivalent to setting {@link com.smartgwt.client.data.DSRequest#getUseFlatFields useFlatFields} on all DataSource requests with the same {@link com.smartgwt.client.data.OperationBinding#getOperationType operationType} as this <code>operationBinding</code>. <P> Typical usage is to combine operationBinding.useFlatFields with  {@link com.smartgwt.client..DataBoundComponent#getUseFlatFields useFlatFields}, with the {@link com.smartgwt.client.widgets.form.SearchForm} bound to the {@link com.smartgwt.client..WebService#getInputDS} of the web service operation set as {@link com.smartgwt.client.data.OperationBinding#getWsOperation wsOperation}.  This allows gratuitous nesting to be consistently bypassed in both the user presentation and in the actual XML messaging. <P> Not that <code>useFlatFields</code> is not generally recommended for use with input messages where multiple simple type fields exist with the same name, however if used in this way, the first field to use a given name wins.  "first" means the first field encountered in a depth first search.  "wins" means only the first field will be available in data binding, and only the first field will be populated in the generated XML message.
+     *
+     *
+     * @return Boolean
+     *
+     */
+    public Boolean getUseFlatFields()  {
+        return getAttributeAsBoolean("useFlatFields");
+    }
+
+    /**
+    * For an XML or JSON DataSource, XPath expression used to retrieve the objects that will become DataSource records. <p> For example, an "ItemSearch" web service might return a "Results" structure containing metadata along with the set of Items that one might want to display in a grid.  An XPath expression like "/Results/Items" could be used to retrieve just the Items, which would then become DataSource records. <p> For a JSON web service, the <code>recordXPath</code> is applied to the returned JSON data via {@link com.smartgwt.client.util.XMLTools#selectObjects}.  Only limited XPath syntax is allowed; see  {@link com.smartgwt.client.util.XMLTools#selectObjects} for details. <P> For processing XML results, see {@link com.smartgwt.client.data.OperationBinding#getXmlNamespaces xmlNamespaces} for information on the namespaces that are available in this XPath expression. <P> To learn about XPath, try the following search: <a href="http://www.google.com/search?q=xpath+tutorial" target="_blank" >http://www.google.com/search?q=xpath+tutorial</a>
+    *
+    * @param recordXPath recordXPath Default value is null
+    */
+    public void setRecordXPath(String recordXPath) {
+        setAttribute("recordXPath", recordXPath);
+    }
+    /**
+     * For an XML or JSON DataSource, XPath expression used to retrieve the objects that will become DataSource records. <p> For example, an "ItemSearch" web service might return a "Results" structure containing metadata along with the set of Items that one might want to display in a grid.  An XPath expression like "/Results/Items" could be used to retrieve just the Items, which would then become DataSource records. <p> For a JSON web service, the <code>recordXPath</code> is applied to the returned JSON data via {@link com.smartgwt.client.util.XMLTools#selectObjects}.  Only limited XPath syntax is allowed; see  {@link com.smartgwt.client.util.XMLTools#selectObjects} for details. <P> For processing XML results, see {@link com.smartgwt.client.data.OperationBinding#getXmlNamespaces xmlNamespaces} for information on the namespaces that are available in this XPath expression. <P> To learn about XPath, try the following search: <a href="http://www.google.com/search?q=xpath+tutorial" target="_blank" >http://www.google.com/search?q=xpath+tutorial</a>
+     *
+     *
+     * @return String
+     *
+     */
+    public String getRecordXPath()  {
+        return getAttributeAsString("recordXPath");
+    }
+
+    /**
+    * For an XML DataSource, tagName of the elements to be used as records. <p> This is a simple alternative to {@link com.smartgwt.client.data.OperationBinding#getRecordXPath recordXPath} when the elements to be used as records all share a tagName. <p> When a DataSource has a WebService, <code>recordName</code> can also be set to the name of any <code>complexType</code> declared within the WebService's WSDL file.
+    *
+    * @param recordName recordName Default value is null
+    */
+    public void setRecordName(String recordName) {
+        setAttribute("recordName", recordName);
+    }
+    /**
+     * For an XML DataSource, tagName of the elements to be used as records. <p> This is a simple alternative to {@link com.smartgwt.client.data.OperationBinding#getRecordXPath recordXPath} when the elements to be used as records all share a tagName. <p> When a DataSource has a WebService, <code>recordName</code> can also be set to the name of any <code>complexType</code> declared within the WebService's WSDL file.
+     *
+     *
+     * @return String
+     *
+     */
+    public String getRecordName()  {
+        return getAttributeAsString("recordName");
+    }
+
+    /**
+    * For a DataSource contacting a {@link com.smartgwt.client.data.DataSource#getServiceNamespace serviceNamespace}, setting this flag means the DataSource doesn't actually attempt to contact the server but generates a sample response instead, based on the XML Schema of the response message embedded in the WSDL. <P> The spoofed response will include all complexType elements and will fill in appropriate values by type for all simpleType elements, although the spoofed data will not conform to all xs:restriction declarations (eg xs:pattern). <P> Note that if your WSDL does not fully describe the response format (some WSDL services just have a placeholder &lt;xs:any&gt; element), SmartClient can only produce a partial response.  To use a hand-generated sample response, just save an XML file to disk and use the {@link com.smartgwt.client.data.OperationBinding#getDataURL dataURL} setting to point to it.
+    *
+    * @param spoofResponses spoofResponses Default value is false
+    */
+    public void setSpoofResponses(Boolean spoofResponses) {
+        setAttribute("spoofResponses", spoofResponses);
+    }
+    /**
+     * For a DataSource contacting a {@link com.smartgwt.client.data.DataSource#getServiceNamespace serviceNamespace}, setting this flag means the DataSource doesn't actually attempt to contact the server but generates a sample response instead, based on the XML Schema of the response message embedded in the WSDL. <P> The spoofed response will include all complexType elements and will fill in appropriate values by type for all simpleType elements, although the spoofed data will not conform to all xs:restriction declarations (eg xs:pattern). <P> Note that if your WSDL does not fully describe the response format (some WSDL services just have a placeholder &lt;xs:any&gt; element), SmartClient can only produce a partial response.  To use a hand-generated sample response, just save an XML file to disk and use the {@link com.smartgwt.client.data.OperationBinding#getDataURL dataURL} setting to point to it.
+     *
+     *
+     * @return Boolean
+     *
+     */
+    public Boolean getSpoofResponses()  {
+        return getAttributeAsBoolean("spoofResponses");
+    }
+
+    /**
     * When set, causes the results of the DataSource Operation to be exported to a file, whose  name and format are indicated by {@link com.smartgwt.client.data.OperationBinding#getExportFileName exportFileName} and  {@link com.smartgwt.client.data.OperationBinding#getExportAs exportAs} respectively.  When no exportFilename is provided, the  default is <i>Results</i> and the default value of exportAs is <i>csv</i>.  Once the Operation  completes, {@link com.smartgwt.client.data.DSRequest#getExportDisplay exportDisplay} specifies whether the  exported data will be downloaded to the file-system or displayed in a new window.   The  default value of exportDisplay is "download" which displays the Save As dialog.  See  ${isc.DocUtils.linkForRef('type:ExportDisplay')} for more information. <P> The export field-list can also be configured, see {@link com.smartgwt.client.data.DSRequest#getExportFields exportFields}. <P> You can also configure the style of line-breaks to use when generating the output.  See ${isc.DocUtils.linkForRef('type:LineBreakStyle')} for more information. <P> As well as setting this and other properties on the {@link com.smartgwt.client.data.OperationBinding}, Exports can be  initiated in two other ways.  You can set properties on the dsRequest by passing  <i>requestProperties</i> into {@link com.smartgwt.client.data.DataSource#exportData}.  Note that this method does not support exporting to JSON format (see  <a href=http://forums.smartclient.com/showthread.php?t=235>this post</a> for more detail). Additionally, custom server code may set export-related properties on the  {@link com.smartgwt.client.data.DSResponse}. <P> <b>Format Examples</b> <ul> <li>XML format</li> <pre>     &lt;List&gt;         &lt;Object&gt;             &lt;id&gt;10101&lt;/id&gt;             &lt;displayName&gt;Record 10101&lt;/displayName&gt;         &lt;/Object&gt;    &lt;/List&gt; </pre> <li>JSON Format</li> <pre>     [         { id: 10101, displayName: "Record 10101" }     ] </pre> <li>CSV Format</li> <pre>     id,displayName     10101,"Record 10101" </pre> </ul>
     *
     * @param exportResults exportResults Default value is false
@@ -341,82 +436,6 @@ public class OperationBinding extends DataClass {
      */
     public String getLineBreakStyle()  {
         return getAttributeAsString("lineBreakStyle");
-    }
-
-    /**
-    * Configures {@link com.smartgwt.client.data.DataSource#getPreventHTTPCaching preventHTTPCaching} on a per-operationType basis.
-    *
-    * @param preventHTTPCaching preventHTTPCaching Default value is null
-    */
-    public void setPreventHTTPCaching(Boolean preventHTTPCaching) {
-        setAttribute("preventHTTPCaching", preventHTTPCaching);
-    }
-    /**
-     * Configures {@link com.smartgwt.client.data.DataSource#getPreventHTTPCaching preventHTTPCaching} on a per-operationType basis.
-     *
-     *
-     * @return Boolean
-     *
-     */
-    public Boolean getPreventHTTPCaching()  {
-        return getAttributeAsBoolean("preventHTTPCaching");
-    }
-
-    /**
-    * For an XML or JSON DataSource, XPath expression used to retrieve the objects that will become DataSource records. <p> For example, an "ItemSearch" web service might return a "Results" structure containing metadata along with the set of Items that one might want to display in a grid.  An XPath expression like "/Results/Items" could be used to retrieve just the Items, which would then become DataSource records. <p> For a JSON web service, the <code>recordXPath</code> is applied to the returned JSON data via {@link com.smartgwt.client.util.XMLTools#selectObjects}.  Only limited XPath syntax is allowed; see  {@link com.smartgwt.client.util.XMLTools#selectObjects} for details. <P> For processing XML results, see {@link com.smartgwt.client.data.OperationBinding#getXmlNamespaces xmlNamespaces} for information on the namespaces that are available in this XPath expression. <P> To learn about XPath, try the following search: <a href="http://www.google.com/search?q=xpath+tutorial" target="_blank" >http://www.google.com/search?q=xpath+tutorial</a>
-    *
-    * @param recordXPath recordXPath Default value is null
-    */
-    public void setRecordXPath(String recordXPath) {
-        setAttribute("recordXPath", recordXPath);
-    }
-    /**
-     * For an XML or JSON DataSource, XPath expression used to retrieve the objects that will become DataSource records. <p> For example, an "ItemSearch" web service might return a "Results" structure containing metadata along with the set of Items that one might want to display in a grid.  An XPath expression like "/Results/Items" could be used to retrieve just the Items, which would then become DataSource records. <p> For a JSON web service, the <code>recordXPath</code> is applied to the returned JSON data via {@link com.smartgwt.client.util.XMLTools#selectObjects}.  Only limited XPath syntax is allowed; see  {@link com.smartgwt.client.util.XMLTools#selectObjects} for details. <P> For processing XML results, see {@link com.smartgwt.client.data.OperationBinding#getXmlNamespaces xmlNamespaces} for information on the namespaces that are available in this XPath expression. <P> To learn about XPath, try the following search: <a href="http://www.google.com/search?q=xpath+tutorial" target="_blank" >http://www.google.com/search?q=xpath+tutorial</a>
-     *
-     *
-     * @return String
-     *
-     */
-    public String getRecordXPath()  {
-        return getAttributeAsString("recordXPath");
-    }
-
-    /**
-    * For an XML DataSource, tagName of the elements to be used as records. <p> This is a simple alternative to {@link com.smartgwt.client.data.OperationBinding#getRecordXPath recordXPath} when the elements to be used as records all share a tagName. <p> When a DataSource has a WebService, <code>recordName</code> can also be set to the name of any <code>complexType</code> declared within the WebService's WSDL file.
-    *
-    * @param recordName recordName Default value is null
-    */
-    public void setRecordName(String recordName) {
-        setAttribute("recordName", recordName);
-    }
-    /**
-     * For an XML DataSource, tagName of the elements to be used as records. <p> This is a simple alternative to {@link com.smartgwt.client.data.OperationBinding#getRecordXPath recordXPath} when the elements to be used as records all share a tagName. <p> When a DataSource has a WebService, <code>recordName</code> can also be set to the name of any <code>complexType</code> declared within the WebService's WSDL file.
-     *
-     *
-     * @return String
-     *
-     */
-    public String getRecordName()  {
-        return getAttributeAsString("recordName");
-    }
-
-    /**
-    * Setting <code>useFlatFields</code> on an operationBinding is equivalent to setting {@link com.smartgwt.client.data.DSRequest#getUseFlatFields useFlatFields} on all DataSource requests with the same {@link com.smartgwt.client.data.OperationBinding#getOperationType operationType} as this <code>operationBinding</code>. <P> Typical usage is to combine operationBinding.useFlatFields with  {@link com.smartgwt.client..DataBoundComponent#getUseFlatFields useFlatFields}, with the {@link com.smartgwt.client.widgets.form.SearchForm} bound to the {@link com.smartgwt.client..WebService#getInputDS} of the web service operation set as {@link com.smartgwt.client.data.OperationBinding#getWsOperation wsOperation}.  This allows gratuitous nesting to be consistently bypassed in both the user presentation and in the actual XML messaging. <P> Not that <code>useFlatFields</code> is not generally recommended for use with input messages where multiple simple type fields exist with the same name, however if used in this way, the first field to use a given name wins.  "first" means the first field encountered in a depth first search.  "wins" means only the first field will be available in data binding, and only the first field will be populated in the generated XML message.
-    *
-    * @param useFlatFields useFlatFields Default value is false
-    */
-    public void setUseFlatFields(Boolean useFlatFields) {
-        setAttribute("useFlatFields", useFlatFields);
-    }
-    /**
-     * Setting <code>useFlatFields</code> on an operationBinding is equivalent to setting {@link com.smartgwt.client.data.DSRequest#getUseFlatFields useFlatFields} on all DataSource requests with the same {@link com.smartgwt.client.data.OperationBinding#getOperationType operationType} as this <code>operationBinding</code>. <P> Typical usage is to combine operationBinding.useFlatFields with  {@link com.smartgwt.client..DataBoundComponent#getUseFlatFields useFlatFields}, with the {@link com.smartgwt.client.widgets.form.SearchForm} bound to the {@link com.smartgwt.client..WebService#getInputDS} of the web service operation set as {@link com.smartgwt.client.data.OperationBinding#getWsOperation wsOperation}.  This allows gratuitous nesting to be consistently bypassed in both the user presentation and in the actual XML messaging. <P> Not that <code>useFlatFields</code> is not generally recommended for use with input messages where multiple simple type fields exist with the same name, however if used in this way, the first field to use a given name wins.  "first" means the first field encountered in a depth first search.  "wins" means only the first field will be available in data binding, and only the first field will be populated in the generated XML message.
-     *
-     *
-     * @return Boolean
-     *
-     */
-    public Boolean getUseFlatFields()  {
-        return getAttributeAsBoolean("useFlatFields");
     }
 
     /**

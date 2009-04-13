@@ -296,7 +296,7 @@ public class DynamicForm extends Canvas  implements DataBoundComponent, com.smar
      * Default orientation for titles for items in this form.  ${isc.DocUtils.linkForRef('type:TitleOrientation')} lists valid options. <P> Note that titles on the left or right take up a cell in tabular form layouts, but titles on top do not.
      *
      *
-     * @return TitleOrientation
+     * @return Return the orientation of the title for a specific item or the default title orientation if no item is passed.
      *
      */
     public TitleOrientation getTitleOrientation()  {
@@ -778,6 +778,26 @@ public class DynamicForm extends Canvas  implements DataBoundComponent, com.smar
      */
     public Boolean getValidateOnChange()  {
         return getAttributeAsBoolean("validateOnChange");
+    }
+
+    /**
+    * If validateOnChange is true, and validation fails for an item on change, with no suggested value, should we revert to the previous value, or continue to display the bad value entered by the user. May be set at the item or form level.
+    * <p><b>Note : </b> This is an advanced setting</p>
+    *
+    * @param rejectInvalidValueOnChange rejectInvalidValueOnChange Default value is null
+    */
+    public void setRejectInvalidValueOnChange(Boolean rejectInvalidValueOnChange) {
+        setAttribute("rejectInvalidValueOnChange", rejectInvalidValueOnChange, true);
+    }
+    /**
+     * If validateOnChange is true, and validation fails for an item on change, with no suggested value, should we revert to the previous value, or continue to display the bad value entered by the user. May be set at the item or form level.
+     *
+     *
+     * @return Boolean
+     *
+     */
+    public Boolean getRejectInvalidValueOnChange()  {
+        return getAttributeAsBoolean("rejectInvalidValueOnChange");
     }
 
     /**
@@ -1306,6 +1326,7 @@ public class DynamicForm extends Canvas  implements DataBoundComponent, com.smar
                 return @com.smartgwt.client.util.JSOHelper::toBoolean(Z)(retVal);
             }
         }-*/;
+
 
 
         /**

@@ -56,7 +56,7 @@ import com.smartgwt.client.util.EnumUtil;
 import com.google.gwt.event.shared.*;
 import com.google.gwt.event.shared.HasHandlers;
    /**
-    * Class for editing times in a text field. Values are stored as <code>Date</code> objects.
+    * FormItem for editing times in a text field.   <P> {@link com.smartgwt.client.widgets.form.fields.TimeItem#getDisplayFormat displayFormat} allows you to set the display format for this field.  See also {@link com.smartgwt.client..Time#setNormalDisplayFormat} for system-wide settings. <P> TimeItem automatically accepts both 12 and 24 hour time as well as partial times and a variety of possible time value separators.  Examples: <pre>  11:34:45 AM => 11:34:45  1:3:5 AM => 01:30:50  1:3p  => 13:30:00  11 34 am => 11:34:00  11-34  => 11:34:00  113445  => 11:34:45  13445  => 01:34:45  1134  => 11:34:00  134   => 01:34:00 </pre> <P> Values entered by the user are stored as JavaScript <code>Date</code> objects in GMT/UTC time regardless of the local time zone.  Note if you log, alert() or otherwise convert a Date into a String, the default behavior is to show it in local time.  To see the correct time value, use the JavaScript built-in APIs dateValue.getUTCHours/Minutes/Seconds() or the {@link com.smartgwt.client..Time#toShortTime}.
 
     */
 public class TimeItem extends TextItem {
