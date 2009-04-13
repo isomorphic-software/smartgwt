@@ -342,19 +342,9 @@ public class ValuesManager extends BaseClass {
     // ********************* Static Methods ***********************
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
+
+
+
 
 
     /**
@@ -428,7 +418,7 @@ public class ValuesManager extends BaseClass {
     public native void setValue(String fieldName, JavaScriptObject value) /*-{
         var self = this.@com.smartgwt.client.core.BaseClass::getOrCreateJsObj()();
         self.setValue(fieldName, value);
-    }-*/;
+    }-*/;    
 
     /**
      * Return the value as String

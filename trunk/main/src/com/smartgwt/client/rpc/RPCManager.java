@@ -99,6 +99,7 @@ public class RPCManager {
             $wnd.isc.RPCManager.clearTransaction(transactionNum);
         }-*/;
 
+
         /**
          * Resend a suspended transaction to the server.  See {@link com.smartgwt.client.rpc.RPCManager#suspendTransaction} for context.   <P> Note that the transaction must have been previously suspended, and in particular suspended validly according to the rules described in the docs for {@link com.smartgwt.client.rpc.RPCManager#suspendTransaction}, or undefined results will occur. <P> You can resend <b>all</b> suspended transactions by calling {@link com.smartgwt.client.rpc.RPCManager#resendTransaction} with no arguments.
          */
@@ -118,9 +119,6 @@ public class RPCManager {
 
 
 
-
-
-
     /**
      * The actionURL specifies the URL to which the RPC request will be sent. Note that if you override this global
      * default and your application uses DataSource databound components, you'll need to dispatch the DataSource
@@ -332,6 +330,21 @@ public class RPCManager {
      */
     public static native void sendQueue() /*-{
         $wnd.isc.RPCManager.sendQueue();
+    }-*/;
+
+    /**
+     * Suspends the current transaction, such that all processing of the transaction is halted, any remaining {@link com.smartgwt.client.rpc.RPCRequest#getCallback callback} in the transaction won't fire, and the transaction can never {@link com.smartgwt.client.rpc.RPCRequest#getTimeout timeout}. <P> <code>suspendTransaction()</code> is typically used to handle total failures for an entire transaction, such as HTTP status 500, or session timeout resulting in {@link com.smartgwt.client.rpc.RPCManager#loginRequired} being called.  In both cases the intent is to put the transaction on hold so that a transient problem can be resolved, and then the transaction can be re-sent successfully.  By using suspendTransaction(), components that submitted requests never realize there was a transient failure, and so error handling logic does not have to be implemented in every component. <P> Generally you can only validly suspend a transaction from either {@link com.smartgwt.client.rpc.RPCManager#loginRequired} or {@link com.smartgwt.client.rpc.RPCManager#handleError}, and in the case of handleError(), only when the first response in the transaction has an error.  Suspending and re-sending a partially processed transaction means that some responses will be processed twice, with undefined results for requests issued automatically by UI components. <P> A suspended transaction must ultimately be either cleared via {@link com.smartgwt.client.rpc.RPCManager#clearTransaction} or re-sent via {@link com.smartgwt.client.rpc.RPCManager#resendTransaction} or memory will be leaked.
+     */
+    public static native void suspendTransaction() /*-{
+        $wnd.isc.RPCManager.suspendTransaction();
+    }-*/;
+
+    /**
+     * Suspends the current transaction, such that all processing of the transaction is halted, any remaining {@link com.smartgwt.client.rpc.RPCRequest#getCallback callback} in the transaction won't fire, and the transaction can never {@link com.smartgwt.client.rpc.RPCRequest#getTimeout timeout}. <P> <code>suspendTransaction()</code> is typically used to handle total failures for an entire transaction, such as HTTP status 500, or session timeout resulting in {@link com.smartgwt.client.rpc.RPCManager#loginRequired} being called.  In both cases the intent is to put the transaction on hold so that a transient problem can be resolved, and then the transaction can be re-sent successfully.  By using suspendTransaction(), components that submitted requests never realize there was a transient failure, and so error handling logic does not have to be implemented in every component. <P> Generally you can only validly suspend a transaction from either {@link com.smartgwt.client.rpc.RPCManager#loginRequired} or {@link com.smartgwt.client.rpc.RPCManager#handleError}, and in the case of handleError(), only when the first response in the transaction has an error.  Suspending and re-sending a partially processed transaction means that some responses will be processed twice, with undefined results for requests issued automatically by UI components. <P> A suspended transaction must ultimately be either cleared via {@link com.smartgwt.client.rpc.RPCManager#clearTransaction} or re-sent via {@link com.smartgwt.client.rpc.RPCManager#resendTransaction} or memory will be leaked.
+     * @param transactionID transaction to delay.  Defaults to the current transaction if there is one
+     */
+    public static native void suspendTransaction(String transactionID) /*-{
+        $wnd.isc.RPCManager.suspendTransaction(transactionID);
     }-*/;
 
 

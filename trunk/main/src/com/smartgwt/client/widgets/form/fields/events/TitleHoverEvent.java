@@ -112,20 +112,6 @@ public class TitleHoverEvent extends AbstractSmartEvent<TitleHoverHandler>  {
 
 
     /**
-     * This items form
-     *
-     * @return This items form
-     */
-    public  native DynamicForm getForm() /*-{
-        var jsObj = this.@com.smartgwt.client.event.AbstractSmartEvent::jsObj;
-        var retVal = @com.smartgwt.client.widgets.form.DynamicForm::getOrCreateRef(Lcom/google/gwt/core/client/JavaScriptObject;)(jsObj.form);
-        if(retVal == null) {
-            retVal = @com.smartgwt.client.widgets.form.DynamicForm::new(Lcom/google/gwt/core/client/JavaScriptObject;)(jsObj.form);
-        }
-        return retVal;
-    }-*/;
-
-    /**
      * Pointer to this item
      *
      * @return Pointer to this item
@@ -137,6 +123,20 @@ public class TitleHoverEvent extends AbstractSmartEvent<TitleHoverHandler>  {
                 retVal = @com.smartgwt.client.widgets.form.fields.FormItem::new(Lcom/google/gwt/core/client/JavaScriptObject;)(jsObj.item);
             }
             return retVal;
+    }-*/;
+
+    /**
+     * This items form
+     *
+     * @return This items form
+     */
+    public  native DynamicForm getForm() /*-{
+        var jsObj = this.@com.smartgwt.client.event.AbstractSmartEvent::jsObj;
+        var retVal = @com.smartgwt.client.widgets.form.DynamicForm::getOrCreateRef(Lcom/google/gwt/core/client/JavaScriptObject;)(jsObj.form);
+        if(retVal == null) {
+            retVal = @com.smartgwt.client.widgets.form.DynamicForm::new(Lcom/google/gwt/core/client/JavaScriptObject;)(jsObj.form);
+        }
+        return retVal;
     }-*/;
 
 

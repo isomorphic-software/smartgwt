@@ -292,10 +292,8 @@ public class SectionStack extends VLayout {
 
 
 
-
-
-
-
+
+
 
 
     public void setSections(SectionStackSection... sections) {

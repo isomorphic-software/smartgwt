@@ -165,6 +165,44 @@ public class SliderItem extends CanvasItem {
     }
 
     /**
+    * Specifies whether the slider value should be rounded to the nearest integer.  If set to false, values will be rounded to a fixed number of decimal places controlled by {@link com.smartgwt.client.widgets.form.fields.SliderItem#getRoundPrecision roundPrecision}.
+    *
+    * @param roundValues roundValues Default value is true
+    */
+    public void setRoundValues(Boolean roundValues) {
+        setAttribute("roundValues", roundValues);
+    }
+    /**
+     * Specifies whether the slider value should be rounded to the nearest integer.  If set to false, values will be rounded to a fixed number of decimal places controlled by {@link com.smartgwt.client.widgets.form.fields.SliderItem#getRoundPrecision roundPrecision}.
+     *
+     *
+     * @return Boolean
+     *
+     */
+    public Boolean getRoundValues()  {
+        return getAttributeAsBoolean("roundValues");
+    }
+
+    /**
+    * If {@link com.smartgwt.client.widgets.Slider#getRoundValues roundValues} is false, the slider value will be rounded to this number of decimal places. If set to null the value will not be rounded
+    *
+    * @param roundPrecision roundPrecision Default value is 1
+    */
+    public void setRoundPrecision(int roundPrecision) {
+        setAttribute("roundPrecision", roundPrecision);
+    }
+    /**
+     * If {@link com.smartgwt.client.widgets.Slider#getRoundValues roundValues} is false, the slider value will be rounded to this number of decimal places. If set to null the value will not be rounded
+     *
+     *
+     * @return int
+     *
+     */
+    public int getRoundPrecision()  {
+        return getAttributeAsInt("roundPrecision");
+    }
+
+    /**
     * Default value for this sliderItems is 1.
     *
     * @param defaultValue defaultValue Default value is 1

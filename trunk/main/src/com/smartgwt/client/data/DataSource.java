@@ -792,6 +792,7 @@ public class DataSource extends BaseClass  implements com.smartgwt.client.data.e
 
 
 
+
         /**
          * Add a handleError handler.
          * <p>
@@ -1255,6 +1256,7 @@ public class DataSource extends BaseClass  implements com.smartgwt.client.data.e
         setAttribute("recordName", recordName, false);
     }
 
+    
     /**
      * Optional object declaring namespace prefixes for use in OperationBinding.recordXPath and
      * DataSourceField.valueXPath XPath expressions. xmlNamespaces should be specified as a mapping from namespace

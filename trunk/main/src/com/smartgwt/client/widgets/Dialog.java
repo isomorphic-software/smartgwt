@@ -184,6 +184,14 @@ public class Dialog extends Window {
             self.noClick();
         }-*/;
 
+        /**
+         * Handle a click on the 'done' button of this Dialog. Default implementation is to hide the dialog then return <code>true</code>. Override to do something else.
+         */
+        public native void doneClick() /*-{
+            var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
+            self.doneClick();
+        }-*/;
+
     // ********************* Static Methods ***********************
 
 /*

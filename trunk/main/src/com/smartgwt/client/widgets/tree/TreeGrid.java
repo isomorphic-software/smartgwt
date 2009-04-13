@@ -1546,32 +1546,63 @@ public class TreeGrid extends ListGrid  implements DataBoundComponent, com.smart
         }, requestPropertiesJS);
     }-*/;
 
-        /**
-         * Return the first selected record in this component.<br><br> This method is appropriate if <code>{@link com.smartgwt.client.widgets.grid.ListGrid#getSelectionType selectionType}</code> is <code>"single"</code>, or if you only care about the first selected record in a multiple-record selection. To access all selected records, use <code>{@link com.smartgwt.client.widgets.grid.ListGrid#getSelection}</code> instead.
-         *
-         * @return first selected record, or null if nothing selected
-         */
-        public native ListGridRecord getSelectedRecord() /*-{
-            var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
-            var ret = self.getSelectedRecord();
-            if(ret == null || ret === undefined) return null;
-            var retVal = @com.smartgwt.client.widgets.tree.TreeNode::getOrCreateRef(Lcom/google/gwt/core/client/JavaScriptObject;)(ret);
-            return retVal;
-        }-*/;
+    /**
+     * Return the first selected record in this component.<br><br> This method is appropriate if <code>{@link com.smartgwt.client.widgets.grid.ListGrid#getSelectionType selectionType}</code> is <code>"single"</code>, or if you only care about the first selected record in a multiple-record selection. To access all selected records, use <code>{@link com.smartgwt.client.widgets.grid.ListGrid#getSelection}</code> instead.
+     *
+     * @return first selected record, or null if nothing selected
+     */
+    public native ListGridRecord getSelectedRecord() /*-{
+        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
+        var ret = self.getSelectedRecord();
+        if(ret == null || ret === undefined) return null;
+        var retVal = @com.smartgwt.client.widgets.tree.TreeNode::getOrCreateRef(Lcom/google/gwt/core/client/JavaScriptObject;)(ret);
+        return retVal;
+    }-*/;
 
-        /**
-         * Return the pointer to a particular record by record number. Synonym for {@link com.smartgwt.client.widgets.grid.ListGrid#getCellRecord}.
-         * @param recordNum row index of record to return.
-         *
-         * @return Record object for the row.
-         */
-        public native ListGridRecord getRecord(int recordNum) /*-{
-            var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
-            var ret = self.getRecord(recordNum);
-            if(ret == null || ret === undefined) return null;
-            var retVal = @com.smartgwt.client.widgets.tree.TreeNode::getOrCreateRef(Lcom/google/gwt/core/client/JavaScriptObject;)(ret);            
-            return retVal;
-        }-*/;
+    /**
+     * Return the pointer to a particular record by record number. Synonym for {@link com.smartgwt.client.widgets.grid.ListGrid#getCellRecord}.
+     * @param recordNum row index of record to return.
+     *
+     * @return Record object for the row.
+     */
+    public native ListGridRecord getRecord(int recordNum) /*-{
+        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
+        var ret = self.getRecord(recordNum);
+        if(ret == null || ret === undefined) return null;
+        var retVal = @com.smartgwt.client.widgets.tree.TreeNode::getOrCreateRef(Lcom/google/gwt/core/client/JavaScriptObject;)(ret);
+        return retVal;
+    }-*/;
+
+    /**
+     * For databound trees, use this attribute to supply a ${isc.DocUtils.linkForRef('ResultTree.rootValue')} for this component's generated data object. <P>  This property allows you to have a particular component navigate a tree starting from any given node as the root.
+     * <p><b>Note : </b> This is an advanced setting</p>
+     *
+     * @param treeRootValue treeRootValue Default value is null
+     * @throws IllegalStateException this property cannot be changed after the component has been created
+     */
+    public void setTreeRootValue(String treeRootValue) throws IllegalStateException {
+        setAttribute("treeRootValue", treeRootValue, false);
+    }
+
+    /**
+     * For databound trees, use this attribute to supply a ${isc.DocUtils.linkForRef('ResultTree.rootValue')} for this component's generated data object. <P>  This property allows you to have a particular component navigate a tree starting from any given node as the root.
+     * <p><b>Note : </b> This is an advanced setting</p>
+     *
+     * @param treeRootValue treeRootValue Default value is null
+     * @throws IllegalStateException this property cannot be changed after the component has been created
+     */
+    public void setTreeRootValue(Integer treeRootValue) throws IllegalStateException {
+        setAttribute("treeRootValue", treeRootValue, false);
+    }
+
+    /**
+     * For databound trees, use this attribute to supply a ${isc.DocUtils.linkForRef('ResultTree.rootValue')} for this component's generated data object. <P>  This property allows you to have a particular component navigate a tree starting from any given node as the root.
+     *
+     * @return tree root value as String
+     */
+    public String getTreeRootValue() {
+        return getAttribute("treeRootValue");
+    }
 
 }
 

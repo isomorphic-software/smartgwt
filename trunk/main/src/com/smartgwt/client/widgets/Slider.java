@@ -514,7 +514,7 @@ public class Slider extends Canvas  implements com.smartgwt.client.widgets.event
     }
 
     /**
-    * Specifies whether the slider value should be rounded to the nearest integer.
+    * Specifies whether the slider value should be rounded to the nearest integer.  If set to false, values will be rounded to a fixed number of decimal places controlled by {@link com.smartgwt.client.widgets.Slider#getRoundPrecision roundPrecision}.
     *
     * @param roundValues roundValues Default value is true
     */
@@ -522,7 +522,7 @@ public class Slider extends Canvas  implements com.smartgwt.client.widgets.event
         setAttribute("roundValues", roundValues, true);
     }
     /**
-     * Specifies whether the slider value should be rounded to the nearest integer.
+     * Specifies whether the slider value should be rounded to the nearest integer.  If set to false, values will be rounded to a fixed number of decimal places controlled by {@link com.smartgwt.client.widgets.Slider#getRoundPrecision roundPrecision}.
      *
      *
      * @return Boolean
@@ -530,6 +530,25 @@ public class Slider extends Canvas  implements com.smartgwt.client.widgets.event
      */
     public Boolean getRoundValues()  {
         return getAttributeAsBoolean("roundValues");
+    }
+
+    /**
+    * If {@link com.smartgwt.client.widgets.Slider#getRoundValues roundValues} is false, the slider value will be rounded to this number of decimal places. If set to null the value will not be rounded
+    *
+    * @param roundPrecision roundPrecision Default value is 1
+    */
+    public void setRoundPrecision(int roundPrecision) {
+        setAttribute("roundPrecision", roundPrecision, true);
+    }
+    /**
+     * If {@link com.smartgwt.client.widgets.Slider#getRoundValues roundValues} is false, the slider value will be rounded to this number of decimal places. If set to null the value will not be rounded
+     *
+     *
+     * @return int
+     *
+     */
+    public int getRoundPrecision()  {
+        return getAttributeAsInt("roundPrecision");
     }
 
     /**

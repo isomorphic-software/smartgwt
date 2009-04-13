@@ -675,6 +675,26 @@ public class FormItem extends RefDataClass  implements com.smartgwt.client.widge
     }
 
     /**
+    * If validateOnChange is true, and validation fails for this item on change, with no suggested value, should we revert to the previous value, or continue to display the bad value entered by the user. May be set at the item or form level.
+    * <p><b>Note : </b> This is an advanced setting</p>
+    *
+    * @param rejectInvalidValueOnChange rejectInvalidValueOnChange Default value is false
+    */
+    public void setRejectInvalidValueOnChange(Boolean rejectInvalidValueOnChange) {
+        setAttribute("rejectInvalidValueOnChange", rejectInvalidValueOnChange);
+    }
+    /**
+     * If validateOnChange is true, and validation fails for this item on change, with no suggested value, should we revert to the previous value, or continue to display the bad value entered by the user. May be set at the item or form level.
+     *
+     *
+     * @return Boolean
+     *
+     */
+    public Boolean getRejectInvalidValueOnChange()  {
+        return getAttributeAsBoolean("rejectInvalidValueOnChange");
+    }
+
+    /**
     * By default, items take up the entire width of their cell
     *
     * @param width width Default value is "*"
@@ -1472,6 +1492,25 @@ public class FormItem extends RefDataClass  implements com.smartgwt.client.widge
     }
 
     /**
+    * When {@link com.smartgwt.client.widgets.form.DynamicForm#getShowInlineErrors showInlineErrors} and {@link com.smartgwt.client.widgets.form.fields.FormItem#getShowErrorText showErrorText} are both true and {@link com.smartgwt.client.widgets.form.fields.FormItem#getErrorOrientation errorOrientation} is "left" or "right", errorMessageWidth is the amount to reduce the width of the editor to accomodate the error message and icon.
+    *
+    * @param errorMessageWidth errorMessageWidth Default value is 80
+    */
+    public void setErrorMessageWidth(int errorMessageWidth) {
+        setAttribute("errorMessageWidth", errorMessageWidth);
+    }
+    /**
+     * When {@link com.smartgwt.client.widgets.form.DynamicForm#getShowInlineErrors showInlineErrors} and {@link com.smartgwt.client.widgets.form.fields.FormItem#getShowErrorText showErrorText} are both true and {@link com.smartgwt.client.widgets.form.fields.FormItem#getErrorOrientation errorOrientation} is "left" or "right", errorMessageWidth is the amount to reduce the width of the editor to accomodate the error message and icon.
+     *
+     *
+     * @return int
+     *
+     */
+    public int getErrorMessageWidth()  {
+        return getAttributeAsInt("errorMessageWidth");
+    }
+
+    /**
     * Should this item's value be saved in the form's values and hence returned from {@link com.smartgwt.client.widgets.form.DynamicForm#getValues}? <p> <code>shouldSaveValue:false</code> is used to mark formItems which do not correspond to the underlying data model and should not save a value into the form's {@link com.smartgwt.client.widgets.form.DynamicForm#getValues values}.  Example includes visual separators, password re-type fields, or checkboxes used to show/hide other form items. <p> A <code>shouldSaveValue:false</code> item should be given a value either via {@link com.smartgwt.client.widgets.form.fields.FormItem#getDefaultValue defaultValue} or by calling can use {@link com.smartgwt.client.widgets.form.DynamicForm#setValue} or  {@link com.smartgwt.client.widgets.form.fields.FormItem#setValue}.  Providing a value via {@link com.smartgwt.client.widgets.form.DynamicForm#getValues values} or {@link com.smartgwt.client.widgets.form.DynamicForm#setValues}  will automatically switch the item to <code>shouldSaveValue:true</code>. <P> Note that <ul> <li>if an item is shouldSaveValue true, but has no name, a warning is logged, and      shouldSaveValue will be set to false. </li></ul>
     *
     * @param shouldSaveValue shouldSaveValue Default value is true
@@ -1602,7 +1641,7 @@ public class FormItem extends RefDataClass  implements com.smartgwt.client.widge
                 obj = this.@com.smartgwt.client.core.DataClass::getJsObj()();
                 var selfJ = this;
                 obj.itemHover = function(){
-                    var param = {"form" : arguments[0], "item" : arguments[1]};
+                    var param = {"item" : arguments[0], "form" : arguments[1]};
                     var event = @com.smartgwt.client.widgets.form.fields.events.ItemHoverEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
                     selfJ.@com.smartgwt.client.core.DataClass::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
                 };
@@ -1626,27 +1665,13 @@ public class FormItem extends RefDataClass  implements com.smartgwt.client.widge
                 obj = this.@com.smartgwt.client.core.DataClass::getJsObj()();
                 var selfJ = this;
                 obj.titleHover = function(){
-                    var param = {"form" : arguments[1], "item" : arguments[0]};
+                    var param = {"item" : arguments[0], "form" : arguments[1]};
                     var event = @com.smartgwt.client.widgets.form.fields.events.TitleHoverEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
                     selfJ.@com.smartgwt.client.core.DataClass::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
                 };
         }-*/;
 
-        /**
-         * If defined, this method should return the HTML to display in a hover canvas when the   user holds the mousepointer over this item's title.  Return null to suppress the hover   canvas altogether.<br>  If not defined, <code>dynamicForm.titleHoverHTML()</code> will be evaluated to   determine hover content instead.
-         */
-        public native void titleHoverHTML() /*-{
-            var self = this.@com.smartgwt.client.core.DataClass::getJsObj()();
-            self.titleHoverHTML();
-        }-*/;
 
-        /**
-         * If defined, this method should return the HTML to display in a hover canvas when the   user holds the mousepointer over this item.  Return null to suppress the hover   canvas altogether.<br>  If not defined, <code>dynamicForm.itemHoverHTML()</code> will be evaluated to   determine hover content instead.
-         */
-        public native void itemHoverHTML() /*-{
-            var self = this.@com.smartgwt.client.core.DataClass::getJsObj()();
-            self.itemHoverHTML();
-        }-*/;
 
 
         /**
@@ -1931,23 +1956,9 @@ public class FormItem extends RefDataClass  implements com.smartgwt.client.widge
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+
+
+
 
     public void setAttribute(String attribute, String value) {
         if (!isCreated()) {
@@ -2543,6 +2554,24 @@ public class FormItem extends RefDataClass  implements com.smartgwt.client.widge
         }
         return config;
     }-*/;
+
+    /**
+     * This text is shown as a tooltip prompt when the cursor hovers over this item. Alias for {@link #setPrompt}.
+     *
+     * @param tooltip tooltip Default value is null
+     */
+    public void setTooltip(String tooltip) {
+        setPrompt(tooltip);
+    }
+
+    /**
+     * This text is shown as a tooltip prompt when the cursor hovers over this item. Alias for {@link #getPrompt}
+     *
+     * @return String
+     */
+    public String getTooltip() {
+        return getPrompt();
+    }
 
 }
 
