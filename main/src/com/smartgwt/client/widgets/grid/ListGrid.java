@@ -4922,8 +4922,8 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
     // ********************* Static Methods ***********************
 
 
-
-
+
+
 
 
     protected native void onInit() /*-{
@@ -6403,6 +6403,169 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
         return valueJ;
     }-*/;
 
+    /**
+     * Modifies a field value being tracked as an unsaved user edit.
+     * 
+     * @param rowNum row number
+     * @param colNum column number of cell
+     * @param value new value for the appropriate field
+     */
+    public native void setEditValue(int rowNum, int colNum, String value) /*-{
+        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
+        self.setEditValue(rowNum, colNum, value);
+    }-*/;
+
+    /**
+     * Modifies a field value being tracked as an unsaved user edit.
+     *
+     * @param rowNum row number
+     * @param colNum column number of cell
+     * @param value new value for the appropriate field
+     */
+    public native void setEditValue(int rowNum, int colNum, Date value) /*-{
+        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
+        var valueJS = @com.smartgwt.client.util.JSOHelper::convertToJavaScriptDate(Ljava/util/Date;)(value);
+        self.setEditValue(rowNum, colNum, valueJS);
+    }-*/;
+
+    /**
+     * Modifies a field value being tracked as an unsaved user edit.
+     *
+     * @param rowNum row number
+     * @param colNum column number of cell
+     * @param value new value for the appropriate field
+     */
+    public native void setEditValue(int rowNum, int colNum, double value) /*-{
+        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
+        self.setEditValue(rowNum, colNum, value);
+    }-*/;
+
+    /**
+     * Modifies a field value being tracked as an unsaved user edit.
+     *
+     * @param rowNum row number
+     * @param colNum column number of cell
+     * @param value new value for the appropriate field
+     */
+    public native void setEditValue(int rowNum, int colNum, boolean value) /*-{
+        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
+        self.setEditValue(rowNum, colNum, value);
+    }-*/;
+
+    /**
+     * Modifies a field value being tracked as an unsaved user edit.
+     *
+     * @param rowNum row number
+     * @param colNum column number of cell
+     * @param value new value for the appropriate field
+     */
+    public native void setEditValue(int rowNum, int colNum, float value) /*-{
+        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
+        self.setEditValue(rowNum, colNum, value);
+    }-*/;
+
+    /**
+     * Modifies a field value being tracked as an unsaved user edit.
+     *
+     * @param rowNum row number
+     * @param colNum column number of cell
+     * @param value new value for the appropriate field
+     */
+    public native void setEditValue(int rowNum, int colNum, int value) /*-{
+        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
+        self.setEditValue(rowNum, colNum, value);
+    }-*/;
+
+
+    /**
+     * Modifies a field value being tracked as an unsaved user edit.
+     *
+     * @param rowNum row number
+     * @param fieldName the field name
+     * @param value new value for the appropriate field
+     */
+    public native void setEditValue(int rowNum, String fieldName, String value) /*-{
+        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
+        self.setEditValue(rowNum, fieldName, value);
+    }-*/;
+
+    /**
+     * Modifies a field value being tracked as an unsaved user edit.
+     *
+     * @param rowNum row number
+     * @param fieldName the field name
+     * @param value new value for the appropriate field
+     */
+    public native void setEditValue(int rowNum, String fieldName, Date value) /*-{
+        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
+        var valueJS = @com.smartgwt.client.util.JSOHelper::convertToJavaScriptDate(Ljava/util/Date;)(value);
+        self.setEditValue(rowNum, fieldName, valueJS);
+    }-*/;
+
+    /**
+     * Modifies a field value being tracked as an unsaved user edit.
+     *
+     * @param rowNum row number
+     * @param fieldName the field name
+     * @param value new value for the appropriate field
+     */
+    public native void setEditValue(int rowNum, String fieldName, double value) /*-{
+        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
+        self.setEditValue(rowNum, colNum, value);
+    }-*/;
+
+    /**
+     * Modifies a field value being tracked as an unsaved user edit.
+     *
+     * @param rowNum row number
+     * @param fieldName the field name
+     * @param value new value for the appropriate field
+     */
+    public native void setEditValue(int rowNum, String fieldName, boolean value) /*-{
+        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
+        self.setEditValue(rowNum, fieldName, value);
+    }-*/;
+
+    /**
+     * Modifies a field value being tracked as an unsaved user edit.
+     *
+     * @param rowNum row number
+     * @param fieldName the field name
+     * @param value new value for the appropriate field
+     */
+    public native void setEditValue(int rowNum, String fieldName, float value) /*-{
+        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
+        self.setEditValue(rowNum, fieldName, value);
+    }-*/;
+
+    /**
+     * Modifies a field value being tracked as an unsaved user edit.
+     *
+     * @param rowNum row number
+     * @param fieldName the field name
+     * @param value new value for the appropriate field
+     */
+    public native void setEditValue(int rowNum, String fieldName, int value) /*-{
+        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
+        self.setEditValue(rowNum, fieldName, value);
+    }-*/;
+
+    /**
+     * This method sets up a set of editValues for some row / cell. It differs from setEditValue in that:
+     * <ul>
+     * <li>it takes values for multiple fields</li>
+     * <li>it clears out any previous edit values for the record</li>
+     * </ul>
+     * 
+     * @param rowNum the row num for the record being edited
+     * @param values new values for the row
+     */
+    public native void setEditValues(int rowNum, Map values) /*-{
+        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
+        var valuesJS = @com.smartgwt.client.util.JSOHelper::convertMapToJavascriptObject(Ljava/util/Map;)(values);
+        self.setEditValues(rowNum, valuesJS);
+    }-*/;
+    
     /**
      * Returns the current temporary locally stored edit value for some field within a record being edited.
      *
