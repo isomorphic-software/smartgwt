@@ -66,6 +66,8 @@ public class JsObject {
                     return @com.smartgwt.client.util.JSOHelper::toBoolean(Z)(obj);
                 } else if($wnd.isA.Date(obj)) {
                     return @com.smartgwt.client.util.JSOHelper::toDate(D)(obj.getTime());
+                } else if(@com.smartgwt.client.util.JSOHelper::isJSO(Ljava/lang/Object;)(obj)) {
+                    return obj;
                 } else {
                     throw 'Unrecognized type ' + (typeof obj) + ' for value ' + obj.toString();
                 }

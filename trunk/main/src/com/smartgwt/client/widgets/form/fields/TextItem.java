@@ -183,6 +183,26 @@ public class TextItem extends FormItem {
         return getAttributeAsBoolean("selectOnFocus");
     }
 
+    /**
+    * If showing hint for this form item, should it be shown within the field?
+    * <p><b>Note : </b> This is an advanced setting</p>
+    *
+    * @param hintInField hintInField Default value is null
+    */
+    public void setHintInField(Boolean hintInField) {
+        setAttribute("hintInField", hintInField);
+    }
+    /**
+     * If showing hint for this form item, should it be shown within the field?
+     *
+     *
+     * @return Boolean
+     *
+     */
+    public Boolean getHintInField()  {
+        return getAttributeAsBoolean("hintInField");
+    }
+
     // ********************* Methods ***********************
 
         /**

@@ -1388,7 +1388,7 @@ public class ListGridField extends DataClass  implements com.smartgwt.client.wid
         }-*/;
 
         /**
-         * An optional ${isc.DocUtils.linkForRef('stringMethod')} which if provided, is evaluated to conditionally determine whether this field should be displayed.  Evaluated on initial draw, then reevaluated on explicit  calls to <code>listGrid.refreshFields()</code> or <code>listGrid.setFields()</code>.  <P> Use 'showIf:"false"' to set a ListGrid field to initially hidden. <P> Note that explicit calls to {@link com.smartgwt.client.widgets.grid.ListGrid#showField} or hideField() will wipe out the <code>showIf</code> expression, as will the end user showing and hiding columns via the {@link com.smartgwt.client.widgets.grid.ListGrid#getShowHeaderContextMenu showHeaderContextMenu}. <P> Also note that fields marked as {@link com.smartgwt.client.data.DataSourceField#getDetail detail} will be hidden by default even if {@link com.smartgwt.client.widgets.grid.ListGrid#getShowDetailFields showDetailFields} is <code>true</code>. To show detail fields inherited from a DataSource, include an explicit field definition for the field and set this property to return <code>true</code>.
+         * An optional stringMethod which if provided, is evaluated to conditionally determine whether this field should be displayed.  Evaluated on initial draw, then reevaluated on explicit  calls to <code>listGrid.refreshFields()</code> or <code>listGrid.setFields()</code>.  <P> Use 'showIf:"false"' to set a ListGrid field to initially hidden. <P> Note that explicit calls to {@link com.smartgwt.client.widgets.grid.ListGrid#showField} or hideField() will wipe out the <code>showIf</code> expression, as will the end user showing and hiding columns via the {@link com.smartgwt.client.widgets.grid.ListGrid#getShowHeaderContextMenu showHeaderContextMenu}. <P> Also note that fields marked as {@link com.smartgwt.client.data.DataSourceField#getDetail detail} will be hidden by default even if {@link com.smartgwt.client.widgets.grid.ListGrid#getShowDetailFields showDetailFields} is <code>true</code>. To show detail fields inherited from a DataSource, include an explicit field definition for the field and set this property to return <code>true</code>.
          * @param list A pointer to the listGrid containing the field
      * @param field the ListGridField object
      * @param fieldNum the index of the field
@@ -1409,7 +1409,7 @@ public class ListGridField extends DataClass  implements com.smartgwt.client.wid
         /**
          * Add a editorEnter handler.
          * <p>
-         * Callback fired when the user first starts editing a cell. <P> This callback is typically used to establish dynamic default values via ${isc.DocUtils.linkForRef('setEditValue')} or ${isc.DocUtils.linkForRef('setEditValues')}.
+         * Callback fired when the user first starts editing a cell. <P> This callback is typically used to establish dynamic default values via {@link com.smartgwt.client.widgets.grid.ListGrid#setEditValue} or {@link com.smartgwt.client.widgets.grid.ListGrid#setEditValues}.
          *
          * @param handler the editorEnter handler
          */

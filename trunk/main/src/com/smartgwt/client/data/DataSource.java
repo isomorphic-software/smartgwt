@@ -550,7 +550,44 @@ public class DataSource extends BaseClass  implements com.smartgwt.client.data.e
         return (CriteriaPolicy) EnumUtil.getEnum(CriteriaPolicy.values(), getAttribute("criteriaPolicy"));
     }
 
+    /**
+    * Whether to attempt validation on the client at all for this DataSource.  If unset (the default), client-side validation is enabled. <p> Disabling client-side validation entirely is a good way to test server-side validation.
+    * <p><b>Note : </b> This is an advanced setting</p>
+    *
+    * @param useLocalValidators useLocalValidators Default value is null
+    */
+    public void setUseLocalValidators(Boolean useLocalValidators) {
+        setAttribute("useLocalValidators", useLocalValidators, true);
+    }
+    /**
+     * Whether to attempt validation on the client at all for this DataSource.  If unset (the default), client-side validation is enabled. <p> Disabling client-side validation entirely is a good way to test server-side validation.
+     *
+     *
+     * @return Boolean
+     *
+     */
+    public Boolean getUseLocalValidators()  {
+        return getAttributeAsBoolean("useLocalValidators");
+    }
 
+    /**
+    * Whether RPCRequests sent by this DataSource should enable  {@link com.smartgwt.client.rpc.RPCRequest#getShowPrompt showPrompt} if it's unset.
+    *
+    * @param showPrompt showPrompt Default value is true
+    */
+    public void setShowPrompt(Boolean showPrompt) {
+        setAttribute("showPrompt", showPrompt, true);
+    }
+    /**
+     * Whether RPCRequests sent by this DataSource should enable  {@link com.smartgwt.client.rpc.RPCRequest#getShowPrompt showPrompt} if it's unset.
+     *
+     *
+     * @return Boolean
+     *
+     */
+    public Boolean getShowPrompt()  {
+        return getAttributeAsBoolean("showPrompt");
+    }
              
     /**
     * Sets the strategy this DataSource uses to translate Java enumerated types (objects of type enum) to and from Javascript.  This property is only applicable if you are using the SmartClient server

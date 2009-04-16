@@ -2394,6 +2394,21 @@ public class Canvas extends BaseWidget  implements com.smartgwt.client.widgets.e
 
 
         /**
+         * Returns whether a canvas is waiting to be redrawn. Will return true if  {@link com.smartgwt.client.widgets.Canvas#markForRedraw} has been called, but this canvas has not yet been redrawn.
+         *
+         * @return true is this canvas needs to be redrawn; false otherwise
+         */
+        public native Boolean isDirty() /*-{
+            var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
+            var retVal =self.isDirty();
+            if(retVal == null || retVal === undefined) {
+                return null;
+            } else {
+                return @com.smartgwt.client.util.JSOHelper::toBoolean(Z)(retVal);
+            }
+        }-*/;
+
+        /**
          * Marks the widget as "dirty" so that it will be added to a queue for redraw. Redraw of dirty components is handled by a looping timer and will after a very short delay (typically less than 100ms). In most cases it is recommended that developers use <code>markForRedraw()</code> instead of calling {@link com.smartgwt.client.widgets.Canvas#redraw} directly. Since this method queues the redraw, multiple calls to markForRedraw() within a single thread of excecution will only lead to a single DOM manipulation which greatly improves application performance.
          */
         public native void markForRedraw() /*-{

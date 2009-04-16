@@ -1,6 +1,7 @@
 package com.smartgwt.client.data;
 
 import com.google.gwt.json.client.JSONArray;
+import com.google.gwt.core.client.JavaScriptObject;
 import com.smartgwt.client.rpc.RPCRequest;
 
 import java.util.Map;
@@ -209,7 +210,7 @@ public class XMLTools {
      * @param elements  XMLElement or XMLDocument element to tranform to JS
      * @return The resulting JavaScript collection
      */
-    public static native Object toJS(Object elements) /*-{
+    public static native JavaScriptObject toJS(Object elements) /*-{
         return $wnd.isc.XMLTools.toJS(elements);
     }-*/;
 

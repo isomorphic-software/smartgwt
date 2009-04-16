@@ -170,6 +170,10 @@ public class DataClass extends JsObject implements Record {
         return JSOHelper.getAttributeAsObject(jsObj, property);
     }
 
+    public Map getAttributeAsMap(String property) {
+        return JSOHelper.getAttributeAsMap(jsObj, property);
+    }
+
     public JavaScriptObject getAttributeAsJavaScriptObject(String property) {
         return JSOHelper.getAttributeAsJavaScriptObject(jsObj, property);
     }
