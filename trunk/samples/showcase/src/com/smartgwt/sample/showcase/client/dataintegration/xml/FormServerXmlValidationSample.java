@@ -1,6 +1,10 @@
 package com.smartgwt.sample.showcase.client.dataintegration.xml;
 
-import com.smartgwt.client.data.*;
+import com.google.gwt.core.client.JavaScriptObject;
+import com.smartgwt.client.data.DSRequest;
+import com.smartgwt.client.data.DSResponse;
+import com.smartgwt.client.data.DataSource;
+import com.smartgwt.client.data.XMLTools;
 import com.smartgwt.client.data.fields.DataSourcePasswordField;
 import com.smartgwt.client.data.fields.DataSourceTextField;
 import com.smartgwt.client.rpc.RPCResponse;
@@ -46,7 +50,7 @@ public class FormServerXmlValidationSample extends ShowcasePanel {
                 if(!status.equals("success")) {
                     response.setStatus(RPCResponse.STATUS_VALIDATION_ERROR);
                     Object errors = XMLTools.selectNodes(xmlData, "/response/errors");
-                    Object errorsJS = XMLTools.toJS(errors);
+                    JavaScriptObject errorsJS = XMLTools.toJS(errors);
                     response.setErrors(errorsJS);
                 }
             }
