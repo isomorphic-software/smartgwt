@@ -817,7 +817,7 @@ public class DateChooser extends Canvas  implements com.smartgwt.client.widgets.
         }-*/;
 
         /**
-         * Fired when the user clicks the Today button. Default implementation will select the current date in the date chooser, and close if ${isc.DocUtils.linkForRef('dateChooser.autoClose')} is true.
+         * Fired when the user clicks the Today button. Default implementation will select the current date in the date chooser.
          */
         public native void todayClick() /*-{
             var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();

@@ -133,7 +133,6 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
     public Boolean getAutoFetchData()  {
         return getAttributeAsBoolean("autoFetchData");
     }
- 
 
     /**
     * Whether to speed up dynamic styling at the expense of slightly slower drawing. <P> <code>fastCellUpdates</code> speeds up the dynamic styling system used by rollovers, selections, and custom styling that calls {@link com.smartgwt.client.grid.GridRenderer#refreshCellStyle}, at the cost of slightly slower draw() and redraw() times.
@@ -2591,6 +2590,25 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
     }
 
     /**
+    * Adds an item to the header context menu allowing users to launch a dialog to define a new text field that can contain both user-defined text and the formatted values present in other  fields, using the {@link com.smartgwt.client..SummaryBuilder}. <P> User-added summary fields can be persisted via {@link com.smartgwt.client.widgets.grid.ListGrid#getFieldState} and  {@link com.smartgwt.client.widgets.grid.ListGrid#setFieldState}.
+    *
+    * @param canAddSummaryFields canAddSummaryFields Default value is false
+    */
+    public void setCanAddSummaryFields(Boolean canAddSummaryFields) {
+        setAttribute("canAddSummaryFields", canAddSummaryFields, true);
+    }
+    /**
+     * Adds an item to the header context menu allowing users to launch a dialog to define a new text field that can contain both user-defined text and the formatted values present in other  fields, using the {@link com.smartgwt.client..SummaryBuilder}. <P> User-added summary fields can be persisted via {@link com.smartgwt.client.widgets.grid.ListGrid#getFieldState} and  {@link com.smartgwt.client.widgets.grid.ListGrid#setFieldState}.
+     *
+     *
+     * @return Boolean
+     *
+     */
+    public Boolean getCanAddSummaryFields()  {
+        return getAttributeAsBoolean("canAddSummaryFields");
+    }
+
+    /**
     * Whether to show a context menu on the header with standard items for showing and hiding fields.
     *
     * @param showHeaderContextMenu showHeaderContextMenu Default value is true
@@ -3247,6 +3265,39 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
             self.invalidateCache();
         }-*/;
 
+        /**
+         * Compares the specified criteria with the current criteria applied to this component's data object and determines whether the new criteria could be satisfied from the currently cached set of data, or if a new filter/fetch operation will be required. <P> This is equivalent to calling <code>this.data.willFetchData(...)</code>. Always returns true if this component is not showing a set of data from the dataSource.
+         * @param newCriteria new criteria to test.
+         *
+         * @return true if server fetch would be required to satisfy new criteria.
+         */
+        public native Boolean willFetchData(Criteria newCriteria) /*-{
+            var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
+            var retVal =self.willFetchData(newCriteria.@com.smartgwt.client.core.DataClass::getJsObj()());
+            if(retVal == null || retVal === undefined) {
+                return null;
+            } else {
+                return @com.smartgwt.client.util.JSOHelper::toBoolean(Z)(retVal);
+            }
+        }-*/;
+
+        /**
+         * Compares the specified criteria with the current criteria applied to this component's data object and determines whether the new criteria could be satisfied from the currently cached set of data, or if a new filter/fetch operation will be required. <P> This is equivalent to calling <code>this.data.willFetchData(...)</code>. Always returns true if this component is not showing a set of data from the dataSource.
+         * @param newCriteria new criteria to test.
+     * @param textMatchStyle New text match style. If not passed assumes       textMatchStyle will not be modified.
+         *
+         * @return true if server fetch would be required to satisfy new criteria.
+         */
+        public native Boolean willFetchData(Criteria newCriteria, String textMatchStyle) /*-{
+            var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
+            var retVal =self.willFetchData(newCriteria.@com.smartgwt.client.core.DataClass::getJsObj()(), textMatchStyle);
+            if(retVal == null || retVal === undefined) {
+                return null;
+            } else {
+                return @com.smartgwt.client.util.JSOHelper::toBoolean(Z)(retVal);
+            }
+        }-*/;
+
 
 
 
@@ -3847,6 +3898,8 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
 
 
 
+
+
         /**
          * If the filter editor ({@link com.smartgwt.client.widgets.grid.ListGrid#getShowFilterEditor showFilterEditor}) is visible for this grid,  this method will explictly put focus into the specified field in the filter editor.
          */
@@ -3873,7 +3926,7 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
         }-*/;
 
         /**
-         * Returns a snapshot of the current presentation of this listGrid's fields as  a ${isc.DocUtils.linkForRef('type:listGridFieldState')} object.<br> This object can be passed to {@link com.smartgwt.client.widgets.grid.ListGrid#setFieldState} to reset this grid's fields to the current state.<br> Note that the information stored includes the current width and visibility of each of this  grid's fields.
+         * Returns a snapshot of the current presentation of this listGrid's fields as  a ${isc.DocUtils.linkForRef('type:listGridFieldState')} object. <P> This object can later be passed to {@link com.smartgwt.client.widgets.grid.ListGrid#setFieldState} to reset this grid's fields to the current state. <P> Note that the information stored includes the current width and visibility of each of this  grid's fields, as well as any {@link com.smartgwt.client.widgets.grid.ListGrid#getCanAddFormulaFields canAddFormulaFields} or {@link com.smartgwt.client.widgets.grid.ListGrid#getCanAddSummaryFields canAddSummaryFields} added by the user.
          *
          * @return current state of this grid's fields.
          */
@@ -4035,6 +4088,7 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
                 return @com.smartgwt.client.util.JSOHelper::toBoolean(Z)(retVal);
             }
         }-*/;
+
 
 
 
@@ -4359,7 +4413,7 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
         }-*/;
 
         /**
-         * This method overrides {@link com.smartgwt.client.widgets.Canvas#willAcceptDrop} and works as follows:<br> <ul> <li>If {@link com.smartgwt.client.widgets.Canvas#willAcceptDrop} (the superclass definition) returns false, this      method always returns false.  This allows ${isc.DocUtils.linkForRef('canvas.dragTypes')} and     {@link com.smartgwt.client.widgets.Canvas#getDropTypes dropTypes} to be used to configure eligibility for drop.  By default,     a ListGrid has no dropTypes configured and so this check will not prevent a drop.</li> <li>If this is a self-drop, that is, the user is dragging a record within this list, this is     an attempted drag-reorder.  If {@link com.smartgwt.client.widgets.grid.ListGrid#getCanReorderRecords canReorderRecords} is      false, this method returns false.</li> <li>If the ${isc.DocUtils.linkForRef('EH.getDragTarget','dragTarget')} is another widget, if     {@link com.smartgwt.client.widgets.grid.ListGrid#getCanAcceptDroppedRecords canAcceptDroppedRecords} is false this method returns false.</li> <li>If a call to {@link com.smartgwt.client.widgets.grid.ListGrid#getDragData} on the <code>dragTarget</code> fails to return     an record object or an array of records, this method returns false.</li>  <li>If a the drop target record is disabled or has {@link com.smartgwt.client.widgets.grid.ListGridRecord#getCanAcceptDrop canAcceptDrop}      set to false, return false.</li> </ul> Note that this method may be called repeatedly during a drag-drop interaction to update the UI and notify the user as to when they may validly drop data.
+         * This method overrides {@link com.smartgwt.client.widgets.Canvas#willAcceptDrop} and works as follows:<br> <ul> <li>If {@link com.smartgwt.client.widgets.Canvas#willAcceptDrop} (the superclass definition) returns false, this      method always returns false.  This allows {@link com.smartgwt.client.widgets.Canvas#getDragType dragType} and     {@link com.smartgwt.client.widgets.Canvas#getDropTypes dropTypes} to be used to configure eligibility for drop.  By default,     a ListGrid has no dropTypes configured and so this check will not prevent a drop.</li> <li>If this is a self-drop, that is, the user is dragging a record within this list, this is     an attempted drag-reorder.  If {@link com.smartgwt.client.widgets.grid.ListGrid#getCanReorderRecords canReorderRecords} is      false, this method returns false.</li> <li>If the {@link com.smartgwt.client.util.EventHandler#getDragTarget} is another widget, if     {@link com.smartgwt.client.widgets.grid.ListGrid#getCanAcceptDroppedRecords canAcceptDroppedRecords} is false this method returns false.</li> <li>If a call to {@link com.smartgwt.client.widgets.grid.ListGrid#getDragData} on the <code>dragTarget</code> fails to return     an record object or an array of records, this method returns false.</li>  <li>If a the drop target record is disabled or has {@link com.smartgwt.client.widgets.grid.ListGridRecord#getCanAcceptDrop canAcceptDrop}      set to false, return false.</li> </ul> Note that this method may be called repeatedly during a drag-drop interaction to update the UI and notify the user as to when they may validly drop data.
          *
          * @return true if this component will accept a drop of the dragData
          */
@@ -4372,6 +4426,7 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
                 return @com.smartgwt.client.util.JSOHelper::toBoolean(Z)(retVal);
             }
         }-*/;
+
 
 
 
@@ -4922,7 +4977,7 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
     // ********************* Static Methods ***********************
 
 
-
+
 
 
 
@@ -6668,6 +6723,47 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
         self.setFieldError(rowNum, fieldName, errorsJS);
     }-*/;
 
+    /**
+     * Select a single ${isc.DocUtils.linkForRef('object:Record')} passed in explicitly, or by index, and deselect everything else. When programmatic selection of records is a requirement and {@link com.smartgwt.client.widgets.grid.ListGrid#getSelectionType selectionType}  is "single", use this method rather than {@link com.smartgwt.client.widgets.grid.ListGrid#selectRecord} to  enforce mutually-exclusive record-selection.
+     * @param record record to select
+     */
+    public native void selectSingleRecord(Record record) /*-{
+        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
+        self.selectSingleRecord(record.@com.smartgwt.client.data.Record::getJsObj()());
+    }-*/;
+
+    /**
+     * Select a single ${isc.DocUtils.linkForRef('object:Record')} passed in explicitly, or by index, and deselect everything else. When programmatic selection of records is a requirement and {@link com.smartgwt.client.widgets.grid.ListGrid#getSelectionType selectionType}  is "single", use this method rather than {@link com.smartgwt.client.widgets.grid.ListGrid#selectRecord} to  enforce mutually-exclusive record-selection.
+     * @param rowNum rowNum (or row number) to select
+     */
+    public native void selectSingleRecord(int rowNum) /*-{
+        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
+        self.selectSingleRecord(rowNum);
+    }-*/;
+
+    /**
+     * Get the computed value of a {@link com.smartgwt.client.widgets.grid.ListGrid#getCanAddFormulaFields canAddFormulaFields}.
+     *
+     * @param field  field that has a formula
+     * @param record record to use to compute formula value
+     * @return formula result
+     */
+    public native int getFormulaFieldValue(ListGridField field, Record record) /*-{
+        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
+        return self.getFormulaFieldValue(field.@com.smartgwt.client.widgets.grid.ListGridField::getJsObj()(), record);
+    }-*/;
+
+    /**
+     * Get the computed value of a {@link com.smartgwt.client.widgets.grid.ListGrid#getCanAddSummaryFields canAddSummaryFields}.
+     *
+     * @param field  field that has a summary format
+     * @param record record to use to compute formula value
+     * @return formula result
+     */
+    public native int getSummaryFieldValue(ListGridField field, Record record) /*-{
+        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
+        return self.getSummaryFieldValue(field.@com.smartgwt.client.widgets.grid.ListGridField::getJsObj()(), record);
+    }-*/;
 
 }
 

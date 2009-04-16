@@ -39,6 +39,10 @@ public class JSOHelper {
     private JSOHelper() {
     }
 
+    public static boolean isJSO(Object object) {
+        return object instanceof JavaScriptObject;
+    }
+    
     public static native String getAttribute(JavaScriptObject elem, String attr) /*-{
 	    var ret = elem[attr];
 	    return (ret === undefined || ret == null) ? null : String(ret);
@@ -316,6 +320,11 @@ public class JSOHelper {
 	    var ret = elem[attr];
 	    return (ret === undefined) ? null : ret;
     }-*/;
+
+    public static Map getAttributeAsMap(JavaScriptObject elem, String attr) {
+	    JavaScriptObject value = getAttributeAsJavaScriptObject(elem, attr);
+        return value == null ? null : convertToMap(value);
+    }
 
     public static JavaScriptObject[] listToArray(List list) {
         JavaScriptObject[] array = new JavaScriptObject[list.size()];
@@ -666,6 +675,4 @@ public class JSOHelper {
         }
         return props + '}';
     }-*/;
-
-
 }

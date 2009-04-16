@@ -110,7 +110,7 @@ public class ViewLoader extends Label {
 
     /**
     * URL to load components from.
-    * Change the URL this component loads a view from.  Triggers a fetch from the new URL. <P> Can also be called with no arguments to reload the view from the existing ${isc.DocUtils.linkForRef('contentsURL')}.
+    * Change the URL this component loads a view from.  Triggers a fetch from the new URL. <P> Can also be called with no arguments to reload the view from the existing {@link com.smartgwt.client.widgets.ViewLoader#getViewURL viewURL}.
     *
     * @param viewURL URL to retrieve view from. Default value is null
     * @throws IllegalStateException this property cannot be changed after the component has been created

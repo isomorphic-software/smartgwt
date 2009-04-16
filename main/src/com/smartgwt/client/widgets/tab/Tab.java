@@ -269,8 +269,23 @@ public class Tab extends RefDataClass {
         setAttribute("pane", paneID);
     }
 
+    /**
+     * Specifies the pane associated with this tab. You can change the pane associated with a given tab after the TabSet
+     * has been created by calling {@link com.smartgwt.client.widgets.tab.TabSet#updateTab(int, com.smartgwt.client.widgets.Canvas)}
+     *
+     * @param pane the tab pane
+     */
     public void setPane(Canvas pane) {
         setAttribute("pane", pane.getOrCreateJsObj());
+    }
+
+    /**
+     * The pane associated with the tab.
+     *
+     * @return the tab pane
+     */
+    public Canvas getPane() {
+        return Canvas.getOrCreateRef(getAttributeAsJavaScriptObject("pane"));
     }
 
     /**

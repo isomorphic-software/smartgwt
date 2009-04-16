@@ -94,7 +94,7 @@ public class DynamicForm extends Canvas  implements DataBoundComponent, com.smar
              
     /**
     * Default ${isc.DocUtils.linkForRef('type:DSOperationType')} to be performed when {@link com.smartgwt.client.widgets.form.DynamicForm#saveData} is called. This property is automatically set on a call to {@link com.smartgwt.client.widgets.form.DynamicForm#editRecord} or {@link com.smartgwt.client.widgets.form.DynamicForm#editNewRecord}, or may be set directly via  {@link com.smartgwt.client.widgets.form.DynamicForm#setSaveOperationType}. <P> If <code>saveOperationType</code> is unset, the form will heuristically determine whether an "add" or "update" operation is intended based on whether the primaryKey field is present and editable.
-    * Setter for the default ${isc.DocUtils.linkForRef('type:DSOperationType')} when ${isc.DocUtils.linkForRef('DyanmicForm.saveData')} is called. Note that this property can also be set by calling {@link com.smartgwt.client.widgets.form.DynamicForm#editRecord} or  {@link com.smartgwt.client.widgets.form.DynamicForm#editNewRecord}
+    * Setter for the default ${isc.DocUtils.linkForRef('type:DSOperationType')} when {@link com.smartgwt.client.widgets.form.DynamicForm#saveData} is called. Note that this property can also be set by calling {@link com.smartgwt.client.widgets.form.DynamicForm#editRecord} or  {@link com.smartgwt.client.widgets.form.DynamicForm#editNewRecord}
     *
     * @param saveOperationType Operation type to use as a default. Valid values are  <code>"add"</code> or <code>"update"</code>.. Default value is null
     */

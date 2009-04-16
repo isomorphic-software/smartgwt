@@ -912,6 +912,25 @@ public class Calendar extends Canvas  implements DataBoundComponent, com.smartgw
         return getAttributeAsBoolean("autoFetchData");
     }
 
+    /**
+    * if set to true, show the eventsByType view.
+    *
+    * @param showEventsByTypeView showEventsByTypeView Default value is false
+    */
+    public void setShowEventsByTypeView(Boolean showEventsByTypeView) {
+        setAttribute("showEventsByTypeView", showEventsByTypeView, true);
+    }
+    /**
+     * if set to true, show the eventsByType view.
+     *
+     *
+     * @return Boolean
+     *
+     */
+    public Boolean getShowEventsByTypeView()  {
+        return getAttributeAsBoolean("showEventsByTypeView");
+    }
+
     // ********************* Methods ***********************
 
 

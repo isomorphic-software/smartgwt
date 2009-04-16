@@ -936,6 +936,7 @@ public class Window extends VLayout  implements com.smartgwt.client.widgets.even
         }-*/;
 
 
+
         /**
          * Should this window be dismissed (same effect as pressing the "Cancel" button) when the  user presses the "Escape" key?<br> Default behavior: if {@link com.smartgwt.client.widgets.Window#getDismissOnEscape dismissOnEscape} is set, just return it. Otherwise return true if this window is showing a "close" control in the header  (see {@link com.smartgwt.client.widgets.Window#getHeaderControls headerControls}).
          *
