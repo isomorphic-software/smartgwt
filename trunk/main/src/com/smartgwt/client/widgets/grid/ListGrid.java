@@ -6765,6 +6765,33 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
         return self.getSummaryFieldValue(field.@com.smartgwt.client.widgets.grid.ListGridField::getJsObj()(), record);
     }-*/;
 
+
+    /**
+     * Returns any currently stored validation errors for this row
+     *
+     * @param rowNum the index of row to check for validation errors
+     * @return map of validation errors.  If no validation errors stored for the row, null is returned
+     */
+    public native Map getRowErrors(int rowNum) /*-{
+        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
+        var errorsJS =  self.getRowErrors(rowNum);
+        return errorsJS == null ? null : @com.smartgwt.client.util.JSOHelper::convertToMap(Lcom/google/gwt/core/client/JavaScriptObject;)(errorsJS);
+    }-*/;
+
+    /**
+     * Returns the current set of errors for this cell.
+     *
+     * @param rowNum the index of row to check for validation errors
+     * @param fieldName field to check for validation errors
+     *
+     * @return array of error messages (strings) for the specified cell. If no validation errors are present, returns null.
+     */
+    public native String[] getCellErrors(int rowNum, String fieldName) /*-{
+        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
+        var errorsJS =  self.getCellErrors(rowNum, fieldName);
+        return errorsJS == null ? null : @com.smartgwt.client.util.JSOHelper::convertToJavaStringArray(Lcom/google/gwt/core/client/JavaScriptObject;)(errorsJS);
+    }-*/;
+
 }
 
 
