@@ -1065,25 +1065,6 @@ public class ListGridField extends DataClass  implements com.smartgwt.client.wid
     public Boolean getCanSort()  {
         return getAttributeAsBoolean("canSort");
     }
-             
-    /**
-    * Specifies the default sorting direction for this column. If specified on the {@link com.smartgwt.client.widgets.grid.ListGrid#getSortField sortField} for the listGrid, sorting occurs automatically, otherwise this will be the default direction when the user clicks the field header, or calls {@link com.smartgwt.client.widgets.grid.ListGrid#sort} without specifying an explicit sort direction. <P> Overrides ListGrid.sortDirection
-    *
-    * @param sortDirection sortDirection Default value is null
-    */
-    public void setSortDirection(SortDirection sortDirection) {
-        setAttribute("sortDirection", sortDirection.getValue());
-    }
-    /**
-     * Specifies the default sorting direction for this column. If specified on the {@link com.smartgwt.client.widgets.grid.ListGrid#getSortField sortField} for the listGrid, sorting occurs automatically, otherwise this will be the default direction when the user clicks the field header, or calls {@link com.smartgwt.client.widgets.grid.ListGrid#sort} without specifying an explicit sort direction. <P> Overrides ListGrid.sortDirection
-     *
-     *
-     * @return SortDirection
-     *
-     */
-    public SortDirection getSortDirection()  {
-        return (SortDirection) EnumUtil.getEnum(SortDirection.values(), getAttribute("sortDirection"));
-    }
 
     /**
     * Can this field be edited? May be overridden by setting the      'canEdit' property at the listGrid level
@@ -1572,7 +1553,7 @@ public class ListGridField extends DataClass  implements com.smartgwt.client.wid
     // ********************* Static Methods ***********************
 
 
-
+
 
 
 
@@ -1967,6 +1948,31 @@ public class ListGridField extends DataClass  implements com.smartgwt.client.wid
 
         };
     }-*/;
+
+    /**
+    * Specifies the default sorting direction for this column. If specified on the {@link com.smartgwt.client.widgets.grid.ListGrid#getSortField sortField} for the listGrid, sorting occurs automatically, otherwise this will be the default direction when the user clicks the field header, or calls {@link com.smartgwt.client.widgets.grid.ListGrid#sort} without specifying an explicit sort direction. <P> Overrides ListGrid.sortDirection
+    *
+    * @param sortDirection sortDirection Default value is null
+    */
+    public void setSortDirection(SortDirection sortDirection) {
+        if(sortDirection == null) {
+            setAttribute("sortDirection", (Boolean)null);
+        } else {
+            setAttribute("sortDirection", sortDirection == SortDirection.ASCENDING);
+        }
+    }
+    /**
+     * Specifies the default sorting direction for this column. If specified on the {@link com.smartgwt.client.widgets.grid.ListGrid#getSortField sortField} for the listGrid, sorting occurs automatically, otherwise this will be the default direction when the user clicks the field header, or calls {@link com.smartgwt.client.widgets.grid.ListGrid#sort} without specifying an explicit sort direction. <P> Overrides ListGrid.sortDirection
+     *
+     *
+     * @return SortDirection
+     *
+     */
+    public SortDirection getSortDirection()  {
+        Boolean sortDir = getAttributeAsBoolean("sortDirection");
+        if(sortDir == null) return null;
+        return sortDir ? SortDirection.ASCENDING : SortDirection.DESCENDING;
+    }
 
 }
 

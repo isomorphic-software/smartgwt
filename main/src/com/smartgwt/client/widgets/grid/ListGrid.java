@@ -2532,25 +2532,6 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
     }
              
     /**
-    * Sorting direction of this ListGrid. If specified when the ListGrid is initialized, this property will be the default sorting direction for the {@link com.smartgwt.client.widgets.grid.ListGrid#getSortField sortField}. May be overridden by specifying {@link com.smartgwt.client.widgets.grid.ListGridField#getSortDirection sortDirection}. <P> After initialization, this property will be updated on {@link com.smartgwt.client.widgets.grid.ListGrid#sort} to reflect the current sort direction of the grid.
-    *
-    * @param sortDirection sortDirection Default value is Array.ASCENDING
-    */
-    public void setSortDirection(SortDirection sortDirection) {
-        setAttribute("sortDirection", sortDirection.getValue(), true);
-    }
-    /**
-     * Sorting direction of this ListGrid. If specified when the ListGrid is initialized, this property will be the default sorting direction for the {@link com.smartgwt.client.widgets.grid.ListGrid#getSortField sortField}. May be overridden by specifying {@link com.smartgwt.client.widgets.grid.ListGridField#getSortDirection sortDirection}. <P> After initialization, this property will be updated on {@link com.smartgwt.client.widgets.grid.ListGrid#sort} to reflect the current sort direction of the grid.
-     *
-     *
-     * @return SortDirection
-     *
-     */
-    public SortDirection getSortDirection()  {
-        return (SortDirection) EnumUtil.getEnum(SortDirection.values(), getAttribute("sortDirection"));
-    }
-             
-    /**
     * Indicates whether a sorting arrow should appear for the listGrid, and its          location. See SortArrow type for details.<br>          Clicking the sort arrow reverses the direction of sorting for the current sort          column (if any), or sorts the listGrid by its first sortable column. The arrow          image on the button indicates the current direction of sorting.          If undefined, the sort arrow will show up in the sorted field, and the          corner sort button will be displayed if a vertical scrollbar is being displayed
     *
     * @param showSortArrow showSortArrow Default value is null
@@ -4977,9 +4958,22 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
     // ********************* Static Methods ***********************
 
 
-
-
-
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
     protected native void onInit() /*-{
 
@@ -6792,9 +6786,28 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
         return errorsJS == null ? null : @com.smartgwt.client.util.JSOHelper::convertToJavaStringArray(Lcom/google/gwt/core/client/JavaScriptObject;)(errorsJS);
     }-*/;
 
+    /**
+    * Sorting direction of this ListGrid. If specified when the ListGrid is initialized, this property will be the default sorting direction for the {@link com.smartgwt.client.widgets.grid.ListGrid#getSortField sortField}. May be overridden by specifying {@link com.smartgwt.client.widgets.grid.ListGridField#getSortDirection sortDirection}. <P> After initialization, this property will be updated on {@link com.smartgwt.client.widgets.grid.ListGrid#sort} to reflect the current sort direction of the grid.
+    *
+    * @param sortDirection sortDirection Default value is SortDirection.ASCENDING
+    */
+    public void setSortDirection(SortDirection sortDirection) {
+        if(sortDirection == null) {
+            setAttribute("sortDirection", (Boolean)null, true);
+        } else {
+            setAttribute("sortDirection", sortDirection == SortDirection.ASCENDING, true);
+        }
+    }
+    /**
+     * Sorting direction of this ListGrid. If specified when the ListGrid is initialized, this property will be the default sorting direction for the {@link com.smartgwt.client.widgets.grid.ListGrid#getSortField sortField}. May be overridden by specifying {@link com.smartgwt.client.widgets.grid.ListGridField#getSortDirection sortDirection}. <P> After initialization, this property will be updated on {@link com.smartgwt.client.widgets.grid.ListGrid#sort} to reflect the current sort direction of the grid.
+     *
+     * @return sort direction Default value is SortDirection.ASCENDING
+     */
+    public SortDirection getSortDirection()  {
+        Boolean sortDir = getAttributeAsBoolean("sortDirection");
+        if(sortDir == null) return null;
+        return sortDir ? SortDirection.ASCENDING : SortDirection.DESCENDING;
+    }
 }
-
-
-
 
 
