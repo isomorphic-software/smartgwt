@@ -627,7 +627,7 @@ public class TileGrid extends TileLayout  implements DataBoundComponent, com.sma
      * @param data data Default value is null
      */
     public void setData(TileRecord[] data) {
-        setAttribute("data", data, false);
+        setAttribute("data", data, true);
     }
 
 
