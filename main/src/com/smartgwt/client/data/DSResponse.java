@@ -126,15 +126,9 @@ public class DSResponse extends RPCResponse {
     // ********************* Static Methods ***********************
 
 
-
-
-
-
-
-
-
-
-
+
+
+
 
     /**
      * Starting row of returned server results, when using paged result fetching <p> Note that startRow and endRow are
@@ -200,7 +194,7 @@ public class DSResponse extends RPCResponse {
      */
     public void setErrors(JavaScriptObject errors) {
         setAttribute("errors", errors);
-    }
+    }    
 
     /**
      * Server-side validation errors for an attempted "update" or "add" operation, as a JS Object where each property

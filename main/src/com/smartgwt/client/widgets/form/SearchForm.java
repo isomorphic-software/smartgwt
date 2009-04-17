@@ -88,6 +88,26 @@ public class SearchForm extends DynamicForm {
     }-*/;
     // ********************* Properties / Attributes ***********************
 
+    /**
+    * If this attribute is true any {@link com.smartgwt.client.data.DataSourceField#getCanFilter canFilter} fields specified on the dataSource will not be shown unless explicitly included in this component's {@link com.smartgwt.client..DataBoundComponent#getFields fields}
+    * <p><b>Note : </b> This is an advanced setting</p>
+    *
+    * @param showFilterFieldsOnly showFilterFieldsOnly Default value is true
+    */
+    public void setShowFilterFieldsOnly(Boolean showFilterFieldsOnly) {
+        setAttribute("showFilterFieldsOnly", showFilterFieldsOnly, true);
+    }
+    /**
+     * If this attribute is true any {@link com.smartgwt.client.data.DataSourceField#getCanFilter canFilter} fields specified on the dataSource will not be shown unless explicitly included in this component's {@link com.smartgwt.client..DataBoundComponent#getFields fields}
+     *
+     *
+     * @return Boolean
+     *
+     */
+    public Boolean getShowFilterFieldsOnly()  {
+        return getAttributeAsBoolean("showFilterFieldsOnly");
+    }
+
     // ********************* Methods ***********************
 
 

@@ -203,6 +203,27 @@ public class StretchImg extends StatefulCanvas {
     }
 
     /**
+    * Should we show a "grip" image floating above the center of this widget?
+    * <p><b>Note : </b> This is an advanced setting</p>
+    *
+    * @param showGrip showGrip Default value is null
+    * @throws IllegalStateException this property cannot be changed after the component has been created
+    */
+    public void setShowGrip(Boolean showGrip)  throws IllegalStateException {
+        setAttribute("showGrip", showGrip, false);
+    }
+    /**
+     * Should we show a "grip" image floating above the center of this widget?
+     *
+     *
+     * @return Boolean
+     *
+     */
+    public Boolean getShowGrip()  {
+        return getAttributeAsBoolean("showGrip");
+    }
+
+    /**
     * Determines whether any specified {@link com.smartgwt.client.widgets.StatefulCanvas#getTitle} will be  displayed for this component.<br> Applies to Image-based components only, where the title will be rendered out in a label floating over the component
     * <p><b>Note : </b> This is an advanced setting</p>
     *

@@ -941,8 +941,6 @@ public class Calendar extends Canvas  implements DataBoundComponent, com.smartgw
 
 
 
-
-
         /**
          * Move to the next day, week, or month, depending on which tab is selected.
          */
