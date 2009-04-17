@@ -164,7 +164,7 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
     }
 
     /**
-    * If true, automatically fetches a valueMap if an {@link com.smartgwt.client.widgets.grid.ListGridField#getOptionDataSource optionDataSource} is set for a ListGrid field. <P> If set to false, valueMaps will not be automatically fetched.  In this case, setting field.optionDataSource on a is effectively a shortcut for setting optionDataSource on the editor via ${isc.DocUtils.linkForRef('field.editorProperties')}. <P> Can also be disabled on a per-field basis with {@link com.smartgwt.client.widgets.grid.ListGridField#getAutoFetchDisplayMap autoFetchDisplayMap}.
+    * If true, automatically fetches a valueMap if an {@link com.smartgwt.client.widgets.grid.ListGridField#getOptionDataSource optionDataSource} is set for a ListGrid field. <P> If set to false, valueMaps will not be automatically fetched.  In this case, setting field.optionDataSource on a is effectively a shortcut for setting optionDataSource on the editor via {@link com.smartgwt.client.widgets.grid.ListGridField#getEditorProperties editorProperties}. <P> Can also be disabled on a per-field basis with {@link com.smartgwt.client.widgets.grid.ListGridField#getAutoFetchDisplayMap autoFetchDisplayMap}.
     *
     * @param autoFetchDisplayMap autoFetchDisplayMap Default value is true
     */
@@ -172,7 +172,7 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
         setAttribute("autoFetchDisplayMap", autoFetchDisplayMap, true);
     }
     /**
-     * If true, automatically fetches a valueMap if an {@link com.smartgwt.client.widgets.grid.ListGridField#getOptionDataSource optionDataSource} is set for a ListGrid field. <P> If set to false, valueMaps will not be automatically fetched.  In this case, setting field.optionDataSource on a is effectively a shortcut for setting optionDataSource on the editor via ${isc.DocUtils.linkForRef('field.editorProperties')}. <P> Can also be disabled on a per-field basis with {@link com.smartgwt.client.widgets.grid.ListGridField#getAutoFetchDisplayMap autoFetchDisplayMap}.
+     * If true, automatically fetches a valueMap if an {@link com.smartgwt.client.widgets.grid.ListGridField#getOptionDataSource optionDataSource} is set for a ListGrid field. <P> If set to false, valueMaps will not be automatically fetched.  In this case, setting field.optionDataSource on a is effectively a shortcut for setting optionDataSource on the editor via {@link com.smartgwt.client.widgets.grid.ListGridField#getEditorProperties editorProperties}. <P> Can also be disabled on a per-field basis with {@link com.smartgwt.client.widgets.grid.ListGridField#getAutoFetchDisplayMap autoFetchDisplayMap}.
      *
      *
      * @return Boolean
@@ -183,7 +183,7 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
     }
 
     /**
-    * For grids with a specified ${isc.DocUtils.linkForRef('ListGrid.datasource')}, this property can be set to  <code>true</code> to avoid the grid from attempting to save / retrieve data from the server.  In this case the grid's data should be specified as an array via  the {@link com.smartgwt.client.widgets.grid.ListGrid#getData data} attribute, and the datasource will simply act as a schema to describe the set of fields visible in the grid.  {@link com.smartgwt.client.widgets.grid.ListGrid#getCanEdit canEdit}, or removals via the {@link com.smartgwt.client.widgets.grid.ListGrid#getCanRemoveRecords canRemoveRecords} mechanism will update the local data array rather than attempting to perform operations against the dataSource.
+    * For grids with a specified {@link com.smartgwt.client.widgets.grid.ListGrid#getDataSource dataSource}, this property can be set to  <code>true</code> to avoid the grid from attempting to save / retrieve data from the server.  In this case the grid's data should be specified as an array via  the {@link com.smartgwt.client.widgets.grid.ListGrid#getData data} attribute, and the datasource will simply act as a schema to describe the set of fields visible in the grid.  {@link com.smartgwt.client.widgets.grid.ListGrid#getCanEdit canEdit}, or removals via the {@link com.smartgwt.client.widgets.grid.ListGrid#getCanRemoveRecords canRemoveRecords} mechanism will update the local data array rather than attempting to perform operations against the dataSource.
     * <p><b>Note : </b> This is an advanced setting</p>
     *
     * @param saveLocally saveLocally Default value is null
@@ -193,7 +193,7 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
         setAttribute("saveLocally", saveLocally, false);
     }
     /**
-     * For grids with a specified ${isc.DocUtils.linkForRef('ListGrid.datasource')}, this property can be set to  <code>true</code> to avoid the grid from attempting to save / retrieve data from the server.  In this case the grid's data should be specified as an array via  the {@link com.smartgwt.client.widgets.grid.ListGrid#getData data} attribute, and the datasource will simply act as a schema to describe the set of fields visible in the grid.  {@link com.smartgwt.client.widgets.grid.ListGrid#getCanEdit canEdit}, or removals via the {@link com.smartgwt.client.widgets.grid.ListGrid#getCanRemoveRecords canRemoveRecords} mechanism will update the local data array rather than attempting to perform operations against the dataSource.
+     * For grids with a specified {@link com.smartgwt.client.widgets.grid.ListGrid#getDataSource dataSource}, this property can be set to  <code>true</code> to avoid the grid from attempting to save / retrieve data from the server.  In this case the grid's data should be specified as an array via  the {@link com.smartgwt.client.widgets.grid.ListGrid#getData data} attribute, and the datasource will simply act as a schema to describe the set of fields visible in the grid.  {@link com.smartgwt.client.widgets.grid.ListGrid#getCanEdit canEdit}, or removals via the {@link com.smartgwt.client.widgets.grid.ListGrid#getCanRemoveRecords canRemoveRecords} mechanism will update the local data array rather than attempting to perform operations against the dataSource.
      *
      *
      * @return Boolean
@@ -602,7 +602,7 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
     }
 
     /**
-    * If we're showing the filterEditor (+link(listGrid.showFilterEditor) is true), and we're re-filtering on every keypress (+link(listGrid.filterOnKeypress) is true), this  property is the delay in milliseconds between the user changing the filter and the  filter request being kicked off. If multiple changes are made to the filter  within this fetch delay, only the most recent will actually cause a re-filter
+    * If we're showing the filterEditor ({@link com.smartgwt.client.widgets.grid.ListGrid#getShowFilterEditor showFilterEditor} is true), and we're re-filtering on every keypress ({@link com.smartgwt.client.widgets.grid.ListGrid#getFilterOnKeypress filterOnKeypress} is true), this  property is the delay in milliseconds between the user changing the filter and the  filter request being kicked off. If multiple changes are made to the filter  within this fetch delay, only the most recent will actually cause a re-filter
     * <p><b>Note : </b> This is an advanced setting</p>
     *
     * @param fetchDelay fetchDelay Default value is 300
@@ -611,7 +611,7 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
         setAttribute("fetchDelay", fetchDelay, true);
     }
     /**
-     * If we're showing the filterEditor (+link(listGrid.showFilterEditor) is true), and we're re-filtering on every keypress (+link(listGrid.filterOnKeypress) is true), this  property is the delay in milliseconds between the user changing the filter and the  filter request being kicked off. If multiple changes are made to the filter  within this fetch delay, only the most recent will actually cause a re-filter
+     * If we're showing the filterEditor ({@link com.smartgwt.client.widgets.grid.ListGrid#getShowFilterEditor showFilterEditor} is true), and we're re-filtering on every keypress ({@link com.smartgwt.client.widgets.grid.ListGrid#getFilterOnKeypress filterOnKeypress} is true), this  property is the delay in milliseconds between the user changing the filter and the  filter request being kicked off. If multiple changes are made to the filter  within this fetch delay, only the most recent will actually cause a re-filter
      *
      *
      * @return int
@@ -2571,6 +2571,25 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
     }
 
     /**
+    * Adds an item to the header context menu allowing users to launch a dialog to define a new field based on values present in other fields, using the {@link com.smartgwt.client..FormulaBuilder}. <P> User-added formula fields can be persisted via {@link com.smartgwt.client.widgets.grid.ListGrid#getFieldState} and  {@link com.smartgwt.client.widgets.grid.ListGrid#setFieldState}.
+    *
+    * @param canAddFormulaFields canAddFormulaFields Default value is false
+    */
+    public void setCanAddFormulaFields(Boolean canAddFormulaFields) {
+        setAttribute("canAddFormulaFields", canAddFormulaFields, true);
+    }
+    /**
+     * Adds an item to the header context menu allowing users to launch a dialog to define a new field based on values present in other fields, using the {@link com.smartgwt.client..FormulaBuilder}. <P> User-added formula fields can be persisted via {@link com.smartgwt.client.widgets.grid.ListGrid#getFieldState} and  {@link com.smartgwt.client.widgets.grid.ListGrid#setFieldState}.
+     *
+     *
+     * @return Boolean
+     *
+     */
+    public Boolean getCanAddFormulaFields()  {
+        return getAttributeAsBoolean("canAddFormulaFields");
+    }
+
+    /**
     * Adds an item to the header context menu allowing users to launch a dialog to define a new text field that can contain both user-defined text and the formatted values present in other  fields, using the {@link com.smartgwt.client..SummaryBuilder}. <P> User-added summary fields can be persisted via {@link com.smartgwt.client.widgets.grid.ListGrid#getFieldState} and  {@link com.smartgwt.client.widgets.grid.ListGrid#setFieldState}.
     *
     * @param canAddSummaryFields canAddSummaryFields Default value is false
@@ -3237,6 +3256,7 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
             if(ret == null || ret === undefined) return null;
             return @com.smartgwt.client.data.Criteria::new(Lcom/google/gwt/core/client/JavaScriptObject;)(ret);
         }-*/;
+
 
         /**
          * Invalidate the current data cache for this databound component via a call to <code>this.data.invalidateCache()</code>. If necessary, this will cause a new fetch to  be performed with the current set of criteria for this component. <P> Has no effect if this component is not showing a set of filtered data.
@@ -4958,22 +4978,9 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
     // ********************* Static Methods ***********************
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+
+
+
 
     protected native void onInit() /*-{
 
@@ -6798,6 +6805,7 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
             setAttribute("sortDirection", sortDirection == SortDirection.ASCENDING, true);
         }
     }
+    
     /**
      * Sorting direction of this ListGrid. If specified when the ListGrid is initialized, this property will be the default sorting direction for the {@link com.smartgwt.client.widgets.grid.ListGrid#getSortField sortField}. May be overridden by specifying {@link com.smartgwt.client.widgets.grid.ListGridField#getSortDirection sortDirection}. <P> After initialization, this property will be updated on {@link com.smartgwt.client.widgets.grid.ListGrid#sort} to reflect the current sort direction of the grid.
      *
@@ -6808,6 +6816,19 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
         if(sortDir == null) return null;
         return sortDir ? SortDirection.ASCENDING : SortDirection.DESCENDING;
     }
+
+    /**
+     * Sets this component's filter criteria. Default implementation calls this.data.setCriteria()
+     * @param  criteria new criteria to show
+     */
+    public native void setCriteria(Criteria criteria) /*-{
+        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
+        self.setCriteria(criteria.@com.smartgwt.client.data.Criteria::getJsObj()());
+    }-*/;
+
 }
+
+
+
 
 

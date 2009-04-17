@@ -1961,6 +1961,7 @@ public class ListGridField extends DataClass  implements com.smartgwt.client.wid
             setAttribute("sortDirection", sortDirection == SortDirection.ASCENDING);
         }
     }
+    
     /**
      * Specifies the default sorting direction for this column. If specified on the {@link com.smartgwt.client.widgets.grid.ListGrid#getSortField sortField} for the listGrid, sorting occurs automatically, otherwise this will be the default direction when the user clicks the field header, or calls {@link com.smartgwt.client.widgets.grid.ListGrid#sort} without specifying an explicit sort direction. <P> Overrides ListGrid.sortDirection
      *

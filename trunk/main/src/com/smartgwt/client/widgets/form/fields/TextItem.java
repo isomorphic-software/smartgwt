@@ -203,6 +203,27 @@ public class TextItem extends FormItem {
         return getAttributeAsBoolean("hintInField");
     }
 
+    /**
+    * Sets a keypress filter regular expression to limit valid characters that can be entered by the user. If defined, keys that match the regular expression are allowed; all others are suppressed. The filter is applied after character casing, if defined.
+    * Set the keyPressFilter for this item
+    * <p><b>Note : </b> This is an advanced setting</p>
+    *
+    * @param keyPressFilter new keyPress filter for the item. Default value is null
+    */
+    public void setKeyPressFilter(String keyPressFilter) {
+        setAttribute("keyPressFilter", keyPressFilter);
+    }
+    /**
+     * Sets a keypress filter regular expression to limit valid characters that can be entered by the user. If defined, keys that match the regular expression are allowed; all others are suppressed. The filter is applied after character casing, if defined.
+     *
+     *
+     * @return String
+     *
+     */
+    public String getKeyPressFilter()  {
+        return getAttributeAsString("keyPressFilter");
+    }
+
     // ********************* Methods ***********************
 
         /**
@@ -214,6 +235,7 @@ public class TextItem extends FormItem {
             var self = this.@com.smartgwt.client.core.DataClass::getJsObj()();
             return self.getHint();
         }-*/;
+
 
     // ********************* Static Methods ***********************
 

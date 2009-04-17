@@ -260,6 +260,25 @@ public class DataSourceField extends DataClass {
     }
 
     /**
+    * Should the user be able to filter data by this field. Effects whether this field will show up in dataBoundComponents with UI for filtering data.
+    *
+    * @param canFilter canFilter Default value is null
+    */
+    public void setCanFilter(Boolean canFilter) {
+        setAttribute("canFilter", canFilter);
+    }
+    /**
+     * Should the user be able to filter data by this field. Effects whether this field will show up in dataBoundComponents with UI for filtering data.
+     *
+     *
+     * @return Boolean
+     *
+     */
+    public Boolean getCanFilter()  {
+        return getAttributeAsBoolean("canFilter");
+    }
+
+    /**
     * Whether this field should be hidden from users by default within a DataBound component. This is generally used for internal ids and other values not meaningful to users. <P> See {@link com.smartgwt.client.data.DataSourceField#getDetail detail} for fields that should be hidden in a summary view such as a {@link com.smartgwt.client.widgets.grid.ListGrid}, but still available to the user.
     *
     * @param hidden hidden Default value is false
@@ -753,16 +772,6 @@ public class DataSourceField extends DataClass {
     public void setType(DataSource dataSource) {
         dataSource.getOrCreateJsObj();
         setAttribute("type", dataSource.getID());
-    }
-
-
-    public void setCanFilter(Boolean canFilter) {
-        setAttribute("canFilter", canFilter);
-    }
-
-
-    public Boolean getCanFilter()  {
-        return getAttributeAsBoolean("canFilter");
     }
 
     /**
