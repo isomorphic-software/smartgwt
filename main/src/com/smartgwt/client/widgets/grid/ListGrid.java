@@ -4185,6 +4185,8 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
 
 
 
+
+
         /**
          * Start inline editing at the provided coordinates. <p> Invoked when a cell is editable and the <code>editEvent</code> occurs on that cell.  Can also be invoked explicitly. <P> If this method is called while editing is already in progress, the value from the current editCell will either be stored locally as a temporary edit value, or saved via 'saveEdits()' depending on <code>this.saveByCell</code>, and the position of the new edit cell.<br> Will update the UI to show the editor for the new cell, and put focus in it unless  explicitly suppressed by the optional <code>suppressFocus</code> parameter.
          *
@@ -6824,6 +6826,27 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
     public native void setCriteria(Criteria criteria) /*-{
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
         self.setCriteria(criteria.@com.smartgwt.client.data.Criteria::getJsObj()());
+    }-*/;
+
+    /**
+     * If {@link com.smartgwt.client.widgets.grid.ListGrid#getShowFilterEditor showFilterEditor} is true, this method will update the criteria shown in the <code>filterEditor</code> without performing a filter.
+     * @param criteria New criteria to show
+     */
+    public native void setFilterEditorCriteria(Criteria criteria) /*-{
+        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
+        self.setFilterEditorCriteria(criteria);
+    }-*/;
+
+    /**
+     * If {@link com.smartgwt.client.widgets.grid.ListGrid#getShowFilterEditor showFilterEditor} is true, this method will return the criteria currently displayed in the <code>filterEditor</code>. Note that these values may differ from the criteria returned by {@link com.smartgwt.client.widgets.grid.ListGrid#getCriteria} if the filter editor values have been modified without performing an actual filter.
+     *
+     * @return criteria currently displayed in the filterEditor
+     */
+    public native Criteria getFilterEditorCriteria() /*-{
+        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
+        var ret = self.getFilterEditorCriteria();
+        if(ret == null || ret === undefined) return null;
+        return @com.smartgwt.client.data.Criteria::new(Lcom/google/gwt/core/client/JavaScriptObject;)(ret);
     }-*/;
 
 }

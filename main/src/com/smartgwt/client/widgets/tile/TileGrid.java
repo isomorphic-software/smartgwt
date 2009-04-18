@@ -171,7 +171,7 @@ public class TileGrid extends TileLayout  implements DataBoundComponent, com.sma
     }
 
     /**
-    * If {@link com.smartgwt.client.widgets.tile.TileGrid#getAutoFetchData autoFetchData} is <code>true</code>, this attribute determines whether the initial fetch operation should be performed via {@link com.smartgwt.client.widgets.tile.TileGrid#fetchData} or ${isc.DocUtils.linkForRef('filterData')}
+    * If {@link com.smartgwt.client.widgets.tile.TileGrid#getAutoFetchData autoFetchData} is <code>true</code>, this attribute determines whether the initial fetch operation should be performed via {@link com.smartgwt.client.widgets.tile.TileGrid#fetchData} or {@link com.smartgwt.client.widgets.tile.TileGrid#filterData}
     *
     * @param autoFetchAsFilter autoFetchAsFilter Default value is false
     * @throws IllegalStateException this property cannot be changed after the component has been created
@@ -180,7 +180,7 @@ public class TileGrid extends TileLayout  implements DataBoundComponent, com.sma
         setAttribute("autoFetchAsFilter", autoFetchAsFilter, false);
     }
     /**
-     * If {@link com.smartgwt.client.widgets.tile.TileGrid#getAutoFetchData autoFetchData} is <code>true</code>, this attribute determines whether the initial fetch operation should be performed via {@link com.smartgwt.client.widgets.tile.TileGrid#fetchData} or ${isc.DocUtils.linkForRef('filterData')}
+     * If {@link com.smartgwt.client.widgets.tile.TileGrid#getAutoFetchData autoFetchData} is <code>true</code>, this attribute determines whether the initial fetch operation should be performed via {@link com.smartgwt.client.widgets.tile.TileGrid#fetchData} or {@link com.smartgwt.client.widgets.tile.TileGrid#filterData}
      *
      *
      * @return Boolean
@@ -326,6 +326,25 @@ public class TileGrid extends TileLayout  implements DataBoundComponent, com.sma
             self.exportData(requestProperties.@com.smartgwt.client.core.DataClass::getJsObj()());
         }-*/;
 
+
+        /**
+         * Retrieves data that matches the provided criteria and displays the matching data in this component. <P> This method behaves exactly like {@link com.smartgwt.client.widgets.grid.ListGrid#fetchData} except that {@link com.smartgwt.client.data.DSRequest#getTextMatchStyle textMatchStyle} is automatically set to "substring" so that String-valued fields are matched by case-insensitive substring comparison.
+         */
+        public native void filterData() /*-{
+            var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
+            self.filterData();
+        }-*/;
+
+        /**
+         * Retrieves data that matches the provided criteria and displays the matching data in this component. <P> This method behaves exactly like {@link com.smartgwt.client.widgets.grid.ListGrid#fetchData} except that {@link com.smartgwt.client.data.DSRequest#getTextMatchStyle textMatchStyle} is automatically set to "substring" so that String-valued fields are matched by case-insensitive substring comparison.
+         * @param criteria Search criteria.                       If a {@link com.smartgwt.client.widgets.form.DynamicForm} is passed in as this argument                      instead of a raw criteria object, will be derived by calling                      {@link com.smartgwt.client.widgets.form.DynamicForm#getValuesAsCriteria}
+     * @param callback callback to invoke when a fetch is complete.  Fires                                          only if server contact was required; see                                          {@link com.smartgwt.client.widgets.grid.ListGrid#fetchData} for details
+     * @param requestProperties for databound components only - optional                            additional properties to set on the DSRequest that will be issued
+         */
+        public native void filterData(Criteria criteria, DSCallback callback, DSRequest requestProperties) /*-{
+            var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
+            self.filterData(criteria.@com.smartgwt.client.core.DataClass::getJsObj()(), callback, requestProperties.@com.smartgwt.client.core.DataClass::getJsObj()());
+        }-*/;
 
 
 
