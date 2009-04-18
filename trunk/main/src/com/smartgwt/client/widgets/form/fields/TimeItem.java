@@ -96,10 +96,10 @@ public class TimeItem extends TextItem {
     /**
      * What format should this item's time string be presented in?
      *
-     * @param displayFormat displayFormat Default value is "toShort24HourTime"
+     * @param timeFormatter displayFormat Default value is "toShort24HourTime"
      */
-    public void setDisplayFormat(DateDisplayFormat displayFormat) {
-        setAttribute("displayFormat", displayFormat.getValue());
+    public void setDisplayFormat(TimeFormatter timeFormatter) {
+        setAttribute("displayFormat", timeFormatter.getValue());
     }
 
     /**
@@ -107,8 +107,8 @@ public class TimeItem extends TextItem {
      *
      * @return DateDisplayFormat
      */
-    public DateDisplayFormat getDisplayFormat() {
-        return (DateDisplayFormat) EnumUtil.getEnum(DateDisplayFormat.values(), getAttribute("displayFormat"));
+    public TimeFormatter getDisplayFormat() {
+        return (TimeFormatter) EnumUtil.getEnum(TimeFormatter.values(), getAttribute("displayFormat"));
     }
 
 }
