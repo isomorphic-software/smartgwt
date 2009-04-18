@@ -109,7 +109,7 @@ public class ColumnTree extends Layout  implements DataBoundComponent {
     }
 
     /**
-    * If true, when this component is first drawn, automatically call <code>this.fetchData()</code> or <code>this.filterData()</code> depending on ${isc.DocUtils.linkForRef('autoFetchAsFilter')}. Criteria for this fetch may be picked up from ${isc.DocUtils.linkForRef('initialCriteria')}.
+    * If true, when this component is first drawn, automatically call <code>this.fetchData()</code> or <code>this.filterData()</code> depending on {@link com.smartgwt.client.widgets.grid.ColumnTree#getAutoFetchAsFilter autoFetchAsFilter}. Criteria for this fetch may be picked up from {@link com.smartgwt.client.widgets.grid.ColumnTree#getInitialCriteria initialCriteria}.
     *
     * @param autoFetchData autoFetchData Default value is false
     * @throws IllegalStateException this property cannot be changed after the component has been created
@@ -118,7 +118,7 @@ public class ColumnTree extends Layout  implements DataBoundComponent {
         setAttribute("autoFetchData", autoFetchData, false);
     }
     /**
-     * If true, when this component is first drawn, automatically call <code>this.fetchData()</code> or <code>this.filterData()</code> depending on ${isc.DocUtils.linkForRef('autoFetchAsFilter')}. Criteria for this fetch may be picked up from ${isc.DocUtils.linkForRef('initialCriteria')}.
+     * If true, when this component is first drawn, automatically call <code>this.fetchData()</code> or <code>this.filterData()</code> depending on {@link com.smartgwt.client.widgets.grid.ColumnTree#getAutoFetchAsFilter autoFetchAsFilter}. Criteria for this fetch may be picked up from {@link com.smartgwt.client.widgets.grid.ColumnTree#getInitialCriteria initialCriteria}.
      *
      *
      * @return Boolean
@@ -126,6 +126,46 @@ public class ColumnTree extends Layout  implements DataBoundComponent {
      */
     public Boolean getAutoFetchData()  {
         return getAttributeAsBoolean("autoFetchData");
+    }
+
+    /**
+    * If {@link com.smartgwt.client.widgets.grid.ColumnTree#getAutoFetchData autoFetchData} is <code>true</code>, this attribute determines whether the initial fetch operation should be performed via {@link com.smartgwt.client.widgets.grid.ColumnTree#fetchData} or {@link com.smartgwt.client.widgets.grid.ColumnTree#filterData}
+    *
+    * @param autoFetchAsFilter autoFetchAsFilter Default value is false
+    * @throws IllegalStateException this property cannot be changed after the component has been created
+    */
+    public void setAutoFetchAsFilter(Boolean autoFetchAsFilter)  throws IllegalStateException {
+        setAttribute("autoFetchAsFilter", autoFetchAsFilter, false);
+    }
+    /**
+     * If {@link com.smartgwt.client.widgets.grid.ColumnTree#getAutoFetchData autoFetchData} is <code>true</code>, this attribute determines whether the initial fetch operation should be performed via {@link com.smartgwt.client.widgets.grid.ColumnTree#fetchData} or {@link com.smartgwt.client.widgets.grid.ColumnTree#filterData}
+     *
+     *
+     * @return Boolean
+     *
+     */
+    public Boolean getAutoFetchAsFilter()  {
+        return getAttributeAsBoolean("autoFetchAsFilter");
+    }
+            
+    /**
+    * Criteria to be used when {@link com.smartgwt.client.widgets.grid.ColumnTree#getAutoFetchData autoFetchData} is set.
+    *
+    * @param initialCriteria initialCriteria Default value is null
+    * @throws IllegalStateException this property cannot be changed after the component has been created
+    */
+    public void setInitialCriteria(Criteria initialCriteria)  throws IllegalStateException {
+        setAttribute("initialCriteria", initialCriteria.getJsObj(), false);
+    }
+    /**
+     * Criteria to be used when {@link com.smartgwt.client.widgets.grid.ColumnTree#getAutoFetchData autoFetchData} is set.
+     *
+     *
+     * @return Criteria
+     *
+     */
+    public Criteria getInitialCriteria()  {
+        return new Criteria(getAttributeAsJavaScriptObject("initialCriteria"));
     }
 
     /**
@@ -364,6 +404,25 @@ public class ColumnTree extends Layout  implements DataBoundComponent {
 
     // ********************* Methods ***********************
 
+
+        /**
+         * Retrieves data that matches the provided criteria and displays the matching data in this component. <P> This method behaves exactly like {@link com.smartgwt.client.widgets.grid.ListGrid#fetchData} except that {@link com.smartgwt.client.data.DSRequest#getTextMatchStyle textMatchStyle} is automatically set to "substring" so that String-valued fields are matched by case-insensitive substring comparison.
+         */
+        public native void filterData() /*-{
+            var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
+            self.filterData();
+        }-*/;
+
+        /**
+         * Retrieves data that matches the provided criteria and displays the matching data in this component. <P> This method behaves exactly like {@link com.smartgwt.client.widgets.grid.ListGrid#fetchData} except that {@link com.smartgwt.client.data.DSRequest#getTextMatchStyle textMatchStyle} is automatically set to "substring" so that String-valued fields are matched by case-insensitive substring comparison.
+         * @param criteria Search criteria.                       If a {@link com.smartgwt.client.widgets.form.DynamicForm} is passed in as this argument                      instead of a raw criteria object, will be derived by calling                      {@link com.smartgwt.client.widgets.form.DynamicForm#getValuesAsCriteria}
+     * @param callback callback to invoke when a fetch is complete.  Fires                                          only if server contact was required; see                                          {@link com.smartgwt.client.widgets.grid.ListGrid#fetchData} for details
+     * @param requestProperties for databound components only - optional                            additional properties to set on the DSRequest that will be issued
+         */
+        public native void filterData(Criteria criteria, DSCallback callback, DSRequest requestProperties) /*-{
+            var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
+            self.filterData(criteria.@com.smartgwt.client.core.DataClass::getJsObj()(), callback, requestProperties.@com.smartgwt.client.core.DataClass::getJsObj()());
+        }-*/;
 
 
         /**

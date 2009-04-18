@@ -249,6 +249,63 @@ public class SectionStack extends VLayout {
         return (VisibilityMode) EnumUtil.getEnum(VisibilityMode.values(), getAttribute("visibilityMode"));
     }
 
+    /**
+    * Size, in pixels, of indentation of all member items. Items will be offset and reduced in width by this amount. Overridden by {@link com.smartgwt.client.widgets.layout.SectionStack#getItemStartIndent itemStartIndent} or {@link com.smartgwt.client.widgets.layout.SectionStack#getItemEndIndent itemEndIndent}. Setting itemIndent is equivalent to setting itemStartIndent to the same amount and itemEndIndent to 0.
+    *
+    * @param itemIndent itemIndent Default value is 0
+    */
+    public void setItemIndent(int itemIndent) {
+        setAttribute("itemIndent", itemIndent, true);
+    }
+    /**
+     * Size, in pixels, of indentation of all member items. Items will be offset and reduced in width by this amount. Overridden by {@link com.smartgwt.client.widgets.layout.SectionStack#getItemStartIndent itemStartIndent} or {@link com.smartgwt.client.widgets.layout.SectionStack#getItemEndIndent itemEndIndent}. Setting itemIndent is equivalent to setting itemStartIndent to the same amount and itemEndIndent to 0.
+     *
+     *
+     * @return int
+     *
+     */
+    public int getItemIndent()  {
+        return getAttributeAsInt("itemIndent");
+    }
+
+    /**
+    * Size, in pixels, of indentation of all member items relative to the start of the alignment axis. For instance, for left-aligned members,  itemStartIndent specifies indentation for every item from the left side of the section stack. Overrides {@link com.smartgwt.client.widgets.layout.SectionStack#getItemIndent itemIndent}.
+    *
+    * @param itemStartIndent itemStartIndent Default value is undefined
+    */
+    public void setItemStartIndent(int itemStartIndent) {
+        setAttribute("itemStartIndent", itemStartIndent, true);
+    }
+    /**
+     * Size, in pixels, of indentation of all member items relative to the start of the alignment axis. For instance, for left-aligned members,  itemStartIndent specifies indentation for every item from the left side of the section stack. Overrides {@link com.smartgwt.client.widgets.layout.SectionStack#getItemIndent itemIndent}.
+     *
+     *
+     * @return int
+     *
+     */
+    public int getItemStartIndent()  {
+        return getAttributeAsInt("itemStartIndent");
+    }
+
+    /**
+    * Size, in pixels, of indentation of all member items relative to the end of the alignment axis. For instance, for left-aligned members,  itemStartIndent specifies indentation for every item from the right side of the section stack.
+    *
+    * @param itemEndIndent itemEndIndent Default value is undefined
+    */
+    public void setItemEndIndent(int itemEndIndent) {
+        setAttribute("itemEndIndent", itemEndIndent, true);
+    }
+    /**
+     * Size, in pixels, of indentation of all member items relative to the end of the alignment axis. For instance, for left-aligned members,  itemStartIndent specifies indentation for every item from the right side of the section stack.
+     *
+     *
+     * @return int
+     *
+     */
+    public int getItemEndIndent()  {
+        return getAttributeAsInt("itemEndIndent");
+    }
+
     // ********************* Methods ***********************
 
 
