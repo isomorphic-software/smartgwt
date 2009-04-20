@@ -171,7 +171,7 @@ public class FormItem extends RefDataClass  implements com.smartgwt.client.widge
     }
 
     /**
-    * Specifies an alternative field from which display values should be retrieved for this item. <P> The display field can be either another field value in the same record or a field that must be retrieved from a related {@link com.smartgwt.client.widgets.form.fields.FormItem#getOptionDataSource optionDataSource}. <P> If this item is not databound ({@link com.smartgwt.client.widgets.form.fields.FormItem#getOptionDataSource optionDataSource} is unset), or bound  to the same dataSource as the form as a whole, this item will call {@link com.smartgwt.client.widgets.form.DynamicForm#getValue}  the form named after is implemented by picking up the value of the specified field from the Form's values object. <P> Otherwise this item will attempt to map its underlying value to a display value by retrieving a record from the {@link com.smartgwt.client.widgets.form.fields.FormItem#getOptionDataSource optionDataSource} where the  {@link com.smartgwt.client.widgets.form.fields.FormItem#getValueField valueField} matches this item's value, and displaying the  <code>displayField</code> value from that record. Note that if <code>optionDataSource</code> is set and this value is not set, {@link com.smartgwt.client.widgets.form.fields.FormItem#getDisplayFieldName} will return the dataSource title field by default. <P> This essentially enables the specified <code>optionDataSource</code> to be used as a server based ${isc.DocUtils.linkForRef('group:valueMap')}.
+    * Specifies an alternative field from which display values should be retrieved for this item. <P> The display field can be either another field value in the same record or a field that must be retrieved from a related {@link com.smartgwt.client.widgets.form.fields.FormItem#getOptionDataSource optionDataSource}. <P> If this item is not databound ({@link com.smartgwt.client.widgets.form.fields.FormItem#getOptionDataSource optionDataSource} is unset), or bound  to the same dataSource as the form as a whole, this item will call {@link com.smartgwt.client.widgets.form.DynamicForm#getValue}  the form named after is implemented by picking up the value of the specified field from the Form's values object. <P> Otherwise this item will attempt to map its underlying value to a display value by retrieving a record from the {@link com.smartgwt.client.widgets.form.fields.FormItem#getOptionDataSource optionDataSource} where the  {@link com.smartgwt.client.widgets.form.fields.FormItem#getValueField valueField} matches this item's value, and displaying the  <code>displayField</code> value from that record. Note that if <code>optionDataSource</code> is set and this value is not set, {@link com.smartgwt.client.widgets.form.fields.FormItem#getDisplayFieldName} will return the dataSource title field by default. <P> This essentially enables the specified <code>optionDataSource</code> to be used as a server based valueMap.
     *
     * @param displayField displayField Default value is null
     */
@@ -179,7 +179,7 @@ public class FormItem extends RefDataClass  implements com.smartgwt.client.widge
         setAttribute("displayField", displayField);
     }
     /**
-     * Specifies an alternative field from which display values should be retrieved for this item. <P> The display field can be either another field value in the same record or a field that must be retrieved from a related {@link com.smartgwt.client.widgets.form.fields.FormItem#getOptionDataSource optionDataSource}. <P> If this item is not databound ({@link com.smartgwt.client.widgets.form.fields.FormItem#getOptionDataSource optionDataSource} is unset), or bound  to the same dataSource as the form as a whole, this item will call {@link com.smartgwt.client.widgets.form.DynamicForm#getValue}  the form named after is implemented by picking up the value of the specified field from the Form's values object. <P> Otherwise this item will attempt to map its underlying value to a display value by retrieving a record from the {@link com.smartgwt.client.widgets.form.fields.FormItem#getOptionDataSource optionDataSource} where the  {@link com.smartgwt.client.widgets.form.fields.FormItem#getValueField valueField} matches this item's value, and displaying the  <code>displayField</code> value from that record. Note that if <code>optionDataSource</code> is set and this value is not set, {@link com.smartgwt.client.widgets.form.fields.FormItem#getDisplayFieldName} will return the dataSource title field by default. <P> This essentially enables the specified <code>optionDataSource</code> to be used as a server based ${isc.DocUtils.linkForRef('group:valueMap')}.
+     * Specifies an alternative field from which display values should be retrieved for this item. <P> The display field can be either another field value in the same record or a field that must be retrieved from a related {@link com.smartgwt.client.widgets.form.fields.FormItem#getOptionDataSource optionDataSource}. <P> If this item is not databound ({@link com.smartgwt.client.widgets.form.fields.FormItem#getOptionDataSource optionDataSource} is unset), or bound  to the same dataSource as the form as a whole, this item will call {@link com.smartgwt.client.widgets.form.DynamicForm#getValue}  the form named after is implemented by picking up the value of the specified field from the Form's values object. <P> Otherwise this item will attempt to map its underlying value to a display value by retrieving a record from the {@link com.smartgwt.client.widgets.form.fields.FormItem#getOptionDataSource optionDataSource} where the  {@link com.smartgwt.client.widgets.form.fields.FormItem#getValueField valueField} matches this item's value, and displaying the  <code>displayField</code> value from that record. Note that if <code>optionDataSource</code> is set and this value is not set, {@link com.smartgwt.client.widgets.form.fields.FormItem#getDisplayFieldName} will return the dataSource title field by default. <P> This essentially enables the specified <code>optionDataSource</code> to be used as a server based valueMap.
      *
      *
      * @return String
@@ -599,7 +599,7 @@ public class FormItem extends RefDataClass  implements com.smartgwt.client.widge
     }
              
     /**
-    * On which side of this item should the title be placed.  ${isc.DocUtils.linkForRef('type:TitleOrientation')} lists valid options. <P> Note that titles on the left or right take up a cell in tabular form layouts, but titles on top do not.
+    * On which side of this item should the title be placed.  ${isc.DocUtils.linkForRef('type:TitleOrientation')} lists valid options. <P> Note that titles on the left or right take up a cell in tabular {@link com.smartgwt.client.docs.FormLayout 'form layouts'}, but titles on top do not.
     *
     * @param titleOrientation titleOrientation Default value is Canvas.LEFT
     */
@@ -607,7 +607,7 @@ public class FormItem extends RefDataClass  implements com.smartgwt.client.widge
         setAttribute("titleOrientation", titleOrientation.getValue());
     }
     /**
-     * On which side of this item should the title be placed.  ${isc.DocUtils.linkForRef('type:TitleOrientation')} lists valid options. <P> Note that titles on the left or right take up a cell in tabular form layouts, but titles on top do not.
+     * On which side of this item should the title be placed.  ${isc.DocUtils.linkForRef('type:TitleOrientation')} lists valid options. <P> Note that titles on the left or right take up a cell in tabular {@link com.smartgwt.client.docs.FormLayout 'form layouts'}, but titles on top do not.
      *
      *
      * @return TitleOrientation
@@ -1243,7 +1243,7 @@ public class FormItem extends RefDataClass  implements com.smartgwt.client.widge
     }
 
     /**
-    * CSS style applied to the form item as a whole, including the text element, any icons, and any hint text for the item. Applied to the cell containing the form item. <P> NOTE: See the ${isc.DocUtils.linkForRef('group:CompoundFormItem_skinning')} discussion for special skinning considerations.
+    * CSS style applied to the form item as a whole, including the text element, any icons, and any hint text for the item. Applied to the cell containing the form item. <P> NOTE: See the CompoundFormItem_skinning discussion for special skinning considerations.
     *
     * @param cellStyle cellStyle Default value is "formCell"
     */
@@ -1251,7 +1251,7 @@ public class FormItem extends RefDataClass  implements com.smartgwt.client.widge
         setAttribute("cellStyle", cellStyle);
     }
     /**
-     * CSS style applied to the form item as a whole, including the text element, any icons, and any hint text for the item. Applied to the cell containing the form item. <P> NOTE: See the ${isc.DocUtils.linkForRef('group:CompoundFormItem_skinning')} discussion for special skinning considerations.
+     * CSS style applied to the form item as a whole, including the text element, any icons, and any hint text for the item. Applied to the cell containing the form item. <P> NOTE: See the CompoundFormItem_skinning discussion for special skinning considerations.
      *
      *
      * @return String
@@ -1301,7 +1301,7 @@ public class FormItem extends RefDataClass  implements com.smartgwt.client.widge
     }
 
     /**
-    * Base CSS class name for a form item's text box element. <P> NOTE: See the ${isc.DocUtils.linkForRef('group:CompoundFormItem_skinning')} discussion for special skinning considerations.
+    * Base CSS class name for a form item's text box element. <P> NOTE: See the CompoundFormItem_skinning discussion for special skinning considerations.
     *
     * @param textBoxStyle textBoxStyle Default value is null
     */
@@ -1309,7 +1309,7 @@ public class FormItem extends RefDataClass  implements com.smartgwt.client.widge
         setAttribute("textBoxStyle", textBoxStyle);
     }
     /**
-     * Base CSS class name for a form item's text box element. <P> NOTE: See the ${isc.DocUtils.linkForRef('group:CompoundFormItem_skinning')} discussion for special skinning considerations.
+     * Base CSS class name for a form item's text box element. <P> NOTE: See the CompoundFormItem_skinning discussion for special skinning considerations.
      *
      *
      * @return String

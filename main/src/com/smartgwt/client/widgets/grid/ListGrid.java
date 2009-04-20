@@ -2066,7 +2066,7 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
     }
 
     /**
-    * If this ListGrid is editable, should edits be saved out when the user finishes editing a row (or a cell if {@link com.smartgwt.client.widgets.grid.ListGrid#getSaveByCell saveByCell} is true). <P> The default of <code>true</code> indicates that edits will be {@link com.smartgwt.client.widgets.grid.ListGrid#getSaveByCell saveByCell} as the user navigates through the grid and/or ${isc.DocUtils.linkForRef('type:EnterKeyEditAction','hits 'Enter'')} to end editing.  See the Grid Editing overview for details.  <P> Setting <code>autoSaveEdits</code> false creates a "mass update" / "mass delete" interaction where edits will be retained for all edited cells (across rows if appropriate) until {@link com.smartgwt.client.widgets.grid.ListGrid#saveEdits} is called to save a particular row, or {@link com.smartgwt.client.widgets.grid.ListGrid#saveAllEdits} is called to save all changes in a batch.
+    * If this ListGrid is editable, should edits be saved out when the user finishes editing a row (or a cell if {@link com.smartgwt.client.widgets.grid.ListGrid#getSaveByCell saveByCell} is true). <P> The default of <code>true</code> indicates that edits will be {@link com.smartgwt.client.widgets.grid.ListGrid#getSaveByCell saveByCell} as the user navigates through the grid and/or ${isc.DocUtils.linkForRef('type:EnterKeyEditAction','hits 'Enter'')} to end editing.  See the {@link com.smartgwt.client.docs.Editing 'Grid Editing'} overview for details.  <P> Setting <code>autoSaveEdits</code> false creates a "mass update" / "mass delete" interaction where edits will be retained for all edited cells (across rows if appropriate) until {@link com.smartgwt.client.widgets.grid.ListGrid#saveEdits} is called to save a particular row, or {@link com.smartgwt.client.widgets.grid.ListGrid#saveAllEdits} is called to save all changes in a batch.
     * <p><b>Note : </b> This is an advanced setting</p>
     *
     * @param autoSaveEdits autoSaveEdits Default value is true
@@ -2075,7 +2075,7 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
         setAttribute("autoSaveEdits", autoSaveEdits, true);
     }
     /**
-     * If this ListGrid is editable, should edits be saved out when the user finishes editing a row (or a cell if {@link com.smartgwt.client.widgets.grid.ListGrid#getSaveByCell saveByCell} is true). <P> The default of <code>true</code> indicates that edits will be {@link com.smartgwt.client.widgets.grid.ListGrid#getSaveByCell saveByCell} as the user navigates through the grid and/or ${isc.DocUtils.linkForRef('type:EnterKeyEditAction','hits 'Enter'')} to end editing.  See the Grid Editing overview for details.  <P> Setting <code>autoSaveEdits</code> false creates a "mass update" / "mass delete" interaction where edits will be retained for all edited cells (across rows if appropriate) until {@link com.smartgwt.client.widgets.grid.ListGrid#saveEdits} is called to save a particular row, or {@link com.smartgwt.client.widgets.grid.ListGrid#saveAllEdits} is called to save all changes in a batch.
+     * If this ListGrid is editable, should edits be saved out when the user finishes editing a row (or a cell if {@link com.smartgwt.client.widgets.grid.ListGrid#getSaveByCell saveByCell} is true). <P> The default of <code>true</code> indicates that edits will be {@link com.smartgwt.client.widgets.grid.ListGrid#getSaveByCell saveByCell} as the user navigates through the grid and/or ${isc.DocUtils.linkForRef('type:EnterKeyEditAction','hits 'Enter'')} to end editing.  See the {@link com.smartgwt.client.docs.Editing 'Grid Editing'} overview for details.  <P> Setting <code>autoSaveEdits</code> false creates a "mass update" / "mass delete" interaction where edits will be retained for all edited cells (across rows if appropriate) until {@link com.smartgwt.client.widgets.grid.ListGrid#saveEdits} is called to save a particular row, or {@link com.smartgwt.client.widgets.grid.ListGrid#saveAllEdits} is called to save all changes in a batch.
      *
      *
      * @return Boolean
@@ -4634,7 +4634,7 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
 
         /**
          * Update the title of a {@link com.smartgwt.client.widgets.grid.ListGrid#getHeaderSpans headerSpans} dynamically.
-         * @param name name of the headerSpan, as specified via {@link com.smartgwt.client..HeaderSpan#getName name}.
+         * @param name name of the headerSpan, as specified via {@link com.smartgwt.client.widgets.grid.HeaderSpan#getName name}.
      * @param newTitle new title for the headerSpan
          */
         public native void setHeaderSpanTitle(String name, String newTitle) /*-{
@@ -5184,7 +5184,7 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
      * array. Observes methods of the data object so that when the data changes, the listGrid will redraw
      * automatically.
      *
-     * @param data data to show in the list. Default value is null
+     * @param records data to show in the list. Default value is null
      */
     public void setData(ListGridRecord[] records) {
         setAttribute("data", records, true);
@@ -5193,7 +5193,7 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
     /**
      * Synonym for {@link #setData(ListGridRecord[])}
      *
-     * @param records
+     * @param records the records
      */
     public void setRecords(ListGridRecord[] records) {
         setAttribute("data", records, true);
@@ -5311,7 +5311,7 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
      * After initialization, use {@link com.smartgwt.client.widgets.grid.ListGrid#groupBy}  to update the grouping field
      * list, instead of modifying groupByField directly.
      *
-     * @param groupByField groupByField Default value is see below
+     * @param field groupByField Default value is see below
      * @throws IllegalStateException this property cannot be changed after the component has been created
      */
     public void setGroupByField(String field) throws IllegalStateException {
@@ -5394,7 +5394,7 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
     /**
      * Change the title of a field after the grid is created.
      *
-     * @param fieldNum name of the field, or index.
+     * @param fieldName name of the field, or index.
      * @param title    new title
      */
     public native void setFieldTitle(String fieldName, String title) /*-{
@@ -5460,7 +5460,7 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
     /**
      * Given a field or field id, return it's index in the fields array
      *
-     * @param fieldID field number or field.name
+     * @param fieldName the field name
      * @return index of the field within this.fields
      */
     public native int getFieldNum(String fieldName) /*-{
@@ -5471,7 +5471,7 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
     /**
      * Given a column number or field id, return the field name of a field.
      *
-     * @param colNum number or id of the field.
+     * @param fieldName field name
      * @return Name of the field.
      */
     public native String getFieldName(String fieldName) /*-{
@@ -5496,7 +5496,7 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
      * derived from {@link com.smartgwt.client.widgets.grid.ListGrid#getFields fields} and {@link
      * com.smartgwt.client.widgets.grid.ListGrid#getDataSource dataSource}.
      *
-     * @param colNum number or id of the field.
+     * @param fieldName the field name.
      * @return field definition
      */
     public native ListGridField getField(String fieldName) /*-{
@@ -5954,7 +5954,7 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
     /**
      * Open the current record detail grid inline,
      *
-     * @param record
+     * @param record the record
      * @param detailDataSource the detail deta source
      */
     public native void openRecordDetailGrid(ListGridRecord record, DataSource detailDataSource)/*-{
@@ -5989,7 +5989,7 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
     /**
      * Perform a DataSource "add" operation to add new records to this component's DataSource.
      *
-     * @param newRecord new record
+     * @param record new record
      */
     public native void addData(Record record) /*-{
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
@@ -6000,7 +6000,7 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
     /**
      * Perform a DataSource "add" operation to add new records to this component's DataSource.
      *
-     * @param newRecord new record
+     * @param record new record
      * @param callback  method to call on operation completion
      */
     public native void addData(Record record, DSCallback callback) /*-{
@@ -6016,7 +6016,7 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
     /**
      * Perform a DataSource "add" operation to add new records to this component's DataSource.
      *
-     * @param newRecord         new record
+     * @param record         new record
      * @param callback          method to call on operation completion
      * @param requestProperties additional properties to set on the DSRequest
      *                          that will be issued
@@ -6035,7 +6035,7 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
     /**
      * Perform a DataSource "update" operation to update existing records in this component's DataSource.
      *
-     * @param updatedRecord updated record
+     * @param record updated record
      */
     public native void updateData(Record record) /*-{
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
@@ -6046,7 +6046,7 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
     /**
      * Perform a DataSource "update" operation to update existing records in this component's DataSource.
      *
-     * @param updatedRecord updated record
+     * @param record updated record
      * @param callback      method to call on operation completion
      */
     public native void updateData(Record record, DSCallback callback) /*-{
@@ -6062,7 +6062,7 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
     /**
      * Perform a DataSource "update" operation to update existing records in this component's DataSource.
      *
-     * @param updatedRecord     updated record
+     * @param record     updated record
      * @param callback          method to call on operation completion
      * @param requestProperties additional properties to set on the DSRequest
      *                          that will be issued
@@ -6081,7 +6081,7 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
     /**
      * Perform a DataSource "remove" operation to remove records from this component's DataSource.
      *
-     * @param data primary key values of record to delete,                                           (or complete
+     * @param record primary key values of record to delete,                                           (or complete
      *             record)
      */
     public native void removeData(Record record) /*-{
@@ -6093,7 +6093,7 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
     /**
      * Perform a DataSource "remove" operation to remove records from this component's DataSource.
      *
-     * @param data     primary key values of record to delete,                                           (or complete
+     * @param record     primary key values of record to delete,                                           (or complete
      *                 record)
      * @param callback method to call on operation completion
      */
@@ -6110,7 +6110,7 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
     /**
      * Perform a DataSource "remove" operation to remove records from this component's DataSource.
      *
-     * @param data              primary key values of record to delete,                                           (or
+     * @param record              primary key values of record to delete,                                           (or
      *                          complete record)
      * @param callback          method to call on operation completion
      * @param requestProperties additional properties to set on the DSRequest

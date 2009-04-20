@@ -127,7 +127,7 @@ public class TextAreaItem extends FormItem {
     }
 
     /**
-    * Base CSS class to apply to this item's input element. NOTE: See the ${isc.DocUtils.linkForRef('group:CompoundFormItem_skinning')} discussion for special skinning considerations.
+    * Base CSS class to apply to this item's input element. NOTE: See the CompoundFormItem_skinning discussion for special skinning considerations.
     *
     * @param textBoxStyle textBoxStyle Default value is "textItem"
     */
@@ -135,7 +135,7 @@ public class TextAreaItem extends FormItem {
         setAttribute("textBoxStyle", textBoxStyle);
     }
     /**
-     * Base CSS class to apply to this item's input element. NOTE: See the ${isc.DocUtils.linkForRef('group:CompoundFormItem_skinning')} discussion for special skinning considerations.
+     * Base CSS class to apply to this item's input element. NOTE: See the CompoundFormItem_skinning discussion for special skinning considerations.
      *
      *
      * @return String

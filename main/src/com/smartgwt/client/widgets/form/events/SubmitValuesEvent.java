@@ -130,7 +130,7 @@ public class SubmitValuesEvent extends BrowserEvent<SubmitValuesHandler>  {
 
 
     /**
-     * the form values
+     * The form values
      *
      * @return the form values
      */

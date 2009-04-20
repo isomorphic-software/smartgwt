@@ -253,8 +253,6 @@ public class Tab extends RefDataClass {
 
 
 
-
-
     public void setCanClose(boolean canClose) {
         setAttribute("canClose", canClose);
     }

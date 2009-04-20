@@ -56,7 +56,7 @@ import com.smartgwt.client.util.EnumUtil;
 import com.google.gwt.event.shared.*;
 import com.google.gwt.event.shared.HasHandlers;
    /**
-    * The DynamicForm manages a collection of FormItems which represent user input controls.  The DynamicForm provides layout, value management, validation and databinding for the controls it manages. <P> To create a DynamicForm, set {@link com.smartgwt.client.widgets.form.DynamicForm#getFields fields} to an Array of Objects describing the FormItems you want to use.  For example: <pre>    isc.DynamicForm.create({        fields:[            {name:"userName", type:"text"},  // creates a TextItem            {name:"usState", type:"select"}  // creates a SelectItem        ]    }) </pre> The item <code>name</code> is an identifier for the item that must be unique just within this form.  It is used: <ul> <li> as the property name under which the item's value is stored in the form (the form's      current values are accessible as {@link com.smartgwt.client.widgets.form.DynamicForm#getValues} <li> when retrieving the FormItem's current value (via      {@link com.smartgwt.client.widgets.form.DynamicForm#getValue})  <li> to retrieve the item itself via {@link com.smartgwt.client.widgets.form.DynamicForm#getItem} </ul> The item <code>type</code> controls what kind of FormItem is created.  See ${isc.DocUtils.linkForRef('type:FormItemType')}. <P> The {@link com.smartgwt.client.widgets.form.fields.FormItem#getTitle title} and {@link com.smartgwt.client.widgets.form.fields.FormItem#getDefaultValue defaultValue} are also commonly specified.  All FormItems share a common set of properties for controlling form layout.  Other properties common to all FormItems are documented on the {@link com.smartgwt.client.widgets.form.fields.FormItem} class, and properties specific to particular FormItems are documented on the respective FormItems.   <P> NOTE: For very simple forms consisting of exactly one item, you still use a DynamicForm. See the "fontSelector" form in the ${isc.DocUtils.linkForExampleId('toolstrip', 'Toolstrip example')}.
+    * The DynamicForm manages a collection of FormItems which represent user input controls.  The DynamicForm provides layout, value management, validation and databinding for the controls it manages. <P> To create a DynamicForm, set {@link com.smartgwt.client.widgets.form.DynamicForm#getFields fields} to an Array of Objects describing the FormItems you want to use.  For example: <pre>    isc.DynamicForm.create({        fields:[            {name:"userName", type:"text"},  // creates a TextItem            {name:"usState", type:"select"}  // creates a SelectItem        ]    }) </pre> The item <code>name</code> is an identifier for the item that must be unique just within this form.  It is used: <ul> <li> as the property name under which the item's value is stored in the form (the form's      current values are accessible as {@link com.smartgwt.client.widgets.form.DynamicForm#getValues} <li> when retrieving the FormItem's current value (via      {@link com.smartgwt.client.widgets.form.DynamicForm#getValue})  <li> to retrieve the item itself via {@link com.smartgwt.client.widgets.form.DynamicForm#getItem} </ul> The item <code>type</code> controls what kind of FormItem is created.  See ${isc.DocUtils.linkForRef('type:FormItemType')}. <P> The {@link com.smartgwt.client.widgets.form.fields.FormItem#getTitle title} and {@link com.smartgwt.client.widgets.form.fields.FormItem#getDefaultValue defaultValue} are also commonly specified.  All FormItems share a common set of properties for controlling {@link com.smartgwt.client.docs.FormLayout 'form layout'}.  Other properties common to all FormItems are documented on the {@link com.smartgwt.client.widgets.form.fields.FormItem} class, and properties specific to particular FormItems are documented on the respective FormItems.   <P> NOTE: For very simple forms consisting of exactly one item, you still use a DynamicForm. See the "fontSelector" form in the ${isc.DocUtils.linkForExampleId('toolstrip', 'Toolstrip example')}.
 
     */
 
@@ -285,7 +285,7 @@ public class DynamicForm extends Canvas  implements DataBoundComponent, com.smar
     }
              
     /**
-    * Default orientation for titles for items in this form.  ${isc.DocUtils.linkForRef('type:TitleOrientation')} lists valid options. <P> Note that titles on the left or right take up a cell in tabular form layouts, but titles on top do not.
+    * Default orientation for titles for items in this form.  ${isc.DocUtils.linkForRef('type:TitleOrientation')} lists valid options. <P> Note that titles on the left or right take up a cell in tabular {@link com.smartgwt.client.docs.FormLayout 'form layouts'}, but titles on top do not.
     *
     * @param titleOrientation titleOrientation Default value is "left"
     */
@@ -293,7 +293,7 @@ public class DynamicForm extends Canvas  implements DataBoundComponent, com.smar
         setAttribute("titleOrientation", titleOrientation.getValue(), true);
     }
     /**
-     * Default orientation for titles for items in this form.  ${isc.DocUtils.linkForRef('type:TitleOrientation')} lists valid options. <P> Note that titles on the left or right take up a cell in tabular form layouts, but titles on top do not.
+     * Default orientation for titles for items in this form.  ${isc.DocUtils.linkForRef('type:TitleOrientation')} lists valid options. <P> Note that titles on the left or right take up a cell in tabular {@link com.smartgwt.client.docs.FormLayout 'form layouts'}, but titles on top do not.
      *
      *
      * @return Return the orientation of the title for a specific item or the default title orientation if no item is passed.
@@ -974,7 +974,7 @@ public class DynamicForm extends Canvas  implements DataBoundComponent, com.smar
     }
 
     /**
-    * The name of a window or frame that will receive the results returned by the form's action. The default null indicates to use the current frame. <p> <b>NOTE:</b> this is used only in the very rare case that a form is used to submit data directly to a URL.  Normal server contact is through DataBound Component Methods.
+    * The name of a window or frame that will receive the results returned by the form's action. The default null indicates to use the current frame. <p> <b>NOTE:</b> this is used only in the very rare case that a form is used to submit data directly to a URL.  Normal server contact is through {@link com.smartgwt.client.docs.DataBoundComponentMethods 'DataBound Component Methods'}.
     * <p><b>Note : </b> This is an advanced setting</p>
     *
     * @param target target Default value is null
@@ -983,7 +983,7 @@ public class DynamicForm extends Canvas  implements DataBoundComponent, com.smar
         setAttribute("target", target, true);
     }
     /**
-     * The name of a window or frame that will receive the results returned by the form's action. The default null indicates to use the current frame. <p> <b>NOTE:</b> this is used only in the very rare case that a form is used to submit data directly to a URL.  Normal server contact is through DataBound Component Methods.
+     * The name of a window or frame that will receive the results returned by the form's action. The default null indicates to use the current frame. <p> <b>NOTE:</b> this is used only in the very rare case that a form is used to submit data directly to a URL.  Normal server contact is through {@link com.smartgwt.client.docs.DataBoundComponentMethods 'DataBound Component Methods'}.
      *
      *
      * @return String
@@ -994,7 +994,7 @@ public class DynamicForm extends Canvas  implements DataBoundComponent, com.smar
     }
              
     /**
-    * The mechanism by which form data is sent to the action URL. See FormMethod type for details. <p> <b>NOTE:</b> this is used only in the very rare case that a form is used to submit data directly to a URL.  Normal server contact is through  DataBound Component Methods.
+    * The mechanism by which form data is sent to the action URL. See FormMethod type for details. <p> <b>NOTE:</b> this is used only in the very rare case that a form is used to submit data directly to a URL.  Normal server contact is through  {@link com.smartgwt.client.docs.DataBoundComponentMethods 'DataBound Component Methods'}.
     *
     * @param method method Default value is DynamicForm.POST
     */
@@ -1002,7 +1002,7 @@ public class DynamicForm extends Canvas  implements DataBoundComponent, com.smar
         setAttribute("method", method.getValue(), true);
     }
     /**
-     * The mechanism by which form data is sent to the action URL. See FormMethod type for details. <p> <b>NOTE:</b> this is used only in the very rare case that a form is used to submit data directly to a URL.  Normal server contact is through  DataBound Component Methods.
+     * The mechanism by which form data is sent to the action URL. See FormMethod type for details. <p> <b>NOTE:</b> this is used only in the very rare case that a form is used to submit data directly to a URL.  Normal server contact is through  {@link com.smartgwt.client.docs.DataBoundComponentMethods 'DataBound Component Methods'}.
      *
      *
      * @return FormMethod
@@ -1033,7 +1033,7 @@ public class DynamicForm extends Canvas  implements DataBoundComponent, com.smar
     }
 
     /**
-    * Governs whether this form will be used to perform a standard HTML form submission. Note that if true, {@link com.smartgwt.client.widgets.form.DynamicForm#submit} will perform a native HTML submission to the specified {@link com.smartgwt.client.widgets.form.DynamicForm#getAction action} URL.<br> Wherever possible we strongly recommend using the  DataBound Component Methods to send data to the server as they provide a far more sophisticated interface, with built in  options for server validation, required fields, etc.<br>
+    * Governs whether this form will be used to perform a standard HTML form submission. Note that if true, {@link com.smartgwt.client.widgets.form.DynamicForm#submit} will perform a native HTML submission to the specified {@link com.smartgwt.client.widgets.form.DynamicForm#getAction action} URL.<br> Wherever possible we strongly recommend using the  {@link com.smartgwt.client.docs.DataBoundComponentMethods 'DataBound Component Methods'} to send data to the server as they provide a far more sophisticated interface, with built in  options for server validation, required fields, etc.<br>
     * <p><b>Note : </b> This is an advanced setting</p>
     *
     * @param canSubmit canSubmit Default value is false
@@ -1042,7 +1042,7 @@ public class DynamicForm extends Canvas  implements DataBoundComponent, com.smar
         setAttribute("canSubmit", canSubmit, true);
     }
     /**
-     * Governs whether this form will be used to perform a standard HTML form submission. Note that if true, {@link com.smartgwt.client.widgets.form.DynamicForm#submit} will perform a native HTML submission to the specified {@link com.smartgwt.client.widgets.form.DynamicForm#getAction action} URL.<br> Wherever possible we strongly recommend using the  DataBound Component Methods to send data to the server as they provide a far more sophisticated interface, with built in  options for server validation, required fields, etc.<br>
+     * Governs whether this form will be used to perform a standard HTML form submission. Note that if true, {@link com.smartgwt.client.widgets.form.DynamicForm#submit} will perform a native HTML submission to the specified {@link com.smartgwt.client.widgets.form.DynamicForm#getAction action} URL.<br> Wherever possible we strongly recommend using the  {@link com.smartgwt.client.docs.DataBoundComponentMethods 'DataBound Component Methods'} to send data to the server as they provide a far more sophisticated interface, with built in  options for server validation, required fields, etc.<br>
      *
      *
      * @return Boolean
@@ -1330,7 +1330,7 @@ public class DynamicForm extends Canvas  implements DataBoundComponent, com.smar
 
 
         /**
-         * Submits the form to the URL defined by {@link com.smartgwt.client.widgets.form.DynamicForm#getAction action},  identically to how a plain HTML &lt;form&gt; element would submit data, as either an HTTP GET or POST as specified by {@link com.smartgwt.client.widgets.form.DynamicForm#getMethod method}. <P> <b>Notes:</b> <ul> <li>this is used only in the very rare case that a form is used to submit data directly to a URL.  Normal server contact is through  DataBound Component Methods.</li> <li>For this method to reliably include values for every field in the grid,       {@link com.smartgwt.client.widgets.form.DynamicForm#getCanSubmit canSubmit} must be set to <code>true</code></li> <li>To submit values for fields that do not have an editor, use {@link com.smartgwt.client.widgets.form.fields.HiddenItem}  with a {@link com.smartgwt.client.widgets.form.fields.FormItem#getDefaultValue defaultValue} set.  This is analagous to &lt;input type="hidden"&gt; in HTML forms. </ul>
+         * Submits the form to the URL defined by {@link com.smartgwt.client.widgets.form.DynamicForm#getAction action},  identically to how a plain HTML &lt;form&gt; element would submit data, as either an HTTP GET or POST as specified by {@link com.smartgwt.client.widgets.form.DynamicForm#getMethod method}. <P> <b>Notes:</b> <ul> <li>this is used only in the very rare case that a form is used to submit data directly to a URL.  Normal server contact is through  {@link com.smartgwt.client.docs.DataBoundComponentMethods 'DataBound Component Methods'}.</li> <li>For this method to reliably include values for every field in the grid,       {@link com.smartgwt.client.widgets.form.DynamicForm#getCanSubmit canSubmit} must be set to <code>true</code></li> <li>To submit values for fields that do not have an editor, use {@link com.smartgwt.client.widgets.form.fields.HiddenItem}  with a {@link com.smartgwt.client.widgets.form.fields.FormItem#getDefaultValue defaultValue} set.  This is analagous to &lt;input type="hidden"&gt; in HTML forms. </ul>
          */
         public native void submitForm() /*-{
             var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();

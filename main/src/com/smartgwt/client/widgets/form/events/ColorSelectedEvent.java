@@ -131,7 +131,6 @@ public class ColorSelectedEvent extends BrowserEvent<ColorSelectedHandler>  {
         var jsObj = this.@com.smartgwt.client.event.AbstractSmartEvent::jsObj;
         var opacity = jsObj.opacity;
         return opacity == null || opacity === undefined ? 100 : opacity;
-
     }-*/;
 
 

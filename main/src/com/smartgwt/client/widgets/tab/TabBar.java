@@ -128,7 +128,7 @@ public class TabBar extends Toolbar {
     }
 
     /**
-    * Sets {@link com.smartgwt.client.widgets.StretchImg#getSrc src} for the ${isc.DocUtils.linkForRef('group:baseLine')} StretchImg.
+    * Sets {@link com.smartgwt.client.widgets.StretchImg#getSrc src} for the {@link com.smartgwt.client.docs.BaseLine} StretchImg.
     *
     * @param baseLineSrc baseLineSrc Default value is "[SKIN]baseline.gif"
     * @throws IllegalStateException this property cannot be changed after the component has been created
@@ -137,7 +137,7 @@ public class TabBar extends Toolbar {
         setAttribute("baseLineSrc", baseLineSrc, false);
     }
     /**
-     * Sets {@link com.smartgwt.client.widgets.StretchImg#getSrc src} for the ${isc.DocUtils.linkForRef('group:baseLine')} StretchImg.
+     * Sets {@link com.smartgwt.client.widgets.StretchImg#getSrc src} for the {@link com.smartgwt.client.docs.BaseLine} StretchImg.
      *
      *
      * @return String
@@ -148,7 +148,7 @@ public class TabBar extends Toolbar {
     }
 
     /**
-    * Set {@link com.smartgwt.client.widgets.StretchImg#getCapSize capSize} for the ${isc.DocUtils.linkForRef('group:baseLine')} stretchImg.
+    * Set {@link com.smartgwt.client.widgets.StretchImg#getCapSize capSize} for the {@link com.smartgwt.client.docs.BaseLine} stretchImg.
     *
     * @param baseLineCapSize baseLineCapSize Default value is 2
     * @throws IllegalStateException this property cannot be changed after the component has been created
@@ -157,7 +157,7 @@ public class TabBar extends Toolbar {
         setAttribute("baseLineCapSize", baseLineCapSize, false);
     }
     /**
-     * Set {@link com.smartgwt.client.widgets.StretchImg#getCapSize capSize} for the ${isc.DocUtils.linkForRef('group:baseLine')} stretchImg.
+     * Set {@link com.smartgwt.client.widgets.StretchImg#getCapSize capSize} for the {@link com.smartgwt.client.docs.BaseLine} stretchImg.
      *
      *
      * @return int

@@ -78,7 +78,7 @@ public class RPCResponse extends DataClass {
     // ********************* Properties / Attributes ***********************
 
     /**
-     * Status code for this response.  Status codes less than zero are considered errors by the RPCManager, those greater than or equal to zero are considered successes.  Please see the error handling section the {@link com.smartgwt.client.rpc.RPCManager} for more information on what the RPCManager does with the status code and how you can override this behavior. <P> When using the SmartClient server you can set the rpcResponse.status by calling the server-side method RPCResponse.setStatus().   <P> When not using the SmartClient server, the RPCManager makes no assumptions about the structure of the response, so the status code just reflects the {@link com.smartgwt.client.rpc.RPCResponse#getHttpResponseCode httpResponseCode}: status will be  {@link com.smartgwt.client.rpc.RPCResponse#STATUS_TRANSPORT_ERROR} if an HTTP-level error occurred such as "500 server error".  If you have a status code you need to transmit you can simply embed it in the response (as part of {@link com.smartgwt.client.rpc.RPCResponse#getData data}) and interpret it from the callback. <P> With or without the SmartClient server, the Relogin Overview for details.
+     * Status code for this response.  Status codes less than zero are considered errors by the RPCManager, those greater than or equal to zero are considered successes.  Please see the error handling section the {@link com.smartgwt.client.rpc.RPCManager} for more information on what the RPCManager does with the status code and how you can override this behavior. <P> When using the SmartClient server you can set the rpcResponse.status by calling the server-side method RPCResponse.setStatus().   <P> When not using the SmartClient server, the RPCManager makes no assumptions about the structure of the response, so the status code just reflects the {@link com.smartgwt.client.rpc.RPCResponse#getHttpResponseCode httpResponseCode}: status will be  {@link com.smartgwt.client.rpc.RPCResponse#STATUS_TRANSPORT_ERROR} if an HTTP-level error occurred such as "500 server error".  If you have a status code you need to transmit you can simply embed it in the response (as part of {@link com.smartgwt.client.rpc.RPCResponse#getData data}) and interpret it from the callback. <P> With or without the SmartClient server, the {@link com.smartgwt.client.docs.Relogin} status codes (such as  {@link com.smartgwt.client.rpc.RPCResponse#STATUS_LOGIN_REQUIRED}) are triggered whenever special markers, such as the loginRequiredMarker, appear in the body of the response.  See the {@link com.smartgwt.client.docs.Relogin 'Relogin Overview'} for details.
      *
      *
      * @return int
@@ -89,7 +89,7 @@ public class RPCResponse extends DataClass {
     }
 
     /**
-     * This attribute (avialable when using the the <code>xmlHttpRequest</code> transport) contains the HTTP response code sent by the server. <p> Note that this is different from {@link com.smartgwt.client.rpc.RPCResponse#getStatus status} - that attribute is used to indicate a status code for the RPC itself whereas httpResponseCode is the raw HTTP response code for the HTTP request that contained the RPCRequest. <p> This feature relies on the XMLHttpRequest object which can be disabled by end-users in some supported browsers.  See ${isc.DocUtils.linkForRef('group:platformDependencies')} for more information. <p> If you're using this attribute, you'll typically want to avoid the default error handling response of RPCManager.  To do so, set {@link com.smartgwt.client.rpc.RPCRequest#getWillHandleError willHandleError} to <code>true</code>.
+     * This attribute (avialable when using the the <code>xmlHttpRequest</code> transport) contains the HTTP response code sent by the server. <p> Note that this is different from {@link com.smartgwt.client.rpc.RPCResponse#getStatus status} - that attribute is used to indicate a status code for the RPC itself whereas httpResponseCode is the raw HTTP response code for the HTTP request that contained the RPCRequest. <p> This feature relies on the XMLHttpRequest object which can be disabled by end-users in some supported browsers.  See {@link com.smartgwt.client.docs.PlatformDependencies} for more information. <p> If you're using this attribute, you'll typically want to avoid the default error handling response of RPCManager.  To do so, set {@link com.smartgwt.client.rpc.RPCRequest#getWillHandleError willHandleError} to <code>true</code>.
      *
      *
      * @return Integer
@@ -140,6 +140,8 @@ public class RPCResponse extends DataClass {
      * error".  If you have a status code you need to transmit you can simply embed it in the response (as part of
      * {@link com.smartgwt.client.rpc.RPCResponse#getData data}) and interpret it from the callback. <P> With or without
      * the SmartClient server, the Relogin Overview for details.
+     *
+     * @param status status
      */
     public void setStatus(int status) {
         setAttribute("status", status);

@@ -187,7 +187,7 @@ public class RecordClickEvent extends AbstractSmartEvent<RecordClickHandler>  im
 
 
 
-       //TODO custom
+   //TODO custom
     public  native JavaScriptObject getValue() /*-{
         var jsObj = this.@com.smartgwt.client.event.AbstractSmartEvent::jsObj;
         return jsObj.value;

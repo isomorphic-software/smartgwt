@@ -56,7 +56,7 @@ import com.smartgwt.client.util.EnumUtil;
 import com.google.gwt.event.shared.*;
 import com.google.gwt.event.shared.HasHandlers;
    /**
-    * Request sent to the server to initiate a  DataSource operation.  All properties which are legal on {@link com.smartgwt.client.rpc.RPCRequest} are legal, in addition to the properties listed here.
+    * Request sent to the server to initiate a  {@link com.smartgwt.client.docs.DataSourceOperations 'DataSource operation'}.  All properties which are legal on {@link com.smartgwt.client.rpc.RPCRequest} are legal, in addition to the properties listed here.
 
     */
 public class DSRequest extends RPCRequest {
@@ -182,7 +182,7 @@ public class DSRequest extends RPCRequest {
     }
 
     /**
-    * For requests submitted by a ${isc.DocUtils.linkForRef('interface:DataBoundComponent')}, the {@link com.smartgwt.client.widgets.Canvas#getID ID} of the submitting component. <P> This ID will be present for operations including automatic saves by a ListGrid  during editing, or calls to {@link com.smartgwt.client.widgets.form.DynamicForm#saveData}.  It will not be present for a direct call to a DataSource method such as {@link com.smartgwt.client.data.DataSource#fetchData}. <P> Note this is the component's <b>String</b> ID - you can retrieve the component itself via {@link com.smartgwt.client.widgets.Canvas#getById}.
+    * For requests submitted by a ${isc.DocUtils.linkForRef('interface:DataBoundComponent')}, the {@link com.smartgwt.client.widgets.Canvas#getID ID} of the submitting component. <P> This ID will be present for operations including automatic saves by a ListGrid  {@link com.smartgwt.client.docs.Editing 'during editing'}, or calls to {@link com.smartgwt.client.widgets.form.DynamicForm#saveData}.  It will not be present for a direct call to a DataSource method such as {@link com.smartgwt.client.data.DataSource#fetchData}. <P> Note this is the component's <b>String</b> ID - you can retrieve the component itself via {@link com.smartgwt.client.widgets.Canvas#getById}.
     *
     * @param componentId componentId Default value is null
     */
@@ -190,7 +190,7 @@ public class DSRequest extends RPCRequest {
         setAttribute("componentId", componentId);
     }
     /**
-     * For requests submitted by a ${isc.DocUtils.linkForRef('interface:DataBoundComponent')}, the {@link com.smartgwt.client.widgets.Canvas#getID ID} of the submitting component. <P> This ID will be present for operations including automatic saves by a ListGrid  during editing, or calls to {@link com.smartgwt.client.widgets.form.DynamicForm#saveData}.  It will not be present for a direct call to a DataSource method such as {@link com.smartgwt.client.data.DataSource#fetchData}. <P> Note this is the component's <b>String</b> ID - you can retrieve the component itself via {@link com.smartgwt.client.widgets.Canvas#getById}.
+     * For requests submitted by a ${isc.DocUtils.linkForRef('interface:DataBoundComponent')}, the {@link com.smartgwt.client.widgets.Canvas#getID ID} of the submitting component. <P> This ID will be present for operations including automatic saves by a ListGrid  {@link com.smartgwt.client.docs.Editing 'during editing'}, or calls to {@link com.smartgwt.client.widgets.form.DynamicForm#saveData}.  It will not be present for a direct call to a DataSource method such as {@link com.smartgwt.client.data.DataSource#fetchData}. <P> Note this is the component's <b>String</b> ID - you can retrieve the component itself via {@link com.smartgwt.client.widgets.Canvas#getById}.
      *
      *
      * @return String
