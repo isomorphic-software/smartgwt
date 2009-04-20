@@ -625,7 +625,7 @@ public class ListGridField extends DataClass  implements com.smartgwt.client.wid
     }
 
     /**
-    * Whether this field should be "frozen" for the purposes of horizontal scrolling.  See ${isc.DocUtils.linkForRef('group:frozenFields')}.
+    * Whether this field should be "frozen" for the purposes of horizontal scrolling.  See {@link com.smartgwt.client.docs.FrozenFields}.
     *
     * @param frozen frozen Default value is null
     */
@@ -633,7 +633,7 @@ public class ListGridField extends DataClass  implements com.smartgwt.client.wid
         setAttribute("frozen", frozen);
     }
     /**
-     * Whether this field should be "frozen" for the purposes of horizontal scrolling.  See ${isc.DocUtils.linkForRef('group:frozenFields')}.
+     * Whether this field should be "frozen" for the purposes of horizontal scrolling.  See {@link com.smartgwt.client.docs.FrozenFields}.
      *
      *
      * @return Boolean
@@ -1369,7 +1369,7 @@ public class ListGridField extends DataClass  implements com.smartgwt.client.wid
         }-*/;
 
         /**
-         * An optional stringMethod which if provided, is evaluated to conditionally determine whether this field should be displayed.  Evaluated on initial draw, then reevaluated on explicit  calls to <code>listGrid.refreshFields()</code> or <code>listGrid.setFields()</code>.  <P> Use 'showIf:"false"' to set a ListGrid field to initially hidden. <P> Note that explicit calls to {@link com.smartgwt.client.widgets.grid.ListGrid#showField} or hideField() will wipe out the <code>showIf</code> expression, as will the end user showing and hiding columns via the {@link com.smartgwt.client.widgets.grid.ListGrid#getShowHeaderContextMenu showHeaderContextMenu}. <P> Also note that fields marked as {@link com.smartgwt.client.data.DataSourceField#getDetail detail} will be hidden by default even if {@link com.smartgwt.client.widgets.grid.ListGrid#getShowDetailFields showDetailFields} is <code>true</code>. To show detail fields inherited from a DataSource, include an explicit field definition for the field and set this property to return <code>true</code>.
+         * An optional {@link com.smartgwt.client.docs.StringMethods 'stringMethod'} which if provided, is evaluated to conditionally determine whether this field should be displayed.  Evaluated on initial draw, then reevaluated on explicit  calls to <code>listGrid.refreshFields()</code> or <code>listGrid.setFields()</code>.  <P> Use 'showIf:"false"' to set a ListGrid field to initially hidden. <P> Note that explicit calls to {@link com.smartgwt.client.widgets.grid.ListGrid#showField} or hideField() will wipe out the <code>showIf</code> expression, as will the end user showing and hiding columns via the {@link com.smartgwt.client.widgets.grid.ListGrid#getShowHeaderContextMenu showHeaderContextMenu}. <P> Also note that fields marked as {@link com.smartgwt.client.data.DataSourceField#getDetail detail} will be hidden by default even if {@link com.smartgwt.client.widgets.grid.ListGrid#getShowDetailFields showDetailFields} is <code>true</code>. To show detail fields inherited from a DataSource, include an explicit field definition for the field and set this property to return <code>true</code>.
          * @param list A pointer to the listGrid containing the field
      * @param field the ListGridField object
      * @param fieldNum the index of the field
@@ -1640,7 +1640,7 @@ public class ListGridField extends DataClass  implements com.smartgwt.client.wid
      * this field. <P> Note: this formatter will not be applied to the values displayed in cells being edited. The
      * {@link com.smartgwt.client.widgets.grid.ListGridField#formatEditorValue} is provided for that purpose.
      *
-     * @param formatter
+     * @param formatter the formatter
      */
     public native void setCellFormatter(CellFormatter formatter) /*-{
             var self = this.@com.smartgwt.client.core.DataClass::getJsObj()();
@@ -1667,7 +1667,7 @@ public class ListGridField extends DataClass  implements com.smartgwt.client.wid
     /**
      * * HTML to be shown in hovers over cells in the column described by this field.
      *
-     * @param hoverCustomizer
+     * @param hoverCustomizer the hover customizer
      */
     public native void setHoverCustomizer(HoverCustomizer hoverCustomizer) /*-{
         var self = this.@com.smartgwt.client.core.DataClass::getJsObj()();

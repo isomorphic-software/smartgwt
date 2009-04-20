@@ -178,7 +178,6 @@ public class SectionStackSection extends RefDataClass {
 
 
 
-
     /**
      * List of Canvases that constitute the section. These Canvases will be shown and hidden together.
      *
@@ -206,8 +205,6 @@ public class SectionStackSection extends RefDataClass {
     public void setControls(Canvas... controls) {
         setAttribute("controls", controls);
     }
-
-
 
 }
 

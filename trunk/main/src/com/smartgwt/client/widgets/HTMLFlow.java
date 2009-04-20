@@ -134,8 +134,8 @@ public class HTMLFlow extends Canvas  implements com.smartgwt.client.widgets.eve
     }
 
     /**
-    * URL to load content from. <P> If specified, this component will load HTML content from the specified URL when it is first drawn. <p> This feature relies on the XMLHttpRequest object which can be disabled by end-users in some supported browsers.  See ${isc.DocUtils.linkForRef('group:platformDependencies')} for more information.
-    * Change the URL this component loads content from.  Triggers a fetch for content from the new URL. <p> Can also be called with no arguments to reload content from the existing {@link com.smartgwt.client.widgets.HTMLFlow#getContentsURL contentsURL}. <P> This feature relies on the XMLHttpRequest object which can be disabled by end-users in some supported browsers.  See ${isc.DocUtils.linkForRef('group:platformDependencies')} for more information.
+    * URL to load content from. <P> If specified, this component will load HTML content from the specified URL when it is first drawn. <p> This feature relies on the XMLHttpRequest object which can be disabled by end-users in some supported browsers.  See {@link com.smartgwt.client.docs.PlatformDependencies} for more information.
+    * Change the URL this component loads content from.  Triggers a fetch for content from the new URL. <p> Can also be called with no arguments to reload content from the existing {@link com.smartgwt.client.widgets.HTMLFlow#getContentsURL contentsURL}. <P> This feature relies on the XMLHttpRequest object which can be disabled by end-users in some supported browsers.  See {@link com.smartgwt.client.docs.PlatformDependencies} for more information.
     *
     * @param contentsURL URL to retrieve contents from. Default value is null
     */
@@ -143,7 +143,7 @@ public class HTMLFlow extends Canvas  implements com.smartgwt.client.widgets.eve
         setAttribute("contentsURL", contentsURL, true);
     }
     /**
-     * URL to load content from. <P> If specified, this component will load HTML content from the specified URL when it is first drawn. <p> This feature relies on the XMLHttpRequest object which can be disabled by end-users in some supported browsers.  See ${isc.DocUtils.linkForRef('group:platformDependencies')} for more information.
+     * URL to load content from. <P> If specified, this component will load HTML content from the specified URL when it is first drawn. <p> This feature relies on the XMLHttpRequest object which can be disabled by end-users in some supported browsers.  See {@link com.smartgwt.client.docs.PlatformDependencies} for more information.
      *
      *
      * @return String

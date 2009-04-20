@@ -295,7 +295,7 @@ public class MenuItem extends ListGridRecord  implements com.smartgwt.client.wid
     // ********************* Methods ***********************
 
         /**
-         * Contains the condition that will enable or disable the curent menuItem. The handler must be specified as a function or string of script.  Return false to disable the menuItem or true to enable it <p> If you don't need to set this state dynamically, use {@link com.smartgwt.client.widgets.menu.MenuItem#getEnabled enabled} instead. <p> May be defined as a stringMethod. <p>
+         * Contains the condition that will enable or disable the curent menuItem. The handler must be specified as a function or string of script.  Return false to disable the menuItem or true to enable it <p> If you don't need to set this state dynamically, use {@link com.smartgwt.client.widgets.menu.MenuItem#getEnabled enabled} instead. <p> May be defined as a {@link com.smartgwt.client.docs.StringMethods 'stringMethod'}. <p>
          * @param target {@link com.smartgwt.client.widgets.menu.Menu#getTarget target} attribute for the top level menu.
      * @param menu {@link com.smartgwt.client.widgets.menu.Menu} contains the reference to the menu that contains the current item
      * @param item contains the reference to the current item
@@ -313,7 +313,7 @@ public class MenuItem extends ListGridRecord  implements com.smartgwt.client.wid
         }-*/;
 
         /**
-         * Contains the condition that will check or uncheck the curent menuItem. The handler must be specified as a function or string of script.  Return false to uncheck the menuItem or true to check it <p> If you don't need to set this state dynamically, use {@link com.smartgwt.client.widgets.menu.MenuItem#getChecked checked} instead. <p> May be defined as a stringMethod. <p>
+         * Contains the condition that will check or uncheck the curent menuItem. The handler must be specified as a function or string of script.  Return false to uncheck the menuItem or true to check it <p> If you don't need to set this state dynamically, use {@link com.smartgwt.client.widgets.menu.MenuItem#getChecked checked} instead. <p> May be defined as a {@link com.smartgwt.client.docs.StringMethods 'stringMethod'}. <p>
          * @param target {@link com.smartgwt.client.widgets.menu.Menu#getTarget target} attribute for the top level menu.
      * @param menu {@link com.smartgwt.client.widgets.menu.Menu} contains the reference to the menu that contains the current item
      * @param item contains the reference to the current item
@@ -364,8 +364,6 @@ public class MenuItem extends ListGridRecord  implements com.smartgwt.client.wid
 
 
 
-
-
     /**
      * Shortcut key(s) to fire the menu item action. Each key can be defined as a ${isc.DocUtils.linkForRef('type:KeyIdentifier')}.
      * To apply multiple shortcut keys to this item, set this property to an array of such key identifiers.

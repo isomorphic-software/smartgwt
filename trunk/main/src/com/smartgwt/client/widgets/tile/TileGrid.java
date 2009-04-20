@@ -1136,7 +1136,6 @@ public class TileGrid extends TileLayout  implements DataBoundComponent, com.sma
         self.selectRecords(recordsJS, newState);
      }-*/;
 
-
 }
 
 

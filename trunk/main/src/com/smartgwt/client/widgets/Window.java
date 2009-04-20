@@ -1197,7 +1197,6 @@ public class Window extends VLayout  implements com.smartgwt.client.widgets.even
       return Canvas.convertToCanvasArray(getAttributeAsJavaScriptObject("items"));
     }
 
-
 }
 
 

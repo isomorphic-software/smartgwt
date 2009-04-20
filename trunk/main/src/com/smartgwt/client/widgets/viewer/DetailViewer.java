@@ -615,7 +615,6 @@ public class DetailViewer extends Canvas  implements DataBoundComponent {
         self.viewSelectedData(selectionComponentID);
     }-*/;
 
-
 }
 
 

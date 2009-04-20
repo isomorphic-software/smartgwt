@@ -56,7 +56,7 @@ import com.smartgwt.client.util.EnumUtil;
 import com.google.gwt.event.shared.*;
 import com.google.gwt.event.shared.HasHandlers;
    /**
-    * A DataSource is data-provider-independant description of a set of objects that will be loaded, edited and saved within the user interface of your application. <P> Each DataSource consists of a list of {@link com.smartgwt.client.data.DataSource#getFields fields} that make up a DataSource <code>record</code>, along with {@link com.smartgwt.client.data.DataSourceField#getType type},  {@link com.smartgwt.client.data.DataSourceField#getValidators validators},  {@link com.smartgwt.client.data.DataSourceField#getForeignKey foreignKey} to other DataSources, and other metadata. <P> The abstract object description provided by a DataSource is easily mapped to a variety of backend object models and storage schemes.  The following table shows analogous terminology across systems. <table border=1 class="normal"> <tr>   <td>Isomorphic SmartClient</td>   <td>Relational Database</td>   <td>Enterprise Java Beans (EJB)</td>   <td>Entity/Relationship Modelling</td>   <td>OO/UML</td>   <td>XML Schema/WSDL</td>   <td>LDAP</td> </tr><tr>   <td>DataSource</td>   <td>Table</td>   <td>EJB class</td>   <td>Entity</td>   <td>Class</td>   <td>Element Schema (ComplexType)</td>   <td>Objectclass</td> </tr><tr>   <td>Record</td>   <td>Row</td>   <td>EJB instance</td>   <td>Entity instance</td>   <td>Class instance/Object</td>   <td>Element instance (ComplexType)</td>   <td>Entry</td> </tr><tr>   <td>Field</td>   <td>Column</td>   <td>Property</td>   <td>Attribute</td>   <td>Property/Attribute</td>   <td>Attribute or Element (SimpleType)</td>   <td>Attribute</td> </tr></table> <P> DataSources can be declared in either JavaScript or XML format, and can also be imported from existing metadata formats, including XML Schema. <P> <i>Data Binding</i> is the process by which ${isc.DocUtils.linkForRef('interface:DataBoundComponent','Data Binding-capable UI components')} can automatically configure themselves for viewing, editing and saving data described by DataSources.  DataBinding is covered in the ${isc.DocUtils.linkForDocNode('QuickStartGuide', 'QuickStart Guide')}, Chapter 6, <i>Data Binding</i>. <P> Data Integration is the process by which a DataSource can be connected to server systems such as SQL DataBases, Java Object models, WSDL web services and other data providers.  Data Integration comes in two variants: client-side and server-side.  Server-side integration uses the SmartClient Java-based server to connect to data represented by Java Objects or JDBC-accessible databases.  Client-side integration connects SmartClient DataSources to XML, JSON or other formats accessible via HTTP. <P> DataSources have a concept of 4 core operations ("fetch", "add", "update" and "remove") that can be performed on the set of objects represented by a DataSource.  Once a DataSource has been integrated with your data store, databinding-capable  UI components can leverage the 4 core DataSource operations to provide many complete user interactions without the need to configure how each individual component loads and saves data. <P> These interactions include {@link com.smartgwt.client.widgets.grid.ListGrid}, {@link com.smartgwt.client.widgets.tree.TreeGrid},  {@link com.smartgwt.client.widgets.viewer.DetailViewer}, {@link com.smartgwt.client.widgets.form.DynamicForm}-based  {@link com.smartgwt.client.widgets.form.DynamicForm#editRecord} and {@link com.smartgwt.client.widgets.form.DynamicForm#saveData}, grid-based {@link com.smartgwt.client.widgets.grid.ListGrid#getCanEdit canEdit} and {@link com.smartgwt.client.widgets.grid.ListGrid#getSaveByCell saveByCell}, and custom interactions provided by ${isc.DocUtils.linkForExampleId('patternReuse')} custom databinding-capable components.
+    * A DataSource is data-provider-independant description of a set of objects that will be loaded, edited and saved within the user interface of your application. <P> Each DataSource consists of a list of {@link com.smartgwt.client.data.DataSource#getFields fields} that make up a DataSource <code>record</code>, along with {@link com.smartgwt.client.data.DataSourceField#getType type},  {@link com.smartgwt.client.data.DataSourceField#getValidators validators},  {@link com.smartgwt.client.data.DataSourceField#getForeignKey foreignKey} to other DataSources, and other metadata. <P> The abstract object description provided by a DataSource is easily mapped to a variety of backend object models and storage schemes.  The following table shows analogous terminology across systems. <table border=1 class="normal"> <tr>   <td>Isomorphic SmartClient</td>   <td>Relational Database</td>   <td>Enterprise Java Beans (EJB)</td>   <td>Entity/Relationship Modelling</td>   <td>OO/UML</td>   <td>XML Schema/WSDL</td>   <td>LDAP</td> </tr><tr>   <td>DataSource</td>   <td>Table</td>   <td>EJB class</td>   <td>Entity</td>   <td>Class</td>   <td>Element Schema (ComplexType)</td>   <td>Objectclass</td> </tr><tr>   <td>Record</td>   <td>Row</td>   <td>EJB instance</td>   <td>Entity instance</td>   <td>Class instance/Object</td>   <td>Element instance (ComplexType)</td>   <td>Entry</td> </tr><tr>   <td>Field</td>   <td>Column</td>   <td>Property</td>   <td>Attribute</td>   <td>Property/Attribute</td>   <td>Attribute or Element (SimpleType)</td>   <td>Attribute</td> </tr></table> <P> DataSources can be {@link com.smartgwt.client.docs.DataSourceDeclaration 'declared'} in either JavaScript or XML format, and can also be {@link com.smartgwt.client.docs.MetadataImport 'imported'} from existing metadata formats, including XML Schema. <P> <i>Data Binding</i> is the process by which ${isc.DocUtils.linkForRef('interface:DataBoundComponent','Data Binding-capable UI components')} can automatically configure themselves for viewing, editing and saving data described by DataSources.  DataBinding is covered in the ${isc.DocUtils.linkForDocNode('QuickStartGuide', 'QuickStart Guide')}, Chapter 6, <i>Data Binding</i>. <P> {@link com.smartgwt.client.docs.ClientServerIntegration 'Data Integration'} is the process by which a DataSource can be connected to server systems such as SQL DataBases, Java Object models, WSDL web services and other data providers.  Data Integration comes in two variants: client-side and server-side.  {@link com.smartgwt.client.docs.ServerDataIntegration 'Server-side integration'} uses the SmartClient Java-based server to connect to data represented by Java Objects or JDBC-accessible databases.  {@link com.smartgwt.client.docs.ClientDataIntegration 'Client-side integration'} connects SmartClient DataSources to XML, JSON or other formats accessible via HTTP. <P> DataSources have a concept of {@link com.smartgwt.client.docs.DataSourceOperations '4 core operations'} ("fetch", "add", "update" and "remove") that can be performed on the set of objects represented by a DataSource.  Once a DataSource has been integrated with your data store, databinding-capable  UI components can leverage the 4 core DataSource operations to provide many complete user interactions without the need to configure how each individual component loads and saves data. <P> These interactions include {@link com.smartgwt.client.widgets.grid.ListGrid}, {@link com.smartgwt.client.widgets.tree.TreeGrid},  {@link com.smartgwt.client.widgets.viewer.DetailViewer}, {@link com.smartgwt.client.widgets.form.DynamicForm}-based  {@link com.smartgwt.client.widgets.form.DynamicForm#editRecord} and {@link com.smartgwt.client.widgets.form.DynamicForm#saveData}, grid-based {@link com.smartgwt.client.widgets.grid.ListGrid#getCanEdit canEdit} and {@link com.smartgwt.client.widgets.grid.ListGrid#getSaveByCell saveByCell}, and custom interactions provided by ${isc.DocUtils.linkForExampleId('patternReuse')} custom databinding-capable components.
 
     */
 
@@ -214,7 +214,7 @@ public class DataSource extends BaseClass  implements com.smartgwt.client.data.e
     }
 
     /**
-    * For DataSources using the SmartClient SQL engine for persistence, what database table name to use.  The default is to use the DataSource ID as the table name.
+    * For DataSources using the {@link com.smartgwt.client.docs.SqlDataSource 'SmartClient SQL engine'} for persistence, what database table name to use.  The default is to use the DataSource ID as the table name.
     *
     * @param tableName tableName Default value is null
     * @throws IllegalStateException this property cannot be changed after the underlying component has been created
@@ -223,7 +223,7 @@ public class DataSource extends BaseClass  implements com.smartgwt.client.data.e
         setAttribute("tableName", tableName, false);
     }
     /**
-     * For DataSources using the SmartClient SQL engine for persistence, what database table name to use.  The default is to use the DataSource ID as the table name.
+     * For DataSources using the {@link com.smartgwt.client.docs.SqlDataSource 'SmartClient SQL engine'} for persistence, what database table name to use.  The default is to use the DataSource ID as the table name.
      *
      *
      * @return String
@@ -234,7 +234,7 @@ public class DataSource extends BaseClass  implements com.smartgwt.client.data.e
     }
 
     /**
-    * For DataSources using the SmartClient SQL engine for persistence, which database configuration to use.  Database configurations can be created using the "Databases" tab in the Developer Console.  If unset, the default database configuration is used (which also settable using the "Databases" tab).
+    * For DataSources using the {@link com.smartgwt.client.docs.SqlDataSource 'SmartClient SQL engine'} for persistence, which database configuration to use.  Database configurations can be created using the "Databases" tab in the Developer Console.  If unset, the default database configuration is used (which also settable using the "Databases" tab).
     *
     * @param dbName dbName Default value is null
     * @throws IllegalStateException this property cannot be changed after the underlying component has been created
@@ -243,7 +243,7 @@ public class DataSource extends BaseClass  implements com.smartgwt.client.data.e
         setAttribute("dbName", dbName, false);
     }
     /**
-     * For DataSources using the SmartClient SQL engine for persistence, which database configuration to use.  Database configurations can be created using the "Databases" tab in the Developer Console.  If unset, the default database configuration is used (which also settable using the "Databases" tab).
+     * For DataSources using the {@link com.smartgwt.client.docs.SqlDataSource 'SmartClient SQL engine'} for persistence, which database configuration to use.  Database configurations can be created using the "Databases" tab in the Developer Console.  If unset, the default database configuration is used (which also settable using the "Databases" tab).
      *
      *
      * @return String
@@ -416,7 +416,7 @@ public class DataSource extends BaseClass  implements com.smartgwt.client.data.e
     }
 
     /**
-    * For an XML DataSource, URN of the WebService to use to invoke operations.  This URN comes from the "targetNamespace" attribute of the &lt;wsdl:definitions&gt; element in a WSDL (Web Service Description Language) document, and serves as the unique identifier of the service. <P> Having loaded a WebService using {@link com.smartgwt.client.util.XMLTools#loadWSDL}, setting <code>serviceNamespace</code> combined with specifying  {@link com.smartgwt.client.data.OperationBinding} that set {@link com.smartgwt.client.data.OperationBinding#getWsOperation wsOperation} will cause a DataSource to invoke web service operations to fulfill DataSource requests ({@link com.smartgwt.client.data.DSRequest}). <P> Setting <code>serviceNamespace</code> also defaults {@link com.smartgwt.client.data.DataSource#getDataURL dataURL} to the service's location, {@link com.smartgwt.client.data.DataSource#getDataFormat dataFormat} to "xml" and {@link com.smartgwt.client.data.OperationBinding#getDataProtocol dataProtocol} to "soap".
+    * For an XML DataSource, URN of the WebService to use to invoke operations.  This URN comes from the "targetNamespace" attribute of the &lt;wsdl:definitions&gt; element in a WSDL (Web Service Description Language) document, and serves as the unique identifier of the service. <P> Having loaded a WebService using {@link com.smartgwt.client.data.XMLTools#loadWSDL}, setting <code>serviceNamespace</code> combined with specifying  {@link com.smartgwt.client.data.OperationBinding} that set {@link com.smartgwt.client.data.OperationBinding#getWsOperation wsOperation} will cause a DataSource to invoke web service operations to fulfill DataSource requests ({@link com.smartgwt.client.data.DSRequest}). <P> Setting <code>serviceNamespace</code> also defaults {@link com.smartgwt.client.data.DataSource#getDataURL dataURL} to the service's location, {@link com.smartgwt.client.data.DataSource#getDataFormat dataFormat} to "xml" and {@link com.smartgwt.client.data.OperationBinding#getDataProtocol dataProtocol} to "soap".
     *
     * @param serviceNamespace serviceNamespace Default value is null
     * @throws IllegalStateException this property cannot be changed after the underlying component has been created
@@ -425,7 +425,7 @@ public class DataSource extends BaseClass  implements com.smartgwt.client.data.e
         setAttribute("serviceNamespace", serviceNamespace, false);
     }
     /**
-     * For an XML DataSource, URN of the WebService to use to invoke operations.  This URN comes from the "targetNamespace" attribute of the &lt;wsdl:definitions&gt; element in a WSDL (Web Service Description Language) document, and serves as the unique identifier of the service. <P> Having loaded a WebService using {@link com.smartgwt.client.util.XMLTools#loadWSDL}, setting <code>serviceNamespace</code> combined with specifying  {@link com.smartgwt.client.data.OperationBinding} that set {@link com.smartgwt.client.data.OperationBinding#getWsOperation wsOperation} will cause a DataSource to invoke web service operations to fulfill DataSource requests ({@link com.smartgwt.client.data.DSRequest}). <P> Setting <code>serviceNamespace</code> also defaults {@link com.smartgwt.client.data.DataSource#getDataURL dataURL} to the service's location, {@link com.smartgwt.client.data.DataSource#getDataFormat dataFormat} to "xml" and {@link com.smartgwt.client.data.OperationBinding#getDataProtocol dataProtocol} to "soap".
+     * For an XML DataSource, URN of the WebService to use to invoke operations.  This URN comes from the "targetNamespace" attribute of the &lt;wsdl:definitions&gt; element in a WSDL (Web Service Description Language) document, and serves as the unique identifier of the service. <P> Having loaded a WebService using {@link com.smartgwt.client.data.XMLTools#loadWSDL}, setting <code>serviceNamespace</code> combined with specifying  {@link com.smartgwt.client.data.OperationBinding} that set {@link com.smartgwt.client.data.OperationBinding#getWsOperation wsOperation} will cause a DataSource to invoke web service operations to fulfill DataSource requests ({@link com.smartgwt.client.data.DSRequest}). <P> Setting <code>serviceNamespace</code> also defaults {@link com.smartgwt.client.data.DataSource#getDataURL dataURL} to the service's location, {@link com.smartgwt.client.data.DataSource#getDataFormat dataFormat} to "xml" and {@link com.smartgwt.client.data.OperationBinding#getDataProtocol dataProtocol} to "soap".
      *
      *
      * @return String
@@ -436,7 +436,7 @@ public class DataSource extends BaseClass  implements com.smartgwt.client.data.e
     }
 
     /**
-     * For a DataSource derived from WSDL or XML schema, the XML namespace this schema belongs to.  This is a read-only attribute automatically present on DataSources returned from {@link com.smartgwt.client..SchemaSet#getSchema} and {@link com.smartgwt.client..WebService#getSchema}.
+     * For a DataSource derived from WSDL or XML schema, the XML namespace this schema belongs to.  This is a read-only attribute automatically present on DataSources returned from {@link com.smartgwt.client..SchemaSet#getSchema} and {@link com.smartgwt.client.data.WebService#getSchema}.
      *
      * <b>Note :</b> This method should be called only after the underlying component has been created.
      *
@@ -511,7 +511,7 @@ public class DataSource extends BaseClass  implements com.smartgwt.client.data.e
     }
 
     /**
-    * Whether to act as a "client-only" DataSource, which has no permanent storage and never contacts the server, instead using a set of test data to respond to requests in the same manner as a server-based DataSource might. <P> See this discussion for ways to populate a client-only DataSource with test data.
+    * Whether to act as a "client-only" DataSource, which has no permanent storage and never contacts the server, instead using a set of test data to respond to requests in the same manner as a server-based DataSource might. <P> See {@link com.smartgwt.client.docs.ClientOnlyDataSources 'this discussion'} for ways to populate a client-only DataSource with test data.
     *
     * @param clientOnly clientOnly Default value is false
     * @throws IllegalStateException this property cannot be changed after the underlying component has been created
@@ -520,7 +520,7 @@ public class DataSource extends BaseClass  implements com.smartgwt.client.data.e
         setAttribute("clientOnly", clientOnly, false);
     }
     /**
-     * Whether to act as a "client-only" DataSource, which has no permanent storage and never contacts the server, instead using a set of test data to respond to requests in the same manner as a server-based DataSource might. <P> See this discussion for ways to populate a client-only DataSource with test data.
+     * Whether to act as a "client-only" DataSource, which has no permanent storage and never contacts the server, instead using a set of test data to respond to requests in the same manner as a server-based DataSource might. <P> See {@link com.smartgwt.client.docs.ClientOnlyDataSources 'this discussion'} for ways to populate a client-only DataSource with test data.
      *
      *
      * @return Boolean
@@ -1293,7 +1293,6 @@ public class DataSource extends BaseClass  implements com.smartgwt.client.data.e
         setAttribute("recordName", recordName, false);
     }
 
-    
     /**
      * Optional object declaring namespace prefixes for use in OperationBinding.recordXPath and
      * DataSourceField.valueXPath XPath expressions. xmlNamespaces should be specified as a mapping from namespace
@@ -1316,7 +1315,6 @@ public class DataSource extends BaseClass  implements com.smartgwt.client.data.e
     public void setXmlNamespaces(XmlNamespaces xmlNamespaces) throws IllegalStateException {
         setAttribute("xmlNamespaces", xmlNamespaces, false);
     }
-
 
     /**
      * Perform a "fetch" DataSource operation against this DataSource, sending search criteria and retrieving matching
@@ -1592,7 +1590,7 @@ public class DataSource extends BaseClass  implements com.smartgwt.client.data.e
     /**
      * Perform an "add" DataSource operation against this DataSource, to create a new DataSource record.
      *
-     * @param newRecord new record
+     * @param record new record
      */
     public native void addData(Record record) /*-{
         var self = this.@com.smartgwt.client.core.BaseClass::getOrCreateJsObj()();
@@ -1603,7 +1601,7 @@ public class DataSource extends BaseClass  implements com.smartgwt.client.data.e
     /**
      * Perform an "add" DataSource operation against this DataSource, to create a new DataSource record.
      *
-     * @param newRecord new record
+     * @param record new record
      * @param callback  callback to invoke on completion
      */
     public native void addData(Record record, DSCallback callback) /*-{
@@ -1619,7 +1617,7 @@ public class DataSource extends BaseClass  implements com.smartgwt.client.data.e
     /**
      * Perform an "add" DataSource operation against this DataSource, to create a new DataSource record.
      *
-     * @param newRecord         new record
+     * @param record         new record
      * @param callback          callback to invoke on completion
      * @param requestProperties additional properties to set on the DSRequest that will be issued
      */
@@ -1638,7 +1636,7 @@ public class DataSource extends BaseClass  implements com.smartgwt.client.data.e
      * Perform an "update" DataSource operation against this DataSource, to update values in an existing DataSource
      * record.
      *
-     * @param updatedRecord updated record
+     * @param record updated record
      */
     public native void updateData(Record record) /*-{
         var self = this.@com.smartgwt.client.core.BaseClass::getOrCreateJsObj()();
@@ -1650,7 +1648,7 @@ public class DataSource extends BaseClass  implements com.smartgwt.client.data.e
      * Perform an "update" DataSource operation against this DataSource, to update values in an existing DataSource
      * record.
      *
-     * @param updatedRecord updated record
+     * @param record updated record
      * @param callback      callback to invoke on completion
      */
     public native void updateData(Record record, DSCallback callback) /*-{
@@ -1667,7 +1665,7 @@ public class DataSource extends BaseClass  implements com.smartgwt.client.data.e
      * Perform an "update" DataSource operation against this DataSource, to update values in an existing DataSource
      * record.
      *
-     * @param updatedRecord     updated record
+     * @param record     updated record
      * @param callback          callback to invoke on completion
      * @param requestProperties additional properties to set on the DSRequest that will be issued
      */
@@ -1685,7 +1683,7 @@ public class DataSource extends BaseClass  implements com.smartgwt.client.data.e
     /**
      * Perform a "remove" DataSource operation against this DataSource, to delete an existing DataSource record.
      *
-     * @param data primary key values of record to delete,                                             (or complete
+     * @param record primary key values of record to delete,                                             (or complete
      *             record)
      */
     public native void removeData(Record record) /*-{
@@ -1697,7 +1695,7 @@ public class DataSource extends BaseClass  implements com.smartgwt.client.data.e
     /**
      * Perform a "remove" DataSource operation against this DataSource, to delete an existing DataSource record.
      *
-     * @param data     primary key values of record to delete,                                             (or complete
+     * @param record     primary key values of record to delete,                                             (or complete
      *                 record)
      * @param callback callback to invoke on completion
      */
@@ -1714,8 +1712,7 @@ public class DataSource extends BaseClass  implements com.smartgwt.client.data.e
     /**
      * Perform a "remove" DataSource operation against this DataSource, to delete an existing DataSource record.
      *
-     * @param data              primary key values of record to delete,                                             (or
-     *                          complete record)
+     * @param record              primary key values of record to delete,(or complete record)
      * @param callback          callback to invoke on completion
      * @param requestProperties additional properties to set on the DSRequest that will be issued
      */
@@ -1844,19 +1841,17 @@ public class DataSource extends BaseClass  implements com.smartgwt.client.data.e
         return self.xmlSerialize(data, flagsJS);
     }-*/;
 
-
     /**
      * Process a dsResponse for a request initiated by a DataSource with {@link com.smartgwt.client.data.OperationBinding#getDataProtocol dataProtocol}. <code>requestId</code> parameter should be dsRequest.requestId as found on the dsRequest passed to {@link com.smartgwt.client.data.DataSource#transformRequest}. <P> You must provide a response for both error and non-error cases.  For an error case, a sufficient response is: <pre> { status : -1 } </pre>
      * @param requestId requestId attribute from the associated dataSource request object
- * @param dsResponse Configuration for the dsResponse
+     * @param requestId the request ID
+     * @param requestId Configuration for the dsResponse
      */
     public native void processResponse(String requestId, DSResponse responseProperties) /*-{
         var self = this.@com.smartgwt.client.core.BaseClass::getOrCreateJsObj()();
         var responsePropertiesJS = responseProperties == null ? null : responseProperties.@com.smartgwt.client.core.DataClass::getJsObj()();
         self.processResponse(requestId, responsePropertiesJS);
     }-*/;
-
-
 
 }
 

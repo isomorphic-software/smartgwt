@@ -174,8 +174,8 @@ public class SectionItem extends CanvasItem {
      *
      * @param itemIds itemIds Default value is null
      */
-    public void setItemIds(String... ids) {
-        setAttribute("itemIds", ids);
+    public void setItemIds(String... itemIds) {
+        setAttribute("itemIds", itemIds);
     }
 
 }
