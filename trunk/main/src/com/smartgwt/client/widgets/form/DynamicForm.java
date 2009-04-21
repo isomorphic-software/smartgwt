@@ -1521,7 +1521,7 @@ public class DynamicForm extends Canvas  implements DataBoundComponent, com.smar
     // ********************* Static Methods ***********************
 
 
-
+
 
 
 
@@ -1667,6 +1667,76 @@ public class DynamicForm extends Canvas  implements DataBoundComponent, com.smar
         self.setValue(fieldName, value);
     }-*/;
 
+    /**
+     * Set the value for some field.
+     *
+     * @param fieldName Name of the field being updated
+     * @param value New value.
+     */
+    public native void setValue(String fieldName, Map value) /*-{
+        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
+        var valueJS = @com.smartgwt.client.util.JSOHelper::convertMapToJavascriptObject(Ljava/util/Map;)(value);
+        self.setValue(fieldName, valueJS);
+    }-*/;
+    
+    /**
+     * Set the value for some field.
+     *
+     * @param fieldName Name of the field being updated
+     * @param value New value.
+     */
+    public native void setValue(String fieldName, JavaScriptObject value) /*-{
+        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
+        self.setValue(fieldName, value);
+    }-*/;
+
+    /**
+     * Set the value for some field.
+     *
+     * @param fieldName Name of the field being updated
+     * @param value New value.
+     */
+    public native void setValue(String fieldName, Record value) /*-{
+        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
+        var valueJS = value.@com.smartgwt.client.data.Record::getJsObj()();
+        self.setValue(fieldName, valueJS);
+    }-*/;
+
+    /**
+     * Set the value for some field.
+     *
+     * @param fieldName Name of the field being updated
+     * @param value New value.
+     */
+    public native void setValue(String fieldName, DataClass value) /*-{
+        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
+        var valueJS = value.@com.smartgwt.client.core.DataClass::getJsObj()();
+        self.setValue(fieldName, valueJS);
+    }-*/;
+
+    /**
+     * Set the value for some field.
+     *
+     * @param fieldName Name of the field being updated
+     * @param value New value.
+     */
+    public native void setValue(String fieldName, Record[] value) /*-{
+        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
+        var valueJS = @com.smartgwt.client.util.JSOHelper::convertToJavaScriptArray([Ljava/lang/Object;)(value);
+        self.setValue(fieldName, valueJS);
+    }-*/;
+
+    /**
+     * Set the value for some field.
+     *
+     * @param fieldName Name of the field being updated
+     * @param value New value.
+     */
+    public native void setValue(String fieldName, DataClass[] value) /*-{
+        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
+        var valueJS = @com.smartgwt.client.util.JSOHelper::convertToJavaScriptArray([Ljava/lang/Object;)(value);
+        self.setValue(fieldName, valueJS);
+    }-*/;
 
     /**
      * Synonym for {@link #setFields(com.smartgwt.client.widgets.form.fields.FormItem[])}.
