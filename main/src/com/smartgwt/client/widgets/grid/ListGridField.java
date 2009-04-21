@@ -1124,7 +1124,7 @@ public class ListGridField extends DataClass  implements com.smartgwt.client.wid
     }
 
     /**
-    * If set to true, any {@link com.smartgwt.client.widgets.grid.ListGridField#getValidators validators} for this field will be run whenever the value of the field is edited.<br> Analgous to the {@link com.smartgwt.client.widgets.form.fields.FormItem#getValidateOnChange validateOnChange} property.
+    * If set to true, any {@link com.smartgwt.client.widgets.grid.ListGridField#getValidators validators} for this field will be run whenever the value of the field is changed. <P> Analgous to the {@link com.smartgwt.client.widgets.form.fields.FormItem#getValidateOnChange validateOnChange} property.
     *
     * @param validateOnChange validateOnChange Default value is null
     */
@@ -1132,7 +1132,7 @@ public class ListGridField extends DataClass  implements com.smartgwt.client.wid
         setAttribute("validateOnChange", validateOnChange);
     }
     /**
-     * If set to true, any {@link com.smartgwt.client.widgets.grid.ListGridField#getValidators validators} for this field will be run whenever the value of the field is edited.<br> Analgous to the {@link com.smartgwt.client.widgets.form.fields.FormItem#getValidateOnChange validateOnChange} property.
+     * If set to true, any {@link com.smartgwt.client.widgets.grid.ListGridField#getValidators validators} for this field will be run whenever the value of the field is changed. <P> Analgous to the {@link com.smartgwt.client.widgets.form.fields.FormItem#getValidateOnChange validateOnChange} property.
      *
      *
      * @return Boolean

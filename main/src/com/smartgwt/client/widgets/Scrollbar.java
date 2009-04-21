@@ -359,7 +359,7 @@ public class Scrollbar extends StretchImg {
     }
 
     /**
-    * Where are the skin images for the Scrollbar.  This is local to the ${isc.DocUtils.linkForRef('Page.skinDir')}.
+    * Where are the skin images for the Scrollbar.  This is local to the {@link com.smartgwt.client.util.Page#getSkinDir}.
     * <p><b>Note : </b> This is an advanced setting</p>
     *
     * @param skinImgDir skinImgDir Default value is "images/Scrollbar/"
@@ -369,7 +369,7 @@ public class Scrollbar extends StretchImg {
         setAttribute("skinImgDir", skinImgDir, false);
     }
     /**
-     * Where are the skin images for the Scrollbar.  This is local to the ${isc.DocUtils.linkForRef('Page.skinDir')}.
+     * Where are the skin images for the Scrollbar.  This is local to the {@link com.smartgwt.client.util.Page#getSkinDir}.
      *
      *
      * @return String

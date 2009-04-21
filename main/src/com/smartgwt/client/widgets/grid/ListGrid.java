@@ -1793,7 +1793,7 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
     }
 
     /**
-    * Determines whether when the user edits a cell in this listGrid the entire row becomes      editable, or just the cell that recieved the edit event.<br><br>      No effect if this.canEdit is false or null.
+    * Determines whether when the user edits a cell in this listGrid the entire row becomes editable, or just the cell that recieved the edit event. <P> No effect if this.canEdit is false or null.
     *
     * @param editByCell editByCell Default value is null
     */
@@ -1801,7 +1801,7 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
         setAttribute("editByCell", editByCell, true);
     }
     /**
-     * Determines whether when the user edits a cell in this listGrid the entire row becomes      editable, or just the cell that recieved the edit event.<br><br>      No effect if this.canEdit is false or null.
+     * Determines whether when the user edits a cell in this listGrid the entire row becomes editable, or just the cell that recieved the edit event. <P> No effect if this.canEdit is false or null.
      *
      *
      * @return Boolean
@@ -1812,7 +1812,7 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
     }
 
     /**
-    * Whether edits should be saved whenever the user moves between cells in the current edit row. <P> If unset, defaults to this.editByCell. <P> To avoid automatic saving entirely, set {@link com.smartgwt.client.widgets.grid.ListGrid#getAutoSaveEdits autoSaveEdits}:false.
+    * Whether edits should be saved whenever the user moves between cells in the current edit row. <P> If unset, defaults to {@link com.smartgwt.client.widgets.grid.ListGrid#getEditByCell editByCell}. <P> To avoid automatic saving entirely, set {@link com.smartgwt.client.widgets.grid.ListGrid#getAutoSaveEdits autoSaveEdits}:false.
     *
     * @param saveByCell saveByCell Default value is null
     */
@@ -1820,7 +1820,7 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
         setAttribute("saveByCell", saveByCell, true);
     }
     /**
-     * Whether edits should be saved whenever the user moves between cells in the current edit row. <P> If unset, defaults to this.editByCell. <P> To avoid automatic saving entirely, set {@link com.smartgwt.client.widgets.grid.ListGrid#getAutoSaveEdits autoSaveEdits}:false.
+     * Whether edits should be saved whenever the user moves between cells in the current edit row. <P> If unset, defaults to {@link com.smartgwt.client.widgets.grid.ListGrid#getEditByCell editByCell}. <P> To avoid automatic saving entirely, set {@link com.smartgwt.client.widgets.grid.ListGrid#getAutoSaveEdits autoSaveEdits}:false.
      *
      *
      * @return Boolean
@@ -1831,7 +1831,7 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
     }
 
     /**
-    * Whether client-side validation checks should be performed when the user moves between cells in the current edit row.  If unset, defaults to {@link com.smartgwt.client.widgets.grid.ListGrid#getEditByCell editByCell}.<br> Note that if false validation occurs on row-transition rather than cell transitions. Validation also always occurs when a row is to be saved.
+    * Whether client-side validation checks should be performed when the user moves between cells in the current edit row.  If unset, defaults to {@link com.smartgwt.client.widgets.grid.ListGrid#getEditByCell editByCell}. <P> Note that validation always occurs when a row is to be saved, so setting {@link com.smartgwt.client.widgets.grid.ListGrid#getSaveByCell saveByCell}:true forces validation on cell transitions.  To completely disable automatic validation, set {@link com.smartgwt.client.widgets.grid.ListGrid#getNeverValidate neverValidate}:true.
     *
     * @param validateByCell validateByCell Default value is null
     */
@@ -1839,7 +1839,7 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
         setAttribute("validateByCell", validateByCell, true);
     }
     /**
-     * Whether client-side validation checks should be performed when the user moves between cells in the current edit row.  If unset, defaults to {@link com.smartgwt.client.widgets.grid.ListGrid#getEditByCell editByCell}.<br> Note that if false validation occurs on row-transition rather than cell transitions. Validation also always occurs when a row is to be saved.
+     * Whether client-side validation checks should be performed when the user moves between cells in the current edit row.  If unset, defaults to {@link com.smartgwt.client.widgets.grid.ListGrid#getEditByCell editByCell}. <P> Note that validation always occurs when a row is to be saved, so setting {@link com.smartgwt.client.widgets.grid.ListGrid#getSaveByCell saveByCell}:true forces validation on cell transitions.  To completely disable automatic validation, set {@link com.smartgwt.client.widgets.grid.ListGrid#getNeverValidate neverValidate}:true.
      *
      *
      * @return Boolean
@@ -1850,7 +1850,7 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
     }
 
     /**
-    * If true, validation will be perfomed on each edited cell when each editor's  "change" handler is fired.<br>
+    * If true, validation will be perfomed on each edited cell when each editor's  "change" handler is fired.
     *
     * @param validateOnChange validateOnChange Default value is null
     */
@@ -1858,7 +1858,7 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
         setAttribute("validateOnChange", validateOnChange, true);
     }
     /**
-     * If true, validation will be perfomed on each edited cell when each editor's  "change" handler is fired.<br>
+     * If true, validation will be perfomed on each edited cell when each editor's  "change" handler is fired.
      *
      *
      * @return Boolean
