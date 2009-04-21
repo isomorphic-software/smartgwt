@@ -91,14 +91,14 @@ public class Page {
         }-*/;
 
         /**
-         * Specify the directory for app-specific images. <P> This becomes the default location where any SmartClient component will load images from unless the special "[SKIN]" prefix is used to indicate that an image is part of a skin. <P> Default is "[APP]images/"
+         * Specify the directory for app-specific images. <P> This becomes the default location where any SmartGWT component will load images from unless the special "[SKIN]" prefix is used to indicate that an image is part of a skin. <P> Default is "[APP]images/"
          */
         public static native void setAppImgDir() /*-{
             $wnd.isc.Page.setAppImgDir();
         }-*/;
 
         /**
-         * Specify the directory for app-specific images. <P> This becomes the default location where any SmartClient component will load images from unless the special "[SKIN]" prefix is used to indicate that an image is part of a skin. <P> Default is "[APP]images/"
+         * Specify the directory for app-specific images. <P> This becomes the default location where any SmartGWT component will load images from unless the special "[SKIN]" prefix is used to indicate that an image is part of a skin. <P> Default is "[APP]images/"
          * @param URL New imgDir URL.
          */
         public static native void setAppImgDir(String URL) /*-{
@@ -335,14 +335,14 @@ public class Page {
 
 
         /**
-         * Check whether the browser is supported by the Isomorphic SmartClient system. Behavior depends upon the value of {@link com.smartgwt.client.util.Page#unsupportedBrowserAction}: <ul> <li><code>"continue"</code> Load the page without notifying the user of potential issues</li> <li><code>"confirm"</code> Notify the user via a standard confirm dialog that their browser is  not supported. Provide options to continue anyway, or redirect to another page. Text of the  confirm dialog is retrieved by calling {@link com.smartgwt.client.util.Page#getUnsupportedBrowserPromptString}.</li> <li><code>"redirect"</code> Automatically redirect to the another URL</li> </ul> If redirecting to another page is necessary, and no explicit URL is provided we will use {@link com.smartgwt.client.util.Page#defaultUnsupportedBrowserURL}. <p> This method is commonly called as part of the +link{@group:skinning,skinning} logic after page load.
+         * Check whether the browser is supported by the Isomorphic SmartGWT system. Behavior depends upon the value of {@link com.smartgwt.client.util.Page#unsupportedBrowserAction}: <ul> <li><code>"continue"</code> Load the page without notifying the user of potential issues</li> <li><code>"confirm"</code> Notify the user via a standard confirm dialog that their browser is  not supported. Provide options to continue anyway, or redirect to another page. Text of the  confirm dialog is retrieved by calling {@link com.smartgwt.client.util.Page#getUnsupportedBrowserPromptString}.</li> <li><code>"redirect"</code> Automatically redirect to the another URL</li> </ul> If redirecting to another page is necessary, and no explicit URL is provided we will use {@link com.smartgwt.client.util.Page#defaultUnsupportedBrowserURL}. <p> This method is commonly called as part of the +link{@group:skinning,skinning} logic after page load.
          */
         public static native void checkBrowserAndRedirect() /*-{
             $wnd.isc.Page.checkBrowserAndRedirect();
         }-*/;
 
         /**
-         * Check whether the browser is supported by the Isomorphic SmartClient system. Behavior depends upon the value of {@link com.smartgwt.client.util.Page#unsupportedBrowserAction}: <ul> <li><code>"continue"</code> Load the page without notifying the user of potential issues</li> <li><code>"confirm"</code> Notify the user via a standard confirm dialog that their browser is  not supported. Provide options to continue anyway, or redirect to another page. Text of the  confirm dialog is retrieved by calling {@link com.smartgwt.client.util.Page#getUnsupportedBrowserPromptString}.</li> <li><code>"redirect"</code> Automatically redirect to the another URL</li> </ul> If redirecting to another page is necessary, and no explicit URL is provided we will use {@link com.smartgwt.client.util.Page#defaultUnsupportedBrowserURL}. <p> This method is commonly called as part of the +link{@group:skinning,skinning} logic after page load.
+         * Check whether the browser is supported by the Isomorphic SmartGWT system. Behavior depends upon the value of {@link com.smartgwt.client.util.Page#unsupportedBrowserAction}: <ul> <li><code>"continue"</code> Load the page without notifying the user of potential issues</li> <li><code>"confirm"</code> Notify the user via a standard confirm dialog that their browser is  not supported. Provide options to continue anyway, or redirect to another page. Text of the  confirm dialog is retrieved by calling {@link com.smartgwt.client.util.Page#getUnsupportedBrowserPromptString}.</li> <li><code>"redirect"</code> Automatically redirect to the another URL</li> </ul> If redirecting to another page is necessary, and no explicit URL is provided we will use {@link com.smartgwt.client.util.Page#defaultUnsupportedBrowserURL}. <p> This method is commonly called as part of the +link{@group:skinning,skinning} logic after page load.
          * @param URL URL of redirect page. May include Isomorphic special directories      such as [SKIN].
          */
         public static native void checkBrowserAndRedirect(String URL) /*-{

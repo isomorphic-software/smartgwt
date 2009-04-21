@@ -147,25 +147,6 @@ public class ComboBoxItem extends FormItem  implements PickList {
     }
 
     /**
-    * Default the picker icon to a fixed with (15px).
-    *
-    * @param pickerIconWidth pickerIconWidth Default value is 15
-    */
-    public void setPickerIconWidth(int pickerIconWidth) {
-        setAttribute("pickerIconWidth", pickerIconWidth);
-    }
-    /**
-     * Default the picker icon to a fixed with (15px).
-     *
-     *
-     * @return int
-     *
-     */
-    public int getPickerIconWidth()  {
-        return getAttributeAsInt("pickerIconWidth");
-    }
-
-    /**
     * Don't specify an explicit height for the picker icon - instead have it size to match the height of the combo box item.
     *
     * @param pickerIconHeight pickerIconHeight Default value is null
@@ -410,8 +391,17 @@ public class ComboBoxItem extends FormItem  implements PickList {
     // ********************* Static Methods ***********************
 
 
-
-
+
+
+
+
+
+
+
+
+
+
+
 
 
     static {

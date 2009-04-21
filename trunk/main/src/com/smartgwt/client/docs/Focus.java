@@ -20,6 +20,7 @@ package com.smartgwt.client.docs;
  * @see com.smartgwt.client.widgets.form.fields.FormItem#getAccessKey
  * @see com.smartgwt.client.widgets.form.fields.FormItem#getTabIndex
  * @see com.smartgwt.client.widgets.form.fields.FormItem#getGlobalTabIndex
+ * @see com.smartgwt.client.widgets.form.fields.FormItem#getSelectOnFocus
  * @see com.smartgwt.client.widgets.form.fields.TextItem#getSelectOnFocus
  * @see com.smartgwt.client.widgets.form.fields.TextAreaItem#getSelectOnFocus
  * @see com.smartgwt.client.widgets.Canvas#getCanFocus

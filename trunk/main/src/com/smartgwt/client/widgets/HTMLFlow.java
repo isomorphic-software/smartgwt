@@ -56,7 +56,7 @@ import com.smartgwt.client.util.EnumUtil;
 import com.google.gwt.event.shared.*;
 import com.google.gwt.event.shared.HasHandlers;
    /**
-    * Use the HTMLFlow component to display HTML content that should expand to its natural size without scrolling.   <p> HTML content can be loaded and reloaded from a URL via the property <code>contentsURL</code>.  This method of loading is for simple HTML content only; SmartClient components should be loaded via the {@link com.smartgwt.client.widgets.ViewLoader} class. <P> NOTE: Since the size of an HTMLFlow component is determined by its HTML contents, this component will draw at varying sizes if given content of varying size.  When using HTMLFlow components within a Layout, consider what will happen if the HTMLFlow renders at various sizes.  An HTMLFlow which can expand should be placed in a container where other components can render smaller, where the container is allowed to scroll, or where there is padding to expand into.
+    * Use the HTMLFlow component to display HTML content that should expand to its natural size without scrolling.   <p> HTML content can be loaded and reloaded from a URL via the property <code>contentsURL</code>.  This method of loading is for simple HTML content only; SmartGWT components should be loaded via the {@link com.smartgwt.client.widgets.ViewLoader} class. <P> NOTE: Since the size of an HTMLFlow component is determined by its HTML contents, this component will draw at varying sizes if given content of varying size.  When using HTMLFlow components within a Layout, consider what will happen if the HTMLFlow renders at various sizes.  An HTMLFlow which can expand should be placed in a container where other components can render smaller, where the container is allowed to scroll, or where there is padding to expand into.
 
     */
 
@@ -212,7 +212,7 @@ public class HTMLFlow extends Canvas  implements com.smartgwt.client.widgets.eve
     }
 
     /**
-    * If <code>evalScriptBlocks</code> is true, HTMLFlow will pre-process the loaded HTML in order to mimic how the HTML would execute if it were loaded as an independent page or loaded via an IFRAME.   <P> This feature is intended to assist with migrating existing applications to SmartClient. <P> Note that, if evalScriptBlocks is false, &lt;SCRIPT&gt; blocks will still be detected and disabled to avoid the inconsistent results across different browsers. <P> Only applies when contentsType is <b>not</b> "page".
+    * If <code>evalScriptBlocks</code> is true, HTMLFlow will pre-process the loaded HTML in order to mimic how the HTML would execute if it were loaded as an independent page or loaded via an IFRAME.   <P> This feature is intended to assist with migrating existing applications to SmartGWT. <P> Note that, if evalScriptBlocks is false, &lt;SCRIPT&gt; blocks will still be detected and disabled to avoid the inconsistent results across different browsers. <P> Only applies when contentsType is <b>not</b> "page".
     *
     * @param evalScriptBlocks evalScriptBlocks Default value is true
     * @throws IllegalStateException this property cannot be changed after the component has been created
@@ -221,7 +221,7 @@ public class HTMLFlow extends Canvas  implements com.smartgwt.client.widgets.eve
         setAttribute("evalScriptBlocks", evalScriptBlocks, false);
     }
     /**
-     * If <code>evalScriptBlocks</code> is true, HTMLFlow will pre-process the loaded HTML in order to mimic how the HTML would execute if it were loaded as an independent page or loaded via an IFRAME.   <P> This feature is intended to assist with migrating existing applications to SmartClient. <P> Note that, if evalScriptBlocks is false, &lt;SCRIPT&gt; blocks will still be detected and disabled to avoid the inconsistent results across different browsers. <P> Only applies when contentsType is <b>not</b> "page".
+     * If <code>evalScriptBlocks</code> is true, HTMLFlow will pre-process the loaded HTML in order to mimic how the HTML would execute if it were loaded as an independent page or loaded via an IFRAME.   <P> This feature is intended to assist with migrating existing applications to SmartGWT. <P> Note that, if evalScriptBlocks is false, &lt;SCRIPT&gt; blocks will still be detected and disabled to avoid the inconsistent results across different browsers. <P> Only applies when contentsType is <b>not</b> "page".
      *
      *
      * @return Boolean
@@ -232,7 +232,7 @@ public class HTMLFlow extends Canvas  implements com.smartgwt.client.widgets.eve
     }
 
     /**
-    * If true, SmartClient components created while executing the loaded HTML are captured for rendering inside the HTMLFlow. <P> Only applies when contentsType is <b>not</b> "page".
+    * If true, SmartGWT components created while executing the loaded HTML are captured for rendering inside the HTMLFlow. <P> Only applies when contentsType is <b>not</b> "page".
     *
     * @param captureSCComponents captureSCComponents Default value is true
     * @throws IllegalStateException this property cannot be changed after the component has been created
@@ -241,7 +241,7 @@ public class HTMLFlow extends Canvas  implements com.smartgwt.client.widgets.eve
         setAttribute("captureSCComponents", captureSCComponents, false);
     }
     /**
-     * If true, SmartClient components created while executing the loaded HTML are captured for rendering inside the HTMLFlow. <P> Only applies when contentsType is <b>not</b> "page".
+     * If true, SmartGWT components created while executing the loaded HTML are captured for rendering inside the HTMLFlow. <P> Only applies when contentsType is <b>not</b> "page".
      *
      *
      * @return Boolean

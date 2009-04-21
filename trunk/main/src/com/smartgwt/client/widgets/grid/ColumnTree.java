@@ -56,7 +56,7 @@ import com.smartgwt.client.util.EnumUtil;
 import com.google.gwt.event.shared.*;
 import com.google.gwt.event.shared.HasHandlers;
    /**
-    * The SmartClient system supports hierarchical data (also referred to as tree data due to its "branching" organization) with: <ul>   <li> the {@link com.smartgwt.client.widgets.tree.Tree} class, which manipulates hierarchical data sets   <li> the TreeGrid widget class, which extends the ListGrid class to visually        present tree data in an expandable/collapsible format.   <li> the ColumnTree widget class, which visually        presents tree data in a so-called         "<a href=http://en.wikipedia.org/wiki/Miller_Columns>Miller Column</a>" format. </ul> For information on DataBinding Trees, see {@link com.smartgwt.client.docs.TreeDataBinding}. <p> A ColumnTree shows a single branch of the underlying {@link com.smartgwt.client.widgets.tree.Tree} horizontally, from  left to right. Thus, the leftmost column shows all the top-level nodes. When the user clicks one of those nodes, a new column is shown immediately to the right of the top-level column, showing the selected node's children. Additional columns are shown as required to present lower-level children. The behavior of ColumnTree is similar to that of the Browser interface in the Apple&trade; iTunes&trade; application.
+    * The SmartGWT system supports hierarchical data (also referred to as tree data due to its "branching" organization) with: <ul>   <li> the {@link com.smartgwt.client.widgets.tree.Tree} class, which manipulates hierarchical data sets   <li> the TreeGrid widget class, which extends the ListGrid class to visually        present tree data in an expandable/collapsible format.   <li> the ColumnTree widget class, which visually        presents tree data in a so-called         "<a href=http://en.wikipedia.org/wiki/Miller_Columns>Miller Column</a>" format. </ul> For information on DataBinding Trees, see {@link com.smartgwt.client.docs.TreeDataBinding}. <p> A ColumnTree shows a single branch of the underlying {@link com.smartgwt.client.widgets.tree.Tree} horizontally, from  left to right. Thus, the leftmost column shows all the top-level nodes. When the user clicks one of those nodes, a new column is shown immediately to the right of the top-level column, showing the selected node's children. Additional columns are shown as required to present lower-level children. The behavior of ColumnTree is similar to that of the Browser interface in the Apple&trade; iTunes&trade; application.
 
     */
 public class ColumnTree extends Layout  implements DataBoundComponent {
@@ -363,7 +363,7 @@ public class ColumnTree extends Layout  implements DataBoundComponent {
     }
 
     /**
-    * A title for the leftmost column if {@link com.smartgwt.client.widgets.grid.ColumnTree#getShowHeaders showHeaders} is set (the remaining columns have their titles derived from the item selected in the column to the left). Ignored if {@link com.smartgwt.client.widgets.grid.ColumnTree#getShowHeaders showHeaders} is not set.<br><br> Note: if you do not want a heading for the first column leave this attribute at its  default value of " ". If you set it to null or the empty string, SmartClient will fall back to displaying the field's name in the heading.
+    * A title for the leftmost column if {@link com.smartgwt.client.widgets.grid.ColumnTree#getShowHeaders showHeaders} is set (the remaining columns have their titles derived from the item selected in the column to the left). Ignored if {@link com.smartgwt.client.widgets.grid.ColumnTree#getShowHeaders showHeaders} is not set.<br><br> Note: if you do not want a heading for the first column leave this attribute at its  default value of " ". If you set it to null or the empty string, SmartGWT will fall back to displaying the field's name in the heading.
     *
     * @param firstColumnTitle firstColumnTitle Default value is " "
     * @throws IllegalStateException this property cannot be changed after the component has been created
@@ -372,7 +372,7 @@ public class ColumnTree extends Layout  implements DataBoundComponent {
         setAttribute("firstColumnTitle", firstColumnTitle, false);
     }
     /**
-     * A title for the leftmost column if {@link com.smartgwt.client.widgets.grid.ColumnTree#getShowHeaders showHeaders} is set (the remaining columns have their titles derived from the item selected in the column to the left). Ignored if {@link com.smartgwt.client.widgets.grid.ColumnTree#getShowHeaders showHeaders} is not set.<br><br> Note: if you do not want a heading for the first column leave this attribute at its  default value of " ". If you set it to null or the empty string, SmartClient will fall back to displaying the field's name in the heading.
+     * A title for the leftmost column if {@link com.smartgwt.client.widgets.grid.ColumnTree#getShowHeaders showHeaders} is set (the remaining columns have their titles derived from the item selected in the column to the left). Ignored if {@link com.smartgwt.client.widgets.grid.ColumnTree#getShowHeaders showHeaders} is not set.<br><br> Note: if you do not want a heading for the first column leave this attribute at its  default value of " ". If you set it to null or the empty string, SmartGWT will fall back to displaying the field's name in the heading.
      *
      *
      * @return String

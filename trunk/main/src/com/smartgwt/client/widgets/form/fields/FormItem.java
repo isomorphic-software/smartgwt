@@ -464,6 +464,104 @@ public class FormItem extends RefDataClass  implements com.smartgwt.client.widge
     }
 
     /**
+    * Should we show a special 'picker' ${isc.DocUtils.linkForRef('object:FormItemIcon','icon')} for this form item. Picker icons are customizeable via {@link com.smartgwt.client.widgets.form.fields.FormItem#getPickerIconProperties pickerIconProperties}. By default they will be rendered inside the Form Item's "control box" area, and will call {@link com.smartgwt.client.widgets.form.fields.FormItem#showPicker} when clicked.
+    *
+    * @param showPickerIcon showPickerIcon Default value is false
+    */
+    public void setShowPickerIcon(Boolean showPickerIcon) {
+        setAttribute("showPickerIcon", showPickerIcon);
+    }
+    /**
+     * Should we show a special 'picker' ${isc.DocUtils.linkForRef('object:FormItemIcon','icon')} for this form item. Picker icons are customizeable via {@link com.smartgwt.client.widgets.form.fields.FormItem#getPickerIconProperties pickerIconProperties}. By default they will be rendered inside the Form Item's "control box" area, and will call {@link com.smartgwt.client.widgets.form.fields.FormItem#showPicker} when clicked.
+     *
+     *
+     * @return Boolean
+     *
+     */
+    public Boolean getShowPickerIcon()  {
+        return getAttributeAsBoolean("showPickerIcon");
+    }
+
+    /**
+    * If {@link com.smartgwt.client.widgets.form.fields.FormItem#getShowPickerIcon showPickerIcon} is true for this item, should the picker icon show a focused image when the form item has focus?
+    *
+    * @param showFocusedPickerIcon showFocusedPickerIcon Default value is false
+    */
+    public void setShowFocusedPickerIcon(Boolean showFocusedPickerIcon) {
+        setAttribute("showFocusedPickerIcon", showFocusedPickerIcon);
+    }
+    /**
+     * If {@link com.smartgwt.client.widgets.form.fields.FormItem#getShowPickerIcon showPickerIcon} is true for this item, should the picker icon show a focused image when the form item has focus?
+     *
+     *
+     * @return Boolean
+     *
+     */
+    public Boolean getShowFocusedPickerIcon()  {
+        return getAttributeAsBoolean("showFocusedPickerIcon");
+    }
+
+    /**
+    * If {@link com.smartgwt.client.widgets.form.fields.FormItem#getShowPickerIcon showPickerIcon} is true for this item, this property governs the src of the picker icon image to be displayed.
+    * <p><b>Note : </b> This is an advanced setting</p>
+    *
+    * @param pickerIconSrc pickerIconSrc Default value is ""
+    */
+    public void setPickerIconSrc(String pickerIconSrc) {
+        setAttribute("pickerIconSrc", pickerIconSrc);
+    }
+    /**
+     * If {@link com.smartgwt.client.widgets.form.fields.FormItem#getShowPickerIcon showPickerIcon} is true for this item, this property governs the src of the picker icon image to be displayed.
+     *
+     *
+     * @return String
+     *
+     */
+    public String getPickerIconSrc()  {
+        return getAttributeAsString("pickerIconSrc");
+    }
+
+    /**
+    * If {@link com.smartgwt.client.widgets.form.fields.FormItem#getShowPickerIcon showPickerIcon} is true for this item, this property governs the size of the picker icon. If unset picker icon will be sized as a square to fit in the avaliable height for the icon.
+    * <p><b>Note : </b> This is an advanced setting</p>
+    *
+    * @param pickerIconWidth pickerIconWidth Default value is null
+    */
+    public void setPickerIconWidth(Integer pickerIconWidth) {
+        setAttribute("pickerIconWidth", pickerIconWidth);
+    }
+    /**
+     * If {@link com.smartgwt.client.widgets.form.fields.FormItem#getShowPickerIcon showPickerIcon} is true for this item, this property governs the size of the picker icon. If unset picker icon will be sized as a square to fit in the avaliable height for the icon.
+     *
+     *
+     * @return Integer
+     *
+     */
+    public Integer getPickerIconWidth()  {
+        return getAttributeAsInt("pickerIconWidth");
+    }
+
+    /**
+    * If {@link com.smartgwt.client.widgets.form.fields.FormItem#getShowPickerIcon showPickerIcon} is true for this item, this property governs the size of the picker icon. If unset picker icon will be sized as a square to fit in the avaliable height for the icon.
+    * <p><b>Note : </b> This is an advanced setting</p>
+    *
+    * @param pickerIconHeight pickerIconHeight Default value is null
+    */
+    public void setPickerIconHeight(Integer pickerIconHeight) {
+        setAttribute("pickerIconHeight", pickerIconHeight);
+    }
+    /**
+     * If {@link com.smartgwt.client.widgets.form.fields.FormItem#getShowPickerIcon showPickerIcon} is true for this item, this property governs the size of the picker icon. If unset picker icon will be sized as a square to fit in the avaliable height for the icon.
+     *
+     *
+     * @return Integer
+     *
+     */
+    public Integer getPickerIconHeight()  {
+        return getAttributeAsInt("pickerIconHeight");
+    }
+
+    /**
     * Whether a non-empty value is required for this field to pass validation. <BR> <b>Note:</b> if specified on a FormItem, <code>required</code> is only enforced on the client.  <code>required</code> should generally be specified on a {@link com.smartgwt.client.data.DataSourceField}.
     *
     * @param required required Default value is false
@@ -577,6 +675,25 @@ public class FormItem extends RefDataClass  implements com.smartgwt.client.widge
      */
     public Integer getGlobalTabIndex()  {
         return getAttributeAsInt("globalTabIndex");
+    }
+
+    /**
+    * Allows the {@link com.smartgwt.client.widgets.form.DynamicForm#getSelectOnFocus selectOnFocus} behavior to be configured on a per-FormItem basis.  Normally all items in a form default to the value of {@link com.smartgwt.client.widgets.form.DynamicForm#getSelectOnFocus selectOnFocus}.
+    *
+    * @param selectOnFocus selectOnFocus Default value is null
+    */
+    public void setSelectOnFocus(Boolean selectOnFocus) {
+        setAttribute("selectOnFocus", selectOnFocus);
+    }
+    /**
+     * Allows the {@link com.smartgwt.client.widgets.form.DynamicForm#getSelectOnFocus selectOnFocus} behavior to be configured on a per-FormItem basis.  Normally all items in a form default to the value of {@link com.smartgwt.client.widgets.form.DynamicForm#getSelectOnFocus selectOnFocus}.
+     *
+     *
+     * @return Boolean
+     *
+     */
+    public Boolean getSelectOnFocus()  {
+        return getAttributeAsBoolean("selectOnFocus");
     }
 
     /**
@@ -1454,7 +1571,7 @@ public class FormItem extends RefDataClass  implements com.smartgwt.client.widge
     }
              
     /**
-    * ${isc.DocUtils.linkForRef('type:OperatorId')} to be used when {@link com.smartgwt.client.widgets.form.DynamicForm#getValuesAsCriteria} is called. <P> <code>item.operator</code> can be used to create a form that offers search functions such as date range filtering, without the more advanced user interface of the {@link com.smartgwt.client.widgets.form.FilterBuilder}. <P> When <code>item.operator</code> is set for any FormItem in a form, <code>form.getValuesAsCriteria()</code> will return an ${isc.DocUtils.linkForRef('object:AdvancedCriteria')} object instead of a normal ${isc.DocUtils.linkForRef('type:Criteria')} object.  Each FormItem will produce one ${isc.DocUtils.linkForRef('object:Criterion')} affecting the DataSource field specified by {@link com.smartgwt.client.widgets.form.fields.FormItem#getCriteriaField criteriaField}. The criteria produced by the FormItems will be grouped under the logical operator provided by {@link com.smartgwt.client.widgets.form.DynamicForm#getOperator operator}. <P> if <code>operator</code> is set for some fields but not others, the default operator is "equals" for fields with a valueMap or an optionDataSource, and for fields of type "enum" (or of a type that inherits from "enum").  The default operator for all other fields is "iContains" (case-insensitive match)  <P> <b>Note:</b> Advanced criteria will only be created for items in a Databound form. If this item is part of a form with no ${isc.DocUtils.linkForRef('DynamicForm.dataSource','dataSource')}, the  <code>operator</code> attribute will have no effect.
+    * ${isc.DocUtils.linkForRef('type:OperatorId')} to be used when {@link com.smartgwt.client.widgets.form.DynamicForm#getValuesAsCriteria} is called. <P> <code>item.operator</code> can be used to create a form that offers search functions such as date range filtering, without the more advanced user interface of the {@link com.smartgwt.client.widgets.form.FilterBuilder}. <P> When <code>item.operator</code> is set for any FormItem in a form, <code>form.getValuesAsCriteria()</code> will return an ${isc.DocUtils.linkForRef('object:AdvancedCriteria')} object instead of a normal ${isc.DocUtils.linkForRef('type:Criteria')} object.  Each FormItem will produce one ${isc.DocUtils.linkForRef('object:Criterion')} affecting the DataSource field specified by {@link com.smartgwt.client.widgets.form.fields.FormItem#getCriteriaField criteriaField}. The criteria produced by the FormItems will be grouped under the logical operator provided by {@link com.smartgwt.client.widgets.form.DynamicForm#getOperator operator}. <P> if <code>operator</code> is set for some fields but not others, the default operator is "equals" for fields with a valueMap or an optionDataSource, and for fields of type "enum" (or of a type that inherits from "enum").  The default operator for all other fields is "iContains" (case-insensitive match)  <P> <b>Note:</b> Advanced criteria will only be created for items in a Databound form. If this item is part of a form with no {@link com.smartgwt.client..DataBoundComponent#getDataSource dataSource}, the  <code>operator</code> attribute will have no effect.
     *
     * @param operator operator Default value is null
     */
@@ -1462,7 +1579,7 @@ public class FormItem extends RefDataClass  implements com.smartgwt.client.widge
         setAttribute("operator", operator.getValue());
     }
     /**
-     * ${isc.DocUtils.linkForRef('type:OperatorId')} to be used when {@link com.smartgwt.client.widgets.form.DynamicForm#getValuesAsCriteria} is called. <P> <code>item.operator</code> can be used to create a form that offers search functions such as date range filtering, without the more advanced user interface of the {@link com.smartgwt.client.widgets.form.FilterBuilder}. <P> When <code>item.operator</code> is set for any FormItem in a form, <code>form.getValuesAsCriteria()</code> will return an ${isc.DocUtils.linkForRef('object:AdvancedCriteria')} object instead of a normal ${isc.DocUtils.linkForRef('type:Criteria')} object.  Each FormItem will produce one ${isc.DocUtils.linkForRef('object:Criterion')} affecting the DataSource field specified by {@link com.smartgwt.client.widgets.form.fields.FormItem#getCriteriaField criteriaField}. The criteria produced by the FormItems will be grouped under the logical operator provided by {@link com.smartgwt.client.widgets.form.DynamicForm#getOperator operator}. <P> if <code>operator</code> is set for some fields but not others, the default operator is "equals" for fields with a valueMap or an optionDataSource, and for fields of type "enum" (or of a type that inherits from "enum").  The default operator for all other fields is "iContains" (case-insensitive match)  <P> <b>Note:</b> Advanced criteria will only be created for items in a Databound form. If this item is part of a form with no ${isc.DocUtils.linkForRef('DynamicForm.dataSource','dataSource')}, the  <code>operator</code> attribute will have no effect.
+     * ${isc.DocUtils.linkForRef('type:OperatorId')} to be used when {@link com.smartgwt.client.widgets.form.DynamicForm#getValuesAsCriteria} is called. <P> <code>item.operator</code> can be used to create a form that offers search functions such as date range filtering, without the more advanced user interface of the {@link com.smartgwt.client.widgets.form.FilterBuilder}. <P> When <code>item.operator</code> is set for any FormItem in a form, <code>form.getValuesAsCriteria()</code> will return an ${isc.DocUtils.linkForRef('object:AdvancedCriteria')} object instead of a normal ${isc.DocUtils.linkForRef('type:Criteria')} object.  Each FormItem will produce one ${isc.DocUtils.linkForRef('object:Criterion')} affecting the DataSource field specified by {@link com.smartgwt.client.widgets.form.fields.FormItem#getCriteriaField criteriaField}. The criteria produced by the FormItems will be grouped under the logical operator provided by {@link com.smartgwt.client.widgets.form.DynamicForm#getOperator operator}. <P> if <code>operator</code> is set for some fields but not others, the default operator is "equals" for fields with a valueMap or an optionDataSource, and for fields of type "enum" (or of a type that inherits from "enum").  The default operator for all other fields is "iContains" (case-insensitive match)  <P> <b>Note:</b> Advanced criteria will only be created for items in a Databound form. If this item is part of a form with no {@link com.smartgwt.client..DataBoundComponent#getDataSource dataSource}, the  <code>operator</code> attribute will have no effect.
      *
      *
      * @return OperatorId
@@ -1562,6 +1679,7 @@ public class FormItem extends RefDataClass  implements com.smartgwt.client.widge
             var self = this.@com.smartgwt.client.core.DataClass::getJsObj()();
             self.isDrawn();
         }-*/;
+
 
         /**
          * Show this form item. <BR><BR> This will cause the form to redraw.  If this item had an item.showIf expression, it will be destroyed.

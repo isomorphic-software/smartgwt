@@ -56,7 +56,7 @@ import com.smartgwt.client.util.EnumUtil;
 import com.google.gwt.event.shared.*;
 import com.google.gwt.event.shared.HasHandlers;
    /**
-    * A DataSource is data-provider-independant description of a set of objects that will be loaded, edited and saved within the user interface of your application. <P> Each DataSource consists of a list of {@link com.smartgwt.client.data.DataSource#getFields fields} that make up a DataSource <code>record</code>, along with {@link com.smartgwt.client.data.DataSourceField#getType type},  {@link com.smartgwt.client.data.DataSourceField#getValidators validators},  {@link com.smartgwt.client.data.DataSourceField#getForeignKey foreignKey} to other DataSources, and other metadata. <P> The abstract object description provided by a DataSource is easily mapped to a variety of backend object models and storage schemes.  The following table shows analogous terminology across systems. <table border=1 class="normal"> <tr>   <td>Isomorphic SmartClient</td>   <td>Relational Database</td>   <td>Enterprise Java Beans (EJB)</td>   <td>Entity/Relationship Modelling</td>   <td>OO/UML</td>   <td>XML Schema/WSDL</td>   <td>LDAP</td> </tr><tr>   <td>DataSource</td>   <td>Table</td>   <td>EJB class</td>   <td>Entity</td>   <td>Class</td>   <td>Element Schema (ComplexType)</td>   <td>Objectclass</td> </tr><tr>   <td>Record</td>   <td>Row</td>   <td>EJB instance</td>   <td>Entity instance</td>   <td>Class instance/Object</td>   <td>Element instance (ComplexType)</td>   <td>Entry</td> </tr><tr>   <td>Field</td>   <td>Column</td>   <td>Property</td>   <td>Attribute</td>   <td>Property/Attribute</td>   <td>Attribute or Element (SimpleType)</td>   <td>Attribute</td> </tr></table> <P> DataSources can be {@link com.smartgwt.client.docs.DataSourceDeclaration 'declared'} in either JavaScript or XML format, and can also be {@link com.smartgwt.client.docs.MetadataImport 'imported'} from existing metadata formats, including XML Schema. <P> <i>Data Binding</i> is the process by which ${isc.DocUtils.linkForRef('interface:DataBoundComponent','Data Binding-capable UI components')} can automatically configure themselves for viewing, editing and saving data described by DataSources.  DataBinding is covered in the ${isc.DocUtils.linkForDocNode('QuickStartGuide', 'QuickStart Guide')}, Chapter 6, <i>Data Binding</i>. <P> {@link com.smartgwt.client.docs.ClientServerIntegration 'Data Integration'} is the process by which a DataSource can be connected to server systems such as SQL DataBases, Java Object models, WSDL web services and other data providers.  Data Integration comes in two variants: client-side and server-side.  {@link com.smartgwt.client.docs.ServerDataIntegration 'Server-side integration'} uses the SmartClient Java-based server to connect to data represented by Java Objects or JDBC-accessible databases.  {@link com.smartgwt.client.docs.ClientDataIntegration 'Client-side integration'} connects SmartClient DataSources to XML, JSON or other formats accessible via HTTP. <P> DataSources have a concept of {@link com.smartgwt.client.docs.DataSourceOperations '4 core operations'} ("fetch", "add", "update" and "remove") that can be performed on the set of objects represented by a DataSource.  Once a DataSource has been integrated with your data store, databinding-capable  UI components can leverage the 4 core DataSource operations to provide many complete user interactions without the need to configure how each individual component loads and saves data. <P> These interactions include {@link com.smartgwt.client.widgets.grid.ListGrid}, {@link com.smartgwt.client.widgets.tree.TreeGrid},  {@link com.smartgwt.client.widgets.viewer.DetailViewer}, {@link com.smartgwt.client.widgets.form.DynamicForm}-based  {@link com.smartgwt.client.widgets.form.DynamicForm#editRecord} and {@link com.smartgwt.client.widgets.form.DynamicForm#saveData}, grid-based {@link com.smartgwt.client.widgets.grid.ListGrid#getCanEdit canEdit} and {@link com.smartgwt.client.widgets.grid.ListGrid#getSaveByCell saveByCell}, and custom interactions provided by ${isc.DocUtils.linkForExampleId('patternReuse')} custom databinding-capable components.
+    * A DataSource is data-provider-independant description of a set of objects that will be loaded, edited and saved within the user interface of your application. <P> Each DataSource consists of a list of {@link com.smartgwt.client.data.DataSource#getFields fields} that make up a DataSource <code>record</code>, along with {@link com.smartgwt.client.data.DataSourceField#getType type},  {@link com.smartgwt.client.data.DataSourceField#getValidators validators},  {@link com.smartgwt.client.data.DataSourceField#getForeignKey foreignKey} to other DataSources, and other metadata. <P> The abstract object description provided by a DataSource is easily mapped to a variety of backend object models and storage schemes.  The following table shows analogous terminology across systems. <table border=1 class="normal"> <tr>   <td>Isomorphic SmartGWT</td>   <td>Relational Database</td>   <td>Enterprise Java Beans (EJB)</td>   <td>Entity/Relationship Modelling</td>   <td>OO/UML</td>   <td>XML Schema/WSDL</td>   <td>LDAP</td> </tr><tr>   <td>DataSource</td>   <td>Table</td>   <td>EJB class</td>   <td>Entity</td>   <td>Class</td>   <td>Element Schema (ComplexType)</td>   <td>Objectclass</td> </tr><tr>   <td>Record</td>   <td>Row</td>   <td>EJB instance</td>   <td>Entity instance</td>   <td>Class instance/Object</td>   <td>Element instance (ComplexType)</td>   <td>Entry</td> </tr><tr>   <td>Field</td>   <td>Column</td>   <td>Property</td>   <td>Attribute</td>   <td>Property/Attribute</td>   <td>Attribute or Element (SimpleType)</td>   <td>Attribute</td> </tr></table> <P> DataSources can be {@link com.smartgwt.client.docs.DataSourceDeclaration 'declared'} in either JavaScript or XML format, and can also be {@link com.smartgwt.client.docs.MetadataImport 'imported'} from existing metadata formats, including XML Schema. <P> <i>Data Binding</i> is the process by which ${isc.DocUtils.linkForRef('interface:DataBoundComponent','Data Binding-capable UI components')} can automatically configure themselves for viewing, editing and saving data described by DataSources.  DataBinding is covered in the ${isc.DocUtils.linkForDocNode('QuickStartGuide', 'QuickStart Guide')}, Chapter 6, <i>Data Binding</i>. <P> {@link com.smartgwt.client.docs.ClientServerIntegration 'Data Integration'} is the process by which a DataSource can be connected to server systems such as SQL DataBases, Java Object models, WSDL web services and other data providers.  Data Integration comes in two variants: client-side and server-side.  {@link com.smartgwt.client.docs.ServerDataIntegration 'Server-side integration'} uses the SmartGWT Java-based server to connect to data represented by Java Objects or JDBC-accessible databases.  {@link com.smartgwt.client.docs.ClientDataIntegration 'Client-side integration'} connects SmartGWT DataSources to XML, JSON or other formats accessible via HTTP. <P> DataSources have a concept of {@link com.smartgwt.client.docs.DataSourceOperations '4 core operations'} ("fetch", "add", "update" and "remove") that can be performed on the set of objects represented by a DataSource.  Once a DataSource has been integrated with your data store, databinding-capable  UI components can leverage the 4 core DataSource operations to provide many complete user interactions without the need to configure how each individual component loads and saves data. <P> These interactions include {@link com.smartgwt.client.widgets.grid.ListGrid}, {@link com.smartgwt.client.widgets.tree.TreeGrid},  {@link com.smartgwt.client.widgets.viewer.DetailViewer}, {@link com.smartgwt.client.widgets.form.DynamicForm}-based  {@link com.smartgwt.client.widgets.form.DynamicForm#editRecord} and {@link com.smartgwt.client.widgets.form.DynamicForm#saveData}, grid-based {@link com.smartgwt.client.widgets.grid.ListGrid#getCanEdit canEdit} and {@link com.smartgwt.client.widgets.grid.ListGrid#getSaveByCell saveByCell}, and custom interactions provided by ${isc.DocUtils.linkForExampleId('patternReuse')} custom databinding-capable components.
 
     */
 
@@ -214,7 +214,7 @@ public class DataSource extends BaseClass  implements com.smartgwt.client.data.e
     }
 
     /**
-    * For DataSources using the {@link com.smartgwt.client.docs.SqlDataSource 'SmartClient SQL engine'} for persistence, what database table name to use.  The default is to use the DataSource ID as the table name.
+    * For DataSources using the {@link com.smartgwt.client.docs.SqlDataSource 'SmartGWT SQL engine'} for persistence, what database table name to use.  The default is to use the DataSource ID as the table name.
     *
     * @param tableName tableName Default value is null
     * @throws IllegalStateException this property cannot be changed after the underlying component has been created
@@ -223,7 +223,7 @@ public class DataSource extends BaseClass  implements com.smartgwt.client.data.e
         setAttribute("tableName", tableName, false);
     }
     /**
-     * For DataSources using the {@link com.smartgwt.client.docs.SqlDataSource 'SmartClient SQL engine'} for persistence, what database table name to use.  The default is to use the DataSource ID as the table name.
+     * For DataSources using the {@link com.smartgwt.client.docs.SqlDataSource 'SmartGWT SQL engine'} for persistence, what database table name to use.  The default is to use the DataSource ID as the table name.
      *
      *
      * @return String
@@ -234,7 +234,7 @@ public class DataSource extends BaseClass  implements com.smartgwt.client.data.e
     }
 
     /**
-    * For DataSources using the {@link com.smartgwt.client.docs.SqlDataSource 'SmartClient SQL engine'} for persistence, which database configuration to use.  Database configurations can be created using the "Databases" tab in the Developer Console.  If unset, the default database configuration is used (which also settable using the "Databases" tab).
+    * For DataSources using the {@link com.smartgwt.client.docs.SqlDataSource 'SmartGWT SQL engine'} for persistence, which database configuration to use.  Database configurations can be created using the "Databases" tab in the Developer Console.  If unset, the default database configuration is used (which also settable using the "Databases" tab).
     *
     * @param dbName dbName Default value is null
     * @throws IllegalStateException this property cannot be changed after the underlying component has been created
@@ -243,7 +243,7 @@ public class DataSource extends BaseClass  implements com.smartgwt.client.data.e
         setAttribute("dbName", dbName, false);
     }
     /**
-     * For DataSources using the {@link com.smartgwt.client.docs.SqlDataSource 'SmartClient SQL engine'} for persistence, which database configuration to use.  Database configurations can be created using the "Databases" tab in the Developer Console.  If unset, the default database configuration is used (which also settable using the "Databases" tab).
+     * For DataSources using the {@link com.smartgwt.client.docs.SqlDataSource 'SmartGWT SQL engine'} for persistence, which database configuration to use.  Database configurations can be created using the "Databases" tab in the Developer Console.  If unset, the default database configuration is used (which also settable using the "Databases" tab).
      *
      *
      * @return String
@@ -396,7 +396,7 @@ public class DataSource extends BaseClass  implements com.smartgwt.client.data.e
     }
 
     /**
-    * For a DataSource with serverType: "sql" or serverType: "hibernate", automatically derive the dataSource's schema (field definitions) from from the SQL table specified in  {@link com.smartgwt.client.data.DataSource#getTableName tableName}.  This causes SmartClient to create a "super" DataSource, which this dataSource then automatically {@link com.smartgwt.client.data.DataSource#getInheritsFrom inheritsFrom}.  This allows you to  override auto-derived schema as required. <p> This property is only applicable if you are using the SmartClient server.
+    * For a DataSource with serverType: "sql" or serverType: "hibernate", automatically derive the dataSource's schema (field definitions) from from the SQL table specified in  {@link com.smartgwt.client.data.DataSource#getTableName tableName}.  This causes SmartGWT to create a "super" DataSource, which this dataSource then automatically {@link com.smartgwt.client.data.DataSource#getInheritsFrom inheritsFrom}.  This allows you to  override auto-derived schema as required. <p> This property is only applicable if you are using the SmartGWT server.
     *
     * @param autoDeriveSchema autoDeriveSchema Default value is null
     * @throws IllegalStateException this property cannot be changed after the underlying component has been created
@@ -405,7 +405,7 @@ public class DataSource extends BaseClass  implements com.smartgwt.client.data.e
         setAttribute("autoDeriveSchema", autoDeriveSchema, false);
     }
     /**
-     * For a DataSource with serverType: "sql" or serverType: "hibernate", automatically derive the dataSource's schema (field definitions) from from the SQL table specified in  {@link com.smartgwt.client.data.DataSource#getTableName tableName}.  This causes SmartClient to create a "super" DataSource, which this dataSource then automatically {@link com.smartgwt.client.data.DataSource#getInheritsFrom inheritsFrom}.  This allows you to  override auto-derived schema as required. <p> This property is only applicable if you are using the SmartClient server.
+     * For a DataSource with serverType: "sql" or serverType: "hibernate", automatically derive the dataSource's schema (field definitions) from from the SQL table specified in  {@link com.smartgwt.client.data.DataSource#getTableName tableName}.  This causes SmartGWT to create a "super" DataSource, which this dataSource then automatically {@link com.smartgwt.client.data.DataSource#getInheritsFrom inheritsFrom}.  This allows you to  override auto-derived schema as required. <p> This property is only applicable if you are using the SmartGWT server.
      *
      *
      * @return Boolean
@@ -590,7 +590,7 @@ public class DataSource extends BaseClass  implements com.smartgwt.client.data.e
     }
              
     /**
-    * Sets the strategy this DataSource uses to translate Java enumerated types (objects of type enum) to and from Javascript.  This property is only applicable if you are using the SmartClient server
+    * Sets the strategy this DataSource uses to translate Java enumerated types (objects of type enum) to and from Javascript.  This property is only applicable if you are using the SmartGWT server
     * <p><b>Note : </b> This is an advanced setting</p>
     *
     * @param enumTranslateStrategy enumTranslateStrategy Default value is null
@@ -601,7 +601,7 @@ public class DataSource extends BaseClass  implements com.smartgwt.client.data.e
     }
 
     /**
-    * The name of the property this DataSource uses for constant name when translating Java enumerated types to and from Javascript, if the ${isc.DocUtils.linkForRef('type:EnumTranslateStrategy')} is set to "bean".  Defaults to "_constant" if not set. <p>  This property is only applicable if you are using the SmartClient server
+    * The name of the property this DataSource uses for constant name when translating Java enumerated types to and from Javascript, if the ${isc.DocUtils.linkForRef('type:EnumTranslateStrategy')} is set to "bean".  Defaults to "_constant" if not set. <p>  This property is only applicable if you are using the SmartGWT server
     * <p><b>Note : </b> This is an advanced setting</p>
     *
     * @param enumConstantProperty enumConstantProperty Default value is null
@@ -612,7 +612,7 @@ public class DataSource extends BaseClass  implements com.smartgwt.client.data.e
     }
 
     /**
-    * The name of the property this DataSource uses for ordinal number when translating Java enumerated types to and from Javascript, if the ${isc.DocUtils.linkForRef('type:EnumTranslateStrategy')} is set to "bean".  Defaults to "_ordinal" if not set. <p>  This property is only applicable if you are using the SmartClient server
+    * The name of the property this DataSource uses for ordinal number when translating Java enumerated types to and from Javascript, if the ${isc.DocUtils.linkForRef('type:EnumTranslateStrategy')} is set to "bean".  Defaults to "_ordinal" if not set. <p>  This property is only applicable if you are using the SmartGWT server
     * <p><b>Note : </b> This is an advanced setting</p>
     *
     * @param enumOrdinalProperty enumOrdinalProperty Default value is null
@@ -782,7 +782,7 @@ public class DataSource extends BaseClass  implements com.smartgwt.client.data.e
     }
 
     /**
-    * [A] If set to true, both client and server-side advanced filtering used by SmartClient will follow SQL99 behavior for dealing with NULL values, which is often counter-intuitive to users. Specifically, when a field has NULL value, all of the following expression are false: <pre>    field == "someValue"  (normally false)    field != "someValue"  (normally true)    not (field == "someValue")   (normally true)    not (field != "someValue")   (normally false) </pre>
+    * [A] If set to true, both client and server-side advanced filtering used by SmartGWT will follow SQL99 behavior for dealing with NULL values, which is often counter-intuitive to users. Specifically, when a field has NULL value, all of the following expression are false: <pre>    field == "someValue"  (normally false)    field != "someValue"  (normally true)    not (field == "someValue")   (normally true)    not (field != "someValue")   (normally false) </pre>
     *
     * @param strictSQLFiltering strictSQLFiltering Default value is false
     * @throws IllegalStateException this property cannot be changed after the underlying component has been created
@@ -791,7 +791,7 @@ public class DataSource extends BaseClass  implements com.smartgwt.client.data.e
         setAttribute("strictSQLFiltering", strictSQLFiltering, false);
     }
     /**
-     * [A] If set to true, both client and server-side advanced filtering used by SmartClient will follow SQL99 behavior for dealing with NULL values, which is often counter-intuitive to users. Specifically, when a field has NULL value, all of the following expression are false: <pre>    field == "someValue"  (normally false)    field != "someValue"  (normally true)    not (field == "someValue")   (normally true)    not (field != "someValue")   (normally false) </pre>
+     * [A] If set to true, both client and server-side advanced filtering used by SmartGWT will follow SQL99 behavior for dealing with NULL values, which is often counter-intuitive to users. Specifically, when a field has NULL value, all of the following expression are false: <pre>    field == "someValue"  (normally false)    field != "someValue"  (normally true)    not (field == "someValue")   (normally true)    not (field != "someValue")   (normally false) </pre>
      *
      *
      * @return Boolean
@@ -833,7 +833,7 @@ public class DataSource extends BaseClass  implements com.smartgwt.client.data.e
         /**
          * Add a handleError handler.
          * <p>
-         * If you define this method on a DataSource, it will be called whenever the server returns a DSResponse with a status other than {@link com.smartgwt.client.rpc.RPCResponse#STATUS_SUCCESS}.  You can use this hook to do DataSource-specific error handling.  Unless you return <code>false</code> from this method, {@link com.smartgwt.client.rpc.RPCManager#handleError} will be called by SmartClient right after this method completes.
+         * If you define this method on a DataSource, it will be called whenever the server returns a DSResponse with a status other than {@link com.smartgwt.client.rpc.RPCResponse#STATUS_SUCCESS}.  You can use this hook to do DataSource-specific error handling.  Unless you return <code>false</code> from this method, {@link com.smartgwt.client.rpc.RPCManager#handleError} will be called by SmartGWT right after this method completes.
          *
          * @param handler the handleError handler
          */
