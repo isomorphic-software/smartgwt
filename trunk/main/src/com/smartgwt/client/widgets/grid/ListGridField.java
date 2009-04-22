@@ -1553,9 +1553,21 @@ public class ListGridField extends DataClass  implements com.smartgwt.client.wid
     // ********************* Static Methods ***********************
 
 
-
-
-
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
     /**
      * If this ListGrid is showing a filter row, this property can be used to apply a default value to show in the filter editor for this field.
@@ -1655,15 +1667,26 @@ public class ListGridField extends DataClass  implements com.smartgwt.client.wid
      * Optional function to return the value that should be used when sorting this field. <P> Note that, if the dataset
      * exceeds {@link com.smartgwt.client.widgets.grid.ListGrid#getDataPageSize dataPageSize} and hence paging is
      * introduced, the grid relies on the server to provide sorting, and the sortNormalizer will no longer be called.
+     *
+     * @param normalizer the sort normalizer
      */
     public native void setSortNormalizer(SortNormalizer normalizer) /*-{
             var self = this.@com.smartgwt.client.core.DataClass::getJsObj()();
             self.sortNormalizer = function(record, fieldName) {
                 var recordJ = @com.smartgwt.client.widgets.grid.ListGridRecord::getOrCreateRef(Lcom/google/gwt/core/client/JavaScriptObject;)(record);
-                return normalizer.@com.smartgwt.client.widgets.grid.SortNormalizer::normalize(Lcom/smartgwt/client/widgets/grid/ListGridRecord;Ljava/lang/String;)(recordJ, fieldName);
+                var value = normalizer.@com.smartgwt.client.widgets.grid.SortNormalizer::normalize(Lcom/smartgwt/client/widgets/grid/ListGridRecord;Ljava/lang/String;)(recordJ, fieldName);
+                if(value == null) return null;
+                if(typeof value == 'string') {
+                    return value;
+                } else {
+                    return @com.smartgwt.client.widgets.grid.ListGridField::normalizedValue(Ljava/lang/Number;)(value);
+                }
             };
     }-*/;
 
+    private static double normalizedValue(Number number) {
+        return number.doubleValue();
+    }
     /**
      * * HTML to be shown in hovers over cells in the column described by this field.
      *
