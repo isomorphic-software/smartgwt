@@ -107,7 +107,7 @@ final ListGridField populationField = new ListGridField("population", "Populatio
         });
 
         gdpPerCapitaField.setSortNormalizer(new SortNormalizer() {
-            public double normalize(ListGridRecord record, String fieldName) {
+            public Object normalize(ListGridRecord record, String fieldName) {
                 CountryRecord countryRecord = (CountryRecord) record;
                 return countryRecord.getGdp() / countryRecord.getPopulation();
             }
