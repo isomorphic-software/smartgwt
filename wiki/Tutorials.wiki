@@ -5,10 +5,15 @@ Various SmartGWT tutorials and resources from the web.
 
 = Tutorials =
 
-[http://vanje.wordpress.com/2009/04/25/gwt-and-smartgwt-quickstart-part-1/ http://vanje.wordpress.com/2009/04/25/gwt-and-smartgwt-quickstart-part-1/] GWT and SmartGWT QuickStart with Eclipse
+*SmartGWT with Eclipse*
+  * [http://vanje.wordpress.com/2009/04/25/gwt-and-smartgwt-quickstart-part-1/ http://vanje.wordpress.com/2009/04/25/gwt-and-smartgwt-quickstart-part-1/] GWT and SmartGWT QuickStart
 
-[http://jellebeuselinck.wordpress.com/2009/03/05/setting-up-smartgwt/ http://jellebeuselinck.wordpress.com/2009/03/05/setting-up-smartgwt/] Setting up SmartGWT with Eclipse
+  * [http://jellebeuselinck.wordpress.com/2009/03/05/setting-up-smartgwt/ http://jellebeuselinck.wordpress.com/2009/03/05/setting-up-smartgwt/] Setting up SmartGWT
 
-[http://smartgwt.rorschach.de/index.php5/Setting_up_Eclipse_%26_Maven2] SmartGWT with Eclipse and GWT-Maven
+*SmartGWT with Netbeans*
 
-[http://forums.smartclient.com/showthread.php?t=3168] Setting up SmartGWT with NetBeans and GWT4NB.
+  * [http://smartgwt.rorschach.de/index.php5/Setting_up_Eclipse_%26_Maven2] SmartGWT with Eclipse and GWT-Maven
+
+  * [http://www.plantstar.org/tutorials/Netbeans_Smartgwt.htm http://www.plantstar.org/tutorials/Netbeans_Smartgwt.htm] Configuring Netbeans 6.5 to use SmartGWT
+
+  * [http://forums.smartclient.com/showthread.php?t=3168] Setting up SmartGWT with NetBeans and GWT4NB.
