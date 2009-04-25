@@ -22,7 +22,7 @@ import com.google.gwt.event.shared.HasHandlers;
 
 public interface HasEventResizedHandlers extends HasHandlers {
     /**
-     * Called when an event is resized via dragging by a user.  Return false to disallow the resize.
+     * Called when an event is resized via dragging by a user.  Return false to disallow the&#010 resize.&#010
      */
     HandlerRegistration addEventResizedHandler(EventResizedHandler handler);
 }

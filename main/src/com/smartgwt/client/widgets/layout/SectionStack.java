@@ -56,7 +56,7 @@ import com.smartgwt.client.util.EnumUtil;
 import com.google.gwt.event.shared.*;
 import com.google.gwt.event.shared.HasHandlers;
    /**
-    * A container that manages a list of sections of widgets, each with a header.  Sometimes called an "Accordion". <P> SectionStack can be configured so that only one section is visible at a time (similar to MS Outlook's left-hand Nav), or to allow multiple sections to be visible and share the available space.
+    * A container that manages a list of sections of widgets, each with a header.  Sometimes called&#010 an "Accordion".&#010 <P>&#010 SectionStack can be configured so that only one section is visible at a time (similar to MS Outlook's&#010 left-hand Nav), or to allow multiple sections to be visible and share the available space.
 
     */
 public class SectionStack extends VLayout {
@@ -89,7 +89,7 @@ public class SectionStack extends VLayout {
     // ********************* Properties / Attributes ***********************
              
     /**
-    * Normal ${isc.DocUtils.linkForRef('type:Overflow')} settings can be used on layouts, for example, an overflow:auto Layout will scroll if sections are resized to exceed the specified size, whereas an overflow:visible Layout will grow to accomodate the resized sections.
+    * Normal ${isc.DocUtils.linkForRef('type:Overflow')} settings can be used on layouts, for example, an&#010 overflow:auto Layout will scroll if sections are resized to exceed the specified size,&#010 whereas an overflow:visible Layout will grow to accomodate the resized sections.
     *
     * @param overflow overflow Default value is "hidden"
     * @throws IllegalStateException this property cannot be changed after the component has been created
@@ -98,7 +98,7 @@ public class SectionStack extends VLayout {
         setAttribute("overflow", overflow.getValue(), false);
     }
     /**
-     * Normal ${isc.DocUtils.linkForRef('type:Overflow')} settings can be used on layouts, for example, an overflow:auto Layout will scroll if sections are resized to exceed the specified size, whereas an overflow:visible Layout will grow to accomodate the resized sections.
+     * Normal ${isc.DocUtils.linkForRef('type:Overflow')} settings can be used on layouts, for example, an&#010 overflow:auto Layout will scroll if sections are resized to exceed the specified size,&#010 whereas an overflow:visible Layout will grow to accomodate the resized sections.
      *
      *
      * @return Overflow
@@ -109,7 +109,7 @@ public class SectionStack extends VLayout {
     }
 
     /**
-    * Name of the Canvas subclass to use as a header that labels the section and allows showing and hiding.  The default class be skinned, or trivial subclasses created to allow different appearances for headers in different SectionStacks. <P> Very advanced developers can use the following information to create custom header classes. <P> The SectionStack will instantiate this class, giving the following properties on init: <ul> <li><code>layout</code>: the SectionStack <li><code>expanded</code>: true or false <li><code>hidden</code>: true or false <li><code>title</code>: section title </ul> From then on, when the sectionHeader is clicked on, it should call {@link com.smartgwt.client.widgets.layout.SectionStack#sectionHeaderClick}. <br> Whenever the section is hidden or shown, sectionHeader.setExpanded(true|false) will be called if implemented.
+    * Name of the Canvas subclass to use as a header that labels the section and allows&#010 showing and hiding.  The default class be skinned, or trivial subclasses created to&#010 allow different appearances for headers in different SectionStacks.&#010 <P>&#010 Very advanced developers can use the following information to create custom header&#010 classes.&#010 <P>&#010 The SectionStack will instantiate this class, giving the following properties on init:&#010 <ul>&#010 <li><code>layout</code>: the SectionStack&#010 <li><code>expanded</code>: true or false&#010 <li><code>hidden</code>: true or false&#010 <li><code>title</code>: section title&#010 </ul>&#010 From then on, when the sectionHeader is clicked on, it should call&#010 {@link com.smartgwt.client.widgets.layout.SectionStack#sectionHeaderClick}.&#010 <br>&#010 Whenever the section is hidden or shown, sectionHeader.setExpanded(true|false) will be&#010 called if implemented.
     * <p><b>Note : </b> This is an advanced setting</p>
     *
     * @param sectionHeaderClass sectionHeaderClass Default value is "SectionHeader"
@@ -119,7 +119,7 @@ public class SectionStack extends VLayout {
         setAttribute("sectionHeaderClass", sectionHeaderClass, false);
     }
     /**
-     * Name of the Canvas subclass to use as a header that labels the section and allows showing and hiding.  The default class be skinned, or trivial subclasses created to allow different appearances for headers in different SectionStacks. <P> Very advanced developers can use the following information to create custom header classes. <P> The SectionStack will instantiate this class, giving the following properties on init: <ul> <li><code>layout</code>: the SectionStack <li><code>expanded</code>: true or false <li><code>hidden</code>: true or false <li><code>title</code>: section title </ul> From then on, when the sectionHeader is clicked on, it should call {@link com.smartgwt.client.widgets.layout.SectionStack#sectionHeaderClick}. <br> Whenever the section is hidden or shown, sectionHeader.setExpanded(true|false) will be called if implemented.
+     * Name of the Canvas subclass to use as a header that labels the section and allows&#010 showing and hiding.  The default class be skinned, or trivial subclasses created to&#010 allow different appearances for headers in different SectionStacks.&#010 <P>&#010 Very advanced developers can use the following information to create custom header&#010 classes.&#010 <P>&#010 The SectionStack will instantiate this class, giving the following properties on init:&#010 <ul>&#010 <li><code>layout</code>: the SectionStack&#010 <li><code>expanded</code>: true or false&#010 <li><code>hidden</code>: true or false&#010 <li><code>title</code>: section title&#010 </ul>&#010 From then on, when the sectionHeader is clicked on, it should call&#010 {@link com.smartgwt.client.widgets.layout.SectionStack#sectionHeaderClick}.&#010 <br>&#010 Whenever the section is hidden or shown, sectionHeader.setExpanded(true|false) will be&#010 called if implemented.
      *
      *
      * @return String
@@ -150,7 +150,7 @@ public class SectionStack extends VLayout {
     }
 
     /**
-    * Whether sections can be drag resized by the user dragging the section header. <P> Note that, with <code>canResizeSections:true</code>, not all sections can be resized: sections that contain only {@link com.smartgwt.client.widgets.Button#getAutoFit autoFit} components or that are marked with {@link com.smartgwt.client.widgets.layout.SectionStackSection#getResizeable resizeable} will not be resizeable.
+    * Whether sections can be drag resized by the user dragging the section header.&#010 <P>&#010 Note that, with <code>canResizeSections:true</code>, not all sections can be resized:&#010 sections that contain only {@link com.smartgwt.client.widgets.Button#getAutoFit autoFit} components or that are&#010 marked with {@link com.smartgwt.client.widgets.layout.SectionStackSection#getResizeable resizeable} will not be&#010 resizeable.
     * <p><b>Note : </b> This is an advanced setting</p>
     *
     * @param canResizeSections canResizeSections Default value is true
@@ -160,7 +160,7 @@ public class SectionStack extends VLayout {
         setAttribute("canResizeSections", canResizeSections, false);
     }
     /**
-     * Whether sections can be drag resized by the user dragging the section header. <P> Note that, with <code>canResizeSections:true</code>, not all sections can be resized: sections that contain only {@link com.smartgwt.client.widgets.Button#getAutoFit autoFit} components or that are marked with {@link com.smartgwt.client.widgets.layout.SectionStackSection#getResizeable resizeable} will not be resizeable.
+     * Whether sections can be drag resized by the user dragging the section header.&#010 <P>&#010 Note that, with <code>canResizeSections:true</code>, not all sections can be resized:&#010 sections that contain only {@link com.smartgwt.client.widgets.Button#getAutoFit autoFit} components or that are&#010 marked with {@link com.smartgwt.client.widgets.layout.SectionStackSection#getResizeable resizeable} will not be&#010 resizeable.
      *
      *
      * @return Boolean
@@ -171,7 +171,7 @@ public class SectionStack extends VLayout {
     }
 
     /**
-    * If true, the headers for the sections (if shown) will be included in the page's tab order for accessibility.
+    * If true, the headers for the sections (if shown) will be included in the page's tab&#010 order for accessibility.
     * <p><b>Note : </b> This is an advanced setting</p>
     *
     * @param canTabToHeaders canTabToHeaders Default value is false
@@ -181,7 +181,7 @@ public class SectionStack extends VLayout {
         setAttribute("canTabToHeaders", canTabToHeaders, false);
     }
     /**
-     * If true, the headers for the sections (if shown) will be included in the page's tab order for accessibility.
+     * If true, the headers for the sections (if shown) will be included in the page's tab&#010 order for accessibility.
      *
      *
      * @return Boolean
@@ -192,7 +192,7 @@ public class SectionStack extends VLayout {
     }
 
     /**
-    * If an expanded or shown section expands past the current viewport and this property is true, then the viewport will auto-scroll to fit as much of the section content into the viewport without scrolling the top of the section out of the viewport.
+    * If an expanded or shown section expands past the current viewport and this property is&#010 true, then the viewport will auto-scroll to fit as much of the section content into the&#010 viewport without scrolling the top of the section out of the viewport.
     *
     * @param scrollSectionIntoView scrollSectionIntoView Default value is true
     * @throws IllegalStateException this property cannot be changed after the component has been created
@@ -201,7 +201,7 @@ public class SectionStack extends VLayout {
         setAttribute("scrollSectionIntoView", scrollSectionIntoView, false);
     }
     /**
-     * If an expanded or shown section expands past the current viewport and this property is true, then the viewport will auto-scroll to fit as much of the section content into the viewport without scrolling the top of the section out of the viewport.
+     * If an expanded or shown section expands past the current viewport and this property is&#010 true, then the viewport will auto-scroll to fit as much of the section content into the&#010 viewport without scrolling the top of the section out of the viewport.
      *
      *
      * @return Boolean
@@ -212,7 +212,7 @@ public class SectionStack extends VLayout {
     }
 
     /**
-    * If true, sections are animated during expand/collapse and addition/removal of SectionItems is likewise animated.
+    * If true, sections are animated during expand/collapse and addition/removal of&#010 SectionItems is likewise animated.
     *
     * @param animateSections animateSections Default value is null
     */
@@ -220,7 +220,7 @@ public class SectionStack extends VLayout {
         setAttribute("animateSections", animateSections, true);
     }
     /**
-     * If true, sections are animated during expand/collapse and addition/removal of SectionItems is likewise animated.
+     * If true, sections are animated during expand/collapse and addition/removal of&#010 SectionItems is likewise animated.
      *
      *
      * @return Boolean
@@ -250,7 +250,7 @@ public class SectionStack extends VLayout {
     }
 
     /**
-    * Size, in pixels, of indentation of all member items. Items will be offset and reduced in width by this amount. Overridden by {@link com.smartgwt.client.widgets.layout.SectionStack#getItemStartIndent itemStartIndent} or {@link com.smartgwt.client.widgets.layout.SectionStack#getItemEndIndent itemEndIndent}. Setting itemIndent is equivalent to setting itemStartIndent to the same amount and itemEndIndent to 0.
+    * Size, in pixels, of indentation of all member items. Items will be offset&#010 and reduced in width by this amount. Overridden by&#010 {@link com.smartgwt.client.widgets.layout.SectionStack#getItemStartIndent itemStartIndent} or {@link com.smartgwt.client.widgets.layout.SectionStack#getItemEndIndent itemEndIndent}.&#010 Setting itemIndent is equivalent to setting itemStartIndent to the same amount&#010 and itemEndIndent to 0.
     *
     * @param itemIndent itemIndent Default value is 0
     */
@@ -258,7 +258,7 @@ public class SectionStack extends VLayout {
         setAttribute("itemIndent", itemIndent, true);
     }
     /**
-     * Size, in pixels, of indentation of all member items. Items will be offset and reduced in width by this amount. Overridden by {@link com.smartgwt.client.widgets.layout.SectionStack#getItemStartIndent itemStartIndent} or {@link com.smartgwt.client.widgets.layout.SectionStack#getItemEndIndent itemEndIndent}. Setting itemIndent is equivalent to setting itemStartIndent to the same amount and itemEndIndent to 0.
+     * Size, in pixels, of indentation of all member items. Items will be offset&#010 and reduced in width by this amount. Overridden by&#010 {@link com.smartgwt.client.widgets.layout.SectionStack#getItemStartIndent itemStartIndent} or {@link com.smartgwt.client.widgets.layout.SectionStack#getItemEndIndent itemEndIndent}.&#010 Setting itemIndent is equivalent to setting itemStartIndent to the same amount&#010 and itemEndIndent to 0.
      *
      *
      * @return int
@@ -269,7 +269,7 @@ public class SectionStack extends VLayout {
     }
 
     /**
-    * Size, in pixels, of indentation of all member items relative to the start of the alignment axis. For instance, for left-aligned members,  itemStartIndent specifies indentation for every item from the left side of the section stack. Overrides {@link com.smartgwt.client.widgets.layout.SectionStack#getItemIndent itemIndent}.
+    * Size, in pixels, of indentation of all member items relative to the start of&#010 the alignment axis. For instance, for left-aligned members, &#010 itemStartIndent specifies indentation for every item from the left side of the&#010 section stack. Overrides {@link com.smartgwt.client.widgets.layout.SectionStack#getItemIndent itemIndent}.
     *
     * @param itemStartIndent itemStartIndent Default value is undefined
     */
@@ -277,7 +277,7 @@ public class SectionStack extends VLayout {
         setAttribute("itemStartIndent", itemStartIndent, true);
     }
     /**
-     * Size, in pixels, of indentation of all member items relative to the start of the alignment axis. For instance, for left-aligned members,  itemStartIndent specifies indentation for every item from the left side of the section stack. Overrides {@link com.smartgwt.client.widgets.layout.SectionStack#getItemIndent itemIndent}.
+     * Size, in pixels, of indentation of all member items relative to the start of&#010 the alignment axis. For instance, for left-aligned members, &#010 itemStartIndent specifies indentation for every item from the left side of the&#010 section stack. Overrides {@link com.smartgwt.client.widgets.layout.SectionStack#getItemIndent itemIndent}.
      *
      *
      * @return int
@@ -288,7 +288,7 @@ public class SectionStack extends VLayout {
     }
 
     /**
-    * Size, in pixels, of indentation of all member items relative to the end of the alignment axis. For instance, for left-aligned members,  itemStartIndent specifies indentation for every item from the right side of the section stack.
+    * Size, in pixels, of indentation of all member items relative to the end of&#010 the alignment axis. For instance, for left-aligned members, &#010 itemStartIndent specifies indentation for every item from the right side of the&#010 section stack.
     *
     * @param itemEndIndent itemEndIndent Default value is undefined
     */
@@ -296,7 +296,7 @@ public class SectionStack extends VLayout {
         setAttribute("itemEndIndent", itemEndIndent, true);
     }
     /**
-     * Size, in pixels, of indentation of all member items relative to the end of the alignment axis. For instance, for left-aligned members,  itemStartIndent specifies indentation for every item from the right side of the section stack.
+     * Size, in pixels, of indentation of all member items relative to the end of&#010 the alignment axis. For instance, for left-aligned members, &#010 itemStartIndent specifies indentation for every item from the right side of the&#010 section stack.
      *
      *
      * @return int
@@ -326,7 +326,7 @@ public class SectionStack extends VLayout {
 
 
         /**
-         * Returns the position of the specified section in the SectionStack.  The numbering is zero-based.
+         * &#010 Returns the position of the specified section in the SectionStack.  The numbering is&#010 zero-based.  &#010&#010
          * @param sectionID ID of a section for which you want to obtain the position.
          *
          * @return Position of the section in the SectionStack or -1 if the specified                      section is not a member of this SectionStack.
@@ -337,7 +337,7 @@ public class SectionStack extends VLayout {
         }-*/;
 
         /**
-         * Method intended to be called by the sectionHeader when it is clicked on.
+         * Method intended to be called by the sectionHeader when it is clicked on.&#010&#010
          * @param sectionHeader the sectionHeader clicked on
          */
         public native void sectionHeaderClick(Canvas sectionHeader) /*-{

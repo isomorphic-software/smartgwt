@@ -120,7 +120,7 @@ public class MenuButton extends Button {
 
     /**
     * show menu button image (up / down arrowhead) for this menu button
-    * Setter for the 'showMenuButtonImage' property - shows/hides the menu button image at runtime
+    * Setter for the 'showMenuButtonImage' property - shows/hides the menu button image&#010 at runtime&#010
     *
     * @param showMenuButtonImage Should the image be shown. Default value is true
     * @throws IllegalStateException this property cannot be changed after the component has been created
@@ -140,7 +140,7 @@ public class MenuButton extends Button {
     }
 
     /**
-    * Image for menu button indicating that the button expands a menu.  This image is shown for menus expanding down from the button.   Menu direction is controlled by {@link com.smartgwt.client.widgets.menu.MenuButton#getShowMenuBelow showMenuBelow}.
+    * Image for menu button indicating that the button expands a menu.  This image is shown&#010 for menus expanding down from the button.   Menu direction is controlled by&#010 {@link com.smartgwt.client.widgets.menu.MenuButton#getShowMenuBelow showMenuBelow}.
     * <p><b>Note : </b> This is an advanced setting</p>
     *
     * @param menuButtonImage menuButtonImage Default value is "[SKIN]menu_button.gif"
@@ -150,7 +150,7 @@ public class MenuButton extends Button {
         setAttribute("menuButtonImage", menuButtonImage, false);
     }
     /**
-     * Image for menu button indicating that the button expands a menu.  This image is shown for menus expanding down from the button.   Menu direction is controlled by {@link com.smartgwt.client.widgets.menu.MenuButton#getShowMenuBelow showMenuBelow}.
+     * Image for menu button indicating that the button expands a menu.  This image is shown&#010 for menus expanding down from the button.   Menu direction is controlled by&#010 {@link com.smartgwt.client.widgets.menu.MenuButton#getShowMenuBelow showMenuBelow}.
      *
      *
      * @return String
@@ -161,7 +161,7 @@ public class MenuButton extends Button {
     }
 
     /**
-    * Image for menu button indicating that the button expands a menu.  This image is shown for menus expanding up from the button.   Menu direction is controlled by {@link com.smartgwt.client.widgets.menu.MenuButton#getShowMenuBelow showMenuBelow}.
+    * Image for menu button indicating that the button expands a menu.  This image is shown&#010 for menus expanding up from the button.   Menu direction is controlled by&#010 {@link com.smartgwt.client.widgets.menu.MenuButton#getShowMenuBelow showMenuBelow}.
     * <p><b>Note : </b> This is an advanced setting</p>
     *
     * @param menuButtonImageUp menuButtonImageUp Default value is "[SKIN]menu_button_up.gif"
@@ -171,7 +171,7 @@ public class MenuButton extends Button {
         setAttribute("menuButtonImageUp", menuButtonImageUp, false);
     }
     /**
-     * Image for menu button indicating that the button expands a menu.  This image is shown for menus expanding up from the button.   Menu direction is controlled by {@link com.smartgwt.client.widgets.menu.MenuButton#getShowMenuBelow showMenuBelow}.
+     * Image for menu button indicating that the button expands a menu.  This image is shown&#010 for menus expanding up from the button.   Menu direction is controlled by&#010 {@link com.smartgwt.client.widgets.menu.MenuButton#getShowMenuBelow showMenuBelow}.
      *
      *
      * @return String
@@ -182,7 +182,7 @@ public class MenuButton extends Button {
     }
 
     /**
-    * If this MenuButton has a specified {@link com.smartgwt.client.widgets.Canvas#getAccessKey accessKey}, underline it in the title of the button by default
+    * If this MenuButton has a specified {@link com.smartgwt.client.widgets.Canvas#getAccessKey accessKey}, underline it&#010 in the title of the button by default
     *
     * @param hiliteAccessKey hiliteAccessKey Default value is true
     * @throws IllegalStateException this property cannot be changed after the component has been created
@@ -191,7 +191,7 @@ public class MenuButton extends Button {
         setAttribute("hiliteAccessKey", hiliteAccessKey, false);
     }
     /**
-     * If this MenuButton has a specified {@link com.smartgwt.client.widgets.Canvas#getAccessKey accessKey}, underline it in the title of the button by default
+     * If this MenuButton has a specified {@link com.smartgwt.client.widgets.Canvas#getAccessKey accessKey}, underline it&#010 in the title of the button by default
      *
      *
      * @return Boolean
@@ -202,8 +202,8 @@ public class MenuButton extends Button {
     }
 
     /**
-    * The menu drops down below the menu button.   Set to false if the menu should appear above the menu button.
-    * Setter for the 'showMenuButtonBelow' property - determines whether the menu will be shown above or below the menubutton.
+    * The menu drops down below the menu button.&#010   Set to false if the menu should appear above the menu button.
+    * Setter for the 'showMenuButtonBelow' property - determines whether the menu will be&#010 shown above or below the menubutton.&#010
     *
     * @param showMenuBelow True if the menu should be shown below the menubutton.. Default value is true
     */
@@ -211,7 +211,7 @@ public class MenuButton extends Button {
         setAttribute("showMenuBelow", showMenuBelow, true);
     }
     /**
-     * The menu drops down below the menu button.   Set to false if the menu should appear above the menu button.
+     * The menu drops down below the menu button.&#010   Set to false if the menu should appear above the menu button.
      *
      *
      * @return Boolean
@@ -241,7 +241,7 @@ public class MenuButton extends Button {
     }
 
     /**
-    * Allows you to specify an animation effect to apply to the menu when it is being shown. Valid options are "none" (no animation), "fade", "slide" and "wipe". If unspecified falls through to <code>menu.showAnimationEffect</code>
+    * Allows you to specify an animation effect to apply to the menu when it is being shown.&#010 Valid options are "none" (no animation), "fade", "slide" and "wipe".&#010 If unspecified falls through to <code>menu.showAnimationEffect</code>
     * <p><b>Note : </b> This is an advanced setting</p>
     *
     * @param menuAnimationEffect menuAnimationEffect Default value is null
@@ -250,7 +250,7 @@ public class MenuButton extends Button {
         setAttribute("menuAnimationEffect", menuAnimationEffect, true);
     }
     /**
-     * Allows you to specify an animation effect to apply to the menu when it is being shown. Valid options are "none" (no animation), "fade", "slide" and "wipe". If unspecified falls through to <code>menu.showAnimationEffect</code>
+     * Allows you to specify an animation effect to apply to the menu when it is being shown.&#010 Valid options are "none" (no animation), "fade", "slide" and "wipe".&#010 If unspecified falls through to <code>menu.showAnimationEffect</code>
      *
      *
      * @return String

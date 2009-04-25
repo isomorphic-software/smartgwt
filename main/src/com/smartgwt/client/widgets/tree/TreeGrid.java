@@ -56,7 +56,7 @@ import com.smartgwt.client.util.EnumUtil;
 import com.google.gwt.event.shared.*;
 import com.google.gwt.event.shared.HasHandlers;
    /**
-    * The SmartGWT system supports hierarchical data (also referred to as tree data due to its "branching" organization) with: <ul>   <li> the {@link com.smartgwt.client.widgets.tree.Tree} class, which manipulates hierarchical data sets   <li> the TreeGrid widget class, which extends the ListGrid class to visually        present tree data in an expandable/collapsible format. </ul> For information on DataBinding Trees, see {@link com.smartgwt.client.docs.TreeDataBinding}. <p> A TreeGrid works just like a {@link com.smartgwt.client.widgets.grid.ListGrid}, except one column (specified by {@link com.smartgwt.client.widgets.tree.TreeGridField#getTreeField treeField} shows a heirarchical {@link com.smartgwt.client.widgets.tree.Tree}.  A TreeGrid is not limited to displaying just the {@link com.smartgwt.client.widgets.tree.Tree} column - you can define additional columns (via {@link com.smartgwt.client.widgets.tree.TreeGrid#getFields fields}) which will render just like the columns of a {@link com.smartgwt.client.widgets.grid.ListGrid}, and support all of the functionality of ListGrid columns, such as {@link com.smartgwt.client.widgets.grid.ListGridField#formatCellValue}. <p> Except where explicitly overridden, {@link com.smartgwt.client.widgets.grid.ListGrid} methods, callbacks, and properties apply to TreeGrids as well.  The {@link com.smartgwt.client.widgets.grid.ListGrid} defines some methods as taking/returning ${isc.DocUtils.linkForRef('object:ListGridField')} and ${isc.DocUtils.linkForRef('object:ListGridRecord')}.  When using those methods in a TreeGrid, those types will be ${isc.DocUtils.linkForRef('object:TreeGridField')} and ${isc.DocUtils.linkForRef('object:TreeNode')}, respectively.
+    * The SmartGWT system supports hierarchical data (also referred to as tree data&#010 due to its "branching" organization) with:&#010 <ul>&#010   <li> the {@link com.smartgwt.client.widgets.tree.Tree} class, which manipulates hierarchical data sets&#010   <li> the TreeGrid widget class, which extends the ListGrid class to visually&#010        present tree data in an expandable/collapsible format.&#010 </ul>&#010 For information on DataBinding Trees, see {@link com.smartgwt.client.docs.TreeDataBinding}.&#010 <p>&#010 A TreeGrid works just like a {@link com.smartgwt.client.widgets.grid.ListGrid}, except one column (specified by&#010 {@link com.smartgwt.client.widgets.tree.TreeGridField#getTreeField treeField} shows a heirarchical {@link com.smartgwt.client.widgets.tree.Tree}.  A TreeGrid is not limited&#010 to displaying just the {@link com.smartgwt.client.widgets.tree.Tree} column - you can define additional columns (via&#010 {@link com.smartgwt.client.widgets.tree.TreeGrid#getFields fields}) which will render just like the columns of a {@link com.smartgwt.client.widgets.grid.ListGrid}, and&#010 support all of the functionality of ListGrid columns, such as&#010 {@link com.smartgwt.client.widgets.grid.ListGridField#formatCellValue}.&#010 <p>&#010 Except where explicitly overridden, {@link com.smartgwt.client.widgets.grid.ListGrid} methods, callbacks, and properties&#010 apply to TreeGrids as well.  The {@link com.smartgwt.client.widgets.grid.ListGrid} defines some methods as taking/returning&#010 ${isc.DocUtils.linkForRef('object:ListGridField')} and ${isc.DocUtils.linkForRef('object:ListGridRecord')}.  When using those methods in a TreeGrid,&#010 those types will be ${isc.DocUtils.linkForRef('object:TreeGridField')} and ${isc.DocUtils.linkForRef('object:TreeNode')}, respectively.
 
     */
 
@@ -117,7 +117,7 @@ public class TreeGrid extends ListGrid  implements DataBoundComponent, com.smart
     }
 
     /**
-    * When animating folder opening / closing, if {@link com.smartgwt.client.widgets.tree.TreeGrid#getAnimateFolderSpeed animateFolderSpeed} is not set, this property designates the duration of the animation in ms.
+    * When animating folder opening / closing, if {@link com.smartgwt.client.widgets.tree.TreeGrid#getAnimateFolderSpeed animateFolderSpeed} is not&#010 set, this property designates the duration of the animation in ms.
     *
     * @param animateFolderTime animateFolderTime Default value is 100
     */
@@ -125,7 +125,7 @@ public class TreeGrid extends ListGrid  implements DataBoundComponent, com.smart
         setAttribute("animateFolderTime", animateFolderTime, true);
     }
     /**
-     * When animating folder opening / closing, if {@link com.smartgwt.client.widgets.tree.TreeGrid#getAnimateFolderSpeed animateFolderSpeed} is not set, this property designates the duration of the animation in ms.
+     * When animating folder opening / closing, if {@link com.smartgwt.client.widgets.tree.TreeGrid#getAnimateFolderSpeed animateFolderSpeed} is not&#010 set, this property designates the duration of the animation in ms.
      *
      *
      * @return int
@@ -136,7 +136,7 @@ public class TreeGrid extends ListGrid  implements DataBoundComponent, com.smart
     }
 
     /**
-    * When animating folder opening / closing, this property designates the speed of the animation in pixels shown (or hidden) per second. Takes presidence over the  {@link com.smartgwt.client.widgets.tree.TreeGrid#getAnimateFolderTime animateFolderTime} property, which allows the developer to specify a duration for the animation rather than a speed.
+    * When animating folder opening / closing, this property designates the speed of the&#010 animation in pixels shown (or hidden) per second. Takes presidence over the &#010 {@link com.smartgwt.client.widgets.tree.TreeGrid#getAnimateFolderTime animateFolderTime} property, which allows the developer to specify a&#010 duration for the animation rather than a speed.
     *
     * @param animateFolderSpeed animateFolderSpeed Default value is 1000
     */
@@ -144,7 +144,7 @@ public class TreeGrid extends ListGrid  implements DataBoundComponent, com.smart
         setAttribute("animateFolderSpeed", animateFolderSpeed, true);
     }
     /**
-     * When animating folder opening / closing, this property designates the speed of the animation in pixels shown (or hidden) per second. Takes presidence over the  {@link com.smartgwt.client.widgets.tree.TreeGrid#getAnimateFolderTime animateFolderTime} property, which allows the developer to specify a duration for the animation rather than a speed.
+     * When animating folder opening / closing, this property designates the speed of the&#010 animation in pixels shown (or hidden) per second. Takes presidence over the &#010 {@link com.smartgwt.client.widgets.tree.TreeGrid#getAnimateFolderTime animateFolderTime} property, which allows the developer to specify a&#010 duration for the animation rather than a speed.
      *
      *
      * @return int
@@ -155,7 +155,7 @@ public class TreeGrid extends ListGrid  implements DataBoundComponent, com.smart
     }
              
     /**
-    * When animating folder opening / closing, this property can be set to apply an animated acceleration effect.designates the speed of the animation in pixels shown (or hidden) per second.
+    * When animating folder opening / closing, this property can be set to apply an&#010 animated acceleration effect.designates the speed of the&#010 animation in pixels shown (or hidden) per second.
     *
     * @param animateFolderEffect animateFolderEffect Default value is null
     */
@@ -163,7 +163,7 @@ public class TreeGrid extends ListGrid  implements DataBoundComponent, com.smart
         setAttribute("animateFolderEffect", animateFolderEffect.getValue(), true);
     }
     /**
-     * When animating folder opening / closing, this property can be set to apply an animated acceleration effect.designates the speed of the animation in pixels shown (or hidden) per second.
+     * When animating folder opening / closing, this property can be set to apply an&#010 animated acceleration effect.designates the speed of the&#010 animation in pixels shown (or hidden) per second.
      *
      *
      * @return AnimationAcceleration
@@ -174,8 +174,8 @@ public class TreeGrid extends ListGrid  implements DataBoundComponent, com.smart
     }
             
     /**
-    * A {@link com.smartgwt.client.widgets.tree.Tree} object containing of nested ${isc.DocUtils.linkForRef('object:TreeNode')}s to  display as rows in this TreeGrid.   The <code>data</code> property will typically not be explicitly specified for  databound TreeGrids, where the data is returned from the server via databound component methods such as <code>fetchData()</code>
-    * Set the {@link com.smartgwt.client.widgets.tree.Tree} object this TreeGrid will view and manipulate.
+    * A {@link com.smartgwt.client.widgets.tree.Tree} object containing of nested ${isc.DocUtils.linkForRef('object:TreeNode')}s to &#010 display as rows in this TreeGrid.  &#010 The <code>data</code> property will typically not be explicitly specified for &#010 databound TreeGrids, where the data is returned from the server via databound component&#010 methods such as <code>fetchData()</code>
+    * Set the {@link com.smartgwt.client.widgets.tree.Tree} object this TreeGrid will view and manipulate.&#010&#010
     *
     * @param data Tree to show. Default value is null
     */
@@ -183,7 +183,7 @@ public class TreeGrid extends ListGrid  implements DataBoundComponent, com.smart
         setAttribute("data", data.getOrCreateJsObj(), true);
     }
     /**
-     * A {@link com.smartgwt.client.widgets.tree.Tree} object containing of nested ${isc.DocUtils.linkForRef('object:TreeNode')}s to  display as rows in this TreeGrid.   The <code>data</code> property will typically not be explicitly specified for  databound TreeGrids, where the data is returned from the server via databound component methods such as <code>fetchData()</code>
+     * A {@link com.smartgwt.client.widgets.tree.Tree} object containing of nested ${isc.DocUtils.linkForRef('object:TreeNode')}s to &#010 display as rows in this TreeGrid.  &#010 The <code>data</code> property will typically not be explicitly specified for &#010 databound TreeGrids, where the data is returned from the server via databound component&#010 methods such as <code>fetchData()</code>
      *
      *
      * @return Tree
@@ -194,7 +194,7 @@ public class TreeGrid extends ListGrid  implements DataBoundComponent, com.smart
     }
 
     /**
-    * For databound treeGrid instances, should the entire tree of data be loaded on initial  fetch, or should folders load their children as they are opened. <P> If unset the default {@link com.smartgwt.client..ResultTree#getLoadDataOnDemand loadDataOnDemand} setting will be used. <P> Note that when using <code>loadDataOnDemand</code>, every node returned by the server is assumed be a folder which may load further children.  See {@link com.smartgwt.client..ResultTree#getDefaultIsFolder defaultIsFolder} for how to control this behavior.
+    * For databound treeGrid instances, should the entire tree of data be loaded on initial &#010 fetch, or should folders load their children as they are opened.&#010 <P>&#010 If unset the default {@link com.smartgwt.client..ResultTree#getLoadDataOnDemand loadDataOnDemand} setting will be used.&#010 <P>&#010 Note that when using <code>loadDataOnDemand</code>, every node returned by the server is&#010 assumed be a folder which may load further children.  See&#010 {@link com.smartgwt.client..ResultTree#getDefaultIsFolder defaultIsFolder} for how to control this behavior.
     *
     * @param loadDataOnDemand loadDataOnDemand Default value is null
     */
@@ -202,7 +202,7 @@ public class TreeGrid extends ListGrid  implements DataBoundComponent, com.smart
         setAttribute("loadDataOnDemand", loadDataOnDemand, true);
     }
     /**
-     * For databound treeGrid instances, should the entire tree of data be loaded on initial  fetch, or should folders load their children as they are opened. <P> If unset the default {@link com.smartgwt.client..ResultTree#getLoadDataOnDemand loadDataOnDemand} setting will be used. <P> Note that when using <code>loadDataOnDemand</code>, every node returned by the server is assumed be a folder which may load further children.  See {@link com.smartgwt.client..ResultTree#getDefaultIsFolder defaultIsFolder} for how to control this behavior.
+     * For databound treeGrid instances, should the entire tree of data be loaded on initial &#010 fetch, or should folders load their children as they are opened.&#010 <P>&#010 If unset the default {@link com.smartgwt.client..ResultTree#getLoadDataOnDemand loadDataOnDemand} setting will be used.&#010 <P>&#010 Note that when using <code>loadDataOnDemand</code>, every node returned by the server is&#010 assumed be a folder which may load further children.  See&#010 {@link com.smartgwt.client..ResultTree#getDefaultIsFolder defaultIsFolder} for how to control this behavior.
      *
      *
      * @return Boolean
@@ -233,7 +233,7 @@ public class TreeGrid extends ListGrid  implements DataBoundComponent, com.smart
     }
 
     /**
-    * Specifies whether the root node should be displayed in the treeGrid. <P> This property is only available for "children" modelType trees, hence is not allowed for trees that load data from the server dynamically via {@link com.smartgwt.client.widgets.tree.TreeGrid#fetchData}.   <P> To get the equivalent of a visible "root" node in a tree that loads data dynamically, add a singular, top-level parent to the data.  However, note that this top-level parent will technically be the only child of root, and the implicit root object will be returned by {@link com.smartgwt.client.widgets.tree.Tree#getRoot}.
+    * Specifies whether the root node should be displayed in the treeGrid.&#010 <P>&#010 This property is only available for "children" modelType trees, hence is not allowed for&#010 trees that load data from the server dynamically via {@link com.smartgwt.client.widgets.tree.TreeGrid#fetchData}.  &#010 <P>&#010 To get the equivalent of a visible "root" node in a tree that loads data dynamically,&#010 add a singular, top-level parent to the data.  However, note that this top-level parent&#010 will technically be the only child of root, and the implicit root object will be&#010 returned by {@link com.smartgwt.client.widgets.tree.Tree#getRoot}.
     *
     * @param showRoot showRoot Default value is false
     * @throws IllegalStateException this property cannot be changed after the component has been created
@@ -242,7 +242,7 @@ public class TreeGrid extends ListGrid  implements DataBoundComponent, com.smart
         setAttribute("showRoot", showRoot, false);
     }
     /**
-     * Specifies whether the root node should be displayed in the treeGrid. <P> This property is only available for "children" modelType trees, hence is not allowed for trees that load data from the server dynamically via {@link com.smartgwt.client.widgets.tree.TreeGrid#fetchData}.   <P> To get the equivalent of a visible "root" node in a tree that loads data dynamically, add a singular, top-level parent to the data.  However, note that this top-level parent will technically be the only child of root, and the implicit root object will be returned by {@link com.smartgwt.client.widgets.tree.Tree#getRoot}.
+     * Specifies whether the root node should be displayed in the treeGrid.&#010 <P>&#010 This property is only available for "children" modelType trees, hence is not allowed for&#010 trees that load data from the server dynamically via {@link com.smartgwt.client.widgets.tree.TreeGrid#fetchData}.  &#010 <P>&#010 To get the equivalent of a visible "root" node in a tree that loads data dynamically,&#010 add a singular, top-level parent to the data.  However, note that this top-level parent&#010 will technically be the only child of root, and the implicit root object will be&#010 returned by {@link com.smartgwt.client.widgets.tree.Tree#getRoot}.
      *
      *
      * @return Boolean
@@ -253,7 +253,7 @@ public class TreeGrid extends ListGrid  implements DataBoundComponent, com.smart
     }
 
     /**
-    * Specifies whether folders and leaves should be segregated in the treeGrid display.          With separateFolders:true and sortDirection:"descending", folders are displayed          before their sibling leaves; with sortDirection:"ascending", leaves are displayed          before their sibling folders.
+    * Specifies whether folders and leaves should be segregated in the treeGrid display.&#010          With separateFolders:true and sortDirection:"descending", folders are displayed&#010          before their sibling leaves; with sortDirection:"ascending", leaves are displayed&#010          before their sibling folders.
     *
     * @param separateFolders separateFolders Default value is false
     * @throws IllegalStateException this property cannot be changed after the component has been created
@@ -262,7 +262,7 @@ public class TreeGrid extends ListGrid  implements DataBoundComponent, com.smart
         setAttribute("separateFolders", separateFolders, false);
     }
     /**
-     * Specifies whether folders and leaves should be segregated in the treeGrid display.          With separateFolders:true and sortDirection:"descending", folders are displayed          before their sibling leaves; with sortDirection:"ascending", leaves are displayed          before their sibling folders.
+     * Specifies whether folders and leaves should be segregated in the treeGrid display.&#010          With separateFolders:true and sortDirection:"descending", folders are displayed&#010          before their sibling leaves; with sortDirection:"ascending", leaves are displayed&#010          before their sibling folders.
      *
      *
      * @return Boolean
@@ -350,7 +350,7 @@ public class TreeGrid extends ListGrid  implements DataBoundComponent, com.smart
     }
 
     /**
-    * Whether drops are allowed on leaf nodes. <P> Dropping is ordinarily not allowed on leaf nodes unless {@link com.smartgwt.client.widgets.tree.TreeGrid#getCanReorderRecords canReorderRecords} is set.   <P> The default action for a drop on a leaf node is to place the node in that leaf's parent folder.  This can be customized by overriding {@link com.smartgwt.client.widgets.tree.TreeGrid#folderDrop}.
+    * Whether drops are allowed on leaf nodes.&#010 <P>&#010 Dropping is ordinarily not allowed on leaf nodes unless {@link com.smartgwt.client.widgets.tree.TreeGrid#getCanReorderRecords canReorderRecords} is&#010 set.  &#010 <P>&#010 The default action for a drop on a leaf node is to place the node in that leaf's parent&#010 folder.  This can be customized by overriding {@link com.smartgwt.client.widgets.tree.TreeGrid#folderDrop}.
     * <p><b>Note : </b> This is an advanced setting</p>
     *
     * @param canDropOnLeaves canDropOnLeaves Default value is false
@@ -359,7 +359,7 @@ public class TreeGrid extends ListGrid  implements DataBoundComponent, com.smart
         setAttribute("canDropOnLeaves", canDropOnLeaves, true);
     }
     /**
-     * Whether drops are allowed on leaf nodes. <P> Dropping is ordinarily not allowed on leaf nodes unless {@link com.smartgwt.client.widgets.tree.TreeGrid#getCanReorderRecords canReorderRecords} is set.   <P> The default action for a drop on a leaf node is to place the node in that leaf's parent folder.  This can be customized by overriding {@link com.smartgwt.client.widgets.tree.TreeGrid#folderDrop}.
+     * Whether drops are allowed on leaf nodes.&#010 <P>&#010 Dropping is ordinarily not allowed on leaf nodes unless {@link com.smartgwt.client.widgets.tree.TreeGrid#getCanReorderRecords canReorderRecords} is&#010 set.  &#010 <P>&#010 The default action for a drop on a leaf node is to place the node in that leaf's parent&#010 folder.  This can be customized by overriding {@link com.smartgwt.client.widgets.tree.TreeGrid#folderDrop}.
      *
      *
      * @return Boolean
@@ -370,7 +370,7 @@ public class TreeGrid extends ListGrid  implements DataBoundComponent, com.smart
     }
 
     /**
-    * If set this property allows the user to reparent nodes by dragging them from their current folder to a new folder.<br> <b>Backcompat:</b> For backwards compatibility with versions prior to SmartGWT 1.5, if this property is unset, but <code>this.canAcceptDroppedRecords</code> is true, we allow nodes to be dragged to different folders.
+    * If set this property allows the user to reparent nodes by dragging them from their&#010 current folder to a new folder.<br>&#010 <b>Backcompat:</b> For backwards compatibility with versions prior to SmartGWT 1.5,&#010 if this property is unset, but <code>this.canAcceptDroppedRecords</code> is true, we&#010 allow nodes to be dragged to different folders.
     *
     * @param canReparentNodes canReparentNodes Default value is null
     */
@@ -378,7 +378,7 @@ public class TreeGrid extends ListGrid  implements DataBoundComponent, com.smart
         setAttribute("canReparentNodes", canReparentNodes, true);
     }
     /**
-     * If set this property allows the user to reparent nodes by dragging them from their current folder to a new folder.<br> <b>Backcompat:</b> For backwards compatibility with versions prior to SmartGWT 1.5, if this property is unset, but <code>this.canAcceptDroppedRecords</code> is true, we allow nodes to be dragged to different folders.
+     * If set this property allows the user to reparent nodes by dragging them from their&#010 current folder to a new folder.<br>&#010 <b>Backcompat:</b> For backwards compatibility with versions prior to SmartGWT 1.5,&#010 if this property is unset, but <code>this.canAcceptDroppedRecords</code> is true, we&#010 allow nodes to be dragged to different folders.
      *
      *
      * @return Boolean
@@ -389,7 +389,7 @@ public class TreeGrid extends ListGrid  implements DataBoundComponent, com.smart
     }
              
     /**
-    * Specifies what to do with data dragged from this TreeGrid (into another component, or another node in this TreeGrid.  The default action is to move the data.  A setting of "none" is not recommended for trees because Trees maintain the node open state on the nodes themselves, and hence having multiple Tree objects share a reference to a node can have unintended consequences (such as opening a folder in one tree also triggering an open in another tree that shares the same node). <br><br> For DataBound trees ({@link com.smartgwt.client..ResultTree}), the expectation is that {@link com.smartgwt.client.widgets.tree.TreeGrid#folderDrop} will be overridden to perform whatever action took place as the result of the drag and drop interaction.
+    * Specifies what to do with data dragged from this TreeGrid (into another component, or&#010 another node in this TreeGrid.  The default action is to move the data.  A setting of&#010 "none" is not recommended for trees because Trees maintain the node open state on the nodes&#010 themselves, and hence having multiple Tree objects share a reference to a node can have&#010 unintended consequences (such as opening a folder in one tree also triggering an open in&#010 another tree that shares the same node).&#010 <br><br>&#010 For DataBound trees ({@link com.smartgwt.client..ResultTree}), the expectation is that&#010 {@link com.smartgwt.client.widgets.tree.TreeGrid#folderDrop} will be overridden to perform whatever action took&#010 place as the result of the drag and drop interaction.
     * <p><b>Note : </b> This is an advanced setting</p>
     *
     * @param dragDataAction dragDataAction Default value is ListGrid.MOVE
@@ -398,7 +398,7 @@ public class TreeGrid extends ListGrid  implements DataBoundComponent, com.smart
         setAttribute("dragDataAction", dragDataAction.getValue(), true);
     }
     /**
-     * Specifies what to do with data dragged from this TreeGrid (into another component, or another node in this TreeGrid.  The default action is to move the data.  A setting of "none" is not recommended for trees because Trees maintain the node open state on the nodes themselves, and hence having multiple Tree objects share a reference to a node can have unintended consequences (such as opening a folder in one tree also triggering an open in another tree that shares the same node). <br><br> For DataBound trees ({@link com.smartgwt.client..ResultTree}), the expectation is that {@link com.smartgwt.client.widgets.tree.TreeGrid#folderDrop} will be overridden to perform whatever action took place as the result of the drag and drop interaction.
+     * Specifies what to do with data dragged from this TreeGrid (into another component, or&#010 another node in this TreeGrid.  The default action is to move the data.  A setting of&#010 "none" is not recommended for trees because Trees maintain the node open state on the nodes&#010 themselves, and hence having multiple Tree objects share a reference to a node can have&#010 unintended consequences (such as opening a folder in one tree also triggering an open in&#010 another tree that shares the same node).&#010 <br><br>&#010 For DataBound trees ({@link com.smartgwt.client..ResultTree}), the expectation is that&#010 {@link com.smartgwt.client.widgets.tree.TreeGrid#folderDrop} will be overridden to perform whatever action took&#010 place as the result of the drag and drop interaction.
      *
      *
      * @return DragDataAction
@@ -409,7 +409,7 @@ public class TreeGrid extends ListGrid  implements DataBoundComponent, com.smart
     }
 
     /**
-    * Message displayed when user attempts to drag a node into a parent that already contains a child of the same name.
+    * Message displayed when user attempts to drag a node into a parent that already contains&#010 a child of the same name.
     *
     * @param parentAlreadyContainsChildMessage parentAlreadyContainsChildMessage Default value is "This item already contains a child item with that name."
     * @throws IllegalStateException this property cannot be changed after the component has been created
@@ -418,7 +418,7 @@ public class TreeGrid extends ListGrid  implements DataBoundComponent, com.smart
         setAttribute("parentAlreadyContainsChildMessage", parentAlreadyContainsChildMessage, false);
     }
     /**
-     * Message displayed when user attempts to drag a node into a parent that already contains a child of the same name.
+     * Message displayed when user attempts to drag a node into a parent that already contains&#010 a child of the same name.
      *
      *
      * @return String
@@ -469,7 +469,7 @@ public class TreeGrid extends ListGrid  implements DataBoundComponent, com.smart
     }
 
     /**
-    * The amount of indentation (in pixels) to add to a node's icon/title for each level          down in this tree's hierarchy.
+    * The amount of indentation (in pixels) to add to a node's icon/title for each level&#010          down in this tree's hierarchy.
     *
     * @param indentSize indentSize Default value is 20
     */
@@ -477,7 +477,7 @@ public class TreeGrid extends ListGrid  implements DataBoundComponent, com.smart
         setAttribute("indentSize", indentSize, true);
     }
     /**
-     * The amount of indentation (in pixels) to add to a node's icon/title for each level          down in this tree's hierarchy.
+     * The amount of indentation (in pixels) to add to a node's icon/title for each level&#010          down in this tree's hierarchy.
      *
      *
      * @return int
@@ -488,7 +488,7 @@ public class TreeGrid extends ListGrid  implements DataBoundComponent, com.smart
     }
 
     /**
-    * The standard size (same height and width, in pixels) of node icons in this          treeGrid.
+    * The standard size (same height and width, in pixels) of node icons in this&#010          treeGrid.
     *
     * @param iconSize iconSize Default value is 16
     */
@@ -496,7 +496,7 @@ public class TreeGrid extends ListGrid  implements DataBoundComponent, com.smart
         setAttribute("iconSize", iconSize, true);
     }
     /**
-     * The standard size (same height and width, in pixels) of node icons in this          treeGrid.
+     * The standard size (same height and width, in pixels) of node icons in this&#010          treeGrid.
      *
      *
      * @return int
@@ -507,7 +507,7 @@ public class TreeGrid extends ListGrid  implements DataBoundComponent, com.smart
     }
 
     /**
-    * Width and height in pixels of the opener icons, that is, the icons which show the open or closed state of the node, typically a [+] or [-] symbol. <P> If {@link com.smartgwt.client.widgets.tree.TreeGrid#getShowConnectors showConnectors} is true, the opener icon includes the connector line, and defaults to {@link com.smartgwt.client.widgets.grid.ListGrid#getCellHeight cellHeight}. <P> Otherwise, <code>openerIconSize</code> defaults to {@link com.smartgwt.client.widgets.tree.TreeGrid#getIconSize iconSize}.
+    * Width and height in pixels of the opener icons, that is, the icons which show the open&#010 or closed state of the node, typically a [+] or [-] symbol.&#010 <P>&#010 If {@link com.smartgwt.client.widgets.tree.TreeGrid#getShowConnectors showConnectors} is true, the opener icon includes the connector line, and&#010 defaults to {@link com.smartgwt.client.widgets.grid.ListGrid#getCellHeight cellHeight}.&#010 <P>&#010 Otherwise, <code>openerIconSize</code> defaults to {@link com.smartgwt.client.widgets.tree.TreeGrid#getIconSize iconSize}.
     *
     * @param openerIconSize openerIconSize Default value is null
     */
@@ -515,7 +515,7 @@ public class TreeGrid extends ListGrid  implements DataBoundComponent, com.smart
         setAttribute("openerIconSize", openerIconSize, true);
     }
     /**
-     * Width and height in pixels of the opener icons, that is, the icons which show the open or closed state of the node, typically a [+] or [-] symbol. <P> If {@link com.smartgwt.client.widgets.tree.TreeGrid#getShowConnectors showConnectors} is true, the opener icon includes the connector line, and defaults to {@link com.smartgwt.client.widgets.grid.ListGrid#getCellHeight cellHeight}. <P> Otherwise, <code>openerIconSize</code> defaults to {@link com.smartgwt.client.widgets.tree.TreeGrid#getIconSize iconSize}.
+     * Width and height in pixels of the opener icons, that is, the icons which show the open&#010 or closed state of the node, typically a [+] or [-] symbol.&#010 <P>&#010 If {@link com.smartgwt.client.widgets.tree.TreeGrid#getShowConnectors showConnectors} is true, the opener icon includes the connector line, and&#010 defaults to {@link com.smartgwt.client.widgets.grid.ListGrid#getCellHeight cellHeight}.&#010 <P>&#010 Otherwise, <code>openerIconSize</code> defaults to {@link com.smartgwt.client.widgets.tree.TreeGrid#getIconSize iconSize}.
      *
      *
      * @return Integer
@@ -526,7 +526,7 @@ public class TreeGrid extends ListGrid  implements DataBoundComponent, com.smart
     }
 
     /**
-    * The URL of the base icon for all folder nodes in this treeGrid. Note that this URL will have {@link com.smartgwt.client.widgets.tree.TreeGrid#getOpenIconSuffix openIconSuffix}, {@link com.smartgwt.client.widgets.tree.TreeGrid#getClosedIconSuffix closedIconSuffix} or  {@link com.smartgwt.client.widgets.tree.TreeGrid#getDropIconSuffix dropIconSuffix} appended to indicate state changes if appropriate -  see documentation on  {@link com.smartgwt.client.widgets.tree.TreeGrid#getShowOpenIcons showOpenIcons} and {@link com.smartgwt.client.widgets.tree.TreeGrid#getShowDropIcons showDropIcons}.
+    * The URL of the base icon for all folder nodes in this treeGrid. Note that this URL will&#010 have {@link com.smartgwt.client.widgets.tree.TreeGrid#getOpenIconSuffix openIconSuffix}, {@link com.smartgwt.client.widgets.tree.TreeGrid#getClosedIconSuffix closedIconSuffix} or &#010 {@link com.smartgwt.client.widgets.tree.TreeGrid#getDropIconSuffix dropIconSuffix} appended to indicate state changes if appropriate - &#010 see documentation on  {@link com.smartgwt.client.widgets.tree.TreeGrid#getShowOpenIcons showOpenIcons} and {@link com.smartgwt.client.widgets.tree.TreeGrid#getShowDropIcons showDropIcons}.
     *
     * @param folderIcon folderIcon Default value is "[SKIN]folder.gif"
     */
@@ -534,7 +534,7 @@ public class TreeGrid extends ListGrid  implements DataBoundComponent, com.smart
         setAttribute("folderIcon", folderIcon, true);
     }
     /**
-     * The URL of the base icon for all folder nodes in this treeGrid. Note that this URL will have {@link com.smartgwt.client.widgets.tree.TreeGrid#getOpenIconSuffix openIconSuffix}, {@link com.smartgwt.client.widgets.tree.TreeGrid#getClosedIconSuffix closedIconSuffix} or  {@link com.smartgwt.client.widgets.tree.TreeGrid#getDropIconSuffix dropIconSuffix} appended to indicate state changes if appropriate -  see documentation on  {@link com.smartgwt.client.widgets.tree.TreeGrid#getShowOpenIcons showOpenIcons} and {@link com.smartgwt.client.widgets.tree.TreeGrid#getShowDropIcons showDropIcons}.
+     * The URL of the base icon for all folder nodes in this treeGrid. Note that this URL will&#010 have {@link com.smartgwt.client.widgets.tree.TreeGrid#getOpenIconSuffix openIconSuffix}, {@link com.smartgwt.client.widgets.tree.TreeGrid#getClosedIconSuffix closedIconSuffix} or &#010 {@link com.smartgwt.client.widgets.tree.TreeGrid#getDropIconSuffix dropIconSuffix} appended to indicate state changes if appropriate - &#010 see documentation on  {@link com.smartgwt.client.widgets.tree.TreeGrid#getShowOpenIcons showOpenIcons} and {@link com.smartgwt.client.widgets.tree.TreeGrid#getShowDropIcons showDropIcons}.
      *
      *
      * @return String
@@ -545,7 +545,7 @@ public class TreeGrid extends ListGrid  implements DataBoundComponent, com.smart
     }
 
     /**
-    * If {@link com.smartgwt.client.widgets.tree.TreeGrid#getShowDropIcons showDropIcons} is true, this suffix will be appended to the {@link com.smartgwt.client.widgets.tree.TreeGrid#getFolderIcon folderIcon} when the user drop-hovers over some folder.
+    * If {@link com.smartgwt.client.widgets.tree.TreeGrid#getShowDropIcons showDropIcons} is true, this suffix will be appended to the&#010 {@link com.smartgwt.client.widgets.tree.TreeGrid#getFolderIcon folderIcon} when the user drop-hovers over some folder.
     *
     * @param dropIconSuffix dropIconSuffix Default value is "drop"
     */
@@ -553,7 +553,7 @@ public class TreeGrid extends ListGrid  implements DataBoundComponent, com.smart
         setAttribute("dropIconSuffix", dropIconSuffix, true);
     }
     /**
-     * If {@link com.smartgwt.client.widgets.tree.TreeGrid#getShowDropIcons showDropIcons} is true, this suffix will be appended to the {@link com.smartgwt.client.widgets.tree.TreeGrid#getFolderIcon folderIcon} when the user drop-hovers over some folder.
+     * If {@link com.smartgwt.client.widgets.tree.TreeGrid#getShowDropIcons showDropIcons} is true, this suffix will be appended to the&#010 {@link com.smartgwt.client.widgets.tree.TreeGrid#getFolderIcon folderIcon} when the user drop-hovers over some folder.
      *
      *
      * @return String
@@ -564,7 +564,7 @@ public class TreeGrid extends ListGrid  implements DataBoundComponent, com.smart
     }
 
     /**
-    * If {@link com.smartgwt.client.widgets.tree.TreeGrid#getShowOpenIcons showOpenIcons} is true, this suffix will be appended to the {@link com.smartgwt.client.widgets.tree.TreeGrid#getFolderIcon folderIcon} for open folders in this grid.
+    * If {@link com.smartgwt.client.widgets.tree.TreeGrid#getShowOpenIcons showOpenIcons} is true, this suffix will be appended to the&#010 {@link com.smartgwt.client.widgets.tree.TreeGrid#getFolderIcon folderIcon} for open folders in this grid.
     *
     * @param openIconSuffix openIconSuffix Default value is "open"
     */
@@ -572,7 +572,7 @@ public class TreeGrid extends ListGrid  implements DataBoundComponent, com.smart
         setAttribute("openIconSuffix", openIconSuffix, true);
     }
     /**
-     * If {@link com.smartgwt.client.widgets.tree.TreeGrid#getShowOpenIcons showOpenIcons} is true, this suffix will be appended to the {@link com.smartgwt.client.widgets.tree.TreeGrid#getFolderIcon folderIcon} for open folders in this grid.
+     * If {@link com.smartgwt.client.widgets.tree.TreeGrid#getShowOpenIcons showOpenIcons} is true, this suffix will be appended to the&#010 {@link com.smartgwt.client.widgets.tree.TreeGrid#getFolderIcon folderIcon} for open folders in this grid.
      *
      *
      * @return String
@@ -583,7 +583,7 @@ public class TreeGrid extends ListGrid  implements DataBoundComponent, com.smart
     }
 
     /**
-    * This suffix will be appended to the {@link com.smartgwt.client.widgets.tree.TreeGrid#getFolderIcon folderIcon} for closed folders. If {@link com.smartgwt.client.widgets.tree.TreeGrid#getShowOpenIcons showOpenIcons} is set to <code>false</code> this suffix will also be appended to open folders' icons.
+    * This suffix will be appended to the {@link com.smartgwt.client.widgets.tree.TreeGrid#getFolderIcon folderIcon} for closed folders.&#010 If {@link com.smartgwt.client.widgets.tree.TreeGrid#getShowOpenIcons showOpenIcons} is set to <code>false</code> this suffix will also be&#010 appended to open folders' icons.
     *
     * @param closedIconSuffix closedIconSuffix Default value is "closed"
     */
@@ -591,7 +591,7 @@ public class TreeGrid extends ListGrid  implements DataBoundComponent, com.smart
         setAttribute("closedIconSuffix", closedIconSuffix, true);
     }
     /**
-     * This suffix will be appended to the {@link com.smartgwt.client.widgets.tree.TreeGrid#getFolderIcon folderIcon} for closed folders. If {@link com.smartgwt.client.widgets.tree.TreeGrid#getShowOpenIcons showOpenIcons} is set to <code>false</code> this suffix will also be appended to open folders' icons.
+     * This suffix will be appended to the {@link com.smartgwt.client.widgets.tree.TreeGrid#getFolderIcon folderIcon} for closed folders.&#010 If {@link com.smartgwt.client.widgets.tree.TreeGrid#getShowOpenIcons showOpenIcons} is set to <code>false</code> this suffix will also be&#010 appended to open folders' icons.
      *
      *
      * @return String
@@ -602,8 +602,8 @@ public class TreeGrid extends ListGrid  implements DataBoundComponent, com.smart
     }
 
     /**
-    * The filename of the default icon for all leaf nodes in this grid. To specify a  custom image for an individual node, set the {@link com.smartgwt.client.widgets.tree.TreeGrid#getCustomIconProperty customIconProperty} directly on the node.
-    * Set the icon for a particular treenode to a specified URL
+    * The filename of the default icon for all leaf nodes in this grid. To specify a &#010 custom image for an individual node, set the {@link com.smartgwt.client.widgets.tree.TreeGrid#getCustomIconProperty customIconProperty} directly on&#010 the node.
+    * Set the icon for a particular treenode to a specified URL&#010&#010
     *
     * @param nodeIcon tree node. Default value is "[SKIN]file.gif"
     */
@@ -611,7 +611,7 @@ public class TreeGrid extends ListGrid  implements DataBoundComponent, com.smart
         setAttribute("nodeIcon", nodeIcon, true);
     }
     /**
-     * The filename of the default icon for all leaf nodes in this grid. To specify a  custom image for an individual node, set the {@link com.smartgwt.client.widgets.tree.TreeGrid#getCustomIconProperty customIconProperty} directly on the node.
+     * The filename of the default icon for all leaf nodes in this grid. To specify a &#010 custom image for an individual node, set the {@link com.smartgwt.client.widgets.tree.TreeGrid#getCustomIconProperty customIconProperty} directly on&#010 the node.
      *
      *
      * @return String
@@ -622,7 +622,7 @@ public class TreeGrid extends ListGrid  implements DataBoundComponent, com.smart
     }
 
     /**
-    * If true, show a different icon for <code>open</code> folders than closed folders. This is achieved by appending the {@link com.smartgwt.client.widgets.tree.TreeGrid#getOpenIconSuffix openIconSuffix} onto the  {@link com.smartgwt.client.widgets.tree.TreeGrid#getFolderIcon folderIcon} URL [for example <code>"[SKIN]/folder.gif"</code> might be  replaced by <code>"[SKIN]/folder_open.gif"</code>.<br> <b>Note</b> If this property is set to <code>false</code> the same icon is shown for open folders as for closed folders, unless a custom folder icon was specified. This will be determined by {@link com.smartgwt.client.widgets.tree.TreeGrid#getFolderIcon folderIcon} plus the {@link com.smartgwt.client.widgets.tree.TreeGrid#getClosedIconSuffix closedIconSuffix}.
+    * If true, show a different icon for <code>open</code> folders than closed folders.&#010 This is achieved by appending the {@link com.smartgwt.client.widgets.tree.TreeGrid#getOpenIconSuffix openIconSuffix} onto the &#010 {@link com.smartgwt.client.widgets.tree.TreeGrid#getFolderIcon folderIcon} URL [for example <code>"[SKIN]/folder.gif"</code> might be &#010 replaced by <code>"[SKIN]/folder_open.gif"</code>.<br>&#010 <b>Note</b> If this property is set to <code>false</code> the same icon is shown for&#010 open folders as for closed folders, unless a custom folder icon was specified. This will be&#010 determined by {@link com.smartgwt.client.widgets.tree.TreeGrid#getFolderIcon folderIcon} plus the {@link com.smartgwt.client.widgets.tree.TreeGrid#getClosedIconSuffix closedIconSuffix}.
     *
     * @param showOpenIcons showOpenIcons Default value is true
     */
@@ -630,7 +630,7 @@ public class TreeGrid extends ListGrid  implements DataBoundComponent, com.smart
         setAttribute("showOpenIcons", showOpenIcons, true);
     }
     /**
-     * If true, show a different icon for <code>open</code> folders than closed folders. This is achieved by appending the {@link com.smartgwt.client.widgets.tree.TreeGrid#getOpenIconSuffix openIconSuffix} onto the  {@link com.smartgwt.client.widgets.tree.TreeGrid#getFolderIcon folderIcon} URL [for example <code>"[SKIN]/folder.gif"</code> might be  replaced by <code>"[SKIN]/folder_open.gif"</code>.<br> <b>Note</b> If this property is set to <code>false</code> the same icon is shown for open folders as for closed folders, unless a custom folder icon was specified. This will be determined by {@link com.smartgwt.client.widgets.tree.TreeGrid#getFolderIcon folderIcon} plus the {@link com.smartgwt.client.widgets.tree.TreeGrid#getClosedIconSuffix closedIconSuffix}.
+     * If true, show a different icon for <code>open</code> folders than closed folders.&#010 This is achieved by appending the {@link com.smartgwt.client.widgets.tree.TreeGrid#getOpenIconSuffix openIconSuffix} onto the &#010 {@link com.smartgwt.client.widgets.tree.TreeGrid#getFolderIcon folderIcon} URL [for example <code>"[SKIN]/folder.gif"</code> might be &#010 replaced by <code>"[SKIN]/folder_open.gif"</code>.<br>&#010 <b>Note</b> If this property is set to <code>false</code> the same icon is shown for&#010 open folders as for closed folders, unless a custom folder icon was specified. This will be&#010 determined by {@link com.smartgwt.client.widgets.tree.TreeGrid#getFolderIcon folderIcon} plus the {@link com.smartgwt.client.widgets.tree.TreeGrid#getClosedIconSuffix closedIconSuffix}.
      *
      *
      * @return Boolean
@@ -641,7 +641,7 @@ public class TreeGrid extends ListGrid  implements DataBoundComponent, com.smart
     }
 
     /**
-    * If true, when the user drags a droppable target over a folder in this TreeGrid, show  a different icon folder icon. This is achieved by appending the {@link com.smartgwt.client.widgets.tree.TreeGrid#getDropIconSuffix dropIconSuffix} onto the {@link com.smartgwt.client.widgets.tree.TreeGrid#getFolderIcon folderIcon} URL (for example <code>"[SKIN]/folder.gif"</code> may be replaced by <code>"[SKIN]/folder_drop.gif"</code>).
+    * If true, when the user drags a droppable target over a folder in this TreeGrid, show &#010 a different icon folder icon.&#010 This is achieved by appending the {@link com.smartgwt.client.widgets.tree.TreeGrid#getDropIconSuffix dropIconSuffix} onto the&#010 {@link com.smartgwt.client.widgets.tree.TreeGrid#getFolderIcon folderIcon} URL (for example <code>"[SKIN]/folder.gif"</code> may be&#010 replaced by <code>"[SKIN]/folder_drop.gif"</code>).
     *
     * @param showDropIcons showDropIcons Default value is true
     */
@@ -649,7 +649,7 @@ public class TreeGrid extends ListGrid  implements DataBoundComponent, com.smart
         setAttribute("showDropIcons", showDropIcons, true);
     }
     /**
-     * If true, when the user drags a droppable target over a folder in this TreeGrid, show  a different icon folder icon. This is achieved by appending the {@link com.smartgwt.client.widgets.tree.TreeGrid#getDropIconSuffix dropIconSuffix} onto the {@link com.smartgwt.client.widgets.tree.TreeGrid#getFolderIcon folderIcon} URL (for example <code>"[SKIN]/folder.gif"</code> may be replaced by <code>"[SKIN]/folder_drop.gif"</code>).
+     * If true, when the user drags a droppable target over a folder in this TreeGrid, show &#010 a different icon folder icon.&#010 This is achieved by appending the {@link com.smartgwt.client.widgets.tree.TreeGrid#getDropIconSuffix dropIconSuffix} onto the&#010 {@link com.smartgwt.client.widgets.tree.TreeGrid#getFolderIcon folderIcon} URL (for example <code>"[SKIN]/folder.gif"</code> may be&#010 replaced by <code>"[SKIN]/folder_drop.gif"</code>).
      *
      *
      * @return Boolean
@@ -660,7 +660,7 @@ public class TreeGrid extends ListGrid  implements DataBoundComponent, com.smart
     }
 
     /**
-    * This property allows the developer to customize the icon displayed next to a node. Set <code>node[grid.customIconProperty]</code> to the URL of the desired icon to display and it will be shown instead of the standard {@link com.smartgwt.client.widgets.tree.TreeGrid#getNodeIcon nodeIcon} for this node.<br> Note that if {@link com.smartgwt.client.widgets.tree.TreeGrid#getShowCustomIconOpen showCustomIconOpen} and/or {@link com.smartgwt.client.widgets.tree.TreeGrid#getShowCustomIconDrop showCustomIconDrop}  is true for this grid, customized icons for folder nodes will be appended with the  {@link com.smartgwt.client.widgets.tree.TreeGrid#getDropIconSuffix dropIconSuffix} or {@link com.smartgwt.client.widgets.tree.TreeGrid#getOpenIconSuffix openIconSuffix} suffixes on state change  as with the standard {@link com.smartgwt.client.widgets.tree.TreeGrid#getFolderIcon folderIcon} for this treeGrid.  Also note that for custom folder icons, the {@link com.smartgwt.client.widgets.tree.TreeGrid#getClosedIconSuffix closedIconSuffix} will never be appened.
+    * This property allows the developer to customize the icon displayed next to a node.&#010 Set <code>node[grid.customIconProperty]</code> to the URL of the desired icon to display and&#010 it will be shown instead of the standard {@link com.smartgwt.client.widgets.tree.TreeGrid#getNodeIcon nodeIcon} for this node.<br>&#010 Note that if {@link com.smartgwt.client.widgets.tree.TreeGrid#getShowCustomIconOpen showCustomIconOpen} and/or {@link com.smartgwt.client.widgets.tree.TreeGrid#getShowCustomIconDrop showCustomIconDrop} &#010 is true for this grid, customized icons for folder nodes will be appended with the &#010 {@link com.smartgwt.client.widgets.tree.TreeGrid#getDropIconSuffix dropIconSuffix} or {@link com.smartgwt.client.widgets.tree.TreeGrid#getOpenIconSuffix openIconSuffix} suffixes on state change &#010 as with the standard {@link com.smartgwt.client.widgets.tree.TreeGrid#getFolderIcon folderIcon} for this treeGrid.  Also note that for&#010 custom folder icons, the {@link com.smartgwt.client.widgets.tree.TreeGrid#getClosedIconSuffix closedIconSuffix} will never be appened.
     *
     * @param customIconProperty customIconProperty Default value is "icon"
     */
@@ -668,7 +668,7 @@ public class TreeGrid extends ListGrid  implements DataBoundComponent, com.smart
         setAttribute("customIconProperty", customIconProperty, true);
     }
     /**
-     * This property allows the developer to customize the icon displayed next to a node. Set <code>node[grid.customIconProperty]</code> to the URL of the desired icon to display and it will be shown instead of the standard {@link com.smartgwt.client.widgets.tree.TreeGrid#getNodeIcon nodeIcon} for this node.<br> Note that if {@link com.smartgwt.client.widgets.tree.TreeGrid#getShowCustomIconOpen showCustomIconOpen} and/or {@link com.smartgwt.client.widgets.tree.TreeGrid#getShowCustomIconDrop showCustomIconDrop}  is true for this grid, customized icons for folder nodes will be appended with the  {@link com.smartgwt.client.widgets.tree.TreeGrid#getDropIconSuffix dropIconSuffix} or {@link com.smartgwt.client.widgets.tree.TreeGrid#getOpenIconSuffix openIconSuffix} suffixes on state change  as with the standard {@link com.smartgwt.client.widgets.tree.TreeGrid#getFolderIcon folderIcon} for this treeGrid.  Also note that for custom folder icons, the {@link com.smartgwt.client.widgets.tree.TreeGrid#getClosedIconSuffix closedIconSuffix} will never be appened.
+     * This property allows the developer to customize the icon displayed next to a node.&#010 Set <code>node[grid.customIconProperty]</code> to the URL of the desired icon to display and&#010 it will be shown instead of the standard {@link com.smartgwt.client.widgets.tree.TreeGrid#getNodeIcon nodeIcon} for this node.<br>&#010 Note that if {@link com.smartgwt.client.widgets.tree.TreeGrid#getShowCustomIconOpen showCustomIconOpen} and/or {@link com.smartgwt.client.widgets.tree.TreeGrid#getShowCustomIconDrop showCustomIconDrop} &#010 is true for this grid, customized icons for folder nodes will be appended with the &#010 {@link com.smartgwt.client.widgets.tree.TreeGrid#getDropIconSuffix dropIconSuffix} or {@link com.smartgwt.client.widgets.tree.TreeGrid#getOpenIconSuffix openIconSuffix} suffixes on state change &#010 as with the standard {@link com.smartgwt.client.widgets.tree.TreeGrid#getFolderIcon folderIcon} for this treeGrid.  Also note that for&#010 custom folder icons, the {@link com.smartgwt.client.widgets.tree.TreeGrid#getClosedIconSuffix closedIconSuffix} will never be appened.
      *
      *
      * @return String
@@ -679,7 +679,7 @@ public class TreeGrid extends ListGrid  implements DataBoundComponent, com.smart
     }
 
     /**
-    * Should folder nodes showing custom icons (set via the {@link com.smartgwt.client.widgets.tree.TreeGrid#getCustomIconProperty customIconProperty}), show open state images when the folder is opened. If true, the {@link com.smartgwt.client.widgets.tree.TreeGrid#getOpenIconSuffix openIconSuffix} will be appended to the image URL (so <code>"customFolder.gif"</code> might be replaced with  <code>"customFolder_open.gif"</code>).<br> <b>Note</b> that the {@link com.smartgwt.client.widgets.tree.TreeGrid#getClosedIconSuffix closedIconSuffix} is never appended to custom folder icons.<br> Can be overridden at the node level via the {@link com.smartgwt.client.widgets.tree.TreeGrid#getCustomIconOpenProperty customIconOpenProperty} property.
+    * Should folder nodes showing custom icons (set via the {@link com.smartgwt.client.widgets.tree.TreeGrid#getCustomIconProperty customIconProperty}),&#010 show open state images when the folder is opened.&#010 If true, the {@link com.smartgwt.client.widgets.tree.TreeGrid#getOpenIconSuffix openIconSuffix} will be appended to the image URL&#010 (so <code>"customFolder.gif"</code> might be replaced with &#010 <code>"customFolder_open.gif"</code>).<br>&#010 <b>Note</b> that the {@link com.smartgwt.client.widgets.tree.TreeGrid#getClosedIconSuffix closedIconSuffix} is never appended to custom folder icons.<br>&#010 Can be overridden at the node level via the {@link com.smartgwt.client.widgets.tree.TreeGrid#getCustomIconOpenProperty customIconOpenProperty} property.
     * <p><b>Note : </b> This is an advanced setting</p>
     *
     * @param showCustomIconOpen showCustomIconOpen Default value is false
@@ -688,7 +688,7 @@ public class TreeGrid extends ListGrid  implements DataBoundComponent, com.smart
         setAttribute("showCustomIconOpen", showCustomIconOpen, true);
     }
     /**
-     * Should folder nodes showing custom icons (set via the {@link com.smartgwt.client.widgets.tree.TreeGrid#getCustomIconProperty customIconProperty}), show open state images when the folder is opened. If true, the {@link com.smartgwt.client.widgets.tree.TreeGrid#getOpenIconSuffix openIconSuffix} will be appended to the image URL (so <code>"customFolder.gif"</code> might be replaced with  <code>"customFolder_open.gif"</code>).<br> <b>Note</b> that the {@link com.smartgwt.client.widgets.tree.TreeGrid#getClosedIconSuffix closedIconSuffix} is never appended to custom folder icons.<br> Can be overridden at the node level via the {@link com.smartgwt.client.widgets.tree.TreeGrid#getCustomIconOpenProperty customIconOpenProperty} property.
+     * Should folder nodes showing custom icons (set via the {@link com.smartgwt.client.widgets.tree.TreeGrid#getCustomIconProperty customIconProperty}),&#010 show open state images when the folder is opened.&#010 If true, the {@link com.smartgwt.client.widgets.tree.TreeGrid#getOpenIconSuffix openIconSuffix} will be appended to the image URL&#010 (so <code>"customFolder.gif"</code> might be replaced with &#010 <code>"customFolder_open.gif"</code>).<br>&#010 <b>Note</b> that the {@link com.smartgwt.client.widgets.tree.TreeGrid#getClosedIconSuffix closedIconSuffix} is never appended to custom folder icons.<br>&#010 Can be overridden at the node level via the {@link com.smartgwt.client.widgets.tree.TreeGrid#getCustomIconOpenProperty customIconOpenProperty} property.
      *
      *
      * @return Boolean
@@ -699,7 +699,7 @@ public class TreeGrid extends ListGrid  implements DataBoundComponent, com.smart
     }
 
     /**
-    * Should folder nodes showing custom icons (set via the {@link com.smartgwt.client.widgets.tree.TreeGrid#getCustomIconProperty customIconProperty}), show drop state images when the user is drop-hovering over the folder. If true, the {@link com.smartgwt.client.widgets.tree.TreeGrid#getDropIconSuffix dropIconSuffix} will be appended to the image URL (so <code>"customFolder.gif"</code> might be replaced with  <code>"customFolder_drop.gif"</code>).<br> Can be overridden at the node level via the {@link com.smartgwt.client.widgets.tree.TreeGrid#getCustomIconDropProperty customIconDropProperty} property.
+    * Should folder nodes showing custom icons (set via the {@link com.smartgwt.client.widgets.tree.TreeGrid#getCustomIconProperty customIconProperty}),&#010 show drop state images when the user is drop-hovering over the folder.&#010 If true, the {@link com.smartgwt.client.widgets.tree.TreeGrid#getDropIconSuffix dropIconSuffix} will be appended to the image URL&#010 (so <code>"customFolder.gif"</code> might be replaced with &#010 <code>"customFolder_drop.gif"</code>).<br>&#010 Can be overridden at the node level via the {@link com.smartgwt.client.widgets.tree.TreeGrid#getCustomIconDropProperty customIconDropProperty} property.
     * <p><b>Note : </b> This is an advanced setting</p>
     *
     * @param showCustomIconDrop showCustomIconDrop Default value is false
@@ -708,7 +708,7 @@ public class TreeGrid extends ListGrid  implements DataBoundComponent, com.smart
         setAttribute("showCustomIconDrop", showCustomIconDrop, true);
     }
     /**
-     * Should folder nodes showing custom icons (set via the {@link com.smartgwt.client.widgets.tree.TreeGrid#getCustomIconProperty customIconProperty}), show drop state images when the user is drop-hovering over the folder. If true, the {@link com.smartgwt.client.widgets.tree.TreeGrid#getDropIconSuffix dropIconSuffix} will be appended to the image URL (so <code>"customFolder.gif"</code> might be replaced with  <code>"customFolder_drop.gif"</code>).<br> Can be overridden at the node level via the {@link com.smartgwt.client.widgets.tree.TreeGrid#getCustomIconDropProperty customIconDropProperty} property.
+     * Should folder nodes showing custom icons (set via the {@link com.smartgwt.client.widgets.tree.TreeGrid#getCustomIconProperty customIconProperty}),&#010 show drop state images when the user is drop-hovering over the folder.&#010 If true, the {@link com.smartgwt.client.widgets.tree.TreeGrid#getDropIconSuffix dropIconSuffix} will be appended to the image URL&#010 (so <code>"customFolder.gif"</code> might be replaced with &#010 <code>"customFolder_drop.gif"</code>).<br>&#010 Can be overridden at the node level via the {@link com.smartgwt.client.widgets.tree.TreeGrid#getCustomIconDropProperty customIconDropProperty} property.
      *
      *
      * @return Boolean
@@ -719,7 +719,7 @@ public class TreeGrid extends ListGrid  implements DataBoundComponent, com.smart
     }
 
     /**
-    * For folder nodes showing custom icons (set via the {@link com.smartgwt.client.widgets.tree.TreeGrid#getCustomIconProperty customIconProperty}), this property allows the developer to specify on a per-node basis whether a open state icon should be displayed when the folder is open. Set <code>node[treeGrid.customIconOpenProperty]</code> to true to show the open state icons, or false to suppress this.<br> If not specified, this behavior is determined by <code>grid.showCustomIconOpen</code> for this node.
+    * For folder nodes showing custom icons (set via the {@link com.smartgwt.client.widgets.tree.TreeGrid#getCustomIconProperty customIconProperty}),&#010 this property allows the developer to specify on a per-node basis whether a&#010 open state icon should be displayed when the folder is open.&#010 Set <code>node[treeGrid.customIconOpenProperty]</code> to true to show the open state&#010 icons, or false to suppress this.<br>&#010 If not specified, this behavior is determined by <code>grid.showCustomIconOpen</code>&#010 for this node.
     * <p><b>Note : </b> This is an advanced setting</p>
     *
     * @param customIconOpenProperty customIconOpenProperty Default value is "showOpenIcon"
@@ -728,7 +728,7 @@ public class TreeGrid extends ListGrid  implements DataBoundComponent, com.smart
         setAttribute("customIconOpenProperty", customIconOpenProperty, true);
     }
     /**
-     * For folder nodes showing custom icons (set via the {@link com.smartgwt.client.widgets.tree.TreeGrid#getCustomIconProperty customIconProperty}), this property allows the developer to specify on a per-node basis whether a open state icon should be displayed when the folder is open. Set <code>node[treeGrid.customIconOpenProperty]</code> to true to show the open state icons, or false to suppress this.<br> If not specified, this behavior is determined by <code>grid.showCustomIconOpen</code> for this node.
+     * For folder nodes showing custom icons (set via the {@link com.smartgwt.client.widgets.tree.TreeGrid#getCustomIconProperty customIconProperty}),&#010 this property allows the developer to specify on a per-node basis whether a&#010 open state icon should be displayed when the folder is open.&#010 Set <code>node[treeGrid.customIconOpenProperty]</code> to true to show the open state&#010 icons, or false to suppress this.<br>&#010 If not specified, this behavior is determined by <code>grid.showCustomIconOpen</code>&#010 for this node.
      *
      *
      * @return String
@@ -739,7 +739,7 @@ public class TreeGrid extends ListGrid  implements DataBoundComponent, com.smart
     }
 
     /**
-    * For folder nodes showing custom icons (set via the {@link com.smartgwt.client.widgets.tree.TreeGrid#getCustomIconProperty customIconProperty}), this property allows the developer to specify on a per-node basis whether a drop state icon (with {@link com.smartgwt.client.widgets.tree.TreeGrid#getDropIconSuffix dropIconSuffix}) should be displayed when the  user drop-hovers over this folder.<br> Set <code>node[treeGrid.customIconDropProperty]</code> to true to show the drop state icons, or false to suppress this.<br> If not specified this this behavior is determined by <code>treeGrid.showCustomIconDrop</code> for this node.
+    * For folder nodes showing custom icons (set via the {@link com.smartgwt.client.widgets.tree.TreeGrid#getCustomIconProperty customIconProperty}),&#010 this property allows the developer to specify on a per-node basis whether a&#010 drop state icon (with {@link com.smartgwt.client.widgets.tree.TreeGrid#getDropIconSuffix dropIconSuffix}) should be displayed when the &#010 user drop-hovers over this folder.<br>&#010 Set <code>node[treeGrid.customIconDropProperty]</code> to true to show the drop state&#010 icons, or false to suppress this.<br>&#010 If not specified this this behavior is determined by <code>treeGrid.showCustomIconDrop</code>&#010 for this node.
     * <p><b>Note : </b> This is an advanced setting</p>
     *
     * @param customIconDropProperty customIconDropProperty Default value is "showDropIcon"
@@ -748,7 +748,7 @@ public class TreeGrid extends ListGrid  implements DataBoundComponent, com.smart
         setAttribute("customIconDropProperty", customIconDropProperty, true);
     }
     /**
-     * For folder nodes showing custom icons (set via the {@link com.smartgwt.client.widgets.tree.TreeGrid#getCustomIconProperty customIconProperty}), this property allows the developer to specify on a per-node basis whether a drop state icon (with {@link com.smartgwt.client.widgets.tree.TreeGrid#getDropIconSuffix dropIconSuffix}) should be displayed when the  user drop-hovers over this folder.<br> Set <code>node[treeGrid.customIconDropProperty]</code> to true to show the drop state icons, or false to suppress this.<br> If not specified this this behavior is determined by <code>treeGrid.showCustomIconDrop</code> for this node.
+     * For folder nodes showing custom icons (set via the {@link com.smartgwt.client.widgets.tree.TreeGrid#getCustomIconProperty customIconProperty}),&#010 this property allows the developer to specify on a per-node basis whether a&#010 drop state icon (with {@link com.smartgwt.client.widgets.tree.TreeGrid#getDropIconSuffix dropIconSuffix}) should be displayed when the &#010 user drop-hovers over this folder.<br>&#010 Set <code>node[treeGrid.customIconDropProperty]</code> to true to show the drop state&#010 icons, or false to suppress this.<br>&#010 If not specified this this behavior is determined by <code>treeGrid.showCustomIconDrop</code>&#010 for this node.
      *
      *
      * @return String
@@ -759,7 +759,7 @@ public class TreeGrid extends ListGrid  implements DataBoundComponent, com.smart
     }
 
     /**
-    * The filename of the icon displayed use as the default drag tracker when for multiple files and/or folders are being dragged.
+    * The filename of the icon displayed use as the default drag tracker when for multiple&#010 files and/or folders are being dragged.
     *
     * @param manyItemsImage manyItemsImage Default value is "[SKIN]folder_file.gif"
     */
@@ -767,7 +767,7 @@ public class TreeGrid extends ListGrid  implements DataBoundComponent, com.smart
         setAttribute("manyItemsImage", manyItemsImage, true);
     }
     /**
-     * The filename of the icon displayed use as the default drag tracker when for multiple files and/or folders are being dragged.
+     * The filename of the icon displayed use as the default drag tracker when for multiple&#010 files and/or folders are being dragged.
      *
      *
      * @return String
@@ -778,7 +778,7 @@ public class TreeGrid extends ListGrid  implements DataBoundComponent, com.smart
     }
 
     /**
-    * Should this treeGrid show connector lines illustrating the tree's hierachy? <P> For the set of images used to show connectors, see {@link com.smartgwt.client.widgets.tree.TreeGrid#getConnectorImage connectorImage}. <P> <b>Note</b>: in order for connector images to be perfectly connected, all styles for cells must have no top or bottom border or padding.  If you see small gaps in connector lines, check your CSS files.  See the example below for an example of correct configuration, including example CSS.
+    * Should this treeGrid show connector lines illustrating the tree's hierachy?&#010 <P>&#010 For the set of images used to show connectors, see {@link com.smartgwt.client.widgets.tree.TreeGrid#getConnectorImage connectorImage}.&#010 <P>&#010 <b>Note</b>: in order for connector images to be perfectly connected, all styles for&#010 cells must have no top or bottom border or padding.  If you see small gaps in connector&#010 lines, check your CSS files.  See the example below for an example of correct&#010 configuration, including example CSS.
     *
     * @param showConnectors showConnectors Default value is false
     */
@@ -786,7 +786,7 @@ public class TreeGrid extends ListGrid  implements DataBoundComponent, com.smart
         setAttribute("showConnectors", showConnectors, true);
     }
     /**
-     * Should this treeGrid show connector lines illustrating the tree's hierachy? <P> For the set of images used to show connectors, see {@link com.smartgwt.client.widgets.tree.TreeGrid#getConnectorImage connectorImage}. <P> <b>Note</b>: in order for connector images to be perfectly connected, all styles for cells must have no top or bottom border or padding.  If you see small gaps in connector lines, check your CSS files.  See the example below for an example of correct configuration, including example CSS.
+     * Should this treeGrid show connector lines illustrating the tree's hierachy?&#010 <P>&#010 For the set of images used to show connectors, see {@link com.smartgwt.client.widgets.tree.TreeGrid#getConnectorImage connectorImage}.&#010 <P>&#010 <b>Note</b>: in order for connector images to be perfectly connected, all styles for&#010 cells must have no top or bottom border or padding.  If you see small gaps in connector&#010 lines, check your CSS files.  See the example below for an example of correct&#010 configuration, including example CSS.
      *
      *
      * @return Boolean
@@ -797,7 +797,7 @@ public class TreeGrid extends ListGrid  implements DataBoundComponent, com.smart
     }
 
     /**
-    * If {@link com.smartgwt.client.widgets.tree.TreeGrid#getShowConnectors showConnectors} is true, this property determines whether we should show showing vertical continuation lines for each level of indenting within the tree. Setting to false will show only the hierachy lines are only shown for the most indented path ("sparse" connectors).
+    * If {@link com.smartgwt.client.widgets.tree.TreeGrid#getShowConnectors showConnectors} is true, this property determines whether we should show&#010 showing vertical continuation lines for each level of indenting within the tree. Setting to&#010 false will show only the hierachy lines are only shown for the most indented path ("sparse"&#010 connectors).
     *
     * @param showFullConnectors showFullConnectors Default value is true
     */
@@ -805,7 +805,7 @@ public class TreeGrid extends ListGrid  implements DataBoundComponent, com.smart
         setAttribute("showFullConnectors", showFullConnectors, true);
     }
     /**
-     * If {@link com.smartgwt.client.widgets.tree.TreeGrid#getShowConnectors showConnectors} is true, this property determines whether we should show showing vertical continuation lines for each level of indenting within the tree. Setting to false will show only the hierachy lines are only shown for the most indented path ("sparse" connectors).
+     * If {@link com.smartgwt.client.widgets.tree.TreeGrid#getShowConnectors showConnectors} is true, this property determines whether we should show&#010 showing vertical continuation lines for each level of indenting within the tree. Setting to&#010 false will show only the hierachy lines are only shown for the most indented path ("sparse"&#010 connectors).
      *
      *
      * @return Boolean
@@ -816,7 +816,7 @@ public class TreeGrid extends ListGrid  implements DataBoundComponent, com.smart
     }
 
     /**
-    * The base filename of the opener icon for the folder node when 'showConnectors' is false for this TreeGrid.<br> The opener icon is displayed beside the folder icon in the Tree column for folder nodes. Clicking on this icon will toggle the open state of the folder.<br> The filenames for these icons are assembled from this base filename and the state of the node, as follows:<br> If the openerImage is set to <code>{baseName}.{extension}</code>,  <code>{baseName}_opened.{extension}</code> will be displayed next to opened folders, and <code>{baseName}_closed.{extension}</code> will be displayed next to closed folders, or if this page is in RTL mode, <code>{baseName}_opened_rtl.{extension}</code> and <code>{baseName}_closed_rtl.{extension}</code> will be used.
+    * The base filename of the opener icon for the folder node when 'showConnectors' is false&#010 for this TreeGrid.<br>&#010 The opener icon is displayed beside the folder icon in the Tree column for folder nodes.&#010 Clicking on this icon will toggle the open state of the folder.<br>&#010 The filenames for these icons are assembled from this base filename and the state of the&#010 node, as follows:<br>&#010 If the openerImage is set to <code>{baseName}.{extension}</code>, &#010 <code>{baseName}_opened.{extension}</code> will be displayed next to opened folders, and&#010 <code>{baseName}_closed.{extension}</code> will be displayed next to closed folders, or&#010 if this page is in RTL mode, <code>{baseName}_opened_rtl.{extension}</code> and&#010 <code>{baseName}_closed_rtl.{extension}</code> will be used.
     *
     * @param openerImage openerImage Default value is "[SKIN]opener.gif"
     * @throws IllegalStateException this property cannot be changed after the component has been created
@@ -825,7 +825,7 @@ public class TreeGrid extends ListGrid  implements DataBoundComponent, com.smart
         setAttribute("openerImage", openerImage, false);
     }
     /**
-     * The base filename of the opener icon for the folder node when 'showConnectors' is false for this TreeGrid.<br> The opener icon is displayed beside the folder icon in the Tree column for folder nodes. Clicking on this icon will toggle the open state of the folder.<br> The filenames for these icons are assembled from this base filename and the state of the node, as follows:<br> If the openerImage is set to <code>{baseName}.{extension}</code>,  <code>{baseName}_opened.{extension}</code> will be displayed next to opened folders, and <code>{baseName}_closed.{extension}</code> will be displayed next to closed folders, or if this page is in RTL mode, <code>{baseName}_opened_rtl.{extension}</code> and <code>{baseName}_closed_rtl.{extension}</code> will be used.
+     * The base filename of the opener icon for the folder node when 'showConnectors' is false&#010 for this TreeGrid.<br>&#010 The opener icon is displayed beside the folder icon in the Tree column for folder nodes.&#010 Clicking on this icon will toggle the open state of the folder.<br>&#010 The filenames for these icons are assembled from this base filename and the state of the&#010 node, as follows:<br>&#010 If the openerImage is set to <code>{baseName}.{extension}</code>, &#010 <code>{baseName}_opened.{extension}</code> will be displayed next to opened folders, and&#010 <code>{baseName}_closed.{extension}</code> will be displayed next to closed folders, or&#010 if this page is in RTL mode, <code>{baseName}_opened_rtl.{extension}</code> and&#010 <code>{baseName}_closed_rtl.{extension}</code> will be used.
      *
      *
      * @return String
@@ -836,7 +836,7 @@ public class TreeGrid extends ListGrid  implements DataBoundComponent, com.smart
     }
 
     /**
-    * The base filename for connector icons shown when {@link com.smartgwt.client.widgets.tree.TreeGrid#getShowConnectors showConnectors} is true. Connector icons are rendered into the title field of each row and show the dotted hierarchy lines between siblings of the same parent node. For each node, a connector icon may be shown:<ul> <li>As an opener icon for folder nodes, next to the folder icon</li> <li>In place of an opener icon for leaf nodes, next to the leaf icon</li> <li>As a standalone vertical continuation line in the indent to the left of the node, to show     a connection between some ancestor node's siblings (only relevant if     {@link com.smartgwt.client.widgets.tree.TreeGrid#getShowFullConnectors showFullConnectors} is true).</li> </ul> Note that {@link com.smartgwt.client.widgets.tree.TreeGrid#getShowFullConnectors showFullConnectors} governs whether connector lines will be displayed for all indent levels, or just for the innermost level of the tree. <P> The filenames for these icons are assembled from this base filename and the state of the node.  Assuming the connectorImage is set to <code>{baseName}.{extension}</code>, the full set of images to be displayed will be: <P> <code>{baseName}_ancestor[_rtl].{extension}</code> if {@link com.smartgwt.client.widgets.tree.TreeGrid#getShowFullConnectors showFullConnectors}  is true, this is the URL for the vertical continuation image to be displayed at the  appropriate indent levels for ancestor nodes with subsequent children. <P> For nodes with no children: <ul> <li><code>{baseName}_single[_rtl].{extension}</code>: Shown when there is no connector line  attached to the parent or previous sibling, and no connector line to the next sibling. For  {@link com.smartgwt.client.widgets.tree.TreeGrid#getShowFullConnectors showFullConnectors} trees, there will always be a  connector leading to the parent or previous sibling if its present in the tree so this  icon can only be displayed for the first row.</li> <li><code>{baseName}_start[_rtl].{extension}</code>:  Shown when the there is no connector  line attached to the parent or previous sibling, but there is a connector to the next  sibling. As with <code>_single</code> this will only ever be used for the first row if  {@link com.smartgwt.client.widgets.tree.TreeGrid#getShowFullConnectors showFullConnectors} is true</li> <li><code>{baseName}_end[_rtl].{extension}</code>:  Shown if we are not showing a connector   line attached to the next sibling of this node (but are showing a connection to the previous  sibling or parent).</li> <li><code>{baseName}_middle[_rtl].{extension}</code>:  Shown where the we have a connector  line leading to both the previous sibling (or parent) and the next sibling. </ul> For folders with children. Note that if {@link com.smartgwt.client.widgets.tree.TreeGrid#getShowFullConnectors showFullConnectors} is false, open folders will never show a connector to subsequent siblings: <ul> <li><code>{baseName}_opened_single[_rtl].{extension}</code> opened folder node with   children when no connector line is shown attaching to either the folder's previous sibling  or parent, or to any subsequent siblings.</li> <li><code>{baseName}_opened_start[_rtl].{extension}</code>:  opened folder with children  when the there is no connector line attached to the parent or previous sibling, but there   is a connector to the next sibling.</li> <li><code>{baseName}_opened_end[_rtl].{extension}</code>:  opened folder with children   if we are not showing a connector line attached to the next sibling of this node (but are  showing a connection to the previous sibling or parent).</li> <li><code>{baseName}_opened_middle[_rtl].{extension}</code>: opened folder with children   where the we have a connector line leading to both the previous sibling (or parent) and the  next sibling. </ul> <ul> <li><code>{baseName}_closed_single[_rtl].{extension}</code> closed folder node with   children when no connector line is shown attaching to either the folder's previous sibling  or parent, or to any subsequent siblings.</li> <li><code>{baseName}_closed_start[_rtl].{extension}</code>:  closed folder with children  when the there is no connector line attached to the parent or previous sibling, but there   is a connector to the next sibling.</li> <li><code>{baseName}_closed_end[_rtl].{extension}</code>:  closed folder with children   if we are not showing a connector line attached to the next sibling of this node (but are  showing a connection to the previous sibling or parent).</li> <li><code>{baseName}_closed_middle[_rtl].{extension}</code>: closed folder with children   where the we have a connector line leading to both the previous sibling (or parent) and the  next sibling. </ul> (Note '[_rtl]' means that "_rtl" will be attached if isRTL() is true for this widget).
+    * The base filename for connector icons shown when {@link com.smartgwt.client.widgets.tree.TreeGrid#getShowConnectors showConnectors} is true.&#010 Connector icons are rendered into the title field of each row and show the dotted&#010 hierarchy lines between siblings of the same parent node. For each node, a connector icon&#010 may be shown:<ul>&#010 <li>As an opener icon for folder nodes, next to the folder icon</li>&#010 <li>In place of an opener icon for leaf nodes, next to the leaf icon</li>&#010 <li>As a standalone vertical continuation line in the indent to the left of the node, to show&#010     a connection between some ancestor node's siblings (only relevant if&#010     {@link com.smartgwt.client.widgets.tree.TreeGrid#getShowFullConnectors showFullConnectors} is true).</li>&#010 </ul>&#010 Note that {@link com.smartgwt.client.widgets.tree.TreeGrid#getShowFullConnectors showFullConnectors} governs whether connector lines will be&#010 displayed for all indent levels, or just for the innermost level of the tree.&#010 <P>&#010 The filenames for these icons are assembled from this base filename and the state of the&#010 node.  Assuming the connectorImage is set to <code>{baseName}.{extension}</code>, the&#010 full set of images to be displayed will be:&#010 <P>&#010 <code>{baseName}_ancestor[_rtl].{extension}</code> if {@link com.smartgwt.client.widgets.tree.TreeGrid#getShowFullConnectors showFullConnectors}&#010  is true, this is the URL for the vertical continuation image to be displayed at the&#010  appropriate indent levels for ancestor nodes with subsequent children.&#010 <P>&#010 For nodes with no children:&#010 <ul>&#010 <li><code>{baseName}_single[_rtl].{extension}</code>: Shown when there is no connector line&#010  attached to the parent or previous sibling, and no connector line to the next sibling. For&#010  {@link com.smartgwt.client.widgets.tree.TreeGrid#getShowFullConnectors showFullConnectors} trees, there will always be a&#010  connector leading to the parent or previous sibling if its present in the tree so this&#010  icon can only be displayed for the first row.</li>&#010 <li><code>{baseName}_start[_rtl].{extension}</code>:  Shown when the there is no connector&#010  line attached to the parent or previous sibling, but there is a connector to the next&#010  sibling. As with <code>_single</code> this will only ever be used for the first row if&#010  {@link com.smartgwt.client.widgets.tree.TreeGrid#getShowFullConnectors showFullConnectors} is true</li>&#010 <li><code>{baseName}_end[_rtl].{extension}</code>:  Shown if we are not showing a connector &#010  line attached to the next sibling of this node (but are showing a connection to the previous&#010  sibling or parent).</li>&#010 <li><code>{baseName}_middle[_rtl].{extension}</code>:  Shown where the we have a connector&#010  line leading to both the previous sibling (or parent) and the next sibling.&#010 </ul>&#010 For folders with children. Note that if {@link com.smartgwt.client.widgets.tree.TreeGrid#getShowFullConnectors showFullConnectors} is false, open&#010 folders will never show a connector to subsequent siblings:&#010 <ul>&#010 <li><code>{baseName}_opened_single[_rtl].{extension}</code> opened folder node with &#010  children when no connector line is shown attaching to either the folder's previous sibling&#010  or parent, or to any subsequent siblings.</li>&#010 <li><code>{baseName}_opened_start[_rtl].{extension}</code>:  opened folder with children&#010  when the there is no connector line attached to the parent or previous sibling, but there &#010  is a connector to the next sibling.</li>&#010 <li><code>{baseName}_opened_end[_rtl].{extension}</code>:  opened folder with children &#010  if we are not showing a connector line attached to the next sibling of this node (but are&#010  showing a connection to the previous sibling or parent).</li>&#010 <li><code>{baseName}_opened_middle[_rtl].{extension}</code>: opened folder with children &#010  where the we have a connector line leading to both the previous sibling (or parent) and the&#010  next sibling.&#010 </ul>&#010 <ul>&#010 <li><code>{baseName}_closed_single[_rtl].{extension}</code> closed folder node with &#010  children when no connector line is shown attaching to either the folder's previous sibling&#010  or parent, or to any subsequent siblings.</li>&#010 <li><code>{baseName}_closed_start[_rtl].{extension}</code>:  closed folder with children&#010  when the there is no connector line attached to the parent or previous sibling, but there &#010  is a connector to the next sibling.</li>&#010 <li><code>{baseName}_closed_end[_rtl].{extension}</code>:  closed folder with children &#010  if we are not showing a connector line attached to the next sibling of this node (but are&#010  showing a connection to the previous sibling or parent).</li>&#010 <li><code>{baseName}_closed_middle[_rtl].{extension}</code>: closed folder with children &#010  where the we have a connector line leading to both the previous sibling (or parent) and the&#010  next sibling.&#010 </ul>&#010 (Note '[_rtl]' means that "_rtl" will be attached if isRTL() is true for this widget).
     *
     * @param connectorImage connectorImage Default value is "[SKIN]connector.gif"
     * @throws IllegalStateException this property cannot be changed after the component has been created
@@ -845,7 +845,7 @@ public class TreeGrid extends ListGrid  implements DataBoundComponent, com.smart
         setAttribute("connectorImage", connectorImage, false);
     }
     /**
-     * The base filename for connector icons shown when {@link com.smartgwt.client.widgets.tree.TreeGrid#getShowConnectors showConnectors} is true. Connector icons are rendered into the title field of each row and show the dotted hierarchy lines between siblings of the same parent node. For each node, a connector icon may be shown:<ul> <li>As an opener icon for folder nodes, next to the folder icon</li> <li>In place of an opener icon for leaf nodes, next to the leaf icon</li> <li>As a standalone vertical continuation line in the indent to the left of the node, to show     a connection between some ancestor node's siblings (only relevant if     {@link com.smartgwt.client.widgets.tree.TreeGrid#getShowFullConnectors showFullConnectors} is true).</li> </ul> Note that {@link com.smartgwt.client.widgets.tree.TreeGrid#getShowFullConnectors showFullConnectors} governs whether connector lines will be displayed for all indent levels, or just for the innermost level of the tree. <P> The filenames for these icons are assembled from this base filename and the state of the node.  Assuming the connectorImage is set to <code>{baseName}.{extension}</code>, the full set of images to be displayed will be: <P> <code>{baseName}_ancestor[_rtl].{extension}</code> if {@link com.smartgwt.client.widgets.tree.TreeGrid#getShowFullConnectors showFullConnectors}  is true, this is the URL for the vertical continuation image to be displayed at the  appropriate indent levels for ancestor nodes with subsequent children. <P> For nodes with no children: <ul> <li><code>{baseName}_single[_rtl].{extension}</code>: Shown when there is no connector line  attached to the parent or previous sibling, and no connector line to the next sibling. For  {@link com.smartgwt.client.widgets.tree.TreeGrid#getShowFullConnectors showFullConnectors} trees, there will always be a  connector leading to the parent or previous sibling if its present in the tree so this  icon can only be displayed for the first row.</li> <li><code>{baseName}_start[_rtl].{extension}</code>:  Shown when the there is no connector  line attached to the parent or previous sibling, but there is a connector to the next  sibling. As with <code>_single</code> this will only ever be used for the first row if  {@link com.smartgwt.client.widgets.tree.TreeGrid#getShowFullConnectors showFullConnectors} is true</li> <li><code>{baseName}_end[_rtl].{extension}</code>:  Shown if we are not showing a connector   line attached to the next sibling of this node (but are showing a connection to the previous  sibling or parent).</li> <li><code>{baseName}_middle[_rtl].{extension}</code>:  Shown where the we have a connector  line leading to both the previous sibling (or parent) and the next sibling. </ul> For folders with children. Note that if {@link com.smartgwt.client.widgets.tree.TreeGrid#getShowFullConnectors showFullConnectors} is false, open folders will never show a connector to subsequent siblings: <ul> <li><code>{baseName}_opened_single[_rtl].{extension}</code> opened folder node with   children when no connector line is shown attaching to either the folder's previous sibling  or parent, or to any subsequent siblings.</li> <li><code>{baseName}_opened_start[_rtl].{extension}</code>:  opened folder with children  when the there is no connector line attached to the parent or previous sibling, but there   is a connector to the next sibling.</li> <li><code>{baseName}_opened_end[_rtl].{extension}</code>:  opened folder with children   if we are not showing a connector line attached to the next sibling of this node (but are  showing a connection to the previous sibling or parent).</li> <li><code>{baseName}_opened_middle[_rtl].{extension}</code>: opened folder with children   where the we have a connector line leading to both the previous sibling (or parent) and the  next sibling. </ul> <ul> <li><code>{baseName}_closed_single[_rtl].{extension}</code> closed folder node with   children when no connector line is shown attaching to either the folder's previous sibling  or parent, or to any subsequent siblings.</li> <li><code>{baseName}_closed_start[_rtl].{extension}</code>:  closed folder with children  when the there is no connector line attached to the parent or previous sibling, but there   is a connector to the next sibling.</li> <li><code>{baseName}_closed_end[_rtl].{extension}</code>:  closed folder with children   if we are not showing a connector line attached to the next sibling of this node (but are  showing a connection to the previous sibling or parent).</li> <li><code>{baseName}_closed_middle[_rtl].{extension}</code>: closed folder with children   where the we have a connector line leading to both the previous sibling (or parent) and the  next sibling. </ul> (Note '[_rtl]' means that "_rtl" will be attached if isRTL() is true for this widget).
+     * The base filename for connector icons shown when {@link com.smartgwt.client.widgets.tree.TreeGrid#getShowConnectors showConnectors} is true.&#010 Connector icons are rendered into the title field of each row and show the dotted&#010 hierarchy lines between siblings of the same parent node. For each node, a connector icon&#010 may be shown:<ul>&#010 <li>As an opener icon for folder nodes, next to the folder icon</li>&#010 <li>In place of an opener icon for leaf nodes, next to the leaf icon</li>&#010 <li>As a standalone vertical continuation line in the indent to the left of the node, to show&#010     a connection between some ancestor node's siblings (only relevant if&#010     {@link com.smartgwt.client.widgets.tree.TreeGrid#getShowFullConnectors showFullConnectors} is true).</li>&#010 </ul>&#010 Note that {@link com.smartgwt.client.widgets.tree.TreeGrid#getShowFullConnectors showFullConnectors} governs whether connector lines will be&#010 displayed for all indent levels, or just for the innermost level of the tree.&#010 <P>&#010 The filenames for these icons are assembled from this base filename and the state of the&#010 node.  Assuming the connectorImage is set to <code>{baseName}.{extension}</code>, the&#010 full set of images to be displayed will be:&#010 <P>&#010 <code>{baseName}_ancestor[_rtl].{extension}</code> if {@link com.smartgwt.client.widgets.tree.TreeGrid#getShowFullConnectors showFullConnectors}&#010  is true, this is the URL for the vertical continuation image to be displayed at the&#010  appropriate indent levels for ancestor nodes with subsequent children.&#010 <P>&#010 For nodes with no children:&#010 <ul>&#010 <li><code>{baseName}_single[_rtl].{extension}</code>: Shown when there is no connector line&#010  attached to the parent or previous sibling, and no connector line to the next sibling. For&#010  {@link com.smartgwt.client.widgets.tree.TreeGrid#getShowFullConnectors showFullConnectors} trees, there will always be a&#010  connector leading to the parent or previous sibling if its present in the tree so this&#010  icon can only be displayed for the first row.</li>&#010 <li><code>{baseName}_start[_rtl].{extension}</code>:  Shown when the there is no connector&#010  line attached to the parent or previous sibling, but there is a connector to the next&#010  sibling. As with <code>_single</code> this will only ever be used for the first row if&#010  {@link com.smartgwt.client.widgets.tree.TreeGrid#getShowFullConnectors showFullConnectors} is true</li>&#010 <li><code>{baseName}_end[_rtl].{extension}</code>:  Shown if we are not showing a connector &#010  line attached to the next sibling of this node (but are showing a connection to the previous&#010  sibling or parent).</li>&#010 <li><code>{baseName}_middle[_rtl].{extension}</code>:  Shown where the we have a connector&#010  line leading to both the previous sibling (or parent) and the next sibling.&#010 </ul>&#010 For folders with children. Note that if {@link com.smartgwt.client.widgets.tree.TreeGrid#getShowFullConnectors showFullConnectors} is false, open&#010 folders will never show a connector to subsequent siblings:&#010 <ul>&#010 <li><code>{baseName}_opened_single[_rtl].{extension}</code> opened folder node with &#010  children when no connector line is shown attaching to either the folder's previous sibling&#010  or parent, or to any subsequent siblings.</li>&#010 <li><code>{baseName}_opened_start[_rtl].{extension}</code>:  opened folder with children&#010  when the there is no connector line attached to the parent or previous sibling, but there &#010  is a connector to the next sibling.</li>&#010 <li><code>{baseName}_opened_end[_rtl].{extension}</code>:  opened folder with children &#010  if we are not showing a connector line attached to the next sibling of this node (but are&#010  showing a connection to the previous sibling or parent).</li>&#010 <li><code>{baseName}_opened_middle[_rtl].{extension}</code>: opened folder with children &#010  where the we have a connector line leading to both the previous sibling (or parent) and the&#010  next sibling.&#010 </ul>&#010 <ul>&#010 <li><code>{baseName}_closed_single[_rtl].{extension}</code> closed folder node with &#010  children when no connector line is shown attaching to either the folder's previous sibling&#010  or parent, or to any subsequent siblings.</li>&#010 <li><code>{baseName}_closed_start[_rtl].{extension}</code>:  closed folder with children&#010  when the there is no connector line attached to the parent or previous sibling, but there &#010  is a connector to the next sibling.</li>&#010 <li><code>{baseName}_closed_end[_rtl].{extension}</code>:  closed folder with children &#010  if we are not showing a connector line attached to the next sibling of this node (but are&#010  showing a connection to the previous sibling or parent).</li>&#010 <li><code>{baseName}_closed_middle[_rtl].{extension}</code>: closed folder with children &#010  where the we have a connector line leading to both the previous sibling (or parent) and the&#010  next sibling.&#010 </ul>&#010 (Note '[_rtl]' means that "_rtl" will be attached if isRTL() is true for this widget).
      *
      *
      * @return String
@@ -870,7 +870,7 @@ public class TreeGrid extends ListGrid  implements DataBoundComponent, com.smart
 
 
         /**
-         * Overridden to disallow editing of the {@link com.smartgwt.client.widgets.tree.TreeNode#getName name} field of this grid's data tree. Also disallows editing of the auto-generated tree field, which displays the result of {@link com.smartgwt.client.widgets.tree.Tree#getTitle} on the node.
+         * Overridden to disallow editing of the {@link com.smartgwt.client.widgets.tree.TreeNode#getName name} field of this grid's data&#010 tree. Also disallows editing of the auto-generated tree field, which displays the result&#010 of {@link com.smartgwt.client.widgets.tree.Tree#getTitle} on the node.&#010
          *
          * @return Whether to allow editing this cell
          */
@@ -886,7 +886,7 @@ public class TreeGrid extends ListGrid  implements DataBoundComponent, com.smart
 
 
         /**
-         * Handle a doubleClick on a tree node - override of ListGrid stringMethod of same name.  If the node is a folder, this implementation calls {@link com.smartgwt.client.widgets.tree.TreeGrid#toggleFolder} on it.  If the node is a leaf, calls {@link com.smartgwt.client.widgets.tree.TreeGrid#openLeaf} on it.
+         * &#010 Handle a doubleClick on a tree node - override of ListGrid stringMethod of same name.  If&#010 the node is a folder, this implementation calls {@link com.smartgwt.client.widgets.tree.TreeGrid#toggleFolder} on it.  If&#010 the node is a leaf, calls {@link com.smartgwt.client.widgets.tree.TreeGrid#openLeaf} on it.&#010 &#010
          */
         public native void recordDoubleClick() /*-{
             var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
@@ -897,7 +897,7 @@ public class TreeGrid extends ListGrid  implements DataBoundComponent, com.smart
 
 
         /**
-         * This method overrides {@link com.smartgwt.client.widgets.grid.ListGrid#willAcceptDrop} and works as follows: <br><br> First, {@link com.smartgwt.client.widgets.grid.ListGrid#willAcceptDrop} (the superclass definition) is consulted.  If it returns false, then this method returns false immediately.<br> This handles the following cases:<br> - reordering of records withing this TreeGrid when {@link com.smartgwt.client.widgets.grid.ListGrid#getCanReorderRecords canReorderRecords} is true<br> - accepting dropped records from another dragTarget when {@link com.smartgwt.client.widgets.grid.ListGrid#getCanAcceptDroppedRecords canAcceptDroppedRecords}    is true and the dragTarget gives us a valid set of records to drop into place.<br> - disallowing drop over disabled nodes, or nodes with <code>canAcceptDrop:false</code> <br> This method will also return false if the drop occurred over a leaf node whos immediate  parent has <code>canAcceptDrop</code> set to <code>false</code><br> If {@link com.smartgwt.client.widgets.tree.TreeGrid#getCanReparentNodes canReparentNodes} is true, and the user is dragging a node from one folder to another, this method will return true to allow the change of parent folder.<br> <br><br> Otherwise this method returns true.
+         * &#010 This method overrides {@link com.smartgwt.client.widgets.grid.ListGrid#willAcceptDrop} and works as follows:&#010 <br><br>&#010 First, {@link com.smartgwt.client.widgets.grid.ListGrid#willAcceptDrop} (the superclass definition) is consulted.  If it&#010 returns false, then this method returns false immediately.<br>&#010 This handles the following cases:<br>&#010 - reordering of records withing this TreeGrid when {@link com.smartgwt.client.widgets.grid.ListGrid#getCanReorderRecords canReorderRecords} is true<br>&#010 - accepting dropped records from another dragTarget when {@link com.smartgwt.client.widgets.grid.ListGrid#getCanAcceptDroppedRecords canAcceptDroppedRecords} &#010   is true and the dragTarget gives us a valid set of records to drop into place.<br>&#010 - disallowing drop over disabled nodes, or nodes with <code>canAcceptDrop:false</code>&#010 <br>&#010 This method will also return false if the drop occurred over a leaf node whos immediate &#010 parent has <code>canAcceptDrop</code> set to <code>false</code><br>&#010 If {@link com.smartgwt.client.widgets.tree.TreeGrid#getCanReparentNodes canReparentNodes} is true, and the user is dragging a node from one folder&#010 to another, this method will return true to allow the change of parent folder.<br>&#010 <br><br>&#010 Otherwise this method returns true.&#010&#010
          *
          * @return true if this component will accept a drop of the dragData
          */
@@ -912,7 +912,7 @@ public class TreeGrid extends ListGrid  implements DataBoundComponent, com.smart
         }-*/;
 
         /**
-         * Returns the row number of the most recent mouse event.
+         * Returns the row number of the most recent mouse event.&#010
          *
          * @return row number, or -2 if beyond last drawn row
          */
@@ -922,7 +922,7 @@ public class TreeGrid extends ListGrid  implements DataBoundComponent, com.smart
         }-*/;
 
         /**
-         * Returns the row number of the most recent mouse event.
+         * Returns the row number of the most recent mouse event.&#010
          * @param y optional y-coordinate to obtain row number, in lieue of the y                        coordinate of the last mouse event
          *
          * @return row number, or -2 if beyond last drawn row
@@ -937,7 +937,7 @@ public class TreeGrid extends ListGrid  implements DataBoundComponent, com.smart
 
 
         /**
-         * Get the appropriate open/close opener icon for a node.
+         * Get the appropriate open/close opener icon for a node.&#010&#010
          * @param node tree node in question
          *
          * @return URL for the icon to show the node's open state
@@ -948,7 +948,7 @@ public class TreeGrid extends ListGrid  implements DataBoundComponent, com.smart
         }-*/;
 
         /**
-         * Get an additional icon to show between the open icon and folder/node icon for a particular  node.
+         * Get an additional icon to show between the open icon and folder/node icon for a particular &#010 node.&#010&#010
          * @param node tree node in question
          *
          * @return URL for the extra icon (null if none required)
@@ -959,7 +959,7 @@ public class TreeGrid extends ListGrid  implements DataBoundComponent, com.smart
         }-*/;
 
         /**
-         * Get the appropriate icon for a node. <P> By default icons are derived from {@link com.smartgwt.client.widgets.tree.TreeGrid#getFolderIcon folderIcon} and {@link com.smartgwt.client.widgets.tree.TreeGrid#getNodeIcon nodeIcon}. Custom icons for individual nodes can be overriden by setting the {@link com.smartgwt.client.widgets.tree.TreeGrid#getCustomIconProperty customIconProperty} on a node. <p> If you want to suppress icons altogether, provide an override of this method that simply returns null. <p>  Note that the full icon URL will be derived by applying {@link com.smartgwt.client.widgets.Canvas#getImgURL} to the value returned from this method.
+         * Get the appropriate icon for a node.&#010 <P>&#010 By default icons are derived from {@link com.smartgwt.client.widgets.tree.TreeGrid#getFolderIcon folderIcon} and {@link com.smartgwt.client.widgets.tree.TreeGrid#getNodeIcon nodeIcon}.&#010 Custom icons for individual nodes can be overriden by setting the {@link com.smartgwt.client.widgets.tree.TreeGrid#getCustomIconProperty customIconProperty}&#010 on a node.&#010 <p>&#010 If you want to suppress icons altogether, provide an override of this method that simply&#010 returns null.&#010 <p> &#010 Note that the full icon URL will be derived by applying {@link com.smartgwt.client.widgets.Canvas#getImgURL} to the&#010 value returned from this method.&#010&#010
          * @param node tree node in question
          *
          * @return URL for icon to show for this node
@@ -974,7 +974,7 @@ public class TreeGrid extends ListGrid  implements DataBoundComponent, com.smart
         /**
          * Add a folderOpened handler.
          * <p>
-         * This method is called when a folder is opened either via the user manipulating the expand/collapse control in the UI or via {@link com.smartgwt.client.widgets.tree.TreeGrid#openFolder}.  You can return <code>false</code> to cancel the open.
+         * &#010 This method is called when a folder is opened either via the user manipulating the&#010 expand/collapse control in the UI or via {@link com.smartgwt.client.widgets.tree.TreeGrid#openFolder}.  You can return&#010 <code>false</code> to cancel the open.&#010&#010
          *
          * @param handler the folderOpened handler
          */
@@ -1011,7 +1011,7 @@ public class TreeGrid extends ListGrid  implements DataBoundComponent, com.smart
         /**
          * Add a folderClosed handler.
          * <p>
-         * This method is called when a folder is closed either via the user manipulating the expand/collapse control in the UI or via {@link com.smartgwt.client.widgets.tree.TreeGrid#closeFolder}.  You can return <code>false</code> to cancel the close.
+         * &#010 This method is called when a folder is closed either via the user manipulating the&#010 expand/collapse control in the UI or via {@link com.smartgwt.client.widgets.tree.TreeGrid#closeFolder}.  You can return&#010 <code>false</code> to cancel the close.&#010&#010
          *
          * @param handler the folderClosed handler
          */
@@ -1050,7 +1050,7 @@ public class TreeGrid extends ListGrid  implements DataBoundComponent, com.smart
         /**
          * Add a folderClick handler.
          * <p>
-         * This method is called when a folder record is clicked on.
+         * &#010 This method is called when a folder record is clicked on.&#010&#010
          *
          * @param handler the folderClick handler
          */
@@ -1085,7 +1085,7 @@ public class TreeGrid extends ListGrid  implements DataBoundComponent, com.smart
         /**
          * Add a leafClick handler.
          * <p>
-         * This method is called when a leaf record is clicked on.
+         * &#010 This method is called when a leaf record is clicked on.&#010&#010
          *
          * @param handler the leafClick handler
          */
@@ -1120,7 +1120,7 @@ public class TreeGrid extends ListGrid  implements DataBoundComponent, com.smart
         /**
          * Add a nodeClick handler.
          * <p>
-         * This method is called when a leaf or folder record is clicked on.  Note that if you set up a callback for <code>nodeClick()</code> and e.g. {@link com.smartgwt.client.widgets.tree.TreeGrid#leafClick}, then both will fire (in that order) if a leaf is clicked on.
+         * &#010 This method is called when a leaf or folder record is clicked on.  Note that if you set&#010 up a callback for <code>nodeClick()</code> and e.g. {@link com.smartgwt.client.widgets.tree.TreeGrid#leafClick}, then&#010 both will fire (in that order) if a leaf is clicked on.&#010&#010
          *
          * @param handler the nodeClick handler
          */
@@ -1155,7 +1155,7 @@ public class TreeGrid extends ListGrid  implements DataBoundComponent, com.smart
         /**
          * Add a folderContextClick handler.
          * <p>
-         * This method is called when a context click occurs on a folder record.
+         * &#010 This method is called when a context click occurs on a folder record.&#010&#010
          *
          * @param handler the folderContextClick handler
          */
@@ -1194,7 +1194,7 @@ public class TreeGrid extends ListGrid  implements DataBoundComponent, com.smart
         /**
          * Add a leafContextClick handler.
          * <p>
-         * This method is called when a context click occurs on a leaf record.
+         * &#010 This method is called when a context click occurs on a leaf record.&#010&#010
          *
          * @param handler the leafContextClick handler
          */
@@ -1233,7 +1233,7 @@ public class TreeGrid extends ListGrid  implements DataBoundComponent, com.smart
         /**
          * Add a nodeContextClick handler.
          * <p>
-         * This method is called when a context click occurs on a leaf or folder record.  Note that if you set up a callback for <code>nodeContextClick()</code> and e.g. {@link com.smartgwt.client.widgets.tree.TreeGrid#leafContextClick}, then both will fire (in that order) if a leaf is contextclicked - unless <code>nodeContextClick()</code> returns false, in which case no further contextClick callbacks will be called.
+         * &#010 This method is called when a context click occurs on a leaf or folder record.  Note that&#010 if you set up a callback for <code>nodeContextClick()</code> and&#010 e.g. {@link com.smartgwt.client.widgets.tree.TreeGrid#leafContextClick}, then both will fire (in that order) if a leaf&#010 is contextclicked - unless <code>nodeContextClick()</code> returns false, in which case&#010 no further contextClick callbacks will be called.&#010&#010
          *
          * @param handler the nodeContextClick handler
          */
@@ -1270,7 +1270,7 @@ public class TreeGrid extends ListGrid  implements DataBoundComponent, com.smart
         /**
          * Add a dataArrived handler.
          * <p>
-         * Notification method fired whenever this TreeGrid recieves new data nodes from the  dataSource. Only applies to databound TreeGrids where {@link com.smartgwt.client.widgets.tree.TreeGrid#getData data} is a  {@link com.smartgwt.client..ResultTree} - either explicitly created and applied via {@link com.smartgwt.client.widgets.tree.TreeGrid#setData} or automatically generated via a {@link com.smartgwt.client.widgets.tree.TreeGrid#fetchData} call.
+         * Notification method fired whenever this TreeGrid recieves new data nodes from the &#010 dataSource. Only applies to databound TreeGrids where {@link com.smartgwt.client.widgets.tree.TreeGrid#getData data} is a &#010 {@link com.smartgwt.client..ResultTree} - either explicitly created and applied via {@link com.smartgwt.client.widgets.tree.TreeGrid#setData} or&#010 automatically generated via a {@link com.smartgwt.client.widgets.tree.TreeGrid#fetchData} call.&#010
          *
          * @param handler the dataArrived handler
          */

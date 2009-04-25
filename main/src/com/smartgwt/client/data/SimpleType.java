@@ -56,7 +56,7 @@ import com.smartgwt.client.util.EnumUtil;
 import com.google.gwt.event.shared.*;
 import com.google.gwt.event.shared.HasHandlers;
    /**
-    * An atomic type such as a string or number, that is generally stored, displayed and manipulated as a single value. <P> SimpleTypes can be created at any time, and subsequently referred to as a  {@link com.smartgwt.client.data.DataSourceField#getType type} in {@link com.smartgwt.client.data.DataSource} and ${isc.DocUtils.linkForRef('interface:DataBoundComponent','DataBoundComponents')}.  This allows you to define {@link com.smartgwt.client.data.SimpleType#getValidators validators}, {@link com.smartgwt.client.data.SimpleType#normalDisplayFormatter} and {@link com.smartgwt.client.data.SimpleType#getEditorType editorType} behaviors for a type to be reused across all ${isc.DocUtils.linkForRef('interface:DataBoundComponent','DataBoundComponents')}. <P> Note that the term "simpleType" is used in the same sense as in <a href='XML Schema' onclick="window.open('XML Schema');return false;">http://www.w3.org/TR/xmlschema-0/</a>, and {@link com.smartgwt.client.data.XMLTools#loadXMLSchema} will create new SimpleType definitions. <P> An ${isc.DocUtils.linkForExampleId('customSimpleType', 'example')} is here.
+    * An atomic type such as a string or number, that is generally stored, displayed and&#010 manipulated as a single value.&#010 <P>&#010 SimpleTypes can be created at any time, and subsequently referred to as a &#010 {@link com.smartgwt.client.data.DataSourceField#getType type} in {@link com.smartgwt.client.data.DataSource} and&#010 ${isc.DocUtils.linkForRef('interface:DataBoundComponent','DataBoundComponents')}.  This allows you to define&#010 {@link com.smartgwt.client.data.SimpleType#getValidators validators}, {@link com.smartgwt.client.data.SimpleType#normalDisplayFormatter}&#010 and {@link com.smartgwt.client.data.SimpleType#getEditorType editorType} behaviors for a type to be reused across all&#010 ${isc.DocUtils.linkForRef('interface:DataBoundComponent','DataBoundComponents')}.&#010 <P>&#010 Note that the term "simpleType" is used in the same sense as in&#010 <a href='XML Schema' onclick="window.open('XML Schema');return false;">http://www.w3.org/TR/xmlschema-0/</a>, and&#010 {@link com.smartgwt.client.data.XMLTools#loadXMLSchema} will create new SimpleType definitions.&#010 <P>&#010 An ${isc.DocUtils.linkForExampleId('customSimpleType', 'example')} is here.
 
     */
 public class SimpleType extends BaseClass {
@@ -107,7 +107,7 @@ public class SimpleType extends BaseClass {
     }
 
     /**
-    * Name of another SimpleType from which this type should inherit. <P> Validators, if any, will be combined.  All other SimpleType properties default to the inherited type's value.
+    * Name of another SimpleType from which this type should inherit.&#010 <P>&#010 Validators, if any, will be combined.  All other SimpleType properties default to the&#010 inherited type's value.
     *
     * @param inheritsFrom inheritsFrom Default value is null
     * @throws IllegalStateException this property cannot be changed after the underlying component has been created
@@ -116,7 +116,7 @@ public class SimpleType extends BaseClass {
         setAttribute("inheritsFrom", inheritsFrom, false);
     }
     /**
-     * Name of another SimpleType from which this type should inherit. <P> Validators, if any, will be combined.  All other SimpleType properties default to the inherited type's value.
+     * Name of another SimpleType from which this type should inherit.&#010 <P>&#010 Validators, if any, will be combined.  All other SimpleType properties default to the&#010 inherited type's value.
      *
      *
      * @return String

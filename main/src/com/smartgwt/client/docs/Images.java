@@ -2,7 +2,7 @@
 package com.smartgwt.client.docs;
 
 /**
- * Refering to and loading images. <P> The two main URL settings relevent to loading images are:<br> * imgDir (where application-specific images live)<br> * skinImgDir (where system supplied images live)<br>
+ * Refering to and loading images.&#010 <P>&#010 The two main URL settings relevent to loading images are:<br>&#010 * imgDir (where application-specific images live)<br>&#010 * skinImgDir (where system supplied images live)<br>
  * @see com.smartgwt.client.widgets.Canvas#getImgURL
  * @see com.smartgwt.client.widgets.Canvas#imgHTML
  * @see com.smartgwt.client.widgets.Canvas#getImage

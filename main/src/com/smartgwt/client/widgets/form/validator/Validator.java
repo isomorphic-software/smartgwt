@@ -56,7 +56,7 @@ import com.smartgwt.client.util.EnumUtil;
 import com.google.gwt.event.shared.*;
 import com.google.gwt.event.shared.HasHandlers;
    /**
-    * A validator describes a check that should be performed on a value the user is trying to save. <p> Validators are specified for DataSource fields via the {@link com.smartgwt.client.data.DataSourceField#getValidators validators} property.  Validators that need not be run on the server can also be specified for a specific {@link com.smartgwt.client.widgets.form.fields.FormItem} or ${isc.DocUtils.linkForRef('object:ListGridField')}. <p> ISC supports a powerful library of {@link com.smartgwt.client..ValidatorTypes} which have identical behavior on both the client and the server.   <p>  Beyond this, custom validators can be defined on the client and custom validation logic added on the server.  Note that the <code>regexp</code> and <code>mask</code> validator types are very flexible and can be used to perform virtually any kind of formatting check that doesn't involve some large external dataset. <p> Custom validators can be reused on the client by adding them to the global validator list, via the {@link com.smartgwt.client.widgets.form.validator.Validator#addValidator} method.
+    * A validator describes a check that should be performed on a value the user is trying to&#010 save.&#010 <p>&#010 Validators are specified for DataSource fields via the {@link com.smartgwt.client.data.DataSourceField#getValidators validators}&#010 property.  Validators that need not be run on the server can also be specified for a&#010 specific {@link com.smartgwt.client.widgets.form.fields.FormItem} or ${isc.DocUtils.linkForRef('object:ListGridField')}.&#010 <p>&#010 ISC supports a powerful library of {@link com.smartgwt.client..ValidatorTypes} which have identical behavior&#010 on both the client and the server.  &#010 <p> &#010 Beyond this, custom validators can be defined on the client and custom validation logic&#010 added on the server.  Note that the <code>regexp</code> and <code>mask</code> validator&#010 types are very flexible and can be used to perform virtually any kind of formatting check&#010 that doesn't involve some large external dataset.&#010 <p>&#010 Custom validators can be reused on the client by adding them to the global validator list,&#010 via the {@link com.smartgwt.client.widgets.form.validator.Validator#addValidator} method.
 
     */
 public class Validator extends DataClass {
@@ -78,7 +78,7 @@ public class Validator extends DataClass {
     // ********************* Properties / Attributes ***********************
 
     /**
-    * Normally, all validators defined for a field will be run even if one of the validators has already failed.  However, if <code>stopIfFalse</code> is set, validation will not proceed beyond this validator if the check fails. <P> This is useful to prevent expensive validators from being run unnecessarily, or to allow custom validators that don't need to be robust about handling every conceivable type of value.
+    * Normally, all validators defined for a field will be run even if one of the validators has&#010 already failed.  However, if <code>stopIfFalse</code> is set, validation will not proceed&#010 beyond this validator if the check fails.&#010 <P>&#010 This is useful to prevent expensive validators from being run unnecessarily, or to allow&#010 custom validators that don't need to be robust about handling every conceivable type of&#010 value.
     *
     * @param stopIfFalse stopIfFalse Default value is false
     */
@@ -86,7 +86,7 @@ public class Validator extends DataClass {
         setAttribute("stopIfFalse", stopIfFalse);
     }
     /**
-     * Normally, all validators defined for a field will be run even if one of the validators has already failed.  However, if <code>stopIfFalse</code> is set, validation will not proceed beyond this validator if the check fails. <P> This is useful to prevent expensive validators from being run unnecessarily, or to allow custom validators that don't need to be robust about handling every conceivable type of value.
+     * Normally, all validators defined for a field will be run even if one of the validators has&#010 already failed.  However, if <code>stopIfFalse</code> is set, validation will not proceed&#010 beyond this validator if the check fails.&#010 <P>&#010 This is useful to prevent expensive validators from being run unnecessarily, or to allow&#010 custom validators that don't need to be robust about handling every conceivable type of&#010 value.
      *
      *
      * @return Boolean
@@ -97,7 +97,7 @@ public class Validator extends DataClass {
     }
 
     /**
-    * Indicates this validator runs on the client only. <p> Normally, if the server is trying to run validators and finds a validator that it can't execute, for safety reasons validation is considered to have failed.  Use this flag to explicitly mark a validator that only needs to run on the client.
+    * Indicates this validator runs on the client only.&#010 <p>&#010 Normally, if the server is trying to run validators and finds a validator that it can't&#010 execute, for safety reasons validation is considered to have failed.  Use this flag to&#010 explicitly mark a validator that only needs to run on the client.
     *
     * @param clientOnly clientOnly Default value is false
     */
@@ -105,7 +105,7 @@ public class Validator extends DataClass {
         setAttribute("clientOnly", clientOnly);
     }
     /**
-     * Indicates this validator runs on the client only. <p> Normally, if the server is trying to run validators and finds a validator that it can't execute, for safety reasons validation is considered to have failed.  Use this flag to explicitly mark a validator that only needs to run on the client.
+     * Indicates this validator runs on the client only.&#010 <p>&#010 Normally, if the server is trying to run validators and finds a validator that it can't&#010 execute, for safety reasons validation is considered to have failed.  Use this flag to&#010 explicitly mark a validator that only needs to run on the client.
      *
      *
      * @return Boolean

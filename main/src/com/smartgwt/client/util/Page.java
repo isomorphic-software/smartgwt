@@ -56,7 +56,7 @@ import com.smartgwt.client.util.EnumUtil;
 import com.google.gwt.event.shared.*;
 import com.google.gwt.event.shared.HasHandlers;
    /**
-    * Provides information about the page you're loaded in.  We define "page" here to be roughly  equivalent to the browser window or frame the libraries have been loaded in.
+    * Provides information about the page you're loaded in.  We define "page" here to be roughly&#010  equivalent to the browser window or frame the libraries have been loaded in.
 
     */
 public class Page {
@@ -67,7 +67,7 @@ public class Page {
     // ********************* Static Methods ***********************
 
         /**
-         * Has the page finished loading?
+         * Has the page finished loading?&#010&#010
          *
          * @return true == page is done loading
          */
@@ -82,7 +82,7 @@ public class Page {
 
 
         /**
-         * Returns the base URL of the application, which is the page URL minus the last non-directory  path component.  For example, if the page is loaded from <code>http://foo.com/bar/zoo.jsp</code>, appDir will be <code>http://foo.com/bar/</code>. <P> If other page-wide URLs such as {@link com.smartgwt.client.util.Page#setIsomorphicDir} are specified as relative paths, they are considered relative to this URL.
+         * Returns the base URL of the application, which is the page URL minus the last non-directory &#010 path component.  For example, if the page is loaded from&#010 <code>http://foo.com/bar/zoo.jsp</code>, appDir will be <code>http://foo.com/bar/</code>.&#010 <P>&#010 If other page-wide URLs such as {@link com.smartgwt.client.util.Page#setIsomorphicDir} are specified as&#010 relative paths, they are considered relative to this URL.&#010&#010
          *
          * @return URL for page-specific files.
          */
@@ -91,14 +91,14 @@ public class Page {
         }-*/;
 
         /**
-         * Specify the directory for app-specific images. <P> This becomes the default location where any SmartGWT component will load images from unless the special "[SKIN]" prefix is used to indicate that an image is part of a skin. <P> Default is "[APP]images/"
+         * Specify the directory for app-specific images.&#010 <P>&#010 This becomes the default location where any SmartGWT component will load images from&#010 unless the special "[SKIN]" prefix is used to indicate that an image is part of a skin.&#010 <P>&#010 Default is "[APP]images/"&#010&#010
          */
         public static native void setAppImgDir() /*-{
             $wnd.isc.Page.setAppImgDir();
         }-*/;
 
         /**
-         * Specify the directory for app-specific images. <P> This becomes the default location where any SmartGWT component will load images from unless the special "[SKIN]" prefix is used to indicate that an image is part of a skin. <P> Default is "[APP]images/"
+         * Specify the directory for app-specific images.&#010 <P>&#010 This becomes the default location where any SmartGWT component will load images from&#010 unless the special "[SKIN]" prefix is used to indicate that an image is part of a skin.&#010 <P>&#010 Default is "[APP]images/"&#010&#010
          * @param URL New imgDir URL.
          */
         public static native void setAppImgDir(String URL) /*-{
@@ -106,7 +106,7 @@ public class Page {
         }-*/;
 
         /**
-         * Return the directory for app-specific images.
+         * Return the directory for app-specific images.&#010&#010
          *
          * @return URL for page-specific images.
          */
@@ -115,14 +115,14 @@ public class Page {
         }-*/;
 
         /**
-         * Specify the directory for miscellaneous app-specific files <b>other than</b> images, such as {@link com.smartgwt.client.widgets.HTMLFlow#getContentsURL contentsURL}, {@link com.smartgwt.client.widgets.ViewLoader},  XML or JSON flat data files, videos, etc. <P> This URL also becomes available via the prefix "[APPFILES]" for {@link com.smartgwt.client.rpc.RPCRequest#getActionURL actionURL}. <P> Defaults to the value of {@link com.smartgwt.client.util.Page#getAppDir}, that is, the current directory.
+         * Specify the directory for miscellaneous app-specific files <b>other than</b> images, such as&#010 {@link com.smartgwt.client.widgets.HTMLFlow#getContentsURL contentsURL}, {@link com.smartgwt.client.widgets.ViewLoader}, &#010 XML or JSON flat data files, videos, etc.&#010 <P>&#010 This URL also becomes available via the prefix "[APPFILES]" for {@link com.smartgwt.client.rpc.RPCRequest#getActionURL actionURL}.&#010 <P>&#010 Defaults to the value of {@link com.smartgwt.client.util.Page#getAppDir}, that is, the current directory.&#010&#010
          */
         public static native void setAppFilesDir() /*-{
             $wnd.isc.Page.setAppFilesDir();
         }-*/;
 
         /**
-         * Specify the directory for miscellaneous app-specific files <b>other than</b> images, such as {@link com.smartgwt.client.widgets.HTMLFlow#getContentsURL contentsURL}, {@link com.smartgwt.client.widgets.ViewLoader},  XML or JSON flat data files, videos, etc. <P> This URL also becomes available via the prefix "[APPFILES]" for {@link com.smartgwt.client.rpc.RPCRequest#getActionURL actionURL}. <P> Defaults to the value of {@link com.smartgwt.client.util.Page#getAppDir}, that is, the current directory.
+         * Specify the directory for miscellaneous app-specific files <b>other than</b> images, such as&#010 {@link com.smartgwt.client.widgets.HTMLFlow#getContentsURL contentsURL}, {@link com.smartgwt.client.widgets.ViewLoader}, &#010 XML or JSON flat data files, videos, etc.&#010 <P>&#010 This URL also becomes available via the prefix "[APPFILES]" for {@link com.smartgwt.client.rpc.RPCRequest#getActionURL actionURL}.&#010 <P>&#010 Defaults to the value of {@link com.smartgwt.client.util.Page#getAppDir}, that is, the current directory.&#010&#010
          * @param URL New app files URL.
          */
         public static native void setAppFilesDir(String URL) /*-{
@@ -130,14 +130,14 @@ public class Page {
         }-*/;
 
         /**
-         * Returns the directory for application-specific files (other than images).
+         * Returns the directory for application-specific files (other than images).&#010&#010
          */
         public static native void getAppFilesDir() /*-{
             $wnd.isc.Page.getAppFilesDir();
         }-*/;
 
         /**
-         * Returns the directory for application-specific files (other than images).
+         * Returns the directory for application-specific files (other than images).&#010&#010
          * @param URL New app files URL.
          */
         public static native void getAppFilesDir(String URL) /*-{
@@ -145,14 +145,14 @@ public class Page {
         }-*/;
 
         /**
-         * Specify the root directory for Isomorphic-supplied files.
+         * Specify the root directory for Isomorphic-supplied files.&#010&#010
          */
         public static native void setIsomorphicDir() /*-{
             $wnd.isc.Page.setIsomorphicDir();
         }-*/;
 
         /**
-         * Specify the root directory for Isomorphic-supplied files.
+         * Specify the root directory for Isomorphic-supplied files.&#010&#010
          * @param URL New IsomorphicDir URL.
          */
         public static native void setIsomorphicDir(String URL) /*-{
@@ -160,7 +160,7 @@ public class Page {
         }-*/;
 
         /**
-         * Return the root directory for Isomorphic-specific files.
+         * Return the root directory for Isomorphic-specific files.&#010&#010
          *
          * @return IsomorphicDir URL.
          */
@@ -169,14 +169,14 @@ public class Page {
         }-*/;
 
         /**
-         * Specify the URL for media that's part of the skin
+         * Specify the URL for media that's part of the skin&#010&#010
          */
         public static native void setSkinDir() /*-{
             $wnd.isc.Page.setSkinDir();
         }-*/;
 
         /**
-         * Specify the URL for media that's part of the skin
+         * Specify the URL for media that's part of the skin&#010&#010
          * @param URL New skinDir URL
          */
         public static native void setSkinDir(String URL) /*-{
@@ -184,7 +184,7 @@ public class Page {
         }-*/;
 
         /**
-         * Return the directory for media that's part of the skin
+         * Return the directory for media that's part of the skin&#010&#010
          *
          * @return base URL for skin media
          */
@@ -193,7 +193,7 @@ public class Page {
         }-*/;
 
         /**
-         * Return the directory for a skin image.
+         * Return the directory for a skin image.&#010&#010
          *
          * @return URL for page-specific images.
          */
@@ -202,7 +202,7 @@ public class Page {
         }-*/;
 
         /**
-         * Return the directory for a skin image.
+         * Return the directory for a skin image.&#010&#010
          * @param imgDir Partial URL (relative to Page._skinDir) where the image lives.          If not supplied, will use "images/"
          *
          * @return URL for page-specific images.
@@ -212,7 +212,7 @@ public class Page {
         }-*/;
 
         /**
-         * Return the full URL for app-specific or skin image. <P> To use a skin image, start the URL with "[SKIN]".  Any other relative URL is assumed relative to the {@link com.smartgwt.client.util.Page#getAppImgDir}.
+         * Return the full URL for app-specific or skin image.&#010 <P>&#010 To use a skin image, start the URL with "[SKIN]".  Any other relative URL is assumed&#010 relative to the {@link com.smartgwt.client.util.Page#getAppImgDir}.&#010&#010
          * @param src Local file name for the image.
          *
          * @return URL for the image.
@@ -222,7 +222,7 @@ public class Page {
         }-*/;
 
         /**
-         * Return the full URL for app-specific or skin image. <P> To use a skin image, start the URL with "[SKIN]".  Any other relative URL is assumed relative to the {@link com.smartgwt.client.util.Page#getAppImgDir}.
+         * Return the full URL for app-specific or skin image.&#010 <P>&#010 To use a skin image, start the URL with "[SKIN]".  Any other relative URL is assumed&#010 relative to the {@link com.smartgwt.client.util.Page#getAppImgDir}.&#010&#010
          * @param src Local file name for the image.
      * @param imgDir User-specified image directory,          local to
          *
@@ -233,7 +233,7 @@ public class Page {
         }-*/;
 
         /**
-         * Return a full URL for a relative path that uses a special prefix such as "[APPFILES]" or "[SKIN]". <P> For images, use {@link com.smartgwt.client.util.Page#getImgURL} instead.
+         * Return a full URL for a relative path that uses a special prefix such as "[APPFILES]" or&#010 "[SKIN]".&#010 <P>&#010 For images, use {@link com.smartgwt.client.util.Page#getImgURL} instead.&#010&#010
          * @param fileName Local file name for the image.
          *
          * @return URL for the image.
@@ -243,7 +243,7 @@ public class Page {
         }-*/;
 
         /**
-         * Return whether the page text direction is right to left.  If you set "DIR=RTL" in the BODY tag of the page, then this method will return true.  If you set "DIR=LTR" then this method will return false.
+         * &#010 Return whether the page text direction is right to left.  If you set "DIR=RTL" in the BODY tag of&#010 the page, then this method will return true.  If you set "DIR=LTR" then this method will return&#010 false.&#010    &#010
          *
          * @return true if Page text direction is RTL, false otherwise
          */
@@ -257,7 +257,7 @@ public class Page {
         }-*/;
 
         /**
-         * Load a styleSheet for this application.    The styleSheetURL parameter can use any special directories, eg:<br>      &nbsp;&nbsp;<code>Page.loadStylesheet("[SKIN]/skin_styles.css")</code><br>      or<br>      &nbsp;&nbsp;<code>Page.loadStylesheet("[APP]/app_styles.css")</code>.      <P>  If you don't specify a special directory, the app directory   will be assumed.  <P>  Note:   If the document's ONLOAD handler has already fired, this    will have no effect.
+         * Load a styleSheet for this application.  &#010&#010  The styleSheetURL parameter can use any special directories, eg:<br>&#010      &nbsp;&nbsp;<code>Page.loadStylesheet("[SKIN]/skin_styles.css")</code><br>&#010      or<br>&#010      &nbsp;&nbsp;<code>Page.loadStylesheet("[APP]/app_styles.css")</code>.&#010      <P>&#010  If you don't specify a special directory, the app directory&#010   will be assumed.&#010  <P>&#010  Note:   If the document's ONLOAD handler has already fired, this&#010    will have no effect.&#010&#010
          * @param styleSheetURL URL to the stylesheet.
          */
         public static native void loadStyleSheet(String styleSheetURL) /*-{
@@ -265,7 +265,7 @@ public class Page {
         }-*/;
 
         /**
-         * Resize the outer portion of the window to a specific width and height.
+         * Resize the outer portion of the window to a specific width and height.&#010
          * @param width new width for the window
      * @param height new height for the window
          */
@@ -274,7 +274,7 @@ public class Page {
         }-*/;
 
         /**
-         * Move the window to a specified top and left in screen coordinates.
+         * Move the window to a specified top and left in screen coordinates.&#010&#010
          * @param left new left coordinate for window
      * @param top new top coordinate for window
          */
@@ -283,7 +283,7 @@ public class Page {
         }-*/;
 
         /**
-         * Scroll the window to a specified top and left coordinate.
+         * Scroll the window to a specified top and left coordinate.&#010&#010
          * @param left new left coordinate for window
      * @param top new top coordinate for window
          */
@@ -294,7 +294,7 @@ public class Page {
 
 
         /**
-         * Get the width of the window contents as they have been drawn.  If the page scrolls, this may be larger than the page.getWidth().
+         * Get the width of the window contents as they have been drawn.&#010  If the page scrolls, this may be larger than the page.getWidth().&#010
          *
          * @return width of the page as drawn
          */
@@ -303,7 +303,7 @@ public class Page {
         }-*/;
 
         /**
-         * Get the height of the window contents as they have been drawn.  If the page scrolls, this may be larger than the page.getHeight().
+         * Get the height of the window contents as they have been drawn.&#010  If the page scrolls, this may be larger than the page.getHeight().&#010
          *
          * @return height of the page as drawn
          */
@@ -312,7 +312,7 @@ public class Page {
         }-*/;
 
         /**
-         * Get the amount that the browser window has been scrolled horizontally.
+         * Get the amount that the browser window has been scrolled horizontally.&#010
          *
          * @return horizontal scroll amount
          */
@@ -321,7 +321,7 @@ public class Page {
         }-*/;
 
         /**
-         * Get the amount that the browser window has been scrolled vertically.
+         * Get the amount that the browser window has been scrolled vertically.&#010
          *
          * @return vertical scroll amount
          */
@@ -335,14 +335,14 @@ public class Page {
 
 
         /**
-         * Check whether the browser is supported by the Isomorphic SmartGWT system. Behavior depends upon the value of {@link com.smartgwt.client.util.Page#unsupportedBrowserAction}: <ul> <li><code>"continue"</code> Load the page without notifying the user of potential issues</li> <li><code>"confirm"</code> Notify the user via a standard confirm dialog that their browser is  not supported. Provide options to continue anyway, or redirect to another page. Text of the  confirm dialog is retrieved by calling {@link com.smartgwt.client.util.Page#getUnsupportedBrowserPromptString}.</li> <li><code>"redirect"</code> Automatically redirect to the another URL</li> </ul> If redirecting to another page is necessary, and no explicit URL is provided we will use {@link com.smartgwt.client.util.Page#defaultUnsupportedBrowserURL}. <p> This method is commonly called as part of the +link{@group:skinning,skinning} logic after page load.
+         * Check whether the browser is supported by the Isomorphic SmartGWT system. Behavior depends&#010 upon the value of {@link com.smartgwt.client.util.Page#unsupportedBrowserAction}:&#010 <ul>&#010 <li><code>"continue"</code> Load the page without notifying the user of potential issues</li>&#010 <li><code>"confirm"</code> Notify the user via a standard confirm dialog that their browser is&#010  not supported. Provide options to continue anyway, or redirect to another page. Text of the&#010  confirm dialog is retrieved by calling {@link com.smartgwt.client.util.Page#getUnsupportedBrowserPromptString}.</li>&#010 <li><code>"redirect"</code> Automatically redirect to the another URL</li>&#010 </ul>&#010 If redirecting to another page is necessary, and no explicit URL is provided we will use&#010 {@link com.smartgwt.client.util.Page#defaultUnsupportedBrowserURL}.&#010 <p>&#010 This method is commonly called as part of the +link{@group:skinning,skinning} logic after page&#010 load.&#010&#010
          */
         public static native void checkBrowserAndRedirect() /*-{
             $wnd.isc.Page.checkBrowserAndRedirect();
         }-*/;
 
         /**
-         * Check whether the browser is supported by the Isomorphic SmartGWT system. Behavior depends upon the value of {@link com.smartgwt.client.util.Page#unsupportedBrowserAction}: <ul> <li><code>"continue"</code> Load the page without notifying the user of potential issues</li> <li><code>"confirm"</code> Notify the user via a standard confirm dialog that their browser is  not supported. Provide options to continue anyway, or redirect to another page. Text of the  confirm dialog is retrieved by calling {@link com.smartgwt.client.util.Page#getUnsupportedBrowserPromptString}.</li> <li><code>"redirect"</code> Automatically redirect to the another URL</li> </ul> If redirecting to another page is necessary, and no explicit URL is provided we will use {@link com.smartgwt.client.util.Page#defaultUnsupportedBrowserURL}. <p> This method is commonly called as part of the +link{@group:skinning,skinning} logic after page load.
+         * Check whether the browser is supported by the Isomorphic SmartGWT system. Behavior depends&#010 upon the value of {@link com.smartgwt.client.util.Page#unsupportedBrowserAction}:&#010 <ul>&#010 <li><code>"continue"</code> Load the page without notifying the user of potential issues</li>&#010 <li><code>"confirm"</code> Notify the user via a standard confirm dialog that their browser is&#010  not supported. Provide options to continue anyway, or redirect to another page. Text of the&#010  confirm dialog is retrieved by calling {@link com.smartgwt.client.util.Page#getUnsupportedBrowserPromptString}.</li>&#010 <li><code>"redirect"</code> Automatically redirect to the another URL</li>&#010 </ul>&#010 If redirecting to another page is necessary, and no explicit URL is provided we will use&#010 {@link com.smartgwt.client.util.Page#defaultUnsupportedBrowserURL}.&#010 <p>&#010 This method is commonly called as part of the +link{@group:skinning,skinning} logic after page&#010 load.&#010&#010
          * @param URL URL of redirect page. May include Isomorphic special directories      such as [SKIN].
          */
         public static native void checkBrowserAndRedirect(String URL) /*-{
@@ -350,7 +350,7 @@ public class Page {
         }-*/;
 
         /**
-         * Returns the text for the prompt shown to user from {@link com.smartgwt.client.util.Page#checkBrowserAndRedirect} if they are accessing this page in an unsupported browser and {@link com.smartgwt.client.util.Page#unsupportedBrowserAction} is set to <code>"confirm"</code>. May be overridden to return a different message.
+         * Returns the text for the prompt shown to user from {@link com.smartgwt.client.util.Page#checkBrowserAndRedirect}&#010 if they are accessing this page in an unsupported&#010 browser and {@link com.smartgwt.client.util.Page#unsupportedBrowserAction} is set to <code>"confirm"</code>. May be&#010 overridden to return a different message.&#010
          *
          * @return Unsupported browser message.
          */

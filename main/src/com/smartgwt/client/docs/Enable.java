@@ -2,7 +2,7 @@
 package com.smartgwt.client.docs;
 
 /**
- * Disabled components do not respond to mouse or keyboard events, and change appearance to indicate they are disabled.
+ * Disabled components do not respond to mouse or keyboard events, and change appearance to&#010 indicate they are disabled.
  * @see com.smartgwt.client.widgets.StatefulCanvas#setDisabled
  * @see com.smartgwt.client.widgets.Button#setDisabled
  * @see com.smartgwt.client.widgets.ImgButton#setDisabled

@@ -142,7 +142,7 @@ public class ImgProperties extends DataClass {
     }
 
     /**
-    * Specifies the name of the image. This is an identifier unique to the canvas, and subsequent calls to <code>{@link com.smartgwt.client.widgets.Canvas#getImage}</code> and <code>{@link com.smartgwt.client.widgets.Canvas#setImage}</code>  with this name will act on the image object created using this ImgProperties object.
+    * Specifies the name of the image. This is an identifier unique to the canvas, and subsequent&#010 calls to <code>{@link com.smartgwt.client.widgets.Canvas#getImage}</code> and&#010 <code>{@link com.smartgwt.client.widgets.Canvas#setImage}</code> &#010 with this name will act on the image object created using this ImgProperties object.
     *
     * @param name name Default value is null
     */
@@ -150,7 +150,7 @@ public class ImgProperties extends DataClass {
         setAttribute("name", name);
     }
     /**
-     * Specifies the name of the image. This is an identifier unique to the canvas, and subsequent calls to <code>{@link com.smartgwt.client.widgets.Canvas#getImage}</code> and <code>{@link com.smartgwt.client.widgets.Canvas#setImage}</code>  with this name will act on the image object created using this ImgProperties object.
+     * Specifies the name of the image. This is an identifier unique to the canvas, and subsequent&#010 calls to <code>{@link com.smartgwt.client.widgets.Canvas#getImage}</code> and&#010 <code>{@link com.smartgwt.client.widgets.Canvas#setImage}</code> &#010 with this name will act on the image object created using this ImgProperties object.
      *
      *
      * @return String

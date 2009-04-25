@@ -56,7 +56,7 @@ import com.smartgwt.client.util.EnumUtil;
 import com.google.gwt.event.shared.*;
 import com.google.gwt.event.shared.HasHandlers;
    /**
-    * The Slider class implements a GUI slider widget allowing the user to select a numeric   value from within a range by dragging a visual indicicator up and down a track. <p>  The slider will generate events as the user interacts with it and changes its value.  If slider.sliderTarget is specified, moving the slider thumb generates a custom event named 'sliderMove', sent to the sliderTarget.  If a <code>sliderMove</code> handler stringMethod is defined on the target, it will be   fired when the slider is moved. The second parameter (available via the variable name  <code>eventInfo</code> if the handler is a string) is a pointer back to the slider.  <p>  The slider will also fire a <code>valueChanged()</code> method whenever its value is   changed.  This can be observed or overridden on the Slider instance to perform some action.
+    * The Slider class implements a GUI slider widget allowing the user to select a numeric &#010  value from within a range by dragging a visual indicicator up and down a track.&#010 <p>&#010  The slider will generate events as the user interacts with it and changes its value.&#010  If slider.sliderTarget is specified, moving the slider thumb generates a custom&#010 event named 'sliderMove', sent to the sliderTarget.&#010  If a <code>sliderMove</code> handler stringMethod is defined on the target, it will be &#010  fired when the slider is moved. The second parameter (available via the variable name&#010  <code>eventInfo</code> if the handler is a string) is a pointer back to the slider.&#010  <p>&#010  The slider will also fire a <code>valueChanged()</code> method whenever its value is &#010  changed.  This can be observed or overridden on the Slider instance to perform some action.
 
     */
 
@@ -114,7 +114,7 @@ public class Slider extends Canvas  implements com.smartgwt.client.widgets.event
     }
 
     /**
-    * Used to set slider height if vertical, slider width if horizontal. Applied to the slider track, not necessarily the entire widget. Overridden by an explicit width/height specification for the widget.
+    * Used to set slider height if vertical, slider width if horizontal.&#010 Applied to the slider track, not necessarily the entire widget.&#010 Overridden by an explicit width/height specification for the widget.
     *
     * @param length length Default value is 200
     */
@@ -122,7 +122,7 @@ public class Slider extends Canvas  implements com.smartgwt.client.widgets.event
         setAttribute("length", length, true);
     }
     /**
-     * Used to set slider height if vertical, slider width if horizontal. Applied to the slider track, not necessarily the entire widget. Overridden by an explicit width/height specification for the widget.
+     * Used to set slider height if vertical, slider width if horizontal.&#010 Applied to the slider track, not necessarily the entire widget.&#010 Overridden by an explicit width/height specification for the widget.
      *
      *
      * @return int
@@ -190,7 +190,7 @@ public class Slider extends Canvas  implements com.smartgwt.client.widgets.event
     }
 
     /**
-    * The thickness of the track. This is the width, for a vertical slider, or the height, for a horizontal slider.
+    * The thickness of the track. This is the width, for a vertical slider, or the height, for&#010 a horizontal slider.
     *
     * @param trackWidth trackWidth Default value is 7
     */
@@ -198,7 +198,7 @@ public class Slider extends Canvas  implements com.smartgwt.client.widgets.event
         setAttribute("trackWidth", trackWidth, true);
     }
     /**
-     * The thickness of the track. This is the width, for a vertical slider, or the height, for a horizontal slider.
+     * The thickness of the track. This is the width, for a vertical slider, or the height, for&#010 a horizontal slider.
      *
      *
      * @return int
@@ -209,7 +209,7 @@ public class Slider extends Canvas  implements com.smartgwt.client.widgets.event
     }
 
     /**
-    * The base filename for the slider thumb images. The filenames for the thumb icons are assembled from this base filename and the state of the thumb, as follows:<br> Assume the thumbSrc is set to <code>{baseName}.{extension}</code><br> The full set of images to be displayed is:<br> For horizontal sliders: <ul> <li><code>h{baseName}.{extension}</code>: default enabled appearance. <li><code>h{baseName}_down.{extension}</code>:  appearance when the slider is enabled and the     thumb is clicked. <li><code>h{baseName}_off.{extension}</code>:  appearance when the slider is disabled. </ul> For vertical sliders: <ul> <li><code>v{baseName}.{extension}</code>: default enabled appearance. <li><code>v{baseName}_down.{extension}</code>:  appearance when the slider is enabled and the     thumb is clicked. <li><code>v{baseName}_off.{extension}</code>:  appearance when the slider is disabled. </ul>
+    * The base filename for the slider thumb images.&#010 The filenames for the thumb icons are assembled from this base filename and the state of the&#010 thumb, as follows:<br>&#010 Assume the thumbSrc is set to <code>{baseName}.{extension}</code><br>&#010 The full set of images to be displayed is:<br>&#010 For horizontal sliders:&#010 <ul>&#010 <li><code>h{baseName}.{extension}</code>: default enabled appearance.&#010 <li><code>h{baseName}_down.{extension}</code>:  appearance when the slider is enabled and the&#010     thumb is clicked.&#010 <li><code>h{baseName}_off.{extension}</code>:  appearance when the slider is disabled.&#010 </ul>&#010 For vertical sliders:&#010 <ul>&#010 <li><code>v{baseName}.{extension}</code>: default enabled appearance.&#010 <li><code>v{baseName}_down.{extension}</code>:  appearance when the slider is enabled and the&#010     thumb is clicked.&#010 <li><code>v{baseName}_off.{extension}</code>:  appearance when the slider is disabled.&#010 </ul>
     *
     * @param thumbSrc thumbSrc Default value is "thumb.gif"
     */
@@ -217,7 +217,7 @@ public class Slider extends Canvas  implements com.smartgwt.client.widgets.event
         setAttribute("thumbSrc", thumbSrc, true);
     }
     /**
-     * The base filename for the slider thumb images. The filenames for the thumb icons are assembled from this base filename and the state of the thumb, as follows:<br> Assume the thumbSrc is set to <code>{baseName}.{extension}</code><br> The full set of images to be displayed is:<br> For horizontal sliders: <ul> <li><code>h{baseName}.{extension}</code>: default enabled appearance. <li><code>h{baseName}_down.{extension}</code>:  appearance when the slider is enabled and the     thumb is clicked. <li><code>h{baseName}_off.{extension}</code>:  appearance when the slider is disabled. </ul> For vertical sliders: <ul> <li><code>v{baseName}.{extension}</code>: default enabled appearance. <li><code>v{baseName}_down.{extension}</code>:  appearance when the slider is enabled and the     thumb is clicked. <li><code>v{baseName}_off.{extension}</code>:  appearance when the slider is disabled. </ul>
+     * The base filename for the slider thumb images.&#010 The filenames for the thumb icons are assembled from this base filename and the state of the&#010 thumb, as follows:<br>&#010 Assume the thumbSrc is set to <code>{baseName}.{extension}</code><br>&#010 The full set of images to be displayed is:<br>&#010 For horizontal sliders:&#010 <ul>&#010 <li><code>h{baseName}.{extension}</code>: default enabled appearance.&#010 <li><code>h{baseName}_down.{extension}</code>:  appearance when the slider is enabled and the&#010     thumb is clicked.&#010 <li><code>h{baseName}_off.{extension}</code>:  appearance when the slider is disabled.&#010 </ul>&#010 For vertical sliders:&#010 <ul>&#010 <li><code>v{baseName}.{extension}</code>: default enabled appearance.&#010 <li><code>v{baseName}_down.{extension}</code>:  appearance when the slider is enabled and the&#010     thumb is clicked.&#010 <li><code>v{baseName}_off.{extension}</code>:  appearance when the slider is disabled.&#010 </ul>
      *
      *
      * @return String
@@ -228,7 +228,7 @@ public class Slider extends Canvas  implements com.smartgwt.client.widgets.event
     }
 
     /**
-    * The base filename for the slider track images. The filenames for the track icons are assembled from this base filename and the state of the slider, as follows:<br> Assume the trackSrc is set to <code>{baseName}.{extension}</code><br> The full set of images to be displayed is:<br> For horizontal sliders: <ul> <li><code>h{baseName}_start.{extension}</code>: start (left edge) of the track for a slider     that is enabled. <li><code>h{baseName}_stretch.{extension}</code>:  the track for an enabled slider; this may     be centered, tiled, or stretched. <li><code>h{baseName}_end.{extension}</code>:  end (right edge) of the track for a slider     that is enabled. <li><code>h{baseName}_off_start.{extension}</code>: start (left edge) of the track for a slider     that is disabled. <li><code>h{baseName}_off_stretch.{extension}</code>:  the track for a disabled slider; this     may be centered, tiled, or stretched. <li><code>h{baseName}_off_end.{extension}</code>:  end (right edge) of the track for a slider     that is disabled. </ul> For vertical sliders: <ul> <li><code>v{baseName}_start.{extension}</code>: start (bottom edge) of the track for a slider     that is enabled. <li><code>v{baseName}_stretch.{extension}</code>:  the track for an enabled slider; this may     be centered, tiled, or stretched. <li><code>v{baseName}_end.{extension}</code>:  end (top edge) of the track for a slider     that is enabled. <li><code>v{baseName}_off_start.{extension}</code>: start (bottom edge) of the track for a slider     that is disabled. <li><code>v{baseName}_off_stretch.{extension}</code>:  the track for a disabled slider; this     may be centered, tiled, or stretched. <li><code>v{baseName}_off_end.{extension}</code>:  end (top edge) of the track for a slider     that is disabled. </ul>
+    * The base filename for the slider track images.&#010 The filenames for the track icons are assembled from this base filename and the state of the&#010 slider, as follows:<br>&#010 Assume the trackSrc is set to <code>{baseName}.{extension}</code><br>&#010 The full set of images to be displayed is:<br>&#010 For horizontal sliders:&#010 <ul>&#010 <li><code>h{baseName}_start.{extension}</code>: start (left edge) of the track for a slider&#010     that is enabled.&#010 <li><code>h{baseName}_stretch.{extension}</code>:  the track for an enabled slider; this may&#010     be centered, tiled, or stretched.&#010 <li><code>h{baseName}_end.{extension}</code>:  end (right edge) of the track for a slider&#010     that is enabled.&#010 <li><code>h{baseName}_off_start.{extension}</code>: start (left edge) of the track for a slider&#010     that is disabled.&#010 <li><code>h{baseName}_off_stretch.{extension}</code>:  the track for a disabled slider; this&#010     may be centered, tiled, or stretched.&#010 <li><code>h{baseName}_off_end.{extension}</code>:  end (right edge) of the track for a slider&#010     that is disabled.&#010 </ul>&#010 For vertical sliders:&#010 <ul>&#010 <li><code>v{baseName}_start.{extension}</code>: start (bottom edge) of the track for a slider&#010     that is enabled.&#010 <li><code>v{baseName}_stretch.{extension}</code>:  the track for an enabled slider; this may&#010     be centered, tiled, or stretched.&#010 <li><code>v{baseName}_end.{extension}</code>:  end (top edge) of the track for a slider&#010     that is enabled.&#010 <li><code>v{baseName}_off_start.{extension}</code>: start (bottom edge) of the track for a slider&#010     that is disabled.&#010 <li><code>v{baseName}_off_stretch.{extension}</code>:  the track for a disabled slider; this&#010     may be centered, tiled, or stretched.&#010 <li><code>v{baseName}_off_end.{extension}</code>:  end (top edge) of the track for a slider&#010     that is disabled.&#010 </ul>
     *
     * @param trackSrc trackSrc Default value is "track.gif"
     */
@@ -236,7 +236,7 @@ public class Slider extends Canvas  implements com.smartgwt.client.widgets.event
         setAttribute("trackSrc", trackSrc, true);
     }
     /**
-     * The base filename for the slider track images. The filenames for the track icons are assembled from this base filename and the state of the slider, as follows:<br> Assume the trackSrc is set to <code>{baseName}.{extension}</code><br> The full set of images to be displayed is:<br> For horizontal sliders: <ul> <li><code>h{baseName}_start.{extension}</code>: start (left edge) of the track for a slider     that is enabled. <li><code>h{baseName}_stretch.{extension}</code>:  the track for an enabled slider; this may     be centered, tiled, or stretched. <li><code>h{baseName}_end.{extension}</code>:  end (right edge) of the track for a slider     that is enabled. <li><code>h{baseName}_off_start.{extension}</code>: start (left edge) of the track for a slider     that is disabled. <li><code>h{baseName}_off_stretch.{extension}</code>:  the track for a disabled slider; this     may be centered, tiled, or stretched. <li><code>h{baseName}_off_end.{extension}</code>:  end (right edge) of the track for a slider     that is disabled. </ul> For vertical sliders: <ul> <li><code>v{baseName}_start.{extension}</code>: start (bottom edge) of the track for a slider     that is enabled. <li><code>v{baseName}_stretch.{extension}</code>:  the track for an enabled slider; this may     be centered, tiled, or stretched. <li><code>v{baseName}_end.{extension}</code>:  end (top edge) of the track for a slider     that is enabled. <li><code>v{baseName}_off_start.{extension}</code>: start (bottom edge) of the track for a slider     that is disabled. <li><code>v{baseName}_off_stretch.{extension}</code>:  the track for a disabled slider; this     may be centered, tiled, or stretched. <li><code>v{baseName}_off_end.{extension}</code>:  end (top edge) of the track for a slider     that is disabled. </ul>
+     * The base filename for the slider track images.&#010 The filenames for the track icons are assembled from this base filename and the state of the&#010 slider, as follows:<br>&#010 Assume the trackSrc is set to <code>{baseName}.{extension}</code><br>&#010 The full set of images to be displayed is:<br>&#010 For horizontal sliders:&#010 <ul>&#010 <li><code>h{baseName}_start.{extension}</code>: start (left edge) of the track for a slider&#010     that is enabled.&#010 <li><code>h{baseName}_stretch.{extension}</code>:  the track for an enabled slider; this may&#010     be centered, tiled, or stretched.&#010 <li><code>h{baseName}_end.{extension}</code>:  end (right edge) of the track for a slider&#010     that is enabled.&#010 <li><code>h{baseName}_off_start.{extension}</code>: start (left edge) of the track for a slider&#010     that is disabled.&#010 <li><code>h{baseName}_off_stretch.{extension}</code>:  the track for a disabled slider; this&#010     may be centered, tiled, or stretched.&#010 <li><code>h{baseName}_off_end.{extension}</code>:  end (right edge) of the track for a slider&#010     that is disabled.&#010 </ul>&#010 For vertical sliders:&#010 <ul>&#010 <li><code>v{baseName}_start.{extension}</code>: start (bottom edge) of the track for a slider&#010     that is enabled.&#010 <li><code>v{baseName}_stretch.{extension}</code>:  the track for an enabled slider; this may&#010     be centered, tiled, or stretched.&#010 <li><code>v{baseName}_end.{extension}</code>:  end (top edge) of the track for a slider&#010     that is enabled.&#010 <li><code>v{baseName}_off_start.{extension}</code>: start (bottom edge) of the track for a slider&#010     that is disabled.&#010 <li><code>v{baseName}_off_stretch.{extension}</code>:  the track for a disabled slider; this&#010     may be centered, tiled, or stretched.&#010 <li><code>v{baseName}_off_end.{extension}</code>:  end (top edge) of the track for a slider&#010     that is disabled.&#010 </ul>
      *
      *
      * @return String
@@ -247,7 +247,7 @@ public class Slider extends Canvas  implements com.smartgwt.client.widgets.event
     }
 
     /**
-    * The height of vertical slider start and end images, or width of horizontal slider start and end images.
+    * The height of vertical slider start and end images, or width of horizontal slider start and&#010 end images.
     *
     * @param trackCapSize trackCapSize Default value is 6
     */
@@ -255,7 +255,7 @@ public class Slider extends Canvas  implements com.smartgwt.client.widgets.event
         setAttribute("trackCapSize", trackCapSize, true);
     }
     /**
-     * The height of vertical slider start and end images, or width of horizontal slider start and end images.
+     * The height of vertical slider start and end images, or width of horizontal slider start and&#010 end images.
      *
      *
      * @return int
@@ -285,7 +285,7 @@ public class Slider extends Canvas  implements com.smartgwt.client.widgets.event
     }
 
     /**
-    * Indicates whether the slider's title should be displayed. The default position for this label is to the left of a horizontal slider, or above a vertical slider.
+    * Indicates whether the slider's title should be displayed. The default position for this label&#010 is to the left of a horizontal slider, or above a vertical slider.
     *
     * @param showTitle showTitle Default value is true
     */
@@ -293,7 +293,7 @@ public class Slider extends Canvas  implements com.smartgwt.client.widgets.event
         setAttribute("showTitle", showTitle, true);
     }
     /**
-     * Indicates whether the slider's title should be displayed. The default position for this label is to the left of a horizontal slider, or above a vertical slider.
+     * Indicates whether the slider's title should be displayed. The default position for this label&#010 is to the left of a horizontal slider, or above a vertical slider.
      *
      *
      * @return Boolean
@@ -304,7 +304,7 @@ public class Slider extends Canvas  implements com.smartgwt.client.widgets.event
     }
 
     /**
-    * Indicates whether labels for the min and max values of the slider should be displayed. The default positions for these labels are below the start/end of a horizontal slider, or to the right of the start/end of a vertical slider.
+    * Indicates whether labels for the min and max values of the slider should be displayed. The&#010 default positions for these labels are below the start/end of a horizontal slider, or to the&#010 right of the start/end of a vertical slider.
     *
     * @param showRange showRange Default value is true
     */
@@ -312,7 +312,7 @@ public class Slider extends Canvas  implements com.smartgwt.client.widgets.event
         setAttribute("showRange", showRange, true);
     }
     /**
-     * Indicates whether labels for the min and max values of the slider should be displayed. The default positions for these labels are below the start/end of a horizontal slider, or to the right of the start/end of a vertical slider.
+     * Indicates whether labels for the min and max values of the slider should be displayed. The&#010 default positions for these labels are below the start/end of a horizontal slider, or to the&#010 right of the start/end of a vertical slider.
      *
      *
      * @return Boolean
@@ -323,7 +323,7 @@ public class Slider extends Canvas  implements com.smartgwt.client.widgets.event
     }
 
     /**
-    * Indicates whether a label for the value of the slider should be displayed. The default position for this label is to the right of a horizontal slider, or below a vertical slider.
+    * Indicates whether a label for the value of the slider should be displayed. The&#010 default position for this label is to the right of a horizontal slider, or below a vertical&#010 slider.
     *
     * @param showValue showValue Default value is true
     */
@@ -331,7 +331,7 @@ public class Slider extends Canvas  implements com.smartgwt.client.widgets.event
         setAttribute("showValue", showValue, true);
     }
     /**
-     * Indicates whether a label for the value of the slider should be displayed. The default position for this label is to the right of a horizontal slider, or below a vertical slider.
+     * Indicates whether a label for the value of the slider should be displayed. The&#010 default position for this label is to the right of a horizontal slider, or below a vertical&#010 slider.
      *
      *
      * @return Boolean
@@ -342,7 +342,7 @@ public class Slider extends Canvas  implements com.smartgwt.client.widgets.event
     }
 
     /**
-    * The width of the labels used to display the minimum, maximum and current values of the slider.
+    * The width of the labels used to display the minimum, maximum and current values of the&#010 slider.
     *
     * @param labelWidth labelWidth Default value is 50
     */
@@ -350,7 +350,7 @@ public class Slider extends Canvas  implements com.smartgwt.client.widgets.event
         setAttribute("labelWidth", labelWidth, true);
     }
     /**
-     * The width of the labels used to display the minimum, maximum and current values of the slider.
+     * The width of the labels used to display the minimum, maximum and current values of the&#010 slider.
      *
      *
      * @return int
@@ -361,7 +361,7 @@ public class Slider extends Canvas  implements com.smartgwt.client.widgets.event
     }
 
     /**
-    * The height of the labels used to display the minimum, maximum and current values of the slider.
+    * The height of the labels used to display the minimum, maximum and current values of the&#010 slider.
     *
     * @param labelHeight labelHeight Default value is 20
     */
@@ -369,7 +369,7 @@ public class Slider extends Canvas  implements com.smartgwt.client.widgets.event
         setAttribute("labelHeight", labelHeight, true);
     }
     /**
-     * The height of the labels used to display the minimum, maximum and current values of the slider.
+     * The height of the labels used to display the minimum, maximum and current values of the&#010 slider.
      *
      *
      * @return int
@@ -380,7 +380,7 @@ public class Slider extends Canvas  implements com.smartgwt.client.widgets.event
     }
 
     /**
-    * The space around the labels used to display the minimum, maximum and current values of the slider.
+    * The space around the labels used to display the minimum, maximum and current values of the&#010 slider.
     *
     * @param labelSpacing labelSpacing Default value is 5
     */
@@ -388,7 +388,7 @@ public class Slider extends Canvas  implements com.smartgwt.client.widgets.event
         setAttribute("labelSpacing", labelSpacing, true);
     }
     /**
-     * The space around the labels used to display the minimum, maximum and current values of the slider.
+     * The space around the labels used to display the minimum, maximum and current values of the&#010 slider.
      *
      *
      * @return int
@@ -399,8 +399,8 @@ public class Slider extends Canvas  implements com.smartgwt.client.widgets.event
     }
 
     /**
-    * The slider value. This value should lie between the minValue and maxValue and increases as the thumb is moved up (for a vertical slider) or right (for a horizontal slider) unless flipValues is set to true.
-    * Sets the slider value to newValue and moves the slider thumb to the appropriate position for this value. Sends the 'sliderMove' event to the sliderTarget.
+    * The slider value. This value should lie between the minValue and maxValue and increases as&#010 the thumb is moved up (for a vertical slider) or right (for a horizontal slider) unless&#010 flipValues is set to true.
+    * Sets the slider value to newValue and moves the slider thumb to the appropriate position for this&#010 value. Sends the 'sliderMove' event to the sliderTarget.&#010&#010
     *
     * @param value the new value. Default value is 1
     */
@@ -408,10 +408,10 @@ public class Slider extends Canvas  implements com.smartgwt.client.widgets.event
         setAttribute("value", value, true);
     }
     /**
-     * The slider value. This value should lie between the minValue and maxValue and increases as the thumb is moved up (for a vertical slider) or right (for a horizontal slider) unless flipValues is set to true.
+     * The slider value. This value should lie between the minValue and maxValue and increases as&#010 the thumb is moved up (for a vertical slider) or right (for a horizontal slider) unless&#010 flipValues is set to true.
      *
      *
-     * @return Returns the current slider value.
+     * @return Returns the current slider value.&#010&#010
      *
      */
     public float getValue()  {
@@ -419,7 +419,7 @@ public class Slider extends Canvas  implements com.smartgwt.client.widgets.event
     }
 
     /**
-    * The minimum slider value. The slider value is equal to minValue when the thumb is at the bottom or left of the slider (unless flipValues is true, in which case the minimum value is at the top/right of the slider)
+    * The minimum slider value. The slider value is equal to minValue when the thumb is at the&#010 bottom or left of the slider (unless flipValues is true, in which case the minimum value&#010 is at the top/right of the slider)
     *
     * @param minValue minValue Default value is 1
     */
@@ -427,7 +427,7 @@ public class Slider extends Canvas  implements com.smartgwt.client.widgets.event
         setAttribute("minValue", minValue, true);
     }
     /**
-     * The minimum slider value. The slider value is equal to minValue when the thumb is at the bottom or left of the slider (unless flipValues is true, in which case the minimum value is at the top/right of the slider)
+     * The minimum slider value. The slider value is equal to minValue when the thumb is at the&#010 bottom or left of the slider (unless flipValues is true, in which case the minimum value&#010 is at the top/right of the slider)
      *
      *
      * @return float
@@ -438,7 +438,7 @@ public class Slider extends Canvas  implements com.smartgwt.client.widgets.event
     }
 
     /**
-    * The text displayed in the label for the minimum value of the slider. If left as null, then slider.minValue will be displayed.
+    * The text displayed in the label for the minimum value of the slider. If left as null, then&#010 slider.minValue will be displayed.
     *
     * @param minValueLabel minValueLabel Default value is null
     */
@@ -446,7 +446,7 @@ public class Slider extends Canvas  implements com.smartgwt.client.widgets.event
         setAttribute("minValueLabel", minValueLabel, true);
     }
     /**
-     * The text displayed in the label for the minimum value of the slider. If left as null, then slider.minValue will be displayed.
+     * The text displayed in the label for the minimum value of the slider. If left as null, then&#010 slider.minValue will be displayed.
      *
      *
      * @return String
@@ -457,7 +457,7 @@ public class Slider extends Canvas  implements com.smartgwt.client.widgets.event
     }
 
     /**
-    * The maximum slider value. The slider value is equal to maxValue when the thumb is at the top or right of the slider (unless flipValues is true, in which case the maximum value is at the bottom/left of the slider)
+    * The maximum slider value. The slider value is equal to maxValue when the thumb is at the&#010 top or right of the slider (unless flipValues is true, in which case the maximum value&#010 is at the bottom/left of the slider)
     *
     * @param maxValue maxValue Default value is 100
     */
@@ -465,7 +465,7 @@ public class Slider extends Canvas  implements com.smartgwt.client.widgets.event
         setAttribute("maxValue", maxValue, true);
     }
     /**
-     * The maximum slider value. The slider value is equal to maxValue when the thumb is at the top or right of the slider (unless flipValues is true, in which case the maximum value is at the bottom/left of the slider)
+     * The maximum slider value. The slider value is equal to maxValue when the thumb is at the&#010 top or right of the slider (unless flipValues is true, in which case the maximum value&#010 is at the bottom/left of the slider)
      *
      *
      * @return float
@@ -476,7 +476,7 @@ public class Slider extends Canvas  implements com.smartgwt.client.widgets.event
     }
 
     /**
-    * The text displayed in the label for the maximum value of the slider. If left as null, then slider.maxValue will be displayed.
+    * The text displayed in the label for the maximum value of the slider. If left as null, then&#010 slider.maxValue will be displayed.
     *
     * @param maxValueLabel maxValueLabel Default value is null
     */
@@ -484,7 +484,7 @@ public class Slider extends Canvas  implements com.smartgwt.client.widgets.event
         setAttribute("maxValueLabel", maxValueLabel, true);
     }
     /**
-     * The text displayed in the label for the maximum value of the slider. If left as null, then slider.maxValue will be displayed.
+     * The text displayed in the label for the maximum value of the slider. If left as null, then&#010 slider.maxValue will be displayed.
      *
      *
      * @return String
@@ -495,7 +495,7 @@ public class Slider extends Canvas  implements com.smartgwt.client.widgets.event
     }
 
     /**
-    * The number of discrete values represented by slider. If specified, the range of valid values (between <code>minValue</code> and <code>maxValue</code>) will be divided into this many steps. As the thumb is moved along the track it will only select these values and appear to jump between the steps.
+    * The number of discrete values represented by slider. If specified, the range of valid&#010 values (between <code>minValue</code> and <code>maxValue</code>) will be divided into&#010 this many steps. As the thumb is moved along the track it will only select these values&#010 and appear to jump between the steps.
     *
     * @param numValues numValues Default value is null
     */
@@ -503,7 +503,7 @@ public class Slider extends Canvas  implements com.smartgwt.client.widgets.event
         setAttribute("numValues", numValues, true);
     }
     /**
-     * The number of discrete values represented by slider. If specified, the range of valid values (between <code>minValue</code> and <code>maxValue</code>) will be divided into this many steps. As the thumb is moved along the track it will only select these values and appear to jump between the steps.
+     * The number of discrete values represented by slider. If specified, the range of valid&#010 values (between <code>minValue</code> and <code>maxValue</code>) will be divided into&#010 this many steps. As the thumb is moved along the track it will only select these values&#010 and appear to jump between the steps.
      *
      *
      * @return Integer
@@ -514,7 +514,7 @@ public class Slider extends Canvas  implements com.smartgwt.client.widgets.event
     }
 
     /**
-    * Specifies whether the slider value should be rounded to the nearest integer.  If set to false, values will be rounded to a fixed number of decimal places controlled by {@link com.smartgwt.client.widgets.Slider#getRoundPrecision roundPrecision}.
+    * Specifies whether the slider value should be rounded to the nearest integer.  If set to&#010 false, values will be rounded to a fixed number of decimal places controlled by&#010 {@link com.smartgwt.client.widgets.Slider#getRoundPrecision roundPrecision}.
     *
     * @param roundValues roundValues Default value is true
     */
@@ -522,7 +522,7 @@ public class Slider extends Canvas  implements com.smartgwt.client.widgets.event
         setAttribute("roundValues", roundValues, true);
     }
     /**
-     * Specifies whether the slider value should be rounded to the nearest integer.  If set to false, values will be rounded to a fixed number of decimal places controlled by {@link com.smartgwt.client.widgets.Slider#getRoundPrecision roundPrecision}.
+     * Specifies whether the slider value should be rounded to the nearest integer.  If set to&#010 false, values will be rounded to a fixed number of decimal places controlled by&#010 {@link com.smartgwt.client.widgets.Slider#getRoundPrecision roundPrecision}.
      *
      *
      * @return Boolean
@@ -533,7 +533,7 @@ public class Slider extends Canvas  implements com.smartgwt.client.widgets.event
     }
 
     /**
-    * If {@link com.smartgwt.client.widgets.Slider#getRoundValues roundValues} is false, the slider value will be rounded to this number of decimal places. If set to null the value will not be rounded
+    * If {@link com.smartgwt.client.widgets.Slider#getRoundValues roundValues} is false, the slider value will be rounded to this number of&#010 decimal places. If set to null the value will not be rounded
     *
     * @param roundPrecision roundPrecision Default value is 1
     */
@@ -541,7 +541,7 @@ public class Slider extends Canvas  implements com.smartgwt.client.widgets.event
         setAttribute("roundPrecision", roundPrecision, true);
     }
     /**
-     * If {@link com.smartgwt.client.widgets.Slider#getRoundValues roundValues} is false, the slider value will be rounded to this number of decimal places. If set to null the value will not be rounded
+     * If {@link com.smartgwt.client.widgets.Slider#getRoundValues roundValues} is false, the slider value will be rounded to this number of&#010 decimal places. If set to null the value will not be rounded
      *
      *
      * @return int
@@ -552,7 +552,7 @@ public class Slider extends Canvas  implements com.smartgwt.client.widgets.event
     }
 
     /**
-    * Specifies whether the value range of the slider should be flipped so that values increase as the thumb is moved down (for a vertical slider) or to the left (for a horizontal slider).
+    * Specifies whether the value range of the slider should be flipped so that values increase as&#010 the thumb is moved down (for a vertical slider) or to the left (for a horizontal slider).
     *
     * @param flipValues flipValues Default value is false
     */
@@ -560,7 +560,7 @@ public class Slider extends Canvas  implements com.smartgwt.client.widgets.event
         setAttribute("flipValues", flipValues, true);
     }
     /**
-     * Specifies whether the value range of the slider should be flipped so that values increase as the thumb is moved down (for a vertical slider) or to the left (for a horizontal slider).
+     * Specifies whether the value range of the slider should be flipped so that values increase as&#010 the thumb is moved down (for a vertical slider) or to the left (for a horizontal slider).
      *
      *
      * @return Boolean
@@ -590,7 +590,7 @@ public class Slider extends Canvas  implements com.smartgwt.client.widgets.event
     }
 
     /**
-    * The percentage of the total slider that constitutes one discrete step. The slider will move one step when the appropriate arrow key is pressed.
+    * The percentage of the total slider that constitutes one discrete step. The slider will move&#010 one step when the appropriate arrow key is pressed.
     *
     * @param stepPercent stepPercent Default value is 5
     */
@@ -598,7 +598,7 @@ public class Slider extends Canvas  implements com.smartgwt.client.widgets.event
         setAttribute("stepPercent", stepPercent, true);
     }
     /**
-     * The percentage of the total slider that constitutes one discrete step. The slider will move one step when the appropriate arrow key is pressed.
+     * The percentage of the total slider that constitutes one discrete step. The slider will move&#010 one step when the appropriate arrow key is pressed.
      *
      *
      * @return float
@@ -609,7 +609,7 @@ public class Slider extends Canvas  implements com.smartgwt.client.widgets.event
     }
 
     /**
-    * Should the thumb be animated to its new position when the value is changed programmatically, or by clicking in the slider track.
+    * Should the thumb be animated to its new position when the value is changed programmatically,&#010 or by clicking in the slider track.
     *
     * @param animateThumb animateThumb Default value is true
     */
@@ -617,7 +617,7 @@ public class Slider extends Canvas  implements com.smartgwt.client.widgets.event
         setAttribute("animateThumb", animateThumb, true);
     }
     /**
-     * Should the thumb be animated to its new position when the value is changed programmatically, or by clicking in the slider track.
+     * Should the thumb be animated to its new position when the value is changed programmatically,&#010 or by clicking in the slider track.
      *
      *
      * @return Boolean
@@ -673,7 +673,7 @@ public class Slider extends Canvas  implements com.smartgwt.client.widgets.event
         /**
          * Add a valueChanged handler.
          * <p>
-         * This method is called when the slider value changes. This occurs when the setValue method is called, or when the slider is moved. Observe this method to be notified when the slider value changes.
+         * This method is called when the slider value changes. This occurs when the setValue method is&#010 called, or when the slider is moved. Observe this method to be notified when the slider value&#010 changes.&#010&#010
          *
          * @param handler the valueChanged handler
          */
@@ -703,7 +703,7 @@ public class Slider extends Canvas  implements com.smartgwt.client.widgets.event
         }-*/;
 
         /**
-         * Call this method in your {@link com.smartgwt.client.widgets.Slider#valueChanged} handler to determine whether the value change is due to an ongoing drag interaction (true) or due to a thumb-release, mouse click, keypress, or programmatic event (false). You may choose to execute temporary or partial updates while the slider thumb is dragged, and final updates or persistence of the value in response to the other events.
+         * Call this method in your {@link com.smartgwt.client.widgets.Slider#valueChanged} handler to determine whether the&#010 value change is due to an ongoing drag interaction (true) or due to a thumb-release,&#010 mouse click, keypress, or programmatic event (false). You may choose to execute temporary or&#010 partial updates while the slider thumb is dragged, and final updates or persistence of the value&#010 in response to the other events.&#010&#010
          *
          * @return true if user is still dragging the slider thumb, false otherwise
          */

@@ -22,7 +22,7 @@ import com.google.gwt.event.shared.HasHandlers;
 
 public interface HasEditCompleteHandlers extends HasHandlers {
     /**
-     * Callback fired when inline edits have been successfully saved. <P> No default implementation.
+     * Callback fired when inline edits have been successfully saved.&#010 <P>&#010 No default implementation.&#010&#010
      */
     HandlerRegistration addEditCompleteHandler(EditCompleteHandler handler);
 }

@@ -2,7 +2,7 @@
 package com.smartgwt.client.docs;
 
 /**
- * APIs for marking ${isc.DocUtils.linkForRef('object:Record')}s as selected and retrieving the selected record or records. <P> Only applicable to a ${isc.DocUtils.linkForRef('interface:DataBoundComponent')} that manages a list of Records, or manages a data model that can be viewed as a list (for example, the current list of visible nodes on a tree can be treated as a list for selection purposes).
+ * APIs for marking ${isc.DocUtils.linkForRef('object:Record')}s as selected and retrieving the selected record or records.&#010 <P>&#010 Only applicable to a ${isc.DocUtils.linkForRef('interface:DataBoundComponent')} that manages a list of Records, or manages a&#010 data model that can be viewed as a list (for example, the current list of visible nodes&#010 on a tree can be treated as a list for selection purposes).
  * @see com.smartgwt.client.widgets.toolbar.Toolbar#selectButton
  * @see com.smartgwt.client.widgets.toolbar.Toolbar#deselectButton
  * @see com.smartgwt.client..CubeGrid#getEventRow

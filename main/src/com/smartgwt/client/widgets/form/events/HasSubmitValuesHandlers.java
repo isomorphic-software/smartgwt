@@ -22,7 +22,7 @@ import com.google.gwt.event.shared.HasHandlers;
 
 public interface HasSubmitValuesHandlers extends HasHandlers {
     /**
-     * Triggered when a SubmitItem is included in the form is submitted and gets pressed.
+     * Triggered when a SubmitItem is included in the form is submitted and gets pressed.&#010 &#010
      */
     HandlerRegistration addSubmitValuesHandler(SubmitValuesHandler handler);
 }

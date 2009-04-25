@@ -56,7 +56,7 @@ import com.smartgwt.client.util.EnumUtil;
 import com.google.gwt.event.shared.*;
 import com.google.gwt.event.shared.HasHandlers;
    /**
-    * The Menu widget class implements interactive menu widgets, with optional icons, submenus, and shortcut keys. <p> A Menu is initialized with an Array of items, specified as menu.data, each of which represents one row in the menu's display and specifies the action to take when that menu item is selected. <p> Generally to create a context menu for a component, provide a Menu instance for the  <code>contextMenu</code> property.  Note that some components have special context menu support because they have distinct regions or because they have a default set of context menu actions available. <p> If you want a button that pops up a menu when clicked, or a bar of such buttons, see the MenuButton and MenuBar classes.
+    * The Menu widget class implements interactive menu widgets, with optional icons, submenus,&#010 and shortcut keys.&#010 <p>&#010 A Menu is initialized with an Array of items, specified as menu.data, each of which represents&#010 one row in the menu's display and specifies the action to take when that menu item is selected.&#010 <p>&#010 Generally to create a context menu for a component, provide a Menu instance for the &#010 <code>contextMenu</code> property.  Note that some components have special context menu support&#010 because they have distinct regions or because they have a default set of context menu actions&#010 available.&#010 <p>&#010 If you want a button that pops up a menu when clicked, or a bar of such buttons, see the&#010 MenuButton and MenuBar classes.
 
     */
 
@@ -90,7 +90,7 @@ public class Menu extends ListGrid  implements com.smartgwt.client.widgets.menu.
     // ********************* Properties / Attributes ***********************
             
     /**
-    * Optional target canvas for this menu. Available as a parameter to dynamic menuItem configuration methods such as {@link com.smartgwt.client.widgets.menu.MenuItem#checkIf}. <P> If this item has any {@link com.smartgwt.client.widgets.menu.MenuItem#getSubmenu submenu} the <code>target</code> will be propogated down to these child menus.
+    * Optional target canvas for this menu. Available as a parameter to dynamic menuItem configuration&#010 methods such as {@link com.smartgwt.client.widgets.menu.MenuItem#checkIf}.&#010 <P>&#010 If this item has any {@link com.smartgwt.client.widgets.menu.MenuItem#getSubmenu submenu} the <code>target</code> will be propogated down&#010 to these child menus.
     *
     * @param target target Default value is null
     */
@@ -98,7 +98,7 @@ public class Menu extends ListGrid  implements com.smartgwt.client.widgets.menu.
         setAttribute("target", target.getOrCreateJsObj(), true);
     }
     /**
-     * Optional target canvas for this menu. Available as a parameter to dynamic menuItem configuration methods such as {@link com.smartgwt.client.widgets.menu.MenuItem#checkIf}. <P> If this item has any {@link com.smartgwt.client.widgets.menu.MenuItem#getSubmenu submenu} the <code>target</code> will be propogated down to these child menus.
+     * Optional target canvas for this menu. Available as a parameter to dynamic menuItem configuration&#010 methods such as {@link com.smartgwt.client.widgets.menu.MenuItem#checkIf}.&#010 <P>&#010 If this item has any {@link com.smartgwt.client.widgets.menu.MenuItem#getSubmenu submenu} the <code>target</code> will be propogated down&#010 to these child menus.
      *
      *
      * @return Canvas
@@ -167,7 +167,7 @@ public class Menu extends ListGrid  implements com.smartgwt.client.widgets.menu.
     }
 
     /**
-    * A boolean indicating whether this menu should use shortcut keys. Set useKeys to false in a menu's initialization block to explicitly disable shortcut keys.
+    * A boolean indicating whether this menu should use shortcut keys. Set useKeys to&#010 false in a menu's initialization block to explicitly disable shortcut keys.
     *
     * @param useKeys useKeys Default value is true
     */
@@ -175,7 +175,7 @@ public class Menu extends ListGrid  implements com.smartgwt.client.widgets.menu.
         setAttribute("useKeys", useKeys, true);
     }
     /**
-     * A boolean indicating whether this menu should use shortcut keys. Set useKeys to false in a menu's initialization block to explicitly disable shortcut keys.
+     * A boolean indicating whether this menu should use shortcut keys. Set useKeys to&#010 false in a menu's initialization block to explicitly disable shortcut keys.
      *
      *
      * @return Boolean
@@ -186,7 +186,7 @@ public class Menu extends ListGrid  implements com.smartgwt.client.widgets.menu.
     }
 
     /**
-    * A boolean, indicating whether the shortcut key column should be displayed. If showKeys is not set, the menu will show the key column only if one of its items specifies a keys property. If showKeys is false, the keys will not be displayed, but will still function.
+    * A boolean, indicating whether the shortcut key column should be displayed. If&#010 showKeys is not set, the menu will show the key column only if one of its items&#010 specifies a keys property. If showKeys is false, the keys will not be displayed,&#010 but will still function.
     *
     * @param showKeys showKeys Default value is true
     */
@@ -194,7 +194,7 @@ public class Menu extends ListGrid  implements com.smartgwt.client.widgets.menu.
         setAttribute("showKeys", showKeys, true);
     }
     /**
-     * A boolean, indicating whether the shortcut key column should be displayed. If showKeys is not set, the menu will show the key column only if one of its items specifies a keys property. If showKeys is false, the keys will not be displayed, but will still function.
+     * A boolean, indicating whether the shortcut key column should be displayed. If&#010 showKeys is not set, the menu will show the key column only if one of its items&#010 specifies a keys property. If showKeys is false, the keys will not be displayed,&#010 but will still function.
      *
      *
      * @return Boolean
@@ -205,7 +205,7 @@ public class Menu extends ListGrid  implements com.smartgwt.client.widgets.menu.
     }
 
     /**
-    * A boolean, indicating whether the checkmark/custom icon column should be displayed. If showIcons is not set, the menu will show the icon column only if one of its items specifies an icon, checked, checkIf, or dynamicIcon property.
+    * A boolean, indicating whether the checkmark/custom icon column should be displayed.&#010 If showIcons is not set, the menu will show the icon column only if one of its items&#010 specifies an icon, checked, checkIf, or dynamicIcon property.
     *
     * @param showIcons showIcons Default value is true
     */
@@ -213,7 +213,7 @@ public class Menu extends ListGrid  implements com.smartgwt.client.widgets.menu.
         setAttribute("showIcons", showIcons, true);
     }
     /**
-     * A boolean, indicating whether the checkmark/custom icon column should be displayed. If showIcons is not set, the menu will show the icon column only if one of its items specifies an icon, checked, checkIf, or dynamicIcon property.
+     * A boolean, indicating whether the checkmark/custom icon column should be displayed.&#010 If showIcons is not set, the menu will show the icon column only if one of its items&#010 specifies an icon, checked, checkIf, or dynamicIcon property.
      *
      *
      * @return Boolean
@@ -224,7 +224,7 @@ public class Menu extends ListGrid  implements com.smartgwt.client.widgets.menu.
     }
 
     /**
-    * A boolean, indicating whether the submenu indicator column should be displayed. If showSubmenus is not set, the menu will show the indicator column only if one of its items specifies a submenu property. If showSubmenus is false, the submenu arrows will not be displayed, but submenus will still appear on rollover.
+    * A boolean, indicating whether the submenu indicator column should be displayed. If&#010 showSubmenus is not set, the menu will show the indicator column only if one of its&#010 items specifies a submenu property. If showSubmenus is false, the submenu arrows&#010 will not be displayed, but submenus will still appear on rollover.
     *
     * @param showSubmenus showSubmenus Default value is true
     */
@@ -232,7 +232,7 @@ public class Menu extends ListGrid  implements com.smartgwt.client.widgets.menu.
         setAttribute("showSubmenus", showSubmenus, true);
     }
     /**
-     * A boolean, indicating whether the submenu indicator column should be displayed. If showSubmenus is not set, the menu will show the indicator column only if one of its items specifies a submenu property. If showSubmenus is false, the submenu arrows will not be displayed, but submenus will still appear on rollover.
+     * A boolean, indicating whether the submenu indicator column should be displayed. If&#010 showSubmenus is not set, the menu will show the indicator column only if one of its&#010 items specifies a submenu property. If showSubmenus is false, the submenu arrows&#010 will not be displayed, but submenus will still appear on rollover.
      *
      *
      * @return Boolean
@@ -243,7 +243,7 @@ public class Menu extends ListGrid  implements com.smartgwt.client.widgets.menu.
     }
 
     /**
-    * Should submenus show up on our left or right. Can validly be set to <code>"left"</code>  or <code>"right"</code>
+    * Should submenus show up on our left or right. Can validly be set to <code>"left"</code>&#010  or <code>"right"</code>
     *
     * @param submenuDirection submenuDirection Default value is "right"
     */
@@ -251,7 +251,7 @@ public class Menu extends ListGrid  implements com.smartgwt.client.widgets.menu.
         setAttribute("submenuDirection", submenuDirection, true);
     }
     /**
-     * Should submenus show up on our left or right. Can validly be set to <code>"left"</code>  or <code>"right"</code>
+     * Should submenus show up on our left or right. Can validly be set to <code>"left"</code>&#010  or <code>"right"</code>
      *
      *
      * @return String
@@ -282,7 +282,7 @@ public class Menu extends ListGrid  implements com.smartgwt.client.widgets.menu.
     }
 
     /**
-    * The default width applied to custom icons in this menu. This is used whenever          item.iconWidth is not specified.
+    * The default width applied to custom icons in this menu. This is used whenever&#010          item.iconWidth is not specified.
     *
     * @param iconWidth iconWidth Default value is 16
     */
@@ -290,7 +290,7 @@ public class Menu extends ListGrid  implements com.smartgwt.client.widgets.menu.
         setAttribute("iconWidth", iconWidth, true);
     }
     /**
-     * The default width applied to custom icons in this menu. This is used whenever          item.iconWidth is not specified.
+     * The default width applied to custom icons in this menu. This is used whenever&#010          item.iconWidth is not specified.
      *
      *
      * @return int
@@ -301,7 +301,7 @@ public class Menu extends ListGrid  implements com.smartgwt.client.widgets.menu.
     }
 
     /**
-    * The default height applied to custom icons in this menu. This is used whenever          item.iconHeight is not specified.
+    * The default height applied to custom icons in this menu. This is used whenever&#010          item.iconHeight is not specified.
     *
     * @param iconHeight iconHeight Default value is 16
     */
@@ -309,7 +309,7 @@ public class Menu extends ListGrid  implements com.smartgwt.client.widgets.menu.
         setAttribute("iconHeight", iconHeight, true);
     }
     /**
-     * The default height applied to custom icons in this menu. This is used whenever          item.iconHeight is not specified.
+     * The default height applied to custom icons in this menu. This is used whenever&#010          item.iconHeight is not specified.
      *
      *
      * @return int
@@ -320,7 +320,7 @@ public class Menu extends ListGrid  implements com.smartgwt.client.widgets.menu.
     }
 
     /**
-    * When this menu is shown how should it animate into view? By default the menu will just show at the specified size/position. Options for animated show effects are <code>"fade"</code> to fade from transparent to visible, <code>"slide"</code> to slide the menu into view, or <code>"wipe"</code> to have the menu grow into view, revealing its content as it grows. Can be overridden by passing the 'animationEffect' parameter to 'menu.show()'
+    * When this menu is shown how should it animate into view? By default the menu will just&#010 show at the specified size/position. Options for animated show effects are <code>"fade"</code>&#010 to fade from transparent to visible, <code>"slide"</code> to slide the menu into view,&#010 or <code>"wipe"</code> to have the menu grow into view, revealing its content as it&#010 grows. Can be overridden by passing the 'animationEffect' parameter to 'menu.show()'
     * <p><b>Note : </b> This is an advanced setting</p>
     *
     * @param showAnimationEffect showAnimationEffect Default value is null
@@ -329,7 +329,7 @@ public class Menu extends ListGrid  implements com.smartgwt.client.widgets.menu.
         setAttribute("showAnimationEffect", showAnimationEffect, true);
     }
     /**
-     * When this menu is shown how should it animate into view? By default the menu will just show at the specified size/position. Options for animated show effects are <code>"fade"</code> to fade from transparent to visible, <code>"slide"</code> to slide the menu into view, or <code>"wipe"</code> to have the menu grow into view, revealing its content as it grows. Can be overridden by passing the 'animationEffect' parameter to 'menu.show()'
+     * When this menu is shown how should it animate into view? By default the menu will just&#010 show at the specified size/position. Options for animated show effects are <code>"fade"</code>&#010 to fade from transparent to visible, <code>"slide"</code> to slide the menu into view,&#010 or <code>"wipe"</code> to have the menu grow into view, revealing its content as it&#010 grows. Can be overridden by passing the 'animationEffect' parameter to 'menu.show()'
      *
      *
      * @return String
@@ -340,7 +340,7 @@ public class Menu extends ListGrid  implements com.smartgwt.client.widgets.menu.
     }
 
     /**
-    * If true, clicking or pressing Enter on a menu item that has a submenu will  select that item (with standard behavior of hiding the menus, calling click  handlers, etc) instead of showing the submenu.
+    * If true, clicking or pressing Enter on a menu item that has a submenu will&#010  select that item (with standard behavior of hiding the menus, calling click&#010  handlers, etc) instead of showing the submenu.
     *
     * @param canSelectParentItems canSelectParentItems Default value is null
     */
@@ -348,7 +348,7 @@ public class Menu extends ListGrid  implements com.smartgwt.client.widgets.menu.
         setAttribute("canSelectParentItems", canSelectParentItems, true);
     }
     /**
-     * If true, clicking or pressing Enter on a menu item that has a submenu will  select that item (with standard behavior of hiding the menus, calling click  handlers, etc) instead of showing the submenu.
+     * If true, clicking or pressing Enter on a menu item that has a submenu will&#010  select that item (with standard behavior of hiding the menus, calling click&#010  handlers, etc) instead of showing the submenu.
      *
      *
      * @return Boolean
@@ -359,7 +359,7 @@ public class Menu extends ListGrid  implements com.smartgwt.client.widgets.menu.
     }
 
     /**
-    * When true, when a menu item is chosen (via mouse click or keyboard), the menu is not  automatically hidden, staying in place for further interactivity
+    * When true, when a menu item is chosen (via mouse click or keyboard), the menu is not &#010 automatically hidden, staying in place for further interactivity
     *
     * @param autoDismiss autoDismiss Default value is true
     */
@@ -367,7 +367,7 @@ public class Menu extends ListGrid  implements com.smartgwt.client.widgets.menu.
         setAttribute("autoDismiss", autoDismiss, true);
     }
     /**
-     * When true, when a menu item is chosen (via mouse click or keyboard), the menu is not  automatically hidden, staying in place for further interactivity
+     * When true, when a menu item is chosen (via mouse click or keyboard), the menu is not &#010 automatically hidden, staying in place for further interactivity
      *
      *
      * @return Boolean
@@ -384,7 +384,7 @@ public class Menu extends ListGrid  implements com.smartgwt.client.widgets.menu.
         /**
          * Add a itemClick handler.
          * <p>
-         * Executed when a menu item with no click handler is clicked by the user. This          itemClick handler must be specified as a function. It is passed an item parameter that          is a reference to the clicked menu item.
+         * Executed when a menu item with no click handler is clicked by the user. This&#010          itemClick handler must be specified as a function. It is passed an item parameter that&#010          is a reference to the clicked menu item.&#010&#010
          *
          * @param handler the itemClick handler
          */
@@ -418,7 +418,7 @@ public class Menu extends ListGrid  implements com.smartgwt.client.widgets.menu.
         }-*/;
 
         /**
-         * Show this menu as a context menu, that is, immediately adjacent to the current mouse position.
+         * Show this menu as a context menu, that is, immediately adjacent to the current mouse position.&#010&#010
          *
          * @return false == stop processing this event
          */
@@ -435,7 +435,7 @@ public class Menu extends ListGrid  implements com.smartgwt.client.widgets.menu.
 
 
         /**
-         * Hide the context menu - alias for hide()
+         * Hide the context menu - alias for hide()&#010
          */
         public native void hideContextMenu() /*-{
             var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
@@ -443,7 +443,7 @@ public class Menu extends ListGrid  implements com.smartgwt.client.widgets.menu.
         }-*/;
 
         /**
-         * Get a particular MenuItem by index. <P> If passed a MenuItem, returns it.
+         * Get a particular MenuItem by index.&#010 <P>&#010 If passed a MenuItem, returns it.&#010&#010
          * @param item index of the MenuItem
          *
          * @return the MenuItem, Pointer to the item, or null if not defined

@@ -56,7 +56,7 @@ import com.smartgwt.client.util.EnumUtil;
 import com.google.gwt.event.shared.*;
 import com.google.gwt.event.shared.HasHandlers;
    /**
-    * The Scrollbar widget implements cross-platform, image-based scrollbars that control the scrolling of content in other widgets.  Scrollbar widgets are created and displayed automatically for widgets that require them, based on settings for {@link com.smartgwt.client.widgets.Canvas#getOverflow overflow}. <P> The scrollbar's appearance is based on a {@link com.smartgwt.client.widgets.StretchImg} for the "track", which consists of two fixed size buttons and a stretchable center segment, and the {@link com.smartgwt.client..ScrollThumb}, the draggable portion of the scrollbar, also a StretchImg, with an optional {@link com.smartgwt.client.widgets.StretchImg#getShowGrip showGrip}.
+    * The Scrollbar widget implements cross-platform, image-based scrollbars that control the&#010 scrolling of content in other widgets.  Scrollbar widgets are created and displayed&#010 automatically for widgets that require them, based on settings for {@link com.smartgwt.client.widgets.Canvas#getOverflow overflow}.&#010 <P>&#010 The scrollbar's appearance is based on a {@link com.smartgwt.client.widgets.StretchImg} for the "track", which consists&#010 of two fixed size buttons and a stretchable center segment, and the {@link com.smartgwt.client..ScrollThumb},&#010 the draggable portion of the scrollbar, also a StretchImg, with an optional&#010 {@link com.smartgwt.client.widgets.StretchImg#getShowGrip showGrip}.
 
     */
 public class Scrollbar extends StretchImg {
@@ -89,7 +89,7 @@ public class Scrollbar extends StretchImg {
     // ********************* Properties / Attributes ***********************
 
     /**
-    * The size of the square buttons (arrows) at the ends of this scrollbar. This  overrides the width of a vertical scrollbar or the height of a horizontal scrollbar to set the scrollbar's thickness.
+    * The size of the square buttons (arrows) at the ends of this scrollbar. This &#010 overrides the width of a vertical scrollbar or the height of a horizontal scrollbar&#010 to set the scrollbar's thickness.
     *
     * @param btnSize btnSize Default value is 16
     */
@@ -97,7 +97,7 @@ public class Scrollbar extends StretchImg {
         setAttribute("btnSize", btnSize, true);
     }
     /**
-     * The size of the square buttons (arrows) at the ends of this scrollbar. This  overrides the width of a vertical scrollbar or the height of a horizontal scrollbar to set the scrollbar's thickness.
+     * The size of the square buttons (arrows) at the ends of this scrollbar. This &#010 overrides the width of a vertical scrollbar or the height of a horizontal scrollbar&#010 to set the scrollbar's thickness.
      *
      *
      * @return int
@@ -108,7 +108,7 @@ public class Scrollbar extends StretchImg {
     }
 
     /**
-    * If true, this scrollbar will automatically enable when the scrollTarget is scrollable (i.e., when the contents of the scrollTarget exceed its clip size in the direction relevant to this scrollbar), and automatically disable when the scrollTarget is not scrollable. Set this property to false for full manual control over a scrollbar's enabled state.
+    * If true, this scrollbar will automatically enable when the scrollTarget is&#010 scrollable (i.e., when the contents of the scrollTarget exceed its clip size in the&#010 direction relevant to this scrollbar), and automatically disable when the&#010 scrollTarget is not scrollable. Set this property to false for full manual control&#010 over a scrollbar's enabled state.
     * <p><b>Note : </b> This is an advanced setting</p>
     *
     * @param autoEnable autoEnable Default value is true
@@ -117,7 +117,7 @@ public class Scrollbar extends StretchImg {
         setAttribute("autoEnable", autoEnable, true);
     }
     /**
-     * If true, this scrollbar will automatically enable when the scrollTarget is scrollable (i.e., when the contents of the scrollTarget exceed its clip size in the direction relevant to this scrollbar), and automatically disable when the scrollTarget is not scrollable. Set this property to false for full manual control over a scrollbar's enabled state.
+     * If true, this scrollbar will automatically enable when the scrollTarget is&#010 scrollable (i.e., when the contents of the scrollTarget exceed its clip size in the&#010 direction relevant to this scrollbar), and automatically disable when the&#010 scrollTarget is not scrollable. Set this property to false for full manual control&#010 over a scrollbar's enabled state.
      *
      *
      * @return Boolean
@@ -128,7 +128,7 @@ public class Scrollbar extends StretchImg {
     }
 
     /**
-    * If true, displays a corner piece at the bottom end of a vertical scrollbar, or the right end of a horizontal scrollbar. This is typically set only when both horizontal and vertical scrollbars are displayed and about the same corner.
+    * If true, displays a corner piece at the bottom end of a vertical scrollbar, or the&#010 right end of a horizontal scrollbar. This is typically set only when both horizontal&#010 and vertical scrollbars are displayed and about the same corner.
     * <p><b>Note : </b> This is an advanced setting</p>
     *
     * @param showCorner showCorner Default value is false
@@ -138,7 +138,7 @@ public class Scrollbar extends StretchImg {
         setAttribute("showCorner", showCorner, false);
     }
     /**
-     * If true, displays a corner piece at the bottom end of a vertical scrollbar, or the right end of a horizontal scrollbar. This is typically set only when both horizontal and vertical scrollbars are displayed and about the same corner.
+     * If true, displays a corner piece at the bottom end of a vertical scrollbar, or the&#010 right end of a horizontal scrollbar. This is typically set only when both horizontal&#010 and vertical scrollbars are displayed and about the same corner.
      *
      *
      * @return Boolean
@@ -191,7 +191,7 @@ public class Scrollbar extends StretchImg {
     }
 
     /**
-    * If true, the scrollbar uses a 5-segment rather than 3-segment image representation, where the 3 interior image segments have the same state (Down, Over, etc), independent of the two outermost image segments.   <P> This allows certain advanced skinning designs where the track-as-such (space in which the thumb may be dragged) has curved endcaps, and is also visually stateful (that is, changes when the mouse goes down, without affecting the appearance of the outermost segments).
+    * If true, the scrollbar uses a 5-segment rather than 3-segment image representation,&#010 where the 3 interior image segments have the same state (Down, Over, etc), independent&#010 of the two outermost image segments.  &#010 <P>&#010 This allows certain advanced skinning designs where the track-as-such (space in which&#010 the thumb may be dragged) has curved endcaps, and is also visually stateful (that is,&#010 changes when the mouse goes down, without affecting the appearance of the outermost&#010 segments).
     * <p><b>Note : </b> This is an advanced setting</p>
     *
     * @param showTrackEnds showTrackEnds Default value is false
@@ -201,7 +201,7 @@ public class Scrollbar extends StretchImg {
         setAttribute("showTrackEnds", showTrackEnds, false);
     }
     /**
-     * If true, the scrollbar uses a 5-segment rather than 3-segment image representation, where the 3 interior image segments have the same state (Down, Over, etc), independent of the two outermost image segments.   <P> This allows certain advanced skinning designs where the track-as-such (space in which the thumb may be dragged) has curved endcaps, and is also visually stateful (that is, changes when the mouse goes down, without affecting the appearance of the outermost segments).
+     * If true, the scrollbar uses a 5-segment rather than 3-segment image representation,&#010 where the 3 interior image segments have the same state (Down, Over, etc), independent&#010 of the two outermost image segments.  &#010 <P>&#010 This allows certain advanced skinning designs where the track-as-such (space in which&#010 the thumb may be dragged) has curved endcaps, and is also visually stateful (that is,&#010 changes when the mouse goes down, without affecting the appearance of the outermost&#010 segments).
      *
      *
      * @return Boolean
@@ -212,7 +212,7 @@ public class Scrollbar extends StretchImg {
     }
 
     /**
-    * The minimum pixel size of the draggable thumb regardless of how large the scrolling region becomes.
+    * The minimum pixel size of the draggable thumb regardless of how large the scrolling&#010 region becomes.
     * <p><b>Note : </b> This is an advanced setting</p>
     *
     * @param thumbMinSize thumbMinSize Default value is 12
@@ -222,7 +222,7 @@ public class Scrollbar extends StretchImg {
         setAttribute("thumbMinSize", thumbMinSize, false);
     }
     /**
-     * The minimum pixel size of the draggable thumb regardless of how large the scrolling region becomes.
+     * The minimum pixel size of the draggable thumb regardless of how large the scrolling&#010 region becomes.
      *
      *
      * @return int
@@ -275,7 +275,7 @@ public class Scrollbar extends StretchImg {
     }
 
     /**
-    * Number of pixels the thumb is allowed to overlap the buttons at each end of the track. Default prevents doubling of 1px borders.  Set higher to allow media that shows curved joins between the track button and ScrollThumb.
+    * Number of pixels the thumb is allowed to overlap the buttons at each end of the track.&#010 Default prevents doubling of 1px borders.  Set higher to allow media that shows curved&#010 joins between the track button and ScrollThumb.
     * <p><b>Note : </b> This is an advanced setting</p>
     *
     * @param thumbOverlap thumbOverlap Default value is 1
@@ -285,7 +285,7 @@ public class Scrollbar extends StretchImg {
         setAttribute("thumbOverlap", thumbOverlap, false);
     }
     /**
-     * Number of pixels the thumb is allowed to overlap the buttons at each end of the track. Default prevents doubling of 1px borders.  Set higher to allow media that shows curved joins between the track button and ScrollThumb.
+     * Number of pixels the thumb is allowed to overlap the buttons at each end of the track.&#010 Default prevents doubling of 1px borders.  Set higher to allow media that shows curved&#010 joins between the track button and ScrollThumb.
      *
      *
      * @return int
@@ -296,7 +296,7 @@ public class Scrollbar extends StretchImg {
     }
 
     /**
-    * Number of pixels the thumb is allowed to overlap the buttons at the start of the track. Default prevents doubling of 1px borders.  Set higher to allow media that shows curved joins between the track button and ScrollThumb.
+    * Number of pixels the thumb is allowed to overlap the buttons at the start of the track.&#010 Default prevents doubling of 1px borders.  Set higher to allow media that shows curved&#010 joins between the track button and ScrollThumb.
     * <p><b>Note : </b> This is an advanced setting</p>
     *
     * @param startThumbOverlap startThumbOverlap Default value is null
@@ -306,7 +306,7 @@ public class Scrollbar extends StretchImg {
         setAttribute("startThumbOverlap", startThumbOverlap, false);
     }
     /**
-     * Number of pixels the thumb is allowed to overlap the buttons at the start of the track. Default prevents doubling of 1px borders.  Set higher to allow media that shows curved joins between the track button and ScrollThumb.
+     * Number of pixels the thumb is allowed to overlap the buttons at the start of the track.&#010 Default prevents doubling of 1px borders.  Set higher to allow media that shows curved&#010 joins between the track button and ScrollThumb.
      *
      *
      * @return Integer
@@ -317,7 +317,7 @@ public class Scrollbar extends StretchImg {
     }
 
     /**
-    * Number of pixels the thumb is allowed to overlap the buttons at the end of the track. Default prevents doubling of 1px borders.  Set higher to allow media that shows curved joins between the track button and ScrollThumb.
+    * Number of pixels the thumb is allowed to overlap the buttons at the end of the track.&#010 Default prevents doubling of 1px borders.  Set higher to allow media that shows curved&#010 joins between the track button and ScrollThumb.
     * <p><b>Note : </b> This is an advanced setting</p>
     *
     * @param endThumbOverlap endThumbOverlap Default value is null
@@ -327,7 +327,7 @@ public class Scrollbar extends StretchImg {
         setAttribute("endThumbOverlap", endThumbOverlap, false);
     }
     /**
-     * Number of pixels the thumb is allowed to overlap the buttons at the end of the track. Default prevents doubling of 1px borders.  Set higher to allow media that shows curved joins between the track button and ScrollThumb.
+     * Number of pixels the thumb is allowed to overlap the buttons at the end of the track.&#010 Default prevents doubling of 1px borders.  Set higher to allow media that shows curved&#010 joins between the track button and ScrollThumb.
      *
      *
      * @return Integer
@@ -338,7 +338,7 @@ public class Scrollbar extends StretchImg {
     }
 
     /**
-    * Inset of the thumb relative to the track.  An inset of N pixels means the thumb is 2N pixels smaller in breadth than the track.
+    * Inset of the thumb relative to the track.  An inset of N pixels means the thumb is 2N&#010 pixels smaller in breadth than the track.
     * <p><b>Note : </b> This is an advanced setting</p>
     *
     * @param thumbInset thumbInset Default value is null
@@ -348,7 +348,7 @@ public class Scrollbar extends StretchImg {
         setAttribute("thumbInset", thumbInset, false);
     }
     /**
-     * Inset of the thumb relative to the track.  An inset of N pixels means the thumb is 2N pixels smaller in breadth than the track.
+     * Inset of the thumb relative to the track.  An inset of N pixels means the thumb is 2N&#010 pixels smaller in breadth than the track.
      *
      *
      * @return Integer
@@ -380,7 +380,7 @@ public class Scrollbar extends StretchImg {
     }
 
     /**
-    * URL for the corner image, a singular image that appears in the corner when both h and v scrollbars are showing.
+    * URL for the corner image, a singular image that appears in the corner when both h and v&#010 scrollbars are showing.
     *
     * @param cornerSrc cornerSrc Default value is "[SKIN]corner.gif"
     * @throws IllegalStateException this property cannot be changed after the component has been created
@@ -389,7 +389,7 @@ public class Scrollbar extends StretchImg {
         setAttribute("cornerSrc", cornerSrc, false);
     }
     /**
-     * URL for the corner image, a singular image that appears in the corner when both h and v scrollbars are showing.
+     * URL for the corner image, a singular image that appears in the corner when both h and v&#010 scrollbars are showing.
      *
      *
      * @return String
@@ -420,7 +420,7 @@ public class Scrollbar extends StretchImg {
     }
 
     /**
-    * Base URL for the images used for the horizontal scrollbar track and end buttons.   <P> See {@link com.smartgwt.client.widgets.StretchImg#getItems items} for a general explanation of how this base URL is transformed into various pieces and states. <P> For a normal 3-segment track, the suffixes "_start", "_track" and "_end" are added to this URL.  The "start" and "end" images should appear to be buttons (the user can click on these segments to scroll slowly).  The "track" segment provides a background for the space in which the thumb can be dragged, and can also be clicked on to scroll quickly. <P> For a 5-segment track ({@link com.smartgwt.client.widgets.Scrollbar#getShowTrackEnds showTrackEnds}:true), the suffixes are "_start", "_track_start", "_track", "_track_end" and "_end".
+    * Base URL for the images used for the horizontal scrollbar track and end buttons.  &#010 <P>&#010 See {@link com.smartgwt.client.widgets.StretchImg#getItems items} for a general explanation of how this base URL is&#010 transformed into various pieces and states.&#010 <P>&#010 For a normal 3-segment track, the suffixes "_start", "_track" and "_end" are added to&#010 this URL.  The "start" and "end" images should appear to be buttons (the user can click&#010 on these segments to scroll slowly).  The "track" segment provides a background for the&#010 space in which the thumb can be dragged, and can also be clicked on to scroll quickly.&#010 <P>&#010 For a 5-segment track ({@link com.smartgwt.client.widgets.Scrollbar#getShowTrackEnds showTrackEnds}:true), the suffixes are "_start", "_track_start",&#010 "_track", "_track_end" and "_end".
     *
     * @param hSrc hSrc Default value is "[SKIN]hscroll.gif"
     * @throws IllegalStateException this property cannot be changed after the component has been created
@@ -429,7 +429,7 @@ public class Scrollbar extends StretchImg {
         setAttribute("hSrc", hSrc, false);
     }
     /**
-     * Base URL for the images used for the horizontal scrollbar track and end buttons.   <P> See {@link com.smartgwt.client.widgets.StretchImg#getItems items} for a general explanation of how this base URL is transformed into various pieces and states. <P> For a normal 3-segment track, the suffixes "_start", "_track" and "_end" are added to this URL.  The "start" and "end" images should appear to be buttons (the user can click on these segments to scroll slowly).  The "track" segment provides a background for the space in which the thumb can be dragged, and can also be clicked on to scroll quickly. <P> For a 5-segment track ({@link com.smartgwt.client.widgets.Scrollbar#getShowTrackEnds showTrackEnds}:true), the suffixes are "_start", "_track_start", "_track", "_track_end" and "_end".
+     * Base URL for the images used for the horizontal scrollbar track and end buttons.  &#010 <P>&#010 See {@link com.smartgwt.client.widgets.StretchImg#getItems items} for a general explanation of how this base URL is&#010 transformed into various pieces and states.&#010 <P>&#010 For a normal 3-segment track, the suffixes "_start", "_track" and "_end" are added to&#010 this URL.  The "start" and "end" images should appear to be buttons (the user can click&#010 on these segments to scroll slowly).  The "track" segment provides a background for the&#010 space in which the thumb can be dragged, and can also be clicked on to scroll quickly.&#010 <P>&#010 For a 5-segment track ({@link com.smartgwt.client.widgets.Scrollbar#getShowTrackEnds showTrackEnds}:true), the suffixes are "_start", "_track_start",&#010 "_track", "_track_end" and "_end".
      *
      *
      * @return String
@@ -440,7 +440,7 @@ public class Scrollbar extends StretchImg {
     }
 
     /**
-    * Base URL for the images used for the vertical scrollbar track and end buttons.  See {@link com.smartgwt.client.widgets.Scrollbar#getHSrc hSrc} for usage.
+    * Base URL for the images used for the vertical scrollbar track and end buttons.  See&#010 {@link com.smartgwt.client.widgets.Scrollbar#getHSrc hSrc} for usage.
     *
     * @param vSrc vSrc Default value is "[SKIN]vscroll.gif"
     * @throws IllegalStateException this property cannot be changed after the component has been created
@@ -449,7 +449,7 @@ public class Scrollbar extends StretchImg {
         setAttribute("vSrc", vSrc, false);
     }
     /**
-     * Base URL for the images used for the vertical scrollbar track and end buttons.  See {@link com.smartgwt.client.widgets.Scrollbar#getHSrc hSrc} for usage.
+     * Base URL for the images used for the vertical scrollbar track and end buttons.  See&#010 {@link com.smartgwt.client.widgets.Scrollbar#getHSrc hSrc} for usage.
      *
      *
      * @return String

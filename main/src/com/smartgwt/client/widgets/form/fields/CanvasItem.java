@@ -89,7 +89,7 @@ public class CanvasItem extends FormItem {
     // ********************* Properties / Attributes ***********************
             
     /**
-    * The canvas that will be displayed inside this item.  You can pass an instance you've  already created, or its global ID as a String.  If none is passed, one will be  auto-created using the overrideable defaults: {@link com.smartgwt.client.widgets.form.fields.CanvasItem#getCanvasProperties canvasProperties} and {@link com.smartgwt.client.widgets.form.fields.CanvasItem#getCanvasConstructor canvasConstructor}
+    * The canvas that will be displayed inside this item.  You can pass an instance you've &#010 already created, or its global ID as a String.  If none is passed, one will be &#010 auto-created using the overrideable defaults: {@link com.smartgwt.client.widgets.form.fields.CanvasItem#getCanvasProperties canvasProperties} and&#010 {@link com.smartgwt.client.widgets.form.fields.CanvasItem#getCanvasConstructor canvasConstructor}
     *
     * @param canvas canvas Default value is null
     */
@@ -97,7 +97,7 @@ public class CanvasItem extends FormItem {
         setAttribute("canvas", canvas.getOrCreateJsObj());
     }
     /**
-     * The canvas that will be displayed inside this item.  You can pass an instance you've  already created, or its global ID as a String.  If none is passed, one will be  auto-created using the overrideable defaults: {@link com.smartgwt.client.widgets.form.fields.CanvasItem#getCanvasProperties canvasProperties} and {@link com.smartgwt.client.widgets.form.fields.CanvasItem#getCanvasConstructor canvasConstructor}
+     * The canvas that will be displayed inside this item.  You can pass an instance you've &#010 already created, or its global ID as a String.  If none is passed, one will be &#010 auto-created using the overrideable defaults: {@link com.smartgwt.client.widgets.form.fields.CanvasItem#getCanvasProperties canvasProperties} and&#010 {@link com.smartgwt.client.widgets.form.fields.CanvasItem#getCanvasConstructor canvasConstructor}
      *
      *
      * @return Canvas

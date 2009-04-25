@@ -56,7 +56,7 @@ import com.smartgwt.client.util.EnumUtil;
 import com.google.gwt.event.shared.*;
 import com.google.gwt.event.shared.HasHandlers;
    /**
-    * Subclass of the {@link com.smartgwt.client.widgets.Img} class. As with the {@link com.smartgwt.client.widgets.Splitbar} class,   widgets of this class can be displayed as a resize-bar for widgets   in Layouts where showResizeBar is set to true. Provides a different appearance from  the <code>Splitbar</code> class.<br>  To specify the resizeBar class for some layout, use the {@link com.smartgwt.client.widgets.layout.Layout#getResizeBarClass resizeBarClass}  property.
+    * Subclass of the {@link com.smartgwt.client.widgets.Img} class. As with the {@link com.smartgwt.client.widgets.Splitbar} class, &#010  widgets of this class can be displayed as a resize-bar for widgets &#010  in Layouts where showResizeBar is set to true. Provides a different appearance from&#010  the <code>Splitbar</code> class.<br>&#010  To specify the resizeBar class for some layout, use the {@link com.smartgwt.client.widgets.layout.Layout#getResizeBarClass resizeBarClass}&#010  property.
 
     */
 public class ImgSplitbar extends Img {
@@ -89,7 +89,7 @@ public class ImgSplitbar extends Img {
     // ********************* Properties / Attributes ***********************
 
     /**
-     * Is this split bar vertically orientated?<br> When a <code>Splitbar</code> is created by a layout to be the resizeBar for some member of the layout, the <code>vertical</code> property will be set to <code>true</code> if the layout is horizontal, meaning this resizeBar will be taller than it is wide,  and will allow horizontal resizing of the member.
+     * Is this split bar vertically orientated?<br>&#010 When a <code>Splitbar</code> is created by a layout to be the resizeBar for some&#010 member of the layout, the <code>vertical</code> property will be set to <code>true</code>&#010 if the layout is horizontal, meaning this resizeBar will be taller than it is wide, &#010 and will allow horizontal resizing of the member.
      *
      * <b>Note :</b> This method should be called only after the widget has been rendered.
      *
@@ -103,7 +103,7 @@ public class ImgSplitbar extends Img {
     }
 
     /**
-    * <code>canDrag</code> set to true to allow dragging of the split bar. Dragging the Splitbar will resize it's {@link com.smartgwt.client.widgets.Splitbar#getTarget target}
+    * <code>canDrag</code> set to true to allow dragging of the split bar. Dragging the&#010 Splitbar will resize it's {@link com.smartgwt.client.widgets.Splitbar#getTarget target}
     *
     * @param canDrag canDrag Default value is true
     */
@@ -111,7 +111,7 @@ public class ImgSplitbar extends Img {
         setAttribute("canDrag", canDrag, true);
     }
     /**
-     * <code>canDrag</code> set to true to allow dragging of the split bar. Dragging the Splitbar will resize it's {@link com.smartgwt.client.widgets.Splitbar#getTarget target}
+     * <code>canDrag</code> set to true to allow dragging of the split bar. Dragging the&#010 Splitbar will resize it's {@link com.smartgwt.client.widgets.Splitbar#getTarget target}
      *
      *
      * @return Boolean
@@ -122,7 +122,7 @@ public class ImgSplitbar extends Img {
     }
 
     /**
-    * If this property is true, a click on the Splitbar will collapse its  {@link com.smartgwt.client.widgets.Splitbar#getTarget target}, hiding it and shifting the Splitbar and other members of the layout across to fill the newly available space. If the target is already hidden a click will expand it again (showing it at it's normal size).
+    * If this property is true, a click on the Splitbar will collapse its &#010 {@link com.smartgwt.client.widgets.Splitbar#getTarget target}, hiding it and shifting the Splitbar and other members&#010 of the layout across to fill the newly available space. If the target is already hidden&#010 a click will expand it again (showing it at it's normal size).
     *
     * @param canCollapse canCollapse Default value is true
     */
@@ -130,7 +130,7 @@ public class ImgSplitbar extends Img {
         setAttribute("canCollapse", canCollapse, true);
     }
     /**
-     * If this property is true, a click on the Splitbar will collapse its  {@link com.smartgwt.client.widgets.Splitbar#getTarget target}, hiding it and shifting the Splitbar and other members of the layout across to fill the newly available space. If the target is already hidden a click will expand it again (showing it at it's normal size).
+     * If this property is true, a click on the Splitbar will collapse its &#010 {@link com.smartgwt.client.widgets.Splitbar#getTarget target}, hiding it and shifting the Splitbar and other members&#010 of the layout across to fill the newly available space. If the target is already hidden&#010 a click will expand it again (showing it at it's normal size).
      *
      *
      * @return Boolean
@@ -141,7 +141,7 @@ public class ImgSplitbar extends Img {
     }
 
     /**
-    * Default directory for skin images (those defined by the class), relative to the Page-wide {@link com.smartgwt.client.util.Page#getSkinDir}.
+    * Default directory for skin images (those defined by the class), relative to the&#010 Page-wide {@link com.smartgwt.client.util.Page#getSkinDir}.
     *
     * @param skinImgDir skinImgDir Default value is "images/SplitBar/"
     * @throws IllegalStateException this property cannot be changed after the component has been created
@@ -150,7 +150,7 @@ public class ImgSplitbar extends Img {
         setAttribute("skinImgDir", skinImgDir, false);
     }
     /**
-     * Default directory for skin images (those defined by the class), relative to the Page-wide {@link com.smartgwt.client.util.Page#getSkinDir}.
+     * Default directory for skin images (those defined by the class), relative to the&#010 Page-wide {@link com.smartgwt.client.util.Page#getSkinDir}.
      *
      *
      * @return String
@@ -161,7 +161,7 @@ public class ImgSplitbar extends Img {
     }
 
     /**
-    * The base filename for the image. <P> If <code>img.state</code> is set, it's value will be appended to the URL before the file extension.   <P> For example, given an <code>src</code> of "findIcon.gif" and a state of "Disabled", the resulting image name would be "findIcon_Disabled.gif".  Compound states such as "Selected", "Focused" and "Over" or "Down" will have an intervening underscore, resulting in, for example, <code>"findIcon_Selected_Down.gif"</code>.
+    * The base filename for the image.&#010 <P>&#010 If <code>img.state</code> is set, it's value will be appended to the URL before the&#010 file extension.  &#010 <P>&#010 For example, given an <code>src</code> of "findIcon.gif" and a state of&#010 "Disabled", the resulting image name would be "findIcon_Disabled.gif".  Compound states&#010 such as "Selected", "Focused" and "Over" or "Down" will have an intervening underscore,&#010 resulting in, for example, <code>"findIcon_Selected_Down.gif"</code>.
     *
     * @param src src Default value is null
     * @throws IllegalStateException this property cannot be changed after the component has been created
@@ -170,7 +170,7 @@ public class ImgSplitbar extends Img {
         setAttribute("src", src, false);
     }
     /**
-     * The base filename for the image. <P> If <code>img.state</code> is set, it's value will be appended to the URL before the file extension.   <P> For example, given an <code>src</code> of "findIcon.gif" and a state of "Disabled", the resulting image name would be "findIcon_Disabled.gif".  Compound states such as "Selected", "Focused" and "Over" or "Down" will have an intervening underscore, resulting in, for example, <code>"findIcon_Selected_Down.gif"</code>.
+     * The base filename for the image.&#010 <P>&#010 If <code>img.state</code> is set, it's value will be appended to the URL before the&#010 file extension.  &#010 <P>&#010 For example, given an <code>src</code> of "findIcon.gif" and a state of&#010 "Disabled", the resulting image name would be "findIcon_Disabled.gif".  Compound states&#010 such as "Selected", "Focused" and "Over" or "Down" will have an intervening underscore,&#010 resulting in, for example, <code>"findIcon_Selected_Down.gif"</code>.
      *
      *
      * @return String
@@ -181,7 +181,7 @@ public class ImgSplitbar extends Img {
     }
 
     /**
-    * Default src to display when {@link com.smartgwt.client.widgets.ImgSplitbar#getVertical vertical} is false,  and {@link com.smartgwt.client.widgets.ImgSplitbar#getSrc src} is unset.
+    * Default src to display when {@link com.smartgwt.client.widgets.ImgSplitbar#getVertical vertical} is false, &#010 and {@link com.smartgwt.client.widgets.ImgSplitbar#getSrc src} is unset.
     *
     * @param hSrc hSrc Default value is [SKIN]hgrip.png
     * @throws IllegalStateException this property cannot be changed after the component has been created
@@ -190,7 +190,7 @@ public class ImgSplitbar extends Img {
         setAttribute("hSrc", hSrc, false);
     }
     /**
-     * Default src to display when {@link com.smartgwt.client.widgets.ImgSplitbar#getVertical vertical} is false,  and {@link com.smartgwt.client.widgets.ImgSplitbar#getSrc src} is unset.
+     * Default src to display when {@link com.smartgwt.client.widgets.ImgSplitbar#getVertical vertical} is false, &#010 and {@link com.smartgwt.client.widgets.ImgSplitbar#getSrc src} is unset.
      *
      *
      * @return String
@@ -201,7 +201,7 @@ public class ImgSplitbar extends Img {
     }
 
     /**
-    * Default src to display when {@link com.smartgwt.client.widgets.ImgSplitbar#getVertical vertical} is true,  and {@link com.smartgwt.client.widgets.ImgSplitbar#getSrc src} is unset.
+    * Default src to display when {@link com.smartgwt.client.widgets.ImgSplitbar#getVertical vertical} is true, &#010 and {@link com.smartgwt.client.widgets.ImgSplitbar#getSrc src} is unset.
     *
     * @param vSrc vSrc Default value is [SKIN]vgrip.png
     * @throws IllegalStateException this property cannot be changed after the component has been created
@@ -210,7 +210,7 @@ public class ImgSplitbar extends Img {
         setAttribute("vSrc", vSrc, false);
     }
     /**
-     * Default src to display when {@link com.smartgwt.client.widgets.ImgSplitbar#getVertical vertical} is true,  and {@link com.smartgwt.client.widgets.ImgSplitbar#getSrc src} is unset.
+     * Default src to display when {@link com.smartgwt.client.widgets.ImgSplitbar#getVertical vertical} is true, &#010 and {@link com.smartgwt.client.widgets.ImgSplitbar#getSrc src} is unset.
      *
      *
      * @return String

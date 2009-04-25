@@ -127,7 +127,7 @@ public class CheckboxItem extends FormItem {
     }
 
     /**
-    * By default a checkboxItem sets {@link com.smartgwt.client.widgets.form.fields.CheckboxItem#getShowTitle showTitle}:true, and so takes up two cells with the default ${isc.DocUtils.linkForRef('type:TitleOrientation')} of "left" (see {@link com.smartgwt.client.docs.FormLayout 'form layout overview'}).  However, the title cell is left blank by default, and the title specified by {@link com.smartgwt.client.widgets.form.fields.FormItem#getTitle title} is shown inside the formItem's cell instead, in an element called the "label". <P> To instead show the title in it's original location, set <code>labelAsTitle:true</code>. You can also set {@link com.smartgwt.client.widgets.form.fields.CheckboxItem#getShowLabel showLabel}:false to suppress the label and/or title altogether.
+    * By default a checkboxItem sets {@link com.smartgwt.client.widgets.form.fields.CheckboxItem#getShowTitle showTitle}:true, and so takes up two cells with the&#010 default ${isc.DocUtils.linkForRef('type:TitleOrientation')} of "left" (see {@link com.smartgwt.client.docs.FormLayout 'form layout&#010 overview'}).  However, the title cell is left blank by default, and the title specified&#010 by {@link com.smartgwt.client.widgets.form.fields.FormItem#getTitle title} is shown inside the formItem's cell instead, in an element&#010 called the "label".&#010 <P>&#010 To instead show the title in it's original location, set <code>labelAsTitle:true</code>.&#010 You can also set {@link com.smartgwt.client.widgets.form.fields.CheckboxItem#getShowLabel showLabel}:false to suppress the label and/or title altogether.
     *
     * @param labelAsTitle labelAsTitle Default value is null
     */
@@ -135,7 +135,7 @@ public class CheckboxItem extends FormItem {
         setAttribute("labelAsTitle", labelAsTitle);
     }
     /**
-     * By default a checkboxItem sets {@link com.smartgwt.client.widgets.form.fields.CheckboxItem#getShowTitle showTitle}:true, and so takes up two cells with the default ${isc.DocUtils.linkForRef('type:TitleOrientation')} of "left" (see {@link com.smartgwt.client.docs.FormLayout 'form layout overview'}).  However, the title cell is left blank by default, and the title specified by {@link com.smartgwt.client.widgets.form.fields.FormItem#getTitle title} is shown inside the formItem's cell instead, in an element called the "label". <P> To instead show the title in it's original location, set <code>labelAsTitle:true</code>. You can also set {@link com.smartgwt.client.widgets.form.fields.CheckboxItem#getShowLabel showLabel}:false to suppress the label and/or title altogether.
+     * By default a checkboxItem sets {@link com.smartgwt.client.widgets.form.fields.CheckboxItem#getShowTitle showTitle}:true, and so takes up two cells with the&#010 default ${isc.DocUtils.linkForRef('type:TitleOrientation')} of "left" (see {@link com.smartgwt.client.docs.FormLayout 'form layout&#010 overview'}).  However, the title cell is left blank by default, and the title specified&#010 by {@link com.smartgwt.client.widgets.form.fields.FormItem#getTitle title} is shown inside the formItem's cell instead, in an element&#010 called the "label".&#010 <P>&#010 To instead show the title in it's original location, set <code>labelAsTitle:true</code>.&#010 You can also set {@link com.smartgwt.client.widgets.form.fields.CheckboxItem#getShowLabel showLabel}:false to suppress the label and/or title altogether.
      *
      *
      * @return Boolean
@@ -165,7 +165,7 @@ public class CheckboxItem extends FormItem {
     }
 
     /**
-    * URL for the image to display when this checkbox is selected, or checked. This is the base image name - if <code>showValueIconOver</code> et al are set, the state (<code>"Over"</code>, <code>"Down"</code> and <code>"Disabled"</code>) will be added to this name as the user intereacts with the checkbox, as well as the  <code>".gif"</code> extension
+    * URL for the image to display when this checkbox is selected, or checked.&#010 This is the base image name - if <code>showValueIconOver</code> et al are set, the&#010 state (<code>"Over"</code>, <code>"Down"</code> and <code>"Disabled"</code>) will be&#010 added to this name as the user intereacts with the checkbox, as well as the &#010 <code>".gif"</code> extension
     *
     * @param checkedImage checkedImage Default value is "[SKIN]/DynamicForm/checked.gif"
     */
@@ -173,7 +173,7 @@ public class CheckboxItem extends FormItem {
         setAttribute("checkedImage", checkedImage);
     }
     /**
-     * URL for the image to display when this checkbox is selected, or checked. This is the base image name - if <code>showValueIconOver</code> et al are set, the state (<code>"Over"</code>, <code>"Down"</code> and <code>"Disabled"</code>) will be added to this name as the user intereacts with the checkbox, as well as the  <code>".gif"</code> extension
+     * URL for the image to display when this checkbox is selected, or checked.&#010 This is the base image name - if <code>showValueIconOver</code> et al are set, the&#010 state (<code>"Over"</code>, <code>"Down"</code> and <code>"Disabled"</code>) will be&#010 added to this name as the user intereacts with the checkbox, as well as the &#010 <code>".gif"</code> extension
      *
      *
      * @return String
@@ -203,7 +203,7 @@ public class CheckboxItem extends FormItem {
     }
 
     /**
-    * URL for the image to display when this checkbox is unset. Note that if  {@link com.smartgwt.client.widgets.form.fields.CheckboxItem#getShowUnsetImage showUnsetImage} is false or {@link com.smartgwt.client.widgets.form.fields.CheckboxItem#getAllowEmptyValue allowEmptyValue} is false the {@link com.smartgwt.client.widgets.form.fields.CheckboxItem#getUncheckedImage uncheckedImage} will be used for null values rather than this image.
+    * URL for the image to display when this checkbox is unset. Note that if &#010 {@link com.smartgwt.client.widgets.form.fields.CheckboxItem#getShowUnsetImage showUnsetImage} is false or {@link com.smartgwt.client.widgets.form.fields.CheckboxItem#getAllowEmptyValue allowEmptyValue} is false&#010 the {@link com.smartgwt.client.widgets.form.fields.CheckboxItem#getUncheckedImage uncheckedImage} will be used for null values rather than this&#010 image.
     *
     * @param unsetImage unsetImage Default value is "[SKIN]/DynamicForm/unsetcheck.gif"
     */
@@ -211,7 +211,7 @@ public class CheckboxItem extends FormItem {
         setAttribute("unsetImage", unsetImage);
     }
     /**
-     * URL for the image to display when this checkbox is unset. Note that if  {@link com.smartgwt.client.widgets.form.fields.CheckboxItem#getShowUnsetImage showUnsetImage} is false or {@link com.smartgwt.client.widgets.form.fields.CheckboxItem#getAllowEmptyValue allowEmptyValue} is false the {@link com.smartgwt.client.widgets.form.fields.CheckboxItem#getUncheckedImage uncheckedImage} will be used for null values rather than this image.
+     * URL for the image to display when this checkbox is unset. Note that if &#010 {@link com.smartgwt.client.widgets.form.fields.CheckboxItem#getShowUnsetImage showUnsetImage} is false or {@link com.smartgwt.client.widgets.form.fields.CheckboxItem#getAllowEmptyValue allowEmptyValue} is false&#010 the {@link com.smartgwt.client.widgets.form.fields.CheckboxItem#getUncheckedImage uncheckedImage} will be used for null values rather than this&#010 image.
      *
      *
      * @return String
@@ -222,7 +222,7 @@ public class CheckboxItem extends FormItem {
     }
 
     /**
-    * By default checkboxes allow the user to toggle between true and false values only. Setting this property to true will allow the user to toggle between three values -  <code>true</code>, <code>false</code> and unset.
+    * By default checkboxes allow the user to toggle between true and false values only.&#010 Setting this property to true will allow the user to toggle between three values - &#010 <code>true</code>, <code>false</code> and unset.
     *
     * @param allowEmptyValue allowEmptyValue Default value is false
     */
@@ -230,7 +230,7 @@ public class CheckboxItem extends FormItem {
         setAttribute("allowEmptyValue", allowEmptyValue);
     }
     /**
-     * By default checkboxes allow the user to toggle between true and false values only. Setting this property to true will allow the user to toggle between three values -  <code>true</code>, <code>false</code> and unset.
+     * By default checkboxes allow the user to toggle between true and false values only.&#010 Setting this property to true will allow the user to toggle between three values - &#010 <code>true</code>, <code>false</code> and unset.
      *
      *
      * @return Boolean

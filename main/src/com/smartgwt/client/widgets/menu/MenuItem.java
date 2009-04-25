@@ -56,7 +56,7 @@ import com.smartgwt.client.util.EnumUtil;
 import com.google.gwt.event.shared.*;
 import com.google.gwt.event.shared.HasHandlers;
    /**
-    * Menu items are specified are object literals, not class instances.  For example, when developing in JavaScript, a typical initialization block for a Menu would look like this: <pre> Menu.create({     data: [         {title: "item1", click: "alert(1)"},         {title: "item2"}     ] }); </pre> And in XML: <pre> &lt;Menu&gt;    &lt;data&gt;        &lt;MenuItem title="item1" click="alert(1)"/&gt;        &lt;MenuItem title="item2"/&gt;    &lt;/data&gt; &lt;/Menu&gt; </pre>
+    * Menu items are specified are object literals, not class instances.  For example, when&#010 developing in JavaScript, a typical initialization block for a Menu would look like&#010 this:&#010 <pre>&#010 Menu.create({&#010     data: [&#010         {title: "item1", click: "alert(1)"},&#010         {title: "item2"}&#010     ]&#010 });&#010 </pre>&#010 And in XML:&#010 <pre>&#010 &lt;Menu&gt;&#010    &lt;data&gt;&#010        &lt;MenuItem title="item1" click="alert(1)"/&gt;&#010        &lt;MenuItem title="item2"/&gt;&#010    &lt;/data&gt;&#010 &lt;/Menu&gt;&#010 </pre>
 
     */
 
@@ -122,7 +122,7 @@ public class MenuItem extends ListGridRecord  implements com.smartgwt.client.wid
     }
             
     /**
-    * A reference to another menu, to display as a submenu when the mouse cursor hovers over this menu item.
+    * A reference to another menu, to display as a submenu when the mouse cursor hovers over&#010 this menu item.
     *
     * @param submenu submenu Default value is null
     */
@@ -130,7 +130,7 @@ public class MenuItem extends ListGridRecord  implements com.smartgwt.client.wid
         setAttribute("submenu", submenu.getOrCreateJsObj());
     }
     /**
-     * A reference to another menu, to display as a submenu when the mouse cursor hovers over this menu item.
+     * A reference to another menu, to display as a submenu when the mouse cursor hovers over&#010 this menu item.
      *
      *
      * @return Menu
@@ -141,7 +141,7 @@ public class MenuItem extends ListGridRecord  implements com.smartgwt.client.wid
     }
 
     /**
-    * A MenuItem that has a submenu normally cannot be selected, instead clicking or hitting Enter while keyboard focus is on the item shows the submenu.  Setting canSelectParent:true allows a menu item with a submenu to be selected directly.
+    * A MenuItem that has a submenu normally cannot be selected, instead clicking or hitting Enter&#010 while keyboard focus is on the item shows the submenu.  Setting canSelectParent:true allows&#010 a menu item with a submenu to be selected directly.
     *
     * @param canSelectParent canSelectParent Default value is null
     */
@@ -149,7 +149,7 @@ public class MenuItem extends ListGridRecord  implements com.smartgwt.client.wid
         setAttribute("canSelectParent", canSelectParent);
     }
     /**
-     * A MenuItem that has a submenu normally cannot be selected, instead clicking or hitting Enter while keyboard focus is on the item shows the submenu.  Setting canSelectParent:true allows a menu item with a submenu to be selected directly.
+     * A MenuItem that has a submenu normally cannot be selected, instead clicking or hitting Enter&#010 while keyboard focus is on the item shows the submenu.  Setting canSelectParent:true allows&#010 a menu item with a submenu to be selected directly.
      *
      *
      * @return Boolean
@@ -160,7 +160,7 @@ public class MenuItem extends ListGridRecord  implements com.smartgwt.client.wid
     }
 
     /**
-    * When set to <code>true</code>, this menu item shows a horizontal separator instead of the {@link com.smartgwt.client.widgets.menu.MenuItem#getTitle title} text.  Typically specified as the only property of a menu item, since the separator will not respond to mouse events.
+    * When set to <code>true</code>, this menu item shows a horizontal separator instead of&#010 the {@link com.smartgwt.client.widgets.menu.MenuItem#getTitle title} text.  Typically specified as the only property of a menu item,&#010 since the separator will not respond to mouse events.
     *
     * @param isSeparator isSeparator Default value is false
     */
@@ -168,7 +168,7 @@ public class MenuItem extends ListGridRecord  implements com.smartgwt.client.wid
         setAttribute("isSeparator", isSeparator);
     }
     /**
-     * When set to <code>true</code>, this menu item shows a horizontal separator instead of the {@link com.smartgwt.client.widgets.menu.MenuItem#getTitle title} text.  Typically specified as the only property of a menu item, since the separator will not respond to mouse events.
+     * When set to <code>true</code>, this menu item shows a horizontal separator instead of&#010 the {@link com.smartgwt.client.widgets.menu.MenuItem#getTitle title} text.  Typically specified as the only property of a menu item,&#010 since the separator will not respond to mouse events.
      *
      *
      * @return Boolean
@@ -179,7 +179,7 @@ public class MenuItem extends ListGridRecord  implements com.smartgwt.client.wid
     }
 
     /**
-    * Affects the visual style and interactivity of the menu item.  If set to <code>false</code>, the menu item will not respond to mouse rollovers or clicks. <p> If you need to set this state dynamically, use {@link com.smartgwt.client.widgets.menu.MenuItem#enableIf} instead.
+    * Affects the visual style and interactivity of the menu item.  If set to&#010 <code>false</code>, the menu item will not respond to mouse rollovers or clicks.&#010 <p>&#010 If you need to set this state dynamically, use {@link com.smartgwt.client.widgets.menu.MenuItem#enableIf} instead.
     *
     * @param enabled enabled Default value is true
     */
@@ -187,7 +187,7 @@ public class MenuItem extends ListGridRecord  implements com.smartgwt.client.wid
         setAttribute("enabled", enabled);
     }
     /**
-     * Affects the visual style and interactivity of the menu item.  If set to <code>false</code>, the menu item will not respond to mouse rollovers or clicks. <p> If you need to set this state dynamically, use {@link com.smartgwt.client.widgets.menu.MenuItem#enableIf} instead.
+     * Affects the visual style and interactivity of the menu item.  If set to&#010 <code>false</code>, the menu item will not respond to mouse rollovers or clicks.&#010 <p>&#010 If you need to set this state dynamically, use {@link com.smartgwt.client.widgets.menu.MenuItem#enableIf} instead.
      *
      *
      * @return Boolean
@@ -198,7 +198,7 @@ public class MenuItem extends ListGridRecord  implements com.smartgwt.client.wid
     }
 
     /**
-    * If true, this item displays a standard checkmark image to the left of its title.  You can set the checkmark image URL by setting {@link com.smartgwt.client.widgets.menu.Menu#getCheckmarkImage checkmarkImage}. <p> If you need to set this state dynamically, use {@link com.smartgwt.client.widgets.menu.MenuItem#checkIf} instead.
+    * If true, this item displays a standard checkmark image to the left of its title.  You&#010 can set the checkmark image URL by setting {@link com.smartgwt.client.widgets.menu.Menu#getCheckmarkImage checkmarkImage}.&#010 <p>&#010 If you need to set this state dynamically, use {@link com.smartgwt.client.widgets.menu.MenuItem#checkIf} instead.
     *
     * @param checked checked Default value is null
     */
@@ -206,7 +206,7 @@ public class MenuItem extends ListGridRecord  implements com.smartgwt.client.wid
         setAttribute("checked", checked);
     }
     /**
-     * If true, this item displays a standard checkmark image to the left of its title.  You can set the checkmark image URL by setting {@link com.smartgwt.client.widgets.menu.Menu#getCheckmarkImage checkmarkImage}. <p> If you need to set this state dynamically, use {@link com.smartgwt.client.widgets.menu.MenuItem#checkIf} instead.
+     * If true, this item displays a standard checkmark image to the left of its title.  You&#010 can set the checkmark image URL by setting {@link com.smartgwt.client.widgets.menu.Menu#getCheckmarkImage checkmarkImage}.&#010 <p>&#010 If you need to set this state dynamically, use {@link com.smartgwt.client.widgets.menu.MenuItem#checkIf} instead.
      *
      *
      * @return Boolean
@@ -217,7 +217,7 @@ public class MenuItem extends ListGridRecord  implements com.smartgwt.client.wid
     }
 
     /**
-    * The base filename for this item's custom icon. If both this property and {@link com.smartgwt.client.widgets.menu.MenuItem#getChecked checked} are both specified, only icon specified by this property will be displayed. The path to the loaded skin directory and the skinImgDir are prepended to this filename to form the full URL. <p> If you need to set this state dynamically, use {@link com.smartgwt.client.widgets.menu.MenuItem#dynamicIcon} instead.
+    * The base filename for this item's custom icon. If both this property and&#010 {@link com.smartgwt.client.widgets.menu.MenuItem#getChecked checked} are both specified, only icon specified by this property will be&#010 displayed. The path to the loaded skin directory and the skinImgDir are prepended to&#010 this filename to form the full URL.&#010 <p>&#010 If you need to set this state dynamically, use {@link com.smartgwt.client.widgets.menu.MenuItem#dynamicIcon} instead.
     *
     * @param icon icon Default value is null
     */
@@ -225,7 +225,7 @@ public class MenuItem extends ListGridRecord  implements com.smartgwt.client.wid
         setAttribute("icon", icon);
     }
     /**
-     * The base filename for this item's custom icon. If both this property and {@link com.smartgwt.client.widgets.menu.MenuItem#getChecked checked} are both specified, only icon specified by this property will be displayed. The path to the loaded skin directory and the skinImgDir are prepended to this filename to form the full URL. <p> If you need to set this state dynamically, use {@link com.smartgwt.client.widgets.menu.MenuItem#dynamicIcon} instead.
+     * The base filename for this item's custom icon. If both this property and&#010 {@link com.smartgwt.client.widgets.menu.MenuItem#getChecked checked} are both specified, only icon specified by this property will be&#010 displayed. The path to the loaded skin directory and the skinImgDir are prepended to&#010 this filename to form the full URL.&#010 <p>&#010 If you need to set this state dynamically, use {@link com.smartgwt.client.widgets.menu.MenuItem#dynamicIcon} instead.
      *
      *
      * @return String
@@ -236,7 +236,7 @@ public class MenuItem extends ListGridRecord  implements com.smartgwt.client.wid
     }
 
     /**
-    * The width applied to this item's icon.  The default of <code>16</code> can be changed for all MenuItems by overriding {@link com.smartgwt.client.widgets.menu.Menu#getIconWidth iconWidth}.
+    * The width applied to this item's icon.  The default of <code>16</code> can be changed&#010 for all MenuItems by overriding {@link com.smartgwt.client.widgets.menu.Menu#getIconWidth iconWidth}.
     *
     * @param iconWidth iconWidth Default value is 16
     */
@@ -244,7 +244,7 @@ public class MenuItem extends ListGridRecord  implements com.smartgwt.client.wid
         setAttribute("iconWidth", iconWidth);
     }
     /**
-     * The width applied to this item's icon.  The default of <code>16</code> can be changed for all MenuItems by overriding {@link com.smartgwt.client.widgets.menu.Menu#getIconWidth iconWidth}.
+     * The width applied to this item's icon.  The default of <code>16</code> can be changed&#010 for all MenuItems by overriding {@link com.smartgwt.client.widgets.menu.Menu#getIconWidth iconWidth}.
      *
      *
      * @return int
@@ -255,7 +255,7 @@ public class MenuItem extends ListGridRecord  implements com.smartgwt.client.wid
     }
 
     /**
-    * The height applied to this item's icon.  The default of <code>16</code> can be changed for all MenuItems by overriding {@link com.smartgwt.client.widgets.menu.Menu#getIconHeight iconHeight}.
+    * The height applied to this item's icon.  The default of <code>16</code> can be changed&#010 for all MenuItems by overriding {@link com.smartgwt.client.widgets.menu.Menu#getIconHeight iconHeight}.
     *
     * @param iconHeight iconHeight Default value is 16
     */
@@ -263,7 +263,7 @@ public class MenuItem extends ListGridRecord  implements com.smartgwt.client.wid
         setAttribute("iconHeight", iconHeight);
     }
     /**
-     * The height applied to this item's icon.  The default of <code>16</code> can be changed for all MenuItems by overriding {@link com.smartgwt.client.widgets.menu.Menu#getIconHeight iconHeight}.
+     * The height applied to this item's icon.  The default of <code>16</code> can be changed&#010 for all MenuItems by overriding {@link com.smartgwt.client.widgets.menu.Menu#getIconHeight iconHeight}.
      *
      *
      * @return int
@@ -274,7 +274,7 @@ public class MenuItem extends ListGridRecord  implements com.smartgwt.client.wid
     }
 
     /**
-    * A string to display in the shortcut-key column for this item. If not specified, the first KeyName value in {@link com.smartgwt.client.widgets.menu.MenuItem#getKeys keys} will be used by default.
+    * A string to display in the shortcut-key column for this item. If not&#010 specified, the first KeyName value in {@link com.smartgwt.client.widgets.menu.MenuItem#getKeys keys} will be used by default.
     *
     * @param keyTitle keyTitle Default value is see below
     */
@@ -282,7 +282,7 @@ public class MenuItem extends ListGridRecord  implements com.smartgwt.client.wid
         setAttribute("keyTitle", keyTitle);
     }
     /**
-     * A string to display in the shortcut-key column for this item. If not specified, the first KeyName value in {@link com.smartgwt.client.widgets.menu.MenuItem#getKeys keys} will be used by default.
+     * A string to display in the shortcut-key column for this item. If not&#010 specified, the first KeyName value in {@link com.smartgwt.client.widgets.menu.MenuItem#getKeys keys} will be used by default.
      *
      *
      * @return String
@@ -295,7 +295,7 @@ public class MenuItem extends ListGridRecord  implements com.smartgwt.client.wid
     // ********************* Methods ***********************
 
         /**
-         * Contains the condition that will enable or disable the curent menuItem. The handler must be specified as a function or string of script.  Return false to disable the menuItem or true to enable it <p> If you don't need to set this state dynamically, use {@link com.smartgwt.client.widgets.menu.MenuItem#getEnabled enabled} instead. <p> May be defined as a {@link com.smartgwt.client.docs.StringMethods 'stringMethod'}. <p>
+         * Contains the condition that will enable or disable the curent menuItem. The handler must be specified&#010 as a function or string of script.  Return false to disable the menuItem or true to enable it&#010 <p>&#010 If you don't need to set this state dynamically, use {@link com.smartgwt.client.widgets.menu.MenuItem#getEnabled enabled} instead.&#010 <p>&#010 May be defined as a {@link com.smartgwt.client.docs.StringMethods 'stringMethod'}.&#010 <p>&#010
          * @param target {@link com.smartgwt.client.widgets.menu.Menu#getTarget target} attribute for the top level menu.
      * @param menu {@link com.smartgwt.client.widgets.menu.Menu} contains the reference to the menu that contains the current item
      * @param item contains the reference to the current item
@@ -313,7 +313,7 @@ public class MenuItem extends ListGridRecord  implements com.smartgwt.client.wid
         }-*/;
 
         /**
-         * Contains the condition that will check or uncheck the curent menuItem. The handler must be specified as a function or string of script.  Return false to uncheck the menuItem or true to check it <p> If you don't need to set this state dynamically, use {@link com.smartgwt.client.widgets.menu.MenuItem#getChecked checked} instead. <p> May be defined as a {@link com.smartgwt.client.docs.StringMethods 'stringMethod'}. <p>
+         * Contains the condition that will check or uncheck the curent menuItem. The handler must be specified&#010 as a function or string of script.  Return false to uncheck the menuItem or true to check it&#010 <p>&#010 If you don't need to set this state dynamically, use {@link com.smartgwt.client.widgets.menu.MenuItem#getChecked checked} instead.&#010 <p>&#010 May be defined as a {@link com.smartgwt.client.docs.StringMethods 'stringMethod'}.&#010 <p>&#010
          * @param target {@link com.smartgwt.client.widgets.menu.Menu#getTarget target} attribute for the top level menu.
      * @param menu {@link com.smartgwt.client.widgets.menu.Menu} contains the reference to the menu that contains the current item
      * @param item contains the reference to the current item
@@ -339,7 +339,7 @@ public class MenuItem extends ListGridRecord  implements com.smartgwt.client.wid
         /**
          * Add a click handler.
          * <p>
-         * Executed when this menu item is clicked by the user. The click handler must be specified as a function or string of script.  Return false to suppress the {@link com.smartgwt.client.widgets.menu.Menu#itemClick} handler if specified.
+         * Executed when this menu item is clicked by the user. The click handler must be specified&#010 as a function or string of script.  Return false to suppress the {@link com.smartgwt.client.widgets.menu.Menu#itemClick}&#010 handler if specified.&#010&#010
          *
          * @param handler the click handler
          */

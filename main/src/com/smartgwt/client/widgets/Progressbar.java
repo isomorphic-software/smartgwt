@@ -56,7 +56,7 @@ import com.smartgwt.client.util.EnumUtil;
 import com.google.gwt.event.shared.*;
 import com.google.gwt.event.shared.HasHandlers;
    /**
-    * The Progressbar widget class extends the StretchImg class to implement image-based progress bars (graphical bars whose lengths represent percentages, typically of task completion).
+    * The Progressbar widget class extends the StretchImg class to implement image-based progress&#010 bars (graphical bars whose lengths represent percentages, typically of task completion).
 
     */
 
@@ -90,8 +90,8 @@ public class Progressbar extends StretchImg  implements com.smartgwt.client.widg
     // ********************* Properties / Attributes ***********************
 
     /**
-    * Number from 0 to 100, inclusive, for the percentage to be displayed graphically in this progressbar.
-    * Sets percentDone to newPercent.
+    * Number from 0 to 100, inclusive, for the percentage to be displayed graphically in&#010 this progressbar.
+    * Sets percentDone to newPercent.&#010&#010
     *
     * @param percentDone percent to show as done (0-100). Default value is 0
     */
@@ -99,7 +99,7 @@ public class Progressbar extends StretchImg  implements com.smartgwt.client.widg
         setAttribute("percentDone", percentDone, true);
     }
     /**
-     * Number from 0 to 100, inclusive, for the percentage to be displayed graphically in this progressbar.
+     * Number from 0 to 100, inclusive, for the percentage to be displayed graphically in&#010 this progressbar.
      *
      *
      * @return int
@@ -110,8 +110,8 @@ public class Progressbar extends StretchImg  implements com.smartgwt.client.widg
     }
 
     /**
-    * Length of the progressbar in pixels. This is effectively height for a vertical progressbar, or width for a horizontal progressbar. <P> This property must be set instead of setting <code>width</code> or <code>height</code>.
-    * Sets the length of the progressbar to newLength. This is the width of a horizontal progressbar, or the height of a vertical progressbar.
+    * Length of the progressbar in pixels. This is effectively height for a vertical&#010 progressbar, or width for a horizontal progressbar.&#010 <P>&#010 This property must be set instead of setting <code>width</code> or <code>height</code>.
+    * Sets the length of the progressbar to newLength. This is the width of a horizontal progressbar,&#010 or the height of a vertical progressbar.&#010&#010
     *
     * @param length the new length of the progressbar. Default value is 100
     * @throws IllegalStateException this property cannot be changed after the component has been created
@@ -120,10 +120,10 @@ public class Progressbar extends StretchImg  implements com.smartgwt.client.widg
         setAttribute("length", length, false);
     }
     /**
-     * Length of the progressbar in pixels. This is effectively height for a vertical progressbar, or width for a horizontal progressbar. <P> This property must be set instead of setting <code>width</code> or <code>height</code>.
+     * Length of the progressbar in pixels. This is effectively height for a vertical&#010 progressbar, or width for a horizontal progressbar.&#010 <P>&#010 This property must be set instead of setting <code>width</code> or <code>height</code>.
      *
      *
-     * @return Returns the current width of a horizontal progressbar, or height of a vertical progressbar.
+     * @return Returns the current width of a horizontal progressbar, or height of a vertical progressbar.&#010&#010
      *
      */
     public int getLength()  {
@@ -131,8 +131,8 @@ public class Progressbar extends StretchImg  implements com.smartgwt.client.widg
     }
 
     /**
-    * Thickness of the progressbar in pixels. This is effectively width for a vertical progressbar, or height for a horizontal progressbar. <P> This property must be set instead of setting <code>width</code> or <code>height</code>.
-    * Sets the breadth of the progressbar to newLength. This is the height of a horizontal progressbar, or the width of a vertical progressbar.
+    * Thickness of the progressbar in pixels. This is effectively width for a vertical&#010 progressbar, or height for a horizontal progressbar.&#010 <P>&#010 This property must be set instead of setting <code>width</code> or <code>height</code>.
+    * Sets the breadth of the progressbar to newLength. This is the height of a horizontal progressbar,&#010 or the width of a vertical progressbar.&#010&#010
     *
     * @param breadth the new breadth of the progressbar. Default value is 20
     * @throws IllegalStateException this property cannot be changed after the component has been created
@@ -141,10 +141,10 @@ public class Progressbar extends StretchImg  implements com.smartgwt.client.widg
         setAttribute("breadth", breadth, false);
     }
     /**
-     * Thickness of the progressbar in pixels. This is effectively width for a vertical progressbar, or height for a horizontal progressbar. <P> This property must be set instead of setting <code>width</code> or <code>height</code>.
+     * Thickness of the progressbar in pixels. This is effectively width for a vertical&#010 progressbar, or height for a horizontal progressbar.&#010 <P>&#010 This property must be set instead of setting <code>width</code> or <code>height</code>.
      *
      *
-     * @return Returns the current height of a horizontal progressbar, or width of a vertical progressbar.
+     * @return Returns the current height of a horizontal progressbar, or width of a vertical progressbar.&#010&#010
      *
      */
     public int getBreadth()  {
@@ -195,7 +195,7 @@ public class Progressbar extends StretchImg  implements com.smartgwt.client.widg
         /**
          * Add a percentChanged handler.
          * <p>
-         * This method is called when the percentDone value changes. Observe this method to be notified upon a change to the percentDone value.
+         * This method is called when the percentDone value changes. Observe this method to be notified upon&#010 a change to the percentDone value.&#010&#010
          *
          * @param handler the percentChanged handler
          */

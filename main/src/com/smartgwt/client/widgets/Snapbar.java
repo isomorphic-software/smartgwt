@@ -56,7 +56,7 @@ import com.smartgwt.client.util.EnumUtil;
 import com.google.gwt.event.shared.*;
 import com.google.gwt.event.shared.HasHandlers;
    /**
-    * Subclass of the {@link com.smartgwt.client.widgets.Splitbar} class that uses the <code>grip</code> functionality to show a stateful open / close indicator.
+    * Subclass of the {@link com.smartgwt.client.widgets.Splitbar} class that uses the <code>grip</code> functionality&#010 to show a stateful open / close indicator.
 
     */
 public class Snapbar extends Splitbar {
@@ -146,7 +146,7 @@ public class Snapbar extends Splitbar {
     }
 
     /**
-    * If {@link com.smartgwt.client.widgets.Splitbar#getShowGrip showGrip} is true, this property determines whether to show the 'Down' state on the grip image when the user mousedown's on this widget.  Has no effect if {@link com.smartgwt.client.widgets.StatefulCanvas#getShowDown showDown} is false
+    * If {@link com.smartgwt.client.widgets.Splitbar#getShowGrip showGrip} is true, this property determines whether to show the&#010 'Down' state on the grip image when the user mousedown's on this widget. &#010 Has no effect if {@link com.smartgwt.client.widgets.StatefulCanvas#getShowDown showDown} is false
     *
     * @param showDownGrip showDownGrip Default value is true
     */
@@ -154,7 +154,7 @@ public class Snapbar extends Splitbar {
         setAttribute("showDownGrip", showDownGrip, true);
     }
     /**
-     * If {@link com.smartgwt.client.widgets.Splitbar#getShowGrip showGrip} is true, this property determines whether to show the 'Down' state on the grip image when the user mousedown's on this widget.  Has no effect if {@link com.smartgwt.client.widgets.StatefulCanvas#getShowDown showDown} is false
+     * If {@link com.smartgwt.client.widgets.Splitbar#getShowGrip showGrip} is true, this property determines whether to show the&#010 'Down' state on the grip image when the user mousedown's on this widget. &#010 Has no effect if {@link com.smartgwt.client.widgets.StatefulCanvas#getShowDown showDown} is false
      *
      *
      * @return Boolean
@@ -165,7 +165,7 @@ public class Snapbar extends Splitbar {
     }
 
     /**
-    * If {@link com.smartgwt.client.widgets.Splitbar#getShowGrip showGrip} is true, this property determines whether to show the 'Over' state on the grip image when the user rolls over on this widget.  Has no effect if {@link com.smartgwt.client.widgets.StatefulCanvas#getShowRollOver showRollOver} is false
+    * If {@link com.smartgwt.client.widgets.Splitbar#getShowGrip showGrip} is true, this property determines whether to show the&#010 'Over' state on the grip image when the user rolls over on this widget. &#010 Has no effect if {@link com.smartgwt.client.widgets.StatefulCanvas#getShowRollOver showRollOver} is false
     * <p><b>Note : </b> This is an advanced setting</p>
     *
     * @param showRollOverGrip showRollOverGrip Default value is true
@@ -175,7 +175,7 @@ public class Snapbar extends Splitbar {
         setAttribute("showRollOverGrip", showRollOverGrip, false);
     }
     /**
-     * If {@link com.smartgwt.client.widgets.Splitbar#getShowGrip showGrip} is true, this property determines whether to show the 'Over' state on the grip image when the user rolls over on this widget.  Has no effect if {@link com.smartgwt.client.widgets.StatefulCanvas#getShowRollOver showRollOver} is false
+     * If {@link com.smartgwt.client.widgets.Splitbar#getShowGrip showGrip} is true, this property determines whether to show the&#010 'Over' state on the grip image when the user rolls over on this widget. &#010 Has no effect if {@link com.smartgwt.client.widgets.StatefulCanvas#getShowRollOver showRollOver} is false
      *
      *
      * @return Boolean
@@ -186,7 +186,7 @@ public class Snapbar extends Splitbar {
     }
 
     /**
-    * If {@link com.smartgwt.client.widgets.Splitbar#getShowGrip showGrip} is true, this property determines whether the grip image displayed should show the <code>"Closed"</code> state when the {@link com.smartgwt.client.widgets.Splitbar#getTarget target}  is hidden.
+    * If {@link com.smartgwt.client.widgets.Splitbar#getShowGrip showGrip} is true, this property determines whether the grip image&#010 displayed should show the <code>"Closed"</code> state when the {@link com.smartgwt.client.widgets.Splitbar#getTarget target} &#010 is hidden.
     * <p><b>Note : </b> This is an advanced setting</p>
     *
     * @param showClosedGrip showClosedGrip Default value is true
@@ -196,7 +196,7 @@ public class Snapbar extends Splitbar {
         setAttribute("showClosedGrip", showClosedGrip, false);
     }
     /**
-     * If {@link com.smartgwt.client.widgets.Splitbar#getShowGrip showGrip} is true, this property determines whether the grip image displayed should show the <code>"Closed"</code> state when the {@link com.smartgwt.client.widgets.Splitbar#getTarget target}  is hidden.
+     * If {@link com.smartgwt.client.widgets.Splitbar#getShowGrip showGrip} is true, this property determines whether the grip image&#010 displayed should show the <code>"Closed"</code> state when the {@link com.smartgwt.client.widgets.Splitbar#getTarget target} &#010 is hidden.
      *
      *
      * @return Boolean
@@ -207,7 +207,7 @@ public class Snapbar extends Splitbar {
     }
 
     /**
-    * Overridden from {@link com.smartgwt.client.widgets.Splitbar#getGripImgSuffix gripImgSuffix} to simplify providing custom grip media for this widget.
+    * Overridden from {@link com.smartgwt.client.widgets.Splitbar#getGripImgSuffix gripImgSuffix} to simplify providing custom grip media&#010 for this widget.
     * <p><b>Note : </b> This is an advanced setting</p>
     *
     * @param gripImgSuffix gripImgSuffix Default value is "snap"
@@ -217,7 +217,7 @@ public class Snapbar extends Splitbar {
         setAttribute("gripImgSuffix", gripImgSuffix, false);
     }
     /**
-     * Overridden from {@link com.smartgwt.client.widgets.Splitbar#getGripImgSuffix gripImgSuffix} to simplify providing custom grip media for this widget.
+     * Overridden from {@link com.smartgwt.client.widgets.Splitbar#getGripImgSuffix gripImgSuffix} to simplify providing custom grip media&#010 for this widget.
      *
      *
      * @return String

@@ -56,7 +56,7 @@ import com.smartgwt.client.util.EnumUtil;
 import com.google.gwt.event.shared.*;
 import com.google.gwt.event.shared.HasHandlers;
    /**
-    * Binary data interface for use in DynamicForms. Allows users to select a single file for upload. <P> See the {@link com.smartgwt.client.docs.Upload 'Upload Overview'} for information on using this control.
+    * Binary data interface for use in DynamicForms. Allows users to select a single file for&#010 upload.&#010 <P>&#010 See the {@link com.smartgwt.client.docs.Upload 'Upload Overview'} for information on using this control.
 
     */
 public class FileItem extends CanvasItem {

@@ -22,7 +22,7 @@ import com.google.gwt.event.shared.HasHandlers;
 
 public interface HasRecordClickHandlers extends HasHandlers {
     /**
-     * Executed when the tileGrid receives a 'click' event on a tile. The default implementation does nothing -- override to perform some action when any record is clicked.<br> A record event handler can be specified either as a function to execute, or as a string of script to evaluate. If the handler is defined as a string of script, all the parameters below will be available as variables for use in the script.<br> If you want to cancel the click based on the parameters, return false. Otherwise, return  true so that the click event be registered with the tile.
+     * Executed when the tileGrid receives a 'click' event on a&#010 tile. The default implementation does nothing -- override to perform some action&#010 when any record is clicked.<br>&#010 A record event handler can be specified either as&#010 a function to execute, or as a string of script to evaluate. If the handler is defined&#010 as a string of script, all the parameters below will be available as variables for use&#010 in the script.<br>&#010 If you want to cancel the click based on the parameters, return false. Otherwise, return &#010 true so that the click event be registered with the tile.&#010&#010
      */
     HandlerRegistration addRecordClickHandler(RecordClickHandler handler);
 }

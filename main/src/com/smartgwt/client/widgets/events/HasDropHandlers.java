@@ -22,7 +22,7 @@ import com.google.gwt.event.shared.HasHandlers;
 
 public interface HasDropHandlers extends HasHandlers {
     /**
-     * Executed when the mouse button is released over a compatible drop target at the end of a drag sequence. Your widget should implement whatever it wants to do when receiving a drop here. For example, in a file moving interface, a drop might mean that you should move or copy the dragged file into the folder it was dropped on, or dropping something in a trash can might mean to clear it from the screen.
+     * &#010 Executed when the mouse button is released over a compatible drop target at the end of&#010 a drag sequence. Your widget should implement whatever it wants to do when receiving a&#010 drop here. For example, in a file moving interface, a drop might mean that you should&#010 move or copy the dragged file into the folder it was dropped on, or dropping something in&#010 a trash can might mean to clear it from the screen.&#010&#010
      */
     HandlerRegistration addDropHandler(DropHandler handler);
 }

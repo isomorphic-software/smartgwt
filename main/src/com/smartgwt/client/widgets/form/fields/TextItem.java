@@ -127,7 +127,7 @@ public class TextItem extends FormItem {
     }
 
     /**
-    * Base CSS class name for this item's input element. NOTE: See the CompoundFormItem_skinning discussion for special skinning considerations.
+    * Base CSS class name for this item's input element.&#010 NOTE: See the CompoundFormItem_skinning discussion for special skinning considerations.
     *
     * @param textBoxStyle textBoxStyle Default value is "textItem"
     */
@@ -135,7 +135,7 @@ public class TextItem extends FormItem {
         setAttribute("textBoxStyle", textBoxStyle);
     }
     /**
-     * Base CSS class name for this item's input element. NOTE: See the CompoundFormItem_skinning discussion for special skinning considerations.
+     * Base CSS class name for this item's input element.&#010 NOTE: See the CompoundFormItem_skinning discussion for special skinning considerations.
      *
      *
      * @return String
@@ -165,7 +165,7 @@ public class TextItem extends FormItem {
     }
 
     /**
-    * Allows the {@link com.smartgwt.client.widgets.form.DynamicForm#getSelectOnFocus selectOnFocus} behavior to be configured on a per-FormItem basis.  Normally all items in a form default to the value of {@link com.smartgwt.client.widgets.form.DynamicForm#getSelectOnFocus selectOnFocus}.
+    * Allows the {@link com.smartgwt.client.widgets.form.DynamicForm#getSelectOnFocus selectOnFocus} behavior to be configured on a&#010 per-FormItem basis.  Normally all items in a form default to the value of&#010 {@link com.smartgwt.client.widgets.form.DynamicForm#getSelectOnFocus selectOnFocus}.
     *
     * @param selectOnFocus selectOnFocus Default value is null
     */
@@ -173,7 +173,7 @@ public class TextItem extends FormItem {
         setAttribute("selectOnFocus", selectOnFocus);
     }
     /**
-     * Allows the {@link com.smartgwt.client.widgets.form.DynamicForm#getSelectOnFocus selectOnFocus} behavior to be configured on a per-FormItem basis.  Normally all items in a form default to the value of {@link com.smartgwt.client.widgets.form.DynamicForm#getSelectOnFocus selectOnFocus}.
+     * Allows the {@link com.smartgwt.client.widgets.form.DynamicForm#getSelectOnFocus selectOnFocus} behavior to be configured on a&#010 per-FormItem basis.  Normally all items in a form default to the value of&#010 {@link com.smartgwt.client.widgets.form.DynamicForm#getSelectOnFocus selectOnFocus}.
      *
      *
      * @return Boolean
@@ -204,8 +204,8 @@ public class TextItem extends FormItem {
     }
 
     /**
-    * Sets a keypress filter regular expression to limit valid characters that can be entered by the user. If defined, keys that match the regular expression are allowed; all others are suppressed. The filter is applied after character casing, if defined.
-    * Set the keyPressFilter for this item
+    * Sets a keypress filter regular expression to limit valid characters&#010 that can be entered by the user. If defined, keys that match the&#010 regular expression are allowed; all others are suppressed. The&#010 filter is applied after character casing, if defined.
+    * Set the keyPressFilter for this item&#010
     * <p><b>Note : </b> This is an advanced setting</p>
     *
     * @param keyPressFilter new keyPress filter for the item. Default value is null
@@ -214,7 +214,7 @@ public class TextItem extends FormItem {
         setAttribute("keyPressFilter", keyPressFilter);
     }
     /**
-     * Sets a keypress filter regular expression to limit valid characters that can be entered by the user. If defined, keys that match the regular expression are allowed; all others are suppressed. The filter is applied after character casing, if defined.
+     * Sets a keypress filter regular expression to limit valid characters&#010 that can be entered by the user. If defined, keys that match the&#010 regular expression are allowed; all others are suppressed. The&#010 filter is applied after character casing, if defined.
      *
      *
      * @return String
@@ -227,7 +227,7 @@ public class TextItem extends FormItem {
     // ********************* Methods ***********************
 
         /**
-         * Returns the hint text for this item. Default implementation returns {@link com.smartgwt.client.widgets.form.fields.FormItem#getHint hint}, or  null if there is no hint to show.
+         * Returns the hint text for this item. Default implementation returns {@link com.smartgwt.client.widgets.form.fields.FormItem#getHint hint}, or&#010  null if there is no hint to show.&#010&#010
          *
          * @return HTML to show as the hint for the item
          */

@@ -22,7 +22,7 @@ import com.google.gwt.event.shared.HasHandlers;
 
 public interface HasFilterChangedHandlers extends HasHandlers {
     /**
-     * Handler fired when there is a change() event fired on any FormItem within the  filterBuilder.
+     * Handler fired when there is a change() event fired on any FormItem within the &#010 filterBuilder. &#010&#010
      */
     HandlerRegistration addFilterChangedHandler(FilterChangedHandler handler);
 }

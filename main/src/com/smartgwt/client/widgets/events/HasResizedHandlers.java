@@ -22,7 +22,7 @@ import com.google.gwt.event.shared.HasHandlers;
 
 public interface HasResizedHandlers extends HasHandlers {
     /**
-     * Observable method called whenever a Canvas changes size. Note that if this canvas is {@link com.smartgwt.client.widgets.Canvas#getOverflow overflow}, and is waiting for a queued redraw (see  {@link com.smartgwt.client.widgets.Canvas#isDirty}), the value for {@link com.smartgwt.client.widgets.Canvas#getVisibleWidth} and {@link com.smartgwt.client.widgets.Canvas#getVisibleHeight} will be unreliable until <code>redraw()</code> fires.
+     * Observable method called whenever a Canvas changes size. Note that if this canvas is&#010 {@link com.smartgwt.client.widgets.Canvas#getOverflow overflow}, and is waiting for a queued redraw (see &#010 {@link com.smartgwt.client.widgets.Canvas#isDirty}), the value for {@link com.smartgwt.client.widgets.Canvas#getVisibleWidth} and&#010 {@link com.smartgwt.client.widgets.Canvas#getVisibleHeight} will be unreliable until <code>redraw()</code> fires.&#010
      */
     HandlerRegistration addResizedHandler(ResizedHandler handler);
 }

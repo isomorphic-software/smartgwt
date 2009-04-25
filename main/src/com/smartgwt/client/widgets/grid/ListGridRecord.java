@@ -56,7 +56,7 @@ import com.smartgwt.client.util.EnumUtil;
 import com.google.gwt.event.shared.*;
 import com.google.gwt.event.shared.HasHandlers;
    /**
-    * A ListGridRecord is a JavaScript Object whose properties contain values for each ${isc.DocUtils.linkForRef('object:ListGridField')}.  A ListGridRecord may have additional properties which affect the record's appearance or behavior, or which hold data for use by custom logic or other, related components. <p> For example a ListGrid that defines the following fields: <pre> fields : [     {name: "field1"},     {name: "field2"} ], </pre> Might have the following data: <pre> data : [     {field1: "foo", field2: "bar", customProperty:5},     {field1: "field1 value", field2: "field2 value", enabled:false} ] </pre> Each line of code in the <code>data</code> array above creates one JavaScript Object via JavaScript {type:ObjectLiteral,object literal} notation.  These JavaScript Objects are used as ListGridRecords. <P> Both records shown above have properties whose names match the name property of a ListGridField, as well as additional properties.  The second record will be disabled due to <code>enabled:false</code>; the first record has a property "customProperty" which will have no effect by default but which may be accessed by custom logic. <P> After a ListGrid is created and has loaded data, records may be accessed via {@link com.smartgwt.client.widgets.grid.ListGrid#getData data}, for example, listGrid.data.get(0) retrieves the first record. ListGridRecords are also passed to many events, such as {@link com.smartgwt.client.widgets.grid.ListGrid#cellClick}. <P> A ListGridRecord is always an ordinary JavaScript Object regardless of how the grid's dataset is loaded (static data, java server, XML web service, etc), and so supports the normal behaviors of JavaScript Objects, including accessing and assigning to properties via dot notation: <pre>     var fieldValue = record.<i>fieldName</i>;     record.<i>fieldName</i> = newValue; </pre> <P> Note however that simply assigning a value to a record won't cause the display to be automatically refreshed - {@link com.smartgwt.client.widgets.grid.ListGrid#refreshCell} needs to be called.  Also, consider {@link com.smartgwt.client.docs.Editing 'editValues vs saved values'} when directly modifying ListGridRecords. <P> See the attributes in the API tab for the full list of special properties on ListGridRecords that will affect the grid's behavior.
+    * A ListGridRecord is a JavaScript Object whose properties contain values for each&#010 ${isc.DocUtils.linkForRef('object:ListGridField')}.  A ListGridRecord may have additional properties which affect the&#010 record's appearance or behavior, or which hold data for use by custom logic or other,&#010 related components.&#010 <p>&#010 For example a ListGrid that defines the following fields:&#010 <pre>&#010 fields : [&#010     {name: "field1"},&#010     {name: "field2"}&#010 ],&#010 </pre>&#010 Might have the following data:&#010 <pre>&#010 data : [&#010     {field1: "foo", field2: "bar", customProperty:5},&#010     {field1: "field1 value", field2: "field2 value", enabled:false}&#010 ]&#010 </pre>&#010 Each line of code in the <code>data</code> array above creates one JavaScript Object via&#010 JavaScript {type:ObjectLiteral,object literal} notation.  These JavaScript Objects are&#010 used as ListGridRecords.&#010 <P>&#010 Both records shown above have properties whose names match the name property of a&#010 ListGridField, as well as additional properties.  The second record will be disabled due to&#010 <code>enabled:false</code>; the first record has a property "customProperty" which will&#010 have no effect by default but which may be accessed by custom logic.&#010 <P>&#010 After a ListGrid is created and has loaded data, records may be accessed via&#010 {@link com.smartgwt.client.widgets.grid.ListGrid#getData data}, for example, listGrid.data.get(0) retrieves the first record.&#010 ListGridRecords are also passed to many events, such as&#010 {@link com.smartgwt.client.widgets.grid.ListGrid#cellClick}.&#010 <P>&#010 A ListGridRecord is always an ordinary JavaScript Object regardless of how the grid's&#010 dataset is loaded (static data, java server, XML web service, etc), and so supports the&#010 normal behaviors of JavaScript Objects, including accessing and assigning to properties&#010 via dot notation:&#010 <pre>&#010     var fieldValue = record.<i>fieldName</i>;&#010     record.<i>fieldName</i> = newValue;&#010 </pre>&#010 <P>&#010 Note however that simply assigning a value to a record won't cause the display to be&#010 automatically refreshed - {@link com.smartgwt.client.widgets.grid.ListGrid#refreshCell} needs to be called.  Also,&#010 consider {@link com.smartgwt.client.docs.Editing 'editValues vs saved values'} when directly modifying&#010 ListGridRecords.&#010 <P>&#010 See the attributes in the API tab for the full list of special properties on&#010 ListGridRecords that will affect the grid's behavior.
 
     */
 public class ListGridRecord extends RefDataClass  implements Record {
@@ -84,7 +84,7 @@ public class ListGridRecord extends RefDataClass  implements Record {
     // ********************* Properties / Attributes ***********************
 
     /**
-    * Affects the visual style and interactivity of the record.  If set to <code>false</code> the record (row in a {@link com.smartgwt.client.widgets.grid.ListGrid} or {@link com.smartgwt.client.widgets.tree.TreeGrid}) will not highlight when the mouse moves over it, nor will it respond to mouse clicks.
+    * Affects the visual style and interactivity of the record.  If set to <code>false</code>&#010 the record (row in a {@link com.smartgwt.client.widgets.grid.ListGrid} or {@link com.smartgwt.client.widgets.tree.TreeGrid}) will not highlight when the&#010 mouse moves over it, nor will it respond to mouse clicks.
     *
     * @param enabled enabled Default value is null
     */
@@ -92,7 +92,7 @@ public class ListGridRecord extends RefDataClass  implements Record {
         setAttribute("enabled", enabled);
     }
     /**
-     * Affects the visual style and interactivity of the record.  If set to <code>false</code> the record (row in a {@link com.smartgwt.client.widgets.grid.ListGrid} or {@link com.smartgwt.client.widgets.tree.TreeGrid}) will not highlight when the mouse moves over it, nor will it respond to mouse clicks.
+     * Affects the visual style and interactivity of the record.  If set to <code>false</code>&#010 the record (row in a {@link com.smartgwt.client.widgets.grid.ListGrid} or {@link com.smartgwt.client.widgets.tree.TreeGrid}) will not highlight when the&#010 mouse moves over it, nor will it respond to mouse clicks.
      *
      *
      * @return Boolean
@@ -103,7 +103,7 @@ public class ListGridRecord extends RefDataClass  implements Record {
     }
 
     /**
-    * Default property name denoting a separator row.<br> When set to <code>true</code>, defines a horizontal separator in the listGrid object. Typically this is specified as the only property of a record object, since a record with <code>isSeparator:true</code> will not display any values.<br> Note: this attribute name is governed by {@link com.smartgwt.client.widgets.grid.ListGrid#getIsSeparatorProperty isSeparatorProperty}.
+    * Default property name denoting a separator row.<br>&#010 When set to <code>true</code>, defines a horizontal separator in the listGrid&#010 object. Typically this is specified as the only property of a record object, since a&#010 record with <code>isSeparator:true</code> will not display any values.<br>&#010 Note: this attribute name is governed by {@link com.smartgwt.client.widgets.grid.ListGrid#getIsSeparatorProperty isSeparatorProperty}.
     *
     * @param isSeparator isSeparator Default value is null
     */
@@ -111,7 +111,7 @@ public class ListGridRecord extends RefDataClass  implements Record {
         setAttribute("isSeparator", isSeparator);
     }
     /**
-     * Default property name denoting a separator row.<br> When set to <code>true</code>, defines a horizontal separator in the listGrid object. Typically this is specified as the only property of a record object, since a record with <code>isSeparator:true</code> will not display any values.<br> Note: this attribute name is governed by {@link com.smartgwt.client.widgets.grid.ListGrid#getIsSeparatorProperty isSeparatorProperty}.
+     * Default property name denoting a separator row.<br>&#010 When set to <code>true</code>, defines a horizontal separator in the listGrid&#010 object. Typically this is specified as the only property of a record object, since a&#010 record with <code>isSeparator:true</code> will not display any values.<br>&#010 Note: this attribute name is governed by {@link com.smartgwt.client.widgets.grid.ListGrid#getIsSeparatorProperty isSeparatorProperty}.
      *
      *
      * @return Boolean
@@ -122,7 +122,7 @@ public class ListGridRecord extends RefDataClass  implements Record {
     }
 
     /**
-    * Default property name denoting the single value to display for all fields of this row. If this property is set for some record, the record will be displayed as a single  cell spanning every column in the grid, with contents set to the value of this property.<br> Note: this attribute name is governed by {@link com.smartgwt.client.widgets.grid.ListGrid#getSingleCellValueProperty singleCellValueProperty}.
+    * Default property name denoting the single value to display for all fields of this row.&#010 If this property is set for some record, the record will be displayed as a single &#010 cell spanning every column in the grid, with contents set to the value of this&#010 property.<br>&#010 Note: this attribute name is governed by {@link com.smartgwt.client.widgets.grid.ListGrid#getSingleCellValueProperty singleCellValueProperty}.
     *
     * @param singleCellValue singleCellValue Default value is null
     */
@@ -130,7 +130,7 @@ public class ListGridRecord extends RefDataClass  implements Record {
         setAttribute("singleCellValue", singleCellValue);
     }
     /**
-     * Default property name denoting the single value to display for all fields of this row. If this property is set for some record, the record will be displayed as a single  cell spanning every column in the grid, with contents set to the value of this property.<br> Note: this attribute name is governed by {@link com.smartgwt.client.widgets.grid.ListGrid#getSingleCellValueProperty singleCellValueProperty}.
+     * Default property name denoting the single value to display for all fields of this row.&#010 If this property is set for some record, the record will be displayed as a single &#010 cell spanning every column in the grid, with contents set to the value of this&#010 property.<br>&#010 Note: this attribute name is governed by {@link com.smartgwt.client.widgets.grid.ListGrid#getSingleCellValueProperty singleCellValueProperty}.
      *
      *
      * @return String
@@ -141,7 +141,7 @@ public class ListGridRecord extends RefDataClass  implements Record {
     }
 
     /**
-    * When set to <code>false</code>, this record cannot be dragged. If canDrag is false for any record in the current selection, none of the records will be draggable.
+    * When set to <code>false</code>, this record cannot be dragged. If canDrag is false for&#010 any record in the current selection, none of the records will be draggable.
     *
     * @param canDrag canDrag Default value is null
     */
@@ -149,7 +149,7 @@ public class ListGridRecord extends RefDataClass  implements Record {
         setAttribute("canDrag", canDrag);
     }
     /**
-     * When set to <code>false</code>, this record cannot be dragged. If canDrag is false for any record in the current selection, none of the records will be draggable.
+     * When set to <code>false</code>, this record cannot be dragged. If canDrag is false for&#010 any record in the current selection, none of the records will be draggable.
      *
      *
      * @return Boolean
@@ -160,7 +160,7 @@ public class ListGridRecord extends RefDataClass  implements Record {
     }
 
     /**
-    * When set to <code>false</code>, other records cannot be dropped on (i.e., inserted via drag and drop) immediately before this record.
+    * When set to <code>false</code>, other records cannot be dropped on (i.e., inserted&#010 via drag and drop) immediately before this record.
     *
     * @param canAcceptDrop canAcceptDrop Default value is null
     */
@@ -168,7 +168,7 @@ public class ListGridRecord extends RefDataClass  implements Record {
         setAttribute("canAcceptDrop", canAcceptDrop);
     }
     /**
-     * When set to <code>false</code>, other records cannot be dropped on (i.e., inserted via drag and drop) immediately before this record.
+     * When set to <code>false</code>, other records cannot be dropped on (i.e., inserted&#010 via drag and drop) immediately before this record.
      *
      *
      * @return Boolean
@@ -179,7 +179,7 @@ public class ListGridRecord extends RefDataClass  implements Record {
     }
 
     /**
-    * The HTML to display in this row for fields with fieldType set to link. This overrides  {@link com.smartgwt.client.widgets.grid.ListGridField#getLinkText linkText}.
+    * The HTML to display in this row for fields with fieldType set to link. This overrides&#010  {@link com.smartgwt.client.widgets.grid.ListGridField#getLinkText linkText}.
     *
     * @param linkText linkText Default value is null
     */
@@ -187,7 +187,7 @@ public class ListGridRecord extends RefDataClass  implements Record {
         setAttribute("linkText", linkText);
     }
     /**
-     * The HTML to display in this row for fields with fieldType set to link. This overrides  {@link com.smartgwt.client.widgets.grid.ListGridField#getLinkText linkText}.
+     * The HTML to display in this row for fields with fieldType set to link. This overrides&#010  {@link com.smartgwt.client.widgets.grid.ListGridField#getLinkText linkText}.
      *
      *
      * @return String

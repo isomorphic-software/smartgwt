@@ -109,7 +109,7 @@ public class DetailViewer extends Canvas  implements DataBoundComponent {
     }
 
     /**
-    * The number of records to display in a block. A block is a horizontal row on a page          containing one or more records, as specified by the value of recordsPerBlock. The          height of a block is equal to the height of a single record. The default setting of          1 causes each record to appear by itself in a vertical row. Setting recordsPerBlock          to 2 would cause records to appear side by side in groups of two.          Use a value of "*" to indicate all records.
+    * The number of records to display in a block. A block is a horizontal row on a page&#010          containing one or more records, as specified by the value of recordsPerBlock. The&#010          height of a block is equal to the height of a single record. The default setting of&#010          1 causes each record to appear by itself in a vertical row. Setting recordsPerBlock&#010          to 2 would cause records to appear side by side in groups of two.&#010          Use a value of "*" to indicate all records.
     *
     * @param recordsPerBlock recordsPerBlock Default value is 1
     */
@@ -117,7 +117,7 @@ public class DetailViewer extends Canvas  implements DataBoundComponent {
         setAttribute("recordsPerBlock", recordsPerBlock, true);
     }
     /**
-     * The number of records to display in a block. A block is a horizontal row on a page          containing one or more records, as specified by the value of recordsPerBlock. The          height of a block is equal to the height of a single record. The default setting of          1 causes each record to appear by itself in a vertical row. Setting recordsPerBlock          to 2 would cause records to appear side by side in groups of two.          Use a value of "*" to indicate all records.
+     * The number of records to display in a block. A block is a horizontal row on a page&#010          containing one or more records, as specified by the value of recordsPerBlock. The&#010          height of a block is equal to the height of a single record. The default setting of&#010          1 causes each record to appear by itself in a vertical row. Setting recordsPerBlock&#010          to 2 would cause records to appear side by side in groups of two.&#010          Use a value of "*" to indicate all records.
      *
      *
      * @return int
@@ -244,7 +244,7 @@ public class DetailViewer extends Canvas  implements DataBoundComponent {
     }
 
     /**
-    * Whether values should be allowed to wrap by default, or should be shown on one line regardless of length.
+    * Whether values should be allowed to wrap by default, or should be shown on one line&#010 regardless of length.
     *
     * @param wrapValues wrapValues Default value is true
     * @throws IllegalStateException this property cannot be changed after the component has been created
@@ -253,7 +253,7 @@ public class DetailViewer extends Canvas  implements DataBoundComponent {
         setAttribute("wrapValues", wrapValues, false);
     }
     /**
-     * Whether values should be allowed to wrap by default, or should be shown on one line regardless of length.
+     * Whether values should be allowed to wrap by default, or should be shown on one line&#010 regardless of length.
      *
      *
      * @return Boolean
@@ -332,7 +332,7 @@ public class DetailViewer extends Canvas  implements DataBoundComponent {
      * CSS style for a normal value
      *
      *
-     * @return Return the CSS class for a cell. Default implementation calls {@link com.smartgwt.client.widgets.viewer.DetailViewerField#getCellStyle} on the field if defined, otherwise returns {@link com.smartgwt.client.widgets.viewer.DetailViewer#getCellStyle cellStyle}
+     * @return Return the CSS class for a cell. Default implementation calls&#010 {@link com.smartgwt.client.widgets.viewer.DetailViewerField#getCellStyle} on the field if defined, otherwise&#010 returns {@link com.smartgwt.client.widgets.viewer.DetailViewer#getCellStyle cellStyle}&#010
      *
      */
     public String getCellStyle()  {
@@ -378,7 +378,7 @@ public class DetailViewer extends Canvas  implements DataBoundComponent {
     }
              
     /**
-    * Display format to use for fields specified as type 'date'.  Default is to use the system-wide default normal date format, configured via {@link com.smartgwt.client..Date#setNormalDisplayFormat}.  Specify any valid ${isc.DocUtils.linkForRef('type:DateDisplayFormat')} to change the format used by this detailViewer.
+    * Display format to use for fields specified as type 'date'.  Default is to use the&#010 system-wide default normal date format, configured via&#010 {@link com.smartgwt.client..Date#setNormalDisplayFormat}.  Specify any valid ${isc.DocUtils.linkForRef('type:DateDisplayFormat')} to&#010 change the format used by this detailViewer.
     *
     * @param dateFormatter dateFormatter Default value is null
     * @throws IllegalStateException this property cannot be changed after the component has been created
@@ -387,7 +387,7 @@ public class DetailViewer extends Canvas  implements DataBoundComponent {
         setAttribute("dateFormatter", dateFormatter.getValue(), false);
     }
     /**
-     * Display format to use for fields specified as type 'date'.  Default is to use the system-wide default normal date format, configured via {@link com.smartgwt.client..Date#setNormalDisplayFormat}.  Specify any valid ${isc.DocUtils.linkForRef('type:DateDisplayFormat')} to change the format used by this detailViewer.
+     * Display format to use for fields specified as type 'date'.  Default is to use the&#010 system-wide default normal date format, configured via&#010 {@link com.smartgwt.client..Date#setNormalDisplayFormat}.  Specify any valid ${isc.DocUtils.linkForRef('type:DateDisplayFormat')} to&#010 change the format used by this detailViewer.
      *
      *
      * @return DateDisplayFormat
@@ -499,7 +499,7 @@ public class DetailViewer extends Canvas  implements DataBoundComponent {
 
 
         /**
-         * Uses a "fetch" operation on the current {@link com.smartgwt.client..DataBoundComponent#getDataSource dataSource} to  retrieve data that matches the current filter and sort criteria for this component, then  exports the resulting data to a file or window in the requested format. <P> For more information on exporting data, see {@link com.smartgwt.client.data.DataSource#exportData}.
+         * Uses a "fetch" operation on the current {@link com.smartgwt.client..DataBoundComponent#getDataSource dataSource} to &#010 retrieve data that matches the current filter and sort criteria for this component, then &#010 exports the resulting data to a file or window in the requested format.&#010 <P>&#010 For more information on exporting data, see {@link com.smartgwt.client.data.DataSource#exportData}.&#010&#010
          */
         public native void exportData() /*-{
             var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
@@ -507,7 +507,7 @@ public class DetailViewer extends Canvas  implements DataBoundComponent {
         }-*/;
 
         /**
-         * Uses a "fetch" operation on the current {@link com.smartgwt.client..DataBoundComponent#getDataSource dataSource} to  retrieve data that matches the current filter and sort criteria for this component, then  exports the resulting data to a file or window in the requested format. <P> For more information on exporting data, see {@link com.smartgwt.client.data.DataSource#exportData}.
+         * Uses a "fetch" operation on the current {@link com.smartgwt.client..DataBoundComponent#getDataSource dataSource} to &#010 retrieve data that matches the current filter and sort criteria for this component, then &#010 exports the resulting data to a file or window in the requested format.&#010 <P>&#010 For more information on exporting data, see {@link com.smartgwt.client.data.DataSource#exportData}.&#010&#010
          * @param requestProperties additional properties to set on the DSRequest                                            that will be issued
          */
         public native void exportData(DSRequest requestProperties) /*-{
@@ -520,7 +520,7 @@ public class DetailViewer extends Canvas  implements DataBoundComponent {
 
 
         /**
-         * Get the index of the provided record. <P> Override in subclasses to provide more specific behaviour, for instance, when data holds a large number of records
+         * Get the index of the provided record.&#010 <P>&#010 Override in subclasses to provide more specific behaviour, for instance, when data holds a&#010 large number of records&#010&#010
          * @param record the record whose index is to be retrieved
          *
          * @return indexindex of the record, or -1 if not found

@@ -89,7 +89,7 @@ public class SectionHeader extends Label {
     // ********************* Properties / Attributes ***********************
 
     /**
-    * Base filename of the icon that represents open and closed states. The default settings also change the icon for disabled sections, so a total of four images are required (opened, closed, Disabled_opened, Disabled_closed).
+    * Base filename of the icon that represents open and closed states. The default settings&#010 also change the icon for disabled sections, so a total of four images are required&#010 (opened, closed, Disabled_opened, Disabled_closed).
     * <p><b>Note : </b> This is an advanced setting</p>
     *
     * @param icon icon Default value is "[SKIN]SectionHeader/opener.gif"
@@ -99,7 +99,7 @@ public class SectionHeader extends Label {
         setAttribute("icon", icon, false);
     }
     /**
-     * Base filename of the icon that represents open and closed states. The default settings also change the icon for disabled sections, so a total of four images are required (opened, closed, Disabled_opened, Disabled_closed).
+     * Base filename of the icon that represents open and closed states. The default settings&#010 also change the icon for disabled sections, so a total of four images are required&#010 (opened, closed, Disabled_opened, Disabled_closed).
      *
      *
      * @return String

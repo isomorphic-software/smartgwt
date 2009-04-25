@@ -89,7 +89,7 @@ public class PickTreeItem extends CanvasItem {
     // ********************* Properties / Attributes ***********************
 
     /**
-    * If this is a databound item, should the load our set of possible options be loaded on demand (as submenus are displayed), or upfront?
+    * If this is a databound item, should the load our set of possible options be loaded&#010 on demand (as submenus are displayed), or upfront?
     * <p><b>Note : </b> This is an advanced setting</p>
     *
     * @param loadDataOnDemand loadDataOnDemand Default value is null
@@ -98,7 +98,7 @@ public class PickTreeItem extends CanvasItem {
         setAttribute("loadDataOnDemand", loadDataOnDemand);
     }
     /**
-     * If this is a databound item, should the load our set of possible options be loaded on demand (as submenus are displayed), or upfront?
+     * If this is a databound item, should the load our set of possible options be loaded&#010 on demand (as submenus are displayed), or upfront?
      *
      *
      * @return Boolean
@@ -109,7 +109,7 @@ public class PickTreeItem extends CanvasItem {
     }
 
     /**
-    * Specifies an alternative field from which display values should be retrieved for this item.<br> If this item is not databound ({@link com.smartgwt.client.widgets.form.fields.PickTreeItem#getDataSource dataSource} is unset), this is implemented by picking up the value of the specified field from the {@link com.smartgwt.client.widgets.form.fields.PickTreeItem#getValueTree valueTree}.<br> Otherwise this item will attempt to map its underlying value to a display value by retrieving a record from the {@link com.smartgwt.client.widgets.form.fields.PickTreeItem#getDataSource dataSource} where the  {@link com.smartgwt.client.widgets.form.fields.PickTreeItem#getValueField valueField} matches this item's value, and displaying the  <code>displayField</code> value from that record.<br>
+    * Specifies an alternative field from which display values should be retrieved for this&#010 item.<br>&#010 If this item is not databound ({@link com.smartgwt.client.widgets.form.fields.PickTreeItem#getDataSource dataSource} is unset), this is&#010 implemented by picking up the value of the specified field from the&#010 {@link com.smartgwt.client.widgets.form.fields.PickTreeItem#getValueTree valueTree}.<br>&#010 Otherwise this item will attempt to map its underlying value to a display value&#010 by retrieving a record from the {@link com.smartgwt.client.widgets.form.fields.PickTreeItem#getDataSource dataSource} where the &#010 {@link com.smartgwt.client.widgets.form.fields.PickTreeItem#getValueField valueField} matches this item's value, and displaying the &#010 <code>displayField</code> value from that record.<br>
     *
     * @param displayField displayField Default value is null
     */
@@ -117,7 +117,7 @@ public class PickTreeItem extends CanvasItem {
         setAttribute("displayField", displayField);
     }
     /**
-     * Specifies an alternative field from which display values should be retrieved for this item.<br> If this item is not databound ({@link com.smartgwt.client.widgets.form.fields.PickTreeItem#getDataSource dataSource} is unset), this is implemented by picking up the value of the specified field from the {@link com.smartgwt.client.widgets.form.fields.PickTreeItem#getValueTree valueTree}.<br> Otherwise this item will attempt to map its underlying value to a display value by retrieving a record from the {@link com.smartgwt.client.widgets.form.fields.PickTreeItem#getDataSource dataSource} where the  {@link com.smartgwt.client.widgets.form.fields.PickTreeItem#getValueField valueField} matches this item's value, and displaying the  <code>displayField</code> value from that record.<br>
+     * Specifies an alternative field from which display values should be retrieved for this&#010 item.<br>&#010 If this item is not databound ({@link com.smartgwt.client.widgets.form.fields.PickTreeItem#getDataSource dataSource} is unset), this is&#010 implemented by picking up the value of the specified field from the&#010 {@link com.smartgwt.client.widgets.form.fields.PickTreeItem#getValueTree valueTree}.<br>&#010 Otherwise this item will attempt to map its underlying value to a display value&#010 by retrieving a record from the {@link com.smartgwt.client.widgets.form.fields.PickTreeItem#getDataSource dataSource} where the &#010 {@link com.smartgwt.client.widgets.form.fields.PickTreeItem#getValueField valueField} matches this item's value, and displaying the &#010 <code>displayField</code> value from that record.<br>
      *
      *
      * @return String
@@ -128,7 +128,7 @@ public class PickTreeItem extends CanvasItem {
     }
 
     /**
-    * Which field in the tree-data should be returned as this item's value? If unspecified, the path will be used
+    * Which field in the tree-data should be returned as this item's value?&#010 If unspecified, the path will be used
     *
     * @param valueField valueField Default value is null
     */
@@ -136,7 +136,7 @@ public class PickTreeItem extends CanvasItem {
         setAttribute("valueField", valueField);
     }
     /**
-     * Which field in the tree-data should be returned as this item's value? If unspecified, the path will be used
+     * Which field in the tree-data should be returned as this item's value?&#010 If unspecified, the path will be used
      *
      *
      * @return String
@@ -147,7 +147,7 @@ public class PickTreeItem extends CanvasItem {
     }
 
     /**
-    * This message will be displayed as a singled, disabled option in any empty menu/submenu created from this item's data tree.
+    * This message will be displayed as a singled, disabled option in any empty menu/submenu&#010 created from this item's data tree.
     * <p><b>Note : </b> This is an advanced setting</p>
     *
     * @param emptyMenuMessage emptyMenuMessage Default value is "No items to display"
@@ -156,7 +156,7 @@ public class PickTreeItem extends CanvasItem {
         setAttribute("emptyMenuMessage", emptyMenuMessage);
     }
     /**
-     * This message will be displayed as a singled, disabled option in any empty menu/submenu created from this item's data tree.
+     * This message will be displayed as a singled, disabled option in any empty menu/submenu&#010 created from this item's data tree.
      *
      *
      * @return String
@@ -167,7 +167,7 @@ public class PickTreeItem extends CanvasItem {
     }
 
     /**
-    * If true, clicking or pressing Enter on a menu item that has a submenu will  select that item (with standard behavior of hiding the menus, calling click  handlers, etc) instead of showing the submenu.
+    * If true, clicking or pressing Enter on a menu item that has a submenu will&#010  select that item (with standard behavior of hiding the menus, calling click&#010  handlers, etc) instead of showing the submenu.
     *
     * @param canSelectParentItems canSelectParentItems Default value is null
     */
@@ -175,7 +175,7 @@ public class PickTreeItem extends CanvasItem {
         setAttribute("canSelectParentItems", canSelectParentItems);
     }
     /**
-     * If true, clicking or pressing Enter on a menu item that has a submenu will  select that item (with standard behavior of hiding the menus, calling click  handlers, etc) instead of showing the submenu.
+     * If true, clicking or pressing Enter on a menu item that has a submenu will&#010  select that item (with standard behavior of hiding the menus, calling click&#010  handlers, etc) instead of showing the submenu.
      *
      *
      * @return Boolean

@@ -22,7 +22,7 @@ import com.google.gwt.event.shared.HasHandlers;
 
 public interface HasCellMouseDownHandlers extends HasHandlers {
     /**
-     * Called when a cell receives a mousedown event.
+     * Called when a cell receives a mousedown event.&#010 &#010
      */
     HandlerRegistration addCellMouseDownHandler(CellMouseDownHandler handler);
 }

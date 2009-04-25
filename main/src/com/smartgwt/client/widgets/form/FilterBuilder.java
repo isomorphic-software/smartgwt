@@ -56,7 +56,7 @@ import com.smartgwt.client.util.EnumUtil;
 import com.google.gwt.event.shared.*;
 import com.google.gwt.event.shared.HasHandlers;
    /**
-    * A form that allows the user to input advanced search criteria, including operators on field values such as "less than", and sub-clauses using "AND" and "OR" operators. <P> A FilterBuilder produces an ${isc.DocUtils.linkForRef('object:AdvancedCriteria')} object, which the {@link com.smartgwt.client.data.DataSource} subsystem can use to filter datasets, including the ability to perform such filtering within the browser for datasets that are completely loaded.
+    * A form that allows the user to input advanced search criteria, including operators on&#010 field values such as "less than", and sub-clauses using "AND" and "OR" operators.&#010 <P>&#010 A FilterBuilder produces an ${isc.DocUtils.linkForRef('object:AdvancedCriteria')} object, which the {@link com.smartgwt.client.data.DataSource}&#010 subsystem can use to filter datasets, including the ability to perform such filtering within&#010 the browser for datasets that are completely loaded.
 
     */
 
@@ -90,7 +90,7 @@ public class FilterBuilder extends Layout  implements com.smartgwt.client.widget
     // ********************* Properties / Attributes ***********************
 
     /**
-    * If true, when the user hits the Enter key while focussed in a text-item in this  FilterBuilder, we automatically invoke the user-supplied {@link com.smartgwt.client.widgets.form.FilterBuilder#search} method.
+    * If true, when the user hits the Enter key while focussed in a text-item in this &#010 FilterBuilder, we automatically invoke the user-supplied {@link com.smartgwt.client.widgets.form.FilterBuilder#search} method.
     *
     * @param saveOnExit saveOnExit Default value is null
     * @throws IllegalStateException this property cannot be changed after the component has been created
@@ -99,7 +99,7 @@ public class FilterBuilder extends Layout  implements com.smartgwt.client.widget
         setAttribute("saveOnExit", saveOnExit, false);
     }
     /**
-     * If true, when the user hits the Enter key while focussed in a text-item in this  FilterBuilder, we automatically invoke the user-supplied {@link com.smartgwt.client.widgets.form.FilterBuilder#search} method.
+     * If true, when the user hits the Enter key while focussed in a text-item in this &#010 FilterBuilder, we automatically invoke the user-supplied {@link com.smartgwt.client.widgets.form.FilterBuilder#search} method.
      *
      *
      * @return Boolean
@@ -110,7 +110,7 @@ public class FilterBuilder extends Layout  implements com.smartgwt.client.widget
     }
 
     /**
-    * If true (the default), show field titles in the drop-down box used to select a field for querying. If false, show actual field names instead.
+    * If true (the default), show field titles in the drop-down box used to select a field for querying.&#010 If false, show actual field names instead.
     *
     * @param showFieldTitles showFieldTitles Default value is true
     * @throws IllegalStateException this property cannot be changed after the component has been created
@@ -119,7 +119,7 @@ public class FilterBuilder extends Layout  implements com.smartgwt.client.widget
         setAttribute("showFieldTitles", showFieldTitles, false);
     }
     /**
-     * If true (the default), show field titles in the drop-down box used to select a field for querying. If false, show actual field names instead.
+     * If true (the default), show field titles in the drop-down box used to select a field for querying.&#010 If false, show actual field names instead.
      *
      *
      * @return Boolean
@@ -150,7 +150,7 @@ public class FilterBuilder extends Layout  implements com.smartgwt.client.widget
     }
 
     /**
-    * If set, a button will be shown underneath all current clauses allowing a new clause to be added.
+    * If set, a button will be shown underneath all current clauses allowing a new clause to be&#010 added.
     *
     * @param showAddButton showAddButton Default value is true
     * @throws IllegalStateException this property cannot be changed after the component has been created
@@ -159,7 +159,7 @@ public class FilterBuilder extends Layout  implements com.smartgwt.client.widget
         setAttribute("showAddButton", showAddButton, false);
     }
     /**
-     * If set, a button will be shown underneath all current clauses allowing a new clause to be added.
+     * If set, a button will be shown underneath all current clauses allowing a new clause to be&#010 added.
      *
      *
      * @return Boolean
@@ -190,7 +190,7 @@ public class FilterBuilder extends Layout  implements com.smartgwt.client.widget
     }
 
     /**
-    * For operators that check that a value is within a range, text to show between the start and end input fields for specifying the limits of the range.
+    * For operators that check that a value is within a range, text to show between the start and&#010 end input fields for specifying the limits of the range.
     *
     * @param rangeSeparator rangeSeparator Default value is "and"
     * @throws IllegalStateException this property cannot be changed after the component has been created
@@ -199,7 +199,7 @@ public class FilterBuilder extends Layout  implements com.smartgwt.client.widget
         setAttribute("rangeSeparator", rangeSeparator, false);
     }
     /**
-     * For operators that check that a value is within a range, text to show between the start and end input fields for specifying the limits of the range.
+     * For operators that check that a value is within a range, text to show between the start and&#010 end input fields for specifying the limits of the range.
      *
      *
      * @return String
@@ -210,7 +210,7 @@ public class FilterBuilder extends Layout  implements com.smartgwt.client.widget
     }
 
     /**
-    * Whether to show a button that allows the user to add subclauses.  Defaults to false if  the ${isc.DocUtils.linkForRef('type:TopOperatorAppearance')} is "radio", true in all other cases.
+    * Whether to show a button that allows the user to add subclauses.  Defaults to false if &#010 the ${isc.DocUtils.linkForRef('type:TopOperatorAppearance')} is "radio", true in all other cases.
     *
     * @param showSubClauseButton showSubClauseButton Default value is See Description
     * @throws IllegalStateException this property cannot be changed after the component has been created
@@ -219,7 +219,7 @@ public class FilterBuilder extends Layout  implements com.smartgwt.client.widget
         setAttribute("showSubClauseButton", showSubClauseButton, false);
     }
     /**
-     * Whether to show a button that allows the user to add subclauses.  Defaults to false if  the ${isc.DocUtils.linkForRef('type:TopOperatorAppearance')} is "radio", true in all other cases.
+     * Whether to show a button that allows the user to add subclauses.  Defaults to false if &#010 the ${isc.DocUtils.linkForRef('type:TopOperatorAppearance')} is "radio", true in all other cases.
      *
      *
      * @return Boolean
@@ -238,7 +238,7 @@ public class FilterBuilder extends Layout  implements com.smartgwt.client.widget
 
 
         /**
-         * Clear all current criteria.
+         * Clear all current criteria.&#010
          */
         public native void clearCriteria() /*-{
             var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
@@ -250,7 +250,7 @@ public class FilterBuilder extends Layout  implements com.smartgwt.client.widget
         /**
          * Add a filterChanged handler.
          * <p>
-         * Handler fired when there is a change() event fired on any FormItem within the  filterBuilder.
+         * Handler fired when there is a change() event fired on any FormItem within the &#010 filterBuilder. &#010&#010
          *
          * @param handler the filterChanged handler
          */

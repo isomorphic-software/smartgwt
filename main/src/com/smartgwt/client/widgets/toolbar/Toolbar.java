@@ -56,7 +56,7 @@ import com.smartgwt.client.util.EnumUtil;
 import com.google.gwt.event.shared.*;
 import com.google.gwt.event.shared.HasHandlers;
    /**
-    * A Toolbar creates a vertical or horizontal strip of similar components (typically Buttons) and provides managed resizing and reordering behavior over those components. <p> If you are creating a bar with a mixture of different elements (eg some MenuButtons, some Labels, some Buttons, some custom components), you want to use a {@link com.smartgwt.client.widgets.toolbar.ToolStrip}.  A Toolbar is better suited for managing a set of highly similar, interchangeable components, such as ListGrid headers.
+    * A Toolbar creates a vertical or horizontal strip of similar components (typically Buttons)&#010 and provides managed resizing and reordering behavior over those components.&#010 <p>&#010 If you are creating a bar with a mixture of different elements (eg some MenuButtons, some&#010 Labels, some Buttons, some custom components), you want to use a {@link com.smartgwt.client.widgets.toolbar.ToolStrip}.  A&#010 Toolbar is better suited for managing a set of highly similar, interchangeable components,&#010 such as ListGrid headers.
 
     */
 
@@ -91,7 +91,7 @@ public class Toolbar extends Layout  implements com.smartgwt.client.widgets.tool
     // ********************* Properties / Attributes ***********************
 
     /**
-    * Indicates whether the buttons are drawn horizontally from left to right (false), or vertically from top to bottom (true).
+    * Indicates whether the buttons are drawn horizontally from left to right (false), or&#010 vertically from top to bottom (true).
     *
     * @param vertical vertical Default value is false
     */
@@ -99,7 +99,7 @@ public class Toolbar extends Layout  implements com.smartgwt.client.widgets.tool
         setAttribute("vertical", vertical, true);
     }
     /**
-     * Indicates whether the buttons are drawn horizontally from left to right (false), or vertically from top to bottom (true).
+     * Indicates whether the buttons are drawn horizontally from left to right (false), or&#010 vertically from top to bottom (true).
      *
      *
      * @return Boolean
@@ -131,7 +131,7 @@ public class Toolbar extends Layout  implements com.smartgwt.client.widgets.tool
 
     /**
     * If true, items (buttons) can be resized by dragging on them.
-    * Setter for updating {@link com.smartgwt.client.widgets.toolbar.Toolbar#getCanResizeItems canResizeItems} at runtime.
+    * Setter for updating {@link com.smartgwt.client.widgets.toolbar.Toolbar#getCanResizeItems canResizeItems} at runtime.&#010
     * <p><b>Note : </b> This is an advanced setting</p>
     *
     * @param canResizeItems New value for this.canResizeItems. Default value is false
@@ -151,7 +151,7 @@ public class Toolbar extends Layout  implements com.smartgwt.client.widgets.tool
     }
 
     /**
-    * If true, items (buttons) can be dropped into this toolbar, and the toolbar will show a drop line at the drop location.  Override drop() to decide what happens when the item is dropped.
+    * If true, items (buttons) can be dropped into this toolbar, and the toolbar will&#010 show a drop line at the drop location.  Override drop() to decide what happens when the&#010 item is dropped.
     * <p><b>Note : </b> This is an advanced setting</p>
     *
     * @param canAcceptDrop canAcceptDrop Default value is false
@@ -160,7 +160,7 @@ public class Toolbar extends Layout  implements com.smartgwt.client.widgets.tool
         setAttribute("canAcceptDrop", canAcceptDrop, true);
     }
     /**
-     * If true, items (buttons) can be dropped into this toolbar, and the toolbar will show a drop line at the drop location.  Override drop() to decide what happens when the item is dropped.
+     * If true, items (buttons) can be dropped into this toolbar, and the toolbar will&#010 show a drop line at the drop location.  Override drop() to decide what happens when the&#010 item is dropped.
      *
      *
      * @return Boolean
@@ -185,7 +185,7 @@ public class Toolbar extends Layout  implements com.smartgwt.client.widgets.tool
         /**
          * Add a itemClick handler.
          * <p>
-         * Called when one of the buttons recieved a click event
+         * Called when one of the buttons recieved a click event&#010
          *
          * @param handler the itemClick handler
          */
@@ -219,7 +219,7 @@ public class Toolbar extends Layout  implements com.smartgwt.client.widgets.tool
         /**
          * Add a itemDragResized handler.
          * <p>
-         * Observable, overrideable method - called when one of the Toolbar buttons is drag resized.
+         * Observable, overrideable method - called when one of the Toolbar buttons is drag resized.&#010&#010
          *
          * @param handler the itemDragResized handler
          */

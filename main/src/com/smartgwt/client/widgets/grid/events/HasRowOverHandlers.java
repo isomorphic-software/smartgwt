@@ -22,7 +22,7 @@ import com.google.gwt.event.shared.HasHandlers;
 
 public interface HasRowOverHandlers extends HasHandlers {
     /**
-     * Called when the mouse pointer enters a row
+     * Called when the mouse pointer enters a row&#010&#010
      */
     HandlerRegistration addRowOverHandler(RowOverHandler handler);
 }

@@ -56,7 +56,7 @@ import com.smartgwt.client.util.EnumUtil;
 import com.google.gwt.event.shared.*;
 import com.google.gwt.event.shared.HasHandlers;
    /**
-    * A StretchImg that behaves like a button, going through up/down/over state transitions in response to user events.  Supports an optional title, and will auto-size to accomodate the title text if <code>overflow</code> is set to "visible". <P> Examples of use include fancy buttons, poplist headers, and tabs.
+    * A StretchImg that behaves like a button, going through up/down/over state transitions in response&#010 to user events.  Supports an optional title, and will auto-size to accomodate the title text if&#010 <code>overflow</code> is set to "visible".&#010 <P>&#010 Examples of use include fancy buttons, poplist headers, and tabs.
 
     */
 
@@ -91,7 +91,7 @@ public class StretchImgButton extends StretchImg  implements com.smartgwt.client
 
     /**
     * The text title to display in this button.
-    * Set the title.
+    * Set the title.&#010
     *
     * @param title new title. Default value is varies
     */
@@ -102,7 +102,7 @@ public class StretchImgButton extends StretchImg  implements com.smartgwt.client
      * The text title to display in this button.
      *
      *
-     * @return Return the title - text/HTML drawn inside the component. <p> Default is to simply return this.title.
+     * @return Return the title - text/HTML drawn inside the component.&#010 <p>&#010 Default is to simply return this.title.&#010
      *
      */
     public String getTitle()  {
@@ -110,7 +110,7 @@ public class StretchImgButton extends StretchImg  implements com.smartgwt.client
     }
 
     /**
-    * Should the title for this button wrap? If unset, default behavior is to allow wrapping if this.vertical is true, otherwise disallow wrapping
+    * Should the title for this button wrap? If unset, default behavior is to allow wrapping&#010 if this.vertical is true, otherwise disallow wrapping
     *
     * @param wrap wrap Default value is null
     */
@@ -118,7 +118,7 @@ public class StretchImgButton extends StretchImg  implements com.smartgwt.client
         setAttribute("wrap", wrap, true);
     }
     /**
-     * Should the title for this button wrap? If unset, default behavior is to allow wrapping if this.vertical is true, otherwise disallow wrapping
+     * Should the title for this button wrap? If unset, default behavior is to allow wrapping&#010 if this.vertical is true, otherwise disallow wrapping
      *
      *
      * @return Boolean
@@ -129,8 +129,8 @@ public class StretchImgButton extends StretchImg  implements com.smartgwt.client
     }
 
     /**
-    * Optional icon to be shown with the button title text.   <P> Specify as the partial URL to an image, relative to the imgDir of this component.
-    * Change the icon being shown next to the title text.
+    * Optional icon to be shown with the button title text.  &#010 <P>&#010 Specify as the partial URL to an image, relative to the imgDir of this component.
+    * Change the icon being shown next to the title text.&#010
     *
     * @param icon URL of new icon. Default value is null
     */
@@ -138,7 +138,7 @@ public class StretchImgButton extends StretchImg  implements com.smartgwt.client
         setAttribute("icon", icon, true);
     }
     /**
-     * Optional icon to be shown with the button title text.   <P> Specify as the partial URL to an image, relative to the imgDir of this component.
+     * Optional icon to be shown with the button title text.  &#010 <P>&#010 Specify as the partial URL to an image, relative to the imgDir of this component.
      *
      *
      * @return String
@@ -149,7 +149,7 @@ public class StretchImgButton extends StretchImg  implements com.smartgwt.client
     }
 
     /**
-    * Size in pixels of the icon image. <P> The <code>iconWidth</code> and <code>iconHeight</code> properties can be used to configure width and height separately.
+    * Size in pixels of the icon image.&#010 <P>&#010 The <code>iconWidth</code> and <code>iconHeight</code> properties can be used to&#010 configure width and height separately.
     *
     * @param iconSize iconSize Default value is 16
     * @throws IllegalStateException this property cannot be changed after the component has been created
@@ -158,7 +158,7 @@ public class StretchImgButton extends StretchImg  implements com.smartgwt.client
         setAttribute("iconSize", iconSize, false);
     }
     /**
-     * Size in pixels of the icon image. <P> The <code>iconWidth</code> and <code>iconHeight</code> properties can be used to configure width and height separately.
+     * Size in pixels of the icon image.&#010 <P>&#010 The <code>iconWidth</code> and <code>iconHeight</code> properties can be used to&#010 configure width and height separately.
      *
      *
      * @return int
@@ -169,7 +169,7 @@ public class StretchImgButton extends StretchImg  implements com.smartgwt.client
     }
 
     /**
-    * Width in pixels of the icon image. <P> If unset, defaults to <code>iconSize</code>
+    * Width in pixels of the icon image.&#010 <P>&#010 If unset, defaults to <code>iconSize</code>
     *
     * @param iconWidth iconWidth Default value is null
     * @throws IllegalStateException this property cannot be changed after the component has been created
@@ -178,7 +178,7 @@ public class StretchImgButton extends StretchImg  implements com.smartgwt.client
         setAttribute("iconWidth", iconWidth, false);
     }
     /**
-     * Width in pixels of the icon image. <P> If unset, defaults to <code>iconSize</code>
+     * Width in pixels of the icon image.&#010 <P>&#010 If unset, defaults to <code>iconSize</code>
      *
      *
      * @return Integer
@@ -189,7 +189,7 @@ public class StretchImgButton extends StretchImg  implements com.smartgwt.client
     }
 
     /**
-    * Height in pixels of the icon image. <P> If unset, defaults to <code>iconSize</code>
+    * Height in pixels of the icon image.&#010 <P>&#010 If unset, defaults to <code>iconSize</code>
     *
     * @param iconHeight iconHeight Default value is null
     * @throws IllegalStateException this property cannot be changed after the component has been created
@@ -198,7 +198,7 @@ public class StretchImgButton extends StretchImg  implements com.smartgwt.client
         setAttribute("iconHeight", iconHeight, false);
     }
     /**
-     * Height in pixels of the icon image. <P> If unset, defaults to <code>iconSize</code>
+     * Height in pixels of the icon image.&#010 <P>&#010 If unset, defaults to <code>iconSize</code>
      *
      *
      * @return Integer
@@ -209,8 +209,8 @@ public class StretchImgButton extends StretchImg  implements com.smartgwt.client
     }
 
     /**
-    * If this button is showing an icon should it appear to the left or right of the title? valid options are <code>"left"</code> and <code>"right"</code>.
-    * Changes the orientation of the icon relative to the text of the button.
+    * If this button is showing an icon should it appear to the left or right of the title?&#010 valid options are <code>"left"</code> and <code>"right"</code>.
+    * Changes the orientation of the icon relative to the text of the button.&#010&#010
     *
     * @param iconOrientation The new orientation of the icon relative to the text of the button.. Default value is "left"
     * @throws IllegalStateException this property cannot be changed after the component has been created
@@ -219,7 +219,7 @@ public class StretchImgButton extends StretchImg  implements com.smartgwt.client
         setAttribute("iconOrientation", iconOrientation, false);
     }
     /**
-     * If this button is showing an icon should it appear to the left or right of the title? valid options are <code>"left"</code> and <code>"right"</code>.
+     * If this button is showing an icon should it appear to the left or right of the title?&#010 valid options are <code>"left"</code> and <code>"right"</code>.
      *
      *
      * @return String
@@ -250,7 +250,7 @@ public class StretchImgButton extends StretchImg  implements com.smartgwt.client
     }
 
     /**
-    * Optional icon to be shown with the button title text.   <P> Specify as the partial URL to an image, relative to the imgDir of this component.
+    * Optional icon to be shown with the button title text.  &#010 <P>&#010 Specify as the partial URL to an image, relative to the imgDir of this component.
     *
     * @param iconSpacing iconSpacing Default value is null
     */
@@ -258,7 +258,7 @@ public class StretchImgButton extends StretchImg  implements com.smartgwt.client
         setAttribute("iconSpacing", iconSpacing, true);
     }
     /**
-     * Optional icon to be shown with the button title text.   <P> Specify as the partial URL to an image, relative to the imgDir of this component.
+     * Optional icon to be shown with the button title text.  &#010 <P>&#010 Specify as the partial URL to an image, relative to the imgDir of this component.
      *
      *
      * @return String
@@ -269,7 +269,7 @@ public class StretchImgButton extends StretchImg  implements com.smartgwt.client
     }
 
     /**
-    * If using an icon for this button, whether to switch the icon image if the button becomes disabled.
+    * If using an icon for this button, whether to switch the icon image if the button becomes&#010 disabled.
     *
     * @param showDisabledIcon showDisabledIcon Default value is true
     * @throws IllegalStateException this property cannot be changed after the component has been created
@@ -278,7 +278,7 @@ public class StretchImgButton extends StretchImg  implements com.smartgwt.client
         setAttribute("showDisabledIcon", showDisabledIcon, false);
     }
     /**
-     * If using an icon for this button, whether to switch the icon image if the button becomes disabled.
+     * If using an icon for this button, whether to switch the icon image if the button becomes&#010 disabled.
      *
      *
      * @return Boolean
@@ -309,7 +309,7 @@ public class StretchImgButton extends StretchImg  implements com.smartgwt.client
     }
 
     /**
-    * If using an icon for this button, whether to switch the icon image when the button recieves focus. <P> If {@link com.smartgwt.client.widgets.StatefulCanvas#getShowFocusedAsOver showFocusedAsOver} is true, the <code>"Over"</code> icon will be displayed when the canvas has focus, otherwise a seperate <code>"Focused"</code> icon will be displayed
+    * If using an icon for this button, whether to switch the icon image when the button&#010 recieves focus.&#010 <P>&#010 If {@link com.smartgwt.client.widgets.StatefulCanvas#getShowFocusedAsOver showFocusedAsOver} is true, the <code>"Over"</code> icon will be&#010 displayed when the canvas has focus, otherwise a seperate <code>"Focused"</code> icon&#010 will be displayed
     *
     * @param showFocusedIcon showFocusedIcon Default value is false
     * @throws IllegalStateException this property cannot be changed after the component has been created
@@ -318,7 +318,7 @@ public class StretchImgButton extends StretchImg  implements com.smartgwt.client
         setAttribute("showFocusedIcon", showFocusedIcon, false);
     }
     /**
-     * If using an icon for this button, whether to switch the icon image when the button recieves focus. <P> If {@link com.smartgwt.client.widgets.StatefulCanvas#getShowFocusedAsOver showFocusedAsOver} is true, the <code>"Over"</code> icon will be displayed when the canvas has focus, otherwise a seperate <code>"Focused"</code> icon will be displayed
+     * If using an icon for this button, whether to switch the icon image when the button&#010 recieves focus.&#010 <P>&#010 If {@link com.smartgwt.client.widgets.StatefulCanvas#getShowFocusedAsOver showFocusedAsOver} is true, the <code>"Over"</code> icon will be&#010 displayed when the canvas has focus, otherwise a seperate <code>"Focused"</code> icon&#010 will be displayed
      *
      *
      * @return Boolean
@@ -329,7 +329,7 @@ public class StretchImgButton extends StretchImg  implements com.smartgwt.client
     }
 
     /**
-    * If using an icon for this button, whether to switch the icon image when the mouse goes down on the button.
+    * If using an icon for this button, whether to switch the icon image when the mouse goes&#010 down on the button.
     *
     * @param showDownIcon showDownIcon Default value is false
     * @throws IllegalStateException this property cannot be changed after the component has been created
@@ -338,7 +338,7 @@ public class StretchImgButton extends StretchImg  implements com.smartgwt.client
         setAttribute("showDownIcon", showDownIcon, false);
     }
     /**
-     * If using an icon for this button, whether to switch the icon image when the mouse goes down on the button.
+     * If using an icon for this button, whether to switch the icon image when the mouse goes&#010 down on the button.
      *
      *
      * @return Boolean
@@ -349,7 +349,7 @@ public class StretchImgButton extends StretchImg  implements com.smartgwt.client
     }
 
     /**
-    * If using an icon for this button, whether to switch the icon image when the button becomes selected.
+    * If using an icon for this button, whether to switch the icon image when the button&#010 becomes selected.
     *
     * @param showSelectedIcon showSelectedIcon Default value is false
     * @throws IllegalStateException this property cannot be changed after the component has been created
@@ -358,7 +358,7 @@ public class StretchImgButton extends StretchImg  implements com.smartgwt.client
         setAttribute("showSelectedIcon", showSelectedIcon, false);
     }
     /**
-     * If using an icon for this button, whether to switch the icon image when the button becomes selected.
+     * If using an icon for this button, whether to switch the icon image when the button&#010 becomes selected.
      *
      *
      * @return Boolean
@@ -369,8 +369,8 @@ public class StretchImgButton extends StretchImg  implements com.smartgwt.client
     }
 
     /**
-    * If true, ignore the specified size of this widget and always size just large enough to accomodate the title.  If <code>setWidth()</code> is explicitly called on an autoFit:true button, autoFit will be reset to <code>false</code>. <P> Note that for StretchImgButton instances, autoFit will occur horizontally only, as  unpredictable vertical sizing is likely to distort the media. If you do want vertical  auto-fit, this can be achieved by simply setting a small height, and having  overflow:"visible"
-    * Setter method for the {@link com.smartgwt.client.widgets.StatefulCanvas#getAutoFit autoFit} property. Pass in true or false to turn autoFit on or off. When autoFit is set to <code>false</code>, canvas will be resized to it's previously specified size.
+    * If true, ignore the specified size of this widget and always size just large&#010 enough to accomodate the title.  If <code>setWidth()</code> is explicitly called on an&#010 autoFit:true button, autoFit will be reset to <code>false</code>.&#010 <P>&#010 Note that for StretchImgButton instances, autoFit will occur horizontally only, as &#010 unpredictable vertical sizing is likely to distort the media. If you do want vertical &#010 auto-fit, this can be achieved by simply setting a small height, and having &#010 overflow:"visible"
+    * Setter method for the {@link com.smartgwt.client.widgets.StatefulCanvas#getAutoFit autoFit} property. Pass in true or false to turn&#010 autoFit on or off. When autoFit is set to <code>false</code>, canvas will be resized to&#010 it's previously specified size.&#010
     *
     * @param autoFit New autoFit setting.. Default value is null
     */
@@ -378,7 +378,7 @@ public class StretchImgButton extends StretchImg  implements com.smartgwt.client
         setAttribute("autoFit", autoFit, true);
     }
     /**
-     * If true, ignore the specified size of this widget and always size just large enough to accomodate the title.  If <code>setWidth()</code> is explicitly called on an autoFit:true button, autoFit will be reset to <code>false</code>. <P> Note that for StretchImgButton instances, autoFit will occur horizontally only, as  unpredictable vertical sizing is likely to distort the media. If you do want vertical  auto-fit, this can be achieved by simply setting a small height, and having  overflow:"visible"
+     * If true, ignore the specified size of this widget and always size just large&#010 enough to accomodate the title.  If <code>setWidth()</code> is explicitly called on an&#010 autoFit:true button, autoFit will be reset to <code>false</code>.&#010 <P>&#010 Note that for StretchImgButton instances, autoFit will occur horizontally only, as &#010 unpredictable vertical sizing is likely to distort the media. If you do want vertical &#010 auto-fit, this can be achieved by simply setting a small height, and having &#010 overflow:"visible"
      *
      *
      * @return Boolean
@@ -389,8 +389,8 @@ public class StretchImgButton extends StretchImg  implements com.smartgwt.client
     }
 
     /**
-    * Base CSS style.  As the component changes state and/or is selected, suffixes will be added to the base style. <P> When the component changes state (eg becomes disabled), a suffix will be appended to this style name, reflecting the following states: "Over", "Down", or "Disabled". <P> If the widget is selected, the suffixes will be "Selected", "SelectedOver", etc. <P> If the widget has focus and {@link com.smartgwt.client.widgets.StatefulCanvas#getShowFocused showFocused} is true, and {@link com.smartgwt.client.widgets.StatefulCanvas#getShowFocusedAsOver showFocusedAsOver} is false, the suffixes will be "Focused", "FocusedOver", etc, or if the widget is both selected and focused, "SelectedFocused", "SelectedFocusedOver", etc. <P> For example, if <code>baseStyle</code> is set to "button", this component is {@link com.smartgwt.client.widgets.StretchImgButton#isSelected} and the mouse cursor is over this component, the style "buttonSelectedOver" will be used.
-    * Sets the base CSS style.  As the component changes state and/or is selected, suffixes will be added to the base style.
+    * Base CSS style.  As the component changes state and/or is selected, suffixes will be&#010 added to the base style.&#010 <P>&#010 When the component changes state (eg becomes disabled), a suffix will be appended to this&#010 style name, reflecting the following states: "Over", "Down", or "Disabled".&#010 <P>&#010 If the widget is selected, the suffixes will be "Selected", "SelectedOver", etc.&#010 <P>&#010 If the widget has focus and {@link com.smartgwt.client.widgets.StatefulCanvas#getShowFocused showFocused} is true, and&#010 {@link com.smartgwt.client.widgets.StatefulCanvas#getShowFocusedAsOver showFocusedAsOver} is false, the suffixes will be "Focused",&#010 "FocusedOver", etc, or if the widget is both selected and focused, "SelectedFocused",&#010 "SelectedFocusedOver", etc.&#010 <P>&#010 For example, if <code>baseStyle</code> is set to "button", this component is&#010 {@link com.smartgwt.client.widgets.StretchImgButton#isSelected} and the mouse cursor is over this component, the style&#010 "buttonSelectedOver" will be used.
+    * Sets the base CSS style.  As the component changes state and/or is selected, suffixes will be&#010 added to the base style.&#010
     *
     * @param baseStyle new base style. Default value is "stretchImgButton"
     */
@@ -398,7 +398,7 @@ public class StretchImgButton extends StretchImg  implements com.smartgwt.client
         setAttribute("baseStyle", baseStyle, true);
     }
     /**
-     * Base CSS style.  As the component changes state and/or is selected, suffixes will be added to the base style. <P> When the component changes state (eg becomes disabled), a suffix will be appended to this style name, reflecting the following states: "Over", "Down", or "Disabled". <P> If the widget is selected, the suffixes will be "Selected", "SelectedOver", etc. <P> If the widget has focus and {@link com.smartgwt.client.widgets.StatefulCanvas#getShowFocused showFocused} is true, and {@link com.smartgwt.client.widgets.StatefulCanvas#getShowFocusedAsOver showFocusedAsOver} is false, the suffixes will be "Focused", "FocusedOver", etc, or if the widget is both selected and focused, "SelectedFocused", "SelectedFocusedOver", etc. <P> For example, if <code>baseStyle</code> is set to "button", this component is {@link com.smartgwt.client.widgets.StretchImgButton#isSelected} and the mouse cursor is over this component, the style "buttonSelectedOver" will be used.
+     * Base CSS style.  As the component changes state and/or is selected, suffixes will be&#010 added to the base style.&#010 <P>&#010 When the component changes state (eg becomes disabled), a suffix will be appended to this&#010 style name, reflecting the following states: "Over", "Down", or "Disabled".&#010 <P>&#010 If the widget is selected, the suffixes will be "Selected", "SelectedOver", etc.&#010 <P>&#010 If the widget has focus and {@link com.smartgwt.client.widgets.StatefulCanvas#getShowFocused showFocused} is true, and&#010 {@link com.smartgwt.client.widgets.StatefulCanvas#getShowFocusedAsOver showFocusedAsOver} is false, the suffixes will be "Focused",&#010 "FocusedOver", etc, or if the widget is both selected and focused, "SelectedFocused",&#010 "SelectedFocusedOver", etc.&#010 <P>&#010 For example, if <code>baseStyle</code> is set to "button", this component is&#010 {@link com.smartgwt.client.widgets.StretchImgButton#isSelected} and the mouse cursor is over this component, the style&#010 "buttonSelectedOver" will be used.
      *
      *
      * @return String
@@ -409,8 +409,8 @@ public class StretchImgButton extends StretchImg  implements com.smartgwt.client
     }
 
     /**
-    * CSS style applied to the title text only.  Defaults to {@link com.smartgwt.client.widgets.StretchImgButton#getBaseStyle baseStyle} when unset. <P> With a separate <code>titleStyle</code> and {@link com.smartgwt.client.widgets.StretchImgButton#getBaseStyle baseStyle} set, you can provide a backgroundColor via <code>baseStyle</code> that will allow translucent .png media to be "tinted" by the underlying background color, so that a single set of media can provide range of color options.  In this usage, the <code>titleStyle</code> should generally not specify a background color as this would block out the media that appears behind the title.
-    * Sets the {@link com.smartgwt.client.widgets.StretchImgButton#getTitleStyle titleStyle}, which is applied to the title text.
+    * CSS style applied to the title text only.  Defaults to {@link com.smartgwt.client.widgets.StretchImgButton#getBaseStyle baseStyle} when unset.&#010 <P>&#010 With a separate <code>titleStyle</code> and {@link com.smartgwt.client.widgets.StretchImgButton#getBaseStyle baseStyle} set, you can provide a&#010 backgroundColor via <code>baseStyle</code> that will allow translucent .png media to be&#010 "tinted" by the underlying background color, so that a single set of media can provide&#010 range of color options.  In this usage, the <code>titleStyle</code> should generally not&#010 specify a background color as this would block out the media that appears behind the&#010 title.
+    * Sets the {@link com.smartgwt.client.widgets.StretchImgButton#getTitleStyle titleStyle}, which is applied to the title text.&#010
     *
     * @param titleStyle new title style. Default value is null
     */
@@ -418,7 +418,7 @@ public class StretchImgButton extends StretchImg  implements com.smartgwt.client
         setAttribute("titleStyle", titleStyle, true);
     }
     /**
-     * CSS style applied to the title text only.  Defaults to {@link com.smartgwt.client.widgets.StretchImgButton#getBaseStyle baseStyle} when unset. <P> With a separate <code>titleStyle</code> and {@link com.smartgwt.client.widgets.StretchImgButton#getBaseStyle baseStyle} set, you can provide a backgroundColor via <code>baseStyle</code> that will allow translucent .png media to be "tinted" by the underlying background color, so that a single set of media can provide range of color options.  In this usage, the <code>titleStyle</code> should generally not specify a background color as this would block out the media that appears behind the title.
+     * CSS style applied to the title text only.  Defaults to {@link com.smartgwt.client.widgets.StretchImgButton#getBaseStyle baseStyle} when unset.&#010 <P>&#010 With a separate <code>titleStyle</code> and {@link com.smartgwt.client.widgets.StretchImgButton#getBaseStyle baseStyle} set, you can provide a&#010 backgroundColor via <code>baseStyle</code> that will allow translucent .png media to be&#010 "tinted" by the underlying background color, so that a single set of media can provide&#010 range of color options.  In this usage, the <code>titleStyle</code> should generally not&#010 specify a background color as this would block out the media that appears behind the&#010 title.
      *
      *
      * @return String
@@ -430,7 +430,7 @@ public class StretchImgButton extends StretchImg  implements com.smartgwt.client
 
     /**
     * Whether this component is selected.  For some components, selection affects appearance.
-    * Select this object.
+    * Select this object.&#010
     *
     * @param selected selected Default value is false
     */
@@ -470,7 +470,7 @@ public class StretchImgButton extends StretchImg  implements com.smartgwt.client
              
     /**
     * Behavior on state changes -- BUTTON, RADIO or CHECKBOX
-    * Update the 'actionType' for this canvas (radio / checkbox / button) If the canvas is currently selected, and the passed in actionType is 'button' this method will deselect the canvas.
+    * Update the 'actionType' for this canvas (radio / checkbox / button)&#010 If the canvas is currently selected, and the passed in actionType is 'button'&#010 this method will deselect the canvas.&#010
     *
     * @param actionType actionType Default value is "button"
     */
@@ -481,7 +481,7 @@ public class StretchImgButton extends StretchImg  implements com.smartgwt.client
      * Behavior on state changes -- BUTTON, RADIO or CHECKBOX
      *
      *
-     * @return Return the 'actionType' for this canvas (radio / checkbox / button)
+     * @return Return the 'actionType' for this canvas (radio / checkbox / button)&#010
      *
      */
     public SelectionType getActionType()  {
@@ -489,8 +489,8 @@ public class StretchImgButton extends StretchImg  implements com.smartgwt.client
     }
              
     /**
-    * Current "state" of this widget. StatefulCanvases will have a different appearance based on their current state. By default this is handled by changing the css className applied to the StatefulCanvas - see {@link com.smartgwt.client.widgets.StatefulCanvas#getBaseStyle baseStyle} for a description of how this is done.<P> For {@link com.smartgwt.client.widgets.Img} or {@link com.smartgwt.client.widgets.StretchImg} based subclasses of StatefulCanvas, the  appearance may also be updated by changing the src of the rendered image. See {@link com.smartgwt.client.widgets.Img#getSrc src} and {@link com.smartgwt.client.widgets.StretchImgButton#getSrc src} for a description of how the URL  is modified to reflect the state of the widget in this case.
-    * Set the 'state' of this object, this changes it's appearance.
+    * Current "state" of this widget. StatefulCanvases will have a different appearance based&#010 on their current state. By default this is handled by changing the css className applied to&#010 the StatefulCanvas - see {@link com.smartgwt.client.widgets.StatefulCanvas#getBaseStyle baseStyle} for a description of how this is&#010 done.<P>&#010 For {@link com.smartgwt.client.widgets.Img} or {@link com.smartgwt.client.widgets.StretchImg} based subclasses of StatefulCanvas, the &#010 appearance may also be updated by changing the src of the rendered image. See&#010 {@link com.smartgwt.client.widgets.Img#getSrc src} and {@link com.smartgwt.client.widgets.StretchImgButton#getSrc src} for a description of how the URL &#010 is modified to reflect the state of the widget in this case.
+    * Set the 'state' of this object, this changes it's appearance.&#010&#010
     * <p><b>Note : </b> This is an advanced setting</p>
     *
     * @param state new state. Default value is ""
@@ -499,10 +499,10 @@ public class StretchImgButton extends StretchImg  implements com.smartgwt.client
         setAttribute("state", state.getValue(), true);
     }
     /**
-     * Current "state" of this widget. StatefulCanvases will have a different appearance based on their current state. By default this is handled by changing the css className applied to the StatefulCanvas - see {@link com.smartgwt.client.widgets.StatefulCanvas#getBaseStyle baseStyle} for a description of how this is done.<P> For {@link com.smartgwt.client.widgets.Img} or {@link com.smartgwt.client.widgets.StretchImg} based subclasses of StatefulCanvas, the  appearance may also be updated by changing the src of the rendered image. See {@link com.smartgwt.client.widgets.Img#getSrc src} and {@link com.smartgwt.client.widgets.StretchImgButton#getSrc src} for a description of how the URL  is modified to reflect the state of the widget in this case.
+     * Current "state" of this widget. StatefulCanvases will have a different appearance based&#010 on their current state. By default this is handled by changing the css className applied to&#010 the StatefulCanvas - see {@link com.smartgwt.client.widgets.StatefulCanvas#getBaseStyle baseStyle} for a description of how this is&#010 done.<P>&#010 For {@link com.smartgwt.client.widgets.Img} or {@link com.smartgwt.client.widgets.StretchImg} based subclasses of StatefulCanvas, the &#010 appearance may also be updated by changing the src of the rendered image. See&#010 {@link com.smartgwt.client.widgets.Img#getSrc src} and {@link com.smartgwt.client.widgets.StretchImgButton#getSrc src} for a description of how the URL &#010 is modified to reflect the state of the widget in this case.
      *
      *
-     * @return Return the state of this StatefulCanvas
+     * @return Return the state of this StatefulCanvas&#010
      *
      */
     public State getState()  {
@@ -548,7 +548,7 @@ public class StretchImgButton extends StretchImg  implements com.smartgwt.client
     }
 
     /**
-    * Should we visibly change state when the canvas recieves focus?  If {@link com.smartgwt.client.widgets.StatefulCanvas#getShowFocusedAsOver showFocusedAsOver} is <code>true</code>, the <b><code>"over"</code></b> will be used to indicate focus. Otherwise a separate <b><code>"focused"</code></b> state will be used.
+    * Should we visibly change state when the canvas recieves focus?  If&#010 {@link com.smartgwt.client.widgets.StatefulCanvas#getShowFocusedAsOver showFocusedAsOver} is <code>true</code>, the <b><code>"over"</code></b>&#010 will be used to indicate focus. Otherwise a separate <b><code>"focused"</code></b> state&#010 will be used.
     *
     * @param showFocused showFocused Default value is false
     */
@@ -556,7 +556,7 @@ public class StretchImgButton extends StretchImg  implements com.smartgwt.client
         setAttribute("showFocused", showFocused, true);
     }
     /**
-     * Should we visibly change state when the canvas recieves focus?  If {@link com.smartgwt.client.widgets.StatefulCanvas#getShowFocusedAsOver showFocusedAsOver} is <code>true</code>, the <b><code>"over"</code></b> will be used to indicate focus. Otherwise a separate <b><code>"focused"</code></b> state will be used.
+     * Should we visibly change state when the canvas recieves focus?  If&#010 {@link com.smartgwt.client.widgets.StatefulCanvas#getShowFocusedAsOver showFocusedAsOver} is <code>true</code>, the <b><code>"over"</code></b>&#010 will be used to indicate focus. Otherwise a separate <b><code>"focused"</code></b> state&#010 will be used.
      *
      *
      * @return Boolean
@@ -624,7 +624,7 @@ public class StretchImgButton extends StretchImg  implements com.smartgwt.client
     }
 
     /**
-    * Determines whether any specified {@link com.smartgwt.client.widgets.StatefulCanvas#getTitle} will be  displayed for this component.<br> Applies to Image-based components only, where the title will be rendered out in a label floating over the component
+    * Determines whether any specified {@link com.smartgwt.client.widgets.StatefulCanvas#getTitle} will be &#010 displayed for this component.<br>&#010 Applies to Image-based components only, where the title will be rendered out in a label&#010 floating over the component
     *
     * @param showTitle showTitle Default value is true
     */
@@ -632,7 +632,7 @@ public class StretchImgButton extends StretchImg  implements com.smartgwt.client
         setAttribute("showTitle", showTitle, true);
     }
     /**
-     * Determines whether any specified {@link com.smartgwt.client.widgets.StatefulCanvas#getTitle} will be  displayed for this component.<br> Applies to Image-based components only, where the title will be rendered out in a label floating over the component
+     * Determines whether any specified {@link com.smartgwt.client.widgets.StatefulCanvas#getTitle} will be &#010 displayed for this component.<br>&#010 Applies to Image-based components only, where the title will be rendered out in a label&#010 floating over the component
      *
      *
      * @return Boolean
@@ -643,7 +643,7 @@ public class StretchImgButton extends StretchImg  implements com.smartgwt.client
     }
 
     /**
-    * The padding for a StretchImgButton's label is determined as follows. <P> If <code>labelHPad</code> is set it will specify the horizontal padding applied to the label. Similarly if <code>labelVPad</code> is set it will specify the vertical padding for the label, regardless of the button's {@link com.smartgwt.client.widgets.StretchImgButton#getVertical vertical} setting. <P> Otherwise <code>labelLengthPad</code> can be set to specify the label padding along the length axis (ie: horizontal padding if {@link com.smartgwt.client.widgets.StretchImgButton#getVertical vertical} is false, otherwise vertical padding), and  <code>labelBreadthPad</code> can be set to specify the label padding along the other axis. <P> Otherwise the padding on the length axis will match the {@link com.smartgwt.client.widgets.StretchImgButton#getCapSize capSize} and will be set to zero on the breadth axis. <P> So by default the label will be sized to match the center image of the StretchImgButton, but these settings allow the label to partially or wholly overlap the caps.
+    * The padding for a StretchImgButton's label is determined as follows.&#010 <P>&#010 If <code>labelHPad</code> is set it will specify the horizontal padding applied to the&#010 label. Similarly if <code>labelVPad</code> is set it will specify the vertical padding&#010 for the label, regardless of the button's {@link com.smartgwt.client.widgets.StretchImgButton#getVertical vertical} setting.&#010 <P>&#010 Otherwise <code>labelLengthPad</code> can be set to specify the label padding along the&#010 length axis (ie: horizontal padding if {@link com.smartgwt.client.widgets.StretchImgButton#getVertical vertical} is false,&#010 otherwise vertical padding), and &#010 <code>labelBreadthPad</code> can be set to specify the label padding along the other axis.&#010 <P>&#010 Otherwise the padding on the length axis will match the {@link com.smartgwt.client.widgets.StretchImgButton#getCapSize capSize} and&#010 will be set to zero on the breadth axis.&#010 <P>&#010 So by default the label will be sized to match the center image of the StretchImgButton, but&#010 these settings allow the label to partially or wholly overlap the caps.
     *
     * @param labelHPad labelHPad Default value is null
     */
@@ -651,7 +651,7 @@ public class StretchImgButton extends StretchImg  implements com.smartgwt.client
         setAttribute("labelHPad", labelHPad, true);
     }
     /**
-     * The padding for a StretchImgButton's label is determined as follows. <P> If <code>labelHPad</code> is set it will specify the horizontal padding applied to the label. Similarly if <code>labelVPad</code> is set it will specify the vertical padding for the label, regardless of the button's {@link com.smartgwt.client.widgets.StretchImgButton#getVertical vertical} setting. <P> Otherwise <code>labelLengthPad</code> can be set to specify the label padding along the length axis (ie: horizontal padding if {@link com.smartgwt.client.widgets.StretchImgButton#getVertical vertical} is false, otherwise vertical padding), and  <code>labelBreadthPad</code> can be set to specify the label padding along the other axis. <P> Otherwise the padding on the length axis will match the {@link com.smartgwt.client.widgets.StretchImgButton#getCapSize capSize} and will be set to zero on the breadth axis. <P> So by default the label will be sized to match the center image of the StretchImgButton, but these settings allow the label to partially or wholly overlap the caps.
+     * The padding for a StretchImgButton's label is determined as follows.&#010 <P>&#010 If <code>labelHPad</code> is set it will specify the horizontal padding applied to the&#010 label. Similarly if <code>labelVPad</code> is set it will specify the vertical padding&#010 for the label, regardless of the button's {@link com.smartgwt.client.widgets.StretchImgButton#getVertical vertical} setting.&#010 <P>&#010 Otherwise <code>labelLengthPad</code> can be set to specify the label padding along the&#010 length axis (ie: horizontal padding if {@link com.smartgwt.client.widgets.StretchImgButton#getVertical vertical} is false,&#010 otherwise vertical padding), and &#010 <code>labelBreadthPad</code> can be set to specify the label padding along the other axis.&#010 <P>&#010 Otherwise the padding on the length axis will match the {@link com.smartgwt.client.widgets.StretchImgButton#getCapSize capSize} and&#010 will be set to zero on the breadth axis.&#010 <P>&#010 So by default the label will be sized to match the center image of the StretchImgButton, but&#010 these settings allow the label to partially or wholly overlap the caps.
      *
      *
      * @return Integer
@@ -662,7 +662,7 @@ public class StretchImgButton extends StretchImg  implements com.smartgwt.client
     }
 
     /**
-    * The padding for a StretchImgButton's label is determined as follows. <P> If <code>labelHPad</code> is set it will specify the horizontal padding applied to the label. Similarly if <code>labelVPad</code> is set it will specify the vertical padding for the label, regardless of the button's {@link com.smartgwt.client.widgets.StretchImgButton#getVertical vertical} setting. <P> Otherwise <code>labelLengthPad</code> can be set to specify the label padding along the length axis (ie: horizontal padding if {@link com.smartgwt.client.widgets.StretchImgButton#getVertical vertical} is false, otherwise vertical padding), and  <code>labelBreadthPad</code> can be set to specify the label padding along the other axis. <P> Otherwise the padding on the length axis will match the {@link com.smartgwt.client.widgets.StretchImgButton#getCapSize capSize} and will be set to zero on the breadth axis. <P> So by default the label will be sized to match the center image of the StretchImgButton, but these settings allow the label to partially or wholly overlap the caps.
+    * The padding for a StretchImgButton's label is determined as follows.&#010 <P>&#010 If <code>labelHPad</code> is set it will specify the horizontal padding applied to the&#010 label. Similarly if <code>labelVPad</code> is set it will specify the vertical padding&#010 for the label, regardless of the button's {@link com.smartgwt.client.widgets.StretchImgButton#getVertical vertical} setting.&#010 <P>&#010 Otherwise <code>labelLengthPad</code> can be set to specify the label padding along the&#010 length axis (ie: horizontal padding if {@link com.smartgwt.client.widgets.StretchImgButton#getVertical vertical} is false,&#010 otherwise vertical padding), and &#010 <code>labelBreadthPad</code> can be set to specify the label padding along the other axis.&#010 <P>&#010 Otherwise the padding on the length axis will match the {@link com.smartgwt.client.widgets.StretchImgButton#getCapSize capSize} and&#010 will be set to zero on the breadth axis.&#010 <P>&#010 So by default the label will be sized to match the center image of the StretchImgButton, but&#010 these settings allow the label to partially or wholly overlap the caps.
     *
     * @param labelVPad labelVPad Default value is null
     */
@@ -670,7 +670,7 @@ public class StretchImgButton extends StretchImg  implements com.smartgwt.client
         setAttribute("labelVPad", labelVPad, true);
     }
     /**
-     * The padding for a StretchImgButton's label is determined as follows. <P> If <code>labelHPad</code> is set it will specify the horizontal padding applied to the label. Similarly if <code>labelVPad</code> is set it will specify the vertical padding for the label, regardless of the button's {@link com.smartgwt.client.widgets.StretchImgButton#getVertical vertical} setting. <P> Otherwise <code>labelLengthPad</code> can be set to specify the label padding along the length axis (ie: horizontal padding if {@link com.smartgwt.client.widgets.StretchImgButton#getVertical vertical} is false, otherwise vertical padding), and  <code>labelBreadthPad</code> can be set to specify the label padding along the other axis. <P> Otherwise the padding on the length axis will match the {@link com.smartgwt.client.widgets.StretchImgButton#getCapSize capSize} and will be set to zero on the breadth axis. <P> So by default the label will be sized to match the center image of the StretchImgButton, but these settings allow the label to partially or wholly overlap the caps.
+     * The padding for a StretchImgButton's label is determined as follows.&#010 <P>&#010 If <code>labelHPad</code> is set it will specify the horizontal padding applied to the&#010 label. Similarly if <code>labelVPad</code> is set it will specify the vertical padding&#010 for the label, regardless of the button's {@link com.smartgwt.client.widgets.StretchImgButton#getVertical vertical} setting.&#010 <P>&#010 Otherwise <code>labelLengthPad</code> can be set to specify the label padding along the&#010 length axis (ie: horizontal padding if {@link com.smartgwt.client.widgets.StretchImgButton#getVertical vertical} is false,&#010 otherwise vertical padding), and &#010 <code>labelBreadthPad</code> can be set to specify the label padding along the other axis.&#010 <P>&#010 Otherwise the padding on the length axis will match the {@link com.smartgwt.client.widgets.StretchImgButton#getCapSize capSize} and&#010 will be set to zero on the breadth axis.&#010 <P>&#010 So by default the label will be sized to match the center image of the StretchImgButton, but&#010 these settings allow the label to partially or wholly overlap the caps.
      *
      *
      * @return Integer
@@ -681,7 +681,7 @@ public class StretchImgButton extends StretchImg  implements com.smartgwt.client
     }
 
     /**
-    * The padding for a StretchImgButton's label is determined as follows. <P> If <code>labelHPad</code> is set it will specify the horizontal padding applied to the label. Similarly if <code>labelVPad</code> is set it will specify the vertical padding for the label, regardless of the button's {@link com.smartgwt.client.widgets.StretchImgButton#getVertical vertical} setting. <P> Otherwise <code>labelLengthPad</code> can be set to specify the label padding along the length axis (ie: horizontal padding if {@link com.smartgwt.client.widgets.StretchImgButton#getVertical vertical} is false, otherwise vertical padding), and  <code>labelBreadthPad</code> can be set to specify the label padding along the other axis. <P> Otherwise the padding on the length axis will match the {@link com.smartgwt.client.widgets.StretchImgButton#getCapSize capSize} and will be set to zero on the breadth axis. <P> So by default the label will be sized to match the center image of the StretchImgButton, but these settings allow the label to partially or wholly overlap the caps.
+    * The padding for a StretchImgButton's label is determined as follows.&#010 <P>&#010 If <code>labelHPad</code> is set it will specify the horizontal padding applied to the&#010 label. Similarly if <code>labelVPad</code> is set it will specify the vertical padding&#010 for the label, regardless of the button's {@link com.smartgwt.client.widgets.StretchImgButton#getVertical vertical} setting.&#010 <P>&#010 Otherwise <code>labelLengthPad</code> can be set to specify the label padding along the&#010 length axis (ie: horizontal padding if {@link com.smartgwt.client.widgets.StretchImgButton#getVertical vertical} is false,&#010 otherwise vertical padding), and &#010 <code>labelBreadthPad</code> can be set to specify the label padding along the other axis.&#010 <P>&#010 Otherwise the padding on the length axis will match the {@link com.smartgwt.client.widgets.StretchImgButton#getCapSize capSize} and&#010 will be set to zero on the breadth axis.&#010 <P>&#010 So by default the label will be sized to match the center image of the StretchImgButton, but&#010 these settings allow the label to partially or wholly overlap the caps.
     *
     * @param labelLengthPad labelLengthPad Default value is null
     */
@@ -689,7 +689,7 @@ public class StretchImgButton extends StretchImg  implements com.smartgwt.client
         setAttribute("labelLengthPad", labelLengthPad, true);
     }
     /**
-     * The padding for a StretchImgButton's label is determined as follows. <P> If <code>labelHPad</code> is set it will specify the horizontal padding applied to the label. Similarly if <code>labelVPad</code> is set it will specify the vertical padding for the label, regardless of the button's {@link com.smartgwt.client.widgets.StretchImgButton#getVertical vertical} setting. <P> Otherwise <code>labelLengthPad</code> can be set to specify the label padding along the length axis (ie: horizontal padding if {@link com.smartgwt.client.widgets.StretchImgButton#getVertical vertical} is false, otherwise vertical padding), and  <code>labelBreadthPad</code> can be set to specify the label padding along the other axis. <P> Otherwise the padding on the length axis will match the {@link com.smartgwt.client.widgets.StretchImgButton#getCapSize capSize} and will be set to zero on the breadth axis. <P> So by default the label will be sized to match the center image of the StretchImgButton, but these settings allow the label to partially or wholly overlap the caps.
+     * The padding for a StretchImgButton's label is determined as follows.&#010 <P>&#010 If <code>labelHPad</code> is set it will specify the horizontal padding applied to the&#010 label. Similarly if <code>labelVPad</code> is set it will specify the vertical padding&#010 for the label, regardless of the button's {@link com.smartgwt.client.widgets.StretchImgButton#getVertical vertical} setting.&#010 <P>&#010 Otherwise <code>labelLengthPad</code> can be set to specify the label padding along the&#010 length axis (ie: horizontal padding if {@link com.smartgwt.client.widgets.StretchImgButton#getVertical vertical} is false,&#010 otherwise vertical padding), and &#010 <code>labelBreadthPad</code> can be set to specify the label padding along the other axis.&#010 <P>&#010 Otherwise the padding on the length axis will match the {@link com.smartgwt.client.widgets.StretchImgButton#getCapSize capSize} and&#010 will be set to zero on the breadth axis.&#010 <P>&#010 So by default the label will be sized to match the center image of the StretchImgButton, but&#010 these settings allow the label to partially or wholly overlap the caps.
      *
      *
      * @return Integer
@@ -700,7 +700,7 @@ public class StretchImgButton extends StretchImg  implements com.smartgwt.client
     }
 
     /**
-    * The padding for a StretchImgButton's label is determined as follows. <P> If <code>labelHPad</code> is set it will specify the horizontal padding applied to the label. Similarly if <code>labelVPad</code> is set it will specify the vertical padding for the label, regardless of the button's {@link com.smartgwt.client.widgets.StretchImgButton#getVertical vertical} setting. <P> Otherwise <code>labelLengthPad</code> can be set to specify the label padding along the length axis (ie: horizontal padding if {@link com.smartgwt.client.widgets.StretchImgButton#getVertical vertical} is false, otherwise vertical padding), and  <code>labelBreadthPad</code> can be set to specify the label padding along the other axis. <P> Otherwise the padding on the length axis will match the {@link com.smartgwt.client.widgets.StretchImgButton#getCapSize capSize} and will be set to zero on the breadth axis. <P> So by default the label will be sized to match the center image of the StretchImgButton, but these settings allow the label to partially or wholly overlap the caps.
+    * The padding for a StretchImgButton's label is determined as follows.&#010 <P>&#010 If <code>labelHPad</code> is set it will specify the horizontal padding applied to the&#010 label. Similarly if <code>labelVPad</code> is set it will specify the vertical padding&#010 for the label, regardless of the button's {@link com.smartgwt.client.widgets.StretchImgButton#getVertical vertical} setting.&#010 <P>&#010 Otherwise <code>labelLengthPad</code> can be set to specify the label padding along the&#010 length axis (ie: horizontal padding if {@link com.smartgwt.client.widgets.StretchImgButton#getVertical vertical} is false,&#010 otherwise vertical padding), and &#010 <code>labelBreadthPad</code> can be set to specify the label padding along the other axis.&#010 <P>&#010 Otherwise the padding on the length axis will match the {@link com.smartgwt.client.widgets.StretchImgButton#getCapSize capSize} and&#010 will be set to zero on the breadth axis.&#010 <P>&#010 So by default the label will be sized to match the center image of the StretchImgButton, but&#010 these settings allow the label to partially or wholly overlap the caps.
     *
     * @param labelBreadthPad labelBreadthPad Default value is null
     */
@@ -708,7 +708,7 @@ public class StretchImgButton extends StretchImg  implements com.smartgwt.client
         setAttribute("labelBreadthPad", labelBreadthPad, true);
     }
     /**
-     * The padding for a StretchImgButton's label is determined as follows. <P> If <code>labelHPad</code> is set it will specify the horizontal padding applied to the label. Similarly if <code>labelVPad</code> is set it will specify the vertical padding for the label, regardless of the button's {@link com.smartgwt.client.widgets.StretchImgButton#getVertical vertical} setting. <P> Otherwise <code>labelLengthPad</code> can be set to specify the label padding along the length axis (ie: horizontal padding if {@link com.smartgwt.client.widgets.StretchImgButton#getVertical vertical} is false, otherwise vertical padding), and  <code>labelBreadthPad</code> can be set to specify the label padding along the other axis. <P> Otherwise the padding on the length axis will match the {@link com.smartgwt.client.widgets.StretchImgButton#getCapSize capSize} and will be set to zero on the breadth axis. <P> So by default the label will be sized to match the center image of the StretchImgButton, but these settings allow the label to partially or wholly overlap the caps.
+     * The padding for a StretchImgButton's label is determined as follows.&#010 <P>&#010 If <code>labelHPad</code> is set it will specify the horizontal padding applied to the&#010 label. Similarly if <code>labelVPad</code> is set it will specify the vertical padding&#010 for the label, regardless of the button's {@link com.smartgwt.client.widgets.StretchImgButton#getVertical vertical} setting.&#010 <P>&#010 Otherwise <code>labelLengthPad</code> can be set to specify the label padding along the&#010 length axis (ie: horizontal padding if {@link com.smartgwt.client.widgets.StretchImgButton#getVertical vertical} is false,&#010 otherwise vertical padding), and &#010 <code>labelBreadthPad</code> can be set to specify the label padding along the other axis.&#010 <P>&#010 Otherwise the padding on the length axis will match the {@link com.smartgwt.client.widgets.StretchImgButton#getCapSize capSize} and&#010 will be set to zero on the breadth axis.&#010 <P>&#010 So by default the label will be sized to match the center image of the StretchImgButton, but&#010 these settings allow the label to partially or wholly overlap the caps.
      *
      *
      * @return Integer
@@ -719,7 +719,7 @@ public class StretchImgButton extends StretchImg  implements com.smartgwt.client
     }
 
     /**
-    * If set to true, if the {@link com.smartgwt.client.widgets.StatefulCanvas#getTitle title} of this button contains the specified {@link com.smartgwt.client.widgets.Canvas#getAccessKey accessKey}, when the title is displayed to the user it will be modified to include HTML to underline the accessKey.<br> Note that this property may cause titles that include HTML (rather than simple strings) to be inappropriately modified, so should be disabled if your title string includes HTML characters.
+    * If set to true, if the {@link com.smartgwt.client.widgets.StatefulCanvas#getTitle title} of this button contains the&#010 specified {@link com.smartgwt.client.widgets.Canvas#getAccessKey accessKey}, when the title is displayed to the user&#010 it will be modified to include HTML to underline the accessKey.<br>&#010 Note that this property may cause titles that include HTML (rather than simple strings)&#010 to be inappropriately modified, so should be disabled if your title string includes&#010 HTML characters.
     *
     * @param hiliteAccessKey hiliteAccessKey Default value is true
     */
@@ -727,7 +727,7 @@ public class StretchImgButton extends StretchImg  implements com.smartgwt.client
         setAttribute("hiliteAccessKey", hiliteAccessKey, true);
     }
     /**
-     * If set to true, if the {@link com.smartgwt.client.widgets.StatefulCanvas#getTitle title} of this button contains the specified {@link com.smartgwt.client.widgets.Canvas#getAccessKey accessKey}, when the title is displayed to the user it will be modified to include HTML to underline the accessKey.<br> Note that this property may cause titles that include HTML (rather than simple strings) to be inappropriately modified, so should be disabled if your title string includes HTML characters.
+     * If set to true, if the {@link com.smartgwt.client.widgets.StatefulCanvas#getTitle title} of this button contains the&#010 specified {@link com.smartgwt.client.widgets.Canvas#getAccessKey accessKey}, when the title is displayed to the user&#010 it will be modified to include HTML to underline the accessKey.<br>&#010 Note that this property may cause titles that include HTML (rather than simple strings)&#010 to be inappropriately modified, so should be disabled if your title string includes&#010 HTML characters.
      *
      *
      * @return Boolean
@@ -738,7 +738,7 @@ public class StretchImgButton extends StretchImg  implements com.smartgwt.client
     }
 
     /**
-    * Base URL for the image.  By default, StretchImgButtons consist of three image parts: A start image (displayed at the top or left), a scaleable central image and an end image displayed at the bottom or right. <P> The images displayed in the stretchImgButton are derived from this property in the  following way: <P> <ul> <li> When the button is in its standard state the suffixes "_start", "_end" and       "_stretch" are applied to the src (before the file extension), so by default       the images displayed will be "button_start.gif" (sized to be       <code>this.capSize</code> by the specified width of the stretchImgButton),       "button_stretch.gif" (stretched to the necessary width) and "button_end.gif"       (sized the same as the start image). <li> As the button's state changes, the images will have suffixes appended <b>before</b>      the "_start" / "_end" / "_stretch" to represent the button state. Possible states       are "Down", "Over", "Selected" "Focused" and "Disabled". Note that "Selected" and      "Focused" are compound states which may be applied in addition to "Down" etc. </ul> For example the center piece of a selected stretchImgButton with the mouse hovering over it might have the URL: <code>"button_Selected_Down_stretch.gif"</code>. <P> Media should be present for each possible state of the _start, _end and _stretch images.
+    * Base URL for the image.  By default, StretchImgButtons consist of three image parts: A&#010 start image (displayed at the top or left), a scaleable central image and an end image&#010 displayed at the bottom or right.&#010 <P>&#010 The images displayed in the stretchImgButton are derived from this property in the &#010 following way:&#010 <P>&#010 <ul>&#010 <li> When the button is in its standard state the suffixes "_start", "_end" and &#010      "_stretch" are applied to the src (before the file extension), so by default &#010      the images displayed will be "button_start.gif" (sized to be &#010      <code>this.capSize</code> by the specified width of the stretchImgButton), &#010      "button_stretch.gif" (stretched to the necessary width) and "button_end.gif" &#010      (sized the same as the start image).&#010 <li> As the button's state changes, the images will have suffixes appended <b>before</b>&#010      the "_start" / "_end" / "_stretch" to represent the button state. Possible states &#010      are "Down", "Over", "Selected" "Focused" and "Disabled". Note that "Selected" and&#010      "Focused" are compound states which may be applied in addition to "Down" etc.&#010 </ul>&#010 For example the center piece of a selected stretchImgButton with the mouse hovering&#010 over it might have the URL: <code>"button_Selected_Down_stretch.gif"</code>.&#010 <P>&#010 Media should be present for each possible state of the _start, _end and _stretch images.
     *
     * @param src src Default value is "button.gif"
     */
@@ -746,7 +746,7 @@ public class StretchImgButton extends StretchImg  implements com.smartgwt.client
         setAttribute("src", src, true);
     }
     /**
-     * Base URL for the image.  By default, StretchImgButtons consist of three image parts: A start image (displayed at the top or left), a scaleable central image and an end image displayed at the bottom or right. <P> The images displayed in the stretchImgButton are derived from this property in the  following way: <P> <ul> <li> When the button is in its standard state the suffixes "_start", "_end" and       "_stretch" are applied to the src (before the file extension), so by default       the images displayed will be "button_start.gif" (sized to be       <code>this.capSize</code> by the specified width of the stretchImgButton),       "button_stretch.gif" (stretched to the necessary width) and "button_end.gif"       (sized the same as the start image). <li> As the button's state changes, the images will have suffixes appended <b>before</b>      the "_start" / "_end" / "_stretch" to represent the button state. Possible states       are "Down", "Over", "Selected" "Focused" and "Disabled". Note that "Selected" and      "Focused" are compound states which may be applied in addition to "Down" etc. </ul> For example the center piece of a selected stretchImgButton with the mouse hovering over it might have the URL: <code>"button_Selected_Down_stretch.gif"</code>. <P> Media should be present for each possible state of the _start, _end and _stretch images.
+     * Base URL for the image.  By default, StretchImgButtons consist of three image parts: A&#010 start image (displayed at the top or left), a scaleable central image and an end image&#010 displayed at the bottom or right.&#010 <P>&#010 The images displayed in the stretchImgButton are derived from this property in the &#010 following way:&#010 <P>&#010 <ul>&#010 <li> When the button is in its standard state the suffixes "_start", "_end" and &#010      "_stretch" are applied to the src (before the file extension), so by default &#010      the images displayed will be "button_start.gif" (sized to be &#010      <code>this.capSize</code> by the specified width of the stretchImgButton), &#010      "button_stretch.gif" (stretched to the necessary width) and "button_end.gif" &#010      (sized the same as the start image).&#010 <li> As the button's state changes, the images will have suffixes appended <b>before</b>&#010      the "_start" / "_end" / "_stretch" to represent the button state. Possible states &#010      are "Down", "Over", "Selected" "Focused" and "Disabled". Note that "Selected" and&#010      "Focused" are compound states which may be applied in addition to "Down" etc.&#010 </ul>&#010 For example the center piece of a selected stretchImgButton with the mouse hovering&#010 over it might have the URL: <code>"button_Selected_Down_stretch.gif"</code>.&#010 <P>&#010 Media should be present for each possible state of the _start, _end and _stretch images.
      *
      *
      * @return String
@@ -757,7 +757,7 @@ public class StretchImgButton extends StretchImg  implements com.smartgwt.client
     }
 
     /**
-    * Default is a horizontal button.  Vertical StretchImgButtons are allowed, but title text, if any, will not be automatically rotated.
+    * Default is a horizontal button.  Vertical StretchImgButtons are allowed, but title text,&#010 if any, will not be automatically rotated.
     *
     * @param vertical vertical Default value is false
     */
@@ -765,7 +765,7 @@ public class StretchImgButton extends StretchImg  implements com.smartgwt.client
         setAttribute("vertical", vertical, true);
     }
     /**
-     * Default is a horizontal button.  Vertical StretchImgButtons are allowed, but title text, if any, will not be automatically rotated.
+     * Default is a horizontal button.  Vertical StretchImgButtons are allowed, but title text,&#010 if any, will not be automatically rotated.
      *
      *
      * @return Boolean
@@ -804,7 +804,7 @@ public class StretchImgButton extends StretchImg  implements com.smartgwt.client
 
 
         /**
-         * Select this object.
+         * Select this object.&#010
          */
         public native void select() /*-{
             var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
@@ -812,7 +812,7 @@ public class StretchImgButton extends StretchImg  implements com.smartgwt.client
         }-*/;
 
         /**
-         * Select this object.
+         * Select this object.&#010
          */
         public native void deselect() /*-{
             var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
@@ -820,7 +820,7 @@ public class StretchImgButton extends StretchImg  implements com.smartgwt.client
         }-*/;
 
         /**
-         * Find out if this object is selected
+         * Find out if this object is selected&#010
          *
          * @return 
          */
@@ -836,7 +836,7 @@ public class StretchImgButton extends StretchImg  implements com.smartgwt.client
 
 
         /**
-         * Add this widget to the specified mutually exclusive selection group with the ID passed in. Selecting this widget will then deselect any other StatefulCanvases with the same radioGroup ID. StatefulCanvases can belong to only one radioGroup, so this method will remove from  any other radiogroup of which this button is already a member.
+         * Add this widget to the specified mutually exclusive selection group with the ID&#010 passed in.&#010 Selecting this widget will then deselect any other StatefulCanvases with the same&#010 radioGroup ID.&#010 StatefulCanvases can belong to only one radioGroup, so this method will remove from &#010 any other radiogroup of which this button is already a member.&#010
          * @param groupID - ID of the radiogroup to which this widget should be added
          */
         public native void addToRadioGroup(String groupID) /*-{
@@ -845,7 +845,7 @@ public class StretchImgButton extends StretchImg  implements com.smartgwt.client
         }-*/;
 
         /**
-         * Remove this widget from the specified mutually exclusive selection group with the ID passed in. No-op's if this widget is not a member of the groupID passed in. If no groupID is passed in, defaults to removing from whatever radioGroup this widget is a member of.
+         * Remove this widget from the specified mutually exclusive selection group with the ID&#010 passed in.&#010 No-op's if this widget is not a member of the groupID passed in.&#010 If no groupID is passed in, defaults to removing from whatever radioGroup this widget&#010 is a member of.&#010
          */
         public native void removeFromRadioGroup() /*-{
             var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
@@ -853,7 +853,7 @@ public class StretchImgButton extends StretchImg  implements com.smartgwt.client
         }-*/;
 
         /**
-         * Remove this widget from the specified mutually exclusive selection group with the ID passed in. No-op's if this widget is not a member of the groupID passed in. If no groupID is passed in, defaults to removing from whatever radioGroup this widget is a member of.
+         * Remove this widget from the specified mutually exclusive selection group with the ID&#010 passed in.&#010 No-op's if this widget is not a member of the groupID passed in.&#010 If no groupID is passed in, defaults to removing from whatever radioGroup this widget&#010 is a member of.&#010
          * @param groupID - optional radio group ID (to ensure the widget is removed                                        from the appropriate group.
          */
         public native void removeFromRadioGroup(String groupID) /*-{
@@ -865,7 +865,7 @@ public class StretchImgButton extends StretchImg  implements com.smartgwt.client
 
 
         /**
-         * Enable or disable this object
+         * Enable or disable this object&#010
          * @param disabled true if this widget is to be disabled
          */
         public native void setDisabled(boolean disabled) /*-{
@@ -875,7 +875,7 @@ public class StretchImgButton extends StretchImg  implements com.smartgwt.client
 
 
         /**
-         * This property contains the default 'action' for the Button to fire when activated.
+         * This property contains the default 'action' for the Button to fire when activated.&#010
          */
         public native void action() /*-{
             var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
@@ -885,7 +885,7 @@ public class StretchImgButton extends StretchImg  implements com.smartgwt.client
         /**
          * Add a iconClick handler.
          * <p>
-         * If this button is showing an {@link com.smartgwt.client.widgets.StretchImgButton#getIcon icon}, a separate click handler for the icon may be defined as <code>this.iconClick</code>. Returning false will suppress the standard button click handling code.
+         * If this button is showing an {@link com.smartgwt.client.widgets.StretchImgButton#getIcon icon}, a separate click&#010 handler for the icon may be defined as <code>this.iconClick</code>.&#010 Returning false will suppress the standard button click handling code.&#010
          *
          * @param handler the iconClick handler
          */

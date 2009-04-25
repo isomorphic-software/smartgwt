@@ -22,7 +22,7 @@ import com.google.gwt.event.shared.HasHandlers;
 
 public interface HasPercentChangedHandlers extends HasHandlers {
     /**
-     * This method is called when the percentDone value changes. Observe this method to be notified upon a change to the percentDone value.
+     * This method is called when the percentDone value changes. Observe this method to be notified upon&#010 a change to the percentDone value.&#010&#010
      */
     HandlerRegistration addPercentChangedHandler(PercentChangedHandler handler);
 }

@@ -22,7 +22,7 @@ import com.google.gwt.event.shared.HasHandlers;
 
 public interface HasEventChangedHandlers extends HasHandlers {
     /**
-     * Notification fired whenever a user changes an event, whether by dragging the event or by editing it in a dialog. <P> In a calendar with a DataSource, eventChanged() fires <b>after</b> the updated event has been successfully saved to the server
+     * Notification fired whenever a user changes an event, whether by dragging the event or by&#010 editing it in a dialog.&#010 <P>&#010 In a calendar with a DataSource, eventChanged() fires <b>after</b> the updated event has&#010 been successfully saved to the server&#010&#010
      */
     HandlerRegistration addEventChangedHandler(EventChangedHandler handler);
 }

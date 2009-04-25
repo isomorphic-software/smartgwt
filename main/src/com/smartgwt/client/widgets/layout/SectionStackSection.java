@@ -56,7 +56,7 @@ import com.smartgwt.client.util.EnumUtil;
 import com.google.gwt.event.shared.*;
 import com.google.gwt.event.shared.HasHandlers;
    /**
-    * Section descriptor used by a SectionStack to describe a section of items which are shown or hidden together, and their associated header.
+    * Section descriptor used by a SectionStack to describe a section of items which are shown&#010 or hidden together, and their associated header.
 
     */
 public class SectionStackSection extends RefDataClass {
@@ -89,7 +89,7 @@ public class SectionStackSection extends RefDataClass {
     // ********************* Properties / Attributes ***********************
 
     /**
-    * Optional ID for the section.  This can be used later in calls to {@link com.smartgwt.client.widgets.layout.SectionStack} APIs such as {@link com.smartgwt.client.widgets.layout.SectionStack#expandSection} and {@link com.smartgwt.client.widgets.layout.SectionStack#collapseSection}.
+    * Optional ID for the section.  This can be used later in calls to {@link com.smartgwt.client.widgets.layout.SectionStack} APIs such as&#010 {@link com.smartgwt.client.widgets.layout.SectionStack#expandSection} and {@link com.smartgwt.client.widgets.layout.SectionStack#collapseSection}.
     *
     * @param ID ID Default value is null
     */
@@ -97,7 +97,7 @@ public class SectionStackSection extends RefDataClass {
         setAttribute("ID", ID);
     }
     /**
-     * Optional ID for the section.  This can be used later in calls to {@link com.smartgwt.client.widgets.layout.SectionStack} APIs such as {@link com.smartgwt.client.widgets.layout.SectionStack#expandSection} and {@link com.smartgwt.client.widgets.layout.SectionStack#collapseSection}.
+     * Optional ID for the section.  This can be used later in calls to {@link com.smartgwt.client.widgets.layout.SectionStack} APIs such as&#010 {@link com.smartgwt.client.widgets.layout.SectionStack#expandSection} and {@link com.smartgwt.client.widgets.layout.SectionStack#collapseSection}.
      *
      *
      * @return String
@@ -136,7 +136,7 @@ public class SectionStackSection extends RefDataClass {
     }
 
     /**
-    * If set to false, then the items in this section will not be resized by sectionHeader repositioning.  You may also set this flag directly on any of the items in any section to cause that item to not be resizeable.
+    * If set to false, then the items in this section will not be resized by sectionHeader&#010 repositioning.  You may also set this flag directly on any of the items in any section to&#010 cause that item to not be resizeable.
     *
     * @param resizeable resizeable Default value is null
     */
@@ -145,7 +145,7 @@ public class SectionStackSection extends RefDataClass {
     }
 
     /**
-    * Sections default to the collapsed state unless {@link com.smartgwt.client.widgets.layout.SectionStackSection#getShowHeader showHeader} is set to <code>false</code> in which case they default to the expanded state.  This attribute allows you to explicitly control the expand/collapse state of the section by overriding the above default behavior.
+    * Sections default to the collapsed state unless {@link com.smartgwt.client.widgets.layout.SectionStackSection#getShowHeader showHeader} is&#010 set to <code>false</code> in which case they default to the expanded state.  This&#010 attribute allows you to explicitly control the expand/collapse state of the&#010 section by overriding the above default behavior.
     *
     * @param expanded expanded Default value is false
     */
@@ -154,7 +154,7 @@ public class SectionStackSection extends RefDataClass {
     }
 
     /**
-    * Sections default to the visible state.  This attribute allows you to explicitly control the visible/hidden state of the section by overriding the above default behavior.
+    * Sections default to the visible state.  This&#010 attribute allows you to explicitly control the visible/hidden state of the&#010 section by overriding the above default behavior.
     *
     * @param hidden hidden Default value is false
     */
@@ -163,7 +163,7 @@ public class SectionStackSection extends RefDataClass {
     }
 
     /**
-    * This attribute controls whether or not the expand/collapse UI control is shown on the header of this section.  Any section can still be expanded/collapsed programmatically, regardless of this setting.
+    * This attribute controls whether or not the expand/collapse UI control is shown on the&#010 header of this section.  Any section can still be expanded/collapsed programmatically,&#010 regardless of this setting.
     *
     * @param canCollapse canCollapse Default value is true
     */

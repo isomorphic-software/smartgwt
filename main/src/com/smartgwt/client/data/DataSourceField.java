@@ -108,7 +108,7 @@ public class DataSourceField extends DataClass {
     // ********************* Properties / Attributes ***********************
 
     /**
-    * Name for this field.   <p> The field name is also the property in each DataSource record which holds the value for this field. <P> Must be unique across all fields within the DataSource.
+    * Name for this field.  &#010 <p>&#010 The field name is also the property in each DataSource record which holds the value for this&#010 field.&#010 <P>&#010 Must be unique across all fields within the DataSource.
     *
     * @param name name Default value is null
     */
@@ -116,7 +116,7 @@ public class DataSourceField extends DataClass {
         setAttribute("name", name);
     }
     /**
-     * Name for this field.   <p> The field name is also the property in each DataSource record which holds the value for this field. <P> Must be unique across all fields within the DataSource.
+     * Name for this field.  &#010 <p>&#010 The field name is also the property in each DataSource record which holds the value for this&#010 field.&#010 <P>&#010 Must be unique across all fields within the DataSource.
      *
      *
      * @return String
@@ -127,7 +127,7 @@ public class DataSourceField extends DataClass {
     }
              
     /**
-    * Type of this field.  Required for all DataSource fields. <P> Field type may imply automatic validators (for example, an integer field cannot accept the value "foo").  Field type also affects the default behaviors of DataBound components, for example, if a field is declared of type "date", components that edit that field will automatically choose a date-editing interface with pop-up date picker.
+    * Type of this field.  Required for all DataSource fields.&#010 <P>&#010 Field type may imply automatic validators (for example, an integer field cannot accept the&#010 value "foo").  Field type also affects the default behaviors of DataBound components, for&#010 example, if a field is declared of type "date", components that edit that field will&#010 automatically choose a date-editing interface with pop-up date picker.
     *
     * @param type type Default value is null
     */
@@ -135,7 +135,7 @@ public class DataSourceField extends DataClass {
         setAttribute("type", type.getValue());
     }
     /**
-     * Type of this field.  Required for all DataSource fields. <P> Field type may imply automatic validators (for example, an integer field cannot accept the value "foo").  Field type also affects the default behaviors of DataBound components, for example, if a field is declared of type "date", components that edit that field will automatically choose a date-editing interface with pop-up date picker.
+     * Type of this field.  Required for all DataSource fields.&#010 <P>&#010 Field type may imply automatic validators (for example, an integer field cannot accept the&#010 value "foo").  Field type also affects the default behaviors of DataBound components, for&#010 example, if a field is declared of type "date", components that edit that field will&#010 automatically choose a date-editing interface with pop-up date picker.
      *
      *
      * @return FieldType
@@ -146,7 +146,7 @@ public class DataSourceField extends DataClass {
     }
 
     /**
-    * Indicates this field must be non-null in order for a record to pass validation. <P> Note that <code>required</code> should not be set for a server-generated field, such as a sequence, or validation will fail on the client.
+    * Indicates this field must be non-null in order for a record to pass validation.&#010 <P>&#010 Note that <code>required</code> should not be set for a server-generated field, such as a&#010 sequence, or validation will fail on the client.
     *
     * @param required required Default value is false
     */
@@ -154,7 +154,7 @@ public class DataSourceField extends DataClass {
         setAttribute("required", required);
     }
     /**
-     * Indicates this field must be non-null in order for a record to pass validation. <P> Note that <code>required</code> should not be set for a server-generated field, such as a sequence, or validation will fail on the client.
+     * Indicates this field must be non-null in order for a record to pass validation.&#010 <P>&#010 Note that <code>required</code> should not be set for a server-generated field, such as a&#010 sequence, or validation will fail on the client.
      *
      *
      * @return Boolean
@@ -184,7 +184,7 @@ public class DataSourceField extends DataClass {
     }
 
     /**
-    * XPath expression used to retrieve the field's value. <P> This XPath expression will be evaluated in the scope of the record objects selected by  the {@link com.smartgwt.client.data.DataSource#getRecordXPath recordXPath}.  For XML data  ({@link com.smartgwt.client.data.DataSource#getDataFormat dataFormat}) this means a call to {@link com.smartgwt.client.data.XMLTools#selectString} passing the selected XML element.  For JSON data ({@link com.smartgwt.client.data.DataSource#getDataFormat dataFormat}), this means a call to  {@link com.smartgwt.client.data.XMLTools#selectObjects} passing the selected JSON object. <P> In the absence of a <code>valueXPath</code>, for JSON data the value for the field will be the value of the same-named property in the record object selected by {@link com.smartgwt.client.data.DataSource#getRecordXPath recordXPath}.   <P> For XML data, the value will be the attribute or subelement named after the field name. For example, for a field "author" on a record element &lt;book&gt;, the following structures require no valueXPath: <pre>    &lt;book author="Mark Jones"/&gt;    &lt;book&gt;        &lt;author&gt;Mark Jones&lt;/author&gt;    &lt;/book&gt; </pre> <P> If <code>valueXPath</code> is not required for your field because of the default handling described above, don't specify it, as it's slightly slower. <p> To learn about XPath, try the following search: <a href="http://www.google.com/search?q=xpath+tutorial" target="_blank" >http://www.google.com/search?q=xpath+tutorial</a> <P> <B>Using valueXPath with the SmartGWT server</B> <p> If you're using the SmartGWT server to return data via the DSResponse object (or indirectly doing so using DataSource DMI), the valueXPath you specify on the DataSource fields will be applied to the data you return via the  <a href='http://jakarta.apache.org/commons/jxpath/' onclick="window.open('http://jakarta.apache.org/commons/jxpath/');return false;">JXPath</a> library. <P> If you are returning Java Beans as your DSResponse data, normally each dataSource field receives the value of the same named Java Bean property, that is, a field "zipCode" is populated by looking for "getZipCode()" on the objects passed as DSResponse data.  You can use <code>valueXPath</code> to retrieve properties from subobjects, so long as a chain of getter methods exists that corresponds to the valueXPath.  For example, a valueXPath of "address/zipCode" expects to call "getAddress()" on the bean(s) passed to DSResponse.setData(), followed by "getZipCode()" on whatever object "getAddress()" returns. <P> When you are saving data, the inbound DSRequest values, available as a Java Map, will use  just dataSource field names as Map keys, not the valueXPath used to derive them.  However, to achieve bidirectional valueXPath binding, you can use the server-side method dataSource.setProperties() to use the valueXPath when setting properties on your server object model.  When applied as a setter, an XPath like "address/zipCode" attempts "getAddress()" followed by "setZipCode()" on the returned object.  JXPath also has some ability to auto-create intervening objects if they are missing, such as auto-creating an "address" subobject when applying "address/zipCode" as a valueXPath. <P> See the <a href='http://jakarta.apache.org/commons/jxpath/' onclick="window.open('http://jakarta.apache.org/commons/jxpath/');return false;">JXPath</a> library documentation for complete details, including other types of server object models supported, such as server-side XML.
+    * XPath expression used to retrieve the field's value.&#010 <P>&#010 This XPath expression will be evaluated in the scope of the record objects selected by &#010 the {@link com.smartgwt.client.data.DataSource#getRecordXPath recordXPath}.  For XML data &#010 ({@link com.smartgwt.client.data.DataSource#getDataFormat dataFormat}) this means a call to&#010 {@link com.smartgwt.client.data.XMLTools#selectString} passing the selected XML element.  For JSON data&#010 ({@link com.smartgwt.client.data.DataSource#getDataFormat dataFormat}), this means a call to &#010 {@link com.smartgwt.client.data.XMLTools#selectObjects} passing the selected JSON object.&#010 <P>&#010 In the absence of a <code>valueXPath</code>, for JSON data the value for the field will&#010 be the value of the same-named property in the record object selected by&#010 {@link com.smartgwt.client.data.DataSource#getRecordXPath recordXPath}.  &#010 <P>&#010 For XML data, the value will be the attribute or subelement named after the field name.&#010 For example, for a field "author" on a record element &lt;book&gt;, the following structures&#010 require no valueXPath:&#010 <pre>&#010    &lt;book author="Mark Jones"/&gt;&#010&#010    &lt;book&gt;&#010        &lt;author&gt;Mark Jones&lt;/author&gt;&#010    &lt;/book&gt;&#010 </pre>&#010 <P>&#010 If <code>valueXPath</code> is not required for your field because of the default handling&#010 described above, don't specify it, as it's slightly slower.&#010 <p>&#010 To learn about XPath, try the following search:&#010 <a href="http://www.google.com/search?q=xpath+tutorial" target="_blank"&#010 >http://www.google.com/search?q=xpath+tutorial</a>&#010 <P>&#010 <B>Using valueXPath with the SmartGWT server</B>&#010 <p>&#010 If you're using the SmartGWT server to return data via the DSResponse object (or&#010 indirectly doing so using DataSource DMI), the valueXPath you specify on the DataSource&#010 fields will be applied to the data you return via the &#010 <a href='http://jakarta.apache.org/commons/jxpath/' onclick="window.open('http://jakarta.apache.org/commons/jxpath/');return false;">JXPath</a> library.&#010 <P>&#010 If you are returning Java Beans as your DSResponse data, normally each dataSource field&#010 receives the value of the same named Java Bean property, that is, a field "zipCode" is&#010 populated by looking for "getZipCode()" on the objects passed as DSResponse data.  You can&#010 use <code>valueXPath</code> to retrieve properties from subobjects, so long as a chain of&#010 getter methods exists that corresponds to the valueXPath.  For example, a valueXPath of&#010 "address/zipCode" expects to call "getAddress()" on the bean(s) passed to&#010 DSResponse.setData(), followed by "getZipCode()" on whatever object "getAddress()" returns.&#010 <P>&#010 When you are saving data, the inbound DSRequest values, available as a Java Map, will use &#010 just dataSource field names as Map keys, not the valueXPath used to derive them.  However,&#010 to achieve bidirectional valueXPath binding, you can use the server-side method&#010 dataSource.setProperties() to use the valueXPath when setting properties on your server&#010 object model.  When applied as a setter, an XPath like "address/zipCode" attempts&#010 "getAddress()" followed by "setZipCode()" on the returned object.  JXPath also has some&#010 ability to auto-create intervening objects if they are missing, such as auto-creating an&#010 "address" subobject when applying "address/zipCode" as a valueXPath.&#010 <P>&#010 See the&#010 <a href='http://jakarta.apache.org/commons/jxpath/' onclick="window.open('http://jakarta.apache.org/commons/jxpath/');return false;">JXPath</a> library documentation for&#010 complete details, including other types of server object models supported, such as&#010 server-side XML.
     *
     * @param valueXPath valueXPath Default value is null
     */
@@ -192,7 +192,7 @@ public class DataSourceField extends DataClass {
         setAttribute("valueXPath", valueXPath);
     }
     /**
-     * XPath expression used to retrieve the field's value. <P> This XPath expression will be evaluated in the scope of the record objects selected by  the {@link com.smartgwt.client.data.DataSource#getRecordXPath recordXPath}.  For XML data  ({@link com.smartgwt.client.data.DataSource#getDataFormat dataFormat}) this means a call to {@link com.smartgwt.client.data.XMLTools#selectString} passing the selected XML element.  For JSON data ({@link com.smartgwt.client.data.DataSource#getDataFormat dataFormat}), this means a call to  {@link com.smartgwt.client.data.XMLTools#selectObjects} passing the selected JSON object. <P> In the absence of a <code>valueXPath</code>, for JSON data the value for the field will be the value of the same-named property in the record object selected by {@link com.smartgwt.client.data.DataSource#getRecordXPath recordXPath}.   <P> For XML data, the value will be the attribute or subelement named after the field name. For example, for a field "author" on a record element &lt;book&gt;, the following structures require no valueXPath: <pre>    &lt;book author="Mark Jones"/&gt;    &lt;book&gt;        &lt;author&gt;Mark Jones&lt;/author&gt;    &lt;/book&gt; </pre> <P> If <code>valueXPath</code> is not required for your field because of the default handling described above, don't specify it, as it's slightly slower. <p> To learn about XPath, try the following search: <a href="http://www.google.com/search?q=xpath+tutorial" target="_blank" >http://www.google.com/search?q=xpath+tutorial</a> <P> <B>Using valueXPath with the SmartGWT server</B> <p> If you're using the SmartGWT server to return data via the DSResponse object (or indirectly doing so using DataSource DMI), the valueXPath you specify on the DataSource fields will be applied to the data you return via the  <a href='http://jakarta.apache.org/commons/jxpath/' onclick="window.open('http://jakarta.apache.org/commons/jxpath/');return false;">JXPath</a> library. <P> If you are returning Java Beans as your DSResponse data, normally each dataSource field receives the value of the same named Java Bean property, that is, a field "zipCode" is populated by looking for "getZipCode()" on the objects passed as DSResponse data.  You can use <code>valueXPath</code> to retrieve properties from subobjects, so long as a chain of getter methods exists that corresponds to the valueXPath.  For example, a valueXPath of "address/zipCode" expects to call "getAddress()" on the bean(s) passed to DSResponse.setData(), followed by "getZipCode()" on whatever object "getAddress()" returns. <P> When you are saving data, the inbound DSRequest values, available as a Java Map, will use  just dataSource field names as Map keys, not the valueXPath used to derive them.  However, to achieve bidirectional valueXPath binding, you can use the server-side method dataSource.setProperties() to use the valueXPath when setting properties on your server object model.  When applied as a setter, an XPath like "address/zipCode" attempts "getAddress()" followed by "setZipCode()" on the returned object.  JXPath also has some ability to auto-create intervening objects if they are missing, such as auto-creating an "address" subobject when applying "address/zipCode" as a valueXPath. <P> See the <a href='http://jakarta.apache.org/commons/jxpath/' onclick="window.open('http://jakarta.apache.org/commons/jxpath/');return false;">JXPath</a> library documentation for complete details, including other types of server object models supported, such as server-side XML.
+     * XPath expression used to retrieve the field's value.&#010 <P>&#010 This XPath expression will be evaluated in the scope of the record objects selected by &#010 the {@link com.smartgwt.client.data.DataSource#getRecordXPath recordXPath}.  For XML data &#010 ({@link com.smartgwt.client.data.DataSource#getDataFormat dataFormat}) this means a call to&#010 {@link com.smartgwt.client.data.XMLTools#selectString} passing the selected XML element.  For JSON data&#010 ({@link com.smartgwt.client.data.DataSource#getDataFormat dataFormat}), this means a call to &#010 {@link com.smartgwt.client.data.XMLTools#selectObjects} passing the selected JSON object.&#010 <P>&#010 In the absence of a <code>valueXPath</code>, for JSON data the value for the field will&#010 be the value of the same-named property in the record object selected by&#010 {@link com.smartgwt.client.data.DataSource#getRecordXPath recordXPath}.  &#010 <P>&#010 For XML data, the value will be the attribute or subelement named after the field name.&#010 For example, for a field "author" on a record element &lt;book&gt;, the following structures&#010 require no valueXPath:&#010 <pre>&#010    &lt;book author="Mark Jones"/&gt;&#010&#010    &lt;book&gt;&#010        &lt;author&gt;Mark Jones&lt;/author&gt;&#010    &lt;/book&gt;&#010 </pre>&#010 <P>&#010 If <code>valueXPath</code> is not required for your field because of the default handling&#010 described above, don't specify it, as it's slightly slower.&#010 <p>&#010 To learn about XPath, try the following search:&#010 <a href="http://www.google.com/search?q=xpath+tutorial" target="_blank"&#010 >http://www.google.com/search?q=xpath+tutorial</a>&#010 <P>&#010 <B>Using valueXPath with the SmartGWT server</B>&#010 <p>&#010 If you're using the SmartGWT server to return data via the DSResponse object (or&#010 indirectly doing so using DataSource DMI), the valueXPath you specify on the DataSource&#010 fields will be applied to the data you return via the &#010 <a href='http://jakarta.apache.org/commons/jxpath/' onclick="window.open('http://jakarta.apache.org/commons/jxpath/');return false;">JXPath</a> library.&#010 <P>&#010 If you are returning Java Beans as your DSResponse data, normally each dataSource field&#010 receives the value of the same named Java Bean property, that is, a field "zipCode" is&#010 populated by looking for "getZipCode()" on the objects passed as DSResponse data.  You can&#010 use <code>valueXPath</code> to retrieve properties from subobjects, so long as a chain of&#010 getter methods exists that corresponds to the valueXPath.  For example, a valueXPath of&#010 "address/zipCode" expects to call "getAddress()" on the bean(s) passed to&#010 DSResponse.setData(), followed by "getZipCode()" on whatever object "getAddress()" returns.&#010 <P>&#010 When you are saving data, the inbound DSRequest values, available as a Java Map, will use &#010 just dataSource field names as Map keys, not the valueXPath used to derive them.  However,&#010 to achieve bidirectional valueXPath binding, you can use the server-side method&#010 dataSource.setProperties() to use the valueXPath when setting properties on your server&#010 object model.  When applied as a setter, an XPath like "address/zipCode" attempts&#010 "getAddress()" followed by "setZipCode()" on the returned object.  JXPath also has some&#010 ability to auto-create intervening objects if they are missing, such as auto-creating an&#010 "address" subobject when applying "address/zipCode" as a valueXPath.&#010 <P>&#010 See the&#010 <a href='http://jakarta.apache.org/commons/jxpath/' onclick="window.open('http://jakarta.apache.org/commons/jxpath/');return false;">JXPath</a> library documentation for&#010 complete details, including other types of server object models supported, such as&#010 server-side XML.
      *
      *
      * @return String
@@ -203,7 +203,7 @@ public class DataSourceField extends DataClass {
     }
 
     /**
-    * Default user-visible title for this field. <p> This will be picked up by DataBound components and other views onto this DataSource.
+    * Default user-visible title for this field.&#010 <p>&#010 This will be picked up by DataBound components and other views onto this DataSource.
     *
     * @param title title Default value is null
     */
@@ -211,7 +211,7 @@ public class DataSourceField extends DataClass {
         setAttribute("title", title);
     }
     /**
-     * Default user-visible title for this field. <p> This will be picked up by DataBound components and other views onto this DataSource.
+     * Default user-visible title for this field.&#010 <p>&#010 This will be picked up by DataBound components and other views onto this DataSource.
      *
      *
      * @return String
@@ -222,7 +222,7 @@ public class DataSourceField extends DataClass {
     }
 
     /**
-    * Whether this field can ever be edited by the user.  If set to <code>false</code>, no DataBound component will ever try to offer an editing interface for this field.
+    * Whether this field can ever be edited by the user.  If set to <code>false</code>, no&#010 DataBound component will ever try to offer an editing interface for this field.
     *
     * @param canEdit canEdit Default value is null
     */
@@ -230,7 +230,7 @@ public class DataSourceField extends DataClass {
         setAttribute("canEdit", canEdit);
     }
     /**
-     * Whether this field can ever be edited by the user.  If set to <code>false</code>, no DataBound component will ever try to offer an editing interface for this field.
+     * Whether this field can ever be edited by the user.  If set to <code>false</code>, no&#010 DataBound component will ever try to offer an editing interface for this field.
      *
      *
      * @return Boolean
@@ -241,7 +241,7 @@ public class DataSourceField extends DataClass {
     }
 
     /**
-    * Whether values in this field can be updated and saved to the dataSource. <P> If set to <code>false</code>, this field will default to being non-editable in standard editing components ({@link com.smartgwt.client.widgets.form.DynamicForm}, editable {@link com.smartgwt.client.widgets.grid.ListGrid}), but will be editable when displayed for filtering purposes only (in a {@link com.smartgwt.client.widgets.form.SearchForm} or {@link com.smartgwt.client.widgets.grid.ListGrid#getShowFilterEditor showFilterEditor}. <P> Note: if {@link com.smartgwt.client.data.DataSourceField#getCanEdit canEdit} is explicitly specified it will take precedence over this behavior.
+    * Whether values in this field can be updated and saved to the dataSource.&#010 <P>&#010 If set to <code>false</code>, this field will default to being non-editable in standard editing&#010 components ({@link com.smartgwt.client.widgets.form.DynamicForm}, editable {@link com.smartgwt.client.widgets.grid.ListGrid}), but will be editable when displayed&#010 for filtering purposes only (in a {@link com.smartgwt.client.widgets.form.SearchForm} or {@link com.smartgwt.client.widgets.grid.ListGrid#getShowFilterEditor showFilterEditor}.&#010 <P>&#010 Note: if {@link com.smartgwt.client.data.DataSourceField#getCanEdit canEdit} is explicitly specified it will take precedence over this&#010 behavior.
     *
     * @param canSave canSave Default value is null
     */
@@ -249,7 +249,7 @@ public class DataSourceField extends DataClass {
         setAttribute("canSave", canSave);
     }
     /**
-     * Whether values in this field can be updated and saved to the dataSource. <P> If set to <code>false</code>, this field will default to being non-editable in standard editing components ({@link com.smartgwt.client.widgets.form.DynamicForm}, editable {@link com.smartgwt.client.widgets.grid.ListGrid}), but will be editable when displayed for filtering purposes only (in a {@link com.smartgwt.client.widgets.form.SearchForm} or {@link com.smartgwt.client.widgets.grid.ListGrid#getShowFilterEditor showFilterEditor}. <P> Note: if {@link com.smartgwt.client.data.DataSourceField#getCanEdit canEdit} is explicitly specified it will take precedence over this behavior.
+     * Whether values in this field can be updated and saved to the dataSource.&#010 <P>&#010 If set to <code>false</code>, this field will default to being non-editable in standard editing&#010 components ({@link com.smartgwt.client.widgets.form.DynamicForm}, editable {@link com.smartgwt.client.widgets.grid.ListGrid}), but will be editable when displayed&#010 for filtering purposes only (in a {@link com.smartgwt.client.widgets.form.SearchForm} or {@link com.smartgwt.client.widgets.grid.ListGrid#getShowFilterEditor showFilterEditor}.&#010 <P>&#010 Note: if {@link com.smartgwt.client.data.DataSourceField#getCanEdit canEdit} is explicitly specified it will take precedence over this&#010 behavior.
      *
      *
      * @return Boolean
@@ -260,7 +260,7 @@ public class DataSourceField extends DataClass {
     }
 
     /**
-    * Should the user be able to filter data by this field. Effects whether this field will show up in dataBoundComponents with UI for filtering data.
+    * Should the user be able to filter data by this field.&#010 Effects whether this field will show up in dataBoundComponents with UI for filtering data.
     *
     * @param canFilter canFilter Default value is null
     */
@@ -268,7 +268,7 @@ public class DataSourceField extends DataClass {
         setAttribute("canFilter", canFilter);
     }
     /**
-     * Should the user be able to filter data by this field. Effects whether this field will show up in dataBoundComponents with UI for filtering data.
+     * Should the user be able to filter data by this field.&#010 Effects whether this field will show up in dataBoundComponents with UI for filtering data.
      *
      *
      * @return Boolean
@@ -279,7 +279,7 @@ public class DataSourceField extends DataClass {
     }
 
     /**
-    * Whether this field should be hidden from users by default within a DataBound component. This is generally used for internal ids and other values not meaningful to users. <P> See {@link com.smartgwt.client.data.DataSourceField#getDetail detail} for fields that should be hidden in a summary view such as a {@link com.smartgwt.client.widgets.grid.ListGrid}, but still available to the user.
+    * Whether this field should be hidden from users by default within a DataBound component.&#010 This is generally used for internal ids and other values not meaningful to users.&#010 <P>&#010 See {@link com.smartgwt.client.data.DataSourceField#getDetail detail} for fields that should be hidden in a summary view such as&#010 a {@link com.smartgwt.client.widgets.grid.ListGrid}, but still available to the user.
     *
     * @param hidden hidden Default value is false
     */
@@ -287,7 +287,7 @@ public class DataSourceField extends DataClass {
         setAttribute("hidden", hidden);
     }
     /**
-     * Whether this field should be hidden from users by default within a DataBound component. This is generally used for internal ids and other values not meaningful to users. <P> See {@link com.smartgwt.client.data.DataSourceField#getDetail detail} for fields that should be hidden in a summary view such as a {@link com.smartgwt.client.widgets.grid.ListGrid}, but still available to the user.
+     * Whether this field should be hidden from users by default within a DataBound component.&#010 This is generally used for internal ids and other values not meaningful to users.&#010 <P>&#010 See {@link com.smartgwt.client.data.DataSourceField#getDetail detail} for fields that should be hidden in a summary view such as&#010 a {@link com.smartgwt.client.widgets.grid.ListGrid}, but still available to the user.
      *
      *
      * @return Boolean
@@ -298,7 +298,7 @@ public class DataSourceField extends DataClass {
     }
 
     /**
-    * Whether this field should be completely excluded from this dataSource, as if it had never been defined.
+    * Whether this field should be completely excluded from this dataSource, as if it had never been&#010 defined.
     *
     * @param ignore ignore Default value is false
     */
@@ -306,7 +306,7 @@ public class DataSourceField extends DataClass {
         setAttribute("ignore", ignore);
     }
     /**
-     * Whether this field should be completely excluded from this dataSource, as if it had never been defined.
+     * Whether this field should be completely excluded from this dataSource, as if it had never been&#010 defined.
      *
      *
      * @return Boolean
@@ -317,7 +317,7 @@ public class DataSourceField extends DataClass {
     }
 
     /**
-    * Whether this field should be considered a "detail" by a ${isc.DocUtils.linkForRef('interface:DataBoundComponent')}. <P> Detail fields won't be shown by default in a DataBoundComponent where  {@link com.smartgwt.client..DataBoundComponent#getShowDetailFields showDetailFields} is false.  This allows for some DataBound components, like a {@link com.smartgwt.client.widgets.grid.ListGrid}, to show a summary view of records which displays only  the most commonly viewed fields by default, while other DataBoundComponents, like a {@link com.smartgwt.client.widgets.viewer.DetailViewer}, show all fields by default. <P> In addition, the {@link com.smartgwt.client.widgets.form.fields.FormItem#showIf} property is supported in multiple components for conditional visibility - see for example {@link com.smartgwt.client.widgets.grid.ListGridField#showIf} and {@link com.smartgwt.client.widgets.form.fields.FormItem#showIf}).
+    * Whether this field should be considered a "detail" by a ${isc.DocUtils.linkForRef('interface:DataBoundComponent')}.&#010 <P>&#010 Detail fields won't be shown by default in a DataBoundComponent where &#010 {@link com.smartgwt.client..DataBoundComponent#getShowDetailFields showDetailFields} is false.  This allows for some DataBound&#010 components, like a {@link com.smartgwt.client.widgets.grid.ListGrid}, to show a summary view of records which displays only &#010 the most commonly viewed fields by default, while other DataBoundComponents, like a&#010 {@link com.smartgwt.client.widgets.viewer.DetailViewer}, show all fields by default.&#010 <P>&#010 In addition, the {@link com.smartgwt.client.widgets.form.fields.FormItem#showIf} property is supported in multiple&#010 components for conditional visibility - see for example {@link com.smartgwt.client.widgets.grid.ListGridField#showIf} and&#010 {@link com.smartgwt.client.widgets.form.fields.FormItem#showIf}).
     *
     * @param detail detail Default value is false
     */
@@ -325,7 +325,7 @@ public class DataSourceField extends DataClass {
         setAttribute("detail", detail);
     }
     /**
-     * Whether this field should be considered a "detail" by a ${isc.DocUtils.linkForRef('interface:DataBoundComponent')}. <P> Detail fields won't be shown by default in a DataBoundComponent where  {@link com.smartgwt.client..DataBoundComponent#getShowDetailFields showDetailFields} is false.  This allows for some DataBound components, like a {@link com.smartgwt.client.widgets.grid.ListGrid}, to show a summary view of records which displays only  the most commonly viewed fields by default, while other DataBoundComponents, like a {@link com.smartgwt.client.widgets.viewer.DetailViewer}, show all fields by default. <P> In addition, the {@link com.smartgwt.client.widgets.form.fields.FormItem#showIf} property is supported in multiple components for conditional visibility - see for example {@link com.smartgwt.client.widgets.grid.ListGridField#showIf} and {@link com.smartgwt.client.widgets.form.fields.FormItem#showIf}).
+     * Whether this field should be considered a "detail" by a ${isc.DocUtils.linkForRef('interface:DataBoundComponent')}.&#010 <P>&#010 Detail fields won't be shown by default in a DataBoundComponent where &#010 {@link com.smartgwt.client..DataBoundComponent#getShowDetailFields showDetailFields} is false.  This allows for some DataBound&#010 components, like a {@link com.smartgwt.client.widgets.grid.ListGrid}, to show a summary view of records which displays only &#010 the most commonly viewed fields by default, while other DataBoundComponents, like a&#010 {@link com.smartgwt.client.widgets.viewer.DetailViewer}, show all fields by default.&#010 <P>&#010 In addition, the {@link com.smartgwt.client.widgets.form.fields.FormItem#showIf} property is supported in multiple&#010 components for conditional visibility - see for example {@link com.smartgwt.client.widgets.grid.ListGridField#showIf} and&#010 {@link com.smartgwt.client.widgets.form.fields.FormItem#showIf}).
      *
      *
      * @return Boolean
@@ -336,7 +336,7 @@ public class DataSourceField extends DataClass {
     }
 
     /**
-    * Whether this field holds a value unique across all records in this DataSource. <p> A DataSource that can <i>only</i> perform the "fetch" operation does not require a primaryKey.  If a DataSource allows modification of DataSource records through add, update and remove DataSource operations, exactly one field must be marked as the primary key. <P> SmartGWT requires a primary key value to uniquely identify records when communicating updates or deletions to the server.  There is no requirement that the primaryKey field be mapped to an actual "primary key" in your object model, web service, or database.  The only requirement is that values of the primaryKey field be unique for a given browser instance for the lifetime of the page.   <P> If your underlying data model has no primaryKey or has multiple primaryKey(s), you can generate unique values or combine multiple values into a single field that serves as a unique key, and declare that field as the single primary key instead.  For example, if your underlying data model has two primary keys "firstName" and "lastName", you can use {@link com.smartgwt.client.data.DataSource#transformResponse} to combine them to into a new field "name_key": <pre> isc.DataSource.create({    fields:[        {name:"name_key", primaryKey:true},        {name:"firstName"},        {name:"lastName"},        ... other fields ...    ],    transformResponse : function (dsResponse) {        var data = dsResponse.data;        for (var i = 0 ; i &lt; data.length; i++) {            data[i].name_key = data[i].firstName + ":" +                               data[i].lastName;        }    } }); </pre> <P> Here it is assumed that ":" is not a legal character in either the firstName or lastName field.  Updates to records from this DataSource will then be sent with name_key as the primary key value, and the server can split the value to obtain the separate key values. <P> If using ISC's {@link com.smartgwt.client.docs.SqlDataSource 'SQL engine'} and generating SQL tables using the "DataBases" tab of the Developer Console, the table column generated from a primaryKey field will have a unique constraint applied in the database table.
+    * Whether this field holds a value unique across all records in this DataSource.&#010 <p>&#010 A DataSource that can <i>only</i> perform the "fetch" operation does not require a&#010 primaryKey.  If a DataSource allows modification of DataSource records through add, update&#010 and remove DataSource operations, exactly one field must be marked as the primary key.&#010 <P>&#010 SmartGWT requires a primary key value to uniquely identify records when communicating&#010 updates or deletions to the server.  There is no requirement that the primaryKey field be&#010 mapped to an actual "primary key" in your object model, web service, or database.  The only&#010 requirement is that values of the primaryKey field be unique for a given browser instance&#010 for the lifetime of the page.  &#010 <P>&#010 If your underlying data model has no primaryKey or has multiple primaryKey(s), you can&#010 generate unique values or combine multiple values into a single field that serves as a&#010 unique key, and declare that field as the single primary key instead.  For example, if your&#010 underlying data model has two primary keys "firstName" and "lastName", you can use&#010 {@link com.smartgwt.client.data.DataSource#transformResponse} to combine them to into a new field "name_key":&#010 <pre>&#010 isc.DataSource.create({&#010    fields:[&#010        {name:"name_key", primaryKey:true},&#010        {name:"firstName"},&#010        {name:"lastName"},&#010        ... other fields ...&#010    ],&#010    transformResponse : function (dsResponse) {&#010        var data = dsResponse.data;&#010        for (var i = 0 ; i &lt; data.length; i++) {&#010            data[i].name_key = data[i].firstName + ":" +&#010                               data[i].lastName;&#010        }&#010    }&#010 });&#010 </pre>&#010 <P>&#010 Here it is assumed that ":" is not a legal character in either the firstName or lastName&#010 field.  Updates to records from this DataSource will then be sent with name_key as the&#010 primary key value, and the server can split the value to obtain the separate key values.&#010 <P>&#010 If using ISC's {@link com.smartgwt.client.docs.SqlDataSource 'SQL engine'} and generating SQL tables using the&#010 "DataBases" tab of the Developer Console, the table column generated from a primaryKey field&#010 will have a unique constraint applied in the database table.
     *
     * @param primaryKey primaryKey Default value is false
     */
@@ -344,7 +344,7 @@ public class DataSourceField extends DataClass {
         setAttribute("primaryKey", primaryKey);
     }
     /**
-     * Whether this field holds a value unique across all records in this DataSource. <p> A DataSource that can <i>only</i> perform the "fetch" operation does not require a primaryKey.  If a DataSource allows modification of DataSource records through add, update and remove DataSource operations, exactly one field must be marked as the primary key. <P> SmartGWT requires a primary key value to uniquely identify records when communicating updates or deletions to the server.  There is no requirement that the primaryKey field be mapped to an actual "primary key" in your object model, web service, or database.  The only requirement is that values of the primaryKey field be unique for a given browser instance for the lifetime of the page.   <P> If your underlying data model has no primaryKey or has multiple primaryKey(s), you can generate unique values or combine multiple values into a single field that serves as a unique key, and declare that field as the single primary key instead.  For example, if your underlying data model has two primary keys "firstName" and "lastName", you can use {@link com.smartgwt.client.data.DataSource#transformResponse} to combine them to into a new field "name_key": <pre> isc.DataSource.create({    fields:[        {name:"name_key", primaryKey:true},        {name:"firstName"},        {name:"lastName"},        ... other fields ...    ],    transformResponse : function (dsResponse) {        var data = dsResponse.data;        for (var i = 0 ; i &lt; data.length; i++) {            data[i].name_key = data[i].firstName + ":" +                               data[i].lastName;        }    } }); </pre> <P> Here it is assumed that ":" is not a legal character in either the firstName or lastName field.  Updates to records from this DataSource will then be sent with name_key as the primary key value, and the server can split the value to obtain the separate key values. <P> If using ISC's {@link com.smartgwt.client.docs.SqlDataSource 'SQL engine'} and generating SQL tables using the "DataBases" tab of the Developer Console, the table column generated from a primaryKey field will have a unique constraint applied in the database table.
+     * Whether this field holds a value unique across all records in this DataSource.&#010 <p>&#010 A DataSource that can <i>only</i> perform the "fetch" operation does not require a&#010 primaryKey.  If a DataSource allows modification of DataSource records through add, update&#010 and remove DataSource operations, exactly one field must be marked as the primary key.&#010 <P>&#010 SmartGWT requires a primary key value to uniquely identify records when communicating&#010 updates or deletions to the server.  There is no requirement that the primaryKey field be&#010 mapped to an actual "primary key" in your object model, web service, or database.  The only&#010 requirement is that values of the primaryKey field be unique for a given browser instance&#010 for the lifetime of the page.  &#010 <P>&#010 If your underlying data model has no primaryKey or has multiple primaryKey(s), you can&#010 generate unique values or combine multiple values into a single field that serves as a&#010 unique key, and declare that field as the single primary key instead.  For example, if your&#010 underlying data model has two primary keys "firstName" and "lastName", you can use&#010 {@link com.smartgwt.client.data.DataSource#transformResponse} to combine them to into a new field "name_key":&#010 <pre>&#010 isc.DataSource.create({&#010    fields:[&#010        {name:"name_key", primaryKey:true},&#010        {name:"firstName"},&#010        {name:"lastName"},&#010        ... other fields ...&#010    ],&#010    transformResponse : function (dsResponse) {&#010        var data = dsResponse.data;&#010        for (var i = 0 ; i &lt; data.length; i++) {&#010            data[i].name_key = data[i].firstName + ":" +&#010                               data[i].lastName;&#010        }&#010    }&#010 });&#010 </pre>&#010 <P>&#010 Here it is assumed that ":" is not a legal character in either the firstName or lastName&#010 field.  Updates to records from this DataSource will then be sent with name_key as the&#010 primary key value, and the server can split the value to obtain the separate key values.&#010 <P>&#010 If using ISC's {@link com.smartgwt.client.docs.SqlDataSource 'SQL engine'} and generating SQL tables using the&#010 "DataBases" tab of the Developer Console, the table column generated from a primaryKey field&#010 will have a unique constraint applied in the database table.
      *
      *
      * @return Boolean
@@ -355,7 +355,7 @@ public class DataSourceField extends DataClass {
     }
 
     /**
-    * Declares that this field holds values that can be matched to values from another DataSource field, to create a relationship between records from different DataSources or even records within the same DataSource. <p> The format of <code>foreignKey</code> is <code>&lt;dataSourceId&gt;.&lt;fieldName&gt;</code>.<br> For a foreignKey within the same dataSource, you can omit the <code>dataSourceId</code> and just specify <code>&lt;fieldName&gt;</code>.<br> For example, to create a tree relationship within a DataSource: <pre>   DataSource.create({     ID:"supplyItem",     fields : [       {name:"itemId", type:"sequence", primaryKey:true},       {name:"parentId", type:"integer", foreignKey:"itemId"},       ...     ]   }); </pre> <P> <code>foreignKey</code> declarations also allow other automatic behaviors by ${isc.DocUtils.linkForRef('interface:DataBoundComponent','DataBoundComponents')}, such as {@link com.smartgwt.client.widgets.grid.ListGrid#fetchRelatedData}.
+    * Declares that this field holds values that can be matched to values from another DataSource&#010 field, to create a relationship between records from different DataSources or even records&#010 within the same DataSource.&#010 <p>&#010 The format of <code>foreignKey</code> is&#010 <code>&lt;dataSourceId&gt;.&lt;fieldName&gt;</code>.<br>&#010 For a foreignKey within the same dataSource, you can omit the <code>dataSourceId</code>&#010 and just specify <code>&lt;fieldName&gt;</code>.<br>&#010 For example, to create a tree relationship within a DataSource:&#010 <pre>&#010   DataSource.create({&#010     ID:"supplyItem",&#010     fields : [&#010       {name:"itemId", type:"sequence", primaryKey:true},&#010       {name:"parentId", type:"integer", foreignKey:"itemId"},&#010       ...&#010     ]&#010   });&#010 </pre>&#010 <P>&#010 <code>foreignKey</code> declarations also allow other automatic behaviors by&#010 ${isc.DocUtils.linkForRef('interface:DataBoundComponent','DataBoundComponents')}, such as {@link com.smartgwt.client.widgets.grid.ListGrid#fetchRelatedData}.
     *
     * @param foreignKey foreignKey Default value is false
     */
@@ -363,7 +363,7 @@ public class DataSourceField extends DataClass {
         setAttribute("foreignKey", foreignKey);
     }
     /**
-     * Declares that this field holds values that can be matched to values from another DataSource field, to create a relationship between records from different DataSources or even records within the same DataSource. <p> The format of <code>foreignKey</code> is <code>&lt;dataSourceId&gt;.&lt;fieldName&gt;</code>.<br> For a foreignKey within the same dataSource, you can omit the <code>dataSourceId</code> and just specify <code>&lt;fieldName&gt;</code>.<br> For example, to create a tree relationship within a DataSource: <pre>   DataSource.create({     ID:"supplyItem",     fields : [       {name:"itemId", type:"sequence", primaryKey:true},       {name:"parentId", type:"integer", foreignKey:"itemId"},       ...     ]   }); </pre> <P> <code>foreignKey</code> declarations also allow other automatic behaviors by ${isc.DocUtils.linkForRef('interface:DataBoundComponent','DataBoundComponents')}, such as {@link com.smartgwt.client.widgets.grid.ListGrid#fetchRelatedData}.
+     * Declares that this field holds values that can be matched to values from another DataSource&#010 field, to create a relationship between records from different DataSources or even records&#010 within the same DataSource.&#010 <p>&#010 The format of <code>foreignKey</code> is&#010 <code>&lt;dataSourceId&gt;.&lt;fieldName&gt;</code>.<br>&#010 For a foreignKey within the same dataSource, you can omit the <code>dataSourceId</code>&#010 and just specify <code>&lt;fieldName&gt;</code>.<br>&#010 For example, to create a tree relationship within a DataSource:&#010 <pre>&#010   DataSource.create({&#010     ID:"supplyItem",&#010     fields : [&#010       {name:"itemId", type:"sequence", primaryKey:true},&#010       {name:"parentId", type:"integer", foreignKey:"itemId"},&#010       ...&#010     ]&#010   });&#010 </pre>&#010 <P>&#010 <code>foreignKey</code> declarations also allow other automatic behaviors by&#010 ${isc.DocUtils.linkForRef('interface:DataBoundComponent','DataBoundComponents')}, such as {@link com.smartgwt.client.widgets.grid.ListGrid#fetchRelatedData}.
      *
      *
      * @return String
@@ -374,7 +374,7 @@ public class DataSourceField extends DataClass {
     }
 
     /**
-    * If true, this property indicates that this field will hold an explicit array of child nodes  for the current node. This has the same effect as specifying {@link com.smartgwt.client.data.DataSource#getChildrenField childrenField} to this field's  name.
+    * If true, this property indicates that this field will hold an explicit array of child nodes &#010 for the current node.&#010 This has the same effect as specifying {@link com.smartgwt.client.data.DataSource#getChildrenField childrenField} to this field's &#010 name.
     *
     * @param childrenProperty childrenProperty Default value is false
     */
@@ -382,7 +382,7 @@ public class DataSourceField extends DataClass {
         setAttribute("childrenProperty", childrenProperty);
     }
     /**
-     * If true, this property indicates that this field will hold an explicit array of child nodes  for the current node. This has the same effect as specifying {@link com.smartgwt.client.data.DataSource#getChildrenField childrenField} to this field's  name.
+     * If true, this property indicates that this field will hold an explicit array of child nodes &#010 for the current node.&#010 This has the same effect as specifying {@link com.smartgwt.client.data.DataSource#getChildrenField childrenField} to this field's &#010 name.
      *
      *
      * @return Boolean
@@ -393,7 +393,7 @@ public class DataSourceField extends DataClass {
     }
 
     /**
-    * For a DataSource with {@link com.smartgwt.client.data.DataSource#getServerType serverType} with a field of type "sequence", the name of the SQL sequence that should be used when inserting new records into this table. <P> Note that this is never required for SQL tables that are generated from SmartGWT DataSources (a default sequence name of tableName + "_" + columnName is chosen), and is  never required for databases where inserting null into a sequence column is sufficient (MySQL, SQL Server, DB2 and others).   <P> You would only need to set sequenceName if you are integrating with a pre-existing table stored in a database where the sequence must be named for insertion to work (Oracle, Postgres) OR you are trying to use the same sequence across multiple DataSources.
+    * For a DataSource with {@link com.smartgwt.client.data.DataSource#getServerType serverType} with a field of type&#010 "sequence", the name of the SQL sequence that should be used when inserting new records into&#010 this table.&#010 <P>&#010 Note that this is never required for SQL tables that are generated from SmartGWT&#010 DataSources (a default sequence name of tableName + "_" + columnName is chosen), and is &#010 never required for databases where inserting null into a sequence column is sufficient&#010 (MySQL, SQL Server, DB2 and others).  &#010 <P>&#010 You would only need to set sequenceName if you are integrating with a pre-existing table&#010 stored in a database where the sequence must be named for insertion to work (Oracle,&#010 Postgres) OR you are trying to use the same sequence across multiple DataSources.
     *
     * @param sequenceName sequenceName Default value is null
     */
@@ -401,7 +401,7 @@ public class DataSourceField extends DataClass {
         setAttribute("sequenceName", sequenceName);
     }
     /**
-     * For a DataSource with {@link com.smartgwt.client.data.DataSource#getServerType serverType} with a field of type "sequence", the name of the SQL sequence that should be used when inserting new records into this table. <P> Note that this is never required for SQL tables that are generated from SmartGWT DataSources (a default sequence name of tableName + "_" + columnName is chosen), and is  never required for databases where inserting null into a sequence column is sufficient (MySQL, SQL Server, DB2 and others).   <P> You would only need to set sequenceName if you are integrating with a pre-existing table stored in a database where the sequence must be named for insertion to work (Oracle, Postgres) OR you are trying to use the same sequence across multiple DataSources.
+     * For a DataSource with {@link com.smartgwt.client.data.DataSource#getServerType serverType} with a field of type&#010 "sequence", the name of the SQL sequence that should be used when inserting new records into&#010 this table.&#010 <P>&#010 Note that this is never required for SQL tables that are generated from SmartGWT&#010 DataSources (a default sequence name of tableName + "_" + columnName is chosen), and is &#010 never required for databases where inserting null into a sequence column is sufficient&#010 (MySQL, SQL Server, DB2 and others).  &#010 <P>&#010 You would only need to set sequenceName if you are integrating with a pre-existing table&#010 stored in a database where the sequence must be named for insertion to work (Oracle,&#010 Postgres) OR you are trying to use the same sequence across multiple DataSources.
      *
      *
      * @return String
@@ -412,7 +412,7 @@ public class DataSourceField extends DataClass {
     }
 
     /**
-    * Indicates that {@link com.smartgwt.client.data.DataSource#xmlSerialize} should serialize this value as an XML attribute. <P> Note this does not need to be declared in order for DataSource records to be derived from XML data: a field will be populated with either an attribute or subelement with matching name.
+    * Indicates that {@link com.smartgwt.client.data.DataSource#xmlSerialize} should serialize this value as an XML&#010 attribute.&#010 <P>&#010 Note this does not need to be declared in order for DataSource records to be derived from&#010 XML data: a field will be populated with either an attribute or subelement with matching&#010 name.
     *
     * @param xmlAttribute xmlAttribute Default value is null
     */
@@ -420,7 +420,7 @@ public class DataSourceField extends DataClass {
         setAttribute("xmlAttribute", xmlAttribute);
     }
     /**
-     * Indicates that {@link com.smartgwt.client.data.DataSource#xmlSerialize} should serialize this value as an XML attribute. <P> Note this does not need to be declared in order for DataSource records to be derived from XML data: a field will be populated with either an attribute or subelement with matching name.
+     * Indicates that {@link com.smartgwt.client.data.DataSource#xmlSerialize} should serialize this value as an XML&#010 attribute.&#010 <P>&#010 Note this does not need to be declared in order for DataSource records to be derived from&#010 XML data: a field will be populated with either an attribute or subelement with matching&#010 name.
      *
      *
      * @return Boolean
@@ -431,7 +431,7 @@ public class DataSourceField extends DataClass {
     }
 
     /**
-    * Indicates that this field should always be Array-valued.  If the value derived from {@link com.smartgwt.client.data.DataSource#getDataFormat dataFormat} is singular, it will be wrapped in an Array. <P> Specifically for XML serialization and deserialization, <code>multiple:true</code> behaves similarly to the  <a href='http://www.google.com/search?hl=en&q=soap+array' onclick="window.open('http://www.google.com/search?hl=en&q=soap+array');return false;">SOAP array idiom</a>, that is, there will be a "wrapper element" named after the field name, whose contents will be several elements of the specified {@link com.smartgwt.client.data.DataSourceField#getType type}.   <P> For example, {@link com.smartgwt.client.widgets.layout.Layout#getMembers members} is declared with <code>type:"Canvas", multiple:true</code>.  The correct XML format is thus: <pre> &lt;VLayout&gt;     &lt;members&gt;         &lt;Canvas ID="myCanvas" ... /&gt;         &lt;ListGrid ID="myGrid" .../&gt;         &lt;Toolstrip ID="myToolStrip" ... /&gt;     &lt;/members&gt; &lt;/VLayout&gt; </pre>
+    * Indicates that this field should always be Array-valued.  If the value derived from&#010 {@link com.smartgwt.client.data.DataSource#getDataFormat dataFormat} is singular, it will be wrapped in an Array.&#010 <P>&#010 Specifically for XML serialization and deserialization, <code>multiple:true</code> behaves&#010 similarly to the &#010 <a href='http://www.google.com/search?hl=en&q=soap+array' onclick="window.open('http://www.google.com/search?hl=en&q=soap+array');return false;">SOAP array idiom</a>, that is,&#010 there will be a "wrapper element" named after the field name, whose contents will be several&#010 elements of the specified {@link com.smartgwt.client.data.DataSourceField#getType type}.  &#010 <P>&#010 For example, {@link com.smartgwt.client.widgets.layout.Layout#getMembers members} is declared with <code>type:"Canvas",&#010 multiple:true</code>.  The correct XML format is thus:&#010 <pre>&#010 &lt;VLayout&gt;&#010     &lt;members&gt;&#010         &lt;Canvas ID="myCanvas" ... /&gt;&#010         &lt;ListGrid ID="myGrid" .../&gt;&#010         &lt;Toolstrip ID="myToolStrip" ... /&gt;&#010     &lt;/members&gt;&#010 &lt;/VLayout&gt;&#010 </pre>
     *
     * @param multiple multiple Default value is null
     */
@@ -439,7 +439,7 @@ public class DataSourceField extends DataClass {
         setAttribute("multiple", multiple);
     }
     /**
-     * Indicates that this field should always be Array-valued.  If the value derived from {@link com.smartgwt.client.data.DataSource#getDataFormat dataFormat} is singular, it will be wrapped in an Array. <P> Specifically for XML serialization and deserialization, <code>multiple:true</code> behaves similarly to the  <a href='http://www.google.com/search?hl=en&q=soap+array' onclick="window.open('http://www.google.com/search?hl=en&q=soap+array');return false;">SOAP array idiom</a>, that is, there will be a "wrapper element" named after the field name, whose contents will be several elements of the specified {@link com.smartgwt.client.data.DataSourceField#getType type}.   <P> For example, {@link com.smartgwt.client.widgets.layout.Layout#getMembers members} is declared with <code>type:"Canvas", multiple:true</code>.  The correct XML format is thus: <pre> &lt;VLayout&gt;     &lt;members&gt;         &lt;Canvas ID="myCanvas" ... /&gt;         &lt;ListGrid ID="myGrid" .../&gt;         &lt;Toolstrip ID="myToolStrip" ... /&gt;     &lt;/members&gt; &lt;/VLayout&gt; </pre>
+     * Indicates that this field should always be Array-valued.  If the value derived from&#010 {@link com.smartgwt.client.data.DataSource#getDataFormat dataFormat} is singular, it will be wrapped in an Array.&#010 <P>&#010 Specifically for XML serialization and deserialization, <code>multiple:true</code> behaves&#010 similarly to the &#010 <a href='http://www.google.com/search?hl=en&q=soap+array' onclick="window.open('http://www.google.com/search?hl=en&q=soap+array');return false;">SOAP array idiom</a>, that is,&#010 there will be a "wrapper element" named after the field name, whose contents will be several&#010 elements of the specified {@link com.smartgwt.client.data.DataSourceField#getType type}.  &#010 <P>&#010 For example, {@link com.smartgwt.client.widgets.layout.Layout#getMembers members} is declared with <code>type:"Canvas",&#010 multiple:true</code>.  The correct XML format is thus:&#010 <pre>&#010 &lt;VLayout&gt;&#010     &lt;members&gt;&#010         &lt;Canvas ID="myCanvas" ... /&gt;&#010         &lt;ListGrid ID="myGrid" .../&gt;&#010         &lt;Toolstrip ID="myToolStrip" ... /&gt;&#010     &lt;/members&gt;&#010 &lt;/VLayout&gt;&#010 </pre>
      *
      *
      * @return Boolean
@@ -450,7 +450,7 @@ public class DataSourceField extends DataClass {
     }
 
     /**
-    * For a field that is {@link com.smartgwt.client.data.DataSourceField#getMultiple multiple}, controls the name of the XML tag used for each subelement during {@link com.smartgwt.client.data.DataSource#xmlSerialize}. <P> If unset, the default tag name is "value" for a field of simple type, and for a field of DataSource type, is the tagName or ID of the DataSource (as though <code>xmlSerialize()</code> were called on the child DataSource).
+    * For a field that is {@link com.smartgwt.client.data.DataSourceField#getMultiple multiple}, controls the name of the XML tag used for each&#010 subelement during {@link com.smartgwt.client.data.DataSource#xmlSerialize}.&#010 <P>&#010 If unset, the default tag name is "value" for a field of simple type, and for a field of&#010 DataSource type, is the tagName or ID of the DataSource (as though&#010 <code>xmlSerialize()</code> were called on the child DataSource).
     *
     * @param childTagName childTagName Default value is null
     */
@@ -458,7 +458,7 @@ public class DataSourceField extends DataClass {
         setAttribute("childTagName", childTagName);
     }
     /**
-     * For a field that is {@link com.smartgwt.client.data.DataSourceField#getMultiple multiple}, controls the name of the XML tag used for each subelement during {@link com.smartgwt.client.data.DataSource#xmlSerialize}. <P> If unset, the default tag name is "value" for a field of simple type, and for a field of DataSource type, is the tagName or ID of the DataSource (as though <code>xmlSerialize()</code> were called on the child DataSource).
+     * For a field that is {@link com.smartgwt.client.data.DataSourceField#getMultiple multiple}, controls the name of the XML tag used for each&#010 subelement during {@link com.smartgwt.client.data.DataSource#xmlSerialize}.&#010 <P>&#010 If unset, the default tag name is "value" for a field of simple type, and for a field of&#010 DataSource type, is the tagName or ID of the DataSource (as though&#010 <code>xmlSerialize()</code> were called on the child DataSource).
      *
      *
      * @return String
@@ -469,7 +469,7 @@ public class DataSourceField extends DataClass {
     }
 
     /**
-    * For use in {@link com.smartgwt.client.docs.ComponentSchema} for fields that contain other components, this flag suppresses auto-construction for subcomponents that appear under this field. <P> For example, the {@link com.smartgwt.client.widgets.layout.VLayout} schema sets this for its {@link com.smartgwt.client.widgets.layout.Layout#getMembers members} property, so that when a VLayout is constructed via XML as follows: <pre> &lt;VLayout&gt;     &lt;members&gt;         &lt;ListGrid ID="myGrid" .../&gt;         &lt;Toolstrip ID="myToolStrip" ... /&gt;     &lt;/members&gt; &lt;/VLayout&gt; </pre> The ListGrid and ToolStrip do not construct themselves automatically.  Instead, the VLayout receives the properties of the ListGrid and ToolStrip as ordinary JavaScript Objects, with the special property <code>_constructor</code> set to the name of the class that should be constructed.
+    * For use in {@link com.smartgwt.client.docs.ComponentSchema} for fields that contain other components, this flag&#010 suppresses auto-construction for subcomponents that appear under this field.&#010 <P>&#010 For example, the {@link com.smartgwt.client.widgets.layout.VLayout} schema sets this for its {@link com.smartgwt.client.widgets.layout.Layout#getMembers members}&#010 property, so that when a VLayout is constructed via XML as follows:&#010 <pre>&#010 &lt;VLayout&gt;&#010     &lt;members&gt;&#010         &lt;ListGrid ID="myGrid" .../&gt;&#010         &lt;Toolstrip ID="myToolStrip" ... /&gt;&#010     &lt;/members&gt;&#010 &lt;/VLayout&gt;&#010 </pre>&#010 The ListGrid and ToolStrip do not construct themselves automatically.  Instead, the VLayout&#010 receives the properties of the ListGrid and ToolStrip as ordinary JavaScript Objects, with&#010 the special property <code>_constructor</code> set to the name of the class that should be&#010 constructed.
     *
     * @param propertiesOnly propertiesOnly Default value is null
     */
@@ -477,7 +477,7 @@ public class DataSourceField extends DataClass {
         setAttribute("propertiesOnly", propertiesOnly);
     }
     /**
-     * For use in {@link com.smartgwt.client.docs.ComponentSchema} for fields that contain other components, this flag suppresses auto-construction for subcomponents that appear under this field. <P> For example, the {@link com.smartgwt.client.widgets.layout.VLayout} schema sets this for its {@link com.smartgwt.client.widgets.layout.Layout#getMembers members} property, so that when a VLayout is constructed via XML as follows: <pre> &lt;VLayout&gt;     &lt;members&gt;         &lt;ListGrid ID="myGrid" .../&gt;         &lt;Toolstrip ID="myToolStrip" ... /&gt;     &lt;/members&gt; &lt;/VLayout&gt; </pre> The ListGrid and ToolStrip do not construct themselves automatically.  Instead, the VLayout receives the properties of the ListGrid and ToolStrip as ordinary JavaScript Objects, with the special property <code>_constructor</code> set to the name of the class that should be constructed.
+     * For use in {@link com.smartgwt.client.docs.ComponentSchema} for fields that contain other components, this flag&#010 suppresses auto-construction for subcomponents that appear under this field.&#010 <P>&#010 For example, the {@link com.smartgwt.client.widgets.layout.VLayout} schema sets this for its {@link com.smartgwt.client.widgets.layout.Layout#getMembers members}&#010 property, so that when a VLayout is constructed via XML as follows:&#010 <pre>&#010 &lt;VLayout&gt;&#010     &lt;members&gt;&#010         &lt;ListGrid ID="myGrid" .../&gt;&#010         &lt;Toolstrip ID="myToolStrip" ... /&gt;&#010     &lt;/members&gt;&#010 &lt;/VLayout&gt;&#010 </pre>&#010 The ListGrid and ToolStrip do not construct themselves automatically.  Instead, the VLayout&#010 receives the properties of the ListGrid and ToolStrip as ordinary JavaScript Objects, with&#010 the special property <code>_constructor</code> set to the name of the class that should be&#010 constructed.
      *
      *
      * @return Boolean
@@ -488,7 +488,7 @@ public class DataSourceField extends DataClass {
     }
 
     /**
-    * For use in {@link com.smartgwt.client.docs.ComponentSchema}, a field {@link com.smartgwt.client.data.DataSource#getInheritsFrom inheritsFrom} from another schema can be redeclared with this property set in order to indicate that the property should not be used. <P> This is primarily used to influence {@link com.smartgwt.client.docs.VisualBuilder}.  For simple type properties, this avoids the property appearing in the Component Editor.   <P> For fields that hold subcomponents, this prevents inappropriate drag and drop.  For example, a custom class called <code>MyDialog</code> may automatically create a series of children, and not allow arbitrary other children to be added.  In this case, the inherited property {@link com.smartgwt.client.widgets.Canvas#getChildren children} should be marked inapplicable in order to prevent arbitrary components being dropped onto a <code>MyDialog</code> instance.
+    * For use in {@link com.smartgwt.client.docs.ComponentSchema}, a field {@link com.smartgwt.client.data.DataSource#getInheritsFrom inheritsFrom} from&#010 another schema can be redeclared with this property set in order to indicate that the&#010 property should not be used.&#010 <P>&#010 This is primarily used to influence {@link com.smartgwt.client.docs.VisualBuilder}.  For simple type properties,&#010 this avoids the property appearing in the Component Editor.  &#010 <P>&#010 For fields that hold subcomponents, this prevents inappropriate drag and drop.  For example,&#010 a custom class called <code>MyDialog</code> may automatically create a series of children,&#010 and not allow arbitrary other children to be added.  In this case, the inherited property&#010 {@link com.smartgwt.client.widgets.Canvas#getChildren children} should be marked inapplicable in order to prevent arbitrary&#010 components being dropped onto a <code>MyDialog</code> instance.
     *
     * @param inapplicable inapplicable Default value is null
     */
@@ -496,7 +496,7 @@ public class DataSourceField extends DataClass {
         setAttribute("inapplicable", inapplicable);
     }
     /**
-     * For use in {@link com.smartgwt.client.docs.ComponentSchema}, a field {@link com.smartgwt.client.data.DataSource#getInheritsFrom inheritsFrom} from another schema can be redeclared with this property set in order to indicate that the property should not be used. <P> This is primarily used to influence {@link com.smartgwt.client.docs.VisualBuilder}.  For simple type properties, this avoids the property appearing in the Component Editor.   <P> For fields that hold subcomponents, this prevents inappropriate drag and drop.  For example, a custom class called <code>MyDialog</code> may automatically create a series of children, and not allow arbitrary other children to be added.  In this case, the inherited property {@link com.smartgwt.client.widgets.Canvas#getChildren children} should be marked inapplicable in order to prevent arbitrary components being dropped onto a <code>MyDialog</code> instance.
+     * For use in {@link com.smartgwt.client.docs.ComponentSchema}, a field {@link com.smartgwt.client.data.DataSource#getInheritsFrom inheritsFrom} from&#010 another schema can be redeclared with this property set in order to indicate that the&#010 property should not be used.&#010 <P>&#010 This is primarily used to influence {@link com.smartgwt.client.docs.VisualBuilder}.  For simple type properties,&#010 this avoids the property appearing in the Component Editor.  &#010 <P>&#010 For fields that hold subcomponents, this prevents inappropriate drag and drop.  For example,&#010 a custom class called <code>MyDialog</code> may automatically create a series of children,&#010 and not allow arbitrary other children to be added.  In this case, the inherited property&#010 {@link com.smartgwt.client.widgets.Canvas#getChildren children} should be marked inapplicable in order to prevent arbitrary&#010 components being dropped onto a <code>MyDialog</code> instance.
      *
      *
      * @return Boolean
@@ -507,7 +507,7 @@ public class DataSourceField extends DataClass {
     }
 
     /**
-    * For use in {@link com.smartgwt.client.docs.ComponentSchema}, indicates what group to place the property in when editing in Visual Builder.
+    * For use in {@link com.smartgwt.client.docs.ComponentSchema}, indicates what group to place the property in when&#010 editing in Visual Builder.
     *
     * @param group group Default value is null
     */
@@ -515,7 +515,7 @@ public class DataSourceField extends DataClass {
         setAttribute("group", group);
     }
     /**
-     * For use in {@link com.smartgwt.client.docs.ComponentSchema}, indicates what group to place the property in when editing in Visual Builder.
+     * For use in {@link com.smartgwt.client.docs.ComponentSchema}, indicates what group to place the property in when&#010 editing in Visual Builder.
      *
      *
      * @return String
@@ -526,7 +526,7 @@ public class DataSourceField extends DataClass {
     }
 
     /**
-    * For use with the SmartGWT server when populating Java Beans / POJOs based on data contained in a DSRequest, <code>javaClass</code> specifies the fully qualified Java className to be created and passed to the setter for the Java Bean Property with the same name as this field.   <code>javaClass</code> is used both when manually calling DataSource.setProperties() and when auto-populating POJO arguments of a {@link com.smartgwt.client..DMI} method. <P> The Java class to create does not normally have to be specified: SmartGWT will use Java reflection to inspect the type of argument expected by a setter method and will attempt conversion of inbound data to that type.  As described in the documentation for DataTools.setProperties(), this works for almost all typical cases.  However <code>field.javaClass</code> is useful for: <ul> <li> subobject of abstract or interface type: in this case Java Reflection is not sufficient to discover the concrete type that should be instantiated, and <code>javaClass</code> should be set instead.</li> <li> subobject of Collection or Map type, when Java generics are not used or the Collection member type or Map value type is abstract.  When Java generics are used (for example the setter takes an argument is of type Collection&lt;SomePOJO&gt; or Map&lt;KeyType,SomePOJO&gt;, SmartGWT will automatically attempt to convert inbound data to the type of the members of the Collection or values of the Map.  Without generics, <code>javaClass</code> needs to be specified.  Note that <code>javaClass</code> will take precendence over generics if both  are used. Also note that {@link com.smartgwt.client.data.DataSourceField#getJavaCollectionClass javaCollectionClass} can be specified if a particular Collection or Map type is needed, and {@link com.smartgwt.client.data.DataSourceField#getJavaKeyClass javaKeyClass} can be specified for a field of type <code>java.util.Map</code>.</li> </ul>
+    * For use with the SmartGWT server when populating Java Beans / POJOs based on data&#010 contained in a DSRequest, <code>javaClass</code> specifies the fully qualified Java&#010 className to be created and passed to the setter for the Java Bean Property with the same&#010 name as this field.   <code>javaClass</code> is used both when manually calling&#010 DataSource.setProperties() and when auto-populating POJO arguments of a {@link com.smartgwt.client..DMI} method.&#010 <P>&#010 The Java class to create does not normally have to be specified: SmartGWT will&#010 use Java reflection to inspect the type of argument expected by a setter method and will&#010 attempt conversion of inbound data to that type.  As described in the documentation for&#010 DataTools.setProperties(), this works for almost all typical cases.  However&#010 <code>field.javaClass</code> is useful for:&#010 <ul>&#010 <li> subobject of abstract or interface type: in this case Java Reflection is not sufficient&#010 to discover the concrete type that should be instantiated, and <code>javaClass</code> should be&#010 set instead.</li>&#010 <li> subobject of Collection or Map type, when Java generics are not used or the Collection&#010 member type or Map value type is abstract.  When Java generics are used (for example the&#010 setter takes an argument is of type Collection&lt;SomePOJO&gt; or Map&lt;KeyType,SomePOJO&gt;,&#010 SmartGWT will automatically attempt to convert inbound data to the type of the members of&#010 the Collection or values of the Map.  Without generics, <code>javaClass</code> needs to be&#010 specified.  Note that <code>javaClass</code> will take precendence over generics if both &#010 are used. Also note that {@link com.smartgwt.client.data.DataSourceField#getJavaCollectionClass javaCollectionClass} can be specified if a&#010 particular Collection or Map type is needed, and {@link com.smartgwt.client.data.DataSourceField#getJavaKeyClass javaKeyClass} can be&#010 specified for a field of type <code>java.util.Map</code>.</li>&#010 </ul>
     *
     * @param javaClass javaClass Default value is null
     */
@@ -534,7 +534,7 @@ public class DataSourceField extends DataClass {
         setAttribute("javaClass", javaClass);
     }
     /**
-     * For use with the SmartGWT server when populating Java Beans / POJOs based on data contained in a DSRequest, <code>javaClass</code> specifies the fully qualified Java className to be created and passed to the setter for the Java Bean Property with the same name as this field.   <code>javaClass</code> is used both when manually calling DataSource.setProperties() and when auto-populating POJO arguments of a {@link com.smartgwt.client..DMI} method. <P> The Java class to create does not normally have to be specified: SmartGWT will use Java reflection to inspect the type of argument expected by a setter method and will attempt conversion of inbound data to that type.  As described in the documentation for DataTools.setProperties(), this works for almost all typical cases.  However <code>field.javaClass</code> is useful for: <ul> <li> subobject of abstract or interface type: in this case Java Reflection is not sufficient to discover the concrete type that should be instantiated, and <code>javaClass</code> should be set instead.</li> <li> subobject of Collection or Map type, when Java generics are not used or the Collection member type or Map value type is abstract.  When Java generics are used (for example the setter takes an argument is of type Collection&lt;SomePOJO&gt; or Map&lt;KeyType,SomePOJO&gt;, SmartGWT will automatically attempt to convert inbound data to the type of the members of the Collection or values of the Map.  Without generics, <code>javaClass</code> needs to be specified.  Note that <code>javaClass</code> will take precendence over generics if both  are used. Also note that {@link com.smartgwt.client.data.DataSourceField#getJavaCollectionClass javaCollectionClass} can be specified if a particular Collection or Map type is needed, and {@link com.smartgwt.client.data.DataSourceField#getJavaKeyClass javaKeyClass} can be specified for a field of type <code>java.util.Map</code>.</li> </ul>
+     * For use with the SmartGWT server when populating Java Beans / POJOs based on data&#010 contained in a DSRequest, <code>javaClass</code> specifies the fully qualified Java&#010 className to be created and passed to the setter for the Java Bean Property with the same&#010 name as this field.   <code>javaClass</code> is used both when manually calling&#010 DataSource.setProperties() and when auto-populating POJO arguments of a {@link com.smartgwt.client..DMI} method.&#010 <P>&#010 The Java class to create does not normally have to be specified: SmartGWT will&#010 use Java reflection to inspect the type of argument expected by a setter method and will&#010 attempt conversion of inbound data to that type.  As described in the documentation for&#010 DataTools.setProperties(), this works for almost all typical cases.  However&#010 <code>field.javaClass</code> is useful for:&#010 <ul>&#010 <li> subobject of abstract or interface type: in this case Java Reflection is not sufficient&#010 to discover the concrete type that should be instantiated, and <code>javaClass</code> should be&#010 set instead.</li>&#010 <li> subobject of Collection or Map type, when Java generics are not used or the Collection&#010 member type or Map value type is abstract.  When Java generics are used (for example the&#010 setter takes an argument is of type Collection&lt;SomePOJO&gt; or Map&lt;KeyType,SomePOJO&gt;,&#010 SmartGWT will automatically attempt to convert inbound data to the type of the members of&#010 the Collection or values of the Map.  Without generics, <code>javaClass</code> needs to be&#010 specified.  Note that <code>javaClass</code> will take precendence over generics if both &#010 are used. Also note that {@link com.smartgwt.client.data.DataSourceField#getJavaCollectionClass javaCollectionClass} can be specified if a&#010 particular Collection or Map type is needed, and {@link com.smartgwt.client.data.DataSourceField#getJavaKeyClass javaKeyClass} can be&#010 specified for a field of type <code>java.util.Map</code>.</li>&#010 </ul>
      *
      *
      * @return String
@@ -545,7 +545,7 @@ public class DataSourceField extends DataClass {
     }
 
     /**
-    * See {@link com.smartgwt.client.data.DataSourceField#getJavaClass javaClass} - when auto-populating of Java Beans / POJOs based on  inbound DSRequest data, for a field of type Collection or Map,  <code>javaCollectionClass</code> can  be used to specify a particular concrete class to use.  If not specified, and a concrete Collection or Map class cannot be discovered using Java Reflection,  <code>java.util.ArrayList</code> is used for fields of type Collection, and  <code>org.apache.commons.collections.SequencedHashMap</code> is used for fields of type Map. Note that this value is used even if the target Collection or Map is declared as a concrete class.  So, for example, if you set <code>javaCollectionClass</code> to  <code>java.util.LinkedList</code> but your setter method accepts a  <code>java.util.ArrayList</code>, you will get a ClassCastException.
+    * See {@link com.smartgwt.client.data.DataSourceField#getJavaClass javaClass} - when auto-populating of Java Beans / POJOs based on &#010 inbound DSRequest data, for a field of type Collection or Map, &#010 <code>javaCollectionClass</code> can &#010 be used to specify a particular concrete class to use.  If not specified, and a concrete&#010 Collection or Map class cannot be discovered using Java Reflection, &#010 <code>java.util.ArrayList</code> is used for fields of type Collection, and &#010 <code>org.apache.commons.collections.SequencedHashMap</code> is used for fields of type Map.&#010&#010 Note that this value is used even if the target Collection or Map is declared as a concrete&#010 class.  So, for example, if you set <code>javaCollectionClass</code> to &#010 <code>java.util.LinkedList</code> but your setter method accepts a &#010 <code>java.util.ArrayList</code>, you will get a ClassCastException.
     *
     * @param javaCollectionClass javaCollectionClass Default value is null
     */
@@ -553,7 +553,7 @@ public class DataSourceField extends DataClass {
         setAttribute("javaCollectionClass", javaCollectionClass);
     }
     /**
-     * See {@link com.smartgwt.client.data.DataSourceField#getJavaClass javaClass} - when auto-populating of Java Beans / POJOs based on  inbound DSRequest data, for a field of type Collection or Map,  <code>javaCollectionClass</code> can  be used to specify a particular concrete class to use.  If not specified, and a concrete Collection or Map class cannot be discovered using Java Reflection,  <code>java.util.ArrayList</code> is used for fields of type Collection, and  <code>org.apache.commons.collections.SequencedHashMap</code> is used for fields of type Map. Note that this value is used even if the target Collection or Map is declared as a concrete class.  So, for example, if you set <code>javaCollectionClass</code> to  <code>java.util.LinkedList</code> but your setter method accepts a  <code>java.util.ArrayList</code>, you will get a ClassCastException.
+     * See {@link com.smartgwt.client.data.DataSourceField#getJavaClass javaClass} - when auto-populating of Java Beans / POJOs based on &#010 inbound DSRequest data, for a field of type Collection or Map, &#010 <code>javaCollectionClass</code> can &#010 be used to specify a particular concrete class to use.  If not specified, and a concrete&#010 Collection or Map class cannot be discovered using Java Reflection, &#010 <code>java.util.ArrayList</code> is used for fields of type Collection, and &#010 <code>org.apache.commons.collections.SequencedHashMap</code> is used for fields of type Map.&#010&#010 Note that this value is used even if the target Collection or Map is declared as a concrete&#010 class.  So, for example, if you set <code>javaCollectionClass</code> to &#010 <code>java.util.LinkedList</code> but your setter method accepts a &#010 <code>java.util.ArrayList</code>, you will get a ClassCastException.
      *
      *
      * @return String
@@ -564,7 +564,7 @@ public class DataSourceField extends DataClass {
     }
 
     /**
-    * See {@link com.smartgwt.client.data.DataSourceField#getJavaClass javaClass} - when auto-populating of Java Beans / POJOs based on  inbound DSRequest data, for a field of Map type, <code>javaKeyClass</code> can be used to specify a particular concrete class for the map keys.  If not specified, and a concrete type cannot be discovered using Java Reflection, <code>java.lang.Object</code> is used. Note that <code>javaKeyClass</code> take precedence over generics if both are used.
+    * See {@link com.smartgwt.client.data.DataSourceField#getJavaClass javaClass} - when auto-populating of Java Beans / POJOs based on &#010 inbound DSRequest data, for a field of Map type, <code>javaKeyClass</code> can be used to&#010 specify a particular concrete class for the map keys.  If not specified, and a concrete&#010 type cannot be discovered using Java Reflection, <code>java.lang.Object</code> is used.&#010&#010 Note that <code>javaKeyClass</code> take precedence over generics if both are used.
     *
     * @param javaKeyClass javaKeyClass Default value is null
     */
@@ -572,7 +572,7 @@ public class DataSourceField extends DataClass {
         setAttribute("javaKeyClass", javaKeyClass);
     }
     /**
-     * See {@link com.smartgwt.client.data.DataSourceField#getJavaClass javaClass} - when auto-populating of Java Beans / POJOs based on  inbound DSRequest data, for a field of Map type, <code>javaKeyClass</code> can be used to specify a particular concrete class for the map keys.  If not specified, and a concrete type cannot be discovered using Java Reflection, <code>java.lang.Object</code> is used. Note that <code>javaKeyClass</code> take precedence over generics if both are used.
+     * See {@link com.smartgwt.client.data.DataSourceField#getJavaClass javaClass} - when auto-populating of Java Beans / POJOs based on &#010 inbound DSRequest data, for a field of Map type, <code>javaKeyClass</code> can be used to&#010 specify a particular concrete class for the map keys.  If not specified, and a concrete&#010 type cannot be discovered using Java Reflection, <code>java.lang.Object</code> is used.&#010&#010 Note that <code>javaKeyClass</code> take precedence over generics if both are used.
      *
      *
      * @return String
@@ -645,20 +645,14 @@ public class DataSourceField extends DataClass {
 
     /**
      * A valueMap} is a set of legal values for a field. <p> The valueMap can be specified as either an Array of legal
-     * values, or as an ${isc.DocUtils.linkForRef('type:Object')} where each property maps a stored value to a
+     * values, or as a Map where each property maps a stored value to a
      * user-displayable value. <p> To enforce that a field should be constrained to only the values in the valueMap,
      * either declare {@link com.smartgwt.client.data.DataSourceField#getType type} as "enum", or use an {@link
      * com.smartgwt.client.types.ValidatorTypes#isOneOf} with explicitly listed values.  Otherwise, although a normal {@link
      * com.smartgwt.client.widgets.form.fields.SelectItem} control will only allow values from the valueMap to be
      * entered, other controls such as a {@link com.smartgwt.client.widgets.form.fields.ComboBoxItem} will allow other
-     * values  to be entered. <p> In XML, a valueMap that specifies only a list of legal values is specified as follows:
-     * <pre>   &lt;valueMap&gt;    &lt;value&gt;Pens &amp; Pencils&lt;/value&gt;
-     * &lt;value&gt;Stationery&lt;/value&gt;    &lt;value&gt;Computer Products&lt;/value&gt;
-     * &lt;value&gt;Furniture&lt;/value&gt;    &lt;value&gt;Misc&lt;/value&gt;   &lt;/valueMap&gt; </pre> A ValueMap
-     * that specifies stored values mapped to user-visible values is specified as follows: <pre>   &lt;valueMap&gt;
-     * &lt;value ID="1"&gt;Pens &amp; Pencils&lt;/value&gt;    &lt;value ID="2"&gt;Stationery&lt;/value&gt;    &lt;value
-     * ID="3"&gt;Computer Products&lt;/value&gt;    &lt;value ID="4"&gt;Furniture&lt;/value&gt;    &lt;value
-     * ID="5"&gt;Misc&lt;/value&gt;   &lt;/valueMap&gt; </pre>
+     * values  to be entered. <p> In XML, a valueMap that specifies only a list of legal values is specified as follows:&#010
+     * <pre>&#010   &lt;valueMap&gt;&#010    &lt;value&gt;Pens &amp; Pencils&lt;/value&gt;&#010    &lt;value&gt;Stationery&lt;/value&gt;&#010    &lt;value&gt;Computer Products&lt;/value&gt;&#010    &lt;value&gt;Furniture&lt;/value&gt;&#010    &lt;value&gt;Misc&lt;/value&gt;&#010   &lt;/valueMap&gt;&#010 </pre>&#010 A ValueMap that specifies stored values mapped to user-visible values is specified as&#010 follows:&#010 <pre>&#010   &lt;valueMap&gt;&#010    &lt;value ID="1"&gt;Pens &amp; Pencils&lt;/value&gt;&#010    &lt;value ID="2"&gt;Stationery&lt;/value&gt;&#010    &lt;value ID="3"&gt;Computer Products&lt;/value&gt;&#010    &lt;value ID="4"&gt;Furniture&lt;/value&gt;&#010    &lt;value ID="5"&gt;Misc&lt;/value&gt;&#010   &lt;/valueMap&gt;&#010 </pre>
      *
      * @param valueMap valueMap Default value is null
      */
@@ -668,20 +662,13 @@ public class DataSourceField extends DataClass {
 
     /**
      * A valueMap} is a set of legal values for a field. <p> The valueMap can be specified as either an Array of legal
-     * values, or as an ${isc.DocUtils.linkForRef('type:Object')} where each property maps a stored value to a
+     * values, or as a Map where each property maps a stored value to a
      * user-displayable value. <p> To enforce that a field should be constrained to only the values in the valueMap,
      * either declare {@link com.smartgwt.client.data.DataSourceField#getType type} as "enum", or use an {@link
      * com.smartgwt.client..ValidatorTypes#isOneOf} with explicitly listed values.  Otherwise, although a normal {@link
      * com.smartgwt.client.widgets.form.fields.SelectItem} control will only allow values from the valueMap to be
      * entered, other controls such as a {@link com.smartgwt.client.widgets.form.fields.ComboBoxItem} will allow other
-     * values  to be entered. <p> In XML, a valueMap that specifies only a list of legal values is specified as follows:
-     * <pre>   &lt;valueMap&gt;    &lt;value&gt;Pens &amp; Pencils&lt;/value&gt;
-     * &lt;value&gt;Stationery&lt;/value&gt;    &lt;value&gt;Computer Products&lt;/value&gt;
-     * &lt;value&gt;Furniture&lt;/value&gt;    &lt;value&gt;Misc&lt;/value&gt;   &lt;/valueMap&gt; </pre> A ValueMap
-     * that specifies stored values mapped to user-visible values is specified as follows: <pre>   &lt;valueMap&gt;
-     * &lt;value ID="1"&gt;Pens &amp; Pencils&lt;/value&gt;    &lt;value ID="2"&gt;Stationery&lt;/value&gt;    &lt;value
-     * ID="3"&gt;Computer Products&lt;/value&gt;    &lt;value ID="4"&gt;Furniture&lt;/value&gt;    &lt;value
-     * ID="5"&gt;Misc&lt;/value&gt;   &lt;/valueMap&gt; </pre>
+     * values  to be entered. <p> IIn XML, a valueMap that specifies only a list of legal values is specified as follows:&#010 <pre>&#010   &lt;valueMap&gt;&#010    &lt;value&gt;Pens &amp; Pencils&lt;/value&gt;&#010    &lt;value&gt;Stationery&lt;/value&gt;&#010    &lt;value&gt;Computer Products&lt;/value&gt;&#010    &lt;value&gt;Furniture&lt;/value&gt;&#010    &lt;value&gt;Misc&lt;/value&gt;&#010   &lt;/valueMap&gt;&#010 </pre>&#010 A ValueMap that specifies stored values mapped to user-visible values is specified as&#010 follows:&#010 <pre>&#010   &lt;valueMap&gt;&#010    &lt;value ID="1"&gt;Pens &amp; Pencils&lt;/value&gt;&#010    &lt;value ID="2"&gt;Stationery&lt;/value&gt;&#010    &lt;value ID="3"&gt;Computer Products&lt;/value&gt;&#010    &lt;value ID="4"&gt;Furniture&lt;/value&gt;&#010    &lt;value ID="5"&gt;Misc&lt;/value&gt;&#010   &lt;/valueMap&gt;&#010 </pre>
      *
      * @param valueMap valueMap Default value is null
      */

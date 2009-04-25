@@ -146,7 +146,7 @@ public class StaticTextItem extends FormItem {
     }
 
     /**
-    * By default HTML values in a staticTextItem will be interpreted by the browser. Setting this flag to true will causes HTML characters to be escaped, meaning the raw value of the field (for example <code>"&lt;b&gt;AAA&lt;/b&gt;"</code>) is displayed to the user rather than the interpreted HTML (for example <code>"<b>AAA</b>"</code>)
+    * By default HTML values in a staticTextItem will be interpreted by the browser.&#010 Setting this flag to true will causes HTML characters to be escaped, meaning the&#010 raw value of the field (for example <code>"&lt;b&gt;AAA&lt;/b&gt;"</code>) is displayed&#010 to the user rather than the interpreted HTML (for example <code>"<b>AAA</b>"</code>)
     *
     * @param outputAsHTML outputAsHTML Default value is false
     */
@@ -154,7 +154,7 @@ public class StaticTextItem extends FormItem {
         setAttribute("outputAsHTML", outputAsHTML);
     }
     /**
-     * By default HTML values in a staticTextItem will be interpreted by the browser. Setting this flag to true will causes HTML characters to be escaped, meaning the raw value of the field (for example <code>"&lt;b&gt;AAA&lt;/b&gt;"</code>) is displayed to the user rather than the interpreted HTML (for example <code>"<b>AAA</b>"</code>)
+     * By default HTML values in a staticTextItem will be interpreted by the browser.&#010 Setting this flag to true will causes HTML characters to be escaped, meaning the&#010 raw value of the field (for example <code>"&lt;b&gt;AAA&lt;/b&gt;"</code>) is displayed&#010 to the user rather than the interpreted HTML (for example <code>"<b>AAA</b>"</code>)
      *
      *
      * @return Boolean
