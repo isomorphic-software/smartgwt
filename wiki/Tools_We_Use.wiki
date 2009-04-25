@@ -1,0 +1,9 @@
+= Tools we use =
+
+Here are some of the tools we use for developing SmartGWT.
+
+= IntelliJ IDEA =
+[IntelliJ http://www.jetbrains.com/idea/] is a very good Java IDE with excellent GWT support. It is our preferred IDE for SmartGWT development.
+
+= SmartSVN =
+[SmartSVN http://www.syntevo.com/index.html] by Syntevo is a feature rich and very usable SVN client. Some of us use OSX as our primary development platform and SmartSVN is definitely the best SVN client for OSX  based on our evaluation. 
