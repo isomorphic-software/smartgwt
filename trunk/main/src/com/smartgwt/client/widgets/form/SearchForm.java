@@ -56,7 +56,7 @@ import com.smartgwt.client.util.EnumUtil;
 import com.google.gwt.event.shared.*;
 import com.google.gwt.event.shared.HasHandlers;
    /**
-    * A SearchForm is a DynamicForm specialized for a user to enter search criteria. <P> All DynamicForm properties and methods work on SearchForm.  SearchForm extends and specializes DynamicForm for searching, for example, SearchForm sets <code>hiliteRequiredFields</code> false by default because fields are typically required in a search.
+    * A SearchForm is a DynamicForm specialized for a user to enter search criteria.&#010 <P>&#010 All DynamicForm properties and methods work on SearchForm.  SearchForm extends and&#010 specializes DynamicForm for searching, for example, SearchForm sets&#010 <code>hiliteRequiredFields</code> false by default because fields are typically required in&#010 a search.
 
     */
 public class SearchForm extends DynamicForm {
@@ -89,7 +89,7 @@ public class SearchForm extends DynamicForm {
     // ********************* Properties / Attributes ***********************
 
     /**
-    * If this attribute is true any {@link com.smartgwt.client.data.DataSourceField#getCanFilter canFilter} fields specified on the dataSource will not be shown unless explicitly included in this component's {@link com.smartgwt.client..DataBoundComponent#getFields fields}
+    * If this attribute is true any {@link com.smartgwt.client.data.DataSourceField#getCanFilter canFilter} fields&#010 specified on the dataSource will not be shown unless explicitly included in this component's&#010 {@link com.smartgwt.client..DataBoundComponent#getFields fields}
     * <p><b>Note : </b> This is an advanced setting</p>
     *
     * @param showFilterFieldsOnly showFilterFieldsOnly Default value is true
@@ -98,7 +98,7 @@ public class SearchForm extends DynamicForm {
         setAttribute("showFilterFieldsOnly", showFilterFieldsOnly, true);
     }
     /**
-     * If this attribute is true any {@link com.smartgwt.client.data.DataSourceField#getCanFilter canFilter} fields specified on the dataSource will not be shown unless explicitly included in this component's {@link com.smartgwt.client..DataBoundComponent#getFields fields}
+     * If this attribute is true any {@link com.smartgwt.client.data.DataSourceField#getCanFilter canFilter} fields&#010 specified on the dataSource will not be shown unless explicitly included in this component's&#010 {@link com.smartgwt.client..DataBoundComponent#getFields fields}
      *
      *
      * @return Boolean

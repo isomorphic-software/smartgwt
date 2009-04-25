@@ -56,7 +56,7 @@ import com.smartgwt.client.util.EnumUtil;
 import com.google.gwt.event.shared.*;
 import com.google.gwt.event.shared.HasHandlers;
    /**
-    * A subclass of Layout that applies a sizing policy along the horizontal axis, interpreting  percent and "*" sizes as proportions of the width of the layout. HLayouts will set any members  that do not have explict heights to match the layout.
+    * A subclass of Layout that applies a sizing policy along the horizontal axis, interpreting&#010  percent and "*" sizes as proportions of the width of the layout. HLayouts will set any members&#010  that do not have explict heights to match the layout.
 
     */
 public class HLayout extends Layout {

@@ -108,7 +108,7 @@ public class ImgTab extends StretchImgButton {
     }
 
     /**
-    * Base path for the images.   <B>Note</B> that when used within a TabSet, the {@link com.smartgwt.client.widgets.tab.TabSet#getTabBarPosition tabBarPosition} is appended as an additional path segment, yielding "images/Tab/top/" et al.
+    * Base path for the images.   <B>Note</B> that when used within a TabSet, the&#010 {@link com.smartgwt.client.widgets.tab.TabSet#getTabBarPosition tabBarPosition} is appended as an additional path segment, yielding&#010 "images/Tab/top/" et al.
     *
     * @param skinImgDir skinImgDir Default value is "images/Tab/"
     */
@@ -116,7 +116,7 @@ public class ImgTab extends StretchImgButton {
         setAttribute("skinImgDir", skinImgDir, true);
     }
     /**
-     * Base path for the images.   <B>Note</B> that when used within a TabSet, the {@link com.smartgwt.client.widgets.tab.TabSet#getTabBarPosition tabBarPosition} is appended as an additional path segment, yielding "images/Tab/top/" et al.
+     * Base path for the images.   <B>Note</B> that when used within a TabSet, the&#010 {@link com.smartgwt.client.widgets.tab.TabSet#getTabBarPosition tabBarPosition} is appended as an additional path segment, yielding&#010 "images/Tab/top/" et al.
      *
      *
      * @return String
@@ -147,7 +147,7 @@ public class ImgTab extends StretchImgButton {
     }
 
     /**
-    * Like {@link com.smartgwt.client.widgets.StretchImgButton#getTitleStyle titleStyle}, can set to provide a separate style for the title text. <P> If set and the ImgTab is {@link com.smartgwt.client.widgets.StretchImgButton#getVertical vertical}, a "v" will be automatically prepended to the style name (hence "tabTitle" -> "vtabTitle").
+    * Like {@link com.smartgwt.client.widgets.StretchImgButton#getTitleStyle titleStyle}, can set to provide a separate style for the&#010 title text.&#010 <P>&#010 If set and the ImgTab is {@link com.smartgwt.client.widgets.StretchImgButton#getVertical vertical}, a "v" will be&#010 automatically prepended to the style name (hence "tabTitle" -> "vtabTitle").
     *
     * @param titleStyle titleStyle Default value is null
     * @throws IllegalStateException this property cannot be changed after the component has been created
@@ -156,7 +156,7 @@ public class ImgTab extends StretchImgButton {
         setAttribute("titleStyle", titleStyle, false);
     }
     /**
-     * Like {@link com.smartgwt.client.widgets.StretchImgButton#getTitleStyle titleStyle}, can set to provide a separate style for the title text. <P> If set and the ImgTab is {@link com.smartgwt.client.widgets.StretchImgButton#getVertical vertical}, a "v" will be automatically prepended to the style name (hence "tabTitle" -> "vtabTitle").
+     * Like {@link com.smartgwt.client.widgets.StretchImgButton#getTitleStyle titleStyle}, can set to provide a separate style for the&#010 title text.&#010 <P>&#010 If set and the ImgTab is {@link com.smartgwt.client.widgets.StretchImgButton#getVertical vertical}, a "v" will be&#010 automatically prepended to the style name (hence "tabTitle" -> "vtabTitle").
      *
      *
      * @return String

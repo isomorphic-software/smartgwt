@@ -22,7 +22,7 @@ import com.google.gwt.event.shared.HasHandlers;
 
 public interface HasSelectionChangedHandlers extends HasHandlers {
     /**
-     * Called when (row-based) selection changes within this grid. Note this method fires for each record for which selection is modified - so when a user clicks inside a grid this method will typically fire twice (once for the old record being deselected, and once for the new record being selected).
+     * Called when (row-based) selection changes within this grid. Note this method fires for&#010 each record for which selection is modified - so when a user clicks inside a grid this&#010 method will typically fire twice (once for the old record being deselected, and once for&#010 the new record being selected).&#010&#010
      */
     HandlerRegistration addSelectionChangedHandler(SelectionChangedHandler handler);
 }

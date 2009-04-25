@@ -22,7 +22,7 @@ import com.google.gwt.event.shared.HasHandlers;
 
 public interface HasHoverHiddenHandlers extends HasHandlers {
     /**
-     * If {@link com.smartgwt.client.widgets.Canvas#getShowHover showHover} is true for this canvas, this notification method will be fired whenever the hover shown in response to {@link com.smartgwt.client.widgets.Canvas#handleHover} is  hidden. This method may be observed or overridden.
+     * If {@link com.smartgwt.client.widgets.Canvas#getShowHover showHover} is true for this canvas, this notification method will be&#010 fired whenever the hover shown in response to {@link com.smartgwt.client.widgets.Canvas#handleHover} is &#010 hidden. This method may be observed or overridden.&#010
      */
     HandlerRegistration addHoverHiddenHandler(HoverHiddenHandler handler);
 }

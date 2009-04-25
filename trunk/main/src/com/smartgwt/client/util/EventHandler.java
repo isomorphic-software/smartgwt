@@ -56,7 +56,7 @@ import com.smartgwt.client.util.EnumUtil;
 import com.google.gwt.event.shared.*;
 import com.google.gwt.event.shared.HasHandlers;
    /**
-    * The ISC system provides a predictable cross-browser event-handling mechanism for ISC widgets. Events can be handled both at the page level (i.e., globally), and at the level of individual widgets. <p> With the exception of a few page-specific events ('load', 'unload', 'idle' and 'resize'), events are processed in the following sequence: <p> 1. The event is sent to any global (page-level) event handlers. These handlers can cancel further propagation of the event by returning false.  You can register to listen for any of the events linked in the seeAlso section (below) by calling {@link com.smartgwt.client.util.Page#setEvent} method. <p> 2. If the event occurred on a form element or a link, it is passed on to the browser so that the element will perform its default action. No widget receives the event. <p> 3. If the event occurred on an enabled widget (but not on a form element or link inside the widget), it is sent to that widget's event handler, if any. This handler can cancel further propagation of the event by returning false.  An "enabled" widget is any widget that defines an event handler for one of the supported events.  Interceptable events are defined in the {@link com.smartgwt.client..Canvas#methods#events}. <p> 4. The event is "bubbled" up to the widget's parent in the containment hierarchy, if any. Again, the parent's handler for the event can cancel further propagation by returning false. This step is repeated, with the event "bubbling" up through the containment hierarchy, until a top-level widget is reached or the event is explicitly canceled. In brief, the ISC event model offers the best features of browser event models: <ul> <li> Page-first event handling allows you to reliably process or cancel any event before it      affects the objects on the page. <li> Event "bubbling" ensures that parent widgets receive events sent to their children,      and allows you to create generalized parent-level handlers rather than duplicating      code in each child. </ul> Note: Canceling propagation of an event may cancel its side effects as well, including the generation of other (synthetic) events. For example, if a global mouseDown handler returns false, drag-and-drop events will not be generated. Specific effects are discussed in the descriptions of the various events in the following sections. <p> SmartGWT libraries will not interfere with native event handling when events occur outside of a target widget. You can therefore have HTML that is not ISC-based on the same page as widget objects that will react to native events as you would expect. <p> You can use isc.Event as an alias for isc.EventHandler.
+    * The ISC system provides a predictable cross-browser event-handling mechanism for ISC&#010 widgets. Events can be handled both at the page level (i.e., globally), and at the level of&#010 individual widgets.&#010 <p>&#010 With the exception of a few page-specific events ('load', 'unload', 'idle' and 'resize'),&#010 events are processed in the following sequence:&#010 <p>&#010 1. The event is sent to any global (page-level) event handlers. These handlers can cancel&#010 further propagation of the event by returning false.  You can register to listen for any of the&#010 events linked in the seeAlso section (below) by calling {@link com.smartgwt.client.util.Page#setEvent}&#010 method.&#010 <p>&#010 2. If the event occurred on a form element or a link, it is passed on to the browser so that&#010 the element will perform its default action. No widget receives the event.&#010 <p>&#010 3. If the event occurred on an enabled widget (but not on a form element or link inside&#010 the widget), it is sent to that widget's event handler, if any. This handler can cancel&#010 further propagation of the event by returning false.  An "enabled" widget is any widget that&#010 defines an event handler for one of the supported events.  Interceptable events are defined in&#010 the {@link com.smartgwt.client..Canvas#methods#events}.&#010 <p>&#010 4. The event is "bubbled" up to the widget's parent in the containment hierarchy, if any.&#010 Again, the parent's handler for the event can cancel further propagation by returning&#010 false. This step is repeated, with the event "bubbling" up through the containment&#010 hierarchy, until a top-level widget is reached or the event is explicitly canceled.&#010 In brief, the ISC event model offers the best features of browser event models:&#010 <ul>&#010 <li> Page-first event handling allows you to reliably process or cancel any event before it&#010      affects the objects on the page.&#010 <li> Event "bubbling" ensures that parent widgets receive events sent to their children,&#010      and allows you to create generalized parent-level handlers rather than duplicating&#010      code in each child.&#010 </ul>&#010 Note: Canceling propagation of an event may cancel its side effects as well, including the&#010 generation of other (synthetic) events. For example, if a global mouseDown handler returns&#010 false, drag-and-drop events will not be generated. Specific effects are discussed in the&#010 descriptions of the various events in the following sections.&#010 <p>&#010 SmartGWT libraries will not interfere with native event handling when events occur&#010 outside of a target widget. You can therefore have HTML that is not ISC-based on the same&#010 page as widget objects that will react to native events as you would expect.&#010 <p>&#010 You can use isc.Event as an alias for isc.EventHandler.
 
     */
 public class EventHandler {
@@ -69,7 +69,7 @@ public class EventHandler {
 
 
         /**
-         * Return the canvas that is the target of the mouse event. Returns null if no canvas found.
+         * Return the canvas that is the target of the mouse event.&#010 Returns null if no canvas found.&#010&#010
          *
          * @return event target canvas
          */
@@ -84,7 +84,7 @@ public class EventHandler {
         }-*/;
 
         /**
-         * Returns the current dragTarget.  This is the component on which the drag and drop interaction was initiated.  This only returns something meaningful during a drag and drop interaction.
+         * &#010 Returns the current dragTarget.  This is the component on which the drag and drop&#010 interaction was initiated.  This only returns something meaningful during a drag and drop&#010 interaction.&#010&#010
          *
          * @return The dragTarget.
          */
@@ -99,7 +99,7 @@ public class EventHandler {
         }-*/;
 
         /**
-         * Return the page-relative X (horizontal) coordinate of an event.
+         * Return the page-relative X (horizontal) coordinate of an event.&#010&#010
          *
          * @return x-coordinate in page coordinate space
          */
@@ -108,7 +108,7 @@ public class EventHandler {
         }-*/;
 
         /**
-         * Return the page-relative Y (vertical) coordinate of an event.
+         * Return the page-relative Y (vertical) coordinate of an event.&#010&#010
          *
          * @return y-coordinate in page coordinate space
          */
@@ -117,7 +117,7 @@ public class EventHandler {
         }-*/;
 
         /**
-         * Returns true if the left mouse button is being pressed.
+         * Returns true if the left mouse button is being pressed.&#010&#010
          *
          * @return true == left button is down, false == up
          */
@@ -131,7 +131,7 @@ public class EventHandler {
         }-*/;
 
         /**
-         * Returns true if the right mouse button is being pressed.
+         * Returns true if the right mouse button is being pressed.&#010&#010
          *
          * @return true == right button is down, false == up
          */
@@ -146,7 +146,7 @@ public class EventHandler {
 
 
         /**
-         * Return true if the shift key is being held down.   Note that this is only set reliably for keyboard events.
+         * Return true if the shift key is being held down.&#010   Note that this is only set reliably for keyboard events.&#010&#010
          *
          * @return true == shift key is down
          */
@@ -160,7 +160,7 @@ public class EventHandler {
         }-*/;
 
         /**
-         * Return true if the control key is being held down.   Note that this is only set reliably for keyboard events.
+         * Return true if the control key is being held down.&#010   Note that this is only set reliably for keyboard events.&#010&#010
          *
          * @return true == control key is down
          */
@@ -174,7 +174,7 @@ public class EventHandler {
         }-*/;
 
         /**
-         * Return true if the alt (option) key is being held down.   Note that this is only set reliably for keyboard events.
+         * Return true if the alt (option) key is being held down.&#010   Note that this is only set reliably for keyboard events.&#010&#010
          *
          * @return true == alt key is down
          */

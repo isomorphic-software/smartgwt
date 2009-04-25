@@ -56,7 +56,7 @@ import com.smartgwt.client.util.EnumUtil;
 import com.google.gwt.event.shared.*;
 import com.google.gwt.event.shared.HasHandlers;
    /**
-    * FormItem for showing a header within a DynamicForm. <p> Set the <code>defaultValue</code> of this item to the HTML you want to embed in the form.
+    * FormItem for showing a header within a DynamicForm.&#010 <p>&#010 Set the <code>defaultValue</code> of this item to the HTML you want to embed in the form.
 
     */
 public class HeaderItem extends FormItem {

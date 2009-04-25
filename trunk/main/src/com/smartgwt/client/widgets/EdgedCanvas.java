@@ -109,7 +109,7 @@ public class EdgedCanvas extends Canvas {
     }
 
     /**
-    * Base name of images for edges.  Extensions for each corner or edge piece will be added to this image URL, before the extension.  For example, with the default base name of "edge.gif", the top-left corner image will be "edge_TL.gif". <P> The full list of extensions is: "_TL", "_TR", "_BL", "_BR", "_T", "_L", "_B", "_R", "_center".
+    * Base name of images for edges.  Extensions for each corner or edge piece will be added&#010 to this image URL, before the extension.  For example, with the default base name of&#010 "edge.gif", the top-left corner image will be "edge_TL.gif".&#010 <P>&#010 The full list of extensions is: "_TL", "_TR", "_BL", "_BR", "_T", "_L", "_B", "_R",&#010 "_center".
     *
     * @param edgeImage edgeImage Default value is "[SKIN]/rounded/frame/FFFFFF/6.png"
     * @throws IllegalStateException this property cannot be changed after the component has been created
@@ -118,7 +118,7 @@ public class EdgedCanvas extends Canvas {
         setAttribute("edgeImage", edgeImage, false);
     }
     /**
-     * Base name of images for edges.  Extensions for each corner or edge piece will be added to this image URL, before the extension.  For example, with the default base name of "edge.gif", the top-left corner image will be "edge_TL.gif". <P> The full list of extensions is: "_TL", "_TR", "_BL", "_BR", "_T", "_L", "_B", "_R", "_center".
+     * Base name of images for edges.  Extensions for each corner or edge piece will be added&#010 to this image URL, before the extension.  For example, with the default base name of&#010 "edge.gif", the top-left corner image will be "edge_TL.gif".&#010 <P>&#010 The full list of extensions is: "_TL", "_TR", "_BL", "_BR", "_T", "_L", "_B", "_R",&#010 "_center".
      *
      *
      * @return String
@@ -129,7 +129,7 @@ public class EdgedCanvas extends Canvas {
     }
 
     /**
-    * CSS color (WITHOUT "#") for the edges.  If specified, will be used as part of image names.  Example: "edge_88FF88_TL.gif".
+    * CSS color (WITHOUT "#") for the edges.  If specified, will be used as part of image&#010 names.  Example: "edge_88FF88_TL.gif".
     *
     * @param edgeColor edgeColor Default value is null
     * @throws IllegalStateException this property cannot be changed after the component has been created
@@ -138,7 +138,7 @@ public class EdgedCanvas extends Canvas {
         setAttribute("edgeColor", edgeColor, false);
     }
     /**
-     * CSS color (WITHOUT "#") for the edges.  If specified, will be used as part of image names.  Example: "edge_88FF88_TL.gif".
+     * CSS color (WITHOUT "#") for the edges.  If specified, will be used as part of image&#010 names.  Example: "edge_88FF88_TL.gif".
      *
      *
      * @return String
@@ -249,7 +249,7 @@ public class EdgedCanvas extends Canvas {
     }
 
     /**
-    * Amount the contained Canvas should be offset from the top.  Defaults to the size for  the top edge.  Set smaller to allow the contained Canvas to overlap the edge and  corner media.
+    * Amount the contained Canvas should be offset from the top.  Defaults to the size for &#010 the top edge.  Set smaller to allow the contained Canvas to overlap the edge and &#010 corner media.
     * <p><b>Note : </b> This is an advanced setting</p>
     *
     * @param edgeOffsetTop edgeOffsetTop Default value is null
@@ -259,7 +259,7 @@ public class EdgedCanvas extends Canvas {
         setAttribute("edgeOffsetTop", edgeOffsetTop, false);
     }
     /**
-     * Amount the contained Canvas should be offset from the top.  Defaults to the size for  the top edge.  Set smaller to allow the contained Canvas to overlap the edge and  corner media.
+     * Amount the contained Canvas should be offset from the top.  Defaults to the size for &#010 the top edge.  Set smaller to allow the contained Canvas to overlap the edge and &#010 corner media.
      *
      *
      * @return Integer
@@ -270,7 +270,7 @@ public class EdgedCanvas extends Canvas {
     }
 
     /**
-    * Amount the contained Canvas should be offset from the bottom.  Defaults to the size for the bottom edge.  Set smaller to allow the contained Canvas to overlap the edge and corner media.
+    * Amount the contained Canvas should be offset from the bottom.  Defaults to the size for&#010 the bottom edge.  Set smaller to allow the contained Canvas to overlap the edge and&#010 corner media.
     * <p><b>Note : </b> This is an advanced setting</p>
     *
     * @param edgeOffsetBottom edgeOffsetBottom Default value is null
@@ -280,7 +280,7 @@ public class EdgedCanvas extends Canvas {
         setAttribute("edgeOffsetBottom", edgeOffsetBottom, false);
     }
     /**
-     * Amount the contained Canvas should be offset from the bottom.  Defaults to the size for the bottom edge.  Set smaller to allow the contained Canvas to overlap the edge and corner media.
+     * Amount the contained Canvas should be offset from the bottom.  Defaults to the size for&#010 the bottom edge.  Set smaller to allow the contained Canvas to overlap the edge and&#010 corner media.
      *
      *
      * @return Integer
@@ -291,7 +291,7 @@ public class EdgedCanvas extends Canvas {
     }
 
     /**
-    * Amount the contained Canvas should be offset from the left.  Defaults to the size for the left edge.  Set smaller to allow the contained Canvas to overlap the edge and corner media.
+    * Amount the contained Canvas should be offset from the left.  Defaults to the size for&#010 the left edge.  Set smaller to allow the contained Canvas to overlap the edge and&#010 corner media.
     * <p><b>Note : </b> This is an advanced setting</p>
     *
     * @param edgeOffsetLeft edgeOffsetLeft Default value is null
@@ -301,7 +301,7 @@ public class EdgedCanvas extends Canvas {
         setAttribute("edgeOffsetLeft", edgeOffsetLeft, false);
     }
     /**
-     * Amount the contained Canvas should be offset from the left.  Defaults to the size for the left edge.  Set smaller to allow the contained Canvas to overlap the edge and corner media.
+     * Amount the contained Canvas should be offset from the left.  Defaults to the size for&#010 the left edge.  Set smaller to allow the contained Canvas to overlap the edge and&#010 corner media.
      *
      *
      * @return Integer
@@ -312,7 +312,7 @@ public class EdgedCanvas extends Canvas {
     }
 
     /**
-    * Amount the contained Canvas should be offset from the right.  Defaults to the size for the right edge.  Set smaller to allow the contained Canvas to overlap the edge and corner media.
+    * Amount the contained Canvas should be offset from the right.  Defaults to the size for&#010 the right edge.  Set smaller to allow the contained Canvas to overlap the edge and&#010 corner media.
     * <p><b>Note : </b> This is an advanced setting</p>
     *
     * @param edgeOffsetRight edgeOffsetRight Default value is null
@@ -322,7 +322,7 @@ public class EdgedCanvas extends Canvas {
         setAttribute("edgeOffsetRight", edgeOffsetRight, false);
     }
     /**
-     * Amount the contained Canvas should be offset from the right.  Defaults to the size for the right edge.  Set smaller to allow the contained Canvas to overlap the edge and corner media.
+     * Amount the contained Canvas should be offset from the right.  Defaults to the size for&#010 the right edge.  Set smaller to allow the contained Canvas to overlap the edge and&#010 corner media.
      *
      *
      * @return Integer
@@ -333,7 +333,7 @@ public class EdgedCanvas extends Canvas {
     }
 
     /**
-    * Background color for the center section only.  Can be used as a surrogate background color for the decorated Canvas, if the Canvas is set to partially overlap the edges and hence can't show a background color itself without occluding media.
+    * Background color for the center section only.  Can be used as a surrogate background&#010 color for the decorated Canvas, if the Canvas is set to partially overlap the edges and&#010 hence can't show a background color itself without occluding media.
     *
     * @param centerBackgroundColor centerBackgroundColor Default value is null
     * @throws IllegalStateException this property cannot be changed after the component has been created
@@ -342,7 +342,7 @@ public class EdgedCanvas extends Canvas {
         setAttribute("centerBackgroundColor", centerBackgroundColor, false);
     }
     /**
-     * Background color for the center section only.  Can be used as a surrogate background color for the decorated Canvas, if the Canvas is set to partially overlap the edges and hence can't show a background color itself without occluding media.
+     * Background color for the center section only.  Can be used as a surrogate background&#010 color for the decorated Canvas, if the Canvas is set to partially overlap the edges and&#010 hence can't show a background color itself without occluding media.
      *
      *
      * @return String
@@ -353,7 +353,7 @@ public class EdgedCanvas extends Canvas {
     }
 
     /**
-    * Optional property specifying the CSS ClassName to apply to the various parts of this edged canvas (top, bottom, corners, sides and center). To apply separate styles for each part, use {@link com.smartgwt.client.widgets.EdgedCanvas#getAddEdgeStyleSuffix addEdgeStyleSuffix}.
+    * Optional property specifying the CSS ClassName to apply to the various parts of this edged canvas&#010 (top, bottom, corners, sides and center). To&#010 apply separate styles for each part, use {@link com.smartgwt.client.widgets.EdgedCanvas#getAddEdgeStyleSuffix addEdgeStyleSuffix}.
     *
     * @param edgeStyleName edgeStyleName Default value is null
     */
@@ -361,7 +361,7 @@ public class EdgedCanvas extends Canvas {
         setAttribute("edgeStyleName", edgeStyleName, true);
     }
     /**
-     * Optional property specifying the CSS ClassName to apply to the various parts of this edged canvas (top, bottom, corners, sides and center). To apply separate styles for each part, use {@link com.smartgwt.client.widgets.EdgedCanvas#getAddEdgeStyleSuffix addEdgeStyleSuffix}.
+     * Optional property specifying the CSS ClassName to apply to the various parts of this edged canvas&#010 (top, bottom, corners, sides and center). To&#010 apply separate styles for each part, use {@link com.smartgwt.client.widgets.EdgedCanvas#getAddEdgeStyleSuffix addEdgeStyleSuffix}.
      *
      *
      * @return String
@@ -372,7 +372,7 @@ public class EdgedCanvas extends Canvas {
     }
 
     /**
-    * If specified, the {@link com.smartgwt.client.widgets.EdgedCanvas#getEdgeStyleName edgeStyleName} will be treated as a base style name and appended with following suffixes to support separate styling per cell: <P> <code>_TL</code> (top left cell)<br> <code>_T</code> (top center cell)<br> <code>_TR</code> (top right cell)<br> <code>_L</code> (middle left cell)<br> <code>_C</code> (center cell)<br> <code>_R</code> (middle right cell)<br> <code>_BL</code> (bottom left cell)<br> <code>_B</code> (bottom center cell)<br> <code>_BR</code> (bottom right cell)
+    * If specified, the {@link com.smartgwt.client.widgets.EdgedCanvas#getEdgeStyleName edgeStyleName} will be treated as a base style name and&#010 appended with following suffixes to support separate styling per cell:&#010 <P>&#010 <code>_TL</code> (top left cell)<br>&#010 <code>_T</code> (top center cell)<br>&#010 <code>_TR</code> (top right cell)<br>&#010 <code>_L</code> (middle left cell)<br>&#010 <code>_C</code> (center cell)<br>&#010 <code>_R</code> (middle right cell)<br>&#010 <code>_BL</code> (bottom left cell)<br>&#010 <code>_B</code> (bottom center cell)<br>&#010 <code>_BR</code> (bottom right cell)
     *
     * @param addEdgeStyleSuffix addEdgeStyleSuffix Default value is false
     */
@@ -380,7 +380,7 @@ public class EdgedCanvas extends Canvas {
         setAttribute("addEdgeStyleSuffix", addEdgeStyleSuffix, true);
     }
     /**
-     * If specified, the {@link com.smartgwt.client.widgets.EdgedCanvas#getEdgeStyleName edgeStyleName} will be treated as a base style name and appended with following suffixes to support separate styling per cell: <P> <code>_TL</code> (top left cell)<br> <code>_T</code> (top center cell)<br> <code>_TR</code> (top right cell)<br> <code>_L</code> (middle left cell)<br> <code>_C</code> (center cell)<br> <code>_R</code> (middle right cell)<br> <code>_BL</code> (bottom left cell)<br> <code>_B</code> (bottom center cell)<br> <code>_BR</code> (bottom right cell)
+     * If specified, the {@link com.smartgwt.client.widgets.EdgedCanvas#getEdgeStyleName edgeStyleName} will be treated as a base style name and&#010 appended with following suffixes to support separate styling per cell:&#010 <P>&#010 <code>_TL</code> (top left cell)<br>&#010 <code>_T</code> (top center cell)<br>&#010 <code>_TR</code> (top right cell)<br>&#010 <code>_L</code> (middle left cell)<br>&#010 <code>_C</code> (center cell)<br>&#010 <code>_R</code> (middle right cell)<br>&#010 <code>_BL</code> (bottom left cell)<br>&#010 <code>_B</code> (bottom center cell)<br>&#010 <code>_BR</code> (bottom right cell)
      *
      *
      * @return Boolean

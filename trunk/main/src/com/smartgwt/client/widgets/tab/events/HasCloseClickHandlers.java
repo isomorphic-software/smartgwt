@@ -22,7 +22,7 @@ import com.google.gwt.event.shared.HasHandlers;
 
 public interface HasCloseClickHandlers extends HasHandlers {
     /**
-     * When {@link com.smartgwt.client.widgets.tab.TabSet#getCanCloseTabs canCloseTabs} is set, method fired when the user clicks the "close" icon for a tab. <P> Default implementation will remove the tab from the tabSet via {@link com.smartgwt.client.widgets.tab.TabSet#removeTab}.
+     * When {@link com.smartgwt.client.widgets.tab.TabSet#getCanCloseTabs canCloseTabs} is set, method fired when the user clicks the "close" icon for a&#010 tab.&#010 <P>&#010 Default implementation will remove the tab from the tabSet via {@link com.smartgwt.client.widgets.tab.TabSet#removeTab}.&#010
      */
     HandlerRegistration addCloseClickHandler(CloseClickHandler handler);
 }

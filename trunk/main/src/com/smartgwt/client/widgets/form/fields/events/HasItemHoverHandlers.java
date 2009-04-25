@@ -22,7 +22,7 @@ import com.google.gwt.event.shared.HasHandlers;
 
 public interface HasItemHoverHandlers extends HasHandlers {
     /**
-     * Optional stringMethod to fire when the user hovers over this item.  Return false to suppress default behavior of showing a hover canvas containing the  HTML returned by <code>formItem.itemHoverHTML()</code> /   <code>form.itemHoverHTML()</code>.
+     * Optional stringMethod to fire when the user hovers over this item.&#010  Return false to suppress default behavior of showing a hover canvas containing the&#010  HTML returned by <code>formItem.itemHoverHTML()</code> / &#010  <code>form.itemHoverHTML()</code>.&#010&#010
      */
     HandlerRegistration addItemHoverHandler(ItemHoverHandler handler);
 }

@@ -172,7 +172,7 @@ public class ButtonItem extends CanvasItem  implements com.smartgwt.client.widge
     }
 
     /**
-    * Should the button auto fit to its title. Maps to {@link com.smartgwt.client.widgets.Button#getAutoFit autoFit} attribute. Note that if an explicit width or height is specified for this item, it will be respected, disabling autoFit behavior
+    * Should the button auto fit to its title. Maps to {@link com.smartgwt.client.widgets.Button#getAutoFit autoFit} attribute.&#010 Note that if an explicit width or height is specified for this item, it will be respected,&#010 disabling autoFit behavior
     *
     * @param autoFit autoFit Default value is true
     */
@@ -180,7 +180,7 @@ public class ButtonItem extends CanvasItem  implements com.smartgwt.client.widge
         setAttribute("autoFit", autoFit);
     }
     /**
-     * Should the button auto fit to its title. Maps to {@link com.smartgwt.client.widgets.Button#getAutoFit autoFit} attribute. Note that if an explicit width or height is specified for this item, it will be respected, disabling autoFit behavior
+     * Should the button auto fit to its title. Maps to {@link com.smartgwt.client.widgets.Button#getAutoFit autoFit} attribute.&#010 Note that if an explicit width or height is specified for this item, it will be respected,&#010 disabling autoFit behavior
      *
      *
      * @return Boolean
@@ -197,7 +197,7 @@ public class ButtonItem extends CanvasItem  implements com.smartgwt.client.widge
         /**
          * Add a click handler.
          * <p>
-         * Called when a ButtonItem is clicked on.
+         * Called when a ButtonItem is clicked on.&#010&#010
          *
          * @param handler the click handler
          */

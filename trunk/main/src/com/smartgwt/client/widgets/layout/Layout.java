@@ -56,7 +56,7 @@ import com.smartgwt.client.util.EnumUtil;
 import com.google.gwt.event.shared.*;
 import com.google.gwt.event.shared.HasHandlers;
    /**
-    * A subclass of Canvas that automatically arranges other Canvases according to a layout policy. <br><br> A Layout manages a set of "member" Canvases initialized via the "members" property.  Layouts can have both "members", which are managed by the Layout, and normal Canvas children, which are unmanaged. <br><br> Rather than using the Layout class directly, use the HLayout, VLayout, HStack and VStack classes, which are subclasses of Layout preconfigured for horizontal or vertical stacking, with the "fill" (VLayout) or "none" (VStack) ${isc.DocUtils.linkForRef('type:LayoutPolicy','policies')} already set. <br><br> Layouts and Stacks may be nested to create arbitrarily complex layouts. <br><br> To show a resizer bar after (to the right or bottom of) a layout member, set showResizeBar to true on that member component (not on the HLayout or VLayout).  Resizer bars override membersMargin spacing. <br><br>  Like other Canvas subclasses, Layout and Stack components may have % width and height values. To create a dynamically-resizing layout that occupies the entire page (or entire parent component), set width and height to "100%".
+    * A subclass of Canvas that automatically arranges other Canvases according to a layout policy.&#010 <br><br>&#010 A Layout manages a set of "member" Canvases initialized via the "members" property.  Layouts&#010 can have both "members", which are managed by the Layout, and normal Canvas children, which&#010 are unmanaged.&#010 <br><br>&#010 Rather than using the Layout class directly, use the HLayout, VLayout, HStack and VStack&#010 classes, which are subclasses of Layout preconfigured for horizontal or vertical stacking,&#010 with the "fill" (VLayout) or "none" (VStack) ${isc.DocUtils.linkForRef('type:LayoutPolicy','policies')} already set.&#010 <br><br>&#010 Layouts and Stacks may be nested to create arbitrarily complex layouts.&#010 <br><br>&#010 To show a resizer bar after (to the right or bottom of) a layout member, set showResizeBar to&#010 true on that member component (not on the HLayout or VLayout).  Resizer bars override&#010 membersMargin spacing.&#010 <br><br> &#010 Like other Canvas subclasses, Layout and Stack components may have % width and height&#010 values. To create a dynamically-resizing layout that occupies the entire page (or entire&#010 parent component), set width and height to "100%".
 
     */
 public class Layout extends Canvas {
@@ -89,7 +89,7 @@ public class Layout extends Canvas {
     // ********************* Properties / Attributes ***********************
              
     /**
-    * Normal ${isc.DocUtils.linkForRef('type:Overflow')} settings can be used on layouts, for example, an overflow:auto Layout will scroll if members exceed its specified size, whereas an overflow:visible Layout will grow to accomodate members.
+    * Normal ${isc.DocUtils.linkForRef('type:Overflow')} settings can be used on layouts, for example, an&#010 overflow:auto Layout will scroll if members exceed its specified size, whereas an&#010 overflow:visible Layout will grow to accomodate members.
     *
     * @param overflow overflow Default value is "visible"
     * @throws IllegalStateException this property cannot be changed after the component has been created
@@ -98,7 +98,7 @@ public class Layout extends Canvas {
         setAttribute("overflow", overflow.getValue(), false);
     }
     /**
-     * Normal ${isc.DocUtils.linkForRef('type:Overflow')} settings can be used on layouts, for example, an overflow:auto Layout will scroll if members exceed its specified size, whereas an overflow:visible Layout will grow to accomodate members.
+     * Normal ${isc.DocUtils.linkForRef('type:Overflow')} settings can be used on layouts, for example, an&#010 overflow:auto Layout will scroll if members exceed its specified size, whereas an&#010 overflow:visible Layout will grow to accomodate members.
      *
      *
      * @return Overflow
@@ -109,7 +109,7 @@ public class Layout extends Canvas {
     }
 
     /**
-    * Should this layout appear with members stacked vertically or horizontally. Defaults to  <code>false</code> if unspecified.
+    * Should this layout appear with members stacked vertically or horizontally. Defaults to &#010 <code>false</code> if unspecified.
     *
     * @param vertical vertical Default value is null
     */
@@ -117,7 +117,7 @@ public class Layout extends Canvas {
         setAttribute("vertical", vertical, true);
     }
     /**
-     * Should this layout appear with members stacked vertically or horizontally. Defaults to  <code>false</code> if unspecified.
+     * Should this layout appear with members stacked vertically or horizontally. Defaults to &#010 <code>false</code> if unspecified.
      *
      *
      * @return Boolean
@@ -168,7 +168,7 @@ public class Layout extends Canvas {
     }
 
     /**
-    * Whether the layout policy is continuously enforced as new members are added or removed and as members are resized. <p> This setting implies that any member that resizes larger, or any added member, will take space from other members in order to allow the overall layout to stay the same size.
+    * Whether the layout policy is continuously enforced as new members are added or removed&#010 and as members are resized.&#010 <p>&#010 This setting implies that any member that resizes larger, or any added member, will take&#010 space from other members in order to allow the overall layout to stay the same size.
     * <p><b>Note : </b> This is an advanced setting</p>
     *
     * @param enforcePolicy enforcePolicy Default value is true
@@ -177,7 +177,7 @@ public class Layout extends Canvas {
         setAttribute("enforcePolicy", enforcePolicy, true);
     }
     /**
-     * Whether the layout policy is continuously enforced as new members are added or removed and as members are resized. <p> This setting implies that any member that resizes larger, or any added member, will take space from other members in order to allow the overall layout to stay the same size.
+     * Whether the layout policy is continuously enforced as new members are added or removed&#010 and as members are resized.&#010 <p>&#010 This setting implies that any member that resizes larger, or any added member, will take&#010 space from other members in order to allow the overall layout to stay the same size.
      *
      *
      * @return Boolean
@@ -188,7 +188,7 @@ public class Layout extends Canvas {
     }
 
     /**
-    * Reverse the order of stacking for this Layout, so that the last member is shown first. <P> Requires a manual call to <code>reflow()</code> if changed on the fly. <P> In RTL mode, for horizontal Layouts the value of this flag will be flipped during initialization.
+    * Reverse the order of stacking for this Layout, so that the last member is shown first.&#010 <P>&#010 Requires a manual call to <code>reflow()</code> if changed on the fly.&#010 <P>&#010 In RTL mode, for horizontal Layouts the value of this flag will be flipped during&#010 initialization.
     *
     * @param reverseOrder reverseOrder Default value is false
     */
@@ -196,7 +196,7 @@ public class Layout extends Canvas {
         setAttribute("reverseOrder", reverseOrder, true);
     }
     /**
-     * Reverse the order of stacking for this Layout, so that the last member is shown first. <P> Requires a manual call to <code>reflow()</code> if changed on the fly. <P> In RTL mode, for horizontal Layouts the value of this flag will be flipped during initialization.
+     * Reverse the order of stacking for this Layout, so that the last member is shown first.&#010 <P>&#010 Requires a manual call to <code>reflow()</code> if changed on the fly.&#010 <P>&#010 In RTL mode, for horizontal Layouts the value of this flag will be flipped during&#010 initialization.
      *
      *
      * @return Boolean
@@ -207,7 +207,7 @@ public class Layout extends Canvas {
     }
 
     /**
-    * If this widget has padding specified (as {@link com.smartgwt.client.widgets.Canvas#getPadding padding} or in the CSS style applied to this layout), should it show up as space outside the members, similar to layoutMargin? <P> If this setting is false, padding will not affect member positioning (as CSS padding normally does not affect absolutely positioned children).  Leaving this setting true allows a designer to more effectively control layout purely from CSS. <P> Note that {@link com.smartgwt.client.widgets.layout.Layout#getLayoutMargin layoutMargin} if specified, takes precidence over this value.
+    * If this widget has padding specified (as {@link com.smartgwt.client.widgets.Canvas#getPadding padding} or in the&#010 CSS style applied to this layout), should it show up as space outside the members,&#010 similar to layoutMargin?&#010 <P>&#010 If this setting is false, padding will not affect member positioning (as CSS padding&#010 normally does not affect absolutely positioned children).  Leaving this setting true&#010 allows a designer to more effectively control layout purely from CSS.&#010 <P>&#010 Note that {@link com.smartgwt.client.widgets.layout.Layout#getLayoutMargin layoutMargin} if specified, takes precidence over this value.
     * <p><b>Note : </b> This is an advanced setting</p>
     *
     * @param paddingAsLayoutMargin paddingAsLayoutMargin Default value is true
@@ -216,7 +216,7 @@ public class Layout extends Canvas {
         setAttribute("paddingAsLayoutMargin", paddingAsLayoutMargin, true);
     }
     /**
-     * If this widget has padding specified (as {@link com.smartgwt.client.widgets.Canvas#getPadding padding} or in the CSS style applied to this layout), should it show up as space outside the members, similar to layoutMargin? <P> If this setting is false, padding will not affect member positioning (as CSS padding normally does not affect absolutely positioned children).  Leaving this setting true allows a designer to more effectively control layout purely from CSS. <P> Note that {@link com.smartgwt.client.widgets.layout.Layout#getLayoutMargin layoutMargin} if specified, takes precidence over this value.
+     * If this widget has padding specified (as {@link com.smartgwt.client.widgets.Canvas#getPadding padding} or in the&#010 CSS style applied to this layout), should it show up as space outside the members,&#010 similar to layoutMargin?&#010 <P>&#010 If this setting is false, padding will not affect member positioning (as CSS padding&#010 normally does not affect absolutely positioned children).  Leaving this setting true&#010 allows a designer to more effectively control layout purely from CSS.&#010 <P>&#010 Note that {@link com.smartgwt.client.widgets.layout.Layout#getLayoutMargin layoutMargin} if specified, takes precidence over this value.
      *
      *
      * @return Boolean
@@ -227,8 +227,8 @@ public class Layout extends Canvas {
     }
 
     /**
-    * Space outside of all members. This attribute, along with {@link com.smartgwt.client.widgets.layout.Layout#getLayoutLeftMargin layoutLeftMargin}  and related properties does not have a true setter method.<br> It may be assigned directly at runtime. After setting the property,  {@link com.smartgwt.client.widgets.layout.Layout#setLayoutMargin} may be called with no arguments to reflow the layout.
-    * Method to force a reflow of the layout after directly assigning a value to any of the layout*Margin properties. Takes no arguments.
+    * Space outside of all members. This attribute, along with {@link com.smartgwt.client.widgets.layout.Layout#getLayoutLeftMargin layoutLeftMargin} &#010 and related properties does not have a true setter method.<br>&#010 It may be assigned directly at runtime. After setting the property, &#010 {@link com.smartgwt.client.widgets.layout.Layout#setLayoutMargin} may be called with no arguments to reflow the layout.
+    * Method to force a reflow of the layout after directly assigning a value to any of the&#010 layout*Margin properties. Takes no arguments.&#010&#010
     *
     * @param layoutMargin layoutMargin Default value is null
     */
@@ -236,7 +236,7 @@ public class Layout extends Canvas {
         setAttribute("layoutMargin", layoutMargin, true);
     }
     /**
-     * Space outside of all members. This attribute, along with {@link com.smartgwt.client.widgets.layout.Layout#getLayoutLeftMargin layoutLeftMargin}  and related properties does not have a true setter method.<br> It may be assigned directly at runtime. After setting the property,  {@link com.smartgwt.client.widgets.layout.Layout#setLayoutMargin} may be called with no arguments to reflow the layout.
+     * Space outside of all members. This attribute, along with {@link com.smartgwt.client.widgets.layout.Layout#getLayoutLeftMargin layoutLeftMargin} &#010 and related properties does not have a true setter method.<br>&#010 It may be assigned directly at runtime. After setting the property, &#010 {@link com.smartgwt.client.widgets.layout.Layout#setLayoutMargin} may be called with no arguments to reflow the layout.
      *
      *
      * @return Integer
@@ -247,7 +247,7 @@ public class Layout extends Canvas {
     }
 
     /**
-    * Space outside of all members, on the left-hand side.  Defaults to {@link com.smartgwt.client.widgets.layout.Layout#getLayoutMargin layoutMargin}. <P> Requires a manual call to <code>setLayoutMargin()</code> if changed on the fly.
+    * Space outside of all members, on the left-hand side.  Defaults to {@link com.smartgwt.client.widgets.layout.Layout#getLayoutMargin layoutMargin}.&#010 <P>&#010 Requires a manual call to <code>setLayoutMargin()</code> if changed on the fly.
     *
     * @param layoutLeftMargin layoutLeftMargin Default value is null
     */
@@ -255,7 +255,7 @@ public class Layout extends Canvas {
         setAttribute("layoutLeftMargin", layoutLeftMargin, true);
     }
     /**
-     * Space outside of all members, on the left-hand side.  Defaults to {@link com.smartgwt.client.widgets.layout.Layout#getLayoutMargin layoutMargin}. <P> Requires a manual call to <code>setLayoutMargin()</code> if changed on the fly.
+     * Space outside of all members, on the left-hand side.  Defaults to {@link com.smartgwt.client.widgets.layout.Layout#getLayoutMargin layoutMargin}.&#010 <P>&#010 Requires a manual call to <code>setLayoutMargin()</code> if changed on the fly.
      *
      *
      * @return Integer
@@ -266,7 +266,7 @@ public class Layout extends Canvas {
     }
 
     /**
-    * Space outside of all members, on the right-hand side.  Defaults to {@link com.smartgwt.client.widgets.layout.Layout#getLayoutMargin layoutMargin}. <P> Requires a manual call to <code>setLayoutMargin()</code> if changed on the fly.
+    * Space outside of all members, on the right-hand side.  Defaults to {@link com.smartgwt.client.widgets.layout.Layout#getLayoutMargin layoutMargin}.&#010 <P>&#010 Requires a manual call to <code>setLayoutMargin()</code> if changed on the fly.
     *
     * @param layoutRightMargin layoutRightMargin Default value is null
     */
@@ -274,7 +274,7 @@ public class Layout extends Canvas {
         setAttribute("layoutRightMargin", layoutRightMargin, true);
     }
     /**
-     * Space outside of all members, on the right-hand side.  Defaults to {@link com.smartgwt.client.widgets.layout.Layout#getLayoutMargin layoutMargin}. <P> Requires a manual call to <code>setLayoutMargin()</code> if changed on the fly.
+     * Space outside of all members, on the right-hand side.  Defaults to {@link com.smartgwt.client.widgets.layout.Layout#getLayoutMargin layoutMargin}.&#010 <P>&#010 Requires a manual call to <code>setLayoutMargin()</code> if changed on the fly.
      *
      *
      * @return Integer
@@ -285,7 +285,7 @@ public class Layout extends Canvas {
     }
 
     /**
-    * Space outside of all members, on the top side.  Defaults to {@link com.smartgwt.client.widgets.layout.Layout#getLayoutMargin layoutMargin}. <P> Requires a manual call to <code>setLayoutMargin()</code> if changed on the fly.
+    * Space outside of all members, on the top side.  Defaults to {@link com.smartgwt.client.widgets.layout.Layout#getLayoutMargin layoutMargin}.&#010 <P>&#010 Requires a manual call to <code>setLayoutMargin()</code> if changed on the fly.
     *
     * @param layoutTopMargin layoutTopMargin Default value is null
     */
@@ -293,7 +293,7 @@ public class Layout extends Canvas {
         setAttribute("layoutTopMargin", layoutTopMargin, true);
     }
     /**
-     * Space outside of all members, on the top side.  Defaults to {@link com.smartgwt.client.widgets.layout.Layout#getLayoutMargin layoutMargin}. <P> Requires a manual call to <code>setLayoutMargin()</code> if changed on the fly.
+     * Space outside of all members, on the top side.  Defaults to {@link com.smartgwt.client.widgets.layout.Layout#getLayoutMargin layoutMargin}.&#010 <P>&#010 Requires a manual call to <code>setLayoutMargin()</code> if changed on the fly.
      *
      *
      * @return Integer
@@ -304,7 +304,7 @@ public class Layout extends Canvas {
     }
 
     /**
-    * Space outside of all members, on the bottom side.  Defaults to {@link com.smartgwt.client.widgets.layout.Layout#getLayoutMargin layoutMargin}. <P> Requires a manual call to <code>setLayoutMargin()</code> if changed on the fly.
+    * Space outside of all members, on the bottom side.  Defaults to {@link com.smartgwt.client.widgets.layout.Layout#getLayoutMargin layoutMargin}.&#010 <P>&#010 Requires a manual call to <code>setLayoutMargin()</code> if changed on the fly.
     *
     * @param layoutBottomMargin layoutBottomMargin Default value is null
     */
@@ -312,7 +312,7 @@ public class Layout extends Canvas {
         setAttribute("layoutBottomMargin", layoutBottomMargin, true);
     }
     /**
-     * Space outside of all members, on the bottom side.  Defaults to {@link com.smartgwt.client.widgets.layout.Layout#getLayoutMargin layoutMargin}. <P> Requires a manual call to <code>setLayoutMargin()</code> if changed on the fly.
+     * Space outside of all members, on the bottom side.  Defaults to {@link com.smartgwt.client.widgets.layout.Layout#getLayoutMargin layoutMargin}.&#010 <P>&#010 Requires a manual call to <code>setLayoutMargin()</code> if changed on the fly.
      *
      *
      * @return Integer
@@ -323,7 +323,7 @@ public class Layout extends Canvas {
     }
 
     /**
-    * Space between each member of the layout. <P> Requires a manual call to <code>reflow()</code> if changed on the fly.
+    * Space between each member of the layout.&#010 <P>&#010 Requires a manual call to <code>reflow()</code> if changed on the fly.
     *
     * @param membersMargin membersMargin Default value is 0
     */
@@ -331,7 +331,7 @@ public class Layout extends Canvas {
         setAttribute("membersMargin", membersMargin, true);
     }
     /**
-     * Space between each member of the layout. <P> Requires a manual call to <code>reflow()</code> if changed on the fly.
+     * Space between each member of the layout.&#010 <P>&#010 Requires a manual call to <code>reflow()</code> if changed on the fly.
      *
      *
      * @return int
@@ -342,7 +342,7 @@ public class Layout extends Canvas {
     }
 
     /**
-    * Whether to leave a gap for a vertical scrollbar even when one is not actually present. <P> This setting avoids the layout resizing all members when the vertical scrollbar is introduced or removed, which can avoid unnecessary screen shifting and improve performance.
+    * Whether to leave a gap for a vertical scrollbar even when one is not actually present.&#010 <P>&#010 This setting avoids the layout resizing all members when the vertical scrollbar is&#010 introduced or removed, which can avoid unnecessary screen shifting and improve&#010 performance.
     *
     * @param leaveScrollbarGap leaveScrollbarGap Default value is false
     * @throws IllegalStateException this property cannot be changed after the component has been created
@@ -351,7 +351,7 @@ public class Layout extends Canvas {
         setAttribute("leaveScrollbarGap", leaveScrollbarGap, false);
     }
     /**
-     * Whether to leave a gap for a vertical scrollbar even when one is not actually present. <P> This setting avoids the layout resizing all members when the vertical scrollbar is introduced or removed, which can avoid unnecessary screen shifting and improve performance.
+     * Whether to leave a gap for a vertical scrollbar even when one is not actually present.&#010 <P>&#010 This setting avoids the layout resizing all members when the vertical scrollbar is&#010 introduced or removed, which can avoid unnecessary screen shifting and improve&#010 performance.
      *
      *
      * @return Boolean
@@ -362,7 +362,7 @@ public class Layout extends Canvas {
     }
 
     /**
-    * Number of pixels by which each member should overlap the preceding member, used for creating an "stack of cards" appearance for the members of a Layout. <P> <code>memberOverlap</code> can be used in conjunction with {@link com.smartgwt.client.widgets.layout.Layout#getStackZIndex stackZIndex} to create a particular visual stacking order. <P> Note that overlap of individual members can be accomplished with a negative setting for {@link com.smartgwt.client.widgets.Canvas#getExtraSpace extraSpace}.
+    * Number of pixels by which each member should overlap the preceding member, used for&#010 creating an "stack of cards" appearance for the members of a Layout.&#010 <P>&#010 <code>memberOverlap</code> can be used in conjunction with {@link com.smartgwt.client.widgets.layout.Layout#getStackZIndex stackZIndex} to create&#010 a particular visual stacking order.&#010 <P>&#010 Note that overlap of individual members can be accomplished with a negative setting for&#010 {@link com.smartgwt.client.widgets.Canvas#getExtraSpace extraSpace}.
     *
     * @param memberOverlap memberOverlap Default value is 0
     * @throws IllegalStateException this property cannot be changed after the component has been created
@@ -371,7 +371,7 @@ public class Layout extends Canvas {
         setAttribute("memberOverlap", memberOverlap, false);
     }
     /**
-     * Number of pixels by which each member should overlap the preceding member, used for creating an "stack of cards" appearance for the members of a Layout. <P> <code>memberOverlap</code> can be used in conjunction with {@link com.smartgwt.client.widgets.layout.Layout#getStackZIndex stackZIndex} to create a particular visual stacking order. <P> Note that overlap of individual members can be accomplished with a negative setting for {@link com.smartgwt.client.widgets.Canvas#getExtraSpace extraSpace}.
+     * Number of pixels by which each member should overlap the preceding member, used for&#010 creating an "stack of cards" appearance for the members of a Layout.&#010 <P>&#010 <code>memberOverlap</code> can be used in conjunction with {@link com.smartgwt.client.widgets.layout.Layout#getStackZIndex stackZIndex} to create&#010 a particular visual stacking order.&#010 <P>&#010 Note that overlap of individual members can be accomplished with a negative setting for&#010 {@link com.smartgwt.client.widgets.Canvas#getExtraSpace extraSpace}.
      *
      *
      * @return int
@@ -402,7 +402,7 @@ public class Layout extends Canvas {
     }
 
     /**
-    * Class to use for creating resizeBars. <P> A resize bar will be created for any Layout member that specifies {@link com.smartgwt.client.widgets.Canvas#getShowResizeBar showResizeBar}. Resize bars will be instances of the class specified by this property, and will  automatically be sized to the member's breadth and to the thickness given by {@link com.smartgwt.client.widgets.layout.Layout#getResizeBarSize resizeBarSize}.<br> Classes that are valid by default are {@link com.smartgwt.client.widgets.Splitbar} and {@link com.smartgwt.client.widgets.ImgSplitbar}. <P> To customize the appearance or behavior of resizeBars within some layout a custom  resize bar class can be created by subclassing {@link com.smartgwt.client.widgets.Splitbar} or {@link com.smartgwt.client.widgets.ImgSplitbar} and setting this property on your layout to use your new class. <P> Resize bars will automatically be sized to the member's breadth and to the thickness given by <code>layout.resizeBarSize</code>.  The built-in Splitbar class supports drag resizing of its target member, and clicking on the bar to hide the target member.
+    * Class to use for creating resizeBars.&#010 <P>&#010 A resize bar will be created for any Layout member that specifies&#010 {@link com.smartgwt.client.widgets.Canvas#getShowResizeBar showResizeBar}.&#010 Resize bars will be instances of the class specified by this property, and will &#010 automatically be sized to the member's breadth and to the thickness&#010 given by {@link com.smartgwt.client.widgets.layout.Layout#getResizeBarSize resizeBarSize}.<br>&#010 Classes that are valid by default are {@link com.smartgwt.client.widgets.Splitbar} and {@link com.smartgwt.client.widgets.ImgSplitbar}.&#010 <P>&#010 To customize the appearance or behavior of resizeBars within some layout a custom &#010 resize bar class can be created by subclassing {@link com.smartgwt.client.widgets.Splitbar} or {@link com.smartgwt.client.widgets.ImgSplitbar} and&#010 setting this property on your layout to use your new class.&#010 <P>&#010 Resize bars will automatically be sized to the member's breadth and to the thickness&#010 given by <code>layout.resizeBarSize</code>.  The built-in Splitbar class supports&#010 drag resizing of its target member, and clicking on the bar to hide the target member.
     * <p><b>Note : </b> This is an advanced setting</p>
     *
     * @param resizeBarClass resizeBarClass Default value is "Splitbar"
@@ -411,7 +411,7 @@ public class Layout extends Canvas {
         setAttribute("resizeBarClass", resizeBarClass, true);
     }
     /**
-     * Class to use for creating resizeBars. <P> A resize bar will be created for any Layout member that specifies {@link com.smartgwt.client.widgets.Canvas#getShowResizeBar showResizeBar}. Resize bars will be instances of the class specified by this property, and will  automatically be sized to the member's breadth and to the thickness given by {@link com.smartgwt.client.widgets.layout.Layout#getResizeBarSize resizeBarSize}.<br> Classes that are valid by default are {@link com.smartgwt.client.widgets.Splitbar} and {@link com.smartgwt.client.widgets.ImgSplitbar}. <P> To customize the appearance or behavior of resizeBars within some layout a custom  resize bar class can be created by subclassing {@link com.smartgwt.client.widgets.Splitbar} or {@link com.smartgwt.client.widgets.ImgSplitbar} and setting this property on your layout to use your new class. <P> Resize bars will automatically be sized to the member's breadth and to the thickness given by <code>layout.resizeBarSize</code>.  The built-in Splitbar class supports drag resizing of its target member, and clicking on the bar to hide the target member.
+     * Class to use for creating resizeBars.&#010 <P>&#010 A resize bar will be created for any Layout member that specifies&#010 {@link com.smartgwt.client.widgets.Canvas#getShowResizeBar showResizeBar}.&#010 Resize bars will be instances of the class specified by this property, and will &#010 automatically be sized to the member's breadth and to the thickness&#010 given by {@link com.smartgwt.client.widgets.layout.Layout#getResizeBarSize resizeBarSize}.<br>&#010 Classes that are valid by default are {@link com.smartgwt.client.widgets.Splitbar} and {@link com.smartgwt.client.widgets.ImgSplitbar}.&#010 <P>&#010 To customize the appearance or behavior of resizeBars within some layout a custom &#010 resize bar class can be created by subclassing {@link com.smartgwt.client.widgets.Splitbar} or {@link com.smartgwt.client.widgets.ImgSplitbar} and&#010 setting this property on your layout to use your new class.&#010 <P>&#010 Resize bars will automatically be sized to the member's breadth and to the thickness&#010 given by <code>layout.resizeBarSize</code>.  The built-in Splitbar class supports&#010 drag resizing of its target member, and clicking on the bar to hide the target member.
      *
      *
      * @return String
@@ -442,7 +442,7 @@ public class Layout extends Canvas {
     }
 
     /**
-    * If true when members are added / removed, they should be animated as they are shown or hidden in position
+    * If true when members are added / removed, they should be animated as they are shown&#010 or hidden in position
     *
     * @param animateMembers animateMembers Default value is null
     */
@@ -450,7 +450,7 @@ public class Layout extends Canvas {
         setAttribute("animateMembers", animateMembers, true);
     }
     /**
-     * If true when members are added / removed, they should be animated as they are shown or hidden in position
+     * If true when members are added / removed, they should be animated as they are shown&#010 or hidden in position
      *
      *
      * @return Boolean
@@ -461,7 +461,7 @@ public class Layout extends Canvas {
     }
 
     /**
-    * If specified this is the duration of show/hide animations when members are being shown or hidden due to being added / removed from this layout.
+    * If specified this is the duration of show/hide animations when members are being shown&#010 or hidden due to being added / removed from this layout.
     * <p><b>Note : </b> This is an advanced setting</p>
     *
     * @param animateMemberTime animateMemberTime Default value is null
@@ -470,7 +470,7 @@ public class Layout extends Canvas {
         setAttribute("animateMemberTime", animateMemberTime, true);
     }
     /**
-     * If specified this is the duration of show/hide animations when members are being shown or hidden due to being added / removed from this layout.
+     * If specified this is the duration of show/hide animations when members are being shown&#010 or hidden due to being added / removed from this layout.
      *
      *
      * @return Integer
@@ -481,7 +481,7 @@ public class Layout extends Canvas {
     }
 
     /**
-    * Layouts provide a default implementation of a drag and drop interaction.  If you set {@link com.smartgwt.client.widgets.Canvas#getCanAcceptDrop canAcceptDrop}:true and <code>canDropComponents:true</code> on a Layout, when a droppable Canvas ({@link com.smartgwt.client.widgets.Canvas#getCanDrop canDrop} is dragged over the layout will show a dropLine (a simple insertion line) at the drop location.   <P> When the drop occurs, the dragTarget (obtained using {@link com.smartgwt.client.util.EventHandler#getDragTarget}) is added as a member of this layout at the location shown by the dropLine (calculated by {@link com.smartgwt.client.widgets.layout.Layout#getDropPosition}).  This default behavior allows either members or external components that have {@link com.smartgwt.client.widgets.Canvas#getCanDragReposition canDragReposition} (or {@link com.smartgwt.client.widgets.Canvas#getCanDrag canDrag}) and {@link com.smartgwt.client.widgets.Canvas#getCanDrop canDrop} set to <code>true</code> to be added to or reordered within the Layout. <P> You can control the thickness of the dropLine via {@link com.smartgwt.client.widgets.layout.Layout#getDropLineThickness dropLineThickness} and you can customize the style using css styling in the skin file (look for .layoutDropLine in skin_styles.css for your skin).   <P>   If you want to dynamically create a component to be added to the Layout in response to a drop event you can do so as follows:  <pre> isc.VLayout.create({   ...various layout properties...   canDropComponents: true,   drop : function () {     // create the new component      var newMember = isc.Canvas.create();      // add to the layout at the current drop position      // (the dropLine will be showing here)     this.addMember(newMember, this.getDropPosition());       // hide the dropLine that was automatically shown      // by builtin SmartGWT methods     this.hideDropLine();   } }); </pre> If you want to completely suppress the builtin drag and drop logic, but still receive drag and drop events for your own custom implementation, set {@link com.smartgwt.client.widgets.Canvas#getCanAcceptDrop canAcceptDrop} to <code>true</code> and <code>canDropComponents</code> to <code>false</code> on your Layout.
+    * Layouts provide a default implementation of a drag and drop interaction.  If you set&#010 {@link com.smartgwt.client.widgets.Canvas#getCanAcceptDrop canAcceptDrop}:true and <code>canDropComponents:true</code>&#010 on a Layout, when a droppable Canvas ({@link com.smartgwt.client.widgets.Canvas#getCanDrop canDrop} is dragged over&#010 the layout will show a dropLine (a simple insertion line) at the drop location.  &#010 <P>&#010 When the drop occurs, the dragTarget (obtained using&#010 {@link com.smartgwt.client.util.EventHandler#getDragTarget}) is added as a member of this layout at the location&#010 shown by the dropLine (calculated by {@link com.smartgwt.client.widgets.layout.Layout#getDropPosition}).  This default&#010 behavior allows either members or external components that have&#010 {@link com.smartgwt.client.widgets.Canvas#getCanDragReposition canDragReposition} (or {@link com.smartgwt.client.widgets.Canvas#getCanDrag canDrag}) and {@link com.smartgwt.client.widgets.Canvas#getCanDrop canDrop} set&#010 to <code>true</code> to be added to or reordered within the Layout.&#010 <P>&#010 You can control the thickness of the dropLine via {@link com.smartgwt.client.widgets.layout.Layout#getDropLineThickness dropLineThickness} and&#010 you can customize the style using css styling in the skin file (look for .layoutDropLine in&#010 skin_styles.css for your skin).  &#010 <P>  &#010 If you want to dynamically create a component to be added to the Layout in response to a&#010 drop event you can do so as follows: &#010 <pre>&#010 isc.VLayout.create({&#010   ...various layout properties...&#010   canDropComponents: true,&#010   drop : function () {&#010     // create the new component &#010     var newMember = isc.Canvas.create(); &#010     // add to the layout at the current drop position &#010     // (the dropLine will be showing here)&#010     this.addMember(newMember, this.getDropPosition());  &#010     // hide the dropLine that was automatically shown &#010     // by builtin SmartGWT methods&#010     this.hideDropLine();&#010   }&#010 });&#010 </pre>&#010 If you want to completely suppress the builtin drag and drop logic, but still receive drag&#010 and drop events for your own custom implementation, set {@link com.smartgwt.client.widgets.Canvas#getCanAcceptDrop canAcceptDrop} to&#010 <code>true</code> and <code>canDropComponents</code> to <code>false</code> on your Layout.
     * <p><b>Note : </b> This is an advanced setting</p>
     *
     * @param canDropComponents canDropComponents Default value is true
@@ -491,7 +491,7 @@ public class Layout extends Canvas {
         setAttribute("canDropComponents", canDropComponents, false);
     }
     /**
-     * Layouts provide a default implementation of a drag and drop interaction.  If you set {@link com.smartgwt.client.widgets.Canvas#getCanAcceptDrop canAcceptDrop}:true and <code>canDropComponents:true</code> on a Layout, when a droppable Canvas ({@link com.smartgwt.client.widgets.Canvas#getCanDrop canDrop} is dragged over the layout will show a dropLine (a simple insertion line) at the drop location.   <P> When the drop occurs, the dragTarget (obtained using {@link com.smartgwt.client.util.EventHandler#getDragTarget}) is added as a member of this layout at the location shown by the dropLine (calculated by {@link com.smartgwt.client.widgets.layout.Layout#getDropPosition}).  This default behavior allows either members or external components that have {@link com.smartgwt.client.widgets.Canvas#getCanDragReposition canDragReposition} (or {@link com.smartgwt.client.widgets.Canvas#getCanDrag canDrag}) and {@link com.smartgwt.client.widgets.Canvas#getCanDrop canDrop} set to <code>true</code> to be added to or reordered within the Layout. <P> You can control the thickness of the dropLine via {@link com.smartgwt.client.widgets.layout.Layout#getDropLineThickness dropLineThickness} and you can customize the style using css styling in the skin file (look for .layoutDropLine in skin_styles.css for your skin).   <P>   If you want to dynamically create a component to be added to the Layout in response to a drop event you can do so as follows:  <pre> isc.VLayout.create({   ...various layout properties...   canDropComponents: true,   drop : function () {     // create the new component      var newMember = isc.Canvas.create();      // add to the layout at the current drop position      // (the dropLine will be showing here)     this.addMember(newMember, this.getDropPosition());       // hide the dropLine that was automatically shown      // by builtin SmartGWT methods     this.hideDropLine();   } }); </pre> If you want to completely suppress the builtin drag and drop logic, but still receive drag and drop events for your own custom implementation, set {@link com.smartgwt.client.widgets.Canvas#getCanAcceptDrop canAcceptDrop} to <code>true</code> and <code>canDropComponents</code> to <code>false</code> on your Layout.
+     * Layouts provide a default implementation of a drag and drop interaction.  If you set&#010 {@link com.smartgwt.client.widgets.Canvas#getCanAcceptDrop canAcceptDrop}:true and <code>canDropComponents:true</code>&#010 on a Layout, when a droppable Canvas ({@link com.smartgwt.client.widgets.Canvas#getCanDrop canDrop} is dragged over&#010 the layout will show a dropLine (a simple insertion line) at the drop location.  &#010 <P>&#010 When the drop occurs, the dragTarget (obtained using&#010 {@link com.smartgwt.client.util.EventHandler#getDragTarget}) is added as a member of this layout at the location&#010 shown by the dropLine (calculated by {@link com.smartgwt.client.widgets.layout.Layout#getDropPosition}).  This default&#010 behavior allows either members or external components that have&#010 {@link com.smartgwt.client.widgets.Canvas#getCanDragReposition canDragReposition} (or {@link com.smartgwt.client.widgets.Canvas#getCanDrag canDrag}) and {@link com.smartgwt.client.widgets.Canvas#getCanDrop canDrop} set&#010 to <code>true</code> to be added to or reordered within the Layout.&#010 <P>&#010 You can control the thickness of the dropLine via {@link com.smartgwt.client.widgets.layout.Layout#getDropLineThickness dropLineThickness} and&#010 you can customize the style using css styling in the skin file (look for .layoutDropLine in&#010 skin_styles.css for your skin).  &#010 <P>  &#010 If you want to dynamically create a component to be added to the Layout in response to a&#010 drop event you can do so as follows: &#010 <pre>&#010 isc.VLayout.create({&#010   ...various layout properties...&#010   canDropComponents: true,&#010   drop : function () {&#010     // create the new component &#010     var newMember = isc.Canvas.create(); &#010     // add to the layout at the current drop position &#010     // (the dropLine will be showing here)&#010     this.addMember(newMember, this.getDropPosition());  &#010     // hide the dropLine that was automatically shown &#010     // by builtin SmartGWT methods&#010     this.hideDropLine();&#010   }&#010 });&#010 </pre>&#010 If you want to completely suppress the builtin drag and drop logic, but still receive drag&#010 and drop events for your own custom implementation, set {@link com.smartgwt.client.widgets.Canvas#getCanAcceptDrop canAcceptDrop} to&#010 <code>true</code> and <code>canDropComponents</code> to <code>false</code> on your Layout.
      *
      *
      * @return Boolean
@@ -502,7 +502,7 @@ public class Layout extends Canvas {
     }
 
     /**
-    * Thickness, in pixels of the dropLine shown during drag and drop when {@link com.smartgwt.client.widgets.layout.Layout#getCanDropComponents canDropComponents} is set to <code>true</code>.  See the discussion in {@link com.smartgwt.client.widgets.layout.Layout} for more info.
+    * Thickness, in pixels of the dropLine shown during drag and drop when&#010 {@link com.smartgwt.client.widgets.layout.Layout#getCanDropComponents canDropComponents} is set to <code>true</code>.  See the discussion in&#010 {@link com.smartgwt.client.widgets.layout.Layout} for more info.
     * <p><b>Note : </b> This is an advanced setting</p>
     *
     * @param dropLineThickness dropLineThickness Default value is 2
@@ -512,7 +512,7 @@ public class Layout extends Canvas {
         setAttribute("dropLineThickness", dropLineThickness, false);
     }
     /**
-     * Thickness, in pixels of the dropLine shown during drag and drop when {@link com.smartgwt.client.widgets.layout.Layout#getCanDropComponents canDropComponents} is set to <code>true</code>.  See the discussion in {@link com.smartgwt.client.widgets.layout.Layout} for more info.
+     * Thickness, in pixels of the dropLine shown during drag and drop when&#010 {@link com.smartgwt.client.widgets.layout.Layout#getCanDropComponents canDropComponents} is set to <code>true</code>.  See the discussion in&#010 {@link com.smartgwt.client.widgets.layout.Layout} for more info.
      *
      *
      * @return int
@@ -523,7 +523,7 @@ public class Layout extends Canvas {
     }
 
     /**
-    * If set to true, when a member is dragged out of layout, a visible placeholder canvas  will be displayed in place of the dragged widget for the duration of the drag and drop interaction.
+    * If set to true, when a member is dragged out of layout, a visible placeholder canvas &#010 will be displayed in place of the dragged widget for the duration of the drag and drop&#010 interaction.
     *
     * @param showDragPlaceHolder showDragPlaceHolder Default value is null
     */
@@ -531,7 +531,7 @@ public class Layout extends Canvas {
         setAttribute("showDragPlaceHolder", showDragPlaceHolder, true);
     }
     /**
-     * If set to true, when a member is dragged out of layout, a visible placeholder canvas  will be displayed in place of the dragged widget for the duration of the drag and drop interaction.
+     * If set to true, when a member is dragged out of layout, a visible placeholder canvas &#010 will be displayed in place of the dragged widget for the duration of the drag and drop&#010 interaction.
      *
      *
      * @return Boolean
@@ -542,7 +542,7 @@ public class Layout extends Canvas {
     }
 
     /**
-    * For use in conjunction with {@link com.smartgwt.client.widgets.layout.Layout#getMemberOverlap memberOverlap}, controls the z-stacking order of members. <P> If "lastOnTop", members stack from the first member at bottom to the last member at top. If "firstOnTop", members stack from the last member at bottom to the first member at top.
+    * For use in conjunction with {@link com.smartgwt.client.widgets.layout.Layout#getMemberOverlap memberOverlap}, controls the z-stacking order of&#010 members.&#010 <P>&#010 If "lastOnTop", members stack from the first member at bottom to the last member at&#010 top. If "firstOnTop", members stack from the last member at bottom to the first member&#010 at top.
     *
     * @param stackZIndex stackZIndex Default value is null
     * @throws IllegalStateException this property cannot be changed after the component has been created
@@ -551,7 +551,7 @@ public class Layout extends Canvas {
         setAttribute("stackZIndex", stackZIndex, false);
     }
     /**
-     * For use in conjunction with {@link com.smartgwt.client.widgets.layout.Layout#getMemberOverlap memberOverlap}, controls the z-stacking order of members. <P> If "lastOnTop", members stack from the first member at bottom to the last member at top. If "firstOnTop", members stack from the last member at bottom to the first member at top.
+     * For use in conjunction with {@link com.smartgwt.client.widgets.layout.Layout#getMemberOverlap memberOverlap}, controls the z-stacking order of&#010 members.&#010 <P>&#010 If "lastOnTop", members stack from the first member at bottom to the last member at&#010 top. If "firstOnTop", members stack from the last member at bottom to the first member&#010 at top.
      *
      *
      * @return String
@@ -562,7 +562,7 @@ public class Layout extends Canvas {
     }
 
     /**
-    * If set, a Layout with breadthPolicy:"fill" will specially interpret a percentage breadth on a member as a percentage of available space excluding the {@link com.smartgwt.client.widgets.layout.Layout#getLayoutMargin layoutMargin}.  If false, percentages work exactly as for a non-member, with layoutMargins, if any, ignored.
+    * If set, a Layout with breadthPolicy:"fill" will specially interpret a percentage breadth on&#010 a member as a percentage of available space excluding the {@link com.smartgwt.client.widgets.layout.Layout#getLayoutMargin layoutMargin}.  If false,&#010 percentages work exactly as for a non-member, with layoutMargins, if any, ignored.
     *
     * @param managePercentBreadth managePercentBreadth Default value is true
     * @throws IllegalStateException this property cannot be changed after the component has been created
@@ -571,7 +571,7 @@ public class Layout extends Canvas {
         setAttribute("managePercentBreadth", managePercentBreadth, false);
     }
     /**
-     * If set, a Layout with breadthPolicy:"fill" will specially interpret a percentage breadth on a member as a percentage of available space excluding the {@link com.smartgwt.client.widgets.layout.Layout#getLayoutMargin layoutMargin}.  If false, percentages work exactly as for a non-member, with layoutMargins, if any, ignored.
+     * If set, a Layout with breadthPolicy:"fill" will specially interpret a percentage breadth on&#010 a member as a percentage of available space excluding the {@link com.smartgwt.client.widgets.layout.Layout#getLayoutMargin layoutMargin}.  If false,&#010 percentages work exactly as for a non-member, with layoutMargins, if any, ignored.
      *
      *
      * @return Boolean
@@ -584,7 +584,7 @@ public class Layout extends Canvas {
     // ********************* Methods ***********************
 
         /**
-         * An optional method that, if it exists, allows the manipulation of the calculated offset for members of this layout.  Returns the offset for the specified member.
+         * An optional method that, if it exists, allows the manipulation of the calculated&#010 offset for members of this layout.  Returns the offset for the specified&#010 member.&#010
          * @param member Component to be positioned
      * @param defaultOffset Value of the currently calculated member offset. This      may be returned verbatim or manupulated in this method.
      * @param alignment alignment of the enclosing layout
@@ -596,7 +596,7 @@ public class Layout extends Canvas {
 
 
         /**
-         * Return the breadth for a member of this layout which either didn't specify a breadth or specified a percent breadth with {@link com.smartgwt.client.widgets.layout.Layout#getManagePercentBreadth managePercentBreadth}:true. <P> Called only for Layouts which have a ${isc.DocUtils.linkForRef('type:LayoutPolicy','layout policy')} for the breadth axis of "fill", since Layouts with a breadth policy of "none" leave all member breadths alone.
+         * Return the breadth for a member of this layout which either didn't specify a breadth or&#010 specified a percent breadth with {@link com.smartgwt.client.widgets.layout.Layout#getManagePercentBreadth managePercentBreadth}:true.&#010 <P>&#010 Called only for Layouts which have a ${isc.DocUtils.linkForRef('type:LayoutPolicy','layout policy')} for the breadth&#010 axis of "fill", since Layouts with a breadth policy of "none" leave all member breadths alone.&#010&#010
          * @param member Component to be sized
      * @param defaultBreadth Value of the currently calculated member breadth. This      may be returned verbatim or manipulated in this method.
          */
@@ -607,7 +607,7 @@ public class Layout extends Canvas {
 
 
         /**
-         * Layout members according to current settings. <P> Members will reflow automatically when the layout is resized, members resize, the list of members changes or members change visibility.  It is only necessary to manually call <code>reflow()</code> after changing settings on the layout, for example, <code>layout.reverseOrder</code>.
+         * Layout members according to current settings.&#010 <P>&#010 Members will reflow automatically when the layout is resized, members resize, the list of&#010 members changes or members change visibility.  It is only necessary to manually call&#010 <code>reflow()</code> after changing settings on the layout, for example,&#010 <code>layout.reverseOrder</code>.&#010&#010
          */
         public native void reflow() /*-{
             var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
@@ -615,7 +615,7 @@ public class Layout extends Canvas {
         }-*/;
 
         /**
-         * Layout members according to current settings. <P> Members will reflow automatically when the layout is resized, members resize, the list of members changes or members change visibility.  It is only necessary to manually call <code>reflow()</code> after changing settings on the layout, for example, <code>layout.reverseOrder</code>.
+         * Layout members according to current settings.&#010 <P>&#010 Members will reflow automatically when the layout is resized, members resize, the list of&#010 members changes or members change visibility.  It is only necessary to manually call&#010 <code>reflow()</code> after changing settings on the layout, for example,&#010 <code>layout.reverseOrder</code>.&#010&#010
          * @param reason reason reflow() had to be called (appear in logs if enabled)
          */
         public native void reflow(String reason) /*-{
@@ -624,7 +624,7 @@ public class Layout extends Canvas {
         }-*/;
 
         /**
-         * Layout members according to current settings, immediately. <br> Generally, when changes occur that require a layout to reflow (such as members being shown or hidden), the Layout will reflow only after a delay, so that multiple changes cause only one reflow.  To remove this delay for cases where it is not helpful, reflowNow() can be called.
+         * Layout members according to current settings, immediately.&#010 <br>&#010 Generally, when changes occur that require a layout to reflow (such as members being shown&#010 or hidden), the Layout will reflow only after a delay, so that multiple changes cause only&#010 one reflow.  To remove this delay for cases where it is not helpful, reflowNow() can be&#010 called.&#010
          */
         public native void reflowNow() /*-{
             var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
@@ -634,7 +634,7 @@ public class Layout extends Canvas {
 
 
         /**
-         * Returns true if the layout includes the specified canvas.
+         * Returns true if the layout includes the specified canvas.&#010
          * @param canvas the canvas to check for
          *
          * @return true if the layout includes the specified canvas
@@ -653,7 +653,7 @@ public class Layout extends Canvas {
 
 
         /**
-         * Removes the specified member from the layout. If it has a resize bar, the bar will be destroyed.
+         * &#010 Removes the specified member from the layout. If it has a resize bar, the bar will be&#010 destroyed.&#010&#010
          * @param member the canvas to be removed from the layout
          */
         public native void removeMember(Canvas member) /*-{
@@ -665,7 +665,7 @@ public class Layout extends Canvas {
 
 
         /**
-         * Shift a member of the layout to a new position
+         * Shift a member of the layout to a new position&#010      &#010
          * @param memberNum current position of the member to move to a new position
      * @param newPosition new position to move the member to
          */
@@ -675,7 +675,7 @@ public class Layout extends Canvas {
         }-*/;
 
         /**
-         * Move a range of members to a new position
+         * Move a range of members to a new position&#010      &#010
          * @param start beginning of range of members to move
      * @param end end of range of members to move, non-inclusive
      * @param newPosition new position to move the members to
@@ -686,7 +686,7 @@ public class Layout extends Canvas {
         }-*/;
 
         /**
-         * Fires once at initialization if the layout has any initial members, and then fires whenever members are added, removed or reordered.
+         * Fires once at initialization if the layout has any initial members, and then fires whenever&#010 members are added, removed or reordered.&#010 &#010
          */
         public native void membersChanged() /*-{
             var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
@@ -694,7 +694,7 @@ public class Layout extends Canvas {
         }-*/;
 
         /**
-         * When {@link com.smartgwt.client.widgets.layout.Layout#getCanDropComponents canDropComponents} is true, this method will be called when a component is dropped onto the layout to determine what component to add as a new layout member. <P> By default, the actual component being dragged (isc.EventHandler.getDragTarget()) will be added to the layout.  For a different behavior, such as wrapping dropped components in Windows, or creating components on the fly from dropped data, override this method.   <P> You can also return false to cancel the drop.
+         * When {@link com.smartgwt.client.widgets.layout.Layout#getCanDropComponents canDropComponents} is true, this method will be called when a component is&#010 dropped onto the layout to determine what component to add as a new layout member.&#010 <P>&#010 By default, the actual component being dragged (isc.EventHandler.getDragTarget()) will be&#010 added to the layout.  For a different behavior, such as wrapping dropped components in&#010 Windows, or creating components on the fly from dropped data, override this method.  &#010 <P>&#010 You can also return false to cancel the drop.&#010&#010
          * @param dragTarget current drag target
      * @param dropPosition index of the drop in the list of current members
          *
@@ -712,7 +712,7 @@ public class Layout extends Canvas {
 
 
         /**
-         * Get the position a new member would be dropped.  This drop position switches in the middle of each member, and both edges (before beginning, after end) are legal drop positions <p> Use this method to obtain the drop position for e.g. a custom drop handler.
+         * &#010 Get the position a new member would be dropped.  This drop position switches in the&#010 middle of each member, and both edges (before beginning, after end) are legal drop positions&#010 <p>&#010 Use this method to obtain the drop position for e.g. a custom drop handler.&#010&#010
          *
          * @return the position a new member would be dropped
          */
@@ -722,7 +722,7 @@ public class Layout extends Canvas {
         }-*/;
 
         /**
-         * Calling this method hides the dropLine shown during a drag and drop interaction with a Layout that has {@link com.smartgwt.client.widgets.layout.Layout#getCanDropComponents canDropComponents} set to true.  This method is only useful for custom implementations of {@link com.smartgwt.client.widgets.layout.Layout#drop} as the default implementation calls this method automatically.
+         * Calling this method hides the dropLine shown during a drag and drop interaction with a&#010 Layout that has {@link com.smartgwt.client.widgets.layout.Layout#getCanDropComponents canDropComponents} set to true.  This method is only useful for&#010 custom implementations of {@link com.smartgwt.client.widgets.layout.Layout#drop} as the default implementation calls this&#010 method automatically.&#010&#010
          */
         public native void hideDropLine() /*-{
             var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();

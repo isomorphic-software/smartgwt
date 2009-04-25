@@ -56,7 +56,7 @@ import com.smartgwt.client.util.EnumUtil;
 import com.google.gwt.event.shared.*;
 import com.google.gwt.event.shared.HasHandlers;
    /**
-    * Shows a set of Tabs.  TabBars are automatically created by TabSets and shouldn't be used directly.  The TabBar is documented for skinning purposes.
+    * Shows a set of Tabs.  TabBars are automatically created by TabSets and shouldn't be used&#010 directly.  The TabBar is documented for skinning purposes.
 
     */
 public class TabBar extends Toolbar {
@@ -108,7 +108,7 @@ public class TabBar extends Toolbar {
     }
 
     /**
-    * Thickness of the baseLine, in pixels.  This should be set to match the media specified by {@link com.smartgwt.client.widgets.tab.TabBar#getBaseLineSrc baseLineSrc}.  The baseLineThickness also determines the degree of overlap with the TabSet's paneContainer when using decorative edges - see {@link com.smartgwt.client.widgets.tab.TabSet#getPaneContainer paneContainer} for details.
+    * Thickness of the baseLine, in pixels.  This should be set to match the media specified&#010 by {@link com.smartgwt.client.widgets.tab.TabBar#getBaseLineSrc baseLineSrc}.  The baseLineThickness also determines the degree of overlap with&#010 the TabSet's paneContainer when using decorative edges - see {@link com.smartgwt.client.widgets.tab.TabSet#getPaneContainer paneContainer}&#010 for details.
     *
     * @param baseLineThickness baseLineThickness Default value is 1
     * @throws IllegalStateException this property cannot be changed after the component has been created
@@ -117,7 +117,7 @@ public class TabBar extends Toolbar {
         setAttribute("baseLineThickness", baseLineThickness, false);
     }
     /**
-     * Thickness of the baseLine, in pixels.  This should be set to match the media specified by {@link com.smartgwt.client.widgets.tab.TabBar#getBaseLineSrc baseLineSrc}.  The baseLineThickness also determines the degree of overlap with the TabSet's paneContainer when using decorative edges - see {@link com.smartgwt.client.widgets.tab.TabSet#getPaneContainer paneContainer} for details.
+     * Thickness of the baseLine, in pixels.  This should be set to match the media specified&#010 by {@link com.smartgwt.client.widgets.tab.TabBar#getBaseLineSrc baseLineSrc}.  The baseLineThickness also determines the degree of overlap with&#010 the TabSet's paneContainer when using decorative edges - see {@link com.smartgwt.client.widgets.tab.TabSet#getPaneContainer paneContainer}&#010 for details.
      *
      *
      * @return int
@@ -190,7 +190,7 @@ public class TabBar extends Toolbar {
     // ********************* Methods ***********************
 
         /**
-         * Select a tab
+         * Select a tab&#010
          * @param tabNum index of tab to select
          */
         public native void selectTab(int tabNum) /*-{

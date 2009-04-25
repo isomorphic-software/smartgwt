@@ -56,7 +56,7 @@ import com.smartgwt.client.util.EnumUtil;
 import com.google.gwt.event.shared.*;
 import com.google.gwt.event.shared.HasHandlers;
    /**
-    * Base class for creating toolstrips like those found in browsers and office applications: a mixed set of controls including {@link com.smartgwt.client.widgets.ImgButton},  {@link com.smartgwt.client.widgets.Button#getRadioGroup radioGroup}, {@link com.smartgwt.client.widgets.menu.MenuButton}, {@link com.smartgwt.client.widgets.form.fields.ComboBoxItem}, {@link com.smartgwt.client.widgets.layout.LayoutSpacer}, {@link com.smartgwt.client.widgets.Label} and  {@link com.smartgwt.client.widgets.form.fields.SelectItem}.   <P> All of the above components are placed in the {@link com.smartgwt.client.widgets.toolbar.ToolStrip#getMembers members} to form a ToolStrip.  Note that the {@link com.smartgwt.client.widgets.form.fields.FormItem} mentioned above (ComboBox and drop-down selects) need to be placed within a {@link com.smartgwt.client.widgets.form.DynamicForm} as usual. <P> The special strings "separator" and "resizer" can be placed in the members array to create separators and resizers respectively. <P> Also see the ${isc.DocUtils.linkForExampleId('toolstrip')} example in the Feature Explorer.
+    * Base class for creating toolstrips like those found in browsers and office applications: a&#010 mixed set of controls including {@link com.smartgwt.client.widgets.ImgButton}, &#010 {@link com.smartgwt.client.widgets.Button#getRadioGroup radioGroup}, {@link com.smartgwt.client.widgets.menu.MenuButton},&#010 {@link com.smartgwt.client.widgets.form.fields.ComboBoxItem}, {@link com.smartgwt.client.widgets.layout.LayoutSpacer}, {@link com.smartgwt.client.widgets.Label} and &#010 {@link com.smartgwt.client.widgets.form.fields.SelectItem}.  &#010 <P>&#010 All of the above components are placed in the {@link com.smartgwt.client.widgets.toolbar.ToolStrip#getMembers members} to form&#010 a ToolStrip.  Note that the {@link com.smartgwt.client.widgets.form.fields.FormItem} mentioned above (ComboBox and&#010 drop-down selects) need to be placed within a {@link com.smartgwt.client.widgets.form.DynamicForm} as usual.&#010 <P>&#010 The special strings "separator" and "resizer" can be placed in the members array to create&#010 separators and resizers respectively.&#010 <P>&#010 Also see the ${isc.DocUtils.linkForExampleId('toolstrip')} example in the Feature Explorer.
 
     */
 public class ToolStrip extends Layout {
@@ -108,7 +108,7 @@ public class ToolStrip extends Layout {
     }
 
     /**
-    * Indicates whether the components are drawn horizontally from left to right (false), or vertically from top to bottom (true).
+    * Indicates whether the components are drawn horizontally from left to right (false), or&#010 vertically from top to bottom (true).
     *
     * @param vertical vertical Default value is false
     */
@@ -116,7 +116,7 @@ public class ToolStrip extends Layout {
         setAttribute("vertical", vertical, true);
     }
     /**
-     * Indicates whether the components are drawn horizontally from left to right (false), or vertically from top to bottom (true).
+     * Indicates whether the components are drawn horizontally from left to right (false), or&#010 vertically from top to bottom (true).
      *
      *
      * @return Boolean

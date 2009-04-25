@@ -22,7 +22,7 @@ import com.google.gwt.event.shared.HasHandlers;
 
 public interface HasFocusHandlers extends HasHandlers {
     /**
-     * Called when this FormItem receives focus.
+     * Called when this FormItem receives focus.&#010 &#010
      */
     HandlerRegistration addFocusHandler(FocusHandler handler);
 }

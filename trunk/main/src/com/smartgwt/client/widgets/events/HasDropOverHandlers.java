@@ -22,7 +22,7 @@ import com.google.gwt.event.shared.HasHandlers;
 
 public interface HasDropOverHandlers extends HasHandlers {
     /**
-     * Executed when the compatible dragged object is first moved over this drop target. Your implementation can use this to show a custom visual indication that the object can be dropped here.
+     * &#010 Executed when the compatible dragged object is first moved over this drop target. Your&#010 implementation can use this to show a custom visual indication that the object can be&#010 dropped here.&#010&#010
      */
     HandlerRegistration addDropOverHandler(DropOverHandler handler);
 }

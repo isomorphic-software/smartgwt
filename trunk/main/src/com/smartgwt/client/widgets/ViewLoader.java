@@ -56,7 +56,7 @@ import com.smartgwt.client.util.EnumUtil;
 import com.google.gwt.event.shared.*;
 import com.google.gwt.event.shared.HasHandlers;
    /**
-    * The ViewLoader component can be used to load new SmartGWT-based user interfaces into a running application. <P> <b>NOTE:</b> before using a ViewLoader, be sure that you have read about and understood the {@link com.smartgwt.client.docs.SmartArchitecture 'SmartGWT Architecture'}.  The most responsive and scalable application architecture preloads views rather than using ViewLoaders. <P> A ViewLoader is a Canvas, and can be provided anywhere a Canvas can be provided: as a Tab pane, and Layout member, etc.  When a ViewLoader draws, it shows a {@link com.smartgwt.client.widgets.ViewLoader#getLoadingMessage loadingMessage}, then performs an RPC to the {@link com.smartgwt.client.widgets.ViewLoader#getViewURL viewURL} to load components. <P> The response from the viewURL should be SmartGWT components defined in JavaScript, with no surrounding &lt;SCRIPT&gt; tags or other HTML framing.  The returned script can be dynamically generated, for example, it may be the result of a JSP containing an XML view description enclosed in {@link com.smartgwt.client.docs.XmlTag '&lt;isomorphicXML&gt;'} tags. <P> In the returned script, the special variable "viewLoader" is available to refer to the ViewLoader instance that is loading components.  The intended usage is that the returned script creates a view consisting of SmartGWT components, then calls <code>viewLoader.setView(myView)</code> to place the loaded view into the ViewLoader. If the view does not call setView() explicitly, the viewLoader will find the last top-level UI component (Canvas subclass) created by the view and set that as the current view. Top-level in this case means that the UI component is not contained in another UI component as a member or child. <p> The ViewLoader relies on the XMLHttpRequest object which can be disabled by end-users in some supported browsers.  See {@link com.smartgwt.client.docs.PlatformDependencies} for more information.
+    * The ViewLoader component can be used to load new SmartGWT-based user interfaces into a&#010 running application.&#010 <P>&#010 <b>NOTE:</b> before using a ViewLoader, be sure that you have read about and understood the&#010 {@link com.smartgwt.client.docs.SmartArchitecture 'SmartGWT Architecture'}.  The most responsive and&#010 scalable application architecture preloads views rather than using ViewLoaders.&#010 <P>&#010 A ViewLoader is a Canvas, and can be provided anywhere a Canvas can be provided: as a Tab&#010 pane, and Layout member, etc.  When a ViewLoader draws, it shows a&#010 {@link com.smartgwt.client.widgets.ViewLoader#getLoadingMessage loadingMessage}, then&#010 performs an RPC to the {@link com.smartgwt.client.widgets.ViewLoader#getViewURL viewURL} to load components.&#010 <P>&#010 The response from the viewURL should be SmartGWT components defined in JavaScript, with no&#010 surrounding &lt;SCRIPT&gt; tags or other HTML framing.  The returned script can be&#010 dynamically generated, for example, it may be the result of a JSP containing an XML view&#010 description enclosed in {@link com.smartgwt.client.docs.XmlTag '&lt;isomorphicXML&gt;'} tags.&#010 <P>&#010 In the returned script, the special variable "viewLoader" is available to refer to the&#010 ViewLoader instance that is loading components.  The intended usage is that the returned&#010 script creates a view consisting of SmartGWT components, then calls&#010 <code>viewLoader.setView(myView)</code> to place the loaded view into the ViewLoader.&#010 If the view does not call setView() explicitly, the viewLoader will find the last top-level&#010 UI component (Canvas subclass) created by the view and set that as the current view.&#010 Top-level in this case means that the UI component is not contained in another UI component&#010 as a member or child.&#010 <p>&#010 The ViewLoader relies on the XMLHttpRequest object which can be disabled by end-users in some&#010 supported browsers.  See {@link com.smartgwt.client.docs.PlatformDependencies} for more information.
 
     */
 public class ViewLoader extends Label {
@@ -110,7 +110,7 @@ public class ViewLoader extends Label {
 
     /**
     * URL to load components from.
-    * Change the URL this component loads a view from.  Triggers a fetch from the new URL. <P> Can also be called with no arguments to reload the view from the existing {@link com.smartgwt.client.widgets.ViewLoader#getViewURL viewURL}.
+    * Change the URL this component loads a view from.  Triggers a fetch from the new URL.&#010 <P>&#010 Can also be called with no arguments to reload the view from the existing&#010 {@link com.smartgwt.client.widgets.ViewLoader#getViewURL viewURL}.&#010&#010
     *
     * @param viewURL URL to retrieve view from. Default value is null
     * @throws IllegalStateException this property cannot be changed after the component has been created
@@ -130,7 +130,7 @@ public class ViewLoader extends Label {
     }
 
     /**
-    * Selects the HTTP method that will be used when fetching content.  Valid values are "POST" and "GET".
+    * Selects the HTTP method that will be used when fetching content.  Valid values are "POST"&#010 and "GET".
     *
     * @param httpMethod httpMethod Default value is "GET"
     */
@@ -138,7 +138,7 @@ public class ViewLoader extends Label {
         setAttribute("httpMethod", httpMethod, true);
     }
     /**
-     * Selects the HTTP method that will be used when fetching content.  Valid values are "POST" and "GET".
+     * Selects the HTTP method that will be used when fetching content.  Valid values are "POST"&#010 and "GET".
      *
      *
      * @return String
@@ -149,7 +149,7 @@ public class ViewLoader extends Label {
     }
 
     /**
-    * By default a ViewLoader will explicitly prevent browser caching. <P> Set to true to allow browser caching <b>if the browser would normally do so</b>, in other words, if the HTTP headers returned with the response indicate that the response can be cached.
+    * By default a ViewLoader will explicitly prevent browser caching.&#010 <P>&#010 Set to true to allow browser caching <b>if the browser would normally do so</b>, in other&#010 words, if the HTTP headers returned with the response indicate that the response can be&#010 cached.
     *
     * @param allowCaching allowCaching Default value is false
     * @throws IllegalStateException this property cannot be changed after the component has been created
@@ -158,7 +158,7 @@ public class ViewLoader extends Label {
         setAttribute("allowCaching", allowCaching, false);
     }
     /**
-     * By default a ViewLoader will explicitly prevent browser caching. <P> Set to true to allow browser caching <b>if the browser would normally do so</b>, in other words, if the HTTP headers returned with the response indicate that the response can be cached.
+     * By default a ViewLoader will explicitly prevent browser caching.&#010 <P>&#010 Set to true to allow browser caching <b>if the browser would normally do so</b>, in other&#010 words, if the HTTP headers returned with the response indicate that the response can be&#010 cached.
      *
      *
      * @return Boolean
@@ -173,7 +173,7 @@ public class ViewLoader extends Label {
 
 
         /**
-         * Retrieve the current view.  May be null if the view has not yet been loaded, or has been explicitly set to null.
+         * Retrieve the current view.  May be null if the view has not yet been loaded, or has been&#010 explicitly set to null.&#010&#010
          *
          * @return the current view
          */
@@ -189,7 +189,7 @@ public class ViewLoader extends Label {
         }-*/;
 
         /**
-         * StringMethod fired when the view has been loaded.  Has no default implementation.  May be observed or overridden to fire custom logic when loading completes.
+         * StringMethod fired when the view has been loaded.  Has no default implementation.  May be&#010 observed or overridden to fire custom logic when loading completes.&#010&#010
          * @param view the view that was loaded
          */
         public native void viewLoaded(Canvas view) /*-{

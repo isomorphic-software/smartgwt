@@ -22,7 +22,7 @@ import com.google.gwt.event.shared.HasHandlers;
 
 public interface HasRowContextClickHandlers extends HasHandlers {
     /**
-     * Called when a row receives a contextclick event.
+     * Called when a row receives a contextclick event.&#010
      */
     HandlerRegistration addRowContextClickHandler(RowContextClickHandler handler);
 }

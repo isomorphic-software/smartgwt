@@ -56,7 +56,7 @@ import com.smartgwt.client.util.EnumUtil;
 import com.google.gwt.event.shared.*;
 import com.google.gwt.event.shared.HasHandlers;
    /**
-    * Class for editable multi-line text areas (uses HTML <code>&lt;TEXTAREA&gt;</code> object) automatically expands to accomodate its content
+    * Class for editable multi-line text areas (uses HTML <code>&lt;TEXTAREA&gt;</code> object)&#010 automatically expands to accomodate its content
 
     */
 public class AutoFitTextAreaItem extends TextAreaItem {

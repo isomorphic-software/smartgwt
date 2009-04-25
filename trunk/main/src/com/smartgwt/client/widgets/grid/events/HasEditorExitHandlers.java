@@ -22,7 +22,7 @@ import com.google.gwt.event.shared.HasHandlers;
 
 public interface HasEditorExitHandlers extends HasHandlers {
     /**
-     * Callback fired when the user attempts to navigate away from the current edit cell,  or complete the current edit.<br> Return false from this method to cancel the default behavior (Saving / cancelling the current edit / moving to the next edit cell)
+     * Callback fired when the user attempts to navigate away from the current edit cell, &#010 or complete the current edit.<br>&#010 Return false from this method to cancel the default behavior (Saving / cancelling the&#010 current edit / moving to the next edit cell)&#010&#010
      */
     HandlerRegistration addEditorExitHandler(EditorExitHandler handler);
 }

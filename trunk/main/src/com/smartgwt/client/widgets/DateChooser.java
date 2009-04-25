@@ -56,7 +56,7 @@ import com.smartgwt.client.util.EnumUtil;
 import com.google.gwt.event.shared.*;
 import com.google.gwt.event.shared.HasHandlers;
    /**
-    * Simple interactive calendar interface used to pick a date. Used by the {@link com.smartgwt.client.widgets.form.fields.DateItem} class.
+    * Simple interactive calendar interface used to pick a date.&#010 Used by the {@link com.smartgwt.client.widgets.form.fields.DateItem} class.
 
     */
 
@@ -110,7 +110,7 @@ public class DateChooser extends Canvas  implements com.smartgwt.client.widgets.
     }
 
     /**
-    * Overridden directory where images for this widget (such as the month and year button icons) may be found.
+    * Overridden directory where images for this widget (such as the month and year button icons)&#010 may be found.
     * <p><b>Note : </b> This is an advanced setting</p>
     *
     * @param skinImgDir skinImgDir Default value is "images/common/"
@@ -119,7 +119,7 @@ public class DateChooser extends Canvas  implements com.smartgwt.client.widgets.
         setAttribute("skinImgDir", skinImgDir, true);
     }
     /**
-     * Overridden directory where images for this widget (such as the month and year button icons) may be found.
+     * Overridden directory where images for this widget (such as the month and year button icons)&#010 may be found.
      *
      *
      * @return String
@@ -366,7 +366,7 @@ public class DateChooser extends Canvas  implements com.smartgwt.client.widgets.
     }
 
     /**
-    * If this property is set to true the previous and next year buttons will render out the  previous and next month button icons twice rather than using the {@link com.smartgwt.client.widgets.DateChooser#getPrevYearIcon prevYearIcon} and {@link com.smartgwt.client.widgets.DateChooser#getNextYearIcon nextYearIcon}. <P> Set to <code>true</code> by default as not all skins contain media for the year icons.
+    * If this property is set to true the previous and next year buttons will render out the &#010 previous and next month button icons twice rather than using the&#010 {@link com.smartgwt.client.widgets.DateChooser#getPrevYearIcon prevYearIcon} and {@link com.smartgwt.client.widgets.DateChooser#getNextYearIcon nextYearIcon}.&#010 <P>&#010 Set to <code>true</code> by default as not all skins contain media for the year icons.
     *
     * @param showDoubleYearIcon showDoubleYearIcon Default value is true
     */
@@ -374,7 +374,7 @@ public class DateChooser extends Canvas  implements com.smartgwt.client.widgets.
         setAttribute("showDoubleYearIcon", showDoubleYearIcon, true);
     }
     /**
-     * If this property is set to true the previous and next year buttons will render out the  previous and next month button icons twice rather than using the {@link com.smartgwt.client.widgets.DateChooser#getPrevYearIcon prevYearIcon} and {@link com.smartgwt.client.widgets.DateChooser#getNextYearIcon nextYearIcon}. <P> Set to <code>true</code> by default as not all skins contain media for the year icons.
+     * If this property is set to true the previous and next year buttons will render out the &#010 previous and next month button icons twice rather than using the&#010 {@link com.smartgwt.client.widgets.DateChooser#getPrevYearIcon prevYearIcon} and {@link com.smartgwt.client.widgets.DateChooser#getNextYearIcon nextYearIcon}.&#010 <P>&#010 Set to <code>true</code> by default as not all skins contain media for the year icons.
      *
      *
      * @return Boolean
@@ -425,7 +425,7 @@ public class DateChooser extends Canvas  implements com.smartgwt.client.widgets.
     }
 
     /**
-    * Determines whether the "Today" button will be displayed, allowing the user to select  the current date.
+    * Determines whether the "Today" button will be displayed, allowing the user to select &#010 the current date.
     *
     * @param showTodayButton showTodayButton Default value is true
     */
@@ -433,7 +433,7 @@ public class DateChooser extends Canvas  implements com.smartgwt.client.widgets.
         setAttribute("showTodayButton", showTodayButton, true);
     }
     /**
-     * Determines whether the "Today" button will be displayed, allowing the user to select  the current date.
+     * Determines whether the "Today" button will be displayed, allowing the user to select &#010 the current date.
      *
      *
      * @return Boolean
@@ -520,7 +520,7 @@ public class DateChooser extends Canvas  implements com.smartgwt.client.widgets.
     }
 
     /**
-    * Whether it should be valid to pick a weekend day.  If set to true, weekend days appear in disabled style and cannot be picked.  <P> Which days are considered weekends is controlled by {@link com.smartgwt.client..Date#weekendDays}.
+    * Whether it should be valid to pick a weekend day.  If set to true, weekend days appear&#010 in disabled style and cannot be picked. &#010 <P>&#010 Which days are considered weekends is controlled by {@link com.smartgwt.client..Date#weekendDays}.
     *
     * @param disableWeekends disableWeekends Default value is false
     * @throws IllegalStateException this property cannot be changed after the component has been created
@@ -529,7 +529,7 @@ public class DateChooser extends Canvas  implements com.smartgwt.client.widgets.
         setAttribute("disableWeekends", disableWeekends, false);
     }
     /**
-     * Whether it should be valid to pick a weekend day.  If set to true, weekend days appear in disabled style and cannot be picked.  <P> Which days are considered weekends is controlled by {@link com.smartgwt.client..Date#weekendDays}.
+     * Whether it should be valid to pick a weekend day.  If set to true, weekend days appear&#010 in disabled style and cannot be picked. &#010 <P>&#010 Which days are considered weekends is controlled by {@link com.smartgwt.client..Date#weekendDays}.
      *
      *
      * @return Boolean
@@ -540,7 +540,7 @@ public class DateChooser extends Canvas  implements com.smartgwt.client.widgets.
     }
 
     /**
-    * Whether weekend days should be shown.  Which days are considered weekends is controlled by {@link com.smartgwt.client..Date#weekendDays}.
+    * Whether weekend days should be shown.  Which days are considered weekends is controlled&#010 by {@link com.smartgwt.client..Date#weekendDays}.
     *
     * @param showWeekends showWeekends Default value is true
     * @throws IllegalStateException this property cannot be changed after the component has been created
@@ -549,7 +549,7 @@ public class DateChooser extends Canvas  implements com.smartgwt.client.widgets.
         setAttribute("showWeekends", showWeekends, false);
     }
     /**
-     * Whether weekend days should be shown.  Which days are considered weekends is controlled by {@link com.smartgwt.client..Date#weekendDays}.
+     * Whether weekend days should be shown.  Which days are considered weekends is controlled&#010 by {@link com.smartgwt.client..Date#weekendDays}.
      *
      *
      * @return Boolean
@@ -580,7 +580,7 @@ public class DateChooser extends Canvas  implements com.smartgwt.client.widgets.
     }
 
     /**
-    * Base css style applied to this picker's buttons. Will have "Over", "Selected" and "Down" suffix appended as the user interacts with buttons.
+    * Base css style applied to this picker's buttons. Will have "Over", "Selected" and "Down"&#010 suffix appended as the user interacts with buttons.
     *
     * @param baseButtonStyle baseButtonStyle Default value is "dateChooserButton"
     */
@@ -588,7 +588,7 @@ public class DateChooser extends Canvas  implements com.smartgwt.client.widgets.
         setAttribute("baseButtonStyle", baseButtonStyle, true);
     }
     /**
-     * Base css style applied to this picker's buttons. Will have "Over", "Selected" and "Down" suffix appended as the user interacts with buttons.
+     * Base css style applied to this picker's buttons. Will have "Over", "Selected" and "Down"&#010 suffix appended as the user interacts with buttons.
      *
      *
      * @return String
@@ -599,7 +599,7 @@ public class DateChooser extends Canvas  implements com.smartgwt.client.widgets.
     }
 
     /**
-    * Base css style applied to weekdays. Will have "Over", "Selected" and "Down" suffix appended as the user interacts with buttons.  Defaults to {@link com.smartgwt.client.widgets.DateChooser#getBaseButtonStyle baseButtonStyle}.
+    * Base css style applied to weekdays. Will have "Over", "Selected" and "Down"&#010 suffix appended as the user interacts with buttons.  Defaults to {@link com.smartgwt.client.widgets.DateChooser#getBaseButtonStyle baseButtonStyle}.
     *
     * @param baseWeekdayStyle baseWeekdayStyle Default value is null
     */
@@ -607,7 +607,7 @@ public class DateChooser extends Canvas  implements com.smartgwt.client.widgets.
         setAttribute("baseWeekdayStyle", baseWeekdayStyle, true);
     }
     /**
-     * Base css style applied to weekdays. Will have "Over", "Selected" and "Down" suffix appended as the user interacts with buttons.  Defaults to {@link com.smartgwt.client.widgets.DateChooser#getBaseButtonStyle baseButtonStyle}.
+     * Base css style applied to weekdays. Will have "Over", "Selected" and "Down"&#010 suffix appended as the user interacts with buttons.  Defaults to {@link com.smartgwt.client.widgets.DateChooser#getBaseButtonStyle baseButtonStyle}.
      *
      *
      * @return String
@@ -618,7 +618,7 @@ public class DateChooser extends Canvas  implements com.smartgwt.client.widgets.
     }
 
     /**
-    * Base css style applied to weekends. Will have "Over", "Selected" and "Down" suffix appended as the user interacts with buttons.  Defaults to {@link com.smartgwt.client.widgets.DateChooser#getBaseWeekdayStyle baseWeekdayStyle}.
+    * Base css style applied to weekends. Will have "Over", "Selected" and "Down"&#010 suffix appended as the user interacts with buttons.  Defaults to {@link com.smartgwt.client.widgets.DateChooser#getBaseWeekdayStyle baseWeekdayStyle}.
     *
     * @param baseWeekendStyle baseWeekendStyle Default value is null
     */
@@ -626,7 +626,7 @@ public class DateChooser extends Canvas  implements com.smartgwt.client.widgets.
         setAttribute("baseWeekendStyle", baseWeekendStyle, true);
     }
     /**
-     * Base css style applied to weekends. Will have "Over", "Selected" and "Down" suffix appended as the user interacts with buttons.  Defaults to {@link com.smartgwt.client.widgets.DateChooser#getBaseWeekdayStyle baseWeekdayStyle}.
+     * Base css style applied to weekends. Will have "Over", "Selected" and "Down"&#010 suffix appended as the user interacts with buttons.  Defaults to {@link com.smartgwt.client.widgets.DateChooser#getBaseWeekdayStyle baseWeekdayStyle}.
      *
      *
      * @return String
@@ -637,7 +637,7 @@ public class DateChooser extends Canvas  implements com.smartgwt.client.widgets.
     }
 
     /**
-    * Whether alternating weeks should be drawn in alternating styles. If enabled, the cell style for alternate rows will have {@link com.smartgwt.client.widgets.DateChooser#getAlternateStyleSuffix alternateStyleSuffix} appended to it.
+    * Whether alternating weeks should be drawn in alternating styles. If enabled, the cell style&#010 for alternate rows will have {@link com.smartgwt.client.widgets.DateChooser#getAlternateStyleSuffix alternateStyleSuffix} appended to it.
     *
     * @param alternateWeekStyles alternateWeekStyles Default value is null
     */
@@ -645,7 +645,7 @@ public class DateChooser extends Canvas  implements com.smartgwt.client.widgets.
         setAttribute("alternateWeekStyles", alternateWeekStyles, true);
     }
     /**
-     * Whether alternating weeks should be drawn in alternating styles. If enabled, the cell style for alternate rows will have {@link com.smartgwt.client.widgets.DateChooser#getAlternateStyleSuffix alternateStyleSuffix} appended to it.
+     * Whether alternating weeks should be drawn in alternating styles. If enabled, the cell style&#010 for alternate rows will have {@link com.smartgwt.client.widgets.DateChooser#getAlternateStyleSuffix alternateStyleSuffix} appended to it.
      *
      *
      * @return Boolean
@@ -675,7 +675,7 @@ public class DateChooser extends Canvas  implements com.smartgwt.client.widgets.
     }
 
     /**
-    * CSS style applied to the day-of-week headers. By default this applies to all days of the  week. To apply a separate style to weekend headers, set {@link com.smartgwt.client.widgets.DateChooser#getWeekendHeaderStyle weekendHeaderStyle}
+    * CSS style applied to the day-of-week headers. By default this applies to all days of the &#010 week. To apply a separate style to weekend headers, set {@link com.smartgwt.client.widgets.DateChooser#getWeekendHeaderStyle weekendHeaderStyle}
     *
     * @param headerStyle headerStyle Default value is "dateChooserButtonDisabled"
     */
@@ -683,7 +683,7 @@ public class DateChooser extends Canvas  implements com.smartgwt.client.widgets.
         setAttribute("headerStyle", headerStyle, true);
     }
     /**
-     * CSS style applied to the day-of-week headers. By default this applies to all days of the  week. To apply a separate style to weekend headers, set {@link com.smartgwt.client.widgets.DateChooser#getWeekendHeaderStyle weekendHeaderStyle}
+     * CSS style applied to the day-of-week headers. By default this applies to all days of the &#010 week. To apply a separate style to weekend headers, set {@link com.smartgwt.client.widgets.DateChooser#getWeekendHeaderStyle weekendHeaderStyle}
      *
      *
      * @return String
@@ -694,7 +694,7 @@ public class DateChooser extends Canvas  implements com.smartgwt.client.widgets.
     }
 
     /**
-    * Optional CSS style applied to the day-of-week headers for weekend days. If unset  {@link com.smartgwt.client.widgets.DateChooser#getHeaderStyle headerStyle} will be applied to both weekdays and weekend days.
+    * Optional CSS style applied to the day-of-week headers for weekend days. If unset &#010 {@link com.smartgwt.client.widgets.DateChooser#getHeaderStyle headerStyle} will be applied to both weekdays and weekend days.
     *
     * @param weekendHeaderStyle weekendHeaderStyle Default value is null
     */
@@ -702,7 +702,7 @@ public class DateChooser extends Canvas  implements com.smartgwt.client.widgets.
         setAttribute("weekendHeaderStyle", weekendHeaderStyle, true);
     }
     /**
-     * Optional CSS style applied to the day-of-week headers for weekend days. If unset  {@link com.smartgwt.client.widgets.DateChooser#getHeaderStyle headerStyle} will be applied to both weekdays and weekend days.
+     * Optional CSS style applied to the day-of-week headers for weekend days. If unset &#010 {@link com.smartgwt.client.widgets.DateChooser#getHeaderStyle headerStyle} will be applied to both weekdays and weekend days.
      *
      *
      * @return String
@@ -713,7 +713,7 @@ public class DateChooser extends Canvas  implements com.smartgwt.client.widgets.
     }
 
     /**
-    * CSS style to apply to navigation buttons and date display at the top of the component. If null, the CSS style specified in {@link com.smartgwt.client.widgets.DateChooser#getBaseButtonStyle baseButtonStyle} is used.
+    * CSS style to apply to navigation buttons and date display at the top of the&#010 component. If null, the CSS style specified in {@link com.smartgwt.client.widgets.DateChooser#getBaseButtonStyle baseButtonStyle} is used.
     *
     * @param baseNavButtonStyle baseNavButtonStyle Default value is null
     */
@@ -721,7 +721,7 @@ public class DateChooser extends Canvas  implements com.smartgwt.client.widgets.
         setAttribute("baseNavButtonStyle", baseNavButtonStyle, true);
     }
     /**
-     * CSS style to apply to navigation buttons and date display at the top of the component. If null, the CSS style specified in {@link com.smartgwt.client.widgets.DateChooser#getBaseButtonStyle baseButtonStyle} is used.
+     * CSS style to apply to navigation buttons and date display at the top of the&#010 component. If null, the CSS style specified in {@link com.smartgwt.client.widgets.DateChooser#getBaseButtonStyle baseButtonStyle} is used.
      *
      *
      * @return String
@@ -732,7 +732,7 @@ public class DateChooser extends Canvas  implements com.smartgwt.client.widgets.
     }
 
     /**
-    * CSS style to apply to the buttons at the bottom of the DateChooser ("Today" and "Cancel").  If null, the CSS style specified in {@link com.smartgwt.client.widgets.DateChooser#getBaseButtonStyle baseButtonStyle} is used.
+    * CSS style to apply to the buttons at the bottom of the DateChooser ("Today" and&#010 "Cancel").  If null, the CSS style specified in {@link com.smartgwt.client.widgets.DateChooser#getBaseButtonStyle baseButtonStyle} is used.
     *
     * @param baseBottomButtonStyle baseBottomButtonStyle Default value is null
     */
@@ -740,7 +740,7 @@ public class DateChooser extends Canvas  implements com.smartgwt.client.widgets.
         setAttribute("baseBottomButtonStyle", baseBottomButtonStyle, true);
     }
     /**
-     * CSS style to apply to the buttons at the bottom of the DateChooser ("Today" and "Cancel").  If null, the CSS style specified in {@link com.smartgwt.client.widgets.DateChooser#getBaseButtonStyle baseButtonStyle} is used.
+     * CSS style to apply to the buttons at the bottom of the DateChooser ("Today" and&#010 "Cancel").  If null, the CSS style specified in {@link com.smartgwt.client.widgets.DateChooser#getBaseButtonStyle baseButtonStyle} is used.
      *
      *
      * @return String
@@ -753,7 +753,7 @@ public class DateChooser extends Canvas  implements com.smartgwt.client.widgets.
     // ********************* Methods ***********************
 
         /**
-         * Set the picker to show the given date.
+         * Set the picker to show the given date.&#010 &#010
          * @param date new value
          */
         public native void setData(Date date) /*-{
@@ -762,7 +762,7 @@ public class DateChooser extends Canvas  implements com.smartgwt.client.widgets.
         }-*/;
 
         /**
-         * Get the current value of the picker. <P> See {@link com.smartgwt.client.widgets.DateChooser#dataChanged} for how to respond to the user picking a date.
+         * Get the current value of the picker.&#010 <P>&#010 See {@link com.smartgwt.client.widgets.DateChooser#dataChanged} for how to respond to the user picking a date.&#010&#010
          *
          * @return current date
          */
@@ -779,7 +779,7 @@ public class DateChooser extends Canvas  implements com.smartgwt.client.widgets.
         /**
          * Add a dataChanged handler.
          * <p>
-         * Method to override or observe in order to be notified when a user picks a date value. <P> Has no default behavior (so no need to call Super). <P> Use {@link com.smartgwt.client.widgets.DateChooser#getData} to get the current date value.
+         * Method to override or observe in order to be notified when a user picks a date value.&#010 <P>&#010 Has no default behavior (so no need to call Super).&#010 <P>&#010 Use {@link com.smartgwt.client.widgets.DateChooser#getData} to get the current date value.&#010 &#010
          *
          * @param handler the dataChanged handler
          */
@@ -809,7 +809,7 @@ public class DateChooser extends Canvas  implements com.smartgwt.client.widgets.
         }-*/;
 
         /**
-         * Fired when the user clicks the cancel button in this date chooser. Default implementation clears the date chooser.
+         * Fired when the user clicks the cancel button in this date chooser. Default implementation&#010 clears the date chooser.&#010
          */
         public native void cancelClick() /*-{
             var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
@@ -817,7 +817,7 @@ public class DateChooser extends Canvas  implements com.smartgwt.client.widgets.
         }-*/;
 
         /**
-         * Fired when the user clicks the Today button. Default implementation will select the current date in the date chooser.
+         * Fired when the user clicks the Today button. Default implementation will select the current&#010 date in the date chooser.&#010
          */
         public native void todayClick() /*-{
             var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();

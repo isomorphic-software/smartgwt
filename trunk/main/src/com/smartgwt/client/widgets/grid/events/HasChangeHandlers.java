@@ -22,7 +22,7 @@ import com.google.gwt.event.shared.HasHandlers;
 
 public interface HasChangeHandlers extends HasHandlers {
     /**
-     * If this field is editable, any {@link com.smartgwt.client.widgets.form.fields.FormItem#change} handler specified on the ListGridField will be passed onto the editors for this field.
+     * If this field is editable, any {@link com.smartgwt.client.widgets.form.fields.FormItem#change} handler specified&#010 on the ListGridField will be passed onto the editors for this field.&#010
      */
     HandlerRegistration addChangeHandler(ChangeHandler handler);
 }

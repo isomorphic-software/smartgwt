@@ -56,7 +56,7 @@ import com.smartgwt.client.util.EnumUtil;
 import com.google.gwt.event.shared.*;
 import com.google.gwt.event.shared.HasHandlers;
    /**
-    * The ValuesManager manages data from multiple member forms. <P> If a single logical form needs to be separated into multiple DynamicForm instances for Layout purposes (for example, spanning one logical form across multiple Tabs), a ValuesManager can be used to make the forms act as one logical form, supporting all value-related APIs otherwise called on DynamicForm directly. <P> A ValuesManager has no visual representation - it is strictly a logical entity, and the member forms provide the user interface.  You can initialize a ValuesManager with a set of member forms (by setting {@link com.smartgwt.client.widgets.form.ValuesManager#getMembers members} at init) or add and remove member forms dynamically. <P> Calling {@link com.smartgwt.client.widgets.form.ValuesManager#setValues} on a ValuesManager will automatically route new field values to whichever member form is showing an editor for that field.  Likewise, calling {@link com.smartgwt.client.widgets.form.ValuesManager#validate} will validate all member forms, and {@link com.smartgwt.client.widgets.form.ValuesManager#saveData} will initiate a save operation which aggregates values from all member forms. <P> Like a DynamicForm, a ValuesManager can be databound by setting {@link com.smartgwt.client.widgets.form.ValuesManager#getDataSource dataSource}.  In this case all member forms must also be bound to the same DataSource. <P> In general, when working with a ValuesManager and its member forms, call APIs on the ValuesManager whenever you are dealing with values that span multiple forms, and only call APIs on member forms that are specific to that form or its fields. <P> Note that, just as a DynamicForm can track values that are not shown in any FormItem, a ValuesManager may track values for which there is no FormItem in any member form.  However, when using a ValuesManager these extra values are only allowed on the ValuesManager itself. Member forms will not track values for which they do not have FormItems.
+    * The ValuesManager manages data from multiple member forms.&#010 <P>&#010 If a single logical form needs to be separated into multiple DynamicForm instances for&#010 Layout purposes (for example, spanning one logical form across multiple Tabs), a&#010 ValuesManager can be used to make the forms act as one logical form, supporting all&#010 value-related APIs otherwise called on DynamicForm directly.&#010 <P>&#010 A ValuesManager has no visual representation - it is strictly a logical entity, and the&#010 member forms provide the user interface.  You can initialize a ValuesManager with a set of&#010 member forms (by setting {@link com.smartgwt.client.widgets.form.ValuesManager#getMembers members} at init) or add and remove member&#010 forms dynamically.&#010 <P>&#010 Calling {@link com.smartgwt.client.widgets.form.ValuesManager#setValues} on a ValuesManager will automatically route new&#010 field values to whichever member form is showing an editor for that field.  Likewise,&#010 calling {@link com.smartgwt.client.widgets.form.ValuesManager#validate} will validate all member forms, and&#010 {@link com.smartgwt.client.widgets.form.ValuesManager#saveData} will initiate a save operation which aggregates values from&#010 all member forms.&#010 <P>&#010 Like a DynamicForm, a ValuesManager can be databound by setting&#010 {@link com.smartgwt.client.widgets.form.ValuesManager#getDataSource dataSource}.  In this case all member forms must also be bound to the&#010 same DataSource.&#010 <P>&#010 In general, when working with a ValuesManager and its member forms, call APIs on the&#010 ValuesManager whenever you are dealing with values that span multiple forms, and only call&#010 APIs on member forms that are specific to that form or its fields.&#010 <P>&#010 Note that, just as a DynamicForm can track values that are not shown in any FormItem, a&#010 ValuesManager may track values for which there is no FormItem in any member form.  However,&#010 when using a ValuesManager these extra values are only allowed on the ValuesManager itself.&#010 Member forms will not track values for which they do not have FormItems.
 
     */
 public class ValuesManager extends BaseClass {
@@ -87,8 +87,8 @@ public class ValuesManager extends BaseClass {
     // ********************* Properties / Attributes ***********************
              
     /**
-    * Default ${isc.DocUtils.linkForRef('type:DSOperationType')} to be performed when {@link com.smartgwt.client.widgets.form.DynamicForm#saveData} is called. This property is automatically set on a call to {@link com.smartgwt.client.widgets.form.DynamicForm#editRecord} or {@link com.smartgwt.client.widgets.form.DynamicForm#editNewRecord}, or may be set directly via  {@link com.smartgwt.client.widgets.form.DynamicForm#setSaveOperationType}. <P> If <code>saveOperationType</code> is unset, the form will heuristically determine whether an "add" or "update" operation is intended based on whether the primaryKey field is present and editable.
-    * Setter for the default ${isc.DocUtils.linkForRef('type:DSOperationType')} when {@link com.smartgwt.client.widgets.form.DynamicForm#saveData} is called. Note that this property can also be set by calling {@link com.smartgwt.client.widgets.form.DynamicForm#editRecord} or  {@link com.smartgwt.client.widgets.form.DynamicForm#editNewRecord}
+    * Default ${isc.DocUtils.linkForRef('type:DSOperationType')} to be performed when {@link com.smartgwt.client.widgets.form.DynamicForm#saveData} is called.&#010 This property is automatically set on a call to {@link com.smartgwt.client.widgets.form.DynamicForm#editRecord} or&#010 {@link com.smartgwt.client.widgets.form.DynamicForm#editNewRecord}, or may be set directly via &#010 {@link com.smartgwt.client.widgets.form.DynamicForm#setSaveOperationType}.&#010 <P>&#010 If <code>saveOperationType</code> is unset, the form will heuristically determine&#010 whether an "add" or "update" operation is intended based on whether the primaryKey field&#010 is present and editable.
+    * Setter for the default ${isc.DocUtils.linkForRef('type:DSOperationType')} when {@link com.smartgwt.client.widgets.form.DynamicForm#saveData} is called.&#010 Note that this property can also be set by calling {@link com.smartgwt.client.widgets.form.DynamicForm#editRecord} or &#010 {@link com.smartgwt.client.widgets.form.DynamicForm#editNewRecord}&#010&#010
     *
     * @param saveOperationType Operation type to use as a default. Valid values are  <code>"add"</code> or <code>"update"</code>.. Default value is null
     */
@@ -96,10 +96,10 @@ public class ValuesManager extends BaseClass {
         setAttribute("saveOperationType", saveOperationType.getValue(), true);
     }
     /**
-     * Default ${isc.DocUtils.linkForRef('type:DSOperationType')} to be performed when {@link com.smartgwt.client.widgets.form.DynamicForm#saveData} is called. This property is automatically set on a call to {@link com.smartgwt.client.widgets.form.DynamicForm#editRecord} or {@link com.smartgwt.client.widgets.form.DynamicForm#editNewRecord}, or may be set directly via  {@link com.smartgwt.client.widgets.form.DynamicForm#setSaveOperationType}. <P> If <code>saveOperationType</code> is unset, the form will heuristically determine whether an "add" or "update" operation is intended based on whether the primaryKey field is present and editable.
+     * Default ${isc.DocUtils.linkForRef('type:DSOperationType')} to be performed when {@link com.smartgwt.client.widgets.form.DynamicForm#saveData} is called.&#010 This property is automatically set on a call to {@link com.smartgwt.client.widgets.form.DynamicForm#editRecord} or&#010 {@link com.smartgwt.client.widgets.form.DynamicForm#editNewRecord}, or may be set directly via &#010 {@link com.smartgwt.client.widgets.form.DynamicForm#setSaveOperationType}.&#010 <P>&#010 If <code>saveOperationType</code> is unset, the form will heuristically determine&#010 whether an "add" or "update" operation is intended based on whether the primaryKey field&#010 is present and editable.
      *
      *
-     * @return Returns the ${isc.DocUtils.linkForRef('type:DSOperationType')} to be performed when {@link com.smartgwt.client.widgets.form.DynamicForm#saveData} is called. Valid options are <code>"add"</code> or <code>"update"</code>. <P> If a {@link com.smartgwt.client.data.DSRequest} configuration object is passed in containing an explicit operationType this will be returned. Otherwise {@link com.smartgwt.client.widgets.form.DynamicForm#getSaveOperationType saveOperationType} will be returned.
+     * @return Returns the ${isc.DocUtils.linkForRef('type:DSOperationType')} to be performed when {@link com.smartgwt.client.widgets.form.DynamicForm#saveData} is&#010 called. Valid options are <code>"add"</code> or <code>"update"</code>.&#010 <P>&#010 If a {@link com.smartgwt.client.data.DSRequest} configuration object is passed in containing an explicit operationType&#010 this will be returned. Otherwise {@link com.smartgwt.client.widgets.form.DynamicForm#getSaveOperationType saveOperationType} will be returned.&#010&#010
      *
      */
     public DSOperationType getSaveOperationType()  {
@@ -126,7 +126,7 @@ public class ValuesManager extends BaseClass {
     }
 
     /**
-    * If set to true, client-side validators will not run on the form when validate() is called.  Server-side validatiors (if any) will still run on attempted save.
+    * If set to true, client-side validators will not run on the form when validate() is&#010 called.  Server-side validatiors (if any) will still run on attempted save.
     * <p><b>Note : </b> This is an advanced setting</p>
     *
     * @param disableValidation disableValidation Default value is null
@@ -135,7 +135,7 @@ public class ValuesManager extends BaseClass {
         setAttribute("disableValidation", disableValidation, true);
     }
     /**
-     * If set to true, client-side validators will not run on the form when validate() is called.  Server-side validatiors (if any) will still run on attempted save.
+     * If set to true, client-side validators will not run on the form when validate() is&#010 called.  Server-side validatiors (if any) will still run on attempted save.
      *
      *
      * @return Boolean
@@ -149,7 +149,7 @@ public class ValuesManager extends BaseClass {
 
 
         /**
-         * Edit an existing record.  Updates this editors values to match the values of the record  passed in. <P> This method will also call {@link com.smartgwt.client.widgets.form.DynamicForm#setSaveOperationType} to ensure  subsequent calls to <code>saveData()</code> will use an <code>update</code> rather than an <code>add</code> operation.
+         * &#010 Edit an existing record.  Updates this editors values to match the values of the record &#010 passed in.&#010 <P>&#010 This method will also call {@link com.smartgwt.client.widgets.form.DynamicForm#setSaveOperationType} to ensure &#010 subsequent calls to <code>saveData()</code> will use an <code>update</code> rather than&#010 an <code>add</code> operation.&#010&#010
          * @param record the record to be edited as a map of field names to their corresponding values
          */
         public native void editRecord(ListGridRecord record) /*-{
@@ -159,7 +159,7 @@ public class ValuesManager extends BaseClass {
 
 
         /**
-         * Returns true if {@link com.smartgwt.client.widgets.form.ValuesManager#getSaveOperationType saveOperationType} is currently "add".  See {@link com.smartgwt.client.widgets.form.ValuesManager#getSaveOperationType saveOperationType}.
+         * Returns true if {@link com.smartgwt.client.widgets.form.ValuesManager#getSaveOperationType saveOperationType} is currently "add".  See&#010 {@link com.smartgwt.client.widgets.form.ValuesManager#getSaveOperationType saveOperationType}.&#010&#010
          *
          * @return whether this form will use an "add" operation when saving
          */
@@ -178,7 +178,7 @@ public class ValuesManager extends BaseClass {
 
 
         /**
-         * This method exists for clean integration with existing server frameworks that have a 'cancel' feature which typically clears session state associated with the form.  When this method is called, an RPC is sent to the server with a parameter named {@link com.smartgwt.client.widgets.form.DynamicForm#getCancelParamName cancelParamName} with the value {@link com.smartgwt.client.widgets.form.DynamicForm#getCancelParamValue cancelParamValue}.<p> Note that no other form data is sent.  By default the current top-level page is replaced with the reply.  If you wish to ignore the server reply instead, call this method like this: <pre> dynamicFormInstance.cancel({ignoreTimeout: true, target: null}); </pre>
+         * &#010 This method exists for clean integration with existing server frameworks that have a 'cancel'&#010 feature which typically clears session state associated with the form.  When this method is&#010 called, an RPC is sent to the server with a parameter named&#010 {@link com.smartgwt.client.widgets.form.DynamicForm#getCancelParamName cancelParamName} with the value&#010 {@link com.smartgwt.client.widgets.form.DynamicForm#getCancelParamValue cancelParamValue}.<p>&#010&#010 Note that no other form data is sent.  By default the current top-level page is replaced with the&#010 reply.  If you wish to ignore the server reply instead, call this method like this:&#010 <pre>&#010 dynamicFormInstance.cancel({ignoreTimeout: true, target: null});&#010 </pre>&#010&#010
          */
         public native void cancel() /*-{
             var self = this.@com.smartgwt.client.core.BaseClass::getOrCreateJsObj()();
@@ -186,7 +186,7 @@ public class ValuesManager extends BaseClass {
         }-*/;
 
         /**
-         * This method exists for clean integration with existing server frameworks that have a 'cancel' feature which typically clears session state associated with the form.  When this method is called, an RPC is sent to the server with a parameter named {@link com.smartgwt.client.widgets.form.DynamicForm#getCancelParamName cancelParamName} with the value {@link com.smartgwt.client.widgets.form.DynamicForm#getCancelParamValue cancelParamValue}.<p> Note that no other form data is sent.  By default the current top-level page is replaced with the reply.  If you wish to ignore the server reply instead, call this method like this: <pre> dynamicFormInstance.cancel({ignoreTimeout: true, target: null}); </pre>
+         * &#010 This method exists for clean integration with existing server frameworks that have a 'cancel'&#010 feature which typically clears session state associated with the form.  When this method is&#010 called, an RPC is sent to the server with a parameter named&#010 {@link com.smartgwt.client.widgets.form.DynamicForm#getCancelParamName cancelParamName} with the value&#010 {@link com.smartgwt.client.widgets.form.DynamicForm#getCancelParamValue cancelParamValue}.<p>&#010&#010 Note that no other form data is sent.  By default the current top-level page is replaced with the&#010 reply.  If you wish to ignore the server reply instead, call this method like this:&#010 <pre>&#010 dynamicFormInstance.cancel({ignoreTimeout: true, target: null});&#010 </pre>&#010&#010
          * @param requestProperties additional properties to set on the RPCRequest                                          that will be issued
          */
         public native void cancel(DSRequest requestProperties) /*-{
@@ -199,7 +199,7 @@ public class ValuesManager extends BaseClass {
 
 
         /**
-         * Validate the current set of values for this values manager against validators defined in the member forms. For databound valuesManagers, also perform validation against any validators defined on datasource fields. <P> Note that if validation errors occur for a value that is not shown in any member forms, those errors will cause a warning and {@link com.smartgwt.client.widgets.form.ValuesManager#handleHiddenValidationErrors} will be called.  This can occur if:<br> - A datasource field has no correspending item in any member form<br> - The item in question is hidden<br> - The member form containing the item is hidden.
+         * Validate the current set of values for this values manager against validators defined&#010 in the member forms. For databound valuesManagers, also perform validation against any&#010 validators defined on datasource fields.&#010 <P>&#010 Note that if validation errors occur for a value that is not shown in any member forms,&#010 those errors will cause a warning and {@link com.smartgwt.client.widgets.form.ValuesManager#handleHiddenValidationErrors} will be&#010 called.  This can occur if:<br>&#010 - A datasource field has no correspending item in any member form<br>&#010 - The item in question is hidden<br>&#010 - The member form containing the item is hidden.&#010&#010
          *
          * @return true if all validation passed
          */
@@ -218,7 +218,7 @@ public class ValuesManager extends BaseClass {
 
 
         /**
-         * Clears all errors from member forms.
+         * Clears all errors from member forms.&#010
          * @param showErrors If true, clear any visible error messages.
          */
         public native void clearErrors(boolean showErrors) /*-{
@@ -227,7 +227,7 @@ public class ValuesManager extends BaseClass {
         }-*/;
 
         /**
-         * Clear all validation errors associated with some field in this form
+         * Clear all validation errors associated with some field in this form&#010
          * @param fieldName field for which errors should be cleared
      * @param show if true, and the field is present in one of our member forms,                        redraw it to clear any currently visible validation errors
          */
@@ -239,7 +239,7 @@ public class ValuesManager extends BaseClass {
 
 
         /**
-         * Are there any errors associated with any fields in this valuesManager?
+         * Are there any errors associated with any fields in this valuesManager?&#010
          *
          * @return returns true if there are any oustanding validation errors, false                   otherwise.
          */
@@ -254,7 +254,7 @@ public class ValuesManager extends BaseClass {
         }-*/;
 
         /**
-         * Are there any errors associated with a field in this valuesManager?
+         * Are there any errors associated with a field in this valuesManager?&#010
          * @param fieldName field to check for errors
          *
          * @return returns true if there are any oustanding validation errors, false                   otherwise.
@@ -270,7 +270,7 @@ public class ValuesManager extends BaseClass {
         }-*/;
 
         /**
-         * Method to explicitly show the latest set of validation errors present on this  ValuesManager.<br> Will redraw all member forms to display (or clear) currently visible errors, and fire {@link com.smartgwt.client.widgets.form.ValuesManager#handleHiddenValidationErrors} to allow custom handling of hidden errors.
+         * Method to explicitly show the latest set of validation errors present on this &#010 ValuesManager.<br>&#010 Will redraw all member forms to display (or clear) currently visible errors, and&#010 fire {@link com.smartgwt.client.widgets.form.ValuesManager#handleHiddenValidationErrors} to allow custom handling of&#010 hidden errors.&#010
          */
         public native void showErrors() /*-{
             var self = this.@com.smartgwt.client.core.BaseClass::getOrCreateJsObj()();
@@ -278,7 +278,7 @@ public class ValuesManager extends BaseClass {
         }-*/;
 
         /**
-         * Method to explicitly show the latest set of validation errors present on some field  within this ValuesManager.<br> If the field in question is present as a visible item in a member form, the form item will be redrawn to display the error message(s). Otherwise {@link com.smartgwt.client.widgets.form.ValuesManager#handleHiddenValidationErrors} will be fired to allow  custom handling of hidden errors.
+         * Method to explicitly show the latest set of validation errors present on some field &#010 within this ValuesManager.<br>&#010 If the field in question is present as a visible item in a member form, the form item&#010 will be redrawn to display the error message(s).&#010 Otherwise {@link com.smartgwt.client.widgets.form.ValuesManager#handleHiddenValidationErrors} will be fired to allow &#010 custom handling of hidden errors.&#010
          */
         public native void showFieldErrors() /*-{
             var self = this.@com.smartgwt.client.core.BaseClass::getOrCreateJsObj()();
@@ -288,7 +288,7 @@ public class ValuesManager extends BaseClass {
 
 
         /**
-         * Clear out all the values managed by this values manager.
+         * Clear out all the values managed by this values manager.&#010
          */
         public native void clearValues() /*-{
             var self = this.@com.smartgwt.client.core.BaseClass::getOrCreateJsObj()();
@@ -299,7 +299,7 @@ public class ValuesManager extends BaseClass {
 
 
         /**
-         * Same as {@link com.smartgwt.client.widgets.form.DynamicForm#reset}.
+         * &#010 Same as {@link com.smartgwt.client.widgets.form.DynamicForm#reset}.&#010&#010
          */
         public native void resetValues() /*-{
             var self = this.@com.smartgwt.client.core.BaseClass::getOrCreateJsObj()();
@@ -307,7 +307,7 @@ public class ValuesManager extends BaseClass {
         }-*/;
 
         /**
-         * Compares the current set of values with the values stored by the call to the          <code>rememberValues()</code> method. Returns true if the values have changed, and false          otherwise.
+         * Compares the current set of values with the values stored by the call to the&#010          <code>rememberValues()</code> method. Returns true if the values have changed, and false&#010          otherwise.&#010
          *
          * @return true if current values do not match remembered values
          */
@@ -331,7 +331,7 @@ public class ValuesManager extends BaseClass {
 
 
         /**
-         * Takes an item name (specified via the form.fieldIdProperty value, or retrieved via item.getFieldName()) returns a reference to the appropriate item in this valuesManager. <br>Note: Unlike the <code>DynamicForm</code> class, this method will not return an  item by index
+         * Takes an item name (specified via the form.fieldIdProperty value, or retrieved via&#010 item.getFieldName()) returns a reference to the appropriate item in this valuesManager.&#010 <br>Note: Unlike the <code>DynamicForm</code> class, this method will not return an &#010 item by index&#010
          */
         public native void getItem() /*-{
             var self = this.@com.smartgwt.client.core.BaseClass::getOrCreateJsObj()();

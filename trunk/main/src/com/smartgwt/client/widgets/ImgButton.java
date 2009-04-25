@@ -56,7 +56,7 @@ import com.smartgwt.client.util.EnumUtil;
 import com.google.gwt.event.shared.*;
 import com.google.gwt.event.shared.HasHandlers;
    /**
-    * A Img that behaves like a button, going through up/down/over state transitions in response to user events.  Supports an optional title, and will auto-size to accomodate the title text if <code>overflow</code> is set to "visible". <P> An examples of use is Window minimize/close buttons.
+    * A Img that behaves like a button, going through up/down/over state transitions in response to&#010 user events.  Supports an optional title, and will auto-size to accomodate the title text if&#010 <code>overflow</code> is set to "visible".&#010 <P>&#010 An examples of use is Window minimize/close buttons.
 
     */
 public class ImgButton extends Img {
@@ -90,7 +90,7 @@ public class ImgButton extends Img {
 
     /**
     * The text title to display in this button.
-    * Set the title.
+    * Set the title.&#010
     *
     * @param title new title. Default value is varies
     */
@@ -101,7 +101,7 @@ public class ImgButton extends Img {
      * The text title to display in this button.
      *
      *
-     * @return Return the title - text/HTML drawn inside the component. <p> Default is to simply return this.title.
+     * @return Return the title - text/HTML drawn inside the component.&#010 <p>&#010 Default is to simply return this.title.&#010
      *
      */
     public String getTitle()  {
@@ -109,7 +109,7 @@ public class ImgButton extends Img {
     }
 
     /**
-    * If set to true, if the {@link com.smartgwt.client.widgets.StatefulCanvas#getTitle title} of this button contains the specified {@link com.smartgwt.client.widgets.Canvas#getAccessKey accessKey}, when the title is displayed to the user it will be modified to include HTML to underline the accessKey.<br> Note that this property may cause titles that include HTML (rather than simple strings) to be inappropriately modified, so should be disabled if your title string includes HTML characters.
+    * If set to true, if the {@link com.smartgwt.client.widgets.StatefulCanvas#getTitle title} of this button contains the&#010 specified {@link com.smartgwt.client.widgets.Canvas#getAccessKey accessKey}, when the title is displayed to the user&#010 it will be modified to include HTML to underline the accessKey.<br>&#010 Note that this property may cause titles that include HTML (rather than simple strings)&#010 to be inappropriately modified, so should be disabled if your title string includes&#010 HTML characters.
     *
     * @param hiliteAccessKey hiliteAccessKey Default value is null
     */
@@ -117,7 +117,7 @@ public class ImgButton extends Img {
         setAttribute("hiliteAccessKey", hiliteAccessKey, true);
     }
     /**
-     * If set to true, if the {@link com.smartgwt.client.widgets.StatefulCanvas#getTitle title} of this button contains the specified {@link com.smartgwt.client.widgets.Canvas#getAccessKey accessKey}, when the title is displayed to the user it will be modified to include HTML to underline the accessKey.<br> Note that this property may cause titles that include HTML (rather than simple strings) to be inappropriately modified, so should be disabled if your title string includes HTML characters.
+     * If set to true, if the {@link com.smartgwt.client.widgets.StatefulCanvas#getTitle title} of this button contains the&#010 specified {@link com.smartgwt.client.widgets.Canvas#getAccessKey accessKey}, when the title is displayed to the user&#010 it will be modified to include HTML to underline the accessKey.<br>&#010 Note that this property may cause titles that include HTML (rather than simple strings)&#010 to be inappropriately modified, so should be disabled if your title string includes&#010 HTML characters.
      *
      *
      * @return Boolean
@@ -128,8 +128,8 @@ public class ImgButton extends Img {
     }
 
     /**
-    * Optional icon to be shown with the button title text.   <P> Specify as the partial URL to an image, relative to the imgDir of this component.
-    * Change the icon being shown next to the title text.
+    * Optional icon to be shown with the button title text.  &#010 <P>&#010 Specify as the partial URL to an image, relative to the imgDir of this component.
+    * Change the icon being shown next to the title text.&#010
     *
     * @param icon URL of new icon. Default value is null
     */
@@ -137,7 +137,7 @@ public class ImgButton extends Img {
         setAttribute("icon", icon, true);
     }
     /**
-     * Optional icon to be shown with the button title text.   <P> Specify as the partial URL to an image, relative to the imgDir of this component.
+     * Optional icon to be shown with the button title text.  &#010 <P>&#010 Specify as the partial URL to an image, relative to the imgDir of this component.
      *
      *
      * @return String
@@ -148,7 +148,7 @@ public class ImgButton extends Img {
     }
 
     /**
-    * Size in pixels of the icon image. <P> The <code>iconWidth</code> and <code>iconHeight</code> properties can be used to configure width and height separately.
+    * Size in pixels of the icon image.&#010 <P>&#010 The <code>iconWidth</code> and <code>iconHeight</code> properties can be used to&#010 configure width and height separately.
     *
     * @param iconSize iconSize Default value is 16
     * @throws IllegalStateException this property cannot be changed after the component has been created
@@ -157,7 +157,7 @@ public class ImgButton extends Img {
         setAttribute("iconSize", iconSize, false);
     }
     /**
-     * Size in pixels of the icon image. <P> The <code>iconWidth</code> and <code>iconHeight</code> properties can be used to configure width and height separately.
+     * Size in pixels of the icon image.&#010 <P>&#010 The <code>iconWidth</code> and <code>iconHeight</code> properties can be used to&#010 configure width and height separately.
      *
      *
      * @return int
@@ -168,7 +168,7 @@ public class ImgButton extends Img {
     }
 
     /**
-    * Width in pixels of the icon image. <P> If unset, defaults to <code>iconSize</code>
+    * Width in pixels of the icon image.&#010 <P>&#010 If unset, defaults to <code>iconSize</code>
     *
     * @param iconWidth iconWidth Default value is null
     * @throws IllegalStateException this property cannot be changed after the component has been created
@@ -177,7 +177,7 @@ public class ImgButton extends Img {
         setAttribute("iconWidth", iconWidth, false);
     }
     /**
-     * Width in pixels of the icon image. <P> If unset, defaults to <code>iconSize</code>
+     * Width in pixels of the icon image.&#010 <P>&#010 If unset, defaults to <code>iconSize</code>
      *
      *
      * @return Integer
@@ -188,7 +188,7 @@ public class ImgButton extends Img {
     }
 
     /**
-    * Height in pixels of the icon image. <P> If unset, defaults to <code>iconSize</code>
+    * Height in pixels of the icon image.&#010 <P>&#010 If unset, defaults to <code>iconSize</code>
     *
     * @param iconHeight iconHeight Default value is null
     * @throws IllegalStateException this property cannot be changed after the component has been created
@@ -197,7 +197,7 @@ public class ImgButton extends Img {
         setAttribute("iconHeight", iconHeight, false);
     }
     /**
-     * Height in pixels of the icon image. <P> If unset, defaults to <code>iconSize</code>
+     * Height in pixels of the icon image.&#010 <P>&#010 If unset, defaults to <code>iconSize</code>
      *
      *
      * @return Integer
@@ -208,8 +208,8 @@ public class ImgButton extends Img {
     }
 
     /**
-    * If this button is showing an icon should it appear to the left or right of the title? valid options are <code>"left"</code> and <code>"right"</code>.
-    * Changes the orientation of the icon relative to the text of the button.
+    * If this button is showing an icon should it appear to the left or right of the title?&#010 valid options are <code>"left"</code> and <code>"right"</code>.
+    * Changes the orientation of the icon relative to the text of the button.&#010&#010
     *
     * @param iconOrientation The new orientation of the icon relative to the text of the button.. Default value is "left"
     * @throws IllegalStateException this property cannot be changed after the component has been created
@@ -218,7 +218,7 @@ public class ImgButton extends Img {
         setAttribute("iconOrientation", iconOrientation, false);
     }
     /**
-     * If this button is showing an icon should it appear to the left or right of the title? valid options are <code>"left"</code> and <code>"right"</code>.
+     * If this button is showing an icon should it appear to the left or right of the title?&#010 valid options are <code>"left"</code> and <code>"right"</code>.
      *
      *
      * @return String
@@ -249,7 +249,7 @@ public class ImgButton extends Img {
     }
 
     /**
-    * Optional icon to be shown with the button title text.   <P> Specify as the partial URL to an image, relative to the imgDir of this component.
+    * Optional icon to be shown with the button title text.  &#010 <P>&#010 Specify as the partial URL to an image, relative to the imgDir of this component.
     *
     * @param iconSpacing iconSpacing Default value is null
     */
@@ -257,7 +257,7 @@ public class ImgButton extends Img {
         setAttribute("iconSpacing", iconSpacing, true);
     }
     /**
-     * Optional icon to be shown with the button title text.   <P> Specify as the partial URL to an image, relative to the imgDir of this component.
+     * Optional icon to be shown with the button title text.  &#010 <P>&#010 Specify as the partial URL to an image, relative to the imgDir of this component.
      *
      *
      * @return String
@@ -268,7 +268,7 @@ public class ImgButton extends Img {
     }
 
     /**
-    * If using an icon for this button, whether to switch the icon image if the button becomes disabled.
+    * If using an icon for this button, whether to switch the icon image if the button becomes&#010 disabled.
     *
     * @param showDisabledIcon showDisabledIcon Default value is true
     * @throws IllegalStateException this property cannot be changed after the component has been created
@@ -277,7 +277,7 @@ public class ImgButton extends Img {
         setAttribute("showDisabledIcon", showDisabledIcon, false);
     }
     /**
-     * If using an icon for this button, whether to switch the icon image if the button becomes disabled.
+     * If using an icon for this button, whether to switch the icon image if the button becomes&#010 disabled.
      *
      *
      * @return Boolean
@@ -308,7 +308,7 @@ public class ImgButton extends Img {
     }
 
     /**
-    * If using an icon for this button, whether to switch the icon image when the button recieves focus. <P> If {@link com.smartgwt.client.widgets.StatefulCanvas#getShowFocusedAsOver showFocusedAsOver} is true, the <code>"Over"</code> icon will be displayed when the canvas has focus, otherwise a seperate <code>"Focused"</code> icon will be displayed
+    * If using an icon for this button, whether to switch the icon image when the button&#010 recieves focus.&#010 <P>&#010 If {@link com.smartgwt.client.widgets.StatefulCanvas#getShowFocusedAsOver showFocusedAsOver} is true, the <code>"Over"</code> icon will be&#010 displayed when the canvas has focus, otherwise a seperate <code>"Focused"</code> icon&#010 will be displayed
     *
     * @param showFocusedIcon showFocusedIcon Default value is false
     * @throws IllegalStateException this property cannot be changed after the component has been created
@@ -317,7 +317,7 @@ public class ImgButton extends Img {
         setAttribute("showFocusedIcon", showFocusedIcon, false);
     }
     /**
-     * If using an icon for this button, whether to switch the icon image when the button recieves focus. <P> If {@link com.smartgwt.client.widgets.StatefulCanvas#getShowFocusedAsOver showFocusedAsOver} is true, the <code>"Over"</code> icon will be displayed when the canvas has focus, otherwise a seperate <code>"Focused"</code> icon will be displayed
+     * If using an icon for this button, whether to switch the icon image when the button&#010 recieves focus.&#010 <P>&#010 If {@link com.smartgwt.client.widgets.StatefulCanvas#getShowFocusedAsOver showFocusedAsOver} is true, the <code>"Over"</code> icon will be&#010 displayed when the canvas has focus, otherwise a seperate <code>"Focused"</code> icon&#010 will be displayed
      *
      *
      * @return Boolean
@@ -328,7 +328,7 @@ public class ImgButton extends Img {
     }
 
     /**
-    * If using an icon for this button, whether to switch the icon image when the mouse goes down on the button.
+    * If using an icon for this button, whether to switch the icon image when the mouse goes&#010 down on the button.
     *
     * @param showDownIcon showDownIcon Default value is false
     * @throws IllegalStateException this property cannot be changed after the component has been created
@@ -337,7 +337,7 @@ public class ImgButton extends Img {
         setAttribute("showDownIcon", showDownIcon, false);
     }
     /**
-     * If using an icon for this button, whether to switch the icon image when the mouse goes down on the button.
+     * If using an icon for this button, whether to switch the icon image when the mouse goes&#010 down on the button.
      *
      *
      * @return Boolean
@@ -348,7 +348,7 @@ public class ImgButton extends Img {
     }
 
     /**
-    * If using an icon for this button, whether to switch the icon image when the button becomes selected.
+    * If using an icon for this button, whether to switch the icon image when the button&#010 becomes selected.
     *
     * @param showSelectedIcon showSelectedIcon Default value is false
     * @throws IllegalStateException this property cannot be changed after the component has been created
@@ -357,7 +357,7 @@ public class ImgButton extends Img {
         setAttribute("showSelectedIcon", showSelectedIcon, false);
     }
     /**
-     * If using an icon for this button, whether to switch the icon image when the button becomes selected.
+     * If using an icon for this button, whether to switch the icon image when the button&#010 becomes selected.
      *
      *
      * @return Boolean
@@ -368,8 +368,8 @@ public class ImgButton extends Img {
     }
 
     /**
-    * If true, ignore the specified size of this widget and always size just large enough to accomodate the title.  If <code>setWidth()</code> is explicitly called on an autoFit:true button, autoFit will be reset to <code>false</code>. <P> Note that for StretchImgButton instances, autoFit will occur horizontally only, as  unpredictable vertical sizing is likely to distort the media. If you do want vertical  auto-fit, this can be achieved by simply setting a small height, and having  overflow:"visible"
-    * Setter method for the {@link com.smartgwt.client.widgets.StatefulCanvas#getAutoFit autoFit} property. Pass in true or false to turn autoFit on or off. When autoFit is set to <code>false</code>, canvas will be resized to it's previously specified size.
+    * If true, ignore the specified size of this widget and always size just large&#010 enough to accomodate the title.  If <code>setWidth()</code> is explicitly called on an&#010 autoFit:true button, autoFit will be reset to <code>false</code>.&#010 <P>&#010 Note that for StretchImgButton instances, autoFit will occur horizontally only, as &#010 unpredictable vertical sizing is likely to distort the media. If you do want vertical &#010 auto-fit, this can be achieved by simply setting a small height, and having &#010 overflow:"visible"
+    * Setter method for the {@link com.smartgwt.client.widgets.StatefulCanvas#getAutoFit autoFit} property. Pass in true or false to turn&#010 autoFit on or off. When autoFit is set to <code>false</code>, canvas will be resized to&#010 it's previously specified size.&#010
     *
     * @param autoFit New autoFit setting.. Default value is null
     */
@@ -377,7 +377,7 @@ public class ImgButton extends Img {
         setAttribute("autoFit", autoFit, true);
     }
     /**
-     * If true, ignore the specified size of this widget and always size just large enough to accomodate the title.  If <code>setWidth()</code> is explicitly called on an autoFit:true button, autoFit will be reset to <code>false</code>. <P> Note that for StretchImgButton instances, autoFit will occur horizontally only, as  unpredictable vertical sizing is likely to distort the media. If you do want vertical  auto-fit, this can be achieved by simply setting a small height, and having  overflow:"visible"
+     * If true, ignore the specified size of this widget and always size just large&#010 enough to accomodate the title.  If <code>setWidth()</code> is explicitly called on an&#010 autoFit:true button, autoFit will be reset to <code>false</code>.&#010 <P>&#010 Note that for StretchImgButton instances, autoFit will occur horizontally only, as &#010 unpredictable vertical sizing is likely to distort the media. If you do want vertical &#010 auto-fit, this can be achieved by simply setting a small height, and having &#010 overflow:"visible"
      *
      *
      * @return Boolean
@@ -388,8 +388,8 @@ public class ImgButton extends Img {
     }
 
     /**
-    * Base CSS style.  As the component changes state and/or is selected, suffixes will be added to the base style. <P> When the component changes state (eg becomes disabled), a suffix will be appended to this style name, reflecting the following states: "Over", "Down", or "Disabled". <P> If the widget is selected, the suffixes will be "Selected", "SelectedOver", etc. <P> If the widget has focus and {@link com.smartgwt.client.widgets.StatefulCanvas#getShowFocused showFocused} is true, and {@link com.smartgwt.client.widgets.StatefulCanvas#getShowFocusedAsOver showFocusedAsOver} is false, the suffixes will be "Focused", "FocusedOver", etc, or if the widget is both selected and focused, "SelectedFocused", "SelectedFocusedOver", etc. <P> For example, if <code>baseStyle</code> is set to "button", this component is {@link com.smartgwt.client.widgets.ImgButton#isSelected} and the mouse cursor is over this component, the style "buttonSelectedOver" will be used.
-    * Sets the base CSS style.  As the component changes state and/or is selected, suffixes will be added to the base style.
+    * Base CSS style.  As the component changes state and/or is selected, suffixes will be&#010 added to the base style.&#010 <P>&#010 When the component changes state (eg becomes disabled), a suffix will be appended to this&#010 style name, reflecting the following states: "Over", "Down", or "Disabled".&#010 <P>&#010 If the widget is selected, the suffixes will be "Selected", "SelectedOver", etc.&#010 <P>&#010 If the widget has focus and {@link com.smartgwt.client.widgets.StatefulCanvas#getShowFocused showFocused} is true, and&#010 {@link com.smartgwt.client.widgets.StatefulCanvas#getShowFocusedAsOver showFocusedAsOver} is false, the suffixes will be "Focused",&#010 "FocusedOver", etc, or if the widget is both selected and focused, "SelectedFocused",&#010 "SelectedFocusedOver", etc.&#010 <P>&#010 For example, if <code>baseStyle</code> is set to "button", this component is&#010 {@link com.smartgwt.client.widgets.ImgButton#isSelected} and the mouse cursor is over this component, the style&#010 "buttonSelectedOver" will be used.
+    * Sets the base CSS style.  As the component changes state and/or is selected, suffixes will be&#010 added to the base style.&#010
     *
     * @param baseStyle new base style. Default value is "imgButton"
     */
@@ -397,7 +397,7 @@ public class ImgButton extends Img {
         setAttribute("baseStyle", baseStyle, true);
     }
     /**
-     * Base CSS style.  As the component changes state and/or is selected, suffixes will be added to the base style. <P> When the component changes state (eg becomes disabled), a suffix will be appended to this style name, reflecting the following states: "Over", "Down", or "Disabled". <P> If the widget is selected, the suffixes will be "Selected", "SelectedOver", etc. <P> If the widget has focus and {@link com.smartgwt.client.widgets.StatefulCanvas#getShowFocused showFocused} is true, and {@link com.smartgwt.client.widgets.StatefulCanvas#getShowFocusedAsOver showFocusedAsOver} is false, the suffixes will be "Focused", "FocusedOver", etc, or if the widget is both selected and focused, "SelectedFocused", "SelectedFocusedOver", etc. <P> For example, if <code>baseStyle</code> is set to "button", this component is {@link com.smartgwt.client.widgets.ImgButton#isSelected} and the mouse cursor is over this component, the style "buttonSelectedOver" will be used.
+     * Base CSS style.  As the component changes state and/or is selected, suffixes will be&#010 added to the base style.&#010 <P>&#010 When the component changes state (eg becomes disabled), a suffix will be appended to this&#010 style name, reflecting the following states: "Over", "Down", or "Disabled".&#010 <P>&#010 If the widget is selected, the suffixes will be "Selected", "SelectedOver", etc.&#010 <P>&#010 If the widget has focus and {@link com.smartgwt.client.widgets.StatefulCanvas#getShowFocused showFocused} is true, and&#010 {@link com.smartgwt.client.widgets.StatefulCanvas#getShowFocusedAsOver showFocusedAsOver} is false, the suffixes will be "Focused",&#010 "FocusedOver", etc, or if the widget is both selected and focused, "SelectedFocused",&#010 "SelectedFocusedOver", etc.&#010 <P>&#010 For example, if <code>baseStyle</code> is set to "button", this component is&#010 {@link com.smartgwt.client.widgets.ImgButton#isSelected} and the mouse cursor is over this component, the style&#010 "buttonSelectedOver" will be used.
      *
      *
      * @return String
@@ -409,7 +409,7 @@ public class ImgButton extends Img {
 
     /**
     * Whether this component is selected.  For some components, selection affects appearance.
-    * Select this object.
+    * Select this object.&#010
     *
     * @param selected selected Default value is false
     */
@@ -449,7 +449,7 @@ public class ImgButton extends Img {
              
     /**
     * Behavior on state changes -- BUTTON, RADIO or CHECKBOX
-    * Update the 'actionType' for this canvas (radio / checkbox / button) If the canvas is currently selected, and the passed in actionType is 'button' this method will deselect the canvas.
+    * Update the 'actionType' for this canvas (radio / checkbox / button)&#010 If the canvas is currently selected, and the passed in actionType is 'button'&#010 this method will deselect the canvas.&#010
     *
     * @param actionType actionType Default value is "button"
     */
@@ -460,7 +460,7 @@ public class ImgButton extends Img {
      * Behavior on state changes -- BUTTON, RADIO or CHECKBOX
      *
      *
-     * @return Return the 'actionType' for this canvas (radio / checkbox / button)
+     * @return Return the 'actionType' for this canvas (radio / checkbox / button)&#010
      *
      */
     public SelectionType getActionType()  {
@@ -468,8 +468,8 @@ public class ImgButton extends Img {
     }
              
     /**
-    * Current "state" of this widget. StatefulCanvases will have a different appearance based on their current state. By default this is handled by changing the css className applied to the StatefulCanvas - see {@link com.smartgwt.client.widgets.StatefulCanvas#getBaseStyle baseStyle} for a description of how this is done.<P> For {@link com.smartgwt.client.widgets.Img} or {@link com.smartgwt.client.widgets.StretchImg} based subclasses of StatefulCanvas, the  appearance may also be updated by changing the src of the rendered image. See {@link com.smartgwt.client.widgets.Img#getSrc src} and {@link com.smartgwt.client.widgets.StretchImgButton#getSrc src} for a description of how the URL  is modified to reflect the state of the widget in this case.
-    * Set the 'state' of this object, this changes it's appearance.
+    * Current "state" of this widget. StatefulCanvases will have a different appearance based&#010 on their current state. By default this is handled by changing the css className applied to&#010 the StatefulCanvas - see {@link com.smartgwt.client.widgets.StatefulCanvas#getBaseStyle baseStyle} for a description of how this is&#010 done.<P>&#010 For {@link com.smartgwt.client.widgets.Img} or {@link com.smartgwt.client.widgets.StretchImg} based subclasses of StatefulCanvas, the &#010 appearance may also be updated by changing the src of the rendered image. See&#010 {@link com.smartgwt.client.widgets.Img#getSrc src} and {@link com.smartgwt.client.widgets.StretchImgButton#getSrc src} for a description of how the URL &#010 is modified to reflect the state of the widget in this case.
+    * Set the 'state' of this object, this changes it's appearance.&#010&#010
     * <p><b>Note : </b> This is an advanced setting</p>
     *
     * @param state new state. Default value is ""
@@ -478,10 +478,10 @@ public class ImgButton extends Img {
         setAttribute("state", state.getValue(), true);
     }
     /**
-     * Current "state" of this widget. StatefulCanvases will have a different appearance based on their current state. By default this is handled by changing the css className applied to the StatefulCanvas - see {@link com.smartgwt.client.widgets.StatefulCanvas#getBaseStyle baseStyle} for a description of how this is done.<P> For {@link com.smartgwt.client.widgets.Img} or {@link com.smartgwt.client.widgets.StretchImg} based subclasses of StatefulCanvas, the  appearance may also be updated by changing the src of the rendered image. See {@link com.smartgwt.client.widgets.Img#getSrc src} and {@link com.smartgwt.client.widgets.StretchImgButton#getSrc src} for a description of how the URL  is modified to reflect the state of the widget in this case.
+     * Current "state" of this widget. StatefulCanvases will have a different appearance based&#010 on their current state. By default this is handled by changing the css className applied to&#010 the StatefulCanvas - see {@link com.smartgwt.client.widgets.StatefulCanvas#getBaseStyle baseStyle} for a description of how this is&#010 done.<P>&#010 For {@link com.smartgwt.client.widgets.Img} or {@link com.smartgwt.client.widgets.StretchImg} based subclasses of StatefulCanvas, the &#010 appearance may also be updated by changing the src of the rendered image. See&#010 {@link com.smartgwt.client.widgets.Img#getSrc src} and {@link com.smartgwt.client.widgets.StretchImgButton#getSrc src} for a description of how the URL &#010 is modified to reflect the state of the widget in this case.
      *
      *
-     * @return Return the state of this StatefulCanvas
+     * @return Return the state of this StatefulCanvas&#010
      *
      */
     public State getState()  {
@@ -527,7 +527,7 @@ public class ImgButton extends Img {
     }
 
     /**
-    * Should we visibly change state when the canvas recieves focus?  If {@link com.smartgwt.client.widgets.StatefulCanvas#getShowFocusedAsOver showFocusedAsOver} is <code>true</code>, the <b><code>"over"</code></b> will be used to indicate focus. Otherwise a separate <b><code>"focused"</code></b> state will be used.
+    * Should we visibly change state when the canvas recieves focus?  If&#010 {@link com.smartgwt.client.widgets.StatefulCanvas#getShowFocusedAsOver showFocusedAsOver} is <code>true</code>, the <b><code>"over"</code></b>&#010 will be used to indicate focus. Otherwise a separate <b><code>"focused"</code></b> state&#010 will be used.
     *
     * @param showFocused showFocused Default value is false
     */
@@ -535,7 +535,7 @@ public class ImgButton extends Img {
         setAttribute("showFocused", showFocused, true);
     }
     /**
-     * Should we visibly change state when the canvas recieves focus?  If {@link com.smartgwt.client.widgets.StatefulCanvas#getShowFocusedAsOver showFocusedAsOver} is <code>true</code>, the <b><code>"over"</code></b> will be used to indicate focus. Otherwise a separate <b><code>"focused"</code></b> state will be used.
+     * Should we visibly change state when the canvas recieves focus?  If&#010 {@link com.smartgwt.client.widgets.StatefulCanvas#getShowFocusedAsOver showFocusedAsOver} is <code>true</code>, the <b><code>"over"</code></b>&#010 will be used to indicate focus. Otherwise a separate <b><code>"focused"</code></b> state&#010 will be used.
      *
      *
      * @return Boolean
@@ -603,7 +603,7 @@ public class ImgButton extends Img {
     }
 
     /**
-    * Determines whether any specified {@link com.smartgwt.client.widgets.StatefulCanvas#getTitle} will be  displayed for this component.<br> Applies to Image-based components only, where the title will be rendered out in a label floating over the component
+    * Determines whether any specified {@link com.smartgwt.client.widgets.StatefulCanvas#getTitle} will be &#010 displayed for this component.<br>&#010 Applies to Image-based components only, where the title will be rendered out in a label&#010 floating over the component
     * <p><b>Note : </b> This is an advanced setting</p>
     *
     * @param showTitle showTitle Default value is false
@@ -612,7 +612,7 @@ public class ImgButton extends Img {
         setAttribute("showTitle", showTitle, true);
     }
     /**
-     * Determines whether any specified {@link com.smartgwt.client.widgets.StatefulCanvas#getTitle} will be  displayed for this component.<br> Applies to Image-based components only, where the title will be rendered out in a label floating over the component
+     * Determines whether any specified {@link com.smartgwt.client.widgets.StatefulCanvas#getTitle} will be &#010 displayed for this component.<br>&#010 Applies to Image-based components only, where the title will be rendered out in a label&#010 floating over the component
      *
      *
      * @return Boolean
@@ -623,7 +623,7 @@ public class ImgButton extends Img {
     }
 
     /**
-    * Horizontal padding to be applied to this widget's label. If this value is null,  the label will be given a horizontal padding of zero. <p> The specified amount of padding is applied to the left and right edges of the button, so the total amount of padding is 2x the specified value.
+    * Horizontal padding to be applied to this widget's label. If this value is null, &#010 the label will be given a horizontal padding of zero.&#010 <p>&#010 The specified amount of padding is applied to the left and right edges of the button, so&#010 the total amount of padding is 2x the specified value.
     *
     * @param labelHPad labelHPad Default value is null
     */
@@ -631,7 +631,7 @@ public class ImgButton extends Img {
         setAttribute("labelHPad", labelHPad, true);
     }
     /**
-     * Horizontal padding to be applied to this widget's label. If this value is null,  the label will be given a horizontal padding of zero. <p> The specified amount of padding is applied to the left and right edges of the button, so the total amount of padding is 2x the specified value.
+     * Horizontal padding to be applied to this widget's label. If this value is null, &#010 the label will be given a horizontal padding of zero.&#010 <p>&#010 The specified amount of padding is applied to the left and right edges of the button, so&#010 the total amount of padding is 2x the specified value.
      *
      *
      * @return Integer
@@ -642,7 +642,7 @@ public class ImgButton extends Img {
     }
 
     /**
-    * Vertical padding to be applied to this widget's label. If this value is null,  the label will be given a vertial padding of zero. <p> The specified amount of padding is applied to the top and bottom edges of the button, so the total amount of padding is 2x the specified value.
+    * Vertical padding to be applied to this widget's label. If this value is null, &#010 the label will be given a vertial padding of zero.&#010 <p>&#010 The specified amount of padding is applied to the top and bottom edges of the button, so&#010 the total amount of padding is 2x the specified value.
     *
     * @param labelVPad labelVPad Default value is null
     */
@@ -650,7 +650,7 @@ public class ImgButton extends Img {
         setAttribute("labelVPad", labelVPad, true);
     }
     /**
-     * Vertical padding to be applied to this widget's label. If this value is null,  the label will be given a vertial padding of zero. <p> The specified amount of padding is applied to the top and bottom edges of the button, so the total amount of padding is 2x the specified value.
+     * Vertical padding to be applied to this widget's label. If this value is null, &#010 the label will be given a vertial padding of zero.&#010 <p>&#010 The specified amount of padding is applied to the top and bottom edges of the button, so&#010 the total amount of padding is 2x the specified value.
      *
      *
      * @return Integer
@@ -661,7 +661,7 @@ public class ImgButton extends Img {
     }
 
     /**
-    * The base filename for the image. <P> If <code>img.state</code> is set, it's value will be appended to the URL before the file extension.   <P> For example, given an <code>src</code> of "findIcon.gif" and a state of "Disabled", the resulting image name would be "findIcon_Disabled.gif".  Compound states such as "Selected", "Focused" and "Over" or "Down" will have an intervening underscore, resulting in, for example, <code>"findIcon_Selected_Down.gif"</code>.
+    * The base filename for the image.&#010 <P>&#010 If <code>img.state</code> is set, it's value will be appended to the URL before the&#010 file extension.  &#010 <P>&#010 For example, given an <code>src</code> of "findIcon.gif" and a state of&#010 "Disabled", the resulting image name would be "findIcon_Disabled.gif".  Compound states&#010 such as "Selected", "Focused" and "Over" or "Down" will have an intervening underscore,&#010 resulting in, for example, <code>"findIcon_Selected_Down.gif"</code>.
     *
     * @param src src Default value is "[SKIN]/ImgButton/button.png"
     */
@@ -669,7 +669,7 @@ public class ImgButton extends Img {
         setAttribute("src", src, true);
     }
     /**
-     * The base filename for the image. <P> If <code>img.state</code> is set, it's value will be appended to the URL before the file extension.   <P> For example, given an <code>src</code> of "findIcon.gif" and a state of "Disabled", the resulting image name would be "findIcon_Disabled.gif".  Compound states such as "Selected", "Focused" and "Over" or "Down" will have an intervening underscore, resulting in, for example, <code>"findIcon_Selected_Down.gif"</code>.
+     * The base filename for the image.&#010 <P>&#010 If <code>img.state</code> is set, it's value will be appended to the URL before the&#010 file extension.  &#010 <P>&#010 For example, given an <code>src</code> of "findIcon.gif" and a state of&#010 "Disabled", the resulting image name would be "findIcon_Disabled.gif".  Compound states&#010 such as "Selected", "Focused" and "Over" or "Down" will have an intervening underscore,&#010 resulting in, for example, <code>"findIcon_Selected_Down.gif"</code>.
      *
      *
      * @return String
@@ -688,7 +688,7 @@ public class ImgButton extends Img {
 
 
         /**
-         * Select this object.
+         * Select this object.&#010
          */
         public native void select() /*-{
             var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
@@ -696,7 +696,7 @@ public class ImgButton extends Img {
         }-*/;
 
         /**
-         * Select this object.
+         * Select this object.&#010
          */
         public native void deselect() /*-{
             var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
@@ -704,7 +704,7 @@ public class ImgButton extends Img {
         }-*/;
 
         /**
-         * Find out if this object is selected
+         * Find out if this object is selected&#010
          *
          * @return 
          */
@@ -720,7 +720,7 @@ public class ImgButton extends Img {
 
 
         /**
-         * Add this widget to the specified mutually exclusive selection group with the ID passed in. Selecting this widget will then deselect any other StatefulCanvases with the same radioGroup ID. StatefulCanvases can belong to only one radioGroup, so this method will remove from  any other radiogroup of which this button is already a member.
+         * Add this widget to the specified mutually exclusive selection group with the ID&#010 passed in.&#010 Selecting this widget will then deselect any other StatefulCanvases with the same&#010 radioGroup ID.&#010 StatefulCanvases can belong to only one radioGroup, so this method will remove from &#010 any other radiogroup of which this button is already a member.&#010
          * @param groupID - ID of the radiogroup to which this widget should be added
          */
         public native void addToRadioGroup(String groupID) /*-{
@@ -729,7 +729,7 @@ public class ImgButton extends Img {
         }-*/;
 
         /**
-         * Remove this widget from the specified mutually exclusive selection group with the ID passed in. No-op's if this widget is not a member of the groupID passed in. If no groupID is passed in, defaults to removing from whatever radioGroup this widget is a member of.
+         * Remove this widget from the specified mutually exclusive selection group with the ID&#010 passed in.&#010 No-op's if this widget is not a member of the groupID passed in.&#010 If no groupID is passed in, defaults to removing from whatever radioGroup this widget&#010 is a member of.&#010
          */
         public native void removeFromRadioGroup() /*-{
             var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
@@ -737,7 +737,7 @@ public class ImgButton extends Img {
         }-*/;
 
         /**
-         * Remove this widget from the specified mutually exclusive selection group with the ID passed in. No-op's if this widget is not a member of the groupID passed in. If no groupID is passed in, defaults to removing from whatever radioGroup this widget is a member of.
+         * Remove this widget from the specified mutually exclusive selection group with the ID&#010 passed in.&#010 No-op's if this widget is not a member of the groupID passed in.&#010 If no groupID is passed in, defaults to removing from whatever radioGroup this widget&#010 is a member of.&#010
          * @param groupID - optional radio group ID (to ensure the widget is removed                                        from the appropriate group.
          */
         public native void removeFromRadioGroup(String groupID) /*-{
@@ -749,7 +749,7 @@ public class ImgButton extends Img {
 
 
         /**
-         * Enable or disable this object
+         * Enable or disable this object&#010
          * @param disabled true if this widget is to be disabled
          */
         public native void setDisabled(boolean disabled) /*-{
@@ -759,7 +759,7 @@ public class ImgButton extends Img {
 
 
         /**
-         * This property contains the default 'action' for the Button to fire when activated.
+         * This property contains the default 'action' for the Button to fire when activated.&#010
          */
         public native void action() /*-{
             var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();

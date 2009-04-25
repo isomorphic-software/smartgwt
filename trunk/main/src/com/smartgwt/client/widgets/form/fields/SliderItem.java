@@ -56,7 +56,7 @@ import com.smartgwt.client.util.EnumUtil;
 import com.google.gwt.event.shared.*;
 import com.google.gwt.event.shared.HasHandlers;
    /**
-    * FormItem that uses a {@link com.smartgwt.client.widgets.Slider} component to present an interface for picking from either a continuous range or a range with a small number of discrete values.
+    * FormItem that uses a {@link com.smartgwt.client.widgets.Slider} component to present an interface for picking&#010 from either a continuous range or a range with a small number of discrete values.
 
     */
 public class SliderItem extends CanvasItem {
@@ -108,7 +108,7 @@ public class SliderItem extends CanvasItem {
     }
 
     /**
-    * The minimum slider value. The slider value is equal to minValue when the thumb is at the bottom or left of the slider (unless flipValues is true, in which case the minimum value is at the top/right of the slider)
+    * The minimum slider value. The slider value is equal to minValue when the thumb is at the&#010 bottom or left of the slider (unless flipValues is true, in which case the minimum value&#010 is at the top/right of the slider)
     *
     * @param minValue minValue Default value is 1
     */
@@ -116,7 +116,7 @@ public class SliderItem extends CanvasItem {
         setAttribute("minValue", minValue);
     }
     /**
-     * The minimum slider value. The slider value is equal to minValue when the thumb is at the bottom or left of the slider (unless flipValues is true, in which case the minimum value is at the top/right of the slider)
+     * The minimum slider value. The slider value is equal to minValue when the thumb is at the&#010 bottom or left of the slider (unless flipValues is true, in which case the minimum value&#010 is at the top/right of the slider)
      *
      *
      * @return float
@@ -127,7 +127,7 @@ public class SliderItem extends CanvasItem {
     }
 
     /**
-    * The maximum slider value. The slider value is equal to maxValue when the thumb is at the top or right of the slider (unless flipValues is true, in which case the maximum value is at the bottom/left of the slider)
+    * The maximum slider value. The slider value is equal to maxValue when the thumb is at the&#010 top or right of the slider (unless flipValues is true, in which case the maximum value&#010 is at the bottom/left of the slider)
     *
     * @param maxValue maxValue Default value is 100
     */
@@ -135,7 +135,7 @@ public class SliderItem extends CanvasItem {
         setAttribute("maxValue", maxValue);
     }
     /**
-     * The maximum slider value. The slider value is equal to maxValue when the thumb is at the top or right of the slider (unless flipValues is true, in which case the maximum value is at the bottom/left of the slider)
+     * The maximum slider value. The slider value is equal to maxValue when the thumb is at the&#010 top or right of the slider (unless flipValues is true, in which case the maximum value&#010 is at the bottom/left of the slider)
      *
      *
      * @return float
@@ -146,7 +146,7 @@ public class SliderItem extends CanvasItem {
     }
 
     /**
-    * The number of discrete values represented by slider. If specified, the range of valid values (between <code>minValue</code> and <code>maxValue</code>) will be divided into this many steps. As the thumb is moved along the track it will only select these values and appear to jump between the steps.
+    * The number of discrete values represented by slider. If specified, the range of valid&#010 values (between <code>minValue</code> and <code>maxValue</code>) will be divided into&#010 this many steps. As the thumb is moved along the track it will only select these values&#010 and appear to jump between the steps.
     *
     * @param numValues numValues Default value is null
     */
@@ -154,7 +154,7 @@ public class SliderItem extends CanvasItem {
         setAttribute("numValues", numValues);
     }
     /**
-     * The number of discrete values represented by slider. If specified, the range of valid values (between <code>minValue</code> and <code>maxValue</code>) will be divided into this many steps. As the thumb is moved along the track it will only select these values and appear to jump between the steps.
+     * The number of discrete values represented by slider. If specified, the range of valid&#010 values (between <code>minValue</code> and <code>maxValue</code>) will be divided into&#010 this many steps. As the thumb is moved along the track it will only select these values&#010 and appear to jump between the steps.
      *
      *
      * @return Integer
@@ -165,7 +165,7 @@ public class SliderItem extends CanvasItem {
     }
 
     /**
-    * Specifies whether the slider value should be rounded to the nearest integer.  If set to false, values will be rounded to a fixed number of decimal places controlled by {@link com.smartgwt.client.widgets.form.fields.SliderItem#getRoundPrecision roundPrecision}.
+    * Specifies whether the slider value should be rounded to the nearest integer.  If set to&#010 false, values will be rounded to a fixed number of decimal places controlled by&#010 {@link com.smartgwt.client.widgets.form.fields.SliderItem#getRoundPrecision roundPrecision}.
     *
     * @param roundValues roundValues Default value is true
     */
@@ -173,7 +173,7 @@ public class SliderItem extends CanvasItem {
         setAttribute("roundValues", roundValues);
     }
     /**
-     * Specifies whether the slider value should be rounded to the nearest integer.  If set to false, values will be rounded to a fixed number of decimal places controlled by {@link com.smartgwt.client.widgets.form.fields.SliderItem#getRoundPrecision roundPrecision}.
+     * Specifies whether the slider value should be rounded to the nearest integer.  If set to&#010 false, values will be rounded to a fixed number of decimal places controlled by&#010 {@link com.smartgwt.client.widgets.form.fields.SliderItem#getRoundPrecision roundPrecision}.
      *
      *
      * @return Boolean
@@ -184,7 +184,7 @@ public class SliderItem extends CanvasItem {
     }
 
     /**
-    * If {@link com.smartgwt.client.widgets.Slider#getRoundValues roundValues} is false, the slider value will be rounded to this number of decimal places. If set to null the value will not be rounded
+    * If {@link com.smartgwt.client.widgets.Slider#getRoundValues roundValues} is false, the slider value will be rounded to this number of&#010 decimal places. If set to null the value will not be rounded
     *
     * @param roundPrecision roundPrecision Default value is 1
     */
@@ -192,7 +192,7 @@ public class SliderItem extends CanvasItem {
         setAttribute("roundPrecision", roundPrecision);
     }
     /**
-     * If {@link com.smartgwt.client.widgets.Slider#getRoundValues roundValues} is false, the slider value will be rounded to this number of decimal places. If set to null the value will not be rounded
+     * If {@link com.smartgwt.client.widgets.Slider#getRoundValues roundValues} is false, the slider value will be rounded to this number of&#010 decimal places. If set to null the value will not be rounded
      *
      *
      * @return int

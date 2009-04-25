@@ -22,7 +22,7 @@ import com.google.gwt.event.shared.HasHandlers;
 
 public interface HasTitleHoverHandlers extends HasHandlers {
     /**
-     * Optional stringMethod to fire when the user hovers over this item's title.  Return false to suppress default behavior of showing a hover canvas containing the  HTML returned by <code>formItem.titleHoverHTML()</code> /   <code>form.titleHoverHTML()</code>.
+     * Optional stringMethod to fire when the user hovers over this item's title.&#010  Return false to suppress default behavior of showing a hover canvas containing the&#010  HTML returned by <code>formItem.titleHoverHTML()</code> / &#010  <code>form.titleHoverHTML()</code>.&#010&#010
      */
     HandlerRegistration addTitleHoverHandler(TitleHoverHandler handler);
 }

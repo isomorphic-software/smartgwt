@@ -22,7 +22,7 @@ import com.google.gwt.event.shared.HasHandlers;
 
 public interface HasCellOutHandlers extends HasHandlers {
     /**
-     * Called when the mouse pointer leaves a cell
+     * Called when the mouse pointer leaves a cell&#010&#010
      */
     HandlerRegistration addCellOutHandler(CellOutHandler handler);
 }

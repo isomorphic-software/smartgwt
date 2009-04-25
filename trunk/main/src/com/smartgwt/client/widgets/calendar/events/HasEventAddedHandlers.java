@@ -22,7 +22,7 @@ import com.google.gwt.event.shared.HasHandlers;
 
 public interface HasEventAddedHandlers extends HasHandlers {
     /**
-     * Notification fired whenever a user adds an event. <P> In a calendar with a DataSource, eventAdded() fires <b>after</b> the event has been successfully added to the server
+     * Notification fired whenever a user adds an event.&#010 <P>&#010 In a calendar with a DataSource, eventAdded() fires <b>after</b> the event has&#010 been successfully added to the server&#010&#010
      */
     HandlerRegistration addEventAddedHandler(EventAddedHandler handler);
 }

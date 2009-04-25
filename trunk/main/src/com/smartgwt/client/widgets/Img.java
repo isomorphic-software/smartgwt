@@ -101,7 +101,7 @@ public class Img extends StatefulCanvas {
     // ********************* Properties / Attributes ***********************
 
     /**
-    * The value of this attribute is specified as the value of the 'name' attribute in the resulting HTML. <p> Note: this attribute is ignored if the imageType is set to "tile"
+    * The value of this attribute is specified as the value of the 'name' attribute in the&#010 resulting HTML.&#010 <p>&#010 Note: this attribute is ignored if the imageType is set to "tile"
     * <p><b>Note : </b> This is an advanced setting</p>
     *
     * @param name name Default value is "main"
@@ -112,8 +112,8 @@ public class Img extends StatefulCanvas {
     }
 
     /**
-    * The base filename for the image. <P> If <code>img.state</code> is set, it's value will be appended to the URL before the file extension.   <P> For example, given an <code>src</code> of "findIcon.gif" and a state of "Disabled", the resulting image name would be "findIcon_Disabled.gif".  Compound states such as "Selected", "Focused" and "Over" or "Down" will have an intervening underscore, resulting in, for example, <code>"findIcon_Selected_Down.gif"</code>.
-    * Changes the URL of this image and redraws it. <P> Does nothing if the src has not changed - if <code>src</code> has not changed but other state has changed such that the image needs updating, call {@link com.smartgwt.client.widgets.Img#resetSrc} instead.
+    * The base filename for the image.&#010 <P>&#010 If <code>img.state</code> is set, it's value will be appended to the URL before the&#010 file extension.  &#010 <P>&#010 For example, given an <code>src</code> of "findIcon.gif" and a state of&#010 "Disabled", the resulting image name would be "findIcon_Disabled.gif".  Compound states&#010 such as "Selected", "Focused" and "Over" or "Down" will have an intervening underscore,&#010 resulting in, for example, <code>"findIcon_Selected_Down.gif"</code>.
+    * Changes the URL of this image and redraws it.&#010 <P>&#010 Does nothing if the src has not changed - if <code>src</code> has not changed but other&#010 state has changed such that the image needs updating, call {@link com.smartgwt.client.widgets.Img#resetSrc} instead.&#010&#010
     *
     * @param src new URL for the image. Default value is "blank.gif"
     */
@@ -121,7 +121,7 @@ public class Img extends StatefulCanvas {
         setAttribute("src", src, true);
     }
     /**
-     * The base filename for the image. <P> If <code>img.state</code> is set, it's value will be appended to the URL before the file extension.   <P> For example, given an <code>src</code> of "findIcon.gif" and a state of "Disabled", the resulting image name would be "findIcon_Disabled.gif".  Compound states such as "Selected", "Focused" and "Over" or "Down" will have an intervening underscore, resulting in, for example, <code>"findIcon_Selected_Down.gif"</code>.
+     * The base filename for the image.&#010 <P>&#010 If <code>img.state</code> is set, it's value will be appended to the URL before the&#010 file extension.  &#010 <P>&#010 For example, given an <code>src</code> of "findIcon.gif" and a state of&#010 "Disabled", the resulting image name would be "findIcon_Disabled.gif".  Compound states&#010 such as "Selected", "Focused" and "Over" or "Down" will have an intervening underscore,&#010 resulting in, for example, <code>"findIcon_Selected_Down.gif"</code>.
      *
      *
      * @return String
@@ -132,8 +132,8 @@ public class Img extends StatefulCanvas {
     }
              
     /**
-    * Indicates whether the image should be tiled/cropped, stretched, or centered when the          size of this widget does not match the size of the image. See ImageStyle for          details
-    * Change the style of image rendering.
+    * Indicates whether the image should be tiled/cropped, stretched, or centered when the&#010          size of this widget does not match the size of the image. See ImageStyle for&#010          details
+    * Change the style of image rendering.&#010&#010
     *
     * @param imageType new style of image rendering. Default value is Img.STRETCH
     */
@@ -141,7 +141,7 @@ public class Img extends StatefulCanvas {
         setAttribute("imageType", imageType.getValue(), true);
     }
     /**
-     * Indicates whether the image should be tiled/cropped, stretched, or centered when the          size of this widget does not match the size of the image. See ImageStyle for          details
+     * Indicates whether the image should be tiled/cropped, stretched, or centered when the&#010          size of this widget does not match the size of the image. See ImageStyle for&#010          details
      *
      *
      * @return ImageStyle
@@ -152,7 +152,7 @@ public class Img extends StatefulCanvas {
     }
 
     /**
-    * Explicit size for the image, for {@link com.smartgwt.client.widgets.Img#getImageType imageType} settings that would normally use the image's natural size (applies to {@link com.smartgwt.client.widgets.Img#getImageType imageType} "center" and "normal" only).
+    * Explicit size for the image, for {@link com.smartgwt.client.widgets.Img#getImageType imageType} settings that would normally use the&#010 image's natural size (applies to {@link com.smartgwt.client.widgets.Img#getImageType imageType} "center" and "normal" only).
     *
     * @param imageHeight imageHeight Default value is null
     * @throws IllegalStateException this property cannot be changed after the component has been created
@@ -161,7 +161,7 @@ public class Img extends StatefulCanvas {
         setAttribute("imageHeight", imageHeight, false);
     }
     /**
-     * Explicit size for the image, for {@link com.smartgwt.client.widgets.Img#getImageType imageType} settings that would normally use the image's natural size (applies to {@link com.smartgwt.client.widgets.Img#getImageType imageType} "center" and "normal" only).
+     * Explicit size for the image, for {@link com.smartgwt.client.widgets.Img#getImageType imageType} settings that would normally use the&#010 image's natural size (applies to {@link com.smartgwt.client.widgets.Img#getImageType imageType} "center" and "normal" only).
      *
      *
      * @return Integer
@@ -172,7 +172,7 @@ public class Img extends StatefulCanvas {
     }
 
     /**
-    * Explicit size for the image, for {@link com.smartgwt.client.widgets.Img#getImageType imageType} settings that would normally use the image's natural size (applies to {@link com.smartgwt.client.widgets.Img#getImageType imageType} "center" and "normal" only).
+    * Explicit size for the image, for {@link com.smartgwt.client.widgets.Img#getImageType imageType} settings that would normally use the&#010 image's natural size (applies to {@link com.smartgwt.client.widgets.Img#getImageType imageType} "center" and "normal" only).
     *
     * @param imageWidth imageWidth Default value is null
     * @throws IllegalStateException this property cannot be changed after the component has been created
@@ -181,7 +181,7 @@ public class Img extends StatefulCanvas {
         setAttribute("imageWidth", imageWidth, false);
     }
     /**
-     * Explicit size for the image, for {@link com.smartgwt.client.widgets.Img#getImageType imageType} settings that would normally use the image's natural size (applies to {@link com.smartgwt.client.widgets.Img#getImageType imageType} "center" and "normal" only).
+     * Explicit size for the image, for {@link com.smartgwt.client.widgets.Img#getImageType imageType} settings that would normally use the&#010 image's natural size (applies to {@link com.smartgwt.client.widgets.Img#getImageType imageType} "center" and "normal" only).
      *
      *
      * @return Integer
@@ -212,7 +212,7 @@ public class Img extends StatefulCanvas {
     }
 
     /**
-    * Determines whether any specified {@link com.smartgwt.client.widgets.StatefulCanvas#getTitle} will be  displayed for this component.<br> Applies to Image-based components only, where the title will be rendered out in a label floating over the component
+    * Determines whether any specified {@link com.smartgwt.client.widgets.StatefulCanvas#getTitle} will be &#010 displayed for this component.<br>&#010 Applies to Image-based components only, where the title will be rendered out in a label&#010 floating over the component
     * <p><b>Note : </b> This is an advanced setting</p>
     *
     * @param showTitle showTitle Default value is false
@@ -221,7 +221,7 @@ public class Img extends StatefulCanvas {
         setAttribute("showTitle", showTitle, true);
     }
     /**
-     * Determines whether any specified {@link com.smartgwt.client.widgets.StatefulCanvas#getTitle} will be  displayed for this component.<br> Applies to Image-based components only, where the title will be rendered out in a label floating over the component
+     * Determines whether any specified {@link com.smartgwt.client.widgets.StatefulCanvas#getTitle} will be &#010 displayed for this component.<br>&#010 Applies to Image-based components only, where the title will be rendered out in a label&#010 floating over the component
      *
      *
      * @return Boolean
@@ -236,7 +236,7 @@ public class Img extends StatefulCanvas {
 
 
         /**
-         * Refresh the image being shown.  Call this when the {@link com.smartgwt.client.widgets.Img#getSrc src} attribute has not changed, but other state that affects the image URL (such as being selected) has changed.
+         * Refresh the image being shown.  Call this when the {@link com.smartgwt.client.widgets.Img#getSrc src} attribute has not changed, but&#010 other state that affects the image URL (such as being selected) has changed.&#010&#010
          */
         public native void resetSrc() /*-{
             var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();

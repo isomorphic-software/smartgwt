@@ -127,7 +127,7 @@ public class TextAreaItem extends FormItem {
     }
 
     /**
-    * Base CSS class to apply to this item's input element. NOTE: See the CompoundFormItem_skinning discussion for special skinning considerations.
+    * Base CSS class to apply to this item's input element.&#010 NOTE: See the CompoundFormItem_skinning discussion for special skinning considerations.
     *
     * @param textBoxStyle textBoxStyle Default value is "textItem"
     */
@@ -135,7 +135,7 @@ public class TextAreaItem extends FormItem {
         setAttribute("textBoxStyle", textBoxStyle);
     }
     /**
-     * Base CSS class to apply to this item's input element. NOTE: See the CompoundFormItem_skinning discussion for special skinning considerations.
+     * Base CSS class to apply to this item's input element.&#010 NOTE: See the CompoundFormItem_skinning discussion for special skinning considerations.
      *
      *
      * @return String
@@ -165,7 +165,7 @@ public class TextAreaItem extends FormItem {
     }
 
     /**
-    * Allows the {@link com.smartgwt.client.widgets.form.DynamicForm#getSelectOnFocus selectOnFocus} behavior to be configured on a per-FormItem basis.  Normally all items in a form default to the value of {@link com.smartgwt.client.widgets.form.DynamicForm#getSelectOnFocus selectOnFocus}.
+    * Allows the {@link com.smartgwt.client.widgets.form.DynamicForm#getSelectOnFocus selectOnFocus} behavior to be configured on a&#010 per-FormItem basis.  Normally all items in a form default to the value of&#010 {@link com.smartgwt.client.widgets.form.DynamicForm#getSelectOnFocus selectOnFocus}.
     *
     * @param selectOnFocus selectOnFocus Default value is null
     */
@@ -173,7 +173,7 @@ public class TextAreaItem extends FormItem {
         setAttribute("selectOnFocus", selectOnFocus);
     }
     /**
-     * Allows the {@link com.smartgwt.client.widgets.form.DynamicForm#getSelectOnFocus selectOnFocus} behavior to be configured on a per-FormItem basis.  Normally all items in a form default to the value of {@link com.smartgwt.client.widgets.form.DynamicForm#getSelectOnFocus selectOnFocus}.
+     * Allows the {@link com.smartgwt.client.widgets.form.DynamicForm#getSelectOnFocus selectOnFocus} behavior to be configured on a&#010 per-FormItem basis.  Normally all items in a form default to the value of&#010 {@link com.smartgwt.client.widgets.form.DynamicForm#getSelectOnFocus selectOnFocus}.
      *
      *
      * @return Boolean

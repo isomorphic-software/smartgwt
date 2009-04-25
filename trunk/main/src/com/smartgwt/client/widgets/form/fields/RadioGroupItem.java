@@ -104,7 +104,7 @@ public class RadioGroupItem extends FormItem {
     // ********************* Methods ***********************
 
         /**
-         * Disable or Enable a specific option within this radioGroup
+         * Disable or Enable a specific option within this radioGroup&#010
          * @param value value of option to disable
      * @param disabled true to disable the option, false to enable it
          */

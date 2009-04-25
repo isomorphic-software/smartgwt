@@ -56,7 +56,7 @@ import com.smartgwt.client.util.EnumUtil;
 import com.google.gwt.event.shared.*;
 import com.google.gwt.event.shared.HasHandlers;
    /**
-    * FormItem that creates an HTML &lt;input type="upload"&gt; control, with an interface that allows a user to pick a file from his machine to upload to the server. <P> See the {@link com.smartgwt.client.docs.Upload 'Uploading Files'} overview for details. <P> Note: if a form containing an UploadItem is {@link com.smartgwt.client.widgets.Canvas#redraw} (which may happen if other form items are shown or hidden, the form is {@link com.smartgwt.client.widgets.Canvas#getRedrawOnResize redrawOnResize}, or other items show validation errors) then the value in the upload item is lost (because an HTML upload field may not be created with a value). For this reason, if you are building a form that combines an UploadItem with other FormItems that could trigger redraw()s, recommended practice is to place each UploadItem in a distinct DynamicForm instance and create the visual appearance of a single logical form via combining the DynamicForms in a {@link com.smartgwt.client.widgets.layout.Layout}.
+    * FormItem that creates an HTML &lt;input type="upload"&gt; control, with an interface that&#010 allows a user to pick a file from his machine to upload to the server.&#010 <P>&#010 See the {@link com.smartgwt.client.docs.Upload 'Uploading Files'} overview for details.&#010 <P>&#010 Note: if a form containing an UploadItem is {@link com.smartgwt.client.widgets.Canvas#redraw} (which may&#010 happen if other form items are shown or hidden, the form is&#010 {@link com.smartgwt.client.widgets.Canvas#getRedrawOnResize redrawOnResize}, or other items show validation errors) then the value&#010 in the upload item is lost (because an HTML upload field may not be created with a value).&#010 For this reason, if you are building a form that combines an UploadItem with other FormItems&#010 that could trigger redraw()s, recommended practice is to place each UploadItem in a distinct&#010 DynamicForm instance and create the visual appearance of a single logical form via combining&#010 the DynamicForms in a {@link com.smartgwt.client.widgets.layout.Layout}.
 
     */
 public class UploadItem extends TextItem {
@@ -91,7 +91,7 @@ public class UploadItem extends TextItem {
     // ********************* Methods ***********************
 
         /**
-         * Attempting to set the value for an upload form item is disallowed for security reasons. Therefore this method will just log a warning, and not modify the value of the item.
+         * Attempting to set the value for an upload form item is disallowed for security reasons.&#010 Therefore this method will just log a warning, and not modify the value of the item.&#010
          */
         public native void setValue() /*-{
             var self = this.@com.smartgwt.client.core.DataClass::getJsObj()();

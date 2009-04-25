@@ -22,7 +22,7 @@ import com.google.gwt.event.shared.HasHandlers;
 
 public interface HasItemClickHandlers extends HasHandlers {
     /**
-     * Called when one of the buttons recieved a click event
+     * Called when one of the buttons recieved a click event&#010
      */
     HandlerRegistration addItemClickHandler(ItemClickHandler handler);
 }

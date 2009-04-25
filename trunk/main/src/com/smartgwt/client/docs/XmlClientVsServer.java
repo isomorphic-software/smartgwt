@@ -2,7 +2,7 @@
 package com.smartgwt.client.docs;
 
 /**
- * Server benefits - faster client-side processing Server neutral - heavy customization of XML transform, if any, written in Java Client benefits - faster server-side processing Client neutral - heavy customization of XML transform, if any, written in JavaScript
+ * Server benefits&#010 - faster client-side processing&#010 Server neutral&#010 - heavy customization of XML transform, if any, written in Java&#010&#010 Client benefits&#010 - faster server-side processing&#010 Client neutral&#010 - heavy customization of XML transform, if any, written in JavaScript
  */
 public interface XmlClientVsServer {
 }

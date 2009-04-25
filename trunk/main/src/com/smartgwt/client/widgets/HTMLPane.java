@@ -56,7 +56,7 @@ import com.smartgwt.client.util.EnumUtil;
 import com.google.gwt.event.shared.*;
 import com.google.gwt.event.shared.HasHandlers;
    /**
-    * Use the HTMLPane component to display HTML content in a pane of specified size. If the HTML content is larger than the size of the pane, the pane will provide scrollbars for viewing clipped content. <P> You can set the size of an HTMLPane directly via the width and height properties, or indirectly by placing the HTMLPane in a container component ({@link com.smartgwt.client.widgets.layout.Layout}, {@link com.smartgwt.client.widgets.Window},  {@link com.smartgwt.client.widgets.layout.SectionStack}, etc) that manages the sizes of its members.
+    * Use the HTMLPane component to display HTML content in a pane of specified size. If the HTML&#010 content is larger than the size of the pane, the pane will provide scrollbars for viewing&#010 clipped content.&#010 <P>&#010 You can set the size of an HTMLPane directly via the width and height properties, or&#010 indirectly by placing the HTMLPane in a container component ({@link com.smartgwt.client.widgets.layout.Layout}, {@link com.smartgwt.client.widgets.Window}, &#010 {@link com.smartgwt.client.widgets.layout.SectionStack}, etc) that manages the sizes of its members.
 
     */
 public class HTMLPane extends HTMLFlow {

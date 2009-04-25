@@ -56,7 +56,7 @@ import com.smartgwt.client.util.EnumUtil;
 import com.google.gwt.event.shared.*;
 import com.google.gwt.event.shared.HasHandlers;
    /**
-    * Labels display a small amount of {@link com.smartgwt.client.widgets.Label#getAlign align} {@link com.smartgwt.client.widgets.Label#getContents contents} with optional {@link com.smartgwt.client.widgets.Label#getIcon icon} and {@link com.smartgwt.client.widgets.Label#getAutoFit autoFit}. <P> For a general-purpose container for HTML content, use {@link com.smartgwt.client.widgets.HTMLFlow} or {@link com.smartgwt.client.widgets.HTMLPane} instead.
+    * Labels display a small amount of {@link com.smartgwt.client.widgets.Label#getAlign align} {@link com.smartgwt.client.widgets.Label#getContents contents}&#010 with optional {@link com.smartgwt.client.widgets.Label#getIcon icon} and {@link com.smartgwt.client.widgets.Label#getAutoFit autoFit}.&#010 <P>&#010 For a general-purpose container for HTML content, use {@link com.smartgwt.client.widgets.HTMLFlow} or {@link com.smartgwt.client.widgets.HTMLPane}&#010 instead.
 
     */
 public class Label extends Button {
@@ -95,7 +95,7 @@ public class Label extends Button {
 
     /**
     * The contents of a canvas or label widget. Any HTML string is acceptable.
-    * Changes the contents of a widget to newContents, an HTML string. <P> When {@link com.smartgwt.client.widgets.Canvas#getDynamicContents dynamicContents} is set, <code>setContents()</code> can also be called with no arguments to cause contents to be re-evaluated.
+    * Changes the contents of a widget to newContents, an HTML string.&#010 <P>&#010 When {@link com.smartgwt.client.widgets.Canvas#getDynamicContents dynamicContents} is set, <code>setContents()</code> can&#010 also be called with no arguments to cause contents to be re-evaluated.&#010&#010
     *
     * @param contents an HTML string to be set as the contents of this widget. Default value is "&nbsp;"
     */
@@ -114,7 +114,7 @@ public class Label extends Button {
     }
 
     /**
-    * Dynamic contents allows the contents string to be treated as a simple, but powerful template.  When this attribute is set to true, expressions of the form \${arbitrary JS here} are replaced by the result of the evaluation of the JS code inside the curly brackets.  This evaluation happens at draw time.  If you want to trigger a re-evaluation of the expressions in the contents string you can call markForRedraw() on the canvas. <p> You can use this feature to build some simple custom components. For example, let's say you want to show the value of a Slider in a Canvas somewhere on the screen.  You can do this by observing the valueChanged() method on the slider and calling setContents() on your canvas with the new string or you can set the contents of the canvas to something like: <p><code> "The slider value is \${sliderInstance.getValue()}." </code><p> Next you set dynamicContents: true on the canvas, observe valueChanged() on the slider and call canvas.markForRedraw() in that observation.  This approach is cleaner than setContents() when the Canvas is aggregating several values or dynamic expressions. Like so: <p> <pre> Slider.create({     ID: "mySlider" }); Canvas.create({     ID: "myCanvas",     dynamicContents: true,     contents: "The slider value is \${mySlider.getValue()}." });      myCanvas.observe(mySlider, "valueChanged",                   "observer.markForRedraw()"); </pre> You can embed an arbitrary number of dynamic expressions in the contents string.  The search and replace is optimized for speed. <p> If an error occurs during the evaluation of one of the expressions, a warning is logged to the ISC Developer Console and the error string is embedded in place of the expected value in the Canvas. <p> The value of a function is its return value.  The value of any variable is the same as that returned by its toString() representation. <p> Inside the evalution contentext, <code>this</code> points to the canvas instance that has the dynamicContents string as its contents - in other words the canvas instance on which the template is declared.
+    * Dynamic contents allows the contents string to be treated as a simple, but powerful&#010 template.  When this attribute is set to true, expressions of the form \${arbitrary JS&#010 here} are replaced by the result of the evaluation of the JS code inside the curly&#010 brackets.  This evaluation happens at draw time.  If you want to trigger a re-evaluation&#010 of the expressions in the contents string you can call markForRedraw() on the canvas.&#010 <p>&#010 You can use this feature to build some simple custom components. For example, let's say&#010 you want to show the value of a Slider in a Canvas somewhere on the screen.  You can do&#010 this by observing the valueChanged() method on the slider and calling setContents() on&#010 your canvas with the new string or you can set the contents of the canvas to something&#010 like:&#010 <p><code>&#010 "The slider value is \${sliderInstance.getValue()}."&#010 </code><p>&#010 Next you set dynamicContents: true on the canvas, observe valueChanged() on the slider&#010 and call canvas.markForRedraw() in that observation.  This approach is cleaner than&#010 setContents() when the Canvas is aggregating several values or dynamic expressions.&#010 Like so:&#010 <p>&#010 <pre>&#010 Slider.create({&#010     ID: "mySlider"&#010 });&#010&#010 Canvas.create({&#010     ID: "myCanvas",&#010     dynamicContents: true,&#010     contents: "The slider value is \${mySlider.getValue()}."&#010 });&#010     &#010 myCanvas.observe(mySlider, "valueChanged", &#010                  "observer.markForRedraw()");&#010 </pre>&#010 You can embed an arbitrary number of dynamic expressions in the contents string.  The&#010 search and replace is optimized for speed.&#010 <p>&#010 If an error occurs during the evaluation of one of the expressions, a warning is logged&#010 to the ISC Developer Console and the error string is embedded in place of the expected&#010 value in the Canvas.&#010 <p>&#010 The value of a function is its return value.  The value of any variable is the same as&#010 that returned by its toString() representation.&#010 <p>&#010 Inside the evalution contentext, <code>this</code> points to the canvas instance that&#010 has the dynamicContents string as its contents - in other words the canvas instance on&#010 which the template is declared.
     * <p><b>Note : </b> This is an advanced setting</p>
     *
     * @param dynamicContents dynamicContents Default value is false
@@ -123,7 +123,7 @@ public class Label extends Button {
         setAttribute("dynamicContents", dynamicContents, true);
     }
     /**
-     * Dynamic contents allows the contents string to be treated as a simple, but powerful template.  When this attribute is set to true, expressions of the form \${arbitrary JS here} are replaced by the result of the evaluation of the JS code inside the curly brackets.  This evaluation happens at draw time.  If you want to trigger a re-evaluation of the expressions in the contents string you can call markForRedraw() on the canvas. <p> You can use this feature to build some simple custom components. For example, let's say you want to show the value of a Slider in a Canvas somewhere on the screen.  You can do this by observing the valueChanged() method on the slider and calling setContents() on your canvas with the new string or you can set the contents of the canvas to something like: <p><code> "The slider value is \${sliderInstance.getValue()}." </code><p> Next you set dynamicContents: true on the canvas, observe valueChanged() on the slider and call canvas.markForRedraw() in that observation.  This approach is cleaner than setContents() when the Canvas is aggregating several values or dynamic expressions. Like so: <p> <pre> Slider.create({     ID: "mySlider" }); Canvas.create({     ID: "myCanvas",     dynamicContents: true,     contents: "The slider value is \${mySlider.getValue()}." });      myCanvas.observe(mySlider, "valueChanged",                   "observer.markForRedraw()"); </pre> You can embed an arbitrary number of dynamic expressions in the contents string.  The search and replace is optimized for speed. <p> If an error occurs during the evaluation of one of the expressions, a warning is logged to the ISC Developer Console and the error string is embedded in place of the expected value in the Canvas. <p> The value of a function is its return value.  The value of any variable is the same as that returned by its toString() representation. <p> Inside the evalution contentext, <code>this</code> points to the canvas instance that has the dynamicContents string as its contents - in other words the canvas instance on which the template is declared.
+     * Dynamic contents allows the contents string to be treated as a simple, but powerful&#010 template.  When this attribute is set to true, expressions of the form \${arbitrary JS&#010 here} are replaced by the result of the evaluation of the JS code inside the curly&#010 brackets.  This evaluation happens at draw time.  If you want to trigger a re-evaluation&#010 of the expressions in the contents string you can call markForRedraw() on the canvas.&#010 <p>&#010 You can use this feature to build some simple custom components. For example, let's say&#010 you want to show the value of a Slider in a Canvas somewhere on the screen.  You can do&#010 this by observing the valueChanged() method on the slider and calling setContents() on&#010 your canvas with the new string or you can set the contents of the canvas to something&#010 like:&#010 <p><code>&#010 "The slider value is \${sliderInstance.getValue()}."&#010 </code><p>&#010 Next you set dynamicContents: true on the canvas, observe valueChanged() on the slider&#010 and call canvas.markForRedraw() in that observation.  This approach is cleaner than&#010 setContents() when the Canvas is aggregating several values or dynamic expressions.&#010 Like so:&#010 <p>&#010 <pre>&#010 Slider.create({&#010     ID: "mySlider"&#010 });&#010&#010 Canvas.create({&#010     ID: "myCanvas",&#010     dynamicContents: true,&#010     contents: "The slider value is \${mySlider.getValue()}."&#010 });&#010     &#010 myCanvas.observe(mySlider, "valueChanged", &#010                  "observer.markForRedraw()");&#010 </pre>&#010 You can embed an arbitrary number of dynamic expressions in the contents string.  The&#010 search and replace is optimized for speed.&#010 <p>&#010 If an error occurs during the evaluation of one of the expressions, a warning is logged&#010 to the ISC Developer Console and the error string is embedded in place of the expected&#010 value in the Canvas.&#010 <p>&#010 The value of a function is its return value.  The value of any variable is the same as&#010 that returned by its toString() representation.&#010 <p>&#010 Inside the evalution contentext, <code>this</code> points to the canvas instance that&#010 has the dynamicContents string as its contents - in other words the canvas instance on&#010 which the template is declared.
      *
      *
      * @return Boolean
@@ -191,7 +191,7 @@ public class Label extends Button {
     }
 
     /**
-    * If true, ignore the specified size of this widget and always size just large enough to accomodate the title.  If <code>setWidth()</code> is explicitly called on an autoFit:true button, autoFit will be reset to <code>false</code>. <P> Note that for StretchImgButton instances, autoFit will occur horizontally only, as  unpredictable vertical sizing is likely to distort the media. If you do want vertical  auto-fit, this can be achieved by simply setting a small height, and having  overflow:"visible"
+    * If true, ignore the specified size of this widget and always size just large&#010 enough to accomodate the title.  If <code>setWidth()</code> is explicitly called on an&#010 autoFit:true button, autoFit will be reset to <code>false</code>.&#010 <P>&#010 Note that for StretchImgButton instances, autoFit will occur horizontally only, as &#010 unpredictable vertical sizing is likely to distort the media. If you do want vertical &#010 auto-fit, this can be achieved by simply setting a small height, and having &#010 overflow:"visible"
     *
     * @param autoFit autoFit Default value is null
     */
@@ -199,7 +199,7 @@ public class Label extends Button {
         setAttribute("autoFit", autoFit, true);
     }
     /**
-     * If true, ignore the specified size of this widget and always size just large enough to accomodate the title.  If <code>setWidth()</code> is explicitly called on an autoFit:true button, autoFit will be reset to <code>false</code>. <P> Note that for StretchImgButton instances, autoFit will occur horizontally only, as  unpredictable vertical sizing is likely to distort the media. If you do want vertical  auto-fit, this can be achieved by simply setting a small height, and having  overflow:"visible"
+     * If true, ignore the specified size of this widget and always size just large&#010 enough to accomodate the title.  If <code>setWidth()</code> is explicitly called on an&#010 autoFit:true button, autoFit will be reset to <code>false</code>.&#010 <P>&#010 Note that for StretchImgButton instances, autoFit will occur horizontally only, as &#010 unpredictable vertical sizing is likely to distort the media. If you do want vertical &#010 auto-fit, this can be achieved by simply setting a small height, and having &#010 overflow:"visible"
      *
      *
      * @return Boolean
@@ -210,8 +210,8 @@ public class Label extends Button {
     }
 
     /**
-    * Optional icon to be shown with the button title text.   <P> Specify as the partial URL to an image, relative to the imgDir of this component.
-    * Change the icon being shown next to the title text.
+    * Optional icon to be shown with the button title text.  &#010 <P>&#010 Specify as the partial URL to an image, relative to the imgDir of this component.
+    * Change the icon being shown next to the title text.&#010
     *
     * @param icon URL of new icon. Default value is null
     */
@@ -219,7 +219,7 @@ public class Label extends Button {
         setAttribute("icon", icon, true);
     }
     /**
-     * Optional icon to be shown with the button title text.   <P> Specify as the partial URL to an image, relative to the imgDir of this component.
+     * Optional icon to be shown with the button title text.  &#010 <P>&#010 Specify as the partial URL to an image, relative to the imgDir of this component.
      *
      *
      * @return String
@@ -230,7 +230,7 @@ public class Label extends Button {
     }
 
     /**
-    * Size in pixels of the icon image. <P> The <code>iconWidth</code> and <code>iconHeight</code> properties can be used to configure width and height separately.
+    * Size in pixels of the icon image.&#010 <P>&#010 The <code>iconWidth</code> and <code>iconHeight</code> properties can be used to&#010 configure width and height separately.
     *
     * @param iconSize iconSize Default value is 16
     * @throws IllegalStateException this property cannot be changed after the component has been created
@@ -239,7 +239,7 @@ public class Label extends Button {
         setAttribute("iconSize", iconSize, false);
     }
     /**
-     * Size in pixels of the icon image. <P> The <code>iconWidth</code> and <code>iconHeight</code> properties can be used to configure width and height separately.
+     * Size in pixels of the icon image.&#010 <P>&#010 The <code>iconWidth</code> and <code>iconHeight</code> properties can be used to&#010 configure width and height separately.
      *
      *
      * @return int
@@ -250,7 +250,7 @@ public class Label extends Button {
     }
 
     /**
-    * Width in pixels of the icon image. <P> If unset, defaults to <code>iconSize</code>
+    * Width in pixels of the icon image.&#010 <P>&#010 If unset, defaults to <code>iconSize</code>
     *
     * @param iconWidth iconWidth Default value is null
     * @throws IllegalStateException this property cannot be changed after the component has been created
@@ -259,7 +259,7 @@ public class Label extends Button {
         setAttribute("iconWidth", iconWidth, false);
     }
     /**
-     * Width in pixels of the icon image. <P> If unset, defaults to <code>iconSize</code>
+     * Width in pixels of the icon image.&#010 <P>&#010 If unset, defaults to <code>iconSize</code>
      *
      *
      * @return Integer
@@ -270,7 +270,7 @@ public class Label extends Button {
     }
 
     /**
-    * Height in pixels of the icon image. <P> If unset, defaults to <code>iconSize</code>
+    * Height in pixels of the icon image.&#010 <P>&#010 If unset, defaults to <code>iconSize</code>
     *
     * @param iconHeight iconHeight Default value is null
     * @throws IllegalStateException this property cannot be changed after the component has been created
@@ -279,7 +279,7 @@ public class Label extends Button {
         setAttribute("iconHeight", iconHeight, false);
     }
     /**
-     * Height in pixels of the icon image. <P> If unset, defaults to <code>iconSize</code>
+     * Height in pixels of the icon image.&#010 <P>&#010 If unset, defaults to <code>iconSize</code>
      *
      *
      * @return Integer
@@ -290,8 +290,8 @@ public class Label extends Button {
     }
 
     /**
-    * If this button is showing an icon should it appear to the left or right of the title? valid options are <code>"left"</code> and <code>"right"</code>.
-    * Changes the orientation of the icon relative to the text of the button.
+    * If this button is showing an icon should it appear to the left or right of the title?&#010 valid options are <code>"left"</code> and <code>"right"</code>.
+    * Changes the orientation of the icon relative to the text of the button.&#010&#010
     *
     * @param iconOrientation The new orientation of the icon relative to the text of the button.. Default value is "left"
     * @throws IllegalStateException this property cannot be changed after the component has been created
@@ -300,7 +300,7 @@ public class Label extends Button {
         setAttribute("iconOrientation", iconOrientation, false);
     }
     /**
-     * If this button is showing an icon should it appear to the left or right of the title? valid options are <code>"left"</code> and <code>"right"</code>.
+     * If this button is showing an icon should it appear to the left or right of the title?&#010 valid options are <code>"left"</code> and <code>"right"</code>.
      *
      *
      * @return String
@@ -351,7 +351,7 @@ public class Label extends Button {
     }
 
     /**
-    * If using an icon for this button, whether to switch the icon image if the button becomes disabled.
+    * If using an icon for this button, whether to switch the icon image if the button becomes&#010 disabled.
     *
     * @param showDisabledIcon showDisabledIcon Default value is true
     * @throws IllegalStateException this property cannot be changed after the component has been created
@@ -360,7 +360,7 @@ public class Label extends Button {
         setAttribute("showDisabledIcon", showDisabledIcon, false);
     }
     /**
-     * If using an icon for this button, whether to switch the icon image if the button becomes disabled.
+     * If using an icon for this button, whether to switch the icon image if the button becomes&#010 disabled.
      *
      *
      * @return Boolean
@@ -391,7 +391,7 @@ public class Label extends Button {
     }
 
     /**
-    * If using an icon for this button, whether to switch the icon image when the button recieves focus. <P> If {@link com.smartgwt.client.widgets.StatefulCanvas#getShowFocusedAsOver showFocusedAsOver} is true, the <code>"Over"</code> icon will be displayed when the canvas has focus, otherwise a seperate <code>"Focused"</code> icon will be displayed
+    * If using an icon for this button, whether to switch the icon image when the button&#010 recieves focus.&#010 <P>&#010 If {@link com.smartgwt.client.widgets.StatefulCanvas#getShowFocusedAsOver showFocusedAsOver} is true, the <code>"Over"</code> icon will be&#010 displayed when the canvas has focus, otherwise a seperate <code>"Focused"</code> icon&#010 will be displayed
     *
     * @param showFocusedIcon showFocusedIcon Default value is false
     * @throws IllegalStateException this property cannot be changed after the component has been created
@@ -400,7 +400,7 @@ public class Label extends Button {
         setAttribute("showFocusedIcon", showFocusedIcon, false);
     }
     /**
-     * If using an icon for this button, whether to switch the icon image when the button recieves focus. <P> If {@link com.smartgwt.client.widgets.StatefulCanvas#getShowFocusedAsOver showFocusedAsOver} is true, the <code>"Over"</code> icon will be displayed when the canvas has focus, otherwise a seperate <code>"Focused"</code> icon will be displayed
+     * If using an icon for this button, whether to switch the icon image when the button&#010 recieves focus.&#010 <P>&#010 If {@link com.smartgwt.client.widgets.StatefulCanvas#getShowFocusedAsOver showFocusedAsOver} is true, the <code>"Over"</code> icon will be&#010 displayed when the canvas has focus, otherwise a seperate <code>"Focused"</code> icon&#010 will be displayed
      *
      *
      * @return Boolean
@@ -411,7 +411,7 @@ public class Label extends Button {
     }
 
     /**
-    * If using an icon for this button, whether to switch the icon image when the mouse goes down on the button.
+    * If using an icon for this button, whether to switch the icon image when the mouse goes&#010 down on the button.
     *
     * @param showDownIcon showDownIcon Default value is false
     * @throws IllegalStateException this property cannot be changed after the component has been created
@@ -420,7 +420,7 @@ public class Label extends Button {
         setAttribute("showDownIcon", showDownIcon, false);
     }
     /**
-     * If using an icon for this button, whether to switch the icon image when the mouse goes down on the button.
+     * If using an icon for this button, whether to switch the icon image when the mouse goes&#010 down on the button.
      *
      *
      * @return Boolean
@@ -431,7 +431,7 @@ public class Label extends Button {
     }
 
     /**
-    * If using an icon for this button, whether to switch the icon image when the button becomes selected.
+    * If using an icon for this button, whether to switch the icon image when the button&#010 becomes selected.
     *
     * @param showSelectedIcon showSelectedIcon Default value is false
     * @throws IllegalStateException this property cannot be changed after the component has been created
@@ -440,7 +440,7 @@ public class Label extends Button {
         setAttribute("showSelectedIcon", showSelectedIcon, false);
     }
     /**
-     * If using an icon for this button, whether to switch the icon image when the button becomes selected.
+     * If using an icon for this button, whether to switch the icon image when the button&#010 becomes selected.
      *
      *
      * @return Boolean

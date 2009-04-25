@@ -22,7 +22,7 @@ import com.google.gwt.event.shared.HasHandlers;
 
 public interface HasColorSelectedHandlers extends HasHandlers {
     /**
-     * Override this method to be notified when the user selects a color either by clicking a basic color box in simple mode, or by clicking  the OK button in complex mode. It is not intended that client code  call this method.
+     * Override this method to be notified when the user selects a color&#010 either by clicking a basic color box in simple mode, or by clicking &#010 the OK button in complex mode. It is not intended that client code &#010 call this method.&#010
      */
     HandlerRegistration addColorSelectedHandler(ColorSelectedHandler handler);
 }

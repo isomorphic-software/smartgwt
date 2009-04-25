@@ -56,7 +56,7 @@ import com.smartgwt.client.util.EnumUtil;
 import com.google.gwt.event.shared.*;
 import com.google.gwt.event.shared.HasHandlers;
    /**
-    * An object literal with a particular set of properties used to configure the display of and interaction with the columns of a {@link com.smartgwt.client.widgets.tree.TreeGrid}. {@link com.smartgwt.client.widgets.tree.TreeGrid} is a subclass of {@link com.smartgwt.client.widgets.grid.ListGrid} and as a result, for all fields except the field containing the {@link com.smartgwt.client.widgets.tree.Tree} itself (specified by {@link com.smartgwt.client.widgets.tree.TreeGridField#getTreeField treeField}, all properties settable on ${isc.DocUtils.linkForRef('object:ListGridField')} apply to TreeGridField as well. <p> This class documents just those properties that are specific to TreeGridFields - see ${isc.DocUtils.linkForRef('object:ListGridField')} for the set of inherited properties.
+    * An object literal with a particular set of properties used to configure the display of&#010 and interaction with the columns of a {@link com.smartgwt.client.widgets.tree.TreeGrid}.&#010 {@link com.smartgwt.client.widgets.tree.TreeGrid} is a subclass of {@link com.smartgwt.client.widgets.grid.ListGrid} and as a result, for all fields except&#010 the field containing the {@link com.smartgwt.client.widgets.tree.Tree} itself (specified by&#010 {@link com.smartgwt.client.widgets.tree.TreeGridField#getTreeField treeField}, all properties settable on&#010 ${isc.DocUtils.linkForRef('object:ListGridField')} apply to TreeGridField as well.&#010 <p>&#010 This class documents just those properties that are specific to TreeGridFields - see&#010 ${isc.DocUtils.linkForRef('object:ListGridField')} for the set of inherited properties.
 
     */
 public class TreeGridField extends ListGridField {
@@ -98,7 +98,7 @@ public class TreeGridField extends ListGridField {
     // ********************* Properties / Attributes ***********************
 
     /**
-    * The field containing <code>treeField: true</code> will display the {@link com.smartgwt.client.widgets.tree.Tree}.  If no field specifies this property, the first field in {@link com.smartgwt.client.widgets.tree.TreeGrid#getFields fields} is assigned to display the {@link com.smartgwt.client.widgets.tree.Tree}.
+    * The field containing <code>treeField: true</code> will display the {@link com.smartgwt.client.widgets.tree.Tree}.  If no&#010 field specifies this property, the first field in {@link com.smartgwt.client.widgets.tree.TreeGrid#getFields fields} is assigned to&#010 display the {@link com.smartgwt.client.widgets.tree.Tree}.
     *
     * @param treeField treeField Default value is see below
     */
@@ -106,7 +106,7 @@ public class TreeGridField extends ListGridField {
         setAttribute("treeField", treeField);
     }
     /**
-     * The field containing <code>treeField: true</code> will display the {@link com.smartgwt.client.widgets.tree.Tree}.  If no field specifies this property, the first field in {@link com.smartgwt.client.widgets.tree.TreeGrid#getFields fields} is assigned to display the {@link com.smartgwt.client.widgets.tree.Tree}.
+     * The field containing <code>treeField: true</code> will display the {@link com.smartgwt.client.widgets.tree.Tree}.  If no&#010 field specifies this property, the first field in {@link com.smartgwt.client.widgets.tree.TreeGrid#getFields fields} is assigned to&#010 display the {@link com.smartgwt.client.widgets.tree.Tree}.
      *
      *
      * @return Boolean

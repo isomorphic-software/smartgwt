@@ -22,7 +22,7 @@ import com.google.gwt.event.shared.HasHandlers;
 
 public interface HasRowOutHandlers extends HasHandlers {
     /**
-     * Called when the mouse pointer leaves a row
+     * Called when the mouse pointer leaves a row&#010&#010
      */
     HandlerRegistration addRowOutHandler(RowOutHandler handler);
 }

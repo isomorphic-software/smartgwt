@@ -56,7 +56,7 @@ import com.smartgwt.client.util.EnumUtil;
 import com.google.gwt.event.shared.*;
 import com.google.gwt.event.shared.HasHandlers;
    /**
-    * Tabs are specified as objects, not class instances.  For example, when developing in JavaScript, a typical initialization block for a TabSet would look like this: <pre> TabSet.create({     tabs: [         {title: "tab1", pane: "pane1"},         {title: "tab2"}     ] }); </pre> And in XML: <pre> &lt;TabSet&gt;    &lt;tabs&gt;        &lt;Tab title="tab1" pane="pane1"/&gt;        &lt;Tab title="tab2"/&gt;    &lt;/tabs&gt; &lt;/TabSet&gt; </pre>
+    * Tabs are specified as objects, not class instances.  For example, when&#010 developing in JavaScript, a typical initialization block for a TabSet would look like&#010 this:&#010 <pre>&#010 TabSet.create({&#010     tabs: [&#010         {title: "tab1", pane: "pane1"},&#010         {title: "tab2"}&#010     ]&#010 });&#010 </pre>&#010 And in XML:&#010 <pre>&#010 &lt;TabSet&gt;&#010    &lt;tabs&gt;&#010        &lt;Tab title="tab1" pane="pane1"/&gt;&#010        &lt;Tab title="tab2"/&gt;&#010    &lt;/tabs&gt;&#010 &lt;/TabSet&gt;&#010 </pre>
 
     */
 public class Tab extends RefDataClass {
@@ -95,7 +95,7 @@ public class Tab extends RefDataClass {
     // ********************* Properties / Attributes ***********************
 
     /**
-    * Specifies the title of the this tab.  To change the title after the TabSet has been created, call {@link com.smartgwt.client.widgets.tab.TabSet#setTabTitle}.
+    * Specifies the title of the this tab.  To change the title after the TabSet has been&#010 created, call {@link com.smartgwt.client.widgets.tab.TabSet#setTabTitle}.
     *
     * @param title title Default value is null
     */
@@ -103,7 +103,7 @@ public class Tab extends RefDataClass {
         setAttribute("title", title);
     }
     /**
-     * Specifies the title of the this tab.  To change the title after the TabSet has been created, call {@link com.smartgwt.client.widgets.tab.TabSet#setTabTitle}.
+     * Specifies the title of the this tab.  To change the title after the TabSet has been&#010 created, call {@link com.smartgwt.client.widgets.tab.TabSet#setTabTitle}.
      *
      *
      * @return String
@@ -114,7 +114,7 @@ public class Tab extends RefDataClass {
     }
 
     /**
-    * If {@link com.smartgwt.client.widgets.tab.TabSet#getShowTabPicker showTabPicker} is true for this TabSet, if set this property will determine the title of the picker menu item for this tab. If unset, {@link com.smartgwt.client.widgets.tab.Tab#getTitle title} will be used instead
+    * If {@link com.smartgwt.client.widgets.tab.TabSet#getShowTabPicker showTabPicker} is true for this TabSet, if set this property will determine&#010 the title of the picker menu item for this tab. If unset, {@link com.smartgwt.client.widgets.tab.Tab#getTitle title} will be used&#010 instead
     *
     * @param pickerTitle pickerTitle Default value is null
     */
@@ -122,7 +122,7 @@ public class Tab extends RefDataClass {
         setAttribute("pickerTitle", pickerTitle);
     }
     /**
-     * If {@link com.smartgwt.client.widgets.tab.TabSet#getShowTabPicker showTabPicker} is true for this TabSet, if set this property will determine the title of the picker menu item for this tab. If unset, {@link com.smartgwt.client.widgets.tab.Tab#getTitle title} will be used instead
+     * If {@link com.smartgwt.client.widgets.tab.TabSet#getShowTabPicker showTabPicker} is true for this TabSet, if set this property will determine&#010 the title of the picker menu item for this tab. If unset, {@link com.smartgwt.client.widgets.tab.Tab#getTitle title} will be used&#010 instead
      *
      *
      * @return String
@@ -133,7 +133,7 @@ public class Tab extends RefDataClass {
     }
 
     /**
-    * Optional ID for the tab, which can later be used to reference the tab. APIs requiring a referenct a tab will accept the tabs ID  [including  {@link com.smartgwt.client.widgets.tab.TabSet#selectTab}, {@link com.smartgwt.client.widgets.tab.TabSet#updateTab}, {@link com.smartgwt.client.widgets.tab.TabSet#removeTab}].<br> The ID will also be passed to the {@link com.smartgwt.client.widgets.tab.TabSet#tabSelected} and {@link com.smartgwt.client.widgets.tab.TabSet#tabDeselected} handler functions, if specified. <p> Note that if you provide an ID, it must be globally unique.
+    * Optional ID for the tab, which can later be used to reference the tab.&#010 APIs requiring a referenct a tab will accept the tabs ID &#010 [including  {@link com.smartgwt.client.widgets.tab.TabSet#selectTab}, {@link com.smartgwt.client.widgets.tab.TabSet#updateTab}, {@link com.smartgwt.client.widgets.tab.TabSet#removeTab}].<br>&#010 The ID will also be passed to the {@link com.smartgwt.client.widgets.tab.TabSet#tabSelected} and {@link com.smartgwt.client.widgets.tab.TabSet#tabDeselected}&#010 handler functions, if specified.&#010 <p>&#010 Note that if you provide an ID, it must be globally unique.
     *
     * @param ID ID Default value is null
     */
@@ -141,7 +141,7 @@ public class Tab extends RefDataClass {
         setAttribute("ID", ID);
     }
     /**
-     * Optional ID for the tab, which can later be used to reference the tab. APIs requiring a referenct a tab will accept the tabs ID  [including  {@link com.smartgwt.client.widgets.tab.TabSet#selectTab}, {@link com.smartgwt.client.widgets.tab.TabSet#updateTab}, {@link com.smartgwt.client.widgets.tab.TabSet#removeTab}].<br> The ID will also be passed to the {@link com.smartgwt.client.widgets.tab.TabSet#tabSelected} and {@link com.smartgwt.client.widgets.tab.TabSet#tabDeselected} handler functions, if specified. <p> Note that if you provide an ID, it must be globally unique.
+     * Optional ID for the tab, which can later be used to reference the tab.&#010 APIs requiring a referenct a tab will accept the tabs ID &#010 [including  {@link com.smartgwt.client.widgets.tab.TabSet#selectTab}, {@link com.smartgwt.client.widgets.tab.TabSet#updateTab}, {@link com.smartgwt.client.widgets.tab.TabSet#removeTab}].<br>&#010 The ID will also be passed to the {@link com.smartgwt.client.widgets.tab.TabSet#tabSelected} and {@link com.smartgwt.client.widgets.tab.TabSet#tabDeselected}&#010 handler functions, if specified.&#010 <p>&#010 Note that if you provide an ID, it must be globally unique.
      *
      *
      * @return String
@@ -152,7 +152,7 @@ public class Tab extends RefDataClass {
     }
 
     /**
-    * You can specify an explicit width for the tab using this property.  Note that tabs automatically size to make room for the full title, but if you want to e.g. specify a uniform width for all tabs in a TabSet, this property enables you to do so.
+    * You can specify an explicit width for the tab using this property.  Note that tabs&#010 automatically size to make room for the full title, but if you want to e.g. specify a&#010 uniform width for all tabs in a TabSet, this property enables you to do so.
     *
     * @param width width Default value is 100
     */
@@ -160,7 +160,7 @@ public class Tab extends RefDataClass {
         setAttribute("width", width);
     }
     /**
-     * You can specify an explicit width for the tab using this property.  Note that tabs automatically size to make room for the full title, but if you want to e.g. specify a uniform width for all tabs in a TabSet, this property enables you to do so.
+     * You can specify an explicit width for the tab using this property.  Note that tabs&#010 automatically size to make room for the full title, but if you want to e.g. specify a&#010 uniform width for all tabs in a TabSet, this property enables you to do so.
      *
      *
      * @return int
@@ -171,7 +171,7 @@ public class Tab extends RefDataClass {
     }
 
     /**
-    * If specified, this tab will initially be rendered in a disabled state. To enable or disable tabs on the fly use the {@link com.smartgwt.client.widgets.tab.TabSet#enableTab}, and {@link com.smartgwt.client.widgets.tab.TabSet#disableTab} methods.
+    * If specified, this tab will initially be rendered in a disabled state. To enable or&#010 disable tabs on the fly use the {@link com.smartgwt.client.widgets.tab.TabSet#enableTab}, and {@link com.smartgwt.client.widgets.tab.TabSet#disableTab}&#010 methods.
     *
     * @param disabled disabled Default value is null
     */
@@ -179,7 +179,7 @@ public class Tab extends RefDataClass {
         setAttribute("disabled", disabled);
     }
     /**
-     * If specified, this tab will initially be rendered in a disabled state. To enable or disable tabs on the fly use the {@link com.smartgwt.client.widgets.tab.TabSet#enableTab}, and {@link com.smartgwt.client.widgets.tab.TabSet#disableTab} methods.
+     * If specified, this tab will initially be rendered in a disabled state. To enable or&#010 disable tabs on the fly use the {@link com.smartgwt.client.widgets.tab.TabSet#enableTab}, and {@link com.smartgwt.client.widgets.tab.TabSet#disableTab}&#010 methods.
      *
      *
      * @return Boolean
@@ -190,7 +190,7 @@ public class Tab extends RefDataClass {
     }
 
     /**
-    * If specified, this tab will show an icon next to the tab title.  Note that as with  {@link com.smartgwt.client.widgets.Button#getIcon icon}, the URL of a tabs icon will be updated to reflect disabled state.<br> If desired a click handler may be assigned to the icon, which will be fired when the user clicks the tab. This method takes a single parameter <code>tab</code>, a pointer to the tab object.
+    * If specified, this tab will show an icon next to the tab title.  Note that as with &#010 {@link com.smartgwt.client.widgets.Button#getIcon icon}, the URL of a tabs icon will be updated to reflect disabled state.<br>&#010 If desired a click handler may be assigned to the icon, which will be fired when the user&#010 clicks the tab. This method takes a single parameter <code>tab</code>, a pointer to the tab&#010 object.
     *
     * @param icon icon Default value is null
     */
@@ -198,7 +198,7 @@ public class Tab extends RefDataClass {
         setAttribute("icon", icon);
     }
     /**
-     * If specified, this tab will show an icon next to the tab title.  Note that as with  {@link com.smartgwt.client.widgets.Button#getIcon icon}, the URL of a tabs icon will be updated to reflect disabled state.<br> If desired a click handler may be assigned to the icon, which will be fired when the user clicks the tab. This method takes a single parameter <code>tab</code>, a pointer to the tab object.
+     * If specified, this tab will show an icon next to the tab title.  Note that as with &#010 {@link com.smartgwt.client.widgets.Button#getIcon icon}, the URL of a tabs icon will be updated to reflect disabled state.<br>&#010 If desired a click handler may be assigned to the icon, which will be fired when the user&#010 clicks the tab. This method takes a single parameter <code>tab</code>, a pointer to the tab&#010 object.
      *
      *
      * @return String
@@ -209,7 +209,7 @@ public class Tab extends RefDataClass {
     }
 
     /**
-    * Determines whether this tab should show an icon allowing the user to dismiss the tab by clicking on it directly. The URL for this icon's image will be derived from  {@link com.smartgwt.client.widgets.tab.TabSet#getCloseTabIcon closeTabIcon} by default, but may be overridden by explicitly specifying {@link com.smartgwt.client.widgets.tab.Tab#getCloseIcon closeIcon}.<br> If unset, this property is derived from {@link com.smartgwt.client.widgets.tab.TabSet#getCanCloseTabs canCloseTabs}
+    * Determines whether this tab should show an icon allowing the user to dismiss the tab by&#010 clicking on it directly. The URL for this icon's image will be derived from &#010 {@link com.smartgwt.client.widgets.tab.TabSet#getCloseTabIcon closeTabIcon} by default, but may be overridden by explicitly specifying&#010 {@link com.smartgwt.client.widgets.tab.Tab#getCloseIcon closeIcon}.<br>&#010 If unset, this property is derived from {@link com.smartgwt.client.widgets.tab.TabSet#getCanCloseTabs canCloseTabs}
     *
     * @param canClose canClose Default value is null
     */
@@ -217,7 +217,7 @@ public class Tab extends RefDataClass {
         setAttribute("canClose", canClose);
     }
     /**
-     * Determines whether this tab should show an icon allowing the user to dismiss the tab by clicking on it directly. The URL for this icon's image will be derived from  {@link com.smartgwt.client.widgets.tab.TabSet#getCloseTabIcon closeTabIcon} by default, but may be overridden by explicitly specifying {@link com.smartgwt.client.widgets.tab.Tab#getCloseIcon closeIcon}.<br> If unset, this property is derived from {@link com.smartgwt.client.widgets.tab.TabSet#getCanCloseTabs canCloseTabs}
+     * Determines whether this tab should show an icon allowing the user to dismiss the tab by&#010 clicking on it directly. The URL for this icon's image will be derived from &#010 {@link com.smartgwt.client.widgets.tab.TabSet#getCloseTabIcon closeTabIcon} by default, but may be overridden by explicitly specifying&#010 {@link com.smartgwt.client.widgets.tab.Tab#getCloseIcon closeIcon}.<br>&#010 If unset, this property is derived from {@link com.smartgwt.client.widgets.tab.TabSet#getCanCloseTabs canCloseTabs}
      *
      *
      * @return Boolean
@@ -228,7 +228,7 @@ public class Tab extends RefDataClass {
     }
 
     /**
-    * Custom src for the close icon for this tab to display if it is closeable. See {@link com.smartgwt.client.widgets.tab.Tab#getCanClose canClose} and {@link com.smartgwt.client.widgets.tab.TabSet#getCanCloseTabs canCloseTabs}.
+    * Custom src for the close icon for this tab to display if it is closeable.&#010 See {@link com.smartgwt.client.widgets.tab.Tab#getCanClose canClose} and {@link com.smartgwt.client.widgets.tab.TabSet#getCanCloseTabs canCloseTabs}.
     *
     * @param closeIcon closeIcon Default value is null
     */
@@ -236,7 +236,7 @@ public class Tab extends RefDataClass {
         setAttribute("closeIcon", closeIcon);
     }
     /**
-     * Custom src for the close icon for this tab to display if it is closeable. See {@link com.smartgwt.client.widgets.tab.Tab#getCanClose canClose} and {@link com.smartgwt.client.widgets.tab.TabSet#getCanCloseTabs canCloseTabs}.
+     * Custom src for the close icon for this tab to display if it is closeable.&#010 See {@link com.smartgwt.client.widgets.tab.Tab#getCanClose canClose} and {@link com.smartgwt.client.widgets.tab.TabSet#getCanCloseTabs canCloseTabs}.
      *
      *
      * @return String

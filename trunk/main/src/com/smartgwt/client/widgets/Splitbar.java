@@ -56,7 +56,7 @@ import com.smartgwt.client.util.EnumUtil;
 import com.google.gwt.event.shared.*;
 import com.google.gwt.event.shared.HasHandlers;
    /**
-    * Subclass of the {@link com.smartgwt.client.widgets.StretchImg} class. As with the {@link com.smartgwt.client.widgets.ImgSplitbar} class,   widgets of this class can be displayed as a resize-bar for widgets   in Layouts where showResizeBar is set to true. Provides a different appearance from  the <code>ImgSplitbar</code> class.<br>  To specify the resizeBar class for some layout, use the {@link com.smartgwt.client.widgets.layout.Layout#getResizeBarClass resizeBarClass}  property.
+    * Subclass of the {@link com.smartgwt.client.widgets.StretchImg} class. As with the {@link com.smartgwt.client.widgets.ImgSplitbar} class, &#010  widgets of this class can be displayed as a resize-bar for widgets &#010  in Layouts where showResizeBar is set to true. Provides a different appearance from&#010  the <code>ImgSplitbar</code> class.<br>&#010  To specify the resizeBar class for some layout, use the {@link com.smartgwt.client.widgets.layout.Layout#getResizeBarClass resizeBarClass}&#010  property.
 
     */
 public class Splitbar extends StretchImg {
@@ -89,7 +89,7 @@ public class Splitbar extends StretchImg {
     // ********************* Properties / Attributes ***********************
 
     /**
-     * Is this split bar vertically orientated?<br> When a <code>Splitbar</code> is created by a layout to be the resizeBar for some member of the layout, the <code>vertical</code> property will be set to <code>true</code> if the layout is horizontal, meaning this resizeBar will be taller than it is wide,  and will allow horizontal resizing of the member.
+     * Is this split bar vertically orientated?<br>&#010 When a <code>Splitbar</code> is created by a layout to be the resizeBar for some&#010 member of the layout, the <code>vertical</code> property will be set to <code>true</code>&#010 if the layout is horizontal, meaning this resizeBar will be taller than it is wide, &#010 and will allow horizontal resizing of the member.
      *
      * <b>Note :</b> This method should be called only after the widget has been rendered.
      *
@@ -103,7 +103,7 @@ public class Splitbar extends StretchImg {
     }
 
     /**
-    * The base URL for the image.  <P> As with {@link com.smartgwt.client.widgets.Img#getSrc src}, the ${isc.DocUtils.linkForRef('type:State')} of the component is added to this URL.  Then, the image segment name as specified by {@link com.smartgwt.client.widgets.StretchImg#getItems items} is added. <P> For example, for a stretchImg in "Over" state with a <code>src</code> of "button.png" and a segment name of "stretch", the resulting URL would be "button_Over_stretch.png".
+    * The base URL for the image. &#010 <P>&#010 As with {@link com.smartgwt.client.widgets.Img#getSrc src}, the ${isc.DocUtils.linkForRef('type:State')} of the component is added to this URL.  Then,&#010 the image segment name as specified by {@link com.smartgwt.client.widgets.StretchImg#getItems items} is added.&#010 <P>&#010 For example, for a stretchImg in "Over" state with a <code>src</code> of "button.png"&#010 and a segment name of "stretch", the resulting URL would be "button_Over_stretch.png".
     *
     * @param src src Default value is null
     * @throws IllegalStateException this property cannot be changed after the component has been created
@@ -112,7 +112,7 @@ public class Splitbar extends StretchImg {
         setAttribute("src", src, false);
     }
     /**
-     * The base URL for the image.  <P> As with {@link com.smartgwt.client.widgets.Img#getSrc src}, the ${isc.DocUtils.linkForRef('type:State')} of the component is added to this URL.  Then, the image segment name as specified by {@link com.smartgwt.client.widgets.StretchImg#getItems items} is added. <P> For example, for a stretchImg in "Over" state with a <code>src</code> of "button.png" and a segment name of "stretch", the resulting URL would be "button_Over_stretch.png".
+     * The base URL for the image. &#010 <P>&#010 As with {@link com.smartgwt.client.widgets.Img#getSrc src}, the ${isc.DocUtils.linkForRef('type:State')} of the component is added to this URL.  Then,&#010 the image segment name as specified by {@link com.smartgwt.client.widgets.StretchImg#getItems items} is added.&#010 <P>&#010 For example, for a stretchImg in "Over" state with a <code>src</code> of "button.png"&#010 and a segment name of "stretch", the resulting URL would be "button_Over_stretch.png".
      *
      *
      * @return String
@@ -123,7 +123,7 @@ public class Splitbar extends StretchImg {
     }
 
     /**
-    * Base URL for the image if {@link com.smartgwt.client.widgets.StretchImg#getVertical vertical} is false and  {@link com.smartgwt.client.widgets.StretchImg#getSrc src} is unset.
+    * Base URL for the image if {@link com.smartgwt.client.widgets.StretchImg#getVertical vertical} is false and &#010 {@link com.smartgwt.client.widgets.StretchImg#getSrc src} is unset.
     *
     * @param hSrc hSrc Default value is null
     * @throws IllegalStateException this property cannot be changed after the component has been created
@@ -132,7 +132,7 @@ public class Splitbar extends StretchImg {
         setAttribute("hSrc", hSrc, false);
     }
     /**
-     * Base URL for the image if {@link com.smartgwt.client.widgets.StretchImg#getVertical vertical} is false and  {@link com.smartgwt.client.widgets.StretchImg#getSrc src} is unset.
+     * Base URL for the image if {@link com.smartgwt.client.widgets.StretchImg#getVertical vertical} is false and &#010 {@link com.smartgwt.client.widgets.StretchImg#getSrc src} is unset.
      *
      *
      * @return String
@@ -143,7 +143,7 @@ public class Splitbar extends StretchImg {
     }
 
     /**
-    * Base URL for the image if {@link com.smartgwt.client.widgets.StretchImg#getVertical vertical} is true and  {@link com.smartgwt.client.widgets.StretchImg#getSrc src} is unset.
+    * Base URL for the image if {@link com.smartgwt.client.widgets.StretchImg#getVertical vertical} is true and &#010 {@link com.smartgwt.client.widgets.StretchImg#getSrc src} is unset.
     *
     * @param vSrc vSrc Default value is null
     * @throws IllegalStateException this property cannot be changed after the component has been created
@@ -152,7 +152,7 @@ public class Splitbar extends StretchImg {
         setAttribute("vSrc", vSrc, false);
     }
     /**
-     * Base URL for the image if {@link com.smartgwt.client.widgets.StretchImg#getVertical vertical} is true and  {@link com.smartgwt.client.widgets.StretchImg#getSrc src} is unset.
+     * Base URL for the image if {@link com.smartgwt.client.widgets.StretchImg#getVertical vertical} is true and &#010 {@link com.smartgwt.client.widgets.StretchImg#getSrc src} is unset.
      *
      *
      * @return String
@@ -205,7 +205,7 @@ public class Splitbar extends StretchImg {
     }
 
     /**
-    * If {@link com.smartgwt.client.widgets.Splitbar#getShowGrip showGrip} is true, this property determines whether to show the 'Down' state on the grip image when the user mousedown's on this widget.  Has no effect if {@link com.smartgwt.client.widgets.StatefulCanvas#getShowDown showDown} is false
+    * If {@link com.smartgwt.client.widgets.Splitbar#getShowGrip showGrip} is true, this property determines whether to show the&#010 'Down' state on the grip image when the user mousedown's on this widget. &#010 Has no effect if {@link com.smartgwt.client.widgets.StatefulCanvas#getShowDown showDown} is false
     * <p><b>Note : </b> This is an advanced setting</p>
     *
     * @param showDownGrip showDownGrip Default value is null
@@ -215,7 +215,7 @@ public class Splitbar extends StretchImg {
         setAttribute("showDownGrip", showDownGrip, false);
     }
     /**
-     * If {@link com.smartgwt.client.widgets.Splitbar#getShowGrip showGrip} is true, this property determines whether to show the 'Down' state on the grip image when the user mousedown's on this widget.  Has no effect if {@link com.smartgwt.client.widgets.StatefulCanvas#getShowDown showDown} is false
+     * If {@link com.smartgwt.client.widgets.Splitbar#getShowGrip showGrip} is true, this property determines whether to show the&#010 'Down' state on the grip image when the user mousedown's on this widget. &#010 Has no effect if {@link com.smartgwt.client.widgets.StatefulCanvas#getShowDown showDown} is false
      *
      *
      * @return Boolean
@@ -226,7 +226,7 @@ public class Splitbar extends StretchImg {
     }
 
     /**
-    * If {@link com.smartgwt.client.widgets.Splitbar#getShowGrip showGrip} is true, this property determines whether to show the 'Over' state on the grip image when the user rolls over on this widget.  Has no effect if {@link com.smartgwt.client.widgets.StatefulCanvas#getShowRollOver showRollOver} is false
+    * If {@link com.smartgwt.client.widgets.Splitbar#getShowGrip showGrip} is true, this property determines whether to show the&#010 'Over' state on the grip image when the user rolls over on this widget. &#010 Has no effect if {@link com.smartgwt.client.widgets.StatefulCanvas#getShowRollOver showRollOver} is false
     * <p><b>Note : </b> This is an advanced setting</p>
     *
     * @param showRollOverGrip showRollOverGrip Default value is null
@@ -236,7 +236,7 @@ public class Splitbar extends StretchImg {
         setAttribute("showRollOverGrip", showRollOverGrip, false);
     }
     /**
-     * If {@link com.smartgwt.client.widgets.Splitbar#getShowGrip showGrip} is true, this property determines whether to show the 'Over' state on the grip image when the user rolls over on this widget.  Has no effect if {@link com.smartgwt.client.widgets.StatefulCanvas#getShowRollOver showRollOver} is false
+     * If {@link com.smartgwt.client.widgets.Splitbar#getShowGrip showGrip} is true, this property determines whether to show the&#010 'Over' state on the grip image when the user rolls over on this widget. &#010 Has no effect if {@link com.smartgwt.client.widgets.StatefulCanvas#getShowRollOver showRollOver} is false
      *
      *
      * @return Boolean
@@ -247,7 +247,7 @@ public class Splitbar extends StretchImg {
     }
 
     /**
-    * If {@link com.smartgwt.client.widgets.Splitbar#getShowGrip showGrip} is true, this property determines whether the grip image displayed should show the <code>"Closed"</code> state when the {@link com.smartgwt.client.widgets.Splitbar#getTarget target}  is hidden.
+    * If {@link com.smartgwt.client.widgets.Splitbar#getShowGrip showGrip} is true, this property determines whether the grip image&#010 displayed should show the <code>"Closed"</code> state when the {@link com.smartgwt.client.widgets.Splitbar#getTarget target} &#010 is hidden.
     * <p><b>Note : </b> This is an advanced setting</p>
     *
     * @param showClosedGrip showClosedGrip Default value is null
@@ -257,7 +257,7 @@ public class Splitbar extends StretchImg {
         setAttribute("showClosedGrip", showClosedGrip, false);
     }
     /**
-     * If {@link com.smartgwt.client.widgets.Splitbar#getShowGrip showGrip} is true, this property determines whether the grip image displayed should show the <code>"Closed"</code> state when the {@link com.smartgwt.client.widgets.Splitbar#getTarget target}  is hidden.
+     * If {@link com.smartgwt.client.widgets.Splitbar#getShowGrip showGrip} is true, this property determines whether the grip image&#010 displayed should show the <code>"Closed"</code> state when the {@link com.smartgwt.client.widgets.Splitbar#getTarget target} &#010 is hidden.
      *
      *
      * @return Boolean
@@ -268,7 +268,7 @@ public class Splitbar extends StretchImg {
     }
 
     /**
-    * <code>canDrag</code> set to true to allow dragging of the split bar. Dragging the Splitbar will resize it's {@link com.smartgwt.client.widgets.Splitbar#getTarget target}
+    * <code>canDrag</code> set to true to allow dragging of the split bar. Dragging the&#010 Splitbar will resize it's {@link com.smartgwt.client.widgets.Splitbar#getTarget target}
     *
     * @param canDrag canDrag Default value is true
     */
@@ -276,7 +276,7 @@ public class Splitbar extends StretchImg {
         setAttribute("canDrag", canDrag, true);
     }
     /**
-     * <code>canDrag</code> set to true to allow dragging of the split bar. Dragging the Splitbar will resize it's {@link com.smartgwt.client.widgets.Splitbar#getTarget target}
+     * <code>canDrag</code> set to true to allow dragging of the split bar. Dragging the&#010 Splitbar will resize it's {@link com.smartgwt.client.widgets.Splitbar#getTarget target}
      *
      *
      * @return Boolean
@@ -287,7 +287,7 @@ public class Splitbar extends StretchImg {
     }
 
     /**
-    * If this property is true, a click on the Splitbar will collapse its  {@link com.smartgwt.client.widgets.Splitbar#getTarget target}, hiding it and shifting the Splitbar and other members of the layout across to fill the newly available space. If the target is already hidden a click will expand it again (showing it at it's normal size).
+    * If this property is true, a click on the Splitbar will collapse its &#010 {@link com.smartgwt.client.widgets.Splitbar#getTarget target}, hiding it and shifting the Splitbar and other members&#010 of the layout across to fill the newly available space. If the target is already hidden&#010 a click will expand it again (showing it at it's normal size).
     *
     * @param canCollapse canCollapse Default value is true
     */
@@ -295,7 +295,7 @@ public class Splitbar extends StretchImg {
         setAttribute("canCollapse", canCollapse, true);
     }
     /**
-     * If this property is true, a click on the Splitbar will collapse its  {@link com.smartgwt.client.widgets.Splitbar#getTarget target}, hiding it and shifting the Splitbar and other members of the layout across to fill the newly available space. If the target is already hidden a click will expand it again (showing it at it's normal size).
+     * If this property is true, a click on the Splitbar will collapse its &#010 {@link com.smartgwt.client.widgets.Splitbar#getTarget target}, hiding it and shifting the Splitbar and other members&#010 of the layout across to fill the newly available space. If the target is already hidden&#010 a click will expand it again (showing it at it's normal size).
      *
      *
      * @return Boolean
@@ -306,7 +306,7 @@ public class Splitbar extends StretchImg {
     }
              
     /**
-    * Splitbars' cursors are set at init time based on whether they are to be used for vertical or horizontal resize.  To customize the cursor for this class, modify  {@link com.smartgwt.client.widgets.Splitbar#getVResizeCursor vResizeCursor} or {@link com.smartgwt.client.widgets.Splitbar#getHResizeCursor hResizeCursor} rather than this property.
+    * Splitbars' cursors are set at init time based on whether they are to be used for vertical or&#010 horizontal resize.  To customize the cursor for this class, modify &#010 {@link com.smartgwt.client.widgets.Splitbar#getVResizeCursor vResizeCursor} or {@link com.smartgwt.client.widgets.Splitbar#getHResizeCursor hResizeCursor} rather than this property.
     *
     * @param cursor cursor Default value is "hand"
     */
@@ -314,7 +314,7 @@ public class Splitbar extends StretchImg {
         setAttribute("cursor", cursor.getValue(), true);
     }
     /**
-     * Splitbars' cursors are set at init time based on whether they are to be used for vertical or horizontal resize.  To customize the cursor for this class, modify  {@link com.smartgwt.client.widgets.Splitbar#getVResizeCursor vResizeCursor} or {@link com.smartgwt.client.widgets.Splitbar#getHResizeCursor hResizeCursor} rather than this property.
+     * Splitbars' cursors are set at init time based on whether they are to be used for vertical or&#010 horizontal resize.  To customize the cursor for this class, modify &#010 {@link com.smartgwt.client.widgets.Splitbar#getVResizeCursor vResizeCursor} or {@link com.smartgwt.client.widgets.Splitbar#getHResizeCursor hResizeCursor} rather than this property.
      *
      *
      * @return Cursor

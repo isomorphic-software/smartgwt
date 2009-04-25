@@ -112,7 +112,7 @@ public class RowEditorExitEvent extends BrowserEvent<RowEditorExitHandler>  impl
 
 
     /**
-     * Returning false from this method will cancel the default behavior                      (for example saving the row) and leave the editor visible and focus                      in this edit cell.
+     * Returning false from this method will cancel the default behavior                      (for example saving the row) and leave the editor visible and focus&#010                      in this edit cell.
      */
     public void cancel() {
         cancel = true;

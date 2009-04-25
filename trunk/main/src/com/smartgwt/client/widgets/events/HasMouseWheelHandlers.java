@@ -22,7 +22,7 @@ import com.google.gwt.event.shared.HasHandlers;
 
 public interface HasMouseWheelHandlers extends HasHandlers {
     /**
-     * Executed when the mouse wheel is actuated.
+     * &#010 Executed when the mouse wheel is actuated.&#010&#010
      */
     HandlerRegistration addMouseWheelHandler(MouseWheelHandler handler);
 }

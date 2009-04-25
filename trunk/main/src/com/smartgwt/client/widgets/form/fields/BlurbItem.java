@@ -56,7 +56,7 @@ import com.smartgwt.client.util.EnumUtil;
 import com.google.gwt.event.shared.*;
 import com.google.gwt.event.shared.HasHandlers;
    /**
-    * FormItem intended for inserting blurbs of instructional HTML into DynamicForms. <p> Set the <code>defaultValue</code> of this item to the HTML you want to embed in the form.
+    * FormItem intended for inserting blurbs of instructional HTML into DynamicForms.&#010 <p>&#010 Set the <code>defaultValue</code> of this item to the HTML you want to embed in the form.
 
     */
 public class BlurbItem extends FormItem {

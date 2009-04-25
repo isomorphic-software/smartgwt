@@ -22,7 +22,7 @@ import com.google.gwt.event.shared.HasHandlers;
 
 public interface HasCellMouseUpHandlers extends HasHandlers {
     /**
-     * Called when a cell receives a mouseup event.
+     * Called when a cell receives a mouseup event.&#010&#010
      */
     HandlerRegistration addCellMouseUpHandler(CellMouseUpHandler handler);
 }

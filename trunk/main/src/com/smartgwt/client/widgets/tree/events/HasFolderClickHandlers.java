@@ -22,7 +22,7 @@ import com.google.gwt.event.shared.HasHandlers;
 
 public interface HasFolderClickHandlers extends HasHandlers {
     /**
-     * This method is called when a folder record is clicked on.
+     * &#010 This method is called when a folder record is clicked on.&#010&#010
      */
     HandlerRegistration addFolderClickHandler(FolderClickHandler handler);
 }
