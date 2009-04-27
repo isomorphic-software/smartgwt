@@ -753,9 +753,14 @@ public class Tree extends BaseClass  implements com.smartgwt.client.widgets.tree
     // ********************* Static Methods ***********************
 
 
-
 
-
+
+
+
+
+
+
+
 
     /**
      * Optional initial data for the tree. How this data is interpreted depends on this tree's {@link
@@ -1143,7 +1148,7 @@ public class Tree extends BaseClass  implements com.smartgwt.client.widgets.tree
     public native TreeNode add(TreeNode node, TreeNode parent) /*-{
         var self = this.@com.smartgwt.client.core.BaseClass::getOrCreateJsObj()();
         var ret = self.add(node.@com.smartgwt.client.core.DataClass::getJsObj()(), parent.@com.smartgwt.client.core.DataClass::getJsObj()());
-        if(ret == null || ret === undefined) return null;
+        if(ret == null || ret === undefined || ret === false) return null;
         var retVal = @com.smartgwt.client.widgets.tree.TreeNode::getOrCreateRef(Lcom/google/gwt/core/client/JavaScriptObject;)(ret);
         return retVal;
     }-*/;
@@ -1160,7 +1165,7 @@ public class Tree extends BaseClass  implements com.smartgwt.client.widgets.tree
     public native TreeNode add(TreeNode node, String parentPath) /*-{
         var self = this.@com.smartgwt.client.core.BaseClass::getOrCreateJsObj()();
         var ret = self.add(node.@com.smartgwt.client.core.DataClass::getJsObj()(), parentPath);
-        if(ret == null || ret === undefined) return null;
+        if(ret == null || ret === undefined || ret === false) return null;
         var retVal = @com.smartgwt.client.widgets.tree.TreeNode::getOrCreateRef(Lcom/google/gwt/core/client/JavaScriptObject;)(ret);
         return retVal;
     }-*/;
@@ -1181,14 +1186,14 @@ public class Tree extends BaseClass  implements com.smartgwt.client.widgets.tree
     public native TreeNode add(TreeNode node, TreeNode parent, int position) /*-{
         var self = this.@com.smartgwt.client.core.BaseClass::getOrCreateJsObj()();
         var ret = self.add(node.@com.smartgwt.client.core.DataClass::getJsObj()(), parent.@com.smartgwt.client.core.DataClass::getJsObj()(), position);
-        if(ret == null || ret === undefined) return null;
+        if(ret == null || ret === undefined || ret === false) return null;
         return @com.smartgwt.client.widgets.tree.TreeNode::new(Lcom/google/gwt/core/client/JavaScriptObject;)(ret);
     }-*/;
 
     public native TreeNode add(TreeNode node, String parentPath, int position) /*-{
         var self = this.@com.smartgwt.client.core.BaseClass::getOrCreateJsObj()();
         var ret = self.add(node.@com.smartgwt.client.core.DataClass::getJsObj()(), parentPath, position);
-        if(ret == null || ret === undefined) return null;
+        if(ret == null || ret === undefined || ret === false) return null;
         return @com.smartgwt.client.widgets.tree.TreeNode::new(Lcom/google/gwt/core/client/JavaScriptObject;)(ret);
     }-*/;
 
