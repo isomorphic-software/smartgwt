@@ -148,7 +148,7 @@ package com.smartgwt.client.docs;
  * @see com.smartgwt.client.widgets.form.fields.TextItem#getWidth
  * @see com.smartgwt.client.widgets.form.fields.TextItem#getHeight
  * @see com.smartgwt.client.widgets.form.fields.TextItem#getTextBoxStyle
- * @see com.smartgwt.client.widgets.form.fields.TextItem#getHintInField
+ * @see com.smartgwt.client.widgets.form.fields.TextItem#getShowHintInField
  * @see com.smartgwt.client.widgets.form.fields.BlurbItem#getShowTitle
  * @see com.smartgwt.client.widgets.form.fields.BlurbItem#getColSpan
  * @see com.smartgwt.client.widgets.form.fields.BlurbItem#getTextBoxStyle

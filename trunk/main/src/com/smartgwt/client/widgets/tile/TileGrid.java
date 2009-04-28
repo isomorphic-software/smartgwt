@@ -346,6 +346,14 @@ public class TileGrid extends TileLayout  implements DataBoundComponent, com.sma
             self.filterData(criteria.@com.smartgwt.client.core.DataClass::getJsObj()(), callback, requestProperties.@com.smartgwt.client.core.DataClass::getJsObj()());
         }-*/;
 
+        /**
+         * Invalidate the current data cache for this databound component via a call to&#010 <code>this.data.invalidateCache()</code>. If necessary, this will cause a new fetch to &#010 be performed with the current set of criteria for this component.&#010 <P>&#010 Has no effect if this component is not showing a set of filtered data.&#010 &#010
+         */
+        public native void invalidateCache() /*-{
+            var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
+            self.invalidateCache();
+        }-*/;
+
 
 
         /**

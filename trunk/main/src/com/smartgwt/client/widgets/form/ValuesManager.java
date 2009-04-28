@@ -149,7 +149,7 @@ public class ValuesManager extends BaseClass {
 
 
         /**
-         * &#010 Edit an existing record.  Updates this editors values to match the values of the record &#010 passed in.&#010 <P>&#010 This method will also call {@link com.smartgwt.client.widgets.form.DynamicForm#setSaveOperationType} to ensure &#010 subsequent calls to <code>saveData()</code> will use an <code>update</code> rather than&#010 an <code>add</code> operation.&#010&#010
+         * &#010 Edit an existing record.  Updates this editors values to match the values of the record &#010 passed in, via {@link com.smartgwt.client.widgets.form.ValuesManager#setValues}.&#010 <P>&#010 This method will also call {@link com.smartgwt.client.widgets.form.DynamicForm#setSaveOperationType} to ensure &#010 subsequent calls to <code>saveData()</code> will use an <code>update</code> rather than&#010 an <code>add</code> operation.&#010&#010
          * @param record the record to be edited as a map of field names to their corresponding values
          */
         public native void editRecord(ListGridRecord record) /*-{

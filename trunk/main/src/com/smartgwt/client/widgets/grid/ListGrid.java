@@ -718,7 +718,7 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
     }
 
     /**
-    * When using data paging, how many records to fetch at a time.  The value of this&#010 attribute is passed on to the auto-constructed {@link com.smartgwt.client.data.ResultSet} object for this&#010 component.  In effect, this gives you control over the {@link com.smartgwt.client.data.ResultSet#getResultSize resultSize}&#010 attribute for this component.
+    * When using data paging, how many records to fetch at a time.  The value of this&#010 attribute is passed on to the auto-constructed {@link com.smartgwt.client.data.ResultSet} object for this&#010 component.  In effect, this gives you control over the {@link com.smartgwt.client.data.ResultSet#getResultSize resultSize}&#010 attribute for this component.&#010 <P>&#010 <b>Note</b> that regardless of the <code>dataPageSize</code> setting, a component will always fetch&#010 all of data that it needs to draw.  Settings such as&#010 {@link com.smartgwt.client.widgets.grid.ListGrid#getShowAllRecords showAllRecords},&#010 {@link com.smartgwt.client.widgets.grid.ListGrid#getDrawAllMaxCells drawAllMaxCells} and&#010 {@link com.smartgwt.client.widgets.grid.ListGrid#getDrawAheadRatio drawAheadRatio} can cause more rows than the configured&#010 <code>dataPageSize</code> to be fetched.
     *
     * @param dataPageSize dataPageSize Default value is 75
     */
@@ -726,7 +726,7 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
         setAttribute("dataPageSize", dataPageSize, true);
     }
     /**
-     * When using data paging, how many records to fetch at a time.  The value of this&#010 attribute is passed on to the auto-constructed {@link com.smartgwt.client.data.ResultSet} object for this&#010 component.  In effect, this gives you control over the {@link com.smartgwt.client.data.ResultSet#getResultSize resultSize}&#010 attribute for this component.
+     * When using data paging, how many records to fetch at a time.  The value of this&#010 attribute is passed on to the auto-constructed {@link com.smartgwt.client.data.ResultSet} object for this&#010 component.  In effect, this gives you control over the {@link com.smartgwt.client.data.ResultSet#getResultSize resultSize}&#010 attribute for this component.&#010 <P>&#010 <b>Note</b> that regardless of the <code>dataPageSize</code> setting, a component will always fetch&#010 all of data that it needs to draw.  Settings such as&#010 {@link com.smartgwt.client.widgets.grid.ListGrid#getShowAllRecords showAllRecords},&#010 {@link com.smartgwt.client.widgets.grid.ListGrid#getDrawAllMaxCells drawAllMaxCells} and&#010 {@link com.smartgwt.client.widgets.grid.ListGrid#getDrawAheadRatio drawAheadRatio} can cause more rows than the configured&#010 <code>dataPageSize</code> to be fetched.
      *
      *
      * @return int

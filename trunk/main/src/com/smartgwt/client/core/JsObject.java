@@ -41,14 +41,15 @@ public class JsObject {
             $wnd.isc.Browser.safariVersion = 525;
         }
 
-                //convert javascript data types into corresponding Java wrapper types
+        //convert javascript data types into corresponding Java wrapper types
         //int -> Integer, float -> Float, boolean -> Boolean and date - > java.util.Date
         $wnd.SmartGWT ={};
         $wnd.SmartGWT.convertToJavaType = function(obj) {
                 if(obj == null || obj === undefined) return null;
-                if(typeof obj == 'string') {
+                var objType = typeof obj;
+                if(objType == 'string') {
                     return obj;
-                } else if (typeof obj == 'number') {
+                } else if (objType == 'number') {
                     if(obj.toString().indexOf('.') == -1) {
                         if(obj <= @java.lang.Integer::MAX_VALUE) {
                             return @com.smartgwt.client.util.JSOHelper::toInteger(I)(obj);
@@ -62,14 +63,14 @@ public class JsObject {
                             return @com.smartgwt.client.util.JSOHelper::toDouble(D)(obj);
                         }
                     }
-                } else if(typeof obj == 'boolean') {
+                } else if(objType == 'boolean') {
                     return @com.smartgwt.client.util.JSOHelper::toBoolean(Z)(obj);
                 } else if($wnd.isA.Date(obj)) {
                     return @com.smartgwt.client.util.JSOHelper::toDate(D)(obj.getTime());
                 } else if(@com.smartgwt.client.util.JSOHelper::isJSO(Ljava/lang/Object;)(obj)) {
                     return obj;
                 } else {
-                    throw 'Unrecognized type ' + (typeof obj) + ' for value ' + obj.toString();
+                    throw 'Unrecognized type ' + (objType) + ' for value ' + obj.toString();
                 }
         };
     }-*/;
