@@ -115,18 +115,20 @@ public class RPCResponse extends DataClass {
     // ********************* Static Methods ***********************
 
 
-
-
 
-    public static int STATUS_FAILURE = -1;
-    public static int STATUS_LOGIN_INCORRECT = -5;
-    public static int STATUS_LOGIN_REQUIRED = -7;
-    public static int STATUS_LOGIN_SUCCESS = -8;
-    public static int STATUS_MAX_LOGIN_ATTEMPTS_EXCEEDED = -6;
-    public static int STATUS_SERVER_TIMEOUT = -100;
-    public static int STATUS_SUCCESS = 0;
-    public static int STATUS_TRANSPORT_ERROR = -90;
-    public static int STATUS_VALIDATION_ERROR = -4;
+
+
+
+
+    public static final int STATUS_FAILURE = -1;
+    public static final int STATUS_LOGIN_INCORRECT = -5;
+    public static final int STATUS_LOGIN_REQUIRED = -7;
+    public static final int STATUS_LOGIN_SUCCESS = -8;
+    public static final int STATUS_MAX_LOGIN_ATTEMPTS_EXCEEDED = -6;
+    public static final int STATUS_SERVER_TIMEOUT = -100;
+    public static final int STATUS_SUCCESS = 0;
+    public static final int STATUS_TRANSPORT_ERROR = -90;
+    public static final int STATUS_VALIDATION_ERROR = -4;
 
     /**
      * Status code for this response.  Status codes less than zero are considered errors by the RPCManager, those
