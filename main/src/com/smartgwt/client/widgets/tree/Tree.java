@@ -753,14 +753,9 @@ public class Tree extends BaseClass  implements com.smartgwt.client.widgets.tree
     // ********************* Static Methods ***********************
 
 
+
 
-
-
-
-
-
-
-
+
 
     /**
      * Optional initial data for the tree. How this data is interpreted depends on this tree's {@link

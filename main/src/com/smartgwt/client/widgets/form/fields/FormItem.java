@@ -907,7 +907,7 @@ public class FormItem extends RefDataClass  implements com.smartgwt.client.widge
     }
              
     /**
-    * Alignment of this item in its cell
+    * Alignment of this item in its cell. Note that the alignment of content within this item&#010 can be separately controlled via {@link com.smartgwt.client.widgets.form.fields.FormItem#getTextAlign textAlign} (typically only applies to items&#010 showing a "textBox", such as {@link com.smartgwt.client.widgets.form.fields.TextItem} or {@link com.smartgwt.client.widgets.form.fields.SelectItem}).
     *
     * @param align align Default value is Canvas.LEFT
     */
@@ -915,7 +915,7 @@ public class FormItem extends RefDataClass  implements com.smartgwt.client.widge
         setAttribute("align", align.getValue());
     }
     /**
-     * Alignment of this item in its cell
+     * Alignment of this item in its cell. Note that the alignment of content within this item&#010 can be separately controlled via {@link com.smartgwt.client.widgets.form.fields.FormItem#getTextAlign textAlign} (typically only applies to items&#010 showing a "textBox", such as {@link com.smartgwt.client.widgets.form.fields.TextItem} or {@link com.smartgwt.client.widgets.form.fields.SelectItem}).
      *
      *
      * @return Alignment
@@ -926,7 +926,7 @@ public class FormItem extends RefDataClass  implements com.smartgwt.client.widge
     }
              
     /**
-    * Alignment of the text / content within this form item
+    * Alignment of the text / content within this form item. Note that {@link com.smartgwt.client.widgets.form.fields.FormItem#getAlign align} may&#010 be used to control alignment of the entire form item within its cell. May not apply to all&#010 form item types.
     *
     * @param textAlign textAlign Default value is Canvas.LEFT
     */
@@ -934,7 +934,7 @@ public class FormItem extends RefDataClass  implements com.smartgwt.client.widge
         setAttribute("textAlign", textAlign.getValue());
     }
     /**
-     * Alignment of the text / content within this form item
+     * Alignment of the text / content within this form item. Note that {@link com.smartgwt.client.widgets.form.fields.FormItem#getAlign align} may&#010 be used to control alignment of the entire form item within its cell. May not apply to all&#010 form item types.
      *
      *
      * @return Alignment

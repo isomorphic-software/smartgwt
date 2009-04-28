@@ -5,12 +5,16 @@ package com.smartgwt.client.docs;
  * Fields with values calculated from other fields in the grid.
  * @see com.smartgwt.client..DataBoundComponent#addFormulaField
  * @see com.smartgwt.client..DataBoundComponent#editFormulaField
+ * @see com.smartgwt.client..FormulaBuilder#setFormula
  * @see com.smartgwt.client..FormulaBuilder#getHelpText
  * @see com.smartgwt.client..FormulaBuilder#getUpdatedFieldObject
  * @see com.smartgwt.client..FormulaBuilder#testFunction
  * @see com.smartgwt.client..FormulaBuilder#getTestRecord
+ * @see com.smartgwt.client..FormulaBuilder#save
  * @see com.smartgwt.client..FormulaBuilder#fireOnClose
- * @see com.smartgwt.client..FormulaBuilder#fireOnClose
+ * @see com.smartgwt.client..SummaryBuilder#setSummary
+ * @see com.smartgwt.client..SummaryBuilder#save
+ * @see com.smartgwt.client..SummaryBuilder#save
  * @see com.smartgwt.client..TestFunctionResult
  * @see com.smartgwt.client..TestFunctionResult
  * @see com.smartgwt.client..MathFunction#registerFunction
