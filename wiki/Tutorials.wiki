@@ -6,6 +6,9 @@ Various SmartGWT tutorials and resources from the web.
 = Tutorials =
 
 *SmartGWT with Eclipse*
+
+  * Screencast : [http://www.youtube.com/watch?v=CYxn1DuVFUE SmartGWT + GWT 1.6.4 + Eclipse (Genymede) Part 1]
+  * Screencast : [http://www.youtube.com/watch?v=1jOSscxiOyw SmartGWT + GWT 1.6.4 + Eclipse (Genymede) Part 2]
   * [http://vanje.wordpress.com/2009/04/25/gwt-and-smartgwt-quickstart-part-1/ http://vanje.wordpress.com/2009/04/25/gwt-and-smartgwt-quickstart-part-1/] GWT and SmartGWT QuickStart
 
   * [http://jellebeuselinck.wordpress.com/2009/03/05/setting-up-smartgwt/ http://jellebeuselinck.wordpress.com/2009/03/05/setting-up-smartgwt/] Setting up SmartGWT
