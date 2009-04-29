@@ -120,9 +120,11 @@ public class RPCManager {
 
 
 
-
 
-
+
+
+
+
     /**
      * The actionURL specifies the URL to which the RPC request will be sent. Note that if you override this global
      * default and your application uses DataSource databound components, you'll need to dispatch the DataSource
@@ -264,7 +266,7 @@ public class RPCManager {
      *
      * @param useProxy enable or disable attempting to use the "HttpProxy" servlet
      */
-    public static native void setUseHttpProxy(Boolean useProxy) /*-{
+    public static native void setUseHttpProxy(boolean useProxy) /*-{
         $wnd.isc.RPCManager.useHttpProxy = useProxy;
     }-*/;
 
