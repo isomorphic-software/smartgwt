@@ -4351,6 +4351,21 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
         }-*/;
 
 
+        /**
+         * Validate the current set of edit values for the row in question.&#010 <P>&#010 Called when the user moves to a new edit row, or when an edited record is to be saved if&#010 client side validation is enabled for this grid.&#010 <P>&#010 This method may also be called directly to perform row level validation at any time.&#010&#010
+         * @param rowNum index of row to be validated.
+         *
+         * @return returns true if validation was successful (no errors encountered), false                    otherwise.
+         */
+        public native Boolean validateRow(int rowNum) /*-{
+            var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
+            var retVal =self.validateRow(rowNum);
+            if(retVal == null || retVal === undefined) {
+                return null;
+            } else {
+                return @com.smartgwt.client.util.JSOHelper::toBoolean(Z)(retVal);
+            }
+        }-*/;
 
 
 
@@ -6847,6 +6862,97 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
         var ret = self.getFilterEditorCriteria();
         if(ret == null || ret === undefined) return null;
         return @com.smartgwt.client.data.Criteria::new(Lcom/google/gwt/core/client/JavaScriptObject;)(ret);
+    }-*/;
+
+    /**
+     * Validate the current edit value for the cell in question.  Called when the user moves to a&#010 new edit cell if {@link com.smartgwt.client.widgets.grid.ListGrid#getValidateByCell validateByCell} is true.<br>&#010 This method may also be called directly to perform cell level validation at any time.&#010
+     *
+     * @param rowNum    index of row to be validated.
+     * @param fieldName field name of field to be validated
+     * @return returns true if validation was successful (no errors encountered), false  otherwise.
+     */
+    public native Boolean validateCell(int rowNum, String fieldName) /*-{
+        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
+        var retVal =self.validateCell(rowNum, fieldName);
+        if(retVal == null || retVal === undefined) {
+            return null;
+        } else {
+            return @com.smartgwt.client.util.JSOHelper::toBoolean(Z)(retVal);
+        }
+    }-*/;
+
+    /**
+     * Validate the current edit value for the cell in question.  Called when the user moves to a&#010 new edit cell if {@link com.smartgwt.client.widgets.grid.ListGrid#getValidateByCell validateByCell} is true.<br>&#010 This method may also be called directly to perform cell level validation at any time.&#010
+     *
+     * @param rowNum    index of row to be validated.
+     * @param colIndex column index of field to be validated
+     * @return returns true if validation was successful (no errors encountered), false otherwise.
+     */
+    public native Boolean validateCell(int rowNum, int colIndex) /*-{
+        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
+        var retVal =self.validateCell(rowNum, colIndex);
+        if(retVal == null || retVal === undefined) {
+            return null;
+        } else {
+            return @com.smartgwt.client.util.JSOHelper::toBoolean(Z)(retVal);
+        }
+    }-*/;
+
+    /**
+     * Given a rowNum and a colNum or fieldName, determine whether we currently have stored &#010 validation errors for the record/field in question.&#010
+     *
+     * @param rowNum  index of row to check for validation errors
+     * @param fieldName name of field to check for validation                                       errors
+     * @return true if we have validation errors for the row/col in question
+     */
+    public native Boolean cellHasErrors(int rowNum, String fieldName) /*-{
+        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
+        var retVal =self.cellHasErrors(rowNum, fieldName);
+        if(retVal == null || retVal === undefined) {
+            return null;
+        } else {
+            return @com.smartgwt.client.util.JSOHelper::toBoolean(Z)(retVal);
+        }
+    }-*/;
+
+    /**
+     * Given a rowNum and a colNum or fieldName, determine whether we currently have stored &#010 validation errors for the record/field in question.&#010
+     *
+     * @param rowNum  index of row to check for validation errors
+     * @param colIndex index of column to check for validation                                       errors
+     * @return true if we have validation errors for the row/col in question
+     */
+    public native Boolean cellHasErrors(int rowNum, int colIndex) /*-{
+        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
+        var retVal =self.cellHasErrors(rowNum, colIndex);
+        if(retVal == null || retVal === undefined) {
+            return null;
+        } else {
+            return @com.smartgwt.client.util.JSOHelper::toBoolean(Z)(retVal);
+        }
+    }-*/;
+
+
+    /**
+     * Clears any validation errors for some cell.&#010
+     *
+     * @param rowNum    row index of cell to add validation error for
+     * @param fieldName field name of cell to add validation error for
+     */
+    public native void clearFieldError(int rowNum, String fieldName) /*-{
+        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
+        self.clearFieldError(rowNum, fieldName);
+    }-*/;
+
+    /**
+     * Clears any validation errors for some cell.&#010
+     *
+     * @param rowNum    row index of cell to add validation error for
+     * @param colIndex col index of cell to add validation error for
+     */
+    public native void clearFieldError(int rowNum, int colIndex) /*-{
+        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
+        self.clearFieldError(rowNum, colIndex);
     }-*/;
 
 }
