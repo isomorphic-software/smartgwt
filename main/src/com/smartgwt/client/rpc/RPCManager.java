@@ -266,8 +266,8 @@ public class RPCManager {
      *
      * @param useProxy enable or disable attempting to use the "HttpProxy" servlet
      */
-    public static native void setUseHttpProxy(boolean useProxy) /*-{
-        $wnd.isc.RPCManager.useHttpProxy = useProxy;
+    public static native void setUseHttpProxy(Boolean useProxy) /*-{
+        $wnd.isc.RPCManager.useHttpProxy = (useProxy == null ? null : useProxy.@java.lang.Boolean::booleanValue()());
     }-*/;
 
     /**
