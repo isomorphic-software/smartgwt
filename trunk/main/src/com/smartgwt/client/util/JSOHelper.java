@@ -476,10 +476,6 @@ public class JSOHelper {
         return value;
     }
 
-    /**
-     * @param value
-     * @return
-     */
     public static Long toLong(double value) {
         return (long) value;
     }
@@ -492,9 +488,19 @@ public class JSOHelper {
         return value;
     }
 
+    private static double getTime(Date date) {
+        return date.getTime();
+    }
+
     public static Date toDate(double millis) {
         return new Date((long) millis);
     }
+
+    public static native JavaScriptObject toDateJS(Date date) /*-{
+        var dateJS = $wnd.Date.create();
+        dateJS.setTime(@com.smartgwt.client.util.JSOHelper::getTime(Ljava/util/Date;)(date));
+        return dateJS;
+    }-*/;
 
     public static Boolean toBoolean(boolean value) {
         return value;
