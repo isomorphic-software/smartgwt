@@ -23,6 +23,9 @@ import com.google.gwt.event.shared.HasHandlers;
 public interface HasEventResizedHandlers extends HasHandlers {
     /**
      * Called when an event is resized via dragging by a user.  Return false to disallow the&#010 resize.&#010
+     *
+     * @param handler the eventResized handler
+     * @return {@link HandlerRegistration} used to remove this handler
      */
     HandlerRegistration addEventResizedHandler(EventResizedHandler handler);
 }

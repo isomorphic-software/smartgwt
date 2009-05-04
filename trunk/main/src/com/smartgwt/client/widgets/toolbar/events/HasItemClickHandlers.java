@@ -23,6 +23,9 @@ import com.google.gwt.event.shared.HasHandlers;
 public interface HasItemClickHandlers extends HasHandlers {
     /**
      * Called when one of the buttons recieved a click event&#010
+     *
+     * @param handler the itemClick handler
+     * @return {@link HandlerRegistration} used to remove this handler
      */
     HandlerRegistration addItemClickHandler(ItemClickHandler handler);
 }

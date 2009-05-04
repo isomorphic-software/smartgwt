@@ -612,6 +612,7 @@ public class ColorPicker extends Window  implements com.smartgwt.client.widgets.
          * Override this method to be notified when the user selects a color&#010 either by clicking a basic color box in simple mode, or by clicking &#010 the OK button in complex mode. It is not intended that client code &#010 call this method.&#010
          *
          * @param handler the colorSelected handler
+         * @return {@link HandlerRegistration} used to remove this handler
          */
         public HandlerRegistration addColorSelectedHandler(com.smartgwt.client.widgets.form.events.ColorSelectedHandler handler) {
             if(getHandlerCount(com.smartgwt.client.widgets.form.events.ColorSelectedEvent.getType()) == 0) setupColorSelectedEvent();

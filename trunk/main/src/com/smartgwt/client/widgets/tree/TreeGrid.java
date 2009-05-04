@@ -977,6 +977,7 @@ public class TreeGrid extends ListGrid  implements DataBoundComponent, com.smart
          * &#010 This method is called when a folder is opened either via the user manipulating the&#010 expand/collapse control in the UI or via {@link com.smartgwt.client.widgets.tree.TreeGrid#openFolder}.  You can return&#010 <code>false</code> to cancel the open.&#010&#010
          *
          * @param handler the folderOpened handler
+         * @return {@link HandlerRegistration} used to remove this handler
          */
         public HandlerRegistration addFolderOpenedHandler(com.smartgwt.client.widgets.tree.events.FolderOpenedHandler handler) {
             if(getHandlerCount(com.smartgwt.client.widgets.tree.events.FolderOpenedEvent.getType()) == 0) setupFolderOpenedEvent();
@@ -1014,6 +1015,7 @@ public class TreeGrid extends ListGrid  implements DataBoundComponent, com.smart
          * &#010 This method is called when a folder is closed either via the user manipulating the&#010 expand/collapse control in the UI or via {@link com.smartgwt.client.widgets.tree.TreeGrid#closeFolder}.  You can return&#010 <code>false</code> to cancel the close.&#010&#010
          *
          * @param handler the folderClosed handler
+         * @return {@link HandlerRegistration} used to remove this handler
          */
         public HandlerRegistration addFolderClosedHandler(com.smartgwt.client.widgets.tree.events.FolderClosedHandler handler) {
             if(getHandlerCount(com.smartgwt.client.widgets.tree.events.FolderClosedEvent.getType()) == 0) setupFolderClosedEvent();
@@ -1053,6 +1055,7 @@ public class TreeGrid extends ListGrid  implements DataBoundComponent, com.smart
          * &#010 This method is called when a folder record is clicked on.&#010&#010
          *
          * @param handler the folderClick handler
+         * @return {@link HandlerRegistration} used to remove this handler
          */
         public HandlerRegistration addFolderClickHandler(com.smartgwt.client.widgets.tree.events.FolderClickHandler handler) {
             if(getHandlerCount(com.smartgwt.client.widgets.tree.events.FolderClickEvent.getType()) == 0) setupFolderClickEvent();
@@ -1088,6 +1091,7 @@ public class TreeGrid extends ListGrid  implements DataBoundComponent, com.smart
          * &#010 This method is called when a leaf record is clicked on.&#010&#010
          *
          * @param handler the leafClick handler
+         * @return {@link HandlerRegistration} used to remove this handler
          */
         public HandlerRegistration addLeafClickHandler(com.smartgwt.client.widgets.tree.events.LeafClickHandler handler) {
             if(getHandlerCount(com.smartgwt.client.widgets.tree.events.LeafClickEvent.getType()) == 0) setupLeafClickEvent();
@@ -1123,6 +1127,7 @@ public class TreeGrid extends ListGrid  implements DataBoundComponent, com.smart
          * &#010 This method is called when a leaf or folder record is clicked on.  Note that if you set&#010 up a callback for <code>nodeClick()</code> and e.g. {@link com.smartgwt.client.widgets.tree.TreeGrid#leafClick}, then&#010 both will fire (in that order) if a leaf is clicked on.&#010&#010
          *
          * @param handler the nodeClick handler
+         * @return {@link HandlerRegistration} used to remove this handler
          */
         public HandlerRegistration addNodeClickHandler(com.smartgwt.client.widgets.tree.events.NodeClickHandler handler) {
             if(getHandlerCount(com.smartgwt.client.widgets.tree.events.NodeClickEvent.getType()) == 0) setupNodeClickEvent();
@@ -1158,6 +1163,7 @@ public class TreeGrid extends ListGrid  implements DataBoundComponent, com.smart
          * &#010 This method is called when a context click occurs on a folder record.&#010&#010
          *
          * @param handler the folderContextClick handler
+         * @return {@link HandlerRegistration} used to remove this handler
          */
         public HandlerRegistration addFolderContextClickHandler(com.smartgwt.client.widgets.tree.events.FolderContextClickHandler handler) {
             if(getHandlerCount(com.smartgwt.client.widgets.tree.events.FolderContextClickEvent.getType()) == 0) setupFolderContextClickEvent();
@@ -1197,6 +1203,7 @@ public class TreeGrid extends ListGrid  implements DataBoundComponent, com.smart
          * &#010 This method is called when a context click occurs on a leaf record.&#010&#010
          *
          * @param handler the leafContextClick handler
+         * @return {@link HandlerRegistration} used to remove this handler
          */
         public HandlerRegistration addLeafContextClickHandler(com.smartgwt.client.widgets.tree.events.LeafContextClickHandler handler) {
             if(getHandlerCount(com.smartgwt.client.widgets.tree.events.LeafContextClickEvent.getType()) == 0) setupLeafContextClickEvent();
@@ -1236,6 +1243,7 @@ public class TreeGrid extends ListGrid  implements DataBoundComponent, com.smart
          * &#010 This method is called when a context click occurs on a leaf or folder record.  Note that&#010 if you set up a callback for <code>nodeContextClick()</code> and&#010 e.g. {@link com.smartgwt.client.widgets.tree.TreeGrid#leafContextClick}, then both will fire (in that order) if a leaf&#010 is contextclicked - unless <code>nodeContextClick()</code> returns false, in which case&#010 no further contextClick callbacks will be called.&#010&#010
          *
          * @param handler the nodeContextClick handler
+         * @return {@link HandlerRegistration} used to remove this handler
          */
         public HandlerRegistration addNodeContextClickHandler(com.smartgwt.client.widgets.tree.events.NodeContextClickHandler handler) {
             if(getHandlerCount(com.smartgwt.client.widgets.tree.events.NodeContextClickEvent.getType()) == 0) setupNodeContextClickEvent();
@@ -1273,6 +1281,7 @@ public class TreeGrid extends ListGrid  implements DataBoundComponent, com.smart
          * Notification method fired whenever this TreeGrid recieves new data nodes from the &#010 dataSource. Only applies to databound TreeGrids where {@link com.smartgwt.client.widgets.tree.TreeGrid#getData data} is a &#010 {@link com.smartgwt.client..ResultTree} - either explicitly created and applied via {@link com.smartgwt.client.widgets.tree.TreeGrid#setData} or&#010 automatically generated via a {@link com.smartgwt.client.widgets.tree.TreeGrid#fetchData} call.&#010
          *
          * @param handler the dataArrived handler
+         * @return {@link HandlerRegistration} used to remove this handler
          */
         public HandlerRegistration addDataArrivedHandler(com.smartgwt.client.widgets.tree.events.DataArrivedHandler handler) {
             if(getHandlerCount(com.smartgwt.client.widgets.tree.events.DataArrivedEvent.getType()) == 0) setupDataArrivedEvent();

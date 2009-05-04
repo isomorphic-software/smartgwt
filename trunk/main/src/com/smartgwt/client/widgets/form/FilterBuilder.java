@@ -253,6 +253,7 @@ public class FilterBuilder extends Layout  implements com.smartgwt.client.widget
          * Handler fired when there is a change() event fired on any FormItem within the &#010 filterBuilder. &#010&#010
          *
          * @param handler the filterChanged handler
+         * @return {@link HandlerRegistration} used to remove this handler
          */
         public HandlerRegistration addFilterChangedHandler(com.smartgwt.client.widgets.form.events.FilterChangedHandler handler) {
             if(getHandlerCount(com.smartgwt.client.widgets.form.events.FilterChangedEvent.getType()) == 0) setupFilterChangedEvent();

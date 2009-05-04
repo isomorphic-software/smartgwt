@@ -23,6 +23,9 @@ import com.google.gwt.event.shared.HasHandlers;
 public interface HasIconClickHandlers extends HasHandlers {
     /**
      * StringMethod.&#010      Default action to fire when the user clicks on a form item icon. May be overridden&#010      by setting <code>click</code> on the form item icon directly.&#010
+     *
+     * @param handler the iconClick handler
+     * @return {@link HandlerRegistration} used to remove this handler
      */
     HandlerRegistration addIconClickHandler(IconClickHandler handler);
 }

@@ -23,6 +23,9 @@ import com.google.gwt.event.shared.HasHandlers;
 public interface HasClickHandlers extends HasHandlers {
     /**
      * &#010 Executed when the left mouse is clicked (pressed and then released) on this widget.  No default&#010 implementation.&#010&#010
+     *
+     * @param handler the click handler
+     * @return {@link HandlerRegistration} used to remove this handler
      */
     HandlerRegistration addClickHandler(ClickHandler handler);
 }

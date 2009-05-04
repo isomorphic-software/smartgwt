@@ -23,6 +23,9 @@ import com.google.gwt.event.shared.HasHandlers;
 public interface HasFolderOpenedHandlers extends HasHandlers {
     /**
      * &#010 This method is called when a folder is opened either via the user manipulating the&#010 expand/collapse control in the UI or via {@link com.smartgwt.client.widgets.tree.TreeGrid#openFolder}.  You can return&#010 <code>false</code> to cancel the open.&#010&#010
+     *
+     * @param handler the folderOpened handler
+     * @return {@link HandlerRegistration} used to remove this handler
      */
     HandlerRegistration addFolderOpenedHandler(FolderOpenedHandler handler);
 }

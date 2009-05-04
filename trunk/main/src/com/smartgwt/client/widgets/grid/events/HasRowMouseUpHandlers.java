@@ -23,6 +23,9 @@ import com.google.gwt.event.shared.HasHandlers;
 public interface HasRowMouseUpHandlers extends HasHandlers {
     /**
      * Called when a row receives a mouseup event.&#010&#010
+     *
+     * @param handler the rowMouseUp handler
+     * @return {@link HandlerRegistration} used to remove this handler
      */
     HandlerRegistration addRowMouseUpHandler(RowMouseUpHandler handler);
 }

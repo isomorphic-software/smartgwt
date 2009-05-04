@@ -1008,6 +1008,7 @@ public class Calendar extends Canvas  implements DataBoundComponent, com.smartgw
          * Called when the body area of a day in the month view is clicked on, outside of any links&#010 to a particular event.&#010 <P>&#010 By default, if the user can add events, shows a dialog for adding a new event for that&#010 day.  Return false to cancel this action.&#010 <P>&#010 Not called if the day falls outside the current month and {@link com.smartgwt.client.widgets.calendar.Calendar#getShowOtherDays showOtherDays} is false.&#010&#010
          *
          * @param handler the dayBodyClick handler
+         * @return {@link HandlerRegistration} used to remove this handler
          */
         public HandlerRegistration addDayBodyClickHandler(com.smartgwt.client.widgets.calendar.events.DayBodyClickHandler handler) {
             if(getHandlerCount(com.smartgwt.client.widgets.calendar.events.DayBodyClickEvent.getType()) == 0) setupDayBodyClickEvent();
@@ -1049,6 +1050,7 @@ public class Calendar extends Canvas  implements DataBoundComponent, com.smartgw
          * Called when the header area of a day in the month view is clicked on.&#010 <P>&#010 By default, moves to the day tab and shows the clicked days events.&#010 Return false to cancel this action.&#010 <P>&#010 Not called if the day falls outside the current month and {@link com.smartgwt.client.widgets.calendar.Calendar#getShowOtherDays showOtherDays} is false.&#010&#010
          *
          * @param handler the dayHeaderClick handler
+         * @return {@link HandlerRegistration} used to remove this handler
          */
         public HandlerRegistration addDayHeaderClickHandler(com.smartgwt.client.widgets.calendar.events.DayHeaderClickHandler handler) {
             if(getHandlerCount(com.smartgwt.client.widgets.calendar.events.DayHeaderClickEvent.getType()) == 0) setupDayHeaderClickEvent();
@@ -1082,6 +1084,7 @@ public class Calendar extends Canvas  implements DataBoundComponent, com.smartgw
          * Notification fired whenever a user changes an event, whether by dragging the event or by&#010 editing it in a dialog.&#010 <P>&#010 In a calendar with a DataSource, eventChanged() fires <b>after</b> the updated event has&#010 been successfully saved to the server&#010&#010
          *
          * @param handler the eventChanged handler
+         * @return {@link HandlerRegistration} used to remove this handler
          */
         public HandlerRegistration addEventChangedHandler(com.smartgwt.client.widgets.calendar.events.EventChangedHandler handler) {
             if(getHandlerCount(com.smartgwt.client.widgets.calendar.events.CalendarEventChangedEvent.getType()) == 0) setupEventChangedEvent();
@@ -1115,6 +1118,7 @@ public class Calendar extends Canvas  implements DataBoundComponent, com.smartgw
          * Notification fired whenever a user removes an event&#010 <P>&#010 In a calendar with a DataSource, eventRemoved() fires <b>after</b> the event has&#010 been successfully removed from the server&#010&#010
          *
          * @param handler the eventRemoved handler
+         * @return {@link HandlerRegistration} used to remove this handler
          */
         public HandlerRegistration addEventRemovedHandler(com.smartgwt.client.widgets.calendar.events.EventRemovedHandler handler) {
             if(getHandlerCount(com.smartgwt.client.widgets.calendar.events.CalendarEventRemoved.getType()) == 0) setupEventRemovedEvent();
@@ -1148,6 +1152,7 @@ public class Calendar extends Canvas  implements DataBoundComponent, com.smartgw
          * Notification fired whenever a user adds an event.&#010 <P>&#010 In a calendar with a DataSource, eventAdded() fires <b>after</b> the event has&#010 been successfully added to the server&#010&#010
          *
          * @param handler the eventAdded handler
+         * @return {@link HandlerRegistration} used to remove this handler
          */
         public HandlerRegistration addEventAddedHandler(com.smartgwt.client.widgets.calendar.events.EventAddedHandler handler) {
             if(getHandlerCount(com.smartgwt.client.widgets.calendar.events.CalendarEventAdded.getType()) == 0) setupEventAddedEvent();
@@ -1182,6 +1187,7 @@ public class Calendar extends Canvas  implements DataBoundComponent, com.smartgw
          * Called whenever an event is clicked on in the day, week or month views.&#010 <P>&#010 By default a dialog appears showing details for the event, and offering the ability to&#010 edit events which are editable.  Return false to cancel the default action. This is a good&#010 place to, for example, show a completely customized event dialog instead of the default one.&#010&#010
          *
          * @param handler the eventClick handler
+         * @return {@link HandlerRegistration} used to remove this handler
          */
         public HandlerRegistration addEventClickHandler(com.smartgwt.client.widgets.calendar.events.EventClickHandler handler) {
             if(getHandlerCount(com.smartgwt.client.widgets.calendar.events.CalendarEventClick.getType()) == 0) setupEventClickEvent();
@@ -1220,6 +1226,7 @@ public class Calendar extends Canvas  implements DataBoundComponent, com.smartgw
          * Called whenever the close icon of an event is clicked within the day or week view. Return&#010 false to cancel the removal, or true to allow it.&#010 <P>&#010 Implement this method to do something like, for example, showing a confirmation dialog &#010 before an event is removed.&#010&#010
          *
          * @param handler the eventRemoveClick handler
+         * @return {@link HandlerRegistration} used to remove this handler
          */
         public HandlerRegistration addEventRemoveClickHandler(com.smartgwt.client.widgets.calendar.events.EventRemoveClickHandler handler) {
             if(getHandlerCount(com.smartgwt.client.widgets.calendar.events.CalendarEventRemoveClick.getType()) == 0) setupEventRemoveClickEvent();
@@ -1258,6 +1265,7 @@ public class Calendar extends Canvas  implements DataBoundComponent, com.smartgw
          * Called when an event is moved via dragging by a user.  Return false to disallow the move.&#010
          *
          * @param handler the eventMoved handler
+         * @return {@link HandlerRegistration} used to remove this handler
          */
         public HandlerRegistration addEventMovedHandler(com.smartgwt.client.widgets.calendar.events.EventMovedHandler handler) {
             if(getHandlerCount(com.smartgwt.client.widgets.calendar.events.CalendarEventMoved.getType()) == 0) setupEventMovedEvent();
@@ -1292,6 +1300,7 @@ public class Calendar extends Canvas  implements DataBoundComponent, com.smartgw
          * Called when an event is resized via dragging by a user.  Return false to disallow the&#010 resize.&#010
          *
          * @param handler the eventResized handler
+         * @return {@link HandlerRegistration} used to remove this handler
          */
         public HandlerRegistration addEventResizedHandler(com.smartgwt.client.widgets.calendar.events.EventResizedHandler handler) {
             if(getHandlerCount(com.smartgwt.client.widgets.calendar.events.CalendarEventResized.getType()) == 0) setupEventResizedEvent();
@@ -1324,6 +1333,7 @@ public class Calendar extends Canvas  implements DataBoundComponent, com.smartgw
          * Fires whenever the user changes the current date, including picking a specific date or&#010 navigating to a new week or month.&#010
          *
          * @param handler the dateChanged handler
+         * @return {@link HandlerRegistration} used to remove this handler
          */
         public HandlerRegistration addDateChangedHandler(com.smartgwt.client.widgets.calendar.events.DateChangedHandler handler) {
             if(getHandlerCount(com.smartgwt.client.widgets.calendar.events.DateChangedEvent.getType()) == 0) setupDateChangedEvent();

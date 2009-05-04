@@ -611,6 +611,7 @@ public class TabSet extends Canvas  implements com.smartgwt.client.widgets.tab.e
          * When {@link com.smartgwt.client.widgets.tab.TabSet#getCanCloseTabs canCloseTabs} is set, method fired when the user clicks the "close" icon for a&#010 tab.&#010 <P>&#010 Default implementation will remove the tab from the tabSet via {@link com.smartgwt.client.widgets.tab.TabSet#removeTab}.&#010
          *
          * @param handler the closeClick handler
+         * @return {@link HandlerRegistration} used to remove this handler
          */
         public HandlerRegistration addCloseClickHandler(com.smartgwt.client.widgets.tab.events.CloseClickHandler handler) {
             if(getHandlerCount(com.smartgwt.client.widgets.tab.events.TabCloseClickEvent.getType()) == 0) setupCloseClickEvent();
@@ -644,6 +645,7 @@ public class TabSet extends Canvas  implements com.smartgwt.client.widgets.tab.e
          * Method fired when the user clicks the icon for a tab, as specified via {@link com.smartgwt.client.widgets.tab.Tab#getIcon icon}.&#010 <P>&#010 Default behavior will fire <code>icon.click()</code> if specified, with two parameters&#010 <code>tab</code> (a pointer to the tab object and <code>tabSet</code> a pointer to the tabSet&#010 instance.&#010
          *
          * @param handler the tabIconClick handler
+         * @return {@link HandlerRegistration} used to remove this handler
          */
         public HandlerRegistration addTabIconClickHandler(com.smartgwt.client.widgets.tab.events.TabIconClickHandler handler) {
             if(getHandlerCount(com.smartgwt.client.widgets.tab.events.TabClickEvent.getType()) == 0) setupTabIconClickEvent();
@@ -713,6 +715,7 @@ public class TabSet extends Canvas  implements com.smartgwt.client.widgets.tab.e
          * Notification fired when a tab is selected. Note that this will only fire if &#010 this tabSet is drawn. If a tab is selected before <code>TabSet.draw()</code> &#010 is called, the <code>tabSelected()</code> notificaiton will fire on &#010 <code>draw()</code>&#010
          *
          * @param handler the tabSelected handler
+         * @return {@link HandlerRegistration} used to remove this handler
          */
         public HandlerRegistration addTabSelectedHandler(com.smartgwt.client.widgets.tab.events.TabSelectedHandler handler) {
             if(getHandlerCount(com.smartgwt.client.widgets.tab.events.TabSelectedEvent.getType()) == 0) setupTabSelectedEvent();
@@ -749,6 +752,7 @@ public class TabSet extends Canvas  implements com.smartgwt.client.widgets.tab.e
          * Notification fired when a tab is deselected.        &#010
          *
          * @param handler the tabDeselected handler
+         * @return {@link HandlerRegistration} used to remove this handler
          */
         public HandlerRegistration addTabDeselectedHandler(com.smartgwt.client.widgets.tab.events.TabDeselectedHandler handler) {
             if(getHandlerCount(com.smartgwt.client.widgets.tab.events.TabDeselectedEvent.getType()) == 0) setupTabDeselectedEvent();

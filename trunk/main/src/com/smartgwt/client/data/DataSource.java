@@ -836,6 +836,7 @@ public class DataSource extends BaseClass  implements com.smartgwt.client.data.e
          * If you define this method on a DataSource, it will be called whenever the server returns&#010 a DSResponse with a status other than {@link com.smartgwt.client.rpc.RPCResponse#STATUS_SUCCESS}.  You can use&#010 this hook to do DataSource-specific error handling.  Unless you return&#010 <code>false</code> from this method, {@link com.smartgwt.client.rpc.RPCManager#handleError} will be called by&#010 SmartGWT right after this method completes.&#010 &#010
          *
          * @param handler the handleError handler
+         * @return {@link HandlerRegistration} used to remove this handler
          */
         public HandlerRegistration addHandleErrorHandler(com.smartgwt.client.data.events.HandleErrorHandler handler) {
             if(getHandlerCount(com.smartgwt.client.data.events.ErrorEvent.getType()) == 0) setupHandleErrorEvent();

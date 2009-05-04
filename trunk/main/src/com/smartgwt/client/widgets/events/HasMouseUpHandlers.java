@@ -23,6 +23,9 @@ import com.google.gwt.event.shared.HasHandlers;
 public interface HasMouseUpHandlers extends HasHandlers {
     /**
      * &#010 Executed when the left mouse is released on this widget.  No default implementation.&#010&#010
+     *
+     * @param handler the mouseUp handler
+     * @return {@link HandlerRegistration} used to remove this handler
      */
     HandlerRegistration addMouseUpHandler(MouseUpHandler handler);
 }

@@ -23,6 +23,9 @@ import com.google.gwt.event.shared.HasHandlers;
 public interface HasHandleErrorHandlers extends HasHandlers {
     /**
      * If you define this method on a DataSource, it will be called whenever the server returns&#010 a DSResponse with a status other than {@link com.smartgwt.client.rpc.RPCResponse#STATUS_SUCCESS}.  You can use&#010 this hook to do DataSource-specific error handling.  Unless you return&#010 <code>false</code> from this method, {@link com.smartgwt.client.rpc.RPCManager#handleError} will be called by&#010 SmartGWT right after this method completes.&#010 &#010
+     *
+     * @param handler the handleError handler
+     * @return {@link HandlerRegistration} used to remove this handler
      */
     HandlerRegistration addHandleErrorHandler(HandleErrorHandler handler);
 }

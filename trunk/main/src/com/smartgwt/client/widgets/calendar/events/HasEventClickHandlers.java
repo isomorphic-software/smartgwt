@@ -23,6 +23,9 @@ import com.google.gwt.event.shared.HasHandlers;
 public interface HasEventClickHandlers extends HasHandlers {
     /**
      * Called whenever an event is clicked on in the day, week or month views.&#010 <P>&#010 By default a dialog appears showing details for the event, and offering the ability to&#010 edit events which are editable.  Return false to cancel the default action. This is a good&#010 place to, for example, show a completely customized event dialog instead of the default one.&#010&#010
+     *
+     * @param handler the eventClick handler
+     * @return {@link HandlerRegistration} used to remove this handler
      */
     HandlerRegistration addEventClickHandler(EventClickHandler handler);
 }

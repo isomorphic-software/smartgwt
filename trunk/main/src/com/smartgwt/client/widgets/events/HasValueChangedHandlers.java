@@ -23,6 +23,9 @@ import com.google.gwt.event.shared.HasHandlers;
 public interface HasValueChangedHandlers extends HasHandlers {
     /**
      * This method is called when the slider value changes. This occurs when the setValue method is&#010 called, or when the slider is moved. Observe this method to be notified when the slider value&#010 changes.&#010&#010
+     *
+     * @param handler the valueChanged handler
+     * @return {@link HandlerRegistration} used to remove this handler
      */
     HandlerRegistration addValueChangedHandler(ValueChangedHandler handler);
 }

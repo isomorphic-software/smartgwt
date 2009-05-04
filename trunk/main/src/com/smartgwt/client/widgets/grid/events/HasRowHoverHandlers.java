@@ -23,6 +23,9 @@ import com.google.gwt.event.shared.HasHandlers;
 public interface HasRowHoverHandlers extends HasHandlers {
     /**
      * Called when the mouse hovers over a row if this.canHover is true. &#010  Returning false will suppress the hover text from being shown if this.showHover is true.&#010&#010
+     *
+     * @param handler the rowHover handler
+     * @return {@link HandlerRegistration} used to remove this handler
      */
     HandlerRegistration addRowHoverHandler(RowHoverHandler handler);
 }

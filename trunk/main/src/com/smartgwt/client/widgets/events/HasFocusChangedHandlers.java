@@ -23,6 +23,9 @@ import com.google.gwt.event.shared.HasHandlers;
 public interface HasFocusChangedHandlers extends HasHandlers {
     /**
      * Notification function fired when this widget recieves or loses keyboard focus.&#010
+     *
+     * @param handler the focusChanged handler
+     * @return {@link HandlerRegistration} used to remove this handler
      */
     HandlerRegistration addFocusChangedHandler(FocusChangedHandler handler);
 }

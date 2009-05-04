@@ -23,6 +23,9 @@ import com.google.gwt.event.shared.HasHandlers;
 public interface HasDataChangedHandlers extends HasHandlers {
     /**
      * Method to override or observe in order to be notified when a user picks a date value.&#010 <P>&#010 Has no default behavior (so no need to call Super).&#010 <P>&#010 Use {@link com.smartgwt.client.widgets.DateChooser#getData} to get the current date value.&#010 &#010
+     *
+     * @param handler the dataChanged handler
+     * @return {@link HandlerRegistration} used to remove this handler
      */
     HandlerRegistration addDataChangedHandler(DataChangedHandler handler);
 }

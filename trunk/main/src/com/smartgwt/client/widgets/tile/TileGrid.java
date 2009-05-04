@@ -418,6 +418,7 @@ public class TileGrid extends TileLayout  implements DataBoundComponent, com.sma
          * Executed when the tileGrid receives a 'click' event on a&#010 tile. The default implementation does nothing -- override to perform some action&#010 when any record is clicked.<br>&#010 A record event handler can be specified either as&#010 a function to execute, or as a string of script to evaluate. If the handler is defined&#010 as a string of script, all the parameters below will be available as variables for use&#010 in the script.<br>&#010 If you want to cancel the click based on the parameters, return false. Otherwise, return &#010 true so that the click event be registered with the tile.&#010&#010
          *
          * @param handler the recordClick handler
+         * @return {@link HandlerRegistration} used to remove this handler
          */
         public HandlerRegistration addRecordClickHandler(com.smartgwt.client.widgets.tile.events.RecordClickHandler handler) {
             if(getHandlerCount(com.smartgwt.client.widgets.tile.events.RecordClickEvent.getType()) == 0) setupRecordClickEvent();
@@ -452,6 +453,7 @@ public class TileGrid extends TileLayout  implements DataBoundComponent, com.sma
          * Called when selection changes within this tileGrid. Note this method fires for&#010 each record for which selection is modified - so when a user clicks inside a tileGrid this&#010 method will typically fire twice (once for the old record being deselected, and once for&#010 the new record being selected).&#010&#010
          *
          * @param handler the selectionChanged handler
+         * @return {@link HandlerRegistration} used to remove this handler
          */
         public HandlerRegistration addSelectionChangedHandler(com.smartgwt.client.widgets.tile.events.SelectionChangedHandler handler) {
             if(getHandlerCount(com.smartgwt.client.widgets.tile.events.SelectionChangedEvent.getType()) == 0) setupSelectionChangedEvent();

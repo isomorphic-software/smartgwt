@@ -888,6 +888,7 @@ public class StretchImgButton extends StretchImg  implements com.smartgwt.client
          * If this button is showing an {@link com.smartgwt.client.widgets.StretchImgButton#getIcon icon}, a separate click&#010 handler for the icon may be defined as <code>this.iconClick</code>.&#010 Returning false will suppress the standard button click handling code.&#010
          *
          * @param handler the iconClick handler
+         * @return {@link HandlerRegistration} used to remove this handler
          */
         public HandlerRegistration addIconClickHandler(com.smartgwt.client.widgets.events.IconClickHandler handler) {
             if(getHandlerCount(com.smartgwt.client.widgets.events.IconClickEvent.getType()) == 0) setupIconClickEvent();

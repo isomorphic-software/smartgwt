@@ -23,6 +23,9 @@ import com.google.gwt.event.shared.HasHandlers;
 public interface HasSubmitValuesHandlers extends HasHandlers {
     /**
      * Triggered when a SubmitItem is included in the form is submitted and gets pressed.&#010 &#010
+     *
+     * @param handler the submitValues handler
+     * @return {@link HandlerRegistration} used to remove this handler
      */
     HandlerRegistration addSubmitValuesHandler(SubmitValuesHandler handler);
 }
