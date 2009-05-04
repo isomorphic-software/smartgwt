@@ -200,6 +200,7 @@ public class ButtonItem extends CanvasItem  implements com.smartgwt.client.widge
          * Called when a ButtonItem is clicked on.&#010&#010
          *
          * @param handler the click handler
+         * @return {@link HandlerRegistration} used to remove this handler
          */
         public HandlerRegistration addClickHandler(com.smartgwt.client.widgets.form.fields.events.ClickHandler handler) {
             if(getHandlerCount(com.smartgwt.client.widgets.form.fields.events.ClickEvent.getType()) == 0) setupClickEvent();

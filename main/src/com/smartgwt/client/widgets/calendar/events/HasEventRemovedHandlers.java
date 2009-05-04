@@ -23,6 +23,9 @@ import com.google.gwt.event.shared.HasHandlers;
 public interface HasEventRemovedHandlers extends HasHandlers {
     /**
      * Notification fired whenever a user removes an event&#010 <P>&#010 In a calendar with a DataSource, eventRemoved() fires <b>after</b> the event has&#010 been successfully removed from the server&#010&#010
+     *
+     * @param handler the eventRemoved handler
+     * @return {@link HandlerRegistration} used to remove this handler
      */
     HandlerRegistration addEventRemovedHandler(EventRemovedHandler handler);
 }

@@ -23,6 +23,9 @@ import com.google.gwt.event.shared.HasHandlers;
 public interface HasFolderClickHandlers extends HasHandlers {
     /**
      * &#010 This method is called when a folder record is clicked on.&#010&#010
+     *
+     * @param handler the folderClick handler
+     * @return {@link HandlerRegistration} used to remove this handler
      */
     HandlerRegistration addFolderClickHandler(FolderClickHandler handler);
 }

@@ -1383,6 +1383,7 @@ public class DynamicForm extends Canvas  implements DataBoundComponent, com.smar
          * Handler fired when there is a changed() event fired on a FormItem within this form.&#010 <P>&#010 Fires after the change() handler on the FormItem itself, and only if the item did not&#010 cancel the change event and chooses to allow it to propagate to the form as a whole. &#010&#010
          *
          * @param handler the itemChanged handler
+         * @return {@link HandlerRegistration} used to remove this handler
          */
         public HandlerRegistration addItemChangedHandler(com.smartgwt.client.widgets.form.events.ItemChangedHandler handler) {
             if(getHandlerCount(com.smartgwt.client.widgets.form.events.ItemChangedEvent.getType()) == 0) setupItemChangedEvent();
@@ -1418,6 +1419,7 @@ public class DynamicForm extends Canvas  implements DataBoundComponent, com.smar
          * Handler fired when there is a change() event fired on a FormItem within this form.&#010 <P>&#010 Fires after the change() handler on the FormItem itself, and only if the item did not&#010 cancel the change event and chooses to allow it to propagate to the form as a whole. &#010&#010
          *
          * @param handler the itemChange handler
+         * @return {@link HandlerRegistration} used to remove this handler
          */
         public HandlerRegistration addItemChangeHandler(com.smartgwt.client.widgets.form.events.ItemChangeHandler handler) {
             if(getHandlerCount(com.smartgwt.client.widgets.form.events.ItemChangeEvent.getType()) == 0) setupItemChangeEvent();
@@ -1457,6 +1459,7 @@ public class DynamicForm extends Canvas  implements DataBoundComponent, com.smar
          * Handler fired when a FormItem within this form receives a keypress event.&#010 <P>&#010 Fires after the keyPress handler on the FormItem itself, and only if the item did not&#010 cancel the event and chooses to allow it to propagate to the form as a whole. &#010 &#010
          *
          * @param handler the itemKeyPress handler
+         * @return {@link HandlerRegistration} used to remove this handler
          */
         public HandlerRegistration addItemKeyPressHandler(com.smartgwt.client.widgets.form.events.ItemKeyPressHandler handler) {
             if(getHandlerCount(com.smartgwt.client.widgets.form.events.ItemKeyPressEvent.getType()) == 0) setupItemKeyPressEvent();
@@ -1491,6 +1494,7 @@ public class DynamicForm extends Canvas  implements DataBoundComponent, com.smar
          * Triggered when a SubmitItem is included in the form is submitted and gets pressed.&#010 &#010
          *
          * @param handler the submitValues handler
+         * @return {@link HandlerRegistration} used to remove this handler
          */
         public HandlerRegistration addSubmitValuesHandler(com.smartgwt.client.widgets.form.events.SubmitValuesHandler handler) {
             if(getHandlerCount(com.smartgwt.client.widgets.form.events.SubmitValuesEvent.getType()) == 0) setupSubmitValuesEvent();

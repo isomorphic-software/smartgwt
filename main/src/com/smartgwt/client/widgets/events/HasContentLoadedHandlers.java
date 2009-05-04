@@ -23,6 +23,9 @@ import com.google.gwt.event.shared.HasHandlers;
 public interface HasContentLoadedHandlers extends HasHandlers {
     /**
      * StringMethod fired when content is completely loaded in this htmlFlow. Has no default &#010 implementation. May be observed or overridden as a notification type method to fire custom&#010 logic when loading completes.&#010 <P>&#010 Note: Does not apply to htmlFlows with {@link com.smartgwt.client.widgets.HTMLFlow#getContentsType contentsType} set &#010 to <code>"page"</code>&#010&#010
+     *
+     * @param handler the contentLoaded handler
+     * @return {@link HandlerRegistration} used to remove this handler
      */
     HandlerRegistration addContentLoadedHandler(ContentLoadedHandler handler);
 }

@@ -23,6 +23,9 @@ import com.google.gwt.event.shared.HasHandlers;
 public interface HasDataChangedHandlers extends HasHandlers {
     /**
      * &#010 Called when the structure of this tree is changed in any way.  Intended to be observed.&#010 <br><br>&#010 Note that on a big change (many items being added or deleted) this may be called multiple times&#010&#010
+     *
+     * @param handler the dataChanged handler
+     * @return {@link HandlerRegistration} used to remove this handler
      */
     HandlerRegistration addDataChangedHandler(DataChangedHandler handler);
 }

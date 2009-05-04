@@ -1749,6 +1749,7 @@ public class FormItem extends RefDataClass  implements com.smartgwt.client.widge
          * Optional stringMethod to fire when the user hovers over this item.&#010  Return false to suppress default behavior of showing a hover canvas containing the&#010  HTML returned by <code>formItem.itemHoverHTML()</code> / &#010  <code>form.itemHoverHTML()</code>.&#010&#010
          *
          * @param handler the itemHover handler
+         * @return {@link HandlerRegistration} used to remove this handler
          */
         public HandlerRegistration addItemHoverHandler(com.smartgwt.client.widgets.form.fields.events.ItemHoverHandler handler) {
             if(getHandlerCount(com.smartgwt.client.widgets.form.fields.events.ItemHoverEvent.getType()) == 0) setupItemHoverEvent();
@@ -1773,6 +1774,7 @@ public class FormItem extends RefDataClass  implements com.smartgwt.client.widge
          * Optional stringMethod to fire when the user hovers over this item's title.&#010  Return false to suppress default behavior of showing a hover canvas containing the&#010  HTML returned by <code>formItem.titleHoverHTML()</code> / &#010  <code>form.titleHoverHTML()</code>.&#010&#010
          *
          * @param handler the titleHover handler
+         * @return {@link HandlerRegistration} used to remove this handler
          */
         public HandlerRegistration addTitleHoverHandler(com.smartgwt.client.widgets.form.fields.events.TitleHoverHandler handler) {
             if(getHandlerCount(com.smartgwt.client.widgets.form.fields.events.TitleHoverEvent.getType()) == 0) setupTitleHoverEvent();
@@ -1849,6 +1851,7 @@ public class FormItem extends RefDataClass  implements com.smartgwt.client.widge
          * Called when this FormItem receives focus.&#010 &#010
          *
          * @param handler the focus handler
+         * @return {@link HandlerRegistration} used to remove this handler
          */
         public HandlerRegistration addFocusHandler(com.smartgwt.client.widgets.form.fields.events.FocusHandler handler) {
             if(getHandlerCount(com.smartgwt.client.widgets.form.fields.events.FocusEvent.getType()) == 0) setupFocusEvent();
@@ -1873,6 +1876,7 @@ public class FormItem extends RefDataClass  implements com.smartgwt.client.widge
          * Called when this FormItem loses focus.&#010 &#010
          *
          * @param handler the blur handler
+         * @return {@link HandlerRegistration} used to remove this handler
          */
         public HandlerRegistration addBlurHandler(com.smartgwt.client.widgets.form.fields.events.BlurHandler handler) {
             if(getHandlerCount(com.smartgwt.client.widgets.form.fields.events.BlurEvent.getType()) == 0) setupBlurEvent();
@@ -1897,6 +1901,7 @@ public class FormItem extends RefDataClass  implements com.smartgwt.client.widge
          * Called when this FormItem is clicked on.&#010 <P>&#010 Note: <code>click()</code> is available on StaticTextItem, BlurbItems, ButtonItem, and&#010 derivatives.  Other form items (such as HiddenItem) do not support <code>click()</code>.&#010&#010
          *
          * @param handler the click handler
+         * @return {@link HandlerRegistration} used to remove this handler
          */
         public HandlerRegistration addClickHandler(com.smartgwt.client.widgets.form.fields.events.ClickHandler handler) {
             if(getHandlerCount(com.smartgwt.client.widgets.form.fields.events.ClickEvent.getType()) == 0) setupClickEvent();
@@ -1921,6 +1926,7 @@ public class FormItem extends RefDataClass  implements com.smartgwt.client.widge
          * Called when this FormItem is double-clicked.&#010&#010
          *
          * @param handler the doubleClick handler
+         * @return {@link HandlerRegistration} used to remove this handler
          */
         public HandlerRegistration addDoubleClickHandler(com.smartgwt.client.widgets.form.fields.events.DoubleClickHandler handler) {
             if(getHandlerCount(com.smartgwt.client.widgets.form.fields.events.DoubleClickEvent.getType()) == 0) setupDoubleClickEvent();
@@ -1946,6 +1952,7 @@ public class FormItem extends RefDataClass  implements com.smartgwt.client.widge
          * StringMethod.&#010      Default action to fire when the user clicks on a form item icon. May be overridden&#010      by setting <code>click</code> on the form item icon directly.&#010
          *
          * @param handler the iconClick handler
+         * @return {@link HandlerRegistration} used to remove this handler
          */
         public HandlerRegistration addIconClickHandler(com.smartgwt.client.widgets.form.fields.events.IconClickHandler handler) {
             if(getHandlerCount(com.smartgwt.client.widgets.form.fields.events.IconClickEvent.getType()) == 0) setupIconClickEvent();
@@ -1973,6 +1980,7 @@ public class FormItem extends RefDataClass  implements com.smartgwt.client.widge
          * StringMethod.&#010      Default action to fire when an icon has keyboard focus and the user types a key.&#010      May be overridden by setting <code>keyPress</code> on the form item icon directly.&#010
          *
          * @param handler the iconKeyPress handler
+         * @return {@link HandlerRegistration} used to remove this handler
          */
         public HandlerRegistration addIconKeyPressHandler(com.smartgwt.client.widgets.form.fields.events.IconKeyPressHandler handler) {
             if(getHandlerCount(com.smartgwt.client.widgets.form.fields.events.IconKeyPressEvent.getType()) == 0) setupIconKeyPressEvent();
@@ -1999,6 +2007,7 @@ public class FormItem extends RefDataClass  implements com.smartgwt.client.widge
          * Called when a FormItem's value is about to change as the result of user interaction.  This&#010 method fires after the user performed an action that would change the value of this field,&#010 but before the element itself is changed.  &#010 <P>&#010 Returning false cancels the change.  Note that if what you want to do is&#010 <b>transform</b> the user's input, for example, automatically change separator&#010 characters to a standard separator character, you should implement&#010 {@link com.smartgwt.client.widgets.form.fields.FormItem#transformInput} rather than using a combination of&#010 change() and setValue() to accomplish the same thing.  Returning false from&#010 <code>change</code> is intended for rejecting input entirely, such as typing invalid&#010 characters.&#010 <p>&#010 Note that if you ask the form for the current value in this handler, you will get the old&#010 value because the change has not yet been commited.  The new value is available as a&#010 parameter to this method.&#010&#010
          *
          * @param handler the change handler
+         * @return {@link HandlerRegistration} used to remove this handler
          */
         public HandlerRegistration addChangeHandler(com.smartgwt.client.widgets.form.fields.events.ChangeHandler handler) {
             if(getHandlerCount(com.smartgwt.client.widgets.form.fields.events.ChangeEvent.getType()) == 0) setupChangeEvent();
@@ -2026,6 +2035,7 @@ public class FormItem extends RefDataClass  implements com.smartgwt.client.widge
          * Called when a FormItem's value has been changed as the result of user interaction.  This&#010 method fires after the newly specified value has been stored.&#010
          *
          * @param handler the changed handler
+         * @return {@link HandlerRegistration} used to remove this handler
          */
         public HandlerRegistration addChangedHandler(com.smartgwt.client.widgets.form.fields.events.ChangedHandler handler) {
             if(getHandlerCount(com.smartgwt.client.widgets.form.fields.events.ChangedEvent.getType()) == 0) setupChangedEvent();
@@ -2053,6 +2063,7 @@ public class FormItem extends RefDataClass  implements com.smartgwt.client.widge
          * StringMethod fired when the user presses a key while focused in this form item.&#010
          *
          * @param handler the keyPress handler
+         * @return {@link HandlerRegistration} used to remove this handler
          */
         public HandlerRegistration addKeyPressHandler(com.smartgwt.client.widgets.form.fields.events.KeyPressHandler handler) {
             if(getHandlerCount(com.smartgwt.client.widgets.form.fields.events.KeyPressEvent.getType()) == 0) setupKeyPressEvent();

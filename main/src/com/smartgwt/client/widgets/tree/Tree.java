@@ -592,6 +592,7 @@ public class Tree extends BaseClass  implements com.smartgwt.client.widgets.tree
          * &#010 Called when the structure of this tree is changed in any way.  Intended to be observed.&#010 <br><br>&#010 Note that on a big change (many items being added or deleted) this may be called multiple times&#010&#010
          *
          * @param handler the dataChanged handler
+         * @return {@link HandlerRegistration} used to remove this handler
          */
         public HandlerRegistration addDataChangedHandler(com.smartgwt.client.widgets.tree.DataChangedHandler handler) {
             if(getHandlerCount(com.smartgwt.client.widgets.tree.DataChangedEvent.getType()) == 0) setupDataChangedEvent();

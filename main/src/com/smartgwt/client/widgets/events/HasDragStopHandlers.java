@@ -23,6 +23,9 @@ import com.google.gwt.event.shared.HasHandlers;
 public interface HasDragStopHandlers extends HasHandlers {
     /**
      * Executed when the mouse button is released at the end of the drag. Your widget can&#010 use this opportunity to fire code based on the last location of the drag or reset any&#010 visual state that was sent.&#010&#010
+     *
+     * @param handler the dragStop handler
+     * @return {@link HandlerRegistration} used to remove this handler
      */
     HandlerRegistration addDragStopHandler(DragStopHandler handler);
 }

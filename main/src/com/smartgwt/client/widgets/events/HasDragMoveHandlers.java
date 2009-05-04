@@ -23,6 +23,9 @@ import com.google.gwt.event.shared.HasHandlers;
 public interface HasDragMoveHandlers extends HasHandlers {
     /**
      * Executed every time the mouse moves while dragging this canvas.&#010&#010
+     *
+     * @param handler the dragMove handler
+     * @return {@link HandlerRegistration} used to remove this handler
      */
     HandlerRegistration addDragMoveHandler(DragMoveHandler handler);
 }

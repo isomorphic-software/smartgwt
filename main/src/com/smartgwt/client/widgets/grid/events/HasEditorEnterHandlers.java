@@ -23,6 +23,9 @@ import com.google.gwt.event.shared.HasHandlers;
 public interface HasEditorEnterHandlers extends HasHandlers {
     /**
      * Callback fired when the user first starts editing a cell.&#010 <P>&#010 This callback is typically used to establish dynamic default values via&#010 {@link com.smartgwt.client.widgets.grid.ListGrid#setEditValue} or {@link com.smartgwt.client.widgets.grid.ListGrid#setEditValues}.&#010&#010
+     *
+     * @param handler the editorEnter handler
+     * @return {@link HandlerRegistration} used to remove this handler
      */
     HandlerRegistration addEditorEnterHandler(EditorEnterHandler handler);
 }

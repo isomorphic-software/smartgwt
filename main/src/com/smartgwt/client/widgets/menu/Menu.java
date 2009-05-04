@@ -387,6 +387,7 @@ public class Menu extends ListGrid  implements com.smartgwt.client.widgets.menu.
          * Executed when a menu item with no click handler is clicked by the user. This&#010          itemClick handler must be specified as a function. It is passed an item parameter that&#010          is a reference to the clicked menu item.&#010&#010
          *
          * @param handler the itemClick handler
+         * @return {@link HandlerRegistration} used to remove this handler
          */
         public HandlerRegistration addItemClickHandler(com.smartgwt.client.widgets.menu.events.ItemClickHandler handler) {
             if(getHandlerCount(com.smartgwt.client.widgets.menu.events.ItemClickEvent.getType()) == 0) setupItemClickEvent();

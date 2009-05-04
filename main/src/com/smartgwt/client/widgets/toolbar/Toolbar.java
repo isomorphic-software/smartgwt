@@ -179,6 +179,7 @@ public abstract class Toolbar extends Layout  implements com.smartgwt.client.wid
          * Called when one of the buttons recieved a click event&#010
          *
          * @param handler the itemClick handler
+         * @return {@link HandlerRegistration} used to remove this handler
          */
         public HandlerRegistration addItemClickHandler(com.smartgwt.client.widgets.toolbar.events.ItemClickHandler handler) {
             if(getHandlerCount(com.smartgwt.client.widgets.toolbar.events.ItemClickEvent.getType()) == 0) setupItemClickEvent();
@@ -213,6 +214,7 @@ public abstract class Toolbar extends Layout  implements com.smartgwt.client.wid
          * Observable, overrideable method - called when one of the Toolbar buttons is drag resized.&#010&#010
          *
          * @param handler the itemDragResized handler
+         * @return {@link HandlerRegistration} used to remove this handler
          */
         public HandlerRegistration addItemDragResizedHandler(com.smartgwt.client.widgets.toolbar.events.ItemDragResizedHandler handler) {
             if(getHandlerCount(com.smartgwt.client.widgets.toolbar.events.ItemResizedEvent.getType()) == 0) setupItemDragResizedEvent();

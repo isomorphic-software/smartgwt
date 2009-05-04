@@ -342,6 +342,7 @@ public class MenuItem extends ListGridRecord  implements com.smartgwt.client.wid
          * Executed when this menu item is clicked by the user. The click handler must be specified&#010 as a function or string of script.  Return false to suppress the {@link com.smartgwt.client.widgets.menu.Menu#itemClick}&#010 handler if specified.&#010&#010
          *
          * @param handler the click handler
+         * @return {@link HandlerRegistration} used to remove this handler
          */
         public HandlerRegistration addClickHandler(com.smartgwt.client.widgets.menu.events.ClickHandler handler) {
             if(getHandlerCount(com.smartgwt.client.widgets.menu.events.MenuItemClickEvent.getType()) == 0) setupClickEvent();

@@ -23,6 +23,9 @@ import com.google.gwt.event.shared.HasHandlers;
 public interface HasDoubleClickHandlers extends HasHandlers {
     /**
      * Called when this FormItem is double-clicked.&#010&#010
+     *
+     * @param handler the doubleClick handler
+     * @return {@link HandlerRegistration} used to remove this handler
      */
     HandlerRegistration addDoubleClickHandler(DoubleClickHandler handler);
 }

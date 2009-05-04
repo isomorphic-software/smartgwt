@@ -998,6 +998,7 @@ public class Window extends VLayout  implements com.smartgwt.client.widgets.even
          * Handles a click on the close button of this window. The default implementation&#010 hides the window and returns false to cancel bubbling.  Override this method if you want&#010 other actions to be taken.&#010
          *
          * @param handler the closeClick handler
+         * @return {@link HandlerRegistration} used to remove this handler
          */
         public HandlerRegistration addCloseClickHandler(com.smartgwt.client.widgets.events.CloseClickHandler handler) {
             if(getHandlerCount(com.smartgwt.client.widgets.events.CloseClientEvent.getType()) == 0) setupCloseClickEvent();

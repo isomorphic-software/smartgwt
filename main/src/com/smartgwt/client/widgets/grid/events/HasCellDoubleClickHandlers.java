@@ -23,6 +23,9 @@ import com.google.gwt.event.shared.HasHandlers;
 public interface HasCellDoubleClickHandlers extends HasHandlers {
     /**
      * Called when a cell receives a double click event.&#010&#010
+     *
+     * @param handler the cellDoubleClick handler
+     * @return {@link HandlerRegistration} used to remove this handler
      */
     HandlerRegistration addCellDoubleClickHandler(CellDoubleClickHandler handler);
 }

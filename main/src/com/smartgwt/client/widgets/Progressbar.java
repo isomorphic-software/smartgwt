@@ -198,6 +198,7 @@ public class Progressbar extends StretchImg  implements com.smartgwt.client.widg
          * This method is called when the percentDone value changes. Observe this method to be notified upon&#010 a change to the percentDone value.&#010&#010
          *
          * @param handler the percentChanged handler
+         * @return {@link HandlerRegistration} used to remove this handler
          */
         public HandlerRegistration addPercentChangedHandler(com.smartgwt.client.widgets.events.PercentChangedHandler handler) {
             if(getHandlerCount(com.smartgwt.client.widgets.events.PercentChangedEvent.getType()) == 0) setupPercentChangedEvent();

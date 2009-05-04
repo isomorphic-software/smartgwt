@@ -1393,6 +1393,7 @@ public class ListGridField extends DataClass  implements com.smartgwt.client.wid
          * Callback fired when the user first starts editing a cell.&#010 <P>&#010 This callback is typically used to establish dynamic default values via&#010 {@link com.smartgwt.client.widgets.grid.ListGrid#setEditValue} or {@link com.smartgwt.client.widgets.grid.ListGrid#setEditValues}.&#010&#010
          *
          * @param handler the editorEnter handler
+         * @return {@link HandlerRegistration} used to remove this handler
          */
         public HandlerRegistration addEditorEnterHandler(com.smartgwt.client.widgets.grid.events.EditorEnterHandler handler) {
             if(getHandlerCount(com.smartgwt.client.widgets.grid.events.EditorEnterEvent.getType()) == 0) setupEditorEnterEvent();
@@ -1421,6 +1422,7 @@ public class ListGridField extends DataClass  implements com.smartgwt.client.wid
          * Callback fired when the user attempts to navigate away from the current edit cell, &#010 or complete the current edit.<br>&#010 Return false from this method to cancel the default behavior (Saving / cancelling the&#010 current edit / moving to the next edit cell)&#010&#010
          *
          * @param handler the editorExit handler
+         * @return {@link HandlerRegistration} used to remove this handler
          */
         public HandlerRegistration addEditorExitHandler(com.smartgwt.client.widgets.grid.events.EditorExitHandler handler) {
             if(getHandlerCount(com.smartgwt.client.widgets.grid.events.EditorExitEvent.getType()) == 0) setupEditorExitEvent();
@@ -1445,6 +1447,7 @@ public class ListGridField extends DataClass  implements com.smartgwt.client.wid
          * Callback fired when field changes value as the result of a cell edit.  Fired only on&#010  successful save of edit, when the new value doesn't match the value before editing.<br>&#010  <p>&#010  Same signature as {@link com.smartgwt.client.widgets.grid.ListGrid#cellChanged}, but defined on a per-field basis.&#010&#010
          *
          * @param handler the cellChanged handler
+         * @return {@link HandlerRegistration} used to remove this handler
          */
         public HandlerRegistration addCellSavedHandler(com.smartgwt.client.widgets.grid.events.CellSavedHandler handler) {
             if(getHandlerCount(com.smartgwt.client.widgets.grid.events.CellSavedEvent.getType()) == 0) setupCellSavedEvent();
@@ -1474,6 +1477,7 @@ public class ListGridField extends DataClass  implements com.smartgwt.client.wid
          * &#010 Executed when this field is clicked on.  Note that if {@link com.smartgwt.client.widgets.grid.ListGrid#recordClick} is&#010 also defined, it will be fired for fields that define a recordClick handler if the&#010 field-level handler returns true. Return false to prevent the grid-level handler from firing.&#010&#010
          *
          * @param handler the recordClick handler
+         * @return {@link HandlerRegistration} used to remove this handler
          */
         public HandlerRegistration addRecordClickHandler(com.smartgwt.client.widgets.grid.events.RecordClickHandler handler) {
             if(getHandlerCount(com.smartgwt.client.widgets.grid.events.RecordClickEvent.getType()) == 0) setupRecordClickEvent();
@@ -1507,6 +1511,7 @@ public class ListGridField extends DataClass  implements com.smartgwt.client.wid
          * If this field is editable, any {@link com.smartgwt.client.widgets.form.fields.FormItem#change} handler specified&#010 on the ListGridField will be passed onto the editors for this field.&#010
          *
          * @param handler the change handler
+         * @return {@link HandlerRegistration} used to remove this handler
          */
         public HandlerRegistration addChangeHandler(com.smartgwt.client.widgets.grid.events.ChangeHandler handler) {
             if(getHandlerCount(com.smartgwt.client.widgets.grid.events.ChangeEvent.getType()) == 0) setupChangeEvent();
@@ -1532,6 +1537,7 @@ public class ListGridField extends DataClass  implements com.smartgwt.client.wid
          * If this field is editable, any {@link com.smartgwt.client.widgets.form.fields.FormItem#changed} handler specified&#010 on the ListGridField will be passed onto the editors for this field.&#010
          *
          * @param handler the changed handler
+         * @return {@link HandlerRegistration} used to remove this handler
          */
         public HandlerRegistration addChangedHandler(com.smartgwt.client.widgets.grid.events.ChangedHandler handler) {
             if(getHandlerCount(com.smartgwt.client.widgets.grid.events.ChangedEvent.getType()) == 0) setupChangedEvent();

@@ -23,6 +23,9 @@ import com.google.gwt.event.shared.HasHandlers;
 public interface HasDragRepositionStopHandlers extends HasHandlers {
     /**
      * &#010 Executed when the mouse button is released at the end of the drag. Your&#010 widget can use this opportunity to fire custom code based upon where the&#010 mouse button was released, etc. &#010 <p>&#010 Returning true from this handler will cause the {@link com.smartgwt.client.widgets.Canvas#getDragTarget dragTarget} (or outline if&#010 {@link com.smartgwt.client.widgets.Canvas#getDragAppearance dragAppearance} is set to "outline") to be left in its current&#010 location. Returning false from this handler will cause it to snap back to its&#010 original location.&#010&#010
+     *
+     * @param handler the dragRepositionStop handler
+     * @return {@link HandlerRegistration} used to remove this handler
      */
     HandlerRegistration addDragRepositionStopHandler(DragRepositionStopHandler handler);
 }

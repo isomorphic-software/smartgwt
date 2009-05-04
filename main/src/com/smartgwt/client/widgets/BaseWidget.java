@@ -710,16 +710,10 @@ public abstract class BaseWidget extends Widget implements HasHandlers {
     }
 
     //override default behavior of setting title for SmartGWT widgets
-    /**
-     * @param title
-     */
     public void setTitle(String title) {
         //do nothing
     }
 
-    /**
-     * @return
-     */
     public String getTitle() {
         return "";
     }

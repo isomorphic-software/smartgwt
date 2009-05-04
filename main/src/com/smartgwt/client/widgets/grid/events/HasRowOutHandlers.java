@@ -23,6 +23,9 @@ import com.google.gwt.event.shared.HasHandlers;
 public interface HasRowOutHandlers extends HasHandlers {
     /**
      * Called when the mouse pointer leaves a row&#010&#010
+     *
+     * @param handler the rowOut handler
+     * @return {@link HandlerRegistration} used to remove this handler
      */
     HandlerRegistration addRowOutHandler(RowOutHandler handler);
 }

@@ -23,6 +23,9 @@ import com.google.gwt.event.shared.HasHandlers;
 public interface HasMouseWheelHandlers extends HasHandlers {
     /**
      * &#010 Executed when the mouse wheel is actuated.&#010&#010
+     *
+     * @param handler the mouseWheel handler
+     * @return {@link HandlerRegistration} used to remove this handler
      */
     HandlerRegistration addMouseWheelHandler(MouseWheelHandler handler);
 }

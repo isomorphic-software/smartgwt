@@ -3342,6 +3342,7 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
          * Called when the mouse pointer enters a cell&#010&#010
          *
          * @param handler the cellOver handler
+         * @return {@link HandlerRegistration} used to remove this handler
          */
         public HandlerRegistration addCellOverHandler(com.smartgwt.client.widgets.grid.events.CellOverHandler handler) {
             if(getHandlerCount(com.smartgwt.client.widgets.grid.events.CellOverEvent.getType()) == 0) setupCellOverEvent();
@@ -3381,6 +3382,7 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
          * Called when the mouse pointer enters a row&#010&#010
          *
          * @param handler the rowOver handler
+         * @return {@link HandlerRegistration} used to remove this handler
          */
         public HandlerRegistration addRowOverHandler(com.smartgwt.client.widgets.grid.events.RowOverHandler handler) {
             if(getHandlerCount(com.smartgwt.client.widgets.grid.events.RowOverEvent.getType()) == 0) setupRowOverEvent();
@@ -3420,6 +3422,7 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
          * Called when the mouse pointer leaves a cell&#010&#010
          *
          * @param handler the cellOut handler
+         * @return {@link HandlerRegistration} used to remove this handler
          */
         public HandlerRegistration addCellOutHandler(com.smartgwt.client.widgets.grid.events.CellOutHandler handler) {
             if(getHandlerCount(com.smartgwt.client.widgets.grid.events.CellOutEvent.getType()) == 0) setupCellOutEvent();
@@ -3459,6 +3462,7 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
          * Called when the mouse pointer leaves a row&#010&#010
          *
          * @param handler the rowOut handler
+         * @return {@link HandlerRegistration} used to remove this handler
          */
         public HandlerRegistration addRowOutHandler(com.smartgwt.client.widgets.grid.events.RowOutHandler handler) {
             if(getHandlerCount(com.smartgwt.client.widgets.grid.events.RowOutEvent.getType()) == 0) setupRowOutEvent();
@@ -3498,6 +3502,7 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
          * Called when the mouse hovers over a cell if this.canHover is true. &#010  Returning false will suppress the hover text from being shown if this.showHover is true.&#010&#010
          *
          * @param handler the cellHover handler
+         * @return {@link HandlerRegistration} used to remove this handler
          */
         public HandlerRegistration addCellHoverHandler(com.smartgwt.client.widgets.grid.events.CellHoverHandler handler) {
             if(getHandlerCount(com.smartgwt.client.widgets.grid.events.CellHoverEvent.getType()) == 0) setupCellHoverEvent();
@@ -3537,6 +3542,7 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
          * Called when the mouse hovers over a row if this.canHover is true. &#010  Returning false will suppress the hover text from being shown if this.showHover is true.&#010&#010
          *
          * @param handler the rowHover handler
+         * @return {@link HandlerRegistration} used to remove this handler
          */
         public HandlerRegistration addRowHoverHandler(com.smartgwt.client.widgets.grid.events.RowHoverHandler handler) {
             if(getHandlerCount(com.smartgwt.client.widgets.grid.events.RowHoverEvent.getType()) == 0) setupRowHoverEvent();
@@ -3577,6 +3583,7 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
          * Called when a cell receives a contextclick event.&#010&#010
          *
          * @param handler the cellContextClick handler
+         * @return {@link HandlerRegistration} used to remove this handler
          */
         public HandlerRegistration addCellContextClickHandler(com.smartgwt.client.widgets.grid.events.CellContextClickHandler handler) {
             if(getHandlerCount(com.smartgwt.client.widgets.grid.events.CellContextClickEvent.getType()) == 0) setupCellContextClickEvent();
@@ -3616,6 +3623,7 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
          * Called when a row receives a contextclick event.&#010
          *
          * @param handler the rowContextClick handler
+         * @return {@link HandlerRegistration} used to remove this handler
          */
         public HandlerRegistration addRowContextClickHandler(com.smartgwt.client.widgets.grid.events.RowContextClickHandler handler) {
             if(getHandlerCount(com.smartgwt.client.widgets.grid.events.RowContextClickEvent.getType()) == 0) setupRowContextClickEvent();
@@ -3655,6 +3663,7 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
          * Called when a cell receives a mousedown event.&#010 &#010
          *
          * @param handler the cellMouseDown handler
+         * @return {@link HandlerRegistration} used to remove this handler
          */
         public HandlerRegistration addCellMouseDownHandler(com.smartgwt.client.widgets.grid.events.CellMouseDownHandler handler) {
             if(getHandlerCount(com.smartgwt.client.widgets.grid.events.CellMouseDownEvent.getType()) == 0) setupCellMouseDownEvent();
@@ -3694,6 +3703,7 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
          * Called when a row receives a mousedown event.&#010 &#010
          *
          * @param handler the rowMouseDown handler
+         * @return {@link HandlerRegistration} used to remove this handler
          */
         public HandlerRegistration addRowMouseDownHandler(com.smartgwt.client.widgets.grid.events.RowMouseDownHandler handler) {
             if(getHandlerCount(com.smartgwt.client.widgets.grid.events.RowMouseDownEvent.getType()) == 0) setupRowMouseDownEvent();
@@ -3733,6 +3743,7 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
          * Called when a cell receives a mouseup event.&#010&#010
          *
          * @param handler the cellMouseUp handler
+         * @return {@link HandlerRegistration} used to remove this handler
          */
         public HandlerRegistration addCellMouseUpHandler(com.smartgwt.client.widgets.grid.events.CellMouseUpHandler handler) {
             if(getHandlerCount(com.smartgwt.client.widgets.grid.events.CellMouseUpEvent.getType()) == 0) setupCellMouseUpEvent();
@@ -3772,6 +3783,7 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
          * Called when a row receives a mouseup event.&#010&#010
          *
          * @param handler the rowMouseUp handler
+         * @return {@link HandlerRegistration} used to remove this handler
          */
         public HandlerRegistration addRowMouseUpHandler(com.smartgwt.client.widgets.grid.events.RowMouseUpHandler handler) {
             if(getHandlerCount(com.smartgwt.client.widgets.grid.events.RowMouseUpEvent.getType()) == 0) setupRowMouseUpEvent();
@@ -3811,6 +3823,7 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
          * Called when a cell receives a click event.&#010&#010
          *
          * @param handler the cellClick handler
+         * @return {@link HandlerRegistration} used to remove this handler
          */
         public HandlerRegistration addCellClickHandler(com.smartgwt.client.widgets.grid.events.CellClickHandler handler) {
             if(getHandlerCount(com.smartgwt.client.widgets.grid.events.CellClickEvent.getType()) == 0) setupCellClickEvent();
@@ -3850,6 +3863,7 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
          * Called when a cell receives a double click event.&#010&#010
          *
          * @param handler the cellDoubleClick handler
+         * @return {@link HandlerRegistration} used to remove this handler
          */
         public HandlerRegistration addCellDoubleClickHandler(com.smartgwt.client.widgets.grid.events.CellDoubleClickHandler handler) {
             if(getHandlerCount(com.smartgwt.client.widgets.grid.events.CellDoubleClickEvent.getType()) == 0) setupCellDoubleClickEvent();
@@ -4116,6 +4130,7 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
          * Executed when the listGrid receives a 'click' event on an enabled, non-separator&#010 record. The default implementation does nothing -- override to perform some action&#010 when any record or field is clicked.<br>&#010 A record event handler can be specified either as&#010 a function to execute, or as a string of script to evaluate. If the handler is defined&#010 as a string of script, all the parameters below will be available as variables for use&#010 in the script.<br>&#010 To do something specific if a particular field is clicked, add a recordClick&#010 method or string of script to that field (same parameters) when you're setting up&#010 the list.<br>&#010 <b>Notes:</b><ul>&#010  <li>This will not be called if the click is below the last item of the list.</li>&#010  <li>This method is called from the default implementaiton of&#010  {@link com.smartgwt.client.widgets.grid.ListGrid#rowClick}, so if that method is overridden&#010  this method may not be fired.</li></ul>&#010
          *
          * @param handler the recordClick handler
+         * @return {@link HandlerRegistration} used to remove this handler
          */
         public HandlerRegistration addRecordClickHandler(com.smartgwt.client.widgets.grid.events.RecordClickHandler handler) {
             if(getHandlerCount(com.smartgwt.client.widgets.grid.events.RecordClickEvent.getType()) == 0) setupRecordClickEvent();
@@ -4155,6 +4170,7 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
          * Executed when the listGrid receives a 'doubleClick' event on an enabled, non-separator&#010 record. The default implementation does nothing -- override to perform&#010 some action when any record or field is double clicked.<br>&#010 A record event handler can be specified either as a function to execute, or as a string&#010 of script to evaluate. If the handler is defined as a string of script, all the&#010 parameters below will be available as variables for use in the script.<br>&#010 To do something specific if a particular field is double clicked, add a&#010 recordDoubleClick method or string of script to that field (same parameters) when you're&#010 setting up the list.<br>&#010 <b>Notes:</b><ul>&#010 <li>This will not be called if the click is below the last item of the list.</li>&#010 <li>This method is called from the default implementation of {@link com.smartgwt.client.widgets.grid.ListGrid#rowDoubleClick},&#010 so if that method is overridden this method may not be fired.</li></ul>&#010
          *
          * @param handler the recordDoubleClick handler
+         * @return {@link HandlerRegistration} used to remove this handler
          */
         public HandlerRegistration addRecordDoubleClickHandler(com.smartgwt.client.widgets.grid.events.RecordDoubleClickHandler handler) {
             if(getHandlerCount(com.smartgwt.client.widgets.grid.events.RecordDoubleClickEvent.getType()) == 0) setupRecordDoubleClickEvent();
@@ -4536,6 +4552,7 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
          * Called when (row-based) selection changes within this grid. Note this method fires for&#010 each record for which selection is modified - so when a user clicks inside a grid this&#010 method will typically fire twice (once for the old record being deselected, and once for&#010 the new record being selected).&#010&#010
          *
          * @param handler the selectionChanged handler
+         * @return {@link HandlerRegistration} used to remove this handler
          */
         public HandlerRegistration addSelectionChangedHandler(com.smartgwt.client.widgets.grid.events.SelectionChangedHandler handler) {
             if(getHandlerCount(com.smartgwt.client.widgets.grid.events.SelectionEvent.getType()) == 0) setupSelectionChangedEvent();
@@ -4669,6 +4686,7 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
          * Fires after user edits have been successfully saved to the server, when the new value&#010 doesn't match the value before editing.&#010 <p>&#010 If you want immediate notification of a changes <b>before</b> changes has been saved to the&#010 server, implement {@link com.smartgwt.client.widgets.grid.ListGridField#change} or&#010 {@link com.smartgwt.client.widgets.grid.ListGridField#changed} instead.&#010 <P>&#010 You can supply this method on the listGrid instance or on the listGridField(s) that you&#010 want to receive cellChanged events for.  If both a field and the listGrid define a&#010 cellChanged method and that field receives an edit save, only the one defined on the&#010 field is called.&#010&#010
          *
          * @param handler the cellChanged handler
+         * @return {@link HandlerRegistration} used to remove this handler
          */
         public HandlerRegistration addCellSavedHandler(com.smartgwt.client.widgets.grid.events.CellSavedHandler handler) {
             if(getHandlerCount(com.smartgwt.client.widgets.grid.events.CellSavedEvent.getType()) == 0) setupCellSavedEvent();
@@ -4707,6 +4725,7 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
          * Callback fired when inline edits have been successfully saved.&#010 <P>&#010 No default implementation.&#010&#010
          *
          * @param handler the editComplete handler
+         * @return {@link HandlerRegistration} used to remove this handler
          */
         public HandlerRegistration addEditCompleteHandler(com.smartgwt.client.widgets.grid.events.EditCompleteHandler handler) {
             if(getHandlerCount(com.smartgwt.client.widgets.grid.events.EditCompleteEvent.getType()) == 0) setupEditCompleteEvent();
@@ -4745,6 +4764,7 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
          * Called when an attempt to save inline edits fails, due to a validation error or other&#010 server error.&#010 <P>&#010 The default implementation of editFailed does nothing for normal validation errors,&#010 which are displayed before editFailed() is called.  For any other errors, the default&#010 implementation will call {@link com.smartgwt.client.rpc.RPCManager#handleError}, which by default&#010 will result in a warning dialog.&#010&#010
          *
          * @param handler the editFailed handler
+         * @return {@link HandlerRegistration} used to remove this handler
          */
         public HandlerRegistration addEditFailedHandler(com.smartgwt.client.widgets.grid.events.EditFailedHandler handler) {
             if(getHandlerCount(com.smartgwt.client.widgets.grid.events.EditFailedEvent.getType()) == 0) setupEditFailedEvent();
@@ -4781,6 +4801,7 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
          * Callback fired when the user starts editing a new cell.&#010 <P>&#010 This callback is typically used to establish dynamic default values via&#010 {@link com.smartgwt.client.widgets.grid.ListGrid#setEditValue} or {@link com.smartgwt.client.widgets.grid.ListGrid#setEditValues}.&#010 <P>&#010 Can also be overriden on a per-field basis via&#010 {@link com.smartgwt.client.widgets.grid.ListGridField#editorEnter}.&#010&#010
          *
          * @param handler the editorEnter handler
+         * @return {@link HandlerRegistration} used to remove this handler
          */
         public HandlerRegistration addEditorEnterHandler(com.smartgwt.client.widgets.grid.events.EditorEnterHandler handler) {
             if(getHandlerCount(com.smartgwt.client.widgets.grid.events.EditorEnterEvent.getType()) == 0) setupEditorEnterEvent();
@@ -4816,6 +4837,7 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
          * Callback fired when the user starts editing a new row.&#010&#010
          *
          * @param handler the rowEditorEnter handler
+         * @return {@link HandlerRegistration} used to remove this handler
          */
         public HandlerRegistration addRowEditorEnterHandler(com.smartgwt.client.widgets.grid.events.RowEditorEnterHandler handler) {
             if(getHandlerCount(com.smartgwt.client.widgets.grid.events.RowEditorEnterEvent.getType()) == 0) setupRowEditorEnterEvent();
@@ -4853,6 +4875,7 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
          * Callback fired when the user attempts to navigate away from the current edit cell, &#010 or complete the current edit.&#010 <P>&#010 Return false from this method to cancel the default behavior (Saving / cancelling the&#010 current edit / moving to the next edit cell).&#010 <P>&#010 This callback is typically used to dynamically update values or value maps for related&#010 fields (via {@link com.smartgwt.client.widgets.grid.ListGrid#setEditValue} and {@link com.smartgwt.client.widgets.grid.ListGrid#setEditorValueMap} respectively, or to&#010 implement custom navigation (via {@link com.smartgwt.client.widgets.grid.ListGrid#startEditing}.&#010 <P>&#010 Can be overriden at the field level as field.editorExit.&#010&#010
          *
          * @param handler the editorExit handler
+         * @return {@link HandlerRegistration} used to remove this handler
          */
         public HandlerRegistration addEditorExitHandler(com.smartgwt.client.widgets.grid.events.EditorExitHandler handler) {
             if(getHandlerCount(com.smartgwt.client.widgets.grid.events.EditorExitEvent.getType()) == 0) setupEditorExitEvent();
@@ -4893,6 +4916,7 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
          * Callback fired when the user attempts to navigate away from the current edit row, &#010 or complete the current edit.&#010 <P>&#010 Return false from this method to cancel the default behavior (Saving / cancelling the&#010 current edit / moving to the next edit cell).&#010&#010
          *
          * @param handler the rowEditorExit handler
+         * @return {@link HandlerRegistration} used to remove this handler
          */
         public HandlerRegistration addRowEditorExitHandler(com.smartgwt.client.widgets.grid.events.RowEditorExitHandler handler) {
             if(getHandlerCount(com.smartgwt.client.widgets.grid.events.RowEditorExitEvent.getType()) == 0) setupRowEditorExitEvent();
@@ -4932,6 +4956,7 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
          * Notification method executed when columns are resized or reordered, or fields are &#010 shown or hidden. Has no default implementation.&#010&#010
          *
          * @param handler the fieldStateChanged handler
+         * @return {@link HandlerRegistration} used to remove this handler
          */
         public HandlerRegistration addFieldStateChangedHandler(com.smartgwt.client.widgets.grid.events.FieldStateChangedHandler handler) {
             if(getHandlerCount(com.smartgwt.client.widgets.grid.events.FieldStateChangedEvent.getType()) == 0) setupFieldStateChangedEvent();
@@ -4966,6 +4991,7 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
          * Notification method fired when new data arrives from the server to be displayed in this&#010 ListGrid, (for example in response to the user scrolling a new set of rows into view).&#010 Only applies to databound listGrids where the {@link com.smartgwt.client.widgets.grid.ListGrid#getData data} attribute is a&#010 {@link com.smartgwt.client.data.ResultSet}. This ResultSet may have been created manually and applied to the grid via&#010 a call to {@link com.smartgwt.client.widgets.grid.ListGrid#setData} or may have been created and automatically assigned if&#010 {@link com.smartgwt.client.widgets.grid.ListGrid#fetchData} was used to populate the grid.  This method is fired directly in&#010 response to {@link com.smartgwt.client.data.ResultSet#dataArrived} firing on the data object.&#010
          *
          * @param handler the dataArrived handler
+         * @return {@link HandlerRegistration} used to remove this handler
          */
         public HandlerRegistration addDataArrivedHandler(com.smartgwt.client.widgets.grid.events.DataArrivedHandler handler) {
             if(getHandlerCount(com.smartgwt.client.widgets.grid.events.DataArrivedEvent.getType()) == 0) setupDataArrivedEvent();

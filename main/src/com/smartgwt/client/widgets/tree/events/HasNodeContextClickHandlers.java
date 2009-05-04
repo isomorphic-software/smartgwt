@@ -23,6 +23,9 @@ import com.google.gwt.event.shared.HasHandlers;
 public interface HasNodeContextClickHandlers extends HasHandlers {
     /**
      * &#010 This method is called when a context click occurs on a leaf or folder record.  Note that&#010 if you set up a callback for <code>nodeContextClick()</code> and&#010 e.g. {@link com.smartgwt.client.widgets.tree.TreeGrid#leafContextClick}, then both will fire (in that order) if a leaf&#010 is contextclicked - unless <code>nodeContextClick()</code> returns false, in which case&#010 no further contextClick callbacks will be called.&#010&#010
+     *
+     * @param handler the nodeContextClick handler
+     * @return {@link HandlerRegistration} used to remove this handler
      */
     HandlerRegistration addNodeContextClickHandler(NodeContextClickHandler handler);
 }

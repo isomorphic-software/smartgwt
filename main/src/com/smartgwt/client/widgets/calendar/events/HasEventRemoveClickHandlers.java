@@ -23,6 +23,9 @@ import com.google.gwt.event.shared.HasHandlers;
 public interface HasEventRemoveClickHandlers extends HasHandlers {
     /**
      * Called whenever the close icon of an event is clicked within the day or week view. Return&#010 false to cancel the removal, or true to allow it.&#010 <P>&#010 Implement this method to do something like, for example, showing a confirmation dialog &#010 before an event is removed.&#010&#010
+     *
+     * @param handler the eventRemoveClick handler
+     * @return {@link HandlerRegistration} used to remove this handler
      */
     HandlerRegistration addEventRemoveClickHandler(EventRemoveClickHandler handler);
 }
