@@ -80,6 +80,12 @@ public class RadioGroupItem extends FormItem {
         setType("radioGroup");
     }
 
+    public RadioGroupItem(String name, String title) {
+        setName(name);
+		setTitle(title);
+        setType("radioGroup");
+    }
+
     // ********************* Properties / Attributes ***********************
 
     /**

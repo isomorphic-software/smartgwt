@@ -56,7 +56,7 @@ import com.smartgwt.client.util.EnumUtil;
 import com.google.gwt.event.shared.*;
 import com.google.gwt.event.shared.HasHandlers;
    /**
-    * A subclass of Canvas that automatically arranges other Canvases according to a layout policy.&#010 <br><br>&#010 A Layout manages a set of "member" Canvases initialized via the "members" property.  Layouts&#010 can have both "members", which are managed by the Layout, and normal Canvas children, which&#010 are unmanaged.&#010 <br><br>&#010 Rather than using the Layout class directly, use the HLayout, VLayout, HStack and VStack&#010 classes, which are subclasses of Layout preconfigured for horizontal or vertical stacking,&#010 with the "fill" (VLayout) or "none" (VStack) ${isc.DocUtils.linkForRef('type:LayoutPolicy','policies')} already set.&#010 <br><br>&#010 Layouts and Stacks may be nested to create arbitrarily complex layouts.&#010 <br><br>&#010 To show a resizer bar after (to the right or bottom of) a layout member, set showResizeBar to&#010 true on that member component (not on the HLayout or VLayout).  Resizer bars override&#010 membersMargin spacing.&#010 <br><br> &#010 Like other Canvas subclasses, Layout and Stack components may have % width and height&#010 values. To create a dynamically-resizing layout that occupies the entire page (or entire&#010 parent component), set width and height to "100%".
+    * A subclass of Canvas that automatically arranges other Canvases according to a layout policy.&#010 <br><br>&#010 A Layout manages a set of "member" Canvases initialized via the "members" property.  Layouts&#010 can have both "members", which are managed by the Layout, and normal Canvas children, which&#010 are unmanaged.&#010 <br><br>&#010 Rather than using the Layout class directly, use the HLayout, VLayout, HStack and VStack&#010 classes, which are subclasses of Layout preconfigured for horizontal or vertical stacking,&#010 with the "fill" (VLayout) or "none" (VStack) {@link com.smartgwt.client.types.LayoutPolicy} already set.&#010 <br><br>&#010 Layouts and Stacks may be nested to create arbitrarily complex layouts.&#010 <br><br>&#010 To show a resizer bar after (to the right or bottom of) a layout member, set showResizeBar to&#010 true on that member component (not on the HLayout or VLayout).  Resizer bars override&#010 membersMargin spacing.&#010 <br><br> &#010 Like other Canvas subclasses, Layout and Stack components may have % width and height&#010 values. To create a dynamically-resizing layout that occupies the entire page (or entire&#010 parent component), set width and height to "100%".
 
     */
 public class Layout extends Canvas {
@@ -89,7 +89,7 @@ public class Layout extends Canvas {
     // ********************* Properties / Attributes ***********************
              
     /**
-    * Normal ${isc.DocUtils.linkForRef('type:Overflow')} settings can be used on layouts, for example, an&#010 overflow:auto Layout will scroll if members exceed its specified size, whereas an&#010 overflow:visible Layout will grow to accomodate members.
+    * Normal {@link com.smartgwt.client.types.Overflow} settings can be used on layouts, for example, an&#010 overflow:auto Layout will scroll if members exceed its specified size, whereas an&#010 overflow:visible Layout will grow to accomodate members.
     *
     * @param overflow overflow Default value is "visible"
     * @throws IllegalStateException this property cannot be changed after the component has been created
@@ -98,7 +98,7 @@ public class Layout extends Canvas {
         setAttribute("overflow", overflow.getValue(), false);
     }
     /**
-     * Normal ${isc.DocUtils.linkForRef('type:Overflow')} settings can be used on layouts, for example, an&#010 overflow:auto Layout will scroll if members exceed its specified size, whereas an&#010 overflow:visible Layout will grow to accomodate members.
+     * Normal {@link com.smartgwt.client.types.Overflow} settings can be used on layouts, for example, an&#010 overflow:auto Layout will scroll if members exceed its specified size, whereas an&#010 overflow:visible Layout will grow to accomodate members.
      *
      *
      * @return Overflow
@@ -596,7 +596,7 @@ public class Layout extends Canvas {
 
 
         /**
-         * Return the breadth for a member of this layout which either didn't specify a breadth or&#010 specified a percent breadth with {@link com.smartgwt.client.widgets.layout.Layout#getManagePercentBreadth managePercentBreadth}:true.&#010 <P>&#010 Called only for Layouts which have a ${isc.DocUtils.linkForRef('type:LayoutPolicy','layout policy')} for the breadth&#010 axis of "fill", since Layouts with a breadth policy of "none" leave all member breadths alone.&#010&#010
+         * Return the breadth for a member of this layout which either didn't specify a breadth or&#010 specified a percent breadth with {@link com.smartgwt.client.widgets.layout.Layout#getManagePercentBreadth managePercentBreadth}:true.&#010 <P>&#010 Called only for Layouts which have a {@link com.smartgwt.client.types.LayoutPolicy} for the breadth&#010 axis of "fill", since Layouts with a breadth policy of "none" leave all member breadths alone.&#010&#010
          * @param member Component to be sized
      * @param defaultBreadth Value of the currently calculated member breadth. This      may be returned verbatim or manipulated in this method.
          */

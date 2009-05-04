@@ -86,6 +86,12 @@ public class ToolbarItem extends CanvasItem {
         setType("ToolbarItem");
     }
 
+    public ToolbarItem(String name, String title) {
+        setName(name);
+		setTitle(title);
+        setType("ToolbarItem");
+    }
+
     // ********************* Properties / Attributes ***********************
 
     /**

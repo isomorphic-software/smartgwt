@@ -56,7 +56,7 @@ import com.smartgwt.client.util.EnumUtil;
 import com.google.gwt.event.shared.*;
 import com.google.gwt.event.shared.HasHandlers;
    /**
-    * A TileGrid is a ${isc.DocUtils.linkForRef('interface:DataBoundComponent')} that displays a list of objects as a set&#010 of "tiles", where each tile represents one object, and the tiles are laid out in a grid with&#010 multiple tiles per row.  Each tile displays one or more properties of the object it&#010 represents.
+    * A TileGrid is a {@link com.smartgwt.client.widgets.DataBoundComponent} that displays a list of objects as a set&#010 of "tiles", where each tile represents one object, and the tiles are laid out in a grid with&#010 multiple tiles per row.  Each tile displays one or more properties of the object it&#010 represents.
 
     */
 
@@ -310,7 +310,7 @@ public class TileGrid extends TileLayout  implements DataBoundComponent, com.sma
     // ********************* Methods ***********************
 
         /**
-         * Uses a "fetch" operation on the current {@link com.smartgwt.client..DataBoundComponent#getDataSource dataSource} to &#010 retrieve data that matches the current filter and sort criteria for this component, then &#010 exports the resulting data to a file or window in the requested format.&#010 <P>&#010 For more information on exporting data, see {@link com.smartgwt.client.data.DataSource#exportData}.&#010&#010
+         * Uses a "fetch" operation on the current {@link com.smartgwt.client.widgets.DataBoundComponent#getDataSource dataSource} to &#010 retrieve data that matches the current filter and sort criteria for this component, then &#010 exports the resulting data to a file or window in the requested format.&#010 <P>&#010 For more information on exporting data, see {@link com.smartgwt.client.data.DataSource#exportData}.&#010&#010
          */
         public native void exportData() /*-{
             var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
@@ -318,7 +318,7 @@ public class TileGrid extends TileLayout  implements DataBoundComponent, com.sma
         }-*/;
 
         /**
-         * Uses a "fetch" operation on the current {@link com.smartgwt.client..DataBoundComponent#getDataSource dataSource} to &#010 retrieve data that matches the current filter and sort criteria for this component, then &#010 exports the resulting data to a file or window in the requested format.&#010 <P>&#010 For more information on exporting data, see {@link com.smartgwt.client.data.DataSource#exportData}.&#010&#010
+         * Uses a "fetch" operation on the current {@link com.smartgwt.client.widgets.DataBoundComponent#getDataSource dataSource} to &#010 retrieve data that matches the current filter and sort criteria for this component, then &#010 exports the resulting data to a file or window in the requested format.&#010 <P>&#010 For more information on exporting data, see {@link com.smartgwt.client.data.DataSource#exportData}.&#010&#010
          * @param requestProperties additional properties to set on the DSRequest                                            that will be issued
          */
         public native void exportData(DSRequest requestProperties) /*-{
@@ -523,7 +523,7 @@ public class TileGrid extends TileLayout  implements DataBoundComponent, com.sma
 
 
         /**
-         * Sets some presentation properties (visibility, width, userFormula and userSummary) of the &#010 grid fields based on the ${isc.DocUtils.linkForRef('type:listGridFieldState')} object passed in.<br>&#010 Used to restore previous state retrieved from the grid by a call to {@link com.smartgwt.client.widgets.tile.TileGrid#getFieldState}.&#010&#010
+         * Sets some presentation properties (visibility, width, userFormula and userSummary) of the &#010 grid fields based on the {@link com.smartgwt.client..listGridFieldState} object passed in.<br>&#010 Used to restore previous state retrieved from the grid by a call to {@link com.smartgwt.client.widgets.tile.TileGrid#getFieldState}.&#010&#010
          * @param fieldState state to apply to the grid's fields.
          */
         public native void setFieldState(String fieldState) /*-{
@@ -532,7 +532,7 @@ public class TileGrid extends TileLayout  implements DataBoundComponent, com.sma
         }-*/;
 
         /**
-         * Returns a snapshot of the current presentation of this grid's fields as &#010 a ${isc.DocUtils.linkForRef('type:listGridFieldState')} object.&#010 <P>&#010 This object can be passed to {@link com.smartgwt.client.widgets.tile.TileGrid#setFieldState} to reset this grid's fields to&#010 the current state.&#010 <P>&#010 Note that the information stored includes the current width and visibility of each of this &#010 grid's fields.&#010&#010
+         * Returns a snapshot of the current presentation of this grid's fields as &#010 a {@link com.smartgwt.client..listGridFieldState} object.&#010 <P>&#010 This object can be passed to {@link com.smartgwt.client.widgets.tile.TileGrid#setFieldState} to reset this grid's fields to&#010 the current state.&#010 <P>&#010 Note that the information stored includes the current width and visibility of each of this &#010 grid's fields.&#010&#010
          *
          * @return current state of this grid's fields.
          */
@@ -712,7 +712,7 @@ public class TileGrid extends TileLayout  implements DataBoundComponent, com.sma
      * fetch by calling  {@link com.smartgwt.client.data.ResultSet#willFetchData}. <P> If you need to force a server
      * fetch, you can call {@link com.smartgwt.client.data.ResultSet#invalidateCache} via
      * <code>component.data.invalidateCache()</code> to do so.   <P> This method takes an optional callback parameter
-     * (set to a ${isc.DocUtils.linkForRef('type:DSCallback')}) to fire when the fetch completes. Note that this
+     * (set to a {@link com.smartgwt.client.data.DSCallback}) to fire when the fetch completes. Note that this
      * callback will not fire if no server fetch is performed. In this case the data is updated synchronously, so as
      * soon as this method completes you can interact with the new data. If necessary we recomment using  {@link
      * com.smartgwt.client.data.ResultSet#willFetchData} before calling this method to determine whether or not a server
@@ -742,7 +742,7 @@ public class TileGrid extends TileLayout  implements DataBoundComponent, com.sma
      * fetch by calling  {@link com.smartgwt.client.data.ResultSet#willFetchData}. <P> If you need to force a server
      * fetch, you can call {@link com.smartgwt.client.data.ResultSet#invalidateCache} via
      * <code>component.data.invalidateCache()</code> to do so.   <P> This method takes an optional callback parameter
-     * (set to a ${isc.DocUtils.linkForRef('type:DSCallback')}) to fire when the fetch completes. Note that this
+     * (set to a {@link com.smartgwt.client.data.DSCallback}) to fire when the fetch completes. Note that this
      * callback will not fire if no server fetch is performed. In this case the data is updated synchronously, so as
      * soon as this method completes you can interact with the new data. If necessary we recomment using  {@link
      * com.smartgwt.client.data.ResultSet#willFetchData} before calling this method to determine whether or not a server
@@ -776,7 +776,7 @@ public class TileGrid extends TileLayout  implements DataBoundComponent, com.sma
      * fetch by calling  {@link com.smartgwt.client.data.ResultSet#willFetchData}. <P> If you need to force a server
      * fetch, you can call {@link com.smartgwt.client.data.ResultSet#invalidateCache} via
      * <code>component.data.invalidateCache()</code> to do so.   <P> This method takes an optional callback parameter
-     * (set to a ${isc.DocUtils.linkForRef('type:DSCallback')}) to fire when the fetch completes. Note that this
+     * (set to a {@link com.smartgwt.client.data.DSCallback}) to fire when the fetch completes. Note that this
      * callback will not fire if no server fetch is performed. In this case the data is updated synchronously, so as
      * soon as this method completes you can interact with the new data. If necessary we recomment using  {@link
      * com.smartgwt.client.data.ResultSet#willFetchData} before calling this method to determine whether or not a server
@@ -817,7 +817,7 @@ public class TileGrid extends TileLayout  implements DataBoundComponent, com.sma
      * fetch by calling  {@link com.smartgwt.client.data.ResultSet#willFetchData}. <P> If you need to force a server
      * fetch, you can call {@link com.smartgwt.client.data.ResultSet#invalidateCache} via
      * <code>component.data.invalidateCache()</code> to do so.   <P> This method takes an optional callback parameter
-     * (set to a ${isc.DocUtils.linkForRef('type:DSCallback')}) to fire when the fetch completes. Note that this
+     * (set to a {@link com.smartgwt.client.data.DSCallback}) to fire when the fetch completes. Note that this
      * callback will not fire if no server fetch is performed. In this case the data is updated synchronously, so as
      * soon as this method completes you can interact with the new data. If necessary we recomment using  {@link
      * com.smartgwt.client.data.ResultSet#willFetchData} before calling this method to determine whether or not a server
@@ -961,7 +961,7 @@ public class TileGrid extends TileLayout  implements DataBoundComponent, com.sma
 
 
     /**
-     * Simulates a drag / drop type transfer of the selected records in some other component to this component, without requiring any user interaction.  This method acts on the dropped records  exactly as if they had been dropped in an actual drag / drop interaction, including any  special databound behavior invoked by calling {@link com.smartgwt.client.widgets.DataBoundComponent#getDropValues} for each dropped record. <P> To transfer <b>all</b> data in, for example, a {@link com.smartgwt.client.widgets.grid.ListGrid}, call grid.selection.selectAll() first. <P> See the ${isc.DocUtils.linkForRef('group:dragging')} documentation for an overview of list grid drag/drop data transfer.
+     * Simulates a drag / drop type transfer of the selected records in some other component to this component, without requiring any user interaction.  This method acts on the dropped records  exactly as if they had been dropped in an actual drag / drop interaction, including any  special databound behavior invoked by calling {@link com.smartgwt.client.widgets.DataBoundComponent#getDropValues} for each dropped record. <P> To transfer <b>all</b> data in, for example, a {@link com.smartgwt.client.widgets.grid.ListGrid}, call grid.selection.selectAll() first. <P> See the {@link com.smartgwt.client.docs.Dragging dragging} documentation for an overview of list grid drag/drop data transfer.
      *
      * @param source source component from which the records will be tranferred
      */
@@ -971,7 +971,7 @@ public class TileGrid extends TileLayout  implements DataBoundComponent, com.sma
         }-*/;
 
     /**
-     * Simulates a drag / drop type transfer of the selected records in some other component to this component, without requiring any user interaction.  This method acts on the dropped records  exactly as if they had been dropped in an actual drag / drop interaction, including any  special databound behavior invoked by calling {@link com.smartgwt.client.widgets.DataBoundComponent#getDropValues} for each dropped record. <P> To transfer <b>all</b> data in, for example, a {@link com.smartgwt.client.widgets.grid.ListGrid}, call grid.selection.selectAll() first. <P> See the ${isc.DocUtils.linkForRef('group:dragging')} documentation for an overview of list grid drag/drop data transfer.
+     * Simulates a drag / drop type transfer of the selected records in some other component to this component, without requiring any user interaction.  This method acts on the dropped records  exactly as if they had been dropped in an actual drag / drop interaction, including any  special databound behavior invoked by calling {@link com.smartgwt.client.widgets.DataBoundComponent#getDropValues} for each dropped record. <P> To transfer <b>all</b> data in, for example, a {@link com.smartgwt.client.widgets.grid.ListGrid}, call grid.selection.selectAll() first. <P> See the {@link com.smartgwt.client.docs.Dragging dragging} documentation for an overview of list grid drag/drop data transfer.
      *
      * @param source source component from which the records will be tranferred
      * @param index  target index (drop position) of the rows within this grid.
@@ -1008,7 +1008,7 @@ public class TileGrid extends TileLayout  implements DataBoundComponent, com.sma
     }
 
     /**
-     * Deselect a ${isc.DocUtils.linkForRef('object:Record')} passed in explicitly, or by index. <P> Synonym for
+     * Deselect a {@link com.smartgwt.client.data.Record} passed in explicitly, or by index. <P> Synonym for
      * <code>selectRecord(record, false)</code>
      *
      * @param record record (or row number) to deselect
@@ -1020,7 +1020,7 @@ public class TileGrid extends TileLayout  implements DataBoundComponent, com.sma
     }-*/;
 
     /**
-     * Deselect a ${isc.DocUtils.linkForRef('object:Record')} passed in explicitly, or by index. <P> Synonym for
+     * Deselect a {@link com.smartgwt.client.data.Record} passed in explicitly, or by index. <P> Synonym for
      * <code>selectRecord(record, false)</code>
      *
      * @param record record (or row number) to deselect
@@ -1031,7 +1031,7 @@ public class TileGrid extends TileLayout  implements DataBoundComponent, com.sma
     }-*/;
 
     /**
-     * Deselect a list of ${isc.DocUtils.linkForRef('object:Record')}s passed in explicitly, or by index. <P> Synonym
+     * Deselect a list of {@link com.smartgwt.client.data.Record}s passed in explicitly, or by index. <P> Synonym
      * for <code>selectRecords(records, false)</code>
      *
      * @param records records (or row numbers) to deselect
@@ -1043,7 +1043,7 @@ public class TileGrid extends TileLayout  implements DataBoundComponent, com.sma
     }-*/;
 
     /**
-     * Deselect a list of ${isc.DocUtils.linkForRef('object:Record')}s passed in explicitly, or by index. <P> Synonym
+     * Deselect a list of {@link com.smartgwt.client.data.Record}s passed in explicitly, or by index. <P> Synonym
      * for <code>selectRecords(records, false)</code>
      *
      * @param records records (or row numbers) to deselect
@@ -1055,7 +1055,7 @@ public class TileGrid extends TileLayout  implements DataBoundComponent, com.sma
     }-*/;
 
     /**
-     * Select/deselect a ${isc.DocUtils.linkForRef('object:Record')} passed in explicitly, or by index.
+     * Select/deselect a {@link com.smartgwt.client.data.Record} passed in explicitly, or by index.
      *
      * @param record record (or row number) to select
      */
@@ -1066,7 +1066,7 @@ public class TileGrid extends TileLayout  implements DataBoundComponent, com.sma
     }-*/;
 
     /**
-     * Select/deselect a ${isc.DocUtils.linkForRef('object:Record')} passed in explicitly, or by index.
+     * Select/deselect a {@link com.smartgwt.client.data.Record} passed in explicitly, or by index.
      *
      * @param record record (or row number) to select
      */
@@ -1076,7 +1076,7 @@ public class TileGrid extends TileLayout  implements DataBoundComponent, com.sma
     }-*/;
 
     /**
-     * Select/deselect a ${isc.DocUtils.linkForRef('object:Record')} passed in explicitly, or by index.
+     * Select/deselect a {@link com.smartgwt.client.data.Record} passed in explicitly, or by index.
      *
      * @param record   record (or row number) to select
      * @param newState new selection state (if null, defaults to true)
@@ -1087,7 +1087,7 @@ public class TileGrid extends TileLayout  implements DataBoundComponent, com.sma
     }-*/;
 
     /**
-     * Select/deselect a ${isc.DocUtils.linkForRef('object:Record')} passed in explicitly, or by index.
+     * Select/deselect a {@link com.smartgwt.client.data.Record} passed in explicitly, or by index.
      *
      * @param record   record (or row number) to select
      * @param newState new selection state (defaults to true)
@@ -1099,7 +1099,7 @@ public class TileGrid extends TileLayout  implements DataBoundComponent, com.sma
     }-*/;
 
     /**
-     * Select/deselect a list of ${isc.DocUtils.linkForRef('object:Record')}s passed in explicitly, or by index.
+     * Select/deselect a list of {@link com.smartgwt.client.data.Record}s passed in explicitly, or by index.
      *
      * @param records records (or row numbers) to select
      */
@@ -1110,7 +1110,7 @@ public class TileGrid extends TileLayout  implements DataBoundComponent, com.sma
     }-*/;
 
     /**
-     * Select/deselect a list of ${isc.DocUtils.linkForRef('object:Record')}s passed in explicitly, or by index.
+     * Select/deselect a list of {@link com.smartgwt.client.data.Record}s passed in explicitly, or by index.
      *
      * @param records records (or row numbers) to select
      * @param newState new selection state (defaults to true)
@@ -1122,7 +1122,7 @@ public class TileGrid extends TileLayout  implements DataBoundComponent, com.sma
     }-*/;
 
     /**
-     * Select/deselect a list of ${isc.DocUtils.linkForRef('object:Record')}s passed in explicitly, or by index.
+     * Select/deselect a list of {@link com.smartgwt.client.data.Record}s passed in explicitly, or by index.
      *
      * @param records records (or row numbers) to select
      */
@@ -1133,7 +1133,7 @@ public class TileGrid extends TileLayout  implements DataBoundComponent, com.sma
      }-*/;
 
     /**
-     * Select/deselect a list of ${isc.DocUtils.linkForRef('object:Record')}s passed in explicitly, or by index.
+     * Select/deselect a list of {@link com.smartgwt.client.data.Record}s passed in explicitly, or by index.
      *
      * @param records  records (or row numbers) to select
      * @param newState new selection state (defaults to true)

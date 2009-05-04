@@ -67,4 +67,12 @@ public class Criteria extends DataClass {
         JSOHelper.setAttribute(jsObj, field, value);
     }
 
+    /**
+     * Adds the criteria from the passed criteria object.
+     *
+     * @param otherCriteria the passed criteria object
+     */
+    public void addCriteria(Criteria otherCriteria) {
+        JSOHelper.addProperties(jsObj, otherCriteria.getJsObj());
+    }
 }

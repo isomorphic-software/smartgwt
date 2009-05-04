@@ -86,6 +86,12 @@ public class SubmitItem extends ButtonItem {
         setType("SubmitItem");
     }
 
+    public SubmitItem(String name, String title) {
+        setName(name);
+		setTitle(title);
+        setType("SubmitItem");
+    }
+
     // ********************* Properties / Attributes ***********************
 
     /**

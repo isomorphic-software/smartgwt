@@ -3,8 +3,8 @@ package com.smartgwt.client.docs;
 
 /**
  * Fields with values calculated from other fields in the grid.
- * @see com.smartgwt.client..DataBoundComponent#addFormulaField
- * @see com.smartgwt.client..DataBoundComponent#editFormulaField
+ * @see com.smartgwt.client.widgets.DataBoundComponent#addFormulaField
+ * @see com.smartgwt.client.widgets.DataBoundComponent#editFormulaField
  * @see com.smartgwt.client..FormulaBuilder#setFormula
  * @see com.smartgwt.client..FormulaBuilder#getHelpText
  * @see com.smartgwt.client..FormulaBuilder#getUpdatedFieldObject
@@ -20,7 +20,7 @@ package com.smartgwt.client.docs;
  * @see com.smartgwt.client..MathFunction#registerFunction
  * @see com.smartgwt.client..MathFunction#getRegisteredFunctionIndex
  * @see com.smartgwt.client..MathFunction#getDefaultFunctionIndex
- * @see com.smartgwt.client..DataBoundComponent#getCanAddFormulaFields
+ * @see com.smartgwt.client.widgets.DataBoundComponent#getCanAddFormulaFields
  * @see com.smartgwt.client..MathFunction#getName
  * @see com.smartgwt.client..MathFunction#getDescription
  * @see com.smartgwt.client..MathFunction#getJsFunction

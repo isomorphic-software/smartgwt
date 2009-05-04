@@ -89,7 +89,7 @@ public class TileLayout extends Canvas {
     // ********************* Properties / Attributes ***********************
 
     /**
-    * Size of each tile in pixels.  Depending on the ${isc.DocUtils.linkForRef('type:LayoutPolicy')}, <code>tileSize</code>&#010 may be taken as a maximum, minimum or exact size of tiles, or may be irrelevant.&#010 <P>&#010 Width and height may be separately set via {@link com.smartgwt.client.widgets.tile.TileLayout#getTileHeight tileHeight} and {@link com.smartgwt.client.widgets.tile.TileLayout#getTileWidth tileWidth}.
+    * Size of each tile in pixels.  Depending on the {@link com.smartgwt.client.types.LayoutPolicy}, <code>tileSize</code>&#010 may be taken as a maximum, minimum or exact size of tiles, or may be irrelevant.&#010 <P>&#010 Width and height may be separately set via {@link com.smartgwt.client.widgets.tile.TileLayout#getTileHeight tileHeight} and {@link com.smartgwt.client.widgets.tile.TileLayout#getTileWidth tileWidth}.
     * sets the height and width of tiles&#010
     *
     * @param tileSize size. Default value is 50
@@ -99,7 +99,7 @@ public class TileLayout extends Canvas {
         setAttribute("tileSize", tileSize, false);
     }
     /**
-     * Size of each tile in pixels.  Depending on the ${isc.DocUtils.linkForRef('type:LayoutPolicy')}, <code>tileSize</code>&#010 may be taken as a maximum, minimum or exact size of tiles, or may be irrelevant.&#010 <P>&#010 Width and height may be separately set via {@link com.smartgwt.client.widgets.tile.TileLayout#getTileHeight tileHeight} and {@link com.smartgwt.client.widgets.tile.TileLayout#getTileWidth tileWidth}.
+     * Size of each tile in pixels.  Depending on the {@link com.smartgwt.client.types.LayoutPolicy}, <code>tileSize</code>&#010 may be taken as a maximum, minimum or exact size of tiles, or may be irrelevant.&#010 <P>&#010 Width and height may be separately set via {@link com.smartgwt.client.widgets.tile.TileLayout#getTileHeight tileHeight} and {@link com.smartgwt.client.widgets.tile.TileLayout#getTileWidth tileWidth}.
      *
      *
      * @return int
@@ -275,7 +275,7 @@ public class TileLayout extends Canvas {
     }
              
     /**
-    * Direction of tiling.  See also ${isc.DocUtils.linkForRef('type:TileLayoutPolicy')}.
+    * Direction of tiling.  See also {@link com.smartgwt.client..TileLayoutPolicy}.
     *
     * @param orientation orientation Default value is "horizontal"
     * @throws IllegalStateException this property cannot be changed after the component has been created
@@ -284,7 +284,7 @@ public class TileLayout extends Canvas {
         setAttribute("orientation", orientation.getValue(), false);
     }
     /**
-     * Direction of tiling.  See also ${isc.DocUtils.linkForRef('type:TileLayoutPolicy')}.
+     * Direction of tiling.  See also {@link com.smartgwt.client..TileLayoutPolicy}.
      *
      *
      * @return Orientation
@@ -295,7 +295,7 @@ public class TileLayout extends Canvas {
     }
 
     /**
-    * Number of tiles to show in each line.  Auto-derived from {@link com.smartgwt.client.widgets.tile.TileLayout#getTileSize tileSize} for some layout&#010 modes.  See ${isc.DocUtils.linkForRef('type:TileLayoutPolicy')}.
+    * Number of tiles to show in each line.  Auto-derived from {@link com.smartgwt.client.widgets.tile.TileLayout#getTileSize tileSize} for some layout&#010 modes.  See {@link com.smartgwt.client..TileLayoutPolicy}.
     *
     * @param tilesPerLine tilesPerLine Default value is null
     * @throws IllegalStateException this property cannot be changed after the component has been created
@@ -304,7 +304,7 @@ public class TileLayout extends Canvas {
         setAttribute("tilesPerLine", tilesPerLine, false);
     }
     /**
-     * Number of tiles to show in each line.  Auto-derived from {@link com.smartgwt.client.widgets.tile.TileLayout#getTileSize tileSize} for some layout&#010 modes.  See ${isc.DocUtils.linkForRef('type:TileLayoutPolicy')}.
+     * Number of tiles to show in each line.  Auto-derived from {@link com.smartgwt.client.widgets.tile.TileLayout#getTileSize tileSize} for some layout&#010 modes.  See {@link com.smartgwt.client..TileLayoutPolicy}.
      *
      *
      * @return Integer
@@ -315,7 +315,7 @@ public class TileLayout extends Canvas {
     }
              
     /**
-    * Normal ${isc.DocUtils.linkForRef('type:Overflow')} settings can be used on TileLayouts, for example, an&#010 overflow:auto TileLayout will scroll if members exceed its specified size, whereas an&#010 overflow:visible TileLayout will grow to accomodate members.
+    * Normal {@link com.smartgwt.client.types.Overflow} settings can be used on TileLayouts, for example, an&#010 overflow:auto TileLayout will scroll if members exceed its specified size, whereas an&#010 overflow:visible TileLayout will grow to accomodate members.
     *
     * @param overflow overflow Default value is "visible"
     * @throws IllegalStateException this property cannot be changed after the component has been created
@@ -324,7 +324,7 @@ public class TileLayout extends Canvas {
         setAttribute("overflow", overflow.getValue(), false);
     }
     /**
-     * Normal ${isc.DocUtils.linkForRef('type:Overflow')} settings can be used on TileLayouts, for example, an&#010 overflow:auto TileLayout will scroll if members exceed its specified size, whereas an&#010 overflow:visible TileLayout will grow to accomodate members.
+     * Normal {@link com.smartgwt.client.types.Overflow} settings can be used on TileLayouts, for example, an&#010 overflow:auto TileLayout will scroll if members exceed its specified size, whereas an&#010 overflow:visible TileLayout will grow to accomodate members.
      *
      *
      * @return Overflow
@@ -335,7 +335,7 @@ public class TileLayout extends Canvas {
     }
 
     /**
-    * With ${isc.DocUtils.linkForRef('type:LayoutPolicy')}:"fit", should margins be expanded so that tiles fill the&#010 available space in the TileLayout on the breadth axis?
+    * With {@link com.smartgwt.client.types.LayoutPolicy}:"fit", should margins be expanded so that tiles fill the&#010 available space in the TileLayout on the breadth axis?
     *
     * @param expandMargins expandMargins Default value is true
     * @throws IllegalStateException this property cannot be changed after the component has been created
@@ -344,7 +344,7 @@ public class TileLayout extends Canvas {
         setAttribute("expandMargins", expandMargins, false);
     }
     /**
-     * With ${isc.DocUtils.linkForRef('type:LayoutPolicy')}:"fit", should margins be expanded so that tiles fill the&#010 available space in the TileLayout on the breadth axis?
+     * With {@link com.smartgwt.client.types.LayoutPolicy}:"fit", should margins be expanded so that tiles fill the&#010 available space in the TileLayout on the breadth axis?
      *
      *
      * @return Boolean
@@ -355,7 +355,7 @@ public class TileLayout extends Canvas {
     }
 
     /**
-    * When ${isc.DocUtils.linkForRef('type:LayoutPolicy')} is "flow", should we automatically start a new line when there's&#010 not enough room to fit the next tile on the same line?&#010 <P>&#010 If set to false, a new line will only be started if a tile specifies tile.startLine or&#010 tile.endLine.
+    * When {@link com.smartgwt.client.types.LayoutPolicy} is "flow", should we automatically start a new line when there's&#010 not enough room to fit the next tile on the same line?&#010 <P>&#010 If set to false, a new line will only be started if a tile specifies tile.startLine or&#010 tile.endLine.
     *
     * @param autoWrapLines autoWrapLines Default value is true
     * @throws IllegalStateException this property cannot be changed after the component has been created
@@ -364,7 +364,7 @@ public class TileLayout extends Canvas {
         setAttribute("autoWrapLines", autoWrapLines, false);
     }
     /**
-     * When ${isc.DocUtils.linkForRef('type:LayoutPolicy')} is "flow", should we automatically start a new line when there's&#010 not enough room to fit the next tile on the same line?&#010 <P>&#010 If set to false, a new line will only be started if a tile specifies tile.startLine or&#010 tile.endLine.
+     * When {@link com.smartgwt.client.types.LayoutPolicy} is "flow", should we automatically start a new line when there's&#010 not enough room to fit the next tile on the same line?&#010 <P>&#010 If set to false, a new line will only be started if a tile specifies tile.startLine or&#010 tile.endLine.
      *
      *
      * @return Boolean
@@ -457,7 +457,7 @@ public class TileLayout extends Canvas {
     }
 
     /**
-     * Policy for laying out tiles.  See ${isc.DocUtils.linkForRef('type:TileLayoutPolicy')} for options.
+     * Policy for laying out tiles.  See {@link com.smartgwt.client.types.TileLayoutPolicy} for options.
      *
      * @param layoutPolicy layoutPolicy Default value is ""
      * @throws IllegalStateException this property cannot be changed after the component has been created

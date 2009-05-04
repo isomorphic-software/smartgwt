@@ -86,6 +86,12 @@ public class SectionItem extends CanvasItem {
         setType("SectionItem");
     }
 
+    public SectionItem(String name, String title) {
+        setName(name);
+		setTitle(title);
+        setType("SectionItem");
+    }
+
     // ********************* Properties / Attributes ***********************
 
     /**

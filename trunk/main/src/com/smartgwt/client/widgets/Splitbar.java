@@ -103,7 +103,7 @@ public class Splitbar extends StretchImg {
     }
 
     /**
-    * The base URL for the image. &#010 <P>&#010 As with {@link com.smartgwt.client.widgets.Img#getSrc src}, the ${isc.DocUtils.linkForRef('type:State')} of the component is added to this URL.  Then,&#010 the image segment name as specified by {@link com.smartgwt.client.widgets.StretchImg#getItems items} is added.&#010 <P>&#010 For example, for a stretchImg in "Over" state with a <code>src</code> of "button.png"&#010 and a segment name of "stretch", the resulting URL would be "button_Over_stretch.png".
+    * The base URL for the image. &#010 <P>&#010 As with {@link com.smartgwt.client.widgets.Img#getSrc src}, the {@link com.smartgwt.client.types.State} of the component is added to this URL.  Then,&#010 the image segment name as specified by {@link com.smartgwt.client.widgets.StretchImg#getItems items} is added.&#010 <P>&#010 For example, for a stretchImg in "Over" state with a <code>src</code> of "button.png"&#010 and a segment name of "stretch", the resulting URL would be "button_Over_stretch.png".
     *
     * @param src src Default value is null
     * @throws IllegalStateException this property cannot be changed after the component has been created
@@ -112,7 +112,7 @@ public class Splitbar extends StretchImg {
         setAttribute("src", src, false);
     }
     /**
-     * The base URL for the image. &#010 <P>&#010 As with {@link com.smartgwt.client.widgets.Img#getSrc src}, the ${isc.DocUtils.linkForRef('type:State')} of the component is added to this URL.  Then,&#010 the image segment name as specified by {@link com.smartgwt.client.widgets.StretchImg#getItems items} is added.&#010 <P>&#010 For example, for a stretchImg in "Over" state with a <code>src</code> of "button.png"&#010 and a segment name of "stretch", the resulting URL would be "button_Over_stretch.png".
+     * The base URL for the image. &#010 <P>&#010 As with {@link com.smartgwt.client.widgets.Img#getSrc src}, the {@link com.smartgwt.client.types.State} of the component is added to this URL.  Then,&#010 the image segment name as specified by {@link com.smartgwt.client.widgets.StretchImg#getItems items} is added.&#010 <P>&#010 For example, for a stretchImg in "Over" state with a <code>src</code> of "button.png"&#010 and a segment name of "stretch", the resulting URL would be "button_Over_stretch.png".
      *
      *
      * @return String

@@ -453,7 +453,7 @@ public class RPCRequest extends DataClass {
     // ********************* Static Methods ***********************
 
         /**
-         * RPCRequest shouldn't be created directly. Instead, pass ${isc.DocUtils.linkForRef('type:Properties')} to &#010 {@link com.smartgwt.client.rpc.RPCManager#sendRequest} and {@link com.smartgwt.client.rpc.RPCManager#send}.&#010
+         * RPCRequest shouldn't be created directly. Instead, pass {@link com.smartgwt.client..Properties} to &#010 {@link com.smartgwt.client.rpc.RPCManager#sendRequest} and {@link com.smartgwt.client.rpc.RPCManager#send}.&#010
          */
         public static native void create() /*-{
             $wnd.isc.RPCRequest.create();
@@ -465,7 +465,7 @@ public class RPCRequest extends DataClass {
 
 
     /**
-     * This attribute specifies the payload of the RPCRequest.  When using the SmartClient server, any JavaScript simple
+     * This attribute specifies the payload of the RPCRequest.  When using the SmartGWT server, any JavaScript simple
      * type or arbitrarily nested set of Objects and Arrays can be sent to server and automatically translated to Java
      * Objects.  Here are the  mapping of JavaScript types to their corresponding server object types:<br><br> <table
      * class='normal' border='1'>   <tr><td><b>JS Type</b></td>     <td><b>Java Type</b></td> <td><b>C# Type</b></td>
@@ -478,7 +478,7 @@ public class RPCRequest extends DataClass {
      * <td>string</td></tr>  </table> <br><br> Note that the order of keys/values in the Maps created on the server is
      * not guaranteed because JavaScript Object literals do not guarantee order. <p> Server->client conversion follows
      * the this table as well, with some extras.  See the toJS() method on JSTranslater in the server documentation for
-     * a description of additional behaviors. <P> When <b>not</b> communicating with the SmartClient server,
+     * a description of additional behaviors. <P> When <b>not</b> communicating with the SmartGWT server,
      * <code>rpcRequest.data</code> becomes simple HTTP parameters or an HTTP request body - see {@link
      * com.smartgwt.client.rpc.RPCRequest#getUseSimpleHttp useSimpleHttp} for details.
      *
@@ -489,7 +489,7 @@ public class RPCRequest extends DataClass {
     }
 
     /**
-     * This attribute specifies the payload of the RPCRequest.  When using the SmartClient server, any JavaScript simple
+     * This attribute specifies the payload of the RPCRequest.  When using the SmartGWT server, any JavaScript simple
      * type or arbitrarily nested set of Objects and Arrays can be sent to server and automatically translated to Java
      * Objects.  Here are the  mapping of JavaScript types to their corresponding server object types:<br><br> <table
      * class='normal' border='1'>   <tr><td><b>JS Type</b></td>     <td><b>Java Type</b></td> <td><b>C# Type</b></td>
@@ -502,7 +502,7 @@ public class RPCRequest extends DataClass {
      * <td>string</td></tr>  </table> <br><br> Note that the order of keys/values in the Maps created on the server is
      * not guaranteed because JavaScript Object literals do not guarantee order. <p> Server->client conversion follows
      * the this table as well, with some extras.  See the toJS() method on JSTranslater in the server documentation for
-     * a description of additional behaviors. <P> When <b>not</b> communicating with the SmartClient server,
+     * a description of additional behaviors. <P> When <b>not</b> communicating with the SmartGWT server,
      * <code>rpcRequest.data</code> becomes simple HTTP parameters or an HTTP request body - see {@link
      * com.smartgwt.client.rpc.RPCRequest#getUseSimpleHttp useSimpleHttp} for details.
      *
@@ -525,14 +525,14 @@ public class RPCRequest extends DataClass {
      * Values to be sent as simple HTTP params, as a JavaScript Object where each property/value pair will become an
      * HTTP parameter name and value.  These parameters are then accessible on the server, for example, using
      * servletRequest.getParameter(paramName) in Java Servlets.   <P> This API is primarily used in combination with
-     * {@link com.smartgwt.client.rpc.RPCRequest#getUseSimpleHttp useSimpleHttp}. <P> When contacting the SmartClient
+     * {@link com.smartgwt.client.rpc.RPCRequest#getUseSimpleHttp useSimpleHttp}. <P> When contacting the SmartGWT
      * server, setting <code>params</code> is an opportunity to send additional data aside from the main {@link
      * com.smartgwt.client.rpc.RPCRequest#getData data} payload; this is useful for  adding data to DataSource requests
      * which will be kept separate from the automatically sent DataSource data. <P> Note that in contrast to {@link
      * com.smartgwt.client.rpc.RPCRequest#getData data} object, the data in <code>rpcRequest.params</code> is not
-     * serialized/deserialized by the SmartClient server, and all values arrive on the server as String type (like HTTP
+     * serialized/deserialized by the SmartGWT server, and all values arrive on the server as String type (like HTTP
      * parameters always do). <p> The params value can also be a componentID or component instance that provides a
-     * method getValues() that returns an Object literal.  SmartClient components {@link
+     * method getValues() that returns an Object literal.  SmartGWT components {@link
      * com.smartgwt.client.widgets.form.DynamicForm}, {@link com.smartgwt.client.widgets.form.ValuesManager} are two
      * such classes.  Lastly, you may specify the ID of a native form element (retreivable via getElementById()) and the
      * params will be populated from there.  If there is an error resolving your params directive, it will be logged to

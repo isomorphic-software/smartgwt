@@ -86,6 +86,12 @@ public class SelectOtherItem extends SelectItem {
         setType("selectOther");
     }
 
+    public SelectOtherItem(String name, String title) {
+        setName(name);
+		setTitle(title);
+        setType("selectOther");
+    }
+
     // ********************* Properties / Attributes ***********************
 
     /**

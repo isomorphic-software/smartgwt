@@ -3,8 +3,8 @@ package com.smartgwt.client.docs;
 
 /**
  * @see com.smartgwt.client.widgets.Canvas#shouldDragScroll
- * @see com.smartgwt.client..DataBoundComponent#getDragData
- * @see com.smartgwt.client..DataBoundComponent#transferSelectedData
+ * @see com.smartgwt.client.widgets.DataBoundComponent#getDragData
+ * @see com.smartgwt.client.widgets.DataBoundComponent#transferSelectedData
  * @see com.smartgwt.client.widgets.grid.ListGrid#willAcceptDrop
  * @see com.smartgwt.client.widgets.grid.ListGrid#transferSelectedData
  * @see com.smartgwt.client.widgets.grid.ListGrid#getDragData
@@ -17,9 +17,9 @@ package com.smartgwt.client.docs;
  * @see com.smartgwt.client.widgets.Window#getShowResizer
  * @see com.smartgwt.client.widgets.Canvas#getCanDragScroll
  * @see com.smartgwt.client.widgets.Canvas#getDragScrollDelay
- * @see com.smartgwt.client..DataBoundComponent#getAddDropValues
- * @see com.smartgwt.client..DataBoundComponent#getDropValues
- * @see com.smartgwt.client..DataBoundComponent#getDragDataAction
+ * @see com.smartgwt.client.widgets.DataBoundComponent#getAddDropValues
+ * @see com.smartgwt.client.widgets.DataBoundComponent#getDropValues
+ * @see com.smartgwt.client.widgets.DataBoundComponent#getDragDataAction
  * @see com.smartgwt.client.widgets.grid.ListGrid#getCanDragRecordsOut
  * @see com.smartgwt.client.widgets.grid.ListGrid#getCanAcceptDroppedRecords
  * @see com.smartgwt.client.widgets.grid.ListGrid#getCanReorderRecords

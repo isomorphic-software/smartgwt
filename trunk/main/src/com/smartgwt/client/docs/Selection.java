@@ -2,7 +2,7 @@
 package com.smartgwt.client.docs;
 
 /**
- * APIs for marking ${isc.DocUtils.linkForRef('object:Record')}s as selected and retrieving the selected record or records.&#010 <P>&#010 Only applicable to a ${isc.DocUtils.linkForRef('interface:DataBoundComponent')} that manages a list of Records, or manages a&#010 data model that can be viewed as a list (for example, the current list of visible nodes&#010 on a tree can be treated as a list for selection purposes).
+ * APIs for marking {@link com.smartgwt.client.data.Record}s as selected and retrieving the selected record or records.&#010 <P>&#010 Only applicable to a {@link com.smartgwt.client.widgets.DataBoundComponent} that manages a list of Records, or manages a&#010 data model that can be viewed as a list (for example, the current list of visible nodes&#010 on a tree can be treated as a list for selection purposes).
  * @see com.smartgwt.client.widgets.toolbar.Toolbar#selectButton
  * @see com.smartgwt.client.widgets.toolbar.Toolbar#deselectButton
  * @see com.smartgwt.client..CubeGrid#getEventRow
@@ -32,13 +32,13 @@ package com.smartgwt.client.docs;
  * @see com.smartgwt.client..CubeGrid#cellSelectionChanged
  * @see com.smartgwt.client.widgets.grid.ListGrid#getSelection
  * @see com.smartgwt.client.widgets.grid.ListGrid#getSelectedRecord
- * @see com.smartgwt.client..DataBoundComponent#selectRecord
- * @see com.smartgwt.client..DataBoundComponent#deselectRecord
- * @see com.smartgwt.client..DataBoundComponent#selectRecords
- * @see com.smartgwt.client..DataBoundComponent#deselectRecords
- * @see com.smartgwt.client..DataBoundComponent#selectAllRecords
- * @see com.smartgwt.client..DataBoundComponent#deselectAllRecords
- * @see com.smartgwt.client..DataBoundComponent#anySelected
+ * @see com.smartgwt.client.widgets.DataBoundComponent#selectRecord
+ * @see com.smartgwt.client.widgets.DataBoundComponent#deselectRecord
+ * @see com.smartgwt.client.widgets.DataBoundComponent#selectRecords
+ * @see com.smartgwt.client.widgets.DataBoundComponent#deselectRecords
+ * @see com.smartgwt.client.widgets.DataBoundComponent#selectAllRecords
+ * @see com.smartgwt.client.widgets.DataBoundComponent#deselectAllRecords
+ * @see com.smartgwt.client.widgets.DataBoundComponent#anySelected
  * @see com.smartgwt.client..Selection#isSelected
  * @see com.smartgwt.client..Selection#anySelected
  * @see com.smartgwt.client..Selection#multipleSelected

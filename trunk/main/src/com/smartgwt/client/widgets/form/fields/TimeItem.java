@@ -86,6 +86,12 @@ public class TimeItem extends TextItem {
         setType("TimeItem");
     }
 
+    public TimeItem(String name, String title) {
+        setName(name);
+		setTitle(title);
+        setType("TimeItem");
+    }
+
     // ********************* Properties / Attributes ***********************
 
     // ********************* Methods ***********************

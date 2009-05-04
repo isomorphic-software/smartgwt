@@ -86,6 +86,12 @@ public class TextAreaItem extends FormItem {
         setType("TextAreaItem");
     }
 
+    public TextAreaItem(String name, String title) {
+        setName(name);
+		setTitle(title);
+        setType("TextAreaItem");
+    }
+
     // ********************* Properties / Attributes ***********************
 
     /**

@@ -6,13 +6,13 @@ package com.smartgwt.client.docs;
  * @see com.smartgwt.client..PickList#getShowOptionsFromDataSource
  * @see com.smartgwt.client.widgets.form.fields.SelectItem#getShowOptionsFromDataSource
  * @see com.smartgwt.client.widgets.form.fields.ComboBoxItem#getShowOptionsFromDataSource
- * @see com.smartgwt.client..DataBoundComponent#getDataSource
- * @see com.smartgwt.client..DataBoundComponent#getDataPageSize
- * @see com.smartgwt.client..DataBoundComponent#getFields
- * @see com.smartgwt.client..DataBoundComponent#getUseAllDataSourceFields
- * @see com.smartgwt.client..DataBoundComponent#getShowHiddenFields
- * @see com.smartgwt.client..DataBoundComponent#getShowDetailFields
- * @see com.smartgwt.client..DataBoundComponent#getShowComplexFields
+ * @see com.smartgwt.client.widgets.DataBoundComponent#getDataSource
+ * @see com.smartgwt.client.widgets.DataBoundComponent#getDataPageSize
+ * @see com.smartgwt.client.widgets.DataBoundComponent#getFields
+ * @see com.smartgwt.client.widgets.DataBoundComponent#getUseAllDataSourceFields
+ * @see com.smartgwt.client.widgets.DataBoundComponent#getShowHiddenFields
+ * @see com.smartgwt.client.widgets.DataBoundComponent#getShowDetailFields
+ * @see com.smartgwt.client.widgets.DataBoundComponent#getShowComplexFields
  * @see com.smartgwt.client.widgets.grid.ListGrid#getAutoFetchData
  * @see com.smartgwt.client.widgets.form.DynamicForm#getAutoFetchData
  * @see com.smartgwt.client.widgets.form.DynamicForm#getAutoFetchAsFilter

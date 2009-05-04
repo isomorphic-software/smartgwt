@@ -89,7 +89,7 @@ public class SectionStack extends VLayout {
     // ********************* Properties / Attributes ***********************
              
     /**
-    * Normal ${isc.DocUtils.linkForRef('type:Overflow')} settings can be used on layouts, for example, an&#010 overflow:auto Layout will scroll if sections are resized to exceed the specified size,&#010 whereas an overflow:visible Layout will grow to accomodate the resized sections.
+    * Normal {@link com.smartgwt.client.types.Overflow} settings can be used on layouts, for example, an&#010 overflow:auto Layout will scroll if sections are resized to exceed the specified size,&#010 whereas an overflow:visible Layout will grow to accomodate the resized sections.
     *
     * @param overflow overflow Default value is "hidden"
     * @throws IllegalStateException this property cannot be changed after the component has been created
@@ -98,7 +98,7 @@ public class SectionStack extends VLayout {
         setAttribute("overflow", overflow.getValue(), false);
     }
     /**
-     * Normal ${isc.DocUtils.linkForRef('type:Overflow')} settings can be used on layouts, for example, an&#010 overflow:auto Layout will scroll if sections are resized to exceed the specified size,&#010 whereas an overflow:visible Layout will grow to accomodate the resized sections.
+     * Normal {@link com.smartgwt.client.types.Overflow} settings can be used on layouts, for example, an&#010 overflow:auto Layout will scroll if sections are resized to exceed the specified size,&#010 whereas an overflow:visible Layout will grow to accomodate the resized sections.
      *
      *
      * @return Overflow

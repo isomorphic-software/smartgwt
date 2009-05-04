@@ -17,19 +17,19 @@
 package com.smartgwt.client.types;
 
 /**
- * The types listed below are built-in types that ${isc.DocUtils.linkForRef('interface:DataBoundComponent','databound&#010
- * components')} understand and treat specially (using type-specific form controls, validators,&#010 formatters, sorting
- * logic, etc).  &#010 <P>&#010 You can declare custom types via ${isc.DocUtils.linkForRef('class:SimpleType','SimpleType.create()')},
+ * The types listed below are built-in types that {@link com.smartgwt.client.widgets.DataBoundComponent 'databound components'}
+ * understand and treat specially (using type-specific form controls, validators,&#010 formatters, sorting
+ * logic, etc).  &#010 <P>&#010 You can declare custom types via {@link com.smartgwt.client.data.SimpleType},
  * with settings that&#010 will influence DataBound components.  You can also create your own subclasses of
  * databound&#010 components to add further custom, reusable behaviors based on field.type.&#010 <P>&#010
- * <code>field.type</code> can also be the ID of another ${isc.DocUtils.linkForRef('class:DataSource')}, which allows
- * you to&#010 model nested structures such as XML documents (in fact, ${isc.DocUtils.linkForRef('classMethod:XMLTools.loadXMLSchema')}&#010
+ * <code>field.type</code> can also be the ID of another {@link com.smartgwt.client.data.DataSource}, which allows
+ * you to&#010 model nested structures such as XML documents (in fact, {@link com.smartgwt.client.data.XMLTools#loadXMLSchema(String, com.smartgwt.client.data.XSDLoadCallback, com.smartgwt.client.rpc.RPCRequest)} ;&#010
  * models XML schema in this way).  Nested DataSource declarations affect how XML and JSON data&#010 is deserialized
- * into JavaScript objects in the &#010 ${isc.DocUtils.linkForRef('group:clientDataIntegration','client-side
- * integration')} pipeline, so that you can load&#010 complex XML documents and have them deserialized into a correctly
+ * into JavaScript objects in the &#010 {@link com.smartgwt.client.docs.ClientDataIntegration 'client-side integration')}
+ * pipeline, so that you can load&#010 complex XML documents and have them deserialized into a correctly
  * typed JavaScript object&#010 model.&#010 <P>&#010 Note: to declared related but <i>separate</i> objects, as in an
  * "Account" object that can be&#010 related to both a "Contact" object and "Order" objects, use&#010
- * ${isc.DocUtils.linkForRef('attr:DataSourceField.foreignKey')}, <b>not</b> a nested structure declaration.
+ * {@link com.smartgwt.client.data.DataSourceField#setForeignKey(String) foreignKey}, <b>not</b> a nested structure declaration.
  */
 
 public enum FieldType implements ValueEnum {
@@ -63,8 +63,8 @@ public enum FieldType implements ValueEnum {
     DATETIME("datetime"),
     /**
      * A text value constrained to a set of legal values specified by the                    field's
-     * ${isc.DocUtils.linkForRef('attr:DataSourceField.valueMap','valueMap')}, as though an&#010
-     * ${isc.DocUtils.linkForRef('classAttr:ValidatorTypes.isOneOf','isOneOf')} validator had been declared.
+     * {@link com.smartgwt.client.data.DataSourceField#setValueMap(String[]) valueMap} , as though an&#010
+     * {@link com.smartgwt.client.widgets.form.validator.IsOneOfValidator} validator had been declared.
      */
     ENUM("enum"),
     /**
@@ -72,7 +72,7 @@ public enum FieldType implements ValueEnum {
      */
     INTENUM("intEnum"),
     /**
-     * If you are using the SmartClient SQL datasource connector, a                    <code>sequence</code> is a
+     * If you are using the SmartGWT SQL datasource connector, a                    <code>sequence</code> is a
      * unique, increasing whole number, incremented&#010                    whenever a new record is added. Otherwise,
      * <code>sequence</code> behaves&#010                    identically to <code>integer</code>. This type is typically
      * used with&#010                    <code>field.primaryKey</code> to auto-generate unique primary keys.
@@ -92,7 +92,7 @@ public enum FieldType implements ValueEnum {
      * Arbitrary binary data.  When this field type is present, three additional fields are automatically generated.
      * They are: &lt;fieldName&gt;_filename, &lt;fieldName&gt;_filesize, and&#010 &lt;fieldName&gt;_date_created where
      * &lt;fieldName&gt; is the value of the <code>name</code>&#010 attribute of this field.  These fields are marked
-     * as&#010 ${isc.DocUtils.linkForRef('attr:DataSourceField.hidden')}<code>:true</code> to suppress their rendering
+     * as&#010 {@link com.smartgwt.client.data.DataSourceField#setHidden(Boolean) hidden }<code>:true</code> to suppress their rendering
      * by default.  You&#010 can show one or more of these fields by specifying the field with a
      * <code>hidden:false</code>&#010 override in the fields array of the databound component.
      */

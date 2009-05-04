@@ -86,6 +86,12 @@ public class CanvasItem extends FormItem {
         setType("CanvasItem");
     }
 
+    public CanvasItem(String name, String title) {
+        setName(name);
+		setTitle(title);
+        setType("CanvasItem");
+    }
+
     // ********************* Properties / Attributes ***********************
             
     /**

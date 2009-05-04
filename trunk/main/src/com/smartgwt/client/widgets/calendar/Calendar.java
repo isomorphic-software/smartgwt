@@ -56,7 +56,7 @@ import com.smartgwt.client.util.EnumUtil;
 import com.google.gwt.event.shared.*;
 import com.google.gwt.event.shared.HasHandlers;
    /**
-    * The Calendar component provides several different ways for a user to view and edit a set of&#010 events. Note that the <b>ISC_Calendar.js</b> module must be loaded to make use of the Calendar&#010 class.&#010 <P>&#010 <b>CalendarEvents</b>&#010 <P>&#010 Events are represented as ordinary JavaScript Objects (see ${isc.DocUtils.linkForRef('object:CalendarEvent')}).  The&#010 Calendar expects to be able to read and write a basic set of properties on events: name,&#010 startDate, endDate, description, etc, which can be stored under configurable property names&#010 (see eg {@link com.smartgwt.client.widgets.calendar.Calendar#getStartDateField startDateField}.&#010 <P>&#010 Much like a {@link com.smartgwt.client.widgets.grid.ListGrid} manages it's ListGridRecords, the Calendar can either be passed&#010 a ordinary Array of CalendarEvents or can fetch data from a DataSource.&#010 <P>&#010 If the calendar is bound to a DataSource, event changes by user action or by calling methods&#010 will be saved to the DataSource.&#010 <P>&#010 <b>Navigation</b>&#010 <P>&#010 The calendar supports a {@link com.smartgwt.client.widgets.calendar.Calendar#getWeekView weekView}, {@link com.smartgwt.client.widgets.calendar.Calendar#getDayView dayView}&#010 and {@link com.smartgwt.client.widgets.calendar.Calendar#getMonthView monthView} by default.  The user can navigate using back and&#010 forward buttons or via an attached {@link com.smartgwt.client.widgets.calendar.Calendar#getDateChooser dateChooser}.&#010 <P>&#010 <b>Event Manipulation</b>&#010 <P>&#010 Events can be created via clicking on the day, week or month views, or via the "Add Event"&#010 button.  In the day and week views, the user may click and drag to create an event of a&#010 specific duration.&#010 <P>&#010 Creating an event via click or click and drag pops up the&#010 {@link com.smartgwt.client.widgets.calendar.Calendar#getEventDialog eventDialog}, which provides a simple form for quick event&#010 entry (only one field, the description, is required by default).  &#010 <P>&#010 A separate editor called the {@link com.smartgwt.client.widgets.calendar.Calendar#getEventEditor eventEditor} provides an interface&#010 for editing all possible properties of an event, including custom properties.  The&#010 EventEditor is used whenever a pre-existing event is being edited, and can also be invoked&#010 by the user wherever the simpler EventDialog appears.&#010 <P>&#010 Events can also be programmatically {@link com.smartgwt.client.widgets.calendar.Calendar#addEvent},&#010 {@link com.smartgwt.client.widgets.calendar.Calendar#removeEvent}, or {@link com.smartgwt.client.widgets.calendar.Calendar#updateEvent}.
+    * The Calendar component provides several different ways for a user to view and edit a set of&#010 events. Note that the <b>ISC_Calendar.js</b> module must be loaded to make use of the Calendar&#010 class.&#010 <P>&#010 <b>CalendarEvents</b>&#010 <P>&#010 Events are represented as ordinary JavaScript Objects (see {@link com.smartgwt.client.widgets.calendar.CalendarEvent}).  The&#010 Calendar expects to be able to read and write a basic set of properties on events: name,&#010 startDate, endDate, description, etc, which can be stored under configurable property names&#010 (see eg {@link com.smartgwt.client.widgets.calendar.Calendar#getStartDateField startDateField}.&#010 <P>&#010 Much like a {@link com.smartgwt.client.widgets.grid.ListGrid} manages it's ListGridRecords, the Calendar can either be passed&#010 a ordinary Array of CalendarEvents or can fetch data from a DataSource.&#010 <P>&#010 If the calendar is bound to a DataSource, event changes by user action or by calling methods&#010 will be saved to the DataSource.&#010 <P>&#010 <b>Navigation</b>&#010 <P>&#010 The calendar supports a {@link com.smartgwt.client.widgets.calendar.Calendar#getWeekView weekView}, {@link com.smartgwt.client.widgets.calendar.Calendar#getDayView dayView}&#010 and {@link com.smartgwt.client.widgets.calendar.Calendar#getMonthView monthView} by default.  The user can navigate using back and&#010 forward buttons or via an attached {@link com.smartgwt.client.widgets.calendar.Calendar#getDateChooser dateChooser}.&#010 <P>&#010 <b>Event Manipulation</b>&#010 <P>&#010 Events can be created via clicking on the day, week or month views, or via the "Add Event"&#010 button.  In the day and week views, the user may click and drag to create an event of a&#010 specific duration.&#010 <P>&#010 Creating an event via click or click and drag pops up the&#010 {@link com.smartgwt.client.widgets.calendar.Calendar#getEventDialog eventDialog}, which provides a simple form for quick event&#010 entry (only one field, the description, is required by default).  &#010 <P>&#010 A separate editor called the {@link com.smartgwt.client.widgets.calendar.Calendar#getEventEditor eventEditor} provides an interface&#010 for editing all possible properties of an event, including custom properties.  The&#010 EventEditor is used whenever a pre-existing event is being edited, and can also be invoked&#010 by the user wherever the simpler EventDialog appears.&#010 <P>&#010 Events can also be programmatically {@link com.smartgwt.client.widgets.calendar.Calendar#addEvent},&#010 {@link com.smartgwt.client.widgets.calendar.Calendar#removeEvent}, or {@link com.smartgwt.client.widgets.calendar.Calendar#updateEvent}.
 
     */
 
@@ -392,7 +392,7 @@ public class Calendar extends Canvas  implements DataBoundComponent, com.smartgw
     }
 
     /**
-    * The name of the name field in a ${isc.DocUtils.linkForRef('object:CalendarEvent')}.
+    * The name of the name field in a {@link com.smartgwt.client.widgets.calendar.CalendarEvent}.
     *
     * @param nameField nameField Default value is "name"
     * @throws IllegalStateException this property cannot be changed after the component has been created
@@ -401,7 +401,7 @@ public class Calendar extends Canvas  implements DataBoundComponent, com.smartgw
         setAttribute("nameField", nameField, false);
     }
     /**
-     * The name of the name field in a ${isc.DocUtils.linkForRef('object:CalendarEvent')}.
+     * The name of the name field in a {@link com.smartgwt.client.widgets.calendar.CalendarEvent}.
      *
      *
      * @return String
@@ -412,7 +412,7 @@ public class Calendar extends Canvas  implements DataBoundComponent, com.smartgw
     }
 
     /**
-    * The name of the description field in a ${isc.DocUtils.linkForRef('object:CalendarEvent')}.
+    * The name of the description field in a {@link com.smartgwt.client.widgets.calendar.CalendarEvent}.
     *
     * @param descriptionField descriptionField Default value is "description"
     * @throws IllegalStateException this property cannot be changed after the component has been created
@@ -421,7 +421,7 @@ public class Calendar extends Canvas  implements DataBoundComponent, com.smartgw
         setAttribute("descriptionField", descriptionField, false);
     }
     /**
-     * The name of the description field in a ${isc.DocUtils.linkForRef('object:CalendarEvent')}.
+     * The name of the description field in a {@link com.smartgwt.client.widgets.calendar.CalendarEvent}.
      *
      *
      * @return String
@@ -432,7 +432,7 @@ public class Calendar extends Canvas  implements DataBoundComponent, com.smartgw
     }
 
     /**
-    * The name of the start date field in a ${isc.DocUtils.linkForRef('object:CalendarEvent')}.
+    * The name of the start date field in a {@link com.smartgwt.client.widgets.calendar.CalendarEvent}.
     *
     * @param startDateField startDateField Default value is "startDate"
     * @throws IllegalStateException this property cannot be changed after the component has been created
@@ -441,7 +441,7 @@ public class Calendar extends Canvas  implements DataBoundComponent, com.smartgw
         setAttribute("startDateField", startDateField, false);
     }
     /**
-     * The name of the start date field in a ${isc.DocUtils.linkForRef('object:CalendarEvent')}.
+     * The name of the start date field in a {@link com.smartgwt.client.widgets.calendar.CalendarEvent}.
      *
      *
      * @return String
@@ -452,7 +452,7 @@ public class Calendar extends Canvas  implements DataBoundComponent, com.smartgw
     }
 
     /**
-    * The name of the end date field in a ${isc.DocUtils.linkForRef('object:CalendarEvent')}.
+    * The name of the end date field in a {@link com.smartgwt.client.widgets.calendar.CalendarEvent}.
     *
     * @param endDateField endDateField Default value is "endDate"
     * @throws IllegalStateException this property cannot be changed after the component has been created
@@ -461,7 +461,7 @@ public class Calendar extends Canvas  implements DataBoundComponent, com.smartgw
         setAttribute("endDateField", endDateField, false);
     }
     /**
-     * The name of the end date field in a ${isc.DocUtils.linkForRef('object:CalendarEvent')}.
+     * The name of the end date field in a {@link com.smartgwt.client.widgets.calendar.CalendarEvent}.
      *
      *
      * @return String
@@ -472,7 +472,7 @@ public class Calendar extends Canvas  implements DataBoundComponent, com.smartgw
     }
 
     /**
-    * The name of the end date field in a ${isc.DocUtils.linkForRef('object:CalendarEvent')}.
+    * The name of the end date field in a {@link com.smartgwt.client.widgets.calendar.CalendarEvent}.
     *
     * @param leadingDateField leadingDateField Default value is "leadingDate"
     * @throws IllegalStateException this property cannot be changed after the component has been created
@@ -481,7 +481,7 @@ public class Calendar extends Canvas  implements DataBoundComponent, com.smartgw
         setAttribute("leadingDateField", leadingDateField, false);
     }
     /**
-     * The name of the end date field in a ${isc.DocUtils.linkForRef('object:CalendarEvent')}.
+     * The name of the end date field in a {@link com.smartgwt.client.widgets.calendar.CalendarEvent}.
      *
      *
      * @return String
@@ -492,7 +492,7 @@ public class Calendar extends Canvas  implements DataBoundComponent, com.smartgw
     }
 
     /**
-    * The name of the end date field in a ${isc.DocUtils.linkForRef('object:CalendarEvent')}.
+    * The name of the end date field in a {@link com.smartgwt.client.widgets.calendar.CalendarEvent}.
     *
     * @param trailingDateField trailingDateField Default value is "trailingDate"
     * @throws IllegalStateException this property cannot be changed after the component has been created
@@ -501,7 +501,7 @@ public class Calendar extends Canvas  implements DataBoundComponent, com.smartgw
         setAttribute("trailingDateField", trailingDateField, false);
     }
     /**
-     * The name of the end date field in a ${isc.DocUtils.linkForRef('object:CalendarEvent')}.
+     * The name of the end date field in a {@link com.smartgwt.client.widgets.calendar.CalendarEvent}.
      *
      *
      * @return String
@@ -512,7 +512,7 @@ public class Calendar extends Canvas  implements DataBoundComponent, com.smartgw
     }
 
     /**
-    * The name of the end date field in a ${isc.DocUtils.linkForRef('object:CalendarEvent')}.
+    * The name of the end date field in a {@link com.smartgwt.client.widgets.calendar.CalendarEvent}.
     *
     * @param eventTypeField eventTypeField Default value is "eventType"
     * @throws IllegalStateException this property cannot be changed after the component has been created
@@ -521,7 +521,7 @@ public class Calendar extends Canvas  implements DataBoundComponent, com.smartgw
         setAttribute("eventTypeField", eventTypeField, false);
     }
     /**
-     * The name of the end date field in a ${isc.DocUtils.linkForRef('object:CalendarEvent')}.
+     * The name of the end date field in a {@link com.smartgwt.client.widgets.calendar.CalendarEvent}.
      *
      *
      * @return String
@@ -532,7 +532,7 @@ public class Calendar extends Canvas  implements DataBoundComponent, com.smartgw
     }
 
     /**
-    * The name of the field used to override {@link com.smartgwt.client.widgets.calendar.Calendar#getEventWindowStyle eventWindowStyle} for an individual&#010 ${isc.DocUtils.linkForRef('object:CalendarEvent')}.  See {@link com.smartgwt.client.widgets.calendar.CalendarEvent#getEventWindowStyle eventWindowStyle}.
+    * The name of the field used to override {@link com.smartgwt.client.widgets.calendar.Calendar#getEventWindowStyle eventWindowStyle} for an individual&#010 {@link com.smartgwt.client.widgets.calendar.CalendarEvent}.  See {@link com.smartgwt.client.widgets.calendar.CalendarEvent#getEventWindowStyle eventWindowStyle}.
     *
     * @param eventWindowStyleField eventWindowStyleField Default value is "eventWindowStyle"
     * @throws IllegalStateException this property cannot be changed after the component has been created
@@ -541,7 +541,7 @@ public class Calendar extends Canvas  implements DataBoundComponent, com.smartgw
         setAttribute("eventWindowStyleField", eventWindowStyleField, false);
     }
     /**
-     * The name of the field used to override {@link com.smartgwt.client.widgets.calendar.Calendar#getEventWindowStyle eventWindowStyle} for an individual&#010 ${isc.DocUtils.linkForRef('object:CalendarEvent')}.  See {@link com.smartgwt.client.widgets.calendar.CalendarEvent#getEventWindowStyle eventWindowStyle}.
+     * The name of the field used to override {@link com.smartgwt.client.widgets.calendar.Calendar#getEventWindowStyle eventWindowStyle} for an individual&#010 {@link com.smartgwt.client.widgets.calendar.CalendarEvent}.  See {@link com.smartgwt.client.widgets.calendar.CalendarEvent#getEventWindowStyle eventWindowStyle}.
      *
      *
      * @return String
@@ -552,7 +552,7 @@ public class Calendar extends Canvas  implements DataBoundComponent, com.smartgw
     }
 
     /**
-    * Name of the field on each ${isc.DocUtils.linkForRef('object:CalendarEvent')} that determines editability.
+    * Name of the field on each {@link com.smartgwt.client.widgets.calendar.CalendarEvent} that determines editability.
     *
     * @param canEditField canEditField Default value is "canEdit"
     * @throws IllegalStateException this property cannot be changed after the component has been created
@@ -561,7 +561,7 @@ public class Calendar extends Canvas  implements DataBoundComponent, com.smartgw
         setAttribute("canEditField", canEditField, false);
     }
     /**
-     * Name of the field on each ${isc.DocUtils.linkForRef('object:CalendarEvent')} that determines editability.
+     * Name of the field on each {@link com.smartgwt.client.widgets.calendar.CalendarEvent} that determines editability.
      *
      *
      * @return String

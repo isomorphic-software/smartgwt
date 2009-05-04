@@ -2,7 +2,7 @@
 package com.smartgwt.client.docs;
 
 /**
- * @see com.smartgwt.client..DataBoundComponent#setDragTracker
+ * @see com.smartgwt.client.widgets.DataBoundComponent#setDragTracker
  * @see com.smartgwt.client.widgets.grid.ListGrid#setDragTracker
  * @see com.smartgwt.client.widgets.grid.ListGrid#getDragTrackerIcon
  * @see com.smartgwt.client.widgets.grid.ListGrid#getDragTrackerTitle

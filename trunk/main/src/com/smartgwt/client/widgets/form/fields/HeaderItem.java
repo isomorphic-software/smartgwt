@@ -86,6 +86,12 @@ public class HeaderItem extends FormItem {
         setType("HeaderItem");
     }
 
+    public HeaderItem(String name, String title) {
+        setName(name);
+		setTitle(title);
+        setType("HeaderItem");
+    }
+
     // ********************* Properties / Attributes ***********************
 
     /**

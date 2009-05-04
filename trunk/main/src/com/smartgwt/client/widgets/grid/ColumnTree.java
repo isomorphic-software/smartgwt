@@ -89,7 +89,7 @@ public class ColumnTree extends Layout  implements DataBoundComponent {
     // ********************* Properties / Attributes ***********************
             
     /**
-    * A {@link com.smartgwt.client.widgets.tree.Tree} object consisting of nested ${isc.DocUtils.linkForRef('object:TreeNode')}s to &#010 display in this ColumnTree.  &#010 The <code>data</code> property will typically not be explicitly specified for &#010 databound ColumnTrees, where the data is returned from the server via databound component&#010 methods such as <code>fetchData()</code>
+    * A {@link com.smartgwt.client.widgets.tree.Tree} object consisting of nested {@link com.smartgwt.client.widgets.tree.TreeNode}s to &#010 display in this ColumnTree.  &#010 The <code>data</code> property will typically not be explicitly specified for &#010 databound ColumnTrees, where the data is returned from the server via databound component&#010 methods such as <code>fetchData()</code>
     * Set the {@link com.smartgwt.client.widgets.tree.Tree} object this ColumnTree will view&#010&#010
     *
     * @param data Tree to show. Default value is null
@@ -98,7 +98,7 @@ public class ColumnTree extends Layout  implements DataBoundComponent {
         setAttribute("data", data.getOrCreateJsObj(), true);
     }
     /**
-     * A {@link com.smartgwt.client.widgets.tree.Tree} object consisting of nested ${isc.DocUtils.linkForRef('object:TreeNode')}s to &#010 display in this ColumnTree.  &#010 The <code>data</code> property will typically not be explicitly specified for &#010 databound ColumnTrees, where the data is returned from the server via databound component&#010 methods such as <code>fetchData()</code>
+     * A {@link com.smartgwt.client.widgets.tree.Tree} object consisting of nested {@link com.smartgwt.client.widgets.tree.TreeNode}s to &#010 display in this ColumnTree.  &#010 The <code>data</code> property will typically not be explicitly specified for &#010 databound ColumnTrees, where the data is returned from the server via databound component&#010 methods such as <code>fetchData()</code>
      *
      *
      * @return Returns the {@link com.smartgwt.client.widgets.tree.Tree} object this ColumnTree is viewing&#010&#010
@@ -643,7 +643,7 @@ public class ColumnTree extends Layout  implements DataBoundComponent {
      * <code>columnTree.data</code>.  DataSource records returned by the "fetch" operation are linked into a tree
      * structure according to {@link com.smartgwt.client.data.DataSourceField#getPrimaryKey primaryKey} and {@link
      * com.smartgwt.client.data.DataSourceField#getForeignKey foreignKey} declarations on DataSource fields.  See the
-     * ${isc.DocUtils.linkForRef('group:treeDataBinding')} topic for complete details. <P> By default, the created
+     * {@link com.smartgwt.client.docs.TreeDataBinding} {@link com.smartgwt.client.docs.TreeDataBinding} topic for complete details. <P> By default, the created
      * ResultTree will use folder-by-folder load on demand, asking the server for the children of each folder as the
      * user opens it. <P> The {@link com.smartgwt.client..ResultTree} created by <code>fetchData()</code> can be
      * customized by setting {@link com.smartgwt.client.widgets.grid.ListGrid#getDataProperties dataProperties} to an
@@ -670,7 +670,7 @@ public class ColumnTree extends Layout  implements DataBoundComponent {
      * <code>columnTree.data</code>.  DataSource records returned by the "fetch" operation are linked into a tree
      * structure according to {@link com.smartgwt.client.data.DataSourceField#getPrimaryKey primaryKey} and {@link
      * com.smartgwt.client.data.DataSourceField#getForeignKey foreignKey} declarations on DataSource fields.  See the
-     * ${isc.DocUtils.linkForRef('group:treeDataBinding')} topic for complete details. <P> By default, the created
+     * {@link com.smartgwt.client.docs.TreeDataBinding} topic for complete details. <P> By default, the created
      * ResultTree will use folder-by-folder load on demand, asking the server for the children of each folder as the
      * user opens it. <P> The {@link com.smartgwt.client..ResultTree} created by <code>fetchData()</code> can be
      * customized by setting {@link com.smartgwt.client.widgets.grid.ListGrid#getDataProperties dataProperties} to an
@@ -701,7 +701,7 @@ public class ColumnTree extends Layout  implements DataBoundComponent {
      * <code>columnTree.data</code>.  DataSource records returned by the "fetch" operation are linked into a tree
      * structure according to {@link com.smartgwt.client.data.DataSourceField#getPrimaryKey primaryKey} and {@link
      * com.smartgwt.client.data.DataSourceField#getForeignKey foreignKey} declarations on DataSource fields.  See the
-     * ${isc.DocUtils.linkForRef('group:treeDataBinding')} topic for complete details. <P> By default, the created
+     * {@link com.smartgwt.client.docs.TreeDataBinding} topic for complete details. <P> By default, the created
      * ResultTree will use folder-by-folder load on demand, asking the server for the children of each folder as the
      * user opens it. <P> The {@link com.smartgwt.client..ResultTree} created by <code>fetchData()</code> can be
      * customized by setting {@link com.smartgwt.client.widgets.grid.ListGrid#getDataProperties dataProperties} to an
@@ -739,7 +739,7 @@ public class ColumnTree extends Layout  implements DataBoundComponent {
      * <code>columnTree.data</code>.  DataSource records returned by the "fetch" operation are linked into a tree
      * structure according to {@link com.smartgwt.client.data.DataSourceField#getPrimaryKey primaryKey} and {@link
      * com.smartgwt.client.data.DataSourceField#getForeignKey foreignKey} declarations on DataSource fields.  See the
-     * ${isc.DocUtils.linkForRef('group:treeDataBinding')} topic for complete details. <P> By default, the created
+     * {@link com.smartgwt.client.docs.TreeDataBinding} topic for complete details. <P> By default, the created
      * ResultTree will use folder-by-folder load on demand, asking the server for the children of each folder as the
      * user opens it. <P> The {@link com.smartgwt.client..ResultTree} created by <code>fetchData()</code> can be
      * customized by setting {@link com.smartgwt.client.widgets.grid.ListGrid#getDataProperties dataProperties} to an
@@ -787,7 +787,7 @@ public class ColumnTree extends Layout  implements DataBoundComponent {
      }-*/;
 
     /**
-     * Deselect a ${isc.DocUtils.linkForRef('object:Record')} passed in explicitly, or by index. <P> Synonym for
+     * Deselect a {@link com.smartgwt.client.data.Record} passed in explicitly, or by index. <P> Synonym for
      * <code>selectRecord(record, false)</code>
      *
      * @param record row number to deselect
@@ -798,7 +798,7 @@ public class ColumnTree extends Layout  implements DataBoundComponent {
      }-*/;
 
     /**
-     * Deselect a ${isc.DocUtils.linkForRef('object:Record')} passed in explicitly, or by index. <P> Synonym for
+     * Deselect a {@link com.smartgwt.client.data.Record} passed in explicitly, or by index. <P> Synonym for
      * <code>selectRecord(record, false)</code>
      *
      * @param record row number to deselect
@@ -810,7 +810,7 @@ public class ColumnTree extends Layout  implements DataBoundComponent {
      }-*/;
 
     /**
-     * Deselect a list of ${isc.DocUtils.linkForRef('object:Record')}s passed in explicitly, or by index. <P> Synonym
+     * Deselect a list of {@link com.smartgwt.client.data.Record}s passed in explicitly, or by index. <P> Synonym
      * for <code>selectRecords(records, false)</code>
      *
      * @param records records (or row numbers) to deselect
@@ -822,7 +822,7 @@ public class ColumnTree extends Layout  implements DataBoundComponent {
      }-*/;
 
     /**
-     * Deselect a list of ${isc.DocUtils.linkForRef('object:Record')}s passed in explicitly, or by index. <P> Synonym
+     * Deselect a list of {@link com.smartgwt.client.data.Record}s passed in explicitly, or by index. <P> Synonym
      * for <code>selectRecords(records, false)</code>
      *
      * @param records records (or row numbers) to deselect
@@ -835,7 +835,7 @@ public class ColumnTree extends Layout  implements DataBoundComponent {
      }-*/;
 
     /**
-     * Deselect a list of ${isc.DocUtils.linkForRef('object:Record')}s passed in explicitly, or by index. <P> Synonym
+     * Deselect a list of {@link com.smartgwt.client.data.Record}s passed in explicitly, or by index. <P> Synonym
      * for <code>selectRecords(records, false)</code>
      *
      * @param records records (or row numbers) to deselect
@@ -847,7 +847,7 @@ public class ColumnTree extends Layout  implements DataBoundComponent {
      }-*/;
 
     /**
-     * Deselect a list of ${isc.DocUtils.linkForRef('object:Record')}s passed in explicitly, or by index. <P> Synonym
+     * Deselect a list of {@link com.smartgwt.client.data.Record}s passed in explicitly, or by index. <P> Synonym
      * for <code>selectRecords(records, false)</code>
      *
      * @param records records (or row numbers) to deselect
@@ -860,7 +860,7 @@ public class ColumnTree extends Layout  implements DataBoundComponent {
      }-*/;
 
     /**
-     * Select/deselect a ${isc.DocUtils.linkForRef('object:Record')} passed in explicitly, or by index.
+     * Select/deselect a {@link com.smartgwt.client.data.Record} passed in explicitly, or by index.
      *
      * @param record record (or row number) to select
      */
@@ -872,7 +872,7 @@ public class ColumnTree extends Layout  implements DataBoundComponent {
 
 
     /**
-     * Select/deselect a ${isc.DocUtils.linkForRef('object:Record')} passed in explicitly, or by index.
+     * Select/deselect a {@link com.smartgwt.client.data.Record} passed in explicitly, or by index.
      *
      * @param record record (or row number) to select
      */
@@ -882,7 +882,7 @@ public class ColumnTree extends Layout  implements DataBoundComponent {
      }-*/;
 
     /**
-     * Select/deselect a ${isc.DocUtils.linkForRef('object:Record')} passed in explicitly, or by index.
+     * Select/deselect a {@link com.smartgwt.client.data.Record} passed in explicitly, or by index.
      *
      * @param record   record (or row number) to select
      * @param newState new selection state (if null, defaults to true)
@@ -893,7 +893,7 @@ public class ColumnTree extends Layout  implements DataBoundComponent {
      }-*/;
 
     /**
-     * Select/deselect a ${isc.DocUtils.linkForRef('object:Record')} passed in explicitly, or by index.
+     * Select/deselect a {@link com.smartgwt.client.data.Record} passed in explicitly, or by index.
      *
      * @param record   record (or row number) to select
      * @param newState new selection state (if null, defaults to true)
@@ -905,7 +905,7 @@ public class ColumnTree extends Layout  implements DataBoundComponent {
      }-*/;
 
     /**
-     * Select/deselect a ${isc.DocUtils.linkForRef('object:Record')} passed in explicitly, or by index.
+     * Select/deselect a {@link com.smartgwt.client.data.Record} passed in explicitly, or by index.
      *
      * @param record   record (or row number) to select
      * @param newState new selection state (if null, defaults to true)
@@ -917,7 +917,7 @@ public class ColumnTree extends Layout  implements DataBoundComponent {
      }-*/;
 
     /**
-     * Select/deselect a ${isc.DocUtils.linkForRef('object:Record')} passed in explicitly, or by index.
+     * Select/deselect a {@link com.smartgwt.client.data.Record} passed in explicitly, or by index.
      *
      * @param record   record (or row number) to select
      * @param newState new selection state (if null, defaults to true)
@@ -930,7 +930,7 @@ public class ColumnTree extends Layout  implements DataBoundComponent {
      }-*/;
 
     /**
-     * Select/deselect a list of ${isc.DocUtils.linkForRef('object:Record')}s passed in explicitly, or by index.
+     * Select/deselect a list of {@link com.smartgwt.client.data.Record}s passed in explicitly, or by index.
      *
      * @param records records (or row numbers) to select
      */
@@ -941,7 +941,7 @@ public class ColumnTree extends Layout  implements DataBoundComponent {
      }-*/;
 
     /**
-     * Select/deselect a list of ${isc.DocUtils.linkForRef('object:Record')}s passed in explicitly, or by index.
+     * Select/deselect a list of {@link com.smartgwt.client.data.Record}s passed in explicitly, or by index.
      *
      * @param records  records (or row numbers) to select
      * @param newState new selection state (if null, defaults to true)
@@ -953,7 +953,7 @@ public class ColumnTree extends Layout  implements DataBoundComponent {
      }-*/;
 
     /**
-     * Select/deselect a list of ${isc.DocUtils.linkForRef('object:Record')}s passed in explicitly, or by index.
+     * Select/deselect a list of {@link com.smartgwt.client.data.Record}s passed in explicitly, or by index.
      *
      * @param records  records (or row numbers) to select
      * @param newState new selection state (if null, defaults to true)
@@ -966,7 +966,7 @@ public class ColumnTree extends Layout  implements DataBoundComponent {
      }-*/;
 
     /**
-     * Select/deselect a list of ${isc.DocUtils.linkForRef('object:Record')}s passed in explicitly, or by index.
+     * Select/deselect a list of {@link com.smartgwt.client.data.Record}s passed in explicitly, or by index.
      *
      * @param records records (or row numbers) to select
      */
@@ -977,7 +977,7 @@ public class ColumnTree extends Layout  implements DataBoundComponent {
      }-*/;
 
     /**
-     * Select/deselect a list of ${isc.DocUtils.linkForRef('object:Record')}s passed in explicitly, or by index.
+     * Select/deselect a list of {@link com.smartgwt.client.data.Record}s passed in explicitly, or by index.
      *
      * @param records  records (or row numbers) to select
      * @param newState new selection state (if null, defaults to true)
@@ -989,7 +989,7 @@ public class ColumnTree extends Layout  implements DataBoundComponent {
      }-*/;
 
         /**
-         * Select/deselect a list of ${isc.DocUtils.linkForRef('object:Record')}s passed in explicitly, or by index.
+         * Select/deselect a list of {@link com.smartgwt.client.data.Record}s passed in explicitly, or by index.
          *
          * @param records  records (or row numbers) to select
          * @param newState new selection state (if null, defaults to true)

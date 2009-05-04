@@ -56,7 +56,7 @@ import com.smartgwt.client.util.EnumUtil;
 import com.google.gwt.event.shared.*;
 import com.google.gwt.event.shared.HasHandlers;
    /**
-    * A DataSource is data-provider-independant description of a set of objects&#010 that will be loaded, edited and saved within the user interface of your application.&#010 <P>&#010 Each DataSource consists of a list of {@link com.smartgwt.client.data.DataSource#getFields fields} that make up a&#010 DataSource <code>record</code>, along with {@link com.smartgwt.client.data.DataSourceField#getType type}, &#010 {@link com.smartgwt.client.data.DataSourceField#getValidators validators}, &#010 {@link com.smartgwt.client.data.DataSourceField#getForeignKey foreignKey} to other DataSources, and other&#010 metadata.&#010 <P>&#010 The abstract object description provided by a DataSource is easily mapped to a variety of&#010 backend object models and storage schemes.  The following table shows analogous terminology&#010 across systems.&#010 <table border=1 class="normal">&#010 <tr>&#010   <td>Isomorphic SmartGWT</td>&#010   <td>Relational Database</td>&#010   <td>Enterprise Java Beans (EJB)</td>&#010   <td>Entity/Relationship Modelling</td>&#010   <td>OO/UML</td>&#010   <td>XML Schema/WSDL</td>&#010   <td>LDAP</td>&#010 </tr><tr>&#010   <td>DataSource</td>&#010   <td>Table</td>&#010   <td>EJB class</td>&#010   <td>Entity</td>&#010   <td>Class</td>&#010   <td>Element Schema (ComplexType)</td>&#010   <td>Objectclass</td>&#010 </tr><tr>&#010   <td>Record</td>&#010   <td>Row</td>&#010   <td>EJB instance</td>&#010   <td>Entity instance</td>&#010   <td>Class instance/Object</td>&#010   <td>Element instance (ComplexType)</td>&#010   <td>Entry</td>&#010 </tr><tr>&#010   <td>Field</td>&#010   <td>Column</td>&#010   <td>Property</td>&#010   <td>Attribute</td>&#010   <td>Property/Attribute</td>&#010   <td>Attribute or Element (SimpleType)</td>&#010   <td>Attribute</td>&#010 </tr></table>&#010 <P>&#010 DataSources can be {@link com.smartgwt.client.docs.DataSourceDeclaration 'declared'} in either JavaScript or XML&#010 format, and can also be {@link com.smartgwt.client.docs.MetadataImport 'imported'} from existing metadata formats,&#010 including XML Schema.&#010 <P>&#010 <i>Data Binding</i> is the process by which&#010 ${isc.DocUtils.linkForRef('interface:DataBoundComponent','Data Binding-capable UI components')} can automatically configure&#010 themselves for viewing, editing and saving data described by DataSources.  DataBinding is&#010 covered in the ${isc.DocUtils.linkForDocNode('QuickStartGuide', 'QuickStart Guide')}, Chapter 6, <i>Data&#010 Binding</i>.&#010 <P>&#010 {@link com.smartgwt.client.docs.ClientServerIntegration 'Data Integration'} is the process by which a DataSource&#010 can be connected to server systems such as SQL DataBases, Java Object models, WSDL web&#010 services and other data providers.  Data Integration comes in two variants: client-side and&#010 server-side.  {@link com.smartgwt.client.docs.ServerDataIntegration 'Server-side integration'} uses the&#010 SmartGWT Java-based server to connect to data represented by Java Objects or&#010 JDBC-accessible databases.  {@link com.smartgwt.client.docs.ClientDataIntegration 'Client-side integration'}&#010 connects SmartGWT DataSources to XML, JSON or other formats accessible via HTTP.&#010 <P>&#010 DataSources have a concept of {@link com.smartgwt.client.docs.DataSourceOperations '4 core operations'} ("fetch",&#010 "add", "update" and "remove") that can be performed on the set of objects represented by a&#010 DataSource.  Once a DataSource has been integrated with your data store, databinding-capable &#010 UI components can leverage the 4 core DataSource operations to provide many complete user&#010 interactions without the need to configure how each individual component loads and saves&#010 data.&#010 <P>&#010 These interactions include {@link com.smartgwt.client.widgets.grid.ListGrid}, {@link com.smartgwt.client.widgets.tree.TreeGrid}, &#010 {@link com.smartgwt.client.widgets.viewer.DetailViewer}, {@link com.smartgwt.client.widgets.form.DynamicForm}-based &#010 {@link com.smartgwt.client.widgets.form.DynamicForm#editRecord} and {@link com.smartgwt.client.widgets.form.DynamicForm#saveData},&#010 grid-based {@link com.smartgwt.client.widgets.grid.ListGrid#getCanEdit canEdit} and {@link com.smartgwt.client.widgets.grid.ListGrid#getSaveByCell saveByCell},&#010 and custom interactions provided by ${isc.DocUtils.linkForExampleId('patternReuse')} custom&#010 databinding-capable components.
+    * A DataSource is data-provider-independant description of a set of objects&#010 that will be loaded, edited and saved within the user interface of your application.&#010 <P>&#010 Each DataSource consists of a list of {@link com.smartgwt.client.data.DataSource#getFields fields} that make up a&#010 DataSource <code>record</code>, along with {@link com.smartgwt.client.data.DataSourceField#getType type}, &#010 {@link com.smartgwt.client.data.DataSourceField#getValidators validators}, &#010 {@link com.smartgwt.client.data.DataSourceField#getForeignKey foreignKey} to other DataSources, and other&#010 metadata.&#010 <P>&#010 The abstract object description provided by a DataSource is easily mapped to a variety of&#010 backend object models and storage schemes.  The following table shows analogous terminology&#010 across systems.&#010 <table border=1 class="normal">&#010 <tr>&#010   <td>Isomorphic SmartGWT</td>&#010   <td>Relational Database</td>&#010   <td>Enterprise Java Beans (EJB)</td>&#010   <td>Entity/Relationship Modelling</td>&#010   <td>OO/UML</td>&#010   <td>XML Schema/WSDL</td>&#010   <td>LDAP</td>&#010 </tr><tr>&#010   <td>DataSource</td>&#010   <td>Table</td>&#010   <td>EJB class</td>&#010   <td>Entity</td>&#010   <td>Class</td>&#010   <td>Element Schema (ComplexType)</td>&#010   <td>Objectclass</td>&#010 </tr><tr>&#010   <td>Record</td>&#010   <td>Row</td>&#010   <td>EJB instance</td>&#010   <td>Entity instance</td>&#010   <td>Class instance/Object</td>&#010   <td>Element instance (ComplexType)</td>&#010   <td>Entry</td>&#010 </tr><tr>&#010   <td>Field</td>&#010   <td>Column</td>&#010   <td>Property</td>&#010   <td>Attribute</td>&#010   <td>Property/Attribute</td>&#010   <td>Attribute or Element (SimpleType)</td>&#010   <td>Attribute</td>&#010 </tr></table>&#010 <P>&#010 DataSources can be {@link com.smartgwt.client.docs.DataSourceDeclaration 'declared'} in either JavaScript or XML&#010 format, and can also be {@link com.smartgwt.client.docs.MetadataImport 'imported'} from existing metadata formats,&#010 including XML Schema.&#010 <P>&#010 <i>Data Binding</i> is the process by which&#010 {@link com.smartgwt.client.widgets.DataBoundComponent} can automatically configure&#010 themselves for viewing, editing and saving data described by DataSources.  DataBinding is&#010 covered in the ${isc.DocUtils.linkForDocNode('QuickStartGuide', 'QuickStart Guide')}, Chapter 6, <i>Data&#010 Binding</i>.&#010 <P>&#010 {@link com.smartgwt.client.docs.ClientServerIntegration 'Data Integration'} is the process by which a DataSource&#010 can be connected to server systems such as SQL DataBases, Java Object models, WSDL web&#010 services and other data providers.  Data Integration comes in two variants: client-side and&#010 server-side.  {@link com.smartgwt.client.docs.ServerDataIntegration 'Server-side integration'} uses the&#010 SmartGWT Java-based server to connect to data represented by Java Objects or&#010 JDBC-accessible databases.  {@link com.smartgwt.client.docs.ClientDataIntegration 'Client-side integration'}&#010 connects SmartGWT DataSources to XML, JSON or other formats accessible via HTTP.&#010 <P>&#010 DataSources have a concept of {@link com.smartgwt.client.docs.DataSourceOperations '4 core operations'} ("fetch",&#010 "add", "update" and "remove") that can be performed on the set of objects represented by a&#010 DataSource.  Once a DataSource has been integrated with your data store, databinding-capable &#010 UI components can leverage the 4 core DataSource operations to provide many complete user&#010 interactions without the need to configure how each individual component loads and saves&#010 data.&#010 <P>&#010 These interactions include {@link com.smartgwt.client.widgets.grid.ListGrid}, {@link com.smartgwt.client.widgets.tree.TreeGrid}, &#010 {@link com.smartgwt.client.widgets.viewer.DetailViewer}, {@link com.smartgwt.client.widgets.form.DynamicForm}-based &#010 {@link com.smartgwt.client.widgets.form.DynamicForm#editRecord} and {@link com.smartgwt.client.widgets.form.DynamicForm#saveData},&#010 grid-based {@link com.smartgwt.client.widgets.grid.ListGrid#getCanEdit canEdit} and {@link com.smartgwt.client.widgets.grid.ListGrid#getSaveByCell saveByCell},&#010 and custom interactions provided by ${isc.DocUtils.linkForExampleId('patternReuse')} custom&#010 databinding-capable components.
 
     */
 
@@ -296,7 +296,7 @@ public class DataSource extends BaseClass  implements com.smartgwt.client.data.e
     }
 
     /**
-    * Like {@link com.smartgwt.client..DataBoundComponent#getUseFlatFields useFlatFields}, but applies to all DataBound components&#010 that bind to this DataSource.
+    * Like {@link com.smartgwt.client.widgets.DataBoundComponent#getUseFlatFields useFlatFields}, but applies to all DataBound components&#010 that bind to this DataSource.
     *
     * @param useFlatFields useFlatFields Default value is null
     * @throws IllegalStateException this property cannot be changed after the underlying component has been created
@@ -305,7 +305,7 @@ public class DataSource extends BaseClass  implements com.smartgwt.client.data.e
         setAttribute("useFlatFields", useFlatFields, false);
     }
     /**
-     * Like {@link com.smartgwt.client..DataBoundComponent#getUseFlatFields useFlatFields}, but applies to all DataBound components&#010 that bind to this DataSource.
+     * Like {@link com.smartgwt.client.widgets.DataBoundComponent#getUseFlatFields useFlatFields}, but applies to all DataBound components&#010 that bind to this DataSource.
      *
      *
      * @return Boolean
@@ -601,7 +601,7 @@ public class DataSource extends BaseClass  implements com.smartgwt.client.data.e
     }
 
     /**
-    * The name of the property this DataSource uses for constant name when translating&#010 Java enumerated types to and from Javascript, if the ${isc.DocUtils.linkForRef('type:EnumTranslateStrategy')} is set&#010 to "bean".  Defaults to "_constant" if not set.&#010 <p>&#010  This property is only applicable if you are using the SmartGWT server
+    * The name of the property this DataSource uses for constant name when translating&#010 Java enumerated types to and from Javascript, if the {@link com.smartgwt.client.types.EnumTranslateStrategy} is set&#010 to "bean".  Defaults to "_constant" if not set.&#010 <p>&#010  This property is only applicable if you are using the SmartGWT server
     * <p><b>Note : </b> This is an advanced setting</p>
     *
     * @param enumConstantProperty enumConstantProperty Default value is null
@@ -612,7 +612,7 @@ public class DataSource extends BaseClass  implements com.smartgwt.client.data.e
     }
 
     /**
-    * The name of the property this DataSource uses for ordinal number when translating&#010 Java enumerated types to and from Javascript, if the ${isc.DocUtils.linkForRef('type:EnumTranslateStrategy')} is set&#010 to "bean".  Defaults to "_ordinal" if not set.&#010 <p>&#010  This property is only applicable if you are using the SmartGWT server
+    * The name of the property this DataSource uses for ordinal number when translating&#010 Java enumerated types to and from Javascript, if the {@link com.smartgwt.client.types.EnumTranslateStrategy} is set&#010 to "bean".  Defaults to "_ordinal" if not set.&#010 <p>&#010  This property is only applicable if you are using the SmartGWT server
     * <p><b>Note : </b> This is an advanced setting</p>
     *
     * @param enumOrdinalProperty enumOrdinalProperty Default value is null
@@ -702,7 +702,7 @@ public class DataSource extends BaseClass  implements com.smartgwt.client.data.e
     }
 
     /**
-    * Designates a field of ${isc.DocUtils.linkForRef('type:FieldType','type')}:"image" as the field to use when rendering a&#010 record as an image, for example, in a {@link com.smartgwt.client.widgets.tile.TileGrid}.&#010 <p>&#010 For example, for a DataSource of employees, a "photo" field of type "image" should be&#010 designated as the iconField.&#010 <p>&#010 If not explicitly set, iconField looks for fields named "picture", "thumbnail", "icon",&#010 "image" and "img", in that order, and will use any of these fields as the iconField if it&#010 exists and has type "image". &#010 <P>&#010 To avoid any field being used as the iconField, set iconField to <code>null</code>.
+    * Designates a field of {@link com.smartgwt.client.types.FieldType}:"image" as the field to use when rendering a&#010 record as an image, for example, in a {@link com.smartgwt.client.widgets.tile.TileGrid}.&#010 <p>&#010 For example, for a DataSource of employees, a "photo" field of type "image" should be&#010 designated as the iconField.&#010 <p>&#010 If not explicitly set, iconField looks for fields named "picture", "thumbnail", "icon",&#010 "image" and "img", in that order, and will use any of these fields as the iconField if it&#010 exists and has type "image". &#010 <P>&#010 To avoid any field being used as the iconField, set iconField to <code>null</code>.
     *
     * @param iconField iconField Default value is see below
     * @throws IllegalStateException this property cannot be changed after the underlying component has been created
@@ -711,7 +711,7 @@ public class DataSource extends BaseClass  implements com.smartgwt.client.data.e
         setAttribute("iconField", iconField, false);
     }
     /**
-     * Designates a field of ${isc.DocUtils.linkForRef('type:FieldType','type')}:"image" as the field to use when rendering a&#010 record as an image, for example, in a {@link com.smartgwt.client.widgets.tile.TileGrid}.&#010 <p>&#010 For example, for a DataSource of employees, a "photo" field of type "image" should be&#010 designated as the iconField.&#010 <p>&#010 If not explicitly set, iconField looks for fields named "picture", "thumbnail", "icon",&#010 "image" and "img", in that order, and will use any of these fields as the iconField if it&#010 exists and has type "image". &#010 <P>&#010 To avoid any field being used as the iconField, set iconField to <code>null</code>.
+     * Designates a field of {@link com.smartgwt.client.types.FieldType}:"image" as the field to use when rendering a&#010 record as an image, for example, in a {@link com.smartgwt.client.widgets.tile.TileGrid}.&#010 <p>&#010 For example, for a DataSource of employees, a "photo" field of type "image" should be&#010 designated as the iconField.&#010 <p>&#010 If not explicitly set, iconField looks for fields named "picture", "thumbnail", "icon",&#010 "image" and "img", in that order, and will use any of these fields as the iconField if it&#010 exists and has type "image". &#010 <P>&#010 To avoid any field being used as the iconField, set iconField to <code>null</code>.
      *
      *
      * @return String
@@ -1031,7 +1031,7 @@ public class DataSource extends BaseClass  implements com.smartgwt.client.data.e
 
     /**
      * For a dataSource using client-side data integration, return the data that should be sent to the
-     * DataSource.dataURL. <br> By default, HTTP requests sent to non-SmartClient servers do not include DSRequest
+     * DataSource.dataURL. <br> By default, HTTP requests sent to non-SmartGWT servers do not include DSRequest
      * metadata such as DSRequest.startRow, endRow, and oldValues. Only the core datasource protocol data is sent, such
      * as the criteria passed to fetchData() or the updated values submitted by form.saveData(). <br> transformRequest()
      * allows you to transform dsRequest metadata into a format understood by your server and include it in the HTTP
@@ -1327,7 +1327,7 @@ public class DataSource extends BaseClass  implements com.smartgwt.client.data.e
      * from
      * the DataSource: <pre>    isc.DataSource.get("employees").fetchData(null, "myGrid.setData(data)"); </pre> Unlike
      * calling <code>myGrid.fetchData()</code>, which creates a {@link com.smartgwt.client.data.ResultSet}, the data
-     * provided to the grid is "disconnected" data, unmanaged by SmartClient's databinding facilities and safe to
+     * provided to the grid is "disconnected" data, unmanaged by SmartGWT's databinding facilities and safe to
      * directly modify.  This is useful when, for example, a ListGrid is being used as a more sophisticated version of
      * HTML's multi-select component. <P> Disconnected datasets may be used to populate various visual components.  For
      * example, while an individual FormItem can be configured to fetch {@link com.smartgwt.client.widgets.form.fields.FormItem#getValueMap
@@ -1349,8 +1349,8 @@ public class DataSource extends BaseClass  implements com.smartgwt.client.data.e
      * approach.  Large datasets degrade the basic performance of some browsers, so use {@link
      * com.smartgwt.client..PickList#getOptionDataSource optionDataSource} and similar facilities to manage datasets
      * that may become very large. <P> <b>Data-Driven Visual Component Creation</b> <P>
-     * <code>DataSource.fetchData()</code> can also be used to create SmartClient components in a data-driven way.  Many
-     * properties on SmartClient visual components are configured via an Array of Objects - the same data format that
+     * <code>DataSource.fetchData()</code> can also be used to create SmartGWT components in a data-driven way.  Many
+     * properties on SmartGWT visual components are configured via an Array of Objects - the same data format that
      * <code>dataSource.fetchData()</code> returns.  These include {@link com.smartgwt.client.widgets.grid.ListGrid#getFields
      * fields}, {@link com.smartgwt.client.widgets.tab.TabSet#getTabs tabs}, {@link
      * com.smartgwt.client.widgets.form.DynamicForm#getItems items}, {@link com.smartgwt.client..Facet#getValues values}
@@ -1379,7 +1379,7 @@ public class DataSource extends BaseClass  implements com.smartgwt.client.data.e
      * from
      * the DataSource: <pre>    isc.DataSource.get("employees").fetchData(null, "myGrid.setData(data)"); </pre> Unlike
      * calling <code>myGrid.fetchData()</code>, which creates a {@link com.smartgwt.client.data.ResultSet}, the data
-     * provided to the grid is "disconnected" data, unmanaged by SmartClient's databinding facilities and safe to
+     * provided to the grid is "disconnected" data, unmanaged by SmartGWT's databinding facilities and safe to
      * directly modify.  This is useful when, for example, a ListGrid is being used as a more sophisticated version of
      * HTML's multi-select component. <P> Disconnected datasets may be used to populate various visual components.  For
      * example, while an individual FormItem can be configured to fetch {@link com.smartgwt.client.widgets.form.fields.FormItem#getValueMap
@@ -1401,8 +1401,8 @@ public class DataSource extends BaseClass  implements com.smartgwt.client.data.e
      * approach.  Large datasets degrade the basic performance of some browsers, so use {@link
      * com.smartgwt.client..PickList#getOptionDataSource optionDataSource} and similar facilities to manage datasets
      * that may become very large. <P> <b>Data-Driven Visual Component Creation</b> <P>
-     * <code>DataSource.fetchData()</code> can also be used to create SmartClient components in a data-driven way.  Many
-     * properties on SmartClient visual components are configured via an Array of Objects - the same data format that
+     * <code>DataSource.fetchData()</code> can also be used to create SmartGWT components in a data-driven way.  Many
+     * properties on SmartGWT visual components are configured via an Array of Objects - the same data format that
      * <code>dataSource.fetchData()</code> returns.  These include {@link com.smartgwt.client.widgets.grid.ListGrid#getFields
      * fields}, {@link com.smartgwt.client.widgets.tab.TabSet#getTabs tabs}, {@link
      * com.smartgwt.client.widgets.form.DynamicForm#getItems items}, {@link com.smartgwt.client..Facet#getValues values}
@@ -1433,7 +1433,7 @@ public class DataSource extends BaseClass  implements com.smartgwt.client.data.e
      * from
      * the DataSource: <pre>    isc.DataSource.get("employees").fetchData(null, "myGrid.setData(data)"); </pre> Unlike
      * calling <code>myGrid.fetchData()</code>, which creates a {@link com.smartgwt.client.data.ResultSet}, the data
-     * provided to the grid is "disconnected" data, unmanaged by SmartClient's databinding facilities and safe to
+     * provided to the grid is "disconnected" data, unmanaged by SmartGWT's databinding facilities and safe to
      * directly modify.  This is useful when, for example, a ListGrid is being used as a more sophisticated version of
      * HTML's multi-select component. <P> Disconnected datasets may be used to populate various visual components.  For
      * example, while an individual FormItem can be configured to fetch {@link com.smartgwt.client.widgets.form.fields.FormItem#getValueMap
@@ -1455,8 +1455,8 @@ public class DataSource extends BaseClass  implements com.smartgwt.client.data.e
      * approach.  Large datasets degrade the basic performance of some browsers, so use {@link
      * com.smartgwt.client..PickList#getOptionDataSource optionDataSource} and similar facilities to manage datasets
      * that may become very large. <P> <b>Data-Driven Visual Component Creation</b> <P>
-     * <code>DataSource.fetchData()</code> can also be used to create SmartClient components in a data-driven way.  Many
-     * properties on SmartClient visual components are configured via an Array of Objects - the same data format that
+     * <code>DataSource.fetchData()</code> can also be used to create SmartGWT components in a data-driven way.  Many
+     * properties on SmartGWT visual components are configured via an Array of Objects - the same data format that
      * <code>dataSource.fetchData()</code> returns.  These include {@link com.smartgwt.client.widgets.grid.ListGrid#getFields
      * fields}, {@link com.smartgwt.client.widgets.tab.TabSet#getTabs tabs}, {@link
      * com.smartgwt.client.widgets.form.DynamicForm#getItems items}, {@link com.smartgwt.client..Facet#getValues values}
@@ -1493,7 +1493,7 @@ public class DataSource extends BaseClass  implements com.smartgwt.client.data.e
      * from
      * the DataSource: <pre>    isc.DataSource.get("employees").fetchData(null, "myGrid.setData(data)"); </pre> Unlike
      * calling <code>myGrid.fetchData()</code>, which creates a {@link com.smartgwt.client.data.ResultSet}, the data
-     * provided to the grid is "disconnected" data, unmanaged by SmartClient's databinding facilities and safe to
+     * provided to the grid is "disconnected" data, unmanaged by SmartGWT's databinding facilities and safe to
      * directly modify.  This is useful when, for example, a ListGrid is being used as a more sophisticated version of
      * HTML's multi-select component. <P> Disconnected datasets may be used to populate various visual components.  For
      * example, while an individual FormItem can be configured to fetch {@link com.smartgwt.client.widgets.form.fields.FormItem#getValueMap
@@ -1515,8 +1515,8 @@ public class DataSource extends BaseClass  implements com.smartgwt.client.data.e
      * approach.  Large datasets degrade the basic performance of some browsers, so use {@link
      * com.smartgwt.client..PickList#getOptionDataSource optionDataSource} and similar facilities to manage datasets
      * that may become very large. <P> <b>Data-Driven Visual Component Creation</b> <P>
-     * <code>DataSource.fetchData()</code> can also be used to create SmartClient components in a data-driven way.  Many
-     * properties on SmartClient visual components are configured via an Array of Objects - the same data format that
+     * <code>DataSource.fetchData()</code> can also be used to create SmartGWT components in a data-driven way.  Many
+     * properties on SmartGWT visual components are configured via an Array of Objects - the same data format that
      * <code>dataSource.fetchData()</code> returns.  These include {@link com.smartgwt.client.widgets.grid.ListGrid#getFields
      * fields}, {@link com.smartgwt.client.widgets.tab.TabSet#getTabs tabs}, {@link
      * com.smartgwt.client.widgets.form.DynamicForm#getItems items}, {@link com.smartgwt.client..Facet#getValues values}

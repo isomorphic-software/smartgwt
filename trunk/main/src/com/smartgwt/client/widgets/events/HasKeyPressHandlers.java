@@ -22,7 +22,7 @@ import com.google.gwt.event.shared.HasHandlers;
 
 public interface HasKeyPressHandlers extends HasHandlers {
     /**
-     * &#010 Executed when a key is pressed and released on a focusable widget ({@link com.smartgwt.client.widgets.Canvas#getCanFocus canFocus}:&#010 true). &#010 <P>&#010 Use {@link com.smartgwt.client.util.EventHandler#getKey} to find out the ${isc.DocUtils.linkForRef('type:KeyName','keyName')} of the key that&#010 was pressed, and use {@link com.smartgwt.client.util.EventHandler#shiftKeyDown} and related functions to determine&#010 whether modifier keys were down.&#010&#010
+     * &#010 Executed when a key is pressed and released on a focusable widget ({@link com.smartgwt.client.widgets.Canvas#getCanFocus canFocus}:&#010 true). &#010 <P>&#010 Use {@link com.smartgwt.client.util.EventHandler#getKey} to find out the {@link com.smartgwt.client..KeyName} of the key that&#010 was pressed, and use {@link com.smartgwt.client.util.EventHandler#shiftKeyDown} and related functions to determine&#010 whether modifier keys were down.&#010&#010
      */
     HandlerRegistration addKeyPressHandler(KeyPressHandler handler);
 }

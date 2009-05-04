@@ -210,7 +210,7 @@ public class FilterBuilder extends Layout  implements com.smartgwt.client.widget
     }
 
     /**
-    * Whether to show a button that allows the user to add subclauses.  Defaults to false if &#010 the ${isc.DocUtils.linkForRef('type:TopOperatorAppearance')} is "radio", true in all other cases.
+    * Whether to show a button that allows the user to add subclauses.  Defaults to false if &#010 the {@link com.smartgwt.client..TopOperatorAppearance} is "radio", true in all other cases.
     *
     * @param showSubClauseButton showSubClauseButton Default value is See Description
     * @throws IllegalStateException this property cannot be changed after the component has been created
@@ -219,7 +219,7 @@ public class FilterBuilder extends Layout  implements com.smartgwt.client.widget
         setAttribute("showSubClauseButton", showSubClauseButton, false);
     }
     /**
-     * Whether to show a button that allows the user to add subclauses.  Defaults to false if &#010 the ${isc.DocUtils.linkForRef('type:TopOperatorAppearance')} is "radio", true in all other cases.
+     * Whether to show a button that allows the user to add subclauses.  Defaults to false if &#010 the {@link com.smartgwt.client..TopOperatorAppearance} is "radio", true in all other cases.
      *
      *
      * @return Boolean
@@ -316,7 +316,7 @@ public class FilterBuilder extends Layout  implements com.smartgwt.client.widget
 
     /**
      * How to display and edit the {@link com.smartgwt.client.widgets.form.FilterBuilder#getTopOperator topOperator} for
-     * this FilterBuilder. <P> See ${isc.DocUtils.linkForRef('type:TopOperatorAppearance')} for a list of options.
+     * this FilterBuilder. <P> See {@link TopOperatorAppearance} for a list of options.
      *
      * @param topOperatorAppearance topOperatorAppearance Default value is "bracket"
      * @throws IllegalStateException this property cannot be changed after the component has been created
@@ -333,7 +333,7 @@ public class FilterBuilder extends Layout  implements com.smartgwt.client.widget
      * operator not chosen yet, and a ${isc.DocUtils.linkForRef('object:Criterion')} with a logical operator ("and" or
      * "or") but not ${isc.DocUtils.linkForRef('criteria.criteria','subcriteria')} defined will generate an empty
      * subclause. Set new criteria for editing.   <P> An interface for editing the provided criteria will be generated
-     * identically to what happens when initialized with ${isc.DocUtils.linkForRef('type:Criteria')}. <P> Any existing
+     * identically to what happens when initialized with {@link com.smartgwt.client.data.Criteria}. <P> Any existing
      * criteria entered by the user will be discarded.
      *
      * @param criteria new criteria.  Pass null or {} to effectively reset the

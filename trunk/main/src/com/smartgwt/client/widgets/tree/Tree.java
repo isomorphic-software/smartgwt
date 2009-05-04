@@ -88,7 +88,7 @@ public class Tree extends BaseClass  implements com.smartgwt.client.widgets.tree
     // ********************* Properties / Attributes ***********************
              
     /**
-    * Selects the model used to construct the tree representation.  See ${isc.DocUtils.linkForRef('type:TreeModelType')} for&#010 the available options and their implications.&#010 <P>&#010 If the "parent" modelType is used, you can provide the initial parent-linked data set to the&#010 tree via the {@link com.smartgwt.client.widgets.tree.Tree#getData data} attribute.  If the "children" modelType is used, you can&#010 provide the initial tree structure to the Tree via the {@link com.smartgwt.client.widgets.tree.Tree#getRoot root} attribute.
+    * Selects the model used to construct the tree representation.  See {@link com.smartgwt.client.types.TreeModelType} for&#010 the available options and their implications.&#010 <P>&#010 If the "parent" modelType is used, you can provide the initial parent-linked data set to the&#010 tree via the {@link com.smartgwt.client.widgets.tree.Tree#getData data} attribute.  If the "children" modelType is used, you can&#010 provide the initial tree structure to the Tree via the {@link com.smartgwt.client.widgets.tree.Tree#getRoot root} attribute.
     * <p><b>Note : </b> This is an advanced setting</p>
     *
     * @param modelType modelType Default value is "children"
@@ -97,7 +97,7 @@ public class Tree extends BaseClass  implements com.smartgwt.client.widgets.tree
         setAttribute("modelType", modelType.getValue(), true);
     }
     /**
-     * Selects the model used to construct the tree representation.  See ${isc.DocUtils.linkForRef('type:TreeModelType')} for&#010 the available options and their implications.&#010 <P>&#010 If the "parent" modelType is used, you can provide the initial parent-linked data set to the&#010 tree via the {@link com.smartgwt.client.widgets.tree.Tree#getData data} attribute.  If the "children" modelType is used, you can&#010 provide the initial tree structure to the Tree via the {@link com.smartgwt.client.widgets.tree.Tree#getRoot root} attribute.
+     * Selects the model used to construct the tree representation.  See {@link com.smartgwt.client.types.TreeModelType} for&#010 the available options and their implications.&#010 <P>&#010 If the "parent" modelType is used, you can provide the initial parent-linked data set to the&#010 tree via the {@link com.smartgwt.client.widgets.tree.Tree#getData data} attribute.  If the "children" modelType is used, you can&#010 provide the initial tree structure to the Tree via the {@link com.smartgwt.client.widgets.tree.Tree#getRoot root} attribute.
      *
      *
      * @return TreeModelType
@@ -187,7 +187,7 @@ public class Tree extends BaseClass  implements com.smartgwt.client.widgets.tree
     }
 
     /**
-    * Name of the property on a ${isc.DocUtils.linkForRef('object:TreeNode')} that holds a name for the node that is unique&#010 among it's immediate siblings, thus allowing a unique path to be used to identify the node,&#010 similar to a file system.  Default value is "name".  See {@link com.smartgwt.client.widgets.tree.TreeNode#getName name} for usage.
+    * Name of the property on a {@link com.smartgwt.client.widgets.tree.TreeNode} that holds a name for the node that is unique&#010 among it's immediate siblings, thus allowing a unique path to be used to identify the node,&#010 similar to a file system.  Default value is "name".  See {@link com.smartgwt.client.widgets.tree.TreeNode#getName name} for usage.
     *
     * @param nameProperty nameProperty Default value is "name"
     */
@@ -195,7 +195,7 @@ public class Tree extends BaseClass  implements com.smartgwt.client.widgets.tree
         setAttribute("nameProperty", nameProperty, true);
     }
     /**
-     * Name of the property on a ${isc.DocUtils.linkForRef('object:TreeNode')} that holds a name for the node that is unique&#010 among it's immediate siblings, thus allowing a unique path to be used to identify the node,&#010 similar to a file system.  Default value is "name".  See {@link com.smartgwt.client.widgets.tree.TreeNode#getName name} for usage.
+     * Name of the property on a {@link com.smartgwt.client.widgets.tree.TreeNode} that holds a name for the node that is unique&#010 among it's immediate siblings, thus allowing a unique path to be used to identify the node,&#010 similar to a file system.  Default value is "name".  See {@link com.smartgwt.client.widgets.tree.TreeNode#getName name} for usage.
      *
      *
      * @return String
@@ -206,7 +206,7 @@ public class Tree extends BaseClass  implements com.smartgwt.client.widgets.tree
     }
 
     /**
-    * Name of the property on a ${isc.DocUtils.linkForRef('object:TreeNode')} that holds the title of the node as it should be&#010 shown to the user.  Default value is "title".  See {@link com.smartgwt.client.widgets.tree.TreeNode#getTitle title} for usage.
+    * Name of the property on a {@link com.smartgwt.client.widgets.tree.TreeNode} that holds the title of the node as it should be&#010 shown to the user.  Default value is "title".  See {@link com.smartgwt.client.widgets.tree.TreeNode#getTitle title} for usage.
     *
     * @param titleProperty titleProperty Default value is "title"
     */
@@ -214,7 +214,7 @@ public class Tree extends BaseClass  implements com.smartgwt.client.widgets.tree
         setAttribute("titleProperty", titleProperty, true);
     }
     /**
-     * Name of the property on a ${isc.DocUtils.linkForRef('object:TreeNode')} that holds the title of the node as it should be&#010 shown to the user.  Default value is "title".  See {@link com.smartgwt.client.widgets.tree.TreeNode#getTitle title} for usage.
+     * Name of the property on a {@link com.smartgwt.client.widgets.tree.TreeNode} that holds the title of the node as it should be&#010 shown to the user.  Default value is "title".  See {@link com.smartgwt.client.widgets.tree.TreeNode#getTitle title} for usage.
      *
      *
      * @return String
@@ -225,7 +225,7 @@ public class Tree extends BaseClass  implements com.smartgwt.client.widgets.tree
     }
 
     /**
-    * Name of the property on a ${isc.DocUtils.linkForRef('object:TreeNode')} that holds an id for the node which is unique&#010 across the entire Tree.  Required for all nodes for trees with modelType "parent".&#010 Default value is "id".  See {@link com.smartgwt.client.widgets.tree.TreeNode#getId id} for usage.
+    * Name of the property on a {@link com.smartgwt.client.widgets.tree.TreeNode} that holds an id for the node which is unique&#010 across the entire Tree.  Required for all nodes for trees with modelType "parent".&#010 Default value is "id".  See {@link com.smartgwt.client.widgets.tree.TreeNode#getId id} for usage.
     * <p><b>Note : </b> This is an advanced setting</p>
     *
     * @param idField idField Default value is "id"
@@ -235,7 +235,7 @@ public class Tree extends BaseClass  implements com.smartgwt.client.widgets.tree
         setAttribute("idField", idField, false);
     }
     /**
-     * Name of the property on a ${isc.DocUtils.linkForRef('object:TreeNode')} that holds an id for the node which is unique&#010 across the entire Tree.  Required for all nodes for trees with modelType "parent".&#010 Default value is "id".  See {@link com.smartgwt.client.widgets.tree.TreeNode#getId id} for usage.
+     * Name of the property on a {@link com.smartgwt.client.widgets.tree.TreeNode} that holds an id for the node which is unique&#010 across the entire Tree.  Required for all nodes for trees with modelType "parent".&#010 Default value is "id".  See {@link com.smartgwt.client.widgets.tree.TreeNode#getId id} for usage.
      *
      *
      * @return String
@@ -482,7 +482,7 @@ public class Tree extends BaseClass  implements com.smartgwt.client.widgets.tree
         }-*/;
 
         /**
-         * &#010 Determines whether a particular node is a folder.  The logic works as follows:<br><br>&#010 <ul>&#010 <li> If the ${isc.DocUtils.linkForRef('object:TreeNode')} has a value for the {@link com.smartgwt.client.widgets.tree.Tree#getIsFolderProperty isFolderProperty}&#010 ({@link com.smartgwt.client.widgets.tree.TreeNode#getIsFolder isFolder} by default) that value is returned.&#010 <li> Next, the existence of the {@link com.smartgwt.client.widgets.tree.Tree#getChildrenProperty childrenProperty} (by default&#010 {@link com.smartgwt.client.widgets.tree.TreeNode#getChildren children} is checked on the ${isc.DocUtils.linkForRef('object:TreeNode')}.  If the node has the children&#010 property defined (regardless of whether it actually has any children), then isFolder()&#010 returns true for that node.&#010 </ul>&#010 <P>&#010 You can override this method to provide your own intepretation of what constitutes a folder.&#010&#010
+         * &#010 Determines whether a particular node is a folder.  The logic works as follows:<br><br>&#010 <ul>&#010 <li> If the {@link com.smartgwt.client.widgets.tree.TreeNode} has a value for the {@link com.smartgwt.client.widgets.tree.Tree#getIsFolderProperty isFolderProperty}&#010 ({@link com.smartgwt.client.widgets.tree.TreeNode#getIsFolder isFolder} by default) that value is returned.&#010 <li> Next, the existence of the {@link com.smartgwt.client.widgets.tree.Tree#getChildrenProperty childrenProperty} (by default&#010 {@link com.smartgwt.client.widgets.tree.TreeNode#getChildren children} is checked on the {@link com.smartgwt.client.widgets.tree.TreeNode}.  If the node has the children&#010 property defined (regardless of whether it actually has any children), then isFolder()&#010 returns true for that node.&#010 </ul>&#010 <P>&#010 You can override this method to provide your own intepretation of what constitutes a folder.&#010&#010
          * @param node node in question
          *
          * @return true if the node is a folder
@@ -1134,7 +1134,7 @@ public class Tree extends BaseClass  implements com.smartgwt.client.widgets.tree
      *
      * @param node   node to add
      * @param parent Parent of the node being added.  You can pass                                          in
-     *               either the ${isc.DocUtils.linkForRef('object:TreeNode')} itself, or a path to
+     *               either the {@link com.smartgwt.client.widgets.tree.TreeNode} itself, or a path to
      *                                     the node (as a String), in which case a
      *                     {@link com.smartgwt.client.widgets.tree.Tree#find} is performed to find
      *               the node.
@@ -1152,7 +1152,7 @@ public class Tree extends BaseClass  implements com.smartgwt.client.widgets.tree
      * Add a single node under the specified parent
      *
      * @param node   node to add
-     * @param parentPath Parent of the node being added.  You can pass in either the ${isc.DocUtils.linkForRef('object:TreeNode')}
+     * @param parentPath Parent of the node being added.  You can pass in either the {@link com.smartgwt.client.widgets.tree.TreeNode}
      *               itself, or a path to the node (as a String), in which case a
      *               {@link com.smartgwt.client.widgets.tree.Tree#find} is performed to find the node.
      * @return The added node.
@@ -1170,7 +1170,7 @@ public class Tree extends BaseClass  implements com.smartgwt.client.widgets.tree
      *
      * @param node     node to add
      * @param parent   Parent of the node being added.  You can pass                                          in
-     *                 either the ${isc.DocUtils.linkForRef('object:TreeNode')} itself, or a path to
+     *                 either the {@link com.smartgwt.client.widgets.tree.TreeNode} itself, or a path to
      *                                         the node (as a String), in which case a
      *                           {@link com.smartgwt.client.widgets.tree.Tree#find} is performed to find
      *                 the node.
@@ -1197,7 +1197,7 @@ public class Tree extends BaseClass  implements com.smartgwt.client.widgets.tree
      *
      * @param nodeList The list of nodes to add
      * @param parent   Parent of the node being added.  You can pass                                          in
-     *                 either the ${isc.DocUtils.linkForRef('object:TreeNode')} itself, or a path to
+     *                 either the {@link com.smartgwt.client.widgets.tree.TreeNode} itself, or a path to
      *                                         the node (as a String), in which case a
      *                           {@link com.smartgwt.client.widgets.tree.Tree#find} is performed to find
      *                 the node.
@@ -1215,7 +1215,7 @@ public class Tree extends BaseClass  implements com.smartgwt.client.widgets.tree
      *
      * @param nodeList The list of nodes to add
      * @param parentPath   Parent of the node being added.  You can pass                                          in
-     *                 either the ${isc.DocUtils.linkForRef('object:TreeNode')} itself, or a path to
+     *                 either the {@link com.smartgwt.client.widgets.tree.TreeNode} itself, or a path to
      *                                         the node (as a String), in which case a
      *                           {@link com.smartgwt.client.widgets.tree.Tree#find} is performed to find
      *                 the node.
@@ -1233,7 +1233,7 @@ public class Tree extends BaseClass  implements com.smartgwt.client.widgets.tree
      *
      * @param nodeList The list of nodes to add
      * @param parent   Parent of the node being added.  You can pass                                          in
-     *                 either the ${isc.DocUtils.linkForRef('object:TreeNode')} itself, or a path to
+     *                 either the {@link com.smartgwt.client.widgets.tree.TreeNode} itself, or a path to
      *                                         the node (as a String), in which case a
      *                           {@link com.smartgwt.client.widgets.tree.Tree#find} is performed to find
      *                 the node.
@@ -1252,7 +1252,7 @@ public class Tree extends BaseClass  implements com.smartgwt.client.widgets.tree
      *
      * @param nodeList The list of nodes to add
      * @param parentPath   Parent of the node being added.  You can pass                                          in
-     *                 either the ${isc.DocUtils.linkForRef('object:TreeNode')} itself, or a path to
+     *                 either the {@link com.smartgwt.client.widgets.tree.TreeNode} itself, or a path to
      *                                         the node (as a String), in which case a
      *                           {@link com.smartgwt.client.widgets.tree.Tree#find} is performed to find
      *                 the node.

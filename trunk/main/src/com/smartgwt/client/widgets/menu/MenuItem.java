@@ -365,7 +365,7 @@ public class MenuItem extends ListGridRecord  implements com.smartgwt.client.wid
 
 
     /**
-     * Shortcut key(s) to fire the menu item action. Each key can be defined as a ${isc.DocUtils.linkForRef('type:KeyIdentifier')}.
+     * Shortcut key(s) to fire the menu item action. Each key can be defined as a {@link KeyIdentifier}.
      * To apply multiple shortcut keys to this item, set this property to an array of such key identifiers.
      *
      * @param keys keys Default value is null
@@ -375,7 +375,7 @@ public class MenuItem extends ListGridRecord  implements com.smartgwt.client.wid
     }
 
     /**
-     * Shortcut key(s) to fire the menu item action. Each key can be defined as a ${isc.DocUtils.linkForRef('type:KeyIdentifier')}.
+     * Shortcut key(s) to fire the menu item action. Each key can be defined as a {@link KeyIdentifier}.
      * To apply multiple shortcut keys to this item, set this property to an array of such key identifiers.
      *
      * @param keys keys Default value is null

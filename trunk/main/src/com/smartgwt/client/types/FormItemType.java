@@ -19,42 +19,42 @@ package com.smartgwt.client.types;
 /**
  * DynamicForms automatically choose the FormItem type for a field based on the&#010 <code>type</code> property of the
  * field.  The table below describes the default FormItem&#010 chosen for various values of the <code>type</code>
- * property.&#010 <P>&#010 You can also set ${isc.DocUtils.linkForRef('attr:FormItem.editorType','field.editorType')} to
- * the classname of a&#010 ${isc.DocUtils.linkForRef('class:FormItem')} to override this default mapping.
+ * property.&#010 <P>&#010 You can also set {@link com.smartgwt.client.widgets.form.fields.FormItem#setEditorType(com.smartgwt.client.widgets.form.fields.FormItem) field.editorType} to
+ * the classname of a&#010 {@link com.smartgwt.client.widgets.form.fields.FormItem} to override this default mapping.
  */
 
 public enum FormItemType implements ValueEnum {
     /**
-     * Rendered as a ${isc.DocUtils.linkForRef('class:TextItem')}, unless the lenght of the field (as specified by
-     * ${isc.DocUtils.linkForRef('attr:DataSourceField.length')} attribute) is larger than the value&#010 specified by
-     * ${isc.DocUtils.linkForRef('attr:DynamicForm.longTextEditorThreshold')}, a&#010
-     * ${isc.DocUtils.linkForRef('class:TextAreaItem')} is shown.
+     * Rendered as a {@link com.smartgwt.client.widgets.form.fields.TextItem}, unless the lenght of the field (as specified by
+     * {@link com.smartgwt.client.data.DataSourceField#setLength(Integer) length}  attribute) is larger than the value&#010 specified by
+     * {@link com.smartgwt.client.widgets.form.DynamicForm#setLongTextEditorThreshold(int) longTextEditorThreshold} , a&#010
+     * {@link com.smartgwt.client.widgets.form.fields.TextAreaItem} is shown.
      */
     TEXT("text"),
     /**
-     * Rendered as a ${isc.DocUtils.linkForRef('class:CheckboxItem')}
+     * Rendered as a {@link com.smartgwt.client.widgets.form.fields.CheckboxItem}
      */
     BOOLEAN("boolean"),
     /**
-     * Same as <code>text</code> by default.                     Consider setting editorType:${isc.DocUtils.linkForRef('class:SpinnerItem')}.
+     * Same as <code>text</code> by default.                     Consider setting editorType: {@link com.smartgwt.client.widgets.form.fields.SpinnerItem}
      */
     INTEGER("integer"),
     /**
-     * Same as <code>text</code> by default.                     Consider setting editorType:${isc.DocUtils.linkForRef('class:SpinnerItem')}.
+     * Same as <code>text</code> by default.                     Consider setting editorType: {@link com.smartgwt.client.widgets.form.fields.SpinnerItem}.
      */
     FLOAT("float"),
     /**
-     * Rendered as a ${isc.DocUtils.linkForRef('class:DateItem')}
+     * Rendered as a {@link com.smartgwt.client.widgets.form.fields.DateItem}
      */
     DATE("date"),
     /**
-     * Rendered as a ${isc.DocUtils.linkForRef('class:TimeItem')}
+     * Rendered as a {@link com.smartgwt.client.widgets.form.fields.TimeItem}
      */
     TIME("time"),
     /**
-     * Rendered as a ${isc.DocUtils.linkForRef('class:SelectItem')}.  Also true for any field that specifies a
-     * ${isc.DocUtils.linkForRef('attr:FormItem.valueMap')}.  &#010                   Consider setting
-     * editorType:${isc.DocUtils.linkForRef('class:ComboBoxItem')}.
+     * Rendered as a {@link com.smartgwt.client.widgets.form.fields.SelectItem}.  Also true for any field that specifies a
+     * {@link com.smartgwt.client.widgets.form.fields.FormItem#setValueMap(String[])}    &#010                   Consider setting
+     * editorType: {@link com.smartgwt.client.widgets.form.fields.ComboBoxItem}.
      */
     ENUM("enum"),
     /**
@@ -62,9 +62,9 @@ public enum FormItemType implements ValueEnum {
      */
     SEQUENCE("sequence"),
     /**
-     * If ${isc.DocUtils.linkForRef('attr:DataSourceField.canEdit')}<code>:false</code> is set on the field, the value
-     * is rendered as a ${isc.DocUtils.linkForRef('class:LinkItem')}.  Otherwise the field is rendered as a&#010
-     * ${isc.DocUtils.linkForRef('class:TextItem')}.
+     * If {@link com.smartgwt.client.data.DataSourceField#setCanEdit(Boolean) canEdit} <code>:false</code> is set on the field, the value
+     * is rendered as a {@link com.smartgwt.client.widgets.form.fields.LinkItem}.  Otherwise the field is rendered as a&#010
+     * {@link com.smartgwt.client.widgets.form.fields.TextItem}.
      */
     LINK("link"),
     IMAGE("image"),
@@ -112,7 +112,7 @@ public enum FormItemType implements ValueEnum {
 
     IMAGEFILE("imagefile"),
     /**
-     * Rendered as a ${isc.DocUtils.linkForRef('class:UploadItem')}
+     * Rendered as a {@link com.smartgwt.client.widgets.form.fields.UploadItem}
      */
     BINARY("binary");
     private String value;

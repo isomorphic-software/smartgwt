@@ -86,6 +86,12 @@ public class SelectItem extends FormItem  implements PickList {
         setType("SelectItem");
     }
 
+    public SelectItem(String name, String title) {
+        setName(name);
+		setTitle(title);
+        setType("SelectItem");
+    }
+
     // ********************* Properties / Attributes ***********************
 
     /**
@@ -567,8 +573,8 @@ public class SelectItem extends FormItem  implements PickList {
      * com.smartgwt.client..PickList#getValueField valueField} <P> If there are multiple fields, column headers will be
      * shown for each field, the height of which can be customized via the {@link com.smartgwt.client..PickList#getPickListHeaderHeight
      * pickListHeaderHeight} attribute. <P> Each field to display should be specified as a
-     * ${isc.DocUtils.linkForRef('object:ListGridField')} object. Note that unlike in {@link
-     * com.smartgwt.client.widgets.grid.ListGrid}, dataSource fields marked as  ${isc.DocUtils.linkForRef('DataSourceField.display','display:true')}
+     * {@link com.smartgwt.client.widgets.grid.ListGridField} object. Note that unlike in {@link
+     * com.smartgwt.client.widgets.grid.ListGrid}, dataSource fields marked as  {@link com.smartgwt.client.data.DataSourceField#setDis${isc.DocUtils.linkForRef('DataSourceField.display','display:true')}
      * will not be hidden by default in pickLists. To override this behavior, ensure that you specify an explicit value
      * for  {@link com.smartgwt.client.widgets.grid.ListGridField#getShowIf showIf} <p><b>Note : </b> This is an
      * advanced setting</p>

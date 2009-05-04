@@ -21,11 +21,11 @@ package com.smartgwt.client.types;
 
 public enum PromptStyle implements ValueEnum {
     /**
-     * Displays a centered modal prompt with text specified by ${isc.DocUtils.linkForRef('attr:RPCRequest.prompt')}
+     * Displays a centered modal prompt with text specified by {@link com.smartgwt.client.rpc.RPCRequest#setPrompt(String) prompt}
      */
     DIALOG("dialog"),
     /**
-     * Changes the current cursor to the style specified by                 ${isc.DocUtils.linkForRef('attr:RPCRequest.promptCursor')}
+     * Changes the current cursor to the style specified by  {@link com.smartgwt.client.rpc.RPCRequest#setPromptCursor(String) promptCursor}
      */
     CURSOR("cursor");
     private String value;

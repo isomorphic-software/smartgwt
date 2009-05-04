@@ -115,33 +115,31 @@ public class RPCResponse extends DataClass {
     // ********************* Static Methods ***********************
 
 
+
+
 
-
-
-
-
-    public static final int STATUS_FAILURE = -1;
-    public static final int STATUS_LOGIN_INCORRECT = -5;
-    public static final int STATUS_LOGIN_REQUIRED = -7;
-    public static final int STATUS_LOGIN_SUCCESS = -8;
-    public static final int STATUS_MAX_LOGIN_ATTEMPTS_EXCEEDED = -6;
-    public static final int STATUS_SERVER_TIMEOUT = -100;
-    public static final int STATUS_SUCCESS = 0;
-    public static final int STATUS_TRANSPORT_ERROR = -90;
-    public static final int STATUS_VALIDATION_ERROR = -4;
+    public static int STATUS_FAILURE = -1;
+    public static int STATUS_LOGIN_INCORRECT = -5;
+    public static int STATUS_LOGIN_REQUIRED = -7;
+    public static int STATUS_LOGIN_SUCCESS = -8;
+    public static int STATUS_MAX_LOGIN_ATTEMPTS_EXCEEDED = -6;
+    public static int STATUS_SERVER_TIMEOUT = -100;
+    public static int STATUS_SUCCESS = 0;
+    public static int STATUS_TRANSPORT_ERROR = -90;
+    public static int STATUS_VALIDATION_ERROR = -4;
 
     /**
      * Status code for this response.  Status codes less than zero are considered errors by the RPCManager, those
      * greater than or equal to zero are considered successes.  Please see the error handling section the {@link
      * com.smartgwt.client.rpc.RPCManager} for more information on what the RPCManager does with the status code and how
-     * you can override this behavior. <P> When using the SmartClient server you can set the rpcResponse.status by
-     * calling the server-side method RPCResponse.setStatus().   <P> When not using the SmartClient server, the
+     * you can override this behavior. <P> When using the SmartGWT server you can set the rpcResponse.status by
+     * calling the server-side method RPCResponse.setStatus().   <P> When not using the SmartGWT server, the
      * RPCManager makes no assumptions about the structure of the response, so the status code just reflects the {@link
      * com.smartgwt.client.rpc.RPCResponse#getHttpResponseCode httpResponseCode}: status will be  {@link
      * com.smartgwt.client.rpc.RPCResponse#STATUS_TRANSPORT_ERROR} if an HTTP-level error occurred such as "500 server
      * error".  If you have a status code you need to transmit you can simply embed it in the response (as part of
      * {@link com.smartgwt.client.rpc.RPCResponse#getData data}) and interpret it from the callback. <P> With or without
-     * the SmartClient server, the Relogin Overview for details.
+     * the SmartGWT server, the Relogin Overview for details.
      *
      * @param status status
      */

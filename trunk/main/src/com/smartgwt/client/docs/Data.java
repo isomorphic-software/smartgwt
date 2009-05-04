@@ -2,7 +2,7 @@
 package com.smartgwt.client.docs;
 
 /**
- * @see com.smartgwt.client..DataBoundComponent#getDragData
+ * @see com.smartgwt.client.widgets.DataBoundComponent#getDragData
  * @see com.smartgwt.client.widgets.grid.ListGrid#setData
  * @see com.smartgwt.client.widgets.grid.ListGrid#getCellValue
  * @see com.smartgwt.client.widgets.grid.ListGrid#getDragData

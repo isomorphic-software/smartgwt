@@ -65,9 +65,9 @@ public enum DateDisplayFormat implements ValueEnum {
     /**
      * Date in the format &lt;YYYYMMDD&gt;T&lt;HHMMSS&gt;Z <i>Example</i>: <code>20051104T111001Z</code>&#010 <br>&#010
      * <br>&#010 Note: In addition to these standard formats, custom formatting can be set by passing&#010 a function
-     * directly to ${isc.DocUtils.linkForRef('classMethod:Date.setNormalDisplayFormat')} et al. This &#010 function will
+     * directly to {@link com.smartgwt.client.util.DateUtil#setNormalDateDisplayFormat(DateDisplayFormat)} et al. This &#010 function will
      * then be executed whenever the appropriate formatter method is called [eg &#010
-     * ${isc.DocUtils.linkForRef('method:Date.toNormalDate')}], in the scope of the date instance in question.
+     * Date.toNormalDate, in the scope of the date instance in question.
      */
     TODATESTAMP("toDateStamp");
     private String value;

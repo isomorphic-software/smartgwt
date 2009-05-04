@@ -30,7 +30,7 @@ public enum LayoutPolicy implements ValueEnum {
     /**
      * Layout sizes members so that they fill the specified size of the   The rules&#010  are:&#010  <ul>&#010 <li> Any
      * component given an initial pixel size, programmatically resized to a specific&#010  pixel size, or drag resized
-     * by user action is left at that exact size&#010  <li> Any component that ${isc.DocUtils.linkForRef('attr:Button.autoFit','autofits')}
+     * by user action is left at that exact size&#010  <li> Any component that {@link com.smartgwt.client.widgets.Button#setAutoFit(Boolean) autofits}
      * is given exactly the space it&#010  needs, never forced to take up more.&#010  <li> All other components split
      * the remaining space equally, or according to their&#010  relative percentages.&#010  </ul>
      */

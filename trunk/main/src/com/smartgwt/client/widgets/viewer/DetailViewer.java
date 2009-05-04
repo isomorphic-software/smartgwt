@@ -378,7 +378,7 @@ public class DetailViewer extends Canvas  implements DataBoundComponent {
     }
              
     /**
-    * Display format to use for fields specified as type 'date'.  Default is to use the&#010 system-wide default normal date format, configured via&#010 {@link com.smartgwt.client..Date#setNormalDisplayFormat}.  Specify any valid ${isc.DocUtils.linkForRef('type:DateDisplayFormat')} to&#010 change the format used by this detailViewer.
+    * Display format to use for fields specified as type 'date'.  Default is to use the&#010 system-wide default normal date format, configured via&#010 {@link com.smartgwt.client..Date#setNormalDisplayFormat}.  Specify any valid {@link com.smartgwt.client.types.DateDisplayFormat} to&#010 change the format used by this detailViewer.
     *
     * @param dateFormatter dateFormatter Default value is null
     * @throws IllegalStateException this property cannot be changed after the component has been created
@@ -387,7 +387,7 @@ public class DetailViewer extends Canvas  implements DataBoundComponent {
         setAttribute("dateFormatter", dateFormatter.getValue(), false);
     }
     /**
-     * Display format to use for fields specified as type 'date'.  Default is to use the&#010 system-wide default normal date format, configured via&#010 {@link com.smartgwt.client..Date#setNormalDisplayFormat}.  Specify any valid ${isc.DocUtils.linkForRef('type:DateDisplayFormat')} to&#010 change the format used by this detailViewer.
+     * Display format to use for fields specified as type 'date'.  Default is to use the&#010 system-wide default normal date format, configured via&#010 {@link com.smartgwt.client..Date#setNormalDisplayFormat}.  Specify any valid {@link com.smartgwt.client.types.DateDisplayFormat} to&#010 change the format used by this detailViewer.
      *
      *
      * @return DateDisplayFormat
@@ -499,7 +499,7 @@ public class DetailViewer extends Canvas  implements DataBoundComponent {
 
 
         /**
-         * Uses a "fetch" operation on the current {@link com.smartgwt.client..DataBoundComponent#getDataSource dataSource} to &#010 retrieve data that matches the current filter and sort criteria for this component, then &#010 exports the resulting data to a file or window in the requested format.&#010 <P>&#010 For more information on exporting data, see {@link com.smartgwt.client.data.DataSource#exportData}.&#010&#010
+         * Uses a "fetch" operation on the current {@link com.smartgwt.client.widgets.DataBoundComponent#getDataSource dataSource} to &#010 retrieve data that matches the current filter and sort criteria for this component, then &#010 exports the resulting data to a file or window in the requested format.&#010 <P>&#010 For more information on exporting data, see {@link com.smartgwt.client.data.DataSource#exportData}.&#010&#010
          */
         public native void exportData() /*-{
             var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
@@ -507,7 +507,7 @@ public class DetailViewer extends Canvas  implements DataBoundComponent {
         }-*/;
 
         /**
-         * Uses a "fetch" operation on the current {@link com.smartgwt.client..DataBoundComponent#getDataSource dataSource} to &#010 retrieve data that matches the current filter and sort criteria for this component, then &#010 exports the resulting data to a file or window in the requested format.&#010 <P>&#010 For more information on exporting data, see {@link com.smartgwt.client.data.DataSource#exportData}.&#010&#010
+         * Uses a "fetch" operation on the current {@link com.smartgwt.client.widgets.DataBoundComponent#getDataSource dataSource} to &#010 retrieve data that matches the current filter and sort criteria for this component, then &#010 exports the resulting data to a file or window in the requested format.&#010 <P>&#010 For more information on exporting data, see {@link com.smartgwt.client.data.DataSource#exportData}.&#010&#010
          * @param requestProperties additional properties to set on the DSRequest                                            that will be issued
          */
         public native void exportData(DSRequest requestProperties) /*-{

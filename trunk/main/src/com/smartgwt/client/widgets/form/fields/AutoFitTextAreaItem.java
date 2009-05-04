@@ -86,6 +86,12 @@ public class AutoFitTextAreaItem extends TextAreaItem {
         setType("AutoFitTextAreaItem");
     }
 
+    public AutoFitTextAreaItem(String name, String title) {
+        setName(name);
+		setTitle(title);
+        setType("AutoFitTextAreaItem");
+    }
+
     // ********************* Properties / Attributes ***********************
 
     // ********************* Methods ***********************

@@ -17,10 +17,10 @@
 package com.smartgwt.client.types;
 
 /**
- * dataProtocol affects how the data in the DSRequest (${isc.DocUtils.linkForRef('attr:DSRequest.data')}) is&#010 sent
- * to the ${isc.DocUtils.linkForRef('attr:DataSource.dataURL')}.  Note that, when using the SmartClient server,
+ * dataProtocol affects how the data in the DSRequest ({@link com.smartgwt.client.data.DSRequest#setData(String) data}  is&#010 sent
+ * to the {@link com.smartgwt.client.data.DataSource#setDataURL(String) dataURL }.  Note that, when using the SmartGWT server,
  * data&#010 is automatically translated from JavaScript to Java according to the rules described&#010
- * ${isc.DocUtils.linkForRef('attr:RPCRequest.data','here')}; dataProtocol does not apply.
+ * {@link com.smartgwt.client.rpc.RPCRequest#setData(String) here}; dataProtocol does not apply.
  */
 
 public enum DSProtocol implements ValueEnum {
@@ -35,7 +35,7 @@ public enum DSProtocol implements ValueEnum {
      */
     POSTPARAMS("postParams"),
     /**
-     * Data is serialized as XML via ${isc.DocUtils.linkForRef('method:DataSource.xmlSerialize')} and POST'd as the&#010
+     * Data is serialized as XML via {@link com.smartgwt.client.data.DataSource#xmlSerialize(com.google.gwt.core.client.JavaScriptObject)} and POST'd as the&#010
      * HTTP request body with contentType text/xml
      */
     POSTXML("postXML"),
@@ -50,13 +50,13 @@ public enum DSProtocol implements ValueEnum {
     CLIENTCUSTOM("clientCustom"),
     
     /**
-     * Data is serialized as XML via ${isc.DocUtils.linkForRef('method:DataSource.xmlSerialize')}, wrapped in a
+     * Data is serialized as XML via {@link com.smartgwt.client.data.DataSource#xmlSerialize(com.google.gwt.core.client.JavaScriptObject)} , wrapped in a
      * SOAP&#010   envelope, and POST'd as the HTTP request body with contentType "text/xml".  Generally&#010 only used
-     * in connection with a ${isc.DocUtils.linkForRef('group:wsdlBinding','WSDL web service')}.
+     * in connection with a {@link com.smartgwt.client.docs.WsdlBinding 'WSDL web service'}.
      */
     SOAP("soap"),
     /**
-     * dsRequest.data is assumed to be a String set up by ${isc.DocUtils.linkForRef('method:DataSource.transformRequest')}&#010
+     * dsRequest.data is assumed to be a String set up by {@link com.smartgwt.client.data.DataSource#transformRequest(com.smartgwt.client.data.DSRequest)} &#010
      * and is POST'd as the HTTP request body.
      */
     POSTMESSAGE("postMessage");
