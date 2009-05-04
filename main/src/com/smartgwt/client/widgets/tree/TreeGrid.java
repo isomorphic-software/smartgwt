@@ -56,7 +56,7 @@ import com.smartgwt.client.util.EnumUtil;
 import com.google.gwt.event.shared.*;
 import com.google.gwt.event.shared.HasHandlers;
    /**
-    * The SmartGWT system supports hierarchical data (also referred to as tree data&#010 due to its "branching" organization) with:&#010 <ul>&#010   <li> the {@link com.smartgwt.client.widgets.tree.Tree} class, which manipulates hierarchical data sets&#010   <li> the TreeGrid widget class, which extends the ListGrid class to visually&#010        present tree data in an expandable/collapsible format.&#010 </ul>&#010 For information on DataBinding Trees, see {@link com.smartgwt.client.docs.TreeDataBinding}.&#010 <p>&#010 A TreeGrid works just like a {@link com.smartgwt.client.widgets.grid.ListGrid}, except one column (specified by&#010 {@link com.smartgwt.client.widgets.tree.TreeGridField#getTreeField treeField} shows a heirarchical {@link com.smartgwt.client.widgets.tree.Tree}.  A TreeGrid is not limited&#010 to displaying just the {@link com.smartgwt.client.widgets.tree.Tree} column - you can define additional columns (via&#010 {@link com.smartgwt.client.widgets.tree.TreeGrid#getFields fields}) which will render just like the columns of a {@link com.smartgwt.client.widgets.grid.ListGrid}, and&#010 support all of the functionality of ListGrid columns, such as&#010 {@link com.smartgwt.client.widgets.grid.ListGridField#formatCellValue}.&#010 <p>&#010 Except where explicitly overridden, {@link com.smartgwt.client.widgets.grid.ListGrid} methods, callbacks, and properties&#010 apply to TreeGrids as well.  The {@link com.smartgwt.client.widgets.grid.ListGrid} defines some methods as taking/returning&#010 ${isc.DocUtils.linkForRef('object:ListGridField')} and ${isc.DocUtils.linkForRef('object:ListGridRecord')}.  When using those methods in a TreeGrid,&#010 those types will be ${isc.DocUtils.linkForRef('object:TreeGridField')} and ${isc.DocUtils.linkForRef('object:TreeNode')}, respectively.
+    * The SmartGWT system supports hierarchical data (also referred to as tree data&#010 due to its "branching" organization) with:&#010 <ul>&#010   <li> the {@link com.smartgwt.client.widgets.tree.Tree} class, which manipulates hierarchical data sets&#010   <li> the TreeGrid widget class, which extends the ListGrid class to visually&#010        present tree data in an expandable/collapsible format.&#010 </ul>&#010 For information on DataBinding Trees, see {@link com.smartgwt.client.docs.TreeDataBinding}.&#010 <p>&#010 A TreeGrid works just like a {@link com.smartgwt.client.widgets.grid.ListGrid}, except one column (specified by&#010 {@link com.smartgwt.client.widgets.tree.TreeGridField#getTreeField treeField} shows a heirarchical {@link com.smartgwt.client.widgets.tree.Tree}.  A TreeGrid is not limited&#010 to displaying just the {@link com.smartgwt.client.widgets.tree.Tree} column - you can define additional columns (via&#010 {@link com.smartgwt.client.widgets.tree.TreeGrid#getFields fields}) which will render just like the columns of a {@link com.smartgwt.client.widgets.grid.ListGrid}, and&#010 support all of the functionality of ListGrid columns, such as&#010 {@link com.smartgwt.client.widgets.grid.ListGridField#formatCellValue}.&#010 <p>&#010 Except where explicitly overridden, {@link com.smartgwt.client.widgets.grid.ListGrid} methods, callbacks, and properties&#010 apply to TreeGrids as well.  The {@link com.smartgwt.client.widgets.grid.ListGrid} defines some methods as taking/returning&#010 ${isc.DocUtils.linkForRef('object:ListGridField')} and {@link com.smartgwt.client.widgets.grid.ListGridRecord}.  When using those methods in a TreeGrid,&#010 those types will be ${isc.DocUtils.linkForRef('object:TreeGridField')} and {@link com.smartgwt.client.widgets.tree.TreeNode}, respectively.
 
     */
 
@@ -174,7 +174,7 @@ public class TreeGrid extends ListGrid  implements DataBoundComponent, com.smart
     }
             
     /**
-    * A {@link com.smartgwt.client.widgets.tree.Tree} object containing of nested ${isc.DocUtils.linkForRef('object:TreeNode')}s to &#010 display as rows in this TreeGrid.  &#010 The <code>data</code> property will typically not be explicitly specified for &#010 databound TreeGrids, where the data is returned from the server via databound component&#010 methods such as <code>fetchData()</code>
+    * A {@link com.smartgwt.client.widgets.tree.Tree} object containing of nested {@link com.smartgwt.client.widgets.tree.TreeNode}s to &#010 display as rows in this TreeGrid.  &#010 The <code>data</code> property will typically not be explicitly specified for &#010 databound TreeGrids, where the data is returned from the server via databound component&#010 methods such as <code>fetchData()</code>
     * Set the {@link com.smartgwt.client.widgets.tree.Tree} object this TreeGrid will view and manipulate.&#010&#010
     *
     * @param data Tree to show. Default value is null
@@ -183,7 +183,7 @@ public class TreeGrid extends ListGrid  implements DataBoundComponent, com.smart
         setAttribute("data", data.getOrCreateJsObj(), true);
     }
     /**
-     * A {@link com.smartgwt.client.widgets.tree.Tree} object containing of nested ${isc.DocUtils.linkForRef('object:TreeNode')}s to &#010 display as rows in this TreeGrid.  &#010 The <code>data</code> property will typically not be explicitly specified for &#010 databound TreeGrids, where the data is returned from the server via databound component&#010 methods such as <code>fetchData()</code>
+     * A {@link com.smartgwt.client.widgets.tree.Tree} object containing of nested {@link com.smartgwt.client.widgets.tree.TreeNode}s to &#010 display as rows in this TreeGrid.  &#010 The <code>data</code> property will typically not be explicitly specified for &#010 databound TreeGrids, where the data is returned from the server via databound component&#010 methods such as <code>fetchData()</code>
      *
      *
      * @return Tree
@@ -1352,7 +1352,7 @@ public class TreeGrid extends ListGrid  implements DataBoundComponent, com.smart
      * <code>treeGrid.data</code>.  DataSource records returned by the "fetch" operation are linked into a tree
      * structure according to {@link com.smartgwt.client.data.DataSourceField#getPrimaryKey primaryKey} and {@link
      * com.smartgwt.client.data.DataSourceField#getForeignKey foreignKey} declarations on DataSource fields.  See the
-     * ${isc.DocUtils.linkForRef('group:treeDataBinding')} topic for complete details. <P> By default, the created
+     * {@link com.smartgwt.client.docs.TreeDataBinding} topic for complete details. <P> By default, the created
      * ResultTree will use folder-by-folder load on demand, asking the server for the children of each folder as the
      * user opens it. <P> The {@link com.smartgwt.client..ResultTree} created by <code>fetchData()</code> can be
      * customized by setting {@link com.smartgwt.client.widgets.grid.ListGrid#getDataProperties dataProperties} to an
@@ -1379,7 +1379,7 @@ public class TreeGrid extends ListGrid  implements DataBoundComponent, com.smart
      * <code>treeGrid.data</code>.  DataSource records returned by the "fetch" operation are linked into a tree
      * structure according to {@link com.smartgwt.client.data.DataSourceField#getPrimaryKey primaryKey} and {@link
      * com.smartgwt.client.data.DataSourceField#getForeignKey foreignKey} declarations on DataSource fields.  See the
-     * ${isc.DocUtils.linkForRef('group:treeDataBinding')} topic for complete details. <P> By default, the created
+     * {@link com.smartgwt.client.docs.TreeDataBinding} topic for complete details. <P> By default, the created
      * ResultTree will use folder-by-folder load on demand, asking the server for the children of each folder as the
      * user opens it. <P> The {@link com.smartgwt.client..ResultTree} created by <code>fetchData()</code> can be
      * customized by setting {@link com.smartgwt.client.widgets.grid.ListGrid#getDataProperties dataProperties} to an
@@ -1410,7 +1410,7 @@ public class TreeGrid extends ListGrid  implements DataBoundComponent, com.smart
      * <code>treeGrid.data</code>.  DataSource records returned by the "fetch" operation are linked into a tree
      * structure according to {@link com.smartgwt.client.data.DataSourceField#getPrimaryKey primaryKey} and {@link
      * com.smartgwt.client.data.DataSourceField#getForeignKey foreignKey} declarations on DataSource fields.  See the
-     * ${isc.DocUtils.linkForRef('group:treeDataBinding')} topic for complete details. <P> By default, the created
+     * {@link com.smartgwt.client.docs.TreeDataBinding} topic for complete details. <P> By default, the created
      * ResultTree will use folder-by-folder load on demand, asking the server for the children of each folder as the
      * user opens it. <P> The {@link com.smartgwt.client..ResultTree} created by <code>fetchData()</code> can be
      * customized by setting {@link com.smartgwt.client.widgets.grid.ListGrid#getDataProperties dataProperties} to an
@@ -1448,7 +1448,7 @@ public class TreeGrid extends ListGrid  implements DataBoundComponent, com.smart
      * <code>treeGrid.data</code>.  DataSource records returned by the "fetch" operation are linked into a tree
      * structure according to {@link com.smartgwt.client.data.DataSourceField#getPrimaryKey primaryKey} and {@link
      * com.smartgwt.client.data.DataSourceField#getForeignKey foreignKey} declarations on DataSource fields.  See the
-     * ${isc.DocUtils.linkForRef('group:treeDataBinding')} topic for complete details. <P> By default, the created
+     * {@link com.smartgwt.client.docs.TreeDataBinding} topic for complete details. <P> By default, the created
      * ResultTree will use folder-by-folder load on demand, asking the server for the children of each folder as the
      * user opens it. <P> The {@link com.smartgwt.client..ResultTree} created by <code>fetchData()</code> can be
      * customized by setting {@link com.smartgwt.client.widgets.grid.ListGrid#getDataProperties dataProperties} to an

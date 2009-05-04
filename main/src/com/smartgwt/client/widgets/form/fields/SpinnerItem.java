@@ -86,6 +86,12 @@ public class SpinnerItem extends TextItem {
         setType("SpinnerItem");
     }
 
+    public SpinnerItem(String name, String title) {
+        setName(name);
+		setTitle(title);
+        setType("SpinnerItem");
+    }
+
     // ********************* Properties / Attributes ***********************
 
     // ********************* Methods ***********************

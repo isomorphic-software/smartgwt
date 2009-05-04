@@ -31,9 +31,9 @@ public enum ListGridEditEvent implements ValueEnum {
     DOUBLECLICK("doubleClick"),
     /**
      * No mouse event will trigger editing.  Editing must be                      programmatically started via
-     * ${isc.DocUtils.linkForRef('method:ListGrid.startEditing')}&#010                      (perhaps from an external
+     * {@link com.smartgwt.client.widgets.grid.ListGrid#startEditing(int, int, boolean)} &#010                      (perhaps from an external
      * button) or may be triggered by &#010                      keyboard navigation if
-     * ${isc.DocUtils.linkForRef('attr:ListGrid.editOnFocus')} is set.
+     * {@link com.smartgwt.client.widgets.grid.ListGrid#setEditOnFocus(Boolean) editOnFocus } is set.
      */
     NONE("none");
     private String value;

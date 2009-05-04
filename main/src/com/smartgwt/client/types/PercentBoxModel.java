@@ -18,17 +18,17 @@ package com.smartgwt.client.types;
 
 /**
  * Determines sizing model when sizing / positioning a canvas relative to its&#010
- * ${isc.DocUtils.linkForRef('attr:Canvas.percentBox','percentBox')}.
+ * {@link com.smartgwt.client.widgets.Canvas#setPercentBox(PercentBoxModel) percentBox}.
  */
 
 public enum PercentBoxModel implements ValueEnum {
     /**
-     * use coordinates relative to the {${isc.DocUtils.linkForRef('method:Canvas.getVisibleHeight')},visibleHeight} and
+     * use coordinates relative to the {@link com.smartgwt.client.widgets.Canvas#getVisibleHeight() visibleHeight} and
      * width of the other canvas
      */
     VISIBLE("visible"),
     /**
-     * use coordinates relative to the {${isc.DocUtils.linkForRef('method:Canvas.getViewportHeight')},viewportHeight}
+     * use coordinates relative to the {@link com.smartgwt.client.widgets.Canvas#getViewportHeight() viewportHeight}
      * and width of the other canvas
      */
     VIEWPORT("viewport");

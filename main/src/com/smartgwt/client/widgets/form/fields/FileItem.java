@@ -80,6 +80,12 @@ public class FileItem extends CanvasItem {
         setType("FileItem");
     }
 
+    public FileItem(String name, String title) {
+        setName(name);
+		setTitle(title);
+        setType("FileItem");
+    }
+
     // ********************* Properties / Attributes ***********************
 
     // ********************* Methods ***********************

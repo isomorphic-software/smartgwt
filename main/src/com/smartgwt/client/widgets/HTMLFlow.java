@@ -316,7 +316,7 @@ public class HTMLFlow extends Canvas  implements com.smartgwt.client.widgets.eve
      * com.smartgwt.client.widgets.HTMLFlow#getContentsURL contentsURL} is assumed to be an HTML fragment rather than a
      * complete page.  Set to "page" to load HTML as a standalone page, via an IFRAME.   <P>
      * <code>contentsType:"page"</code> should only be used for controlled HTML content, and only when such content
-     * cannot be delivered as an HTML fragment instead (the default).  To dynamically load SmartClient components, use
+     * cannot be delivered as an HTML fragment instead (the default).  To dynamically load SmartGWT components, use
      * {@link com.smartgwt.client.widgets.ViewLoader}, <b>never</b> this mechanism (click here for why). <P> Loading
      * HTML content as a fragment is less resource intensive and avoids visual artifacts such as translucent media
      * becoming opaque or disappearing when placed over an IFRAME.   <P> Loading third-party, uncontrolled content could
@@ -337,7 +337,7 @@ public class HTMLFlow extends Canvas  implements com.smartgwt.client.widgets.eve
      * com.smartgwt.client.widgets.HTMLFlow#getContentsURL contentsURL} is assumed to be an HTML fragment rather than a
      * complete page.  Set to "page" to load HTML as a standalone page, via an IFRAME.   <P>
      * <code>contentsType:"page"</code> should only be used for controlled HTML content, and only when such content
-     * cannot be delivered as an HTML fragment instead (the default).  To dynamically load SmartClient components, use
+     * cannot be delivered as an HTML fragment instead (the default).  To dynamically load SmartGWT components, use
      * {@link com.smartgwt.client.widgets.ViewLoader}, <b>never</b> this mechanism (click here for why). <P> Loading
      * HTML content as a fragment is less resource intensive and avoids visual artifacts such as translucent media
      * becoming opaque or disappearing when placed over an IFRAME.   <P> Loading third-party, uncontrolled content could

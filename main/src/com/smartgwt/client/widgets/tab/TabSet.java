@@ -491,7 +491,7 @@ public class TabSet extends Canvas  implements com.smartgwt.client.widgets.tab.e
     }
              
     /**
-    * Specifies the overflow of the pane container (the component that holds the pane contents&#010 for all tabs).  By default this is set to "auto", meaning the pane container will&#010 automatically introduce scrolling when the pane contents exceed the TabSet's specified&#010 size.&#010 <p>&#010 For other values and their meaning, see ${isc.DocUtils.linkForRef('type:Overflow')}
+    * Specifies the overflow of the pane container (the component that holds the pane contents&#010 for all tabs).  By default this is set to "auto", meaning the pane container will&#010 automatically introduce scrolling when the pane contents exceed the TabSet's specified&#010 size.&#010 <p>&#010 For other values and their meaning, see {@link com.smartgwt.client.types.Overflow}
     * <p><b>Note : </b> This is an advanced setting</p>
     *
     * @param paneContainerOverflow paneContainerOverflow Default value is Canvas.AUTO
@@ -500,7 +500,7 @@ public class TabSet extends Canvas  implements com.smartgwt.client.widgets.tab.e
         setAttribute("paneContainerOverflow", paneContainerOverflow.getValue(), true);
     }
     /**
-     * Specifies the overflow of the pane container (the component that holds the pane contents&#010 for all tabs).  By default this is set to "auto", meaning the pane container will&#010 automatically introduce scrolling when the pane contents exceed the TabSet's specified&#010 size.&#010 <p>&#010 For other values and their meaning, see ${isc.DocUtils.linkForRef('type:Overflow')}
+     * Specifies the overflow of the pane container (the component that holds the pane contents&#010 for all tabs).  By default this is set to "auto", meaning the pane container will&#010 automatically introduce scrolling when the pane contents exceed the TabSet's specified&#010 size.&#010 <p>&#010 For other values and their meaning, see {@link com.smartgwt.client.types.Overflow}
      *
      *
      * @return Overflow

@@ -681,4 +681,14 @@ public class JSOHelper {
         }
         return props + '}';
     }-*/;
+
+    /**
+     * Adds all properties and methods from the propertiesObject to the destination object.
+     *
+     * @param destination the destination object
+     * @param propertiesObject the propertiesObject 
+     */
+    public static native void addProperties(JavaScriptObject destination, JavaScriptObject propertiesObject) /*-{
+        $wnd.isc.addProperties(destination, propertiesObject);
+    }-*/;
 }

@@ -86,6 +86,12 @@ public class PickTreeItem extends CanvasItem {
         setType("PickTreeItem");
     }
 
+    public PickTreeItem(String name, String title) {
+        setName(name);
+		setTitle(title);
+        setType("PickTreeItem");
+    }
+
     // ********************* Properties / Attributes ***********************
 
     /**

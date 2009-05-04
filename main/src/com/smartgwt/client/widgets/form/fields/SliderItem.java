@@ -86,6 +86,12 @@ public class SliderItem extends CanvasItem {
         setType("SliderItem");
     }
 
+    public SliderItem(String name, String title) {
+        setName(name);
+		setTitle(title);
+        setType("SliderItem");
+    }
+
     // ********************* Properties / Attributes ***********************
 
     /**

@@ -86,6 +86,12 @@ public class CheckboxItem extends FormItem {
         setType("CheckboxItem");
     }
 
+    public CheckboxItem(String name, String title) {
+        setName(name);
+		setTitle(title);
+        setType("CheckboxItem");
+    }
+
     // ********************* Properties / Attributes ***********************
 
     /**
@@ -127,7 +133,7 @@ public class CheckboxItem extends FormItem {
     }
 
     /**
-    * By default a checkboxItem sets {@link com.smartgwt.client.widgets.form.fields.CheckboxItem#getShowTitle showTitle}:true, and so takes up two cells with the&#010 default ${isc.DocUtils.linkForRef('type:TitleOrientation')} of "left" (see {@link com.smartgwt.client.docs.FormLayout 'form layout&#010 overview'}).  However, the title cell is left blank by default, and the title specified&#010 by {@link com.smartgwt.client.widgets.form.fields.FormItem#getTitle title} is shown inside the formItem's cell instead, in an element&#010 called the "label".&#010 <P>&#010 To instead show the title in it's original location, set <code>labelAsTitle:true</code>.&#010 You can also set {@link com.smartgwt.client.widgets.form.fields.CheckboxItem#getShowLabel showLabel}:false to suppress the label and/or title altogether.
+    * By default a checkboxItem sets {@link com.smartgwt.client.widgets.form.fields.CheckboxItem#getShowTitle showTitle}:true, and so takes up two cells with the&#010 default {@link com.smartgwt.client.types.TitleOrientation} of "left" (see {@link com.smartgwt.client.docs.FormLayout 'form layout&#010 overview'}).  However, the title cell is left blank by default, and the title specified&#010 by {@link com.smartgwt.client.widgets.form.fields.FormItem#getTitle title} is shown inside the formItem's cell instead, in an element&#010 called the "label".&#010 <P>&#010 To instead show the title in it's original location, set <code>labelAsTitle:true</code>.&#010 You can also set {@link com.smartgwt.client.widgets.form.fields.CheckboxItem#getShowLabel showLabel}:false to suppress the label and/or title altogether.
     *
     * @param labelAsTitle labelAsTitle Default value is null
     */
@@ -135,7 +141,7 @@ public class CheckboxItem extends FormItem {
         setAttribute("labelAsTitle", labelAsTitle);
     }
     /**
-     * By default a checkboxItem sets {@link com.smartgwt.client.widgets.form.fields.CheckboxItem#getShowTitle showTitle}:true, and so takes up two cells with the&#010 default ${isc.DocUtils.linkForRef('type:TitleOrientation')} of "left" (see {@link com.smartgwt.client.docs.FormLayout 'form layout&#010 overview'}).  However, the title cell is left blank by default, and the title specified&#010 by {@link com.smartgwt.client.widgets.form.fields.FormItem#getTitle title} is shown inside the formItem's cell instead, in an element&#010 called the "label".&#010 <P>&#010 To instead show the title in it's original location, set <code>labelAsTitle:true</code>.&#010 You can also set {@link com.smartgwt.client.widgets.form.fields.CheckboxItem#getShowLabel showLabel}:false to suppress the label and/or title altogether.
+     * By default a checkboxItem sets {@link com.smartgwt.client.widgets.form.fields.CheckboxItem#getShowTitle showTitle}:true, and so takes up two cells with the&#010 default {@link com.smartgwt.client.types.TitleOrientation} of "left" (see {@link com.smartgwt.client.docs.FormLayout 'form layout&#010 overview'}).  However, the title cell is left blank by default, and the title specified&#010 by {@link com.smartgwt.client.widgets.form.fields.FormItem#getTitle title} is shown inside the formItem's cell instead, in an element&#010 called the "label".&#010 <P>&#010 To instead show the title in it's original location, set <code>labelAsTitle:true</code>.&#010 You can also set {@link com.smartgwt.client.widgets.form.fields.CheckboxItem#getShowLabel showLabel}:false to suppress the label and/or title altogether.
      *
      *
      * @return Boolean

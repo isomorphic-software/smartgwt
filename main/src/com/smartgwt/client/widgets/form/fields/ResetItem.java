@@ -86,6 +86,12 @@ public class ResetItem extends ButtonItem {
         setType("ResetItem");
     }
 
+    public ResetItem(String name, String title) {
+        setName(name);
+		setTitle(title);
+        setType("ResetItem");
+    }
+
     // ********************* Properties / Attributes ***********************
 
     // ********************* Methods ***********************

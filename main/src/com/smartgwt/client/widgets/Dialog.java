@@ -195,7 +195,7 @@ public class Dialog extends Window {
     // ********************* Static Methods ***********************
 
 /*
- * SmartGWT (GWT for SmartClient)
+ * SmartGWT (GWT for SmartGWT)
  * Copyright 2008 and beyond, Isomorphic Software, Inc.
  *
  * SmartGWT is free software; you can redistribute it and/or modify it

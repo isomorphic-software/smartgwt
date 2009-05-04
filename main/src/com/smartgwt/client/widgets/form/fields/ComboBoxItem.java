@@ -56,7 +56,7 @@ import com.smartgwt.client.util.EnumUtil;
 import com.google.gwt.event.shared.*;
 import com.google.gwt.event.shared.HasHandlers;
    /**
-    * The Combobox is a text input field which can show a list of options via a drop-down&#010 PickList.&#010 <p>&#010 The set of options will be filtered based on the current value in the text field, so only&#010 options that match what has been typed so far will be displayed.&#010 The set of options can be derived from a ValueMap or dynamically retrieved from a&#010 dataSource.  See the ${isc.DocUtils.linkForRef('interface:PickList')} interface for further settings.&#010 <P>&#010 Note that to select the first option as a default value for the item,&#010 {@link com.smartgwt.client.widgets.form.fields.ComboBoxItem#getDefaultToFirstOption defaultToFirstOption} may be set.
+    * The Combobox is a text input field which can show a list of options via a drop-down&#010 PickList.&#010 <p>&#010 The set of options will be filtered based on the current value in the text field, so only&#010 options that match what has been typed so far will be displayed.&#010 The set of options can be derived from a ValueMap or dynamically retrieved from a&#010 dataSource.  See the {@link com.smartgwt.client..PickList} interface for further settings.&#010 <P>&#010 Note that to select the first option as a default value for the item,&#010 {@link com.smartgwt.client.widgets.form.fields.ComboBoxItem#getDefaultToFirstOption defaultToFirstOption} may be set.
 
     */
 public class ComboBoxItem extends FormItem  implements PickList {
@@ -83,6 +83,12 @@ public class ComboBoxItem extends FormItem  implements PickList {
 
     public ComboBoxItem(String name) {
         setName(name);
+        setType("ComboBoxItem");
+    }
+
+    public ComboBoxItem(String name, String title) {
+        setName(name);
+		setTitle(title);
         setType("ComboBoxItem");
     }
 

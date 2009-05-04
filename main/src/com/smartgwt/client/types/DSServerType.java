@@ -20,20 +20,20 @@ package com.smartgwt.client.types;
  * Indicates what the ISC server will do with a DataSource request if you call&#010 dsRequest.execute() in server
  * code.&#010 <P>&#010 If you use a Java-based persistence layer not provided by SmartClient, such as&#010 Hibernate,
  * EJB or your own custom object model, you don't need to set&#010 <code>dataSource.serverType</code> and should follow
- * the&#010 ${isc.DocUtils.linkForRef('group:serverDataIntegration','integration instructions')}.&#010 <P>&#010 If you
- * want to use the SmartClient SQL engine for persistence, set&#010 <code>dataSource.serverType</code> to "sql", and see
- * the instructions on&#010 ${isc.DocUtils.linkForRef('group:sqlDataSource')}.
+ * the&#010 {@link com.smartgwt.client.docs.ServerDataIntegration 'integration instructions'}.&#010 <P>&#010 If you
+ * want to use the SmartGWT SQL engine for persistence, set&#010 <code>dataSource.serverType</code> to "sql", and see
+ * the instructions on&#010 {@link com.smartgwt.client.docs.SqlDataSource}.
  */
 
 public enum DSServerType implements ValueEnum {
     /**
      * Saves via Hibernate, by automatically generating a Hibernate configuration based on a&#010 SmartClient
-     * DataSource file (<i>dataSourceID</i>.ds.xml).  See&#010 ${isc.DocUtils.linkForRef('group:hibernateIntegration')}
+     * DataSource file (<i>dataSourceID</i>.ds.xml).  See&#010 {@link com.smartgwt.client.docs.HibernateIntegration}
      * for details.
      */
     HIBERNATE("hibernate"),
     /**
-     * Uses SmartClient's ${isc.DocUtils.linkForRef('group:sqlDataSource','built-in SQL connectors')} to talk
+     * Uses SmartGWT's {@link com.smartgwt.client.docs.SqlDataSource 'built-in SQL connectors'} to talk
      * to&#010 relational databases.  You can use this if your DataSource connects to a relational&#010 database
      * table.
      */

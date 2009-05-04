@@ -86,6 +86,12 @@ public class PasswordItem extends TextItem {
         setType("PasswordItem");
     }
 
+    public PasswordItem(String name, String title) {
+        setName(name);
+		setTitle(title);
+        setType("PasswordItem");
+    }
+
     // ********************* Properties / Attributes ***********************
 
     // ********************* Methods ***********************

@@ -33,7 +33,7 @@ package com.smartgwt.client.docs;
  * @see com.smartgwt.client..Operator#getEditorType
  * @see com.smartgwt.client.data.DataSourceField#getValidOperators
  * @see com.smartgwt.client.data.SimpleType#getValidOperators
- * @see com.smartgwt.client..OperatorValueType
+ * @see com.smartgwt.client.types.OperatorValueType
  * @see com.smartgwt.client.types.OperatorId
  */
 public interface AdvancedFilter {

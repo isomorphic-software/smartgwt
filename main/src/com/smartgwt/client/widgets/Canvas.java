@@ -4366,7 +4366,7 @@ public class Canvas extends BaseWidget  implements com.smartgwt.client.widgets.e
         /**
          * Add a keyDown handler.
          * <p>
-         * &#010 Executed when a key is pressed on a focusable widget ({@link com.smartgwt.client.widgets.Canvas#getCanFocus canFocus}: true). &#010 <P>&#010 Use {@link com.smartgwt.client.util.EventHandler#getKey} to find out the ${isc.DocUtils.linkForRef('type:KeyName','keyName')} of the key that&#010 was pressed, and use {@link com.smartgwt.client.util.EventHandler#shiftKeyDown} and related functions to determine&#010 whether modifier keys were down.&#010&#010
+         * &#010 Executed when a key is pressed on a focusable widget ({@link com.smartgwt.client.widgets.Canvas#getCanFocus canFocus}: true). &#010 <P>&#010 Use {@link com.smartgwt.client.util.EventHandler#getKey} to find out the {@link com.smartgwt.client..KeyName} of the key that&#010 was pressed, and use {@link com.smartgwt.client.util.EventHandler#shiftKeyDown} and related functions to determine&#010 whether modifier keys were down.&#010&#010
          *
          * @param handler the keyDown handler
          */
@@ -4400,7 +4400,7 @@ public class Canvas extends BaseWidget  implements com.smartgwt.client.widgets.e
         }-*/;
 
         /**
-         * &#010 Executed when a key is released on a focusable widget ({@link com.smartgwt.client.widgets.Canvas#getCanFocus canFocus}: true). &#010 <P>&#010 Use {@link com.smartgwt.client.util.EventHandler#getKey} to find out the ${isc.DocUtils.linkForRef('type:KeyName','keyName')} of the key that&#010 was pressed, and use {@link com.smartgwt.client.util.EventHandler#shiftKeyDown} and related functions to determine&#010 whether modifier keys were down.&#010&#010
+         * &#010 Executed when a key is released on a focusable widget ({@link com.smartgwt.client.widgets.Canvas#getCanFocus canFocus}: true). &#010 <P>&#010 Use {@link com.smartgwt.client.util.EventHandler#getKey} to find out the {@link com.smartgwt.client..KeyName} of the key that&#010 was pressed, and use {@link com.smartgwt.client.util.EventHandler#shiftKeyDown} and related functions to determine&#010 whether modifier keys were down.&#010&#010
          *
          * @return false to prevent this event from bubbling to this widget's parent, true or undefined to bubble.
          */
@@ -4417,7 +4417,7 @@ public class Canvas extends BaseWidget  implements com.smartgwt.client.widgets.e
         /**
          * Add a keyPress handler.
          * <p>
-         * &#010 Executed when a key is pressed and released on a focusable widget ({@link com.smartgwt.client.widgets.Canvas#getCanFocus canFocus}:&#010 true). &#010 <P>&#010 Use {@link com.smartgwt.client.util.EventHandler#getKey} to find out the ${isc.DocUtils.linkForRef('type:KeyName','keyName')} of the key that&#010 was pressed, and use {@link com.smartgwt.client.util.EventHandler#shiftKeyDown} and related functions to determine&#010 whether modifier keys were down.&#010&#010
+         * &#010 Executed when a key is pressed and released on a focusable widget ({@link com.smartgwt.client.widgets.Canvas#getCanFocus canFocus}:&#010 true). &#010 <P>&#010 Use {@link com.smartgwt.client.util.EventHandler#getKey} to find out the {@link com.smartgwt.client..KeyName} of the key that&#010 was pressed, and use {@link com.smartgwt.client.util.EventHandler#shiftKeyDown} and related functions to determine&#010 whether modifier keys were down.&#010&#010
          *
          * @param handler the keyPress handler
          */

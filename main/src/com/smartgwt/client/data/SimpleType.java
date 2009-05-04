@@ -56,7 +56,7 @@ import com.smartgwt.client.util.EnumUtil;
 import com.google.gwt.event.shared.*;
 import com.google.gwt.event.shared.HasHandlers;
    /**
-    * An atomic type such as a string or number, that is generally stored, displayed and&#010 manipulated as a single value.&#010 <P>&#010 SimpleTypes can be created at any time, and subsequently referred to as a &#010 {@link com.smartgwt.client.data.DataSourceField#getType type} in {@link com.smartgwt.client.data.DataSource} and&#010 ${isc.DocUtils.linkForRef('interface:DataBoundComponent','DataBoundComponents')}.  This allows you to define&#010 {@link com.smartgwt.client.data.SimpleType#getValidators validators}, {@link com.smartgwt.client.data.SimpleType#normalDisplayFormatter}&#010 and {@link com.smartgwt.client.data.SimpleType#getEditorType editorType} behaviors for a type to be reused across all&#010 ${isc.DocUtils.linkForRef('interface:DataBoundComponent','DataBoundComponents')}.&#010 <P>&#010 Note that the term "simpleType" is used in the same sense as in&#010 <a href='XML Schema' onclick="window.open('XML Schema');return false;">http://www.w3.org/TR/xmlschema-0/</a>, and&#010 {@link com.smartgwt.client.data.XMLTools#loadXMLSchema} will create new SimpleType definitions.&#010 <P>&#010 An ${isc.DocUtils.linkForExampleId('customSimpleType', 'example')} is here.
+    * An atomic type such as a string or number, that is generally stored, displayed and&#010 manipulated as a single value.&#010 <P>&#010 SimpleTypes can be created at any time, and subsequently referred to as a &#010 {@link com.smartgwt.client.data.DataSourceField#getType type} in {@link com.smartgwt.client.data.DataSource} and&#010 {@link com.smartgwt.client.widgets.DataBoundComponent}.  This allows you to define&#010 {@link com.smartgwt.client.data.SimpleType#getValidators validators}, {@link com.smartgwt.client.data.SimpleType#normalDisplayFormatter}&#010 and {@link com.smartgwt.client.data.SimpleType#getEditorType editorType} behaviors for a type to be reused across all&#010 {@link com.smartgwt.client.widgets.DataBoundComponent}.&#010 <P>&#010 Note that the term "simpleType" is used in the same sense as in&#010 <a href='XML Schema' onclick="window.open('XML Schema');return false;">http://www.w3.org/TR/xmlschema-0/</a>, and&#010 {@link com.smartgwt.client.data.XMLTools#loadXMLSchema} will create new SimpleType definitions.&#010 <P>&#010 An ${isc.DocUtils.linkForExampleId('customSimpleType', 'example')} is here.
 
     */
 public class SimpleType extends BaseClass {
@@ -171,7 +171,7 @@ public class SimpleType extends BaseClass {
      * Classname of the FormItem that should be the default for editing values of this type (eg "SelectItem"). <P> You
      * can create a simple custom FormItem by adding default {@link com.smartgwt.client.widgets.form.fields.FormItem#getIcons
      * icons} that launch custom value picking dialogs (an example is in the <i>QuickStart Guide</i>, Chapter 9,
-     * <i>Extending SmartClient</i>).  By setting simpleType.editorType to the name of your custom FormItem, forms will
+     * <i>Extending SmartGWT</i>).  By setting simpleType.editorType to the name of your custom FormItem, forms will
      * automatically use the custom FormItem, as will grids performing {@link com.smartgwt.client.widgets.grid.ListGrid#getCanEdit
      * canEdit}.
      *

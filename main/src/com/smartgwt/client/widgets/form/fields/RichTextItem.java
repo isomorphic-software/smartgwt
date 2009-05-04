@@ -86,6 +86,12 @@ public class RichTextItem extends CanvasItem {
         setType("RichTextItem");
     }
 
+    public RichTextItem(String name, String title) {
+        setName(name);
+		setTitle(title);
+        setType("RichTextItem");
+    }
+
     // ********************* Properties / Attributes ***********************
 
     /**

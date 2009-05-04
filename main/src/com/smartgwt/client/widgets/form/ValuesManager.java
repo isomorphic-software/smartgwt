@@ -87,8 +87,8 @@ public class ValuesManager extends BaseClass {
     // ********************* Properties / Attributes ***********************
              
     /**
-    * Default ${isc.DocUtils.linkForRef('type:DSOperationType')} to be performed when {@link com.smartgwt.client.widgets.form.DynamicForm#saveData} is called.&#010 This property is automatically set on a call to {@link com.smartgwt.client.widgets.form.DynamicForm#editRecord} or&#010 {@link com.smartgwt.client.widgets.form.DynamicForm#editNewRecord}, or may be set directly via &#010 {@link com.smartgwt.client.widgets.form.DynamicForm#setSaveOperationType}.&#010 <P>&#010 If <code>saveOperationType</code> is unset, the form will heuristically determine&#010 whether an "add" or "update" operation is intended based on whether the primaryKey field&#010 is present and editable.
-    * Setter for the default ${isc.DocUtils.linkForRef('type:DSOperationType')} when {@link com.smartgwt.client.widgets.form.DynamicForm#saveData} is called.&#010 Note that this property can also be set by calling {@link com.smartgwt.client.widgets.form.DynamicForm#editRecord} or &#010 {@link com.smartgwt.client.widgets.form.DynamicForm#editNewRecord}&#010&#010
+    * Default {@link com.smartgwt.client.types.DSOperationType} to be performed when {@link com.smartgwt.client.widgets.form.DynamicForm#saveData} is called.&#010 This property is automatically set on a call to {@link com.smartgwt.client.widgets.form.DynamicForm#editRecord} or&#010 {@link com.smartgwt.client.widgets.form.DynamicForm#editNewRecord}, or may be set directly via &#010 {@link com.smartgwt.client.widgets.form.DynamicForm#setSaveOperationType}.&#010 <P>&#010 If <code>saveOperationType</code> is unset, the form will heuristically determine&#010 whether an "add" or "update" operation is intended based on whether the primaryKey field&#010 is present and editable.
+    * Setter for the default {@link com.smartgwt.client.types.DSOperationType} when {@link com.smartgwt.client.widgets.form.DynamicForm#saveData} is called.&#010 Note that this property can also be set by calling {@link com.smartgwt.client.widgets.form.DynamicForm#editRecord} or &#010 {@link com.smartgwt.client.widgets.form.DynamicForm#editNewRecord}&#010&#010
     *
     * @param saveOperationType Operation type to use as a default. Valid values are  <code>"add"</code> or <code>"update"</code>.. Default value is null
     */
@@ -96,10 +96,10 @@ public class ValuesManager extends BaseClass {
         setAttribute("saveOperationType", saveOperationType.getValue(), true);
     }
     /**
-     * Default ${isc.DocUtils.linkForRef('type:DSOperationType')} to be performed when {@link com.smartgwt.client.widgets.form.DynamicForm#saveData} is called.&#010 This property is automatically set on a call to {@link com.smartgwt.client.widgets.form.DynamicForm#editRecord} or&#010 {@link com.smartgwt.client.widgets.form.DynamicForm#editNewRecord}, or may be set directly via &#010 {@link com.smartgwt.client.widgets.form.DynamicForm#setSaveOperationType}.&#010 <P>&#010 If <code>saveOperationType</code> is unset, the form will heuristically determine&#010 whether an "add" or "update" operation is intended based on whether the primaryKey field&#010 is present and editable.
+     * Default {@link com.smartgwt.client.types.DSOperationType} to be performed when {@link com.smartgwt.client.widgets.form.DynamicForm#saveData} is called.&#010 This property is automatically set on a call to {@link com.smartgwt.client.widgets.form.DynamicForm#editRecord} or&#010 {@link com.smartgwt.client.widgets.form.DynamicForm#editNewRecord}, or may be set directly via &#010 {@link com.smartgwt.client.widgets.form.DynamicForm#setSaveOperationType}.&#010 <P>&#010 If <code>saveOperationType</code> is unset, the form will heuristically determine&#010 whether an "add" or "update" operation is intended based on whether the primaryKey field&#010 is present and editable.
      *
      *
-     * @return Returns the ${isc.DocUtils.linkForRef('type:DSOperationType')} to be performed when {@link com.smartgwt.client.widgets.form.DynamicForm#saveData} is&#010 called. Valid options are <code>"add"</code> or <code>"update"</code>.&#010 <P>&#010 If a {@link com.smartgwt.client.data.DSRequest} configuration object is passed in containing an explicit operationType&#010 this will be returned. Otherwise {@link com.smartgwt.client.widgets.form.DynamicForm#getSaveOperationType saveOperationType} will be returned.&#010&#010
+     * @return Returns the {@link com.smartgwt.client.types.DSOperationType} to be performed when {@link com.smartgwt.client.widgets.form.DynamicForm#saveData} is&#010 called. Valid options are <code>"add"</code> or <code>"update"</code>.&#010 <P>&#010 If a {@link com.smartgwt.client.data.DSRequest} configuration object is passed in containing an explicit operationType&#010 this will be returned. Otherwise {@link com.smartgwt.client.widgets.form.DynamicForm#getSaveOperationType saveOperationType} will be returned.&#010&#010
      *
      */
     public DSOperationType getSaveOperationType()  {
@@ -774,11 +774,11 @@ public class ValuesManager extends BaseClass {
      * {@link com.smartgwt.client.widgets.form.DynamicForm#submitValues} exists, it will be called, then immediately
      * return. <P> Otherwise, default behavior varies based on {@link com.smartgwt.client.widgets.form.DynamicForm#getCanSubmit
      * canSubmit}: if <code>canSubmit</code> is false, {@link com.smartgwt.client.widgets.form.DynamicForm#saveData}
-     * will be called to handle saving via SmartClient databinding.   <P> If <code>canSubmit</code> is true, the form
+     * will be called to handle saving via SmartGWT databinding.   <P> If <code>canSubmit</code> is true, the form
      * will be submitted like an ordinary HTML form via {@link com.smartgwt.client.widgets.form.DynamicForm#submitForm}.
      * <P> The parameters to <code>submit()</code> apply only if <code>submit()</code> will be calling {@link
      * com.smartgwt.client.widgets.form.ValuesManager#saveData}.  If you override <code>submit()</code>, you can safely
-     * ignore the parameters as SmartClient framework code does not pass them.
+     * ignore the parameters as SmartGWT framework code does not pass them.
      */
     public native void submit() /*-{
         var self = this.@com.smartgwt.client.core.BaseClass::getOrCreateJsObj()();
@@ -792,11 +792,11 @@ public class ValuesManager extends BaseClass {
      * {@link com.smartgwt.client.widgets.form.DynamicForm#submitValues} exists, it will be called, then immediately
      * return. <P> Otherwise, default behavior varies based on {@link com.smartgwt.client.widgets.form.DynamicForm#getCanSubmit
      * canSubmit}: if <code>canSubmit</code> is false, {@link com.smartgwt.client.widgets.form.DynamicForm#saveData}
-     * will be called to handle saving via SmartClient databinding.   <P> If <code>canSubmit</code> is true, the form
+     * will be called to handle saving via SmartGWT databinding.   <P> If <code>canSubmit</code> is true, the form
      * will be submitted like an ordinary HTML form via {@link com.smartgwt.client.widgets.form.DynamicForm#submitForm}.
      * <P> The parameters to <code>submit()</code> apply only if <code>submit()</code> will be calling {@link
      * com.smartgwt.client.widgets.form.ValuesManager#saveData}.  If you override <code>submit()</code>, you can safely
-     * ignore the parameters as SmartClient framework code does not pass them.
+     * ignore the parameters as SmartGWT framework code does not pass them.
      *
      * @param callback callback to invoke on completion.                                          [Ignored if
      *                 this.canSubmit is true]
@@ -817,11 +817,11 @@ public class ValuesManager extends BaseClass {
      * {@link com.smartgwt.client.widgets.form.DynamicForm#submitValues} exists, it will be called, then immediately
      * return. <P> Otherwise, default behavior varies based on {@link com.smartgwt.client.widgets.form.DynamicForm#getCanSubmit
      * canSubmit}: if <code>canSubmit</code> is false, {@link com.smartgwt.client.widgets.form.DynamicForm#saveData}
-     * will be called to handle saving via SmartClient databinding.   <P> If <code>canSubmit</code> is true, the form
+     * will be called to handle saving via SmartGWT databinding.   <P> If <code>canSubmit</code> is true, the form
      * will be submitted like an ordinary HTML form via {@link com.smartgwt.client.widgets.form.DynamicForm#submitForm}.
      * <P> The parameters to <code>submit()</code> apply only if <code>submit()</code> will be calling {@link
      * com.smartgwt.client.widgets.form.ValuesManager#saveData}.  If you override <code>submit()</code>, you can safely
-     * ignore the parameters as SmartClient framework code does not pass them.
+     * ignore the parameters as SmartGWT framework code does not pass them.
      *
      * @param callback          callback to invoke on completion.                                          [Ignored if
      *                          this.canSubmit is true]

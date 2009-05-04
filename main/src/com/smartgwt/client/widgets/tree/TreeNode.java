@@ -56,7 +56,7 @@ import com.smartgwt.client.util.EnumUtil;
 import com.google.gwt.event.shared.*;
 import com.google.gwt.event.shared.HasHandlers;
    /**
-    * Every node in the tree is represented by TreeNode object which is an object literal with a&#010 set or properties that configure the node.&#010 <p>&#010 When a Tree is supplied as {@link com.smartgwt.client.widgets.tree.TreeGrid#getData data} to {@link com.smartgwt.client.widgets.tree.TreeGrid}, you can also set&#010 properties from ${isc.DocUtils.linkForRef('object:ListGridRecord')} on the TreeNode (e.g. setting&#010 {@link com.smartgwt.client.widgets.grid.ListGridRecord#getEnabled enabled}:<code>false</code> on the node).
+    * Every node in the tree is represented by TreeNode object which is an object literal with a&#010 set or properties that configure the node.&#010 <p>&#010 When a Tree is supplied as {@link com.smartgwt.client.widgets.tree.TreeGrid#getData data} to {@link com.smartgwt.client.widgets.tree.TreeGrid}, you can also set&#010 properties from {@link com.smartgwt.client.widgets.grid.ListGridRecord} on the TreeNode (e.g. setting&#010 {@link com.smartgwt.client.widgets.grid.ListGridRecord#getEnabled enabled}:<code>false</code> on the node).
 
     */
 public class TreeNode extends ListGridRecord {

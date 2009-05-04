@@ -86,6 +86,12 @@ public class UploadItem extends TextItem {
         setType("UploadItem");
     }
 
+    public UploadItem(String name, String title) {
+        setName(name);
+		setTitle(title);
+        setType("UploadItem");
+    }
+
     // ********************* Properties / Attributes ***********************
 
     // ********************* Methods ***********************

@@ -86,6 +86,12 @@ public class StaticTextItem extends FormItem {
         setType("StaticTextItem");
     }
 
+    public StaticTextItem(String name, String title) {
+        setName(name);
+		setTitle(title);
+        setType("StaticTextItem");
+    }
+
     // ********************* Properties / Attributes ***********************
 
     /**

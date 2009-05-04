@@ -24,37 +24,37 @@ package com.smartgwt.client.types;
 public enum ListGridFieldType implements ValueEnum {
     /**
      * Simple text rendering for view.  For editing a text entry field is shown. If the length of the field (as
-     * specified by the ${isc.DocUtils.linkForRef('attr:DataSourceField.length')}&#010 attribute) is larger than the
-     * value specified by ${isc.DocUtils.linkForRef('attr:ListGrid.longTextEditorThreshold')}, a&#010 text input icon is
+     * specified by the {@link com.smartgwt.client.data.DataSourceField#setLength(Integer) length} &#010 attribute) is larger than the
+     * value specified by {@link com.smartgwt.client.widgets.grid.ListGrid#setLongTextEditorThreshold(int) longTextEditorThreshold}, a&#010 text input icon is
      * shown that, when clicked on (or field is focused in) opens a larger&#010 editor that expands outside the
-     * boundaries of the cell (textarea by default, but&#010 overrideable via ${isc.DocUtils.linkForRef('attr:ListGrid.longTextEditorType')}).
+     * boundaries of the cell (textarea by default, but&#010 overrideable via {@link com.smartgwt.client.widgets.grid.ListGrid#setLongTextEditorType(String) longTextEditorType}.
      */
     TEXT("text"),
     /**
      * For viewing and editing a checkbox is shown with a check mark for the <code>true</code> value and no check mark
-     * for the <code>false</code> value.  See&#010 ${isc.DocUtils.linkForRef('attr:ListGrid.booleanTrueImage')} for
+     * for the <code>false</code> value.  See&#010 {@link com.smartgwt.client.widgets.grid.ListGrid#setBooleanTrueImage(String) booleanTrueImage} for
      * customization.
      */
     BOOLEAN("boolean"),
     /**
-     * Same as <code>text</code>.  Consider setting ${isc.DocUtils.linkForRef('attr:ListGridField.editorType','editorType')}
-     * to use a ${isc.DocUtils.linkForRef('class:SpinnerItem')}.
+     * Same as <code>text</code>.  Consider setting {@link com.smartgwt.client.widgets.grid.ListGridField#setEditorType(com.smartgwt.client.widgets.form.fields.FormItem) editorType }
+     * to use a {@link com.smartgwt.client.widgets.form.fields.SpinnerItem}.
      */
     INTEGER("integer"),
     /**
-     * Same as <code>text</code>.  Consider setting ${isc.DocUtils.linkForRef('attr:ListGridField.editorType','editorType')}
-     * to use a ${isc.DocUtils.linkForRef('class:SpinnerItem')}.
+     * Same as <code>text</code>.  Consider setting {@link com.smartgwt.client.widgets.grid.ListGridField#setEditorType(com.smartgwt.client.widgets.form.fields.FormItem) editorType}
+     * to use a {@link com.smartgwt.client.widgets.form.fields.SpinnerItem}.
      */
     FLOAT("float"),
     /**
      * Expected to contain <code>Date</code> type data. Dates will be formatted using&#010
      * ${isc.DocUtils.linkForRef('attr:ListGridField.displayFormat')} if specified, otherwise
-     * ${isc.DocUtils.linkForRef('attr:ListGrid.dateFormatter')}.&#010 If both these attributes are unset, dates are
+     * {@link com.smartgwt.client.widgets.grid.ListGrid#setDateFormatter(DateDisplayFormat) dateFormatter}.&#010 If both these attributes are unset, dates are
      * formatted using the standard &#010 ${isc.DocUtils.linkForRef('classMethod:Date.setShortDisplayFormat','short
-     * display format')} for dates.<br>&#010 For editing, by default a ${isc.DocUtils.linkForRef('class:DateItem')} is
-     * used with ${isc.DocUtils.linkForRef('attr:DateItem.useTextField')} set&#010 to true, providing textual date entry
-     * plus a pop-up date picker. The&#010 ${isc.DocUtils.linkForRef('attr:DateItem.displayFormat','displayFormat')} and
-     * ${isc.DocUtils.linkForRef('attr:DateItem.inputFormat','inputFormat')}&#010 for the editor will be picked up from
+     * display format')} for dates.<br>&#010 For editing, by default a {@link com.smartgwt.client.widgets.form.fields.DateItem} is
+     * used with {@link com.smartgwt.client.widgets.form.fields.DateItem#setUseTextField(Boolean) useTextField} set&#010 to true, providing textual date entry
+     * plus a pop-up date picker. The&#010 {@link com.smartgwt.client.widgets.form.fields.DateItem#setDisplayFormat(DateDisplayFormat) displayFormat} and
+     * {@link com.smartgwt.client.widgets.form.fields.DateItem#setInputFormat(String) inputFormat} &#010 for the editor will be picked up from
      * the ListGridField, if specified.
      */
     DATE("date"),
@@ -63,8 +63,8 @@ public enum ListGridFieldType implements ValueEnum {
      * ${isc.DocUtils.linkForRef('attr:ListGridField.displayFormat')} if specified, &#010 otherwise
      * ${isc.DocUtils.linkForRef('attr:ListGrid.timeFormatter')}.<br>&#010 If both these attributes are unset, times are
      * formatted using the standard &#010 ${isc.DocUtils.linkForRef('classAttr:Time.shortDisplayFormat','short display
-     * format')} for times.<br>&#010 For editing, by default a ${isc.DocUtils.linkForRef('class:TimeItem')} is used.
-     * The&#010 ${isc.DocUtils.linkForRef('attr:TimeItem.displayFormat','displayFormat')} for the editor will be picked
+     * format')} for times.<br>&#010 For editing, by default a {@link com.smartgwt.client.widgets.form.fields.TimeItem} is used.
+     * The&#010 {@link com.smartgwt.client.widgets.form.fields.TimeItem#setDisplayFormat(TimeFormatter) displayFormat} for the editor will be picked
      * up from &#010 the ListGridField, if specified.
      */
     TIME("time"),
@@ -98,16 +98,16 @@ public enum ListGridFieldType implements ValueEnum {
     IMAGE("image"),
 
     /**
-     * Shows ${isc.DocUtils.linkForRef('attr:ListGridField.icon','field.icon')} in every cell, and also in the header.
+     * Shows {@link com.smartgwt.client.widgets.grid.ListGridField#setIcon(String) field.icon} in every cell, and also in the header.
      * Useful for a field that is used as a button, for example, launches a detail&amp;#010 window or removes a row.
-     * Implement a ${isc.DocUtils.linkForRef('method:ListGridField.recordClick','field.recordClick')}&amp;#010 to define a
-     * behavior for the button.&amp;#010 &lt;P&gt;&amp;#010 NOTE: for a field that shows different icons depending on the
-     * field value, see&amp;#010 ${isc.DocUtils.linkForRef('attr:ListGridField.valueIcons')}.&amp;#010 &lt;P&gt;&amp;#010 &lt;code&gt;type:&quot;icon&quot;&lt;/code&gt;
+     * Implement a {@link com.smartgwt.client.widgets.grid.ListGridField#addRecordClickHandler(com.smartgwt.client.widgets.grid.events.RecordClickHandler)} #010 to define a
+     * behavior for the button.#010 &lt;P&gt;#010 NOTE: for a field that shows different icons depending on the
+     * field value, see {@link com.smartgwt.client.widgets.grid.ListGridField#setValueIcons(java.util.Map) valueIcons}.
      * also defaults to a small field width, accomodating just the icon&amp;#010 with padding, and to a blank header title,
-     * so that the header shows the icon only.  &amp;#010 &lt;P&gt;&amp;#010
-     * ${isc.DocUtils.linkForRef('attr:ListGridField.iconWidth','field.iconWidth')} and related properties configure&amp;#010
-     * the size of the icon both in the header and in body cells.&amp;#010 &lt;P&gt; &amp;#010 If you want the icon to appear
-     * only in body cells and not in the header, set&amp;#010 ${isc.DocUtils.linkForRef('attr:ListGridField.cellIcon','field.cellIcon')}
+     * so that the header shows the icon only.  #010 <P&gt;#010
+     * {@link com.smartgwt.client.widgets.grid.ListGridField#setIconWidth(Integer)} iconWidth} and related properties configure&amp;#010
+     * the size of the icon both in the header and in body cells.#010 <P&gt; #010 If you want the icon to appear
+     * only in body cells and not in the header, set {@link com.smartgwt.client.widgets.grid.ListGridField#setCellIcon(String) cellIcon}
      * instead, leaving field.icon null.
      */
     ICON("icon"),
