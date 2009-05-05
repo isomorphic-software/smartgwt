@@ -1308,7 +1308,6 @@ public class TreeGrid extends ListGrid  implements DataBoundComponent, com.smart
             }
         }-*/;
 
-
     // ********************* Static Methods ***********************
 
 
