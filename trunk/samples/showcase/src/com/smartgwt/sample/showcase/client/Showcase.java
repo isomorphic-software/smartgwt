@@ -6,8 +6,8 @@ import com.google.gwt.user.client.History;
 import com.google.gwt.user.client.HistoryListener;
 import com.google.gwt.user.client.ui.RootPanel;
 import com.smartgwt.client.core.KeyIdentifier;
-import com.smartgwt.client.types.TabBarControls;
 import com.smartgwt.client.types.HeaderControls;
+import com.smartgwt.client.types.TabBarControls;
 import com.smartgwt.client.util.SC;
 import com.smartgwt.client.widgets.Canvas;
 import com.smartgwt.client.widgets.ImgButton;
@@ -40,7 +40,6 @@ import com.smartgwt.sample.showcase.client.data.CommandTreeNode;
 import com.smartgwt.sample.showcase.client.data.ExplorerTreeNode;
 
 import java.util.LinkedHashMap;
-import java.util.Map;
 
 public class Showcase implements EntryPoint, HistoryListener {
 
@@ -238,7 +237,7 @@ public class Showcase implements EntryPoint, HistoryListener {
         // Add history listener
         History.addHistoryListener(this);
 
-        RootPanel.get("loadingMsg").getElement().setInnerHTML("");
+        RootPanel.getBodyElement().removeChild(RootPanel.get("loadingWrapper").getElement());
     }
 
     private Menu createContextMenu() {
