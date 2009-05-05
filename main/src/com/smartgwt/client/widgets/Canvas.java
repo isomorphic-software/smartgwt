@@ -4592,7 +4592,6 @@ public class Canvas extends BaseWidget  implements com.smartgwt.client.widgets.e
             }
         }-*/;
 
-
     // ********************* Static Methods ***********************
 
 

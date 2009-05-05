@@ -345,7 +345,6 @@ public class SectionStack extends VLayout  implements com.smartgwt.client.widget
             self.sectionHeaderClick(sectionHeader.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()());
         }-*/;
 
-
     // ********************* Static Methods ***********************
 
 

@@ -1025,51 +1025,6 @@ public class Window extends VLayout  implements com.smartgwt.client.widgets.even
             }
         }-*/;
 
-        /**
-         * Notification method fired when the user clicks the 'maximize' button.&#010
-         *
-         * @return return false to cancel the default maximize behavior
-         */
-        public native Boolean onMaximizeClick() /*-{
-            var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
-            var retVal =self.onMaximizeClick();
-            if(retVal == null || retVal === undefined) {
-                return null;
-            } else {
-                return @com.smartgwt.client.util.JSOHelper::toBoolean(Z)(retVal);
-            }
-        }-*/;
-
-        /**
-         * Notification method fired when the user clicks the 'minimize' button.&#010
-         *
-         * @return return false to cancel the default minimize behavior
-         */
-        public native Boolean onMinimizeClick() /*-{
-            var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
-            var retVal =self.onMinimizeClick();
-            if(retVal == null || retVal === undefined) {
-                return null;
-            } else {
-                return @com.smartgwt.client.util.JSOHelper::toBoolean(Z)(retVal);
-            }
-        }-*/;
-
-        /**
-         * Notification method fired when the user clicks the 'restore' button.&#010
-         *
-         * @return return false to cancel the default restore behavior
-         */
-        public native Boolean onRestoreClick() /*-{
-            var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
-            var retVal =self.onRestoreClick();
-            if(retVal == null || retVal === undefined) {
-                return null;
-            } else {
-                return @com.smartgwt.client.util.JSOHelper::toBoolean(Z)(retVal);
-            }
-        }-*/;
-
     // ********************* Static Methods ***********************
 
 

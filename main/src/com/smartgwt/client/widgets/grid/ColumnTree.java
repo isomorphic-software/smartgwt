@@ -561,7 +561,6 @@ public class ColumnTree extends Layout  implements DataBoundComponent, com.smart
             }
         }-*/;
 
-
     // ********************* Static Methods ***********************
 
 
