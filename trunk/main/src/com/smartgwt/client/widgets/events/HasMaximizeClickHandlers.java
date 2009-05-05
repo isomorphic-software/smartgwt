@@ -14,18 +14,18 @@
  * Lesser General Public License for more details.
  */
  
-package com.smartgwt.client.widgets.tab.events;
+package com.smartgwt.client.widgets.events;
 
 import com.smartgwt.client.event.*;
 import com.google.gwt.event.shared.HandlerRegistration;
 import com.google.gwt.event.shared.HasHandlers;
 
-public interface HasCloseClickHandlers extends HasHandlers {
+public interface HasMaximizeClickHandlers extends HasHandlers {
     /**
-     * When {@link com.smartgwt.client.widgets.tab.TabSet#getCanCloseTabs canCloseTabs} is set, this notification method fired when the user clicks &#010 the "close" icon for a tab.&#010 Return false to cancel default behavior of removing the tab from the TabSet&#010
+     * Notification method fired when the user clicks the 'maximize' button.&#010
      *
-     * @param handler the onCloseClick handler
+     * @param handler the onMaximizeClick handler
      * @return {@link HandlerRegistration} used to remove this handler
      */
-    HandlerRegistration addCloseClickHandler(CloseClickHandler handler);
+    HandlerRegistration addMaximizeClickHandler(MaximizeClickHandler handler);
 }

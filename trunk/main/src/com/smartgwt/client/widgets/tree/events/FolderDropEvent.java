@@ -14,7 +14,7 @@
  * Lesser General Public License for more details.
  */
  
-package com.smartgwt.client.widgets.tab.events;
+package com.smartgwt.client.widgets.tree.events;
 
 
 
@@ -55,13 +55,13 @@ import com.smartgwt.client.util.JSOHelper;
 import com.smartgwt.client.util.EnumUtil;
 import com.google.gwt.event.shared.*;
 import com.google.gwt.event.shared.HasHandlers;
-public class TabCloseClickEvent extends BrowserEvent<CloseClickHandler>  implements Cancellable {
+public class FolderDropEvent extends BrowserEvent<FolderDropHandler>  implements Cancellable {
     private boolean cancel = false;
 
   /**
    * Handler type.
    */
-  private static Type<CloseClickHandler> TYPE;
+  private static Type<FolderDropHandler> TYPE;
 
   /**
    * Fires a open event on all registered handlers in the handler manager.If no
@@ -71,10 +71,10 @@ public class TabCloseClickEvent extends BrowserEvent<CloseClickHandler>  impleme
    * @param source the source of the handlers
    * @param jsObj the native event
    */
-  public static <S extends HasCloseClickHandlers & HasHandlers> void fire(
+  public static <S extends HasFolderDropHandlers & HasHandlers> void fire(
       S source, JavaScriptObject jsObj) {
     if (TYPE != null) {
-        TabCloseClickEvent event = new TabCloseClickEvent(jsObj);
+        FolderDropEvent event = new FolderDropEvent(jsObj);
         source.fireEvent(event);
     }
   }
@@ -84,17 +84,17 @@ public class TabCloseClickEvent extends BrowserEvent<CloseClickHandler>  impleme
    *
    * @return returns the handler type
    */
-  public static Type<CloseClickHandler> getType() {
+  public static Type<FolderDropHandler> getType() {
     if (TYPE == null) {
-      TYPE = new Type<CloseClickHandler>();
+      TYPE = new Type<FolderDropHandler>();
     }
     return TYPE;
   }
 
 
   @Override
-  protected void dispatch(CloseClickHandler handler) {
-    handler.onCloseClick(this);
+  protected void dispatch(FolderDropHandler handler) {
+    handler.onFolderDrop(this);
   }
 
   // Because of type erasure, our static type is
@@ -102,17 +102,17 @@ public class TabCloseClickEvent extends BrowserEvent<CloseClickHandler>  impleme
 
   @SuppressWarnings("unchecked")
   @Override
-  public final Type<CloseClickHandler> getAssociatedType() {
+  public final Type<FolderDropHandler> getAssociatedType() {
     return TYPE;
   }
 
-    public TabCloseClickEvent(JavaScriptObject jsObj) {
+    public FolderDropEvent(JavaScriptObject jsObj) {
         super(jsObj);
     }
 
 
     /**
-     * return false to suppress removal of the tab
+     * return false to cancel standard folder drop processing
      */
     public void cancel() {
         cancel = true;
@@ -126,17 +126,51 @@ public class TabCloseClickEvent extends BrowserEvent<CloseClickHandler>  impleme
     }
 
     /**
-     * the tab to be removed
+     * List of nodes being dropped
      *
-     * @return the tab to be removed
+     * @return List of nodes being dropped
      */
-    public  native Tab getTab() /*-{
+    public  native TreeNode[] getNodes() /*-{
         var jsObj = this.@com.smartgwt.client.event.AbstractSmartEvent::jsObj;
-            var retVal = @com.smartgwt.client.widgets.tab.Tab::getOrCreateRef(Lcom/google/gwt/core/client/JavaScriptObject;)(jsObj.tab);
+        return @com.smartgwt.client.widgets.tree.Tree::convertToTreeNodeArray(Lcom/google/gwt/core/client/JavaScriptObject;)(jsObj.nodes);
+    }-*/;
+
+    /**
+     * The folder being dropped on
+     *
+     * @return The folder being dropped on
+     */
+    public  native TreeNode getFolder() /*-{
+        var jsObj = this.@com.smartgwt.client.event.AbstractSmartEvent::jsObj;
+            var retVal = @com.smartgwt.client.widgets.tree.TreeNode::getOrCreateRef(Lcom/google/gwt/core/client/JavaScriptObject;)(jsObj.folder);
             if(retVal == null) {
-                retVal = @com.smartgwt.client.widgets.tab.Tab::new(Lcom/google/gwt/core/client/JavaScriptObject;)(jsObj.tab);
+                retVal = @com.smartgwt.client.widgets.tree.TreeNode::new(Lcom/google/gwt/core/client/JavaScriptObject;)(jsObj.folder);
             }
             return retVal;
+    }-*/;
+
+    /**
+     * Within the folder being dropped on, the index at which the drop is                        occurring.
+     *
+     * @return Within the folder being dropped on, the index at which the drop is                        occurring.
+     */
+    public  native int getIndex() /*-{
+        var jsObj = this.@com.smartgwt.client.event.AbstractSmartEvent::jsObj;
+        return jsObj.index;
+    }-*/;
+
+    /**
+     * The component that is the source of the nodes (where the nodes                              were dragged from).
+     *
+     * @return The component that is the source of the nodes (where the nodes                              were dragged from).
+     */
+    public  native Canvas getSourceWidget() /*-{
+        var jsObj = this.@com.smartgwt.client.event.AbstractSmartEvent::jsObj;
+        var retVal = @com.smartgwt.client.widgets.Canvas::getOrCreateRef(Lcom/google/gwt/core/client/JavaScriptObject;)(jsObj.sourceWidget);
+        if(retVal == null) {
+            retVal = @com.smartgwt.client.widgets.Canvas::new(Lcom/google/gwt/core/client/JavaScriptObject;)(jsObj.sourceWidget);
+        }
+        return retVal;
     }-*/;
 
 

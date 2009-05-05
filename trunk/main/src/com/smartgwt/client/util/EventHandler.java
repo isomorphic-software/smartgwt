@@ -66,6 +66,15 @@ public class EventHandler {
 
     // ********************* Static Methods ***********************
 
+        /**
+         * Applies to {@link com.smartgwt.client.widgets.Canvas#mouseWheel} events only.&#010 Returns an integer indicating how far the mouse wheel was rotated. This value will be&#010 positive if the user scrolled the mousewheel forward or up, or negative if scrolled in the&#010 other direction and will be a multiple of 1 where 1 indicates the smallest possible rotation&#010 of the wheel.&#010
+         *
+         * @return integer indicating how far the mouse wheel was rotated.
+         */
+        public static native int getWheelDelta() /*-{
+            return $wnd.isc.EventHandler.getWheelDelta();
+        }-*/;
+
 
 
         /**
@@ -189,12 +198,6 @@ public class EventHandler {
 
 
 
-
-    public static native Integer getWheelDelta() /*-{
-        return $wnd.isc.EH.lastEvent.wheelDelta;
-    }-*/;
-
-
     /**
      * Set the HTML for the drag tracker that follows the mouse during a drag and drop interaction. <P> Your canvas
      * can use this routine to set the drag tracker to whatever HTML you want like so: <pre>    dragStart : function

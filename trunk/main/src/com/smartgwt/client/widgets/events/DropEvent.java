@@ -112,7 +112,7 @@ public class DropEvent extends BrowserEvent<DropHandler>  implements Cancellable
 
 
     /**
-     * false to prevent this event from bubbling to this widget's parent, true or undefined to bubble.
+     * return false to cancel default drop handling
      */
     public void cancel() {
         cancel = true;

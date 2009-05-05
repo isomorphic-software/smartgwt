@@ -62,7 +62,6 @@ import com.google.gwt.event.shared.HasHandlers;
 
 
 
-
 public class TabSet extends Canvas  implements com.smartgwt.client.widgets.tab.events.HasCloseClickHandlers, com.smartgwt.client.widgets.tab.events.HasTabIconClickHandlers, com.smartgwt.client.widgets.tab.events.HasTabSelectedHandlers, com.smartgwt.client.widgets.tab.events.HasTabDeselectedHandlers {
 
     public static TabSet getOrCreateRef(JavaScriptObject jsObj) {
@@ -605,39 +604,6 @@ public class TabSet extends Canvas  implements com.smartgwt.client.widgets.tab.e
 
 
 
-        /**
-         * Add a closeClick handler.
-         * <p>
-         * When {@link com.smartgwt.client.widgets.tab.TabSet#getCanCloseTabs canCloseTabs} is set, method fired when the user clicks the "close" icon for a&#010 tab.&#010 <P>&#010 Default implementation will remove the tab from the tabSet via {@link com.smartgwt.client.widgets.tab.TabSet#removeTab}.&#010
-         *
-         * @param handler the closeClick handler
-         * @return {@link HandlerRegistration} used to remove this handler
-         */
-        public HandlerRegistration addCloseClickHandler(com.smartgwt.client.widgets.tab.events.CloseClickHandler handler) {
-            if(getHandlerCount(com.smartgwt.client.widgets.tab.events.TabCloseClickEvent.getType()) == 0) setupCloseClickEvent();
-            return doAddHandler(handler, com.smartgwt.client.widgets.tab.events.TabCloseClickEvent.getType());
-        }
-        private native void setupCloseClickEvent() /*-{
-            var obj = null;
-            var selfJ = this;
-            if(this.@com.smartgwt.client.widgets.BaseWidget::isCreated()()) {
-                obj = this.@com.smartgwt.client.widgets.BaseWidget::getJsObj()();
-                obj.addProperties({closeClick:function(){
-                        var param = {"tab" : arguments[0]};
-                        var event = @com.smartgwt.client.widgets.tab.events.TabCloseClickEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
-                        selfJ.@com.smartgwt.client.widgets.BaseWidget::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
-                    }
-                });
-            } else {
-                obj = this.@com.smartgwt.client.widgets.BaseWidget::getConfig()();
-                obj.closeClick = function(){
-                    var param = {"tab" : arguments[0]};
-                    var event = @com.smartgwt.client.widgets.tab.events.TabCloseClickEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
-                    selfJ.@com.smartgwt.client.widgets.BaseWidget::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
-                };
-            }
-        }-*/;
-
 
         /**
          * Add a tabIconClick handler.
@@ -779,10 +745,11 @@ public class TabSet extends Canvas  implements com.smartgwt.client.widgets.tab.e
             }
         }-*/;
 
+
     // ********************* Static Methods ***********************
 
 
-
+
 
     /**
     * Specifies the index of the initially selected tab.
@@ -1183,6 +1150,43 @@ public class TabSet extends Canvas  implements com.smartgwt.client.widgets.tab.e
     public native void setTabPane(String tabID, Canvas pane) /*-{
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
         self.setTabPane(tabID, pane.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()());
+    }-*/;
+
+    /**
+     * Add a onCloseClick handler.
+     * <p>
+     * When {@link com.smartgwt.client.widgets.tab.TabSet#getCanCloseTabs canCloseTabs} is set, this notification method fired when the user clicks &#010 the "close" icon for a tab.&#010 Return false to cancel default behavior of removing the tab from the TabSet&#010
+     *
+     * @param handler the onCloseClick handler
+     * @return {@link com.google.gwt.event.shared.HandlerRegistration} used to remove this handler
+     */
+    public HandlerRegistration addCloseClickHandler(com.smartgwt.client.widgets.tab.events.CloseClickHandler handler) {
+        if(getHandlerCount(com.smartgwt.client.widgets.tab.events.TabCloseClickEvent.getType()) == 0) setupCloseClickEvent();
+        return doAddHandler(handler, com.smartgwt.client.widgets.tab.events.TabCloseClickEvent.getType());
+    }
+    private native void setupCloseClickEvent() /*-{
+        var obj = null;
+        var selfJ = this;
+        if(this.@com.smartgwt.client.widgets.BaseWidget::isCreated()()) {
+            obj = this.@com.smartgwt.client.widgets.BaseWidget::getJsObj()();
+            obj.addProperties({onCloseClick:function(){
+                    var param = {"tab" : arguments[0]};
+                    var event = @com.smartgwt.client.widgets.tab.events.TabCloseClickEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
+                    selfJ.@com.smartgwt.client.widgets.BaseWidget::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
+                    var ret = event.@com.smartgwt.client.event.Cancellable::isCancelled()();
+                    return !ret;
+                }
+            });
+        } else {
+            obj = this.@com.smartgwt.client.widgets.BaseWidget::getConfig()();
+            obj.onCloseClick = function(){
+                var param = {"tab" : arguments[0]};
+                var event = @com.smartgwt.client.widgets.tab.events.TabCloseClickEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
+                selfJ.@com.smartgwt.client.widgets.BaseWidget::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
+                var ret = event.@com.smartgwt.client.event.Cancellable::isCancelled()();
+                return !ret;
+            };
+        }
     }-*/;
 
 }

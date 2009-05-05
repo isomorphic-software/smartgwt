@@ -59,7 +59,7 @@ import com.google.gwt.event.shared.HasHandlers;
     * The SmartGWT system supports hierarchical data (also referred to as tree data&#010 due to its "branching" organization) with:&#010 <ul>&#010   <li> the {@link com.smartgwt.client.widgets.tree.Tree} class, which manipulates hierarchical data sets&#010   <li> the TreeGrid widget class, which extends the ListGrid class to visually&#010        present tree data in an expandable/collapsible format.&#010   <li> the ColumnTree widget class, which visually&#010        presents tree data in a so-called &#010        "<a href=http://en.wikipedia.org/wiki/Miller_Columns>Miller Column</a>" format.&#010 </ul>&#010 For information on DataBinding Trees, see {@link com.smartgwt.client.docs.TreeDataBinding}.&#010 <p>&#010 A ColumnTree shows a single branch of the underlying {@link com.smartgwt.client.widgets.tree.Tree} horizontally, from &#010 left to right. Thus, the leftmost column shows all the top-level nodes. When the user clicks&#010 one of those nodes, a new column is shown immediately to the right of the top-level column,&#010 showing the selected node's children. Additional columns are shown as required to present&#010 lower-level children. The behavior of ColumnTree is similar to that of the Browser interface&#010 in the Apple&trade; iTunes&trade; application.
 
     */
-public class ColumnTree extends Layout  implements DataBoundComponent {
+public class ColumnTree extends Layout  implements DataBoundComponent, com.smartgwt.client.widgets.grid.events.HasNodeSelectedHandlers {
 
     public static ColumnTree getOrCreateRef(JavaScriptObject jsObj) {
         if(jsObj == null) return null;
@@ -561,10 +561,11 @@ public class ColumnTree extends Layout  implements DataBoundComponent {
             }
         }-*/;
 
+
     // ********************* Static Methods ***********************
 
 
-
+
 
     /**
      * The DataSource that this component should bind to for default fields and for performing&#010 DataSource
@@ -1012,6 +1013,43 @@ public class ColumnTree extends Layout  implements DataBoundComponent {
         var records = self.getSelection(colNum);
         return @com.smartgwt.client.widgets.grid.ListGrid::convertToListGridRecordArray(Lcom/google/gwt/core/client/JavaScriptObject;)(records);
     }-*/;
+
+    /**
+     * Add a onNodeSelected handler.
+     * <p>
+     * Notification method fired when a node is selected. Return false to suppress default&#010 behavior.&#010
+     *
+     * @param handler the onNodeSelected handler
+     * @return {@link com.google.gwt.event.shared.HandlerRegistration} used to remove this handler
+     */
+    public HandlerRegistration addNodeSelectedHandler(com.smartgwt.client.widgets.grid.events.NodeSelectedHandler handler) {
+        if(getHandlerCount(com.smartgwt.client.widgets.grid.events.NodeSelectedEvent.getType()) == 0) setupNodeSelectedEvent();
+        return doAddHandler(handler, com.smartgwt.client.widgets.grid.events.NodeSelectedEvent.getType());
+    }
+    private native void setupNodeSelectedEvent() /*-{
+        var obj = null;
+        var selfJ = this;
+        if(this.@com.smartgwt.client.widgets.BaseWidget::isCreated()()) {
+            obj = this.@com.smartgwt.client.widgets.BaseWidget::getJsObj()();
+            obj.addProperties({onNodeSelected:function(){
+                    var param = {"column" : arguments[0], "node" : arguments[1]};
+                    var event = @com.smartgwt.client.widgets.grid.events.NodeSelectedEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
+                    selfJ.@com.smartgwt.client.widgets.BaseWidget::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
+                    var ret = event.@com.smartgwt.client.event.Cancellable::isCancelled()();
+                    return !ret;
+                }
+            });
+        } else {
+            obj = this.@com.smartgwt.client.widgets.BaseWidget::getConfig()();
+            obj.onNodeSelected = function(){
+                var param = {"column" : arguments[0], "node" : arguments[1]};
+                var event = @com.smartgwt.client.widgets.grid.events.NodeSelectedEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
+                selfJ.@com.smartgwt.client.widgets.BaseWidget::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
+                var ret = event.@com.smartgwt.client.event.Cancellable::isCancelled()();
+                return !ret;
+            };
+        }
+    }-*/;    
 
 }
 

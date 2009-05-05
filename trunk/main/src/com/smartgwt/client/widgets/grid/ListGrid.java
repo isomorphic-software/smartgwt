@@ -85,7 +85,7 @@ import com.google.gwt.event.shared.HasHandlers;
 
 
 
-public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgwt.client.widgets.grid.events.HasDataArrivedHandlers, com.smartgwt.client.widgets.grid.events.HasFieldStateChangedHandlers, com.smartgwt.client.widgets.grid.events.HasEditCompleteHandlers, com.smartgwt.client.widgets.grid.events.HasEditFailedHandlers, com.smartgwt.client.widgets.grid.events.HasEditorExitHandlers, com.smartgwt.client.widgets.grid.events.HasRowEditorEnterHandlers, com.smartgwt.client.widgets.grid.events.HasRowEditorExitHandlers, com.smartgwt.client.widgets.grid.events.HasEditorEnterHandlers, com.smartgwt.client.widgets.grid.events.HasCellSavedHandlers, com.smartgwt.client.widgets.grid.events.HasCellOutHandlers, com.smartgwt.client.widgets.grid.events.HasCellOverHandlers, com.smartgwt.client.widgets.grid.events.HasCellContextClickHandlers, com.smartgwt.client.widgets.grid.events.HasCellMouseDownHandlers, com.smartgwt.client.widgets.grid.events.HasCellMouseUpHandlers, com.smartgwt.client.widgets.grid.events.HasCellClickHandlers, com.smartgwt.client.widgets.grid.events.HasCellDoubleClickHandlers, com.smartgwt.client.widgets.grid.events.HasRowOutHandlers, com.smartgwt.client.widgets.grid.events.HasRowOverHandlers, com.smartgwt.client.widgets.grid.events.HasRowContextClickHandlers, com.smartgwt.client.widgets.grid.events.HasRowMouseDownHandlers, com.smartgwt.client.widgets.grid.events.HasRowMouseUpHandlers, com.smartgwt.client.widgets.grid.events.HasRecordClickHandlers, com.smartgwt.client.widgets.grid.events.HasRecordDoubleClickHandlers, com.smartgwt.client.widgets.grid.events.HasCellHoverHandlers, com.smartgwt.client.widgets.grid.events.HasRowHoverHandlers, com.smartgwt.client.widgets.grid.events.HasSelectionChangedHandlers {
+public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgwt.client.widgets.grid.events.HasHeaderClickHandlers, com.smartgwt.client.widgets.grid.events.HasRecordDropHandlers, com.smartgwt.client.widgets.grid.events.HasDataArrivedHandlers, com.smartgwt.client.widgets.grid.events.HasFieldStateChangedHandlers, com.smartgwt.client.widgets.grid.events.HasEditCompleteHandlers, com.smartgwt.client.widgets.grid.events.HasEditFailedHandlers, com.smartgwt.client.widgets.grid.events.HasEditorExitHandlers, com.smartgwt.client.widgets.grid.events.HasRowEditorEnterHandlers, com.smartgwt.client.widgets.grid.events.HasRowEditorExitHandlers, com.smartgwt.client.widgets.grid.events.HasEditorEnterHandlers, com.smartgwt.client.widgets.grid.events.HasCellSavedHandlers, com.smartgwt.client.widgets.grid.events.HasCellOutHandlers, com.smartgwt.client.widgets.grid.events.HasCellOverHandlers, com.smartgwt.client.widgets.grid.events.HasCellContextClickHandlers, com.smartgwt.client.widgets.grid.events.HasCellMouseDownHandlers, com.smartgwt.client.widgets.grid.events.HasCellMouseUpHandlers, com.smartgwt.client.widgets.grid.events.HasCellClickHandlers, com.smartgwt.client.widgets.grid.events.HasCellDoubleClickHandlers, com.smartgwt.client.widgets.grid.events.HasRowOutHandlers, com.smartgwt.client.widgets.grid.events.HasRowOverHandlers, com.smartgwt.client.widgets.grid.events.HasRowContextClickHandlers, com.smartgwt.client.widgets.grid.events.HasRowMouseDownHandlers, com.smartgwt.client.widgets.grid.events.HasRowMouseUpHandlers, com.smartgwt.client.widgets.grid.events.HasRecordClickHandlers, com.smartgwt.client.widgets.grid.events.HasRecordDoubleClickHandlers, com.smartgwt.client.widgets.grid.events.HasCellHoverHandlers, com.smartgwt.client.widgets.grid.events.HasRowHoverHandlers, com.smartgwt.client.widgets.grid.events.HasSelectionChangedHandlers {
 
     public static ListGrid getOrCreateRef(JavaScriptObject jsObj) {
         if(jsObj == null) return null;
@@ -4585,14 +4585,6 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
 
 
 
-        /**
-         * Handle a click in the list header.&#010 <P>&#010 By default, calls {@link com.smartgwt.client.widgets.grid.ListGrid#sort} to sort by the field that was clicked, or to reverse the&#010 direction of sorting if already sorted by that field.&#010&#010
-         * @param fieldNum field number for the header that was clicked
-         */
-        public native void headerClick(int fieldNum) /*-{
-            var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
-            self.headerClick(fieldNum);
-        }-*/;
 
         /**
          * Reorder a particular field &#010&#010
@@ -4681,11 +4673,11 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
 
 
         /**
-         * Add a cellChanged handler.
+         * Add a cellSaved handler.
          * <p>
          * Fires after user edits have been successfully saved to the server, when the new value&#010 doesn't match the value before editing.&#010 <p>&#010 If you want immediate notification of a changes <b>before</b> changes has been saved to the&#010 server, implement {@link com.smartgwt.client.widgets.grid.ListGridField#change} or&#010 {@link com.smartgwt.client.widgets.grid.ListGridField#changed} instead.&#010 <P>&#010 You can supply this method on the listGrid instance or on the listGridField(s) that you&#010 want to receive cellChanged events for.  If both a field and the listGrid define a&#010 cellChanged method and that field receives an edit save, only the one defined on the&#010 field is called.&#010&#010
          *
-         * @param handler the cellChanged handler
+         * @param handler the cellSaved handler
          * @return {@link HandlerRegistration} used to remove this handler
          */
         public HandlerRegistration addCellSavedHandler(com.smartgwt.client.widgets.grid.events.CellSavedHandler handler) {
@@ -5018,10 +5010,12 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
             }
         }-*/;
 
+
+
     // ********************* Static Methods ***********************
 
 
-
+
 
 
 
@@ -6979,6 +6973,80 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
     public native void clearFieldError(int rowNum, int colIndex) /*-{
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
         self.clearFieldError(rowNum, colIndex);
+    }-*/;
+
+    /**
+     * Add a onHeaderClick handler.
+     * <p>
+     * Handler fired when the user clicks a header in this listGrid before any other processing&#010 occurs.&#010 Return false to suppress the default header click handling&#010
+     *
+     * @param handler the onHeaderClick handler
+     * @return {@link com.google.gwt.event.shared.HandlerRegistration} used to remove this handler
+     */
+    public HandlerRegistration addHeaderClickHandler(com.smartgwt.client.widgets.grid.events.HeaderClickHandler handler) {
+        if(getHandlerCount(com.smartgwt.client.widgets.grid.events.HeaderClickEvent.getType()) == 0) setupHeaderClickEvent();
+        return doAddHandler(handler, com.smartgwt.client.widgets.grid.events.HeaderClickEvent.getType());
+    }
+    private native void setupHeaderClickEvent() /*-{
+        var obj = null;
+        var selfJ = this;
+        if(this.@com.smartgwt.client.widgets.BaseWidget::isCreated()()) {
+            obj = this.@com.smartgwt.client.widgets.BaseWidget::getJsObj()();
+            obj.addProperties({onHeaderClick:function(){
+                    var param = {"fieldNum" : arguments[0]};
+                    var event = @com.smartgwt.client.widgets.grid.events.HeaderClickEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
+                    selfJ.@com.smartgwt.client.widgets.BaseWidget::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
+                    var ret = event.@com.smartgwt.client.event.Cancellable::isCancelled()();
+                    return !ret;
+                }
+            });
+        } else {
+            obj = this.@com.smartgwt.client.widgets.BaseWidget::getConfig()();
+            obj.onHeaderClick = function(){
+                var param = {"fieldNum" : arguments[0]};
+                var event = @com.smartgwt.client.widgets.grid.events.HeaderClickEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
+                selfJ.@com.smartgwt.client.widgets.BaseWidget::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
+                var ret = event.@com.smartgwt.client.event.Cancellable::isCancelled()();
+                return !ret;
+            };
+        }
+    }-*/;
+
+    /**
+     * Add a onRecordDrop handler.
+     * <p>
+     * Handler fired when the user drops a record onto this listGrid before any other processing&#010 of the drop occurs.&#010 Return false to suppress the default record drop handling.&#010
+     *
+     * @param handler the onRecordDrop handler
+     * @return {@link HandlerRegistration} used to remove this handler
+     */
+    public HandlerRegistration addRecordDropHandler(com.smartgwt.client.widgets.grid.events.RecordDropHandler handler) {
+        if(getHandlerCount(com.smartgwt.client.widgets.grid.events.RecordDropEvent.getType()) == 0) setupRecordDropEvent();
+        return doAddHandler(handler, com.smartgwt.client.widgets.grid.events.RecordDropEvent.getType());
+    }
+    private native void setupRecordDropEvent() /*-{
+        var obj = null;
+        var selfJ = this;
+        if(this.@com.smartgwt.client.widgets.BaseWidget::isCreated()()) {
+            obj = this.@com.smartgwt.client.widgets.BaseWidget::getJsObj()();
+            obj.addProperties({onRecordDrop:function(){
+                    var param = {"dropRecords" : arguments[0], "targetRecord" : arguments[1], "index" : arguments[2], "sourceWidget" : arguments[3]};
+                    var event = @com.smartgwt.client.widgets.grid.events.RecordDropEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
+                    selfJ.@com.smartgwt.client.widgets.BaseWidget::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
+                    var ret = event.@com.smartgwt.client.event.Cancellable::isCancelled()();
+                    return !ret;
+                }
+            });
+        } else {
+            obj = this.@com.smartgwt.client.widgets.BaseWidget::getConfig()();
+            obj.onRecordDrop = function(){
+                var param = {"dropRecords" : arguments[0], "targetRecord" : arguments[1], "index" : arguments[2], "sourceWidget" : arguments[3]};
+                var event = @com.smartgwt.client.widgets.grid.events.RecordDropEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
+                selfJ.@com.smartgwt.client.widgets.BaseWidget::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
+                var ret = event.@com.smartgwt.client.event.Cancellable::isCancelled()();
+                return !ret;
+            };
+        }
     }-*/;
 
 }

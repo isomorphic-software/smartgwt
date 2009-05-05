@@ -20,12 +20,12 @@ import com.smartgwt.client.event.*;
 import com.google.gwt.event.shared.HandlerRegistration;
 import com.google.gwt.event.shared.HasHandlers;
 
-public interface HasCellSavedHandlers extends HasHandlers {
+public interface HasHeaderClickHandlers extends HasHandlers {
     /**
-     * Fires after user edits have been successfully saved to the server, when the new value&#010 doesn't match the value before editing.&#010 <p>&#010 If you want immediate notification of a changes <b>before</b> changes has been saved to the&#010 server, implement {@link com.smartgwt.client.widgets.grid.ListGridField#change} or&#010 {@link com.smartgwt.client.widgets.grid.ListGridField#changed} instead.&#010 <P>&#010 You can supply this method on the listGrid instance or on the listGridField(s) that you&#010 want to receive cellChanged events for.  If both a field and the listGrid define a&#010 cellChanged method and that field receives an edit save, only the one defined on the&#010 field is called.&#010&#010
+     * Handler fired when the user clicks a header in this listGrid before any other processing&#010 occurs.&#010 Return false to suppress the default header click handling&#010
      *
-     * @param handler the cellSaved handler
+     * @param handler the onHeaderClick handler
      * @return {@link HandlerRegistration} used to remove this handler
      */
-    HandlerRegistration addCellSavedHandler(CellSavedHandler handler);
+    HandlerRegistration addHeaderClickHandler(HeaderClickHandler handler);
 }
