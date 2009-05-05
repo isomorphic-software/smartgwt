@@ -14,7 +14,7 @@
  * Lesser General Public License for more details.
  */
  
-package com.smartgwt.client.widgets.tab.events;
+package com.smartgwt.client.widgets.layout.events;
 
 
 
@@ -55,13 +55,13 @@ import com.smartgwt.client.util.JSOHelper;
 import com.smartgwt.client.util.EnumUtil;
 import com.google.gwt.event.shared.*;
 import com.google.gwt.event.shared.HasHandlers;
-public class TabCloseClickEvent extends BrowserEvent<CloseClickHandler>  implements Cancellable {
+public class SectionHeaderClickEvent extends BrowserEvent<SectionHeaderClickHandler>  implements Cancellable {
     private boolean cancel = false;
 
   /**
    * Handler type.
    */
-  private static Type<CloseClickHandler> TYPE;
+  private static Type<SectionHeaderClickHandler> TYPE;
 
   /**
    * Fires a open event on all registered handlers in the handler manager.If no
@@ -71,10 +71,10 @@ public class TabCloseClickEvent extends BrowserEvent<CloseClickHandler>  impleme
    * @param source the source of the handlers
    * @param jsObj the native event
    */
-  public static <S extends HasCloseClickHandlers & HasHandlers> void fire(
+  public static <S extends HasSectionHeaderClickHandlers & HasHandlers> void fire(
       S source, JavaScriptObject jsObj) {
     if (TYPE != null) {
-        TabCloseClickEvent event = new TabCloseClickEvent(jsObj);
+        SectionHeaderClickEvent event = new SectionHeaderClickEvent(jsObj);
         source.fireEvent(event);
     }
   }
@@ -84,17 +84,17 @@ public class TabCloseClickEvent extends BrowserEvent<CloseClickHandler>  impleme
    *
    * @return returns the handler type
    */
-  public static Type<CloseClickHandler> getType() {
+  public static Type<SectionHeaderClickHandler> getType() {
     if (TYPE == null) {
-      TYPE = new Type<CloseClickHandler>();
+      TYPE = new Type<SectionHeaderClickHandler>();
     }
     return TYPE;
   }
 
 
   @Override
-  protected void dispatch(CloseClickHandler handler) {
-    handler.onCloseClick(this);
+  protected void dispatch(SectionHeaderClickHandler handler) {
+    handler.onSectionHeaderClick(this);
   }
 
   // Because of type erasure, our static type is
@@ -102,17 +102,17 @@ public class TabCloseClickEvent extends BrowserEvent<CloseClickHandler>  impleme
 
   @SuppressWarnings("unchecked")
   @Override
-  public final Type<CloseClickHandler> getAssociatedType() {
+  public final Type<SectionHeaderClickHandler> getAssociatedType() {
     return TYPE;
   }
 
-    public TabCloseClickEvent(JavaScriptObject jsObj) {
+    public SectionHeaderClickEvent(JavaScriptObject jsObj) {
         super(jsObj);
     }
 
 
     /**
-     * return false to suppress removal of the tab
+     * returning false cancels the default behavior
      */
     public void cancel() {
         cancel = true;
@@ -126,17 +126,17 @@ public class TabCloseClickEvent extends BrowserEvent<CloseClickHandler>  impleme
     }
 
     /**
-     * the tab to be removed
+     * SectionHeader clicked by the user
      *
-     * @return the tab to be removed
+     * @return SectionHeader clicked by the user
      */
-    public  native Tab getTab() /*-{
+    public  native SectionHeader getSection() /*-{
         var jsObj = this.@com.smartgwt.client.event.AbstractSmartEvent::jsObj;
-            var retVal = @com.smartgwt.client.widgets.tab.Tab::getOrCreateRef(Lcom/google/gwt/core/client/JavaScriptObject;)(jsObj.tab);
-            if(retVal == null) {
-                retVal = @com.smartgwt.client.widgets.tab.Tab::new(Lcom/google/gwt/core/client/JavaScriptObject;)(jsObj.tab);
-            }
-            return retVal;
+        var retVal = @com.smartgwt.client.widgets.layout.SectionHeader::getOrCreateRef(Lcom/google/gwt/core/client/JavaScriptObject;)(jsObj.section);
+        if(retVal == null) {
+            retVal = @com.smartgwt.client.widgets.layout.SectionHeader::new(Lcom/google/gwt/core/client/JavaScriptObject;)(jsObj.section);
+        }
+        return retVal;
     }-*/;
 
 

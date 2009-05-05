@@ -14,18 +14,10 @@
  * Lesser General Public License for more details.
  */
  
-package com.smartgwt.client.widgets.events;
+package com.smartgwt.client.widgets.grid.events;
+import com.google.gwt.event.shared.EventHandler;
 
-import com.smartgwt.client.event.*;
-import com.google.gwt.event.shared.HandlerRegistration;
-import com.google.gwt.event.shared.HasHandlers;
+public interface RecordDropHandler extends EventHandler {
 
-public interface HasDropHandlers extends HasHandlers {
-    /**
-     * Notification method fired when the user drops another canvas onto this one. Returning&#010 <code>false</code> from this method will prevent any default drop behavior from occurring&#010
-     *
-     * @param handler the onDrop handler
-     * @return {@link HandlerRegistration} used to remove this handler
-     */
-    HandlerRegistration addDropHandler(DropHandler handler);
+    void onRecordDrop(com.smartgwt.client.widgets.grid.events.RecordDropEvent event);
 }

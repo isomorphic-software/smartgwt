@@ -59,7 +59,7 @@ import com.google.gwt.event.shared.HasHandlers;
     * A container that manages a list of sections of widgets, each with a header.  Sometimes called&#010 an "Accordion".&#010 <P>&#010 SectionStack can be configured so that only one section is visible at a time (similar to MS Outlook's&#010 left-hand Nav), or to allow multiple sections to be visible and share the available space.
 
     */
-public class SectionStack extends VLayout {
+public class SectionStack extends VLayout  implements com.smartgwt.client.widgets.layout.events.HasSectionHeaderClickHandlers {
 
     public static SectionStack getOrCreateRef(JavaScriptObject jsObj) {
         if(jsObj == null) return null;
@@ -345,11 +345,12 @@ public class SectionStack extends VLayout {
             self.sectionHeaderClick(sectionHeader.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()());
         }-*/;
 
+
     // ********************* Static Methods ***********************
 
 
 
-
+
 
 
 
@@ -625,6 +626,42 @@ public class SectionStack extends VLayout {
    	    return self.setSectionTitle(index, newTitle);
     }-*/;
 
+    /**
+     * Add a onSectionHeaderClick handler.
+     * <p>
+     * Notification method fired when the user clicks on a section header.&#010 Returning false will cancel the default behavior (expanding / collapsing the section)&#010
+     *
+     * @param handler the onSectionHeaderClick handler
+     * @return {@link com.google.gwt.event.shared.HandlerRegistration} used to remove this handler
+     */
+    public HandlerRegistration addSectionHeaderClickHandler(com.smartgwt.client.widgets.layout.events.SectionHeaderClickHandler handler) {
+        if(getHandlerCount(com.smartgwt.client.widgets.layout.events.SectionHeaderClickEvent.getType()) == 0) setupSectionHeaderClickEvent();
+        return doAddHandler(handler, com.smartgwt.client.widgets.layout.events.SectionHeaderClickEvent.getType());
+    }
+    private native void setupSectionHeaderClickEvent() /*-{
+        var obj = null;
+        var selfJ = this;
+        if(this.@com.smartgwt.client.widgets.BaseWidget::isCreated()()) {
+            obj = this.@com.smartgwt.client.widgets.BaseWidget::getJsObj()();
+            obj.addProperties({onSectionHeaderClick:function(){
+                    var param = {"section" : arguments[0]};
+                    var event = @com.smartgwt.client.widgets.layout.events.SectionHeaderClickEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
+                    selfJ.@com.smartgwt.client.widgets.BaseWidget::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
+                    var ret = event.@com.smartgwt.client.event.Cancellable::isCancelled()();
+                    return !ret;
+                }
+            });
+        } else {
+            obj = this.@com.smartgwt.client.widgets.BaseWidget::getConfig()();
+            obj.onSectionHeaderClick = function(){
+                var param = {"section" : arguments[0]};
+                var event = @com.smartgwt.client.widgets.layout.events.SectionHeaderClickEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
+                selfJ.@com.smartgwt.client.widgets.BaseWidget::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
+                var ret = event.@com.smartgwt.client.event.Cancellable::isCancelled()();
+                return !ret;
+            };
+        }
+    }-*/;
 
 }
 

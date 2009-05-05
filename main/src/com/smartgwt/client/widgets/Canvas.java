@@ -89,8 +89,7 @@ import com.google.gwt.event.shared.HasHandlers;
 
 
 
-
-public class Canvas extends BaseWidget  implements com.smartgwt.client.widgets.events.HasResizedHandlers, com.smartgwt.client.widgets.events.HasClickHandlers, com.smartgwt.client.widgets.events.HasDoubleClickHandlers, com.smartgwt.client.widgets.events.HasDragMoveHandlers, com.smartgwt.client.widgets.events.HasDragRepositionMoveHandlers, com.smartgwt.client.widgets.events.HasDragRepositionStartHandlers, com.smartgwt.client.widgets.events.HasDragRepositionStopHandlers, com.smartgwt.client.widgets.events.HasDragResizeMoveHandlers, com.smartgwt.client.widgets.events.HasDragResizeStartHandlers, com.smartgwt.client.widgets.events.HasDragResizeStopHandlers, com.smartgwt.client.widgets.events.HasDragStartHandlers, com.smartgwt.client.widgets.events.HasDragStopHandlers, com.smartgwt.client.widgets.events.HasDropHandlers, com.smartgwt.client.widgets.events.HasDropMoveHandlers, com.smartgwt.client.widgets.events.HasDropOutHandlers, com.smartgwt.client.widgets.events.HasDropOverHandlers, com.smartgwt.client.widgets.events.HasMouseDownHandlers, com.smartgwt.client.widgets.events.HasMouseMoveHandlers, com.smartgwt.client.widgets.events.HasMouseOutHandlers, com.smartgwt.client.widgets.events.HasMouseOverHandlers, com.smartgwt.client.widgets.events.HasMouseStillDownHandlers, com.smartgwt.client.widgets.events.HasMouseUpHandlers, com.smartgwt.client.widgets.events.HasMouseWheelHandlers, com.smartgwt.client.widgets.events.HasKeyPressHandlers, com.smartgwt.client.widgets.events.HasKeyDownHandlers, com.smartgwt.client.widgets.events.HasRightMouseDownHandlers, com.smartgwt.client.widgets.events.HasHoverHandlers, com.smartgwt.client.widgets.events.HasHoverHiddenHandlers, com.smartgwt.client.widgets.events.HasScrolledHandlers, com.smartgwt.client.widgets.events.HasFocusChangedHandlers, com.smartgwt.client.widgets.events.HasShowContextMenuHandlers {
+public class Canvas extends BaseWidget  implements com.smartgwt.client.widgets.events.HasDropHandlers, com.smartgwt.client.widgets.events.HasResizedHandlers, com.smartgwt.client.widgets.events.HasClickHandlers, com.smartgwt.client.widgets.events.HasDoubleClickHandlers, com.smartgwt.client.widgets.events.HasDragMoveHandlers, com.smartgwt.client.widgets.events.HasDragRepositionMoveHandlers, com.smartgwt.client.widgets.events.HasDragRepositionStartHandlers, com.smartgwt.client.widgets.events.HasDragRepositionStopHandlers, com.smartgwt.client.widgets.events.HasDragResizeMoveHandlers, com.smartgwt.client.widgets.events.HasDragResizeStartHandlers, com.smartgwt.client.widgets.events.HasDragResizeStopHandlers, com.smartgwt.client.widgets.events.HasDragStartHandlers, com.smartgwt.client.widgets.events.HasDragStopHandlers, com.smartgwt.client.widgets.events.HasDropMoveHandlers, com.smartgwt.client.widgets.events.HasDropOutHandlers, com.smartgwt.client.widgets.events.HasDropOverHandlers, com.smartgwt.client.widgets.events.HasMouseDownHandlers, com.smartgwt.client.widgets.events.HasMouseMoveHandlers, com.smartgwt.client.widgets.events.HasMouseOutHandlers, com.smartgwt.client.widgets.events.HasMouseOverHandlers, com.smartgwt.client.widgets.events.HasMouseStillDownHandlers, com.smartgwt.client.widgets.events.HasMouseUpHandlers, com.smartgwt.client.widgets.events.HasMouseWheelHandlers, com.smartgwt.client.widgets.events.HasKeyPressHandlers, com.smartgwt.client.widgets.events.HasKeyDownHandlers, com.smartgwt.client.widgets.events.HasRightMouseDownHandlers, com.smartgwt.client.widgets.events.HasHoverHandlers, com.smartgwt.client.widgets.events.HasHoverHiddenHandlers, com.smartgwt.client.widgets.events.HasScrolledHandlers, com.smartgwt.client.widgets.events.HasFocusChangedHandlers, com.smartgwt.client.widgets.events.HasShowContextMenuHandlers {
 
     public static Canvas getOrCreateRef(JavaScriptObject jsObj) {
         if(jsObj == null) return null;
@@ -4354,42 +4353,6 @@ public class Canvas extends BaseWidget  implements com.smartgwt.client.widgets.e
             }
         }-*/;
 
-        /**
-         * Add a drop handler.
-         * <p>
-         * &#010 Executed when the mouse button is released over a compatible drop target at the end of&#010 a drag sequence. Your widget should implement whatever it wants to do when receiving a&#010 drop here. For example, in a file moving interface, a drop might mean that you should&#010 move or copy the dragged file into the folder it was dropped on, or dropping something in&#010 a trash can might mean to clear it from the screen.&#010&#010
-         *
-         * @param handler the drop handler
-         * @return {@link HandlerRegistration} used to remove this handler
-         */
-        public HandlerRegistration addDropHandler(com.smartgwt.client.widgets.events.DropHandler handler) {
-            if(getHandlerCount(com.smartgwt.client.widgets.events.DropEvent.getType()) == 0) setupDropEvent();
-            return doAddHandler(handler, com.smartgwt.client.widgets.events.DropEvent.getType());
-        }
-        private native void setupDropEvent() /*-{
-            var obj = null;
-            var selfJ = this;
-            if(this.@com.smartgwt.client.widgets.BaseWidget::isCreated()()) {
-                obj = this.@com.smartgwt.client.widgets.BaseWidget::getJsObj()();
-                obj.addProperties({drop:function(){
-                        var param = {};
-                        var event = @com.smartgwt.client.widgets.events.DropEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
-                        selfJ.@com.smartgwt.client.widgets.BaseWidget::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
-                        var ret = event.@com.smartgwt.client.event.Cancellable::isCancelled()();
-                        return !ret;
-                    }
-                });
-            } else {
-                obj = this.@com.smartgwt.client.widgets.BaseWidget::getConfig()();
-                obj.drop = function(){
-                    var param = {};
-                    var event = @com.smartgwt.client.widgets.events.DropEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
-                    selfJ.@com.smartgwt.client.widgets.BaseWidget::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
-                    var ret = event.@com.smartgwt.client.event.Cancellable::isCancelled()();
-                    return !ret;
-                };
-            }
-        }-*/;
 
         /**
          * Add a keyDown handler.
@@ -4629,6 +4592,7 @@ public class Canvas extends BaseWidget  implements com.smartgwt.client.widgets.e
             }
         }-*/;
 
+
     // ********************* Static Methods ***********************
 
 
@@ -4651,15 +4615,9 @@ public class Canvas extends BaseWidget  implements com.smartgwt.client.widgets.e
 
 
 
+
 
-
-
-
-
-
-
-
-
+
 
     public void setVisible(boolean visible) {
         setVisibility(visible ? Visibility.VISIBLE : Visibility.HIDDEN);   
@@ -5701,6 +5659,43 @@ public class Canvas extends BaseWidget  implements com.smartgwt.client.widgets.e
     public void setAutoWidth() {
         setWidth(1);
     }
+
+    /**
+     * Add a onDrop handler.
+     * <p>
+     * Notification method fired when the user drops another canvas onto this one. Returning&#010 <code>false</code> from this method will prevent any default drop behavior from occurring&#010
+     *
+     * @param handler the onDrop handler
+     * @return {@link com.google.gwt.event.shared.HandlerRegistration} used to remove this handler
+     */
+    public HandlerRegistration addDropHandler(com.smartgwt.client.widgets.events.DropHandler handler) {
+        if(getHandlerCount(com.smartgwt.client.widgets.events.DropEvent.getType()) == 0) setupDropEvent();
+        return doAddHandler(handler, com.smartgwt.client.widgets.events.DropEvent.getType());
+    }
+    private native void setupDropEvent() /*-{
+        var obj = null;
+        var selfJ = this;
+        if(this.@com.smartgwt.client.widgets.BaseWidget::isCreated()()) {
+            obj = this.@com.smartgwt.client.widgets.BaseWidget::getJsObj()();
+            obj.addProperties({onDrop:function(){
+                    var param = {};
+                    var event = @com.smartgwt.client.widgets.events.DropEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
+                    selfJ.@com.smartgwt.client.widgets.BaseWidget::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
+                    var ret = event.@com.smartgwt.client.event.Cancellable::isCancelled()();
+                    return !ret;
+                }
+            });
+        } else {
+            obj = this.@com.smartgwt.client.widgets.BaseWidget::getConfig()();
+            obj.onDrop = function(){
+                var param = {};
+                var event = @com.smartgwt.client.widgets.events.DropEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
+                selfJ.@com.smartgwt.client.widgets.BaseWidget::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
+                var ret = event.@com.smartgwt.client.event.Cancellable::isCancelled()();
+                return !ret;
+            };
+        }
+    }-*/;
 
 }
 

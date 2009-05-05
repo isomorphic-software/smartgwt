@@ -14,18 +14,18 @@
  * Lesser General Public License for more details.
  */
  
-package com.smartgwt.client.widgets.tab.events;
+package com.smartgwt.client.widgets.tree.events;
 
 import com.smartgwt.client.event.*;
 import com.google.gwt.event.shared.HandlerRegistration;
 import com.google.gwt.event.shared.HasHandlers;
 
-public interface HasCloseClickHandlers extends HasHandlers {
+public interface HasFolderDropHandlers extends HasHandlers {
     /**
-     * When {@link com.smartgwt.client.widgets.tab.TabSet#getCanCloseTabs canCloseTabs} is set, this notification method fired when the user clicks &#010 the "close" icon for a tab.&#010 Return false to cancel default behavior of removing the tab from the TabSet&#010
+     * Notification method fired when treeNode(s) are dropped into a folder of this TreeGrid.&#010 This method fires before the standard {@link com.smartgwt.client.widgets.tree.TreeGrid#folderDrop} processing occurs&#010 and returning false will suppress that default behavior.&#010
      *
-     * @param handler the onCloseClick handler
+     * @param handler the onFolderDrop handler
      * @return {@link HandlerRegistration} used to remove this handler
      */
-    HandlerRegistration addCloseClickHandler(CloseClickHandler handler);
+    HandlerRegistration addFolderDropHandler(FolderDropHandler handler);
 }

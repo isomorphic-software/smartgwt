@@ -14,7 +14,7 @@
  * Lesser General Public License for more details.
  */
  
-package com.smartgwt.client.widgets.tab.events;
+package com.smartgwt.client.widgets.grid.events;
 
 
 
@@ -55,13 +55,13 @@ import com.smartgwt.client.util.JSOHelper;
 import com.smartgwt.client.util.EnumUtil;
 import com.google.gwt.event.shared.*;
 import com.google.gwt.event.shared.HasHandlers;
-public class TabCloseClickEvent extends BrowserEvent<CloseClickHandler>  implements Cancellable {
+public class RecordDropEvent extends BrowserEvent<RecordDropHandler>  implements Cancellable {
     private boolean cancel = false;
 
   /**
    * Handler type.
    */
-  private static Type<CloseClickHandler> TYPE;
+  private static Type<RecordDropHandler> TYPE;
 
   /**
    * Fires a open event on all registered handlers in the handler manager.If no
@@ -71,10 +71,10 @@ public class TabCloseClickEvent extends BrowserEvent<CloseClickHandler>  impleme
    * @param source the source of the handlers
    * @param jsObj the native event
    */
-  public static <S extends HasCloseClickHandlers & HasHandlers> void fire(
+  public static <S extends HasRecordDropHandlers & HasHandlers> void fire(
       S source, JavaScriptObject jsObj) {
     if (TYPE != null) {
-        TabCloseClickEvent event = new TabCloseClickEvent(jsObj);
+        RecordDropEvent event = new RecordDropEvent(jsObj);
         source.fireEvent(event);
     }
   }
@@ -84,17 +84,17 @@ public class TabCloseClickEvent extends BrowserEvent<CloseClickHandler>  impleme
    *
    * @return returns the handler type
    */
-  public static Type<CloseClickHandler> getType() {
+  public static Type<RecordDropHandler> getType() {
     if (TYPE == null) {
-      TYPE = new Type<CloseClickHandler>();
+      TYPE = new Type<RecordDropHandler>();
     }
     return TYPE;
   }
 
 
   @Override
-  protected void dispatch(CloseClickHandler handler) {
-    handler.onCloseClick(this);
+  protected void dispatch(RecordDropHandler handler) {
+    handler.onRecordDrop(this);
   }
 
   // Because of type erasure, our static type is
@@ -102,17 +102,17 @@ public class TabCloseClickEvent extends BrowserEvent<CloseClickHandler>  impleme
 
   @SuppressWarnings("unchecked")
   @Override
-  public final Type<CloseClickHandler> getAssociatedType() {
+  public final Type<RecordDropHandler> getAssociatedType() {
     return TYPE;
   }
 
-    public TabCloseClickEvent(JavaScriptObject jsObj) {
+    public RecordDropEvent(JavaScriptObject jsObj) {
         super(jsObj);
     }
 
 
     /**
-     * return false to suppress removal of the tab
+     * return false to cancel the default record drop handling
      */
     public void cancel() {
         cancel = true;
@@ -126,17 +126,51 @@ public class TabCloseClickEvent extends BrowserEvent<CloseClickHandler>  impleme
     }
 
     /**
-     * the tab to be removed
+     * records being dropped
      *
-     * @return the tab to be removed
+     * @return records being dropped
      */
-    public  native Tab getTab() /*-{
+    public  native ListGridRecord[] getDropRecords() /*-{
         var jsObj = this.@com.smartgwt.client.event.AbstractSmartEvent::jsObj;
-            var retVal = @com.smartgwt.client.widgets.tab.Tab::getOrCreateRef(Lcom/google/gwt/core/client/JavaScriptObject;)(jsObj.tab);
+        return @com.smartgwt.client.widgets.grid.ListGrid::convertToListGridRecordArray(Lcom/google/gwt/core/client/JavaScriptObject;)(jsObj.dropRecords);
+    }-*/;
+
+    /**
+     * record being dropped on.  May be null
+     *
+     * @return record being dropped on.  May be null
+     */
+    public  native ListGridRecord getTargetRecord() /*-{
+        var jsObj = this.@com.smartgwt.client.event.AbstractSmartEvent::jsObj;
+            var retVal = @com.smartgwt.client.widgets.grid.ListGridRecord::getOrCreateRef(Lcom/google/gwt/core/client/JavaScriptObject;)(jsObj.targetRecord);
             if(retVal == null) {
-                retVal = @com.smartgwt.client.widgets.tab.Tab::new(Lcom/google/gwt/core/client/JavaScriptObject;)(jsObj.tab);
+                retVal = @com.smartgwt.client.widgets.grid.ListGridRecord::new(Lcom/google/gwt/core/client/JavaScriptObject;)(jsObj.targetRecord);
             }
             return retVal;
+    }-*/;
+
+    /**
+     * index of record being dropped on
+     *
+     * @return index of record being dropped on
+     */
+    public  native int getIndex() /*-{
+        var jsObj = this.@com.smartgwt.client.event.AbstractSmartEvent::jsObj;
+        return jsObj.index;
+    }-*/;
+
+    /**
+     * widget where dragging began
+     *
+     * @return widget where dragging began
+     */
+    public  native Canvas getSourceWidget() /*-{
+        var jsObj = this.@com.smartgwt.client.event.AbstractSmartEvent::jsObj;
+        var retVal = @com.smartgwt.client.widgets.Canvas::getOrCreateRef(Lcom/google/gwt/core/client/JavaScriptObject;)(jsObj.sourceWidget);
+        if(retVal == null) {
+            retVal = @com.smartgwt.client.widgets.Canvas::new(Lcom/google/gwt/core/client/JavaScriptObject;)(jsObj.sourceWidget);
+        }
+        return retVal;
     }-*/;
 
 

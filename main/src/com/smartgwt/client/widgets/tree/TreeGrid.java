@@ -68,7 +68,7 @@ import com.google.gwt.event.shared.HasHandlers;
 
 
 
-public class TreeGrid extends ListGrid  implements DataBoundComponent, com.smartgwt.client.widgets.tree.events.HasDataArrivedHandlers, com.smartgwt.client.widgets.tree.events.HasFolderOpenedHandlers, com.smartgwt.client.widgets.tree.events.HasFolderClosedHandlers, com.smartgwt.client.widgets.tree.events.HasFolderClickHandlers, com.smartgwt.client.widgets.tree.events.HasLeafClickHandlers, com.smartgwt.client.widgets.tree.events.HasNodeClickHandlers, com.smartgwt.client.widgets.tree.events.HasFolderContextClickHandlers, com.smartgwt.client.widgets.tree.events.HasLeafContextClickHandlers, com.smartgwt.client.widgets.tree.events.HasNodeContextClickHandlers {
+public class TreeGrid extends ListGrid  implements DataBoundComponent, com.smartgwt.client.widgets.tree.events.HasFolderDropHandlers, com.smartgwt.client.widgets.tree.events.HasDataArrivedHandlers, com.smartgwt.client.widgets.tree.events.HasFolderOpenedHandlers, com.smartgwt.client.widgets.tree.events.HasFolderClosedHandlers, com.smartgwt.client.widgets.tree.events.HasFolderClickHandlers, com.smartgwt.client.widgets.tree.events.HasLeafClickHandlers, com.smartgwt.client.widgets.tree.events.HasNodeClickHandlers, com.smartgwt.client.widgets.tree.events.HasFolderContextClickHandlers, com.smartgwt.client.widgets.tree.events.HasLeafContextClickHandlers, com.smartgwt.client.widgets.tree.events.HasNodeContextClickHandlers {
 
     public static TreeGrid getOrCreateRef(JavaScriptObject jsObj) {
         if(jsObj == null) return null;
@@ -1308,10 +1308,11 @@ public class TreeGrid extends ListGrid  implements DataBoundComponent, com.smart
             }
         }-*/;
 
+
     // ********************* Static Methods ***********************
 
 
-
+
 
 
     /**
@@ -1612,6 +1613,43 @@ public class TreeGrid extends ListGrid  implements DataBoundComponent, com.smart
     public String getTreeRootValue() {
         return getAttribute("treeRootValue");
     }
+
+    /**
+     * Add a onFolderDrop handler.
+     * <p>
+     * Notification method fired when treeNode(s) are dropped into a folder of this TreeGrid.&#010 This method fires before the standard {@link com.smartgwt.client.widgets.tree.TreeGrid#folderDrop} processing occurs&#010 and returning false will suppress that default behavior.&#010
+     *
+     * @param handler the onFolderDrop handler
+     * @return {@link com.google.gwt.event.shared.HandlerRegistration} used to remove this handler
+     */
+    public HandlerRegistration addFolderDropHandler(com.smartgwt.client.widgets.tree.events.FolderDropHandler handler) {
+        if(getHandlerCount(com.smartgwt.client.widgets.tree.events.FolderDropEvent.getType()) == 0) setupFolderDropEvent();
+        return doAddHandler(handler, com.smartgwt.client.widgets.tree.events.FolderDropEvent.getType());
+    }
+    private native void setupFolderDropEvent() /*-{
+        var obj = null;
+        var selfJ = this;
+        if(this.@com.smartgwt.client.widgets.BaseWidget::isCreated()()) {
+            obj = this.@com.smartgwt.client.widgets.BaseWidget::getJsObj()();
+            obj.addProperties({onFolderDrop:function(){
+                    var param = {"nodes" : arguments[0], "folder" : arguments[1], "index" : arguments[2], "sourceWidget" : arguments[3]};
+                    var event = @com.smartgwt.client.widgets.tree.events.FolderDropEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
+                    selfJ.@com.smartgwt.client.widgets.BaseWidget::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
+                    var ret = event.@com.smartgwt.client.event.Cancellable::isCancelled()();
+                    return !ret;
+                }
+            });
+        } else {
+            obj = this.@com.smartgwt.client.widgets.BaseWidget::getConfig()();
+            obj.onFolderDrop = function(){
+                var param = {"nodes" : arguments[0], "folder" : arguments[1], "index" : arguments[2], "sourceWidget" : arguments[3]};
+                var event = @com.smartgwt.client.widgets.tree.events.FolderDropEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
+                selfJ.@com.smartgwt.client.widgets.BaseWidget::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
+                var ret = event.@com.smartgwt.client.event.Cancellable::isCancelled()();
+                return !ret;
+            };
+        }
+    }-*/;
 
 }
 

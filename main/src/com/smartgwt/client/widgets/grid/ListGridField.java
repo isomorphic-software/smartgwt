@@ -1442,11 +1442,11 @@ public class ListGridField extends DataClass  implements com.smartgwt.client.wid
         }-*/;
 
         /**
-         * Add a cellChanged handler.
+         * Add a cellSaved handler.
          * <p>
          * Callback fired when field changes value as the result of a cell edit.  Fired only on&#010  successful save of edit, when the new value doesn't match the value before editing.<br>&#010  <p>&#010  Same signature as {@link com.smartgwt.client.widgets.grid.ListGrid#cellChanged}, but defined on a per-field basis.&#010&#010
          *
-         * @param handler the cellChanged handler
+         * @param handler the cellSaved handler
          * @return {@link HandlerRegistration} used to remove this handler
          */
         public HandlerRegistration addCellSavedHandler(com.smartgwt.client.widgets.grid.events.CellSavedHandler handler) {

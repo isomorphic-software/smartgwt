@@ -14,7 +14,7 @@
  * Lesser General Public License for more details.
  */
  
-package com.smartgwt.client.widgets.tab.events;
+package com.smartgwt.client.widgets.grid.events;
 
 
 
@@ -55,13 +55,13 @@ import com.smartgwt.client.util.JSOHelper;
 import com.smartgwt.client.util.EnumUtil;
 import com.google.gwt.event.shared.*;
 import com.google.gwt.event.shared.HasHandlers;
-public class TabCloseClickEvent extends BrowserEvent<CloseClickHandler>  implements Cancellable {
+public class NodeSelectedEvent extends BrowserEvent<NodeSelectedHandler>  implements Cancellable {
     private boolean cancel = false;
 
   /**
    * Handler type.
    */
-  private static Type<CloseClickHandler> TYPE;
+  private static Type<NodeSelectedHandler> TYPE;
 
   /**
    * Fires a open event on all registered handlers in the handler manager.If no
@@ -71,10 +71,10 @@ public class TabCloseClickEvent extends BrowserEvent<CloseClickHandler>  impleme
    * @param source the source of the handlers
    * @param jsObj the native event
    */
-  public static <S extends HasCloseClickHandlers & HasHandlers> void fire(
+  public static <S extends HasNodeSelectedHandlers & HasHandlers> void fire(
       S source, JavaScriptObject jsObj) {
     if (TYPE != null) {
-        TabCloseClickEvent event = new TabCloseClickEvent(jsObj);
+        NodeSelectedEvent event = new NodeSelectedEvent(jsObj);
         source.fireEvent(event);
     }
   }
@@ -84,17 +84,17 @@ public class TabCloseClickEvent extends BrowserEvent<CloseClickHandler>  impleme
    *
    * @return returns the handler type
    */
-  public static Type<CloseClickHandler> getType() {
+  public static Type<NodeSelectedHandler> getType() {
     if (TYPE == null) {
-      TYPE = new Type<CloseClickHandler>();
+      TYPE = new Type<NodeSelectedHandler>();
     }
     return TYPE;
   }
 
 
   @Override
-  protected void dispatch(CloseClickHandler handler) {
-    handler.onCloseClick(this);
+  protected void dispatch(NodeSelectedHandler handler) {
+    handler.onNodeSelected(this);
   }
 
   // Because of type erasure, our static type is
@@ -102,17 +102,17 @@ public class TabCloseClickEvent extends BrowserEvent<CloseClickHandler>  impleme
 
   @SuppressWarnings("unchecked")
   @Override
-  public final Type<CloseClickHandler> getAssociatedType() {
+  public final Type<NodeSelectedHandler> getAssociatedType() {
     return TYPE;
   }
 
-    public TabCloseClickEvent(JavaScriptObject jsObj) {
+    public NodeSelectedEvent(JavaScriptObject jsObj) {
         super(jsObj);
     }
 
 
     /**
-     * return false to suppress removal of the tab
+     * Return false to cancel default behavior
      */
     public void cancel() {
         cancel = true;
@@ -126,17 +126,45 @@ public class TabCloseClickEvent extends BrowserEvent<CloseClickHandler>  impleme
     }
 
     /**
-     * the tab to be removed
+     * The column (ListGrid instance) in which the node was selected
      *
-     * @return the tab to be removed
+     * @return The column (ListGrid instance) in which the node was selected
      */
-    public  native Tab getTab() /*-{
+    public  native ListGrid getColumn() /*-{
         var jsObj = this.@com.smartgwt.client.event.AbstractSmartEvent::jsObj;
-            var retVal = @com.smartgwt.client.widgets.tab.Tab::getOrCreateRef(Lcom/google/gwt/core/client/JavaScriptObject;)(jsObj.tab);
+        var retVal = @com.smartgwt.client.widgets.grid.ListGrid::getOrCreateRef(Lcom/google/gwt/core/client/JavaScriptObject;)(jsObj.column);
+        if(retVal == null) {
+            retVal = @com.smartgwt.client.widgets.grid.ListGrid::new(Lcom/google/gwt/core/client/JavaScriptObject;)(jsObj.column);
+        }
+        return retVal;
+    }-*/;
+
+    /**
+     * The selected node
+     *
+     * @return The selected node
+     */
+    public  native TreeNode getNode() /*-{
+        var jsObj = this.@com.smartgwt.client.event.AbstractSmartEvent::jsObj;
+            var retVal = @com.smartgwt.client.widgets.tree.TreeNode::getOrCreateRef(Lcom/google/gwt/core/client/JavaScriptObject;)(jsObj.node);
             if(retVal == null) {
-                retVal = @com.smartgwt.client.widgets.tab.Tab::new(Lcom/google/gwt/core/client/JavaScriptObject;)(jsObj.tab);
+                retVal = @com.smartgwt.client.widgets.tree.TreeNode::new(Lcom/google/gwt/core/client/JavaScriptObject;)(jsObj.node);
             }
             return retVal;
+    }-*/;
+
+
+
+
+
+    /**
+     * node the node that was selected
+     *
+     * @return nodethe node that was selected
+     */
+    public  native TreeNode getTreeNode() /*-{
+        var jsObj = this.@com.smartgwt.client.event.AbstractSmartEvent::jsObj;
+        return @com.smartgwt.client.widgets.tree.TreeNode::getOrCreateRef(Lcom/google/gwt/core/client/JavaScriptObject;)(jsObj.node);
     }-*/;
 
 

@@ -14,7 +14,7 @@
  * Lesser General Public License for more details.
  */
  
-package com.smartgwt.client.widgets.tab.events;
+package com.smartgwt.client.widgets.events;
 
 
 
@@ -55,13 +55,13 @@ import com.smartgwt.client.util.JSOHelper;
 import com.smartgwt.client.util.EnumUtil;
 import com.google.gwt.event.shared.*;
 import com.google.gwt.event.shared.HasHandlers;
-public class TabCloseClickEvent extends BrowserEvent<CloseClickHandler>  implements Cancellable {
+public class MinimizeClickEvent extends BrowserEvent<MinimizeClickHandler>  implements Cancellable {
     private boolean cancel = false;
 
   /**
    * Handler type.
    */
-  private static Type<CloseClickHandler> TYPE;
+  private static Type<MinimizeClickHandler> TYPE;
 
   /**
    * Fires a open event on all registered handlers in the handler manager.If no
@@ -71,10 +71,10 @@ public class TabCloseClickEvent extends BrowserEvent<CloseClickHandler>  impleme
    * @param source the source of the handlers
    * @param jsObj the native event
    */
-  public static <S extends HasCloseClickHandlers & HasHandlers> void fire(
+  public static <S extends HasMinimizeClickHandlers & HasHandlers> void fire(
       S source, JavaScriptObject jsObj) {
     if (TYPE != null) {
-        TabCloseClickEvent event = new TabCloseClickEvent(jsObj);
+        MinimizeClickEvent event = new MinimizeClickEvent(jsObj);
         source.fireEvent(event);
     }
   }
@@ -84,17 +84,17 @@ public class TabCloseClickEvent extends BrowserEvent<CloseClickHandler>  impleme
    *
    * @return returns the handler type
    */
-  public static Type<CloseClickHandler> getType() {
+  public static Type<MinimizeClickHandler> getType() {
     if (TYPE == null) {
-      TYPE = new Type<CloseClickHandler>();
+      TYPE = new Type<MinimizeClickHandler>();
     }
     return TYPE;
   }
 
 
   @Override
-  protected void dispatch(CloseClickHandler handler) {
-    handler.onCloseClick(this);
+  protected void dispatch(MinimizeClickHandler handler) {
+    handler.onMinimizeClick(this);
   }
 
   // Because of type erasure, our static type is
@@ -102,17 +102,17 @@ public class TabCloseClickEvent extends BrowserEvent<CloseClickHandler>  impleme
 
   @SuppressWarnings("unchecked")
   @Override
-  public final Type<CloseClickHandler> getAssociatedType() {
+  public final Type<MinimizeClickHandler> getAssociatedType() {
     return TYPE;
   }
 
-    public TabCloseClickEvent(JavaScriptObject jsObj) {
+    public MinimizeClickEvent(JavaScriptObject jsObj) {
         super(jsObj);
     }
 
 
     /**
-     * return false to suppress removal of the tab
+     * return false to cancel the default minimize behavior
      */
     public void cancel() {
         cancel = true;
@@ -124,20 +124,6 @@ public class TabCloseClickEvent extends BrowserEvent<CloseClickHandler>  impleme
     public boolean isCancelled() {
         return cancel;
     }
-
-    /**
-     * the tab to be removed
-     *
-     * @return the tab to be removed
-     */
-    public  native Tab getTab() /*-{
-        var jsObj = this.@com.smartgwt.client.event.AbstractSmartEvent::jsObj;
-            var retVal = @com.smartgwt.client.widgets.tab.Tab::getOrCreateRef(Lcom/google/gwt/core/client/JavaScriptObject;)(jsObj.tab);
-            if(retVal == null) {
-                retVal = @com.smartgwt.client.widgets.tab.Tab::new(Lcom/google/gwt/core/client/JavaScriptObject;)(jsObj.tab);
-            }
-            return retVal;
-    }-*/;
 
 
 }

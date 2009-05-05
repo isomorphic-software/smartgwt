@@ -60,7 +60,7 @@ import com.google.gwt.event.shared.HasHandlers;
 
     */
 
-public class Window extends VLayout  implements com.smartgwt.client.widgets.events.HasCloseClickHandlers {
+public class Window extends VLayout  implements com.smartgwt.client.widgets.events.HasMaximizeClickHandlers, com.smartgwt.client.widgets.events.HasMinimizeClickHandlers, com.smartgwt.client.widgets.events.HasRestoreClickHandlers, com.smartgwt.client.widgets.events.HasCloseClickHandlers {
 
     public static Window getOrCreateRef(JavaScriptObject jsObj) {
         if(jsObj == null) return null;
@@ -1025,10 +1025,55 @@ public class Window extends VLayout  implements com.smartgwt.client.widgets.even
             }
         }-*/;
 
+        /**
+         * Notification method fired when the user clicks the 'maximize' button.&#010
+         *
+         * @return return false to cancel the default maximize behavior
+         */
+        public native Boolean onMaximizeClick() /*-{
+            var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
+            var retVal =self.onMaximizeClick();
+            if(retVal == null || retVal === undefined) {
+                return null;
+            } else {
+                return @com.smartgwt.client.util.JSOHelper::toBoolean(Z)(retVal);
+            }
+        }-*/;
+
+        /**
+         * Notification method fired when the user clicks the 'minimize' button.&#010
+         *
+         * @return return false to cancel the default minimize behavior
+         */
+        public native Boolean onMinimizeClick() /*-{
+            var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
+            var retVal =self.onMinimizeClick();
+            if(retVal == null || retVal === undefined) {
+                return null;
+            } else {
+                return @com.smartgwt.client.util.JSOHelper::toBoolean(Z)(retVal);
+            }
+        }-*/;
+
+        /**
+         * Notification method fired when the user clicks the 'restore' button.&#010
+         *
+         * @return return false to cancel the default restore behavior
+         */
+        public native Boolean onRestoreClick() /*-{
+            var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
+            var retVal =self.onRestoreClick();
+            if(retVal == null || retVal === undefined) {
+                return null;
+            } else {
+                return @com.smartgwt.client.util.JSOHelper::toBoolean(Z)(retVal);
+            }
+        }-*/;
+
     // ********************* Static Methods ***********************
 
 
-
+
 
 
 
@@ -1197,6 +1242,117 @@ public class Window extends VLayout  implements com.smartgwt.client.widgets.even
     public Canvas[] getItems() {
       return Canvas.convertToCanvasArray(getAttributeAsJavaScriptObject("items"));
     }
+
+    /**
+     * Add a onMaximizeClick handler.
+     * <p>
+     * Notification method fired when the user clicks the 'maximize' button.&#010
+     *
+     * @param handler the onMaximizeClick handler
+     * @return {@link com.google.gwt.event.shared.HandlerRegistration} used to remove this handler
+     */
+    public HandlerRegistration addMaximizeClickHandler(com.smartgwt.client.widgets.events.MaximizeClickHandler handler) {
+        if(getHandlerCount(com.smartgwt.client.widgets.events.MaximizeClickEvent.getType()) == 0) setupMaximizeClickEvent();
+        return doAddHandler(handler, com.smartgwt.client.widgets.events.MaximizeClickEvent.getType());
+    }
+    private native void setupMaximizeClickEvent() /*-{
+        var obj = null;
+        var selfJ = this;
+        if(this.@com.smartgwt.client.widgets.BaseWidget::isCreated()()) {
+            obj = this.@com.smartgwt.client.widgets.BaseWidget::getJsObj()();
+            obj.addProperties({onMaximizeClick:function(){
+                    var param = {};
+                    var event = @com.smartgwt.client.widgets.events.MaximizeClickEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
+                    selfJ.@com.smartgwt.client.widgets.BaseWidget::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
+                    var ret = event.@com.smartgwt.client.event.Cancellable::isCancelled()();
+                    return !ret;
+                }
+            });
+        } else {
+            obj = this.@com.smartgwt.client.widgets.BaseWidget::getConfig()();
+            obj.onMaximizeClick = function(){
+                var param = {};
+                var event = @com.smartgwt.client.widgets.events.MaximizeClickEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
+                selfJ.@com.smartgwt.client.widgets.BaseWidget::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
+                var ret = event.@com.smartgwt.client.event.Cancellable::isCancelled()();
+                return !ret;
+            };
+        }
+    }-*/;
+
+    /**
+     * Add a onMinimizeClick handler.
+     * <p>
+     * Notification method fired when the user clicks the 'minimize' button.&#010
+     *
+     * @param handler the onMinimizeClick handler
+     * @return {@link HandlerRegistration} used to remove this handler
+     */
+    public HandlerRegistration addMinimizeClickHandler(com.smartgwt.client.widgets.events.MinimizeClickHandler handler) {
+        if(getHandlerCount(com.smartgwt.client.widgets.events.MinimizeClickEvent.getType()) == 0) setupMinimizeClickEvent();
+        return doAddHandler(handler, com.smartgwt.client.widgets.events.MinimizeClickEvent.getType());
+    }
+    private native void setupMinimizeClickEvent() /*-{
+        var obj = null;
+        var selfJ = this;
+        if(this.@com.smartgwt.client.widgets.BaseWidget::isCreated()()) {
+            obj = this.@com.smartgwt.client.widgets.BaseWidget::getJsObj()();
+            obj.addProperties({onMinimizeClick:function(){
+                    var param = {};
+                    var event = @com.smartgwt.client.widgets.events.MinimizeClickEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
+                    selfJ.@com.smartgwt.client.widgets.BaseWidget::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
+                    var ret = event.@com.smartgwt.client.event.Cancellable::isCancelled()();
+                    return !ret;
+                }
+            });
+        } else {
+            obj = this.@com.smartgwt.client.widgets.BaseWidget::getConfig()();
+            obj.onMinimizeClick = function(){
+                var param = {};
+                var event = @com.smartgwt.client.widgets.events.MinimizeClickEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
+                selfJ.@com.smartgwt.client.widgets.BaseWidget::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
+                var ret = event.@com.smartgwt.client.event.Cancellable::isCancelled()();
+                return !ret;
+            };
+        }
+    }-*/;
+
+    /**
+     * Add a onRestoreClick handler.
+     * <p>
+     * Notification method fired when the user clicks the 'restore' button.&#010
+     *
+     * @param handler the onRestoreClick handler
+     * @return {@link HandlerRegistration} used to remove this handler
+     */
+    public HandlerRegistration addRestoreClickHandler(com.smartgwt.client.widgets.events.RestoreClickHandler handler) {
+        if(getHandlerCount(com.smartgwt.client.widgets.events.RestoreClickEvent.getType()) == 0) setupRestoreClickEvent();
+        return doAddHandler(handler, com.smartgwt.client.widgets.events.RestoreClickEvent.getType());
+    }
+    private native void setupRestoreClickEvent() /*-{
+        var obj = null;
+        var selfJ = this;
+        if(this.@com.smartgwt.client.widgets.BaseWidget::isCreated()()) {
+            obj = this.@com.smartgwt.client.widgets.BaseWidget::getJsObj()();
+            obj.addProperties({onRestoreClick:function(){
+                    var param = {};
+                    var event = @com.smartgwt.client.widgets.events.RestoreClickEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
+                    selfJ.@com.smartgwt.client.widgets.BaseWidget::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
+                    var ret = event.@com.smartgwt.client.event.Cancellable::isCancelled()();
+                    return !ret;
+                }
+            });
+        } else {
+            obj = this.@com.smartgwt.client.widgets.BaseWidget::getConfig()();
+            obj.onRestoreClick = function(){
+                var param = {};
+                var event = @com.smartgwt.client.widgets.events.RestoreClickEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
+                selfJ.@com.smartgwt.client.widgets.BaseWidget::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
+                var ret = event.@com.smartgwt.client.event.Cancellable::isCancelled()();
+                return !ret;
+            };
+        }
+    }-*/;
 
 }
 
