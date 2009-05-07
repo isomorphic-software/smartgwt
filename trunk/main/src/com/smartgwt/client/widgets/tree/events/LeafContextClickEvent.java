@@ -132,11 +132,7 @@ public class LeafContextClickEvent extends BrowserEvent<LeafContextClickHandler>
      */
     public  native TreeGrid getViewer() /*-{
         var jsObj = this.@com.smartgwt.client.event.AbstractSmartEvent::jsObj;
-        var retVal = @com.smartgwt.client.widgets.tree.TreeGrid::getOrCreateRef(Lcom/google/gwt/core/client/JavaScriptObject;)(jsObj.viewer);
-        if(retVal == null) {
-            retVal = @com.smartgwt.client.widgets.tree.TreeGrid::new(Lcom/google/gwt/core/client/JavaScriptObject;)(jsObj.viewer);
-        }
-        return retVal;
+        return @com.smartgwt.client.widgets.tree.TreeGrid::getOrCreateRef(Lcom/google/gwt/core/client/JavaScriptObject;)(jsObj.viewer);
     }-*/;
 
     /**
@@ -146,11 +142,7 @@ public class LeafContextClickEvent extends BrowserEvent<LeafContextClickHandler>
      */
     public  native TreeNode getLeaf() /*-{
         var jsObj = this.@com.smartgwt.client.event.AbstractSmartEvent::jsObj;
-            var retVal = @com.smartgwt.client.widgets.tree.TreeNode::getOrCreateRef(Lcom/google/gwt/core/client/JavaScriptObject;)(jsObj.leaf);
-            if(retVal == null) {
-                retVal = @com.smartgwt.client.widgets.tree.TreeNode::new(Lcom/google/gwt/core/client/JavaScriptObject;)(jsObj.leaf);
-            }
-            return retVal;
+            return @com.smartgwt.client.widgets.tree.TreeNode::getOrCreateRef(Lcom/google/gwt/core/client/JavaScriptObject;)(jsObj.leaf);
     }-*/;
 
     /**

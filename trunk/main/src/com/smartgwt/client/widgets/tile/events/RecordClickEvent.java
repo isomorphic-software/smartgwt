@@ -118,11 +118,7 @@ public class RecordClickEvent extends BrowserEvent<RecordClickHandler>  {
      */
     public  native TileGrid getViewer() /*-{
         var jsObj = this.@com.smartgwt.client.event.AbstractSmartEvent::jsObj;
-        var retVal = @com.smartgwt.client.widgets.tile.TileGrid::getOrCreateRef(Lcom/google/gwt/core/client/JavaScriptObject;)(jsObj.viewer);
-        if(retVal == null) {
-            retVal = @com.smartgwt.client.widgets.tile.TileGrid::new(Lcom/google/gwt/core/client/JavaScriptObject;)(jsObj.viewer);
-        }
-        return retVal;
+        return @com.smartgwt.client.widgets.tile.TileGrid::getOrCreateRef(Lcom/google/gwt/core/client/JavaScriptObject;)(jsObj.viewer);
     }-*/;
 
     /**
@@ -132,11 +128,7 @@ public class RecordClickEvent extends BrowserEvent<RecordClickHandler>  {
      */
     public  native Canvas getTile() /*-{
         var jsObj = this.@com.smartgwt.client.event.AbstractSmartEvent::jsObj;
-        var retVal = @com.smartgwt.client.widgets.Canvas::getOrCreateRef(Lcom/google/gwt/core/client/JavaScriptObject;)(jsObj.tile);
-        if(retVal == null) {
-            retVal = @com.smartgwt.client.widgets.Canvas::new(Lcom/google/gwt/core/client/JavaScriptObject;)(jsObj.tile);
-        }
-        return retVal;
+        return @com.smartgwt.client.widgets.Canvas::getOrCreateRef(Lcom/google/gwt/core/client/JavaScriptObject;)(jsObj.tile);
     }-*/;
 
     /**
@@ -146,11 +138,7 @@ public class RecordClickEvent extends BrowserEvent<RecordClickHandler>  {
      */
     public  native TileRecord getRecord() /*-{
         var jsObj = this.@com.smartgwt.client.event.AbstractSmartEvent::jsObj;
-            var retVal = @com.smartgwt.client.widgets.tile.TileRecord::getOrCreateRef(Lcom/google/gwt/core/client/JavaScriptObject;)(jsObj.record);
-            if(retVal == null) {
-                retVal = @com.smartgwt.client.widgets.tile.TileRecord::new(Lcom/google/gwt/core/client/JavaScriptObject;)(jsObj.record);
-            }
-            return retVal;
+            return @com.smartgwt.client.widgets.tile.TileRecord::getOrCreateRef(Lcom/google/gwt/core/client/JavaScriptObject;)(jsObj.record);
     }-*/;
 
 

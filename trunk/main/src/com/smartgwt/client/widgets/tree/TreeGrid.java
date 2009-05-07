@@ -970,7 +970,6 @@ public class TreeGrid extends ListGrid  implements DataBoundComponent, com.smart
         }-*/;
 
 
-
         /**
          * Add a folderOpened handler.
          * <p>
@@ -1007,7 +1006,6 @@ public class TreeGrid extends ListGrid  implements DataBoundComponent, com.smart
                 };
             }
         }-*/;
-
 
         /**
          * Add a folderClosed handler.
@@ -1046,9 +1044,6 @@ public class TreeGrid extends ListGrid  implements DataBoundComponent, com.smart
             }
         }-*/;
 
-
-
-
         /**
          * Add a folderClick handler.
          * <p>
@@ -1081,9 +1076,6 @@ public class TreeGrid extends ListGrid  implements DataBoundComponent, com.smart
                 };
             }
         }-*/;
-
-
-
 
         /**
          * Add a leafClick handler.
@@ -1118,9 +1110,6 @@ public class TreeGrid extends ListGrid  implements DataBoundComponent, com.smart
             }
         }-*/;
 
-
-
-
         /**
          * Add a nodeClick handler.
          * <p>
@@ -1153,9 +1142,6 @@ public class TreeGrid extends ListGrid  implements DataBoundComponent, com.smart
                 };
             }
         }-*/;
-
-
-
 
         /**
          * Add a folderContextClick handler.
@@ -1194,9 +1180,6 @@ public class TreeGrid extends ListGrid  implements DataBoundComponent, com.smart
             }
         }-*/;
 
-
-
-
         /**
          * Add a leafContextClick handler.
          * <p>
@@ -1234,9 +1217,6 @@ public class TreeGrid extends ListGrid  implements DataBoundComponent, com.smart
             }
         }-*/;
 
-
-
-
         /**
          * Add a nodeContextClick handler.
          * <p>
@@ -1273,7 +1253,6 @@ public class TreeGrid extends ListGrid  implements DataBoundComponent, com.smart
                 };
             }
         }-*/;
-
 
         /**
          * Add a dataArrived handler.

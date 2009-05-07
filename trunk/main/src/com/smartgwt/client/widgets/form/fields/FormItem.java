@@ -1741,8 +1741,6 @@ public class FormItem extends RefDataClass  implements com.smartgwt.client.widge
             self.stopHover();
         }-*/;
 
-
-
         /**
          * Add a itemHover handler.
          * <p>
@@ -1765,8 +1763,6 @@ public class FormItem extends RefDataClass  implements com.smartgwt.client.widge
                     selfJ.@com.smartgwt.client.core.DataClass::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
                 };
         }-*/;
-
-
 
         /**
          * Add a titleHover handler.
@@ -1843,8 +1839,6 @@ public class FormItem extends RefDataClass  implements com.smartgwt.client.widge
 
 
 
-
-
         /**
          * Add a focus handler.
          * <p>
@@ -1867,8 +1861,6 @@ public class FormItem extends RefDataClass  implements com.smartgwt.client.widge
                     selfJ.@com.smartgwt.client.core.DataClass::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
                 };
         }-*/;
-
-
 
         /**
          * Add a blur handler.
@@ -1893,8 +1885,6 @@ public class FormItem extends RefDataClass  implements com.smartgwt.client.widge
                 };
         }-*/;
 
-
-
         /**
          * Add a click handler.
          * <p>
@@ -1917,8 +1907,6 @@ public class FormItem extends RefDataClass  implements com.smartgwt.client.widge
                     selfJ.@com.smartgwt.client.core.DataClass::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
                 };
         }-*/;
-
-
 
         /**
          * Add a doubleClick handler.
@@ -1943,9 +1931,6 @@ public class FormItem extends RefDataClass  implements com.smartgwt.client.widge
                 };
         }-*/;
 
-
-
-
         /**
          * Add a iconClick handler.
          * <p>
@@ -1969,11 +1954,6 @@ public class FormItem extends RefDataClass  implements com.smartgwt.client.widge
                 };
         }-*/;
 
-
-
-
-
-
         /**
          * Add a iconKeyPress handler.
          * <p>
@@ -1996,10 +1976,6 @@ public class FormItem extends RefDataClass  implements com.smartgwt.client.widge
                     selfJ.@com.smartgwt.client.core.DataClass::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
                 };
         }-*/;
-
-
-
-
 
         /**
          * Add a change handler.
@@ -2026,9 +2002,6 @@ public class FormItem extends RefDataClass  implements com.smartgwt.client.widge
                 };
         }-*/;
 
-
-
-
         /**
          * Add a changed handler.
          * <p>
@@ -2051,10 +2024,6 @@ public class FormItem extends RefDataClass  implements com.smartgwt.client.widge
                     selfJ.@com.smartgwt.client.core.DataClass::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
                 };
         }-*/;
-
-
-
-
 
 
         /**

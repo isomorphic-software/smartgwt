@@ -604,8 +604,6 @@ public class ColorPicker extends Window  implements com.smartgwt.client.widgets.
             self.colorChanged();
         }-*/;
 
-
-
         /**
          * Add a colorSelected handler.
          * <p>

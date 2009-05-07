@@ -128,11 +128,7 @@ public class CalendarEventMoved extends BrowserEvent<EventMovedHandler>  {
      */
     public  native CalendarEvent getEvent() /*-{
         var jsObj = this.@com.smartgwt.client.event.AbstractSmartEvent::jsObj;
-            var retVal = @com.smartgwt.client.widgets.calendar.CalendarEvent::getOrCreateRef(Lcom/google/gwt/core/client/JavaScriptObject;)(jsObj.event);
-            if(retVal == null) {
-                retVal = @com.smartgwt.client.widgets.calendar.CalendarEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(jsObj.event);
-            }
-            return retVal;
+            return @com.smartgwt.client.widgets.calendar.CalendarEvent::getOrCreateRef(Lcom/google/gwt/core/client/JavaScriptObject;)(jsObj.event);
     }-*/;
 
 

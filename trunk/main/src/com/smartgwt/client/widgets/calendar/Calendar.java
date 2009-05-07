@@ -997,11 +997,6 @@ public class Calendar extends Canvas  implements DataBoundComponent, com.smartgw
         }-*/;
 
 
-
-
-
-
-
         /**
          * Add a dayBodyClick handler.
          * <p>
@@ -1039,11 +1034,6 @@ public class Calendar extends Canvas  implements DataBoundComponent, com.smartgw
             }
         }-*/;
 
-
-
-
-
-
         /**
          * Add a dayHeaderClick handler.
          * <p>
@@ -1076,7 +1066,6 @@ public class Calendar extends Canvas  implements DataBoundComponent, com.smartgw
                 };
             }
         }-*/;
-
 
         /**
          * Add a eventChanged handler.
@@ -1111,7 +1100,6 @@ public class Calendar extends Canvas  implements DataBoundComponent, com.smartgw
             }
         }-*/;
 
-
         /**
          * Add a eventRemoved handler.
          * <p>
@@ -1145,7 +1133,6 @@ public class Calendar extends Canvas  implements DataBoundComponent, com.smartgw
             }
         }-*/;
 
-
         /**
          * Add a eventAdded handler.
          * <p>
@@ -1178,8 +1165,6 @@ public class Calendar extends Canvas  implements DataBoundComponent, com.smartgw
                 };
             }
         }-*/;
-
-
 
         /**
          * Add a eventClick handler.
@@ -1218,8 +1203,6 @@ public class Calendar extends Canvas  implements DataBoundComponent, com.smartgw
             }
         }-*/;
 
-
-
         /**
          * Add a eventRemoveClick handler.
          * <p>
@@ -1257,8 +1240,6 @@ public class Calendar extends Canvas  implements DataBoundComponent, com.smartgw
             }
         }-*/;
 
-
-
         /**
          * Add a eventMoved handler.
          * <p>
@@ -1291,8 +1272,6 @@ public class Calendar extends Canvas  implements DataBoundComponent, com.smartgw
                 };
             }
         }-*/;
-
-
 
         /**
          * Add a eventResized handler.

@@ -4558,7 +4558,6 @@ public class Canvas extends BaseWidget  implements com.smartgwt.client.widgets.e
 
 
 
-
         /**
          * Add a focusChanged handler.
          * <p>

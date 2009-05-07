@@ -3333,9 +3333,6 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
             self.refreshCellStyle(rowNum, colNum);
         }-*/;
 
-
-
-
         /**
          * Add a cellOver handler.
          * <p>
@@ -3372,9 +3369,6 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
                 };
             }
         }-*/;
-
-
-
 
         /**
          * Add a rowOver handler.
@@ -3413,9 +3407,6 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
             }
         }-*/;
 
-
-
-
         /**
          * Add a cellOut handler.
          * <p>
@@ -3452,9 +3443,6 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
                 };
             }
         }-*/;
-
-
-
 
         /**
          * Add a rowOut handler.
@@ -3493,9 +3481,6 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
             }
         }-*/;
 
-
-
-
         /**
          * Add a cellHover handler.
          * <p>
@@ -3532,9 +3517,6 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
                 };
             }
         }-*/;
-
-
-
 
         /**
          * Add a rowHover handler.
@@ -3574,9 +3556,6 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
         }-*/;
 
 
-
-
-
         /**
          * Add a cellContextClick handler.
          * <p>
@@ -3613,9 +3592,6 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
                 };
             }
         }-*/;
-
-
-
 
         /**
          * Add a rowContextClick handler.
@@ -3654,9 +3630,6 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
             }
         }-*/;
 
-
-
-
         /**
          * Add a cellMouseDown handler.
          * <p>
@@ -3693,9 +3666,6 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
                 };
             }
         }-*/;
-
-
-
 
         /**
          * Add a rowMouseDown handler.
@@ -3734,9 +3704,6 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
             }
         }-*/;
 
-
-
-
         /**
          * Add a cellMouseUp handler.
          * <p>
@@ -3773,9 +3740,6 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
                 };
             }
         }-*/;
-
-
-
 
         /**
          * Add a rowMouseUp handler.
@@ -3814,9 +3778,6 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
             }
         }-*/;
 
-
-
-
         /**
          * Add a cellClick handler.
          * <p>
@@ -3853,9 +3814,6 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
                 };
             }
         }-*/;
-
-
-
 
         /**
          * Add a cellDoubleClick handler.
@@ -4117,13 +4075,6 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
             return self.getFocusRow();
         }-*/;
 
-
-
-
-
-
-
-
         /**
          * Add a recordClick handler.
          * <p>
@@ -4156,13 +4107,6 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
                 };
             }
         }-*/;
-
-
-
-
-
-
-
 
         /**
          * Add a recordDoubleClick handler.
@@ -4544,8 +4488,6 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
         }-*/;
 
 
-
-
         /**
          * Add a selectionChanged handler.
          * <p>
@@ -4666,12 +4608,6 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
             self.setHeaderSpanTitle(name, newTitle);
         }-*/;
 
-
-
-
-
-
-
         /**
          * Add a cellSaved handler.
          * <p>
@@ -4704,12 +4640,6 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
                 };
             }
         }-*/;
-
-
-
-
-
-
 
         /**
          * Add a editComplete handler.
@@ -4744,12 +4674,6 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
             }
         }-*/;
 
-
-
-
-
-
-
         /**
          * Add a editFailed handler.
          * <p>
@@ -4782,10 +4706,6 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
                 };
             }
         }-*/;
-
-
-
-
 
         /**
          * Add a editorEnter handler.
@@ -4820,9 +4740,6 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
             }
         }-*/;
 
-
-
-
         /**
          * Add a rowEditorEnter handler.
          * <p>
@@ -4855,11 +4772,6 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
                 };
             }
         }-*/;
-
-
-
-
-
 
         /**
          * Add a editorExit handler.
@@ -4897,10 +4809,6 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
                 };
             }
         }-*/;
-
-
-
-
 
         /**
          * Add a rowEditorExit handler.
@@ -4974,8 +4882,6 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
                 };
             }
         }-*/;
-
-
 
         /**
          * Add a dataArrived handler.
