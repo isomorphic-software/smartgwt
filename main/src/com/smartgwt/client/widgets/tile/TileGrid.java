@@ -409,9 +409,6 @@ public class TileGrid extends TileLayout  implements DataBoundComponent, com.sma
 
 
 
-
-
-
         /**
          * Add a recordClick handler.
          * <p>
@@ -444,8 +441,6 @@ public class TileGrid extends TileLayout  implements DataBoundComponent, com.sma
                 };
             }
         }-*/;
-
-
 
         /**
          * Add a selectionChanged handler.

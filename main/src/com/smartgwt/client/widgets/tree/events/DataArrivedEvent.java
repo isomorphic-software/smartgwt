@@ -118,11 +118,7 @@ public class DataArrivedEvent extends BrowserEvent<DataArrivedHandler>  {
      */
     public  native TreeNode getParentNode() /*-{
         var jsObj = this.@com.smartgwt.client.event.AbstractSmartEvent::jsObj;
-            var retVal = @com.smartgwt.client.widgets.tree.TreeNode::getOrCreateRef(Lcom/google/gwt/core/client/JavaScriptObject;)(jsObj.parentNode);
-            if(retVal == null) {
-                retVal = @com.smartgwt.client.widgets.tree.TreeNode::new(Lcom/google/gwt/core/client/JavaScriptObject;)(jsObj.parentNode);
-            }
-            return retVal;
+            return @com.smartgwt.client.widgets.tree.TreeNode::getOrCreateRef(Lcom/google/gwt/core/client/JavaScriptObject;)(jsObj.parentNode);
     }-*/;
 
 

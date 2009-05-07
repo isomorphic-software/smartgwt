@@ -379,8 +379,6 @@ public class Menu extends ListGrid  implements com.smartgwt.client.widgets.menu.
 
     // ********************* Methods ***********************
 
-
-
         /**
          * Add a itemClick handler.
          * <p>

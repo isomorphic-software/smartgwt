@@ -118,11 +118,7 @@ public class SubmitValuesEvent extends BrowserEvent<SubmitValuesHandler>  {
      */
     public  native DynamicForm getForm() /*-{
         var jsObj = this.@com.smartgwt.client.event.AbstractSmartEvent::jsObj;
-        var retVal = @com.smartgwt.client.widgets.form.DynamicForm::getOrCreateRef(Lcom/google/gwt/core/client/JavaScriptObject;)(jsObj.form);
-        if(retVal == null) {
-            retVal = @com.smartgwt.client.widgets.form.DynamicForm::new(Lcom/google/gwt/core/client/JavaScriptObject;)(jsObj.form);
-        }
-        return retVal;
+        return @com.smartgwt.client.widgets.form.DynamicForm::getOrCreateRef(Lcom/google/gwt/core/client/JavaScriptObject;)(jsObj.form);
     }-*/;
 
 

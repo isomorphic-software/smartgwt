@@ -1382,11 +1382,6 @@ public class ListGridField extends DataClass  implements com.smartgwt.client.wid
 
 
 
-
-
-
-
-
         /**
          * Add a editorEnter handler.
          * <p>
@@ -1409,12 +1404,6 @@ public class ListGridField extends DataClass  implements com.smartgwt.client.wid
                     selfJ.@com.smartgwt.client.core.DataClass::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
                 };
         }-*/;
-
-
-
-
-
-
 
         /**
          * Add a editorExit handler.
@@ -1464,13 +1453,6 @@ public class ListGridField extends DataClass  implements com.smartgwt.client.wid
                 };
         }-*/;
 
-
-
-
-
-
-
-
         /**
          * Add a recordClick handler.
          * <p>
@@ -1501,10 +1483,6 @@ public class ListGridField extends DataClass  implements com.smartgwt.client.wid
 
 
 
-
-
-
-
         /**
          * Add a change handler.
          * <p>
@@ -1527,9 +1505,6 @@ public class ListGridField extends DataClass  implements com.smartgwt.client.wid
                     selfJ.@com.smartgwt.client.core.DataClass::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
                 };
         }-*/;
-
-
-
 
         /**
          * Add a changed handler.

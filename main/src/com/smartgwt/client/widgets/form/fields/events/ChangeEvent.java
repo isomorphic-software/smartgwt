@@ -132,11 +132,7 @@ public class ChangeEvent extends AbstractSmartEvent<ChangeHandler>  implements C
      */
     public  native DynamicForm getForm() /*-{
         var jsObj = this.@com.smartgwt.client.event.AbstractSmartEvent::jsObj;
-        var retVal = @com.smartgwt.client.widgets.form.DynamicForm::getOrCreateRef(Lcom/google/gwt/core/client/JavaScriptObject;)(jsObj.form);
-        if(retVal == null) {
-            retVal = @com.smartgwt.client.widgets.form.DynamicForm::new(Lcom/google/gwt/core/client/JavaScriptObject;)(jsObj.form);
-        }
-        return retVal;
+        return @com.smartgwt.client.widgets.form.DynamicForm::getOrCreateRef(Lcom/google/gwt/core/client/JavaScriptObject;)(jsObj.form);
     }-*/;
 
     /**
@@ -146,11 +142,7 @@ public class ChangeEvent extends AbstractSmartEvent<ChangeHandler>  implements C
      */
     public  native FormItem getItem() /*-{
         var jsObj = this.@com.smartgwt.client.event.AbstractSmartEvent::jsObj;
-            var retVal = @com.smartgwt.client.widgets.form.fields.FormItem::getOrCreateRef(Lcom/google/gwt/core/client/JavaScriptObject;)(jsObj.item);
-            if(retVal == null) {
-                retVal = @com.smartgwt.client.widgets.form.fields.FormItem::new(Lcom/google/gwt/core/client/JavaScriptObject;)(jsObj.item);
-            }
-            return retVal;
+            return @com.smartgwt.client.widgets.form.fields.FormItem::getOrCreateRef(Lcom/google/gwt/core/client/JavaScriptObject;)(jsObj.item);
     }-*/;
 
     /**

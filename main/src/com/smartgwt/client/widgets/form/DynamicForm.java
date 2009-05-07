@@ -1375,8 +1375,6 @@ public class DynamicForm extends Canvas  implements DataBoundComponent, com.smar
 
 
 
-
-
         /**
          * Add a itemChanged handler.
          * <p>
@@ -1409,9 +1407,6 @@ public class DynamicForm extends Canvas  implements DataBoundComponent, com.smar
                 };
             }
         }-*/;
-
-
-
 
         /**
          * Add a itemChange handler.
@@ -1450,9 +1445,6 @@ public class DynamicForm extends Canvas  implements DataBoundComponent, com.smar
             }
         }-*/;
 
-
-
-
         /**
          * Add a itemKeyPress handler.
          * <p>
@@ -1485,8 +1477,6 @@ public class DynamicForm extends Canvas  implements DataBoundComponent, com.smar
                 };
             }
         }-*/;
-
-
 
         /**
          * Add a submitValues handler.

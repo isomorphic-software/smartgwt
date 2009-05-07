@@ -669,7 +669,6 @@ public class Slider extends Canvas  implements com.smartgwt.client.widgets.event
 
 
 
-
         /**
          * Add a valueChanged handler.
          * <p>

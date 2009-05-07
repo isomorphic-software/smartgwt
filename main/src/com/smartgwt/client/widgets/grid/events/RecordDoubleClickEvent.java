@@ -118,11 +118,7 @@ public class RecordDoubleClickEvent extends BrowserEvent<RecordDoubleClickHandle
      */
     public  native ListGrid getViewer() /*-{
         var jsObj = this.@com.smartgwt.client.event.AbstractSmartEvent::jsObj;
-        var retVal = @com.smartgwt.client.widgets.grid.ListGrid::getOrCreateRef(Lcom/google/gwt/core/client/JavaScriptObject;)(jsObj.viewer);
-        if(retVal == null) {
-            retVal = @com.smartgwt.client.widgets.grid.ListGrid::new(Lcom/google/gwt/core/client/JavaScriptObject;)(jsObj.viewer);
-        }
-        return retVal;
+        return @com.smartgwt.client.widgets.grid.ListGrid::getOrCreateRef(Lcom/google/gwt/core/client/JavaScriptObject;)(jsObj.viewer);
     }-*/;
 
     /**
@@ -132,11 +128,7 @@ public class RecordDoubleClickEvent extends BrowserEvent<RecordDoubleClickHandle
      */
     public  native ListGridRecord getRecord() /*-{
         var jsObj = this.@com.smartgwt.client.event.AbstractSmartEvent::jsObj;
-            var retVal = @com.smartgwt.client.widgets.grid.ListGridRecord::getOrCreateRef(Lcom/google/gwt/core/client/JavaScriptObject;)(jsObj.record);
-            if(retVal == null) {
-                retVal = @com.smartgwt.client.widgets.grid.ListGridRecord::new(Lcom/google/gwt/core/client/JavaScriptObject;)(jsObj.record);
-            }
-            return retVal;
+            return @com.smartgwt.client.widgets.grid.ListGridRecord::getOrCreateRef(Lcom/google/gwt/core/client/JavaScriptObject;)(jsObj.record);
     }-*/;
 
     /**

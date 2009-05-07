@@ -118,11 +118,7 @@ public class EditorEnterEvent extends AbstractSmartEvent<EditorEnterHandler>  {
      */
     public  native ListGridRecord getRecord() /*-{
         var jsObj = this.@com.smartgwt.client.event.AbstractSmartEvent::jsObj;
-            var retVal = @com.smartgwt.client.widgets.grid.ListGridRecord::getOrCreateRef(Lcom/google/gwt/core/client/JavaScriptObject;)(jsObj.record);
-            if(retVal == null) {
-                retVal = @com.smartgwt.client.widgets.grid.ListGridRecord::new(Lcom/google/gwt/core/client/JavaScriptObject;)(jsObj.record);
-            }
-            return retVal;
+            return @com.smartgwt.client.widgets.grid.ListGridRecord::getOrCreateRef(Lcom/google/gwt/core/client/JavaScriptObject;)(jsObj.record);
     }-*/;
 
     /**
@@ -162,11 +158,7 @@ public class EditorEnterEvent extends AbstractSmartEvent<EditorEnterHandler>  {
      */
     public  native ListGrid getGrid() /*-{
         var jsObj = this.@com.smartgwt.client.event.AbstractSmartEvent::jsObj;
-        var retVal = @com.smartgwt.client.widgets.grid.ListGrid::getOrCreateRef(Lcom/google/gwt/core/client/JavaScriptObject;)(jsObj.grid);
-        if(retVal == null) {
-            retVal = @com.smartgwt.client.widgets.grid.ListGrid::new(Lcom/google/gwt/core/client/JavaScriptObject;)(jsObj.grid);
-        }
-        return retVal;
+        return @com.smartgwt.client.widgets.grid.ListGrid::getOrCreateRef(Lcom/google/gwt/core/client/JavaScriptObject;)(jsObj.grid);
     }-*/;
 
 

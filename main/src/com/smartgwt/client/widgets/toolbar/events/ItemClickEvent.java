@@ -118,11 +118,7 @@ public class ItemClickEvent extends BrowserEvent<ItemClickHandler>  {
      */
     public  native Button getItem() /*-{
         var jsObj = this.@com.smartgwt.client.event.AbstractSmartEvent::jsObj;
-        var retVal = @com.smartgwt.client.widgets.Button::getOrCreateRef(Lcom/google/gwt/core/client/JavaScriptObject;)(jsObj.item);
-        if(retVal == null) {
-            retVal = @com.smartgwt.client.widgets.Button::new(Lcom/google/gwt/core/client/JavaScriptObject;)(jsObj.item);
-        }
-        return retVal;
+        return @com.smartgwt.client.widgets.Button::getOrCreateRef(Lcom/google/gwt/core/client/JavaScriptObject;)(jsObj.item);
     }-*/;
 
     /**

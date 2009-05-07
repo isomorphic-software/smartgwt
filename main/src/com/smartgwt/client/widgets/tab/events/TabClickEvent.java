@@ -118,11 +118,7 @@ public class TabClickEvent extends BrowserEvent<TabIconClickHandler>  {
      */
     public  native Tab getTab() /*-{
         var jsObj = this.@com.smartgwt.client.event.AbstractSmartEvent::jsObj;
-            var retVal = @com.smartgwt.client.widgets.tab.Tab::getOrCreateRef(Lcom/google/gwt/core/client/JavaScriptObject;)(jsObj.tab);
-            if(retVal == null) {
-                retVal = @com.smartgwt.client.widgets.tab.Tab::new(Lcom/google/gwt/core/client/JavaScriptObject;)(jsObj.tab);
-            }
-            return retVal;
+            return @com.smartgwt.client.widgets.tab.Tab::getOrCreateRef(Lcom/google/gwt/core/client/JavaScriptObject;)(jsObj.tab);
     }-*/;
 
 

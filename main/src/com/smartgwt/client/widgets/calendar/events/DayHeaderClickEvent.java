@@ -128,11 +128,7 @@ public class DayHeaderClickEvent extends BrowserEvent<DayHeaderClickHandler>  {
      */
     public  native Calendar getCalendar() /*-{
         var jsObj = this.@com.smartgwt.client.event.AbstractSmartEvent::jsObj;
-        var retVal = @com.smartgwt.client.widgets.calendar.Calendar::getOrCreateRef(Lcom/google/gwt/core/client/JavaScriptObject;)(jsObj.calendar);
-        if(retVal == null) {
-            retVal = @com.smartgwt.client.widgets.calendar.Calendar::new(Lcom/google/gwt/core/client/JavaScriptObject;)(jsObj.calendar);
-        }
-        return retVal;
+        return @com.smartgwt.client.widgets.calendar.Calendar::getOrCreateRef(Lcom/google/gwt/core/client/JavaScriptObject;)(jsObj.calendar);
     }-*/;
 
     /**

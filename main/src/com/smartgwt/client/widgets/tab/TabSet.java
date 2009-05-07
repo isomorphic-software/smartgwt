@@ -604,7 +604,6 @@ public class TabSet extends Canvas  implements com.smartgwt.client.widgets.tab.e
 
 
 
-
         /**
          * Add a tabIconClick handler.
          * <p>
@@ -671,10 +670,6 @@ public class TabSet extends Canvas  implements com.smartgwt.client.widgets.tab.e
         }-*/;
 
 
-
-
-
-
         /**
          * Add a tabSelected handler.
          * <p>
@@ -707,10 +702,6 @@ public class TabSet extends Canvas  implements com.smartgwt.client.widgets.tab.e
                 };
             }
         }-*/;
-
-
-
-
 
         /**
          * Add a tabDeselected handler.

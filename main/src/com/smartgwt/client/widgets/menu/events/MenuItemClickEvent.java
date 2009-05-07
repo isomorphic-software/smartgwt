@@ -118,11 +118,7 @@ public class MenuItemClickEvent extends AbstractSmartEvent<ClickHandler>  {
      */
     public  native Canvas getTarget() /*-{
         var jsObj = this.@com.smartgwt.client.event.AbstractSmartEvent::jsObj;
-        var retVal = @com.smartgwt.client.widgets.Canvas::getOrCreateRef(Lcom/google/gwt/core/client/JavaScriptObject;)(jsObj.target);
-        if(retVal == null) {
-            retVal = @com.smartgwt.client.widgets.Canvas::new(Lcom/google/gwt/core/client/JavaScriptObject;)(jsObj.target);
-        }
-        return retVal;
+        return @com.smartgwt.client.widgets.Canvas::getOrCreateRef(Lcom/google/gwt/core/client/JavaScriptObject;)(jsObj.target);
     }-*/;
 
     /**
@@ -132,11 +128,7 @@ public class MenuItemClickEvent extends AbstractSmartEvent<ClickHandler>  {
      */
     public  native MenuItem getItem() /*-{
         var jsObj = this.@com.smartgwt.client.event.AbstractSmartEvent::jsObj;
-            var retVal = @com.smartgwt.client.widgets.menu.MenuItem::getOrCreateRef(Lcom/google/gwt/core/client/JavaScriptObject;)(jsObj.item);
-            if(retVal == null) {
-                retVal = @com.smartgwt.client.widgets.menu.MenuItem::new(Lcom/google/gwt/core/client/JavaScriptObject;)(jsObj.item);
-            }
-            return retVal;
+            return @com.smartgwt.client.widgets.menu.MenuItem::getOrCreateRef(Lcom/google/gwt/core/client/JavaScriptObject;)(jsObj.item);
     }-*/;
 
     /**
@@ -146,11 +138,7 @@ public class MenuItemClickEvent extends AbstractSmartEvent<ClickHandler>  {
      */
     public  native Menu getMenu() /*-{
         var jsObj = this.@com.smartgwt.client.event.AbstractSmartEvent::jsObj;
-        var retVal = @com.smartgwt.client.widgets.menu.Menu::getOrCreateRef(Lcom/google/gwt/core/client/JavaScriptObject;)(jsObj.menu);
-        if(retVal == null) {
-            retVal = @com.smartgwt.client.widgets.menu.Menu::new(Lcom/google/gwt/core/client/JavaScriptObject;)(jsObj.menu);
-        }
-        return retVal;
+        return @com.smartgwt.client.widgets.menu.Menu::getOrCreateRef(Lcom/google/gwt/core/client/JavaScriptObject;)(jsObj.menu);
     }-*/;
 
     /**

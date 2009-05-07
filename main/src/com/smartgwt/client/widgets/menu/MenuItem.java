@@ -332,10 +332,6 @@ public class MenuItem extends ListGridRecord  implements com.smartgwt.client.wid
 
 
 
-
-
-
-
         /**
          * Add a click handler.
          * <p>
