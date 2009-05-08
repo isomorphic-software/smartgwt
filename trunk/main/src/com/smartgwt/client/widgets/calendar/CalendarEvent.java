@@ -59,7 +59,7 @@ import com.google.gwt.event.shared.HasHandlers;
     * An object which represents an event to occur at a specific time, displayed within the&#010 calendar.
 
     */
-public class CalendarEvent extends RefDataClass  implements Record {
+public class CalendarEvent extends Record {
 
     public static CalendarEvent getOrCreateRef(JavaScriptObject jsObj) {
         if(jsObj == null) return null;

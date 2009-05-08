@@ -204,64 +204,6 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
     }
 
     /**
-    * If true, the set of fields given by the "default binding" (see &#010 {@link com.smartgwt.client.widgets.DataBoundComponent#getFields fields}) is used, with any fields specified in&#010 <code>component.fields</code> acting as overrides that can suppress or modify the&#010 display of individual fields, without having to list the entire set of fields that&#010 should be shown.&#010 <P>&#010 If <code>component.fields</code> contains fields that are not found in the DataSource,&#010 they will be shown after the most recently referred to DataSource field.  If the new&#010 fields appear first, they will be shown first.&#010 <P>&#010 ${isc.DocUtils.linkForExampleId('validationFieldBinding', 'This example')} shows a mixture of component&#010 fields and DataSource fields, and how they interact for validation.
-    *
-    * @param useAllDataSourceFields useAllDataSourceFields Default value is null
-    */
-    public void setUseAllDataSourceFields(Boolean useAllDataSourceFields) {
-        setAttribute("useAllDataSourceFields", useAllDataSourceFields, true);
-    }
-    /**
-     * If true, the set of fields given by the "default binding" (see &#010 {@link com.smartgwt.client.widgets.DataBoundComponent#getFields fields}) is used, with any fields specified in&#010 <code>component.fields</code> acting as overrides that can suppress or modify the&#010 display of individual fields, without having to list the entire set of fields that&#010 should be shown.&#010 <P>&#010 If <code>component.fields</code> contains fields that are not found in the DataSource,&#010 they will be shown after the most recently referred to DataSource field.  If the new&#010 fields appear first, they will be shown first.&#010 <P>&#010 ${isc.DocUtils.linkForExampleId('validationFieldBinding', 'This example')} shows a mixture of component&#010 fields and DataSource fields, and how they interact for validation.
-     *
-     *
-     * @return Boolean
-     *
-     */
-    public Boolean getUseAllDataSourceFields()  {
-        return getAttributeAsBoolean("useAllDataSourceFields");
-    }
-
-    /**
-    * Whether to include fields marked <code>detail:true</code> from this component's &#010 <code>DataSource</code>.&#010 <P>&#010 Fields may also be included directly in this component's <code>fields</code> array in&#010 which case they will be present regardless of the <code>detail</code> attribute.&#010 <p>&#010 When this property is <code>true</code>, <code>ListGrid</code>s will include all &#010 detail fields, but they will be initially hidden.  The user may show&#010 these fields via the default header context menu ({@link com.smartgwt.client.widgets.grid.ListGrid#getShowHeaderContextMenu showHeaderContextMenu}).&#010 Setting this property to false will completely exclude all detail fields from the list&#010 grid's fields array, such that they cannot be shown by the user or programmatically.&#010 <P>&#010 To override the visibility of individual fields, use the standard&#010 {@link com.smartgwt.client.widgets.grid.ListGrid#showField}, {@link com.smartgwt.client.widgets.grid.ListGrid#hideField} and {@link com.smartgwt.client.widgets.grid.ListGridField#showIf}&#010 APIs, for example, set showIf:"true" to show a detail field initially.
-    *
-    * @param showDetailFields showDetailFields Default value is true
-    * @throws IllegalStateException this property cannot be changed after the component has been created
-    */
-    public void setShowDetailFields(Boolean showDetailFields)  throws IllegalStateException {
-        setAttribute("showDetailFields", showDetailFields, false);
-    }
-    /**
-     * Whether to include fields marked <code>detail:true</code> from this component's &#010 <code>DataSource</code>.&#010 <P>&#010 Fields may also be included directly in this component's <code>fields</code> array in&#010 which case they will be present regardless of the <code>detail</code> attribute.&#010 <p>&#010 When this property is <code>true</code>, <code>ListGrid</code>s will include all &#010 detail fields, but they will be initially hidden.  The user may show&#010 these fields via the default header context menu ({@link com.smartgwt.client.widgets.grid.ListGrid#getShowHeaderContextMenu showHeaderContextMenu}).&#010 Setting this property to false will completely exclude all detail fields from the list&#010 grid's fields array, such that they cannot be shown by the user or programmatically.&#010 <P>&#010 To override the visibility of individual fields, use the standard&#010 {@link com.smartgwt.client.widgets.grid.ListGrid#showField}, {@link com.smartgwt.client.widgets.grid.ListGrid#hideField} and {@link com.smartgwt.client.widgets.grid.ListGridField#showIf}&#010 APIs, for example, set showIf:"true" to show a detail field initially.
-     *
-     *
-     * @return Boolean
-     *
-     */
-    public Boolean getShowDetailFields()  {
-        return getAttributeAsBoolean("showDetailFields");
-    }
-
-    /**
-    * Best field to use for a user-visible title for an individual record from this grid.&#010 If {@link com.smartgwt.client.widgets.grid.ListGrid#getDataSource dataSource} is non null, this property may be specified on the &#010 dataSource instead.&#010 <p>&#010 If not explicitly set, titleField looks for fields named "title", "name", and "id" &#010 in that order.  If a field exists with one of those names, it becomes the titleField.  &#010 If not, then the first field is designated as the titleField.
-    *
-    * @param titleField titleField Default value is see below
-    */
-    public void setTitleField(String titleField) {
-        setAttribute("titleField", titleField, true);
-    }
-    /**
-     * Best field to use for a user-visible title for an individual record from this grid.&#010 If {@link com.smartgwt.client.widgets.grid.ListGrid#getDataSource dataSource} is non null, this property may be specified on the &#010 dataSource instead.&#010 <p>&#010 If not explicitly set, titleField looks for fields named "title", "name", and "id" &#010 in that order.  If a field exists with one of those names, it becomes the titleField.  &#010 If not, then the first field is designated as the titleField.
-     *
-     *
-     * @return Method to return the fieldName which represents the "title" for records in this&#010 Component.<br>&#010 If this.titleField is explicitly specified it will always be used.&#010 Otherwise, default implementation will check {@link com.smartgwt.client.data.DataSource#getTitleField titleField} for databound&#010 compounds.<br>&#010 For non databound components returns the first defined field name of <code>"title"</code>, &#010 <code>"name"</code>, or <code>"id"</code>. If we dont find any field-names that match these&#010 titles, the first field in the component will be used instead.&#010
-     *
-     */
-    public String getTitleField()  {
-        return getAttributeAsString("titleField");
-    }
-
-    /**
     * The CSS style that group rows will have
     *
     * @param groupNodeStyle groupNodeStyle Default value is "groupNode"
@@ -715,25 +657,6 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
      */
     public int getScrollRedrawDelay()  {
         return getAttributeAsInt("scrollRedrawDelay");
-    }
-
-    /**
-    * When using data paging, how many records to fetch at a time.  The value of this&#010 attribute is passed on to the auto-constructed {@link com.smartgwt.client.data.ResultSet} object for this&#010 component.  In effect, this gives you control over the {@link com.smartgwt.client.data.ResultSet#getResultSize resultSize}&#010 attribute for this component.&#010 <P>&#010 <b>Note</b> that regardless of the <code>dataPageSize</code> setting, a component will always fetch&#010 all of data that it needs to draw.  Settings such as&#010 {@link com.smartgwt.client.widgets.grid.ListGrid#getShowAllRecords showAllRecords},&#010 {@link com.smartgwt.client.widgets.grid.ListGrid#getDrawAllMaxCells drawAllMaxCells} and&#010 {@link com.smartgwt.client.widgets.grid.ListGrid#getDrawAheadRatio drawAheadRatio} can cause more rows than the configured&#010 <code>dataPageSize</code> to be fetched.
-    *
-    * @param dataPageSize dataPageSize Default value is 75
-    */
-    public void setDataPageSize(int dataPageSize) {
-        setAttribute("dataPageSize", dataPageSize, true);
-    }
-    /**
-     * When using data paging, how many records to fetch at a time.  The value of this&#010 attribute is passed on to the auto-constructed {@link com.smartgwt.client.data.ResultSet} object for this&#010 component.  In effect, this gives you control over the {@link com.smartgwt.client.data.ResultSet#getResultSize resultSize}&#010 attribute for this component.&#010 <P>&#010 <b>Note</b> that regardless of the <code>dataPageSize</code> setting, a component will always fetch&#010 all of data that it needs to draw.  Settings such as&#010 {@link com.smartgwt.client.widgets.grid.ListGrid#getShowAllRecords showAllRecords},&#010 {@link com.smartgwt.client.widgets.grid.ListGrid#getDrawAllMaxCells drawAllMaxCells} and&#010 {@link com.smartgwt.client.widgets.grid.ListGrid#getDrawAheadRatio drawAheadRatio} can cause more rows than the configured&#010 <code>dataPageSize</code> to be fetched.
-     *
-     *
-     * @return int
-     *
-     */
-    public int getDataPageSize()  {
-        return getAttributeAsInt("dataPageSize");
     }
              
     /**
@@ -2571,44 +2494,6 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
     }
 
     /**
-    * Adds an item to the header context menu allowing users to launch a dialog to define a new&#010 field based on values present in other fields, using the {@link com.smartgwt.client..FormulaBuilder}.&#010 <P>&#010 User-added formula fields can be persisted via {@link com.smartgwt.client.widgets.grid.ListGrid#getFieldState} and &#010 {@link com.smartgwt.client.widgets.grid.ListGrid#setFieldState}.
-    *
-    * @param canAddFormulaFields canAddFormulaFields Default value is false
-    */
-    public void setCanAddFormulaFields(Boolean canAddFormulaFields) {
-        setAttribute("canAddFormulaFields", canAddFormulaFields, true);
-    }
-    /**
-     * Adds an item to the header context menu allowing users to launch a dialog to define a new&#010 field based on values present in other fields, using the {@link com.smartgwt.client..FormulaBuilder}.&#010 <P>&#010 User-added formula fields can be persisted via {@link com.smartgwt.client.widgets.grid.ListGrid#getFieldState} and &#010 {@link com.smartgwt.client.widgets.grid.ListGrid#setFieldState}.
-     *
-     *
-     * @return Boolean
-     *
-     */
-    public Boolean getCanAddFormulaFields()  {
-        return getAttributeAsBoolean("canAddFormulaFields");
-    }
-
-    /**
-    * Adds an item to the header context menu allowing users to launch a dialog to define a new&#010 text field that can contain both user-defined text and the formatted values present in other &#010 fields, using the {@link com.smartgwt.client..SummaryBuilder}.&#010 <P>&#010 User-added summary fields can be persisted via {@link com.smartgwt.client.widgets.grid.ListGrid#getFieldState} and &#010 {@link com.smartgwt.client.widgets.grid.ListGrid#setFieldState}.
-    *
-    * @param canAddSummaryFields canAddSummaryFields Default value is false
-    */
-    public void setCanAddSummaryFields(Boolean canAddSummaryFields) {
-        setAttribute("canAddSummaryFields", canAddSummaryFields, true);
-    }
-    /**
-     * Adds an item to the header context menu allowing users to launch a dialog to define a new&#010 text field that can contain both user-defined text and the formatted values present in other &#010 fields, using the {@link com.smartgwt.client..SummaryBuilder}.&#010 <P>&#010 User-added summary fields can be persisted via {@link com.smartgwt.client.widgets.grid.ListGrid#getFieldState} and &#010 {@link com.smartgwt.client.widgets.grid.ListGrid#setFieldState}.
-     *
-     *
-     * @return Boolean
-     *
-     */
-    public Boolean getCanAddSummaryFields()  {
-        return getAttributeAsBoolean("canAddSummaryFields");
-    }
-
-    /**
     * Whether to show a context menu on the header with standard items for showing and hiding&#010 fields.
     *
     * @param showHeaderContextMenu showHeaderContextMenu Default value is true
@@ -2889,25 +2774,6 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
     public Boolean getResizeFieldsInRealTime()  {
         return getAttributeAsBoolean("resizeFieldsInRealTime");
     }
-             
-    /**
-    * Indicates what to do with data dragged into another DataBoundComponent. See&#010          DragDataAction type for details.
-    *
-    * @param dragDataAction dragDataAction Default value is Canvas.MOVE
-    */
-    public void setDragDataAction(DragDataAction dragDataAction) {
-        setAttribute("dragDataAction", dragDataAction.getValue(), true);
-    }
-    /**
-     * Indicates what to do with data dragged into another DataBoundComponent. See&#010          DragDataAction type for details.
-     *
-     *
-     * @return DragDataAction
-     *
-     */
-    public DragDataAction getDragDataAction()  {
-        return (DragDataAction) EnumUtil.getEnum(DragDataAction.values(), getAttribute("dragDataAction"));
-    }
 
     /**
     * Where do 'skin' images (those provided with the class) live?
@@ -3027,25 +2893,6 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
      */
     public int getBooleanImageHeight()  {
         return getAttributeAsInt("booleanImageHeight");
-    }
-
-    /**
-    * CSS Style to apply to the drag tracker when dragging occurs on this component.
-    *
-    * @param dragTrackerStyle dragTrackerStyle Default value is "gridDragTracker"
-    */
-    public void setDragTrackerStyle(String dragTrackerStyle) {
-        setAttribute("dragTrackerStyle", dragTrackerStyle, true);
-    }
-    /**
-     * CSS Style to apply to the drag tracker when dragging occurs on this component.
-     *
-     *
-     * @return String
-     *
-     */
-    public String getDragTrackerStyle()  {
-        return getAttributeAsString("dragTrackerStyle");
     }
 
     /**
@@ -3953,114 +3800,14 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
 
 
 
-        /**
-         * &#010 Event handler for when rows in the body are clicked upon. The default implementation handles&#010 firing {@link com.smartgwt.client.widgets.grid.ListGrid#startEditing} if appropriate, and fires&#010 {@link com.smartgwt.client.widgets.grid.ListGridField#recordClick} and/or {@link com.smartgwt.client.widgets.grid.ListGrid#recordClick} if set. Developers&#010 should typically implement recordClick rather than overriding this method.&#010&#010
-         * @param record record object returned from getCellRecord()
-     * @param recordNum index of the row where the click occurred
-     * @param fieldNum index of the col where the click occurred
-         *
-         * @return 
-         */
-        public native Boolean rowClick(ListGridRecord record, int recordNum, int fieldNum) /*-{
-            var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
-            var retVal =self.rowClick(record.@com.smartgwt.client.core.DataClass::getJsObj()(), recordNum, fieldNum);
-            if(retVal == null || retVal === undefined) {
-                return null;
-            } else {
-                return @com.smartgwt.client.util.JSOHelper::toBoolean(Z)(retVal);
-            }
-        }-*/;
-
-        /**
-         * &#010 Event handler for when rows in the body are clicked upon. The default implementation handles&#010 firing {@link com.smartgwt.client.widgets.grid.ListGrid#startEditing} if appropriate, and fires&#010 {@link com.smartgwt.client.widgets.grid.ListGridField#recordClick} and/or {@link com.smartgwt.client.widgets.grid.ListGrid#recordClick} if set. Developers&#010 should typically implement recordClick rather than overriding this method.&#010&#010
-         * @param record record object returned from getCellRecord()
-     * @param recordNum index of the row where the click occurred
-     * @param fieldNum index of the col where the click occurred
-     * @param keyboardGenerated indicates whether this was a synthesized record                                              click in response to a keyboard event
-         *
-         * @return 
-         */
-        public native Boolean rowClick(ListGridRecord record, int recordNum, int fieldNum, boolean keyboardGenerated) /*-{
-            var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
-            var retVal =self.rowClick(record.@com.smartgwt.client.core.DataClass::getJsObj()(), recordNum, fieldNum, keyboardGenerated);
-            if(retVal == null || retVal === undefined) {
-                return null;
-            } else {
-                return @com.smartgwt.client.util.JSOHelper::toBoolean(Z)(retVal);
-            }
-        }-*/;
-
-        /**
-         * Event handler for when a body record is double-clicked.&#010 <P>&#010 Default implementation fires 'editCell' if appropriate, and handles firing&#010 'recordDoubleClick' stringMethod if defined at the field or LG level (That method has a&#010 different signature from this one)&#010&#010
-         * @param record record object returned from getCellRecord()
-     * @param recordNum index of the row where the click occurred
-     * @param fieldNum index of the col where the click occurred
-         *
-         * @return false if first click not on same record; true otherwise
-         */
-        public native Boolean rowDoubleClick(ListGridRecord record, int recordNum, int fieldNum) /*-{
-            var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
-            var retVal =self.rowDoubleClick(record.@com.smartgwt.client.core.DataClass::getJsObj()(), recordNum, fieldNum);
-            if(retVal == null || retVal === undefined) {
-                return null;
-            } else {
-                return @com.smartgwt.client.util.JSOHelper::toBoolean(Z)(retVal);
-            }
-        }-*/;
-
-        /**
-         * Event handler for when a body record is double-clicked.&#010 <P>&#010 Default implementation fires 'editCell' if appropriate, and handles firing&#010 'recordDoubleClick' stringMethod if defined at the field or LG level (That method has a&#010 different signature from this one)&#010&#010
-         * @param record record object returned from getCellRecord()
-     * @param recordNum index of the row where the click occurred
-     * @param fieldNum index of the col where the click occurred
-     * @param keyboardGenerated indicates whether this was a synthesized record                                              doubleclick in response to a keyboard event
-         *
-         * @return false if first click not on same record; true otherwise
-         */
-        public native Boolean rowDoubleClick(ListGridRecord record, int recordNum, int fieldNum, boolean keyboardGenerated) /*-{
-            var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
-            var retVal =self.rowDoubleClick(record.@com.smartgwt.client.core.DataClass::getJsObj()(), recordNum, fieldNum, keyboardGenerated);
-            if(retVal == null || retVal === undefined) {
-                return null;
-            } else {
-                return @com.smartgwt.client.util.JSOHelper::toBoolean(Z)(retVal);
-            }
-        }-*/;
 
 
 
 
 
-        /**
-         * Select all records&#010&#010
-         */
-        public native void selectAllRecords() /*-{
-            var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
-            self.selectAllRecords();
-        }-*/;
 
-        /**
-         * &#010 Deselect all records&#010&#010
-         */
-        public native void deselectAllRecords() /*-{
-            var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
-            self.deselectAllRecords();
-        }-*/;
 
-        /**
-         * Whether at least one item is selected&#010
-         *
-         * @return true == at least one item is selected        false == nothing at all is selected
-         */
-        public native Boolean anySelected() /*-{
-            var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
-            var retVal =self.anySelected();
-            if(retVal == null || retVal === undefined) {
-                return null;
-            } else {
-                return @com.smartgwt.client.util.JSOHelper::toBoolean(Z)(retVal);
-            }
-        }-*/;
+
 
 
 
@@ -5058,17 +4805,6 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
         return JSOHelper.getAttribute(config, "baseStyle");
     }
 
-
-    /**
-     * The DataSource that this component should bind to for default fields and for performing&#010 DataSource
-     * requests.
-     *
-     * @param dataSource dataSource Default value is null
-     */
-    public void setDataSource(DataSource dataSource) {
-        setAttribute("dataSource", dataSource.getOrCreateJsObj(), true);
-    }
-
     /**
      * If this is an editable listGrid, this property will specify the {@link com.smartgwt.client.widgets.form.fields.DateItem#setInputFormat(String) inputFormat}
      * applied to editors for fields of type "date"
@@ -5083,15 +4819,6 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
     public void setDateInputFormat(String dateInputFormat) {
         setAttribute("dateInputFormat", "dateInputFormat", true);
     }
-    
-    /**
-     * The DataSource that this component should bind to for default fields and for performing {@link com.smartgwt.client.data.DSRequest}. <P> Can be specified as either a DataSource instance or the String ID of a DataSource.
-     *
-     * @return DataSource
-     */
-    public DataSource getDataSource() {
-        return DataSource.getOrCreateRef(getAttributeAsJavaScriptObject("dataSource"));
-    }    
 
     /**
      * An array of field objects, specifying the order, layout, formatting, and sorting behavior of each field in the
@@ -5474,142 +5201,6 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
         var selectionJS =  self.getSelection();
         return @com.smartgwt.client.widgets.grid.ListGrid::convertToListGridRecordArray(Lcom/google/gwt/core/client/JavaScriptObject;)(selectionJS);
     }-*/;
-
-    /**
-     * Deselect a {@link com.smartgwt.client.data.Record} passed in explicitly, or by index. <P> Synonym for
-     * <code>selectRecord(record, false)</code>
-     *
-     * @param record record (or row number) to deselect
-     */
-    public native void deselectRecord(Record record)/*-{
-        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
-        var recordJS = record.@com.smartgwt.client.data.Record::getJsObj()();
-        self.deselectRecord(recordJS);
-     }-*/;
-
-    /**
-     * Deselect a {@link com.smartgwt.client.data.Record} passed in explicitly, or by index. <P> Synonym for
-     * <code>selectRecord(record, false)</code>
-     *
-     * @param record record (or row number) to deselect
-     */
-    public native void deselectRecord(int record)/*-{
-        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
-        self.selectRecord(record);
-     }-*/;
-
-    /**
-     * Deselect a list of {@link com.smartgwt.client.data.Record}s passed in explicitly, or by index. <P> Synonym
-     * for <code>selectRecords(records, false)</code>
-     *
-     * @param records records (or row numbers) to deselect
-     */
-    public native void deselectRecords(int[] records)/*-{
-        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
-        var recordsJS = @com.smartgwt.client.util.JSOHelper::convertToJavaScriptArray([I)(records);
-        self.deselectRecords(recordsJS);
-     }-*/;
-
-    /**
-     * Deselect a list of {@link com.smartgwt.client.data.Record}s passed in explicitly, or by index. <P> Synonym
-     * for <code>selectRecords(records, false)</code>
-     *
-     * @param records records (or row numbers) to deselect
-     */
-    public native void deselectRecords(Record[] records)/*-{
-        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
-        var recordsJS = @com.smartgwt.client.util.JSOHelper::convertToJavaScriptArray([Ljava/lang/Object;)(records);
-        self.deselectRecords(recordsJS);
-     }-*/;
-
-    /**
-     * Select/deselect a {@link com.smartgwt.client.data.Record} passed in explicitly, or by index.
-     *
-     * @param record record (or row number) to select
-     */
-    public native void selectRecord(Record record)/*-{
-        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
-        var recordJS = record.@com.smartgwt.client.data.Record::getJsObj()();
-        self.selectRecord(recordJS);
-     }-*/;
-
-    /**
-     * Select/deselect a {@link com.smartgwt.client.data.Record} passed in explicitly, or by index.
-     *
-     * @param record record (or row number) to select
-     */
-    public native void selectRecord(int record)/*-{
-        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
-        self.selectRecord(record);
-     }-*/;
-
-    /**
-     * Select/deselect a {@link com.smartgwt.client.data.Record} passed in explicitly, or by index.
-     *
-     * @param record   record (or row number) to select
-     * @param newState new selection state (if null, defaults to true)
-     */
-    public native void selectRecord(int record, boolean newState)/*-{
-        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
-        self.selectRecord(record, newState);
-     }-*/;
-
-    /**
-     * Select/deselect a {@link com.smartgwt.client.data.Record} passed in explicitly, or by index.
-     *
-     * @param record   record (or row number) to select
-     * @param newState new selection state (if null, defaults to true)
-     */
-    public native void selectRecord(Record record, boolean newState)/*-{
-        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
-        var recordJS = record.@com.smartgwt.client.data.Record::getJsObj()();
-        self.selectRecord(recordJS, newState);
-     }-*/;
-
-    /**
-     * Select/deselect a list of {@link com.smartgwt.client.data.Record}s passed in explicitly, or by index.
-     *
-     * @param records records (or row numbers) to select
-     */
-    public native void selectRecords(int[] records)/*-{
-        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
-        var recordsJS = @com.smartgwt.client.util.JSOHelper::convertToJavaScriptArray([I)(records);
-        self.selectRecord(recordsJS);
-     }-*/;
-
-    /**
-     * Select/deselect a list of {@link com.smartgwt.client.data.Record}s passed in explicitly, or by index.
-     *
-     * @param records records (or row numbers) to select
-     */
-    public native void selectRecords(int[] records, boolean newState)/*-{
-        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
-        var recordsJS = @com.smartgwt.client.util.JSOHelper::convertToJavaScriptArray([I)(records);
-        self.selectRecords(recordsJS, newState);
-     }-*/;
-
-    /**
-     * Select/deselect a list of {@link com.smartgwt.client.data.Record}s passed in explicitly, or by index.
-     *
-     * @param records records (or row numbers) to select
-     */
-    public native void selectRecords(Record[] records)/*-{
-        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
-        var recordsJS = @com.smartgwt.client.util.JSOHelper::convertToJavaScriptArray([Ljava/lang/Object;)(records);
-        self.selectRecords(recordsJS);
-     }-*/;
-
-    /**
-     * Select/deselect a list of {@link com.smartgwt.client.data.Record}s passed in explicitly, or by index.
-     *
-     * @param records  records (or row numbers) to select
-     * @param newState new selection state (if null, defaults to true)
-     */
-    public native void selectRecords(Record[] records, boolean newState)/*-{
-        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
-        var recordsJS = @com.smartgwt.client.util.JSOHelper::convertToJavaScriptArray([Ljava/lang/Object;)(records);
-        self.selectRecords(recordsJS, newState);
-     }-*/;
 
 
     private static ListGridRecord[] convertToListGridRecordArray(JavaScriptObject nativeArray) {
@@ -6605,26 +6196,6 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
         return valueJ;
     }-*/;
 
-    /**
-     * Simulates a drag / drop type transfer of the selected records in some other component to this component, without requiring any user interaction.  This method acts on the dropped records  exactly as if they had been dropped in an actual drag / drop interaction, including any  special databound behavior invoked by calling {@link com.smartgwt.client.widgets.DataBoundComponent#getDropValues} for each dropped record. <P> To transfer <b>all</b> data in, for example, a {@link com.smartgwt.client.widgets.grid.ListGrid}, call grid.selection.selectAll() first. <P> See the {@link com.smartgwt.client.docs.Dragging dragging} documentation for an overview of list grid drag/drop data transfer.
-     *
-     * @param source source component from which the records will be tranferred
-     */
-    public native void transferSelectedData(DataBoundComponent source) /*-{
-        var self = this.@com.smartgwt.client.widgets.DataBoundComponent::getOrCreateJsObj()();
-        self.transferSelectedData(source.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()());
-    }-*/;
-
-    /**
-     * Simulates a drag / drop type transfer of the selected records in some other component to this component, without requiring any user interaction.  This method acts on the dropped records  exactly as if they had been dropped in an actual drag / drop interaction, including any  special databound behavior invoked by calling {@link com.smartgwt.client.widgets.DataBoundComponent#getDropValues} for each dropped record. <P> To transfer <b>all</b> data in, for example, a {@link com.smartgwt.client.widgets.grid.ListGrid}, call grid.selection.selectAll() first. <P> See the {@link com.smartgwt.client.docs.Dragging dragging} documentation for an overview of list grid drag/drop data transfer.
-     *
-     * @param source source component from which the records will be tranferred
-     * @param index  target index (drop position) of the rows within this grid.
-     */
-    public native void transferSelectedData(DataBoundComponent source, int index) /*-{
-        var self = this.@com.smartgwt.client.widgets.DataBoundComponent::getOrCreateJsObj()();
-        self.transferSelectedData(source.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()(), index);
-    }-*/;
 
     /**
      * Set the validation errors for some row (replacing any pre-existant validation errors)
@@ -6952,6 +6523,381 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
             };
         }
     }-*/;
+
+
+
+
+
+
+    // ********************* DataBoundComponent Properties / Attributes ***********************
+
+    public void setDataPageSize(int dataPageSize) {
+        setAttribute("dataPageSize", dataPageSize, true);
+    }
+
+    public int getDataPageSize() {
+        return getAttributeAsInt("dataPageSize");
+    }
+
+    public void setUseAllDataSourceFields(Boolean useAllDataSourceFields) {
+        setAttribute("useAllDataSourceFields", useAllDataSourceFields, true);
+    }
+
+    public Boolean getUseAllDataSourceFields() {
+        return getAttributeAsBoolean("useAllDataSourceFields");
+    }
+
+    public void setShowHiddenFields(Boolean showHiddenFields) {
+        setAttribute("showHiddenFields", showHiddenFields, true);
+    }
+
+    public Boolean getShowHiddenFields() {
+        return getAttributeAsBoolean("showHiddenFields");
+    }
+
+    public void setShowDetailFields(Boolean showDetailFields) {
+        setAttribute("showDetailFields", showDetailFields, true);
+    }
+
+    public Boolean getShowDetailFields() {
+        return getAttributeAsBoolean("showDetailFields");
+    }
+
+    public void setShowComplexFields(Boolean showComplexFields) {
+        setAttribute("showComplexFields", showComplexFields, true);
+    }
+
+    public Boolean getShowComplexFields() {
+        return getAttributeAsBoolean("showComplexFields");
+    }
+
+    public void setFetchOperation(String fetchOperation) {
+        setAttribute("fetchOperation", fetchOperation, true);
+    }
+
+    public String getFetchOperation() {
+        return getAttributeAsString("fetchOperation");
+    }
+
+    public void setUpdateOperation(String updateOperation) {
+        setAttribute("updateOperation", updateOperation, true);
+    }
+
+    public String getUpdateOperation() {
+        return getAttributeAsString("updateOperation");
+    }
+
+    public void setAddOperation(String addOperation) {
+        setAttribute("addOperation", addOperation, true);
+    }
+
+    public String getAddOperation() {
+        return getAttributeAsString("addOperation");
+    }
+
+    public void setRemoveOperation(String removeOperation) {
+        setAttribute("removeOperation", removeOperation, true);
+    }
+
+    public String getRemoveOperation() {
+        return getAttributeAsString("removeOperation");
+    }
+
+    public void setExportFields(String[] exportFields) {
+        setAttribute("exportFields", exportFields, true);
+    }
+    public String[] getExportFields()  {
+         return getAttributeAsStringArray("exportFields");
+     }
+
+    public void setExportAll(Boolean exportAll) {
+        setAttribute("exportAll", exportAll, true);
+    }
+
+    public Boolean getExportAll() {
+        return getAttributeAsBoolean("exportAll");
+    }
+
+    public void setPreventDuplicates(Boolean preventDuplicates) throws IllegalStateException {
+        setAttribute("preventDuplicates", preventDuplicates, false);
+    }
+
+    public Boolean getPreventDuplicates() {
+        return getAttributeAsBoolean("preventDuplicates");
+    }
+
+    public void setDuplicateDragMessage(String duplicateDragMessage) throws IllegalStateException {
+        setAttribute("duplicateDragMessage", duplicateDragMessage, false);
+    }
+
+    public String getDuplicateDragMessage() {
+        return getAttributeAsString("duplicateDragMessage");
+    }
+
+    public void setAddDropValues(Boolean addDropValues) {
+        setAttribute("addDropValues", addDropValues, true);
+    }
+
+    public Boolean getAddDropValues() {
+        return getAttributeAsBoolean("addDropValues");
+    }
+
+    public void setDropValues(Map dropValues) {
+         setAttribute("dropValues", dropValues, true);
+     }
+
+    public Map getDropValues()  {
+         return getAttributeAsMap("dropValues");
+     }
+
+    public void setUseFlatFields(Boolean useFlatFields) throws IllegalStateException {
+        setAttribute("useFlatFields", useFlatFields, false);
+    }
+
+    public Boolean getUseFlatFields() {
+        return getAttributeAsBoolean("useFlatFields");
+    }
+
+    public void setHiliteProperty(String hiliteProperty) {
+        setAttribute("hiliteProperty", hiliteProperty, true);
+    }
+
+    public String getHiliteProperty() {
+        return getAttributeAsString("hiliteProperty");
+    }
+
+    public void setDragDataAction(DragDataAction dragDataAction) {
+        setAttribute("dragDataAction", dragDataAction.getValue(), true);
+    }
+
+    public DragDataAction getDragDataAction() {
+        return (DragDataAction) EnumUtil.getEnum(DragDataAction.values(), getAttribute("dragDataAction"));
+    }
+
+    public void setDragTrackerStyle(String dragTrackerStyle) {
+        setAttribute("dragTrackerStyle", dragTrackerStyle, true);
+    }
+
+    public String getDragTrackerStyle() {
+        return getAttributeAsString("dragTrackerStyle");
+    }
+
+    public void setCanAddFormulaFields(Boolean canAddFormulaFields) {
+        setAttribute("canAddFormulaFields", canAddFormulaFields, true);
+    }
+
+    public native void addSummaryField() /*-{
+         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
+         self.addSummaryField();
+     }-*/;
+
+    public Boolean getCanAddFormulaFields() {
+        return getAttributeAsBoolean("canAddFormulaFields");
+    }
+
+    public void setAddFormulaFieldText(String addFormulaFieldText) {
+        setAttribute("addFormulaFieldText", addFormulaFieldText, true);
+    }
+
+    public String getAddFormulaFieldText() {
+        return getAttributeAsString("addFormulaFieldText");
+    }
+
+    public void setEditFormulaFieldText(String editFormulaFieldText) {
+        setAttribute("editFormulaFieldText", editFormulaFieldText, true);
+    }
+
+    public String getEditFormulaFieldText() {
+        return getAttributeAsString("editFormulaFieldText");
+    }
+
+    public void setCanAddSummaryFields(Boolean canAddSummaryFields) {
+        setAttribute("canAddSummaryFields", canAddSummaryFields, true);
+    }
+
+    public Boolean getCanAddSummaryFields() {
+        return getAttributeAsBoolean("canAddSummaryFields");
+    }
+
+    public void setAddSummaryFieldText(String addSummaryFieldText) {
+        setAttribute("addSummaryFieldText", addSummaryFieldText, true);
+    }
+
+    public String getAddSummaryFieldText() {
+        return getAttributeAsString("addSummaryFieldText");
+    }
+
+    public void setEditSummaryFieldText(String editSummaryFieldText) {
+        setAttribute("editSummaryFieldText", editSummaryFieldText, true);
+    }
+
+    public String getEditSummaryFieldText() {
+        return getAttributeAsString("editSummaryFieldText");
+    }
+
+    // ********************* Methods ***********************
+
+
+    public native void selectRecord(Record record)/*-{
+        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
+        var recordJS = record.@com.smartgwt.client.data.Record::getJsObj()();
+        self.selectRecord(recordJS);
+     }-*/;
+
+    public native void selectRecord(int record)/*-{
+        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
+        self.selectRecord(record);
+     }-*/;
+
+    public native void selectRecord(int record, boolean newState)/*-{
+        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
+        self.selectRecord(record, newState);
+     }-*/;
+
+    public native void selectRecord(Record record, boolean newState)/*-{
+        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
+        var recordJS = record.@com.smartgwt.client.data.Record::getJsObj()();
+        self.selectRecord(recordJS, newState);
+     }-*/;
+
+    public native void selectRecords(int[] records)/*-{
+        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
+        var recordsJS = @com.smartgwt.client.util.JSOHelper::convertToJavaScriptArray([I)(records);
+        self.selectRecord(recordsJS);
+     }-*/;
+
+    public native void selectRecords(int[] records, boolean newState)/*-{
+        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
+        var recordsJS = @com.smartgwt.client.util.JSOHelper::convertToJavaScriptArray([I)(records);
+        self.selectRecords(recordsJS, newState);
+     }-*/;
+
+    public native void selectRecords(Record[] records)/*-{
+        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
+        var recordsJS = @com.smartgwt.client.util.JSOHelper::convertToJavaScriptArray([Ljava/lang/Object;)(records);
+        self.selectRecords(recordsJS);
+     }-*/;
+
+    public native void selectRecords(Record[] records, boolean newState)/*-{
+        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
+        var recordsJS = @com.smartgwt.client.util.JSOHelper::convertToJavaScriptArray([Ljava/lang/Object;)(records);
+        self.selectRecords(recordsJS, newState);
+     }-*/;
+
+    public native void deselectRecord(Record record)/*-{
+        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
+        var recordJS = record.@com.smartgwt.client.data.Record::getJsObj()();
+        self.deselectRecord(recordJS);
+     }-*/;
+
+    public native void deselectRecord(int record)/*-{
+        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
+        self.selectRecord(record);
+     }-*/;
+
+    public native void deselectRecords(int[] records)/*-{
+        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
+        var recordsJS = @com.smartgwt.client.util.JSOHelper::convertToJavaScriptArray([I)(records);
+        self.deselectRecords(recordsJS);
+     }-*/;
+
+    public native void deselectRecords(Record[] records)/*-{
+        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
+        var recordsJS = @com.smartgwt.client.util.JSOHelper::convertToJavaScriptArray([Ljava/lang/Object;)(records);
+        self.deselectRecords(recordsJS);
+     }-*/;
+
+    public native void selectAllRecords() /*-{
+         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
+         self.selectAllRecords();
+     }-*/;
+
+    public native void deselectAllRecords() /*-{
+         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
+         self.deselectAllRecords();
+     }-*/;
+
+    public native Boolean anySelected() /*-{
+         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
+         var retVal =self.anySelected();
+         if(retVal == null || retVal === undefined) {
+             return null;
+         } else {
+             return @com.smartgwt.client.util.JSOHelper::toBoolean(Z)(retVal);
+         }
+     }-*/;
+
+    public native void enableHilite(String hiliteID) /*-{
+         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
+         self.enableHilite(hiliteID);
+     }-*/;
+
+    public native void enableHilite(String hiliteID, boolean enable) /*-{
+         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
+         self.enableHilite(hiliteID, enable);
+     }-*/;
+
+    public native void disableHilite(String hiliteID) /*-{
+         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
+         self.disableHilite(hiliteID);
+     }-*/;
+
+    public native void enableHiliting() /*-{
+         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
+         self.enableHiliting();
+     }-*/;
+
+    public native void enableHiliting(boolean enable) /*-{
+         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
+         self.enableHiliting(enable);
+     }-*/;
+
+    public native void disableHiliting() /*-{
+         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
+         self.disableHiliting();
+     }-*/;
+
+    public native Record[] getDragData() /*-{
+        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
+        var recordsJS = self.getDragData();
+        return @com.smartgwt.client.data.Record::convertToRecordArray(Lcom/google/gwt/core/client/JavaScriptObject;)(recordsJS);
+     }-*/;
+
+    public native void transferSelectedData(DataBoundComponent source) /*-{
+         var self = this.@com.smartgwt.client.widgets.DataBoundComponent::getOrCreateJsObj()();
+         self.transferSelectedData(source.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()());
+     }-*/;
+
+    public native void transferSelectedData(DataBoundComponent source, int index) /*-{
+         var self = this.@com.smartgwt.client.widgets.DataBoundComponent::getOrCreateJsObj()();
+         self.transferSelectedData(source.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()(), index);
+     }-*/;
+
+    public native int getRecordIndex(Record record) /*-{
+         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
+         return self.getRecordIndex(record);
+     }-*/;
+
+    public native String getTitleFieldValue(Record record) /*-{
+         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
+         return self.getTitleFieldValue(record);
+     }-*/;
+
+    public void setTitleField(String titleField) {
+        setAttribute("titleField", titleField, true);
+    }
+
+    public String getTitleField()  {
+        return getAttributeAsString("titleField");
+    }
+
+    public void setDataSource(DataSource dataSource) {
+        setAttribute("dataSource", dataSource.getOrCreateJsObj(), true);
+    }
+
+    public DataSource getDataSource() {
+        return DataSource.getOrCreateRef(getAttributeAsJavaScriptObject("dataSource"));
+    }
 
 }
 

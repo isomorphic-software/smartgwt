@@ -29,7 +29,7 @@ import com.smartgwt.client.data.Record;
 import java.util.Date;
 import java.util.Map;
 
-public class DataClass extends JsObject implements Record {
+public class DataClass extends JsObject {
 
     public DataClass() {
         super(JSOHelper.createObject());

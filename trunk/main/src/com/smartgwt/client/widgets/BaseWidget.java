@@ -340,6 +340,14 @@ public abstract class BaseWidget extends Widget implements HasHandlers {
         }
     }
 
+    protected String[] getAttributeAsStringArray(String attribute) {
+        if (isCreated()) {
+            return getPropertyAsStringArray(attribute);
+        } else {
+            return JSOHelper.getAttributeAsStringArray(config, attribute);
+        }
+    }
+
     protected Date getAttributeAsDate(String attribute) {
         if (isCreated()) {
             return getPropertyAsDate(attribute);
@@ -396,10 +404,24 @@ public abstract class BaseWidget extends Widget implements HasHandlers {
         }
     }
 
+    protected Map getAttributeAsMap(String attribute) {
+        if (isCreated()) {
+            return getPropertyAsMap(attribute);
+        } else {
+            return JSOHelper.getAttributeAsMap(config, attribute);
+        }
+    }
+
     private native String getPropertyAsString(String property)/*-{
         var widget = this.@com.smartgwt.client.widgets.BaseWidget::getJsObj()();
         var ret = widget.getProperty(property);
         return ret === undefined ? null : String(ret) ;
+    }-*/;
+
+    private native String[] getPropertyAsStringArray(String property)/*-{
+        var widget = this.@com.smartgwt.client.widgets.BaseWidget::getJsObj()();
+        var ret = widget.getProperty(property);
+        return ret === undefined ? null : @com.smartgwt.client.util.JSOHelper::convertToJavaStringArray(Lcom/google/gwt/core/client/JavaScriptObject;)(ret);
     }-*/;
 
     private native Date getPropertyAsDate(String property)/*-{
@@ -442,6 +464,12 @@ public abstract class BaseWidget extends Widget implements HasHandlers {
         var widget = this.@com.smartgwt.client.widgets.BaseWidget::getJsObj()();
         var ret = widget.getProperty(property);
         return ret == null || ret === undefined ? null : @com.smartgwt.client.util.JSOHelper::toBoolean(Z)(ret);
+    }-*/;
+
+    private native Map getPropertyAsMap(String property)/*-{
+        var widget = this.@com.smartgwt.client.widgets.BaseWidget::getJsObj()();
+        var ret = widget.getProperty(property);
+        return ret == null || ret === undefined ? null : @com.smartgwt.client.util.JSOHelper::convertToMap(Lcom/google/gwt/core/client/JavaScriptObject;)(ret);
     }-*/;
 
     private void error(String attribute, String value) throws IllegalStateException {

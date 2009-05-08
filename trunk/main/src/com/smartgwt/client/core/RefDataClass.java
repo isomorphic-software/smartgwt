@@ -40,21 +40,17 @@ public class RefDataClass extends DataClass {
     }
 
     public static RefDataClass getRef(JavaScriptObject jsObj) {
-        /*if(!GWT.isScript()) {
-            if(jsObj instanceof String) {
-                return null;
-            }
-        }*/
+
         if (jsObj == null) {
             return null;
         } else {
             Object ref = JSOHelper.getAttributeAsObject((JavaScriptObject) jsObj, SC.REF);
             if (ref != null && !(ref instanceof RefDataClass)) {
-                //SC.debugger();
                 return null;
             } else {
                 return (RefDataClass) ref;
             }
         }
     }
+    
 }

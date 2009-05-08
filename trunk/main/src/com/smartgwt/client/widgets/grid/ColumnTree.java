@@ -496,94 +496,15 @@ public class ColumnTree extends Layout  implements DataBoundComponent, com.smart
 
 
 
-        /**
-         * Select all records in the supplied column (the first column if none is passed)&#010&#010
-         */
-        public native void selectAllRecords() /*-{
-            var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
-            self.selectAllRecords();
-        }-*/;
 
-        /**
-         * Select all records in the supplied column (the first column if none is passed)&#010&#010
-         * @param colNum Column number
-         */
-        public native void selectAllRecords(int colNum) /*-{
-            var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
-            self.selectAllRecords(colNum);
-        }-*/;
 
-        /**
-         * Deselect all records in the supplied column (the first column if none is passed)&#010&#010
-         */
-        public native void deselectAllRecords() /*-{
-            var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
-            self.deselectAllRecords();
-        }-*/;
-
-        /**
-         * Deselect all records in the supplied column (the first column if none is passed)&#010&#010
-         * @param colNum Column number
-         */
-        public native void deselectAllRecords(int colNum) /*-{
-            var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
-            self.deselectAllRecords(colNum);
-        }-*/;
-
-        /**
-         * Whether at least one item is selected in the supplied column (the first column if none is passed)&#010&#010
-         *
-         * @return true == at least one item is selected in the supplied column,  false == nothing at all is selected in the supplied column (note that there may be selections&#010 in other columns in this columnTree)
-         */
-        public native Boolean anySelected() /*-{
-            var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
-            var retVal =self.anySelected();
-            if(retVal == null || retVal === undefined) {
-                return null;
-            } else {
-                return @com.smartgwt.client.util.JSOHelper::toBoolean(Z)(retVal);
-            }
-        }-*/;
-
-        /**
-         * Whether at least one item is selected in the supplied column (the first column if none is passed)&#010&#010
-         * @param colNum Column number
-         *
-         * @return true == at least one item is selected in the supplied column,  false == nothing at all is selected in the supplied column (note that there may be selections&#010 in other columns in this columnTree)
-         */
-        public native Boolean anySelected(int colNum) /*-{
-            var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
-            var retVal =self.anySelected(colNum);
-            if(retVal == null || retVal === undefined) {
-                return null;
-            } else {
-                return @com.smartgwt.client.util.JSOHelper::toBoolean(Z)(retVal);
-            }
-        }-*/;
 
     // ********************* Static Methods ***********************
 
 
 
 
-    /**
-     * The DataSource that this component should bind to for default fields and for performing&#010 DataSource
-     * requests<P>
-     *
-     * @param dataSource dataSource Default value is null
-     */
-    public void setDataSource(DataSource dataSource) {
-        setAttribute("dataSource", dataSource.getOrCreateJsObj(), true);
-    }
 
-    /**
-     * The DataSource that this component should bind to for default fields and for performing {@link com.smartgwt.client.data.DSRequest}. <P> Can be specified as either a DataSource instance or the String ID of a DataSource.
-     *
-     * @return DataSource
-     */
-    public DataSource getDataSource() {
-        return DataSource.getOrCreateRef(getAttributeAsJavaScriptObject("dataSource"));
-    }
     
     public void setFields(ListGridField... fields) {
         setAttribute("fields", fields, true);
@@ -773,28 +694,10 @@ public class ColumnTree extends Layout  implements DataBoundComponent, com.smart
         }, requestPropertiesJS);
     }-*/;
 
-
-    public native void deselectRecord(Record record)/*-{
-        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
-        var recordJS = record.@com.smartgwt.client.data.Record::getJsObj()();
-        self.deselectRecord(recordJS);
-     }-*/;
-
     public native void deselectRecord(Record record, int colNum)/*-{
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
         var recordJS = record.@com.smartgwt.client.data.Record::getJsObj()();
         self.deselectRecord(recordJS, colNum);
-     }-*/;
-
-    /**
-     * Deselect a {@link com.smartgwt.client.data.Record} passed in explicitly, or by index. <P> Synonym for
-     * <code>selectRecord(record, false)</code>
-     *
-     * @param record row number to deselect
-     */
-    public native void deselectRecord(int record)/*-{
-        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
-        self.selectRecord(record);
      }-*/;
 
     /**
@@ -807,18 +710,6 @@ public class ColumnTree extends Layout  implements DataBoundComponent, com.smart
     public native void deselectRecord(int record, int colNum)/*-{
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
         self.selectRecord(record, colNum);
-     }-*/;
-
-    /**
-     * Deselect a list of {@link com.smartgwt.client.data.Record}s passed in explicitly, or by index. <P> Synonym
-     * for <code>selectRecords(records, false)</code>
-     *
-     * @param records records (or row numbers) to deselect
-     */
-    public native void deselectRecords(int[] records)/*-{
-        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
-        var recordsJS = @com.smartgwt.client.util.JSOHelper::convertToJavaScriptArray([I)(records);
-        self.deselectRecords(recordsJS);
      }-*/;
 
     /**
@@ -862,39 +753,6 @@ public class ColumnTree extends Layout  implements DataBoundComponent, com.smart
     /**
      * Select/deselect a {@link com.smartgwt.client.data.Record} passed in explicitly, or by index.
      *
-     * @param record record (or row number) to select
-     */
-    public native void selectRecord(Record record)/*-{
-        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
-        var recordJS = record.@com.smartgwt.client.data.Record::getJsObj()();
-        self.selectRecord(recordJS);
-     }-*/;
-
-
-    /**
-     * Select/deselect a {@link com.smartgwt.client.data.Record} passed in explicitly, or by index.
-     *
-     * @param record record (or row number) to select
-     */
-    public native void selectRecord(int record)/*-{
-        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
-        self.selectRecord(record);
-     }-*/;
-
-    /**
-     * Select/deselect a {@link com.smartgwt.client.data.Record} passed in explicitly, or by index.
-     *
-     * @param record   record (or row number) to select
-     * @param newState new selection state (if null, defaults to true)
-     */
-    public native void selectRecord(int record, boolean newState)/*-{
-        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
-        self.selectRecord(record, newState);
-     }-*/;
-
-    /**
-     * Select/deselect a {@link com.smartgwt.client.data.Record} passed in explicitly, or by index.
-     *
      * @param record   record (or row number) to select
      * @param newState new selection state (if null, defaults to true)
      * @param colNum   Column number
@@ -902,18 +760,6 @@ public class ColumnTree extends Layout  implements DataBoundComponent, com.smart
     public native void selectRecord(int record, boolean newState, int colNum)/*-{
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
         self.selectRecord(record, newState, colNum);
-     }-*/;
-
-    /**
-     * Select/deselect a {@link com.smartgwt.client.data.Record} passed in explicitly, or by index.
-     *
-     * @param record   record (or row number) to select
-     * @param newState new selection state (if null, defaults to true)
-     */
-    public native void selectRecord(Record record, boolean newState)/*-{
-        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
-        var recordJS = record.@com.smartgwt.client.data.Record::getJsObj()();
-        self.selectRecord(recordJS, newState);
      }-*/;
 
     /**
@@ -932,29 +778,6 @@ public class ColumnTree extends Layout  implements DataBoundComponent, com.smart
     /**
      * Select/deselect a list of {@link com.smartgwt.client.data.Record}s passed in explicitly, or by index.
      *
-     * @param records records (or row numbers) to select
-     */
-    public native void selectRecords(int[] records)/*-{
-        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
-        var recordsJS = @com.smartgwt.client.util.JSOHelper::convertToJavaScriptArray([I)(records);
-        self.selectRecords(recordsJS);
-     }-*/;
-
-    /**
-     * Select/deselect a list of {@link com.smartgwt.client.data.Record}s passed in explicitly, or by index.
-     *
-     * @param records  records (or row numbers) to select
-     * @param newState new selection state (if null, defaults to true)
-     */
-    public native void selectRecords(int[] records, boolean newState)/*-{
-        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
-        var recordsJS = @com.smartgwt.client.util.JSOHelper::convertToJavaScriptArray([I)(records);
-        self.selectRecords(recordsJS, newState);
-     }-*/;
-
-    /**
-     * Select/deselect a list of {@link com.smartgwt.client.data.Record}s passed in explicitly, or by index.
-     *
      * @param records  records (or row numbers) to select
      * @param newState new selection state (if null, defaults to true)
      * @param colNum   Column number
@@ -965,36 +788,14 @@ public class ColumnTree extends Layout  implements DataBoundComponent, com.smart
         self.selectRecords(recordsJS, newState, colNum);
      }-*/;
 
-    /**
-     * Select/deselect a list of {@link com.smartgwt.client.data.Record}s passed in explicitly, or by index.
-     *
-     * @param records records (or row numbers) to select
-     */
-    public native void selectRecords(Record[] records)/*-{
-        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
-        var recordsJS = @com.smartgwt.client.util.JSOHelper::convertToJavaScriptArray([Ljava/lang/Object;)(records);
-        self.selectRecords(recordsJS);
-     }-*/;
 
     /**
      * Select/deselect a list of {@link com.smartgwt.client.data.Record}s passed in explicitly, or by index.
      *
      * @param records  records (or row numbers) to select
      * @param newState new selection state (if null, defaults to true)
+     * @param colNum   Column number
      */
-    public native void selectRecords(Record[] records, boolean newState)/*-{
-        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
-        var recordsJS = @com.smartgwt.client.util.JSOHelper::convertToJavaScriptArray([Ljava/lang/Object;)(records);
-        self.selectRecords(recordsJS, newState);
-     }-*/;
-
-        /**
-         * Select/deselect a list of {@link com.smartgwt.client.data.Record}s passed in explicitly, or by index.
-         *
-         * @param records  records (or row numbers) to select
-         * @param newState new selection state (if null, defaults to true)
-         * @param colNum   Column number
-         */
     public native void selectRecords(Record[] records, boolean newState, int colNum)/*-{
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
         var recordsJS = @com.smartgwt.client.util.JSOHelper::convertToJavaScriptArray([Ljava/lang/Object;)(records);
@@ -1012,6 +813,41 @@ public class ColumnTree extends Layout  implements DataBoundComponent, com.smart
         var records = self.getSelection(colNum);
         return @com.smartgwt.client.widgets.grid.ListGrid::convertToListGridRecordArray(Lcom/google/gwt/core/client/JavaScriptObject;)(records);
     }-*/;
+
+    /**
+     * Select all records in the supplied column (the first column if none is passed)&#010&#010
+     * @param colNum Column number
+     */
+    public native void selectAllRecords(int colNum) /*-{
+        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
+        self.selectAllRecords(colNum);
+    }-*/;
+
+    /**
+     * Deselect all records in the supplied column (the first column if none is passed)&#010&#010
+     * @param colNum Column number
+     */
+    public native void deselectAllRecords(int colNum) /*-{
+        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
+        self.deselectAllRecords(colNum);
+    }-*/;
+
+    /**
+     * Whether at least one item is selected in the supplied column (the first column if none is passed)&#010&#010
+     * @param colNum Column number
+     *
+     * @return true == at least one item is selected in the supplied column,  false == nothing at all is selected in the supplied column (note that there may be selections&#010 in other columns in this columnTree)
+     */
+    public native Boolean anySelected(int colNum) /*-{
+        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
+        var retVal =self.anySelected(colNum);
+        if(retVal == null || retVal === undefined) {
+            return null;
+        } else {
+            return @com.smartgwt.client.util.JSOHelper::toBoolean(Z)(retVal);
+        }
+    }-*/;
+
 
     /**
      * Add a onNodeSelected handler.
@@ -1049,6 +885,381 @@ public class ColumnTree extends Layout  implements DataBoundComponent, com.smart
             };
         }
     }-*/;    
+
+
+
+
+
+
+    // ********************* DataBoundComponent Properties / Attributes ***********************
+
+    public void setDataPageSize(int dataPageSize) {
+        setAttribute("dataPageSize", dataPageSize, true);
+    }
+
+    public int getDataPageSize() {
+        return getAttributeAsInt("dataPageSize");
+    }
+
+    public void setUseAllDataSourceFields(Boolean useAllDataSourceFields) {
+        setAttribute("useAllDataSourceFields", useAllDataSourceFields, true);
+    }
+
+    public Boolean getUseAllDataSourceFields() {
+        return getAttributeAsBoolean("useAllDataSourceFields");
+    }
+
+    public void setShowHiddenFields(Boolean showHiddenFields) {
+        setAttribute("showHiddenFields", showHiddenFields, true);
+    }
+
+    public Boolean getShowHiddenFields() {
+        return getAttributeAsBoolean("showHiddenFields");
+    }
+
+    public void setShowDetailFields(Boolean showDetailFields) {
+        setAttribute("showDetailFields", showDetailFields, true);
+    }
+
+    public Boolean getShowDetailFields() {
+        return getAttributeAsBoolean("showDetailFields");
+    }
+
+    public void setShowComplexFields(Boolean showComplexFields) {
+        setAttribute("showComplexFields", showComplexFields, true);
+    }
+
+    public Boolean getShowComplexFields() {
+        return getAttributeAsBoolean("showComplexFields");
+    }
+
+    public void setFetchOperation(String fetchOperation) {
+        setAttribute("fetchOperation", fetchOperation, true);
+    }
+
+    public String getFetchOperation() {
+        return getAttributeAsString("fetchOperation");
+    }
+
+    public void setUpdateOperation(String updateOperation) {
+        setAttribute("updateOperation", updateOperation, true);
+    }
+
+    public String getUpdateOperation() {
+        return getAttributeAsString("updateOperation");
+    }
+
+    public void setAddOperation(String addOperation) {
+        setAttribute("addOperation", addOperation, true);
+    }
+
+    public String getAddOperation() {
+        return getAttributeAsString("addOperation");
+    }
+
+    public void setRemoveOperation(String removeOperation) {
+        setAttribute("removeOperation", removeOperation, true);
+    }
+
+    public String getRemoveOperation() {
+        return getAttributeAsString("removeOperation");
+    }
+
+    public void setExportFields(String[] exportFields) {
+        setAttribute("exportFields", exportFields, true);
+    }
+    public String[] getExportFields()  {
+         return getAttributeAsStringArray("exportFields");
+     }
+
+    public void setExportAll(Boolean exportAll) {
+        setAttribute("exportAll", exportAll, true);
+    }
+
+    public Boolean getExportAll() {
+        return getAttributeAsBoolean("exportAll");
+    }
+
+    public void setPreventDuplicates(Boolean preventDuplicates) throws IllegalStateException {
+        setAttribute("preventDuplicates", preventDuplicates, false);
+    }
+
+    public Boolean getPreventDuplicates() {
+        return getAttributeAsBoolean("preventDuplicates");
+    }
+
+    public void setDuplicateDragMessage(String duplicateDragMessage) throws IllegalStateException {
+        setAttribute("duplicateDragMessage", duplicateDragMessage, false);
+    }
+
+    public String getDuplicateDragMessage() {
+        return getAttributeAsString("duplicateDragMessage");
+    }
+
+    public void setAddDropValues(Boolean addDropValues) {
+        setAttribute("addDropValues", addDropValues, true);
+    }
+
+    public Boolean getAddDropValues() {
+        return getAttributeAsBoolean("addDropValues");
+    }
+
+    public void setDropValues(Map dropValues) {
+         setAttribute("dropValues", dropValues, true);
+     }
+
+    public Map getDropValues()  {
+         return getAttributeAsMap("dropValues");
+     }
+
+    public void setUseFlatFields(Boolean useFlatFields) throws IllegalStateException {
+        setAttribute("useFlatFields", useFlatFields, false);
+    }
+
+    public Boolean getUseFlatFields() {
+        return getAttributeAsBoolean("useFlatFields");
+    }
+
+    public void setHiliteProperty(String hiliteProperty) {
+        setAttribute("hiliteProperty", hiliteProperty, true);
+    }
+
+    public String getHiliteProperty() {
+        return getAttributeAsString("hiliteProperty");
+    }
+
+    public void setDragDataAction(DragDataAction dragDataAction) {
+        setAttribute("dragDataAction", dragDataAction.getValue(), true);
+    }
+
+    public DragDataAction getDragDataAction() {
+        return (DragDataAction) EnumUtil.getEnum(DragDataAction.values(), getAttribute("dragDataAction"));
+    }
+
+    public void setDragTrackerStyle(String dragTrackerStyle) {
+        setAttribute("dragTrackerStyle", dragTrackerStyle, true);
+    }
+
+    public String getDragTrackerStyle() {
+        return getAttributeAsString("dragTrackerStyle");
+    }
+
+    public void setCanAddFormulaFields(Boolean canAddFormulaFields) {
+        setAttribute("canAddFormulaFields", canAddFormulaFields, true);
+    }
+
+    public native void addSummaryField() /*-{
+         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
+         self.addSummaryField();
+     }-*/;
+
+    public Boolean getCanAddFormulaFields() {
+        return getAttributeAsBoolean("canAddFormulaFields");
+    }
+
+    public void setAddFormulaFieldText(String addFormulaFieldText) {
+        setAttribute("addFormulaFieldText", addFormulaFieldText, true);
+    }
+
+    public String getAddFormulaFieldText() {
+        return getAttributeAsString("addFormulaFieldText");
+    }
+
+    public void setEditFormulaFieldText(String editFormulaFieldText) {
+        setAttribute("editFormulaFieldText", editFormulaFieldText, true);
+    }
+
+    public String getEditFormulaFieldText() {
+        return getAttributeAsString("editFormulaFieldText");
+    }
+
+    public void setCanAddSummaryFields(Boolean canAddSummaryFields) {
+        setAttribute("canAddSummaryFields", canAddSummaryFields, true);
+    }
+
+    public Boolean getCanAddSummaryFields() {
+        return getAttributeAsBoolean("canAddSummaryFields");
+    }
+
+    public void setAddSummaryFieldText(String addSummaryFieldText) {
+        setAttribute("addSummaryFieldText", addSummaryFieldText, true);
+    }
+
+    public String getAddSummaryFieldText() {
+        return getAttributeAsString("addSummaryFieldText");
+    }
+
+    public void setEditSummaryFieldText(String editSummaryFieldText) {
+        setAttribute("editSummaryFieldText", editSummaryFieldText, true);
+    }
+
+    public String getEditSummaryFieldText() {
+        return getAttributeAsString("editSummaryFieldText");
+    }
+
+    // ********************* Methods ***********************
+
+
+    public native void selectRecord(Record record)/*-{
+        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
+        var recordJS = record.@com.smartgwt.client.data.Record::getJsObj()();
+        self.selectRecord(recordJS);
+     }-*/;
+
+    public native void selectRecord(int record)/*-{
+        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
+        self.selectRecord(record);
+     }-*/;
+
+    public native void selectRecord(int record, boolean newState)/*-{
+        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
+        self.selectRecord(record, newState);
+     }-*/;
+
+    public native void selectRecord(Record record, boolean newState)/*-{
+        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
+        var recordJS = record.@com.smartgwt.client.data.Record::getJsObj()();
+        self.selectRecord(recordJS, newState);
+     }-*/;
+
+    public native void selectRecords(int[] records)/*-{
+        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
+        var recordsJS = @com.smartgwt.client.util.JSOHelper::convertToJavaScriptArray([I)(records);
+        self.selectRecord(recordsJS);
+     }-*/;
+
+    public native void selectRecords(int[] records, boolean newState)/*-{
+        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
+        var recordsJS = @com.smartgwt.client.util.JSOHelper::convertToJavaScriptArray([I)(records);
+        self.selectRecords(recordsJS, newState);
+     }-*/;
+
+    public native void selectRecords(Record[] records)/*-{
+        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
+        var recordsJS = @com.smartgwt.client.util.JSOHelper::convertToJavaScriptArray([Ljava/lang/Object;)(records);
+        self.selectRecords(recordsJS);
+     }-*/;
+
+    public native void selectRecords(Record[] records, boolean newState)/*-{
+        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
+        var recordsJS = @com.smartgwt.client.util.JSOHelper::convertToJavaScriptArray([Ljava/lang/Object;)(records);
+        self.selectRecords(recordsJS, newState);
+     }-*/;
+
+    public native void deselectRecord(Record record)/*-{
+        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
+        var recordJS = record.@com.smartgwt.client.data.Record::getJsObj()();
+        self.deselectRecord(recordJS);
+     }-*/;
+
+    public native void deselectRecord(int record)/*-{
+        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
+        self.selectRecord(record);
+     }-*/;
+
+    public native void deselectRecords(int[] records)/*-{
+        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
+        var recordsJS = @com.smartgwt.client.util.JSOHelper::convertToJavaScriptArray([I)(records);
+        self.deselectRecords(recordsJS);
+     }-*/;
+
+    public native void deselectRecords(Record[] records)/*-{
+        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
+        var recordsJS = @com.smartgwt.client.util.JSOHelper::convertToJavaScriptArray([Ljava/lang/Object;)(records);
+        self.deselectRecords(recordsJS);
+     }-*/;
+
+    public native void selectAllRecords() /*-{
+         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
+         self.selectAllRecords();
+     }-*/;
+
+    public native void deselectAllRecords() /*-{
+         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
+         self.deselectAllRecords();
+     }-*/;
+
+    public native Boolean anySelected() /*-{
+         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
+         var retVal =self.anySelected();
+         if(retVal == null || retVal === undefined) {
+             return null;
+         } else {
+             return @com.smartgwt.client.util.JSOHelper::toBoolean(Z)(retVal);
+         }
+     }-*/;
+
+    public native void enableHilite(String hiliteID) /*-{
+         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
+         self.enableHilite(hiliteID);
+     }-*/;
+
+    public native void enableHilite(String hiliteID, boolean enable) /*-{
+         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
+         self.enableHilite(hiliteID, enable);
+     }-*/;
+
+    public native void disableHilite(String hiliteID) /*-{
+         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
+         self.disableHilite(hiliteID);
+     }-*/;
+
+    public native void enableHiliting() /*-{
+         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
+         self.enableHiliting();
+     }-*/;
+
+    public native void enableHiliting(boolean enable) /*-{
+         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
+         self.enableHiliting(enable);
+     }-*/;
+
+    public native void disableHiliting() /*-{
+         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
+         self.disableHiliting();
+     }-*/;
+
+    public native Record[] getDragData() /*-{
+        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
+        var recordsJS = self.getDragData();
+        return @com.smartgwt.client.data.Record::convertToRecordArray(Lcom/google/gwt/core/client/JavaScriptObject;)(recordsJS);
+     }-*/;
+
+    public native void transferSelectedData(DataBoundComponent source) /*-{
+         var self = this.@com.smartgwt.client.widgets.DataBoundComponent::getOrCreateJsObj()();
+         self.transferSelectedData(source.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()());
+     }-*/;
+
+    public native void transferSelectedData(DataBoundComponent source, int index) /*-{
+         var self = this.@com.smartgwt.client.widgets.DataBoundComponent::getOrCreateJsObj()();
+         self.transferSelectedData(source.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()(), index);
+     }-*/;
+
+    public native int getRecordIndex(Record record) /*-{
+         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
+         return self.getRecordIndex(record);
+     }-*/;
+
+    public native String getTitleFieldValue(Record record) /*-{
+         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
+         return self.getTitleFieldValue(record);
+     }-*/;
+
+    public void setTitleField(String titleField) {
+        setAttribute("titleField", titleField, true);
+    }
+
+    public String getTitleField()  {
+        return getAttributeAsString("titleField");
+    }
+
+    public void setDataSource(DataSource dataSource) {
+        setAttribute("dataSource", dataSource.getOrCreateJsObj(), true);
+    }
+
+    public DataSource getDataSource() {
+        return DataSource.getOrCreateRef(getAttributeAsJavaScriptObject("dataSource"));
+    }
 
 }
 
