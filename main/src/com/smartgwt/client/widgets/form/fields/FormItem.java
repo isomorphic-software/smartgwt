@@ -2054,9 +2054,23 @@ public class FormItem extends RefDataClass  implements com.smartgwt.client.widge
 
 
 
-
-
-
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
     public void setAttribute(String attribute, String value) {
         if (!isCreated()) {
@@ -2670,7 +2684,24 @@ public class FormItem extends RefDataClass  implements com.smartgwt.client.widge
     public String getTooltip() {
         return getPrompt();
     }
-
+       
+    /**
+     * Expression that's evaluated to see if an item should be dynamically hidden.
+     *
+     * The showIf  FormItemIfFunction is is evaluated whenever the form draws or redraws.
+     *
+     * @param showIf the showIf handler
+     * @see FormItem#setRedrawOnChange(boolean)
+     */
+    public native void setShowIfCondition(FormItemIfFunction showIf) /*-{
+        var self = this.@com.smartgwt.client.core.DataClass::getJsObj()();
+        self.showIf = function(item, value, form, values) {
+            var itemJ = @com.smartgwt.client.widgets.form.fields.FormItem::getOrCreateRef(Lcom/google/gwt/core/client/JavaScriptObject;)(item);
+            var valueJ =  $wnd.SmartGWT.convertToJavaType(value);
+            var formJ = @com.smartgwt.client.widgets.form.DynamicForm::getOrCreateRef(Lcom/google/gwt/core/client/JavaScriptObject;)(form);
+            return showIf.@com.smartgwt.client.widgets.form.FormItemIfFunction::execute(Lcom/smartgwt/client/widgets/form/fields/FormItem;Ljava/lang/Object;Lcom/smartgwt/client/widgets/form/DynamicForm;)(itemJ, valueJ, formJ);
+        };
+    }-*/;
 }
 
 

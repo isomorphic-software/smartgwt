@@ -1515,9 +1515,23 @@ public class DynamicForm extends Canvas  implements DataBoundComponent, com.smar
     // ********************* Static Methods ***********************
 
 
-
-
-
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
     private FormItem[] fields;
 
@@ -1817,6 +1831,11 @@ public class DynamicForm extends Canvas  implements DataBoundComponent, com.smar
         return val == null || val === undefined ? null : val.toString();
     }-*/;
 
+    public native Object getValue(String fieldName) /*-{
+        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
+        var val = self.getValue(fieldName);
+        return val == null || val === undefined ? null : $wnd.SmartGWT.convertToJavaType(val);
+    }-*/;
 
     /**
      * Validates the form without submitting it, and redraws the form to display error messages if there are any
