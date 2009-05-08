@@ -2,8 +2,10 @@ package com.smartgwt.sample.showcase.client.forms.dependencies;
 
 import com.smartgwt.client.widgets.Canvas;
 import com.smartgwt.client.widgets.form.DynamicForm;
+import com.smartgwt.client.widgets.form.FormItemIfFunction;
 import com.smartgwt.client.widgets.form.fields.CheckboxItem;
 import com.smartgwt.client.widgets.form.fields.DateItem;
+import com.smartgwt.client.widgets.form.fields.FormItem;
 import com.smartgwt.client.widgets.form.fields.events.ChangeEvent;
 import com.smartgwt.client.widgets.form.fields.events.ChangeHandler;
 import com.smartgwt.sample.showcase.client.PanelFactory;
@@ -48,12 +50,13 @@ public class FormShowHideSample extends ShowcasePanel {
         onOrder.setRedrawOnChange(true);
         onOrder.setWidth(50);
         onOrder.setValue(false);
-        onOrder.addChangeHandler(new ChangeHandler() {
-			public void onChange(ChangeEvent event) {
-				orderDate.setVisible((Boolean) event.getValue());
-			}
+
+        orderDate.setShowIfCondition(new FormItemIfFunction() {
+            public boolean execute(FormItem item, Object value, DynamicForm form) {
+                return (Boolean)form.getValue("onOrder");
+            }
         });
-        
+                
         form.setFields(onOrder, orderDate);
 
         return form;
