@@ -75,8 +75,8 @@ public enum ListGridFieldType implements ValueEnum {
     /**
      * For viewing, the field value is rendered as a clickable html link (using an HTML anchor tag: &lt;A&gt;). The
      * target URL is the value of the field, which&#010 is also default display value. You can override the display
-     * value by setting&#010 ${isc.DocUtils.linkForRef('attr:ListGridRecord.linkText')} or
-     * ${isc.DocUtils.linkForRef('attr:ListGridField.linkText')}.<BR>&#010 Clicking the link opens the URL in a new
+     * value by setting&#010 {@link com.smartgwt.client.widgets.grid.ListGridRecord#setLinkText(String) linkText } or
+     * {@link com.smartgwt.client.widgets.grid.ListGridField#setLinkText(String) linkText} .<BR>&#010 Clicking the link opens the URL in a new
      * window by default.  To change this behavior,&#010 you can set <code>field.target</code>, which works indentically
      * to the target"&#010 attribute on an HTML anchor (&lt;A&gt;) tag.<br>&#010 In inline edit mode, this type works
      * like a text field.<br>&#010 To create a link not covered by this feature, consider using&#010

@@ -68,7 +68,7 @@ import com.google.gwt.event.shared.HasHandlers;
 
 
 
-public class TreeGrid extends ListGrid  implements DataBoundComponent, com.smartgwt.client.widgets.tree.events.HasFolderDropHandlers, com.smartgwt.client.widgets.tree.events.HasDataArrivedHandlers, com.smartgwt.client.widgets.tree.events.HasFolderOpenedHandlers, com.smartgwt.client.widgets.tree.events.HasFolderClosedHandlers, com.smartgwt.client.widgets.tree.events.HasFolderClickHandlers, com.smartgwt.client.widgets.tree.events.HasLeafClickHandlers, com.smartgwt.client.widgets.tree.events.HasNodeClickHandlers, com.smartgwt.client.widgets.tree.events.HasFolderContextClickHandlers, com.smartgwt.client.widgets.tree.events.HasLeafContextClickHandlers, com.smartgwt.client.widgets.tree.events.HasNodeContextClickHandlers {
+public class TreeGrid extends ListGrid  implements com.smartgwt.client.widgets.tree.events.HasFolderDropHandlers, com.smartgwt.client.widgets.tree.events.HasDataArrivedHandlers, com.smartgwt.client.widgets.tree.events.HasFolderOpenedHandlers, com.smartgwt.client.widgets.tree.events.HasFolderClosedHandlers, com.smartgwt.client.widgets.tree.events.HasFolderClickHandlers, com.smartgwt.client.widgets.tree.events.HasLeafClickHandlers, com.smartgwt.client.widgets.tree.events.HasNodeClickHandlers, com.smartgwt.client.widgets.tree.events.HasFolderContextClickHandlers, com.smartgwt.client.widgets.tree.events.HasLeafContextClickHandlers, com.smartgwt.client.widgets.tree.events.HasNodeContextClickHandlers {
 
     public static TreeGrid getOrCreateRef(JavaScriptObject jsObj) {
         if(jsObj == null) return null;
@@ -386,26 +386,6 @@ public class TreeGrid extends ListGrid  implements DataBoundComponent, com.smart
      */
     public Boolean getCanReparentNodes()  {
         return getAttributeAsBoolean("canReparentNodes");
-    }
-             
-    /**
-    * Specifies what to do with data dragged from this TreeGrid (into another component, or&#010 another node in this TreeGrid.  The default action is to move the data.  A setting of&#010 "none" is not recommended for trees because Trees maintain the node open state on the nodes&#010 themselves, and hence having multiple Tree objects share a reference to a node can have&#010 unintended consequences (such as opening a folder in one tree also triggering an open in&#010 another tree that shares the same node).&#010 <br><br>&#010 For DataBound trees ({@link com.smartgwt.client..ResultTree}), the expectation is that&#010 {@link com.smartgwt.client.widgets.tree.TreeGrid#folderDrop} will be overridden to perform whatever action took&#010 place as the result of the drag and drop interaction.
-    * <p><b>Note : </b> This is an advanced setting</p>
-    *
-    * @param dragDataAction dragDataAction Default value is ListGrid.MOVE
-    */
-    public void setDragDataAction(DragDataAction dragDataAction) {
-        setAttribute("dragDataAction", dragDataAction.getValue(), true);
-    }
-    /**
-     * Specifies what to do with data dragged from this TreeGrid (into another component, or&#010 another node in this TreeGrid.  The default action is to move the data.  A setting of&#010 "none" is not recommended for trees because Trees maintain the node open state on the nodes&#010 themselves, and hence having multiple Tree objects share a reference to a node can have&#010 unintended consequences (such as opening a folder in one tree also triggering an open in&#010 another tree that shares the same node).&#010 <br><br>&#010 For DataBound trees ({@link com.smartgwt.client..ResultTree}), the expectation is that&#010 {@link com.smartgwt.client.widgets.tree.TreeGrid#folderDrop} will be overridden to perform whatever action took&#010 place as the result of the drag and drop interaction.
-     *
-     *
-     * @return DragDataAction
-     *
-     */
-    public DragDataAction getDragDataAction()  {
-        return (DragDataAction) EnumUtil.getEnum(DragDataAction.values(), getAttribute("dragDataAction"));
     }
 
     /**

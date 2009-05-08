@@ -5,6 +5,7 @@ import com.smartgwt.client.core.DataClass;
 import com.smartgwt.client.util.JSOHelper;
 
 import java.util.Date;
+import java.util.Map;
 
 /**
  * Criteria for selecting only a matching set of records from a DataSource. Criteria can be applied on the client and
@@ -74,5 +75,14 @@ public class Criteria extends DataClass {
      */
     public void addCriteria(Criteria otherCriteria) {
         JSOHelper.addProperties(jsObj, otherCriteria.getJsObj());
+    }
+
+    /**
+     * Return the criteria values as a name-value Map.
+     *
+     * @return the criteria values as a Map
+     */
+    public Map getValues() {
+        return JSOHelper.convertToMap(jsObj);
     }
 }

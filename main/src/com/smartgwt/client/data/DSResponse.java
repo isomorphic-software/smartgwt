@@ -209,44 +209,20 @@ public class DSResponse extends RPCResponse {
         return getAttributeAsMap("errors");
     }
 
-
-
     /**
      * For DataSource operations, this is typically either an Array of records representing records (for "fetch"
      * operations) or a array of a single record representing the updated record (for "update", "add" or "remove" operations).
      *
      * @param data the data
      */
-    public void setData(ListGridRecord[] data) {
+    public void setData(Record[] data) {
         setAttribute("data", data);
     }
 
-    public ListGridRecord[] getData() {
+    public Record[] getData() {
         JavaScriptObject dataJS = getAttributeAsJavaScriptObject("data");
-        return convertToListGridRecordArray(dataJS);
+        return Record.convertToRecordArray(dataJS);
     }
-
-    private static ListGridRecord[] convertToListGridRecordArray(JavaScriptObject nativeArray) {
-        if (nativeArray == null) {
-            return new ListGridRecord[]{};
-        }
-        if (JSOHelper.isArray(nativeArray)) {
-            JavaScriptObject[] componentsj = JSOHelper.toArray(nativeArray);
-            ListGridRecord[] objects = new ListGridRecord[componentsj.length];
-            for (int i = 0; i < componentsj.length; i++) {
-                JavaScriptObject componentJS = componentsj[i];
-                ListGridRecord obj = (ListGridRecord) RefDataClass.getRef(componentJS);
-                if (obj == null) obj = new ListGridRecord(componentJS);
-                objects[i] = obj;
-            }
-            return objects;
-        } else {
-            ListGridRecord[] ret = new ListGridRecord[1];
-            ret[0] = ListGridRecord.getOrCreateRef(nativeArray);
-            return ret;
-        }
-    }
-    
 
 }
 

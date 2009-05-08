@@ -59,7 +59,7 @@ import com.google.gwt.event.shared.HasHandlers;
     * A TileRecord is a JavaScript Object whose properties contain values for each&#010 TileField. A TileRecord may have additional properties which affect the record's&#010 appearance or behavior, or which hold data for use by custom logic or other, related&#010 components.
 
     */
-public class TileRecord extends DetailViewerRecord  implements Record {
+public class TileRecord extends DetailViewerRecord {
 
     public static TileRecord getOrCreateRef(JavaScriptObject jsObj) {
         if(jsObj == null) return null;
