@@ -1368,16 +1368,6 @@ public class ListGridField extends DataClass  implements com.smartgwt.client.wid
             self.getFieldTitle(viewer.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()(), fieldNum);
         }-*/;
 
-        /**
-         * An optional {@link com.smartgwt.client.docs.StringMethods 'stringMethod'} which if provided, is evaluated to&#010 conditionally determine whether this field should be displayed. &#010 Evaluated on initial draw, then reevaluated on explicit &#010 calls to <code>listGrid.refreshFields()</code> or <code>listGrid.setFields()</code>. &#010 <P>&#010 Use 'showIf:"false"' to set a ListGrid field to initially hidden.&#010 <P>&#010 Note that explicit calls to {@link com.smartgwt.client.widgets.grid.ListGrid#showField} or hideField()&#010 will wipe out the <code>showIf</code> expression, as will the end user showing and&#010 hiding columns via the {@link com.smartgwt.client.widgets.grid.ListGrid#getShowHeaderContextMenu showHeaderContextMenu}.&#010 <P>&#010 Also note that fields marked as {@link com.smartgwt.client.data.DataSourceField#getDetail detail} will be hidden by&#010 default even if {@link com.smartgwt.client.widgets.grid.ListGrid#getShowDetailFields showDetailFields} is <code>true</code>. To show detail fields&#010 inherited from a DataSource, include an explicit field definition for the field and&#010 set this property to return <code>true</code>.&#010
-         * @param list A pointer to the listGrid containing the field
-     * @param field the ListGridField object
-     * @param fieldNum the index of the field
-         */
-        public native void showIf(ListGrid list, ListGridField field, int fieldNum) /*-{
-            var self = this.@com.smartgwt.client.core.DataClass::getJsObj()();
-            self.showIf(list.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()(), field.@com.smartgwt.client.core.DataClass::getJsObj()(), fieldNum);
-        }-*/;
 
 
 
