@@ -69,8 +69,11 @@ public class JsObject {
                     return @com.smartgwt.client.util.JSOHelper::toDate(D)(obj.getTime());
                 } else if(@com.smartgwt.client.util.JSOHelper::isJSO(Ljava/lang/Object;)(obj)) {
                     return obj;
+                } else if($wnd.isA.Array(obj)) {
+                    return @com.smartgwt.client.util.JSOHelper::convertToJavaObjectArray(Lcom/google/gwt/core/client/JavaScriptObject;)(obj);
                 } else {
-                    throw 'Unrecognized type ' + (objType) + ' for value ' + obj.toString();
+                    //handle case where object may be a GWT created class instance
+                    return obj;
                 }
         };
     }-*/;
