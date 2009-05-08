@@ -43,10 +43,7 @@ import com.smartgwt.client.widgets.viewer.*;
 import com.smartgwt.client.widgets.calendar.*;
 import com.smartgwt.client.widgets.calendar.events.*;
 
-import java.util.Date;
-import java.util.List;
-import java.util.Map;
-import java.util.HashMap;
+import java.util.*;
 
 import com.google.gwt.user.client.ui.Widget;
 import com.google.gwt.core.client.JavaScriptObject;
@@ -732,9 +729,18 @@ public class Layout extends Canvas {
     // ********************* Static Methods ***********************
 
 
-
-
-
+
+
+
+
+
+
+
+
+
+
+
+
 
     /**
      * An array of canvases that will be contained within this layout. You can set the following properties on these
@@ -748,8 +754,17 @@ public class Layout extends Canvas {
      * @param members members Default value is null
      */
     public void setMembers(Canvas... members) {
-        for (Canvas member : members) {
-            addMember(member);
+        if(!isCreated()) {
+            setAttribute("members", members, true);
+        }
+        else {
+            Canvas[] membersToRemove = getMembers();
+            for(Canvas member : membersToRemove) {
+                removeMember(member);
+            }
+            for(Canvas member : members) {
+                addMember(member);
+            }
         }
     }
 
