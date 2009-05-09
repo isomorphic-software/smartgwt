@@ -626,6 +626,40 @@ public class SectionStack extends VLayout  implements com.smartgwt.client.widget
     }-*/;
 
     /**
+     * Return the SectionHeader for a section.&#010 <P>&#010 This will be an instance of the {@link com.smartgwt.client.widgets.layout.SectionStack#getSectionHeaderClass sectionHeaderClass}.  Since different&#010 SectionStacks may use different header classes, be careful about what APIs you rely on&#010 for the section header unless you have explicitly set the&#010 <code>sectionHeaderClass</code>.  In particular, use APIs such as&#010 {@link com.smartgwt.client.widgets.layout.SectionStack#setSectionTitle} to manipulate header indirectly wherever possible, as high&#010 performance SectionStacks designed for very large numbers of sections may cache and&#010 re-use headers or use other strategies that would make it invalid to store a pointer to&#010 a section header, assumed the header is a layout member, etc.&#010&#010
+     * @param sectionID ID of the section for which you want the header
+     *
+     * @return the section header indicated
+     */
+    public native SectionHeader getSectionHeader(String sectionID) /*-{
+        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
+        var ret = self.getSectionHeader(sectionID);
+        if(ret == null || ret === undefined) return null;
+        var retVal = @com.smartgwt.client.widgets.BaseWidget::getRef(Lcom/google/gwt/core/client/JavaScriptObject;)(ret);
+        if(retVal == null) {
+            retVal = @com.smartgwt.client.widgets.layout.SectionHeader::new(Lcom/google/gwt/core/client/JavaScriptObject;)(ret);
+        }
+        return retVal;
+    }-*/;
+
+    /**
+     * Return the SectionHeader for a section.&#010 <P>&#010 This will be an instance of the {@link com.smartgwt.client.widgets.layout.SectionStack#getSectionHeaderClass sectionHeaderClass}.  Since different&#010 SectionStacks may use different header classes, be careful about what APIs you rely on&#010 for the section header unless you have explicitly set the&#010 <code>sectionHeaderClass</code>.  In particular, use APIs such as&#010 {@link com.smartgwt.client.widgets.layout.SectionStack#setSectionTitle} to manipulate header indirectly wherever possible, as high&#010 performance SectionStacks designed for very large numbers of sections may cache and&#010 re-use headers or use other strategies that would make it invalid to store a pointer to&#010 a section header, assumed the header is a layout member, etc.&#010&#010
+     * @param index index of the section for which you want the header
+     *
+     * @return the section header indicated
+     */
+    public native SectionHeader getSectionHeader(int index) /*-{
+        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
+        var ret = self.getSectionHeader(index);
+        if(ret == null || ret === undefined) return null;
+        var retVal = @com.smartgwt.client.widgets.BaseWidget::getRef(Lcom/google/gwt/core/client/JavaScriptObject;)(ret);
+        if(retVal == null) {
+            retVal = @com.smartgwt.client.widgets.layout.SectionHeader::new(Lcom/google/gwt/core/client/JavaScriptObject;)(ret);
+        }
+        return retVal;
+    }-*/;
+
+    /**
      * Add a onSectionHeaderClick handler.
      * <p>
      * Notification method fired when the user clicks on a section header.&#010 Returning false will cancel the default behavior (expanding / collapsing the section)&#010

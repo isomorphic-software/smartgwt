@@ -137,18 +137,15 @@ public class SectionHeader extends Label {
 
 
 
-
     /**
      * Set the controls.
      *
      * @param controls the controls
-     * @throws IllegalStateException
+     * @throws IllegalStateException this property cannot be changed after the component has been created
      */
     public void setControls(Canvas... controls) throws IllegalStateException {
         setAttribute("controls", controls, false);
     }
-
-
 
 }
 
