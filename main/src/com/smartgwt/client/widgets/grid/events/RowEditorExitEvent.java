@@ -141,9 +141,9 @@ public class RowEditorExitEvent extends BrowserEvent<RowEditorExitHandler>  impl
      *
      * @return record for the cell being edited
      */
-    public  native ListGridRecord getRecord() /*-{
+    public  native Record getRecord() /*-{
         var jsObj = this.@com.smartgwt.client.event.AbstractSmartEvent::jsObj;
-            return @com.smartgwt.client.widgets.grid.ListGridRecord::getOrCreateRef(Lcom/google/gwt/core/client/JavaScriptObject;)(jsObj.record);
+            return @com.smartgwt.client.data.Record::getOrCreateRef(Lcom/google/gwt/core/client/JavaScriptObject;)(jsObj.record);
     }-*/;
 
     /**
