@@ -116,9 +116,9 @@ public class SelectionChangedEvent extends BrowserEvent<SelectionChangedHandler>
      *
      * @return record for which selection changed
      */
-    public  native ListGridRecord getRecord() /*-{
+    public  native Record getRecord() /*-{
         var jsObj = this.@com.smartgwt.client.event.AbstractSmartEvent::jsObj;
-            return @com.smartgwt.client.widgets.grid.ListGridRecord::getOrCreateRef(Lcom/google/gwt/core/client/JavaScriptObject;)(jsObj.record);
+            return @com.smartgwt.client.data.Record::getOrCreateRef(Lcom/google/gwt/core/client/JavaScriptObject;)(jsObj.record);
     }-*/;
 
     /**

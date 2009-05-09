@@ -2054,23 +2054,9 @@ public class FormItem extends RefDataClass  implements com.smartgwt.client.widge
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+
+
+
 
     public void setAttribute(String attribute, String value) {
         if (!isCreated()) {
@@ -2684,7 +2670,7 @@ public class FormItem extends RefDataClass  implements com.smartgwt.client.widge
     public String getTooltip() {
         return getPrompt();
     }
-       
+    
     /**
      * Expression that's evaluated to see if an item should be dynamically hidden.
      *
@@ -2702,6 +2688,7 @@ public class FormItem extends RefDataClass  implements com.smartgwt.client.widge
             return showIf.@com.smartgwt.client.widgets.form.FormItemIfFunction::execute(Lcom/smartgwt/client/widgets/form/fields/FormItem;Ljava/lang/Object;Lcom/smartgwt/client/widgets/form/DynamicForm;)(itemJ, valueJ, formJ);
         };
     }-*/;
+
 }
 
 

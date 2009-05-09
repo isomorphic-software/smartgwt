@@ -4857,6 +4857,18 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
     }
 
     /**
+     * An array of Record objects, specifying the data to be used to populate the DataBoundComponent. Note that not
+     * all DataBoundComponents observe the changes to the data to redraw themselves. Refer to the version of setData
+     * that accepts component specific records.
+     *
+     * @param data array of Record objects.
+     * @see #setData(ListGridRecord[])   
+     */
+    public void setData(Record[] data) {
+        setAttribute("data", data, true);
+    }
+
+    /**
      * Synonym for {@link #setData(ListGridRecord[])}
      *
      * @param records the records

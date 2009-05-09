@@ -532,7 +532,19 @@ public class DetailViewer extends Canvas  implements DataBoundComponent {
      *
      * @param data the data
      */
-    public void setData(Record... data) {
+    public void setData(DetailViewerRecord[] data) {
+        setAttribute("data", data, true);
+    }
+
+    /**
+     * An array of Record objects, specifying the data to be used to populate the DataBoundComponent. Note that not
+     * all DataBoundComponents observe the changes to the data to redraw themselves. Refer to the version of setData
+     * that accepts component specific records.
+     *
+     * @param data array of Record objects.
+     * @see #setData(DetailViewerRecord[])   
+     */
+    public void setData(Record[] data) {
         setAttribute("data", data, true);
     }
 

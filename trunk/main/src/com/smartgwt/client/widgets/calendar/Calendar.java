@@ -1367,7 +1367,7 @@ public class Calendar extends Canvas  implements DataBoundComponent, com.smartgw
     // ********************* Static Methods ***********************
 
 
-
+
 
 
 
@@ -1473,6 +1473,19 @@ public class Calendar extends Canvas  implements DataBoundComponent, com.smartgw
     public void setData(CalendarEvent[] data) {
         setAttribute("data", data, true);
     }
+
+    /**
+     * An array of Record objects, specifying the data to be used to populate the DataBoundComponent. Note that not
+     * all DataBoundComponents observe the changes to the data to redraw themselves. Refer to the version of setData
+     * that accepts component specific records.
+     *
+     * @param data array of Record objects.
+     * @see #setData(CalendarEvent[])
+     */
+    public void setData(Record[] data) {
+        setAttribute("data", data, true);
+    }
+    
     /**
      * A List of CalendarEvent objects, specifying the data to be used to populate the calendar.   <p> This property will typically not be explicitly specified for databound Calendars, where the data is returned from the server via databound component methods such as {@link com.smartgwt.client.widgets.calendar.Calendar#fetchData}. In this case the data objects will be set to a  {@link com.smartgwt.client.data.ResultSet} rather than a simple array.
      *

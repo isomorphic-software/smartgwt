@@ -540,6 +540,17 @@ public class TileGrid extends TileLayout  implements DataBoundComponent, com.sma
         setAttribute("data", data, true);
     }
 
+    /**
+     * An array of Record objects, specifying the data to be used to populate the DataBoundComponent. Note that not
+     * all DataBoundComponents observe the changes to the data to redraw themselves. Refer to the version of setData
+     * that accepts component specific records.
+     *
+     * @param data array of Record objects.
+     * @see #setData(TileRecord[])   
+     */
+    public void setData(Record[] data) {
+        setAttribute("data", data, true);
+    }
 
     /**
      * A List of TileRecord objects, specifying the data to be used to create the tiles.
