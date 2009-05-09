@@ -4,6 +4,8 @@ Various SmartGWT tutorials and resources from the web.
 
 
 = Tutorials =
+ * Running SmartGWT with Google App Engine (GAE) : http://forums.smartclient.com/showthread.php?t=5258
+
 
 *SmartGWT with Eclipse*
 
