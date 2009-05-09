@@ -974,6 +974,16 @@ public class Calendar extends Canvas  implements DataBoundComponent, com.smartgw
         }-*/;
 
 
+        /**
+         * Get the name of the visible view. Either 'day', 'week', or 'month'.&#010&#010
+         *
+         * @return The name of the visible view.
+         */
+        public native String getCurrentViewName() /*-{
+            var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
+            return self.getCurrentViewName();
+        }-*/;
+
 
 
 
