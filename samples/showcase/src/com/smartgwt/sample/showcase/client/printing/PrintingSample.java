@@ -1,9 +1,6 @@
 package com.smartgwt.sample.showcase.client.printing;
 
-import com.smartgwt.client.data.Criteria;
-import com.smartgwt.client.data.DSCallback;
-import com.smartgwt.client.data.DSRequest;
-import com.smartgwt.client.data.DSResponse;
+import com.smartgwt.client.data.*;
 import com.smartgwt.client.types.VisibilityMode;
 import com.smartgwt.client.widgets.Canvas;
 import com.smartgwt.client.widgets.IButton;
@@ -81,7 +78,7 @@ public class PrintingSample extends ShowcasePanel {
 
         printGrid.addRecordClickHandler(new RecordClickHandler() {
             public void onRecordClick(RecordClickEvent event) {
-                printViewer.setData(event.getRecord());
+                printViewer.setData(new Record[]{event.getRecord()});
             }
         });
 
@@ -123,7 +120,7 @@ public class PrintingSample extends ShowcasePanel {
         printGrid.filterData(new Criteria("CountryName", "land"), new DSCallback() {
             public void execute(DSResponse response, Object rawData, DSRequest request) {
                 printGrid.selectRecord(0);
-                printViewer.setData(printGrid.getSelectedRecord());
+                printViewer.setData(new Record[]{printGrid.getSelectedRecord()});
             }
         });
 
