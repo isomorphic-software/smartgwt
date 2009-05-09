@@ -4613,9 +4613,17 @@ public class Canvas extends BaseWidget  implements com.smartgwt.client.widgets.e
 
 
 
-
 
-
+
+
+
+
+
+
+
+
+
+
 
     /**
      * Multiple styles are currently not supported. This method essentially calls {@link #setStyleName(String)}
@@ -4625,7 +4633,7 @@ public class Canvas extends BaseWidget  implements com.smartgwt.client.widgets.e
      */
     public void addStyleName(String style) {
         setStyleName(style);
-        GWT.log("addStyleName is not supported. Calling setStyleName instead", null);
+        com.google.gwt.core.client.GWT.log("addStyleName is not supported. Calling setStyleName instead", null);
     }
 
     public void setVisible(boolean visible) {
