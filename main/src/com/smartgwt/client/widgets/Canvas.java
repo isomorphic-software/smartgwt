@@ -4613,9 +4613,20 @@ public class Canvas extends BaseWidget  implements com.smartgwt.client.widgets.e
 
 
 
-
+
 
 
+
+    /**
+     * Multiple styles are currently not supported. This method essentially calls {@link #setStyleName(String)}
+     *
+     * @param style the style name
+     * @see #setStyleName(String)
+     */
+    public void addStyleName(String style) {
+        setStyleName(style);
+        GWT.log("addStyleName is not supported. Calling setStyleName instead", null);
+    }
 
     public void setVisible(boolean visible) {
         setVisibility(visible ? Visibility.VISIBLE : Visibility.HIDDEN);   
