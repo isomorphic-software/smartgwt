@@ -357,6 +357,23 @@ public class DSRequest extends RPCRequest {
 
     // ********************* Static Methods ***********************
 
+
+    /**
+     * Return the Criteria associated with a FETCH operation.
+     * <p>
+     * <b>Note</b> : This method should only be called during a FETCH operation
+     *
+     * @return the criteria
+     * @throws IllegalStateException if called for a non-fetch operation
+     */
+    public Criteria getCriteria() throws IllegalStateException {
+        if(getOperationType() == DSOperationType.FETCH) {
+            return new Criteria(getData());
+        } else {
+            throw new IllegalStateException("This method should only be called during FETCH operations");
+        }
+    }
+
 }
 
 
