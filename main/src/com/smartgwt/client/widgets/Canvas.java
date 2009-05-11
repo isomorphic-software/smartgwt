@@ -506,7 +506,7 @@ public class Canvas extends BaseWidget  implements com.smartgwt.client.widgets.e
     }
              
     /**
-    * Absolute or relative, corresponding to the "absolute" (with respect to parent) or&#010 "relative" (with respect to document flow) values for the CSS position attribute. &#010 <P>&#010 Defaults to "absolute" unless {@link com.smartgwt.client.widgets.Canvas#getHtmlElement htmlElement} has been set, in which case&#010 "relative" is used.&#010 <P>&#010 For best consistency and flexibility across browsers, all SmartGWT layout managers&#010 use absolute positioning.  Relative positioning should be used only as a short-term&#010 integration scenario while incrementally upgrading existing applications.  &#010 <P>&#010 When relative positioning is used, only the outermost SmartGWT component should have&#010 position:"relative" set, none of it's children should.
+    * Absolute or relative, corresponding to the "absolute" (with respect to parent) or&#010 "relative" (with respect to document flow) values for the CSS position attribute.&#010 <P>&#010 Setting <code>position:"relative"</code> enables SmartGWT components to be embedded&#010 directly into the native HTML flow of a page, causing the component to be rendered &#010 within an existing DOM structure. &#010 This attribute should only be set to <code>"relative"</code> on a top level component &#010 (a component with no {@link com.smartgwt.client.widgets.Canvas#getParentElement parentElement}). &#010 <P>&#010 There are 2 ways to embed relatively positioned canvases in the DOM - by default the&#010 component will be written out inline when it gets {@link com.smartgwt.client.widgets.Canvas#draw}. For example&#010 to embed a canvas in an HTML table you could use this code: &#010 <pre>&#010 &lt;table&gt;&#010   &lt;tr&gt;&#010     &lt;td&gt;&#010       &lt;script&gt;&#010         isc.Canvas.create({autoDraw:true, backgroundColor:"red", position:"relative"});&#010       &lt;/script&gt;&#010     &lt;td&gt;&#010   &lt;/tr&gt;&#010 &lt;/table&gt;&#010 </pre>&#010 Alternatively you can make use of the {@link com.smartgwt.client.widgets.Canvas#getHtmlElement htmlElement} attribute.&#010 <P>&#010 Relative positioning is intended as a short-term integration scenario while incrementally&#010 upgrading existing applications.&#010 Note that relative positioning is not used to manage layout within SmartGWT components -&#010 instead the {@link com.smartgwt.client.widgets.layout.Layout} class would typically be used.&#010 For best consistency and flexibility across browsers, all SmartGWT layout managers&#010 use absolute positioning.&#010 <P>&#010 For canvases with a specified {@link com.smartgwt.client.widgets.Canvas#getHtmlElement htmlElement}, this attribute defaults to&#010 <code>"relative"</code>. In all other cases the default value will be &#010 <code>"aboslute"</code>.
     * <p><b>Note : </b> This is an advanced setting</p>
     *
     * @param position position Default value is null
@@ -515,7 +515,7 @@ public class Canvas extends BaseWidget  implements com.smartgwt.client.widgets.e
         setAttribute("position", position.getValue(), true);
     }
     /**
-     * Absolute or relative, corresponding to the "absolute" (with respect to parent) or&#010 "relative" (with respect to document flow) values for the CSS position attribute. &#010 <P>&#010 Defaults to "absolute" unless {@link com.smartgwt.client.widgets.Canvas#getHtmlElement htmlElement} has been set, in which case&#010 "relative" is used.&#010 <P>&#010 For best consistency and flexibility across browsers, all SmartGWT layout managers&#010 use absolute positioning.  Relative positioning should be used only as a short-term&#010 integration scenario while incrementally upgrading existing applications.  &#010 <P>&#010 When relative positioning is used, only the outermost SmartGWT component should have&#010 position:"relative" set, none of it's children should.
+     * Absolute or relative, corresponding to the "absolute" (with respect to parent) or&#010 "relative" (with respect to document flow) values for the CSS position attribute.&#010 <P>&#010 Setting <code>position:"relative"</code> enables SmartGWT components to be embedded&#010 directly into the native HTML flow of a page, causing the component to be rendered &#010 within an existing DOM structure. &#010 This attribute should only be set to <code>"relative"</code> on a top level component &#010 (a component with no {@link com.smartgwt.client.widgets.Canvas#getParentElement parentElement}). &#010 <P>&#010 There are 2 ways to embed relatively positioned canvases in the DOM - by default the&#010 component will be written out inline when it gets {@link com.smartgwt.client.widgets.Canvas#draw}. For example&#010 to embed a canvas in an HTML table you could use this code: &#010 <pre>&#010 &lt;table&gt;&#010   &lt;tr&gt;&#010     &lt;td&gt;&#010       &lt;script&gt;&#010         isc.Canvas.create({autoDraw:true, backgroundColor:"red", position:"relative"});&#010       &lt;/script&gt;&#010     &lt;td&gt;&#010   &lt;/tr&gt;&#010 &lt;/table&gt;&#010 </pre>&#010 Alternatively you can make use of the {@link com.smartgwt.client.widgets.Canvas#getHtmlElement htmlElement} attribute.&#010 <P>&#010 Relative positioning is intended as a short-term integration scenario while incrementally&#010 upgrading existing applications.&#010 Note that relative positioning is not used to manage layout within SmartGWT components -&#010 instead the {@link com.smartgwt.client.widgets.layout.Layout} class would typically be used.&#010 For best consistency and flexibility across browsers, all SmartGWT layout managers&#010 use absolute positioning.&#010 <P>&#010 For canvases with a specified {@link com.smartgwt.client.widgets.Canvas#getHtmlElement htmlElement}, this attribute defaults to&#010 <code>"relative"</code>. In all other cases the default value will be &#010 <code>"aboslute"</code>.
      *
      *
      * @return Positioning
@@ -4613,17 +4613,9 @@ public class Canvas extends BaseWidget  implements com.smartgwt.client.widgets.e
 
 
 
+
 
-
-
-
-
-
-
-
-
-
-
+
 
     /**
      * Multiple styles are currently not supported. This method essentially calls {@link #setStyleName(String)}
