@@ -1145,7 +1145,7 @@ public class ListGridField extends DataClass  implements com.smartgwt.client.wid
     /**
     * When the user edits cells in this field, is this value required to be non-empty &#010 in order for validation to pass.<br>&#010 Note: for databound listGrids, this property may be specified on the &#010 {@link com.smartgwt.client.data.DataSourceField}, enabling both client and server side validation.
     *
-    * @param required required Default value is false
+    * @param required required Default value is null
     */
     public void setRequired(Boolean required) {
         setAttribute("required", required);
@@ -1733,6 +1733,10 @@ public class ListGridField extends DataClass  implements com.smartgwt.client.wid
     }
 
     public void setDefaultValue(String defaultValue) {
+        setAttribute("defaultValue", defaultValue);
+    }
+
+    public void setDefaultValue(Integer defaultValue) {
         setAttribute("defaultValue", defaultValue);
     }
 

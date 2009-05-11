@@ -491,10 +491,9 @@ public class TabSet extends Canvas  implements com.smartgwt.client.widgets.tab.e
              
     /**
     * Specifies the overflow of the pane container (the component that holds the pane contents&#010 for all tabs).  By default this is set to "auto", meaning the pane container will&#010 automatically introduce scrolling when the pane contents exceed the TabSet's specified&#010 size.&#010 <p>&#010 For other values and their meaning, see {@link com.smartgwt.client.types.Overflow}
-    * Update {@link com.smartgwt.client.widgets.tab.TabSet#getPaneContainerOverflow paneContainerOverflow} after creation.&#010&#010
     * <p><b>Note : </b> This is an advanced setting</p>
     *
-    * @param paneContainerOverflow new overflow setting. Default value is Canvas.AUTO
+    * @param paneContainerOverflow paneContainerOverflow Default value is Canvas.AUTO
     */
     public void setPaneContainerOverflow(Overflow paneContainerOverflow) {
         setAttribute("paneContainerOverflow", paneContainerOverflow.getValue(), true);
@@ -592,7 +591,6 @@ public class TabSet extends Canvas  implements com.smartgwt.client.widgets.tab.e
     }
 
     // ********************* Methods ***********************
-
 
 
 

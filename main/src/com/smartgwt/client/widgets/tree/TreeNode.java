@@ -84,7 +84,7 @@ public class TreeNode extends ListGridRecord {
     // ********************* Properties / Attributes ***********************
 
     /**
-    * Affects the visual style and interactivity of the record.  If set to <code>false</code>&#010 the record (row in a {@link com.smartgwt.client.widgets.grid.ListGrid} or {@link com.smartgwt.client.widgets.tree.TreeGrid}) will not highlight when the&#010 mouse moves over it, nor will it respond to mouse clicks.
+    * Default property name denoting whether this record is enabled. Property name may be modified&#010 for some grid via {@link com.smartgwt.client.widgets.grid.ListGrid#getRecordEnabledProperty recordEnabledProperty}.
     *
     * @param enabled enabled Default value is null
     */
@@ -92,7 +92,7 @@ public class TreeNode extends ListGridRecord {
         setAttribute("enabled", enabled);
     }
     /**
-     * Affects the visual style and interactivity of the record.  If set to <code>false</code>&#010 the record (row in a {@link com.smartgwt.client.widgets.grid.ListGrid} or {@link com.smartgwt.client.widgets.tree.TreeGrid}) will not highlight when the&#010 mouse moves over it, nor will it respond to mouse clicks.
+     * Default property name denoting whether this record is enabled. Property name may be modified&#010 for some grid via {@link com.smartgwt.client.widgets.grid.ListGrid#getRecordEnabledProperty recordEnabledProperty}.
      *
      *
      * @return Boolean

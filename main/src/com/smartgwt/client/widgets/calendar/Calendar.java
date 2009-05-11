@@ -512,7 +512,7 @@ public class Calendar extends Canvas  implements DataBoundComponent, com.smartgw
     }
 
     /**
-    * The name of the end date field in a {@link com.smartgwt.client.widgets.calendar.CalendarEvent}.
+    * The name of the field which will determine the row in which this event will be displayed&#010 for the {@link com.smartgwt.client.widgets.calendar.Calendar#getTimelineView timelineView}
     *
     * @param eventTypeField eventTypeField Default value is "eventType"
     * @throws IllegalStateException this property cannot be changed after the component has been created
@@ -521,7 +521,7 @@ public class Calendar extends Canvas  implements DataBoundComponent, com.smartgw
         setAttribute("eventTypeField", eventTypeField, false);
     }
     /**
-     * The name of the end date field in a {@link com.smartgwt.client.widgets.calendar.CalendarEvent}.
+     * The name of the field which will determine the row in which this event will be displayed&#010 for the {@link com.smartgwt.client.widgets.calendar.Calendar#getTimelineView timelineView}
      *
      *
      * @return String
@@ -931,24 +931,25 @@ public class Calendar extends Canvas  implements DataBoundComponent, com.smartgw
     public Boolean getAutoFetchAsFilter()  {
         return getAttributeAsBoolean("autoFetchAsFilter");
     }
+ 
 
     /**
-    * if set to true, show the eventsByType view.
+    * if set to true, show the Timeline view.
     *
-    * @param showEventsByTypeView showEventsByTypeView Default value is false
+    * @param showTimelineView showTimelineView Default value is false
     */
-    public void setShowEventsByTypeView(Boolean showEventsByTypeView) {
-        setAttribute("showEventsByTypeView", showEventsByTypeView, true);
+    public void setShowTimelineView(Boolean showTimelineView) {
+        setAttribute("showTimelineView", showTimelineView, true);
     }
     /**
-     * if set to true, show the eventsByType view.
+     * if set to true, show the Timeline view.
      *
      *
      * @return Boolean
      *
      */
-    public Boolean getShowEventsByTypeView()  {
-        return getAttributeAsBoolean("showEventsByTypeView");
+    public Boolean getShowTimelineView()  {
+        return getAttributeAsBoolean("showTimelineView");
     }
 
     // ********************* Methods ***********************

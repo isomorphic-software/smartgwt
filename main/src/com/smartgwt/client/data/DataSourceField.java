@@ -148,7 +148,7 @@ public class DataSourceField extends DataClass {
     /**
     * Indicates this field must be non-null in order for a record to pass validation.&#010 <P>&#010 Note that <code>required</code> should not be set for a server-generated field, such as a&#010 sequence, or validation will fail on the client.
     *
-    * @param required required Default value is false
+    * @param required required Default value is null
     */
     public void setRequired(Boolean required) {
         setAttribute("required", required);

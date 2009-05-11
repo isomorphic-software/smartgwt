@@ -564,7 +564,7 @@ public class FormItem extends RefDataClass  implements com.smartgwt.client.widge
     /**
     * Whether a non-empty value is required for this field to pass validation.&#010 <BR>&#010 <b>Note:</b> if specified on a FormItem, <code>required</code> is only enforced on the&#010 client.  <code>required</code> should generally be specified on a&#010 {@link com.smartgwt.client.data.DataSourceField}.
     *
-    * @param required required Default value is false
+    * @param required required Default value is null
     */
     public void setRequired(Boolean required) {
         setAttribute("required", required);
