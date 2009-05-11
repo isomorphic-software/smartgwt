@@ -2,6 +2,7 @@
 package com.smartgwt.client.docs;
 
 /**
+ * @see com.smartgwt.client.widgets.grid.ListGrid#getCheckboxField
  * @see com.smartgwt.client.widgets.grid.ListGrid#isCheckboxField
  * @see com.smartgwt.client.widgets.grid.ListGrid#getCheckboxField
  * @see com.smartgwt.client.widgets.grid.ListGrid#getCheckboxFieldTrueImage

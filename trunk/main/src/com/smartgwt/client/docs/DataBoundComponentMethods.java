@@ -37,7 +37,6 @@ package com.smartgwt.client.docs;
  * @see com.smartgwt.client.widgets.grid.ListGrid#removeData
  * @see com.smartgwt.client.widgets.tile.TileGrid#fetchData
  * @see com.smartgwt.client.widgets.tile.TileGrid#filterData
- * @see com.smartgwt.client.widgets.tile.TileGrid#invalidateCache
  * @see com.smartgwt.client.widgets.tile.TileGrid#removeSelectedData
  * @see com.smartgwt.client.widgets.tile.TileGrid#addData
  * @see com.smartgwt.client.widgets.tile.TileGrid#removeData

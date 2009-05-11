@@ -132,22 +132,6 @@ public class SimpleType extends BaseClass {
 
     // ********************* Static Methods ***********************
 
-        /**
-         * Retrieve a simpleType definition by type name&#010
-         * @param typeName the <code>name</code> of the simpleType to return
-         *
-         * @return ssimple type object
-         */
-        public static native SimpleType getType(String typeName) /*-{
-            var ret = $wnd.isc.SimpleType.getType(typeName);
-            if(ret == null || ret === undefined) return null;
-            var retVal = @com.smartgwt.client.core.BaseClass::getRef(Lcom/google/gwt/core/client/JavaScriptObject;)(ret);
-            if(retVal == null) {
-                retVal = @com.smartgwt.client.data.SimpleType::new(Lcom/google/gwt/core/client/JavaScriptObject;)(ret);
-            }
-            return retVal;
-        }-*/;
-
 
 
 
