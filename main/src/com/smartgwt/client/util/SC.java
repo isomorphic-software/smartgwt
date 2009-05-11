@@ -17,6 +17,7 @@
 package com.smartgwt.client.util;
 
 import com.google.gwt.core.client.JavaScriptObject;
+import com.smartgwt.client.widgets.Dialog;
 
 public class SC {
     public static final String REF = "__ref";
@@ -141,33 +142,161 @@ public class SC {
         }, {title:title});
     }-*/;
 
+    /**
+     * Show a modal dialog with a message, icon, and "Yes" and "No" buttons. The callback will receive boolean true for an OK
+     * button click, boolean false for a No button click, or null if the Dialog is dismissed via the close button.
+     *
+     * @param title the title of the message box
+     * @param message the message
+     * @param callback the callback to fire when the user dismisses the dialog.
+     */
+    public static native void ask(String title, String message, BooleanCallback callback, Dialog dialogProperties) /*-{
+        var dialogPropertiesJS = dialogProperties.@com.smartgwt.client.widgets.Dialog::getConfig()();
+        $wnd.isc.addProperties(dialogProperties, {title:title});
+        $wnd.isc.ask(message, function(value) {
+            var valueJ = value == null ? null : @com.smartgwt.client.util.JSOHelper::toBoolean(Z)(value);
+            callback.@com.smartgwt.client.util.BooleanCallback::execute(Ljava/lang/Boolean;)(valueJ);
+        }, dialogProperties);
+    }-*/;
 
+    /**
+     * Show a modal dialog with a text entry box, asking the user to enter a value.
+     * <p>
+     * As with other convenience methods that show Dialogs, such as {@link #warn(String, String, BooleanCallback)} , the dialog is shown
+     * and the function immediately returns.  When the user responds, the provided callback is called.
+     * <p>
+     * If the user clicks OK, the value typed in is passed to the callback (including the empty string ("") if nothing was entered.  If the
+     * user clicks cancel, the value passed to the callback is null.
+     *
+     * <p>
+     * A default value for the text field can be passed via <code>properties.defaultValue</code>
+     *
+     * <p>Keyboard focus is automatically placed in the text entry field, and hitting the enter key is the equivalent of pressing OK.
+     *
+     * @param message message to display
+     * @param callback Callback to fire when the user clicks a button to dismiss the dialog. This has the single parameter 'value',
+     * indicating the user entry, or null if cancel was pressed or the window closed
+     */
     public static native void askforValue(String message, ValueCallback callback) /*-{
         $wnd.isc.askForValue(message, function(value) {
             if(value === undefined) value = null;
             callback.@com.smartgwt.client.util.ValueCallback::execute(Ljava/lang/String;)(value);
-        });
+        }, {width:275});
     }-*/;
 
+    /**
+     * Show a modal dialog with a text entry box, asking the user to enter a value.
+     * <p>
+     * As with other convenience methods that show Dialogs, such as {@link #warn(String, String, BooleanCallback)} , the dialog is shown
+     * and the function immediately returns.  When the user responds, the provided callback is called.
+     * <p>
+     * If the user clicks OK, the value typed in is passed to the callback (including the empty string ("") if nothing was entered.  If the
+     * user clicks cancel, the value passed to the callback is null.
+     *
+     * <p>Keyboard focus is automatically placed in the text entry field, and hitting the enter key is the equivalent of pressing OK.
+     *
+     * @param title the title of the dialog
+     * @param message message to display
+     * @param callback Callback to fire when the user clicks a button to dismiss the dialog. This has the single parameter 'value',
+     * indicating the user entry, or null if cancel was pressed or the window closed
+     */
     public static native void askforValue(String title, String message, ValueCallback callback) /*-{
         $wnd.isc.askForValue(message, function(value) {
             if(value === undefined) value = null;
             callback.@com.smartgwt.client.util.ValueCallback::execute(Ljava/lang/String;)(value);
-        }, {title:title});
+        }, {title:title, width:275});
     }-*/;
 
+    /**
+     * Show a modal dialog with a text entry box, asking the user to enter a value.
+     * <p>
+     * As with other convenience methods that show Dialogs, such as {@link #warn(String, String, BooleanCallback)} , the dialog is shown
+     * and the function immediately returns.  When the user responds, the provided callback is called.
+     * <p>
+     * If the user clicks OK, the value typed in is passed to the callback (including the empty string ("") if nothing was entered.  If the
+     * user clicks cancel, the value passed to the callback is null.
+     *
+     *
+     * <p>Keyboard focus is automatically placed in the text entry field, and hitting the enter key is the equivalent of pressing OK.
+     *
+     * @param title the title of the dialog
+     * @param message message to display
+     * @param defaultValue the default value of the text field
+     * @param callback Callback to fire when the user clicks a button to dismiss the dialog. This has the single parameter 'value',
+     * indicating the user entry, or null if cancel was pressed or the window closed
+     * @param dialogProperties additional properties of the Dialog
+     */
+    public static native void askforValue(String title, String message, String defaultValue, ValueCallback callback, Dialog dialogProperties) /*-{
+        var dialogPropertiesJS = dialogProperties.@com.smartgwt.client.widgets.Dialog::getConfig()();
+        $wnd.isc.addProperties(dialogPropertiesJS, {title:title}, {defaultValue:defaultValue});
+        $wnd.isc.askForValue(message, function(value) {
+            if(value === undefined) value = null;
+            callback.@com.smartgwt.client.util.ValueCallback::execute(Ljava/lang/String;)(value);
+        }, dialogPropertiesJS);
+    }-*/;
+
+    /**
+     * Show a modal prompt to the user. This method will display the message using the Dialog.Prompt singleton object.
+     * <p>
+     * <b>Note</b>: if this prompt is to be shown to the user during some slow logic, we advise calling this method, then
+     * using {@link com.google.gwt.user.client.DeferredCommand} to kick off the slow logic in a separate thread. This ensures that
+     * the prompt is showing before the lengthy execution begins.
+     *
+     * @param message message to display
+     * @see #clearPrompt()
+     */
     public static native void showPrompt(String message) /*-{
         $wnd.isc.showPrompt(message);
     }-*/;
 
+    /**
+     * Show a modal prompt to the user. This method will display the message using the Dialog.Prompt singleton object.
+     * <p>
+     * <b>Note</b>: if this prompt is to be shown to the user during some slow logic, we advise calling this method, then
+     * using {@link com.google.gwt.user.client.DeferredCommand} to kick off the slow logic in a separate thread. This ensures that
+     * the prompt is showing before the lengthy execution begins.
+     *
+     * @param title the title of the dialog
+     * @param message message to display
+     * @param dialogProperties additional properties for the Dialog
+     * @see #clearPrompt()
+     */
+    public static native void showPrompt(String title, String message, Dialog dialogProperties) /*-{
+        var dialogPropertiesJS = dialogProperties.@com.smartgwt.client.widgets.Dialog::getConfig()();
+        $wnd.isc.addProperties(dialogPropertiesJS, {title:title});
+        $wnd.isc.showPrompt(message, dialogPropertiesJS);    
+    }-*/;
+
+    /**
+     * Show a modal prompt to the user. This method will display the message using the Dialog.Prompt singleton object.
+     * <p>
+     * <b>Note</b>: if this prompt is to be shown to the user during some slow logic, we advise calling this method, then
+     * using {@link com.google.gwt.user.client.DeferredCommand} to kick off the slow logic in a separate thread. This ensures that
+     * the prompt is showing before the lengthy execution begins.
+     *
+     * @param title the title of the dialog
+     * @param message message to display
+     * @see #clearPrompt()
+     */
     public static native void showPrompt(String title, String message) /*-{
         $wnd.isc.showPrompt(message, {title:title});
     }-*/;
 
+    /**
+     * Clear the modal prompt being shown to the user.
+     */
     public static native void clearPrompt() /*-{
         $wnd.isc.clearPrompt();
     }-*/;
 
+    /**
+     * Show a modal dialog with a message, icon, and "OK" and "Cancel" buttons.
+     * <p>
+     * The callback will receive boolean true for an OK button click, or null for a Cancel click or if the Dialog is dismissed via the close button.
+     *
+     * @param message message to display
+     * @param callback Callback to fire when the user clicks a button to dismiss the dialog.
+     */
     public static native void confirm(String message, BooleanCallback callback) /*-{
         $wnd.isc.confirm(message, function(value) {
             var valueJ = value == null ? null : @com.smartgwt.client.util.JSOHelper::toBoolean(Z)(value);
@@ -175,6 +304,15 @@ public class SC {
         });
     }-*/;
 
+    /**
+     * Show a modal dialog with a message, icon, and "OK" and "Cancel" buttons.
+     * <p>
+     * The callback will receive boolean true for an OK button click, or null for a Cancel click or if the Dialog is dismissed via the close button.
+     *
+     * @param title the title of the dialog
+     * @param message message to display
+     * @param callback Callback to fire when the user clicks a button to dismiss the dialog.
+     */
     public static native void confirm(String title, String message, BooleanCallback callback) /*-{
 	    $wnd.isc.confirm(message, function(value) {
 	        var valueJ = value == null ? null : @com.smartgwt.client.util.JSOHelper::toBoolean(Z)(value);
@@ -182,6 +320,33 @@ public class SC {
 	    }, {title:title});
 	}-*/;
 
+    /**
+     * Show a modal dialog with a message, icon, and "OK" and "Cancel" buttons.
+     * <p>
+     * The callback will receive boolean true for an OK button click, or null for a Cancel click or if the Dialog is dismissed via the close button.
+     *
+     * @param title the title of the dialog
+     * @param message message to display
+     * @param callback Callback to fire when the user clicks a button to dismiss the dialog.
+     * @param dialogProperties additional properties for the Dialog
+     */
+    public static native void confirm(String title, String message, BooleanCallback callback, Dialog dialogProperties) /*-{
+        var dialogPropertiesJS = dialogProperties.@com.smartgwt.client.widgets.Dialog::getConfig()();
+        $wnd.isc.addProperties(dialogPropertiesJS, {title:title});
+	    $wnd.isc.confirm(message, function(value) {
+	        var valueJ = value == null ? null : @com.smartgwt.client.util.JSOHelper::toBoolean(Z)(value);
+	        callback.@com.smartgwt.client.util.BooleanCallback::execute(Ljava/lang/Boolean;)(valueJ);
+	    }, dialogPropertiesJS);
+	}-*/;
+
+    /**
+     * Show a modal dialog with a message, icon, and "OK" button.
+     * <p>
+     * The callback will receive boolean true for an OK button click, or null if the Dialog is dismissed via the close button.
+     *
+     * @param message the message
+     * @param callback Optional Callback to fire when the user dismisses the dialog.
+     */
     public static native void warn(String message, BooleanCallback callback) /*-{
         $wnd.isc.warn(message, function(value) {
             var valueJ = value == null ? null : @com.smartgwt.client.util.JSOHelper::toBoolean(Z)(value);
@@ -189,12 +354,22 @@ public class SC {
         });
     }-*/;
 
-
-     public static native void warn(String title, String message, BooleanCallback callback) /*-{
+    /**
+     * Show a modal dialog with a message, icon, and "OK" button.
+     * <p>
+     * The callback will receive boolean true for an OK button click, or null if the Dialog is dismissed via the close button.
+     *
+     * @param message the message
+     * @param callback Optional Callback to fire when the user dismisses the dialog.
+     * @param dialogProperties additional properties for the Dialog
+     */
+    public static native void warn(String title, String message, BooleanCallback callback, Dialog dialogProperties) /*-{
+        var dialogPropertiesJS = dialogProperties.@com.smartgwt.client.widgets.Dialog::getConfig()();
+        $wnd.isc.addProperties(dialogPropertiesJS, {title:title});
         $wnd.isc.warn(message, function(value) {
             var valueJ = value == null ? null : @com.smartgwt.client.util.JSOHelper::toBoolean(Z)(value);
             callback.@com.smartgwt.client.util.BooleanCallback::execute(Ljava/lang/Boolean;)(valueJ);
-        }, {title:title});
+        }, dialogPropertiesJS);
     }-*/;
 
     /**
