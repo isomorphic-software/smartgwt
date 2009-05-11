@@ -99,7 +99,7 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
 
 
     public ListGrid(){
-        setModalEditing(true);setLeaveScrollbarGap(false);
+        setModalEditing(true);setLeaveScrollbarGap(false);setRecordEnabledProperty("_enabled");
     }
 
     public ListGrid(JavaScriptObject jsObj){
@@ -3764,6 +3764,7 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
             self.setFieldState(fieldState);
         }-*/;
 
+
         /**
          * Identifies whether the passed-in field is the specially generated&#010 {@link com.smartgwt.client.widgets.grid.ListGrid#getCheckboxField checkboxField} used when {@link com.smartgwt.client.types.SelectionAppearance} is&#010 "checkbox".  Use this method in your custom event handlers to avoid inappropriately&#010 performing actions when the checkboxField is clicked on.&#010 &#010
          * @param field field to test
@@ -4899,6 +4900,26 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
      */
     public void setAutoFitData(Autofit autoFitData) {
         setAttribute("autoFitData", autoFitData.getValue(), true);
+    }
+
+    /**
+    * Property name on a record that will be checked to determine whether a record is enabled.&#010 <P>&#010 Setting this property on a record will effect the visual style and interactivity of&#010 the record.  If set to <code>false</code> the record (row in a {@link com.smartgwt.client.widgets.grid.ListGrid} or&#010 {@link com.smartgwt.client.widgets.tree.TreeGrid}) will not highlight when the mouse moves over it, nor will it respond to&#010 mouse clicks.
+    *
+    * @param recordEnabledProperty recordEnabledProperty Default value is "_enabled"
+    * @throws IllegalStateException this property cannot be changed after the component has been created
+    */
+    public void setRecordEnabledProperty(String recordEnabledProperty)  throws IllegalStateException {
+        setAttribute("recordEnabledProperty", recordEnabledProperty, false);
+    }
+    /**
+     * Property name on a record that will be checked to determine whether a record is enabled.&#010 <P>&#010 Setting this property on a record will effect the visual style and interactivity of&#010 the record.  If set to <code>false</code> the record (row in a {@link com.smartgwt.client.widgets.grid.ListGrid} or&#010 {@link com.smartgwt.client.widgets.tree.TreeGrid}) will not highlight when the mouse moves over it, nor will it respond to&#010 mouse clicks.
+     *
+     *
+     * @return String
+     *
+     */
+    public String getRecordEnabledProperty()  {
+        return getAttributeAsString("recordEnabledProperty");
     }
 
     /**
