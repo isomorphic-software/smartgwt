@@ -1,8 +1,7 @@
 package com.smartgwt.client.widgets;
 
 import com.smartgwt.client.types.DragDataAction;
-import com.smartgwt.client.data.Record;
-import com.smartgwt.client.data.DataSource;
+import com.smartgwt.client.data.*;
 import com.google.gwt.core.client.JavaScriptObject;
 
 import java.util.Map;
@@ -587,4 +586,237 @@ public interface DataBoundComponent {
      * @return DataSource
      */
     DataSource getDataSource();
+
+    /**
+     * Uses a "fetch" operation on the current {@link com.smartgwt.client.data.DataSource} to retrieve data that matches
+     * the provided criteria, and displays the matching data in this component. <P> If there are a large number of
+     * matching records, paging will automatically be enabled, so that initially a smaller number of records will be
+     * retrieved and further records will be fetched as the user navigates the dataset. <P> When first called, this
+     * method will create a {@link com.smartgwt.client.data.ResultSet}, which will be configured based on component
+     * settings such as {@link #getFetchOperation fetchOperation} and {@link
+     * #getDataPageSize dataPageSize}, as well as the general purpose {@link
+     * com.smartgwt.client.widgets.grid.ListGrid#getDataProperties dataProperties}.  The ResultSet is then available as
+     * <code>component.data</code>. <P> Subsequent calls to fetchData() will simply call {@link
+     * com.smartgwt.client.data.ResultSet#setCriteria} on the created ResultSet with the passed criteria. <P> In some
+     * cases fetchData() will not need to context the server as the new criteria can be satisfied by performing a
+     * client-side filter against the currently cached set of data. You can determine whether criteria will cause a
+     * fetch by calling  {@link com.smartgwt.client.data.ResultSet#willFetchData}. <P> If you need to force a server
+     * fetch, you can call {@link com.smartgwt.client.data.ResultSet#invalidateCache} via
+     * <code>component.data.invalidateCache()</code> to do so.   <P> This method takes an optional callback parameter
+     * (set to a {@link com.smartgwt.client.data.DSCallback}) to fire when the fetch completes. Note that this
+     * callback will not fire if no server fetch is performed. In this case the data is updated synchronously, so as
+     * soon as this method completes you can interact with the new data. If necessary we recomment using  {@link
+     * com.smartgwt.client.data.ResultSet#willFetchData} before calling this method to determine whether or not a server
+     * fetch will occur. <P> In addition to the callback parameter for this method, developers can use  {@link
+     * com.smartgwt.client.data.ResultSet#dataArrived} to be notified every time ResultSet data is loaded.  A
+     * <code>dataArrived</code> method can be installed in the automatically created ResultSet by adding it to {@link
+     * com.smartgwt.client.widgets.grid.ListGrid#getDataProperties dataProperties}.
+     */
+    void fetchData();
+
+    /**
+     * Uses a "fetch" operation on the current {@link com.smartgwt.client.data.DataSource} to retrieve data that matches
+     * the provided criteria, and displays the matching data in this component. <P> If there are a large number of
+     * matching records, paging will automatically be enabled, so that initially a smaller number of records will be
+     * retrieved and further records will be fetched as the user navigates the dataset. <P> When first called, this
+     * method will create a {@link com.smartgwt.client.data.ResultSet}, which will be configured based on component
+     * settings such as {@link #getFetchOperation fetchOperation} and {@link
+     * #getDataPageSize dataPageSize}, as well as the general purpose {@link
+     * com.smartgwt.client.widgets.grid.ListGrid#getDataProperties dataProperties}.  The ResultSet is then available as
+     * <code>component.data</code>. <P> Subsequent calls to fetchData() will simply call {@link
+     * com.smartgwt.client.data.ResultSet#setCriteria} on the created ResultSet with the passed criteria. <P> In some
+     * cases fetchData() will not need to context the server as the new criteria can be satisfied by performing a
+     * client-side filter against the currently cached set of data. You can determine whether criteria will cause a
+     * fetch by calling  {@link com.smartgwt.client.data.ResultSet#willFetchData}. <P> If you need to force a server
+     * fetch, you can call {@link com.smartgwt.client.data.ResultSet#invalidateCache} via
+     * <code>component.data.invalidateCache()</code> to do so.   <P> This method takes an optional callback parameter
+     * (set to a {@link com.smartgwt.client.data.DSCallback}) to fire when the fetch completes. Note that this
+     * callback will not fire if no server fetch is performed. In this case the data is updated synchronously, so as
+     * soon as this method completes you can interact with the new data. If necessary we recomment using  {@link
+     * com.smartgwt.client.data.ResultSet#willFetchData} before calling this method to determine whether or not a server
+     * fetch will occur. <P> In addition to the callback parameter for this method, developers can use  {@link
+     * com.smartgwt.client.data.ResultSet#dataArrived} to be notified every time ResultSet data is loaded.  A
+     * <code>dataArrived</code> method can be installed in the automatically created ResultSet by adding it to {@link
+     * com.smartgwt.client.widgets.grid.ListGrid#getDataProperties dataProperties}.
+     *
+     * @param criteria Search criteria.                       If a {@link com.smartgwt.client.widgets.form.DynamicForm}
+     *                 is passed in as this argument                      instead of a raw criteria object, will be
+     *                 derived by calling                      {@link com.smartgwt.client.widgets.form.DynamicForm#getValuesAsCriteria}
+     */
+    void fetchData(Criteria criteria);
+
+    /**
+     * Uses a "fetch" operation on the current {@link com.smartgwt.client.data.DataSource} to retrieve data that matches
+     * the provided criteria, and displays the matching data in this component. <P> If there are a large number of
+     * matching records, paging will automatically be enabled, so that initially a smaller number of records will be
+     * retrieved and further records will be fetched as the user navigates the dataset. <P> When first called, this
+     * method will create a {@link com.smartgwt.client.data.ResultSet}, which will be configured based on component
+     * settings such as {@link #getFetchOperation fetchOperation} and {@link
+     * #getDataPageSize dataPageSize}, as well as the general purpose {@link
+     * com.smartgwt.client.widgets.grid.ListGrid#getDataProperties dataProperties}.  The ResultSet is then available as
+     * <code>component.data</code>. <P> Subsequent calls to fetchData() will simply call {@link
+     * com.smartgwt.client.data.ResultSet#setCriteria} on the created ResultSet with the passed criteria. <P> In some
+     * cases fetchData() will not need to context the server as the new criteria can be satisfied by performing a
+     * client-side filter against the currently cached set of data. You can determine whether criteria will cause a
+     * fetch by calling  {@link com.smartgwt.client.data.ResultSet#willFetchData}. <P> If you need to force a server
+     * fetch, you can call {@link com.smartgwt.client.data.ResultSet#invalidateCache} via
+     * <code>component.data.invalidateCache()</code> to do so.   <P> This method takes an optional callback parameter
+     * (set to a {@link com.smartgwt.client.data.DSCallback}) to fire when the fetch completes. Note that this
+     * callback will not fire if no server fetch is performed. In this case the data is updated synchronously, so as
+     * soon as this method completes you can interact with the new data. If necessary we recomment using  {@link
+     * com.smartgwt.client.data.ResultSet#willFetchData} before calling this method to determine whether or not a server
+     * fetch will occur. <P> In addition to the callback parameter for this method, developers can use  {@link
+     * com.smartgwt.client.data.ResultSet#dataArrived} to be notified every time ResultSet data is loaded.  A
+     * <code>dataArrived</code> method can be installed in the automatically created ResultSet by adding it to {@link
+     * com.smartgwt.client.widgets.grid.ListGrid#getDataProperties dataProperties}.
+     *
+     * @param criteria Search criteria.                       If a {@link com.smartgwt.client.widgets.form.DynamicForm}
+     *                 is passed in as this argument                      instead of a raw criteria object, will be
+     *                 derived by calling                      {@link com.smartgwt.client.widgets.form.DynamicForm#getValuesAsCriteria}
+     * @param callback callback to invoke when a fetch is complete.  Fires                                          only
+     *                 if server contact was required
+     */
+    void fetchData(Criteria criteria, DSCallback callback);
+
+    /**
+     * Uses a "fetch" operation on the current {@link com.smartgwt.client.data.DataSource} to retrieve data that matches
+     * the provided criteria, and displays the matching data in this component. <P> If there are a large number of
+     * matching records, paging will automatically be enabled, so that initially a smaller number of records will be
+     * retrieved and further records will be fetched as the user navigates the dataset. <P> When first called, this
+     * method will create a {@link com.smartgwt.client.data.ResultSet}, which will be configured based on component
+     * settings such as {@link #getFetchOperation fetchOperation} and {@link
+     * #getDataPageSize dataPageSize}, as well as the general purpose {@link
+     * com.smartgwt.client.widgets.grid.ListGrid#getDataProperties dataProperties}.  The ResultSet is then available as
+     * <code>component.data</code>. <P> Subsequent calls to fetchData() will simply call {@link
+     * com.smartgwt.client.data.ResultSet#setCriteria} on the created ResultSet with the passed criteria. <P> In some
+     * cases fetchData() will not need to context the server as the new criteria can be satisfied by performing a
+     * client-side filter against the currently cached set of data. You can determine whether criteria will cause a
+     * fetch by calling  {@link com.smartgwt.client.data.ResultSet#willFetchData}. <P> If you need to force a server
+     * fetch, you can call {@link com.smartgwt.client.data.ResultSet#invalidateCache} via
+     * <code>component.data.invalidateCache()</code> to do so.   <P> This method takes an optional callback parameter
+     * (set to a {@link com.smartgwt.client.data.DSCallback}) to fire when the fetch completes. Note that this
+     * callback will not fire if no server fetch is performed. In this case the data is updated synchronously, so as
+     * soon as this method completes you can interact with the new data. If necessary we recomment using  {@link
+     * com.smartgwt.client.data.ResultSet#willFetchData} before calling this method to determine whether or not a server
+     * fetch will occur. <P> In addition to the callback parameter for this method, developers can use  {@link
+     * com.smartgwt.client.data.ResultSet#dataArrived} to be notified every time ResultSet data is loaded.  A
+     * <code>dataArrived</code> method can be installed in the automatically created ResultSet by adding it to {@link
+     * com.smartgwt.client.widgets.grid.ListGrid#getDataProperties dataProperties}.
+     *
+     * @param criteria          Search criteria.                       If a {@link com.smartgwt.client.widgets.form.DynamicForm}
+     *                          is passed in as this argument                      instead of a raw criteria object,
+     *                          will be derived by calling                      {@link com.smartgwt.client.widgets.form.DynamicForm#getValuesAsCriteria}
+     * @param callback          callback to invoke when a fetch is complete.  Fires
+     *                          only if server contact was required
+     * @param requestProperties additional properties to set on the DSRequest
+     *                          that will be issued
+     */
+    void fetchData(Criteria criteria, DSCallback callback, DSRequest requestProperties);
+
+    /**
+     * Retrieves data that matches the provided criteria and displays the matching data in this component. <P> This
+     * method behaves exactly like {@link com.smartgwt.client.widgets.grid.ListGrid#fetchData} except that {@link
+     * com.smartgwt.client.data.DSRequest#getTextMatchStyle textMatchStyle} is automatically set to "substring" so that
+     * String-valued fields are matched by case-insensitive substring comparison.
+     *
+     * @param criteria Search criteria.                       If a {@link com.smartgwt.client.widgets.form.DynamicForm}
+     *                 is passed in as this argument                      instead of a raw criteria object, will be
+     *                 derived by calling                      {@link com.smartgwt.client.widgets.form.DynamicForm#getValuesAsCriteria}
+     */
+    void filterData();
+
+    /**
+     * Retrieves data that matches the provided criteria and displays the matching data in this component. <P> This
+     * method behaves exactly like {@link com.smartgwt.client.widgets.grid.ListGrid#fetchData} except that {@link
+     * com.smartgwt.client.data.DSRequest#getTextMatchStyle textMatchStyle} is automatically set to "substring" so that
+     * String-valued fields are matched by case-insensitive substring comparison.
+     *
+     * @param criteria Search criteria.                       If a {@link com.smartgwt.client.widgets.form.DynamicForm}
+     *                 is passed in as this argument                      instead of a raw criteria object, will be
+     *                 derived by calling                      {@link com.smartgwt.client.widgets.form.DynamicForm#getValuesAsCriteria}
+     * @param callback callback to invoke when a fetch is complete.  Fires                                          only
+     *                 if server contact was required; see                                          {@link
+     *                 #fetchData} for details
+     */
+    void filterData(Criteria criteria);
+
+    /**
+     * Retrieves data that matches the provided criteria and displays the matching data in this component. <P> This
+     * method behaves exactly like {@link com.smartgwt.client.widgets.grid.ListGrid#fetchData} except that {@link
+     * com.smartgwt.client.data.DSRequest#getTextMatchStyle textMatchStyle} is automatically set to "substring" so that
+     * String-valued fields are matched by case-insensitive substring comparison.
+     *
+     * @param criteria          Search criteria.                       If a {@link com.smartgwt.client.widgets.form.DynamicForm}
+     *                          is passed in as this argument                      instead of a raw criteria object,
+     *                          will be derived by calling                      {@link com.smartgwt.client.widgets.form.DynamicForm#getValuesAsCriteria}
+     * @param callback          callback to invoke when a fetch is complete.  Fires
+     *                              only if server contact was required; see
+     *                          {@link #fetchData} for details
+     */
+    void filterData(Criteria criteria, DSCallback callback);
+
+    /**
+     * Retrieves data that matches the provided criteria and displays the matching data in this component. <P> This
+     * method behaves exactly like {@link com.smartgwt.client.widgets.grid.ListGrid#fetchData} except that {@link
+     * com.smartgwt.client.data.DSRequest#getTextMatchStyle textMatchStyle} is automatically set to "substring" so that
+     * String-valued fields are matched by case-insensitive substring comparison.
+     *
+     * @param criteria          Search criteria.                       If a {@link com.smartgwt.client.widgets.form.DynamicForm}
+     *                          is passed in as this argument                      instead of a raw criteria object,
+     *                          will be derived by calling                      {@link com.smartgwt.client.widgets.form.DynamicForm#getValuesAsCriteria}
+     * @param callback          callback to invoke when a fetch is complete.  Fires
+     *                              only if server contact was required; see
+     *                          {@link #fetchData} for details
+     * @param requestProperties for databound components only - optional                            additional
+     *                          properties to set on the DSRequest that will be issued
+     */
+    void filterData(Criteria criteria, DSCallback callback, DSRequest requestProperties);
+
+    /**
+     * If true, when this component is first drawn, automatically call {@link #fetchData()} or {@link #filterData()} depending on
+     * {@link #getAutoFetchAsFilter()} . Criteria for this fetch may be picked up from {@link #getInitialCriteria() initialCriteria}.
+     *
+     * @param autoFetchData autoFetchData 
+     */
+    void setAutoFetchData(Boolean autoFetchData);
+
+    /**
+     * If true, when this component is first drawn, automatically call {@link #fetchData()} or {@link #filterData()} depending on
+     * {@link #getAutoFetchAsFilter()} . Criteria for this fetch may be picked up from {@link #getInitialCriteria() initialCriteria}.
+     *
+     * @return auto fetch data
+     */
+    Boolean getAutoFetchData();
+
+    /**
+     * If {@link #setAutoFetchData(Boolean)} is true, this attribute determines whether the initial fetch operation should be
+     * performed via {@link #fetchData()} or {@link #filterData()}
+     *
+     * @param autoFetchAsFilter autoFetchAsFilter
+     */
+    void setAutoFetchAsFilter(Boolean autoFetchAsFilter);
+
+    /**
+     * If {@link #setAutoFetchData(Boolean)} is true, this attribute determines whether the initial fetch operation should be
+     * performed via {@link #fetchData()} or {@link #filterData()}
+     *
+     * @return auto fetch as filter
+     */
+    Boolean getAutoFetchAsFilter();
+
+    /**
+     * Criteria to use when {@link #setAutoFetchData(Boolean)} is used.
+     *
+     * @param initialCriteria the initial criteria
+     * @throws IllegalStateException this property cannot be changed after the component has been created
+     */
+    void setInitialCriteria(Criteria initialCriteria) throws IllegalStateException;
+
+    /**
+     * Criteria to use when {@link #setAutoFetchData(Boolean)} is used.
+     *
+     * @return the criteria
+     */
+    Criteria getInitialCriteria();
+
 }

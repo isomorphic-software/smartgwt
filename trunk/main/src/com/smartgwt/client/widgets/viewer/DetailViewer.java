@@ -973,6 +973,92 @@ public class DetailViewer extends Canvas  implements DataBoundComponent {
         return DataSource.getOrCreateRef(getAttributeAsJavaScriptObject("dataSource"));
     }
 
+    public void setAutoFetchData(Boolean autoFetchData)  throws IllegalStateException {
+        setAttribute("autoFetchData", autoFetchData, false);
+    }
+
+    public Boolean getAutoFetchData()  {
+        return getAttributeAsBoolean("autoFetchData");
+    }
+
+    public void setAutoFetchAsFilter(Boolean autoFetchAsFilter)  throws IllegalStateException {
+        setAttribute("autoFetchAsFilter", autoFetchAsFilter, false);
+    }
+
+    public Boolean getAutoFetchAsFilter()  {
+        return getAttributeAsBoolean("autoFetchAsFilter");
+    }
+
+    public void setInitialCriteria(Criteria initialCriteria) throws IllegalStateException {
+        setAttribute("initialCriteria", initialCriteria.getJsObj(), false);
+    }
+
+    public Criteria getInitialCriteria()  {
+        return new Criteria(getAttributeAsJavaScriptObject("initialCriteria"));
+    }
+
+    public native void fetchData() /*-{
+        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
+        self.fetchData();
+    }-*/;
+
+    public native void fetchData(Criteria criteria) /*-{
+        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
+        self.fetchData(criteria == null ? null : criteria.@com.smartgwt.client.data.Criteria::getJsObj()());
+    }-*/;
+
+    public native void fetchData(Criteria criteria, DSCallback callback) /*-{
+        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
+        var critJS = criteria == null ? null : criteria.@com.smartgwt.client.data.Criteria::getJsObj()();
+        self.fetchData(critJS, function (dsResponse, data, dsRequest) {
+            var responseJ = @com.smartgwt.client.data.DSResponse::new(Lcom/google/gwt/core/client/JavaScriptObject;)(dsResponse);
+            var requestJ = @com.smartgwt.client.data.DSRequest::new(Lcom/google/gwt/core/client/JavaScriptObject;)(dsRequest);
+            if(callback != null) callback.@com.smartgwt.client.data.DSCallback::execute(Lcom/smartgwt/client/data/DSResponse;Ljava/lang/Object;Lcom/smartgwt/client/data/DSRequest;)(responseJ, data, requestJ);
+        });
+    }-*/;
+
+    public native void fetchData(Criteria criteria, DSCallback callback, DSRequest requestProperties) /*-{
+        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
+        var critJS = criteria == null ? null : criteria.@com.smartgwt.client.data.Criteria::getJsObj()();
+        var requestPropertiesJS = requestProperties == null ? null : requestProperties.@com.smartgwt.client.core.DataClass::getJsObj()();
+        self.fetchData(critJS, function (dsResponse, data, dsRequest) {
+            var responseJ = @com.smartgwt.client.data.DSResponse::new(Lcom/google/gwt/core/client/JavaScriptObject;)(dsResponse);
+            var requestJ = @com.smartgwt.client.data.DSRequest::new(Lcom/google/gwt/core/client/JavaScriptObject;)(dsRequest);
+            if(callback != null) callback.@com.smartgwt.client.data.DSCallback::execute(Lcom/smartgwt/client/data/DSResponse;Ljava/lang/Object;Lcom/smartgwt/client/data/DSRequest;)(responseJ, data, requestJ);
+        }, requestPropertiesJS);
+    }-*/;
+
+    public native void filterData() /*-{
+        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
+        self.filterData();
+    }-*/;
+
+    public native void filterData(Criteria criteria) /*-{
+        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
+        self.filterData(criteria == null ? null : criteria.@com.smartgwt.client.data.Criteria::getJsObj()());
+    }-*/;
+
+    public native void filterData(Criteria criteria, DSCallback callback) /*-{
+        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
+        var critJS = criteria == null ? null : criteria.@com.smartgwt.client.data.Criteria::getJsObj()();
+        self.filterData(critJS, function (dsResponse, data, dsRequest) {
+            var responseJ = @com.smartgwt.client.data.DSResponse::new(Lcom/google/gwt/core/client/JavaScriptObject;)(dsResponse);
+            var requestJ = @com.smartgwt.client.data.DSRequest::new(Lcom/google/gwt/core/client/JavaScriptObject;)(dsRequest);
+            if(callback != null) callback.@com.smartgwt.client.data.DSCallback::execute(Lcom/smartgwt/client/data/DSResponse;Ljava/lang/Object;Lcom/smartgwt/client/data/DSRequest;)(responseJ, data, requestJ);
+        });
+    }-*/;
+
+    public native void filterData(Criteria criteria, DSCallback callback, DSRequest requestProperties) /*-{
+        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
+        var critJS = criteria == null ? null : criteria.@com.smartgwt.client.data.Criteria::getJsObj()();
+        var requestPropertiesJS = requestProperties == null ? null : requestProperties.@com.smartgwt.client.core.DataClass::getJsObj()();
+        self.filterData(critJS, function (dsResponse, data, dsRequest) {
+            var responseJ = @com.smartgwt.client.data.DSResponse::new(Lcom/google/gwt/core/client/JavaScriptObject;)(dsResponse);
+            var requestJ = @com.smartgwt.client.data.DSRequest::new(Lcom/google/gwt/core/client/JavaScriptObject;)(dsRequest);
+            if(callback != null) callback.@com.smartgwt.client.data.DSCallback::execute(Lcom/smartgwt/client/data/DSResponse;Ljava/lang/Object;Lcom/smartgwt/client/data/DSRequest;)(responseJ, data, requestJ);
+        }, requestPropertiesJS);
+    }-*/;
+
 }
 
 
