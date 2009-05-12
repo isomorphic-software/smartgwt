@@ -891,46 +891,6 @@ public class Calendar extends Canvas  implements DataBoundComponent, com.smartgw
     public Boolean getEventOverlapIdenticalStartTimes()  {
         return getAttributeAsBoolean("eventOverlapIdenticalStartTimes");
     }
-
-    /**
-    * If true, when this component is first drawn, automatically call <code>this.fetchData()</code>&#010 or <code>this.filterData()</code> depending on {@link com.smartgwt.client.widgets.calendar.Calendar#getAutoFetchAsFilter autoFetchAsFilter}.&#010 Criteria for this fetch may be picked up from {@link com.smartgwt.client.widgets.calendar.Calendar#getInitialCriteria initialCriteria}.
-    *
-    * @param autoFetchData autoFetchData Default value is false
-    * @throws IllegalStateException this property cannot be changed after the component has been created
-    */
-    public void setAutoFetchData(Boolean autoFetchData)  throws IllegalStateException {
-        setAttribute("autoFetchData", autoFetchData, false);
-    }
-    /**
-     * If true, when this component is first drawn, automatically call <code>this.fetchData()</code>&#010 or <code>this.filterData()</code> depending on {@link com.smartgwt.client.widgets.calendar.Calendar#getAutoFetchAsFilter autoFetchAsFilter}.&#010 Criteria for this fetch may be picked up from {@link com.smartgwt.client.widgets.calendar.Calendar#getInitialCriteria initialCriteria}.
-     *
-     *
-     * @return Boolean
-     *
-     */
-    public Boolean getAutoFetchData()  {
-        return getAttributeAsBoolean("autoFetchData");
-    }
-
-    /**
-    * If {@link com.smartgwt.client.widgets.calendar.Calendar#getAutoFetchData autoFetchData} is <code>true</code>, this attribute determines&#010 whether the initial fetch operation should be performed via {@link com.smartgwt.client.widgets.calendar.Calendar#fetchData} or&#010 {@link com.smartgwt.client.widgets.calendar.Calendar#filterData}
-    *
-    * @param autoFetchAsFilter autoFetchAsFilter Default value is false
-    * @throws IllegalStateException this property cannot be changed after the component has been created
-    */
-    public void setAutoFetchAsFilter(Boolean autoFetchAsFilter)  throws IllegalStateException {
-        setAttribute("autoFetchAsFilter", autoFetchAsFilter, false);
-    }
-    /**
-     * If {@link com.smartgwt.client.widgets.calendar.Calendar#getAutoFetchData autoFetchData} is <code>true</code>, this attribute determines&#010 whether the initial fetch operation should be performed via {@link com.smartgwt.client.widgets.calendar.Calendar#fetchData} or&#010 {@link com.smartgwt.client.widgets.calendar.Calendar#filterData}
-     *
-     *
-     * @return Boolean
-     *
-     */
-    public Boolean getAutoFetchAsFilter()  {
-        return getAttributeAsBoolean("autoFetchAsFilter");
-    }
  
 
     /**
@@ -955,24 +915,6 @@ public class Calendar extends Canvas  implements DataBoundComponent, com.smartgw
     // ********************* Methods ***********************
 
 
-        /**
-         * Retrieves data that matches the provided criteria and displays the matching data in this&#010 component.&#010 <P>&#010 This method behaves exactly like {@link com.smartgwt.client.widgets.grid.ListGrid#fetchData} except that&#010 {@link com.smartgwt.client.data.DSRequest#getTextMatchStyle textMatchStyle} is automatically set to "substring" so that String-valued&#010 fields are matched by case-insensitive substring comparison.&#010&#010
-         */
-        public native void filterData() /*-{
-            var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
-            self.filterData();
-        }-*/;
-
-        /**
-         * Retrieves data that matches the provided criteria and displays the matching data in this&#010 component.&#010 <P>&#010 This method behaves exactly like {@link com.smartgwt.client.widgets.grid.ListGrid#fetchData} except that&#010 {@link com.smartgwt.client.data.DSRequest#getTextMatchStyle textMatchStyle} is automatically set to "substring" so that String-valued&#010 fields are matched by case-insensitive substring comparison.&#010&#010
-         * @param criteria Search criteria.                       If a {@link com.smartgwt.client.widgets.form.DynamicForm} is passed in as this argument&#010                      instead of a raw criteria object, will be derived by calling&#010                      {@link com.smartgwt.client.widgets.form.DynamicForm#getValuesAsCriteria}
-     * @param callback callback to invoke when a fetch is complete.  Fires                                          only if server contact was required; see&#010                                          {@link com.smartgwt.client.widgets.grid.ListGrid#fetchData} for details
-     * @param requestProperties for databound components only - optional                            additional properties to set on the DSRequest that will be issued
-         */
-        public native void filterData(Criteria criteria, DSCallback callback, DSRequest requestProperties) /*-{
-            var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
-            self.filterData(criteria.@com.smartgwt.client.core.DataClass::getJsObj()(), callback, requestProperties.@com.smartgwt.client.core.DataClass::getJsObj()());
-        }-*/;
 
 
         /**
@@ -1509,17 +1451,6 @@ public class Calendar extends Canvas  implements DataBoundComponent, com.smartgw
     }*/
 
     /**
-     * Criteria to be used when {@link com.smartgwt.client.widgets.calendar.Calendar#getAutoFetchData autoFetchData} is
-     * set.
-     *
-     * @param initialCriteria initialCriteria Default value is null
-     * @throws IllegalStateException this property cannot be changed after the component has been created
-     */
-    public void setInitialCriteria(Criteria initialCriteria) throws IllegalStateException {
-        setAttribute("initialCriteria", initialCriteria, false);
-    }
-
-    /**
      * Create a new event in this calendar instance.
      *
      * @param startDate   start date of event
@@ -1987,6 +1918,92 @@ public class Calendar extends Canvas  implements DataBoundComponent, com.smartgw
     public DataSource getDataSource() {
         return DataSource.getOrCreateRef(getAttributeAsJavaScriptObject("dataSource"));
     }
+
+    public void setAutoFetchData(Boolean autoFetchData)  throws IllegalStateException {
+        setAttribute("autoFetchData", autoFetchData, false);
+    }
+
+    public Boolean getAutoFetchData()  {
+        return getAttributeAsBoolean("autoFetchData");
+    }
+
+    public void setAutoFetchAsFilter(Boolean autoFetchAsFilter)  throws IllegalStateException {
+        setAttribute("autoFetchAsFilter", autoFetchAsFilter, false);
+    }
+
+    public Boolean getAutoFetchAsFilter()  {
+        return getAttributeAsBoolean("autoFetchAsFilter");
+    }
+
+    public void setInitialCriteria(Criteria initialCriteria) throws IllegalStateException {
+        setAttribute("initialCriteria", initialCriteria.getJsObj(), false);
+    }
+
+    public Criteria getInitialCriteria()  {
+        return new Criteria(getAttributeAsJavaScriptObject("initialCriteria"));
+    }
+
+    public native void fetchData() /*-{
+        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
+        self.fetchData();
+    }-*/;
+
+    public native void fetchData(Criteria criteria) /*-{
+        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
+        self.fetchData(criteria == null ? null : criteria.@com.smartgwt.client.data.Criteria::getJsObj()());
+    }-*/;
+
+    public native void fetchData(Criteria criteria, DSCallback callback) /*-{
+        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
+        var critJS = criteria == null ? null : criteria.@com.smartgwt.client.data.Criteria::getJsObj()();
+        self.fetchData(critJS, function (dsResponse, data, dsRequest) {
+            var responseJ = @com.smartgwt.client.data.DSResponse::new(Lcom/google/gwt/core/client/JavaScriptObject;)(dsResponse);
+            var requestJ = @com.smartgwt.client.data.DSRequest::new(Lcom/google/gwt/core/client/JavaScriptObject;)(dsRequest);
+            if(callback != null) callback.@com.smartgwt.client.data.DSCallback::execute(Lcom/smartgwt/client/data/DSResponse;Ljava/lang/Object;Lcom/smartgwt/client/data/DSRequest;)(responseJ, data, requestJ);
+        });
+    }-*/;
+
+    public native void fetchData(Criteria criteria, DSCallback callback, DSRequest requestProperties) /*-{
+        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
+        var critJS = criteria == null ? null : criteria.@com.smartgwt.client.data.Criteria::getJsObj()();
+        var requestPropertiesJS = requestProperties == null ? null : requestProperties.@com.smartgwt.client.core.DataClass::getJsObj()();
+        self.fetchData(critJS, function (dsResponse, data, dsRequest) {
+            var responseJ = @com.smartgwt.client.data.DSResponse::new(Lcom/google/gwt/core/client/JavaScriptObject;)(dsResponse);
+            var requestJ = @com.smartgwt.client.data.DSRequest::new(Lcom/google/gwt/core/client/JavaScriptObject;)(dsRequest);
+            if(callback != null) callback.@com.smartgwt.client.data.DSCallback::execute(Lcom/smartgwt/client/data/DSResponse;Ljava/lang/Object;Lcom/smartgwt/client/data/DSRequest;)(responseJ, data, requestJ);
+        }, requestPropertiesJS);
+    }-*/;
+
+    public native void filterData() /*-{
+        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
+        self.filterData();
+    }-*/;
+
+    public native void filterData(Criteria criteria) /*-{
+        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
+        self.filterData(criteria == null ? null : criteria.@com.smartgwt.client.data.Criteria::getJsObj()());
+    }-*/;
+
+    public native void filterData(Criteria criteria, DSCallback callback) /*-{
+        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
+        var critJS = criteria == null ? null : criteria.@com.smartgwt.client.data.Criteria::getJsObj()();
+        self.filterData(critJS, function (dsResponse, data, dsRequest) {
+            var responseJ = @com.smartgwt.client.data.DSResponse::new(Lcom/google/gwt/core/client/JavaScriptObject;)(dsResponse);
+            var requestJ = @com.smartgwt.client.data.DSRequest::new(Lcom/google/gwt/core/client/JavaScriptObject;)(dsRequest);
+            if(callback != null) callback.@com.smartgwt.client.data.DSCallback::execute(Lcom/smartgwt/client/data/DSResponse;Ljava/lang/Object;Lcom/smartgwt/client/data/DSRequest;)(responseJ, data, requestJ);
+        });
+    }-*/;
+
+    public native void filterData(Criteria criteria, DSCallback callback, DSRequest requestProperties) /*-{
+        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
+        var critJS = criteria == null ? null : criteria.@com.smartgwt.client.data.Criteria::getJsObj()();
+        var requestPropertiesJS = requestProperties == null ? null : requestProperties.@com.smartgwt.client.core.DataClass::getJsObj()();
+        self.filterData(critJS, function (dsResponse, data, dsRequest) {
+            var responseJ = @com.smartgwt.client.data.DSResponse::new(Lcom/google/gwt/core/client/JavaScriptObject;)(dsResponse);
+            var requestJ = @com.smartgwt.client.data.DSRequest::new(Lcom/google/gwt/core/client/JavaScriptObject;)(dsRequest);
+            if(callback != null) callback.@com.smartgwt.client.data.DSCallback::execute(Lcom/smartgwt/client/data/DSResponse;Ljava/lang/Object;Lcom/smartgwt/client/data/DSRequest;)(responseJ, data, requestJ);
+        }, requestPropertiesJS);
+    }-*/;
 
 }
 
