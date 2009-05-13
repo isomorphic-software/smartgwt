@@ -89,7 +89,7 @@ public class LinkItem extends StaticTextItem {
     // ********************* Properties / Attributes ***********************
 
     /**
-    * By default, clicking a link rendered by this item opens it in a new browser window.  You &#010 can alter this behavior by setting this property.  The value of this property will be &#010 passed as the value to the <code>target</code> attribute of the anchor tag used to render &#010 the link.&#010 <P>&#010 If you set linkItem.target to "javascript", the default behaviour is to catch and consume&#010 mouse-clicks that would result in the link being followed.  Instead, the&#010 {@link com.smartgwt.client.widgets.form.fields.FormItem#click} event is fired.
+    * By default, clicking a link rendered by this item opens it in a new browser window.  You &#010 can alter this behavior by setting this property.  The value of this property will be &#010 passed as the value to the <code>target</code> attribute of the anchor tag used to render &#010 the link.&#010 <P>&#010 If you set linkItem.target to "javascript", the default behaviour is to catch and consume&#010 mouse-clicks that would result in the link being followed.  Instead, the&#010 {@link com.smartgwt.client.widgets.form.fields.FormItem#addClickHandler} event is fired.
     *
     * @param target target Default value is "_blank"
     */
@@ -97,7 +97,7 @@ public class LinkItem extends StaticTextItem {
         setAttribute("target", target);
     }
     /**
-     * By default, clicking a link rendered by this item opens it in a new browser window.  You &#010 can alter this behavior by setting this property.  The value of this property will be &#010 passed as the value to the <code>target</code> attribute of the anchor tag used to render &#010 the link.&#010 <P>&#010 If you set linkItem.target to "javascript", the default behaviour is to catch and consume&#010 mouse-clicks that would result in the link being followed.  Instead, the&#010 {@link com.smartgwt.client.widgets.form.fields.FormItem#click} event is fired.
+     * By default, clicking a link rendered by this item opens it in a new browser window.  You &#010 can alter this behavior by setting this property.  The value of this property will be &#010 passed as the value to the <code>target</code> attribute of the anchor tag used to render &#010 the link.&#010 <P>&#010 If you set linkItem.target to "javascript", the default behaviour is to catch and consume&#010 mouse-clicks that would result in the link being followed.  Instead, the&#010 {@link com.smartgwt.client.widgets.form.fields.FormItem#addClickHandler} event is fired.
      *
      *
      * @return String

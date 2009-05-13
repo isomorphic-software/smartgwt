@@ -762,7 +762,7 @@ public class DateChooser extends Canvas  implements com.smartgwt.client.widgets.
         }-*/;
 
         /**
-         * Get the current value of the picker.&#010 <P>&#010 See {@link com.smartgwt.client.widgets.DateChooser#dataChanged} for how to respond to the user picking a date.&#010&#010
+         * Get the current value of the picker.&#010 <P>&#010 See {@link com.smartgwt.client.widgets.DateChooser#addDataChangedHandler} for how to respond to the user picking a date.&#010&#010
          *
          * @return current date
          */

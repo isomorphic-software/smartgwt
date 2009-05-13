@@ -1093,7 +1093,7 @@ public class TreeGrid extends ListGrid  implements com.smartgwt.client.widgets.t
         /**
          * Add a nodeClick handler.
          * <p>
-         * &#010 This method is called when a leaf or folder record is clicked on.  Note that if you set&#010 up a callback for <code>nodeClick()</code> and e.g. {@link com.smartgwt.client.widgets.tree.TreeGrid#leafClick}, then&#010 both will fire (in that order) if a leaf is clicked on.&#010&#010
+         * &#010 This method is called when a leaf or folder record is clicked on.  Note that if you set&#010 up a callback for <code>nodeClick()</code> and e.g. {@link com.smartgwt.client.widgets.tree.TreeGrid#addLeafClickHandler}, then&#010 both will fire (in that order) if a leaf is clicked on.&#010&#010
          *
          * @param handler the nodeClick handler
          * @return {@link HandlerRegistration} used to remove this handler
@@ -1200,7 +1200,7 @@ public class TreeGrid extends ListGrid  implements com.smartgwt.client.widgets.t
         /**
          * Add a nodeContextClick handler.
          * <p>
-         * &#010 This method is called when a context click occurs on a leaf or folder record.  Note that&#010 if you set up a callback for <code>nodeContextClick()</code> and&#010 e.g. {@link com.smartgwt.client.widgets.tree.TreeGrid#leafContextClick}, then both will fire (in that order) if a leaf&#010 is contextclicked - unless <code>nodeContextClick()</code> returns false, in which case&#010 no further contextClick callbacks will be called.&#010&#010
+         * &#010 This method is called when a context click occurs on a leaf or folder record.  Note that&#010 if you set up a callback for <code>nodeContextClick()</code> and&#010 e.g. {@link com.smartgwt.client.widgets.tree.TreeGrid#addLeafContextClickHandler}, then both will fire (in that order) if a leaf&#010 is contextclicked - unless <code>nodeContextClick()</code> returns false, in which case&#010 no further contextClick callbacks will be called.&#010&#010
          *
          * @param handler the nodeContextClick handler
          * @return {@link HandlerRegistration} used to remove this handler

@@ -133,7 +133,7 @@ public class Tab extends RefDataClass {
     }
 
     /**
-    * Optional ID for the tab, which can later be used to reference the tab.&#010 APIs requiring a referenct a tab will accept the tabs ID &#010 [including  {@link com.smartgwt.client.widgets.tab.TabSet#selectTab}, {@link com.smartgwt.client.widgets.tab.TabSet#updateTab}, {@link com.smartgwt.client.widgets.tab.TabSet#removeTab}].<br>&#010 The ID will also be passed to the {@link com.smartgwt.client.widgets.tab.TabSet#tabSelected} and {@link com.smartgwt.client.widgets.tab.TabSet#tabDeselected}&#010 handler functions, if specified.&#010 <p>&#010 Note that if you provide an ID, it must be globally unique.
+    * Optional ID for the tab, which can later be used to reference the tab.&#010 APIs requiring a referenct a tab will accept the tabs ID &#010 [including  {@link com.smartgwt.client.widgets.tab.TabSet#selectTab}, {@link com.smartgwt.client.widgets.tab.TabSet#updateTab}, {@link com.smartgwt.client.widgets.tab.TabSet#removeTab}].<br>&#010 The ID will also be passed to the {@link com.smartgwt.client.widgets.tab.TabSet#addTabSelectedHandler} and {@link com.smartgwt.client.widgets.tab.TabSet#addTabDeselectedHandler}&#010 handler functions, if specified.&#010 <p>&#010 Note that if you provide an ID, it must be globally unique.
     *
     * @param ID ID Default value is null
     */
@@ -141,7 +141,7 @@ public class Tab extends RefDataClass {
         setAttribute("ID", ID);
     }
     /**
-     * Optional ID for the tab, which can later be used to reference the tab.&#010 APIs requiring a referenct a tab will accept the tabs ID &#010 [including  {@link com.smartgwt.client.widgets.tab.TabSet#selectTab}, {@link com.smartgwt.client.widgets.tab.TabSet#updateTab}, {@link com.smartgwt.client.widgets.tab.TabSet#removeTab}].<br>&#010 The ID will also be passed to the {@link com.smartgwt.client.widgets.tab.TabSet#tabSelected} and {@link com.smartgwt.client.widgets.tab.TabSet#tabDeselected}&#010 handler functions, if specified.&#010 <p>&#010 Note that if you provide an ID, it must be globally unique.
+     * Optional ID for the tab, which can later be used to reference the tab.&#010 APIs requiring a referenct a tab will accept the tabs ID &#010 [including  {@link com.smartgwt.client.widgets.tab.TabSet#selectTab}, {@link com.smartgwt.client.widgets.tab.TabSet#updateTab}, {@link com.smartgwt.client.widgets.tab.TabSet#removeTab}].<br>&#010 The ID will also be passed to the {@link com.smartgwt.client.widgets.tab.TabSet#addTabSelectedHandler} and {@link com.smartgwt.client.widgets.tab.TabSet#addTabDeselectedHandler}&#010 handler functions, if specified.&#010 <p>&#010 Note that if you provide an ID, it must be globally unique.
      *
      *
      * @return String
