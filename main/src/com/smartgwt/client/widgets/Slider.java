@@ -703,7 +703,7 @@ public class Slider extends Canvas  implements com.smartgwt.client.widgets.event
         }-*/;
 
         /**
-         * Call this method in your {@link com.smartgwt.client.widgets.Slider#valueChanged} handler to determine whether the&#010 value change is due to an ongoing drag interaction (true) or due to a thumb-release,&#010 mouse click, keypress, or programmatic event (false). You may choose to execute temporary or&#010 partial updates while the slider thumb is dragged, and final updates or persistence of the value&#010 in response to the other events.&#010&#010
+         * Call this method in your {@link com.smartgwt.client.widgets.Slider#addValueChangedHandler} handler to determine whether the&#010 value change is due to an ongoing drag interaction (true) or due to a thumb-release,&#010 mouse click, keypress, or programmatic event (false). You may choose to execute temporary or&#010 partial updates while the slider thumb is dragged, and final updates or persistence of the value&#010 in response to the other events.&#010&#010
          *
          * @return true if user is still dragging the slider thumb, false otherwise
          */

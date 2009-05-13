@@ -621,7 +621,7 @@ public class Window extends VLayout  implements com.smartgwt.client.widgets.even
     }
 
     /**
-    * If true, show a close button in the header, which will dismiss this window by &#010 calling {@link com.smartgwt.client.widgets.Window#closeClick}.
+    * If true, show a close button in the header, which will dismiss this window by &#010 calling {@link com.smartgwt.client.widgets.Window#addCloseClickHandler}.
     * Dynamically update {@link com.smartgwt.client.widgets.Window#getShowCloseButton showCloseButton} to show / hide the closeButton&#010
     *
     * @param showCloseButton showCloseButton Default value is true
@@ -630,7 +630,7 @@ public class Window extends VLayout  implements com.smartgwt.client.widgets.even
         setAttribute("showCloseButton", showCloseButton, true);
     }
     /**
-     * If true, show a close button in the header, which will dismiss this window by &#010 calling {@link com.smartgwt.client.widgets.Window#closeClick}.
+     * If true, show a close button in the header, which will dismiss this window by &#010 calling {@link com.smartgwt.client.widgets.Window#addCloseClickHandler}.
      *
      *
      * @return Boolean

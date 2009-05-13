@@ -606,7 +606,7 @@ public class ListGridField extends DataClass  implements com.smartgwt.client.wid
     }
 
     /**
-    * By default, clicking a link rendered by this item opens it in a new browser window.  You &#010 can alter this behavior by setting this property.  The value of this property will be &#010 passed as the value to the <code>target</code> attribute of the anchor tag used to render &#010 the link.&#010 <P>&#010 If you set listGridField.target to "javascript", the default behaviour is to catch and &#010 consume mouse-clicks that would result in the link being followed.  Instead, the&#010 {@link com.smartgwt.client.widgets.grid.ListGrid#cellClick} event is fired for the containing cell.
+    * By default, clicking a link rendered by this item opens it in a new browser window.  You &#010 can alter this behavior by setting this property.  The value of this property will be &#010 passed as the value to the <code>target</code> attribute of the anchor tag used to render &#010 the link.&#010 <P>&#010 If you set listGridField.target to "javascript", the default behaviour is to catch and &#010 consume mouse-clicks that would result in the link being followed.  Instead, the&#010 {@link com.smartgwt.client.widgets.grid.ListGrid#addCellClickHandler} event is fired for the containing cell.
     *
     * @param target target Default value is "_blank"
     */
@@ -614,7 +614,7 @@ public class ListGridField extends DataClass  implements com.smartgwt.client.wid
         setAttribute("target", target);
     }
     /**
-     * By default, clicking a link rendered by this item opens it in a new browser window.  You &#010 can alter this behavior by setting this property.  The value of this property will be &#010 passed as the value to the <code>target</code> attribute of the anchor tag used to render &#010 the link.&#010 <P>&#010 If you set listGridField.target to "javascript", the default behaviour is to catch and &#010 consume mouse-clicks that would result in the link being followed.  Instead, the&#010 {@link com.smartgwt.client.widgets.grid.ListGrid#cellClick} event is fired for the containing cell.
+     * By default, clicking a link rendered by this item opens it in a new browser window.  You &#010 can alter this behavior by setting this property.  The value of this property will be &#010 passed as the value to the <code>target</code> attribute of the anchor tag used to render &#010 the link.&#010 <P>&#010 If you set listGridField.target to "javascript", the default behaviour is to catch and &#010 consume mouse-clicks that would result in the link being followed.  Instead, the&#010 {@link com.smartgwt.client.widgets.grid.ListGrid#addCellClickHandler} event is fired for the containing cell.
      *
      *
      * @return String
@@ -1423,7 +1423,7 @@ public class ListGridField extends DataClass  implements com.smartgwt.client.wid
         /**
          * Add a cellSaved handler.
          * <p>
-         * Callback fired when field changes value as the result of a cell edit.  Fired only on&#010  successful save of edit, when the new value doesn't match the value before editing.<br>&#010  <p>&#010  Same signature as {@link com.smartgwt.client.widgets.grid.ListGrid#cellChanged}, but defined on a per-field basis.&#010&#010
+         * Callback fired when field changes value as the result of a cell edit.  Fired only on&#010  successful save of edit, when the new value doesn't match the value before editing.<br>&#010  <p>&#010  Same signature as {@link com.smartgwt.client.widgets.grid.ListGrid#addCellChangedHandler}, but defined on a per-field basis.&#010&#010
          *
          * @param handler the cellSaved handler
          * @return {@link HandlerRegistration} used to remove this handler
@@ -1446,7 +1446,7 @@ public class ListGridField extends DataClass  implements com.smartgwt.client.wid
         /**
          * Add a recordClick handler.
          * <p>
-         * &#010 Executed when this field is clicked on.  Note that if {@link com.smartgwt.client.widgets.grid.ListGrid#recordClick} is&#010 also defined, it will be fired for fields that define a recordClick handler if the&#010 field-level handler returns true. Return false to prevent the grid-level handler from firing.&#010&#010
+         * &#010 Executed when this field is clicked on.  Note that if {@link com.smartgwt.client.widgets.grid.ListGrid#addRecordClickHandler} is&#010 also defined, it will be fired for fields that define a recordClick handler if the&#010 field-level handler returns true. Return false to prevent the grid-level handler from firing.&#010&#010
          *
          * @param handler the recordClick handler
          * @return {@link HandlerRegistration} used to remove this handler
@@ -1476,7 +1476,7 @@ public class ListGridField extends DataClass  implements com.smartgwt.client.wid
         /**
          * Add a change handler.
          * <p>
-         * If this field is editable, any {@link com.smartgwt.client.widgets.form.fields.FormItem#change} handler specified&#010 on the ListGridField will be passed onto the editors for this field.&#010
+         * If this field is editable, any {@link com.smartgwt.client.widgets.form.fields.FormItem#addChangeHandler} handler specified&#010 on the ListGridField will be passed onto the editors for this field.&#010
          *
          * @param handler the change handler
          * @return {@link HandlerRegistration} used to remove this handler
@@ -1499,7 +1499,7 @@ public class ListGridField extends DataClass  implements com.smartgwt.client.wid
         /**
          * Add a changed handler.
          * <p>
-         * If this field is editable, any {@link com.smartgwt.client.widgets.form.fields.FormItem#changed} handler specified&#010 on the ListGridField will be passed onto the editors for this field.&#010
+         * If this field is editable, any {@link com.smartgwt.client.widgets.form.fields.FormItem#addChangedHandler} handler specified&#010 on the ListGridField will be passed onto the editors for this field.&#010
          *
          * @param handler the changed handler
          * @return {@link HandlerRegistration} used to remove this handler
