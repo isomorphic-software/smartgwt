@@ -562,7 +562,7 @@ public class FormItem extends RefDataClass  implements com.smartgwt.client.widge
     }
 
     /**
-    * Whether a non-empty value is required for this field to pass validation.&#010 <BR>&#010 <b>Note:</b> if specified on a FormItem, <code>required</code> is only enforced on the&#010 client.  <code>required</code> should generally be specified on a&#010 {@link com.smartgwt.client.data.DataSourceField}.
+    * Whether a non-empty value is required for this field to pass validation.&#010 <P>&#010 If the user does not fill in the required field, the {@link com.smartgwt.client.widgets.form.validator.Validator#requiredField}&#010 error message will be shown.&#010 <P>&#010 <b>Note:</b> if specified on a FormItem, <code>required</code> is only enforced on the&#010 client.  <code>required</code> should generally be specified on a&#010 {@link com.smartgwt.client.data.DataSourceField}.
     *
     * @param required required Default value is null
     */
@@ -570,7 +570,7 @@ public class FormItem extends RefDataClass  implements com.smartgwt.client.widge
         setAttribute("required", required);
     }
     /**
-     * Whether a non-empty value is required for this field to pass validation.&#010 <BR>&#010 <b>Note:</b> if specified on a FormItem, <code>required</code> is only enforced on the&#010 client.  <code>required</code> should generally be specified on a&#010 {@link com.smartgwt.client.data.DataSourceField}.
+     * Whether a non-empty value is required for this field to pass validation.&#010 <P>&#010 If the user does not fill in the required field, the {@link com.smartgwt.client.widgets.form.validator.Validator#requiredField}&#010 error message will be shown.&#010 <P>&#010 <b>Note:</b> if specified on a FormItem, <code>required</code> is only enforced on the&#010 client.  <code>required</code> should generally be specified on a&#010 {@link com.smartgwt.client.data.DataSourceField}.
      *
      *
      * @return Boolean

@@ -2519,6 +2519,11 @@ public class DynamicForm extends Canvas  implements DataBoundComponent, com.smar
         }, requestPropertiesJS);
     }-*/;
 
+    public native void invalidateCache() /*-{
+        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
+        self.invalidateCache();
+    }-*/;
+
 }
 
 

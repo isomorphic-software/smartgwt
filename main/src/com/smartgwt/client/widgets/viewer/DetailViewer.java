@@ -1059,6 +1059,11 @@ public class DetailViewer extends Canvas  implements DataBoundComponent {
         }, requestPropertiesJS);
     }-*/;
 
+    public native void invalidateCache() /*-{
+        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
+        self.invalidateCache();
+    }-*/;
+
 }
 
 

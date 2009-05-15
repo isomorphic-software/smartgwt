@@ -153,7 +153,7 @@ public class PickTreeItem extends CanvasItem {
     }
 
     /**
-    * This message will be displayed as a singled, disabled option in any empty menu/submenu&#010 created from this item's data tree.
+    * This message will be displayed as a single, disabled option in any empty menu/submenu&#010 created from this item's data tree.
     * <p><b>Note : </b> This is an advanced setting</p>
     *
     * @param emptyMenuMessage emptyMenuMessage Default value is "No items to display"
@@ -162,7 +162,7 @@ public class PickTreeItem extends CanvasItem {
         setAttribute("emptyMenuMessage", emptyMenuMessage);
     }
     /**
-     * This message will be displayed as a singled, disabled option in any empty menu/submenu&#010 created from this item's data tree.
+     * This message will be displayed as a single, disabled option in any empty menu/submenu&#010 created from this item's data tree.
      *
      *
      * @return String
