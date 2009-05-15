@@ -3065,13 +3065,6 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
         }-*/;
 
 
-        /**
-         * Invalidate the current data cache for this databound component via a call to&#010 <code>this.data.invalidateCache()</code>. If necessary, this will cause a new fetch to &#010 be performed with the current set of criteria for this component.&#010 <P>&#010 Has no effect if this component is not showing a set of filtered data.&#010 &#010
-         */
-        public native void invalidateCache() /*-{
-            var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
-            self.invalidateCache();
-        }-*/;
 
         /**
          * Compares the specified criteria with the current criteria applied to this component's&#010 data object and determines whether the new criteria could be satisfied from the currently cached&#010 set of data, or if a new filter/fetch operation will be required.&#010 <P>&#010 This is equivalent to calling <code>this.data.willFetchData(...)</code>.&#010 Always returns true if this component is not showing a set of data from the dataSource. &#010 &#010
@@ -6755,6 +6748,11 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
             var requestJ = @com.smartgwt.client.data.DSRequest::new(Lcom/google/gwt/core/client/JavaScriptObject;)(dsRequest);
             if(callback != null) callback.@com.smartgwt.client.data.DSCallback::execute(Lcom/smartgwt/client/data/DSResponse;Ljava/lang/Object;Lcom/smartgwt/client/data/DSRequest;)(responseJ, data, requestJ);
         }, requestPropertiesJS);
+    }-*/;
+
+    public native void invalidateCache() /*-{
+        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
+        self.invalidateCache();
     }-*/;
 
 }

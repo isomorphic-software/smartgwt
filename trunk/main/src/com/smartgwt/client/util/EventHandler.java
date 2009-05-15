@@ -66,6 +66,15 @@ public class EventHandler {
 
     // ********************* Static Methods ***********************
 
+        /**
+         * Applies to {@link com.smartgwt.client.widgets.Canvas#addMouseWheelHandler} events only.&#010 Returns an integer indicating how far the mouse wheel was rotated. This value will be&#010 positive if the user scrolled the mousewheel forward or up, or negative if scrolled in the&#010 other direction and will be a multiple of 1 where 1 indicates the smallest possible rotation&#010 of the wheel.&#010
+         *
+         * @return integer indicating how far the mouse wheel was rotated.
+         */
+        public static native int getWheelDelta() /*-{
+            return $wnd.isc.EventHandler.getWheelDelta();
+        }-*/;
+
 
 
         /**
@@ -198,15 +207,6 @@ public class EventHandler {
      */
     public static native void setDragTracker(String html) /*-{
             $wnd.isc.EventHandler.setDragTracker(html);
-    }-*/;
-
-    /**
-     * Applies to {@link com.smartgwt.client.widgets.Canvas#mouseWheel} events only.&#010 Returns an integer indicating how far the mouse wheel was rotated. This value will be&#010 positive if the user scrolled the mousewheel forward or up, or negative if scrolled in the&#010 other direction and will be a multiple of 1 where 1 indicates the smallest possible rotation&#010 of the wheel.&#010
-     *
-     * @return integer indicating how far the mouse wheel was rotated.
-     */
-    public static native int getWheelDelta() /*-{
-        return $wnd.isc.EventHandler.getWheelDelta();
     }-*/;
 
     /**

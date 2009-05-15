@@ -232,6 +232,7 @@ public class TileGrid extends TileLayout  implements DataBoundComponent, com.sma
 
 
 
+
         /**
          * Return the first selected record in this component&#010
          *
@@ -651,14 +652,6 @@ public class TileGrid extends TileLayout  implements DataBoundComponent, com.sma
         }
         return objects;
     }
-
-    /**
-     * Invalidate the current data cache for this databound component via a call to&#010 <code>this.data.invalidateCache()</code>. If necessary, this will cause a new fetch to &#010 be performed with the current set of criteria for this component.&#010 <P>&#010 Has no effect if this component is not showing a set of filtered data.&#010 &#010
-     */
-    public native void invalidateCache() /*-{
-        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
-        self.invalidateCache();
-    }-*/;
 
 
 
@@ -1119,6 +1112,11 @@ public class TileGrid extends TileLayout  implements DataBoundComponent, com.sma
             var requestJ = @com.smartgwt.client.data.DSRequest::new(Lcom/google/gwt/core/client/JavaScriptObject;)(dsRequest);
             if(callback != null) callback.@com.smartgwt.client.data.DSCallback::execute(Lcom/smartgwt/client/data/DSResponse;Ljava/lang/Object;Lcom/smartgwt/client/data/DSRequest;)(responseJ, data, requestJ);
         }, requestPropertiesJS);
+    }-*/;
+
+    public native void invalidateCache() /*-{
+        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
+        self.invalidateCache();
     }-*/;
 
 }

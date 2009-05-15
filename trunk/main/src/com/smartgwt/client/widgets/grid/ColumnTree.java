@@ -1132,6 +1132,11 @@ public class ColumnTree extends Layout  implements DataBoundComponent, com.smart
         }, requestPropertiesJS);
     }-*/;
 
+    public native void invalidateCache() /*-{
+        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
+        self.invalidateCache();
+    }-*/;
+
 }
 
 

@@ -148,14 +148,6 @@ public class ValuesManager extends BaseClass {
     // ********************* Methods ***********************
 
 
-        /**
-         * &#010 Edit an existing record.  Updates this editors values to match the values of the record &#010 passed in, via {@link com.smartgwt.client.widgets.form.ValuesManager#setValues}.&#010 <P>&#010 This method will also call {@link com.smartgwt.client.widgets.form.DynamicForm#setSaveOperationType} to ensure &#010 subsequent calls to <code>saveData()</code> will use an <code>update</code> rather than&#010 an <code>add</code> operation.&#010&#010
-         * @param record the record to be edited as a map of field names to their corresponding values
-         */
-        public native void editRecord(ListGridRecord record) /*-{
-            var self = this.@com.smartgwt.client.core.BaseClass::getOrCreateJsObj()();
-            self.editRecord(record.@com.smartgwt.client.core.DataClass::getJsObj()());
-        }-*/;
 
 
         /**
@@ -342,7 +334,7 @@ public class ValuesManager extends BaseClass {
     // ********************* Static Methods ***********************
 
 
-
+
 
 
 
@@ -520,6 +512,14 @@ public class ValuesManager extends BaseClass {
         self.editSelectedData(selectionComponentJS);
     }-*/;
 
+    /**
+     * &#010 Edit an existing record.  Updates this editors values to match the values of the record &#010 passed in, via {@link com.smartgwt.client.widgets.form.ValuesManager#setValues}.&#010 <P>&#010 This method will also call {@link com.smartgwt.client.widgets.form.DynamicForm#setSaveOperationType} to ensure &#010 subsequent calls to <code>saveData()</code> will use an <code>update</code> rather than&#010 an <code>add</code> operation.&#010&#010
+     * @param record the record to be edited as a map of field names to their corresponding values
+     */
+    public native void editRecord(Record record) /*-{
+        var self = this.@com.smartgwt.client.core.BaseClass::getOrCreateJsObj()();
+        self.editRecord(record.@com.smartgwt.client.core.DataClass::getJsObj()());
+    }-*/;
 
     /**
      * Prepare to edit a new record by clearing the current set of values (or replacing them with initialValues if specified).

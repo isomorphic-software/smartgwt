@@ -13,7 +13,8 @@ package com.smartgwt.client.docs;
  * @see com.smartgwt.client..FormulaBuilder#save
  * @see com.smartgwt.client..FormulaBuilder#fireOnClose
  * @see com.smartgwt.client..SummaryBuilder#setSummary
- * @see com.smartgwt.client..SummaryBuilder#setSummary
+ * @see com.smartgwt.client..SummaryBuilder#save
+ * @see com.smartgwt.client..SummaryBuilder#save
  * @see com.smartgwt.client..TestFunctionResult
  * @see com.smartgwt.client..TestFunctionResult
  * @see com.smartgwt.client..MathFunction#registerFunction
