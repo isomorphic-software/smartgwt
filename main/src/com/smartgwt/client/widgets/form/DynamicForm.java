@@ -1295,13 +1295,6 @@ public class DynamicForm extends Canvas  implements DataBoundComponent, com.smar
         }-*/;
 
 
-        /**
-         * If this form has any outstanding validation errors, show them now.<br>&#010 This method is called when the set of errors are changed by {@link com.smartgwt.client.widgets.form.DynamicForm#setErrors} or&#010 {@link com.smartgwt.client.widgets.form.DynamicForm#validate}.<br>&#010 Default implementation will redraw the form to display error messages and call&#010 {@link com.smartgwt.client.widgets.form.DynamicForm#handleHiddenValidationErrors} to&#010 display errors with no visible field.<br>&#010 Note that this method may be overridden to perform custom display of validation errors.  &#010
-         */
-        public native void showErrors() /*-{
-            var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
-            self.showErrors();
-        }-*/;
 
         /**
          * If this form has any outstanding validation errors for the field passed in, show them now.&#010 Called when field errors are set directly via {@link com.smartgwt.client.widgets.form.DynamicForm#setFieldErrors} / &#010 {@link com.smartgwt.client.widgets.form.DynamicForm#addFieldErrors} / {@link com.smartgwt.client.widgets.form.DynamicForm#clearFieldErrors}.<br>&#010 Default implementation simply falls through to {@link com.smartgwt.client.widgets.form.DynamicForm#showErrors}.&#010
@@ -1461,18 +1454,40 @@ public class DynamicForm extends Canvas  implements DataBoundComponent, com.smar
 
     private FormItem[] fields;
 
-    protected void onInit() {
-        linkFields();
-    }
+    protected native void onInit() /*-{
+        this.@com.smartgwt.client.widgets.form.DynamicForm::linkFields()();
+        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
+        self._showErrors = self.showErrors;
+        self.showErrors = function() {
+            var jObj = this.__ref;
+            return jObj.@com.smartgwt.client.widgets.form.DynamicForm::showErrors()();
+        };
+    }-*/;
 
-       private void linkFields() {
-           if (fields != null) {
-               for (FormItem field : fields) {
-                   JavaScriptObject fieldJS = getFieldJS(field.getName());
-                   field.setJsObj(fieldJS);
-               }
-           }
-       }
+
+    /**
+     * If this form has any outstanding validation errors, show them now.<br>&#010 This method is called when the set of errors are
+     * changed by {@link com.smartgwt.client.widgets.form.DynamicForm#setErrors} or&#010 {@link com.smartgwt.client.widgets.form.DynamicForm#validate}.
+     * <br>&#010 Default implementation will redraw the form to display error messages and call&#010
+     * {@link com.smartgwt.client.widgets.form.DynamicForm#handleHiddenValidationErrors} to&#010 display errors with no visible field.
+     * <p/>
+     * <br>
+     * <p/>
+     * <p><b>Note: This is an override point</b>.&#010 This method may be overridden to perform custom display of validation errors.
+     */
+    public native void showErrors() /*-{
+        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
+        return self._showErrors();
+    }-*/;
+
+    private void linkFields() {
+        if (fields != null) {
+            for (FormItem field : fields) {
+                JavaScriptObject fieldJS = getFieldJS(field.getName());
+                field.setJsObj(fieldJS);
+            }
+        }
+    }
 
     private native JavaScriptObject getFieldJS(String fieldName) /*-{
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
