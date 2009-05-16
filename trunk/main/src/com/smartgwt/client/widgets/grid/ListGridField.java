@@ -64,7 +64,6 @@ import com.google.gwt.event.shared.HasHandlers;
 
 
 
-
 public class ListGridField extends DataClass  implements com.smartgwt.client.widgets.grid.events.HasCellSavedHandlers, com.smartgwt.client.widgets.grid.events.HasChangeHandlers, com.smartgwt.client.widgets.grid.events.HasChangedHandlers, com.smartgwt.client.widgets.grid.events.HasEditorEnterHandlers, com.smartgwt.client.widgets.grid.events.HasEditorExitHandlers, com.smartgwt.client.widgets.grid.events.HasRecordClickHandlers {
 
     public static ListGridField getOrCreateRef(JavaScriptObject jsObj) {
@@ -1420,28 +1419,6 @@ public class ListGridField extends DataClass  implements com.smartgwt.client.wid
                 };
         }-*/;
 
-        /**
-         * Add a cellSaved handler.
-         * <p>
-         * Callback fired when field changes value as the result of a cell edit.  Fired only on&#010  successful save of edit, when the new value doesn't match the value before editing.<br>&#010  <p>&#010  Same signature as {@link com.smartgwt.client.widgets.grid.ListGrid#addCellChangedHandler}, but defined on a per-field basis.&#010&#010
-         *
-         * @param handler the cellSaved handler
-         * @return {@link HandlerRegistration} used to remove this handler
-         */
-        public HandlerRegistration addCellSavedHandler(com.smartgwt.client.widgets.grid.events.CellSavedHandler handler) {
-            if(getHandlerCount(com.smartgwt.client.widgets.grid.events.CellSavedEvent.getType()) == 0) setupCellSavedEvent();
-            return doAddHandler(handler, com.smartgwt.client.widgets.grid.events.CellSavedEvent.getType());
-        }
-        private native void setupCellSavedEvent() /*-{
-            var obj = null;
-                obj = this.@com.smartgwt.client.core.DataClass::getJsObj()();
-                var selfJ = this;
-                obj.cellChanged = function(){
-                    var param = {};
-                    var event = @com.smartgwt.client.widgets.grid.events.CellSavedEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
-                    selfJ.@com.smartgwt.client.core.DataClass::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
-                };
-        }-*/;
 
         /**
          * Add a recordClick handler.
@@ -1524,7 +1501,7 @@ public class ListGridField extends DataClass  implements com.smartgwt.client.wid
     // ********************* Static Methods ***********************
 
 
-
+
 
 
 
@@ -1961,6 +1938,29 @@ public class ListGridField extends DataClass  implements com.smartgwt.client.wid
         if(sortDir == null) return null;
         return sortDir ? SortDirection.ASCENDING : SortDirection.DESCENDING;
     }
+
+    /**
+     * Add a cellSaved handler.
+     * <p>
+     * Callback fired when field changes value as the result of a cell edit.  Fired only on&#010  successful save of edit, when the new value doesn't match the value before editing.<br>&#010  <p>&#010  Same signature as {@link com.smartgwt.client.widgets.grid.ListGrid#addCellChangedHandler}, but defined on a per-field basis.&#010&#010
+     *
+     * @param handler the cellSaved handler
+     * @return {@link com.google.gwt.event.shared.HandlerRegistration} used to remove this handler
+     */
+    public HandlerRegistration addCellSavedHandler(com.smartgwt.client.widgets.grid.events.CellSavedHandler handler) {
+        if(getHandlerCount(com.smartgwt.client.widgets.grid.events.CellSavedEvent.getType()) == 0) setupCellSavedEvent();
+        return doAddHandler(handler, com.smartgwt.client.widgets.grid.events.CellSavedEvent.getType());
+    }
+    private native void setupCellSavedEvent() /*-{
+        var obj = null;
+            obj = this.@com.smartgwt.client.core.DataClass::getJsObj()();
+            var selfJ = this;
+            obj.cellChanged = function(){
+                var param = {"record" : arguments[0], "newValue" : arguments[1], "oldValue" : arguments[2], "rowNum" : arguments[3], "colNum" : arguments[4]};
+                var event = @com.smartgwt.client.widgets.grid.events.CellSavedEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
+                selfJ.@com.smartgwt.client.core.DataClass::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
+            };
+    }-*/;
 
 }
 
