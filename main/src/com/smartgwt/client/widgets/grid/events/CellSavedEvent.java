@@ -161,15 +161,5 @@ public class CellSavedEvent extends BrowserEvent<CellSavedHandler>  {
         return jsObj.colNum;
     }-*/;
 
-    /**
-     * grid where cell was changed.  Also available as "this"
-     *
-     * @return grid where cell was changed.  Also available as "this"
-     */
-    public  native ListGrid getGrid() /*-{
-        var jsObj = this.@com.smartgwt.client.event.AbstractSmartEvent::jsObj;
-        return @com.smartgwt.client.widgets.grid.ListGrid::getOrCreateRef(Lcom/google/gwt/core/client/JavaScriptObject;)(jsObj.grid);
-    }-*/;
-
 
 }
