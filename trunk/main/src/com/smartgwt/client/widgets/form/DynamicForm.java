@@ -1071,6 +1071,26 @@ public class DynamicForm extends Canvas  implements DataBoundComponent, com.smar
         return getAttributeAsBoolean("saveOnEnter");
     }
 
+    /**
+    * If set, this <code>DynamicForm</code> will set both &#010 {@link com.smartgwt.client.widgets.DataBoundComponent#getShowComplexFields showComplexFields} and &#010 <code>showComplexFieldsRecursively</code> on any nested component used for showing/editing&#010 a complex field.  Thus any of this form's items that handle complex fields will themselves&#010 also show complex fields.  This allows for handling of field structures of any complexity.&#010 <p>&#010 If set, this value automatically sets {@link com.smartgwt.client.widgets.DataBoundComponent#getShowComplexFields showComplexFields}&#010 as well.
+    *
+    * @param showComplexFieldsRecursively showComplexFieldsRecursively Default value is null
+    * @throws IllegalStateException this property cannot be changed after the component has been created
+    */
+    public void setShowComplexFieldsRecursively(Boolean showComplexFieldsRecursively)  throws IllegalStateException {
+        setAttribute("showComplexFieldsRecursively", showComplexFieldsRecursively, false);
+    }
+    /**
+     * If set, this <code>DynamicForm</code> will set both &#010 {@link com.smartgwt.client.widgets.DataBoundComponent#getShowComplexFields showComplexFields} and &#010 <code>showComplexFieldsRecursively</code> on any nested component used for showing/editing&#010 a complex field.  Thus any of this form's items that handle complex fields will themselves&#010 also show complex fields.  This allows for handling of field structures of any complexity.&#010 <p>&#010 If set, this value automatically sets {@link com.smartgwt.client.widgets.DataBoundComponent#getShowComplexFields showComplexFields}&#010 as well.
+     *
+     *
+     * @return Boolean
+     *
+     */
+    public Boolean getShowComplexFieldsRecursively()  {
+        return getAttributeAsBoolean("showComplexFieldsRecursively");
+    }
+
     // ********************* Methods ***********************
 
 

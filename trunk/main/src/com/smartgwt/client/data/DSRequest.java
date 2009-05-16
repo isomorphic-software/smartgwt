@@ -116,21 +116,21 @@ public class DSRequest extends RPCRequest {
     }
 
     /**
-    * Starting row of requested results, used only with fetch operations.&#010 <p>&#010 Note that startRow and endRow are zero-based, so startRow: 0, endRow: 1 is a request&#010 for the first two records.
+    * Starting row of requested results, used only with fetch operations.  If unset, 0 is assumed.&#010 <p>&#010 Note that startRow and endRow are zero-based, so startRow: 0, endRow: 1 is a request&#010 for the first two records.
     *
-    * @param startRow startRow Default value is 0
+    * @param startRow startRow Default value is null
     */
-    public void setStartRow(int startRow) {
+    public void setStartRow(Integer startRow) {
         setAttribute("startRow", startRow);
     }
     /**
-     * Starting row of requested results, used only with fetch operations.&#010 <p>&#010 Note that startRow and endRow are zero-based, so startRow: 0, endRow: 1 is a request&#010 for the first two records.
+     * Starting row of requested results, used only with fetch operations.  If unset, 0 is assumed.&#010 <p>&#010 Note that startRow and endRow are zero-based, so startRow: 0, endRow: 1 is a request&#010 for the first two records.
      *
      *
-     * @return int
+     * @return Integer
      *
      */
-    public int getStartRow()  {
+    public Integer getStartRow()  {
         return getAttributeAsInt("startRow");
     }
 

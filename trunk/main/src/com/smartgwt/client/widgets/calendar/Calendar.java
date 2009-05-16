@@ -372,7 +372,7 @@ public class Calendar extends Canvas  implements DataBoundComponent, com.smartgw
     }
 
     /**
-    * If set, causes the {@link com.smartgwt.client.widgets.calendar.Calendar#getWorkdayStart workdayStart} to be sized to fill the available space&#010 in the day view and weeek view, and automatically scrolls these views to the start of the&#010 workday when the calendar is first displayed and whenever the user switches to a new day or&#010 week.
+    * If set, causes the {@link com.smartgwt.client.widgets.calendar.Calendar#getWorkdayStart workdayStart} to be sized to fill the available space&#010 in the day view and week view, and automatically scrolls these views to the start of the&#010 workday when the calendar is first displayed and whenever the user switches to a new day or&#010 week.
     *
     * @param scrollToWorkday scrollToWorkday Default value is false
     * @throws IllegalStateException this property cannot be changed after the component has been created
@@ -381,7 +381,7 @@ public class Calendar extends Canvas  implements DataBoundComponent, com.smartgw
         setAttribute("scrollToWorkday", scrollToWorkday, false);
     }
     /**
-     * If set, causes the {@link com.smartgwt.client.widgets.calendar.Calendar#getWorkdayStart workdayStart} to be sized to fill the available space&#010 in the day view and weeek view, and automatically scrolls these views to the start of the&#010 workday when the calendar is first displayed and whenever the user switches to a new day or&#010 week.
+     * If set, causes the {@link com.smartgwt.client.widgets.calendar.Calendar#getWorkdayStart workdayStart} to be sized to fill the available space&#010 in the day view and week view, and automatically scrolls these views to the start of the&#010 workday when the calendar is first displayed and whenever the user switches to a new day or&#010 week.
      *
      *
      * @return Boolean

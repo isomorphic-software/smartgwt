@@ -213,6 +213,26 @@ public class TreeGrid extends ListGrid  implements com.smartgwt.client.widgets.t
     }
 
     /**
+    * With ${isc.DocUtils.linkForRef('loadDataOnDemand:true')}, TreeGrids fetch data by selecting the child nodes of&#010 each parent, which should be exact match, so default to autoFetchAsFilter:false.&#010 See {@link com.smartgwt.client.widgets.grid.ListGrid#getAutoFetchAsFilter autoFetchAsFilter} for details.
+    *
+    * @param autoFetchAsFilter autoFetchAsFilter Default value is false
+    * @throws IllegalStateException this property cannot be changed after the component has been created
+    */
+    public void setAutoFetchAsFilter(Boolean autoFetchAsFilter)  throws IllegalStateException {
+        setAttribute("autoFetchAsFilter", autoFetchAsFilter, false);
+    }
+    /**
+     * With ${isc.DocUtils.linkForRef('loadDataOnDemand:true')}, TreeGrids fetch data by selecting the child nodes of&#010 each parent, which should be exact match, so default to autoFetchAsFilter:false.&#010 See {@link com.smartgwt.client.widgets.grid.ListGrid#getAutoFetchAsFilter autoFetchAsFilter} for details.
+     *
+     *
+     * @return Boolean
+     *
+     */
+    public Boolean getAutoFetchAsFilter()  {
+        return getAttributeAsBoolean("autoFetchAsFilter");
+    }
+
+    /**
     * Visible title for the tree column (field).
     *
     * @param treeFieldTitle treeFieldTitle Default value is "Name"
@@ -916,6 +936,7 @@ public class TreeGrid extends ListGrid  implements com.smartgwt.client.widgets.t
 
 
 
+
         /**
          * Get the appropriate open/close opener icon for a node.&#010&#010
          * @param node tree node in question
@@ -1608,6 +1629,18 @@ public class TreeGrid extends ListGrid  implements com.smartgwt.client.widgets.t
             };
         }
     }-*/;
+    
+    /**
+     * This ListGrid suporclass event does not fire on a TreeGrid, use {@link #addFolderDropHandler(com.smartgwt.client.widgets.tree.events.FolderDropHandler)} instead.
+     *
+     * @param handler the onRecordDrop handler
+     * @return {@link HandlerRegistration} used to remove this handler
+     *
+     * @throws UnsupportedOperationException
+     */
+    public HandlerRegistration addRecordDropHandler(com.smartgwt.client.widgets.grid.events.RecordDropHandler handler) throws UnsupportedOperationException {
+        throw new UnsupportedOperationException("This event inherited from ListGrid does not fire for a TreeGrid. Use TreeGrid.addFolgerDropHandler instead");
+    }
 
 }
 
