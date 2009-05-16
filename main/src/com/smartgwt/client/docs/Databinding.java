@@ -7,6 +7,7 @@ package com.smartgwt.client.docs;
  * @see com.smartgwt.client.widgets.form.fields.SelectItem#getShowOptionsFromDataSource
  * @see com.smartgwt.client.widgets.form.fields.ComboBoxItem#getShowOptionsFromDataSource
  * @see com.smartgwt.client.widgets.DataBoundComponent#getDataSource
+ * @see com.smartgwt.client.widgets.DataBoundComponent#getDataFetchMode
  * @see com.smartgwt.client.widgets.DataBoundComponent#getDataPageSize
  * @see com.smartgwt.client.widgets.DataBoundComponent#getFields
  * @see com.smartgwt.client.widgets.DataBoundComponent#getUseAllDataSourceFields
@@ -16,6 +17,7 @@ package com.smartgwt.client.docs;
  * @see com.smartgwt.client.widgets.grid.ListGrid#getAutoFetchData
  * @see com.smartgwt.client.widgets.form.DynamicForm#getAutoFetchData
  * @see com.smartgwt.client.widgets.form.DynamicForm#getAutoFetchAsFilter
+ * @see com.smartgwt.client.widgets.viewer.DetailViewer#getDataFetchMode
  * @see com.smartgwt.client.widgets.grid.ListGrid#getFields
  * @see com.smartgwt.client.widgets.grid.ListGrid#getDataSource
  * @see com.smartgwt.client.widgets.grid.ListGrid#getSaveLocally

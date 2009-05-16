@@ -87,6 +87,25 @@ public class DetailViewer extends Canvas  implements DataBoundComponent {
         return widget;
     }-*/;
     // ********************* Properties / Attributes ***********************
+             
+    /**
+    * DetailViewers do not yet support paging, and will fetch and render all available&#010 records.
+    *
+    * @param dataFetchMode dataFetchMode Default value is "basic"
+    */
+    public void setDataFetchMode(FetchMode dataFetchMode) {
+        setAttribute("dataFetchMode", dataFetchMode.getValue(), true);
+    }
+    /**
+     * DetailViewers do not yet support paging, and will fetch and render all available&#010 records.
+     *
+     *
+     * @return FetchMode
+     *
+     */
+    public FetchMode getDataFetchMode()  {
+        return (FetchMode) EnumUtil.getEnum(FetchMode.values(), getAttribute("dataFetchMode"));
+    }
 
     /**
     * Name of the field in the DetailViewerRecord which specifies the data property for that record.

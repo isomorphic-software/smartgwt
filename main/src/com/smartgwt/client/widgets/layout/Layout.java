@@ -665,6 +665,15 @@ public class Layout extends Canvas {
 
 
         /**
+         * Hide all other members and make the single parameter member visible.&#010&#010
+         * @param member member to show
+         */
+        public native void setVisibleMember(Canvas member) /*-{
+            var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
+            self.setVisibleMember(member.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()());
+        }-*/;
+
+        /**
          * Shift a member of the layout to a new position&#010      &#010
          * @param memberNum current position of the member to move to a new position
      * @param newPosition new position to move the member to

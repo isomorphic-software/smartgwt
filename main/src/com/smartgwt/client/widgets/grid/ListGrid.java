@@ -1305,7 +1305,7 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
     }
              
     /**
-    * How selection of rows should be presented to the user.&#010 <P>&#010 If using "checkbox", see also {@link com.smartgwt.client.widgets.grid.ListGrid#getCheckboxField checkboxField} for customization APIs.
+    * How selection of rows should be presented to the user.&#010 <P>&#010 For <code>selectionAppearance:"checkbox"</code> with multiple selection&#010 allowed, you would typically use {@link com.smartgwt.client.types.SelectionType}:"simple" (the default).  Because &#010 <code>selectionType</code> and <code>selectionAppearance</code> are unrelated, &#010 the combination of <code>selectionAppearance:"checkbox"</code> and&#010 <code>selectionType:"multiple"</code> results in a grid where multiple selection can&#010 only be achieved via shift-click or ctrl-click.  &#010 <P>&#010 If using "checkbox", see also {@link com.smartgwt.client.widgets.grid.ListGrid#getCheckboxField checkboxField} for customization APIs.
     * Changes selectionAppearance on the fly.&#010
     *
     * @param selectionAppearance new selection appearance. Default value is "rowStyle"
@@ -1315,7 +1315,7 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
         setAttribute("selectionAppearance", selectionAppearance.getValue(), false);
     }
     /**
-     * How selection of rows should be presented to the user.&#010 <P>&#010 If using "checkbox", see also {@link com.smartgwt.client.widgets.grid.ListGrid#getCheckboxField checkboxField} for customization APIs.
+     * How selection of rows should be presented to the user.&#010 <P>&#010 For <code>selectionAppearance:"checkbox"</code> with multiple selection&#010 allowed, you would typically use {@link com.smartgwt.client.types.SelectionType}:"simple" (the default).  Because &#010 <code>selectionType</code> and <code>selectionAppearance</code> are unrelated, &#010 the combination of <code>selectionAppearance:"checkbox"</code> and&#010 <code>selectionType:"multiple"</code> results in a grid where multiple selection can&#010 only be achieved via shift-click or ctrl-click.  &#010 <P>&#010 If using "checkbox", see also {@link com.smartgwt.client.widgets.grid.ListGrid#getCheckboxField checkboxField} for customization APIs.
      *
      *
      * @return SelectionAppearance
@@ -1326,16 +1326,16 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
     }
              
     /**
-    * Defines a listGrid's clickable-selection behavior. The selection appearance is governed&#010 by {@link com.smartgwt.client.widgets.grid.ListGrid#getSelectionAppearance selectionAppearance}. If selectionAppearance is "checkbox", this will&#010 be "simple", otherwise, this will be "multiple".
+    * Defines a listGrid's clickable-selection behavior.  &#010 <P>&#010 The default selection appearance is governed by {@link com.smartgwt.client.widgets.grid.ListGrid#getSelectionAppearance selectionAppearance}: if&#010 selectionAppearance is "checkbox", this will be "simple", otherwise, this will be&#010 "multiple".
     * Changes selectionType on the fly.&#010
     *
-    * @param selectionType New selection style.    Note that if {@link com.smartgwt.client.widgets.grid.ListGrid#getSelectionAppearance selectionAppearance} is <code>"checkbox"</code>, only selectionType&#010   "simple" is supported.. Default value is null
+    * @param selectionType New selection style.. Default value is null
     */
     public void setSelectionType(SelectionStyle selectionType) {
         setAttribute("selectionType", selectionType.getValue(), true);
     }
     /**
-     * Defines a listGrid's clickable-selection behavior. The selection appearance is governed&#010 by {@link com.smartgwt.client.widgets.grid.ListGrid#getSelectionAppearance selectionAppearance}. If selectionAppearance is "checkbox", this will&#010 be "simple", otherwise, this will be "multiple".
+     * Defines a listGrid's clickable-selection behavior.  &#010 <P>&#010 The default selection appearance is governed by {@link com.smartgwt.client.widgets.grid.ListGrid#getSelectionAppearance selectionAppearance}: if&#010 selectionAppearance is "checkbox", this will be "simple", otherwise, this will be&#010 "multiple".
      *
      *
      * @return SelectionStyle
