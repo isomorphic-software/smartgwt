@@ -2054,7 +2054,7 @@ public class FormItem extends RefDataClass  implements com.smartgwt.client.widge
 
 
 
-
+
 
 
 
@@ -2686,6 +2686,22 @@ public class FormItem extends RefDataClass  implements com.smartgwt.client.widge
             var valueJ =  $wnd.SmartGWT.convertToJavaType(value);
             var formJ = @com.smartgwt.client.widgets.form.DynamicForm::getOrCreateRef(Lcom/google/gwt/core/client/JavaScriptObject;)(form);
             return showIf.@com.smartgwt.client.widgets.form.FormItemIfFunction::execute(Lcom/smartgwt/client/widgets/form/fields/FormItem;Ljava/lang/Object;Lcom/smartgwt/client/widgets/form/DynamicForm;)(itemJ, valueJ, formJ);
+        };
+    }-*/;
+
+    /**
+     * Register a custom error formatter for this FormItem. 
+     *
+     * @param errorFormatter the error formatter.
+     */
+    public native void setErrorFormatter(FormItemErrorFormatter errorFormatter) /*-{
+        var self = this.@com.smartgwt.client.core.DataClass::getJsObj()();
+        self.getErrorHTML = function(errors) {
+            if(!$wnd.isc.isA.Array(errors)){
+                errors = [errors];
+            }
+            var errorsJ = @com.smartgwt.client.util.JSOHelper::convertToJavaStringArray(Lcom/google/gwt/core/client/JavaScriptObject;)(errors);
+            return errorFormatter.@com.smartgwt.client.widgets.form.FormItemErrorFormatter::getErrorHTML([Ljava/lang/String;)(errorsJ);
         };
     }-*/;
 
