@@ -1980,7 +1980,7 @@ public class FormItem extends RefDataClass  implements com.smartgwt.client.widge
         /**
          * Add a change handler.
          * <p>
-         * Called when a FormItem's value is about to change as the result of user interaction.  This&#010 method fires after the user performed an action that would change the value of this field,&#010 but before the element itself is changed.  &#010 <P>&#010 Returning false cancels the change.  Note that if what you want to do is&#010 <b>transform</b> the user's input, for example, automatically change separator&#010 characters to a standard separator character, you should implement&#010 {@link com.smartgwt.client.widgets.form.fields.FormItem#transformInput} rather than using a combination of&#010 change() and setValue() to accomplish the same thing.  Returning false from&#010 <code>change</code> is intended for rejecting input entirely, such as typing invalid&#010 characters.&#010 <p>&#010 Note that if you ask the form for the current value in this handler, you will get the old&#010 value because the change has not yet been commited.  The new value is available as a&#010 parameter to this method.&#010&#010
+         * Called when a FormItem's value is about to change as the result of user interaction.  This&#010 method fires after the user performed an action that would change the value of this field,&#010 but before the element itself is changed.  &#010 <P>&#010 Returning false cancels the change.  Note that if what you want to do is&#010 <b>transform</b> the user's input, for example, automatically change separator&#010 characters to a standard separator character, you should implement&#010 {@link com.smartgwt.client.widgets.form.fields.FormItem#setInputTransformer} rather than using a combination of&#010 change() and setValue() to accomplish the same thing.  Returning false from&#010 <code>change</code> is intended for rejecting input entirely, such as typing invalid&#010 characters.&#010 <p>&#010 Note that if you ask the form for the current value in this handler, you will get the old&#010 value because the change has not yet been commited.  The new value is available as a&#010 parameter to this method.&#010&#010
          *
          * @param handler the change handler
          * @return {@link HandlerRegistration} used to remove this handler
@@ -2054,7 +2054,7 @@ public class FormItem extends RefDataClass  implements com.smartgwt.client.widge
 
 
 
-
+
 
 
 
@@ -2702,6 +2702,24 @@ public class FormItem extends RefDataClass  implements com.smartgwt.client.widge
             }
             var errorsJ = @com.smartgwt.client.util.JSOHelper::convertToJavaStringArray(Lcom/google/gwt/core/client/JavaScriptObject;)(errors);
             return errorFormatter.@com.smartgwt.client.widgets.form.FormItemErrorFormatter::getErrorHTML([Ljava/lang/String;)(errorsJ);
+        };
+    }-*/;
+
+    /**
+     * The transformer is called when a FormItem's value is about to change as the result of user interaction. This method fires after the user performed an
+     * action that would change the value of this field, and allows the developer to modify / reformat the value before it gets validated / saved.
+     * Fires before the {@link FormItem#addChangeHandler(com.smartgwt.client.widgets.form.fields.events.ChangeHandler) change} event.
+     *
+     * @param inputTransformer the input transformer
+     */
+    public native void setInputTransformer(FormItemInputTransformer inputTransformer) /*-{
+        var self = this.@com.smartgwt.client.core.DataClass::getJsObj()();
+        self.transformInput = function(form, item, value, oldValue) {
+            var formJ = @com.smartgwt.client.widgets.form.DynamicForm::getOrCreateRef(Lcom/google/gwt/core/client/JavaScriptObject;)(form);
+            var itemJ = @com.smartgwt.client.widgets.form.fields.FormItem::getOrCreateRef(Lcom/google/gwt/core/client/JavaScriptObject;)(item);
+            var valueJ =  $wnd.SmartGWT.convertToJavaType(value);
+            var oldValueJ =  $wnd.SmartGWT.convertToJavaType(oldValue);
+            return inputTransformer.@com.smartgwt.client.widgets.form.FormItemInputTransformer::transformInput(Lcom/smartgwt/client/widgets/form/DynamicForm;Lcom/smartgwt/client/widgets/form/fields/FormItem;Ljava/lang/Object;Ljava/lang/Object;)(formJ, itemJ, valueJ, oldValueJ);
         };
     }-*/;
 
