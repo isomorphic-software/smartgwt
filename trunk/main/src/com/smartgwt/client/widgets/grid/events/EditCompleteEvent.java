@@ -132,26 +132,6 @@ public class EditCompleteEvent extends BrowserEvent<EditCompleteHandler>  {
     }-*/;
 
     /**
-     * new values that were saved
-     *
-     * @return new values that were saved
-     */
-    public  native Object getNewValues() /*-{
-        var jsObj = this.@com.smartgwt.client.event.AbstractSmartEvent::jsObj;
-        return $wnd.SmartGWT.convertToJavaType(jsObj.newValues);
-    }-*/;
-
-    /**
-     * old values before the save occurred
-     *
-     * @return old values before the save occurred
-     */
-    public  native Object getOldValues() /*-{
-        var jsObj = this.@com.smartgwt.client.event.AbstractSmartEvent::jsObj;
-        return $wnd.SmartGWT.convertToJavaType(jsObj.oldValues);
-    }-*/;
-
-    /**
      * Event that led to the save
      *
      * @return Event that led to the save
@@ -170,6 +150,29 @@ public class EditCompleteEvent extends BrowserEvent<EditCompleteHandler>  {
     public  native DSResponse getDsResponse() /*-{
         var jsObj = this.@com.smartgwt.client.event.AbstractSmartEvent::jsObj;
         return @com.smartgwt.client.data.DSResponse::new(Lcom/google/gwt/core/client/JavaScriptObject;)(jsObj.dsResponse);
+    }-*/;
+
+
+    
+    /**
+     * A Map of the new values that were saved. In addition to fields that were changed, the Map contains
+     * the primary key field
+     *
+     * @return new values that were saved
+     */
+    public  native Map getNewValues() /*-{
+        var jsObj = this.@com.smartgwt.client.event.AbstractSmartEvent::jsObj;
+        return @com.smartgwt.client.util.JSOHelper::convertToMap(Lcom/google/gwt/core/client/JavaScriptObject;)(jsObj.newValues);
+    }-*/;
+
+    /**
+     * The old record before the save occurred
+     *
+     * @return the old record
+     */
+    public  native Record getOldRecord() /*-{
+        var jsObj = this.@com.smartgwt.client.event.AbstractSmartEvent::jsObj;
+        return @com.smartgwt.client.data.Record::getOrCreateRef(Lcom/google/gwt/core/client/JavaScriptObject;)(jsObj.oldValues);
     }-*/;
 
 

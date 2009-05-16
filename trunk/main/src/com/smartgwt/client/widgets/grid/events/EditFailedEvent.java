@@ -132,26 +132,6 @@ public class EditFailedEvent extends BrowserEvent<EditFailedHandler>  {
     }-*/;
 
     /**
-     * new values that we attempted to save
-     *
-     * @return new values that we attempted to save
-     */
-    public  native Object getNewValues() /*-{
-        var jsObj = this.@com.smartgwt.client.event.AbstractSmartEvent::jsObj;
-        return $wnd.SmartGWT.convertToJavaType(jsObj.newValues);
-    }-*/;
-
-    /**
-     * old values before the save occurred
-     *
-     * @return old values before the save occurred
-     */
-    public  native Object getOldValues() /*-{
-        var jsObj = this.@com.smartgwt.client.event.AbstractSmartEvent::jsObj;
-        return $wnd.SmartGWT.convertToJavaType(jsObj.oldValues);
-    }-*/;
-
-    /**
      * Edit completion event that led to the save                                                  attempt
      *
      * @return Edit completion event that led to the save                                                  attempt
@@ -171,6 +151,28 @@ public class EditFailedEvent extends BrowserEvent<EditFailedHandler>  {
         var jsObj = this.@com.smartgwt.client.event.AbstractSmartEvent::jsObj;
         return @com.smartgwt.client.data.DSResponse::new(Lcom/google/gwt/core/client/JavaScriptObject;)(jsObj.dsResponse);
     }-*/;
+
+
+    /**
+     * A Map of the new values that we attempted to save. In addition to fields that were changed, the Map contains
+     * the primary key field
+     *
+     * @return new values that we attempted to save
+     */
+    public  native Map getNewValues() /*-{
+        var jsObj = this.@com.smartgwt.client.event.AbstractSmartEvent::jsObj;
+        return @com.smartgwt.client.util.JSOHelper::convertToMap(Lcom/google/gwt/core/client/JavaScriptObject;)(jsObj.newValues);        
+    }-*/;
+
+    /**
+     * old values before the save occurred
+     *
+     * @return old values before the save occurred
+     */
+    public  native Record getRecord() /*-{
+        var jsObj = this.@com.smartgwt.client.event.AbstractSmartEvent::jsObj;
+        return @com.smartgwt.client.data.Record::getOrCreateRef(Lcom/google/gwt/core/client/JavaScriptObject;)(jsObj.oldValues);    
+    }-*/;    
 
 
 }
