@@ -2054,7 +2054,7 @@ public class FormItem extends RefDataClass  implements com.smartgwt.client.widge
 
 
 
-
+
 
 
 
@@ -2720,6 +2720,36 @@ public class FormItem extends RefDataClass  implements com.smartgwt.client.widge
             var valueJ =  $wnd.SmartGWT.convertToJavaType(value);
             var oldValueJ =  $wnd.SmartGWT.convertToJavaType(oldValue);
             return inputTransformer.@com.smartgwt.client.widgets.form.FormItemInputTransformer::transformInput(Lcom/smartgwt/client/widgets/form/DynamicForm;Lcom/smartgwt/client/widgets/form/fields/FormItem;Ljava/lang/Object;Ljava/lang/Object;)(formJ, itemJ, valueJ, oldValueJ);
+        };
+    }-*/;
+    
+   /**
+    * The FormItemHoverFormatter should return the HTML to display in a hover canvas when the user holds the mousepointer over this item.
+    * Return null to suppress the hover canvas altogether.
+    *
+    * @param hoverFormatter the hover formatter
+    */
+    public native void setItemHoverFormatter(FormItemHoverFormatter hoverFormatter) /*-{
+        var self = this.@com.smartgwt.client.core.DataClass::getJsObj()();
+        self.itemHoverHTML = function(item, form) {
+            var formJ = @com.smartgwt.client.widgets.form.DynamicForm::getOrCreateRef(Lcom/google/gwt/core/client/JavaScriptObject;)(form);
+            var itemJ = @com.smartgwt.client.widgets.form.fields.FormItem::getOrCreateRef(Lcom/google/gwt/core/client/JavaScriptObject;)(item);
+            return hoverFormatter.@com.smartgwt.client.widgets.form.FormItemHoverFormatter::getHoverHTML(Lcom/smartgwt/client/widgets/form/fields/FormItem;Lcom/smartgwt/client/widgets/form/DynamicForm;)(itemJ, formJ);
+        };
+    }-*/;
+
+   /**
+    * The FormItemHoverFormatter should return the HTML to display in a hover canvas when the user holds the mousepointer over the item's title.
+    * Return null to suppress the hover canvas altogether.
+    *
+    * @param hoverFormatter the hover formatter
+    */
+    public native void setItemTitleHoverFormatter(FormItemHoverFormatter hoverFormatter) /*-{
+        var self = this.@com.smartgwt.client.core.DataClass::getJsObj()();
+        self.titleHoverHTML = function(item, form) {
+            var formJ = @com.smartgwt.client.widgets.form.DynamicForm::getOrCreateRef(Lcom/google/gwt/core/client/JavaScriptObject;)(form);
+            var itemJ = @com.smartgwt.client.widgets.form.fields.FormItem::getOrCreateRef(Lcom/google/gwt/core/client/JavaScriptObject;)(item);
+            return hoverFormatter.@com.smartgwt.client.widgets.form.FormItemHoverFormatter::getHoverHTML(Lcom/smartgwt/client/widgets/form/fields/FormItem;Lcom/smartgwt/client/widgets/form/DynamicForm;)(itemJ, formJ);
         };
     }-*/;
 

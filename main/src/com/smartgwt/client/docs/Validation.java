@@ -35,7 +35,7 @@ package com.smartgwt.client.docs;
  * @see com.smartgwt.client.widgets.form.fields.TextItem#getLength
  * @see com.smartgwt.client.widgets.form.ValuesManager#getUnknownErrorMessage
  * @see com.smartgwt.client.widgets.form.ValuesManager#getDisableValidation
- * @see com.smartgwt.client..CharacterCasing
+ * @see com.smartgwt.client.types.CharacterCasing
  */
 public interface Validation {
 }

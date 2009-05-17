@@ -208,6 +208,26 @@ public class TextItem extends FormItem {
     public Boolean getShowHintInField()  {
         return getAttributeAsBoolean("showHintInField");
     }
+             
+    /**
+    * Should entered characters be converted to upper or lowercase?&#010 Also applies to values applied with {@link com.smartgwt.client.widgets.form.fields.FormItem#setValue}.
+    * <p><b>Note : </b> This is an advanced setting</p>
+    *
+    * @param characterCasing characterCasing Default value is TextItem.DEFAULT
+    */
+    public void setCharacterCasing(CharacterCasing characterCasing) {
+        setAttribute("characterCasing", characterCasing.getValue());
+    }
+    /**
+     * Should entered characters be converted to upper or lowercase?&#010 Also applies to values applied with {@link com.smartgwt.client.widgets.form.fields.FormItem#setValue}.
+     *
+     *
+     * @return CharacterCasing
+     *
+     */
+    public CharacterCasing getCharacterCasing()  {
+        return (CharacterCasing) EnumUtil.getEnum(CharacterCasing.values(), getAttribute("characterCasing"));
+    }
 
     /**
     * Sets a keypress filter regular expression to limit valid characters&#010 that can be entered by the user. If defined, keys that match the&#010 regular expression are allowed; all others are suppressed. The&#010 filter is applied after character casing, if defined.
