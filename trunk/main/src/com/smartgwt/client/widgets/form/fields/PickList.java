@@ -371,8 +371,21 @@ public interface PickList {
      */
     public String getDisplayFieldName();
 
+    /**
+     * For a ComboBox or other pickList that accepts user-entered criteria, how many millseconds to wait after the last user
+     * keystroke before fetching data from the server. The default setting will initiate a fetch if the stops typing or pauses briefly.
+     *
+     * @param fetchDelay the fetch delay. defaults to 200ms
+     */
+    public void setFetchDelay(Integer fetchDelay);
 
-    // ********************* Static Methods ***********************
+    /**
+     * For a ComboBox or other pickList that accepts user-entered criteria, how many millseconds to wait after the last user
+     * keystroke before fetching data from the server. The default setting will initiate a fetch if the stops typing or pauses briefly.
+     *
+     * @return the fetch delay
+     */
+    public Integer getFetchDelay();
 
 }
 
