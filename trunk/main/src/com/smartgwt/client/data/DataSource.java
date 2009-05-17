@@ -1784,6 +1784,23 @@ public class DataSource extends BaseClass  implements com.smartgwt.client.data.e
         self.processResponse(requestId, responsePropertiesJS);
     }-*/;
 
+   /**
+    * Transform a list of XML elements to DataSource records.
+    * <p>
+    * recordsFromXML() will return a List of DataSource Records. The value for each field is extracted from the XML according
+    * to the rules described under {@link DataSourceField#setValueXPath(String) valueXPath}.
+    *
+    * @param elements XML elements to transform, eg, the result of a call to {@link com.smartgwt.client.data.XMLTools#selectNodes(Object, String)}
+    *
+    * @return list of DataSource records derived from the XML elements
+    */
+    public native Record[] recordsFromXML(Object elements) /*-{
+		var self = this.@com.smartgwt.client.core.BaseClass::getOrCreateJsObj()();
+		var records = self.recordsFromXML(elements);
+        if(records == null || records === undefined) return null;
+        return @com.smartgwt.client.data.Record::convertToRecordArray(Lcom/google/gwt/core/client/JavaScriptObject;)(records);
+	}-*/;    
+
 }
 
 
