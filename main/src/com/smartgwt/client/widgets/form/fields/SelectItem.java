@@ -936,6 +936,14 @@ public class SelectItem extends FormItem  implements PickList {
         setAttribute("defaultValue", defaultValues);
     }
 
+    public void setFetchDelay(Integer fetchDelay) {
+        setAttribute("fetchDelay", fetchDelay);
+    }
+
+    public Integer getFetchDelay() {
+        return getAttributeAsInt("fetchDelay");
+    }
+
     // ********************* Methods ***********************
     
     /**

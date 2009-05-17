@@ -716,6 +716,14 @@ public class ComboBoxItem extends FormItem  implements PickList {
         setAttribute("optionFilterContext", optionFilterContext);
     }
 
+    public void setFetchDelay(Integer fetchDelay) {
+        setAttribute("fetchDelay", fetchDelay);
+    }
+
+    public Integer getFetchDelay() {
+        return getAttributeAsInt("fetchDelay");
+    }
+
     /**
      * If set, this FormItem will derive data to show in the PickList by fetching records from the specified
      * <code>optionDataSource</code>.  The fetched data will be used as a {@link com.smartgwt.client.widgets.form.fields.FormItem#getValueMap
@@ -743,7 +751,7 @@ public class ComboBoxItem extends FormItem  implements PickList {
      * it will be preferred to the data derived from the optionDataSource for whatever mappings are present. <p><b>Note
      * : </b> This is an advanced setting</p>
      *
-     * @param optionDataSource optionDataSource Default value is null
+     * @param dataSource optionDataSource Default value is null
      */
     public void setOptionDataSource(DataSource dataSource) {
         setAttribute("optionDataSource", dataSource);
