@@ -358,6 +358,53 @@ public class DSRequest extends RPCRequest {
     // ********************* Static Methods ***********************
 
 
+
+/**
+    * The list of field-names to export.  If provided, the field-list in the exported output is &#010 limited and sorted as per the list.&#010 <P>&#010 If exportFields is not provided, the exported output includes all visible fields &#010 from the DataSource (field.hidden=false), sorted in the order they're defined.
+    *
+    * @param exportFields exportFields Default value is null
+    */
+    public void setExportFields(String[]exportFields) {
+        setAttribute("exportFields", exportFields);
+    }
+
+    /**
+     * The list of field-names to export.  If provided, the field-list in the exported output is &#010 limited and sorted as per the list.&#010 <P>&#010 If exportFields is not provided, the exported output includes all visible fields &#010 from the DataSource (field.hidden=false), sorted in the order they're defined.
+     *
+     * @return the export fields
+     */
+    public String[] getExportFields()  {
+        return getAttributeAsStringArray("exportFields");
+    }
+
+    public void setParams(Map params) {
+        setAttribute("params", params);
+    }
+
+    /**
+     * For DataSources using SOAP messaging with a WSDL web service, data to be serialized to form SOAP headers, as a map from the header part name to the data. See WSRequest.headerData for more information.
+     * <p>
+     * SOAP headers typically contain request metadata such as a session id for authentication, and so dsRequest.headerData is typically populated by DataSource.transformRequest(), or, for data that applies to every request sent to the server,
+     * by WebService.getHeaderData().
+     * 
+     * @param headerData the header data
+     */
+    public void setHeaderData(Map headerData) {
+        setAttribute("headerData", headerData);
+    }
+
+    /**
+     * For DataSources using SOAP messaging with a WSDL web service, data to be serialized to form SOAP headers, as a map from the header part name to the data. See WSRequest.headerData for more information.
+     * <p>
+     * SOAP headers typically contain request metadata such as a session id for authentication, and so dsRequest.headerData is typically populated by DataSource.transformRequest(), or, for data that applies to every request sent to the server,
+     * by WebService.getHeaderData().
+     *
+     * @return the header data
+     */
+    public Map getHeaderData() {
+        return getAttributeAsMap("headerData");
+    }
+
     /**
      * Return the Criteria associated with a FETCH operation.
      * <p>

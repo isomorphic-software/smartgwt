@@ -18,12 +18,12 @@ package com.smartgwt.client.docs;
  * @see com.smartgwt.client.widgets.tree.TreeGrid#setViewState
  * @see com.smartgwt.client.widgets.tile.TileGrid#setFieldState
  * @see com.smartgwt.client.widgets.tile.TileGrid#getFieldState
- * @see com.smartgwt.client..listGridFieldState
- * @see com.smartgwt.client..listGridSelectedState
- * @see com.smartgwt.client..listGridSortState
- * @see com.smartgwt.client..listGridViewState
- * @see com.smartgwt.client..treeGridOpenState
- * @see com.smartgwt.client..treeGridViewState
+ * @see java.lang.String
+ * @see java.lang.String
+ * @see java.lang.String
+ * @see java.lang.String
+ * @see java.lang.String
+ * @see java.lang.String
  */
 public interface ViewState {
 }

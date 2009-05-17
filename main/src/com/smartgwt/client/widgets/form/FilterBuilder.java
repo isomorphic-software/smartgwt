@@ -188,6 +188,26 @@ public class FilterBuilder extends Layout  implements com.smartgwt.client.widget
     public Boolean getAllowEmpty()  {
         return getAttributeAsBoolean("allowEmpty");
     }
+             
+    /**
+    * Default logical operator for all top-level clauses in the FilterBuilder.&#010 <P>&#010 May be able to be changed by the user via the UI, according to {@link com.smartgwt.client..TopOperatorAppearance}.
+    * Programmatically change the {@link com.smartgwt.client.widgets.form.FilterBuilder#getTopOperator topOperator} for this FilterBuilder.&#010
+    *
+    * @param topOperator new top-level operator. Default value is "and"
+    */
+    public void setTopOperator(LogicalOperator topOperator) {
+        setAttribute("topOperator", topOperator.getValue(), true);
+    }
+    /**
+     * Default logical operator for all top-level clauses in the FilterBuilder.&#010 <P>&#010 May be able to be changed by the user via the UI, according to {@link com.smartgwt.client..TopOperatorAppearance}.
+     *
+     *
+     * @return LogicalOperator
+     *
+     */
+    public LogicalOperator getTopOperator()  {
+        return (LogicalOperator) EnumUtil.getEnum(LogicalOperator.values(), getAttribute("topOperator"));
+    }
 
     /**
     * For operators that check that a value is within a range, text to show between the start and&#010 end input fields for specifying the limits of the range.

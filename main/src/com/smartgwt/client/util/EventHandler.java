@@ -198,6 +198,7 @@ public class EventHandler {
 
 
 
+
     /**
      * Set the HTML for the drag tracker that follows the mouse during a drag and drop interaction. <P> Your canvas
      * can use this routine to set the drag tracker to whatever HTML you want like so: <pre>    dragStart : function
@@ -223,6 +224,20 @@ public class EventHandler {
     public static native void setDragTracker(String html, int newWidth, int newHeight, int offsetX, int offsetY) /*-{
             $wnd.isc.EventHandler.setDragTracker(html, newWidth, newHeight, offsetX, offsetY);
     }-*/;
+
+    /**
+     * During a drag with dragAppearance of either "target" or "outline", returns the page-relative coordinates
+     * of whatever element is being dragged.
+     * Calling this method allows you to write drag and drop logic that works identically even if dragAppearance
+     * is subsequently changed.
+     *
+     * @return lobal (page-relative) coordinates and size of the dragged element, as a 4-element array [left,top,width,height], or null if not dragging
+     */
+    public native Rectangle getDragRect() /*-{
+         var rectJS = $wnd.isc.EventHandler.getDragRect();
+         if(rectJS == null || rectJS === undefined) return null;
+         return @com.smartgwt.client.core.Rectangle::new(IIII)(rectJS[0], rectJS[1], rectJS[2], rectJS[3]);
+     }-*/;
 
     /**
      * Return the page-relative X (horizontal) coordinate of an event.

@@ -142,6 +142,26 @@ public class Canvas extends BaseWidget  implements com.smartgwt.client.widgets.e
     public int getAnimateTime()  {
         return getAttributeAsInt("animateTime");
     }
+             
+    /**
+    * Default acceleration effect to apply to all animations on this Canvas.&#010 Can be overridden by setting animationAcceleration for specific animations or by passing&#010 an acceleration function directly into the appropriate method.
+    * <p><b>Note : </b> This is an advanced setting</p>
+    *
+    * @param animateAcceleration animateAcceleration Default value is "smoothEnd"
+    */
+    public void setAnimateAcceleration(AnimationEffect animateAcceleration) {
+        setAttribute("animateAcceleration", animateAcceleration.getValue(), true);
+    }
+    /**
+     * Default acceleration effect to apply to all animations on this Canvas.&#010 Can be overridden by setting animationAcceleration for specific animations or by passing&#010 an acceleration function directly into the appropriate method.
+     *
+     *
+     * @return AnimationEffect
+     *
+     */
+    public AnimationEffect getAnimateAcceleration()  {
+        return (AnimationEffect) EnumUtil.getEnum(AnimationEffect.values(), getAttribute("animateAcceleration"));
+    }
 
     /**
     * Default time for performing an animated move.  If unset, <code>this.animateTime</code>&#010 will be used by default instead
@@ -4780,6 +4800,26 @@ public class Canvas extends BaseWidget  implements com.smartgwt.client.widgets.e
     public int getAbsoluteTop() {
         return getPageTop();
     }
+
+    /**
+    * A different widget that should be actually dragged when dragging initiates on this&#010      widget. One example of this is to have a child widget that drags its parent, as with a&#010      drag box. Because the parent automatically repositions its children, setting the drag&#010      target of the child to the parent and then dragging the child will result in both&#010      widgets being moved.<br>&#010      Valid dragTarget values are:<br>&#010      - <code>null</code> (default) [this widget is its own drag target]<br>&#010      - Pointer to another widget, or widget ID<br>&#010      - <code>"parent"</code> drag target is this widget's &#010         {@link com.smartgwt.client.widgets.Canvas#getParentElement parentElement}<br>&#010      - <code>"top"</code> drag target is this widget's &#010         {@link com.smartgwt.client.widgets.Canvas#getTopElement topElement}<br>
+    * <p><b>Note : </b> This is an advanced setting</p>
+    *
+    * @param dragTarget dragTarget Default value is null
+    */
+    public void setDragTarget(Canvas dragTarget) {
+        setAttribute("dragTarget", dragTarget.getOrCreateJsObj(), true);
+    }
+    /**
+     * A different widget that should be actually dragged when dragging initiates on this&#010      widget. One example of this is to have a child widget that drags its parent, as with a&#010      drag box. Because the parent automatically repositions its children, setting the drag&#010      target of the child to the parent and then dragging the child will result in both&#010      widgets being moved.<br>&#010      Valid dragTarget values are:<br>&#010      - <code>null</code> (default) [this widget is its own drag target]<br>&#010      - Pointer to another widget, or widget ID<br>&#010      - <code>"parent"</code> drag target is this widget's &#010         {@link com.smartgwt.client.widgets.Canvas#getParentElement parentElement}<br>&#010      - <code>"top"</code> drag target is this widget's &#010         {@link com.smartgwt.client.widgets.Canvas#getTopElement topElement}<br>
+     *
+     *
+     * @return Canvas
+     *
+     */
+    public Canvas getDragTarget()  {
+            return Canvas.getOrCreateRef(getAttributeAsJavaScriptObject("dragTarget"));
+    }    
 
     /**
      * Offset of the shadow.  Defaults to half of <code>shadowDepth</code> if unset. <P> Because of the blurred edges, a

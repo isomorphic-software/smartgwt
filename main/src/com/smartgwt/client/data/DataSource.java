@@ -782,6 +782,26 @@ public class DataSource extends BaseClass  implements com.smartgwt.client.data.e
     }
 
     /**
+    * Very advanced: for servers that do not support paging, and must return large numbers of XML&#010 records in one HTTP response, SmartGWT breaks up the processing of the response&#010 in order to avoid the "script running slowly" dialog appearing for an end user.&#010 <P>&#010 If you have a relatively small number of records with a great deal of properties or&#010 subojects on each record, and you have not set {@link com.smartgwt.client.data.DataSource#getDropExtraFields dropExtraFields} to eliminate unused&#010 data, and you see the "script running slowly" dialog, you may need to set this number&#010 lower.
+    * <p><b>Note : </b> This is an advanced setting</p>
+    *
+    * @param resultBatchSize resultBatchSize Default value is 150
+    */
+    public void setResultBatchSize(int resultBatchSize) {
+        setAttribute("resultBatchSize", resultBatchSize, true);
+    }
+    /**
+     * Very advanced: for servers that do not support paging, and must return large numbers of XML&#010 records in one HTTP response, SmartGWT breaks up the processing of the response&#010 in order to avoid the "script running slowly" dialog appearing for an end user.&#010 <P>&#010 If you have a relatively small number of records with a great deal of properties or&#010 subojects on each record, and you have not set {@link com.smartgwt.client.data.DataSource#getDropExtraFields dropExtraFields} to eliminate unused&#010 data, and you see the "script running slowly" dialog, you may need to set this number&#010 lower.
+     *
+     *
+     * @return int
+     *
+     */
+    public int getResultBatchSize()  {
+        return getAttributeAsInt("resultBatchSize");
+    }
+
+    /**
     * [A] If set to true, both client and server-side advanced filtering used by SmartGWT will follow&#010 SQL99 behavior for dealing with NULL values, which is often counter-intuitive to users.&#010 Specifically, when a field has NULL value, all of the following expression are false:&#010 <pre>&#010    field == "someValue"  (normally false)&#010    field != "someValue"  (normally true)&#010    not (field == "someValue")   (normally true)&#010    not (field != "someValue")   (normally false)&#010 </pre>
     *
     * @param strictSQLFiltering strictSQLFiltering Default value is false

@@ -490,7 +490,7 @@ public class OperationBinding extends DataClass {
         setDataURL(dataURL);
     }
 
-/**
+    /**
     * The list of field-names to export.  If provided, the field-list in the exported output is &#010 limited and sorted as per the list.&#010 <P>&#010 If exportFields is not provided, the exported output includes all visible fields &#010 from the DataSource (field.hidden=false), sorted in the order they're defined.
     *
     * @param exportFields exportFields Default value is null
@@ -500,7 +500,6 @@ public class OperationBinding extends DataClass {
     }
     /**
      * The list of field-names to export.  If provided, the field-list in the exported output is &#010 limited and sorted as per the list.&#010 <P>&#010 If exportFields is not provided, the exported output includes all visible fields &#010 from the DataSource (field.hidden=false), sorted in the order they're defined.
-     *
      *
      * @return the export fields
      *
