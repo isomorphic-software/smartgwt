@@ -560,6 +560,30 @@ public class RPCRequest extends DataClass {
         setAttribute("httpHeaders", httpHeaders);
     }
 
+    /**
+     * HTTP headers to send, as a mapping Header name -> Header value, eg
+     * { "Content-Type" : "text/xml" }
+     * <p>
+     * Valid with the xmlHttpRequest transport only.
+     *
+     * @return the http headers
+     */
+    public Map getHttpHeaders() {
+        return  getAttributeAsMap("httpHeaders");
+    }
+
+    /**
+     * If you've set {@link com.smartgwt.client.rpc.RPCRequest#setEvalResult(Boolean)}  : true, then the property values of this object will
+     * be available in the evaluation scope of the result under the variable names specified by the property names.
+     * <p>
+     * So e.g. if evalVars is: {foo: "bar"} then a reference to the variable foo in the result will evaluate to "bar".
+     *
+     * @param evalVars the eval vars. Defaults to null
+     */
+    public void setEvalVars(Map evalVars) {
+        setAttribute("evalVars", evalVars);
+    }
+
 }
 
 

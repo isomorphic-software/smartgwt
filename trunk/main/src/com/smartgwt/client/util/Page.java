@@ -365,69 +365,88 @@ public class Page {
 
 
 
-       /**
-        * Fire some action when the Page recieves a keyPress event from a certain key.
-        * Note that if a widget has keyboard focus, this action will fire only after any widget-level
-        * keyPress handlers have fired and bubbled the event up to the top of their ancestor chain.
-        * Multiple actions can be registered to fire on a single keyPress using this method.
-        * This differs from calling Page.setEvent() with the "keyPress" events registered via setEvent() will fire before widget
-        * level handlers respond to the event, and will fire for every keyPress event, not just those triggerred by some specific
-        * key or key-combination.
-        *
-        * @param keyName the key name
-        * @param callback the callback function
-        */
-        public static native void registerKey(String keyName, KeyCallback callback)/*-{
-            $wnd.isc.Page.registerKey(keyName, function(key) {
-                callback.@com.smartgwt.client.util.KeyCallback::execute(Ljava/lang/String;)(key);
-            });
-        }-*/;
+   /**
+    * Fire some action when the Page recieves a keyPress event from a certain key.
+    * Note that if a widget has keyboard focus, this action will fire only after any widget-level
+    * keyPress handlers have fired and bubbled the event up to the top of their ancestor chain.
+    * Multiple actions can be registered to fire on a single keyPress using this method.
+    * This differs from calling Page.setEvent() with the "keyPress" events registered via setEvent() will fire before widget
+    * level handlers respond to the event, and will fire for every keyPress event, not just those triggerred by some specific
+    * key or key-combination.
+    *
+    * @param keyName the key name
+    * @param callback the callback function
+    */
+    public static native void registerKey(String keyName, KeyCallback callback)/*-{
+        $wnd.isc.Page.registerKey(keyName, function(key) {
+            callback.@com.smartgwt.client.util.KeyCallback::execute(Ljava/lang/String;)(key);
+        });
+    }-*/;
 
-       /**
-        * Fire some action when the Page recieves a keyPress event from a certain key.
-        * Note that if a widget has keyboard focus, this action will fire only after any widget-level
-        * keyPress handlers have fired and bubbled the event up to the top of their ancestor chain.
-        * Multiple actions can be registered to fire on a single keyPress using this method.
-        * This differs from calling Page.setEvent() with the "keyPress" events registered via setEvent() will fire before widget
-        * level handlers respond to the event, and will fire for every keyPress event, not just those triggerred by some specific
-        * key or key-combination.
-        *
-        * @param keyIdentifier the key identifier
-        * @param callback the callback function
-        */
-        public static native void registerKey(KeyIdentifier keyIdentifier, KeyCallback callback)/*-{
-            var keyIdentifierJS = keyIdentifier.@com.smartgwt.client.core.DataClass::getJsObj()();
-            $wnd.isc.Page.registerKey(keyIdentifierJS, function(key) {
-                callback.@com.smartgwt.client.util.KeyCallback::execute(Ljava/lang/String;)(key);
-            });
-        }-*/;
+   /**
+    * Fire some action when the Page recieves a keyPress event from a certain key.
+    * Note that if a widget has keyboard focus, this action will fire only after any widget-level
+    * keyPress handlers have fired and bubbled the event up to the top of their ancestor chain.
+    * Multiple actions can be registered to fire on a single keyPress using this method.
+    * This differs from calling Page.setEvent() with the "keyPress" events registered via setEvent() will fire before widget
+    * level handlers respond to the event, and will fire for every keyPress event, not just those triggerred by some specific
+    * key or key-combination.
+    *
+    * @param keyIdentifier the key identifier
+    * @param callback the callback function
+    */
+    public static native void registerKey(KeyIdentifier keyIdentifier, KeyCallback callback)/*-{
+        var keyIdentifierJS = keyIdentifier.@com.smartgwt.client.core.DataClass::getJsObj()();
+        $wnd.isc.Page.registerKey(keyIdentifierJS, function(key) {
+            callback.@com.smartgwt.client.util.KeyCallback::execute(Ljava/lang/String;)(key);
+        });
+    }-*/;
 
-        /**
-         * Set the title of the page, which is typically shown as part of the browser window title
-         *
-         * @param title the page title
-         */
-        public static native void setTitle(String title) /*-{
-            $wnd.isc.Page.setTitle(title);
-        }-*/;
+    /**
+     * Set the title of the page, which is typically shown as part of the browser window title
+     *
+     * @param title the page title
+     */
+    public static native void setTitle(String title) /*-{
+        $wnd.isc.Page.setTitle(title);
+    }-*/;
 
-        /**
-         * Get the width of the user's screen, in pixels.
-         *
-         * @return the screen width
-         */
-        public static native int getScreenWidth() /*-{
-            return $wnd.isc.Page.getScreenWidth();
-        }-*/;
+    /**
+     * Get the width of the visible portion of the window, not including browser chrome or the scrollbar area.
+     *
+     * @return the width of the page
+     */
+    public static native int getWidth() /*-{
+        return $wnd.isc.Page.getWidth();
+    }-*/;
 
-        /**
-         * Get the height of the user's screen, in pixels.
-         *
-         * @return the screen height
-         */
-        public static native int getScreenHeight() /*-{
-            return $wnd.isc.Page.getScreenHeight();
-        }-*/;
+    /**
+     * Get the height of the visible portion of the window, not including browser chrome or the scrollbar area. 
+     *
+     * @return the height of the page
+     */
+    public static native int getHeight() /*-{
+        return $wnd.isc.Page.getHeight();
+    }-*/;
+
+
+    /**
+     * Get the width of the user's screen, in pixels.
+     *
+     * @return the screen width
+     */
+    public static native int getScreenWidth() /*-{
+        return $wnd.isc.Page.getScreenWidth();
+    }-*/;
+
+    /**
+     * Get the height of the user's screen, in pixels.
+     *
+     * @return the screen height
+     */
+    public static native int getScreenHeight() /*-{
+        return $wnd.isc.Page.getScreenHeight();
+    }-*/;
 
 }
 
