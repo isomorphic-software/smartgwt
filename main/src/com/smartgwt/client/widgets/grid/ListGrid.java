@@ -2756,6 +2756,46 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
     }
             
     /**
+    * Image to show when sorting ascending. See ${isc.DocUtils.linkForRef('object:ImgProperties')} for format.
+    * <p><b>Note : </b> This is an advanced setting</p>
+    *
+    * @param sortAscendingImage sortAscendingImage Default value is {...}
+    */
+    public void setSortAscendingImage(ImgProperties sortAscendingImage) {
+        setAttribute("sortAscendingImage", sortAscendingImage.getJsObj(), true);
+    }
+    /**
+     * Image to show when sorting ascending. See ${isc.DocUtils.linkForRef('object:ImgProperties')} for format.
+     *
+     *
+     * @return ImgProperties
+     *
+     */
+    public ImgProperties getSortAscendingImage()  {
+        return new ImgProperties(getAttributeAsJavaScriptObject("sortAscendingImage"));
+    }
+            
+    /**
+    * Image to show when sorting descending. See ${isc.DocUtils.linkForRef('object:ImgProperties')} for format.
+    * <p><b>Note : </b> This is an advanced setting</p>
+    *
+    * @param sortDescendingImage sortDescendingImage Default value is {...}
+    */
+    public void setSortDescendingImage(ImgProperties sortDescendingImage) {
+        setAttribute("sortDescendingImage", sortDescendingImage.getJsObj(), true);
+    }
+    /**
+     * Image to show when sorting descending. See ${isc.DocUtils.linkForRef('object:ImgProperties')} for format.
+     *
+     *
+     * @return ImgProperties
+     *
+     */
+    public ImgProperties getSortDescendingImage()  {
+        return new ImgProperties(getAttributeAsJavaScriptObject("sortDescendingImage"));
+    }
+            
+    /**
     * Default image to use for the dragTracker when things are dragged within or out of this &#010 list. See ${isc.DocUtils.linkForRef('object:ImgProperties')} for format.
     * <p><b>Note : </b> This is an advanced setting</p>
     *
