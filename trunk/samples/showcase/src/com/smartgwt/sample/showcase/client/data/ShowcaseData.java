@@ -52,6 +52,7 @@ import com.smartgwt.sample.showcase.client.grid.gridform.GridRecordRemoveSample;
 import com.smartgwt.sample.showcase.client.grid.gridform.XsdDataSourceSample;
 import com.smartgwt.sample.showcase.client.grid.grouping.GridDynamicGroupingSample;
 import com.smartgwt.sample.showcase.client.grid.grouping.GroupedEditingSample;
+import com.smartgwt.sample.showcase.client.grid.grouping.GridCustomGroupingSample;
 import com.smartgwt.sample.showcase.client.grid.interaction.*;
 import com.smartgwt.sample.showcase.client.grid.sortfilter.*;
 import com.smartgwt.sample.showcase.client.gwtintegration.GwtShowcaseSample;
@@ -125,11 +126,7 @@ public class ShowcaseData {
                     new ExplorerTreeNode("Portal", "featured-portal", "featured-category", "silk/application_view_tile.png", new SimplePortalSample.Factory(), true, idSuffix),
 
                     new ExplorerTreeNode("New Samples", "new-category", "root", "silk/bell.png", null, true, idSuffix),
-                    new ExplorerTreeNode("Grid Checkbox Select", "checkboxselect-new-category", "new-category", "silk/application_side_boxes.png", new CheckboxSelectSample.Factory(), true, idSuffix),
-                    new ExplorerTreeNode("Drag Tiles (move)", "tiles-move-new-category", "new-category", null, new DragTilesMoveSample.Factory(), true, idSuffix),
-                    new ExplorerTreeNode("Portal", "portal-new-category", "new-category", "silk/application_view_tile.png", new SimplePortalSample.Factory(), true, idSuffix),
-                    new ExplorerTreeNode("Event Overlapping Calendar", "event-overlapping-new-category", "new-category", "crystal/16/actions/5days.png", new OverlappingEventsCalendarSample.Factory(), true, idSuffix),
-                    new ExplorerTreeNode("Event Auto-Arranging Calendar", "event-autoarrange-new-category", "new-category", "crystal/16/actions/5days.png", new AutoArrangeEventsCalendarSample.Factory(), true, idSuffix),                    
+                    new ExplorerTreeNode("Custom Grouping", "grid-grouping-custom-new-category", "new-category", null, new GridCustomGroupingSample.Factory(), true, idSuffix),
 
                     new ExplorerTreeNode("ComboBox &amp; Family", "combobox-category", "root", "widgets/combo_box.gif", null, true, idSuffix),
                     new ExplorerTreeNode("Styled ComboBox", "styled-combobox-category", "combobox-category", null, new ComboBoxStyledSample.Factory(), true, idSuffix),
@@ -220,7 +217,7 @@ public class ShowcaseData {
                     new ExplorerTreeNode("Grouping", "grid-grouping-category", "grid-category", "silk/chart_organisation.png", null, true, idSuffix),
                     new ExplorerTreeNode("Dynamic Grouping", "grid-grouping-dynamic", "grid-grouping-category", null, new GridDynamicGroupingSample.Factory(), true, idSuffix),
                     new ExplorerTreeNode("Grouped Editing", "grid-grouping-editing", "grid-grouping-category", null, new GroupedEditingSample.Factory(), true, idSuffix),
-                    //new ExplorerTreeNode("Custom Grouping", "grid-grouping-custom", "grid-grouping-category", null, null, false, idSuffix),
+                    new ExplorerTreeNode("Custom Grouping", "grid-grouping-custom", "grid-grouping-category", null, new GridCustomGroupingSample.Factory(), true, idSuffix),
 
                     new ExplorerTreeNode("Data Types", "grid-datatypes-category", "grid-category", "pieces/16/cube_blue.png", null, true, idSuffix),
                     new ExplorerTreeNode("Text", "grid-datatypes-text", "grid-datatypes-category", null, new GridDataTypesTextSample.Factory(), true, idSuffix),
