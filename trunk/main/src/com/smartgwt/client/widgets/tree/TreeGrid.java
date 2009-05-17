@@ -862,9 +862,43 @@ public class TreeGrid extends ListGrid  implements com.smartgwt.client.widgets.t
 
 
 
+        /**
+         * Returns a snapshot of the current open state of this grid's data as&#010 a {@link java.lang.String} object.<br>&#010 This object can be passed to {@link com.smartgwt.client.widgets.tree.TreeGrid#getOpenState} to open the same set of folders&#010 within the treeGrid's data (assuming the nodes are still present in the data).&#010
+         *
+         * @return current sort state for the grid.
+         */
+        public native String getOpenState() /*-{
+            var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
+            return self.getOpenState();
+        }-*/;
 
+        /**
+         * Reset this set of open folders within this grid's data to match the &#010 {@link java.lang.String} object passed in.<br>&#010 Used to restore previous state retrieved from the grid by a call to &#010 {@link com.smartgwt.client.widgets.tree.TreeGrid#getOpenState}.&#010&#010
+         * @param openState Object describing the desired set of open folders.
+         */
+        public native void setOpenState(String openState) /*-{
+            var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
+            self.setOpenState(openState);
+        }-*/;
 
+        /**
+         * Returns a snapshot of the current selection within this treeGrid as &#010 a {@link java.lang.String} object.<br>&#010 This object can be passed to {@link com.smartgwt.client.widgets.tree.TreeGrid#setSelectedPaths} to reset this grid's selection&#010 the current state (assuming the same data is present in the grid).<br>&#010
+         *
+         * @return current state of this grid's selection
+         */
+        public native String getSelectedPaths() /*-{
+            var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
+            return self.getSelectedPaths();
+        }-*/;
 
+        /**
+         * Reset this grid's selection to match the {@link java.lang.String} object passed in.<br>&#010 Used to restore previous state retrieved from the grid by a call to &#010 {@link com.smartgwt.client.widgets.tree.TreeGrid#getSelectedPaths}.&#010&#010
+         * @param selectedPaths Object describing the desired selection state of                                              the grid
+         */
+        public native void setSelectedPaths(String selectedPaths) /*-{
+            var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
+            self.setSelectedPaths(selectedPaths);
+        }-*/;
 
 
 
@@ -959,16 +993,6 @@ public class TreeGrid extends ListGrid  implements com.smartgwt.client.widgets.t
             return self.getExtraIcon(node.@com.smartgwt.client.core.DataClass::getJsObj()());
         }-*/;
 
-        /**
-         * Get the appropriate icon for a node.&#010 <P>&#010 By default icons are derived from {@link com.smartgwt.client.widgets.tree.TreeGrid#getFolderIcon folderIcon} and {@link com.smartgwt.client.widgets.tree.TreeGrid#getNodeIcon nodeIcon}.&#010 Custom icons for individual nodes can be overriden by setting the {@link com.smartgwt.client.widgets.tree.TreeGrid#getCustomIconProperty customIconProperty}&#010 on a node.&#010 <p>&#010 If you want to suppress icons altogether, provide an override of this method that simply&#010 returns null.&#010 <p> &#010 Note that the full icon URL will be derived by applying {@link com.smartgwt.client.widgets.Canvas#getImgURL} to the&#010 value returned from this method.&#010&#010
-         * @param node tree node in question
-         *
-         * @return URL for icon to show for this node
-         */
-        public native String getIcon(TreeNode node) /*-{
-            var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
-            return self.getIcon(node.@com.smartgwt.client.core.DataClass::getJsObj()());
-        }-*/;
 
 
         /**
@@ -1291,8 +1315,73 @@ public class TreeGrid extends ListGrid  implements com.smartgwt.client.widgets.t
     // ********************* Static Methods ***********************
 
 
-
+
 
+
+    protected void onInit() {
+        super.onInit();
+        onInit2();
+    }
+
+    private native void onInit2() /*-{
+
+        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
+        self._getNodeTitle = self.getNodeTitle;
+        self.getNodeTitle = function(node, recordNum, field) {
+            var jObj = this.__ref;
+            var nodeJ = @com.smartgwt.client.widgets.tree.TreeNode::getOrCreateRef(Lcom/google/gwt/core/client/JavaScriptObject;)(node);
+            var fieldJ = @com.smartgwt.client.widgets.grid.ListGridField::getOrCreateRef(Lcom/google/gwt/core/client/JavaScriptObject;)(field);
+            return jObj.@com.smartgwt.client.widgets.tree.TreeGrid::getNodeTitle(Lcom/smartgwt/client/widgets/tree/TreeNode;ILcom/smartgwt/client/widgets/grid/ListGridField;)(nodeJ, recordNum, fieldJ);
+        };
+
+        self._getIcon = self.getIcon;
+        self.getIcon = function(node) {
+            var jObj = this.__ref;
+            var nodeJ = @com.smartgwt.client.widgets.tree.TreeNode::getOrCreateRef(Lcom/google/gwt/core/client/JavaScriptObject;)(node);
+            return jObj.@com.smartgwt.client.widgets.tree.TreeGrid::getIcon(Lcom/smartgwt/client/widgets/tree/TreeNode;)(nodeJ);
+        };
+    }-*/;
+
+    /**
+     * &#010 Returns the title to show for a node in the tree column.  If the field specifies the&#010 <code>name</code> attribute, then the current <code>node[field.name]</code> is returned.&#010 Otherwise, the result of calling {@link com.smartgwt.client.widgets.tree.Tree#getTitle} on the node is called.&#010 <br><br>&#010 You can override this method to return a custom title for node titles in the tree column.&#010&#010
+     *
+     * <b>Note</b> : This is an override point
+     *
+     * @param node      The node for which the title is being requested.
+     * @param recordNum The index of the node.
+     * @param field     The field for which the title is being requested.
+     * @return the title to display.
+     */
+    protected native String getNodeTitle(TreeNode node, int recordNum, ListGridField field) /*-{
+            var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
+            return self._getNodeTitle(node.@com.smartgwt.client.core.DataClass::getJsObj()(), recordNum, field.@com.smartgwt.client.core.DataClass::getJsObj()());
+    }-*/;
+
+    /**
+     * Get the appropriate icon for a node.&#010 <P>&#010 By default icons are derived from {@link com.smartgwt.client.widgets.tree.TreeGrid#getFolderIcon folderIcon} and {@link com.smartgwt.client.widgets.tree.TreeGrid#getNodeIcon nodeIcon}.&#010 Custom icons for individual nodes can be overriden by setting the {@link com.smartgwt.client.widgets.tree.TreeGrid#getCustomIconProperty customIconProperty}&#010 on a node.&#010 <p>&#010 If you want to suppress icons altogether, provide an override of this method that simply&#010 returns null.&#010 <p> &#010 Note that the full icon URL will be derived by applying {@link com.smartgwt.client.widgets.Canvas#getImgURL} to the&#010 value returned from this method.&#010&#010
+     * <p>
+     * <b>Note</b>: This is an override point
+     *
+     * @param node tree node in question
+     *
+     * @return URL for icon to show for this node
+     */
+    protected native String getIcon(TreeNode node) /*-{
+        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
+        return self._getIcon(node.@com.smartgwt.client.core.DataClass::getJsObj()());
+    }-*/;
+
+    /**
+     * When the user is dragging a droppable element over this grid, this method returns the folder&#010 which would contain the item if dropped. This is the current drop node if the user is hovering&#010 over a folder, or the node's parent if the user is hovering over a leaf.&#010
+     *
+     * @return target drop folder
+     */
+    public native TreeNode getDropFolder() /*-{
+        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
+        var node = self.getDropFolder();
+        if(node == null || node === undefined) return null;
+        return @com.smartgwt.client.widgets.tree.TreeNode::getOrCreateRef(Lcom/google/gwt/core/client/JavaScriptObject;)(node);
+    }-*/;
 
     /**
      * An array of field objects, specifying the order, layout, dynamic calculation, and sorting behavior of each field

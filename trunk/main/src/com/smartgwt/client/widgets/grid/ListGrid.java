@@ -3699,7 +3699,7 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
         }-*/;
 
         /**
-         * Returns a snapshot of the current presentation of this listGrid's fields as &#010 a {@link com.smartgwt.client..listGridFieldState} object.&#010 <P>&#010 This object can later be passed to {@link com.smartgwt.client.widgets.grid.ListGrid#setFieldState} to reset this grid's&#010 fields to the current state.&#010 <P>&#010 Note that the information stored includes the current width and visibility of each of this &#010 grid's fields, as well as any {@link com.smartgwt.client.widgets.grid.ListGrid#getCanAddFormulaFields canAddFormulaFields} or&#010 {@link com.smartgwt.client.widgets.grid.ListGrid#getCanAddSummaryFields canAddSummaryFields} added by the user.&#010&#010
+         * Returns a snapshot of the current presentation of this listGrid's fields as &#010 a {@link java.lang.String} object.&#010 <P>&#010 This object can later be passed to {@link com.smartgwt.client.widgets.grid.ListGrid#setFieldState} to reset this grid's&#010 fields to the current state.&#010 <P>&#010 Note that the information stored includes the current width and visibility of each of this &#010 grid's fields, as well as any {@link com.smartgwt.client.widgets.grid.ListGrid#getCanAddFormulaFields canAddFormulaFields} or&#010 {@link com.smartgwt.client.widgets.grid.ListGrid#getCanAddSummaryFields canAddSummaryFields} added by the user.&#010&#010
          *
          * @return current state of this grid's fields.
          */
@@ -3709,7 +3709,7 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
         }-*/;
 
         /**
-         * Sets some presentation properties (visibility, width, userFormula and userSummary) of the &#010 listGrid fields based on the {@link com.smartgwt.client..listGridFieldState} object passed in.<br>&#010 Used to restore previous state retrieved from the grid by a call to {@link com.smartgwt.client.widgets.grid.ListGrid#getFieldState}.&#010&#010
+         * Sets some presentation properties (visibility, width, userFormula and userSummary) of the &#010 listGrid fields based on the {@link java.lang.String} object passed in.<br>&#010 Used to restore previous state retrieved from the grid by a call to {@link com.smartgwt.client.widgets.grid.ListGrid#getFieldState}.&#010&#010
          * @param fieldState state to apply to the listGrid's fields.
          */
         public native void setFieldState(String fieldState) /*-{
@@ -3734,11 +3734,62 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
             }
         }-*/;
 
+        /**
+         * Returns a snapshot of the current selection within this listGrid as &#010 a {@link java.lang.String} object.<br>&#010 This object can be passed to {@link com.smartgwt.client.widgets.grid.ListGrid#setSelectedState} to reset this grid's selection&#010 the current state (assuming the same data is present in the grid).<br>&#010
+         *
+         * @return current state of this grid's selection
+         */
+        public native String getSelectedState() /*-{
+            var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
+            return self.getSelectedState();
+        }-*/;
 
+        /**
+         * Reset this grid's selection to match the {@link java.lang.String} object passed in.<br>&#010 Used to restore previous state retrieved from the grid by a call to &#010 {@link com.smartgwt.client.widgets.grid.ListGrid#getSelectedState}.&#010&#010
+         * @param selectedState Object describing the desired selection state of                                              the grid
+         */
+        public native void setSelectedState(String selectedState) /*-{
+            var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
+            self.setSelectedState(selectedState);
+        }-*/;
 
+        /**
+         * Returns a snapshot of the current sort state (sort field and order) within this listGrid as &#010 a {@link java.lang.String} object.<br>&#010 This object can be passed to {@link com.smartgwt.client.widgets.grid.ListGrid#setSortState} to reset this grid's sort to&#010 the current state (assuming the same fields are present in the grid).<br>&#010
+         *
+         * @return current sort state for the grid.
+         */
+        public native String getSortState() /*-{
+            var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
+            return self.getSortState();
+        }-*/;
 
+        /**
+         * Reset this grid's sort state (sort field and direction) to match the &#010 {@link java.lang.String} object passed in.<br>&#010 Used to restore previous state retrieved from the grid by a call to &#010 {@link com.smartgwt.client.widgets.grid.ListGrid#getSortState}.&#010&#010
+         * @param sortState Object describing the desired sort state for the grid.
+         */
+        public native void setSortState(String sortState) /*-{
+            var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
+            self.setSortState(sortState);
+        }-*/;
 
+        /**
+         * Returns a snapshot of the current view state of this ListGrid.<br>&#010 This includes the field state, sort state and selected state of the grid, returned as a&#010 {@link java.lang.String} object.<br>&#010 This object can be passed to {@link com.smartgwt.client.widgets.grid.ListGrid#setViewState} to reset this grid's vew state&#010 to the current state (assuming the same data / fields are present in the grid).<br>&#010
+         *
+         * @return current view state for the grid.
+         */
+        public native String getViewState() /*-{
+            var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
+            return self.getViewState();
+        }-*/;
 
+        /**
+         * Reset this grid's view state to match the {@link java.lang.String} object passed in.<br>&#010 Used to restore previous state retrieved from the grid by a call to &#010 {@link com.smartgwt.client.widgets.grid.ListGrid#getViewState}.&#010&#010
+         * @param viewState Object describing the desired view state for the grid
+         */
+        public native void setViewState(String viewState) /*-{
+            var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
+            self.setViewState(viewState);
+        }-*/;
 
         /**
          * Re-evaluates {@link com.smartgwt.client.widgets.grid.ListGridField#showIf} for each field, dynamically showing and &#010 hiding the appropriate set of fields&#010

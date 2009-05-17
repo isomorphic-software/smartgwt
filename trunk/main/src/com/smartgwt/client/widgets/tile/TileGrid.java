@@ -360,7 +360,7 @@ public class TileGrid extends TileLayout  implements DataBoundComponent, com.sma
 
 
         /**
-         * Sets some presentation properties (visibility, width, userFormula and userSummary) of the &#010 grid fields based on the {@link com.smartgwt.client..listGridFieldState} object passed in.<br>&#010 Used to restore previous state retrieved from the grid by a call to {@link com.smartgwt.client.widgets.tile.TileGrid#getFieldState}.&#010&#010
+         * Sets some presentation properties (visibility, width, userFormula and userSummary) of the &#010 grid fields based on the {@link java.lang.String} object passed in.<br>&#010 Used to restore previous state retrieved from the grid by a call to {@link com.smartgwt.client.widgets.tile.TileGrid#getFieldState}.&#010&#010
          * @param fieldState state to apply to the grid's fields.
          */
         public native void setFieldState(String fieldState) /*-{
@@ -369,7 +369,7 @@ public class TileGrid extends TileLayout  implements DataBoundComponent, com.sma
         }-*/;
 
         /**
-         * Returns a snapshot of the current presentation of this grid's fields as &#010 a {@link com.smartgwt.client..listGridFieldState} object.&#010 <P>&#010 This object can be passed to {@link com.smartgwt.client.widgets.tile.TileGrid#setFieldState} to reset this grid's fields to&#010 the current state.&#010 <P>&#010 Note that the information stored includes the current width and visibility of each of this &#010 grid's fields.&#010&#010
+         * Returns a snapshot of the current presentation of this grid's fields as &#010 a {@link java.lang.String} object.&#010 <P>&#010 This object can be passed to {@link com.smartgwt.client.widgets.tile.TileGrid#setFieldState} to reset this grid's fields to&#010 the current state.&#010 <P>&#010 Note that the information stored includes the current width and visibility of each of this &#010 grid's fields.&#010&#010
          *
          * @return current state of this grid's fields.
          */
