@@ -1581,6 +1581,25 @@ public class ListGridField extends DataClass  implements com.smartgwt.client.wid
     }
 
     /**
+    * If set, provides several possible styles of grouping that are valid for this field.  For&#010 example, a field of type:"date" might be able to be grouped by week, month, or by day of&#010 week.&#010 <P>&#010 If <code>groupingModes</code> are present and&#010 {@link com.smartgwt.client.widgets.grid.ListGrid#getCanGroupBy canGroupBy}, the menu for this field includes a&#010 submenu of possible grouping modes generated from the <code>groupingModes</code> valueMap.&#010 When the user selects a particular grouping mode,&#010 {@link com.smartgwt.client.widgets.grid.ListGridField#getGroupingMode groupingMode} is set to the user's chosen mode,&#010 and this choice can be detected via the <code>field</code> parameter to&#010 {@link com.smartgwt.client.widgets.grid.ListGridField#getGroupValue} in order to provide different modes of grouping.&#010 <P>&#010 The user may also choose to group records without specifying a grouping mode, in this case,&#010 the {@link com.smartgwt.client.widgets.grid.ListGridField#getDefaultGroupingMode defaultGroupingMode} is used.&#010 <P>&#010 Note that <code>getGroupValue</code>, <code>groupingModes</code> et al can be specified on&#010 {@link com.smartgwt.client.data.SimpleType} declaration, and the different grouping modes that are offered&#010 automatically for various common types are defined this way.
+    *
+    * @param groupingModes groupingModes Default value is null
+    */
+    public void setGroupingModes(Map groupingModes) {
+        setAttribute("groupingModes", groupingModes);
+    }
+    /**
+     * If set, provides several possible styles of grouping that are valid for this field.  For&#010 example, a field of type:"date" might be able to be grouped by week, month, or by day of&#010 week.&#010 <P>&#010 If <code>groupingModes</code> are present and&#010 {@link com.smartgwt.client.widgets.grid.ListGrid#getCanGroupBy canGroupBy}, the menu for this field includes a&#010 submenu of possible grouping modes generated from the <code>groupingModes</code> valueMap.&#010 When the user selects a particular grouping mode,&#010 {@link com.smartgwt.client.widgets.grid.ListGridField#getGroupingMode groupingMode} is set to the user's chosen mode,&#010 and this choice can be detected via the <code>field</code> parameter to&#010 {@link com.smartgwt.client.widgets.grid.ListGridField#getGroupValue} in order to provide different modes of grouping.&#010 <P>&#010 The user may also choose to group records without specifying a grouping mode, in this case,&#010 the {@link com.smartgwt.client.widgets.grid.ListGridField#getDefaultGroupingMode defaultGroupingMode} is used.&#010 <P>&#010 Note that <code>getGroupValue</code>, <code>groupingModes</code> et al can be specified on&#010 {@link com.smartgwt.client.data.SimpleType} declaration, and the different grouping modes that are offered&#010 automatically for various common types are defined this way.
+     *
+     *
+     * @return the value map
+     *
+     */
+    public Map getGroupingModes()  {
+        return getAttributeAsMap("groupingModes");
+    }
+
+    /**
      * * Return the HTML to display in cells of this field. <P> Given the raw value for this field as taken from the
      * record Formatter to apply to the static values displayed in cells for this field. <P> <i>Example usage</i>:
      * formatting a currency value stored in cents (so "100" to "$1.00")<br> The value passed to this method is the raw
@@ -1960,6 +1979,47 @@ public class ListGridField extends DataClass  implements com.smartgwt.client.wid
                 var event = @com.smartgwt.client.widgets.grid.events.CellSavedEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
                 selfJ.@com.smartgwt.client.core.DataClass::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
             };
+    }-*/;
+
+   /**
+    * Renderer that returns the title that should be shown to the user for the group with the groupValue passed as a parameter.
+    * <p/>
+    * Default title is the groupValue itself.
+    *
+    * @param groupTitleRenderer the group title renderer
+    */
+   public native void setGroupTitleRenderer(GroupTitleRenderer groupTitleRenderer) /*-{
+        var self = this.@com.smartgwt.client.core.DataClass::getJsObj()();
+        self.getGroupTitle = function(groupValue, groupNode, field, fieldName, grid) {
+            var groupValueJ =  $wnd.SmartGWT.convertToJavaType(groupValue);
+            var groupNodeJ = @com.smartgwt.client.widgets.grid.GroupNode::new(Lcom/google/gwt/core/client/JavaScriptObject;)(groupNode);
+            var fieldJ = @com.smartgwt.client.widgets.grid.ListGridField::getOrCreateRef(Lcom/google/gwt/core/client/JavaScriptObject;)(field);
+            var gridJ = @com.smartgwt.client.widgets.grid.ListGrid::getOrCreateRef(Lcom/google/gwt/core/client/JavaScriptObject;)(grid);
+            return groupTitleRenderer.@com.smartgwt.client.widgets.grid.GroupTitleRenderer::getGroupTitle(Ljava/lang/Object;Lcom/smartgwt/client/widgets/grid/GroupNode;Lcom/smartgwt/client/widgets/grid/ListGridField;Ljava/lang/String;Lcom/smartgwt/client/widgets/grid/ListGrid;)(groupValueJ, groupNodeJ, fieldJ, fieldName, gridJ);
+        };
+    }-*/;
+
+   /**
+    * Function that returns the value which records should be grouped by.
+    * <p>
+    * All records that for which getGroupValue() returns the same value appear in the same group. Default is the result
+    * of ListGrid.getCellValue().
+    * <p>
+    * While any type of value may be returned, avoiding the use of string values may result in improved performance.
+    * In this case, {@link GroupTitleRenderer#getGroupTitle(Object, GroupNode, ListGridField, String, ListGrid)}  may be implemented to map a numeric group value into a
+    * legible string.
+    *
+    * @param groupValueFunction the group value function
+    */
+   public native void setGroupValueFunction(GroupValueFunction groupValueFunction) /*-{
+        var self = this.@com.smartgwt.client.core.DataClass::getJsObj()();
+        self.getGroupValue = function(value, record, field, fieldName, grid) {
+            var valueJ =  $wnd.SmartGWT.convertToJavaType(value);
+            var recordJ = @com.smartgwt.client.widgets.grid.ListGridRecord::getOrCreateRef(Lcom/google/gwt/core/client/JavaScriptObject;)(record);
+            var fieldJ = @com.smartgwt.client.widgets.grid.ListGridField::getOrCreateRef(Lcom/google/gwt/core/client/JavaScriptObject;)(field);
+            var gridJ = @com.smartgwt.client.widgets.grid.ListGrid::getOrCreateRef(Lcom/google/gwt/core/client/JavaScriptObject;)(grid);
+            return groupValueFunction.@com.smartgwt.client.widgets.grid.GroupValueFunction::getGroupValue(Ljava/lang/Object;Lcom/smartgwt/client/widgets/grid/ListGridRecord;Lcom/smartgwt/client/widgets/grid/ListGridField;Ljava/lang/String;Lcom/smartgwt/client/widgets/grid/ListGrid;)(valueJ, recordJ, fieldJ, fieldName, gridJ);
+        };
     }-*/;
 
 }
