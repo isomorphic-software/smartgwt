@@ -2,18 +2,10 @@ package com.smartgwt.sample.showcase.client.tree.appearance;
 
 import com.smartgwt.client.data.DataSource;
 import com.smartgwt.client.widgets.Canvas;
-import com.smartgwt.client.widgets.menu.Menu;
-import com.smartgwt.client.widgets.menu.MenuItem;
 import com.smartgwt.client.widgets.grid.CellFormatter;
 import com.smartgwt.client.widgets.grid.ListGridRecord;
-import com.smartgwt.client.widgets.grid.events.CellContextClickEvent;
-import com.smartgwt.client.widgets.grid.events.CellContextClickHandler;
-import com.smartgwt.client.widgets.grid.events.CellClickHandler;
-import com.smartgwt.client.widgets.grid.events.CellClickEvent;
 import com.smartgwt.client.widgets.tree.TreeGrid;
 import com.smartgwt.client.widgets.tree.TreeGridField;
-import com.smartgwt.client.widgets.tree.Tree;
-import com.smartgwt.client.widgets.tree.TreeNode;
 import com.smartgwt.client.widgets.tree.events.DataArrivedHandler;
 import com.smartgwt.client.widgets.tree.events.DataArrivedEvent;
 import com.smartgwt.sample.showcase.client.PanelFactory;
@@ -47,7 +39,7 @@ public class NodeTitlesTreeSample extends ShowcasePanel {
         DataSource employeeDS = EmployeeXmlDS.getInstance();
 
         final TreeGrid treeGrid = new TreeGrid();
-        treeGrid.setLoadDataOnDemand(false);        
+        treeGrid.setLoadDataOnDemand(false);
         treeGrid.setWidth(500);
         treeGrid.setHeight(400);
         treeGrid.setDataSource(employeeDS);
@@ -58,40 +50,6 @@ public class NodeTitlesTreeSample extends ShowcasePanel {
         treeGrid.setClosedIconSuffix("");
         treeGrid.setAutoFetchData(true);
 
-
-        final Menu contextMenu = new Menu();
-        contextMenu.addItem(new MenuItem("Expand node"));
-        contextMenu.addCellClickHandler(new CellClickHandler() {
-            public void onCellClick(CellClickEvent event) {
-                if (event.getRowNum() == 0) {
-                    //open the selected node
-                    Tree tree = treeGrid.getData();
-                    ListGridRecord record = treeGrid.getSelectedRecord();
-                    TreeNode node = (TreeNode) record;
-                    TreeNode[] children = tree.getChildren(node);
-                    tree.openFolder(node);
-
-                }
-            }
-        });
-
-        //treeGrid.setContextMenu(contextMenu);
-        treeGrid.addCellClickHandler(new CellClickHandler() {
-            public void onCellClick(CellClickEvent event) {
-                //show the menu if the click happened on the first column
-                if (event.getColNum() == 0) {
-                    //treeGrid.getContextMenu().showContextMenu();
-                    contextMenu.showContextMenu();
-                }
-            }
-        });
-
-        //don't allow right clicks on tree grid
-        treeGrid.addCellContextClickHandler(new CellContextClickHandler(){
-            public void onCellContextClick(CellContextClickEvent event) {
-            event.cancel();
-            }
-        });
 
         TreeGridField field = new TreeGridField();
         field.setName("Name");
