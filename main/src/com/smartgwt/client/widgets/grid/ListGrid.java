@@ -5549,14 +5549,53 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
     }-*/;
 
     /**
-     * Sort data by given property.
+     * Sort the the data  by the first sortable column.
+     * <P>&#010 Updates the sortFieldNum and sortDirection to reflect the new sort order of the grid.&#010&#010
      *
-     * @param property  the name
-     * @param ascending direction
+     * @return sorting worked
      */
-    public native void sortByProperty(String property, boolean ascending) /*-{
+    public native Boolean sort() /*-{
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
-        self.data.sortByProperty(property, ascending);
+        var retVal =self.sort();
+        if(retVal == null || retVal === undefined) {
+            return null;
+        } else {
+            return @com.smartgwt.client.util.JSOHelper::toBoolean(Z)(retVal);
+        }
+    }-*/;
+
+    /**
+     * Sorts a listGrid explicitly by the column given by sortFieldNum, if provided, in &#010 ascending or descending order if specified by sortDirection. If sortFieldNum is not&#010 provided and listGrid.sortFieldNum is undefined, the data will be sorted by the first&#010 sortable column according to {@link com.smartgwt.client.widgets.grid.ListGridField#getSortDirection sortDirection} if specified, or&#010 {@link com.smartgwt.client.widgets.grid.ListGrid#getSortDirection sortDirection}.&#010 <P>&#010 Updates the sortFieldNum and sortDirection to reflect the new sort order of the grid.&#010&#010
+     *
+     * @param sortField     the field name to sort by
+     * @param sortDirection the direction to sort in
+     * @return sorting worked
+     */
+    public native Boolean sort(String sortField, SortDirection sortDirection) /*-{
+        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
+        var retVal =self.sort(sortField, sortDirection.@com.smartgwt.client.types.SortDirection::getValue()());
+        if(retVal == null || retVal === undefined) {
+            return null;
+        } else {
+            return @com.smartgwt.client.util.JSOHelper::toBoolean(Z)(retVal);
+        }
+    }-*/;
+
+    /**
+     * Sorts a listGrid explicitly by the column given by sortFieldNum, if provided, in &#010 ascending or descending order if specified by sortDirection. If sortFieldNum is not&#010 provided and listGrid.sortFieldNum is undefined, the data will be sorted by the first&#010 sortable column according to {@link com.smartgwt.client.widgets.grid.ListGridField#getSortDirection sortDirection} if specified, or&#010 {@link com.smartgwt.client.widgets.grid.ListGrid#getSortDirection sortDirection}.&#010 <P>&#010 Updates the sortFieldNum and sortDirection to reflect the new sort order of the grid.&#010&#010
+     *
+     * @param sortCol the column number to sort by
+     * @param sortDirection the direction to sort in
+     * @return sorting worked
+     */
+    public native Boolean sort(int sortCol, SortDirection sortDirection) /*-{
+        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
+        var retVal =self.sort(sortCol, sortDirection.@com.smartgwt.client.types.SortDirection::getValue()());
+        if(retVal == null || retVal === undefined) {
+            return null;
+        } else {
+            return @com.smartgwt.client.util.JSOHelper::toBoolean(Z)(retVal);
+        }
     }-*/;
 
     /**
