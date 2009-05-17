@@ -626,9 +626,14 @@ public class DataSourceField extends DataClass {
     // ********************* Static Methods ***********************
 
 
-
-
-
+
+
+
+
+
+
+
+
 
     /**
      * Validators to be applied to this field. Validators are applied whenever there is an attempt to save changes to a
@@ -727,14 +732,19 @@ public class DataSourceField extends DataClass {
     }
 
     /**
-     * Function or JavaScript expression used to retrieve the field's value from the XML element or JSON record returned
+     * Function to retrieve the field's value from the XML element or JSON record returned
      * from a web service. <P> This is an advanced API for use when a {@link com.smartgwt.client.data.DataSourceField#getValueXPath
      * valueXPath} setting is insufficient to derive a field's value, yet an implementation of {@link
      * com.smartgwt.client.data.DataSource#transformResponse} is overkill.
+     *
+     * @param extractor the field value extractor
      */
     public native void setFieldValueExtractor(FieldValueExtractor extractor) /*-{
-        var self = this.@com.smartgwt.client.core.BaseClass::getOrCreateJsObj()();
-        self.getValueField = function(record, value, field, fieldName) {
+        var self = this.@com.smartgwt.client.core.DataClass::getJsObj()();
+        self.getFieldValue = function(record, value, field, fieldName) {
+            var valueJ =  $wnd.SmartGWT.convertToJavaType(value);
+            var fieldJ = @com.smartgwt.client.data.DataSourceField::new(Lcom/google/gwt/core/client/JavaScriptObject;)(field);
+            return extractor.@com.smartgwt.client.data.FieldValueExtractor::execute(Ljava/lang/Object;Ljava/lang/Object;Lcom/smartgwt/client/data/DataSourceField;Ljava/lang/String;)(record, valueJ, fieldJ, fieldName);
         };
     }-*/;
 
