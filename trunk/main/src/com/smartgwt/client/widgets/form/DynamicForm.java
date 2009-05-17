@@ -2093,6 +2093,36 @@ public class DynamicForm extends Canvas  implements DataBoundComponent, com.smar
         return self.rememberValues();
     }-*/;
 
+   /**
+    * The FormItemHoverFormatter should return the HTML to display in a hover canvas when the user holds the mousepointer over this item.
+    * Return null to suppress the hover canvas altogether.
+    *
+    * @param hoverFormatter the hover formatter
+    */
+    public native void setItemHoverFormatter(FormItemHoverFormatter hoverFormatter) /*-{
+        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
+        var formJ = this;
+        self.itemHoverHTML = function(item) {
+            var itemJ = @com.smartgwt.client.widgets.form.fields.FormItem::getOrCreateRef(Lcom/google/gwt/core/client/JavaScriptObject;)(item);
+            return hoverFormatter.@com.smartgwt.client.widgets.form.FormItemHoverFormatter::getHoverHTML(Lcom/smartgwt/client/widgets/form/fields/FormItem;Lcom/smartgwt/client/widgets/form/DynamicForm;)(itemJ, formJ);
+        };
+    }-*/;
+
+   /**
+    * The FormItemHoverFormatter should return the HTML to display in a hover canvas when the user holds the mousepointer over the item's title.
+    * Return null to suppress the hover canvas altogether.
+    *
+    * @param hoverFormatter the hover formatter
+    */
+    public native void setItemTitleHoverFormatter(FormItemHoverFormatter hoverFormatter) /*-{
+        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
+        var formJ = this;
+        self.titleHoverHTML = function(item) {
+            var itemJ = @com.smartgwt.client.widgets.form.fields.FormItem::getOrCreateRef(Lcom/google/gwt/core/client/JavaScriptObject;)(item);
+            return hoverFormatter.@com.smartgwt.client.widgets.form.FormItemHoverFormatter::getHoverHTML(Lcom/smartgwt/client/widgets/form/fields/FormItem;Lcom/smartgwt/client/widgets/form/DynamicForm;)(itemJ, formJ);
+        };
+    }-*/;
+
 
 
 
