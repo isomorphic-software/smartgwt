@@ -1,0 +1,147 @@
+<List>
+    <teamMember>
+		<projectCode>New Costing System</projectCode>
+		<employeeId>4</employeeId>
+		<employeeName>Charles Madigen</employeeName>
+	</teamMember>		
+    <teamMember>
+		<projectCode>New Costing System</projectCode>
+		<employeeId>292</employeeId>
+		<employeeName>Amanda Jones</employeeName>
+	</teamMember>		
+    <teamMember>
+		<projectCode>New Costing System</projectCode>
+		<employeeId>284</employeeId>
+		<employeeName>Benny Jacobs</employeeName>
+	</teamMember>		
+    <teamMember>
+		<projectCode>New Costing System</projectCode>
+		<employeeId>190</employeeId>
+		<employeeName>Carol Finley</employeeName>
+	</teamMember>		
+
+    <teamMember>
+		<projectCode>Warehousing Improvements</projectCode>
+		<employeeId>190</employeeId>
+		<employeeName>Carol Finley</employeeName>
+	</teamMember>		
+    <teamMember>
+		<projectCode>Warehousing Improvements</projectCode>
+		<employeeId>248</employeeId>
+		<employeeName>Gabby Gold</employeeName>
+	</teamMember>		
+    <teamMember>
+		<projectCode>Warehousing Improvements</projectCode>
+		<employeeId>223</employeeId>
+		<employeeName>Maxim Sinitsyn</employeeName>
+	</teamMember>		
+
+    <teamMember>
+		<projectCode>Evaluate AJAX Frameworks</projectCode>
+		<employeeId>232</employeeId>
+		<employeeName>Francis Freiberg</employeeName>
+	</teamMember>		
+    <teamMember>
+		<projectCode>Evaluate AJAX Frameworks</projectCode>
+		<employeeId>244</employeeId>
+		<employeeName>Anna Galetti</employeeName>
+	</teamMember>		
+    <teamMember>
+		<projectCode>Evaluate AJAX Frameworks</projectCode>
+		<employeeId>204</employeeId>
+		<employeeName>Garret Monroe</employeeName>
+	</teamMember>		
+    <teamMember>
+		<projectCode>Evaluate AJAX Frameworks</projectCode>
+		<employeeId>182</employeeId>
+		<employeeName>Tamara Kane</employeeName>
+	</teamMember>		
+    <teamMember>
+		<projectCode>Evaluate AJAX Frameworks</projectCode>
+		<employeeId>193</employeeId>
+		<employeeName>Darcy Feeney</employeeName>
+	</teamMember>		
+    <teamMember>
+		<projectCode>Evaluate AJAX Frameworks</projectCode>
+		<employeeId>254</employeeId>
+		<employeeName>Danielle Mayer</employeeName>
+	</teamMember>		
+    <teamMember>
+		<projectCode>Evaluate AJAX Frameworks</projectCode>
+		<employeeId>256</employeeId>
+		<employeeName>Christian Jeansonne</employeeName>
+	</teamMember>		
+
+    <teamMember>
+		<projectCode>Upgrade Postgres</projectCode>
+		<employeeId>256</employeeId>
+		<employeeName>Christian Jeansonne</employeeName>
+	</teamMember>		
+    <teamMember>
+		<projectCode>Upgrade Postgres</projectCode>
+		<employeeId>269</employeeId>
+		<employeeName>Anna Andrews</employeeName>
+	</teamMember>		
+    <teamMember>
+		<projectCode>Upgrade Postgres</projectCode>
+		<employeeId>4</employeeId>
+		<employeeName>Charles Madigen</employeeName>
+	</teamMember>		
+
+    <teamMember>
+		<projectCode>Online Billing</projectCode>
+		<employeeId>274</employeeId>
+		<employeeName>Carmen Fetterman</employeeName>
+	</teamMember>		
+    <teamMember>
+		<projectCode>Online Billing</projectCode>
+		<employeeId>280</employeeId>
+		<employeeName>Jeet Mistry</employeeName>
+	</teamMember>		
+    <teamMember>
+		<projectCode>Online Billing</projectCode>
+		<employeeId>190</employeeId>
+		<employeeName>Carol Finley</employeeName>
+	</teamMember>		
+    <teamMember>
+		<projectCode>Online Billing</projectCode>
+		<employeeId>184</employeeId>
+		<employeeName>Kirill Amirov</employeeName>
+	</teamMember>		
+    <teamMember>
+		<projectCode>Online Billing</projectCode>
+		<employeeId>221</employeeId>
+		<employeeName>Christine Werner</employeeName>
+	</teamMember>		
+    <teamMember>
+		<projectCode>Online Billing</projectCode>
+		<employeeId>210</employeeId>
+		<employeeName>Ben Finley</employeeName>
+	</teamMember>		
+    <teamMember>
+		<projectCode>Online Billing</projectCode>
+		<employeeId>277</employeeId>
+		<employeeName>Jean Bergeron</employeeName>
+	</teamMember>		
+    <teamMember>
+		<projectCode>Online Billing</projectCode>
+		<employeeId>279</employeeId>
+		<employeeName>Tian Xian</employeeName>
+	</teamMember>		
+    <teamMember>
+		<projectCode>Online Billing</projectCode>
+		<employeeId>189</employeeId>
+		<employeeName>Gene Porter</employeeName>
+	</teamMember>		
+    <teamMember>
+		<projectCode>Online Billing</projectCode>
+		<employeeId>188</employeeId>
+		<employeeName>Rogine Leger</employeeName>
+	</teamMember>		
+    <teamMember>
+		<projectCode>Online Billing</projectCode>
+		<employeeId>253</employeeId>
+		<employeeName>Jack Chartrand</employeeName>
+	</teamMember>		
+
+</List>
