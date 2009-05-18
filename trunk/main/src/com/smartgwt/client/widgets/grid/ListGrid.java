@@ -4712,7 +4712,7 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
 
 
 
-
+
 
 
     protected native void onInit() /*-{
@@ -6344,6 +6344,28 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
         self.clearFieldError(rowNum, colIndex);
     }-*/;
+
+    /**
+     * Set the value map for a field.&#010 See also the {@link com.smartgwt.client.widgets.grid.ListGrid#setEditorValueMap}&#010 and {@link com.smartgwt.client.widgets.grid.ListGrid#getEditorValueMap} methods which allow further &#010 customization of the valueMap displayed while the field is in edit mode.&#010&#010
+     *
+     * @param fieldName Name  of field to update
+     * @param valueMap ValueMap for the field
+     */
+    public native void setValueMap(String fieldName, java.util.LinkedHashMap valueMap) /*-{
+        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
+        self.setValueMap(fieldName, @com.smartgwt.client.util.JSOHelper::convertMapToJavascriptObject(Ljava/util/Map;)(valueMap));
+    }-*/;
+
+    /**
+     * &#010  Clear a field value being tracked as an unsaved user edit.<P>&#010  The saved record value will be displayed in the the appropriate cell instead.&#010  Will also discard any validation errors for the specified field / row.&#010&#010
+     *
+     * @param rownNum   the row number
+     * @param fieldName name of field for which the value is to be cleared
+     */
+    public native void clearEditValue(int rowNum, String fieldName) /*-{
+         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
+         self.clearEditValue(rowNum, fieldName);
+     }-*/;    
 
     /**
      * Add a onHeaderClick handler.
