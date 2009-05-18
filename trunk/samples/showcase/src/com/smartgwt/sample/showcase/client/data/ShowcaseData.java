@@ -27,16 +27,15 @@ import com.smartgwt.sample.showcase.client.forms.dependencies.*;
 import com.smartgwt.sample.showcase.client.forms.details.FormHintsSample;
 import com.smartgwt.sample.showcase.client.forms.details.FormHoversSample;
 import com.smartgwt.sample.showcase.client.forms.details.FormIconsSample;
+import com.smartgwt.sample.showcase.client.forms.details.KeyPressFiltersSample;
 import com.smartgwt.sample.showcase.client.forms.layout.*;
 import com.smartgwt.sample.showcase.client.forms.validation.FormBuiltinsSample;
 import com.smartgwt.sample.showcase.client.forms.validation.FormRegularExpressionSample;
 import com.smartgwt.sample.showcase.client.forms.validation.FormTypeSample;
 import com.smartgwt.sample.showcase.client.forms.validation.FormValueTransformSample;
-import com.smartgwt.sample.showcase.client.grid.GridFilterBulderSample;
-import com.smartgwt.sample.showcase.client.grid.GridNestedFilterBulderSample;
-import com.smartgwt.sample.showcase.client.grid.LiveGridFetchSample;
-import com.smartgwt.sample.showcase.client.grid.NestedGridSample;
+import com.smartgwt.sample.showcase.client.grid.*;
 import com.smartgwt.sample.showcase.client.grid.appearance.*;
+import com.smartgwt.sample.showcase.client.grid.appearance.MultilineSample;
 import com.smartgwt.sample.showcase.client.grid.autofit.*;
 import com.smartgwt.sample.showcase.client.grid.databinding.*;
 import com.smartgwt.sample.showcase.client.grid.dataoperation.*;
@@ -127,10 +126,14 @@ public class ShowcaseData {
 
                     new ExplorerTreeNode("New Samples", "new-category", "root", "silk/bell.png", null, true, idSuffix),
                     new ExplorerTreeNode("Custom Grouping", "grid-grouping-custom-new-category", "new-category", null, new GridCustomGroupingSample.Factory(), true, idSuffix),
+                    new ExplorerTreeNode("Databound Dragging", "grid-db-dragging-new-category", "new-category", "silk/database_link.png", new GridDataBoundDragDropSample.Factory(), true, idSuffix),
+                    new ExplorerTreeNode("Dependent Selects (Grid)", "dependent-selects-grid-new-category", "new-category", null, new GridDependentSelectsSample.Factory(), true, idSuffix),
+                    new ExplorerTreeNode("KeyPress Filters", "form-keypress-filter-new-category", "new-category", "silk/vcard_edit.png", new KeyPressFiltersSample.Factory(), true, idSuffix),
+                    new ExplorerTreeNode("Drag from Menu", "effects-drag-menu-grid-new-category", "new-category", null, new DragMenuGridSample.Factory(), true, idSuffix),
 
                     new ExplorerTreeNode("ComboBox &amp; Family", "combobox-category", "root", "widgets/combo_box.gif", null, true, idSuffix),
                     new ExplorerTreeNode("Styled ComboBox", "styled-combobox-category", "combobox-category", null, new ComboBoxStyledSample.Factory(), true, idSuffix),
-                    new ExplorerTreeNode("Dependent Selects", "dep-selectects-combobox-category", "combobox-category", null, new FormDependentSelectsSample.Factory(), true, idSuffix),
+                    new ExplorerTreeNode("Dependent Selects (Local)", "dep-selectects-combobox-category", "combobox-category", null, new FormDependentSelectsSample.Factory(), true, idSuffix),
                     new ExplorerTreeNode("Databound Dependent Selects", "dep-selectects-db-combobox-category", "combobox-category", null, new FormDataboundDependentSelectsSample.Factory(), true, idSuffix),
                     new ExplorerTreeNode("Local and Databound ComboBox", "local-db-combobox-combobox-category", "combobox-category", null, new LocalAndDataboundComboBoxSample.Factory(), true, idSuffix),
                     new ExplorerTreeNode("Drop Down List Grid", "dropdown-grid-combobox-category", "combobox-category", null, new DropdownListGridSample.Factory(), true, idSuffix),
@@ -262,6 +265,8 @@ public class ShowcaseData {
 
                     new ExplorerTreeNode("Live Grid", "live-grid", "grid-category", null, new LiveGridFetchSample.Factory(), true, idSuffix),
                     new ExplorerTreeNode("Nested Grid", "grid-nested-grid", "grid-category", "crystal/16/mimetypes/widget_doc.png", new NestedGridSample.Factory(), true, idSuffix),
+                    new ExplorerTreeNode("Dependent Selects (Grid)", "dependent-selects-grid", "grid-category", null, new GridDependentSelectsSample.Factory(), true, idSuffix),
+                    new ExplorerTreeNode("Databound Dragging", "grid-db-dragging", "grid-category", "silk/database_link.png", new GridDataBoundDragDropSample.Factory(), true, idSuffix),
 
                     new ExplorerTreeNode("Printing", "grid-print-grid", "grid-category", "silk/printer.png", new PrintingSample.Factory(), true, idSuffix),
 
@@ -324,10 +329,9 @@ public class ShowcaseData {
                     new ExplorerTreeNode("Dependent Selects", "form-dep-dep-selects", "form-dep-category", null, new FormDependentSelectsSample.Factory(), true, idSuffix),
                     new ExplorerTreeNode("Databound Depend Selects", "form-dep-db-dep-selects", "form-dep-category", null, new FormDataboundDependentSelectsSample.Factory(), true, idSuffix),
 
-                    new ExplorerTreeNode("Form Controls", "form-controls-category", "form-category", "silk/vcard_edit.png", null, true, idSuffix),
-                    new ExplorerTreeNode("Various Controls", "form-controls-various", "form-controls-category", null, new FormVariousControlsSample.Factory(), true, idSuffix),
-                    new ExplorerTreeNode("Rich Text Editor", "form-controls-richedit", "form-controls-category", null, new RichTextEditorSample.Factory(), true, idSuffix),
-                    new ExplorerTreeNode("Progressbar", "form-controls-progressbar", "form-controls-category", null, new ProgressBarSample.Factory(), true, idSuffix),
+                    new ExplorerTreeNode("Various Controls", "form-controls-various", "form-category", null, new FormVariousControlsSample.Factory(), true, idSuffix),
+                    new ExplorerTreeNode("Rich Text Editor", "form-controls-richedit", "form-category", null, new RichTextEditorSample.Factory(), true, idSuffix),
+                    new ExplorerTreeNode("Progressbar", "form-controls-progressbar", "form-category", null, new ProgressBarSample.Factory(), true, idSuffix),
 
                     new ExplorerTreeNode("Validation", "form-validation-category", "form-category", "silk/vcard_edit.png", null, true, idSuffix),
                     new ExplorerTreeNode("Type", "form-validation-type", "form-validation-category", null, new FormTypeSample.Factory(), true, idSuffix),
@@ -343,6 +347,7 @@ public class ShowcaseData {
                     new ExplorerTreeNode("Icons", "form-details-icons", "form-details-category", "silk/vcard_edit.png", new FormIconsSample.Factory(), true, idSuffix),
                     new ExplorerTreeNode("Hovers", "form-details-hovers", "form-details-category", "silk/vcard_edit.png", new FormHoversSample.Factory(), true, idSuffix),
                     new ExplorerTreeNode("Hints", "form-details-hints", "form-details-category", "silk/vcard_edit.png", new FormHintsSample.Factory(), true, idSuffix),
+                    new ExplorerTreeNode("KeyPress Filters", "form-keypress-filter", "form-details-category", "silk/vcard_edit.png", new KeyPressFiltersSample.Factory(), true, idSuffix),
 
                     new ExplorerTreeNode("Focus First Field", "form-category-focus-first", "form-category", null, new FormFocusFirstSample.Factory(), true, idSuffix),
                     new ExplorerTreeNode("Custom Picker", "form-category-custom-picker", "form-category", null, new CustomPickerSample.Factory(), true, idSuffix),
@@ -419,6 +424,8 @@ public class ShowcaseData {
                     new ExplorerTreeNode("Drag Tiles (move)", "effects-dd-tiles-move", "effects-dd-category", null, new DragTilesMoveSample.Factory(), true, idSuffix),
 
                     new ExplorerTreeNode("Drag Move", "effects-dd-move", "effects-dd-category", null, new DragMoveImageSample.Factory(), true, idSuffix),
+                    new ExplorerTreeNode("Drag from Menu", "effects-drag-menu-grid", "effects-dd-category", null, new DragMenuGridSample.Factory(), true, idSuffix),
+
                     //new ExplorerTreeNode("Drag Reorder", "effects-dd-reorder", "effects-dd-category", null, null, false, idSuffix),
                     new ExplorerTreeNode("Drag Types", "effects-dd-types", "effects-dd-category", null, new DragTypesSample.Factory(), true, idSuffix),
                     new ExplorerTreeNode("Drag Create", "effects-dd-create", "effects-dd-category", null, new DragCreateSample.Factory(), true, idSuffix),
