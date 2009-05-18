@@ -415,7 +415,7 @@ public abstract class BaseWidget extends Widget implements HasHandlers {
     private native String getPropertyAsString(String property)/*-{
         var widget = this.@com.smartgwt.client.widgets.BaseWidget::getJsObj()();
         var ret = widget.getProperty(property);
-        return ret === undefined ? null : String(ret) ;
+        return ret == null || ret === undefined ? null : String(ret) ;
     }-*/;
 
     private native String[] getPropertyAsStringArray(String property)/*-{
