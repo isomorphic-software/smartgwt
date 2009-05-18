@@ -48,10 +48,10 @@ public class HiliteCellsReplaceStyleSample extends ShowcasePanel {
                     } else if (countryRecord.getPopulation() < 50000000) {
                         return "myLowGridCell";
                     } else {
-                        return getBaseStyle();
+                        return super.getBaseStyle(record, rowNum, colNum);
                     }
                 } else {
-                    return getBaseStyle();
+                    return super.getBaseStyle(record, rowNum, colNum);
                 }
             }
         };
