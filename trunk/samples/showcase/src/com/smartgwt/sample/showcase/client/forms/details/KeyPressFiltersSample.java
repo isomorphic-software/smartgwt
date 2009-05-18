@@ -29,9 +29,7 @@ public class KeyPressFiltersSample extends ShowcasePanel {
     }
 
     public Canvas getViewPanel() {
-
         DynamicForm form = new DynamicForm();
-
         TextItem nameField = new TextItem("name", "Name");
         nameField.setWidth(200);
         nameField.setHint("Mapped to uppercase");
@@ -39,8 +37,8 @@ public class KeyPressFiltersSample extends ShowcasePanel {
 
         TextItem commisionField = new TextItem("commission", "Commission");
         commisionField.setWidth(100);
-        commisionField.setHint("Numeric only [0=9.]");
-        commisionField.setKeyPressFilter("[0-9.");
+        commisionField.setHint("Numeric only [0-9.]");
+        commisionField.setKeyPressFilter("[0-9.]");
 
         form.setFields(nameField, commisionField);
         
@@ -50,5 +48,4 @@ public class KeyPressFiltersSample extends ShowcasePanel {
     public String getIntro() {
         return DESCRIPTION;
     }
-
 }
