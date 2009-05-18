@@ -20,6 +20,7 @@ public class EmployeeXmlDS extends DataSource {
     public EmployeeXmlDS(String id) {
 
         setID(id);
+        setTitleField("Name");
         setRecordXPath("/List/employee");
         DataSourceTextField nameField = new DataSourceTextField("Name", "Name", 128);
 

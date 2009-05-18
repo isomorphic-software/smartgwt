@@ -23,23 +23,12 @@ public class TeamMembersXmlDS extends DataSource {
     public TeamMembersXmlDS(String id) {
 
         setID(id);
-
+        setTitleField("employeeName");
         setRecordXPath("/List/teamMember");
 
-        /*DataSourceSequenceField uniqueSeqField = new DataSourceSequenceField("uniqueSeq");
-        uniqueSeqField.setHidden(true);
-        uniqueSeqField.setPrimaryKey(true);*/
-
-        DataSourceSequenceField syntheticField = new DataSourceSequenceField("uniqueField");
+        DataSourceIntegerField syntheticField = new DataSourceIntegerField("uniqueSeq");
         syntheticField.setHidden(true);
         syntheticField.setPrimaryKey(true);
-        syntheticField.setFieldValueExtractor(new FieldValueExtractor() {
-            public Object execute(Object record, Object value, DataSourceField field, String fieldName) {
-                String projectCode = XMLTools.selectString(record, "projectCode");
-                String employeeID = XMLTools.selectString(record, "employeeId");
-                return employeeID + "_" + projectCode.replace(" ", "_");
-            }
-        });
 
         DataSourceTextField nameField = new DataSourceTextField("employeeName", "Name", 128);
 

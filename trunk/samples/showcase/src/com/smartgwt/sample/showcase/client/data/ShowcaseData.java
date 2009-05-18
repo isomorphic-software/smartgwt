@@ -130,6 +130,7 @@ public class ShowcaseData {
                     new ExplorerTreeNode("Dependent Selects (Grid)", "dependent-selects-grid-new-category", "new-category", null, new GridDependentSelectsSample.Factory(), true, idSuffix),
                     new ExplorerTreeNode("KeyPress Filters", "form-keypress-filter-new-category", "new-category", "silk/vcard_edit.png", new KeyPressFiltersSample.Factory(), true, idSuffix),
                     new ExplorerTreeNode("Drag from Menu", "effects-drag-menu-grid-new-category", "new-category", null, new DragMenuGridSample.Factory(), true, idSuffix),
+                    new ExplorerTreeNode("Custom Event Editing", "custom-editing-new-category", "new-category", "crystal/16/apps/date.png", new CustomEventCalendarSample.Factory(), true, idSuffix),
 
                     new ExplorerTreeNode("ComboBox &amp; Family", "combobox-category", "root", "widgets/combo_box.gif", null, true, idSuffix),
                     new ExplorerTreeNode("Styled ComboBox", "styled-combobox-category", "combobox-category", null, new ComboBoxStyledSample.Factory(), true, idSuffix),
@@ -208,8 +209,7 @@ public class ShowcaseData {
                     new ExplorerTreeNode("Disable Editing", "grid-editing-disable", "grid-editing-category", null, new GridDisableEditingSample.Factory(), true, idSuffix),
                     new ExplorerTreeNode("Custom Editors", "grid-editing-custom-editors", "grid-editing-category", null, new GridCustomEditorsSample.Factory(), true, idSuffix),
                     new ExplorerTreeNode("Data Validation", "grid-editing-data-validation", "grid-editing-category", null, new GridDataValidationSample.Factory(), true, idSuffix),
-                    //new ExplorerTreeNode("Dependent Selects", "grid-editing-dependent-selects", "grid-editing-category", null, null, false, idSuffix),
-                    //new ExplorerTreeNode("Databound Dependent Selects", "grid-editing-db-dependent-selects", "grid-editing-category", null, null, false, idSuffix),
+                    new ExplorerTreeNode("Dependent Selects (Grid)", "grid-editing-dependent-selects", "grid-editing-category", null, new GridDependentSelectsSample.Factory(), true, idSuffix),
 
                     new ExplorerTreeNode("Frozen Columns", "grid-frozen-category", "grid-category", "pieces/16/cube_blue.png", null, true, idSuffix),
                     new ExplorerTreeNode("Simple Freeze", "grid-frozen-simple", "grid-frozen-category", null, new GridSimpleFreezeSample.Factory(), true, idSuffix),
@@ -244,7 +244,6 @@ public class ShowcaseData {
                     //new ExplorerTreeNode("Local DataSource", "grid-databinding-local-datasource", "grid-databinding-category", null, null, false, idSuffix),
                     new ExplorerTreeNode("JSON DataSource", "grid-databinding-json-datasource", "grid-databinding-category", null, new GridDataBindingJSONDataSourceSample.Factory(), true, idSuffix),
                     new ExplorerTreeNode("XML DataSource", "grid-databinding-xml-datasource", "grid-databinding-category", null, new GridDataBindingXMLDataSourceSample.Factory(), true, idSuffix),
-                    //new ExplorerTreeNode("WSDL DataSource", "grid-databinding-wsdl-datasource", "grid-databinding-category", null, null, false, idSuffix),
 
                     new ExplorerTreeNode("Data Operations", "grid-dataoperations-category", "grid-category", "pieces/16/cube_blue.png", null, true, idSuffix),
                     //new ExplorerTreeNode("Local Set", "grid-dataoperations-local-set", "grid-dataoperations-category", null, null, false, idSuffix),
