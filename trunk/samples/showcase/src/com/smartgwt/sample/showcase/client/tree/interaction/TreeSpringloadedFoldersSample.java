@@ -71,12 +71,7 @@ public class TreeSpringloadedFoldersSample extends ShowcasePanel {
             }
         });
         
-        TreeGrid employeeTreeGrid = new TreeGrid() {
-            @Override
-            protected String getIcon(TreeNode node, boolean defaultState) {
-                return super.getIcon(node, defaultState);
-            }
-        };
+        TreeGrid employeeTreeGrid = new TreeGrid();
 
         employeeTreeGrid.setWidth(500);
         employeeTreeGrid.setHeight(400);
