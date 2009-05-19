@@ -20,8 +20,8 @@ import java.util.LinkedHashMap;
 import java.util.Map;
 
 public class GridCustomEditorsSample extends ShowcasePanel {
-    private static final String DESCRIPTION = "<b>Click</b> on any cell to start editing. The \"Government\", \"Population\", and \"Nationhood\" columns " +
-            "specify custom editors: a multiple-line textarea, a numeric spinner, and a compound date control.";
+    private static final String DESCRIPTION = "<b>Click</b> on any cell to start editing. The \"Country\", \"Government\", \"Population\", and \"Nationhood\" columns " +
+            "specify custom editors: a multi-select item, a multiple-line textarea, a numeric spinner, and a compound date control.";
 
     public static class Factory implements PanelFactory {
         private String id;
@@ -62,19 +62,17 @@ public class GridCustomEditorsSample extends ShowcasePanel {
 
         Map map = new LinkedHashMap();
         map.put("India", "India");
-        map.put("IndiaB", "IndiaB");
-        map.put("IndiaC", "IndiaC");
+        map.put("Seychelles", "Seychelles");
+        map.put("Brazil", "Brazil");
         nameField.setValueMap(map);
 
         nameField.setEditorType(countrySelectItem);
 
         ListGridField governmentField = new ListGridField("government", "Government", 175);
-        governmentField.setValueMap(map);
-        governmentField.setEditorType(countrySelectItem);
 
         TextAreaItem textAreaItem = new TextAreaItem();
         textAreaItem.setHeight(70);
-        //governmentField.setEditorType(textAreaItem);
+        governmentField.setEditorType(textAreaItem);
 
         ListGridField populationField = new ListGridField("population", "Population", 100);
         populationField.setEditorType(new SpinnerItem());
@@ -82,7 +80,7 @@ public class GridCustomEditorsSample extends ShowcasePanel {
         populationField.setType(ListGridFieldType.INTEGER);
         populationField.setCellFormatter(new CellFormatter() {
             public String format(Object value, ListGridRecord record, int rowNum, int colNum) {
-                if(value == null) return null;
+                if(value == null || value.equals("")) return null;
                 NumberFormat nf = NumberFormat.getFormat("0,000");
                 try {
                     return nf.format(((Number) value).longValue());

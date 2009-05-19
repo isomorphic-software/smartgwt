@@ -67,15 +67,12 @@ public class MenuAppearanceSample extends ShowcasePanel {
         activateMenu.setDynamicTitleFunction(new MenuItemStringFunction() {
 
             public String execute(final Canvas aTarget, final Menu aMenu, final MenuItem aItem) {
-
-                System.out.println("execute called");
                 if (Math.random() > 0.5) {
                     return "De-Activate Blacklist";
                 } else {
                     return "Activate Blacklist";
                 }
             }
-
         });
 
         activateMenu.addClickHandler(new ClickHandler() {

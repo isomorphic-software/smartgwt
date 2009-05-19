@@ -62,8 +62,8 @@ public class GridDataBoundRemoveSample extends ShowcasePanel {
         });
         removeFirst.setLeft(0);
         removeFirst.setTop(240);
-        removeFirst.setWidth(140);
-        
+        removeFirst.setWidth(145);
+
         IButton removeSelected = new IButton("Remove First Selected");
         removeSelected.addClickHandler(new ClickHandler() {
 			public void onClick(ClickEvent event) {
@@ -78,7 +78,7 @@ public class GridDataBoundRemoveSample extends ShowcasePanel {
         });
         removeSelected.setLeft(160);
         removeSelected.setTop(240);
-        removeSelected.setWidth(140);
+        removeSelected.setWidth(150);
 
         IButton removeAll = new IButton("Remove All Selected");
         removeAll.addClickHandler(new ClickHandler() {

@@ -34,8 +34,8 @@ public class SelectOtherFieldSample extends ShowcasePanel {
         form.setWidth(300);
 
         SelectOtherItem selectOtherItem = new SelectOtherItem();
-        selectOtherItem.setOtherTitle("Foo...");
-        selectOtherItem.setOtherValue("Bar...");
+        selectOtherItem.setOtherTitle("Other..");
+        selectOtherItem.setOtherValue("OtherVal");
 
         selectOtherItem.setTitle("Units");
         selectOtherItem.setValueMap("Ea", "Pkt", "Bag", "Ctn");

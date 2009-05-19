@@ -49,6 +49,11 @@ public class GridDataBoundDragDropSample extends ShowcasePanel {
         }
     }
 
+    @Override
+    protected boolean isTopIntro() {
+        return true;
+    }
+
     public Canvas getViewPanel() {
 
         String[] projects = new String[] {

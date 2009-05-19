@@ -12,6 +12,7 @@ import com.smartgwt.client.widgets.form.fields.events.ChangedEvent;
 import com.smartgwt.client.widgets.form.fields.events.ChangedHandler;
 import com.smartgwt.client.widgets.grid.ListGrid;
 import com.smartgwt.client.widgets.grid.ListGridField;
+import com.smartgwt.client.util.SC;
 import com.smartgwt.sample.showcase.client.PanelFactory;
 import com.smartgwt.sample.showcase.client.ShowcasePanel;
 import com.smartgwt.sample.showcase.client.data.ItemSupplyXmlDS;
@@ -19,7 +20,7 @@ import com.smartgwt.sample.showcase.client.data.ItemSupplyXmlDS;
 public class AdaptiveSortSample extends ShowcasePanel {
 
     private static final String DESCRIPTION = "<p>SmartGWT combines large dataset handling with adaptive use of client-side sort.</p>" +
-            "<p>Click any header now and server-side sort will be used for this large dataset. Check \"Limit to Electronics\" to limit the " +
+            "<p>Click any header now and server-side sort will be used for this large dataset. Check \"Limit to Dictionaries\" to limit the " +
             "dataset and sort again: when the dataset becomes small enough, SmartGWT switches to client-side sorting automatically.</p>" +
             "<p>The label underneath the grid flashes briefly every time SmartGWT needs to visit the server.</p>";
 
@@ -46,9 +47,18 @@ public class AdaptiveSortSample extends ShowcasePanel {
         Canvas canvas = new Canvas();
 
         final ServerCountLabel serverCountLabel = new ServerCountLabel();
-        
-        ItemSupplyXmlDS supplyXmlDS = new ItemSupplyXmlDS("adaptiveSort") {
-            protected void transformResponse(DSResponse response, DSRequest request, Object data) {
+
+        ItemSupplyXmlDS supplyXmlDS = new ItemSupplyXmlDS(SC.generateID()) {
+
+            //this approach logs simulated server trips , where for DataSources with clientOnly:true
+            //so that no server is required. Since this example has a clientOnly datasource that loads data
+            //from a static xml, use the simulated server trips getClientOnlyResponse override point.
+            //If workign with a real server that returns data dynamically based on start/end row, override
+            //transformResponse instead.
+
+            @Override
+            public DSResponse getClientOnlyResponse(DSRequest request) {
+                DSResponse response = super.getClientOnlyResponse(request);
                 int totalRows = response.getTotalRows();
                 int startRow = response.getStartRow();
                 int endRow = response.getEndRow();
@@ -59,8 +69,27 @@ public class AdaptiveSortSample extends ShowcasePanel {
                         serverCountLabel.setBackgroundColor("ffffff");
                     }
                 }.schedule(500);
+
+                return response;
             }
         };
+
+        //when working with a server that dynamically returns the response based on start row, end row,
+        //use can override transformResponse instead of getClientOnlyResponse
+        /*
+        protected void transformResponse(DSResponse response, DSRequest request, Object data) {
+            int totalRows = response.getTotalRows();
+            int startRow = response.getStartRow();
+            int endRow = response.getEndRow();
+            serverCountLabel.incrementAndUpdate(totalRows, startRow, endRow);
+            serverCountLabel.setBackgroundColor("ffff77");
+            new Timer() {
+                public void run() {
+                    serverCountLabel.setBackgroundColor("ffffff");
+                }
+            }.schedule(500);
+        }*/
+
 
         final ListGrid supplyItemGrid = new ListGrid();
         supplyItemGrid.setWidth(500);
@@ -75,7 +104,7 @@ public class AdaptiveSortSample extends ShowcasePanel {
         ListGridField descriptionField = new ListGridField("description", 250);
         ListGridField categoryField = new ListGridField("category", 100);
 
-        supplyItemGrid.setFields(skuField, nameField, descriptionField, categoryField );
+        supplyItemGrid.setFields(skuField, nameField, descriptionField, categoryField);
 
         DynamicForm sortForm = new DynamicForm();
         sortForm.setWidth(300);
@@ -89,7 +118,7 @@ public class AdaptiveSortSample extends ShowcasePanel {
                 Criteria criteria = new Criteria();
                 Object value = restrictItem.getValue();
                 boolean filter = value != null && (Boolean) value;
-                if(filter) {
+                if (filter) {
                     criteria.addCriteria("category", "Dictionaries");
                 }
                 supplyItemGrid.fetchData(criteria);
@@ -113,12 +142,12 @@ public class AdaptiveSortSample extends ShowcasePanel {
         private int count = 0;
 
         ServerCountLabel() {
-        setContents("<b>Number of server trips : 0</b>");
-        setTop(350);
-        setPadding(10);
-        setWidth(500);
-        setHeight(30);
-        setBorder("1px solid black");
+            setContents("<b>Number of server trips : 0</b>");
+            setTop(350);
+            setPadding(10);
+            setWidth(500);
+            setHeight(30);
+            setBorder("1px solid black");
         }
 
         public void incrementAndUpdate(int totalRows, int startRow, int endRow) {
