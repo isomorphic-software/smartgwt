@@ -75,7 +75,6 @@ public class FormVariousControlsSample extends ShowcasePanel {
         spinnerItem.setStep(0.5f);
         
         SliderItem sliderItem = new SliderItem();
-        sliderItem.setWidth(300);
         sliderItem.setTitle("Slider");
         sliderItem.setMinValue(0);
         sliderItem.setMaxValue(10);

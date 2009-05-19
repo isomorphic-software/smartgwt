@@ -105,7 +105,6 @@ public class AnimationPlaypenSample extends ShowcasePanel {
         final Slider timeSlider = new Slider();
         timeSlider.setLeft(20);
         timeSlider.setTop(0);
-        timeSlider.setWidth(550);
         timeSlider.setVertical(false);
         timeSlider.setValue(1000);
         timeSlider.setMinValue(250);
