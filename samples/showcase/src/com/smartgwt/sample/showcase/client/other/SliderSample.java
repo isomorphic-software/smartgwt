@@ -47,7 +47,6 @@ public class SliderSample extends ShowcasePanel {
         hSlider.setMinValue(1);
         hSlider.setMaxValue(5);
         hSlider.setNumValues(5);
-        hSlider.setWidth(300);
         hSlider.setTop(200);
         hSlider.setLeft(100);
         canvas.addChild(hSlider);
