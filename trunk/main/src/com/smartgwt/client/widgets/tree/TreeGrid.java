@@ -1315,8 +1315,15 @@ public class TreeGrid extends ListGrid  implements com.smartgwt.client.widgets.t
     // ********************* Static Methods ***********************
 
 
-
-
+
+
+
+
+
+
+
+
+
 
     protected void onInit() {
         super.onInit();
@@ -1335,10 +1342,12 @@ public class TreeGrid extends ListGrid  implements com.smartgwt.client.widgets.t
         };
 
         self._getIcon = self.getIcon;
-        self.getIcon = function(node) {
+        self.getIcon = function(node, defaultState) {
+            defaultState = !!defaultState;
+            if ($wnd.isc.isA.Number(node)) node = this.data.get(node);
             var jObj = this.__ref;
             var nodeJ = @com.smartgwt.client.widgets.tree.TreeNode::getOrCreateRef(Lcom/google/gwt/core/client/JavaScriptObject;)(node);
-            return jObj.@com.smartgwt.client.widgets.tree.TreeGrid::getIcon(Lcom/smartgwt/client/widgets/tree/TreeNode;)(nodeJ);
+            return jObj.@com.smartgwt.client.widgets.tree.TreeGrid::getIcon(Lcom/smartgwt/client/widgets/tree/TreeNode;Z)(nodeJ, defaultState);
         };
     }-*/;
 
@@ -1366,9 +1375,9 @@ public class TreeGrid extends ListGrid  implements com.smartgwt.client.widgets.t
      *
      * @return URL for icon to show for this node
      */
-    protected native String getIcon(TreeNode node) /*-{
+    protected native String getIcon(TreeNode node, boolean defaultState) /*-{
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
-        return self._getIcon(node.@com.smartgwt.client.core.DataClass::getJsObj()());
+        return self._getIcon(node.@com.smartgwt.client.core.DataClass::getJsObj()(), defaultState);
     }-*/;
 
     /**
