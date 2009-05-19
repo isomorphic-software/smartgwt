@@ -55,13 +55,13 @@ import com.smartgwt.client.util.JSOHelper;
 import com.smartgwt.client.util.EnumUtil;
 import com.google.gwt.event.shared.*;
 import com.google.gwt.event.shared.HasHandlers;
-public class KeyPressEvent extends AbstractSmartEvent<KeyPressHandler>  implements Cancellable {
+public class KeyDownEvent extends AbstractSmartEvent<KeyDownHandler>  implements Cancellable {
     private boolean cancel = false;
 
   /**
    * Handler type.
    */
-  private static Type<KeyPressHandler> TYPE;
+  private static Type<KeyDownHandler> TYPE;
 
   /**
    * Fires a open event on all registered handlers in the handler manager.If no
@@ -71,10 +71,10 @@ public class KeyPressEvent extends AbstractSmartEvent<KeyPressHandler>  implemen
    * @param source the source of the handlers
    * @param jsObj the native event
    */
-  public static <S extends HasKeyPressHandlers & HasHandlers> void fire(
+  public static <S extends HasKeyDownHandlers & HasHandlers> void fire(
       S source, JavaScriptObject jsObj) {
     if (TYPE != null) {
-        KeyPressEvent event = new KeyPressEvent(jsObj);
+        KeyDownEvent event = new KeyDownEvent(jsObj);
         source.fireEvent(event);
     }
   }
@@ -84,17 +84,17 @@ public class KeyPressEvent extends AbstractSmartEvent<KeyPressHandler>  implemen
    *
    * @return returns the handler type
    */
-  public static Type<KeyPressHandler> getType() {
+  public static Type<KeyDownHandler> getType() {
     if (TYPE == null) {
-      TYPE = new Type<KeyPressHandler>();
+      TYPE = new Type<KeyDownHandler>();
     }
     return TYPE;
   }
 
 
   @Override
-  protected void dispatch(KeyPressHandler handler) {
-    handler.onKeyPress(this);
+  protected void dispatch(KeyDownHandler handler) {
+    handler.onKeyDown(this);
   }
 
   // Because of type erasure, our static type is
@@ -102,11 +102,11 @@ public class KeyPressEvent extends AbstractSmartEvent<KeyPressHandler>  implemen
 
   @SuppressWarnings("unchecked")
   @Override
-  public final Type<KeyPressHandler> getAssociatedType() {
+  public final Type<KeyDownHandler> getAssociatedType() {
     return TYPE;
   }
 
-    public KeyPressEvent(JavaScriptObject jsObj) {
+    public KeyDownEvent(JavaScriptObject jsObj) {
         super(jsObj);
     }
 
@@ -126,9 +126,9 @@ public class KeyPressEvent extends AbstractSmartEvent<KeyPressHandler>  implemen
     }
 
     /**
-     * Item over which the keypress occurred
+     * Item over which the keydown occurred
      *
-     * @return Item over which the keypress occurred
+     * @return Item over which the keydown occurred
      */
     public  native FormItem getItem() /*-{
         var jsObj = this.@com.smartgwt.client.event.AbstractSmartEvent::jsObj;
@@ -153,21 +153,6 @@ public class KeyPressEvent extends AbstractSmartEvent<KeyPressHandler>  implemen
     public  native String getKeyName() /*-{
         var jsObj = this.@com.smartgwt.client.event.AbstractSmartEvent::jsObj;
         return jsObj.keyName;
-    }-*/;
-
-
-
-
-    /**
-     * If this was a character key, this is the numeric value for the character
-     *
-     * @return If this was a character key, this is the numeric value for the character. Note that
-     * non-character keys like shift, alt, backspace return null
-     */
-    public native Integer getCharacterValue() /*-{
-        var jsObj = this.@com.smartgwt.client.event.AbstractSmartEvent::jsObj;
-        var ret = jsObj.characterValue;
-        return (ret === undefined || ret == null) ? null : @com.smartgwt.client.util.JSOHelper::toInteger(I)(ret);
     }-*/;
 
 

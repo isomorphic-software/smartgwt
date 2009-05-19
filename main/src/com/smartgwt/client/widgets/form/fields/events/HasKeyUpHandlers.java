@@ -20,12 +20,12 @@ import com.smartgwt.client.event.*;
 import com.google.gwt.event.shared.HandlerRegistration;
 import com.google.gwt.event.shared.HasHandlers;
 
-public interface HasKeyPressHandlers extends HasHandlers {
+public interface HasKeyUpHandlers extends HasHandlers {
     /**
-     * StringMethod fired when the user presses a key while focused in this form item.&#010&#010
+     * StringMethod fired in response to a keyup while focused in this form item.&#010&#010
      *
-     * @param handler the keyPress handler
+     * @param handler the keyUp handler
      * @return {@link HandlerRegistration} used to remove this handler
      */
-    HandlerRegistration addKeyPressHandler(KeyPressHandler handler);
+    HandlerRegistration addKeyUpHandler(KeyUpHandler handler);
 }

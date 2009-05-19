@@ -15,17 +15,9 @@
  */
  
 package com.smartgwt.client.widgets.form.fields.events;
+import com.google.gwt.event.shared.EventHandler;
 
-import com.smartgwt.client.event.*;
-import com.google.gwt.event.shared.HandlerRegistration;
-import com.google.gwt.event.shared.HasHandlers;
+public interface KeyDownHandler extends EventHandler {
 
-public interface HasKeyPressHandlers extends HasHandlers {
-    /**
-     * StringMethod fired when the user presses a key while focused in this form item.&#010&#010
-     *
-     * @param handler the keyPress handler
-     * @return {@link HandlerRegistration} used to remove this handler
-     */
-    HandlerRegistration addKeyPressHandler(KeyPressHandler handler);
+    void onKeyDown(com.smartgwt.client.widgets.form.fields.events.KeyDownEvent event);
 }

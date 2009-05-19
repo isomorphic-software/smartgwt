@@ -301,6 +301,11 @@ public interface DataBoundComponent {
     void addSummaryField();
 
     /**
+     * Convenience method to display a {@link com.smartgwt.client..FormulaBuilder} to create a new Formula Field.  This &#010 is equivalent to calling {@link DataBoundComponentGen#editFormulaField} with &#010 no paramater.&#010&#010
+     */
+    void addFormulaField();
+
+    /**
      * Adds an item to the header context menu allowing users to launch a dialog to define a new&#010 field based on values present in other fields, using the {@link com.smartgwt.client..FormulaBuilder}.&#010 <P>&#010 User-added formula fields can be persisted via {@link com.smartgwt.client.widgets.grid.ListGrid#getFieldState} and &#010 {@link com.smartgwt.client.widgets.grid.ListGrid#setFieldState}.
      *
      * @return Boolean

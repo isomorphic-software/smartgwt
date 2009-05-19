@@ -236,6 +236,7 @@ package com.smartgwt.client.docs;
  * @see com.smartgwt.client.widgets.grid.ListGrid#getStyleName
  * @see com.smartgwt.client.widgets.grid.ListGridField#getType
  * @see com.smartgwt.client.widgets.grid.ListGridField#getTitle
+ * @see com.smartgwt.client.widgets.grid.ListGridField#getCanHide
  * @see com.smartgwt.client.widgets.grid.ListGridField#getSummaryTitle
  * @see com.smartgwt.client.widgets.grid.ListGridField#getWidth
  * @see com.smartgwt.client.widgets.grid.ListGridField#getAlign

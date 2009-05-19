@@ -190,7 +190,7 @@ public class TextItem extends FormItem {
     }
 
     /**
-    * If showing hint for this form item, should it be shown within the field?
+    * If showing hint for this form item, should it be shown within the field?&#010 <P>Note when this property is true, {@link com.smartgwt.client.widgets.form.fields.FormItem#getHintStyle hintStyle} is not used -&#010 class "textItemHint" is always used.
     * <p><b>Note : </b> This is an advanced setting</p>
     *
     * @param showHintInField showHintInField Default value is null
@@ -199,7 +199,7 @@ public class TextItem extends FormItem {
         setAttribute("showHintInField", showHintInField);
     }
     /**
-     * If showing hint for this form item, should it be shown within the field?
+     * If showing hint for this form item, should it be shown within the field?&#010 <P>Note when this property is true, {@link com.smartgwt.client.widgets.form.fields.FormItem#getHintStyle hintStyle} is not used -&#010 class "textItemHint" is always used.
      *
      *
      * @return Boolean

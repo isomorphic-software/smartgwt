@@ -284,6 +284,26 @@ public class DateItem extends FormItem {
     public String getInputFormat()  {
         return getAttributeAsString("inputFormat");
     }
+             
+    /**
+    * Inapplicable for DateItems.  Use {@link com.smartgwt.client.widgets.form.fields.DateItem#getDisplayFormat displayFormat} instead.
+    * <p><b>Note : </b> This is an advanced setting</p>
+    *
+    * @param dateFormatter dateFormatter Default value is null
+    */
+    public void setDateFormatter(DateDisplayFormat dateFormatter) {
+        setAttribute("dateFormatter", dateFormatter.getValue());
+    }
+    /**
+     * Inapplicable for DateItems.  Use {@link com.smartgwt.client.widgets.form.fields.DateItem#getDisplayFormat displayFormat} instead.
+     *
+     *
+     * @return DateDisplayFormat
+     *
+     */
+    public DateDisplayFormat getDateFormatter()  {
+        return (DateDisplayFormat) EnumUtil.getEnum(DateDisplayFormat.values(), getAttribute("dateFormatter"));
+    }
 
     /**
     * If showing date selectors rather than the date text field (so when &#010 <code>this.useTextField</code> is false), this property allows customization of the &#010 order of the day, month and year selector fields. If unset these fields will match the&#010 specified inputFormat for this item.

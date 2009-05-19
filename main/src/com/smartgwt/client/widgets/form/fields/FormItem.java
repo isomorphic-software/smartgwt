@@ -70,7 +70,9 @@ import com.google.gwt.event.shared.HasHandlers;
 
 
 
-public class FormItem extends RefDataClass  implements com.smartgwt.client.widgets.form.fields.events.HasFocusHandlers, com.smartgwt.client.widgets.form.fields.events.HasBlurHandlers, com.smartgwt.client.widgets.form.fields.events.HasChangeHandlers, com.smartgwt.client.widgets.form.fields.events.HasChangedHandlers, com.smartgwt.client.widgets.form.fields.events.HasKeyPressHandlers, com.smartgwt.client.widgets.form.fields.events.HasIconClickHandlers, com.smartgwt.client.widgets.form.fields.events.HasIconKeyPressHandlers, com.smartgwt.client.widgets.form.fields.events.HasItemHoverHandlers, com.smartgwt.client.widgets.form.fields.events.HasClickHandlers, com.smartgwt.client.widgets.form.fields.events.HasDoubleClickHandlers, com.smartgwt.client.widgets.form.fields.events.HasTitleHoverHandlers {
+
+
+public class FormItem extends RefDataClass  implements com.smartgwt.client.widgets.form.fields.events.HasFocusHandlers, com.smartgwt.client.widgets.form.fields.events.HasBlurHandlers, com.smartgwt.client.widgets.form.fields.events.HasChangeHandlers, com.smartgwt.client.widgets.form.fields.events.HasChangedHandlers, com.smartgwt.client.widgets.form.fields.events.HasKeyPressHandlers, com.smartgwt.client.widgets.form.fields.events.HasKeyUpHandlers, com.smartgwt.client.widgets.form.fields.events.HasKeyDownHandlers, com.smartgwt.client.widgets.form.fields.events.HasIconClickHandlers, com.smartgwt.client.widgets.form.fields.events.HasIconKeyPressHandlers, com.smartgwt.client.widgets.form.fields.events.HasItemHoverHandlers, com.smartgwt.client.widgets.form.fields.events.HasClickHandlers, com.smartgwt.client.widgets.form.fields.events.HasDoubleClickHandlers, com.smartgwt.client.widgets.form.fields.events.HasTitleHoverHandlers {
 
     public static FormItem getOrCreateRef(JavaScriptObject jsObj) {
         if(jsObj == null) return null;
@@ -2029,7 +2031,7 @@ public class FormItem extends RefDataClass  implements com.smartgwt.client.widge
         /**
          * Add a keyPress handler.
          * <p>
-         * StringMethod fired when the user presses a key while focused in this form item.&#010
+         * StringMethod fired when the user presses a key while focused in this form item.&#010&#010
          *
          * @param handler the keyPress handler
          * @return {@link HandlerRegistration} used to remove this handler
@@ -2046,6 +2048,58 @@ public class FormItem extends RefDataClass  implements com.smartgwt.client.widge
                     var param = {"item" : arguments[0], "form" : arguments[1], "keyName" : arguments[2], "characterValue" : arguments[3]};
                     var event = @com.smartgwt.client.widgets.form.fields.events.KeyPressEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
                     selfJ.@com.smartgwt.client.core.DataClass::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
+                    var ret = event.@com.smartgwt.client.event.Cancellable::isCancelled()();
+                    return !ret;
+                };
+        }-*/;
+
+        /**
+         * Add a keyDown handler.
+         * <p>
+         * StringMethod fired in response to a keydown while focused in this form item.&#010&#010
+         *
+         * @param handler the keyDown handler
+         * @return {@link HandlerRegistration} used to remove this handler
+         */
+        public HandlerRegistration addKeyDownHandler(com.smartgwt.client.widgets.form.fields.events.KeyDownHandler handler) {
+            if(getHandlerCount(com.smartgwt.client.widgets.form.fields.events.KeyDownEvent.getType()) == 0) setupKeyDownEvent();
+            return doAddHandler(handler, com.smartgwt.client.widgets.form.fields.events.KeyDownEvent.getType());
+        }
+        private native void setupKeyDownEvent() /*-{
+            var obj = null;
+                obj = this.@com.smartgwt.client.core.DataClass::getJsObj()();
+                var selfJ = this;
+                obj.keyDown = function(){
+                    var param = {"item" : arguments[0], "form" : arguments[1], "keyName" : arguments[2]};
+                    var event = @com.smartgwt.client.widgets.form.fields.events.KeyDownEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
+                    selfJ.@com.smartgwt.client.core.DataClass::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
+                    var ret = event.@com.smartgwt.client.event.Cancellable::isCancelled()();
+                    return !ret;
+                };
+        }-*/;
+
+        /**
+         * Add a keyUp handler.
+         * <p>
+         * StringMethod fired in response to a keyup while focused in this form item.&#010&#010
+         *
+         * @param handler the keyUp handler
+         * @return {@link HandlerRegistration} used to remove this handler
+         */
+        public HandlerRegistration addKeyUpHandler(com.smartgwt.client.widgets.form.fields.events.KeyUpHandler handler) {
+            if(getHandlerCount(com.smartgwt.client.widgets.form.fields.events.KeyUpEvent.getType()) == 0) setupKeyUpEvent();
+            return doAddHandler(handler, com.smartgwt.client.widgets.form.fields.events.KeyUpEvent.getType());
+        }
+        private native void setupKeyUpEvent() /*-{
+            var obj = null;
+                obj = this.@com.smartgwt.client.core.DataClass::getJsObj()();
+                var selfJ = this;
+                obj.keyUp = function(){
+                    var param = {"item" : arguments[0], "form" : arguments[1], "keyName" : arguments[2]};
+                    var event = @com.smartgwt.client.widgets.form.fields.events.KeyUpEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
+                    selfJ.@com.smartgwt.client.core.DataClass::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
+                    var ret = event.@com.smartgwt.client.event.Cancellable::isCancelled()();
+                    return !ret;
                 };
         }-*/;
 

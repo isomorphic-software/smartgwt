@@ -820,6 +820,11 @@ public class TileGrid extends TileLayout  implements DataBoundComponent, com.sma
          self.addSummaryField();
      }-*/;
 
+    public native void addFormulaField() /*-{
+       var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
+       self.addFormulaField();
+    }-*/;
+
     public Boolean getCanAddFormulaFields() {
         return getAttributeAsBoolean("canAddFormulaFields");
     }
