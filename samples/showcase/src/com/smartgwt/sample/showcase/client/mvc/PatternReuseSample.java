@@ -47,6 +47,11 @@ public class PatternReuseSample extends ShowcasePanel {
         }
     }
 
+    @Override
+    protected boolean isTopIntro() {
+        return true;
+    }
+
     public Canvas getViewPanel() {
         final DataSource countryDS = CountryXmlDS.getInstance();
         final DataSource supplyItemDS = ItemSupplyXmlDS.getInstance();
@@ -71,25 +76,10 @@ public class PatternReuseSample extends ShowcasePanel {
         form.setValue("datasource", "Select a DataSource");
         form.setItems(dsSelect);
 
-        Window window = new Window();
-        window.setTitle("Introduction");
-
-        Label label = new Label();
-        label.setContents(DESCRIPTION);
-        label.setWidth100();
-        label.setHeight100();
-        label.setPadding(5);
-        label.setValign(VerticalAlignment.TOP);
-
-        window.setHeight(130);
-        window.setWidth100();
-        window.addItem(label);
-
         VLayout layout = new VLayout(15);
         layout.setWidth100();
         layout.setHeight("80%");
 
-        layout.addMember(window);
         layout.addMember(form);
         layout.addMember(cEditor);
 
@@ -158,5 +148,10 @@ public class PatternReuseSample extends ShowcasePanel {
             saveButton.disable();
             grid.fetchData();
         }
+    }
+
+    @Override
+    public String getIntro() {
+        return DESCRIPTION;
     }
 }

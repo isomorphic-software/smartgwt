@@ -7,6 +7,7 @@ import com.smartgwt.client.widgets.Canvas;
 import com.smartgwt.client.widgets.Label;
 import com.smartgwt.client.widgets.grid.ListGrid;
 import com.smartgwt.client.widgets.grid.ListGridField;
+import com.smartgwt.client.util.SC;
 import com.smartgwt.sample.showcase.client.PanelFactory;
 import com.smartgwt.sample.showcase.client.ShowcasePanel;
 import com.smartgwt.sample.showcase.client.data.ItemSupplyXmlDS;
@@ -14,7 +15,7 @@ import com.smartgwt.sample.showcase.client.data.ItemSupplyXmlDS;
 public class AdaptiveFilterSample extends ShowcasePanel {
 
     private static final String DESCRIPTION = "<p>SmartGWT combines large dataset handling with adaptive use of client-side filtering.</p>" +
-            "<p>Begin typing an Item name in the filter box above the \"Item\" column. When the dataset becomes small enough, SmartGWT switches to client-side filtering automatically.</p>" +
+            "<p>Begin typing an Item name in the filter box above the \"Item\" column (for example type \"Pens\") . When the dataset becomes small enough, SmartGWT switches to client-side filtering automatically.</p>" +
             "<p>Delete part of the item name to see SmartClient automatically switch back to server-side filtering. " +
             "The label underneath the grid flashes briefly every time SmartGWT needs to visit the server.</p>";
 
@@ -42,8 +43,17 @@ public class AdaptiveFilterSample extends ShowcasePanel {
 
         final ServerCountLabel serverCountLabel = new ServerCountLabel();
 
-        ItemSupplyXmlDS supplyXmlDS = new ItemSupplyXmlDS("adaptiveFilter") {
-            protected void transformResponse(DSResponse response, DSRequest request, Object data) {
+        ItemSupplyXmlDS supplyXmlDS = new ItemSupplyXmlDS(SC.generateID()) {
+
+            //this approach logs simulated server trips , where for DataSources with clientOnly:true
+            //so that no server is required. Since this example has a clientOnly datasource that loads data
+            //from a static xml, use the simulated server trips getClientOnlyResponse override point.
+            //If workign with a real server that returns data dynamically based on start/end row, override
+            //transformResponse instead.
+
+            @Override
+            public DSResponse getClientOnlyResponse(DSRequest request) {
+                DSResponse response = super.getClientOnlyResponse(request);
                 int totalRows = response.getTotalRows();
                 int startRow = response.getStartRow();
                 int endRow = response.getEndRow();
@@ -54,8 +64,26 @@ public class AdaptiveFilterSample extends ShowcasePanel {
                         serverCountLabel.setBackgroundColor("ffffff");
                     }
                 }.schedule(500);
+
+                return response;
             }
         };
+
+        //when working with a server that dynamically returns the response based on start row, end row,
+        //use can override transformResponse instead of getClientOnlyResponse
+        /*
+        protected void transformResponse(DSResponse response, DSRequest request, Object data) {
+            int totalRows = response.getTotalRows();
+            int startRow = response.getStartRow();
+            int endRow = response.getEndRow();
+            serverCountLabel.incrementAndUpdate(totalRows, startRow, endRow);
+            serverCountLabel.setBackgroundColor("ffff77");
+            new Timer() {
+                public void run() {
+                    serverCountLabel.setBackgroundColor("ffffff");
+                }
+            }.schedule(500);
+        }*/
 
         final ListGrid supplyItemGrid = new ListGrid();
         supplyItemGrid.setWidth(500);
@@ -74,7 +102,6 @@ public class AdaptiveFilterSample extends ShowcasePanel {
 
         supplyItemGrid.setFields(skuField, nameField, descriptionField, categoryField );
                 
-
         canvas.addChild(supplyItemGrid);
         canvas.addChild(serverCountLabel);
 

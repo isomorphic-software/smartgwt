@@ -16,7 +16,9 @@ import com.smartgwt.sample.showcase.client.data.CalendarData;
 
 public class CustomEventCalendarSample extends ShowcasePanel {
 
-    private static final String DESCRIPTION = "<p>This example illustrates how the Calendar event dialog and editor can be completely customized.</p>";
+    private static final String DESCRIPTION = "<p>This example illustrates how the Calendar event dialog and editor can be completely customized." +
+            "The <b>Sharing</b> radio options on the event dialog is custom, as well as the <b>Repearts</b> and <b>Reminder</b> Select Items on the event" +
+            "details edit dialog.</p>";
 
 
     public static class Factory implements PanelFactory {

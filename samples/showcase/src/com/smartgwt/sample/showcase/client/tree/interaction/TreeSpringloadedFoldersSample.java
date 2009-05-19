@@ -4,6 +4,7 @@ import com.smartgwt.client.types.TreeModelType;
 import com.smartgwt.client.widgets.Canvas;
 import com.smartgwt.client.widgets.grid.CellFormatter;
 import com.smartgwt.client.widgets.grid.ListGridRecord;
+import com.smartgwt.client.widgets.grid.ListGridField;
 import com.smartgwt.client.widgets.tree.Tree;
 import com.smartgwt.client.widgets.tree.TreeGrid;
 import com.smartgwt.client.widgets.tree.TreeGridField;
@@ -70,7 +71,13 @@ public class TreeSpringloadedFoldersSample extends ShowcasePanel {
             }
         });
         
-        TreeGrid employeeTreeGrid = new TreeGrid();
+        TreeGrid employeeTreeGrid = new TreeGrid() {
+            @Override
+            protected String getIcon(TreeNode node, boolean defaultState) {
+                return super.getIcon(node, defaultState);
+            }
+        };
+
         employeeTreeGrid.setWidth(500);
         employeeTreeGrid.setHeight(400);
         employeeTreeGrid.setNodeIcon("icons/16/person.png");
