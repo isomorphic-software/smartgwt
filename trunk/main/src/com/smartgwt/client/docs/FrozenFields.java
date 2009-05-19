@@ -7,6 +7,7 @@ package com.smartgwt.client.docs;
  * @see com.smartgwt.client.widgets.grid.ListGrid#unfreezeField
  * @see com.smartgwt.client.widgets.grid.ListGrid#toggleFrozen
  * @see com.smartgwt.client.widgets.grid.ListGridField#getFrozen
+ * @see com.smartgwt.client.widgets.grid.ListGridField#getCanFreeze
  * @see com.smartgwt.client.widgets.grid.ListGrid#getFrozenBaseStyle
  * @see com.smartgwt.client.widgets.grid.ListGrid#getShrinkForFreeze
  * @see com.smartgwt.client.widgets.grid.ListGrid#getFrozenHeaderBaseStyle

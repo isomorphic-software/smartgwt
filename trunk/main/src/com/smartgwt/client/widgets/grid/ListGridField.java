@@ -643,6 +643,44 @@ public class ListGridField extends DataClass  implements com.smartgwt.client.wid
     }
 
     /**
+    * Whether this field should display freezing/unfreezing options in its header context menu. &#010 See {@link com.smartgwt.client.docs.FrozenFields}.
+    *
+    * @param canFreeze canFreeze Default value is null
+    */
+    public void setCanFreeze(Boolean canFreeze) {
+        setAttribute("canFreeze", canFreeze);
+    }
+    /**
+     * Whether this field should display freezing/unfreezing options in its header context menu. &#010 See {@link com.smartgwt.client.docs.FrozenFields}.
+     *
+     *
+     * @return Boolean
+     *
+     */
+    public Boolean getCanFreeze()  {
+        return getAttributeAsBoolean("canFreeze");
+    }
+
+    /**
+    * Whether this field can be hidden via the header context menu.
+    *
+    * @param canHide canHide Default value is null
+    */
+    public void setCanHide(Boolean canHide) {
+        setAttribute("canHide", canHide);
+    }
+    /**
+     * Whether this field can be hidden via the header context menu.
+     *
+     *
+     * @return Boolean
+     *
+     */
+    public Boolean getCanHide()  {
+        return getAttributeAsBoolean("canHide");
+    }
+
+    /**
     * Optional icon to show next to the title for this field. &#010 Should be set to a URL to an image. Relative paths will be evaluated starting at&#010 the imgDir of this component. This URL is partial - it may be updated to indicate&#010 the current disabled (etc) state of the field.&#010 <P>&#010 If {@link com.smartgwt.client.widgets.grid.ListGridField#getType type} is set to "icon", this icon will also be shown&#010 in every cell of this field - see also {@link com.smartgwt.client.widgets.grid.ListGridField#getCellIcon cellIcon}.
     *
     * @param icon icon Default value is null

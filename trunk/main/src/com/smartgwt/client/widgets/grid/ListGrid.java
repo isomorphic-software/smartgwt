@@ -99,7 +99,7 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
 
 
     public ListGrid(){
-        setModalEditing(true);setLeaveScrollbarGap(false);setRecordEnabledProperty("_enabled");
+        setModalEditing(true);setLeaveScrollbarGap(false);
     }
 
     public ListGrid(JavaScriptObject jsObj){
@@ -4847,7 +4847,7 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
      *
      */
     public String getBaseStyle()  {
-        return JSOHelper.getAttribute(config, "baseStyle");
+        return getAttribute("baseStyle");
     }
 
     /**
@@ -6359,13 +6359,13 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
     /**
      * &#010  Clear a field value being tracked as an unsaved user edit.<P>&#010  The saved record value will be displayed in the the appropriate cell instead.&#010  Will also discard any validation errors for the specified field / row.&#010&#010
      *
-     * @param rownNum   the row number
+     * @param rowNum   the row number
      * @param fieldName name of field for which the value is to be cleared
      */
     public native void clearEditValue(int rowNum, String fieldName) /*-{
          var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
          self.clearEditValue(rowNum, fieldName);
-     }-*/;    
+     }-*/;
 
     /**
      * Add a onHeaderClick handler.
@@ -6607,6 +6607,11 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
          var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
          self.addSummaryField();
      }-*/;
+
+    public native void addFormulaField() /*-{
+       var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
+       self.addFormulaField();
+    }-*/;
 
     public Boolean getCanAddFormulaFields() {
         return getAttributeAsBoolean("canAddFormulaFields");

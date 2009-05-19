@@ -784,6 +784,11 @@ public class DetailViewer extends Canvas  implements DataBoundComponent {
          self.addSummaryField();
      }-*/;
 
+    public native void addFormulaField() /*-{
+       var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
+       self.addFormulaField();
+    }-*/;
+
     public Boolean getCanAddFormulaFields() {
         return getAttributeAsBoolean("canAddFormulaFields");
     }

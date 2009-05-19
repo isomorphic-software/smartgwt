@@ -1711,6 +1711,11 @@ public class Calendar extends Canvas  implements DataBoundComponent, com.smartgw
          self.addSummaryField();
      }-*/;
 
+    public native void addFormulaField() /*-{
+       var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
+       self.addFormulaField();
+    }-*/;
+
     public Boolean getCanAddFormulaFields() {
         return getAttributeAsBoolean("canAddFormulaFields");
     }

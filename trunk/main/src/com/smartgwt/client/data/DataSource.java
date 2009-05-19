@@ -924,6 +924,7 @@ public class DataSource extends BaseClass  implements com.smartgwt.client.data.e
 
 
 
+
         /**
          * Does this dataSource support the specified "textMatchStyle" when performing a filter&#010 operation against a text field.&#010
          * @param textMatchStyle textMatchStyle to check. If passed a null value, assume                                an exact match is being requested.
@@ -1014,6 +1015,18 @@ public class DataSource extends BaseClass  implements com.smartgwt.client.data.e
             var requestJ = @com.smartgwt.client.data.DSRequest::new(Lcom/google/gwt/core/client/JavaScriptObject;)(dsRequest);
             jObj.@com.smartgwt.client.data.DataSource::transformResponse(Lcom/smartgwt/client/data/DSResponse;Lcom/smartgwt/client/data/DSRequest;Ljava/lang/Object;)(responseJ, requestJ, data);
         };
+
+        self.__getClientOnlyResponse = self.getClientOnlyResponse;
+        self.getClientOnlyResponse = function(dsRequest) {
+            var jObj = this.__ref;
+            if(jObj === undefined) {
+                //handle case where oneTimeDS is cared from original DS (when clientOnly=true with dataURL)
+                jObj = $wnd.isc.DS.get(this.inheritsFrom).__ref;
+            }
+            var requestJ = @com.smartgwt.client.data.DSRequest::new(Lcom/google/gwt/core/client/JavaScriptObject;)(dsRequest);
+            var responseJ = jObj.@com.smartgwt.client.data.DataSource::getClientOnlyResponse(Lcom/smartgwt/client/data/DSRequest;)(requestJ);
+            return responseJ == null ? null : responseJ.@com.smartgwt.client.data.DSResponse::getJsObj()();
+        };
     }-*/;
 
 
@@ -1026,7 +1039,7 @@ public class DataSource extends BaseClass  implements com.smartgwt.client.data.e
      */
     public void setDataProtocol(DSProtocol dataProtocol) throws IllegalStateException {
         setAttribute("dataProtocol", dataProtocol.getValue(), false);
-    }
+    }       
 
     /**
      * HTTP parameters that should be submitted with every DSRequest. <br> Useful for authenticated services that
@@ -1117,12 +1130,31 @@ public class DataSource extends BaseClass  implements com.smartgwt.client.data.e
      * been overriden, that is, use the callback passed to high-level methods such as  <code>grid.fetchData()</code>,
      * and do error handling via either {@link com.smartgwt.client.data.DataSource#handleError} or by setting {@link
      * com.smartgwt.client.rpc.RPCRequest#getWillHandleError willHandleError}.
+     * <p>
+     * <b>Note</b>: This is an override point
+     * @param response the response
+     * @param request the request
+     * @param data
      */
     protected native void transformResponse(DSResponse response, DSRequest request, Object data) /*-{
         var self = this.@com.smartgwt.client.core.BaseClass::getOrCreateJsObj()();
         self.__transformResponse(response.@com.smartgwt.client.data.DSResponse::getJsObj()(), request.@com.smartgwt.client.data.DSRequest::getJsObj()(), data);
     }-*/;
 
+    /**
+     * Return a "spoofed" response for a {@link com.smartgwt.client.data.DataSource#getClientOnly clientOnly} DataSource.&#010 <P>&#010 The default implementation will {@link com.smartgwt.client.data.DataSource#getTestData testData} to provide an appropriate&#010 response, by using {@link com.smartgwt.client.data.DataSource#applyFilter} for a "fetch" request, and&#010 by modifying the <code>testData</code> for other requests.&#010 <P>&#010 Override this method to provide simulations of other server-side behavior, such as&#010 modifying other records, or to implement <b>synchronous</b> client-side data providers&#010 (such as Google Gears).  For <b>asynchronous</b> third-party data provides, such as&#010 GWT-RPC, HTML5 sockets, or bridges to plug-in based protocols (Java, Flash,&#010 Silverlight..), use ${isc.DocUtils.linkForRef('DSDataProtocol','dataProtocol:"clientCustom"')} instead. &#010 <P>&#010 Overriding this method is also a means of detecting that a normal DataSource (not&#010 clientOnly) would be contacting the server.&#010&#010
+     * <p>
+     * <b>Note</b>: This is an override point
+     * @param request DataSource request to respond to
+     *
+     * @return DSResponse
+    */
+    protected native DSResponse getClientOnlyResponse(DSRequest request) /*-{
+        var self = this.@com.smartgwt.client.core.BaseClass::getOrCreateJsObj()();
+        var ret = self.__getClientOnlyResponse(request.@com.smartgwt.client.data.DSRequest::getJsObj()());
+        if(ret == null || ret === undefined) return null;
+        return @com.smartgwt.client.data.DSResponse::new(Lcom/google/gwt/core/client/JavaScriptObject;)(ret);
+    }-*/;
 
     public native boolean isCreated()/*-{
         var id = this.@com.smartgwt.client.core.BaseClass::getID()();

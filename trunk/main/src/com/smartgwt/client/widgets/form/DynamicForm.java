@@ -2290,6 +2290,11 @@ public class DynamicForm extends Canvas  implements DataBoundComponent, com.smar
          self.addSummaryField();
      }-*/;
 
+    public native void addFormulaField() /*-{
+       var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
+       self.addFormulaField();
+    }-*/;
+
     public Boolean getCanAddFormulaFields() {
         return getAttributeAsBoolean("canAddFormulaFields");
     }

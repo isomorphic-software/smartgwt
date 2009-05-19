@@ -838,6 +838,11 @@ public class ColumnTree extends Layout  implements DataBoundComponent, com.smart
          self.addSummaryField();
      }-*/;
 
+    public native void addFormulaField() /*-{
+       var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
+       self.addFormulaField();
+    }-*/;
+
     public Boolean getCanAddFormulaFields() {
         return getAttributeAsBoolean("canAddFormulaFields");
     }
