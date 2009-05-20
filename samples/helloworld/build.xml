@@ -1,5 +1,0 @@
-<project name="helloworld" default="build" basedir=".">
-	<property name="sample.root" value="helloworld" />
-	<property name="sample.module" value="HelloWorld" />
-	<import file="../common.ant.xml" />
-</project>

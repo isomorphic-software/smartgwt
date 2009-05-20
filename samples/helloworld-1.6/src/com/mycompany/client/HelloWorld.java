@@ -17,22 +17,22 @@ import com.smartgwt.client.util.SC;
  * Entry point classes define <code>onModuleLoad()</code>.
  */
 public class HelloWorld implements EntryPoint {
-
-  /**
-   * This is the entry point method.
-   */
-  public void onModuleLoad() {
-
-      IButton button = new IButton("Hello World");
-      button.addClickHandler(new ClickHandler() {
-          public void onClick(ClickEvent event) {
-              SC.say("Hello World from SmartGWT");
-          }
-      });
-
-      button.draw();
-      
-      //or
-      //RootPanel.get().add(button);
-  }
+	
+	/**
+	 * This is the entry point method.
+	 */
+	public void onModuleLoad() {
+		
+		IButton button = new IButton("Hello World");
+		button.addClickHandler(new ClickHandler() {
+							   public void onClick(ClickEvent event) {
+							   SC.say("Hello World from SmartGWT");
+							   }
+							   });
+		
+		button.draw();
+		
+		//or
+		//RootPanel.get().add(button);
+	}
 }
