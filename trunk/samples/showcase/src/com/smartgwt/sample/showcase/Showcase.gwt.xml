@@ -13,8 +13,8 @@
 
     <entry-point class='com.smartgwt.sample.showcase.client.Showcase'/>
 
-    <!--gernam-->
-    <extend-property name="locale" values="fr_FR"/>
+    <!--german-->
+    <extend-property name="locale" values="de"/>
 
     <!--french in france -->
     <extend-property name="locale" values="fr_FR"/>
