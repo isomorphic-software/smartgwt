@@ -24,7 +24,7 @@ public class FormulaSummaryBuilderSample extends ShowcasePanel {
             "demonstracted by clicking the buttons in this sample</p>" +
             "<p>Launch the Formula Builder and enter the title of the new field, and the desired formula. For example, enter <b>Population Density</b> " +
             "for the field name and in the formula field enter <b>A / B</b>. As indicated in the dialog, A represents the Population field, and B represents the Area field. " +
-            "Click the help icon to view the various supported inbuilt functions.</p>" +
+            "Notice that you can now sort on this newly added <b>Population Density</b> field just like any other field. Click the help icon to view the various supported inbuilt functions.</p>" +
             "<p>Next launch the Summary Builder and enter the title of the new field, and the Summary formulation. For example, enter <b>County (Flag)</b> " +
             "for the field name and enter <b>$B (#A)</b> in the summary field.</p>";
 
