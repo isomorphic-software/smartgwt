@@ -28,8 +28,70 @@
    <body>
       <h1>SmartGWT Release Notes</h1>
       <ul>
+            <li><a href="#1_1">1.1</a></li>
             <li><a href="#1_0_b2">1.0 b2</a></li>
       </ul>
+      <hr/>
+
+      <a name="1_1"></a>
+      <h2>Release Notes for SmartGWT 1.1</h2>
+        <div>- Unified DataBoundComponent interface which is implemented by DynamicForm, ListGrid, TreeGrid, Menu, ColumnTree, TileGrid, DetailViewer and Calendar.</div>
+        <div>- Consistent representation of a Record which can be used by any DataBoundComponent</div>
+        <div>- Support for GWT-RPC DataSource with DataBoundComponents</div>
+        <div>- Skin performance improvements</div>
+        <div>- I18n support with resource bundles from 14 locales</div>
+        <div>- Significant improvements to Javadocs with tons of documentation on various concepts. (over 30MB on disk)</div>
+        <div>- API's to save and restore the display and selection state of various components to/from the server</div>
+        <div>- Numerous enhancements. See the detailed <a href="api-changes.html">API Changes</a> document</div>
+        <div>- <a href="http://code.google.com/p/smartgwt/issues/list?can=1&q=label%3ASmartGWT-1.0b3">Over 50</a> additional enhancements and bug fixes that were logged in tracker</div>
+        <div>- Several new events and extension points on various components to allow advanced usage</div>
+        <div>- A helloworld-1.6 starter project for SmartGWT with GWT 1.6</div>
+        <div>- Several new examples in the SmartGWT Showcase (see "New Samples" side nav item in the Showcase)</div>
+
+      <h3>Key API's added</h3>
+
+      <h4>DateUtil</h4>
+        <div>- Ability to globally set the Date input and rendered formats across the application</div>
+
+      <h4>DataBoundComponent</h4>
+        <div>- ability to select / deselect records, fetch / filter data and carry out various other operations on any DataBoundComponent</div>
+
+      <h4>DataSource and DataSourceField</h4>
+        <div>- ability to specify custom field value extractor logic for a given DataSourceField</div>
+        <div>- API's to control http caching and result batch size</div>
+        <div>- DataSourceField.setCanSortClientOnly</div>
+
+       <h4>Window</h4>
+        <div>- listeners for minimize, maximize, restore and close</div>
+
+        <h4>Calendar</h4>
+        <div>- support for customizing event edit dialog fields</div>
+        <div>- event remove listener</div>
+
+      <h4>Forms</h4>
+        <div>- convenience constructors for various FormItems</div>
+        <div>- support for customizing form field and title tooltips</div>
+        <div>- TextItem : support for character casing and entry restrictions (regexp based)</div>
+        <div>- TextItem : support for hints displayed in-field</div>
+        <div>- ComboBoxItem : fetchDelay setting</div>
+        
+       <h4>Column Tree (Miller Columns)</h4>
+        <div>- added node selected listener</div>
+
+        <h4>ListGrid</h4>
+            <div>- added header click listener</div>
+            <div>- added record drop listener</div>
+            <div>- ability to customize grid groupings by record values and also group title</div>
+            <div>- support for adding custom formula and summary fields on the fly</div>
+            <div>- ability to register custom handler to control visibility of a ListGridField</div>
+            <div>- added ListGridField.setCanFreeze, ListGridField.setCanSort</div>
+
+        <h4>SectionStack (Accordion)</h4>
+            <div>- added section header click event</div>
+
+        <h4>TreeGrid</h4>
+            <div>- added folder drop listener</div>
+            <div>- ability to override getIcon() / getNodeTitle() to allow users to have custom node icon / title logic</div>
       <hr/>
 
       <a name="1_0_b2"></a>
@@ -46,8 +108,8 @@
         <div>- Support for checkbox selection for ListGrids</div>
         <div>- improved support for users to wire DataSource's with GWT-RPC calls</div>
         <div>- Improved javadocs</div>
-        <div>- Separated additional skins into a smartgwt-skins.jar</div>                    
-        <div>- Chrome, Firefox 3.1, and OSX hosted mode support</div>                    
+        <div>- Separated additional skins into a smartgwt-skins.jar</div>
+        <div>- Chrome, Firefox 3.1, and OSX hosted mode support</div>
 
       <hr/>
       <a name="1_0_b1"></a>
