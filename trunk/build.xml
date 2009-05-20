@@ -67,6 +67,8 @@
 
         <mkdir dir="${smartgwt.tools.lib}/sc/${SC_VER}"/>
         
+		<replace dir="${SC_HOME}/smartclientSDK/isomorphic/skins" includes="**/load_skin.js" token="showShadow:true" value="showShadow:false"/>
+		
         <zip destfile="${smartgwt.tools.lib}/sc/${SC_VER}/smartclient.jar">
             <zipfileset dir="${SC_HOME}/smartclientSDK/isomorphic/system/modules" includes="*.js"
                         prefix="com/smartclient/public/sc/modules"/>
