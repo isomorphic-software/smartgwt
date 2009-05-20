@@ -24,7 +24,7 @@
 
 	<!-- Global Properties -->
 	<property environment="env" />
-	<condition property="smartgwt.version" value="${env.SMARTGWT_VERSION}" else="1.0b3">
+	<condition property="smartgwt.version" value="${env.SMARTGWT_VERSION}" else="1.1">
 		<isset property="env.SMARTGWT_VERSION" />
 	</condition>
 
