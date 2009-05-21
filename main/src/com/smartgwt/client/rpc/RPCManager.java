@@ -120,9 +120,11 @@ public class RPCManager {
 
 
 
-
 
-
+
+
+
+
     /**
      * The actionURL specifies the URL to which the RPC request will be sent. Note that if you override this global
      * default and your application uses DataSource databound components, you'll need to dispatch the DataSource
@@ -281,7 +283,7 @@ public class RPCManager {
             loginRequired : function (transactionNum, request, response) {
                var requestJ = @com.smartgwt.client.rpc.RPCRequest::new(Lcom/google/gwt/core/client/JavaScriptObject;)(request);
                var responseJ = @com.smartgwt.client.rpc.RPCResponse::new(Lcom/google/gwt/core/client/JavaScriptObject;)(response);
-               callback.@com.smartgwt.client.rpc.LoginRequiredCallback::loginRequired(ILcom/smartgwt/client/rpc/RPCRequest;Lcom/smartgwt/client/rpc/RPCResponse;)(transactionNum, responseJ, requestJ);
+               callback.@com.smartgwt.client.rpc.LoginRequiredCallback::loginRequired(ILcom/smartgwt/client/rpc/RPCRequest;Lcom/smartgwt/client/rpc/RPCResponse;)(transactionNum, requestJ, responseJ);
             }
         });
     }-*/;
