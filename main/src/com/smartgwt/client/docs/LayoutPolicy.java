@@ -7,6 +7,7 @@ package com.smartgwt.client.docs;
  * @see com.smartgwt.client.widgets.layout.Layout#getVertical
  * @see com.smartgwt.client.widgets.layout.Layout#getVPolicy
  * @see com.smartgwt.client.widgets.layout.Layout#getHPolicy
+ * @see com.smartgwt.client.widgets.layout.Layout#getMinMemberSize
  * @see com.smartgwt.client.widgets.layout.Layout#getEnforcePolicy
  * @see com.smartgwt.client.widgets.layout.Layout#getDefaultLayoutAlign
  * @see com.smartgwt.client.widgets.layout.Layout#getAlign

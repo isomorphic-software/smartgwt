@@ -2257,6 +2257,25 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
     }
 
     /**
+    * Minimum size, in pixels, for ListGrid headers.
+    *
+    * @param minFieldWidth minFieldWidth Default value is 10
+    */
+    public void setMinFieldWidth(int minFieldWidth) {
+        setAttribute("minFieldWidth", minFieldWidth, true);
+    }
+    /**
+     * Minimum size, in pixels, for ListGrid headers.
+     *
+     *
+     * @return int
+     *
+     */
+    public int getMinFieldWidth()  {
+        return getAttributeAsInt("minFieldWidth");
+    }
+
+    /**
     * Should we show the header for this ListGrid?
     * Show or hide the ListGrid header.&#010
     *

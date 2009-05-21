@@ -168,6 +168,26 @@ public class Layout extends Canvas {
     }
 
     /**
+    * Minimum size, in pixels, below which members should never be shrunk, even if this&#010 requires the Layout to overflow.
+    *
+    * @param minMemberSize minMemberSize Default value is 1
+    * @throws IllegalStateException this property cannot be changed after the component has been created
+    */
+    public void setMinMemberSize(int minMemberSize)  throws IllegalStateException {
+        setAttribute("minMemberSize", minMemberSize, false);
+    }
+    /**
+     * Minimum size, in pixels, below which members should never be shrunk, even if this&#010 requires the Layout to overflow.
+     *
+     *
+     * @return int
+     *
+     */
+    public int getMinMemberSize()  {
+        return getAttributeAsInt("minMemberSize");
+    }
+
+    /**
     * Whether the layout policy is continuously enforced as new members are added or removed&#010 and as members are resized.&#010 <p>&#010 This setting implies that any member that resizes larger, or any added member, will take&#010 space from other members in order to allow the overall layout to stay the same size.
     * <p><b>Note : </b> This is an advanced setting</p>
     *

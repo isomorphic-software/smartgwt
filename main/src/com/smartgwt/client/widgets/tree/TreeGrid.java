@@ -863,7 +863,7 @@ public class TreeGrid extends ListGrid  implements com.smartgwt.client.widgets.t
 
 
         /**
-         * Returns a snapshot of the current open state of this grid's data as&#010 a {@link java.lang.String} object.<br>&#010 This object can be passed to {@link com.smartgwt.client.widgets.tree.TreeGrid#getOpenState} to open the same set of folders&#010 within the treeGrid's data (assuming the nodes are still present in the data).&#010
+         * Returns a snapshot of the current open state of this grid's data as&#010 a {@link java.lang.String} object.<br>&#010 This object can be passed to {@link com.smartgwt.client.widgets.tree.TreeGrid#setOpenState} to open the same set of folders&#010 within the treeGrid's data (assuming the nodes are still present in the data).&#010
          *
          * @return current sort state for the grid.
          */
@@ -1315,15 +1315,8 @@ public class TreeGrid extends ListGrid  implements com.smartgwt.client.widgets.t
     // ********************* Static Methods ***********************
 
 
-
-
-
-
-
-
-
-
-
+
+
 
     protected void onInit() {
         super.onInit();
