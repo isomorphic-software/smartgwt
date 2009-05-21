@@ -50,10 +50,10 @@ public class AdaptiveSortSample extends ShowcasePanel {
 
         ItemSupplyXmlDS supplyXmlDS = new ItemSupplyXmlDS(SC.generateID()) {
 
-            //this approach logs simulated server trips , where for DataSources with clientOnly:true
+            //this approach logs simulated server trips for DataSources with clientOnly:true
             //so that no server is required. Since this example has a clientOnly datasource that loads data
             //from a static xml, use the simulated server trips getClientOnlyResponse override point.
-            //If workign with a real server that returns data dynamically based on start/end row, override
+            //If working with a real server that returns data dynamically based on start/end row, override
             //transformResponse instead.
 
             @Override
