@@ -12,7 +12,7 @@ import com.smartgwt.sample.showcase.client.ShowcasePanel;
 
 public class DialogsSample extends ShowcasePanel {
 
-    private static final String DESCRIPTION = "Click \"Confirm\" and \"Ask\" to show two of the pre-built, skinnable SmartClient Dialogs for common interactions.";
+    private static final String DESCRIPTION = "Click \"Confirm\" and \"Ask\" to show two of the pre-built, skinnable SmartGWT Dialogs for common interactions.";
 
     public static class Factory implements PanelFactory {
         private String id;

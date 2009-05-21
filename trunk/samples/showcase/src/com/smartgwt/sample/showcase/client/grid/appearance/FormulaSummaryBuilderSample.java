@@ -26,7 +26,7 @@ public class FormulaSummaryBuilderSample extends ShowcasePanel {
             "for the field name and in the formula field enter <b>A / B</b>. As indicated in the dialog, A represents the Population field, and B represents the Area field. " +
             "Notice that you can now sort on this newly added <b>Population Density</b> field just like any other field. Click the help icon to view the various supported inbuilt functions.</p>" +
             "<p>Next launch the Summary Builder and enter the title of the new field, and the Summary formulation. For example, enter <b>County (Flag)</b> " +
-            "for the field name and enter <b>$B (#A)</b> in the summary field.</p>";
+            "for the field name and enter <b>#B (#A)</b> in the summary field.</p>";
 
     public static class Factory implements PanelFactory {
         private String id;
