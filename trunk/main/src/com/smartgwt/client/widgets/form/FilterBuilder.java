@@ -60,7 +60,8 @@ import com.google.gwt.event.shared.HasHandlers;
 
     */
 
-public class FilterBuilder extends Layout  implements com.smartgwt.client.widgets.form.events.HasFilterChangedHandlers {
+
+public class FilterBuilder extends Layout  implements com.smartgwt.client.widgets.form.events.HasFilterChangedHandlers, com.smartgwt.client.widgets.form.events.HasSearchHandlers {
 
     public static FilterBuilder getOrCreateRef(JavaScriptObject jsObj) {
         if(jsObj == null) return null;
@@ -90,7 +91,7 @@ public class FilterBuilder extends Layout  implements com.smartgwt.client.widget
     // ********************* Properties / Attributes ***********************
 
     /**
-    * If true, when the user hits the Enter key while focussed in a text-item in this &#010 FilterBuilder, we automatically invoke the user-supplied {@link com.smartgwt.client.widgets.form.FilterBuilder#search} method.
+    * If true, when the user hits the Enter key while focussed in a text-item in this &#010 FilterBuilder, we automatically invoke the user-supplied {@link com.smartgwt.client.widgets.form.FilterBuilder#addSearchHandler} method.
     *
     * @param saveOnExit saveOnExit Default value is null
     * @throws IllegalStateException this property cannot be changed after the component has been created
@@ -99,7 +100,7 @@ public class FilterBuilder extends Layout  implements com.smartgwt.client.widget
         setAttribute("saveOnExit", saveOnExit, false);
     }
     /**
-     * If true, when the user hits the Enter key while focussed in a text-item in this &#010 FilterBuilder, we automatically invoke the user-supplied {@link com.smartgwt.client.widgets.form.FilterBuilder#search} method.
+     * If true, when the user hits the Enter key while focussed in a text-item in this &#010 FilterBuilder, we automatically invoke the user-supplied {@link com.smartgwt.client.widgets.form.FilterBuilder#addSearchHandler} method.
      *
      *
      * @return Boolean
@@ -266,6 +267,38 @@ public class FilterBuilder extends Layout  implements com.smartgwt.client.widget
         }-*/;
 
 
+        /**
+         * Add a search handler.
+         * <p>
+         * A StringMethod that is automatically invoked if {@link com.smartgwt.client.widgets.form.FilterBuilder#getSaveOnExit saveOnExit} is set &#010 and the user presses Enter whilst in a text-item in any clause or subclause.&#010&#010
+         *
+         * @param handler the search handler
+         * @return {@link HandlerRegistration} used to remove this handler
+         */
+        public HandlerRegistration addSearchHandler(com.smartgwt.client.widgets.form.events.SearchHandler handler) {
+            if(getHandlerCount(com.smartgwt.client.widgets.form.events.FilterSearchEvent.getType()) == 0) setupSearchEvent();
+            return doAddHandler(handler, com.smartgwt.client.widgets.form.events.FilterSearchEvent.getType());
+        }
+        private native void setupSearchEvent() /*-{
+            var obj = null;
+            var selfJ = this;
+            if(this.@com.smartgwt.client.widgets.BaseWidget::isCreated()()) {
+                obj = this.@com.smartgwt.client.widgets.BaseWidget::getJsObj()();
+                obj.addProperties({search:function(){
+                        var param = {"criteria" : arguments[0]};
+                        var event = @com.smartgwt.client.widgets.form.events.FilterSearchEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
+                        selfJ.@com.smartgwt.client.widgets.BaseWidget::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
+                    }
+                });
+            } else {
+                obj = this.@com.smartgwt.client.widgets.BaseWidget::getConfig()();
+                obj.search = function(){
+                    var param = {"criteria" : arguments[0]};
+                    var event = @com.smartgwt.client.widgets.form.events.FilterSearchEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
+                    selfJ.@com.smartgwt.client.widgets.BaseWidget::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
+                };
+            }
+        }-*/;
 
         /**
          * Add a filterChanged handler.
