@@ -1315,7 +1315,7 @@ public class TreeGrid extends ListGrid  implements com.smartgwt.client.widgets.t
     // ********************* Static Methods ***********************
 
 
-
+
 
 
     protected void onInit() {
@@ -1329,9 +1329,9 @@ public class TreeGrid extends ListGrid  implements com.smartgwt.client.widgets.t
         self._getNodeTitle = self.getNodeTitle;
         self.getNodeTitle = function(node, recordNum, field) {
             var jObj = this.__ref;
-            var nodeJ = @com.smartgwt.client.widgets.tree.TreeNode::getOrCreateRef(Lcom/google/gwt/core/client/JavaScriptObject;)(node);
+            var nodeJ = @com.smartgwt.client.data.Record::getOrCreateRef(Lcom/google/gwt/core/client/JavaScriptObject;)(node);
             var fieldJ = @com.smartgwt.client.widgets.grid.ListGridField::getOrCreateRef(Lcom/google/gwt/core/client/JavaScriptObject;)(field);
-            return jObj.@com.smartgwt.client.widgets.tree.TreeGrid::getNodeTitle(Lcom/smartgwt/client/widgets/tree/TreeNode;ILcom/smartgwt/client/widgets/grid/ListGridField;)(nodeJ, recordNum, fieldJ);
+            return jObj.@com.smartgwt.client.widgets.tree.TreeGrid::getNodeTitle(Lcom/smartgwt/client/data/Record;ILcom/smartgwt/client/widgets/grid/ListGridField;)(nodeJ, recordNum, fieldJ);
         };
 
         self._getIcon = self.getIcon;
@@ -1339,8 +1339,8 @@ public class TreeGrid extends ListGrid  implements com.smartgwt.client.widgets.t
             defaultState = !!defaultState;
             if ($wnd.isc.isA.Number(node)) node = this.data.get(node);
             var jObj = this.__ref;
-            var nodeJ = @com.smartgwt.client.widgets.tree.TreeNode::getOrCreateRef(Lcom/google/gwt/core/client/JavaScriptObject;)(node);
-            return jObj.@com.smartgwt.client.widgets.tree.TreeGrid::getIcon(Lcom/smartgwt/client/widgets/tree/TreeNode;Z)(nodeJ, defaultState);
+            var nodeJ = @com.smartgwt.client.data.Record::getOrCreateRef(Lcom/google/gwt/core/client/JavaScriptObject;)(node);
+            return jObj.@com.smartgwt.client.widgets.tree.TreeGrid::getIcon(Lcom/smartgwt/client/data/Record;Z)(nodeJ, defaultState);
         };
     }-*/;
 
@@ -1354,7 +1354,7 @@ public class TreeGrid extends ListGrid  implements com.smartgwt.client.widgets.t
      * @param field     The field for which the title is being requested.
      * @return the title to display.
      */
-    protected native String getNodeTitle(TreeNode node, int recordNum, ListGridField field) /*-{
+    protected native String getNodeTitle(Record node, int recordNum, ListGridField field) /*-{
             var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
             return self._getNodeTitle(node.@com.smartgwt.client.core.DataClass::getJsObj()(), recordNum, field.@com.smartgwt.client.core.DataClass::getJsObj()());
     }-*/;
@@ -1368,7 +1368,7 @@ public class TreeGrid extends ListGrid  implements com.smartgwt.client.widgets.t
      *
      * @return URL for icon to show for this node
      */
-    protected native String getIcon(TreeNode node, boolean defaultState) /*-{
+    protected native String getIcon(Record node, boolean defaultState) /*-{
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
         return self._getIcon(node.@com.smartgwt.client.core.DataClass::getJsObj()(), defaultState);
     }-*/;
