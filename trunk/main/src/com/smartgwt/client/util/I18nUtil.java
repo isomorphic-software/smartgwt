@@ -5,12 +5,17 @@ import com.google.gwt.core.client.GWT;
 
 public class I18nUtil {
 
+    private static boolean initialized = false;
+
     /**
      * Setup SmartGWT i18n.
      */
     public static void init() {
-        SmartGwtMessages messages = GWT.create(SmartGwtMessages.class);
-        doInit(messages);
+        if(!initialized) {
+            initialized = true;
+            SmartGwtMessages messages = GWT.create(SmartGwtMessages.class);
+            doInit(messages);
+        }
     }
 
     private static native void doInit(SmartGwtMessages messages) /*-{
