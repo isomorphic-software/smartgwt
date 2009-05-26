@@ -145,25 +145,6 @@ public class RPCManager {
     }-*/;
 
     /**
-     * If showPrompt is enabled for a given transaction, this is the defaultPrompt to be shown to the user in a modal dialog
-     * while the transaction occurs. May be overridden at the request level via RPCRequest.prompt.
-     * <p/>
-     * More targetted default prompts are also supported for certain code-paths. See the following set of
-     * properties for details:
-     * <p/>
-     * <ul>
-     * <li>RPCManager.removeDataPrompt</li>
-     * <li>RPCManager.saveDataPrompt</li>
-     * <li>RPCManager.fetchDataPrompt</li>
-     * </ul>
-     *
-     * @param defaultPrompt the default value is 'Contacting Server...'
-     */
-    public static native void setDefaultPrompt(String defaultPrompt) /*-{
-        $wnd.isc.RPCManager.defaultPrompt = defaultPrompt;
-    }-*/;
-
-    /**
      * <p>In milliseconds, how long the RPCManager waits for an RPC request to complete before returning an error.
      * If set to zero, the RPCManager will not enforce a timeout, but note that most browsers enforce their own timeouts
      * on HTTP requests.</p>
@@ -179,12 +160,33 @@ public class RPCManager {
     }-*/;
 
     /**
+     * If showPrompt is enabled for a given transaction, this is the defaultPrompt to be shown to the user in a modal dialog
+     * while the transaction occurs. May be overridden at the request level via RPCRequest.prompt.
+     * <p/>
+     * More targetted default prompts are also supported for certain code-paths. See the following set of
+     * properties for details:
+     * <p/>
+     * <ul>
+     * <li>RPCManager.removeDataPrompt</li>
+     * <li>RPCManager.saveDataPrompt</li>
+     * <li>RPCManager.fetchDataPrompt</li>
+     * </ul>
+     *
+     * @param defaultPrompt the default value is 'Contacting Server...'
+     */
+    public static native void setDefaultPrompt(String defaultPrompt) /*-{
+        @com.smartgwt.client.util.I18nUtil::init()();
+        $wnd.isc.RPCManager.defaultPrompt = defaultPrompt;
+    }-*/;
+    
+    /**
      * Default prompt displayed to the user while an operation is running to fetch data from the server.
      * Displayed as a result of ListGrid.filterData(), ListGrid.fetchData() and ListGrid.clearCriteria() code paths.
      *
      * @param fetchDataPrompt defaults to "Finding Records that match your criteria..."
      */
     public static native void setFetchDataPrompt(String fetchDataPrompt) /*-{
+        @com.smartgwt.client.util.I18nUtil::init()();
         $wnd.isc.RPCManager.fetchDataPrompt = fetchDataPrompt;
     }-*/;
 
@@ -195,6 +197,7 @@ public class RPCManager {
      * @param removeDataPrompt default value "Deleting Record(s)..."
      */
     public static native void setRemoveDataPrompt(String removeDataPrompt) /*-{
+        @com.smartgwt.client.util.I18nUtil::init()();
         $wnd.isc.RPCManager.removeDataPrompt = removeDataPrompt;
     }-*/;
 
@@ -205,6 +208,7 @@ public class RPCManager {
      * @param saveDataPrompt default value "Saving form..."
      */
     public static native void setSaveDataPrompt(String saveDataPrompt) /*-{
+        @com.smartgwt.client.util.I18nUtil::init()();
         $wnd.isc.RPCManager.saveDataPrompt = saveDataPrompt;
     }-*/;
 
