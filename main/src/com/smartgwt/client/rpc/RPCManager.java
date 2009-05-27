@@ -134,7 +134,6 @@ public class RPCManager {
         $wnd.isc.RPCManager.actionURL = actionURL;
     }-*/;
 
-
     /**
      * Specifies URL where credentials should be submitted to attempt relogin when session timeout is encountered during a background RPC.
      *
@@ -178,7 +177,7 @@ public class RPCManager {
         @com.smartgwt.client.util.I18nUtil::init()();
         $wnd.isc.RPCManager.defaultPrompt = defaultPrompt;
     }-*/;
-    
+
     /**
      * Default prompt displayed to the user while an operation is running to fetch data from the server.
      * Displayed as a result of ListGrid.filterData(), ListGrid.fetchData() and ListGrid.clearCriteria() code paths.
