@@ -758,7 +758,7 @@ public class DateChooser extends Canvas  implements com.smartgwt.client.widgets.
          */
         public native void setData(Date date) /*-{
             var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
-            self.setData(date);
+            self.setData(@com.smartgwt.client.util.JSOHelper::convertToJavaScriptDate(Ljava/util/Date;)(date));
         }-*/;
 
         /**
