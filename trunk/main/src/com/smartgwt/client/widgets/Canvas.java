@@ -4633,16 +4633,9 @@ public class Canvas extends BaseWidget  implements com.smartgwt.client.widgets.e
 
 
 
+
 
-
-
-
-
-
-
-
-
-
+
 
     /**
      * Multiple styles are currently not supported. This method essentially calls {@link #setStyleName(String)}
