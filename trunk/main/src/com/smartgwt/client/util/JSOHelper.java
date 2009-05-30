@@ -536,6 +536,10 @@ public class JSOHelper {
         array[index] = value;
     }-*/;
 
+    public static native void setArrayValue(JavaScriptObject array, int index, int value) /*-{
+        array[index] = value;
+    }-*/;
+
     public static native void setArrayValue(JavaScriptObject array, int index, float value) /*-{
         array[index] = value;
     }-*/;
