@@ -56,6 +56,8 @@ public abstract class BaseClass {
     }
 
     public void setID(String id) {
+        assert id.indexOf(".") == -1 : "Invalid ID. Cannot use \".\" in identifier.";
+        assert id.indexOf(" ") == -1 : "Invalid ID. Cannot use spaces in identifier.";        
         this.id = id;
         setAttribute("ID", id, false);
     }
