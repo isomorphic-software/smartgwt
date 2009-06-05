@@ -120,7 +120,7 @@ public class RPCManager {
 
 
 
-
+
 
 
     /**
@@ -177,7 +177,7 @@ public class RPCManager {
         @com.smartgwt.client.util.I18nUtil::init()();
         $wnd.isc.RPCManager.defaultPrompt = defaultPrompt;
     }-*/;
-
+    
     /**
      * Default prompt displayed to the user while an operation is running to fetch data from the server.
      * Displayed as a result of ListGrid.filterData(), ListGrid.fetchData() and ListGrid.clearCriteria() code paths.
@@ -354,6 +354,38 @@ public class RPCManager {
         $wnd.isc.RPCManager.suspendTransaction(transactionID);
     }-*/;
 
+    /**
+     * <p>Register a callback that is called by the RPCManager every time it sends a queue of requests to the
+     * server (note that if you not using queuing, the system simply sends queues containing
+     * just one request, so this API is valid regardless).
+     * <p/>
+     * It is intended to be used by user code that needs to be notified when SmartGWT sends
+     * requests to the server.  Note that the list of {@link com.smartgwt.client.rpc.RPCRequest}'s passed to this
+     * callback is strictly <b>read-only</b>.
+     *
+     * @param callback the callback
+     */
+    public static native void setQueueSentCallback(QueueSentCallback callback) /*-{
+        $wnd.isc.RPCManager.addClassProperties({
+            queueSent : function (requests) {
+               var requestsJ = @com.smartgwt.client.rpc.RPCManager::convertToRPCRequestArray(Lcom/google/gwt/core/client/JavaScriptObject;)(requests);
+               callback.@com.smartgwt.client.rpc.QueueSentCallback::queueSent([Lcom/smartgwt/client/rpc/RPCRequest;)(requestsJ);
+            }
+        });
+    }-*/;
+
+    private static RPCRequest[] convertToRPCRequestArray(JavaScriptObject nativeArray) {
+        if (nativeArray == null) {
+            return new RPCRequest[]{};
+        }
+        JavaScriptObject[] requestsJS = JSOHelper.toArray(nativeArray);
+        RPCRequest[] objects = new RPCRequest[requestsJS.length];
+        for (int i = 0; i < requestsJS.length; i++) {
+            JavaScriptObject requestJS = requestsJS[i];
+            objects[i] = new RPCRequest(requestJS);
+        }
+        return objects;
+    }
 
 }
 
