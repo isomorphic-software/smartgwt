@@ -126,16 +126,13 @@ public class SectionHeaderClickEvent extends BrowserEvent<SectionHeaderClickHand
     }
 
     /**
-     * SectionHeader clicked by the user
+     * SectionStackSection of the header clicked by the user
      *
-     * @return SectionHeader clicked by the user
+     * @return SectionStackSection of the header clicked by the user
      */
-    public  native SectionHeader getSection() /*-{
+    public  native SectionStackSection getSectionStackSection() /*-{
         var jsObj = this.@com.smartgwt.client.event.AbstractSmartEvent::jsObj;
-        var retVal = @com.smartgwt.client.widgets.layout.SectionHeader::getOrCreateRef(Lcom/google/gwt/core/client/JavaScriptObject;)(jsObj.section);
-        if(retVal == null) {
-            retVal = @com.smartgwt.client.widgets.layout.SectionHeader::new(Lcom/google/gwt/core/client/JavaScriptObject;)(jsObj.section);
-        }
+        var retVal = @com.smartgwt.client.widgets.layout.SectionStackSection::getOrCreateRef(Lcom/google/gwt/core/client/JavaScriptObject;)(jsObj.section);
         return retVal;
     }-*/;
 

@@ -1041,7 +1041,7 @@ public class Layout extends Canvas {
      * Given a numerical index or a member ID, return a pointer to the appropriate member. <p> If passed a member
      * Canvas, just returns it.
      *
-     * @param memberID identifier for the required member
+     * @param index index for the member
      * @return member widget
      */
     public native Canvas getMember(int index) /*-{
@@ -1067,7 +1067,7 @@ public class Layout extends Canvas {
      * Given a member Canvas or member ID, return the index of that member within this layout's members array <p> If
      * passed a number, just returns it.
      *
-     * @param memberID identifier for the required member
+     * @param member the member
      * @return index of the member canvas (or -1 if not found)
      */
     public native int getMemberNumber(Canvas member) /*-{

@@ -189,6 +189,20 @@ public class SectionStackSection extends RefDataClass {
         }
     }
 
+    /**
+     * Return the items in this SectionStackSection
+     *
+     * @return the items in this SectionStackSection
+     */
+    public native Canvas[] getItems() /*-{
+		var jsObj = this.@com.smartgwt.client.core.DataClass::getJsObj()();
+
+        if(!jsObj.items) {
+            jsObj.items = @com.smartgwt.client.util.JSOHelper::createJavaScriptArray()();
+        }
+        return @com.smartgwt.client.widgets.Canvas::convertToCanvasArray(Lcom/google/gwt/core/client/JavaScriptObject;)(jsObj.items);
+    }-*/;
+
     public void addItem(Canvas item) {
         addItemJS(item.getOrCreateJsObj());
     }
@@ -201,6 +215,8 @@ public class SectionStackSection extends RefDataClass {
         }
         jsObj.items.push(componentJS);
     }-*/;
+
+
 
     public void setControls(Canvas... controls) {
         setAttribute("controls", controls);
