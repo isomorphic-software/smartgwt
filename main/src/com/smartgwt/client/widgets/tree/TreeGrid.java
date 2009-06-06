@@ -1365,6 +1365,7 @@ public class TreeGrid extends ListGrid  implements com.smartgwt.client.widgets.t
      * <b>Note</b>: This is an override point
      *
      * @param node tree node in question
+     * @param defaultState defaultState
      *
      * @return URL for icon to show for this node
      */

@@ -807,7 +807,7 @@ public class Layout extends Canvas {
     /**
      * Add a canvas to the layout, optionally at a specific position.
      *
-     * @param newMember the canvas object to be added to the layout
+     * @param component the canvas object to be added to the layout
      */
     public void addMember(Canvas component) {
         JavaScriptObject componentJS = component.getOrCreateJsObj();
@@ -832,7 +832,7 @@ public class Layout extends Canvas {
     /**
      * Add a canvas to the layout, optionally at a specific position.
      *
-     * @param newMember the canvas object to be added to the layout
+     * @param component the canvas object to be added to the layout
      * @param position  the position in the layout to place newMember (starts with 0);
      *                  if omitted, it will be added at the last position
      */
@@ -908,7 +908,7 @@ public class Layout extends Canvas {
      * by setting {@link com.smartgwt.client.widgets.Canvas#getLayoutAlign layoutAlign}.<br> If unset, default member
      * layout alignment will be "top" for a horizontal layout, and left for a vertical layout.
      *
-     * @param defaultLayoutAlign defaultLayoutAlign Default value is null
+     * @param alignment defaultLayoutAlign Default value is null
      * @throws IllegalStateException this property cannot be changed after the component has been created
      */
     public void setDefaultLayoutAlign(Alignment alignment) throws IllegalStateException {
@@ -920,7 +920,7 @@ public class Layout extends Canvas {
      * by setting {@link com.smartgwt.client.widgets.Canvas#getLayoutAlign layoutAlign}.<br> If unset, default member
      * layout alignment will be "top" for a horizontal layout, and left for a vertical layout.
      *
-     * @param defaultLayoutAlign defaultLayoutAlign Default value is null
+     * @param alignment defaultLayoutAlign Default value is null
      * @throws IllegalStateException this property cannot be changed after the component has been created
      */
     public void setDefaultLayoutAlign(VerticalAlignment alignment) throws IllegalStateException {
@@ -936,7 +936,7 @@ public class Layout extends Canvas {
      * Alignment of all members in this Layout on the length axis.  Defaults to "top" for vertical Layouts, and "left"
      * for horizontal Layouts.
      *
-     * @param align align Default value is null
+     * @param alignment alignment Default value is null
      */
     public void setAlign(Alignment alignment) {
         setAttribute("align", alignment.getValue(), true);
@@ -946,7 +946,7 @@ public class Layout extends Canvas {
      * Alignment of all members in this Layout on the length axis.  Defaults to "top" for vertical Layouts, and "left"
      * for horizontal Layouts.
      *
-     * @param align align Default value is null
+     * @param alignment alignment Default value is null
      */
     public void setAlign(VerticalAlignment alignment) {
         setAttribute("align", alignment.getValue(), true);
