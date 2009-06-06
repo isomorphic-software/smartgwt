@@ -216,8 +216,6 @@ public class SectionStackSection extends RefDataClass {
         jsObj.items.push(componentJS);
     }-*/;
 
-
-
     public void setControls(Canvas... controls) {
         setAttribute("controls", controls);
     }
