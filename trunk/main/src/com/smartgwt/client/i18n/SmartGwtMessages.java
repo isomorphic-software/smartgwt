@@ -1,11 +1,77 @@
+/*
+ * SmartGWT (GWT for SmartClient)
+ * Copyright 2008 and beyond, Isomorphic Software, Inc.
+ *
+ * SmartGWT is free software; you can redistribute it and/or modify it
+ * under the terms of the GNU Lesser General Public License version 3
+ * as published by the Free Software Foundation.  SmartGWT is also
+ * available under typical commercial license terms - see
+ * http://smartclient.com/license
+ *
+ * This software is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU
+ * Lesser General Public License for more details.
+ */
+
 package com.smartgwt.client.i18n;
 
-/**
- * Interface to represent the messages contained in resource bundle:
- * 	/Users/sjivan/java/smartgwt-svn/trunk/main/src/com/smartgwt/client/i18n/SmartGwtMessages.properties'.
- */
 public interface SmartGwtMessages extends com.google.gwt.i18n.client.Messages {
   
+  /**
+   * Translated "Add an event".
+   * 
+   * @return translated "Add an event"
+   */
+  @DefaultMessage("Add an event")
+  @Key("calendar_addEventButtonHoverText")
+  String calendar_addEventButtonHoverText();
+
+  /**
+   * Translated "Cancel".
+   * 
+   * @return translated "Cancel"
+   */
+  @DefaultMessage("Cancel")
+  @Key("calendar_cancelButtonTitle")
+  String calendar_cancelButtonTitle();
+
+  /**
+   * Translated "Choose a date".
+   * 
+   * @return translated "Choose a date"
+   */
+  @DefaultMessage("Choose a date")
+  @Key("calendar_datePickerHoverText")
+  String calendar_datePickerHoverText();
+
+  /**
+   * Translated "Day".
+   * 
+   * @return translated "Day"
+   */
+  @DefaultMessage("Day")
+  @Key("calendar_dayViewTitle")
+  String calendar_dayViewTitle();
+
+  /**
+   * Translated "Edit Details".
+   * 
+   * @return translated "Edit Details"
+   */
+  @DefaultMessage("Edit Details")
+  @Key("calendar_detailsButtonTitle")
+  String calendar_detailsButtonTitle();
+
+  /**
+   * Translated "Event Name".
+   * 
+   * @return translated "Event Name"
+   */
+  @DefaultMessage("Event Name")
+  @Key("calendar_eventNameFieldTitle")
+  String calendar_eventNameFieldTitle();
+
   /**
    * Translated "From must be before To".
    * 
@@ -14,6 +80,60 @@ public interface SmartGwtMessages extends com.google.gwt.i18n.client.Messages {
   @DefaultMessage("From must be before To")
   @Key("calendar_invalidDateMessage")
   String calendar_invalidDateMessage();
+
+  /**
+   * Translated "Month".
+   * 
+   * @return translated "Month"
+   */
+  @DefaultMessage("Month")
+  @Key("calendar_monthViewTitle")
+  String calendar_monthViewTitle();
+
+  /**
+   * Translated "Next".
+   * 
+   * @return translated "Next"
+   */
+  @DefaultMessage("Next")
+  @Key("calendar_nextButtonHoverText")
+  String calendar_nextButtonHoverText();
+
+  /**
+   * Translated "Previous".
+   * 
+   * @return translated "Previous"
+   */
+  @DefaultMessage("Previous")
+  @Key("calendar_previousButtonHoverText")
+  String calendar_previousButtonHoverText();
+
+  /**
+   * Translated "Save Event".
+   * 
+   * @return translated "Save Event"
+   */
+  @DefaultMessage("Save Event")
+  @Key("calendar_saveButtonTitle")
+  String calendar_saveButtonTitle();
+
+  /**
+   * Translated "Timeline".
+   * 
+   * @return translated "Timeline"
+   */
+  @DefaultMessage("Timeline")
+  @Key("calendar_timelineViewTitle")
+  String calendar_timelineViewTitle();
+
+  /**
+   * Translated "Week".
+   * 
+   * @return translated "Week"
+   */
+  @DefaultMessage("Week")
+  @Key("calendar_weekViewTitle")
+  String calendar_weekViewTitle();
 
   /**
    * Translated "Add formula column...".
@@ -25,11 +145,11 @@ public interface SmartGwtMessages extends com.google.gwt.i18n.client.Messages {
   String dataBoundComponent_addFormulaFieldText();
 
   /**
-   * Translated "Add sumamry column...".
+   * Translated "Add summary column...".
    * 
-   * @return translated "Add sumamry column..."
+   * @return translated "Add summary column..."
    */
-  @DefaultMessage("Add sumamry column...")
+  @DefaultMessage("Add summary column...")
   @Key("dataBoundComponent_addSummaryFieldText")
   String dataBoundComponent_addSummaryFieldText();
 
@@ -421,6 +541,15 @@ public interface SmartGwtMessages extends com.google.gwt.i18n.client.Messages {
   String dynamicForm_unknownErrorMessage();
 
   /**
+   * Translated "Add".
+   * 
+   * @return translated "Add"
+   */
+  @DefaultMessage("Add")
+  @Key("filterBuilder_addButtonPrompt")
+  String filterBuilder_addButtonPrompt();
+
+  /**
    * Translated "and".
    * 
    * @return translated "and"
@@ -453,6 +582,33 @@ public interface SmartGwtMessages extends com.google.gwt.i18n.client.Messages {
    * @return translated "and"
    */
   @DefaultMessage("and")
+  @Key("filterBuilder_rangeSeparator")
+  String filterBuilder_rangeSeparator();
+
+  /**
+   * Translated "Remove".
+   * 
+   * @return translated "Remove"
+   */
+  @DefaultMessage("Remove")
+  @Key("filterBuilder_removeButtonPrompt")
+  String filterBuilder_removeButtonPrompt();
+
+  /**
+   * Translated "Add Subclause".
+   * 
+   * @return translated "Add Subclause"
+   */
+  @DefaultMessage("Add Subclause")
+  @Key("filterBuilder_subClauseButtonPrompt")
+  String filterBuilder_subClauseButtonPrompt();
+
+  /**
+   * Translated "and".
+   * 
+   * @return translated "and"
+   */
+  @DefaultMessage("and")
   @Key("filterBuilder_topOperator")
   String filterBuilder_topOperator();
 
@@ -466,13 +622,40 @@ public interface SmartGwtMessages extends com.google.gwt.i18n.client.Messages {
   String formulaBuilder_autoHideCheckBoxLabel();
 
   /**
-   * Translated "The following functions are available:".
+   * Translated "For basic arithmetic, type in symbols (+-/%) directly.<p>The following functions are available:".
    * 
-   * @return translated "The following functions are available:"
+   * @return translated "For basic arithmetic, type in symbols (+-/%) directly.<p>The following functions are available:"
    */
-  @DefaultMessage("The following functions are available:")
+  @DefaultMessage("For basic arithmetic, type in symbols (+-/%) directly.<p>The following functions are available:")
   @Key("formulaBuilder_helpTextIntro")
   String formulaBuilder_helpTextIntro();
+
+  /**
+   * Translated "The following fields are available for use in this".
+   * 
+   * @return translated "The following fields are available for use in this"
+   */
+  @DefaultMessage("The following fields are available for use in this")
+  @Key("formulaBuilder_instructionsTextStart")
+  String formulaBuilder_instructionsTextStart();
+
+  /**
+   * Translated "For record:".
+   * 
+   * @return translated "For record:"
+   */
+  @DefaultMessage("For record:")
+  @Key("formulaBuilder_samplePromptForRecord")
+  String formulaBuilder_samplePromptForRecord();
+
+  /**
+   * Translated "Output:".
+   * 
+   * @return translated "Output:"
+   */
+  @DefaultMessage("Output:")
+  @Key("formulaBuilder_samplePromptOutput")
+  String formulaBuilder_samplePromptOutput();
 
   /**
    * Translated "by Day of Month".
@@ -1049,6 +1232,33 @@ public interface SmartGwtMessages extends com.google.gwt.i18n.client.Messages {
   @DefaultMessage("starts with (match case)")
   @Key("operators_startsWithTitle")
   String operators_startsWithTitle();
+
+  /**
+   * Translated "No items to display".
+   * 
+   * @return translated "No items to display"
+   */
+  @DefaultMessage("No items to display")
+  @Key("pickTreeItem_emptyMenuMessage")
+  String pickTreeItem_emptyMenuMessage();
+
+  /**
+   * Translated "Print".
+   * 
+   * @return translated "Print"
+   */
+  @DefaultMessage("Print")
+  @Key("printWindow_printButtonTitle")
+  String printWindow_printButtonTitle();
+
+  /**
+   * Translated "Print Preview".
+   * 
+   * @return translated "Print Preview"
+   */
+  @DefaultMessage("Print Preview")
+  @Key("printWindow_title")
+  String printWindow_title();
 
   /**
    * Translated "Contacting Server...".
