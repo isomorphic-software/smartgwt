@@ -39,6 +39,16 @@ public class JSOHelper {
     private JSOHelper() {
     }
 
+    /**
+     * Evaluatate the passed string as Javascript
+     *
+     * @param jsFrag the string to evaluate
+     * @return the JavaScriptObject upon evaluation
+     */
+    public static native JavaScriptObject eval(String jsFrag) /*-{
+		return eval(jsFrag);
+	}-*/;
+
     public static boolean isJSO(Object object) {
         return object instanceof JavaScriptObject;
     }

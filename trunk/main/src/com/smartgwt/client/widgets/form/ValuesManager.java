@@ -334,7 +334,7 @@ public class ValuesManager extends BaseClass {
     // ********************* Static Methods ***********************
 
 
-
+
 
 
 
@@ -571,6 +571,29 @@ public class ValuesManager extends BaseClass {
         var memberJS = member.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
         self.removeMember(memberJS);
     }-*/;
+
+    /**
+     * Returns an array of members in this ValuesManager.
+     *
+     * @return the members
+     */
+    public DynamicForm[] getMembers() {
+        return convertToDynamicFormArray(getAttributeAsJavaScriptObject("members"));
+    }
+
+    private static DynamicForm[] convertToDynamicFormArray(JavaScriptObject nativeArray) {
+        if (nativeArray == null) {
+            return new DynamicForm[]{};
+        }
+        JavaScriptObject[] componentsj = JSOHelper.toArray(nativeArray);
+        DynamicForm[] objects = new DynamicForm[componentsj.length];
+        for (int i = 0; i < componentsj.length; i++) {
+            JavaScriptObject componentJS = componentsj[i];
+            DynamicForm obj = DynamicForm.getOrCreateRef(componentJS);
+            objects[i] = obj;
+        }
+        return objects;
+    }
 
     /**
      * Remove a member form from this valuesManager, so its values are no longer managed by this instance. This does not

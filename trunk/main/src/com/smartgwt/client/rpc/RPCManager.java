@@ -120,13 +120,10 @@ public class RPCManager {
 
 
 
+
+
 
-
-
-
-
-
-
+
     /**
      * The actionURL specifies the URL to which the RPC request will be sent. Note that if you override this global
      * default and your application uses DataSource databound components, you'll need to dispatch the DataSource
@@ -394,7 +391,7 @@ public class RPCManager {
 
     /**
      * Send the passed RPCRequest to the server. If queuing is in effect, this queues the request instead.
-     *
+     * 
      * @param rpcRequestProperties  RPCRequest to send to the server
      */
     public static native void sendRequest(RPCRequest rpcRequestProperties) /*-{
@@ -403,7 +400,7 @@ public class RPCManager {
 
     /**
      * This method is a convenience wrapper on RPCManager.sendRequest() - it calls through to sendRequest().
-     *
+     * 
      * @param data data to be passed to the server
      * @param callback callback to invoke on RPC completion
      * @param requestParams any additional properties you want to set - these will be applied to the RPCRequest object that will be auto-created for you.
@@ -430,6 +427,7 @@ public class RPCManager {
             if(callback != null) callback.@com.smartgwt.client.rpc.RPCCallback::execute(Lcom/smartgwt/client/rpc/RPCResponse;Ljava/lang/Object;Lcom/smartgwt/client/rpc/RPCRequest;)(responseJ, data, requestJ);
         }, requestParams == null ? null : @com.smartgwt.client.util.JSOHelper::convertMapToJavascriptObject(Ljava/util/Map;)(requestParams));
     }-*/;
+
 }
 
 
