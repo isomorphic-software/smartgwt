@@ -356,6 +356,7 @@ public class SectionStack extends VLayout  implements com.smartgwt.client.widget
 
 
 
+
     public void setSections(SectionStackSection... sections) {
         for (SectionStackSection section : sections) {
             addSection(section);
@@ -635,7 +636,7 @@ public class SectionStack extends VLayout  implements com.smartgwt.client.widget
      *
      * @return the section indicated
      */
-    public native SectionStackSection getSectionStackSection(String sectionID) /*-{
+    public native SectionStackSection getSection(String sectionID) /*-{
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
         var ret = self.getSectionHeader(sectionID);
         if(ret == null || ret === undefined) return null;
@@ -652,13 +653,35 @@ public class SectionStack extends VLayout  implements com.smartgwt.client.widget
      *
      * @return the section header indicated
      */
-    public native SectionStackSection getSectionStackSection(int index) /*-{
+    public native SectionStackSection getSection(int index) /*-{
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
         var ret = self.getSectionHeader(index);
         if(ret == null || ret === undefined) return null;
         var retVal = @com.smartgwt.client.widgets.layout.SectionStackSection::getOrCreateRef(Lcom/google/gwt/core/client/JavaScriptObject;)(ret);
         return retVal;
     }-*/;
+
+    public native SectionStackSection[] getSections() /*-{
+        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
+        var ret = self.sections;
+        if(ret == null || ret === undefined) return null;
+        return  this.@com.smartgwt.client.widgets.layout.SectionStack::convertToSectionArray(Lcom/google/gwt/core/client/JavaScriptObject;)(ret);
+
+    }-*/;
+
+    private SectionStackSection[] convertToSectionArray(JavaScriptObject nativeArray) {
+        if (nativeArray == null) {
+            return new SectionStackSection[]{};
+        }
+        JavaScriptObject[] componentsj = JSOHelper.toArray(nativeArray);
+        SectionStackSection[] objects = new SectionStackSection[componentsj.length];
+        for (int i = 0; i < componentsj.length; i++) {
+            JavaScriptObject componentJS = componentsj[i];
+            SectionStackSection obj = SectionStackSection.getOrCreateRef(componentJS);
+            objects[i] = obj;
+        }
+        return objects;
+    }
 
     /**
      * Add a onSectionHeaderClick handler.

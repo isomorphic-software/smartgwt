@@ -130,7 +130,7 @@ public class SectionHeaderClickEvent extends BrowserEvent<SectionHeaderClickHand
      *
      * @return SectionStackSection of the header clicked by the user
      */
-    public  native SectionStackSection getSectionStackSection() /*-{
+    public  native SectionStackSection getSection() /*-{
         var jsObj = this.@com.smartgwt.client.event.AbstractSmartEvent::jsObj;
         var retVal = @com.smartgwt.client.widgets.layout.SectionStackSection::getOrCreateRef(Lcom/google/gwt/core/client/JavaScriptObject;)(jsObj.section);
         return retVal;
