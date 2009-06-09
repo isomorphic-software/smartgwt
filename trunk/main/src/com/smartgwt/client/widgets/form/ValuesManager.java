@@ -334,9 +334,20 @@ public class ValuesManager extends BaseClass {
     // ********************* Static Methods ***********************
 
 
-
-
-
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
     /**
@@ -604,8 +615,7 @@ public class ValuesManager extends BaseClass {
      */
     public native void removeMember(String formID) /*-{
         var self = this.@com.smartgwt.client.core.BaseClass::getOrCreateJsObj()();
-        var memberJS = member.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
-        self.removeMember(memberJS);
+        self.removeMember(formID);
     }-*/;
 
     public native void fetchData() /*-{
