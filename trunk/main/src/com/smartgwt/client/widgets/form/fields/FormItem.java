@@ -2108,10 +2108,9 @@ public class FormItem extends RefDataClass  implements com.smartgwt.client.widge
 
 
 
-
+
 
 
-
     public void setAttribute(String attribute, String value) {
         if (!isCreated()) {
             JSOHelper.setAttribute(jsObj, attribute, value);
@@ -2805,6 +2804,22 @@ public class FormItem extends RefDataClass  implements com.smartgwt.client.widge
             var itemJ = @com.smartgwt.client.widgets.form.fields.FormItem::getOrCreateRef(Lcom/google/gwt/core/client/JavaScriptObject;)(item);
             return hoverFormatter.@com.smartgwt.client.widgets.form.FormItemHoverFormatter::getHoverHTML(Lcom/smartgwt/client/widgets/form/fields/FormItem;Lcom/smartgwt/client/widgets/form/DynamicForm;)(itemJ, formJ);
         };
+    }-*/;
+
+    /**
+     * A reference to the FormItem's DynamicForm.
+     * <p>
+     * <b>Note that you must treat this as a read-only reference to the from</b>
+     *
+     * @return the form
+     */
+    public native DynamicForm getForm() /*-{
+        var self = this.@com.smartgwt.client.core.DataClass::getJsObj()();
+        if(self.form) {
+            @com.smartgwt.client.widgets.form.DynamicForm::getOrCreateRef(Lcom/google/gwt/core/client/JavaScriptObject;)(self.form);
+        } else {
+            return null;
+        }
     }-*/;
 
 }
