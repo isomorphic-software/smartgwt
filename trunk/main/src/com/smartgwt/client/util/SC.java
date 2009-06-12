@@ -396,10 +396,28 @@ public class SC {
      * Logs the echoed object as a warning, prefixed with an optional message.
      *
      * @param value object to echo
+     */
+    public static native void logEcho(JavaScriptObject value) /*-{
+    	$wnd.isc.logEcho(value);
+	}-*/;
+
+    /**
+     * Logs the echoed object as a warning, prefixed with an optional message.
+     *
+     * @param value object to echo
      * @param message the message to log
      */
     public static native void logEcho(JavaScriptObject value, String message) /*-{
     	$wnd.isc.logEcho(value, message);
+	}-*/;
+
+    /**
+     * Logs the echoed object as a warning, prefixed with an optional message.
+     *
+     * @param canvas canvas to echo
+     */
+    public static native void logEcho(Canvas canvas) /*-{
+    	$wnd.isc.logEcho(canvas.@com.smartgwt.client.widgets.Canvas::getOrCreateJsObj()());
 	}-*/;
 
     /**
@@ -416,10 +434,28 @@ public class SC {
      * Logs the echoed object as a warning, prefixed with an optional message.
      *
      * @param value object to echo
+     */
+    public static native void logEchoAll(JavaScriptObject value) /*-{
+    	$wnd.isc.logEchoAll(value);
+	}-*/;
+
+    /**
+     * Logs the echoed object as a warning, prefixed with an optional message.
+     *
+     * @param value object to echo
      * @param message the message to log
      */
     public static native void logEchoAll(JavaScriptObject value, String message) /*-{
     	$wnd.isc.logEchoAll(value, message);
+	}-*/;
+
+    /**
+     * Logs the echoed object as a warning, prefixed with an optional message.
+     *
+     * @param canvas canvas to echo
+     */
+    public static native void logEchoAll(Canvas canvas) /*-{
+    	$wnd.isc.logEchoAll(canvas.@com.smartgwt.client.widgets.Canvas::getOrCreateJsObj()());
 	}-*/;
 
     /**
