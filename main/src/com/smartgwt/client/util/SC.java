@@ -18,6 +18,7 @@ package com.smartgwt.client.util;
 
 import com.google.gwt.core.client.JavaScriptObject;
 import com.smartgwt.client.widgets.Dialog;
+import com.smartgwt.client.widgets.Canvas;
 
 public class SC {
     public static final String REF = "__ref";
@@ -404,6 +405,16 @@ public class SC {
     /**
      * Logs the echoed object as a warning, prefixed with an optional message.
      *
+     * @param canvas canvas to echo
+     * @param message the message to log
+     */
+    public static native void logEcho(Canvas canvas, String message) /*-{
+    	$wnd.isc.logEcho(canvas.@com.smartgwt.client.widgets.Canvas::getOrCreateJsObj()(), message);
+	}-*/;
+
+    /**
+     * Logs the echoed object as a warning, prefixed with an optional message.
+     *
      * @param value object to echo
      * @param message the message to log
      */
@@ -411,5 +422,13 @@ public class SC {
     	$wnd.isc.logEchoAll(value, message);
 	}-*/;
 
-
+    /**
+     * Logs the echoed object as a warning, prefixed with an optional message.
+     *
+     * @param canvas canvas to echo
+     * @param message the message to log
+     */
+    public static native void logEchoAll(Canvas canvas, String message) /*-{
+    	$wnd.isc.logEchoAll(canvas.@com.smartgwt.client.widgets.Canvas::getOrCreateJsObj()(), message);
+	}-*/;
 }
