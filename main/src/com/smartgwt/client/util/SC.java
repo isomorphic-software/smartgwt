@@ -40,6 +40,16 @@ public class SC {
     }-*/;
 
     /**
+     * Gets the name of this underlying SmartClient class as a string.
+     *
+     * @param jsObj the smartclient object
+     * @return the class name or null if not a smartclient class
+     */
+    public static native String getSCClassName(JavaScriptObject jsObj)/*-{
+        return jsObj.getClassName ? jsObj.getClassName() : null;
+    }-*/;
+
+    /**
      * Return true if Firebug is enabled.
      *
      * @return true if firebug is enabled
