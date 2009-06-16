@@ -103,10 +103,9 @@ public class Calendar extends Canvas  implements DataBoundComponent, com.smartgw
     * Set the current date for which the calendar will display events.&#010&#010
     *
     * @param chosenDate the new date to set as the current date. Default value is 'Today'
-    * @throws IllegalStateException this property cannot be changed after the component has been created
     */
-    public void setChosenDate(java.util.Date chosenDate)  throws IllegalStateException {
-        setAttribute("chosenDate", chosenDate, false);
+    public void setChosenDate(java.util.Date chosenDate) {
+        setAttribute("chosenDate", chosenDate, true);
     }
     /**
      * The date for which events are displayed in the day, week, and month tabs of the calendar.&#010 Default is today.
