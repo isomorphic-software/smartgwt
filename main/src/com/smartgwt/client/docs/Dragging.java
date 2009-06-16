@@ -3,6 +3,8 @@ package com.smartgwt.client.docs;
 
 /**
  * @see com.smartgwt.client.widgets.Canvas#shouldDragScroll
+ * @see com.smartgwt.client.widgets.DataBoundComponent#dragComplete
+ * @see com.smartgwt.client.widgets.DataBoundComponent#dropComplete
  * @see com.smartgwt.client.widgets.DataBoundComponent#getDragData
  * @see com.smartgwt.client.widgets.DataBoundComponent#transferSelectedData
  * @see com.smartgwt.client.widgets.grid.ListGrid#willAcceptDrop

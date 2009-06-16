@@ -55,7 +55,8 @@ import com.smartgwt.client.util.JSOHelper;
 import com.smartgwt.client.util.EnumUtil;
 import com.google.gwt.event.shared.*;
 import com.google.gwt.event.shared.HasHandlers;
-public class CalendarEventResized extends BrowserEvent<EventResizedHandler>  {
+public class CalendarEventResized extends BrowserEvent<EventResizedHandler>  implements Cancellable {
+    private boolean cancel = false;
 
   /**
    * Handler type.
@@ -110,6 +111,19 @@ public class CalendarEventResized extends BrowserEvent<EventResizedHandler>  {
     }
 
 
+    /**
+     * return false to disallow the resize
+     */
+    public void cancel() {
+        cancel = true;
+    }
+
+    /**
+     * @return true if cancelled
+     */
+    public boolean isCancelled() {
+        return cancel;
+    }
 
     /**
      * new end date and time that event is being resized to

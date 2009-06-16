@@ -1334,7 +1334,7 @@ public class ListGridField extends DataClass  implements com.smartgwt.client.wid
     }
 
     /**
-    * Specifies the {@link com.smartgwt.client.widgets.grid.ListGridField#getOptionDataSource optionDataSource} field used to retrieve the display&#010 values that are to be mapped from the internal values specified by {@link com.smartgwt.client.widgets.grid.ListGridField#getValueField valueField}.<br>&#010 If no <code>optionDataSource</code> is defined for the field, the cell will display&#010 the displayField value for the current record instead of the underlying value for&#010 this field. Note that if this field is editable this will also&#010 be applied to this field's editors.
+    * Specifies the {@link com.smartgwt.client.widgets.grid.ListGridField#getOptionDataSource optionDataSource} field used to retrieve the display&#010 values that are to be mapped from the internal values specified by {@link com.smartgwt.client.widgets.grid.ListGridField#getValueField valueField}.<br>&#010 If no <code>optionDataSource</code> is defined for the field, the cell will display&#010 the displayField value for the current record instead of the underlying value for&#010 this field. Note that if this field is editable this will also&#010 be applied to this field's editors.&#010 <p>&#010 The display value for a record with a specified <code>displayField</code> can be &#010 picked up via {@link com.smartgwt.client.widgets.grid.ListGrid#getDisplayValue}.
     *
     * @param displayField displayField Default value is null
     */
@@ -1342,7 +1342,7 @@ public class ListGridField extends DataClass  implements com.smartgwt.client.wid
         setAttribute("displayField", displayField);
     }
     /**
-     * Specifies the {@link com.smartgwt.client.widgets.grid.ListGridField#getOptionDataSource optionDataSource} field used to retrieve the display&#010 values that are to be mapped from the internal values specified by {@link com.smartgwt.client.widgets.grid.ListGridField#getValueField valueField}.<br>&#010 If no <code>optionDataSource</code> is defined for the field, the cell will display&#010 the displayField value for the current record instead of the underlying value for&#010 this field. Note that if this field is editable this will also&#010 be applied to this field's editors.
+     * Specifies the {@link com.smartgwt.client.widgets.grid.ListGridField#getOptionDataSource optionDataSource} field used to retrieve the display&#010 values that are to be mapped from the internal values specified by {@link com.smartgwt.client.widgets.grid.ListGridField#getValueField valueField}.<br>&#010 If no <code>optionDataSource</code> is defined for the field, the cell will display&#010 the displayField value for the current record instead of the underlying value for&#010 this field. Note that if this field is editable this will also&#010 be applied to this field's editors.&#010 <p>&#010 The display value for a record with a specified <code>displayField</code> can be &#010 picked up via {@link com.smartgwt.client.widgets.grid.ListGrid#getDisplayValue}.
      *
      *
      * @return String

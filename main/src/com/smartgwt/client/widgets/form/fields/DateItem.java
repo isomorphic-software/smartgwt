@@ -248,6 +248,16 @@ public class DateItem extends FormItem {
     }
              
     /**
+    * If <code>dateFormatter</code> is set at init time, it will be used instead of&#010 {@link com.smartgwt.client.widgets.form.fields.DateItem#getDisplayFormat displayFormat} to govern how dates are displayed in this item.
+    * <p><b>Note : </b> This is an advanced setting</p>
+    *
+    * @param dateFormatter dateFormatter Default value is null
+    */
+    public void setDateFormatter(DateDisplayFormat dateFormatter) {
+        setAttribute("dateFormatter", dateFormatter.getValue());
+    }
+             
+    /**
     * If {@link com.smartgwt.client.widgets.form.fields.DateItem#getUseTextField useTextField} is <code>true</code> this property can be used to &#010 customize the format in which dates are displayed.<br>&#010 Should be set to a standard {@link com.smartgwt.client.types.DateDisplayFormat} or&#010 a function which will return a formatted date string.&#010 Default setting is <code>"toShortDate"</code> which ensures that if the standard&#010 shortDate format is modified via {@link com.smartgwt.client..Date#setShortDisplayFormat} this format&#010 will be picked up.&#010 <P>&#010 <B>NOTE: you may need to update the {@link com.smartgwt.client.widgets.form.fields.DateItem#getInputFormat inputFormat} to ensure the&#010 DateItem is able to parse user-entered date strings back into Dates</B>
     *
     * @param displayFormat displayFormat Default value is "toShortDate"
@@ -283,26 +293,6 @@ public class DateItem extends FormItem {
      */
     public String getInputFormat()  {
         return getAttributeAsString("inputFormat");
-    }
-             
-    /**
-    * Inapplicable for DateItems.  Use {@link com.smartgwt.client.widgets.form.fields.DateItem#getDisplayFormat displayFormat} instead.
-    * <p><b>Note : </b> This is an advanced setting</p>
-    *
-    * @param dateFormatter dateFormatter Default value is null
-    */
-    public void setDateFormatter(DateDisplayFormat dateFormatter) {
-        setAttribute("dateFormatter", dateFormatter.getValue());
-    }
-    /**
-     * Inapplicable for DateItems.  Use {@link com.smartgwt.client.widgets.form.fields.DateItem#getDisplayFormat displayFormat} instead.
-     *
-     *
-     * @return DateDisplayFormat
-     *
-     */
-    public DateDisplayFormat getDateFormatter()  {
-        return (DateDisplayFormat) EnumUtil.getEnum(DateDisplayFormat.values(), getAttribute("dateFormatter"));
     }
 
     /**

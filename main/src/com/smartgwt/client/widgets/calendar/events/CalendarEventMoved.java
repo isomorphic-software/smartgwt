@@ -55,7 +55,8 @@ import com.smartgwt.client.util.JSOHelper;
 import com.smartgwt.client.util.EnumUtil;
 import com.google.gwt.event.shared.*;
 import com.google.gwt.event.shared.HasHandlers;
-public class CalendarEventMoved extends BrowserEvent<EventMovedHandler>  {
+public class CalendarEventMoved extends BrowserEvent<EventMovedHandler>  implements Cancellable {
+    private boolean cancel = false;
 
   /**
    * Handler type.
@@ -110,6 +111,19 @@ public class CalendarEventMoved extends BrowserEvent<EventMovedHandler>  {
     }
 
 
+    /**
+     * return false to disallow the move.
+     */
+    public void cancel() {
+        cancel = true;
+    }
+
+    /**
+     * @return true if cancelled
+     */
+    public boolean isCancelled() {
+        return cancel;
+    }
 
     /**
      * new date and time that event is being moved to

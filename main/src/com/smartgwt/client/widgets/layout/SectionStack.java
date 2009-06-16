@@ -349,12 +349,8 @@ public class SectionStack extends VLayout  implements com.smartgwt.client.widget
 
 
 
-
-
-
-
-
-
+
+
 
 
     public void setSections(SectionStackSection... sections) {

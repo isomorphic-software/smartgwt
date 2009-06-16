@@ -420,8 +420,9 @@ public class Slider extends Canvas  implements com.smartgwt.client.widgets.event
 
     /**
     * The minimum slider value. The slider value is equal to minValue when the thumb is at the&#010 bottom or left of the slider (unless flipValues is true, in which case the minimum value&#010 is at the top/right of the slider)
+    * Sets the {@link com.smartgwt.client.widgets.Slider#getMinValue minValue} of the slider &#010&#010
     *
-    * @param minValue minValue Default value is 1
+    * @param minValue the new minimum value. Default value is 1
     */
     public void setMinValue(float minValue) {
         setAttribute("minValue", minValue, true);
@@ -458,8 +459,9 @@ public class Slider extends Canvas  implements com.smartgwt.client.widgets.event
 
     /**
     * The maximum slider value. The slider value is equal to maxValue when the thumb is at the&#010 top or right of the slider (unless flipValues is true, in which case the maximum value&#010 is at the bottom/left of the slider)
+    * Sets the {@link com.smartgwt.client.widgets.Slider#getMaxValue maxValue} of the slider &#010&#010
     *
-    * @param maxValue maxValue Default value is 100
+    * @param maxValue the new maximum value. Default value is 100
     */
     public void setMaxValue(float maxValue) {
         setAttribute("maxValue", maxValue, true);
@@ -496,8 +498,9 @@ public class Slider extends Canvas  implements com.smartgwt.client.widgets.event
 
     /**
     * The number of discrete values represented by slider. If specified, the range of valid&#010 values (between <code>minValue</code> and <code>maxValue</code>) will be divided into&#010 this many steps. As the thumb is moved along the track it will only select these values&#010 and appear to jump between the steps.
+    * Sets the {@link com.smartgwt.client.widgets.Slider#getNumValues numValues} for the slider &#010&#010
     *
-    * @param numValues numValues Default value is null
+    * @param numValues the new number of values. Default value is null
     */
     public void setNumValues(Integer numValues) {
         setAttribute("numValues", numValues, true);
@@ -716,6 +719,9 @@ public class Slider extends Canvas  implements com.smartgwt.client.widgets.event
                 return @com.smartgwt.client.util.JSOHelper::toBoolean(Z)(retVal);
             }
         }-*/;
+
+
+
 
     // ********************* Static Methods ***********************
 

@@ -1867,6 +1867,7 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
     public int getAnimateRemoveSpeed()  {
         return getAttributeAsInt("animateRemoveSpeed");
     }
+ 
 
     /**
     * If we're showing the filterEditor (this.showFilterEditor is true), this property &#010 determines whether this list should be filtered every time the user puts focus in&#010 a different field in the filter editor.
@@ -2179,7 +2180,7 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
     }
 
     /**
-    * When the user starts editing a row, should the data in that row also be selected?
+    * When the user starts editing a row, should the row also be selected?&#010  <P>&#010  Note that  when this attribute is set to <code>true</code>, other all other rows in the grid&#010  will be deselected when a record is selected due to editing.
     * <p><b>Note : </b> This is an advanced setting</p>
     *
     * @param selectOnEdit selectOnEdit Default value is true
@@ -2188,7 +2189,7 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
         setAttribute("selectOnEdit", selectOnEdit, true);
     }
     /**
-     * When the user starts editing a row, should the data in that row also be selected?
+     * When the user starts editing a row, should the row also be selected?&#010  <P>&#010  Note that  when this attribute is set to <code>true</code>, other all other rows in the grid&#010  will be deselected when a record is selected due to editing.
      *
      *
      * @return Boolean
@@ -4236,6 +4237,7 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
             }
             return retVal;
         }-*/;
+
 
 
 

@@ -894,7 +894,7 @@ public class Calendar extends Canvas  implements DataBoundComponent, com.smartgw
  
 
     /**
-    * if set to true, show the Timeline view.
+    * If set to true, show the Timeline view.
     *
     * @param showTimelineView showTimelineView Default value is false
     */
@@ -902,7 +902,7 @@ public class Calendar extends Canvas  implements DataBoundComponent, com.smartgw
         setAttribute("showTimelineView", showTimelineView, true);
     }
     /**
-     * if set to true, show the Timeline view.
+     * If set to true, show the Timeline view.
      *
      *
      * @return Boolean
@@ -910,6 +910,246 @@ public class Calendar extends Canvas  implements DataBoundComponent, com.smartgw
      */
     public Boolean getShowTimelineView()  {
         return getAttributeAsBoolean("showTimelineView");
+    }
+
+    /**
+    * The title for the day view
+    *
+    * @param dayViewTitle dayViewTitle Default value is "Day"
+    * @throws IllegalStateException this property cannot be changed after the component has been created
+    */
+    public void setDayViewTitle(String dayViewTitle)  throws IllegalStateException {
+        setAttribute("dayViewTitle", dayViewTitle, false);
+    }
+    /**
+     * The title for the day view
+     *
+     *
+     * @return String
+     *
+     */
+    public String getDayViewTitle()  {
+        return getAttributeAsString("dayViewTitle");
+    }
+
+    /**
+    * The title for the week view
+    *
+    * @param weekViewTitle weekViewTitle Default value is "Week"
+    * @throws IllegalStateException this property cannot be changed after the component has been created
+    */
+    public void setWeekViewTitle(String weekViewTitle)  throws IllegalStateException {
+        setAttribute("weekViewTitle", weekViewTitle, false);
+    }
+    /**
+     * The title for the week view
+     *
+     *
+     * @return String
+     *
+     */
+    public String getWeekViewTitle()  {
+        return getAttributeAsString("weekViewTitle");
+    }
+
+    /**
+    * The title for the month view
+    *
+    * @param monthViewTitle monthViewTitle Default value is "Month"
+    * @throws IllegalStateException this property cannot be changed after the component has been created
+    */
+    public void setMonthViewTitle(String monthViewTitle)  throws IllegalStateException {
+        setAttribute("monthViewTitle", monthViewTitle, false);
+    }
+    /**
+     * The title for the month view
+     *
+     *
+     * @return String
+     *
+     */
+    public String getMonthViewTitle()  {
+        return getAttributeAsString("monthViewTitle");
+    }
+
+    /**
+    * The title for the timeline view
+    *
+    * @param timelineViewTitle timelineViewTitle Default value is "Timeline"
+    * @throws IllegalStateException this property cannot be changed after the component has been created
+    */
+    public void setTimelineViewTitle(String timelineViewTitle)  throws IllegalStateException {
+        setAttribute("timelineViewTitle", timelineViewTitle, false);
+    }
+    /**
+     * The title for the timeline view
+     *
+     *
+     * @return String
+     *
+     */
+    public String getTimelineViewTitle()  {
+        return getAttributeAsString("timelineViewTitle");
+    }
+
+    /**
+    * The title for the event name field in the quick event dialog
+    *
+    * @param eventNameFieldTitle eventNameFieldTitle Default value is "Event Name"
+    * @throws IllegalStateException this property cannot be changed after the component has been created
+    */
+    public void setEventNameFieldTitle(String eventNameFieldTitle)  throws IllegalStateException {
+        setAttribute("eventNameFieldTitle", eventNameFieldTitle, false);
+    }
+    /**
+     * The title for the event name field in the quick event dialog
+     *
+     *
+     * @return String
+     *
+     */
+    public String getEventNameFieldTitle()  {
+        return getAttributeAsString("eventNameFieldTitle");
+    }
+
+    /**
+    * The title for the save button in the quick event dialog and the event editor
+    *
+    * @param saveButtonTitle saveButtonTitle Default value is "Save Event"
+    * @throws IllegalStateException this property cannot be changed after the component has been created
+    */
+    public void setSaveButtonTitle(String saveButtonTitle)  throws IllegalStateException {
+        setAttribute("saveButtonTitle", saveButtonTitle, false);
+    }
+    /**
+     * The title for the save button in the quick event dialog and the event editor
+     *
+     *
+     * @return String
+     *
+     */
+    public String getSaveButtonTitle()  {
+        return getAttributeAsString("saveButtonTitle");
+    }
+
+    /**
+    * The title for the edit button in the quick event dialog
+    *
+    * @param detailsButtonTitle detailsButtonTitle Default value is "Edit Details"
+    * @throws IllegalStateException this property cannot be changed after the component has been created
+    */
+    public void setDetailsButtonTitle(String detailsButtonTitle)  throws IllegalStateException {
+        setAttribute("detailsButtonTitle", detailsButtonTitle, false);
+    }
+    /**
+     * The title for the edit button in the quick event dialog
+     *
+     *
+     * @return String
+     *
+     */
+    public String getDetailsButtonTitle()  {
+        return getAttributeAsString("detailsButtonTitle");
+    }
+
+    /**
+    * The title for the cancel button in the event editor
+    *
+    * @param cancelButtonTitle cancelButtonTitle Default value is "Cancel"
+    * @throws IllegalStateException this property cannot be changed after the component has been created
+    */
+    public void setCancelButtonTitle(String cancelButtonTitle)  throws IllegalStateException {
+        setAttribute("cancelButtonTitle", cancelButtonTitle, false);
+    }
+    /**
+     * The title for the cancel button in the event editor
+     *
+     *
+     * @return String
+     *
+     */
+    public String getCancelButtonTitle()  {
+        return getAttributeAsString("cancelButtonTitle");
+    }
+
+    /**
+    * The text to be displayed when a user hovers over the {@link com.smartgwt.client.widgets.calendar.Calendar#getPreviousButton previousButton}&#010 toolbar button
+    *
+    * @param previousButtonHoverText previousButtonHoverText Default value is "Previous"
+    * @throws IllegalStateException this property cannot be changed after the component has been created
+    */
+    public void setPreviousButtonHoverText(String previousButtonHoverText)  throws IllegalStateException {
+        setAttribute("previousButtonHoverText", previousButtonHoverText, false);
+    }
+    /**
+     * The text to be displayed when a user hovers over the {@link com.smartgwt.client.widgets.calendar.Calendar#getPreviousButton previousButton}&#010 toolbar button
+     *
+     *
+     * @return String
+     *
+     */
+    public String getPreviousButtonHoverText()  {
+        return getAttributeAsString("previousButtonHoverText");
+    }
+
+    /**
+    * The text to be displayed when a user hovers over the {@link com.smartgwt.client.widgets.calendar.Calendar#getNextButton nextButton} &#010 toolbar button
+    *
+    * @param nextButtonHoverText nextButtonHoverText Default value is "Next"
+    * @throws IllegalStateException this property cannot be changed after the component has been created
+    */
+    public void setNextButtonHoverText(String nextButtonHoverText)  throws IllegalStateException {
+        setAttribute("nextButtonHoverText", nextButtonHoverText, false);
+    }
+    /**
+     * The text to be displayed when a user hovers over the {@link com.smartgwt.client.widgets.calendar.Calendar#getNextButton nextButton} &#010 toolbar button
+     *
+     *
+     * @return String
+     *
+     */
+    public String getNextButtonHoverText()  {
+        return getAttributeAsString("nextButtonHoverText");
+    }
+
+    /**
+    * The text to be displayed when a user hovers over the {@link com.smartgwt.client.widgets.calendar.Calendar#getAddEventButton addEventButton}&#010 toolbar button
+    *
+    * @param addEventButtonHoverText addEventButtonHoverText Default value is "Add an event"
+    * @throws IllegalStateException this property cannot be changed after the component has been created
+    */
+    public void setAddEventButtonHoverText(String addEventButtonHoverText)  throws IllegalStateException {
+        setAttribute("addEventButtonHoverText", addEventButtonHoverText, false);
+    }
+    /**
+     * The text to be displayed when a user hovers over the {@link com.smartgwt.client.widgets.calendar.Calendar#getAddEventButton addEventButton}&#010 toolbar button
+     *
+     *
+     * @return String
+     *
+     */
+    public String getAddEventButtonHoverText()  {
+        return getAttributeAsString("addEventButtonHoverText");
+    }
+
+    /**
+    * The text to be displayed when a user hovers over the {@link com.smartgwt.client.widgets.calendar.Calendar#getDatePickerButton datePickerButton}&#010 toolbar button
+    *
+    * @param datePickerHoverText datePickerHoverText Default value is "Choose a date"
+    * @throws IllegalStateException this property cannot be changed after the component has been created
+    */
+    public void setDatePickerHoverText(String datePickerHoverText)  throws IllegalStateException {
+        setAttribute("datePickerHoverText", datePickerHoverText, false);
+    }
+    /**
+     * The text to be displayed when a user hovers over the {@link com.smartgwt.client.widgets.calendar.Calendar#getDatePickerButton datePickerButton}&#010 toolbar button
+     *
+     *
+     * @return String
+     *
+     */
+    public String getDatePickerHoverText()  {
+        return getAttributeAsString("datePickerHoverText");
     }
 
     // ********************* Methods ***********************
@@ -1008,6 +1248,8 @@ public class Calendar extends Canvas  implements DataBoundComponent, com.smartgw
                         var param = {"date" : arguments[0], "events" : arguments[1], "calendar" : arguments[2], "rowNum" : arguments[3], "colNum" : arguments[4]};
                         var event = @com.smartgwt.client.widgets.calendar.events.DayHeaderClickEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
                         selfJ.@com.smartgwt.client.widgets.BaseWidget::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
+                        var ret = event.@com.smartgwt.client.event.Cancellable::isCancelled()();
+                        return !ret;
                     }
                 });
             } else {
@@ -1016,6 +1258,8 @@ public class Calendar extends Canvas  implements DataBoundComponent, com.smartgw
                     var param = {"date" : arguments[0], "events" : arguments[1], "calendar" : arguments[2], "rowNum" : arguments[3], "colNum" : arguments[4]};
                     var event = @com.smartgwt.client.widgets.calendar.events.DayHeaderClickEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
                     selfJ.@com.smartgwt.client.widgets.BaseWidget::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
+                    var ret = event.@com.smartgwt.client.event.Cancellable::isCancelled()();
+                    return !ret;
                 };
             }
         }-*/;
@@ -1214,6 +1458,8 @@ public class Calendar extends Canvas  implements DataBoundComponent, com.smartgw
                         var param = {"newDate" : arguments[0], "event" : arguments[1]};
                         var event = @com.smartgwt.client.widgets.calendar.events.CalendarEventMoved::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
                         selfJ.@com.smartgwt.client.widgets.BaseWidget::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
+                        var ret = event.@com.smartgwt.client.event.Cancellable::isCancelled()();
+                        return !ret;
                     }
                 });
             } else {
@@ -1222,6 +1468,8 @@ public class Calendar extends Canvas  implements DataBoundComponent, com.smartgw
                     var param = {"newDate" : arguments[0], "event" : arguments[1]};
                     var event = @com.smartgwt.client.widgets.calendar.events.CalendarEventMoved::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
                     selfJ.@com.smartgwt.client.widgets.BaseWidget::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
+                    var ret = event.@com.smartgwt.client.event.Cancellable::isCancelled()();
+                    return !ret;
                 };
             }
         }-*/;
@@ -1247,6 +1495,8 @@ public class Calendar extends Canvas  implements DataBoundComponent, com.smartgw
                         var param = {"newDate" : arguments[0], "event" : arguments[1]};
                         var event = @com.smartgwt.client.widgets.calendar.events.CalendarEventResized::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
                         selfJ.@com.smartgwt.client.widgets.BaseWidget::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
+                        var ret = event.@com.smartgwt.client.event.Cancellable::isCancelled()();
+                        return !ret;
                     }
                 });
             } else {
@@ -1255,6 +1505,8 @@ public class Calendar extends Canvas  implements DataBoundComponent, com.smartgw
                     var param = {"newDate" : arguments[0], "event" : arguments[1]};
                     var event = @com.smartgwt.client.widgets.calendar.events.CalendarEventResized::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
                     selfJ.@com.smartgwt.client.widgets.BaseWidget::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
+                    var ret = event.@com.smartgwt.client.event.Cancellable::isCancelled()();
+                    return !ret;
                 };
             }
         }-*/;
@@ -1320,9 +1572,19 @@ public class Calendar extends Canvas  implements DataBoundComponent, com.smartgw
     // ********************* Static Methods ***********************
 
 
-
-
-
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
     protected native void onInit() /*-{
