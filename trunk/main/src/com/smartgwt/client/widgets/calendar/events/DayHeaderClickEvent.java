@@ -55,7 +55,8 @@ import com.smartgwt.client.util.JSOHelper;
 import com.smartgwt.client.util.EnumUtil;
 import com.google.gwt.event.shared.*;
 import com.google.gwt.event.shared.HasHandlers;
-public class DayHeaderClickEvent extends BrowserEvent<DayHeaderClickHandler>  {
+public class DayHeaderClickEvent extends BrowserEvent<DayHeaderClickHandler>  implements Cancellable {
+    private boolean cancel = false;
 
   /**
    * Handler type.
@@ -110,6 +111,19 @@ public class DayHeaderClickEvent extends BrowserEvent<DayHeaderClickHandler>  {
     }
 
 
+    /**
+     * return false to cancel the action
+     */
+    public void cancel() {
+        cancel = true;
+    }
+
+    /**
+     * @return true if cancelled
+     */
+    public boolean isCancelled() {
+        return cancel;
+    }
 
     /**
      * JavaScript Date object representing this day

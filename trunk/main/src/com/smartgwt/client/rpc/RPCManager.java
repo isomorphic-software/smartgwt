@@ -66,6 +66,7 @@ public class RPCManager {
 
     // ********************* Static Methods ***********************
 
+
         /**
          * &#010 Returns true if the XMLHttpRequest object is available, false otherwise.  See&#010 {@link com.smartgwt.client.docs.PlatformDependencies} for more information on when XMLHttpRequest parser may&#010 not available and what features are&#010 impacted as a result.&#010&#010
          *

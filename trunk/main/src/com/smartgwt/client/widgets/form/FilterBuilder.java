@@ -151,6 +151,26 @@ public class FilterBuilder extends Layout  implements com.smartgwt.client.widget
     }
 
     /**
+    * The hover prompt text for the remove button.
+    *
+    * @param removeButtonPrompt removeButtonPrompt Default value is "Remove"
+    * @throws IllegalStateException this property cannot be changed after the component has been created
+    */
+    public void setRemoveButtonPrompt(String removeButtonPrompt)  throws IllegalStateException {
+        setAttribute("removeButtonPrompt", removeButtonPrompt, false);
+    }
+    /**
+     * The hover prompt text for the remove button.
+     *
+     *
+     * @return String
+     *
+     */
+    public String getRemoveButtonPrompt()  {
+        return getAttributeAsString("removeButtonPrompt");
+    }
+
+    /**
     * If set, a button will be shown underneath all current clauses allowing a new clause to be&#010 added.
     *
     * @param showAddButton showAddButton Default value is true
@@ -168,6 +188,26 @@ public class FilterBuilder extends Layout  implements com.smartgwt.client.widget
      */
     public Boolean getShowAddButton()  {
         return getAttributeAsBoolean("showAddButton");
+    }
+
+    /**
+    * The hover prompt text for the add button.
+    *
+    * @param addButtonPrompt addButtonPrompt Default value is "Add"
+    * @throws IllegalStateException this property cannot be changed after the component has been created
+    */
+    public void setAddButtonPrompt(String addButtonPrompt)  throws IllegalStateException {
+        setAttribute("addButtonPrompt", addButtonPrompt, false);
+    }
+    /**
+     * The hover prompt text for the add button.
+     *
+     *
+     * @return String
+     *
+     */
+    public String getAddButtonPrompt()  {
+        return getAttributeAsString("addButtonPrompt");
     }
 
     /**
@@ -248,6 +288,46 @@ public class FilterBuilder extends Layout  implements com.smartgwt.client.widget
      */
     public Boolean getShowSubClauseButton()  {
         return getAttributeAsBoolean("showSubClauseButton");
+    }
+
+    /**
+    * The hover title text of the subClauseButton
+    *
+    * @param subClauseButtonTitle subClauseButtonTitle Default value is "+()"
+    * @throws IllegalStateException this property cannot be changed after the component has been created
+    */
+    public void setSubClauseButtonTitle(String subClauseButtonTitle)  throws IllegalStateException {
+        setAttribute("subClauseButtonTitle", subClauseButtonTitle, false);
+    }
+    /**
+     * The hover title text of the subClauseButton
+     *
+     *
+     * @return String
+     *
+     */
+    public String getSubClauseButtonTitle()  {
+        return getAttributeAsString("subClauseButtonTitle");
+    }
+
+    /**
+    * The hover prompt text for the subClauseButton.
+    *
+    * @param subClauseButtonPrompt subClauseButtonPrompt Default value is "Add Subclause"
+    * @throws IllegalStateException this property cannot be changed after the component has been created
+    */
+    public void setSubClauseButtonPrompt(String subClauseButtonPrompt)  throws IllegalStateException {
+        setAttribute("subClauseButtonPrompt", subClauseButtonPrompt, false);
+    }
+    /**
+     * The hover prompt text for the subClauseButton.
+     *
+     *
+     * @return String
+     *
+     */
+    public String getSubClauseButtonPrompt()  {
+        return getAttributeAsString("subClauseButtonPrompt");
     }
 
     // ********************* Methods ***********************

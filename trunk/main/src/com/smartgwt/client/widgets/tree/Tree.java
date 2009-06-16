@@ -659,6 +659,16 @@ public class Tree extends BaseClass  implements com.smartgwt.client.widgets.tree
         }-*/;
 
 
+
+        /**
+         * Unload the children of a node&#010
+         * @param node node in question
+         */
+        public native void unloadChildren(TreeNode node) /*-{
+            var self = this.@com.smartgwt.client.core.BaseClass::getOrCreateJsObj()();
+            self.unloadChildren(node.@com.smartgwt.client.core.DataClass::getJsObj()());
+        }-*/;
+
         /**
          * Reload the children of a node&#010
          * @param node node in question
@@ -684,14 +694,6 @@ public class Tree extends BaseClass  implements com.smartgwt.client.widgets.tree
             }
         }-*/;
 
-        /**
-         * &#010 Open a particular node&#010&#010
-         * @param node node to open
-         */
-        public native void openFolder(TreeNode node) /*-{
-            var self = this.@com.smartgwt.client.core.BaseClass::getOrCreateJsObj()();
-            self.openFolder(node.@com.smartgwt.client.core.DataClass::getJsObj()());
-        }-*/;
 
 
         /**
@@ -754,9 +756,14 @@ public class Tree extends BaseClass  implements com.smartgwt.client.widgets.tree
     // ********************* Static Methods ***********************
 
 
-
 
-
+
+
+
+
+
+
+
 
     /**
      * Optional initial data for the tree. How this data is interpreted depends on this tree's {@link
@@ -1350,6 +1357,25 @@ public class Tree extends BaseClass  implements com.smartgwt.client.widgets.tree
         }
     }
 
+   /**
+    * Load the children of a given node.&#010&#010    This implementation does nothing other than mark the node as loaded&#010
+    *
+    * @param node node in question
+    */
+   public native void loadChildren(TreeNode node) /*-{
+        var self = this.@com.smartgwt.client.core.BaseClass::getOrCreateJsObj()();
+        self.loadChildren(node.@com.smartgwt.client.core.DataClass::getJsObj()());
+    }-*/;
+
+   /**
+    * &#010 Open a particular node&#010&#010
+    *
+    * @param node node to open
+    */
+   public native void openFolder(TreeNode node) /*-{
+       var self = this.@com.smartgwt.client.core.BaseClass::getOrCreateJsObj()();
+       self.openFolder(node.@com.smartgwt.client.core.DataClass::getJsObj()());
+   }-*/;       
 }
 
 
