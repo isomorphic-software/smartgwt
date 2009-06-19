@@ -626,9 +626,14 @@ public class DataSourceField extends DataClass {
     // ********************* Static Methods ***********************
 
 
-
-
-
+
+
+
+
+
+
+
+
 
     /**
      * Validators to be applied to this field. Validators are applied whenever there is an attempt to save changes to a
@@ -684,6 +689,8 @@ public class DataSourceField extends DataClass {
      */
     public void setEditorType(FormItem editorType) {
         setAttribute("editorType", editorType.getType());
+        JavaScriptObject editorConfig = editorType.getConfig();
+        setAttribute("editorProperties", editorConfig);
     }
 
     /**
