@@ -415,7 +415,7 @@ public class DSRequest extends RPCRequest {
      */
     public Criteria getCriteria() throws IllegalStateException {
         if(getOperationType() == DSOperationType.FETCH) {
-            return new Criteria(getData());
+            return getData() == null ? null : new Criteria(getData());
         } else {
             throw new IllegalStateException("This method should only be called during FETCH operations");
         }
