@@ -30,10 +30,28 @@ public class JsObject {
     }
 
     private static native void init() /*-{
-
-        //allow lazy loading of grids to work in hosted mode
+        
         if(!@com.google.gwt.core.client.GWT::isScript()()){
+            //allow lazy loading of grids to work in hosted mode
             $wnd.Array.LOADING = new Object();
+
+            $wnd.isc.isA.FUNCTION_STR = '[object Function]';
+            $wnd.isc.isA.Function = function (object) {
+                if (object == null) return false;
+                return Object.prototype.toString.apply(object) === this.FUNCTION_STR;
+            };
+            $wnd.isc.isA.String = function (object) {
+                if (object == null) return false;
+                return typeof object == "string";
+            };
+            $wnd.isc.isA.Number = function (object) {
+                if (object == null) return false;
+                return typeof object === 'number' && isFinite(object);
+            };
+            $wnd.isc.isA.Boolean = function (object) {
+                if (object == null) return false;
+                return typeof object == "boolean";
+            };
         }
 
         //handle OSX hosted mode
