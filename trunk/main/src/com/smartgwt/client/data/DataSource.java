@@ -643,6 +643,46 @@ public class DataSource extends BaseClass  implements com.smartgwt.client.data.e
     }
 
     /**
+    * Whether a user must be authenticated in order to access this DataSource.  This establishes a&#010 default for the DataSource as a whole; individual {@link com.smartgwt.client.data.DataSource#getOperationBindings operationBindings} within the&#010 DataSource may still override this setting by explicitly setting&#010 {@link com.smartgwt.client.data.OperationBinding#getRequiresAuthentication requiresAuthentication}.&#010 <P>&#010 Whether the user is authenticated is determined by calling&#010 <code>httpServletRequest.getRemoteUser()</code>, hence works with both simple J2EE security&#010 (realms and form-based authentication) and JAAS (Java Authentication & Authorization&#010 Service).&#010 <P>&#010 You can set the default value for this property via setting "authentication.defaultRequired"&#010 in server.properties.  This allows you to, for example, cause all DataSources to require&#010 authentication for all operations by default.&#010 <P>&#010 Note that setting this property does not automatically cause an authentication mechanism to&#010 appear - you still need to separately configure an authentication system.  Likewise, setting&#010 requiresAuthentication="false" does not automatically allow users to bypass your authentication&#010 mechanism - you need to set up a URL that will accept DSRequests and process them similar to&#010 the default "IDACall" servlet, and which is not protected by the authentication system.  See&#010 {@link com.smartgwt.client.docs.IscInstall 'Deploying SmartGWT'} for details on the IDACall servlet.
+    *
+    * @param requiresAuthentication requiresAuthentication Default value is null
+    * @throws IllegalStateException this property cannot be changed after the underlying component has been created
+    */
+    public void setRequiresAuthentication(Boolean requiresAuthentication)  throws IllegalStateException {
+        setAttribute("requiresAuthentication", requiresAuthentication, false);
+    }
+    /**
+     * Whether a user must be authenticated in order to access this DataSource.  This establishes a&#010 default for the DataSource as a whole; individual {@link com.smartgwt.client.data.DataSource#getOperationBindings operationBindings} within the&#010 DataSource may still override this setting by explicitly setting&#010 {@link com.smartgwt.client.data.OperationBinding#getRequiresAuthentication requiresAuthentication}.&#010 <P>&#010 Whether the user is authenticated is determined by calling&#010 <code>httpServletRequest.getRemoteUser()</code>, hence works with both simple J2EE security&#010 (realms and form-based authentication) and JAAS (Java Authentication & Authorization&#010 Service).&#010 <P>&#010 You can set the default value for this property via setting "authentication.defaultRequired"&#010 in server.properties.  This allows you to, for example, cause all DataSources to require&#010 authentication for all operations by default.&#010 <P>&#010 Note that setting this property does not automatically cause an authentication mechanism to&#010 appear - you still need to separately configure an authentication system.  Likewise, setting&#010 requiresAuthentication="false" does not automatically allow users to bypass your authentication&#010 mechanism - you need to set up a URL that will accept DSRequests and process them similar to&#010 the default "IDACall" servlet, and which is not protected by the authentication system.  See&#010 {@link com.smartgwt.client.docs.IscInstall 'Deploying SmartGWT'} for details on the IDACall servlet.
+     *
+     *
+     * @return Boolean
+     *
+     */
+    public Boolean getRequiresAuthentication()  {
+        return getAttributeAsBoolean("requiresAuthentication");
+    }
+
+    /**
+    * Similar to {@link com.smartgwt.client.data.OperationBinding#getRequiresRole requiresRole}, but controls access to the DataSource as a&#010 whole.
+    *
+    * @param requiresRole requiresRole Default value is null
+    * @throws IllegalStateException this property cannot be changed after the underlying component has been created
+    */
+    public void setRequiresRole(String requiresRole)  throws IllegalStateException {
+        setAttribute("requiresRole", requiresRole, false);
+    }
+    /**
+     * Similar to {@link com.smartgwt.client.data.OperationBinding#getRequiresRole requiresRole}, but controls access to the DataSource as a&#010 whole.
+     *
+     *
+     * @return String
+     *
+     */
+    public String getRequiresRole()  {
+        return getAttributeAsString("requiresRole");
+    }
+
+    /**
     * User-visible name for this DataSource.&#010 <P>&#010 For example, for the supplyItem DataSource, "Supply Item".&#010 <P>&#010 Defaults to <code>dataSource.ID</code>.
     *
     * @param title title Default value is dataSource.ID

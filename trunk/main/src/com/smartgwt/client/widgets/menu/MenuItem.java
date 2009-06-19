@@ -359,11 +359,8 @@ public class MenuItem extends ListGridRecord  implements com.smartgwt.client.wid
     // ********************* Static Methods ***********************
 
 
-
-
-
-       
-
+
+
     /**
      * Shortcut key(s) to fire the menu item action. Each key can be defined as a {@link KeyIdentifier}.
      * To apply multiple shortcut keys to this item, set this property to an array of such key identifiers.
