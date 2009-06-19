@@ -476,6 +476,44 @@ public class OperationBinding extends DataClass {
         return getAttributeAsBoolean("invalidateCache");
     }
 
+    /**
+    * Whether a user must be authenticated in order to access this operation.&#010 <P>&#010 To protect access to an entire operationType (eg, all "fetch" operations), declare an&#010 operationBinding with <code>requiresAuthentication="true"</code>, {@link com.smartgwt.client.data.OperationBinding#getOperationType operationType} set&#010 to the operationType to be protected, but no {@link com.smartgwt.client.data.OperationBinding#getOperationId operationId}.  This will then&#010 prevent access to the "fetch" operationType unless another {@link com.smartgwt.client.data.OperationBinding}&#010 declares requiresAuthentication="false" with a specific&#010 {@link com.smartgwt.client.data.OperationBinding#getOperationId operationId}.
+    *
+    * @param requiresAuthentication requiresAuthentication Default value is null
+    */
+    public void setRequiresAuthentication(Boolean requiresAuthentication) {
+        setAttribute("requiresAuthentication", requiresAuthentication);
+    }
+    /**
+     * Whether a user must be authenticated in order to access this operation.&#010 <P>&#010 To protect access to an entire operationType (eg, all "fetch" operations), declare an&#010 operationBinding with <code>requiresAuthentication="true"</code>, {@link com.smartgwt.client.data.OperationBinding#getOperationType operationType} set&#010 to the operationType to be protected, but no {@link com.smartgwt.client.data.OperationBinding#getOperationId operationId}.  This will then&#010 prevent access to the "fetch" operationType unless another {@link com.smartgwt.client.data.OperationBinding}&#010 declares requiresAuthentication="false" with a specific&#010 {@link com.smartgwt.client.data.OperationBinding#getOperationId operationId}.
+     *
+     *
+     * @return Boolean
+     *
+     */
+    public Boolean getRequiresAuthentication()  {
+        return getAttributeAsBoolean("requiresAuthentication");
+    }
+
+    /**
+    * Comma-separated list of user roles that are allowed to invoke the operation described by&#010 this operationBinding.&#010 <P>&#010 Whether the current user has a given role is determined by calling the standard Java&#010 servlets method <code>httpServletRequest.isUserInRole()</code>, hence works with both simple&#010 J2EE security (realms and form-based authentication) and JAAS (Java Authentication &&#010 Authorization Service).&#010 <P>&#010 If there an operationBinding declared for a given operationType which does not have an&#010 {@link com.smartgwt.client.data.OperationBinding#getOperationId operationId}, that is, it is the default operationBinding for the type, then any other&#010 operationBinding of the same type is assumed to have the same setting for&#010 <code>requiresRole</code> as the default operationBinding for the operationType.  For&#010 example, given these declarations:&#010 <pre>&#010     &lt;operationBinding operationType="fetch" requiresRole="manager"&gt;&#010           ... settings ...&#010      &lt;/operationBinding&gt;&#010     &lt;operationBinding operationType="fetch" operationId="fetchWithExtraFields"&gt;&#010           ... settings ...&#010      &lt;/operationBinding&gt;&#010 </pre>&#010 The second operationBinding requires the "manager" role even though there is no explicit&#010 <code>requiresRole</code> declaration.  To prevent the "manager" role being required by the&#010 second operationBinding, add <code>requireRole=""</code>.&#010 <P>&#010 Note that if {@link com.smartgwt.client.data.DataSource#getRequiresRole requiresRole} is set, all operations on the DataSource require&#010 the roles set for the DataSource as a whole, even if they declare individual&#010 <code>requiresRole</code> attributes.&#010 <P>&#010 This property is valid only for a server-side DataSource when using the SmartGWT Server.
+    *
+    * @param requiresRole requiresRole Default value is null
+    */
+    public void setRequiresRole(String requiresRole) {
+        setAttribute("requiresRole", requiresRole);
+    }
+    /**
+     * Comma-separated list of user roles that are allowed to invoke the operation described by&#010 this operationBinding.&#010 <P>&#010 Whether the current user has a given role is determined by calling the standard Java&#010 servlets method <code>httpServletRequest.isUserInRole()</code>, hence works with both simple&#010 J2EE security (realms and form-based authentication) and JAAS (Java Authentication &&#010 Authorization Service).&#010 <P>&#010 If there an operationBinding declared for a given operationType which does not have an&#010 {@link com.smartgwt.client.data.OperationBinding#getOperationId operationId}, that is, it is the default operationBinding for the type, then any other&#010 operationBinding of the same type is assumed to have the same setting for&#010 <code>requiresRole</code> as the default operationBinding for the operationType.  For&#010 example, given these declarations:&#010 <pre>&#010     &lt;operationBinding operationType="fetch" requiresRole="manager"&gt;&#010           ... settings ...&#010      &lt;/operationBinding&gt;&#010     &lt;operationBinding operationType="fetch" operationId="fetchWithExtraFields"&gt;&#010           ... settings ...&#010      &lt;/operationBinding&gt;&#010 </pre>&#010 The second operationBinding requires the "manager" role even though there is no explicit&#010 <code>requiresRole</code> declaration.  To prevent the "manager" role being required by the&#010 second operationBinding, add <code>requireRole=""</code>.&#010 <P>&#010 Note that if {@link com.smartgwt.client.data.DataSource#getRequiresRole requiresRole} is set, all operations on the DataSource require&#010 the roles set for the DataSource as a whole, even if they declare individual&#010 <code>requiresRole</code> attributes.&#010 <P>&#010 This property is valid only for a server-side DataSource when using the SmartGWT Server.
+     *
+     *
+     * @return String
+     *
+     */
+    public String getRequiresRole()  {
+        return getAttributeAsString("requiresRole");
+    }
+
     // ********************* Methods ***********************
 
     // ********************* Static Methods ***********************
