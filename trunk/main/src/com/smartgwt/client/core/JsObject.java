@@ -37,7 +37,8 @@ public class JsObject {
 
             $wnd.isc.isA.FUNCTION_STR = '[object Function]';
             $wnd.isc.isA.DATE_STR = '[object Date]';
-            
+            $wnd.isc.isA.ARRAY_STR = '[object Array]';
+
             $wnd.isc.isA.Function = function (object) {
                 if (object == null) return false;
                 return Object.prototype.toString.apply(object) === this.FUNCTION_STR;
@@ -57,6 +58,10 @@ public class JsObject {
             $wnd.isc.isA.Date = function (object) {
                 if (object == null) return false;
                 return Object.prototype.toString.apply(object) === this.DATE_STR;
+            };
+            $wnd.isc.isA.Array = function (object) {
+                if (object == null) return false;
+                return Object.prototype.toString.apply(object) === this.ARRAY_STR;
             };
         }
 
