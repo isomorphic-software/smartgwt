@@ -81,7 +81,7 @@ public class FormItem extends RefDataClass  implements com.smartgwt.client.widge
             obj.setJsObj(jsObj);
             return (FormItem) obj;
         } else {
-            return new FormItem(jsObj);
+            return FormItemFactory.getFormItem(jsObj);
         }
     }
 
@@ -2582,6 +2582,8 @@ public class FormItem extends RefDataClass  implements com.smartgwt.client.widge
      */
     public void setEditorType(FormItem editorType) {
         setAttribute("editorType", editorType.getType());
+        JavaScriptObject editorConfig = editorType.getConfig();
+        setAttribute("editorProperties", editorConfig);
     }
 
     public native Object getValue() /*-{
