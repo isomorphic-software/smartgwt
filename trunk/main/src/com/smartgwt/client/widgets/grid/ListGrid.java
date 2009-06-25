@@ -4732,9 +4732,24 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
     // ********************* Static Methods ***********************
 
 
-
-
-
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
     protected native void onInit() /*-{
 
@@ -6387,6 +6402,30 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
          var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
          self.clearEditValue(rowNum, fieldName);
      }-*/;
+
+    /**
+     * Programatically simulate clicking of a row.
+     *
+     * @param record    record object returned from getCellRecord()
+     * @param recordNum index of the row where the click occurred
+     * @param fieldNum  index of the col where the click occurred
+     */
+    public native void rowClick(ListGridRecord record, int recordNum, int fieldNum) /*-{
+        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
+        var retVal =self.rowClick(record.@com.smartgwt.client.core.DataClass::getJsObj()(), recordNum, fieldNum);
+    }-*/;
+
+    /**
+     * Programatically simulate clicking of a row.<P> Default implementation fires 'editCell' if appropriate, and handles firing the 'recordDoubleClick' event
+     *
+     * @param record    record object returned from getCellRecord()
+     * @param recordNum index of the row where the click occurred
+     * @param fieldNum  index of the col where the click occurred
+     */
+    public native void rowDoubleClick(ListGridRecord record, int recordNum, int fieldNum) /*-{
+        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
+        var retVal =self.rowDoubleClick(record.@com.smartgwt.client.core.DataClass::getJsObj()(), recordNum, fieldNum);
+    }-*/;
 
     /**
      * Add a onHeaderClick handler.
