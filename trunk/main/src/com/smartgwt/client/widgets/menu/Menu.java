@@ -377,6 +377,26 @@ public class Menu extends ListGrid  implements com.smartgwt.client.widgets.menu.
         return getAttributeAsBoolean("autoDismiss");
     }
 
+    /**
+    * For a menu that has a {@link com.smartgwt.client.widgets.menu.MenuButton} generated for it automatically (for example when&#010 included in a {@link com.smartgwt.client.widgets.menu.MenuBar}, the width that the MenuButton should have.  If unset, the&#010 MenuButton will be as wide as <code>menu.width</code>.
+    *
+    * @param menuButtonWidth menuButtonWidth Default value is null
+    * @throws IllegalStateException this property cannot be changed after the component has been created
+    */
+    public void setMenuButtonWidth(Integer menuButtonWidth)  throws IllegalStateException {
+        setAttribute("menuButtonWidth", menuButtonWidth, false);
+    }
+    /**
+     * For a menu that has a {@link com.smartgwt.client.widgets.menu.MenuButton} generated for it automatically (for example when&#010 included in a {@link com.smartgwt.client.widgets.menu.MenuBar}, the width that the MenuButton should have.  If unset, the&#010 MenuButton will be as wide as <code>menu.width</code>.
+     *
+     *
+     * @return Integer
+     *
+     */
+    public Integer getMenuButtonWidth()  {
+        return getAttributeAsInt("menuButtonWidth");
+    }
+
     // ********************* Methods ***********************
 
         /**

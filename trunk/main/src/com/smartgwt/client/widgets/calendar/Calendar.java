@@ -1571,19 +1571,9 @@ public class Calendar extends Canvas  implements DataBoundComponent, com.smartgw
     // ********************* Static Methods ***********************
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
+
+
+
 
 
     protected native void onInit() /*-{
