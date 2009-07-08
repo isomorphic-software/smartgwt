@@ -129,6 +129,26 @@ public class TileGrid extends TileLayout  implements DataBoundComponent, com.sma
     public String getTileValueAlign()  {
         return getAttributeAsString("tileValueAlign");
     }
+
+    /**
+    * If {@link com.smartgwt.client.widgets.tile.TileGrid#getAutoFetchData autoFetchData} is <code>true</code>, this attribute allows the developer to&#010 specify a textMatchStyle for the initial {@link com.smartgwt.client.widgets.tile.TileGrid#fetchData} call.
+    *
+    * @param autoFetchTextMatchStyle autoFetchTextMatchStyle Default value is "substring"
+    * @throws IllegalStateException this property cannot be changed after the component has been created
+    */
+    public void setAutoFetchTextMatchStyle(String autoFetchTextMatchStyle)  throws IllegalStateException {
+        setAttribute("autoFetchTextMatchStyle", autoFetchTextMatchStyle, false);
+    }
+    /**
+     * If {@link com.smartgwt.client.widgets.tile.TileGrid#getAutoFetchData autoFetchData} is <code>true</code>, this attribute allows the developer to&#010 specify a textMatchStyle for the initial {@link com.smartgwt.client.widgets.tile.TileGrid#fetchData} call.
+     *
+     *
+     * @return String
+     *
+     */
+    public String getAutoFetchTextMatchStyle()  {
+        return getAttributeAsString("autoFetchTextMatchStyle");
+    }
              
     /**
     * Defines a tileGrid's clickable-selection behavior.

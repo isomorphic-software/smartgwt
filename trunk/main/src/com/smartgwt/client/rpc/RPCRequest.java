@@ -232,7 +232,7 @@ public class RPCRequest extends DataClass {
     }
 
     /**
-    * For use only with the <code>scriptInclude</code> transport, this attribute specifies the&#010 name of the parameter from which the server expects to read the name of the JavaScript&#010 callback function.&#010 <P>&#010 SmartGWT will use the callback mechanism provided by the server, then call&#010 {@link com.smartgwt.client.rpc.RPCRequest#getCallback callback} normally.&#010 <p>&#010 This attribute is ignored by all other transports.
+    * For use only with the {@link com.smartgwt.client.types.RPCTransport} transport, this attribute&#010 specifies the name of the URL parameter which is used to specify the callback function that&#010 the server is expected to call by writing out JavaScript code.  The actual function to call&#010 is automatically generated and differs for every request (to allow concurrency).&#010 <P>&#010 For example, with <code>callbackParam</code> set to it's default value of "callback", the&#010 server might be contacted with a URL like:&#010 <pre>&#010    loadData?callback=isc_scriptIncludeCallback_5&#010 </pre>&#010 .. then the server's response should look like:&#010 <pre>&#010    isc_scriptIncludeCallback_5({ .. data .. });&#010 </pre>&#010 The name "isc_scriptIncludeCallback_5" is automatically generated and will differ each time&#010 the server is contacted.&#010 <P>&#010 SmartGWT makes of this server-provided callback mechanism, then calls&#010 {@link com.smartgwt.client.rpc.RPCRequest#getCallback callback} normally.&#010 <p>&#010 <code>rpcRequest.callbackParam</code> is ignored by all transport other than&#010 <code>scriptInclude</code>.
     *
     * @param callbackParam callbackParam Default value is "callback"
     */
@@ -240,7 +240,7 @@ public class RPCRequest extends DataClass {
         setAttribute("callbackParam", callbackParam);
     }
     /**
-     * For use only with the <code>scriptInclude</code> transport, this attribute specifies the&#010 name of the parameter from which the server expects to read the name of the JavaScript&#010 callback function.&#010 <P>&#010 SmartGWT will use the callback mechanism provided by the server, then call&#010 {@link com.smartgwt.client.rpc.RPCRequest#getCallback callback} normally.&#010 <p>&#010 This attribute is ignored by all other transports.
+     * For use only with the {@link com.smartgwt.client.types.RPCTransport} transport, this attribute&#010 specifies the name of the URL parameter which is used to specify the callback function that&#010 the server is expected to call by writing out JavaScript code.  The actual function to call&#010 is automatically generated and differs for every request (to allow concurrency).&#010 <P>&#010 For example, with <code>callbackParam</code> set to it's default value of "callback", the&#010 server might be contacted with a URL like:&#010 <pre>&#010    loadData?callback=isc_scriptIncludeCallback_5&#010 </pre>&#010 .. then the server's response should look like:&#010 <pre>&#010    isc_scriptIncludeCallback_5({ .. data .. });&#010 </pre>&#010 The name "isc_scriptIncludeCallback_5" is automatically generated and will differ each time&#010 the server is contacted.&#010 <P>&#010 SmartGWT makes of this server-provided callback mechanism, then calls&#010 {@link com.smartgwt.client.rpc.RPCRequest#getCallback callback} normally.&#010 <p>&#010 <code>rpcRequest.callbackParam</code> is ignored by all transport other than&#010 <code>scriptInclude</code>.
      *
      *
      * @return String

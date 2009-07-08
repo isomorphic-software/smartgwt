@@ -241,6 +241,25 @@ public class DetailViewerField extends DataClass {
         return getAttributeAsInt("height");
     }
 
+    /**
+    * For a field of type:"imageFile", indicates whether to stream the image and display it&#010 inline or to display the View and Download icons.
+    *
+    * @param showFileInline showFileInline Default value is null
+    */
+    public void setShowFileInline(Boolean showFileInline) {
+        setAttribute("showFileInline", showFileInline);
+    }
+    /**
+     * For a field of type:"imageFile", indicates whether to stream the image and display it&#010 inline or to display the View and Download icons.
+     *
+     *
+     * @return Boolean
+     *
+     */
+    public Boolean getShowFileInline()  {
+        return getAttributeAsBoolean("showFileInline");
+    }
+
     // ********************* Methods ***********************
 
 

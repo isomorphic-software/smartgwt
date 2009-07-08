@@ -100,6 +100,7 @@ package com.smartgwt.client.docs;
  * @see com.smartgwt.client.widgets.form.fields.PickTreeItem#getCanSelectParentItems
  * @see com.smartgwt.client.widgets.grid.ListGrid#getSelection
  * @see com.smartgwt.client.widgets.grid.ListGrid#getSelectionAppearance
+ * @see com.smartgwt.client.widgets.grid.ListGrid#getCanSelectAll
  * @see com.smartgwt.client.widgets.grid.ListGrid#getSelectionType
  * @see com.smartgwt.client.widgets.grid.ListGrid#getCanDragSelect
  * @see com.smartgwt.client.widgets.menu.Menu#getCanSelectParentItems

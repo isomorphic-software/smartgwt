@@ -209,7 +209,7 @@ public class Tab extends RefDataClass {
     }
 
     /**
-    * Determines whether this tab should show an icon allowing the user to dismiss the tab by&#010 clicking on it directly. The URL for this icon's image will be derived from &#010 {@link com.smartgwt.client.widgets.tab.TabSet#getCloseTabIcon closeTabIcon} by default, but may be overridden by explicitly specifying&#010 {@link com.smartgwt.client.widgets.tab.Tab#getCloseIcon closeIcon}.<br>&#010 If unset, this property is derived from {@link com.smartgwt.client.widgets.tab.TabSet#getCanCloseTabs canCloseTabs}
+    * Determines whether this tab should show an icon allowing the user to dismiss the tab by&#010 clicking on it directly. The URL for this icon's image will be derived from &#010 {@link com.smartgwt.client.widgets.tab.TabSet#getCloseTabIcon closeTabIcon} by default, but may be overridden by explicitly specifying&#010 {@link com.smartgwt.client.widgets.tab.Tab#getCloseIcon closeIcon}.&#010 <P>&#010 If unset, this property is derived from {@link com.smartgwt.client.widgets.tab.TabSet#getCanCloseTabs canCloseTabs}
     *
     * @param canClose canClose Default value is null
     */
@@ -217,7 +217,7 @@ public class Tab extends RefDataClass {
         setAttribute("canClose", canClose);
     }
     /**
-     * Determines whether this tab should show an icon allowing the user to dismiss the tab by&#010 clicking on it directly. The URL for this icon's image will be derived from &#010 {@link com.smartgwt.client.widgets.tab.TabSet#getCloseTabIcon closeTabIcon} by default, but may be overridden by explicitly specifying&#010 {@link com.smartgwt.client.widgets.tab.Tab#getCloseIcon closeIcon}.<br>&#010 If unset, this property is derived from {@link com.smartgwt.client.widgets.tab.TabSet#getCanCloseTabs canCloseTabs}
+     * Determines whether this tab should show an icon allowing the user to dismiss the tab by&#010 clicking on it directly. The URL for this icon's image will be derived from &#010 {@link com.smartgwt.client.widgets.tab.TabSet#getCloseTabIcon closeTabIcon} by default, but may be overridden by explicitly specifying&#010 {@link com.smartgwt.client.widgets.tab.Tab#getCloseIcon closeIcon}.&#010 <P>&#010 If unset, this property is derived from {@link com.smartgwt.client.widgets.tab.TabSet#getCanCloseTabs canCloseTabs}
      *
      *
      * @return Boolean

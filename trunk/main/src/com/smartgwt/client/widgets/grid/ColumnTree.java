@@ -109,6 +109,26 @@ public class ColumnTree extends Layout  implements DataBoundComponent, com.smart
     }
 
     /**
+    * If {@link com.smartgwt.client.widgets.grid.ColumnTree#getAutoFetchData autoFetchData} is <code>true</code>, this attribute allows the developer to&#010 specify a textMatchStyle for the initial {@link com.smartgwt.client.widgets.grid.ColumnTree#fetchData} call.
+    *
+    * @param autoFetchTextMatchStyle autoFetchTextMatchStyle Default value is null
+    * @throws IllegalStateException this property cannot be changed after the component has been created
+    */
+    public void setAutoFetchTextMatchStyle(String autoFetchTextMatchStyle)  throws IllegalStateException {
+        setAttribute("autoFetchTextMatchStyle", autoFetchTextMatchStyle, false);
+    }
+    /**
+     * If {@link com.smartgwt.client.widgets.grid.ColumnTree#getAutoFetchData autoFetchData} is <code>true</code>, this attribute allows the developer to&#010 specify a textMatchStyle for the initial {@link com.smartgwt.client.widgets.grid.ColumnTree#fetchData} call.
+     *
+     *
+     * @return String
+     *
+     */
+    public String getAutoFetchTextMatchStyle()  {
+        return getAttributeAsString("autoFetchTextMatchStyle");
+    }
+
+    /**
     * The URL of the base icon for all folder nodes in this columnTree. Note that this URL will&#010 have {@link com.smartgwt.client.widgets.grid.ColumnTree#getOpenIconSuffix openIconSuffix} or {@link com.smartgwt.client.widgets.grid.ColumnTree#getClosedIconSuffix closedIconSuffix} appended to &#010 indicate state changes if appropriate - see documentation on  {@link com.smartgwt.client.widgets.grid.ColumnTree#getShowOpenIcons showOpenIcons}
     *
     * @param folderIcon folderIcon Default value is "[SKIN]folder.gif"

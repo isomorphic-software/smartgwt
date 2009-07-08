@@ -153,7 +153,7 @@ public class TileLayout extends Canvas {
 
     /**
     * Margin in between tiles.  Can be set on a per-axis basis with {@link com.smartgwt.client.widgets.tile.TileLayout#getTileHMargin tileHMargin} and&#010 {@link com.smartgwt.client.widgets.tile.TileLayout#getTileVMargin tileVMargin}.
-    * sets the width of tiles&#010
+    * sets the vertical and horizontal margin of tiles&#010
     *
     * @param tileMargin margin. Default value is 10
     * @throws IllegalStateException this property cannot be changed after the component has been created
@@ -174,7 +174,7 @@ public class TileLayout extends Canvas {
 
     /**
     * Horizontal margin in between tiles.  See {@link com.smartgwt.client.widgets.tile.TileLayout#getTileMargin tileMargin}.
-    * sets the width of tiles&#010
+    * sets the horizontal margin of tiles&#010
     *
     * @param tileHMargin width. Default value is null
     * @throws IllegalStateException this property cannot be changed after the component has been created
@@ -195,7 +195,7 @@ public class TileLayout extends Canvas {
 
     /**
     * Vertical margin in between tiles.  See {@link com.smartgwt.client.widgets.tile.TileLayout#getTileMargin tileMargin}.
-    * sets the width of tiles&#010
+    * sets the vertical margin of tiles&#010
     *
     * @param tileVMargin width. Default value is null
     * @throws IllegalStateException this property cannot be changed after the component has been created

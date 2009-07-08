@@ -234,6 +234,26 @@ public class DataSource extends BaseClass  implements com.smartgwt.client.data.e
     }
 
     /**
+    * For DataSources using the {@link com.smartgwt.client.docs.HibernateIntegration 'SmartGWT Hibernate connector'}&#010 for persistence, the name of the Java bean or POJO class that is mapped in Hibernate. &#010 This will typically be the fully-qualified class name - eg <code>com.foo.MyClass</code> -&#010 but it may be the simple class name - just <code>MyClass</code> - or it may be some other&#010 value.  It all depends on how your classes have been mapped in Hibernate.&#010 <p>&#010 Note that this property is only applicable if you are integrating with an existing &#010 Hibernate store.  If you are intending to use Hibernate as a data-access layer only, &#010 you do not need to create Hibernate mappings or Java objects: SmartGWT will generate&#010 everything it needs on the fly.
+    *
+    * @param beanClassName beanClassName Default value is null
+    * @throws IllegalStateException this property cannot be changed after the underlying component has been created
+    */
+    public void setBeanClassName(String beanClassName)  throws IllegalStateException {
+        setAttribute("beanClassName", beanClassName, false);
+    }
+    /**
+     * For DataSources using the {@link com.smartgwt.client.docs.HibernateIntegration 'SmartGWT Hibernate connector'}&#010 for persistence, the name of the Java bean or POJO class that is mapped in Hibernate. &#010 This will typically be the fully-qualified class name - eg <code>com.foo.MyClass</code> -&#010 but it may be the simple class name - just <code>MyClass</code> - or it may be some other&#010 value.  It all depends on how your classes have been mapped in Hibernate.&#010 <p>&#010 Note that this property is only applicable if you are integrating with an existing &#010 Hibernate store.  If you are intending to use Hibernate as a data-access layer only, &#010 you do not need to create Hibernate mappings or Java objects: SmartGWT will generate&#010 everything it needs on the fly.
+     *
+     *
+     * @return String
+     *
+     */
+    public String getBeanClassName()  {
+        return getAttributeAsString("beanClassName");
+    }
+
+    /**
     * For DataSources using the {@link com.smartgwt.client.docs.SqlDataSource 'SmartGWT SQL engine'} for&#010 persistence, which database configuration to use.  Database configurations can be&#010 created using the "Databases" tab in the Developer Console.  If unset, the default&#010 database configuration is used (which also settable using the "Databases" tab).
     *
     * @param dbName dbName Default value is null
@@ -819,6 +839,26 @@ public class DataSource extends BaseClass  implements com.smartgwt.client.data.e
      */
     public Boolean getQualifyColumnNames()  {
         return getAttributeAsBoolean("qualifyColumnNames");
+    }
+
+    /**
+    * If true, indicates that the SmartGWT Server should automatically apply a &#010 {@link com.smartgwt.client..ValidatorTypes#hasRelatedRecord} validator to every field &#010 on this dataSource that has a {@link com.smartgwt.client.data.DataSourceField#getForeignKey foreignKey} defined.
+    *
+    * @param validateRelatedRecords validateRelatedRecords Default value is null
+    * @throws IllegalStateException this property cannot be changed after the underlying component has been created
+    */
+    public void setValidateRelatedRecords(Boolean validateRelatedRecords)  throws IllegalStateException {
+        setAttribute("validateRelatedRecords", validateRelatedRecords, false);
+    }
+    /**
+     * If true, indicates that the SmartGWT Server should automatically apply a &#010 {@link com.smartgwt.client..ValidatorTypes#hasRelatedRecord} validator to every field &#010 on this dataSource that has a {@link com.smartgwt.client.data.DataSourceField#getForeignKey foreignKey} defined.
+     *
+     *
+     * @return Boolean
+     *
+     */
+    public Boolean getValidateRelatedRecords()  {
+        return getAttributeAsBoolean("validateRelatedRecords");
     }
 
     /**

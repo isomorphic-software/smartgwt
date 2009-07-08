@@ -258,15 +258,15 @@ public class DateItem extends FormItem {
     }
              
     /**
-    * If {@link com.smartgwt.client.widgets.form.fields.DateItem#getUseTextField useTextField} is <code>true</code> this property can be used to &#010 customize the format in which dates are displayed.<br>&#010 Should be set to a standard {@link com.smartgwt.client.types.DateDisplayFormat} or&#010 a function which will return a formatted date string.&#010 Default setting is <code>"toShortDate"</code> which ensures that if the standard&#010 shortDate format is modified via {@link com.smartgwt.client..Date#setShortDisplayFormat} this format&#010 will be picked up.&#010 <P>&#010 <B>NOTE: you may need to update the {@link com.smartgwt.client.widgets.form.fields.DateItem#getInputFormat inputFormat} to ensure the&#010 DateItem is able to parse user-entered date strings back into Dates</B>
+    * If {@link com.smartgwt.client.widgets.form.fields.DateItem#getUseTextField useTextField} is <code>true</code> this property can be used to &#010 customize the format in which dates are displayed.<br>&#010 Should be set to a standard {@link com.smartgwt.client.types.DateDisplayFormat} or&#010 a function which will return a formatted date string.&#010 <P>&#010 If unset, the standard shortDate format as set up via {@link com.smartgwt.client..Date#setShortDisplayFormat}&#010 will be used.&#010 <P>&#010 <B>NOTE: you may need to update the {@link com.smartgwt.client.widgets.form.fields.DateItem#getInputFormat inputFormat} to ensure the&#010 DateItem is able to parse user-entered date strings back into Dates</B>
     *
-    * @param displayFormat displayFormat Default value is "toShortDate"
+    * @param displayFormat displayFormat Default value is null
     */
     public void setDisplayFormat(DateDisplayFormat displayFormat) {
         setAttribute("displayFormat", displayFormat.getValue());
     }
     /**
-     * If {@link com.smartgwt.client.widgets.form.fields.DateItem#getUseTextField useTextField} is <code>true</code> this property can be used to &#010 customize the format in which dates are displayed.<br>&#010 Should be set to a standard {@link com.smartgwt.client.types.DateDisplayFormat} or&#010 a function which will return a formatted date string.&#010 Default setting is <code>"toShortDate"</code> which ensures that if the standard&#010 shortDate format is modified via {@link com.smartgwt.client..Date#setShortDisplayFormat} this format&#010 will be picked up.&#010 <P>&#010 <B>NOTE: you may need to update the {@link com.smartgwt.client.widgets.form.fields.DateItem#getInputFormat inputFormat} to ensure the&#010 DateItem is able to parse user-entered date strings back into Dates</B>
+     * If {@link com.smartgwt.client.widgets.form.fields.DateItem#getUseTextField useTextField} is <code>true</code> this property can be used to &#010 customize the format in which dates are displayed.<br>&#010 Should be set to a standard {@link com.smartgwt.client.types.DateDisplayFormat} or&#010 a function which will return a formatted date string.&#010 <P>&#010 If unset, the standard shortDate format as set up via {@link com.smartgwt.client..Date#setShortDisplayFormat}&#010 will be used.&#010 <P>&#010 <B>NOTE: you may need to update the {@link com.smartgwt.client.widgets.form.fields.DateItem#getInputFormat inputFormat} to ensure the&#010 DateItem is able to parse user-entered date strings back into Dates</B>
      *
      *
      * @return DateDisplayFormat

@@ -13,6 +13,7 @@ package com.smartgwt.client.docs;
  * @see com.smartgwt.client.widgets.Img#setSrc
  * @see com.smartgwt.client.widgets.Img#resetSrc
  * @see com.smartgwt.client.widgets.StretchImg#setState
+ * @see com.smartgwt.client.widgets.StretchImg#setSrc
  * @see com.smartgwt.client.widgets.ImgButton#setTitle
  * @see com.smartgwt.client.widgets.ImgButton#setState
  * @see com.smartgwt.client.widgets.StretchImgButton#setTitle
@@ -248,6 +249,7 @@ package com.smartgwt.client.docs;
  * @see com.smartgwt.client.widgets.grid.ListGrid#getBodyStyleName
  * @see com.smartgwt.client.widgets.grid.ListGrid#getLeaveScrollbarGap
  * @see com.smartgwt.client.widgets.grid.ListGrid#getDateFormatter
+ * @see com.smartgwt.client.widgets.grid.ListGrid#getDatetimeFormatter
  * @see com.smartgwt.client.widgets.grid.ListGrid#getTimeFormatter
  * @see com.smartgwt.client.widgets.grid.ListGrid#getEditFailedBaseStyle
  * @see com.smartgwt.client.widgets.grid.ListGrid#getEditFailedCSSText

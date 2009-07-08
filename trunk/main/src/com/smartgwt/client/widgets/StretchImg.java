@@ -128,8 +128,9 @@ public class StretchImg extends StatefulCanvas {
 
     /**
     * The base URL for the image. &#010 <P>&#010 As with {@link com.smartgwt.client.widgets.Img#getSrc src}, the {@link com.smartgwt.client.types.State} of the component is added to this URL.  Then,&#010 the image segment name as specified by {@link com.smartgwt.client.widgets.StretchImg#getItems items} is added.&#010 <P>&#010 For example, for a stretchImg in "Over" state with a <code>src</code> of "button.png"&#010 and a segment name of "stretch", the resulting URL would be "button_Over_stretch.png".
+    * Changes the base {@link com.smartgwt.client.widgets.StretchImg#getSrc src} for this stretchImg, redrawing if necessary.&#010&#010
     *
-    * @param src src Default value is null
+    * @param src new URL for the image. Default value is null
     */
     public void setSrc(String src) {
         setAttribute("src", src, true);
@@ -282,6 +283,7 @@ public class StretchImg extends StatefulCanvas {
             var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
             self.setState(newState, whichPart);
         }-*/;
+
 
     // ********************* Static Methods ***********************
 

@@ -1091,6 +1091,26 @@ public class DynamicForm extends Canvas  implements DataBoundComponent, com.smar
         return getAttributeAsBoolean("showComplexFieldsRecursively");
     }
 
+    /**
+    * If {@link com.smartgwt.client.widgets.form.DynamicForm#getAutoFetchData autoFetchData} is <code>true</code>, this attribute allows the developer to&#010 specify a textMatchStyle for the initial {@link com.smartgwt.client.widgets.form.DynamicForm#fetchData} call.
+    *
+    * @param autoFetchTextMatchStyle autoFetchTextMatchStyle Default value is null
+    * @throws IllegalStateException this property cannot be changed after the component has been created
+    */
+    public void setAutoFetchTextMatchStyle(String autoFetchTextMatchStyle)  throws IllegalStateException {
+        setAttribute("autoFetchTextMatchStyle", autoFetchTextMatchStyle, false);
+    }
+    /**
+     * If {@link com.smartgwt.client.widgets.form.DynamicForm#getAutoFetchData autoFetchData} is <code>true</code>, this attribute allows the developer to&#010 specify a textMatchStyle for the initial {@link com.smartgwt.client.widgets.form.DynamicForm#fetchData} call.
+     *
+     *
+     * @return String
+     *
+     */
+    public String getAutoFetchTextMatchStyle()  {
+        return getAttributeAsString("autoFetchTextMatchStyle");
+    }
+
     // ********************* Methods ***********************
 
 

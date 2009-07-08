@@ -909,6 +909,25 @@ public class ListGridField extends DataClass  implements com.smartgwt.client.wid
     }
 
     /**
+    * For a field of type:"imageFile", indicates whether to stream the image and display it&#010 inline or to display the View and Download icons.
+    *
+    * @param showFileInline showFileInline Default value is null
+    */
+    public void setShowFileInline(Boolean showFileInline) {
+        setAttribute("showFileInline", showFileInline);
+    }
+    /**
+     * For a field of type:"imageFile", indicates whether to stream the image and display it&#010 inline or to display the View and Download icons.
+     *
+     *
+     * @return Boolean
+     *
+     */
+    public Boolean getShowFileInline()  {
+        return getAttributeAsBoolean("showFileInline");
+    }
+
+    /**
     * If this field is editable, this property will be passed to editors displayed for&#010 cells within this field as {@link com.smartgwt.client.widgets.form.fields.FormItem#getIconWidth iconWidth}.<br>&#010 If this property unset, the iconWidth property from the editor can be picked up from &#010 {@link com.smartgwt.client.widgets.grid.ListGridField#getIconWidth iconWidth} instead.
     * <p><b>Note : </b> This is an advanced setting</p>
     *
@@ -1296,7 +1315,7 @@ public class ListGridField extends DataClass  implements com.smartgwt.client.wid
     }
 
     /**
-    * If true, automatically fetches a valueMap if an {@link com.smartgwt.client.widgets.grid.ListGridField#getOptionDataSource optionDataSource} is set&#010 for this field.&#010 <p>&#010 Same as {@link com.smartgwt.client.widgets.grid.ListGrid#getAutoFetchDisplayMap autoFetchDisplayMap}, but defined on a per-field basis.
+    * If true, automatically fetches records and derives a valueMap from&#010 {@link com.smartgwt.client.widgets.grid.ListGridField#getOptionDataSource optionDataSource}.&#010 <p>&#010 Same as {@link com.smartgwt.client.widgets.grid.ListGrid#getAutoFetchDisplayMap autoFetchDisplayMap}, but defined on a per-field basis.
     *
     * @param autoFetchDisplayMap autoFetchDisplayMap Default value is null
     */
@@ -1304,7 +1323,7 @@ public class ListGridField extends DataClass  implements com.smartgwt.client.wid
         setAttribute("autoFetchDisplayMap", autoFetchDisplayMap);
     }
     /**
-     * If true, automatically fetches a valueMap if an {@link com.smartgwt.client.widgets.grid.ListGridField#getOptionDataSource optionDataSource} is set&#010 for this field.&#010 <p>&#010 Same as {@link com.smartgwt.client.widgets.grid.ListGrid#getAutoFetchDisplayMap autoFetchDisplayMap}, but defined on a per-field basis.
+     * If true, automatically fetches records and derives a valueMap from&#010 {@link com.smartgwt.client.widgets.grid.ListGridField#getOptionDataSource optionDataSource}.&#010 <p>&#010 Same as {@link com.smartgwt.client.widgets.grid.ListGrid#getAutoFetchDisplayMap autoFetchDisplayMap}, but defined on a per-field basis.
      *
      *
      * @return Boolean
@@ -1312,6 +1331,25 @@ public class ListGridField extends DataClass  implements com.smartgwt.client.wid
      */
     public Boolean getAutoFetchDisplayMap()  {
         return getAttributeAsBoolean("autoFetchDisplayMap");
+    }
+
+    /**
+    * For fields with an {@link com.smartgwt.client.widgets.grid.ListGridField#getOptionDataSource optionDataSource}, where&#010 ${isc.DocUtils.linkForRef('listGTridField.autoFetchDisplayMap')} is true, this property will govern&#010 the <code>textMatchStyle</code> attribute of the {@link com.smartgwt.client.data.DSRequest} parameter passed to &#010 {@link com.smartgwt.client.data.DataSource#fetchData} when retrieving the remote data set to be used as &#010 a basis for thiis field's valueMap.
+    *
+    * @param optionTextMatchStyle optionTextMatchStyle Default value is null
+    */
+    public void setOptionTextMatchStyle(String optionTextMatchStyle) {
+        setAttribute("optionTextMatchStyle", optionTextMatchStyle);
+    }
+    /**
+     * For fields with an {@link com.smartgwt.client.widgets.grid.ListGridField#getOptionDataSource optionDataSource}, where&#010 ${isc.DocUtils.linkForRef('listGTridField.autoFetchDisplayMap')} is true, this property will govern&#010 the <code>textMatchStyle</code> attribute of the {@link com.smartgwt.client.data.DSRequest} parameter passed to &#010 {@link com.smartgwt.client.data.DataSource#fetchData} when retrieving the remote data set to be used as &#010 a basis for thiis field's valueMap.
+     *
+     *
+     * @return String
+     *
+     */
+    public String getOptionTextMatchStyle()  {
+        return getAttributeAsString("optionTextMatchStyle");
     }
 
     /**
@@ -1539,7 +1577,7 @@ public class ListGridField extends DataClass  implements com.smartgwt.client.wid
     // ********************* Static Methods ***********************
 
 
-
+
 
 
 
@@ -1994,6 +2032,26 @@ public class ListGridField extends DataClass  implements com.smartgwt.client.wid
         Boolean sortDir = getAttributeAsBoolean("sortDirection");
         if(sortDir == null) return null;
         return sortDir ? SortDirection.ASCENDING : SortDirection.DESCENDING;
+    }
+
+    /**
+    * If this field has an optionDataSource specified and &#010 {@link com.smartgwt.client.widgets.grid.ListGridField#getAutoFetchDisplayMap autoFetchDisplayMap} is set, this attribute&#010 provides a way to customize the dataSource request issued to fetch the display map from&#010 the option dataSource.
+    *
+    * @param optionFilterContext optionFilterContext Default value is null
+    */
+    public void setOptionFilterContext(DSRequest optionFilterContext) {
+        setAttribute("optionFilterContext", optionFilterContext);
+    }
+
+    /**
+     * If this field has an optionDataSource specified and &#010 {@link com.smartgwt.client.widgets.grid.ListGridField#getAutoFetchDisplayMap autoFetchDisplayMap} is set, this attribute&#010 provides a way to customize the dataSource request issued to fetch the display map from&#010 the option dataSource.
+     *
+     * @return DSRequest Properties
+     *
+     */
+    public DSRequest getOptionFilterContext()  {
+        JavaScriptObject jsObj = getAttributeAsJavaScriptObject("optionFilterContext");
+        return jsObj == null ? null : new DSRequest(jsObj);
     }
 
     /**

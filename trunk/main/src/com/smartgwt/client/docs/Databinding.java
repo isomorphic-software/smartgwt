@@ -16,7 +16,7 @@ package com.smartgwt.client.docs;
  * @see com.smartgwt.client.widgets.DataBoundComponent#getShowComplexFields
  * @see com.smartgwt.client.widgets.grid.ListGrid#getAutoFetchData
  * @see com.smartgwt.client.widgets.form.DynamicForm#getAutoFetchData
- * @see com.smartgwt.client.widgets.form.DynamicForm#getAutoFetchAsFilter
+ * @see com.smartgwt.client.widgets.form.DynamicForm#getAutoFetchTextMatchStyle
  * @see com.smartgwt.client.widgets.viewer.DetailViewer#getDataFetchMode
  * @see com.smartgwt.client.widgets.grid.ListGrid#getFields
  * @see com.smartgwt.client.widgets.grid.ListGrid#getDataSource
@@ -30,14 +30,14 @@ package com.smartgwt.client.docs;
  * @see com.smartgwt.client.widgets.tree.TreeGrid#getFields
  * @see com.smartgwt.client.widgets.tile.TileGrid#getDataSource
  * @see com.smartgwt.client.widgets.tile.TileGrid#getAutoFetchData
- * @see com.smartgwt.client.widgets.tile.TileGrid#getAutoFetchAsFilter
+ * @see com.smartgwt.client.widgets.tile.TileGrid#getAutoFetchTextMatchStyle
  * @see com.smartgwt.client.widgets.grid.ColumnTree#getDataSource
  * @see com.smartgwt.client.widgets.grid.ColumnTree#getAutoFetchData
- * @see com.smartgwt.client.widgets.grid.ColumnTree#getAutoFetchAsFilter
+ * @see com.smartgwt.client.widgets.grid.ColumnTree#getAutoFetchTextMatchStyle
  * @see com.smartgwt.client.widgets.grid.ColumnTree#getLoadDataOnDemand
  * @see com.smartgwt.client.widgets.grid.ColumnTree#getFields
  * @see com.smartgwt.client.widgets.calendar.Calendar#getAutoFetchData
- * @see com.smartgwt.client.widgets.calendar.Calendar#getAutoFetchAsFilter
+ * @see com.smartgwt.client.widgets.calendar.Calendar#getAutoFetchTextMatchStyle
  */
 public interface Databinding {
 }
