@@ -14,6 +14,7 @@ package com.smartgwt.client.docs;
  * @see com.smartgwt.client.widgets.Scrollbar#getTrackEndHeight
  * @see com.smartgwt.client.widgets.Scrollbar#getTrackEndHeight
  * @see com.smartgwt.client.widgets.Scrollbar#getTrackEndHeight
+ * @see com.smartgwt.client.widgets.Scrollbar#getTrackEndHeight
  */
 public interface StatusCodes {
 }

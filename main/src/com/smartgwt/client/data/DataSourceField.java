@@ -602,6 +602,25 @@ public class DataSourceField extends DataClass {
     }
 
     /**
+    * For a field of type:"imageFile", indicates whether to stream the image and display it&#010 inline or to display the View and Download icons.
+    *
+    * @param showFileInline showFileInline Default value is null
+    */
+    public void setShowFileInline(Boolean showFileInline) {
+        setAttribute("showFileInline", showFileInline);
+    }
+    /**
+     * For a field of type:"imageFile", indicates whether to stream the image and display it&#010 inline or to display the View and Download icons.
+     *
+     *
+     * @return Boolean
+     *
+     */
+    public Boolean getShowFileInline()  {
+        return getAttributeAsBoolean("showFileInline");
+    }
+
+    /**
     * When true, this field can only be used for sorting if the data is entirely client-side.
     *
     * @param canSortClientOnly canSortClientOnly Default value is false
@@ -618,6 +637,44 @@ public class DataSourceField extends DataClass {
      */
     public Boolean getCanSortClientOnly()  {
         return getAttributeAsBoolean("canSortClientOnly");
+    }
+             
+    /**
+    * If set, causes the field to be securely hashed before saving on an "add" or "update" &#010 operation.
+    *
+    * @param storeWithHash storeWithHash Default value is null
+    */
+    public void setStoreWithHash(HashAlgorithm storeWithHash) {
+        setAttribute("storeWithHash", storeWithHash.getValue());
+    }
+    /**
+     * If set, causes the field to be securely hashed before saving on an "add" or "update" &#010 operation.
+     *
+     *
+     * @return HashAlgorithm
+     *
+     */
+    public HashAlgorithm getStoreWithHash()  {
+        return (HashAlgorithm) EnumUtil.getEnum(HashAlgorithm.values(), getAttribute("storeWithHash"));
+    }
+
+    /**
+    * For fields of a type that are represented by binary data initially uploaded from a file&#010 (currently "binary" and "imageFile", see {@link com.smartgwt.client.types.FieldType}), this sets the maximum &#010 file size allowed, in bytes.
+    *
+    * @param maxFileSize maxFileSize Default value is null
+    */
+    public void setMaxFileSize(Integer maxFileSize) {
+        setAttribute("maxFileSize", maxFileSize);
+    }
+    /**
+     * For fields of a type that are represented by binary data initially uploaded from a file&#010 (currently "binary" and "imageFile", see {@link com.smartgwt.client.types.FieldType}), this sets the maximum &#010 file size allowed, in bytes.
+     *
+     *
+     * @return Integer
+     *
+     */
+    public Integer getMaxFileSize()  {
+        return getAttributeAsInt("maxFileSize");
     }
 
     // ********************* Methods ***********************

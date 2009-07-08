@@ -890,26 +890,27 @@ public class Calendar extends Canvas  implements DataBoundComponent, com.smartgw
     public Boolean getEventOverlapIdenticalStartTimes()  {
         return getAttributeAsBoolean("eventOverlapIdenticalStartTimes");
     }
- 
 
     /**
-    * If set to true, show the Timeline view.
+    * If {@link com.smartgwt.client.widgets.calendar.Calendar#getAutoFetchData autoFetchData} is <code>true</code>, this attribute allows the developer to&#010 specify a textMatchStyle for the initial {@link com.smartgwt.client.widgets.calendar.Calendar#fetchData} call.
     *
-    * @param showTimelineView showTimelineView Default value is false
+    * @param autoFetchTextMatchStyle autoFetchTextMatchStyle Default value is null
+    * @throws IllegalStateException this property cannot be changed after the component has been created
     */
-    public void setShowTimelineView(Boolean showTimelineView) {
-        setAttribute("showTimelineView", showTimelineView, true);
+    public void setAutoFetchTextMatchStyle(Boolean autoFetchTextMatchStyle)  throws IllegalStateException {
+        setAttribute("autoFetchTextMatchStyle", autoFetchTextMatchStyle, false);
     }
     /**
-     * If set to true, show the Timeline view.
+     * If {@link com.smartgwt.client.widgets.calendar.Calendar#getAutoFetchData autoFetchData} is <code>true</code>, this attribute allows the developer to&#010 specify a textMatchStyle for the initial {@link com.smartgwt.client.widgets.calendar.Calendar#fetchData} call.
      *
      *
      * @return Boolean
      *
      */
-    public Boolean getShowTimelineView()  {
-        return getAttributeAsBoolean("showTimelineView");
+    public Boolean getAutoFetchTextMatchStyle()  {
+        return getAttributeAsBoolean("autoFetchTextMatchStyle");
     }
+ 
 
     /**
     * The title for the day view
@@ -1150,21 +1151,24 @@ public class Calendar extends Canvas  implements DataBoundComponent, com.smartgw
     public String getDatePickerHoverText()  {
         return getAttributeAsString("datePickerHoverText");
     }
+             
+    /**
+    * The name of the view that should be visible initially by default.
+    * Sets the currently visible view&#010&#010
+    *
+    * @param currentViewName The name of the view that should be made visible.. Default value is null
+    * @throws IllegalStateException this property cannot be changed after the component has been created
+    */
+    public void setCurrentViewName(ViewName currentViewName)  throws IllegalStateException {
+        setAttribute("currentViewName", currentViewName.getValue(), false);
+    }
 
     // ********************* Methods ***********************
 
 
 
 
-        /**
-         * Get the name of the visible view. Either 'day', 'week', or 'month'.&#010&#010
-         *
-         * @return The name of the visible view.
-         */
-        public native String getCurrentViewName() /*-{
-            var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
-            return self.getCurrentViewName();
-        }-*/;
+
 
 
 
@@ -1508,6 +1512,15 @@ public class Calendar extends Canvas  implements DataBoundComponent, com.smartgw
                     return !ret;
                 };
             }
+        }-*/;
+
+        /**
+         * Fires whenever the user changes the current date, including picking a specific date or&#010 navigating to a new week or month.&#010&#010
+         * @param tabnum the index of the tab to select
+         */
+        public native void selectTab(int tabnum) /*-{
+            var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
+            self.selectTab(tabnum);
         }-*/;
 
         /**

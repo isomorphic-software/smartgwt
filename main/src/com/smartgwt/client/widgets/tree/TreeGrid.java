@@ -213,23 +213,23 @@ public class TreeGrid extends ListGrid  implements com.smartgwt.client.widgets.t
     }
 
     /**
-    * With ${isc.DocUtils.linkForRef('loadDataOnDemand:true')}, TreeGrids fetch data by selecting the child nodes of&#010 each parent, which should be exact match, so default to autoFetchAsFilter:false.&#010 See {@link com.smartgwt.client.widgets.grid.ListGrid#getAutoFetchAsFilter autoFetchAsFilter} for details.
+    * With ${isc.DocUtils.linkForRef('loadDataOnDemand:true')}, TreeGrids fetch data by selecting the child nodes of&#010 each parent, which should be exact match, so we default to&#010 <code>autoFetchTextMatchStyle:"exact"</code>.&#010 See {@link com.smartgwt.client.widgets.grid.ListGrid#getAutoFetchTextMatchStyle autoFetchTextMatchStyle} for details.
     *
-    * @param autoFetchAsFilter autoFetchAsFilter Default value is false
+    * @param autoFetchTextMatchStyle autoFetchTextMatchStyle Default value is "exact"
     * @throws IllegalStateException this property cannot be changed after the component has been created
     */
-    public void setAutoFetchAsFilter(Boolean autoFetchAsFilter)  throws IllegalStateException {
-        setAttribute("autoFetchAsFilter", autoFetchAsFilter, false);
+    public void setAutoFetchTextMatchStyle(String autoFetchTextMatchStyle)  throws IllegalStateException {
+        setAttribute("autoFetchTextMatchStyle", autoFetchTextMatchStyle, false);
     }
     /**
-     * With ${isc.DocUtils.linkForRef('loadDataOnDemand:true')}, TreeGrids fetch data by selecting the child nodes of&#010 each parent, which should be exact match, so default to autoFetchAsFilter:false.&#010 See {@link com.smartgwt.client.widgets.grid.ListGrid#getAutoFetchAsFilter autoFetchAsFilter} for details.
+     * With ${isc.DocUtils.linkForRef('loadDataOnDemand:true')}, TreeGrids fetch data by selecting the child nodes of&#010 each parent, which should be exact match, so we default to&#010 <code>autoFetchTextMatchStyle:"exact"</code>.&#010 See {@link com.smartgwt.client.widgets.grid.ListGrid#getAutoFetchTextMatchStyle autoFetchTextMatchStyle} for details.
      *
      *
-     * @return Boolean
+     * @return String
      *
      */
-    public Boolean getAutoFetchAsFilter()  {
-        return getAttributeAsBoolean("autoFetchAsFilter");
+    public String getAutoFetchTextMatchStyle()  {
+        return getAttributeAsString("autoFetchTextMatchStyle");
     }
 
     /**

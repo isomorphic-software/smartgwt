@@ -2126,6 +2126,8 @@ public class FormItem extends RefDataClass  implements com.smartgwt.client.widge
 
 
 
+
+
     public void setAttribute(String attribute, String value) {
         if (!isCreated()) {
             JSOHelper.setAttribute(jsObj, attribute, value);
@@ -2742,6 +2744,49 @@ public class FormItem extends RefDataClass  implements com.smartgwt.client.widge
      */
     public String getTooltip() {
         return getPrompt();
+    }
+
+    /**
+    * If this item has a specified <code>optionDataSource</code>, and this property is&#010 not null, this will be passed to the datasource as {@link com.smartgwt.client.rpc.RPCRequest} properties when&#010 performing the fetch operation on the dataSource to obtain a data-value to display-value&#010 mapping
+    * <p><b>Note : </b> This is an advanced setting</p>
+    *
+    * @param optionFilterContext optionFilterContext Default value is null
+    */
+    public void setOptionFilterContext(RPCRequest optionFilterContext) {
+        setAttribute("optionFilterContext", optionFilterContext);
+    }
+
+    /**
+     * If this item has a specified <code>optionDataSource</code>, and this property is&#010 not null, this will be passed to the datasource as {@link com.smartgwt.client.rpc.RPCRequest} properties when&#010 performing the fetch operation on the dataSource to obtain a data-value to display-value&#010 mapping
+     *
+     * @return RPCRequest Properties
+     *
+     */
+    public RPCRequest getOptionFilterContext()  {
+        JavaScriptObject jsObj = getAttributeAsJavaScriptObject("optionFilterContext");
+        return jsObj == null ? null : new RPCRequest(jsObj);
+    }
+
+    /**
+    * If this item has a specified <code>optionDataSource</code>, and this property may be used&#010 to specify criteria to pass to the datasource when&#010 performing the fetch operation on the dataSource to obtain a data-value to display-value&#010 mapping
+    * <p><b>Note : </b> This is an advanced setting</p>
+    *
+    * @param optionCriteria optionCriteria Default value is null
+    */
+    public void setOptionCriteria(Criteria optionCriteria) {
+        setAttribute("optionCriteria", optionCriteria);
+    }
+
+    /**
+     * If this item has a specified <code>optionDataSource</code>, and this property may be used&#010 to specify criteria to pass to the datasource when&#010 performing the fetch operation on the dataSource to obtain a data-value to display-value&#010 mapping
+     *
+     *
+     * @return the option criteria
+     *
+     */
+    public Criteria getOptionCriteria()  {
+        JavaScriptObject jsObj = getAttributeAsJavaScriptObject("optionCriteria");
+        return jsObj == null ? null : new Criteria(jsObj);
     }
     
     /**

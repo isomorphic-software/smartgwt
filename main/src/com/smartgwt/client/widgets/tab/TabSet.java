@@ -151,7 +151,7 @@ public class TabSet extends Canvas  implements com.smartgwt.client.widgets.tab.e
     }
 
     /**
-    * Should tabs in this tabSet show an icon allowing the user to dismiss the tab by&#010 clicking on it directly. May be overridden for individual tabs by setting &#010 {@link com.smartgwt.client.widgets.tab.Tab#getCanClose canClose}.<br>&#010 The URL for this icon's image will be derived from  {@link com.smartgwt.client.widgets.tab.TabSet#getCloseTabIcon closeTabIcon} by &#010 default, but may be overridden by explicitly specifying {@link com.smartgwt.client.widgets.tab.Tab#getCloseIcon closeIcon}.
+    * Should tabs in this tabSet show an icon allowing the user to dismiss the tab by&#010 clicking on it directly. May be overridden for individual tabs by setting &#010 {@link com.smartgwt.client.widgets.tab.Tab#getCanClose canClose}.&#010 <P>&#010 The URL for this icon's image will be derived from  {@link com.smartgwt.client.widgets.tab.TabSet#getCloseTabIcon closeTabIcon} by &#010 default, but may be overridden by explicitly specifying {@link com.smartgwt.client.widgets.tab.Tab#getCloseIcon closeIcon}.&#010 <P>&#010 <b>Note</b>: Currently, tabs can only show a single icon, so a closable tab will show&#010 the close icon only even if {@link com.smartgwt.client.widgets.tab.Tab#getIcon icon} is set.  To work around this, add the icon&#010 as an HTML &lt;img&gt; tag to the {@link com.smartgwt.client.widgets.tab.Tab#getTitle title} property, for example:&#010 <pre>&#010    title : "<span>" + isc.Canvas.imgHTML("myIcon.png") + " Tab Title</span>"&#010 </pre>
     *
     * @param canCloseTabs canCloseTabs Default value is null
     */
@@ -159,7 +159,7 @@ public class TabSet extends Canvas  implements com.smartgwt.client.widgets.tab.e
         setAttribute("canCloseTabs", canCloseTabs, true);
     }
     /**
-     * Should tabs in this tabSet show an icon allowing the user to dismiss the tab by&#010 clicking on it directly. May be overridden for individual tabs by setting &#010 {@link com.smartgwt.client.widgets.tab.Tab#getCanClose canClose}.<br>&#010 The URL for this icon's image will be derived from  {@link com.smartgwt.client.widgets.tab.TabSet#getCloseTabIcon closeTabIcon} by &#010 default, but may be overridden by explicitly specifying {@link com.smartgwt.client.widgets.tab.Tab#getCloseIcon closeIcon}.
+     * Should tabs in this tabSet show an icon allowing the user to dismiss the tab by&#010 clicking on it directly. May be overridden for individual tabs by setting &#010 {@link com.smartgwt.client.widgets.tab.Tab#getCanClose canClose}.&#010 <P>&#010 The URL for this icon's image will be derived from  {@link com.smartgwt.client.widgets.tab.TabSet#getCloseTabIcon closeTabIcon} by &#010 default, but may be overridden by explicitly specifying {@link com.smartgwt.client.widgets.tab.Tab#getCloseIcon closeIcon}.&#010 <P>&#010 <b>Note</b>: Currently, tabs can only show a single icon, so a closable tab will show&#010 the close icon only even if {@link com.smartgwt.client.widgets.tab.Tab#getIcon icon} is set.  To work around this, add the icon&#010 as an HTML &lt;img&gt; tag to the {@link com.smartgwt.client.widgets.tab.Tab#getTitle title} property, for example:&#010 <pre>&#010    title : "<span>" + isc.Canvas.imgHTML("myIcon.png") + " Tab Title</span>"&#010 </pre>
      *
      *
      * @return Boolean

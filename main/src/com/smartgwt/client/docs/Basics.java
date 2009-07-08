@@ -16,6 +16,7 @@ package com.smartgwt.client.docs;
  * @see com.smartgwt.client.widgets.form.fields.FormItem#getID
  * @see com.smartgwt.client.widgets.form.fields.FormItem#getPrompt
  * @see com.smartgwt.client.widgets.form.fields.DateItem#getUseTextField
+ * @see com.smartgwt.client..DateTimeItem#getUseTextField
  * @see com.smartgwt.client.widgets.Canvas#getID
  * @see com.smartgwt.client.widgets.viewer.DetailViewer#getData
  * @see com.smartgwt.client.widgets.tile.TileGrid#getShowAllRecords

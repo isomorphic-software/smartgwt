@@ -415,6 +415,26 @@ public class DetailViewer extends Canvas  implements DataBoundComponent {
     public DateDisplayFormat getDateFormatter()  {
         return (DateDisplayFormat) EnumUtil.getEnum(DateDisplayFormat.values(), getAttribute("dateFormatter"));
     }
+             
+    /**
+    * Display format to use for fields specified as type 'datetime'. Default is to use&#010 the system-wide default datetime format configured via &#010 {@link com.smartgwt.client..Date#setShortDatetimeDisplayFormat}
+    *
+    * @param datetimeFormatter datetimeFormatter Default value is null
+    * @throws IllegalStateException this property cannot be changed after the component has been created
+    */
+    public void setDatetimeFormatter(DateDisplayFormat datetimeFormatter)  throws IllegalStateException {
+        setAttribute("datetimeFormatter", datetimeFormatter.getValue(), false);
+    }
+    /**
+     * Display format to use for fields specified as type 'datetime'. Default is to use&#010 the system-wide default datetime format configured via &#010 {@link com.smartgwt.client..Date#setShortDatetimeDisplayFormat}
+     *
+     *
+     * @return DateDisplayFormat
+     *
+     */
+    public DateDisplayFormat getDatetimeFormatter()  {
+        return (DateDisplayFormat) EnumUtil.getEnum(DateDisplayFormat.values(), getAttribute("datetimeFormatter"));
+    }
 
     /**
     * Show {@link com.smartgwt.client.widgets.viewer.DetailViewer#getEmptyMessage emptyMessage} when there is no data to display?

@@ -144,7 +144,7 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
     }
 
     /**
-    * If true, automatically fetches a valueMap if an {@link com.smartgwt.client.widgets.grid.ListGridField#getOptionDataSource optionDataSource} is&#010 set for a ListGrid field.&#010 <P>&#010 If set to false, valueMaps will not be automatically fetched.  In this case, setting&#010 field.optionDataSource on a is effectively a shortcut for setting optionDataSource on&#010 the editor via {@link com.smartgwt.client.widgets.grid.ListGridField#getEditorProperties editorProperties}.&#010 <P>&#010 Can also be disabled on a per-field basis with {@link com.smartgwt.client.widgets.grid.ListGridField#getAutoFetchDisplayMap autoFetchDisplayMap}.
+    * If true, for fields where {@link com.smartgwt.client.widgets.grid.ListGridField#getOptionDataSource optionDataSource} is specified,&#010 a valueMap will be automatically created by making a {@link com.smartgwt.client.data.DataSource#fetchData} call&#010 against the specified dataSource and extracting a valueMap from the returned records&#010 based on the displayField and valueField.&#010 <P>&#010 If set to false, valueMaps will not be automatically fetched.  In this case, setting&#010 field.optionDataSource on a is effectively a shortcut for setting optionDataSource on&#010 the editor via {@link com.smartgwt.client.widgets.grid.ListGridField#getEditorProperties editorProperties}.&#010 <P>&#010 Can also be disabled on a per-field basis with {@link com.smartgwt.client.widgets.grid.ListGridField#getAutoFetchDisplayMap autoFetchDisplayMap}.
     *
     * @param autoFetchDisplayMap autoFetchDisplayMap Default value is true
     */
@@ -152,7 +152,7 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
         setAttribute("autoFetchDisplayMap", autoFetchDisplayMap, true);
     }
     /**
-     * If true, automatically fetches a valueMap if an {@link com.smartgwt.client.widgets.grid.ListGridField#getOptionDataSource optionDataSource} is&#010 set for a ListGrid field.&#010 <P>&#010 If set to false, valueMaps will not be automatically fetched.  In this case, setting&#010 field.optionDataSource on a is effectively a shortcut for setting optionDataSource on&#010 the editor via {@link com.smartgwt.client.widgets.grid.ListGridField#getEditorProperties editorProperties}.&#010 <P>&#010 Can also be disabled on a per-field basis with {@link com.smartgwt.client.widgets.grid.ListGridField#getAutoFetchDisplayMap autoFetchDisplayMap}.
+     * If true, for fields where {@link com.smartgwt.client.widgets.grid.ListGridField#getOptionDataSource optionDataSource} is specified,&#010 a valueMap will be automatically created by making a {@link com.smartgwt.client.data.DataSource#fetchData} call&#010 against the specified dataSource and extracting a valueMap from the returned records&#010 based on the displayField and valueField.&#010 <P>&#010 If set to false, valueMaps will not be automatically fetched.  In this case, setting&#010 field.optionDataSource on a is effectively a shortcut for setting optionDataSource on&#010 the editor via {@link com.smartgwt.client.widgets.grid.ListGridField#getEditorProperties editorProperties}.&#010 <P>&#010 Can also be disabled on a per-field basis with {@link com.smartgwt.client.widgets.grid.ListGridField#getAutoFetchDisplayMap autoFetchDisplayMap}.
      *
      *
      * @return Boolean
@@ -914,6 +914,25 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
     public DateDisplayFormat getDateFormatter()  {
         return (DateDisplayFormat) EnumUtil.getEnum(DateDisplayFormat.values(), getAttribute("dateFormatter"));
     }
+             
+    /**
+    * Display format to use for fields specified as type 'datetime'.  Default is to use the&#010 system-wide default date time format, configured via&#010 {@link com.smartgwt.client..Date#setShortDatetimeDisplayFormat}.  Specify any&#010 valid {@link com.smartgwt.client.types.DateDisplayFormat}, or&#010 function to change the display format for datetimes used by this grid.&#010 If specified as  a function, this function will be executed in the scope of the Date&#010 and should return the formatted string.<br>&#010 May also be specified at the field level via&#010 {@link com.smartgwt.client.widgets.grid.ListGridField#getDisplayFormat displayFormat}.<br>&#010 If this field is editable the dateFormatter will also be passed to the editor created&#010 to edit this field as {@link com.smartgwt.client.widgets.form.fields.DateItem#getDisplayFormat displayFormat}.&#010 In this case you may also need to set {@link com.smartgwt.client.widgets.grid.ListGrid#getDateInputFormat dateInputFormat}.
+    *
+    * @param datetimeFormatter datetimeFormatter Default value is null
+    */
+    public void setDatetimeFormatter(DateDisplayFormat datetimeFormatter) {
+        setAttribute("datetimeFormatter", datetimeFormatter.getValue(), true);
+    }
+    /**
+     * Display format to use for fields specified as type 'datetime'.  Default is to use the&#010 system-wide default date time format, configured via&#010 {@link com.smartgwt.client..Date#setShortDatetimeDisplayFormat}.  Specify any&#010 valid {@link com.smartgwt.client.types.DateDisplayFormat}, or&#010 function to change the display format for datetimes used by this grid.&#010 If specified as  a function, this function will be executed in the scope of the Date&#010 and should return the formatted string.<br>&#010 May also be specified at the field level via&#010 {@link com.smartgwt.client.widgets.grid.ListGridField#getDisplayFormat displayFormat}.<br>&#010 If this field is editable the dateFormatter will also be passed to the editor created&#010 to edit this field as {@link com.smartgwt.client.widgets.form.fields.DateItem#getDisplayFormat displayFormat}.&#010 In this case you may also need to set {@link com.smartgwt.client.widgets.grid.ListGrid#getDateInputFormat dateInputFormat}.
+     *
+     *
+     * @return DateDisplayFormat
+     *
+     */
+    public DateDisplayFormat getDatetimeFormatter()  {
+        return (DateDisplayFormat) EnumUtil.getEnum(DateDisplayFormat.values(), getAttribute("datetimeFormatter"));
+    }
 
     /**
     * Property name on a record that will hold the link text for that record.&#010 <br>&#010 This property is configurable to avoid possible collision with data values in the record.
@@ -1324,6 +1343,25 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
     public SelectionAppearance getSelectionAppearance()  {
         return (SelectionAppearance) EnumUtil.getEnum(SelectionAppearance.values(), getAttribute("selectionAppearance"));
     }
+
+    /**
+    * Controls whether a checkbox for selecting all records appears in the header with &#010 {@link com.smartgwt.client.widgets.grid.ListGrid#getSelectionAppearance selectionAppearance} set to "checkbox"
+    *
+    * @param canSelectAll canSelectAll Default value is null
+    */
+    public void setCanSelectAll(Boolean canSelectAll) {
+        setAttribute("canSelectAll", canSelectAll, true);
+    }
+    /**
+     * Controls whether a checkbox for selecting all records appears in the header with &#010 {@link com.smartgwt.client.widgets.grid.ListGrid#getSelectionAppearance selectionAppearance} set to "checkbox"
+     *
+     *
+     * @return Boolean
+     *
+     */
+    public Boolean getCanSelectAll()  {
+        return getAttributeAsBoolean("canSelectAll");
+    }
              
     /**
     * Defines a listGrid's clickable-selection behavior.  &#010 <P>&#010 The default selection appearance is governed by {@link com.smartgwt.client.widgets.grid.ListGrid#getSelectionAppearance selectionAppearance}: if&#010 selectionAppearance is "checkbox", this will be "simple", otherwise, this will be&#010 "multiple".
@@ -1598,7 +1636,7 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
     }
 
     /**
-    * Should this listGrid display a filter row.  If true, this ListGrid&#010 will be drawn with a single editable row, (separate from the body) with a filter button.&#010 Values entered into this row are used as filter criteria to filter this List's data on&#010 enter-keypress or filter button click. {@link com.smartgwt.client.widgets.grid.ListGrid#getAutoFetchAsFilter autoFetchAsFilter} determines whether&#010 the filter occurs as a {@link com.smartgwt.client.widgets.grid.ListGrid#fetchData} or {@link com.smartgwt.client.widgets.grid.ListGrid#filterData} call.&#010 <P>&#010 Note that if {@link com.smartgwt.client.widgets.grid.ListGrid#filterData} or {@link com.smartgwt.client.widgets.grid.ListGrid#fetchData} is called directly&#010 while the filter editor is showing, the filter editor values will be updated to reflect the&#010 new set of criteria. If you wish to retain the user entered filter criteria and &#010 programatically modify a subset of field values programatically this can be achieved by&#010 deriving new criteria by copying the existing set of criteria and adding other changes - &#010 something like this:&#010 <pre><code>&#010   var newCriteria = isc.clone(myListGrid.getCriteria());&#010   isc.addProperties(newCriteria, {&#010      field1:"new value1",&#010      field2:"new value2"&#010   });&#010   myListGrid.setCriteria(newCriteria);&#010 </code></pre>&#010 <P>&#010 Also note that if you call <code>filterData()</code> and pass in criteria for dataSource &#010 fields that are not present in the ListGrid, these criteria will continue to be applied along&#010 with the user visible criteria.
+    * Should this listGrid display a filter row.  If true, this ListGrid&#010 will be drawn with a single editable row, (separate from the body) with a filter button.&#010 Values entered into this row are used as filter criteria to filter this List's data on&#010 enter-keypress or filter button click. {@link com.smartgwt.client.widgets.grid.ListGrid#getAutoFetchTextMatchStyle autoFetchTextMatchStyle} determines&#010 the textMatchStyle for the request passed to {@link com.smartgwt.client.widgets.grid.ListGrid#fetchData}.&#010 <P>&#010 Note that if {@link com.smartgwt.client.widgets.grid.ListGrid#filterData} or {@link com.smartgwt.client.widgets.grid.ListGrid#fetchData} is called directly&#010 while the filter editor is showing, the filter editor values will be updated to reflect the&#010 new set of criteria. If you wish to retain the user entered filter criteria and &#010 programatically modify a subset of field values programatically this can be achieved by&#010 deriving new criteria by copying the existing set of criteria and adding other changes - &#010 something like this:&#010 <pre><code>&#010   var newCriteria = isc.clone(myListGrid.getCriteria());&#010   isc.addProperties(newCriteria, {&#010      field1:"new value1",&#010      field2:"new value2"&#010   });&#010   myListGrid.setCriteria(newCriteria);&#010 </code></pre>&#010 <P>&#010 Also note that if you call <code>filterData()</code> and pass in criteria for dataSource &#010 fields that are not present in the ListGrid, these criteria will continue to be applied along&#010 with the user visible criteria.
     * Setter for the {@link com.smartgwt.client.widgets.grid.ListGrid#getShowFilterEditor showFilterEditor} property. Allows the filter editor to be&#010 shown or hidden at runtime.&#010
     *
     * @param showFilterEditor true if the filter editor should be shown, false if it should be hidden. Default value is null
@@ -1607,7 +1645,7 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
         setAttribute("showFilterEditor", showFilterEditor, true);
     }
     /**
-     * Should this listGrid display a filter row.  If true, this ListGrid&#010 will be drawn with a single editable row, (separate from the body) with a filter button.&#010 Values entered into this row are used as filter criteria to filter this List's data on&#010 enter-keypress or filter button click. {@link com.smartgwt.client.widgets.grid.ListGrid#getAutoFetchAsFilter autoFetchAsFilter} determines whether&#010 the filter occurs as a {@link com.smartgwt.client.widgets.grid.ListGrid#fetchData} or {@link com.smartgwt.client.widgets.grid.ListGrid#filterData} call.&#010 <P>&#010 Note that if {@link com.smartgwt.client.widgets.grid.ListGrid#filterData} or {@link com.smartgwt.client.widgets.grid.ListGrid#fetchData} is called directly&#010 while the filter editor is showing, the filter editor values will be updated to reflect the&#010 new set of criteria. If you wish to retain the user entered filter criteria and &#010 programatically modify a subset of field values programatically this can be achieved by&#010 deriving new criteria by copying the existing set of criteria and adding other changes - &#010 something like this:&#010 <pre><code>&#010   var newCriteria = isc.clone(myListGrid.getCriteria());&#010   isc.addProperties(newCriteria, {&#010      field1:"new value1",&#010      field2:"new value2"&#010   });&#010   myListGrid.setCriteria(newCriteria);&#010 </code></pre>&#010 <P>&#010 Also note that if you call <code>filterData()</code> and pass in criteria for dataSource &#010 fields that are not present in the ListGrid, these criteria will continue to be applied along&#010 with the user visible criteria.
+     * Should this listGrid display a filter row.  If true, this ListGrid&#010 will be drawn with a single editable row, (separate from the body) with a filter button.&#010 Values entered into this row are used as filter criteria to filter this List's data on&#010 enter-keypress or filter button click. {@link com.smartgwt.client.widgets.grid.ListGrid#getAutoFetchTextMatchStyle autoFetchTextMatchStyle} determines&#010 the textMatchStyle for the request passed to {@link com.smartgwt.client.widgets.grid.ListGrid#fetchData}.&#010 <P>&#010 Note that if {@link com.smartgwt.client.widgets.grid.ListGrid#filterData} or {@link com.smartgwt.client.widgets.grid.ListGrid#fetchData} is called directly&#010 while the filter editor is showing, the filter editor values will be updated to reflect the&#010 new set of criteria. If you wish to retain the user entered filter criteria and &#010 programatically modify a subset of field values programatically this can be achieved by&#010 deriving new criteria by copying the existing set of criteria and adding other changes - &#010 something like this:&#010 <pre><code>&#010   var newCriteria = isc.clone(myListGrid.getCriteria());&#010   isc.addProperties(newCriteria, {&#010      field1:"new value1",&#010      field2:"new value2"&#010   });&#010   myListGrid.setCriteria(newCriteria);&#010 </code></pre>&#010 <P>&#010 Also note that if you call <code>filterData()</code> and pass in criteria for dataSource &#010 fields that are not present in the ListGrid, these criteria will continue to be applied along&#010 with the user visible criteria.
      *
      *
      * @return Boolean
@@ -1634,6 +1672,26 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
      */
     public int getFilterEditorHeight()  {
         return getAttributeAsInt("filterEditorHeight");
+    }
+
+    /**
+    * When this grid is initially filtered via {@link com.smartgwt.client.widgets.grid.ListGrid#getAutoFetchData autoFetchData}, or filtered by the user &#010 via the {@link com.smartgwt.client.widgets.grid.ListGrid#getShowFilterEditor showFilterEditor}, this attribute can be used to set the&#010 <code>textMatchStyle</code> on the dsRequest passed to <code>fetchData()</code>.
+    *
+    * @param autoFetchTextMatchStyle autoFetchTextMatchStyle Default value is "substring"
+    * @throws IllegalStateException this property cannot be changed after the component has been created
+    */
+    public void setAutoFetchTextMatchStyle(String autoFetchTextMatchStyle)  throws IllegalStateException {
+        setAttribute("autoFetchTextMatchStyle", autoFetchTextMatchStyle, false);
+    }
+    /**
+     * When this grid is initially filtered via {@link com.smartgwt.client.widgets.grid.ListGrid#getAutoFetchData autoFetchData}, or filtered by the user &#010 via the {@link com.smartgwt.client.widgets.grid.ListGrid#getShowFilterEditor showFilterEditor}, this attribute can be used to set the&#010 <code>textMatchStyle</code> on the dsRequest passed to <code>fetchData()</code>.
+     *
+     *
+     * @return String
+     *
+     */
+    public String getAutoFetchTextMatchStyle()  {
+        return getAttributeAsString("autoFetchTextMatchStyle");
     }
 
     /**
@@ -4732,24 +4790,9 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
     // ********************* Static Methods ***********************
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+
+
+
 
     protected native void onInit() /*-{
 
@@ -6426,7 +6469,7 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
         var retVal =self.rowDoubleClick(record.@com.smartgwt.client.core.DataClass::getJsObj()(), recordNum, fieldNum);
     }-*/;
-
+    
     /**
      * Add a onHeaderClick handler.
      * <p>
