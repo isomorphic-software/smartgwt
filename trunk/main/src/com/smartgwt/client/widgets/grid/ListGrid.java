@@ -4790,9 +4790,24 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
     // ********************* Static Methods ***********************
 
 
-
-
-
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
     protected native void onInit() /*-{
 
@@ -5001,10 +5016,37 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
         setAttribute("data", records, true);
     }
 
+    /**
+     * An array of ListGridRecord objects. Note that if the ListGrid is grouped, you must call {@link #getGroupTree()}
+     * to get the underlying Tree data representation. You can call {@link #isGrouped()} to test whether the ListGrid is
+     * grouped on a field.
+     *
+     * @return an array or records.
+     */
     public ListGridRecord[] getRecords() {
+        assert !isGrouped() : "You must call getGroupTree() since the ListGrid is grouped on a field.";
+        if(isGrouped()) return null;
         JavaScriptObject dataJS = getAttributeAsJavaScriptObject("data");
         ListGridRecord[] data = convertToListGridRecordArray(dataJS);
         return data;
+    }
+
+    /**
+     * Return true if the ListGrid is grouped on a field.
+     *
+     * @return true if grouped
+     */
+    public boolean isGrouped() {
+        return getGroupTree() != null;
+    }
+
+    /**
+     * If the ListGrid is grouped, return the underlying tree structure.
+     *
+     * @return the ListGrid group tree
+     */
+    public Tree getGroupTree() {
+        return Tree.getOrCreateRef(getAttributeAsJavaScriptObject("groupTree"));
     }
 
     /**
@@ -7014,7 +7056,6 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
         self.invalidateCache();
     }-*/;
-
 }
 
 
