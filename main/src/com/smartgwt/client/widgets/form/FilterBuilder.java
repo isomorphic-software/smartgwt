@@ -416,8 +416,12 @@ public class FilterBuilder extends Layout  implements com.smartgwt.client.widget
     // ********************* Static Methods ***********************
 
 
-
-
+
+
+
+
+
+
 
     /**
      * If true (the default), show field titles in the drop-down box used to select a field for querying. If false, show
@@ -436,7 +440,7 @@ public class FilterBuilder extends Layout  implements com.smartgwt.client.widget
      * @param dataSource dataSource Default value is null
      */
     public void setDataSource(DataSource dataSource) {
-        setAttribute("dataSource", dataSource.getOrCreateJsObj(), false);
+        setAttribute("dataSource", dataSource.getOrCreateJsObj(), true);
     }
 
     /**
