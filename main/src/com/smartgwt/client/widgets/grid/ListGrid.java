@@ -5017,18 +5017,18 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
     }
 
     /**
-     * An array of ListGridRecord objects. Note that if the ListGrid is grouped, you must call {@link #getGroupTree()}
+     * An array of ListGridRecord objects. Note that if the ListGrid is grouped, you can call {@link #getGroupTree()}
      * to get the underlying Tree data representation. You can call {@link #isGrouped()} to test whether the ListGrid is
      * grouped on a field.
      *
      * @return an array or records.
      */
     public ListGridRecord[] getRecords() {
-        assert !isGrouped() : "You must call getGroupTree() since the ListGrid is grouped on a field.";
-        if(isGrouped()) return null;
-        JavaScriptObject dataJS = getAttributeAsJavaScriptObject("data");
-        ListGridRecord[] data = convertToListGridRecordArray(dataJS);
-        return data;
+        if(isGrouped()) {
+            return convertToListGridRecordArray(getAttributeAsJavaScriptObject("originalData"));
+        } else {
+            return convertToListGridRecordArray(getAttributeAsJavaScriptObject("data"));
+        }
     }
 
     /**
