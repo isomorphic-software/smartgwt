@@ -65,11 +65,6 @@ public class JsObject {
             };
         }
 
-        //handle OSX hosted mode
-        if($wnd.isc.Browser.isSafari && @com.google.gwt.core.client.GWT::isScript()) {
-            $wnd.isc.Browser.safariVersion = 525;
-        }
-
         //convert javascript data types into corresponding Java wrapper types
         //int -> Integer, float -> Float, boolean -> Boolean and date - > java.util.Date
         $wnd.SmartGWT ={};
