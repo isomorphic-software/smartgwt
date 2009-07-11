@@ -5027,9 +5027,11 @@ public class Canvas extends BaseWidget  implements com.smartgwt.client.widgets.e
      * @param left new left position (or null for unchanged)
      * @param top  new top position (or null for unchanged)
      */
-    public native void animateMove(int left, int top) /*-{
+    public native void animateMove(Integer left, Integer top) /*-{
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
-        self.animateMove(left, top);
+        var leftJS = left == null ? null : left.@java.lang.Integer::intValue()();
+        var topJS = top == null ? null : top.@java.lang.Integer::intValue()();
+        self.animateMove(leftJS, topJS);
     }-*/;
 
     /**
@@ -5041,9 +5043,11 @@ public class Canvas extends BaseWidget  implements com.smartgwt.client.widgets.e
      *                 'earlyFinish' parameter will be passed if the animation was                              cut
      *                 short by a call to finishAnimation
      */
-    public native void animateMove(int left, int top, AnimationCallback callback) /*-{
+    public native void animateMove(Integer left, Integer top, AnimationCallback callback) /*-{
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
-        self.animateMove(left, top, function(earlyFinish) {
+        var leftJS = left == null ? null : left.@java.lang.Integer::intValue()();
+        var topJS = top == null ? null : top.@java.lang.Integer::intValue()();
+        self.animateMove(leftJS, topJS, function(earlyFinish) {
              earlyFinish = earlyFinish === undefined ? false : earlyFinish;
              if(callback != null) callback.@com.smartgwt.client.widgets.AnimationCallback::execute(Z)(earlyFinish);
         });
@@ -5059,9 +5063,11 @@ public class Canvas extends BaseWidget  implements com.smartgwt.client.widgets.e
      *                 short by a call to finishAnimation
      * @param duration Duration in ms of the animated move
      */
-    public native void animateMove(int left, int top, AnimationCallback callback, int duration) /*-{
+    public native void animateMove(Integer left, Integer top, AnimationCallback callback, int duration) /*-{
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
-        self.animateMove(left, top, function(earlyFinish) {
+        var leftJS = left == null ? null : left.@java.lang.Integer::intValue()();
+        var topJS = top == null ? null : top.@java.lang.Integer::intValue()();
+        self.animateMove(leftJS, topJS, function(earlyFinish) {
             earlyFinish = earlyFinish === undefined ? false : earlyFinish;
             if(callback != null) callback.@com.smartgwt.client.widgets.AnimationCallback::execute(Z)(earlyFinish);
         }, duration);
@@ -5078,9 +5084,11 @@ public class Canvas extends BaseWidget  implements com.smartgwt.client.widgets.e
      * @param duration     Duration in ms of the animated move
      * @param acceleration Optional acceleration effect to bias the ratios
      */
-    public native void animateMove(int left, int top, AnimationCallback callback, int duration, AnimationAcceleration acceleration) /*-{
+    public native void animateMove(Integer left, Integer top, AnimationCallback callback, int duration, AnimationAcceleration acceleration) /*-{
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
-        self.animateMove(left, top, function(earlyFinish) {
+        var leftJS = left == null ? null : left.@java.lang.Integer::intValue()();
+        var topJS = top == null ? null : top.@java.lang.Integer::intValue()();
+        self.animateMove(leftJS, topJS, function(earlyFinish) {
             earlyFinish = earlyFinish === undefined ? false : earlyFinish;
             if(callback != null) callback.@com.smartgwt.client.widgets.AnimationCallback::execute(Z)(earlyFinish);
         }, duration, acceleration == null ? null : acceleration.@com.smartgwt.client.types.ValueEnum::getValue()());
@@ -5140,9 +5148,13 @@ public class Canvas extends BaseWidget  implements com.smartgwt.client.widgets.e
      * @param width  new width (or null for unchanged)
      * @param height new height (or null for unchanged)
      */
-    public native void animateRect(int left, int top, int width, int height) /*-{
+    public native void animateRect(Integer left, Integer top, Integer width, Integer height) /*-{
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
-        self.animateRect(left, top, width, height);
+        var leftJS = left == null ? null : left.@java.lang.Integer::intValue()();
+        var topJS = top == null ? null : top.@java.lang.Integer::intValue()();
+        var widthJS = width == null ? null : width.@java.lang.Integer::intValue()();
+        var heightJS = height == null ? null : height.@java.lang.Integer::intValue()();
+        self.animateRect(leftJS, topJS, widthJS, heightJS);
     }-*/;
 
     /**
@@ -5156,9 +5168,14 @@ public class Canvas extends BaseWidget  implements com.smartgwt.client.widgets.e
      *                 'earlyFinish' parameter will be passed if the animation was                              cut
      *                 short by a call to finishAnimation
      */
-    public native void animateRect(int left, int top, int width, int height, AnimationCallback callback) /*-{
+    public native void animateRect(Integer left, Integer top, Integer width, Integer height, AnimationCallback callback) /*-{
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
-        self.animateRect(left, top, width, height, function(earlyFinish) {
+        var leftJS = left == null ? null : left.@java.lang.Integer::intValue()();
+        var topJS = top == null ? null : top.@java.lang.Integer::intValue()();
+        var widthJS = width == null ? null : width.@java.lang.Integer::intValue()();
+        var heightJS = height == null ? null : height.@java.lang.Integer::intValue()();
+
+        self.animateRect(leftJS, topJS, widthJS, heightJS, function(earlyFinish) {
             earlyFinish = earlyFinish === undefined ? false : earlyFinish;
             if(callback != null) callback.@com.smartgwt.client.widgets.AnimationCallback::execute(Z)(earlyFinish);
         });
@@ -5176,9 +5193,14 @@ public class Canvas extends BaseWidget  implements com.smartgwt.client.widgets.e
      *                 short by a call to finishAnimation
      * @param duration Duration in ms of the animated setRect
      */
-    public native void animateRect(int left, int top, int width, int height, AnimationCallback callback, int duration) /*-{
+    public native void animateRect(Integer left, Integer top, Integer width, Integer height, AnimationCallback callback, int duration) /*-{
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
-        self.animateRect(left, top, width, height, function(earlyFinish) {
+        var leftJS = left == null ? null : left.@java.lang.Integer::intValue()();
+        var topJS = top == null ? null : top.@java.lang.Integer::intValue()();
+        var widthJS = width == null ? null : width.@java.lang.Integer::intValue()();
+        var heightJS = height == null ? null : height.@java.lang.Integer::intValue()();
+
+        self.animateRect(leftJS, topJS, widthJS, heightJS, function(earlyFinish) {
             earlyFinish = earlyFinish === undefined ? false : earlyFinish;
             if(callback != null) callback.@com.smartgwt.client.widgets.AnimationCallback::execute(Z)(earlyFinish);
         }, duration);
@@ -5190,9 +5212,11 @@ public class Canvas extends BaseWidget  implements com.smartgwt.client.widgets.e
      * @param width  new width (or null for unchanged)
      * @param height new height (or null for unchanged)
      */
-    public native void animateResize(int width, int height) /*-{
+    public native void animateResize(Integer width, Integer height) /*-{
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
-        self.animateResize(width, height);
+        var widthJS = width == null ? null : width.@java.lang.Integer::intValue()();
+        var heightJS = height == null ? null : height.@java.lang.Integer::intValue()();
+        self.animateResize(widthJS, heightJS);
     }-*/;
 
     /**
@@ -5204,9 +5228,11 @@ public class Canvas extends BaseWidget  implements com.smartgwt.client.widgets.e
      *                 'earlyFinish' parameter will be passed if the animation was                              cut
      *                 short by a call to finishAnimation
      */
-    public native void animateResize(int width, int height, AnimationCallback callback) /*-{
+    public native void animateResize(Integer width, Integer height, AnimationCallback callback) /*-{
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
-        self.animateResize(width, height, function(earlyFinish) {
+        var widthJS = width == null ? null : width.@java.lang.Integer::intValue()();
+        var heightJS = height == null ? null : height.@java.lang.Integer::intValue()();
+        self.animateResize(widthJS, heightJS, function(earlyFinish) {
             earlyFinish = earlyFinish === undefined ? false : earlyFinish;
             if(callback != null) callback.@com.smartgwt.client.widgets.AnimationCallback::execute(Z)(earlyFinish);
         });
@@ -5222,9 +5248,11 @@ public class Canvas extends BaseWidget  implements com.smartgwt.client.widgets.e
      *                 short by a call to finishAnimation
      * @param duration Duration in ms of the animated resize
      */
-    public native void animateResize(int width, int height, AnimationCallback callback, int duration) /*-{
+    public native void animateResize(Integer width, Integer height, AnimationCallback callback, int duration) /*-{
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
-        self.animateResize(width, height, function(earlyFinish) {
+        var widthJS = width == null ? null : width.@java.lang.Integer::intValue()();
+        var heightJS = height == null ? null : height.@java.lang.Integer::intValue()();
+        self.animateResize(widthJS, heightJS, function(earlyFinish) {
             earlyFinish = earlyFinish === undefined ? false : earlyFinish;
             if(callback != null) callback.@com.smartgwt.client.widgets.AnimationCallback::execute(Z)(earlyFinish);
         }, duration);
