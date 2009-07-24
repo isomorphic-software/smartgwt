@@ -8,6 +8,19 @@ import com.smartgwt.client.types.DateDisplayFormat;
 public class DateUtil {
 
     /**
+     * Globally sets the offset from UTC to use when formatting values of type datetime and time with standard display formatters.
+     *
+     * If this method is never called, the default display timezone for times and datetimes will be derived from the native
+     * browser local timezone.
+     *
+     * @param offset offset from UTC. This should be a string in the format <code>+/-HH:MM</code> for example <code>"-08:00"
+     */
+    public static native void setDefaultDisplayTimezone(String offset) /*-{
+        $wnd.isc.Time.setDefaultDisplayTimezone(offset);
+    }-*/;
+
+
+    /**
      * Set the default formatter for date objects to the method name passed in. After calling this method, subsequent calls to Date.toNormalDate will return a string formatted according to this format specification.
      * <br>
      * <b>Note</b>: this will be the standard long date format used by SmartGWT components.
