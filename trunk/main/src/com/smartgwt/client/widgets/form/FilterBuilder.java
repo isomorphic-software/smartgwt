@@ -131,6 +131,26 @@ public class FilterBuilder extends Layout  implements com.smartgwt.client.widget
     }
 
     /**
+    * If true (the default), validates each entered value when it changes, to make sure it is a &#010 a valid value of its type (valid string, number, and so on).  No other validation is &#010 carried out.  If you switch this property off, it is still possible to validate the &#010 <code>FilterBuilder</code> by calling ${isc.DocUtils.linkForRef('filterBuilder.validate')} from your own code.
+    *
+    * @param validateOnChange validateOnChange Default value is true
+    * @throws IllegalStateException this property cannot be changed after the component has been created
+    */
+    public void setValidateOnChange(Boolean validateOnChange)  throws IllegalStateException {
+        setAttribute("validateOnChange", validateOnChange, false);
+    }
+    /**
+     * If true (the default), validates each entered value when it changes, to make sure it is a &#010 a valid value of its type (valid string, number, and so on).  No other validation is &#010 carried out.  If you switch this property off, it is still possible to validate the &#010 <code>FilterBuilder</code> by calling ${isc.DocUtils.linkForRef('filterBuilder.validate')} from your own code.
+     *
+     *
+     * @return Boolean
+     *
+     */
+    public Boolean getValidateOnChange()  {
+        return getAttributeAsBoolean("validateOnChange");
+    }
+
+    /**
     * If set, a button will be shown for each clause allowing it to be removed.
     *
     * @param showRemoveButton showRemoveButton Default value is true
@@ -416,12 +436,8 @@ public class FilterBuilder extends Layout  implements com.smartgwt.client.widget
     // ********************* Static Methods ***********************
 
 
-
-
-
-
-
-
+
+
 
     /**
      * If true (the default), show field titles in the drop-down box used to select a field for querying. If false, show

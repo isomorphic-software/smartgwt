@@ -1734,6 +1734,25 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
     }
 
     /**
+    * When this attribute is set, editors will be rendered into every row of the grid rather than&#010 showing up in a single record at a time.&#010 This attribute is only valid when {@link com.smartgwt.client.widgets.grid.ListGrid#getEditByCell editByCell} is false
+    *
+    * @param alwaysShowEditors alwaysShowEditors Default value is null
+    */
+    public void setAlwaysShowEditors(Boolean alwaysShowEditors) {
+        setAttribute("alwaysShowEditors", alwaysShowEditors, true);
+    }
+    /**
+     * When this attribute is set, editors will be rendered into every row of the grid rather than&#010 showing up in a single record at a time.&#010 This attribute is only valid when {@link com.smartgwt.client.widgets.grid.ListGrid#getEditByCell editByCell} is false
+     *
+     *
+     * @return Boolean
+     *
+     */
+    public Boolean getAlwaysShowEditors()  {
+        return getAttributeAsBoolean("alwaysShowEditors");
+    }
+
+    /**
     * Determines whether when the user edits a cell in this listGrid the entire row becomes&#010 editable, or just the cell that recieved the edit event.&#010 <P>&#010 No effect if this.canEdit is false or null.
     *
     * @param editByCell editByCell Default value is null
@@ -4790,24 +4809,9 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
     // ********************* Static Methods ***********************
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+
+
+
 
     protected native void onInit() /*-{
 
@@ -7056,6 +7060,7 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
         self.invalidateCache();
     }-*/;
+
 }
 
 

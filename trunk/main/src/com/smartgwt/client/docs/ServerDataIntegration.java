@@ -8,7 +8,6 @@ package com.smartgwt.client.docs;
  * @see com.smartgwt.client.data.DataSource#getRequestProperties
  * @see com.smartgwt.client.data.DataSource#getServerType
  * @see com.smartgwt.client.data.DataSource#getTableName
- * @see com.smartgwt.client.data.DataSource#getBeanClassName
  * @see com.smartgwt.client.data.DataSource#getDbName
  * @see com.smartgwt.client.data.DataSource#getServerObject
  * @see com.smartgwt.client.data.OperationBinding#getRequestProperties

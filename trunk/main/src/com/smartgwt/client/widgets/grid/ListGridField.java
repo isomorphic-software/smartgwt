@@ -1353,6 +1353,25 @@ public class ListGridField extends DataClass  implements com.smartgwt.client.wid
     }
 
     /**
+    * If this field has an optionDataSource specified and &#010 {@link com.smartgwt.client.widgets.grid.ListGridField#getAutoFetchDisplayMap autoFetchDisplayMap} is set, this attribute&#010 provides a way to customize the {@link com.smartgwt.client.data.DSRequest#getOperationId operationId} passed to &#010 <code>dataSource.fetchData()</code> when retrieving the display map from the option &#010 dataSource.
+    *
+    * @param optionOperationId optionOperationId Default value is null
+    */
+    public void setOptionOperationId(String optionOperationId) {
+        setAttribute("optionOperationId", optionOperationId);
+    }
+    /**
+     * If this field has an optionDataSource specified and &#010 {@link com.smartgwt.client.widgets.grid.ListGridField#getAutoFetchDisplayMap autoFetchDisplayMap} is set, this attribute&#010 provides a way to customize the {@link com.smartgwt.client.data.DSRequest#getOperationId operationId} passed to &#010 <code>dataSource.fetchData()</code> when retrieving the display map from the option &#010 dataSource.
+     *
+     *
+     * @return String
+     *
+     */
+    public String getOptionOperationId()  {
+        return getAttributeAsString("optionOperationId");
+    }
+
+    /**
     * Specifies the {@link com.smartgwt.client.widgets.grid.ListGridField#getOptionDataSource optionDataSource} field used to retrieve the stored&#010 values that are to be mapped to the display values (specified by&#010 {@link com.smartgwt.client.widgets.grid.ListGridField#getDisplayField displayField}). Note that if this field is editable this will also&#010 be applied to this field's editors.
     *
     * @param valueField valueField Default value is null
