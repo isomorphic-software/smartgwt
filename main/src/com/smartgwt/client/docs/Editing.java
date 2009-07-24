@@ -75,6 +75,7 @@ package com.smartgwt.client.docs;
  * @see com.smartgwt.client.widgets.grid.ListGridField#getEditorValueMap
  * @see com.smartgwt.client.widgets.grid.ListGrid#getCanEdit
  * @see com.smartgwt.client.widgets.grid.ListGrid#getRecordEditProperty
+ * @see com.smartgwt.client.widgets.grid.ListGrid#getAlwaysShowEditors
  * @see com.smartgwt.client.widgets.grid.ListGrid#getEditByCell
  * @see com.smartgwt.client.widgets.grid.ListGrid#getSaveByCell
  * @see com.smartgwt.client.widgets.grid.ListGrid#getWaitForSave
