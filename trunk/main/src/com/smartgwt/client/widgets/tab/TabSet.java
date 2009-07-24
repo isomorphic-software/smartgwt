@@ -741,8 +741,14 @@ public class TabSet extends Canvas  implements com.smartgwt.client.widgets.tab.e
     // ********************* Static Methods ***********************
 
 
-
-
+
+
+
+
+
+
+
+
     /**
     * Specifies the index of the initially selected tab.
     *
@@ -1069,9 +1075,40 @@ public class TabSet extends Canvas  implements com.smartgwt.client.widgets.tab.e
     }-*/;
 
     /**
+     * Add a tab
+     *
+     * @param tab new tab
+     * @param position the position where tab should be added
+     */
+    public void addTab(Tab tab, int position) {
+        JavaScriptObject tabJS = tab.getJsObj();
+
+        if (isCreated()) {
+            addTabPostCreate(tabJS, position);
+
+        } else {
+            addTabPreCreate(tabJS, position);
+        }
+    }
+
+    private native void addTabPreCreate(JavaScriptObject tabJS, int position) /*-{
+		var config = this.@com.smartgwt.client.widgets.BaseWidget::config;
+
+        if(!config.tabs) {
+            config.tabs = @com.smartgwt.client.util.JSOHelper::createJavaScriptArray()();
+        }
+        config.tabs.splice(position, 0, tabJS);
+    }-*/;
+
+    private native void addTabPostCreate(JavaScriptObject tabJS, int position) /*-{
+        var container = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
+        container.addTab(tabJS, position);
+    }-*/;
+
+    /**
      * The number of tabs
      *
-     * @param the number of tabs
+     * @return the number of tabs
      */
     public native int getNumTabs()/*-{
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
