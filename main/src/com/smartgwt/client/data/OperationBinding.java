@@ -78,7 +78,7 @@ public class OperationBinding extends DataClass {
     // ********************* Properties / Attributes ***********************
              
     /**
-    * Which operationType this operationBinding is for.  This property is only settable on an operationBinding, not&#010 a DataSource as a whole.
+    * Which operationType this operationBinding is for.  This property is only settable on an&#010 operationBinding, not a DataSource as a whole.
     *
     * @param operationType operationType Default value is null
     */
@@ -86,7 +86,7 @@ public class OperationBinding extends DataClass {
         setAttribute("operationType", operationType.getValue());
     }
     /**
-     * Which operationType this operationBinding is for.  This property is only settable on an operationBinding, not&#010 a DataSource as a whole.
+     * Which operationType this operationBinding is for.  This property is only settable on an&#010 operationBinding, not a DataSource as a whole.
      *
      *
      * @return DSOperationType
@@ -436,6 +436,25 @@ public class OperationBinding extends DataClass {
      */
     public String getLineBreakStyle()  {
         return getAttributeAsString("lineBreakStyle");
+    }
+
+    /**
+    * Ordinarily, "update" and "remove" operations are only allowed for {@link com.smartgwt.client.data.DataSource}s&#010 that have a {@link com.smartgwt.client.data.DataSourceField#getPrimaryKey primaryKey}, and all primary key values&#010 are present in the request.  This is because an update of a DataSource with no primary key, &#010 or an update request that has missing primary key values, cannot be guaranteed to affect &#010 only one record.&#010 <p>&#010 Setting this property on an operationBinding circumvents this restriction for that operation&#010 only.&#010 <p>&#010 <b>Warning:</b> Be aware that this is a potentially dangerous setting and should be used&#010 with care.  With this flag set, you have no guarantee that an update will not change or &#010 remove every row in a table.
+    *
+    * @param allowMultiUpdate allowMultiUpdate Default value is null
+    */
+    public void setAllowMultiUpdate(Boolean allowMultiUpdate) {
+        setAttribute("allowMultiUpdate", allowMultiUpdate);
+    }
+    /**
+     * Ordinarily, "update" and "remove" operations are only allowed for {@link com.smartgwt.client.data.DataSource}s&#010 that have a {@link com.smartgwt.client.data.DataSourceField#getPrimaryKey primaryKey}, and all primary key values&#010 are present in the request.  This is because an update of a DataSource with no primary key, &#010 or an update request that has missing primary key values, cannot be guaranteed to affect &#010 only one record.&#010 <p>&#010 Setting this property on an operationBinding circumvents this restriction for that operation&#010 only.&#010 <p>&#010 <b>Warning:</b> Be aware that this is a potentially dangerous setting and should be used&#010 with care.  With this flag set, you have no guarantee that an update will not change or &#010 remove every row in a table.
+     *
+     *
+     * @return Boolean
+     *
+     */
+    public Boolean getAllowMultiUpdate()  {
+        return getAttributeAsBoolean("allowMultiUpdate");
     }
 
     /**
