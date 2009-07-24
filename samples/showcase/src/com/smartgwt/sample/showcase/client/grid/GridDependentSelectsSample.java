@@ -84,9 +84,18 @@ public class GridDependentSelectsSample extends ShowcasePanel {
         SelectItem departmentSelectItem = new SelectItem();
         departmentSelectItem.setAddUnknownValues(false);
         departmentField.setEditorValueMapFunction(new EditorValueMapFunction() {
-            public String[] getEditorValueMap(Map values, ListGridField field, ListGrid grid) {
+            public Map getEditorValueMap(Map values, ListGridField field, ListGrid grid) {
                 String division = (String) values.get("division");
-                return departments.get(division);
+                String[] divisions = departments.get(division);
+
+                //convert divisions into ValueMap. In this case we simply create a Map with same key -> value since
+                //stored value is the same as user displayable value
+                Map<String, String> valueMap = new HashMap<String, String>();
+                for (int i = 0; i < divisions.length; i++) {
+                    String val = divisions[i];
+                    valueMap.put(val, val);
+                }
+                return valueMap;
             }
         });
         departmentField.setEditorType(departmentSelectItem);
