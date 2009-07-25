@@ -197,8 +197,10 @@ public class EventHandler {
         }-*/;
 
 
-
-
+
+
+
+
     /**
      * Set the HTML for the drag tracker that follows the mouse during a drag and drop interaction. <P> Your canvas
      * can use this routine to set the drag tracker to whatever HTML you want like so: <pre>    dragStart : function
@@ -233,7 +235,7 @@ public class EventHandler {
      *
      * @return lobal (page-relative) coordinates and size of the dragged element, as a 4-element array [left,top,width,height], or null if not dragging
      */
-    public native Rectangle getDragRect() /*-{
+    public static native Rectangle getDragRect() /*-{
          var rectJS = $wnd.isc.EventHandler.getDragRect();
          if(rectJS == null || rectJS === undefined) return null;
          return @com.smartgwt.client.core.Rectangle::new(IIII)(rectJS[0], rectJS[1], rectJS[2], rectJS[3]);
