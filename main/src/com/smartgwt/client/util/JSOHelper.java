@@ -46,7 +46,7 @@ public class JSOHelper {
      * @return the JavaScriptObject upon evaluation
      */
     public static native JavaScriptObject eval(String jsFrag) /*-{
-		if(!(jsFrag.startsWith('(') && jsFrag.endsWith(')'))) {
+		if(!($wnd.isc.startsWith(jsFrag, '(') && $wnd.isc.endsWith(jsFrag, ')'))) {
             jsFrag = '(' + jsFrag + ')';
         }
         return eval(jsFrag);
