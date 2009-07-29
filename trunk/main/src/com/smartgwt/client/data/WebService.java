@@ -11,7 +11,66 @@ public class WebService extends JsObject {
         super(jsObj);
     }
 
-    public native void callOperation(String operationName, Map paramData, String resultType, WebServiceCallback callback) /*-{
+    /**
+     * Invoke a web service operation.
+     * <p>
+     * The <code>data</code> parameter will be serialized to XML to form the input message for<br>
+     * the operation, as described by ${isc.DocUtils.linkForRef('method:DataSource.xmlSerialize')}.  Namespacing,
+     * <br> element ordering, and SOAP encoding rules are automatically followed.  If the web
+     * <br> service you are trying to contact requires a complicated nested structure, consider<br> using
+     * {@link com.smartgwt.client.data.WSRequest#setUseFlatFields(Boolean)}  to simplify the required JavaScript input data.<br>
+     * <P><br> The <code>resultType</code> selects what part of the message should be decoded to<br> JavaScript and made
+     * available as the &quot;data&quot; variable in the callback.  The<br> <code>resultType</code> parameter can be either:<br> <ul><br> <li> an XPath.
+     * &quot;data&quot; will be always be an Array, containing the selected elements as<br> decoded by XMLTools.toJS.
+     * All properties will have String value.<br> <li> the name of an XML Schema type found somewhere in the response.
+     * You can use the<br> WSDL tab of the Developer Console to analyze the WSDL file for an appropriate type name.<br> &quot;data&quot;
+     * will be an Array, containing the decoded elements as decoded by<br> {@link DataSource#recordsFromXML(Object)} .
+     * In this case, since the XML Schema type of the<br> selected data is known, properties will have correct type (eg &quot;date&quot; fields will<br> have JavaScript Date objects)<br> <li> null.
+     * &quot;data&quot; will an Object representing the entire &amp;lt;SOAP:Body&amp;gt; as decoded<br> to JavaScript.  As above, properties
+     * will have correct type.<br> </ul><br> In the callback, you also receive the XML document returned by the web service as<br> &quot;xmlDoc&quot;.<br> <P>
+     * <br> NOTE: <code>callOperation()</code> is appropriate for simple operations that do not<br> involve DataBound Components, such as logging into a web service,
+     * or retrieving simple<br> String data.  <code>callOperation()</code> can also be used to retrieve small, read-only<br>
+     * datasets such as the option list for a SelectItem, but only if the dataset is guaranteed<br> to remain small enough for paging to be unnecessary.
+     * For any larger datasets or<br> anything that will be edited, DataSource integration is more appropriate.<br><br>
+     *
+     * @param operationName  Name of the operation to invoke
+     * @param paramData  data to serialize as XML to form the inbound message of the operation
+     * @param resultType  Type, Element name, or XPath that should be selected from the result
+     * @param callback Callback to invoke on completion
+     */
+    public void callOperation(String operationName, Map paramData, String resultType, WebServiceCallback callback){
+        callOperation(operationName, paramData, resultType, callback, null);
+    }
+
+    /**
+     * Invoke a web service operation.
+     * <p>
+     * The <code>data</code> parameter will be serialized to XML to form the input message for<br>
+     * the operation, as described by ${isc.DocUtils.linkForRef('method:DataSource.xmlSerialize')}.  Namespacing,
+     * <br> element ordering, and SOAP encoding rules are automatically followed.  If the web
+     * <br> service you are trying to contact requires a complicated nested structure, consider<br> using
+     * {@link com.smartgwt.client.data.WSRequest#setUseFlatFields(Boolean)}  to simplify the required JavaScript input data.<br>
+     * <P><br> The <code>resultType</code> selects what part of the message should be decoded to<br> JavaScript and made
+     * available as the &quot;data&quot; variable in the callback.  The<br> <code>resultType</code> parameter can be either:<br> <ul><br> <li> an XPath.
+     * &quot;data&quot; will be always be an Array, containing the selected elements as<br> decoded by XMLTools.toJS.
+     * All properties will have String value.<br> <li> the name of an XML Schema type found somewhere in the response.
+     * You can use the<br> WSDL tab of the Developer Console to analyze the WSDL file for an appropriate type name.<br> &quot;data&quot;
+     * will be an Array, containing the decoded elements as decoded by<br> {@link DataSource#recordsFromXML(Object)} .
+     * In this case, since the XML Schema type of the<br> selected data is known, properties will have correct type (eg &quot;date&quot; fields will<br> have JavaScript Date objects)<br> <li> null.
+     * &quot;data&quot; will an Object representing the entire &amp;lt;SOAP:Body&amp;gt; as decoded<br> to JavaScript.  As above, properties
+     * will have correct type.<br> </ul><br> In the callback, you also receive the XML document returned by the web service as<br> &quot;xmlDoc&quot;.<br> <P>
+     * <br> NOTE: <code>callOperation()</code> is appropriate for simple operations that do not<br> involve DataBound Components, such as logging into a web service,
+     * or retrieving simple<br> String data.  <code>callOperation()</code> can also be used to retrieve small, read-only<br>
+     * datasets such as the option list for a SelectItem, but only if the dataset is guaranteed<br> to remain small enough for paging to be unnecessary.
+     * For any larger datasets or<br> anything that will be edited, DataSource integration is more appropriate.<br><br>
+     *
+     * @param operationName  Name of the operation to invoke
+     * @param paramData  data to serialize as XML to form the inbound message of the operation
+     * @param resultType  Type, Element name, or XPath that should be selected from the result
+     * @param callback Callback to invoke on completion
+     * @param wsRequestProperties Additional properties for the WSRequest, such as HTTPHeaders
+     */
+    public native void callOperation(String operationName, Map paramData, String resultType, WebServiceCallback callback, WSRequest wsRequestProperties) /*-{
         var self  = this.@com.smartgwt.client.core.JsObject::getJsObj()();
         var paramDataJS = @com.smartgwt.client.util.JSOHelper::convertMapToJavascriptObject(Ljava/util/Map;)(paramData);
 
@@ -20,11 +79,10 @@ public class WebService extends JsObject {
                 data = [data];
             }
             var dataJ = @com.smartgwt.client.util.JSOHelper::convertToJavaObjectArray(Lcom/google/gwt/core/client/JavaScriptObject;)(data);
-            var resp = @com.smartgwt.client.rpc.RPCResponse::new(Lcom/google/gwt/core/client/JavaScriptObject;)(rpcResponse); 
+            var resp = @com.smartgwt.client.rpc.RPCResponse::new(Lcom/google/gwt/core/client/JavaScriptObject;)(rpcResponse);
             callback.@com.smartgwt.client.data.WebServiceCallback::execute([Ljava/lang/Object;Lcom/google/gwt/core/client/JavaScriptObject;Lcom/smartgwt/client/rpc/RPCResponse;Lcom/google/gwt/core/client/JavaScriptObject;)(dataJ, xmlDoc, resp, wsRequest);
-        });
+        }, wsRequestProperties == null ? null : wsRequestProperties.@com.smartgwt.client.data.WSRequest::getJsObj()());
     }-*/;
-
  
     /**
      * Set location can be used when the actual URL where a service will be accessible isn't known until runtime, or changes at runtime, hence can't be embedded in the service definition.
