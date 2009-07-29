@@ -387,6 +387,12 @@ public interface PickList {
      */
     public Integer getFetchDelay();
 
+   /**
+    * Set the pick list filter criteria function / handler.
+    *
+    * @param filterCriteriaFunction the filter criteria function
+    */
+    public void setPickListFilterCriteriaFunction(FilterCriteriaFunction filterCriteriaFunction);    
 }
 
 
