@@ -58,53 +58,53 @@ import com.google.gwt.event.shared.HasHandlers;
 public class DayBodyClickEvent extends BrowserEvent<DayBodyClickHandler>  implements Cancellable {
     private boolean cancel = false;
 
-  /**
-   * Handler type.
-   */
-  private static Type<DayBodyClickHandler> TYPE;
+    /**
+     * Handler type.
+     */
+    private static Type<DayBodyClickHandler> TYPE;
 
-  /**
-   * Fires a open event on all registered handlers in the handler manager.If no
-   * such handlers exist, this method will do nothing.
-   *
-   * @param <S> The event source
-   * @param source the source of the handlers
-   * @param jsObj the native event
-   */
-  public static <S extends HasDayBodyClickHandlers & HasHandlers> void fire(
-      S source, JavaScriptObject jsObj) {
-    if (TYPE != null) {
-        DayBodyClickEvent event = new DayBodyClickEvent(jsObj);
-        source.fireEvent(event);
+    /**
+     * Fires a open event on all registered handlers in the handler manager.If no
+     * such handlers exist, this method will do nothing.
+     *
+     * @param <S> The event source
+     * @param source the source of the handlers
+     * @param jsObj the native event
+     */
+    public static <S extends HasDayBodyClickHandlers & HasHandlers> void fire(
+        S source, JavaScriptObject jsObj) {
+        if (TYPE != null) {
+            DayBodyClickEvent event = new DayBodyClickEvent(jsObj);
+            source.fireEvent(event);
+        }
     }
-  }
 
-  /**
-   * Gets the type associated with this event.
-   *
-   * @return returns the handler type
-   */
-  public static Type<DayBodyClickHandler> getType() {
-    if (TYPE == null) {
-      TYPE = new Type<DayBodyClickHandler>();
+    /**
+     * Gets the type associated with this event.
+     *
+     * @return returns the handler type
+     */
+    public static Type<DayBodyClickHandler> getType() {
+        if (TYPE == null) {
+            TYPE = new Type<DayBodyClickHandler>();
+        }
+        return TYPE;
     }
-    return TYPE;
-  }
 
 
-  @Override
-  protected void dispatch(DayBodyClickHandler handler) {
-    handler.onDayBodyClick(this);
-  }
+    @Override
+    protected void dispatch(DayBodyClickHandler handler) {
+        handler.onDayBodyClick(this);
+    }
 
-  // Because of type erasure, our static type is
-  // wild carded, yet the "real" type should use our I param.
+    // Because of type erasure, our static type is
+    // wild carded, yet the "real" type should use our I param.
 
-  @SuppressWarnings("unchecked")
-  @Override
-  public final Type<DayBodyClickHandler> getAssociatedType() {
-    return TYPE;
-  }
+    @SuppressWarnings("unchecked")
+    @Override
+    public final Type<DayBodyClickHandler> getAssociatedType() {
+        return TYPE;
+    }
 
     public DayBodyClickEvent(JavaScriptObject jsObj) {
         super(jsObj);
@@ -132,7 +132,7 @@ public class DayBodyClickEvent extends BrowserEvent<DayBodyClickHandler>  implem
      */
     public  native Date getDate() /*-{
         var jsObj = this.@com.smartgwt.client.event.AbstractSmartEvent::jsObj;
-        return (jsObj.date === undefined || jsObj.date == null) ? null: @com.smartgwt.client.util.JSOHelper::toDate(D)(jsObj.date.getTime());                
+        return (jsObj.date === undefined || jsObj.date == null) ? null: @com.smartgwt.client.util.JSOHelper::toDate(D)(jsObj.date.getTime());
     }-*/;
 
     /**
@@ -168,7 +168,6 @@ public class DayBodyClickEvent extends BrowserEvent<DayBodyClickHandler>  implem
 
 
 
-
     /**
      * events that fall on this day
      *

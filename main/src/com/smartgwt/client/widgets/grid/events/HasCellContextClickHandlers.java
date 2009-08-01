@@ -22,7 +22,7 @@ import com.google.gwt.event.shared.HasHandlers;
 
 public interface HasCellContextClickHandlers extends HasHandlers {
     /**
-     * Called when a cell receives a contextclick event.&#010&#010
+     * Called when a cell receives a contextclick event.
      *
      * @param handler the cellContextClick handler
      * @return {@link HandlerRegistration} used to remove this handler

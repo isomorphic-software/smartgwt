@@ -22,7 +22,7 @@ import com.google.gwt.event.shared.HasHandlers;
 
 public interface HasCellOutHandlers extends HasHandlers {
     /**
-     * Called when the mouse pointer leaves a cell&#010&#010
+     * Called when the mouse pointer leaves a cell
      *
      * @param handler the cellOut handler
      * @return {@link HandlerRegistration} used to remove this handler

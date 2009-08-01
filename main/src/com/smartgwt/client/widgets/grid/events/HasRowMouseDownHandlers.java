@@ -22,7 +22,7 @@ import com.google.gwt.event.shared.HasHandlers;
 
 public interface HasRowMouseDownHandlers extends HasHandlers {
     /**
-     * Called when a row receives a mousedown event.&#010 &#010
+     * Called when a row receives a mousedown event.
      *
      * @param handler the rowMouseDown handler
      * @return {@link HandlerRegistration} used to remove this handler

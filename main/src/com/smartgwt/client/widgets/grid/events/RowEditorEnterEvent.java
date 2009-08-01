@@ -57,53 +57,53 @@ import com.google.gwt.event.shared.*;
 import com.google.gwt.event.shared.HasHandlers;
 public class RowEditorEnterEvent extends BrowserEvent<RowEditorEnterHandler>  {
 
-  /**
-   * Handler type.
-   */
-  private static Type<RowEditorEnterHandler> TYPE;
+    /**
+     * Handler type.
+     */
+    private static Type<RowEditorEnterHandler> TYPE;
 
-  /**
-   * Fires a open event on all registered handlers in the handler manager.If no
-   * such handlers exist, this method will do nothing.
-   *
-   * @param <S> The event source
-   * @param source the source of the handlers
-   * @param jsObj the native event
-   */
-  public static <S extends HasRowEditorEnterHandlers & HasHandlers> void fire(
-      S source, JavaScriptObject jsObj) {
-    if (TYPE != null) {
-        RowEditorEnterEvent event = new RowEditorEnterEvent(jsObj);
-        source.fireEvent(event);
+    /**
+     * Fires a open event on all registered handlers in the handler manager.If no
+     * such handlers exist, this method will do nothing.
+     *
+     * @param <S> The event source
+     * @param source the source of the handlers
+     * @param jsObj the native event
+     */
+    public static <S extends HasRowEditorEnterHandlers & HasHandlers> void fire(
+        S source, JavaScriptObject jsObj) {
+        if (TYPE != null) {
+            RowEditorEnterEvent event = new RowEditorEnterEvent(jsObj);
+            source.fireEvent(event);
+        }
     }
-  }
 
-  /**
-   * Gets the type associated with this event.
-   *
-   * @return returns the handler type
-   */
-  public static Type<RowEditorEnterHandler> getType() {
-    if (TYPE == null) {
-      TYPE = new Type<RowEditorEnterHandler>();
+    /**
+     * Gets the type associated with this event.
+     *
+     * @return returns the handler type
+     */
+    public static Type<RowEditorEnterHandler> getType() {
+        if (TYPE == null) {
+            TYPE = new Type<RowEditorEnterHandler>();
+        }
+        return TYPE;
     }
-    return TYPE;
-  }
 
 
-  @Override
-  protected void dispatch(RowEditorEnterHandler handler) {
-    handler.onRowEditorEnter(this);
-  }
+    @Override
+    protected void dispatch(RowEditorEnterHandler handler) {
+        handler.onRowEditorEnter(this);
+    }
 
-  // Because of type erasure, our static type is
-  // wild carded, yet the "real" type should use our I param.
+    // Because of type erasure, our static type is
+    // wild carded, yet the "real" type should use our I param.
 
-  @SuppressWarnings("unchecked")
-  @Override
-  public final Type<RowEditorEnterHandler> getAssociatedType() {
-    return TYPE;
-  }
+    @SuppressWarnings("unchecked")
+    @Override
+    public final Type<RowEditorEnterHandler> getAssociatedType() {
+        return TYPE;
+    }
 
     public RowEditorEnterEvent(JavaScriptObject jsObj) {
         super(jsObj);
@@ -118,7 +118,7 @@ public class RowEditorEnterEvent extends BrowserEvent<RowEditorEnterHandler>  {
      */
     public  native Record getRecord() /*-{
         var jsObj = this.@com.smartgwt.client.event.AbstractSmartEvent::jsObj;
-            return @com.smartgwt.client.data.Record::getOrCreateRef(Lcom/google/gwt/core/client/JavaScriptObject;)(jsObj.record);
+        return @com.smartgwt.client.data.Record::getOrCreateRef(Lcom/google/gwt/core/client/JavaScriptObject;)(jsObj.record);
     }-*/;
 
     /**
@@ -133,7 +133,8 @@ public class RowEditorEnterEvent extends BrowserEvent<RowEditorEnterHandler>  {
 
 
 
-        public  native JavaScriptObject getEditValues() /*-{
+
+    public  native JavaScriptObject getEditValues() /*-{
         var jsObj = this.@com.smartgwt.client.event.AbstractSmartEvent::jsObj;
         return jsObj.editValues;
     }-*/;

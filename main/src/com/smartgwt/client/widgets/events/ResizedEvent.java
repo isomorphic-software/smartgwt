@@ -57,53 +57,53 @@ import com.google.gwt.event.shared.*;
 import com.google.gwt.event.shared.HasHandlers;
 public class ResizedEvent extends BrowserEvent<ResizedHandler>  {
 
-  /**
-   * Handler type.
-   */
-  private static Type<ResizedHandler> TYPE;
+    /**
+     * Handler type.
+     */
+    private static Type<ResizedHandler> TYPE;
 
-  /**
-   * Fires a open event on all registered handlers in the handler manager.If no
-   * such handlers exist, this method will do nothing.
-   *
-   * @param <S> The event source
-   * @param source the source of the handlers
-   * @param jsObj the native event
-   */
-  public static <S extends HasResizedHandlers & HasHandlers> void fire(
-      S source, JavaScriptObject jsObj) {
-    if (TYPE != null) {
-        ResizedEvent event = new ResizedEvent(jsObj);
-        source.fireEvent(event);
+    /**
+     * Fires a open event on all registered handlers in the handler manager.If no
+     * such handlers exist, this method will do nothing.
+     *
+     * @param <S> The event source
+     * @param source the source of the handlers
+     * @param jsObj the native event
+     */
+    public static <S extends HasResizedHandlers & HasHandlers> void fire(
+        S source, JavaScriptObject jsObj) {
+        if (TYPE != null) {
+            ResizedEvent event = new ResizedEvent(jsObj);
+            source.fireEvent(event);
+        }
     }
-  }
 
-  /**
-   * Gets the type associated with this event.
-   *
-   * @return returns the handler type
-   */
-  public static Type<ResizedHandler> getType() {
-    if (TYPE == null) {
-      TYPE = new Type<ResizedHandler>();
+    /**
+     * Gets the type associated with this event.
+     *
+     * @return returns the handler type
+     */
+    public static Type<ResizedHandler> getType() {
+        if (TYPE == null) {
+            TYPE = new Type<ResizedHandler>();
+        }
+        return TYPE;
     }
-    return TYPE;
-  }
 
 
-  @Override
-  protected void dispatch(ResizedHandler handler) {
-    handler.onResized(this);
-  }
+    @Override
+    protected void dispatch(ResizedHandler handler) {
+        handler.onResized(this);
+    }
 
-  // Because of type erasure, our static type is
-  // wild carded, yet the "real" type should use our I param.
+    // Because of type erasure, our static type is
+    // wild carded, yet the "real" type should use our I param.
 
-  @SuppressWarnings("unchecked")
-  @Override
-  public final Type<ResizedHandler> getAssociatedType() {
-    return TYPE;
-  }
+    @SuppressWarnings("unchecked")
+    @Override
+    public final Type<ResizedHandler> getAssociatedType() {
+        return TYPE;
+    }
 
     public ResizedEvent(JavaScriptObject jsObj) {
         super(jsObj);

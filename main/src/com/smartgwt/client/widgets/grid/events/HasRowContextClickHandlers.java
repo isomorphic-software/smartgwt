@@ -22,7 +22,7 @@ import com.google.gwt.event.shared.HasHandlers;
 
 public interface HasRowContextClickHandlers extends HasHandlers {
     /**
-     * Called when a row receives a contextclick event.&#010
+     * Called when a row receives a contextclick event.
      *
      * @param handler the rowContextClick handler
      * @return {@link HandlerRegistration} used to remove this handler

@@ -58,53 +58,53 @@ import com.google.gwt.event.shared.HasHandlers;
 public class LeafContextClickEvent extends BrowserEvent<LeafContextClickHandler>  implements Cancellable {
     private boolean cancel = false;
 
-  /**
-   * Handler type.
-   */
-  private static Type<LeafContextClickHandler> TYPE;
+    /**
+     * Handler type.
+     */
+    private static Type<LeafContextClickHandler> TYPE;
 
-  /**
-   * Fires a open event on all registered handlers in the handler manager.If no
-   * such handlers exist, this method will do nothing.
-   *
-   * @param <S> The event source
-   * @param source the source of the handlers
-   * @param jsObj the native event
-   */
-  public static <S extends HasLeafContextClickHandlers & HasHandlers> void fire(
-      S source, JavaScriptObject jsObj) {
-    if (TYPE != null) {
-        LeafContextClickEvent event = new LeafContextClickEvent(jsObj);
-        source.fireEvent(event);
+    /**
+     * Fires a open event on all registered handlers in the handler manager.If no
+     * such handlers exist, this method will do nothing.
+     *
+     * @param <S> The event source
+     * @param source the source of the handlers
+     * @param jsObj the native event
+     */
+    public static <S extends HasLeafContextClickHandlers & HasHandlers> void fire(
+        S source, JavaScriptObject jsObj) {
+        if (TYPE != null) {
+            LeafContextClickEvent event = new LeafContextClickEvent(jsObj);
+            source.fireEvent(event);
+        }
     }
-  }
 
-  /**
-   * Gets the type associated with this event.
-   *
-   * @return returns the handler type
-   */
-  public static Type<LeafContextClickHandler> getType() {
-    if (TYPE == null) {
-      TYPE = new Type<LeafContextClickHandler>();
+    /**
+     * Gets the type associated with this event.
+     *
+     * @return returns the handler type
+     */
+    public static Type<LeafContextClickHandler> getType() {
+        if (TYPE == null) {
+            TYPE = new Type<LeafContextClickHandler>();
+        }
+        return TYPE;
     }
-    return TYPE;
-  }
 
 
-  @Override
-  protected void dispatch(LeafContextClickHandler handler) {
-    handler.onLeafContextClick(this);
-  }
+    @Override
+    protected void dispatch(LeafContextClickHandler handler) {
+        handler.onLeafContextClick(this);
+    }
 
-  // Because of type erasure, our static type is
-  // wild carded, yet the "real" type should use our I param.
+    // Because of type erasure, our static type is
+    // wild carded, yet the "real" type should use our I param.
 
-  @SuppressWarnings("unchecked")
-  @Override
-  public final Type<LeafContextClickHandler> getAssociatedType() {
-    return TYPE;
-  }
+    @SuppressWarnings("unchecked")
+    @Override
+    public final Type<LeafContextClickHandler> getAssociatedType() {
+        return TYPE;
+    }
 
     public LeafContextClickEvent(JavaScriptObject jsObj) {
         super(jsObj);
@@ -142,7 +142,7 @@ public class LeafContextClickEvent extends BrowserEvent<LeafContextClickHandler>
      */
     public  native TreeNode getLeaf() /*-{
         var jsObj = this.@com.smartgwt.client.event.AbstractSmartEvent::jsObj;
-            return @com.smartgwt.client.widgets.tree.TreeNode::getOrCreateRef(Lcom/google/gwt/core/client/JavaScriptObject;)(jsObj.leaf);
+        return @com.smartgwt.client.widgets.tree.TreeNode::getOrCreateRef(Lcom/google/gwt/core/client/JavaScriptObject;)(jsObj.leaf);
     }-*/;
 
     /**

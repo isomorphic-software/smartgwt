@@ -58,53 +58,53 @@ import com.google.gwt.event.shared.HasHandlers;
 public class DropMoveEvent extends BrowserEvent<DropMoveHandler>  implements Cancellable {
     private boolean cancel = false;
 
-  /**
-   * Handler type.
-   */
-  private static Type<DropMoveHandler> TYPE;
+    /**
+     * Handler type.
+     */
+    private static Type<DropMoveHandler> TYPE;
 
-  /**
-   * Fires a open event on all registered handlers in the handler manager.If no
-   * such handlers exist, this method will do nothing.
-   *
-   * @param <S> The event source
-   * @param source the source of the handlers
-   * @param jsObj the native event
-   */
-  public static <S extends HasDropMoveHandlers & HasHandlers> void fire(
-      S source, JavaScriptObject jsObj) {
-    if (TYPE != null) {
-        DropMoveEvent event = new DropMoveEvent(jsObj);
-        source.fireEvent(event);
+    /**
+     * Fires a open event on all registered handlers in the handler manager.If no
+     * such handlers exist, this method will do nothing.
+     *
+     * @param <S> The event source
+     * @param source the source of the handlers
+     * @param jsObj the native event
+     */
+    public static <S extends HasDropMoveHandlers & HasHandlers> void fire(
+        S source, JavaScriptObject jsObj) {
+        if (TYPE != null) {
+            DropMoveEvent event = new DropMoveEvent(jsObj);
+            source.fireEvent(event);
+        }
     }
-  }
 
-  /**
-   * Gets the type associated with this event.
-   *
-   * @return returns the handler type
-   */
-  public static Type<DropMoveHandler> getType() {
-    if (TYPE == null) {
-      TYPE = new Type<DropMoveHandler>();
+    /**
+     * Gets the type associated with this event.
+     *
+     * @return returns the handler type
+     */
+    public static Type<DropMoveHandler> getType() {
+        if (TYPE == null) {
+            TYPE = new Type<DropMoveHandler>();
+        }
+        return TYPE;
     }
-    return TYPE;
-  }
 
 
-  @Override
-  protected void dispatch(DropMoveHandler handler) {
-    handler.onDropMove(this);
-  }
+    @Override
+    protected void dispatch(DropMoveHandler handler) {
+        handler.onDropMove(this);
+    }
 
-  // Because of type erasure, our static type is
-  // wild carded, yet the "real" type should use our I param.
+    // Because of type erasure, our static type is
+    // wild carded, yet the "real" type should use our I param.
 
-  @SuppressWarnings("unchecked")
-  @Override
-  public final Type<DropMoveHandler> getAssociatedType() {
-    return TYPE;
-  }
+    @SuppressWarnings("unchecked")
+    @Override
+    public final Type<DropMoveHandler> getAssociatedType() {
+        return TYPE;
+    }
 
     public DropMoveEvent(JavaScriptObject jsObj) {
         super(jsObj);

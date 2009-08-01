@@ -57,53 +57,53 @@ import com.google.gwt.event.shared.*;
 import com.google.gwt.event.shared.HasHandlers;
 public class FocusChangedEvent extends BrowserEvent<FocusChangedHandler>  {
 
-  /**
-   * Handler type.
-   */
-  private static Type<FocusChangedHandler> TYPE;
+    /**
+     * Handler type.
+     */
+    private static Type<FocusChangedHandler> TYPE;
 
-  /**
-   * Fires a open event on all registered handlers in the handler manager.If no
-   * such handlers exist, this method will do nothing.
-   *
-   * @param <S> The event source
-   * @param source the source of the handlers
-   * @param jsObj the native event
-   */
-  public static <S extends HasFocusChangedHandlers & HasHandlers> void fire(
-      S source, JavaScriptObject jsObj) {
-    if (TYPE != null) {
-        FocusChangedEvent event = new FocusChangedEvent(jsObj);
-        source.fireEvent(event);
+    /**
+     * Fires a open event on all registered handlers in the handler manager.If no
+     * such handlers exist, this method will do nothing.
+     *
+     * @param <S> The event source
+     * @param source the source of the handlers
+     * @param jsObj the native event
+     */
+    public static <S extends HasFocusChangedHandlers & HasHandlers> void fire(
+        S source, JavaScriptObject jsObj) {
+        if (TYPE != null) {
+            FocusChangedEvent event = new FocusChangedEvent(jsObj);
+            source.fireEvent(event);
+        }
     }
-  }
 
-  /**
-   * Gets the type associated with this event.
-   *
-   * @return returns the handler type
-   */
-  public static Type<FocusChangedHandler> getType() {
-    if (TYPE == null) {
-      TYPE = new Type<FocusChangedHandler>();
+    /**
+     * Gets the type associated with this event.
+     *
+     * @return returns the handler type
+     */
+    public static Type<FocusChangedHandler> getType() {
+        if (TYPE == null) {
+            TYPE = new Type<FocusChangedHandler>();
+        }
+        return TYPE;
     }
-    return TYPE;
-  }
 
 
-  @Override
-  protected void dispatch(FocusChangedHandler handler) {
-    handler.onFocusChanged(this);
-  }
+    @Override
+    protected void dispatch(FocusChangedHandler handler) {
+        handler.onFocusChanged(this);
+    }
 
-  // Because of type erasure, our static type is
-  // wild carded, yet the "real" type should use our I param.
+    // Because of type erasure, our static type is
+    // wild carded, yet the "real" type should use our I param.
 
-  @SuppressWarnings("unchecked")
-  @Override
-  public final Type<FocusChangedHandler> getAssociatedType() {
-    return TYPE;
-  }
+    @SuppressWarnings("unchecked")
+    @Override
+    public final Type<FocusChangedHandler> getAssociatedType() {
+        return TYPE;
+    }
 
     public FocusChangedEvent(JavaScriptObject jsObj) {
         super(jsObj);

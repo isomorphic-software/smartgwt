@@ -57,53 +57,53 @@ import com.google.gwt.event.shared.*;
 import com.google.gwt.event.shared.HasHandlers;
 public class FilterSearchEvent extends BrowserEvent<SearchHandler>  {
 
-  /**
-   * Handler type.
-   */
-  private static Type<SearchHandler> TYPE;
+    /**
+     * Handler type.
+     */
+    private static Type<SearchHandler> TYPE;
 
-  /**
-   * Fires a open event on all registered handlers in the handler manager.If no
-   * such handlers exist, this method will do nothing.
-   *
-   * @param <S> The event source
-   * @param source the source of the handlers
-   * @param jsObj the native event
-   */
-  public static <S extends HasSearchHandlers & HasHandlers> void fire(
-      S source, JavaScriptObject jsObj) {
-    if (TYPE != null) {
-        FilterSearchEvent event = new FilterSearchEvent(jsObj);
-        source.fireEvent(event);
+    /**
+     * Fires a open event on all registered handlers in the handler manager.If no
+     * such handlers exist, this method will do nothing.
+     *
+     * @param <S> The event source
+     * @param source the source of the handlers
+     * @param jsObj the native event
+     */
+    public static <S extends HasSearchHandlers & HasHandlers> void fire(
+        S source, JavaScriptObject jsObj) {
+        if (TYPE != null) {
+            FilterSearchEvent event = new FilterSearchEvent(jsObj);
+            source.fireEvent(event);
+        }
     }
-  }
 
-  /**
-   * Gets the type associated with this event.
-   *
-   * @return returns the handler type
-   */
-  public static Type<SearchHandler> getType() {
-    if (TYPE == null) {
-      TYPE = new Type<SearchHandler>();
+    /**
+     * Gets the type associated with this event.
+     *
+     * @return returns the handler type
+     */
+    public static Type<SearchHandler> getType() {
+        if (TYPE == null) {
+            TYPE = new Type<SearchHandler>();
+        }
+        return TYPE;
     }
-    return TYPE;
-  }
 
 
-  @Override
-  protected void dispatch(SearchHandler handler) {
-    handler.onSearch(this);
-  }
+    @Override
+    protected void dispatch(SearchHandler handler) {
+        handler.onSearch(this);
+    }
 
-  // Because of type erasure, our static type is
-  // wild carded, yet the "real" type should use our I param.
+    // Because of type erasure, our static type is
+    // wild carded, yet the "real" type should use our I param.
 
-  @SuppressWarnings("unchecked")
-  @Override
-  public final Type<SearchHandler> getAssociatedType() {
-    return TYPE;
-  }
+    @SuppressWarnings("unchecked")
+    @Override
+    public final Type<SearchHandler> getAssociatedType() {
+        return TYPE;
+    }
 
     public FilterSearchEvent(JavaScriptObject jsObj) {
         super(jsObj);

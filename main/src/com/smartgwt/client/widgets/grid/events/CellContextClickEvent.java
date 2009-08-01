@@ -58,53 +58,53 @@ import com.google.gwt.event.shared.HasHandlers;
 public class CellContextClickEvent extends GridRowColEvent<CellContextClickHandler>  implements Cancellable {
     private boolean cancel = false;
 
-  /**
-   * Handler type.
-   */
-  private static Type<CellContextClickHandler> TYPE;
+    /**
+     * Handler type.
+     */
+    private static Type<CellContextClickHandler> TYPE;
 
-  /**
-   * Fires a open event on all registered handlers in the handler manager.If no
-   * such handlers exist, this method will do nothing.
-   *
-   * @param <S> The event source
-   * @param source the source of the handlers
-   * @param jsObj the native event
-   */
-  public static <S extends HasCellContextClickHandlers & HasHandlers> void fire(
-      S source, JavaScriptObject jsObj) {
-    if (TYPE != null) {
-        CellContextClickEvent event = new CellContextClickEvent(jsObj);
-        source.fireEvent(event);
+    /**
+     * Fires a open event on all registered handlers in the handler manager.If no
+     * such handlers exist, this method will do nothing.
+     *
+     * @param <S> The event source
+     * @param source the source of the handlers
+     * @param jsObj the native event
+     */
+    public static <S extends HasCellContextClickHandlers & HasHandlers> void fire(
+        S source, JavaScriptObject jsObj) {
+        if (TYPE != null) {
+            CellContextClickEvent event = new CellContextClickEvent(jsObj);
+            source.fireEvent(event);
+        }
     }
-  }
 
-  /**
-   * Gets the type associated with this event.
-   *
-   * @return returns the handler type
-   */
-  public static Type<CellContextClickHandler> getType() {
-    if (TYPE == null) {
-      TYPE = new Type<CellContextClickHandler>();
+    /**
+     * Gets the type associated with this event.
+     *
+     * @return returns the handler type
+     */
+    public static Type<CellContextClickHandler> getType() {
+        if (TYPE == null) {
+            TYPE = new Type<CellContextClickHandler>();
+        }
+        return TYPE;
     }
-    return TYPE;
-  }
 
 
-  @Override
-  protected void dispatch(CellContextClickHandler handler) {
-    handler.onCellContextClick(this);
-  }
+    @Override
+    protected void dispatch(CellContextClickHandler handler) {
+        handler.onCellContextClick(this);
+    }
 
-  // Because of type erasure, our static type is
-  // wild carded, yet the "real" type should use our I param.
+    // Because of type erasure, our static type is
+    // wild carded, yet the "real" type should use our I param.
 
-  @SuppressWarnings("unchecked")
-  @Override
-  public final Type<CellContextClickHandler> getAssociatedType() {
-    return TYPE;
-  }
+    @SuppressWarnings("unchecked")
+    @Override
+    public final Type<CellContextClickHandler> getAssociatedType() {
+        return TYPE;
+    }
 
     public CellContextClickEvent(JavaScriptObject jsObj) {
         super(jsObj);

@@ -55,10 +55,10 @@ import com.smartgwt.client.util.JSOHelper;
 import com.smartgwt.client.util.EnumUtil;
 import com.google.gwt.event.shared.*;
 import com.google.gwt.event.shared.HasHandlers;
-   /**
-    * A checkbox for manipulating 2-valued fields based on the native checkbox element.
 
-    */
+/**
+ * A checkbox for manipulating 2-valued fields based on the native checkbox element.
+ */
 public class NativeCheckboxItem extends FormItem {
 
     public static NativeCheckboxItem getOrCreateRef(JavaScriptObject jsObj) {
@@ -71,7 +71,6 @@ public class NativeCheckboxItem extends FormItem {
             return new NativeCheckboxItem(jsObj);
         }
     }
-
 
     public NativeCheckboxItem(){
         setType("NativeCheckboxItem");
@@ -89,19 +88,19 @@ public class NativeCheckboxItem extends FormItem {
     // ********************* Properties / Attributes ***********************
 
     /**
-    * Should we should the label text next to the checkbox item.
-    *
-    * @param showLabel showLabel Default value is true
-    */
+     * Should we should the label text next to the checkbox item.
+     *
+     * @param showLabel showLabel Default value is true
+     */
     public void setShowLabel(Boolean showLabel) {
         setAttribute("showLabel", showLabel);
     }
+
     /**
      * Should we should the label text next to the checkbox item.
      *
      *
      * @return Boolean
-     *
      */
     public Boolean getShowLabel()  {
         return getAttributeAsBoolean("showLabel");

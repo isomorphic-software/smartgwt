@@ -57,53 +57,53 @@ import com.google.gwt.event.shared.*;
 import com.google.gwt.event.shared.HasHandlers;
 public class ValueChangedEvent extends BrowserEvent<ValueChangedHandler>  {
 
-  /**
-   * Handler type.
-   */
-  private static Type<ValueChangedHandler> TYPE;
+    /**
+     * Handler type.
+     */
+    private static Type<ValueChangedHandler> TYPE;
 
-  /**
-   * Fires a open event on all registered handlers in the handler manager.If no
-   * such handlers exist, this method will do nothing.
-   *
-   * @param <S> The event source
-   * @param source the source of the handlers
-   * @param jsObj the native event
-   */
-  public static <S extends HasValueChangedHandlers & HasHandlers> void fire(
-      S source, JavaScriptObject jsObj) {
-    if (TYPE != null) {
-        ValueChangedEvent event = new ValueChangedEvent(jsObj);
-        source.fireEvent(event);
+    /**
+     * Fires a open event on all registered handlers in the handler manager.If no
+     * such handlers exist, this method will do nothing.
+     *
+     * @param <S> The event source
+     * @param source the source of the handlers
+     * @param jsObj the native event
+     */
+    public static <S extends HasValueChangedHandlers & HasHandlers> void fire(
+        S source, JavaScriptObject jsObj) {
+        if (TYPE != null) {
+            ValueChangedEvent event = new ValueChangedEvent(jsObj);
+            source.fireEvent(event);
+        }
     }
-  }
 
-  /**
-   * Gets the type associated with this event.
-   *
-   * @return returns the handler type
-   */
-  public static Type<ValueChangedHandler> getType() {
-    if (TYPE == null) {
-      TYPE = new Type<ValueChangedHandler>();
+    /**
+     * Gets the type associated with this event.
+     *
+     * @return returns the handler type
+     */
+    public static Type<ValueChangedHandler> getType() {
+        if (TYPE == null) {
+            TYPE = new Type<ValueChangedHandler>();
+        }
+        return TYPE;
     }
-    return TYPE;
-  }
 
 
-  @Override
-  protected void dispatch(ValueChangedHandler handler) {
-    handler.onValueChanged(this);
-  }
+    @Override
+    protected void dispatch(ValueChangedHandler handler) {
+        handler.onValueChanged(this);
+    }
 
-  // Because of type erasure, our static type is
-  // wild carded, yet the "real" type should use our I param.
+    // Because of type erasure, our static type is
+    // wild carded, yet the "real" type should use our I param.
 
-  @SuppressWarnings("unchecked")
-  @Override
-  public final Type<ValueChangedHandler> getAssociatedType() {
-    return TYPE;
-  }
+    @SuppressWarnings("unchecked")
+    @Override
+    public final Type<ValueChangedHandler> getAssociatedType() {
+        return TYPE;
+    }
 
     public ValueChangedEvent(JavaScriptObject jsObj) {
         super(jsObj);

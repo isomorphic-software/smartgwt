@@ -58,53 +58,53 @@ import com.google.gwt.event.shared.HasHandlers;
 public class MouseOutEvent extends BrowserEvent<MouseOutHandler>  implements Cancellable {
     private boolean cancel = false;
 
-  /**
-   * Handler type.
-   */
-  private static Type<MouseOutHandler> TYPE;
+    /**
+     * Handler type.
+     */
+    private static Type<MouseOutHandler> TYPE;
 
-  /**
-   * Fires a open event on all registered handlers in the handler manager.If no
-   * such handlers exist, this method will do nothing.
-   *
-   * @param <S> The event source
-   * @param source the source of the handlers
-   * @param jsObj the native event
-   */
-  public static <S extends HasMouseOutHandlers & HasHandlers> void fire(
-      S source, JavaScriptObject jsObj) {
-    if (TYPE != null) {
-        MouseOutEvent event = new MouseOutEvent(jsObj);
-        source.fireEvent(event);
+    /**
+     * Fires a open event on all registered handlers in the handler manager.If no
+     * such handlers exist, this method will do nothing.
+     *
+     * @param <S> The event source
+     * @param source the source of the handlers
+     * @param jsObj the native event
+     */
+    public static <S extends HasMouseOutHandlers & HasHandlers> void fire(
+        S source, JavaScriptObject jsObj) {
+        if (TYPE != null) {
+            MouseOutEvent event = new MouseOutEvent(jsObj);
+            source.fireEvent(event);
+        }
     }
-  }
 
-  /**
-   * Gets the type associated with this event.
-   *
-   * @return returns the handler type
-   */
-  public static Type<MouseOutHandler> getType() {
-    if (TYPE == null) {
-      TYPE = new Type<MouseOutHandler>();
+    /**
+     * Gets the type associated with this event.
+     *
+     * @return returns the handler type
+     */
+    public static Type<MouseOutHandler> getType() {
+        if (TYPE == null) {
+            TYPE = new Type<MouseOutHandler>();
+        }
+        return TYPE;
     }
-    return TYPE;
-  }
 
 
-  @Override
-  protected void dispatch(MouseOutHandler handler) {
-    handler.onMouseOut(this);
-  }
+    @Override
+    protected void dispatch(MouseOutHandler handler) {
+        handler.onMouseOut(this);
+    }
 
-  // Because of type erasure, our static type is
-  // wild carded, yet the "real" type should use our I param.
+    // Because of type erasure, our static type is
+    // wild carded, yet the "real" type should use our I param.
 
-  @SuppressWarnings("unchecked")
-  @Override
-  public final Type<MouseOutHandler> getAssociatedType() {
-    return TYPE;
-  }
+    @SuppressWarnings("unchecked")
+    @Override
+    public final Type<MouseOutHandler> getAssociatedType() {
+        return TYPE;
+    }
 
     public MouseOutEvent(JavaScriptObject jsObj) {
         super(jsObj);

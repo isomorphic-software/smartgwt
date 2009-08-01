@@ -55,10 +55,10 @@ import com.smartgwt.client.util.JSOHelper;
 import com.smartgwt.client.util.EnumUtil;
 import com.google.gwt.event.shared.*;
 import com.google.gwt.event.shared.HasHandlers;
-   /**
-    * A MenuBar is a bar of buttons used to show a set of menus.
 
-    */
+/**
+ * A MenuBar is a bar of buttons used to show a set of menus.
+ */
 public class MenuBar extends Toolbar {
 
     public static MenuBar getOrCreateRef(JavaScriptObject jsObj) {
@@ -70,7 +70,6 @@ public class MenuBar extends Toolbar {
             return new MenuBar(jsObj);
         }
     }
-
 
     public MenuBar(){
         

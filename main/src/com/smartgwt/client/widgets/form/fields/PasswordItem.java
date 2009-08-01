@@ -55,10 +55,10 @@ import com.smartgwt.client.util.JSOHelper;
 import com.smartgwt.client.util.EnumUtil;
 import com.google.gwt.event.shared.*;
 import com.google.gwt.event.shared.HasHandlers;
-   /**
-    * FormItem for password fields, where text input by the user should not be shown in readable text.
 
-    */
+/**
+ * FormItem for password fields, where text input by the user should not be shown in readable text.
+ */
 public class PasswordItem extends TextItem {
 
     public static PasswordItem getOrCreateRef(JavaScriptObject jsObj) {
@@ -71,7 +71,6 @@ public class PasswordItem extends TextItem {
             return new PasswordItem(jsObj);
         }
     }
-
 
     public PasswordItem(){
         setType("PasswordItem");

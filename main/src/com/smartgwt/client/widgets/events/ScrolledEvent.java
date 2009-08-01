@@ -57,53 +57,53 @@ import com.google.gwt.event.shared.*;
 import com.google.gwt.event.shared.HasHandlers;
 public class ScrolledEvent extends BrowserEvent<ScrolledHandler>  {
 
-  /**
-   * Handler type.
-   */
-  private static Type<ScrolledHandler> TYPE;
+    /**
+     * Handler type.
+     */
+    private static Type<ScrolledHandler> TYPE;
 
-  /**
-   * Fires a open event on all registered handlers in the handler manager.If no
-   * such handlers exist, this method will do nothing.
-   *
-   * @param <S> The event source
-   * @param source the source of the handlers
-   * @param jsObj the native event
-   */
-  public static <S extends HasScrolledHandlers & HasHandlers> void fire(
-      S source, JavaScriptObject jsObj) {
-    if (TYPE != null) {
-        ScrolledEvent event = new ScrolledEvent(jsObj);
-        source.fireEvent(event);
+    /**
+     * Fires a open event on all registered handlers in the handler manager.If no
+     * such handlers exist, this method will do nothing.
+     *
+     * @param <S> The event source
+     * @param source the source of the handlers
+     * @param jsObj the native event
+     */
+    public static <S extends HasScrolledHandlers & HasHandlers> void fire(
+        S source, JavaScriptObject jsObj) {
+        if (TYPE != null) {
+            ScrolledEvent event = new ScrolledEvent(jsObj);
+            source.fireEvent(event);
+        }
     }
-  }
 
-  /**
-   * Gets the type associated with this event.
-   *
-   * @return returns the handler type
-   */
-  public static Type<ScrolledHandler> getType() {
-    if (TYPE == null) {
-      TYPE = new Type<ScrolledHandler>();
+    /**
+     * Gets the type associated with this event.
+     *
+     * @return returns the handler type
+     */
+    public static Type<ScrolledHandler> getType() {
+        if (TYPE == null) {
+            TYPE = new Type<ScrolledHandler>();
+        }
+        return TYPE;
     }
-    return TYPE;
-  }
 
 
-  @Override
-  protected void dispatch(ScrolledHandler handler) {
-    handler.onScrolled(this);
-  }
+    @Override
+    protected void dispatch(ScrolledHandler handler) {
+        handler.onScrolled(this);
+    }
 
-  // Because of type erasure, our static type is
-  // wild carded, yet the "real" type should use our I param.
+    // Because of type erasure, our static type is
+    // wild carded, yet the "real" type should use our I param.
 
-  @SuppressWarnings("unchecked")
-  @Override
-  public final Type<ScrolledHandler> getAssociatedType() {
-    return TYPE;
-  }
+    @SuppressWarnings("unchecked")
+    @Override
+    public final Type<ScrolledHandler> getAssociatedType() {
+        return TYPE;
+    }
 
     public ScrolledEvent(JavaScriptObject jsObj) {
         super(jsObj);

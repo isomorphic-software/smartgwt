@@ -58,53 +58,53 @@ import com.google.gwt.event.shared.HasHandlers;
 public class RowMouseDownEvent extends GridRowColEvent<RowMouseDownHandler>  implements Cancellable {
     private boolean cancel = false;
 
-  /**
-   * Handler type.
-   */
-  private static Type<RowMouseDownHandler> TYPE;
+    /**
+     * Handler type.
+     */
+    private static Type<RowMouseDownHandler> TYPE;
 
-  /**
-   * Fires a open event on all registered handlers in the handler manager.If no
-   * such handlers exist, this method will do nothing.
-   *
-   * @param <S> The event source
-   * @param source the source of the handlers
-   * @param jsObj the native event
-   */
-  public static <S extends HasRowMouseDownHandlers & HasHandlers> void fire(
-      S source, JavaScriptObject jsObj) {
-    if (TYPE != null) {
-        RowMouseDownEvent event = new RowMouseDownEvent(jsObj);
-        source.fireEvent(event);
+    /**
+     * Fires a open event on all registered handlers in the handler manager.If no
+     * such handlers exist, this method will do nothing.
+     *
+     * @param <S> The event source
+     * @param source the source of the handlers
+     * @param jsObj the native event
+     */
+    public static <S extends HasRowMouseDownHandlers & HasHandlers> void fire(
+        S source, JavaScriptObject jsObj) {
+        if (TYPE != null) {
+            RowMouseDownEvent event = new RowMouseDownEvent(jsObj);
+            source.fireEvent(event);
+        }
     }
-  }
 
-  /**
-   * Gets the type associated with this event.
-   *
-   * @return returns the handler type
-   */
-  public static Type<RowMouseDownHandler> getType() {
-    if (TYPE == null) {
-      TYPE = new Type<RowMouseDownHandler>();
+    /**
+     * Gets the type associated with this event.
+     *
+     * @return returns the handler type
+     */
+    public static Type<RowMouseDownHandler> getType() {
+        if (TYPE == null) {
+            TYPE = new Type<RowMouseDownHandler>();
+        }
+        return TYPE;
     }
-    return TYPE;
-  }
 
 
-  @Override
-  protected void dispatch(RowMouseDownHandler handler) {
-    handler.onRowMouseDown(this);
-  }
+    @Override
+    protected void dispatch(RowMouseDownHandler handler) {
+        handler.onRowMouseDown(this);
+    }
 
-  // Because of type erasure, our static type is
-  // wild carded, yet the "real" type should use our I param.
+    // Because of type erasure, our static type is
+    // wild carded, yet the "real" type should use our I param.
 
-  @SuppressWarnings("unchecked")
-  @Override
-  public final Type<RowMouseDownHandler> getAssociatedType() {
-    return TYPE;
-  }
+    @SuppressWarnings("unchecked")
+    @Override
+    public final Type<RowMouseDownHandler> getAssociatedType() {
+        return TYPE;
+    }
 
     public RowMouseDownEvent(JavaScriptObject jsObj) {
         super(jsObj);

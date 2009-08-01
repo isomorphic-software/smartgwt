@@ -55,10 +55,10 @@ import com.smartgwt.client.util.JSOHelper;
 import com.smartgwt.client.util.EnumUtil;
 import com.google.gwt.event.shared.*;
 import com.google.gwt.event.shared.HasHandlers;
-   /**
-    * Simple subclass of ImgSplitbar with appearance appropriate for a ToolStrip resizer.
 
-    */
+/**
+ * Simple subclass of ImgSplitbar with appearance appropriate for a ToolStrip resizer.
+ */
 public class ToolStripResizer extends ImgSplitbar {
 
     public static ToolStripResizer getOrCreateRef(JavaScriptObject jsObj) {
@@ -70,7 +70,6 @@ public class ToolStripResizer extends ImgSplitbar {
             return new ToolStripResizer(jsObj);
         }
     }
-
 
     public ToolStripResizer(){
         
@@ -89,58 +88,58 @@ public class ToolStripResizer extends ImgSplitbar {
     // ********************* Properties / Attributes ***********************
 
     /**
-    * Path to resizer image.
-    *
-    * @param skinImgDir skinImgDir Default value is "images/ToolStrip/"
-    * @throws IllegalStateException this property cannot be changed after the component has been created
-    */
+     * Path to resizer image.
+     *
+     * @param skinImgDir skinImgDir Default value is "images/ToolStrip/"
+     * @throws IllegalStateException this property cannot be changed after the component has been created
+     */
     public void setSkinImgDir(String skinImgDir)  throws IllegalStateException {
         setAttribute("skinImgDir", skinImgDir, false);
     }
+
     /**
      * Path to resizer image.
      *
      *
      * @return String
-     *
      */
     public String getSkinImgDir()  {
         return getAttributeAsString("skinImgDir");
     }
 
     /**
-    * Image for resizer
-    *
-    * @param vSrc vSrc Default value is "[SKIN]resizer.png"
-    */
+     * Image for resizer
+     *
+     * @param vSrc vSrc Default value is "[SKIN]resizer.png"
+     */
     public void setVSrc(String vSrc) {
         setAttribute("vSrc", vSrc, true);
     }
+
     /**
      * Image for resizer
      *
      *
      * @return String
-     *
      */
     public String getVSrc()  {
         return getAttributeAsString("vSrc");
     }
 
     /**
-    * Image for horizontal resizer for a vertical Toolstrip
-    *
-    * @param hSrc hSrc Default value is "[SKIN]hresizer.png"
-    */
+     * Image for horizontal resizer for a vertical Toolstrip
+     *
+     * @param hSrc hSrc Default value is "[SKIN]hresizer.png"
+     */
     public void setHSrc(String hSrc) {
         setAttribute("hSrc", hSrc, true);
     }
+
     /**
      * Image for horizontal resizer for a vertical Toolstrip
      *
      *
      * @return String
-     *
      */
     public String getHSrc()  {
         return getAttributeAsString("hSrc");

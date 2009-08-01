@@ -57,53 +57,53 @@ import com.google.gwt.event.shared.*;
 import com.google.gwt.event.shared.HasHandlers;
 public class SelectionEvent extends BrowserEvent<SelectionChangedHandler>  {
 
-  /**
-   * Handler type.
-   */
-  private static Type<SelectionChangedHandler> TYPE;
+    /**
+     * Handler type.
+     */
+    private static Type<SelectionChangedHandler> TYPE;
 
-  /**
-   * Fires a open event on all registered handlers in the handler manager.If no
-   * such handlers exist, this method will do nothing.
-   *
-   * @param <S> The event source
-   * @param source the source of the handlers
-   * @param jsObj the native event
-   */
-  public static <S extends HasSelectionChangedHandlers & HasHandlers> void fire(
-      S source, JavaScriptObject jsObj) {
-    if (TYPE != null) {
-        SelectionEvent event = new SelectionEvent(jsObj);
-        source.fireEvent(event);
+    /**
+     * Fires a open event on all registered handlers in the handler manager.If no
+     * such handlers exist, this method will do nothing.
+     *
+     * @param <S> The event source
+     * @param source the source of the handlers
+     * @param jsObj the native event
+     */
+    public static <S extends HasSelectionChangedHandlers & HasHandlers> void fire(
+        S source, JavaScriptObject jsObj) {
+        if (TYPE != null) {
+            SelectionEvent event = new SelectionEvent(jsObj);
+            source.fireEvent(event);
+        }
     }
-  }
 
-  /**
-   * Gets the type associated with this event.
-   *
-   * @return returns the handler type
-   */
-  public static Type<SelectionChangedHandler> getType() {
-    if (TYPE == null) {
-      TYPE = new Type<SelectionChangedHandler>();
+    /**
+     * Gets the type associated with this event.
+     *
+     * @return returns the handler type
+     */
+    public static Type<SelectionChangedHandler> getType() {
+        if (TYPE == null) {
+            TYPE = new Type<SelectionChangedHandler>();
+        }
+        return TYPE;
     }
-    return TYPE;
-  }
 
 
-  @Override
-  protected void dispatch(SelectionChangedHandler handler) {
-    handler.onSelectionChanged(this);
-  }
+    @Override
+    protected void dispatch(SelectionChangedHandler handler) {
+        handler.onSelectionChanged(this);
+    }
 
-  // Because of type erasure, our static type is
-  // wild carded, yet the "real" type should use our I param.
+    // Because of type erasure, our static type is
+    // wild carded, yet the "real" type should use our I param.
 
-  @SuppressWarnings("unchecked")
-  @Override
-  public final Type<SelectionChangedHandler> getAssociatedType() {
-    return TYPE;
-  }
+    @SuppressWarnings("unchecked")
+    @Override
+    public final Type<SelectionChangedHandler> getAssociatedType() {
+        return TYPE;
+    }
 
     public SelectionEvent(JavaScriptObject jsObj) {
         super(jsObj);
@@ -118,7 +118,7 @@ public class SelectionEvent extends BrowserEvent<SelectionChangedHandler>  {
      */
     public  native Record getRecord() /*-{
         var jsObj = this.@com.smartgwt.client.event.AbstractSmartEvent::jsObj;
-            return @com.smartgwt.client.data.Record::getOrCreateRef(Lcom/google/gwt/core/client/JavaScriptObject;)(jsObj.record);
+        return @com.smartgwt.client.data.Record::getOrCreateRef(Lcom/google/gwt/core/client/JavaScriptObject;)(jsObj.record);
     }-*/;
 
     /**

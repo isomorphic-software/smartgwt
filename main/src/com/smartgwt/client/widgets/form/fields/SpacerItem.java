@@ -55,10 +55,10 @@ import com.smartgwt.client.util.JSOHelper;
 import com.smartgwt.client.util.EnumUtil;
 import com.google.gwt.event.shared.*;
 import com.google.gwt.event.shared.HasHandlers;
-   /**
-    * A SpacerItem takes up a single cell in the FormLayout, of arbitrary size.
 
-    */
+/**
+ * A SpacerItem takes up a single cell in the FormLayout, of arbitrary size.
+ */
 public class SpacerItem extends FormItem {
 
     public static SpacerItem getOrCreateRef(JavaScriptObject jsObj) {
@@ -71,7 +71,6 @@ public class SpacerItem extends FormItem {
             return new SpacerItem(jsObj);
         }
     }
-
 
     public SpacerItem(){
         setType("SpacerItem");
@@ -89,57 +88,57 @@ public class SpacerItem extends FormItem {
     // ********************* Properties / Attributes ***********************
 
     /**
-    * we never show a separate title cell for spacers
-    *
-    * @param showTitle showTitle Default value is false
-    */
+     * we never show a separate title cell for spacers
+     *
+     * @param showTitle showTitle Default value is false
+     */
     public void setShowTitle(Boolean showTitle) {
         setAttribute("showTitle", showTitle);
     }
+
     /**
      * we never show a separate title cell for spacers
      *
      *
      * @return Boolean
-     *
      */
     public Boolean getShowTitle()  {
         return getAttributeAsBoolean("showTitle");
     }
 
     /**
-    * default width for the spacer
-    *
-    * @param width width Default value is 20
-    */
+     * default width for the spacer
+     *
+     * @param width width Default value is 20
+     */
     public void setWidth(int width) {
         setAttribute("width", width);
     }
+
     /**
      * default width for the spacer
      *
      *
      * @return int
-     *
      */
     public int getWidth()  {
         return getAttributeAsInt("width");
     }
 
     /**
-    * default height for the spacer
-    *
-    * @param height height Default value is 20
-    */
+     * default height for the spacer
+     *
+     * @param height height Default value is 20
+     */
     public void setHeight(int height) {
         setAttribute("height", height);
     }
+
     /**
      * default height for the spacer
      *
      *
      * @return int
-     *
      */
     public int getHeight()  {
         return getAttributeAsInt("height");

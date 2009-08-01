@@ -55,10 +55,14 @@ import com.smartgwt.client.util.JSOHelper;
 import com.smartgwt.client.util.EnumUtil;
 import com.google.gwt.event.shared.*;
 import com.google.gwt.event.shared.HasHandlers;
-   /**
-    * Every node in the tree is represented by TreeNode object which is an object literal with a&#010 set or properties that configure the node.&#010 <p>&#010 When a Tree is supplied as {@link com.smartgwt.client.widgets.tree.TreeGrid#getData data} to {@link com.smartgwt.client.widgets.tree.TreeGrid}, you can also set&#010 properties from {@link com.smartgwt.client.widgets.grid.ListGridRecord} on the TreeNode (e.g. setting&#010 {@link com.smartgwt.client.widgets.grid.ListGridRecord#getEnabled enabled}:<code>false</code> on the node).
 
-    */
+/**
+ * Every node in the tree is represented by TreeNode object which is an object literal with a set or properties that
+ * configure the node. <p> When a Tree is supplied as {@link com.smartgwt.client.widgets.tree.TreeGrid#getData data} to
+ * {@link com.smartgwt.client.widgets.tree.TreeGrid}, you can also set properties from {@link
+ * com.smartgwt.client.widgets.grid.ListGridRecord} on the TreeNode (e.g. setting {@link
+ * com.smartgwt.client.widgets.grid.ListGridRecord#getEnabled enabled}:<code>false</code> on the node).
+ */
 public class TreeNode extends ListGridRecord {
 
     public static TreeNode getOrCreateRef(JavaScriptObject jsObj) {
@@ -72,7 +76,6 @@ public class TreeNode extends ListGridRecord {
         }
     }
 
-
     public TreeNode(){
         
     }
@@ -84,97 +87,143 @@ public class TreeNode extends ListGridRecord {
     // ********************* Properties / Attributes ***********************
 
     /**
-    * Default property name denoting whether this record is enabled. Property name may be modified&#010 for some grid via {@link com.smartgwt.client.widgets.grid.ListGrid#getRecordEnabledProperty recordEnabledProperty}.
-    *
-    * @param enabled enabled Default value is null
-    */
+     * Default property name denoting whether this record is enabled. Property name may be modified for some grid via {@link
+     * com.smartgwt.client.widgets.grid.ListGrid#getRecordEnabledProperty recordEnabledProperty}.
+     *
+     * @param enabled enabled Default value is null
+     */
     public void setEnabled(Boolean enabled) {
         setAttribute("enabled", enabled);
     }
+
     /**
-     * Default property name denoting whether this record is enabled. Property name may be modified&#010 for some grid via {@link com.smartgwt.client.widgets.grid.ListGrid#getRecordEnabledProperty recordEnabledProperty}.
+     * Default property name denoting whether this record is enabled. Property name may be modified for some grid via {@link
+     * com.smartgwt.client.widgets.grid.ListGrid#getRecordEnabledProperty recordEnabledProperty}.
      *
      *
      * @return Boolean
-     *
      */
     public Boolean getEnabled()  {
         return getAttributeAsBoolean("enabled");
     }
 
     /**
-    * Governs whether this node can be dragged. Only has an effect if this node is displayed in&#010 a {@link com.smartgwt.client.widgets.tree.TreeGrid} where {@link com.smartgwt.client.widgets.tree.TreeGrid#getCanDragRecordsOut canDragRecordsOut}, {@link com.smartgwt.client.widgets.tree.TreeGrid#getCanReorderRecords canReorderRecords}&#010 or {@link com.smartgwt.client.widgets.tree.TreeGrid#getCanReparentNodes canReparentNodes} is <code>true</code>
-    * <p><b>Note : </b> This is an advanced setting</p>
-    *
-    * @param canDrag canDrag Default value is null
-    */
+     * Governs whether this node can be dragged. Only has an effect if this node is displayed in a {@link
+     * com.smartgwt.client.widgets.tree.TreeGrid} where {@link com.smartgwt.client.widgets.tree.TreeGrid#getCanDragRecordsOut
+     * canDragRecordsOut}, {@link com.smartgwt.client.widgets.tree.TreeGrid#getCanReorderRecords canReorderRecords} or {@link
+     * com.smartgwt.client.widgets.tree.TreeGrid#getCanReparentNodes canReparentNodes} is <code>true</code>
+     * <p><b>Note : </b> This is an advanced setting</p>
+     *
+     * @param canDrag canDrag Default value is null
+     */
     public void setCanDrag(Boolean canDrag) {
         setAttribute("canDrag", canDrag);
     }
+
     /**
-     * Governs whether this node can be dragged. Only has an effect if this node is displayed in&#010 a {@link com.smartgwt.client.widgets.tree.TreeGrid} where {@link com.smartgwt.client.widgets.tree.TreeGrid#getCanDragRecordsOut canDragRecordsOut}, {@link com.smartgwt.client.widgets.tree.TreeGrid#getCanReorderRecords canReorderRecords}&#010 or {@link com.smartgwt.client.widgets.tree.TreeGrid#getCanReparentNodes canReparentNodes} is <code>true</code>
+     * Governs whether this node can be dragged. Only has an effect if this node is displayed in a {@link
+     * com.smartgwt.client.widgets.tree.TreeGrid} where {@link com.smartgwt.client.widgets.tree.TreeGrid#getCanDragRecordsOut
+     * canDragRecordsOut}, {@link com.smartgwt.client.widgets.tree.TreeGrid#getCanReorderRecords canReorderRecords} or {@link
+     * com.smartgwt.client.widgets.tree.TreeGrid#getCanReparentNodes canReparentNodes} is <code>true</code>
      *
      *
      * @return Boolean
-     *
      */
     public Boolean getCanDrag()  {
         return getAttributeAsBoolean("canDrag");
     }
 
     /**
-    * Governs whether dragged data (typicaly other <code>treeNode</code>s) may be dropped over&#010 this node. Only has an effect if this node is displayed in a {@link com.smartgwt.client.widgets.tree.TreeGrid} where&#010 {@link com.smartgwt.client.widgets.tree.TreeGrid#getCanAcceptDroppedRecords canAcceptDroppedRecords}, {@link com.smartgwt.client.widgets.tree.TreeGrid#getCanReorderRecords canReorderRecords} or &#010 {@link com.smartgwt.client.widgets.tree.TreeGrid#getCanReparentNodes canReparentNodes} is true.
-    * <p><b>Note : </b> This is an advanced setting</p>
-    *
-    * @param canAcceptDrop canAcceptDrop Default value is null
-    */
+     * Governs whether dragged data (typicaly other <code>treeNode</code>s) may be dropped over this node. Only has an effect
+     * if this node is displayed in a {@link com.smartgwt.client.widgets.tree.TreeGrid} where {@link
+     * com.smartgwt.client.widgets.tree.TreeGrid#getCanAcceptDroppedRecords canAcceptDroppedRecords}, {@link
+     * com.smartgwt.client.widgets.tree.TreeGrid#getCanReorderRecords canReorderRecords} or  {@link
+     * com.smartgwt.client.widgets.tree.TreeGrid#getCanReparentNodes canReparentNodes} is true.
+     * <p><b>Note : </b> This is an advanced setting</p>
+     *
+     * @param canAcceptDrop canAcceptDrop Default value is null
+     */
     public void setCanAcceptDrop(Boolean canAcceptDrop) {
         setAttribute("canAcceptDrop", canAcceptDrop);
     }
+
     /**
-     * Governs whether dragged data (typicaly other <code>treeNode</code>s) may be dropped over&#010 this node. Only has an effect if this node is displayed in a {@link com.smartgwt.client.widgets.tree.TreeGrid} where&#010 {@link com.smartgwt.client.widgets.tree.TreeGrid#getCanAcceptDroppedRecords canAcceptDroppedRecords}, {@link com.smartgwt.client.widgets.tree.TreeGrid#getCanReorderRecords canReorderRecords} or &#010 {@link com.smartgwt.client.widgets.tree.TreeGrid#getCanReparentNodes canReparentNodes} is true.
+     * Governs whether dragged data (typicaly other <code>treeNode</code>s) may be dropped over this node. Only has an effect
+     * if this node is displayed in a {@link com.smartgwt.client.widgets.tree.TreeGrid} where {@link
+     * com.smartgwt.client.widgets.tree.TreeGrid#getCanAcceptDroppedRecords canAcceptDroppedRecords}, {@link
+     * com.smartgwt.client.widgets.tree.TreeGrid#getCanReorderRecords canReorderRecords} or  {@link
+     * com.smartgwt.client.widgets.tree.TreeGrid#getCanReparentNodes canReparentNodes} is true.
      *
      *
      * @return Boolean
-     *
      */
     public Boolean getCanAcceptDrop()  {
         return getAttributeAsBoolean("canAcceptDrop");
     }
 
     /**
-    * Provides a name for the node that is unique among it's immediate siblings, thus allowing a&#010 unique path to be used to identify the node, similar to a file system.  See&#010 {@link com.smartgwt.client.widgets.tree.Tree#getPath}.&#010 <p>&#010 If the nameProperty is not set on a given node, the {@link com.smartgwt.client.widgets.tree.TreeNode#getId id} will be used instead.  If&#010 this is also missing, {@link com.smartgwt.client.widgets.tree.Tree#getName} and {@link com.smartgwt.client.widgets.tree.Tree#getPath} will auto-generate a&#010 unique name for you.  Thus names are not required, but if the dataset you are using already&#010 has usable names for each node, using them can make APIs such as {@link com.smartgwt.client.widgets.tree.Tree#find} more&#010 useful.  Alternatively, if your dataset has unique ids consider providing those as&#010 {@link com.smartgwt.client.widgets.tree.TreeNode#getId id}.&#010 <P>&#010 If a value is provided for value of the nameProperty of a node (e.g. node.name) is not a&#010 string, it will be converted to a string by the Tree via ""+value.&#010 <p>&#010 This property is also used as the default title for the node (see {@link com.smartgwt.client.widgets.tree.Tree#getTitle})&#010 if {@link com.smartgwt.client.widgets.tree.TreeNode#getTitle title} is not specified.&#010 <p>&#010 Note: the name of this property can be changed by setting {@link com.smartgwt.client.widgets.tree.Tree#getNameProperty nameProperty}.
-    *
-    * @param name name Default value is null, but see below
-    */
+     * Provides a name for the node that is unique among it's immediate siblings, thus allowing a unique path to be used to
+     * identify the node, similar to a file system.  See {@link com.smartgwt.client.widgets.tree.Tree#getPath}. <p> If the
+     * nameProperty is not set on a given node, the {@link com.smartgwt.client.widgets.tree.TreeNode#getId id} will be used
+     * instead.  If this is also missing, {@link com.smartgwt.client.widgets.tree.Tree#getName} and {@link
+     * com.smartgwt.client.widgets.tree.Tree#getPath} will auto-generate a unique name for you.  Thus names are not required,
+     * but if the dataset you are using already has usable names for each node, using them can make APIs such as {@link
+     * com.smartgwt.client.widgets.tree.Tree#find} more useful.  Alternatively, if your dataset has unique ids consider
+     * providing those as {@link com.smartgwt.client.widgets.tree.TreeNode#getId id}. <P> If a value is provided for value of
+     * the nameProperty of a node (e.g. node.name) is not a string, it will be converted to a string by the Tree via ""+value.
+     * <p> This property is also used as the default title for the node (see {@link
+     * com.smartgwt.client.widgets.tree.Tree#getTitle}) if {@link com.smartgwt.client.widgets.tree.TreeNode#getTitle title} is
+     * not specified. <p> Note: the name of this property can be changed by setting {@link
+     * com.smartgwt.client.widgets.tree.Tree#getNameProperty nameProperty}.
+     *
+     * @param name name Default value is null, but see below
+     */
     public void setName(String name) {
         setAttribute("name", name);
     }
+
     /**
-     * Provides a name for the node that is unique among it's immediate siblings, thus allowing a&#010 unique path to be used to identify the node, similar to a file system.  See&#010 {@link com.smartgwt.client.widgets.tree.Tree#getPath}.&#010 <p>&#010 If the nameProperty is not set on a given node, the {@link com.smartgwt.client.widgets.tree.TreeNode#getId id} will be used instead.  If&#010 this is also missing, {@link com.smartgwt.client.widgets.tree.Tree#getName} and {@link com.smartgwt.client.widgets.tree.Tree#getPath} will auto-generate a&#010 unique name for you.  Thus names are not required, but if the dataset you are using already&#010 has usable names for each node, using them can make APIs such as {@link com.smartgwt.client.widgets.tree.Tree#find} more&#010 useful.  Alternatively, if your dataset has unique ids consider providing those as&#010 {@link com.smartgwt.client.widgets.tree.TreeNode#getId id}.&#010 <P>&#010 If a value is provided for value of the nameProperty of a node (e.g. node.name) is not a&#010 string, it will be converted to a string by the Tree via ""+value.&#010 <p>&#010 This property is also used as the default title for the node (see {@link com.smartgwt.client.widgets.tree.Tree#getTitle})&#010 if {@link com.smartgwt.client.widgets.tree.TreeNode#getTitle title} is not specified.&#010 <p>&#010 Note: the name of this property can be changed by setting {@link com.smartgwt.client.widgets.tree.Tree#getNameProperty nameProperty}.
+     * Provides a name for the node that is unique among it's immediate siblings, thus allowing a unique path to be used to
+     * identify the node, similar to a file system.  See {@link com.smartgwt.client.widgets.tree.Tree#getPath}. <p> If the
+     * nameProperty is not set on a given node, the {@link com.smartgwt.client.widgets.tree.TreeNode#getId id} will be used
+     * instead.  If this is also missing, {@link com.smartgwt.client.widgets.tree.Tree#getName} and {@link
+     * com.smartgwt.client.widgets.tree.Tree#getPath} will auto-generate a unique name for you.  Thus names are not required,
+     * but if the dataset you are using already has usable names for each node, using them can make APIs such as {@link
+     * com.smartgwt.client.widgets.tree.Tree#find} more useful.  Alternatively, if your dataset has unique ids consider
+     * providing those as {@link com.smartgwt.client.widgets.tree.TreeNode#getId id}. <P> If a value is provided for value of
+     * the nameProperty of a node (e.g. node.name) is not a string, it will be converted to a string by the Tree via ""+value.
+     * <p> This property is also used as the default title for the node (see {@link
+     * com.smartgwt.client.widgets.tree.Tree#getTitle}) if {@link com.smartgwt.client.widgets.tree.TreeNode#getTitle title} is
+     * not specified. <p> Note: the name of this property can be changed by setting {@link
+     * com.smartgwt.client.widgets.tree.Tree#getNameProperty nameProperty}.
      *
      *
      * @return String
-     *
      */
     public String getName()  {
         return getAttributeAsString("name");
     }
 
     /**
-    * The title of the node as it should appear next to the node icon in the {@link com.smartgwt.client.widgets.tree.Tree}.  If left&#010 unset, the value of {@link com.smartgwt.client.widgets.tree.TreeNode#getName name} is used by default.  See the description in&#010 {@link com.smartgwt.client.widgets.tree.Tree#getTitle} for full details.&#010 <p>&#010 Note: the name of this property can be changed by setting {@link com.smartgwt.client.widgets.tree.Tree#getTitleProperty titleProperty}.
-    *
-    * @param title title Default value is null
-    */
+     * The title of the node as it should appear next to the node icon in the {@link com.smartgwt.client.widgets.tree.Tree}. 
+     * If left unset, the value of {@link com.smartgwt.client.widgets.tree.TreeNode#getName name} is used by default.  See the
+     * description in {@link com.smartgwt.client.widgets.tree.Tree#getTitle} for full details. <p> Note: the name of this
+     * property can be changed by setting {@link com.smartgwt.client.widgets.tree.Tree#getTitleProperty titleProperty}.
+     *
+     * @param title title Default value is null
+     */
     public void setTitle(String title) {
         setAttribute("title", title);
     }
+
     /**
-     * The title of the node as it should appear next to the node icon in the {@link com.smartgwt.client.widgets.tree.Tree}.  If left&#010 unset, the value of {@link com.smartgwt.client.widgets.tree.TreeNode#getName name} is used by default.  See the description in&#010 {@link com.smartgwt.client.widgets.tree.Tree#getTitle} for full details.&#010 <p>&#010 Note: the name of this property can be changed by setting {@link com.smartgwt.client.widgets.tree.Tree#getTitleProperty titleProperty}.
+     * The title of the node as it should appear next to the node icon in the {@link com.smartgwt.client.widgets.tree.Tree}. 
+     * If left unset, the value of {@link com.smartgwt.client.widgets.tree.TreeNode#getName name} is used by default.  See the
+     * description in {@link com.smartgwt.client.widgets.tree.Tree#getTitle} for full details. <p> Note: the name of this
+     * property can be changed by setting {@link com.smartgwt.client.widgets.tree.Tree#getTitleProperty titleProperty}.
      *
      *
      * @return String
-     *
      */
     public String getTitle()  {
         return getAttributeAsString("title");
@@ -186,7 +235,6 @@ public class TreeNode extends ListGridRecord {
 
 
 
-
     /**
      * Constructor
      *

@@ -58,53 +58,53 @@ import com.google.gwt.event.shared.HasHandlers;
 public class MouseDownEvent extends BrowserEvent<MouseDownHandler>  implements Cancellable {
     private boolean cancel = false;
 
-  /**
-   * Handler type.
-   */
-  private static Type<MouseDownHandler> TYPE;
+    /**
+     * Handler type.
+     */
+    private static Type<MouseDownHandler> TYPE;
 
-  /**
-   * Fires a open event on all registered handlers in the handler manager.If no
-   * such handlers exist, this method will do nothing.
-   *
-   * @param <S> The event source
-   * @param source the source of the handlers
-   * @param jsObj the native event
-   */
-  public static <S extends HasMouseDownHandlers & HasHandlers> void fire(
-      S source, JavaScriptObject jsObj) {
-    if (TYPE != null) {
-        MouseDownEvent event = new MouseDownEvent(jsObj);
-        source.fireEvent(event);
+    /**
+     * Fires a open event on all registered handlers in the handler manager.If no
+     * such handlers exist, this method will do nothing.
+     *
+     * @param <S> The event source
+     * @param source the source of the handlers
+     * @param jsObj the native event
+     */
+    public static <S extends HasMouseDownHandlers & HasHandlers> void fire(
+        S source, JavaScriptObject jsObj) {
+        if (TYPE != null) {
+            MouseDownEvent event = new MouseDownEvent(jsObj);
+            source.fireEvent(event);
+        }
     }
-  }
 
-  /**
-   * Gets the type associated with this event.
-   *
-   * @return returns the handler type
-   */
-  public static Type<MouseDownHandler> getType() {
-    if (TYPE == null) {
-      TYPE = new Type<MouseDownHandler>();
+    /**
+     * Gets the type associated with this event.
+     *
+     * @return returns the handler type
+     */
+    public static Type<MouseDownHandler> getType() {
+        if (TYPE == null) {
+            TYPE = new Type<MouseDownHandler>();
+        }
+        return TYPE;
     }
-    return TYPE;
-  }
 
 
-  @Override
-  protected void dispatch(MouseDownHandler handler) {
-    handler.onMouseDown(this);
-  }
+    @Override
+    protected void dispatch(MouseDownHandler handler) {
+        handler.onMouseDown(this);
+    }
 
-  // Because of type erasure, our static type is
-  // wild carded, yet the "real" type should use our I param.
+    // Because of type erasure, our static type is
+    // wild carded, yet the "real" type should use our I param.
 
-  @SuppressWarnings("unchecked")
-  @Override
-  public final Type<MouseDownHandler> getAssociatedType() {
-    return TYPE;
-  }
+    @SuppressWarnings("unchecked")
+    @Override
+    public final Type<MouseDownHandler> getAssociatedType() {
+        return TYPE;
+    }
 
     public MouseDownEvent(JavaScriptObject jsObj) {
         super(jsObj);

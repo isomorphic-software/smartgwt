@@ -55,10 +55,10 @@ import com.smartgwt.client.util.JSOHelper;
 import com.smartgwt.client.util.EnumUtil;
 import com.google.gwt.event.shared.*;
 import com.google.gwt.event.shared.HasHandlers;
-   /**
-    * Simple subclass of Img with appearance appropriate for a ToolStrip separator
 
-    */
+/**
+ * Simple subclass of Img with appearance appropriate for a ToolStrip separator
+ */
 public class ToolStripSeparator extends Img {
 
     public static ToolStripSeparator getOrCreateRef(JavaScriptObject jsObj) {
@@ -70,7 +70,6 @@ public class ToolStripSeparator extends Img {
             return new ToolStripSeparator(jsObj);
         }
     }
-
 
     public ToolStripSeparator(){
         
@@ -89,58 +88,58 @@ public class ToolStripSeparator extends Img {
     // ********************* Properties / Attributes ***********************
 
     /**
-    * Path to separator image.
-    *
-    * @param skinImgDir skinImgDir Default value is "images/ToolStrip/"
-    * @throws IllegalStateException this property cannot be changed after the component has been created
-    */
+     * Path to separator image.
+     *
+     * @param skinImgDir skinImgDir Default value is "images/ToolStrip/"
+     * @throws IllegalStateException this property cannot be changed after the component has been created
+     */
     public void setSkinImgDir(String skinImgDir)  throws IllegalStateException {
         setAttribute("skinImgDir", skinImgDir, false);
     }
+
     /**
      * Path to separator image.
      *
      *
      * @return String
-     *
      */
     public String getSkinImgDir()  {
         return getAttributeAsString("skinImgDir");
     }
 
     /**
-    * Image for vertically oriented separator (for horizontal toolstrips).
-    *
-    * @param vSrc vSrc Default value is "[SKIN]separator.png"
-    */
+     * Image for vertically oriented separator (for horizontal toolstrips).
+     *
+     * @param vSrc vSrc Default value is "[SKIN]separator.png"
+     */
     public void setVSrc(String vSrc) {
         setAttribute("vSrc", vSrc, true);
     }
+
     /**
      * Image for vertically oriented separator (for horizontal toolstrips).
      *
      *
      * @return String
-     *
      */
     public String getVSrc()  {
         return getAttributeAsString("vSrc");
     }
 
     /**
-    * Image for horizontally oriented separator (for vertical toolstrips).
-    *
-    * @param hSrc hSrc Default value is "[SKIN]hseparator.png"
-    */
+     * Image for horizontally oriented separator (for vertical toolstrips).
+     *
+     * @param hSrc hSrc Default value is "[SKIN]hseparator.png"
+     */
     public void setHSrc(String hSrc) {
         setAttribute("hSrc", hSrc, true);
     }
+
     /**
      * Image for horizontally oriented separator (for vertical toolstrips).
      *
      *
      * @return String
-     *
      */
     public String getHSrc()  {
         return getAttributeAsString("hSrc");

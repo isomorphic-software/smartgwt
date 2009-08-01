@@ -57,53 +57,53 @@ import com.google.gwt.event.shared.*;
 import com.google.gwt.event.shared.HasHandlers;
 public class FolderClickEvent extends BrowserEvent<FolderClickHandler>  {
 
-  /**
-   * Handler type.
-   */
-  private static Type<FolderClickHandler> TYPE;
+    /**
+     * Handler type.
+     */
+    private static Type<FolderClickHandler> TYPE;
 
-  /**
-   * Fires a open event on all registered handlers in the handler manager.If no
-   * such handlers exist, this method will do nothing.
-   *
-   * @param <S> The event source
-   * @param source the source of the handlers
-   * @param jsObj the native event
-   */
-  public static <S extends HasFolderClickHandlers & HasHandlers> void fire(
-      S source, JavaScriptObject jsObj) {
-    if (TYPE != null) {
-        FolderClickEvent event = new FolderClickEvent(jsObj);
-        source.fireEvent(event);
+    /**
+     * Fires a open event on all registered handlers in the handler manager.If no
+     * such handlers exist, this method will do nothing.
+     *
+     * @param <S> The event source
+     * @param source the source of the handlers
+     * @param jsObj the native event
+     */
+    public static <S extends HasFolderClickHandlers & HasHandlers> void fire(
+        S source, JavaScriptObject jsObj) {
+        if (TYPE != null) {
+            FolderClickEvent event = new FolderClickEvent(jsObj);
+            source.fireEvent(event);
+        }
     }
-  }
 
-  /**
-   * Gets the type associated with this event.
-   *
-   * @return returns the handler type
-   */
-  public static Type<FolderClickHandler> getType() {
-    if (TYPE == null) {
-      TYPE = new Type<FolderClickHandler>();
+    /**
+     * Gets the type associated with this event.
+     *
+     * @return returns the handler type
+     */
+    public static Type<FolderClickHandler> getType() {
+        if (TYPE == null) {
+            TYPE = new Type<FolderClickHandler>();
+        }
+        return TYPE;
     }
-    return TYPE;
-  }
 
 
-  @Override
-  protected void dispatch(FolderClickHandler handler) {
-    handler.onFolderClick(this);
-  }
+    @Override
+    protected void dispatch(FolderClickHandler handler) {
+        handler.onFolderClick(this);
+    }
 
-  // Because of type erasure, our static type is
-  // wild carded, yet the "real" type should use our I param.
+    // Because of type erasure, our static type is
+    // wild carded, yet the "real" type should use our I param.
 
-  @SuppressWarnings("unchecked")
-  @Override
-  public final Type<FolderClickHandler> getAssociatedType() {
-    return TYPE;
-  }
+    @SuppressWarnings("unchecked")
+    @Override
+    public final Type<FolderClickHandler> getAssociatedType() {
+        return TYPE;
+    }
 
     public FolderClickEvent(JavaScriptObject jsObj) {
         super(jsObj);
@@ -128,7 +128,7 @@ public class FolderClickEvent extends BrowserEvent<FolderClickHandler>  {
      */
     public  native TreeNode getFolder() /*-{
         var jsObj = this.@com.smartgwt.client.event.AbstractSmartEvent::jsObj;
-            return @com.smartgwt.client.widgets.tree.TreeNode::getOrCreateRef(Lcom/google/gwt/core/client/JavaScriptObject;)(jsObj.folder);
+        return @com.smartgwt.client.widgets.tree.TreeNode::getOrCreateRef(Lcom/google/gwt/core/client/JavaScriptObject;)(jsObj.folder);
     }-*/;
 
     /**

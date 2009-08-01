@@ -58,53 +58,53 @@ import com.google.gwt.event.shared.HasHandlers;
 public class CellMouseUpEvent extends GridRowColEvent<CellMouseUpHandler>  implements Cancellable {
     private boolean cancel = false;
 
-  /**
-   * Handler type.
-   */
-  private static Type<CellMouseUpHandler> TYPE;
+    /**
+     * Handler type.
+     */
+    private static Type<CellMouseUpHandler> TYPE;
 
-  /**
-   * Fires a open event on all registered handlers in the handler manager.If no
-   * such handlers exist, this method will do nothing.
-   *
-   * @param <S> The event source
-   * @param source the source of the handlers
-   * @param jsObj the native event
-   */
-  public static <S extends HasCellMouseUpHandlers & HasHandlers> void fire(
-      S source, JavaScriptObject jsObj) {
-    if (TYPE != null) {
-        CellMouseUpEvent event = new CellMouseUpEvent(jsObj);
-        source.fireEvent(event);
+    /**
+     * Fires a open event on all registered handlers in the handler manager.If no
+     * such handlers exist, this method will do nothing.
+     *
+     * @param <S> The event source
+     * @param source the source of the handlers
+     * @param jsObj the native event
+     */
+    public static <S extends HasCellMouseUpHandlers & HasHandlers> void fire(
+        S source, JavaScriptObject jsObj) {
+        if (TYPE != null) {
+            CellMouseUpEvent event = new CellMouseUpEvent(jsObj);
+            source.fireEvent(event);
+        }
     }
-  }
 
-  /**
-   * Gets the type associated with this event.
-   *
-   * @return returns the handler type
-   */
-  public static Type<CellMouseUpHandler> getType() {
-    if (TYPE == null) {
-      TYPE = new Type<CellMouseUpHandler>();
+    /**
+     * Gets the type associated with this event.
+     *
+     * @return returns the handler type
+     */
+    public static Type<CellMouseUpHandler> getType() {
+        if (TYPE == null) {
+            TYPE = new Type<CellMouseUpHandler>();
+        }
+        return TYPE;
     }
-    return TYPE;
-  }
 
 
-  @Override
-  protected void dispatch(CellMouseUpHandler handler) {
-    handler.onCellMouseUp(this);
-  }
+    @Override
+    protected void dispatch(CellMouseUpHandler handler) {
+        handler.onCellMouseUp(this);
+    }
 
-  // Because of type erasure, our static type is
-  // wild carded, yet the "real" type should use our I param.
+    // Because of type erasure, our static type is
+    // wild carded, yet the "real" type should use our I param.
 
-  @SuppressWarnings("unchecked")
-  @Override
-  public final Type<CellMouseUpHandler> getAssociatedType() {
-    return TYPE;
-  }
+    @SuppressWarnings("unchecked")
+    @Override
+    public final Type<CellMouseUpHandler> getAssociatedType() {
+        return TYPE;
+    }
 
     public CellMouseUpEvent(JavaScriptObject jsObj) {
         super(jsObj);
