@@ -150,7 +150,7 @@ public class SectionStack extends VLayout  implements com.smartgwt.client.widget
     }
 
     /**
-    * Whether sections can be drag resized by the user dragging the section header.&#010 <P>&#010 Note that, with <code>canResizeSections:true</code>, not all sections can be resized:&#010 sections that contain only {@link com.smartgwt.client.widgets.Button#getAutoFit autoFit} components or that are&#010 marked with {@link com.smartgwt.client.widgets.layout.SectionStackSection#getResizeable resizeable} will not be&#010 resizeable.
+    * Whether sections can be drag resized by the user dragging the section header.&#010 <P>&#010 Note that, with <code>canResizeSections:true</code>, not all sections can be resized:&#010 sections that contain only {@link com.smartgwt.client.widgets.Button#getAutoFit 'autofitting'} components or that are&#010 marked with {@link com.smartgwt.client.widgets.layout.SectionStackSection#getResizeable 'section.resizeable:false'} will not be&#010 resizeable.
     * <p><b>Note : </b> This is an advanced setting</p>
     *
     * @param canResizeSections canResizeSections Default value is true
@@ -160,7 +160,7 @@ public class SectionStack extends VLayout  implements com.smartgwt.client.widget
         setAttribute("canResizeSections", canResizeSections, false);
     }
     /**
-     * Whether sections can be drag resized by the user dragging the section header.&#010 <P>&#010 Note that, with <code>canResizeSections:true</code>, not all sections can be resized:&#010 sections that contain only {@link com.smartgwt.client.widgets.Button#getAutoFit autoFit} components or that are&#010 marked with {@link com.smartgwt.client.widgets.layout.SectionStackSection#getResizeable resizeable} will not be&#010 resizeable.
+     * Whether sections can be drag resized by the user dragging the section header.&#010 <P>&#010 Note that, with <code>canResizeSections:true</code>, not all sections can be resized:&#010 sections that contain only {@link com.smartgwt.client.widgets.Button#getAutoFit 'autofitting'} components or that are&#010 marked with {@link com.smartgwt.client.widgets.layout.SectionStackSection#getResizeable 'section.resizeable:false'} will not be&#010 resizeable.
      *
      *
      * @return Boolean

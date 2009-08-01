@@ -90,7 +90,7 @@ public class Menu extends ListGrid  implements com.smartgwt.client.widgets.menu.
     // ********************* Properties / Attributes ***********************
             
     /**
-    * Optional target canvas for this menu. Available as a parameter to dynamic menuItem configuration&#010 methods such as {@link com.smartgwt.client.widgets.menu.MenuItem#checkIf}.&#010 <P>&#010 If this item has any {@link com.smartgwt.client.widgets.menu.MenuItem#getSubmenu submenu} the <code>target</code> will be propogated down&#010 to these child menus.
+    * Optional target canvas for this menu. Available as a parameter to dynamic menuItem configuration&#010 methods such as {@link com.smartgwt.client.widgets.menu.MenuItem#checkIf}.&#010 <P>&#010 If this item has any {@link com.smartgwt.client.widgets.menu.MenuItem#getSubmenu 'submenus'} the <code>target</code> will be propogated down&#010 to these child menus.
     *
     * @param target target Default value is null
     */
@@ -98,7 +98,7 @@ public class Menu extends ListGrid  implements com.smartgwt.client.widgets.menu.
         setAttribute("target", target.getOrCreateJsObj(), true);
     }
     /**
-     * Optional target canvas for this menu. Available as a parameter to dynamic menuItem configuration&#010 methods such as {@link com.smartgwt.client.widgets.menu.MenuItem#checkIf}.&#010 <P>&#010 If this item has any {@link com.smartgwt.client.widgets.menu.MenuItem#getSubmenu submenu} the <code>target</code> will be propogated down&#010 to these child menus.
+     * Optional target canvas for this menu. Available as a parameter to dynamic menuItem configuration&#010 methods such as {@link com.smartgwt.client.widgets.menu.MenuItem#checkIf}.&#010 <P>&#010 If this item has any {@link com.smartgwt.client.widgets.menu.MenuItem#getSubmenu 'submenus'} the <code>target</code> will be propogated down&#010 to these child menus.
      *
      *
      * @return Canvas

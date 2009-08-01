@@ -197,10 +197,8 @@ public class EventHandler {
         }-*/;
 
 
-
-
-
-
+
+
     /**
      * Set the HTML for the drag tracker that follows the mouse during a drag and drop interaction. <P> Your canvas
      * can use this routine to set the drag tracker to whatever HTML you want like so: <pre>    dragStart : function

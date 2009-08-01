@@ -56,7 +56,7 @@ import com.smartgwt.client.util.EnumUtil;
 import com.google.gwt.event.shared.*;
 import com.google.gwt.event.shared.HasHandlers;
    /**
-    * A general purpose Window class for implementing dialogs, portlets, alerts, prompts, wizards&#010 and desktop-like windowing interfaces.&#010 <P>&#010 Windows can contain arbitrary SmartGWT components, configured via the {@link com.smartgwt.client.widgets.Window#getItems items}&#010 property.  Windows may be {@link com.smartgwt.client.widgets.Window#getIsModal isModal} or non-modal.&#010 <P>&#010 Windows provide a series of highly configurable and skinnable {@link com.smartgwt.client..AutoChild}&#010 including a header, various header controls, footer, and corner resizer.&#010 <P>&#010 The more specialized {@link com.smartgwt.client.widgets.Dialog} subclass of Window has additional functionality targetted&#010 at simple prompts and confirmations, such as buttons with default actions, and single-method&#010 {@link com.smartgwt.client.util.isc#warn} for common application dialogs.
+    * A general purpose Window class for implementing dialogs, portlets, alerts, prompts, wizards&#010 and desktop-like windowing interfaces.&#010 <P>&#010 Windows can contain arbitrary SmartGWT components, configured via the {@link com.smartgwt.client.widgets.Window#getItems items}&#010 property.  Windows may be {@link com.smartgwt.client.widgets.Window#getIsModal 'modal'} or non-modal.&#010 <P>&#010 Windows provide a series of highly configurable and skinnable {@link com.smartgwt.client..AutoChild}&#010 including a header, various header controls, footer, and corner resizer.&#010 <P>&#010 The more specialized {@link com.smartgwt.client.widgets.Dialog} subclass of Window has additional functionality targetted&#010 at simple prompts and confirmations, such as buttons with default actions, and single-method&#010 {@link com.smartgwt.client.util.isc#warn} for common application dialogs.
 
     */
 
@@ -341,7 +341,7 @@ public class Window extends VLayout  implements com.smartgwt.client.widgets.even
     }
 
     /**
-    * A URL to load as content for the Window's body.  If specified, this&#010 attribute will take precedence over the items attribute.&#010 <P>&#010 Note that setting window.src is essentially a shortcut for setting {@link com.smartgwt.client.widgets.Window#getItems items}&#010 to a single HTMLflow with a specified {@link com.smartgwt.client.widgets.HTMLFlow#getContentsURL contentsURL}.
+    * A URL to load as content for the Window's body.  If specified, this&#010 attribute will take precedence over the items attribute.&#010 <P>&#010 Note that setting window.src is essentially a shortcut for setting {@link com.smartgwt.client.widgets.Window#getItems items}&#010 to a single HTMLflow with a specified {@link com.smartgwt.client.widgets.HTMLFlow#getContentsURL 'contentsURL'}.
     * Sets the URL of the contents to display in the body of the window, redrawing if&#010 necessary.&#010
     *
     * @param src URL of new contents to be displayed in the window body. Default value is null
@@ -350,7 +350,7 @@ public class Window extends VLayout  implements com.smartgwt.client.widgets.even
         setAttribute("src", src, true);
     }
     /**
-     * A URL to load as content for the Window's body.  If specified, this&#010 attribute will take precedence over the items attribute.&#010 <P>&#010 Note that setting window.src is essentially a shortcut for setting {@link com.smartgwt.client.widgets.Window#getItems items}&#010 to a single HTMLflow with a specified {@link com.smartgwt.client.widgets.HTMLFlow#getContentsURL contentsURL}.
+     * A URL to load as content for the Window's body.  If specified, this&#010 attribute will take precedence over the items attribute.&#010 <P>&#010 Note that setting window.src is essentially a shortcut for setting {@link com.smartgwt.client.widgets.Window#getItems items}&#010 to a single HTMLflow with a specified {@link com.smartgwt.client.widgets.HTMLFlow#getContentsURL 'contentsURL'}.
      *
      *
      * @return String
@@ -421,7 +421,7 @@ public class Window extends VLayout  implements com.smartgwt.client.widgets.even
     }
 
     /**
-    * If true, show a {@link com.smartgwt.client.widgets.Window#getHeader header} for this Window. &#010 <P>&#010 Note that in certain Smartclient skins {@link com.smartgwt.client.widgets.Window#getShowHeaderBackground showHeaderBackground} may be set to&#010 <code>false</code> and the header's appearance implemented as part of the&#010 window's {@link com.smartgwt.client.widgets.Canvas#getShowEdges showEdges}. In this case suppressing the header can be achieved&#010 by overriding the edge media as well as setting this property to false. For example, to&#010 create a headerless window with a similar appearance to a {@link com.smartgwt.client.widgets.menu.Menu} in the&#010 <code><i>TreeFrog</i></code> skin, the following attributes could be used:&#010 <pre>&#010      showHeader:false,&#010      edgeImage:"[SKIN]/Menu/m.png",&#010      edgeSize:10, edgeTop:17, edgeBottom:17,&#010      edgeCenterBackgroundColor:"#F7F7F7"&#010 </pre>
+    * If true, show a {@link com.smartgwt.client.widgets.Window#getHeader header} for this Window. &#010 <P>&#010 Note that in certain Smartclient skins {@link com.smartgwt.client.widgets.Window#getShowHeaderBackground showHeaderBackground} may be set to&#010 <code>false</code> and the header's appearance implemented as part of the&#010 window's {@link com.smartgwt.client.widgets.Canvas#getShowEdges 'edge media'}. In this case suppressing the header can be achieved&#010 by overriding the edge media as well as setting this property to false. For example, to&#010 create a headerless window with a similar appearance to a {@link com.smartgwt.client.widgets.menu.Menu} in the&#010 <code><i>TreeFrog</i></code> skin, the following attributes could be used:&#010 <pre>&#010      showHeader:false,&#010      edgeImage:"[SKIN]/Menu/m.png",&#010      edgeSize:10, edgeTop:17, edgeBottom:17,&#010      edgeCenterBackgroundColor:"#F7F7F7"&#010 </pre>
     * <p><b>Note : </b> This is an advanced setting</p>
     *
     * @param showHeader showHeader Default value is true
@@ -430,7 +430,7 @@ public class Window extends VLayout  implements com.smartgwt.client.widgets.even
         setAttribute("showHeader", showHeader, true);
     }
     /**
-     * If true, show a {@link com.smartgwt.client.widgets.Window#getHeader header} for this Window. &#010 <P>&#010 Note that in certain Smartclient skins {@link com.smartgwt.client.widgets.Window#getShowHeaderBackground showHeaderBackground} may be set to&#010 <code>false</code> and the header's appearance implemented as part of the&#010 window's {@link com.smartgwt.client.widgets.Canvas#getShowEdges showEdges}. In this case suppressing the header can be achieved&#010 by overriding the edge media as well as setting this property to false. For example, to&#010 create a headerless window with a similar appearance to a {@link com.smartgwt.client.widgets.menu.Menu} in the&#010 <code><i>TreeFrog</i></code> skin, the following attributes could be used:&#010 <pre>&#010      showHeader:false,&#010      edgeImage:"[SKIN]/Menu/m.png",&#010      edgeSize:10, edgeTop:17, edgeBottom:17,&#010      edgeCenterBackgroundColor:"#F7F7F7"&#010 </pre>
+     * If true, show a {@link com.smartgwt.client.widgets.Window#getHeader header} for this Window. &#010 <P>&#010 Note that in certain Smartclient skins {@link com.smartgwt.client.widgets.Window#getShowHeaderBackground showHeaderBackground} may be set to&#010 <code>false</code> and the header's appearance implemented as part of the&#010 window's {@link com.smartgwt.client.widgets.Canvas#getShowEdges 'edge media'}. In this case suppressing the header can be achieved&#010 by overriding the edge media as well as setting this property to false. For example, to&#010 create a headerless window with a similar appearance to a {@link com.smartgwt.client.widgets.menu.Menu} in the&#010 <code><i>TreeFrog</i></code> skin, the following attributes could be used:&#010 <pre>&#010      showHeader:false,&#010      edgeImage:"[SKIN]/Menu/m.png",&#010      edgeSize:10, edgeTop:17, edgeBottom:17,&#010      edgeCenterBackgroundColor:"#F7F7F7"&#010 </pre>
      *
      *
      * @return Boolean
@@ -700,7 +700,7 @@ public class Window extends VLayout  implements com.smartgwt.client.widgets.even
     }
 
     /**
-    * Height for the window when minimized.&#010 If unset the window will shrink to the height of the header, if present, otherwise&#010 {@link com.smartgwt.client.widgets.Window#getDefaultMinimizeHeight defaultMinimizeHeight}
+    * Height for the window when minimized.&#010 If unset the window will shrink to the height of the header, if present, otherwise&#010 {@link com.smartgwt.client.widgets.Window#getDefaultMinimizeHeight 'this.defaultMinimizeHeight'}
     * <p><b>Note : </b> This is an advanced setting</p>
     *
     * @param minimizeHeight minimizeHeight Default value is null
@@ -709,7 +709,7 @@ public class Window extends VLayout  implements com.smartgwt.client.widgets.even
         setAttribute("minimizeHeight", minimizeHeight, true);
     }
     /**
-     * Height for the window when minimized.&#010 If unset the window will shrink to the height of the header, if present, otherwise&#010 {@link com.smartgwt.client.widgets.Window#getDefaultMinimizeHeight defaultMinimizeHeight}
+     * Height for the window when minimized.&#010 If unset the window will shrink to the height of the header, if present, otherwise&#010 {@link com.smartgwt.client.widgets.Window#getDefaultMinimizeHeight 'this.defaultMinimizeHeight'}
      *
      *
      * @return Integer
@@ -969,7 +969,7 @@ public class Window extends VLayout  implements com.smartgwt.client.widgets.even
         }-*/;
 
         /**
-         * Minimize the window. Fired when the user clicks the minimize button if &#010 {@link com.smartgwt.client.widgets.Window#getShowMinimizeButton showMinimizeButton} is true.<br>&#010 Default implementation shrinks the window to just the height of the header bar, hiding the&#010 body. If {@link com.smartgwt.client.widgets.Window#getAnimateMinimize animateMinimize} is true, the resize will be animated.&#010 A restore button will be displayed in place of the minimize button when the window is &#010 minimized.&#010
+         * Minimize the window. Fired when the user clicks the minimize button if &#010 {@link com.smartgwt.client.widgets.Window#getShowMinimizeButton 'this.showMinimizeButton'} is true.<br>&#010 Default implementation shrinks the window to just the height of the header bar, hiding the&#010 body. If {@link com.smartgwt.client.widgets.Window#getAnimateMinimize 'animateMinimize'} is true, the resize will be animated.&#010 A restore button will be displayed in place of the minimize button when the window is &#010 minimized.&#010
          */
         public native void minimize() /*-{
             var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
@@ -985,7 +985,7 @@ public class Window extends VLayout  implements com.smartgwt.client.widgets.even
         }-*/;
 
         /**
-         * Maximize the window. Fired when the user clicks the maximize button if &#010 {@link com.smartgwt.client.widgets.Window#getShowMaximizeButton showMaximizeButton} is true.<br>&#010 Default implementation moves the window to <code>0, 0</code> and resizes the window to &#010 <code>"100%"</code> on both axes, so it will fill the browser window (or the parentElement&#010 of the Window instance, if appropriate).<br>&#010 If {@link com.smartgwt.client.widgets.Window#getAnimateMinimize animateMinimize} is true, the maximize will be animated.&#010 A restore button will be displayed in place of the maximize button when the window is &#010 maximized.&#010 &#010
+         * Maximize the window. Fired when the user clicks the maximize button if &#010 {@link com.smartgwt.client.widgets.Window#getShowMaximizeButton 'this.showMaximizeButton'} is true.<br>&#010 Default implementation moves the window to <code>0, 0</code> and resizes the window to &#010 <code>"100%"</code> on both axes, so it will fill the browser window (or the parentElement&#010 of the Window instance, if appropriate).<br>&#010 If {@link com.smartgwt.client.widgets.Window#getAnimateMinimize 'animateMinimize'} is true, the maximize will be animated.&#010 A restore button will be displayed in place of the maximize button when the window is &#010 maximized.&#010 &#010
          */
         public native void maximize() /*-{
             var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();

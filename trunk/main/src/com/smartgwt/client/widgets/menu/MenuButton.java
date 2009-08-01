@@ -182,7 +182,7 @@ public class MenuButton extends Button {
     }
 
     /**
-    * If this MenuButton has a specified {@link com.smartgwt.client.widgets.Canvas#getAccessKey accessKey}, underline it&#010 in the title of the button by default
+    * If this MenuButton has a specified {@link com.smartgwt.client.widgets.Canvas#getAccessKey 'accessKey'}, underline it&#010 in the title of the button by default
     *
     * @param hiliteAccessKey hiliteAccessKey Default value is true
     * @throws IllegalStateException this property cannot be changed after the component has been created
@@ -191,7 +191,7 @@ public class MenuButton extends Button {
         setAttribute("hiliteAccessKey", hiliteAccessKey, false);
     }
     /**
-     * If this MenuButton has a specified {@link com.smartgwt.client.widgets.Canvas#getAccessKey accessKey}, underline it&#010 in the title of the button by default
+     * If this MenuButton has a specified {@link com.smartgwt.client.widgets.Canvas#getAccessKey 'accessKey'}, underline it&#010 in the title of the button by default
      *
      *
      * @return Boolean

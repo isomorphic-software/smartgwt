@@ -235,7 +235,7 @@ public class TileLayout extends Canvas {
     }
 
     /**
-    * If this widget has padding specified (as {@link com.smartgwt.client.widgets.Canvas#getPadding padding} or in the&#010 CSS style applied to this layout), should it show up as space outside the members,&#010 similar to layoutMargin?&#010 <P>&#010 If this setting is false, padding will not affect member positioning (as CSS padding&#010 normally does not affect absolutely positioned children).  Leaving this setting true&#010 allows a designer to more effectively control layout purely from CSS.&#010 <P>&#010 Note that {@link com.smartgwt.client.widgets.layout.Layout#getLayoutMargin layoutMargin} if specified, takes precidence over this value.
+    * If this widget has padding specified (as {@link com.smartgwt.client.widgets.Canvas#getPadding 'this.padding'} or in the&#010 CSS style applied to this layout), should it show up as space outside the members,&#010 similar to layoutMargin?&#010 <P>&#010 If this setting is false, padding will not affect member positioning (as CSS padding&#010 normally does not affect absolutely positioned children).  Leaving this setting true&#010 allows a designer to more effectively control layout purely from CSS.&#010 <P>&#010 Note that {@link com.smartgwt.client.widgets.layout.Layout#getLayoutMargin layoutMargin} if specified, takes precidence over this value.
     * <p><b>Note : </b> This is an advanced setting</p>
     *
     * @param paddingAsLayoutMargin paddingAsLayoutMargin Default value is true
@@ -244,7 +244,7 @@ public class TileLayout extends Canvas {
         setAttribute("paddingAsLayoutMargin", paddingAsLayoutMargin, true);
     }
     /**
-     * If this widget has padding specified (as {@link com.smartgwt.client.widgets.Canvas#getPadding padding} or in the&#010 CSS style applied to this layout), should it show up as space outside the members,&#010 similar to layoutMargin?&#010 <P>&#010 If this setting is false, padding will not affect member positioning (as CSS padding&#010 normally does not affect absolutely positioned children).  Leaving this setting true&#010 allows a designer to more effectively control layout purely from CSS.&#010 <P>&#010 Note that {@link com.smartgwt.client.widgets.layout.Layout#getLayoutMargin layoutMargin} if specified, takes precidence over this value.
+     * If this widget has padding specified (as {@link com.smartgwt.client.widgets.Canvas#getPadding 'this.padding'} or in the&#010 CSS style applied to this layout), should it show up as space outside the members,&#010 similar to layoutMargin?&#010 <P>&#010 If this setting is false, padding will not affect member positioning (as CSS padding&#010 normally does not affect absolutely positioned children).  Leaving this setting true&#010 allows a designer to more effectively control layout purely from CSS.&#010 <P>&#010 Note that {@link com.smartgwt.client.widgets.layout.Layout#getLayoutMargin layoutMargin} if specified, takes precidence over this value.
      *
      *
      * @return Boolean

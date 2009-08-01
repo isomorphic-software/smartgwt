@@ -103,7 +103,7 @@ public class ImgSplitbar extends Img {
     }
 
     /**
-    * <code>canDrag</code> set to true to allow dragging of the split bar. Dragging the&#010 Splitbar will resize it's {@link com.smartgwt.client.widgets.Splitbar#getTarget target}
+    * <code>canDrag</code> set to true to allow dragging of the split bar. Dragging the&#010 Splitbar will resize it's {@link com.smartgwt.client.widgets.Splitbar#getTarget 'target'}
     *
     * @param canDrag canDrag Default value is true
     */
@@ -111,7 +111,7 @@ public class ImgSplitbar extends Img {
         setAttribute("canDrag", canDrag, true);
     }
     /**
-     * <code>canDrag</code> set to true to allow dragging of the split bar. Dragging the&#010 Splitbar will resize it's {@link com.smartgwt.client.widgets.Splitbar#getTarget target}
+     * <code>canDrag</code> set to true to allow dragging of the split bar. Dragging the&#010 Splitbar will resize it's {@link com.smartgwt.client.widgets.Splitbar#getTarget 'target'}
      *
      *
      * @return Boolean
@@ -122,7 +122,7 @@ public class ImgSplitbar extends Img {
     }
 
     /**
-    * If this property is true, a click on the Splitbar will collapse its &#010 {@link com.smartgwt.client.widgets.Splitbar#getTarget target}, hiding it and shifting the Splitbar and other members&#010 of the layout across to fill the newly available space. If the target is already hidden&#010 a click will expand it again (showing it at it's normal size).
+    * If this property is true, a click on the Splitbar will collapse its &#010 {@link com.smartgwt.client.widgets.Splitbar#getTarget 'target'}, hiding it and shifting the Splitbar and other members&#010 of the layout across to fill the newly available space. If the target is already hidden&#010 a click will expand it again (showing it at it's normal size).
     *
     * @param canCollapse canCollapse Default value is true
     */
@@ -130,7 +130,7 @@ public class ImgSplitbar extends Img {
         setAttribute("canCollapse", canCollapse, true);
     }
     /**
-     * If this property is true, a click on the Splitbar will collapse its &#010 {@link com.smartgwt.client.widgets.Splitbar#getTarget target}, hiding it and shifting the Splitbar and other members&#010 of the layout across to fill the newly available space. If the target is already hidden&#010 a click will expand it again (showing it at it's normal size).
+     * If this property is true, a click on the Splitbar will collapse its &#010 {@link com.smartgwt.client.widgets.Splitbar#getTarget 'target'}, hiding it and shifting the Splitbar and other members&#010 of the layout across to fill the newly available space. If the target is already hidden&#010 a click will expand it again (showing it at it's normal size).
      *
      *
      * @return Boolean

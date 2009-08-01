@@ -208,7 +208,7 @@ public class StatefulCanvas extends Canvas {
     }
 
     /**
-    * If {@link com.smartgwt.client.widgets.StatefulCanvas#getShowFocused showFocused} is true for this widget, should the&#010 <code>"over"</code> state be used to indicate the widget as focused. If set to false,&#010 a separate <code>"focused"</code> state will be used.
+    * If {@link com.smartgwt.client.widgets.StatefulCanvas#getShowFocused 'showFocused'} is true for this widget, should the&#010 <code>"over"</code> state be used to indicate the widget as focused. If set to false,&#010 a separate <code>"focused"</code> state will be used.
     *
     * @param showFocusedAsOver showFocusedAsOver Default value is true
     */
@@ -216,7 +216,7 @@ public class StatefulCanvas extends Canvas {
         setAttribute("showFocusedAsOver", showFocusedAsOver, true);
     }
     /**
-     * If {@link com.smartgwt.client.widgets.StatefulCanvas#getShowFocused showFocused} is true for this widget, should the&#010 <code>"over"</code> state be used to indicate the widget as focused. If set to false,&#010 a separate <code>"focused"</code> state will be used.
+     * If {@link com.smartgwt.client.widgets.StatefulCanvas#getShowFocused 'showFocused'} is true for this widget, should the&#010 <code>"over"</code> state be used to indicate the widget as focused. If set to false,&#010 a separate <code>"focused"</code> state will be used.
      *
      *
      * @return Boolean
@@ -604,7 +604,7 @@ public class StatefulCanvas extends Canvas {
     }
 
     /**
-    * Constructor class name for this widgets {@link com.smartgwt.client.widgets.StatefulCanvas#getOverCanvas overCanvas}
+    * Constructor class name for this widgets {@link com.smartgwt.client.widgets.StatefulCanvas#getOverCanvas 'overCanvas'}
     * <p><b>Note : </b> This is an advanced setting</p>
     *
     * @param overCanvasConstructor overCanvasConstructor Default value is "Canvas"
@@ -613,7 +613,7 @@ public class StatefulCanvas extends Canvas {
         setAttribute("overCanvasConstructor", overCanvasConstructor, true);
     }
     /**
-     * Constructor class name for this widgets {@link com.smartgwt.client.widgets.StatefulCanvas#getOverCanvas overCanvas}
+     * Constructor class name for this widgets {@link com.smartgwt.client.widgets.StatefulCanvas#getOverCanvas 'overCanvas'}
      *
      *
      * @return String

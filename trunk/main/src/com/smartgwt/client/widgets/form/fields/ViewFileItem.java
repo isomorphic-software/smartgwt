@@ -56,7 +56,7 @@ import com.smartgwt.client.util.EnumUtil;
 import com.google.gwt.event.shared.*;
 import com.google.gwt.event.shared.HasHandlers;
    /**
-    * Item for displaying the contents of "imageFile" fields in DynamicForms. &#010 <P>&#010 Displays one of two UIs, according to the value of &#010 {@link com.smartgwt.client.widgets.form.fields.ViewFileItem#getShowFileInline showFileInline}.  If showFileInline is false, this Item&#010 displays the View and Download icons and the filename.  Otherwise, it streams the image-file &#010 and displays it inline.
+    * Item for displaying the contents of "imageFile" fields in DynamicForms. &#010 <P>&#010 Displays one of two UIs, according to the value of &#010 {@link com.smartgwt.client.widgets.form.fields.ViewFileItem#getShowFileInline 'showFileInline'}.  If showFileInline is false, this Item&#010 displays the View and Download icons and the filename.  Otherwise, it streams the image-file &#010 and displays it inline.
 
     */
 public class ViewFileItem extends CanvasItem {

@@ -420,7 +420,7 @@ public class Slider extends Canvas  implements com.smartgwt.client.widgets.event
 
     /**
     * The minimum slider value. The slider value is equal to minValue when the thumb is at the&#010 bottom or left of the slider (unless flipValues is true, in which case the minimum value&#010 is at the top/right of the slider)
-    * Sets the {@link com.smartgwt.client.widgets.Slider#getMinValue minValue} of the slider &#010&#010
+    * Sets the {@link com.smartgwt.client.widgets.Slider#getMinValue 'minimum value'} of the slider &#010&#010
     *
     * @param minValue the new minimum value. Default value is 1
     */
@@ -459,7 +459,7 @@ public class Slider extends Canvas  implements com.smartgwt.client.widgets.event
 
     /**
     * The maximum slider value. The slider value is equal to maxValue when the thumb is at the&#010 top or right of the slider (unless flipValues is true, in which case the maximum value&#010 is at the bottom/left of the slider)
-    * Sets the {@link com.smartgwt.client.widgets.Slider#getMaxValue maxValue} of the slider &#010&#010
+    * Sets the {@link com.smartgwt.client.widgets.Slider#getMaxValue 'maximum value'} of the slider &#010&#010
     *
     * @param maxValue the new maximum value. Default value is 100
     */
@@ -498,7 +498,7 @@ public class Slider extends Canvas  implements com.smartgwt.client.widgets.event
 
     /**
     * The number of discrete values represented by slider. If specified, the range of valid&#010 values (between <code>minValue</code> and <code>maxValue</code>) will be divided into&#010 this many steps. As the thumb is moved along the track it will only select these values&#010 and appear to jump between the steps.
-    * Sets the {@link com.smartgwt.client.widgets.Slider#getNumValues numValues} for the slider &#010&#010
+    * Sets the {@link com.smartgwt.client.widgets.Slider#getNumValues 'number of values'} for the slider &#010&#010
     *
     * @param numValues the new number of values. Default value is null
     */

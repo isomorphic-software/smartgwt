@@ -56,7 +56,7 @@ import com.smartgwt.client.util.EnumUtil;
 import com.google.gwt.event.shared.*;
 import com.google.gwt.event.shared.HasHandlers;
    /**
-    * Labels display a small amount of {@link com.smartgwt.client.widgets.Label#getAlign align} {@link com.smartgwt.client.widgets.Label#getContents contents}&#010 with optional {@link com.smartgwt.client.widgets.Label#getIcon icon} and {@link com.smartgwt.client.widgets.Label#getAutoFit autoFit}.&#010 <P>&#010 For a general-purpose container for HTML content, use {@link com.smartgwt.client.widgets.HTMLFlow} or {@link com.smartgwt.client.widgets.HTMLPane}&#010 instead.
+    * Labels display a small amount of {@link com.smartgwt.client.widgets.Label#getAlign 'alignable'} {@link com.smartgwt.client.widgets.Label#getContents 'text'}&#010 with optional {@link com.smartgwt.client.widgets.Label#getIcon 'icon'} and {@link com.smartgwt.client.widgets.Label#getAutoFit 'autoFit'}.&#010 <P>&#010 For a general-purpose container for HTML content, use {@link com.smartgwt.client.widgets.HTMLFlow} or {@link com.smartgwt.client.widgets.HTMLPane}&#010 instead.
 
     */
 public class Label extends Button {
@@ -95,7 +95,7 @@ public class Label extends Button {
 
     /**
     * The contents of a canvas or label widget. Any HTML string is acceptable.
-    * Changes the contents of a widget to newContents, an HTML string.&#010 <P>&#010 When {@link com.smartgwt.client.widgets.Canvas#getDynamicContents dynamicContents} is set, <code>setContents()</code> can&#010 also be called with no arguments to cause contents to be re-evaluated.&#010&#010
+    * Changes the contents of a widget to newContents, an HTML string.&#010 <P>&#010 When {@link com.smartgwt.client.widgets.Canvas#getDynamicContents 'dynamicContents'} is set, <code>setContents()</code> can&#010 also be called with no arguments to cause contents to be re-evaluated.&#010&#010
     *
     * @param contents an HTML string to be set as the contents of this widget. Default value is "&nbsp;"
     */
