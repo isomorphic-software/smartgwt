@@ -55,10 +55,14 @@ import com.smartgwt.client.util.JSOHelper;
 import com.smartgwt.client.util.EnumUtil;
 import com.google.gwt.event.shared.*;
 import com.google.gwt.event.shared.HasHandlers;
-   /**
-    * Header item for a collapsable section in a {@link com.smartgwt.client.widgets.form.DynamicForm}.  Each <code>SectionItem</code>&#010 is associated with a number of other <code>item</code>s in the form, which will be shown or&#010 hidden as a group when the section is expanded or collapsed.  Clicking on a&#010 <code>SectionItem</code> will expand or collapse the section.&#010 <P>&#010 To make a form where only one section is expanded at a time, set&#010 {@link com.smartgwt.client.widgets.form.DynamicForm#getSectionVisibilityMode sectionVisibilityMode} to "mutex".
 
-    */
+/**
+ * Header item for a collapsable section in a {@link com.smartgwt.client.widgets.form.DynamicForm}.  Each
+ * <code>SectionItem</code> is associated with a number of other <code>item</code>s in the form, which will be shown or
+ * hidden as a group when the section is expanded or collapsed.  Clicking on a <code>SectionItem</code> will expand or
+ * collapse the section. <P> To make a form where only one section is expanded at a time, set {@link
+ * com.smartgwt.client.widgets.form.DynamicForm#getSectionVisibilityMode sectionVisibilityMode} to "mutex".
+ */
 public class SectionItem extends CanvasItem {
 
     public static SectionItem getOrCreateRef(JavaScriptObject jsObj) {
@@ -71,7 +75,6 @@ public class SectionItem extends CanvasItem {
             return new SectionItem(jsObj);
         }
     }
-
 
     public SectionItem(){
         setType("SectionItem");
@@ -95,58 +98,66 @@ public class SectionItem extends CanvasItem {
     // ********************* Properties / Attributes ***********************
 
     /**
-    * Whether this form section should be initially collapsed. Can be set programatically&#010 via {@link com.smartgwt.client.widgets.form.fields.SectionItem#expandSection} and {@link com.smartgwt.client.widgets.form.fields.SectionItem#collapseSection}.
-    *
-    * @param sectionExpanded sectionExpanded Default value is true
-    */
+     * Whether this form section should be initially collapsed. Can be set programatically via {@link
+     * com.smartgwt.client.widgets.form.fields.SectionItem#expandSection} and {@link
+     * com.smartgwt.client.widgets.form.fields.SectionItem#collapseSection}.
+     *
+     * @param sectionExpanded sectionExpanded Default value is true
+     */
     public void setSectionExpanded(Boolean sectionExpanded) {
         setAttribute("sectionExpanded", sectionExpanded);
     }
+
     /**
-     * Whether this form section should be initially collapsed. Can be set programatically&#010 via {@link com.smartgwt.client.widgets.form.fields.SectionItem#expandSection} and {@link com.smartgwt.client.widgets.form.fields.SectionItem#collapseSection}.
+     * Whether this form section should be initially collapsed. Can be set programatically via {@link
+     * com.smartgwt.client.widgets.form.fields.SectionItem#expandSection} and {@link
+     * com.smartgwt.client.widgets.form.fields.SectionItem#collapseSection}.
      *
      *
      * @return Boolean
-     *
      */
     public Boolean getSectionExpanded()  {
         return getAttributeAsBoolean("sectionExpanded");
     }
 
     /**
-    * Name of the Canvas subclass to use as a header that labels the section and allows&#010 showing and hiding.  The default class be skinned, or trivial subclasses created to&#010 allow different appearances for SectionItems in different forms.&#010 Very advanced developers can use the following information to create custom header&#010 classes.
-    * <p><b>Note : </b> This is an advanced setting</p>
-    *
-    * @param sectionHeaderClass sectionHeaderClass Default value is "SectionHeader"
-    */
+     * Name of the Canvas subclass to use as a header that labels the section and allows showing and hiding.  The default class
+     * be skinned, or trivial subclasses created to allow different appearances for SectionItems in different forms. Very
+     * advanced developers can use the following information to create custom header classes.
+     * <p><b>Note : </b> This is an advanced setting</p>
+     *
+     * @param sectionHeaderClass sectionHeaderClass Default value is "SectionHeader"
+     */
     public void setSectionHeaderClass(String sectionHeaderClass) {
         setAttribute("sectionHeaderClass", sectionHeaderClass);
     }
+
     /**
-     * Name of the Canvas subclass to use as a header that labels the section and allows&#010 showing and hiding.  The default class be skinned, or trivial subclasses created to&#010 allow different appearances for SectionItems in different forms.&#010 Very advanced developers can use the following information to create custom header&#010 classes.
+     * Name of the Canvas subclass to use as a header that labels the section and allows showing and hiding.  The default class
+     * be skinned, or trivial subclasses created to allow different appearances for SectionItems in different forms. Very
+     * advanced developers can use the following information to create custom header classes.
      *
      *
      * @return String
-     *
      */
     public String getSectionHeaderClass()  {
         return getAttributeAsString("sectionHeaderClass");
     }
 
     /**
-    * Whether this section header can be collapsed.  If set false, suppresses open/close state&#010 icon
-    *
-    * @param canCollapse canCollapse Default value is true
-    */
+     * Whether this section header can be collapsed.  If set false, suppresses open/close state icon
+     *
+     * @param canCollapse canCollapse Default value is true
+     */
     public void setCanCollapse(Boolean canCollapse) {
         setAttribute("canCollapse", canCollapse);
     }
+
     /**
-     * Whether this section header can be collapsed.  If set false, suppresses open/close state&#010 icon
+     * Whether this section header can be collapsed.  If set false, suppresses open/close state icon
      *
      *
      * @return Boolean
-     *
      */
     public Boolean getCanCollapse()  {
         return getAttributeAsBoolean("canCollapse");
@@ -154,27 +165,26 @@ public class SectionItem extends CanvasItem {
 
     // ********************* Methods ***********************
 
-        /**
-         * Expands a section, showing all the items contained within the section.&#010
-         */
-        public native void expandSection() /*-{
-            var self = this.@com.smartgwt.client.core.DataClass::getJsObj()();
-            self.expandSection();
-        }-*/;
+    /**
+     * Expands a section, showing all the items contained within the section.
+     */
+    public native void expandSection() /*-{
+        var self = this.@com.smartgwt.client.core.DataClass::getJsObj()();
+        self.expandSection();
+    }-*/;
 
-        /**
-         * Collapse a sectionItem, and hide all the items within the section (not including&#010 the header).&#010
-         */
-        public native void collapseSection() /*-{
-            var self = this.@com.smartgwt.client.core.DataClass::getJsObj()();
-            self.collapseSection();
-        }-*/;
+    /**
+     * Collapse a sectionItem, and hide all the items within the section (not including the header).
+     */
+    public native void collapseSection() /*-{
+        var self = this.@com.smartgwt.client.core.DataClass::getJsObj()();
+        self.collapseSection();
+    }-*/;
 
     // ********************* Static Methods ***********************
 
 
 
-
     /**
      * IDs of the items that should be considered a member of this section.
      *

@@ -22,7 +22,7 @@ import com.google.gwt.event.shared.HasHandlers;
 
 public interface HasMouseDownHandlers extends HasHandlers {
     /**
-     * &#010 Executed when the left mouse down is pressed on this widget.  No default implementation.&#010&#010
+     * Executed when the left mouse down is pressed on this widget.  No default implementation.
      *
      * @param handler the mouseDown handler
      * @return {@link HandlerRegistration} used to remove this handler

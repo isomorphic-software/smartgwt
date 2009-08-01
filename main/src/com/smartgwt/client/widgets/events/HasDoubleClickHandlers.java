@@ -22,7 +22,8 @@ import com.google.gwt.event.shared.HasHandlers;
 
 public interface HasDoubleClickHandlers extends HasHandlers {
     /**
-     * &#010 Executed when the left mouse button is clicked twice in rapid succession (within&#010 {@link com.smartgwt.client.widgets.Canvas#getDoubleClickDelay doubleClickDelay} by default) in this object.&#010&#010
+     * Executed when the left mouse button is clicked twice in rapid succession (within {@link
+     * com.smartgwt.client.widgets.Canvas#getDoubleClickDelay doubleClickDelay} by default) in this object.
      *
      * @param handler the doubleClick handler
      * @return {@link HandlerRegistration} used to remove this handler

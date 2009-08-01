@@ -55,10 +55,11 @@ import com.smartgwt.client.util.JSOHelper;
 import com.smartgwt.client.util.EnumUtil;
 import com.google.gwt.event.shared.*;
 import com.google.gwt.event.shared.HasHandlers;
-   /**
-    * Add a LayoutSpacer to a Layout to take up space just like a normal member, without actually&#010 drawing anything.  Semantically equivalent to using an empty canvas, but higher performance&#010 for this particular use case.
 
-    */
+/**
+ * Add a LayoutSpacer to a Layout to take up space just like a normal member, without actually drawing anything. 
+ * Semantically equivalent to using an empty canvas, but higher performance for this particular use case.
+ */
 public class LayoutSpacer extends Canvas {
 
     public static LayoutSpacer getOrCreateRef(JavaScriptObject jsObj) {
@@ -70,7 +71,6 @@ public class LayoutSpacer extends Canvas {
             return new LayoutSpacer(jsObj);
         }
     }
-
 
     public LayoutSpacer(){
         

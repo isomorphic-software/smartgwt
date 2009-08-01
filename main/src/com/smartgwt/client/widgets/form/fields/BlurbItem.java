@@ -55,10 +55,11 @@ import com.smartgwt.client.util.JSOHelper;
 import com.smartgwt.client.util.EnumUtil;
 import com.google.gwt.event.shared.*;
 import com.google.gwt.event.shared.HasHandlers;
-   /**
-    * FormItem intended for inserting blurbs of instructional HTML into DynamicForms.&#010 <p>&#010 Set the <code>defaultValue</code> of this item to the HTML you want to embed in the form.
 
-    */
+/**
+ * FormItem intended for inserting blurbs of instructional HTML into DynamicForms. <p> Set the <code>defaultValue</code> of
+ * this item to the HTML you want to embed in the form.
+ */
 public class BlurbItem extends FormItem {
 
     public static BlurbItem getOrCreateRef(JavaScriptObject jsObj) {
@@ -71,7 +72,6 @@ public class BlurbItem extends FormItem {
             return new BlurbItem(jsObj);
         }
     }
-
 
     public BlurbItem(){
         setType("BlurbItem");
@@ -89,95 +89,95 @@ public class BlurbItem extends FormItem {
     // ********************* Properties / Attributes ***********************
 
     /**
-    * Blurb items show no title by default.
-    *
-    * @param showTitle showTitle Default value is false
-    */
+     * Blurb items show no title by default.
+     *
+     * @param showTitle showTitle Default value is false
+     */
     public void setShowTitle(Boolean showTitle) {
         setAttribute("showTitle", showTitle);
     }
+
     /**
      * Blurb items show no title by default.
      *
      *
      * @return Boolean
-     *
      */
     public Boolean getShowTitle()  {
         return getAttributeAsBoolean("showTitle");
     }
 
     /**
-    * By default, texts span all remaining columns
-    *
-    * @param colSpan colSpan Default value is "*"
-    */
+     * By default, texts span all remaining columns
+     *
+     * @param colSpan colSpan Default value is "*"
+     */
     public void setColSpan(int colSpan) {
         setAttribute("colSpan", colSpan);
     }
+
     /**
      * By default, texts span all remaining columns
      *
      *
      * @return int
-     *
      */
     public int getColSpan()  {
         return getAttributeAsInt("colSpan");
     }
 
     /**
-    * Base css style for this item.
-    *
-    * @param textBoxStyle textBoxStyle Default value is "staticTextItem"
-    */
+     * Base css style for this item.
+     *
+     * @param textBoxStyle textBoxStyle Default value is "staticTextItem"
+     */
     public void setTextBoxStyle(String textBoxStyle) {
         setAttribute("textBoxStyle", textBoxStyle);
     }
+
     /**
      * Base css style for this item.
      *
      *
      * @return String
-     *
      */
     public String getTextBoxStyle()  {
         return getAttributeAsString("textBoxStyle");
     }
 
     /**
-    * If true, item contents can wrap. If false, all the contents should appear on a single line.
-    *
-    * @param wrap wrap Default value is null
-    */
+     * If true, item contents can wrap. If false, all the contents should appear on a single line.
+     *
+     * @param wrap wrap Default value is null
+     */
     public void setWrap(Boolean wrap) {
         setAttribute("wrap", wrap);
     }
+
     /**
      * If true, item contents can wrap. If false, all the contents should appear on a single line.
      *
      *
      * @return Boolean
-     *
      */
     public Boolean getWrap()  {
         return getAttributeAsBoolean("wrap");
     }
 
     /**
-    * If true, text that exceeds the specified size of the form item will be clipped
-    *
-    * @param clipValue clipValue Default value is false
-    */
+     * If true, text that exceeds the specified size of the form item will be clipped
+     *
+     * @param clipValue clipValue Default value is false
+     */
     public void setClipValue(Boolean clipValue) {
         setAttribute("clipValue", clipValue);
     }
+
     /**
      * If true, text that exceeds the specified size of the form item will be clipped
      *
      *
      * @return Boolean
-     *
      */
     public Boolean getClipValue()  {
         return getAttributeAsBoolean("clipValue");

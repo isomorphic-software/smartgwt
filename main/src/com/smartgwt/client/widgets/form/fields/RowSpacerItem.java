@@ -55,10 +55,12 @@ import com.smartgwt.client.util.JSOHelper;
 import com.smartgwt.client.util.EnumUtil;
 import com.google.gwt.event.shared.*;
 import com.google.gwt.event.shared.HasHandlers;
-   /**
-    * Form item that renders as a blank row in the form layout.<br>&#010 Set {@link com.smartgwt.client.widgets.form.fields.RowSpacerItem#getStartRow startRow} to <code>false</code> to create a rowSpacer that simply&#010 takes up every remaining column in the current row rather than starting a new row.
 
-    */
+/**
+ * Form item that renders as a blank row in the form layout.<br> Set {@link
+ * com.smartgwt.client.widgets.form.fields.RowSpacerItem#getStartRow startRow} to <code>false</code> to create a rowSpacer
+ * that simply takes up every remaining column in the current row rather than starting a new row.
+ */
 public class RowSpacerItem extends SpacerItem {
 
     public static RowSpacerItem getOrCreateRef(JavaScriptObject jsObj) {
@@ -71,7 +73,6 @@ public class RowSpacerItem extends SpacerItem {
             return new RowSpacerItem(jsObj);
         }
     }
-
 
     public RowSpacerItem(){
         setType("RowSpacerItem");
@@ -89,76 +90,76 @@ public class RowSpacerItem extends SpacerItem {
     // ********************* Properties / Attributes ***********************
 
     /**
-    * we never show a separate title cell for separators
-    *
-    * @param showTitle showTitle Default value is false
-    */
+     * we never show a separate title cell for separators
+     *
+     * @param showTitle showTitle Default value is false
+     */
     public void setShowTitle(Boolean showTitle) {
         setAttribute("showTitle", showTitle);
     }
+
     /**
      * we never show a separate title cell for separators
      *
      *
      * @return Boolean
-     *
      */
     public Boolean getShowTitle()  {
         return getAttributeAsBoolean("showTitle");
     }
 
     /**
-    * by default, separators span all remaining columns
-    *
-    * @param colSpan colSpan Default value is "*"
-    */
+     * by default, separators span all remaining columns
+     *
+     * @param colSpan colSpan Default value is "*"
+     */
     public void setColSpan(int colSpan) {
         setAttribute("colSpan", colSpan);
     }
+
     /**
      * by default, separators span all remaining columns
      *
      *
      * @return int
-     *
      */
     public int getColSpan()  {
         return getAttributeAsInt("colSpan");
     }
 
     /**
-    * these items are in a row by themselves by default
-    *
-    * @param startRow startRow Default value is true
-    */
+     * these items are in a row by themselves by default
+     *
+     * @param startRow startRow Default value is true
+     */
     public void setStartRow(Boolean startRow) {
         setAttribute("startRow", startRow);
     }
+
     /**
      * these items are in a row by themselves by default
      *
      *
      * @return Boolean
-     *
      */
     public Boolean getStartRow()  {
         return getAttributeAsBoolean("startRow");
     }
 
     /**
-    * these items are in a row by themselves by default
-    *
-    * @param endRow endRow Default value is true
-    */
+     * these items are in a row by themselves by default
+     *
+     * @param endRow endRow Default value is true
+     */
     public void setEndRow(Boolean endRow) {
         setAttribute("endRow", endRow);
     }
+
     /**
      * these items are in a row by themselves by default
      *
      *
      * @return Boolean
-     *
      */
     public Boolean getEndRow()  {
         return getAttributeAsBoolean("endRow");

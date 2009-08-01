@@ -55,17 +55,17 @@ import com.smartgwt.client.util.JSOHelper;
 import com.smartgwt.client.util.EnumUtil;
 import com.google.gwt.event.shared.*;
 import com.google.gwt.event.shared.HasHandlers;
-   /**
-    * Response sent by the server in response to a {@link com.smartgwt.client.data.DSRequest}.  Contains&#010 all the properties available on the basic {@link com.smartgwt.client.rpc.RPCResponse}, in addition to the&#010 properties listed here.
 
-    */
+/**
+ * Response sent by the server in response to a {@link com.smartgwt.client.data.DSRequest}.  Contains all the properties
+ * available on the basic {@link com.smartgwt.client.rpc.RPCResponse}, in addition to the properties listed here.
+ */
 public class DSResponse extends RPCResponse {
 
     public static DSResponse getOrCreateRef(JavaScriptObject jsObj) {
         if(jsObj == null) return null;
         return new DSResponse(jsObj);
     }
-
 
     public DSResponse(){
         
@@ -77,45 +77,48 @@ public class DSResponse extends RPCResponse {
 
     // ********************* Properties / Attributes ***********************
 
+
     /**
-     * Starting row of returned server results, when using paged result fetching&#010 <p>&#010 Note that startRow and endRow are zero-based - the first record is row zero.
+     * Starting row of returned server results, when using paged result fetching <p> Note that startRow and endRow are
+     * zero-based - the first record is row zero.
      *
      *
      * @return Integer
-     *
      */
     public Integer getStartRow()  {
         return getAttributeAsInt("startRow");
     }
 
+
     /**
-     * End row of returned server results, when using paged result fetching&#010 <p>&#010 Note that startRow and endRow are zero-based - the first record is row zero.
+     * End row of returned server results, when using paged result fetching <p> Note that startRow and endRow are zero-based -
+     * the first record is row zero.
      *
      *
      * @return Integer
-     *
      */
     public Integer getEndRow()  {
         return getAttributeAsInt("endRow");
     }
 
+
     /**
-     * Total number of rows available from the server that match the current filter criteria,&#010 when using paged result fetching.
+     * Total number of rows available from the server that match the current filter criteria, when using paged result fetching.
      *
      *
      * @return Integer
-     *
      */
     public Integer getTotalRows()  {
         return getAttributeAsInt("totalRows");
     }
 
+
     /**
-     * Optional flag that can be set by the server to force ResultSets to drop any caches of&#010 records from the DataSource that was the target of the operation.
+     * Optional flag that can be set by the server to force ResultSets to drop any caches of records from the DataSource that
+     * was the target of the operation.
      *
      *
      * @return Boolean
-     *
      */
     public Boolean getInvalidateCache()  {
         return getAttributeAsBoolean("invalidateCache");

@@ -22,7 +22,10 @@ import com.google.gwt.event.shared.HasHandlers;
 
 public interface HasDragStartHandlers extends HasHandlers {
     /**
-     * Executed when dragging first starts. Your widget can use this opportunity to set&#010 things up for the drag, such as setting the drag tracker. Returning false from this&#010 event handler will cancel the drag action entirely.&#010 <p>&#010 A drag action is considered to be begin when the mouse has moved&#010 {@link com.smartgwt.client.widgets.Canvas#getDragStartDistance dragStartDistance} with the left mouse down.&#010&#010
+     * Executed when dragging first starts. Your widget can use this opportunity to set things up for the drag, such as setting
+     * the drag tracker. Returning false from this event handler will cancel the drag action entirely. <p> A drag action is
+     * considered to be begin when the mouse has moved {@link com.smartgwt.client.widgets.Canvas#getDragStartDistance
+     * dragStartDistance} with the left mouse down.
      *
      * @param handler the dragStart handler
      * @return {@link HandlerRegistration} used to remove this handler

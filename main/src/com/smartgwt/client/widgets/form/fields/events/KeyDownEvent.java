@@ -58,53 +58,53 @@ import com.google.gwt.event.shared.HasHandlers;
 public class KeyDownEvent extends AbstractSmartEvent<KeyDownHandler>  implements Cancellable {
     private boolean cancel = false;
 
-  /**
-   * Handler type.
-   */
-  private static Type<KeyDownHandler> TYPE;
+    /**
+     * Handler type.
+     */
+    private static Type<KeyDownHandler> TYPE;
 
-  /**
-   * Fires a open event on all registered handlers in the handler manager.If no
-   * such handlers exist, this method will do nothing.
-   *
-   * @param <S> The event source
-   * @param source the source of the handlers
-   * @param jsObj the native event
-   */
-  public static <S extends HasKeyDownHandlers & HasHandlers> void fire(
-      S source, JavaScriptObject jsObj) {
-    if (TYPE != null) {
-        KeyDownEvent event = new KeyDownEvent(jsObj);
-        source.fireEvent(event);
+    /**
+     * Fires a open event on all registered handlers in the handler manager.If no
+     * such handlers exist, this method will do nothing.
+     *
+     * @param <S> The event source
+     * @param source the source of the handlers
+     * @param jsObj the native event
+     */
+    public static <S extends HasKeyDownHandlers & HasHandlers> void fire(
+        S source, JavaScriptObject jsObj) {
+        if (TYPE != null) {
+            KeyDownEvent event = new KeyDownEvent(jsObj);
+            source.fireEvent(event);
+        }
     }
-  }
 
-  /**
-   * Gets the type associated with this event.
-   *
-   * @return returns the handler type
-   */
-  public static Type<KeyDownHandler> getType() {
-    if (TYPE == null) {
-      TYPE = new Type<KeyDownHandler>();
+    /**
+     * Gets the type associated with this event.
+     *
+     * @return returns the handler type
+     */
+    public static Type<KeyDownHandler> getType() {
+        if (TYPE == null) {
+            TYPE = new Type<KeyDownHandler>();
+        }
+        return TYPE;
     }
-    return TYPE;
-  }
 
 
-  @Override
-  protected void dispatch(KeyDownHandler handler) {
-    handler.onKeyDown(this);
-  }
+    @Override
+    protected void dispatch(KeyDownHandler handler) {
+        handler.onKeyDown(this);
+    }
 
-  // Because of type erasure, our static type is
-  // wild carded, yet the "real" type should use our I param.
+    // Because of type erasure, our static type is
+    // wild carded, yet the "real" type should use our I param.
 
-  @SuppressWarnings("unchecked")
-  @Override
-  public final Type<KeyDownHandler> getAssociatedType() {
-    return TYPE;
-  }
+    @SuppressWarnings("unchecked")
+    @Override
+    public final Type<KeyDownHandler> getAssociatedType() {
+        return TYPE;
+    }
 
     public KeyDownEvent(JavaScriptObject jsObj) {
         super(jsObj);
@@ -112,7 +112,9 @@ public class KeyDownEvent extends AbstractSmartEvent<KeyDownHandler>  implements
 
 
     /**
-     * return false to attempt to cancel the event.  Note for general purpose                   APIs for managing whether user input is allowed, use {@link com.smartgwt.client.widgets.form.fields.FormItem#addChangeHandler} &#010                   or {@link com.smartgwt.client.widgets.form.fields.FormItem#setInputTransformer} instead.
+     * return false to attempt to cancel the event.  Note for general purpose                   APIs for managing whether user
+     * input is allowed, use {@link com.smartgwt.client.widgets.form.fields.FormItem#addChangeHandler}                    or
+     * {@link com.smartgwt.client.widgets.form.fields.FormItem#setInputTransformer} instead.
      */
     public void cancel() {
         cancel = true;
@@ -132,7 +134,7 @@ public class KeyDownEvent extends AbstractSmartEvent<KeyDownHandler>  implements
      */
     public  native FormItem getItem() /*-{
         var jsObj = this.@com.smartgwt.client.event.AbstractSmartEvent::jsObj;
-            return @com.smartgwt.client.widgets.form.fields.FormItem::getOrCreateRef(Lcom/google/gwt/core/client/JavaScriptObject;)(jsObj.item);
+        return @com.smartgwt.client.widgets.form.fields.FormItem::getOrCreateRef(Lcom/google/gwt/core/client/JavaScriptObject;)(jsObj.item);
     }-*/;
 
     /**

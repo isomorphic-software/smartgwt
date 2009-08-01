@@ -22,7 +22,9 @@ import com.google.gwt.event.shared.HasHandlers;
 
 public interface HasItemKeyPressHandlers extends HasHandlers {
     /**
-     * Handler fired when a FormItem within this form receives a keypress event.&#010 <P>&#010 Fires after the keyPress handler on the FormItem itself, and only if the item did not&#010 cancel the event and chooses to allow it to propagate to the form as a whole. &#010 &#010
+     * Handler fired when a FormItem within this form receives a keypress event. <P> Fires after the keyPress handler on the
+     * FormItem itself, and only if the item did not cancel the event and chooses to allow it to propagate to the form as a
+     * whole.
      *
      * @param handler the itemKeyPress handler
      * @return {@link HandlerRegistration} used to remove this handler

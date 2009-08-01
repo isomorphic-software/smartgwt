@@ -55,10 +55,10 @@ import com.smartgwt.client.util.JSOHelper;
 import com.smartgwt.client.util.EnumUtil;
 import com.google.gwt.event.shared.*;
 import com.google.gwt.event.shared.HasHandlers;
-   /**
-    * FormItem that shows a list of options, plus an "Other..." option that allows them to enter&#010 another value.
 
-    */
+/**
+ * FormItem that shows a list of options, plus an "Other..." option that allows them to enter another value.
+ */
 public class SelectOtherItem extends SelectItem {
 
     public static SelectOtherItem getOrCreateRef(JavaScriptObject jsObj) {
@@ -71,7 +71,6 @@ public class SelectOtherItem extends SelectItem {
             return new SelectOtherItem(jsObj);
         }
     }
-
 
     public SelectOtherItem(){
         setType("selectOther");
@@ -95,116 +94,130 @@ public class SelectOtherItem extends SelectItem {
     // ********************* Properties / Attributes ***********************
 
     /**
-    * Title for the separator between normal items and the <code>Other...</code> item in the drop&#010 down list.  Selecting this item will not change the FormItem's value.
-    *
-    * @param separatorTitle separatorTitle Default value is "--------------------"
-    */
+     * Title for the separator between normal items and the <code>Other...</code> item in the drop down list.  Selecting this
+     * item will not change the FormItem's value.
+     *
+     * @param separatorTitle separatorTitle Default value is "--------------------"
+     */
     public void setSeparatorTitle(String separatorTitle) {
         setAttribute("separatorTitle", separatorTitle);
     }
+
     /**
-     * Title for the separator between normal items and the <code>Other...</code> item in the drop&#010 down list.  Selecting this item will not change the FormItem's value.
+     * Title for the separator between normal items and the <code>Other...</code> item in the drop down list.  Selecting this
+     * item will not change the FormItem's value.
      *
      *
      * @return String
-     *
      */
     public String getSeparatorTitle()  {
         return getAttributeAsString("separatorTitle");
     }
 
     /**
-    * Value for the separator item between normal items and the <code>Other...</code> value. &#010 If necessary the value may be changed to ensure it doesn't colide with any data values in&#010 this items {@link com.smartgwt.client.widgets.form.fields.FormItem#getValueMap 'valueMap'}.
-    * <p><b>Note : </b> This is an advanced setting</p>
-    *
-    * @param separatorValue separatorValue Default value is "----"
-    */
+     * Value for the separator item between normal items and the <code>Other...</code> value.  If necessary the value may be
+     * changed to ensure it doesn't colide with any data values in this items {@link
+     * com.smartgwt.client.widgets.form.fields.FormItem#getValueMap 'valueMap'}.
+     * <p><b>Note : </b> This is an advanced setting</p>
+     *
+     * @param separatorValue separatorValue Default value is "----"
+     */
     public void setSeparatorValue(String separatorValue) {
         setAttribute("separatorValue", separatorValue);
     }
+
     /**
-     * Value for the separator item between normal items and the <code>Other...</code> value. &#010 If necessary the value may be changed to ensure it doesn't colide with any data values in&#010 this items {@link com.smartgwt.client.widgets.form.fields.FormItem#getValueMap 'valueMap'}.
+     * Value for the separator item between normal items and the <code>Other...</code> value.  If necessary the value may be
+     * changed to ensure it doesn't colide with any data values in this items {@link
+     * com.smartgwt.client.widgets.form.fields.FormItem#getValueMap 'valueMap'}.
      *
      *
      * @return String
-     *
      */
     public String getSeparatorValue()  {
         return getAttributeAsString("separatorValue");
     }
 
     /**
-    * Title for the <code>Other...</code> item. When this item is selected, the user will be &#010 shown a prompt allowing them to enter a new value for the item.
-    *
-    * @param otherTitle otherTitle Default value is "Other..."
-    */
+     * Title for the <code>Other...</code> item. When this item is selected, the user will be  shown a prompt allowing them to
+     * enter a new value for the item.
+     *
+     * @param otherTitle otherTitle Default value is "Other..."
+     */
     public void setOtherTitle(String otherTitle) {
         setAttribute("otherTitle", otherTitle);
     }
+
     /**
-     * Title for the <code>Other...</code> item. When this item is selected, the user will be &#010 shown a prompt allowing them to enter a new value for the item.
+     * Title for the <code>Other...</code> item. When this item is selected, the user will be  shown a prompt allowing them to
+     * enter a new value for the item.
      *
      *
      * @return String
-     *
      */
     public String getOtherTitle()  {
         return getAttributeAsString("otherTitle");
     }
 
     /**
-    * Data value for the <code>Other...</code> item. If necessary this value may be changed to&#010 ensure it doesn't collide with any data values in this items&#010 {@link com.smartgwt.client.widgets.form.fields.FormItem#getValueMap 'valueMap'}.
-    * <p><b>Note : </b> This is an advanced setting</p>
-    *
-    * @param otherValue otherValue Default value is "***other***"
-    */
+     * Data value for the <code>Other...</code> item. If necessary this value may be changed to ensure it doesn't collide with
+     * any data values in this items {@link com.smartgwt.client.widgets.form.fields.FormItem#getValueMap 'valueMap'}.
+     * <p><b>Note : </b> This is an advanced setting</p>
+     *
+     * @param otherValue otherValue Default value is "***other***"
+     */
     public void setOtherValue(String otherValue) {
         setAttribute("otherValue", otherValue);
     }
+
     /**
-     * Data value for the <code>Other...</code> item. If necessary this value may be changed to&#010 ensure it doesn't collide with any data values in this items&#010 {@link com.smartgwt.client.widgets.form.fields.FormItem#getValueMap 'valueMap'}.
+     * Data value for the <code>Other...</code> item. If necessary this value may be changed to ensure it doesn't collide with
+     * any data values in this items {@link com.smartgwt.client.widgets.form.fields.FormItem#getValueMap 'valueMap'}.
      *
      *
      * @return String
-     *
      */
     public String getOtherValue()  {
         return getAttributeAsString("otherValue");
     }
 
     /**
-    * Title to show in prompt for "other" value.&#010 Note this is a dynamic string. JavaScript content is supported within <code>\${...}</code>&#010 tags, with local variables for <code>item</code> (a pointer to this item), <code>value</code>&#010 a pointer to the currently selected item value
-    *
-    * @param selectOtherPrompt selectOtherPrompt Default value is "Other value for <br>${item.getTitle()}?"
-    */
+     * Title to show in prompt for "other" value. Note this is a dynamic string. JavaScript content is supported within
+     * <code>\${...}</code> tags, with local variables for <code>item</code> (a pointer to this item), <code>value</code> a
+     * pointer to the currently selected item value
+     *
+     * @param selectOtherPrompt selectOtherPrompt Default value is "Other value for <br>${item.getTitle()}?"
+     */
     public void setSelectOtherPrompt(String selectOtherPrompt) {
         setAttribute("selectOtherPrompt", selectOtherPrompt);
     }
+
     /**
-     * Title to show in prompt for "other" value.&#010 Note this is a dynamic string. JavaScript content is supported within <code>\${...}</code>&#010 tags, with local variables for <code>item</code> (a pointer to this item), <code>value</code>&#010 a pointer to the currently selected item value
+     * Title to show in prompt for "other" value. Note this is a dynamic string. JavaScript content is supported within
+     * <code>\${...}</code> tags, with local variables for <code>item</code> (a pointer to this item), <code>value</code> a
+     * pointer to the currently selected item value
      *
      *
      * @return String
-     *
      */
     public String getSelectOtherPrompt()  {
         return getAttributeAsString("selectOtherPrompt");
     }
 
     /**
-    * Width for the "other value" prompt dialog.
-    *
-    * @param dialogWidth dialogWidth Default value is 250
-    */
+     * Width for the "other value" prompt dialog.
+     *
+     * @param dialogWidth dialogWidth Default value is 250
+     */
     public void setDialogWidth(int dialogWidth) {
         setAttribute("dialogWidth", dialogWidth);
     }
+
     /**
      * Width for the "other value" prompt dialog.
      *
      *
      * @return int
-     *
      */
     public int getDialogWidth()  {
         return getAttributeAsInt("dialogWidth");

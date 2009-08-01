@@ -58,53 +58,53 @@ import com.google.gwt.event.shared.HasHandlers;
 public class KeyPressEvent extends BrowserEvent<KeyPressHandler>  implements Cancellable {
     private boolean cancel = false;
 
-  /**
-   * Handler type.
-   */
-  private static Type<KeyPressHandler> TYPE;
+    /**
+     * Handler type.
+     */
+    private static Type<KeyPressHandler> TYPE;
 
-  /**
-   * Fires a open event on all registered handlers in the handler manager.If no
-   * such handlers exist, this method will do nothing.
-   *
-   * @param <S> The event source
-   * @param source the source of the handlers
-   * @param jsObj the native event
-   */
-  public static <S extends HasKeyPressHandlers & HasHandlers> void fire(
-      S source, JavaScriptObject jsObj) {
-    if (TYPE != null) {
-        KeyPressEvent event = new KeyPressEvent(jsObj);
-        source.fireEvent(event);
+    /**
+     * Fires a open event on all registered handlers in the handler manager.If no
+     * such handlers exist, this method will do nothing.
+     *
+     * @param <S> The event source
+     * @param source the source of the handlers
+     * @param jsObj the native event
+     */
+    public static <S extends HasKeyPressHandlers & HasHandlers> void fire(
+        S source, JavaScriptObject jsObj) {
+        if (TYPE != null) {
+            KeyPressEvent event = new KeyPressEvent(jsObj);
+            source.fireEvent(event);
+        }
     }
-  }
 
-  /**
-   * Gets the type associated with this event.
-   *
-   * @return returns the handler type
-   */
-  public static Type<KeyPressHandler> getType() {
-    if (TYPE == null) {
-      TYPE = new Type<KeyPressHandler>();
+    /**
+     * Gets the type associated with this event.
+     *
+     * @return returns the handler type
+     */
+    public static Type<KeyPressHandler> getType() {
+        if (TYPE == null) {
+            TYPE = new Type<KeyPressHandler>();
+        }
+        return TYPE;
     }
-    return TYPE;
-  }
 
 
-  @Override
-  protected void dispatch(KeyPressHandler handler) {
-    handler.onKeyPress(this);
-  }
+    @Override
+    protected void dispatch(KeyPressHandler handler) {
+        handler.onKeyPress(this);
+    }
 
-  // Because of type erasure, our static type is
-  // wild carded, yet the "real" type should use our I param.
+    // Because of type erasure, our static type is
+    // wild carded, yet the "real" type should use our I param.
 
-  @SuppressWarnings("unchecked")
-  @Override
-  public final Type<KeyPressHandler> getAssociatedType() {
-    return TYPE;
-  }
+    @SuppressWarnings("unchecked")
+    @Override
+    public final Type<KeyPressHandler> getAssociatedType() {
+        return TYPE;
+    }
 
     public KeyPressEvent(JavaScriptObject jsObj) {
         super(jsObj);
@@ -112,7 +112,8 @@ public class KeyPressEvent extends BrowserEvent<KeyPressHandler>  implements Can
 
 
     /**
-     * false to suppress native behavior in response to the keyPress, and prevent                    this event from bubbling to this widget's parent, or true or undefined to bubble.
+     * false to suppress native behavior in response to the keyPress, and prevent                    this event from bubbling
+     * to this widget's parent, or true or undefined to bubble.
      */
     public void cancel() {
         cancel = true;

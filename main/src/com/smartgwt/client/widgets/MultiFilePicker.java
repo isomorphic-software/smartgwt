@@ -55,10 +55,11 @@ import com.smartgwt.client.util.JSOHelper;
 import com.smartgwt.client.util.EnumUtil;
 import com.google.gwt.event.shared.*;
 import com.google.gwt.event.shared.HasHandlers;
-   /**
-    * The MultiFilePicker is a pop-up picker used by the {@link com.smartgwt.client..MultiFileItem} to allow the user to&#010 enter several files for upload.
 
-    */
+/**
+ * The MultiFilePicker is a pop-up picker used by the {@link com.smartgwt.client..MultiFileItem} to allow the user to enter
+ * several files for upload.
+ */
 public class MultiFilePicker extends VStack {
 
     public static MultiFilePicker getOrCreateRef(JavaScriptObject jsObj) {
@@ -70,7 +71,6 @@ public class MultiFilePicker extends VStack {
             return new MultiFilePicker(jsObj);
         }
     }
-
 
     public MultiFilePicker(){
         

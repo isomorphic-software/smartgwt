@@ -55,17 +55,16 @@ import com.smartgwt.client.util.JSOHelper;
 import com.smartgwt.client.util.EnumUtil;
 import com.google.gwt.event.shared.*;
 import com.google.gwt.event.shared.HasHandlers;
-   /**
-    * FormItem that shows a set of mutually exclusive options as a group of radio buttons.
 
-    */
+/**
+ * FormItem that shows a set of mutually exclusive options as a group of radio buttons.
+ */
 public class RadioGroupItem extends FormItem {
 
     public static RadioGroupItem getOrCreateRef(JavaScriptObject jsObj) {
         if(jsObj == null) return null;
         return new RadioGroupItem(jsObj);
     }
-
 
     public RadioGroupItem(){
         setType("radioGroup");
@@ -89,19 +88,19 @@ public class RadioGroupItem extends FormItem {
     // ********************* Properties / Attributes ***********************
 
     /**
-    * True == display options vertically, false == display in a single row
-    *
-    * @param vertical vertical Default value is true
-    */
+     * True == display options vertically, false == display in a single row
+     *
+     * @param vertical vertical Default value is true
+     */
     public void setVertical(Boolean vertical) {
         setAttribute("vertical", vertical);
     }
+
     /**
      * True == display options vertically, false == display in a single row
      *
      *
      * @return Boolean
-     *
      */
     public Boolean getVertical()  {
         return getAttributeAsBoolean("vertical");
@@ -109,15 +108,15 @@ public class RadioGroupItem extends FormItem {
 
     // ********************* Methods ***********************
 
-        /**
-         * Disable or Enable a specific option within this radioGroup&#010
-         * @param value value of option to disable
+    /**
+     * Disable or Enable a specific option within this radioGroup
+     * @param value value of option to disable
      * @param disabled true to disable the option, false to enable it
-         */
-        public native void setValueDisabled(Object value, boolean disabled) /*-{
-            var self = this.@com.smartgwt.client.core.DataClass::getJsObj()();
-            self.setValueDisabled(value, disabled);
-        }-*/;
+     */
+    public native void setValueDisabled(Object value, boolean disabled) /*-{
+        var self = this.@com.smartgwt.client.core.DataClass::getJsObj()();
+        self.setValueDisabled(value, disabled);
+    }-*/;
 
     // ********************* Static Methods ***********************
 

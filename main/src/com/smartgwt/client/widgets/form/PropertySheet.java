@@ -55,10 +55,10 @@ import com.smartgwt.client.util.JSOHelper;
 import com.smartgwt.client.util.EnumUtil;
 import com.google.gwt.event.shared.*;
 import com.google.gwt.event.shared.HasHandlers;
-   /**
-    * Editor with a minimalist appearance, tuned for editing large numbers of properties in a&#010 constrained space.
 
-    */
+/**
+ * Editor with a minimalist appearance, tuned for editing large numbers of properties in a constrained space.
+ */
 public class PropertySheet extends DynamicForm {
 
     public static PropertySheet getOrCreateRef(JavaScriptObject jsObj) {
@@ -70,7 +70,6 @@ public class PropertySheet extends DynamicForm {
             return new PropertySheet(jsObj);
         }
     }
-
 
     public PropertySheet(){
         

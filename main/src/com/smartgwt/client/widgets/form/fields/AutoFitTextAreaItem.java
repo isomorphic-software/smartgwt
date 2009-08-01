@@ -55,10 +55,11 @@ import com.smartgwt.client.util.JSOHelper;
 import com.smartgwt.client.util.EnumUtil;
 import com.google.gwt.event.shared.*;
 import com.google.gwt.event.shared.HasHandlers;
-   /**
-    * Class for editable multi-line text areas (uses HTML <code>&lt;TEXTAREA&gt;</code> object)&#010 automatically expands to accomodate its content
 
-    */
+/**
+ * Class for editable multi-line text areas (uses HTML <code>&lt;TEXTAREA&gt;</code> object) automatically expands to
+ * accomodate its content
+ */
 public class AutoFitTextAreaItem extends TextAreaItem {
 
     public static AutoFitTextAreaItem getOrCreateRef(JavaScriptObject jsObj) {
@@ -71,7 +72,6 @@ public class AutoFitTextAreaItem extends TextAreaItem {
             return new AutoFitTextAreaItem(jsObj);
         }
     }
-
 
     public AutoFitTextAreaItem(){
         setType("AutoFitTextAreaItem");

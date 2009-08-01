@@ -55,10 +55,16 @@ import com.smartgwt.client.util.JSOHelper;
 import com.smartgwt.client.util.EnumUtil;
 import com.google.gwt.event.shared.*;
 import com.google.gwt.event.shared.HasHandlers;
-   /**
-    * A WSDataSource is a DataSource that is preconfigured to contact the WSDL web service built&#010 into the SDK (see isomorphic/system/schema/SmartGWTOperations.wsdl).  This WSDL service&#010 can be easily implemented on Java and non-Java backends.  &#010 <P>&#010 WSDataSource supports all 4 DataSource operations (fetch, add, update, remove) and can be&#010 used with ListGrids, DynamicForms and other {@link com.smartgwt.client.widgets.DataBoundComponent}s just like other&#010 DataSources.&#010 <P>&#010 Note that WSDataSource is specifically designed for use with SmartGWTOperations.wsdl.  If&#010 you are trying to connect to a pre-existing WSDL service, start with just {@link com.smartgwt.client.data.DataSource}, &#010 not WSDataSource, and see the {@link com.smartgwt.client.docs.WsdlBinding 'WSDL Integration'} chapter for an&#010 overview.
 
-    */
+/**
+ * A WSDataSource is a DataSource that is preconfigured to contact the WSDL web service built into the SDK (see
+ * isomorphic/system/schema/SmartGWTOperations.wsdl).  This WSDL service can be easily implemented on Java and non-Java
+ * backends.   <P> WSDataSource supports all 4 DataSource operations (fetch, add, update, remove) and can be used with
+ * ListGrids, DynamicForms and other {@link com.smartgwt.client.widgets.DataBoundComponent}s just like other DataSources.
+ * <P> Note that WSDataSource is specifically designed for use with SmartGWTOperations.wsdl.  If you are trying to connect
+ * to a pre-existing WSDL service, start with just {@link com.smartgwt.client.data.DataSource},  not WSDataSource, and see
+ * the {@link com.smartgwt.client.docs.WsdlBinding 'WSDL Integration'} chapter for an overview.
+ */
 public class WSDataSource extends DataSource {
 
     public static WSDataSource getOrCreateRef(JavaScriptObject jsObj) {
@@ -70,7 +76,6 @@ public class WSDataSource extends DataSource {
             return new WSDataSource(jsObj);
         }
     }
-
 
     public WSDataSource(){
         

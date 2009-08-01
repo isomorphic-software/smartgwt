@@ -58,53 +58,53 @@ import com.google.gwt.event.shared.HasHandlers;
 public class DragRepositionStopEvent extends BrowserEvent<DragRepositionStopHandler>  implements Cancellable {
     private boolean cancel = false;
 
-  /**
-   * Handler type.
-   */
-  private static Type<DragRepositionStopHandler> TYPE;
+    /**
+     * Handler type.
+     */
+    private static Type<DragRepositionStopHandler> TYPE;
 
-  /**
-   * Fires a open event on all registered handlers in the handler manager.If no
-   * such handlers exist, this method will do nothing.
-   *
-   * @param <S> The event source
-   * @param source the source of the handlers
-   * @param jsObj the native event
-   */
-  public static <S extends HasDragRepositionStopHandlers & HasHandlers> void fire(
-      S source, JavaScriptObject jsObj) {
-    if (TYPE != null) {
-        DragRepositionStopEvent event = new DragRepositionStopEvent(jsObj);
-        source.fireEvent(event);
+    /**
+     * Fires a open event on all registered handlers in the handler manager.If no
+     * such handlers exist, this method will do nothing.
+     *
+     * @param <S> The event source
+     * @param source the source of the handlers
+     * @param jsObj the native event
+     */
+    public static <S extends HasDragRepositionStopHandlers & HasHandlers> void fire(
+        S source, JavaScriptObject jsObj) {
+        if (TYPE != null) {
+            DragRepositionStopEvent event = new DragRepositionStopEvent(jsObj);
+            source.fireEvent(event);
+        }
     }
-  }
 
-  /**
-   * Gets the type associated with this event.
-   *
-   * @return returns the handler type
-   */
-  public static Type<DragRepositionStopHandler> getType() {
-    if (TYPE == null) {
-      TYPE = new Type<DragRepositionStopHandler>();
+    /**
+     * Gets the type associated with this event.
+     *
+     * @return returns the handler type
+     */
+    public static Type<DragRepositionStopHandler> getType() {
+        if (TYPE == null) {
+            TYPE = new Type<DragRepositionStopHandler>();
+        }
+        return TYPE;
     }
-    return TYPE;
-  }
 
 
-  @Override
-  protected void dispatch(DragRepositionStopHandler handler) {
-    handler.onDragRepositionStop(this);
-  }
+    @Override
+    protected void dispatch(DragRepositionStopHandler handler) {
+        handler.onDragRepositionStop(this);
+    }
 
-  // Because of type erasure, our static type is
-  // wild carded, yet the "real" type should use our I param.
+    // Because of type erasure, our static type is
+    // wild carded, yet the "real" type should use our I param.
 
-  @SuppressWarnings("unchecked")
-  @Override
-  public final Type<DragRepositionStopHandler> getAssociatedType() {
-    return TYPE;
-  }
+    @SuppressWarnings("unchecked")
+    @Override
+    public final Type<DragRepositionStopHandler> getAssociatedType() {
+        return TYPE;
+    }
 
     public DragRepositionStopEvent(JavaScriptObject jsObj) {
         super(jsObj);
@@ -112,7 +112,8 @@ public class DragRepositionStopEvent extends BrowserEvent<DragRepositionStopHand
 
 
     /**
-     * false to snap the {@link com.smartgwt.client.widgets.Canvas#getDragTarget dragTarget} (or outline) back to its                   original location or true to leave it at the current cursor position.
+     * false to snap the {@link com.smartgwt.client.widgets.Canvas#getDragTarget dragTarget} (or outline) back to its          
+     *         original location or true to leave it at the current cursor position.
      */
     public void cancel() {
         cancel = true;

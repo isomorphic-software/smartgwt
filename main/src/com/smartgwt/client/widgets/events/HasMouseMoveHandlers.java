@@ -22,7 +22,7 @@ import com.google.gwt.event.shared.HasHandlers;
 
 public interface HasMouseMoveHandlers extends HasHandlers {
     /**
-     * &#010 Executed when the mouse moves within this widget.  No default implementation.&#010&#010
+     * Executed when the mouse moves within this widget.  No default implementation.
      *
      * @param handler the mouseMove handler
      * @return {@link HandlerRegistration} used to remove this handler

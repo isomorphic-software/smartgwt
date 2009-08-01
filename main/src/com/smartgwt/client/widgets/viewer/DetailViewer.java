@@ -55,10 +55,10 @@ import com.smartgwt.client.util.JSOHelper;
 import com.smartgwt.client.util.EnumUtil;
 import com.google.gwt.event.shared.*;
 import com.google.gwt.event.shared.HasHandlers;
-   /**
-    * Displays one or more records "horizontally" with one property per line.
 
-    */
+/**
+ * Displays one or more records "horizontally" with one property per line.
+ */
 public class DetailViewer extends Canvas  implements DataBoundComponent {
 
     public static DetailViewer getOrCreateRef(JavaScriptObject jsObj) {
@@ -70,7 +70,6 @@ public class DetailViewer extends Canvas  implements DataBoundComponent {
             return new DetailViewer(jsObj);
         }
     }
-
 
     public DetailViewer(){
         
@@ -89,446 +88,464 @@ public class DetailViewer extends Canvas  implements DataBoundComponent {
     // ********************* Properties / Attributes ***********************
              
     /**
-    * DetailViewers do not yet support paging, and will fetch and render all available&#010 records.
-    *
-    * @param dataFetchMode dataFetchMode Default value is "basic"
-    */
+     * DetailViewers do not yet support paging, and will fetch and render all available records.
+     *
+     * @param dataFetchMode dataFetchMode Default value is "basic"
+     */
     public void setDataFetchMode(FetchMode dataFetchMode) {
         setAttribute("dataFetchMode", dataFetchMode.getValue(), true);
     }
+
     /**
-     * DetailViewers do not yet support paging, and will fetch and render all available&#010 records.
+     * DetailViewers do not yet support paging, and will fetch and render all available records.
      *
      *
      * @return FetchMode
-     *
      */
     public FetchMode getDataFetchMode()  {
         return (FetchMode) EnumUtil.getEnum(FetchMode.values(), getAttribute("dataFetchMode"));
     }
 
     /**
-    * Name of the field in the DetailViewerRecord which specifies the data property for that record.
-    * <p><b>Note : </b> This is an advanced setting</p>
-    *
-    * @param fieldIdProperty fieldIdProperty Default value is "name"
-    */
+     * Name of the field in the DetailViewerRecord which specifies the data property for that record.
+     * <p><b>Note : </b> This is an advanced setting</p>
+     *
+     * @param fieldIdProperty fieldIdProperty Default value is "name"
+     */
     public void setFieldIdProperty(String fieldIdProperty) {
         setAttribute("fieldIdProperty", fieldIdProperty, true);
     }
+
     /**
      * Name of the field in the DetailViewerRecord which specifies the data property for that record.
      *
      *
      * @return String
-     *
      */
     public String getFieldIdProperty()  {
         return getAttributeAsString("fieldIdProperty");
     }
 
     /**
-    * The number of records to display in a block. A block is a horizontal row on a page&#010          containing one or more records, as specified by the value of recordsPerBlock. The&#010          height of a block is equal to the height of a single record. The default setting of&#010          1 causes each record to appear by itself in a vertical row. Setting recordsPerBlock&#010          to 2 would cause records to appear side by side in groups of two.&#010          Use a value of "*" to indicate all records.
-    *
-    * @param recordsPerBlock recordsPerBlock Default value is 1
-    */
+     * The number of records to display in a block. A block is a horizontal row on a page          containing one or more
+     * records, as specified by the value of recordsPerBlock. The          height of a block is equal to the height of a single
+     * record. The default setting of          1 causes each record to appear by itself in a vertical row. Setting
+     * recordsPerBlock          to 2 would cause records to appear side by side in groups of two.          Use a value of "*"
+     * to indicate all records.
+     *
+     * @param recordsPerBlock recordsPerBlock Default value is 1
+     */
     public void setRecordsPerBlock(int recordsPerBlock) {
         setAttribute("recordsPerBlock", recordsPerBlock, true);
     }
+
     /**
-     * The number of records to display in a block. A block is a horizontal row on a page&#010          containing one or more records, as specified by the value of recordsPerBlock. The&#010          height of a block is equal to the height of a single record. The default setting of&#010          1 causes each record to appear by itself in a vertical row. Setting recordsPerBlock&#010          to 2 would cause records to appear side by side in groups of two.&#010          Use a value of "*" to indicate all records.
+     * The number of records to display in a block. A block is a horizontal row on a page          containing one or more
+     * records, as specified by the value of recordsPerBlock. The          height of a block is equal to the height of a single
+     * record. The default setting of          1 causes each record to appear by itself in a vertical row. Setting
+     * recordsPerBlock          to 2 would cause records to appear side by side in groups of two.          Use a value of "*"
+     * to indicate all records.
      *
      *
      * @return int
-     *
      */
     public int getRecordsPerBlock()  {
         return getAttributeAsInt("recordsPerBlock");
     }
 
     /**
-    * A string (HTML acceptable) that will be written to a page to separate blocks.
-    *
-    * @param blockSeparator blockSeparator Default value is "<BR><BR>"
-    */
+     * A string (HTML acceptable) that will be written to a page to separate blocks.
+     *
+     * @param blockSeparator blockSeparator Default value is "<BR><BR>"
+     */
     public void setBlockSeparator(String blockSeparator) {
         setAttribute("blockSeparator", blockSeparator, true);
     }
+
     /**
      * A string (HTML acceptable) that will be written to a page to separate blocks.
      *
      *
      * @return String
-     *
      */
     public String getBlockSeparator()  {
         return getAttributeAsString("blockSeparator");
     }
 
     /**
-    * Whether to show the field when the value is null
-    * <p><b>Note : </b> This is an advanced setting</p>
-    *
-    * @param showEmptyField showEmptyField Default value is true
-    */
+     * Whether to show the field when the value is null
+     * <p><b>Note : </b> This is an advanced setting</p>
+     *
+     * @param showEmptyField showEmptyField Default value is true
+     */
     public void setShowEmptyField(Boolean showEmptyField) {
         setAttribute("showEmptyField", showEmptyField, true);
     }
+
     /**
      * Whether to show the field when the value is null
      *
      *
      * @return Boolean
-     *
      */
     public Boolean getShowEmptyField()  {
         return getAttributeAsBoolean("showEmptyField");
     }
 
     /**
-    * Text to show for an empty cell
-    * <p><b>Note : </b> This is an advanced setting</p>
-    *
-    * @param emptyCellValue emptyCellValue Default value is "&nbsp;"
-    */
+     * Text to show for an empty cell
+     * <p><b>Note : </b> This is an advanced setting</p>
+     *
+     * @param emptyCellValue emptyCellValue Default value is "&nbsp;"
+     */
     public void setEmptyCellValue(String emptyCellValue) {
         setAttribute("emptyCellValue", emptyCellValue, true);
     }
+
     /**
      * Text to show for an empty cell
      *
      *
      * @return String
-     *
      */
     public String getEmptyCellValue()  {
         return getAttributeAsString("emptyCellValue");
     }
 
     /**
-    * text to put before a label
-    *
-    * @param labelPrefix labelPrefix Default value is ""
-    */
+     * text to put before a label
+     *
+     * @param labelPrefix labelPrefix Default value is ""
+     */
     public void setLabelPrefix(String labelPrefix) {
         setAttribute("labelPrefix", labelPrefix, true);
     }
+
     /**
      * text to put before a label
      *
      *
      * @return String
-     *
      */
     public String getLabelPrefix()  {
         return getAttributeAsString("labelPrefix");
     }
 
     /**
-    * text to put after a label
-    *
-    * @param labelSuffix labelSuffix Default value is ":"
-    */
+     * text to put after a label
+     *
+     * @param labelSuffix labelSuffix Default value is ":"
+     */
     public void setLabelSuffix(String labelSuffix) {
         setAttribute("labelSuffix", labelSuffix, true);
     }
+
     /**
      * text to put after a label
      *
      *
      * @return String
-     *
      */
     public String getLabelSuffix()  {
         return getAttributeAsString("labelSuffix");
     }
 
     /**
-    * Should the label be allowed to wrap, or be fixed to one line no matter how long
-    *
-    * @param wrapLabel wrapLabel Default value is false
-    */
+     * Should the label be allowed to wrap, or be fixed to one line no matter how long
+     *
+     * @param wrapLabel wrapLabel Default value is false
+     */
     public void setWrapLabel(Boolean wrapLabel) {
         setAttribute("wrapLabel", wrapLabel, true);
     }
+
     /**
      * Should the label be allowed to wrap, or be fixed to one line no matter how long
      *
      *
      * @return Boolean
-     *
      */
     public Boolean getWrapLabel()  {
         return getAttributeAsBoolean("wrapLabel");
     }
 
     /**
-    * Whether values should be allowed to wrap by default, or should be shown on one line&#010 regardless of length.
-    *
-    * @param wrapValues wrapValues Default value is true
-    * @throws IllegalStateException this property cannot be changed after the component has been created
-    */
+     * Whether values should be allowed to wrap by default, or should be shown on one line regardless of length.
+     *
+     * @param wrapValues wrapValues Default value is true
+     * @throws IllegalStateException this property cannot be changed after the component has been created
+     */
     public void setWrapValues(Boolean wrapValues)  throws IllegalStateException {
         setAttribute("wrapValues", wrapValues, false);
     }
+
     /**
-     * Whether values should be allowed to wrap by default, or should be shown on one line&#010 regardless of length.
+     * Whether values should be allowed to wrap by default, or should be shown on one line regardless of length.
      *
      *
      * @return Boolean
-     *
      */
     public Boolean getWrapValues()  {
         return getAttributeAsBoolean("wrapValues");
     }
 
     /**
-    * CSS style for the component as a whole.
-    *
-    * @param styleName styleName Default value is "detailViewer"
-    */
+     * CSS style for the component as a whole.
+     *
+     * @param styleName styleName Default value is "detailViewer"
+     */
     public void setStyleName(String styleName) {
         setAttribute("styleName", styleName, true);
     }
+
     /**
      * CSS style for the component as a whole.
      *
      *
      * @return String
-     *
      */
     public String getStyleName()  {
         return getAttributeAsString("styleName");
     }
 
     /**
-    * CSS style for each block (one record's worth of data).
-    *
-    * @param blockStyle blockStyle Default value is "detailBlock"
-    */
+     * CSS style for each block (one record's worth of data).
+     *
+     * @param blockStyle blockStyle Default value is "detailBlock"
+     */
     public void setBlockStyle(String blockStyle) {
         setAttribute("blockStyle", blockStyle, true);
     }
+
     /**
      * CSS style for each block (one record's worth of data).
      *
      *
      * @return String
-     *
      */
     public String getBlockStyle()  {
         return getAttributeAsString("blockStyle");
     }
 
     /**
-    * CSS style for a normal detail label
-    *
-    * @param labelStyle labelStyle Default value is "detailLabel"
-    */
+     * CSS style for a normal detail label
+     *
+     * @param labelStyle labelStyle Default value is "detailLabel"
+     */
     public void setLabelStyle(String labelStyle) {
         setAttribute("labelStyle", labelStyle, true);
     }
+
     /**
      * CSS style for a normal detail label
      *
      *
      * @return String
-     *
      */
     public String getLabelStyle()  {
         return getAttributeAsString("labelStyle");
     }
 
     /**
-    * CSS style for a normal value
-    *
-    * @param cellStyle cellStyle Default value is "detail"
-    */
+     * CSS style for a normal value
+     *
+     * @param cellStyle cellStyle Default value is "detail"
+     */
     public void setCellStyle(String cellStyle) {
         setAttribute("cellStyle", cellStyle, true);
     }
+
     /**
      * CSS style for a normal value
      *
      *
-     * @return Return the CSS class for a cell. Default implementation calls&#010 {@link com.smartgwt.client.widgets.viewer.DetailViewerField#getCellStyle} on the field if defined, otherwise&#010 returns {@link com.smartgwt.client.widgets.viewer.DetailViewer#getCellStyle 'this.cellStyle'}&#010
-     *
+     * @return Return the CSS class for a cell. Default implementation calls {@link
+     * com.smartgwt.client.widgets.viewer.DetailViewerField#getCellStyle} on the field if defined, otherwise returns {@link
+     * com.smartgwt.client.widgets.viewer.DetailViewer#getCellStyle 'this.cellStyle'}
      */
     public String getCellStyle()  {
         return getAttributeAsString("cellStyle");
     }
 
     /**
-    * CSS style for a header
-    *
-    * @param headerStyle headerStyle Default value is "detailHeader"
-    */
+     * CSS style for a header
+     *
+     * @param headerStyle headerStyle Default value is "detailHeader"
+     */
     public void setHeaderStyle(String headerStyle) {
         setAttribute("headerStyle", headerStyle, true);
     }
+
     /**
      * CSS style for a header
      *
      *
      * @return String
-     *
      */
     public String getHeaderStyle()  {
         return getAttributeAsString("headerStyle");
     }
 
     /**
-    * CSS style for a separator
-    *
-    * @param separatorStyle separatorStyle Default value is "detail"
-    */
+     * CSS style for a separator
+     *
+     * @param separatorStyle separatorStyle Default value is "detail"
+     */
     public void setSeparatorStyle(String separatorStyle) {
         setAttribute("separatorStyle", separatorStyle, true);
     }
+
     /**
      * CSS style for a separator
      *
      *
      * @return String
-     *
      */
     public String getSeparatorStyle()  {
         return getAttributeAsString("separatorStyle");
     }
              
     /**
-    * Display format to use for fields specified as type 'date'.  Default is to use the&#010 system-wide default normal date format, configured via&#010 {@link com.smartgwt.client..Date#setNormalDisplayFormat}.  Specify any valid {@link com.smartgwt.client.types.DateDisplayFormat} to&#010 change the format used by this detailViewer.
-    *
-    * @param dateFormatter dateFormatter Default value is null
-    * @throws IllegalStateException this property cannot be changed after the component has been created
-    */
+     * Display format to use for fields specified as type 'date'.  Default is to use the system-wide default normal date
+     * format, configured via {@link com.smartgwt.client..Date#setNormalDisplayFormat}.  Specify any valid {@link
+     * com.smartgwt.client.types.DateDisplayFormat} to change the format used by this detailViewer.
+     *
+     * @param dateFormatter dateFormatter Default value is null
+     * @throws IllegalStateException this property cannot be changed after the component has been created
+     */
     public void setDateFormatter(DateDisplayFormat dateFormatter)  throws IllegalStateException {
         setAttribute("dateFormatter", dateFormatter.getValue(), false);
     }
+
     /**
-     * Display format to use for fields specified as type 'date'.  Default is to use the&#010 system-wide default normal date format, configured via&#010 {@link com.smartgwt.client..Date#setNormalDisplayFormat}.  Specify any valid {@link com.smartgwt.client.types.DateDisplayFormat} to&#010 change the format used by this detailViewer.
+     * Display format to use for fields specified as type 'date'.  Default is to use the system-wide default normal date
+     * format, configured via {@link com.smartgwt.client..Date#setNormalDisplayFormat}.  Specify any valid {@link
+     * com.smartgwt.client.types.DateDisplayFormat} to change the format used by this detailViewer.
      *
      *
      * @return DateDisplayFormat
-     *
      */
     public DateDisplayFormat getDateFormatter()  {
         return (DateDisplayFormat) EnumUtil.getEnum(DateDisplayFormat.values(), getAttribute("dateFormatter"));
     }
              
     /**
-    * Display format to use for fields specified as type 'datetime'. Default is to use&#010 the system-wide default datetime format configured via &#010 {@link com.smartgwt.client..Date#setShortDatetimeDisplayFormat}
-    *
-    * @param datetimeFormatter datetimeFormatter Default value is null
-    * @throws IllegalStateException this property cannot be changed after the component has been created
-    */
+     * Display format to use for fields specified as type 'datetime'. Default is to use the system-wide default datetime format
+     * configured via  {@link com.smartgwt.client..Date#setShortDatetimeDisplayFormat}
+     *
+     * @param datetimeFormatter datetimeFormatter Default value is null
+     * @throws IllegalStateException this property cannot be changed after the component has been created
+     */
     public void setDatetimeFormatter(DateDisplayFormat datetimeFormatter)  throws IllegalStateException {
         setAttribute("datetimeFormatter", datetimeFormatter.getValue(), false);
     }
+
     /**
-     * Display format to use for fields specified as type 'datetime'. Default is to use&#010 the system-wide default datetime format configured via &#010 {@link com.smartgwt.client..Date#setShortDatetimeDisplayFormat}
+     * Display format to use for fields specified as type 'datetime'. Default is to use the system-wide default datetime format
+     * configured via  {@link com.smartgwt.client..Date#setShortDatetimeDisplayFormat}
      *
      *
      * @return DateDisplayFormat
-     *
      */
     public DateDisplayFormat getDatetimeFormatter()  {
         return (DateDisplayFormat) EnumUtil.getEnum(DateDisplayFormat.values(), getAttribute("datetimeFormatter"));
     }
 
     /**
-    * Show {@link com.smartgwt.client.widgets.viewer.DetailViewer#getEmptyMessage emptyMessage} when there is no data to display?
-    * <p><b>Note : </b> This is an advanced setting</p>
-    *
-    * @param showEmptyMessage showEmptyMessage Default value is true
-    */
+     * Show {@link com.smartgwt.client.widgets.viewer.DetailViewer#getEmptyMessage emptyMessage} when there is no data to
+     * display?
+     * <p><b>Note : </b> This is an advanced setting</p>
+     *
+     * @param showEmptyMessage showEmptyMessage Default value is true
+     */
     public void setShowEmptyMessage(Boolean showEmptyMessage) {
         setAttribute("showEmptyMessage", showEmptyMessage, true);
     }
+
     /**
-     * Show {@link com.smartgwt.client.widgets.viewer.DetailViewer#getEmptyMessage emptyMessage} when there is no data to display?
+     * Show {@link com.smartgwt.client.widgets.viewer.DetailViewer#getEmptyMessage emptyMessage} when there is no data to
+     * display?
      *
      *
      * @return Boolean
-     *
      */
     public Boolean getShowEmptyMessage()  {
         return getAttributeAsBoolean("showEmptyMessage");
     }
 
     /**
-    * The string to display in the body of a detailViewer with no records.
-    *
-    * @param emptyMessage emptyMessage Default value is "No items to display."
-    */
+     * The string to display in the body of a detailViewer with no records.
+     *
+     * @param emptyMessage emptyMessage Default value is "No items to display."
+     */
     public void setEmptyMessage(String emptyMessage) {
         setAttribute("emptyMessage", emptyMessage, true);
     }
+
     /**
      * The string to display in the body of a detailViewer with no records.
      *
      *
      * @return String
-     *
      */
     public String getEmptyMessage()  {
         return getAttributeAsString("emptyMessage");
     }
 
     /**
-    * CSS style to display this message in
-    * <p><b>Note : </b> This is an advanced setting</p>
-    *
-    * @param emptyMessageStyle emptyMessageStyle Default value is "normal"
-    */
+     * CSS style to display this message in
+     * <p><b>Note : </b> This is an advanced setting</p>
+     *
+     * @param emptyMessageStyle emptyMessageStyle Default value is "normal"
+     */
     public void setEmptyMessageStyle(String emptyMessageStyle) {
         setAttribute("emptyMessageStyle", emptyMessageStyle, true);
     }
+
     /**
      * CSS style to display this message in
      *
      *
      * @return String
-     *
      */
     public String getEmptyMessageStyle()  {
         return getAttributeAsString("emptyMessageStyle");
     }
 
     /**
-    * The string to display in the body of a detailViewer which is loading records.
-    *
-    * @param loadingMessage loadingMessage Default value is "&nbsp;"
-    */
+     * The string to display in the body of a detailViewer which is loading records.
+     *
+     * @param loadingMessage loadingMessage Default value is "&nbsp;"
+     */
     public void setLoadingMessage(String loadingMessage) {
         setAttribute("loadingMessage", loadingMessage, true);
     }
+
     /**
      * The string to display in the body of a detailViewer which is loading records.
      *
      *
      * @return String
-     *
      */
     public String getLoadingMessage()  {
         return getAttributeAsString("loadingMessage");
     }
 
     /**
-    * CSS style to use for the {@link com.smartgwt.client.widgets.viewer.DetailViewer#getLoadingMessage loadingMessage}.
-    * <p><b>Note : </b> This is an advanced setting</p>
-    *
-    * @param loadingMessageStyle loadingMessageStyle Default value is "normal"
-    */
+     * CSS style to use for the {@link com.smartgwt.client.widgets.viewer.DetailViewer#getLoadingMessage loadingMessage}.
+     * <p><b>Note : </b> This is an advanced setting</p>
+     *
+     * @param loadingMessageStyle loadingMessageStyle Default value is "normal"
+     */
     public void setLoadingMessageStyle(String loadingMessageStyle) {
         setAttribute("loadingMessageStyle", loadingMessageStyle, true);
     }
+
     /**
      * CSS style to use for the {@link com.smartgwt.client.widgets.viewer.DetailViewer#getLoadingMessage loadingMessage}.
      *
      *
      * @return String
-     *
      */
     public String getLoadingMessageStyle()  {
         return getAttributeAsString("loadingMessageStyle");
@@ -537,22 +554,28 @@ public class DetailViewer extends Canvas  implements DataBoundComponent {
     // ********************* Methods ***********************
 
 
-        /**
-         * Uses a "fetch" operation on the current {@link com.smartgwt.client.widgets.DataBoundComponent#getDataSource 'DataSource'} to &#010 retrieve data that matches the current filter and sort criteria for this component, then &#010 exports the resulting data to a file or window in the requested format.&#010 <P>&#010 For more information on exporting data, see {@link com.smartgwt.client.data.DataSource#exportData}.&#010&#010
-         */
-        public native void exportData() /*-{
-            var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
-            self.exportData();
-        }-*/;
+    /**
+     * Uses a "fetch" operation on the current {@link com.smartgwt.client.widgets.DataBoundComponent#getDataSource
+     * 'DataSource'} to  retrieve data that matches the current filter and sort criteria for this component, then  exports the
+     * resulting data to a file or window in the requested format. <P> For more information on exporting data, see {@link
+     * com.smartgwt.client.data.DataSource#exportData}.
+     */
+    public native void exportData() /*-{
+        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
+        self.exportData();
+    }-*/;
 
-        /**
-         * Uses a "fetch" operation on the current {@link com.smartgwt.client.widgets.DataBoundComponent#getDataSource 'DataSource'} to &#010 retrieve data that matches the current filter and sort criteria for this component, then &#010 exports the resulting data to a file or window in the requested format.&#010 <P>&#010 For more information on exporting data, see {@link com.smartgwt.client.data.DataSource#exportData}.&#010&#010
-         * @param requestProperties additional properties to set on the DSRequest                                            that will be issued
-         */
-        public native void exportData(DSRequest requestProperties) /*-{
-            var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
-            self.exportData(requestProperties.@com.smartgwt.client.core.DataClass::getJsObj()());
-        }-*/;
+    /**
+     * Uses a "fetch" operation on the current {@link com.smartgwt.client.widgets.DataBoundComponent#getDataSource
+     * 'DataSource'} to  retrieve data that matches the current filter and sort criteria for this component, then  exports the
+     * resulting data to a file or window in the requested format. <P> For more information on exporting data, see {@link
+     * com.smartgwt.client.data.DataSource#exportData}.
+     * @param requestProperties additional properties to set on the DSRequest                                            that will be issued
+     */
+    public native void exportData(DSRequest requestProperties) /*-{
+        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
+        self.exportData(requestProperties.@com.smartgwt.client.core.DataClass::getJsObj()());
+    }-*/;
 
 
 
@@ -564,7 +587,6 @@ public class DetailViewer extends Canvas  implements DataBoundComponent {
 
 
 
-
     /**
      * An array of records, specifying data. Note that DetailViewers do not observe changes to the data array (in other
      * words they will not automatically re-draw when the data provided via this property is altered)
@@ -719,9 +741,10 @@ public class DetailViewer extends Canvas  implements DataBoundComponent {
     public void setExportFields(String[] exportFields) {
         setAttribute("exportFields", exportFields, true);
     }
-    public String[] getExportFields()  {
-         return getAttributeAsStringArray("exportFields");
-     }
+
+    public String[] getExportFields() {
+        return getAttributeAsStringArray("exportFields");
+    }
 
     public void setExportAll(Boolean exportAll) {
         setAttribute("exportAll", exportAll, true);
@@ -756,12 +779,12 @@ public class DetailViewer extends Canvas  implements DataBoundComponent {
     }
 
     public void setDropValues(Map dropValues) {
-         setAttribute("dropValues", dropValues, true);
-     }
+        setAttribute("dropValues", dropValues, true);
+    }
 
-    public Map getDropValues()  {
-         return getAttributeAsMap("dropValues");
-     }
+    public Map getDropValues() {
+        return getAttributeAsMap("dropValues");
+    }
 
     public void setUseFlatFields(Boolean useFlatFields) throws IllegalStateException {
         setAttribute("useFlatFields", useFlatFields, false);
@@ -1005,7 +1028,7 @@ public class DetailViewer extends Canvas  implements DataBoundComponent {
         setAttribute("titleField", titleField, true);
     }
 
-    public String getTitleField()  {
+    public String getTitleField() {
         return getAttributeAsString("titleField");
     }
 
@@ -1017,19 +1040,19 @@ public class DetailViewer extends Canvas  implements DataBoundComponent {
         return DataSource.getOrCreateRef(getAttributeAsJavaScriptObject("dataSource"));
     }
 
-    public void setAutoFetchData(Boolean autoFetchData)  throws IllegalStateException {
+    public void setAutoFetchData(Boolean autoFetchData) throws IllegalStateException {
         setAttribute("autoFetchData", autoFetchData, false);
     }
 
-    public Boolean getAutoFetchData()  {
+    public Boolean getAutoFetchData() {
         return getAttributeAsBoolean("autoFetchData");
     }
 
-    public void setAutoFetchAsFilter(Boolean autoFetchAsFilter)  throws IllegalStateException {
+    public void setAutoFetchAsFilter(Boolean autoFetchAsFilter) throws IllegalStateException {
         setAttribute("autoFetchAsFilter", autoFetchAsFilter, false);
     }
 
-    public Boolean getAutoFetchAsFilter()  {
+    public Boolean getAutoFetchAsFilter() {
         return getAttributeAsBoolean("autoFetchAsFilter");
     }
 
@@ -1037,7 +1060,7 @@ public class DetailViewer extends Canvas  implements DataBoundComponent {
         setAttribute("initialCriteria", initialCriteria.getJsObj(), false);
     }
 
-    public Criteria getInitialCriteria()  {
+    public Criteria getInitialCriteria() {
         return new Criteria(getAttributeAsJavaScriptObject("initialCriteria"));
     }
 

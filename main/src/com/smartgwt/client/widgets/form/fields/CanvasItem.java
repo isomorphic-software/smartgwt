@@ -55,10 +55,10 @@ import com.smartgwt.client.util.JSOHelper;
 import com.smartgwt.client.util.EnumUtil;
 import com.google.gwt.event.shared.*;
 import com.google.gwt.event.shared.HasHandlers;
-   /**
-    * Form item which renders a Canvas inline in a DynamicForm instance.
 
-    */
+/**
+ * Form item which renders a Canvas inline in a DynamicForm instance.
+ */
 public class CanvasItem extends FormItem {
 
     public static CanvasItem getOrCreateRef(JavaScriptObject jsObj) {
@@ -71,7 +71,6 @@ public class CanvasItem extends FormItem {
             return new CanvasItem(jsObj);
         }
     }
-
 
     public CanvasItem(){
         setType("CanvasItem");
@@ -95,19 +94,25 @@ public class CanvasItem extends FormItem {
     // ********************* Properties / Attributes ***********************
             
     /**
-    * The canvas that will be displayed inside this item.  You can pass an instance you've &#010 already created, or its global ID as a String.  If none is passed, one will be &#010 auto-created using the overrideable defaults: {@link com.smartgwt.client.widgets.form.fields.CanvasItem#getCanvasProperties canvasProperties} and&#010 {@link com.smartgwt.client.widgets.form.fields.CanvasItem#getCanvasConstructor canvasConstructor}
-    *
-    * @param canvas canvas Default value is null
-    */
+     * The canvas that will be displayed inside this item.  You can pass an instance you've  already created, or its global ID
+     * as a String.  If none is passed, one will be  auto-created using the overrideable defaults: {@link
+     * com.smartgwt.client.widgets.form.fields.CanvasItem#getCanvasProperties canvasProperties} and {@link
+     * com.smartgwt.client.widgets.form.fields.CanvasItem#getCanvasConstructor canvasConstructor}
+     *
+     * @param canvas canvas Default value is null
+     */
     public void setCanvas(Canvas canvas) {
         setAttribute("canvas", canvas.getOrCreateJsObj());
     }
+
     /**
-     * The canvas that will be displayed inside this item.  You can pass an instance you've &#010 already created, or its global ID as a String.  If none is passed, one will be &#010 auto-created using the overrideable defaults: {@link com.smartgwt.client.widgets.form.fields.CanvasItem#getCanvasProperties canvasProperties} and&#010 {@link com.smartgwt.client.widgets.form.fields.CanvasItem#getCanvasConstructor canvasConstructor}
+     * The canvas that will be displayed inside this item.  You can pass an instance you've  already created, or its global ID
+     * as a String.  If none is passed, one will be  auto-created using the overrideable defaults: {@link
+     * com.smartgwt.client.widgets.form.fields.CanvasItem#getCanvasProperties canvasProperties} and {@link
+     * com.smartgwt.client.widgets.form.fields.CanvasItem#getCanvasConstructor canvasConstructor}
      *
      *
      * @return Canvas
-     *
      */
     public Canvas getCanvas()  {
             return Canvas.getOrCreateRef(getAttributeAsJavaScriptObject("canvas"));

@@ -22,7 +22,9 @@ import com.google.gwt.event.shared.HasHandlers;
 
 public interface HasDayHeaderClickHandlers extends HasHandlers {
     /**
-     * Called when the header area of a day in the month view is clicked on.&#010 <P>&#010 By default, moves to the day tab and shows the clicked days events.&#010 Return false to cancel this action.&#010 <P>&#010 Not called if the day falls outside the current month and {@link com.smartgwt.client.widgets.calendar.Calendar#getShowOtherDays showOtherDays} is false.&#010&#010
+     * Called when the header area of a day in the month view is clicked on. <P> By default, moves to the day tab and shows the
+     * clicked days events. Return false to cancel this action. <P> Not called if the day falls outside the current month and
+     * {@link com.smartgwt.client.widgets.calendar.Calendar#getShowOtherDays showOtherDays} is false.
      *
      * @param handler the dayHeaderClick handler
      * @return {@link HandlerRegistration} used to remove this handler

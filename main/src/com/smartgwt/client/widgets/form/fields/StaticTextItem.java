@@ -55,10 +55,10 @@ import com.smartgwt.client.util.JSOHelper;
 import com.smartgwt.client.util.EnumUtil;
 import com.google.gwt.event.shared.*;
 import com.google.gwt.event.shared.HasHandlers;
-   /**
-    * A FormItem that displays an uneditable value.
 
-    */
+/**
+ * A FormItem that displays an uneditable value.
+ */
 public class StaticTextItem extends FormItem {
 
     public static StaticTextItem getOrCreateRef(JavaScriptObject jsObj) {
@@ -71,7 +71,6 @@ public class StaticTextItem extends FormItem {
             return new StaticTextItem(jsObj);
         }
     }
-
 
     public StaticTextItem(){
         setType("StaticTextItem");
@@ -95,76 +94,80 @@ public class StaticTextItem extends FormItem {
     // ********************* Properties / Attributes ***********************
 
     /**
-    * If true, item contents can wrap. If false, all the contents should appear on a single line.
-    *
-    * @param wrap wrap Default value is true
-    */
+     * If true, item contents can wrap. If false, all the contents should appear on a single line.
+     *
+     * @param wrap wrap Default value is true
+     */
     public void setWrap(Boolean wrap) {
         setAttribute("wrap", wrap);
     }
+
     /**
      * If true, item contents can wrap. If false, all the contents should appear on a single line.
      *
      *
      * @return Boolean
-     *
      */
     public Boolean getWrap()  {
         return getAttributeAsBoolean("wrap");
     }
 
     /**
-    * If true, text that exceeds the specified size of the form item will be clipped
-    *
-    * @param clipValue clipValue Default value is false
-    */
+     * If true, text that exceeds the specified size of the form item will be clipped
+     *
+     * @param clipValue clipValue Default value is false
+     */
     public void setClipValue(Boolean clipValue) {
         setAttribute("clipValue", clipValue);
     }
+
     /**
      * If true, text that exceeds the specified size of the form item will be clipped
      *
      *
      * @return Boolean
-     *
      */
     public Boolean getClipValue()  {
         return getAttributeAsBoolean("clipValue");
     }
 
     /**
-    * Base CSS class for this item
-    *
-    * @param textBoxStyle textBoxStyle Default value is "staticTextItem"
-    */
+     * Base CSS class for this item
+     *
+     * @param textBoxStyle textBoxStyle Default value is "staticTextItem"
+     */
     public void setTextBoxStyle(String textBoxStyle) {
         setAttribute("textBoxStyle", textBoxStyle);
     }
+
     /**
      * Base CSS class for this item
      *
      *
      * @return String
-     *
      */
     public String getTextBoxStyle()  {
         return getAttributeAsString("textBoxStyle");
     }
 
     /**
-    * By default HTML values in a staticTextItem will be interpreted by the browser.&#010 Setting this flag to true will causes HTML characters to be escaped, meaning the&#010 raw value of the field (for example <code>"&lt;b&gt;AAA&lt;/b&gt;"</code>) is displayed&#010 to the user rather than the interpreted HTML (for example <code>"<b>AAA</b>"</code>)
-    *
-    * @param outputAsHTML outputAsHTML Default value is false
-    */
+     * By default HTML values in a staticTextItem will be interpreted by the browser. Setting this flag to true will causes
+     * HTML characters to be escaped, meaning the raw value of the field (for example <code>"&lt;b&gt;AAA&lt;/b&gt;"</code>) is
+     * displayed to the user rather than the interpreted HTML (for example <code>"<b>AAA</b>"</code>)
+     *
+     * @param outputAsHTML outputAsHTML Default value is false
+     */
     public void setOutputAsHTML(Boolean outputAsHTML) {
         setAttribute("outputAsHTML", outputAsHTML);
     }
+
     /**
-     * By default HTML values in a staticTextItem will be interpreted by the browser.&#010 Setting this flag to true will causes HTML characters to be escaped, meaning the&#010 raw value of the field (for example <code>"&lt;b&gt;AAA&lt;/b&gt;"</code>) is displayed&#010 to the user rather than the interpreted HTML (for example <code>"<b>AAA</b>"</code>)
+     * By default HTML values in a staticTextItem will be interpreted by the browser. Setting this flag to true will causes
+     * HTML characters to be escaped, meaning the raw value of the field (for example <code>"&lt;b&gt;AAA&lt;/b&gt;"</code>) is
+     * displayed to the user rather than the interpreted HTML (for example <code>"<b>AAA</b>"</code>)
      *
      *
      * @return Boolean
-     *
      */
     public Boolean getOutputAsHTML()  {
         return getAttributeAsBoolean("outputAsHTML");

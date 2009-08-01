@@ -55,10 +55,11 @@ import com.smartgwt.client.util.JSOHelper;
 import com.smartgwt.client.util.EnumUtil;
 import com.google.gwt.event.shared.*;
 import com.google.gwt.event.shared.HasHandlers;
-   /**
-    * FormItem for rich text (HTML) editing. Makes use of a {@link com.smartgwt.client.widgets.RichTextEditor} as the &#010 editing interface.
 
-    */
+/**
+ * FormItem for rich text (HTML) editing. Makes use of a {@link com.smartgwt.client.widgets.RichTextEditor} as the  editing
+ * interface.
+ */
 public class RichTextItem extends CanvasItem {
 
     public static RichTextItem getOrCreateRef(JavaScriptObject jsObj) {
@@ -71,7 +72,6 @@ public class RichTextItem extends CanvasItem {
             return new RichTextItem(jsObj);
         }
     }
-
 
     public RichTextItem(){
         setType("RichTextItem");
@@ -95,57 +95,57 @@ public class RichTextItem extends CanvasItem {
     // ********************* Properties / Attributes ***********************
 
     /**
-    * Don't show the title for rich text items by default
-    *
-    * @param showTitle showTitle Default value is false
-    */
+     * Don't show the title for rich text items by default
+     *
+     * @param showTitle showTitle Default value is false
+     */
     public void setShowTitle(Boolean showTitle) {
         setAttribute("showTitle", showTitle);
     }
+
     /**
      * Don't show the title for rich text items by default
      *
      *
      * @return Boolean
-     *
      */
     public Boolean getShowTitle()  {
         return getAttributeAsBoolean("showTitle");
     }
 
     /**
-    * By default RichTextItems take up an entire row
-    *
-    * @param startRow startRow Default value is true
-    */
+     * By default RichTextItems take up an entire row
+     *
+     * @param startRow startRow Default value is true
+     */
     public void setStartRow(Boolean startRow) {
         setAttribute("startRow", startRow);
     }
+
     /**
      * By default RichTextItems take up an entire row
      *
      *
      * @return Boolean
-     *
      */
     public Boolean getStartRow()  {
         return getAttributeAsBoolean("startRow");
     }
 
     /**
-    * By default RichTextItems take up an entire row
-    *
-    * @param endRow endRow Default value is true
-    */
+     * By default RichTextItems take up an entire row
+     *
+     * @param endRow endRow Default value is true
+     */
     public void setEndRow(Boolean endRow) {
         setAttribute("endRow", endRow);
     }
+
     /**
      * By default RichTextItems take up an entire row
      *
      *
      * @return Boolean
-     *
      */
     public Boolean getEndRow()  {
         return getAttributeAsBoolean("endRow");

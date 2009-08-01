@@ -55,10 +55,20 @@ import com.smartgwt.client.util.JSOHelper;
 import com.smartgwt.client.util.EnumUtil;
 import com.google.gwt.event.shared.*;
 import com.google.gwt.event.shared.HasHandlers;
-   /**
-    * An atomic type such as a string or number, that is generally stored, displayed and&#010 manipulated as a single value.&#010 <P>&#010 SimpleTypes can be created at any time, and subsequently referred to as a &#010 {@link com.smartgwt.client.data.DataSourceField#getType 'field type'} in {@link com.smartgwt.client.data.DataSource} and&#010 {@link com.smartgwt.client.widgets.DataBoundComponent}.  This allows you to define&#010 {@link com.smartgwt.client.data.SimpleType#getValidators 'validation'}, {@link com.smartgwt.client.data.SimpleType#normalDisplayFormatter}&#010 and {@link com.smartgwt.client.data.SimpleType#getEditorType 'editing'} behaviors for a type to be reused across all&#010 {@link com.smartgwt.client.widgets.DataBoundComponent}.&#010 <P>&#010 Note that the term "simpleType" is used in the same sense as in&#010 <a href='XML Schema' onclick="window.open('XML Schema');return false;">http://www.w3.org/TR/xmlschema-0/</a>, and&#010 {@link com.smartgwt.client.data.XMLTools#loadXMLSchema} will create new SimpleType definitions.&#010 <P>&#010 An ${isc.DocUtils.linkForExampleId('customSimpleType', 'example')} is here.
 
-    */
+/**
+ * An atomic type such as a string or number, that is generally stored, displayed and manipulated as a single value. <P>
+ * SimpleTypes can be created at any time, and subsequently referred to as a  {@link
+ * com.smartgwt.client.data.DataSourceField#getType 'field type'} in {@link com.smartgwt.client.data.DataSource} and {@link
+ * com.smartgwt.client.widgets.DataBoundComponent}.  This allows you to define {@link
+ * com.smartgwt.client.data.SimpleType#getValidators 'validation'}, {@link
+ * com.smartgwt.client.data.SimpleType#normalDisplayFormatter} and {@link com.smartgwt.client.data.SimpleType#getEditorType
+ * 'editing'} behaviors for a type to be reused across all {@link com.smartgwt.client.widgets.DataBoundComponent}. <P> Note
+ * that the term "simpleType" is used in the same sense as in <a href='XML Schema' onclick="window.open('XML
+ * Schema');return false;">http://www.w3.org/TR/xmlschema-0/</a>, and {@link
+ * com.smartgwt.client.data.XMLTools#loadXMLSchema} will create new SimpleType definitions. <P> An
+ * ${isc.DocUtils.linkForExampleId('customSimpleType', 'example')} is here.
+ */
 public class SimpleType extends BaseClass {
 
     public static SimpleType getOrCreateRef(JavaScriptObject jsObj) {
@@ -70,7 +80,6 @@ public class SimpleType extends BaseClass {
             return new SimpleType(jsObj);
         }
     }
-
 
     public SimpleType(){
         
@@ -87,40 +96,42 @@ public class SimpleType extends BaseClass {
     // ********************* Properties / Attributes ***********************
 
     /**
-    * Name of the type, used to refer to the type from {@link com.smartgwt.client.data.DataSourceField#getName 'field.name'}.
-    *
-    * @param name name Default value is null
-    * @throws IllegalStateException this property cannot be changed after the underlying component has been created
-    */
+     * Name of the type, used to refer to the type from {@link com.smartgwt.client.data.DataSourceField#getName 'field.name'}.
+     *
+     * @param name name Default value is null
+     * @throws IllegalStateException this property cannot be changed after the underlying component has been created
+     */
     public void setName(String name)  throws IllegalStateException {
         setAttribute("name", name, false);
     }
+
     /**
      * Name of the type, used to refer to the type from {@link com.smartgwt.client.data.DataSourceField#getName 'field.name'}.
      *
      *
      * @return String
-     *
      */
     public String getName()  {
         return getAttributeAsString("name");
     }
 
     /**
-    * Name of another SimpleType from which this type should inherit.&#010 <P>&#010 Validators, if any, will be combined.  All other SimpleType properties default to the&#010 inherited type's value.
-    *
-    * @param inheritsFrom inheritsFrom Default value is null
-    * @throws IllegalStateException this property cannot be changed after the underlying component has been created
-    */
+     * Name of another SimpleType from which this type should inherit. <P> Validators, if any, will be combined.  All other
+     * SimpleType properties default to the inherited type's value.
+     *
+     * @param inheritsFrom inheritsFrom Default value is null
+     * @throws IllegalStateException this property cannot be changed after the underlying component has been created
+     */
     public void setInheritsFrom(String inheritsFrom)  throws IllegalStateException {
         setAttribute("inheritsFrom", inheritsFrom, false);
     }
+
     /**
-     * Name of another SimpleType from which this type should inherit.&#010 <P>&#010 Validators, if any, will be combined.  All other SimpleType properties default to the&#010 inherited type's value.
+     * Name of another SimpleType from which this type should inherit. <P> Validators, if any, will be combined.  All other
+     * SimpleType properties default to the inherited type's value.
      *
      *
      * @return String
-     *
      */
     public String getInheritsFrom()  {
         return getAttributeAsString("inheritsFrom");
@@ -132,21 +143,21 @@ public class SimpleType extends BaseClass {
 
     // ********************* Static Methods ***********************
 
-        /**
-         * Retrieve a simpleType definition by type name&#010
-         * @param typeName the <code>name</code> of the simpleType to return
-         *
-         * @return ssimple type object
-         */
-        public static native SimpleType getType(String typeName) /*-{
-            var ret = $wnd.isc.SimpleType.getType(typeName);
-            if(ret == null || ret === undefined) return null;
-            var retVal = @com.smartgwt.client.core.BaseClass::getRef(Lcom/google/gwt/core/client/JavaScriptObject;)(ret);
-            if(retVal == null) {
-                retVal = @com.smartgwt.client.data.SimpleType::new(Lcom/google/gwt/core/client/JavaScriptObject;)(ret);
-            }
-            return retVal;
-        }-*/;
+    /**
+     * Retrieve a simpleType definition by type name
+     * @param typeName the <code>name</code> of the simpleType to return
+     *
+     * @return ssimple type object
+     */
+    public static native SimpleType getType(String typeName) /*-{
+        var ret = $wnd.isc.SimpleType.getType(typeName);
+        if(ret == null || ret === undefined) return null;
+        var retVal = @com.smartgwt.client.core.BaseClass::getRef(Lcom/google/gwt/core/client/JavaScriptObject;)(ret);
+        if(retVal == null) {
+            retVal = @com.smartgwt.client.data.SimpleType::new(Lcom/google/gwt/core/client/JavaScriptObject;)(ret);
+        }
+        return retVal;
+    }-*/;
 
 
 
