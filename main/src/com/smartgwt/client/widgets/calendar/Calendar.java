@@ -56,7 +56,7 @@ import com.smartgwt.client.util.EnumUtil;
 import com.google.gwt.event.shared.*;
 import com.google.gwt.event.shared.HasHandlers;
    /**
-    * The Calendar component provides several different ways for a user to view and edit a set of&#010 events. Note that the <b>ISC_Calendar.js</b> module must be loaded to make use of the Calendar&#010 class.&#010 <P>&#010 <b>CalendarEvents</b>&#010 <P>&#010 Events are represented as ordinary JavaScript Objects (see {@link com.smartgwt.client.widgets.calendar.CalendarEvent}).  The&#010 Calendar expects to be able to read and write a basic set of properties on events: name,&#010 startDate, endDate, description, etc, which can be stored under configurable property names&#010 (see eg {@link com.smartgwt.client.widgets.calendar.Calendar#getStartDateField startDateField}.&#010 <P>&#010 Much like a {@link com.smartgwt.client.widgets.grid.ListGrid} manages it's ListGridRecords, the Calendar can either be passed&#010 a ordinary Array of CalendarEvents or can fetch data from a DataSource.&#010 <P>&#010 If the calendar is bound to a DataSource, event changes by user action or by calling methods&#010 will be saved to the DataSource.&#010 <P>&#010 <b>Navigation</b>&#010 <P>&#010 The calendar supports a {@link com.smartgwt.client.widgets.calendar.Calendar#getWeekView weekView}, {@link com.smartgwt.client.widgets.calendar.Calendar#getDayView dayView}&#010 and {@link com.smartgwt.client.widgets.calendar.Calendar#getMonthView monthView} by default.  The user can navigate using back and&#010 forward buttons or via an attached {@link com.smartgwt.client.widgets.calendar.Calendar#getDateChooser dateChooser}.&#010 <P>&#010 <b>Event Manipulation</b>&#010 <P>&#010 Events can be created via clicking on the day, week or month views, or via the "Add Event"&#010 button.  In the day and week views, the user may click and drag to create an event of a&#010 specific duration.&#010 <P>&#010 Creating an event via click or click and drag pops up the&#010 {@link com.smartgwt.client.widgets.calendar.Calendar#getEventDialog eventDialog}, which provides a simple form for quick event&#010 entry (only one field, the description, is required by default).  &#010 <P>&#010 A separate editor called the {@link com.smartgwt.client.widgets.calendar.Calendar#getEventEditor eventEditor} provides an interface&#010 for editing all possible properties of an event, including custom properties.  The&#010 EventEditor is used whenever a pre-existing event is being edited, and can also be invoked&#010 by the user wherever the simpler EventDialog appears.&#010 <P>&#010 Events can also be programmatically {@link com.smartgwt.client.widgets.calendar.Calendar#addEvent},&#010 {@link com.smartgwt.client.widgets.calendar.Calendar#removeEvent}, or {@link com.smartgwt.client.widgets.calendar.Calendar#updateEvent}.
+    * The Calendar component provides several different ways for a user to view and edit a set of&#010 events. Note that the <b>ISC_Calendar.js</b> module must be loaded to make use of the Calendar&#010 class.&#010 <P>&#010 <b>CalendarEvents</b>&#010 <P>&#010 Events are represented as ordinary JavaScript Objects (see {@link com.smartgwt.client.widgets.calendar.CalendarEvent}).  The&#010 Calendar expects to be able to read and write a basic set of properties on events: name,&#010 startDate, endDate, description, etc, which can be stored under configurable property names&#010 (see eg {@link com.smartgwt.client.widgets.calendar.Calendar#getStartDateField startDateField}.&#010 <P>&#010 Much like a {@link com.smartgwt.client.widgets.grid.ListGrid} manages it's ListGridRecords, the Calendar can either be passed&#010 a ordinary Array of CalendarEvents or can fetch data from a DataSource.&#010 <P>&#010 If the calendar is bound to a DataSource, event changes by user action or by calling methods&#010 will be saved to the DataSource.&#010 <P>&#010 <b>Navigation</b>&#010 <P>&#010 The calendar supports a {@link com.smartgwt.client.widgets.calendar.Calendar#getWeekView 'WeekView'}, {@link com.smartgwt.client.widgets.calendar.Calendar#getDayView 'DayView'}&#010 and {@link com.smartgwt.client.widgets.calendar.Calendar#getMonthView 'MonthView'} by default.  The user can navigate using back and&#010 forward buttons or via an attached {@link com.smartgwt.client.widgets.calendar.Calendar#getDateChooser 'DateChooser'}.&#010 <P>&#010 <b>Event Manipulation</b>&#010 <P>&#010 Events can be created via clicking on the day, week or month views, or via the "Add Event"&#010 button.  In the day and week views, the user may click and drag to create an event of a&#010 specific duration.&#010 <P>&#010 Creating an event via click or click and drag pops up the&#010 {@link com.smartgwt.client.widgets.calendar.Calendar#getEventDialog 'EventDialog'}, which provides a simple form for quick event&#010 entry (only one field, the description, is required by default).  &#010 <P>&#010 A separate editor called the {@link com.smartgwt.client.widgets.calendar.Calendar#getEventEditor 'EventEditor'} provides an interface&#010 for editing all possible properties of an event, including custom properties.  The&#010 EventEditor is used whenever a pre-existing event is being edited, and can also be invoked&#010 by the user wherever the simpler EventDialog appears.&#010 <P>&#010 Events can also be programmatically {@link com.smartgwt.client.widgets.calendar.Calendar#addEvent},&#010 {@link com.smartgwt.client.widgets.calendar.Calendar#removeEvent}, or {@link com.smartgwt.client.widgets.calendar.Calendar#updateEvent}.
 
     */
 
@@ -371,7 +371,7 @@ public class Calendar extends Canvas  implements DataBoundComponent, com.smartgw
     }
 
     /**
-    * If set, causes the {@link com.smartgwt.client.widgets.calendar.Calendar#getWorkdayStart workdayStart} to be sized to fill the available space&#010 in the day view and week view, and automatically scrolls these views to the start of the&#010 workday when the calendar is first displayed and whenever the user switches to a new day or&#010 week.
+    * If set, causes the {@link com.smartgwt.client.widgets.calendar.Calendar#getWorkdayStart 'workday hours'} to be sized to fill the available space&#010 in the day view and week view, and automatically scrolls these views to the start of the&#010 workday when the calendar is first displayed and whenever the user switches to a new day or&#010 week.
     *
     * @param scrollToWorkday scrollToWorkday Default value is false
     * @throws IllegalStateException this property cannot be changed after the component has been created
@@ -380,7 +380,7 @@ public class Calendar extends Canvas  implements DataBoundComponent, com.smartgw
         setAttribute("scrollToWorkday", scrollToWorkday, false);
     }
     /**
-     * If set, causes the {@link com.smartgwt.client.widgets.calendar.Calendar#getWorkdayStart workdayStart} to be sized to fill the available space&#010 in the day view and week view, and automatically scrolls these views to the start of the&#010 workday when the calendar is first displayed and whenever the user switches to a new day or&#010 week.
+     * If set, causes the {@link com.smartgwt.client.widgets.calendar.Calendar#getWorkdayStart 'workday hours'} to be sized to fill the available space&#010 in the day view and week view, and automatically scrolls these views to the start of the&#010 workday when the calendar is first displayed and whenever the user switches to a new day or&#010 week.
      *
      *
      * @return Boolean
@@ -691,7 +691,7 @@ public class Calendar extends Canvas  implements DataBoundComponent, com.smartgw
     }
 
     /**
-    * Determines whether the {@link com.smartgwt.client.widgets.calendar.Calendar#getDateChooser dateChooser} is displayed.
+    * Determines whether the {@link com.smartgwt.client.widgets.calendar.Calendar#getDateChooser 'dateChooser'} is displayed.
     *
     * @param showDateChooser showDateChooser Default value is true
     * @throws IllegalStateException this property cannot be changed after the component has been created
@@ -700,7 +700,7 @@ public class Calendar extends Canvas  implements DataBoundComponent, com.smartgw
         setAttribute("showDateChooser", showDateChooser, false);
     }
     /**
-     * Determines whether the {@link com.smartgwt.client.widgets.calendar.Calendar#getDateChooser dateChooser} is displayed.
+     * Determines whether the {@link com.smartgwt.client.widgets.calendar.Calendar#getDateChooser 'dateChooser'} is displayed.
      *
      *
      * @return Boolean
@@ -1073,7 +1073,7 @@ public class Calendar extends Canvas  implements DataBoundComponent, com.smartgw
     }
 
     /**
-    * The text to be displayed when a user hovers over the {@link com.smartgwt.client.widgets.calendar.Calendar#getPreviousButton previousButton}&#010 toolbar button
+    * The text to be displayed when a user hovers over the {@link com.smartgwt.client.widgets.calendar.Calendar#getPreviousButton 'previous'}&#010 toolbar button
     *
     * @param previousButtonHoverText previousButtonHoverText Default value is "Previous"
     * @throws IllegalStateException this property cannot be changed after the component has been created
@@ -1082,7 +1082,7 @@ public class Calendar extends Canvas  implements DataBoundComponent, com.smartgw
         setAttribute("previousButtonHoverText", previousButtonHoverText, false);
     }
     /**
-     * The text to be displayed when a user hovers over the {@link com.smartgwt.client.widgets.calendar.Calendar#getPreviousButton previousButton}&#010 toolbar button
+     * The text to be displayed when a user hovers over the {@link com.smartgwt.client.widgets.calendar.Calendar#getPreviousButton 'previous'}&#010 toolbar button
      *
      *
      * @return String
@@ -1093,7 +1093,7 @@ public class Calendar extends Canvas  implements DataBoundComponent, com.smartgw
     }
 
     /**
-    * The text to be displayed when a user hovers over the {@link com.smartgwt.client.widgets.calendar.Calendar#getNextButton nextButton} &#010 toolbar button
+    * The text to be displayed when a user hovers over the {@link com.smartgwt.client.widgets.calendar.Calendar#getNextButton 'next'} &#010 toolbar button
     *
     * @param nextButtonHoverText nextButtonHoverText Default value is "Next"
     * @throws IllegalStateException this property cannot be changed after the component has been created
@@ -1102,7 +1102,7 @@ public class Calendar extends Canvas  implements DataBoundComponent, com.smartgw
         setAttribute("nextButtonHoverText", nextButtonHoverText, false);
     }
     /**
-     * The text to be displayed when a user hovers over the {@link com.smartgwt.client.widgets.calendar.Calendar#getNextButton nextButton} &#010 toolbar button
+     * The text to be displayed when a user hovers over the {@link com.smartgwt.client.widgets.calendar.Calendar#getNextButton 'next'} &#010 toolbar button
      *
      *
      * @return String
@@ -1113,7 +1113,7 @@ public class Calendar extends Canvas  implements DataBoundComponent, com.smartgw
     }
 
     /**
-    * The text to be displayed when a user hovers over the {@link com.smartgwt.client.widgets.calendar.Calendar#getAddEventButton addEventButton}&#010 toolbar button
+    * The text to be displayed when a user hovers over the {@link com.smartgwt.client.widgets.calendar.Calendar#getAddEventButton 'add event'}&#010 toolbar button
     *
     * @param addEventButtonHoverText addEventButtonHoverText Default value is "Add an event"
     * @throws IllegalStateException this property cannot be changed after the component has been created
@@ -1122,7 +1122,7 @@ public class Calendar extends Canvas  implements DataBoundComponent, com.smartgw
         setAttribute("addEventButtonHoverText", addEventButtonHoverText, false);
     }
     /**
-     * The text to be displayed when a user hovers over the {@link com.smartgwt.client.widgets.calendar.Calendar#getAddEventButton addEventButton}&#010 toolbar button
+     * The text to be displayed when a user hovers over the {@link com.smartgwt.client.widgets.calendar.Calendar#getAddEventButton 'add event'}&#010 toolbar button
      *
      *
      * @return String
@@ -1133,7 +1133,7 @@ public class Calendar extends Canvas  implements DataBoundComponent, com.smartgw
     }
 
     /**
-    * The text to be displayed when a user hovers over the {@link com.smartgwt.client.widgets.calendar.Calendar#getDatePickerButton datePickerButton}&#010 toolbar button
+    * The text to be displayed when a user hovers over the {@link com.smartgwt.client.widgets.calendar.Calendar#getDatePickerButton 'date picker'}&#010 toolbar button
     *
     * @param datePickerHoverText datePickerHoverText Default value is "Choose a date"
     * @throws IllegalStateException this property cannot be changed after the component has been created
@@ -1142,7 +1142,7 @@ public class Calendar extends Canvas  implements DataBoundComponent, com.smartgw
         setAttribute("datePickerHoverText", datePickerHoverText, false);
     }
     /**
-     * The text to be displayed when a user hovers over the {@link com.smartgwt.client.widgets.calendar.Calendar#getDatePickerButton datePickerButton}&#010 toolbar button
+     * The text to be displayed when a user hovers over the {@link com.smartgwt.client.widgets.calendar.Calendar#getDatePickerButton 'date picker'}&#010 toolbar button
      *
      *
      * @return String

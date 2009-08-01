@@ -115,14 +115,14 @@ public class Page {
         }-*/;
 
         /**
-         * Specify the directory for miscellaneous app-specific files <b>other than</b> images, such as&#010 {@link com.smartgwt.client.widgets.HTMLFlow#getContentsURL contentsURL}, {@link com.smartgwt.client.widgets.ViewLoader}, &#010 XML or JSON flat data files, videos, etc.&#010 <P>&#010 This URL also becomes available via the prefix "[APPFILES]" for {@link com.smartgwt.client.rpc.RPCRequest#getActionURL actionURL}.&#010 <P>&#010 Defaults to the value of {@link com.smartgwt.client.util.Page#getAppDir}, that is, the current directory.&#010&#010
+         * Specify the directory for miscellaneous app-specific files <b>other than</b> images, such as&#010 {@link com.smartgwt.client.widgets.HTMLFlow#getContentsURL 'HTML fragments'}, {@link com.smartgwt.client.widgets.ViewLoader}, &#010 XML or JSON flat data files, videos, etc.&#010 <P>&#010 This URL also becomes available via the prefix "[APPFILES]" for {@link com.smartgwt.client.rpc.RPCRequest#getActionURL actionURL}.&#010 <P>&#010 Defaults to the value of {@link com.smartgwt.client.util.Page#getAppDir}, that is, the current directory.&#010&#010
          */
         public static native void setAppFilesDir() /*-{
             $wnd.isc.Page.setAppFilesDir();
         }-*/;
 
         /**
-         * Specify the directory for miscellaneous app-specific files <b>other than</b> images, such as&#010 {@link com.smartgwt.client.widgets.HTMLFlow#getContentsURL contentsURL}, {@link com.smartgwt.client.widgets.ViewLoader}, &#010 XML or JSON flat data files, videos, etc.&#010 <P>&#010 This URL also becomes available via the prefix "[APPFILES]" for {@link com.smartgwt.client.rpc.RPCRequest#getActionURL actionURL}.&#010 <P>&#010 Defaults to the value of {@link com.smartgwt.client.util.Page#getAppDir}, that is, the current directory.&#010&#010
+         * Specify the directory for miscellaneous app-specific files <b>other than</b> images, such as&#010 {@link com.smartgwt.client.widgets.HTMLFlow#getContentsURL 'HTML fragments'}, {@link com.smartgwt.client.widgets.ViewLoader}, &#010 XML or JSON flat data files, videos, etc.&#010 <P>&#010 This URL also becomes available via the prefix "[APPFILES]" for {@link com.smartgwt.client.rpc.RPCRequest#getActionURL actionURL}.&#010 <P>&#010 Defaults to the value of {@link com.smartgwt.client.util.Page#getAppDir}, that is, the current directory.&#010&#010
          * @param URL New app files URL.
          */
         public static native void setAppFilesDir(String URL) /*-{

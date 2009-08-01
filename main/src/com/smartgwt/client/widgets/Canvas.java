@@ -787,7 +787,7 @@ public class Canvas extends BaseWidget  implements com.smartgwt.client.widgets.e
 
     /**
     * The contents of a canvas or label widget. Any HTML string is acceptable.
-    * Changes the contents of a widget to newContents, an HTML string.&#010 <P>&#010 When {@link com.smartgwt.client.widgets.Canvas#getDynamicContents dynamicContents} is set, <code>setContents()</code> can&#010 also be called with no arguments to cause contents to be re-evaluated.&#010&#010
+    * Changes the contents of a widget to newContents, an HTML string.&#010 <P>&#010 When {@link com.smartgwt.client.widgets.Canvas#getDynamicContents 'dynamicContents'} is set, <code>setContents()</code> can&#010 also be called with no arguments to cause contents to be re-evaluated.&#010&#010
     * <p><b>Note : </b> This is an advanced setting</p>
     *
     * @param contents an HTML string to be set as the contents of this widget. Default value is "&nbsp;"
@@ -847,7 +847,7 @@ public class Canvas extends BaseWidget  implements com.smartgwt.client.widgets.e
     }
 
     /**
-    * Set the CSS padding of this component, in pixels.  Padding provides space between the&#010 border and the component's contents.&#010 <P>&#010 This property sets the same thickness of padding on every side.  Differing per-side&#010 padding can be set in a CSS style and applied via {@link com.smartgwt.client.widgets.Canvas#getStyleName styleName}.&#010 <P>&#010 Note that CSS padding does not affect the placement of {@link com.smartgwt.client.widgets.Canvas#getChildren children}.  To&#010 provide a blank area around children, either use {@link com.smartgwt.client.widgets.Canvas#getMargin margin} or use&#010 a {@link com.smartgwt.client.widgets.layout.Layout} as the parent instead, and use properties such as&#010 {@link com.smartgwt.client.widgets.layout.Layout#getLayoutMargin layoutMargin} to create blank space.
+    * Set the CSS padding of this component, in pixels.  Padding provides space between the&#010 border and the component's contents.&#010 <P>&#010 This property sets the same thickness of padding on every side.  Differing per-side&#010 padding can be set in a CSS style and applied via {@link com.smartgwt.client.widgets.Canvas#getStyleName styleName}.&#010 <P>&#010 Note that CSS padding does not affect the placement of {@link com.smartgwt.client.widgets.Canvas#getChildren children}.  To&#010 provide a blank area around children, either use {@link com.smartgwt.client.widgets.Canvas#getMargin 'CSS margins'} or use&#010 a {@link com.smartgwt.client.widgets.layout.Layout} as the parent instead, and use properties such as&#010 {@link com.smartgwt.client.widgets.layout.Layout#getLayoutMargin layoutMargin} to create blank space.
     * Set the CSS padding of this component, in pixels.  Padding provides space between the border&#010 and the component's contents.&#010 <P>&#010 This property sets the same thickness of padding on every side.  Differing per-side&#010 padding can be set in a CSS style and applied via {@link com.smartgwt.client.widgets.Canvas#getStyleName styleName}.&#010 <P>&#010
     *
     * @param padding new padding in pixels. Default value is null
@@ -856,7 +856,7 @@ public class Canvas extends BaseWidget  implements com.smartgwt.client.widgets.e
         setAttribute("padding", padding, true);
     }
     /**
-     * Set the CSS padding of this component, in pixels.  Padding provides space between the&#010 border and the component's contents.&#010 <P>&#010 This property sets the same thickness of padding on every side.  Differing per-side&#010 padding can be set in a CSS style and applied via {@link com.smartgwt.client.widgets.Canvas#getStyleName styleName}.&#010 <P>&#010 Note that CSS padding does not affect the placement of {@link com.smartgwt.client.widgets.Canvas#getChildren children}.  To&#010 provide a blank area around children, either use {@link com.smartgwt.client.widgets.Canvas#getMargin margin} or use&#010 a {@link com.smartgwt.client.widgets.layout.Layout} as the parent instead, and use properties such as&#010 {@link com.smartgwt.client.widgets.layout.Layout#getLayoutMargin layoutMargin} to create blank space.
+     * Set the CSS padding of this component, in pixels.  Padding provides space between the&#010 border and the component's contents.&#010 <P>&#010 This property sets the same thickness of padding on every side.  Differing per-side&#010 padding can be set in a CSS style and applied via {@link com.smartgwt.client.widgets.Canvas#getStyleName styleName}.&#010 <P>&#010 Note that CSS padding does not affect the placement of {@link com.smartgwt.client.widgets.Canvas#getChildren children}.  To&#010 provide a blank area around children, either use {@link com.smartgwt.client.widgets.Canvas#getMargin 'CSS margins'} or use&#010 a {@link com.smartgwt.client.widgets.layout.Layout} as the parent instead, and use properties such as&#010 {@link com.smartgwt.client.widgets.layout.Layout#getLayoutMargin layoutMargin} to create blank space.
      *
      *
      * @return Integer
@@ -1049,7 +1049,7 @@ public class Canvas extends BaseWidget  implements com.smartgwt.client.widgets.e
              
     /**
     * Controls what happens when the drawn size of the content of a Canvas is either&#010   greater or smaller than the specified size of the Canvas.  Similar to the CSS&#010   property overflow, but consistent across browsers.  See Overflow type for&#010   details.
-    * Update the {@link com.smartgwt.client.widgets.Canvas#getOverflow overflow} of a Canvas after it has been created.&#010
+    * Update the {@link com.smartgwt.client.widgets.Canvas#getOverflow 'overflow'} of a Canvas after it has been created.&#010
     *
     * @param overflow New overflow value.. Default value is Canvas.VISIBLE
     */
@@ -1068,7 +1068,7 @@ public class Canvas extends BaseWidget  implements com.smartgwt.client.widgets.e
     }
 
     /**
-    * Whether to use the browser's native scrollbars or SmartGWT-based scrollbars.&#010 <P>&#010 SmartGWT-based scrollbars are skinnable, giving you complete control over look and&#010 feel.  SmartGWT-based scrollbars also enable some interactions not possible with&#010 native scrollbars, such as {@link com.smartgwt.client.widgets.grid.ListGrid#getFixedRecordHeights fixedRecordHeights}&#010 in grids in combination with {@link com.smartgwt.client.widgets.grid.ListGrid#getDataPageSize dataPageSize}.&#010 <P>&#010 Native browser scrollbars are slightly faster simply because there are less SmartGWT&#010 components that need to be created, drawn and updated.  Each visible SmartGWT-based&#010 scrollbar on the screen has roughly the impact of two StretchImgButtons.&#010 <P>&#010 SmartGWT is always aware of the size of the scrollbar, regardless of whether native&#010 or custom scrollbars are used, and regardless of what operating system and/or operating&#010 system "theme" or "skin" is in use.  This means SmartGWT will correctly report the&#010 {@link com.smartgwt.client.widgets.Canvas#getViewportHeight}, that is, the interior area of the&#010 widget excluding space taken by scrollbars, which is key for exactly filling a component&#010 with content without creating unnecessary scrolling.&#010 <P>&#010 The <code>showCustomScrollbars</code> setting is typically overridden in load_skin.js in&#010 order to change the default for all SmartGWT components at once, like so:&#010 <pre>&#010     isc.Canvas.addProperties({ showCustomScrollbars:false });&#010 </pre>
+    * Whether to use the browser's native scrollbars or SmartGWT-based scrollbars.&#010 <P>&#010 SmartGWT-based scrollbars are skinnable, giving you complete control over look and&#010 feel.  SmartGWT-based scrollbars also enable some interactions not possible with&#010 native scrollbars, such as {@link com.smartgwt.client.widgets.grid.ListGrid#getFixedRecordHeights 'variable height records'}&#010 in grids in combination with {@link com.smartgwt.client.widgets.grid.ListGrid#getDataPageSize 'data paging'}.&#010 <P>&#010 Native browser scrollbars are slightly faster simply because there are less SmartGWT&#010 components that need to be created, drawn and updated.  Each visible SmartGWT-based&#010 scrollbar on the screen has roughly the impact of two StretchImgButtons.&#010 <P>&#010 SmartGWT is always aware of the size of the scrollbar, regardless of whether native&#010 or custom scrollbars are used, and regardless of what operating system and/or operating&#010 system "theme" or "skin" is in use.  This means SmartGWT will correctly report the&#010 {@link com.smartgwt.client.widgets.Canvas#getViewportHeight}, that is, the interior area of the&#010 widget excluding space taken by scrollbars, which is key for exactly filling a component&#010 with content without creating unnecessary scrolling.&#010 <P>&#010 The <code>showCustomScrollbars</code> setting is typically overridden in load_skin.js in&#010 order to change the default for all SmartGWT components at once, like so:&#010 <pre>&#010     isc.Canvas.addProperties({ showCustomScrollbars:false });&#010 </pre>
     * <p><b>Note : </b> This is an advanced setting</p>
     *
     * @param showCustomScrollbars showCustomScrollbars Default value is true
@@ -1077,7 +1077,7 @@ public class Canvas extends BaseWidget  implements com.smartgwt.client.widgets.e
         setAttribute("showCustomScrollbars", showCustomScrollbars, true);
     }
     /**
-     * Whether to use the browser's native scrollbars or SmartGWT-based scrollbars.&#010 <P>&#010 SmartGWT-based scrollbars are skinnable, giving you complete control over look and&#010 feel.  SmartGWT-based scrollbars also enable some interactions not possible with&#010 native scrollbars, such as {@link com.smartgwt.client.widgets.grid.ListGrid#getFixedRecordHeights fixedRecordHeights}&#010 in grids in combination with {@link com.smartgwt.client.widgets.grid.ListGrid#getDataPageSize dataPageSize}.&#010 <P>&#010 Native browser scrollbars are slightly faster simply because there are less SmartGWT&#010 components that need to be created, drawn and updated.  Each visible SmartGWT-based&#010 scrollbar on the screen has roughly the impact of two StretchImgButtons.&#010 <P>&#010 SmartGWT is always aware of the size of the scrollbar, regardless of whether native&#010 or custom scrollbars are used, and regardless of what operating system and/or operating&#010 system "theme" or "skin" is in use.  This means SmartGWT will correctly report the&#010 {@link com.smartgwt.client.widgets.Canvas#getViewportHeight}, that is, the interior area of the&#010 widget excluding space taken by scrollbars, which is key for exactly filling a component&#010 with content without creating unnecessary scrolling.&#010 <P>&#010 The <code>showCustomScrollbars</code> setting is typically overridden in load_skin.js in&#010 order to change the default for all SmartGWT components at once, like so:&#010 <pre>&#010     isc.Canvas.addProperties({ showCustomScrollbars:false });&#010 </pre>
+     * Whether to use the browser's native scrollbars or SmartGWT-based scrollbars.&#010 <P>&#010 SmartGWT-based scrollbars are skinnable, giving you complete control over look and&#010 feel.  SmartGWT-based scrollbars also enable some interactions not possible with&#010 native scrollbars, such as {@link com.smartgwt.client.widgets.grid.ListGrid#getFixedRecordHeights 'variable height records'}&#010 in grids in combination with {@link com.smartgwt.client.widgets.grid.ListGrid#getDataPageSize 'data paging'}.&#010 <P>&#010 Native browser scrollbars are slightly faster simply because there are less SmartGWT&#010 components that need to be created, drawn and updated.  Each visible SmartGWT-based&#010 scrollbar on the screen has roughly the impact of two StretchImgButtons.&#010 <P>&#010 SmartGWT is always aware of the size of the scrollbar, regardless of whether native&#010 or custom scrollbars are used, and regardless of what operating system and/or operating&#010 system "theme" or "skin" is in use.  This means SmartGWT will correctly report the&#010 {@link com.smartgwt.client.widgets.Canvas#getViewportHeight}, that is, the interior area of the&#010 widget excluding space taken by scrollbars, which is key for exactly filling a component&#010 with content without creating unnecessary scrolling.&#010 <P>&#010 The <code>showCustomScrollbars</code> setting is typically overridden in load_skin.js in&#010 order to change the default for all SmartGWT components at once, like so:&#010 <pre>&#010     isc.Canvas.addProperties({ showCustomScrollbars:false });&#010 </pre>
      *
      *
      * @return Boolean
@@ -1232,7 +1232,7 @@ public class Canvas extends BaseWidget  implements com.smartgwt.client.widgets.e
     }
 
     /**
-    * Prompt displayed in hover canvas if {@link com.smartgwt.client.widgets.Canvas#getShowHover showHover} is true.
+    * Prompt displayed in hover canvas if {@link com.smartgwt.client.widgets.Canvas#getShowHover 'showHover'} is true.
     *
     * @param prompt prompt Default value is null
     */
@@ -1240,7 +1240,7 @@ public class Canvas extends BaseWidget  implements com.smartgwt.client.widgets.e
         setAttribute("prompt", prompt, true);
     }
     /**
-     * Prompt displayed in hover canvas if {@link com.smartgwt.client.widgets.Canvas#getShowHover showHover} is true.
+     * Prompt displayed in hover canvas if {@link com.smartgwt.client.widgets.Canvas#getShowHover 'showHover'} is true.
      *
      *
      * @return String
@@ -1468,7 +1468,7 @@ public class Canvas extends BaseWidget  implements com.smartgwt.client.widgets.e
     }
 
     /**
-    * If {@link com.smartgwt.client.widgets.Canvas#getShowHover showHover} is true, this property can be used to customize the&#010 width of the hover canvas shown.
+    * If {@link com.smartgwt.client.widgets.Canvas#getShowHover 'this.showHover'} is true, this property can be used to customize the&#010 width of the hover canvas shown.
     *
     * @param hoverWidth hoverWidth Default value is null
     */
@@ -1476,7 +1476,7 @@ public class Canvas extends BaseWidget  implements com.smartgwt.client.widgets.e
         setAttribute("hoverWidth", hoverWidth, true);
     }
     /**
-     * If {@link com.smartgwt.client.widgets.Canvas#getShowHover showHover} is true, this property can be used to customize the&#010 width of the hover canvas shown.
+     * If {@link com.smartgwt.client.widgets.Canvas#getShowHover 'this.showHover'} is true, this property can be used to customize the&#010 width of the hover canvas shown.
      *
      *
      * @return Integer
@@ -1840,7 +1840,7 @@ public class Canvas extends BaseWidget  implements com.smartgwt.client.widgets.e
     }
              
     /**
-    * Governs the model to be used when sizing canvases with percentage width or height, or &#010 positioning widgets with a specified {@link com.smartgwt.client.widgets.Canvas#getSnapTo snapTo}.&#010 <P>&#010 Only affects widgets with a a specified {@link com.smartgwt.client.widgets.Canvas#getPercentSource percentSource}, or &#010 widgets that have {@link com.smartgwt.client.widgets.Canvas#getSnapTo snapTo} set and are peers of some &#010 {@link com.smartgwt.client.widgets.Canvas#getMasterElement masterElement}.&#010 <P>&#010 Determines whether the coordinates used for sizing (for percentage sized widgets) and&#010 positioning (if <code>snapTo</code> is set) should be relative to the visible size or the&#010 viewport size of the percentSource or masterElement widget.
+    * Governs the model to be used when sizing canvases with percentage width or height, or &#010 positioning widgets with a specified {@link com.smartgwt.client.widgets.Canvas#getSnapTo 'snapTo'}.&#010 <P>&#010 Only affects widgets with a a specified {@link com.smartgwt.client.widgets.Canvas#getPercentSource 'percentSource'}, or &#010 widgets that have {@link com.smartgwt.client.widgets.Canvas#getSnapTo snapTo} set and are peers of some &#010 {@link com.smartgwt.client.widgets.Canvas#getMasterElement 'other canvas'}.&#010 <P>&#010 Determines whether the coordinates used for sizing (for percentage sized widgets) and&#010 positioning (if <code>snapTo</code> is set) should be relative to the visible size or the&#010 viewport size of the percentSource or masterElement widget.
     * <p><b>Note : </b> This is an advanced setting</p>
     *
     * @param percentBox percentBox Default value is "visible"
@@ -1850,7 +1850,7 @@ public class Canvas extends BaseWidget  implements com.smartgwt.client.widgets.e
         setAttribute("percentBox", percentBox.getValue(), false);
     }
     /**
-     * Governs the model to be used when sizing canvases with percentage width or height, or &#010 positioning widgets with a specified {@link com.smartgwt.client.widgets.Canvas#getSnapTo snapTo}.&#010 <P>&#010 Only affects widgets with a a specified {@link com.smartgwt.client.widgets.Canvas#getPercentSource percentSource}, or &#010 widgets that have {@link com.smartgwt.client.widgets.Canvas#getSnapTo snapTo} set and are peers of some &#010 {@link com.smartgwt.client.widgets.Canvas#getMasterElement masterElement}.&#010 <P>&#010 Determines whether the coordinates used for sizing (for percentage sized widgets) and&#010 positioning (if <code>snapTo</code> is set) should be relative to the visible size or the&#010 viewport size of the percentSource or masterElement widget.
+     * Governs the model to be used when sizing canvases with percentage width or height, or &#010 positioning widgets with a specified {@link com.smartgwt.client.widgets.Canvas#getSnapTo 'snapTo'}.&#010 <P>&#010 Only affects widgets with a a specified {@link com.smartgwt.client.widgets.Canvas#getPercentSource 'percentSource'}, or &#010 widgets that have {@link com.smartgwt.client.widgets.Canvas#getSnapTo snapTo} set and are peers of some &#010 {@link com.smartgwt.client.widgets.Canvas#getMasterElement 'other canvas'}.&#010 <P>&#010 Determines whether the coordinates used for sizing (for percentage sized widgets) and&#010 positioning (if <code>snapTo</code> is set) should be relative to the visible size or the&#010 viewport size of the percentSource or masterElement widget.
      *
      *
      * @return PercentBoxModel
@@ -1861,7 +1861,7 @@ public class Canvas extends BaseWidget  implements com.smartgwt.client.widgets.e
     }
 
     /**
-    * Position this widget such that it is aligned with ("snapped to") an edge of its &#010 {@link com.smartgwt.client.widgets.Canvas#getMasterElement masterElement} (if specified), or its&#010 {@link com.smartgwt.client.widgets.Canvas#getParentElement parentElement}.&#010 <P>&#010 Note that this property also impacts the sizing of this widget. If this widgets size&#010 is specifed as a percent value, and has no explicit&#010 {@link com.smartgwt.client.widgets.Canvas#getPercentSource percentSource}, sizing will be calculated based on the size of the &#010 masterElement when snapTo is set.&#010 <P>&#010 Possible values: BR, BL, TR, TL, R, L, B, T, C where B=Bottom, T=Top, L=Left, R=right&#010 and C=center
+    * Position this widget such that it is aligned with ("snapped to") an edge of its &#010 {@link com.smartgwt.client.widgets.Canvas#getMasterElement 'masterElement'} (if specified), or its&#010 {@link com.smartgwt.client.widgets.Canvas#getParentElement 'parentElement'}.&#010 <P>&#010 Note that this property also impacts the sizing of this widget. If this widgets size&#010 is specifed as a percent value, and has no explicit&#010 {@link com.smartgwt.client.widgets.Canvas#getPercentSource percentSource}, sizing will be calculated based on the size of the &#010 masterElement when snapTo is set.&#010 <P>&#010 Possible values: BR, BL, TR, TL, R, L, B, T, C where B=Bottom, T=Top, L=Left, R=right&#010 and C=center
     * Set the snapTo property of this canvas, and handle repositioning.&#010&#010
     *
     * @param snapTo new snapTo value. Default value is null
@@ -1870,7 +1870,7 @@ public class Canvas extends BaseWidget  implements com.smartgwt.client.widgets.e
         setAttribute("snapTo", snapTo, true);
     }
     /**
-     * Position this widget such that it is aligned with ("snapped to") an edge of its &#010 {@link com.smartgwt.client.widgets.Canvas#getMasterElement masterElement} (if specified), or its&#010 {@link com.smartgwt.client.widgets.Canvas#getParentElement parentElement}.&#010 <P>&#010 Note that this property also impacts the sizing of this widget. If this widgets size&#010 is specifed as a percent value, and has no explicit&#010 {@link com.smartgwt.client.widgets.Canvas#getPercentSource percentSource}, sizing will be calculated based on the size of the &#010 masterElement when snapTo is set.&#010 <P>&#010 Possible values: BR, BL, TR, TL, R, L, B, T, C where B=Bottom, T=Top, L=Left, R=right&#010 and C=center
+     * Position this widget such that it is aligned with ("snapped to") an edge of its &#010 {@link com.smartgwt.client.widgets.Canvas#getMasterElement 'masterElement'} (if specified), or its&#010 {@link com.smartgwt.client.widgets.Canvas#getParentElement 'parentElement'}.&#010 <P>&#010 Note that this property also impacts the sizing of this widget. If this widgets size&#010 is specifed as a percent value, and has no explicit&#010 {@link com.smartgwt.client.widgets.Canvas#getPercentSource percentSource}, sizing will be calculated based on the size of the &#010 masterElement when snapTo is set.&#010 <P>&#010 Possible values: BR, BL, TR, TL, R, L, B, T, C where B=Bottom, T=Top, L=Left, R=right&#010 and C=center
      *
      *
      * @return Return the snapTo value of this object&#010&#010
@@ -1881,7 +1881,7 @@ public class Canvas extends BaseWidget  implements com.smartgwt.client.widgets.e
     }
 
     /**
-    * If {@link com.smartgwt.client.widgets.Canvas#getSnapTo snapTo} is defined to this widget, this property can be used to&#010 define which edge of this widget should be snapped to an edge of the master or parent &#010 element.&#010 <P>&#010 If unspecified the, default snapTo behavior is set up to align the "snapTo" edge of this &#010 widget with the snapTo edge of the master or parent.
+    * If {@link com.smartgwt.client.widgets.Canvas#getSnapTo 'snapTo'} is defined to this widget, this property can be used to&#010 define which edge of this widget should be snapped to an edge of the master or parent &#010 element.&#010 <P>&#010 If unspecified the, default snapTo behavior is set up to align the "snapTo" edge of this &#010 widget with the snapTo edge of the master or parent.
     * Set the snapEdge property of this canvas, and handle repositioning.&#010&#010
     *
     * @param snapEdge new snapEdge value. Default value is null
@@ -1890,7 +1890,7 @@ public class Canvas extends BaseWidget  implements com.smartgwt.client.widgets.e
         setAttribute("snapEdge", snapEdge, true);
     }
     /**
-     * If {@link com.smartgwt.client.widgets.Canvas#getSnapTo snapTo} is defined to this widget, this property can be used to&#010 define which edge of this widget should be snapped to an edge of the master or parent &#010 element.&#010 <P>&#010 If unspecified the, default snapTo behavior is set up to align the "snapTo" edge of this &#010 widget with the snapTo edge of the master or parent.
+     * If {@link com.smartgwt.client.widgets.Canvas#getSnapTo 'snapTo'} is defined to this widget, this property can be used to&#010 define which edge of this widget should be snapped to an edge of the master or parent &#010 element.&#010 <P>&#010 If unspecified the, default snapTo behavior is set up to align the "snapTo" edge of this &#010 widget with the snapTo edge of the master or parent.
      *
      *
      * @return Return the snapEdge value of this object&#010&#010
@@ -1901,7 +1901,7 @@ public class Canvas extends BaseWidget  implements com.smartgwt.client.widgets.e
     }
 
     /**
-    * If {@link com.smartgwt.client.widgets.Canvas#getSnapTo snapTo} is defined for this widget, this property can be used to&#010 specify an offset in px or percentage for the left coordinate of this widget.&#010 <P>&#010 For example if <code>snapTo</code> is specifed as <code>"L"</code> and &#010 <code>snapOffsetLeft</code> is set to 6, this widget will be rendered 6px inside the left&#010 edge of its parent or master element.
+    * If {@link com.smartgwt.client.widgets.Canvas#getSnapTo 'snapTo'} is defined for this widget, this property can be used to&#010 specify an offset in px or percentage for the left coordinate of this widget.&#010 <P>&#010 For example if <code>snapTo</code> is specifed as <code>"L"</code> and &#010 <code>snapOffsetLeft</code> is set to 6, this widget will be rendered 6px inside the left&#010 edge of its parent or master element.
     *
     * @param snapOffsetLeft snapOffsetLeft Default value is null
     */
@@ -1909,7 +1909,7 @@ public class Canvas extends BaseWidget  implements com.smartgwt.client.widgets.e
         setAttribute("snapOffsetLeft", snapOffsetLeft, true);
     }
     /**
-     * If {@link com.smartgwt.client.widgets.Canvas#getSnapTo snapTo} is defined for this widget, this property can be used to&#010 specify an offset in px or percentage for the left coordinate of this widget.&#010 <P>&#010 For example if <code>snapTo</code> is specifed as <code>"L"</code> and &#010 <code>snapOffsetLeft</code> is set to 6, this widget will be rendered 6px inside the left&#010 edge of its parent or master element.
+     * If {@link com.smartgwt.client.widgets.Canvas#getSnapTo 'snapTo'} is defined for this widget, this property can be used to&#010 specify an offset in px or percentage for the left coordinate of this widget.&#010 <P>&#010 For example if <code>snapTo</code> is specifed as <code>"L"</code> and &#010 <code>snapOffsetLeft</code> is set to 6, this widget will be rendered 6px inside the left&#010 edge of its parent or master element.
      *
      *
      * @return Integer
@@ -1920,7 +1920,7 @@ public class Canvas extends BaseWidget  implements com.smartgwt.client.widgets.e
     }
 
     /**
-    * If {@link com.smartgwt.client.widgets.Canvas#getSnapTo snapTo} is defined for this widget, this property can be used to&#010 specify an offset in px or percentage for the top coordinate of this widget.&#010 <P>&#010 For example if <code>snapTo</code> is specifed as <code>"T"</code> and &#010 <code>snapOffsetTop</code> is set to 6, this widget will be rendered 6px below the top&#010 edge of its parent or master element.
+    * If {@link com.smartgwt.client.widgets.Canvas#getSnapTo 'snapTo'} is defined for this widget, this property can be used to&#010 specify an offset in px or percentage for the top coordinate of this widget.&#010 <P>&#010 For example if <code>snapTo</code> is specifed as <code>"T"</code> and &#010 <code>snapOffsetTop</code> is set to 6, this widget will be rendered 6px below the top&#010 edge of its parent or master element.
     *
     * @param snapOffsetTop snapOffsetTop Default value is null
     */
@@ -1928,7 +1928,7 @@ public class Canvas extends BaseWidget  implements com.smartgwt.client.widgets.e
         setAttribute("snapOffsetTop", snapOffsetTop, true);
     }
     /**
-     * If {@link com.smartgwt.client.widgets.Canvas#getSnapTo snapTo} is defined for this widget, this property can be used to&#010 specify an offset in px or percentage for the top coordinate of this widget.&#010 <P>&#010 For example if <code>snapTo</code> is specifed as <code>"T"</code> and &#010 <code>snapOffsetTop</code> is set to 6, this widget will be rendered 6px below the top&#010 edge of its parent or master element.
+     * If {@link com.smartgwt.client.widgets.Canvas#getSnapTo 'snapTo'} is defined for this widget, this property can be used to&#010 specify an offset in px or percentage for the top coordinate of this widget.&#010 <P>&#010 For example if <code>snapTo</code> is specifed as <code>"T"</code> and &#010 <code>snapOffsetTop</code> is set to 6, this widget will be rendered 6px below the top&#010 edge of its parent or master element.
      *
      *
      * @return Integer
@@ -1958,7 +1958,7 @@ public class Canvas extends BaseWidget  implements com.smartgwt.client.widgets.e
     }
 
     /**
-    * Causes this canvas to snap to its parent's grid when resizing.&#010 Note that this value defaults to the Canvas's &#010 {@link com.smartgwt.client.widgets.Canvas#getSnapToGrid snapToGrid} value if undefined.
+    * Causes this canvas to snap to its parent's grid when resizing.&#010 Note that this value defaults to the Canvas's &#010 {@link com.smartgwt.client.widgets.Canvas#getSnapToGrid 'snapToGrid'} value if undefined.
     *
     * @param snapResizeToGrid snapResizeToGrid Default value is null
     */
@@ -1966,7 +1966,7 @@ public class Canvas extends BaseWidget  implements com.smartgwt.client.widgets.e
         setAttribute("snapResizeToGrid", snapResizeToGrid, true);
     }
     /**
-     * Causes this canvas to snap to its parent's grid when resizing.&#010 Note that this value defaults to the Canvas's &#010 {@link com.smartgwt.client.widgets.Canvas#getSnapToGrid snapToGrid} value if undefined.
+     * Causes this canvas to snap to its parent's grid when resizing.&#010 Note that this value defaults to the Canvas's &#010 {@link com.smartgwt.client.widgets.Canvas#getSnapToGrid 'snapToGrid'} value if undefined.
      *
      *
      * @return Boolean
@@ -1977,7 +1977,7 @@ public class Canvas extends BaseWidget  implements com.smartgwt.client.widgets.e
     }
 
     /**
-    * If true, causes this canvas's children to snap to its grid when dragging.&#010 This behavior can be overridden on a per-child basis by setting the &#010 {@link com.smartgwt.client.widgets.Canvas#getSnapToGrid snapToGrid} value on the child.
+    * If true, causes this canvas's children to snap to its grid when dragging.&#010 This behavior can be overridden on a per-child basis by setting the &#010 {@link com.smartgwt.client.widgets.Canvas#getSnapToGrid 'snapToGrid'} value on the child.
     *
     * @param childrenSnapToGrid childrenSnapToGrid Default value is null
     */
@@ -1985,7 +1985,7 @@ public class Canvas extends BaseWidget  implements com.smartgwt.client.widgets.e
         setAttribute("childrenSnapToGrid", childrenSnapToGrid, true);
     }
     /**
-     * If true, causes this canvas's children to snap to its grid when dragging.&#010 This behavior can be overridden on a per-child basis by setting the &#010 {@link com.smartgwt.client.widgets.Canvas#getSnapToGrid snapToGrid} value on the child.
+     * If true, causes this canvas's children to snap to its grid when dragging.&#010 This behavior can be overridden on a per-child basis by setting the &#010 {@link com.smartgwt.client.widgets.Canvas#getSnapToGrid 'snapToGrid'} value on the child.
      *
      *
      * @return Boolean
@@ -1996,7 +1996,7 @@ public class Canvas extends BaseWidget  implements com.smartgwt.client.widgets.e
     }
 
     /**
-    * If true, causes this canvas's children to snap to its grid when resizing.&#010 This behavior can be overridden on a per-child basis by setting the &#010 {@link com.smartgwt.client.widgets.Canvas#getSnapToGrid snapToGrid} or &#010 {@link com.smartgwt.client.widgets.Canvas#getSnapResizeToGrid snapResizeToGrid} value on the child.
+    * If true, causes this canvas's children to snap to its grid when resizing.&#010 This behavior can be overridden on a per-child basis by setting the &#010 {@link com.smartgwt.client.widgets.Canvas#getSnapToGrid 'snapToGrid'} or &#010 {@link com.smartgwt.client.widgets.Canvas#getSnapResizeToGrid 'snapResizeToGrid'} value on the child.
     *
     * @param childrenSnapResizeToGrid childrenSnapResizeToGrid Default value is null
     */
@@ -2004,7 +2004,7 @@ public class Canvas extends BaseWidget  implements com.smartgwt.client.widgets.e
         setAttribute("childrenSnapResizeToGrid", childrenSnapResizeToGrid, true);
     }
     /**
-     * If true, causes this canvas's children to snap to its grid when resizing.&#010 This behavior can be overridden on a per-child basis by setting the &#010 {@link com.smartgwt.client.widgets.Canvas#getSnapToGrid snapToGrid} or &#010 {@link com.smartgwt.client.widgets.Canvas#getSnapResizeToGrid snapResizeToGrid} value on the child.
+     * If true, causes this canvas's children to snap to its grid when resizing.&#010 This behavior can be overridden on a per-child basis by setting the &#010 {@link com.smartgwt.client.widgets.Canvas#getSnapToGrid 'snapToGrid'} or &#010 {@link com.smartgwt.client.widgets.Canvas#getSnapResizeToGrid 'snapResizeToGrid'} value on the child.
      *
      *
      * @return Boolean
@@ -3091,7 +3091,7 @@ public class Canvas extends BaseWidget  implements com.smartgwt.client.widgets.e
         /**
          * Add a resized handler.
          * <p>
-         * Observable method called whenever a Canvas changes size. Note that if this canvas is&#010 {@link com.smartgwt.client.widgets.Canvas#getOverflow overflow}, and is waiting for a queued redraw (see &#010 {@link com.smartgwt.client.widgets.Canvas#isDirty}), the value for {@link com.smartgwt.client.widgets.Canvas#getVisibleWidth} and&#010 {@link com.smartgwt.client.widgets.Canvas#getVisibleHeight} will be unreliable until <code>redraw()</code> fires.&#010
+         * Observable method called whenever a Canvas changes size. Note that if this canvas is&#010 {@link com.smartgwt.client.widgets.Canvas#getOverflow 'overflow:"visible"'}, and is waiting for a queued redraw (see &#010 {@link com.smartgwt.client.widgets.Canvas#isDirty}), the value for {@link com.smartgwt.client.widgets.Canvas#getVisibleWidth} and&#010 {@link com.smartgwt.client.widgets.Canvas#getVisibleHeight} will be unreliable until <code>redraw()</code> fires.&#010
          *
          * @param handler the resized handler
          * @return {@link HandlerRegistration} used to remove this handler
@@ -3441,7 +3441,7 @@ public class Canvas extends BaseWidget  implements com.smartgwt.client.widgets.e
         /**
          * Add a hoverHidden handler.
          * <p>
-         * If {@link com.smartgwt.client.widgets.Canvas#getShowHover showHover} is true for this canvas, this notification method will be&#010 fired whenever the hover shown in response to {@link com.smartgwt.client.widgets.Canvas#handleHover} is &#010 hidden. This method may be observed or overridden.&#010
+         * If {@link com.smartgwt.client.widgets.Canvas#getShowHover 'showHover'} is true for this canvas, this notification method will be&#010 fired whenever the hover shown in response to {@link com.smartgwt.client.widgets.Canvas#handleHover} is &#010 hidden. This method may be observed or overridden.&#010
          *
          * @param handler the hoverHidden handler
          * @return {@link HandlerRegistration} used to remove this handler
@@ -4615,7 +4615,7 @@ public class Canvas extends BaseWidget  implements com.smartgwt.client.widgets.e
 
 
         /**
-         * Retrieve a Canvas by it's global {@link com.smartgwt.client.widgets.Canvas#getID ID}.&#010
+         * Retrieve a Canvas by it's global {@link com.smartgwt.client.widgets.Canvas#getID 'ID'}.&#010
          * @param ID global ID of the Canvas
          *
          * @return the Canvas, or null if not found

@@ -232,7 +232,7 @@ public class TileGrid extends TileLayout  implements DataBoundComponent, com.sma
     // ********************* Methods ***********************
 
         /**
-         * Uses a "fetch" operation on the current {@link com.smartgwt.client.widgets.DataBoundComponent#getDataSource dataSource} to &#010 retrieve data that matches the current filter and sort criteria for this component, then &#010 exports the resulting data to a file or window in the requested format.&#010 <P>&#010 For more information on exporting data, see {@link com.smartgwt.client.data.DataSource#exportData}.&#010&#010
+         * Uses a "fetch" operation on the current {@link com.smartgwt.client.widgets.DataBoundComponent#getDataSource 'DataSource'} to &#010 retrieve data that matches the current filter and sort criteria for this component, then &#010 exports the resulting data to a file or window in the requested format.&#010 <P>&#010 For more information on exporting data, see {@link com.smartgwt.client.data.DataSource#exportData}.&#010&#010
          */
         public native void exportData() /*-{
             var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
@@ -240,7 +240,7 @@ public class TileGrid extends TileLayout  implements DataBoundComponent, com.sma
         }-*/;
 
         /**
-         * Uses a "fetch" operation on the current {@link com.smartgwt.client.widgets.DataBoundComponent#getDataSource dataSource} to &#010 retrieve data that matches the current filter and sort criteria for this component, then &#010 exports the resulting data to a file or window in the requested format.&#010 <P>&#010 For more information on exporting data, see {@link com.smartgwt.client.data.DataSource#exportData}.&#010&#010
+         * Uses a "fetch" operation on the current {@link com.smartgwt.client.widgets.DataBoundComponent#getDataSource 'DataSource'} to &#010 retrieve data that matches the current filter and sort criteria for this component, then &#010 exports the resulting data to a file or window in the requested format.&#010 <P>&#010 For more information on exporting data, see {@link com.smartgwt.client.data.DataSource#exportData}.&#010&#010
          * @param requestProperties additional properties to set on the DSRequest                                            that will be issued
          */
         public native void exportData(DSRequest requestProperties) /*-{

@@ -56,7 +56,7 @@ import com.smartgwt.client.util.EnumUtil;
 import com.google.gwt.event.shared.*;
 import com.google.gwt.event.shared.HasHandlers;
    /**
-    * The Scrollbar widget implements cross-platform, image-based scrollbars that control the&#010 scrolling of content in other widgets.  Scrollbar widgets are created and displayed&#010 automatically for widgets that require them, based on settings for {@link com.smartgwt.client.widgets.Canvas#getOverflow overflow}.&#010 <P>&#010 The scrollbar's appearance is based on a {@link com.smartgwt.client.widgets.StretchImg} for the "track", which consists&#010 of two fixed size buttons and a stretchable center segment, and the {@link com.smartgwt.client..ScrollThumb},&#010 the draggable portion of the scrollbar, also a StretchImg, with an optional&#010 {@link com.smartgwt.client.widgets.StretchImg#getShowGrip showGrip}.
+    * The Scrollbar widget implements cross-platform, image-based scrollbars that control the&#010 scrolling of content in other widgets.  Scrollbar widgets are created and displayed&#010 automatically for widgets that require them, based on settings for {@link com.smartgwt.client.widgets.Canvas#getOverflow overflow}.&#010 <P>&#010 The scrollbar's appearance is based on a {@link com.smartgwt.client.widgets.StretchImg} for the "track", which consists&#010 of two fixed size buttons and a stretchable center segment, and the {@link com.smartgwt.client..ScrollThumb},&#010 the draggable portion of the scrollbar, also a StretchImg, with an optional&#010 {@link com.smartgwt.client.widgets.StretchImg#getShowGrip 'grip'}.
 
     */
 public class Scrollbar extends StretchImg {

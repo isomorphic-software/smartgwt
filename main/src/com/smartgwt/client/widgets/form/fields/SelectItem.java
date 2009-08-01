@@ -348,7 +348,7 @@ public class SelectItem extends FormItem  implements PickList {
     }
 
     /**
-    * If set to true, always show an empty option in this item's pickList, allowing the user&#010 to clear the value (even if there is no empty entry in the valueMap for the item).&#010 <P>&#010 The empty value will be displayed with the&#010 {@link com.smartgwt.client.widgets.form.fields.FormItem#getEmptyDisplayValue emptyDisplayValue}.&#010 <P>&#010 With a {@link com.smartgwt.client.widgets.form.fields.SelectItem#getOptionDataSource optionDataSource}, enabling&#010 <code>allowEmptyValue</code> disables data paging - all data matching the&#010 {@link com.smartgwt.client..PickList#getPickListCriteria pickListCriteria} will be requested.
+    * If set to true, always show an empty option in this item's pickList, allowing the user&#010 to clear the value (even if there is no empty entry in the valueMap for the item).&#010 <P>&#010 The empty value will be displayed with the&#010 {@link com.smartgwt.client.widgets.form.fields.FormItem#getEmptyDisplayValue 'emptyDisplayValue'}.&#010 <P>&#010 With a {@link com.smartgwt.client.widgets.form.fields.SelectItem#getOptionDataSource 'databound selectItem'}, enabling&#010 <code>allowEmptyValue</code> disables data paging - all data matching the&#010 {@link com.smartgwt.client..PickList#getPickListCriteria 'current criteria'} will be requested.
     *
     * @param allowEmptyValue allowEmptyValue Default value is false
     */
@@ -356,7 +356,7 @@ public class SelectItem extends FormItem  implements PickList {
         setAttribute("allowEmptyValue", allowEmptyValue);
     }
     /**
-     * If set to true, always show an empty option in this item's pickList, allowing the user&#010 to clear the value (even if there is no empty entry in the valueMap for the item).&#010 <P>&#010 The empty value will be displayed with the&#010 {@link com.smartgwt.client.widgets.form.fields.FormItem#getEmptyDisplayValue emptyDisplayValue}.&#010 <P>&#010 With a {@link com.smartgwt.client.widgets.form.fields.SelectItem#getOptionDataSource optionDataSource}, enabling&#010 <code>allowEmptyValue</code> disables data paging - all data matching the&#010 {@link com.smartgwt.client..PickList#getPickListCriteria pickListCriteria} will be requested.
+     * If set to true, always show an empty option in this item's pickList, allowing the user&#010 to clear the value (even if there is no empty entry in the valueMap for the item).&#010 <P>&#010 The empty value will be displayed with the&#010 {@link com.smartgwt.client.widgets.form.fields.FormItem#getEmptyDisplayValue 'emptyDisplayValue'}.&#010 <P>&#010 With a {@link com.smartgwt.client.widgets.form.fields.SelectItem#getOptionDataSource 'databound selectItem'}, enabling&#010 <code>allowEmptyValue</code> disables data paging - all data matching the&#010 {@link com.smartgwt.client..PickList#getPickListCriteria 'current criteria'} will be requested.
      *
      *
      * @return Boolean
@@ -387,7 +387,7 @@ public class SelectItem extends FormItem  implements PickList {
     }
 
     /**
-    * Specifies an alternative field from which display values should be retrieved for this&#010 item.&#010 <P>&#010 The display field can be either another field value in the same record or a field that&#010 must be retrieved from a related {@link com.smartgwt.client.widgets.form.fields.FormItem#getOptionDataSource optionDataSource}.&#010 <P>&#010 If this item is not databound ({@link com.smartgwt.client.widgets.form.fields.FormItem#getOptionDataSource optionDataSource} is unset), or bound &#010 to the same dataSource as the form as a whole, this item will call&#010 {@link com.smartgwt.client.widgets.form.DynamicForm#getValue} &#010 the form named after is implemented by picking up the&#010 value of the specified field from the Form's values object.&#010 <P>&#010 Otherwise this item will attempt to map its underlying value to a display value&#010 by retrieving a record from the {@link com.smartgwt.client.widgets.form.fields.FormItem#getOptionDataSource optionDataSource} where the &#010 {@link com.smartgwt.client.widgets.form.fields.FormItem#getValueField valueField} matches this item's value, and displaying the &#010 <code>displayField</code> value from that record.&#010 Note that if <code>optionDataSource</code> is set and this value is not&#010 set, {@link com.smartgwt.client.widgets.form.fields.FormItem#getDisplayFieldName} will return the dataSource title field by default.&#010 <P>&#010 This essentially enables the specified <code>optionDataSource</code> to be used as&#010 a server based valueMap.
+    * Specifies an alternative field from which display values should be retrieved for this&#010 item.&#010 <P>&#010 The display field can be either another field value in the same record or a field that&#010 must be retrieved from a related {@link com.smartgwt.client.widgets.form.fields.FormItem#getOptionDataSource 'optionDataSource'}.&#010 <P>&#010 If this item is not databound ({@link com.smartgwt.client.widgets.form.fields.FormItem#getOptionDataSource optionDataSource} is unset), or bound &#010 to the same dataSource as the form as a whole, this item will call&#010 {@link com.smartgwt.client.widgets.form.DynamicForm#getValue} &#010 the form named after is implemented by picking up the&#010 value of the specified field from the Form's values object.&#010 <P>&#010 Otherwise this item will attempt to map its underlying value to a display value&#010 by retrieving a record from the {@link com.smartgwt.client.widgets.form.fields.FormItem#getOptionDataSource optionDataSource} where the &#010 {@link com.smartgwt.client.widgets.form.fields.FormItem#getValueField valueField} matches this item's value, and displaying the &#010 <code>displayField</code> value from that record.&#010 Note that if <code>optionDataSource</code> is set and this value is not&#010 set, {@link com.smartgwt.client.widgets.form.fields.FormItem#getDisplayFieldName} will return the dataSource title field by default.&#010 <P>&#010 This essentially enables the specified <code>optionDataSource</code> to be used as&#010 a server based valueMap.
     *
     * @param displayField displayField Default value is null
     */
@@ -395,7 +395,7 @@ public class SelectItem extends FormItem  implements PickList {
         setAttribute("displayField", displayField);
     }
     /**
-     * Specifies an alternative field from which display values should be retrieved for this&#010 item.&#010 <P>&#010 The display field can be either another field value in the same record or a field that&#010 must be retrieved from a related {@link com.smartgwt.client.widgets.form.fields.FormItem#getOptionDataSource optionDataSource}.&#010 <P>&#010 If this item is not databound ({@link com.smartgwt.client.widgets.form.fields.FormItem#getOptionDataSource optionDataSource} is unset), or bound &#010 to the same dataSource as the form as a whole, this item will call&#010 {@link com.smartgwt.client.widgets.form.DynamicForm#getValue} &#010 the form named after is implemented by picking up the&#010 value of the specified field from the Form's values object.&#010 <P>&#010 Otherwise this item will attempt to map its underlying value to a display value&#010 by retrieving a record from the {@link com.smartgwt.client.widgets.form.fields.FormItem#getOptionDataSource optionDataSource} where the &#010 {@link com.smartgwt.client.widgets.form.fields.FormItem#getValueField valueField} matches this item's value, and displaying the &#010 <code>displayField</code> value from that record.&#010 Note that if <code>optionDataSource</code> is set and this value is not&#010 set, {@link com.smartgwt.client.widgets.form.fields.FormItem#getDisplayFieldName} will return the dataSource title field by default.&#010 <P>&#010 This essentially enables the specified <code>optionDataSource</code> to be used as&#010 a server based valueMap.
+     * Specifies an alternative field from which display values should be retrieved for this&#010 item.&#010 <P>&#010 The display field can be either another field value in the same record or a field that&#010 must be retrieved from a related {@link com.smartgwt.client.widgets.form.fields.FormItem#getOptionDataSource 'optionDataSource'}.&#010 <P>&#010 If this item is not databound ({@link com.smartgwt.client.widgets.form.fields.FormItem#getOptionDataSource optionDataSource} is unset), or bound &#010 to the same dataSource as the form as a whole, this item will call&#010 {@link com.smartgwt.client.widgets.form.DynamicForm#getValue} &#010 the form named after is implemented by picking up the&#010 value of the specified field from the Form's values object.&#010 <P>&#010 Otherwise this item will attempt to map its underlying value to a display value&#010 by retrieving a record from the {@link com.smartgwt.client.widgets.form.fields.FormItem#getOptionDataSource optionDataSource} where the &#010 {@link com.smartgwt.client.widgets.form.fields.FormItem#getValueField valueField} matches this item's value, and displaying the &#010 <code>displayField</code> value from that record.&#010 Note that if <code>optionDataSource</code> is set and this value is not&#010 set, {@link com.smartgwt.client.widgets.form.fields.FormItem#getDisplayFieldName} will return the dataSource title field by default.&#010 <P>&#010 This essentially enables the specified <code>optionDataSource</code> to be used as&#010 a server based valueMap.
      *
      *
      * @return String
@@ -406,7 +406,7 @@ public class SelectItem extends FormItem  implements PickList {
     }
 
     /**
-    * If this form item maps data values to display values by retrieving the &#010 {@link com.smartgwt.client.widgets.form.fields.FormItem#getDisplayField displayField} values from an &#010 {@link com.smartgwt.client.widgets.form.fields.FormItem#getOptionDataSource optionDataSource}, this property &#010 denotes the the field to use as the underlying data value in records from the &#010 optionDataSource.<br>&#010 If unset, assumed to be the {@link com.smartgwt.client.widgets.form.fields.FormItem#getName name} of this form item.
+    * If this form item maps data values to display values by retrieving the &#010 {@link com.smartgwt.client.widgets.form.fields.FormItem#getDisplayField displayField} values from an &#010 {@link com.smartgwt.client.widgets.form.fields.FormItem#getOptionDataSource 'optionDataSource'}, this property &#010 denotes the the field to use as the underlying data value in records from the &#010 optionDataSource.<br>&#010 If unset, assumed to be the {@link com.smartgwt.client.widgets.form.fields.FormItem#getName name} of this form item.
     *
     * @param valueField valueField Default value is null
     */
@@ -414,7 +414,7 @@ public class SelectItem extends FormItem  implements PickList {
         setAttribute("valueField", valueField);
     }
     /**
-     * If this form item maps data values to display values by retrieving the &#010 {@link com.smartgwt.client.widgets.form.fields.FormItem#getDisplayField displayField} values from an &#010 {@link com.smartgwt.client.widgets.form.fields.FormItem#getOptionDataSource optionDataSource}, this property &#010 denotes the the field to use as the underlying data value in records from the &#010 optionDataSource.<br>&#010 If unset, assumed to be the {@link com.smartgwt.client.widgets.form.fields.FormItem#getName name} of this form item.
+     * If this form item maps data values to display values by retrieving the &#010 {@link com.smartgwt.client.widgets.form.fields.FormItem#getDisplayField displayField} values from an &#010 {@link com.smartgwt.client.widgets.form.fields.FormItem#getOptionDataSource 'optionDataSource'}, this property &#010 denotes the the field to use as the underlying data value in records from the &#010 optionDataSource.<br>&#010 If unset, assumed to be the {@link com.smartgwt.client.widgets.form.fields.FormItem#getName name} of this form item.
      *
      *
      * @return String
@@ -520,17 +520,8 @@ public class SelectItem extends FormItem  implements PickList {
     // ********************* Static Methods ***********************
 
 
-
-
-
-
-
-
-
-
-
-
-
+
+
 
 
     static {
@@ -1061,11 +1052,11 @@ public class SelectItem extends FormItem  implements PickList {
 	    return retVal;
 	}-*/;
 
-   /**
-    * Set the pick list filter criteria function / handler.
-    *
-    * @param filterCriteriaFunction the filter criteria function
-    */
+    /**
+     * Set the pick list filter criteria function / handler.
+     *
+     * @param filterCriteriaFunction the filter criteria function
+     */
     public native void setPickListFilterCriteriaFunction(FilterCriteriaFunction filterCriteriaFunction) /*-{
         var self = this.@com.smartgwt.client.core.DataClass::getJsObj()();
         self.getPickListFilterCriteria = function() {
@@ -1073,6 +1064,7 @@ public class SelectItem extends FormItem  implements PickList {
             return crit == null ? null : crit.@com.smartgwt.client.data.Criteria::getJsObj()();
         };
     }-*/;
+
 }
 
 

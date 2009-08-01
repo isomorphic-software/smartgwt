@@ -147,7 +147,7 @@ public class Tree extends BaseClass  implements com.smartgwt.client.widgets.tree
     }
 
     /**
-    * If new nodes are added to a tree with modelType:"parent" which have the same&#010 {@link com.smartgwt.client.widgets.tree.Tree#getIdField idField} as an existing node, the existing node is removed when&#010 the new node is added.&#010 <P>&#010 If reportCollisions is true, the Tree will log a warning in the developer console about this.&#010 <P>&#010 Note that if an id collision occurs between a new node and its ancestor, the ancestor will be&#010 removed and the new node will not be added to the tree.
+    * If new nodes are added to a tree with modelType:"parent" which have the same&#010 {@link com.smartgwt.client.widgets.tree.Tree#getIdField 'id field value'} as an existing node, the existing node is removed when&#010 the new node is added.&#010 <P>&#010 If reportCollisions is true, the Tree will log a warning in the developer console about this.&#010 <P>&#010 Note that if an id collision occurs between a new node and its ancestor, the ancestor will be&#010 removed and the new node will not be added to the tree.
     *
     * @param reportCollisions reportCollisions Default value is true
     * @throws IllegalStateException this property cannot be changed after the underlying component has been created
@@ -156,7 +156,7 @@ public class Tree extends BaseClass  implements com.smartgwt.client.widgets.tree
         setAttribute("reportCollisions", reportCollisions, false);
     }
     /**
-     * If new nodes are added to a tree with modelType:"parent" which have the same&#010 {@link com.smartgwt.client.widgets.tree.Tree#getIdField idField} as an existing node, the existing node is removed when&#010 the new node is added.&#010 <P>&#010 If reportCollisions is true, the Tree will log a warning in the developer console about this.&#010 <P>&#010 Note that if an id collision occurs between a new node and its ancestor, the ancestor will be&#010 removed and the new node will not be added to the tree.
+     * If new nodes are added to a tree with modelType:"parent" which have the same&#010 {@link com.smartgwt.client.widgets.tree.Tree#getIdField 'id field value'} as an existing node, the existing node is removed when&#010 the new node is added.&#010 <P>&#010 If reportCollisions is true, the Tree will log a warning in the developer console about this.&#010 <P>&#010 Note that if an id collision occurs between a new node and its ancestor, the ancestor will be&#010 removed and the new node will not be added to the tree.
      *
      *
      * @return Boolean
@@ -326,7 +326,7 @@ public class Tree extends BaseClass  implements com.smartgwt.client.widgets.tree
     }
 
     /**
-    * If this tree has {@link com.smartgwt.client.widgets.tree.Tree#getModelType modelType}, should nodes in the data array for the&#010 tree be dropped if they have an explicitly specified value for the {@link com.smartgwt.client.widgets.tree.Tree#getParentIdField parentIdField}&#010 which doesn't match any other nodes in the tree. If set to false these nodes will be added as&#010 children of the root node.
+    * If this tree has {@link com.smartgwt.client.widgets.tree.Tree#getModelType 'modelType:"parent"'}, should nodes in the data array for the&#010 tree be dropped if they have an explicitly specified value for the {@link com.smartgwt.client.widgets.tree.Tree#getParentIdField parentIdField}&#010 which doesn't match any other nodes in the tree. If set to false these nodes will be added as&#010 children of the root node.
     * <p><b>Note : </b> This is an advanced setting</p>
     *
     * @param discardParentlessNodes discardParentlessNodes Default value is false
@@ -336,7 +336,7 @@ public class Tree extends BaseClass  implements com.smartgwt.client.widgets.tree
         setAttribute("discardParentlessNodes", discardParentlessNodes, false);
     }
     /**
-     * If this tree has {@link com.smartgwt.client.widgets.tree.Tree#getModelType modelType}, should nodes in the data array for the&#010 tree be dropped if they have an explicitly specified value for the {@link com.smartgwt.client.widgets.tree.Tree#getParentIdField parentIdField}&#010 which doesn't match any other nodes in the tree. If set to false these nodes will be added as&#010 children of the root node.
+     * If this tree has {@link com.smartgwt.client.widgets.tree.Tree#getModelType 'modelType:"parent"'}, should nodes in the data array for the&#010 tree be dropped if they have an explicitly specified value for the {@link com.smartgwt.client.widgets.tree.Tree#getParentIdField parentIdField}&#010 which doesn't match any other nodes in the tree. If set to false these nodes will be added as&#010 children of the root node.
      *
      *
      * @return Boolean

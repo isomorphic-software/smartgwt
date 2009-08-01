@@ -56,7 +56,7 @@ import com.smartgwt.client.util.EnumUtil;
 import com.google.gwt.event.shared.*;
 import com.google.gwt.event.shared.HasHandlers;
    /**
-    * Dialogs are a specialized version of {@link com.smartgwt.client.widgets.Window} used for small windows such as&#010 alerts, prompts, and confirmations.  They can be modal or modeless (via the&#010 {@link com.smartgwt.client.widgets.Window#getIsModal isModal} property) and will contain various children by default&#010 ("titlebar", "resizer", etc).&#010 <P>&#010 NOTE: If you are building a custom component that will add components to the Window via&#010 {@link com.smartgwt.client.widgets.Window#addItem}, in most cases it makes sense
+    * Dialogs are a specialized version of {@link com.smartgwt.client.widgets.Window} used for small windows such as&#010 alerts, prompts, and confirmations.  They can be modal or modeless (via the&#010 {@link com.smartgwt.client.widgets.Window#getIsModal 'isModal'} property) and will contain various children by default&#010 ("titlebar", "resizer", etc).&#010 <P>&#010 NOTE: If you are building a custom component that will add components to the Window via&#010 {@link com.smartgwt.client.widgets.Window#addItem}, in most cases it makes sense
 
     */
 public class Dialog extends Window {

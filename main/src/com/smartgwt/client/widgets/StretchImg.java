@@ -245,7 +245,7 @@ public class StretchImg extends StatefulCanvas {
     }
 
     /**
-    * If specified this css class will be applied to the individual item images within this StretchImg.&#010 May be overridden by specifying item-specific base styles to each object in the&#010 {@link com.smartgwt.client.widgets.StretchImg#getItems items}. This base style will have standard stateful suffixes&#010 appended to indicate the state of this component (as described in &#010 {@link com.smartgwt.client.widgets.StatefulCanvas#getBaseStyle baseStyle}).
+    * If specified this css class will be applied to the individual item images within this StretchImg.&#010 May be overridden by specifying item-specific base styles to each object in the&#010 {@link com.smartgwt.client.widgets.StretchImg#getItems 'items array'}. This base style will have standard stateful suffixes&#010 appended to indicate the state of this component (as described in &#010 {@link com.smartgwt.client.widgets.StatefulCanvas#getBaseStyle baseStyle}).
     *
     * @param itemBaseStyle itemBaseStyle Default value is null
     */
@@ -253,7 +253,7 @@ public class StretchImg extends StatefulCanvas {
         setAttribute("itemBaseStyle", itemBaseStyle, true);
     }
     /**
-     * If specified this css class will be applied to the individual item images within this StretchImg.&#010 May be overridden by specifying item-specific base styles to each object in the&#010 {@link com.smartgwt.client.widgets.StretchImg#getItems items}. This base style will have standard stateful suffixes&#010 appended to indicate the state of this component (as described in &#010 {@link com.smartgwt.client.widgets.StatefulCanvas#getBaseStyle baseStyle}).
+     * If specified this css class will be applied to the individual item images within this StretchImg.&#010 May be overridden by specifying item-specific base styles to each object in the&#010 {@link com.smartgwt.client.widgets.StretchImg#getItems 'items array'}. This base style will have standard stateful suffixes&#010 appended to indicate the state of this component (as described in &#010 {@link com.smartgwt.client.widgets.StatefulCanvas#getBaseStyle baseStyle}).
      *
      *
      * @return String

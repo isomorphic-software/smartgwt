@@ -115,7 +115,7 @@ public class Button extends StatefulCanvas  implements com.smartgwt.client.widge
     }
 
     /**
-    * If set to true, if the {@link com.smartgwt.client.widgets.StatefulCanvas#getTitle title} of this button contains the&#010 specified {@link com.smartgwt.client.widgets.Canvas#getAccessKey accessKey}, when the title is displayed to the user&#010 it will be modified to include HTML to underline the accessKey.<br>&#010 Note that this property may cause titles that include HTML (rather than simple strings)&#010 to be inappropriately modified, so should be disabled if your title string includes&#010 HTML characters.
+    * If set to true, if the {@link com.smartgwt.client.widgets.StatefulCanvas#getTitle 'title'} of this button contains the&#010 specified {@link com.smartgwt.client.widgets.Canvas#getAccessKey 'accessKey'}, when the title is displayed to the user&#010 it will be modified to include HTML to underline the accessKey.<br>&#010 Note that this property may cause titles that include HTML (rather than simple strings)&#010 to be inappropriately modified, so should be disabled if your title string includes&#010 HTML characters.
     *
     * @param hiliteAccessKey hiliteAccessKey Default value is null
     */
@@ -123,7 +123,7 @@ public class Button extends StatefulCanvas  implements com.smartgwt.client.widge
         setAttribute("hiliteAccessKey", hiliteAccessKey, true);
     }
     /**
-     * If set to true, if the {@link com.smartgwt.client.widgets.StatefulCanvas#getTitle title} of this button contains the&#010 specified {@link com.smartgwt.client.widgets.Canvas#getAccessKey accessKey}, when the title is displayed to the user&#010 it will be modified to include HTML to underline the accessKey.<br>&#010 Note that this property may cause titles that include HTML (rather than simple strings)&#010 to be inappropriately modified, so should be disabled if your title string includes&#010 HTML characters.
+     * If set to true, if the {@link com.smartgwt.client.widgets.StatefulCanvas#getTitle 'title'} of this button contains the&#010 specified {@link com.smartgwt.client.widgets.Canvas#getAccessKey 'accessKey'}, when the title is displayed to the user&#010 it will be modified to include HTML to underline the accessKey.<br>&#010 Note that this property may cause titles that include HTML (rather than simple strings)&#010 to be inappropriately modified, so should be disabled if your title string includes&#010 HTML characters.
      *
      *
      * @return Boolean
@@ -711,7 +711,7 @@ public class Button extends StatefulCanvas  implements com.smartgwt.client.widge
         /**
          * Add a iconClick handler.
          * <p>
-         * If this button is showing an {@link com.smartgwt.client.widgets.Button#getIcon icon}, a separate click handler for the&#010 icon may be defined as <code>this.iconClick</code>.&#010 Returning false will suppress the standard button click handling code.&#010
+         * If this button is showing an {@link com.smartgwt.client.widgets.Button#getIcon 'icon'}, a separate click handler for the&#010 icon may be defined as <code>this.iconClick</code>.&#010 Returning false will suppress the standard button click handling code.&#010
          *
          * @param handler the iconClick handler
          * @return {@link HandlerRegistration} used to remove this handler

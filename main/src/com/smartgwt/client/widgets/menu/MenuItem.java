@@ -296,7 +296,7 @@ public class MenuItem extends ListGridRecord  implements com.smartgwt.client.wid
 
         /**
          * Contains the condition that will enable or disable the curent menuItem. The handler must be specified&#010 as a function or string of script.  Return false to disable the menuItem or true to enable it&#010 <p>&#010 If you don't need to set this state dynamically, use {@link com.smartgwt.client.widgets.menu.MenuItem#getEnabled enabled} instead.&#010 <p>&#010 May be defined as a {@link com.smartgwt.client.docs.StringMethods 'stringMethod'}.&#010 <p>&#010
-         * @param target {@link com.smartgwt.client.widgets.menu.Menu#getTarget target} attribute for the top level menu.
+         * @param target {@link com.smartgwt.client.widgets.menu.Menu#getTarget 'target'} attribute for the top level menu.
      * @param menu {@link com.smartgwt.client.widgets.menu.Menu} contains the reference to the menu that contains the current item
      * @param item contains the reference to the current item
          *
@@ -314,7 +314,7 @@ public class MenuItem extends ListGridRecord  implements com.smartgwt.client.wid
 
         /**
          * Contains the condition that will check or uncheck the curent menuItem. The handler must be specified&#010 as a function or string of script.  Return false to uncheck the menuItem or true to check it&#010 <p>&#010 If you don't need to set this state dynamically, use {@link com.smartgwt.client.widgets.menu.MenuItem#getChecked checked} instead.&#010 <p>&#010 May be defined as a {@link com.smartgwt.client.docs.StringMethods 'stringMethod'}.&#010 <p>&#010
-         * @param target {@link com.smartgwt.client.widgets.menu.Menu#getTarget target} attribute for the top level menu.
+         * @param target {@link com.smartgwt.client.widgets.menu.Menu#getTarget 'target'} attribute for the top level menu.
      * @param menu {@link com.smartgwt.client.widgets.menu.Menu} contains the reference to the menu that contains the current item
      * @param item contains the reference to the current item
          *
