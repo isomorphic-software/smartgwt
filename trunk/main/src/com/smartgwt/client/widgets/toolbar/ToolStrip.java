@@ -55,10 +55,19 @@ import com.smartgwt.client.util.JSOHelper;
 import com.smartgwt.client.util.EnumUtil;
 import com.google.gwt.event.shared.*;
 import com.google.gwt.event.shared.HasHandlers;
-   /**
-    * Base class for creating toolstrips like those found in browsers and office applications: a&#010 mixed set of controls including {@link com.smartgwt.client.widgets.ImgButton}, &#010 {@link com.smartgwt.client.widgets.Button#getRadioGroup 'radio button groups'}, {@link com.smartgwt.client.widgets.menu.MenuButton},&#010 {@link com.smartgwt.client.widgets.form.fields.ComboBoxItem}, {@link com.smartgwt.client.widgets.layout.LayoutSpacer}, {@link com.smartgwt.client.widgets.Label} and &#010 {@link com.smartgwt.client.widgets.form.fields.SelectItem}.  &#010 <P>&#010 All of the above components are placed in the {@link com.smartgwt.client.widgets.toolbar.ToolStrip#getMembers 'members array'} to form&#010 a ToolStrip.  Note that the {@link com.smartgwt.client.widgets.form.fields.FormItem} mentioned above (ComboBox and&#010 drop-down selects) need to be placed within a {@link com.smartgwt.client.widgets.form.DynamicForm} as usual.&#010 <P>&#010 The special strings "separator" and "resizer" can be placed in the members array to create&#010 separators and resizers respectively.&#010 <P>&#010 Also see the ${isc.DocUtils.linkForExampleId('toolstrip')} example in the Feature Explorer.
 
-    */
+/**
+ * Base class for creating toolstrips like those found in browsers and office applications: a mixed set of controls
+ * including {@link com.smartgwt.client.widgets.ImgButton},  {@link com.smartgwt.client.widgets.Button#getRadioGroup 'radio
+ * button groups'}, {@link com.smartgwt.client.widgets.menu.MenuButton}, {@link
+ * com.smartgwt.client.widgets.form.fields.ComboBoxItem}, {@link com.smartgwt.client.widgets.layout.LayoutSpacer}, {@link
+ * com.smartgwt.client.widgets.Label} and  {@link com.smartgwt.client.widgets.form.fields.SelectItem}.   <P> All of the
+ * above components are placed in the {@link com.smartgwt.client.widgets.toolbar.ToolStrip#getMembers 'members array'} to
+ * form a ToolStrip.  Note that the {@link com.smartgwt.client.widgets.form.fields.FormItem} mentioned above (ComboBox and
+ * drop-down selects) need to be placed within a {@link com.smartgwt.client.widgets.form.DynamicForm} as usual. <P> The
+ * special strings "separator" and "resizer" can be placed in the members array to create separators and resizers
+ * respectively. <P> Also see the ${isc.DocUtils.linkForExampleId('toolstrip')} example in the Feature Explorer.
+ */
 public class ToolStrip extends Layout {
 
     public static ToolStrip getOrCreateRef(JavaScriptObject jsObj) {
@@ -70,7 +79,6 @@ public class ToolStrip extends Layout {
             return new ToolStrip(jsObj);
         }
     }
-
 
     public ToolStrip(){
         
@@ -89,117 +97,121 @@ public class ToolStrip extends Layout {
     // ********************* Properties / Attributes ***********************
 
     /**
-    * The CSS class applied to this widget as a whole.
-    *
-    * @param styleName styleName Default value is "toolStrip"
-    */
+     * The CSS class applied to this widget as a whole.
+     *
+     * @param styleName styleName Default value is "toolStrip"
+     */
     public void setStyleName(String styleName) {
         setAttribute("styleName", styleName, true);
     }
+
     /**
      * The CSS class applied to this widget as a whole.
      *
      *
      * @return String
-     *
      */
     public String getStyleName()  {
         return getAttributeAsString("styleName");
     }
 
     /**
-    * Indicates whether the components are drawn horizontally from left to right (false), or&#010 vertically from top to bottom (true).
-    *
-    * @param vertical vertical Default value is false
-    */
+     * Indicates whether the components are drawn horizontally from left to right (false), or vertically from top to bottom
+     * (true).
+     *
+     * @param vertical vertical Default value is false
+     */
     public void setVertical(Boolean vertical) {
         setAttribute("vertical", vertical, true);
     }
+
     /**
-     * Indicates whether the components are drawn horizontally from left to right (false), or&#010 vertically from top to bottom (true).
+     * Indicates whether the components are drawn horizontally from left to right (false), or vertically from top to bottom
+     * (true).
      *
      *
      * @return Boolean
-     *
      */
     public Boolean getVertical()  {
         return getAttributeAsBoolean("vertical");
     }
 
     /**
-    * Customized resizeBar with typical appearance for a ToolStrip
-    *
-    * @param resizeBarClass resizeBarClass Default value is "ToolStripResizer"
-    */
+     * Customized resizeBar with typical appearance for a ToolStrip
+     *
+     * @param resizeBarClass resizeBarClass Default value is "ToolStripResizer"
+     */
     public void setResizeBarClass(String resizeBarClass) {
         setAttribute("resizeBarClass", resizeBarClass, true);
     }
+
     /**
      * Customized resizeBar with typical appearance for a ToolStrip
      *
      *
      * @return String
-     *
      */
     public String getResizeBarClass()  {
         return getAttributeAsString("resizeBarClass");
     }
 
     /**
-    * Thickness of the resizeBars in pixels
-    * <p><b>Note : </b> This is an advanced setting</p>
-    *
-    * @param resizeBarSize resizeBarSize Default value is 14
-    * @throws IllegalStateException this property cannot be changed after the component has been created
-    */
+     * Thickness of the resizeBars in pixels
+     * <p><b>Note : </b> This is an advanced setting</p>
+     *
+     * @param resizeBarSize resizeBarSize Default value is 14
+     * @throws IllegalStateException this property cannot be changed after the component has been created
+     */
     public void setResizeBarSize(int resizeBarSize)  throws IllegalStateException {
         setAttribute("resizeBarSize", resizeBarSize, false);
     }
+
     /**
      * Thickness of the resizeBars in pixels
      *
      *
      * @return int
-     *
      */
     public int getResizeBarSize()  {
         return getAttributeAsInt("resizeBarSize");
     }
 
     /**
-    * Class to create when the string "separator" appears in {@link com.smartgwt.client.widgets.toolbar.ToolStrip#getMembers members}.
-    *
-    * @param separatorClass separatorClass Default value is "ToolStripSeparator"
-    */
+     * Class to create when the string "separator" appears in {@link com.smartgwt.client.widgets.toolbar.ToolStrip#getMembers
+     * members}.
+     *
+     * @param separatorClass separatorClass Default value is "ToolStripSeparator"
+     */
     public void setSeparatorClass(String separatorClass) {
         setAttribute("separatorClass", separatorClass, true);
     }
+
     /**
-     * Class to create when the string "separator" appears in {@link com.smartgwt.client.widgets.toolbar.ToolStrip#getMembers members}.
+     * Class to create when the string "separator" appears in {@link com.smartgwt.client.widgets.toolbar.ToolStrip#getMembers
+     * members}.
      *
      *
      * @return String
-     *
      */
     public String getSeparatorClass()  {
         return getAttributeAsString("separatorClass");
     }
 
     /**
-    * Separator thickness in pixels
-    *
-    * @param separatorSize separatorSize Default value is 8
-    * @throws IllegalStateException this property cannot be changed after the component has been created
-    */
+     * Separator thickness in pixels
+     *
+     * @param separatorSize separatorSize Default value is 8
+     * @throws IllegalStateException this property cannot be changed after the component has been created
+     */
     public void setSeparatorSize(int separatorSize)  throws IllegalStateException {
         setAttribute("separatorSize", separatorSize, false);
     }
+
     /**
      * Separator thickness in pixels
      *
      *
      * @return int
-     *
      */
     public int getSeparatorSize()  {
         return getAttributeAsInt("separatorSize");
@@ -212,11 +224,10 @@ public class ToolStrip extends Layout {
 
 
 
-
     /**
      * Add a canvas to the layout, optionally at a specific position.
      *
-     * @param newMember the canvas object to be added to the layout
+     * @param component the canvas object to be added to the layout
      * @param position  the position in the layout to place newMember (starts with 0); if omitted, it will be added at
      *                  the last position
      */
@@ -241,7 +252,7 @@ public class ToolStrip extends Layout {
     /**
      * Add a canvas to the layout, optionally at a specific position.
      *
-     * @param newMember the canvas object to be added to the layout
+     * @param component the canvas object to be added to the layout
      */
     public void addMember(Canvas component) {
         Object componentJS;

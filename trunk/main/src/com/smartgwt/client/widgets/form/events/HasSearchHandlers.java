@@ -22,7 +22,8 @@ import com.google.gwt.event.shared.HasHandlers;
 
 public interface HasSearchHandlers extends HasHandlers {
     /**
-     * A StringMethod that is automatically invoked if {@link com.smartgwt.client.widgets.form.FilterBuilder#getSaveOnExit saveOnExit} is set &#010 and the user presses Enter whilst in a text-item in any clause or subclause.&#010&#010
+     * A StringMethod that is automatically invoked if {@link com.smartgwt.client.widgets.form.FilterBuilder#getSaveOnExit
+     * saveOnExit} is set  and the user presses Enter whilst in a text-item in any clause or subclause.
      *
      * @param handler the search handler
      * @return {@link HandlerRegistration} used to remove this handler

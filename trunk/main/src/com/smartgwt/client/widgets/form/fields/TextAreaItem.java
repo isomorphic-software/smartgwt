@@ -55,10 +55,10 @@ import com.smartgwt.client.util.JSOHelper;
 import com.smartgwt.client.util.EnumUtil;
 import com.google.gwt.event.shared.*;
 import com.google.gwt.event.shared.HasHandlers;
-   /**
-    * Class for editable multi-line text areas (uses HTML <code>&lt;TEXTAREA&gt;</code> object)
 
-    */
+/**
+ * Class for editable multi-line text areas (uses HTML <code>&lt;TEXTAREA&gt;</code> object)
+ */
 public class TextAreaItem extends FormItem {
 
     public static TextAreaItem getOrCreateRef(JavaScriptObject jsObj) {
@@ -71,7 +71,6 @@ public class TextAreaItem extends FormItem {
             return new TextAreaItem(jsObj);
         }
     }
-
 
     public TextAreaItem(){
         setType("TextAreaItem");
@@ -95,95 +94,101 @@ public class TextAreaItem extends FormItem {
     // ********************* Properties / Attributes ***********************
 
     /**
-    * default width of this item
-    *
-    * @param width width Default value is 150
-    */
+     * default width of this item
+     *
+     * @param width width Default value is 150
+     */
     public void setWidth(int width) {
         setAttribute("width", width);
     }
+
     /**
      * default width of this item
      *
      *
      * @return int
-     *
      */
     public int getWidth()  {
         return getAttributeAsInt("width");
     }
 
     /**
-    * default height of this item
-    *
-    * @param height height Default value is 100
-    */
+     * default height of this item
+     *
+     * @param height height Default value is 100
+     */
     public void setHeight(int height) {
         setAttribute("height", height);
     }
+
     /**
      * default height of this item
      *
      *
      * @return int
-     *
      */
     public int getHeight()  {
         return getAttributeAsInt("height");
     }
 
     /**
-    * Base CSS class to apply to this item's input element.&#010 NOTE: See the CompoundFormItem_skinning discussion for special skinning considerations.
-    *
-    * @param textBoxStyle textBoxStyle Default value is "textItem"
-    */
+     * Base CSS class to apply to this item's input element. NOTE: See the CompoundFormItem_skinning discussion for special
+     * skinning considerations.
+     *
+     * @param textBoxStyle textBoxStyle Default value is "textItem"
+     */
     public void setTextBoxStyle(String textBoxStyle) {
         setAttribute("textBoxStyle", textBoxStyle);
     }
+
     /**
-     * Base CSS class to apply to this item's input element.&#010 NOTE: See the CompoundFormItem_skinning discussion for special skinning considerations.
+     * Base CSS class to apply to this item's input element. NOTE: See the CompoundFormItem_skinning discussion for special
+     * skinning considerations.
      *
      *
      * @return String
-     *
      */
     public String getTextBoxStyle()  {
         return getAttributeAsString("textBoxStyle");
     }
              
     /**
-    * Align icons with the top edge of text area icons by default.
-    *
-    * @param iconVAlign iconVAlign Default value is Canvas.TOP
-    */
+     * Align icons with the top edge of text area icons by default.
+     *
+     * @param iconVAlign iconVAlign Default value is Canvas.TOP
+     */
     public void setIconVAlign(VerticalAlignment iconVAlign) {
         setAttribute("iconVAlign", iconVAlign.getValue());
     }
+
     /**
      * Align icons with the top edge of text area icons by default.
      *
      *
      * @return VerticalAlignment
-     *
      */
     public VerticalAlignment getIconVAlign()  {
         return (VerticalAlignment) EnumUtil.getEnum(VerticalAlignment.values(), getAttribute("iconVAlign"));
     }
 
     /**
-    * Allows the {@link com.smartgwt.client.widgets.form.DynamicForm#getSelectOnFocus 'selectOnFocus'} behavior to be configured on a&#010 per-FormItem basis.  Normally all items in a form default to the value of&#010 {@link com.smartgwt.client.widgets.form.DynamicForm#getSelectOnFocus selectOnFocus}.
-    *
-    * @param selectOnFocus selectOnFocus Default value is null
-    */
+     * Allows the {@link com.smartgwt.client.widgets.form.DynamicForm#getSelectOnFocus 'selectOnFocus'} behavior to be
+     * configured on a per-FormItem basis.  Normally all items in a form default to the value of {@link
+     * com.smartgwt.client.widgets.form.DynamicForm#getSelectOnFocus selectOnFocus}.
+     *
+     * @param selectOnFocus selectOnFocus Default value is null
+     */
     public void setSelectOnFocus(Boolean selectOnFocus) {
         setAttribute("selectOnFocus", selectOnFocus);
     }
+
     /**
-     * Allows the {@link com.smartgwt.client.widgets.form.DynamicForm#getSelectOnFocus 'selectOnFocus'} behavior to be configured on a&#010 per-FormItem basis.  Normally all items in a form default to the value of&#010 {@link com.smartgwt.client.widgets.form.DynamicForm#getSelectOnFocus selectOnFocus}.
+     * Allows the {@link com.smartgwt.client.widgets.form.DynamicForm#getSelectOnFocus 'selectOnFocus'} behavior to be
+     * configured on a per-FormItem basis.  Normally all items in a form default to the value of {@link
+     * com.smartgwt.client.widgets.form.DynamicForm#getSelectOnFocus selectOnFocus}.
      *
      *
      * @return Boolean
-     *
      */
     public Boolean getSelectOnFocus()  {
         return getAttributeAsBoolean("selectOnFocus");
@@ -196,7 +201,6 @@ public class TextAreaItem extends FormItem {
 
 
 
-
     /**
      * Set the length.
      *
@@ -232,6 +236,5 @@ public class TextAreaItem extends FormItem {
     public TextAreaWrap getWrap() {
         return (TextAreaWrap) EnumUtil.getEnum(TextAreaWrap.values(), getAttribute("wrap"));
     }
-
 
 }

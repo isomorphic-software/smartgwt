@@ -55,10 +55,13 @@ import com.smartgwt.client.util.JSOHelper;
 import com.smartgwt.client.util.EnumUtil;
 import com.google.gwt.event.shared.*;
 import com.google.gwt.event.shared.HasHandlers;
-   /**
-    * RichTextEditing component.  Provides a rich-text editing area along with UI for executing&#010 rich-text commands on the text.<br>&#010 The HTML generated from this component may vary by browser, and, as with any HTML &#010 value created on the client, we recommend values be sanitized on the server before &#010 storing and displaying to other users.<br>&#010 Note: This component has limited support on the Safari browser.
 
-    */
+/**
+ * RichTextEditing component.  Provides a rich-text editing area along with UI for executing rich-text commands on the
+ * text.<br> The HTML generated from this component may vary by browser, and, as with any HTML  value created on the
+ * client, we recommend values be sanitized on the server before  storing and displaying to other users.<br> Note: This
+ * component has limited support on the Safari browser.
+ */
 public class RichTextEditor extends VLayout {
 
     public static RichTextEditor getOrCreateRef(JavaScriptObject jsObj) {
@@ -70,7 +73,6 @@ public class RichTextEditor extends VLayout {
             return new RichTextEditor(jsObj);
         }
     }
-
 
     public RichTextEditor(){
         
@@ -89,20 +91,20 @@ public class RichTextEditor extends VLayout {
     // ********************* Properties / Attributes ***********************
 
     /**
-    * Initial value for the edit area.    Use <code>getValue()</code> and &#010 <code>setValue()</code> to update at runtime.
-    * Updates the current value of the edit area.&#010
-    *
-    * @param value value Default value is ""
-    */
+     * Initial value for the edit area.    Use <code>getValue()</code> and  <code>setValue()</code> to update at runtime.
+     * Updates the current value of the edit area.
+     *
+     * @param value value Default value is ""
+     */
     public void setValue(String value) {
         setAttribute("value", value, true);
     }
+
     /**
-     * Initial value for the edit area.    Use <code>getValue()</code> and &#010 <code>setValue()</code> to update at runtime.
+     * Initial value for the edit area.    Use <code>getValue()</code> and  <code>setValue()</code> to update at runtime.
      *
      *
-     * @return Retrieves the current value of the edit area.&#010
-     *
+     * @return Retrieves the current value of the edit area.
      */
     public String getValue()  {
         return getAttributeAsString("value");
@@ -110,28 +112,30 @@ public class RichTextEditor extends VLayout {
 
     // ********************* Methods ***********************
 
-        /**
-         * Display a warning if Rich Text Editing is not fully supported in this browser.&#010 Default behavior logs a warning to the devloper console - Override this if a user-visible&#010 warning is required &#010
-         */
-        public native void doWarn() /*-{
-            var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
-            self.doWarn();
-        }-*/;
+    /**
+     * Display a warning if Rich Text Editing is not fully supported in this browser. Default behavior logs a warning to the
+     * devloper console - Override this if a user-visible warning is required
+     */
+    public native void doWarn() /*-{
+        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
+        self.doWarn();
+    }-*/;
 
-        /**
-         * Does this browser support the full RichTextEditor feature set.&#010 Returns false for browsers in which some features are not natively supported&#010 - currently Safari and Opera.&#010
-         *
-         * @return false if this browser doesn't fully support RichTextEditing
-         */
-        public native Boolean richEditorSupported() /*-{
-            var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
-            var retVal =self.richEditorSupported();
-            if(retVal == null || retVal === undefined) {
-                return null;
-            } else {
-                return @com.smartgwt.client.util.JSOHelper::toBoolean(Z)(retVal);
-            }
-        }-*/;
+    /**
+     * Does this browser support the full RichTextEditor feature set. Returns false for browsers in which some features are not
+     * natively supported - currently Safari and Opera.
+     *
+     * @return false if this browser doesn't fully support RichTextEditing
+     */
+    public native Boolean richEditorSupported() /*-{
+        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
+        var retVal =self.richEditorSupported();
+        if(retVal == null || retVal === undefined) {
+            return null;
+        } else {
+            return @com.smartgwt.client.util.JSOHelper::toBoolean(Z)(retVal);
+        }
+    }-*/;
 
 
 
@@ -139,7 +143,6 @@ public class RichTextEditor extends VLayout {
 
 
 
-
     /**
      * An array of control group names specifying which groups of controls should be included in the editor toolbar.
      *

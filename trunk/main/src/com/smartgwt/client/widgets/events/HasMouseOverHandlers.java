@@ -22,7 +22,7 @@ import com.google.gwt.event.shared.HasHandlers;
 
 public interface HasMouseOverHandlers extends HasHandlers {
     /**
-     * &#010 Executed when mouse enters this widget.  No default implementation.&#010&#010
+     * Executed when mouse enters this widget.  No default implementation.
      *
      * @param handler the mouseOver handler
      * @return {@link HandlerRegistration} used to remove this handler

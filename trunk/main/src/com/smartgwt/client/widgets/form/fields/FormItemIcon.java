@@ -55,17 +55,17 @@ import com.smartgwt.client.util.JSOHelper;
 import com.smartgwt.client.util.EnumUtil;
 import com.google.gwt.event.shared.*;
 import com.google.gwt.event.shared.HasHandlers;
-   /**
-    * Form item icon descriptor objects used by Form Items to specify the appearance and&#010  behavior of icons displayed after the item in the page flow.
 
-    */
+/**
+ * Form item icon descriptor objects used by Form Items to specify the appearance and  behavior of icons displayed after
+ * the item in the page flow.
+ */
 public class FormItemIcon extends DataClass {
 
     public static FormItemIcon getOrCreateRef(JavaScriptObject jsObj) {
         if(jsObj == null) return null;
         return new FormItemIcon(jsObj);
     }
-
 
     public FormItemIcon(){
         
@@ -78,157 +78,179 @@ public class FormItemIcon extends DataClass {
     // ********************* Properties / Attributes ***********************
 
     /**
-    * If set, this property determines this icon's image source.&#010      If unset the form item's <code>defaultIconSrc</code> property will be used&#010      instead.<br>&#010      As with <code>defaultIconSrc</code> this URL will be modified by adding&#010      "_Over" or "_Disabled" if appropriate to show the icons over or disabled state.
-    *
-    * @param src src Default value is null
-    */
+     * If set, this property determines this icon's image source.      If unset the form item's <code>defaultIconSrc</code>
+     * property will be used      instead.<br>      As with <code>defaultIconSrc</code> this URL will be modified by adding    
+     *  "_Over" or "_Disabled" if appropriate to show the icons over or disabled state.
+     *
+     * @param src src Default value is null
+     */
     public void setSrc(String src) {
         setAttribute("src", src);
     }
+
     /**
-     * If set, this property determines this icon's image source.&#010      If unset the form item's <code>defaultIconSrc</code> property will be used&#010      instead.<br>&#010      As with <code>defaultIconSrc</code> this URL will be modified by adding&#010      "_Over" or "_Disabled" if appropriate to show the icons over or disabled state.
+     * If set, this property determines this icon's image source.      If unset the form item's <code>defaultIconSrc</code>
+     * property will be used      instead.<br>      As with <code>defaultIconSrc</code> this URL will be modified by adding    
+     *  "_Over" or "_Disabled" if appropriate to show the icons over or disabled state.
      *
      *
      * @return String
-     *
      */
     public String getSrc()  {
         return getAttributeAsString("src");
     }
 
     /**
-    * Should this icon's image switch to the appropriate "over" source when the user rolls&#010  over or focuses on the icon?
-    * <p><b>Note : </b> This is an advanced setting</p>
-    *
-    * @param showOver showOver Default value is null
-    */
+     * Should this icon's image switch to the appropriate "over" source when the user rolls  over or focuses on the icon?
+     * <p><b>Note : </b> This is an advanced setting</p>
+     *
+     * @param showOver showOver Default value is null
+     */
     public void setShowOver(Boolean showOver) {
         setAttribute("showOver", showOver);
     }
+
     /**
-     * Should this icon's image switch to the appropriate "over" source when the user rolls&#010  over or focuses on the icon?
+     * Should this icon's image switch to the appropriate "over" source when the user rolls  over or focuses on the icon?
      *
      *
      * @return Boolean
-     *
      */
     public Boolean getShowOver()  {
         return getAttributeAsBoolean("showOver");
     }
 
     /**
-    * Should this icon's image switch to the appropriate "focused" source when the user puts&#010 focus on the form item or icon?
-    * <p><b>Note : </b> This is an advanced setting</p>
-    *
-    * @param showFocused showFocused Default value is null
-    */
+     * Should this icon's image switch to the appropriate "focused" source when the user puts focus on the form item or icon?
+     * <p><b>Note : </b> This is an advanced setting</p>
+     *
+     * @param showFocused showFocused Default value is null
+     */
     public void setShowFocused(Boolean showFocused) {
         setAttribute("showFocused", showFocused);
     }
+
     /**
-     * Should this icon's image switch to the appropriate "focused" source when the user puts&#010 focus on the form item or icon?
+     * Should this icon's image switch to the appropriate "focused" source when the user puts focus on the form item or icon?
      *
      *
      * @return Boolean
-     *
      */
     public Boolean getShowFocused()  {
         return getAttributeAsBoolean("showFocused");
     }
 
     /**
-    * If this icon will be updated to show focus (see {@link com.smartgwt.client.widgets.form.fields.FormItemIcon#getShowFocused showFocused}, &#010 {@link com.smartgwt.client.widgets.form.fields.FormItem#getShowFocusedIcons showFocusedIcons}), this property governs whether the focused state should&#010 be shown when the item as a whole recieves focus or just if the icon recieves focus.&#010 If this property is unset, default behavior is to show focused state when the item&#010 recieves focus.
-    * <p><b>Note : </b> This is an advanced setting</p>
-    *
-    * @param showFocusedWithItem showFocusedWithItem Default value is null
-    */
+     * If this icon will be updated to show focus (see {@link
+     * com.smartgwt.client.widgets.form.fields.FormItemIcon#getShowFocused showFocused},  {@link
+     * com.smartgwt.client.widgets.form.fields.FormItem#getShowFocusedIcons showFocusedIcons}), this property governs whether
+     * the focused state should be shown when the item as a whole recieves focus or just if the icon recieves focus. If this
+     * property is unset, default behavior is to show focused state when the item recieves focus.
+     * <p><b>Note : </b> This is an advanced setting</p>
+     *
+     * @param showFocusedWithItem showFocusedWithItem Default value is null
+     */
     public void setShowFocusedWithItem(Boolean showFocusedWithItem) {
         setAttribute("showFocusedWithItem", showFocusedWithItem);
     }
+
     /**
-     * If this icon will be updated to show focus (see {@link com.smartgwt.client.widgets.form.fields.FormItemIcon#getShowFocused showFocused}, &#010 {@link com.smartgwt.client.widgets.form.fields.FormItem#getShowFocusedIcons showFocusedIcons}), this property governs whether the focused state should&#010 be shown when the item as a whole recieves focus or just if the icon recieves focus.&#010 If this property is unset, default behavior is to show focused state when the item&#010 recieves focus.
+     * If this icon will be updated to show focus (see {@link
+     * com.smartgwt.client.widgets.form.fields.FormItemIcon#getShowFocused showFocused},  {@link
+     * com.smartgwt.client.widgets.form.fields.FormItem#getShowFocusedIcons showFocusedIcons}), this property governs whether
+     * the focused state should be shown when the item as a whole recieves focus or just if the icon recieves focus. If this
+     * property is unset, default behavior is to show focused state when the item recieves focus.
      *
      *
      * @return Boolean
-     *
      */
     public Boolean getShowFocusedWithItem()  {
         return getAttributeAsBoolean("showFocusedWithItem");
     }
 
     /**
-    * If <code>icon.neverDisable</code> is true, when this form item is disabled, the &#010  icon will remain enabled. &#010  Note that disabling the entire form will disable all items, together with their &#010  icons including those marked as neverDisable - this property only has an effect &#010  if the form is enabled and a specific item is disabled within it.
-    * <p><b>Note : </b> This is an advanced setting</p>
-    *
-    * @param neverDisable neverDisable Default value is null
-    */
+     * If <code>icon.neverDisable</code> is true, when this form item is disabled, the   icon will remain enabled.   Note that
+     * disabling the entire form will disable all items, together with their   icons including those marked as neverDisable -
+     * this property only has an effect   if the form is enabled and a specific item is disabled within it.
+     * <p><b>Note : </b> This is an advanced setting</p>
+     *
+     * @param neverDisable neverDisable Default value is null
+     */
     public void setNeverDisable(Boolean neverDisable) {
         setAttribute("neverDisable", neverDisable);
     }
+
     /**
-     * If <code>icon.neverDisable</code> is true, when this form item is disabled, the &#010  icon will remain enabled. &#010  Note that disabling the entire form will disable all items, together with their &#010  icons including those marked as neverDisable - this property only has an effect &#010  if the form is enabled and a specific item is disabled within it.
+     * If <code>icon.neverDisable</code> is true, when this form item is disabled, the   icon will remain enabled.   Note that
+     * disabling the entire form will disable all items, together with their   icons including those marked as neverDisable -
+     * this property only has an effect   if the form is enabled and a specific item is disabled within it.
      *
      *
      * @return Boolean
-     *
      */
     public Boolean getNeverDisable()  {
         return getAttributeAsBoolean("neverDisable");
     }
 
     /**
-    * If set, this property determines the width of this icon in px.&#010      If unset the form item's <code>iconWidth</code> property will be used instead.
-    *
-    * @param width width Default value is null
-    */
+     * If set, this property determines the width of this icon in px.      If unset the form item's <code>iconWidth</code>
+     * property will be used instead.
+     *
+     * @param width width Default value is null
+     */
     public void setWidth(Integer width) {
         setAttribute("width", width);
     }
+
     /**
-     * If set, this property determines the width of this icon in px.&#010      If unset the form item's <code>iconWidth</code> property will be used instead.
+     * If set, this property determines the width of this icon in px.      If unset the form item's <code>iconWidth</code>
+     * property will be used instead.
      *
      *
      * @return Integer
-     *
      */
     public Integer getWidth()  {
         return getAttributeAsInt("width");
     }
 
     /**
-    * If set, this property determines the height of this icon in px.&#010      If unset the form item's <code>iconHeight</code> property will be used instead.
-    *
-    * @param height height Default value is null
-    */
+     * If set, this property determines the height of this icon in px.      If unset the form item's <code>iconHeight</code>
+     * property will be used instead.
+     *
+     * @param height height Default value is null
+     */
     public void setHeight(Integer height) {
         setAttribute("height", height);
     }
+
     /**
-     * If set, this property determines the height of this icon in px.&#010      If unset the form item's <code>iconHeight</code> property will be used instead.
+     * If set, this property determines the height of this icon in px.      If unset the form item's <code>iconHeight</code>
+     * property will be used instead.
      *
      *
      * @return Integer
-     *
      */
     public Integer getHeight()  {
         return getAttributeAsInt("height");
     }
 
     /**
-    * If set, this property will be displayed as a prompt (and tooltip text) for this form&#010 item icon.&#010 <P>&#010 If unset the form item's <code>iconPrompt</code> property will be used instead.
-    * <p><b>Note : </b> This is an advanced setting</p>
-    *
-    * @param prompt prompt Default value is null
-    */
+     * If set, this property will be displayed as a prompt (and tooltip text) for this form item icon. <P> If unset the form
+     * item's <code>iconPrompt</code> property will be used instead.
+     * <p><b>Note : </b> This is an advanced setting</p>
+     *
+     * @param prompt prompt Default value is null
+     */
     public void setPrompt(String prompt) {
         setAttribute("prompt", prompt);
     }
+
     /**
-     * If set, this property will be displayed as a prompt (and tooltip text) for this form&#010 item icon.&#010 <P>&#010 If unset the form item's <code>iconPrompt</code> property will be used instead.
+     * If set, this property will be displayed as a prompt (and tooltip text) for this form item icon. <P> If unset the form
+     * item's <code>iconPrompt</code> property will be used instead.
      *
      *
      * @return String
-     *
      */
     public String getPrompt()  {
         return getAttributeAsString("prompt");
@@ -236,29 +258,31 @@ public class FormItemIcon extends DataClass {
 
     // ********************* Methods ***********************
 
-        /**
-         * StringMethod action to fire when this icon is clicked&#010      If unset the form item's <code>iconClick</code> method will be fired instead (if&#010      specified).&#010
-         * @param form The Dynamic Form to which this icon's item belongs.
+    /**
+     * StringMethod action to fire when this icon is clicked      If unset the form item's <code>iconClick</code> method will
+     * be fired instead (if      specified).
+     * @param form The Dynamic Form to which this icon's item belongs.
      * @param item The Form Item containing this icon
      * @param icon A pointer to the form item icon clicked
-         */
-        public native void click(DynamicForm form, FormItem item, FormItemIcon icon) /*-{
-            var self = this.@com.smartgwt.client.core.DataClass::getJsObj()();
-            self.click(form.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()(), item.@com.smartgwt.client.core.DataClass::getJsObj()(), icon.@com.smartgwt.client.core.DataClass::getJsObj()());
-        }-*/;
+     */
+    public native void click(DynamicForm form, FormItem item, FormItemIcon icon) /*-{
+        var self = this.@com.smartgwt.client.core.DataClass::getJsObj()();
+        self.click(form.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()(), item.@com.smartgwt.client.core.DataClass::getJsObj()(), icon.@com.smartgwt.client.core.DataClass::getJsObj()());
+    }-*/;
 
-        /**
-         * StringMethod action to fire when this icon has focus and recieves a keypress&#010      event.&#010      If unset the form item's <code>iconKeyPress</code> method will be fired instead &#010      (if specified).&#010
-         * @param keyName Name of the key pressed
+    /**
+     * StringMethod action to fire when this icon has focus and recieves a keypress      event.      If unset the form item's
+     * <code>iconKeyPress</code> method will be fired instead       (if specified).
+     * @param keyName Name of the key pressed
      * @param character character produced by the keypress
      * @param form The Dynamic Form to which this icon's item belongs.
      * @param item The Form Item containing this icon
      * @param icon A pointer to the form item icon
-         */
-        public native void keyPress(String keyName, char character, DynamicForm form, FormItem item, FormItemIcon icon) /*-{
-            var self = this.@com.smartgwt.client.core.DataClass::getJsObj()();
-            self.keyPress(keyName, character, form.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()(), item.@com.smartgwt.client.core.DataClass::getJsObj()(), icon.@com.smartgwt.client.core.DataClass::getJsObj()());
-        }-*/;
+     */
+    public native void keyPress(String keyName, char character, DynamicForm form, FormItem item, FormItemIcon icon) /*-{
+        var self = this.@com.smartgwt.client.core.DataClass::getJsObj()();
+        self.keyPress(keyName, character, form.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()(), item.@com.smartgwt.client.core.DataClass::getJsObj()(), icon.@com.smartgwt.client.core.DataClass::getJsObj()());
+    }-*/;
 
     // ********************* Static Methods ***********************
 

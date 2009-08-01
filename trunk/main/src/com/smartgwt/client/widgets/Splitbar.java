@@ -55,10 +55,14 @@ import com.smartgwt.client.util.JSOHelper;
 import com.smartgwt.client.util.EnumUtil;
 import com.google.gwt.event.shared.*;
 import com.google.gwt.event.shared.HasHandlers;
-   /**
-    * Subclass of the {@link com.smartgwt.client.widgets.StretchImg} class. As with the {@link com.smartgwt.client.widgets.ImgSplitbar} class, &#010  widgets of this class can be displayed as a resize-bar for widgets &#010  in Layouts where showResizeBar is set to true. Provides a different appearance from&#010  the <code>ImgSplitbar</code> class.<br>&#010  To specify the resizeBar class for some layout, use the {@link com.smartgwt.client.widgets.layout.Layout#getResizeBarClass resizeBarClass}&#010  property.
 
-    */
+/**
+ * Subclass of the {@link com.smartgwt.client.widgets.StretchImg} class. As with the {@link
+ * com.smartgwt.client.widgets.ImgSplitbar} class,   widgets of this class can be displayed as a resize-bar for widgets  
+ * in Layouts where showResizeBar is set to true. Provides a different appearance from  the <code>ImgSplitbar</code>
+ * class.<br>  To specify the resizeBar class for some layout, use the {@link
+ * com.smartgwt.client.widgets.layout.Layout#getResizeBarClass resizeBarClass}  property.
+ */
 public class Splitbar extends StretchImg {
 
     public static Splitbar getOrCreateRef(JavaScriptObject jsObj) {
@@ -70,7 +74,6 @@ public class Splitbar extends StretchImg {
             return new Splitbar(jsObj);
         }
     }
-
 
     public Splitbar(){
         
@@ -88,13 +91,15 @@ public class Splitbar extends StretchImg {
     }-*/;
     // ********************* Properties / Attributes ***********************
 
+
     /**
-     * Is this split bar vertically orientated?<br>&#010 When a <code>Splitbar</code> is created by a layout to be the resizeBar for some&#010 member of the layout, the <code>vertical</code> property will be set to <code>true</code>&#010 if the layout is horizontal, meaning this resizeBar will be taller than it is wide, &#010 and will allow horizontal resizing of the member.
+     * Is this split bar vertically orientated?<br> When a <code>Splitbar</code> is created by a layout to be the resizeBar for
+     * some member of the layout, the <code>vertical</code> property will be set to <code>true</code> if the layout is
+     * horizontal, meaning this resizeBar will be taller than it is wide,  and will allow horizontal resizing of the member.
      *
      * <b>Note :</b> This method should be called only after the widget has been rendered.
      *
      * @return Boolean
-     *
      * @throws IllegalStateException if widget has not yet been rendered.
      */
     public Boolean getVertical() throws IllegalStateException {
@@ -103,262 +108,298 @@ public class Splitbar extends StretchImg {
     }
 
     /**
-    * The base URL for the image. &#010 <P>&#010 As with {@link com.smartgwt.client.widgets.Img#getSrc src}, the {@link com.smartgwt.client.types.State} of the component is added to this URL.  Then,&#010 the image segment name as specified by {@link com.smartgwt.client.widgets.StretchImg#getItems items} is added.&#010 <P>&#010 For example, for a stretchImg in "Over" state with a <code>src</code> of "button.png"&#010 and a segment name of "stretch", the resulting URL would be "button_Over_stretch.png".
-    *
-    * @param src src Default value is null
-    * @throws IllegalStateException this property cannot be changed after the component has been created
-    */
+     * The base URL for the image.  <P> As with {@link com.smartgwt.client.widgets.Img#getSrc src}, the {@link
+     * com.smartgwt.client.types.State} of the component is added to this URL.  Then, the image segment name as specified by
+     * {@link com.smartgwt.client.widgets.StretchImg#getItems items} is added. <P> For example, for a stretchImg in "Over"
+     * state with a <code>src</code> of "button.png" and a segment name of "stretch", the resulting URL would be
+     * "button_Over_stretch.png".
+     *
+     * @param src src Default value is null
+     * @throws IllegalStateException this property cannot be changed after the component has been created
+     */
     public void setSrc(String src)  throws IllegalStateException {
         setAttribute("src", src, false);
     }
+
     /**
-     * The base URL for the image. &#010 <P>&#010 As with {@link com.smartgwt.client.widgets.Img#getSrc src}, the {@link com.smartgwt.client.types.State} of the component is added to this URL.  Then,&#010 the image segment name as specified by {@link com.smartgwt.client.widgets.StretchImg#getItems items} is added.&#010 <P>&#010 For example, for a stretchImg in "Over" state with a <code>src</code> of "button.png"&#010 and a segment name of "stretch", the resulting URL would be "button_Over_stretch.png".
+     * The base URL for the image.  <P> As with {@link com.smartgwt.client.widgets.Img#getSrc src}, the {@link
+     * com.smartgwt.client.types.State} of the component is added to this URL.  Then, the image segment name as specified by
+     * {@link com.smartgwt.client.widgets.StretchImg#getItems items} is added. <P> For example, for a stretchImg in "Over"
+     * state with a <code>src</code> of "button.png" and a segment name of "stretch", the resulting URL would be
+     * "button_Over_stretch.png".
      *
      *
      * @return String
-     *
      */
     public String getSrc()  {
         return getAttributeAsString("src");
     }
 
     /**
-    * Base URL for the image if {@link com.smartgwt.client.widgets.StretchImg#getVertical vertical} is false and &#010 {@link com.smartgwt.client.widgets.StretchImg#getSrc src} is unset.
-    *
-    * @param hSrc hSrc Default value is null
-    * @throws IllegalStateException this property cannot be changed after the component has been created
-    */
+     * Base URL for the image if {@link com.smartgwt.client.widgets.StretchImg#getVertical vertical} is false and  {@link
+     * com.smartgwt.client.widgets.StretchImg#getSrc src} is unset.
+     *
+     * @param hSrc hSrc Default value is null
+     * @throws IllegalStateException this property cannot be changed after the component has been created
+     */
     public void setHSrc(String hSrc)  throws IllegalStateException {
         setAttribute("hSrc", hSrc, false);
     }
+
     /**
-     * Base URL for the image if {@link com.smartgwt.client.widgets.StretchImg#getVertical vertical} is false and &#010 {@link com.smartgwt.client.widgets.StretchImg#getSrc src} is unset.
+     * Base URL for the image if {@link com.smartgwt.client.widgets.StretchImg#getVertical vertical} is false and  {@link
+     * com.smartgwt.client.widgets.StretchImg#getSrc src} is unset.
      *
      *
      * @return String
-     *
      */
     public String getHSrc()  {
         return getAttributeAsString("hSrc");
     }
 
     /**
-    * Base URL for the image if {@link com.smartgwt.client.widgets.StretchImg#getVertical vertical} is true and &#010 {@link com.smartgwt.client.widgets.StretchImg#getSrc src} is unset.
-    *
-    * @param vSrc vSrc Default value is null
-    * @throws IllegalStateException this property cannot be changed after the component has been created
-    */
+     * Base URL for the image if {@link com.smartgwt.client.widgets.StretchImg#getVertical vertical} is true and  {@link
+     * com.smartgwt.client.widgets.StretchImg#getSrc src} is unset.
+     *
+     * @param vSrc vSrc Default value is null
+     * @throws IllegalStateException this property cannot be changed after the component has been created
+     */
     public void setVSrc(String vSrc)  throws IllegalStateException {
         setAttribute("vSrc", vSrc, false);
     }
+
     /**
-     * Base URL for the image if {@link com.smartgwt.client.widgets.StretchImg#getVertical vertical} is true and &#010 {@link com.smartgwt.client.widgets.StretchImg#getSrc src} is unset.
+     * Base URL for the image if {@link com.smartgwt.client.widgets.StretchImg#getVertical vertical} is true and  {@link
+     * com.smartgwt.client.widgets.StretchImg#getSrc src} is unset.
      *
      *
      * @return String
-     *
      */
     public String getVSrc()  {
         return getAttributeAsString("vSrc");
     }
 
     /**
-    * Should we show a "grip" image floating above the center of this widget?
-    * <p><b>Note : </b> This is an advanced setting</p>
-    *
-    * @param showGrip showGrip Default value is null
-    * @throws IllegalStateException this property cannot be changed after the component has been created
-    */
+     * Should we show a "grip" image floating above the center of this widget?
+     * <p><b>Note : </b> This is an advanced setting</p>
+     *
+     * @param showGrip showGrip Default value is null
+     * @throws IllegalStateException this property cannot be changed after the component has been created
+     */
     public void setShowGrip(Boolean showGrip)  throws IllegalStateException {
         setAttribute("showGrip", showGrip, false);
     }
+
     /**
      * Should we show a "grip" image floating above the center of this widget?
      *
      *
      * @return Boolean
-     *
      */
     public Boolean getShowGrip()  {
         return getAttributeAsBoolean("showGrip");
     }
 
     /**
-    * part name for the 'grip' image if {@link com.smartgwt.client.widgets.Splitbar#getShowGrip showGrip} is true
-    * <p><b>Note : </b> This is an advanced setting</p>
-    *
-    * @param gripImgSuffix gripImgSuffix Default value is "grip"
-    * @throws IllegalStateException this property cannot be changed after the component has been created
-    */
+     * part name for the 'grip' image if {@link com.smartgwt.client.widgets.Splitbar#getShowGrip showGrip} is true
+     * <p><b>Note : </b> This is an advanced setting</p>
+     *
+     * @param gripImgSuffix gripImgSuffix Default value is "grip"
+     * @throws IllegalStateException this property cannot be changed after the component has been created
+     */
     public void setGripImgSuffix(String gripImgSuffix)  throws IllegalStateException {
         setAttribute("gripImgSuffix", gripImgSuffix, false);
     }
+
     /**
      * part name for the 'grip' image if {@link com.smartgwt.client.widgets.Splitbar#getShowGrip showGrip} is true
      *
      *
      * @return String
-     *
      */
     public String getGripImgSuffix()  {
         return getAttributeAsString("gripImgSuffix");
     }
 
     /**
-    * If {@link com.smartgwt.client.widgets.Splitbar#getShowGrip showGrip} is true, this property determines whether to show the&#010 'Down' state on the grip image when the user mousedown's on this widget. &#010 Has no effect if {@link com.smartgwt.client.widgets.StatefulCanvas#getShowDown showDown} is false
-    * <p><b>Note : </b> This is an advanced setting</p>
-    *
-    * @param showDownGrip showDownGrip Default value is null
-    * @throws IllegalStateException this property cannot be changed after the component has been created
-    */
+     * If {@link com.smartgwt.client.widgets.Splitbar#getShowGrip showGrip} is true, this property determines whether to show
+     * the 'Down' state on the grip image when the user mousedown's on this widget.  Has no effect if {@link
+     * com.smartgwt.client.widgets.StatefulCanvas#getShowDown showDown} is false
+     * <p><b>Note : </b> This is an advanced setting</p>
+     *
+     * @param showDownGrip showDownGrip Default value is null
+     * @throws IllegalStateException this property cannot be changed after the component has been created
+     */
     public void setShowDownGrip(Boolean showDownGrip)  throws IllegalStateException {
         setAttribute("showDownGrip", showDownGrip, false);
     }
+
     /**
-     * If {@link com.smartgwt.client.widgets.Splitbar#getShowGrip showGrip} is true, this property determines whether to show the&#010 'Down' state on the grip image when the user mousedown's on this widget. &#010 Has no effect if {@link com.smartgwt.client.widgets.StatefulCanvas#getShowDown showDown} is false
+     * If {@link com.smartgwt.client.widgets.Splitbar#getShowGrip showGrip} is true, this property determines whether to show
+     * the 'Down' state on the grip image when the user mousedown's on this widget.  Has no effect if {@link
+     * com.smartgwt.client.widgets.StatefulCanvas#getShowDown showDown} is false
      *
      *
      * @return Boolean
-     *
      */
     public Boolean getShowDownGrip()  {
         return getAttributeAsBoolean("showDownGrip");
     }
 
     /**
-    * If {@link com.smartgwt.client.widgets.Splitbar#getShowGrip showGrip} is true, this property determines whether to show the&#010 'Over' state on the grip image when the user rolls over on this widget. &#010 Has no effect if {@link com.smartgwt.client.widgets.StatefulCanvas#getShowRollOver showRollOver} is false
-    * <p><b>Note : </b> This is an advanced setting</p>
-    *
-    * @param showRollOverGrip showRollOverGrip Default value is null
-    * @throws IllegalStateException this property cannot be changed after the component has been created
-    */
+     * If {@link com.smartgwt.client.widgets.Splitbar#getShowGrip showGrip} is true, this property determines whether to show
+     * the 'Over' state on the grip image when the user rolls over on this widget.  Has no effect if {@link
+     * com.smartgwt.client.widgets.StatefulCanvas#getShowRollOver showRollOver} is false
+     * <p><b>Note : </b> This is an advanced setting</p>
+     *
+     * @param showRollOverGrip showRollOverGrip Default value is null
+     * @throws IllegalStateException this property cannot be changed after the component has been created
+     */
     public void setShowRollOverGrip(Boolean showRollOverGrip)  throws IllegalStateException {
         setAttribute("showRollOverGrip", showRollOverGrip, false);
     }
+
     /**
-     * If {@link com.smartgwt.client.widgets.Splitbar#getShowGrip showGrip} is true, this property determines whether to show the&#010 'Over' state on the grip image when the user rolls over on this widget. &#010 Has no effect if {@link com.smartgwt.client.widgets.StatefulCanvas#getShowRollOver showRollOver} is false
+     * If {@link com.smartgwt.client.widgets.Splitbar#getShowGrip showGrip} is true, this property determines whether to show
+     * the 'Over' state on the grip image when the user rolls over on this widget.  Has no effect if {@link
+     * com.smartgwt.client.widgets.StatefulCanvas#getShowRollOver showRollOver} is false
      *
      *
      * @return Boolean
-     *
      */
     public Boolean getShowRollOverGrip()  {
         return getAttributeAsBoolean("showRollOverGrip");
     }
 
     /**
-    * If {@link com.smartgwt.client.widgets.Splitbar#getShowGrip showGrip} is true, this property determines whether the grip image&#010 displayed should show the <code>"Closed"</code> state when the {@link com.smartgwt.client.widgets.Splitbar#getTarget target} &#010 is hidden.
-    * <p><b>Note : </b> This is an advanced setting</p>
-    *
-    * @param showClosedGrip showClosedGrip Default value is null
-    * @throws IllegalStateException this property cannot be changed after the component has been created
-    */
+     * If {@link com.smartgwt.client.widgets.Splitbar#getShowGrip showGrip} is true, this property determines whether the grip
+     * image displayed should show the <code>"Closed"</code> state when the {@link
+     * com.smartgwt.client.widgets.Splitbar#getTarget target}  is hidden.
+     * <p><b>Note : </b> This is an advanced setting</p>
+     *
+     * @param showClosedGrip showClosedGrip Default value is null
+     * @throws IllegalStateException this property cannot be changed after the component has been created
+     */
     public void setShowClosedGrip(Boolean showClosedGrip)  throws IllegalStateException {
         setAttribute("showClosedGrip", showClosedGrip, false);
     }
+
     /**
-     * If {@link com.smartgwt.client.widgets.Splitbar#getShowGrip showGrip} is true, this property determines whether the grip image&#010 displayed should show the <code>"Closed"</code> state when the {@link com.smartgwt.client.widgets.Splitbar#getTarget target} &#010 is hidden.
+     * If {@link com.smartgwt.client.widgets.Splitbar#getShowGrip showGrip} is true, this property determines whether the grip
+     * image displayed should show the <code>"Closed"</code> state when the {@link
+     * com.smartgwt.client.widgets.Splitbar#getTarget target}  is hidden.
      *
      *
      * @return Boolean
-     *
      */
     public Boolean getShowClosedGrip()  {
         return getAttributeAsBoolean("showClosedGrip");
     }
 
     /**
-    * <code>canDrag</code> set to true to allow dragging of the split bar. Dragging the&#010 Splitbar will resize it's {@link com.smartgwt.client.widgets.Splitbar#getTarget 'target'}
-    *
-    * @param canDrag canDrag Default value is true
-    */
+     * <code>canDrag</code> set to true to allow dragging of the split bar. Dragging the Splitbar will resize it's {@link
+     * com.smartgwt.client.widgets.Splitbar#getTarget 'target'}
+     *
+     * @param canDrag canDrag Default value is true
+     */
     public void setCanDrag(Boolean canDrag) {
         setAttribute("canDrag", canDrag, true);
     }
+
     /**
-     * <code>canDrag</code> set to true to allow dragging of the split bar. Dragging the&#010 Splitbar will resize it's {@link com.smartgwt.client.widgets.Splitbar#getTarget 'target'}
+     * <code>canDrag</code> set to true to allow dragging of the split bar. Dragging the Splitbar will resize it's {@link
+     * com.smartgwt.client.widgets.Splitbar#getTarget 'target'}
      *
      *
      * @return Boolean
-     *
      */
     public Boolean getCanDrag()  {
         return getAttributeAsBoolean("canDrag");
     }
 
     /**
-    * If this property is true, a click on the Splitbar will collapse its &#010 {@link com.smartgwt.client.widgets.Splitbar#getTarget 'target'}, hiding it and shifting the Splitbar and other members&#010 of the layout across to fill the newly available space. If the target is already hidden&#010 a click will expand it again (showing it at it's normal size).
-    *
-    * @param canCollapse canCollapse Default value is true
-    */
+     * If this property is true, a click on the Splitbar will collapse its  {@link
+     * com.smartgwt.client.widgets.Splitbar#getTarget 'target'}, hiding it and shifting the Splitbar and other members of the
+     * layout across to fill the newly available space. If the target is already hidden a click will expand it again (showing
+     * it at it's normal size).
+     *
+     * @param canCollapse canCollapse Default value is true
+     */
     public void setCanCollapse(Boolean canCollapse) {
         setAttribute("canCollapse", canCollapse, true);
     }
+
     /**
-     * If this property is true, a click on the Splitbar will collapse its &#010 {@link com.smartgwt.client.widgets.Splitbar#getTarget 'target'}, hiding it and shifting the Splitbar and other members&#010 of the layout across to fill the newly available space. If the target is already hidden&#010 a click will expand it again (showing it at it's normal size).
+     * If this property is true, a click on the Splitbar will collapse its  {@link
+     * com.smartgwt.client.widgets.Splitbar#getTarget 'target'}, hiding it and shifting the Splitbar and other members of the
+     * layout across to fill the newly available space. If the target is already hidden a click will expand it again (showing
+     * it at it's normal size).
      *
      *
      * @return Boolean
-     *
      */
     public Boolean getCanCollapse()  {
         return getAttributeAsBoolean("canCollapse");
     }
              
     /**
-    * Splitbars' cursors are set at init time based on whether they are to be used for vertical or&#010 horizontal resize.  To customize the cursor for this class, modify &#010 {@link com.smartgwt.client.widgets.Splitbar#getVResizeCursor vResizeCursor} or {@link com.smartgwt.client.widgets.Splitbar#getHResizeCursor hResizeCursor} rather than this property.
-    *
-    * @param cursor cursor Default value is "hand"
-    */
+     * Splitbars' cursors are set at init time based on whether they are to be used for vertical or horizontal resize.  To
+     * customize the cursor for this class, modify  {@link com.smartgwt.client.widgets.Splitbar#getVResizeCursor vResizeCursor}
+     * or {@link com.smartgwt.client.widgets.Splitbar#getHResizeCursor hResizeCursor} rather than this property.
+     *
+     * @param cursor cursor Default value is "hand"
+     */
     public void setCursor(Cursor cursor) {
         setAttribute("cursor", cursor.getValue(), true);
     }
+
     /**
-     * Splitbars' cursors are set at init time based on whether they are to be used for vertical or&#010 horizontal resize.  To customize the cursor for this class, modify &#010 {@link com.smartgwt.client.widgets.Splitbar#getVResizeCursor vResizeCursor} or {@link com.smartgwt.client.widgets.Splitbar#getHResizeCursor hResizeCursor} rather than this property.
+     * Splitbars' cursors are set at init time based on whether they are to be used for vertical or horizontal resize.  To
+     * customize the cursor for this class, modify  {@link com.smartgwt.client.widgets.Splitbar#getVResizeCursor vResizeCursor}
+     * or {@link com.smartgwt.client.widgets.Splitbar#getHResizeCursor hResizeCursor} rather than this property.
      *
      *
      * @return Cursor
-     *
      */
     public Cursor getCursor()  {
         return (Cursor) EnumUtil.getEnum(Cursor.values(), getAttribute("cursor"));
     }
              
     /**
-    * Cursor to display if this Splitbar is to be used for vertical resize of widgets.
-    *
-    * @param vResizeCursor vResizeCursor Default value is "row-resize"
-    * @throws IllegalStateException this property cannot be changed after the component has been created
-    */
+     * Cursor to display if this Splitbar is to be used for vertical resize of widgets.
+     *
+     * @param vResizeCursor vResizeCursor Default value is "row-resize"
+     * @throws IllegalStateException this property cannot be changed after the component has been created
+     */
     public void setVResizeCursor(Cursor vResizeCursor)  throws IllegalStateException {
         setAttribute("vResizeCursor", vResizeCursor.getValue(), false);
     }
+
     /**
      * Cursor to display if this Splitbar is to be used for vertical resize of widgets.
      *
      *
      * @return Cursor
-     *
      */
     public Cursor getVResizeCursor()  {
         return (Cursor) EnumUtil.getEnum(Cursor.values(), getAttribute("vResizeCursor"));
     }
              
     /**
-    * Cursor to display if this Splitbar is to be used for horizontal resize of widgets.
-    *
-    * @param hResizeCursor hResizeCursor Default value is "col-resize"
-    * @throws IllegalStateException this property cannot be changed after the component has been created
-    */
+     * Cursor to display if this Splitbar is to be used for horizontal resize of widgets.
+     *
+     * @param hResizeCursor hResizeCursor Default value is "col-resize"
+     * @throws IllegalStateException this property cannot be changed after the component has been created
+     */
     public void setHResizeCursor(Cursor hResizeCursor)  throws IllegalStateException {
         setAttribute("hResizeCursor", hResizeCursor.getValue(), false);
     }
+
     /**
      * Cursor to display if this Splitbar is to be used for horizontal resize of widgets.
      *
      *
      * @return Cursor
-     *
      */
     public Cursor getHResizeCursor()  {
         return (Cursor) EnumUtil.getEnum(Cursor.values(), getAttribute("hResizeCursor"));

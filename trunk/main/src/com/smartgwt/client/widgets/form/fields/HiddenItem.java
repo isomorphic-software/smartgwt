@@ -55,10 +55,14 @@ import com.smartgwt.client.util.JSOHelper;
 import com.smartgwt.client.util.EnumUtil;
 import com.google.gwt.event.shared.*;
 import com.google.gwt.event.shared.HasHandlers;
-   /**
-    * HiddenItems track a value but have no visible appearance and do not take up space in the form&#010 layout.&#010 <P>&#010 When using SmartGWT databinding it is usually not necessary to use a HiddenItem, since&#010 the DynamicForm will track values for which no actual form control exists, and will submit&#010 these 'extra' values when {@link com.smartgwt.client.widgets.form.DynamicForm#saveData} is called.  HiddenItems only apply&#010 to forms that are submitted like ordinary HTML forms, via the&#010 {@link com.smartgwt.client.widgets.form.DynamicForm#submitForm} method.
 
-    */
+/**
+ * HiddenItems track a value but have no visible appearance and do not take up space in the form layout. <P> When using
+ * SmartGWT databinding it is usually not necessary to use a HiddenItem, since the DynamicForm will track values for which
+ * no actual form control exists, and will submit these 'extra' values when {@link
+ * com.smartgwt.client.widgets.form.DynamicForm#saveData} is called.  HiddenItems only apply to forms that are submitted
+ * like ordinary HTML forms, via the {@link com.smartgwt.client.widgets.form.DynamicForm#submitForm} method.
+ */
 public class HiddenItem extends FormItem {
 
     public static HiddenItem getOrCreateRef(JavaScriptObject jsObj) {
@@ -71,7 +75,6 @@ public class HiddenItem extends FormItem {
             return new HiddenItem(jsObj);
         }
     }
-
 
     public HiddenItem(){
         setType("HiddenItem");
@@ -89,57 +92,57 @@ public class HiddenItem extends FormItem {
     // ********************* Properties / Attributes ***********************
 
     /**
-    * we never show a separate title cell for hidden fields
-    *
-    * @param showTitle showTitle Default value is false
-    */
+     * we never show a separate title cell for hidden fields
+     *
+     * @param showTitle showTitle Default value is false
+     */
     public void setShowTitle(Boolean showTitle) {
         setAttribute("showTitle", showTitle);
     }
+
     /**
      * we never show a separate title cell for hidden fields
      *
      *
      * @return Boolean
-     *
      */
     public Boolean getShowTitle()  {
         return getAttributeAsBoolean("showTitle");
     }
 
     /**
-    * hidden fields don't take up any columns
-    *
-    * @param colSpan colSpan Default value is 0
-    */
+     * hidden fields don't take up any columns
+     *
+     * @param colSpan colSpan Default value is 0
+     */
     public void setColSpan(int colSpan) {
         setAttribute("colSpan", colSpan);
     }
+
     /**
      * hidden fields don't take up any columns
      *
      *
      * @return int
-     *
      */
     public int getColSpan()  {
         return getAttributeAsInt("colSpan");
     }
 
     /**
-    * hidden fields don't take up any rows
-    *
-    * @param rowSpan rowSpan Default value is 0
-    */
+     * hidden fields don't take up any rows
+     *
+     * @param rowSpan rowSpan Default value is 0
+     */
     public void setRowSpan(int rowSpan) {
         setAttribute("rowSpan", rowSpan);
     }
+
     /**
      * hidden fields don't take up any rows
      *
      *
      * @return int
-     *
      */
     public int getRowSpan()  {
         return getAttributeAsInt("rowSpan");

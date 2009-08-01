@@ -55,10 +55,10 @@ import com.smartgwt.client.util.JSOHelper;
 import com.smartgwt.client.util.EnumUtil;
 import com.google.gwt.event.shared.*;
 import com.google.gwt.event.shared.HasHandlers;
-   /**
-    * EdgedCanvas acts as a decorative, image-based frame around another single Canvas.
 
-    */
+/**
+ * EdgedCanvas acts as a decorative, image-based frame around another single Canvas.
+ */
 public class EdgedCanvas extends Canvas {
 
     public static EdgedCanvas getOrCreateRef(JavaScriptObject jsObj) {
@@ -70,7 +70,6 @@ public class EdgedCanvas extends Canvas {
             return new EdgedCanvas(jsObj);
         }
     }
-
 
     public EdgedCanvas(){
         
@@ -89,302 +88,330 @@ public class EdgedCanvas extends Canvas {
     // ********************* Properties / Attributes ***********************
 
     /**
-    * Standard skin directory for edge images (sides and corners).
-    *
-    * @param skinImgDir skinImgDir Default value is "images/edges/"
-    * @throws IllegalStateException this property cannot be changed after the component has been created
-    */
+     * Standard skin directory for edge images (sides and corners).
+     *
+     * @param skinImgDir skinImgDir Default value is "images/edges/"
+     * @throws IllegalStateException this property cannot be changed after the component has been created
+     */
     public void setSkinImgDir(String skinImgDir)  throws IllegalStateException {
         setAttribute("skinImgDir", skinImgDir, false);
     }
+
     /**
      * Standard skin directory for edge images (sides and corners).
      *
      *
      * @return String
-     *
      */
     public String getSkinImgDir()  {
         return getAttributeAsString("skinImgDir");
     }
 
     /**
-    * Base name of images for edges.  Extensions for each corner or edge piece will be added&#010 to this image URL, before the extension.  For example, with the default base name of&#010 "edge.gif", the top-left corner image will be "edge_TL.gif".&#010 <P>&#010 The full list of extensions is: "_TL", "_TR", "_BL", "_BR", "_T", "_L", "_B", "_R",&#010 "_center".
-    *
-    * @param edgeImage edgeImage Default value is "[SKIN]/rounded/frame/FFFFFF/6.png"
-    * @throws IllegalStateException this property cannot be changed after the component has been created
-    */
+     * Base name of images for edges.  Extensions for each corner or edge piece will be added to this image URL, before the
+     * extension.  For example, with the default base name of "edge.gif", the top-left corner image will be "edge_TL.gif". <P>
+     * The full list of extensions is: "_TL", "_TR", "_BL", "_BR", "_T", "_L", "_B", "_R", "_center".
+     *
+     * @param edgeImage edgeImage Default value is "[SKIN]/rounded/frame/FFFFFF/6.png"
+     * @throws IllegalStateException this property cannot be changed after the component has been created
+     */
     public void setEdgeImage(String edgeImage)  throws IllegalStateException {
         setAttribute("edgeImage", edgeImage, false);
     }
+
     /**
-     * Base name of images for edges.  Extensions for each corner or edge piece will be added&#010 to this image URL, before the extension.  For example, with the default base name of&#010 "edge.gif", the top-left corner image will be "edge_TL.gif".&#010 <P>&#010 The full list of extensions is: "_TL", "_TR", "_BL", "_BR", "_T", "_L", "_B", "_R",&#010 "_center".
+     * Base name of images for edges.  Extensions for each corner or edge piece will be added to this image URL, before the
+     * extension.  For example, with the default base name of "edge.gif", the top-left corner image will be "edge_TL.gif". <P>
+     * The full list of extensions is: "_TL", "_TR", "_BL", "_BR", "_T", "_L", "_B", "_R", "_center".
      *
      *
      * @return String
-     *
      */
     public String getEdgeImage()  {
         return getAttributeAsString("edgeImage");
     }
 
     /**
-    * CSS color (WITHOUT "#") for the edges.  If specified, will be used as part of image&#010 names.  Example: "edge_88FF88_TL.gif".
-    *
-    * @param edgeColor edgeColor Default value is null
-    * @throws IllegalStateException this property cannot be changed after the component has been created
-    */
+     * CSS color (WITHOUT "#") for the edges.  If specified, will be used as part of image names.  Example:
+     * "edge_88FF88_TL.gif".
+     *
+     * @param edgeColor edgeColor Default value is null
+     * @throws IllegalStateException this property cannot be changed after the component has been created
+     */
     public void setEdgeColor(String edgeColor)  throws IllegalStateException {
         setAttribute("edgeColor", edgeColor, false);
     }
+
     /**
-     * CSS color (WITHOUT "#") for the edges.  If specified, will be used as part of image&#010 names.  Example: "edge_88FF88_TL.gif".
+     * CSS color (WITHOUT "#") for the edges.  If specified, will be used as part of image names.  Example:
+     * "edge_88FF88_TL.gif".
      *
      *
      * @return String
-     *
      */
     public String getEdgeColor()  {
         return getAttributeAsString("edgeColor");
     }
 
     /**
-    * Whether to show media in the center section, that is, behind the decorated Canvas.
-    *
-    * @param showCenter showCenter Default value is false
-    * @throws IllegalStateException this property cannot be changed after the component has been created
-    */
+     * Whether to show media in the center section, that is, behind the decorated Canvas.
+     *
+     * @param showCenter showCenter Default value is false
+     * @throws IllegalStateException this property cannot be changed after the component has been created
+     */
     public void setShowCenter(Boolean showCenter)  throws IllegalStateException {
         setAttribute("showCenter", showCenter, false);
     }
+
     /**
      * Whether to show media in the center section, that is, behind the decorated Canvas.
      *
      *
      * @return Boolean
-     *
      */
     public Boolean getShowCenter()  {
         return getAttributeAsBoolean("showCenter");
     }
 
     /**
-    * Height in pixels for left corners and edges.  Defaults to edgeSize when unset.
-    *
-    * @param edgeLeft edgeLeft Default value is null
-    * @throws IllegalStateException this property cannot be changed after the component has been created
-    */
+     * Height in pixels for left corners and edges.  Defaults to edgeSize when unset.
+     *
+     * @param edgeLeft edgeLeft Default value is null
+     * @throws IllegalStateException this property cannot be changed after the component has been created
+     */
     public void setEdgeLeft(Integer edgeLeft)  throws IllegalStateException {
         setAttribute("edgeLeft", edgeLeft, false);
     }
+
     /**
      * Height in pixels for left corners and edges.  Defaults to edgeSize when unset.
      *
      *
      * @return Integer
-     *
      */
     public Integer getEdgeLeft()  {
         return getAttributeAsInt("edgeLeft");
     }
 
     /**
-    * Height in pixels for right corners and edges.  Defaults to edgeSize when unset.
-    *
-    * @param edgeRight edgeRight Default value is null
-    * @throws IllegalStateException this property cannot be changed after the component has been created
-    */
+     * Height in pixels for right corners and edges.  Defaults to edgeSize when unset.
+     *
+     * @param edgeRight edgeRight Default value is null
+     * @throws IllegalStateException this property cannot be changed after the component has been created
+     */
     public void setEdgeRight(Integer edgeRight)  throws IllegalStateException {
         setAttribute("edgeRight", edgeRight, false);
     }
+
     /**
      * Height in pixels for right corners and edges.  Defaults to edgeSize when unset.
      *
      *
      * @return Integer
-     *
      */
     public Integer getEdgeRight()  {
         return getAttributeAsInt("edgeRight");
     }
 
     /**
-    * Height in pixels for top corners and edges.  Defaults to edgeSize when unset.
-    *
-    * @param edgeTop edgeTop Default value is null
-    * @throws IllegalStateException this property cannot be changed after the component has been created
-    */
+     * Height in pixels for top corners and edges.  Defaults to edgeSize when unset.
+     *
+     * @param edgeTop edgeTop Default value is null
+     * @throws IllegalStateException this property cannot be changed after the component has been created
+     */
     public void setEdgeTop(Integer edgeTop)  throws IllegalStateException {
         setAttribute("edgeTop", edgeTop, false);
     }
+
     /**
      * Height in pixels for top corners and edges.  Defaults to edgeSize when unset.
      *
      *
      * @return Integer
-     *
      */
     public Integer getEdgeTop()  {
         return getAttributeAsInt("edgeTop");
     }
 
     /**
-    * Height in pixels for bottom corners and edges.  Defaults to edgeSize when unset.
-    *
-    * @param edgeBottom edgeBottom Default value is null
-    * @throws IllegalStateException this property cannot be changed after the component has been created
-    */
+     * Height in pixels for bottom corners and edges.  Defaults to edgeSize when unset.
+     *
+     * @param edgeBottom edgeBottom Default value is null
+     * @throws IllegalStateException this property cannot be changed after the component has been created
+     */
     public void setEdgeBottom(Integer edgeBottom)  throws IllegalStateException {
         setAttribute("edgeBottom", edgeBottom, false);
     }
+
     /**
      * Height in pixels for bottom corners and edges.  Defaults to edgeSize when unset.
      *
      *
      * @return Integer
-     *
      */
     public Integer getEdgeBottom()  {
         return getAttributeAsInt("edgeBottom");
     }
 
     /**
-    * Amount the contained Canvas should be offset from the top.  Defaults to the size for &#010 the top edge.  Set smaller to allow the contained Canvas to overlap the edge and &#010 corner media.
-    * <p><b>Note : </b> This is an advanced setting</p>
-    *
-    * @param edgeOffsetTop edgeOffsetTop Default value is null
-    * @throws IllegalStateException this property cannot be changed after the component has been created
-    */
+     * Amount the contained Canvas should be offset from the top.  Defaults to the size for  the top edge.  Set smaller to
+     * allow the contained Canvas to overlap the edge and  corner media.
+     * <p><b>Note : </b> This is an advanced setting</p>
+     *
+     * @param edgeOffsetTop edgeOffsetTop Default value is null
+     * @throws IllegalStateException this property cannot be changed after the component has been created
+     */
     public void setEdgeOffsetTop(Integer edgeOffsetTop)  throws IllegalStateException {
         setAttribute("edgeOffsetTop", edgeOffsetTop, false);
     }
+
     /**
-     * Amount the contained Canvas should be offset from the top.  Defaults to the size for &#010 the top edge.  Set smaller to allow the contained Canvas to overlap the edge and &#010 corner media.
+     * Amount the contained Canvas should be offset from the top.  Defaults to the size for  the top edge.  Set smaller to
+     * allow the contained Canvas to overlap the edge and  corner media.
      *
      *
      * @return Integer
-     *
      */
     public Integer getEdgeOffsetTop()  {
         return getAttributeAsInt("edgeOffsetTop");
     }
 
     /**
-    * Amount the contained Canvas should be offset from the bottom.  Defaults to the size for&#010 the bottom edge.  Set smaller to allow the contained Canvas to overlap the edge and&#010 corner media.
-    * <p><b>Note : </b> This is an advanced setting</p>
-    *
-    * @param edgeOffsetBottom edgeOffsetBottom Default value is null
-    * @throws IllegalStateException this property cannot be changed after the component has been created
-    */
+     * Amount the contained Canvas should be offset from the bottom.  Defaults to the size for the bottom edge.  Set smaller to
+     * allow the contained Canvas to overlap the edge and corner media.
+     * <p><b>Note : </b> This is an advanced setting</p>
+     *
+     * @param edgeOffsetBottom edgeOffsetBottom Default value is null
+     * @throws IllegalStateException this property cannot be changed after the component has been created
+     */
     public void setEdgeOffsetBottom(Integer edgeOffsetBottom)  throws IllegalStateException {
         setAttribute("edgeOffsetBottom", edgeOffsetBottom, false);
     }
+
     /**
-     * Amount the contained Canvas should be offset from the bottom.  Defaults to the size for&#010 the bottom edge.  Set smaller to allow the contained Canvas to overlap the edge and&#010 corner media.
+     * Amount the contained Canvas should be offset from the bottom.  Defaults to the size for the bottom edge.  Set smaller to
+     * allow the contained Canvas to overlap the edge and corner media.
      *
      *
      * @return Integer
-     *
      */
     public Integer getEdgeOffsetBottom()  {
         return getAttributeAsInt("edgeOffsetBottom");
     }
 
     /**
-    * Amount the contained Canvas should be offset from the left.  Defaults to the size for&#010 the left edge.  Set smaller to allow the contained Canvas to overlap the edge and&#010 corner media.
-    * <p><b>Note : </b> This is an advanced setting</p>
-    *
-    * @param edgeOffsetLeft edgeOffsetLeft Default value is null
-    * @throws IllegalStateException this property cannot be changed after the component has been created
-    */
+     * Amount the contained Canvas should be offset from the left.  Defaults to the size for the left edge.  Set smaller to
+     * allow the contained Canvas to overlap the edge and corner media.
+     * <p><b>Note : </b> This is an advanced setting</p>
+     *
+     * @param edgeOffsetLeft edgeOffsetLeft Default value is null
+     * @throws IllegalStateException this property cannot be changed after the component has been created
+     */
     public void setEdgeOffsetLeft(Integer edgeOffsetLeft)  throws IllegalStateException {
         setAttribute("edgeOffsetLeft", edgeOffsetLeft, false);
     }
+
     /**
-     * Amount the contained Canvas should be offset from the left.  Defaults to the size for&#010 the left edge.  Set smaller to allow the contained Canvas to overlap the edge and&#010 corner media.
+     * Amount the contained Canvas should be offset from the left.  Defaults to the size for the left edge.  Set smaller to
+     * allow the contained Canvas to overlap the edge and corner media.
      *
      *
      * @return Integer
-     *
      */
     public Integer getEdgeOffsetLeft()  {
         return getAttributeAsInt("edgeOffsetLeft");
     }
 
     /**
-    * Amount the contained Canvas should be offset from the right.  Defaults to the size for&#010 the right edge.  Set smaller to allow the contained Canvas to overlap the edge and&#010 corner media.
-    * <p><b>Note : </b> This is an advanced setting</p>
-    *
-    * @param edgeOffsetRight edgeOffsetRight Default value is null
-    * @throws IllegalStateException this property cannot be changed after the component has been created
-    */
+     * Amount the contained Canvas should be offset from the right.  Defaults to the size for the right edge.  Set smaller to
+     * allow the contained Canvas to overlap the edge and corner media.
+     * <p><b>Note : </b> This is an advanced setting</p>
+     *
+     * @param edgeOffsetRight edgeOffsetRight Default value is null
+     * @throws IllegalStateException this property cannot be changed after the component has been created
+     */
     public void setEdgeOffsetRight(Integer edgeOffsetRight)  throws IllegalStateException {
         setAttribute("edgeOffsetRight", edgeOffsetRight, false);
     }
+
     /**
-     * Amount the contained Canvas should be offset from the right.  Defaults to the size for&#010 the right edge.  Set smaller to allow the contained Canvas to overlap the edge and&#010 corner media.
+     * Amount the contained Canvas should be offset from the right.  Defaults to the size for the right edge.  Set smaller to
+     * allow the contained Canvas to overlap the edge and corner media.
      *
      *
      * @return Integer
-     *
      */
     public Integer getEdgeOffsetRight()  {
         return getAttributeAsInt("edgeOffsetRight");
     }
 
     /**
-    * Background color for the center section only.  Can be used as a surrogate background&#010 color for the decorated Canvas, if the Canvas is set to partially overlap the edges and&#010 hence can't show a background color itself without occluding media.
-    *
-    * @param centerBackgroundColor centerBackgroundColor Default value is null
-    * @throws IllegalStateException this property cannot be changed after the component has been created
-    */
+     * Background color for the center section only.  Can be used as a surrogate background color for the decorated Canvas, if
+     * the Canvas is set to partially overlap the edges and hence can't show a background color itself without occluding media.
+     *
+     * @param centerBackgroundColor centerBackgroundColor Default value is null
+     * @throws IllegalStateException this property cannot be changed after the component has been created
+     */
     public void setCenterBackgroundColor(String centerBackgroundColor)  throws IllegalStateException {
         setAttribute("centerBackgroundColor", centerBackgroundColor, false);
     }
+
     /**
-     * Background color for the center section only.  Can be used as a surrogate background&#010 color for the decorated Canvas, if the Canvas is set to partially overlap the edges and&#010 hence can't show a background color itself without occluding media.
+     * Background color for the center section only.  Can be used as a surrogate background color for the decorated Canvas, if
+     * the Canvas is set to partially overlap the edges and hence can't show a background color itself without occluding media.
      *
      *
      * @return String
-     *
      */
     public String getCenterBackgroundColor()  {
         return getAttributeAsString("centerBackgroundColor");
     }
 
     /**
-    * Optional property specifying the CSS ClassName to apply to the various parts of this edged canvas&#010 (top, bottom, corners, sides and center). To&#010 apply separate styles for each part, use {@link com.smartgwt.client.widgets.EdgedCanvas#getAddEdgeStyleSuffix addEdgeStyleSuffix}.
-    *
-    * @param edgeStyleName edgeStyleName Default value is null
-    */
+     * Optional property specifying the CSS ClassName to apply to the various parts of this edged canvas (top, bottom, corners,
+     * sides and center). To apply separate styles for each part, use {@link
+     * com.smartgwt.client.widgets.EdgedCanvas#getAddEdgeStyleSuffix addEdgeStyleSuffix}.
+     *
+     * @param edgeStyleName edgeStyleName Default value is null
+     */
     public void setEdgeStyleName(String edgeStyleName) {
         setAttribute("edgeStyleName", edgeStyleName, true);
     }
+
     /**
-     * Optional property specifying the CSS ClassName to apply to the various parts of this edged canvas&#010 (top, bottom, corners, sides and center). To&#010 apply separate styles for each part, use {@link com.smartgwt.client.widgets.EdgedCanvas#getAddEdgeStyleSuffix addEdgeStyleSuffix}.
+     * Optional property specifying the CSS ClassName to apply to the various parts of this edged canvas (top, bottom, corners,
+     * sides and center). To apply separate styles for each part, use {@link
+     * com.smartgwt.client.widgets.EdgedCanvas#getAddEdgeStyleSuffix addEdgeStyleSuffix}.
      *
      *
      * @return String
-     *
      */
     public String getEdgeStyleName()  {
         return getAttributeAsString("edgeStyleName");
     }
 
     /**
-    * If specified, the {@link com.smartgwt.client.widgets.EdgedCanvas#getEdgeStyleName edgeStyleName} will be treated as a base style name and&#010 appended with following suffixes to support separate styling per cell:&#010 <P>&#010 <code>_TL</code> (top left cell)<br>&#010 <code>_T</code> (top center cell)<br>&#010 <code>_TR</code> (top right cell)<br>&#010 <code>_L</code> (middle left cell)<br>&#010 <code>_C</code> (center cell)<br>&#010 <code>_R</code> (middle right cell)<br>&#010 <code>_BL</code> (bottom left cell)<br>&#010 <code>_B</code> (bottom center cell)<br>&#010 <code>_BR</code> (bottom right cell)
-    *
-    * @param addEdgeStyleSuffix addEdgeStyleSuffix Default value is false
-    */
+     * If specified, the {@link com.smartgwt.client.widgets.EdgedCanvas#getEdgeStyleName edgeStyleName} will be treated as a
+     * base style name and appended with following suffixes to support separate styling per cell: <P> <code>_TL</code> (top
+     * left cell)<br> <code>_T</code> (top center cell)<br> <code>_TR</code> (top right cell)<br> <code>_L</code> (middle left
+     * cell)<br> <code>_C</code> (center cell)<br> <code>_R</code> (middle right cell)<br> <code>_BL</code> (bottom left
+     * cell)<br> <code>_B</code> (bottom center cell)<br> <code>_BR</code> (bottom right cell)
+     *
+     * @param addEdgeStyleSuffix addEdgeStyleSuffix Default value is false
+     */
     public void setAddEdgeStyleSuffix(Boolean addEdgeStyleSuffix) {
         setAttribute("addEdgeStyleSuffix", addEdgeStyleSuffix, true);
     }
+
     /**
-     * If specified, the {@link com.smartgwt.client.widgets.EdgedCanvas#getEdgeStyleName edgeStyleName} will be treated as a base style name and&#010 appended with following suffixes to support separate styling per cell:&#010 <P>&#010 <code>_TL</code> (top left cell)<br>&#010 <code>_T</code> (top center cell)<br>&#010 <code>_TR</code> (top right cell)<br>&#010 <code>_L</code> (middle left cell)<br>&#010 <code>_C</code> (center cell)<br>&#010 <code>_R</code> (middle right cell)<br>&#010 <code>_BL</code> (bottom left cell)<br>&#010 <code>_B</code> (bottom center cell)<br>&#010 <code>_BR</code> (bottom right cell)
+     * If specified, the {@link com.smartgwt.client.widgets.EdgedCanvas#getEdgeStyleName edgeStyleName} will be treated as a
+     * base style name and appended with following suffixes to support separate styling per cell: <P> <code>_TL</code> (top
+     * left cell)<br> <code>_T</code> (top center cell)<br> <code>_TR</code> (top right cell)<br> <code>_L</code> (middle left
+     * cell)<br> <code>_C</code> (center cell)<br> <code>_R</code> (middle right cell)<br> <code>_BL</code> (bottom left
+     * cell)<br> <code>_B</code> (bottom center cell)<br> <code>_BR</code> (bottom right cell)
      *
      *
      * @return Boolean
-     *
      */
     public Boolean getAddEdgeStyleSuffix()  {
         return getAttributeAsBoolean("addEdgeStyleSuffix");

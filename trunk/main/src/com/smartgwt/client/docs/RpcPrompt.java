@@ -2,7 +2,7 @@
 package com.smartgwt.client.docs;
 
 /**
- * The properties in this group all deal with setting and styling a modal prompt during an RPC&#010 call to the server.
+ * The properties in this group all deal with setting and styling a modal prompt during an RPC call to the server.
  * @see com.smartgwt.client.widgets.grid.ListGrid#getNeverValidate
  * @see com.smartgwt.client.widgets.grid.ListGrid#getNeverValidate
  * @see com.smartgwt.client.widgets.grid.ListGrid#getNeverValidate

@@ -55,10 +55,11 @@ import com.smartgwt.client.util.JSOHelper;
 import com.smartgwt.client.util.EnumUtil;
 import com.google.gwt.event.shared.*;
 import com.google.gwt.event.shared.HasHandlers;
-   /**
-    * Similar to a {@link com.smartgwt.client.widgets.tile.TileLayout}, but by default lays out tiles in 'flow' mode instead of&#010 'fit' mode.
 
-    */
+/**
+ * Similar to a {@link com.smartgwt.client.widgets.tile.TileLayout}, but by default lays out tiles in 'flow' mode instead
+ * of 'fit' mode.
+ */
 public class FlowLayout extends TileLayout {
 
     public static FlowLayout getOrCreateRef(JavaScriptObject jsObj) {
@@ -70,7 +71,6 @@ public class FlowLayout extends TileLayout {
             return new FlowLayout(jsObj);
         }
     }
-
 
     public FlowLayout(){
         

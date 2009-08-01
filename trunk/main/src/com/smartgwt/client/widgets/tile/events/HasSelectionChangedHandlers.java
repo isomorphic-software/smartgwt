@@ -22,7 +22,9 @@ import com.google.gwt.event.shared.HasHandlers;
 
 public interface HasSelectionChangedHandlers extends HasHandlers {
     /**
-     * Called when selection changes within this tileGrid. Note this method fires for&#010 each record for which selection is modified - so when a user clicks inside a tileGrid this&#010 method will typically fire twice (once for the old record being deselected, and once for&#010 the new record being selected).&#010&#010
+     * Called when selection changes within this tileGrid. Note this method fires for each record for which selection is
+     * modified - so when a user clicks inside a tileGrid this method will typically fire twice (once for the old record being
+     * deselected, and once for the new record being selected).
      *
      * @param handler the selectionChanged handler
      * @return {@link HandlerRegistration} used to remove this handler

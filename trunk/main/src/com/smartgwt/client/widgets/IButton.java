@@ -55,10 +55,13 @@ import com.smartgwt.client.util.JSOHelper;
 import com.smartgwt.client.util.EnumUtil;
 import com.google.gwt.event.shared.*;
 import com.google.gwt.event.shared.HasHandlers;
-   /**
-    * The IButton widget class is a class that implements the same APIs as the &#010 {@link com.smartgwt.client.widgets.Button} class.  Depending on the current skin, <code>IButton</code>s may be&#010 on the {@link com.smartgwt.client.widgets.StretchImgButton} component, which renders via images, or may be based on the&#010 {@link com.smartgwt.client.widgets.Button} component, which renders via CSS styles.
 
-    */
+/**
+ * The IButton widget class is a class that implements the same APIs as the  {@link com.smartgwt.client.widgets.Button}
+ * class.  Depending on the current skin, <code>IButton</code>s may be on the {@link
+ * com.smartgwt.client.widgets.StretchImgButton} component, which renders via images, or may be based on the {@link
+ * com.smartgwt.client.widgets.Button} component, which renders via CSS styles.
+ */
 public class IButton extends StretchImgButton {
 
     public static IButton getOrCreateRef(JavaScriptObject jsObj) {
@@ -70,7 +73,6 @@ public class IButton extends StretchImgButton {
             return new IButton(jsObj);
         }
     }
-
 
     public IButton(){
         

@@ -55,11 +55,11 @@ import com.smartgwt.client.util.JSOHelper;
 import com.smartgwt.client.util.EnumUtil;
 import com.google.gwt.event.shared.*;
 import com.google.gwt.event.shared.HasHandlers;
-   /**
-    * The Progressbar widget class extends the StretchImg class to implement image-based progress&#010 bars (graphical bars whose lengths represent percentages, typically of task completion).
 
-    */
-
+/**
+ * The Progressbar widget class extends the StretchImg class to implement image-based progress bars (graphical bars whose
+ * lengths represent percentages, typically of task completion).
+ */
 public class Progressbar extends StretchImg  implements com.smartgwt.client.widgets.events.HasPercentChangedHandlers {
 
     public static Progressbar getOrCreateRef(JavaScriptObject jsObj) {
@@ -71,7 +71,6 @@ public class Progressbar extends StretchImg  implements com.smartgwt.client.widg
             return new Progressbar(jsObj);
         }
     }
-
 
     public Progressbar(){
         
@@ -90,100 +89,104 @@ public class Progressbar extends StretchImg  implements com.smartgwt.client.widg
     // ********************* Properties / Attributes ***********************
 
     /**
-    * Number from 0 to 100, inclusive, for the percentage to be displayed graphically in&#010 this progressbar.
-    * Sets percentDone to newPercent.&#010&#010
-    *
-    * @param percentDone percent to show as done (0-100). Default value is 0
-    */
+     * Number from 0 to 100, inclusive, for the percentage to be displayed graphically in this progressbar.
+     * Sets percentDone to newPercent.
+     *
+     * @param percentDone percent to show as done (0-100). Default value is 0
+     */
     public void setPercentDone(int percentDone) {
         setAttribute("percentDone", percentDone, true);
     }
+
     /**
-     * Number from 0 to 100, inclusive, for the percentage to be displayed graphically in&#010 this progressbar.
+     * Number from 0 to 100, inclusive, for the percentage to be displayed graphically in this progressbar.
      *
      *
      * @return int
-     *
      */
     public int getPercentDone()  {
         return getAttributeAsInt("percentDone");
     }
 
     /**
-    * Length of the progressbar in pixels. This is effectively height for a vertical&#010 progressbar, or width for a horizontal progressbar.&#010 <P>&#010 This property must be set instead of setting <code>width</code> or <code>height</code>.
-    * Sets the length of the progressbar to newLength. This is the width of a horizontal progressbar,&#010 or the height of a vertical progressbar.&#010&#010
-    *
-    * @param length the new length of the progressbar. Default value is 100
-    * @throws IllegalStateException this property cannot be changed after the component has been created
-    */
+     * Length of the progressbar in pixels. This is effectively height for a vertical progressbar, or width for a horizontal
+     * progressbar. <P> This property must be set instead of setting <code>width</code> or <code>height</code>.
+     * Sets the length of the progressbar to newLength. This is the width of a horizontal progressbar, or the height of a vertical progressbar.
+     *
+     * @param length the new length of the progressbar. Default value is 100
+     * @throws IllegalStateException this property cannot be changed after the component has been created
+     */
     public void setLength(int length)  throws IllegalStateException {
         setAttribute("length", length, false);
     }
+
     /**
-     * Length of the progressbar in pixels. This is effectively height for a vertical&#010 progressbar, or width for a horizontal progressbar.&#010 <P>&#010 This property must be set instead of setting <code>width</code> or <code>height</code>.
+     * Length of the progressbar in pixels. This is effectively height for a vertical progressbar, or width for a horizontal
+     * progressbar. <P> This property must be set instead of setting <code>width</code> or <code>height</code>.
      *
      *
-     * @return Returns the current width of a horizontal progressbar, or height of a vertical progressbar.&#010&#010
-     *
+     * @return Returns the current width of a horizontal progressbar, or height of a vertical progressbar.
      */
     public int getLength()  {
         return getAttributeAsInt("length");
     }
 
     /**
-    * Thickness of the progressbar in pixels. This is effectively width for a vertical&#010 progressbar, or height for a horizontal progressbar.&#010 <P>&#010 This property must be set instead of setting <code>width</code> or <code>height</code>.
-    * Sets the breadth of the progressbar to newLength. This is the height of a horizontal progressbar,&#010 or the width of a vertical progressbar.&#010&#010
-    *
-    * @param breadth the new breadth of the progressbar. Default value is 20
-    * @throws IllegalStateException this property cannot be changed after the component has been created
-    */
+     * Thickness of the progressbar in pixels. This is effectively width for a vertical progressbar, or height for a horizontal
+     * progressbar. <P> This property must be set instead of setting <code>width</code> or <code>height</code>.
+     * Sets the breadth of the progressbar to newLength. This is the height of a horizontal progressbar, or the width of a vertical progressbar.
+     *
+     * @param breadth the new breadth of the progressbar. Default value is 20
+     * @throws IllegalStateException this property cannot be changed after the component has been created
+     */
     public void setBreadth(int breadth)  throws IllegalStateException {
         setAttribute("breadth", breadth, false);
     }
+
     /**
-     * Thickness of the progressbar in pixels. This is effectively width for a vertical&#010 progressbar, or height for a horizontal progressbar.&#010 <P>&#010 This property must be set instead of setting <code>width</code> or <code>height</code>.
+     * Thickness of the progressbar in pixels. This is effectively width for a vertical progressbar, or height for a horizontal
+     * progressbar. <P> This property must be set instead of setting <code>width</code> or <code>height</code>.
      *
      *
-     * @return Returns the current height of a horizontal progressbar, or width of a vertical progressbar.&#010&#010
-     *
+     * @return Returns the current height of a horizontal progressbar, or width of a vertical progressbar.
      */
     public int getBreadth()  {
         return getAttributeAsInt("breadth");
     }
 
     /**
-    * Indicates whether this is a vertical or horizontal progressbar.
-    *
-    * @param vertical vertical Default value is false
-    */
+     * Indicates whether this is a vertical or horizontal progressbar.
+     *
+     * @param vertical vertical Default value is false
+     */
     public void setVertical(Boolean vertical) {
         setAttribute("vertical", vertical, true);
     }
+
     /**
      * Indicates whether this is a vertical or horizontal progressbar.
      *
      *
      * @return Boolean
-     *
      */
     public Boolean getVertical()  {
         return getAttributeAsBoolean("vertical");
     }
 
     /**
-    * The base file name for the progressbar image.
-    *
-    * @param src src Default value is "[SKIN]progressbar.gif"
-    */
+     * The base file name for the progressbar image.
+     *
+     * @param src src Default value is "[SKIN]progressbar.gif"
+     */
     public void setSrc(String src) {
         setAttribute("src", src, true);
     }
+
     /**
      * The base file name for the progressbar image.
      *
      *
      * @return String
-     *
      */
     public String getSrc()  {
         return getAttributeAsString("src");
@@ -192,38 +195,40 @@ public class Progressbar extends StretchImg  implements com.smartgwt.client.widg
     // ********************* Methods ***********************
 
 
-        /**
-         * Add a percentChanged handler.
-         * <p>
-         * This method is called when the percentDone value changes. Observe this method to be notified upon&#010 a change to the percentDone value.&#010&#010
-         *
-         * @param handler the percentChanged handler
-         * @return {@link HandlerRegistration} used to remove this handler
-         */
-        public HandlerRegistration addPercentChangedHandler(com.smartgwt.client.widgets.events.PercentChangedHandler handler) {
-            if(getHandlerCount(com.smartgwt.client.widgets.events.PercentChangedEvent.getType()) == 0) setupPercentChangedEvent();
-            return doAddHandler(handler, com.smartgwt.client.widgets.events.PercentChangedEvent.getType());
-        }
-        private native void setupPercentChangedEvent() /*-{
-            var obj = null;
-            var selfJ = this;
-            if(this.@com.smartgwt.client.widgets.BaseWidget::isCreated()()) {
-                obj = this.@com.smartgwt.client.widgets.BaseWidget::getJsObj()();
-                obj.addProperties({percentChanged:function(){
+    /**
+     * Add a percentChanged handler.
+     * <p>
+     * This method is called when the percentDone value changes. Observe this method to be notified upon a change to the
+     * percentDone value.
+     *
+     * @param handler the percentChanged handler
+     * @return {@link HandlerRegistration} used to remove this handler
+     */
+    public HandlerRegistration addPercentChangedHandler(com.smartgwt.client.widgets.events.PercentChangedHandler handler) {
+        if(getHandlerCount(com.smartgwt.client.widgets.events.PercentChangedEvent.getType()) == 0) setupPercentChangedEvent();
+        return doAddHandler(handler, com.smartgwt.client.widgets.events.PercentChangedEvent.getType());
+    }
+
+    private native void setupPercentChangedEvent() /*-{
+        var obj = null;
+        var selfJ = this;
+        if(this.@com.smartgwt.client.widgets.BaseWidget::isCreated()()) {
+            obj = this.@com.smartgwt.client.widgets.BaseWidget::getJsObj()();
+            obj.addProperties({percentChanged:function(){
                         var param = {};
                         var event = @com.smartgwt.client.widgets.events.PercentChangedEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
                         selfJ.@com.smartgwt.client.widgets.BaseWidget::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
                     }
-                });
-            } else {
-                obj = this.@com.smartgwt.client.widgets.BaseWidget::getConfig()();
-                obj.percentChanged = function(){
-                    var param = {};
-                    var event = @com.smartgwt.client.widgets.events.PercentChangedEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
-                    selfJ.@com.smartgwt.client.widgets.BaseWidget::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
-                };
-            }
-        }-*/;
+             });
+        } else {
+            obj = this.@com.smartgwt.client.widgets.BaseWidget::getConfig()();
+            obj.percentChanged = function(){
+                   var param = {};
+                   var event = @com.smartgwt.client.widgets.events.PercentChangedEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
+                   selfJ.@com.smartgwt.client.widgets.BaseWidget::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
+               };
+        }
+   }-*/;
 
 
 

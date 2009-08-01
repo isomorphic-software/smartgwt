@@ -22,7 +22,8 @@ import com.google.gwt.event.shared.HasHandlers;
 
 public interface HasDateChangedHandlers extends HasHandlers {
     /**
-     * Fires whenever the user changes the current date, including picking a specific date or&#010 navigating to a new week or month.&#010
+     * Fires whenever the user changes the current date, including picking a specific date or navigating to a new week or
+     * month.
      *
      * @param handler the dateChanged handler
      * @return {@link HandlerRegistration} used to remove this handler

@@ -22,7 +22,7 @@ import com.google.gwt.event.shared.HasHandlers;
 
 public interface HasTabDeselectedHandlers extends HasHandlers {
     /**
-     * Notification fired when a tab is deselected.        &#010
+     * Notification fired when a tab is deselected.
      *
      * @param handler the tabDeselected handler
      * @return {@link HandlerRegistration} used to remove this handler

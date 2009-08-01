@@ -22,7 +22,9 @@ import com.google.gwt.event.shared.HasHandlers;
 
 public interface HasClickHandlers extends HasHandlers {
     /**
-     * Executed when this menu item is clicked by the user. The click handler must be specified&#010 as a function or string of script.  Return false to suppress the {@link com.smartgwt.client.widgets.menu.Menu#addItemClickHandler}&#010 handler if specified.&#010&#010
+     * Executed when this menu item is clicked by the user. The click handler must be specified as a function or string of
+     * script.  Return false to suppress the {@link com.smartgwt.client.widgets.menu.Menu#addItemClickHandler} handler if
+     * specified.
      *
      * @param handler the click handler
      * @return {@link HandlerRegistration} used to remove this handler

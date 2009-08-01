@@ -22,7 +22,7 @@ import com.google.gwt.event.shared.HasHandlers;
 
 public interface HasKeyDownHandlers extends HasHandlers {
     /**
-     * StringMethod fired in response to a keydown while focused in this form item.&#010&#010
+     * StringMethod fired in response to a keydown while focused in this form item.
      *
      * @param handler the keyDown handler
      * @return {@link HandlerRegistration} used to remove this handler

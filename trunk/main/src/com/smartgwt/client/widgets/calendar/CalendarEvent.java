@@ -55,10 +55,10 @@ import com.smartgwt.client.util.JSOHelper;
 import com.smartgwt.client.util.EnumUtil;
 import com.google.gwt.event.shared.*;
 import com.google.gwt.event.shared.HasHandlers;
-   /**
-    * An object which represents an event to occur at a specific time, displayed within the&#010 calendar.
 
-    */
+/**
+ * An object which represents an event to occur at a specific time, displayed within the calendar.
+ */
 public class CalendarEvent extends Record {
 
     public static CalendarEvent getOrCreateRef(JavaScriptObject jsObj) {
@@ -71,7 +71,6 @@ public class CalendarEvent extends Record {
             return new CalendarEvent(jsObj);
         }
     }
-
 
     public CalendarEvent(){
         
@@ -114,95 +113,117 @@ public class CalendarEvent extends Record {
     // ********************* Properties / Attributes ***********************
 
     /**
-    * Date object which represents the start date of a {@link com.smartgwt.client.widgets.calendar.CalendarEvent}&#010 The name of this field within the CalendarEvent can be changed via &#010 {@link com.smartgwt.client.widgets.calendar.Calendar#getStartDateField startDateField}
-    *
-    * @param startDate startDate Default value is null
-    */
+     * Date object which represents the start date of a {@link com.smartgwt.client.widgets.calendar.CalendarEvent} The name of
+     * this field within the CalendarEvent can be changed via  {@link
+     * com.smartgwt.client.widgets.calendar.Calendar#getStartDateField startDateField}
+     *
+     * @param startDate startDate Default value is null
+     */
     public void setStartDate(java.util.Date startDate) {
         setAttribute("startDate", startDate);
     }
+
     /**
-     * Date object which represents the start date of a {@link com.smartgwt.client.widgets.calendar.CalendarEvent}&#010 The name of this field within the CalendarEvent can be changed via &#010 {@link com.smartgwt.client.widgets.calendar.Calendar#getStartDateField startDateField}
+     * Date object which represents the start date of a {@link com.smartgwt.client.widgets.calendar.CalendarEvent} The name of
+     * this field within the CalendarEvent can be changed via  {@link
+     * com.smartgwt.client.widgets.calendar.Calendar#getStartDateField startDateField}
      *
      *
      * @return java.util.Date
-     *
      */
     public java.util.Date getStartDate()  {
         return getAttributeAsDate("startDate");
     }
 
     /**
-    * Date object which represents the end date of a {@link com.smartgwt.client.widgets.calendar.CalendarEvent}&#010 The name of this field within the CalendarEvent can be changed via &#010 {@link com.smartgwt.client.widgets.calendar.Calendar#getEndDateField endDateField}
-    *
-    * @param endDate endDate Default value is null
-    */
+     * Date object which represents the end date of a {@link com.smartgwt.client.widgets.calendar.CalendarEvent} The name of
+     * this field within the CalendarEvent can be changed via  {@link
+     * com.smartgwt.client.widgets.calendar.Calendar#getEndDateField endDateField}
+     *
+     * @param endDate endDate Default value is null
+     */
     public void setEndDate(java.util.Date endDate) {
         setAttribute("endDate", endDate);
     }
+
     /**
-     * Date object which represents the end date of a {@link com.smartgwt.client.widgets.calendar.CalendarEvent}&#010 The name of this field within the CalendarEvent can be changed via &#010 {@link com.smartgwt.client.widgets.calendar.Calendar#getEndDateField endDateField}
+     * Date object which represents the end date of a {@link com.smartgwt.client.widgets.calendar.CalendarEvent} The name of
+     * this field within the CalendarEvent can be changed via  {@link
+     * com.smartgwt.client.widgets.calendar.Calendar#getEndDateField endDateField}
      *
      *
      * @return java.util.Date
-     *
      */
     public java.util.Date getEndDate()  {
         return getAttributeAsDate("endDate");
     }
 
     /**
-    * String which represents name of a {@link com.smartgwt.client.widgets.calendar.CalendarEvent}&#010 The name of this field within the CalendarEvent can be changed via &#010 {@link com.smartgwt.client.widgets.calendar.Calendar#getNameField nameField}
-    *
-    * @param name name Default value is null
-    */
+     * String which represents name of a {@link com.smartgwt.client.widgets.calendar.CalendarEvent} The name of this field
+     * within the CalendarEvent can be changed via  {@link com.smartgwt.client.widgets.calendar.Calendar#getNameField
+     * nameField}
+     *
+     * @param name name Default value is null
+     */
     public void setName(String name) {
         setAttribute("name", name);
     }
+
     /**
-     * String which represents name of a {@link com.smartgwt.client.widgets.calendar.CalendarEvent}&#010 The name of this field within the CalendarEvent can be changed via &#010 {@link com.smartgwt.client.widgets.calendar.Calendar#getNameField nameField}
+     * String which represents name of a {@link com.smartgwt.client.widgets.calendar.CalendarEvent} The name of this field
+     * within the CalendarEvent can be changed via  {@link com.smartgwt.client.widgets.calendar.Calendar#getNameField
+     * nameField}
      *
      *
      * @return String
-     *
      */
     public String getName()  {
         return getAttributeAsString("name");
     }
 
     /**
-    * String which represents the description of a {@link com.smartgwt.client.widgets.calendar.CalendarEvent}&#010 The name of this field within the CalendarEvent can be changed via &#010 {@link com.smartgwt.client.widgets.calendar.Calendar#getDescriptionField descriptionField}
-    *
-    * @param description description Default value is null
-    */
+     * String which represents the description of a {@link com.smartgwt.client.widgets.calendar.CalendarEvent} The name of this
+     * field within the CalendarEvent can be changed via  {@link
+     * com.smartgwt.client.widgets.calendar.Calendar#getDescriptionField descriptionField}
+     *
+     * @param description description Default value is null
+     */
     public void setDescription(String description) {
         setAttribute("description", description);
     }
+
     /**
-     * String which represents the description of a {@link com.smartgwt.client.widgets.calendar.CalendarEvent}&#010 The name of this field within the CalendarEvent can be changed via &#010 {@link com.smartgwt.client.widgets.calendar.Calendar#getDescriptionField descriptionField}
+     * String which represents the description of a {@link com.smartgwt.client.widgets.calendar.CalendarEvent} The name of this
+     * field within the CalendarEvent can be changed via  {@link
+     * com.smartgwt.client.widgets.calendar.Calendar#getDescriptionField descriptionField}
      *
      *
      * @return String
-     *
      */
     public String getDescription()  {
         return getAttributeAsString("description");
     }
 
     /**
-    * CSS style series to use for the draggable event window that represents this event.  If&#010 specified, overrides {@link com.smartgwt.client.widgets.calendar.Calendar#getEventWindowStyle eventWindowStyle} for this specific event.&#010 <P>&#010 The name of this field within the CalendarEvent can be changed via &#010 {@link com.smartgwt.client.widgets.calendar.Calendar#getEventWindowStyleField eventWindowStyleField}
-    *
-    * @param eventWindowStyle eventWindowStyle Default value is null
-    */
+     * CSS style series to use for the draggable event window that represents this event.  If specified, overrides {@link
+     * com.smartgwt.client.widgets.calendar.Calendar#getEventWindowStyle eventWindowStyle} for this specific event. <P> The
+     * name of this field within the CalendarEvent can be changed via  {@link
+     * com.smartgwt.client.widgets.calendar.Calendar#getEventWindowStyleField eventWindowStyleField}
+     *
+     * @param eventWindowStyle eventWindowStyle Default value is null
+     */
     public void setEventWindowStyle(String eventWindowStyle) {
         setAttribute("eventWindowStyle", eventWindowStyle);
     }
+
     /**
-     * CSS style series to use for the draggable event window that represents this event.  If&#010 specified, overrides {@link com.smartgwt.client.widgets.calendar.Calendar#getEventWindowStyle eventWindowStyle} for this specific event.&#010 <P>&#010 The name of this field within the CalendarEvent can be changed via &#010 {@link com.smartgwt.client.widgets.calendar.Calendar#getEventWindowStyleField eventWindowStyleField}
+     * CSS style series to use for the draggable event window that represents this event.  If specified, overrides {@link
+     * com.smartgwt.client.widgets.calendar.Calendar#getEventWindowStyle eventWindowStyle} for this specific event. <P> The
+     * name of this field within the CalendarEvent can be changed via  {@link
+     * com.smartgwt.client.widgets.calendar.Calendar#getEventWindowStyleField eventWindowStyleField}
      *
      *
      * @return String
-     *
      */
     public String getEventWindowStyle()  {
         return getAttributeAsString("eventWindowStyle");
@@ -215,7 +236,6 @@ public class CalendarEvent extends Record {
 
 
 
-
     public void setEventId(Integer eventId) {
         setAttribute("eventId", eventId);
     }

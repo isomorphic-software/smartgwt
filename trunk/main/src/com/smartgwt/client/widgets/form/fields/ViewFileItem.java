@@ -55,10 +55,13 @@ import com.smartgwt.client.util.JSOHelper;
 import com.smartgwt.client.util.EnumUtil;
 import com.google.gwt.event.shared.*;
 import com.google.gwt.event.shared.HasHandlers;
-   /**
-    * Item for displaying the contents of "imageFile" fields in DynamicForms. &#010 <P>&#010 Displays one of two UIs, according to the value of &#010 {@link com.smartgwt.client.widgets.form.fields.ViewFileItem#getShowFileInline 'showFileInline'}.  If showFileInline is false, this Item&#010 displays the View and Download icons and the filename.  Otherwise, it streams the image-file &#010 and displays it inline.
 
-    */
+/**
+ * Item for displaying the contents of "imageFile" fields in DynamicForms.  <P> Displays one of two UIs, according to the
+ * value of  {@link com.smartgwt.client.widgets.form.fields.ViewFileItem#getShowFileInline 'showFileInline'}.  If
+ * showFileInline is false, this Item displays the View and Download icons and the filename.  Otherwise, it streams the
+ * image-file  and displays it inline.
+ */
 public class ViewFileItem extends CanvasItem {
 
     public static ViewFileItem getOrCreateRef(JavaScriptObject jsObj) {
@@ -71,7 +74,6 @@ public class ViewFileItem extends CanvasItem {
             return new ViewFileItem(jsObj);
         }
     }
-
 
     public ViewFileItem(){
         setType("ViewFileItem");
@@ -95,19 +97,19 @@ public class ViewFileItem extends CanvasItem {
     // ********************* Properties / Attributes ***********************
 
     /**
-    * Indicates whether to stream the image and display it&#010 inline or to display the View and Download icons.
-    *
-    * @param showFileInline showFileInline Default value is null
-    */
+     * Indicates whether to stream the image and display it inline or to display the View and Download icons.
+     *
+     * @param showFileInline showFileInline Default value is null
+     */
     public void setShowFileInline(Boolean showFileInline) {
         setAttribute("showFileInline", showFileInline);
     }
+
     /**
-     * Indicates whether to stream the image and display it&#010 inline or to display the View and Download icons.
+     * Indicates whether to stream the image and display it inline or to display the View and Download icons.
      *
      *
      * @return Boolean
-     *
      */
     public Boolean getShowFileInline()  {
         return getAttributeAsBoolean("showFileInline");

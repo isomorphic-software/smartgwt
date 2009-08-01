@@ -55,10 +55,10 @@ import com.smartgwt.client.util.JSOHelper;
 import com.smartgwt.client.util.EnumUtil;
 import com.google.gwt.event.shared.*;
 import com.google.gwt.event.shared.HasHandlers;
-   /**
-    * Specialized StretchImgButton used by TabSet/TabBar for tabs
 
-    */
+/**
+ * Specialized StretchImgButton used by TabSet/TabBar for tabs
+ */
 public class ImgTab extends StretchImgButton {
 
     public static ImgTab getOrCreateRef(JavaScriptObject jsObj) {
@@ -70,7 +70,6 @@ public class ImgTab extends StretchImgButton {
             return new ImgTab(jsObj);
         }
     }
-
 
     public ImgTab(){
         
@@ -89,154 +88,162 @@ public class ImgTab extends StretchImgButton {
     // ********************* Properties / Attributes ***********************
 
     /**
-    * How big are the end pieces by default
-    *
-    * @param capSize capSize Default value is 2
-    */
+     * How big are the end pieces by default
+     *
+     * @param capSize capSize Default value is 2
+     */
     public void setCapSize(int capSize) {
         setAttribute("capSize", capSize, true);
     }
+
     /**
      * How big are the end pieces by default
      *
      *
      * @return int
-     *
      */
     public int getCapSize()  {
         return getAttributeAsInt("capSize");
     }
 
     /**
-    * Base path for the images.   <B>Note</B> that when used within a TabSet, the&#010 {@link com.smartgwt.client.widgets.tab.TabSet#getTabBarPosition tabBarPosition} is appended as an additional path segment, yielding&#010 "images/Tab/top/" et al.
-    *
-    * @param skinImgDir skinImgDir Default value is "images/Tab/"
-    */
+     * Base path for the images.   <B>Note</B> that when used within a TabSet, the {@link
+     * com.smartgwt.client.widgets.tab.TabSet#getTabBarPosition tabBarPosition} is appended as an additional path segment,
+     * yielding "images/Tab/top/" et al.
+     *
+     * @param skinImgDir skinImgDir Default value is "images/Tab/"
+     */
     public void setSkinImgDir(String skinImgDir) {
         setAttribute("skinImgDir", skinImgDir, true);
     }
+
     /**
-     * Base path for the images.   <B>Note</B> that when used within a TabSet, the&#010 {@link com.smartgwt.client.widgets.tab.TabSet#getTabBarPosition tabBarPosition} is appended as an additional path segment, yielding&#010 "images/Tab/top/" et al.
+     * Base path for the images.   <B>Note</B> that when used within a TabSet, the {@link
+     * com.smartgwt.client.widgets.tab.TabSet#getTabBarPosition tabBarPosition} is appended as an additional path segment,
+     * yielding "images/Tab/top/" et al.
      *
      *
      * @return String
-     *
      */
     public String getSkinImgDir()  {
         return getAttributeAsString("skinImgDir");
     }
 
     /**
-    * 
-    *
-    * @param baseStyle baseStyle Default value is "tab"
-    * @throws IllegalStateException this property cannot be changed after the component has been created
-    */
+     * 
+     *
+     * @param baseStyle baseStyle Default value is "tab"
+     * @throws IllegalStateException this property cannot be changed after the component has been created
+     */
     public void setBaseStyle(String baseStyle)  throws IllegalStateException {
         setAttribute("baseStyle", baseStyle, false);
     }
+
     /**
      * 
      *
      *
      * @return String
-     *
      */
     public String getBaseStyle()  {
         return getAttributeAsString("baseStyle");
     }
 
     /**
-    * Like {@link com.smartgwt.client.widgets.StretchImgButton#getTitleStyle titleStyle}, can set to provide a separate style for the&#010 title text.&#010 <P>&#010 If set and the ImgTab is {@link com.smartgwt.client.widgets.StretchImgButton#getVertical 'vertical'}, a "v" will be&#010 automatically prepended to the style name (hence "tabTitle" -> "vtabTitle").
-    *
-    * @param titleStyle titleStyle Default value is null
-    * @throws IllegalStateException this property cannot be changed after the component has been created
-    */
+     * Like {@link com.smartgwt.client.widgets.StretchImgButton#getTitleStyle titleStyle}, can set to provide a separate style
+     * for the title text. <P> If set and the ImgTab is {@link com.smartgwt.client.widgets.StretchImgButton#getVertical
+     * 'vertical'}, a "v" will be automatically prepended to the style name (hence "tabTitle" -> "vtabTitle").
+     *
+     * @param titleStyle titleStyle Default value is null
+     * @throws IllegalStateException this property cannot be changed after the component has been created
+     */
     public void setTitleStyle(String titleStyle)  throws IllegalStateException {
         setAttribute("titleStyle", titleStyle, false);
     }
+
     /**
-     * Like {@link com.smartgwt.client.widgets.StretchImgButton#getTitleStyle titleStyle}, can set to provide a separate style for the&#010 title text.&#010 <P>&#010 If set and the ImgTab is {@link com.smartgwt.client.widgets.StretchImgButton#getVertical 'vertical'}, a "v" will be&#010 automatically prepended to the style name (hence "tabTitle" -> "vtabTitle").
+     * Like {@link com.smartgwt.client.widgets.StretchImgButton#getTitleStyle titleStyle}, can set to provide a separate style
+     * for the title text. <P> If set and the ImgTab is {@link com.smartgwt.client.widgets.StretchImgButton#getVertical
+     * 'vertical'}, a "v" will be automatically prepended to the style name (hence "tabTitle" -> "vtabTitle").
      *
      *
      * @return String
-     *
      */
     public String getTitleStyle()  {
         return getAttributeAsString("titleStyle");
     }
 
     /**
-    * Base URL for tab images
-    *
-    * @param src src Default value is "tab.gif"
-    */
+     * Base URL for tab images
+     *
+     * @param src src Default value is "tab.gif"
+     */
     public void setSrc(String src) {
         setAttribute("src", src, true);
     }
+
     /**
      * Base URL for tab images
      *
      *
      * @return String
-     *
      */
     public String getSrc()  {
         return getAttributeAsString("src");
     }
 
     /**
-    * Should we visibly change state when the mouse goes over this tab
-    *
-    * @param showRollOver showRollOver Default value is false
-    */
+     * Should we visibly change state when the mouse goes over this tab
+     *
+     * @param showRollOver showRollOver Default value is false
+     */
     public void setShowRollOver(Boolean showRollOver) {
         setAttribute("showRollOver", showRollOver, true);
     }
+
     /**
      * Should we visibly change state when the mouse goes over this tab
      *
      *
      * @return Boolean
-     *
      */
     public Boolean getShowRollOver()  {
         return getAttributeAsBoolean("showRollOver");
     }
 
     /**
-    * Should we visibly change state when the tab recieves keyboard focus?
-    *
-    * @param showFocused showFocused Default value is true
-    */
+     * Should we visibly change state when the tab recieves keyboard focus?
+     *
+     * @param showFocused showFocused Default value is true
+     */
     public void setShowFocused(Boolean showFocused) {
         setAttribute("showFocused", showFocused, true);
     }
+
     /**
      * Should we visibly change state when the tab recieves keyboard focus?
      *
      *
      * @return Boolean
-     *
      */
     public Boolean getShowFocused()  {
         return getAttributeAsBoolean("showFocused");
     }
              
     /**
-    * Alignment of title text
-    *
-    * @param align align Default value is Canvas.CENTER
-    */
+     * Alignment of title text
+     *
+     * @param align align Default value is Canvas.CENTER
+     */
     public void setAlign(Alignment align) {
         setAttribute("align", align.getValue(), true);
     }
+
     /**
      * Alignment of title text
      *
      *
      * @return Alignment
-     *
      */
     public Alignment getAlign()  {
         return (Alignment) EnumUtil.getEnum(Alignment.values(), getAttribute("align"));

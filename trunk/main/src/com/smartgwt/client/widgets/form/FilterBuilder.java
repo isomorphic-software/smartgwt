@@ -55,12 +55,14 @@ import com.smartgwt.client.util.JSOHelper;
 import com.smartgwt.client.util.EnumUtil;
 import com.google.gwt.event.shared.*;
 import com.google.gwt.event.shared.HasHandlers;
-   /**
-    * A form that allows the user to input advanced search criteria, including operators on&#010 field values such as "less than", and sub-clauses using "AND" and "OR" operators.&#010 <P>&#010 A FilterBuilder produces an ${isc.DocUtils.linkForRef('object:AdvancedCriteria')} object, which the {@link com.smartgwt.client.data.DataSource}&#010 subsystem can use to filter datasets, including the ability to perform such filtering within&#010 the browser for datasets that are completely loaded.
 
-    */
-
-
+/**
+ * A form that allows the user to input advanced search criteria, including operators on field values such as "less than",
+ * and sub-clauses using "AND" and "OR" operators. <P> A FilterBuilder produces an
+ * ${isc.DocUtils.linkForRef('object:AdvancedCriteria')} object, which the {@link com.smartgwt.client.data.DataSource}
+ * subsystem can use to filter datasets, including the ability to perform such filtering within the browser for datasets
+ * that are completely loaded.
+ */
 public class FilterBuilder extends Layout  implements com.smartgwt.client.widgets.form.events.HasFilterChangedHandlers, com.smartgwt.client.widgets.form.events.HasSearchHandlers {
 
     public static FilterBuilder getOrCreateRef(JavaScriptObject jsObj) {
@@ -72,7 +74,6 @@ public class FilterBuilder extends Layout  implements com.smartgwt.client.widget
             return new FilterBuilder(jsObj);
         }
     }
-
 
     public FilterBuilder(){
         
@@ -91,260 +92,276 @@ public class FilterBuilder extends Layout  implements com.smartgwt.client.widget
     // ********************* Properties / Attributes ***********************
 
     /**
-    * If true, when the user hits the Enter key while focussed in a text-item in this &#010 FilterBuilder, we automatically invoke the user-supplied {@link com.smartgwt.client.widgets.form.FilterBuilder#addSearchHandler} method.
-    *
-    * @param saveOnExit saveOnExit Default value is null
-    * @throws IllegalStateException this property cannot be changed after the component has been created
-    */
+     * If true, when the user hits the Enter key while focussed in a text-item in this  FilterBuilder, we automatically invoke
+     * the user-supplied {@link com.smartgwt.client.widgets.form.FilterBuilder#addSearchHandler} method.
+     *
+     * @param saveOnExit saveOnExit Default value is null
+     * @throws IllegalStateException this property cannot be changed after the component has been created
+     */
     public void setSaveOnExit(Boolean saveOnExit)  throws IllegalStateException {
         setAttribute("saveOnExit", saveOnExit, false);
     }
+
     /**
-     * If true, when the user hits the Enter key while focussed in a text-item in this &#010 FilterBuilder, we automatically invoke the user-supplied {@link com.smartgwt.client.widgets.form.FilterBuilder#addSearchHandler} method.
+     * If true, when the user hits the Enter key while focussed in a text-item in this  FilterBuilder, we automatically invoke
+     * the user-supplied {@link com.smartgwt.client.widgets.form.FilterBuilder#addSearchHandler} method.
      *
      *
      * @return Boolean
-     *
      */
     public Boolean getSaveOnExit()  {
         return getAttributeAsBoolean("saveOnExit");
     }
 
     /**
-    * If true (the default), show field titles in the drop-down box used to select a field for querying.&#010 If false, show actual field names instead.
-    *
-    * @param showFieldTitles showFieldTitles Default value is true
-    * @throws IllegalStateException this property cannot be changed after the component has been created
-    */
+     * If true (the default), show field titles in the drop-down box used to select a field for querying. If false, show actual
+     * field names instead.
+     *
+     * @param showFieldTitles showFieldTitles Default value is true
+     * @throws IllegalStateException this property cannot be changed after the component has been created
+     */
     public void setShowFieldTitles(Boolean showFieldTitles)  throws IllegalStateException {
         setAttribute("showFieldTitles", showFieldTitles, false);
     }
+
     /**
-     * If true (the default), show field titles in the drop-down box used to select a field for querying.&#010 If false, show actual field names instead.
+     * If true (the default), show field titles in the drop-down box used to select a field for querying. If false, show actual
+     * field names instead.
      *
      *
      * @return Boolean
-     *
      */
     public Boolean getShowFieldTitles()  {
         return getAttributeAsBoolean("showFieldTitles");
     }
 
     /**
-    * If true (the default), validates each entered value when it changes, to make sure it is a &#010 a valid value of its type (valid string, number, and so on).  No other validation is &#010 carried out.  If you switch this property off, it is still possible to validate the &#010 <code>FilterBuilder</code> by calling ${isc.DocUtils.linkForRef('filterBuilder.validate')} from your own code.
-    *
-    * @param validateOnChange validateOnChange Default value is true
-    * @throws IllegalStateException this property cannot be changed after the component has been created
-    */
+     * If true (the default), validates each entered value when it changes, to make sure it is a  a valid value of its type
+     * (valid string, number, and so on).  No other validation is  carried out.  If you switch this property off, it is still
+     * possible to validate the  <code>FilterBuilder</code> by calling ${isc.DocUtils.linkForRef('filterBuilder.validate')}
+     * from your own code.
+     *
+     * @param validateOnChange validateOnChange Default value is true
+     * @throws IllegalStateException this property cannot be changed after the component has been created
+     */
     public void setValidateOnChange(Boolean validateOnChange)  throws IllegalStateException {
         setAttribute("validateOnChange", validateOnChange, false);
     }
+
     /**
-     * If true (the default), validates each entered value when it changes, to make sure it is a &#010 a valid value of its type (valid string, number, and so on).  No other validation is &#010 carried out.  If you switch this property off, it is still possible to validate the &#010 <code>FilterBuilder</code> by calling ${isc.DocUtils.linkForRef('filterBuilder.validate')} from your own code.
+     * If true (the default), validates each entered value when it changes, to make sure it is a  a valid value of its type
+     * (valid string, number, and so on).  No other validation is  carried out.  If you switch this property off, it is still
+     * possible to validate the  <code>FilterBuilder</code> by calling ${isc.DocUtils.linkForRef('filterBuilder.validate')}
+     * from your own code.
      *
      *
      * @return Boolean
-     *
      */
     public Boolean getValidateOnChange()  {
         return getAttributeAsBoolean("validateOnChange");
     }
 
     /**
-    * If set, a button will be shown for each clause allowing it to be removed.
-    *
-    * @param showRemoveButton showRemoveButton Default value is true
-    * @throws IllegalStateException this property cannot be changed after the component has been created
-    */
+     * If set, a button will be shown for each clause allowing it to be removed.
+     *
+     * @param showRemoveButton showRemoveButton Default value is true
+     * @throws IllegalStateException this property cannot be changed after the component has been created
+     */
     public void setShowRemoveButton(Boolean showRemoveButton)  throws IllegalStateException {
         setAttribute("showRemoveButton", showRemoveButton, false);
     }
+
     /**
      * If set, a button will be shown for each clause allowing it to be removed.
      *
      *
      * @return Boolean
-     *
      */
     public Boolean getShowRemoveButton()  {
         return getAttributeAsBoolean("showRemoveButton");
     }
 
     /**
-    * The hover prompt text for the remove button.
-    *
-    * @param removeButtonPrompt removeButtonPrompt Default value is "Remove"
-    * @throws IllegalStateException this property cannot be changed after the component has been created
-    */
+     * The hover prompt text for the remove button.
+     *
+     * @param removeButtonPrompt removeButtonPrompt Default value is "Remove"
+     * @throws IllegalStateException this property cannot be changed after the component has been created
+     */
     public void setRemoveButtonPrompt(String removeButtonPrompt)  throws IllegalStateException {
         setAttribute("removeButtonPrompt", removeButtonPrompt, false);
     }
+
     /**
      * The hover prompt text for the remove button.
      *
      *
      * @return String
-     *
      */
     public String getRemoveButtonPrompt()  {
         return getAttributeAsString("removeButtonPrompt");
     }
 
     /**
-    * If set, a button will be shown underneath all current clauses allowing a new clause to be&#010 added.
-    *
-    * @param showAddButton showAddButton Default value is true
-    * @throws IllegalStateException this property cannot be changed after the component has been created
-    */
+     * If set, a button will be shown underneath all current clauses allowing a new clause to be added.
+     *
+     * @param showAddButton showAddButton Default value is true
+     * @throws IllegalStateException this property cannot be changed after the component has been created
+     */
     public void setShowAddButton(Boolean showAddButton)  throws IllegalStateException {
         setAttribute("showAddButton", showAddButton, false);
     }
+
     /**
-     * If set, a button will be shown underneath all current clauses allowing a new clause to be&#010 added.
+     * If set, a button will be shown underneath all current clauses allowing a new clause to be added.
      *
      *
      * @return Boolean
-     *
      */
     public Boolean getShowAddButton()  {
         return getAttributeAsBoolean("showAddButton");
     }
 
     /**
-    * The hover prompt text for the add button.
-    *
-    * @param addButtonPrompt addButtonPrompt Default value is "Add"
-    * @throws IllegalStateException this property cannot be changed after the component has been created
-    */
+     * The hover prompt text for the add button.
+     *
+     * @param addButtonPrompt addButtonPrompt Default value is "Add"
+     * @throws IllegalStateException this property cannot be changed after the component has been created
+     */
     public void setAddButtonPrompt(String addButtonPrompt)  throws IllegalStateException {
         setAttribute("addButtonPrompt", addButtonPrompt, false);
     }
+
     /**
      * The hover prompt text for the add button.
      *
      *
      * @return String
-     *
      */
     public String getAddButtonPrompt()  {
         return getAttributeAsString("addButtonPrompt");
     }
 
     /**
-    * If set to false, the last clause cannot be removed.
-    *
-    * @param allowEmpty allowEmpty Default value is false
-    * @throws IllegalStateException this property cannot be changed after the component has been created
-    */
+     * If set to false, the last clause cannot be removed.
+     *
+     * @param allowEmpty allowEmpty Default value is false
+     * @throws IllegalStateException this property cannot be changed after the component has been created
+     */
     public void setAllowEmpty(Boolean allowEmpty)  throws IllegalStateException {
         setAttribute("allowEmpty", allowEmpty, false);
     }
+
     /**
      * If set to false, the last clause cannot be removed.
      *
      *
      * @return Boolean
-     *
      */
     public Boolean getAllowEmpty()  {
         return getAttributeAsBoolean("allowEmpty");
     }
              
     /**
-    * Default logical operator for all top-level clauses in the FilterBuilder.&#010 <P>&#010 May be able to be changed by the user via the UI, according to {@link com.smartgwt.client..TopOperatorAppearance}.
-    * Programmatically change the {@link com.smartgwt.client.widgets.form.FilterBuilder#getTopOperator topOperator} for this FilterBuilder.&#010
-    *
-    * @param topOperator new top-level operator. Default value is "and"
-    */
+     * Default logical operator for all top-level clauses in the FilterBuilder. <P> May be able to be changed by the user via
+     * the UI, according to {@link com.smartgwt.client..TopOperatorAppearance}.
+     * Programmatically change the {@link com.smartgwt.client.widgets.form.FilterBuilder#getTopOperator topOperator} for this FilterBuilder.
+     *
+     * @param topOperator new top-level operator. Default value is "and"
+     */
     public void setTopOperator(LogicalOperator topOperator) {
         setAttribute("topOperator", topOperator.getValue(), true);
     }
+
     /**
-     * Default logical operator for all top-level clauses in the FilterBuilder.&#010 <P>&#010 May be able to be changed by the user via the UI, according to {@link com.smartgwt.client..TopOperatorAppearance}.
+     * Default logical operator for all top-level clauses in the FilterBuilder. <P> May be able to be changed by the user via
+     * the UI, according to {@link com.smartgwt.client..TopOperatorAppearance}.
      *
      *
      * @return LogicalOperator
-     *
      */
     public LogicalOperator getTopOperator()  {
         return (LogicalOperator) EnumUtil.getEnum(LogicalOperator.values(), getAttribute("topOperator"));
     }
 
     /**
-    * For operators that check that a value is within a range, text to show between the start and&#010 end input fields for specifying the limits of the range.
-    *
-    * @param rangeSeparator rangeSeparator Default value is "and"
-    * @throws IllegalStateException this property cannot be changed after the component has been created
-    */
+     * For operators that check that a value is within a range, text to show between the start and end input fields for
+     * specifying the limits of the range.
+     *
+     * @param rangeSeparator rangeSeparator Default value is "and"
+     * @throws IllegalStateException this property cannot be changed after the component has been created
+     */
     public void setRangeSeparator(String rangeSeparator)  throws IllegalStateException {
         setAttribute("rangeSeparator", rangeSeparator, false);
     }
+
     /**
-     * For operators that check that a value is within a range, text to show between the start and&#010 end input fields for specifying the limits of the range.
+     * For operators that check that a value is within a range, text to show between the start and end input fields for
+     * specifying the limits of the range.
      *
      *
      * @return String
-     *
      */
     public String getRangeSeparator()  {
         return getAttributeAsString("rangeSeparator");
     }
 
     /**
-    * Whether to show a button that allows the user to add subclauses.  Defaults to false if &#010 the {@link com.smartgwt.client..TopOperatorAppearance} is "radio", true in all other cases.
-    *
-    * @param showSubClauseButton showSubClauseButton Default value is See Description
-    * @throws IllegalStateException this property cannot be changed after the component has been created
-    */
+     * Whether to show a button that allows the user to add subclauses.  Defaults to false if  the {@link
+     * com.smartgwt.client..TopOperatorAppearance} is "radio", true in all other cases.
+     *
+     * @param showSubClauseButton showSubClauseButton Default value is See Description
+     * @throws IllegalStateException this property cannot be changed after the component has been created
+     */
     public void setShowSubClauseButton(Boolean showSubClauseButton)  throws IllegalStateException {
         setAttribute("showSubClauseButton", showSubClauseButton, false);
     }
+
     /**
-     * Whether to show a button that allows the user to add subclauses.  Defaults to false if &#010 the {@link com.smartgwt.client..TopOperatorAppearance} is "radio", true in all other cases.
+     * Whether to show a button that allows the user to add subclauses.  Defaults to false if  the {@link
+     * com.smartgwt.client..TopOperatorAppearance} is "radio", true in all other cases.
      *
      *
      * @return Boolean
-     *
      */
     public Boolean getShowSubClauseButton()  {
         return getAttributeAsBoolean("showSubClauseButton");
     }
 
     /**
-    * The hover title text of the subClauseButton
-    *
-    * @param subClauseButtonTitle subClauseButtonTitle Default value is "+()"
-    * @throws IllegalStateException this property cannot be changed after the component has been created
-    */
+     * The hover title text of the subClauseButton
+     *
+     * @param subClauseButtonTitle subClauseButtonTitle Default value is "+()"
+     * @throws IllegalStateException this property cannot be changed after the component has been created
+     */
     public void setSubClauseButtonTitle(String subClauseButtonTitle)  throws IllegalStateException {
         setAttribute("subClauseButtonTitle", subClauseButtonTitle, false);
     }
+
     /**
      * The hover title text of the subClauseButton
      *
      *
      * @return String
-     *
      */
     public String getSubClauseButtonTitle()  {
         return getAttributeAsString("subClauseButtonTitle");
     }
 
     /**
-    * The hover prompt text for the subClauseButton.
-    *
-    * @param subClauseButtonPrompt subClauseButtonPrompt Default value is "Add Subclause"
-    * @throws IllegalStateException this property cannot be changed after the component has been created
-    */
+     * The hover prompt text for the subClauseButton.
+     *
+     * @param subClauseButtonPrompt subClauseButtonPrompt Default value is "Add Subclause"
+     * @throws IllegalStateException this property cannot be changed after the component has been created
+     */
     public void setSubClauseButtonPrompt(String subClauseButtonPrompt)  throws IllegalStateException {
         setAttribute("subClauseButtonPrompt", subClauseButtonPrompt, false);
     }
+
     /**
      * The hover prompt text for the subClauseButton.
      *
      *
      * @return String
-     *
      */
     public String getSubClauseButtonPrompt()  {
         return getAttributeAsString("subClauseButtonPrompt");
@@ -358,87 +375,89 @@ public class FilterBuilder extends Layout  implements com.smartgwt.client.widget
 
 
 
-        /**
-         * Clear all current criteria.&#010
-         */
-        public native void clearCriteria() /*-{
-            var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
-            self.clearCriteria();
-        }-*/;
+    /**
+     * Clear all current criteria.
+     */
+    public native void clearCriteria() /*-{
+        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
+        self.clearCriteria();
+    }-*/;
 
 
-        /**
-         * Add a search handler.
-         * <p>
-         * A StringMethod that is automatically invoked if {@link com.smartgwt.client.widgets.form.FilterBuilder#getSaveOnExit saveOnExit} is set &#010 and the user presses Enter whilst in a text-item in any clause or subclause.&#010&#010
-         *
-         * @param handler the search handler
-         * @return {@link HandlerRegistration} used to remove this handler
-         */
-        public HandlerRegistration addSearchHandler(com.smartgwt.client.widgets.form.events.SearchHandler handler) {
-            if(getHandlerCount(com.smartgwt.client.widgets.form.events.FilterSearchEvent.getType()) == 0) setupSearchEvent();
-            return doAddHandler(handler, com.smartgwt.client.widgets.form.events.FilterSearchEvent.getType());
-        }
-        private native void setupSearchEvent() /*-{
-            var obj = null;
-            var selfJ = this;
-            if(this.@com.smartgwt.client.widgets.BaseWidget::isCreated()()) {
-                obj = this.@com.smartgwt.client.widgets.BaseWidget::getJsObj()();
-                obj.addProperties({search:function(){
+    /**
+     * Add a search handler.
+     * <p>
+     * A StringMethod that is automatically invoked if {@link com.smartgwt.client.widgets.form.FilterBuilder#getSaveOnExit
+     * saveOnExit} is set  and the user presses Enter whilst in a text-item in any clause or subclause.
+     *
+     * @param handler the search handler
+     * @return {@link HandlerRegistration} used to remove this handler
+     */
+    public HandlerRegistration addSearchHandler(com.smartgwt.client.widgets.form.events.SearchHandler handler) {
+        if(getHandlerCount(com.smartgwt.client.widgets.form.events.FilterSearchEvent.getType()) == 0) setupSearchEvent();
+        return doAddHandler(handler, com.smartgwt.client.widgets.form.events.FilterSearchEvent.getType());
+    }
+
+    private native void setupSearchEvent() /*-{
+        var obj = null;
+        var selfJ = this;
+        if(this.@com.smartgwt.client.widgets.BaseWidget::isCreated()()) {
+            obj = this.@com.smartgwt.client.widgets.BaseWidget::getJsObj()();
+            obj.addProperties({search:function(){
                         var param = {"criteria" : arguments[0]};
                         var event = @com.smartgwt.client.widgets.form.events.FilterSearchEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
                         selfJ.@com.smartgwt.client.widgets.BaseWidget::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
                     }
-                });
-            } else {
-                obj = this.@com.smartgwt.client.widgets.BaseWidget::getConfig()();
-                obj.search = function(){
-                    var param = {"criteria" : arguments[0]};
-                    var event = @com.smartgwt.client.widgets.form.events.FilterSearchEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
-                    selfJ.@com.smartgwt.client.widgets.BaseWidget::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
-                };
-            }
-        }-*/;
-
-        /**
-         * Add a filterChanged handler.
-         * <p>
-         * Handler fired when there is a change() event fired on any FormItem within the &#010 filterBuilder. &#010&#010
-         *
-         * @param handler the filterChanged handler
-         * @return {@link HandlerRegistration} used to remove this handler
-         */
-        public HandlerRegistration addFilterChangedHandler(com.smartgwt.client.widgets.form.events.FilterChangedHandler handler) {
-            if(getHandlerCount(com.smartgwt.client.widgets.form.events.FilterChangedEvent.getType()) == 0) setupFilterChangedEvent();
-            return doAddHandler(handler, com.smartgwt.client.widgets.form.events.FilterChangedEvent.getType());
+             });
+        } else {
+            obj = this.@com.smartgwt.client.widgets.BaseWidget::getConfig()();
+            obj.search = function(){
+                   var param = {"criteria" : arguments[0]};
+                   var event = @com.smartgwt.client.widgets.form.events.FilterSearchEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
+                   selfJ.@com.smartgwt.client.widgets.BaseWidget::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
+               };
         }
-        private native void setupFilterChangedEvent() /*-{
-            var obj = null;
-            var selfJ = this;
-            if(this.@com.smartgwt.client.widgets.BaseWidget::isCreated()()) {
-                obj = this.@com.smartgwt.client.widgets.BaseWidget::getJsObj()();
-                obj.addProperties({filterChanged:function(){
+   }-*/;
+
+    /**
+     * Add a filterChanged handler.
+     * <p>
+     * Handler fired when there is a change() event fired on any FormItem within the  filterBuilder.
+     *
+     * @param handler the filterChanged handler
+     * @return {@link HandlerRegistration} used to remove this handler
+     */
+    public HandlerRegistration addFilterChangedHandler(com.smartgwt.client.widgets.form.events.FilterChangedHandler handler) {
+        if(getHandlerCount(com.smartgwt.client.widgets.form.events.FilterChangedEvent.getType()) == 0) setupFilterChangedEvent();
+        return doAddHandler(handler, com.smartgwt.client.widgets.form.events.FilterChangedEvent.getType());
+    }
+
+    private native void setupFilterChangedEvent() /*-{
+        var obj = null;
+        var selfJ = this;
+        if(this.@com.smartgwt.client.widgets.BaseWidget::isCreated()()) {
+            obj = this.@com.smartgwt.client.widgets.BaseWidget::getJsObj()();
+            obj.addProperties({filterChanged:function(){
                         var param = {};
                         var event = @com.smartgwt.client.widgets.form.events.FilterChangedEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
                         selfJ.@com.smartgwt.client.widgets.BaseWidget::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
                     }
-                });
-            } else {
-                obj = this.@com.smartgwt.client.widgets.BaseWidget::getConfig()();
-                obj.filterChanged = function(){
-                    var param = {};
-                    var event = @com.smartgwt.client.widgets.form.events.FilterChangedEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
-                    selfJ.@com.smartgwt.client.widgets.BaseWidget::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
-                };
-            }
-        }-*/;
+             });
+        } else {
+            obj = this.@com.smartgwt.client.widgets.BaseWidget::getConfig()();
+            obj.filterChanged = function(){
+                   var param = {};
+                   var event = @com.smartgwt.client.widgets.form.events.FilterChangedEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
+                   selfJ.@com.smartgwt.client.widgets.BaseWidget::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
+               };
+        }
+   }-*/;
 
     // ********************* Static Methods ***********************
 
 
 
 
-
     /**
      * If true (the default), show field titles in the drop-down box used to select a field for querying. If false, show
      * actual field names instead.
@@ -514,7 +533,6 @@ public class FilterBuilder extends Layout  implements com.smartgwt.client.widget
         var critJS = self.getCriteria();
         return @com.smartgwt.client.data.AdvancedCriteria::new(Lcom/google/gwt/core/client/JavaScriptObject;)(critJS);
     }-*/;
-
 
 }
 

@@ -55,10 +55,10 @@ import com.smartgwt.client.util.JSOHelper;
 import com.smartgwt.client.util.EnumUtil;
 import com.google.gwt.event.shared.*;
 import com.google.gwt.event.shared.HasHandlers;
-   /**
-    * The Img widget class implements a simple widget that displays a single image.
 
-    */
+/**
+ * The Img widget class implements a simple widget that displays a single image.
+ */
 public class Img extends StatefulCanvas {
 
     public static Img getOrCreateRef(JavaScriptObject jsObj) {
@@ -70,7 +70,6 @@ public class Img extends StatefulCanvas {
             return new Img(jsObj);
         }
     }
-
 
     public Img(){
         
@@ -101,131 +100,152 @@ public class Img extends StatefulCanvas {
     // ********************* Properties / Attributes ***********************
 
     /**
-    * The value of this attribute is specified as the value of the 'name' attribute in the&#010 resulting HTML.&#010 <p>&#010 Note: this attribute is ignored if the imageType is set to "tile"
-    * <p><b>Note : </b> This is an advanced setting</p>
-    *
-    * @param name name Default value is "main"
-    * @throws IllegalStateException this property cannot be changed after the component has been created
-    */
+     * The value of this attribute is specified as the value of the 'name' attribute in the resulting HTML. <p> Note: this
+     * attribute is ignored if the imageType is set to "tile"
+     * <p><b>Note : </b> This is an advanced setting</p>
+     *
+     * @param name name Default value is "main"
+     * @throws IllegalStateException this property cannot be changed after the component has been created
+     */
     public void setName(String name)  throws IllegalStateException {
         setAttribute("name", name, false);
     }
 
     /**
-    * The base filename for the image.&#010 <P>&#010 If <code>img.state</code> is set, it's value will be appended to the URL before the&#010 file extension.  &#010 <P>&#010 For example, given an <code>src</code> of "findIcon.gif" and a state of&#010 "Disabled", the resulting image name would be "findIcon_Disabled.gif".  Compound states&#010 such as "Selected", "Focused" and "Over" or "Down" will have an intervening underscore,&#010 resulting in, for example, <code>"findIcon_Selected_Down.gif"</code>.
-    * Changes the URL of this image and redraws it.&#010 <P>&#010 Does nothing if the src has not changed - if <code>src</code> has not changed but other&#010 state has changed such that the image needs updating, call {@link com.smartgwt.client.widgets.Img#resetSrc} instead.&#010&#010
-    *
-    * @param src new URL for the image. Default value is "blank.gif"
-    */
+     * The base filename for the image. <P> If <code>img.state</code> is set, it's value will be appended to the URL before the
+     * file extension.   <P> For example, given an <code>src</code> of "findIcon.gif" and a state of "Disabled", the resulting
+     * image name would be "findIcon_Disabled.gif".  Compound states such as "Selected", "Focused" and "Over" or "Down" will
+     * have an intervening underscore, resulting in, for example, <code>"findIcon_Selected_Down.gif"</code>.
+     * Changes the URL of this image and redraws it. <P> Does nothing if the src has not changed - if <code>src</code> has not changed but other state has changed such that the image needs updating, call {@link com.smartgwt.client.widgets.Img#resetSrc} instead.
+     *
+     * @param src new URL for the image. Default value is "blank.gif"
+     */
     public void setSrc(String src) {
         setAttribute("src", src, true);
     }
+
     /**
-     * The base filename for the image.&#010 <P>&#010 If <code>img.state</code> is set, it's value will be appended to the URL before the&#010 file extension.  &#010 <P>&#010 For example, given an <code>src</code> of "findIcon.gif" and a state of&#010 "Disabled", the resulting image name would be "findIcon_Disabled.gif".  Compound states&#010 such as "Selected", "Focused" and "Over" or "Down" will have an intervening underscore,&#010 resulting in, for example, <code>"findIcon_Selected_Down.gif"</code>.
+     * The base filename for the image. <P> If <code>img.state</code> is set, it's value will be appended to the URL before the
+     * file extension.   <P> For example, given an <code>src</code> of "findIcon.gif" and a state of "Disabled", the resulting
+     * image name would be "findIcon_Disabled.gif".  Compound states such as "Selected", "Focused" and "Over" or "Down" will
+     * have an intervening underscore, resulting in, for example, <code>"findIcon_Selected_Down.gif"</code>.
      *
      *
      * @return String
-     *
      */
     public String getSrc()  {
         return getAttributeAsString("src");
     }
              
     /**
-    * Indicates whether the image should be tiled/cropped, stretched, or centered when the&#010          size of this widget does not match the size of the image. See ImageStyle for&#010          details
-    * Change the style of image rendering.&#010&#010
-    *
-    * @param imageType new style of image rendering. Default value is Img.STRETCH
-    */
+     * Indicates whether the image should be tiled/cropped, stretched, or centered when the          size of this widget does
+     * not match the size of the image. See ImageStyle for          details
+     * Change the style of image rendering.
+     *
+     * @param imageType new style of image rendering. Default value is Img.STRETCH
+     */
     public void setImageType(ImageStyle imageType) {
         setAttribute("imageType", imageType.getValue(), true);
     }
+
     /**
-     * Indicates whether the image should be tiled/cropped, stretched, or centered when the&#010          size of this widget does not match the size of the image. See ImageStyle for&#010          details
+     * Indicates whether the image should be tiled/cropped, stretched, or centered when the          size of this widget does
+     * not match the size of the image. See ImageStyle for          details
      *
      *
      * @return ImageStyle
-     *
      */
     public ImageStyle getImageType()  {
         return (ImageStyle) EnumUtil.getEnum(ImageStyle.values(), getAttribute("imageType"));
     }
 
     /**
-    * Explicit size for the image, for {@link com.smartgwt.client.widgets.Img#getImageType imageType} settings that would normally use the&#010 image's natural size (applies to {@link com.smartgwt.client.widgets.Img#getImageType imageType} "center" and "normal" only).
-    *
-    * @param imageHeight imageHeight Default value is null
-    * @throws IllegalStateException this property cannot be changed after the component has been created
-    */
+     * Explicit size for the image, for {@link com.smartgwt.client.widgets.Img#getImageType imageType} settings that would
+     * normally use the image's natural size (applies to {@link com.smartgwt.client.widgets.Img#getImageType imageType}
+     * "center" and "normal" only).
+     *
+     * @param imageHeight imageHeight Default value is null
+     * @throws IllegalStateException this property cannot be changed after the component has been created
+     */
     public void setImageHeight(Integer imageHeight)  throws IllegalStateException {
         setAttribute("imageHeight", imageHeight, false);
     }
+
     /**
-     * Explicit size for the image, for {@link com.smartgwt.client.widgets.Img#getImageType imageType} settings that would normally use the&#010 image's natural size (applies to {@link com.smartgwt.client.widgets.Img#getImageType imageType} "center" and "normal" only).
+     * Explicit size for the image, for {@link com.smartgwt.client.widgets.Img#getImageType imageType} settings that would
+     * normally use the image's natural size (applies to {@link com.smartgwt.client.widgets.Img#getImageType imageType}
+     * "center" and "normal" only).
      *
      *
      * @return Integer
-     *
      */
     public Integer getImageHeight()  {
         return getAttributeAsInt("imageHeight");
     }
 
     /**
-    * Explicit size for the image, for {@link com.smartgwt.client.widgets.Img#getImageType imageType} settings that would normally use the&#010 image's natural size (applies to {@link com.smartgwt.client.widgets.Img#getImageType imageType} "center" and "normal" only).
-    *
-    * @param imageWidth imageWidth Default value is null
-    * @throws IllegalStateException this property cannot be changed after the component has been created
-    */
+     * Explicit size for the image, for {@link com.smartgwt.client.widgets.Img#getImageType imageType} settings that would
+     * normally use the image's natural size (applies to {@link com.smartgwt.client.widgets.Img#getImageType imageType}
+     * "center" and "normal" only).
+     *
+     * @param imageWidth imageWidth Default value is null
+     * @throws IllegalStateException this property cannot be changed after the component has been created
+     */
     public void setImageWidth(Integer imageWidth)  throws IllegalStateException {
         setAttribute("imageWidth", imageWidth, false);
     }
+
     /**
-     * Explicit size for the image, for {@link com.smartgwt.client.widgets.Img#getImageType imageType} settings that would normally use the&#010 image's natural size (applies to {@link com.smartgwt.client.widgets.Img#getImageType imageType} "center" and "normal" only).
+     * Explicit size for the image, for {@link com.smartgwt.client.widgets.Img#getImageType imageType} settings that would
+     * normally use the image's natural size (applies to {@link com.smartgwt.client.widgets.Img#getImageType imageType}
+     * "center" and "normal" only).
      *
      *
      * @return Integer
-     *
      */
     public Integer getImageWidth()  {
         return getAttributeAsInt("imageWidth");
     }
 
     /**
-    * Convenience for setting height and width to the same value, at init time only
-    *
-    * @param size size Default value is null
-    * @throws IllegalStateException this property cannot be changed after the component has been created
-    */
+     * Convenience for setting height and width to the same value, at init time only
+     *
+     * @param size size Default value is null
+     * @throws IllegalStateException this property cannot be changed after the component has been created
+     */
     public void setSize(Integer size)  throws IllegalStateException {
         setAttribute("size", size, false);
     }
+
     /**
      * Convenience for setting height and width to the same value, at init time only
      *
      *
      * @return Integer
-     *
      */
     public Integer getSize()  {
         return getAttributeAsInt("size");
     }
 
     /**
-    * Determines whether any specified {@link com.smartgwt.client.widgets.StatefulCanvas#getTitle} will be &#010 displayed for this component.<br>&#010 Applies to Image-based components only, where the title will be rendered out in a label&#010 floating over the component
-    * <p><b>Note : </b> This is an advanced setting</p>
-    *
-    * @param showTitle showTitle Default value is false
-    */
+     * Determines whether any specified {@link com.smartgwt.client.widgets.StatefulCanvas#getTitle} will be  displayed for this
+     * component.<br> Applies to Image-based components only, where the title will be rendered out in a label floating over the
+     * component
+     * <p><b>Note : </b> This is an advanced setting</p>
+     *
+     * @param showTitle showTitle Default value is false
+     */
     public void setShowTitle(Boolean showTitle) {
         setAttribute("showTitle", showTitle, true);
     }
+
     /**
-     * Determines whether any specified {@link com.smartgwt.client.widgets.StatefulCanvas#getTitle} will be &#010 displayed for this component.<br>&#010 Applies to Image-based components only, where the title will be rendered out in a label&#010 floating over the component
+     * Determines whether any specified {@link com.smartgwt.client.widgets.StatefulCanvas#getTitle} will be  displayed for this
+     * component.<br> Applies to Image-based components only, where the title will be rendered out in a label floating over the
+     * component
      *
      *
      * @return Boolean
-     *
      */
     public Boolean getShowTitle()  {
         return getAttributeAsBoolean("showTitle");
@@ -235,13 +255,14 @@ public class Img extends StatefulCanvas {
 
 
 
-        /**
-         * Refresh the image being shown.  Call this when the {@link com.smartgwt.client.widgets.Img#getSrc src} attribute has not changed, but&#010 other state that affects the image URL (such as being selected) has changed.&#010&#010
-         */
-        public native void resetSrc() /*-{
-            var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
-            self.resetSrc();
-        }-*/;
+    /**
+     * Refresh the image being shown.  Call this when the {@link com.smartgwt.client.widgets.Img#getSrc src} attribute has not
+     * changed, but other state that affects the image URL (such as being selected) has changed.
+     */
+    public native void resetSrc() /*-{
+        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
+        self.resetSrc();
+    }-*/;
 
     // ********************* Static Methods ***********************
 

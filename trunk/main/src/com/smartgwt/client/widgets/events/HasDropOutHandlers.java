@@ -22,7 +22,8 @@ import com.google.gwt.event.shared.HasHandlers;
 
 public interface HasDropOutHandlers extends HasHandlers {
     /**
-     * &#010 Executed when the dragged object is moved out of the rectangle of this drop target. If you&#010 have set a visual indication in dropOver or dropMove, you should reset it to its normal&#010 state in dropOut.&#010&#010
+     * Executed when the dragged object is moved out of the rectangle of this drop target. If you have set a visual indication
+     * in dropOver or dropMove, you should reset it to its normal state in dropOut.
      *
      * @param handler the dropOut handler
      * @return {@link HandlerRegistration} used to remove this handler

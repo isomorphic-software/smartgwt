@@ -22,7 +22,7 @@ import com.google.gwt.event.shared.HasHandlers;
 
 public interface HasBlurHandlers extends HasHandlers {
     /**
-     * Called when this FormItem loses focus.&#010 &#010
+     * Called when this FormItem loses focus.
      *
      * @param handler the blur handler
      * @return {@link HandlerRegistration} used to remove this handler

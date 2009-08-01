@@ -55,11 +55,13 @@ import com.smartgwt.client.util.JSOHelper;
 import com.smartgwt.client.util.EnumUtil;
 import com.google.gwt.event.shared.*;
 import com.google.gwt.event.shared.HasHandlers;
-   /**
-    * The Hover class handles showing a simple SmartGWT canvas containing arbitrary HTML, or&#010 triggering some other action in response to a user holding the mouse-pointer (or hovering)&#010 over a specific widget.
 
-    */
+/**
+ * The Hover class handles showing a simple SmartGWT canvas containing arbitrary HTML, or triggering some other action in
+ * response to a user holding the mouse-pointer (or hovering) over a specific widget.
+ */
 public class Hover {
+
     // ********************* Properties / Attributes ***********************
 
     // ********************* Methods ***********************
@@ -67,12 +69,12 @@ public class Hover {
     // ********************* Static Methods ***********************
 
 
-        /**
-         * Hide hover hover Canvas shown via {@link com.smartgwt.client.widgets.Hover#show}&#010
-         */
-        public static native void hide() /*-{
-            $wnd.isc.Hover.hide();
-        }-*/;
+    /**
+     * Hide hover hover Canvas shown via {@link com.smartgwt.client.widgets.Hover#show}
+     */
+    public static native void hide() /*-{
+        $wnd.isc.Hover.hide();
+    }-*/;
 
 }
 

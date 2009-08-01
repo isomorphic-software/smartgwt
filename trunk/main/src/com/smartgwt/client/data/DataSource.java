@@ -55,11 +55,46 @@ import com.smartgwt.client.util.JSOHelper;
 import com.smartgwt.client.util.EnumUtil;
 import com.google.gwt.event.shared.*;
 import com.google.gwt.event.shared.HasHandlers;
-   /**
-    * A DataSource is data-provider-independant description of a set of objects&#010 that will be loaded, edited and saved within the user interface of your application.&#010 <P>&#010 Each DataSource consists of a list of {@link com.smartgwt.client.data.DataSource#getFields 'fields'} that make up a&#010 DataSource <code>record</code>, along with {@link com.smartgwt.client.data.DataSourceField#getType 'field types'}, &#010 {@link com.smartgwt.client.data.DataSourceField#getValidators 'validation rules'}, &#010 {@link com.smartgwt.client.data.DataSourceField#getForeignKey 'relationships'} to other DataSources, and other&#010 metadata.&#010 <P>&#010 The abstract object description provided by a DataSource is easily mapped to a variety of&#010 backend object models and storage schemes.  The following table shows analogous terminology&#010 across systems.&#010 <table border=1 class="normal">&#010 <tr>&#010   <td>Isomorphic SmartGWT</td>&#010   <td>Relational Database</td>&#010   <td>Enterprise Java Beans (EJB)</td>&#010   <td>Entity/Relationship Modelling</td>&#010   <td>OO/UML</td>&#010   <td>XML Schema/WSDL</td>&#010   <td>LDAP</td>&#010 </tr><tr>&#010   <td>DataSource</td>&#010   <td>Table</td>&#010   <td>EJB class</td>&#010   <td>Entity</td>&#010   <td>Class</td>&#010   <td>Element Schema (ComplexType)</td>&#010   <td>Objectclass</td>&#010 </tr><tr>&#010   <td>Record</td>&#010   <td>Row</td>&#010   <td>EJB instance</td>&#010   <td>Entity instance</td>&#010   <td>Class instance/Object</td>&#010   <td>Element instance (ComplexType)</td>&#010   <td>Entry</td>&#010 </tr><tr>&#010   <td>Field</td>&#010   <td>Column</td>&#010   <td>Property</td>&#010   <td>Attribute</td>&#010   <td>Property/Attribute</td>&#010   <td>Attribute or Element (SimpleType)</td>&#010   <td>Attribute</td>&#010 </tr></table>&#010 <P>&#010 DataSources can be {@link com.smartgwt.client.docs.DataSourceDeclaration 'declared'} in either JavaScript or XML&#010 format, and can also be {@link com.smartgwt.client.docs.MetadataImport 'imported'} from existing metadata formats,&#010 including XML Schema.&#010 <P>&#010 <i>Data Binding</i> is the process by which&#010 {@link com.smartgwt.client.widgets.DataBoundComponent} can automatically configure&#010 themselves for viewing, editing and saving data described by DataSources.  DataBinding is&#010 covered in the ${isc.DocUtils.linkForDocNode('QuickStartGuide', 'QuickStart Guide')}, Chapter 6, <i>Data&#010 Binding</i>.&#010 <P>&#010 {@link com.smartgwt.client.docs.ClientServerIntegration 'Data Integration'} is the process by which a DataSource&#010 can be connected to server systems such as SQL DataBases, Java Object models, WSDL web&#010 services and other data providers.  Data Integration comes in two variants: client-side and&#010 server-side.  {@link com.smartgwt.client.docs.ServerDataIntegration 'Server-side integration'} uses the&#010 SmartGWT Java-based server to connect to data represented by Java Objects or&#010 JDBC-accessible databases.  {@link com.smartgwt.client.docs.ClientDataIntegration 'Client-side integration'}&#010 connects SmartGWT DataSources to XML, JSON or other formats accessible via HTTP.&#010 <P>&#010 DataSources have a concept of {@link com.smartgwt.client.docs.DataSourceOperations '4 core operations'} ("fetch",&#010 "add", "update" and "remove") that can be performed on the set of objects represented by a&#010 DataSource.  Once a DataSource has been integrated with your data store, databinding-capable &#010 UI components can leverage the 4 core DataSource operations to provide many complete user&#010 interactions without the need to configure how each individual component loads and saves&#010 data.&#010 <P>&#010 These interactions include {@link com.smartgwt.client.widgets.grid.ListGrid}, {@link com.smartgwt.client.widgets.tree.TreeGrid}, &#010 {@link com.smartgwt.client.widgets.viewer.DetailViewer}, {@link com.smartgwt.client.widgets.form.DynamicForm}-based &#010 {@link com.smartgwt.client.widgets.form.DynamicForm#editRecord} and {@link com.smartgwt.client.widgets.form.DynamicForm#saveData},&#010 grid-based {@link com.smartgwt.client.widgets.grid.ListGrid#getCanEdit 'editing'} and {@link com.smartgwt.client.widgets.grid.ListGrid#getSaveByCell 'saving'},&#010 and custom interactions provided by ${isc.DocUtils.linkForExampleId('patternReuse')} custom&#010 databinding-capable components.
 
-    */
-
+/**
+ * A DataSource is data-provider-independant description of a set of objects that will be loaded, edited and saved within
+ * the user interface of your application. <P> Each DataSource consists of a list of {@link
+ * com.smartgwt.client.data.DataSource#getFields 'fields'} that make up a DataSource <code>record</code>, along with {@link
+ * com.smartgwt.client.data.DataSourceField#getType 'field types'},  {@link
+ * com.smartgwt.client.data.DataSourceField#getValidators 'validation rules'},  {@link
+ * com.smartgwt.client.data.DataSourceField#getForeignKey 'relationships'} to other DataSources, and other metadata. <P>
+ * The abstract object description provided by a DataSource is easily mapped to a variety of backend object models and
+ * storage schemes.  The following table shows analogous terminology across systems. <table border=1 class="normal"> <tr>  
+ * <td>Isomorphic SmartGWT</td>   <td>Relational Database</td>   <td>Enterprise Java Beans (EJB)</td>  
+ * <td>Entity/Relationship Modelling</td>   <td>OO/UML</td>   <td>XML Schema/WSDL</td>   <td>LDAP</td> </tr><tr>  
+ * <td>DataSource</td>   <td>Table</td>   <td>EJB class</td>   <td>Entity</td>   <td>Class</td>   <td>Element Schema
+ * (ComplexType)</td>   <td>Objectclass</td> </tr><tr>   <td>Record</td>   <td>Row</td>   <td>EJB instance</td>  
+ * <td>Entity instance</td>   <td>Class instance/Object</td>   <td>Element instance (ComplexType)</td>   <td>Entry</td>
+ * </tr><tr>   <td>Field</td>   <td>Column</td>   <td>Property</td>   <td>Attribute</td>   <td>Property/Attribute</td>  
+ * <td>Attribute or Element (SimpleType)</td>   <td>Attribute</td> </tr></table> <P> DataSources can be {@link
+ * com.smartgwt.client.docs.DataSourceDeclaration 'declared'} in either JavaScript or XML format, and can also be {@link
+ * com.smartgwt.client.docs.MetadataImport 'imported'} from existing metadata formats, including XML Schema. <P> <i>Data
+ * Binding</i> is the process by which {@link com.smartgwt.client.widgets.DataBoundComponent} can automatically configure
+ * themselves for viewing, editing and saving data described by DataSources.  DataBinding is covered in the
+ * ${isc.DocUtils.linkForDocNode('QuickStartGuide', 'QuickStart Guide')}, Chapter 6, <i>Data Binding</i>. <P> {@link
+ * com.smartgwt.client.docs.ClientServerIntegration 'Data Integration'} is the process by which a DataSource can be
+ * connected to server systems such as SQL DataBases, Java Object models, WSDL web services and other data providers.  Data
+ * Integration comes in two variants: client-side and server-side.  {@link com.smartgwt.client.docs.ServerDataIntegration
+ * 'Server-side integration'} uses the SmartGWT Java-based server to connect to data represented by Java Objects or
+ * JDBC-accessible databases.  {@link com.smartgwt.client.docs.ClientDataIntegration 'Client-side integration'} connects
+ * SmartGWT DataSources to XML, JSON or other formats accessible via HTTP. <P> DataSources have a concept of {@link
+ * com.smartgwt.client.docs.DataSourceOperations '4 core operations'} ("fetch", "add", "update" and "remove") that can be
+ * performed on the set of objects represented by a DataSource.  Once a DataSource has been integrated with your data
+ * store, databinding-capable  UI components can leverage the 4 core DataSource operations to provide many complete user
+ * interactions without the need to configure how each individual component loads and saves data. <P> These interactions
+ * include {@link com.smartgwt.client.widgets.grid.ListGrid}, {@link com.smartgwt.client.widgets.tree.TreeGrid},  {@link
+ * com.smartgwt.client.widgets.viewer.DetailViewer}, {@link com.smartgwt.client.widgets.form.DynamicForm}-based  {@link
+ * com.smartgwt.client.widgets.form.DynamicForm#editRecord} and {@link
+ * com.smartgwt.client.widgets.form.DynamicForm#saveData}, grid-based {@link
+ * com.smartgwt.client.widgets.grid.ListGrid#getCanEdit 'editing'} and {@link
+ * com.smartgwt.client.widgets.grid.ListGrid#getSaveByCell 'saving'}, and custom interactions provided by
+ * ${isc.DocUtils.linkForExampleId('patternReuse')} custom databinding-capable components.
+ */
 public class DataSource extends BaseClass  implements com.smartgwt.client.data.events.HasHandleErrorHandlers {
 
     public static DataSource getOrCreateRef(JavaScriptObject jsObj) {
@@ -71,7 +106,6 @@ public class DataSource extends BaseClass  implements com.smartgwt.client.data.e
             return new DataSource(jsObj);
         }
     }
-
 
     public DataSource(){
         
@@ -93,355 +127,467 @@ public class DataSource extends BaseClass  implements com.smartgwt.client.data.e
     // ********************* Properties / Attributes ***********************
 
     /**
-    * Whether to make this DataSource available as a global variable for convenience.
-    * <p><b>Note : </b> This is an advanced setting</p>
-    *
-    * @param addGlobalId addGlobalId Default value is true
-    * @throws IllegalStateException this property cannot be changed after the underlying component has been created
-    */
+     * Whether to make this DataSource available as a global variable for convenience.
+     * <p><b>Note : </b> This is an advanced setting</p>
+     *
+     * @param addGlobalId addGlobalId Default value is true
+     * @throws IllegalStateException this property cannot be changed after the underlying component has been created
+     */
     public void setAddGlobalId(Boolean addGlobalId)  throws IllegalStateException {
         setAttribute("addGlobalId", addGlobalId, false);
     }
+
     /**
      * Whether to make this DataSource available as a global variable for convenience.
      *
      *
      * @return Boolean
-     *
      */
     public Boolean getAddGlobalId()  {
         return getAttributeAsBoolean("addGlobalId");
     }
              
     /**
-    * Indicates the format to be used for HTTP requests and responses when&#010 fulfilling DSRequests (eg {@link com.smartgwt.client.data.DataSource#fetchData} is called).
-    *
-    * @param dataFormat dataFormat Default value is "iscServer"
-    * @throws IllegalStateException this property cannot be changed after the underlying component has been created
-    */
+     * Indicates the format to be used for HTTP requests and responses when fulfilling DSRequests (eg {@link
+     * com.smartgwt.client.data.DataSource#fetchData} is called).
+     *
+     * @param dataFormat dataFormat Default value is "iscServer"
+     * @throws IllegalStateException this property cannot be changed after the underlying component has been created
+     */
     public void setDataFormat(DSDataFormat dataFormat)  throws IllegalStateException {
         setAttribute("dataFormat", dataFormat.getValue(), false);
     }
+
     /**
-     * Indicates the format to be used for HTTP requests and responses when&#010 fulfilling DSRequests (eg {@link com.smartgwt.client.data.DataSource#fetchData} is called).
+     * Indicates the format to be used for HTTP requests and responses when fulfilling DSRequests (eg {@link
+     * com.smartgwt.client.data.DataSource#fetchData} is called).
      *
      *
      * @return DSDataFormat
-     *
      */
     public DSDataFormat getDataFormat()  {
         return (DSDataFormat) EnumUtil.getEnum(DSDataFormat.values(), getAttribute("dataFormat"));
     }
 
     /**
-    * Applies only to dataFormat: "json".  Specifies the name of the query parameter that&#010 tells your JSON service what function to call as part of the response.
-    *
-    * @param callbackParam callbackParam Default value is "callback"
-    * @throws IllegalStateException this property cannot be changed after the underlying component has been created
-    */
+     * Applies only to dataFormat: "json".  Specifies the name of the query parameter that tells your JSON service what
+     * function to call as part of the response.
+     *
+     * @param callbackParam callbackParam Default value is "callback"
+     * @throws IllegalStateException this property cannot be changed after the underlying component has been created
+     */
     public void setCallbackParam(String callbackParam)  throws IllegalStateException {
         setAttribute("callbackParam", callbackParam, false);
     }
+
     /**
-     * Applies only to dataFormat: "json".  Specifies the name of the query parameter that&#010 tells your JSON service what function to call as part of the response.
+     * Applies only to dataFormat: "json".  Specifies the name of the query parameter that tells your JSON service what
+     * function to call as part of the response.
      *
      *
      * @return String
-     *
      */
     public String getCallbackParam()  {
         return getAttributeAsString("callbackParam");
     }
              
     /**
-    * Transport to use for all operations on this DataSource. Defaults to&#010 {@link com.smartgwt.client.rpc.RPCManager#defaultTransport}.  This would typically only be set to&#010 enable "scriptInclude" transport for contacting {@link com.smartgwt.client.data.DataSource#getDataFormat 'JSON'} web&#010 services hosted on servers other than the origin server.&#010 <p>&#010 When using the "scriptInclude" transport, be sure to set {@link com.smartgwt.client.data.DataSource#getCallbackParam callbackParam} or&#010 {@link com.smartgwt.client.data.OperationBinding#getCallbackParam callbackParam} to match the name of the query parameter name expected&#010 by your JSON service provider.
-    *
-    * @param dataTransport dataTransport Default value is RPCManager.defaultTransport
-    * @throws IllegalStateException this property cannot be changed after the underlying component has been created
-    */
+     * Transport to use for all operations on this DataSource. Defaults to {@link
+     * com.smartgwt.client.rpc.RPCManager#defaultTransport}.  This would typically only be set to enable "scriptInclude"
+     * transport for contacting {@link com.smartgwt.client.data.DataSource#getDataFormat 'JSON'} web services hosted on servers
+     * other than the origin server. <p> When using the "scriptInclude" transport, be sure to set {@link
+     * com.smartgwt.client.data.DataSource#getCallbackParam callbackParam} or {@link
+     * com.smartgwt.client.data.OperationBinding#getCallbackParam callbackParam} to match the name of the query parameter name
+     * expected by your JSON service provider.
+     *
+     * @param dataTransport dataTransport Default value is RPCManager.defaultTransport
+     * @throws IllegalStateException this property cannot be changed after the underlying component has been created
+     */
     public void setDataTransport(RPCTransport dataTransport)  throws IllegalStateException {
         setAttribute("dataTransport", dataTransport.getValue(), false);
     }
+
     /**
-     * Transport to use for all operations on this DataSource. Defaults to&#010 {@link com.smartgwt.client.rpc.RPCManager#defaultTransport}.  This would typically only be set to&#010 enable "scriptInclude" transport for contacting {@link com.smartgwt.client.data.DataSource#getDataFormat 'JSON'} web&#010 services hosted on servers other than the origin server.&#010 <p>&#010 When using the "scriptInclude" transport, be sure to set {@link com.smartgwt.client.data.DataSource#getCallbackParam callbackParam} or&#010 {@link com.smartgwt.client.data.OperationBinding#getCallbackParam callbackParam} to match the name of the query parameter name expected&#010 by your JSON service provider.
+     * Transport to use for all operations on this DataSource. Defaults to {@link
+     * com.smartgwt.client.rpc.RPCManager#defaultTransport}.  This would typically only be set to enable "scriptInclude"
+     * transport for contacting {@link com.smartgwt.client.data.DataSource#getDataFormat 'JSON'} web services hosted on servers
+     * other than the origin server. <p> When using the "scriptInclude" transport, be sure to set {@link
+     * com.smartgwt.client.data.DataSource#getCallbackParam callbackParam} or {@link
+     * com.smartgwt.client.data.OperationBinding#getCallbackParam callbackParam} to match the name of the query parameter name
+     * expected by your JSON service provider.
      *
      *
      * @return RPCTransport
-     *
      */
     public RPCTransport getDataTransport()  {
         return (RPCTransport) EnumUtil.getEnum(RPCTransport.values(), getAttribute("dataTransport"));
     }
 
     /**
-    * If set, the DataSource will ensure that it never uses a cached HTTP response, even if the&#010 server marks the response as cacheable.&#010 <P>&#010 Note that this does not disable caching at higher levels in the framework, for example, the&#010 caching performed by {@link com.smartgwt.client.data.ResultSet}.
-    *
-    * @param preventHTTPCaching preventHTTPCaching Default value is true
-    * @throws IllegalStateException this property cannot be changed after the underlying component has been created
-    */
+     * If set, the DataSource will ensure that it never uses a cached HTTP response, even if the server marks the response as
+     * cacheable. <P> Note that this does not disable caching at higher levels in the framework, for example, the caching
+     * performed by {@link com.smartgwt.client.data.ResultSet}.
+     *
+     * @param preventHTTPCaching preventHTTPCaching Default value is true
+     * @throws IllegalStateException this property cannot be changed after the underlying component has been created
+     */
     public void setPreventHTTPCaching(Boolean preventHTTPCaching)  throws IllegalStateException {
         setAttribute("preventHTTPCaching", preventHTTPCaching, false);
     }
+
     /**
-     * If set, the DataSource will ensure that it never uses a cached HTTP response, even if the&#010 server marks the response as cacheable.&#010 <P>&#010 Note that this does not disable caching at higher levels in the framework, for example, the&#010 caching performed by {@link com.smartgwt.client.data.ResultSet}.
+     * If set, the DataSource will ensure that it never uses a cached HTTP response, even if the server marks the response as
+     * cacheable. <P> Note that this does not disable caching at higher levels in the framework, for example, the caching
+     * performed by {@link com.smartgwt.client.data.ResultSet}.
      *
      *
      * @return Boolean
-     *
      */
     public Boolean getPreventHTTPCaching()  {
         return getAttributeAsBoolean("preventHTTPCaching");
     }
              
     /**
-    * For a DataSource stored in .xml format on the ISC server, indicates what server-side&#010 connector to use to execute requests, that is, what happens if you call&#010 dsRequest.execute() in server code.
-    *
-    * @param serverType serverType Default value is "generic"
-    * @throws IllegalStateException this property cannot be changed after the underlying component has been created
-    */
+     * For a DataSource stored in .xml format on the ISC server, indicates what server-side connector to use to execute
+     * requests, that is, what happens if you call dsRequest.execute() in server code.
+     *
+     * @param serverType serverType Default value is "generic"
+     * @throws IllegalStateException this property cannot be changed after the underlying component has been created
+     */
     public void setServerType(DSServerType serverType)  throws IllegalStateException {
         setAttribute("serverType", serverType.getValue(), false);
     }
+
     /**
-     * For a DataSource stored in .xml format on the ISC server, indicates what server-side&#010 connector to use to execute requests, that is, what happens if you call&#010 dsRequest.execute() in server code.
+     * For a DataSource stored in .xml format on the ISC server, indicates what server-side connector to use to execute
+     * requests, that is, what happens if you call dsRequest.execute() in server code.
      *
      *
      * @return DSServerType
-     *
      */
     public DSServerType getServerType()  {
         return (DSServerType) EnumUtil.getEnum(DSServerType.values(), getAttribute("serverType"));
     }
 
     /**
-    * For DataSources using the {@link com.smartgwt.client.docs.SqlDataSource 'SmartGWT SQL engine'} for&#010 persistence, what database table name to use.  The default is to use the DataSource ID&#010 as the table name.
-    *
-    * @param tableName tableName Default value is null
-    * @throws IllegalStateException this property cannot be changed after the underlying component has been created
-    */
+     * For DataSources using the {@link com.smartgwt.client.docs.SqlDataSource 'SmartGWT SQL engine'} for persistence, what
+     * database table name to use.  The default is to use the DataSource ID as the table name.
+     *
+     * @param tableName tableName Default value is null
+     * @throws IllegalStateException this property cannot be changed after the underlying component has been created
+     */
     public void setTableName(String tableName)  throws IllegalStateException {
         setAttribute("tableName", tableName, false);
     }
+
     /**
-     * For DataSources using the {@link com.smartgwt.client.docs.SqlDataSource 'SmartGWT SQL engine'} for&#010 persistence, what database table name to use.  The default is to use the DataSource ID&#010 as the table name.
+     * For DataSources using the {@link com.smartgwt.client.docs.SqlDataSource 'SmartGWT SQL engine'} for persistence, what
+     * database table name to use.  The default is to use the DataSource ID as the table name.
      *
      *
      * @return String
-     *
      */
     public String getTableName()  {
         return getAttributeAsString("tableName");
     }
 
     /**
-    * For DataSources using the {@link com.smartgwt.client.docs.SqlDataSource 'SmartGWT SQL engine'} for&#010 persistence, which database configuration to use.  Database configurations can be&#010 created using the "Databases" tab in the Developer Console.  If unset, the default&#010 database configuration is used (which also settable using the "Databases" tab).
-    *
-    * @param dbName dbName Default value is null
-    * @throws IllegalStateException this property cannot be changed after the underlying component has been created
-    */
+     * For DataSources using the {@link com.smartgwt.client.docs.SqlDataSource 'SmartGWT SQL engine'} for persistence, which
+     * database configuration to use.  Database configurations can be created using the "Databases" tab in the Developer
+     * Console.  If unset, the default database configuration is used (which also settable using the "Databases" tab).
+     *
+     * @param dbName dbName Default value is null
+     * @throws IllegalStateException this property cannot be changed after the underlying component has been created
+     */
     public void setDbName(String dbName)  throws IllegalStateException {
         setAttribute("dbName", dbName, false);
     }
+
     /**
-     * For DataSources using the {@link com.smartgwt.client.docs.SqlDataSource 'SmartGWT SQL engine'} for&#010 persistence, which database configuration to use.  Database configurations can be&#010 created using the "Databases" tab in the Developer Console.  If unset, the default&#010 database configuration is used (which also settable using the "Databases" tab).
+     * For DataSources using the {@link com.smartgwt.client.docs.SqlDataSource 'SmartGWT SQL engine'} for persistence, which
+     * database configuration to use.  Database configurations can be created using the "Databases" tab in the Developer
+     * Console.  If unset, the default database configuration is used (which also settable using the "Databases" tab).
      *
      *
      * @return String
-     *
      */
     public String getDbName()  {
         return getAttributeAsString("dbName");
     }
 
     /**
-    * Allows you to specify an arbitrary prefix string to apply to all json format responses &#010 sent from the server to this application.<br>&#010 The inclusion of such a prefix ensures your code is not directly executable outside of&#010 your application, as a preventitive measure against&#010 <a href='http://www.google.com/search?q=javascript+hijacking' onclick="window.open('http://www.google.com/search?q=javascript+hijacking');return false;">javascript hijacking</a>.&#010 <br>&#010 Only applies to responses formatted as json objects. Does not apply to responses returned&#010 via scriptInclude type transport.<br>&#010 Note: If the prefix / suffix served by your backend is not a constant, you can use &#010 {@link com.smartgwt.client.data.OperationBinding#getDataFormat 'dataFormat:"custom"'} instead and explicitly parse&#010 the prefix out as part of {@link com.smartgwt.client.data.DataSource#transformResponse}.
-    * <p><b>Note : </b> This is an advanced setting</p>
-    *
-    * @param jsonPrefix jsonPrefix Default value is null
-    * @throws IllegalStateException this property cannot be changed after the underlying component has been created
-    */
+     * Allows you to specify an arbitrary prefix string to apply to all json format responses  sent from the server to this
+     * application.<br> The inclusion of such a prefix ensures your code is not directly executable outside of your
+     * application, as a preventitive measure against <a href='http://www.google.com/search?q=javascript+hijacking'
+     * onclick="window.open('http://www.google.com/search?q=javascript+hijacking');return false;">javascript hijacking</a>.
+     * <br> Only applies to responses formatted as json objects. Does not apply to responses returned via scriptInclude type
+     * transport.<br> Note: If the prefix / suffix served by your backend is not a constant, you can use  {@link
+     * com.smartgwt.client.data.OperationBinding#getDataFormat 'dataFormat:"custom"'} instead and explicitly parse the prefix
+     * out as part of {@link com.smartgwt.client.data.DataSource#transformResponse}.
+     * <p><b>Note : </b> This is an advanced setting</p>
+     *
+     * @param jsonPrefix jsonPrefix Default value is null
+     * @throws IllegalStateException this property cannot be changed after the underlying component has been created
+     */
     public void setJsonPrefix(String jsonPrefix)  throws IllegalStateException {
         setAttribute("jsonPrefix", jsonPrefix, false);
     }
+
     /**
-     * Allows you to specify an arbitrary prefix string to apply to all json format responses &#010 sent from the server to this application.<br>&#010 The inclusion of such a prefix ensures your code is not directly executable outside of&#010 your application, as a preventitive measure against&#010 <a href='http://www.google.com/search?q=javascript+hijacking' onclick="window.open('http://www.google.com/search?q=javascript+hijacking');return false;">javascript hijacking</a>.&#010 <br>&#010 Only applies to responses formatted as json objects. Does not apply to responses returned&#010 via scriptInclude type transport.<br>&#010 Note: If the prefix / suffix served by your backend is not a constant, you can use &#010 {@link com.smartgwt.client.data.OperationBinding#getDataFormat 'dataFormat:"custom"'} instead and explicitly parse&#010 the prefix out as part of {@link com.smartgwt.client.data.DataSource#transformResponse}.
+     * Allows you to specify an arbitrary prefix string to apply to all json format responses  sent from the server to this
+     * application.<br> The inclusion of such a prefix ensures your code is not directly executable outside of your
+     * application, as a preventitive measure against <a href='http://www.google.com/search?q=javascript+hijacking'
+     * onclick="window.open('http://www.google.com/search?q=javascript+hijacking');return false;">javascript hijacking</a>.
+     * <br> Only applies to responses formatted as json objects. Does not apply to responses returned via scriptInclude type
+     * transport.<br> Note: If the prefix / suffix served by your backend is not a constant, you can use  {@link
+     * com.smartgwt.client.data.OperationBinding#getDataFormat 'dataFormat:"custom"'} instead and explicitly parse the prefix
+     * out as part of {@link com.smartgwt.client.data.DataSource#transformResponse}.
      *
      *
      * @return String
-     *
      */
     public String getJsonPrefix()  {
         return getAttributeAsString("jsonPrefix");
     }
 
     /**
-    * Allows you to specify an arbitrary suffix string to apply to all json format responses &#010 sent from the server to this application.<br>&#010 The inclusion of such a suffix ensures your code is not directly executable outside of&#010 your application, as a preventitive measure against&#010 <a href='http://www.google.com/search?q=javascript+hijacking' onclick="window.open('http://www.google.com/search?q=javascript+hijacking');return false;">javascript hijacking</a>.&#010 <br>&#010 Only applies to responses formatted as json objects. Does not apply to responses returned&#010 via scriptInclude type transport.
-    * <p><b>Note : </b> This is an advanced setting</p>
-    *
-    * @param jsonSuffix jsonSuffix Default value is null
-    * @throws IllegalStateException this property cannot be changed after the underlying component has been created
-    */
+     * Allows you to specify an arbitrary suffix string to apply to all json format responses  sent from the server to this
+     * application.<br> The inclusion of such a suffix ensures your code is not directly executable outside of your
+     * application, as a preventitive measure against <a href='http://www.google.com/search?q=javascript+hijacking'
+     * onclick="window.open('http://www.google.com/search?q=javascript+hijacking');return false;">javascript hijacking</a>.
+     * <br> Only applies to responses formatted as json objects. Does not apply to responses returned via scriptInclude type
+     * transport.
+     * <p><b>Note : </b> This is an advanced setting</p>
+     *
+     * @param jsonSuffix jsonSuffix Default value is null
+     * @throws IllegalStateException this property cannot be changed after the underlying component has been created
+     */
     public void setJsonSuffix(String jsonSuffix)  throws IllegalStateException {
         setAttribute("jsonSuffix", jsonSuffix, false);
     }
+
     /**
-     * Allows you to specify an arbitrary suffix string to apply to all json format responses &#010 sent from the server to this application.<br>&#010 The inclusion of such a suffix ensures your code is not directly executable outside of&#010 your application, as a preventitive measure against&#010 <a href='http://www.google.com/search?q=javascript+hijacking' onclick="window.open('http://www.google.com/search?q=javascript+hijacking');return false;">javascript hijacking</a>.&#010 <br>&#010 Only applies to responses formatted as json objects. Does not apply to responses returned&#010 via scriptInclude type transport.
+     * Allows you to specify an arbitrary suffix string to apply to all json format responses  sent from the server to this
+     * application.<br> The inclusion of such a suffix ensures your code is not directly executable outside of your
+     * application, as a preventitive measure against <a href='http://www.google.com/search?q=javascript+hijacking'
+     * onclick="window.open('http://www.google.com/search?q=javascript+hijacking');return false;">javascript hijacking</a>.
+     * <br> Only applies to responses formatted as json objects. Does not apply to responses returned via scriptInclude type
+     * transport.
      *
      *
      * @return String
-     *
      */
     public String getJsonSuffix()  {
         return getAttributeAsString("jsonSuffix");
     }
 
     /**
-    * Like {@link com.smartgwt.client.widgets.DataBoundComponent#getUseFlatFields useFlatFields}, but applies to all DataBound components&#010 that bind to this DataSource.
-    *
-    * @param useFlatFields useFlatFields Default value is null
-    * @throws IllegalStateException this property cannot be changed after the underlying component has been created
-    */
+     * Like {@link com.smartgwt.client.widgets.DataBoundComponent#getUseFlatFields useFlatFields}, but applies to all DataBound
+     * components that bind to this DataSource.
+     *
+     * @param useFlatFields useFlatFields Default value is null
+     * @throws IllegalStateException this property cannot be changed after the underlying component has been created
+     */
     public void setUseFlatFields(Boolean useFlatFields)  throws IllegalStateException {
         setAttribute("useFlatFields", useFlatFields, false);
     }
+
     /**
-     * Like {@link com.smartgwt.client.widgets.DataBoundComponent#getUseFlatFields useFlatFields}, but applies to all DataBound components&#010 that bind to this DataSource.
+     * Like {@link com.smartgwt.client.widgets.DataBoundComponent#getUseFlatFields useFlatFields}, but applies to all DataBound
+     * components that bind to this DataSource.
      *
      *
      * @return Boolean
-     *
      */
     public Boolean getUseFlatFields()  {
         return getAttributeAsBoolean("useFlatFields");
     }
 
     /**
-    * For a DataSource that inherits {@link com.smartgwt.client.data.DataSource#getFields fields} from another DataSource &#010 (via {@link com.smartgwt.client.data.DataSource#getInheritsFrom inheritsFrom}), indicates that only the fields listed in this DataSource&#010 should be shown.  All other inherited parent fields will be marked "hidden:true".
-    *
-    * @param showLocalFieldsOnly showLocalFieldsOnly Default value is null
-    * @throws IllegalStateException this property cannot be changed after the underlying component has been created
-    */
+     * For a DataSource that inherits {@link com.smartgwt.client.data.DataSource#getFields fields} from another DataSource 
+     * (via {@link com.smartgwt.client.data.DataSource#getInheritsFrom inheritsFrom}), indicates that only the fields listed in
+     * this DataSource should be shown.  All other inherited parent fields will be marked "hidden:true".
+     *
+     * @param showLocalFieldsOnly showLocalFieldsOnly Default value is null
+     * @throws IllegalStateException this property cannot be changed after the underlying component has been created
+     */
     public void setShowLocalFieldsOnly(Boolean showLocalFieldsOnly)  throws IllegalStateException {
         setAttribute("showLocalFieldsOnly", showLocalFieldsOnly, false);
     }
+
     /**
-     * For a DataSource that inherits {@link com.smartgwt.client.data.DataSource#getFields fields} from another DataSource &#010 (via {@link com.smartgwt.client.data.DataSource#getInheritsFrom inheritsFrom}), indicates that only the fields listed in this DataSource&#010 should be shown.  All other inherited parent fields will be marked "hidden:true".
+     * For a DataSource that inherits {@link com.smartgwt.client.data.DataSource#getFields fields} from another DataSource 
+     * (via {@link com.smartgwt.client.data.DataSource#getInheritsFrom inheritsFrom}), indicates that only the fields listed in
+     * this DataSource should be shown.  All other inherited parent fields will be marked "hidden:true".
      *
      *
      * @return Boolean
-     *
      */
     public Boolean getShowLocalFieldsOnly()  {
         return getAttributeAsBoolean("showLocalFieldsOnly");
     }
 
     /**
-    * For a DataSource that inherits {@link com.smartgwt.client.data.DataSource#getFields fields} from another DataSource &#010 (via {@link com.smartgwt.client.data.DataSource#getInheritsFrom inheritsFrom}), indicates that the parent's field order should be used&#010 instead of the order of the fields as declared in this DataSource.  New fields, if any,&#010 are placed at the end.
-    *
-    * @param useParentFieldOrder useParentFieldOrder Default value is null
-    * @throws IllegalStateException this property cannot be changed after the underlying component has been created
-    */
+     * For a DataSource that inherits {@link com.smartgwt.client.data.DataSource#getFields fields} from another DataSource 
+     * (via {@link com.smartgwt.client.data.DataSource#getInheritsFrom inheritsFrom}), indicates that the parent's field order
+     * should be used instead of the order of the fields as declared in this DataSource.  New fields, if any, are placed at the
+     * end.
+     *
+     * @param useParentFieldOrder useParentFieldOrder Default value is null
+     * @throws IllegalStateException this property cannot be changed after the underlying component has been created
+     */
     public void setUseParentFieldOrder(Boolean useParentFieldOrder)  throws IllegalStateException {
         setAttribute("useParentFieldOrder", useParentFieldOrder, false);
     }
+
     /**
-     * For a DataSource that inherits {@link com.smartgwt.client.data.DataSource#getFields fields} from another DataSource &#010 (via {@link com.smartgwt.client.data.DataSource#getInheritsFrom inheritsFrom}), indicates that the parent's field order should be used&#010 instead of the order of the fields as declared in this DataSource.  New fields, if any,&#010 are placed at the end.
+     * For a DataSource that inherits {@link com.smartgwt.client.data.DataSource#getFields fields} from another DataSource 
+     * (via {@link com.smartgwt.client.data.DataSource#getInheritsFrom inheritsFrom}), indicates that the parent's field order
+     * should be used instead of the order of the fields as declared in this DataSource.  New fields, if any, are placed at the
+     * end.
      *
      *
      * @return Boolean
-     *
      */
     public Boolean getUseParentFieldOrder()  {
         return getAttributeAsBoolean("useParentFieldOrder");
     }
 
     /**
-    * Indicates that for server responses, for any data being interpreted as DataSource records, &#010 only data that&#010 corresponds to declared fields should be retained; any extra fields should be discarded.&#010 <P>&#010 For {@link com.smartgwt.client.data.DataSource#getDataFormat 'JSON'} data, this means extra properties in selected&#010 objects are dropped.&#010 <P>&#010 By default, for DMI DSResponses, DSResponse.data is filtered on the server to just&#010 the set of fields defined on the DataSource.  This type of filtering can also be enabled&#010 for non-DMI DSResponses (see the overview in {@link com.smartgwt.client..DMI}).  Setting this property to&#010 <code>false</code> disables this filtering for this DataSource only.  This setting&#010 overrides the configuration in <code>server.properties</code>.  This setting can&#010 be overridden by {@link com.smartgwt.client..ServerObject#getDropExtraFields dropExtraFields}.
-    *
-    * @param dropExtraFields dropExtraFields Default value is null
-    * @throws IllegalStateException this property cannot be changed after the underlying component has been created
-    */
+     * Indicates that for server responses, for any data being interpreted as DataSource records,  only data that corresponds
+     * to declared fields should be retained; any extra fields should be discarded. <P> For {@link
+     * com.smartgwt.client.data.DataSource#getDataFormat 'JSON'} data, this means extra properties in selected objects are
+     * dropped. <P> By default, for DMI DSResponses, DSResponse.data is filtered on the server to just the set of fields
+     * defined on the DataSource.  This type of filtering can also be enabled for non-DMI DSResponses (see the overview in
+     * {@link com.smartgwt.client..DMI}).  Setting this property to <code>false</code> disables this filtering for this
+     * DataSource only.  This setting overrides the configuration in <code>server.properties</code>.  This setting can be
+     * overridden by {@link com.smartgwt.client..ServerObject#getDropExtraFields dropExtraFields}.
+     *
+     * @param dropExtraFields dropExtraFields Default value is null
+     * @throws IllegalStateException this property cannot be changed after the underlying component has been created
+     */
     public void setDropExtraFields(Boolean dropExtraFields)  throws IllegalStateException {
         setAttribute("dropExtraFields", dropExtraFields, false);
     }
+
     /**
-     * Indicates that for server responses, for any data being interpreted as DataSource records, &#010 only data that&#010 corresponds to declared fields should be retained; any extra fields should be discarded.&#010 <P>&#010 For {@link com.smartgwt.client.data.DataSource#getDataFormat 'JSON'} data, this means extra properties in selected&#010 objects are dropped.&#010 <P>&#010 By default, for DMI DSResponses, DSResponse.data is filtered on the server to just&#010 the set of fields defined on the DataSource.  This type of filtering can also be enabled&#010 for non-DMI DSResponses (see the overview in {@link com.smartgwt.client..DMI}).  Setting this property to&#010 <code>false</code> disables this filtering for this DataSource only.  This setting&#010 overrides the configuration in <code>server.properties</code>.  This setting can&#010 be overridden by {@link com.smartgwt.client..ServerObject#getDropExtraFields dropExtraFields}.
+     * Indicates that for server responses, for any data being interpreted as DataSource records,  only data that corresponds
+     * to declared fields should be retained; any extra fields should be discarded. <P> For {@link
+     * com.smartgwt.client.data.DataSource#getDataFormat 'JSON'} data, this means extra properties in selected objects are
+     * dropped. <P> By default, for DMI DSResponses, DSResponse.data is filtered on the server to just the set of fields
+     * defined on the DataSource.  This type of filtering can also be enabled for non-DMI DSResponses (see the overview in
+     * {@link com.smartgwt.client..DMI}).  Setting this property to <code>false</code> disables this filtering for this
+     * DataSource only.  This setting overrides the configuration in <code>server.properties</code>.  This setting can be
+     * overridden by {@link com.smartgwt.client..ServerObject#getDropExtraFields dropExtraFields}.
      *
      *
      * @return Boolean
-     *
      */
     public Boolean getDropExtraFields()  {
         return getAttributeAsBoolean("dropExtraFields");
     }
 
     /**
-    * Analagous to {@link com.smartgwt.client.data.DataSource#getDropExtraFields dropExtraFields}, for data sent to the server.  Setting this&#010 attribute to false ensures that for any records in the data object, only fields that&#010 correspond to declared dataSource fields will be present on the dsRequest data object passed&#010 to {@link com.smartgwt.client.data.DataSource#transformRequest} and ultimately sent to the server.
-    *
-    * @param sendExtraFields sendExtraFields Default value is true
-    * @throws IllegalStateException this property cannot be changed after the underlying component has been created
-    */
+     * Analagous to {@link com.smartgwt.client.data.DataSource#getDropExtraFields dropExtraFields}, for data sent to the
+     * server.  Setting this attribute to false ensures that for any records in the data object, only fields that correspond to
+     * declared dataSource fields will be present on the dsRequest data object passed to {@link
+     * com.smartgwt.client.data.DataSource#transformRequest} and ultimately sent to the server.
+     *
+     * @param sendExtraFields sendExtraFields Default value is true
+     * @throws IllegalStateException this property cannot be changed after the underlying component has been created
+     */
     public void setSendExtraFields(Boolean sendExtraFields)  throws IllegalStateException {
         setAttribute("sendExtraFields", sendExtraFields, false);
     }
+
     /**
-     * Analagous to {@link com.smartgwt.client.data.DataSource#getDropExtraFields dropExtraFields}, for data sent to the server.  Setting this&#010 attribute to false ensures that for any records in the data object, only fields that&#010 correspond to declared dataSource fields will be present on the dsRequest data object passed&#010 to {@link com.smartgwt.client.data.DataSource#transformRequest} and ultimately sent to the server.
+     * Analagous to {@link com.smartgwt.client.data.DataSource#getDropExtraFields dropExtraFields}, for data sent to the
+     * server.  Setting this attribute to false ensures that for any records in the data object, only fields that correspond to
+     * declared dataSource fields will be present on the dsRequest data object passed to {@link
+     * com.smartgwt.client.data.DataSource#transformRequest} and ultimately sent to the server.
      *
      *
      * @return Boolean
-     *
      */
     public Boolean getSendExtraFields()  {
         return getAttributeAsBoolean("sendExtraFields");
     }
 
     /**
-    * For a DataSource with serverType: "sql" or serverType: "hibernate", automatically derive&#010 the dataSource's schema (field definitions) from from the SQL table specified in &#010 {@link com.smartgwt.client.data.DataSource#getTableName tableName}.  This causes SmartGWT to create a "super" DataSource, which&#010 this dataSource then automatically {@link com.smartgwt.client.data.DataSource#getInheritsFrom 'inheritsFrom'}.  This allows you to &#010 override auto-derived schema as required.&#010 <p>&#010 This property is only applicable if you are using the SmartGWT server.
-    *
-    * @param autoDeriveSchema autoDeriveSchema Default value is null
-    * @throws IllegalStateException this property cannot be changed after the underlying component has been created
-    */
+     * For a DataSource with serverType: "sql" or serverType: "hibernate", automatically derive the dataSource's schema (field
+     * definitions) from from the SQL table specified in  {@link com.smartgwt.client.data.DataSource#getTableName tableName}. 
+     * This causes SmartGWT to create a "super" DataSource, which this dataSource then automatically {@link
+     * com.smartgwt.client.data.DataSource#getInheritsFrom 'inheritsFrom'}.  This allows you to  override auto-derived schema
+     * as required. <p> This property is only applicable if you are using the SmartGWT server.
+     *
+     * @param autoDeriveSchema autoDeriveSchema Default value is null
+     * @throws IllegalStateException this property cannot be changed after the underlying component has been created
+     */
     public void setAutoDeriveSchema(Boolean autoDeriveSchema)  throws IllegalStateException {
         setAttribute("autoDeriveSchema", autoDeriveSchema, false);
     }
+
     /**
-     * For a DataSource with serverType: "sql" or serverType: "hibernate", automatically derive&#010 the dataSource's schema (field definitions) from from the SQL table specified in &#010 {@link com.smartgwt.client.data.DataSource#getTableName tableName}.  This causes SmartGWT to create a "super" DataSource, which&#010 this dataSource then automatically {@link com.smartgwt.client.data.DataSource#getInheritsFrom 'inheritsFrom'}.  This allows you to &#010 override auto-derived schema as required.&#010 <p>&#010 This property is only applicable if you are using the SmartGWT server.
+     * For a DataSource with serverType: "sql" or serverType: "hibernate", automatically derive the dataSource's schema (field
+     * definitions) from from the SQL table specified in  {@link com.smartgwt.client.data.DataSource#getTableName tableName}. 
+     * This causes SmartGWT to create a "super" DataSource, which this dataSource then automatically {@link
+     * com.smartgwt.client.data.DataSource#getInheritsFrom 'inheritsFrom'}.  This allows you to  override auto-derived schema
+     * as required. <p> This property is only applicable if you are using the SmartGWT server.
      *
      *
      * @return Boolean
-     *
      */
     public Boolean getAutoDeriveSchema()  {
         return getAttributeAsBoolean("autoDeriveSchema");
     }
 
     /**
-    * For an XML DataSource, URN of the WebService to use to invoke operations.  This URN&#010 comes from the "targetNamespace" attribute of the &lt;wsdl:definitions&gt; element in a&#010 WSDL (Web Service Description Language) document, and serves as the unique identifier of&#010 the service.&#010 <P>&#010 Having loaded a WebService using {@link com.smartgwt.client.data.XMLTools#loadWSDL}, setting&#010 <code>serviceNamespace</code> combined with specifying &#010 {@link com.smartgwt.client.data.OperationBinding}&#010 that set {@link com.smartgwt.client.data.OperationBinding#getWsOperation wsOperation} will cause a DataSource to invoke web&#010 service operations to fulfill DataSource requests ({@link com.smartgwt.client.data.DSRequest}).&#010 <P>&#010 Setting <code>serviceNamespace</code> also defaults&#010 {@link com.smartgwt.client.data.DataSource#getDataURL 'dataURL'} to the service's location,&#010 {@link com.smartgwt.client.data.DataSource#getDataFormat 'dataFormat'} to "xml" and&#010 {@link com.smartgwt.client.data.OperationBinding#getDataProtocol 'dataProtocol'} to "soap".
-    *
-    * @param serviceNamespace serviceNamespace Default value is null
-    * @throws IllegalStateException this property cannot be changed after the underlying component has been created
-    */
+     * For an XML DataSource, URN of the WebService to use to invoke operations.  This URN comes from the "targetNamespace"
+     * attribute of the &lt;wsdl:definitions&gt; element in a WSDL (Web Service Description Language) document, and serves as
+     * the unique identifier of the service. <P> Having loaded a WebService using {@link
+     * com.smartgwt.client.data.XMLTools#loadWSDL}, setting <code>serviceNamespace</code> combined with specifying  {@link
+     * com.smartgwt.client.data.OperationBinding} that set {@link com.smartgwt.client.data.OperationBinding#getWsOperation
+     * wsOperation} will cause a DataSource to invoke web service operations to fulfill DataSource requests ({@link
+     * com.smartgwt.client.data.DSRequest}). <P> Setting <code>serviceNamespace</code> also defaults {@link
+     * com.smartgwt.client.data.DataSource#getDataURL 'dataURL'} to the service's location, {@link
+     * com.smartgwt.client.data.DataSource#getDataFormat 'dataFormat'} to "xml" and {@link
+     * com.smartgwt.client.data.OperationBinding#getDataProtocol 'dataProtocol'} to "soap".
+     *
+     * @param serviceNamespace serviceNamespace Default value is null
+     * @throws IllegalStateException this property cannot be changed after the underlying component has been created
+     */
     public void setServiceNamespace(String serviceNamespace)  throws IllegalStateException {
         setAttribute("serviceNamespace", serviceNamespace, false);
     }
+
     /**
-     * For an XML DataSource, URN of the WebService to use to invoke operations.  This URN&#010 comes from the "targetNamespace" attribute of the &lt;wsdl:definitions&gt; element in a&#010 WSDL (Web Service Description Language) document, and serves as the unique identifier of&#010 the service.&#010 <P>&#010 Having loaded a WebService using {@link com.smartgwt.client.data.XMLTools#loadWSDL}, setting&#010 <code>serviceNamespace</code> combined with specifying &#010 {@link com.smartgwt.client.data.OperationBinding}&#010 that set {@link com.smartgwt.client.data.OperationBinding#getWsOperation wsOperation} will cause a DataSource to invoke web&#010 service operations to fulfill DataSource requests ({@link com.smartgwt.client.data.DSRequest}).&#010 <P>&#010 Setting <code>serviceNamespace</code> also defaults&#010 {@link com.smartgwt.client.data.DataSource#getDataURL 'dataURL'} to the service's location,&#010 {@link com.smartgwt.client.data.DataSource#getDataFormat 'dataFormat'} to "xml" and&#010 {@link com.smartgwt.client.data.OperationBinding#getDataProtocol 'dataProtocol'} to "soap".
+     * For an XML DataSource, URN of the WebService to use to invoke operations.  This URN comes from the "targetNamespace"
+     * attribute of the &lt;wsdl:definitions&gt; element in a WSDL (Web Service Description Language) document, and serves as
+     * the unique identifier of the service. <P> Having loaded a WebService using {@link
+     * com.smartgwt.client.data.XMLTools#loadWSDL}, setting <code>serviceNamespace</code> combined with specifying  {@link
+     * com.smartgwt.client.data.OperationBinding} that set {@link com.smartgwt.client.data.OperationBinding#getWsOperation
+     * wsOperation} will cause a DataSource to invoke web service operations to fulfill DataSource requests ({@link
+     * com.smartgwt.client.data.DSRequest}). <P> Setting <code>serviceNamespace</code> also defaults {@link
+     * com.smartgwt.client.data.DataSource#getDataURL 'dataURL'} to the service's location, {@link
+     * com.smartgwt.client.data.DataSource#getDataFormat 'dataFormat'} to "xml" and {@link
+     * com.smartgwt.client.data.OperationBinding#getDataProtocol 'dataProtocol'} to "soap".
      *
      *
      * @return String
-     *
      */
     public String getServiceNamespace()  {
         return getAttributeAsString("serviceNamespace");
     }
 
+
     /**
-     * For a DataSource derived from WSDL or XML schema, the XML namespace this schema belongs&#010 to.  This is a read-only attribute automatically present on DataSources returned from&#010 {@link com.smartgwt.client..SchemaSet#getSchema} and {@link com.smartgwt.client.data.WebService#getSchema}.
+     * For a DataSource derived from WSDL or XML schema, the XML namespace this schema belongs to.  This is a read-only
+     * attribute automatically present on DataSources returned from {@link com.smartgwt.client..SchemaSet#getSchema} and {@link
+     * com.smartgwt.client.data.WebService#getSchema}.
      *
      * <b>Note :</b> This method should be called only after the underlying component has been created.
      *
      * @return String
-     *
      * @throws IllegalStateException if underlying component has not yet been created.
      */
     public String getSchemaNamespace() throws IllegalStateException {
@@ -450,452 +596,657 @@ public class DataSource extends BaseClass  implements com.smartgwt.client.data.e
     }
 
     /**
-    * See {@link com.smartgwt.client.data.OperationBinding#getRecordXPath recordXPath}.  <code>recordXPath</code> can be specified&#010 directly on the DataSource for a simple read-only DataSource only capable of "fetch"&#010 operations.
-    *
-    * @param recordXPath recordXPath Default value is null
-    * @throws IllegalStateException this property cannot be changed after the underlying component has been created
-    */
+     * See {@link com.smartgwt.client.data.OperationBinding#getRecordXPath recordXPath}.  <code>recordXPath</code> can be
+     * specified directly on the DataSource for a simple read-only DataSource only capable of "fetch" operations.
+     *
+     * @param recordXPath recordXPath Default value is null
+     * @throws IllegalStateException this property cannot be changed after the underlying component has been created
+     */
     public void setRecordXPath(String recordXPath)  throws IllegalStateException {
         setAttribute("recordXPath", recordXPath, false);
     }
+
     /**
-     * See {@link com.smartgwt.client.data.OperationBinding#getRecordXPath recordXPath}.  <code>recordXPath</code> can be specified&#010 directly on the DataSource for a simple read-only DataSource only capable of "fetch"&#010 operations.
+     * See {@link com.smartgwt.client.data.OperationBinding#getRecordXPath recordXPath}.  <code>recordXPath</code> can be
+     * specified directly on the DataSource for a simple read-only DataSource only capable of "fetch" operations.
      *
      *
      * @return String
-     *
      */
     public String getRecordXPath()  {
         return getAttributeAsString("recordXPath");
     }
 
     /**
-    * Default URL to contact to fulfill all DSRequests.  Can also be set on a&#010 per-operationType basis via {@link com.smartgwt.client.data.OperationBinding#getDataURL dataURL}.&#010 <P>&#010 NOTE: Best practice is to use the same <code>dataURL</code> for all DataSources which&#010 fulfill DSRequests via the server-side RPCManager API.  Otherwise, cross-DataSource&#010 {@link com.smartgwt.client.rpc.RPCManager#startQueue} will not be possible.
-    *
-    * @param dataURL dataURL Default value is null
-    * @throws IllegalStateException this property cannot be changed after the underlying component has been created
-    */
+     * Default URL to contact to fulfill all DSRequests.  Can also be set on a per-operationType basis via {@link
+     * com.smartgwt.client.data.OperationBinding#getDataURL dataURL}. <P> NOTE: Best practice is to use the same
+     * <code>dataURL</code> for all DataSources which fulfill DSRequests via the server-side RPCManager API.  Otherwise,
+     * cross-DataSource {@link com.smartgwt.client.rpc.RPCManager#startQueue} will not be possible.
+     *
+     * @param dataURL dataURL Default value is null
+     * @throws IllegalStateException this property cannot be changed after the underlying component has been created
+     */
     public void setDataURL(String dataURL)  throws IllegalStateException {
         setAttribute("dataURL", dataURL, false);
     }
+
     /**
-     * Default URL to contact to fulfill all DSRequests.  Can also be set on a&#010 per-operationType basis via {@link com.smartgwt.client.data.OperationBinding#getDataURL dataURL}.&#010 <P>&#010 NOTE: Best practice is to use the same <code>dataURL</code> for all DataSources which&#010 fulfill DSRequests via the server-side RPCManager API.  Otherwise, cross-DataSource&#010 {@link com.smartgwt.client.rpc.RPCManager#startQueue} will not be possible.
+     * Default URL to contact to fulfill all DSRequests.  Can also be set on a per-operationType basis via {@link
+     * com.smartgwt.client.data.OperationBinding#getDataURL dataURL}. <P> NOTE: Best practice is to use the same
+     * <code>dataURL</code> for all DataSources which fulfill DSRequests via the server-side RPCManager API.  Otherwise,
+     * cross-DataSource {@link com.smartgwt.client.rpc.RPCManager#startQueue} will not be possible.
      *
      *
      * @return String
-     *
      */
     public String getDataURL()  {
         return getAttributeAsString("dataURL");
     }
 
     /**
-    * Tag name to use when serializing to XML.  If unspecified, the <code>dataSource.ID</code>&#010 will be used.
-    * <p><b>Note : </b> This is an advanced setting</p>
-    *
-    * @param tagName tagName Default value is null
-    * @throws IllegalStateException this property cannot be changed after the underlying component has been created
-    */
+     * Tag name to use when serializing to XML.  If unspecified, the <code>dataSource.ID</code> will be used.
+     * <p><b>Note : </b> This is an advanced setting</p>
+     *
+     * @param tagName tagName Default value is null
+     * @throws IllegalStateException this property cannot be changed after the underlying component has been created
+     */
     public void setTagName(String tagName)  throws IllegalStateException {
         setAttribute("tagName", tagName, false);
     }
+
     /**
-     * Tag name to use when serializing to XML.  If unspecified, the <code>dataSource.ID</code>&#010 will be used.
+     * Tag name to use when serializing to XML.  If unspecified, the <code>dataSource.ID</code> will be used.
      *
      *
      * @return String
-     *
      */
     public String getTagName()  {
         return getAttributeAsString("tagName");
     }
 
     /**
-    * Whether to act as a "client-only" DataSource, which has no permanent storage and never&#010 contacts the server, instead using a set of test data to respond to requests in the same&#010 manner as a server-based DataSource might.&#010 <P>&#010 See {@link com.smartgwt.client.docs.ClientOnlyDataSources 'this discussion'} for ways to populate a&#010 client-only DataSource with test data.
-    *
-    * @param clientOnly clientOnly Default value is false
-    * @throws IllegalStateException this property cannot be changed after the underlying component has been created
-    */
+     * Whether to act as a "client-only" DataSource, which has no permanent storage and never contacts the server, instead
+     * using a set of test data to respond to requests in the same manner as a server-based DataSource might. <P> See {@link
+     * com.smartgwt.client.docs.ClientOnlyDataSources 'this discussion'} for ways to populate a client-only DataSource with
+     * test data.
+     *
+     * @param clientOnly clientOnly Default value is false
+     * @throws IllegalStateException this property cannot be changed after the underlying component has been created
+     */
     public void setClientOnly(Boolean clientOnly)  throws IllegalStateException {
         setAttribute("clientOnly", clientOnly, false);
     }
+
     /**
-     * Whether to act as a "client-only" DataSource, which has no permanent storage and never&#010 contacts the server, instead using a set of test data to respond to requests in the same&#010 manner as a server-based DataSource might.&#010 <P>&#010 See {@link com.smartgwt.client.docs.ClientOnlyDataSources 'this discussion'} for ways to populate a&#010 client-only DataSource with test data.
+     * Whether to act as a "client-only" DataSource, which has no permanent storage and never contacts the server, instead
+     * using a set of test data to respond to requests in the same manner as a server-based DataSource might. <P> See {@link
+     * com.smartgwt.client.docs.ClientOnlyDataSources 'this discussion'} for ways to populate a client-only DataSource with
+     * test data.
      *
      *
      * @return Boolean
-     *
      */
     public Boolean getClientOnly()  {
         return getAttributeAsBoolean("clientOnly");
     }
              
     /**
-    * Decides under what conditions the {@link com.smartgwt.client.data.ResultSet} cache should be dropped when the&#010 {@link com.smartgwt.client.data.ResultSet#getCriteria criteria} changes
-    * <p><b>Note : </b> This is an advanced setting</p>
-    *
-    * @param criteriaPolicy criteriaPolicy Default value is "dropOnShortening"
-    */
+     * Decides under what conditions the {@link com.smartgwt.client.data.ResultSet} cache should be dropped when the {@link
+     * com.smartgwt.client.data.ResultSet#getCriteria criteria} changes
+     * <p><b>Note : </b> This is an advanced setting</p>
+     *
+     * @param criteriaPolicy criteriaPolicy Default value is "dropOnShortening"
+     */
     public void setCriteriaPolicy(CriteriaPolicy criteriaPolicy) {
         setAttribute("criteriaPolicy", criteriaPolicy.getValue(), true);
     }
+
     /**
-     * Decides under what conditions the {@link com.smartgwt.client.data.ResultSet} cache should be dropped when the&#010 {@link com.smartgwt.client.data.ResultSet#getCriteria criteria} changes
+     * Decides under what conditions the {@link com.smartgwt.client.data.ResultSet} cache should be dropped when the {@link
+     * com.smartgwt.client.data.ResultSet#getCriteria criteria} changes
      *
      *
      * @return CriteriaPolicy
-     *
      */
     public CriteriaPolicy getCriteriaPolicy()  {
         return (CriteriaPolicy) EnumUtil.getEnum(CriteriaPolicy.values(), getAttribute("criteriaPolicy"));
     }
 
     /**
-    * Whether to attempt validation on the client at all for this DataSource.  If unset (the&#010 default), client-side validation is enabled.&#010 <p>&#010 Disabling client-side validation entirely is a good way to test server-side validation.
-    * <p><b>Note : </b> This is an advanced setting</p>
-    *
-    * @param useLocalValidators useLocalValidators Default value is null
-    */
+     * Whether to attempt validation on the client at all for this DataSource.  If unset (the default), client-side validation
+     * is enabled. <p> Disabling client-side validation entirely is a good way to test server-side validation.
+     * <p><b>Note : </b> This is an advanced setting</p>
+     *
+     * @param useLocalValidators useLocalValidators Default value is null
+     */
     public void setUseLocalValidators(Boolean useLocalValidators) {
         setAttribute("useLocalValidators", useLocalValidators, true);
     }
+
     /**
-     * Whether to attempt validation on the client at all for this DataSource.  If unset (the&#010 default), client-side validation is enabled.&#010 <p>&#010 Disabling client-side validation entirely is a good way to test server-side validation.
+     * Whether to attempt validation on the client at all for this DataSource.  If unset (the default), client-side validation
+     * is enabled. <p> Disabling client-side validation entirely is a good way to test server-side validation.
      *
      *
      * @return Boolean
-     *
      */
     public Boolean getUseLocalValidators()  {
         return getAttributeAsBoolean("useLocalValidators");
     }
 
     /**
-    * Whether RPCRequests sent by this DataSource should enable &#010 {@link com.smartgwt.client.rpc.RPCRequest#getShowPrompt showPrompt} if it's unset.
-    *
-    * @param showPrompt showPrompt Default value is true
-    */
+     * Whether RPCRequests sent by this DataSource should enable  {@link com.smartgwt.client.rpc.RPCRequest#getShowPrompt
+     * showPrompt} if it's unset.
+     *
+     * @param showPrompt showPrompt Default value is true
+     */
     public void setShowPrompt(Boolean showPrompt) {
         setAttribute("showPrompt", showPrompt, true);
     }
+
     /**
-     * Whether RPCRequests sent by this DataSource should enable &#010 {@link com.smartgwt.client.rpc.RPCRequest#getShowPrompt showPrompt} if it's unset.
+     * Whether RPCRequests sent by this DataSource should enable  {@link com.smartgwt.client.rpc.RPCRequest#getShowPrompt
+     * showPrompt} if it's unset.
      *
      *
      * @return Boolean
-     *
      */
     public Boolean getShowPrompt()  {
         return getAttributeAsBoolean("showPrompt");
     }
              
     /**
-    * Sets the strategy this DataSource uses to translate Java enumerated types (objects of type&#010 enum) to and from Javascript.&#010 &#010 This property is only applicable if you are using the SmartGWT server
-    * <p><b>Note : </b> This is an advanced setting</p>
-    *
-    * @param enumTranslateStrategy enumTranslateStrategy Default value is null
-    * @throws IllegalStateException this property cannot be changed after the underlying component has been created
-    */
+     * Sets the strategy this DataSource uses to translate Java enumerated types (objects of type enum) to and from Javascript.
+     *  This property is only applicable if you are using the SmartGWT server
+     * <p><b>Note : </b> This is an advanced setting</p>
+     *
+     * @param enumTranslateStrategy enumTranslateStrategy Default value is null
+     * @throws IllegalStateException this property cannot be changed after the underlying component has been created
+     */
     public void setEnumTranslateStrategy(EnumTranslateStrategy enumTranslateStrategy)  throws IllegalStateException {
         setAttribute("enumTranslateStrategy", enumTranslateStrategy.getValue(), false);
     }
 
     /**
-    * The name of the property this DataSource uses for constant name when translating&#010 Java enumerated types to and from Javascript, if the {@link com.smartgwt.client.types.EnumTranslateStrategy} is set&#010 to "bean".  Defaults to "_constant" if not set.&#010 <p>&#010  This property is only applicable if you are using the SmartGWT server
-    * <p><b>Note : </b> This is an advanced setting</p>
-    *
-    * @param enumConstantProperty enumConstantProperty Default value is null
-    * @throws IllegalStateException this property cannot be changed after the underlying component has been created
-    */
+     * The name of the property this DataSource uses for constant name when translating Java enumerated types to and from
+     * Javascript, if the {@link com.smartgwt.client.types.EnumTranslateStrategy} is set to "bean".  Defaults to "_constant" if
+     * not set. <p>  This property is only applicable if you are using the SmartGWT server
+     * <p><b>Note : </b> This is an advanced setting</p>
+     *
+     * @param enumConstantProperty enumConstantProperty Default value is null
+     * @throws IllegalStateException this property cannot be changed after the underlying component has been created
+     */
     public void setEnumConstantProperty(String enumConstantProperty)  throws IllegalStateException {
         setAttribute("enumConstantProperty", enumConstantProperty, false);
     }
 
     /**
-    * The name of the property this DataSource uses for ordinal number when translating&#010 Java enumerated types to and from Javascript, if the {@link com.smartgwt.client.types.EnumTranslateStrategy} is set&#010 to "bean".  Defaults to "_ordinal" if not set.&#010 <p>&#010  This property is only applicable if you are using the SmartGWT server
-    * <p><b>Note : </b> This is an advanced setting</p>
-    *
-    * @param enumOrdinalProperty enumOrdinalProperty Default value is null
-    * @throws IllegalStateException this property cannot be changed after the underlying component has been created
-    */
+     * The name of the property this DataSource uses for ordinal number when translating Java enumerated types to and from
+     * Javascript, if the {@link com.smartgwt.client.types.EnumTranslateStrategy} is set to "bean".  Defaults to "_ordinal" if
+     * not set. <p>  This property is only applicable if you are using the SmartGWT server
+     * <p><b>Note : </b> This is an advanced setting</p>
+     *
+     * @param enumOrdinalProperty enumOrdinalProperty Default value is null
+     * @throws IllegalStateException this property cannot be changed after the underlying component has been created
+     */
     public void setEnumOrdinalProperty(String enumOrdinalProperty)  throws IllegalStateException {
         setAttribute("enumOrdinalProperty", enumOrdinalProperty, false);
     }
 
     /**
-    * If set, titles are automatically derived from {@link com.smartgwt.client.data.DataSourceField#getName 'field.name'} for any &#010 field that does not have a {@link com.smartgwt.client.data.DataSourceField#getTitle 'field.title'} and is not marked&#010 {@link com.smartgwt.client.data.DataSourceField#getHidden 'hidden'}:true, by calling the method {@link com.smartgwt.client.data.DataSource#getAutoTitle}.
-    *
-    * @param autoDeriveTitles autoDeriveTitles Default value is true
-    * @throws IllegalStateException this property cannot be changed after the underlying component has been created
-    */
+     * If set, titles are automatically derived from {@link com.smartgwt.client.data.DataSourceField#getName 'field.name'} for
+     * any  field that does not have a {@link com.smartgwt.client.data.DataSourceField#getTitle 'field.title'} and is not
+     * marked {@link com.smartgwt.client.data.DataSourceField#getHidden 'hidden'}:true, by calling the method {@link
+     * com.smartgwt.client.data.DataSource#getAutoTitle}.
+     *
+     * @param autoDeriveTitles autoDeriveTitles Default value is true
+     * @throws IllegalStateException this property cannot be changed after the underlying component has been created
+     */
     public void setAutoDeriveTitles(Boolean autoDeriveTitles)  throws IllegalStateException {
         setAttribute("autoDeriveTitles", autoDeriveTitles, false);
     }
+
     /**
-     * If set, titles are automatically derived from {@link com.smartgwt.client.data.DataSourceField#getName 'field.name'} for any &#010 field that does not have a {@link com.smartgwt.client.data.DataSourceField#getTitle 'field.title'} and is not marked&#010 {@link com.smartgwt.client.data.DataSourceField#getHidden 'hidden'}:true, by calling the method {@link com.smartgwt.client.data.DataSource#getAutoTitle}.
+     * If set, titles are automatically derived from {@link com.smartgwt.client.data.DataSourceField#getName 'field.name'} for
+     * any  field that does not have a {@link com.smartgwt.client.data.DataSourceField#getTitle 'field.title'} and is not
+     * marked {@link com.smartgwt.client.data.DataSourceField#getHidden 'hidden'}:true, by calling the method {@link
+     * com.smartgwt.client.data.DataSource#getAutoTitle}.
      *
      *
      * @return Boolean
-     *
      */
     public Boolean getAutoDeriveTitles()  {
         return getAttributeAsBoolean("autoDeriveTitles");
     }
 
     /**
-    * Whether a user must be authenticated in order to access this DataSource.  This establishes a&#010 default for the DataSource as a whole; individual {@link com.smartgwt.client.data.DataSource#getOperationBindings operationBindings} within the&#010 DataSource may still override this setting by explicitly setting&#010 {@link com.smartgwt.client.data.OperationBinding#getRequiresAuthentication requiresAuthentication}.&#010 <P>&#010 Whether the user is authenticated is determined by calling&#010 <code>httpServletRequest.getRemoteUser()</code>, hence works with both simple J2EE security&#010 (realms and form-based authentication) and JAAS (Java Authentication & Authorization&#010 Service).&#010 <P>&#010 If you wish to use an authentication scheme that does not make use of the servlet API's &#010 standards, SmartGWT Server also implements the <code>setAuthenticated</code> method&#010 on <code>RPCManager</code>.  You can use this API to tell SmartGWT that all the &#010 requests in the queue currently being processed are associated with an authenticated&#010 user; in this case, SmartGWT will not attempt to authenticate the user via &#010 <code>httpServletRequest.getRemoteUser()</code>&#010 <P>&#010 You can set the default value for this property via setting "authentication.defaultRequired"&#010 in server.properties.  This allows you to, for example, cause all DataSources to require&#010 authentication for all operations by default.&#010 <P>&#010 Note that setting this property does not automatically cause an authentication mechanism to&#010 appear - you still need to separately configure an authentication system.  Likewise, setting&#010 requiresAuthentication="false" does not automatically allow users to bypass your authentication&#010 mechanism - you need to set up a URL that will accept DSRequests and process them similar to&#010 the default "IDACall" servlet, and which is not protected by the authentication system.  See&#010 {@link com.smartgwt.client.docs.IscInstall 'Deploying SmartGWT'} for details on the IDACall servlet.
-    *
-    * @param requiresAuthentication requiresAuthentication Default value is null
-    * @throws IllegalStateException this property cannot be changed after the underlying component has been created
-    */
+     * Whether a user must be authenticated in order to access this DataSource.  This establishes a default for the DataSource
+     * as a whole; individual {@link com.smartgwt.client.data.DataSource#getOperationBindings operationBindings} within the
+     * DataSource may still override this setting by explicitly setting {@link
+     * com.smartgwt.client.data.OperationBinding#getRequiresAuthentication requiresAuthentication}. <P> Whether the user is
+     * authenticated is determined by calling <code>httpServletRequest.getRemoteUser()</code>, hence works with both simple
+     * J2EE security (realms and form-based authentication) and JAAS (Java Authentication & Authorization Service). <P> If you
+     * wish to use an authentication scheme that does not make use of the servlet API's  standards, SmartGWT Server also
+     * implements the <code>setAuthenticated</code> method on <code>RPCManager</code>.  You can use this API to tell SmartGWT
+     * that all the  requests in the queue currently being processed are associated with an authenticated user; in this case,
+     * SmartGWT will not attempt to authenticate the user via  <code>httpServletRequest.getRemoteUser()</code> <P> You can set
+     * the default value for this property via setting "authentication.defaultRequired" in server.properties.  This allows you
+     * to, for example, cause all DataSources to require authentication for all operations by default. <P> Note that setting
+     * this property does not automatically cause an authentication mechanism to appear - you still need to separately
+     * configure an authentication system.  Likewise, setting requiresAuthentication="false" does not automatically allow users
+     * to bypass your authentication mechanism - you need to set up a URL that will accept DSRequests and process them similar
+     * to the default "IDACall" servlet, and which is not protected by the authentication system.  See {@link
+     * com.smartgwt.client.docs.IscInstall 'Deploying SmartGWT'} for details on the IDACall servlet.
+     *
+     * @param requiresAuthentication requiresAuthentication Default value is null
+     * @throws IllegalStateException this property cannot be changed after the underlying component has been created
+     */
     public void setRequiresAuthentication(Boolean requiresAuthentication)  throws IllegalStateException {
         setAttribute("requiresAuthentication", requiresAuthentication, false);
     }
+
     /**
-     * Whether a user must be authenticated in order to access this DataSource.  This establishes a&#010 default for the DataSource as a whole; individual {@link com.smartgwt.client.data.DataSource#getOperationBindings operationBindings} within the&#010 DataSource may still override this setting by explicitly setting&#010 {@link com.smartgwt.client.data.OperationBinding#getRequiresAuthentication requiresAuthentication}.&#010 <P>&#010 Whether the user is authenticated is determined by calling&#010 <code>httpServletRequest.getRemoteUser()</code>, hence works with both simple J2EE security&#010 (realms and form-based authentication) and JAAS (Java Authentication & Authorization&#010 Service).&#010 <P>&#010 If you wish to use an authentication scheme that does not make use of the servlet API's &#010 standards, SmartGWT Server also implements the <code>setAuthenticated</code> method&#010 on <code>RPCManager</code>.  You can use this API to tell SmartGWT that all the &#010 requests in the queue currently being processed are associated with an authenticated&#010 user; in this case, SmartGWT will not attempt to authenticate the user via &#010 <code>httpServletRequest.getRemoteUser()</code>&#010 <P>&#010 You can set the default value for this property via setting "authentication.defaultRequired"&#010 in server.properties.  This allows you to, for example, cause all DataSources to require&#010 authentication for all operations by default.&#010 <P>&#010 Note that setting this property does not automatically cause an authentication mechanism to&#010 appear - you still need to separately configure an authentication system.  Likewise, setting&#010 requiresAuthentication="false" does not automatically allow users to bypass your authentication&#010 mechanism - you need to set up a URL that will accept DSRequests and process them similar to&#010 the default "IDACall" servlet, and which is not protected by the authentication system.  See&#010 {@link com.smartgwt.client.docs.IscInstall 'Deploying SmartGWT'} for details on the IDACall servlet.
+     * Whether a user must be authenticated in order to access this DataSource.  This establishes a default for the DataSource
+     * as a whole; individual {@link com.smartgwt.client.data.DataSource#getOperationBindings operationBindings} within the
+     * DataSource may still override this setting by explicitly setting {@link
+     * com.smartgwt.client.data.OperationBinding#getRequiresAuthentication requiresAuthentication}. <P> Whether the user is
+     * authenticated is determined by calling <code>httpServletRequest.getRemoteUser()</code>, hence works with both simple
+     * J2EE security (realms and form-based authentication) and JAAS (Java Authentication & Authorization Service). <P> If you
+     * wish to use an authentication scheme that does not make use of the servlet API's  standards, SmartGWT Server also
+     * implements the <code>setAuthenticated</code> method on <code>RPCManager</code>.  You can use this API to tell SmartGWT
+     * that all the  requests in the queue currently being processed are associated with an authenticated user; in this case,
+     * SmartGWT will not attempt to authenticate the user via  <code>httpServletRequest.getRemoteUser()</code> <P> You can set
+     * the default value for this property via setting "authentication.defaultRequired" in server.properties.  This allows you
+     * to, for example, cause all DataSources to require authentication for all operations by default. <P> Note that setting
+     * this property does not automatically cause an authentication mechanism to appear - you still need to separately
+     * configure an authentication system.  Likewise, setting requiresAuthentication="false" does not automatically allow users
+     * to bypass your authentication mechanism - you need to set up a URL that will accept DSRequests and process them similar
+     * to the default "IDACall" servlet, and which is not protected by the authentication system.  See {@link
+     * com.smartgwt.client.docs.IscInstall 'Deploying SmartGWT'} for details on the IDACall servlet.
      *
      *
      * @return Boolean
-     *
      */
     public Boolean getRequiresAuthentication()  {
         return getAttributeAsBoolean("requiresAuthentication");
     }
 
     /**
-    * Similar to {@link com.smartgwt.client.data.OperationBinding#getRequiresRole requiresRole}, but controls access to the DataSource as a&#010 whole.
-    *
-    * @param requiresRole requiresRole Default value is null
-    * @throws IllegalStateException this property cannot be changed after the underlying component has been created
-    */
+     * Similar to {@link com.smartgwt.client.data.OperationBinding#getRequiresRole requiresRole}, but controls access to the
+     * DataSource as a whole.
+     *
+     * @param requiresRole requiresRole Default value is null
+     * @throws IllegalStateException this property cannot be changed after the underlying component has been created
+     */
     public void setRequiresRole(String requiresRole)  throws IllegalStateException {
         setAttribute("requiresRole", requiresRole, false);
     }
+
     /**
-     * Similar to {@link com.smartgwt.client.data.OperationBinding#getRequiresRole requiresRole}, but controls access to the DataSource as a&#010 whole.
+     * Similar to {@link com.smartgwt.client.data.OperationBinding#getRequiresRole requiresRole}, but controls access to the
+     * DataSource as a whole.
      *
      *
      * @return String
-     *
      */
     public String getRequiresRole()  {
         return getAttributeAsString("requiresRole");
     }
 
     /**
-    * User-visible name for this DataSource.&#010 <P>&#010 For example, for the supplyItem DataSource, "Supply Item".&#010 <P>&#010 Defaults to <code>dataSource.ID</code>.
-    *
-    * @param title title Default value is dataSource.ID
-    */
+     * User-visible name for this DataSource. <P> For example, for the supplyItem DataSource, "Supply Item". <P> Defaults to
+     * <code>dataSource.ID</code>.
+     *
+     * @param title title Default value is dataSource.ID
+     */
     public void setTitle(String title) {
         setAttribute("title", title, true);
     }
+
     /**
-     * User-visible name for this DataSource.&#010 <P>&#010 For example, for the supplyItem DataSource, "Supply Item".&#010 <P>&#010 Defaults to <code>dataSource.ID</code>.
+     * User-visible name for this DataSource. <P> For example, for the supplyItem DataSource, "Supply Item". <P> Defaults to
+     * <code>dataSource.ID</code>.
      *
      *
      * @return String
-     *
      */
     public String getTitle()  {
         return getAttributeAsString("title");
     }
 
     /**
-    * User-visible plural name for this DataSource.&#010 <P>&#010 For example, for the supplyItem DataSource, "Supply Items".&#010 <P>&#010 Defaults to (<code>dataSource.title</code> or <code>dataSource.ID</code>) + "s".
-    *
-    * @param pluralTitle pluralTitle Default value is dataSource.ID
-    * @throws IllegalStateException this property cannot be changed after the underlying component has been created
-    */
+     * User-visible plural name for this DataSource. <P> For example, for the supplyItem DataSource, "Supply Items". <P>
+     * Defaults to (<code>dataSource.title</code> or <code>dataSource.ID</code>) + "s".
+     *
+     * @param pluralTitle pluralTitle Default value is dataSource.ID
+     * @throws IllegalStateException this property cannot be changed after the underlying component has been created
+     */
     public void setPluralTitle(String pluralTitle)  throws IllegalStateException {
         setAttribute("pluralTitle", pluralTitle, false);
     }
+
     /**
-     * User-visible plural name for this DataSource.&#010 <P>&#010 For example, for the supplyItem DataSource, "Supply Items".&#010 <P>&#010 Defaults to (<code>dataSource.title</code> or <code>dataSource.ID</code>) + "s".
+     * User-visible plural name for this DataSource. <P> For example, for the supplyItem DataSource, "Supply Items". <P>
+     * Defaults to (<code>dataSource.title</code> or <code>dataSource.ID</code>) + "s".
      *
      *
      * @return String
-     *
      */
     public String getPluralTitle()  {
         return getAttributeAsString("pluralTitle");
     }
 
     /**
-    * Best field to use for a user-visible title for an individual record from this dataSource.&#010 <p>&#010 For example, for a DataSource of employees, a "full name" field would probably most clearly&#010 labels an employee record.&#010 <p>&#010 If not explicitly set, titleField looks for fields named "title", "label", "name", and "id"&#010 in that order.  If a field exists with one of those names, it becomes the titleField.  If not,&#010 then the first field is designated as the titleField.
-    *
-    * @param titleField titleField Default value is see below
-    * @throws IllegalStateException this property cannot be changed after the underlying component has been created
-    */
+     * Best field to use for a user-visible title for an individual record from this dataSource. <p> For example, for a
+     * DataSource of employees, a "full name" field would probably most clearly labels an employee record. <p> If not
+     * explicitly set, titleField looks for fields named "title", "label", "name", and "id" in that order.  If a field exists
+     * with one of those names, it becomes the titleField.  If not, then the first field is designated as the titleField.
+     *
+     * @param titleField titleField Default value is see below
+     * @throws IllegalStateException this property cannot be changed after the underlying component has been created
+     */
     public void setTitleField(String titleField)  throws IllegalStateException {
         setAttribute("titleField", titleField, false);
     }
+
     /**
-     * Best field to use for a user-visible title for an individual record from this dataSource.&#010 <p>&#010 For example, for a DataSource of employees, a "full name" field would probably most clearly&#010 labels an employee record.&#010 <p>&#010 If not explicitly set, titleField looks for fields named "title", "label", "name", and "id"&#010 in that order.  If a field exists with one of those names, it becomes the titleField.  If not,&#010 then the first field is designated as the titleField.
+     * Best field to use for a user-visible title for an individual record from this dataSource. <p> For example, for a
+     * DataSource of employees, a "full name" field would probably most clearly labels an employee record. <p> If not
+     * explicitly set, titleField looks for fields named "title", "label", "name", and "id" in that order.  If a field exists
+     * with one of those names, it becomes the titleField.  If not, then the first field is designated as the titleField.
      *
      *
      * @return String
-     *
      */
     public String getTitleField()  {
         return getAttributeAsString("titleField");
     }
 
     /**
-    * Designates a field of {@link com.smartgwt.client.types.FieldType}:"image" as the field to use when rendering a&#010 record as an image, for example, in a {@link com.smartgwt.client.widgets.tile.TileGrid}.&#010 <p>&#010 For example, for a DataSource of employees, a "photo" field of type "image" should be&#010 designated as the iconField.&#010 <p>&#010 If not explicitly set, iconField looks for fields named "picture", "thumbnail", "icon",&#010 "image" and "img", in that order, and will use any of these fields as the iconField if it&#010 exists and has type "image". &#010 <P>&#010 To avoid any field being used as the iconField, set iconField to <code>null</code>.
-    *
-    * @param iconField iconField Default value is see below
-    * @throws IllegalStateException this property cannot be changed after the underlying component has been created
-    */
+     * Designates a field of {@link com.smartgwt.client.types.FieldType}:"image" as the field to use when rendering a record as
+     * an image, for example, in a {@link com.smartgwt.client.widgets.tile.TileGrid}. <p> For example, for a DataSource of
+     * employees, a "photo" field of type "image" should be designated as the iconField. <p> If not explicitly set, iconField
+     * looks for fields named "picture", "thumbnail", "icon", "image" and "img", in that order, and will use any of these
+     * fields as the iconField if it exists and has type "image".  <P> To avoid any field being used as the iconField, set
+     * iconField to <code>null</code>.
+     *
+     * @param iconField iconField Default value is see below
+     * @throws IllegalStateException this property cannot be changed after the underlying component has been created
+     */
     public void setIconField(String iconField)  throws IllegalStateException {
         setAttribute("iconField", iconField, false);
     }
+
     /**
-     * Designates a field of {@link com.smartgwt.client.types.FieldType}:"image" as the field to use when rendering a&#010 record as an image, for example, in a {@link com.smartgwt.client.widgets.tile.TileGrid}.&#010 <p>&#010 For example, for a DataSource of employees, a "photo" field of type "image" should be&#010 designated as the iconField.&#010 <p>&#010 If not explicitly set, iconField looks for fields named "picture", "thumbnail", "icon",&#010 "image" and "img", in that order, and will use any of these fields as the iconField if it&#010 exists and has type "image". &#010 <P>&#010 To avoid any field being used as the iconField, set iconField to <code>null</code>.
+     * Designates a field of {@link com.smartgwt.client.types.FieldType}:"image" as the field to use when rendering a record as
+     * an image, for example, in a {@link com.smartgwt.client.widgets.tile.TileGrid}. <p> For example, for a DataSource of
+     * employees, a "photo" field of type "image" should be designated as the iconField. <p> If not explicitly set, iconField
+     * looks for fields named "picture", "thumbnail", "icon", "image" and "img", in that order, and will use any of these
+     * fields as the iconField if it exists and has type "image".  <P> To avoid any field being used as the iconField, set
+     * iconField to <code>null</code>.
      *
      *
      * @return String
-     *
      */
     public String getIconField()  {
         return getAttributeAsString("iconField");
     }
 
     /**
-    * fieldName for a field in the dataSource expected to contain an explicit array of child nodes.&#010 Enables loading a databound tree as a hierachical data structure, rather than a flat list of&#010 nodes linked by foreignKey.<br>&#010 Note this is an alternative to setting {@link com.smartgwt.client.data.DataSourceField#getChildrenProperty childrenProperty} directly on&#010 the childrenField object.<P>&#010 By default the children field will be assumed to be {@link com.smartgwt.client.data.DataSourceField#getMultiple 'multiple'},&#010 for XML databinding. This implies that child data should be delivered in the format:&#010 <pre>&#010      &lt;childrenFieldName&gt;&#010          &lt;item name="firstChild" ...&gt;&#010          &lt;item name="secondChild" ...&gt;&#010      &lt;/childrenFieldName&gt;&#010 </pre>&#010 However data may also be delivered as a direct list of <code>childrenFieldName</code> &#010 elements:&#010 <pre>&#010      &lt;childrenFieldName name="firstChild" ...&gt;&#010      &lt;childrenFieldName name="secondChild" ...&gt;&#010 </pre>&#010 If you want to return your data in this format, you will need to explicitly set &#010 <code>multiple</code> to false in the appropriate dataSource field definition.
-    *
-    * @param childrenField childrenField Default value is null
-    * @throws IllegalStateException this property cannot be changed after the underlying component has been created
-    */
+     * fieldName for a field in the dataSource expected to contain an explicit array of child nodes.&#010 Enables loading a
+     * databound tree as a hierachical data structure, rather than a flat list of&#010 nodes linked by foreignKey.<br>&#010
+     * Note this is an alternative to setting {@link com.smartgwt.client.data.DataSourceField#getChildrenProperty
+     * childrenProperty} directly on&#010 the childrenField object.<P>&#010 By default the children field will be assumed to be
+     * {@link com.smartgwt.client.data.DataSourceField#getMultiple 'multiple'},&#010 for XML databinding. This implies that
+     * child data should be delivered in the format:&#010 <pre>&#010      &lt;childrenFieldName&gt;&#010          &lt;item
+     * name="firstChild" ...&gt;&#010          &lt;item name="secondChild" ...&gt;&#010      &lt;/childrenFieldName&gt;&#010
+     * </pre>&#010 However data may also be delivered as a direct list of <code>childrenFieldName</code> &#010 elements:&#010
+     * <pre>&#010      &lt;childrenFieldName name="firstChild" ...&gt;&#010      &lt;childrenFieldName name="secondChild"
+     * ...&gt;&#010 </pre>&#010 If you want to return your data in this format, you will need to explicitly set &#010
+     * <code>multiple</code> to false in the appropriate dataSource field definition.
+     *
+     * @param childrenField childrenField Default value is null
+     * @throws IllegalStateException this property cannot be changed after the underlying component has been created
+     */
     public void setChildrenField(String childrenField)  throws IllegalStateException {
         setAttribute("childrenField", childrenField, false);
     }
+
     /**
-     * fieldName for a field in the dataSource expected to contain an explicit array of child nodes.&#010 Enables loading a databound tree as a hierachical data structure, rather than a flat list of&#010 nodes linked by foreignKey.<br>&#010 Note this is an alternative to setting {@link com.smartgwt.client.data.DataSourceField#getChildrenProperty childrenProperty} directly on&#010 the childrenField object.<P>&#010 By default the children field will be assumed to be {@link com.smartgwt.client.data.DataSourceField#getMultiple 'multiple'},&#010 for XML databinding. This implies that child data should be delivered in the format:&#010 <pre>&#010      &lt;childrenFieldName&gt;&#010          &lt;item name="firstChild" ...&gt;&#010          &lt;item name="secondChild" ...&gt;&#010      &lt;/childrenFieldName&gt;&#010 </pre>&#010 However data may also be delivered as a direct list of <code>childrenFieldName</code> &#010 elements:&#010 <pre>&#010      &lt;childrenFieldName name="firstChild" ...&gt;&#010      &lt;childrenFieldName name="secondChild" ...&gt;&#010 </pre>&#010 If you want to return your data in this format, you will need to explicitly set &#010 <code>multiple</code> to false in the appropriate dataSource field definition.
+     * fieldName for a field in the dataSource expected to contain an explicit array of child nodes.&#010 Enables loading a
+     * databound tree as a hierachical data structure, rather than a flat list of&#010 nodes linked by foreignKey.<br>&#010
+     * Note this is an alternative to setting {@link com.smartgwt.client.data.DataSourceField#getChildrenProperty
+     * childrenProperty} directly on&#010 the childrenField object.<P>&#010 By default the children field will be assumed to be
+     * {@link com.smartgwt.client.data.DataSourceField#getMultiple 'multiple'},&#010 for XML databinding. This implies that
+     * child data should be delivered in the format:&#010 <pre>&#010      &lt;childrenFieldName&gt;&#010          &lt;item
+     * name="firstChild" ...&gt;&#010          &lt;item name="secondChild" ...&gt;&#010      &lt;/childrenFieldName&gt;&#010
+     * </pre>&#010 However data may also be delivered as a direct list of <code>childrenFieldName</code> &#010 elements:&#010
+     * <pre>&#010      &lt;childrenFieldName name="firstChild" ...&gt;&#010      &lt;childrenFieldName name="secondChild"
+     * ...&gt;&#010 </pre>&#010 If you want to return your data in this format, you will need to explicitly set &#010
+     * <code>multiple</code> to false in the appropriate dataSource field definition.
      *
      *
      * @return String
-     *
      */
     public String getChildrenField()  {
         return getAttributeAsString("childrenField");
     }
 
     /**
-    * Specifies the fully-qualified name of the DataSource subclass that should be instantiated&#010 server-side for this dataSource. This property allows you to write and use custom DataSource &#010 subclasses on the server.&#010 <p>&#010 One reason you might wish to do this would be to override the validate() method to provide &#010 some arbitrary custom validation (such as complex database lookups, validation embedded in &#010 legacy applications, etc).  It is also possible - though obviously a more substantial task -&#010 to override the execute() method in your custom DataSource.  This is one way of creating &#010 a completely customized DataSource implementation.&#010 <p>&#010 <b>Note:</b> If you use this property, you are responsible for making sure that it refers to&#010 a valid server-side class that extends <code>com.isomorphic.datasource.DataSource</code>.&#010 If your implementation relies on methods or state only present in certain specialized &#010 subclasses of DataSource (for example, you want the normal behavior and features of a &#010 HibernateDataSource, but with a specialized validate() method), then you shoud extend the &#010 subclass rather than the base class.
-    *
-    * @param serverConstructor serverConstructor Default value is null
-    * @throws IllegalStateException this property cannot be changed after the underlying component has been created
-    */
+     * Specifies the fully-qualified name of the DataSource subclass that should be instantiated server-side for this
+     * dataSource. This property allows you to write and use custom DataSource  subclasses on the server. <p> One reason you
+     * might wish to do this would be to override the validate() method to provide  some arbitrary custom validation (such as
+     * complex database lookups, validation embedded in  legacy applications, etc).  It is also possible - though obviously a
+     * more substantial task - to override the execute() method in your custom DataSource.  This is one way of creating  a
+     * completely customized DataSource implementation. <p> <b>Note:</b> If you use this property, you are responsible for
+     * making sure that it refers to a valid server-side class that extends <code>com.isomorphic.datasource.DataSource</code>.
+     * If your implementation relies on methods or state only present in certain specialized  subclasses of DataSource (for
+     * example, you want the normal behavior and features of a  HibernateDataSource, but with a specialized validate() method),
+     * then you shoud extend the  subclass rather than the base class.
+     *
+     * @param serverConstructor serverConstructor Default value is null
+     * @throws IllegalStateException this property cannot be changed after the underlying component has been created
+     */
     public void setServerConstructor(String serverConstructor)  throws IllegalStateException {
         setAttribute("serverConstructor", serverConstructor, false);
     }
+
     /**
-     * Specifies the fully-qualified name of the DataSource subclass that should be instantiated&#010 server-side for this dataSource. This property allows you to write and use custom DataSource &#010 subclasses on the server.&#010 <p>&#010 One reason you might wish to do this would be to override the validate() method to provide &#010 some arbitrary custom validation (such as complex database lookups, validation embedded in &#010 legacy applications, etc).  It is also possible - though obviously a more substantial task -&#010 to override the execute() method in your custom DataSource.  This is one way of creating &#010 a completely customized DataSource implementation.&#010 <p>&#010 <b>Note:</b> If you use this property, you are responsible for making sure that it refers to&#010 a valid server-side class that extends <code>com.isomorphic.datasource.DataSource</code>.&#010 If your implementation relies on methods or state only present in certain specialized &#010 subclasses of DataSource (for example, you want the normal behavior and features of a &#010 HibernateDataSource, but with a specialized validate() method), then you shoud extend the &#010 subclass rather than the base class.
+     * Specifies the fully-qualified name of the DataSource subclass that should be instantiated server-side for this
+     * dataSource. This property allows you to write and use custom DataSource  subclasses on the server. <p> One reason you
+     * might wish to do this would be to override the validate() method to provide  some arbitrary custom validation (such as
+     * complex database lookups, validation embedded in  legacy applications, etc).  It is also possible - though obviously a
+     * more substantial task - to override the execute() method in your custom DataSource.  This is one way of creating  a
+     * completely customized DataSource implementation. <p> <b>Note:</b> If you use this property, you are responsible for
+     * making sure that it refers to a valid server-side class that extends <code>com.isomorphic.datasource.DataSource</code>.
+     * If your implementation relies on methods or state only present in certain specialized  subclasses of DataSource (for
+     * example, you want the normal behavior and features of a  HibernateDataSource, but with a specialized validate() method),
+     * then you shoud extend the  subclass rather than the base class.
      *
      *
      * @return String
-     *
      */
     public String getServerConstructor()  {
         return getAttributeAsString("serverConstructor");
     }
 
     /**
-    * For dataSources of {@link com.smartgwt.client.data.DataSource#getServerType 'serverType'} "sql", determines whether we qualify column&#010 names with table names in any SQL we generate.  This property can be overridden on specific&#010 operationBindings.
-    *
-    * @param qualifyColumnNames qualifyColumnNames Default value is true
-    * @throws IllegalStateException this property cannot be changed after the underlying component has been created
-    */
+     * For dataSources of {@link com.smartgwt.client.data.DataSource#getServerType 'serverType'} "sql", determines whether we
+     * qualify column names with table names in any SQL we generate.  This property can be overridden on specific
+     * operationBindings.
+     *
+     * @param qualifyColumnNames qualifyColumnNames Default value is true
+     * @throws IllegalStateException this property cannot be changed after the underlying component has been created
+     */
     public void setQualifyColumnNames(Boolean qualifyColumnNames)  throws IllegalStateException {
         setAttribute("qualifyColumnNames", qualifyColumnNames, false);
     }
+
     /**
-     * For dataSources of {@link com.smartgwt.client.data.DataSource#getServerType 'serverType'} "sql", determines whether we qualify column&#010 names with table names in any SQL we generate.  This property can be overridden on specific&#010 operationBindings.
+     * For dataSources of {@link com.smartgwt.client.data.DataSource#getServerType 'serverType'} "sql", determines whether we
+     * qualify column names with table names in any SQL we generate.  This property can be overridden on specific
+     * operationBindings.
      *
      *
      * @return Boolean
-     *
      */
     public Boolean getQualifyColumnNames()  {
         return getAttributeAsBoolean("qualifyColumnNames");
     }
 
     /**
-    * If true, indicates that the SmartGWT Server should automatically apply a &#010 {@link com.smartgwt.client..ValidatorTypes#hasRelatedRecord} validator to every field &#010 on this dataSource that has a {@link com.smartgwt.client.data.DataSourceField#getForeignKey 'foreignKey'} defined.
-    *
-    * @param validateRelatedRecords validateRelatedRecords Default value is null
-    * @throws IllegalStateException this property cannot be changed after the underlying component has been created
-    */
+     * If true, indicates that the SmartGWT Server should automatically apply a  {@link
+     * com.smartgwt.client..ValidatorTypes#hasRelatedRecord} validator to every field  on this dataSource that has a {@link
+     * com.smartgwt.client.data.DataSourceField#getForeignKey 'foreignKey'} defined.
+     *
+     * @param validateRelatedRecords validateRelatedRecords Default value is null
+     * @throws IllegalStateException this property cannot be changed after the underlying component has been created
+     */
     public void setValidateRelatedRecords(Boolean validateRelatedRecords)  throws IllegalStateException {
         setAttribute("validateRelatedRecords", validateRelatedRecords, false);
     }
+
     /**
-     * If true, indicates that the SmartGWT Server should automatically apply a &#010 {@link com.smartgwt.client..ValidatorTypes#hasRelatedRecord} validator to every field &#010 on this dataSource that has a {@link com.smartgwt.client.data.DataSourceField#getForeignKey 'foreignKey'} defined.
+     * If true, indicates that the SmartGWT Server should automatically apply a  {@link
+     * com.smartgwt.client..ValidatorTypes#hasRelatedRecord} validator to every field  on this dataSource that has a {@link
+     * com.smartgwt.client.data.DataSourceField#getForeignKey 'foreignKey'} defined.
      *
      *
      * @return Boolean
-     *
      */
     public Boolean getValidateRelatedRecords()  {
         return getAttributeAsBoolean("validateRelatedRecords");
     }
 
     /**
-    * This property has different meanings depending on the {@link com.smartgwt.client.data.DataSource#getServerType 'serverType'}:&#010 <p>&#010 <b>For DataSources with serverType "hibernate"</b><br>&#010 The name of the Java bean or POJO class that is mapped in Hibernate.  This will typically &#010 be the fully-qualified class name - eg <code>com.foo.MyClass</code> - but it may be the &#010 simple class name - just <code>MyClass</code> - or it may be some other value.  It all &#010 depends on how your classes have been mapped in Hibernate.&#010 <p>&#010 Note:  If you are intending to use Hibernate as a data-access layer only, &#010 you do not need to create Hibernate mappings or Java objects: SmartGWT will generate&#010 everything it needs on the fly.&#010 <p>&#010 <b>For DataSources with serverType "sql"</b><br>&#010 If set, results from the database will be used to create one instance of the indicated Java&#010 bean per database row.  Otherwise a Map is used to represent each row retrieved from SQL.&#010 <P>&#010 With this feature active, a DSResponse from this DataSource will contain a Collection of&#010 instances of the indicated <code>beanClassName</code>, available via DSResponse.getData().&#010 This creates a couple of possibilities:&#010 <P>&#010 <dl>&#010 <dt>Add business logic for derived properties, such as computed formulas</dt>&#010 <dd>For example, declare a DataSourceField named "revenueProjection".  By default this&#010 field will call getRevenueProjection() on your bean to retrieve the value to send to the&#010 client.  Your implementation of getRevenueProjection() could apply some kind of formula to&#010 other values loaded from the database.</dd>&#010 <dt>Call business logic on retrieved beans via DMI</dt>&#010 <dd>By adding a {@link com.smartgwt.client..DMI} method that calls DSRequest.execute() to retrieve a DSResponse,&#010 you have an opportunity to call business logic methods on the beans representing each&#010 row affected by the DSRequest.  For example, notify a related BPEL process of changes to&#010 certain fields.</dd>&#010 </dl>&#010 <P>&#010 By using <code>beanClassName</code> on a specific {@link com.smartgwt.client.data.OperationBinding}, you can:&#010 <ul>&#010 <li>Use a bean to represent your data only when it matters; for example, avoid the overhead&#010     of using a bean for "fetch" operations, but do use a bean for "update" operations so&#010     that you can execute relevant business logic after the update completes.</li>&#010 <li>Skip the use of beans for complex reporting queries that produce results unrelated to&#010     your persistent object model.  Set beanClassName to blank ("") on a specific&#010     operationBinding to override DataSource.beanClassName for that specific operation.</li>&#010 <li>For SQL joins that produce additional data fields, use a special, operation-specific&#010     bean that represents a join of multiple entities and contains business logic specific&#010     to that joined dataset</li>&#010 </ul>&#010 <P>&#010 Note that setting <code>beanClassName</code> has no effect on the DSRequest.  However,&#010 {@link com.smartgwt.client..DMI} has a built-in facility for populating a bean with the inbound&#010 {@link com.smartgwt.client.data.DSRequest#getData data} - just declare the bean as a method argument.&#010 <p>&#010 <b>For DataSources with serverType "generic"</b><br>&#010 {@link com.smartgwt.client.docs.VisualBuilder 'Visual Builder'} sets this property when it creates a generic &#010 DataSource using the Javabean Wizard.  It has no built-in server-side effects.
-    *
-    * @param beanClassName beanClassName Default value is null
-    * @throws IllegalStateException this property cannot be changed after the underlying component has been created
-    */
+     * This property has different meanings depending on the {@link com.smartgwt.client.data.DataSource#getServerType
+     * 'serverType'}: <p> <b>For DataSources with serverType "hibernate"</b><br> The name of the Java bean or POJO class that
+     * is mapped in Hibernate.  This will typically  be the fully-qualified class name - eg <code>com.foo.MyClass</code> - but
+     * it may be the  simple class name - just <code>MyClass</code> - or it may be some other value.  It all  depends on how
+     * your classes have been mapped in Hibernate. <p> Note:  If you are intending to use Hibernate as a data-access layer
+     * only,  you do not need to create Hibernate mappings or Java objects: SmartGWT will generate everything it needs on the
+     * fly. <p> <b>For DataSources with serverType "sql"</b><br> If set, results from the database will be used to create one
+     * instance of the indicated Java bean per database row.  Otherwise a Map is used to represent each row retrieved from SQL.
+     * <P> With this feature active, a DSResponse from this DataSource will contain a Collection of instances of the indicated
+     * <code>beanClassName</code>, available via DSResponse.getData(). This creates a couple of possibilities: <P> <dl> <dt>Add
+     * business logic for derived properties, such as computed formulas</dt> <dd>For example, declare a DataSourceField named
+     * "revenueProjection".  By default this field will call getRevenueProjection() on your bean to retrieve the value to send
+     * to the client.  Your implementation of getRevenueProjection() could apply some kind of formula to other values loaded
+     * from the database.</dd> <dt>Call business logic on retrieved beans via DMI</dt> <dd>By adding a {@link
+     * com.smartgwt.client..DMI} method that calls DSRequest.execute() to retrieve a DSResponse, you have an opportunity to
+     * call business logic methods on the beans representing each row affected by the DSRequest.  For example, notify a related
+     * BPEL process of changes to certain fields.</dd> </dl> <P> By using <code>beanClassName</code> on a specific {@link
+     * com.smartgwt.client.data.OperationBinding}, you can: <ul> <li>Use a bean to represent your data only when it matters;
+     * for example, avoid the overhead     of using a bean for "fetch" operations, but do use a bean for "update" operations so
+     * that you can execute relevant business logic after the update completes.</li> <li>Skip the use of beans for complex
+     * reporting queries that produce results unrelated to     your persistent object model.  Set beanClassName to blank ("")
+     * on a specific     operationBinding to override DataSource.beanClassName for that specific operation.</li> <li>For SQL
+     * joins that produce additional data fields, use a special, operation-specific     bean that represents a join of multiple
+     * entities and contains business logic specific     to that joined dataset</li> </ul> <P> Note that setting
+     * <code>beanClassName</code> has no effect on the DSRequest.  However, {@link com.smartgwt.client..DMI} has a built-in
+     * facility for populating a bean with the inbound {@link com.smartgwt.client.data.DSRequest#getData data} - just declare
+     * the bean as a method argument. <p> <b>For DataSources with serverType "generic"</b><br> {@link
+     * com.smartgwt.client.docs.VisualBuilder 'Visual Builder'} sets this property when it creates a generic  DataSource using
+     * the Javabean Wizard.  It has no built-in server-side effects.
+     *
+     * @param beanClassName beanClassName Default value is null
+     * @throws IllegalStateException this property cannot be changed after the underlying component has been created
+     */
     public void setBeanClassName(String beanClassName)  throws IllegalStateException {
         setAttribute("beanClassName", beanClassName, false);
     }
+
     /**
-     * This property has different meanings depending on the {@link com.smartgwt.client.data.DataSource#getServerType 'serverType'}:&#010 <p>&#010 <b>For DataSources with serverType "hibernate"</b><br>&#010 The name of the Java bean or POJO class that is mapped in Hibernate.  This will typically &#010 be the fully-qualified class name - eg <code>com.foo.MyClass</code> - but it may be the &#010 simple class name - just <code>MyClass</code> - or it may be some other value.  It all &#010 depends on how your classes have been mapped in Hibernate.&#010 <p>&#010 Note:  If you are intending to use Hibernate as a data-access layer only, &#010 you do not need to create Hibernate mappings or Java objects: SmartGWT will generate&#010 everything it needs on the fly.&#010 <p>&#010 <b>For DataSources with serverType "sql"</b><br>&#010 If set, results from the database will be used to create one instance of the indicated Java&#010 bean per database row.  Otherwise a Map is used to represent each row retrieved from SQL.&#010 <P>&#010 With this feature active, a DSResponse from this DataSource will contain a Collection of&#010 instances of the indicated <code>beanClassName</code>, available via DSResponse.getData().&#010 This creates a couple of possibilities:&#010 <P>&#010 <dl>&#010 <dt>Add business logic for derived properties, such as computed formulas</dt>&#010 <dd>For example, declare a DataSourceField named "revenueProjection".  By default this&#010 field will call getRevenueProjection() on your bean to retrieve the value to send to the&#010 client.  Your implementation of getRevenueProjection() could apply some kind of formula to&#010 other values loaded from the database.</dd>&#010 <dt>Call business logic on retrieved beans via DMI</dt>&#010 <dd>By adding a {@link com.smartgwt.client..DMI} method that calls DSRequest.execute() to retrieve a DSResponse,&#010 you have an opportunity to call business logic methods on the beans representing each&#010 row affected by the DSRequest.  For example, notify a related BPEL process of changes to&#010 certain fields.</dd>&#010 </dl>&#010 <P>&#010 By using <code>beanClassName</code> on a specific {@link com.smartgwt.client.data.OperationBinding}, you can:&#010 <ul>&#010 <li>Use a bean to represent your data only when it matters; for example, avoid the overhead&#010     of using a bean for "fetch" operations, but do use a bean for "update" operations so&#010     that you can execute relevant business logic after the update completes.</li>&#010 <li>Skip the use of beans for complex reporting queries that produce results unrelated to&#010     your persistent object model.  Set beanClassName to blank ("") on a specific&#010     operationBinding to override DataSource.beanClassName for that specific operation.</li>&#010 <li>For SQL joins that produce additional data fields, use a special, operation-specific&#010     bean that represents a join of multiple entities and contains business logic specific&#010     to that joined dataset</li>&#010 </ul>&#010 <P>&#010 Note that setting <code>beanClassName</code> has no effect on the DSRequest.  However,&#010 {@link com.smartgwt.client..DMI} has a built-in facility for populating a bean with the inbound&#010 {@link com.smartgwt.client.data.DSRequest#getData data} - just declare the bean as a method argument.&#010 <p>&#010 <b>For DataSources with serverType "generic"</b><br>&#010 {@link com.smartgwt.client.docs.VisualBuilder 'Visual Builder'} sets this property when it creates a generic &#010 DataSource using the Javabean Wizard.  It has no built-in server-side effects.
+     * This property has different meanings depending on the {@link com.smartgwt.client.data.DataSource#getServerType
+     * 'serverType'}: <p> <b>For DataSources with serverType "hibernate"</b><br> The name of the Java bean or POJO class that
+     * is mapped in Hibernate.  This will typically  be the fully-qualified class name - eg <code>com.foo.MyClass</code> - but
+     * it may be the  simple class name - just <code>MyClass</code> - or it may be some other value.  It all  depends on how
+     * your classes have been mapped in Hibernate. <p> Note:  If you are intending to use Hibernate as a data-access layer
+     * only,  you do not need to create Hibernate mappings or Java objects: SmartGWT will generate everything it needs on the
+     * fly. <p> <b>For DataSources with serverType "sql"</b><br> If set, results from the database will be used to create one
+     * instance of the indicated Java bean per database row.  Otherwise a Map is used to represent each row retrieved from SQL.
+     * <P> With this feature active, a DSResponse from this DataSource will contain a Collection of instances of the indicated
+     * <code>beanClassName</code>, available via DSResponse.getData(). This creates a couple of possibilities: <P> <dl> <dt>Add
+     * business logic for derived properties, such as computed formulas</dt> <dd>For example, declare a DataSourceField named
+     * "revenueProjection".  By default this field will call getRevenueProjection() on your bean to retrieve the value to send
+     * to the client.  Your implementation of getRevenueProjection() could apply some kind of formula to other values loaded
+     * from the database.</dd> <dt>Call business logic on retrieved beans via DMI</dt> <dd>By adding a {@link
+     * com.smartgwt.client..DMI} method that calls DSRequest.execute() to retrieve a DSResponse, you have an opportunity to
+     * call business logic methods on the beans representing each row affected by the DSRequest.  For example, notify a related
+     * BPEL process of changes to certain fields.</dd> </dl> <P> By using <code>beanClassName</code> on a specific {@link
+     * com.smartgwt.client.data.OperationBinding}, you can: <ul> <li>Use a bean to represent your data only when it matters;
+     * for example, avoid the overhead     of using a bean for "fetch" operations, but do use a bean for "update" operations so
+     * that you can execute relevant business logic after the update completes.</li> <li>Skip the use of beans for complex
+     * reporting queries that produce results unrelated to     your persistent object model.  Set beanClassName to blank ("")
+     * on a specific     operationBinding to override DataSource.beanClassName for that specific operation.</li> <li>For SQL
+     * joins that produce additional data fields, use a special, operation-specific     bean that represents a join of multiple
+     * entities and contains business logic specific     to that joined dataset</li> </ul> <P> Note that setting
+     * <code>beanClassName</code> has no effect on the DSRequest.  However, {@link com.smartgwt.client..DMI} has a built-in
+     * facility for populating a bean with the inbound {@link com.smartgwt.client.data.DSRequest#getData data} - just declare
+     * the bean as a method argument. <p> <b>For DataSources with serverType "generic"</b><br> {@link
+     * com.smartgwt.client.docs.VisualBuilder 'Visual Builder'} sets this property when it creates a generic  DataSource using
+     * the Javabean Wizard.  It has no built-in server-side effects.
      *
      *
      * @return String
-     *
      */
     public String getBeanClassName()  {
         return getAttributeAsString("beanClassName");
     }
 
     /**
-    * Very advanced: for servers that do not support paging, and must return large numbers of XML&#010 records in one HTTP response, SmartGWT breaks up the processing of the response&#010 in order to avoid the "script running slowly" dialog appearing for an end user.&#010 <P>&#010 If you have a relatively small number of records with a great deal of properties or&#010 subojects on each record, and you have not set {@link com.smartgwt.client.data.DataSource#getDropExtraFields dropExtraFields} to eliminate unused&#010 data, and you see the "script running slowly" dialog, you may need to set this number&#010 lower.
-    * <p><b>Note : </b> This is an advanced setting</p>
-    *
-    * @param resultBatchSize resultBatchSize Default value is 150
-    */
+     * Very advanced: for servers that do not support paging, and must return large numbers of XML records in one HTTP
+     * response, SmartGWT breaks up the processing of the response in order to avoid the "script running slowly" dialog
+     * appearing for an end user. <P> If you have a relatively small number of records with a great deal of properties or
+     * subojects on each record, and you have not set {@link com.smartgwt.client.data.DataSource#getDropExtraFields
+     * dropExtraFields} to eliminate unused data, and you see the "script running slowly" dialog, you may need to set this
+     * number lower.
+     * <p><b>Note : </b> This is an advanced setting</p>
+     *
+     * @param resultBatchSize resultBatchSize Default value is 150
+     */
     public void setResultBatchSize(int resultBatchSize) {
         setAttribute("resultBatchSize", resultBatchSize, true);
     }
+
     /**
-     * Very advanced: for servers that do not support paging, and must return large numbers of XML&#010 records in one HTTP response, SmartGWT breaks up the processing of the response&#010 in order to avoid the "script running slowly" dialog appearing for an end user.&#010 <P>&#010 If you have a relatively small number of records with a great deal of properties or&#010 subojects on each record, and you have not set {@link com.smartgwt.client.data.DataSource#getDropExtraFields dropExtraFields} to eliminate unused&#010 data, and you see the "script running slowly" dialog, you may need to set this number&#010 lower.
+     * Very advanced: for servers that do not support paging, and must return large numbers of XML records in one HTTP
+     * response, SmartGWT breaks up the processing of the response in order to avoid the "script running slowly" dialog
+     * appearing for an end user. <P> If you have a relatively small number of records with a great deal of properties or
+     * subojects on each record, and you have not set {@link com.smartgwt.client.data.DataSource#getDropExtraFields
+     * dropExtraFields} to eliminate unused data, and you see the "script running slowly" dialog, you may need to set this
+     * number lower.
      *
      *
      * @return int
-     *
      */
     public int getResultBatchSize()  {
         return getAttributeAsInt("resultBatchSize");
     }
 
     /**
-    * [A] If set to true, both client and server-side advanced filtering used by SmartGWT will follow&#010 SQL99 behavior for dealing with NULL values, which is often counter-intuitive to users.&#010 Specifically, when a field has NULL value, all of the following expression are false:&#010 <pre>&#010    field == "someValue"  (normally false)&#010    field != "someValue"  (normally true)&#010    not (field == "someValue")   (normally true)&#010    not (field != "someValue")   (normally false)&#010 </pre>
-    *
-    * @param strictSQLFiltering strictSQLFiltering Default value is false
-    * @throws IllegalStateException this property cannot be changed after the underlying component has been created
-    */
+     * [A] If set to true, both client and server-side advanced filtering used by SmartGWT will follow&#010 SQL99 behavior for
+     * dealing with NULL values, which is often counter-intuitive to users.&#010 Specifically, when a field has NULL value, all
+     * of the following expression are false:&#010 <pre>&#010    field == "someValue"  (normally false)&#010    field !=
+     * "someValue"  (normally true)&#010    not (field == "someValue")   (normally true)&#010    not (field != "someValue")  
+     * (normally false)&#010 </pre>
+     *
+     * @param strictSQLFiltering strictSQLFiltering Default value is false
+     * @throws IllegalStateException this property cannot be changed after the underlying component has been created
+     */
     public void setStrictSQLFiltering(Boolean strictSQLFiltering)  throws IllegalStateException {
         setAttribute("strictSQLFiltering", strictSQLFiltering, false);
     }
+
     /**
-     * [A] If set to true, both client and server-side advanced filtering used by SmartGWT will follow&#010 SQL99 behavior for dealing with NULL values, which is often counter-intuitive to users.&#010 Specifically, when a field has NULL value, all of the following expression are false:&#010 <pre>&#010    field == "someValue"  (normally false)&#010    field != "someValue"  (normally true)&#010    not (field == "someValue")   (normally true)&#010    not (field != "someValue")   (normally false)&#010 </pre>
+     * [A] If set to true, both client and server-side advanced filtering used by SmartGWT will follow&#010 SQL99 behavior for
+     * dealing with NULL values, which is often counter-intuitive to users.&#010 Specifically, when a field has NULL value, all
+     * of the following expression are false:&#010 <pre>&#010    field == "someValue"  (normally false)&#010    field !=
+     * "someValue"  (normally true)&#010    not (field == "someValue")   (normally true)&#010    not (field != "someValue")  
+     * (normally false)&#010 </pre>
      *
      *
      * @return Boolean
-     *
      */
     public Boolean getStrictSQLFiltering()  {
         return getAttributeAsBoolean("strictSQLFiltering");
@@ -903,13 +1254,16 @@ public class DataSource extends BaseClass  implements com.smartgwt.client.data.e
 
     // ********************* Methods ***********************
 
-        /**
-         * For a DataSource that describes a DOM structure, the list legal child elements that can&#010 be contained by the element described by this DataSource.&#010 <p>&#010 For a DataSource described by XML schema, this is the list of legal subelements <b>of&#010 complexType</b> (elements of simpleType become DataSourceFields with atomic type).&#010 <p>&#010 Note that currently, if an XML schema file contains ordering constraints, DataSources&#010 derived from XML Schema do not capture these constraints.&#010&#010
-         */
-        public native void getLegalChildTags() /*-{
-            var self = this.@com.smartgwt.client.core.BaseClass::getOrCreateJsObj()();
-            self.getLegalChildTags();
-        }-*/;
+    /**
+     * For a DataSource that describes a DOM structure, the list legal child elements that can be contained by the element
+     * described by this DataSource. <p> For a DataSource described by XML schema, this is the list of legal subelements <b>of
+     * complexType</b> (elements of simpleType become DataSourceFields with atomic type). <p> Note that currently, if an XML
+     * schema file contains ordering constraints, DataSources derived from XML Schema do not capture these constraints.
+     */
+    public native void getLegalChildTags() /*-{
+        var self = this.@com.smartgwt.client.core.BaseClass::getOrCreateJsObj()();
+        self.getLegalChildTags();
+    }-*/;
 
 
 
@@ -929,21 +1283,25 @@ public class DataSource extends BaseClass  implements com.smartgwt.client.data.e
 
 
 
-        /**
-         * Add a handleError handler.
-         * <p>
-         * If you define this method on a DataSource, it will be called whenever the server returns&#010 a DSResponse with a status other than {@link com.smartgwt.client.rpc.RPCResponse#STATUS_SUCCESS}.  You can use&#010 this hook to do DataSource-specific error handling.  Unless you return&#010 <code>false</code> from this method, {@link com.smartgwt.client.rpc.RPCManager#handleError} will be called by&#010 SmartGWT right after this method completes.&#010 &#010
-         *
-         * @param handler the handleError handler
-         * @return {@link HandlerRegistration} used to remove this handler
-         */
-        public HandlerRegistration addHandleErrorHandler(com.smartgwt.client.data.events.HandleErrorHandler handler) {
-            if(getHandlerCount(com.smartgwt.client.data.events.ErrorEvent.getType()) == 0) setupHandleErrorEvent();
-            return doAddHandler(handler, com.smartgwt.client.data.events.ErrorEvent.getType());
-        }
-        private native void setupHandleErrorEvent() /*-{
-            var obj = null;
-            var selfJ = this;
+    /**
+     * Add a handleError handler.
+     * <p>
+     * If you define this method on a DataSource, it will be called whenever the server returns a DSResponse with a status
+     * other than {@link com.smartgwt.client.rpc.RPCResponse#STATUS_SUCCESS}.  You can use this hook to do DataSource-specific
+     * error handling.  Unless you return <code>false</code> from this method, {@link
+     * com.smartgwt.client.rpc.RPCManager#handleError} will be called by SmartGWT right after this method completes.
+     *
+     * @param handler the handleError handler
+     * @return {@link HandlerRegistration} used to remove this handler
+     */
+    public HandlerRegistration addHandleErrorHandler(com.smartgwt.client.data.events.HandleErrorHandler handler) {
+        if(getHandlerCount(com.smartgwt.client.data.events.ErrorEvent.getType()) == 0) setupHandleErrorEvent();
+        return doAddHandler(handler, com.smartgwt.client.data.events.ErrorEvent.getType());
+    }
+
+    private native void setupHandleErrorEvent() /*-{
+        var obj = null;
+        var selfJ = this;
             if(this.@com.smartgwt.client.core.BaseClass::isCreated()()) {
                 obj = this.@com.smartgwt.client.core.BaseClass::getJsObj()();
                 obj.addProperties({handleError:function(){
@@ -964,56 +1322,57 @@ public class DataSource extends BaseClass  implements com.smartgwt.client.data.e
                     return !ret;
                 };
             }
-        }-*/;
+   }-*/;
 
-        /**
-         * Return the field definition object.&#010
-         * @param fieldName Name of the field to retrieve
-         *
-         * @return field object
-         */
-        public native DataSourceField getField(String fieldName) /*-{
-            var self = this.@com.smartgwt.client.core.BaseClass::getOrCreateJsObj()();
-            var ret = self.getField(fieldName);
-            if(ret == null || ret === undefined) return null;
-            return @com.smartgwt.client.data.DataSourceField::new(Lcom/google/gwt/core/client/JavaScriptObject;)(ret);
-        }-*/;
-
-
-        /**
-         * Returns a pointer to the primaryKey field for this DataSource&#010
-         *
-         * @return primary key field object
-         */
-        public native DataSourceField getPrimaryKeyField() /*-{
-            var self = this.@com.smartgwt.client.core.BaseClass::getOrCreateJsObj()();
-            var ret = self.getPrimaryKeyField();
-            if(ret == null || ret === undefined) return null;
-            return @com.smartgwt.client.data.DataSourceField::new(Lcom/google/gwt/core/client/JavaScriptObject;)(ret);
-        }-*/;
-
-        /**
-         * Returns the primary key fieldName for this DataSource&#010
-         *
-         * @return primary key field name
-         */
-        public native String getPrimaryKeyFieldName() /*-{
-            var self = this.@com.smartgwt.client.core.BaseClass::getOrCreateJsObj()();
-            return self.getPrimaryKeyFieldName();
-        }-*/;
+    /**
+     * Return the field definition object.
+     * @param fieldName Name of the field to retrieve
+     *
+     * @return field object
+     */
+    public native DataSourceField getField(String fieldName) /*-{
+        var self = this.@com.smartgwt.client.core.BaseClass::getOrCreateJsObj()();
+        var ret = self.getField(fieldName);
+        if(ret == null || ret === undefined) return null;
+        return @com.smartgwt.client.data.DataSourceField::new(Lcom/google/gwt/core/client/JavaScriptObject;)(ret);
+    }-*/;
 
 
+    /**
+     * Returns a pointer to the primaryKey field for this DataSource
+     *
+     * @return primary key field object
+     */
+    public native DataSourceField getPrimaryKeyField() /*-{
+        var self = this.@com.smartgwt.client.core.BaseClass::getOrCreateJsObj()();
+        var ret = self.getPrimaryKeyField();
+        if(ret == null || ret === undefined) return null;
+        return @com.smartgwt.client.data.DataSourceField::new(Lcom/google/gwt/core/client/JavaScriptObject;)(ret);
+    }-*/;
+
+    /**
+     * Returns the primary key fieldName for this DataSource
+     *
+     * @return primary key field name
+     */
+    public native String getPrimaryKeyFieldName() /*-{
+        var self = this.@com.smartgwt.client.core.BaseClass::getOrCreateJsObj()();
+        return self.getPrimaryKeyFieldName();
+    }-*/;
 
 
 
-        /**
-         * Does this dataSource support the specified "textMatchStyle" when performing a filter&#010 operation against a text field.&#010
-         * @param textMatchStyle textMatchStyle to check. If passed a null value, assume                                an exact match is being requested.
-         */
-        public native void supportsTextMatchStyle(String textMatchStyle) /*-{
-            var self = this.@com.smartgwt.client.core.BaseClass::getOrCreateJsObj()();
-            self.supportsTextMatchStyle(textMatchStyle);
-        }-*/;
+
+
+    /**
+     * Does this dataSource support the specified "textMatchStyle" when performing a filter operation against a text field.
+     * @param textMatchStyle textMatchStyle to check. If passed a null value, assume                                an exact match is being
+     * requested.
+     */
+    public native void supportsTextMatchStyle(String textMatchStyle) /*-{
+        var self = this.@com.smartgwt.client.core.BaseClass::getOrCreateJsObj()();
+        self.supportsTextMatchStyle(textMatchStyle);
+    }-*/;
 
 
 
@@ -1028,37 +1387,37 @@ public class DataSource extends BaseClass  implements com.smartgwt.client.data.e
 
     // ********************* Static Methods ***********************
 
-        /**
-         * Lookup a DataSource by ID.&#010&#010
-         * @param ID DataSource ID
-         *
-         * @return the DataSource with this ID, if loaded, otherwise null.
-         */
-        public static native DataSource getDataSource(String ID) /*-{
-            var ret = $wnd.isc.DataSource.getDataSource(ID);
-            if(ret == null || ret === undefined) return null;
-            var retVal = @com.smartgwt.client.core.BaseClass::getRef(Lcom/google/gwt/core/client/JavaScriptObject;)(ret);
-            if(retVal == null) {
-                retVal = @com.smartgwt.client.data.DataSource::new(Lcom/google/gwt/core/client/JavaScriptObject;)(ret);
-            }
-            return retVal;
-        }-*/;
+    /**
+     * Lookup a DataSource by ID.
+     * @param ID DataSource ID
+     *
+     * @return the DataSource with this ID, if loaded, otherwise null.
+     */
+    public static native DataSource getDataSource(String ID) /*-{
+        var ret = $wnd.isc.DataSource.getDataSource(ID);
+        if(ret == null || ret === undefined) return null;
+        var retVal = @com.smartgwt.client.core.BaseClass::getRef(Lcom/google/gwt/core/client/JavaScriptObject;)(ret);
+        if(retVal == null) {
+            retVal = @com.smartgwt.client.data.DataSource::new(Lcom/google/gwt/core/client/JavaScriptObject;)(ret);
+        }
+        return retVal;
+    }-*/;
 
-        /**
-         * Synonym of {@link com.smartgwt.client.data.DataSource#getDataSource}: Lookup a DataSource by ID.&#010&#010
-         * @param ID DataSource ID
-         *
-         * @return the DataSource with this ID, if loaded, otherwise null.
-         */
-        public static native DataSource get(String ID) /*-{
-            var ret = $wnd.isc.DataSource.get(ID);
-            if(ret == null || ret === undefined) return null;
-            var retVal = @com.smartgwt.client.core.BaseClass::getRef(Lcom/google/gwt/core/client/JavaScriptObject;)(ret);
-            if(retVal == null) {
-                retVal = @com.smartgwt.client.data.DataSource::new(Lcom/google/gwt/core/client/JavaScriptObject;)(ret);
-            }
-            return retVal;
-        }-*/;
+    /**
+     * Synonym of {@link com.smartgwt.client.data.DataSource#getDataSource}: Lookup a DataSource by ID.
+     * @param ID DataSource ID
+     *
+     * @return the DataSource with this ID, if loaded, otherwise null.
+     */
+    public static native DataSource get(String ID) /*-{
+        var ret = $wnd.isc.DataSource.get(ID);
+        if(ret == null || ret === undefined) return null;
+        var retVal = @com.smartgwt.client.core.BaseClass::getRef(Lcom/google/gwt/core/client/JavaScriptObject;)(ret);
+        if(retVal == null) {
+            retVal = @com.smartgwt.client.data.DataSource::new(Lcom/google/gwt/core/client/JavaScriptObject;)(ret);
+        }
+        return retVal;
+    }-*/;
 
 
 

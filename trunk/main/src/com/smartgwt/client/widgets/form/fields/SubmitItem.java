@@ -55,10 +55,12 @@ import com.smartgwt.client.util.JSOHelper;
 import com.smartgwt.client.util.EnumUtil;
 import com.google.gwt.event.shared.*;
 import com.google.gwt.event.shared.HasHandlers;
-   /**
-    * Button that saves the data in the form, by calling {@link com.smartgwt.client.widgets.form.DynamicForm#submit} when clicked.&#010 {@link com.smartgwt.client.widgets.form.DynamicForm#submit} for details on how to control what happens when a form is&#010 submitted.
 
-    */
+/**
+ * Button that saves the data in the form, by calling {@link com.smartgwt.client.widgets.form.DynamicForm#submit} when
+ * clicked. {@link com.smartgwt.client.widgets.form.DynamicForm#submit} for details on how to control what happens when a
+ * form is submitted.
+ */
 public class SubmitItem extends ButtonItem {
 
     public static SubmitItem getOrCreateRef(JavaScriptObject jsObj) {
@@ -71,7 +73,6 @@ public class SubmitItem extends ButtonItem {
             return new SubmitItem(jsObj);
         }
     }
-
 
     public SubmitItem(){
         setType("SubmitItem");
@@ -95,19 +96,19 @@ public class SubmitItem extends ButtonItem {
     // ********************* Properties / Attributes ***********************
 
     /**
-    * SubmitItems show a title of <code>"Submit"</code> by default. May be overridden.
-    *
-    * @param title title Default value is "Submit"
-    */
+     * SubmitItems show a title of <code>"Submit"</code> by default. May be overridden.
+     *
+     * @param title title Default value is "Submit"
+     */
     public void setTitle(String title) {
         setAttribute("title", title);
     }
+
     /**
      * SubmitItems show a title of <code>"Submit"</code> by default. May be overridden.
      *
      *
      * @return String
-     *
      */
     public String getTitle()  {
         return getAttributeAsString("title");

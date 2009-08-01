@@ -55,10 +55,12 @@ import com.smartgwt.client.util.JSOHelper;
 import com.smartgwt.client.util.EnumUtil;
 import com.google.gwt.event.shared.*;
 import com.google.gwt.event.shared.HasHandlers;
-   /**
-    * A subclass of Layout that applies a sizing policy along the vertical axis, interpreting&#010  percent and "*" sizes as proportions of the height of the layout. VLayouts will set any&#010  members that do not have explict widths to match the layout.
 
-    */
+/**
+ * A subclass of Layout that applies a sizing policy along the vertical axis, interpreting  percent and "*" sizes as
+ * proportions of the height of the layout. VLayouts will set any  members that do not have explict widths to match the
+ * layout.
+ */
 public class VLayout extends Layout {
 
     public static VLayout getOrCreateRef(JavaScriptObject jsObj) {
@@ -70,7 +72,6 @@ public class VLayout extends Layout {
             return new VLayout(jsObj);
         }
     }
-
 
     public VLayout(){
         

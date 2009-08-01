@@ -22,7 +22,7 @@ import com.google.gwt.event.shared.HasHandlers;
 
 public interface HasKeyPressHandlers extends HasHandlers {
     /**
-     * StringMethod fired when the user presses a key while focused in this form item.&#010&#010
+     * StringMethod fired when the user presses a key while focused in this form item.
      *
      * @param handler the keyPress handler
      * @return {@link HandlerRegistration} used to remove this handler

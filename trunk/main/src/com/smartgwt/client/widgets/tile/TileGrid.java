@@ -55,12 +55,12 @@ import com.smartgwt.client.util.JSOHelper;
 import com.smartgwt.client.util.EnumUtil;
 import com.google.gwt.event.shared.*;
 import com.google.gwt.event.shared.HasHandlers;
-   /**
-    * A TileGrid is a {@link com.smartgwt.client.widgets.DataBoundComponent} that displays a list of objects as a set&#010 of "tiles", where each tile represents one object, and the tiles are laid out in a grid with&#010 multiple tiles per row.  Each tile displays one or more properties of the object it&#010 represents.
 
-    */
-
-
+/**
+ * A TileGrid is a {@link com.smartgwt.client.widgets.DataBoundComponent} that displays a list of objects as a set of
+ * "tiles", where each tile represents one object, and the tiles are laid out in a grid with multiple tiles per row.  Each
+ * tile displays one or more properties of the object it represents.
+ */
 public class TileGrid extends TileLayout  implements DataBoundComponent, com.smartgwt.client.widgets.tile.events.HasRecordClickHandlers, com.smartgwt.client.widgets.tile.events.HasSelectionChangedHandlers {
 
     public static TileGrid getOrCreateRef(JavaScriptObject jsObj) {
@@ -72,7 +72,6 @@ public class TileGrid extends TileLayout  implements DataBoundComponent, com.sma
             return new TileGrid(jsObj);
         }
     }
-
 
     public TileGrid(){
         
@@ -91,139 +90,145 @@ public class TileGrid extends TileLayout  implements DataBoundComponent, com.sma
     // ********************* Properties / Attributes ***********************
 
     /**
-    * When using the default {@link com.smartgwt.client..SimpleTile}, CSS style for each value shown within a tile.
-    *
-    * @param tileValueStyle tileValueStyle Default value is "tileValue"
-    * @throws IllegalStateException this property cannot be changed after the component has been created
-    */
+     * When using the default {@link com.smartgwt.client..SimpleTile}, CSS style for each value shown within a tile.
+     *
+     * @param tileValueStyle tileValueStyle Default value is "tileValue"
+     * @throws IllegalStateException this property cannot be changed after the component has been created
+     */
     public void setTileValueStyle(String tileValueStyle)  throws IllegalStateException {
         setAttribute("tileValueStyle", tileValueStyle, false);
     }
+
     /**
      * When using the default {@link com.smartgwt.client..SimpleTile}, CSS style for each value shown within a tile.
      *
      *
      * @return String
-     *
      */
     public String getTileValueStyle()  {
         return getAttributeAsString("tileValueStyle");
     }
 
     /**
-    * Horizontal alignment for tile values: "left", "right" or "center".
-    *
-    * @param tileValueAlign tileValueAlign Default value is "center"
-    * @throws IllegalStateException this property cannot be changed after the component has been created
-    */
+     * Horizontal alignment for tile values: "left", "right" or "center".
+     *
+     * @param tileValueAlign tileValueAlign Default value is "center"
+     * @throws IllegalStateException this property cannot be changed after the component has been created
+     */
     public void setTileValueAlign(String tileValueAlign)  throws IllegalStateException {
         setAttribute("tileValueAlign", tileValueAlign, false);
     }
+
     /**
      * Horizontal alignment for tile values: "left", "right" or "center".
      *
      *
      * @return String
-     *
      */
     public String getTileValueAlign()  {
         return getAttributeAsString("tileValueAlign");
     }
 
     /**
-    * If {@link com.smartgwt.client.widgets.tile.TileGrid#getAutoFetchData autoFetchData} is <code>true</code>, this attribute allows the developer to&#010 specify a textMatchStyle for the initial {@link com.smartgwt.client.widgets.tile.TileGrid#fetchData} call.
-    *
-    * @param autoFetchTextMatchStyle autoFetchTextMatchStyle Default value is "substring"
-    * @throws IllegalStateException this property cannot be changed after the component has been created
-    */
+     * If {@link com.smartgwt.client.widgets.tile.TileGrid#getAutoFetchData autoFetchData} is <code>true</code>, this attribute
+     * allows the developer to specify a textMatchStyle for the initial {@link
+     * com.smartgwt.client.widgets.tile.TileGrid#fetchData} call.
+     *
+     * @param autoFetchTextMatchStyle autoFetchTextMatchStyle Default value is "substring"
+     * @throws IllegalStateException this property cannot be changed after the component has been created
+     */
     public void setAutoFetchTextMatchStyle(String autoFetchTextMatchStyle)  throws IllegalStateException {
         setAttribute("autoFetchTextMatchStyle", autoFetchTextMatchStyle, false);
     }
+
     /**
-     * If {@link com.smartgwt.client.widgets.tile.TileGrid#getAutoFetchData autoFetchData} is <code>true</code>, this attribute allows the developer to&#010 specify a textMatchStyle for the initial {@link com.smartgwt.client.widgets.tile.TileGrid#fetchData} call.
+     * If {@link com.smartgwt.client.widgets.tile.TileGrid#getAutoFetchData autoFetchData} is <code>true</code>, this attribute
+     * allows the developer to specify a textMatchStyle for the initial {@link
+     * com.smartgwt.client.widgets.tile.TileGrid#fetchData} call.
      *
      *
      * @return String
-     *
      */
     public String getAutoFetchTextMatchStyle()  {
         return getAttributeAsString("autoFetchTextMatchStyle");
     }
              
     /**
-    * Defines a tileGrid's clickable-selection behavior.
-    *
-    * @param selectionType selectionType Default value is Selection.MULTIPLE
-    */
+     * Defines a tileGrid's clickable-selection behavior.
+     *
+     * @param selectionType selectionType Default value is Selection.MULTIPLE
+     */
     public void setSelectionType(SelectionStyle selectionType) {
         setAttribute("selectionType", selectionType.getValue(), true);
     }
+
     /**
      * Defines a tileGrid's clickable-selection behavior.
      *
      *
      * @return SelectionStyle
-     *
      */
     public SelectionStyle getSelectionType()  {
         return (SelectionStyle) EnumUtil.getEnum(SelectionStyle.values(), getAttribute("selectionType"));
     }
 
     /**
-    * Whether tiles are created and drawn for all records, or only for those currently visible.
-    *
-    * @param showAllRecords showAllRecords Default value is false
-    * @throws IllegalStateException this property cannot be changed after the component has been created
-    */
+     * Whether tiles are created and drawn for all records, or only for those currently visible.
+     *
+     * @param showAllRecords showAllRecords Default value is false
+     * @throws IllegalStateException this property cannot be changed after the component has been created
+     */
     public void setShowAllRecords(Boolean showAllRecords)  throws IllegalStateException {
         setAttribute("showAllRecords", showAllRecords, false);
     }
+
     /**
      * Whether tiles are created and drawn for all records, or only for those currently visible.
      *
      *
      * @return Boolean
-     *
      */
     public Boolean getShowAllRecords()  {
         return getAttributeAsBoolean("showAllRecords");
     }
 
     /**
-    * If set, when the dataset changes due to filtering, sorting or other actions, any tiles that&#010 were showing before and after the change will animate from their old positions to their new&#010 positions.
-    * <p><b>Note : </b> This is an advanced setting</p>
-    *
-    * @param animateTileChange animateTileChange Default value is true
-    */
+     * If set, when the dataset changes due to filtering, sorting or other actions, any tiles that were showing before and
+     * after the change will animate from their old positions to their new positions.
+     * <p><b>Note : </b> This is an advanced setting</p>
+     *
+     * @param animateTileChange animateTileChange Default value is true
+     */
     public void setAnimateTileChange(Boolean animateTileChange) {
         setAttribute("animateTileChange", animateTileChange, true);
     }
+
     /**
-     * If set, when the dataset changes due to filtering, sorting or other actions, any tiles that&#010 were showing before and after the change will animate from their old positions to their new&#010 positions.
+     * If set, when the dataset changes due to filtering, sorting or other actions, any tiles that were showing before and
+     * after the change will animate from their old positions to their new positions.
      *
      *
      * @return Boolean
-     *
      */
     public Boolean getAnimateTileChange()  {
         return getAttributeAsBoolean("animateTileChange");
     }
 
     /**
-    * Style for the overall TileGrid component.
-    *
-    * @param styleName styleName Default value is "tileGrid"
-    * @throws IllegalStateException this property cannot be changed after the component has been created
-    */
+     * Style for the overall TileGrid component.
+     *
+     * @param styleName styleName Default value is "tileGrid"
+     * @throws IllegalStateException this property cannot be changed after the component has been created
+     */
     public void setStyleName(String styleName)  throws IllegalStateException {
         setAttribute("styleName", styleName, false);
     }
+
     /**
      * Style for the overall TileGrid component.
      *
      *
      * @return String
-     *
      */
     public String getStyleName()  {
         return getAttributeAsString("styleName");
@@ -231,179 +236,200 @@ public class TileGrid extends TileLayout  implements DataBoundComponent, com.sma
 
     // ********************* Methods ***********************
 
-        /**
-         * Uses a "fetch" operation on the current {@link com.smartgwt.client.widgets.DataBoundComponent#getDataSource 'DataSource'} to &#010 retrieve data that matches the current filter and sort criteria for this component, then &#010 exports the resulting data to a file or window in the requested format.&#010 <P>&#010 For more information on exporting data, see {@link com.smartgwt.client.data.DataSource#exportData}.&#010&#010
-         */
-        public native void exportData() /*-{
-            var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
-            self.exportData();
-        }-*/;
+    /**
+     * Uses a "fetch" operation on the current {@link com.smartgwt.client.widgets.DataBoundComponent#getDataSource
+     * 'DataSource'} to  retrieve data that matches the current filter and sort criteria for this component, then  exports the
+     * resulting data to a file or window in the requested format. <P> For more information on exporting data, see {@link
+     * com.smartgwt.client.data.DataSource#exportData}.
+     */
+    public native void exportData() /*-{
+        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
+        self.exportData();
+    }-*/;
 
-        /**
-         * Uses a "fetch" operation on the current {@link com.smartgwt.client.widgets.DataBoundComponent#getDataSource 'DataSource'} to &#010 retrieve data that matches the current filter and sort criteria for this component, then &#010 exports the resulting data to a file or window in the requested format.&#010 <P>&#010 For more information on exporting data, see {@link com.smartgwt.client.data.DataSource#exportData}.&#010&#010
-         * @param requestProperties additional properties to set on the DSRequest                                            that will be issued
-         */
-        public native void exportData(DSRequest requestProperties) /*-{
-            var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
-            self.exportData(requestProperties.@com.smartgwt.client.core.DataClass::getJsObj()());
-        }-*/;
-
-
-
-
-
-
-        /**
-         * Return the first selected record in this component&#010
-         *
-         * @return first selected record, or null if nothing selected
-         */
-        public native TileRecord getSelectedRecord() /*-{
-            var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
-            var ret = self.getSelectedRecord();
-            if(ret == null || ret === undefined) return null;
-            var retVal = @com.smartgwt.client.core.RefDataClass::getRef(Lcom/google/gwt/core/client/JavaScriptObject;)(ret);
-            if(retVal == null) {
-                retVal = @com.smartgwt.client.widgets.tile.TileRecord::new(Lcom/google/gwt/core/client/JavaScriptObject;)(ret);
-            }
-            return retVal;
-        }-*/;
+    /**
+     * Uses a "fetch" operation on the current {@link com.smartgwt.client.widgets.DataBoundComponent#getDataSource
+     * 'DataSource'} to  retrieve data that matches the current filter and sort criteria for this component, then  exports the
+     * resulting data to a file or window in the requested format. <P> For more information on exporting data, see {@link
+     * com.smartgwt.client.data.DataSource#exportData}.
+     * @param requestProperties additional properties to set on the DSRequest                                            that will be issued
+     */
+    public native void exportData(DSRequest requestProperties) /*-{
+        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
+        self.exportData(requestProperties.@com.smartgwt.client.core.DataClass::getJsObj()());
+    }-*/;
 
 
 
 
 
 
-
-
-
-
-        /**
-         * Add a recordClick handler.
-         * <p>
-         * Executed when the tileGrid receives a 'click' event on a&#010 tile. The default implementation does nothing -- override to perform some action&#010 when any record is clicked.<br>&#010 A record event handler can be specified either as&#010 a function to execute, or as a string of script to evaluate. If the handler is defined&#010 as a string of script, all the parameters below will be available as variables for use&#010 in the script.<br>&#010 If you want to cancel the click based on the parameters, return false. Otherwise, return &#010 true so that the click event be registered with the tile.&#010&#010
-         *
-         * @param handler the recordClick handler
-         * @return {@link HandlerRegistration} used to remove this handler
-         */
-        public HandlerRegistration addRecordClickHandler(com.smartgwt.client.widgets.tile.events.RecordClickHandler handler) {
-            if(getHandlerCount(com.smartgwt.client.widgets.tile.events.RecordClickEvent.getType()) == 0) setupRecordClickEvent();
-            return doAddHandler(handler, com.smartgwt.client.widgets.tile.events.RecordClickEvent.getType());
+    /**
+     * Return the first selected record in this component
+     *
+     * @return first selected record, or null if nothing selected
+     */
+    public native TileRecord getSelectedRecord() /*-{
+        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
+        var ret = self.getSelectedRecord();
+        if(ret == null || ret === undefined) return null;
+        var retVal = @com.smartgwt.client.core.RefDataClass::getRef(Lcom/google/gwt/core/client/JavaScriptObject;)(ret);
+        if(retVal == null) {
+            retVal = @com.smartgwt.client.widgets.tile.TileRecord::new(Lcom/google/gwt/core/client/JavaScriptObject;)(ret);
         }
-        private native void setupRecordClickEvent() /*-{
-            var obj = null;
-            var selfJ = this;
-            if(this.@com.smartgwt.client.widgets.BaseWidget::isCreated()()) {
-                obj = this.@com.smartgwt.client.widgets.BaseWidget::getJsObj()();
-                obj.addProperties({recordClick:function(){
+        return retVal;
+    }-*/;
+
+
+
+
+
+
+
+
+
+
+    /**
+     * Add a recordClick handler.
+     * <p>
+     * Executed when the tileGrid receives a 'click' event on a tile. The default implementation does nothing -- override to
+     * perform some action when any record is clicked.<br> A record event handler can be specified either as a function to
+     * execute, or as a string of script to evaluate. If the handler is defined as a string of script, all the parameters below
+     * will be available as variables for use in the script.<br> If you want to cancel the click based on the parameters,
+     * return false. Otherwise, return  true so that the click event be registered with the tile.
+     *
+     * @param handler the recordClick handler
+     * @return {@link HandlerRegistration} used to remove this handler
+     */
+    public HandlerRegistration addRecordClickHandler(com.smartgwt.client.widgets.tile.events.RecordClickHandler handler) {
+        if(getHandlerCount(com.smartgwt.client.widgets.tile.events.RecordClickEvent.getType()) == 0) setupRecordClickEvent();
+        return doAddHandler(handler, com.smartgwt.client.widgets.tile.events.RecordClickEvent.getType());
+    }
+
+    private native void setupRecordClickEvent() /*-{
+        var obj = null;
+        var selfJ = this;
+        if(this.@com.smartgwt.client.widgets.BaseWidget::isCreated()()) {
+            obj = this.@com.smartgwt.client.widgets.BaseWidget::getJsObj()();
+            obj.addProperties({recordClick:function(){
                         var param = {"viewer" : arguments[0], "tile" : arguments[1], "record" : arguments[2]};
                         var event = @com.smartgwt.client.widgets.tile.events.RecordClickEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
                         selfJ.@com.smartgwt.client.widgets.BaseWidget::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
                     }
-                });
-            } else {
-                obj = this.@com.smartgwt.client.widgets.BaseWidget::getConfig()();
-                obj.recordClick = function(){
-                    var param = {"viewer" : arguments[0], "tile" : arguments[1], "record" : arguments[2]};
-                    var event = @com.smartgwt.client.widgets.tile.events.RecordClickEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
-                    selfJ.@com.smartgwt.client.widgets.BaseWidget::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
-                };
-            }
-        }-*/;
-
-        /**
-         * Add a selectionChanged handler.
-         * <p>
-         * Called when selection changes within this tileGrid. Note this method fires for&#010 each record for which selection is modified - so when a user clicks inside a tileGrid this&#010 method will typically fire twice (once for the old record being deselected, and once for&#010 the new record being selected).&#010&#010
-         *
-         * @param handler the selectionChanged handler
-         * @return {@link HandlerRegistration} used to remove this handler
-         */
-        public HandlerRegistration addSelectionChangedHandler(com.smartgwt.client.widgets.tile.events.SelectionChangedHandler handler) {
-            if(getHandlerCount(com.smartgwt.client.widgets.tile.events.SelectionChangedEvent.getType()) == 0) setupSelectionChangedEvent();
-            return doAddHandler(handler, com.smartgwt.client.widgets.tile.events.SelectionChangedEvent.getType());
+             });
+        } else {
+            obj = this.@com.smartgwt.client.widgets.BaseWidget::getConfig()();
+            obj.recordClick = function(){
+                   var param = {"viewer" : arguments[0], "tile" : arguments[1], "record" : arguments[2]};
+                   var event = @com.smartgwt.client.widgets.tile.events.RecordClickEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
+                   selfJ.@com.smartgwt.client.widgets.BaseWidget::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
+               };
         }
-        private native void setupSelectionChangedEvent() /*-{
-            var obj = null;
-            var selfJ = this;
-            if(this.@com.smartgwt.client.widgets.BaseWidget::isCreated()()) {
-                obj = this.@com.smartgwt.client.widgets.BaseWidget::getJsObj()();
-                obj.addProperties({selectionChanged:function(){
+   }-*/;
+
+    /**
+     * Add a selectionChanged handler.
+     * <p>
+     * Called when selection changes within this tileGrid. Note this method fires for each record for which selection is
+     * modified - so when a user clicks inside a tileGrid this method will typically fire twice (once for the old record being
+     * deselected, and once for the new record being selected).
+     *
+     * @param handler the selectionChanged handler
+     * @return {@link HandlerRegistration} used to remove this handler
+     */
+    public HandlerRegistration addSelectionChangedHandler(com.smartgwt.client.widgets.tile.events.SelectionChangedHandler handler) {
+        if(getHandlerCount(com.smartgwt.client.widgets.tile.events.SelectionChangedEvent.getType()) == 0) setupSelectionChangedEvent();
+        return doAddHandler(handler, com.smartgwt.client.widgets.tile.events.SelectionChangedEvent.getType());
+    }
+
+    private native void setupSelectionChangedEvent() /*-{
+        var obj = null;
+        var selfJ = this;
+        if(this.@com.smartgwt.client.widgets.BaseWidget::isCreated()()) {
+            obj = this.@com.smartgwt.client.widgets.BaseWidget::getJsObj()();
+            obj.addProperties({selectionChanged:function(){
                         var param = {"record" : arguments[0], "state" : arguments[1]};
                         var event = @com.smartgwt.client.widgets.tile.events.SelectionChangedEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
                         selfJ.@com.smartgwt.client.widgets.BaseWidget::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
                     }
-                });
-            } else {
-                obj = this.@com.smartgwt.client.widgets.BaseWidget::getConfig()();
-                obj.selectionChanged = function(){
-                    var param = {"record" : arguments[0], "state" : arguments[1]};
-                    var event = @com.smartgwt.client.widgets.tile.events.SelectionChangedEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
-                    selfJ.@com.smartgwt.client.widgets.BaseWidget::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
-                };
-            }
-        }-*/;
+             });
+        } else {
+            obj = this.@com.smartgwt.client.widgets.BaseWidget::getConfig()();
+            obj.selectionChanged = function(){
+                   var param = {"record" : arguments[0], "state" : arguments[1]};
+                   var event = @com.smartgwt.client.widgets.tile.events.SelectionChangedEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
+                   selfJ.@com.smartgwt.client.widgets.BaseWidget::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
+               };
+        }
+   }-*/;
 
-        /**
-         * This is not allowed for tileGrid. Instead, use {@link com.smartgwt.client.widgets.tile.TileGrid#addData}.&#010&#010
-         */
-        public native void addTile() /*-{
-            var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
-            self.addTile();
-        }-*/;
+    /**
+     * This is not allowed for tileGrid. Instead, use {@link com.smartgwt.client.widgets.tile.TileGrid#addData}.
+     */
+    public native void addTile() /*-{
+        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
+        self.addTile();
+    }-*/;
 
-        /**
-         * This is not allowed for tileGrid. Instead, use {@link com.smartgwt.client.widgets.tile.TileGrid#removeData}.&#010&#010
-         */
-        public native void removeTile() /*-{
-            var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
-            self.removeTile();
-        }-*/;
-
-
+    /**
+     * This is not allowed for tileGrid. Instead, use {@link com.smartgwt.client.widgets.tile.TileGrid#removeData}.
+     */
+    public native void removeTile() /*-{
+        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
+        self.removeTile();
+    }-*/;
 
 
 
-        /**
-         * Return "title" HTML to display as a drag tracker when the user drags some record.<br>&#010 Default implementation will display the cell value for the title field (see &#010 {@link com.smartgwt.client.widgets.grid.ListGrid#getTitleField}) for the record(s) being dragged (including any&#010 icons / custom formatting / styling, etc).&#010 <p>&#010 Note: Only called if {@link com.smartgwt.client.widgets.grid.ListGrid#getDragTrackerMode dragTrackerMode} is set to <code>"title"</code>.&#010
-         * @param record First selected record being dragged
+
+
+    /**
+     * Return "title" HTML to display as a drag tracker when the user drags some record.<br> Default implementation will
+     * display the cell value for the title field (see  {@link com.smartgwt.client.widgets.grid.ListGrid#getTitleField}) for
+     * the record(s) being dragged (including any icons / custom formatting / styling, etc). <p> Note: Only called if {@link
+     * com.smartgwt.client.widgets.grid.ListGrid#getDragTrackerMode dragTrackerMode} is set to <code>"title"</code>.
+     * @param record First selected record being dragged
      * @param rowNum row index of first record being dragged
-         *
-         * @return Title for the row. Default implementation looks at the value of the                  title-field cell for the row.
-         */
-        public native String getDragTrackerTitle(ListGridRecord record, int rowNum) /*-{
-            var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
-            return self.getDragTrackerTitle(record.@com.smartgwt.client.core.DataClass::getJsObj()(), rowNum);
-        }-*/;
+     *
+     * @return Title for the row. Default implementation looks at the value of the                  title-field cell for the row.
+     */
+    public native String getDragTrackerTitle(ListGridRecord record, int rowNum) /*-{
+        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
+        return self.getDragTrackerTitle(record.@com.smartgwt.client.core.DataClass::getJsObj()(), rowNum);
+    }-*/;
 
 
 
 
-        /**
-         * Sets some presentation properties (visibility, width, userFormula and userSummary) of the &#010 grid fields based on the {@link java.lang.String} object passed in.<br>&#010 Used to restore previous state retrieved from the grid by a call to {@link com.smartgwt.client.widgets.tile.TileGrid#getFieldState}.&#010&#010
-         * @param fieldState state to apply to the grid's fields.
-         */
-        public native void setFieldState(String fieldState) /*-{
-            var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
-            self.setFieldState(fieldState);
-        }-*/;
+    /**
+     * Sets some presentation properties (visibility, width, userFormula and userSummary) of the  grid fields based on the
+     * {@link java.lang.String} object passed in.<br> Used to restore previous state retrieved from the grid by a call to
+     * {@link com.smartgwt.client.widgets.tile.TileGrid#getFieldState}.
+     * @param fieldState state to apply to the grid's fields.
+     */
+    public native void setFieldState(String fieldState) /*-{
+        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
+        self.setFieldState(fieldState);
+    }-*/;
 
-        /**
-         * Returns a snapshot of the current presentation of this grid's fields as &#010 a {@link java.lang.String} object.&#010 <P>&#010 This object can be passed to {@link com.smartgwt.client.widgets.tile.TileGrid#setFieldState} to reset this grid's fields to&#010 the current state.&#010 <P>&#010 Note that the information stored includes the current width and visibility of each of this &#010 grid's fields.&#010&#010
-         *
-         * @return current state of this grid's fields.
-         */
-        public native String getFieldState() /*-{
-            var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
-            return self.getFieldState();
-        }-*/;
+    /**
+     * Returns a snapshot of the current presentation of this grid's fields as  a {@link java.lang.String} object. <P> This
+     * object can be passed to {@link com.smartgwt.client.widgets.tile.TileGrid#setFieldState} to reset this grid's fields to
+     * the current state. <P> Note that the information stored includes the current width and visibility of each of this 
+     * grid's fields.
+     *
+     * @return current state of this grid's fields.
+     */
+    public native String getFieldState() /*-{
+        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
+        return self.getFieldState();
+    }-*/;
 
     // ********************* Static Methods ***********************
 
 
 
 
-
     protected native void onInit() /*-{
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
         self._getTileHTML = self.getTileHTML;
@@ -755,9 +781,10 @@ public class TileGrid extends TileLayout  implements DataBoundComponent, com.sma
     public void setExportFields(String[] exportFields) {
         setAttribute("exportFields", exportFields, true);
     }
-    public String[] getExportFields()  {
-         return getAttributeAsStringArray("exportFields");
-     }
+
+    public String[] getExportFields() {
+        return getAttributeAsStringArray("exportFields");
+    }
 
     public void setExportAll(Boolean exportAll) {
         setAttribute("exportAll", exportAll, true);
@@ -792,12 +819,12 @@ public class TileGrid extends TileLayout  implements DataBoundComponent, com.sma
     }
 
     public void setDropValues(Map dropValues) {
-         setAttribute("dropValues", dropValues, true);
-     }
+        setAttribute("dropValues", dropValues, true);
+    }
 
-    public Map getDropValues()  {
-         return getAttributeAsMap("dropValues");
-     }
+    public Map getDropValues() {
+        return getAttributeAsMap("dropValues");
+    }
 
     public void setUseFlatFields(Boolean useFlatFields) throws IllegalStateException {
         setAttribute("useFlatFields", useFlatFields, false);
@@ -1041,7 +1068,7 @@ public class TileGrid extends TileLayout  implements DataBoundComponent, com.sma
         setAttribute("titleField", titleField, true);
     }
 
-    public String getTitleField()  {
+    public String getTitleField() {
         return getAttributeAsString("titleField");
     }
 
@@ -1053,19 +1080,19 @@ public class TileGrid extends TileLayout  implements DataBoundComponent, com.sma
         return DataSource.getOrCreateRef(getAttributeAsJavaScriptObject("dataSource"));
     }
 
-    public void setAutoFetchData(Boolean autoFetchData)  throws IllegalStateException {
+    public void setAutoFetchData(Boolean autoFetchData) throws IllegalStateException {
         setAttribute("autoFetchData", autoFetchData, false);
     }
 
-    public Boolean getAutoFetchData()  {
+    public Boolean getAutoFetchData() {
         return getAttributeAsBoolean("autoFetchData");
     }
 
-    public void setAutoFetchAsFilter(Boolean autoFetchAsFilter)  throws IllegalStateException {
+    public void setAutoFetchAsFilter(Boolean autoFetchAsFilter) throws IllegalStateException {
         setAttribute("autoFetchAsFilter", autoFetchAsFilter, false);
     }
 
-    public Boolean getAutoFetchAsFilter()  {
+    public Boolean getAutoFetchAsFilter() {
         return getAttributeAsBoolean("autoFetchAsFilter");
     }
 
@@ -1073,7 +1100,7 @@ public class TileGrid extends TileLayout  implements DataBoundComponent, com.sma
         setAttribute("initialCriteria", initialCriteria.getJsObj(), false);
     }
 
-    public Criteria getInitialCriteria()  {
+    public Criteria getInitialCriteria() {
         return new Criteria(getAttributeAsJavaScriptObject("initialCriteria"));
     }
 

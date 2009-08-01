@@ -2,7 +2,32 @@
 package com.smartgwt.client.docs;
 
 /**
- * A DataSource Operation is a type of {@link com.smartgwt.client.docs.Operations 'operation'} that acts on the set&#010 of stored objects represented by a {@link com.smartgwt.client.data.DataSource}, performing one of the basic actions&#010 that makes sense on a set of similar records: "fetch", "add", "update" or "remove".  There&#010 is also a fifth DataSource Operation, "custom", which is intended for arbitrary server&#010 operations that are more complex than a fetch of some records, or an update to a single&#010 record.&#010 <P>&#010 Each DataSource operation has specific request and response data, for example, in the&#010 "fetch" DataSource operation, the request data is expected to be search criteria, and the&#010 response data is expected to be a list of matching DataSource records.  Listed below are the&#010 request data and response data for each DataSource operation type, and what they mean.  &#010 <P>&#010 DataSource records are represented on the client by a JavaScript Object,&#010 where each property in the Object maps a DataSource field name to the field value - hence&#010 the DataSource operations below are in essence a way of exchanging records from client to&#010 server and back.&#010 <P>&#010 If you are using {@link com.smartgwt.client.docs.ServerDataIntegration 'server-side data integration'} with the&#010 SmartGWT Java server, see the ${isc.DocUtils.linkForDocNode('javaServerReference', 'Java Server Reference')} for&#010 information about how DataSource Requests arrive on the server (specifically&#010 com.isomophic.datasource.DSRequest) and how to provide responses &#010 (specifically com.isomorphic.datasource.DSResponse.setData()).&#010 <P>&#010 If you are using {@link com.smartgwt.client.docs.ClientDataIntegration 'client-side data integration'} to directly&#010 consume services that use XML, JSON or other formats, see the "Editing and Saving" section&#010 of the {@link com.smartgwt.client.docs.ClientDataIntegration 'client-side data integration'} topic.&#010 <P>&#010&#010 <b>fetch</b>&#010 <ul>&#010 <li>Request data: filter criteria, as an Object&#010 <li>Response data: matching records, as an Array of Objects&#010 </ul>&#010&#010 <b>add</b>&#010 <ul>&#010 <li>Request data: new record, as an Object&#010 <li>Response data: new record as stored, as an Object&#010 </ul>&#010&#010 <b>update</b>&#010 <ul>&#010 <li>Request data: primary keys of record to update, and new values (or just complete updated&#010 record), as an Object&#010 <li>Response data: new record as stored, as an Object&#010 </ul>&#010&#010 <b>remove</b>&#010 <ul>&#010 <li>Request data: primary keys of record to delete, as an Object&#010 <li>Response data: minimally the primary keys of deleted record (can be complete record), as&#010 an Object&#010 </ul>&#010&#010 <b>custom</b>&#010 <ul>&#010 <li>Request data: whatever the custom operation requires&#010 <li>Response data: custom operations can return whatever they like, including nothing.  &#010 Custom operations are like RPC calls in this respect - the exchanged data is unstructured, &#010 so it is up to you to make sure the client and server agree.  Note also that, because of&#010 this unstructured data exchange, cache synchronization does not work with custom operations.&#010 </ul>
+ * A DataSource Operation is a type of {@link com.smartgwt.client.docs.Operations 'operation'} that acts on the set of
+ * stored objects represented by a {@link com.smartgwt.client.data.DataSource}, performing one of the basic actions that
+ * makes sense on a set of similar records: "fetch", "add", "update" or "remove".  There is also a fifth DataSource
+ * Operation, "custom", which is intended for arbitrary server operations that are more complex than a fetch of some
+ * records, or an update to a single record. <P> Each DataSource operation has specific request and response data, for
+ * example, in the "fetch" DataSource operation, the request data is expected to be search criteria, and the response data
+ * is expected to be a list of matching DataSource records.  Listed below are the request data and response data for each
+ * DataSource operation type, and what they mean.   <P> DataSource records are represented on the client by a JavaScript
+ * Object, where each property in the Object maps a DataSource field name to the field value - hence the DataSource
+ * operations below are in essence a way of exchanging records from client to server and back. <P> If you are using {@link
+ * com.smartgwt.client.docs.ServerDataIntegration 'server-side data integration'} with the SmartGWT Java server, see the
+ * ${isc.DocUtils.linkForDocNode('javaServerReference', 'Java Server Reference')} for information about how DataSource
+ * Requests arrive on the server (specifically com.isomophic.datasource.DSRequest) and how to provide responses 
+ * (specifically com.isomorphic.datasource.DSResponse.setData()). <P> If you are using {@link
+ * com.smartgwt.client.docs.ClientDataIntegration 'client-side data integration'} to directly consume services that use
+ * XML, JSON or other formats, see the "Editing and Saving" section of the {@link
+ * com.smartgwt.client.docs.ClientDataIntegration 'client-side data integration'} topic. <P> <b>fetch</b> <ul> <li>Request
+ * data: filter criteria, as an Object <li>Response data: matching records, as an Array of Objects </ul> <b>add</b> <ul>
+ * <li>Request data: new record, as an Object <li>Response data: new record as stored, as an Object </ul> <b>update</b>
+ * <ul> <li>Request data: primary keys of record to update, and new values (or just complete updated record), as an Object
+ * <li>Response data: new record as stored, as an Object </ul> <b>remove</b> <ul> <li>Request data: primary keys of record
+ * to delete, as an Object <li>Response data: minimally the primary keys of deleted record (can be complete record), as an
+ * Object </ul> <b>custom</b> <ul> <li>Request data: whatever the custom operation requires <li>Response data: custom
+ * operations can return whatever they like, including nothing.   Custom operations are like RPC calls in this respect -
+ * the exchanged data is unstructured,  so it is up to you to make sure the client and server agree.  Note also that,
+ * because of this unstructured data exchange, cache synchronization does not work with custom operations. </ul>
  */
 public interface DataSourceOperations {
 }
