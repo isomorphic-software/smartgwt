@@ -58,53 +58,53 @@ import com.google.gwt.event.shared.HasHandlers;
 public class DropOverEvent extends BrowserEvent<DropOverHandler>  implements Cancellable {
     private boolean cancel = false;
 
-  /**
-   * Handler type.
-   */
-  private static Type<DropOverHandler> TYPE;
+    /**
+     * Handler type.
+     */
+    private static Type<DropOverHandler> TYPE;
 
-  /**
-   * Fires a open event on all registered handlers in the handler manager.If no
-   * such handlers exist, this method will do nothing.
-   *
-   * @param <S> The event source
-   * @param source the source of the handlers
-   * @param jsObj the native event
-   */
-  public static <S extends HasDropOverHandlers & HasHandlers> void fire(
-      S source, JavaScriptObject jsObj) {
-    if (TYPE != null) {
-        DropOverEvent event = new DropOverEvent(jsObj);
-        source.fireEvent(event);
+    /**
+     * Fires a open event on all registered handlers in the handler manager.If no
+     * such handlers exist, this method will do nothing.
+     *
+     * @param <S> The event source
+     * @param source the source of the handlers
+     * @param jsObj the native event
+     */
+    public static <S extends HasDropOverHandlers & HasHandlers> void fire(
+        S source, JavaScriptObject jsObj) {
+        if (TYPE != null) {
+            DropOverEvent event = new DropOverEvent(jsObj);
+            source.fireEvent(event);
+        }
     }
-  }
 
-  /**
-   * Gets the type associated with this event.
-   *
-   * @return returns the handler type
-   */
-  public static Type<DropOverHandler> getType() {
-    if (TYPE == null) {
-      TYPE = new Type<DropOverHandler>();
+    /**
+     * Gets the type associated with this event.
+     *
+     * @return returns the handler type
+     */
+    public static Type<DropOverHandler> getType() {
+        if (TYPE == null) {
+            TYPE = new Type<DropOverHandler>();
+        }
+        return TYPE;
     }
-    return TYPE;
-  }
 
 
-  @Override
-  protected void dispatch(DropOverHandler handler) {
-    handler.onDropOver(this);
-  }
+    @Override
+    protected void dispatch(DropOverHandler handler) {
+        handler.onDropOver(this);
+    }
 
-  // Because of type erasure, our static type is
-  // wild carded, yet the "real" type should use our I param.
+    // Because of type erasure, our static type is
+    // wild carded, yet the "real" type should use our I param.
 
-  @SuppressWarnings("unchecked")
-  @Override
-  public final Type<DropOverHandler> getAssociatedType() {
-    return TYPE;
-  }
+    @SuppressWarnings("unchecked")
+    @Override
+    public final Type<DropOverHandler> getAssociatedType() {
+        return TYPE;
+    }
 
     public DropOverEvent(JavaScriptObject jsObj) {
         super(jsObj);

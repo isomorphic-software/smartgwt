@@ -57,53 +57,53 @@ import com.google.gwt.event.shared.*;
 import com.google.gwt.event.shared.HasHandlers;
 public class IconClickEvent extends AbstractSmartEvent<IconClickHandler>  {
 
-  /**
-   * Handler type.
-   */
-  private static Type<IconClickHandler> TYPE;
+    /**
+     * Handler type.
+     */
+    private static Type<IconClickHandler> TYPE;
 
-  /**
-   * Fires a open event on all registered handlers in the handler manager.If no
-   * such handlers exist, this method will do nothing.
-   *
-   * @param <S> The event source
-   * @param source the source of the handlers
-   * @param jsObj the native event
-   */
-  public static <S extends HasIconClickHandlers & HasHandlers> void fire(
-      S source, JavaScriptObject jsObj) {
-    if (TYPE != null) {
-        IconClickEvent event = new IconClickEvent(jsObj);
-        source.fireEvent(event);
+    /**
+     * Fires a open event on all registered handlers in the handler manager.If no
+     * such handlers exist, this method will do nothing.
+     *
+     * @param <S> The event source
+     * @param source the source of the handlers
+     * @param jsObj the native event
+     */
+    public static <S extends HasIconClickHandlers & HasHandlers> void fire(
+        S source, JavaScriptObject jsObj) {
+        if (TYPE != null) {
+            IconClickEvent event = new IconClickEvent(jsObj);
+            source.fireEvent(event);
+        }
     }
-  }
 
-  /**
-   * Gets the type associated with this event.
-   *
-   * @return returns the handler type
-   */
-  public static Type<IconClickHandler> getType() {
-    if (TYPE == null) {
-      TYPE = new Type<IconClickHandler>();
+    /**
+     * Gets the type associated with this event.
+     *
+     * @return returns the handler type
+     */
+    public static Type<IconClickHandler> getType() {
+        if (TYPE == null) {
+            TYPE = new Type<IconClickHandler>();
+        }
+        return TYPE;
     }
-    return TYPE;
-  }
 
 
-  @Override
-  protected void dispatch(IconClickHandler handler) {
-    handler.onIconClick(this);
-  }
+    @Override
+    protected void dispatch(IconClickHandler handler) {
+        handler.onIconClick(this);
+    }
 
-  // Because of type erasure, our static type is
-  // wild carded, yet the "real" type should use our I param.
+    // Because of type erasure, our static type is
+    // wild carded, yet the "real" type should use our I param.
 
-  @SuppressWarnings("unchecked")
-  @Override
-  public final Type<IconClickHandler> getAssociatedType() {
-    return TYPE;
-  }
+    @SuppressWarnings("unchecked")
+    @Override
+    public final Type<IconClickHandler> getAssociatedType() {
+        return TYPE;
+    }
 
     public IconClickEvent(JavaScriptObject jsObj) {
         super(jsObj);
@@ -128,7 +128,7 @@ public class IconClickEvent extends AbstractSmartEvent<IconClickHandler>  {
      */
     public  native FormItem getItem() /*-{
         var jsObj = this.@com.smartgwt.client.event.AbstractSmartEvent::jsObj;
-            return @com.smartgwt.client.widgets.form.fields.FormItem::getOrCreateRef(Lcom/google/gwt/core/client/JavaScriptObject;)(jsObj.item);
+        return @com.smartgwt.client.widgets.form.fields.FormItem::getOrCreateRef(Lcom/google/gwt/core/client/JavaScriptObject;)(jsObj.item);
     }-*/;
 
     /**

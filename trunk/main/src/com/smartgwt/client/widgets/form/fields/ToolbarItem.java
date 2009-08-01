@@ -55,10 +55,10 @@ import com.smartgwt.client.util.JSOHelper;
 import com.smartgwt.client.util.EnumUtil;
 import com.google.gwt.event.shared.*;
 import com.google.gwt.event.shared.HasHandlers;
-   /**
-    * Set of horizontally arranged buttons.
 
-    */
+/**
+ * Set of horizontally arranged buttons.
+ */
 public class ToolbarItem extends CanvasItem {
 
     public static ToolbarItem getOrCreateRef(JavaScriptObject jsObj) {
@@ -71,7 +71,6 @@ public class ToolbarItem extends CanvasItem {
             return new ToolbarItem(jsObj);
         }
     }
-
 
     public ToolbarItem(){
         setType("ToolbarItem");
@@ -95,96 +94,96 @@ public class ToolbarItem extends CanvasItem {
     // ********************* Properties / Attributes ***********************
 
     /**
-    * Don't show a title for toolbars
-    *
-    * @param showTitle showTitle Default value is false
-    */
+     * Don't show a title for toolbars
+     *
+     * @param showTitle showTitle Default value is false
+     */
     public void setShowTitle(Boolean showTitle) {
         setAttribute("showTitle", showTitle);
     }
+
     /**
      * Don't show a title for toolbars
      *
      *
      * @return Boolean
-     *
      */
     public Boolean getShowTitle()  {
         return getAttributeAsBoolean("showTitle");
     }
 
     /**
-    * these items are in a row by themselves by default
-    *
-    * @param startRow startRow Default value is true
-    */
+     * these items are in a row by themselves by default
+     *
+     * @param startRow startRow Default value is true
+     */
     public void setStartRow(Boolean startRow) {
         setAttribute("startRow", startRow);
     }
+
     /**
      * these items are in a row by themselves by default
      *
      *
      * @return Boolean
-     *
      */
     public Boolean getStartRow()  {
         return getAttributeAsBoolean("startRow");
     }
 
     /**
-    * these items are in a row by themselves by default
-    *
-    * @param endRow endRow Default value is true
-    */
+     * these items are in a row by themselves by default
+     *
+     * @param endRow endRow Default value is true
+     */
     public void setEndRow(Boolean endRow) {
         setAttribute("endRow", endRow);
     }
+
     /**
      * these items are in a row by themselves by default
      *
      *
      * @return Boolean
-     *
      */
     public Boolean getEndRow()  {
         return getAttributeAsBoolean("endRow");
     }
 
     /**
-    * Should the toolbar stack its buttons vertically or horizontally?
-    * <p><b>Note : </b> This is an advanced setting</p>
-    *
-    * @param vertical vertical Default value is false
-    */
+     * Should the toolbar stack its buttons vertically or horizontally?
+     * <p><b>Note : </b> This is an advanced setting</p>
+     *
+     * @param vertical vertical Default value is false
+     */
     public void setVertical(Boolean vertical) {
         setAttribute("vertical", vertical);
     }
+
     /**
      * Should the toolbar stack its buttons vertically or horizontally?
      *
      *
      * @return Boolean
-     *
      */
     public Boolean getVertical()  {
         return getAttributeAsBoolean("vertical");
     }
 
     /**
-    * If specified this baseStyle will be applied to the buttons in this toolbar.
-    *
-    * @param buttonBaseStyle buttonBaseStyle Default value is null
-    */
+     * If specified this baseStyle will be applied to the buttons in this toolbar.
+     *
+     * @param buttonBaseStyle buttonBaseStyle Default value is null
+     */
     public void setButtonBaseStyle(String buttonBaseStyle) {
         setAttribute("buttonBaseStyle", buttonBaseStyle);
     }
+
     /**
      * If specified this baseStyle will be applied to the buttons in this toolbar.
      *
      *
      * @return String
-     *
      */
     public String getButtonBaseStyle()  {
         return getAttributeAsString("buttonBaseStyle");
@@ -197,7 +196,6 @@ public class ToolbarItem extends CanvasItem {
 
 
 
-
     /**
      * List of buttons for the toolbar.  Each buttons should be specified as a simple JS object with properties to apply
      * to the  button to be displayed. Note that any <code>click</code> stringMethod applied to the  button will be

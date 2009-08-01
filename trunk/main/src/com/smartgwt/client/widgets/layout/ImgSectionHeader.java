@@ -55,10 +55,10 @@ import com.smartgwt.client.util.JSOHelper;
 import com.smartgwt.client.util.EnumUtil;
 import com.google.gwt.event.shared.*;
 import com.google.gwt.event.shared.HasHandlers;
-   /**
-    * SectionHeader class based on an HLayout with {@link com.smartgwt.client.widgets.StretchImg} background.
 
-    */
+/**
+ * SectionHeader class based on an HLayout with {@link com.smartgwt.client.widgets.StretchImg} background.
+ */
 public class ImgSectionHeader extends HLayout {
 
     public static ImgSectionHeader getOrCreateRef(JavaScriptObject jsObj) {
@@ -70,7 +70,6 @@ public class ImgSectionHeader extends HLayout {
             return new ImgSectionHeader(jsObj);
         }
     }
-
 
     public ImgSectionHeader(){
         
@@ -95,7 +94,6 @@ public class ImgSectionHeader extends HLayout {
 
 
 
-
     /**
      * Set the controls.
      *
@@ -105,8 +103,6 @@ public class ImgSectionHeader extends HLayout {
     public void setControls(Canvas... controls) throws IllegalStateException {
         setAttribute("controls", controls, false);
     }
-
-
 
 }
 

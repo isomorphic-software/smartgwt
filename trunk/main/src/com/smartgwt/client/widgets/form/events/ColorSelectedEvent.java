@@ -57,53 +57,53 @@ import com.google.gwt.event.shared.*;
 import com.google.gwt.event.shared.HasHandlers;
 public class ColorSelectedEvent extends BrowserEvent<ColorSelectedHandler>  {
 
-  /**
-   * Handler type.
-   */
-  private static Type<ColorSelectedHandler> TYPE;
+    /**
+     * Handler type.
+     */
+    private static Type<ColorSelectedHandler> TYPE;
 
-  /**
-   * Fires a open event on all registered handlers in the handler manager.If no
-   * such handlers exist, this method will do nothing.
-   *
-   * @param <S> The event source
-   * @param source the source of the handlers
-   * @param jsObj the native event
-   */
-  public static <S extends HasColorSelectedHandlers & HasHandlers> void fire(
-      S source, JavaScriptObject jsObj) {
-    if (TYPE != null) {
-        ColorSelectedEvent event = new ColorSelectedEvent(jsObj);
-        source.fireEvent(event);
+    /**
+     * Fires a open event on all registered handlers in the handler manager.If no
+     * such handlers exist, this method will do nothing.
+     *
+     * @param <S> The event source
+     * @param source the source of the handlers
+     * @param jsObj the native event
+     */
+    public static <S extends HasColorSelectedHandlers & HasHandlers> void fire(
+        S source, JavaScriptObject jsObj) {
+        if (TYPE != null) {
+            ColorSelectedEvent event = new ColorSelectedEvent(jsObj);
+            source.fireEvent(event);
+        }
     }
-  }
 
-  /**
-   * Gets the type associated with this event.
-   *
-   * @return returns the handler type
-   */
-  public static Type<ColorSelectedHandler> getType() {
-    if (TYPE == null) {
-      TYPE = new Type<ColorSelectedHandler>();
+    /**
+     * Gets the type associated with this event.
+     *
+     * @return returns the handler type
+     */
+    public static Type<ColorSelectedHandler> getType() {
+        if (TYPE == null) {
+            TYPE = new Type<ColorSelectedHandler>();
+        }
+        return TYPE;
     }
-    return TYPE;
-  }
 
 
-  @Override
-  protected void dispatch(ColorSelectedHandler handler) {
-    handler.onColorSelected(this);
-  }
+    @Override
+    protected void dispatch(ColorSelectedHandler handler) {
+        handler.onColorSelected(this);
+    }
 
-  // Because of type erasure, our static type is
-  // wild carded, yet the "real" type should use our I param.
+    // Because of type erasure, our static type is
+    // wild carded, yet the "real" type should use our I param.
 
-  @SuppressWarnings("unchecked")
-  @Override
-  public final Type<ColorSelectedHandler> getAssociatedType() {
-    return TYPE;
-  }
+    @SuppressWarnings("unchecked")
+    @Override
+    public final Type<ColorSelectedHandler> getAssociatedType() {
+        return TYPE;
+    }
 
     public ColorSelectedEvent(JavaScriptObject jsObj) {
         super(jsObj);

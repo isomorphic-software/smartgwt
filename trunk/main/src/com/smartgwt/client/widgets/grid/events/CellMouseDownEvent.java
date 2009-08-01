@@ -58,53 +58,53 @@ import com.google.gwt.event.shared.HasHandlers;
 public class CellMouseDownEvent extends GridRowColEvent<CellMouseDownHandler>  implements Cancellable {
     private boolean cancel = false;
 
-  /**
-   * Handler type.
-   */
-  private static Type<CellMouseDownHandler> TYPE;
+    /**
+     * Handler type.
+     */
+    private static Type<CellMouseDownHandler> TYPE;
 
-  /**
-   * Fires a open event on all registered handlers in the handler manager.If no
-   * such handlers exist, this method will do nothing.
-   *
-   * @param <S> The event source
-   * @param source the source of the handlers
-   * @param jsObj the native event
-   */
-  public static <S extends HasCellMouseDownHandlers & HasHandlers> void fire(
-      S source, JavaScriptObject jsObj) {
-    if (TYPE != null) {
-        CellMouseDownEvent event = new CellMouseDownEvent(jsObj);
-        source.fireEvent(event);
+    /**
+     * Fires a open event on all registered handlers in the handler manager.If no
+     * such handlers exist, this method will do nothing.
+     *
+     * @param <S> The event source
+     * @param source the source of the handlers
+     * @param jsObj the native event
+     */
+    public static <S extends HasCellMouseDownHandlers & HasHandlers> void fire(
+        S source, JavaScriptObject jsObj) {
+        if (TYPE != null) {
+            CellMouseDownEvent event = new CellMouseDownEvent(jsObj);
+            source.fireEvent(event);
+        }
     }
-  }
 
-  /**
-   * Gets the type associated with this event.
-   *
-   * @return returns the handler type
-   */
-  public static Type<CellMouseDownHandler> getType() {
-    if (TYPE == null) {
-      TYPE = new Type<CellMouseDownHandler>();
+    /**
+     * Gets the type associated with this event.
+     *
+     * @return returns the handler type
+     */
+    public static Type<CellMouseDownHandler> getType() {
+        if (TYPE == null) {
+            TYPE = new Type<CellMouseDownHandler>();
+        }
+        return TYPE;
     }
-    return TYPE;
-  }
 
 
-  @Override
-  protected void dispatch(CellMouseDownHandler handler) {
-    handler.onCellMouseDown(this);
-  }
+    @Override
+    protected void dispatch(CellMouseDownHandler handler) {
+        handler.onCellMouseDown(this);
+    }
 
-  // Because of type erasure, our static type is
-  // wild carded, yet the "real" type should use our I param.
+    // Because of type erasure, our static type is
+    // wild carded, yet the "real" type should use our I param.
 
-  @SuppressWarnings("unchecked")
-  @Override
-  public final Type<CellMouseDownHandler> getAssociatedType() {
-    return TYPE;
-  }
+    @SuppressWarnings("unchecked")
+    @Override
+    public final Type<CellMouseDownHandler> getAssociatedType() {
+        return TYPE;
+    }
 
     public CellMouseDownEvent(JavaScriptObject jsObj) {
         super(jsObj);

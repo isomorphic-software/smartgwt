@@ -58,53 +58,53 @@ import com.google.gwt.event.shared.HasHandlers;
 public class ErrorEvent extends AbstractSmartEvent<HandleErrorHandler>  implements Cancellable {
     private boolean cancel = false;
 
-  /**
-   * Handler type.
-   */
-  private static Type<HandleErrorHandler> TYPE;
+    /**
+     * Handler type.
+     */
+    private static Type<HandleErrorHandler> TYPE;
 
-  /**
-   * Fires a open event on all registered handlers in the handler manager.If no
-   * such handlers exist, this method will do nothing.
-   *
-   * @param <S> The event source
-   * @param source the source of the handlers
-   * @param jsObj the native event
-   */
-  public static <S extends HasHandleErrorHandlers & HasHandlers> void fire(
-      S source, JavaScriptObject jsObj) {
-    if (TYPE != null) {
-        ErrorEvent event = new ErrorEvent(jsObj);
-        source.fireEvent(event);
+    /**
+     * Fires a open event on all registered handlers in the handler manager.If no
+     * such handlers exist, this method will do nothing.
+     *
+     * @param <S> The event source
+     * @param source the source of the handlers
+     * @param jsObj the native event
+     */
+    public static <S extends HasHandleErrorHandlers & HasHandlers> void fire(
+        S source, JavaScriptObject jsObj) {
+        if (TYPE != null) {
+            ErrorEvent event = new ErrorEvent(jsObj);
+            source.fireEvent(event);
+        }
     }
-  }
 
-  /**
-   * Gets the type associated with this event.
-   *
-   * @return returns the handler type
-   */
-  public static Type<HandleErrorHandler> getType() {
-    if (TYPE == null) {
-      TYPE = new Type<HandleErrorHandler>();
+    /**
+     * Gets the type associated with this event.
+     *
+     * @return returns the handler type
+     */
+    public static Type<HandleErrorHandler> getType() {
+        if (TYPE == null) {
+            TYPE = new Type<HandleErrorHandler>();
+        }
+        return TYPE;
     }
-    return TYPE;
-  }
 
 
-  @Override
-  protected void dispatch(HandleErrorHandler handler) {
-    handler.onHandleError(this);
-  }
+    @Override
+    protected void dispatch(HandleErrorHandler handler) {
+        handler.onHandleError(this);
+    }
 
-  // Because of type erasure, our static type is
-  // wild carded, yet the "real" type should use our I param.
+    // Because of type erasure, our static type is
+    // wild carded, yet the "real" type should use our I param.
 
-  @SuppressWarnings("unchecked")
-  @Override
-  public final Type<HandleErrorHandler> getAssociatedType() {
-    return TYPE;
-  }
+    @SuppressWarnings("unchecked")
+    @Override
+    public final Type<HandleErrorHandler> getAssociatedType() {
+        return TYPE;
+    }
 
     public ErrorEvent(JavaScriptObject jsObj) {
         super(jsObj);

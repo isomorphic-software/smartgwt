@@ -57,53 +57,53 @@ import com.google.gwt.event.shared.*;
 import com.google.gwt.event.shared.HasHandlers;
 public class FieldStateChangedEvent extends BrowserEvent<FieldStateChangedHandler>  {
 
-  /**
-   * Handler type.
-   */
-  private static Type<FieldStateChangedHandler> TYPE;
+    /**
+     * Handler type.
+     */
+    private static Type<FieldStateChangedHandler> TYPE;
 
-  /**
-   * Fires a open event on all registered handlers in the handler manager.If no
-   * such handlers exist, this method will do nothing.
-   *
-   * @param <S> The event source
-   * @param source the source of the handlers
-   * @param jsObj the native event
-   */
-  public static <S extends HasFieldStateChangedHandlers & HasHandlers> void fire(
-      S source, JavaScriptObject jsObj) {
-    if (TYPE != null) {
-        FieldStateChangedEvent event = new FieldStateChangedEvent(jsObj);
-        source.fireEvent(event);
+    /**
+     * Fires a open event on all registered handlers in the handler manager.If no
+     * such handlers exist, this method will do nothing.
+     *
+     * @param <S> The event source
+     * @param source the source of the handlers
+     * @param jsObj the native event
+     */
+    public static <S extends HasFieldStateChangedHandlers & HasHandlers> void fire(
+        S source, JavaScriptObject jsObj) {
+        if (TYPE != null) {
+            FieldStateChangedEvent event = new FieldStateChangedEvent(jsObj);
+            source.fireEvent(event);
+        }
     }
-  }
 
-  /**
-   * Gets the type associated with this event.
-   *
-   * @return returns the handler type
-   */
-  public static Type<FieldStateChangedHandler> getType() {
-    if (TYPE == null) {
-      TYPE = new Type<FieldStateChangedHandler>();
+    /**
+     * Gets the type associated with this event.
+     *
+     * @return returns the handler type
+     */
+    public static Type<FieldStateChangedHandler> getType() {
+        if (TYPE == null) {
+            TYPE = new Type<FieldStateChangedHandler>();
+        }
+        return TYPE;
     }
-    return TYPE;
-  }
 
 
-  @Override
-  protected void dispatch(FieldStateChangedHandler handler) {
-    handler.onFieldStateChanged(this);
-  }
+    @Override
+    protected void dispatch(FieldStateChangedHandler handler) {
+        handler.onFieldStateChanged(this);
+    }
 
-  // Because of type erasure, our static type is
-  // wild carded, yet the "real" type should use our I param.
+    // Because of type erasure, our static type is
+    // wild carded, yet the "real" type should use our I param.
 
-  @SuppressWarnings("unchecked")
-  @Override
-  public final Type<FieldStateChangedHandler> getAssociatedType() {
-    return TYPE;
-  }
+    @SuppressWarnings("unchecked")
+    @Override
+    public final Type<FieldStateChangedHandler> getAssociatedType() {
+        return TYPE;
+    }
 
     public FieldStateChangedEvent(JavaScriptObject jsObj) {
         super(jsObj);

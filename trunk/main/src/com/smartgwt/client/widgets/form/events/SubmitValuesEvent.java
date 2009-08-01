@@ -57,53 +57,53 @@ import com.google.gwt.event.shared.*;
 import com.google.gwt.event.shared.HasHandlers;
 public class SubmitValuesEvent extends BrowserEvent<SubmitValuesHandler>  {
 
-  /**
-   * Handler type.
-   */
-  private static Type<SubmitValuesHandler> TYPE;
+    /**
+     * Handler type.
+     */
+    private static Type<SubmitValuesHandler> TYPE;
 
-  /**
-   * Fires a open event on all registered handlers in the handler manager.If no
-   * such handlers exist, this method will do nothing.
-   *
-   * @param <S> The event source
-   * @param source the source of the handlers
-   * @param jsObj the native event
-   */
-  public static <S extends HasSubmitValuesHandlers & HasHandlers> void fire(
-      S source, JavaScriptObject jsObj) {
-    if (TYPE != null) {
-        SubmitValuesEvent event = new SubmitValuesEvent(jsObj);
-        source.fireEvent(event);
+    /**
+     * Fires a open event on all registered handlers in the handler manager.If no
+     * such handlers exist, this method will do nothing.
+     *
+     * @param <S> The event source
+     * @param source the source of the handlers
+     * @param jsObj the native event
+     */
+    public static <S extends HasSubmitValuesHandlers & HasHandlers> void fire(
+        S source, JavaScriptObject jsObj) {
+        if (TYPE != null) {
+            SubmitValuesEvent event = new SubmitValuesEvent(jsObj);
+            source.fireEvent(event);
+        }
     }
-  }
 
-  /**
-   * Gets the type associated with this event.
-   *
-   * @return returns the handler type
-   */
-  public static Type<SubmitValuesHandler> getType() {
-    if (TYPE == null) {
-      TYPE = new Type<SubmitValuesHandler>();
+    /**
+     * Gets the type associated with this event.
+     *
+     * @return returns the handler type
+     */
+    public static Type<SubmitValuesHandler> getType() {
+        if (TYPE == null) {
+            TYPE = new Type<SubmitValuesHandler>();
+        }
+        return TYPE;
     }
-    return TYPE;
-  }
 
 
-  @Override
-  protected void dispatch(SubmitValuesHandler handler) {
-    handler.onSubmitValues(this);
-  }
+    @Override
+    protected void dispatch(SubmitValuesHandler handler) {
+        handler.onSubmitValues(this);
+    }
 
-  // Because of type erasure, our static type is
-  // wild carded, yet the "real" type should use our I param.
+    // Because of type erasure, our static type is
+    // wild carded, yet the "real" type should use our I param.
 
-  @SuppressWarnings("unchecked")
-  @Override
-  public final Type<SubmitValuesHandler> getAssociatedType() {
-    return TYPE;
-  }
+    @SuppressWarnings("unchecked")
+    @Override
+    public final Type<SubmitValuesHandler> getAssociatedType() {
+        return TYPE;
+    }
 
     public SubmitValuesEvent(JavaScriptObject jsObj) {
         super(jsObj);
@@ -124,7 +124,6 @@ public class SubmitValuesEvent extends BrowserEvent<SubmitValuesHandler>  {
 
 
 
-
     /**
      * The form values
      *

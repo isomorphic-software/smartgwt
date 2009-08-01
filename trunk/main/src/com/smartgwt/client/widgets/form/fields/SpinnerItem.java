@@ -55,10 +55,10 @@ import com.smartgwt.client.util.JSOHelper;
 import com.smartgwt.client.util.EnumUtil;
 import com.google.gwt.event.shared.*;
 import com.google.gwt.event.shared.HasHandlers;
-   /**
-    * Item for picking a number. Includes arrow buttons to increase / decrease the value
 
-    */
+/**
+ * Item for picking a number. Includes arrow buttons to increase / decrease the value
+ */
 public class SpinnerItem extends TextItem {
 
     public static SpinnerItem getOrCreateRef(JavaScriptObject jsObj) {
@@ -71,7 +71,6 @@ public class SpinnerItem extends TextItem {
             return new SpinnerItem(jsObj);
         }
     }
-
 
     public SpinnerItem(){
         setType("SpinnerItem");
@@ -100,7 +99,6 @@ public class SpinnerItem extends TextItem {
 
 
 
-
     /**
      * How much should the value be incremented / decremented when the user hits the icons  to increase / decrease the
      * value?
@@ -176,7 +174,6 @@ public class SpinnerItem extends TextItem {
     public void setDefaultValue(Integer defaultValue) {
         setAttribute("defaultValue", defaultValue);
     }
-
 
 }
 

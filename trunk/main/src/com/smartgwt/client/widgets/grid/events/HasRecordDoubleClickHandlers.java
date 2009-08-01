@@ -22,7 +22,15 @@ import com.google.gwt.event.shared.HasHandlers;
 
 public interface HasRecordDoubleClickHandlers extends HasHandlers {
     /**
-     * Executed when the listGrid receives a 'doubleClick' event on an enabled, non-separator&#010 record. The default implementation does nothing -- override to perform&#010 some action when any record or field is double clicked.<br>&#010 A record event handler can be specified either as a function to execute, or as a string&#010 of script to evaluate. If the handler is defined as a string of script, all the&#010 parameters below will be available as variables for use in the script.<br>&#010 To do something specific if a particular field is double clicked, add a&#010 recordDoubleClick method or string of script to that field (same parameters) when you're&#010 setting up the list.<br>&#010 <b>Notes:</b><ul>&#010 <li>This will not be called if the click is below the last item of the list.</li>&#010 <li>This method is called from the default implementation of {@link com.smartgwt.client.widgets.grid.ListGrid#rowDoubleClick},&#010 so if that method is overridden this method may not be fired.</li></ul>&#010
+     * Executed when the listGrid receives a 'doubleClick' event on an enabled, non-separator record. The default
+     * implementation does nothing -- override to perform some action when any record or field is double clicked.<br> A record
+     * event handler can be specified either as a function to execute, or as a string of script to evaluate. If the handler is
+     * defined as a string of script, all the parameters below will be available as variables for use in the script.<br> To do
+     * something specific if a particular field is double clicked, add a recordDoubleClick method or string of script to that
+     * field (same parameters) when you're setting up the list.<br> <b>Notes:</b><ul> <li>This will not be called if the click
+     * is below the last item of the list.</li> <li>This method is called from the default implementation of {@link
+     * com.smartgwt.client.widgets.grid.ListGrid#rowDoubleClick}, so if that method is overridden this method may not be
+     * fired.</li></ul>
      *
      * @param handler the recordDoubleClick handler
      * @return {@link HandlerRegistration} used to remove this handler

@@ -58,53 +58,53 @@ import com.google.gwt.event.shared.HasHandlers;
 public class MouseOverEvent extends BrowserEvent<MouseOverHandler>  implements Cancellable {
     private boolean cancel = false;
 
-  /**
-   * Handler type.
-   */
-  private static Type<MouseOverHandler> TYPE;
+    /**
+     * Handler type.
+     */
+    private static Type<MouseOverHandler> TYPE;
 
-  /**
-   * Fires a open event on all registered handlers in the handler manager.If no
-   * such handlers exist, this method will do nothing.
-   *
-   * @param <S> The event source
-   * @param source the source of the handlers
-   * @param jsObj the native event
-   */
-  public static <S extends HasMouseOverHandlers & HasHandlers> void fire(
-      S source, JavaScriptObject jsObj) {
-    if (TYPE != null) {
-        MouseOverEvent event = new MouseOverEvent(jsObj);
-        source.fireEvent(event);
+    /**
+     * Fires a open event on all registered handlers in the handler manager.If no
+     * such handlers exist, this method will do nothing.
+     *
+     * @param <S> The event source
+     * @param source the source of the handlers
+     * @param jsObj the native event
+     */
+    public static <S extends HasMouseOverHandlers & HasHandlers> void fire(
+        S source, JavaScriptObject jsObj) {
+        if (TYPE != null) {
+            MouseOverEvent event = new MouseOverEvent(jsObj);
+            source.fireEvent(event);
+        }
     }
-  }
 
-  /**
-   * Gets the type associated with this event.
-   *
-   * @return returns the handler type
-   */
-  public static Type<MouseOverHandler> getType() {
-    if (TYPE == null) {
-      TYPE = new Type<MouseOverHandler>();
+    /**
+     * Gets the type associated with this event.
+     *
+     * @return returns the handler type
+     */
+    public static Type<MouseOverHandler> getType() {
+        if (TYPE == null) {
+            TYPE = new Type<MouseOverHandler>();
+        }
+        return TYPE;
     }
-    return TYPE;
-  }
 
 
-  @Override
-  protected void dispatch(MouseOverHandler handler) {
-    handler.onMouseOver(this);
-  }
+    @Override
+    protected void dispatch(MouseOverHandler handler) {
+        handler.onMouseOver(this);
+    }
 
-  // Because of type erasure, our static type is
-  // wild carded, yet the "real" type should use our I param.
+    // Because of type erasure, our static type is
+    // wild carded, yet the "real" type should use our I param.
 
-  @SuppressWarnings("unchecked")
-  @Override
-  public final Type<MouseOverHandler> getAssociatedType() {
-    return TYPE;
-  }
+    @SuppressWarnings("unchecked")
+    @Override
+    public final Type<MouseOverHandler> getAssociatedType() {
+        return TYPE;
+    }
 
     public MouseOverEvent(JavaScriptObject jsObj) {
         super(jsObj);

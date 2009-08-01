@@ -22,7 +22,7 @@ import com.google.gwt.event.shared.HasHandlers;
 
 public interface HasLeafClickHandlers extends HasHandlers {
     /**
-     * &#010 This method is called when a leaf record is clicked on.&#010&#010
+     * This method is called when a leaf record is clicked on.
      *
      * @param handler the leafClick handler
      * @return {@link HandlerRegistration} used to remove this handler

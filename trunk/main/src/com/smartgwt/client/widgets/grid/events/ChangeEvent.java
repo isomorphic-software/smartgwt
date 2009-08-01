@@ -57,53 +57,53 @@ import com.google.gwt.event.shared.*;
 import com.google.gwt.event.shared.HasHandlers;
 public class ChangeEvent extends AbstractSmartEvent<ChangeHandler>  {
 
-  /**
-   * Handler type.
-   */
-  private static Type<ChangeHandler> TYPE;
+    /**
+     * Handler type.
+     */
+    private static Type<ChangeHandler> TYPE;
 
-  /**
-   * Fires a open event on all registered handlers in the handler manager.If no
-   * such handlers exist, this method will do nothing.
-   *
-   * @param <S> The event source
-   * @param source the source of the handlers
-   * @param jsObj the native event
-   */
-  public static <S extends HasChangeHandlers & HasHandlers> void fire(
-      S source, JavaScriptObject jsObj) {
-    if (TYPE != null) {
-        ChangeEvent event = new ChangeEvent(jsObj);
-        source.fireEvent(event);
+    /**
+     * Fires a open event on all registered handlers in the handler manager.If no
+     * such handlers exist, this method will do nothing.
+     *
+     * @param <S> The event source
+     * @param source the source of the handlers
+     * @param jsObj the native event
+     */
+    public static <S extends HasChangeHandlers & HasHandlers> void fire(
+        S source, JavaScriptObject jsObj) {
+        if (TYPE != null) {
+            ChangeEvent event = new ChangeEvent(jsObj);
+            source.fireEvent(event);
+        }
     }
-  }
 
-  /**
-   * Gets the type associated with this event.
-   *
-   * @return returns the handler type
-   */
-  public static Type<ChangeHandler> getType() {
-    if (TYPE == null) {
-      TYPE = new Type<ChangeHandler>();
+    /**
+     * Gets the type associated with this event.
+     *
+     * @return returns the handler type
+     */
+    public static Type<ChangeHandler> getType() {
+        if (TYPE == null) {
+            TYPE = new Type<ChangeHandler>();
+        }
+        return TYPE;
     }
-    return TYPE;
-  }
 
 
-  @Override
-  protected void dispatch(ChangeHandler handler) {
-    handler.onChange(this);
-  }
+    @Override
+    protected void dispatch(ChangeHandler handler) {
+        handler.onChange(this);
+    }
 
-  // Because of type erasure, our static type is
-  // wild carded, yet the "real" type should use our I param.
+    // Because of type erasure, our static type is
+    // wild carded, yet the "real" type should use our I param.
 
-  @SuppressWarnings("unchecked")
-  @Override
-  public final Type<ChangeHandler> getAssociatedType() {
-    return TYPE;
-  }
+    @SuppressWarnings("unchecked")
+    @Override
+    public final Type<ChangeHandler> getAssociatedType() {
+        return TYPE;
+    }
 
     public ChangeEvent(JavaScriptObject jsObj) {
         super(jsObj);
@@ -128,7 +128,7 @@ public class ChangeEvent extends AbstractSmartEvent<ChangeHandler>  {
      */
     public  native FormItem getItem() /*-{
         var jsObj = this.@com.smartgwt.client.event.AbstractSmartEvent::jsObj;
-            return @com.smartgwt.client.widgets.form.fields.FormItem::getOrCreateRef(Lcom/google/gwt/core/client/JavaScriptObject;)(jsObj.item);
+        return @com.smartgwt.client.widgets.form.fields.FormItem::getOrCreateRef(Lcom/google/gwt/core/client/JavaScriptObject;)(jsObj.item);
     }-*/;
 
     /**
@@ -154,7 +154,6 @@ public class ChangeEvent extends AbstractSmartEvent<ChangeHandler>  {
 
 
 
-
     /**
      * row number for the cell
      *

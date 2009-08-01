@@ -22,7 +22,7 @@ import com.google.gwt.event.shared.HasHandlers;
 
 public interface HasRowEditorEnterHandlers extends HasHandlers {
     /**
-     * Callback fired when the user starts editing a new row.&#010&#010
+     * Callback fired when the user starts editing a new row.
      *
      * @param handler the rowEditorEnter handler
      * @return {@link HandlerRegistration} used to remove this handler

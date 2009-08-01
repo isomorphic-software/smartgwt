@@ -57,53 +57,53 @@ import com.google.gwt.event.shared.*;
 import com.google.gwt.event.shared.HasHandlers;
 public class DataArrivedEvent extends BrowserEvent<DataArrivedHandler>  {
 
-  /**
-   * Handler type.
-   */
-  private static Type<DataArrivedHandler> TYPE;
+    /**
+     * Handler type.
+     */
+    private static Type<DataArrivedHandler> TYPE;
 
-  /**
-   * Fires a open event on all registered handlers in the handler manager.If no
-   * such handlers exist, this method will do nothing.
-   *
-   * @param <S> The event source
-   * @param source the source of the handlers
-   * @param jsObj the native event
-   */
-  public static <S extends HasDataArrivedHandlers & HasHandlers> void fire(
-      S source, JavaScriptObject jsObj) {
-    if (TYPE != null) {
-        DataArrivedEvent event = new DataArrivedEvent(jsObj);
-        source.fireEvent(event);
+    /**
+     * Fires a open event on all registered handlers in the handler manager.If no
+     * such handlers exist, this method will do nothing.
+     *
+     * @param <S> The event source
+     * @param source the source of the handlers
+     * @param jsObj the native event
+     */
+    public static <S extends HasDataArrivedHandlers & HasHandlers> void fire(
+        S source, JavaScriptObject jsObj) {
+        if (TYPE != null) {
+            DataArrivedEvent event = new DataArrivedEvent(jsObj);
+            source.fireEvent(event);
+        }
     }
-  }
 
-  /**
-   * Gets the type associated with this event.
-   *
-   * @return returns the handler type
-   */
-  public static Type<DataArrivedHandler> getType() {
-    if (TYPE == null) {
-      TYPE = new Type<DataArrivedHandler>();
+    /**
+     * Gets the type associated with this event.
+     *
+     * @return returns the handler type
+     */
+    public static Type<DataArrivedHandler> getType() {
+        if (TYPE == null) {
+            TYPE = new Type<DataArrivedHandler>();
+        }
+        return TYPE;
     }
-    return TYPE;
-  }
 
 
-  @Override
-  protected void dispatch(DataArrivedHandler handler) {
-    handler.onDataArrived(this);
-  }
+    @Override
+    protected void dispatch(DataArrivedHandler handler) {
+        handler.onDataArrived(this);
+    }
 
-  // Because of type erasure, our static type is
-  // wild carded, yet the "real" type should use our I param.
+    // Because of type erasure, our static type is
+    // wild carded, yet the "real" type should use our I param.
 
-  @SuppressWarnings("unchecked")
-  @Override
-  public final Type<DataArrivedHandler> getAssociatedType() {
-    return TYPE;
-  }
+    @SuppressWarnings("unchecked")
+    @Override
+    public final Type<DataArrivedHandler> getAssociatedType() {
+        return TYPE;
+    }
 
     public DataArrivedEvent(JavaScriptObject jsObj) {
         super(jsObj);
@@ -118,7 +118,7 @@ public class DataArrivedEvent extends BrowserEvent<DataArrivedHandler>  {
      */
     public  native TreeNode getParentNode() /*-{
         var jsObj = this.@com.smartgwt.client.event.AbstractSmartEvent::jsObj;
-            return @com.smartgwt.client.widgets.tree.TreeNode::getOrCreateRef(Lcom/google/gwt/core/client/JavaScriptObject;)(jsObj.parentNode);
+        return @com.smartgwt.client.widgets.tree.TreeNode::getOrCreateRef(Lcom/google/gwt/core/client/JavaScriptObject;)(jsObj.parentNode);
     }-*/;
 
 

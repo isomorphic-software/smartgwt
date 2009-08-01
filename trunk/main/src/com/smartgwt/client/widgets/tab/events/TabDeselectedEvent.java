@@ -57,53 +57,53 @@ import com.google.gwt.event.shared.*;
 import com.google.gwt.event.shared.HasHandlers;
 public class TabDeselectedEvent extends BrowserEvent<TabDeselectedHandler>  {
 
-  /**
-   * Handler type.
-   */
-  private static Type<TabDeselectedHandler> TYPE;
+    /**
+     * Handler type.
+     */
+    private static Type<TabDeselectedHandler> TYPE;
 
-  /**
-   * Fires a open event on all registered handlers in the handler manager.If no
-   * such handlers exist, this method will do nothing.
-   *
-   * @param <S> The event source
-   * @param source the source of the handlers
-   * @param jsObj the native event
-   */
-  public static <S extends HasTabDeselectedHandlers & HasHandlers> void fire(
-      S source, JavaScriptObject jsObj) {
-    if (TYPE != null) {
-        TabDeselectedEvent event = new TabDeselectedEvent(jsObj);
-        source.fireEvent(event);
+    /**
+     * Fires a open event on all registered handlers in the handler manager.If no
+     * such handlers exist, this method will do nothing.
+     *
+     * @param <S> The event source
+     * @param source the source of the handlers
+     * @param jsObj the native event
+     */
+    public static <S extends HasTabDeselectedHandlers & HasHandlers> void fire(
+        S source, JavaScriptObject jsObj) {
+        if (TYPE != null) {
+            TabDeselectedEvent event = new TabDeselectedEvent(jsObj);
+            source.fireEvent(event);
+        }
     }
-  }
 
-  /**
-   * Gets the type associated with this event.
-   *
-   * @return returns the handler type
-   */
-  public static Type<TabDeselectedHandler> getType() {
-    if (TYPE == null) {
-      TYPE = new Type<TabDeselectedHandler>();
+    /**
+     * Gets the type associated with this event.
+     *
+     * @return returns the handler type
+     */
+    public static Type<TabDeselectedHandler> getType() {
+        if (TYPE == null) {
+            TYPE = new Type<TabDeselectedHandler>();
+        }
+        return TYPE;
     }
-    return TYPE;
-  }
 
 
-  @Override
-  protected void dispatch(TabDeselectedHandler handler) {
-    handler.onTabDeselected(this);
-  }
+    @Override
+    protected void dispatch(TabDeselectedHandler handler) {
+        handler.onTabDeselected(this);
+    }
 
-  // Because of type erasure, our static type is
-  // wild carded, yet the "real" type should use our I param.
+    // Because of type erasure, our static type is
+    // wild carded, yet the "real" type should use our I param.
 
-  @SuppressWarnings("unchecked")
-  @Override
-  public final Type<TabDeselectedHandler> getAssociatedType() {
-    return TYPE;
-  }
+    @SuppressWarnings("unchecked")
+    @Override
+    public final Type<TabDeselectedHandler> getAssociatedType() {
+        return TYPE;
+    }
 
     public TabDeselectedEvent(JavaScriptObject jsObj) {
         super(jsObj);
@@ -148,7 +148,7 @@ public class TabDeselectedEvent extends BrowserEvent<TabDeselectedHandler>  {
      */
     public  native Tab getTab() /*-{
         var jsObj = this.@com.smartgwt.client.event.AbstractSmartEvent::jsObj;
-            return @com.smartgwt.client.widgets.tab.Tab::getOrCreateRef(Lcom/google/gwt/core/client/JavaScriptObject;)(jsObj.tab);
+        return @com.smartgwt.client.widgets.tab.Tab::getOrCreateRef(Lcom/google/gwt/core/client/JavaScriptObject;)(jsObj.tab);
     }-*/;
 
 

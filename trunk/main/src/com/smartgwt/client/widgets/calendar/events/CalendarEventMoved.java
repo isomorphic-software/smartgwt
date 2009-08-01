@@ -58,53 +58,53 @@ import com.google.gwt.event.shared.HasHandlers;
 public class CalendarEventMoved extends BrowserEvent<EventMovedHandler>  implements Cancellable {
     private boolean cancel = false;
 
-  /**
-   * Handler type.
-   */
-  private static Type<EventMovedHandler> TYPE;
+    /**
+     * Handler type.
+     */
+    private static Type<EventMovedHandler> TYPE;
 
-  /**
-   * Fires a open event on all registered handlers in the handler manager.If no
-   * such handlers exist, this method will do nothing.
-   *
-   * @param <S> The event source
-   * @param source the source of the handlers
-   * @param jsObj the native event
-   */
-  public static <S extends HasEventMovedHandlers & HasHandlers> void fire(
-      S source, JavaScriptObject jsObj) {
-    if (TYPE != null) {
-        CalendarEventMoved event = new CalendarEventMoved(jsObj);
-        source.fireEvent(event);
+    /**
+     * Fires a open event on all registered handlers in the handler manager.If no
+     * such handlers exist, this method will do nothing.
+     *
+     * @param <S> The event source
+     * @param source the source of the handlers
+     * @param jsObj the native event
+     */
+    public static <S extends HasEventMovedHandlers & HasHandlers> void fire(
+        S source, JavaScriptObject jsObj) {
+        if (TYPE != null) {
+            CalendarEventMoved event = new CalendarEventMoved(jsObj);
+            source.fireEvent(event);
+        }
     }
-  }
 
-  /**
-   * Gets the type associated with this event.
-   *
-   * @return returns the handler type
-   */
-  public static Type<EventMovedHandler> getType() {
-    if (TYPE == null) {
-      TYPE = new Type<EventMovedHandler>();
+    /**
+     * Gets the type associated with this event.
+     *
+     * @return returns the handler type
+     */
+    public static Type<EventMovedHandler> getType() {
+        if (TYPE == null) {
+            TYPE = new Type<EventMovedHandler>();
+        }
+        return TYPE;
     }
-    return TYPE;
-  }
 
 
-  @Override
-  protected void dispatch(EventMovedHandler handler) {
-    handler.onEventMoved(this);
-  }
+    @Override
+    protected void dispatch(EventMovedHandler handler) {
+        handler.onEventMoved(this);
+    }
 
-  // Because of type erasure, our static type is
-  // wild carded, yet the "real" type should use our I param.
+    // Because of type erasure, our static type is
+    // wild carded, yet the "real" type should use our I param.
 
-  @SuppressWarnings("unchecked")
-  @Override
-  public final Type<EventMovedHandler> getAssociatedType() {
-    return TYPE;
-  }
+    @SuppressWarnings("unchecked")
+    @Override
+    public final Type<EventMovedHandler> getAssociatedType() {
+        return TYPE;
+    }
 
     public CalendarEventMoved(JavaScriptObject jsObj) {
         super(jsObj);
@@ -132,7 +132,7 @@ public class CalendarEventMoved extends BrowserEvent<EventMovedHandler>  impleme
      */
     public  native Date getNewDate() /*-{
         var jsObj = this.@com.smartgwt.client.event.AbstractSmartEvent::jsObj;
-        return (jsObj.newDate === undefined || jsObj.newDate == null) ? null: @com.smartgwt.client.util.JSOHelper::toDate(D)(jsObj.newDate.getTime());                
+        return (jsObj.newDate === undefined || jsObj.newDate == null) ? null: @com.smartgwt.client.util.JSOHelper::toDate(D)(jsObj.newDate.getTime());
     }-*/;
 
     /**
@@ -142,7 +142,7 @@ public class CalendarEventMoved extends BrowserEvent<EventMovedHandler>  impleme
      */
     public  native CalendarEvent getEvent() /*-{
         var jsObj = this.@com.smartgwt.client.event.AbstractSmartEvent::jsObj;
-            return @com.smartgwt.client.widgets.calendar.CalendarEvent::getOrCreateRef(Lcom/google/gwt/core/client/JavaScriptObject;)(jsObj.event);
+        return @com.smartgwt.client.widgets.calendar.CalendarEvent::getOrCreateRef(Lcom/google/gwt/core/client/JavaScriptObject;)(jsObj.event);
     }-*/;
 
 
