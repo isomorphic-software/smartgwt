@@ -2302,7 +2302,7 @@ public class ListGridField extends DataClass  implements com.smartgwt.client.wid
      * {@link com.smartgwt.client.widgets.grid.ListGridField#getValueField valueField} and
      * {@link com.smartgwt.client.widgets.grid.ListGridField#getDisplayField displayField} in the loaded records,
      * to derive one valueMap entry per record loaded from the optionDataSource. <P> Unlike the similar use of
-     * {@link com.smartgwt.client..PickList#getOptionDataSource optionDataSource} for
+     * {@link com.smartgwt.client.widgets.form.fields.PickList#getOptionDataSource optionDataSource} for
      * pickLists used during editing or filtering, <code>listGridField.optionDataSource</code> causes the entire set of
      * records from the optionDataSource to be fetched, without paging.   Hence listGridField.optionDataSource is
      * appropriate only for smaller valueMaps.  For very large valueMap situations, such as an accountId field that should be
@@ -2314,7 +2314,7 @@ public class ListGridField extends DataClass  implements com.smartgwt.client.wid
      * value from the accountName field. This approach means the valueMap will never be loaded in its entirety, instead, each loaded
      * record contains the valueMapping for that one record, as a pair of fields within the record. <P> Note that it is key that the server
      * return <b>both</b> the underlying stored value <b>and</b> the display value, as suggested above, because this approach allows the
-     * {@link com.smartgwt.client..PickList#getOptionDataSource optionDataSource} property to be used to provide paged valueMaps during inline
+     * {@link com.smartgwt.client.widgets.form.fields.PickList#getOptionDataSource optionDataSource} property to be used to provide paged valueMaps during inline
      * editing and {@link com.smartgwt.client.widgets.grid.ListGrid#getShowFilterEditor showFilterEditor}.  Note that pickList.optionDataSource
      * is a distinct setting from listGridField.optionDataSource, settable via {@link com.smartgwt.client.widgets.grid.ListGridField#getEditorProperties editorProperties}
      * (for editing) and  {@link com.smartgwt.client.widgets.grid.ListGridField#getFilterEditorProperties filterEditorProperties} (for filtering).

@@ -673,7 +673,7 @@ public class SelectItem extends FormItem  implements PickList {
      *
      * @return criteria to be used for databound or local filtering
      */    
-    protected native Criteria getPickListFilterCriteria() /*-{
+    public native Criteria getPickListFilterCriteria() /*-{
         var self = this.@com.smartgwt.client.core.DataClass::getJsObj()();
         var critJS = self.__getPickListFilterCriteria();
         return critJS == null ? null : @com.smartgwt.client.data.Criteria::new(Lcom/google/gwt/core/client/JavaScriptObject;)(critJS);
@@ -683,12 +683,12 @@ public class SelectItem extends FormItem  implements PickList {
 
     /**
      * This property allows the developer to specify which field[s] will be displayed in the  drop down list of options.
-     * <P> Only applies to databound pickLists (see {@link com.smartgwt.client..PickList#getOptionDataSource
+     * <P> Only applies to databound pickLists (see {@link com.smartgwt.client.widgets.form.fields.PickList#getOptionDataSource
      * optionDataSource}, or picklists with custom data set up via the advanced {@link
-     * com.smartgwt.client..PickList#getClientPickListData} method. <P> If this property is unset, we display the {@link
-     * com.smartgwt.client..PickList#getDisplayField displayField}, if specified,  otherwise the {@link
-     * com.smartgwt.client..PickList#getValueField valueField} <P> If there are multiple fields, column headers will be
-     * shown for each field, the height of which can be customized via the {@link com.smartgwt.client..PickList#getPickListHeaderHeight
+     * com.smartgwt.client.widgets.form.fields.PickList#getClientPickListData} method. <P> If this property is unset, we display the {@link
+     * com.smartgwt.client.widgets.form.fields.PickList#getDisplayField displayField}, if specified,  otherwise the {@link
+     * com.smartgwt.client.widgets.form.fields.PickList#getValueField valueField} <P> If there are multiple fields, column headers will be
+     * shown for each field, the height of which can be customized via the {@link com.smartgwt.client.widgets.form.fields.PickList#getPickListHeaderHeight
      * pickListHeaderHeight} attribute. <P> Each field to display should be specified as a
      * {@link com.smartgwt.client.widgets.grid.ListGridField} object. Note that unlike in {@link
      * com.smartgwt.client.widgets.grid.ListGrid}, dataSource fields marked as  {@link com.smartgwt.client.data.DataSourceField#setDis${isc.DocUtils.linkForRef('DataSourceField.display','display:true')}
@@ -1004,11 +1004,11 @@ public class SelectItem extends FormItem  implements PickList {
      * derive one valueMap entry per record loaded from the optionDataSource.  Multiple fields from the fetched data may
      * be shown in the pickList by setting {@link com.smartgwt.client.widgets.form.fields.SelectItem#getPickListFields
      * pickListFields}. <P> The data will be retrieved via a "fetch" operation on the DataSource, passing the  {@link
-     * com.smartgwt.client..PickList#getPickListCriteria pickListCriteria} (if set) as criteria, and passing {@link
+     * com.smartgwt.client.widgets.form.fields.PickList#getPickListCriteria pickListCriteria} (if set) as criteria, and passing {@link
      * com.smartgwt.client.widgets.form.fields.SelectItem#getOptionFilterContext optionFilterContext} (if set) as
      * DSRequest properties. <P> The fetch will be triggered when the pickList is first shown, or, you can set {@link
      * com.smartgwt.client.widgets.form.fields.SelectItem#getAutoFetchData autoFetchData} to fetch when the FormItem is
-     * first drawn.  You can also call {@link com.smartgwt.client..PickList#fetchData} at any time to manually  trigger
+     * first drawn.  You can also call {@link com.smartgwt.client.widgets.form.fields.PickList#fetchData} at any time to manually  trigger
      * a fetch. <P> Data paging is automatically enabled if the optionDataSource supports it.  As the pickList is
      * scrolled by the user, requests for additional data will be automatically issued. <P> For a pickList attached to a
      * ComboBoxItem, new fetches are issued as the user types, with criteria set as described under {@link
@@ -1029,6 +1029,10 @@ public class SelectItem extends FormItem  implements PickList {
         setAttribute("optionDataSource", dataSource);
     }
 
+    public DataSource getOptionDataSource() {
+        return DataSource.getOrCreateRef(getAttributeAsJavaScriptObject("optionDataSource"));
+    }
+    
     public void setSeparatorRows(ListGridRecord[] separatorRows) {
         setAttribute("separatorRows", separatorRows);
     }
@@ -1080,9 +1084,9 @@ public class SelectItem extends FormItem  implements PickList {
     }-*/;
 
     /**
-     * Only applies to databound items (see {@link com.smartgwt.client..PickList#getOptionDataSource
+     * Only applies to databound items (see {@link com.smartgwt.client.widgets.form.fields.PickList#getOptionDataSource
      * optionDataSource}).<br> Performs a fetch type operation on this item's DataSource to retrieve the set of valid
-     * options for the item, based on the current {@link com.smartgwt.client..PickList#getPickListCriteria
+     * options for the item, based on the current {@link com.smartgwt.client.widgets.form.fields.PickList#getPickListCriteria
      * pickListCriteria}.
      */
     public native void fetchData() /*-{
@@ -1091,9 +1095,9 @@ public class SelectItem extends FormItem  implements PickList {
     }-*/;
 
     /**
-     * Only applies to databound items (see {@link com.smartgwt.client..PickList#getOptionDataSource
+     * Only applies to databound items (see {@link com.smartgwt.client.widgets.form.fields.PickList#getOptionDataSource
      * optionDataSource}).<br> Performs a fetch type operation on this item's DataSource to retrieve the set of valid
-     * options for the item, based on the current {@link com.smartgwt.client..PickList#getPickListCriteria
+     * options for the item, based on the current {@link com.smartgwt.client.widgets.form.fields.PickList#getPickListCriteria
      * pickListCriteria}.
      *
      * @param callback Callback to fire when the fetch completes. Callback will               fire with 2 parameters:
@@ -1110,9 +1114,9 @@ public class SelectItem extends FormItem  implements PickList {
     }-*/;
 
     /**
-     * Only applies to databound items (see {@link com.smartgwt.client..PickList#getOptionDataSource
+     * Only applies to databound items (see {@link com.smartgwt.client.widgets.form.fields.PickList#getOptionDataSource
      * optionDataSource}).<br> Performs a fetch type operation on this item's DataSource to retrieve the set of valid
-     * options for the item, based on the current {@link com.smartgwt.client..PickList#getPickListCriteria
+     * options for the item, based on the current {@link com.smartgwt.client.widgets.form.fields.PickList#getPickListCriteria
      * pickListCriteria}.
      *
      * @param callback          Callback to fire when the fetch completes. Callback will               fire with 2
@@ -1131,8 +1135,19 @@ public class SelectItem extends FormItem  implements PickList {
         }, requestPropertiesJS);
     }-*/;
 
+    public native ListGridRecord[] filterClientPickListData() /*-{
+        var self = this.@com.smartgwt.client.core.DataClass::getJsObj()();
+        var dataJS =  self.filterClientPickListData();
+        return @com.smartgwt.client.widgets.grid.ListGrid::convertToListGridRecordArray(Lcom/google/gwt/core/client/JavaScriptObject;)(dataJS);
+    }-*/;
 
-    //------------------- end PickList -------
+    public native ListGridRecord[] getClientPickListData() /*-{
+        var self = this.@com.smartgwt.client.core.DataClass::getJsObj()();
+        var dataJS =  self.getClientPickListData();
+        return @com.smartgwt.client.widgets.grid.ListGrid::convertToListGridRecordArray(Lcom/google/gwt/core/client/JavaScriptObject;)(dataJS);
+    }-*/;
+
+//------------------- end PickList -------
 
 
     public void setFields(FormItemIcon pickerIconProperties) {
