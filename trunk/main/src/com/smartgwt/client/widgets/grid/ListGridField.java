@@ -1923,7 +1923,7 @@ public class ListGridField extends DataClass  implements com.smartgwt.client.wid
     // ********************* Static Methods ***********************
 
 
-
+
 
 
     /**
@@ -2474,6 +2474,15 @@ public class ListGridField extends DataClass  implements com.smartgwt.client.wid
         };
     }-*/;
 
+    /**
+     * Set the properties of the header button used for this field.
+     *
+     * @param buttonProperties the header button properties
+     */
+    public void setHeaderButtonProperties(Button buttonProperties) {
+        buttonProperties.setConfigOnly(true);
+        JSOHelper.addProperties(getJsObj(), buttonProperties.getConfig());
+    }
 
 }
 
