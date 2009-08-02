@@ -18,7 +18,9 @@ package com.smartgwt.client.widgets.form.fields;
 
 
 import com.smartgwt.client.data.Criteria;
+import com.smartgwt.client.data.DataSource;
 import com.smartgwt.client.types.TextMatchStyle;
+import com.smartgwt.client.widgets.grid.ListGridRecord;
 
 /**
  * Interface to show a drop-down list of pickable options. Used by the {@link com.smartgwt.client.widgets.form.fields.SelectItem}
@@ -392,7 +394,66 @@ public interface PickList {
     *
     * @param filterCriteriaFunction the filter criteria function
     */
-    public void setPickListFilterCriteriaFunction(FilterCriteriaFunction filterCriteriaFunction);    
+    public void setPickListFilterCriteriaFunction(FilterCriteriaFunction filterCriteriaFunction);
+
+    /**
+     * Returns the data to display in the pick list.
+     * <p>
+     * The default implementation applies the criteria returned by {@link #getPickListFilterCriteria}  to the data returned
+     * by {@link #getClientPickListData}. A record passes the filter if it has a matching value for all fields in the criteria
+     * object.  Matching is performed according to {@link #setTextMatchStyle(com.smartgwt.client.types.TextMatchStyle) textMatchStyle}.
+     * <p>
+     * If {@link #setShowAllOptions(Boolean) showAllOptions}  is set, all values are shown, with matching values shown below a
+     * {@link #setSeparatorRows separator}.
+     * 
+     * @return array of record objects to display in the pickList
+     */
+    public ListGridRecord[] filterClientPickListData();
+
+    /**
+     * Returns the set of data to be displayed in this item's PickList.
+
+     * <p>
+     * This method will be called for non-databound form items implementing the PickList interface.  The default implementation will
+     * derive data from the item's valueMap -  can be overridden to allow a custom set of options to be displayed.
+     * <p>
+     * Note that for PickLists that filter data based on user input {@link ComboBoxItem 'ComboBox')}, this method should
+     * return the data <b>before filtering</b>.
+     *  
+     * @return Array of record objects to be displayed in the pickList. Note that when a user picks a record from the list,
+     * the value of the field matching item.valueField will be picked. Also note that the fields to be displayed can be
+     * customized via item.pickListFields
+     */
+    public ListGridRecord[] getClientPickListData();
+
+    /**
+     * Returns a set of filter criteria to be applied to the data displayed in the pickList when it is shown.
+     * <P>
+     * If this is a databound item the criteria will be passed as criteria to {@link com.smartgwt.client.data.DataSource#fetchData()}.
+     * Otherwise an equivalent client-side filter will be performed on the data returned by {@link #getClientPickListData}.
+     * <p>
+     * By default combines {@link com.smartgwt.client.widgets.form.fields.FormItem#setOptionCriteria(com.smartgwt.client.data.Criteria) optionCriteria}
+     * with {@link #getPickListCriteria() pickListCriteria} if specified, otherwise an empty set of criteria so all records will be displayed.
+     *
+     * <b>Note : this is an override point</b>
+     *
+     * @return the pick list filter criteria
+     */
+    public Criteria getPickListFilterCriteria();
+
+    /**
+     * Array of records to show between matching and non-matching rows in the PickList.
+     * <p>
+     * Not valid for {@link FormItem#setOptionDataSource(com.smartgwt.client.data.DataSource) 'databound pickLists'}.
+     * 
+     * @param separatorRows separator rows
+     */
+    public void setSeparatorRows(ListGridRecord[] separatorRows);
+
+    public DataSource getOptionDataSource();
+
+    public void setOptionDataSource(DataSource dataSource);
+
 }
 
 
