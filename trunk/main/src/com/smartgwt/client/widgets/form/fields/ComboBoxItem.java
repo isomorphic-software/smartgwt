@@ -471,8 +471,17 @@ public class ComboBoxItem extends FormItem  implements PickList {
     // ********************* Static Methods ***********************
 
 
-
-
+
+
+
+
+
+
+
+
+
+
+
     static {
         init();
     }
@@ -511,7 +520,7 @@ public class ComboBoxItem extends FormItem  implements PickList {
      *
      * @return criteria to be used for databound or local filtering
      */
-    public native Criteria getPickListFilterCriteria() /*-{
+    protected native Criteria getPickListFilterCriteria() /*-{
         var self = this.@com.smartgwt.client.core.DataClass::getJsObj()();
         var critJS = self.__getPickListFilterCriteria();
         return critJS == null ? null : @com.smartgwt.client.data.Criteria::new(Lcom/google/gwt/core/client/JavaScriptObject;)(critJS);
