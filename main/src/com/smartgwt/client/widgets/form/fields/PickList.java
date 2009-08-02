@@ -427,21 +427,6 @@ public interface PickList {
     public ListGridRecord[] getClientPickListData();
 
     /**
-     * Returns a set of filter criteria to be applied to the data displayed in the pickList when it is shown.
-     * <P>
-     * If this is a databound item the criteria will be passed as criteria to {@link com.smartgwt.client.data.DataSource#fetchData()}.
-     * Otherwise an equivalent client-side filter will be performed on the data returned by {@link #getClientPickListData}.
-     * <p>
-     * By default combines {@link com.smartgwt.client.widgets.form.fields.FormItem#setOptionCriteria(com.smartgwt.client.data.Criteria) optionCriteria}
-     * with {@link #getPickListCriteria() pickListCriteria} if specified, otherwise an empty set of criteria so all records will be displayed.
-     *
-     * <b>Note : this is an override point</b>
-     *
-     * @return the pick list filter criteria
-     */
-    public Criteria getPickListFilterCriteria();
-
-    /**
      * Array of records to show between matching and non-matching rows in the PickList.
      * <p>
      * Not valid for {@link FormItem#setOptionDataSource(com.smartgwt.client.data.DataSource) 'databound pickLists'}.
