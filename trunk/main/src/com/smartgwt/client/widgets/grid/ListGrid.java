@@ -5609,7 +5609,7 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
     // ********************* Static Methods ***********************
 
 
-
+
 
 
     protected native void onInit() /*-{
@@ -6559,8 +6559,7 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
     }-*/;
 
     /**
-     * Save a number of outstanding edits for this ListGrid. If no rows are specifed, all  outstanding edits will be
-     * saved
+     * Save a number of outstanding edits for this ListGrid.
      */
     public native void saveAllEdits() /*-{
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
@@ -6568,12 +6567,53 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
     }-*/;
 
     /**
-     * Cancel outstanding edits, discarding edit values, and hiding editors for the record[s] passed in if appropriate.
-     * If no rows are passed in all outstanding edit values will be dropped.
+     * Save a number of outstanding edits for this ListGrid.
+     *
+     * @param callback this callback will be fired on a successful save. Note that if there are no pending edits to be saved this
+     * callback will not fire - you can check for this condition using {@link #hasChanges()} or {@link #rowHasChanges()}
+     */
+    public native void saveAllEdits(Function callback) /*-{
+        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
+        self.saveAllEdits(null, callback == null ? null : function() {
+            callback.@com.smartgwt.client.core.Function::execute()();
+        });
+    }-*/;
+
+    /**
+     * Save a number of outstanding edits for this ListGrid.
+     *
+     * @param callback this callback will be fired on a successful save of the specified rows. Note that if there are no pending edits to be saved this
+     * callback will not fire - you can check for this condition using {@link #hasChanges()} or {@link #rowHasChanges()}
+     * @param rows specify which rows to save
+     */
+    public native void saveAllEdits(Function callback, int[] rows) /*-{
+        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
+        var rowsJS = rows == null ? null : @com.smartgwt.client.util.JSOHelper::convertToJavaScriptArray([I)(rows);
+        self.saveAllEdits(rowsJS, callback == null ? null : function() {
+            callback.@com.smartgwt.client.core.Function::execute()();
+        });
+    }-*/;
+
+    /**
+     * Cancel outstanding edits, discarding edit values, and hiding editors for the records.
      */
     public native void discardAllEdits() /*-{
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
         self.discardAllEdits();
+    }-*/;
+
+    /**
+     * Cancel outstanding edits, discarding edit values, and hiding editors for the record[s] passed in if appropriate.
+     * If no rows are passed in all outstanding edit values will be dropped.
+     *
+     * @param rows which row(s) to drop edits for
+     * @param dontHideEditor By default this method will hide the editor if it is currently showing for any row in the grid.
+     * Passing true for this parameter will leave the editor visible (and just reset the edit values underneath the editor)
+     */
+    public native void discardAllEdits(int[] rows, boolean dontHideEditor) /*-{
+        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
+        var rowsJS = rows == null ? null : @com.smartgwt.client.util.JSOHelper::convertToJavaScriptArray([I)(rows);
+        self.discardAllEdits(rowsJS, dontHideEditor);
     }-*/;
 
     /**
