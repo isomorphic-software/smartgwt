@@ -1000,7 +1000,7 @@ public class DataSourceField extends DataClass {
     // ********************* Static Methods ***********************
 
 
-
+
 
 
 
@@ -1151,6 +1151,25 @@ public class DataSourceField extends DataClass {
      */
     public DataSource getTypeAsDataSource() {
         return DataSource.getOrCreateRef(getAttributeAsJavaScriptObject("type"));
+    }
+
+    public static DataSourceField[] convertToDataSourceFieldArray(JavaScriptObject nativeArray) {
+        if (nativeArray == null) {
+            return new DataSourceField[]{};
+        }
+        if (JSOHelper.isArray(nativeArray)) {
+            JavaScriptObject[] componentsj = JSOHelper.toArray(nativeArray);
+            DataSourceField[] objects = new DataSourceField[componentsj.length];
+            for (int i = 0; i < componentsj.length; i++) {
+                JavaScriptObject componentJS = componentsj[i];
+                objects[i] = DataSourceField.getOrCreateRef(componentJS);
+            }
+            return objects;
+        } else {
+            DataSourceField[] ret = new DataSourceField[1];
+            ret[0] = DataSourceField.getOrCreateRef(nativeArray);
+            return ret;
+        }
     }
 
 }

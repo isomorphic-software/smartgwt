@@ -1681,6 +1681,17 @@ public class DataSource extends BaseClass  implements com.smartgwt.client.data.e
     }-*/;
 
     /**
+     * The list of fields that compose records from this DataSource.
+     * <p>
+     * Each DataSource field can have type, user-visible title, validators, and other metadata attached.
+     *
+     * @return array of DataSourceFields
+     */
+    public DataSourceField[] getFields() {
+        return DataSourceField.convertToDataSourceFieldArray(getAttributeAsJavaScriptObject("fields"));
+    }
+    
+    /**
      * For a client-only DataSource, a set of records to use as a dataset, specified as an Array of JavaScript Objects.
      * <P> See this discussion for ways to populate a client-only DataSource with test data.
      *
@@ -2247,8 +2258,7 @@ public class DataSource extends BaseClass  implements com.smartgwt.client.data.e
     /**
      * Process a dsResponse for a request initiated by a DataSource with {@link com.smartgwt.client.data.OperationBinding#getDataProtocol dataProtocol}. <code>requestId</code> parameter should be dsRequest.requestId as found on the dsRequest passed to {@link com.smartgwt.client.data.DataSource#transformRequest}. <P> You must provide a response for both error and non-error cases.  For an error case, a sufficient response is: <pre> { status : -1 } </pre>
      * @param requestId requestId attribute from the associated dataSource request object
-     * @param requestId the request ID
-     * @param requestId Configuration for the dsResponse
+     * @param responseProperties Configuration for the dsResponse
      */
     public native void processResponse(String requestId, DSResponse responseProperties) /*-{
         var self = this.@com.smartgwt.client.core.BaseClass::getOrCreateJsObj()();
@@ -2271,7 +2281,32 @@ public class DataSource extends BaseClass  implements com.smartgwt.client.data.e
 		var records = self.recordsFromXML(elements);
         if(records == null || records === undefined) return null;
         return @com.smartgwt.client.data.Record::convertToRecordArray(Lcom/google/gwt/core/client/JavaScriptObject;)(records);
-	}-*/;    
+	}-*/;
+
+    /**
+     * Retrieves the list of fields declared on this DataSource.
+     *
+     * @return names of all fields declared on this DataSource, including fields that are marked hidden
+     */
+    public String[] getFieldNames() {
+        return getFieldNames(false);
+    }
+
+    /**
+     * Retrieves the list of fields declared on this DataSource.
+     *
+     * @param excludeHidden If true, returns only those fields that are not marked as hidden
+     * @return names of all fields declared on this DataSource
+     */
+    public native String[] getFieldNames(boolean excludeHidden) /*-{
+        var self = this.@com.smartgwt.client.core.BaseClass::getOrCreateJsObj()();
+        var value = self.getFieldNames(excludeHidden);
+        if(value == null) return null;
+        if(!@com.smartgwt.client.util.JSOHelper::isArray(Lcom/google/gwt/core/client/JavaScriptObject;)(data)) {
+            value = [value];
+        }
+        return @com.smartgwt.client.util.JSOHelper::convertToJavaStringArray(Lcom/google/gwt/core/client/JavaScriptObject;)(value);
+    }-*/;
 
 }
 
