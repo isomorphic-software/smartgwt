@@ -1,6 +1,8 @@
 package com.smartgwt.client.widgets;
 
 import com.google.gwt.user.client.DOM;
+import com.google.gwt.user.client.DeferredCommand;
+import com.google.gwt.user.client.Command;
 import com.google.gwt.user.client.ui.RootPanel;
 import com.google.gwt.user.client.ui.Widget;
 import com.smartgwt.client.types.Overflow;
@@ -11,6 +13,7 @@ public class WidgetCanvas extends Canvas {
     public WidgetCanvas(Widget widget) {
         this.widget = widget;
         setRedrawOnResize(false);
+        setAttribute("_redrawWithParent", false, false);
         setOverflow(Overflow.VISIBLE);
         String width = DOM.getStyleAttribute(widget.getElement(), "width");
         String height = DOM.getStyleAttribute(widget.getElement(), "height");
@@ -42,5 +45,4 @@ public class WidgetCanvas extends Canvas {
             }
         }
     }
-
 }
