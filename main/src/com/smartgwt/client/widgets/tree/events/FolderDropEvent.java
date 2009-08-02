@@ -150,13 +150,15 @@ public class FolderDropEvent extends BrowserEvent<FolderDropHandler>  implements
     }-*/;
 
     /**
-     * Within the folder being dropped on, the index at which the drop is                        occurring.
+     * Within the folder being dropped on, the index at which the drop is occurring. Returns null if
+     * {@link com.smartgwt.client.widgets.tree.TreeGrid#setCanReorderRecords canReorderRecords}  is false.
      *
-     * @return Within the folder being dropped on, the index at which the drop is                        occurring.
+     * @return Within the folder being dropped on, the index at which the drop is occurring.
      */
-    public  native int getIndex() /*-{
+    public  native Integer getIndex() /*-{
         var jsObj = this.@com.smartgwt.client.event.AbstractSmartEvent::jsObj;
-        return jsObj.index;
+        var index = jsObj.index;
+        return index == null || index === undefined ? null : @com.smartgwt.client.util.JSOHelper::toInteger(I)(index);
     }-*/;
 
     /**
