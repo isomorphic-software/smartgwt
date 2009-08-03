@@ -521,7 +521,7 @@ public class JSOHelper {
 
     public static native JavaScriptObject createJavaScriptArray() /*-{
         //Important : constructing an from JSNI array using [] or new Array() results in a
-        //corrupted array object in the final javascript. The array ends up havign the correct elements
+        //corrupted array object in the final javascript. The array ends up having the correct elements
         //but the test (myarr instaneof Array) fails because the jsni created array constructor is different.
         //Need to construct array within the scope of the applications iframe by using new $wnd.Array
         return $wnd.Array.create();

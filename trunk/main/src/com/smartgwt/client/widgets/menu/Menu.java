@@ -529,7 +529,7 @@ public class Menu extends ListGrid  implements com.smartgwt.client.widgets.menu.
     // ********************* Static Methods ***********************
 
 
-
+
 
     //override to avoid call of ListGrid's onInit
     protected void onInit() {
@@ -556,6 +556,17 @@ public class Menu extends ListGrid  implements com.smartgwt.client.widgets.menu.
         setAttribute("data", data, true);
     }
 
+    /**
+     * An List of Record objects, specifying the data to be used to populate the DataBoundComponent. Note that not
+     * all DataBoundComponents observe the changes to the data to redraw themselves. Refer to the version of setData
+     * that accepts component specific records.
+     *
+     * @param data List of Records
+     */
+    public void setData(RecordList data) {
+        setAttribute("data", data.getOrCreateJsObj(), true);
+    }
+    
     /**
      * Synonym for {@link com.smartgwt.client.widgets.menu.Menu#getData data} Synonym for {@link
      * com.smartgwt.client.widgets.menu.Menu#setData}.

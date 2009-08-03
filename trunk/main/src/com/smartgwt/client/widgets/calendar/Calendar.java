@@ -1709,7 +1709,7 @@ public class Calendar extends Canvas  implements DataBoundComponent, com.smartgw
     // ********************* Static Methods ***********************
 
 
-
+
 
 
     protected native void onInit() /*-{
@@ -1827,6 +1827,17 @@ public class Calendar extends Canvas  implements DataBoundComponent, com.smartgw
      */
     public void setData(Record[] data) {
         setAttribute("data", data, true);
+    }
+
+    /**
+     * An List of Record objects, specifying the data to be used to populate the DataBoundComponent. Note that not
+     * all DataBoundComponents observe the changes to the data to redraw themselves. Refer to the version of setData
+     * that accepts component specific records.
+     *
+     * @param data List of Records
+     */
+    public void setData(RecordList data) {
+        setAttribute("data", data.getOrCreateJsObj(), true);
     }
     
     /**
@@ -2405,6 +2416,14 @@ public class Calendar extends Canvas  implements DataBoundComponent, com.smartgw
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
         self.invalidateCache();
     }-*/;
+
+    public ResultSet getResultSet() throws IllegalStateException {
+        JavaScriptObject dataJS = getAttributeAsJavaScriptObject("data");
+        if(!ResultSet.isResultSet(dataJS)) {
+            throw new IllegalStateException("getResultSet() can only be called on DataBoundComponents after initial data has been fetched");
+        }
+        return new ResultSet(dataJS);
+    }
 
 }
 
