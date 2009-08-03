@@ -534,6 +534,17 @@ public class TileGrid extends TileLayout  implements DataBoundComponent, com.sma
     }
 
     /**
+     * An List of Record objects, specifying the data to be used to populate the DataBoundComponent. Note that not
+     * all DataBoundComponents observe the changes to the data to redraw themselves. Refer to the version of setData
+     * that accepts component specific records.
+     *
+     * @param data List of Records
+     */
+    public void setData(RecordList data) {
+        setAttribute("data", data.getOrCreateJsObj(), true);
+    }
+    
+    /**
      * A List of TileRecord objects, specifying the data to be used to create the tiles.
      *
      * @return the records in the TileGrid
@@ -1170,6 +1181,14 @@ public class TileGrid extends TileLayout  implements DataBoundComponent, com.sma
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
         self.invalidateCache();
     }-*/;
+
+    public ResultSet getResultSet() throws IllegalStateException {
+        JavaScriptObject dataJS = getAttributeAsJavaScriptObject("data");
+        if(!ResultSet.isResultSet(dataJS)) {
+            throw new IllegalStateException("getResultSet() can only be called on DataBoundComponents after initial data has been fetched");
+        }
+        return new ResultSet(dataJS);
+    }
 
 }
 

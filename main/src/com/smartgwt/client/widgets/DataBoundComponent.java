@@ -828,4 +828,16 @@ public interface DataBoundComponent {
      * Invalidate the current data cache for this databound component via a call to&#010 <code>this.data.invalidateCache()</code>. If necessary, this will cause a new fetch to &#010 be performed with the current set of criteria for this component.&#010 <P>&#010 Has no effect if this component is not showing a set of filtered data.&#010 &#010
      */
     void invalidateCache();
+
+    /**
+     * Return the underlying data of this DataBoundComponent as a {@link com.smartgwt.client.data.ResultSet}.
+     * <p>
+     * Note that this method should only be called after initial data has been fetched by this DataBoundComponent.
+     *
+     * @return the ResultSet
+     * @throws IllegalStateException if called on a component with local array data, or a DataBoundComponent before the
+     * initial data is fetched.
+     * @see #fetchData()
+     */
+    ResultSet getResultSet() throws IllegalStateException;
 }

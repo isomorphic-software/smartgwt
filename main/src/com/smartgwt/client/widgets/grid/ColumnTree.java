@@ -1279,6 +1279,14 @@ public class ColumnTree extends Layout  implements DataBoundComponent, com.smart
         self.invalidateCache();
     }-*/;
 
+    public ResultSet getResultSet() throws IllegalStateException {
+        JavaScriptObject dataJS = getAttributeAsJavaScriptObject("data");
+        if(!ResultSet.isResultSet(dataJS)) {
+            throw new IllegalStateException("getResultSet() can only be called on DataBoundComponents after initial data has been fetched");
+        }
+        return new ResultSet(dataJS);
+    }
+
 }
 
 

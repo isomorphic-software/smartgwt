@@ -2993,6 +2993,14 @@ public class DynamicForm extends Canvas  implements DataBoundComponent, com.smar
         self.invalidateCache();
     }-*/;
 
+    public ResultSet getResultSet() throws IllegalStateException {
+        JavaScriptObject dataJS = getAttributeAsJavaScriptObject("data");
+        if(!ResultSet.isResultSet(dataJS)) {
+            throw new IllegalStateException("getResultSet() can only be called on DataBoundComponents after initial data has been fetched");
+        }
+        return new ResultSet(dataJS);
+    }
+
 }
 
 

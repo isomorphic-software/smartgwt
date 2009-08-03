@@ -5575,7 +5575,7 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
      * This ResultSet may have been created manually and applied to the grid via a call to {@link
      * com.smartgwt.client.widgets.grid.ListGrid#setData} or may have been created and automatically assigned if {@link
      * com.smartgwt.client.widgets.grid.ListGrid#fetchData} was used to populate the grid.  This method is fired directly in
-     * response to {@link com.smartgwt.client.data.ResultSet#dataArrived} firing on the data object.
+     * response to {@link com.smartgwt.client.data.ResultSet#addDataArrivedHandler} firing on the data object.
      *
      * @param handler the dataArrived handler
      * @return {@link HandlerRegistration} used to remove this handler
@@ -5779,6 +5779,15 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
     }
 
     /**
+     * For databound ListGrids, this attribute can be used to customize the {@link com.smartgwt.client.data.ResultSet} object created for this grid when data is fetched
+     *
+     * @param resultSetProperties the data properties
+     */
+    public void setDataProperties(ResultSet resultSetProperties) {
+        setAttribute("dataProperties", resultSetProperties.getConfig(), true);
+    }
+
+    /**
      * A List of ListGridRecord objects, specifying the data to be used to populate the ListGrid.  In ListGrids, the
      * data array specifies rows. Note that ListGrids automatically observe changes to the data List and redraw
      * accordingly. <p> This property is settable directly only as part of a {@link
@@ -5798,9 +5807,7 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
     }
 
     /**
-     * An array of Record objects, specifying the data to be used to populate the DataBoundComponent. Note that not
-     * all DataBoundComponents observe the changes to the data to redraw themselves. Refer to the version of setData
-     * that accepts component specific records.
+     * An array of Record objects, specifying the data to be used to populate the DataBoundComponent. 
      *
      * @param data array of Record objects.
      * @see #setData(ListGridRecord[])   
@@ -5809,6 +5816,15 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
         setAttribute("data", data, true);
     }
 
+    /**
+     * An List of Record objects, specifying the data to be used to populate the DataBoundComponent. Note that ListGrids automatically observe changes to the data List and redraw accordingly.
+     *
+     * @param data List of Records
+     */
+    public void setData(RecordList data) {
+        setAttribute("data", data.getOrCreateJsObj(), true);
+    }
+    
     /**
      * Synonym for {@link #setData(ListGridRecord[])}
      *
@@ -7896,6 +7912,14 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
         self.invalidateCache();
     }-*/;
+
+    public ResultSet getResultSet() throws IllegalStateException {
+        JavaScriptObject dataJS = getAttributeAsJavaScriptObject("data");
+        if(!ResultSet.isResultSet(dataJS)) {
+            throw new IllegalStateException("getResultSet() can only be called on DataBoundComponents after initial data has been fetched");
+        }
+        return new ResultSet(dataJS);
+    }
 
 }
 
