@@ -1,8 +1,6 @@
 package com.smartgwt.client.widgets;
 
 import com.google.gwt.user.client.DOM;
-import com.google.gwt.user.client.DeferredCommand;
-import com.google.gwt.user.client.Command;
 import com.google.gwt.user.client.ui.RootPanel;
 import com.google.gwt.user.client.ui.Widget;
 import com.smartgwt.client.types.Overflow;
@@ -26,6 +24,10 @@ public class WidgetCanvas extends Canvas {
     }
 
     public String getInnerHTML() {
+        //if this canvas is being redrawn, detach underlying gwt widget so that onDraw()
+        //can correctly reassociate it with container div
+        if(widget.isAttached()) widget.removeFromParent();
+
         return "<DIV STYLE='width:100%;height:100%' ID=" + this.getID() + "_widget></DIV>";
     }
 
