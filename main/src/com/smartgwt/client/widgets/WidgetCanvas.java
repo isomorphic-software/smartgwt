@@ -12,7 +12,7 @@ public class WidgetCanvas extends Canvas {
         this.widget = widget;
         setRedrawOnResize(false);
         setAttribute("_redrawWithParent", false, false);
-        setAttribute("$nu", false, false); //temp hack until SC build is updated
+        setAttribute("_clearWithRemoveChild", true, false);
         setOverflow(Overflow.VISIBLE);
         String width = DOM.getStyleAttribute(widget.getElement(), "width");
         String height = DOM.getStyleAttribute(widget.getElement(), "height");
