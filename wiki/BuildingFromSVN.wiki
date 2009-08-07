@@ -1,4 +1,7 @@
 #labels Featured
+== Introduction ==
+If all you need are nightly build, then please have a look at the [NightlyBuilds_and_MavenRepository] wiki for details.
+
 == Compiling from Source ===
 
 === Checking Out the Source from Subversion ===
