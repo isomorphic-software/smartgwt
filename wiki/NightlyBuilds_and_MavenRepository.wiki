@@ -1,0 +1,23 @@
+#labels Featured
+Automated nightly builds can be found here : http://www.smartclient.com/smartgwt/builds/
+
+Maven repository that gets updated with the automated builds:
+
+{{{
+Repository: http://www.smartclient.com/maven2
+
+   Group Id: com.smartgwt
+   Artifact Id: smartgwt
+   Version: 1.2-SNAPSHOT
+}}}
+
+
+Artifact for smartgwt-skins
+
+{{{
+Repository: http://www.smartclient.com/maven2
+
+   Group Id: com.smartgwt
+   Artifact Id: smartgwt-skins
+   Version: 1.2-SNAPSHOT
+}}}
