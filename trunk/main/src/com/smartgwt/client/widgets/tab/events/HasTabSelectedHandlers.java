@@ -23,7 +23,7 @@ import com.google.gwt.event.shared.HasHandlers;
 public interface HasTabSelectedHandlers extends HasHandlers {
     /**
      * Notification fired when a tab is selected. Note that this will only fire if  this tabSet is drawn. If a tab is selected
-     * before <code>TabSet.draw()</code>  is called, the <code>tabSelected()</code> notificaiton will fire on 
+     * before <code>TabSet.draw()</code>  is called, the <code>tabSelected()</code> notification will fire on 
      * <code>draw()</code>
      *
      * @param handler the tabSelected handler

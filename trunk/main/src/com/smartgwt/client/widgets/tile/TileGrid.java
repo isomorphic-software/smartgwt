@@ -128,7 +128,7 @@ public class TileGrid extends TileLayout  implements DataBoundComponent, com.sma
     public String getTileValueAlign()  {
         return getAttributeAsString("tileValueAlign");
     }
-
+             
     /**
      * If {@link com.smartgwt.client.widgets.tile.TileGrid#getAutoFetchData autoFetchData} is <code>true</code>, this attribute
      * allows the developer to specify a textMatchStyle for the initial {@link
@@ -137,8 +137,8 @@ public class TileGrid extends TileLayout  implements DataBoundComponent, com.sma
      * @param autoFetchTextMatchStyle autoFetchTextMatchStyle Default value is "substring"
      * @throws IllegalStateException this property cannot be changed after the component has been created
      */
-    public void setAutoFetchTextMatchStyle(String autoFetchTextMatchStyle)  throws IllegalStateException {
-        setAttribute("autoFetchTextMatchStyle", autoFetchTextMatchStyle, false);
+    public void setAutoFetchTextMatchStyle(TextMatchStyle autoFetchTextMatchStyle)  throws IllegalStateException {
+        setAttribute("autoFetchTextMatchStyle", autoFetchTextMatchStyle.getValue(), false);
     }
 
     /**
@@ -147,10 +147,10 @@ public class TileGrid extends TileLayout  implements DataBoundComponent, com.sma
      * com.smartgwt.client.widgets.tile.TileGrid#fetchData} call.
      *
      *
-     * @return String
+     * @return TextMatchStyle
      */
-    public String getAutoFetchTextMatchStyle()  {
-        return getAttributeAsString("autoFetchTextMatchStyle");
+    public TextMatchStyle getAutoFetchTextMatchStyle()  {
+        return (TextMatchStyle) EnumUtil.getEnum(TextMatchStyle.values(), getAttribute("autoFetchTextMatchStyle"));
     }
              
     /**
@@ -423,6 +423,20 @@ public class TileGrid extends TileLayout  implements DataBoundComponent, com.sma
     public native String getFieldState() /*-{
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
         return self.getFieldState();
+    }-*/;
+
+    /**
+     * Notification method fired when new data arrives from the server to be displayed in this tileGrid, (for example in
+     * response to the user scrolling a new set of tiles into view). Only applies to databound tileGrid where the {@link
+     * com.smartgwt.client.widgets.tile.TileGrid#getData 'data'} attribute is a {@link com.smartgwt.client.data.ResultSet}.
+     * This method is fired directly in response to {@link com.smartgwt.client.data.ResultSet#addDataArrivedHandler} firing on
+     * the data object.
+     * @param startRecord starting index of the newly loaded set of records
+     * @param endRecord ending index of the newly loaded set of records (non inclusive).
+     */
+    public native void dataArrived(int startRecord, int endRecord) /*-{
+        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
+        self.dataArrived(startRecord, endRecord);
     }-*/;
 
     // ********************* Static Methods ***********************

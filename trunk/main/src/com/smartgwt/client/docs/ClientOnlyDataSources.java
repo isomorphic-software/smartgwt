@@ -19,7 +19,7 @@ package com.smartgwt.client.docs;
  * true,&#010     testData : &#010         &lt;isomorphic:XML filename="shared/ds/test_data/solutions.data.xml"/&gt;&#010  
  * });&#010 </pre>&#010 Another useful practice is to specify both the clientOnly DataSource and it's test data in&#010
  * XML, so that the {@link com.smartgwt.client.docs.AdminConsole 'Admin Console'} can later be used to import the&#010
- * DataSource and its test data into a SQL DataBase.  An idiom for accomplishing this is:&#010 <pre>&#010  
+ * DataSource and its test data into a SQL Database.  An idiom for accomplishing this is:&#010 <pre>&#010  
  * &lt;isomorphic:loadDS name="solutions"/&gt;&#010   isc.DataSource.getDataSource("solutions").addProperties({&#010    
  * clientOnly : true,&#010     testData : &#010        &lt;isomorphic:XML
  * filename="shared/ds/test_data/solutions.data.xml"/&gt;&#010   });&#010 </pre>&#010 Finally, if you specify your

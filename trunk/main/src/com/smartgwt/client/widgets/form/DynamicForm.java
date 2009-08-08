@@ -920,7 +920,7 @@ public class DynamicForm extends Canvas  implements DataBoundComponent, com.smar
     }
              
     /**
-     * Text alignment  for hovers shown for items
+     * Text alignment for hovers shown for items
      *
      * @param itemHoverAlign itemHoverAlign Default value is null
      */
@@ -929,7 +929,7 @@ public class DynamicForm extends Canvas  implements DataBoundComponent, com.smar
     }
 
     /**
-     * Text alignment  for hovers shown for items
+     * Text alignment for hovers shown for items
      *
      *
      * @return Alignment
@@ -1414,7 +1414,7 @@ public class DynamicForm extends Canvas  implements DataBoundComponent, com.smar
     public Boolean getShowComplexFieldsRecursively()  {
         return getAttributeAsBoolean("showComplexFieldsRecursively");
     }
-
+             
     /**
      * If {@link com.smartgwt.client.widgets.form.DynamicForm#getAutoFetchData autoFetchData} is <code>true</code>, this
      * attribute allows the developer to specify a textMatchStyle for the initial {@link
@@ -1423,8 +1423,8 @@ public class DynamicForm extends Canvas  implements DataBoundComponent, com.smar
      * @param autoFetchTextMatchStyle autoFetchTextMatchStyle Default value is null
      * @throws IllegalStateException this property cannot be changed after the component has been created
      */
-    public void setAutoFetchTextMatchStyle(String autoFetchTextMatchStyle)  throws IllegalStateException {
-        setAttribute("autoFetchTextMatchStyle", autoFetchTextMatchStyle, false);
+    public void setAutoFetchTextMatchStyle(TextMatchStyle autoFetchTextMatchStyle)  throws IllegalStateException {
+        setAttribute("autoFetchTextMatchStyle", autoFetchTextMatchStyle.getValue(), false);
     }
 
     /**
@@ -1433,10 +1433,10 @@ public class DynamicForm extends Canvas  implements DataBoundComponent, com.smar
      * com.smartgwt.client.widgets.form.DynamicForm#fetchData} call.
      *
      *
-     * @return String
+     * @return TextMatchStyle
      */
-    public String getAutoFetchTextMatchStyle()  {
-        return getAttributeAsString("autoFetchTextMatchStyle");
+    public TextMatchStyle getAutoFetchTextMatchStyle()  {
+        return (TextMatchStyle) EnumUtil.getEnum(TextMatchStyle.values(), getAttribute("autoFetchTextMatchStyle"));
     }
 
     // ********************* Methods ***********************

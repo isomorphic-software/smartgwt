@@ -148,7 +148,7 @@ public class DataSource extends BaseClass  implements com.smartgwt.client.data.e
     }
              
     /**
-     * Indicates the format to be used for HTTP requests and responses when fulfilling DSRequests (eg {@link
+     * Indicates the format to be used for HTTP requests and responses when fulfilling DSRequests (eg, when {@link
      * com.smartgwt.client.data.DataSource#fetchData} is called).
      *
      * @param dataFormat dataFormat Default value is "iscServer"
@@ -159,7 +159,7 @@ public class DataSource extends BaseClass  implements com.smartgwt.client.data.e
     }
 
     /**
-     * Indicates the format to be used for HTTP requests and responses when fulfilling DSRequests (eg {@link
+     * Indicates the format to be used for HTTP requests and responses when fulfilling DSRequests (eg, when {@link
      * com.smartgwt.client.data.DataSource#fetchData} is called).
      *
      *
@@ -294,7 +294,7 @@ public class DataSource extends BaseClass  implements com.smartgwt.client.data.e
     /**
      * For DataSources using the {@link com.smartgwt.client.docs.SqlDataSource 'SmartGWT SQL engine'} for persistence, which
      * database configuration to use.  Database configurations can be created using the "Databases" tab in the Developer
-     * Console.  If unset, the default database configuration is used (which also settable using the "Databases" tab).
+     * Console.  If unset, the default database configuration is used (which is also settable using the "Databases" tab).
      *
      * @param dbName dbName Default value is null
      * @throws IllegalStateException this property cannot be changed after the underlying component has been created
@@ -306,7 +306,7 @@ public class DataSource extends BaseClass  implements com.smartgwt.client.data.e
     /**
      * For DataSources using the {@link com.smartgwt.client.docs.SqlDataSource 'SmartGWT SQL engine'} for persistence, which
      * database configuration to use.  Database configurations can be created using the "Databases" tab in the Developer
-     * Console.  If unset, the default database configuration is used (which also settable using the "Databases" tab).
+     * Console.  If unset, the default database configuration is used (which is also settable using the "Databases" tab).
      *
      *
      * @return String
@@ -515,8 +515,8 @@ public class DataSource extends BaseClass  implements com.smartgwt.client.data.e
 
     /**
      * For a DataSource with serverType: "sql" or serverType: "hibernate", automatically derive the dataSource's schema (field
-     * definitions) from from the SQL table specified in  {@link com.smartgwt.client.data.DataSource#getTableName tableName}. 
-     * This causes SmartGWT to create a "super" DataSource, which this dataSource then automatically {@link
+     * definitions) from the SQL table specified in  {@link com.smartgwt.client.data.DataSource#getTableName tableName}.  This
+     * causes SmartGWT to create a "super" DataSource, which this dataSource then automatically {@link
      * com.smartgwt.client.data.DataSource#getInheritsFrom 'inheritsFrom'}.  This allows you to  override auto-derived schema
      * as required. <p> This property is only applicable if you are using the SmartGWT server.
      *
@@ -529,8 +529,8 @@ public class DataSource extends BaseClass  implements com.smartgwt.client.data.e
 
     /**
      * For a DataSource with serverType: "sql" or serverType: "hibernate", automatically derive the dataSource's schema (field
-     * definitions) from from the SQL table specified in  {@link com.smartgwt.client.data.DataSource#getTableName tableName}. 
-     * This causes SmartGWT to create a "super" DataSource, which this dataSource then automatically {@link
+     * definitions) from the SQL table specified in  {@link com.smartgwt.client.data.DataSource#getTableName tableName}.  This
+     * causes SmartGWT to create a "super" DataSource, which this dataSource then automatically {@link
      * com.smartgwt.client.data.DataSource#getInheritsFrom 'inheritsFrom'}.  This allows you to  override auto-derived schema
      * as required. <p> This property is only applicable if you are using the SmartGWT server.
      *
@@ -692,7 +692,7 @@ public class DataSource extends BaseClass  implements com.smartgwt.client.data.e
              
     /**
      * Decides under what conditions the {@link com.smartgwt.client.data.ResultSet} cache should be dropped when the {@link
-     * com.smartgwt.client.data.ResultSet#getCriteria criteria} changes
+     * com.smartgwt.client.data.ResultSet#getCriteria criteria} changes.
      * <p><b>Note : </b> This is an advanced setting</p>
      *
      * @param criteriaPolicy criteriaPolicy Default value is "dropOnShortening"
@@ -703,7 +703,7 @@ public class DataSource extends BaseClass  implements com.smartgwt.client.data.e
 
     /**
      * Decides under what conditions the {@link com.smartgwt.client.data.ResultSet} cache should be dropped when the {@link
-     * com.smartgwt.client.data.ResultSet#getCriteria criteria} changes
+     * com.smartgwt.client.data.ResultSet#getCriteria criteria} changes.
      *
      *
      * @return CriteriaPolicy
@@ -938,9 +938,9 @@ public class DataSource extends BaseClass  implements com.smartgwt.client.data.e
 
     /**
      * Best field to use for a user-visible title for an individual record from this dataSource. <p> For example, for a
-     * DataSource of employees, a "full name" field would probably most clearly labels an employee record. <p> If not
-     * explicitly set, titleField looks for fields named "title", "label", "name", and "id" in that order.  If a field exists
-     * with one of those names, it becomes the titleField.  If not, then the first field is designated as the titleField.
+     * DataSource of employees, a "full name" field would probably most clearly label an employee record. <p> If not explicitly
+     * set, titleField looks for fields named "title", "label", "name", and "id" in that order.  If a field exists with one of
+     * those names, it becomes the titleField.  If not, then the first field is designated as the titleField.
      *
      * @param titleField titleField Default value is see below
      * @throws IllegalStateException this property cannot be changed after the underlying component has been created
@@ -951,9 +951,9 @@ public class DataSource extends BaseClass  implements com.smartgwt.client.data.e
 
     /**
      * Best field to use for a user-visible title for an individual record from this dataSource. <p> For example, for a
-     * DataSource of employees, a "full name" field would probably most clearly labels an employee record. <p> If not
-     * explicitly set, titleField looks for fields named "title", "label", "name", and "id" in that order.  If a field exists
-     * with one of those names, it becomes the titleField.  If not, then the first field is designated as the titleField.
+     * DataSource of employees, a "full name" field would probably most clearly label an employee record. <p> If not explicitly
+     * set, titleField looks for fields named "title", "label", "name", and "id" in that order.  If a field exists with one of
+     * those names, it becomes the titleField.  If not, then the first field is designated as the titleField.
      *
      *
      * @return String
@@ -1039,10 +1039,11 @@ public class DataSource extends BaseClass  implements com.smartgwt.client.data.e
      * complex database lookups, validation embedded in  legacy applications, etc).  It is also possible - though obviously a
      * more substantial task - to override the execute() method in your custom DataSource.  This is one way of creating  a
      * completely customized DataSource implementation. <p> <b>Note:</b> If you use this property, you are responsible for
-     * making sure that it refers to a valid server-side class that extends <code>com.isomorphic.datasource.DataSource</code>.
-     * If your implementation relies on methods or state only present in certain specialized  subclasses of DataSource (for
-     * example, you want the normal behavior and features of a  HibernateDataSource, but with a specialized validate() method),
-     * then you shoud extend the  subclass rather than the base class.
+     * making sure that it refers to a valid server-side class that extends
+     * <code>com.isomorphic.datasource.BasicDataSource</code>. If your implementation relies on methods or state only present
+     * in certain specialized  subclasses of DataSource (for example, you want the normal behavior and features of a 
+     * HibernateDataSource, but with a specialized validate() method), then you shoud extend the  subclass rather than the base
+     * class.
      *
      * @param serverConstructor serverConstructor Default value is null
      * @throws IllegalStateException this property cannot be changed after the underlying component has been created
@@ -1058,10 +1059,11 @@ public class DataSource extends BaseClass  implements com.smartgwt.client.data.e
      * complex database lookups, validation embedded in  legacy applications, etc).  It is also possible - though obviously a
      * more substantial task - to override the execute() method in your custom DataSource.  This is one way of creating  a
      * completely customized DataSource implementation. <p> <b>Note:</b> If you use this property, you are responsible for
-     * making sure that it refers to a valid server-side class that extends <code>com.isomorphic.datasource.DataSource</code>.
-     * If your implementation relies on methods or state only present in certain specialized  subclasses of DataSource (for
-     * example, you want the normal behavior and features of a  HibernateDataSource, but with a specialized validate() method),
-     * then you shoud extend the  subclass rather than the base class.
+     * making sure that it refers to a valid server-side class that extends
+     * <code>com.isomorphic.datasource.BasicDataSource</code>. If your implementation relies on methods or state only present
+     * in certain specialized  subclasses of DataSource (for example, you want the normal behavior and features of a 
+     * HibernateDataSource, but with a specialized validate() method), then you shoud extend the  subclass rather than the base
+     * class.
      *
      *
      * @return String
@@ -1227,7 +1229,7 @@ public class DataSource extends BaseClass  implements com.smartgwt.client.data.e
     /**
      * [A] If set to true, both client and server-side advanced filtering used by SmartGWT will follow&#010 SQL99 behavior for
      * dealing with NULL values, which is often counter-intuitive to users.&#010 Specifically, when a field has NULL value, all
-     * of the following expression are false:&#010 <pre>&#010    field == "someValue"  (normally false)&#010    field !=
+     * of the following expressions are false:&#010 <pre>&#010    field == "someValue"  (normally false)&#010    field !=
      * "someValue"  (normally true)&#010    not (field == "someValue")   (normally true)&#010    not (field != "someValue")  
      * (normally false)&#010 </pre>
      *
@@ -1241,7 +1243,7 @@ public class DataSource extends BaseClass  implements com.smartgwt.client.data.e
     /**
      * [A] If set to true, both client and server-side advanced filtering used by SmartGWT will follow&#010 SQL99 behavior for
      * dealing with NULL values, which is often counter-intuitive to users.&#010 Specifically, when a field has NULL value, all
-     * of the following expression are false:&#010 <pre>&#010    field == "someValue"  (normally false)&#010    field !=
+     * of the following expressions are false:&#010 <pre>&#010    field == "someValue"  (normally false)&#010    field !=
      * "someValue"  (normally true)&#010    not (field == "someValue")   (normally true)&#010    not (field != "someValue")  
      * (normally false)&#010 </pre>
      *
@@ -1255,7 +1257,7 @@ public class DataSource extends BaseClass  implements com.smartgwt.client.data.e
     // ********************* Methods ***********************
 
     /**
-     * For a DataSource that describes a DOM structure, the list legal child elements that can be contained by the element
+     * For a DataSource that describes a DOM structure, the list of legal child elements that can be contained by the element
      * described by this DataSource. <p> For a DataSource described by XML schema, this is the list of legal subelements <b>of
      * complexType</b> (elements of simpleType become DataSourceFields with atomic type). <p> Note that currently, if an XML
      * schema file contains ordering constraints, DataSources derived from XML Schema do not capture these constraints.
@@ -1366,12 +1368,11 @@ public class DataSource extends BaseClass  implements com.smartgwt.client.data.e
 
     /**
      * Does this dataSource support the specified "textMatchStyle" when performing a filter operation against a text field.
-     * @param textMatchStyle textMatchStyle to check. If passed a null value, assume                                an exact match is being
-     * requested.
+     * @param textMatchStyle textMatchStyle to check. If passed a null value,      assume an exact match is being requested.
      */
-    public native void supportsTextMatchStyle(String textMatchStyle) /*-{
+    public native void supportsTextMatchStyle(TextMatchStyle textMatchStyle) /*-{
         var self = this.@com.smartgwt.client.core.BaseClass::getOrCreateJsObj()();
-        self.supportsTextMatchStyle(textMatchStyle);
+        self.supportsTextMatchStyle(textMatchStyle.@com.smartgwt.client.types.TextMatchStyle::getValue()());
     }-*/;
 
 

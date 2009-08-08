@@ -239,7 +239,7 @@ public class TreeGrid extends ListGrid  implements com.smartgwt.client.widgets.t
     public Boolean getLoadDataOnDemand()  {
         return getAttributeAsBoolean("loadDataOnDemand");
     }
-
+             
     /**
      * With ${isc.DocUtils.linkForRef('loadDataOnDemand:true')}, TreeGrids fetch data by selecting the child nodes of each
      * parent, which should be exact match, so we default to <code>autoFetchTextMatchStyle:"exact"</code>. See {@link
@@ -248,8 +248,8 @@ public class TreeGrid extends ListGrid  implements com.smartgwt.client.widgets.t
      * @param autoFetchTextMatchStyle autoFetchTextMatchStyle Default value is "exact"
      * @throws IllegalStateException this property cannot be changed after the component has been created
      */
-    public void setAutoFetchTextMatchStyle(String autoFetchTextMatchStyle)  throws IllegalStateException {
-        setAttribute("autoFetchTextMatchStyle", autoFetchTextMatchStyle, false);
+    public void setAutoFetchTextMatchStyle(TextMatchStyle autoFetchTextMatchStyle)  throws IllegalStateException {
+        setAttribute("autoFetchTextMatchStyle", autoFetchTextMatchStyle.getValue(), false);
     }
 
     /**
@@ -258,10 +258,10 @@ public class TreeGrid extends ListGrid  implements com.smartgwt.client.widgets.t
      * com.smartgwt.client.widgets.grid.ListGrid#getAutoFetchTextMatchStyle autoFetchTextMatchStyle} for details.
      *
      *
-     * @return String
+     * @return TextMatchStyle
      */
-    public String getAutoFetchTextMatchStyle()  {
-        return getAttributeAsString("autoFetchTextMatchStyle");
+    public TextMatchStyle getAutoFetchTextMatchStyle()  {
+        return (TextMatchStyle) EnumUtil.getEnum(TextMatchStyle.values(), getAttribute("autoFetchTextMatchStyle"));
     }
 
     /**

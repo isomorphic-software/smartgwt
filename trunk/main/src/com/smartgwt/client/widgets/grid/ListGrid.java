@@ -839,7 +839,10 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
     /**
      * Should we vertically clip cell contents, or allow rows to expand vertically to show all contents? <P> If we allow rows
      * to expand, the row height as derived from {@link com.smartgwt.client.grid.GridRenderer#getRowHeight} or the default
-     * {@link com.smartgwt.client.widgets.grid.ListGrid#getCellHeight cellHeight} is treated as a minimum.
+     * {@link com.smartgwt.client.widgets.grid.ListGrid#getCellHeight cellHeight} is treated as a minimum. <P> <b>NOTE:</b> by
+     * default, for performance reasons, clipping is not enforced for some kinds of content (such as images) on all browsers. 
+     * Set {@link com.smartgwt.client.widgets.grid.ListGrid#getEnforceVClipping 'enforceVClipping:true'} to enforce clipping
+     * for all types of content on all browsers.
      * <p><b>Note : </b> This is an advanced setting</p>
      *
      * @param fixedRecordHeights fixedRecordHeights Default value is true
@@ -851,13 +854,67 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
     /**
      * Should we vertically clip cell contents, or allow rows to expand vertically to show all contents? <P> If we allow rows
      * to expand, the row height as derived from {@link com.smartgwt.client.grid.GridRenderer#getRowHeight} or the default
-     * {@link com.smartgwt.client.widgets.grid.ListGrid#getCellHeight cellHeight} is treated as a minimum.
+     * {@link com.smartgwt.client.widgets.grid.ListGrid#getCellHeight cellHeight} is treated as a minimum. <P> <b>NOTE:</b> by
+     * default, for performance reasons, clipping is not enforced for some kinds of content (such as images) on all browsers. 
+     * Set {@link com.smartgwt.client.widgets.grid.ListGrid#getEnforceVClipping 'enforceVClipping:true'} to enforce clipping
+     * for all types of content on all browsers.
      *
      *
      * @return Boolean
      */
     public Boolean getFixedRecordHeights()  {
         return getAttributeAsBoolean("fixedRecordHeights");
+    }
+
+    /**
+     * For performance reasons, even when {@link com.smartgwt.client.widgets.grid.ListGrid#getFixedRecordHeights
+     * fixedRecordHeights} is set, vertical clipping is not enforced by default for some kinds of content (such as images) on
+     * all browsers. Set {@link com.smartgwt.client.widgets.grid.ListGrid#getEnforceVClipping 'enforceVClipping:true'} to
+     * enforce clipping for all types of content on all browsers. <P> This additional setting is likely to be phased out as
+     * browsers improve.
+     *
+     * @param enforceVClipping enforceVClipping Default value is false
+     */
+    public void setEnforceVClipping(Boolean enforceVClipping) {
+        setAttribute("enforceVClipping", enforceVClipping, true);
+    }
+
+    /**
+     * For performance reasons, even when {@link com.smartgwt.client.widgets.grid.ListGrid#getFixedRecordHeights
+     * fixedRecordHeights} is set, vertical clipping is not enforced by default for some kinds of content (such as images) on
+     * all browsers. Set {@link com.smartgwt.client.widgets.grid.ListGrid#getEnforceVClipping 'enforceVClipping:true'} to
+     * enforce clipping for all types of content on all browsers. <P> This additional setting is likely to be phased out as
+     * browsers improve.
+     *
+     *
+     * @return Boolean
+     */
+    public Boolean getEnforceVClipping()  {
+        return getAttributeAsBoolean("enforceVClipping");
+    }
+
+    /**
+     * Should we horizontally clip cell contents, or allow columns to expand horizontally to show all contents? <P> If we allow
+     * columns to expand, the column width is treated as a minimum. <P> NOTE: the header does not automatically respond to
+     * expanded field widths
+     * <p><b>Note : </b> This is an advanced setting</p>
+     *
+     * @param fixedFieldWidths fixedFieldWidths Default value is true
+     */
+    public void setFixedFieldWidths(Boolean fixedFieldWidths) {
+        setAttribute("fixedFieldWidths", fixedFieldWidths, true);
+    }
+
+    /**
+     * Should we horizontally clip cell contents, or allow columns to expand horizontally to show all contents? <P> If we allow
+     * columns to expand, the column width is treated as a minimum. <P> NOTE: the header does not automatically respond to
+     * expanded field widths
+     *
+     *
+     * @return Boolean
+     */
+    public Boolean getFixedFieldWidths()  {
+        return getAttributeAsBoolean("fixedFieldWidths");
     }
 
     /**
@@ -1849,7 +1906,7 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
      * until the server returns the data for those rows.  The loadingMessage attribute allows you to specify arbitrary html
      * that will be shown in each such "blank" record while the data for that record is loading.
      *
-     * @param loadingMessage loadingMessage Default value is "\&nbsp;"
+     * @param loadingMessage loadingMessage Default value is "&amp;nbsp;"
      * @throws IllegalStateException this property cannot be changed after the component has been created
      */
     public void setLoadingMessage(String loadingMessage)  throws IllegalStateException {
@@ -1978,7 +2035,7 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
     public int getFilterEditorHeight()  {
         return getAttributeAsInt("filterEditorHeight");
     }
-
+             
     /**
      * When this grid is initially filtered via {@link com.smartgwt.client.widgets.grid.ListGrid#getAutoFetchData
      * autoFetchData}, or filtered by the user  via the {@link com.smartgwt.client.widgets.grid.ListGrid#getShowFilterEditor
@@ -1988,8 +2045,8 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
      * @param autoFetchTextMatchStyle autoFetchTextMatchStyle Default value is "substring"
      * @throws IllegalStateException this property cannot be changed after the component has been created
      */
-    public void setAutoFetchTextMatchStyle(String autoFetchTextMatchStyle)  throws IllegalStateException {
-        setAttribute("autoFetchTextMatchStyle", autoFetchTextMatchStyle, false);
+    public void setAutoFetchTextMatchStyle(TextMatchStyle autoFetchTextMatchStyle)  throws IllegalStateException {
+        setAttribute("autoFetchTextMatchStyle", autoFetchTextMatchStyle.getValue(), false);
     }
 
     /**
@@ -1999,10 +2056,10 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
      * <code>fetchData()</code>.
      *
      *
-     * @return String
+     * @return TextMatchStyle
      */
-    public String getAutoFetchTextMatchStyle()  {
-        return getAttributeAsString("autoFetchTextMatchStyle");
+    public TextMatchStyle getAutoFetchTextMatchStyle()  {
+        return (TextMatchStyle) EnumUtil.getEnum(TextMatchStyle.values(), getAttribute("autoFetchTextMatchStyle"));
     }
 
     /**
@@ -3864,9 +3921,9 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
      *
      * @return true if server fetch would be required to satisfy new criteria.
      */
-    public native Boolean willFetchData(Criteria newCriteria, String textMatchStyle) /*-{
+    public native Boolean willFetchData(Criteria newCriteria, TextMatchStyle textMatchStyle) /*-{
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
-        var retVal =self.willFetchData(newCriteria.@com.smartgwt.client.core.DataClass::getJsObj()(), textMatchStyle);
+        var retVal =self.willFetchData(newCriteria.@com.smartgwt.client.core.DataClass::getJsObj()(), textMatchStyle.@com.smartgwt.client.types.TextMatchStyle::getValue()());
         if(retVal == null || retVal === undefined) {
             return null;
         } else {

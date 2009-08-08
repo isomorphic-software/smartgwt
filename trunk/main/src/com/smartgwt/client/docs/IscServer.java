@@ -43,7 +43,7 @@ package com.smartgwt.client.docs;
  * any level of nesting, can be automatically serialized and delivered as JavaScript Objects to the SmartGWT client-side
  * components. <P> JavaScript Objects existing in the browser can likewise be automatically transmitted to a Java Server
  * and translated to Java Objects, with any level of nesting and automatic preservation of primitive types. <P> <h4>SQL and
- * Hibernate connectors</h4> <P> DataSource of serverType:"sql" or serverType:"hibernate" can generate and execute queries
+ * Hibernate connectors</h4> <P> DataSources of serverType:"sql" or serverType:"hibernate" can generate and execute queries
  * against popular SQL engines or against the Hibernate ORM system, providing SmartGWT's {@link
  * com.smartgwt.client.widgets.DataBoundComponent}s with the four standard CRUD operations (create, retrieve, update,
  * delete) without writing any server-side code.  For rapid prototyping, these DataSources can even generate SQL tables

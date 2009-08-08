@@ -639,17 +639,8 @@ public class SelectItem extends FormItem  implements PickList {
     // ********************* Static Methods ***********************
 
 
-
-
-
-
-
-
-
-
-
-
-
+
+
     static {
         init();
     }

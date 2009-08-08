@@ -143,7 +143,7 @@ public class OperationBinding extends DataClass {
     /**
      * You can explicitly declare the arguments to be passed to {@link
      * com.smartgwt.client.data.OperationBinding#getServerMethod serverMethod} using this attribute.  This isn't required - in
-     * the absense of <code>methodArguments</code>, the DMI implementation will still automagically pass a stock set of
+     * the absense of <code>methodArguments</code>, the DMI implementation will still automatically pass a stock set of
      * arguments to your method (see the overview in {@link com.smartgwt.client..ServerObject}), but specifying arguments
      * explicitly gives you more flexibility in what can be passed. <p> The format for specifying <code>methodArguments</code>
      * is as a comma separated list of VTL (Velocity Template Language) expressions.  See the <a
@@ -156,7 +156,7 @@ public class OperationBinding extends DataClass {
      * instance of the current DSRequest <li>request: the current HttpServletRequest <li>response: the current
      * HttpServletResponse <li>rpcManager: the instance of RPCManager for this request <li>dataSource: a DataSource instance
      * for this request </ul> So, for example, if you had a method signature like the following: <p><code> public DSResponse
-     * fetch(SupplyItem creteria, long startRow, long endRow) </code><p> You can invoke it by specifying
+     * fetch(SupplyItem criteria, long startRow, long endRow) </code><p> You can invoke it by specifying
      * <code>methodArguments</code> as follows: <p><code> methodArguments="$dsRequest.criteria, $dsRequest.startRow,
      * $dsRequest.endRow" </code></p> Without <code>methodArguments</code>, there would be no way for you to specify
      * <code>startRow/endRow</code> as arguments.  You could, of course, simply declare the method to take a
@@ -171,7 +171,7 @@ public class OperationBinding extends DataClass {
     /**
      * You can explicitly declare the arguments to be passed to {@link
      * com.smartgwt.client.data.OperationBinding#getServerMethod serverMethod} using this attribute.  This isn't required - in
-     * the absense of <code>methodArguments</code>, the DMI implementation will still automagically pass a stock set of
+     * the absense of <code>methodArguments</code>, the DMI implementation will still automatically pass a stock set of
      * arguments to your method (see the overview in {@link com.smartgwt.client..ServerObject}), but specifying arguments
      * explicitly gives you more flexibility in what can be passed. <p> The format for specifying <code>methodArguments</code>
      * is as a comma separated list of VTL (Velocity Template Language) expressions.  See the <a
@@ -184,7 +184,7 @@ public class OperationBinding extends DataClass {
      * instance of the current DSRequest <li>request: the current HttpServletRequest <li>response: the current
      * HttpServletResponse <li>rpcManager: the instance of RPCManager for this request <li>dataSource: a DataSource instance
      * for this request </ul> So, for example, if you had a method signature like the following: <p><code> public DSResponse
-     * fetch(SupplyItem creteria, long startRow, long endRow) </code><p> You can invoke it by specifying
+     * fetch(SupplyItem criteria, long startRow, long endRow) </code><p> You can invoke it by specifying
      * <code>methodArguments</code> as follows: <p><code> methodArguments="$dsRequest.criteria, $dsRequest.startRow,
      * $dsRequest.endRow" </code></p> Without <code>methodArguments</code>, there would be no way for you to specify
      * <code>startRow/endRow</code> as arguments.  You could, of course, simply declare the method to take a
@@ -402,7 +402,7 @@ public class OperationBinding extends DataClass {
      * com.smartgwt.client.widgets.DataBoundComponent#getUseFlatFields 'searchForm.useFlatFields'}, with the {@link
      * com.smartgwt.client.widgets.form.SearchForm} bound to the {@link com.smartgwt.client.data.WebService#getInputDS} of the
      * web service operation set as {@link com.smartgwt.client.data.OperationBinding#getWsOperation wsOperation}.  This allows
-     * gratuitous nesting to be consistently bypassed in both the user presentation and in the actual XML messaging. <P> Not
+     * gratuitous nesting to be consistently bypassed in both the user presentation and in the actual XML messaging. <P> Note
      * that <code>useFlatFields</code> is not generally recommended for use with input messages where multiple simple type
      * fields exist with the same name, however if used in this way, the first field to use a given name wins.  "first" means
      * the first field encountered in a depth first search.  "wins" means only the first field will be available in data
@@ -422,7 +422,7 @@ public class OperationBinding extends DataClass {
      * com.smartgwt.client.widgets.DataBoundComponent#getUseFlatFields 'searchForm.useFlatFields'}, with the {@link
      * com.smartgwt.client.widgets.form.SearchForm} bound to the {@link com.smartgwt.client.data.WebService#getInputDS} of the
      * web service operation set as {@link com.smartgwt.client.data.OperationBinding#getWsOperation wsOperation}.  This allows
-     * gratuitous nesting to be consistently bypassed in both the user presentation and in the actual XML messaging. <P> Not
+     * gratuitous nesting to be consistently bypassed in both the user presentation and in the actual XML messaging. <P> Note
      * that <code>useFlatFields</code> is not generally recommended for use with input messages where multiple simple type
      * fields exist with the same name, however if used in this way, the first field to use a given name wins.  "first" means
      * the first field encountered in a depth first search.  "wins" means only the first field will be available in data
@@ -586,8 +586,8 @@ public class OperationBinding extends DataClass {
     }
              
     /**
-     * The format in which the data should be exported.  See {@link com.smartgwt.client.types.ExportFormat} for more 
-     * information.
+     * The format in which the data should be exported.  Default is "csv". See {@link com.smartgwt.client.types.ExportFormat}
+     * for more information.
      *
      * @param exportAs exportAs Default value is "csv"
      */
@@ -596,8 +596,8 @@ public class OperationBinding extends DataClass {
     }
 
     /**
-     * The format in which the data should be exported.  See {@link com.smartgwt.client.types.ExportFormat} for more 
-     * information.
+     * The format in which the data should be exported.  Default is "csv". See {@link com.smartgwt.client.types.ExportFormat}
+     * for more information.
      *
      *
      * @return ExportFormat
@@ -719,6 +719,35 @@ public class OperationBinding extends DataClass {
      */
     public Boolean getInvalidateCache()  {
         return getAttributeAsBoolean("invalidateCache");
+    }
+
+    /**
+     * Specifies, for this operationBinding only, the list of field names that should be returned to the client.  Typically
+     * this will be a subset of the {@link com.smartgwt.client.data.DataSource#getFields fields}, but note  that this is not a
+     * requirement; <code>outputs</code> can include fields that are not defined in the DataSource's field list.  In this case,
+     * the server will return extra fields even if  {@link com.smartgwt.client.data.DataSource#getDropExtraFields
+     * dropExtraFields} is true. <p> You specify this property as a string containing a comma-separated list of field names 
+     * (eg, "foo, bar, baz")
+     *
+     * @param outputs outputs Default value is null
+     */
+    public void setOutputs(String outputs) {
+        setAttribute("outputs", outputs);
+    }
+
+    /**
+     * Specifies, for this operationBinding only, the list of field names that should be returned to the client.  Typically
+     * this will be a subset of the {@link com.smartgwt.client.data.DataSource#getFields fields}, but note  that this is not a
+     * requirement; <code>outputs</code> can include fields that are not defined in the DataSource's field list.  In this case,
+     * the server will return extra fields even if  {@link com.smartgwt.client.data.DataSource#getDropExtraFields
+     * dropExtraFields} is true. <p> You specify this property as a string containing a comma-separated list of field names 
+     * (eg, "foo, bar, baz")
+     *
+     *
+     * @return String
+     */
+    public String getOutputs()  {
+        return getAttributeAsString("outputs");
     }
 
     /**

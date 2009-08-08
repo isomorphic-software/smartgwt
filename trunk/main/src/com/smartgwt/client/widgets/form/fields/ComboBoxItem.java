@@ -471,17 +471,8 @@ public class ComboBoxItem extends FormItem  implements PickList {
     // ********************* Static Methods ***********************
 
 
-
-
-
-
-
-
-
-
-
-
-
+
+
     static {
         init();
     }

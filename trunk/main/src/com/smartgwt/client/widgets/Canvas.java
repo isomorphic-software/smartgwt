@@ -599,54 +599,6 @@ public class Canvas extends BaseWidget  implements com.smartgwt.client.widgets.e
     }
 
     /**
-     * Number of pixels the left side of the widget is offset to the right from its default drawing context (either its
-     * parent's topleft corner, or the document flow, depending on the value of the {@link
-     * com.smartgwt.client.widgets.Canvas#getPosition position} property).
-     * Set the left coordinate of this object, relative to its enclosing context, in pixels.   NOTE: if you're setting multiple coordinates, use setRect(), moveTo() or resizeTo()          instead
-     *
-     * @param left new left coordinate. Default value is 0
-     */
-    public void setLeft(int left) {
-        setAttribute("left", left, true);
-    }
-
-    /**
-     * Number of pixels the left side of the widget is offset to the right from its default drawing context (either its
-     * parent's topleft corner, or the document flow, depending on the value of the {@link
-     * com.smartgwt.client.widgets.Canvas#getPosition position} property).
-     *
-     *
-     * @return Return the left coordinate of this object, relative to its enclosing context, in pixels.
-     */
-    public int getLeft()  {
-        return getAttributeAsInt("left");
-    }
-
-    /**
-     * Number of pixels the top of the widget is offset down from its default drawing context (either its parent's top-left
-     * corner, or the document flow, depending on the value of the {@link com.smartgwt.client.widgets.Canvas#getPosition
-     * position} property).
-     * Set the top coordinate of this object, relative to its enclosing context, in pixels. <P> NOTE: if you're setting multiple coordinates, use setRect() or moveTo() instead
-     *
-     * @param top new top coordinate. Default value is 0
-     */
-    public void setTop(int top) {
-        setAttribute("top", top, true);
-    }
-
-    /**
-     * Number of pixels the top of the widget is offset down from its default drawing context (either its parent's top-left
-     * corner, or the document flow, depending on the value of the {@link com.smartgwt.client.widgets.Canvas#getPosition
-     * position} property).
-     *
-     *
-     * @return Return the top coordinate of this object, relative to its enclosing context, in pixels.
-     */
-    public int getTop()  {
-        return getAttributeAsInt("top");
-    }
-
-    /**
      * For custom components, establishes a default width for the component. <P> For a component that should potentially be
      * sized automatically by a Layout, set this property rather than {@link com.smartgwt.client.widgets.Canvas#getWidth width}
      * directly, because Layouts regard a width setting as an explicit size that shouldn't be changed.
@@ -5246,7 +5198,7 @@ public class Canvas extends BaseWidget  implements com.smartgwt.client.widgets.e
     }
 
     /**
-     * Synonmy for {@link #setPrompt(String)}
+     * Synonym for {@link #setPrompt(String)}
      *
      * @param title the title
      */
@@ -5255,7 +5207,7 @@ public class Canvas extends BaseWidget  implements com.smartgwt.client.widgets.e
     }
 
     /**
-     * Synonmy for {@link #getPrompt()}
+     * Synonym for {@link #getPrompt()}
      *
      * @return the title
      */
@@ -5264,7 +5216,7 @@ public class Canvas extends BaseWidget  implements com.smartgwt.client.widgets.e
     }
 
     /**
-     * Synonmy for {@link #setPrompt(String)}
+     * Synonym for {@link #setPrompt(String)}
      *
      * @param tooltip the tooltip
      */
@@ -5273,7 +5225,7 @@ public class Canvas extends BaseWidget  implements com.smartgwt.client.widgets.e
     }
 
     /**
-     * Synonmy for {@link #getPrompt()}
+     * Synonym for {@link #getPrompt()}
      *
      * @return  the tooltip
      */
@@ -5339,6 +5291,117 @@ public class Canvas extends BaseWidget  implements com.smartgwt.client.widgets.e
         return getAttribute("width");
     }
 
+    /**
+     * Number of pixels the left side of the widget is offset to the right from its default drawing context (either its
+     * parent's topleft corner, or the document flow, depending on the value of the {@link
+     * com.smartgwt.client.widgets.Canvas#getPosition position} property). <P> Can also be set as a percentage, specified as a
+     * String ending in '%', eg, "50%".  In this case the top coordinate is considered as a percentage of the specified width
+     * of the {@link com.smartgwt.client.widgets.Canvas#getParentElement 'parent'}.
+     * Set the left coordinate of this object, relative to its enclosing context, in pixels.   NOTE: if you're setting multiple coordinates, use setRect(), moveTo() or resizeTo()          instead
+     *
+     * @param left new left coordinate. Default value is 0
+     */
+    public void setLeft(int left) {
+        setAttribute("left", left, true);
+    }
+
+    /**
+     * Number of pixels the left side of the widget is offset to the right from its default drawing context (either its
+     * parent's topleft corner, or the document flow, depending on the value of the {@link
+     * com.smartgwt.client.widgets.Canvas#getPosition position} property). <P> Can also be set as a percentage, specified as a
+     * String ending in '%', eg, "50%".  In this case the top coordinate is considered as a percentage of the specified width
+     * of the {@link com.smartgwt.client.widgets.Canvas#getParentElement 'parent'}.
+     *
+     *
+     * @return Return the left coordinate of this object, relative to its enclosing context, in pixels.
+     */
+    public int getLeft()  {
+        return getAttributeAsInt("left");
+    }
+
+    /**
+     * Number of pixels the left side of the widget is offset to the right from its default drawing context (either its
+     * parent's topleft corner, or the document flow, depending on the value of the {@link
+     * com.smartgwt.client.widgets.Canvas#getPosition position} property). <P> Can also be set as a percentage, specified as a
+     * String ending in '%', eg, "50%".  In this case the top coordinate is considered as a percentage of the specified width
+     * of the {@link com.smartgwt.client.widgets.Canvas#getParentElement 'parent'}.
+     * Set the left coordinate of this object, relative to its enclosing context, in pixels.   NOTE: if you're setting multiple coordinates, use setRect(), moveTo() or resizeTo()          instead
+     *
+     * @param left new left coordinate. Default value is 0
+     */
+    public void setLeft(String left) {
+        setAttribute("left", left, true);
+    }
+
+    /**
+     * Number of pixels the left side of the widget is offset to the right from its default drawing context (either its
+     * parent's topleft corner, or the document flow, depending on the value of the {@link
+     * com.smartgwt.client.widgets.Canvas#getPosition position} property). <P> Can also be set as a percentage, specified as a
+     * String ending in '%', eg, "50%".  In this case the top coordinate is considered as a percentage of the specified width
+     * of the {@link com.smartgwt.client.widgets.Canvas#getParentElement 'parent'}.
+     *
+     *
+     * @return Return the left coordinate of this object, relative to its enclosing context, in pixels.
+     */
+    public String getLeftAsString()  {
+        return getAttributeAsString("left");
+    }
+
+    /**
+     * Number of pixels the top of the widget is offset down from its default drawing context (either its parent's top-left
+     * corner, or the document flow, depending on the value of the {@link com.smartgwt.client.widgets.Canvas#getPosition
+     * position} property). <P> Can also be set as a percentage, specified as a String ending in '%', eg, "50%".  In this case
+     * the top coordinate is considered as a percentage of the specified height of the {@link
+     * com.smartgwt.client.widgets.Canvas#getParentElement 'parent'}.
+     * Set the top coordinate of this object, relative to its enclosing context, in pixels. <P> NOTE: if you're setting multiple coordinates, use setRect() or moveTo() instead
+     *
+     * @param top new top coordinate. Default value is 0
+     */
+    public void setTop(int top) {
+        setAttribute("top", top, true);
+    }
+
+    /**
+     * Number of pixels the top of the widget is offset down from its default drawing context (either its parent's top-left
+     * corner, or the document flow, depending on the value of the {@link com.smartgwt.client.widgets.Canvas#getPosition
+     * position} property). <P> Can also be set as a percentage, specified as a String ending in '%', eg, "50%".  In this case
+     * the top coordinate is considered as a percentage of the specified height of the {@link
+     * com.smartgwt.client.widgets.Canvas#getParentElement 'parent'}.
+     *
+     *
+     * @return Return the top coordinate of this object, relative to its enclosing context, in pixels.
+     */
+    public int getTop()  {
+        return getAttributeAsInt("top");
+    }
+
+    /**
+     * Number of pixels the top of the widget is offset down from its default drawing context (either its parent's top-left
+     * corner, or the document flow, depending on the value of the {@link com.smartgwt.client.widgets.Canvas#getPosition
+     * position} property). <P> Can also be set as a percentage, specified as a String ending in '%', eg, "50%".  In this case
+     * the top coordinate is considered as a percentage of the specified height of the {@link
+     * com.smartgwt.client.widgets.Canvas#getParentElement 'parent'}.
+     * Set the top coordinate of this object, relative to its enclosing context, in pixels. <P> NOTE: if you're setting multiple coordinates, use setRect() or moveTo() instead
+     *
+     * @param top new top coordinate. Default value is 0
+     */
+    public void setTop(String top) {
+        setAttribute("top", top, true);
+    }
+
+    /**
+     * Number of pixels the top of the widget is offset down from its default drawing context (either its parent's top-left
+     * corner, or the document flow, depending on the value of the {@link com.smartgwt.client.widgets.Canvas#getPosition
+     * position} property). <P> Can also be set as a percentage, specified as a String ending in '%', eg, "50%".  In this case
+     * the top coordinate is considered as a percentage of the specified height of the {@link
+     * com.smartgwt.client.widgets.Canvas#getParentElement 'parent'}.
+     *
+     *
+     * @return Return the top coordinate of this object, relative to its enclosing context, in pixels.
+     */
+    public String getTopAsString()  {
+        return getAttributeAsString("top");
+    }
 
     public void setAlign(Alignment align) {
         setAttribute("align", align.getValue(), true);

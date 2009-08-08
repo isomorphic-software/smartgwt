@@ -1582,7 +1582,7 @@ public class ListGridField extends DataClass  implements com.smartgwt.client.wid
     public Boolean getAutoFetchDisplayMap()  {
         return getAttributeAsBoolean("autoFetchDisplayMap");
     }
-
+             
     /**
      * For fields with an {@link com.smartgwt.client.widgets.grid.ListGridField#getOptionDataSource optionDataSource}, where
      * ${isc.DocUtils.linkForRef('listGTridField.autoFetchDisplayMap')} is true, this property will govern the
@@ -1592,8 +1592,8 @@ public class ListGridField extends DataClass  implements com.smartgwt.client.wid
      *
      * @param optionTextMatchStyle optionTextMatchStyle Default value is null
      */
-    public void setOptionTextMatchStyle(String optionTextMatchStyle) {
-        setAttribute("optionTextMatchStyle", optionTextMatchStyle);
+    public void setOptionTextMatchStyle(TextMatchStyle optionTextMatchStyle) {
+        setAttribute("optionTextMatchStyle", optionTextMatchStyle.getValue());
     }
 
     /**
@@ -1604,10 +1604,10 @@ public class ListGridField extends DataClass  implements com.smartgwt.client.wid
      * field's valueMap.
      *
      *
-     * @return String
+     * @return TextMatchStyle
      */
-    public String getOptionTextMatchStyle()  {
-        return getAttributeAsString("optionTextMatchStyle");
+    public TextMatchStyle getOptionTextMatchStyle()  {
+        return (TextMatchStyle) EnumUtil.getEnum(TextMatchStyle.values(), getAttribute("optionTextMatchStyle"));
     }
 
     /**
