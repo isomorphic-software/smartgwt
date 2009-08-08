@@ -105,7 +105,7 @@ public abstract class BaseClass {
 		self.destroy();
 	}-*/;	
 
-    private void error(String attribute, String value, boolean allowPostCreate) throws IllegalStateException {
+    protected void error(String attribute, String value, boolean allowPostCreate) throws IllegalStateException {
         if (allowPostCreate) {
             error("Cannot change configuration property '" + attribute + "' to " + value + " after the component has been rendered.");
         } else {
@@ -191,49 +191,49 @@ public abstract class BaseClass {
         }
     }
     
-    private native String getPropertyAsString(String property)/*-{
+    protected native String getPropertyAsString(String property)/*-{
         var widget = this.@com.smartgwt.client.core.BaseClass::getJsObj()();
         var ret = widget.getProperty(property);
         return ret === undefined ? null : ret;
     }-*/;
 
-    private native Date getPropertyAsDate(String property)/*-{
+    protected native Date getPropertyAsDate(String property)/*-{
         var widget = this.@com.smartgwt.client.core.BaseClass::getJsObj()();
         var ret = widget.getProperty(property);
         return ret == null || ret === undefined ? null : @com.smartgwt.client.util.JSOHelper::toDate(D)(ret.getTime());
     }-*/;
 
-    private native Integer getPropertyAsInt(String property)/*-{
+    protected native Integer getPropertyAsInt(String property)/*-{
         var widget = this.@com.smartgwt.client.core.BaseClass::getJsObj()();
         var ret = widget.getProperty(property);
         return ret == null || ret === undefined ? null : @com.smartgwt.client.util.JSOHelper::toInteger(I)(ret);
     }-*/;
 
-    private native Double getPropertyAsDouble(String property)/*-{
+    protected native Double getPropertyAsDouble(String property)/*-{
         var widget = this.@com.smartgwt.client.core.BaseClass::getJsObj()();
         var ret = widget.getProperty(property);
         return ret == null || ret === undefined ? null : @com.smartgwt.client.util.JSOHelper::toDouble(D)(ret);
     }-*/;
 
-    private native Element getPropertyAsElement(String property)/*-{
+    protected native Element getPropertyAsElement(String property)/*-{
         var widget = this.@com.smartgwt.client.core.BaseClass::getJsObj()();
         var ret = widget.getProperty(property);
         return ret === undefined ? null : ret;
     }-*/;
 
-    private native JavaScriptObject getPropertyAsJSO(String property)/*-{
+    protected native JavaScriptObject getPropertyAsJSO(String property)/*-{
         var widget = this.@com.smartgwt.client.core.BaseClass::getJsObj()();
         var ret = widget.getProperty(property);
         return ret === undefined ? null : ret;
     }-*/;
 
-    private native Float getPropertyAsFloat(String property)/*-{
+    protected native Float getPropertyAsFloat(String property)/*-{
         var widget = this.@com.smartgwt.client.core.BaseClass::getJsObj()();
         var ret = widget.getProperty(property);
         return ret == null || ret === undefined ? null : @com.smartgwt.client.util.JSOHelper::toFloat(F)(ret);
     }-*/;
 
-    private native Boolean getPropertyAsBoolean(String property)/*-{
+    protected native Boolean getPropertyAsBoolean(String property)/*-{
         var widget = this.@com.smartgwt.client.core.BaseClass::getJsObj()();
         var ret = widget.getProperty(property);
         return ret == null || ret === undefined ? null : @com.smartgwt.client.util.JSOHelper::toBoolean(Z)(ret);
