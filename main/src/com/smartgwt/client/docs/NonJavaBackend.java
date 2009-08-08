@@ -3,7 +3,7 @@ package com.smartgwt.client.docs;
 
 /**
  * SmartGWT is fully functional without installation of the Java server included in the SDK,&#010 and can be integrated
- * with any server technology.  This topic providing pointers to&#010 documentation that is most relevant for this type of
+ * with any server technology.  This topic provides pointers to&#010 documentation that is most relevant for this type of
  * integration.&#010 <P>&#010 <h4>Installation</h4>&#010 <P>&#010 As described in {@link
  * com.smartgwt.client.docs.IscInstall '<i>Deploying SmartGWT</i>'}, for a client-only&#010 integration, installation
  * consists of just copying a directory of JavaScript and media files&#010 to your webserver.&#010 <P>&#010 <h4>Creating

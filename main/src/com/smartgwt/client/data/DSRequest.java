@@ -188,7 +188,7 @@ public class DSRequest extends RPCRequest {
     public String getSortBy()  {
         return getAttributeAsString("sortBy");
     }
-
+             
     /**
      * For "fetch" operations, how search criteria should be interpreted for text fields: either "exact" for exact match,
      * "startsWith" for matching at the beginning only, or "substring" for case-insensitive substring match. <p> This setting
@@ -197,8 +197,8 @@ public class DSRequest extends RPCRequest {
      *
      * @param textMatchStyle textMatchStyle Default value is "exact"
      */
-    public void setTextMatchStyle(String textMatchStyle) {
-        setAttribute("textMatchStyle", textMatchStyle);
+    public void setTextMatchStyle(TextMatchStyle textMatchStyle) {
+        setAttribute("textMatchStyle", textMatchStyle.getValue());
     }
 
     /**
@@ -553,6 +553,18 @@ public class DSRequest extends RPCRequest {
      */
     public Map getHeaderData() {
         return getAttributeAsMap("headerData");
+    }
+
+    /**
+     * For advanced use in integrating dataset paging with web services, the ResultSet that issued this "fetch" DSRequest
+     * is automatically made available as the resultSet property.
+     * <p>
+     * This property can only be read. There is no meaning to setting this property yourself.
+     *
+     * @return the ResultSet
+     */
+    public ResultSet getResultSet() {
+        return ResultSet.getOrCreateRef(getAttributeAsJavaScriptObject("resultSet"));
     }
 
     /**

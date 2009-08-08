@@ -60,7 +60,7 @@ package com.smartgwt.client.docs;
  * &lt;link&gt;url of article&lt;/link&gt; &#010         &lt;description&gt;&#010            article description&#010      
  * &lt;/description&gt; &#010       &lt;/item&gt;&#010       &lt;item&gt;&#010          ...&#010 </pre>&#010 Here, the
  * recordXPath selects a list of &lt;item&gt; elements.  Since the intended values&#010 for each DataSource field appear as
- * a simple subelements of each &lt;item&gt; element (eg&#010 &lt;description&gt;), the field name is sufficient to select
+ * simple subelements of each &lt;item&gt; element (eg&#010 &lt;description&gt;), the field name is sufficient to select
  * the correct values, and no&#010 explicit valueXPath needs to be specified.&#010 <P>&#010 A running version of this
  * example is available here: ${isc.DocUtils.linkForExampleId('rssFeed')}.  Further&#010 examples of simple XML or JSON
  * data loading using files stored on disk as the&#010 "service" to contact: the

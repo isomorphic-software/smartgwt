@@ -5,7 +5,7 @@ package com.smartgwt.client.docs;
  * @see com.smartgwt.client.data.ResultSet#sortByProperty
  * @see com.smartgwt.client..Array#sortByProperty
  * @see com.smartgwt.client..Array#unsort
- * @see com.smartgwt.client..List#sortByProperty
+ * @see com.smartgwt.client.data.List#sortByProperty
  * @see com.smartgwt.client.widgets.grid.ListGridField#sortNormalizer
  * @see com.smartgwt.client.widgets.grid.ListGrid#headerClick
  * @see com.smartgwt.client.widgets.grid.ListGrid#unsort

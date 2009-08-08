@@ -180,6 +180,26 @@ public class EventHandler {
         }
     }-*/;
 
+    /**
+     * Returns the numeric characterValue reported by the browser.          Only available on keyPress events, and only for
+     * character (or ascii control) keys
+     *
+     * @return Numeric character value reported by the browser                   (ASCII value of the key pressed)
+     */
+    public static native int getKeyEventCharacterValue() /*-{
+        return $wnd.isc.EventHandler.getKeyEventCharacterValue();
+    }-*/;
+
+    /**
+     * Return the character for the current key being pressed.   Note that this is only set reliably for keyPress events on
+     * character keys.
+     *
+     * @return Character the user entered. May be null for non-character keys.
+     */
+    public static native String getKeyEventCharacter() /*-{
+        return $wnd.isc.EventHandler.getKeyEventCharacter();
+    }-*/;
+
 
     /**
      * Return true if the shift key is being held down.   Note that this is only set reliably for keyboard events.

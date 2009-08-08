@@ -131,6 +131,7 @@ public class Dialog extends Window {
 
     // ********************* Methods ***********************
 
+
     /**
      * Method to save this Dialog's data. Called from <code>okClick()</code>,  <code>applyClick()</code>. No default
      * implementation - override to perform some action if required.
@@ -197,38 +198,6 @@ public class Dialog extends Window {
 
     // ********************* Static Methods ***********************
 
-/*
- * SmartGWT (GWT for SmartGWT)
- * Copyright 2008 and beyond, Isomorphic Software, Inc.
- *
- * SmartGWT is free software; you can redistribute it and/or modify it
- * under the terms of the GNU Lesser General Public License version 3
- * as published by the Free Software Foundation.  SmartGWT is also
- * available under typical commercial license terms - see
- * http://smartclient.com/license
- *
- * This software is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU
- * Lesser General Public License for more details.
- */
-/*
-* SmartGWT (GWT for SmartClient)
-* Copyright 2008 and beyond, Isomorphic Software, Inc.
-*
-* SmartGWT is free software; you can redistribute it and/or modify it
-* under the terms of the GNU Lesser General Public License version 3
-* as published by the Free Software Foundation.  SmartGWT is also
-* available under typical commercial license terms - see
-* http://smartclient.com/license
-*
-* This software is distributed in the hope that it will be useful,
-* but WITHOUT ANY WARRANTY; without even the implied warranty of
-* MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU
-* Lesser General Public License for more details.
-*/
-
-
     /**
      * Array of Buttons to show in the {@link com.smartgwt.client.widgets.Dialog#getShowToolbar showToolbar}, if shown.
      * <P> The set of buttons to use is typically set by calling one of the shortcuts.

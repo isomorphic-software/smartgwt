@@ -137,8 +137,9 @@ public class DateItem extends FormItem {
     /**
      * Can this field be set to a non-date value [other than null]?&#010 <P>&#010 When set to true, {@link
      * com.smartgwt.client.widgets.form.fields.FormItem#setValue} will return false without setting the item value&#010 and log
-     * a warning if passed something other than a valid date value.&#010 If a user enters a text value which cannot be parsed
-     * into a valid date, the item will&#010 automatically redraw and display the {@link
+     * a warning if passed something other than a valid date value.&#010 If the dateItem is showing a {@link
+     * com.smartgwt.client.widgets.form.fields.DateItem#getUseTextField 'free-form text entry field'},&#010 and a user enters a
+     * text value which cannot be parsed into a valid date, the item will&#010 automatically redraw and display the {@link
      * com.smartgwt.client.widgets.form.fields.DateItem#getInvalidDateStringMessage invalidDateStringMessage} (though at
      * this&#010 point calling {@link com.smartgwt.client.widgets.form.fields.FormItem#getValue} will return the string entered
      * by the user).&#010 <P>&#010 When set to false, a user may enter value that is not a valid date (for example, "Not&#010
@@ -160,8 +161,9 @@ public class DateItem extends FormItem {
     /**
      * Can this field be set to a non-date value [other than null]?&#010 <P>&#010 When set to true, {@link
      * com.smartgwt.client.widgets.form.fields.FormItem#setValue} will return false without setting the item value&#010 and log
-     * a warning if passed something other than a valid date value.&#010 If a user enters a text value which cannot be parsed
-     * into a valid date, the item will&#010 automatically redraw and display the {@link
+     * a warning if passed something other than a valid date value.&#010 If the dateItem is showing a {@link
+     * com.smartgwt.client.widgets.form.fields.DateItem#getUseTextField 'free-form text entry field'},&#010 and a user enters a
+     * text value which cannot be parsed into a valid date, the item will&#010 automatically redraw and display the {@link
      * com.smartgwt.client.widgets.form.fields.DateItem#getInvalidDateStringMessage invalidDateStringMessage} (though at
      * this&#010 point calling {@link com.smartgwt.client.widgets.form.fields.FormItem#getValue} will return the string entered
      * by the user).&#010 <P>&#010 When set to false, a user may enter value that is not a valid date (for example, "Not&#010
@@ -364,7 +366,13 @@ public class DateItem extends FormItem {
     /**
      * If showing date selectors rather than the date text field (so when  <code>this.useTextField</code> is false), this
      * property allows customization of the  order of the day, month and year selector fields. If unset these fields will match
-     * the specified inputFormat for this item.
+     * the specified inputFormat for this item. <P> Note: selectors may be ommitted entirely by setting selectorFormat to (for
+     * example)  <code>"MD"</code>. In this case the value of the Date value returned by <code>getValue()</code> will of course
+     * include a value for the ommitted selector - in this example the year. This value may be specified programmatically via a
+     * <code>defaltValue</code> specification or an initial setValue() call, or may be modified by the user via the standard
+     * date selector. how to handle (EG) Feb 30th Do we do weirdness changing years if the user selects Jan or something after
+     * Dec? currently date selector doesn't actually update the val...(assuming we don't want to disable it) Note also that
+     * some
      *
      * @param selectorFormat selectorFormat Default value is null
      */
@@ -375,7 +383,13 @@ public class DateItem extends FormItem {
     /**
      * If showing date selectors rather than the date text field (so when  <code>this.useTextField</code> is false), this
      * property allows customization of the  order of the day, month and year selector fields. If unset these fields will match
-     * the specified inputFormat for this item.
+     * the specified inputFormat for this item. <P> Note: selectors may be ommitted entirely by setting selectorFormat to (for
+     * example)  <code>"MD"</code>. In this case the value of the Date value returned by <code>getValue()</code> will of course
+     * include a value for the ommitted selector - in this example the year. This value may be specified programmatically via a
+     * <code>defaltValue</code> specification or an initial setValue() call, or may be modified by the user via the standard
+     * date selector. how to handle (EG) Feb 30th Do we do weirdness changing years if the user selects Jan or something after
+     * Dec? currently date selector doesn't actually update the val...(assuming we don't want to disable it) Note also that
+     * some
      *
      *
      * @return String

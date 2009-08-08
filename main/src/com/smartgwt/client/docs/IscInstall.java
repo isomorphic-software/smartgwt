@@ -31,7 +31,7 @@ package com.smartgwt.client.docs;
  * you're using an IDE such as Eclipse that attempts to manage the WEB-INF/classes folder, we recommend that you copy these
  * files to the src/ directory of your project (next to the top-level folder for your java namespace) such that your IDE
  * auto-deploys them to the WEB-INF/classes folder.  We have seen cases of tools like Eclipse periodically deleting files
- * that are checked into to WEB-INF/classes directly. <p> <ul> <li> Copy all files from WEB-INF/lib directory of the
+ * that are checked into to WEB-INF/classes directly. <p> <ul> <li> Copy all files from the WEB-INF/lib directory of the
  * smartclientRuntime to your WEB-INF/lib.  SmartGWT leverages a number of third-party libraries - if there are conflicts
  * with the versions you want to use, use the versions you want - SmartGWT has minimal dependencies on these libraries. 
  * Contact Isomorphic with any specific questions about compatibility. See the "Java Module Dependencies" section below for
@@ -44,28 +44,28 @@ package com.smartgwt.client.docs;
  * WEB-INF/iscTaglib.xml from the smartclientRuntime to your WEB-INF directory. This file enables the use of custom
  * SmartGWT tags in your JSPs.   <li> Merge portions of the WEB-INF/web.xml into your application's web.xml.  To use
  * SmartGWT JSP tags like &lt;loadISC&gt;, you'll need to merge the &lt;jsp-config&gt; section from web.xml.  Also there
- * are some mandatory and optional servlets and filters to merge - see below. <li> <b>Enterprise only</b>.  Copy the
- * shared/ds/batchUpload.ds.xml file to the same location  in your target webapp directory.  This file is a utility
- * DataSource that is used to provide  the initial upload functionality of the {@link com.smartgwt.client..BatchUploader}
- * component - strictly speaking,  you only need to perform this step if you intend to use that component.  </ul>
- * <u>Merging web.xml</u> <p> The following is a description of the servlets and filters you'll find in the web.xml file
- * contained in the smartclientRuntime and what they do: <p> <i>Core Functionality</i> <ul> <li>Init servlet-
- * <b>required:</b> initializes the SmartGWT server componentry from config files at container startup time.  Notice that
- * this servlet has no mapping - it's purely an initialization servlet. <li>IDACall servlet - <b>required</b> for {@link
- * com.smartgwt.client..DMI}, built-in RPC operations and built-in DataSource operations to work.  All databound examples
- * in the SDK use this servlet.  If you're planning on using a custom actionURL for all your RPC requests, then you don't
- * need this servlet. <li>FileDownload servlet - required for serving the Isomorphic framework code compressed and with
- * caching headers as well as for serving skin images with caching headers.  It is highly recommended that you use this for
- * production but is not required.  <li>PreCache servlet - loads resources into memory on container startup.  Not required,
- * but if you exclude this servlet there may be a slow response to the very first request. <li>jsp-config section - the
- * iscTaglib registration block is required to use &lt;isomorphic&gt; tags, and the *.isc and *.rpc mappings.  These are
- * optional, if you want to use these as handy development tools. </ul> <p> <i>Optional Functionality</i> <ul>
- * <li>HttpProxy - used by the RPCManager when sending AJAX RPCs to a server other than the server that serves the main
- * application page.  You need to install this servlet if, for example, your application will be querying web services
- * exposed by servers other than the server that is serving the rest of the application.  See the javadoc for this servlet
- * for various configuration options, such as how to restrict the URLs that are allowed to be proxied. 
- * <li>MessagingServlet - used by the realtime messaging system.  If you're planning on using this subsystem, you'll need
- * this servlet. <li>CompressionFilter - required if you want to use dynamic compression of html and js files.
+ * are some mandatory and optional servlets and filters to merge - see below. <li> <b>Power and Enterprise Editions
+ * only</b>.  Copy the shared/ds/batchUpload.ds.xml file to the same location in your target webapp directory.  This file
+ * is a utility DataSource that is used to provide the initial upload functionality of the {@link
+ * com.smartgwt.client..BatchUploader}  component - strictly speaking, you only need to perform this step if you intend to
+ * use that  component.  </ul> <u>Merging web.xml</u> <p> The following is a description of the servlets and filters you'll
+ * find in the web.xml file contained in the smartclientRuntime and what they do: <p> <i>Core Functionality</i> <ul>
+ * <li>Init servlet- <b>required:</b> initializes the SmartGWT server componentry from config files at container startup
+ * time.  Notice that this servlet has no mapping - it's purely an initialization servlet. <li>IDACall servlet -
+ * <b>required</b> for {@link com.smartgwt.client..DMI}, built-in RPC operations and built-in DataSource operations to
+ * work.  All databound examples in the SDK use this servlet.  If you're planning on using a custom actionURL for all your
+ * RPC requests, then you don't need this servlet. <li>FileDownload servlet - required for serving the Isomorphic framework
+ * code compressed and with caching headers as well as for serving skin images with caching headers.  It is highly
+ * recommended that you use this for production but is not required.  <li>PreCache servlet - loads resources into memory on
+ * container startup.  Not required, but if you exclude this servlet there may be a slow response to the very first
+ * request. <li>jsp-config section - the iscTaglib registration block is required to use &lt;isomorphic&gt; tags, and the
+ * *.isc and *.rpc mappings.  These are optional, if you want to use these as handy development tools. </ul> <p>
+ * <i>Optional Functionality</i> <ul> <li>HttpProxy - used by the RPCManager when sending AJAX RPCs to a server other than
+ * the server that serves the main application page.  You need to install this servlet if, for example, your application
+ * will be querying web services exposed by servers other than the server that is serving the rest of the application.  See
+ * the javadoc for this servlet for various configuration options, such as how to restrict the URLs that are allowed to be
+ * proxied.  <li>MessagingServlet - used by the realtime messaging system.  If you're planning on using this subsystem,
+ * you'll need this servlet. <li>CompressionFilter - required if you want to use dynamic compression of html and js files.
  * <li>JSSyntaxScannerFilter - development tool that looks for trailing commas in JS source (scans html files for
  * &lt;script&gt; tags and scans .js files in their entirety). This is a useful development tool, but should not be
  * included in production. <li>NoCacheFilter - development tool that makes any content it intercepts non-cacheable in order
@@ -79,7 +79,7 @@ package com.smartgwt.client.docs;
  * WEB-INF directory of smartclientSDK.  Other servlets, filters and configuration files from the smartclientSDK should not
  * be copied to your deployment, simply because the SDK includes many developer tools that are not extensively audited from
  * a security standpoint. <p> <u><b>Troubleshooting</b></u> <p> This section covers some common problems with possible
- * solutions. You may also need to refer to the documentation for your specific application server, web server,  or
+ * solutions. You may also need to refer to the documentation for your specific application server, web server, or
  * database. If you experience any problems installing and configuring SmartGWT in your environment, please post on the  <a
  * href="http://forums.smartclient.com/" target='_blank'>SmartGWT forums</a> for assistance. <p> <table width="90%"
  * class="normal" align="center" border="1" cellpadding="5"> <tr bgcolor="#808080">  <td width="30%"><b>Problem</b></td> 
@@ -97,11 +97,11 @@ package com.smartgwt.client.docs;
  * <td>Missing JAR files</td>  <td>Verify every .jar from the smartclientRuntime WEB-INF/lib directory has been copied to 
  * your deployment WEB-INF/lib.  Although you might later be able to remove some .jars, for  initial installation testing,
  * copy every .jar</td> </tr><tr>  <td>"isc" is not defined JS error</td>  <td>Incorreect URLs to SmartGWT modules</td> 
- * <td>use View Source to look at SCRIPT includes (e.g. for ISC_Core.js), try those URLs  directly in the browser to 
- * verify the files are correctly deployed</td> </tr> </table> <P> <u><b>Java Module Dependencies</b></u> <p> The following
- * is a description of what functionality is contained in each SmartGWT JAR file, and which other SmartGWT JARs and third
- * party libraries are required to enable that functionality.  Note that actual filenames in WEB-INF/lib will typically
- * contain the version number of the library, whereas the library names below simply list the base name. <ul>
+ * <td>Use View Source to look at SCRIPT includes (e.g. for ISC_Core.js), try those URLs  directly in the browser to verify
+ * the files are correctly deployed</td> </tr> </table> <P> <u><b>Java Module Dependencies</b></u> <p> The following is a
+ * description of what functionality is contained in each SmartGWT JAR file, and which other SmartGWT JARs and third party
+ * libraries are required to enable that functionality.  Note that actual filenames in WEB-INF/lib will typically contain
+ * the version number of the library, whereas the library names below simply list the base name. <ul>
  * <li><b>isomorphic_core_rpc</b>: This is the core SmartGWT module.  It provides the RPC, DMI, and DataSource support.<br>
  * &nbsp;&nbsp;<u>Requires</u>:<br> &nbsp;&nbsp;&nbsp;&nbsp;commons-cli<br> &nbsp;&nbsp;&nbsp;&nbsp;commons-lang<br>
  * &nbsp;&nbsp;&nbsp;&nbsp;commons-collections<br> &nbsp;&nbsp;&nbsp;&nbsp;commons-pool<br>
@@ -131,7 +131,7 @@ package com.smartgwt.client.docs;
  * need this module or its dependencies.  An example of this style of validation is available here: <a
  * href='/examples/struts/forms/welcome.do' onclick="window.open('/examples/struts/forms/welcome.do');return
  * false;">/examples/struts/forms/welcome.do</a> - read the info on this page, and follow the "Dynamic Form (With RPC-based
- * Validation) Link for the actual example.<br> &nbsp;&nbsp;<u>Requires</u>:<br>
+ * Validation)" Link for the actual example.<br> &nbsp;&nbsp;<u>Requires</u>:<br>
  * &nbsp;&nbsp;&nbsp;&nbsp;isomorphic_core_rpc<br> &nbsp;&nbsp;&nbsp;&nbsp;struts<br>
  * &nbsp;&nbsp;&nbsp;&nbsp;commons-digester<br> &nbsp;&nbsp;&nbsp;&nbsp;commons-beanutils<br>
  * &nbsp;&nbsp;&nbsp;&nbsp;commons-fileupload<br> &nbsp;&nbsp;&nbsp;&nbsp;commons-logging<br>
@@ -176,7 +176,7 @@ package com.smartgwt.client.docs;
  * is part of the Network Performance Module.  The isomorphic_obfuscation module is required to enable obfuscation of code
  * assembled by the File Assembly system.  For more information, see:  {@link com.smartgwt.client.docs.Compression}.<br>
  * &nbsp;&nbsp;<u>Requires</u>:<br> &nbsp;&nbsp;&nbsp;&nbsp;isomorphic_core_rpc<br>  </li> </ul> <p> <u><b>Caching
- * Considerations</b></u> <p> When upgrading from one SmartGWT release to the next you want to make sure that the user
+ * Considerations</b></u> <p> When upgrading from one SmartGWT release to the next, you want to make sure that the user
  * picks up the new version on next access, but you also want to keep the ISC modules cacheable so they're not refetched on
  * every access. <p> SmartGWT deals with this problem by appending a version string as a query parameter to each module
  * load directive.  This is done by the &lt;isomorphic:loadISC&gt; and &lt;isomorphic:loadModules&gt; tags automatically. 

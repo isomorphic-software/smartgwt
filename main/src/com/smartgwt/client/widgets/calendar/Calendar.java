@@ -976,7 +976,7 @@ public class Calendar extends Canvas  implements DataBoundComponent, com.smartgw
     public Boolean getEventOverlapIdenticalStartTimes()  {
         return getAttributeAsBoolean("eventOverlapIdenticalStartTimes");
     }
-
+             
     /**
      * If {@link com.smartgwt.client.widgets.calendar.Calendar#getAutoFetchData autoFetchData} is <code>true</code>, this
      * attribute allows the developer to specify a textMatchStyle for the initial {@link
@@ -985,8 +985,8 @@ public class Calendar extends Canvas  implements DataBoundComponent, com.smartgw
      * @param autoFetchTextMatchStyle autoFetchTextMatchStyle Default value is null
      * @throws IllegalStateException this property cannot be changed after the component has been created
      */
-    public void setAutoFetchTextMatchStyle(Boolean autoFetchTextMatchStyle)  throws IllegalStateException {
-        setAttribute("autoFetchTextMatchStyle", autoFetchTextMatchStyle, false);
+    public void setAutoFetchTextMatchStyle(TextMatchStyle autoFetchTextMatchStyle)  throws IllegalStateException {
+        setAttribute("autoFetchTextMatchStyle", autoFetchTextMatchStyle.getValue(), false);
     }
 
     /**
@@ -995,10 +995,10 @@ public class Calendar extends Canvas  implements DataBoundComponent, com.smartgw
      * com.smartgwt.client.widgets.calendar.Calendar#fetchData} call.
      *
      *
-     * @return Boolean
+     * @return TextMatchStyle
      */
-    public Boolean getAutoFetchTextMatchStyle()  {
-        return getAttributeAsBoolean("autoFetchTextMatchStyle");
+    public TextMatchStyle getAutoFetchTextMatchStyle()  {
+        return (TextMatchStyle) EnumUtil.getEnum(TextMatchStyle.values(), getAttribute("autoFetchTextMatchStyle"));
     }
  
 

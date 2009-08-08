@@ -130,7 +130,7 @@ public class DataSourceField extends DataClass {
     /**
      * Type of this field.  Required for all DataSource fields. <P> Field type may imply automatic validators (for example, an
      * integer field cannot accept the value "foo").  Field type also affects the default behaviors of DataBound components,
-     * for example, if a field is declared of type "date", components that edit that field will automatically choose a
+     * for example, if a field is declared as type "date", components that edit that field will automatically choose a
      * date-editing interface with pop-up date picker.
      *
      * @param type type Default value is null
@@ -142,7 +142,7 @@ public class DataSourceField extends DataClass {
     /**
      * Type of this field.  Required for all DataSource fields. <P> Field type may imply automatic validators (for example, an
      * integer field cannot accept the value "foo").  Field type also affects the default behaviors of DataBound components,
-     * for example, if a field is declared of type "date", components that edit that field will automatically choose a
+     * for example, if a field is declared as type "date", components that edit that field will automatically choose a
      * date-editing interface with pop-up date picker.
      *
      *
@@ -212,8 +212,8 @@ public class DataSourceField extends DataClass {
      * DataSource DMI), the valueXPath you specify on the DataSource&#010 fields will be applied to the data you return via the
      * &#010 <a href='http://jakarta.apache.org/commons/jxpath/'
      * onclick="window.open('http://jakarta.apache.org/commons/jxpath/');return false;">JXPath</a> library.&#010 <P>&#010 If
-     * you are returning Java Beans as your DSResponse data, normally each dataSource field&#010 receives the value of the same
-     * named Java Bean property, that is, a field "zipCode" is&#010 populated by looking for "getZipCode()" on the objects
+     * you are returning Java Beans as your DSResponse data, normally each dataSource field&#010 receives the value of the
+     * same-named Java Bean property, that is, a field "zipCode" is&#010 populated by looking for "getZipCode()" on the objects
      * passed as DSResponse data.  You can&#010 use <code>valueXPath</code> to retrieve properties from subobjects, so long as
      * a chain of&#010 getter methods exists that corresponds to the valueXPath.  For example, a valueXPath of&#010
      * "address/zipCode" expects to call "getAddress()" on the bean(s) passed to&#010 DSResponse.setData(), followed by
@@ -254,8 +254,8 @@ public class DataSourceField extends DataClass {
      * DataSource DMI), the valueXPath you specify on the DataSource&#010 fields will be applied to the data you return via the
      * &#010 <a href='http://jakarta.apache.org/commons/jxpath/'
      * onclick="window.open('http://jakarta.apache.org/commons/jxpath/');return false;">JXPath</a> library.&#010 <P>&#010 If
-     * you are returning Java Beans as your DSResponse data, normally each dataSource field&#010 receives the value of the same
-     * named Java Bean property, that is, a field "zipCode" is&#010 populated by looking for "getZipCode()" on the objects
+     * you are returning Java Beans as your DSResponse data, normally each dataSource field&#010 receives the value of the
+     * same-named Java Bean property, that is, a field "zipCode" is&#010 populated by looking for "getZipCode()" on the objects
      * passed as DSResponse data.  You can&#010 use <code>valueXPath</code> to retrieve properties from subobjects, so long as
      * a chain of&#010 getter methods exists that corresponds to the valueXPath.  For example, a valueXPath of&#010
      * "address/zipCode" expects to call "getAddress()" on the bean(s) passed to&#010 DSResponse.setData(), followed by
@@ -278,7 +278,7 @@ public class DataSourceField extends DataClass {
     }
 
     /**
-     * Default user-visible title for this field. <p> This will be picked up by DataBound components and other views onto this
+     * Default user-visible title for this field. <p> This will be picked up by DataBound components and other views over this
      * DataSource.
      *
      * @param title title Default value is null
@@ -288,7 +288,7 @@ public class DataSourceField extends DataClass {
     }
 
     /**
-     * Default user-visible title for this field. <p> This will be picked up by DataBound components and other views onto this
+     * Default user-visible title for this field. <p> This will be picked up by DataBound components and other views over this
      * DataSource.
      *
      *
@@ -373,7 +373,7 @@ public class DataSourceField extends DataClass {
 
     /**
      * Whether this field should be hidden from users by default within a DataBound component. This is generally used for
-     * internal ids and other values not meaningful to users. <P> See {@link com.smartgwt.client.data.DataSourceField#getDetail
+     * internal IDs and other fields not meaningful to users. <P> See {@link com.smartgwt.client.data.DataSourceField#getDetail
      * detail} for fields that should be hidden in a summary view such as a {@link com.smartgwt.client.widgets.grid.ListGrid},
      * but still available to the user.
      *
@@ -385,7 +385,7 @@ public class DataSourceField extends DataClass {
 
     /**
      * Whether this field should be hidden from users by default within a DataBound component. This is generally used for
-     * internal ids and other values not meaningful to users. <P> See {@link com.smartgwt.client.data.DataSourceField#getDetail
+     * internal IDs and other fields not meaningful to users. <P> See {@link com.smartgwt.client.data.DataSourceField#getDetail
      * detail} for fields that should be hidden in a summary view such as a {@link com.smartgwt.client.widgets.grid.ListGrid},
      * but still available to the user.
      *
@@ -416,8 +416,8 @@ public class DataSourceField extends DataClass {
     }
 
     /**
-     * Whether this field should be considered a "detail" by a {@link com.smartgwt.client.widgets.DataBoundComponent}. <P>
-     * Detail fields won't be shown by default in a DataBoundComponent where  {@link
+     * Whether this field should be considered a "detail" field by a {@link com.smartgwt.client.widgets.DataBoundComponent}.
+     * <P> Detail fields won't be shown by default in a DataBoundComponent where  {@link
      * com.smartgwt.client.widgets.DataBoundComponent#getShowDetailFields showDetailFields} is false.  This allows for some
      * DataBound components, like a {@link com.smartgwt.client.widgets.grid.ListGrid}, to show a summary view of records which
      * displays only  the most commonly viewed fields by default, while other DataBoundComponents, like a {@link
@@ -433,8 +433,8 @@ public class DataSourceField extends DataClass {
     }
 
     /**
-     * Whether this field should be considered a "detail" by a {@link com.smartgwt.client.widgets.DataBoundComponent}. <P>
-     * Detail fields won't be shown by default in a DataBoundComponent where  {@link
+     * Whether this field should be considered a "detail" field by a {@link com.smartgwt.client.widgets.DataBoundComponent}.
+     * <P> Detail fields won't be shown by default in a DataBoundComponent where  {@link
      * com.smartgwt.client.widgets.DataBoundComponent#getShowDetailFields showDetailFields} is false.  This allows for some
      * DataBound components, like a {@link com.smartgwt.client.widgets.grid.ListGrid}, to show a summary view of records which
      * displays only  the most commonly viewed fields by default, while other DataBoundComponents, like a {@link
@@ -470,7 +470,7 @@ public class DataSourceField extends DataClass {
      * character in either the firstName or lastName&#010 field.  Updates to records from this DataSource will then be sent
      * with name_key as the&#010 primary key value, and the server can split the value to obtain the separate key values.&#010
      * <P>&#010 If using ISC's {@link com.smartgwt.client.docs.SqlDataSource 'SQL engine'} and generating SQL tables using
-     * the&#010 "DataBases" tab of the Developer Console, the table column generated from a primaryKey field&#010 will have a
+     * the&#010 "Databases" tab of the Developer Console, the table column generated from a primaryKey field&#010 will have a
      * unique constraint applied in the database table.
      *
      * @param primaryKey primaryKey Default value is false
@@ -499,7 +499,7 @@ public class DataSourceField extends DataClass {
      * character in either the firstName or lastName&#010 field.  Updates to records from this DataSource will then be sent
      * with name_key as the&#010 primary key value, and the server can split the value to obtain the separate key values.&#010
      * <P>&#010 If using ISC's {@link com.smartgwt.client.docs.SqlDataSource 'SQL engine'} and generating SQL tables using
-     * the&#010 "DataBases" tab of the Developer Console, the table column generated from a primaryKey field&#010 will have a
+     * the&#010 "Databases" tab of the Developer Console, the table column generated from a primaryKey field&#010 will have a
      * unique constraint applied in the database table.
      *
      *
