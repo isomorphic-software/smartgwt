@@ -40,8 +40,20 @@ public class RecordList extends BaseClass {
         return new RecordList(jsObj);
     }
 
+    /**
+     * Construct a RecordList with no initial data. Use the various add* methods to add Records to this list.
+     */
     public RecordList(){
         super();
+    }
+
+    /**
+     * Construct a RecordList with initial data.
+     *
+     * @param data initial Record data
+     */
+    public RecordList(Record[] data) {
+        addList(data);
     }
 
     public RecordList(JavaScriptObject jsObj){
