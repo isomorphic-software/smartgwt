@@ -46,10 +46,6 @@ public class ShowcaseGrid extends TreeGrid {
         setAnimateFolders(false);
         setFixedRecordHeights(false);
 
-        //setShowFilterEditor(true);
-
-        //setDataSource(Showcase.getDataSource());
-
         TreeGridField nameField = new TreeGridField();
         nameField.setName("name");
         nameField.setTitle("<b>Example </b>");
@@ -59,7 +55,6 @@ public class ShowcaseGrid extends TreeGrid {
         TreeGridField descriptionField = new TreeGridField();
         descriptionField.setName("name");
         descriptionField.setCanSort(false);
-        //descriptionField.setCanFilter(false);
         descriptionField.setCellFormatter(new CellFormatter() {
             public String format(Object value, ListGridRecord record, int rowNum, int colNum) {
                 if (record instanceof ExplorerTreeNode) {
@@ -73,7 +68,6 @@ public class ShowcaseGrid extends TreeGrid {
                 } else {
                     return null;
                 }
-
             }
         });
         descriptionField.setTitle("<b>Description</b>");
@@ -89,7 +83,6 @@ public class ShowcaseGrid extends TreeGrid {
 
         String idSuffix = "_gridview";
         tree.setRootValue("root" + idSuffix);
-        tree.setShowRoot(true);
         TreeNode[] showcaseData = ShowcaseData.getData(idSuffix);
         tree.setData(showcaseData);
 

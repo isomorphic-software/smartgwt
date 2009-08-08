@@ -56,7 +56,6 @@ public class SideNavTree extends TreeGrid {
         tree.setIdField("nodeID");
         tree.setParentIdField("parentNodeID");
         tree.setRootValue("root" + idSuffix);
-        tree.setShowRoot(true);
 
         tree.setData(showcaseData);
 
