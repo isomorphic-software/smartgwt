@@ -873,26 +873,6 @@ public class Layout extends Canvas {
         self.membersChanged();
     }-*/;
 
-    /**
-     * When {@link com.smartgwt.client.widgets.layout.Layout#getCanDropComponents canDropComponents} is true, this method will
-     * be called when a component is dropped onto the layout to determine what component to add as a new layout member. <P> By
-     * default, the actual component being dragged (isc.EventHandler.getDragTarget()) will be added to the layout.  For a
-     * different behavior, such as wrapping dropped components in Windows, or creating components on the fly from dropped data,
-     * override this method.   <P> You can also return false to cancel the drop.
-     * @param dragTarget current drag target
-     * @param dropPosition index of the drop in the list of current members
-     *
-     * @return Returning false will cancel the drop entirely
-     */
-    public native Boolean getDropComponent(Canvas dragTarget, int dropPosition) /*-{
-        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
-        var retVal =self.getDropComponent(dragTarget.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()(), dropPosition);
-        if(retVal == null || retVal === undefined) {
-            return null;
-        } else {
-            return @com.smartgwt.client.util.JSOHelper::toBoolean(Z)(retVal);
-        }
-    }-*/;
 
 
     /**
@@ -924,6 +904,36 @@ public class Layout extends Canvas {
 
 
 
+
+    protected native void onInit() /*-{
+        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
+        self.__getDropComponent = self.getDropComponent;
+        self.getDropComponent = function(dragTarget, dropPosition) {
+            var jObj = this.__ref;
+            var dragTargetJ = @com.smartgwt.client.widgets.Canvas::getOrCreateRef(Lcom/google/gwt/core/client/JavaScriptObject;)(dragTarget);
+            var dragTarget2J = jObj.@com.smartgwt.client.widgets.layout.Layout::getDropComponent(Lcom/smartgwt/client/widgets/Canvas;I)(dragTargetJ, dropPosition);
+            return dragTarget2J == null ? false : dragTarget2J.@com.smartgwt.client.widgets.Canvas::getOrCreateJsObj()();
+        };
+    }-*/;
+
+    /*
+     * When {@link com.smartgwt.client.widgets.layout.Layout#getCanDropComponents canDropComponents} is true, this method will
+     * be called when a component is dropped onto the layout to determine what component to add as a new layout member. <P> By
+     * default, the actual component being dragged (isc.EventHandler.getDragTarget()) will be added to the layout.  For a
+     * different behavior, such as wrapping dropped components in Windows, or creating components on the fly from dropped data,
+     * override this method.   <P> You can also return null to cancel the drop.
+     *
+     * <b>Note : </b> This is an override point
+     * @param dragTarget current drag target
+     * @param dropPosition index of the drop in the list of current members
+     *
+     * @return Returning null will cancel the drop entirely. By default the dragTarget is returned
+     */
+    protected native Canvas getDropComponent(Canvas dragTarget, int dropPosition) /*-{
+        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
+        var ret =  self.__getDropComponent(dragTarget == null ? null : dragTarget.@com.smartgwt.client.widgets.Canvas::getOrCreateJsObj()(), dropPosition);
+        return ret == null || ret == undefined ? null : @com.smartgwt.client.widgets.Canvas::getOrCreateRef(Lcom/google/gwt/core/client/JavaScriptObject;)(ret);
+    }-*/;
 
     /**
      * An array of canvases that will be contained within this layout. You can set the following properties on these
