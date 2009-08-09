@@ -6,7 +6,7 @@
 	<!-- "build" is the default when subprojects are directly targetted -->
 	<property name="target" value="build" />
 
-	<target name="dist" depends="main, diff-report, doc, samples" description="Run the distributions">
+	<target name="dist" depends="main, doc, samples" description="Run the distributions">
 		<gwt.ant dir="distro-source" />
 	</target>
 
