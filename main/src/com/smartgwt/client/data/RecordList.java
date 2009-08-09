@@ -22,6 +22,7 @@ import com.smartgwt.client.core.*;
 import com.smartgwt.client.util.JSOHelper;
 
 import com.google.gwt.core.client.JavaScriptObject;
+import com.google.gwt.event.shared.HandlerRegistration;
 
 import java.util.Comparator;
 import java.util.Map;
@@ -31,7 +32,7 @@ import java.util.Date;
  * An an ordered collection of Records. <P> This class is expected by list-oriented display
  * components such as the ListGrid.
  */
-public class RecordList extends BaseClass {
+public class RecordList extends BaseClass implements com.smartgwt.client.data.events.HasDataChangedHandlers {
 
     protected JavaScriptObject jsObj;
 
@@ -838,17 +839,40 @@ public class RecordList extends BaseClass {
         return mapJS == null ? null : @com.smartgwt.client.util.JSOHelper::convertToMap(Lcom/google/gwt/core/client/JavaScriptObject;)(mapJS);
     }-*/;
 
-    /**
-     * Method called when this array changes in some way.  Observe the method to react to changes in this list. <P> Note:
-     * dataChanged() will only fire when items are added, removed or rearranged.  If a list contains objects, dataChanged()
-     * will not fire if changes are made to objects within the list without changing their position within the list.  If an
-     * observer of dataChanged() needs to react to such a change, you can manually fire dataChanged() by simply calling it. <P>
-     * Note: may be called multiple times as the result of a multi-item add or remove, etc.
+      /**
+     * Add a DataChanged handler.
+     * <p>
+     * Notification fired when data changes in some way. Note that this will only fire when items are added, removed or
+     * rearranged. If a list contains objects, this method will not fire if changes are made to objects within the list without
+     * changing their position within the list
+     *
+     * @param handler the DataChanged handler
+     * @return {@link com.google.gwt.event.shared.HandlerRegistration} used to remove this handler
      */
-    public native void dataChanged() /*-{
-        var self = this.@com.smartgwt.client.core.BaseClass::getOrCreateJsObj()();
-        self.dataChanged();
-    }-*/;
+    public HandlerRegistration addDataChangedHandler(com.smartgwt.client.data.events.DataChangedHandler handler) {
+        if(getHandlerCount(com.smartgwt.client.data.events.DataChangedEvent.getType()) == 0) setupDataChangedEvent();
+        return doAddHandler(handler, com.smartgwt.client.data.events.DataChangedEvent.getType());
+    }
+
+    private native void setupDataChangedEvent() /*-{
+        var obj = null;
+            obj = this.@com.smartgwt.client.core.BaseClass::getOrCreateJsObj()();
+            var selfJ = this;
+            obj.dataChanged = function(){
+                var param = {};
+                var event = @com.smartgwt.client.data.events.DataChangedEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
+                selfJ.@com.smartgwt.client.core.BaseClass::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
+            };
+   }-*/;
+
+    /**
+     * Returns the records in this RecordList as an array.
+     *
+     * @return an array of records.
+     */
+    public Record[] toArray() {
+        return getRange(0, getLength());
+    }
 
     // ********************* Static Methods ***********************
 
