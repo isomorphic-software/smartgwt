@@ -88,6 +88,7 @@ public class GridDataBoundDragDropSample extends ShowcasePanel {
         projectGrid.setCanAcceptDroppedRecords(true);
         projectGrid.setCanRemoveRecords(true);
         projectGrid.setAutoFetchData(false);
+        projectGrid.setPreventDuplicates(true);
 
         ListGridField employeeIdField2 = new ListGridField("employeeId");
         employeeIdField2.setWidth("20%");
