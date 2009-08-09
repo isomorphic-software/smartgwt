@@ -409,8 +409,10 @@ public class Page {
 
 
 
-
-
+
+
+
+
    /**
     * Fire some action when the Page recieves a keyPress event from a certain key.
     * Note that if a widget has keyboard focus, this action will fire only after any widget-level
@@ -446,6 +448,15 @@ public class Page {
         $wnd.isc.Page.registerKey(keyIdentifierJS, function(key) {
             callback.@com.smartgwt.client.util.KeyCallback::execute(Ljava/lang/String;)(key);
         });
+    }-*/;
+
+    /**
+     * Clears an action registered to fire on a specific a keyPress event via the {@link #registerKey(String, KeyCallback)}  method.
+     *
+     * @param keyName name of key to clear registry enties for
+     */
+    public static native void unregisterKey(String keyName)/*-{
+        $wnd.isc.Page.unregisterKey(keyName);
     }-*/;
 
     /**
