@@ -52,21 +52,8 @@ public class GridCustomEditorsSample extends ShowcasePanel {
         countryGrid.setWrapCells(true);
         countryGrid.setDataSource(CountryXmlDS.getInstance());
 
-
         ListGridField nameField = new ListGridField("countryName", "Country", 100);
 
-        SelectItem countrySelectItem = new SelectItem();
-        countrySelectItem.setName("countryName");
-        countrySelectItem.setPickListWidth(200);
-        countrySelectItem.setMultiple(true);
-
-        Map map = new LinkedHashMap();
-        map.put("India", "India");
-        map.put("Seychelles", "Seychelles");
-        map.put("Brazil", "Brazil");
-        nameField.setValueMap(map);
-
-        nameField.setEditorType(countrySelectItem);
 
         ListGridField governmentField = new ListGridField("government", "Government", 175);
 

@@ -32,7 +32,7 @@ public class ItemSupplyXmlDS extends DataSource {
 
         DataSourceTextField descriptionField = new DataSourceTextField("description", "Description", 2000);
         DataSourceTextField categoryField = new DataSourceTextField("category", "Category", 128, true);
-        categoryField.setForeignKey("supplyCategory.categoryName");
+        categoryField.setForeignKey("supplyCategoryDS.categoryName");
 
         DataSourceEnumField unitsField = new DataSourceEnumField("units", "Units", 5);
         unitsField.setValueMap("Roll", "Ea", "Pkt", "Set", "Tube", "Pad", "Ream", "Tin", "Bag", "Ctn", "Box");

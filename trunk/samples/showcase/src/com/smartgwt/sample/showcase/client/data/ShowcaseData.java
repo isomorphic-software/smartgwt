@@ -1,6 +1,7 @@
 package com.smartgwt.sample.showcase.client.data;
 
 import com.smartgwt.sample.showcase.client.DebugConsoleCommand;
+import com.smartgwt.sample.showcase.client.miniapp.MiniAppSample;
 import com.smartgwt.sample.showcase.client.portal.SimplePortalSample;
 import com.smartgwt.sample.showcase.client.basics.components.*;
 import com.smartgwt.sample.showcase.client.basics.html.*;
@@ -102,6 +103,7 @@ public class ShowcaseData {
         if (data == null) {
             data = new ExplorerTreeNode[]{
                     new ExplorerTreeNode("Featured Samples", "featured-category", "root", "silk/house.png", null, true, idSuffix),
+                    new ExplorerTreeNode("Demo Application", "featured-complete-app", "featured-category", "silk/layout_content.png", new MiniAppSample.Factory(), true, idSuffix),
                     new ExplorerTreeNode("SmartGWT MVC", "featured-smartgwt-mvc", "featured-category", "silk/arrow_join.png", new TreeEditingSample.Factory(), true, idSuffix),
                     new ExplorerTreeNode("Miller Columns", "featured-miller-columns", "featured-category", "silk/ipod.png", new MillerColumnsSample.Factory(), true, idSuffix),
                     new ExplorerTreeNode("Nested Grid", "featured-nested-grid", "featured-category", "crystal/16/mimetypes/widget_doc.png", new NestedGridSample.Factory(), true, idSuffix),
@@ -127,16 +129,10 @@ public class ShowcaseData {
                     new ExplorerTreeNode("Adaptive Filter", "grid-adaptive-filter-featured-category", "featured-category", "crystal/16/actions/show_table_row.png", new AdaptiveFilterSample.Factory(), true, idSuffix),
 
                     new ExplorerTreeNode("New Samples", "new-category", "root", "crystal/16/actions/irc_online.png", null, true, idSuffix),
-                    new ExplorerTreeNode("Custom Grouping", "grid-grouping-custom-new-category", "new-category", "crystal/16/actions/view_choose.png", new GridCustomGroupingSample.Factory(), true, idSuffix),
-                    new ExplorerTreeNode("Databound Dragging", "grid-db-dragging-new-category", "new-category", "silk/database_link.png", new GridDataBoundDragDropSample.Factory(), true, idSuffix),
+                    new ExplorerTreeNode("Demo Application", "complete-app-new-category", "new-category", "silk/layout_content.png", new MiniAppSample.Factory(), true, idSuffix),
                     new ExplorerTreeNode("Dependent Selects (Grid)", "dependent-selects-grid-new-category", "new-category", null, new GridDependentSelectsSample.Factory(), true, idSuffix),
-                    new ExplorerTreeNode("Adaptive Filter", "grid-adaptive-filter-new-category", "new-category", "crystal/16/actions/show_table_row.png", new AdaptiveFilterSample.Factory(), true, idSuffix),
-                    new ExplorerTreeNode("Adaptive Sort", "grid-adaptive-sort-new-category", "new-category", "crystal/16/actions/resizerow.png", new AdaptiveSortSample.Factory(), true, idSuffix),
-                    new ExplorerTreeNode("Formula Builder", "grid-formula-sumamry-builder-new-category", "new-category", "crystal/oo/sc_insertformula.png", new FormulaSummaryBuilderSample.Factory(), true, idSuffix),
-                    new ExplorerTreeNode("KeyPress Filters", "form-keypress-filter-new-category", "new-category", "silk/keyboard.png", new KeyPressFiltersSample.Factory(), true, idSuffix),
-                    new ExplorerTreeNode("Drag from Menu", "effects-drag-menu-grid-new-category", "new-category", null, new DragMenuGridSample.Factory(), true, idSuffix),
-                    new ExplorerTreeNode("Custom Event Editing", "custom-editing-new-category", "new-category", "crystal/16/actions/smallcal.png", new CustomEventCalendarSample.Factory(), true, idSuffix),
-                    new ExplorerTreeNode("Form hints", "form-hints-new-category", "new-category", "silk/vcard_edit.png", new FormHintsSample.Factory(), true, idSuffix),
+                    new ExplorerTreeNode("Grid All Editors", "grid-all-editors-new-category", "new-category", null, new GridEditAllRowsSample.Factory(), true, idSuffix),
+                    new ExplorerTreeNode("Grid Top Header", "grid-top-header-new-category", "new-category", null, new GridTopHeaderSample.Factory(), true, idSuffix),
 
                     new ExplorerTreeNode("ComboBox &amp; Family", "combobox-category", "root", "widgets/combo_box.gif", null, true, idSuffix),
                     new ExplorerTreeNode("Styled ComboBox", "styled-combobox-category", "combobox-category", null, new ComboBoxStyledSample.Factory(), true, idSuffix),
@@ -169,6 +165,7 @@ public class ShowcaseData {
                     new ExplorerTreeNode("Empty Values", "grid-appearance-empty-values", "grid-appearance-category", null, new EmptyValuesSample.Factory(), true, idSuffix),
                     new ExplorerTreeNode("Empty Grid", "grid-appearance-empty-grid", "grid-appearance-category", null, new EmptyGridSample.Factory(), true, idSuffix),
                     new ExplorerTreeNode("Custom Header Context Menu", "grid-appearance-custom-menu", "grid-appearance-category", null, new CustomHeaderMenuSample.Factory(), true, idSuffix),
+                    new ExplorerTreeNode("Grid Top Header", "grid-top-header", "grid-appearance-category", null, new GridTopHeaderSample.Factory(), true, idSuffix),
 
                     new ExplorerTreeNode("Interaction", "grid-interaction-category", "grid-category", "pieces/16/cube_blue.png", null, true, idSuffix),
                     new ExplorerTreeNode("Rollover", "grid-interaction-rollover", "grid-interaction-category", null, new RolloverSample.Factory(), true, idSuffix),
@@ -181,7 +178,7 @@ public class ShowcaseData {
                     new ExplorerTreeNode("Header Hover Tips", "grid-interaction-header-hover", "grid-interaction-category", null, new HeaderHoverTipsSample.Factory(), true, idSuffix),
                     new ExplorerTreeNode("Drag Reorder", "grid-interaction-drag-reorder", "grid-interaction-category", null, new DragReorderSample.Factory(), true, idSuffix),
                     new ExplorerTreeNode("Drag Move", "grid-interaction-drag-move", "grid-interaction-category", null, new DragMoveSample.Factory(), true, idSuffix),
-                    //new ExplorerTreeNode("Drag Copy", "grid-interaction-drag-copy", "grid-interaction-category", null, new DragCopySample.Factory(), true, idSuffix),
+                    new ExplorerTreeNode("Drag Copy", "grid-interaction-drag-copy", "grid-interaction-category", null, new DragCopySample.Factory(), true, idSuffix),
                     new ExplorerTreeNode("Disabled Rows", "grid-interaction-disabled-rows", "grid-interaction-category", null, new DisabledRowsSample.Factory(), true, idSuffix),
                     new ExplorerTreeNode("Record Click", "grid-interaction-record-click", "grid-interaction-category", null, new RecordClicksSample.Factory(), true, idSuffix),
                     new ExplorerTreeNode("Cell Click", "grid-interaction-cell-click", "grid-interaction-category", null, new CellClicksSample.Factory(), true, idSuffix),
