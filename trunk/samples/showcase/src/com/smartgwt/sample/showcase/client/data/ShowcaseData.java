@@ -130,8 +130,8 @@ public class ShowcaseData {
 
                     new ExplorerTreeNode("New Samples", "new-category", "root", "crystal/16/actions/irc_online.png", null, true, idSuffix),
                     new ExplorerTreeNode("Demo Application", "complete-app-new-category", "new-category", "silk/layout_content.png", new MiniAppSample.Factory(), true, idSuffix),
-                    new ExplorerTreeNode("Dependent Selects (Grid)", "dependent-selects-grid-new-category", "new-category", null, new GridDependentSelectsSample.Factory(), true, idSuffix),
                     new ExplorerTreeNode("Grid All Editors", "grid-all-editors-new-category", "new-category", null, new GridEditAllRowsSample.Factory(), true, idSuffix),
+                    new ExplorerTreeNode("Dependent Selects (Grid)", "dependent-selects-grid-new-category", "new-category", null, new GridDependentSelectsSample.Factory(), true, idSuffix),
                     new ExplorerTreeNode("Grid Top Header", "grid-top-header-new-category", "new-category", null, new GridTopHeaderSample.Factory(), true, idSuffix),
 
                     new ExplorerTreeNode("ComboBox &amp; Family", "combobox-category", "root", "widgets/combo_box.gif", null, true, idSuffix),
