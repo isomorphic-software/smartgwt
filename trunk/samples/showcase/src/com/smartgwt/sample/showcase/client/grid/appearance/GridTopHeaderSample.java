@@ -31,8 +31,8 @@ import com.smartgwt.sample.showcase.client.ShowcasePanel;
 import com.smartgwt.sample.showcase.client.data.CountryXmlDS;
 
 public class GridTopHeaderSample extends ShowcasePanel {
-    private static final String DESCRIPTION = "<p>This is an example of a ListGrid with a top level header. This is accomplished easily be addign the LsitGrid to a " +
-            "non-collapsible SectionStaction</p>";
+    private static final String DESCRIPTION = "<p>This is an example of a ListGrid with a top level header. This is accomplished easily " +
+            "by adding the ListGrid to a non-collapsible SectionStackSection.</p>";
 
     public static class Factory implements PanelFactory {
         private String id;
