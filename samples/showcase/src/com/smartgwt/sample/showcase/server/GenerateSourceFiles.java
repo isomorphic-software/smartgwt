@@ -306,8 +306,8 @@ private static void generateSampleHTMLFile(final String sourceFileDirName, final
 
 private static Set<String> loadDataDirNames(final String... args) {
   Set<String> result = new HashSet<String>();
-  result.add(_showcaseDir + "/../public/data");
-  result.add(_showcaseDir + "/../public/ds");
+  result.add(_showcaseDir + "/../../../../../../war/data");
+  result.add(_showcaseDir + "/../../../../../../war/ds");
   result.add(_showcaseDir + "/data");
   for (int argIndex = 2; argIndex < args.length; ++argIndex) {
     String dataDir = args[argIndex].replace("\\\\", "/").replace("\\", "/");
@@ -338,7 +338,7 @@ private static void loadDataFileOrClassNames(final File fileOrDirectory) throws 
       }
       else {
         fileOrClassName = fileName;
-        int publicIndex = fileOrClassPath.indexOf("public");
+        int publicIndex = fileOrClassPath.indexOf("war");
         fileOrClassPath = "data_files/" + fileOrClassPath.substring(publicIndex + 7);
         generateDataHTMLFile(fileOrDirectory.getPath().replace('\\', '/'),
                              _sourceOutputDir + "/" + fileOrClassPath + ".html");
