@@ -39,7 +39,7 @@ public class ItemListGrid extends ListGrid {
                 if (value == null) return null;
                 try {
                     NumberFormat nf = NumberFormat.getFormat("##0.00");
-                    return "$" + nf.format(((Number) value).longValue());
+                    return "$" + nf.format(((Number) value).floatValue());
                 } catch (Exception e) {
                     return value.toString();
                 }
