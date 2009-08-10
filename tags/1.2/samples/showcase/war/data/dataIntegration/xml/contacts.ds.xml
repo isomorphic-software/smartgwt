@@ -1,0 +1,16 @@
+<DataSource 
+    ID="contacts"
+	dataURL="/isomorphic/system/reference/inlineExamples/dataIntegration/xml/contactsData.xml"
+	recordXPath="/contacts/contact"
+>
+    <fields>
+	    <field name="name"/>
+	    <field name="email"/>
+	    <field name="organization"/>
+		<field name="phone"/>
+		<field name="street" valueXPath="address/street"/>
+		<field name="city" valueXPath="address/city"/>
+		<field name="state" valueXPath="address/state"/>
+		<field name="zip" valueXPath="address/zip"/>
+    </fields>
+</DataSource>

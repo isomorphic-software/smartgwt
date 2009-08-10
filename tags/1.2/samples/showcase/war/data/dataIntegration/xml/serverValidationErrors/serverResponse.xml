@@ -1,0 +1,6 @@
+<response>
+    <status>validation_error</status>
+    <errors>
+        <userName>A user with this userName already exists</userName>
+    </errors>
+</response>

@@ -1,0 +1,7 @@
+<DataSource ID="itemCategoriesDS" constructor="EBayCategoriesDS">
+    <fields>
+        <field name="CategoryName"/>
+        <field name="CategoryID" primaryKey="true" hidden="true"/>
+        <field name="CategoryParent" foreignKey="CategoryDS.CategoryID" hidden="true"/>
+    </fields>
+</DataSource>
