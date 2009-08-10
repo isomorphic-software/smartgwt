@@ -16,10 +16,13 @@
 
 	<target name="source" description="Copy source to the output folder">
 		<mkdir dir="${sample.build}/src" />
+		<mkdir dir="${sample.build}/war" />
 		<copy todir="${sample.build}/src">
 			<fileset dir="src" />
 		</copy>
-		
+		<copy todir="${sample.build}/war">
+			<fileset dir="war" />
+		</copy>		
 	   
 		<!--
         <mkdir dir="${sample.build}/src/com/smartgwt/sample/${sample.package}/public/js/sc" />
@@ -46,7 +49,7 @@
 		</gwt.javac>
 		<java classname="com.smartgwt.sample.showcase.server.GenerateSourceFiles">
          <arg value="${sample.build}/src/com/smartgwt/sample/showcase/client"/>
-		 <arg value="${sample.build}/src/com/smartgwt/sample/showcase/public/sourcegen"/>
+		 <arg value="${sample.build}/war/sourcegen"/>
          <classpath>           
            <pathelement path="${sample.build}/bin"/>
          </classpath>
@@ -54,6 +57,8 @@
 	   
 	</target>
 
+
+	
 	<target name="gwtc" description="Compile to JavaScript">
 		<outofdate>
 			<sourcefiles>
@@ -63,54 +68,21 @@
 			</sourcefiles>
 			<targetfiles path="${sample.build}/www/com.smartgwt.sample.${sample.package}.${sample.module}/com.smartgwt.sample.${sample.package}.${sample.module}.nocache.html" />
 			<sequential>
-				<mkdir dir="${sample.build}/www" />
-				<java dir="${sample.build}" classname="com.google.gwt.dev.GWTCompiler" classpath="${sample.build}/src:${gwt.user.jar}:${gwt.dev.jar}:${smartgwt.dev.jar}:${smartgwt-skins.dev.jar}" fork="yes" failonerror="true" maxmemory="512m">
-					<arg value="-out" />
-					<arg file="${sample.build}/www" />
+				<java dir="${sample.build}" classname="com.google.gwt.dev.Compiler" classpath="${sample.build}/src:${gwt.user.jar}:${gwt.dev.jar}:${smartgwt.dev.jar}:${smartgwt-skins.dev.jar}" fork="yes" failonerror="true" maxmemory="512m">
 					<arg value="com.smartgwt.sample.${sample.package}.${sample.module}" />
 				</java>
+				<!--
+				<copy todir="${sample.build}/war">
+			      <fileset dir="${basedir}/war"/>
+			    </copy>
+			-->
+				<zip destfile="${project.build}/showcase.war" basedir="${sample.build}/war"/>
 			</sequential>
 		</outofdate>
 	</target>
 
-	<macrodef name="applicationCreator">
-		<attribute name="platform" />
-		<attribute name="extension" default="" />
-		<sequential>
-			<outofdate>
-				<sourcefiles />
-				<targetfiles>
-					<pathelement location="${samples.scripts}/@{platform}/${sample.main}/${sample.main}-compile@{extension}" />
-					<pathelement location="${samples.scripts}/@{platform}/${sample.main}/${sample.main}-shell@{extension}" />
-				</targetfiles>
-				<sequential>
-					<mkdir dir="${samples.scripts}/@{platform}/${sample.main}" />
-					<java classname="com.google.gwt.user.tools.ApplicationCreator" classpath="${gwt.user.jar}:${gwt.dev.jar}" failonerror="true">
-						<!-- Relative path is important! Paths will be relative in final distro -->
-						<sysproperty key="gwt.devjar" value="../../gwt-dev-@{platform}.jar" />
-						<arg value="-ignore" />
-						<arg value="-out" />
-						<arg file="${samples.scripts}/@{platform}/${sample.main}" />
-						<arg value="com.smartgwt.sample.${sample.package}.client.${sample.main}" />
-					</java>
-				</sequential>
-			</outofdate>
-		</sequential>
-	</macrodef>
-
-	<target name="scripts" description="Create launch scripts">
-		<applicationCreator platform="linux" />
-		<applicationCreator platform="windows" extension=".cmd" />
-		<applicationCreator platform="mac" />
-	</target>
-
 	<target name="build" depends="source, compile, gwtc" description="Build and package this project" />
 
-	<target name="checkstyle" description="Static analysis of source">
-		<gwt.checkstyle>
-			<fileset dir="src" />
-		</gwt.checkstyle>
-	</target>
 
 	<target name="clean" description="Cleans this project's intermediate and output files">
 		<delete dir="${sample.build}" />

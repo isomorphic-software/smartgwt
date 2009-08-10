@@ -6,55 +6,29 @@
 	<!-- "build" is the default when subprojects are directly targetted -->
 	<property name="target" value="build" />
 
-	<target name="helloworld" description="Build Hello World Sample">
-		<gwt.ant dir="helloworld" />
-	</target>
-	
-	<target name="showcase" description="Build Showcase">
-		<gwt.ant dir="showcase" />
-		<antcall target="war"/> 
-	</target>
-	
- <target name="war" 
-   description="builds the war file">
-   <property name="war" value="smartgwt.war" />
-   <delete file="${project.build}/${war}"/>
-   <copy file="${smartgwt.build.out}/samples/Showcase/www/com.smartgwt.sample.showcase.Showcase/Showcase.html" tofile="${smartgwt.build.out}/samples/Showcase/www/com.smartgwt.sample.showcase.Showcase/index.html"/>
-   <war warfile="${project.build}/${war}" webxml="showcase/webapp/WEB-INF/web.xml">
-     <!-- bytecode from your Java code -->
-     <classes dir="${smartgwt.build.out}/samples/Showcase/bin" includes="**/*.class"/>
-     <!-- generated HTML/JavaScript plus your CSS -->	 
-     <fileset dir="${smartgwt.build.out}/samples/Showcase/www/com.smartgwt.sample.showcase.Showcase"/>
-     <!-- supplied JAR -->
-     <lib file="${gwt.servlet.jar}"/> 
-     <lib dir="showcase/webapp/WEB-INF/lib">
-       <include name="**/*.jar"/>
-     </lib>
-   </war>
- </target>	
 
-	<target name="-do" depends="showcase" description="Run all subprojects" />
+	<target name="-do" description="Run all subprojects">
+	   <!-- ><gwt.ant dir="helloworld-1.6" target="build"/> -->
+	   <gwt.ant dir="showcase" />		
+	</target>
 
-	<target name="build" description="Builds GWT">
+		<target name="build" description="Builds GWT">
 		<antcall target="-do">
 			<param name="target" value="build" />
 		</antcall>
 	</target>
-
-	<target name="checkstyle" description="Static analysis of GWT source">
-		<antcall target="-do">
-			<param name="target" value="checkstyle" />
-		</antcall>
-	</target>
-
+	
 	<target name="test" depends="build" description="Test GWT">
 		<antcall target="-do">
 			<param name="target" value="test" />
 		</antcall>
 	</target>
-
+	
 	<target name="clean" description="Cleans this project's intermediate and output files">
 		<delete dir="${project.build}" />
-		<delete dir="${smartgwt.build.out}/samples-scripts" />
+		<delete dir="${smartgwtee.build.out}/samples-scripts" />
+		<!-- ><gwt.ant dir="helloworld-1.6" target="clean"/> -->
+		<gwt.ant dir="showcase" target="clean"/>
 	</target>
+			
 </project>
