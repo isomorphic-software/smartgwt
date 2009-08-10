@@ -43,8 +43,9 @@
 				<include name="doc/javadoc/**" />
 			</zipfileset>
 
+            <!--
             <zipfileset file="${smartgwt.build.out}/Samples/showcase/showcase.war" prefix="${project.distname}" />
-
+            -->
 			<!-- samples -->
 			<zipfileset dir="${smartgwt.build.out}" prefix="${project.distname}">
 				<include name="samples" />
