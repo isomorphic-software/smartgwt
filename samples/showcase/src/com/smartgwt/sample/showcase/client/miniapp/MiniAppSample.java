@@ -28,7 +28,7 @@ import com.smartgwt.sample.showcase.client.ShowcasePanel;
 
 public class MiniAppSample extends ShowcasePanel {
 
-    private static final String DESCRIPTION = "<p>Demonstrates a range of SmartClient GUI components, data binding operations, " +
+    private static final String DESCRIPTION = "<p>Demonstrates a range of SmartGWT GUI components, data binding operations, " +
             "and layout managers in a single-page application.</p>";
 
     public static class Factory implements PanelFactory {
