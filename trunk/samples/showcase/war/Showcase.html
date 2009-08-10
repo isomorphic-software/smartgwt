@@ -1,3 +1,18 @@
+<!--
+  ~ SmartGWT (GWT for SmartClient)
+  ~ Copyright 2008 and beyond, Isomorphic Software, Inc.
+  ~
+  ~ SmartGWT is free software; you can redistribute it and/or modify it
+  ~ under the terms of the GNU Lesser General Public License version 3
+  ~ as published by the Free Software Foundation.  SmartGWT is also
+  ~ available under typical commercial license terms - see
+  ~ http://smartclient.com/license
+  ~ This software is distributed in the hope that it will be useful,
+  ~ but WITHOUT ANY WARRANTY; without even the implied warranty of
+  ~ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU
+  ~ Lesser General Public License for more details.
+  -->
+
 <html>
 <head>
     <title>SmartGWT Showcase</title>
@@ -46,24 +61,26 @@
         <span id="loadingMsg">Loading styles and images...</span></div>
 </div>
 </div>
-    <script>var isomorphicDir = "sc/"</script>
+
+<!-- IMPORTANT : You must set the variable isomorphicDir to [MODULE_NAME]/sc/ so that the SmartGWT resource are correctly resolved -->
+<script> var isomorphicDir = "showcase/sc/"; </script>
 
 
 <script type="text/javascript">document.getElementById('loadingMsg').innerHTML = 'Loading Core API...';</script>
 
 <!--include the SC Core API-->
-<script src=sc/modules/ISC_Core.js?isc_version=7.0beta.js></script>
+<script src=showcase/sc/modules/ISC_Core.js?isc_version=7.0beta.js></script>
 
 <!--include SmartClient -->
 <script type="text/javascript">document.getElementById('loadingMsg').innerHTML = 'Loading UI Components...';</script>
-<script src=sc/modules/ISC_Foundation.js?isc_version=7.0beta.js></script>
-<script src=sc/modules/ISC_Containers.js?isc_version=7.0beta.js></script>
-<script src=sc/modules/ISC_Grids.js?isc_version=7.0beta.js></script>
-<script src=sc/modules/ISC_Forms.js?isc_version=7.0beta.js></script>
-<script src=sc/modules/ISC_RichTextEditor.js?isc_version=7.0beta.js></script>
-<script src=sc/modules/ISC_Calendar.js?isc_version=7.0beta.js></script>
+<script src=showcase/sc/modules/ISC_Foundation.js?isc_version=7.0beta.js></script>
+<script src=showcase/sc/modules/ISC_Containers.js?isc_version=7.0beta.js></script>
+<script src=showcase/sc/modules/ISC_Grids.js?isc_version=7.0beta.js></script>
+<script src=showcase/sc/modules/ISC_Forms.js?isc_version=7.0beta.js></script>
+<script src=showcase/sc/modules/ISC_RichTextEditor.js?isc_version=7.0beta.js></script>
+<script src=showcase/sc/modules/ISC_Calendar.js?isc_version=7.0beta.js></script>
 <script type="text/javascript">document.getElementById('loadingMsg').innerHTML = 'Loading Data API...';</script>
-<script src=sc/modules/ISC_DataBinding.js?isc_version=7.0beta.js></script>
+<script src=showcase/sc/modules/ISC_DataBinding.js?isc_version=7.0beta.js></script>
 
 <script>
 function readCookie(name) {
@@ -86,12 +103,12 @@ if (currentSkin == null) currentSkin = "Enterprise";
 <script type="text/javascript">document.getElementById('loadingMsg').innerHTML = 'Loading skin...';</script>
 
 <script type="text/javascript">
-document.write("<"+"script src=sc/skins/" + currentSkin + "/load_skin.js?isc_version=7.0beta.js><"+"/script>");
+document.write("<"+"script src=showcase/sc/skins/" + currentSkin + "/load_skin.js?isc_version=7.0beta.js><"+"/script>");
 </script>
 
 <!--include the application JS-->
 <script type="text/javascript">document.getElementById('loadingMsg').innerHTML = 'Loading 250+ Samples<br>Please wait...';</script>
-<script type="text/javascript" src="com.smartgwt.sample.showcase.Showcase.nocache.js"></script>
+<script type="text/javascript" src="showcase/showcase.nocache.js"></script>
 
 
 </body>
