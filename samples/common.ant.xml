@@ -66,7 +66,7 @@
 				<fileset file="${gwt.user.jar}" />
 				<fileset file="${gwt.dev.jar}" />
 			</sourcefiles>
-			<targetfiles path="${sample.build}/www/com.smartgwt.sample.${sample.package}.${sample.module}/com.smartgwt.sample.${sample.package}.${sample.module}.nocache.html" />
+			<targetfiles path="${sample.build}/war/${sample.package}/${sample.package}.nocache.html" />
 			<sequential>
 				<java dir="${sample.build}" classname="com.google.gwt.dev.Compiler" classpath="${sample.build}/src:${gwt.user.jar}:${gwt.dev.jar}:${smartgwt.dev.jar}:${smartgwt-skins.dev.jar}" fork="yes" failonerror="true" maxmemory="512m">
 					<arg value="com.smartgwt.sample.${sample.package}.${sample.module}" />
@@ -76,7 +76,7 @@
 			      <fileset dir="${basedir}/war"/>
 			    </copy>
 			-->
-				<zip destfile="${project.build}/showcase.war" basedir="${sample.build}/war"/>
+				<zip destfile="${sample.build}/showcase.war" basedir="${sample.build}/war"/>
 			</sequential>
 		</outofdate>
 	</target>
