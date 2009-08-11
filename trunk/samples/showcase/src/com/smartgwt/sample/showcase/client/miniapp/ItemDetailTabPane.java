@@ -58,6 +58,7 @@ public class ItemDetailTabPane extends TabSet {
         editorForm = new DynamicForm();
         editorForm.setWidth(650);
         editorForm.setMargin(25);
+        editorForm.setNumCols(4);
         editorForm.setCellPadding(5);
         editorForm.setAutoFocus(false);
         editorForm.setDataSource(supplyItemDS);
@@ -71,6 +72,7 @@ public class ItemDetailTabPane extends TabSet {
         PickTreeItem category = new PickTreeItem("category");
         category.setDataSource(supplyCategoryDS);
         category.setEmptyMenuMessage("No Sub Categories");
+        category.setCanSelectParentItems(true);
 
         SpinnerItem unitCost = new SpinnerItem("unitCost");
         unitCost.setStep(0.01);
