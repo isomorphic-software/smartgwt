@@ -5,14 +5,16 @@ import java.util.*;
 import java.util.regex.Pattern;
 
 public class GenerateSourceFiles {
-
+    
 //--------------------------------------------------------------------------------------------------
 
 private static final String[]           ClassesToSkip          = new String[] {"public static class Factory"};
 private static final Pattern            EndOfFieldPattern1     = Pattern.compile(".*; *");
 private static final Pattern            EndOfFieldPattern2     = Pattern.compile(".*;.*//.*");
 private static final String[]           FieldsToSkip           = new String[] {"private static final String DESCRIPTION"};
-private static final String[]           LinesToSkip            = new String[] {"package com.smartgwt"};
+private static final String[]           LinesToSkip            = new String[] {"package com.smartgwt",
+        "import com.smartgwt.sample.showcase.client.PanelFactory", "import com.smartgwt.sample.showcase.client.ShowcasePanel"
+};
 private static final String[]           MethodsToSkip          = new String[] {
     "public String getIntro", "public String getSourceUrl"     };
 private static final Pattern            ViewPanelReturnPattern = Pattern.compile("[ \t]*return.*");
@@ -268,8 +270,7 @@ private static void generateSampleHTMLFile(final String sourceFileDirName, final
     boolean generateOutput = true;
     if (inComment) {
       inComment = !line.contains("*/");
-    }
-    else if (line.contains("/*")) {
+    } else if (line.contains("/*")) {
       inComment = true;
     }
     else if (line.contains(" extends ShowcasePanel")) {
@@ -278,7 +279,7 @@ private static void generateSampleHTMLFile(final String sourceFileDirName, final
     else if (line.contains("public Canvas getViewPanel")) {
       lineIndex = outputGetViewPanel(sourceLineList, lineIndex, sourceWriter);
       generateOutput = false;
-    }
+    }    
     else {
       int oldLineIndex = lineIndex;
       lineIndex = checkSkipEntries(sourceLineList, lineIndex);
