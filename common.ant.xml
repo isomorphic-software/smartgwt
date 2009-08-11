@@ -24,16 +24,16 @@
 
 	<!-- Global Properties -->
 	<property environment="env" />
-	<condition property="smartgwt.version" value="${env.SMARTGWT_VERSION}" else="1.2">
+	<condition property="smartgwt.version" value="${env.SMARTGWT_VERSION}" else="2.0">
 		<isset property="env.SMARTGWT_VERSION" />
 	</condition>
 	
-	<property name="smartgwt.previous_version" value="1.1" />
+	<property name="smartgwt.previous_version" value="1.2" />
 	
     <condition property="smartgwt.tools.check" value="${env.SMARTGWT_TOOLS}" else="${smartgwt.root}/../tools">
 		<isset property="env.SMARTGWT_TOOLS" />
 	</condition>
-    <property name="smartclient.version" value="7.0-08092009" />
+    <property name="smartclient.version" value="7.0-trunk" />
 
 	<property name="smartgwt.tools" location="${smartgwt.tools.check}" />
 	<property name="smartgwt.tools.lib" location="${smartgwt.tools}/lib" />
