@@ -30,7 +30,7 @@ import com.smartgwt.sample.showcase.client.data.CountryXmlDS;
 
 public class GridEditAllRowsSample extends ShowcasePanel {
     private static final String DESCRIPTION = "<p>This is an example of editing with all editors active. This is done by simply " +
-            "calling <code>listGrid.setAlwaysShowEditors(true)</code></p>";
+            "calling : <pre>listGrid.setAlwaysShowEditors(true)</b></pre>";
 
     public static class Factory implements PanelFactory {
         private String id;

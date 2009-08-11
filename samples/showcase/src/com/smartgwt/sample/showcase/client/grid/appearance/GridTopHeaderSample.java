@@ -57,7 +57,8 @@ public class GridTopHeaderSample extends ShowcasePanel {
         SectionStack sectionStack = new SectionStack();
         sectionStack.setWidth(550);
 
-        SectionStackSection section = new SectionStackSection("Countries Visited");
+        String title = Canvas.imgHTML("silk/world.png") + " Countries Visited";
+        SectionStackSection section = new SectionStackSection(title);
 
         section.setCanCollapse(false);
         section.setExpanded(true);
