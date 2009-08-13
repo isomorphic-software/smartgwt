@@ -1424,9 +1424,18 @@ public class DataSource extends BaseClass  implements com.smartgwt.client.data.e
 
 
 
-
-
-
+
+
+
+
+
+
+
+
+
+
+
+
 
 
     protected native void onInit() /*-{
@@ -1661,13 +1670,22 @@ public class DataSource extends BaseClass  implements com.smartgwt.client.data.e
      * @param fields fields Default value is null
      * @throws IllegalStateException this property cannot be changed after the underlying component has been created
      */
-    public void setFields(DataSourceField... fields) {
+    public void setFields(DataSourceField... fields) throws IllegalStateException {
         for (DataSourceField field : fields) {
             addField(field);
         }
     }
 
-    public void addField(DataSourceField field) {
+    /**
+     * Add a field to the DataSource
+     *
+     * @param field the datasource field
+     * @throws IllegalStateException this property cannot be changed after the underlying component has been created
+     */
+    public void addField(DataSourceField field) throws IllegalStateException {
+        if(isCreated()) {
+            error("Fields cannot be added to a DataSource after the underlying component has been created.");
+        }
         JavaScriptObject fieldJS = field.getJsObj();
         addFieldPreCreate(fieldJS);
     }
