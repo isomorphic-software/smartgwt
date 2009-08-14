@@ -456,8 +456,12 @@ public class FilterBuilder extends Layout  implements com.smartgwt.client.widget
     // ********************* Static Methods ***********************
 
 
-
-
+
+
+
+
+
+
     /**
      * If true (the default), show field titles in the drop-down box used to select a field for querying. If false, show
      * actual field names instead.
@@ -512,10 +516,9 @@ public class FilterBuilder extends Layout  implements com.smartgwt.client.widget
      * @param criteria new criteria.  Pass null or {} to effectively reset the
      *                 filterBuilder to it's initial state when no criteria are
      *                 specified. Default value is null
-     * @throws IllegalStateException this property cannot be changed after the component has been created
      */
-    public void setCriteria(AdvancedCriteria criteria) throws IllegalStateException {
-        setAttribute("criteria", criteria, false);
+    public void setCriteria(AdvancedCriteria criteria) {
+        setAttribute("criteria", criteria, true);
     }
 
     /**
