@@ -617,7 +617,7 @@ public class DetailViewer extends Canvas  implements DataBoundComponent {
      * @param data List of Records
      */
     public void setData(RecordList data) {
-        setAttribute("data", data.getOrCreateJsObj(), true);
+        setAttribute("data", data == null ? null : data.getOrCreateJsObj(), true);
     }
 
     //TODO

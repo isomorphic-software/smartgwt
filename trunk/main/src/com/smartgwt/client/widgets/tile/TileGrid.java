@@ -555,7 +555,7 @@ public class TileGrid extends TileLayout  implements DataBoundComponent, com.sma
      * @param data List of Records
      */
     public void setData(RecordList data) {
-        setAttribute("data", data.getOrCreateJsObj(), true);
+        setAttribute("data", data == null ? null : data.getOrCreateJsObj(), true);
     }
     
     /**
