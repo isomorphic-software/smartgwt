@@ -1255,11 +1255,21 @@ public class Calendar extends Canvas  implements DataBoundComponent, com.smartgw
      * Sets the currently visible view
      *
      * @param currentViewName The name of the view that should be made visible.. Default value is null
-     * @throws IllegalStateException this property cannot be changed after the component has been created
      */
-    public void setCurrentViewName(ViewName currentViewName)  throws IllegalStateException {
-        setAttribute("currentViewName", currentViewName.getValue(), false);
+    public void setCurrentViewName(ViewName currentViewName) {
+        setAttribute("currentViewName", currentViewName.getValue(), true);
     }
+
+    /**
+     * The name of the view that should be visible initially by default.
+     *
+     *
+     * @return Get the name of the visible view. Either 'day', 'week', or 'month'.
+     */
+    public ViewName getCurrentViewName()  {
+        return (ViewName) EnumUtil.getEnum(ViewName.values(), getAttribute("currentViewName"));
+    }
+ 
 
     // ********************* Methods ***********************
 
@@ -1837,7 +1847,7 @@ public class Calendar extends Canvas  implements DataBoundComponent, com.smartgw
      * @param data List of Records
      */
     public void setData(RecordList data) {
-        setAttribute("data", data.getOrCreateJsObj(), true);
+        setAttribute("data", data == null ? null : data.getOrCreateJsObj(), true);
     }
     
     /**

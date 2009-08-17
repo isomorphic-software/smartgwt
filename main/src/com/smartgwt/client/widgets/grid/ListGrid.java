@@ -2121,9 +2121,10 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
      * editByCell} is false
      *
      * @param alwaysShowEditors alwaysShowEditors Default value is null
+     * @throws IllegalStateException this property cannot be changed after the component has been created
      */
-    public void setAlwaysShowEditors(Boolean alwaysShowEditors) {
-        setAttribute("alwaysShowEditors", alwaysShowEditors, true);
+    public void setAlwaysShowEditors(Boolean alwaysShowEditors)  throws IllegalStateException {
+        setAttribute("alwaysShowEditors", alwaysShowEditors, false);
     }
 
     /**
@@ -5895,7 +5896,7 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
      * @param data List of Records
      */
     public void setData(RecordList data) {
-        setAttribute("data", data.getOrCreateJsObj(), true);
+        setAttribute("data", data == null ? null : data.getOrCreateJsObj(), true);
     }
     
     /**
