@@ -16,6 +16,9 @@ Various SmartGWT tutorials and resources from the web.
 
   * [http://jellebeuselinck.wordpress.com/2009/03/05/setting-up-smartgwt/ http://jellebeuselinck.wordpress.com/2009/03/05/setting-up-smartgwt/] Setting up SmartGWT
 
+* SmartGWT with PHP and Eclipse
+  * [http://donga-spirit.blogspot.com/2009/08/setup-smartgwt-and-eclipse-with.html http://donga-spirit.blogspot.com/2009/08/setup-smartgwt-and-eclipse-with.html] SmartGWT with PHP and Debugging with Eclipse
+
 *SmartGWT with Netbeans*
 
   * [http://smartgwt.rorschach.de/index.php5/Setting_up_Eclipse_%26_Maven2] SmartGWT with Eclipse and GWT-Maven
