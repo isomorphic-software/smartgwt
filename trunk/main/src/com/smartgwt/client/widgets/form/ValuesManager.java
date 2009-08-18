@@ -135,7 +135,7 @@ public class ValuesManager extends BaseClass {
      * com.smartgwt.client.widgets.form.DynamicForm#getSaveOperationType saveOperationType} will be returned.
      */
     public DSOperationType getSaveOperationType()  {
-        return (DSOperationType) EnumUtil.getEnum(DSOperationType.values(), getAttribute("saveOperationType"));
+        return EnumUtil.getEnum(DSOperationType.values(), getAttribute("saveOperationType"));
     }
 
     /**

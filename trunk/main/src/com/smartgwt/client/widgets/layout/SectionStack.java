@@ -110,7 +110,7 @@ public class SectionStack extends VLayout  implements com.smartgwt.client.widget
      * @return Overflow
      */
     public Overflow getOverflow()  {
-        return (Overflow) EnumUtil.getEnum(Overflow.values(), getAttribute("overflow"));
+        return EnumUtil.getEnum(Overflow.values(), getAttribute("overflow"));
     }
 
     /**
@@ -275,7 +275,7 @@ public class SectionStack extends VLayout  implements com.smartgwt.client.widget
      * @return VisibilityMode
      */
     public VisibilityMode getVisibilityMode()  {
-        return (VisibilityMode) EnumUtil.getEnum(VisibilityMode.values(), getAttribute("visibilityMode"));
+        return EnumUtil.getEnum(VisibilityMode.values(), getAttribute("visibilityMode"));
     }
 
     /**

@@ -168,7 +168,7 @@ public class TextAreaItem extends FormItem {
      * @return VerticalAlignment
      */
     public VerticalAlignment getIconVAlign()  {
-        return (VerticalAlignment) EnumUtil.getEnum(VerticalAlignment.values(), getAttribute("iconVAlign"));
+        return EnumUtil.getEnum(VerticalAlignment.values(), getAttribute("iconVAlign"));
     }
 
     /**
@@ -273,7 +273,7 @@ public class TextAreaItem extends FormItem {
      * @return TextAreaWrap
      */
     public TextAreaWrap getWrap() {
-        return (TextAreaWrap) EnumUtil.getEnum(TextAreaWrap.values(), getAttribute("wrap"));
+        return EnumUtil.getEnum(TextAreaWrap.values(), getAttribute("wrap"));
     }
 
     /**

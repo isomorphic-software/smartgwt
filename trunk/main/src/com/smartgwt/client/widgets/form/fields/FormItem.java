@@ -351,7 +351,7 @@ public class FormItem extends RefDataClass  implements com.smartgwt.client.widge
      * @return DateDisplayFormat
      */
     public DateDisplayFormat getDateFormatter()  {
-        return (DateDisplayFormat) EnumUtil.getEnum(DateDisplayFormat.values(), getAttribute("dateFormatter"));
+        return EnumUtil.getEnum(DateDisplayFormat.values(), getAttribute("dateFormatter"));
     }
              
     /**
@@ -377,7 +377,7 @@ public class FormItem extends RefDataClass  implements com.smartgwt.client.widge
      * @return TimeFormatter
      */
     public TimeFormatter getTimeFormatter()  {
-        return (TimeFormatter) EnumUtil.getEnum(TimeFormatter.values(), getAttribute("timeFormatter"));
+        return EnumUtil.getEnum(TimeFormatter.values(), getAttribute("timeFormatter"));
     }
 
     /**
@@ -922,7 +922,7 @@ public class FormItem extends RefDataClass  implements com.smartgwt.client.widge
      * @return TitleOrientation
      */
     public TitleOrientation getTitleOrientation()  {
-        return (TitleOrientation) EnumUtil.getEnum(TitleOrientation.values(), getAttribute("titleOrientation"));
+        return EnumUtil.getEnum(TitleOrientation.values(), getAttribute("titleOrientation"));
     }
              
     /**
@@ -941,7 +941,7 @@ public class FormItem extends RefDataClass  implements com.smartgwt.client.widge
      * @return Alignment
      */
     public Alignment getTitleAlign()  {
-        return (Alignment) EnumUtil.getEnum(Alignment.values(), getAttribute("titleAlign"));
+        return EnumUtil.getEnum(Alignment.values(), getAttribute("titleAlign"));
     }
 
     /**
@@ -1127,7 +1127,7 @@ public class FormItem extends RefDataClass  implements com.smartgwt.client.widge
      * @return Alignment
      */
     public Alignment getAlign()  {
-        return (Alignment) EnumUtil.getEnum(Alignment.values(), getAttribute("align"));
+        return EnumUtil.getEnum(Alignment.values(), getAttribute("align"));
     }
              
     /**
@@ -1150,7 +1150,7 @@ public class FormItem extends RefDataClass  implements com.smartgwt.client.widge
      * @return Alignment
      */
     public Alignment getTextAlign()  {
-        return (Alignment) EnumUtil.getEnum(Alignment.values(), getAttribute("textAlign"));
+        return EnumUtil.getEnum(Alignment.values(), getAttribute("textAlign"));
     }
 
     /**
@@ -1288,7 +1288,7 @@ public class FormItem extends RefDataClass  implements com.smartgwt.client.widge
      * @return VerticalAlignment
      */
     public VerticalAlignment getIconVAlign()  {
-        return (VerticalAlignment) EnumUtil.getEnum(VerticalAlignment.values(), getAttribute("iconVAlign"));
+        return EnumUtil.getEnum(VerticalAlignment.values(), getAttribute("iconVAlign"));
     }
 
     /**
@@ -1891,7 +1891,7 @@ public class FormItem extends RefDataClass  implements com.smartgwt.client.widge
      * @return Alignment
      */
     public Alignment getHoverAlign()  {
-        return (Alignment) EnumUtil.getEnum(Alignment.values(), getAttribute("hoverAlign"));
+        return EnumUtil.getEnum(Alignment.values(), getAttribute("hoverAlign"));
     }
 
     /**
@@ -1995,7 +1995,7 @@ public class FormItem extends RefDataClass  implements com.smartgwt.client.widge
      * @return OperatorId
      */
     public OperatorId getOperator()  {
-        return (OperatorId) EnumUtil.getEnum(OperatorId.values(), getAttribute("operator"));
+        return EnumUtil.getEnum(OperatorId.values(), getAttribute("operator"));
     }
 
     /**

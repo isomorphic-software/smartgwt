@@ -119,7 +119,7 @@ public class RPCRequest extends DataClass {
      * @return PromptStyle
      */
     public PromptStyle getPromptStyle()  {
-        return (PromptStyle) EnumUtil.getEnum(PromptStyle.values(), getAttribute("promptStyle"));
+        return EnumUtil.getEnum(PromptStyle.values(), getAttribute("promptStyle"));
     }
 
     /**
@@ -422,7 +422,7 @@ public class RPCRequest extends DataClass {
      * @return RPCTransport
      */
     public RPCTransport getTransport()  {
-        return (RPCTransport) EnumUtil.getEnum(RPCTransport.values(), getAttribute("transport"));
+        return EnumUtil.getEnum(RPCTransport.values(), getAttribute("transport"));
     }
 
     /**

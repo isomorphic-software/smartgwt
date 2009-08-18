@@ -362,7 +362,7 @@ public class Splitbar extends StretchImg {
      * @return Cursor
      */
     public Cursor getCursor()  {
-        return (Cursor) EnumUtil.getEnum(Cursor.values(), getAttribute("cursor"));
+        return EnumUtil.getEnum(Cursor.values(), getAttribute("cursor"));
     }
              
     /**
@@ -382,7 +382,7 @@ public class Splitbar extends StretchImg {
      * @return Cursor
      */
     public Cursor getVResizeCursor()  {
-        return (Cursor) EnumUtil.getEnum(Cursor.values(), getAttribute("vResizeCursor"));
+        return EnumUtil.getEnum(Cursor.values(), getAttribute("vResizeCursor"));
     }
              
     /**
@@ -402,7 +402,7 @@ public class Splitbar extends StretchImg {
      * @return Cursor
      */
     public Cursor getHResizeCursor()  {
-        return (Cursor) EnumUtil.getEnum(Cursor.values(), getAttribute("hResizeCursor"));
+        return EnumUtil.getEnum(Cursor.values(), getAttribute("hResizeCursor"));
     }
 
     // ********************* Methods ***********************

@@ -743,7 +743,7 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
      * @return Overflow
      */
     public Overflow getBodyOverflow()  {
-        return (Overflow) EnumUtil.getEnum(Overflow.values(), getAttribute("bodyOverflow"));
+        return EnumUtil.getEnum(Overflow.values(), getAttribute("bodyOverflow"));
     }
 
     /**
@@ -1123,7 +1123,7 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
      * @return DateDisplayFormat
      */
     public DateDisplayFormat getDateFormatter()  {
-        return (DateDisplayFormat) EnumUtil.getEnum(DateDisplayFormat.values(), getAttribute("dateFormatter"));
+        return EnumUtil.getEnum(DateDisplayFormat.values(), getAttribute("dateFormatter"));
     }
              
     /**
@@ -1158,7 +1158,7 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
      * @return DateDisplayFormat
      */
     public DateDisplayFormat getDatetimeFormatter()  {
-        return (DateDisplayFormat) EnumUtil.getEnum(DateDisplayFormat.values(), getAttribute("datetimeFormatter"));
+        return EnumUtil.getEnum(DateDisplayFormat.values(), getAttribute("datetimeFormatter"));
     }
 
     /**
@@ -1635,7 +1635,7 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
      * @return SelectionAppearance
      */
     public SelectionAppearance getSelectionAppearance()  {
-        return (SelectionAppearance) EnumUtil.getEnum(SelectionAppearance.values(), getAttribute("selectionAppearance"));
+        return EnumUtil.getEnum(SelectionAppearance.values(), getAttribute("selectionAppearance"));
     }
 
     /**
@@ -1680,7 +1680,7 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
      * @return SelectionStyle
      */
     public SelectionStyle getSelectionType()  {
-        return (SelectionStyle) EnumUtil.getEnum(SelectionStyle.values(), getAttribute("selectionType"));
+        return EnumUtil.getEnum(SelectionStyle.values(), getAttribute("selectionType"));
     }
 
     /**
@@ -2059,7 +2059,7 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
      * @return TextMatchStyle
      */
     public TextMatchStyle getAutoFetchTextMatchStyle()  {
-        return (TextMatchStyle) EnumUtil.getEnum(TextMatchStyle.values(), getAttribute("autoFetchTextMatchStyle"));
+        return EnumUtil.getEnum(TextMatchStyle.values(), getAttribute("autoFetchTextMatchStyle"));
     }
 
     /**
@@ -2644,7 +2644,7 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
      * @return RowEndEditAction
      */
     public RowEndEditAction getRowEndEditAction()  {
-        return (RowEndEditAction) EnumUtil.getEnum(RowEndEditAction.values(), getAttribute("rowEndEditAction"));
+        return EnumUtil.getEnum(RowEndEditAction.values(), getAttribute("rowEndEditAction"));
     }
              
     /**
@@ -2669,7 +2669,7 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
      * @return RowEndEditAction
      */
     public RowEndEditAction getListEndEditAction()  {
-        return (RowEndEditAction) EnumUtil.getEnum(RowEndEditAction.values(), getAttribute("listEndEditAction"));
+        return EnumUtil.getEnum(RowEndEditAction.values(), getAttribute("listEndEditAction"));
     }
              
     /**
@@ -2696,7 +2696,7 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
      * @return EnterKeyEditAction
      */
     public EnterKeyEditAction getEnterKeyEditAction()  {
-        return (EnterKeyEditAction) EnumUtil.getEnum(EnterKeyEditAction.values(), getAttribute("enterKeyEditAction"));
+        return EnumUtil.getEnum(EnterKeyEditAction.values(), getAttribute("enterKeyEditAction"));
     }
              
     /**
@@ -2721,7 +2721,7 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
      * @return EscapeKeyEditAction
      */
     public EscapeKeyEditAction getEscapeKeyEditAction()  {
-        return (EscapeKeyEditAction) EnumUtil.getEnum(EscapeKeyEditAction.values(), getAttribute("escapeKeyEditAction"));
+        return EnumUtil.getEnum(EscapeKeyEditAction.values(), getAttribute("escapeKeyEditAction"));
     }
              
     /**
@@ -2746,7 +2746,7 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
      * @return ListGridEditEvent
      */
     public ListGridEditEvent getEditEvent()  {
-        return (ListGridEditEvent) EnumUtil.getEnum(ListGridEditEvent.values(), getAttribute("editEvent"));
+        return EnumUtil.getEnum(ListGridEditEvent.values(), getAttribute("editEvent"));
     }
 
     /**
@@ -3082,7 +3082,7 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
      * @return SortArrow
      */
     public SortArrow getShowSortArrow()  {
-        return (SortArrow) EnumUtil.getEnum(SortArrow.values(), getAttribute("showSortArrow"));
+        return EnumUtil.getEnum(SortArrow.values(), getAttribute("showSortArrow"));
     }
 
     /**
@@ -3400,7 +3400,7 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
      * @return DragTrackerMode
      */
     public DragTrackerMode getDragTrackerMode()  {
-        return (DragTrackerMode) EnumUtil.getEnum(DragTrackerMode.values(), getAttribute("dragTrackerMode"));
+        return EnumUtil.getEnum(DragTrackerMode.values(), getAttribute("dragTrackerMode"));
     }
 
     /**
@@ -5667,7 +5667,7 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
     // ********************* Static Methods ***********************
 
 
-
+
 
 
     protected native void onInit() /*-{
@@ -7686,7 +7686,7 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
     }
 
     public DragDataAction getDragDataAction() {
-        return (DragDataAction) EnumUtil.getEnum(DragDataAction.values(), getAttribute("dragDataAction"));
+        return EnumUtil.getEnum(DragDataAction.values(), getAttribute("dragDataAction"));
     }
 
     public void setDragTrackerStyle(String dragTrackerStyle) {

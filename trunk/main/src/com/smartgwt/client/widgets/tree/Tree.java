@@ -118,7 +118,7 @@ public class Tree extends BaseClass  implements com.smartgwt.client.widgets.tree
      * @return TreeModelType
      */
     public TreeModelType getModelType()  {
-        return (TreeModelType) EnumUtil.getEnum(TreeModelType.values(), getAttribute("modelType"));
+        return EnumUtil.getEnum(TreeModelType.values(), getAttribute("modelType"));
     }
 
     /**

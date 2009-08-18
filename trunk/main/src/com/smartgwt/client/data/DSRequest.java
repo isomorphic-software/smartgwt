@@ -121,7 +121,7 @@ public class DSRequest extends RPCRequest {
      * @return DSOperationType
      */
     public DSOperationType getOperationType()  {
-        return (DSOperationType) EnumUtil.getEnum(DSOperationType.values(), getAttribute("operationType"));
+        return EnumUtil.getEnum(DSOperationType.values(), getAttribute("operationType"));
     }
 
     /**
@@ -439,7 +439,7 @@ public class DSRequest extends RPCRequest {
      * @return ExportFormat
      */
     public ExportFormat getExportAs()  {
-        return (ExportFormat) EnumUtil.getEnum(ExportFormat.values(), getAttribute("exportAs"));
+        return EnumUtil.getEnum(ExportFormat.values(), getAttribute("exportAs"));
     }
 
     /**
@@ -479,7 +479,7 @@ public class DSRequest extends RPCRequest {
      * @return ExportDisplay
      */
     public ExportDisplay getExportDisplay()  {
-        return (ExportDisplay) EnumUtil.getEnum(ExportDisplay.values(), getAttribute("exportDisplay"));
+        return EnumUtil.getEnum(ExportDisplay.values(), getAttribute("exportDisplay"));
     }
 
     /**

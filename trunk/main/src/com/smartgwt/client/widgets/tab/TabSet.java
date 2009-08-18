@@ -106,7 +106,7 @@ public class TabSet extends Canvas  implements com.smartgwt.client.widgets.tab.e
      * @return Side
      */
     public Side getTabBarPosition()  {
-        return (Side) EnumUtil.getEnum(Side.values(), getAttribute("tabBarPosition"));
+        return EnumUtil.getEnum(Side.values(), getAttribute("tabBarPosition"));
     }
              
     /**
@@ -130,7 +130,7 @@ public class TabSet extends Canvas  implements com.smartgwt.client.widgets.tab.e
      * @return Side
      */
     public Side getTabBarAlign()  {
-        return (Side) EnumUtil.getEnum(Side.values(), getAttribute("tabBarAlign"));
+        return EnumUtil.getEnum(Side.values(), getAttribute("tabBarAlign"));
     }
 
     /**
@@ -705,7 +705,7 @@ public class TabSet extends Canvas  implements com.smartgwt.client.widgets.tab.e
      * @return Overflow
      */
     public Overflow getPaneContainerOverflow()  {
-        return (Overflow) EnumUtil.getEnum(Overflow.values(), getAttribute("paneContainerOverflow"));
+        return EnumUtil.getEnum(Overflow.values(), getAttribute("paneContainerOverflow"));
     }
 
     /**

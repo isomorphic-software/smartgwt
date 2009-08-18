@@ -115,7 +115,7 @@ public class Layout extends Canvas {
      * @return Overflow
      */
     public Overflow getOverflow()  {
-        return (Overflow) EnumUtil.getEnum(Overflow.values(), getAttribute("overflow"));
+        return EnumUtil.getEnum(Overflow.values(), getAttribute("overflow"));
     }
 
     /**
@@ -156,7 +156,7 @@ public class Layout extends Canvas {
      * @return LayoutPolicy
      */
     public LayoutPolicy getVPolicy()  {
-        return (LayoutPolicy) EnumUtil.getEnum(LayoutPolicy.values(), getAttribute("vPolicy"));
+        return EnumUtil.getEnum(LayoutPolicy.values(), getAttribute("vPolicy"));
     }
              
     /**
@@ -176,7 +176,7 @@ public class Layout extends Canvas {
      * @return LayoutPolicy
      */
     public LayoutPolicy getHPolicy()  {
-        return (LayoutPolicy) EnumUtil.getEnum(LayoutPolicy.values(), getAttribute("hPolicy"));
+        return EnumUtil.getEnum(LayoutPolicy.values(), getAttribute("hPolicy"));
     }
 
     /**
@@ -482,7 +482,7 @@ public class Layout extends Canvas {
      * @return LayoutResizeBarPolicy
      */
     public LayoutResizeBarPolicy getDefaultResizeBars()  {
-        return (LayoutResizeBarPolicy) EnumUtil.getEnum(LayoutResizeBarPolicy.values(), getAttribute("defaultResizeBars"));
+        return EnumUtil.getEnum(LayoutResizeBarPolicy.values(), getAttribute("defaultResizeBars"));
     }
 
     /**

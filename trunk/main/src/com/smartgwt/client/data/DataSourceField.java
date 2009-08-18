@@ -149,7 +149,7 @@ public class DataSourceField extends DataClass {
      * @return FieldType
      */
     public FieldType getType()  {
-        return (FieldType) EnumUtil.getEnum(FieldType.values(), getAttribute("type"));
+        return EnumUtil.getEnum(FieldType.values(), getAttribute("type"));
     }
 
     /**
@@ -970,7 +970,7 @@ public class DataSourceField extends DataClass {
      * @return HashAlgorithm
      */
     public HashAlgorithm getStoreWithHash()  {
-        return (HashAlgorithm) EnumUtil.getEnum(HashAlgorithm.values(), getAttribute("storeWithHash"));
+        return EnumUtil.getEnum(HashAlgorithm.values(), getAttribute("storeWithHash"));
     }
 
     /**

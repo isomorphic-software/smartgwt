@@ -310,7 +310,7 @@ public class TileLayout extends Canvas {
      * @return Orientation
      */
     public Orientation getOrientation()  {
-        return (Orientation) EnumUtil.getEnum(Orientation.values(), getAttribute("orientation"));
+        return EnumUtil.getEnum(Orientation.values(), getAttribute("orientation"));
     }
 
     /**
@@ -356,7 +356,7 @@ public class TileLayout extends Canvas {
      * @return Overflow
      */
     public Overflow getOverflow()  {
-        return (Overflow) EnumUtil.getEnum(Overflow.values(), getAttribute("overflow"));
+        return EnumUtil.getEnum(Overflow.values(), getAttribute("overflow"));
     }
 
     /**
@@ -421,7 +421,7 @@ public class TileLayout extends Canvas {
      * @return DragDataAction
      */
     public DragDataAction getDragDataAction()  {
-        return (DragDataAction) EnumUtil.getEnum(DragDataAction.values(), getAttribute("dragDataAction"));
+        return EnumUtil.getEnum(DragDataAction.values(), getAttribute("dragDataAction"));
     }
 
     // ********************* Methods ***********************

@@ -123,7 +123,7 @@ public class TimeItem extends TextItem {
      * @return DateDisplayFormat
      */
     public TimeFormatter getDisplayFormat() {
-        return (TimeFormatter) EnumUtil.getEnum(TimeFormatter.values(), getAttribute("displayFormat"));
+        return EnumUtil.getEnum(TimeFormatter.values(), getAttribute("displayFormat"));
     }
 
 }

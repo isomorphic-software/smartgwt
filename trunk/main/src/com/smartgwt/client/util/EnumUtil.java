@@ -4,8 +4,8 @@ import com.smartgwt.client.types.ValueEnum;
 
 public class EnumUtil {
 
-    public static ValueEnum getEnum(ValueEnum[] enums, String value) {
-        for (ValueEnum anEnum : enums) {
+    public static <T extends ValueEnum> T getEnum(T[] enums, String value) {
+        for (T anEnum : enums) {
             if (anEnum.getValue().equals(value)) {
                 return anEnum;
             }

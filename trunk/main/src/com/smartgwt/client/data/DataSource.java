@@ -166,7 +166,7 @@ public class DataSource extends BaseClass  implements com.smartgwt.client.data.e
      * @return DSDataFormat
      */
     public DSDataFormat getDataFormat()  {
-        return (DSDataFormat) EnumUtil.getEnum(DSDataFormat.values(), getAttribute("dataFormat"));
+        return EnumUtil.getEnum(DSDataFormat.values(), getAttribute("dataFormat"));
     }
 
     /**
@@ -220,7 +220,7 @@ public class DataSource extends BaseClass  implements com.smartgwt.client.data.e
      * @return RPCTransport
      */
     public RPCTransport getDataTransport()  {
-        return (RPCTransport) EnumUtil.getEnum(RPCTransport.values(), getAttribute("dataTransport"));
+        return EnumUtil.getEnum(RPCTransport.values(), getAttribute("dataTransport"));
     }
 
     /**
@@ -266,7 +266,7 @@ public class DataSource extends BaseClass  implements com.smartgwt.client.data.e
      * @return DSServerType
      */
     public DSServerType getServerType()  {
-        return (DSServerType) EnumUtil.getEnum(DSServerType.values(), getAttribute("serverType"));
+        return EnumUtil.getEnum(DSServerType.values(), getAttribute("serverType"));
     }
 
     /**
@@ -709,7 +709,7 @@ public class DataSource extends BaseClass  implements com.smartgwt.client.data.e
      * @return CriteriaPolicy
      */
     public CriteriaPolicy getCriteriaPolicy()  {
-        return (CriteriaPolicy) EnumUtil.getEnum(CriteriaPolicy.values(), getAttribute("criteriaPolicy"));
+        return EnumUtil.getEnum(CriteriaPolicy.values(), getAttribute("criteriaPolicy"));
     }
 
     /**
@@ -1500,7 +1500,7 @@ public class DataSource extends BaseClass  implements com.smartgwt.client.data.e
      * @return DSDataProtocol
      */
     public DSProtocol getDataProtocol() {
-        return (DSProtocol) EnumUtil.getEnum(DSProtocol.values(), getAttribute("dataProtocol"));
+        return EnumUtil.getEnum(DSProtocol.values(), getAttribute("dataProtocol"));
     }
 
     /**

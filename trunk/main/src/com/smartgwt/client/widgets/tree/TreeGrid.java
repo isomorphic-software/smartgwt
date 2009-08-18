@@ -184,7 +184,7 @@ public class TreeGrid extends ListGrid  implements com.smartgwt.client.widgets.t
      * @return AnimationAcceleration
      */
     public AnimationAcceleration getAnimateFolderEffect()  {
-        return (AnimationAcceleration) EnumUtil.getEnum(AnimationAcceleration.values(), getAttribute("animateFolderEffect"));
+        return EnumUtil.getEnum(AnimationAcceleration.values(), getAttribute("animateFolderEffect"));
     }
             
     /**
@@ -261,7 +261,7 @@ public class TreeGrid extends ListGrid  implements com.smartgwt.client.widgets.t
      * @return TextMatchStyle
      */
     public TextMatchStyle getAutoFetchTextMatchStyle()  {
-        return (TextMatchStyle) EnumUtil.getEnum(TextMatchStyle.values(), getAttribute("autoFetchTextMatchStyle"));
+        return EnumUtil.getEnum(TextMatchStyle.values(), getAttribute("autoFetchTextMatchStyle"));
     }
 
     /**
@@ -354,7 +354,7 @@ public class TreeGrid extends ListGrid  implements com.smartgwt.client.widgets.t
      * @return DisplayNodeType
      */
     public DisplayNodeType getDisplayNodeType()  {
-        return (DisplayNodeType) EnumUtil.getEnum(DisplayNodeType.values(), getAttribute("displayNodeType"));
+        return EnumUtil.getEnum(DisplayNodeType.values(), getAttribute("displayNodeType"));
     }
 
     /**

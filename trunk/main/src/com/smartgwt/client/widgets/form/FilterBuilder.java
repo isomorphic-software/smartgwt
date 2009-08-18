@@ -280,7 +280,7 @@ public class FilterBuilder extends Layout  implements com.smartgwt.client.widget
      * @return LogicalOperator
      */
     public LogicalOperator getTopOperator()  {
-        return (LogicalOperator) EnumUtil.getEnum(LogicalOperator.values(), getAttribute("topOperator"));
+        return EnumUtil.getEnum(LogicalOperator.values(), getAttribute("topOperator"));
     }
 
     /**
@@ -456,12 +456,8 @@ public class FilterBuilder extends Layout  implements com.smartgwt.client.widget
     // ********************* Static Methods ***********************
 
 
-
-
-
-
-
-
+
+
     /**
      * If true (the default), show field titles in the drop-down box used to select a field for querying. If false, show
      * actual field names instead.

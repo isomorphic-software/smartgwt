@@ -533,7 +533,7 @@ public class StretchImgButton extends StretchImg  implements com.smartgwt.client
      * @return Return the 'actionType' for this canvas (radio / checkbox / button)
      */
     public SelectionType getActionType()  {
-        return (SelectionType) EnumUtil.getEnum(SelectionType.values(), getAttribute("actionType"));
+        return EnumUtil.getEnum(SelectionType.values(), getAttribute("actionType"));
     }
              
     /**
@@ -566,7 +566,7 @@ public class StretchImgButton extends StretchImg  implements com.smartgwt.client
      * @return Return the state of this StatefulCanvas
      */
     public State getState()  {
-        return (State) EnumUtil.getEnum(State.values(), getAttribute("state"));
+        return EnumUtil.getEnum(State.values(), getAttribute("state"));
     }
 
     /**
@@ -667,7 +667,7 @@ public class StretchImgButton extends StretchImg  implements com.smartgwt.client
      * @return Alignment
      */
     public Alignment getAlign()  {
-        return (Alignment) EnumUtil.getEnum(Alignment.values(), getAttribute("align"));
+        return EnumUtil.getEnum(Alignment.values(), getAttribute("align"));
     }
              
     /**
@@ -686,7 +686,7 @@ public class StretchImgButton extends StretchImg  implements com.smartgwt.client
      * @return VerticalAlignment
      */
     public VerticalAlignment getValign()  {
-        return (VerticalAlignment) EnumUtil.getEnum(VerticalAlignment.values(), getAttribute("valign"));
+        return EnumUtil.getEnum(VerticalAlignment.values(), getAttribute("valign"));
     }
 
     /**

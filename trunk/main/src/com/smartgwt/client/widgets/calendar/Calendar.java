@@ -998,7 +998,7 @@ public class Calendar extends Canvas  implements DataBoundComponent, com.smartgw
      * @return TextMatchStyle
      */
     public TextMatchStyle getAutoFetchTextMatchStyle()  {
-        return (TextMatchStyle) EnumUtil.getEnum(TextMatchStyle.values(), getAttribute("autoFetchTextMatchStyle"));
+        return EnumUtil.getEnum(TextMatchStyle.values(), getAttribute("autoFetchTextMatchStyle"));
     }
  
 
@@ -1267,7 +1267,7 @@ public class Calendar extends Canvas  implements DataBoundComponent, com.smartgw
      * @return Get the name of the visible view. Either 'day', 'week', or 'month'.
      */
     public ViewName getCurrentViewName()  {
-        return (ViewName) EnumUtil.getEnum(ViewName.values(), getAttribute("currentViewName"));
+        return EnumUtil.getEnum(ViewName.values(), getAttribute("currentViewName"));
     }
  
 
@@ -2103,7 +2103,7 @@ public class Calendar extends Canvas  implements DataBoundComponent, com.smartgw
     }
 
     public DragDataAction getDragDataAction() {
-        return (DragDataAction) EnumUtil.getEnum(DragDataAction.values(), getAttribute("dragDataAction"));
+        return EnumUtil.getEnum(DragDataAction.values(), getAttribute("dragDataAction"));
     }
 
     public void setDragTrackerStyle(String dragTrackerStyle) {
