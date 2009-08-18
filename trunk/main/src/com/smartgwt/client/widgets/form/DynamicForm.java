@@ -78,7 +78,7 @@ import com.google.gwt.event.shared.HasHandlers;
  * still use a DynamicForm.&#010 See the "fontSelector" form in the ${isc.DocUtils.linkForExampleId('toolstrip', 'Toolstrip
  * example')}.
  */
-public class DynamicForm extends Canvas  implements DataBoundComponent, com.smartgwt.client.widgets.form.events.HasSubmitValuesHandlers, com.smartgwt.client.widgets.form.events.HasItemChangeHandlers, com.smartgwt.client.widgets.form.events.HasItemChangedHandlers, com.smartgwt.client.widgets.form.events.HasItemKeyPressHandlers {
+public class DynamicForm extends Canvas  implements DataBoundComponent, com.smartgwt.client.widgets.form.events.HasSubmitValuesHandlers, com.smartgwt.client.widgets.form.events.HasItemChangeHandlers, com.smartgwt.client.widgets.form.events.HasItemChangedHandlers, com.smartgwt.client.widgets.form.events.HasItemKeyPressHandlers, com.smartgwt.client.widgets.form.events.HasFormSubmitFailedHandlers {
 
     public static DynamicForm getOrCreateRef(JavaScriptObject jsObj) {
         if(jsObj == null) return null;
@@ -1414,6 +1414,30 @@ public class DynamicForm extends Canvas  implements DataBoundComponent, com.smar
     public Boolean getShowComplexFieldsRecursively()  {
         return getAttributeAsBoolean("showComplexFieldsRecursively");
     }
+
+    /**
+     * Warning to display to the user if an attempt to {@link com.smartgwt.client.widgets.form.DynamicForm#submitForm} a form
+     * is unable to submit to the server. The most common cause for this failure is that the user has typed an invalid
+     * file-path into an upload type field.
+     * <p><b>Note : </b> This is an advanced setting</p>
+     *
+     * @param formSubmitFailedWarning formSubmitFailedWarning Default value is "Form was unable to be submitted. The most likely cause for this is an invalid value in an upload field."
+     */
+    public void setFormSubmitFailedWarning(String formSubmitFailedWarning) {
+        setAttribute("formSubmitFailedWarning", formSubmitFailedWarning, true);
+    }
+
+    /**
+     * Warning to display to the user if an attempt to {@link com.smartgwt.client.widgets.form.DynamicForm#submitForm} a form
+     * is unable to submit to the server. The most common cause for this failure is that the user has typed an invalid
+     * file-path into an upload type field.
+     *
+     *
+     * @return String
+     */
+    public String getFormSubmitFailedWarning()  {
+        return getAttributeAsString("formSubmitFailedWarning");
+    }
              
     /**
      * If {@link com.smartgwt.client.widgets.form.DynamicForm#getAutoFetchData autoFetchData} is <code>true</code>, this
@@ -1558,7 +1582,8 @@ public class DynamicForm extends Canvas  implements DataBoundComponent, com.smar
 
     /**
      * Sets the value for some field
-     * @param fieldName Name of the field being updated
+     * @param fieldName Name of the field being updated. A ${isc.DocUtils.linkForRef('dataPath')} may                           be passed to set
+     * nested values
      * @param value New value.
      */
     public native void setValue(String fieldName, String value) /*-{
@@ -1570,7 +1595,8 @@ public class DynamicForm extends Canvas  implements DataBoundComponent, com.smar
      * Clears the value for some field via a call to {@link com.smartgwt.client.widgets.form.fields.FormItem#clearValue} if
      * appropriate. If there is no item associated with the field name, the field will just be cleared within our stored set of
      * values.
-     * @param fieldName Name of the field being cleared
+     * @param fieldName Name of the field being cleared. A ${isc.DocUtils.linkForRef('dataPath')} may be used for  clearing details of nested
+     * data structures.
      */
     public native void clearValue(String fieldName) /*-{
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
@@ -1675,6 +1701,43 @@ public class DynamicForm extends Canvas  implements DataBoundComponent, com.smar
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
         self.submitForm();
     }-*/;
+
+    /**
+     * Add a formSubmitFailed handler.
+     * <p>
+     * Method called when an attempt to {@link com.smartgwt.client.widgets.form.DynamicForm#submitForm} a form is unable to
+     * submit to the server. Default behavour is to display the  {@link
+     * com.smartgwt.client.widgets.form.DynamicForm#getFormSubmitFailedWarning formSubmitFailedWarning} in a warning dialog.
+     * The most common cause for this failure is that the user has typed an invalid file-path into an upload type field.
+     *
+     * @param handler the formSubmitFailed handler
+     * @return {@link HandlerRegistration} used to remove this handler
+     */
+    public HandlerRegistration addFormSubmitFailedHandler(com.smartgwt.client.widgets.form.events.FormSubmitFailedHandler handler) {
+        if(getHandlerCount(com.smartgwt.client.widgets.form.events.FormSubmitFailedEvent.getType()) == 0) setupFormSubmitFailedEvent();
+        return doAddHandler(handler, com.smartgwt.client.widgets.form.events.FormSubmitFailedEvent.getType());
+    }
+
+    private native void setupFormSubmitFailedEvent() /*-{
+        var obj = null;
+        var selfJ = this;
+        if(this.@com.smartgwt.client.widgets.BaseWidget::isCreated()()) {
+            obj = this.@com.smartgwt.client.widgets.BaseWidget::getJsObj()();
+            obj.addProperties({formSubmitFailed:function(){
+                        var param = {};
+                        var event = @com.smartgwt.client.widgets.form.events.FormSubmitFailedEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
+                        selfJ.@com.smartgwt.client.widgets.BaseWidget::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
+                    }
+             });
+        } else {
+            obj = this.@com.smartgwt.client.widgets.BaseWidget::getConfig()();
+            obj.formSubmitFailed = function(){
+                   var param = {};
+                   var event = @com.smartgwt.client.widgets.form.events.FormSubmitFailedEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
+                   selfJ.@com.smartgwt.client.widgets.BaseWidget::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
+               };
+        }
+   }-*/;
 
 
     /**
