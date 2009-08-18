@@ -95,7 +95,7 @@ public class OperationBinding extends DataClass {
      * @return DSOperationType
      */
     public DSOperationType getOperationType()  {
-        return (DSOperationType) EnumUtil.getEnum(DSOperationType.values(), getAttribute("operationType"));
+        return EnumUtil.getEnum(DSOperationType.values(), getAttribute("operationType"));
     }
 
     /**
@@ -219,7 +219,7 @@ public class OperationBinding extends DataClass {
      * @return DSProtocol
      */
     public DSProtocol getDataProtocol()  {
-        return (DSProtocol) EnumUtil.getEnum(DSProtocol.values(), getAttribute("dataProtocol"));
+        return EnumUtil.getEnum(DSProtocol.values(), getAttribute("dataProtocol"));
     }
              
     /**
@@ -240,7 +240,7 @@ public class OperationBinding extends DataClass {
      * @return DSDataFormat
      */
     public DSDataFormat getDataFormat()  {
-        return (DSDataFormat) EnumUtil.getEnum(DSDataFormat.values(), getAttribute("dataFormat"));
+        return EnumUtil.getEnum(DSDataFormat.values(), getAttribute("dataFormat"));
     }
              
     /**
@@ -271,7 +271,7 @@ public class OperationBinding extends DataClass {
      * @return RPCTransport
      */
     public RPCTransport getDataTransport()  {
-        return (RPCTransport) EnumUtil.getEnum(RPCTransport.values(), getAttribute("dataTransport"));
+        return EnumUtil.getEnum(RPCTransport.values(), getAttribute("dataTransport"));
     }
 
     /**
@@ -527,7 +527,7 @@ public class OperationBinding extends DataClass {
      * @return ExportFormat
      */
     public ExportFormat getExportAs()  {
-        return (ExportFormat) EnumUtil.getEnum(ExportFormat.values(), getAttribute("exportAs"));
+        return EnumUtil.getEnum(ExportFormat.values(), getAttribute("exportAs"));
     }
 
     /**

@@ -144,7 +144,7 @@ public class ColumnTree extends Layout  implements DataBoundComponent, com.smart
      * @return TextMatchStyle
      */
     public TextMatchStyle getAutoFetchTextMatchStyle()  {
-        return (TextMatchStyle) EnumUtil.getEnum(TextMatchStyle.values(), getAttribute("autoFetchTextMatchStyle"));
+        return EnumUtil.getEnum(TextMatchStyle.values(), getAttribute("autoFetchTextMatchStyle"));
     }
 
     /**
@@ -955,7 +955,7 @@ public class ColumnTree extends Layout  implements DataBoundComponent, com.smart
     }
 
     public DragDataAction getDragDataAction() {
-        return (DragDataAction) EnumUtil.getEnum(DragDataAction.values(), getAttribute("dragDataAction"));
+        return EnumUtil.getEnum(DragDataAction.values(), getAttribute("dragDataAction"));
     }
 
     public void setDragTrackerStyle(String dragTrackerStyle) {

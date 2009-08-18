@@ -135,7 +135,7 @@ public class Canvas extends BaseWidget  implements com.smartgwt.client.widgets.e
      * @return AnimationEffect
      */
     public AnimationEffect getAnimateAcceleration()  {
-        return (AnimationEffect) EnumUtil.getEnum(AnimationEffect.values(), getAttribute("animateAcceleration"));
+        return EnumUtil.getEnum(AnimationEffect.values(), getAttribute("animateAcceleration"));
     }
 
     /**
@@ -299,7 +299,7 @@ public class Canvas extends BaseWidget  implements com.smartgwt.client.widgets.e
      * @return AnimationAcceleration
      */
     public AnimationAcceleration getAnimateMoveAcceleration()  {
-        return (AnimationAcceleration) EnumUtil.getEnum(AnimationAcceleration.values(), getAttribute("animateMoveAcceleration"));
+        return EnumUtil.getEnum(AnimationAcceleration.values(), getAttribute("animateMoveAcceleration"));
     }
              
     /**
@@ -321,7 +321,7 @@ public class Canvas extends BaseWidget  implements com.smartgwt.client.widgets.e
      * @return AnimationAcceleration
      */
     public AnimationAcceleration getAnimateResizeAcceleration()  {
-        return (AnimationAcceleration) EnumUtil.getEnum(AnimationAcceleration.values(), getAttribute("animateResizeAcceleration"));
+        return EnumUtil.getEnum(AnimationAcceleration.values(), getAttribute("animateResizeAcceleration"));
     }
              
     /**
@@ -343,7 +343,7 @@ public class Canvas extends BaseWidget  implements com.smartgwt.client.widgets.e
      * @return AnimationAcceleration
      */
     public AnimationAcceleration getAnimateRectAcceleration()  {
-        return (AnimationAcceleration) EnumUtil.getEnum(AnimationAcceleration.values(), getAttribute("animateRectAcceleration"));
+        return EnumUtil.getEnum(AnimationAcceleration.values(), getAttribute("animateRectAcceleration"));
     }
              
     /**
@@ -365,7 +365,7 @@ public class Canvas extends BaseWidget  implements com.smartgwt.client.widgets.e
      * @return AnimationAcceleration
      */
     public AnimationAcceleration getAnimateScrollAcceleration()  {
-        return (AnimationAcceleration) EnumUtil.getEnum(AnimationAcceleration.values(), getAttribute("animateScrollAcceleration"));
+        return EnumUtil.getEnum(AnimationAcceleration.values(), getAttribute("animateScrollAcceleration"));
     }
              
     /**
@@ -387,7 +387,7 @@ public class Canvas extends BaseWidget  implements com.smartgwt.client.widgets.e
      * @return AnimationAcceleration
      */
     public AnimationAcceleration getAnimateShowAcceleration()  {
-        return (AnimationAcceleration) EnumUtil.getEnum(AnimationAcceleration.values(), getAttribute("animateShowAcceleration"));
+        return EnumUtil.getEnum(AnimationAcceleration.values(), getAttribute("animateShowAcceleration"));
     }
              
     /**
@@ -409,7 +409,7 @@ public class Canvas extends BaseWidget  implements com.smartgwt.client.widgets.e
      * @return AnimationAcceleration
      */
     public AnimationAcceleration getAnimateHideAcceleration()  {
-        return (AnimationAcceleration) EnumUtil.getEnum(AnimationAcceleration.values(), getAttribute("animateHideAcceleration"));
+        return EnumUtil.getEnum(AnimationAcceleration.values(), getAttribute("animateHideAcceleration"));
     }
 
     /**
@@ -517,7 +517,7 @@ public class Canvas extends BaseWidget  implements com.smartgwt.client.widgets.e
      * @return DrawPosition
      */
     public DrawPosition getHtmlPosition()  {
-        return (DrawPosition) EnumUtil.getEnum(DrawPosition.values(), getAttribute("htmlPosition"));
+        return EnumUtil.getEnum(DrawPosition.values(), getAttribute("htmlPosition"));
     }
 
     /**
@@ -595,7 +595,7 @@ public class Canvas extends BaseWidget  implements com.smartgwt.client.widgets.e
      * @return Positioning
      */
     public Positioning getPosition()  {
-        return (Positioning) EnumUtil.getEnum(Positioning.values(), getAttribute("position"));
+        return EnumUtil.getEnum(Positioning.values(), getAttribute("position"));
     }
 
     /**
@@ -769,7 +769,7 @@ public class Canvas extends BaseWidget  implements com.smartgwt.client.widgets.e
      * visible if they would be visible if drawn.
      */
     public Visibility getVisibility()  {
-        return (Visibility) EnumUtil.getEnum(Visibility.values(), getAttribute("visibility"));
+        return EnumUtil.getEnum(Visibility.values(), getAttribute("visibility"));
     }
 
     /**
@@ -1016,7 +1016,7 @@ public class Canvas extends BaseWidget  implements com.smartgwt.client.widgets.e
      * @return BkgndRepeat
      */
     public BkgndRepeat getBackgroundRepeat()  {
-        return (BkgndRepeat) EnumUtil.getEnum(BkgndRepeat.values(), getAttribute("backgroundRepeat"));
+        return EnumUtil.getEnum(BkgndRepeat.values(), getAttribute("backgroundRepeat"));
     }
 
     /**
@@ -1104,7 +1104,7 @@ public class Canvas extends BaseWidget  implements com.smartgwt.client.widgets.e
      * @return Cursor
      */
     public Cursor getCursor()  {
-        return (Cursor) EnumUtil.getEnum(Cursor.values(), getAttribute("cursor"));
+        return EnumUtil.getEnum(Cursor.values(), getAttribute("cursor"));
     }
              
     /**
@@ -1126,7 +1126,7 @@ public class Canvas extends BaseWidget  implements com.smartgwt.client.widgets.e
      * @return Cursor
      */
     public Cursor getDisabledCursor()  {
-        return (Cursor) EnumUtil.getEnum(Cursor.values(), getAttribute("disabledCursor"));
+        return EnumUtil.getEnum(Cursor.values(), getAttribute("disabledCursor"));
     }
 
     /**
@@ -1175,7 +1175,7 @@ public class Canvas extends BaseWidget  implements com.smartgwt.client.widgets.e
      * @return Overflow
      */
     public Overflow getOverflow()  {
-        return (Overflow) EnumUtil.getEnum(Overflow.values(), getAttribute("overflow"));
+        return EnumUtil.getEnum(Overflow.values(), getAttribute("overflow"));
     }
 
     /**
@@ -1518,7 +1518,7 @@ public class Canvas extends BaseWidget  implements com.smartgwt.client.widgets.e
      * @return DragIntersectStyle
      */
     public DragIntersectStyle getDragIntersectStyle()  {
-        return (DragIntersectStyle) EnumUtil.getEnum(DragIntersectStyle.values(), getAttribute("dragIntersectStyle"));
+        return EnumUtil.getEnum(DragIntersectStyle.values(), getAttribute("dragIntersectStyle"));
     }
 
     /**
@@ -1558,7 +1558,7 @@ public class Canvas extends BaseWidget  implements com.smartgwt.client.widgets.e
      * @return Cursor
      */
     public Cursor getDragRepositionCursor()  {
-        return (Cursor) EnumUtil.getEnum(Cursor.values(), getAttribute("dragRepositionCursor"));
+        return EnumUtil.getEnum(Cursor.values(), getAttribute("dragRepositionCursor"));
     }
 
     /**
@@ -1700,7 +1700,7 @@ public class Canvas extends BaseWidget  implements com.smartgwt.client.widgets.e
      * @return Alignment
      */
     public Alignment getHoverAlign()  {
-        return (Alignment) EnumUtil.getEnum(Alignment.values(), getAttribute("hoverAlign"));
+        return EnumUtil.getEnum(Alignment.values(), getAttribute("hoverAlign"));
     }
              
     /**
@@ -1721,7 +1721,7 @@ public class Canvas extends BaseWidget  implements com.smartgwt.client.widgets.e
      * @return VerticalAlignment
      */
     public VerticalAlignment getHoverVAlign()  {
-        return (VerticalAlignment) EnumUtil.getEnum(VerticalAlignment.values(), getAttribute("hoverVAlign"));
+        return EnumUtil.getEnum(VerticalAlignment.values(), getAttribute("hoverVAlign"));
     }
 
     /**
@@ -1819,7 +1819,7 @@ public class Canvas extends BaseWidget  implements com.smartgwt.client.widgets.e
      * @return DragAppearance
      */
     public DragAppearance getDragAppearance()  {
-        return (DragAppearance) EnumUtil.getEnum(DragAppearance.values(), getAttribute("dragAppearance"));
+        return EnumUtil.getEnum(DragAppearance.values(), getAttribute("dragAppearance"));
     }
 
     /**
@@ -2060,7 +2060,7 @@ public class Canvas extends BaseWidget  implements com.smartgwt.client.widgets.e
      * @return PercentBoxModel
      */
     public PercentBoxModel getPercentBox()  {
-        return (PercentBoxModel) EnumUtil.getEnum(PercentBoxModel.values(), getAttribute("percentBox"));
+        return EnumUtil.getEnum(PercentBoxModel.values(), getAttribute("percentBox"));
     }
 
     /**

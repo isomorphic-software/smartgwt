@@ -867,7 +867,7 @@ public class Window extends VLayout  implements com.smartgwt.client.widgets.even
      * @return AnimationAcceleration
      */
     public AnimationAcceleration getMinimizeAcceleration()  {
-        return (AnimationAcceleration) EnumUtil.getEnum(AnimationAcceleration.values(), getAttribute("minimizeAcceleration"));
+        return EnumUtil.getEnum(AnimationAcceleration.values(), getAttribute("minimizeAcceleration"));
     }
 
     /**

@@ -189,7 +189,7 @@ public class Label extends Button {
      * @return Alignment
      */
     public Alignment getAlign()  {
-        return (Alignment) EnumUtil.getEnum(Alignment.values(), getAttribute("align"));
+        return EnumUtil.getEnum(Alignment.values(), getAttribute("align"));
     }
              
     /**
@@ -208,7 +208,7 @@ public class Label extends Button {
      * @return VerticalAlignment
      */
     public VerticalAlignment getValign()  {
-        return (VerticalAlignment) EnumUtil.getEnum(VerticalAlignment.values(), getAttribute("valign"));
+        return EnumUtil.getEnum(VerticalAlignment.values(), getAttribute("valign"));
     }
 
     /**

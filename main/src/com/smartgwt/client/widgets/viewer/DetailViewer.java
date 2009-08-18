@@ -103,7 +103,7 @@ public class DetailViewer extends Canvas  implements DataBoundComponent {
      * @return FetchMode
      */
     public FetchMode getDataFetchMode()  {
-        return (FetchMode) EnumUtil.getEnum(FetchMode.values(), getAttribute("dataFetchMode"));
+        return EnumUtil.getEnum(FetchMode.values(), getAttribute("dataFetchMode"));
     }
 
     /**
@@ -426,7 +426,7 @@ public class DetailViewer extends Canvas  implements DataBoundComponent {
      * @return DateDisplayFormat
      */
     public DateDisplayFormat getDateFormatter()  {
-        return (DateDisplayFormat) EnumUtil.getEnum(DateDisplayFormat.values(), getAttribute("dateFormatter"));
+        return EnumUtil.getEnum(DateDisplayFormat.values(), getAttribute("dateFormatter"));
     }
              
     /**
@@ -448,7 +448,7 @@ public class DetailViewer extends Canvas  implements DataBoundComponent {
      * @return DateDisplayFormat
      */
     public DateDisplayFormat getDatetimeFormatter()  {
-        return (DateDisplayFormat) EnumUtil.getEnum(DateDisplayFormat.values(), getAttribute("datetimeFormatter"));
+        return EnumUtil.getEnum(DateDisplayFormat.values(), getAttribute("datetimeFormatter"));
     }
 
     /**
@@ -818,7 +818,7 @@ public class DetailViewer extends Canvas  implements DataBoundComponent {
     }
 
     public DragDataAction getDragDataAction() {
-        return (DragDataAction) EnumUtil.getEnum(DragDataAction.values(), getAttribute("dragDataAction"));
+        return EnumUtil.getEnum(DragDataAction.values(), getAttribute("dragDataAction"));
     }
 
     public void setDragTrackerStyle(String dragTrackerStyle) {

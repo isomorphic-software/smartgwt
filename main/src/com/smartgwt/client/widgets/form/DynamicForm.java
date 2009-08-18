@@ -139,7 +139,7 @@ public class DynamicForm extends Canvas  implements DataBoundComponent, com.smar
      * com.smartgwt.client.widgets.form.DynamicForm#getSaveOperationType saveOperationType} will be returned.
      */
     public DSOperationType getSaveOperationType()  {
-        return (DSOperationType) EnumUtil.getEnum(DSOperationType.values(), getAttribute("saveOperationType"));
+        return EnumUtil.getEnum(DSOperationType.values(), getAttribute("saveOperationType"));
     }
              
     /**
@@ -177,7 +177,7 @@ public class DynamicForm extends Canvas  implements DataBoundComponent, com.smar
      * @return FormLayoutType
      */
     public FormLayoutType getItemLayout()  {
-        return (FormLayoutType) EnumUtil.getEnum(FormLayoutType.values(), getAttribute("itemLayout"));
+        return EnumUtil.getEnum(FormLayoutType.values(), getAttribute("itemLayout"));
     }
 
     /**
@@ -301,7 +301,7 @@ public class DynamicForm extends Canvas  implements DataBoundComponent, com.smar
      * @return VisibilityMode
      */
     public VisibilityMode getSectionVisibilityMode()  {
-        return (VisibilityMode) EnumUtil.getEnum(VisibilityMode.values(), getAttribute("sectionVisibilityMode"));
+        return EnumUtil.getEnum(VisibilityMode.values(), getAttribute("sectionVisibilityMode"));
     }
 
     /**
@@ -366,7 +366,7 @@ public class DynamicForm extends Canvas  implements DataBoundComponent, com.smar
      * @return Return the orientation of the title for a specific item or the default title orientation if no item is passed.
      */
     public TitleOrientation getTitleOrientation()  {
-        return (TitleOrientation) EnumUtil.getEnum(TitleOrientation.values(), getAttribute("titleOrientation"));
+        return EnumUtil.getEnum(TitleOrientation.values(), getAttribute("titleOrientation"));
     }
 
     /**
@@ -935,7 +935,7 @@ public class DynamicForm extends Canvas  implements DataBoundComponent, com.smar
      * @return Alignment
      */
     public Alignment getItemHoverAlign()  {
-        return (Alignment) EnumUtil.getEnum(Alignment.values(), getAttribute("itemHoverAlign"));
+        return EnumUtil.getEnum(Alignment.values(), getAttribute("itemHoverAlign"));
     }
 
     /**
@@ -1311,7 +1311,7 @@ public class DynamicForm extends Canvas  implements DataBoundComponent, com.smar
      * @return FormMethod
      */
     public FormMethod getMethod()  {
-        return (FormMethod) EnumUtil.getEnum(FormMethod.values(), getAttribute("method"));
+        return EnumUtil.getEnum(FormMethod.values(), getAttribute("method"));
     }
              
     /**
@@ -1331,7 +1331,7 @@ public class DynamicForm extends Canvas  implements DataBoundComponent, com.smar
      * @return Encoding
      */
     public Encoding getEncoding()  {
-        return (Encoding) EnumUtil.getEnum(Encoding.values(), getAttribute("encoding"));
+        return EnumUtil.getEnum(Encoding.values(), getAttribute("encoding"));
     }
 
     /**
@@ -1460,7 +1460,7 @@ public class DynamicForm extends Canvas  implements DataBoundComponent, com.smar
      * @return TextMatchStyle
      */
     public TextMatchStyle getAutoFetchTextMatchStyle()  {
-        return (TextMatchStyle) EnumUtil.getEnum(TextMatchStyle.values(), getAttribute("autoFetchTextMatchStyle"));
+        return EnumUtil.getEnum(TextMatchStyle.values(), getAttribute("autoFetchTextMatchStyle"));
     }
 
     // ********************* Methods ***********************
@@ -2178,7 +2178,7 @@ public class DynamicForm extends Canvas  implements DataBoundComponent, com.smar
      * @return OperationId
      */
     public OperatorId getOperator() {
-        return (OperatorId) EnumUtil.getEnum(OperatorId.values(), getAttribute("operator"));
+        return EnumUtil.getEnum(OperatorId.values(), getAttribute("operator"));
     }
 
     /**
@@ -2732,7 +2732,7 @@ public class DynamicForm extends Canvas  implements DataBoundComponent, com.smar
     }
 
     public DragDataAction getDragDataAction() {
-        return (DragDataAction) EnumUtil.getEnum(DragDataAction.values(), getAttribute("dragDataAction"));
+        return EnumUtil.getEnum(DragDataAction.values(), getAttribute("dragDataAction"));
     }
 
     public void setDragTrackerStyle(String dragTrackerStyle) {

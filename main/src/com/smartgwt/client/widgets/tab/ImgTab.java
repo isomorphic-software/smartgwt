@@ -246,7 +246,7 @@ public class ImgTab extends StretchImgButton {
      * @return Alignment
      */
     public Alignment getAlign()  {
-        return (Alignment) EnumUtil.getEnum(Alignment.values(), getAttribute("align"));
+        return EnumUtil.getEnum(Alignment.values(), getAttribute("align"));
     }
 
     // ********************* Methods ***********************

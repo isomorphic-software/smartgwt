@@ -237,7 +237,7 @@ public class TextItem extends FormItem {
      * @return CharacterCasing
      */
     public CharacterCasing getCharacterCasing()  {
-        return (CharacterCasing) EnumUtil.getEnum(CharacterCasing.values(), getAttribute("characterCasing"));
+        return EnumUtil.getEnum(CharacterCasing.values(), getAttribute("characterCasing"));
     }
 
     /**
@@ -277,6 +277,7 @@ public class TextItem extends FormItem {
         var self = this.@com.smartgwt.client.core.DataClass::getJsObj()();
         return self.getHint();
     }-*/;
+
 
     /**
      * Puts focus into this form item and selects characters between the given indices. Only applies to drawn text based items.

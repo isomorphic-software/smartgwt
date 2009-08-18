@@ -242,7 +242,7 @@ public class HTMLFlow extends Canvas  implements com.smartgwt.client.widgets.eve
      * @return SendMethod
      */
     public SendMethod getHttpMethod()  {
-        return (SendMethod) EnumUtil.getEnum(SendMethod.values(), getAttribute("httpMethod"));
+        return EnumUtil.getEnum(SendMethod.values(), getAttribute("httpMethod"));
     }
 
     /**
@@ -421,7 +421,7 @@ public class HTMLFlow extends Canvas  implements com.smartgwt.client.widgets.eve
      * @return String
      */
     public ContentsType getContentsType() {
-        return (ContentsType) EnumUtil.getEnum(ContentsType.values(), getAttribute("contentsType"));
+        return EnumUtil.getEnum(ContentsType.values(), getAttribute("contentsType"));
     }
 
     /**

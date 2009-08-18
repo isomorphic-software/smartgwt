@@ -150,7 +150,7 @@ public class TileGrid extends TileLayout  implements DataBoundComponent, com.sma
      * @return TextMatchStyle
      */
     public TextMatchStyle getAutoFetchTextMatchStyle()  {
-        return (TextMatchStyle) EnumUtil.getEnum(TextMatchStyle.values(), getAttribute("autoFetchTextMatchStyle"));
+        return EnumUtil.getEnum(TextMatchStyle.values(), getAttribute("autoFetchTextMatchStyle"));
     }
              
     /**
@@ -169,7 +169,7 @@ public class TileGrid extends TileLayout  implements DataBoundComponent, com.sma
      * @return SelectionStyle
      */
     public SelectionStyle getSelectionType()  {
-        return (SelectionStyle) EnumUtil.getEnum(SelectionStyle.values(), getAttribute("selectionType"));
+        return EnumUtil.getEnum(SelectionStyle.values(), getAttribute("selectionType"));
     }
 
     /**
@@ -872,7 +872,7 @@ public class TileGrid extends TileLayout  implements DataBoundComponent, com.sma
     }
 
     public DragDataAction getDragDataAction() {
-        return (DragDataAction) EnumUtil.getEnum(DragDataAction.values(), getAttribute("dragDataAction"));
+        return EnumUtil.getEnum(DragDataAction.values(), getAttribute("dragDataAction"));
     }
 
     public void setDragTrackerStyle(String dragTrackerStyle) {

@@ -156,7 +156,7 @@ public class Img extends StatefulCanvas {
      * @return ImageStyle
      */
     public ImageStyle getImageType()  {
-        return (ImageStyle) EnumUtil.getEnum(ImageStyle.values(), getAttribute("imageType"));
+        return EnumUtil.getEnum(ImageStyle.values(), getAttribute("imageType"));
     }
 
     /**

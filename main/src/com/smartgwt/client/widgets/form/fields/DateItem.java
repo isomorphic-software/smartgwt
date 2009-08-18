@@ -131,7 +131,7 @@ public class DateItem extends FormItem {
      * @return Alignment
      */
     public Alignment getTextAlign()  {
-        return (Alignment) EnumUtil.getEnum(Alignment.values(), getAttribute("textAlign"));
+        return EnumUtil.getEnum(Alignment.values(), getAttribute("textAlign"));
     }
 
     /**
@@ -321,7 +321,7 @@ public class DateItem extends FormItem {
      * @return DateDisplayFormat
      */
     public DateDisplayFormat getDisplayFormat()  {
-        return (DateDisplayFormat) EnumUtil.getEnum(DateDisplayFormat.values(), getAttribute("displayFormat"));
+        return EnumUtil.getEnum(DateDisplayFormat.values(), getAttribute("displayFormat"));
     }
 
     /**

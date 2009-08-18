@@ -664,7 +664,7 @@ public class ListGridField extends DataClass  implements com.smartgwt.client.wid
      * @return ListGridFieldType
      */
     public ListGridFieldType getType()  {
-        return (ListGridFieldType) EnumUtil.getEnum(ListGridFieldType.values(), getAttribute("type"));
+        return EnumUtil.getEnum(ListGridFieldType.values(), getAttribute("type"));
     }
 
     /**
@@ -1293,7 +1293,7 @@ public class ListGridField extends DataClass  implements com.smartgwt.client.wid
      * @return Alignment
      */
     public Alignment getCellAlign()  {
-        return (Alignment) EnumUtil.getEnum(Alignment.values(), getAttribute("cellAlign"));
+        return EnumUtil.getEnum(Alignment.values(), getAttribute("cellAlign"));
     }
 
     /**
@@ -1379,7 +1379,7 @@ public class ListGridField extends DataClass  implements com.smartgwt.client.wid
      * @return EnterKeyEditAction
      */
     public EnterKeyEditAction getEnterKeyEditAction()  {
-        return (EnterKeyEditAction) EnumUtil.getEnum(EnterKeyEditAction.values(), getAttribute("enterKeyEditAction"));
+        return EnumUtil.getEnum(EnterKeyEditAction.values(), getAttribute("enterKeyEditAction"));
     }
              
     /**
@@ -1400,7 +1400,7 @@ public class ListGridField extends DataClass  implements com.smartgwt.client.wid
      * @return EscapeKeyEditAction
      */
     public EscapeKeyEditAction getEscapeKeyEditAction()  {
-        return (EscapeKeyEditAction) EnumUtil.getEnum(EscapeKeyEditAction.values(), getAttribute("escapeKeyEditAction"));
+        return EnumUtil.getEnum(EscapeKeyEditAction.values(), getAttribute("escapeKeyEditAction"));
     }
 
     /**
@@ -1607,7 +1607,7 @@ public class ListGridField extends DataClass  implements com.smartgwt.client.wid
      * @return TextMatchStyle
      */
     public TextMatchStyle getOptionTextMatchStyle()  {
-        return (TextMatchStyle) EnumUtil.getEnum(TextMatchStyle.values(), getAttribute("optionTextMatchStyle"));
+        return EnumUtil.getEnum(TextMatchStyle.values(), getAttribute("optionTextMatchStyle"));
     }
 
     /**
@@ -1986,7 +1986,7 @@ public class ListGridField extends DataClass  implements com.smartgwt.client.wid
      * @return DateDisplayFormat
      */
     public DateDisplayFormat getDateFormatter() {
-        return (DateDisplayFormat) EnumUtil.getEnum(DateDisplayFormat.values(), getAttribute("dateFormatter"));
+        return EnumUtil.getEnum(DateDisplayFormat.values(), getAttribute("dateFormatter"));
     }
 
     /**
@@ -2096,7 +2096,7 @@ public class ListGridField extends DataClass  implements com.smartgwt.client.wid
      * @return String
      */
     public Alignment getAlign() {
-        return (Alignment) EnumUtil.getEnum(Alignment.values(), getAttribute("align"));
+        return EnumUtil.getEnum(Alignment.values(), getAttribute("align"));
     }
 
     /**

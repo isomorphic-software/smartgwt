@@ -332,7 +332,7 @@ public class Slider extends Canvas  implements com.smartgwt.client.widgets.event
      * @return ImageStyle
      */
     public ImageStyle getTrackImageType()  {
-        return (ImageStyle) EnumUtil.getEnum(ImageStyle.values(), getAttribute("trackImageType"));
+        return EnumUtil.getEnum(ImageStyle.values(), getAttribute("trackImageType"));
     }
 
     /**
