@@ -2,6 +2,7 @@
 package com.smartgwt.client.docs;
 
 /**
+ * <h3>Creating DataSources</h3>
  * DataSources can be specified in XML format, in which case the ISC server is used to load the&#010 DataSource in a JSP
  * file, or DataSources can be directly created on the client via&#010 JavaScript.&#010 <P>&#010 Whether a DataSource is
  * specified in XML or JS, identical requests will ultimately be&#010 submitted to the server, so the server integration

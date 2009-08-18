@@ -2,6 +2,7 @@
 package com.smartgwt.client.docs;
 
 /**
+ * <h3>DataSource Operations</h3>
  * A DataSource Operation is a type of {@link com.smartgwt.client.docs.Operations 'operation'} that acts on the set of
  * stored objects represented by a {@link com.smartgwt.client.data.DataSource}, performing one of the basic actions that
  * makes sense on a set of similar records: "fetch", "add", "update" or "remove".  There is also a fifth DataSource

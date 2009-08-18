@@ -2,6 +2,7 @@
 package com.smartgwt.client.docs;
 
 /**
+ * <h3>Safe Skinning</h3>
  * The skinning mechanism is extremely powerful and gives you the ability to change internal functionality of components. 
  * While this is useful for workarounds, you should think through any properties you override, considering what will happen
  * with future versions of SmartGWT, where the defaults may change or be expanded. <P> The following kinds of overrides are

@@ -2,6 +2,7 @@
 package com.smartgwt.client.docs;
 
 /**
+ * <h3>Client-side Data Integration</h3>
  * SmartGWT supports declarative, XPath-based binding of visual components to any server&#010 capable of returning XML or
  * JSON responses over HTTP, without the need for the&#010 {@link com.smartgwt.client.docs.ServerDataIntegration 'SmartGWT
  * server'}.&#010 <P>&#010 This approach is called Client-Side Data Integration, which means:&#010 <ul>&#010 <li> You

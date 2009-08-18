@@ -2,6 +2,7 @@
 package com.smartgwt.client.docs;
 
 /**
+ * <h3>Network Performance</h3>
  * This section describes various methods for optimizing delivery of your SmartGWT-based application to the browser.  The
  * various techniques discussed here should enable you to drastically reduce the time to load your SmartGWT based
  * application and to cut down on bandwidth costs and server-side CPU usage. There are three main ways of improving the

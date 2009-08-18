@@ -2,6 +2,7 @@
 package com.smartgwt.client.docs;
 
 /**
+ * <h3>Relogin</h3>
  * For applications that require authentication and use session timeout, a background RPC may occur with an expired
  * session.  The ideal handling of this scenario is that, with the attempted transaction still suspended, a modal dialog is
  * used to re-authenticate the user, and then the original transaction is resumed without loss of data or context. 

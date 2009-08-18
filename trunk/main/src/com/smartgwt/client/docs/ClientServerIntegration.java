@@ -2,6 +2,7 @@
 package com.smartgwt.client.docs;
 
 /**
+ * <h3>Client-Server Integration</h3>
  * Like client-server desktop applications, SmartGWT browser-based applications interact with remote data and services via
  * background communication channels. Background requests retrieve chunks of data rather than new HTML pages, and update
  * your visual components in place rather than rebuilding the entire user interface. <P> <b>DataSources</b> <p> First you

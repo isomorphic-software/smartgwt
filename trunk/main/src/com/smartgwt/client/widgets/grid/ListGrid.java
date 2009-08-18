@@ -5667,25 +5667,9 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
     // ********************* Static Methods ***********************
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+
+
+
     protected native void onInit() /*-{
 
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
@@ -6079,6 +6063,45 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
      */
     public void setGroupStartOpen(String... groupValues) {
         setAttribute("groupStartOpen", groupValues, true);
+    }
+
+    /**
+     * An array of listGrid field configuration objects.  When a listGrid is initialized, if this property is set and there is
+     * no value for the <code>fields</code> attribute, this.fields will be defaulted to a generated array of field objects
+     * duplicated from this array. <P> This property is useful for cases where a standard set of fields will be displayed in
+     * multiple listGrids - for example a subclass of ListGrid intended to display a particular type of data:<br> In this
+     * example we would not assign a single {@link com.smartgwt.client.widgets.grid.ListGrid#getFields fields} array directly
+     * to the class via <code>addProperties()</code> as every generated instance of this class would then point to the same
+     * fields array object. This would cause unexpected behavior such as changes to the field order in one grid effecting other
+     * grids on the page.<br> Instead we could use <code>addProperties()</code> on our new subclass to set
+     * <code>defaultFields</code> to a standard array of fields to display. Each generated instance of the subclass would then
+     * show up with default fields duplicated from this array.
+     * <p><b>Note : </b> This is an advanced setting</p>
+     *
+     * @param defaultFields defaultFields Default value is null
+     * @throws IllegalStateException this property cannot be changed after the component has been created
+     */
+    public void setDefaultFields(ListGridField[] defaultFields)  throws IllegalStateException {
+        setAttribute("defaultFields", defaultFields, false);
+    }
+
+    /**
+     * An array of listGrid field configuration objects.  When a listGrid is initialized, if this property is set and there is
+     * no value for the <code>fields</code> attribute, this.fields will be defaulted to a generated array of field objects
+     * duplicated from this array. <P> This property is useful for cases where a standard set of fields will be displayed in
+     * multiple listGrids - for example a subclass of ListGrid intended to display a particular type of data:<br> In this
+     * example we would not assign a single {@link com.smartgwt.client.widgets.grid.ListGrid#getFields fields} array directly
+     * to the class via <code>addProperties()</code> as every generated instance of this class would then point to the same
+     * fields array object. This would cause unexpected behavior such as changes to the field order in one grid effecting other
+     * grids on the page.<br> Instead we could use <code>addProperties()</code> on our new subclass to set
+     * <code>defaultFields</code> to a standard array of fields to display. Each generated instance of the subclass would then
+     * show up with default fields duplicated from this array.
+     *
+     *
+     * @return Array of ListGridField Properties
+     */
+    public ListGridField[] getDefaultFields()  {
+        return convertToListGridFieldArray(getAttributeAsJavaScriptObject("defaultFields"));
     }
 
     /**

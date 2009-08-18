@@ -2,6 +2,7 @@
 package com.smartgwt.client.docs;
 
 /**
+ * <h3>File Assembly</h3>
  * File assembly concatenates multiple files into a single response, reducing the number&#010 of HTTP fetches required to
  * load a page. This concatenation also improves the&#010 compressability of responses, since the compression algorithm may
  * reduce redundancy across a&#010 larger data set.&#010 <p>&#010 The ISC FileAssembly service provides

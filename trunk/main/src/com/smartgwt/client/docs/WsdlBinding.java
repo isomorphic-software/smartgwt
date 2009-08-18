@@ -2,6 +2,7 @@
 package com.smartgwt.client.docs;
 
 /**
+ * <h3>WSDL Binding</h3>
  * SmartGWT supports automated integration with WSDL-described web services.  This support&#010 consists of:&#010 <ul>&#010
  * <li> creation of SOAP XML messages from JavaScript application data, with automatic&#010 namespacing, and support for
  * both "literal" and "encoded" SOAP messaging, and "document" and&#010 "rpc" WSDL-SOAP bindings&#010 <li> automatic decode

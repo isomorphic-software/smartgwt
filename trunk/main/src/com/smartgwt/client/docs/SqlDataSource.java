@@ -2,6 +2,7 @@
 package com.smartgwt.client.docs;
 
 /**
+ * <h3>SQL DataSources</h3>
  * The SmartGWT Server supports comprehensive, codeless SQL connectivity for DataSources defined in XML.  Our SQL
  * connectivity is mature, feature-rich, protected against injection attacks and easily customizable to support
  * user-written SQL and additional business logic of any complexity.  {@link com.smartgwt.client.docs.SqlVsJPA 'This

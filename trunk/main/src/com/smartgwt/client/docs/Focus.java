@@ -2,6 +2,7 @@
 package com.smartgwt.client.docs;
 
 /**
+ * <h3>Focus</h3>
  * Focus is the ability to become the target of keyboard input events. <P> A widget normally receives focus by being
  * clicked on or tabbed to.
  * @see com.smartgwt.client.widgets.form.DynamicForm#focusInItem

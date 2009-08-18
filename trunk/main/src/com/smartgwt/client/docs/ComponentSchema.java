@@ -2,6 +2,7 @@
 package com.smartgwt.client.docs;
 
 /**
+ * <h3>Component Schema</h3>
  * A component schema is a special type of DataSource that describes a custom component.  &#010 <P>&#010 Declaring a
  * component schema for your custom component allows you to:&#010 <ul>&#010 <li> use simpler XML when creating your custom
  * component: avoid having to specify the&#010 <code>constructor</code> and <code>xsi:type</code> attributes as described

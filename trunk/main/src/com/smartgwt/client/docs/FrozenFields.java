@@ -2,6 +2,7 @@
 package com.smartgwt.client.docs;
 
 /**
+ * <h3>Frozen Fields</h3>
  * Frozen fields are fields that do not scroll horizontally with other fields, remaining on the screen while other fields
  * may be scrolled off.  This feature is typically used to allow basic identifying information (like an "accountId") to
  * remain on screen while the user scrolls through a large number of related fields. <P> Fields can be programmatically

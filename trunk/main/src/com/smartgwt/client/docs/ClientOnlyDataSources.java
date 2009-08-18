@@ -2,6 +2,7 @@
 package com.smartgwt.client.docs;
 
 /**
+ * <h3>Client Only DataSources</h3>
  * For prototyping purposes, a "client-only" DataSource can be created that has no permanent&#010 storage and never
  * contacts the server, instead using a set of test data to respond to&#010 requests in the same manner as a server-based
  * DataSource might.&#010 <P>&#010 The client-side interface to a client-only DataSource is identical to a

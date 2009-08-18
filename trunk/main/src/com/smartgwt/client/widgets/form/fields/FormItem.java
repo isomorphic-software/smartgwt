@@ -104,6 +104,25 @@ public class FormItem extends RefDataClass  implements com.smartgwt.client.widge
     }
 
     /**
+     * dataPath for this item. Allows the user to edit details nested data structures in a flat set of form fields
+     *
+     * @param dataPath dataPath Default value is null
+     */
+    public void setDataPath(String dataPath) {
+        setAttribute("dataPath", dataPath);
+    }
+
+    /**
+     * dataPath for this item. Allows the user to edit details nested data structures in a flat set of form fields
+     *
+     *
+     * @return Return the dataPath for the this formItem.
+     */
+    public String getDataPath()  {
+        return getAttributeAsString("dataPath");
+    }
+
+    /**
      * User visible title for this form item.
      *
      * @param title title Default value is null
@@ -2101,6 +2120,7 @@ public class FormItem extends RefDataClass  implements com.smartgwt.client.widge
 
 
 
+
     /**
      * Update the visual state of a FormItem to reflect any changes in state or any changes in style settings (eg {@link
      * com.smartgwt.client.widgets.form.fields.FormItem#getTextBoxStyle textBoxStyle}).  <P> Calls to
@@ -2169,6 +2189,15 @@ public class FormItem extends RefDataClass  implements com.smartgwt.client.widge
     }-*/;
 
 
+
+    /**
+     * Clear the value for this form item. <P> Note that if a default value is specified, value will be set to that default
+     * value, otherwise value will be cleared, (and removed from the containing form's values).
+     */
+    public native void clearValue() /*-{
+        var self = this.@com.smartgwt.client.core.DataClass::getJsObj()();
+        self.clearValue();
+    }-*/;
 
 
 

@@ -2,6 +2,7 @@
 package com.smartgwt.client.docs;
 
 /**
+ * <h3>Button Icon</h3>
  * Control over optional icons shown in Buttons, Labels and other contexts
  * @see com.smartgwt.client.widgets.StatefulCanvas#setIconOrientation
  * @see com.smartgwt.client.widgets.StatefulCanvas#setIcon

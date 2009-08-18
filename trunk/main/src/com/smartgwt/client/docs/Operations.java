@@ -2,6 +2,7 @@
 package com.smartgwt.client.docs;
 
 /**
+ * <h3>Operations Overview</h3>
  * SmartGWT Operations are dynamic, transparent communications made from the client-side SmartGWT system running in the
  * browser, to the server-side SmartGWT system running in a servlet engine, or to other non-SmartGWT servers available via
  * HTTP. Operations are used to load new data or new behavior into a running SmartGWT application. Operations are also used

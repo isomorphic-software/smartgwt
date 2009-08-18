@@ -2,6 +2,7 @@
 package com.smartgwt.client.docs;
 
 /**
+ * <h3>Caching</h3>
  * Standard web browsers can cache server responses, associating the locally-cached files with&#010 the URLs (including
  * query parameters) that were used to fetch the files from the&#010 server. Each file may be assigned an explicit
  * expiration time. Requests for the associated&#010 URL will always be served from the local cache, without accessing the

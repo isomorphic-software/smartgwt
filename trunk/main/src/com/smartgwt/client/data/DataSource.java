@@ -461,7 +461,7 @@ public class DataSource extends BaseClass  implements com.smartgwt.client.data.e
      * defined on the DataSource.  This type of filtering can also be enabled for non-DMI DSResponses (see the overview in
      * {@link com.smartgwt.client..DMI}).  Setting this property to <code>false</code> disables this filtering for this
      * DataSource only.  This setting overrides the configuration in <code>server.properties</code>.  This setting can be
-     * overridden by {@link com.smartgwt.client..ServerObject#getDropExtraFields dropExtraFields}.
+     * overridden by {@link com.smartgwt.client.docs.serverds.ServerObject#getDropExtraFields dropExtraFields}.
      *
      * @param dropExtraFields dropExtraFields Default value is null
      * @throws IllegalStateException this property cannot be changed after the underlying component has been created
@@ -478,7 +478,7 @@ public class DataSource extends BaseClass  implements com.smartgwt.client.data.e
      * defined on the DataSource.  This type of filtering can also be enabled for non-DMI DSResponses (see the overview in
      * {@link com.smartgwt.client..DMI}).  Setting this property to <code>false</code> disables this filtering for this
      * DataSource only.  This setting overrides the configuration in <code>server.properties</code>.  This setting can be
-     * overridden by {@link com.smartgwt.client..ServerObject#getDropExtraFields dropExtraFields}.
+     * overridden by {@link com.smartgwt.client.docs.serverds.ServerObject#getDropExtraFields dropExtraFields}.
      *
      *
      * @return Boolean
@@ -823,8 +823,8 @@ public class DataSource extends BaseClass  implements com.smartgwt.client.data.e
      * Whether a user must be authenticated in order to access this DataSource.  This establishes a default for the DataSource
      * as a whole; individual {@link com.smartgwt.client.data.DataSource#getOperationBindings operationBindings} within the
      * DataSource may still override this setting by explicitly setting {@link
-     * com.smartgwt.client.data.OperationBinding#getRequiresAuthentication requiresAuthentication}. <P> Whether the user is
-     * authenticated is determined by calling <code>httpServletRequest.getRemoteUser()</code>, hence works with both simple
+     * com.smartgwt.client.docs.serverds.OperationBinding#requiresAuthentication requiresAuthentication}. <P> Whether the user
+     * is authenticated is determined by calling <code>httpServletRequest.getRemoteUser()</code>, hence works with both simple
      * J2EE security (realms and form-based authentication) and JAAS (Java Authentication & Authorization Service). <P> If you
      * wish to use an authentication scheme that does not make use of the servlet API's  standards, SmartGWT Server also
      * implements the <code>setAuthenticated</code> method on <code>RPCManager</code>.  You can use this API to tell SmartGWT
@@ -849,8 +849,8 @@ public class DataSource extends BaseClass  implements com.smartgwt.client.data.e
      * Whether a user must be authenticated in order to access this DataSource.  This establishes a default for the DataSource
      * as a whole; individual {@link com.smartgwt.client.data.DataSource#getOperationBindings operationBindings} within the
      * DataSource may still override this setting by explicitly setting {@link
-     * com.smartgwt.client.data.OperationBinding#getRequiresAuthentication requiresAuthentication}. <P> Whether the user is
-     * authenticated is determined by calling <code>httpServletRequest.getRemoteUser()</code>, hence works with both simple
+     * com.smartgwt.client.docs.serverds.OperationBinding#requiresAuthentication requiresAuthentication}. <P> Whether the user
+     * is authenticated is determined by calling <code>httpServletRequest.getRemoteUser()</code>, hence works with both simple
      * J2EE security (realms and form-based authentication) and JAAS (Java Authentication & Authorization Service). <P> If you
      * wish to use an authentication scheme that does not make use of the servlet API's  standards, SmartGWT Server also
      * implements the <code>setAuthenticated</code> method on <code>RPCManager</code>.  You can use this API to tell SmartGWT
@@ -872,8 +872,8 @@ public class DataSource extends BaseClass  implements com.smartgwt.client.data.e
     }
 
     /**
-     * Similar to {@link com.smartgwt.client.data.OperationBinding#getRequiresRole requiresRole}, but controls access to the
-     * DataSource as a whole.
+     * Similar to {@link com.smartgwt.client.docs.serverds.OperationBinding#requiresRole requiresRole}, but controls access to
+     * the DataSource as a whole.
      *
      * @param requiresRole requiresRole Default value is null
      * @throws IllegalStateException this property cannot be changed after the underlying component has been created
@@ -883,8 +883,8 @@ public class DataSource extends BaseClass  implements com.smartgwt.client.data.e
     }
 
     /**
-     * Similar to {@link com.smartgwt.client.data.OperationBinding#getRequiresRole requiresRole}, but controls access to the
-     * DataSource as a whole.
+     * Similar to {@link com.smartgwt.client.docs.serverds.OperationBinding#requiresRole requiresRole}, but controls access to
+     * the DataSource as a whole.
      *
      *
      * @return String
@@ -1424,18 +1424,9 @@ public class DataSource extends BaseClass  implements com.smartgwt.client.data.e
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
+
+
+
 
 
     protected native void onInit() /*-{

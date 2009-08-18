@@ -2,6 +2,7 @@
 package com.smartgwt.client.docs;
 
 /**
+ * <h3>Component Binding</h3>
  * Properties that control how a DataBound Component binds to this DataSource
  * @see com.smartgwt.client.data.DataSourceField#getTitle
  * @see com.smartgwt.client.data.DataSourceField#getCanEdit

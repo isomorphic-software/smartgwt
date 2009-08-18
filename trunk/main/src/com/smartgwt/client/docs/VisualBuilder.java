@@ -2,6 +2,7 @@
 package com.smartgwt.client.docs;
 
 /**
+ * <h3>Visual Builder</h3>
  * The SmartGWT Visual Builder tool, accessible from the SDK Explorer as Tools->Visual&#010 Builder, is intended for:&#010
  * <ul>&#010 <li> business analysts and others doing functional application design, who want to create&#010 functional
  * prototypes in a codeless, "what you see is what you get" environment&#010 <li> developers new to SmartGWT who want to

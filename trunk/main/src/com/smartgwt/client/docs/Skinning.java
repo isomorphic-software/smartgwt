@@ -2,6 +2,7 @@
 package com.smartgwt.client.docs;
 
 /**
+ * <h3>Skinning / Theming</h3>
  * Skinning (aka "theming" or "branding") is the process of modifying SmartGWT's default&#010 look and feel to match the
  * desired look and feel for your application.  SmartGWT supports&#010 an extremely powerful and simple skinning system
  * that allows designers with a basic grasp of&#010 CSS and JavaScript to skin any SmartGWT component.&#010 <P>&#010

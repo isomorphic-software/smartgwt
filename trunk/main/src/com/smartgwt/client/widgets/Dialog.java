@@ -198,11 +198,13 @@ public class Dialog extends Window {
 
     // ********************* Static Methods ***********************
 
+
+
     /**
      * Array of Buttons to show in the {@link com.smartgwt.client.widgets.Dialog#getShowToolbar showToolbar}, if shown.
      * <P> The set of buttons to use is typically set by calling one of the shortcuts.
      *
-     * @param toolbarButtons the toolbart buttons
+     * @param toolbarButtons the toolbar buttons
      * @throws IllegalStateException this property cannot be changed after the component has been rendered
      */
     public void setToolbarButtons(Canvas... toolbarButtons) {

@@ -2,6 +2,7 @@
 package com.smartgwt.client.docs;
 
 /**
+ * <h3>DataBound Component Methods</h3>
  * An Action Method initiates an orchestrated client-server flow that stores or retrieves data and updates one or more
  * components. <P> For example, the {@link com.smartgwt.client.widgets.form.DynamicForm#saveData} Action Method saves the
  * record currently being edited in the form, transparently handling the trip to the server, standard error conditions such

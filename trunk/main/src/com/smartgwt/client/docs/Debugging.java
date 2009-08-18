@@ -2,6 +2,7 @@
 package com.smartgwt.client.docs;
 
 /**
+ * <h3>Debugging</h3>
  * <h4>Built-in Diagnostics</h4>&#010 <P>&#010 In any page in which ISC has been loaded, you have access to the Developer
  * Console,&#010 which can be opened by entering the following URL into your browser from the running&#010
  * application:&#010 <pre>&#010     javascript:isc.showConsole()</pre>&#010 Basic information on the features of the
