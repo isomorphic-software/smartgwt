@@ -27,6 +27,7 @@ package com.smartgwt.client.docs;
  * @see com.smartgwt.client.widgets.form.ValuesManager#valuesHaveChanged
  * @see com.smartgwt.client.widgets.form.ValuesManager#getValue
  * @see com.smartgwt.client.widgets.form.ValuesManager#setValue
+ * @see com.smartgwt.client.widgets.form.ValuesManager#clearValue
  * @see com.smartgwt.client.widgets.form.DynamicForm#getValues
  * @see com.smartgwt.client.widgets.form.fields.FormItem#getShouldSaveValue
  */

@@ -374,6 +374,15 @@ public class ValuesManager extends BaseClass {
 
 
 
+    /**
+     * Clear the value for some field.
+     * @param fieldName Which field to set the value for
+     */
+    public native void clearValue(String fieldName) /*-{
+        var self = this.@com.smartgwt.client.core.BaseClass::getOrCreateJsObj()();
+        self.clearValue(fieldName);
+    }-*/;
+
 
 
 

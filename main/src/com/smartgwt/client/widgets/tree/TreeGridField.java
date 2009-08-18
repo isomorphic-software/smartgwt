@@ -105,8 +105,13 @@ public class TreeGridField extends ListGridField {
 
     /**
      * The field containing <code>treeField: true</code> will display the {@link com.smartgwt.client.widgets.tree.Tree}.  If no
-     * field specifies this property, the first field in {@link com.smartgwt.client.widgets.tree.TreeGrid#getFields fields} is
-     * assigned to display the {@link com.smartgwt.client.widgets.tree.Tree}.
+     * field specifies this property, if a field named after the {@link com.smartgwt.client.widgets.tree.Tree#getTitleProperty
+     * titleProperty} of the Tree is present in {@link com.smartgwt.client.widgets.tree.TreeGrid#getFields fields}, that field
+     * will show the tree.  Note that when using a DataSource, you typically define the title field via {@link
+     * com.smartgwt.client.data.DataSource#getTitleField titleField} and the generated {@link com.smartgwt.client..ResultTree}
+     * automatically uses this field. If none of the above rules apply, the first field in {@link
+     * com.smartgwt.client.widgets.tree.TreeGrid#getFields fields} is assigned to display the {@link
+     * com.smartgwt.client.widgets.tree.Tree}.
      *
      * @param treeField treeField Default value is see below
      */
@@ -116,8 +121,13 @@ public class TreeGridField extends ListGridField {
 
     /**
      * The field containing <code>treeField: true</code> will display the {@link com.smartgwt.client.widgets.tree.Tree}.  If no
-     * field specifies this property, the first field in {@link com.smartgwt.client.widgets.tree.TreeGrid#getFields fields} is
-     * assigned to display the {@link com.smartgwt.client.widgets.tree.Tree}.
+     * field specifies this property, if a field named after the {@link com.smartgwt.client.widgets.tree.Tree#getTitleProperty
+     * titleProperty} of the Tree is present in {@link com.smartgwt.client.widgets.tree.TreeGrid#getFields fields}, that field
+     * will show the tree.  Note that when using a DataSource, you typically define the title field via {@link
+     * com.smartgwt.client.data.DataSource#getTitleField titleField} and the generated {@link com.smartgwt.client..ResultTree}
+     * automatically uses this field. If none of the above rules apply, the first field in {@link
+     * com.smartgwt.client.widgets.tree.TreeGrid#getFields fields} is assigned to display the {@link
+     * com.smartgwt.client.widgets.tree.Tree}.
      *
      *
      * @return Boolean
