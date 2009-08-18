@@ -7,6 +7,7 @@ import com.smartgwt.client.widgets.Canvas;
 import com.smartgwt.client.widgets.Label;
 import com.smartgwt.client.widgets.grid.ListGrid;
 import com.smartgwt.client.widgets.grid.ListGridField;
+import com.smartgwt.client.widgets.grid.ListGridRecord;
 import com.smartgwt.client.widgets.grid.events.*;
 import com.smartgwt.sample.showcase.client.PanelFactory;
 import com.smartgwt.sample.showcase.client.ShowcasePanel;
@@ -68,14 +69,14 @@ public class CellClicksSample extends ShowcasePanel {
         countryGrid.addCellClickHandler(new CellClickHandler() {
             public void onCellClick(CellClickEvent event) {
 
-                CountryRecord record = (CountryRecord) event.getRecord();
+                ListGridRecord record =  event.getRecord();
                 int colNum = event.getColNum();
                 ListGridField field = countryGrid.getField(colNum);
                 String fieldName = countryGrid.getFieldName(colNum);
                 String fieldTitle = field.getTitle();
 
-                label.setContents("Clicked <b>" + fieldTitle + ":" + record.getFieldValue(fieldName) +
-                        "</b> (Country:" + record.getCountryName() + ")");
+                label.setContents("Clicked <b>" + fieldTitle + ":" + record.getAttribute(fieldName) +
+                        "</b> (Country:" + record.getAttribute("countryName") + ")");
             }
         });
 
