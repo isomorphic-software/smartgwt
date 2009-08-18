@@ -89,7 +89,8 @@ public class SectionHeader extends Label {
 
     /**
      * Base filename of the icon that represents open and closed states. The default settings also change the icon for disabled
-     * sections, so a total of four images are required (opened, closed, Disabled_opened, Disabled_closed).
+     * sections, so a total of four images are required (opened, closed, Disabled_opened, Disabled_closed). <P> Not shown if
+     * {@link com.smartgwt.client.widgets.layout.SectionStackSection#getCanCollapse canCollapse} is false.
      * <p><b>Note : </b> This is an advanced setting</p>
      *
      * @param icon icon Default value is "[SKIN]SectionHeader/opener.gif"
@@ -101,7 +102,8 @@ public class SectionHeader extends Label {
 
     /**
      * Base filename of the icon that represents open and closed states. The default settings also change the icon for disabled
-     * sections, so a total of four images are required (opened, closed, Disabled_opened, Disabled_closed).
+     * sections, so a total of four images are required (opened, closed, Disabled_opened, Disabled_closed). <P> Not shown if
+     * {@link com.smartgwt.client.widgets.layout.SectionStackSection#getCanCollapse canCollapse} is false.
      *
      *
      * @return String

@@ -196,6 +196,45 @@ public class TextAreaItem extends FormItem {
 
     // ********************* Methods ***********************
 
+
+    /**
+     * Puts focus into this form item and selects characters between the given indices. Only applies to drawn text based items.
+     * @param start selection starting character index
+     * @param end end of selection character index
+     */
+    public native void setSelectionRange(int start, int end) /*-{
+        var self = this.@com.smartgwt.client.core.DataClass::getJsObj()();
+        self.setSelectionRange(start, end);
+    }-*/;
+
+    /**
+     * Put focus in this item and select the entire value. Only applies to text based items
+     */
+    public native void selectValue() /*-{
+        var self = this.@com.smartgwt.client.core.DataClass::getJsObj()();
+        self.selectValue();
+    }-*/;
+
+    /**
+     * If this item currently has focus, clear the current selection. leaving focus in the item. Has no effect if the item is
+     * undrawn or unfocussed. Only applies to text-based items.
+     */
+    public native void deselectValue() /*-{
+        var self = this.@com.smartgwt.client.core.DataClass::getJsObj()();
+        self.deselectValue();
+    }-*/;
+
+    /**
+     * If this item currently has focus, clear the current selection. leaving focus in the item. Has no effect if the item is
+     * undrawn or unfocussed. Only applies to text-based items.
+     * @param start By default the text insertion cursor will be moved to the end of the   current value - pass in this parameter to move to
+     * the start instead
+     */
+    public native void deselectValue(boolean start) /*-{
+        var self = this.@com.smartgwt.client.core.DataClass::getJsObj()();
+        self.deselectValue(start);
+    }-*/;
+
     // ********************* Static Methods ***********************
 
 
@@ -236,5 +275,18 @@ public class TextAreaItem extends FormItem {
     public TextAreaWrap getWrap() {
         return (TextAreaWrap) EnumUtil.getEnum(TextAreaWrap.values(), getAttribute("wrap"));
     }
+
+    /**
+     * For text-based items, this method returns the indices of the start/end of the current selection. Returns null if the
+     * item doesn't have focus.
+     *
+     * @return 2 element array showing character index of the current selection's  start and end point within this item's value. May be
+     * null if the item doesn't have focus.
+     */
+    public native int[] getSelectionRange() /*-{
+        var self = this.@com.smartgwt.client.core.DataClass::getJsObj()();
+        var selection = self.getSelectionRange();
+        return selection == null || selection === undefined ? null : @com.smartgwt.client.util.JSOHelper::convertToJavaIntArray(Lcom/google/gwt/core/client/JavaScriptObject;)(selection);
+    }-*/;    
 
 }

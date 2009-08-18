@@ -400,8 +400,68 @@ public class DateItem extends FormItem {
 
     // ********************* Methods ***********************
 
+    /**
+     * If {@link com.smartgwt.client.widgets.form.fields.DateItem#getUseTextField useTextField} is true, falls through to
+     * standard {@link com.smartgwt.client.widgets.form.fields.FormItem#setSelectionRange} implementation on this items
+     * freeform text entry field. Otherwise has no effect.
+     * @param start character index for start of new selection
+     * @param end character index for end of new selection
+     */
+    public native void setSelectionRange(int start, int end) /*-{
+        var self = this.@com.smartgwt.client.core.DataClass::getJsObj()();
+        self.setSelectionRange(start, end);
+    }-*/;
+
+
+    /**
+     * If {@link com.smartgwt.client.widgets.form.fields.DateItem#getUseTextField useTextField} is true, falls through to
+     * standard {@link com.smartgwt.client.widgets.form.fields.FormItem#selectValue} implementation on this items freeform text
+     * entry field. Otherwise has no effect.
+     */
+    public native void selectValue() /*-{
+        var self = this.@com.smartgwt.client.core.DataClass::getJsObj()();
+        self.selectValue();
+    }-*/;
+
+    /**
+     * If {@link com.smartgwt.client.widgets.form.fields.DateItem#getUseTextField useTextField} is true, falls through to
+     * standard {@link com.smartgwt.client.widgets.form.fields.FormItem#deselectValue} implementation on this items freeform
+     * text entry field. Otherwise has no effect.
+     */
+    public native void deselectValue() /*-{
+        var self = this.@com.smartgwt.client.core.DataClass::getJsObj()();
+        self.deselectValue();
+    }-*/;
+
+    /**
+     * If {@link com.smartgwt.client.widgets.form.fields.DateItem#getUseTextField useTextField} is true, falls through to
+     * standard {@link com.smartgwt.client.widgets.form.fields.FormItem#deselectValue} implementation on this items freeform
+     * text entry field. Otherwise has no effect.
+     * @param start If this parameter is passed, new cursor insertion position will be   moved to the start, rather than the end of this
+     * item's value.
+     */
+    public native void deselectValue(boolean start) /*-{
+        var self = this.@com.smartgwt.client.core.DataClass::getJsObj()();
+        self.deselectValue(start);
+    }-*/;
+
 
     // ********************* Static Methods ***********************
+
+
+    /**
+     * If {@link com.smartgwt.client.widgets.form.fields.DateItem#getUseTextField useTextField} is true, falls through to
+     * standard {@link com.smartgwt.client.widgets.form.fields.FormItem#getSelectionRange} implementation on this items
+     * freeform text entry field. Otherwise has no effect.
+     *
+     * @return 2 element array indicating start/end character index of current selection  within our text entry field. Returns null if
+     * this item is undrawn or doesn't have focus.
+     */
+    public native int[] getSelectionRange() /*-{
+        var self = this.@com.smartgwt.client.core.DataClass::getJsObj()();
+        var selection = self.getSelectionRange();
+        return selection == null || selection === undefined ? null : @com.smartgwt.client.util.JSOHelper::convertToJavaIntArray(Lcom/google/gwt/core/client/JavaScriptObject;)(selection);
+    }-*/;
 
 }
 
