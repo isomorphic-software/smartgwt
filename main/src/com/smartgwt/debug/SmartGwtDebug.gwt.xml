@@ -1,0 +1,17 @@
+
+<!--
+Injects the debug / readable version of the SmartClient JS files along with the Enterprise theme. You do not need to manually include
+any of the SmartClient JavaScript files if you are inheriting this module
+-->
+<module>
+    <inherits name='com.google.gwt.user.User'/>
+    <inherits name="com.google.gwt.xml.XML"/>
+    <inherits name="com.google.gwt.i18n.I18N"/>    
+    <inherits name="com.google.gwt.json.JSON"/>
+    <inherits name="com.google.gwt.http.HTTP"/>
+    <inherits name="com.google.gwt.event.Event"/>
+
+    <inherits name="com.smartgwt.SmartGwtNoSmartClient"/>
+    <inherits name="com.smartclient.debug.SmartClientDebug"/>
+    <inherits name="com.smartclient.theme.enterprise.Enterprise"/>
+</module>
