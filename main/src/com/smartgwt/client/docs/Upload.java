@@ -2,6 +2,7 @@
 package com.smartgwt.client.docs;
 
 /**
+ * <h3>Uploading Files</h3>
  * SmartGWT provides special client and server-side support for file upload that allows uploaded files to be treated like
  * ordinary DataSource fields.  This includes: <ul> <li>the {@link com.smartgwt.client.widgets.form.fields.FileItem} and
  * {@link com.smartgwt.client..MultiFileItem} FormItems that enable users to upload one or more files as a background

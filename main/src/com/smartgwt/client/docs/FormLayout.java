@@ -2,6 +2,7 @@
 package com.smartgwt.client.docs;
 
 /**
+ * <h3>Form Layout</h3>
  * <b>FormItem Placement in Columns and Rows</b> <P> With the default tabular layout mechanism, items are laid out in rows
  * from left to right until the number of columns, specified by {@link
  * com.smartgwt.client.widgets.form.DynamicForm#getNumCols 'form.numCols'}, is filled, then a new row is begun.  Flags on

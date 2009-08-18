@@ -2,6 +2,7 @@
 package com.smartgwt.client.docs;
 
 /**
+ * <h3>SmartGWT Architecture</h3>
  * SmartGWT can add interactivity and performance benefits to any web application with a&#010 variety of integration
  * approaches.  This topic discusses the optimal architecture for a&#010 SmartGWT application, which can be adopted in
  * whole or in part.&#010 <p>&#010 In a typical HTML-based web application, every time a new view is shown to a user, a

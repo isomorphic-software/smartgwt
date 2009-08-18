@@ -2,6 +2,7 @@
 package com.smartgwt.client.docs;
 
 /**
+ * <h3>Deploying SmartGWT</h3>
  * This overview serves as a how-to for installing SmartGWT into your web application. Evaluators are urged to use the
  * SmartGWT SDK with the embedded tomcat servlet engine during evaluation rather than pursue installation into an existing
  * web application up front, however, reading this document and the related {@link
@@ -47,29 +48,29 @@ package com.smartgwt.client.docs;
  * are some mandatory and optional servlets and filters to merge - see below. <li> <b>Power and Enterprise Editions
  * only</b>.  Copy the shared/ds/batchUpload.ds.xml file to the same location in your target webapp directory.  This file
  * is a utility DataSource that is used to provide the initial upload functionality of the {@link
- * com.smartgwt.client..BatchUploader}  component - strictly speaking, you only need to perform this step if you intend to
- * use that  component.  </ul> <u>Merging web.xml</u> <p> The following is a description of the servlets and filters you'll
- * find in the web.xml file contained in the smartclientRuntime and what they do: <p> <i>Core Functionality</i> <ul>
- * <li>Init servlet- <b>required:</b> initializes the SmartGWT server componentry from config files at container startup
- * time.  Notice that this servlet has no mapping - it's purely an initialization servlet. <li>IDACall servlet -
- * <b>required</b> for {@link com.smartgwt.client..DMI}, built-in RPC operations and built-in DataSource operations to
- * work.  All databound examples in the SDK use this servlet.  If you're planning on using a custom actionURL for all your
- * RPC requests, then you don't need this servlet. <li>FileDownload servlet - required for serving the Isomorphic framework
- * code compressed and with caching headers as well as for serving skin images with caching headers.  It is highly
- * recommended that you use this for production but is not required.  <li>PreCache servlet - loads resources into memory on
- * container startup.  Not required, but if you exclude this servlet there may be a slow response to the very first
- * request. <li>jsp-config section - the iscTaglib registration block is required to use &lt;isomorphic&gt; tags, and the
- * *.isc and *.rpc mappings.  These are optional, if you want to use these as handy development tools. </ul> <p>
- * <i>Optional Functionality</i> <ul> <li>HttpProxy - used by the RPCManager when sending AJAX RPCs to a server other than
- * the server that serves the main application page.  You need to install this servlet if, for example, your application
- * will be querying web services exposed by servers other than the server that is serving the rest of the application.  See
- * the javadoc for this servlet for various configuration options, such as how to restrict the URLs that are allowed to be
- * proxied.  <li>MessagingServlet - used by the realtime messaging system.  If you're planning on using this subsystem,
- * you'll need this servlet. <li>CompressionFilter - required if you want to use dynamic compression of html and js files.
- * <li>JSSyntaxScannerFilter - development tool that looks for trailing commas in JS source (scans html files for
- * &lt;script&gt; tags and scans .js files in their entirety). This is a useful development tool, but should not be
- * included in production. <li>NoCacheFilter - development tool that makes any content it intercepts non-cacheable in order
- * to ensure developers are looking at the latest version of a file when modifying examples.  Not for production use.
+ * com.smartgwt.client.widgets.BatchUploader}  component - strictly speaking, you only need to perform this step if you
+ * intend to use that  component.  </ul> <u>Merging web.xml</u> <p> The following is a description of the servlets and
+ * filters you'll find in the web.xml file contained in the smartclientRuntime and what they do: <p> <i>Core
+ * Functionality</i> <ul> <li>Init servlet- <b>required:</b> initializes the SmartGWT server componentry from config files
+ * at container startup time.  Notice that this servlet has no mapping - it's purely an initialization servlet. <li>IDACall
+ * servlet - <b>required</b> for {@link com.smartgwt.client..DMI}, built-in RPC operations and built-in DataSource
+ * operations to work.  All databound examples in the SDK use this servlet.  If you're planning on using a custom actionURL
+ * for all your RPC requests, then you don't need this servlet. <li>FileDownload servlet - required for serving the
+ * Isomorphic framework code compressed and with caching headers as well as for serving skin images with caching headers. 
+ * It is highly recommended that you use this for production but is not required.  <li>PreCache servlet - loads resources
+ * into memory on container startup.  Not required, but if you exclude this servlet there may be a slow response to the
+ * very first request. <li>jsp-config section - the iscTaglib registration block is required to use &lt;isomorphic&gt;
+ * tags, and the *.isc and *.rpc mappings.  These are optional, if you want to use these as handy development tools. </ul>
+ * <p> <i>Optional Functionality</i> <ul> <li>HttpProxy - used by the RPCManager when sending AJAX RPCs to a server other
+ * than the server that serves the main application page.  You need to install this servlet if, for example, your
+ * application will be querying web services exposed by servers other than the server that is serving the rest of the
+ * application.  See the javadoc for this servlet for various configuration options, such as how to restrict the URLs that
+ * are allowed to be proxied.  <li>MessagingServlet - used by the realtime messaging system.  If you're planning on using
+ * this subsystem, you'll need this servlet. <li>CompressionFilter - required if you want to use dynamic compression of
+ * html and js files. <li>JSSyntaxScannerFilter - development tool that looks for trailing commas in JS source (scans html
+ * files for &lt;script&gt; tags and scans .js files in their entirety). This is a useful development tool, but should not
+ * be included in production. <li>NoCacheFilter - development tool that makes any content it intercepts non-cacheable in
+ * order to ensure developers are looking at the latest version of a file when modifying examples.  Not for production use.
  * <li>DataSourceLoader - a servlet that returns the definition of one or more DataSources in JavaScript notation.  This
  * servlet is provided as an alternative to using the  <code>&lt;isomorphic:loadDS&gt;</code> JSP tag, and is particularly
  * suitable in environments where JSP tags can't be used for some reason (such as with SmartGWT).  See  {@link
@@ -137,8 +138,8 @@ package com.smartgwt.client.docs;
  * &nbsp;&nbsp;&nbsp;&nbsp;commons-fileupload<br> &nbsp;&nbsp;&nbsp;&nbsp;commons-logging<br>
  * &nbsp;&nbsp;&nbsp;&nbsp;commons-validator<br> &nbsp;&nbsp;&nbsp;&nbsp;jakarta-oro<br> </li>
  * <li><b>isomorphic_spring</b>: Required for {@link com.smartgwt.client..DMI} dispatches to Spring beans (via {@link
- * com.smartgwt.client..ServerObject#getLookupStyle lookupStyle} : "spring").<br> &nbsp;&nbsp;<u>Requires</u>:<br>
- * &nbsp;&nbsp;&nbsp;&nbsp;isomorphic_core_rpc<br> &nbsp;&nbsp;&nbsp;&nbsp;spring<br>
+ * com.smartgwt.client.docs.serverds.ServerObject#getLookupStyle lookupStyle} : "spring").<br>
+ * &nbsp;&nbsp;<u>Requires</u>:<br> &nbsp;&nbsp;&nbsp;&nbsp;isomorphic_core_rpc<br> &nbsp;&nbsp;&nbsp;&nbsp;spring<br>
  * &nbsp;&nbsp;&nbsp;&nbsp;commons-logging<br> </li> <li><b>isomorphic_examples</b>: Contains code for various SmartGWT
  * examples shown in the SDK.  Do not deploy to production.  The source code for the compiled classes in this module are
  * present in the SDK in various locations and typically linked to directly from the examples that use them.<br>

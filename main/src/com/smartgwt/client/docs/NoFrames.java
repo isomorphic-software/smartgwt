@@ -2,6 +2,7 @@
 package com.smartgwt.client.docs;
 
 /**
+ * <h3>Don't Misuse Frames</h3>
  * Loading the SmartGWT framework into multiple frames or iframes within the same browser is not a supported configuration,
  * or more accurately, not a <i>supportable</i> configuration, for the following reasons: <ul> <li> each additional frame
  * multiplies the memory footprint and reduces speed <li> having multiple frames prevents drag and drop between components

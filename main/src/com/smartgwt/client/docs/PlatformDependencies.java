@@ -2,6 +2,7 @@
 package com.smartgwt.client.docs;
 
 /**
+ * <h3>Platform Dependencies</h3>
  * Client-side processing of web services, XML parsing, and some UI loading mechanisms rely on a native in-browser XML
  * parser and/or the XMLHttpRequest object - one or both of which will not be available if the end user disables ActiveX
  * support in Internet Explorer.  Note that these features do not require plugins or downloads of any kind - IE simply

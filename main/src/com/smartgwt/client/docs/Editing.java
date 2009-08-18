@@ -2,6 +2,7 @@
 package com.smartgwt.client.docs;
 
 /**
+ * <h3>Grid Editing</h3>
  * Data being displayed by a grid may be edited within the grid, by showing editing interfaces embedded inside the cells of
  * the grid. <P> <b>Enabling editing</b> <P> Editing is enabled when {@link
  * com.smartgwt.client.widgets.grid.ListGrid#getCanEdit 'canEdit'} is <code>true</code>.  When enabled, the user can begin

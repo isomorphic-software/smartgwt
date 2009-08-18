@@ -2,6 +2,7 @@
 package com.smartgwt.client.docs;
 
 /**
+ * <h3>SmartGWT Server Summary</h3>
  * The SmartGWT Server is a set of Java libraries, servlets and tools that provide the key server-side components needed to
  * build a complete application in the modern web architecture. <P> The SmartGWT Server can be {@link
  * com.smartgwt.client.docs.IscInstall 'integrated'} into any pre-existing Java application, and is designed to rapidly

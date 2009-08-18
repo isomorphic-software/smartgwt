@@ -2,6 +2,7 @@
 package com.smartgwt.client.docs;
 
 /**
+ * <h3>.NET, PHP, Serverless Integration</h3>
  * SmartGWT is fully functional without installation of the Java server included in the SDK,&#010 and can be integrated
  * with any server technology.  This topic provides pointers to&#010 documentation that is most relevant for this type of
  * integration.&#010 <P>&#010 <h4>Installation</h4>&#010 <P>&#010 As described in {@link

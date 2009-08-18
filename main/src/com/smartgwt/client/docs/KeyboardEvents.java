@@ -2,6 +2,7 @@
 package com.smartgwt.client.docs;
 
 /**
+ * <h3>Keyboard Events</h3>
  * SmartGWT allows keybaord events to be captured at the page level via  {@link com.smartgwt.client.util.Page#registerKey}
  * or {@link com.smartgwt.client.util.Page#setEvent} or at the widget level via {@link
  * com.smartgwt.client.widgets.Canvas#addKeyDownHandler}, {@link com.smartgwt.client.widgets.Canvas#addKeyPressHandler},

@@ -2,6 +2,7 @@
 package com.smartgwt.client.docs;
 
 /**
+ * <h3>Selection</h3>
  * APIs for marking {@link com.smartgwt.client.data.Record}s as selected and retrieving the selected record or records. <P>
  * Only applicable to a {@link com.smartgwt.client.widgets.DataBoundComponent} that manages a list of Records, or manages a
  * data model that can be viewed as a list (for example, the current list of visible nodes on a tree can be treated as a

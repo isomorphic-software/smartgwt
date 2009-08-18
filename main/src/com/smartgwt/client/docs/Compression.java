@@ -2,6 +2,7 @@
 package com.smartgwt.client.docs;
 
 /**
+ * <h3>Compression</h3>
  * Compression helps reduce the sizes of various data fetched from the server.  Most modern web&#010 browsers can handle
  * compressed responses of certain content types. The time it takes to&#010 decompress these responses on a client system
  * is negligible compared to the time saved&#010 by reducing the number of bits on the wire, especially for slow

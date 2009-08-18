@@ -2,6 +2,7 @@
 package com.smartgwt.client.docs;
 
 /**
+ * <h3>Integration with Hibernate</h3>
  * SmartGWT can integrate with Hibernate in two main ways: <ul> <li> With pre-existing Hibernate configuration and Java
  * beans, SmartGWT server-side DSRequests can be transformed into Hibernate <code>Criteria</code> objects, and results
  * returned via a SmartGWT DSResponse.   <li> SmartGWT can drive Hibernate as a storage layer only, automatically

@@ -2,6 +2,7 @@
 package com.smartgwt.client.docs;
 
 /**
+ * <h3>Tree DataBinding</h3>
  * The SmartGWT {@link com.smartgwt.client.widgets.tree.TreeGrid} component is a visual representation of a tree and
  * requires a {@link com.smartgwt.client.widgets.tree.Tree} or {@link com.smartgwt.client..ResultTree} datatype passed via
  * the {@link com.smartgwt.client.widgets.tree.TreeGrid#getData data} attribute to initialize the tree view.  The {@link
