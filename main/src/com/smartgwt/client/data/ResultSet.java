@@ -843,18 +843,6 @@ public class ResultSet extends RecordList implements com.smartgwt.client.data.ev
 
     /**
      * Checks only loaded rows and will not trigger a fetch.
-     * @param propertyName property to match,
-     *
-     * @return all matching Records or null if none found
-     */
-    public native Record[] findAll(String propertyName) /*-{
-        var self = this.@com.smartgwt.client.core.BaseClass::getOrCreateJsObj()();
-        var recordsJS = self.findAll(propertyName);
-        return recordsJS == null || recordsJS === undefined ? null : @com.smartgwt.client.data.Record::convertToRecordArray(Lcom/google/gwt/core/client/JavaScriptObject;)(recordsJS);
-    }-*/;
-
-    /**
-     * Checks only loaded rows and will not trigger a fetch.
      *
      * @param properties set of properties and values to match
      *
@@ -931,19 +919,6 @@ public class ResultSet extends RecordList implements com.smartgwt.client.data.ev
         var recordsJS = self.findAll(propertyName, @com.smartgwt.client.util.JSOHelper::convertToJavaScriptDate(Ljava/util/Date;)(value));
         return recordsJS == null || recordsJS === undefined ? null : @com.smartgwt.client.data.Record::convertToRecordArray(Lcom/google/gwt/core/client/JavaScriptObject;)(recordsJS);
     }-*/;
-
-    /**
-     * Checks only loaded rows and will not trigger a fetch.
-     * @param propertyName property to match
-     *
-     * @return first matching object or null if not found
-     */
-    public native Record find(String propertyName) /*-{
-        var self = this.@com.smartgwt.client.core.BaseClass::getOrCreateJsObj()();
-        var recordJS = self.find(propertyName);
-        return recordJS == null || recordJS === undefined ? null : @com.smartgwt.client.data.Record::getOrCreateRef(Lcom/google/gwt/core/client/JavaScriptObject;)(recordJS);
-    }-*/;
-
 
     /**
      * Checks only loaded rows and will not trigger a fetch.

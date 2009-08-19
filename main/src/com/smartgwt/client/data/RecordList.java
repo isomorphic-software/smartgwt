@@ -359,18 +359,6 @@ public class RecordList extends BaseClass implements com.smartgwt.client.data.ev
     /**
      * Like {@link RecordList#findIndex}, but returns the object itself instead of its index.
      * @param propertyName property to match
-     *
-     * @return first matching object or null if not found
-     */
-    public native Record find(String propertyName) /*-{
-        var self = this.@com.smartgwt.client.core.BaseClass::getOrCreateJsObj()();
-        var recordJS = self.find(propertyName);
-        return recordJS == null || recordJS === undefined ? null : @com.smartgwt.client.data.Record::getOrCreateRef(Lcom/google/gwt/core/client/JavaScriptObject;)(recordJS);
-    }-*/;
-
-    /**
-     * Like {@link RecordList#findIndex}, but returns the object itself instead of its index.
-     * @param propertyName property to match
      * @param value value to compare against (if propertyName is a string)
      *
      * @return first matching object or null if not found
@@ -431,18 +419,6 @@ public class RecordList extends BaseClass implements com.smartgwt.client.data.ev
         var self = this.@com.smartgwt.client.core.BaseClass::getOrCreateJsObj()();
         var recordJS = self.find(propertyName, @com.smartgwt.client.util.JSOHelper::convertToJavaScriptDate(Ljava/util/Date;)(value));
         return recordJS == null || recordJS === undefined ? null : @com.smartgwt.client.data.Record::getOrCreateRef(Lcom/google/gwt/core/client/JavaScriptObject;)(recordJS);
-    }-*/;
-
-    /**
-     * Find all objects where property == value in the object.
-     * @param propertyName property to match
-     *
-     * @return all matching Objects or null if none found
-     */
-    public native Record[] findAll(String propertyName) /*-{
-        var self = this.@com.smartgwt.client.core.BaseClass::getOrCreateJsObj()();
-        var recordsJS = self.findAll(propertyName);
-        return recordsJS == null || recordsJS === undefined ? null : @com.smartgwt.client.data.Record::convertToRecordArray(Lcom/google/gwt/core/client/JavaScriptObject;)(recordsJS);
     }-*/;
 
     /**
