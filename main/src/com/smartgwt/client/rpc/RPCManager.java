@@ -177,10 +177,15 @@ public class RPCManager {
 
 
 
-
-
 
-
+
+
+
+
+
+
+
+
     /**
      * The actionURL specifies the URL to which the RPC request will be sent. Note that if you override this global
      * default and your application uses DataSource databound components, you'll need to dispatch the DataSource
@@ -456,11 +461,43 @@ public class RPCManager {
     }-*/;
 
     /**
+     * Send the passed RPCRequest to the server. If queuing is in effect, this queues the request instead.
+     *
+     * @param rpcRequestProperties  RPCRequest to send to the server
+     * @param callback callback to invoke on RPC completion
+     */
+    public static native void sendRequest(RPCRequest rpcRequestProperties, RPCCallback callback) /*-{
+        var rpcRequest = rpcRequestProperties.@com.smartgwt.client.core.DataClass::getJsObj()();
+        rpcRequest.callback = function (rpcResponse, data, rpcRequest) {
+            var responseJ = @com.smartgwt.client.rpc.RPCResponse::new(Lcom/google/gwt/core/client/JavaScriptObject;)(rpcResponse);
+            var requestJ = @com.smartgwt.client.rpc.RPCRequest::new(Lcom/google/gwt/core/client/JavaScriptObject;)(rpcRequest);
+            if(callback != null) callback.@com.smartgwt.client.rpc.RPCCallback::execute(Lcom/smartgwt/client/rpc/RPCResponse;Ljava/lang/Object;Lcom/smartgwt/client/rpc/RPCRequest;)(responseJ, data, requestJ);
+        };                
+        $wnd.isc.RPCManager.sendRequest(rpcRequest);
+    }-*/;
+
+    /**
+     * This method is a convenience wrapper on RPCManager.sendRequest() - it calls through to sendRequest().
+     *
+     * @param data data to be passed to the server
+     * @param callback callback to invoke on RPC completion
+     * @param requestParams any additional properties you want to set - these will be applied to the RPCRequest object that will be auto-created for you.
+     */
+    public static native void send(String data, RPCCallback callback, RPCRequest requestParams) /*-{
+        $wnd.isc.RPCManager.send(data, function (rpcResponse, data, rpcRequest) {
+            var responseJ = @com.smartgwt.client.rpc.RPCResponse::new(Lcom/google/gwt/core/client/JavaScriptObject;)(rpcResponse);
+            var requestJ = @com.smartgwt.client.rpc.RPCRequest::new(Lcom/google/gwt/core/client/JavaScriptObject;)(rpcRequest);
+            if(callback != null) callback.@com.smartgwt.client.rpc.RPCCallback::execute(Lcom/smartgwt/client/rpc/RPCResponse;Ljava/lang/Object;Lcom/smartgwt/client/rpc/RPCRequest;)(responseJ, data, requestJ);
+        }, requestParams == null ? null : @com.smartgwt.client.util.JSOHelper::convertMapToJavascriptObject(Ljava/util/Map;)(requestParams));
+    }-*/;
+
+    /**
      * This method is a convenience wrapper on RPCManager.sendRequest() - it calls through to sendRequest().
      * 
      * @param data data to be passed to the server
      * @param callback callback to invoke on RPC completion
      * @param requestParams any additional properties you want to set - these will be applied to the RPCRequest object that will be auto-created for you.
+     *
      */
     public static native void send(String data, RPCCallback callback, Map requestParams) /*-{
         $wnd.isc.RPCManager.send(data, function (rpcResponse, data, rpcRequest) {
