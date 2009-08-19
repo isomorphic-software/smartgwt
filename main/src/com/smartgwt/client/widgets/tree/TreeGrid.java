@@ -210,7 +210,7 @@ public class TreeGrid extends ListGrid  implements com.smartgwt.client.widgets.t
      * @return Tree
      */
     public Tree getData()  {
-            return Tree.getOrCreateRef(getAttributeAsJavaScriptObject("data"));
+        return Tree.getOrCreateRef(getAttributeAsJavaScriptObject("data"));
     }
 
     /**
@@ -1646,8 +1646,16 @@ public class TreeGrid extends ListGrid  implements com.smartgwt.client.widgets.t
     // ********************* Static Methods ***********************
 
 
-
-
+
+
+
+
+
+
+
+
+
+
     protected void onInit() {
         super.onInit();
         onInit2();
@@ -1737,9 +1745,31 @@ public class TreeGrid extends ListGrid  implements com.smartgwt.client.widgets.t
         return getData();
     }
 
+    /**
+     * Return the tree nodes as a flat array of ListGridRecords. Internally this method retrieves all the nodes via
+     * {@link Tree#getOpenList(TreeNode)}. You should favor working with the underlying {@link #getTree() Tree} data
+     * structure when working with a TreeGrid.
+     *
+     * @return the tree nodes as ListGridRecord's
+     */
     public ListGridRecord[] getRecords() {
         Tree tree = getData();
-        return tree.getData();
+        if(isCreated()){
+            TreeNode root = tree.getRoot();
+            if(root == null) {
+                return null;
+            } else {
+                TreeNode[] nodes = tree.getOpenList(tree.getRoot());
+                ListGridRecord[] records = new ListGridRecord[nodes.length];
+                for (int i = 0; i < nodes.length; i++) {
+                    TreeNode node = nodes[i];
+                    records[i] = new ListGridRecord(node.getJsObj());
+                }
+                return records;
+            }
+        } else {
+            return tree.getData();
+        }
     }
     
     /**
