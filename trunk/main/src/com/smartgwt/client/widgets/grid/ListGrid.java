@@ -5667,9 +5667,26 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
     // ********************* Static Methods ***********************
 
 
-
-
-
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     protected native void onInit() /*-{
 
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
@@ -7425,6 +7442,17 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
     public native void setValueMap(String fieldName, java.util.LinkedHashMap valueMap) /*-{
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
         self.setValueMap(fieldName, @com.smartgwt.client.util.JSOHelper::convertMapToJavascriptObject(Ljava/util/Map;)(valueMap));
+    }-*/;
+
+    /**
+     * Set the value map for a field.&#010 See also the {@link com.smartgwt.client.widgets.grid.ListGrid#setEditorValueMap}&#010 and {@link com.smartgwt.client.widgets.grid.ListGrid#getEditorValueMap} methods which allow further &#010 customization of the valueMap displayed while the field is in edit mode.&#010&#010
+     *
+     * @param fieldName Name  of field to update
+     * @param valueMap ValueMap for the field
+     */
+    public native void setValueMap(String fieldName, String... valueMap) /*-{
+        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
+        self.setValueMap(fieldName, @com.smartgwt.client.util.JSOHelper::convertToJavaScriptArray([Ljava/lang/Object;)(valueMap));
     }-*/;
 
     /**
