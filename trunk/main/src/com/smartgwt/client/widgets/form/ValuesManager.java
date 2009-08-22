@@ -237,6 +237,10 @@ public class ValuesManager extends BaseClass {
 
 
 
+
+
+
+
     /**
      * Validate the current set of values for this values manager against validators defined in the member forms. For databound
      * valuesManagers, also perform validation against any validators defined on datasource fields. <P> Note that if validation
@@ -388,23 +392,10 @@ public class ValuesManager extends BaseClass {
 
 
 
-
-
-    /**
-     * Takes an item name (specified via the form.fieldIdProperty value, or retrieved via item.getFieldName()) returns a
-     * reference to the appropriate item in this valuesManager. <br>Note: Unlike the <code>DynamicForm</code> class, this
-     * method will not return an  item by index
-     */
-    public native void getItem() /*-{
-        var self = this.@com.smartgwt.client.core.BaseClass::getOrCreateJsObj()();
-        self.getItem();
-    }-*/;
-
-
     // ********************* Static Methods ***********************
 
 
-
+
 
 
     /**
@@ -1016,6 +1007,24 @@ public class ValuesManager extends BaseClass {
         }
         return @com.smartgwt.client.util.JSOHelper::convertToJavaStringArray(Lcom/google/gwt/core/client/JavaScriptObject;)(value);
     }-*/;
+
+    /**
+     * Retrieve a {@link com.smartgwt.client.widgets.form.fields.FormItem} from this ValuesManager. <P> Takes a field {@link
+     * com.smartgwt.client.widgets.form.fields.FormItem#getName 'name'} or ${isc.DocUtils.linkForRef('dataPath')}, and searches
+     * through the members of this valuesManager for an editor for that field. If found the appropriate formItem will be
+     * returned. Note that if a dataPath is passed in, it should be the full data path for the item, including any canvas level
+     * {@link com.smartgwt.client.widgets.Canvas#getDataPath 'dataPath'} specified on the member form containing this form
+     * item. <br>Note: Unlike the <code>DynamicForm</code> class, this method will not return an  item by index
+     * @param itemID item fieldName or dataPath identifier
+     *
+     * @return form item for editing/displaying the appropriate field, or null if   no formItem can be found for the field.
+     */
+    public native FormItem getItem(String itemID) /*-{
+        var self = this.@com.smartgwt.client.core.BaseClass::getOrCreateJsObj()();
+        var fieldJS = self.getItem(itemID);
+        return @com.smartgwt.client.widgets.form.fields.FormItemFactory::getFormItem(Lcom/google/gwt/core/client/JavaScriptObject;)(fieldJS);
+    }-*/;
+
 
 }
 

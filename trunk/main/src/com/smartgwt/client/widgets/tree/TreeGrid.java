@@ -210,7 +210,7 @@ public class TreeGrid extends ListGrid  implements com.smartgwt.client.widgets.t
      * @return Tree
      */
     public Tree getData()  {
-        return Tree.getOrCreateRef(getAttributeAsJavaScriptObject("data"));
+            return Tree.getOrCreateRef(getAttributeAsJavaScriptObject("data"));
     }
 
     /**
@@ -1646,16 +1646,8 @@ public class TreeGrid extends ListGrid  implements com.smartgwt.client.widgets.t
     // ********************* Static Methods ***********************
 
 
-
-
-
-
-
-
-
-
-
-
+
+
     protected void onInit() {
         super.onInit();
         onInit2();
@@ -1781,8 +1773,8 @@ public class TreeGrid extends ListGrid  implements com.smartgwt.client.widgets.t
      * @param initialData initialData Default value is null
      * @throws IllegalStateException this property cannot be changed after the component has been created
      */
-    public void setInitialData(TreeNode[] data) throws IllegalStateException {
-        setAttribute("initialData", data, false);
+    public void setInitialData(TreeNode[] initialData) throws IllegalStateException {
+        setAttribute("initialData", initialData, false);
     }
 
     /**

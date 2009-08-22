@@ -151,18 +151,19 @@ import com.google.gwt.event.shared.HasHandlers;
  * dataProtocol, the data will&#010 be serialized as an XML or JSON message according to the <code>dataFormat</code>
  * setting.&#010 Both XML and JSON messages will contain request metadata such as startRow and endRow, and&#010 will appear
  * exactly as though the subset of the {@link com.smartgwt.client.data.DSRequest} that is meaningful to the&#010 server had
- * been passed to {@link com.smartgwt.client.data.DataSource#xmlSerialize} or {@link com.smartgwt.client..JSON#encode}&#010
- * respectively.&#010 <P>&#010 An example of an XML message might look like this:&#010 <pre>&#010    &lt;request&gt;&#010  
- * &lt;data&gt;&#010            &lt;countryDS&gt;&#010                &lt;countryCode&gt;US&lt;/countryCode&gt;&#010       
- * &lt;countryName&gt;Edited Value&lt;/countryName&gt;&#010                &lt;capital&gt;Edited Value&lt;/capital&gt;&#010
- * &lt;continent&gt;Edited Value&lt;/continent&gt;&#010            &lt;/countryDS&gt;&#010        &lt;/data&gt;&#010       
- * &lt;dataSource&gt;countryDS&lt;/dataSource&gt;&#010        &lt;operationType&gt;update&lt;/operationType&gt;&#010   
- * &lt/request&gt;&#010 </pre>&#010 The {@link com.smartgwt.client.data.RestDataSource#getOperationBindings 'default
- * OperationBindings'} for a RestDataSource&#010 specify dataProtocol as "getParams" for the fetch operation, and
- * "postParams" for update,&#010 add and remove operations.&#010 <P>&#010 <b>Hierachical (Tree) data:</b>&#010 <P>&#010 To
- * create a hierachical DataSource, in the DataSource's <code>fields</code> array, a field &#010 must be specified as the
- * parent id field - the field which will contain a pointer to the&#010 id of each node's parent. &#010 This can be
- * achieved by setting the {@link com.smartgwt.client.data.DataSourceField#getForeignKey foreignKey} and the &#010 {@link
+ * been passed to {@link com.smartgwt.client.data.DataSource#xmlSerialize} or {@link
+ * com.smartgwt.client.util.JSON#encode}&#010 respectively.&#010 <P>&#010 An example of an XML message might look like
+ * this:&#010 <pre>&#010    &lt;request&gt;&#010        &lt;data&gt;&#010            &lt;countryDS&gt;&#010               
+ * &lt;countryCode&gt;US&lt;/countryCode&gt;&#010                &lt;countryName&gt;Edited Value&lt;/countryName&gt;&#010  
+ * &lt;capital&gt;Edited Value&lt;/capital&gt;&#010                &lt;continent&gt;Edited Value&lt;/continent&gt;&#010    
+ * &lt;/countryDS&gt;&#010        &lt;/data&gt;&#010        &lt;dataSource&gt;countryDS&lt;/dataSource&gt;&#010       
+ * &lt;operationType&gt;update&lt;/operationType&gt;&#010    &lt/request&gt;&#010 </pre>&#010 The {@link
+ * com.smartgwt.client.data.RestDataSource#getOperationBindings 'default OperationBindings'} for a RestDataSource&#010
+ * specify dataProtocol as "getParams" for the fetch operation, and "postParams" for update,&#010 add and remove
+ * operations.&#010 <P>&#010 <b>Hierachical (Tree) data:</b>&#010 <P>&#010 To create a hierachical DataSource, in the
+ * DataSource's <code>fields</code> array, a field &#010 must be specified as the parent id field - the field which will
+ * contain a pointer to the&#010 id of each node's parent. &#010 This can be achieved by setting the {@link
+ * com.smartgwt.client.data.DataSourceField#getForeignKey foreignKey} and the &#010 {@link
  * com.smartgwt.client.data.DataSourceField#getRootValue rootValue} attributes on the field definition. For example:&#010
  * <pre>&#010 RestDataSource.create({&#010    ID:"supplyItem",&#010    fields : [&#010        {name:"itemId",
  * type:"sequence", primaryKey:true},&#010        {name:"parentId", type:"integer", foreignKey:"supplyItem.itemId",
@@ -298,8 +299,9 @@ public class RestDataSource extends DataSource {
 
     /**
      * When using dataFormat:"json" and dataProtocol:"postMessage" should we use the {@link
-     * com.smartgwt.client..JSONEncoder#getPrettyPrint prettyPrint} feature to enable indented, highly readable JSON messages.
-     * <P> True by default because the bandwidth involved is generally neglible and the benefits for troubleshooting are key.
+     * com.smartgwt.client.util.JSONEncoder#getPrettyPrint prettyPrint} feature to enable indented, highly readable JSON
+     * messages. <P> True by default because the bandwidth involved is generally neglible and the benefits for troubleshooting
+     * are key.
      *
      * @param prettyPrintJSON prettyPrintJSON Default value is true
      * @throws IllegalStateException this property cannot be changed after the underlying component has been created
@@ -310,8 +312,9 @@ public class RestDataSource extends DataSource {
 
     /**
      * When using dataFormat:"json" and dataProtocol:"postMessage" should we use the {@link
-     * com.smartgwt.client..JSONEncoder#getPrettyPrint prettyPrint} feature to enable indented, highly readable JSON messages.
-     * <P> True by default because the bandwidth involved is generally neglible and the benefits for troubleshooting are key.
+     * com.smartgwt.client.util.JSONEncoder#getPrettyPrint prettyPrint} feature to enable indented, highly readable JSON
+     * messages. <P> True by default because the bandwidth involved is generally neglible and the benefits for troubleshooting
+     * are key.
      *
      *
      * @return Boolean
