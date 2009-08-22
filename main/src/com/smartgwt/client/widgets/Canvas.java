@@ -2662,6 +2662,147 @@ public class Canvas extends BaseWidget  implements com.smartgwt.client.widgets.e
     public String getShadowImage()  {
         return getAttributeAsString("shadowImage");
     }
+            
+    /**
+     * {@link com.smartgwt.client.widgets.form.ValuesManager} for managing values displayed in this component. If specified at
+     * initialization time, this component will be added to the valuesManager via {@link
+     * com.smartgwt.client.widgets.form.ValuesManager#addMember}. <P> ValuesManagers allow different fields of a single object
+     * to be displayed or edited across multiple UI components. Given a single values object, a valuesManager will handle
+     * determining the appropriate field values for its member components and displaying them /  responding to edits if the
+     * components support this. <P> Data may be derived simply from the specified fieldNames within the member components, or
+     * for complex nested data structures can be specified by both component and field-level {@link
+     * com.smartgwt.client.widgets.Canvas#getDataPath dataPath}. <P> Note that components may be automatically bound to an
+     * existing valuesManager attached to a  parent component if dataPath is specified. See {@link
+     * com.smartgwt.client.widgets.Canvas#getDataPath dataPath} for more information. Also note that if a databound component
+     * has a specified dataSource and dataPath but no specified valuesManager object one will be automatically generated as
+     * part of the databinding process
+     * <p><b>Note : </b> This is an advanced setting</p>
+     *
+     * @param valuesManager valuesManager Default value is null
+     */
+    public void setValuesManager(ValuesManager valuesManager) {
+        setAttribute("valuesManager", valuesManager.getOrCreateJsObj(), true);
+    }
+
+    /**
+     * {@link com.smartgwt.client.widgets.form.ValuesManager} for managing values displayed in this component. If specified at
+     * initialization time, this component will be added to the valuesManager via {@link
+     * com.smartgwt.client.widgets.form.ValuesManager#addMember}. <P> ValuesManagers allow different fields of a single object
+     * to be displayed or edited across multiple UI components. Given a single values object, a valuesManager will handle
+     * determining the appropriate field values for its member components and displaying them /  responding to edits if the
+     * components support this. <P> Data may be derived simply from the specified fieldNames within the member components, or
+     * for complex nested data structures can be specified by both component and field-level {@link
+     * com.smartgwt.client.widgets.Canvas#getDataPath dataPath}. <P> Note that components may be automatically bound to an
+     * existing valuesManager attached to a  parent component if dataPath is specified. See {@link
+     * com.smartgwt.client.widgets.Canvas#getDataPath dataPath} for more information. Also note that if a databound component
+     * has a specified dataSource and dataPath but no specified valuesManager object one will be automatically generated as
+     * part of the databinding process
+     *
+     *
+     * @return ValuesManager
+     */
+    public ValuesManager getValuesManager()  {
+            return ValuesManager.getOrCreateRef(getAttributeAsJavaScriptObject("valuesManager"));
+    }
+
+    /**
+     * A dataPath may be specified on any canvas. This provides a straightforward way to display or&#010 edit complex nested
+     * data.&#010 <P>&#010 For components which support displaying or editing data values, (such as {@link
+     * com.smartgwt.client.widgets.form.DynamicForm} or&#010 {@link com.smartgwt.client.widgets.grid.ListGrid} components), the
+     * dataPath may be set to specify how the components data is&#010 accessed. In this case the dataPath essentially specifies
+     * a nested object to edit - typically&#010 a path to a field value within a dataSource record. Note that a ValuesManager
+     * will be required&#010 to handle connecting the dataBoundcomponent to the appropriate sub object. This may be
+     * explicitly&#010 specified on the component, or a parent of the component, or automatically generated&#010 if a
+     * DataSource is specified on either the component or a parent thereof.&#010 <P>&#010 To provide a simple example - if a
+     * complex object existed with the following format:&#010 <pre>&#010 { companyName:"Some Company",&#010   address:{   
+     * street:"123 Main Street", city:"New York", state:"NY"  }&#010 }&#010 </pre>&#010 a developer could specify a DynamicForm
+     * instance with 'dataPath' set to "address" to edit&#010 the nested address object:&#010 <pre>&#010
+     * isc.ValuesManager.create({&#010      ID:'vm',&#010      values: { companyName:"Some Company",&#010             
+     * address:{    street:"123 Main Street", city:"New York", state:"NY"  }&#010      }&#010 });&#010&#010
+     * isc.DynamicForm.create({&#010      valuesManager:"vm",&#010      dataPath:"address",&#010      items:[{name:"street"},
+     * {name:"city"}, {name:"state"}]&#010 });&#010 </pre>&#010 In addition to this the valuesManager could be specified on
+     * some higher level component,&#010 providing a simple way to edit or view a complex structure with multiple
+     * components&#010 <pre>&#010 isc.ValuesManager.create({&#010      ID:'vm',&#010      values: { companyName:"Some
+     * Company",&#010              address:{    street:"123 Main Street", city:"New York", state:"NY"  }&#010      }&#010
+     * });&#010&#010 isc.Layout.create({&#010      valuesManager:"vm",&#010      members:[&#010         
+     * isc.DynamicForm.create({&#010              dataPath:"/",&#010              items:[{name:"companyName"}]&#010         
+     * }),&#010          isc.DynamicForm.create({&#010              dataPath:"address",&#010             
+     * items:[{name:"street"}, {name:"city"}, {name:"state"}]&#010          })&#010      ]&#010 });&#010 </pre>&#010 Note that
+     * in this case the valuesManager is specified on a Layout, which has no 'values'&#010 management behavior of its own, but
+     * contains items with a specified dataPath which do. In this&#010 example you'd see 2 forms allowing editing of the nested
+     * data structure.&#010 <P>&#010 dataPaths from multiple nested components may also be combined. For example:&#010
+     * <pre>&#010 isc.ValuesManager.create({&#010      ID:'vm',&#010      values: { companyName:"Some Company",&#010           
+     * address:{    street:"123 Main Street", city:"New York", state:"NY"  }&#010              parentCompany:{&#010            
+     * companyName:"Some Coorporation",&#010                  address:{   street:"1 High Street", city:"New York", state:"NY"
+     * }&#010              }&#010      }&#010 });&#010&#010 isc.Layout.create({&#010      valuesManager:"vm",&#010     
+     * members:[&#010          isc.DynamicForm.create({&#010              dataPath:"/",&#010             
+     * items:[{name:"companyName"}]&#010          }),&#010          isc.DynamicForm.create({&#010             
+     * dataPath:"address",&#010              items:[{name:"street"}, {name:"city"}, {name:"state"}]&#010          }),&#010     
+     * isc.Layout.create({&#010              dataPath:"parentCompany",&#010              members:[&#010                 
+     * isc.DynamicForm.create({&#010                      dataPath:"/",&#010                      items:[{name:"companyName",
+     * type:"staticText"}]&#010                  }),&#010                  isc.DetailViewer.create({&#010                     
+     * dataPath:"address",&#010                      fields:[{name:"street", name:"city", name:"state"}]&#010                 
+     * })&#010              ]&#010          })&#010      ]&#010 });&#010 </pre>&#010 In this example the detailViewer will
+     * display data from the <code>parentCompany.address</code>&#010 object within the base record.&#010 <P>&#010 Note that if
+     * a component has a specified  dataSource and shows child components with a&#010 specified dataPath, there is no need to
+     * explicitly declare a valuesManager on the component - it&#010 will be generated automatically by SmartGWT.
+     * Setter for the {@link com.smartgwt.client.widgets.Canvas#getDataPath dataPath} attribute. This method may be called directly at runtime to set the dataPath on a component, and will also be re-run automatically whenever a canvas' parentElement changes due to a call to addChild(). This method handles automatically binding the component to the appropriate valuesManager if necessary.
+     * <p><b>Note : </b> This is an advanced setting</p>
+     *
+     * @param dataPath new dataPath. Default value is null
+     */
+    public void setDataPath(String dataPath) {
+        setAttribute("dataPath", dataPath, true);
+    }
+
+    /**
+     * A dataPath may be specified on any canvas. This provides a straightforward way to display or&#010 edit complex nested
+     * data.&#010 <P>&#010 For components which support displaying or editing data values, (such as {@link
+     * com.smartgwt.client.widgets.form.DynamicForm} or&#010 {@link com.smartgwt.client.widgets.grid.ListGrid} components), the
+     * dataPath may be set to specify how the components data is&#010 accessed. In this case the dataPath essentially specifies
+     * a nested object to edit - typically&#010 a path to a field value within a dataSource record. Note that a ValuesManager
+     * will be required&#010 to handle connecting the dataBoundcomponent to the appropriate sub object. This may be
+     * explicitly&#010 specified on the component, or a parent of the component, or automatically generated&#010 if a
+     * DataSource is specified on either the component or a parent thereof.&#010 <P>&#010 To provide a simple example - if a
+     * complex object existed with the following format:&#010 <pre>&#010 { companyName:"Some Company",&#010   address:{   
+     * street:"123 Main Street", city:"New York", state:"NY"  }&#010 }&#010 </pre>&#010 a developer could specify a DynamicForm
+     * instance with 'dataPath' set to "address" to edit&#010 the nested address object:&#010 <pre>&#010
+     * isc.ValuesManager.create({&#010      ID:'vm',&#010      values: { companyName:"Some Company",&#010             
+     * address:{    street:"123 Main Street", city:"New York", state:"NY"  }&#010      }&#010 });&#010&#010
+     * isc.DynamicForm.create({&#010      valuesManager:"vm",&#010      dataPath:"address",&#010      items:[{name:"street"},
+     * {name:"city"}, {name:"state"}]&#010 });&#010 </pre>&#010 In addition to this the valuesManager could be specified on
+     * some higher level component,&#010 providing a simple way to edit or view a complex structure with multiple
+     * components&#010 <pre>&#010 isc.ValuesManager.create({&#010      ID:'vm',&#010      values: { companyName:"Some
+     * Company",&#010              address:{    street:"123 Main Street", city:"New York", state:"NY"  }&#010      }&#010
+     * });&#010&#010 isc.Layout.create({&#010      valuesManager:"vm",&#010      members:[&#010         
+     * isc.DynamicForm.create({&#010              dataPath:"/",&#010              items:[{name:"companyName"}]&#010         
+     * }),&#010          isc.DynamicForm.create({&#010              dataPath:"address",&#010             
+     * items:[{name:"street"}, {name:"city"}, {name:"state"}]&#010          })&#010      ]&#010 });&#010 </pre>&#010 Note that
+     * in this case the valuesManager is specified on a Layout, which has no 'values'&#010 management behavior of its own, but
+     * contains items with a specified dataPath which do. In this&#010 example you'd see 2 forms allowing editing of the nested
+     * data structure.&#010 <P>&#010 dataPaths from multiple nested components may also be combined. For example:&#010
+     * <pre>&#010 isc.ValuesManager.create({&#010      ID:'vm',&#010      values: { companyName:"Some Company",&#010           
+     * address:{    street:"123 Main Street", city:"New York", state:"NY"  }&#010              parentCompany:{&#010            
+     * companyName:"Some Coorporation",&#010                  address:{   street:"1 High Street", city:"New York", state:"NY"
+     * }&#010              }&#010      }&#010 });&#010&#010 isc.Layout.create({&#010      valuesManager:"vm",&#010     
+     * members:[&#010          isc.DynamicForm.create({&#010              dataPath:"/",&#010             
+     * items:[{name:"companyName"}]&#010          }),&#010          isc.DynamicForm.create({&#010             
+     * dataPath:"address",&#010              items:[{name:"street"}, {name:"city"}, {name:"state"}]&#010          }),&#010     
+     * isc.Layout.create({&#010              dataPath:"parentCompany",&#010              members:[&#010                 
+     * isc.DynamicForm.create({&#010                      dataPath:"/",&#010                      items:[{name:"companyName",
+     * type:"staticText"}]&#010                  }),&#010                  isc.DetailViewer.create({&#010                     
+     * dataPath:"address",&#010                      fields:[{name:"street", name:"city", name:"state"}]&#010                 
+     * })&#010              ]&#010          })&#010      ]&#010 });&#010 </pre>&#010 In this example the detailViewer will
+     * display data from the <code>parentCompany.address</code>&#010 object within the base record.&#010 <P>&#010 Note that if
+     * a component has a specified  dataSource and shows child components with a&#010 specified dataPath, there is no need to
+     * explicitly declare a valuesManager on the component - it&#010 will be generated automatically by SmartGWT.
+     *
+     *
+     * @return String
+     */
+    public String getDataPath()  {
+        return getAttributeAsString("dataPath");
+    }
 
     // ********************* Methods ***********************
 
@@ -5113,6 +5254,7 @@ public class Canvas extends BaseWidget  implements com.smartgwt.client.widgets.e
                };
         }
    }-*/;
+
 
     // ********************* Static Methods ***********************
 

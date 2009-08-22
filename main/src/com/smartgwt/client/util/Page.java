@@ -409,10 +409,8 @@ public class Page {
 
 
 
-
-
-
-
+
+
    /**
     * Fire some action when the Page recieves a keyPress event from a certain key.
     * Note that if a widget has keyboard focus, this action will fire only after any widget-level
@@ -458,7 +456,7 @@ public class Page {
     public static native void unregisterKey(String keyName)/*-{
         $wnd.isc.Page.unregisterKey(keyName);
     }-*/;
-
+    
     /**
      * Set the title of the page, which is typically shown as part of the browser window title
      *
@@ -506,7 +504,6 @@ public class Page {
     }-*/;
 
 }
-
 
 
 
