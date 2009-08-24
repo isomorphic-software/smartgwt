@@ -6639,6 +6639,17 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
     }-*/;
 
     /**
+     * Check whether a field is currently visible
+     *
+     * @param fieldName field to be checked
+     * @return true if the field is currently visible, false otherwise
+     */
+    public native boolean fieldIsVisible(String fieldName) /*-{
+        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
+        return self.fieldIsVisible(fieldName);
+    }-*/;
+
+    /**
      * Sort the the data  by the first sortable column.
      * <P>&#010 Updates the sortFieldNum and sortDirection to reflect the new sort order of the grid.&#010&#010
      *
