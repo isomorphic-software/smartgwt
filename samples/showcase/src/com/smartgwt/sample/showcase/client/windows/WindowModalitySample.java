@@ -11,7 +11,6 @@ import com.smartgwt.client.widgets.events.CloseClickHandler;
 import com.smartgwt.client.widgets.events.CloseClientEvent;
 import com.smartgwt.client.widgets.form.DynamicForm;
 import com.smartgwt.client.widgets.form.fields.DateItem;
-import com.smartgwt.client.widgets.form.fields.FormItem;
 import com.smartgwt.client.widgets.form.fields.TextItem;
 import com.smartgwt.client.widgets.layout.HStack;
 import com.smartgwt.client.widgets.layout.VLayout;
@@ -67,6 +66,7 @@ public class WindowModalitySample extends ShowcasePanel {
                 winModal.setTitle("Modal Window");
                 winModal.setShowMinimizeButton(false);
                 winModal.setIsModal(true);
+                winModal.setShowModalMask(true);
                 winModal.centerInPage();
                 winModal.addCloseClickHandler(new CloseClickHandler() {
                     public void onCloseClick(CloseClientEvent event) {
@@ -86,7 +86,7 @@ public class WindowModalitySample extends ShowcasePanel {
                 DateItem dateItem2 = new DateItem();
                 dateItem2.setTitle("Date");
                 dateItem2.setUseTextField(true);
-                form.setFields(new FormItem[] { textItem, dateItem, dateItem2 });
+                form.setFields(textItem, dateItem, dateItem2);
                 winModal.addItem(form);
                 winModal.show();
             }
