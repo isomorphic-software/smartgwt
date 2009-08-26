@@ -1000,9 +1000,17 @@ public class DataSourceField extends DataClass {
     // ********************* Static Methods ***********************
 
 
-
-
-
+
+
+
+
+
+
+
+
+
+
+
 
     /**
      * Validators to be applied to this field. Validators are applied whenever there is an attempt to save changes to a
@@ -1150,7 +1158,7 @@ public class DataSourceField extends DataClass {
      * @return the DataSource
      */
     public DataSource getTypeAsDataSource() {
-        return DataSource.getOrCreateRef(getAttributeAsJavaScriptObject("type"));
+        return DataSource.get(getAttribute("type"));
     }
 
     public static DataSourceField[] convertToDataSourceFieldArray(JavaScriptObject nativeArray) {
