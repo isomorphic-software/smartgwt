@@ -7093,7 +7093,7 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
      */
     public native void setEditValue(int rowNum, String fieldName, double value) /*-{
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
-        self.setEditValue(rowNum, colNum, value);
+        self.setEditValue(rowNum, fieldName, value);
     }-*/;
 
     /**
