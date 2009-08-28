@@ -46,8 +46,6 @@ public class Showcase implements EntryPoint, HistoryListener {
     private TabSet mainTabSet;
     private SideNavTree sideNav;
 
-
-
     public void onModuleLoad() {
 
         final String initToken = History.getToken();

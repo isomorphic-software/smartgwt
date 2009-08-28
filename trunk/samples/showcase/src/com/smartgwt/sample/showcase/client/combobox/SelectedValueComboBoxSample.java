@@ -63,12 +63,11 @@ public class SelectedValueComboBoxSample extends ShowcasePanel {
         selectItem.setDefaultToFirstOption(true); 
         selectItem.setTitle("Item");
         selectItem.setDisplayField("itemName");
-        selectItem.setValueField("itemName");
         selectItem.setPickListWidth(250);
         selectItem.setOptionDataSource(supplyItemDS);
         selectItem.addChangeHandler(new ChangeHandler() {
             public void onChange(ChangeEvent event) {
-                label.setContents("Selected Item Name : " + event.getValue());
+                label.setContents("Selected itemID : " + event.getValue());
             }
         });
 
