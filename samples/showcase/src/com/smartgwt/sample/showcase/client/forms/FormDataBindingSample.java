@@ -12,6 +12,7 @@ import com.smartgwt.client.widgets.form.fields.PasswordItem;
 import com.smartgwt.client.widgets.form.fields.events.ClickEvent;
 import com.smartgwt.client.widgets.form.fields.events.ClickHandler;
 import com.smartgwt.client.widgets.form.validator.MatchesFieldValidator;
+import com.smartgwt.client.widgets.form.validator.RegExpValidator;
 import com.smartgwt.sample.showcase.client.PanelFactory;
 import com.smartgwt.sample.showcase.client.ShowcasePanel;
 
@@ -45,6 +46,12 @@ public class FormDataBindingSample extends ShowcasePanel {
         DataSourceTextField firstNameField = new DataSourceTextField("firstName", "First Name", 50, true);
         DataSourceTextField lastNameField = new DataSourceTextField("lastName", "Last Name", 50, true);
         DataSourceTextField emailField = new DataSourceTextField("email", "Email", 100, true);
+
+        RegExpValidator emailValidator = new RegExpValidator();
+        emailValidator.setErrorMessage("Invalid email address");
+        emailValidator.setExpression("^([a-zA-Z0-9_.\\-+])+@(([a-zA-Z0-9\\-])+\\.)+[a-zA-Z0-9]{2,4}$");
+        
+        emailField.setValidators(emailValidator);
 
         DataSourcePasswordField passwordField = new DataSourcePasswordField("password", "Password", 20, true);
 
