@@ -1719,9 +1719,20 @@ public class Calendar extends Canvas  implements DataBoundComponent, com.smartgw
     // ********************* Static Methods ***********************
 
 
-
-
-
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     protected native void onInit() /*-{
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
         self._getDayBodyHTML = self.getDayBodyHTML;
@@ -2312,7 +2323,7 @@ public class Calendar extends Canvas  implements DataBoundComponent, com.smartgw
 
     public native int getRecordIndex(Record record) /*-{
          var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
-         return self.getRecordIndex(record);
+         return self.getRecordIndex(record.@com.smartgwt.client.core.DataClass::getJsObj()());
      }-*/;
 
     public native String getTitleFieldValue(Record record) /*-{

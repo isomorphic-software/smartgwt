@@ -442,8 +442,17 @@ public class TileGrid extends TileLayout  implements DataBoundComponent, com.sma
     // ********************* Static Methods ***********************
 
 
-
-
+
+
+
+
+
+
+
+
+
+
+
     protected native void onInit() /*-{
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
         self._getTileHTML = self.getTileHTML;
@@ -1081,7 +1090,7 @@ public class TileGrid extends TileLayout  implements DataBoundComponent, com.sma
 
     public native int getRecordIndex(Record record) /*-{
          var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
-         return self.getRecordIndex(record);
+         return self.getRecordIndex(record.@com.smartgwt.client.core.DataClass::getJsObj()());
      }-*/;
 
     public native String getTitleFieldValue(Record record) /*-{
