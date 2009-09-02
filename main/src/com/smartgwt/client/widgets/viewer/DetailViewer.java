@@ -585,8 +585,13 @@ public class DetailViewer extends Canvas  implements DataBoundComponent {
     // ********************* Static Methods ***********************
 
 
-
-
+
+
+
+
+
+
+
     /**
      * An array of records, specifying data. Note that DetailViewers do not observe changes to the data array (in other
      * words they will not automatically re-draw when the data provided via this property is altered)
@@ -1027,7 +1032,7 @@ public class DetailViewer extends Canvas  implements DataBoundComponent {
 
     public native int getRecordIndex(Record record) /*-{
          var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
-         return self.getRecordIndex(record);
+         return self.getRecordIndex(record.@com.smartgwt.client.core.DataClass::getJsObj()());
      }-*/;
 
     public native String getTitleFieldValue(Record record) /*-{

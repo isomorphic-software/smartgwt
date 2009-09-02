@@ -1929,9 +1929,23 @@ public class DynamicForm extends Canvas  implements DataBoundComponent, com.smar
     // ********************* Static Methods ***********************
 
 
-
-
-
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
     private FormItem[] fields;
 
@@ -2941,7 +2955,7 @@ public class DynamicForm extends Canvas  implements DataBoundComponent, com.smar
 
     public native int getRecordIndex(Record record) /*-{
          var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
-         return self.getRecordIndex(record);
+         return self.getRecordIndex(record.@com.smartgwt.client.core.DataClass::getJsObj()());
      }-*/;
 
     public native String getTitleFieldValue(Record record) /*-{
