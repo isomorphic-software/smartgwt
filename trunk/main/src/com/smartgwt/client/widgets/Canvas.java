@@ -2720,11 +2720,13 @@ public class Canvas extends BaseWidget  implements com.smartgwt.client.widgets.e
      * isc.ValuesManager.create({&#010      ID:'vm',&#010      values: { companyName:"Some Company",&#010             
      * address:{    street:"123 Main Street", city:"New York", state:"NY"  }&#010      }&#010 });&#010&#010
      * isc.DynamicForm.create({&#010      valuesManager:"vm",&#010      dataPath:"address",&#010      items:[{name:"street"},
-     * {name:"city"}, {name:"state"}]&#010 });&#010 </pre>&#010 In addition to this the valuesManager could be specified on
-     * some higher level component,&#010 providing a simple way to edit or view a complex structure with multiple
-     * components&#010 <pre>&#010 isc.ValuesManager.create({&#010      ID:'vm',&#010      values: { companyName:"Some
-     * Company",&#010              address:{    street:"123 Main Street", city:"New York", state:"NY"  }&#010      }&#010
-     * });&#010&#010 isc.Layout.create({&#010      valuesManager:"vm",&#010      members:[&#010         
+     * {name:"city"}, {name:"state"}]&#010 });&#010 </pre>&#010 If a component is specified with a <code>dataPath</code>
+     * attribute but does not have an&#010 explicitly specified valuesManager, it will check its parent element chain for a
+     * specified&#010 valuesManager and automatically bind to that. This simplifies binding multiple components used&#010 to
+     * view or edit a nested data structure as the valuesManager needs only be defined once at a&#010 reasonably high level
+     * component. Here's an example of this approach:&#010 <pre>&#010 isc.ValuesManager.create({&#010      ID:'vm',&#010     
+     * values: { companyName:"Some Company",&#010              address:{    street:"123 Main Street", city:"New York",
+     * state:"NY"  }&#010      }&#010 });&#010&#010 isc.Layout.create({&#010      valuesManager:"vm",&#010      members:[&#010 
      * isc.DynamicForm.create({&#010              dataPath:"/",&#010              items:[{name:"companyName"}]&#010         
      * }),&#010          isc.DynamicForm.create({&#010              dataPath:"address",&#010             
      * items:[{name:"street"}, {name:"city"}, {name:"state"}]&#010          })&#010      ]&#010 });&#010 </pre>&#010 Note that
@@ -2745,7 +2747,9 @@ public class Canvas extends BaseWidget  implements com.smartgwt.client.widgets.e
      * })&#010              ]&#010          })&#010      ]&#010 });&#010 </pre>&#010 In this example the detailViewer will
      * display data from the <code>parentCompany.address</code>&#010 object within the base record.&#010 <P>&#010 Note that if
      * a component has a specified  dataSource and shows child components with a&#010 specified dataPath, there is no need to
-     * explicitly declare a valuesManager on the component - it&#010 will be generated automatically by SmartGWT.
+     * explicitly declare a valuesManager at all. If a component&#010 with a dataPath has a dataSource, or an ancestor with a
+     * dataSource specified, it will, a&#010 valuesManager will automatically be generated on the higher level component (and
+     * be available as&#010 <code>component.valuesManager</code>).
      * Setter for the {@link com.smartgwt.client.widgets.Canvas#getDataPath dataPath} attribute. This method may be called directly at runtime to set the dataPath on a component, and will also be re-run automatically whenever a canvas' parentElement changes due to a call to addChild(). This method handles automatically binding the component to the appropriate valuesManager if necessary.
      * <p><b>Note : </b> This is an advanced setting</p>
      *
@@ -2770,11 +2774,13 @@ public class Canvas extends BaseWidget  implements com.smartgwt.client.widgets.e
      * isc.ValuesManager.create({&#010      ID:'vm',&#010      values: { companyName:"Some Company",&#010             
      * address:{    street:"123 Main Street", city:"New York", state:"NY"  }&#010      }&#010 });&#010&#010
      * isc.DynamicForm.create({&#010      valuesManager:"vm",&#010      dataPath:"address",&#010      items:[{name:"street"},
-     * {name:"city"}, {name:"state"}]&#010 });&#010 </pre>&#010 In addition to this the valuesManager could be specified on
-     * some higher level component,&#010 providing a simple way to edit or view a complex structure with multiple
-     * components&#010 <pre>&#010 isc.ValuesManager.create({&#010      ID:'vm',&#010      values: { companyName:"Some
-     * Company",&#010              address:{    street:"123 Main Street", city:"New York", state:"NY"  }&#010      }&#010
-     * });&#010&#010 isc.Layout.create({&#010      valuesManager:"vm",&#010      members:[&#010         
+     * {name:"city"}, {name:"state"}]&#010 });&#010 </pre>&#010 If a component is specified with a <code>dataPath</code>
+     * attribute but does not have an&#010 explicitly specified valuesManager, it will check its parent element chain for a
+     * specified&#010 valuesManager and automatically bind to that. This simplifies binding multiple components used&#010 to
+     * view or edit a nested data structure as the valuesManager needs only be defined once at a&#010 reasonably high level
+     * component. Here's an example of this approach:&#010 <pre>&#010 isc.ValuesManager.create({&#010      ID:'vm',&#010     
+     * values: { companyName:"Some Company",&#010              address:{    street:"123 Main Street", city:"New York",
+     * state:"NY"  }&#010      }&#010 });&#010&#010 isc.Layout.create({&#010      valuesManager:"vm",&#010      members:[&#010 
      * isc.DynamicForm.create({&#010              dataPath:"/",&#010              items:[{name:"companyName"}]&#010         
      * }),&#010          isc.DynamicForm.create({&#010              dataPath:"address",&#010             
      * items:[{name:"street"}, {name:"city"}, {name:"state"}]&#010          })&#010      ]&#010 });&#010 </pre>&#010 Note that
@@ -2795,7 +2801,9 @@ public class Canvas extends BaseWidget  implements com.smartgwt.client.widgets.e
      * })&#010              ]&#010          })&#010      ]&#010 });&#010 </pre>&#010 In this example the detailViewer will
      * display data from the <code>parentCompany.address</code>&#010 object within the base record.&#010 <P>&#010 Note that if
      * a component has a specified  dataSource and shows child components with a&#010 specified dataPath, there is no need to
-     * explicitly declare a valuesManager on the component - it&#010 will be generated automatically by SmartGWT.
+     * explicitly declare a valuesManager at all. If a component&#010 with a dataPath has a dataSource, or an ancestor with a
+     * dataSource specified, it will, a&#010 valuesManager will automatically be generated on the higher level component (and
+     * be available as&#010 <code>component.valuesManager</code>).
      *
      *
      * @return String
@@ -5256,6 +5264,19 @@ public class Canvas extends BaseWidget  implements com.smartgwt.client.widgets.e
    }-*/;
 
 
+    /**
+     * Returns a fully qualified {@link com.smartgwt.client..dataPath} for this canvas. This is calculated by combining the
+     * canvas' specified {@link com.smartgwt.client.widgets.Canvas#getDataPath dataPath} with the <code>dataPath</code> of any
+     * parent  canvases up to whichever canvas has a specified {@link com.smartgwt.client.widgets.Canvas#getValuesManager
+     * valuesManager} specified to actually manage values from this component.
+     *
+     * @return fully qualified dataPath for this component
+     */
+    public native String getFullDataPath() /*-{
+        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
+        return self.getFullDataPath();
+    }-*/;
+
     // ********************* Static Methods ***********************
 
 
@@ -5680,6 +5701,22 @@ public class Canvas extends BaseWidget  implements com.smartgwt.client.widgets.e
         return getAttribute("prefix");
     }
 
+    /**
+     * Allows resizing in certain edges or corners. The default value of null indicates that the widget is resizable from any corner
+     * or edge. To restrict resizing to only certain corners, set resizeFrom to an array of any of the values listed:<br>
+     *
+     * T top edge<br>
+     * B bottom edge<br>
+     * L left edge<br>
+     * R right edge<br>
+     * TL top-left corner<br>
+     * TR top-right corner<br>
+     * BL bottom-left corner<br>
+     * BR bottom-right corner<br><br>
+     * E.g. setting this property to a value of ["R","TR","BR"] would restrict resizing to the right edge, top-right corner and bottom-right corner only
+     *
+     * @param resizeFrom resizeFrom values
+     */    
     public void setResizeFrom(String... resizeFrom) {
         setAttribute("resizeFrom", resizeFrom, true);
     }

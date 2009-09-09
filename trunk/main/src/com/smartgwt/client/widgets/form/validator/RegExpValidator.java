@@ -11,6 +11,16 @@ public class RegExpValidator extends Validator {
     }
 
     /**
+     * Constructor.
+     *
+     * @param expression the regular expression
+     */
+    public RegExpValidator(String expression) {
+        this();
+        setExpression(expression);
+    }
+
+    /**
      * Set the expression.
      *
      * @param expression the expression

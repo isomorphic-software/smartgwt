@@ -1704,6 +1704,16 @@ public class TreeGrid extends ListGrid  implements com.smartgwt.client.widgets.t
     }-*/;
 
     /**
+     * Set the icon for a particular treenode to a specified URL
+     * @param node the tree node
+     * @param icon path to the resource
+     */
+    public native void setCustomNodeIcon(Record node, String icon) /*-{
+        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
+        return self.setNodeIcon(node.@com.smartgwt.client.core.DataClass::getJsObj()(), icon);
+    }-*/;
+
+    /**
      * When the user is dragging a droppable element over this grid, this method returns the folder&#010 which would contain the item if dropped. This is the current drop node if the user is hovering&#010 over a folder, or the node's parent if the user is hovering over a leaf.&#010
      *
      * @return target drop folder

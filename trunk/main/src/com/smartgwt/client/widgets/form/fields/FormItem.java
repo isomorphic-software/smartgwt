@@ -2135,10 +2135,17 @@ public class FormItem extends RefDataClass  implements com.smartgwt.client.widge
 
     /**
      * Returns true if this item has been written out into the DOM.
+     *
+     * @return whether this item is drawn
      */
-    public native void isDrawn() /*-{
+    public native Boolean isDrawn() /*-{
         var self = this.@com.smartgwt.client.core.DataClass::getJsObj()();
-        self.isDrawn();
+        var retVal =self.isDrawn();
+        if(retVal == null || retVal === undefined) {
+            return null;
+        } else {
+            return @com.smartgwt.client.util.JSOHelper::toBoolean(Z)(retVal);
+        }
     }-*/;
 
 
@@ -2618,26 +2625,9 @@ public class FormItem extends RefDataClass  implements com.smartgwt.client.widge
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+
+
+
     public void setAttribute(String attribute, String value) {
         if (!isCreated()) {
             JSOHelper.setAttribute(jsObj, attribute, value);

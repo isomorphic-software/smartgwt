@@ -310,6 +310,29 @@ public class DetailViewerField extends DataClass {
         return getAttributeAsBoolean("showFileInline");
     }
 
+    /**
+     * Dictates whether the data in this field be exported.  Explicitly set this  to false to prevent exporting.  Has no effect
+     * if the underlying   {@link com.smartgwt.client.data.DataSourceField#getCanExport 'dataSourceField'} is explicitly set to
+     *   canExport: false.
+     *
+     * @param canExport canExport Default value is null
+     */
+    public void setCanExport(Boolean canExport) {
+        setAttribute("canExport", canExport);
+    }
+
+    /**
+     * Dictates whether the data in this field be exported.  Explicitly set this  to false to prevent exporting.  Has no effect
+     * if the underlying   {@link com.smartgwt.client.data.DataSourceField#getCanExport 'dataSourceField'} is explicitly set to
+     *   canExport: false.
+     *
+     *
+     * @return Boolean
+     */
+    public Boolean getCanExport()  {
+        return getAttributeAsBoolean("canExport");
+    }
+
     // ********************* Methods ***********************
 
 

@@ -156,10 +156,10 @@ public class ListGridRecord extends Record {
      * styles for a record use {@link com.smartgwt.client.widgets.grid.ListGridRecord#get_baseStyle _baseStyle} instead. <P>
      * See {@link com.smartgwt.client.widgets.grid.ListGrid#getCellStyle} for an overview of various ways to customize styling,
      * both declarative and programmatic. <P> If this property is changed after draw(), to refresh the grid call {@link
-     * com.smartgwt.client.widgets.grid.ListGrid#refreshRow} (or ${isc.DocUtils.linkForRef('listGrid.markForRedraw')} if
-     * several rows are being refreshed). <P> If your application's data uses the "customStyle" attribute for something else,
-     * the property name can be changed via {@link com.smartgwt.client.widgets.grid.ListGrid#getRecordCustomStyleProperty
-     * recordCustomStyleProperty}.
+     * com.smartgwt.client.widgets.grid.ListGrid#refreshRow} (or {@link
+     * com.smartgwt.client.widgets.grid.ListGrid#markForRedraw} if several rows are being refreshed). <P> If your application's
+     * data uses the "customStyle" attribute for something else, the property name can be changed via {@link
+     * com.smartgwt.client.widgets.grid.ListGrid#getRecordCustomStyleProperty recordCustomStyleProperty}.
      *
      * @param customStyle customStyle Default value is null
      */
@@ -173,10 +173,10 @@ public class ListGridRecord extends Record {
      * styles for a record use {@link com.smartgwt.client.widgets.grid.ListGridRecord#get_baseStyle _baseStyle} instead. <P>
      * See {@link com.smartgwt.client.widgets.grid.ListGrid#getCellStyle} for an overview of various ways to customize styling,
      * both declarative and programmatic. <P> If this property is changed after draw(), to refresh the grid call {@link
-     * com.smartgwt.client.widgets.grid.ListGrid#refreshRow} (or ${isc.DocUtils.linkForRef('listGrid.markForRedraw')} if
-     * several rows are being refreshed). <P> If your application's data uses the "customStyle" attribute for something else,
-     * the property name can be changed via {@link com.smartgwt.client.widgets.grid.ListGrid#getRecordCustomStyleProperty
-     * recordCustomStyleProperty}.
+     * com.smartgwt.client.widgets.grid.ListGrid#refreshRow} (or {@link
+     * com.smartgwt.client.widgets.grid.ListGrid#markForRedraw} if several rows are being refreshed). <P> If your application's
+     * data uses the "customStyle" attribute for something else, the property name can be changed via {@link
+     * com.smartgwt.client.widgets.grid.ListGrid#getRecordCustomStyleProperty recordCustomStyleProperty}.
      *
      *
      * @return String
@@ -192,8 +192,8 @@ public class ListGridRecord extends Record {
      * single, fixed style for a record, use {@link com.smartgwt.client.widgets.grid.ListGridRecord#getCustomStyle customStyle}
      * instead. <P> See {@link com.smartgwt.client.widgets.grid.ListGrid#getCellStyle} for an overview of various ways to
      * customize styling, both declarative and programmatic. <P> If this property is changed after draw(), to refresh the grid
-     * call {@link com.smartgwt.client.widgets.grid.ListGrid#refreshRow} (or
-     * ${isc.DocUtils.linkForRef('listGrid.markForRedraw')} if several rows are being refreshed). <P> If your application's
+     * call {@link com.smartgwt.client.widgets.grid.ListGrid#refreshRow} (or {@link
+     * com.smartgwt.client.widgets.grid.ListGrid#markForRedraw} if several rows are being refreshed). <P> If your application's
      * data uses the "_baseStyle" attribute for something else, the property name can be changed via {@link
      * com.smartgwt.client.widgets.grid.ListGrid#getRecordBaseStyleProperty recordBaseStyleProperty}.
      *
@@ -210,8 +210,8 @@ public class ListGridRecord extends Record {
      * single, fixed style for a record, use {@link com.smartgwt.client.widgets.grid.ListGridRecord#getCustomStyle customStyle}
      * instead. <P> See {@link com.smartgwt.client.widgets.grid.ListGrid#getCellStyle} for an overview of various ways to
      * customize styling, both declarative and programmatic. <P> If this property is changed after draw(), to refresh the grid
-     * call {@link com.smartgwt.client.widgets.grid.ListGrid#refreshRow} (or
-     * ${isc.DocUtils.linkForRef('listGrid.markForRedraw')} if several rows are being refreshed). <P> If your application's
+     * call {@link com.smartgwt.client.widgets.grid.ListGrid#refreshRow} (or {@link
+     * com.smartgwt.client.widgets.grid.ListGrid#markForRedraw} if several rows are being refreshed). <P> If your application's
      * data uses the "_baseStyle" attribute for something else, the property name can be changed via {@link
      * com.smartgwt.client.widgets.grid.ListGrid#getRecordBaseStyleProperty recordBaseStyleProperty}.
      *
@@ -308,6 +308,81 @@ public class ListGridRecord extends Record {
      */
     public String getLinkText()  {
         return getAttributeAsString("linkText");
+    }
+
+    /**
+     * If specified as false this record should be ignored when calculating summary totals  to be shown in the {@link
+     * com.smartgwt.client.widgets.grid.ListGrid#getShowGridSummary 'summary row'} for this grid. <P> Note that
+     * <code>includeInTotals</code> is the default property name for this attribute, but it may be modified via
+     * ${isc.DocUtils.linkForRef('listGrid.includeInTotalsProperty')}.
+     *
+     * @param includeInSummary includeInSummary Default value is null
+     */
+    public void setIncludeInSummary(Boolean includeInSummary) {
+        setAttribute("includeInSummary", includeInSummary);
+    }
+
+    /**
+     * If specified as false this record should be ignored when calculating summary totals  to be shown in the {@link
+     * com.smartgwt.client.widgets.grid.ListGrid#getShowGridSummary 'summary row'} for this grid. <P> Note that
+     * <code>includeInTotals</code> is the default property name for this attribute, but it may be modified via
+     * ${isc.DocUtils.linkForRef('listGrid.includeInTotalsProperty')}.
+     *
+     *
+     * @return Boolean
+     */
+    public Boolean getIncludeInSummary()  {
+        return getAttributeAsBoolean("includeInSummary");
+    }
+
+    /**
+     * This attribute will automatically be set to true for the record representing the  grid-level summary row shown if {@link
+     * com.smartgwt.client.widgets.grid.ListGrid#getShowGridSummary showGridSummary} is true. <P> Note that
+     * <code>isGridSummary</code> is the default property name for this attribute but it may be modified by setting {@link
+     * com.smartgwt.client.widgets.grid.ListGrid#getGridSummaryRecordProperty gridSummaryRecordProperty}
+     *
+     * @param isGridSummary isGridSummary Default value is null
+     */
+    public void setIsGridSummary(Boolean isGridSummary) {
+        setAttribute("isGridSummary", isGridSummary);
+    }
+
+    /**
+     * This attribute will automatically be set to true for the record representing the  grid-level summary row shown if {@link
+     * com.smartgwt.client.widgets.grid.ListGrid#getShowGridSummary showGridSummary} is true. <P> Note that
+     * <code>isGridSummary</code> is the default property name for this attribute but it may be modified by setting {@link
+     * com.smartgwt.client.widgets.grid.ListGrid#getGridSummaryRecordProperty gridSummaryRecordProperty}
+     *
+     *
+     * @return Boolean
+     */
+    public Boolean getIsGridSummary()  {
+        return getAttributeAsBoolean("isGridSummary");
+    }
+
+    /**
+     * This attribute will automatically be set to true for records representing   group-level summary rows shown if {@link
+     * com.smartgwt.client.widgets.grid.ListGrid#getShowGroupSummary showGroupSummary} is true. <P> Note that
+     * <code>isGroupSummary</code> is the default property name for this attribute but it may be modified by setting {@link
+     * com.smartgwt.client.widgets.grid.ListGrid#getGroupSummaryRecordProperty groupSummaryRecordProperty}
+     *
+     * @param isGroupSummary isGroupSummary Default value is null
+     */
+    public void setIsGroupSummary(Boolean isGroupSummary) {
+        setAttribute("isGroupSummary", isGroupSummary);
+    }
+
+    /**
+     * This attribute will automatically be set to true for records representing   group-level summary rows shown if {@link
+     * com.smartgwt.client.widgets.grid.ListGrid#getShowGroupSummary showGroupSummary} is true. <P> Note that
+     * <code>isGroupSummary</code> is the default property name for this attribute but it may be modified by setting {@link
+     * com.smartgwt.client.widgets.grid.ListGrid#getGroupSummaryRecordProperty groupSummaryRecordProperty}
+     *
+     *
+     * @return Boolean
+     */
+    public Boolean getIsGroupSummary()  {
+        return getAttributeAsBoolean("isGroupSummary");
     }
 
     // ********************* Methods ***********************
