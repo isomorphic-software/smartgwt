@@ -12,6 +12,7 @@ package com.smartgwt.client.docs;
  * @see com.smartgwt.client.widgets.Canvas#isDirty
  * @see com.smartgwt.client.widgets.Canvas#markForRedraw
  * @see com.smartgwt.client.widgets.Canvas#redraw
+ * @see com.smartgwt.client.widgets.grid.ListGrid#markForRedraw
  * @see com.smartgwt.client.widgets.Canvas#getAutoDraw
  * @see com.smartgwt.client.widgets.Canvas#getRedrawOnResize
  */
