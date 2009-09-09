@@ -22,16 +22,16 @@ package com.smartgwt.client.docs;
  * specific database. Licensing restrictions prevent us including any JDBC driver other than the one for HSQLDB.  However,
  * you can download these drivers for free from the vendors' websites.  If your specific database server or version is not
  * listed above, please go to the <a href="http://forums.smartclient.com">SmartGWT forums</a> for assistance. <P> You can
- * also connect to an existing database table - the SmartGWT SQL engine simply  generates a DB table whose columns match
- * the DataSource field names and types, so you can instead declare a DataSource whose fields match an existing table.  To
- * troubleshoot such an integration, you can look at the generated SQL for both table creation and {@link
- * com.smartgwt.client.data.DSRequest} handling in the server-side log. <P> Once you have your SQL DataSource connected to
- * a table, in a default SDK installation, DSRequests for your DataSource will be sent to the default {@link
- * com.smartgwt.client.rpc.RPCManager#actionURL}, and hence handled automatically, without you having to write any Java
- * code, by the {@link com.smartgwt.client.docs.Xml}. IDACall is a very simple servlet that just calls the server-side
- * method dsRequest.execute() for all inbound requests.  For more details on how DataSource requests are processed by
- * SmartGWT Server, and how you can alter and add to this processing, see this description of {@link
- * com.smartgwt.client.docs.ServerDataIntegration 'server data integration'}.
+ * also connect to an existing database table - the Visual Builder DataSource Wizard ("New" button in DataSources pane)
+ * allows you to pick an existing database table and have a DataSource generated from it.  The Batch DataSource Generator
+ * tool will allow you to generate DataSources for any number of SQL DataSources, and customize the process so that
+ * organization-specific rules are applied (eg ignoring certain columns, or using naming conventions to generate more
+ * complete DataSources). <P> Once you have your SQL DataSource connected to a table, in a default SDK installation,
+ * DSRequests for your DataSource will be sent to the default {@link com.smartgwt.client.rpc.RPCManager#actionURL}, and
+ * hence handled automatically, without you having to write any Java code, by the {@link com.smartgwt.client.docs.Xml}.
+ * IDACall is a very simple servlet that just calls the server-side method dsRequest.execute() for all inbound requests. 
+ * For more details on how DataSource requests are processed by SmartGWT Server, and how you can alter and add to this
+ * processing, see this description of {@link com.smartgwt.client.docs.ServerDataIntegration 'server data integration'}.
  * @see com.smartgwt.client.data.DataSourceField#getSequenceName
  */
 public interface SqlDataSource {

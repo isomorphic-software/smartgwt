@@ -97,7 +97,7 @@ package com.smartgwt.client.docs;
  * smartclientRuntime web.xml</td> </tr><tr>  <td>ClassNotFound or other Java Exceptions in the server log.</td> 
  * <td>Missing JAR files</td>  <td>Verify every .jar from the smartclientRuntime WEB-INF/lib directory has been copied to 
  * your deployment WEB-INF/lib.  Although you might later be able to remove some .jars, for  initial installation testing,
- * copy every .jar</td> </tr><tr>  <td>"isc" is not defined JS error</td>  <td>Incorreect URLs to SmartGWT modules</td> 
+ * copy every .jar</td> </tr><tr>  <td>"isc" is not defined JS error</td>  <td>Incorrect URLs to SmartGWT modules</td> 
  * <td>Use View Source to look at SCRIPT includes (e.g. for ISC_Core.js), try those URLs  directly in the browser to verify
  * the files are correctly deployed</td> </tr> </table> <P> <u><b>Java Module Dependencies</b></u> <p> The following is a
  * description of what functionality is contained in each SmartGWT JAR file, and which other SmartGWT JARs and third party
