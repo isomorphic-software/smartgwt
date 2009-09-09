@@ -634,7 +634,8 @@ public class DataSourceField extends DataClass {
      * com.smartgwt.client.widgets.layout.Layout#getMembers members} is declared with <code>type:"Canvas",&#010
      * multiple:true</code>.  The correct XML format is thus:&#010 <pre>&#010 &lt;VLayout&gt;&#010     &lt;members&gt;&#010    
      * &lt;Canvas ID="myCanvas" ... /&gt;&#010         &lt;ListGrid ID="myGrid" .../&gt;&#010         &lt;Toolstrip
-     * ID="myToolStrip" ... /&gt;&#010     &lt;/members&gt;&#010 &lt;/VLayout&gt;&#010 </pre>
+     * ID="myToolStrip" ... /&gt;&#010     &lt;/members&gt;&#010 &lt;/VLayout&gt;&#010 </pre>&#010 <P>&#010 See {@link
+     * com.smartgwt.client.data.DataSourceField#getChildTagName childTagName} for customizing the tagName used for subelements.
      *
      * @param multiple multiple Default value is null
      */
@@ -653,7 +654,8 @@ public class DataSourceField extends DataClass {
      * com.smartgwt.client.widgets.layout.Layout#getMembers members} is declared with <code>type:"Canvas",&#010
      * multiple:true</code>.  The correct XML format is thus:&#010 <pre>&#010 &lt;VLayout&gt;&#010     &lt;members&gt;&#010    
      * &lt;Canvas ID="myCanvas" ... /&gt;&#010         &lt;ListGrid ID="myGrid" .../&gt;&#010         &lt;Toolstrip
-     * ID="myToolStrip" ... /&gt;&#010     &lt;/members&gt;&#010 &lt;/VLayout&gt;&#010 </pre>
+     * ID="myToolStrip" ... /&gt;&#010     &lt;/members&gt;&#010 &lt;/VLayout&gt;&#010 </pre>&#010 <P>&#010 See {@link
+     * com.smartgwt.client.data.DataSourceField#getChildTagName childTagName} for customizing the tagName used for subelements.
      *
      *
      * @return Boolean
@@ -915,6 +917,29 @@ public class DataSourceField extends DataClass {
     }
 
     /**
+     * Dictates whether the data in this field be exported.  Explicitly setting   <i>canExport<i> to false overrides the
+     * setting on any component-fields, such  as {@link com.smartgwt.client.widgets.grid.ListGridField#getCanExport 'ListGrid
+     * fields'}.
+     *
+     * @param canExport canExport Default value is null
+     */
+    public void setCanExport(Boolean canExport) {
+        setAttribute("canExport", canExport);
+    }
+
+    /**
+     * Dictates whether the data in this field be exported.  Explicitly setting   <i>canExport<i> to false overrides the
+     * setting on any component-fields, such  as {@link com.smartgwt.client.widgets.grid.ListGridField#getCanExport 'ListGrid
+     * fields'}.
+     *
+     *
+     * @return Boolean
+     */
+    public Boolean getCanExport()  {
+        return getAttributeAsBoolean("canExport");
+    }
+
+    /**
      * For a field of type:"imageFile", indicates whether to stream the image and display it inline or to display the View and
      * Download icons.
      *
@@ -1011,7 +1036,17 @@ public class DataSourceField extends DataClass {
 
 
 
-
+    /**
+     * Set the type directly to a defined SimpleType.
+     *
+     * @param type the SimpleType
+     */
+    public void setType(SimpleType type) {
+        //ensure that the simple type is created and registered
+        type.getOrCreateJsObj();
+        setAttribute("type", type.getName());
+    }
+    
     /**
      * Validators to be applied to this field. Validators are applied whenever there is an attempt to save changes to a
      * field.<p>
@@ -1026,7 +1061,7 @@ public class DataSourceField extends DataClass {
     }
 
     /**
-     * A valueMap} is a set of legal values for a field. <p> The valueMap can be specified as either an Array of legal
+     * A valueMap is a set of legal values for a field. <p> The valueMap can be specified as either an Array of legal
      * values, or as a Map where each property maps a stored value to a
      * user-displayable value. <p> To enforce that a field should be constrained to only the values in the valueMap,
      * either declare {@link com.smartgwt.client.data.DataSourceField#getType type} as "enum", or use an {@link
@@ -1043,7 +1078,7 @@ public class DataSourceField extends DataClass {
     }
 
     /**
-     * A valueMap} is a set of legal values for a field. <p> The valueMap can be specified as either an Array of legal
+     * A valueMap is a set of legal values for a field. <p> The valueMap can be specified as either an Array of legal
      * values, or as a Map where each property maps a stored value to a
      * user-displayable value. <p> To enforce that a field should be constrained to only the values in the valueMap,
      * either declare {@link com.smartgwt.client.data.DataSourceField#getType type} as "enum", or use an {@link

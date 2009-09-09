@@ -503,6 +503,44 @@ public class DSRequest extends RPCRequest {
         return getAttributeAsString("lineBreakStyle");
     }
 
+    /**
+     * Optional text to appear at the beginning of the file.
+     *
+     * @param exportHeader exportHeader Default value is null
+     */
+    public void setExportHeader(String exportHeader) {
+        setAttribute("exportHeader", exportHeader);
+    }
+
+    /**
+     * Optional text to appear at the beginning of the file.
+     *
+     *
+     * @return String
+     */
+    public String getExportHeader()  {
+        return getAttributeAsString("exportHeader");
+    }
+
+    /**
+     * Optional text to appear at the end of the file.
+     *
+     * @param exportFooter exportFooter Default value is null
+     */
+    public void setExportFooter(String exportFooter) {
+        setAttribute("exportFooter", exportFooter);
+    }
+
+    /**
+     * Optional text to appear at the end of the file.
+     *
+     *
+     * @return String
+     */
+    public String getExportFooter()  {
+        return getAttributeAsString("exportFooter");
+    }
+
     // ********************* Methods ***********************
 
     // ********************* Static Methods ***********************
