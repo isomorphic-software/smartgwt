@@ -239,11 +239,6 @@ public class I18nUtil {
             $wnd.isc.FilterBuilder.addProperties({removeButtonPrompt: messages.@com.smartgwt.client.i18n.SmartGwtMessages::filterBuilder_removeButtonPrompt()()});
             $wnd.isc.FilterBuilder.addProperties({subClauseButtonPrompt: messages.@com.smartgwt.client.i18n.SmartGwtMessages::filterBuilder_subClauseButtonPrompt()()});
             $wnd.isc.FilterBuilder.addProperties({subClauseButtonPrompt: messages.@com.smartgwt.client.i18n.SmartGwtMessages::filterBuilder_subClauseButtonPrompt()()});
-            $wnd.isc.FilterBuilder.addProperties({radioOptions: [
-                messages.@com.smartgwt.client.i18n.SmartGwtMessages::filterBuilder_topOperator()(),
-                messages.@com.smartgwt.client.i18n.SmartGwtMessages::filterBuilder_radioOptions_or()(),
-                messages.@com.smartgwt.client.i18n.SmartGwtMessages::filterBuilder_radioOptions_not()()
-                ]});
         }
         $wnd.isc.addProperties($wnd.Date, {shortDayNames: [
             messages.@com.smartgwt.client.i18n.SmartGwtMessages::date_shortDayNames_1()(),
