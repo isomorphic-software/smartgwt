@@ -370,6 +370,7 @@ public class SC {
      * <p>
      * The callback will receive boolean true for an OK button click, or null if the Dialog is dismissed via the close button.
      *
+     * @param title the title of the dialog
      * @param message the message
      * @param callback Optional Callback to fire when the user dismisses the dialog.
      * @param dialogProperties additional properties for the Dialog
@@ -477,4 +478,10 @@ public class SC {
     public static native void logEchoAll(Canvas canvas, String message) /*-{
     	$wnd.isc.logEchoAll(canvas.@com.smartgwt.client.widgets.Canvas::getOrCreateJsObj()(), message);
 	}-*/;
+
+    private static void requiresServerComponents() {
+        String message = "This functionality requires SmartGWT server components";
+        logWarn(message);
+        throw new RuntimeException(message);
+    }
 }

@@ -585,13 +585,8 @@ public class DetailViewer extends Canvas  implements DataBoundComponent {
     // ********************* Static Methods ***********************
 
 
-
-
-
-
-
-
-
+
+
     /**
      * An array of records, specifying data. Note that DetailViewers do not observe changes to the data array (in other
      * words they will not automatically re-draw when the data provided via this property is altered)
@@ -1149,10 +1144,21 @@ public class DetailViewer extends Canvas  implements DataBoundComponent {
 
     public ResultSet getResultSet() throws IllegalStateException {
         JavaScriptObject dataJS = getAttributeAsJavaScriptObject("data");
+        if(dataJS == null) return null;
         if(!ResultSet.isResultSet(dataJS)) {
             throw new IllegalStateException("getResultSet() can only be called on DataBoundComponents after initial data has been fetched");
         }
         return new ResultSet(dataJS);
+    }
+
+    public RecordList getRecordList() {
+        JavaScriptObject dataJS = getAttributeAsJavaScriptObject("data");
+        if(dataJS == null) return null;
+
+        if(ResultSet.isResultSet(dataJS)) {
+            return getResultSet();
+        }
+        return new RecordList(dataJS);
     }
 
 }

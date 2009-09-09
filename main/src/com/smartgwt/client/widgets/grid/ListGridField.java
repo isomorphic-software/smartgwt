@@ -232,6 +232,29 @@ public class ListGridField extends DataClass  implements com.smartgwt.client.wid
     }
 
     /**
+     * Dictates whether the data in this field be exported.  Explicitly set this  to false to prevent exporting.  Has no effect
+     * if the underlying   {@link com.smartgwt.client.data.DataSourceField#getCanExport 'dataSourceField'} is explicitly set to
+     *   canExport: false.
+     *
+     * @param canExport canExport Default value is null
+     */
+    public void setCanExport(Boolean canExport) {
+        setAttribute("canExport", canExport);
+    }
+
+    /**
+     * Dictates whether the data in this field be exported.  Explicitly set this  to false to prevent exporting.  Has no effect
+     * if the underlying   {@link com.smartgwt.client.data.DataSourceField#getCanExport 'dataSourceField'} is explicitly set to
+     *   canExport: false.
+     *
+     *
+     * @return Boolean
+     */
+    public Boolean getCanExport()  {
+        return getAttributeAsBoolean("canExport");
+    }
+
+    /**
      * Default width and height of value icons in this field. Takes precidence over valueIconWidth, valueIconHeight and
      * valueIconSize specified at the ListGrid level. Can be overridden via {@link
      * com.smartgwt.client.widgets.grid.ListGridField#getValueIconWidth valueIconWidth} and {ListGridField.valueIconHeight}
@@ -801,6 +824,108 @@ public class ListGridField extends DataClass  implements com.smartgwt.client.wid
      */
     public Boolean getCanHide()  {
         return getAttributeAsBoolean("canHide");
+    }
+
+    /**
+     * If {@link com.smartgwt.client.widgets.grid.ListGrid#getShowGridSummary showGridSummary} is true, should this field show
+     * a summary value. If unset, this field will show a summary value in the summary row if an explicit {@link
+     * com.smartgwt.client.widgets.grid.ListGridField#getSummaryFunction summaryFunction} is specified or if a {@link
+     * com.smartgwt.client.data.SimpleType#getDefaultSummaryFunction} is defined for the specified field type.
+     *
+     * @param showGridSummary showGridSummary Default value is null
+     */
+    public void setShowGridSummary(Boolean showGridSummary) {
+        setAttribute("showGridSummary", showGridSummary);
+    }
+
+    /**
+     * If {@link com.smartgwt.client.widgets.grid.ListGrid#getShowGridSummary showGridSummary} is true, should this field show
+     * a summary value. If unset, this field will show a summary value in the summary row if an explicit {@link
+     * com.smartgwt.client.widgets.grid.ListGridField#getSummaryFunction summaryFunction} is specified or if a {@link
+     * com.smartgwt.client.data.SimpleType#getDefaultSummaryFunction} is defined for the specified field type.
+     *
+     *
+     * @return Boolean
+     */
+    public Boolean getShowGridSummary()  {
+        return getAttributeAsBoolean("showGridSummary");
+    }
+
+    /**
+     * If {@link com.smartgwt.client.widgets.grid.ListGrid#getShowGroupSummary showGroupSummary} is true, should this field
+     * show a summary value in a summary row when the grid is grouped? If unset, this field will show a summary value in the
+     * summary row if an explicit {@link com.smartgwt.client.widgets.grid.ListGridField#getSummaryFunction summaryFunction} is
+     * specified or if a {@link com.smartgwt.client.data.SimpleType#getDefaultSummaryFunction} is defined for the specified
+     * field type.
+     *
+     * @param showGroupSummary showGroupSummary Default value is null
+     */
+    public void setShowGroupSummary(Boolean showGroupSummary) {
+        setAttribute("showGroupSummary", showGroupSummary);
+    }
+
+    /**
+     * If {@link com.smartgwt.client.widgets.grid.ListGrid#getShowGroupSummary showGroupSummary} is true, should this field
+     * show a summary value in a summary row when the grid is grouped? If unset, this field will show a summary value in the
+     * summary row if an explicit {@link com.smartgwt.client.widgets.grid.ListGridField#getSummaryFunction summaryFunction} is
+     * specified or if a {@link com.smartgwt.client.data.SimpleType#getDefaultSummaryFunction} is defined for the specified
+     * field type.
+     *
+     *
+     * @return Boolean
+     */
+    public Boolean getShowGroupSummary()  {
+        return getAttributeAsBoolean("showGroupSummary");
+    }
+
+    /**
+     * Only applies to fields of type <code>"summary"</code>. This attribute is set on a summary field, when calculating the
+     * summary value from some record, the summary function will only be passed the fields before this summary field. This may
+     * be useful for displaying running totals across a record. <P> Note that this feature would typically be used with {@link
+     * com.smartgwt.client.widgets.grid.ListGrid#getCanReorderFields 'canReorderFields:false'}
+     *
+     * @param partialSummary partialSummary Default value is null
+     */
+    public void setPartialSummary(Boolean partialSummary) {
+        setAttribute("partialSummary", partialSummary);
+    }
+
+    /**
+     * Only applies to fields of type <code>"summary"</code>. This attribute is set on a summary field, when calculating the
+     * summary value from some record, the summary function will only be passed the fields before this summary field. This may
+     * be useful for displaying running totals across a record. <P> Note that this feature would typically be used with {@link
+     * com.smartgwt.client.widgets.grid.ListGrid#getCanReorderFields 'canReorderFields:false'}
+     *
+     *
+     * @return Boolean
+     */
+    public Boolean getPartialSummary()  {
+        return getAttributeAsBoolean("partialSummary");
+    }
+
+    /**
+     * If a listGrid is showing a field of type summary, should this field be passed to the recordSummaryFunction when
+     * calculating the summary value to display. If unset, fields are included if they are of type "integer" or "float" only
+     * (since most summary functions perform numeric calculations). See also {@link
+     * com.smartgwt.client.widgets.grid.ListGridField#getIncludeInRecordSummaryFields includeInRecordSummaryFields}.
+     *
+     * @param includeInRecordSummary includeInRecordSummary Default value is null
+     */
+    public void setIncludeInRecordSummary(Boolean includeInRecordSummary) {
+        setAttribute("includeInRecordSummary", includeInRecordSummary);
+    }
+
+    /**
+     * If a listGrid is showing a field of type summary, should this field be passed to the recordSummaryFunction when
+     * calculating the summary value to display. If unset, fields are included if they are of type "integer" or "float" only
+     * (since most summary functions perform numeric calculations). See also {@link
+     * com.smartgwt.client.widgets.grid.ListGridField#getIncludeInRecordSummaryFields includeInRecordSummaryFields}.
+     *
+     *
+     * @return Boolean
+     */
+    public Boolean getIncludeInRecordSummary()  {
+        return getAttributeAsBoolean("includeInRecordSummary");
     }
 
     /**
@@ -1585,10 +1710,10 @@ public class ListGridField extends DataClass  implements com.smartgwt.client.wid
              
     /**
      * For fields with an {@link com.smartgwt.client.widgets.grid.ListGridField#getOptionDataSource optionDataSource}, where
-     * ${isc.DocUtils.linkForRef('listGTridField.autoFetchDisplayMap')} is true, this property will govern the
-     * <code>textMatchStyle</code> attribute of the {@link com.smartgwt.client.data.DSRequest} parameter passed to  {@link
-     * com.smartgwt.client.data.DataSource#fetchData} when retrieving the remote data set to be used as  a basis for thiis
-     * field's valueMap.
+     * {@link com.smartgwt.client.widgets.grid.ListGridField#getAutoFetchDisplayMap autoFetchDisplayMap} is true, this property
+     * will govern the <code>textMatchStyle</code> attribute of the {@link com.smartgwt.client.data.DSRequest} parameter passed
+     * to  {@link com.smartgwt.client.data.DataSource#fetchData} when retrieving the remote data set to be used as  a basis for
+     * thiis field's valueMap.
      *
      * @param optionTextMatchStyle optionTextMatchStyle Default value is null
      */
@@ -1598,10 +1723,10 @@ public class ListGridField extends DataClass  implements com.smartgwt.client.wid
 
     /**
      * For fields with an {@link com.smartgwt.client.widgets.grid.ListGridField#getOptionDataSource optionDataSource}, where
-     * ${isc.DocUtils.linkForRef('listGTridField.autoFetchDisplayMap')} is true, this property will govern the
-     * <code>textMatchStyle</code> attribute of the {@link com.smartgwt.client.data.DSRequest} parameter passed to  {@link
-     * com.smartgwt.client.data.DataSource#fetchData} when retrieving the remote data set to be used as  a basis for thiis
-     * field's valueMap.
+     * {@link com.smartgwt.client.widgets.grid.ListGridField#getAutoFetchDisplayMap autoFetchDisplayMap} is true, this property
+     * will govern the <code>textMatchStyle</code> attribute of the {@link com.smartgwt.client.data.DSRequest} parameter passed
+     * to  {@link com.smartgwt.client.data.DataSource#fetchData} when retrieving the remote data set to be used as  a basis for
+     * thiis field's valueMap.
      *
      *
      * @return TextMatchStyle
@@ -1774,6 +1899,9 @@ public class ListGridField extends DataClass  implements com.smartgwt.client.wid
         var self = this.@com.smartgwt.client.core.DataClass::getJsObj()();
         self.getFieldTitle(viewer.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()(), fieldNum);
     }-*/;
+
+
+
 
 
 

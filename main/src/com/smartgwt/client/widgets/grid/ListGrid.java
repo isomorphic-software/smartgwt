@@ -2626,9 +2626,9 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
      * If the user is editing a record in this listGrid, and attempts to navigate to a field beyond the end of the row, via tab
      * (or shift-tab off the first editable field), this  property determines what action to take:<ul> <li>"next": start
      * editing the next (or previous) record in the list <li>"same": put focus back into the first editable field of the same
-     * record. <li>"done": hide the editor <li>"stop": leave focus in the cell being edited </ul>
+     * record. <li>"done": hide the editor <li>"stop": leave focus in the cell being edited <li>"none": no action </ul>
      *
-     * @param rowEndEditAction rowEndEditAction Default value is "next"
+     * @param rowEndEditAction rowEndEditAction Default value is null
      */
     public void setRowEndEditAction(RowEndEditAction rowEndEditAction) {
         setAttribute("rowEndEditAction", rowEndEditAction.getValue(), true);
@@ -2638,7 +2638,7 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
      * If the user is editing a record in this listGrid, and attempts to navigate to a field beyond the end of the row, via tab
      * (or shift-tab off the first editable field), this  property determines what action to take:<ul> <li>"next": start
      * editing the next (or previous) record in the list <li>"same": put focus back into the first editable field of the same
-     * record. <li>"done": hide the editor <li>"stop": leave focus in the cell being edited </ul>
+     * record. <li>"done": hide the editor <li>"stop": leave focus in the cell being edited <li>"none": no action </ul>
      *
      *
      * @return RowEndEditAction
@@ -2651,9 +2651,9 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
      * If the user is editing the last record in this listGrid, and attempts to navigate  beyond the last row either by tabbing
      * off the last editable field, or using the down arrow key, this property determines what action to take:<ul> <li>"next":
      * start editing a new record at the end of the list. <li>"done": hide the editor <li>"stop": leave focus in the cell being
-     * edited </ul>
+     * edited <li>"none": no action </ul>
      *
-     * @param listEndEditAction listEndEditAction Default value is "stop"
+     * @param listEndEditAction listEndEditAction Default value is null
      */
     public void setListEndEditAction(RowEndEditAction listEndEditAction) {
         setAttribute("listEndEditAction", listEndEditAction.getValue(), true);
@@ -2663,7 +2663,7 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
      * If the user is editing the last record in this listGrid, and attempts to navigate  beyond the last row either by tabbing
      * off the last editable field, or using the down arrow key, this property determines what action to take:<ul> <li>"next":
      * start editing a new record at the end of the list. <li>"done": hide the editor <li>"stop": leave focus in the cell being
-     * edited </ul>
+     * edited <li>"none": no action </ul>
      *
      *
      * @return RowEndEditAction
@@ -3621,6 +3621,162 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
         return getAttributeAsInt("booleanImageHeight");
     }
 
+
+    /**
+     * Value to display to the user if showing summary values (through {@link
+     * com.smartgwt.client.widgets.grid.ListGrid#getShowGridSummary showGridSummary}, {@link
+     * com.smartgwt.client.widgets.grid.ListGrid#getShowGroupSummary showGroupSummary} or {@link
+     * com.smartgwt.client.types.ListGridFieldType}), and the summary function returns <code>"null"</code> (implying it was
+     * unable to calculate a valid summary value).
+     * <p><b>Note : </b> This is an advanced setting</p>
+     *
+     * @param invalidSummaryValue invalidSummaryValue Default value is "&amp;nbsp;"
+     */
+    public void setInvalidSummaryValue(String invalidSummaryValue) {
+        setAttribute("invalidSummaryValue", invalidSummaryValue, true);
+    }
+
+    /**
+     * Value to display to the user if showing summary values (through {@link
+     * com.smartgwt.client.widgets.grid.ListGrid#getShowGridSummary showGridSummary}, {@link
+     * com.smartgwt.client.widgets.grid.ListGrid#getShowGroupSummary showGroupSummary} or {@link
+     * com.smartgwt.client.types.ListGridFieldType}), and the summary function returns <code>"null"</code> (implying it was
+     * unable to calculate a valid summary value).
+     *
+     *
+     * @return String
+     */
+    public String getInvalidSummaryValue()  {
+        return getAttributeAsString("invalidSummaryValue");
+    }
+
+    /**
+     * Property name on a record that will be checked to determine whether a record should be included when calculating totals
+     * for the {@link com.smartgwt.client.widgets.grid.ListGrid#getShowGridSummary 'grid summary'}.
+     *
+     * @param includeInSummaryProperty includeInSummaryProperty Default value is "includeInSummary"
+     */
+    public void setIncludeInSummaryProperty(String includeInSummaryProperty) {
+        setAttribute("includeInSummaryProperty", includeInSummaryProperty, true);
+    }
+
+    /**
+     * Property name on a record that will be checked to determine whether a record should be included when calculating totals
+     * for the {@link com.smartgwt.client.widgets.grid.ListGrid#getShowGridSummary 'grid summary'}.
+     *
+     *
+     * @return String
+     */
+    public String getIncludeInSummaryProperty()  {
+        return getAttributeAsString("includeInSummaryProperty");
+    }
+
+    /**
+     * If {@link com.smartgwt.client.widgets.grid.ListGrid#getShowGridSummary showGridSummary} is true, this attribute will be
+     * set to true on the record object representing the grid summary row.
+     *
+     * @param gridSummaryRecordProperty gridSummaryRecordProperty Default value is "isGridSummary"
+     */
+    public void setGridSummaryRecordProperty(String gridSummaryRecordProperty) {
+        setAttribute("gridSummaryRecordProperty", gridSummaryRecordProperty, true);
+    }
+
+    /**
+     * If {@link com.smartgwt.client.widgets.grid.ListGrid#getShowGridSummary showGridSummary} is true, this attribute will be
+     * set to true on the record object representing the grid summary row.
+     *
+     *
+     * @return String
+     */
+    public String getGridSummaryRecordProperty()  {
+        return getAttributeAsString("gridSummaryRecordProperty");
+    }
+
+    /**
+     * If {@link com.smartgwt.client.widgets.grid.ListGrid#getShowGroupSummary showGroupSummary} is true, this attribute will
+     * be set to true on each record object representing a group-level summary row.
+     *
+     * @param groupSummaryRecordProperty groupSummaryRecordProperty Default value is "isGroupSummary"
+     */
+    public void setGroupSummaryRecordProperty(String groupSummaryRecordProperty) {
+        setAttribute("groupSummaryRecordProperty", groupSummaryRecordProperty, true);
+    }
+
+    /**
+     * If {@link com.smartgwt.client.widgets.grid.ListGrid#getShowGroupSummary showGroupSummary} is true, this attribute will
+     * be set to true on each record object representing a group-level summary row.
+     *
+     *
+     * @return String
+     */
+    public String getGroupSummaryRecordProperty()  {
+        return getAttributeAsString("groupSummaryRecordProperty");
+    }
+
+    /**
+     * If showing any record summary fields (IE: fields of {@link com.smartgwt.client.types.ListGridFieldType}), this attribute
+     * specifies a custom base style to apply to cells in the summary field
+     * <p><b>Note : </b> This is an advanced setting</p>
+     *
+     * @param recordSummaryBaseStyle recordSummaryBaseStyle Default value is "recordSummaryCell"
+     */
+    public void setRecordSummaryBaseStyle(String recordSummaryBaseStyle) {
+        setAttribute("recordSummaryBaseStyle", recordSummaryBaseStyle, true);
+    }
+
+    /**
+     * If showing any record summary fields (IE: fields of {@link com.smartgwt.client.types.ListGridFieldType}), this attribute
+     * specifies a custom base style to apply to cells in the summary field
+     *
+     *
+     * @return String
+     */
+    public String getRecordSummaryBaseStyle()  {
+        return getAttributeAsString("recordSummaryBaseStyle");
+    }
+
+    /**
+     * Height for the {@link com.smartgwt.client.widgets.grid.ListGrid#getSummaryRow 'summary row autoChild'}.
+     *
+     * @param summaryRowHeight summaryRowHeight Default value is 20
+     * @throws IllegalStateException this property cannot be changed after the component has been created
+     */
+    public void setSummaryRowHeight(int summaryRowHeight)  throws IllegalStateException {
+        setAttribute("summaryRowHeight", summaryRowHeight, false);
+    }
+
+    /**
+     * Height for the {@link com.smartgwt.client.widgets.grid.ListGrid#getSummaryRow 'summary row autoChild'}.
+     *
+     *
+     * @return int
+     */
+    public int getSummaryRowHeight()  {
+        return getAttributeAsInt("summaryRowHeight");
+    }
+
+    /**
+     * {@link com.smartgwt.client.widgets.grid.ListGrid#getBaseStyle baseStyle} for the {@link
+     * com.smartgwt.client.widgets.grid.ListGrid#getSummaryRow summaryRow}
+     * <p><b>Note : </b> This is an advanced setting</p>
+     *
+     * @param summaryRowStyle summaryRowStyle Default value is "gridSummaryCell"
+     */
+    public void setSummaryRowStyle(String summaryRowStyle) {
+        setAttribute("summaryRowStyle", summaryRowStyle, true);
+    }
+
+    /**
+     * {@link com.smartgwt.client.widgets.grid.ListGrid#getBaseStyle baseStyle} for the {@link
+     * com.smartgwt.client.widgets.grid.ListGrid#getSummaryRow summaryRow}
+     *
+     *
+     * @return String
+     */
+    public String getSummaryRowStyle()  {
+        return getAttributeAsString("summaryRowStyle");
+    }
+
     /**
      * If we're showing a {@link com.smartgwt.client.widgets.grid.ListGrid#getShowHeaderContextMenu 'headerContextMenu'} for
      * this grid and {@link com.smartgwt.client.widgets.grid.ListGrid#getCanFreezeFields 'this.canFreezeFields'} is true, this
@@ -3850,6 +4006,29 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
         return getAttributeAsString("ungroupText");
     }
 
+
+    /**
+     * {@link com.smartgwt.client.widgets.grid.ListGridRecord#getCustomStyle customStyle} for the group-level summary row
+     * displayed when  {@link com.smartgwt.client.widgets.grid.ListGrid#getShowGroupSummary showGroupSummary} is true.
+     *
+     * @param groupSummaryStyle groupSummaryStyle Default value is "gridSummaryCell"
+     * @throws IllegalStateException this property cannot be changed after the component has been created
+     */
+    public void setGroupSummaryStyle(String groupSummaryStyle)  throws IllegalStateException {
+        setAttribute("groupSummaryStyle", groupSummaryStyle, false);
+    }
+
+    /**
+     * {@link com.smartgwt.client.widgets.grid.ListGridRecord#getCustomStyle customStyle} for the group-level summary row
+     * displayed when  {@link com.smartgwt.client.widgets.grid.ListGrid#getShowGroupSummary showGroupSummary} is true.
+     *
+     *
+     * @return String
+     */
+    public String getGroupSummaryStyle()  {
+        return getAttributeAsString("groupSummaryStyle");
+    }
+
     // ********************* Methods ***********************
 
 
@@ -3953,6 +4132,31 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
             retVal = @com.smartgwt.client.widgets.grid.ListGridRecord::new(Lcom/google/gwt/core/client/JavaScriptObject;)(ret);
         }
         return retVal;
+    }-*/;
+
+    /**
+     * Marks the widget as "dirty" so that it will be added to a queue for redraw. Redraw of dirty components is handled by a
+     * looping timer and will after a very short delay (typically less than 100ms). In most cases it is recommended that
+     * developers use <code>markForRedraw()</code> instead of calling {@link com.smartgwt.client.widgets.Canvas#redraw}
+     * directly. Since this method queues the redraw, multiple calls to markForRedraw() within a single thread of excecution
+     * will only lead to a single DOM manipulation which greatly improves application performance.
+     */
+    public native void markForRedraw() /*-{
+        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
+        self.markForRedraw();
+    }-*/;
+
+    /**
+     * Marks the widget as "dirty" so that it will be added to a queue for redraw. Redraw of dirty components is handled by a
+     * looping timer and will after a very short delay (typically less than 100ms). In most cases it is recommended that
+     * developers use <code>markForRedraw()</code> instead of calling {@link com.smartgwt.client.widgets.Canvas#redraw}
+     * directly. Since this method queues the redraw, multiple calls to markForRedraw() within a single thread of excecution
+     * will only lead to a single DOM manipulation which greatly improves application performance.
+     * @param reason reason for performing the redraw
+     */
+    public native void markForRedraw(String reason) /*-{
+        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
+        self.markForRedraw(reason);
     }-*/;
 
 
@@ -4790,6 +4994,8 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
                };
         }
    }-*/;
+
+
 
 
 
@@ -5667,26 +5873,9 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
     // ********************* Static Methods ***********************
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+
+
+
     protected native void onInit() /*-{
 
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
@@ -5898,6 +6087,16 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
      */
     public void setData(RecordList data) {
         setAttribute("data", data == null ? null : data.getOrCreateJsObj(), true);
+    }
+
+    /**
+     * Return the grid data as a {@link com.smartgwt.client.data.RecordList}. If the component is bound to a DataSource,
+     * the actual type of the RecordList instance will be a {@link com.smartgwt.client.data.ResultSet}.
+     *
+     * @return the data
+     */
+    public RecordList getDataAsRecordList() {
+        return getRecordList();
     }
     
     /**
@@ -8051,10 +8250,21 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
 
     public ResultSet getResultSet() throws IllegalStateException {
         JavaScriptObject dataJS = getAttributeAsJavaScriptObject("data");
+        if(dataJS == null) return null;
         if(!ResultSet.isResultSet(dataJS)) {
             throw new IllegalStateException("getResultSet() can only be called on DataBoundComponents after initial data has been fetched");
         }
         return new ResultSet(dataJS);
+    }
+
+    public RecordList getRecordList() {
+        JavaScriptObject dataJS = getAttributeAsJavaScriptObject("data");
+        if(dataJS == null) return null;
+
+        if(ResultSet.isResultSet(dataJS)) {
+            return getResultSet();
+        }
+        return new RecordList(dataJS);
     }
 
 }

@@ -442,17 +442,8 @@ public class TileGrid extends TileLayout  implements DataBoundComponent, com.sma
     // ********************* Static Methods ***********************
 
 
-
-
-
-
-
-
-
-
-
-
-
+
+
     protected native void onInit() /*-{
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
         self._getTileHTML = self.getTileHTML;
@@ -1207,10 +1198,21 @@ public class TileGrid extends TileLayout  implements DataBoundComponent, com.sma
 
     public ResultSet getResultSet() throws IllegalStateException {
         JavaScriptObject dataJS = getAttributeAsJavaScriptObject("data");
+        if(dataJS == null) return null;
         if(!ResultSet.isResultSet(dataJS)) {
             throw new IllegalStateException("getResultSet() can only be called on DataBoundComponents after initial data has been fetched");
         }
         return new ResultSet(dataJS);
+    }
+
+    public RecordList getRecordList() {
+        JavaScriptObject dataJS = getAttributeAsJavaScriptObject("data");
+        if(dataJS == null) return null;
+
+        if(ResultSet.isResultSet(dataJS)) {
+            return getResultSet();
+        }
+        return new RecordList(dataJS);
     }
 
 }

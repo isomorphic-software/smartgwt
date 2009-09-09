@@ -58,26 +58,26 @@ import com.google.gwt.event.shared.HasHandlers;
 
 /**
  * The Calendar component provides several different ways for a user to view and edit a set of events. Note that the
- * <b>ISC_Calendar.js</b> module must be loaded to make use of the Calendar class. <P> <b>CalendarEvents</b> <P> Events are
- * represented as ordinary JavaScript Objects (see {@link com.smartgwt.client.widgets.calendar.CalendarEvent}).  The
- * Calendar expects to be able to read and write a basic set of properties on events: name, startDate, endDate,
- * description, etc, which can be stored under configurable property names (see eg {@link
+ * <b>ISC_Calendar.js</b> module must be  loaded to make use of the Calendar class. <P> <b>CalendarEvents</b> <P> Events
+ * are represented as ordinary JavaScript Objects (see {@link com.smartgwt.client.widgets.calendar.CalendarEvent}).   The
+ * Calendar expects to be able to read and write a basic set of properties  on events: name, startDate, endDate,
+ * description, etc, which can be stored  under configurable property names (see eg {@link
  * com.smartgwt.client.widgets.calendar.Calendar#getStartDateField startDateField}. <P> Much like a {@link
- * com.smartgwt.client.widgets.grid.ListGrid} manages it's ListGridRecords, the Calendar can either be passed a ordinary
- * Array of CalendarEvents or can fetch data from a DataSource. <P> If the calendar is bound to a DataSource, event changes
- * by user action or by calling methods will be saved to the DataSource. <P> <b>Navigation</b> <P> The calendar supports a
- * {@link com.smartgwt.client.widgets.calendar.Calendar#getWeekView 'WeekView'}, {@link
+ * com.smartgwt.client.widgets.grid.ListGrid} manages it's ListGridRecords, the Calendar can  either be passed an ordinary
+ * Array of CalendarEvents or can fetch data from a  DataSource. <P> If the calendar is bound to a DataSource, event
+ * changes by user action or by  calling methods will be saved to the DataSource. <P> <b>Navigation</b> <P> The calendar
+ * supports a {@link com.smartgwt.client.widgets.calendar.Calendar#getWeekView 'WeekView'},  {@link
  * com.smartgwt.client.widgets.calendar.Calendar#getDayView 'DayView'} and {@link
- * com.smartgwt.client.widgets.calendar.Calendar#getMonthView 'MonthView'} by default.  The user can navigate using back
- * and forward buttons or via an attached {@link com.smartgwt.client.widgets.calendar.Calendar#getDateChooser
+ * com.smartgwt.client.widgets.calendar.Calendar#getMonthView 'MonthView'} by  default.  The user can navigate using back
+ * and forward buttons or via an  attached {@link com.smartgwt.client.widgets.calendar.Calendar#getDateChooser
  * 'DateChooser'}. <P> <b>Event Manipulation</b> <P> Events can be created via clicking on the day, week or month views, or
- * via the "Add Event" button.  In the day and week views, the user may click and drag to create an event of a specific
+ * via the  "Add Event" button.  In the day and week views, the user may click and drag  to create an event of a specific
  * duration. <P> Creating an event via click or click and drag pops up the {@link
- * com.smartgwt.client.widgets.calendar.Calendar#getEventDialog 'EventDialog'}, which provides a simple form for quick
+ * com.smartgwt.client.widgets.calendar.Calendar#getEventDialog 'EventDialog'}, which provides a simple form for  quick
  * event entry (only one field, the description, is required by default).   <P> A separate editor called the {@link
- * com.smartgwt.client.widgets.calendar.Calendar#getEventEditor 'EventEditor'} provides an interface for editing all
- * possible properties of an event, including custom properties.  The EventEditor is used whenever a pre-existing event is
- * being edited, and can also be invoked by the user wherever the simpler EventDialog appears. <P> Events can also be
+ * com.smartgwt.client.widgets.calendar.Calendar#getEventEditor 'EventEditor'} provides  an interface for editing all
+ * possible properties of an event, including custom  properties.  The EventEditor is used whenever a pre-existing event is
+ * being  edited, and can also be invoked by the user wherever the simpler EventDialog appears. <P> Events can also be
  * programmatically {@link com.smartgwt.client.widgets.calendar.Calendar#addEvent}, {@link
  * com.smartgwt.client.widgets.calendar.Calendar#removeEvent}, or {@link
  * com.smartgwt.client.widgets.calendar.Calendar#updateEvent}.
@@ -111,7 +111,7 @@ public class Calendar extends Canvas  implements DataBoundComponent, com.smartgw
     // ********************* Properties / Attributes ***********************
 
     /**
-     * The date for which events are displayed in the day, week, and month tabs of the calendar. Default is today.
+     * The date for which events are displayed in the day, week, and month tabs of  the calendar.  Default is today.
      * Set the current date for which the calendar will display events.
      *
      * @param chosenDate the new date to set as the current date. Default value is 'Today'
@@ -121,7 +121,7 @@ public class Calendar extends Canvas  implements DataBoundComponent, com.smartgw
     }
 
     /**
-     * The date for which events are displayed in the day, week, and month tabs of the calendar. Default is today.
+     * The date for which events are displayed in the day, week, and month tabs of  the calendar.  Default is today.
      *
      *
      * @return java.util.Date
@@ -1719,20 +1719,9 @@ public class Calendar extends Canvas  implements DataBoundComponent, com.smartgw
     // ********************* Static Methods ***********************
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+
+
+
     protected native void onInit() /*-{
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
         self._getDayBodyHTML = self.getDayBodyHTML;
@@ -2440,10 +2429,21 @@ public class Calendar extends Canvas  implements DataBoundComponent, com.smartgw
 
     public ResultSet getResultSet() throws IllegalStateException {
         JavaScriptObject dataJS = getAttributeAsJavaScriptObject("data");
+        if(dataJS == null) return null;
         if(!ResultSet.isResultSet(dataJS)) {
             throw new IllegalStateException("getResultSet() can only be called on DataBoundComponents after initial data has been fetched");
         }
         return new ResultSet(dataJS);
+    }
+
+    public RecordList getRecordList() {
+        JavaScriptObject dataJS = getAttributeAsJavaScriptObject("data");
+        if(dataJS == null) return null;
+
+        if(ResultSet.isResultSet(dataJS)) {
+            return getResultSet();
+        }
+        return new RecordList(dataJS);
     }
 
 }

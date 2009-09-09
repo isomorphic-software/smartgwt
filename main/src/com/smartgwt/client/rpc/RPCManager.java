@@ -132,16 +132,47 @@ public class RPCManager {
 
 
     /**
-     * Cancel a transaction (a queue of requests being sent to the server).
+     * Returns the id of the current transaction (a queue of requests). <P> This method must be called after startQueue() has
+     * been called and at least one request has been issued.
+     */
+    public static native void getCurrentTransactionId() /*-{
+        $wnd.isc.RPCManager.getCurrentTransactionId();
+    }-*/;
+
+    /**
+     * Cancel a queue of requests (also called a transaction). <P> If a transactionId is passed, that transaction will be
+     * cancelled, otherwise, the current  (not yet sent) transaction is cancelled.  You can retrieve the id of the current 
+     * transaction, if there is one, by calling  {@link com.smartgwt.client.rpc.RPCManager#getCurrentTransactionId} before the
+     * transaction has been sent. <P> Note that cancelQueue() calls {@link com.smartgwt.client.rpc.RPCManager#clearTransaction}
+     * and attempts to abort the request.  However, note also that whilst cancelling a  transaction that has already been sent
+     * will not necessarily stop the HTTP request that  has been issued - this is only possible on some browsers and with some
+     * transports - it  will reliably cause SmartGWT to ignore any response returned by the server and not  fire any callbacks
+     * that have been passed in.
      */
     public static native void cancelQueue() /*-{
         $wnd.isc.RPCManager.cancelQueue();
     }-*/;
 
     /**
+     * Cancel a queue of requests (also called a transaction). <P> If a transactionId is passed, that transaction will be
+     * cancelled, otherwise, the current  (not yet sent) transaction is cancelled.  You can retrieve the id of the current 
+     * transaction, if there is one, by calling  {@link com.smartgwt.client.rpc.RPCManager#getCurrentTransactionId} before the
+     * transaction has been sent. <P> Note that cancelQueue() calls {@link com.smartgwt.client.rpc.RPCManager#clearTransaction}
+     * and attempts to abort the request.  However, note also that whilst cancelling a  transaction that has already been sent
+     * will not necessarily stop the HTTP request that  has been issued - this is only possible on some browsers and with some
+     * transports - it  will reliably cause SmartGWT to ignore any response returned by the server and not  fire any callbacks
+     * that have been passed in.
+     * @param transactionNum transactionId of the queue.
+     */
+    public static native void cancelQueue(String transactionNum) /*-{
+        $wnd.isc.RPCManager.cancelQueue(transactionNum);
+    }-*/;
+
+    /**
      * Erase all client-side record of a transaction, such that any response from the server will be ignored. <P> A transaction
      * means a batch of one or more RPCRequests that have already been sent to the server via {@link
-     * com.smartgwt.client.rpc.RPCManager#sendQueue}.
+     * com.smartgwt.client.rpc.RPCManager#sendQueue}. <P> You can retrieve the id of the current transaction, if there is one,
+     * by  {@link com.smartgwt.client.rpc.RPCManager#getCurrentTransactionId} before the  transaction is sent.
      * @param transactionNum id of the transaction to be cleared
      */
     public static native void clearTransaction(String transactionNum) /*-{

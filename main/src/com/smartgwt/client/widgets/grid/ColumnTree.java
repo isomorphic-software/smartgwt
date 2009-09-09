@@ -558,11 +558,8 @@ public class ColumnTree extends Layout  implements DataBoundComponent, com.smart
     // ********************* Static Methods ***********************
 
 
-
-
-
-
-
+
+
     public void setFields(ListGridField... fields) {
         setAttribute("fields", fields, true);
     }
@@ -1284,10 +1281,21 @@ public class ColumnTree extends Layout  implements DataBoundComponent, com.smart
 
     public ResultSet getResultSet() throws IllegalStateException {
         JavaScriptObject dataJS = getAttributeAsJavaScriptObject("data");
+        if(dataJS == null) return null;
         if(!ResultSet.isResultSet(dataJS)) {
             throw new IllegalStateException("getResultSet() can only be called on DataBoundComponents after initial data has been fetched");
         }
         return new ResultSet(dataJS);
+    }
+
+    public RecordList getRecordList() {
+        JavaScriptObject dataJS = getAttributeAsJavaScriptObject("data");
+        if(dataJS == null) return null;
+
+        if(ResultSet.isResultSet(dataJS)) {
+            return getResultSet();
+        }
+        return new RecordList(dataJS);
     }
 
 }

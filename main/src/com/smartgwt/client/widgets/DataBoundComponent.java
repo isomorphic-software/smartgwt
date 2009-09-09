@@ -840,4 +840,15 @@ public interface DataBoundComponent {
      * @see #fetchData()
      */
     ResultSet getResultSet() throws IllegalStateException;
+
+    /**
+     * Return the underlying data of this DataBoundComponent as a {@link com.smartgwt.client.data.RecordList}.
+     * <p>
+     * If the underlying data in not local data, and the component is bound to a {@link com.smartgwt.client.data.DataSource},
+     * then the actual instance of the RecordList will be of type {@link com.smartgwt.client.data.ResultSet}.
+     *
+     * @return the RecordList
+     */
+    RecordList getRecordList();
+
 }

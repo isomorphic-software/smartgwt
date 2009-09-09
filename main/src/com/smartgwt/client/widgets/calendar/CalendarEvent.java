@@ -113,7 +113,7 @@ public class CalendarEvent extends Record {
     // ********************* Properties / Attributes ***********************
 
     /**
-     * Date object which represents the start date of a {@link com.smartgwt.client.widgets.calendar.CalendarEvent} The name of
+     * Date object which represents the start date of a {@link com.smartgwt.client.widgets.calendar.CalendarEvent}. The name of
      * this field within the CalendarEvent can be changed via  {@link
      * com.smartgwt.client.widgets.calendar.Calendar#getStartDateField startDateField}
      *
@@ -124,7 +124,7 @@ public class CalendarEvent extends Record {
     }
 
     /**
-     * Date object which represents the start date of a {@link com.smartgwt.client.widgets.calendar.CalendarEvent} The name of
+     * Date object which represents the start date of a {@link com.smartgwt.client.widgets.calendar.CalendarEvent}. The name of
      * this field within the CalendarEvent can be changed via  {@link
      * com.smartgwt.client.widgets.calendar.Calendar#getStartDateField startDateField}
      *
@@ -159,7 +159,7 @@ public class CalendarEvent extends Record {
     }
 
     /**
-     * String which represents name of a {@link com.smartgwt.client.widgets.calendar.CalendarEvent} The name of this field
+     * String which represents the name of a {@link com.smartgwt.client.widgets.calendar.CalendarEvent} The name of this field
      * within the CalendarEvent can be changed via  {@link com.smartgwt.client.widgets.calendar.Calendar#getNameField
      * nameField}
      *
@@ -170,7 +170,7 @@ public class CalendarEvent extends Record {
     }
 
     /**
-     * String which represents name of a {@link com.smartgwt.client.widgets.calendar.CalendarEvent} The name of this field
+     * String which represents the name of a {@link com.smartgwt.client.widgets.calendar.CalendarEvent} The name of this field
      * within the CalendarEvent can be changed via  {@link com.smartgwt.client.widgets.calendar.Calendar#getNameField
      * nameField}
      *

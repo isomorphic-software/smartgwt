@@ -1582,7 +1582,7 @@ public class DynamicForm extends Canvas  implements DataBoundComponent, com.smar
 
     /**
      * Sets the value for some field
-     * @param fieldName Name of the field being updated. A ${isc.DocUtils.linkForRef('dataPath')} may                           be passed to set
+     * @param fieldName Name of the field being updated. A {@link com.smartgwt.client..dataPath} may                           be passed to set
      * nested values
      * @param value New value.
      */
@@ -1595,7 +1595,7 @@ public class DynamicForm extends Canvas  implements DataBoundComponent, com.smar
      * Clears the value for some field via a call to {@link com.smartgwt.client.widgets.form.fields.FormItem#clearValue} if
      * appropriate. If there is no item associated with the field name, the field will just be cleared within our stored set of
      * values.
-     * @param fieldName Name of the field being cleared. A ${isc.DocUtils.linkForRef('dataPath')} may be used for  clearing details of nested
+     * @param fieldName Name of the field being cleared. A {@link com.smartgwt.client..dataPath} may be used for  clearing details of nested
      * data structures.
      */
     public native void clearValue(String fieldName) /*-{
@@ -1929,23 +1929,9 @@ public class DynamicForm extends Canvas  implements DataBoundComponent, com.smar
     // ********************* Static Methods ***********************
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+
+
+
 
     private FormItem[] fields;
 
@@ -2326,22 +2312,52 @@ public class DynamicForm extends Canvas  implements DataBoundComponent, com.smar
         return @com.smartgwt.client.data.Criteria::new(Lcom/google/gwt/core/client/JavaScriptObject;)(critJS);
     }-*/;
 
+    /**
+     * An array of widths for the columns of items in this form's layout grid. <p> If specified, these widths should sum
+     * to the total width of the form (form.width). If not specified, we assume every other column will contain form item
+     * titles, and so should have <code>form.titleWidth</code>, and all other columns should share the remaining space.
+     * <p>
+     * Acceptable values for each element in the array are:<br>
+     * <ul>
+     * <li>A number (e.g. 100) representing the number of pixel widths to allocate to a column.</li>
+     * <li>A percent (e.g. 20%) representing the percentage of the total form.width to allocate to a column.</li>
+     * <li> &quot;*&quot; (all) to allocate remaining width (form.width minus all specified column widths). Multiple columns
+     * can use &quot;*&quot;, in which case remaining width is divided between all columns marked </li>
+     * </ul>
+     * @param colWidths the column widths
+     */
     public void setColWidths(Object... colWidths) {
         setAttribute("colWidths", colWidths, true);
     }
 
-    public void setResizeFrom(String... resizeFrom) {
-        setAttribute("resizeFrom", resizeFrom, true);
-    }
-
+    /**
+     * The width in pixels allocated to the title of every item in this form. If you don't specify explicit {@link DynamicForm#setColWidths(Object...) colWidths},
+     * you can set this value to the string "*" to divide the usable space evenly between titles and fields.
+     *
+     * @param titleWidth the title width
+     */
     public void setTitleWidth(int titleWidth) {
         setAttribute("titleWidth", titleWidth, true);
     }
 
+    /**
+     * The width in pixels allocated to the title of every item in this form. If you don't specify explicit {@link DynamicForm#setColWidths(Object...) colWidths},
+     * you can set this value to the string "*" to divide the usable space evenly between titles and fields.
+     *
+     * @param titleWidth the title width
+     */
     public void setTitleWidth(String titleWidth) {
         setAttribute("titleWidth", titleWidth, true);
     }
 
+    /**
+     * If DynamicForm.showInlineErrors is true, where should the error icon and text appear relative to form items? Valid options are "top",
+     * "bottom", "left" or "right".
+     * <p>
+     * May be overridden at the item level via {@link FormItem#setErrorOrientation(com.smartgwt.client.types.FormErrorOrientation)}.
+     *
+     * @param errorOrientation the error orientation
+     */
     public void setErrorOrientation(FormErrorOrientation errorOrientation) {
         setAttribute("errorOrientation", errorOrientation, true);
     }
@@ -2402,8 +2418,7 @@ public class DynamicForm extends Canvas  implements DataBoundComponent, com.smar
      * com.smartgwt.client.widgets.form.ValuesManager#saveData}.  If you override <code>submit()</code>, you can safely
      * ignore the parameters as SmartGWT framework code does not pass them.
      *
-     * @param callback callback to invoke on completion.                                          [Ignored if
-     *                 this.canSubmit is true]
+     * @param callback callback to invoke on completion. [Ignored if canSubmit is true]
      */
     public native void submit(DSCallback callback) /*-{
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
@@ -3072,10 +3087,21 @@ public class DynamicForm extends Canvas  implements DataBoundComponent, com.smar
 
     public ResultSet getResultSet() throws IllegalStateException {
         JavaScriptObject dataJS = getAttributeAsJavaScriptObject("data");
+        if(dataJS == null) return null;
         if(!ResultSet.isResultSet(dataJS)) {
             throw new IllegalStateException("getResultSet() can only be called on DataBoundComponents after initial data has been fetched");
         }
         return new ResultSet(dataJS);
+    }
+
+    public RecordList getRecordList() {
+        JavaScriptObject dataJS = getAttributeAsJavaScriptObject("data");
+        if(dataJS == null) return null;
+
+        if(ResultSet.isResultSet(dataJS)) {
+            return getResultSet();
+        }
+        return new RecordList(dataJS);
     }
 
 }
