@@ -81,10 +81,6 @@ public class SimpleType extends BaseClass {
         }
     }
 
-    public SimpleType(){
-        
-    }
-
     public SimpleType(JavaScriptObject jsObj){
         super(jsObj);
     }
@@ -160,9 +156,37 @@ public class SimpleType extends BaseClass {
     }-*/;
 
 
-
+
+
+
+
+
 
 
+
+    /**
+     * Create a new simple type.
+     *
+     * @param name the name of the simple type
+     * @param inheritsFrom the type it inherits from
+     */
+    public SimpleType(String name, FieldType inheritsFrom){
+        setName(name);
+        setInheritsFrom(inheritsFrom);
+    }
+
+    /**
+     * Create a new simple type.
+     *
+     * @param name the name of the simple type
+     * @param inheritsFrom the type it inherits from
+     */
+    public SimpleType(String name, SimpleType inheritsFrom){
+        setName(name);
+        //ensure the type being inherited from is registered
+        inheritsFrom.getOrCreateJsObj();
+        setAttribute("inheritsFrom", inheritsFrom.getName(), true);
+    }
 
     /**
      * Validators to apply to value of this type.
@@ -219,7 +243,18 @@ public class SimpleType extends BaseClass {
      */
     public void setValidOperators(OperatorId... operators) throws IllegalStateException {
         setAttribute("validOperators", operators, false);
-    }    
+    }
+
+    /**
+     * Name of another SimpleType from which this type should inherit. <P> Validators, if any, will be combined.  All other
+     * SimpleType properties default to the inherited type's value.
+     *
+     * @param inheritsFrom inheritsFrom Default value is null
+     * @throws IllegalStateException this property cannot be changed after the underlying component has been created
+     */
+    public void setInheritsFrom(FieldType inheritsFrom)  throws IllegalStateException {
+        setAttribute("inheritsFrom", inheritsFrom.getValue(), false);
+    }
 
 }
 

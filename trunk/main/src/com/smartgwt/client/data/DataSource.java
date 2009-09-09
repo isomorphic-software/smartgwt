@@ -316,6 +316,40 @@ public class DataSource extends BaseClass  implements com.smartgwt.client.data.e
     }
 
     /**
+     * If set, tells the SQL engine to quote column names in all generated DML and DDL  statements for this dataSource.  This
+     * will ensure that queries generated against tables that do not follow the database product's natural column-naming
+     * conventions  will still work. <p> In general we recommend that you allow the database to use its natural naming scheme
+     * when creating tables (put more simply, just do not quote column names in the  <code>CREATE TABLE</code> statement); if
+     * you do this, you will not need to worry about  quoting column names when querying.  However, if you are dealing with
+     * pre-existing  tables, or do not have control over the database naming conventions used, this property may become
+     * necessary. <p> <b>Note:</b> Only applicable to dataSources of {@link com.smartgwt.client.data.DataSource#getServerType
+     * 'serverType'} "sql".
+     *
+     * @param quoteColumnNames quoteColumnNames Default value is true
+     * @throws IllegalStateException this property cannot be changed after the underlying component has been created
+     */
+    public void setQuoteColumnNames(Boolean quoteColumnNames)  throws IllegalStateException {
+        setAttribute("quoteColumnNames", quoteColumnNames, false);
+    }
+
+    /**
+     * If set, tells the SQL engine to quote column names in all generated DML and DDL  statements for this dataSource.  This
+     * will ensure that queries generated against tables that do not follow the database product's natural column-naming
+     * conventions  will still work. <p> In general we recommend that you allow the database to use its natural naming scheme
+     * when creating tables (put more simply, just do not quote column names in the  <code>CREATE TABLE</code> statement); if
+     * you do this, you will not need to worry about  quoting column names when querying.  However, if you are dealing with
+     * pre-existing  tables, or do not have control over the database naming conventions used, this property may become
+     * necessary. <p> <b>Note:</b> Only applicable to dataSources of {@link com.smartgwt.client.data.DataSource#getServerType
+     * 'serverType'} "sql".
+     *
+     *
+     * @return Boolean
+     */
+    public Boolean getQuoteColumnNames()  {
+        return getAttributeAsBoolean("quoteColumnNames");
+    }
+
+    /**
      * Allows you to specify an arbitrary prefix string to apply to all json format responses  sent from the server to this
      * application.<br> The inclusion of such a prefix ensures your code is not directly executable outside of your
      * application, as a preventitive measure against <a href='http://www.google.com/search?q=javascript+hijacking'
@@ -1285,6 +1319,7 @@ public class DataSource extends BaseClass  implements com.smartgwt.client.data.e
 
 
 
+
     /**
      * Add a handleError handler.
      * <p>
@@ -1419,6 +1454,8 @@ public class DataSource extends BaseClass  implements com.smartgwt.client.data.e
         }
         return retVal;
     }-*/;
+
+
 
 
 
@@ -2316,6 +2353,72 @@ public class DataSource extends BaseClass  implements com.smartgwt.client.data.e
             value = [value];
         }
         return @com.smartgwt.client.util.JSOHelper::convertToJavaStringArray(Lcom/google/gwt/core/client/JavaScriptObject;)(value);
+    }-*/;
+
+    /**
+     * Download a file stored in a field of type:"binary" in a DataSource record. <P> This will trigger the browser's "Save As"
+     * dialog and allow the user to save the file.
+     * @param data primary key values of record containing the file to download (or the complete record)
+     */
+    public native void downloadFile(Record data) /*-{
+        var self = this.@com.smartgwt.client.core.BaseClass::getOrCreateJsObj()();
+        if(!self.downloadFile) {
+            @com.smartgwt.client.util.SC::requiresServerComponents()();
+        }
+        self.downloadFile(data.@com.smartgwt.client.data.Record::getJsObj()());
+    }-*/;
+
+    /**
+     * Download a file stored in a field of type:"binary" in a DataSource record. <P> This will trigger the browser's "Save As"
+     * dialog and allow the user to save the file.
+     * @param data primary key values of record                                                   containing the file to download (or
+     *                                             the complete record)
+     * @param fieldName optional name of the binary field containing the                                         file.  If not provided, the
+     * first binary field                                         is used
+     * @param requestProperties additional properties to set on                                                       the DSRequest that will be issued
+     */
+    public native void downloadFile(Record data, String fieldName, DSRequest requestProperties) /*-{
+        var self = this.@com.smartgwt.client.core.BaseClass::getOrCreateJsObj()();
+        if(!self.downloadFile) {
+            @com.smartgwt.client.util.SC::requiresServerComponents()();
+        }
+        var requestPropertiesJS = requestProperties == null ? null : requestProperties.@com.smartgwt.client.core.DataClass::getJsObj()();
+        self.downloadFile(data.@com.smartgwt.client.data.Record::getJsObj()(), fieldName, requestPropertiesJS);
+    }-*/;
+
+    /**
+     * Display a file stored in a field of type:"binary" in a new browser window. <P> This will open a new browser window to
+     * show the file.  Depending on the file type, the user's installed plugins and applications, and the user's browser
+     * settings, this may cause the file to be actually displayed in the new browser window, or may prompt the user to either
+     * launch an external application to view the file or save the file to disk.
+     * @param data primary key values of record containing the file to view (or the complete record)
+     */
+    public native void viewFile(Record data) /*-{
+        var self = this.@com.smartgwt.client.core.BaseClass::getOrCreateJsObj()();
+        if(!self.viewFile) {
+            @com.smartgwt.client.util.SC::requiresServerComponents()();
+        }
+        self.viewFile(data.@com.smartgwt.client.data.Record::getJsObj()());
+    }-*/;
+
+    /**
+     * Display a file stored in a field of type:"binary" in a new browser window. <P> This will open a new browser window to
+     * show the file.  Depending on the file type, the user's installed plugins and applications, and the user's browser
+     * settings, this may cause the file to be actually displayed in the new browser window, or may prompt the user to either
+     * launch an external application to view the file or save the file to disk.
+     * @param data primary key values of record                                                   containing the file to view (or the
+     * complete record)
+     * @param fieldName optional name of the binary field containing the                                         file.  If not provided, the
+     * first binary field                                         is used
+     * @param requestProperties additional properties to set on                                                       the DSRequest that will be issued
+     */
+    public native void viewFile(Record data, String fieldName, DSRequest requestProperties) /*-{
+        var self = this.@com.smartgwt.client.core.BaseClass::getOrCreateJsObj()();
+        if(!self.viewFile) {
+            @com.smartgwt.client.util.SC::requiresServerComponents()();
+        }
+        var requestPropertiesJS = requestProperties == null ? null : requestProperties.@com.smartgwt.client.core.DataClass::getJsObj()();
+        self.viewFile(data.@com.smartgwt.client.data.Record::getJsObj()(), fieldName, requestPropertiesJS);
     }-*/;
 
 }
