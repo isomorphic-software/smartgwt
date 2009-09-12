@@ -183,6 +183,9 @@
 			</sequential>
 		</outofdate>
         <copy file="${smartgwt.tools.lib}/css/javadoc/stylesheet.css" todir="${project.build}/javadoc" overwrite="yes"/>			
+        <copy todir="${project.build}/javadoc/com/smartgwt/client/docs/skin" overwrite="yes">			
+			<fileset dir="${smartgwt.root}/main/src/com/smartgwt/client/docs/skin/"/>
+		</copy>
 	</target>
 
 	<target name="build" depends="javadoc" />
