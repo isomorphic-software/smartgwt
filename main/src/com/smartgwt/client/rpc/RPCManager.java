@@ -134,9 +134,11 @@ public class RPCManager {
     /**
      * Returns the id of the current transaction (a queue of requests). <P> This method must be called after startQueue() has
      * been called and at least one request has been issued.
+     *
+     * @return the transactionNum of the current transaction.
      */
-    public static native void getCurrentTransactionId() /*-{
-        $wnd.isc.RPCManager.getCurrentTransactionId();
+    public static native int getCurrentTransactionId() /*-{
+        return $wnd.isc.RPCManager.getCurrentTransactionId();
     }-*/;
 
     /**
