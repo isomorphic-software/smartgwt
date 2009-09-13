@@ -1617,10 +1617,9 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
      * Changes selectionAppearance on the fly.
      *
      * @param selectionAppearance new selection appearance. Default value is "rowStyle"
-     * @throws IllegalStateException this property cannot be changed after the component has been created
      */
-    public void setSelectionAppearance(SelectionAppearance selectionAppearance)  throws IllegalStateException {
-        setAttribute("selectionAppearance", selectionAppearance.getValue(), false);
+    public void setSelectionAppearance(SelectionAppearance selectionAppearance) {
+        setAttribute("selectionAppearance", selectionAppearance.getValue(), true);
     }
 
     /**

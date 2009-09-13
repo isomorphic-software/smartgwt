@@ -6522,10 +6522,22 @@ public class Canvas extends BaseWidget  implements com.smartgwt.client.widgets.e
         return getVisibleWidth();
     }
 
+    /**
+     * Set the minimum value for height.
+     * <p>
+     * For use with setOverflow(Overflow.VISIBLE), where widgets render only as large as their contents
+     * and/or children, and height and width settings act as a minimum size.
+     */
     public void setAutoHeight() {
         setHeight(1);
     }
 
+    /**
+     * Set the minimum value for width.
+     * <p>
+     * For use with setOverflow(Overflow.VISIBLE), where widgets render only as large as their contents
+     * and/or children, and height and width settings act as a minimum size.
+     */
     public void setAutoWidth() {
         setWidth(1);
     }
