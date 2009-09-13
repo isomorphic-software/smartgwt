@@ -9,7 +9,7 @@ public class SerializationContext extends DataClass {
      *
      * @param useFlatFields the useFlatFields
      */
-    public void setuseFlatFields(Boolean useFlatFields) {
+    public void setUseFlatFields(Boolean useFlatFields) {
         setAttribute("useFlatFields", useFlatFields);
     }
 
@@ -18,7 +18,7 @@ public class SerializationContext extends DataClass {
      *
      * @return the useFlatFields
      */
-    public Boolean getuseFlatFields() {
+    public Boolean getUseFlatFields() {
         return getAttributeAsBoolean("useFlatFields");
     }
 }
