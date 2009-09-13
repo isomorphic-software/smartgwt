@@ -296,8 +296,11 @@ public class Tab extends RefDataClass {
     // ********************* Static Methods ***********************
 
 
-
-
+
+
+
+
+
     public void setCanClose(boolean canClose) {
         setAttribute("canClose", canClose);
     }
@@ -339,6 +342,23 @@ public class Tab extends RefDataClass {
         setAttribute("closeIconSize", closeIconSize);
     }    
 
+    /**
+     * Context menu to show for this tab.
+     *
+     * @param contextMenu contextMenu Default value is null
+     */
+    public void setContextMenu(Menu contextMenu) {
+        setAttribute("contextMenu", contextMenu.getOrCreateJsObj());
+    }
+
+    /**
+     * Context menu to show for this object, an instance of the Menu widget.
+     *
+     * @return Menu
+     */
+    public Menu getContextMenu()  {
+        return Menu.getOrCreateRef(getAttributeAsJavaScriptObject("contextMenu"));
+    }
 }
 
 
