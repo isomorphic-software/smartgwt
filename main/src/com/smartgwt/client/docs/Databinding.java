@@ -10,6 +10,7 @@ package com.smartgwt.client.docs;
  * @see com.smartgwt.client..PickList#getShowOptionsFromDataSource
  * @see com.smartgwt.client.widgets.form.fields.SelectItem#getShowOptionsFromDataSource
  * @see com.smartgwt.client.widgets.form.fields.ComboBoxItem#getShowOptionsFromDataSource
+ * @see com.smartgwt.client..MultiView#getDataSource
  * @see com.smartgwt.client.widgets.DataBoundComponent#getDataSource
  * @see com.smartgwt.client.widgets.DataBoundComponent#getDataFetchMode
  * @see com.smartgwt.client.widgets.DataBoundComponent#getDataPageSize

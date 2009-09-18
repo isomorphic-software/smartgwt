@@ -9,6 +9,7 @@ package com.smartgwt.client.docs;
  * @see com.smartgwt.client.widgets.Canvas#getEdgeImage
  * @see com.smartgwt.client.widgets.Canvas#getCustomEdges
  * @see com.smartgwt.client.widgets.Canvas#getEdgeBackgroundColor
+ * @see com.smartgwt.client.widgets.Canvas#getEdgeOpacity
  * @see com.smartgwt.client.widgets.Canvas#getEdgeShowCenter
  * @see com.smartgwt.client.widgets.Canvas#getEdgeCenterBackgroundColor
  * @see com.smartgwt.client.widgets.EdgedCanvas#getSkinImgDir

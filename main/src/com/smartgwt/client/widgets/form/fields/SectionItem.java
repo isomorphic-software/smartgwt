@@ -168,11 +168,16 @@ public class SectionItem extends CanvasItem {
     /**
      * Returns a boolean indicating whether this SectionItem is expanded.
      *
-     * @return true if expanded
+     * @return true if the section is expanded false if not
      */
-    public native boolean isExpanded() /*-{
+    public native Boolean isExpanded() /*-{
         var self = this.@com.smartgwt.client.core.DataClass::getJsObj()();
-        return self.isExpanded();
+        var retVal =self.isExpanded();
+        if(retVal == null || retVal === undefined) {
+            return null;
+        } else {
+            return @com.smartgwt.client.util.JSOHelper::toBoolean(Z)(retVal);
+        }
     }-*/;
 
     /**
@@ -194,8 +199,7 @@ public class SectionItem extends CanvasItem {
     // ********************* Static Methods ***********************
 
 
-
-
+
     /**
      * IDs of the items that should be considered a member of this section.
      *

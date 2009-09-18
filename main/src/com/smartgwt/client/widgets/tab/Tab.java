@@ -296,11 +296,8 @@ public class Tab extends RefDataClass {
     // ********************* Static Methods ***********************
 
 
-
-
-
-
-
+
+
     public void setCanClose(boolean canClose) {
         setAttribute("canClose", canClose);
     }
@@ -340,7 +337,7 @@ public class Tab extends RefDataClass {
     */
     public void setCloseIconSize(int closeIconSize) {
         setAttribute("closeIconSize", closeIconSize);
-    }    
+    }
 
     /**
      * Context menu to show for this tab.
@@ -359,6 +356,7 @@ public class Tab extends RefDataClass {
     public Menu getContextMenu()  {
         return Menu.getOrCreateRef(getAttributeAsJavaScriptObject("contextMenu"));
     }
+
 }
 
 

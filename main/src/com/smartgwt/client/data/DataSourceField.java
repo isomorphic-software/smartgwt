@@ -1025,17 +1025,9 @@ public class DataSourceField extends DataClass {
     // ********************* Static Methods ***********************
 
 
-
-
-
-
-
-
-
-
-
-
-
+
+
+
     /**
      * Set the type directly to a defined SimpleType.
      *

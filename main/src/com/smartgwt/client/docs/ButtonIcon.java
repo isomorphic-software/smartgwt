@@ -16,6 +16,7 @@ package com.smartgwt.client.docs;
  * @see com.smartgwt.client.widgets.StretchImgButton#setIconOrientation
  * @see com.smartgwt.client.widgets.StretchImgButton#setIcon
  * @see com.smartgwt.client.widgets.StretchImgButton#iconClick
+ * @see com.smartgwt.client..PanelHeader#iconClick
  * @see com.smartgwt.client.widgets.StatefulCanvas#getIcon
  * @see com.smartgwt.client.widgets.StatefulCanvas#getIconSize
  * @see com.smartgwt.client.widgets.StatefulCanvas#getIconWidth
