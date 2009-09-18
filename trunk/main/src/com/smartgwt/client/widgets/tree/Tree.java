@@ -61,7 +61,7 @@ import com.google.gwt.event.shared.HasHandlers;
  * is displayed by a {@link com.smartgwt.client.widgets.tree.TreeGrid} or {@link
  * com.smartgwt.client.widgets.grid.ColumnTree} when supplied as {@link com.smartgwt.client.widgets.tree.TreeGrid#getData
  * data} or {@link com.smartgwt.client.widgets.grid.ColumnTree#getData data}. <P> A Tree can be constructed out of a List
- * of objects with interlinked by IDs or via explicitly specified Arrays of child objects.  See {@link
+ * of objects interlinked by IDs or via explicitly specified Arrays of child objects.  See {@link
  * com.smartgwt.client.widgets.tree.Tree#getModelType modelType} for an explanation of how to pass data to a Tree. <P>
  * Typical usage is to call {@link com.smartgwt.client.widgets.tree.TreeGrid#fetchData} to cause automatic creation of a 
  * {@link com.smartgwt.client..ResultTree}, which is a type of Tree that automatically handles loading data on  demand. 
@@ -168,10 +168,10 @@ public class Tree extends BaseClass  implements com.smartgwt.client.widgets.tree
 
     /**
      * If new nodes are added to a tree with modelType:"parent" which have the same {@link
-     * com.smartgwt.client.widgets.tree.Tree#getIdField 'id field value'} as an existing node, the existing node is removed
-     * when the new node is added. <P> If reportCollisions is true, the Tree will log a warning in the developer console about
-     * this. <P> Note that if an id collision occurs between a new node and its ancestor, the ancestor will be removed and the
-     * new node will not be added to the tree.
+     * com.smartgwt.client.widgets.tree.Tree#getIdField 'id field value'} as existing nodes, the existing nodess are removed
+     * when the new nodes are added. <P> If reportCollisions is true, the Tree will log a warning in the developer console
+     * about this. <P> Note that if an id collision occurs between a new node and its ancestor, the ancestor will be removed
+     * and the new node will not be added to the tree.
      *
      * @param reportCollisions reportCollisions Default value is true
      * @throws IllegalStateException this property cannot be changed after the underlying component has been created
@@ -182,10 +182,10 @@ public class Tree extends BaseClass  implements com.smartgwt.client.widgets.tree
 
     /**
      * If new nodes are added to a tree with modelType:"parent" which have the same {@link
-     * com.smartgwt.client.widgets.tree.Tree#getIdField 'id field value'} as an existing node, the existing node is removed
-     * when the new node is added. <P> If reportCollisions is true, the Tree will log a warning in the developer console about
-     * this. <P> Note that if an id collision occurs between a new node and its ancestor, the ancestor will be removed and the
-     * new node will not be added to the tree.
+     * com.smartgwt.client.widgets.tree.Tree#getIdField 'id field value'} as existing nodes, the existing nodess are removed
+     * when the new nodes are added. <P> If reportCollisions is true, the Tree will log a warning in the developer console
+     * about this. <P> Note that if an id collision occurs between a new node and its ancestor, the ancestor will be removed
+     * and the new node will not be added to the tree.
      *
      *
      * @return Boolean
@@ -362,11 +362,11 @@ public class Tree extends BaseClass  implements com.smartgwt.client.widgets.tree
     }
 
     /**
-     * The property the default implementation of {@link com.smartgwt.client.widgets.tree.Tree#isOpen} consules to determine if
-     * the node is open or not.  By default, this property is auto-generated for you, but you can set it to a custom value if
-     * you want to declaratively specify this state, but be careful - if you display this Tree in multiple TreeGrids at the
-     * same time, the open state will not be tracked independently - see {@link com.smartgwt.client.docs.SharingNodes} for more
-     * info on this.
+     * The property consulted by the default implementation of {@link com.smartgwt.client.widgets.tree.Tree#isOpen} to
+     * determine if the node is open or not.  By default, this property is auto-generated for you, but you can set it to a
+     * custom value if you want to declaratively specify this state, but be careful - if you display this Tree in multiple
+     * TreeGrids at the same time, the open state will not be tracked independently - see {@link
+     * com.smartgwt.client.docs.SharingNodes} for more info on this.
      * <p><b>Note : </b> This is an advanced setting</p>
      *
      * @param openProperty openProperty Default value is null
@@ -376,11 +376,11 @@ public class Tree extends BaseClass  implements com.smartgwt.client.widgets.tree
     }
 
     /**
-     * The property the default implementation of {@link com.smartgwt.client.widgets.tree.Tree#isOpen} consules to determine if
-     * the node is open or not.  By default, this property is auto-generated for you, but you can set it to a custom value if
-     * you want to declaratively specify this state, but be careful - if you display this Tree in multiple TreeGrids at the
-     * same time, the open state will not be tracked independently - see {@link com.smartgwt.client.docs.SharingNodes} for more
-     * info on this.
+     * The property consulted by the default implementation of {@link com.smartgwt.client.widgets.tree.Tree#isOpen} to
+     * determine if the node is open or not.  By default, this property is auto-generated for you, but you can set it to a
+     * custom value if you want to declaratively specify this state, but be careful - if you display this Tree in multiple
+     * TreeGrids at the same time, the open state will not be tracked independently - see {@link
+     * com.smartgwt.client.docs.SharingNodes} for more info on this.
      *
      *
      * @return String
@@ -468,7 +468,7 @@ public class Tree extends BaseClass  implements com.smartgwt.client.widgets.tree
      * Controls whether a call to {@link com.smartgwt.client.widgets.tree.Tree#getOpenList} includes the root node.  Since view
      * components such as a {@link com.smartgwt.client.widgets.tree.TreeGrid} use <code>getOpenList()</code> to display the
      * currently visible tree, <code>showRoot</code> controls whether the root node is shown to the user. <P> All Trees must
-     * have a single, logical root, however, most applications want to show multiple nodes at top level. 
+     * have a single, logical root, however, most applications want to show multiple nodes at the top level. 
      * <code>showRoot:false</code>, the default setting, prevents the logical root from being shown, so that the displayed tree
      * begins with the children of root. <P> You can set <code>showRoot:true</code> to show the single, logical root node as
      * the only top-level node.  This property is only meaningful for Trees where you supplied a value for {@link
@@ -485,7 +485,7 @@ public class Tree extends BaseClass  implements com.smartgwt.client.widgets.tree
      * Controls whether a call to {@link com.smartgwt.client.widgets.tree.Tree#getOpenList} includes the root node.  Since view
      * components such as a {@link com.smartgwt.client.widgets.tree.TreeGrid} use <code>getOpenList()</code> to display the
      * currently visible tree, <code>showRoot</code> controls whether the root node is shown to the user. <P> All Trees must
-     * have a single, logical root, however, most applications want to show multiple nodes at top level. 
+     * have a single, logical root, however, most applications want to show multiple nodes at the top level. 
      * <code>showRoot:false</code>, the default setting, prevents the logical root from being shown, so that the displayed tree
      * begins with the children of root. <P> You can set <code>showRoot:true</code> to show the single, logical root node as
      * the only top-level node.  This property is only meaningful for Trees where you supplied a value for {@link
@@ -581,7 +581,7 @@ public class Tree extends BaseClass  implements com.smartgwt.client.widgets.tree
      * is set on the node, that value is returned, minus any trailing {@link com.smartgwt.client.widgets.tree.Tree#getPathDelim
      * pathDelim}. <li> Finally, if none of the above yielded a title, the value of {@link
      * com.smartgwt.client.widgets.tree.Tree#getDefaultNodeTitle defaultNodeTitle} is returned. </ul> You can override this
-     * method to return the title of your choice for a given node. <br><br> To override the title for an autoconstructed tree
+     * method to return the title of your choice for a given node. <br><br> To override the title for an auto-constructed tree
      * (for example, in a databound TreeGrid), override {@link com.smartgwt.client.widgets.tree.TreeGrid#getNodeTitle} instead.
      * @param node node for which the title is being requested
      *
@@ -640,7 +640,7 @@ public class Tree extends BaseClass  implements com.smartgwt.client.widgets.tree
      * com.smartgwt.client.widgets.tree.Tree#getIsFolderProperty isFolderProperty} ({@link
      * com.smartgwt.client.widgets.tree.TreeNode#getIsFolder isFolder} by default) that value is returned. <li> Next, the
      * existence of the {@link com.smartgwt.client.widgets.tree.Tree#getChildrenProperty childrenProperty} (by default {@link
-     * com.smartgwt.client.widgets.tree.TreeNode#getChildren children} is checked on the {@link
+     * com.smartgwt.client.widgets.tree.TreeNode#getChildren children}) is checked on the {@link
      * com.smartgwt.client.widgets.tree.TreeNode}.  If the node has the children property defined (regardless of whether it
      * actually has any children), then isFolder() returns true for that node. </ul> <P> You can override this method to
      * provide your own intepretation of what constitutes a folder.
@@ -843,7 +843,7 @@ public class Tree extends BaseClass  implements com.smartgwt.client.widgets.tree
     }-*/;
 
     /**
-     * Is a particular node open or closed (works for leaves and folders).
+     * Whether a particular node is open or closed (works for leaves and folders).
      * @param node node in question
      *
      * @return true if the node is open

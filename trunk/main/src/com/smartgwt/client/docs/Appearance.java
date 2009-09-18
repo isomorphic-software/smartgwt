@@ -82,6 +82,7 @@ package com.smartgwt.client.docs;
  * @see com.smartgwt.client.widgets.Window#getFooterHeight
  * @see com.smartgwt.client.widgets.Window#getShowStatusBar
  * @see com.smartgwt.client.widgets.Window#getShowResizer
+ * @see com.smartgwt.client.widgets.Window#getStatus
  * @see com.smartgwt.client.widgets.Dialog#getStyleName
  * @see com.smartgwt.client.widgets.Dialog#getShowToolbar
  * @see com.smartgwt.client.widgets.StatefulCanvas#getAlign

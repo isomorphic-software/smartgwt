@@ -23,6 +23,18 @@ package com.smartgwt.client.docs;
  * @see com.smartgwt.client.widgets.form.ValuesManager#filterData
  * @see com.smartgwt.client.widgets.form.ValuesManager#fetchData
  * @see com.smartgwt.client.widgets.viewer.DetailViewer#viewSelectedData
+ * @see com.smartgwt.client..MultiView#fetchData
+ * @see com.smartgwt.client..MultiView#filterData
+ * @see com.smartgwt.client..MultiView#fetchRelatedData
+ * @see com.smartgwt.client..MultiView#removeSelectedData
+ * @see com.smartgwt.client..MultiView#anySelected
+ * @see com.smartgwt.client..MultiView#getSelection
+ * @see com.smartgwt.client..MultiView#selectRecord
+ * @see com.smartgwt.client..MultiView#selectRecords
+ * @see com.smartgwt.client..MultiView#selectAllRecords
+ * @see com.smartgwt.client..MultiView#deselectRecord
+ * @see com.smartgwt.client..MultiView#deselectRecords
+ * @see com.smartgwt.client..MultiView#deselectAllRecords
  * @see com.smartgwt.client.widgets.grid.ListGrid#fetchData
  * @see com.smartgwt.client.widgets.grid.ListGrid#exportData
  * @see com.smartgwt.client.widgets.grid.ListGrid#filterData

@@ -870,7 +870,7 @@ public class DataSource extends BaseClass  implements com.smartgwt.client.data.e
      * configure an authentication system.  Likewise, setting requiresAuthentication="false" does not automatically allow users
      * to bypass your authentication mechanism - you need to set up a URL that will accept DSRequests and process them similar
      * to the default "IDACall" servlet, and which is not protected by the authentication system.  See {@link
-     * com.smartgwt.client.docs.IscInstall 'Deploying SmartGWT'} for details on the IDACall servlet.
+     * com.smartgwt.client.docs.ServletDetails 'Deploying SmartGWT'} for details on the IDACall servlet.
      *
      * @param requiresAuthentication requiresAuthentication Default value is null
      * @throws IllegalStateException this property cannot be changed after the underlying component has been created
@@ -896,7 +896,7 @@ public class DataSource extends BaseClass  implements com.smartgwt.client.data.e
      * configure an authentication system.  Likewise, setting requiresAuthentication="false" does not automatically allow users
      * to bypass your authentication mechanism - you need to set up a URL that will accept DSRequests and process them similar
      * to the default "IDACall" servlet, and which is not protected by the authentication system.  See {@link
-     * com.smartgwt.client.docs.IscInstall 'Deploying SmartGWT'} for details on the IDACall servlet.
+     * com.smartgwt.client.docs.ServletDetails 'Deploying SmartGWT'} for details on the IDACall servlet.
      *
      *
      * @return Boolean
