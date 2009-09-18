@@ -233,7 +233,6 @@ public class I18nUtil {
         }
 
         if($wnd.isc.FilterBuilder) {
-            $wnd.isc.FilterBuilder.addProperties({topOperator: messages.@com.smartgwt.client.i18n.SmartGwtMessages::filterBuilder_topOperator()()});
             $wnd.isc.FilterBuilder.addProperties({addButtonPrompt: messages.@com.smartgwt.client.i18n.SmartGwtMessages::filterBuilder_addButtonPrompt()()});
             $wnd.isc.FilterBuilder.addProperties({rangeSeparator: messages.@com.smartgwt.client.i18n.SmartGwtMessages::filterBuilder_rangeSeparator()()});
             $wnd.isc.FilterBuilder.addProperties({removeButtonPrompt: messages.@com.smartgwt.client.i18n.SmartGwtMessages::filterBuilder_removeButtonPrompt()()});
