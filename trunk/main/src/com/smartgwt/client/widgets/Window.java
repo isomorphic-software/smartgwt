@@ -994,6 +994,26 @@ public class Window extends VLayout  implements com.smartgwt.client.widgets.even
         return getAttributeAsBoolean("showResizer");
     }
 
+    /**
+     * Text to show in the status bar of the window (if one is visible)
+     * Sets the text in the status bar of the window, redrawing if necessary.
+     *
+     * @param status new text for the status bar. Default value is null
+     */
+    public void setStatus(String status) {
+        setAttribute("status", status, true);
+    }
+
+    /**
+     * Text to show in the status bar of the window (if one is visible)
+     *
+     *
+     * @return String
+     */
+    public String getStatus()  {
+        return getAttributeAsString("status");
+    }
+
     // ********************* Methods ***********************
 
 
@@ -1001,14 +1021,6 @@ public class Window extends VLayout  implements com.smartgwt.client.widgets.even
 
 
 
-    /**
-     * Sets the text in the status bar of the window, redrawing if necessary.
-     * @param statusString new text for the status bar
-     */
-    public native void setStatus(String statusString) /*-{
-        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
-        self.setStatus(statusString);
-    }-*/;
 
 
 
