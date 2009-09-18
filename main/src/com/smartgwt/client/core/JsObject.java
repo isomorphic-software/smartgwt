@@ -30,7 +30,11 @@ public class JsObject {
     }
 
     private static native void init() /*-{
-        
+
+        if ($wnd.isc.Browser.isIE && $wnd.isc.Browser.version >= 7) {
+            $wnd.isc.EventHandler._IECanSetKeyCode = {};
+        }
+
         if(!@com.google.gwt.core.client.GWT::isScript()()){
             //allow lazy loading of grids to work in hosted mode
             $wnd.Array.LOADING = new Object();
