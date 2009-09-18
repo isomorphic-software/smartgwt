@@ -470,6 +470,17 @@ public class SC {
 	}-*/;
 
     /**
+     * Setting this to true will result in the IE / Firebug / Safari debugger being invoked when a JavaScript error is encountered.
+     * This is done by the execution of the commend "debugger;" when the error occurs. Setting this to true is useful
+     * for debugging any javascript errors.
+     *
+     * @param useDebugger default is false
+     */
+    public static native void setEnableJSDebugger(boolean useDebugger) /*-{
+    	$wnd.isc.useIEDebugger = useDebugger;
+	}-*/;
+
+    /**
      * Logs the echoed object as a warning, prefixed with an optional message.
      *
      * @param canvas canvas to echo
