@@ -75,7 +75,7 @@ public class JSON {
      *
      * @return object derived from JSON String
      */
-    public static native String decode(String jsonString) /*-{
+    public static native JavaScriptObject decode(String jsonString) /*-{
         return $wnd.isc.JSON.decode(jsonString);
     }-*/;
 
