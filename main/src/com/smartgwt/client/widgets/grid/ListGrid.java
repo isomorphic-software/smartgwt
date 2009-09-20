@@ -5336,7 +5336,6 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
 
 
 
-
     /**
      * Get the index of the provided record. <P> This is essentially the same as calling listGrid.data.indexOf(record), except
      * that  the currently visible range of records is checked first.  This is important for responsiveness in functions that
@@ -5872,9 +5871,26 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
     // ********************* Static Methods ***********************
 
 
-
-
-
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     protected native void onInit() /*-{
 
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
@@ -6535,6 +6551,24 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
         return objects;
     }
 
+    /**
+     * Get the complete array of fields for this ListGrid, including fields that are not currently visible or were specified
+     * implicitly via {@link com.smartgwt.client.widgets.grid.ListGrid#getDataSource dataSource}. <P> This list of fields is
+     * only valid once the ListGrid has been {@link com.smartgwt.client.widgets.Canvas#draw} or once {@link
+     * com.smartgwt.client.widgets.grid.ListGrid#setFields} has been called explicitly.  If called earlier, only the list of
+     * directly specified fields will be returned (the Array passed to create()). <P> This Array should be treated as
+     * <b>read-only</b>.  To modify the set of visible fields, use {@link com.smartgwt.client.widgets.grid.ListGrid#showField},
+     * {@link com.smartgwt.client.widgets.grid.ListGrid#hideField} and related APIs.  To update properties of individual
+     * fields, use {@link com.smartgwt.client.widgets.grid.ListGrid#setFieldProperties} or more specific APIs such as {@link
+     * com.smartgwt.client.widgets.grid.ListGrid#setFieldTitle}.
+     *
+     * @return Array of all fields in the ListGrid
+     */
+    public native ListGridField[] getAllFields() /*-{
+        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
+        var fieldsJS = self.getAllFields();
+        return @com.smartgwt.client.widgets.grid.ListGrid::convertToListGridFieldArray(Lcom/google/gwt/core/client/JavaScriptObject;)(fieldsJS);
+    }-*/;
 
     /**
      * The ListGrid fields
