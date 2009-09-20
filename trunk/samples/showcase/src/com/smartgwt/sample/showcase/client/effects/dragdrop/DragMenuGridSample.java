@@ -52,6 +52,7 @@ public class DragMenuGridSample extends ShowcasePanel {
         menu.setFields(partSrcField, partNameField);
 
         menu.setData(PartData.getRecords());
+        menu.setSelectionType(SelectionStyle.SINGLE);
         menu.setCanDragRecordsOut(true);
         menu.setDragDataAction(DragDataAction.MOVE);
 
