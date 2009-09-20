@@ -352,6 +352,15 @@ public class SC {
 
     /**
      * Show a modal dialog with a message, icon, and "OK" button.
+     *
+     * @param message the message
+     */
+    public static void warn(String message) {
+        warn(message, null);
+    }
+
+    /**
+     * Show a modal dialog with a message, icon, and "OK" button.
      * <p>
      * The callback will receive boolean true for an OK button click, or null if the Dialog is dismissed via the close button.
      *
@@ -361,7 +370,7 @@ public class SC {
     public static native void warn(String message, BooleanCallback callback) /*-{
         $wnd.isc.warn(message, function(value) {
             var valueJ = value == null ? null : @com.smartgwt.client.util.JSOHelper::toBoolean(Z)(value);
-            callback.@com.smartgwt.client.util.BooleanCallback::execute(Ljava/lang/Boolean;)(valueJ);
+            if(callback != null) callback.@com.smartgwt.client.util.BooleanCallback::execute(Ljava/lang/Boolean;)(valueJ);
         });
     }-*/;
 
@@ -380,7 +389,7 @@ public class SC {
         $wnd.isc.addProperties(dialogPropertiesJS, {title:title});
         $wnd.isc.warn(message, function(value) {
             var valueJ = value == null ? null : @com.smartgwt.client.util.JSOHelper::toBoolean(Z)(value);
-            callback.@com.smartgwt.client.util.BooleanCallback::execute(Ljava/lang/Boolean;)(valueJ);
+            if(callback != null) callback.@com.smartgwt.client.util.BooleanCallback::execute(Ljava/lang/Boolean;)(valueJ);
         }, dialogPropertiesJS);
     }-*/;
 
