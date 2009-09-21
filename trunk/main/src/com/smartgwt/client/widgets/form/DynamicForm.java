@@ -2571,6 +2571,7 @@ public class DynamicForm extends Canvas  implements DataBoundComponent, com.smar
         }
         return @com.smartgwt.client.util.JSOHelper::convertToJavaStringArray(Lcom/google/gwt/core/client/JavaScriptObject;)(value);
     }-*/;
+
     /**
      * Make a snapshot of the current set of values, so we can reset to them later. Creates a new object, then adds all
      * non-method properties of values to the new object. Use resetValues() to revert to these values. Note that this
@@ -2584,6 +2585,22 @@ public class DynamicForm extends Canvas  implements DataBoundComponent, com.smar
         return self.rememberValues();
     }-*/;
 
+    /**
+     * Method to determine whether the current form values would pass validation. This method will run validators on the
+     * form's values and return a value indicating whether validation was successful.
+     *
+     * <p>
+     * Unlike DynamicForm.validate() this method will not store the errors on the DynamicForm or display them to the user.
+     * 
+     * @param validateHiddenFields Should validators be processed for non-visible fields such as dataSource fields with no
+     * associated item or fields with visibility set to "hidden"?
+     * @return boolean value indicating success or failure of validation
+     */
+    public native boolean valuesAreValid(boolean validateHiddenFields) /*-{
+        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
+        return self.valuesAreValid(validateHiddenFields);
+    }-*/;
+    
    /**
     * The FormItemHoverFormatter should return the HTML to display in a hover canvas when the user holds the mousepointer over this item.
     * Return null to suppress the hover canvas altogether.
