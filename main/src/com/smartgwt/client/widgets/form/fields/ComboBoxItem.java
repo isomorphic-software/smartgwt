@@ -145,6 +145,28 @@ public class ComboBoxItem extends FormItem  implements PickList {
     }
 
     /**
+     * If showing hint for this form item, should it be shown within the field? <P>CSS style for the hint is {@link
+     * com.smartgwt.client.widgets.form.fields.SelectItem#getTextBoxStyle textBoxStyle} with the suffix "Hint" appended to it.
+     * <p><b>Note : </b> This is an advanced setting</p>
+     *
+     * @param showHintInField showHintInField Default value is null
+     */
+    public void setShowHintInField(Boolean showHintInField) {
+        setAttribute("showHintInField", showHintInField);
+    }
+
+    /**
+     * If showing hint for this form item, should it be shown within the field? <P>CSS style for the hint is {@link
+     * com.smartgwt.client.widgets.form.fields.SelectItem#getTextBoxStyle textBoxStyle} with the suffix "Hint" appended to it.
+     *
+     *
+     * @return Boolean
+     */
+    public Boolean getShowHintInField()  {
+        return getAttributeAsBoolean("showHintInField");
+    }
+
+    /**
      * Show the picker icon for the combo box
      * <p><b>Note : </b> This is an advanced setting</p>
      *

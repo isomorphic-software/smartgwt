@@ -168,6 +168,7 @@ package com.smartgwt.client.docs;
  * @see com.smartgwt.client.widgets.form.fields.SelectItem#getControlStyle
  * @see com.smartgwt.client.widgets.form.fields.SelectItem#getPickerIconStyle
  * @see com.smartgwt.client.widgets.form.fields.SelectItem#getShowFocused
+ * @see com.smartgwt.client.widgets.form.fields.SelectItem#getShowHintInField
  * @see com.smartgwt.client.widgets.form.fields.SelectItem#getMultiple
  * @see com.smartgwt.client.widgets.form.fields.CheckboxItem#getTitleStyle
  * @see com.smartgwt.client.widgets.form.fields.CheckboxItem#getTextBoxStyle
@@ -203,11 +204,13 @@ package com.smartgwt.client.docs;
  * @see com.smartgwt.client.widgets.form.fields.TextAreaItem#getWidth
  * @see com.smartgwt.client.widgets.form.fields.TextAreaItem#getHeight
  * @see com.smartgwt.client.widgets.form.fields.TextAreaItem#getTextBoxStyle
+ * @see com.smartgwt.client.widgets.form.fields.TextAreaItem#getShowHintInField
  * @see com.smartgwt.client.widgets.form.fields.ToolbarItem#getShowTitle
  * @see com.smartgwt.client.widgets.form.fields.ToolbarItem#getStartRow
  * @see com.smartgwt.client.widgets.form.fields.ToolbarItem#getEndRow
  * @see com.smartgwt.client.widgets.form.fields.ToolbarItem#getColSpan
  * @see com.smartgwt.client.widgets.form.fields.ToolbarItem#getButtonBaseStyle
+ * @see com.smartgwt.client.widgets.form.fields.ComboBoxItem#getShowHintInField
  * @see com.smartgwt.client..CubeGrid#getStyleName
  * @see com.smartgwt.client..CubeGrid#getBodyStyleName
  * @see com.smartgwt.client..CubeGrid#getAlternateRecordStyles
