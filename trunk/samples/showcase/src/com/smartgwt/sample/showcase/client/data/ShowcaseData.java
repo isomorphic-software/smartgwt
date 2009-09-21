@@ -62,10 +62,7 @@ import com.smartgwt.sample.showcase.client.menu.MenuAppearanceSample;
 import com.smartgwt.sample.showcase.client.menu.MenuSubmenusSample;
 import com.smartgwt.sample.showcase.client.menu.MenuTreeBindingSample;
 import com.smartgwt.sample.showcase.client.mvc.PatternReuseSample;
-import com.smartgwt.sample.showcase.client.other.DialogsSample;
-import com.smartgwt.sample.showcase.client.other.ProgressBarSample;
-import com.smartgwt.sample.showcase.client.other.SliderSample;
-import com.smartgwt.sample.showcase.client.other.ToolStripsSample;
+import com.smartgwt.sample.showcase.client.other.*;
 import com.smartgwt.sample.showcase.client.printing.PrintingSample;
 import com.smartgwt.sample.showcase.client.sections.*;
 import com.smartgwt.sample.showcase.client.tabs.*;
@@ -127,12 +124,11 @@ public class ShowcaseData {
                     new ExplorerTreeNode("Portal", "featured-portal", "featured-category", "silk/application_view_tile.png", new SimplePortalSample.Factory(), true, idSuffix),
                     new ExplorerTreeNode("Databound Dragging", "grid-db-dragging-featured-category", "featured-category", "silk/database_link.png", new GridDataBoundDragDropSample.Factory(), true, idSuffix),
                     new ExplorerTreeNode("Adaptive Filter", "grid-adaptive-filter-featured-category", "featured-category", "crystal/16/actions/show_table_row.png", new AdaptiveFilterSample.Factory(), true, idSuffix),
+                    new ExplorerTreeNode("Formula &amp; Summary Builder", "formula-sumamry-builder-featured-category", "featured-category", "crystal/oo/sc_insertformula.png", new FormulaSummaryBuilderSample.Factory(), true, idSuffix),
 
                     new ExplorerTreeNode("New Samples", "new-category", "root", "crystal/16/actions/irc_online.png", null, true, idSuffix),
-                    new ExplorerTreeNode("Demo Application", "complete-app-new-category", "new-category", "silk/layout_content.png", new MiniAppSample.Factory(), true, idSuffix),
-                    new ExplorerTreeNode("Grid All Editors", "grid-all-editors-new-category", "new-category", null, new GridEditAllRowsSample.Factory(), true, idSuffix),
-                    new ExplorerTreeNode("Dependent Selects (Grid)", "dependent-selects-grid-new-category", "new-category", null, new GridDependentSelectsSample.Factory(), true, idSuffix),
-                    new ExplorerTreeNode("Grid Top Header", "grid-top-header-new-category", "new-category", null, new GridTopHeaderSample.Factory(), true, idSuffix),
+                    new ExplorerTreeNode("Grid Summaries", "grid-summaries-new-category", "new-category", "crystal/16/apps/tooloptions.png", new GridSummariesSample.Factory(), true, idSuffix),                    
+                    new ExplorerTreeNode("DataType Reuse", "type-reuse-new-category", "new-category", "silk/database_table.png", new TypeReuseSample.Factory(), true, idSuffix),
 
                     new ExplorerTreeNode("ComboBox &amp; Family", "combobox-category", "root", "widgets/combo_box.gif", null, true, idSuffix),
                     new ExplorerTreeNode("Styled ComboBox", "styled-combobox-category", "combobox-category", null, new ComboBoxStyledSample.Factory(), true, idSuffix),
@@ -270,7 +266,7 @@ public class ShowcaseData {
                     new ExplorerTreeNode("Nested Grid", "grid-nested-grid", "grid-category", "crystal/16/mimetypes/widget_doc.png", new NestedGridSample.Factory(), true, idSuffix),
                     new ExplorerTreeNode("Dependent Selects (Grid)", "dependent-selects-grid", "grid-category", null, new GridDependentSelectsSample.Factory(), true, idSuffix),
                     new ExplorerTreeNode("Databound Dragging", "grid-db-dragging", "grid-category", "silk/database_link.png", new GridDataBoundDragDropSample.Factory(), true, idSuffix),
-
+                    new ExplorerTreeNode("Grid Summaries", "grid-summaries", "grid-category", "crystal/16/apps/tooloptions.png", new GridSummariesSample.Factory(), true, idSuffix),
                     new ExplorerTreeNode("Printing", "grid-print-grid", "grid-category", "silk/printer.png", new PrintingSample.Factory(), true, idSuffix),
 
                     new ExplorerTreeNode("Tree", "tree-category", "root", "silk/chart_organisation.png", null, true, idSuffix),
@@ -353,6 +349,7 @@ public class ShowcaseData {
 
                     new ExplorerTreeNode("Focus First Field", "form-category-focus-first", "form-category", null, new FormFocusFirstSample.Factory(), true, idSuffix),
                     new ExplorerTreeNode("Custom Picker", "form-category-custom-picker", "form-category", null, new CustomPickerSample.Factory(), true, idSuffix),
+                    new ExplorerTreeNode("DataType Reuse", "form-type-reuse", "form-category", "silk/database_table.png", new TypeReuseSample.Factory(), true, idSuffix),
 
                     new ExplorerTreeNode("Layout", "layout-category", "root", "widgets/container.png", null, true, idSuffix),
                     new ExplorerTreeNode("Stack", "layout-stack", "layout-category", null, new StackSample.Factory(), true, idSuffix),
