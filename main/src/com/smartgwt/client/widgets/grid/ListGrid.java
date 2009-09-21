@@ -3620,6 +3620,33 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
         return getAttributeAsInt("booleanImageHeight");
     }
 
+    /**
+     * Should this ListGrid show a summary row beneath the last record of the grid. This summary row will contain per-field
+     * summary information. See {@link com.smartgwt.client.widgets.grid.ListGridField#getShowGridSummary showGridSummary} and
+     * ${isc.DocUtils.linkForRef('listGrid.getSummaryFunction')} for details on how the summary value to be displayed for each
+     * column will be caculated. <P> Note that the {@link com.smartgwt.client.widgets.grid.ListGrid#getSummaryRow 'summaryRow
+     * autoChild'} will be created to actually display the summary row.
+     * Setter for the {@link com.smartgwt.client.widgets.grid.ListGrid#getShowGridSummary showGridSummary} attribute
+     *
+     * @param showGridSummary new value for this.showGridSummary. Default value is false
+     */
+    public void setShowGridSummary(Boolean showGridSummary) {
+        setAttribute("showGridSummary", showGridSummary, true);
+    }
+
+    /**
+     * Should this ListGrid show a summary row beneath the last record of the grid. This summary row will contain per-field
+     * summary information. See {@link com.smartgwt.client.widgets.grid.ListGridField#getShowGridSummary showGridSummary} and
+     * ${isc.DocUtils.linkForRef('listGrid.getSummaryFunction')} for details on how the summary value to be displayed for each
+     * column will be caculated. <P> Note that the {@link com.smartgwt.client.widgets.grid.ListGrid#getSummaryRow 'summaryRow
+     * autoChild'} will be created to actually display the summary row.
+     *
+     *
+     * @return Boolean
+     */
+    public Boolean getShowGridSummary()  {
+        return getAttributeAsBoolean("showGridSummary");
+    }
 
     /**
      * Value to display to the user if showing summary values (through {@link
@@ -4005,6 +4032,33 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
         return getAttributeAsString("ungroupText");
     }
 
+    /**
+     * If this listGrid supports {@link com.smartgwt.client.widgets.grid.ListGrid#getCanGroupBy 'grouping'}, setting this
+     * property will cause the grid to render an extra row at the end of each group when grouped, containing summary
+     * information for the fields. Summary information will be calculated by the {@link
+     * com.smartgwt.client.widgets.grid.ListGridField#getGroupSummary} method if specified, otherwise via the specified {@link
+     * com.smartgwt.client.widgets.grid.ListGridField#getSummaryFunction summaryFunction}.
+     *
+     * @param showGroupSummary showGroupSummary Default value is false, IRW
+     * @throws IllegalStateException this property cannot be changed after the component has been created
+     */
+    public void setShowGroupSummary(Boolean showGroupSummary)  throws IllegalStateException {
+        setAttribute("showGroupSummary", showGroupSummary, false);
+    }
+
+    /**
+     * If this listGrid supports {@link com.smartgwt.client.widgets.grid.ListGrid#getCanGroupBy 'grouping'}, setting this
+     * property will cause the grid to render an extra row at the end of each group when grouped, containing summary
+     * information for the fields. Summary information will be calculated by the {@link
+     * com.smartgwt.client.widgets.grid.ListGridField#getGroupSummary} method if specified, otherwise via the specified {@link
+     * com.smartgwt.client.widgets.grid.ListGridField#getSummaryFunction summaryFunction}.
+     *
+     *
+     * @return Boolean
+     */
+    public Boolean getShowGroupSummary()  {
+        return getAttributeAsBoolean("showGroupSummary");
+    }
 
     /**
      * {@link com.smartgwt.client.widgets.grid.ListGridRecord#getCustomStyle customStyle} for the group-level summary row
@@ -5336,6 +5390,7 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
 
 
 
+
     /**
      * Get the index of the provided record. <P> This is essentially the same as calling listGrid.data.indexOf(record), except
      * that  the currently visible range of records is checked first.  This is important for responsiveness in functions that
@@ -5871,26 +5926,9 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
     // ********************* Static Methods ***********************
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+
+
+
     protected native void onInit() /*-{
 
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();

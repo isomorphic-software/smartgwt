@@ -1025,9 +1025,38 @@ public class DataSourceField extends DataClass {
     // ********************* Static Methods ***********************
 
 
-
-
-
+
+
+
+
+
+
+
+
+
+
+
+    /**
+     * Set the plural title.
+     *
+     * @param pluralTitle the plural title
+     */
+    public void setPluralTitle(String pluralTitle) {
+        setAttribute("pluralTitle", pluralTitle);
+    }
+
+    /**
+     * Return the plural title.
+     *
+     *
+     * @return String
+     */
+    public String getPluralTitle()  {
+        return getAttributeAsString("pluralTitle");
+    }
+    
+
+
     /**
      * Set the type directly to a defined SimpleType.
      *
@@ -1206,6 +1235,49 @@ public class DataSourceField extends DataClass {
             return ret;
         }
     }
+
+    /**
+     * If {@link com.smartgwt.client.widgets.grid.ListGrid#getShowGridSummary showGridSummary} or {@link
+     * com.smartgwt.client.widgets.grid.ListGrid#getShowGroupSummary showGroupSummary} is true,  this attribute can be used to
+     * specify an explicit {@link com.smartgwt.client.widgets.grid.SummaryFunction} for calculating the summary value to display.
+     *
+     * @param summaryFunction summaryFunction Default value is null
+     */
+    public void setSummaryFunction(SummaryFunctionType summaryFunction) {
+        setAttribute("summaryFunction", summaryFunction);
+    }
+
+    /**
+     * If {@link com.smartgwt.client.widgets.grid.ListGrid#getShowGridSummary showGridSummary} or {@link
+     * com.smartgwt.client.widgets.grid.ListGrid#getShowGroupSummary showGroupSummary} is true,  this attribute can be used to
+     * specify an explicit {@link com.smartgwt.client.widgets.grid.SummaryFunction} for calculating the summary value to display.
+     *
+     *
+     * @return SummaryFunctionType
+     */
+    public SummaryFunctionType getSummaryFunction()  {
+        return EnumUtil.getEnum(SummaryFunctionType.values(), getAttribute("summaryFunction"));
+    }
+
+    /**
+     * If {@link com.smartgwt.client.widgets.grid.ListGrid#getShowGridSummary showGridSummary} or {@link
+     * com.smartgwt.client.widgets.grid.ListGrid#getShowGroupSummary showGroupSummary} is true,  this attribute can be used to
+     * specify an explicit {@link com.smartgwt.client.widgets.grid.SummaryFunction} for calculating the summary value to display.
+     *
+     * @param summaryFunction summaryFunction Default value is null
+     */
+    public native void setSummaryFunction(SummaryFunction summaryFunction) /*-{
+        var self = this.@com.smartgwt.client.core.DataClass::getJsObj()();
+        self.summaryFunction = function(records, field) {
+            var recordsJ =  @com.smartgwt.client.data.Record::convertToRecordArray(Lcom/google/gwt/core/client/JavaScriptObject;)(records);
+            var fieldJ = @com.smartgwt.client.widgets.grid.ListGridField::getOrCreateRef(Lcom/google/gwt/core/client/JavaScriptObject;)(field);
+            var val = summaryFunction.@com.smartgwt.client.widgets.grid.SummaryFunction::getSummaryValue([Lcom/smartgwt/client/data/Record;Lcom/smartgwt/client/widgets/grid/ListGridField;)(recordsJ, fieldJ);
+            if(val == null || $wnd.isc.isA.String(val) || $wnd.isc.isA.Number(val)) return val;
+            if(@com.smartgwt.client.util.JSOHelper::isJavaNumber(Ljava/lang/Object;)(val)) return val.@java.lang.Number::doubleValue()();
+            if(@com.smartgwt.client.util.JSOHelper::isJavaDate(Ljava/lang/Object;)(val)) return @com.smartgwt.client.util.JSOHelper::convertToJavaScriptDate(Ljava/util/Date;)(val);
+            $wnd.isc.logWarn('Unrecognized type of value ' + val + ' returned by the summaryFunction');
+        };
+    }-*/;
 
 }
 

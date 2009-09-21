@@ -429,11 +429,19 @@ public class JSOHelper {
         }
         return mapJ;
     }-*/;
-
+ 
     public static JavaScriptObject convertToJavaScriptDate(Date date) {
         if(date == null) return null;
         JavaScriptObject dateJS = doConvertToJavaScriptDate(date.getTime());
         return dateJS;
+    }
+
+    public static boolean isJavaDate(Object obj) {
+        return obj instanceof Date;
+    }
+
+    public static boolean isJavaNumber(Object obj) {
+        return obj instanceof Number;
     }
 
     private static native JavaScriptObject doConvertToJavaScriptDate(double time) /*-{

@@ -123,7 +123,13 @@ public enum ListGridFieldType implements ValueEnum {
     /**
      * Same as <code>binary</code>
      */
-    IMAGEFILE("imageFile");
+    IMAGEFILE("imageFile"),
+    /**
+     * Show a calculated summary based on other field values within the current record.      * Show a calculated summary based on other field values within the current record.
+     * See {@link com.smartgwt.client.widgets.grid.ListGridField#setRecordSummaryFunction(com.smartgwt.client.widgets.grid.RecordSummaryFunction)} for more information. 
+     */
+    SUMMARY("summary");
+
     private String value;
 
     ListGridFieldType(String value) {
