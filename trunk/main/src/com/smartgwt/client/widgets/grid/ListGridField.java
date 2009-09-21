@@ -2051,9 +2051,23 @@ public class ListGridField extends DataClass  implements com.smartgwt.client.wid
     // ********************* Static Methods ***********************
 
 
-
-
-
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     /**
      * If this ListGrid is showing a filter row, this property can be used to apply a default value to show in the filter editor for this field.
      *
@@ -2610,6 +2624,117 @@ public class ListGridField extends DataClass  implements com.smartgwt.client.wid
     public void setHeaderButtonProperties(Button buttonProperties) {
         buttonProperties.setConfigOnly(true);
         JSOHelper.addProperties(getJsObj(), buttonProperties.getConfig());
+    }
+
+    /**
+     * If {@link com.smartgwt.client.widgets.grid.ListGrid#getShowGridSummary showGridSummary} or {@link
+     * com.smartgwt.client.widgets.grid.ListGrid#getShowGroupSummary showGroupSummary} is true,  this attribute can be used to
+     * specify an explicit {@link com.smartgwt.client.widgets.grid.SummaryFunction} for calculating the summary value to display.
+     *
+     * @param summaryFunction summaryFunction Default value is null
+     */
+    public void setSummaryFunction(SummaryFunctionType summaryFunction) {
+        setAttribute("summaryFunction", summaryFunction);
+    }
+
+    /**
+     * If {@link com.smartgwt.client.widgets.grid.ListGrid#getShowGridSummary showGridSummary} or {@link
+     * com.smartgwt.client.widgets.grid.ListGrid#getShowGroupSummary showGroupSummary} is true,  this attribute can be used to
+     * specify an explicit {@link com.smartgwt.client.widgets.grid.SummaryFunction} for calculating the summary value to display.
+     *
+     *
+     * @return SummaryFunctionType
+     */
+    public SummaryFunctionType getSummaryFunction()  {
+        return EnumUtil.getEnum(SummaryFunctionType.values(), getAttribute("summaryFunction"));
+    }
+
+    /**
+     * If {@link com.smartgwt.client.widgets.grid.ListGrid#getShowGridSummary showGridSummary} or {@link
+     * com.smartgwt.client.widgets.grid.ListGrid#getShowGroupSummary showGroupSummary} is true,  this attribute can be used to
+     * specify an explicit {@link com.smartgwt.client.widgets.grid.SummaryFunction} for calculating the summary value to display.
+     *
+     * @param summaryFunction summaryFunction Default value is null
+     */
+    public native void setSummaryFunction(SummaryFunction summaryFunction) /*-{
+        var self = this.@com.smartgwt.client.core.DataClass::getJsObj()();
+        self.summaryFunction = function(records, field) {
+            var recordsJ =  @com.smartgwt.client.data.Record::convertToRecordArray(Lcom/google/gwt/core/client/JavaScriptObject;)(records);
+            var fieldJ = @com.smartgwt.client.widgets.grid.ListGridField::getOrCreateRef(Lcom/google/gwt/core/client/JavaScriptObject;)(field);
+            var val = summaryFunction.@com.smartgwt.client.widgets.grid.SummaryFunction::getSummaryValue([Lcom/smartgwt/client/data/Record;Lcom/smartgwt/client/widgets/grid/ListGridField;)(recordsJ, fieldJ);
+            if(val == null || $wnd.isc.isA.String(val) || $wnd.isc.isA.Number(val)) return val;
+            if(@com.smartgwt.client.util.JSOHelper::isJavaNumber(Ljava/lang/Object;)(val)) return val.@java.lang.Number::doubleValue()();
+            if(@com.smartgwt.client.util.JSOHelper::isJavaDate(Ljava/lang/Object;)(val)) return @com.smartgwt.client.util.JSOHelper::convertToJavaScriptDate(Ljava/util/Date;)(val);
+            $wnd.isc.logWarn('Unrecognized type of value ' + val + ' returned by the summaryFunction');
+        };
+    }-*/;
+
+    /**
+     * Only applies to fields of type <code>"summary"</code>. Fields of this type will display a calculated value based on the
+     * other field values within the current record. <P> This attribute specifies how the summary field value will be
+     * calculated. See  {@link com.smartgwt.client.types.RecordSummaryFunctionType} for valid options. <P> A subset of the
+     * ListGrid's fields will be passed to the RecordSummaryFunction.  Which fields to include is determined based on {@link
+     * com.smartgwt.client.widgets.grid.ListGridField#getIncludeInRecordSummary includeInRecordSummary} <P> If {@link
+     * com.smartgwt.client.widgets.grid.ListGrid#getShowGridSummary showGridSummary} or {@link
+     * com.smartgwt.client.widgets.grid.ListGrid#getShowGroupSummary showGroupSummary} is true, this field's value in the
+     * summary row[s] will still be calculated by calling this method. In this case, the record object passed in will contain
+     * summary values for each field. If custom handling is required for this case, it may be detected by checking the record
+     * object's {@link com.smartgwt.client.widgets.grid.ListGridRecord#getIsGroupSummary isGroupSummary} and {@link
+     * com.smartgwt.client.widgets.grid.ListGridRecord#getIsGridSummary isGridSummary} attributes.
+     *
+     * @param recordSummaryFunction recordSummaryFunction Default value is null
+     */
+    public void setRecordSummaryFunction(RecordSummaryFunctionType recordSummaryFunction) {
+        setAttribute("recordSummaryFunction", recordSummaryFunction.getValue());
+    }
+
+    /**
+     * Only applies to fields of type <code>"summary"</code>. Fields of this type will display a calculated value based on the
+     * other field values within the current record. <P> This attribute specifies how the summary field value will be
+     * calculated. See  {@link com.smartgwt.client.types.RecordSummaryFunctionType} for valid options. <P> A subset of the
+     * ListGrid's fields will be passed to the RecordSummaryFunction.  Which fields to include is determined based on {@link
+     * com.smartgwt.client.widgets.grid.ListGridField#getIncludeInRecordSummary includeInRecordSummary} <P> If {@link
+     * com.smartgwt.client.widgets.grid.ListGrid#getShowGridSummary showGridSummary} or {@link
+     * com.smartgwt.client.widgets.grid.ListGrid#getShowGroupSummary showGroupSummary} is true, this field's value in the
+     * summary row[s] will still be calculated by calling this method. In this case, the record object passed in will contain
+     * summary values for each field. If custom handling is required for this case, it may be detected by checking the record
+     * object's {@link com.smartgwt.client.widgets.grid.ListGridRecord#getIsGroupSummary isGroupSummary} and {@link
+     * com.smartgwt.client.widgets.grid.ListGridRecord#getIsGridSummary isGridSummary} attributes.
+     *
+     * @param recordSummaryFunction recordSummaryFunction Default value is null
+     */
+    public native void setRecordSummaryFunction(RecordSummaryFunction recordSummaryFunction) /*-{
+        var self = this.@com.smartgwt.client.core.DataClass::getJsObj()();
+        self.recordSummaryFunction = function(record, fields, summaryField) {
+            var recordJ =  @com.smartgwt.client.data.Record::getOrCreateRef(Lcom/google/gwt/core/client/JavaScriptObject;)(record);
+            var fieldsJ = @com.smartgwt.client.widgets.grid.ListGrid::convertToListGridFieldArray(Lcom/google/gwt/core/client/JavaScriptObject;)(fields);
+            var summaryFieldJ = @com.smartgwt.client.widgets.grid.ListGridField::getOrCreateRef(Lcom/google/gwt/core/client/JavaScriptObject;)(summaryField);
+            var val = recordSummaryFunction.@com.smartgwt.client.widgets.grid.RecordSummaryFunction::getSummaryValue(Lcom/smartgwt/client/data/Record;[Lcom/smartgwt/client/widgets/grid/ListGridField;Lcom/smartgwt/client/widgets/grid/ListGridField;)(recordJ, fieldsJ, summaryFieldJ);
+            if(val == null || $wnd.isc.isA.String(val) || $wnd.isc.isA.Number(val)) return val;
+            if(@com.smartgwt.client.util.JSOHelper::isJavaNumber(Ljava/lang/Object;)(val)) return val.@java.lang.Number::doubleValue()();
+            if(@com.smartgwt.client.util.JSOHelper::isJavaDate(Ljava/lang/Object;)(val)) return @com.smartgwt.client.util.JSOHelper::convertToJavaScriptDate(Ljava/util/Date;)(val);
+            $wnd.isc.logWarn('Unrecognized type of value ' + val + ' returned by the summaryFunction');
+        };
+    }-*/;
+
+    /**
+     * Only applies to fields of type <code>"summary"</code>. Fields of this type will display a calculated value based on the
+     * other field values within the current record. <P> This attribute specifies how the summary field value will be
+     * calculated. See  {@link com.smartgwt.client.types.RecordSummaryFunctionType} for valid options. <P> A subset of the
+     * ListGrid's fields will be passed to the RecordSummaryFunction.  Which fields to include is determined based on {@link
+     * com.smartgwt.client.widgets.grid.ListGridField#getIncludeInRecordSummary includeInRecordSummary} <P> If {@link
+     * com.smartgwt.client.widgets.grid.ListGrid#getShowGridSummary showGridSummary} or {@link
+     * com.smartgwt.client.widgets.grid.ListGrid#getShowGroupSummary showGroupSummary} is true, this field's value in the
+     * summary row[s] will still be calculated by calling this method. In this case, the record object passed in will contain
+     * summary values for each field. If custom handling is required for this case, it may be detected by checking the record
+     * object's {@link com.smartgwt.client.widgets.grid.ListGridRecord#getIsGroupSummary isGroupSummary} and {@link
+     * com.smartgwt.client.widgets.grid.ListGridRecord#getIsGridSummary isGridSummary} attributes.
+     *
+     *
+     * @return RecordSummaryFunction
+     */
+    public RecordSummaryFunctionType getRecordSummaryFunction()  {
+        return EnumUtil.getEnum(RecordSummaryFunctionType.values(), getAttribute("recordSummaryFunction"));
     }
 
 }
