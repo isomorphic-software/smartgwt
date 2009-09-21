@@ -195,9 +195,8 @@ public class TextItem extends FormItem {
     }
 
     /**
-     * If showing hint for this form item, should it be shown within the field? <P>Note when this property is true, {@link
-     * com.smartgwt.client.widgets.form.fields.FormItem#getHintStyle hintStyle} is not used - class "textItemHint" is always
-     * used.
+     * If showing hint for this form item, should it be shown within the field? <P>CSS style for the hint is {@link
+     * com.smartgwt.client.widgets.form.fields.TextItem#getTextBoxStyle textBoxStyle} with the suffix "Hint" appended to it.
      * <p><b>Note : </b> This is an advanced setting</p>
      *
      * @param showHintInField showHintInField Default value is null
@@ -207,9 +206,8 @@ public class TextItem extends FormItem {
     }
 
     /**
-     * If showing hint for this form item, should it be shown within the field? <P>Note when this property is true, {@link
-     * com.smartgwt.client.widgets.form.fields.FormItem#getHintStyle hintStyle} is not used - class "textItemHint" is always
-     * used.
+     * If showing hint for this form item, should it be shown within the field? <P>CSS style for the hint is {@link
+     * com.smartgwt.client.widgets.form.fields.TextItem#getTextBoxStyle textBoxStyle} with the suffix "Hint" appended to it.
      *
      *
      * @return Boolean
@@ -220,7 +218,8 @@ public class TextItem extends FormItem {
              
     /**
      * Should entered characters be converted to upper or lowercase? Also applies to values applied with {@link
-     * com.smartgwt.client.widgets.form.fields.FormItem#setValue}.
+     * com.smartgwt.client.widgets.form.fields.FormItem#setValue}. <P> Note: character casing cannot be used at the same time
+     * as a {@link com.smartgwt.client.widgets.form.fields.TextItem#getMask mask}.
      * <p><b>Note : </b> This is an advanced setting</p>
      *
      * @param characterCasing characterCasing Default value is TextItem.DEFAULT
@@ -231,7 +230,8 @@ public class TextItem extends FormItem {
 
     /**
      * Should entered characters be converted to upper or lowercase? Also applies to values applied with {@link
-     * com.smartgwt.client.widgets.form.fields.FormItem#setValue}.
+     * com.smartgwt.client.widgets.form.fields.FormItem#setValue}. <P> Note: character casing cannot be used at the same time
+     * as a {@link com.smartgwt.client.widgets.form.fields.TextItem#getMask mask}.
      *
      *
      * @return CharacterCasing
@@ -243,7 +243,8 @@ public class TextItem extends FormItem {
     /**
      * Sets a keypress filter regular expression to limit valid characters that can be entered by the user. If defined, keys
      * that match the regular expression are allowed; all others are suppressed. The filter is applied after character casing,
-     * if defined.
+     * if defined. <P> Note: keypress filtering cannot be used at the same time as a {@link
+     * com.smartgwt.client.widgets.form.fields.TextItem#getMask mask}.
      * Set the keyPressFilter for this item
      * <p><b>Note : </b> This is an advanced setting</p>
      *
@@ -256,13 +257,118 @@ public class TextItem extends FormItem {
     /**
      * Sets a keypress filter regular expression to limit valid characters that can be entered by the user. If defined, keys
      * that match the regular expression are allowed; all others are suppressed. The filter is applied after character casing,
-     * if defined.
+     * if defined. <P> Note: keypress filtering cannot be used at the same time as a {@link
+     * com.smartgwt.client.widgets.form.fields.TextItem#getMask mask}.
      *
      *
      * @return String
      */
     public String getKeyPressFilter()  {
         return getAttributeAsString("keyPressFilter");
+    }
+
+    /**
+     * Input mask used to filter text entry. <P> Sample masks: <UL> <LI>Phone number: (###) ###-####</LI> <LI>Social Security
+     * number: ###-##-#### <LI>First name: &gt;?&lt;??????????</LI> <LI>Date: ##/##/####</LI> <LI>State: &gt;LL</LI> </UL>
+     * Overview of available mask characters <P> <table class="normal"> <tr><th>Character</th><th>Description</th></tr>
+     * <tr><td>0</td><td>Digit (0 through 9) or plus [+] or minus [-] signs</td></tr> <tr><td>9</td><td>Digit or
+     * space</td></tr> <tr><td>#</td><td>Digit</td></tr> <tr><td>L</td><td>Letter (A through Z)</td></tr>
+     * <tr><td>?</td><td>Letter (A through Z) or space</td></tr> <tr><td>A</td><td>Letter or digit</td></tr>
+     * <tr><td>a</td><td>Letter or digit</td></tr> <tr><td>C</td><td>Any character or space</td></tr> <tr><td>&nbsp;</td></tr>
+     * <tr><td>&lt;</td><td>Causes all characters that follow to be convered to lowercase</td></tr> <tr><td>&gt;</td><td>Causes
+     * all characters that follow to be convered to uppercase</td></tr> </table> <P> Any character not matching one of the
+     * above mask characters or that is escaped with a backslash (\) is considered to be a literal. <P> Custom mask characters
+     * can be defined by standard regular expression character set or range. For example, a hexadecimal color code mask could
+     * be: <UL> <LI>Color: \#>[0-9A-F][0-9A-F][0-9A-F][0-9A-F][0-9A-F][0-9A-F]</LI> </UL> <P> Note: input mask cannot be used
+     * at the same time as a {@link com.smartgwt.client.widgets.form.fields.TextItem#getKeyPressFilter keyPressFilter}.
+     * <p><b>Note : </b> This is an advanced setting</p>
+     *
+     * @param mask mask Default value is null
+     */
+    public void setMask(String mask) {
+        setAttribute("mask", mask);
+    }
+
+    /**
+     * Input mask used to filter text entry. <P> Sample masks: <UL> <LI>Phone number: (###) ###-####</LI> <LI>Social Security
+     * number: ###-##-#### <LI>First name: &gt;?&lt;??????????</LI> <LI>Date: ##/##/####</LI> <LI>State: &gt;LL</LI> </UL>
+     * Overview of available mask characters <P> <table class="normal"> <tr><th>Character</th><th>Description</th></tr>
+     * <tr><td>0</td><td>Digit (0 through 9) or plus [+] or minus [-] signs</td></tr> <tr><td>9</td><td>Digit or
+     * space</td></tr> <tr><td>#</td><td>Digit</td></tr> <tr><td>L</td><td>Letter (A through Z)</td></tr>
+     * <tr><td>?</td><td>Letter (A through Z) or space</td></tr> <tr><td>A</td><td>Letter or digit</td></tr>
+     * <tr><td>a</td><td>Letter or digit</td></tr> <tr><td>C</td><td>Any character or space</td></tr> <tr><td>&nbsp;</td></tr>
+     * <tr><td>&lt;</td><td>Causes all characters that follow to be convered to lowercase</td></tr> <tr><td>&gt;</td><td>Causes
+     * all characters that follow to be convered to uppercase</td></tr> </table> <P> Any character not matching one of the
+     * above mask characters or that is escaped with a backslash (\) is considered to be a literal. <P> Custom mask characters
+     * can be defined by standard regular expression character set or range. For example, a hexadecimal color code mask could
+     * be: <UL> <LI>Color: \#>[0-9A-F][0-9A-F][0-9A-F][0-9A-F][0-9A-F][0-9A-F]</LI> </UL> <P> Note: input mask cannot be used
+     * at the same time as a {@link com.smartgwt.client.widgets.form.fields.TextItem#getKeyPressFilter keyPressFilter}.
+     *
+     *
+     * @return String
+     */
+    public String getMask()  {
+        return getAttributeAsString("mask");
+    }
+
+    /**
+     * Should entered mask value be saved with embedded literals?
+     * <p><b>Note : </b> This is an advanced setting</p>
+     *
+     * @param maskSaveLiterals maskSaveLiterals Default value is null
+     */
+    public void setMaskSaveLiterals(Boolean maskSaveLiterals) {
+        setAttribute("maskSaveLiterals", maskSaveLiterals);
+    }
+
+    /**
+     * Should entered mask value be saved with embedded literals?
+     *
+     *
+     * @return Boolean
+     */
+    public Boolean getMaskSaveLiterals()  {
+        return getAttributeAsBoolean("maskSaveLiterals");
+    }
+
+    /**
+     * Character that is used to fill required empty mask positions to display text while control has no focus.
+     * <p><b>Note : </b> This is an advanced setting</p>
+     *
+     * @param maskPadChar maskPadChar Default value is " "
+     */
+    public void setMaskPadChar(String maskPadChar) {
+        setAttribute("maskPadChar", maskPadChar);
+    }
+
+    /**
+     * Character that is used to fill required empty mask positions to display text while control has no focus.
+     *
+     *
+     * @return String
+     */
+    public String getMaskPadChar()  {
+        return getAttributeAsString("maskPadChar");
+    }
+
+    /**
+     * Character that is used to fill required empty mask positions to display text while control has focus.
+     * <p><b>Note : </b> This is an advanced setting</p>
+     *
+     * @param maskPromptChar maskPromptChar Default value is "_"
+     */
+    public void setMaskPromptChar(String maskPromptChar) {
+        setAttribute("maskPromptChar", maskPromptChar);
+    }
+
+    /**
+     * Character that is used to fill required empty mask positions to display text while control has focus.
+     *
+     *
+     * @return String
+     */
+    public String getMaskPromptChar()  {
+        return getAttributeAsString("maskPromptChar");
     }
 
     // ********************* Methods ***********************
