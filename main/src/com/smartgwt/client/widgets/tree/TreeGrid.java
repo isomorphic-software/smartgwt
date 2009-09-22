@@ -201,6 +201,15 @@ public class TreeGrid extends ListGrid  implements com.smartgwt.client.widgets.t
     }
 
     /**
+     * For databound TreeGrids, this attribute can be used to customize the ResultTree object created for this treegrid when data is fetched
+     *
+     * @param resultSetProperties the data properties
+     */
+    public void setDataProperties(Tree resultTreeProperties) {
+        setAttribute("dataProperties", resultTreeProperties.getConfig(), true);
+    }
+
+    /**
      * A {@link com.smartgwt.client.widgets.tree.Tree} object containing of nested {@link
      * com.smartgwt.client.widgets.tree.TreeNode}s to  display as rows in this TreeGrid.   The <code>data</code> property will
      * typically not be explicitly specified for  databound TreeGrids, where the data is returned from the server via databound
@@ -1646,8 +1655,16 @@ public class TreeGrid extends ListGrid  implements com.smartgwt.client.widgets.t
     // ********************* Static Methods ***********************
 
 
-
-
+
+
+
+
+
+
+
+
+
+
     protected void onInit() {
         super.onInit();
         onInit2();
