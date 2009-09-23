@@ -36,6 +36,9 @@ public class JsObject {
         }
 
         if(!@com.google.gwt.core.client.GWT::isScript()()){
+            //support option of triggering JS debugger by default in hosted mode if JS error is encountered            
+            @com.smartgwt.client.util.SC::setEnableJSDebugger(Z)(true);
+
             //allow lazy loading of grids to work in hosted mode
             $wnd.Array.LOADING = new Object();
 
