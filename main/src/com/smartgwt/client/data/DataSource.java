@@ -1461,9 +1461,18 @@ public class DataSource extends BaseClass  implements com.smartgwt.client.data.e
 
 
 
-
-
-
+
+
+
+
+
+
+
+
+
+
+
+
 
 
     protected native void onInit() /*-{
@@ -1528,6 +1537,17 @@ public class DataSource extends BaseClass  implements com.smartgwt.client.data.e
      */
     public void setDefaultParams(Map defaultParams) {
         setAttribute("defaultParams", defaultParams, true);
+    }
+
+    /**
+     * HTTP parameters that should be submitted with every DSRequest. <br> Useful for authenticated services that
+     * require a sessionId with every request. <br> Can be set for all operations of a given DataSource as
+     * DataSource.defaultParams.
+     *
+     * @return the default params
+     */
+    public Map getDefaultParams() {
+        return JSOHelper.convertToMap(getAttributeAsJavaScriptObject("defaultParams"));
     }
 
     /**
