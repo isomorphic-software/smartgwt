@@ -1,6 +1,7 @@
 package com.smartgwt.client.widgets;
 
 import com.smartgwt.client.types.DragDataAction;
+import com.smartgwt.client.types.FetchMode;
 import com.smartgwt.client.data.*;
 import com.google.gwt.core.client.JavaScriptObject;
 
@@ -12,6 +13,28 @@ import java.util.Map;
 public interface DataBoundComponent {
 
     JavaScriptObject getOrCreateJsObj();
+
+    /**
+     * How to fetch and manage records retrieve from the server. See {@link FetchMode}.
+     * <p>
+     * This setting only applies to the {@link ResultSet} automatically created by calling {@link DataBoundComponent#fetchData(com.smartgwt.client.data.Criteria) fetchData}.
+     * If a pre-existing ResultSet is passed to setData() instead, it's existing setting for {@link com.smartgwt.client.data.ResultSet#getFetchMode() fetchMode}
+     * applies.
+     *
+     * @param fetchMode the fetch mode
+     */
+    void setDataFetchMode(FetchMode fetchMode);
+
+    /**
+     * How to fetch and manage records retrieve from the server. See {@link FetchMode}.
+     * <p>
+     * This setting only applies to the {@link ResultSet} automatically created by calling {@link DataBoundComponent#fetchData(com.smartgwt.client.data.Criteria) fetchData}.
+     * If a pre-existing ResultSet is passed to setData() instead, it's existing setting for {@link com.smartgwt.client.data.ResultSet#getFetchMode() fetchMode}
+     * applies.
+     *
+     * @return the fetch mode
+     */
+    FetchMode getDataFetchMode();
 
     /**
      * When using data paging, how many records to fetch at a time.  The value of this&#010 attribute is passed on to the auto-constructed {@link com.smartgwt.client.data.ResultSet} object for this&#010 component.  In effect, this gives you control over the {@link com.smartgwt.client.data.ResultSet#getResultSize resultSize}&#010 attribute for this component.&#010 <P>&#010 <b>Note</b> that regardless of the <code>dataPageSize</code> setting, a component will always fetch&#010 all of data that it needs to draw.  Settings such as&#010 {@link com.smartgwt.client.widgets.grid.ListGrid#getShowAllRecords showAllRecords},&#010 {@link com.smartgwt.client.widgets.grid.ListGrid#getDrawAllMaxCells drawAllMaxCells} and&#010 {@link com.smartgwt.client.widgets.grid.ListGrid#getDrawAheadRatio drawAheadRatio} can cause more rows than the configured&#010 <code>dataPageSize</code> to be fetched.

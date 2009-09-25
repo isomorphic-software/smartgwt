@@ -4039,11 +4039,10 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
      * com.smartgwt.client.widgets.grid.ListGridField#getGroupSummary} method if specified, otherwise via the specified {@link
      * com.smartgwt.client.widgets.grid.ListGridField#getSummaryFunction summaryFunction}.
      *
-     * @param showGroupSummary showGroupSummary Default value is false, IRW
-     * @throws IllegalStateException this property cannot be changed after the component has been created
+     * @param showGroupSummary showGroupSummary Default value is false
      */
-    public void setShowGroupSummary(Boolean showGroupSummary)  throws IllegalStateException {
-        setAttribute("showGroupSummary", showGroupSummary, false);
+    public void setShowGroupSummary(Boolean showGroupSummary) {
+        setAttribute("showGroupSummary", showGroupSummary, true);
     }
 
     /**
@@ -7854,6 +7853,14 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
 
     // ********************* DataBoundComponent Properties / Attributes ***********************
 
+    public void setDataFetchMode(FetchMode fetchMode) {
+        setAttribute("dataFetchMode", fetchMode, true);
+    }
+
+    public FetchMode getDataFetchMode() {
+        return EnumUtil.getEnum(FetchMode.values(), getAttribute("dataFetchMode"));
+    }
+    
     public void setDataPageSize(int dataPageSize) {
         setAttribute("dataPageSize", dataPageSize, true);
     }
