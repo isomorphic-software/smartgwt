@@ -60,7 +60,7 @@ import com.google.gwt.event.shared.HasHandlers;
  * Form item icon descriptor objects used by Form Items to specify the appearance and  behavior of icons displayed after
  * the item in the page flow.
  */
-public class FormItemIcon extends DataClass {
+public class FormItemIcon extends DataClass  implements com.smartgwt.client.widgets.form.fields.events.HasFormItemClickHandlers {
 
     public static FormItemIcon getOrCreateRef(JavaScriptObject jsObj) {
         if(jsObj == null) return null;
@@ -259,16 +259,29 @@ public class FormItemIcon extends DataClass {
     // ********************* Methods ***********************
 
     /**
+     * Add a formItemClick handler.
+     * <p>
      * StringMethod action to fire when this icon is clicked      If unset the form item's <code>iconClick</code> method will
      * be fired instead (if      specified).
-     * @param form The Dynamic Form to which this icon's item belongs.
-     * @param item The Form Item containing this icon
-     * @param icon A pointer to the form item icon clicked
+     *
+     * @param handler the formItemClick handler
+     * @return {@link HandlerRegistration} used to remove this handler
      */
-    public native void click(DynamicForm form, FormItem item, FormItemIcon icon) /*-{
-        var self = this.@com.smartgwt.client.core.DataClass::getJsObj()();
-        self.click(form.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()(), item.@com.smartgwt.client.core.DataClass::getJsObj()(), icon.@com.smartgwt.client.core.DataClass::getJsObj()());
-    }-*/;
+    public HandlerRegistration addFormItemClickHandler(com.smartgwt.client.widgets.form.fields.events.FormItemClickHandler handler) {
+        if(getHandlerCount(com.smartgwt.client.widgets.form.fields.events.FormItemIconClickEvent.getType()) == 0) setupFormItemClickEvent();
+        return doAddHandler(handler, com.smartgwt.client.widgets.form.fields.events.FormItemIconClickEvent.getType());
+    }
+
+    private native void setupFormItemClickEvent() /*-{
+        var obj = null;
+            obj = this.@com.smartgwt.client.core.DataClass::getJsObj()();
+            var selfJ = this;
+            obj.click = function(){
+                var param = {"form" : arguments[0], "item" : arguments[1], "icon" : arguments[2]};
+                var event = @com.smartgwt.client.widgets.form.fields.events.FormItemIconClickEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
+                selfJ.@com.smartgwt.client.core.DataClass::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
+            };
+   }-*/;
 
     /**
      * StringMethod action to fire when this icon has focus and recieves a keypress      event.      If unset the form item's
