@@ -814,6 +814,14 @@ public class ColumnTree extends Layout  implements DataBoundComponent, com.smart
 
     // ********************* DataBoundComponent Properties / Attributes ***********************
 
+    public void setDataFetchMode(FetchMode fetchMode) {
+        setAttribute("dataFetchMode", fetchMode, true);
+    }
+
+    public FetchMode getDataFetchMode() {
+        return EnumUtil.getEnum(FetchMode.values(), getAttribute("dataFetchMode"));
+    }
+    
     public void setDataPageSize(int dataPageSize) {
         setAttribute("dataPageSize", dataPageSize, true);
     }
