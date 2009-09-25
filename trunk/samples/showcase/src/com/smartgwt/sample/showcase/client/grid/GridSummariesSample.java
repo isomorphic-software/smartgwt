@@ -80,10 +80,7 @@ public class GridSummariesSample extends ShowcasePanel {
 
                 for (int i = 0; i < records.length; i++) {
                     Record record = records[i];
-                    if(record instanceof OrderItem){
-                        uniqueCategories.add(((OrderItem) record).getCategory());
-                    }
-
+                    uniqueCategories.add(((OrderItem) record).getCategory());
                 }
                 return uniqueCategories.size() + " Categories";
             }
