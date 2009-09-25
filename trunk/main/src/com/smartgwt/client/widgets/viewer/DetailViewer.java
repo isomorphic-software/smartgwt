@@ -585,8 +585,13 @@ public class DetailViewer extends Canvas  implements DataBoundComponent {
     // ********************* Static Methods ***********************
 
 
-
-
+
+
+
+
+
+
+
     /**
      * An array of records, specifying data. Note that DetailViewers do not observe changes to the data array (in other
      * words they will not automatically re-draw when the data provided via this property is altered)
@@ -677,14 +682,6 @@ public class DetailViewer extends Canvas  implements DataBoundComponent {
 
     // ********************* DataBoundComponent Properties / Attributes ***********************
 
-    public void setDataFetchMode(FetchMode fetchMode) {
-        setAttribute("dataFetchMode", fetchMode, true);
-    }
-
-    public FetchMode getDataFetchMode() {
-        return EnumUtil.getEnum(FetchMode.values(), getAttribute("dataFetchMode"));
-    }
-    
     public void setDataPageSize(int dataPageSize) {
         setAttribute("dataPageSize", dataPageSize, true);
     }
