@@ -2274,6 +2274,14 @@ public class ListGridField extends DataClass  implements com.smartgwt.client.wid
         return getAttribute("width");
     }
 
+    /**
+     * Control the list grid fields header wrap properties
+     *
+     * @param wrap true to wrap
+     */
+    public void setWrap(boolean wrap) {
+        setAttribute("wrap", wrap);
+    }
 
     public void setHidden(boolean hidden) {
         setAttribute("showIf", hidden ? "false" : "true");
