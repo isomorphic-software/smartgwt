@@ -7,7 +7,6 @@ import com.smartgwt.client.widgets.Canvas;
 import com.smartgwt.client.widgets.grid.ListGrid;
 import com.smartgwt.sample.showcase.client.PanelFactory;
 import com.smartgwt.sample.showcase.client.ShowcasePanel;
-import com.smartgwt.sample.showcase.client.data.ItemSupplyLocalDS;
 
 public class GridDataBindingDataSourceFieldsSample extends ShowcasePanel {
     private static final String DESCRIPTION = "This ListGrid takes its field (column) settings" +
@@ -64,18 +63,12 @@ public class GridDataBindingDataSourceFieldsSample extends ShowcasePanel {
             setID(id);
             setRecordXPath("/List/country");
             DataSourceField countryNameField = new DataSourceField("countryName", FieldType.TEXT, "Country");
-
-
             DataSourceField countryCodeField = new DataSourceField("countryCode", FieldType.TEXT, "Code");
-            DataSourceField dsField = new DataSourceField();
-            dsField.setName("dsField");
-            dsField.setMultiple(true);
-            dsField.setType(ItemSupplyLocalDS.getInstance());
             DataSourceField independenceField = new DataSourceField("independence", FieldType.DATE, "Independence");
             DataSourceField populationField = new DataSourceField("population", FieldType.INTEGER, "Population");
             DataSourceField gdpField = new DataSourceField("gdp", FieldType.FLOAT, "GDP ($B)");
 
-            setFields(countryNameField, dsField, countryCodeField, independenceField, populationField, gdpField);
+            setFields(countryNameField, countryCodeField, independenceField, populationField, gdpField);
             setDataURL("ds/test_data/country.data.xml");
         }
 
