@@ -34,8 +34,11 @@ import com.smartgwt.sample.showcase.client.ShowcasePanel;
 
 public class TypeReuseSample extends ShowcasePanel {
 
-    private static final String DESCRIPTION = "Enter a bad zip code (eg just \"123\") and press \"Validate\" to receive a validation error. " +
-            "Custom types can be declared based on built-in validators and re-used in multiple DataSources ";
+    private static final String DESCRIPTION = "<p>This example demonstrates a DataSourceField that is based on a user created <code>SimpleType</code>. As illustrated in this sample, " +
+            "a user can create a reusable ZipCode SimpleType class with a regular expression based <code>com.smartgwt.client.widgets.form.validator.Validator</code> " +
+            "and then use this SimpleType in various DataSourceField definitions across their application for use with any DataBoundComponent like a ListGrid, TreeGrid, DynamicForm etc.</p>" +
+            "<p>This is a powerful feature allows creation and reuse of domain specific \"primitive\" data types or types in the enterprises Common Data Model (CDM)." +
+            "<p>Enter a bad zip code (eg just \"123\") and press \"Validate\" to receive a validation error. Custom types can be declared based on built-in validators and re-used in multiple DataSources.</p>";
 
     public static class Factory implements PanelFactory {
         private String id;
@@ -53,6 +56,10 @@ public class TypeReuseSample extends ShowcasePanel {
         public String getDescription() {
             return DESCRIPTION;
         }
+    }
+
+    protected boolean isTopIntro() {
+        return true;
     }
 
     public Canvas getViewPanel() {
