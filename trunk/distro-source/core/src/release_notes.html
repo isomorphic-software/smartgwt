@@ -28,10 +28,35 @@
    <body>
       <h1>SmartGWT Release Notes</h1>
       <ul>
+            <li><a href="#1_3">1.3</a></li>
             <li><a href="#1_2">1.2</a></li>
             <li><a href="#1_1">1.1</a></li>
             <li><a href="#1_0_b2">1.0 b2</a></li>
       </ul>
+      <hr/>
+
+      <a name="1_3"></a>
+      <h2>Release Notes for SmartGWT 1.3</h2>
+        <p>In this release the SmartGwt modules have been slightly refactored so that by default the compile output does not include debug sources, unused resources, developer tools etc.
+            Some users were getting the wrong impression that the size of the compiled output was the size of their application. Most users are probably using either
+            <b>com.smartgwt.SmartGwt</b> or <b>com.smartgwt.SmartGwtNoScript</b> and will be unaffected by this refactoring. You will only notice that the compile output is a lot
+            smaller as it does not include the debug / readable source js files, and the developer console files. The most important change to keep in mind is that in order to use the Developer Console
+            (ie SC.showConsole() ), you will now need to inherit the following module : <b>&lt;inherits name="com.smartgwt.tools.SmartGwtTools"/&gt;</b></p>
+
+            <p>Users that happen be using <b>com.smartgwt.SmartGwtDebug</b> will need to inherit <b>com.smartgwt.debug.SmartGwtDebug</b> instead.</p>
+        <hr/>        
+        <div>- Grid Summary support from group and columns</div>
+        <div>- Masking support for form text fields</div>
+        <div>- Support for user-defined reusable SimpleTypes for use in DataSources (eg ZipCode type)</div>
+        <div>- In-field hints support for SelectItem, ComboBoxItem and TextAreaItem</div>
+        <div>- Support for Finnish locale and other i18n enhancements</div>
+        <div>- TextAreaItem.getSelectedText() support</div>
+        <div>- Improved support for use of SmartGWT and MVP pattern</div>
+        <div>- FilterBuilder fixes</div>
+        <div>- RPCManager enhancements</div>
+        <div>- Ability to control order of month day and year selector in DateItem</div>
+        <div>- <a href="http://code.google.com/p/smartgwt/issues/list?can=1&q=label%3ASmartGWT-1.3">Various</a> additional enhancements and bug fixes that were logged in tracker</div>
+        <div>- New examples including a Grid Summary example in the SmartGWT Showcase (see "New Samples" side nav item in the Showcase)</div>
       <hr/>
 
       <a name="1_2"></a>
