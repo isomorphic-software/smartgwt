@@ -362,7 +362,7 @@ public class DateItem extends FormItem {
     public String getInputFormat()  {
         return getAttributeAsString("inputFormat");
     }
-
+             
     /**
      * If showing date selectors rather than the date text field (so when  <code>this.useTextField</code> is false), this
      * property allows customization of the  order of the day, month and year selector fields. If unset these fields will match
@@ -376,8 +376,8 @@ public class DateItem extends FormItem {
      *
      * @param selectorFormat selectorFormat Default value is null
      */
-    public void setSelectorFormat(String selectorFormat) {
-        setAttribute("selectorFormat", selectorFormat);
+    public void setSelectorFormat(DateItemSelectorFormat selectorFormat) {
+        setAttribute("selectorFormat", selectorFormat.getValue());
     }
 
     /**
@@ -392,10 +392,10 @@ public class DateItem extends FormItem {
      * some
      *
      *
-     * @return String
+     * @return DateItemSelectorFormat
      */
-    public String getSelectorFormat()  {
-        return getAttributeAsString("selectorFormat");
+    public DateItemSelectorFormat getSelectorFormat()  {
+        return EnumUtil.getEnum(DateItemSelectorFormat.values(), getAttribute("selectorFormat"));
     }
 
     // ********************* Methods ***********************
