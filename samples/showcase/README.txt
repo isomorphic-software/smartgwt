@@ -19,6 +19,6 @@ Setup
 
   
 - The command 'ant war' build a war. Deploy in in your web container and access the sample by hitting the URL
-  http://localhost:8080/showcase/Showcase.html
+  http://localhost:8080/showcase/index.html
 
 
