@@ -7,91 +7,17 @@
 <h1>SmartGWT - API Change History</h1>
 <ul>
 <li>
-<a href="#1.2">1.1 to 1.2</a>
+<a href="#1.3">1.2 to 1.3</a>
 </li>
 </ul>
 <hr>
-<a name="1.2"></a>
-<h2>1.1 to 1.2</h2>
+<a name="1.3"></a>
+<h2>1.2 to 1.3</h2>
 <li>
 <nobr><code>SmartGWT</code></nobr>
 </li>
 <h3>Modified Interfaces:</h3>
 <blockquote>
-<h4>
-<code>com.smartgwt.client.i18n.SmartGwtMessages</code>
-</h4>
-<blockquote>
-<h5>New Methods:</h5>
-<ul>
-<li>
-<nobr><code>public abstract java.lang.String calendar_addEventButtonHoverText()</code></nobr>
-</li>
-<li>
-<nobr><code>public abstract java.lang.String calendar_cancelButtonTitle()</code></nobr>
-</li>
-<li>
-<nobr><code>public abstract java.lang.String calendar_datePickerHoverText()</code></nobr>
-</li>
-<li>
-<nobr><code>public abstract java.lang.String calendar_dayViewTitle()</code></nobr>
-</li>
-<li>
-<nobr><code>public abstract java.lang.String calendar_detailsButtonTitle()</code></nobr>
-</li>
-<li>
-<nobr><code>public abstract java.lang.String calendar_eventNameFieldTitle()</code></nobr>
-</li>
-<li>
-<nobr><code>public abstract java.lang.String calendar_monthViewTitle()</code></nobr>
-</li>
-<li>
-<nobr><code>public abstract java.lang.String calendar_nextButtonHoverText()</code></nobr>
-</li>
-<li>
-<nobr><code>public abstract java.lang.String calendar_previousButtonHoverText()</code></nobr>
-</li>
-<li>
-<nobr><code>public abstract java.lang.String calendar_saveButtonTitle()</code></nobr>
-</li>
-<li>
-<nobr><code>public abstract java.lang.String calendar_timelineViewTitle()</code></nobr>
-</li>
-<li>
-<nobr><code>public abstract java.lang.String calendar_weekViewTitle()</code></nobr>
-</li>
-<li>
-<nobr><code>public abstract java.lang.String filterBuilder_addButtonPrompt()</code></nobr>
-</li>
-<li>
-<nobr><code>public abstract java.lang.String filterBuilder_rangeSeparator()</code></nobr>
-</li>
-<li>
-<nobr><code>public abstract java.lang.String filterBuilder_removeButtonPrompt()</code></nobr>
-</li>
-<li>
-<nobr><code>public abstract java.lang.String filterBuilder_subClauseButtonPrompt()</code></nobr>
-</li>
-<li>
-<nobr><code>public abstract java.lang.String formulaBuilder_instructionsTextStart()</code></nobr>
-</li>
-<li>
-<nobr><code>public abstract java.lang.String formulaBuilder_samplePromptForRecord()</code></nobr>
-</li>
-<li>
-<nobr><code>public abstract java.lang.String formulaBuilder_samplePromptOutput()</code></nobr>
-</li>
-<li>
-<nobr><code>public abstract java.lang.String pickTreeItem_emptyMenuMessage()</code></nobr>
-</li>
-<li>
-<nobr><code>public abstract java.lang.String printWindow_printButtonTitle()</code></nobr>
-</li>
-<li>
-<nobr><code>public abstract java.lang.String printWindow_title()</code></nobr>
-</li>
-</ul>
-</blockquote>
 <h4>
 <code>com.smartgwt.client.widgets.DataBoundComponent</code>
 </h4>
@@ -99,117 +25,64 @@
 <h5>New Methods:</h5>
 <ul>
 <li>
-<nobr><code>public abstract com.smartgwt.client.data.ResultSet getResultSet() throws java.lang.IllegalStateException</code></nobr>
+<nobr><code>public abstract com.smartgwt.client.types.FetchMode getDataFetchMode()</code></nobr>
+</li>
+<li>
+<nobr><code>public abstract com.smartgwt.client.data.RecordList getRecordList()</code></nobr>
+</li>
+<li>
+<nobr><code>public abstract void setDataFetchMode(com.smartgwt.client.types.FetchMode)</code></nobr>
 </li>
 </ul>
-</blockquote>
-<h4>
-<code>com.smartgwt.client.widgets.form.fields.PickList</code>
-</h4>
-<blockquote>
-<h5>New Methods:</h5>
-<ul>
-<li>
-<nobr><code>public abstract com.smartgwt.client.widgets.grid.ListGridRecord[] filterClientPickListData()</code></nobr>
-</li>
-<li>
-<nobr><code>public abstract com.smartgwt.client.widgets.grid.ListGridRecord[] getClientPickListData()</code></nobr>
-</li>
-<li>
-<nobr><code>public abstract com.smartgwt.client.data.DataSource getOptionDataSource()</code></nobr>
-</li>
-<li>
-<nobr><code>public abstract void setOptionDataSource(com.smartgwt.client.data.DataSource)</code></nobr>
-</li>
-<li>
-<nobr><code>public abstract void setPickListFilterCriteriaFunction(com.smartgwt.client.widgets.form.fields.FilterCriteriaFunction)</code></nobr>
-</li>
-<li>
-<nobr><code>public abstract void setSeparatorRows(com.smartgwt.client.widgets.grid.ListGridRecord[])</code></nobr>
-</li>
-</ul>
-</blockquote>
-<h4>
-<code>com.smartgwt.client.widgets.grid.EditorValueMapFunction</code>
-</h4>
-<blockquote>
-<h5>Method Changes:</h5>
-<blockquote>
-<p>
-<nobr><code><b>old:</b>public abstract java.lang.String[] getEditorValueMap(java.util.Map, com.smartgwt.client.widgets.grid.ListGridField, com.smartgwt.client.widgets.grid.ListGrid)<br>
-<b>new:</b>public abstract java.util.Map getEditorValueMap(java.util.Map, com.smartgwt.client.widgets.grid.ListGridField, com.smartgwt.client.widgets.grid.ListGrid)</code></nobr>
-</p>
-</blockquote>
 </blockquote>
 </blockquote>
 <h3>Modified Classes:</h3>
+<blockquote>
 <h4>
 <code>com.smartgwt.client.data.DSRequest</code>
 </h4>
 <blockquote>
-<h5>Removed Methods:</h5>
-<ul>
-<li>
-<nobr><code>public void setTextMatchStyle(java.lang.String)</code></nobr>
-</li>
-</ul>
 <h5>New Methods:</h5>
 <ul>
 <li>
-<nobr><code>public com.smartgwt.client.data.ResultSet getResultSet()</code></nobr>
+<nobr><code>public java.lang.String getExportFooter()</code></nobr>
 </li>
 <li>
-<nobr><code>public void setTextMatchStyle(com.smartgwt.client.types.TextMatchStyle)</code></nobr>
+<nobr><code>public java.lang.String getExportHeader()</code></nobr>
+</li>
+<li>
+<nobr><code>public void setExportFooter(java.lang.String)</code></nobr>
+</li>
+<li>
+<nobr><code>public void setExportHeader(java.lang.String)</code></nobr>
 </li>
 </ul>
 </blockquote>
 <h4>
 <code>com.smartgwt.client.data.DataSource</code>
 </h4>
-<blockquote>
-<h5>Removed Methods:</h5>
-<ul>
-<li>
-<nobr><code>public native void supportsTextMatchStyle(java.lang.String)</code></nobr>
-</li>
-</ul>
 <h5>New Methods:</h5>
 <ul>
 <li>
-<nobr><code>public java.lang.String getBeanClassName()</code></nobr>
+<nobr><code>public native void downloadFile(com.smartgwt.client.data.Record)</code></nobr>
 </li>
 <li>
-<nobr><code>public java.lang.String[] getFieldNames()</code></nobr>
+<nobr><code>public native void downloadFile(com.smartgwt.client.data.Record, java.lang.String, com.smartgwt.client.data.DSRequest)</code></nobr>
 </li>
 <li>
-<nobr><code>public native java.lang.String[] getFieldNames(boolean)</code></nobr>
+<nobr><code>public java.util.Map getDefaultParams()</code></nobr>
 </li>
 <li>
-<nobr><code>public com.smartgwt.client.data.DataSourceField[] getFields()</code></nobr>
+<nobr><code>public java.lang.Boolean getQuoteColumnNames()</code></nobr>
 </li>
 <li>
-<nobr><code>public java.lang.Boolean getRequiresAuthentication()</code></nobr>
+<nobr><code>public void setQuoteColumnNames(java.lang.Boolean)</code></nobr>
 </li>
 <li>
-<nobr><code>public java.lang.String getRequiresRole()</code></nobr>
+<nobr><code>public native void viewFile(com.smartgwt.client.data.Record)</code></nobr>
 </li>
 <li>
-<nobr><code>public java.lang.Boolean getValidateRelatedRecords()</code></nobr>
-</li>
-<li>
-<nobr><code>public void setBeanClassName(java.lang.String) throws java.lang.IllegalStateException</code></nobr>
-</li>
-<li>
-<nobr><code>public void setRequiresAuthentication(java.lang.Boolean) throws java.lang.IllegalStateException</code></nobr>
-</li>
-<li>
-<nobr><code>public void setRequiresRole(java.lang.String) throws java.lang.IllegalStateException</code></nobr>
-</li>
-<li>
-<nobr><code>public void setValidateRelatedRecords(java.lang.Boolean) throws java.lang.IllegalStateException</code></nobr>
-</li>
-<li>
-<nobr><code>public native void supportsTextMatchStyle(com.smartgwt.client.types.TextMatchStyle)</code></nobr>
+<nobr><code>public native void viewFile(com.smartgwt.client.data.Record, java.lang.String, com.smartgwt.client.data.DSRequest)</code></nobr>
 </li>
 </ul>
 </blockquote>
@@ -220,25 +93,28 @@
 <h5>New Methods:</h5>
 <ul>
 <li>
-<nobr><code>public static com.smartgwt.client.data.DataSourceField[] convertToDataSourceFieldArray(com.google.gwt.core.client.JavaScriptObject)</code></nobr>
+<nobr><code>public java.lang.Boolean getCanExport()</code></nobr>
 </li>
 <li>
-<nobr><code>public java.lang.Integer getMaxFileSize()</code></nobr>
+<nobr><code>public java.lang.String getPluralTitle()</code></nobr>
 </li>
 <li>
-<nobr><code>public java.lang.Boolean getShowFileInline()</code></nobr>
+<nobr><code>public com.smartgwt.client.types.SummaryFunctionType getSummaryFunction()</code></nobr>
 </li>
 <li>
-<nobr><code>public com.smartgwt.client.types.HashAlgorithm getStoreWithHash()</code></nobr>
+<nobr><code>public void setCanExport(java.lang.Boolean)</code></nobr>
 </li>
 <li>
-<nobr><code>public void setMaxFileSize(java.lang.Integer)</code></nobr>
+<nobr><code>public void setPluralTitle(java.lang.String)</code></nobr>
 </li>
 <li>
-<nobr><code>public void setShowFileInline(java.lang.Boolean)</code></nobr>
+<nobr><code>public void setSummaryFunction(com.smartgwt.client.types.SummaryFunctionType)</code></nobr>
 </li>
 <li>
-<nobr><code>public void setStoreWithHash(com.smartgwt.client.types.HashAlgorithm)</code></nobr>
+<nobr><code>public native void setSummaryFunction(com.smartgwt.client.widgets.grid.SummaryFunction)</code></nobr>
+</li>
+<li>
+<nobr><code>public void setType(com.smartgwt.client.data.SimpleType)</code></nobr>
 </li>
 </ul>
 </blockquote>
@@ -246,13 +122,13 @@
 <code>com.smartgwt.client.data.OperationBinding</code>
 </h4>
 <blockquote>
-<h5>New Methods:</h5>
+<h5>Removed Methods:</h5>
 <ul>
 <li>
-<nobr><code>public java.lang.Boolean getAllowMultiUpdate()</code></nobr>
+<nobr><code>public java.lang.String getMethodArguments()</code></nobr>
 </li>
 <li>
-<nobr><code>public java.lang.String getOutputs()</code></nobr>
+<nobr><code>public java.lang.Boolean getQualifyColumnNames()</code></nobr>
 </li>
 <li>
 <nobr><code>public java.lang.Boolean getRequiresAuthentication()</code></nobr>
@@ -261,10 +137,13 @@
 <nobr><code>public java.lang.String getRequiresRole()</code></nobr>
 </li>
 <li>
-<nobr><code>public void setAllowMultiUpdate(java.lang.Boolean)</code></nobr>
+<nobr><code>public java.lang.String getServerMethod()</code></nobr>
 </li>
 <li>
-<nobr><code>public void setOutputs(java.lang.String)</code></nobr>
+<nobr><code>public void setMethodArguments(java.lang.String)</code></nobr>
+</li>
+<li>
+<nobr><code>public void setQualifyColumnNames(java.lang.Boolean)</code></nobr>
 </li>
 <li>
 <nobr><code>public void setRequiresAuthentication(java.lang.Boolean)</code></nobr>
@@ -272,23 +151,34 @@
 <li>
 <nobr><code>public void setRequiresRole(java.lang.String)</code></nobr>
 </li>
+<li>
+<nobr><code>public void setServerMethod(java.lang.String)</code></nobr>
+</li>
 </ul>
 </blockquote>
 <h4>
-<code>com.smartgwt.client.data.WebService</code>
+<code>com.smartgwt.client.data.SimpleType</code>
 </h4>
 <blockquote>
-<h5>Method Changes:</h5>
-<blockquote>
-<p>
-<nobr><code><b>old:</b>public native void callOperation(java.lang.String, java.util.Map, java.lang.String, com.smartgwt.client.data.WebServiceCallback)<br>
-<b>new:</b>public void callOperation(java.lang.String, java.util.Map, java.lang.String, com.smartgwt.client.data.WebServiceCallback)</code></nobr>
-</p>
-</blockquote>
+<h5>Removed Constructors:</h5>
+<ul>
+<li>
+<nobr><code>public SimpleType()</code></nobr>
+</li>
+</ul>
+<h5>New Constructors:</h5>
+<ul>
+<li>
+<nobr><code>public SimpleType(java.lang.String, com.smartgwt.client.data.SimpleType)</code></nobr>
+</li>
+<li>
+<nobr><code>public SimpleType(java.lang.String, com.smartgwt.client.types.FieldType)</code></nobr>
+</li>
+</ul>
 <h5>New Methods:</h5>
 <ul>
 <li>
-<nobr><code>public native void callOperation(java.lang.String, java.util.Map, java.lang.String, com.smartgwt.client.data.WebServiceCallback, com.smartgwt.client.data.WSRequest)</code></nobr>
+<nobr><code>public void setInheritsFrom(com.smartgwt.client.types.FieldType)</code></nobr>
 </li>
 </ul>
 </blockquote>
@@ -299,104 +189,30 @@
 <h5>New Methods:</h5>
 <ul>
 <li>
-<nobr><code>private static com.smartgwt.client.rpc.RPCRequest[] convertToRPCRequestArray(com.google.gwt.core.client.JavaScriptObject)</code></nobr>
+<nobr><code>public static native void cancelQueue(java.lang.String)</code></nobr>
 </li>
 <li>
-<nobr><code>public static native void send(com.google.gwt.core.client.JavaScriptObject, com.smartgwt.client.rpc.RPCCallback, java.util.Map)</code></nobr>
+<nobr><code>public static native int getCurrentTransactionId()</code></nobr>
 </li>
 <li>
-<nobr><code>public static native void send(java.lang.String, com.smartgwt.client.rpc.RPCCallback, java.util.Map)</code></nobr>
+<nobr><code>public static native void send(com.google.gwt.core.client.JavaScriptObject, com.smartgwt.client.rpc.RPCCallback, com.smartgwt.client.rpc.RPCRequest)</code></nobr>
 </li>
 <li>
-<nobr><code>public static native void sendRequest(com.smartgwt.client.rpc.RPCRequest)</code></nobr>
+<nobr><code>public static native void send(java.lang.String, com.smartgwt.client.rpc.RPCCallback, com.smartgwt.client.rpc.RPCRequest)</code></nobr>
 </li>
 <li>
-<nobr><code>public static native void setQueueSentCallback(com.smartgwt.client.rpc.QueueSentCallback)</code></nobr>
+<nobr><code>public static native void sendRequest(com.smartgwt.client.rpc.RPCRequest, com.smartgwt.client.rpc.RPCCallback)</code></nobr>
 </li>
 </ul>
 </blockquote>
 <h4>
-<code>com.smartgwt.client.util.DateUtil</code>
-</h4>
-<blockquote>
-<h5>New Methods:</h5>
-<ul>
-<li>
-<nobr><code>public static native void setDefaultDisplayTimezone(java.lang.String)</code></nobr>
-</li>
-</ul>
-</blockquote>
-<h4>
-<code>com.smartgwt.client.util.EventHandler</code>
-</h4>
-<blockquote>
-<h5>Method Changes:</h5>
-<blockquote>
-<p>
-<nobr><code><b>old:</b>public native com.smartgwt.client.core.Rectangle getDragRect()<br>
-<b>new:</b>public static native com.smartgwt.client.core.Rectangle getDragRect()</code></nobr>
-</p>
-</blockquote>
-<h5>New Methods:</h5>
-<ul>
-<li>
-<nobr><code>public static native java.lang.String getKeyEventCharacter()</code></nobr>
-</li>
-<li>
-<nobr><code>public static native int getKeyEventCharacterValue()</code></nobr>
-</li>
-</ul>
-</blockquote>
-<h4>
-<code>com.smartgwt.client.util.Hover</code>
-</h4>
-<blockquote>
-<h5>New Methods:</h5>
-<ul>
-<li>
-<nobr><code>public static native com.smartgwt.client.widgets.Canvas getCanvas()</code></nobr>
-</li>
-</ul>
-</blockquote>
-<h4>
-<code>com.smartgwt.client.util.I18nUtil</code>
+<code>com.smartgwt.client.types.ListGridFieldType</code>
 </h4>
 <blockquote>
 <h5>New Fields:</h5>
 <ul>
 <li>
-<nobr><code>private static boolean initialized</code></nobr>
-</li>
-</ul>
-<h5>New Methods:</h5>
-<ul>
-<li>
-<nobr><code>static static {}</code></nobr>
-</li>
-</ul>
-</blockquote>
-<h4>
-<code>com.smartgwt.client.util.JSOHelper</code>
-</h4>
-<blockquote>
-<h5>New Methods:</h5>
-<ul>
-<li>
-<nobr><code>public static native com.google.gwt.core.client.JavaScriptObject eval(java.lang.String)</code></nobr>
-</li>
-<li>
-<nobr><code>public static native void setArrayValue(com.google.gwt.core.client.JavaScriptObject, int, int)</code></nobr>
-</li>
-</ul>
-</blockquote>
-<h4>
-<code>com.smartgwt.client.util.Page</code>
-</h4>
-<blockquote>
-<h5>New Methods:</h5>
-<ul>
-<li>
-<nobr><code>public static native void unregisterKey(java.lang.String)</code></nobr>
+<nobr><code>public static final com.smartgwt.client.types.ListGridFieldType SUMMARY</code></nobr>
 </li>
 </ul>
 </blockquote>
@@ -407,391 +223,85 @@
 <h5>New Methods:</h5>
 <ul>
 <li>
-<nobr><code>public static native java.lang.String getSCClassName(com.google.gwt.core.client.JavaScriptObject)</code></nobr>
+<nobr><code>public static native void setEnableJSDebugger(boolean)</code></nobr>
 </li>
 <li>
-<nobr><code>public static native void logEcho(com.google.gwt.core.client.JavaScriptObject)</code></nobr>
-</li>
-<li>
-<nobr><code>public static native void logEcho(com.smartgwt.client.widgets.Canvas)</code></nobr>
-</li>
-<li>
-<nobr><code>public static native void logEcho(com.smartgwt.client.widgets.Canvas, java.lang.String)</code></nobr>
-</li>
-<li>
-<nobr><code>public static native void logEchoAll(com.google.gwt.core.client.JavaScriptObject)</code></nobr>
-</li>
-<li>
-<nobr><code>public static native void logEchoAll(com.smartgwt.client.widgets.Canvas)</code></nobr>
-</li>
-<li>
-<nobr><code>public static native void logEchoAll(com.smartgwt.client.widgets.Canvas, java.lang.String)</code></nobr>
+<nobr><code>public static void warn(java.lang.String)</code></nobr>
 </li>
 </ul>
 </blockquote>
-<h4>
-<code>com.smartgwt.client.widgets.BaseWidget</code>
-</h4>
 <h4>
 <code>com.smartgwt.client.widgets.Canvas</code>
 </h4>
 <blockquote>
-<h5>Removed Methods:</h5>
-<ul>
-<li>
-<nobr><code>public native void animateMove(int, int)</code></nobr>
-</li>
-<li>
-<nobr><code>public native void animateMove(int, int, com.smartgwt.client.widgets.AnimationCallback)</code></nobr>
-</li>
-<li>
-<nobr><code>public native void animateMove(int, int, com.smartgwt.client.widgets.AnimationCallback, int)</code></nobr>
-</li>
-<li>
-<nobr><code>public native void animateMove(int, int, com.smartgwt.client.widgets.AnimationCallback, int, com.smartgwt.client.types.AnimationAcceleration)</code></nobr>
-</li>
-<li>
-<nobr><code>public native void animateRect(int, int, int, int)</code></nobr>
-</li>
-<li>
-<nobr><code>public native void animateRect(int, int, int, int, com.smartgwt.client.widgets.AnimationCallback)</code></nobr>
-</li>
-<li>
-<nobr><code>public native void animateRect(int, int, int, int, com.smartgwt.client.widgets.AnimationCallback, int)</code></nobr>
-</li>
-<li>
-<nobr><code>public native void animateResize(int, int)</code></nobr>
-</li>
-<li>
-<nobr><code>public native void animateResize(int, int, com.smartgwt.client.widgets.AnimationCallback)</code></nobr>
-</li>
-<li>
-<nobr><code>public native void animateResize(int, int, com.smartgwt.client.widgets.AnimationCallback, int)</code></nobr>
-</li>
-</ul>
 <h5>New Methods:</h5>
 <ul>
 <li>
-<nobr><code>public native void animateMove(java.lang.Integer, java.lang.Integer)</code></nobr>
+<nobr><code>public java.lang.String getDataPath()</code></nobr>
 </li>
 <li>
-<nobr><code>public native void animateMove(java.lang.Integer, java.lang.Integer, com.smartgwt.client.widgets.AnimationCallback)</code></nobr>
+<nobr><code>public native java.lang.String getFullDataPath()</code></nobr>
 </li>
 <li>
-<nobr><code>public native void animateMove(java.lang.Integer, java.lang.Integer, com.smartgwt.client.widgets.AnimationCallback, int)</code></nobr>
+<nobr><code>public com.smartgwt.client.widgets.form.ValuesManager getValuesManager()</code></nobr>
 </li>
 <li>
-<nobr><code>public native void animateMove(java.lang.Integer, java.lang.Integer, com.smartgwt.client.widgets.AnimationCallback, int, com.smartgwt.client.types.AnimationAcceleration)</code></nobr>
+<nobr><code>public void setDataPath(java.lang.String)</code></nobr>
 </li>
 <li>
-<nobr><code>public native void animateRect(java.lang.Integer, java.lang.Integer, java.lang.Integer, java.lang.Integer)</code></nobr>
-</li>
-<li>
-<nobr><code>public native void animateRect(java.lang.Integer, java.lang.Integer, java.lang.Integer, java.lang.Integer, com.smartgwt.client.widgets.AnimationCallback)</code></nobr>
-</li>
-<li>
-<nobr><code>public native void animateRect(java.lang.Integer, java.lang.Integer, java.lang.Integer, java.lang.Integer, com.smartgwt.client.widgets.AnimationCallback, int)</code></nobr>
-</li>
-<li>
-<nobr><code>public native void animateResize(java.lang.Integer, java.lang.Integer)</code></nobr>
-</li>
-<li>
-<nobr><code>public native void animateResize(java.lang.Integer, java.lang.Integer, com.smartgwt.client.widgets.AnimationCallback)</code></nobr>
-</li>
-<li>
-<nobr><code>public native void animateResize(java.lang.Integer, java.lang.Integer, com.smartgwt.client.widgets.AnimationCallback, int)</code></nobr>
-</li>
-<li>
-<nobr><code>public java.lang.String getLeftAsString()</code></nobr>
-</li>
-<li>
-<nobr><code>public java.lang.String getTopAsString()</code></nobr>
-</li>
-<li>
-<nobr><code>public void setLeft(java.lang.String)</code></nobr>
-</li>
-<li>
-<nobr><code>public void setTop(java.lang.String)</code></nobr>
-</li>
-</ul>
-</blockquote>
-<h4>
-<code>com.smartgwt.client.widgets.Dialog</code>
-</h4>
-<blockquote>
-<h5>Removed Methods:</h5>
-<ul>
-<li>
-<nobr><code>public native void doneClick()</code></nobr>
+<nobr><code>public void setValuesManager(com.smartgwt.client.widgets.form.ValuesManager)</code></nobr>
 </li>
 </ul>
 </blockquote>
 <h4>
 <code>com.smartgwt.client.widgets.calendar.Calendar</code>
 </h4>
-<blockquote>
-<h5>Removed Methods:</h5>
-<ul>
-<li>
-<nobr><code>public native java.lang.String getCurrentViewName()</code></nobr>
-</li>
-<li>
-<nobr><code>public java.lang.Boolean getShowTimelineView()</code></nobr>
-</li>
-<li>
-<nobr><code>public void setShowTimelineView(java.lang.Boolean)</code></nobr>
-</li>
-</ul>
-<h5>Method Changes:</h5>
-<blockquote>
-<p>
-<nobr><code><b>old:</b>public void setChosenDate(java.util.Date) throws java.lang.IllegalStateException<br>
-<b>new:</b>public void setChosenDate(java.util.Date)</code></nobr>
-</p>
-</blockquote>
 <h5>New Methods:</h5>
 <ul>
 <li>
-<nobr><code>public java.lang.String getAddEventButtonHoverText()</code></nobr>
+<nobr><code>public com.smartgwt.client.types.ViewName getCurrentViewName()</code></nobr>
 </li>
 <li>
-<nobr><code>public com.smartgwt.client.types.TextMatchStyle getAutoFetchTextMatchStyle()</code></nobr>
+<nobr><code>public com.smartgwt.client.types.FetchMode getDataFetchMode()</code></nobr>
 </li>
 <li>
-<nobr><code>public java.lang.String getCancelButtonTitle()</code></nobr>
+<nobr><code>public com.smartgwt.client.data.RecordList getRecordList()</code></nobr>
 </li>
 <li>
-<nobr><code>public java.lang.String getDatePickerHoverText()</code></nobr>
-</li>
-<li>
-<nobr><code>public java.lang.String getDayViewTitle()</code></nobr>
-</li>
-<li>
-<nobr><code>public java.lang.String getDetailsButtonTitle()</code></nobr>
-</li>
-<li>
-<nobr><code>public java.lang.String getEventNameFieldTitle()</code></nobr>
-</li>
-<li>
-<nobr><code>public java.lang.String getMonthViewTitle()</code></nobr>
-</li>
-<li>
-<nobr><code>public java.lang.String getNextButtonHoverText()</code></nobr>
-</li>
-<li>
-<nobr><code>public java.lang.String getPreviousButtonHoverText()</code></nobr>
-</li>
-<li>
-<nobr><code>public com.smartgwt.client.data.ResultSet getResultSet() throws java.lang.IllegalStateException</code></nobr>
-</li>
-<li>
-<nobr><code>public java.lang.String getSaveButtonTitle()</code></nobr>
-</li>
-<li>
-<nobr><code>public java.lang.String getTimelineViewTitle()</code></nobr>
-</li>
-<li>
-<nobr><code>public java.lang.String getWeekViewTitle()</code></nobr>
-</li>
-<li>
-<nobr><code>public native void selectTab(int)</code></nobr>
-</li>
-<li>
-<nobr><code>public void setAddEventButtonHoverText(java.lang.String) throws java.lang.IllegalStateException</code></nobr>
-</li>
-<li>
-<nobr><code>public void setAutoFetchTextMatchStyle(com.smartgwt.client.types.TextMatchStyle) throws java.lang.IllegalStateException</code></nobr>
-</li>
-<li>
-<nobr><code>public void setCancelButtonTitle(java.lang.String) throws java.lang.IllegalStateException</code></nobr>
-</li>
-<li>
-<nobr><code>public void setCurrentViewName(com.smartgwt.client.types.ViewName) throws java.lang.IllegalStateException</code></nobr>
-</li>
-<li>
-<nobr><code>public void setData(com.smartgwt.client.data.RecordList)</code></nobr>
-</li>
-<li>
-<nobr><code>public void setDatePickerHoverText(java.lang.String) throws java.lang.IllegalStateException</code></nobr>
-</li>
-<li>
-<nobr><code>public void setDayViewTitle(java.lang.String) throws java.lang.IllegalStateException</code></nobr>
-</li>
-<li>
-<nobr><code>public void setDetailsButtonTitle(java.lang.String) throws java.lang.IllegalStateException</code></nobr>
-</li>
-<li>
-<nobr><code>public void setEventNameFieldTitle(java.lang.String) throws java.lang.IllegalStateException</code></nobr>
-</li>
-<li>
-<nobr><code>public void setMonthViewTitle(java.lang.String) throws java.lang.IllegalStateException</code></nobr>
-</li>
-<li>
-<nobr><code>public void setNextButtonHoverText(java.lang.String) throws java.lang.IllegalStateException</code></nobr>
-</li>
-<li>
-<nobr><code>public void setPreviousButtonHoverText(java.lang.String) throws java.lang.IllegalStateException</code></nobr>
-</li>
-<li>
-<nobr><code>public void setSaveButtonTitle(java.lang.String) throws java.lang.IllegalStateException</code></nobr>
-</li>
-<li>
-<nobr><code>public void setTimelineViewTitle(java.lang.String) throws java.lang.IllegalStateException</code></nobr>
-</li>
-<li>
-<nobr><code>public void setWeekViewTitle(java.lang.String) throws java.lang.IllegalStateException</code></nobr>
+<nobr><code>public void setDataFetchMode(com.smartgwt.client.types.FetchMode)</code></nobr>
 </li>
 </ul>
-</blockquote>
-<h4>
-<code>com.smartgwt.client.widgets.calendar.events.CalendarEventMoved</code>
-</h4>
-<blockquote>
-<h5>Declaration Changes:</h5>
-<blockquote>
-<p>
-<nobr><code><b>old:</b>public class com.smartgwt.client.widgets.calendar.events.CalendarEventMoved extends com.smartgwt.client.widgets.events.BrowserEvent<br>
-<b>new:</b>public class com.smartgwt.client.widgets.calendar.events.CalendarEventMoved extends com.smartgwt.client.widgets.events.BrowserEvent implements com.smartgwt.client.event.Cancellable</code></nobr>
-</p>
-</blockquote>
-<h5>New Fields:</h5>
-<ul>
-<li>
-<nobr><code>private boolean cancel</code></nobr>
-</li>
-</ul>
-<h5>New Methods:</h5>
-<ul>
-<li>
-<nobr><code>public void cancel()</code></nobr>
-</li>
-<li>
-<nobr><code>public boolean isCancelled()</code></nobr>
-</li>
-</ul>
-</blockquote>
-<h4>
-<code>com.smartgwt.client.widgets.calendar.events.CalendarEventResized</code>
-</h4>
-<blockquote>
-<h5>Declaration Changes:</h5>
-<blockquote>
-<p>
-<nobr><code><b>old:</b>public class com.smartgwt.client.widgets.calendar.events.CalendarEventResized extends com.smartgwt.client.widgets.events.BrowserEvent<br>
-<b>new:</b>public class com.smartgwt.client.widgets.calendar.events.CalendarEventResized extends com.smartgwt.client.widgets.events.BrowserEvent implements com.smartgwt.client.event.Cancellable</code></nobr>
-</p>
-</blockquote>
-<h5>New Fields:</h5>
-<ul>
-<li>
-<nobr><code>private boolean cancel</code></nobr>
-</li>
-</ul>
-<h5>New Methods:</h5>
-<ul>
-<li>
-<nobr><code>public void cancel()</code></nobr>
-</li>
-<li>
-<nobr><code>public boolean isCancelled()</code></nobr>
-</li>
-</ul>
-</blockquote>
-<h4>
-<code>com.smartgwt.client.widgets.calendar.events.DayHeaderClickEvent</code>
-</h4>
-<blockquote>
-<h5>Declaration Changes:</h5>
-<blockquote>
-<p>
-<nobr><code><b>old:</b>public class com.smartgwt.client.widgets.calendar.events.DayHeaderClickEvent extends com.smartgwt.client.widgets.events.BrowserEvent<br>
-<b>new:</b>public class com.smartgwt.client.widgets.calendar.events.DayHeaderClickEvent extends com.smartgwt.client.widgets.events.BrowserEvent implements com.smartgwt.client.event.Cancellable</code></nobr>
-</p>
-</blockquote>
-<h5>New Fields:</h5>
-<ul>
-<li>
-<nobr><code>private boolean cancel</code></nobr>
-</li>
-</ul>
-<h5>New Methods:</h5>
-<ul>
-<li>
-<nobr><code>public void cancel()</code></nobr>
-</li>
-<li>
-<nobr><code>public boolean isCancelled()</code></nobr>
-</li>
-</ul>
-</blockquote>
+
 <h4>
 <code>com.smartgwt.client.widgets.form.DynamicForm</code>
 </h4>
-<blockquote>
 <h5>New Methods:</h5>
 <ul>
 <li>
-<nobr><code>public com.smartgwt.client.types.TextMatchStyle getAutoFetchTextMatchStyle()</code></nobr>
+<nobr><code>public com.google.gwt.event.shared.HandlerRegistration addFormSubmitFailedHandler(com.smartgwt.client.widgets.form.events.FormSubmitFailedHandler)</code></nobr>
 </li>
 <li>
-<nobr><code>public com.smartgwt.client.data.ResultSet getResultSet() throws java.lang.IllegalStateException</code></nobr>
+<nobr><code>public com.smartgwt.client.types.FetchMode getDataFetchMode()</code></nobr>
 </li>
 <li>
-<nobr><code>public void setAutoFetchTextMatchStyle(com.smartgwt.client.types.TextMatchStyle) throws java.lang.IllegalStateException</code></nobr>
+<nobr><code>public java.lang.String getFormSubmitFailedWarning()</code></nobr>
+</li>
+<li>
+<nobr><code>public com.smartgwt.client.data.RecordList getRecordList()</code></nobr>
+</li>
+<li>
+<nobr><code>public void setDataFetchMode(com.smartgwt.client.types.FetchMode)</code></nobr>
+</li>
+<li>
+<nobr><code>public void setFormSubmitFailedWarning(java.lang.String)</code></nobr>
+</li>
+<li>
+<nobr><code>private native void setupFormSubmitFailedEvent()</code></nobr>
+</li>
+<li>
+<nobr><code>public native boolean valuesAreValid(boolean)</code></nobr>
 </li>
 </ul>
-</blockquote>
-<h4>
-<code>com.smartgwt.client.widgets.form.FilterBuilder</code>
-</h4>
-<blockquote>
-<h5>Declaration Changes:</h5>
-<blockquote>
-<p>
-<nobr><code><b>old:</b>public class com.smartgwt.client.widgets.form.FilterBuilder extends com.smartgwt.client.widgets.layout.Layout implements com.smartgwt.client.widgets.form.events.HasFilterChangedHandlers<br>
-<b>new:</b>public class com.smartgwt.client.widgets.form.FilterBuilder extends com.smartgwt.client.widgets.layout.Layout implements com.smartgwt.client.widgets.form.events.HasFilterChangedHandlers, com.smartgwt.client.widgets.form.events.HasSearchHandlers</code></nobr>
-</p>
-</blockquote>
-<h5>New Methods:</h5>
-<ul>
-<li>
-<nobr><code>public com.google.gwt.event.shared.HandlerRegistration addSearchHandler(com.smartgwt.client.widgets.form.events.SearchHandler)</code></nobr>
-</li>
-<li>
-<nobr><code>public java.lang.String getAddButtonPrompt()</code></nobr>
-</li>
-<li>
-<nobr><code>public java.lang.String getRemoveButtonPrompt()</code></nobr>
-</li>
-<li>
-<nobr><code>public java.lang.String getSubClauseButtonPrompt()</code></nobr>
-</li>
-<li>
-<nobr><code>public java.lang.String getSubClauseButtonTitle()</code></nobr>
-</li>
-<li>
-<nobr><code>public java.lang.Boolean getValidateOnChange()</code></nobr>
-</li>
-<li>
-<nobr><code>public void setAddButtonPrompt(java.lang.String) throws java.lang.IllegalStateException</code></nobr>
-</li>
-<li>
-<nobr><code>public void setRemoveButtonPrompt(java.lang.String) throws java.lang.IllegalStateException</code></nobr>
-</li>
-<li>
-<nobr><code>public void setSubClauseButtonPrompt(java.lang.String) throws java.lang.IllegalStateException</code></nobr>
-</li>
-<li>
-<nobr><code>public void setSubClauseButtonTitle(java.lang.String) throws java.lang.IllegalStateException</code></nobr>
-</li>
-<li>
-<nobr><code>public void setValidateOnChange(java.lang.Boolean) throws java.lang.IllegalStateException</code></nobr>
-</li>
-<li>
-<nobr><code>private native void setupSearchEvent()</code></nobr>
-</li>
-</ul>
-</blockquote>
 <h4>
 <code>com.smartgwt.client.widgets.form.ValuesManager</code>
 </h4>
@@ -799,10 +309,10 @@
 <h5>New Methods:</h5>
 <ul>
 <li>
-<nobr><code>private static com.smartgwt.client.widgets.form.DynamicForm[] convertToDynamicFormArray(com.google.gwt.core.client.JavaScriptObject)</code></nobr>
+<nobr><code>public native void clearValue(java.lang.String)</code></nobr>
 </li>
 <li>
-<nobr><code>public com.smartgwt.client.widgets.form.DynamicForm[] getMembers()</code></nobr>
+<nobr><code>public native com.smartgwt.client.widgets.form.fields.FormItem getItem(java.lang.String)</code></nobr>
 </li>
 </ul>
 </blockquote>
@@ -813,16 +323,10 @@
 <h5>New Methods:</h5>
 <ul>
 <li>
-<nobr><code>public native com.smartgwt.client.widgets.grid.ListGridRecord[] filterClientPickListData()</code></nobr>
+<nobr><code>public java.lang.Boolean getShowHintInField()</code></nobr>
 </li>
 <li>
-<nobr><code>public native com.smartgwt.client.widgets.grid.ListGridRecord[] getClientPickListData()</code></nobr>
-</li>
-<li>
-<nobr><code>public com.smartgwt.client.data.DataSource getOptionDataSource()</code></nobr>
-</li>
-<li>
-<nobr><code>public native void setPickListFilterCriteriaFunction(com.smartgwt.client.widgets.form.fields.FilterCriteriaFunction)</code></nobr>
+<nobr><code>public void setShowHintInField(java.lang.Boolean)</code></nobr>
 </li>
 </ul>
 </blockquote>
@@ -833,7 +337,35 @@
 <h5>Removed Methods:</h5>
 <ul>
 <li>
-<nobr><code>public com.smartgwt.client.types.DateDisplayFormat getDateFormatter()</code></nobr>
+<nobr><code>public void setSelectorFormat(java.lang.String)</code></nobr>
+</li>
+</ul>
+<h5>Method Changes:</h5>
+<blockquote>
+<p>
+<nobr><code><b>old:</b>public java.lang.String getSelectorFormat()<br>
+<b>new:</b>public com.smartgwt.client.types.DateItemSelectorFormat getSelectorFormat()</code></nobr>
+</p>
+</blockquote>
+<h5>New Methods:</h5>
+<ul>
+<li>
+<nobr><code>public native void deselectValue()</code></nobr>
+</li>
+<li>
+<nobr><code>public native void deselectValue(boolean)</code></nobr>
+</li>
+<li>
+<nobr><code>public native int[] getSelectionRange()</code></nobr>
+</li>
+<li>
+<nobr><code>public native void selectValue()</code></nobr>
+</li>
+<li>
+<nobr><code>public native void setSelectionRange(int, int)</code></nobr>
+</li>
+<li>
+<nobr><code>public void setSelectorFormat(com.smartgwt.client.types.DateItemSelectorFormat)</code></nobr>
 </li>
 </ul>
 </blockquote>
@@ -847,25 +379,35 @@
 <nobr><code>public native void clearValue()</code></nobr>
 </li>
 <li>
-<nobr><code>public native com.smartgwt.client.widgets.form.DynamicForm getForm()</code></nobr>
+<nobr><code>public java.lang.String getDataPath()</code></nobr>
 </li>
 <li>
-<nobr><code>public com.smartgwt.client.data.Criteria getOptionCriteria()</code></nobr>
+<nobr><code>public void setDataPath(java.lang.String)</code></nobr>
+</li>
+</ul>
+</blockquote>
+<h4>
+<code>com.smartgwt.client.widgets.form.fields.FormItemIcon</code>
+</h4>
+<blockquote>
+<h5>New Methods:</h5>
+<ul>
+<li>
+<nobr><code>public com.google.gwt.event.shared.HandlerRegistration addFormItemClickHandler(com.smartgwt.client.widgets.form.fields.events.FormItemClickHandler)</code></nobr>
 </li>
 <li>
-<nobr><code>public com.smartgwt.client.rpc.RPCRequest getOptionFilterContext()</code></nobr>
+<nobr><code>private native void setupFormItemClickEvent()</code></nobr>
 </li>
+</ul>
+</blockquote>
+<h4>
+<code>com.smartgwt.client.widgets.form.fields.SectionItem</code>
+</h4>
+<blockquote>
+<h5>New Methods:</h5>
+<ul>
 <li>
-<nobr><code>public java.lang.String getOptionOperationId()</code></nobr>
-</li>
-<li>
-<nobr><code>public void setOptionCriteria(com.smartgwt.client.data.Criteria)</code></nobr>
-</li>
-<li>
-<nobr><code>public void setOptionFilterContext(com.smartgwt.client.rpc.RPCRequest)</code></nobr>
-</li>
-<li>
-<nobr><code>public void setOptionOperationId(java.lang.String)</code></nobr>
+<nobr><code>public native java.lang.Boolean isExpanded()</code></nobr>
 </li>
 </ul>
 </blockquote>
@@ -876,72 +418,97 @@
 <h5>New Methods:</h5>
 <ul>
 <li>
-<nobr><code>public native com.smartgwt.client.widgets.grid.ListGridRecord[] filterClientPickListData()</code></nobr>
+<nobr><code>public java.lang.Boolean getShowHintInField()</code></nobr>
 </li>
 <li>
-<nobr><code>public native com.smartgwt.client.widgets.grid.ListGridRecord[] getClientPickListData()</code></nobr>
-</li>
-<li>
-<nobr><code>public com.smartgwt.client.data.DataSource getOptionDataSource()</code></nobr>
-</li>
-<li>
-<nobr><code>public native void setPickListFilterCriteriaFunction(com.smartgwt.client.widgets.form.fields.FilterCriteriaFunction)</code></nobr>
+<nobr><code>public void setShowHintInField(java.lang.Boolean)</code></nobr>
 </li>
 </ul>
 </blockquote>
 <h4>
-<code>com.smartgwt.client.widgets.form.validator.LengthRangeValidator</code>
-</h4>
-<blockquote>
-<h5>Removed Methods:</h5>
-<ul>
-<li>
-<nobr><code>public void setMax(java.lang.String)</code></nobr>
-</li>
-<li>
-<nobr><code>public void setMin(java.lang.String)</code></nobr>
-</li>
-</ul>
-<h5>Method Changes:</h5>
-<blockquote>
-<p>
-<nobr><code><b>old:</b>public java.lang.String getMax()<br>
-<b>new:</b>public java.lang.Integer getMax()</code></nobr>
-</p>
-</blockquote>
-<blockquote>
-<p>
-<nobr><code><b>old:</b>public java.lang.String getMin()<br>
-<b>new:</b>public java.lang.Integer getMin()</code></nobr>
-</p>
-</blockquote>
-<h5>New Methods:</h5>
-<ul>
-<li>
-<nobr><code>public void setMax(java.lang.Integer)</code></nobr>
-</li>
-<li>
-<nobr><code>public void setMin(java.lang.Integer)</code></nobr>
-</li>
-</ul>
-</blockquote>
-<h4>
-<code>com.smartgwt.client.widgets.form.validator.Validator</code>
+<code>com.smartgwt.client.widgets.form.fields.TextAreaItem</code>
 </h4>
 <blockquote>
 <h5>New Methods:</h5>
 <ul>
 <li>
-<nobr><code>public java.lang.String getServerCondition()</code></nobr>
+<nobr><code>public native void deselectValue()</code></nobr>
 </li>
 <li>
-<nobr><code>public java.lang.Boolean getServerOnly()</code></nobr>
+<nobr><code>public native void deselectValue(boolean)</code></nobr>
 </li>
 <li>
-<nobr><code>public void setServerCondition(java.lang.String)</code></nobr>
+<nobr><code>public native int[] getSelectionRange()</code></nobr>
 </li>
 <li>
-<nobr><code>public void setServerOnly(java.lang.Boolean)</code></nobr>
+<nobr><code>public java.lang.Boolean getShowHintInField()</code></nobr>
+</li>
+<li>
+<nobr><code>public native void selectValue()</code></nobr>
+</li>
+<li>
+<nobr><code>public native void setSelectionRange(int, int)</code></nobr>
+</li>
+<li>
+<nobr><code>public void setShowHintInField(java.lang.Boolean)</code></nobr>
+</li>
+</ul>
+</blockquote>
+<h4>
+<code>com.smartgwt.client.widgets.form.fields.TextItem</code>
+</h4>
+<blockquote>
+<h5>New Methods:</h5>
+<ul>
+<li>
+<nobr><code>public native void deselectValue()</code></nobr>
+</li>
+<li>
+<nobr><code>public native void deselectValue(boolean)</code></nobr>
+</li>
+<li>
+<nobr><code>public java.lang.String getMask()</code></nobr>
+</li>
+<li>
+<nobr><code>public java.lang.String getMaskPadChar()</code></nobr>
+</li>
+<li>
+<nobr><code>public java.lang.String getMaskPromptChar()</code></nobr>
+</li>
+<li>
+<nobr><code>public java.lang.Boolean getMaskSaveLiterals()</code></nobr>
+</li>
+<li>
+<nobr><code>public native int[] getSelectionRange()</code></nobr>
+</li>
+<li>
+<nobr><code>public native void selectValue()</code></nobr>
+</li>
+<li>
+<nobr><code>public void setMask(java.lang.String)</code></nobr>
+</li>
+<li>
+<nobr><code>public void setMaskPadChar(java.lang.String)</code></nobr>
+</li>
+<li>
+<nobr><code>public void setMaskPromptChar(java.lang.String)</code></nobr>
+</li>
+<li>
+<nobr><code>public void setMaskSaveLiterals(java.lang.Boolean)</code></nobr>
+</li>
+<li>
+<nobr><code>public native void setSelectionRange(int, int)</code></nobr>
+</li>
+</ul>
+</blockquote>
+<h4>
+<code>com.smartgwt.client.widgets.form.validator.RegExpValidator</code>
+</h4>
+<blockquote>
+<h5>New Constructors:</h5>
+<ul>
+<li>
+<nobr><code>public RegExpValidator(java.lang.String)</code></nobr>
 </li>
 </ul>
 </blockquote>
@@ -952,13 +519,13 @@
 <h5>New Methods:</h5>
 <ul>
 <li>
-<nobr><code>public com.smartgwt.client.types.TextMatchStyle getAutoFetchTextMatchStyle()</code></nobr>
+<nobr><code>public com.smartgwt.client.types.FetchMode getDataFetchMode()</code></nobr>
 </li>
 <li>
-<nobr><code>public com.smartgwt.client.data.ResultSet getResultSet() throws java.lang.IllegalStateException</code></nobr>
+<nobr><code>public com.smartgwt.client.data.RecordList getRecordList()</code></nobr>
 </li>
 <li>
-<nobr><code>public void setAutoFetchTextMatchStyle(com.smartgwt.client.types.TextMatchStyle) throws java.lang.IllegalStateException</code></nobr>
+<nobr><code>public void setDataFetchMode(com.smartgwt.client.types.FetchMode)</code></nobr>
 </li>
 </ul>
 </blockquote>
@@ -966,88 +533,113 @@
 <code>com.smartgwt.client.widgets.grid.ListGrid</code>
 </h4>
 <blockquote>
-<h5>Removed Methods:</h5>
-<ul>
-<li>
-<nobr><code>public native java.lang.Boolean willFetchData(com.smartgwt.client.data.Criteria, java.lang.String)</code></nobr>
-</li>
-</ul>
+<h5>Method Changes:</h5>
+<blockquote>
+<p>
+<nobr><code><b>old:</b>public void setAlwaysShowEditors(java.lang.Boolean)<br>
+<b>new:</b>public void setAlwaysShowEditors(java.lang.Boolean)</code></nobr>
+</p>
+</blockquote>
+<blockquote>
+<p>
+<nobr><code><b>old:</b>public void setSelectionAppearance(com.smartgwt.client.types.SelectionAppearance)<br>
+<b>new:</b>public void setSelectionAppearance(com.smartgwt.client.types.SelectionAppearance)</code></nobr>
+</p>
+</blockquote>
 <h5>New Methods:</h5>
 <ul>
 <li>
-<nobr><code>public native void discardAllEdits(int[], boolean)</code></nobr>
+<nobr><code>public native boolean fieldIsVisible(java.lang.String)</code></nobr>
 </li>
 <li>
-<nobr><code>public java.lang.Boolean getAlwaysShowEditors()</code></nobr>
+<nobr><code>public native com.smartgwt.client.widgets.grid.ListGridField[] getAllFields()</code></nobr>
 </li>
 <li>
-<nobr><code>public com.smartgwt.client.types.TextMatchStyle getAutoFetchTextMatchStyle()</code></nobr>
+<nobr><code>public com.smartgwt.client.data.RecordList getDataAsRecordList()</code></nobr>
 </li>
 <li>
-<nobr><code>public java.lang.Boolean getCanSelectAll()</code></nobr>
+<nobr><code>public com.smartgwt.client.types.FetchMode getDataFetchMode()</code></nobr>
 </li>
 <li>
-<nobr><code>public com.smartgwt.client.types.DateDisplayFormat getDatetimeFormatter()</code></nobr>
+<nobr><code>public com.smartgwt.client.widgets.grid.ListGridField[] getDefaultFields()</code></nobr>
 </li>
 <li>
-<nobr><code>public java.lang.Boolean getEnforceVClipping()</code></nobr>
+<nobr><code>public java.lang.String getGridSummaryRecordProperty()</code></nobr>
 </li>
 <li>
-<nobr><code>public java.lang.Boolean getFixedFieldWidths()</code></nobr>
+<nobr><code>public java.lang.String getGroupSummaryRecordProperty()</code></nobr>
 </li>
 <li>
-<nobr><code>public com.smartgwt.client.widgets.tree.Tree getGroupTree()</code></nobr>
+<nobr><code>public java.lang.String getGroupSummaryStyle()</code></nobr>
 </li>
 <li>
-<nobr><code>public int getMinFieldWidth()</code></nobr>
+<nobr><code>public java.lang.String getIncludeInSummaryProperty()</code></nobr>
 </li>
 <li>
-<nobr><code>public com.smartgwt.client.data.ResultSet getResultSet() throws java.lang.IllegalStateException</code></nobr>
+<nobr><code>public java.lang.String getInvalidSummaryValue()</code></nobr>
 </li>
 <li>
-<nobr><code>public boolean isGrouped()</code></nobr>
+<nobr><code>public com.smartgwt.client.data.RecordList getRecordList()</code></nobr>
 </li>
 <li>
-<nobr><code>public native void rowClick(com.smartgwt.client.widgets.grid.ListGridRecord, int, int)</code></nobr>
+<nobr><code>public java.lang.String getRecordSummaryBaseStyle()</code></nobr>
 </li>
 <li>
-<nobr><code>public native void rowDoubleClick(com.smartgwt.client.widgets.grid.ListGridRecord, int, int)</code></nobr>
+<nobr><code>public java.lang.Boolean getShowGridSummary()</code></nobr>
 </li>
 <li>
-<nobr><code>public native void saveAllEdits(com.smartgwt.client.core.Function)</code></nobr>
+<nobr><code>public java.lang.Boolean getShowGroupSummary()</code></nobr>
 </li>
 <li>
-<nobr><code>public native void saveAllEdits(com.smartgwt.client.core.Function, int[])</code></nobr>
+<nobr><code>public int getSummaryRowHeight()</code></nobr>
 </li>
 <li>
-<nobr><code>public void setAlwaysShowEditors(java.lang.Boolean)</code></nobr>
+<nobr><code>public java.lang.String getSummaryRowStyle()</code></nobr>
 </li>
 <li>
-<nobr><code>public void setAutoFetchTextMatchStyle(com.smartgwt.client.types.TextMatchStyle) throws java.lang.IllegalStateException</code></nobr>
+<nobr><code>public native void markForRedraw()</code></nobr>
 </li>
 <li>
-<nobr><code>public void setCanSelectAll(java.lang.Boolean)</code></nobr>
+<nobr><code>public native void markForRedraw(java.lang.String)</code></nobr>
 </li>
 <li>
-<nobr><code>public void setData(com.smartgwt.client.data.RecordList)</code></nobr>
+<nobr><code>public void setDataFetchMode(com.smartgwt.client.types.FetchMode)</code></nobr>
 </li>
 <li>
-<nobr><code>public void setDataProperties(com.smartgwt.client.data.ResultSet)</code></nobr>
+<nobr><code>public void setDefaultFields(com.smartgwt.client.widgets.grid.ListGridField[])</code></nobr>
 </li>
 <li>
-<nobr><code>public void setDatetimeFormatter(com.smartgwt.client.types.DateDisplayFormat)</code></nobr>
+<nobr><code>public void setGridSummaryRecordProperty(java.lang.String)</code></nobr>
 </li>
 <li>
-<nobr><code>public void setEnforceVClipping(java.lang.Boolean)</code></nobr>
+<nobr><code>public void setGroupSummaryRecordProperty(java.lang.String)</code></nobr>
 </li>
 <li>
-<nobr><code>public void setFixedFieldWidths(java.lang.Boolean)</code></nobr>
+<nobr><code>public void setGroupSummaryStyle(java.lang.String)</code></nobr>
 </li>
 <li>
-<nobr><code>public void setMinFieldWidth(int)</code></nobr>
+<nobr><code>public void setIncludeInSummaryProperty(java.lang.String)</code></nobr>
 </li>
 <li>
-<nobr><code>public native java.lang.Boolean willFetchData(com.smartgwt.client.data.Criteria, com.smartgwt.client.types.TextMatchStyle)</code></nobr>
+<nobr><code>public void setInvalidSummaryValue(java.lang.String)</code></nobr>
+</li>
+<li>
+<nobr><code>public void setRecordSummaryBaseStyle(java.lang.String)</code></nobr>
+</li>
+<li>
+<nobr><code>public void setShowGridSummary(java.lang.Boolean)</code></nobr>
+</li>
+<li>
+<nobr><code>public void setShowGroupSummary(java.lang.Boolean)</code></nobr>
+</li>
+<li>
+<nobr><code>public void setSummaryRowHeight(int)</code></nobr>
+</li>
+<li>
+<nobr><code>public void setSummaryRowStyle(java.lang.String)</code></nobr>
+</li>
+<li>
+<nobr><code>public native void setValueMap(java.lang.String, java.lang.String[])</code></nobr>
 </li>
 </ul>
 </blockquote>
@@ -1058,31 +650,55 @@
 <h5>New Methods:</h5>
 <ul>
 <li>
-<nobr><code>public com.smartgwt.client.data.DSRequest getOptionFilterContext()</code></nobr>
+<nobr><code>public java.lang.Boolean getCanExport()</code></nobr>
 </li>
 <li>
-<nobr><code>public java.lang.String getOptionOperationId()</code></nobr>
+<nobr><code>public java.lang.Boolean getIncludeInRecordSummary()</code></nobr>
 </li>
 <li>
-<nobr><code>public com.smartgwt.client.types.TextMatchStyle getOptionTextMatchStyle()</code></nobr>
+<nobr><code>public java.lang.Boolean getPartialSummary()</code></nobr>
 </li>
 <li>
-<nobr><code>public java.lang.Boolean getShowFileInline()</code></nobr>
+<nobr><code>public com.smartgwt.client.types.RecordSummaryFunctionType getRecordSummaryFunction()</code></nobr>
 </li>
 <li>
-<nobr><code>public void setHeaderButtonProperties(com.smartgwt.client.widgets.Button)</code></nobr>
+<nobr><code>public java.lang.Boolean getShowGridSummary()</code></nobr>
 </li>
 <li>
-<nobr><code>public void setOptionFilterContext(com.smartgwt.client.data.DSRequest)</code></nobr>
+<nobr><code>public java.lang.Boolean getShowGroupSummary()</code></nobr>
 </li>
 <li>
-<nobr><code>public void setOptionOperationId(java.lang.String)</code></nobr>
+<nobr><code>public com.smartgwt.client.types.SummaryFunctionType getSummaryFunction()</code></nobr>
 </li>
 <li>
-<nobr><code>public void setOptionTextMatchStyle(com.smartgwt.client.types.TextMatchStyle)</code></nobr>
+<nobr><code>public void setCanExport(java.lang.Boolean)</code></nobr>
 </li>
 <li>
-<nobr><code>public void setShowFileInline(java.lang.Boolean)</code></nobr>
+<nobr><code>public void setIncludeInRecordSummary(java.lang.Boolean)</code></nobr>
+</li>
+<li>
+<nobr><code>public void setPartialSummary(java.lang.Boolean)</code></nobr>
+</li>
+<li>
+<nobr><code>public void setRecordSummaryFunction(com.smartgwt.client.types.RecordSummaryFunctionType)</code></nobr>
+</li>
+<li>
+<nobr><code>public native void setRecordSummaryFunction(com.smartgwt.client.widgets.grid.RecordSummaryFunction)</code></nobr>
+</li>
+<li>
+<nobr><code>public void setShowGridSummary(java.lang.Boolean)</code></nobr>
+</li>
+<li>
+<nobr><code>public void setShowGroupSummary(java.lang.Boolean)</code></nobr>
+</li>
+<li>
+<nobr><code>public void setSummaryFunction(com.smartgwt.client.types.SummaryFunctionType)</code></nobr>
+</li>
+<li>
+<nobr><code>public native void setSummaryFunction(com.smartgwt.client.widgets.grid.SummaryFunction)</code></nobr>
+</li>
+<li>
+<nobr><code>public void setWrap(boolean)</code></nobr>
 </li>
 </ul>
 </blockquote>
@@ -1093,137 +709,36 @@
 <h5>New Methods:</h5>
 <ul>
 <li>
-<nobr><code>public java.lang.String getCustomStyle()</code></nobr>
+<nobr><code>public java.lang.Boolean getIncludeInSummary()</code></nobr>
 </li>
 <li>
-<nobr><code>public java.lang.String get_baseStyle()</code></nobr>
+<nobr><code>public java.lang.Boolean getIsGridSummary()</code></nobr>
 </li>
 <li>
-<nobr><code>public void setCustomStyle(java.lang.String)</code></nobr>
+<nobr><code>public java.lang.Boolean getIsGroupSummary()</code></nobr>
 </li>
 <li>
-<nobr><code>public void set_baseStyle(java.lang.String)</code></nobr>
+<nobr><code>public void setIncludeInSummary(java.lang.Boolean)</code></nobr>
+</li>
+<li>
+<nobr><code>public void setIsGridSummary(java.lang.Boolean)</code></nobr>
+</li>
+<li>
+<nobr><code>public void setIsGroupSummary(java.lang.Boolean)</code></nobr>
 </li>
 </ul>
 </blockquote>
 <h4>
-<code>com.smartgwt.client.widgets.layout.Layout</code>
-</h4>
-<blockquote>
-<h5>Method Changes:</h5>
-<blockquote>
-<p>
-<nobr><code><b>old:</b>public native java.lang.Boolean getDropComponent(com.smartgwt.client.widgets.Canvas, int)<br>
-<b>new:</b>protected native com.smartgwt.client.widgets.Canvas getDropComponent(com.smartgwt.client.widgets.Canvas, int)</code></nobr>
-</p>
-</blockquote>
-<h5>New Methods:</h5>
-<ul>
-<li>
-<nobr><code>public int getMinMemberSize()</code></nobr>
-</li>
-<li>
-<nobr><code>protected native void onInit()</code></nobr>
-</li>
-<li>
-<nobr><code>public void setMinMemberSize(int) throws java.lang.IllegalStateException</code></nobr>
-</li>
-</ul>
-</blockquote>
-<h4>
-<code>com.smartgwt.client.widgets.layout.SectionStack</code>
-</h4>
-<blockquote>
-<h5>Removed Methods:</h5>
-<ul>
-<li>
-<nobr><code>public native com.smartgwt.client.widgets.layout.SectionHeader getSectionHeader(int)</code></nobr>
-</li>
-<li>
-<nobr><code>public native com.smartgwt.client.widgets.layout.SectionHeader getSectionHeader(java.lang.String)</code></nobr>
-</li>
-</ul>
-<h5>New Methods:</h5>
-<ul>
-<li>
-<nobr><code>private com.smartgwt.client.widgets.layout.SectionStackSection[] convertToSectionArray(com.google.gwt.core.client.JavaScriptObject)</code></nobr>
-</li>
-<li>
-<nobr><code>public native com.smartgwt.client.widgets.layout.SectionStackSection getSection(int)</code></nobr>
-</li>
-<li>
-<nobr><code>public native com.smartgwt.client.widgets.layout.SectionStackSection getSection(java.lang.String)</code></nobr>
-</li>
-<li>
-<nobr><code>public native com.smartgwt.client.widgets.layout.SectionStackSection[] getSections()</code></nobr>
-</li>
-</ul>
-</blockquote>
-<h4>
-<code>com.smartgwt.client.widgets.layout.SectionStackSection</code>
+<code>com.smartgwt.client.widgets.tab.Tab</code>
 </h4>
 <blockquote>
 <h5>New Methods:</h5>
 <ul>
 <li>
-<nobr><code>public native com.smartgwt.client.widgets.Canvas[] getItems()</code></nobr>
-</li>
-</ul>
-</blockquote>
-<h4>
-<code>com.smartgwt.client.widgets.layout.events.SectionHeaderClickEvent</code>
-</h4>
-<blockquote>
-<h5>Method Changes:</h5>
-<blockquote>
-<p>
-<nobr><code><b>old:</b>public native com.smartgwt.client.widgets.layout.SectionHeader getSection()<br>
-<b>new:</b>public native com.smartgwt.client.widgets.layout.SectionStackSection getSection()</code></nobr>
-</p>
-</blockquote>
-</blockquote>
-<h4>
-<code>com.smartgwt.client.widgets.menu.Menu</code>
-</h4>
-<blockquote>
-<h5>New Methods:</h5>
-<ul>
-<li>
-<nobr><code>public java.lang.Integer getMenuButtonWidth()</code></nobr>
+<nobr><code>public com.smartgwt.client.widgets.menu.Menu getContextMenu()</code></nobr>
 </li>
 <li>
-<nobr><code>public void setData(com.smartgwt.client.data.RecordList)</code></nobr>
-</li>
-<li>
-<nobr><code>public void setMenuButtonWidth(java.lang.Integer) throws java.lang.IllegalStateException</code></nobr>
-</li>
-</ul>
-</blockquote>
-<h4>
-<code>com.smartgwt.client.widgets.menu.MenuItem</code>
-</h4>
-<blockquote>
-<h5>Removed Methods:</h5>
-<ul>
-<li>
-<nobr><code>public void setKeys(java.lang.String[])</code></nobr>
-</li>
-</ul>
-</blockquote>
-<h4>
-<code>com.smartgwt.client.widgets.tab.TabSet</code>
-</h4>
-<blockquote>
-<h5>New Methods:</h5>
-<ul>
-<li>
-<nobr><code>public void addTab(com.smartgwt.client.widgets.tab.Tab, int)</code></nobr>
-</li>
-<li>
-<nobr><code>private native void addTabPostCreate(com.google.gwt.core.client.JavaScriptObject, int)</code></nobr>
-</li>
-<li>
-<nobr><code>private native void addTabPreCreate(com.google.gwt.core.client.JavaScriptObject, int)</code></nobr>
+<nobr><code>public void setContextMenu(com.smartgwt.client.widgets.menu.Menu)</code></nobr>
 </li>
 </ul>
 </blockquote>
@@ -1234,33 +749,13 @@
 <h5>New Methods:</h5>
 <ul>
 <li>
-<nobr><code>public native void dataArrived(int, int)</code></nobr>
+<nobr><code>public com.smartgwt.client.types.FetchMode getDataFetchMode()</code></nobr>
 </li>
 <li>
-<nobr><code>public com.smartgwt.client.types.TextMatchStyle getAutoFetchTextMatchStyle()</code></nobr>
+<nobr><code>public com.smartgwt.client.data.RecordList getRecordList()</code></nobr>
 </li>
 <li>
-<nobr><code>public com.smartgwt.client.data.ResultSet getResultSet() throws java.lang.IllegalStateException</code></nobr>
-</li>
-<li>
-<nobr><code>public void setAutoFetchTextMatchStyle(com.smartgwt.client.types.TextMatchStyle) throws java.lang.IllegalStateException</code></nobr>
-</li>
-<li>
-<nobr><code>public void setData(com.smartgwt.client.data.RecordList)</code></nobr>
-</li>
-</ul>
-</blockquote>
-<h4>
-<code>com.smartgwt.client.widgets.tree.Tree</code>
-</h4>
-<blockquote>
-<h5>New Methods:</h5>
-<ul>
-<li>
-<nobr><code>public native void loadChildren(com.smartgwt.client.widgets.tree.TreeNode)</code></nobr>
-</li>
-<li>
-<nobr><code>public native void unloadChildren(com.smartgwt.client.widgets.tree.TreeNode)</code></nobr>
+<nobr><code>public void setDataFetchMode(com.smartgwt.client.types.FetchMode)</code></nobr>
 </li>
 </ul>
 </blockquote>
@@ -1268,48 +763,29 @@
 <code>com.smartgwt.client.widgets.tree.TreeGrid</code>
 </h4>
 <blockquote>
-<h5>Removed Methods:</h5>
-<ul>
-<li>
-<nobr><code>public java.lang.Boolean getAutoFetchAsFilter()</code></nobr>
-</li>
-<li>
-<nobr><code>protected native java.lang.String getIcon(com.smartgwt.client.widgets.tree.TreeNode, boolean)</code></nobr>
-</li>
-<li>
-<nobr><code>protected native java.lang.String getNodeTitle(com.smartgwt.client.widgets.tree.TreeNode, int, com.smartgwt.client.widgets.grid.ListGridField)</code></nobr>
-</li>
-<li>
-<nobr><code>public void setAutoFetchAsFilter(java.lang.Boolean) throws java.lang.IllegalStateException</code></nobr>
-</li>
-</ul>
 <h5>New Methods:</h5>
 <ul>
 <li>
-<nobr><code>public com.smartgwt.client.types.TextMatchStyle getAutoFetchTextMatchStyle()</code></nobr>
+<nobr><code>public native void setCustomNodeIcon(com.smartgwt.client.data.Record, java.lang.String)</code></nobr>
 </li>
 <li>
-<nobr><code>protected native java.lang.String getIcon(com.smartgwt.client.data.Record, boolean)</code></nobr>
-</li>
-<li>
-<nobr><code>protected native java.lang.String getNodeTitle(com.smartgwt.client.data.Record, int, com.smartgwt.client.widgets.grid.ListGridField)</code></nobr>
-</li>
-<li>
-<nobr><code>public void setAutoFetchTextMatchStyle(com.smartgwt.client.types.TextMatchStyle) throws java.lang.IllegalStateException</code></nobr>
+<nobr><code>public void setDataProperties(com.smartgwt.client.widgets.tree.Tree)</code></nobr>
 </li>
 </ul>
 </blockquote>
 <h4>
-<code>com.smartgwt.client.widgets.tree.events.FolderDropEvent</code>
+<code>com.smartgwt.client.widgets.tree.TreeGridField</code>
 </h4>
 <blockquote>
-<h5>Method Changes:</h5>
-<blockquote>
-<p>
-<nobr><code><b>old:</b>public native int getIndex()<br>
-<b>new:</b>public native java.lang.Integer getIndex()</code></nobr>
-</p>
-</blockquote>
+<h5>New Methods:</h5>
+<ul>
+<li>
+<nobr><code>public java.lang.Boolean getCanExport()</code></nobr>
+</li>
+<li>
+<nobr><code>public void setCanExport(java.lang.Boolean)</code></nobr>
+</li>
+</ul>
 </blockquote>
 <h4>
 <code>com.smartgwt.client.widgets.viewer.DetailViewer</code>
@@ -1318,16 +794,7 @@
 <h5>New Methods:</h5>
 <ul>
 <li>
-<nobr><code>public com.smartgwt.client.types.DateDisplayFormat getDatetimeFormatter()</code></nobr>
-</li>
-<li>
-<nobr><code>public com.smartgwt.client.data.ResultSet getResultSet() throws java.lang.IllegalStateException</code></nobr>
-</li>
-<li>
-<nobr><code>public void setData(com.smartgwt.client.data.RecordList)</code></nobr>
-</li>
-<li>
-<nobr><code>public void setDatetimeFormatter(com.smartgwt.client.types.DateDisplayFormat) throws java.lang.IllegalStateException</code></nobr>
+<nobr><code>public com.smartgwt.client.data.RecordList getRecordList()</code></nobr>
 </li>
 </ul>
 </blockquote>
@@ -1338,90 +805,69 @@
 <h5>New Methods:</h5>
 <ul>
 <li>
-<nobr><code>public java.lang.Boolean getShowFileInline()</code></nobr>
+<nobr><code>public java.lang.Boolean getCanExport()</code></nobr>
 </li>
 <li>
-<nobr><code>public void setShowFileInline(java.lang.Boolean)</code></nobr>
+<nobr><code>public void setCanExport(java.lang.Boolean)</code></nobr>
 </li>
 </ul>
 </blockquote>
-</blockquote>
+
 <h3>New Interfaces:</h3>
 <ul>
 <li>
-<nobr><code>com.smartgwt.client.data.events.DataArrivedHandler</code></nobr>
+<nobr><code>com.smartgwt.client.widgets.form.events.FormSubmitFailedHandler</code></nobr>
 </li>
 <li>
-<nobr><code>com.smartgwt.client.data.events.HasDataArrivedHandlers</code></nobr>
+<nobr><code>com.smartgwt.client.widgets.form.events.HasFormSubmitFailedHandlers</code></nobr>
 </li>
 <li>
-<nobr><code>com.smartgwt.client.docs.Auth</code></nobr>
+<nobr><code>com.smartgwt.client.widgets.form.fields.events.FormItemClickHandler</code></nobr>
 </li>
 <li>
-<nobr><code>com.smartgwt.client.docs.CustomQuerying</code></nobr>
+<nobr><code>com.smartgwt.client.widgets.form.fields.events.HasFormItemClickHandlers</code></nobr>
 </li>
 <li>
-<nobr><code>com.smartgwt.client.docs.DateFormatAndStorage</code></nobr>
+<nobr><code>com.smartgwt.client.widgets.grid.RecordSummaryFunction</code></nobr>
 </li>
 <li>
-<nobr><code>com.smartgwt.client.docs.Mail</code></nobr>
-</li>
-<li>
-<nobr><code>com.smartgwt.client.docs.SqlVsJPA</code></nobr>
-</li>
-<li>
-<nobr><code>com.smartgwt.client.docs.VelocitySupport</code></nobr>
-</li>
-<li>
-<nobr><code>com.smartgwt.client.docs.ViewFile</code></nobr>
-</li>
-<li>
-<nobr><code>com.smartgwt.client.docs.WriteCustomDataSource</code></nobr>
-</li>
-<li>
-<nobr><code>com.smartgwt.client.rpc.QueueSentCallback</code></nobr>
-</li>
-<li>
-<nobr><code>com.smartgwt.client.rpc.RPCCallback</code></nobr>
-</li>
-<li>
-<nobr><code>com.smartgwt.client.widgets.form.events.HasSearchHandlers</code></nobr>
-</li>
-<li>
-<nobr><code>com.smartgwt.client.widgets.form.events.SearchHandler</code></nobr>
-</li>
-<li>
-<nobr><code>com.smartgwt.client.widgets.form.fields.FilterCriteriaFunction</code></nobr>
+<nobr><code>com.smartgwt.client.widgets.grid.SummaryFunction</code></nobr>
 </li>
 </ul>
 <h3>New Classes:</h3>
 <ul>
 <li>
-<nobr><code>com.smartgwt.client.data.RecordList</code></nobr>
+<nobr><code>com.smartgwt.client.data.fields.DataSourceSimpleTypeField</code></nobr>
 </li>
 <li>
-<nobr><code>com.smartgwt.client.data.ResultSet</code></nobr>
+<nobr><code>com.smartgwt.client.types.DateItemSelectorFormat</code></nobr>
 </li>
 <li>
-<nobr><code>com.smartgwt.client.data.WSRequest</code></nobr>
+<nobr><code>com.smartgwt.client.types.JSONCircularReferenceMode</code></nobr>
 </li>
 <li>
-<nobr><code>com.smartgwt.client.data.events.DataArrivedEvent</code></nobr>
+<nobr><code>com.smartgwt.client.types.JSONDateFormat</code></nobr>
 </li>
 <li>
-<nobr><code>com.smartgwt.client.types.HashAlgorithm</code></nobr>
+<nobr><code>com.smartgwt.client.types.RecordSummaryFunctionType</code></nobr>
 </li>
 <li>
-<nobr><code>com.smartgwt.client.types.ViewName</code></nobr>
+<nobr><code>com.smartgwt.client.types.SummaryFunctionType</code></nobr>
 </li>
 <li>
-<nobr><code>com.smartgwt.client.widgets.form.events.FilterSearchEvent</code></nobr>
+<nobr><code>com.smartgwt.client.util.JSON</code></nobr>
 </li>
 <li>
-<nobr><code>com.smartgwt.client.widgets.form.fields.ViewFileItem</code></nobr>
+<nobr><code>com.smartgwt.client.util.JSONEncoder</code></nobr>
 </li>
 <li>
-<nobr><code>com.smartgwt.client.widgets.layout.FlowLayout</code></nobr>
+<nobr><code>com.smartgwt.client.widgets.form.events.FormSubmitFailedEvent</code></nobr>
+</li>
+<li>
+<nobr><code>com.smartgwt.client.widgets.form.fields.events.FormItemIconClickEvent</code></nobr>
+</li>
+<li>
+<nobr><code>com.smartgwt.client.widgets.grid.ListGridSummaryField</code></nobr>
 </li>
 </ul>
 <hr>
