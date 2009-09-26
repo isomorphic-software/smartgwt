@@ -32,6 +32,8 @@ import com.smartgwt.client.widgets.menu.events.ClickHandler;
 import com.smartgwt.client.widgets.menu.events.MenuItemClickEvent;
 import com.smartgwt.client.widgets.tab.Tab;
 import com.smartgwt.client.widgets.tab.TabSet;
+import com.smartgwt.client.widgets.tab.events.TabSelectedHandler;
+import com.smartgwt.client.widgets.tab.events.TabSelectedEvent;
 import com.smartgwt.client.widgets.tree.Tree;
 import com.smartgwt.client.widgets.tree.TreeNode;
 import com.smartgwt.client.widgets.tree.events.LeafClickEvent;
@@ -90,10 +92,21 @@ public class Showcase implements EntryPoint, HistoryListener {
 
         mainTabSet = new TabSet();
 
-        //default is 22. required to increase to that select tab contol dispalys well
+        //default is 22. required to increase to that select tab control displays well
         mainTabSet.setTabBarThickness(23);
         mainTabSet.setWidth100();
         mainTabSet.setHeight100();
+        mainTabSet.addTabSelectedHandler(new TabSelectedHandler() {
+            public void onTabSelected(TabSelectedEvent event) {
+                Tab selectedTab = event.getTab();
+                String historyToken = selectedTab.getAttribute("historyToken");
+                if(historyToken != null) {
+                    History.newItem(historyToken, false);
+                } else {
+                    History.newItem("main", false);
+                }
+            }
+        });
 
         LayoutSpacer layoutSpacer = new LayoutSpacer();
         layoutSpacer.setWidth(5);
@@ -322,8 +335,11 @@ public class Showcase implements EntryPoint, HistoryListener {
                     Canvas panel = factory.create();
                     tab = new Tab();
                     tab.setID(factory.getID() + "_tab");
-                    String sampleName = explorerTreeNode.getName();
+                    //store history token on tab so that when an already open is selected, one can retrieve the
+                    //history token and update the URL
+                    tab.setAttribute("historyToken", explorerTreeNode.getNodeID());
 
+                    String sampleName = explorerTreeNode.getName();
 
                     String icon = explorerTreeNode.getIcon();
                     if (icon == null) {
@@ -340,10 +356,10 @@ public class Showcase implements EntryPoint, HistoryListener {
                             mainTabSet.removeTabs(new int[]{1});
                         }
                     }
-                    History.newItem(explorerTreeNode.getNodeID(), false);
                 } else {
                     mainTabSet.selectTab(tab);
                 }
+                History.newItem(explorerTreeNode.getNodeID(), false);
             }
         }
     }
