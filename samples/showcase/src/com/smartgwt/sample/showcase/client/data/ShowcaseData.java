@@ -23,6 +23,7 @@ import com.smartgwt.sample.showcase.client.effects.looknfeel.*;
 import com.smartgwt.sample.showcase.client.forms.CustomPickerSample;
 import com.smartgwt.sample.showcase.client.forms.FormDataBindingSample;
 import com.smartgwt.sample.showcase.client.forms.FormFocusFirstSample;
+import com.smartgwt.sample.showcase.client.forms.TextMaskingSample;
 import com.smartgwt.sample.showcase.client.forms.controls.FormVariousControlsSample;
 import com.smartgwt.sample.showcase.client.forms.dependencies.*;
 import com.smartgwt.sample.showcase.client.forms.details.FormHintsSample;
@@ -125,10 +126,12 @@ public class ShowcaseData {
                     new ExplorerTreeNode("Databound Dragging", "grid-db-dragging-featured-category", "featured-category", "silk/database_link.png", new GridDataBoundDragDropSample.Factory(), true, idSuffix),
                     new ExplorerTreeNode("Adaptive Filter", "grid-adaptive-filter-featured-category", "featured-category", "crystal/16/actions/show_table_row.png", new AdaptiveFilterSample.Factory(), true, idSuffix),
                     new ExplorerTreeNode("Formula &amp; Summary Builder", "formula-sumamry-builder-featured-category", "featured-category", "crystal/oo/sc_insertformula.png", new FormulaSummaryBuilderSample.Factory(), true, idSuffix),
+                    new ExplorerTreeNode("Grid Summaries", "grid-summaries-featured-category", "featured-category", "crystal/16/apps/tooloptions.png", new GridSummariesSample.Factory(), true, idSuffix),
 
                     new ExplorerTreeNode("New Samples", "new-category", "root", "crystal/16/actions/irc_online.png", null, true, idSuffix),
                     new ExplorerTreeNode("Grid Summaries", "grid-summaries-new-category", "new-category", "crystal/16/apps/tooloptions.png", new GridSummariesSample.Factory(), true, idSuffix),                    
                     new ExplorerTreeNode("DataType Reuse", "type-reuse-new-category", "new-category", "silk/database_table.png", new TypeReuseSample.Factory(), true, idSuffix),
+                    new ExplorerTreeNode("Text Masking", "form-masking-new-category", "new-category", "silk/vcard_edit.png", new TextMaskingSample.Factory(), true, idSuffix),                    
 
                     new ExplorerTreeNode("ComboBox &amp; Family", "combobox-category", "root", "widgets/combo_box.gif", null, true, idSuffix),
                     new ExplorerTreeNode("Styled ComboBox", "styled-combobox-category", "combobox-category", null, new ComboBoxStyledSample.Factory(), true, idSuffix),
@@ -254,7 +257,7 @@ public class ShowcaseData {
                     new ExplorerTreeNode("Databound Filter", "grid-dataoperations-filter", "grid-dataoperations-category", null, new GridDataBoundFilterSample.Factory(), true, idSuffix),
                     new ExplorerTreeNode("Databound Add", "grid-dataoperations-add", "grid-dataoperations-category", null, new GridDataBoundAddSample.Factory(), true, idSuffix),
                     new ExplorerTreeNode("Databound Remove", "grid-dataoperations-remove", "grid-dataoperations-category", null, new GridDataBoundRemoveSample.Factory(), true, idSuffix),
-                    //new ExplorerTreeNode("Databound Update", "grid-dataoperations-update", "grid-dataoperations-category", null, new GridDataBoundUpdateSample.Factory(), true, idSuffix),
+                    new ExplorerTreeNode("Databound Update", "grid-dataoperations-update", "grid-dataoperations-category", null, new GridDataBoundUpdateSample.Factory(), true, idSuffix),
 
                     new ExplorerTreeNode("Grid-Form Binding", "grid-form-category", "grid-category", "pieces/16/cube_blue.png", null, true, idSuffix),
                     new ExplorerTreeNode("Add", "add-grid-form-category", "grid-form-category", "pieces/16/cube_blue.png", new GridFormAddSample.Factory(), true, idSuffix),
@@ -318,7 +321,6 @@ public class ShowcaseData {
                     new ExplorerTreeNode("Filling", "layout-form-filling", "layout-form-category", null, new FormFillingSample.Factory(), true, idSuffix),
                     new ExplorerTreeNode("Splitting", "layout-form-splitting", "layout-form-category", null, new FormSplittingSample.Factory(), true, idSuffix),
                     new ExplorerTreeNode("Sections", "layout-form-sections", "layout-form-category", null, new FormSectionsSample.Factory(), true, idSuffix),
-                    new ExplorerTreeNode("Data Binding", "layout-form-databinding", "layout-form-category", null, new FormDataBindingSample.Factory(), true, idSuffix),
 
                     new ExplorerTreeNode("Field Dependencies", "form-dep-category", "form-category", "silk/vcard_edit.png", null, true, idSuffix),
                     new ExplorerTreeNode("Show &amp; Hide", "form-dep-show-hide", "form-dep-category", null, new FormShowHideSample.Factory(), true, idSuffix),
@@ -347,9 +349,11 @@ public class ShowcaseData {
                     new ExplorerTreeNode("Hints", "form-details-hints", "form-category", "silk/vcard_edit.png", new FormHintsSample.Factory(), true, idSuffix),
                     new ExplorerTreeNode("KeyPress Filters", "form-keypress-filter", "form-category", "silk/vcard_edit.png", new KeyPressFiltersSample.Factory(), true, idSuffix),
 
+                    new ExplorerTreeNode("Data Binding", "layout-form-databinding", "form-category", null, new FormDataBindingSample.Factory(), true, idSuffix),
                     new ExplorerTreeNode("Focus First Field", "form-category-focus-first", "form-category", null, new FormFocusFirstSample.Factory(), true, idSuffix),
                     new ExplorerTreeNode("Custom Picker", "form-category-custom-picker", "form-category", null, new CustomPickerSample.Factory(), true, idSuffix),
                     new ExplorerTreeNode("DataType Reuse", "form-type-reuse", "form-category", "silk/database_table.png", new TypeReuseSample.Factory(), true, idSuffix),
+                    new ExplorerTreeNode("Text Masking", "form-masking", "form-category", "silk/vcard_edit.png", new TextMaskingSample.Factory(), true, idSuffix),
 
                     new ExplorerTreeNode("Layout", "layout-category", "root", "widgets/container.png", null, true, idSuffix),
                     new ExplorerTreeNode("Stack", "layout-stack", "layout-category", null, new StackSample.Factory(), true, idSuffix),
