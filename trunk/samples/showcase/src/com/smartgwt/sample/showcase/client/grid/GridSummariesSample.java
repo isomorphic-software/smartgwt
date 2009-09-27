@@ -111,7 +111,7 @@ public class GridSummariesSample extends ShowcasePanel {
         unitPriceField.setShowGroupSummary(false);
         unitPriceField.setShowGridSummary(false);
 
-        ListGridSummaryField totalField = new ListGridSummaryField("total");
+        ListGridSummaryField totalField = new ListGridSummaryField("total", "Total");
         totalField.setAlign(Alignment.RIGHT);        
         totalField.setRecordSummaryFunction(RecordSummaryFunctionType.MULTIPLIER);
         totalField.setSummaryFunction(SummaryFunctionType.SUM);
@@ -135,7 +135,7 @@ public class GridSummariesSample extends ShowcasePanel {
         listGrid.setHeight(224);
         listGrid.setAutoFetchData(true);
         listGrid.setAlternateRecordStyles(true);
-        //listGrid.setShowAllRecords(true);
+        listGrid.setShowAllRecords(true);
         listGrid.setDataSource(dataSource);
         listGrid.setCanEdit(true);
         listGrid.setGroupByField("category");
