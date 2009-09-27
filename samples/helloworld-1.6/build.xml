@@ -1,7 +1,20 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <project name="HelloWorld" default="build" basedir=".">
   <!-- Configure path to GWT SDK -->
-  <property name="gwt.sdk" location="/Users/sjivan/java/smartgwt-svn/tools/lib/gwt/1.6.4/mac" />
+  <!-- Configure path to GWT SDK -->
+  <property environment="env"/>
+  <property name="gwt.sdk" value="${env.GWT_HOME}"/>
+
+  <fail unless="gwt.sdk" message="You must set the GWT_HOME environment variable to point to your GWT SDK"/>
+
+  <!-- Mac GWT requires -XstartOnFirstThread -->	 
+  <condition property="mac">
+  	<os name="Mac OS X"/>
+  </condition>	
+  <condition property="macJvmArgs" value="-XstartOnFirstThread" else="-Dgwt.dummy.arg1=">
+   <isset property="mac"/>	
+  </condition>
+
 
   <path id="project.class.path">
     <pathelement location="war/WEB-INF/classes"/>
@@ -41,7 +54,7 @@
       </classpath>
       <!-- add jvmarg -Xss16M or similar if you see a StackOverflowError -->
       <jvmarg value="-Xmx256M"/>
-<jvmarg value="-XstartOnFirstThread"/>
+	  <jvmarg value="${macJvmArgs}"/>
       <!-- Additional arguments like -style PRETTY or -logLevel DEBUG -->
       <arg value="com.mycompany.HelloWorld"/>
     </java>
@@ -54,7 +67,7 @@
         <path refid="project.class.path"/>
       </classpath>
       <jvmarg value="-Xmx600M"/>
-<jvmarg value="-XstartOnFirstThread"/>
+	  <jvmarg value="${macJvmArgs}"/>
       <arg value="-startupUrl"/>
       <arg value="HelloWorld.html"/>
       <!-- Additional arguments like -style PRETTY or -logLevel DEBUG -->
