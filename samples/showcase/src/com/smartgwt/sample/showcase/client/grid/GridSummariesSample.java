@@ -1,23 +1,7 @@
-/*
- * SmartGWT (GWT for SmartClient)
- * Copyright 2008 and beyond, Isomorphic Software, Inc.
- *
- * SmartGWT is free software; you can redistribute it and/or modify it
- * under the terms of the GNU Lesser General Public License version 3
- * as published by the Free Software Foundation.  SmartGWT is also
- * available under typical commercial license terms - see
- * http://smartclient.com/license
- * This software is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU
- * Lesser General Public License for more details.
- */
-
 package com.smartgwt.sample.showcase.client.grid;
 
 import com.smartgwt.client.data.DataSource;
 import com.smartgwt.client.data.Record;
-import com.smartgwt.client.types.ListGridFieldType;
 import com.smartgwt.client.types.SummaryFunctionType;
 import com.smartgwt.client.types.Alignment;
 import com.smartgwt.client.types.RecordSummaryFunctionType;
@@ -25,7 +9,6 @@ import com.smartgwt.client.widgets.Canvas;
 import com.smartgwt.client.widgets.grid.*;
 import com.smartgwt.sample.showcase.client.PanelFactory;
 import com.smartgwt.sample.showcase.client.ShowcasePanel;
-import com.smartgwt.sample.showcase.client.data.ItemSupplyXmlDS;
 import com.smartgwt.sample.showcase.client.data.OrderItemLocalDS;
 import com.smartgwt.sample.showcase.client.data.OrderItem;
 import com.google.gwt.i18n.client.NumberFormat;
