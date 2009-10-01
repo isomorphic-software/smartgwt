@@ -5925,9 +5925,26 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
     // ********************* Static Methods ***********************
 
 
-
-
-
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     protected native void onInit() /*-{
 
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
@@ -7745,6 +7762,20 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
          var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
          self.clearEditValue(rowNum, fieldName);
      }-*/;
+
+    /**
+     * Returns an array of every rowNum for which we have pending (unsubmitted) edits.
+     *
+     * @return array of rowNums for rows with edit values pending submission
+     */
+    public native int[] getAllEditRows() /*-{
+        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
+        var editRowsJS =  self.getAllEditRows();
+        if(editRowsJS == null) {
+            editRowsJS=[];
+        }
+        return @com.smartgwt.client.util.JSOHelper::convertToJavaIntArray(Lcom/google/gwt/core/client/JavaScriptObject;)(editRowsJS);
+    }-*/;
 
     /**
      * Programatically simulate clicking of a row.
