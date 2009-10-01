@@ -213,6 +213,7 @@ public class ShowcaseData {
                     new ExplorerTreeNode("Custom Editors", "grid-editing-custom-editors", "grid-editing-category", null, new GridCustomEditorsSample.Factory(), true, idSuffix),
                     new ExplorerTreeNode("Data Validation", "grid-editing-data-validation", "grid-editing-category", null, new GridDataValidationSample.Factory(), true, idSuffix),
                     new ExplorerTreeNode("Dependent Selects (Grid)", "grid-editing-dependent-selects", "grid-editing-category", null, new GridDependentSelectsSample.Factory(), true, idSuffix),
+                    new ExplorerTreeNode("Grid All Editors", "grid-all-editors", "grid-editing-category", null, new GridEditAllRowsSample.Factory(), true, idSuffix),
 
                     new ExplorerTreeNode("Frozen Columns", "grid-frozen-category", "grid-category", "pieces/16/cube_blue.png", null, true, idSuffix),
                     new ExplorerTreeNode("Simple Freeze", "grid-frozen-simple", "grid-frozen-category", null, new GridSimpleFreezeSample.Factory(), true, idSuffix),
