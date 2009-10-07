@@ -1,0 +1,15 @@
+<!--inheriting this module will result in the SmartClient artifacts (js, skins etc)
+to not being copied over into the compiled output. You will need to include the SmartClient
+JavaScript files, and load the appropriate skin yourself when inheriting this module.
+This module is useful if you already have the SmartClient resources available in a known / shared
+ location like a CDN and will include them in your host html file yourself.
+ -->
+
+<module>
+    <inherits name='com.google.gwt.user.User'/>
+    <inherits name="com.google.gwt.xml.XML"/>
+    <inherits name="com.google.gwt.i18n.I18N"/>
+    <inherits name="com.google.gwt.json.JSON"/>
+    <inherits name="com.google.gwt.http.HTTP"/>
+    <inherits name="com.google.gwt.event.Event"/>
+</module>
