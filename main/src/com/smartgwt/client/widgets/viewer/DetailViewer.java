@@ -86,25 +86,6 @@ public class DetailViewer extends Canvas  implements DataBoundComponent {
         return widget;
     }-*/;
     // ********************* Properties / Attributes ***********************
-             
-    /**
-     * DetailViewers do not yet support paging, and will fetch and render all available records.
-     *
-     * @param dataFetchMode dataFetchMode Default value is "basic"
-     */
-    public void setDataFetchMode(FetchMode dataFetchMode) {
-        setAttribute("dataFetchMode", dataFetchMode.getValue(), true);
-    }
-
-    /**
-     * DetailViewers do not yet support paging, and will fetch and render all available records.
-     *
-     *
-     * @return FetchMode
-     */
-    public FetchMode getDataFetchMode()  {
-        return EnumUtil.getEnum(FetchMode.values(), getAttribute("dataFetchMode"));
-    }
 
     /**
      * Name of the field in the DetailViewerRecord which specifies the data property for that record.
@@ -554,6 +535,11 @@ public class DetailViewer extends Canvas  implements DataBoundComponent {
     // ********************* Methods ***********************
 
 
+
+
+
+
+
     /**
      * Uses a "fetch" operation on the current {@link com.smartgwt.client.widgets.DataBoundComponent#getDataSource
      * 'DataSource'} to  retrieve data that matches the current filter and sort criteria for this component, then  exports the
@@ -577,21 +563,11 @@ public class DetailViewer extends Canvas  implements DataBoundComponent {
         self.exportData(requestProperties.@com.smartgwt.client.core.DataClass::getJsObj()());
     }-*/;
 
-
-
-
-
-
     // ********************* Static Methods ***********************
 
 
-
-
-
-
-
-
-
+
+
     /**
      * An array of records, specifying data. Note that DetailViewers do not observe changes to the data array (in other
      * words they will not automatically re-draw when the data provided via this property is altered)
@@ -682,6 +658,14 @@ public class DetailViewer extends Canvas  implements DataBoundComponent {
 
     // ********************* DataBoundComponent Properties / Attributes ***********************
 
+    public void setDataFetchMode(FetchMode fetchMode) {
+        setAttribute("dataFetchMode", fetchMode, true);
+    }
+
+    public FetchMode getDataFetchMode() {
+        return EnumUtil.getEnum(FetchMode.values(), getAttribute("dataFetchMode"));
+    }
+    
     public void setDataPageSize(int dataPageSize) {
         setAttribute("dataPageSize", dataPageSize, true);
     }

@@ -917,8 +917,8 @@ public class DataSourceField extends DataClass {
     }
 
     /**
-     * Dictates whether the data in this field be exported.  Explicitly setting   <i>canExport<i> to false overrides the
-     * setting on any component-fields, such  as {@link com.smartgwt.client.widgets.grid.ListGridField#getCanExport 'ListGrid
+     * Dictates whether the data in this field be exported.  Explicitly setting  <i>canExport</i> to false overrides the
+     * setting on any component-fields, such as {@link com.smartgwt.client.widgets.grid.ListGridField#getCanExport 'ListGrid
      * fields'}.
      *
      * @param canExport canExport Default value is null
@@ -928,8 +928,8 @@ public class DataSourceField extends DataClass {
     }
 
     /**
-     * Dictates whether the data in this field be exported.  Explicitly setting   <i>canExport<i> to false overrides the
-     * setting on any component-fields, such  as {@link com.smartgwt.client.widgets.grid.ListGridField#getCanExport 'ListGrid
+     * Dictates whether the data in this field be exported.  Explicitly setting  <i>canExport</i> to false overrides the
+     * setting on any component-fields, such as {@link com.smartgwt.client.widgets.grid.ListGridField#getCanExport 'ListGrid
      * fields'}.
      *
      *
@@ -1025,17 +1025,9 @@ public class DataSourceField extends DataClass {
     // ********************* Static Methods ***********************
 
 
-
-
-
-
-
-
-
-
-
-
-
+
+
+
     /**
      * Set the plural title.
      *
@@ -1054,8 +1046,6 @@ public class DataSourceField extends DataClass {
     public String getPluralTitle()  {
         return getAttributeAsString("pluralTitle");
     }
-    
-
 
     /**
      * Set the type directly to a defined SimpleType.
