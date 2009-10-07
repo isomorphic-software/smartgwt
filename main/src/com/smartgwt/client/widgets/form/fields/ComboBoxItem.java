@@ -64,7 +64,7 @@ import com.google.gwt.event.shared.HasHandlers;
  * default value for the item, {@link com.smartgwt.client.widgets.form.fields.ComboBoxItem#getDefaultToFirstOption
  * defaultToFirstOption} may be set.
  */
-public class ComboBoxItem extends FormItem  implements PickList {
+public class ComboBoxItem extends FormItem  implements PickList, com.smartgwt.client.widgets.form.fields.events.HasDataArrivedHandlers {
 
     public static ComboBoxItem getOrCreateRef(JavaScriptObject jsObj) {
         if(jsObj == null) return null;
@@ -489,6 +489,30 @@ public class ComboBoxItem extends FormItem  implements PickList {
 
 
 
+    /**
+     * Add a dataArrived handler.
+     * <p>
+     * If this item is showing a dataBound pickList, this notification method will be fired  when new data arrives from the
+     * server.
+     *
+     * @param handler the dataArrived handler
+     * @return {@link HandlerRegistration} used to remove this handler
+     */
+    public HandlerRegistration addDataArrivedHandler(com.smartgwt.client.widgets.form.fields.events.DataArrivedHandler handler) {
+        if(getHandlerCount(com.smartgwt.client.widgets.form.fields.events.DataArrivedEvent.getType()) == 0) setupDataArrivedEvent();
+        return doAddHandler(handler, com.smartgwt.client.widgets.form.fields.events.DataArrivedEvent.getType());
+    }
+
+    private native void setupDataArrivedEvent() /*-{
+        var obj = null;
+            obj = this.@com.smartgwt.client.core.DataClass::getJsObj()();
+            var selfJ = this;
+            obj.dataArrived = function(){
+                var param = {"startRow" : arguments[0], "endRow" : arguments[1], "data" : arguments[2]};
+                var event = @com.smartgwt.client.widgets.form.fields.events.DataArrivedEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
+                selfJ.@com.smartgwt.client.core.DataClass::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
+            };
+   }-*/;
 
     // ********************* Static Methods ***********************
 
