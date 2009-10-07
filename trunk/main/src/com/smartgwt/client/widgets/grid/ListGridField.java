@@ -1788,10 +1788,13 @@ public class ListGridField extends DataClass  implements com.smartgwt.client.wid
     /**
      * Specifies the {@link com.smartgwt.client.widgets.grid.ListGridField#getOptionDataSource optionDataSource} field used to
      * retrieve the display values that are to be mapped from the internal values specified by {@link
-     * com.smartgwt.client.widgets.grid.ListGridField#getValueField valueField}.<br> If no <code>optionDataSource</code> is
+     * com.smartgwt.client.widgets.grid.ListGridField#getValueField valueField}. <P> If no <code>optionDataSource</code> is
      * defined for the field, the cell will display the displayField value for the current record instead of the underlying
-     * value for this field. Note that if this field is editable this will also be applied to this field's editors. <p> The
-     * display value for a record with a specified <code>displayField</code> can be  picked up via {@link
+     * value for this field.  This approach can be used for situations where field values need a stored value to displayed
+     * value mapping, but the set of all possible values is too large to load as a {@link com.smartgwt.client..ValueMap} - see
+     * {@link com.smartgwt.client.widgets.grid.ListGridField#getOptionDataSource optionDataSource} for more details on this
+     * approach.  Note that if this field is editable this will also be applied to this field's editors. <p> The display value
+     * for a record with a specified <code>displayField</code> can be  picked up via {@link
      * com.smartgwt.client.widgets.grid.ListGrid#getDisplayValue}.
      *
      * @param displayField displayField Default value is null
@@ -1803,10 +1806,13 @@ public class ListGridField extends DataClass  implements com.smartgwt.client.wid
     /**
      * Specifies the {@link com.smartgwt.client.widgets.grid.ListGridField#getOptionDataSource optionDataSource} field used to
      * retrieve the display values that are to be mapped from the internal values specified by {@link
-     * com.smartgwt.client.widgets.grid.ListGridField#getValueField valueField}.<br> If no <code>optionDataSource</code> is
+     * com.smartgwt.client.widgets.grid.ListGridField#getValueField valueField}. <P> If no <code>optionDataSource</code> is
      * defined for the field, the cell will display the displayField value for the current record instead of the underlying
-     * value for this field. Note that if this field is editable this will also be applied to this field's editors. <p> The
-     * display value for a record with a specified <code>displayField</code> can be  picked up via {@link
+     * value for this field.  This approach can be used for situations where field values need a stored value to displayed
+     * value mapping, but the set of all possible values is too large to load as a {@link com.smartgwt.client..ValueMap} - see
+     * {@link com.smartgwt.client.widgets.grid.ListGridField#getOptionDataSource optionDataSource} for more details on this
+     * approach.  Note that if this field is editable this will also be applied to this field's editors. <p> The display value
+     * for a record with a specified <code>displayField</code> can be  picked up via {@link
      * com.smartgwt.client.widgets.grid.ListGrid#getDisplayValue}.
      *
      *
@@ -2051,23 +2057,9 @@ public class ListGridField extends DataClass  implements com.smartgwt.client.wid
     // ********************* Static Methods ***********************
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+
+
+
     /**
      * If this ListGrid is showing a filter row, this property can be used to apply a default value to show in the filter editor for this field.
      *

@@ -68,16 +68,6 @@ public class JSON {
     // ********************* Static Methods ***********************
 
 
-    /**
-     * De-serialize an object from JSON.  Currently, this is simply a JavaScript eval() and should be used for trusted data
-     * only.
-     * @param jsonString JSON data to be de-serialized
-     *
-     * @return object derived from JSON String
-     */
-    public static native JavaScriptObject decode(String jsonString) /*-{
-        return $wnd.isc.JSON.decode(jsonString);
-    }-*/;
 
 
     /**
@@ -101,6 +91,17 @@ public class JSON {
      */
     public static native String encode(JavaScriptObject object, JSONEncoder settings) /*-{
         return $wnd.isc.JSON.encode(object, settings);
+    }-*/;
+
+    /**
+     * De-serialize an object from JSON.  Currently, this is simply a JavaScript eval() and should be used for trusted data
+     * only.
+     * @param jsonString JSON data to be de-serialized
+     *
+     * @return object derived from JSON String
+     */
+    public static native JavaScriptObject decode(String jsonString) /*-{
+        return $wnd.isc.JSON.decode(jsonString);
     }-*/;
 
 }
