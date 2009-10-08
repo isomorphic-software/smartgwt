@@ -1,10 +1,10 @@
 /*
- * SmartGWT (GWT for SmartClient)
+ * Smart GWT (GWT for SmartClient)
  * Copyright 2008 and beyond, Isomorphic Software, Inc.
  *
- * SmartGWT is free software; you can redistribute it and/or modify it
+ * Smart GWT is free software; you can redistribute it and/or modify it
  * under the terms of the GNU Lesser General Public License version 3
- * as published by the Free Software Foundation.  SmartGWT is also
+ * as published by the Free Software Foundation.  Smart GWT is also
  * available under typical commercial license terms - see
  * http://smartclient.com/license
  *
@@ -57,9 +57,9 @@ import com.google.gwt.event.shared.*;
 import com.google.gwt.event.shared.HasHandlers;
 
 /**
- * The SmartGWT system supports hierarchical data (also referred to as tree data due to its "branching" organization) with:
- * <ul>   <li> the {@link com.smartgwt.client.widgets.tree.Tree} class, which manipulates hierarchical data sets   <li> the
- * TreeGrid widget class, which extends the ListGrid class to visually        present tree data in an
+ * The Smart GWT system supports hierarchical data (also referred to as tree data due to its "branching" organization)
+ * with: <ul>   <li> the {@link com.smartgwt.client.widgets.tree.Tree} class, which manipulates hierarchical data sets  
+ * <li> the TreeGrid widget class, which extends the ListGrid class to visually        present tree data in an
  * expandable/collapsible format.   <li> the ColumnTree widget class, which visually        presents tree data in a
  * so-called         "<a href=http://en.wikipedia.org/wiki/Miller_Columns>Miller Column</a>" format. </ul> For information
  * on DataBinding Trees, see {@link com.smartgwt.client.docs.TreeDataBinding}. <p> A ColumnTree shows a single branch of
@@ -414,7 +414,7 @@ public class ColumnTree extends Layout  implements DataBoundComponent, com.smart
      * (the remaining columns have their titles derived from the item selected in the column to the left). Ignored if {@link
      * com.smartgwt.client.widgets.grid.ColumnTree#getShowHeaders showHeaders} is not set.<br><br> Note: if you do not want a
      * heading for the first column leave this attribute at its  default value of " ". If you set it to null or the empty
-     * string, SmartGWT will fall back to displaying the field's name in the heading.
+     * string, Smart GWT will fall back to displaying the field's name in the heading.
      *
      * @param firstColumnTitle firstColumnTitle Default value is " "
      * @throws IllegalStateException this property cannot be changed after the component has been created
@@ -428,7 +428,7 @@ public class ColumnTree extends Layout  implements DataBoundComponent, com.smart
      * (the remaining columns have their titles derived from the item selected in the column to the left). Ignored if {@link
      * com.smartgwt.client.widgets.grid.ColumnTree#getShowHeaders showHeaders} is not set.<br><br> Note: if you do not want a
      * heading for the first column leave this attribute at its  default value of " ". If you set it to null or the empty
-     * string, SmartGWT will fall back to displaying the field's name in the heading.
+     * string, Smart GWT will fall back to displaying the field's name in the heading.
      *
      *
      * @return String

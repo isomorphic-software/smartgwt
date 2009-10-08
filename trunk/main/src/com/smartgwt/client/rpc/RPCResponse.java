@@ -1,10 +1,10 @@
 /*
- * SmartGWT (GWT for SmartClient)
+ * Smart GWT (GWT for SmartClient)
  * Copyright 2008 and beyond, Isomorphic Software, Inc.
  *
- * SmartGWT is free software; you can redistribute it and/or modify it
+ * Smart GWT is free software; you can redistribute it and/or modify it
  * under the terms of the GNU Lesser General Public License version 3
- * as published by the Free Software Foundation.  SmartGWT is also
+ * as published by the Free Software Foundation.  Smart GWT is also
  * available under typical commercial license terms - see
  * http://smartclient.com/license
  *
@@ -82,13 +82,13 @@ public class RPCResponse extends DataClass {
      * Status code for this response.  Status codes less than zero are considered errors by the RPCManager, those greater than
      * or equal to zero are considered successes.  Please see the error handling section the {@link
      * com.smartgwt.client.rpc.RPCManager} for more information on what the RPCManager does with the status code and how you
-     * can override this behavior. <P> When using the SmartGWT server you can set the rpcResponse.status by calling the
-     * server-side method RPCResponse.setStatus().   <P> When not using the SmartGWT server, the RPCManager makes no
+     * can override this behavior. <P> When using the Smart GWT server you can set the rpcResponse.status by calling the
+     * server-side method RPCResponse.setStatus().   <P> When not using the Smart GWT server, the RPCManager makes no
      * assumptions about the structure of the response, so the status code just reflects the {@link
      * com.smartgwt.client.rpc.RPCResponse#getHttpResponseCode httpResponseCode}: status will be  {@link
      * com.smartgwt.client.rpc.RPCResponse#STATUS_TRANSPORT_ERROR} if an HTTP-level error occurred such as "500 server error". 
      * If you have a status code you need to transmit you can simply embed it in the response (as part of {@link
-     * com.smartgwt.client.rpc.RPCResponse#getData data}) and interpret it from the callback. <P> With or without the SmartGWT
+     * com.smartgwt.client.rpc.RPCResponse#getData data}) and interpret it from the callback. <P> With or without the Smart GWT
      * server, the {@link com.smartgwt.client.docs.Relogin} status codes (such as  {@link
      * com.smartgwt.client.rpc.RPCResponse#STATUS_LOGIN_REQUIRED}) are triggered whenever special markers, such as the
      * loginRequiredMarker, appear in the body of the response.  See the {@link com.smartgwt.client.docs.Relogin 'Relogin
@@ -153,14 +153,14 @@ public class RPCResponse extends DataClass {
      * Status code for this response.  Status codes less than zero are considered errors by the RPCManager, those
      * greater than or equal to zero are considered successes.  Please see the error handling section the {@link
      * com.smartgwt.client.rpc.RPCManager} for more information on what the RPCManager does with the status code and how
-     * you can override this behavior. <P> When using the SmartGWT server you can set the rpcResponse.status by
-     * calling the server-side method RPCResponse.setStatus().   <P> When not using the SmartGWT server, the
+     * you can override this behavior. <P> When using the Smart GWT server you can set the rpcResponse.status by
+     * calling the server-side method RPCResponse.setStatus().   <P> When not using the Smart GWT server, the
      * RPCManager makes no assumptions about the structure of the response, so the status code just reflects the {@link
      * com.smartgwt.client.rpc.RPCResponse#getHttpResponseCode httpResponseCode}: status will be  {@link
      * com.smartgwt.client.rpc.RPCResponse#STATUS_TRANSPORT_ERROR} if an HTTP-level error occurred such as "500 server
      * error".  If you have a status code you need to transmit you can simply embed it in the response (as part of
      * {@link com.smartgwt.client.rpc.RPCResponse#getData data}) and interpret it from the callback. <P> With or without
-     * the SmartGWT server, the Relogin Overview for details.
+     * the Smart GWT server, the Relogin Overview for details.
      *
      * @param status status
      */

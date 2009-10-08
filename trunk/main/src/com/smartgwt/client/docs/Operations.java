@@ -3,16 +3,16 @@ package com.smartgwt.client.docs;
 
 /**
  * <h3>Operations Overview</h3>
- * SmartGWT Operations are dynamic, transparent communications made from the client-side SmartGWT system running in the
- * browser, to the server-side SmartGWT system running in a servlet engine, or to other non-SmartGWT servers available via
- * HTTP. Operations are used to load new data or new behavior into a running SmartGWT application. Operations are also used
- * to save data entered by users, and in general, to get the result of any process which must be run on the server for
+ * Smart GWT Operations are dynamic, transparent communications made from the client-side Smart GWT system running in the
+ * browser, to the server-side Smart GWT system running in a servlet engine, or to other non-Smart GWT servers available
+ * via HTTP. Operations are used to load new data or new behavior into a running Smart GWT application. Operations are also
+ * used to save data entered by users, and in general, to get the result of any process which must be run on the server for
  * security reasons. <br><br> <b>RPC Operations</b> <br><br> RPC Operations are low-level communications that send and
  * retrieve arbitrary data.  RPC Operations are supported by the {@link com.smartgwt.client.rpc.RPCManager} class, which
- * when used with the SmartGWT server, provides Java to JavaScript {@link com.smartgwt.client.rpc.RPCRequest#getData '2-way
- * translation'} of basic data structures.  The RPCManager also provides a mechanism for client-side code to be invoked
- * when an operation completes (called a "callback").  RPC Operations are intended for unstructured data; data that is
- * ultimately destined for display in SmartGWT components will generally come from DataSource operations. <br><br>
+ * when used with the Smart GWT server, provides Java to JavaScript {@link com.smartgwt.client.rpc.RPCRequest#getData
+ * '2-way translation'} of basic data structures.  The RPCManager also provides a mechanism for client-side code to be
+ * invoked when an operation completes (called a "callback").  RPC Operations are intended for unstructured data; data that
+ * is ultimately destined for display in Smart GWT components will generally come from DataSource operations. <br><br>
  * <b>DataSource Operations and DataBound Components</b> <br><br> A {@link com.smartgwt.client.docs.DataSourceOperations
  * 'DataSource Operation'} is an operation that acts on a DataSource, performing one of the basic actions that makes sense
  * on a set of similar records: "fetch", "add", "update" or "remove".  Unlike RPC operations, DataSource operations have
@@ -27,10 +27,10 @@ package com.smartgwt.client.docs;
  * automatically submit DataSource operations to the server at appropriate times. <br><br> <b>DataSource Operation
  * Integration</b> <br><br> Integrating DataSource operations with an existing system is best approached by implementing
  * the the 4 basic DataSource operations in terms of your existing object model or data store. With these 4 operations
- * implemented, the entire range of user interactions supported by SmartGWT {@link
+ * implemented, the entire range of user interactions supported by Smart GWT {@link
  * com.smartgwt.client.widgets.DataBoundComponent} becomes applicable to your server.  At that point authentication,
  * authorization and other business rules can be layered on top. <br><br> <b>Built-in SQL Connectivity</b> <br><br> The
- * SmartGWT Server comes with a built-in {@link com.smartgwt.client.docs.SqlDataSource 'SQLDataSource'} which can be used
+ * Smart GWT Server comes with a built-in {@link com.smartgwt.client.docs.SqlDataSource 'SQLDataSource'} which can be used
  * without any server-side code needing to be written.  In contrast, any operation which uses custom server-side code is
  * called a "Custom Operation". <br><br> Generally it makes sense to prototype an application using Built-in DataSource
  * Operations, then on the backend, create Custom DataSource Operations to retrieve data from the data store you will use

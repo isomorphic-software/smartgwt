@@ -1,10 +1,10 @@
 /*
- * SmartGWT (GWT for SmartClient)
+ * Smart GWT (GWT for SmartClient)
  * Copyright 2008 and beyond, Isomorphic Software, Inc.
  *
- * SmartGWT is free software; you can redistribute it and/or modify it
+ * Smart GWT is free software; you can redistribute it and/or modify it
  * under the terms of the GNU Lesser General Public License version 3
- * as published by the Free Software Foundation.  SmartGWT is also
+ * as published by the Free Software Foundation.  Smart GWT is also
  * available under typical commercial license terms - see
  * http://smartclient.com/license
  *
@@ -58,7 +58,7 @@ import com.google.gwt.event.shared.HasHandlers;
 
 /**
  * HiddenItems track a value but have no visible appearance and do not take up space in the form layout. <P> When using
- * SmartGWT databinding it is usually not necessary to use a HiddenItem, since the DynamicForm will track values for which
+ * Smart GWT databinding it is usually not necessary to use a HiddenItem, since the DynamicForm will track values for which
  * no actual form control exists, and will submit these 'extra' values when {@link
  * com.smartgwt.client.widgets.form.DynamicForm#saveData} is called.  HiddenItems only apply to forms that are submitted
  * like ordinary HTML forms, via the {@link com.smartgwt.client.widgets.form.DynamicForm#submitForm} method.

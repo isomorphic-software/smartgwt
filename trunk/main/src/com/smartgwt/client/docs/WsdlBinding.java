@@ -3,18 +3,19 @@ package com.smartgwt.client.docs;
 
 /**
  * <h3>WSDL Binding</h3>
- * SmartGWT supports automated integration with WSDL-described web services.  This support&#010 consists of:&#010 <ul>&#010
- * <li> creation of SOAP XML messages from JavaScript application data, with automatic&#010 namespacing, and support for
- * both "literal" and "encoded" SOAP messaging, and "document" and&#010 "rpc" WSDL-SOAP bindings&#010 <li> automatic decode
- * of SOAP XML messages to JavaScript objects, with strong typing (eg an&#010 XML schema "date" type becomes a JavaScript
- * Date object)&#010 <li> {@link com.smartgwt.client.data.XMLTools#loadXMLSchema} (contained in WSDL, or external),&#010
- * including translating XML Schema "restrictions" to ISC {@link com.smartgwt.client.widgets.form.validator.Validator}&#010
- * </ul>&#010 <P>&#010 WSDL services can be contacted by using {@link com.smartgwt.client.data.XMLTools#loadWSDL} or
- * the&#010 {@link com.smartgwt.client.docs.LoadWSDLTag '&lt;isc:loadWSDL&gt; JSP tag'} to load the service definition,
- * then&#010 invoking methods on the resulting {@link com.smartgwt.client.data.WebService} object.&#010 <P>&#010 {@link
- * com.smartgwt.client.data.WebService#callOperation} can be used to manually invoke operations for&#010 custom processing
- * (example using ${isc.DocUtils.linkForExampleId('wsdlOperation', 'public zipcode service')},&#010 examples using .NET
- * at&#010 <a href='/examples/databinding/dotNET/temperatureConvert.jsp'
+ * Smart GWT supports automated integration with WSDL-described web services.  This support&#010 consists of:&#010
+ * <ul>&#010 <li> creation of SOAP XML messages from JavaScript application data, with automatic&#010 namespacing, and
+ * support for both "literal" and "encoded" SOAP messaging, and "document" and&#010 "rpc" WSDL-SOAP bindings&#010 <li>
+ * automatic decode of SOAP XML messages to JavaScript objects, with strong typing (eg an&#010 XML schema "date" type
+ * becomes a JavaScript Date object)&#010 <li> {@link com.smartgwt.client.data.XMLTools#loadXMLSchema} (contained in WSDL,
+ * or external),&#010 including translating XML Schema "restrictions" to ISC {@link
+ * com.smartgwt.client.widgets.form.validator.Validator}&#010 </ul>&#010 <P>&#010 WSDL services can be contacted by using
+ * {@link com.smartgwt.client.data.XMLTools#loadWSDL} or the&#010 {@link com.smartgwt.client.docs.LoadWSDLTag
+ * '&lt;isc:loadWSDL&gt; JSP tag'} to load the service definition, then&#010 invoking methods on the resulting {@link
+ * com.smartgwt.client.data.WebService} object.&#010 <P>&#010 {@link com.smartgwt.client.data.WebService#callOperation} can
+ * be used to manually invoke operations for&#010 custom processing (example using
+ * ${isc.DocUtils.linkForExampleId('wsdlOperation', 'public zipcode service')},&#010 examples using .NET at&#010 <a
+ * href='/examples/databinding/dotNET/temperatureConvert.jsp'
  * onclick="window.open('/examples/databinding/dotNET/temperatureConvert.jsp');return
  * false;">/examples/databinding/dotNET/temperatureConvert.jsp</a>).&#010 <P>&#010 <b>Fetch-only DataSource
  * binding</b>&#010 <P>&#010 To bind a component to a web service operation, call&#010 <P>&#010 &nbsp;&nbsp;{@link
@@ -51,7 +52,7 @@ package com.smartgwt.client.docs;
  * invoke.  <code>fetchData()</code> called on such a DataSource will&#010 invoke the web service operation named by {@link
  * com.smartgwt.client.data.OperationBinding#getWsOperation 'wsOperation'},&#010 just like a DataSource returned by {@link
  * com.smartgwt.client.data.WebService#getFetchDS}.&#010 <P>&#010 In contrast to <code>getFetchDS()</code>, creating a
- * DataSource in this way gives you the&#010 opportunity to:&#010 <ul>&#010 <li> declare arbitrary fields, with SmartGWT
+ * DataSource in this way gives you the&#010 opportunity to:&#010 <ul>&#010 <li> declare arbitrary fields, with Smart GWT
  * presentation attributes such as titles and&#010 formatters&#010 <li> extract any data from the response message,
  * via&#010 {@link com.smartgwt.client.data.OperationBinding#getRecordXPath 'operationBinding.recordXPath'} and &#010
  * {@link com.smartgwt.client.data.DataSourceField#getValueXPath 'field.valueXPath'}, and transform it with&#010 {@link
@@ -60,7 +61,7 @@ package com.smartgwt.client.docs;
  * a service requiring authentication&#010 </ul>&#010 These techniques are shown in the
  * ${isc.DocUtils.linkForExampleId('wsdlBinding', 'Google SOAP Search example')}.&#010 <P>&#010 <b>XML Schema
  * Reuse</b>&#010 <P>&#010 Having loaded a WSDL file, all of the XML Schema definitions within the service definition&#010
- * get translated to SmartGWT {@link com.smartgwt.client.data.DataSource} and&#010 {@link
+ * get translated to Smart GWT {@link com.smartgwt.client.data.DataSource} and&#010 {@link
  * com.smartgwt.client.data.SimpleType} via the rules described by {@link
  * com.smartgwt.client.data.XMLTools#loadXMLSchema},&#010 and are available to you via {@link
  * com.smartgwt.client.data.WebService#getSchema} and {@link com.smartgwt.client.data.DataSourceField#getType type}. &#010
@@ -115,24 +116,23 @@ package com.smartgwt.client.docs;
  * accounts</a>.&#010 Please note: this application deals with <b>live data</b> and if you using inline editing&#010 <b>it
  * will save to SalesForce</b>.&#010 <P>&#010 <b>Deployment</b>&#010 <P>&#010 For best performance, using the {@link
  * com.smartgwt.client.docs.LoadWSDLTag '&lt;isc:loadWSDL&gt; JSP tag'}&#010 is recommended, as it automatically caches a
- * translated form of the WSDL file.  If you are&#010 not using the SmartGWT server, the WSDL tab in the Developer Console
+ * translated form of the WSDL file.  If you are&#010 not using the Smart GWT server, the WSDL tab in the Developer Console
  * allows you&#010 to save a .js file representing a WebService object, which can then be loaded and cached&#010 like a
  * normal JavaScript file.&#010 <P>&#010 <B>Creating New WSDL Services</B>&#010 <P>&#010 If you have no existing WSDL web
- * service but would like to use web services for integration,&#010 you can implement the "SmartGWTOperations" web service
- * described by the&#010
- * ${isc.DocUtils.externalLink(isc.Page.getIsomorphicDir()+"system/schema/SmartGWTOperations.wsdl","WSDL file")} &#010
- * included in the SDK.  This simple, 4 operation web service can support any number of&#010 DataSources.  In this case,
- * you create your DataSources as client-side instances of&#010 {@link com.smartgwt.client.data.WSDataSource} (general
- * client-side DataSource creation is described under&#010 {@link com.smartgwt.client.docs.DataSourceDeclaration 'Creating
- * DataSources'}).  To change the URL where ISC&#010 expects to find the SmartGWTOperations web service, use {@link
- * com.smartgwt.client.data.WebService#setLocation}&#010 like so:<pre>&#010      var service =
- * isc.WebService.get("urn:operations.smartclient.com");&#010      service.setLocation("myURL");&#010 </pre>&#010 <P>&#010
- * To implement a web service <b>starting from a WSDL file</b>:&#010 <ul>&#010 <li>In the .NET framework, you will use the
- * Web Services Description Language Tool &#010 <a href='http://www.google.com/search?q=wsdl.exe'
- * onclick="window.open('http://www.google.com/search?q=wsdl.exe');return false;">(wsdl.exe)</a> to generate C# stubs
- * that&#010 you will add business logic to&#010 <li>In Java, <a href='http://ws.apache.org/axis/'
- * onclick="window.open('http://ws.apache.org/axis/');return false;">Apache Axis</a> can be used to generate&#010 Java
- * stubs for implementing a web service&#010 <li>In Perl, the <a href='http://soaplite.com'
+ * service but would like to use web services for integration,&#010 you can implement the "Smart GWTOperations" web service
+ * described by the&#010 ${isc.DocUtils.externalLink(isc.Page.getIsomorphicDir()+"system/schema/Smart
+ * GWTOperations.wsdl","WSDL file")} &#010 included in the SDK.  This simple, 4 operation web service can support any
+ * number of&#010 DataSources.  In this case, you create your DataSources as client-side instances of&#010 {@link
+ * com.smartgwt.client.data.WSDataSource} (general client-side DataSource creation is described under&#010 {@link
+ * com.smartgwt.client.docs.DataSourceDeclaration 'Creating DataSources'}).  To change the URL where ISC&#010 expects to
+ * find the Smart GWTOperations web service, use {@link com.smartgwt.client.data.WebService#setLocation}&#010 like
+ * so:<pre>&#010      var service = isc.WebService.get("urn:operations.smartclient.com");&#010     
+ * service.setLocation("myURL");&#010 </pre>&#010 <P>&#010 To implement a web service <b>starting from a WSDL
+ * file</b>:&#010 <ul>&#010 <li>In the .NET framework, you will use the Web Services Description Language Tool &#010 <a
+ * href='http://www.google.com/search?q=wsdl.exe' onclick="window.open('http://www.google.com/search?q=wsdl.exe');return
+ * false;">(wsdl.exe)</a> to generate C# stubs that&#010 you will add business logic to&#010 <li>In Java, <a
+ * href='http://ws.apache.org/axis/' onclick="window.open('http://ws.apache.org/axis/');return false;">Apache Axis</a> can
+ * be used to generate&#010 Java stubs for implementing a web service&#010 <li>In Perl, the <a href='http://soaplite.com'
  * onclick="window.open('http://soaplite.com');return false;">SOAP:Lite</a> module can be used to&#010 implement web
  * services without code generation&#010 <li>for PHP, the NuSoap module can likewise be used to implement web services
  * without code&#010 generation&#010 </ul>

@@ -1,10 +1,10 @@
 /*
- * SmartGWT (GWT for SmartClient)
+ * Smart GWT (GWT for SmartClient)
  * Copyright 2008 and beyond, Isomorphic Software, Inc.
  *
- * SmartGWT is free software; you can redistribute it and/or modify it
+ * Smart GWT is free software; you can redistribute it and/or modify it
  * under the terms of the GNU Lesser General Public License version 3
- * as published by the Free Software Foundation.  SmartGWT is also
+ * as published by the Free Software Foundation.  Smart GWT is also
  * available under typical commercial license terms - see
  * http://smartclient.com/license
  *
@@ -57,7 +57,7 @@ import com.google.gwt.event.shared.*;
 import com.google.gwt.event.shared.HasHandlers;
 
 /**
- * The Hover class handles showing a simple SmartGWT canvas containing arbitrary HTML, or triggering some other action in
+ * The Hover class handles showing a simple Smart GWT canvas containing arbitrary HTML, or triggering some other action in
  * response to a user holding the mouse-pointer (or hovering) over a specific widget.
  */
 public class Hover {

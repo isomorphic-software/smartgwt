@@ -6,14 +6,14 @@ package com.smartgwt.client.docs;
  * Compression helps reduce the sizes of various data fetched from the server.  Most modern web&#010 browsers can handle
  * compressed responses of certain content types. The time it takes to&#010 decompress these responses on a client system
  * is negligible compared to the time saved&#010 by reducing the number of bits on the wire, especially for slow
- * connections.&#010 <p>&#010 If you're not using the SmartGWT Java back-end, there are several compression solutions&#010
+ * connections.&#010 <p>&#010 If you're not using the Smart GWT Java back-end, there are several compression solutions&#010
  * available, depending on your server of choice.  Microsoft's IIS has built-in compression&#010 capability, please check
  * the reference manual for details.  If you're using Apache, you can&#010 use <a
  * href='http://sourceforge.net/projects/mod-gzip/'
  * onclick="window.open('http://sourceforge.net/projects/mod-gzip/');return false;">mod_gzip</a> or &#010 use <a
  * href='http://httpd.apache.org/docs/2.0/mod/mod_deflate.html'
  * onclick="window.open('http://httpd.apache.org/docs/2.0/mod/mod_deflate.html');return false;">mod_deflate</a>.  Some&#010
- * servlet containers also natively support dynamic compression.&#010 <p>&#010 The SmartGWT Java back-end supports two
+ * servlet containers also natively support dynamic compression.&#010 <p>&#010 The Smart GWT Java back-end supports two
  * types of response compression:&#010 <ul>&#010 <li>Pre-compressed static content served via the ISC FileDownload
  * servlet.&#010 <li>On-the-fly compression of arbitrary content using the CompressionFilter.&#010 </ul>&#010 <u>Serving
  * pre-compressed files</u>&#010 <p>&#010 To serve pre-compressed static content via FileDownload, register the
@@ -21,7 +21,7 @@ package com.smartgwt.client.docs;
  * &lt;servlet-name&gt;FileDownload&lt;/servlet-name&gt;&#010      
  * &lt;servlet-class&gt;com.isomorphic.servlet.FileDownload&lt;/servlet-class&gt;&#010     &lt;/servlet&gt;&#010
  * </pre>&#010 Then map any resource that you want to serve compressed to the FileDownload servlet in your&#010 web.xml. 
- * Typically, you'll want to serve all SmartGWT modules compressed.  You can do so&#010 by adding the following
+ * Typically, you'll want to serve all Smart GWT modules compressed.  You can do so&#010 by adding the following
  * servlet-mapping directive to your web.xml:&#010 <pre>&#010     &lt;servlet-mapping&gt;&#010      
  * &lt;servlet-name&gt;FileDownload&lt;/servlet-name&gt;&#010      
  * &lt;url-pattern&gt;/isomorphic/system/modules/*&lt;/url-pattern&gt;&#010     &lt;/servlet-mapping&gt;&#010 </pre>&#010
@@ -50,7 +50,7 @@ package com.smartgwt.client.docs;
  * mime-types&#010 compressed: text/html, text/xml, application/x-javascript, text/javascript, text/ecmascript,&#010
  * image/svg+xml.  If your files are not being compressed, make sure your servlet container&#010 has a mime type mapping
  * that identifies it as one of the above file types.&#010 <p>&#010 Compression for the mime types listed above is
- * supported on all browsers supported by&#010 SmartGWT.  There is one exception: compression of javascript files for IE
+ * supported on all browsers supported by&#010 Smart GWT.  There is one exception: compression of javascript files for IE
  * versions older&#010 than IE6 Service Pack 2 requires that the CompressionFilter be registerd to dynamically&#010
  * compress the page that loads these javascript files.
  */

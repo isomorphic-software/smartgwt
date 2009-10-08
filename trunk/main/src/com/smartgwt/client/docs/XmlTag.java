@@ -3,7 +3,7 @@ package com.smartgwt.client.docs;
 
 /**
  * <h3>&lt;isomorphic:XML&gt;</h3>
- * <i>produces:</i> JavaScript&#010 <p>&#010 This tag converts SmartGWT UI components declaratively specified in the body
+ * <i>produces:</i> JavaScript&#010 <p>&#010 This tag converts Smart GWT UI components declaratively specified in the body
  * of the tag to&#010 JavaScript for execution in the browser.&#010 <p>&#010 The XML->JS translation works just like with
  * loadUITag, but the XML is read&#010 from the body of the tag.  If you wish, you can also specify an external filename,
  * and XML&#010 will be read from that file, in addition to any XML encountered in the body of the tag.  If&#010 you do

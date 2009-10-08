@@ -1,10 +1,10 @@
 /*
- * SmartGWT (GWT for SmartClient)
+ * Smart GWT (GWT for SmartClient)
  * Copyright 2008 and beyond, Isomorphic Software, Inc.
  *
- * SmartGWT is free software; you can redistribute it and/or modify it
+ * Smart GWT is free software; you can redistribute it and/or modify it
  * under the terms of the GNU Lesser General Public License version 3
- * as published by the Free Software Foundation.  SmartGWT is also
+ * as published by the Free Software Foundation.  Smart GWT is also
  * available under typical commercial license terms - see
  * http://smartclient.com/license
  *
@@ -97,7 +97,7 @@ public class Page {
     }-*/;
 
     /**
-     * Specify the directory for app-specific images. <P> This becomes the default location where any SmartGWT component will
+     * Specify the directory for app-specific images. <P> This becomes the default location where any Smart GWT component will
      * load images from unless the special "[SKIN]" prefix is used to indicate that an image is part of a skin. <P> Default is
      * "[APP]images/"
      */
@@ -106,7 +106,7 @@ public class Page {
     }-*/;
 
     /**
-     * Specify the directory for app-specific images. <P> This becomes the default location where any SmartGWT component will
+     * Specify the directory for app-specific images. <P> This becomes the default location where any Smart GWT component will
      * load images from unless the special "[SKIN]" prefix is used to indicate that an image is part of a skin. <P> Default is
      * "[APP]images/"
      * @param URL New imgDir URL.
@@ -363,7 +363,7 @@ public class Page {
 
 
     /**
-     * Check whether the browser is supported by the Isomorphic SmartGWT system. Behavior depends upon the value of {@link
+     * Check whether the browser is supported by the Isomorphic Smart GWT system. Behavior depends upon the value of {@link
      * com.smartgwt.client.util.Page#unsupportedBrowserAction}: <ul> <li><code>"continue"</code> Load the page without
      * notifying the user of potential issues</li> <li><code>"confirm"</code> Notify the user via a standard confirm dialog
      * that their browser is  not supported. Provide options to continue anyway, or redirect to another page. Text of the 
@@ -378,7 +378,7 @@ public class Page {
     }-*/;
 
     /**
-     * Check whether the browser is supported by the Isomorphic SmartGWT system. Behavior depends upon the value of {@link
+     * Check whether the browser is supported by the Isomorphic Smart GWT system. Behavior depends upon the value of {@link
      * com.smartgwt.client.util.Page#unsupportedBrowserAction}: <ul> <li><code>"continue"</code> Load the page without
      * notifying the user of potential issues</li> <li><code>"confirm"</code> Notify the user via a standard confirm dialog
      * that their browser is  not supported. Provide options to continue anyway, or redirect to another page. Text of the 

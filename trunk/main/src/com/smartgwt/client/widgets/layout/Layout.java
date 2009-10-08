@@ -1,10 +1,10 @@
 /*
- * SmartGWT (GWT for SmartClient)
+ * Smart GWT (GWT for SmartClient)
  * Copyright 2008 and beyond, Isomorphic Software, Inc.
  *
- * SmartGWT is free software; you can redistribute it and/or modify it
+ * Smart GWT is free software; you can redistribute it and/or modify it
  * under the terms of the GNU Lesser General Public License version 3
- * as published by the Free Software Foundation.  SmartGWT is also
+ * as published by the Free Software Foundation.  Smart GWT is also
  * available under typical commercial license terms - see
  * http://smartclient.com/license
  *
@@ -602,7 +602,7 @@ public class Layout extends Canvas {
      * ...various layout properties...&#010   canDropComponents: true,&#010   drop : function () {&#010     // create the new
      * component &#010     var newMember = isc.Canvas.create(); &#010     // add to the layout at the current drop position
      * &#010     // (the dropLine will be showing here)&#010     this.addMember(newMember, this.getDropPosition());  &#010    
-     * // hide the dropLine that was automatically shown &#010     // by builtin SmartGWT methods&#010    
+     * // hide the dropLine that was automatically shown &#010     // by builtin Smart GWT methods&#010    
      * this.hideDropLine();&#010   }&#010 });&#010 </pre>&#010 If you want to completely suppress the builtin drag and drop
      * logic, but still receive drag&#010 and drop events for your own custom implementation, set {@link
      * com.smartgwt.client.widgets.Canvas#getCanAcceptDrop canAcceptDrop} to&#010 <code>true</code> and
@@ -634,7 +634,7 @@ public class Layout extends Canvas {
      * ...various layout properties...&#010   canDropComponents: true,&#010   drop : function () {&#010     // create the new
      * component &#010     var newMember = isc.Canvas.create(); &#010     // add to the layout at the current drop position
      * &#010     // (the dropLine will be showing here)&#010     this.addMember(newMember, this.getDropPosition());  &#010    
-     * // hide the dropLine that was automatically shown &#010     // by builtin SmartGWT methods&#010    
+     * // hide the dropLine that was automatically shown &#010     // by builtin Smart GWT methods&#010    
      * this.hideDropLine();&#010   }&#010 });&#010 </pre>&#010 If you want to completely suppress the builtin drag and drop
      * logic, but still receive drag&#010 and drop events for your own custom implementation, set {@link
      * com.smartgwt.client.widgets.Canvas#getCanAcceptDrop canAcceptDrop} to&#010 <code>true</code> and

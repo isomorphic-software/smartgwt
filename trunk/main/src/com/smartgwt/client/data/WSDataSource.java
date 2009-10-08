@@ -1,10 +1,10 @@
 /*
- * SmartGWT (GWT for SmartClient)
+ * Smart GWT (GWT for SmartClient)
  * Copyright 2008 and beyond, Isomorphic Software, Inc.
  *
- * SmartGWT is free software; you can redistribute it and/or modify it
+ * Smart GWT is free software; you can redistribute it and/or modify it
  * under the terms of the GNU Lesser General Public License version 3
- * as published by the Free Software Foundation.  SmartGWT is also
+ * as published by the Free Software Foundation.  Smart GWT is also
  * available under typical commercial license terms - see
  * http://smartclient.com/license
  *
@@ -58,10 +58,10 @@ import com.google.gwt.event.shared.HasHandlers;
 
 /**
  * A WSDataSource is a DataSource that is preconfigured to contact the WSDL web service built into the SDK (see
- * isomorphic/system/schema/SmartGWTOperations.wsdl).  This WSDL service can be easily implemented on Java and non-Java
+ * isomorphic/system/schema/Smart GWTOperations.wsdl).  This WSDL service can be easily implemented on Java and non-Java
  * backends.   <P> WSDataSource supports all 4 DataSource operations (fetch, add, update, remove) and can be used with
  * ListGrids, DynamicForms and other {@link com.smartgwt.client.widgets.DataBoundComponent}s just like other DataSources.
- * <P> Note that WSDataSource is specifically designed for use with SmartGWTOperations.wsdl.  If you are trying to connect
+ * <P> Note that WSDataSource is specifically designed for use with Smart GWTOperations.wsdl.  If you are trying to connect
  * to a pre-existing WSDL service, start with just {@link com.smartgwt.client.data.DataSource},  not WSDataSource, and see
  * the {@link com.smartgwt.client.docs.WsdlBinding 'WSDL Integration'} chapter for an overview.
  */

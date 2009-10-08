@@ -1,10 +1,10 @@
 /*
- * SmartGWT (GWT for SmartClient)
+ * Smart GWT (GWT for SmartClient)
  * Copyright 2008 and beyond, Isomorphic Software, Inc.
  *
- * SmartGWT is free software; you can redistribute it and/or modify it
+ * Smart GWT is free software; you can redistribute it and/or modify it
  * under the terms of the GNU Lesser General Public License version 3
- * as published by the Free Software Foundation.  SmartGWT is also
+ * as published by the Free Software Foundation.  Smart GWT is also
  * available under typical commercial license terms - see
  * http://smartclient.com/license
  *
@@ -247,7 +247,7 @@ public class DSRequest extends RPCRequest {
      * particular ListGrid, you could cause it to invoke a different server method via DMI, different {@link
      * com.smartgwt.client.data.OperationBinding#getDataURL 'dataURL'} or different {@link
      * com.smartgwt.client.data.OperationBinding#getWsOperation 'web service operation'}. <P> The <code>operationId</code> can
-     * also be directly received by the server in order to affect behavior.  When using the SmartGWT Server,
+     * also be directly received by the server in order to affect behavior.  When using the Smart GWT Server,
      * <code>operationId</code> can be accessed via dsRequest.getOperationId().  The {@link
      * com.smartgwt.client.data.RestDataSource} will also send the <code>operationId</code> to the server as part of the {@link
      * com.smartgwt.client.data.RestDataSource#getMetaDataPrefix 'request metadata'}.   <P> Note that if you {@link

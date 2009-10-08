@@ -1,10 +1,10 @@
 /*
- * SmartGWT (GWT for SmartClient)
+ * Smart GWT (GWT for SmartClient)
  * Copyright 2008 and beyond, Isomorphic Software, Inc.
  *
- * SmartGWT is free software; you can redistribute it and/or modify it
+ * Smart GWT is free software; you can redistribute it and/or modify it
  * under the terms of the GNU Lesser General Public License version 3
- * as published by the Free Software Foundation.  SmartGWT is also
+ * as published by the Free Software Foundation.  Smart GWT is also
  * available under typical commercial license terms - see
  * http://smartclient.com/license
  *
@@ -25,7 +25,7 @@ public interface HasHandleErrorHandlers extends HasHandlers {
      * If you define this method on a DataSource, it will be called whenever the server returns a DSResponse with a status
      * other than {@link com.smartgwt.client.rpc.RPCResponse#STATUS_SUCCESS}.  You can use this hook to do DataSource-specific
      * error handling.  Unless you return <code>false</code> from this method, {@link
-     * com.smartgwt.client.rpc.RPCManager#handleError} will be called by SmartGWT right after this method completes.
+     * com.smartgwt.client.rpc.RPCManager#handleError} will be called by Smart GWT right after this method completes.
      *
      * @param handler the handleError handler
      * @return {@link HandlerRegistration} used to remove this handler

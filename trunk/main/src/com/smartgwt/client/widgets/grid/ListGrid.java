@@ -1,10 +1,10 @@
 /*
- * SmartGWT (GWT for SmartClient)
+ * Smart GWT (GWT for SmartClient)
  * Copyright 2008 and beyond, Isomorphic Software, Inc.
  *
- * SmartGWT is free software; you can redistribute it and/or modify it
+ * Smart GWT is free software; you can redistribute it and/or modify it
  * under the terms of the GNU Lesser General Public License version 3
- * as published by the Free Software Foundation.  SmartGWT is also
+ * as published by the Free Software Foundation.  Smart GWT is also
  * available under typical commercial license terms - see
  * http://smartclient.com/license
  *
@@ -6311,7 +6311,7 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
      * headers, so it's typical to set {@link com.smartgwt.client.widgets.grid.ListGrid#getHeaderHeight headerHeight} to
      * approximately double its normal height when using headerSpans. <P> See {@link com.smartgwt.client.widgets.grid.HeaderSpan}
      * for many properties that allow the control of the appearance of headerSpans.  Note that headerSpans are created
-     * via the AutoChild pattern, hence you can change the SmartGWT component
+     * via the AutoChild pattern, hence you can change the Smart GWT component
      * being used, or any of it's properties. <P> Neither headerSpans themselves nor the fields within them may be drag
      * reordered, but other unspanned headers may be. <P> Note that headerSpans primarily provide a visual cue for
      * grouping multiple headers  together.  If you have an OLAP, data "cube" or multi-dimensional data model, the

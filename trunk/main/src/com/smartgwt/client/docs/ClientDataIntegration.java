@@ -3,8 +3,8 @@ package com.smartgwt.client.docs;
 
 /**
  * <h3>Client-side Data Integration</h3>
- * SmartGWT supports declarative, XPath-based binding of visual components to any server&#010 capable of returning XML or
- * JSON responses over HTTP, without the need for the&#010 {@link com.smartgwt.client.docs.ServerDataIntegration 'SmartGWT
+ * Smart GWT supports declarative, XPath-based binding of visual components to any server&#010 capable of returning XML or
+ * JSON responses over HTTP, without the need for the&#010 {@link com.smartgwt.client.docs.ServerDataIntegration 'Smart GWT
  * server'}.&#010 <P>&#010 This approach is called Client-Side Data Integration, which means:&#010 <ul>&#010 <li> You
  * {@link com.smartgwt.client.docs.DataSourceDeclaration 'create DataSources'} in JavaScript &#010 which describe the data
  * to be loaded and manipulated in the user interface. The&#010 JavaScript that creates these DataSources may be
@@ -15,12 +15,12 @@ package com.smartgwt.client.docs;
  * bound to &#010 {@link com.smartgwt.client.widgets.DataBoundComponent}, which can provide a variety of&#010 complete user
  * interactions (form-based editing, grid-based editing, load on demand, ..)&#010 based on these 4 core operations&#010
  * </ul>&#010 <P>&#010 <h4>Approaches and platforms</h4>&#010 <P>&#010 <B>WSDL integration (.NET and others)</B>&#010
- * <P>&#010 If you have pre-existing WSDL services or would like to generate web services for&#010 SmartGWT to consume, the
- * {@link com.smartgwt.client.docs.WsdlBinding 'WSDL Binding Overview'} covers possible&#010 approaches.&#010 <P>&#010 WSDL
- * binding is the most popular approach for integration with the .NET platform.&#010 You can &#010 <a
+ * <P>&#010 If you have pre-existing WSDL services or would like to generate web services for&#010 Smart GWT to consume,
+ * the {@link com.smartgwt.client.docs.WsdlBinding 'WSDL Binding Overview'} covers possible&#010 approaches.&#010 <P>&#010
+ * WSDL binding is the most popular approach for integration with the .NET platform.&#010 You can &#010 <a
  * href='http://www.google.com/search?q=create+web+service+visual+studio'
  * onclick="window.open('http://www.google.com/search?q=create+web+service+visual+studio');return false;">use Visual Studio
- * to create web services</a>&#010 from existing server-side methods, and then use SmartGWT's &#010 {@link
+ * to create web services</a>&#010 from existing server-side methods, and then use Smart GWT's &#010 {@link
  * com.smartgwt.client.docs.WsdlBinding 'WSDL Binding'} system to connect to those web services.  &#010 <P>&#010 Here are a
  * couple of examples of integration with .NET web services:&#010 <a
  * href='/examples/databinding/dotNET/temperatureConvert.jsp'
@@ -34,10 +34,10 @@ package com.smartgwt.client.docs;
  * called the&#010 <a href='http://www.google.com/search?hl=en&q=REST+HTTP'
  * onclick="window.open('http://www.google.com/search?hl=en&q=REST+HTTP');return false;">REST</a> (REpresentational
  * State&#010 Transfer) pattern.&#010 <P> &#010 When using this, you create a dynamic web page that generates XML or JSON
- * data for&#010 SmartGWT to consume.&#010 <P>&#010 SmartGWT DataSources can be configured to work with any pre-existing
+ * data for&#010 Smart GWT to consume.&#010 <P>&#010 Smart GWT DataSources can be configured to work with any pre-existing
  * XML or JSON formats&#010 your application is already using; see below.&#010 <P>&#010 For new applications, the {@link
  * com.smartgwt.client.data.RestDataSource} provides a complete XML or JSON-based&#010 protocol that supports all of the
- * features of SmartGWT's databinding layer (data paging,&#010 server-side validation errors, automatic cache
+ * features of Smart GWT's databinding layer (data paging,&#010 server-side validation errors, automatic cache
  * synchronization, etc).  To use the&#010 RestDataSource, simply write server code that can parse RestDataSource requests
  * and produce&#010 the required responses; example requests and responses are {@link
  * com.smartgwt.client.data.RestDataSource}.&#010 <P>&#010 <h4>Consuming Existing XML and JSON formats</h4>&#010 <p>&#010
@@ -74,7 +74,7 @@ package com.smartgwt.client.docs;
  * expected for each operation type.  &#010 <P>&#010 By using settings such as {@link
  * com.smartgwt.client.data.OperationBinding#getDataProtocol dataProtocol}, you can control how&#010 DSRequests are sent to
  * your backend so that you can handle them most easily.  By using the&#010 same properties used to initially load data
- * (eg&#010 {@link com.smartgwt.client.data.OperationBinding#getRecordXPath 'recordXPath'}), you can control how SmartGWT
+ * (eg&#010 {@link com.smartgwt.client.data.OperationBinding#getRecordXPath 'recordXPath'}), you can control how Smart GWT
  * forms the&#010 DSResponses that are then interpreted by {@link com.smartgwt.client.widgets.DataBoundComponent}.&#010
  * <P>&#010 <b>Controlling how DSRequests are sent</b>&#010 <P>&#010 According to the {@link
  * com.smartgwt.client.data.OperationBinding#getDataProtocol 'protocol'} being used, the&#010 {@link

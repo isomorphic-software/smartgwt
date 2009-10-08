@@ -1,10 +1,10 @@
 /*
- * SmartGWT (GWT for SmartClient)
+ * Smart GWT (GWT for SmartClient)
  * Copyright 2008 and beyond, Isomorphic Software, Inc.
  *
- * SmartGWT is free software; you can redistribute it and/or modify it
+ * Smart GWT is free software; you can redistribute it and/or modify it
  * under the terms of the GNU Lesser General Public License version 3
- * as published by the Free Software Foundation.  SmartGWT is also
+ * as published by the Free Software Foundation.  Smart GWT is also
  * available under typical commercial license terms - see
  * http://smartclient.com/license
  *
@@ -66,17 +66,17 @@ import com.google.gwt.event.shared.HasHandlers;
  * RestDataSource is used just like a normal DataSource.  RestDataSources are pre-configured,&#010 using the
  * general-purpose databinding facilities of DataSources, to expect a particular&#010 format for responses and to send
  * requests in a specific format.   These request and&#010 response formats represent Isomorphic's recommended best
- * practices for binding SmartGWT&#010 to backends which do not already support a similar, pre-existing request and
- * response&#010 format and where the SmartGWT Java Server cannot be used.  &#010 <P>&#010 If you have a pre-existing REST
- * or WSDL service which is difficult to change, consider&#010 adapting SmartGWT to the existing service instead, by
+ * practices for binding Smart GWT&#010 to backends which do not already support a similar, pre-existing request and
+ * response&#010 format and where the Smart GWT Java Server cannot be used.  &#010 <P>&#010 If you have a pre-existing REST
+ * or WSDL service which is difficult to change, consider&#010 adapting Smart GWT to the existing service instead, by
  * starting with a normal&#010 {@link com.smartgwt.client.data.DataSource} and using the &#010 {@link
  * com.smartgwt.client.docs.ClientDataIntegration 'client-side data integration'} facilities to create a&#010 mapping
- * between SmartGWT's {@link com.smartgwt.client.data.DSRequest} and {@link com.smartgwt.client.data.DSResponse} objects
+ * between Smart GWT's {@link com.smartgwt.client.data.DSRequest} and {@link com.smartgwt.client.data.DSResponse} objects
  * and the message&#010 formats of your existing services.&#010 <P>&#010 RestDataSource is typically used with PHP, Ruby,
- * Python, Perl or custom server technologies,&#010 and represents an alternative to installing the SmartGWT Server in a
+ * Python, Perl or custom server technologies,&#010 and represents an alternative to installing the Smart GWT Server in a
  * Java technology&#010 stack, or using {@link com.smartgwt.client.docs.WsdlBinding 'WSDL-based binding'} with .NET or
  * other WSDL-capable&#010 technologies.&#010 <P>&#010 The request and response formats used by the RestDataSource allow
- * for many of the available&#010 features of SmartGWT's databinding system to be used, including data paging, searching
+ * for many of the available&#010 features of Smart GWT's databinding system to be used, including data paging, searching
  * &&#010 sorting, {@link com.smartgwt.client.data.DSRequest#getOldValues 'long transactions'}, &#010 {@link
  * com.smartgwt.client.data.ResultSet} and {@link com.smartgwt.client.docs.Relogin 'relogin'}.  However advanced&#010
  * features such as {@link com.smartgwt.client.docs.Upload 'uploading / binary fields'},&#010 {@link

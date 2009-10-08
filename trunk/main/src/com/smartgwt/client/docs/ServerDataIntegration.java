@@ -4,7 +4,7 @@ package com.smartgwt.client.docs;
 /**
  * <h3>Server DataSource Integration</h3>
  * Server Data Integration means: <ul> <li> You {@link com.smartgwt.client.docs.IscInstall 'install'} the       {@link
- * com.smartgwt.client.docs.IscServer 'SmartGWT Java Server Framework'} into any J2SE/J2EE      environment, including any
+ * com.smartgwt.client.docs.IscServer 'Smart GWT Java Server Framework'} into any J2SE/J2EE      environment, including any
  * existing web application <li> You {@link com.smartgwt.client.docs.DataSourceDeclaration 'create DataSources'} via an XML
  * declaration, possibly on-the-fly from {@link com.smartgwt.client.docs.MetadataImport 'existing metadata'}.   <li> Server
  * communication for components bound to these DataSources is handled automatically with a highly efficient, compressed
@@ -15,13 +15,13 @@ package com.smartgwt.client.docs;
  * </ul> This approach is in contrast to  {@link com.smartgwt.client.docs.ClientDataIntegration 'Client-side Data
  * Integration'} in which client-side DataSources are configured to send and receive HTTP messages containing XML, JSON or
  * other content. <P> <B>Server-side Request Processing</B> <P> Client-side {@link
- * com.smartgwt.client.widgets.DataBoundComponent} will send {@link com.smartgwt.client.data.DSRequest} to the SmartGWT
- * Server as background communications transparent to the user.  Integrating SmartGWT's DataSource layer with your data
+ * com.smartgwt.client.widgets.DataBoundComponent} will send {@link com.smartgwt.client.data.DSRequest} to the Smart GWT
+ * Server as background communications transparent to the user.  Integrating Smart GWT's DataSource layer with your data
  * model is a matter of handling these DSRequests and sending back DSResponses, in order to fulfill the 4 basic operations
- * of the {@link com.smartgwt.client.docs.DataSourceOperations 'DataSource Protocol'}. <P> Out of the box, SmartGWT is set
+ * of the {@link com.smartgwt.client.docs.DataSourceOperations 'DataSource Protocol'}. <P> Out of the box, Smart GWT is set
  * up to route all DSRequests through a special servlet called <code>IDACall</code>.  Requests that go through
  * <code>IDACall</code> have the  following lifecycle: <ul> <li>The overall HTTP request is received by the IDACall
- * servlet.  SmartGWT supports  queuing of transactions, so each HTTP request might contain multiple DSRequests.</li>
+ * servlet.  Smart GWT supports  queuing of transactions, so each HTTP request might contain multiple DSRequests.</li>
  * <li>IDACall sets up an instance of <code>RPCManager</code> to manage the processing of the entire queue of transactions.
  * For every DSRequest in the queue, this RPCManager:</li>   <ul>   <li>Validates the DSRequest</li>   <li>Sends the
  * DSRequest through {@link com.smartgwt.client..DMI} - in other words, your code - if this is        configured in the
@@ -35,7 +35,7 @@ package com.smartgwt.client.docs;
  * they reach the <code>IDACall</code> servlet</li> <li>If you are not using one of the built-in persistence mechanisms
  * (SQL and Hibernate),  hook into the <code>IDACall</code> flow by  {@link com.smartgwt.client.docs.WriteCustomDataSource
  * 'writing a custom DataSource'}.  This approach lets you write and  maintain the minimal amount of custom code, while
- * taking full advantage of DataSource-agnostic features of the SmartGWT Server, like validation, queuing, transaction
+ * taking full advantage of DataSource-agnostic features of the Smart GWT Server, like validation, queuing, transaction
  * chaining, support for Velocity templating, and so on.</li> <li>Custom validation can be added by writing a custom
  * DataSource (extending SQLDataSource or HibernateDataSource if appropriate) and overriding its <code>validate()</code>
  * method,  as described {@link com.smartgwt.client.data.DataSource#getServerConstructor 'here'}.</li> <li>General custom
@@ -43,7 +43,7 @@ package com.smartgwt.client.docs;
  * &lt;criteria&gt; and &lt;values&gt; properties of an {@link com.smartgwt.client.data.OperationBinding}        allow you
  * to dynamically set data values at transaction-processing time, using        built-in {@link
  * com.smartgwt.client.docs.VelocitySupport 'Velocity support'}</li>   <li>Override the <code>execute()</code> method of
- * the DataSource to add extra processing       before and/or after the SmartGWT processing</li>   <li>Use {@link
+ * the DataSource to add extra processing       before and/or after the Smart GWT processing</li>   <li>Use {@link
  * com.smartgwt.client.data.DataSource#getValue 'Transaction Chaining'} to dynamically set data values        according to
  * the results of earlier transactions   <li>For SQL DataSources, use {@link com.smartgwt.client.docs.CustomQuerying 'SQL
  * Templating'} to change, add        to or even completely replace the SQL sent to the database, including calling      
@@ -54,12 +54,12 @@ package com.smartgwt.client.docs;
  * for some other reason than authentication - for example, you are using Spring, Struts, or some other similar system
  * which requires that  all requests go through some particular servlet - just call 
  * <code>RPCManager.processRequest()</code> within your Spring Controller, Struts Action, or  whatever the equivalent is in
- * the framework in use. <p> However, note carefully that taking this approach is often a sign that the SmartGWT 
- * architecture has not been correctly understood.  SmartGWT is architected for  <em>client-server</em> data communication,
- * as opposed to early web MVC frameworks which  do everything on the server.  In particular, it is absolutely incorrect to
- * represent every  individual DataSource operation - or even every DataSource - as a separate Struts Action  or Spring
- * Controller, because this implies different URLs for different operations.  All  DataSource operations should go through
- * a single URL in order to allow  {@link com.smartgwt.client.rpc.RPCManager} - see these 
+ * the framework in use. <p> However, note carefully that taking this approach is often a sign that the Smart GWT 
+ * architecture has not been correctly understood.  Smart GWT is architected for  <em>client-server</em> data
+ * communication, as opposed to early web MVC frameworks which  do everything on the server.  In particular, it is
+ * absolutely incorrect to represent every  individual DataSource operation - or even every DataSource - as a separate
+ * Struts Action  or Spring Controller, because this implies different URLs for different operations.  All  DataSource
+ * operations should go through a single URL in order to allow  {@link com.smartgwt.client.rpc.RPCManager} - see these 
  * ${isc.DocUtils.linkForExampleId('transactionsFolder', 'Queuing examples')}.</li> </ul> <P> For more information on the
  * DMI subsystem, see the {@link com.smartgwt.client..DMI} class and the  ${isc.DocUtils.linkForExampleId('DMI', 'DMI
  * example')} in the Feature Explorer. <P> Note that, as you continue to integrate your prototype with your backend, you

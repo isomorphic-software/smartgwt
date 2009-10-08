@@ -1,10 +1,10 @@
 /*
- * SmartGWT (GWT for SmartClient)
+ * Smart GWT (GWT for SmartClient)
  * Copyright 2008 and beyond, Isomorphic Software, Inc.
  *
- * SmartGWT is free software; you can redistribute it and/or modify it
+ * Smart GWT is free software; you can redistribute it and/or modify it
  * under the terms of the GNU Lesser General Public License version 3
- * as published by the Free Software Foundation.  SmartGWT is also
+ * as published by the Free Software Foundation.  Smart GWT is also
  * available under typical commercial license terms - see
  * http://smartclient.com/license
  *
@@ -57,9 +57,9 @@ import com.google.gwt.event.shared.*;
 import com.google.gwt.event.shared.HasHandlers;
 
 /**
- * The SmartGWT system supports hierarchical data (also referred to as tree data due to its "branching" organization) with:
- * <ul>   <li> the {@link com.smartgwt.client.widgets.tree.Tree} class, which manipulates hierarchical data sets   <li> the
- * TreeGrid widget class, which extends the ListGrid class to visually        present tree data in an
+ * The Smart GWT system supports hierarchical data (also referred to as tree data due to its "branching" organization)
+ * with: <ul>   <li> the {@link com.smartgwt.client.widgets.tree.Tree} class, which manipulates hierarchical data sets  
+ * <li> the TreeGrid widget class, which extends the ListGrid class to visually        present tree data in an
  * expandable/collapsible format. </ul> For information on DataBinding Trees, see {@link
  * com.smartgwt.client.docs.TreeDataBinding}. <p> A TreeGrid works just like a {@link
  * com.smartgwt.client.widgets.grid.ListGrid}, except one column (specified by {@link
@@ -451,7 +451,7 @@ public class TreeGrid extends ListGrid  implements com.smartgwt.client.widgets.t
 
     /**
      * If set this property allows the user to reparent nodes by dragging them from their current folder to a new folder.<br>
-     * <b>Backcompat:</b> For backwards compatibility with versions prior to SmartGWT 1.5, if this property is unset, but
+     * <b>Backcompat:</b> For backwards compatibility with versions prior to Smart GWT 1.5, if this property is unset, but
      * <code>this.canAcceptDroppedRecords</code> is true, we allow nodes to be dragged to different folders.
      *
      * @param canReparentNodes canReparentNodes Default value is null
@@ -462,7 +462,7 @@ public class TreeGrid extends ListGrid  implements com.smartgwt.client.widgets.t
 
     /**
      * If set this property allows the user to reparent nodes by dragging them from their current folder to a new folder.<br>
-     * <b>Backcompat:</b> For backwards compatibility with versions prior to SmartGWT 1.5, if this property is unset, but
+     * <b>Backcompat:</b> For backwards compatibility with versions prior to Smart GWT 1.5, if this property is unset, but
      * <code>this.canAcceptDroppedRecords</code> is true, we allow nodes to be dragged to different folders.
      *
      *
