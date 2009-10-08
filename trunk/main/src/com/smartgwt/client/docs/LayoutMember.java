@@ -6,6 +6,7 @@ package com.smartgwt.client.docs;
  * @see com.smartgwt.client.widgets.Canvas#setShowResizeBar
  * @see com.smartgwt.client.widgets.layout.Layout#getMemberOffset
  * @see com.smartgwt.client.widgets.layout.Layout#getMemberDefaultBreadth
+ * @see com.smartgwt.client.widgets.Canvas#getCanDropBefore
  * @see com.smartgwt.client.widgets.layout.Layout#getDefaultLayoutAlign
  * @see com.smartgwt.client.widgets.layout.Layout#getMemberOverlap
  * @see com.smartgwt.client.widgets.Canvas#getLayoutAlign
@@ -15,7 +16,6 @@ package com.smartgwt.client.docs;
  * @see com.smartgwt.client.widgets.layout.SectionStack#getItemIndent
  * @see com.smartgwt.client.widgets.layout.SectionStack#getItemStartIndent
  * @see com.smartgwt.client.widgets.layout.SectionStack#getItemEndIndent
- * @see com.smartgwt.client.widgets.Canvas#getCanDropBefore
  */
 public interface LayoutMember {
 }

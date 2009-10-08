@@ -83,19 +83,6 @@ package com.smartgwt.client.docs;
  * com.smartgwt.client.widgets.form.fields.FormItem} APIs, editors have the following properties: <P> -
  * <code>rowNum</code>: The rowNum of the record being edited.<br> - <code>colNum</code>: The colNum of the cell being
  * edited.<br> - <code>grid</code>: A pointer back to the listGrid containing the record.
- * @see com.smartgwt.client.widgets.form.DynamicForm#getEditorType
- * @see com.smartgwt.client..CubeGrid#setEditValue
- * @see com.smartgwt.client..CubeGrid#getEditValue
- * @see com.smartgwt.client..CubeGrid#getEditedRecord
- * @see com.smartgwt.client..CubeGrid#getEditedCell
- * @see com.smartgwt.client..CubeGrid#getEditValues
- * @see com.smartgwt.client..CubeGrid#clearEditValue
- * @see com.smartgwt.client..CubeGrid#saveEdits
- * @see com.smartgwt.client..CubeGrid#getAllEditCells
- * @see com.smartgwt.client..CubeGrid#discardAllEdits
- * @see com.smartgwt.client..CubeGrid#recordHasChanges
- * @see com.smartgwt.client..CubeGrid#hasChanges
- * @see com.smartgwt.client..CubeGrid#saveAllEdits
  * @see com.smartgwt.client.widgets.grid.ListGridField#defaultDynamicValue
  * @see com.smartgwt.client.widgets.grid.ListGridField#editorEnter
  * @see com.smartgwt.client.widgets.grid.ListGridField#editorExit
@@ -138,6 +125,23 @@ package com.smartgwt.client.docs;
  * @see com.smartgwt.client.widgets.grid.ListGrid#rowEditorExit
  * @see com.smartgwt.client.widgets.grid.ListGrid#formatEditorValue
  * @see com.smartgwt.client.widgets.grid.ListGrid#parseEditorValue
+ * @see com.smartgwt.client..CubeGrid#setEditValue
+ * @see com.smartgwt.client..CubeGrid#getEditValue
+ * @see com.smartgwt.client..CubeGrid#getEditedRecord
+ * @see com.smartgwt.client..CubeGrid#getEditedCell
+ * @see com.smartgwt.client..CubeGrid#getEditValues
+ * @see com.smartgwt.client..CubeGrid#clearEditValue
+ * @see com.smartgwt.client..CubeGrid#saveEdits
+ * @see com.smartgwt.client..CubeGrid#getAllEditCells
+ * @see com.smartgwt.client..CubeGrid#discardAllEdits
+ * @see com.smartgwt.client..CubeGrid#recordHasChanges
+ * @see com.smartgwt.client..CubeGrid#hasChanges
+ * @see com.smartgwt.client..CubeGrid#saveAllEdits
+ * @see com.smartgwt.client.widgets.form.DynamicForm#getEditorType
+ * @see com.smartgwt.client.widgets.calendar.Calendar#getEventSnapGap
+ * @see com.smartgwt.client.widgets.calendar.Calendar#getShowQuickEventDialog
+ * @see com.smartgwt.client.widgets.calendar.Calendar#getEventEditorFields
+ * @see com.smartgwt.client.widgets.calendar.Calendar#getEventDialogFields
  * @see com.smartgwt.client.widgets.grid.ListGridField#getEditorImageURLPrefix
  * @see com.smartgwt.client.widgets.grid.ListGridField#getEditorImageURLSuffix
  * @see com.smartgwt.client.widgets.grid.ListGridField#getIcons
@@ -176,10 +180,6 @@ package com.smartgwt.client.docs;
  * @see com.smartgwt.client.widgets.grid.ListGridField#getCanToggle
  * @see com.smartgwt.client.widgets.grid.ListGrid#getLongTextEditorThreshold
  * @see com.smartgwt.client.widgets.grid.ListGrid#getLongTextEditorType
- * @see com.smartgwt.client.widgets.calendar.Calendar#getEventSnapGap
- * @see com.smartgwt.client.widgets.calendar.Calendar#getShowQuickEventDialog
- * @see com.smartgwt.client.widgets.calendar.Calendar#getEventEditorFields
- * @see com.smartgwt.client.widgets.calendar.Calendar#getEventDialogFields
  * @see com.smartgwt.client.types.RowEndEditAction
  * @see com.smartgwt.client.types.EnterKeyEditAction
  * @see com.smartgwt.client.types.EscapeKeyEditAction

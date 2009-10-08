@@ -3,13 +3,13 @@ package com.smartgwt.client.docs;
 
 /**
  * @see com.smartgwt.client.data.ResultSet#sortByProperty
- * @see com.smartgwt.client..Array#sortByProperty
- * @see com.smartgwt.client..Array#unsort
  * @see com.smartgwt.client.data.List#sortByProperty
  * @see com.smartgwt.client.widgets.grid.ListGridField#sortNormalizer
  * @see com.smartgwt.client.widgets.grid.ListGrid#headerClick
  * @see com.smartgwt.client.widgets.grid.ListGrid#unsort
  * @see com.smartgwt.client.widgets.grid.ListGrid#sort
+ * @see com.smartgwt.client..Array#sortByProperty
+ * @see com.smartgwt.client..Array#unsort
  * @see com.smartgwt.client..Array#compareAscending
  * @see com.smartgwt.client..Array#compareDescending
  * @see com.smartgwt.client.widgets.grid.ListGridField#getCanSort
@@ -20,8 +20,8 @@ package com.smartgwt.client.docs;
  * @see com.smartgwt.client.widgets.grid.ListGrid#getSortDirection
  * @see com.smartgwt.client.widgets.grid.ListGrid#getShowSortArrow
  * @see com.smartgwt.client.widgets.grid.ListGrid#getCanPickFields
- * @see com.smartgwt.client.types.SortDirection
  * @see com.smartgwt.client.types.SortArrow
+ * @see com.smartgwt.client.types.SortDirection
  */
 public interface Sorting {
 }

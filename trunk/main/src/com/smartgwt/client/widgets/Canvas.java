@@ -91,411 +91,6 @@ public class Canvas extends BaseWidget  implements com.smartgwt.client.widgets.e
         return widget;
     }-*/;
     // ********************* Properties / Attributes ***********************
-
-    /**
-     * Default total duration of animations. Can be overridden by setting animation times for specific animations, or by
-     * passing a <code>duration</code> parameter into the appropriate animate...() method.
-     * <p><b>Note : </b> This is an advanced setting</p>
-     *
-     * @param animateTime animateTime Default value is 300
-     */
-    public void setAnimateTime(int animateTime) {
-        setAttribute("animateTime", animateTime, true);
-    }
-
-    /**
-     * Default total duration of animations. Can be overridden by setting animation times for specific animations, or by
-     * passing a <code>duration</code> parameter into the appropriate animate...() method.
-     *
-     *
-     * @return int
-     */
-    public int getAnimateTime()  {
-        return getAttributeAsInt("animateTime");
-    }
-             
-    /**
-     * Default acceleration effect to apply to all animations on this Canvas. Can be overridden by setting
-     * animationAcceleration for specific animations or by passing an acceleration function directly into the appropriate
-     * method.
-     * <p><b>Note : </b> This is an advanced setting</p>
-     *
-     * @param animateAcceleration animateAcceleration Default value is "smoothEnd"
-     */
-    public void setAnimateAcceleration(AnimationEffect animateAcceleration) {
-        setAttribute("animateAcceleration", animateAcceleration.getValue(), true);
-    }
-
-    /**
-     * Default acceleration effect to apply to all animations on this Canvas. Can be overridden by setting
-     * animationAcceleration for specific animations or by passing an acceleration function directly into the appropriate
-     * method.
-     *
-     *
-     * @return AnimationEffect
-     */
-    public AnimationEffect getAnimateAcceleration()  {
-        return EnumUtil.getEnum(AnimationEffect.values(), getAttribute("animateAcceleration"));
-    }
-
-    /**
-     * Default time for performing an animated move.  If unset, <code>this.animateTime</code> will be used by default instead
-     * <p><b>Note : </b> This is an advanced setting</p>
-     *
-     * @param animateMoveTime animateMoveTime Default value is null
-     */
-    public void setAnimateMoveTime(Integer animateMoveTime) {
-        setAttribute("animateMoveTime", animateMoveTime, true);
-    }
-
-    /**
-     * Default time for performing an animated move.  If unset, <code>this.animateTime</code> will be used by default instead
-     *
-     *
-     * @return Integer
-     */
-    public Integer getAnimateMoveTime()  {
-        return getAttributeAsInt("animateMoveTime");
-    }
-
-    /**
-     * Default time for performing an animated resize.  If unset, <code>this.animateTime</code> will be used by default instead
-     * <p><b>Note : </b> This is an advanced setting</p>
-     *
-     * @param animateResizeTime animateResizeTime Default value is null
-     */
-    public void setAnimateResizeTime(Integer animateResizeTime) {
-        setAttribute("animateResizeTime", animateResizeTime, true);
-    }
-
-    /**
-     * Default time for performing an animated resize.  If unset, <code>this.animateTime</code> will be used by default instead
-     *
-     *
-     * @return Integer
-     */
-    public Integer getAnimateResizeTime()  {
-        return getAttributeAsInt("animateResizeTime");
-    }
-
-    /**
-     * Default time for performing an animated setRect.  If unset, <code>this.animateTime</code> will be used by default
-     * instead
-     * <p><b>Note : </b> This is an advanced setting</p>
-     *
-     * @param animateRectTime animateRectTime Default value is null
-     */
-    public void setAnimateRectTime(Integer animateRectTime) {
-        setAttribute("animateRectTime", animateRectTime, true);
-    }
-
-    /**
-     * Default time for performing an animated setRect.  If unset, <code>this.animateTime</code> will be used by default
-     * instead
-     *
-     *
-     * @return Integer
-     */
-    public Integer getAnimateRectTime()  {
-        return getAttributeAsInt("animateRectTime");
-    }
-
-    /**
-     * Default time for performing an animated fade.  If unset, <code>this.animateTime</code> will be used by default instead
-     * <p><b>Note : </b> This is an advanced setting</p>
-     *
-     * @param animateFadeTime animateFadeTime Default value is null
-     */
-    public void setAnimateFadeTime(Integer animateFadeTime) {
-        setAttribute("animateFadeTime", animateFadeTime, true);
-    }
-
-    /**
-     * Default time for performing an animated fade.  If unset, <code>this.animateTime</code> will be used by default instead
-     *
-     *
-     * @return Integer
-     */
-    public Integer getAnimateFadeTime()  {
-        return getAttributeAsInt("animateFadeTime");
-    }
-
-    /**
-     * Default time for performing an animated scroll.  If unset, <code>this.animateTime</code> will be used by default instead
-     * <p><b>Note : </b> This is an advanced setting</p>
-     *
-     * @param animateScrollTime animateScrollTime Default value is null
-     */
-    public void setAnimateScrollTime(Integer animateScrollTime) {
-        setAttribute("animateScrollTime", animateScrollTime, true);
-    }
-
-    /**
-     * Default time for performing an animated scroll.  If unset, <code>this.animateTime</code> will be used by default instead
-     *
-     *
-     * @return Integer
-     */
-    public Integer getAnimateScrollTime()  {
-        return getAttributeAsInt("animateScrollTime");
-    }
-
-    /**
-     * Default time for performing an animated show.  If unset, <code>this.animateTime</code> will be used by default instead
-     * <p><b>Note : </b> This is an advanced setting</p>
-     *
-     * @param animateShowTime animateShowTime Default value is null
-     */
-    public void setAnimateShowTime(Integer animateShowTime) {
-        setAttribute("animateShowTime", animateShowTime, true);
-    }
-
-    /**
-     * Default time for performing an animated show.  If unset, <code>this.animateTime</code> will be used by default instead
-     *
-     *
-     * @return Integer
-     */
-    public Integer getAnimateShowTime()  {
-        return getAttributeAsInt("animateShowTime");
-    }
-
-    /**
-     * Default time for performing an animated hide.  If unset, <code>this.animateTime</code> will be used by default instead
-     * <p><b>Note : </b> This is an advanced setting</p>
-     *
-     * @param animateHideTime animateHideTime Default value is null
-     */
-    public void setAnimateHideTime(Integer animateHideTime) {
-        setAttribute("animateHideTime", animateHideTime, true);
-    }
-
-    /**
-     * Default time for performing an animated hide.  If unset, <code>this.animateTime</code> will be used by default instead
-     *
-     *
-     * @return Integer
-     */
-    public Integer getAnimateHideTime()  {
-        return getAttributeAsInt("animateHideTime");
-    }
-             
-    /**
-     * Default acceleration effect for performing an animated move.  If unset,  <code>this.animateAcceleration</code> will be
-     * used by default instead
-     * <p><b>Note : </b> This is an advanced setting</p>
-     *
-     * @param animateMoveAcceleration animateMoveAcceleration Default value is null
-     */
-    public void setAnimateMoveAcceleration(AnimationAcceleration animateMoveAcceleration) {
-        setAttribute("animateMoveAcceleration", animateMoveAcceleration.getValue(), true);
-    }
-
-    /**
-     * Default acceleration effect for performing an animated move.  If unset,  <code>this.animateAcceleration</code> will be
-     * used by default instead
-     *
-     *
-     * @return AnimationAcceleration
-     */
-    public AnimationAcceleration getAnimateMoveAcceleration()  {
-        return EnumUtil.getEnum(AnimationAcceleration.values(), getAttribute("animateMoveAcceleration"));
-    }
-             
-    /**
-     * Default acceleration function for performing an animated resize.  If unset,  <code>this.animateAcceleration</code> will
-     * be used by default instead
-     * <p><b>Note : </b> This is an advanced setting</p>
-     *
-     * @param animateResizeAcceleration animateResizeAcceleration Default value is null
-     */
-    public void setAnimateResizeAcceleration(AnimationAcceleration animateResizeAcceleration) {
-        setAttribute("animateResizeAcceleration", animateResizeAcceleration.getValue(), true);
-    }
-
-    /**
-     * Default acceleration function for performing an animated resize.  If unset,  <code>this.animateAcceleration</code> will
-     * be used by default instead
-     *
-     *
-     * @return AnimationAcceleration
-     */
-    public AnimationAcceleration getAnimateResizeAcceleration()  {
-        return EnumUtil.getEnum(AnimationAcceleration.values(), getAttribute("animateResizeAcceleration"));
-    }
-             
-    /**
-     * Default acceleration function for performing an animated move and resize.  If unset, 
-     * <code>this.animateAcceleration</code> will be used by default instead
-     * <p><b>Note : </b> This is an advanced setting</p>
-     *
-     * @param animateRectAcceleration animateRectAcceleration Default value is null
-     */
-    public void setAnimateRectAcceleration(AnimationAcceleration animateRectAcceleration) {
-        setAttribute("animateRectAcceleration", animateRectAcceleration.getValue(), true);
-    }
-
-    /**
-     * Default acceleration function for performing an animated move and resize.  If unset, 
-     * <code>this.animateAcceleration</code> will be used by default instead
-     *
-     *
-     * @return AnimationAcceleration
-     */
-    public AnimationAcceleration getAnimateRectAcceleration()  {
-        return EnumUtil.getEnum(AnimationAcceleration.values(), getAttribute("animateRectAcceleration"));
-    }
-             
-    /**
-     * Default acceleration function for performing an animated scroll.  If unset,  <code>this.animateAcceleration</code> will
-     * be used by default instead
-     * <p><b>Note : </b> This is an advanced setting</p>
-     *
-     * @param animateScrollAcceleration animateScrollAcceleration Default value is null
-     */
-    public void setAnimateScrollAcceleration(AnimationAcceleration animateScrollAcceleration) {
-        setAttribute("animateScrollAcceleration", animateScrollAcceleration.getValue(), true);
-    }
-
-    /**
-     * Default acceleration function for performing an animated scroll.  If unset,  <code>this.animateAcceleration</code> will
-     * be used by default instead
-     *
-     *
-     * @return AnimationAcceleration
-     */
-    public AnimationAcceleration getAnimateScrollAcceleration()  {
-        return EnumUtil.getEnum(AnimationAcceleration.values(), getAttribute("animateScrollAcceleration"));
-    }
-             
-    /**
-     * Default acceleration function for performing an animated show.  If unset,  <code>this.animateAcceleration</code> will be
-     * used by default instead
-     * <p><b>Note : </b> This is an advanced setting</p>
-     *
-     * @param animateShowAcceleration animateShowAcceleration Default value is null
-     */
-    public void setAnimateShowAcceleration(AnimationAcceleration animateShowAcceleration) {
-        setAttribute("animateShowAcceleration", animateShowAcceleration.getValue(), true);
-    }
-
-    /**
-     * Default acceleration function for performing an animated show.  If unset,  <code>this.animateAcceleration</code> will be
-     * used by default instead
-     *
-     *
-     * @return AnimationAcceleration
-     */
-    public AnimationAcceleration getAnimateShowAcceleration()  {
-        return EnumUtil.getEnum(AnimationAcceleration.values(), getAttribute("animateShowAcceleration"));
-    }
-             
-    /**
-     * Default acceleration function for performing an animated hide.  If unset,  <code>this.animateAcceleration</code> will be
-     * used by default instead
-     * <p><b>Note : </b> This is an advanced setting</p>
-     *
-     * @param animateHideAcceleration animateHideAcceleration Default value is null
-     */
-    public void setAnimateHideAcceleration(AnimationAcceleration animateHideAcceleration) {
-        setAttribute("animateHideAcceleration", animateHideAcceleration.getValue(), true);
-    }
-
-    /**
-     * Default acceleration function for performing an animated hide.  If unset,  <code>this.animateAcceleration</code> will be
-     * used by default instead
-     *
-     *
-     * @return AnimationAcceleration
-     */
-    public AnimationAcceleration getAnimateHideAcceleration()  {
-        return EnumUtil.getEnum(AnimationAcceleration.values(), getAttribute("animateHideAcceleration"));
-    }
-
-    /**
-     * When this Canvas is included as a member in a Layout, whether a resizeBar should be shown after this member in the
-     * layout, to allow it to be resized. <p> By default the resize bar acts on the Canvas that it is declared on.  If you want
-     * the resize bar to instead act on the next member of the Layout (e.g. to collapse down or to the right), set {@link
-     * com.smartgwt.client.widgets.Canvas#getResizeBarTarget resizeBarTarget} as well.
-     * When this Canvas is included as a member in a Layout, dynamically updates whether a  resizeBar should be shown after this member in the layout, to allow it to be resized.
-     *
-     * @param showResizeBar setting for this.showResizeBar. Default value is false
-     * @throws IllegalStateException this property cannot be changed after the component has been created
-     */
-    public void setShowResizeBar(Boolean showResizeBar)  throws IllegalStateException {
-        setAttribute("showResizeBar", showResizeBar, false);
-    }
-
-    /**
-     * When this Canvas is included as a member in a Layout, whether a resizeBar should be shown after this member in the
-     * layout, to allow it to be resized. <p> By default the resize bar acts on the Canvas that it is declared on.  If you want
-     * the resize bar to instead act on the next member of the Layout (e.g. to collapse down or to the right), set {@link
-     * com.smartgwt.client.widgets.Canvas#getResizeBarTarget resizeBarTarget} as well.
-     *
-     *
-     * @return Boolean
-     */
-    public Boolean getShowResizeBar()  {
-        return getAttributeAsBoolean("showResizeBar");
-    }
-
-    /**
-     * When this Canvas is included as a member in a Layout, and {@link com.smartgwt.client.widgets.Canvas#getShowResizeBar
-     * showResizeBar} is set to <code>true</code> so that a resizeBar is created, <code>resizeBarTarget:"next"</code> can be
-     * set to indicate that the resizeBar should resize the next member of the layout rather than this one.  For resizeBars
-     * that support hiding their target member when clicked on,  <code>resizeBarTarget:"next"</code> also means that the next
-     * member will be the one hidden. <P> This is typically used to create a 3-way split pane, where left and right-hand
-     * sections can be resized or hidden to allow a center section to expand. <P> <b>NOTE:</b> as with any Layout, to ensure
-     * all available space is used, one or more members must maintain a flexible size (eg 75%, or *).  In a two pane Layout
-     * with a normal resize bar, to fill all space after a user resizes, the member on the <b>right</b> should have flexible
-     * size.  With resizeBarTarget:"next", the member on the <b>left</b> should have flexible size.
-     *
-     * @param resizeBarTarget resizeBarTarget Default value is null
-     * @throws IllegalStateException this property cannot be changed after the component has been created
-     */
-    public void setResizeBarTarget(String resizeBarTarget)  throws IllegalStateException {
-        setAttribute("resizeBarTarget", resizeBarTarget, false);
-    }
-
-    /**
-     * When this Canvas is included as a member in a Layout, and {@link com.smartgwt.client.widgets.Canvas#getShowResizeBar
-     * showResizeBar} is set to <code>true</code> so that a resizeBar is created, <code>resizeBarTarget:"next"</code> can be
-     * set to indicate that the resizeBar should resize the next member of the layout rather than this one.  For resizeBars
-     * that support hiding their target member when clicked on,  <code>resizeBarTarget:"next"</code> also means that the next
-     * member will be the one hidden. <P> This is typically used to create a 3-way split pane, where left and right-hand
-     * sections can be resized or hidden to allow a center section to expand. <P> <b>NOTE:</b> as with any Layout, to ensure
-     * all available space is used, one or more members must maintain a flexible size (eg 75%, or *).  In a two pane Layout
-     * with a normal resize bar, to fill all space after a user resizes, the member on the <b>right</b> should have flexible
-     * size.  With resizeBarTarget:"next", the member on the <b>left</b> should have flexible size.
-     *
-     *
-     * @return String
-     */
-    public String getResizeBarTarget()  {
-        return getAttributeAsString("resizeBarTarget");
-    }
-
-    /**
-     * When this Canvas is included as a member in a Layout, extra blank space that should be left after this member in a
-     * Layout.
-     *
-     * @param extraSpace extraSpace Default value is 0
-     * @throws IllegalStateException this property cannot be changed after the component has been created
-     */
-    public void setExtraSpace(int extraSpace)  throws IllegalStateException {
-        setAttribute("extraSpace", extraSpace, false);
-    }
-
-    /**
-     * When this Canvas is included as a member in a Layout, extra blank space that should be left after this member in a
-     * Layout.
-     *
-     *
-     * @return int
-     */
-    public int getExtraSpace()  {
-        return getAttributeAsInt("extraSpace");
-    }
              
     /**
      * If {@link com.smartgwt.client.widgets.Canvas#getHtmlElement htmlElement} is specified, this attribute specifies the
@@ -2812,15 +2407,412 @@ public class Canvas extends BaseWidget  implements com.smartgwt.client.widgets.e
         return getAttributeAsString("dataPath");
     }
 
+    /**
+     * Default total duration of animations. Can be overridden by setting animation times for specific animations, or by
+     * passing a <code>duration</code> parameter into the appropriate animate...() method.
+     * <p><b>Note : </b> This is an advanced setting</p>
+     *
+     * @param animateTime animateTime Default value is 300
+     */
+    public void setAnimateTime(int animateTime) {
+        setAttribute("animateTime", animateTime, true);
+    }
+
+    /**
+     * Default total duration of animations. Can be overridden by setting animation times for specific animations, or by
+     * passing a <code>duration</code> parameter into the appropriate animate...() method.
+     *
+     *
+     * @return int
+     */
+    public int getAnimateTime()  {
+        return getAttributeAsInt("animateTime");
+    }
+             
+    /**
+     * Default acceleration effect to apply to all animations on this Canvas. Can be overridden by setting
+     * animationAcceleration for specific animations or by passing an acceleration function directly into the appropriate
+     * method.
+     * <p><b>Note : </b> This is an advanced setting</p>
+     *
+     * @param animateAcceleration animateAcceleration Default value is "smoothEnd"
+     */
+    public void setAnimateAcceleration(AnimationEffect animateAcceleration) {
+        setAttribute("animateAcceleration", animateAcceleration.getValue(), true);
+    }
+
+    /**
+     * Default acceleration effect to apply to all animations on this Canvas. Can be overridden by setting
+     * animationAcceleration for specific animations or by passing an acceleration function directly into the appropriate
+     * method.
+     *
+     *
+     * @return AnimationEffect
+     */
+    public AnimationEffect getAnimateAcceleration()  {
+        return EnumUtil.getEnum(AnimationEffect.values(), getAttribute("animateAcceleration"));
+    }
+
+    /**
+     * Default time for performing an animated move.  If unset, <code>this.animateTime</code> will be used by default instead
+     * <p><b>Note : </b> This is an advanced setting</p>
+     *
+     * @param animateMoveTime animateMoveTime Default value is null
+     */
+    public void setAnimateMoveTime(Integer animateMoveTime) {
+        setAttribute("animateMoveTime", animateMoveTime, true);
+    }
+
+    /**
+     * Default time for performing an animated move.  If unset, <code>this.animateTime</code> will be used by default instead
+     *
+     *
+     * @return Integer
+     */
+    public Integer getAnimateMoveTime()  {
+        return getAttributeAsInt("animateMoveTime");
+    }
+
+    /**
+     * Default time for performing an animated resize.  If unset, <code>this.animateTime</code> will be used by default instead
+     * <p><b>Note : </b> This is an advanced setting</p>
+     *
+     * @param animateResizeTime animateResizeTime Default value is null
+     */
+    public void setAnimateResizeTime(Integer animateResizeTime) {
+        setAttribute("animateResizeTime", animateResizeTime, true);
+    }
+
+    /**
+     * Default time for performing an animated resize.  If unset, <code>this.animateTime</code> will be used by default instead
+     *
+     *
+     * @return Integer
+     */
+    public Integer getAnimateResizeTime()  {
+        return getAttributeAsInt("animateResizeTime");
+    }
+
+    /**
+     * Default time for performing an animated setRect.  If unset, <code>this.animateTime</code> will be used by default
+     * instead
+     * <p><b>Note : </b> This is an advanced setting</p>
+     *
+     * @param animateRectTime animateRectTime Default value is null
+     */
+    public void setAnimateRectTime(Integer animateRectTime) {
+        setAttribute("animateRectTime", animateRectTime, true);
+    }
+
+    /**
+     * Default time for performing an animated setRect.  If unset, <code>this.animateTime</code> will be used by default
+     * instead
+     *
+     *
+     * @return Integer
+     */
+    public Integer getAnimateRectTime()  {
+        return getAttributeAsInt("animateRectTime");
+    }
+
+    /**
+     * Default time for performing an animated fade.  If unset, <code>this.animateTime</code> will be used by default instead
+     * <p><b>Note : </b> This is an advanced setting</p>
+     *
+     * @param animateFadeTime animateFadeTime Default value is null
+     */
+    public void setAnimateFadeTime(Integer animateFadeTime) {
+        setAttribute("animateFadeTime", animateFadeTime, true);
+    }
+
+    /**
+     * Default time for performing an animated fade.  If unset, <code>this.animateTime</code> will be used by default instead
+     *
+     *
+     * @return Integer
+     */
+    public Integer getAnimateFadeTime()  {
+        return getAttributeAsInt("animateFadeTime");
+    }
+
+    /**
+     * Default time for performing an animated scroll.  If unset, <code>this.animateTime</code> will be used by default instead
+     * <p><b>Note : </b> This is an advanced setting</p>
+     *
+     * @param animateScrollTime animateScrollTime Default value is null
+     */
+    public void setAnimateScrollTime(Integer animateScrollTime) {
+        setAttribute("animateScrollTime", animateScrollTime, true);
+    }
+
+    /**
+     * Default time for performing an animated scroll.  If unset, <code>this.animateTime</code> will be used by default instead
+     *
+     *
+     * @return Integer
+     */
+    public Integer getAnimateScrollTime()  {
+        return getAttributeAsInt("animateScrollTime");
+    }
+
+    /**
+     * Default time for performing an animated show.  If unset, <code>this.animateTime</code> will be used by default instead
+     * <p><b>Note : </b> This is an advanced setting</p>
+     *
+     * @param animateShowTime animateShowTime Default value is null
+     */
+    public void setAnimateShowTime(Integer animateShowTime) {
+        setAttribute("animateShowTime", animateShowTime, true);
+    }
+
+    /**
+     * Default time for performing an animated show.  If unset, <code>this.animateTime</code> will be used by default instead
+     *
+     *
+     * @return Integer
+     */
+    public Integer getAnimateShowTime()  {
+        return getAttributeAsInt("animateShowTime");
+    }
+
+    /**
+     * Default time for performing an animated hide.  If unset, <code>this.animateTime</code> will be used by default instead
+     * <p><b>Note : </b> This is an advanced setting</p>
+     *
+     * @param animateHideTime animateHideTime Default value is null
+     */
+    public void setAnimateHideTime(Integer animateHideTime) {
+        setAttribute("animateHideTime", animateHideTime, true);
+    }
+
+    /**
+     * Default time for performing an animated hide.  If unset, <code>this.animateTime</code> will be used by default instead
+     *
+     *
+     * @return Integer
+     */
+    public Integer getAnimateHideTime()  {
+        return getAttributeAsInt("animateHideTime");
+    }
+             
+    /**
+     * Default acceleration effect for performing an animated move.  If unset,  <code>this.animateAcceleration</code> will be
+     * used by default instead
+     * <p><b>Note : </b> This is an advanced setting</p>
+     *
+     * @param animateMoveAcceleration animateMoveAcceleration Default value is null
+     */
+    public void setAnimateMoveAcceleration(AnimationAcceleration animateMoveAcceleration) {
+        setAttribute("animateMoveAcceleration", animateMoveAcceleration.getValue(), true);
+    }
+
+    /**
+     * Default acceleration effect for performing an animated move.  If unset,  <code>this.animateAcceleration</code> will be
+     * used by default instead
+     *
+     *
+     * @return AnimationAcceleration
+     */
+    public AnimationAcceleration getAnimateMoveAcceleration()  {
+        return EnumUtil.getEnum(AnimationAcceleration.values(), getAttribute("animateMoveAcceleration"));
+    }
+             
+    /**
+     * Default acceleration function for performing an animated resize.  If unset,  <code>this.animateAcceleration</code> will
+     * be used by default instead
+     * <p><b>Note : </b> This is an advanced setting</p>
+     *
+     * @param animateResizeAcceleration animateResizeAcceleration Default value is null
+     */
+    public void setAnimateResizeAcceleration(AnimationAcceleration animateResizeAcceleration) {
+        setAttribute("animateResizeAcceleration", animateResizeAcceleration.getValue(), true);
+    }
+
+    /**
+     * Default acceleration function for performing an animated resize.  If unset,  <code>this.animateAcceleration</code> will
+     * be used by default instead
+     *
+     *
+     * @return AnimationAcceleration
+     */
+    public AnimationAcceleration getAnimateResizeAcceleration()  {
+        return EnumUtil.getEnum(AnimationAcceleration.values(), getAttribute("animateResizeAcceleration"));
+    }
+             
+    /**
+     * Default acceleration function for performing an animated move and resize.  If unset, 
+     * <code>this.animateAcceleration</code> will be used by default instead
+     * <p><b>Note : </b> This is an advanced setting</p>
+     *
+     * @param animateRectAcceleration animateRectAcceleration Default value is null
+     */
+    public void setAnimateRectAcceleration(AnimationAcceleration animateRectAcceleration) {
+        setAttribute("animateRectAcceleration", animateRectAcceleration.getValue(), true);
+    }
+
+    /**
+     * Default acceleration function for performing an animated move and resize.  If unset, 
+     * <code>this.animateAcceleration</code> will be used by default instead
+     *
+     *
+     * @return AnimationAcceleration
+     */
+    public AnimationAcceleration getAnimateRectAcceleration()  {
+        return EnumUtil.getEnum(AnimationAcceleration.values(), getAttribute("animateRectAcceleration"));
+    }
+             
+    /**
+     * Default acceleration function for performing an animated scroll.  If unset,  <code>this.animateAcceleration</code> will
+     * be used by default instead
+     * <p><b>Note : </b> This is an advanced setting</p>
+     *
+     * @param animateScrollAcceleration animateScrollAcceleration Default value is null
+     */
+    public void setAnimateScrollAcceleration(AnimationAcceleration animateScrollAcceleration) {
+        setAttribute("animateScrollAcceleration", animateScrollAcceleration.getValue(), true);
+    }
+
+    /**
+     * Default acceleration function for performing an animated scroll.  If unset,  <code>this.animateAcceleration</code> will
+     * be used by default instead
+     *
+     *
+     * @return AnimationAcceleration
+     */
+    public AnimationAcceleration getAnimateScrollAcceleration()  {
+        return EnumUtil.getEnum(AnimationAcceleration.values(), getAttribute("animateScrollAcceleration"));
+    }
+             
+    /**
+     * Default acceleration function for performing an animated show.  If unset,  <code>this.animateAcceleration</code> will be
+     * used by default instead
+     * <p><b>Note : </b> This is an advanced setting</p>
+     *
+     * @param animateShowAcceleration animateShowAcceleration Default value is null
+     */
+    public void setAnimateShowAcceleration(AnimationAcceleration animateShowAcceleration) {
+        setAttribute("animateShowAcceleration", animateShowAcceleration.getValue(), true);
+    }
+
+    /**
+     * Default acceleration function for performing an animated show.  If unset,  <code>this.animateAcceleration</code> will be
+     * used by default instead
+     *
+     *
+     * @return AnimationAcceleration
+     */
+    public AnimationAcceleration getAnimateShowAcceleration()  {
+        return EnumUtil.getEnum(AnimationAcceleration.values(), getAttribute("animateShowAcceleration"));
+    }
+             
+    /**
+     * Default acceleration function for performing an animated hide.  If unset,  <code>this.animateAcceleration</code> will be
+     * used by default instead
+     * <p><b>Note : </b> This is an advanced setting</p>
+     *
+     * @param animateHideAcceleration animateHideAcceleration Default value is null
+     */
+    public void setAnimateHideAcceleration(AnimationAcceleration animateHideAcceleration) {
+        setAttribute("animateHideAcceleration", animateHideAcceleration.getValue(), true);
+    }
+
+    /**
+     * Default acceleration function for performing an animated hide.  If unset,  <code>this.animateAcceleration</code> will be
+     * used by default instead
+     *
+     *
+     * @return AnimationAcceleration
+     */
+    public AnimationAcceleration getAnimateHideAcceleration()  {
+        return EnumUtil.getEnum(AnimationAcceleration.values(), getAttribute("animateHideAcceleration"));
+    }
+
+    /**
+     * When this Canvas is included as a member in a Layout, whether a resizeBar should be shown after this member in the
+     * layout, to allow it to be resized. <p> By default the resize bar acts on the Canvas that it is declared on.  If you want
+     * the resize bar to instead act on the next member of the Layout (e.g. to collapse down or to the right), set {@link
+     * com.smartgwt.client.widgets.Canvas#getResizeBarTarget resizeBarTarget} as well.
+     * When this Canvas is included as a member in a Layout, dynamically updates whether a  resizeBar should be shown after this member in the layout, to allow it to be resized.
+     *
+     * @param showResizeBar setting for this.showResizeBar. Default value is false
+     * @throws IllegalStateException this property cannot be changed after the component has been created
+     */
+    public void setShowResizeBar(Boolean showResizeBar)  throws IllegalStateException {
+        setAttribute("showResizeBar", showResizeBar, false);
+    }
+
+    /**
+     * When this Canvas is included as a member in a Layout, whether a resizeBar should be shown after this member in the
+     * layout, to allow it to be resized. <p> By default the resize bar acts on the Canvas that it is declared on.  If you want
+     * the resize bar to instead act on the next member of the Layout (e.g. to collapse down or to the right), set {@link
+     * com.smartgwt.client.widgets.Canvas#getResizeBarTarget resizeBarTarget} as well.
+     *
+     *
+     * @return Boolean
+     */
+    public Boolean getShowResizeBar()  {
+        return getAttributeAsBoolean("showResizeBar");
+    }
+
+    /**
+     * When this Canvas is included as a member in a Layout, and {@link com.smartgwt.client.widgets.Canvas#getShowResizeBar
+     * showResizeBar} is set to <code>true</code> so that a resizeBar is created, <code>resizeBarTarget:"next"</code> can be
+     * set to indicate that the resizeBar should resize the next member of the layout rather than this one.  For resizeBars
+     * that support hiding their target member when clicked on,  <code>resizeBarTarget:"next"</code> also means that the next
+     * member will be the one hidden. <P> This is typically used to create a 3-way split pane, where left and right-hand
+     * sections can be resized or hidden to allow a center section to expand. <P> <b>NOTE:</b> as with any Layout, to ensure
+     * all available space is used, one or more members must maintain a flexible size (eg 75%, or *).  In a two pane Layout
+     * with a normal resize bar, to fill all space after a user resizes, the member on the <b>right</b> should have flexible
+     * size.  With resizeBarTarget:"next", the member on the <b>left</b> should have flexible size.
+     *
+     * @param resizeBarTarget resizeBarTarget Default value is null
+     * @throws IllegalStateException this property cannot be changed after the component has been created
+     */
+    public void setResizeBarTarget(String resizeBarTarget)  throws IllegalStateException {
+        setAttribute("resizeBarTarget", resizeBarTarget, false);
+    }
+
+    /**
+     * When this Canvas is included as a member in a Layout, and {@link com.smartgwt.client.widgets.Canvas#getShowResizeBar
+     * showResizeBar} is set to <code>true</code> so that a resizeBar is created, <code>resizeBarTarget:"next"</code> can be
+     * set to indicate that the resizeBar should resize the next member of the layout rather than this one.  For resizeBars
+     * that support hiding their target member when clicked on,  <code>resizeBarTarget:"next"</code> also means that the next
+     * member will be the one hidden. <P> This is typically used to create a 3-way split pane, where left and right-hand
+     * sections can be resized or hidden to allow a center section to expand. <P> <b>NOTE:</b> as with any Layout, to ensure
+     * all available space is used, one or more members must maintain a flexible size (eg 75%, or *).  In a two pane Layout
+     * with a normal resize bar, to fill all space after a user resizes, the member on the <b>right</b> should have flexible
+     * size.  With resizeBarTarget:"next", the member on the <b>left</b> should have flexible size.
+     *
+     *
+     * @return String
+     */
+    public String getResizeBarTarget()  {
+        return getAttributeAsString("resizeBarTarget");
+    }
+
+    /**
+     * When this Canvas is included as a member in a Layout, extra blank space that should be left after this member in a
+     * Layout.
+     *
+     * @param extraSpace extraSpace Default value is 0
+     * @throws IllegalStateException this property cannot be changed after the component has been created
+     */
+    public void setExtraSpace(int extraSpace)  throws IllegalStateException {
+        setAttribute("extraSpace", extraSpace, false);
+    }
+
+    /**
+     * When this Canvas is included as a member in a Layout, extra blank space that should be left after this member in a
+     * Layout.
+     *
+     *
+     * @return int
+     */
+    public int getExtraSpace()  {
+        return getAttributeAsInt("extraSpace");
+    }
+
     // ********************* Methods ***********************
-
-
-
-
-
-
-
-
 
 
 
@@ -5276,6 +5268,14 @@ public class Canvas extends BaseWidget  implements com.smartgwt.client.widgets.e
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
         return self.getFullDataPath();
     }-*/;
+
+
+
+
+
+
+
+
 
     // ********************* Static Methods ***********************
 

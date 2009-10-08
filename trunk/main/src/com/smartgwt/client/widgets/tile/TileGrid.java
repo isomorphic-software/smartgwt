@@ -236,29 +236,6 @@ public class TileGrid extends TileLayout  implements DataBoundComponent, com.sma
 
     // ********************* Methods ***********************
 
-    /**
-     * Uses a "fetch" operation on the current {@link com.smartgwt.client.widgets.DataBoundComponent#getDataSource
-     * 'DataSource'} to  retrieve data that matches the current filter and sort criteria for this component, then  exports the
-     * resulting data to a file or window in the requested format. <P> For more information on exporting data, see {@link
-     * com.smartgwt.client.data.DataSource#exportData}.
-     */
-    public native void exportData() /*-{
-        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
-        self.exportData();
-    }-*/;
-
-    /**
-     * Uses a "fetch" operation on the current {@link com.smartgwt.client.widgets.DataBoundComponent#getDataSource
-     * 'DataSource'} to  retrieve data that matches the current filter and sort criteria for this component, then  exports the
-     * resulting data to a file or window in the requested format. <P> For more information on exporting data, see {@link
-     * com.smartgwt.client.data.DataSource#exportData}.
-     * @param requestProperties additional properties to set on the DSRequest                                            that will be issued
-     */
-    public native void exportData(DSRequest requestProperties) /*-{
-        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
-        self.exportData(requestProperties.@com.smartgwt.client.core.DataClass::getJsObj()());
-    }-*/;
-
 
 
 
@@ -437,6 +414,29 @@ public class TileGrid extends TileLayout  implements DataBoundComponent, com.sma
     public native void dataArrived(int startRecord, int endRecord) /*-{
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
         self.dataArrived(startRecord, endRecord);
+    }-*/;
+
+    /**
+     * Uses a "fetch" operation on the current {@link com.smartgwt.client.widgets.DataBoundComponent#getDataSource
+     * 'DataSource'} to  retrieve data that matches the current filter and sort criteria for this component, then  exports the
+     * resulting data to a file or window in the requested format. <P> For more information on exporting data, see {@link
+     * com.smartgwt.client.data.DataSource#exportData}.
+     */
+    public native void exportData() /*-{
+        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
+        self.exportData();
+    }-*/;
+
+    /**
+     * Uses a "fetch" operation on the current {@link com.smartgwt.client.widgets.DataBoundComponent#getDataSource
+     * 'DataSource'} to  retrieve data that matches the current filter and sort criteria for this component, then  exports the
+     * resulting data to a file or window in the requested format. <P> For more information on exporting data, see {@link
+     * com.smartgwt.client.data.DataSource#exportData}.
+     * @param requestProperties additional properties to set on the DSRequest                                            that will be issued
+     */
+    public native void exportData(DSRequest requestProperties) /*-{
+        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
+        self.exportData(requestProperties.@com.smartgwt.client.core.DataClass::getJsObj()());
     }-*/;
 
     // ********************* Static Methods ***********************

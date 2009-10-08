@@ -365,14 +365,11 @@ public class DateItem extends FormItem {
              
     /**
      * If showing date selectors rather than the date text field (so when  <code>this.useTextField</code> is false), this
-     * property allows customization of the  order of the day, month and year selector fields. If unset these fields will match
-     * the specified inputFormat for this item. <P> Note: selectors may be ommitted entirely by setting selectorFormat to (for
-     * example)  <code>"MD"</code>. In this case the value of the Date value returned by <code>getValue()</code> will of course
-     * include a value for the ommitted selector - in this example the year. This value may be specified programmatically via a
-     * <code>defaltValue</code> specification or an initial setValue() call, or may be modified by the user via the standard
-     * date selector. how to handle (EG) Feb 30th Do we do weirdness changing years if the user selects Jan or something after
-     * Dec? currently date selector doesn't actually update the val...(assuming we don't want to disable it) Note also that
-     * some
+     * property allows customization of the  order of the day, month and year selector fields.  If unset these fields will
+     * match the specified inputFormat for this item. <P> Note: selectors may be ommitted entirely by setting selectorFormat to
+     * (for example)  <code>"MD"</code>. In this case the value for the omitted selector will match the
+     * ${isc.DocUtils.linkForRef('defaultValue')} specified for the item.  For example, if the selector format is "MD" (month
+     * and day only), the year comes from the Date specified as the defaultValue.
      *
      * @param selectorFormat selectorFormat Default value is null
      */
@@ -382,14 +379,11 @@ public class DateItem extends FormItem {
 
     /**
      * If showing date selectors rather than the date text field (so when  <code>this.useTextField</code> is false), this
-     * property allows customization of the  order of the day, month and year selector fields. If unset these fields will match
-     * the specified inputFormat for this item. <P> Note: selectors may be ommitted entirely by setting selectorFormat to (for
-     * example)  <code>"MD"</code>. In this case the value of the Date value returned by <code>getValue()</code> will of course
-     * include a value for the ommitted selector - in this example the year. This value may be specified programmatically via a
-     * <code>defaltValue</code> specification or an initial setValue() call, or may be modified by the user via the standard
-     * date selector. how to handle (EG) Feb 30th Do we do weirdness changing years if the user selects Jan or something after
-     * Dec? currently date selector doesn't actually update the val...(assuming we don't want to disable it) Note also that
-     * some
+     * property allows customization of the  order of the day, month and year selector fields.  If unset these fields will
+     * match the specified inputFormat for this item. <P> Note: selectors may be ommitted entirely by setting selectorFormat to
+     * (for example)  <code>"MD"</code>. In this case the value for the omitted selector will match the
+     * ${isc.DocUtils.linkForRef('defaultValue')} specified for the item.  For example, if the selector format is "MD" (month
+     * and day only), the year comes from the Date specified as the defaultValue.
      *
      *
      * @return DateItemSelectorFormat

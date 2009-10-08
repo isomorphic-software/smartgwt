@@ -143,6 +143,30 @@ public class DynamicForm extends Canvas  implements DataBoundComponent, com.smar
     }
              
     /**
+     * If {@link com.smartgwt.client.widgets.form.DynamicForm#getAutoFetchData autoFetchData} is <code>true</code>, this
+     * attribute allows the developer to specify a textMatchStyle for the initial {@link
+     * com.smartgwt.client.widgets.form.DynamicForm#fetchData} call.
+     *
+     * @param autoFetchTextMatchStyle autoFetchTextMatchStyle Default value is null
+     * @throws IllegalStateException this property cannot be changed after the component has been created
+     */
+    public void setAutoFetchTextMatchStyle(TextMatchStyle autoFetchTextMatchStyle)  throws IllegalStateException {
+        setAttribute("autoFetchTextMatchStyle", autoFetchTextMatchStyle.getValue(), false);
+    }
+
+    /**
+     * If {@link com.smartgwt.client.widgets.form.DynamicForm#getAutoFetchData autoFetchData} is <code>true</code>, this
+     * attribute allows the developer to specify a textMatchStyle for the initial {@link
+     * com.smartgwt.client.widgets.form.DynamicForm#fetchData} call.
+     *
+     *
+     * @return TextMatchStyle
+     */
+    public TextMatchStyle getAutoFetchTextMatchStyle()  {
+        return EnumUtil.getEnum(TextMatchStyle.values(), getAttribute("autoFetchTextMatchStyle"));
+    }
+             
+    /**
      * Layout style to use with this form.   <P> The default of "table" uses a tabular layout similar to HTML tables, but with
      * much more powerful control over sizing, item visibility and reflow, overflow handling, etc. <P>
      * <code>itemLayout:"absolute"</code> allows absolute positioning of every form item.  This provides maximum flexibility in
@@ -1437,30 +1461,6 @@ public class DynamicForm extends Canvas  implements DataBoundComponent, com.smar
      */
     public String getFormSubmitFailedWarning()  {
         return getAttributeAsString("formSubmitFailedWarning");
-    }
-             
-    /**
-     * If {@link com.smartgwt.client.widgets.form.DynamicForm#getAutoFetchData autoFetchData} is <code>true</code>, this
-     * attribute allows the developer to specify a textMatchStyle for the initial {@link
-     * com.smartgwt.client.widgets.form.DynamicForm#fetchData} call.
-     *
-     * @param autoFetchTextMatchStyle autoFetchTextMatchStyle Default value is null
-     * @throws IllegalStateException this property cannot be changed after the component has been created
-     */
-    public void setAutoFetchTextMatchStyle(TextMatchStyle autoFetchTextMatchStyle)  throws IllegalStateException {
-        setAttribute("autoFetchTextMatchStyle", autoFetchTextMatchStyle.getValue(), false);
-    }
-
-    /**
-     * If {@link com.smartgwt.client.widgets.form.DynamicForm#getAutoFetchData autoFetchData} is <code>true</code>, this
-     * attribute allows the developer to specify a textMatchStyle for the initial {@link
-     * com.smartgwt.client.widgets.form.DynamicForm#fetchData} call.
-     *
-     *
-     * @return TextMatchStyle
-     */
-    public TextMatchStyle getAutoFetchTextMatchStyle()  {
-        return EnumUtil.getEnum(TextMatchStyle.values(), getAttribute("autoFetchTextMatchStyle"));
     }
 
     // ********************* Methods ***********************

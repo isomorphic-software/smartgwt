@@ -2,7 +2,7 @@
 package com.smartgwt.client.docs;
 
 /**
- * @see com.smartgwt.client.widgets.grid.ListGrid#getAnimateRemoveSpeed
+ * @see com.smartgwt.client.widgets.Slider#getAnimateThumbInit
  * @see com.smartgwt.client.data.OperationBinding#getMail
  * @see com.smartgwt.client..Mail#getTemplateFile
  * @see com.smartgwt.client..Mail#getMessageTemplate
