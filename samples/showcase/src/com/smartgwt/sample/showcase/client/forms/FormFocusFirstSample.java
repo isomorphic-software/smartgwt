@@ -11,7 +11,7 @@ import com.smartgwt.sample.showcase.client.PanelFactory;
 import com.smartgwt.sample.showcase.client.ShowcasePanel;
 
 public class FormFocusFirstSample extends ShowcasePanel {
-    private static final String DESCRIPTION = "<p>Setting the focus / cursor on the first field of a form is common requirement. Doing this in SmartGWT is as simple as setting <code>form.setAutoFocus(true)</code>.</p>" +
+    private static final String DESCRIPTION = "<p>Setting the focus / cursor on the first field of a form is common requirement. Doing this in Smart GWT is as simple as setting <code>form.setAutoFocus(true)</code>.</p>" +
             "<p>This sample also has <code>setSelectOnFocus(true)</code> on the first field.</p>";
 
     public static class Factory implements PanelFactory {

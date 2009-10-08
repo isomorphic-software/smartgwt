@@ -9,7 +9,7 @@ import com.smartgwt.sample.showcase.client.data.CarData;
 
 public class BasicTilingSample extends ShowcasePanel {
 
-    private static final String DESCRIPTION = "SmartGWT can display data in a \"tiled\" view. Mouse over widgets to see rollovers, click to select (shift- and ctrl-click for multi-select).";
+    private static final String DESCRIPTION = "Smart GWT can display data in a \"tiled\" view. Mouse over widgets to see rollovers, click to select (shift- and ctrl-click for multi-select).";
 
     public static class Factory implements PanelFactory {
 

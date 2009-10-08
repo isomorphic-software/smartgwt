@@ -24,7 +24,7 @@ import java.util.Map;
 
 public class WSDLWebServiceSample extends ShowcasePanel {
 
-    private static final String DESCRIPTION = "SmartGWT can load WSDL service definitions and call web service " +
+    private static final String DESCRIPTION = "Smart GWT can load WSDL service definitions and call web service " +
             "operations with automatic JSON<->XML translation. SOAP encoding rules, namespacing, and element ordering " +
             "are handled automatically for your inputs and outputs.";
 

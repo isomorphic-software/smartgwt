@@ -12,7 +12,7 @@ import com.smartgwt.sample.showcase.client.ShowcasePanel;
 import com.smartgwt.sample.showcase.client.data.ItemSupplyXmlDS;
 
 public class GridEditFreezeSample extends ShowcasePanel {
-    private static final String DESCRIPTION = "SmartGWT's inline editing support works normally with frozen columns with no further configuration.";
+    private static final String DESCRIPTION = "Smart GWT's inline editing support works normally with frozen columns with no further configuration.";
 
     public static class Factory implements PanelFactory {
         private String id;

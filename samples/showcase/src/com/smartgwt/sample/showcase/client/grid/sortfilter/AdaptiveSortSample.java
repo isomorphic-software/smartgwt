@@ -19,10 +19,10 @@ import com.smartgwt.sample.showcase.client.data.ItemSupplyXmlDS;
 
 public class AdaptiveSortSample extends ShowcasePanel {
 
-    private static final String DESCRIPTION = "<p>SmartGWT combines large dataset handling with adaptive use of client-side sort.</p>" +
+    private static final String DESCRIPTION = "<p>Smart GWT combines large dataset handling with adaptive use of client-side sort.</p>" +
             "<p>Click any header now and server-side sort will be used for this large dataset. Check \"Limit to Dictionaries\" to limit the " +
-            "dataset and sort again: when the dataset becomes small enough, SmartGWT switches to client-side sorting automatically.</p>" +
-            "<p>The label underneath the grid flashes briefly every time SmartGWT needs to visit the server.</p>";
+            "dataset and sort again: when the dataset becomes small enough, Smart GWT switches to client-side sorting automatically.</p>" +
+            "<p>The label underneath the grid flashes briefly every time Smart GWT needs to visit the server.</p>";
 
     public static class Factory implements PanelFactory {
         private String id;

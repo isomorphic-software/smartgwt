@@ -13,7 +13,7 @@ import com.smartgwt.sample.showcase.client.data.CountryRecord;
 
 
 public class GridDragDropFreezeSample extends ShowcasePanel {
-    private static final String DESCRIPTION = "SmartGWT's drag and drop support works normally with frozen columns with no further configuration. " +
+    private static final String DESCRIPTION = "Smart GWT's drag and drop support works normally with frozen columns with no further configuration. " +
             "Drag countries within grids to reorder them, or between grids to move countries back and forth.";
 
     public static class Factory implements PanelFactory {

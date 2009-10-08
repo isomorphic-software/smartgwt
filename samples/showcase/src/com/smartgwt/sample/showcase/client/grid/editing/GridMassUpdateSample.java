@@ -21,7 +21,7 @@ public class GridMassUpdateSample extends ShowcasePanel {
     private static final String DESCRIPTION = "<p>Click on any cell to start editing, then <b>Tab</b> or <b>Down Arrow</b> past the last " +
             "row in the grid to create a new row.</p>" +
             "<p>Alternatively, click the Edit New button to create a new data-entry row at the end of the grid. Unlike the other editing examples, " +
-            "none of your changes are being automatically saved to the server. Note how SmartGWT highlights changed values, and new rows.</p>" +
+            "none of your changes are being automatically saved to the server. Note how Smart GWT highlights changed values, and new rows.</p>" +
             "<p>Click the \"Save\" button to save all your changes at once, or click the \"Discard\" button to discard all your changes " +
             "(including any new rows) and revert to the data as it was before you started editing.</p>";
 

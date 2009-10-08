@@ -24,10 +24,10 @@ import com.smartgwt.sample.showcase.client.data.TeamMembersXmlDS;
 
 public class GridDataBoundDragDropSample extends ShowcasePanel {
 
-    private static final String DESCRIPTION = "<p>Drag employee records into the Project Team Members list. SmartGWT recognizes that the two dataSources are linked by a " +
+    private static final String DESCRIPTION = "<p>Drag employee records into the Project Team Members list. Smart GWT recognizes that the two dataSources are linked by a " +
             "foreign key relationship, and automatically uses that relationship to populate values in the record that is added when you drop. " +
-            "SmartGWT also populates fields based on current criteria and maps explicit titleFields as necessary.</p>" +
-            "<p>In this example, note that SmartGWT is automatically populating all three of the fields in the teamMembers dataSource, even though none of " +
+            "Smart GWT also populates fields based on current criteria and maps explicit titleFields as necessary.</p>" +
+            "<p>In this example, note that Smart GWT is automatically populating all three of the fields in the teamMembers dataSource, even though none of " +
             "those fields is present in the employees dataSource we are dragging from. Change the \"Team for Project\" " +
             "select box, then try dragging employees across; note that the Project Code column is being correctly populated for the dropped records.</p>";
 

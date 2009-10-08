@@ -181,7 +181,7 @@ public class Showcase implements EntryPoint, HistoryListener {
         });
 
         Tab tab = new Tab();
-        tab.setTitle("SmartGWT Showcase&nbsp;&nbsp;");
+        tab.setTitle("Smart GWT Showcase&nbsp;&nbsp;");
         tab.setIcon("pieces/16/cube_green.png");
 
         ShowcaseGrid tocGrid = new ShowcaseGrid();
@@ -196,7 +196,7 @@ public class Showcase implements EntryPoint, HistoryListener {
         });
 
         Window window = new Window();
-        window.setTitle("SmartGWT Showcase");
+        window.setTitle("Smart GWT Showcase");
         window.setHeaderControls(HeaderControls.HEADER_LABEL, HeaderControls.MINIMIZE_BUTTON,
                                     HeaderControls.MAXIMIZE_BUTTON, HeaderControls.CLOSE_BUTTON);
         window.setWidth(500);

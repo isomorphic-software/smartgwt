@@ -19,7 +19,7 @@ import com.smartgwt.sample.showcase.client.ShowcasePanel;
 import com.google.gwt.user.client.Random;
 
 public class SimplePortalSample extends ShowcasePanel {
-    private static final String DESCRIPTION = "Animations built into SmartGWT layouts can be used to create a drag and drop portal experience. " +
+    private static final String DESCRIPTION = "Animations built into Smart GWT layouts can be used to create a drag and drop portal experience. " +
             "Drag portlets around to new locations and they animate into place. ";
 
     public static class Factory implements PanelFactory {

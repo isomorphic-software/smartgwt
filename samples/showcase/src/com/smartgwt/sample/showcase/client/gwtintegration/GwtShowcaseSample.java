@@ -15,7 +15,7 @@ import com.smartgwt.sample.showcase.client.data.CountryData;
 
 public class GwtShowcaseSample extends ShowcasePanel {
 
-    private static final String DESCRIPTION = "This is an example of integrating GWT Widgets with SmartGWT components.";
+    private static final String DESCRIPTION = "This is an example of integrating GWT Widgets with Smart GWT components.";
 
     public static class Factory implements PanelFactory {
 
@@ -41,7 +41,7 @@ public class GwtShowcaseSample extends ShowcasePanel {
         tabSet.setWidth(580);
         tabSet.setHeight(400);
 
-        Tab smartTab1 = new Tab("SmartGWT Tab &nbsp;", "pieces/16/pawn_blue.png");
+        Tab smartTab1 = new Tab("Smart GWT Tab &nbsp;", "pieces/16/pawn_blue.png");
         Canvas tabPane1 = new Canvas();
         tabPane1.setWidth100();
         tabPane1.setHeight100();
@@ -82,7 +82,7 @@ public class GwtShowcaseSample extends ShowcasePanel {
         Button gwtButton = new Button("GWT  Button",
                 new ClickListener() {
                     public void onClick(Widget sender) {
-                        SC.say("SmartGWT Dialog");
+                        SC.say("Smart GWT Dialog");
                     }
                 });
         vPanel2.add(gwtButton);

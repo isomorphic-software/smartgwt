@@ -47,7 +47,7 @@ public class TabsTitleChangeSample extends ShowcasePanel {
         final Tab preferencesTab = new Tab("Preferences");
         DynamicForm preferencesForm = new DynamicForm();
         CheckboxItem useTabsCheckbox = new CheckboxItem();
-        useTabsCheckbox.setTitle("Use SmartGWT tabs");
+        useTabsCheckbox.setTitle("Use Smart GWT tabs");
         preferencesForm.setFields(useTabsCheckbox);
         preferencesTab.setPane(preferencesForm);
 
