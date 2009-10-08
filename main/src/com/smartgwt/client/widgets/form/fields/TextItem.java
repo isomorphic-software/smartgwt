@@ -281,9 +281,10 @@ public class TextItem extends FormItem {
      * can be defined by standard regular expression character set or range. For example, a hexadecimal color code mask could
      * be: <UL> <LI>Color: \#>[0-9A-F][0-9A-F][0-9A-F][0-9A-F][0-9A-F][0-9A-F]</LI> </UL> <P> Note: input mask cannot be used
      * at the same time as a {@link com.smartgwt.client.widgets.form.fields.TextItem#getKeyPressFilter keyPressFilter}.
+     * Set the mask for this item. <P> Note that the current value of the field is cleared when changing the mask.
      * <p><b>Note : </b> This is an advanced setting</p>
      *
-     * @param mask mask Default value is null
+     * @param mask mask to apply to text item. Default value is null
      */
     public void setMask(String mask) {
         setAttribute("mask", mask);
@@ -422,6 +423,7 @@ public class TextItem extends FormItem {
         var self = this.@com.smartgwt.client.core.DataClass::getJsObj()();
         self.deselectValue(start);
     }-*/;
+
 
 
     // ********************* Static Methods ***********************

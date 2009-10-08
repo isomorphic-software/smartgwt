@@ -3,9 +3,29 @@ package com.smartgwt.client.docs;
 
 /**
  * Properties defining an object's apperance
+ * @see com.smartgwt.client.widgets.viewer.DetailViewerField#getCellStyle
+ * @see com.smartgwt.client.grid.GridRenderer#getCellStyle
+ * @see com.smartgwt.client.grid.GridRenderer#cellIsEnabled
+ * @see com.smartgwt.client.grid.GridRenderer#refreshCellStyle
+ * @see com.smartgwt.client.grid.GridRenderer#refreshCell
+ * @see com.smartgwt.client.grid.GridRenderer#refreshRow
+ * @see com.smartgwt.client.widgets.grid.ListGrid#getCellStyle
+ * @see com.smartgwt.client.widgets.grid.ListGrid#refreshCellStyle
+ * @see com.smartgwt.client.widgets.grid.ListGridField#getFieldTitle
+ * @see com.smartgwt.client.widgets.grid.ListGridField#showIf
+ * @see com.smartgwt.client.widgets.grid.ListGridField#getSummaryTitle
+ * @see com.smartgwt.client.widgets.grid.ListGrid#refreshCell
+ * @see com.smartgwt.client.widgets.grid.ListGrid#refreshRow
  * @see com.smartgwt.client.widgets.Window#setStatus
  * @see com.smartgwt.client.widgets.Window#setSrc
  * @see com.smartgwt.client.widgets.Window#centerInPage
+ * @see com.smartgwt.client..CubeGrid#getCellStyle
+ * @see com.smartgwt.client.widgets.Canvas#setPadding
+ * @see com.smartgwt.client.widgets.Canvas#setBackgroundColor
+ * @see com.smartgwt.client.widgets.Canvas#setBackgroundImage
+ * @see com.smartgwt.client.widgets.Canvas#setBorder
+ * @see com.smartgwt.client.widgets.Canvas#setClassName
+ * @see com.smartgwt.client.widgets.Canvas#setStyleName
  * @see com.smartgwt.client.widgets.StatefulCanvas#setState
  * @see com.smartgwt.client.widgets.StatefulCanvas#setTitle
  * @see com.smartgwt.client.widgets.Button#setTitle
@@ -20,26 +40,74 @@ package com.smartgwt.client.docs;
  * @see com.smartgwt.client.widgets.StretchImgButton#setState
  * @see com.smartgwt.client.widgets.form.fields.TextItem#getHint
  * @see com.smartgwt.client.widgets.form.fields.ButtonItem#setTitle
- * @see com.smartgwt.client..CubeGrid#getCellStyle
- * @see com.smartgwt.client.widgets.Canvas#setPadding
- * @see com.smartgwt.client.widgets.Canvas#setBackgroundColor
- * @see com.smartgwt.client.widgets.Canvas#setBackgroundImage
- * @see com.smartgwt.client.widgets.Canvas#setBorder
- * @see com.smartgwt.client.widgets.Canvas#setClassName
- * @see com.smartgwt.client.widgets.Canvas#setStyleName
- * @see com.smartgwt.client.widgets.viewer.DetailViewerField#getCellStyle
- * @see com.smartgwt.client.grid.GridRenderer#getCellStyle
- * @see com.smartgwt.client.grid.GridRenderer#cellIsEnabled
- * @see com.smartgwt.client.grid.GridRenderer#refreshCellStyle
- * @see com.smartgwt.client.grid.GridRenderer#refreshCell
- * @see com.smartgwt.client.grid.GridRenderer#refreshRow
- * @see com.smartgwt.client.widgets.grid.ListGrid#getCellStyle
- * @see com.smartgwt.client.widgets.grid.ListGrid#refreshCellStyle
- * @see com.smartgwt.client.widgets.grid.ListGridField#getFieldTitle
- * @see com.smartgwt.client.widgets.grid.ListGridField#showIf
+ * @see com.smartgwt.client.widgets.calendar.Calendar#getBaseStyle
+ * @see com.smartgwt.client.widgets.calendar.Calendar#getDayHeaderBaseStyle
+ * @see com.smartgwt.client.widgets.calendar.Calendar#getDayBodyBaseStyle
+ * @see com.smartgwt.client.widgets.calendar.Calendar#getOtherDayHeaderBaseStyle
+ * @see com.smartgwt.client.widgets.calendar.Calendar#getOtherDayBodyBaseStyle
+ * @see com.smartgwt.client.widgets.calendar.Calendar#getOtherDayBlankStyle
+ * @see com.smartgwt.client.widgets.calendar.Calendar#getSelectedCellStyle
+ * @see com.smartgwt.client.widgets.calendar.Calendar#getEventWindowStyle
+ * @see com.smartgwt.client.widgets.calendar.Calendar#getWorkdayBaseStyle
+ * @see com.smartgwt.client.widgets.calendar.Calendar#getEventWindowStyleField
+ * @see com.smartgwt.client.widgets.calendar.Calendar#getWeekEventBorderOverlap
+ * @see com.smartgwt.client.widgets.viewer.DetailViewer#getRecordsPerBlock
+ * @see com.smartgwt.client.widgets.viewer.DetailViewer#getBlockSeparator
+ * @see com.smartgwt.client.widgets.viewer.DetailViewer#getShowEmptyField
+ * @see com.smartgwt.client.widgets.viewer.DetailViewer#getEmptyCellValue
+ * @see com.smartgwt.client.widgets.viewer.DetailViewer#getStyleName
+ * @see com.smartgwt.client.widgets.viewer.DetailViewer#getBlockStyle
+ * @see com.smartgwt.client.widgets.viewer.DetailViewer#getLabelStyle
+ * @see com.smartgwt.client.widgets.viewer.DetailViewer#getCellStyle
+ * @see com.smartgwt.client.widgets.viewer.DetailViewer#getHeaderStyle
+ * @see com.smartgwt.client.widgets.viewer.DetailViewer#getSeparatorStyle
+ * @see com.smartgwt.client.widgets.grid.ListGrid#getStyleName
+ * @see com.smartgwt.client.widgets.grid.ListGridField#getType
+ * @see com.smartgwt.client.widgets.grid.ListGridField#getTitle
+ * @see com.smartgwt.client.widgets.grid.ListGridField#getCanHide
  * @see com.smartgwt.client.widgets.grid.ListGridField#getSummaryTitle
- * @see com.smartgwt.client.widgets.grid.ListGrid#refreshCell
- * @see com.smartgwt.client.widgets.grid.ListGrid#refreshRow
+ * @see com.smartgwt.client.widgets.grid.ListGridField#getWidth
+ * @see com.smartgwt.client.widgets.grid.ListGridField#getAlign
+ * @see com.smartgwt.client.widgets.grid.ListGridField#getHeaderBaseStyle
+ * @see com.smartgwt.client.widgets.grid.ListGridField#getHeaderTitleStyle
+ * @see com.smartgwt.client.widgets.grid.ListGridField#getCellAlign
+ * @see com.smartgwt.client.widgets.grid.ListGridField#getBaseStyle
+ * @see com.smartgwt.client.widgets.grid.ListGrid#getBodyBackgroundColor
+ * @see com.smartgwt.client.widgets.grid.ListGrid#getBodyStyleName
+ * @see com.smartgwt.client.widgets.grid.ListGrid#getLeaveScrollbarGap
+ * @see com.smartgwt.client.widgets.grid.ListGrid#getDateFormatter
+ * @see com.smartgwt.client.widgets.grid.ListGrid#getDatetimeFormatter
+ * @see com.smartgwt.client.widgets.grid.ListGrid#getTimeFormatter
+ * @see com.smartgwt.client.widgets.grid.ListGrid#getEditFailedBaseStyle
+ * @see com.smartgwt.client.widgets.grid.ListGrid#getEditFailedCSSText
+ * @see com.smartgwt.client.widgets.grid.ListGrid#getEditPendingBaseStyle
+ * @see com.smartgwt.client.widgets.grid.ListGrid#getEditPendingCSSText
+ * @see com.smartgwt.client.widgets.grid.ListGrid#getRecordBaseStyleProperty
+ * @see com.smartgwt.client.widgets.grid.ListGrid#getFrozenBaseStyle
+ * @see com.smartgwt.client.widgets.grid.ListGrid#getShowRollOver
+ * @see com.smartgwt.client.widgets.grid.ListGrid#getSelectionType
+ * @see com.smartgwt.client.widgets.grid.ListGrid#getShowHeader
+ * @see com.smartgwt.client.widgets.grid.ListGrid#getHeaderBarStyle
+ * @see com.smartgwt.client.widgets.grid.ListGrid#getHeaderBackgroundColor
+ * @see com.smartgwt.client.widgets.grid.ListGrid#getHeaderButtonConstructor
+ * @see com.smartgwt.client.widgets.grid.ListGrid#getHeaderBaseStyle
+ * @see com.smartgwt.client.widgets.grid.ListGrid#getHeaderTitleStyle
+ * @see com.smartgwt.client.widgets.grid.ListGrid#getFrozenHeaderBaseStyle
+ * @see com.smartgwt.client.widgets.grid.ListGrid#getFrozenHeaderTitleStyle
+ * @see com.smartgwt.client.widgets.grid.ListGrid#getHeaderButtonDefaults
+ * @see com.smartgwt.client.widgets.grid.ListGrid#getHeaderButtonProperties
+ * @see com.smartgwt.client.widgets.grid.ListGrid#getSorterConstructor
+ * @see com.smartgwt.client.widgets.grid.ListGrid#getSorterDefaults
+ * @see com.smartgwt.client.widgets.grid.ListGrid#getSorterProperties
+ * @see com.smartgwt.client.widgets.grid.ListGrid#getShowSortArrow
+ * @see com.smartgwt.client.widgets.grid.ListGrid#getSkinImgDir
+ * @see com.smartgwt.client.widgets.grid.ListGrid#getSortAscendingImage
+ * @see com.smartgwt.client.widgets.grid.ListGrid#getSortDescendingImage
+ * @see com.smartgwt.client.widgets.tree.TreeGrid#getIndentSize
+ * @see com.smartgwt.client.widgets.tile.TileLayout#getAnimateTileChange
+ * @see com.smartgwt.client.widgets.tile.TileGrid#getSelectionType
+ * @see com.smartgwt.client.widgets.tile.TileGrid#getAnimateTileChange
+ * @see com.smartgwt.client.widgets.tile.TileGrid#getStyleName
  * @see com.smartgwt.client.widgets.tab.ImgTab#getCapSize
  * @see com.smartgwt.client.widgets.Window#getModalMask
  * @see com.smartgwt.client.widgets.Window#getShowModalMask
@@ -85,6 +153,23 @@ package com.smartgwt.client.docs;
  * @see com.smartgwt.client.widgets.Window#getStatus
  * @see com.smartgwt.client.widgets.Dialog#getStyleName
  * @see com.smartgwt.client.widgets.Dialog#getShowToolbar
+ * @see com.smartgwt.client..CubeGrid#getStyleName
+ * @see com.smartgwt.client..CubeGrid#getBodyStyleName
+ * @see com.smartgwt.client..CubeGrid#getAlternateRecordStyles
+ * @see com.smartgwt.client..CubeGrid#getInnerHeaderBaseStyle
+ * @see com.smartgwt.client..CubeGrid#getColHeaderBaseStyle
+ * @see com.smartgwt.client..CubeGrid#getRowHeaderBaseStyle
+ * @see com.smartgwt.client.widgets.Canvas#getAutoShowParent
+ * @see com.smartgwt.client.widgets.Canvas#getVisibility
+ * @see com.smartgwt.client.widgets.Canvas#getClassName
+ * @see com.smartgwt.client.widgets.Canvas#getStyleName
+ * @see com.smartgwt.client.widgets.Canvas#getMargin
+ * @see com.smartgwt.client.widgets.Canvas#getPadding
+ * @see com.smartgwt.client.widgets.Canvas#getBorder
+ * @see com.smartgwt.client.widgets.Canvas#getBackgroundColor
+ * @see com.smartgwt.client.widgets.Canvas#getBackgroundImage
+ * @see com.smartgwt.client.widgets.Canvas#getBackgroundRepeat
+ * @see com.smartgwt.client.widgets.Canvas#getBackgroundPosition
  * @see com.smartgwt.client.widgets.StatefulCanvas#getAlign
  * @see com.smartgwt.client.widgets.StatefulCanvas#getValign
  * @see com.smartgwt.client.widgets.Button#getAlign
@@ -211,98 +296,13 @@ package com.smartgwt.client.docs;
  * @see com.smartgwt.client.widgets.form.fields.ToolbarItem#getColSpan
  * @see com.smartgwt.client.widgets.form.fields.ToolbarItem#getButtonBaseStyle
  * @see com.smartgwt.client.widgets.form.fields.ComboBoxItem#getShowHintInField
- * @see com.smartgwt.client..CubeGrid#getStyleName
- * @see com.smartgwt.client..CubeGrid#getBodyStyleName
- * @see com.smartgwt.client..CubeGrid#getAlternateRecordStyles
- * @see com.smartgwt.client..CubeGrid#getInnerHeaderBaseStyle
- * @see com.smartgwt.client..CubeGrid#getColHeaderBaseStyle
- * @see com.smartgwt.client..CubeGrid#getRowHeaderBaseStyle
- * @see com.smartgwt.client.widgets.Canvas#getAutoShowParent
- * @see com.smartgwt.client.widgets.Canvas#getVisibility
- * @see com.smartgwt.client.widgets.Canvas#getClassName
- * @see com.smartgwt.client.widgets.Canvas#getStyleName
- * @see com.smartgwt.client.widgets.Canvas#getMargin
- * @see com.smartgwt.client.widgets.Canvas#getPadding
- * @see com.smartgwt.client.widgets.Canvas#getBorder
- * @see com.smartgwt.client.widgets.Canvas#getBackgroundColor
- * @see com.smartgwt.client.widgets.Canvas#getBackgroundImage
- * @see com.smartgwt.client.widgets.Canvas#getBackgroundRepeat
- * @see com.smartgwt.client.widgets.Canvas#getBackgroundPosition
- * @see com.smartgwt.client.widgets.viewer.DetailViewer#getRecordsPerBlock
- * @see com.smartgwt.client.widgets.viewer.DetailViewer#getBlockSeparator
- * @see com.smartgwt.client.widgets.viewer.DetailViewer#getShowEmptyField
- * @see com.smartgwt.client.widgets.viewer.DetailViewer#getEmptyCellValue
- * @see com.smartgwt.client.widgets.viewer.DetailViewer#getStyleName
- * @see com.smartgwt.client.widgets.viewer.DetailViewer#getBlockStyle
- * @see com.smartgwt.client.widgets.viewer.DetailViewer#getLabelStyle
- * @see com.smartgwt.client.widgets.viewer.DetailViewer#getCellStyle
- * @see com.smartgwt.client.widgets.viewer.DetailViewer#getHeaderStyle
- * @see com.smartgwt.client.widgets.viewer.DetailViewer#getSeparatorStyle
- * @see com.smartgwt.client.widgets.grid.ListGrid#getStyleName
- * @see com.smartgwt.client.widgets.grid.ListGridField#getType
- * @see com.smartgwt.client.widgets.grid.ListGridField#getTitle
- * @see com.smartgwt.client.widgets.grid.ListGridField#getCanHide
- * @see com.smartgwt.client.widgets.grid.ListGridField#getSummaryTitle
- * @see com.smartgwt.client.widgets.grid.ListGridField#getWidth
- * @see com.smartgwt.client.widgets.grid.ListGridField#getAlign
- * @see com.smartgwt.client.widgets.grid.ListGridField#getHeaderBaseStyle
- * @see com.smartgwt.client.widgets.grid.ListGridField#getHeaderTitleStyle
- * @see com.smartgwt.client.widgets.grid.ListGridField#getCellAlign
- * @see com.smartgwt.client.widgets.grid.ListGridField#getBaseStyle
- * @see com.smartgwt.client.widgets.grid.ListGrid#getBodyBackgroundColor
- * @see com.smartgwt.client.widgets.grid.ListGrid#getBodyStyleName
- * @see com.smartgwt.client.widgets.grid.ListGrid#getLeaveScrollbarGap
- * @see com.smartgwt.client.widgets.grid.ListGrid#getDateFormatter
- * @see com.smartgwt.client.widgets.grid.ListGrid#getDatetimeFormatter
- * @see com.smartgwt.client.widgets.grid.ListGrid#getTimeFormatter
- * @see com.smartgwt.client.widgets.grid.ListGrid#getEditFailedBaseStyle
- * @see com.smartgwt.client.widgets.grid.ListGrid#getEditFailedCSSText
- * @see com.smartgwt.client.widgets.grid.ListGrid#getEditPendingBaseStyle
- * @see com.smartgwt.client.widgets.grid.ListGrid#getEditPendingCSSText
- * @see com.smartgwt.client.widgets.grid.ListGrid#getRecordBaseStyleProperty
- * @see com.smartgwt.client.widgets.grid.ListGrid#getFrozenBaseStyle
- * @see com.smartgwt.client.widgets.grid.ListGrid#getShowRollOver
- * @see com.smartgwt.client.widgets.grid.ListGrid#getSelectionType
- * @see com.smartgwt.client.widgets.grid.ListGrid#getShowHeader
- * @see com.smartgwt.client.widgets.grid.ListGrid#getHeaderBarStyle
- * @see com.smartgwt.client.widgets.grid.ListGrid#getHeaderBackgroundColor
- * @see com.smartgwt.client.widgets.grid.ListGrid#getHeaderButtonConstructor
- * @see com.smartgwt.client.widgets.grid.ListGrid#getHeaderBaseStyle
- * @see com.smartgwt.client.widgets.grid.ListGrid#getHeaderTitleStyle
- * @see com.smartgwt.client.widgets.grid.ListGrid#getFrozenHeaderBaseStyle
- * @see com.smartgwt.client.widgets.grid.ListGrid#getFrozenHeaderTitleStyle
- * @see com.smartgwt.client.widgets.grid.ListGrid#getHeaderButtonDefaults
- * @see com.smartgwt.client.widgets.grid.ListGrid#getHeaderButtonProperties
- * @see com.smartgwt.client.widgets.grid.ListGrid#getSorterConstructor
- * @see com.smartgwt.client.widgets.grid.ListGrid#getSorterDefaults
- * @see com.smartgwt.client.widgets.grid.ListGrid#getSorterProperties
- * @see com.smartgwt.client.widgets.grid.ListGrid#getShowSortArrow
- * @see com.smartgwt.client.widgets.grid.ListGrid#getSkinImgDir
- * @see com.smartgwt.client.widgets.grid.ListGrid#getSortAscendingImage
- * @see com.smartgwt.client.widgets.grid.ListGrid#getSortDescendingImage
- * @see com.smartgwt.client.widgets.tree.TreeGrid#getIndentSize
- * @see com.smartgwt.client.widgets.tile.TileLayout#getAnimateTileChange
- * @see com.smartgwt.client.widgets.tile.TileGrid#getSelectionType
- * @see com.smartgwt.client.widgets.tile.TileGrid#getAnimateTileChange
- * @see com.smartgwt.client.widgets.tile.TileGrid#getStyleName
- * @see com.smartgwt.client.widgets.calendar.Calendar#getBaseStyle
- * @see com.smartgwt.client.widgets.calendar.Calendar#getDayHeaderBaseStyle
- * @see com.smartgwt.client.widgets.calendar.Calendar#getDayBodyBaseStyle
- * @see com.smartgwt.client.widgets.calendar.Calendar#getOtherDayHeaderBaseStyle
- * @see com.smartgwt.client.widgets.calendar.Calendar#getOtherDayBodyBaseStyle
- * @see com.smartgwt.client.widgets.calendar.Calendar#getOtherDayBlankStyle
- * @see com.smartgwt.client.widgets.calendar.Calendar#getSelectedCellStyle
- * @see com.smartgwt.client.widgets.calendar.Calendar#getEventWindowStyle
- * @see com.smartgwt.client.widgets.calendar.Calendar#getWorkdayBaseStyle
- * @see com.smartgwt.client.widgets.calendar.Calendar#getEventWindowStyleField
- * @see com.smartgwt.client.widgets.calendar.Calendar#getWeekEventBorderOverlap
- * @see com.smartgwt.client..FormItemBaseStyle
+ * @see com.smartgwt.client.types.SortArrow
  * @see com.smartgwt.client.types.Alignment
  * @see com.smartgwt.client.types.VerticalAlignment
  * @see com.smartgwt.client.types.Direction
  * @see com.smartgwt.client.types.ImageStyle
  * @see com.smartgwt.client..CSSStyleName
- * @see com.smartgwt.client.types.SortArrow
+ * @see com.smartgwt.client..FormItemBaseStyle
  */
 public interface Appearance {
 }
