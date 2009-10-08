@@ -74,6 +74,7 @@ public abstract class ShowcasePanel extends VLayout {
 
             String introContents = "<p class='intro-para'>" + intro + "</p>";
             Canvas contents = new Canvas();
+            contents.setCanSelectText(true);
             contents.setPadding(10);
             contents.setContents(introContents);
             if (topIntro) {
