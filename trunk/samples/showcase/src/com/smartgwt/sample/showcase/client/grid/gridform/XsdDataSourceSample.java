@@ -21,7 +21,7 @@ public class XsdDataSourceSample extends ShowcasePanel {
 
     private static final String DESCRIPTION =
             "<p>Click \"Load Schema\" to load a supplyItem DataSource from XML Schema (XSD) format, then extend that schema with " +
-                    "SmartGWT-specific presentation attributes, and bind the Grid and Form to it.</p>" +
+                    "Smart GWT-specific presentation attributes, and bind the Grid and Form to it.</p>" +
                     "<p>Note that the internal \"itemId\" field has been hidden from the user, some fields have been retitled, " +
                     "and default editors overriden.</p>";
 

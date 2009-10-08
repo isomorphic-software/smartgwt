@@ -26,7 +26,7 @@ import com.smartgwt.sample.showcase.client.data.CountryRecord;
 public class RestfulDataSourceSample extends ShowcasePanel {
 
     private static final String DESCRIPTION = "<p>The RestDataSource provides a simple protocol based on XML or JSON over HTTP.</p>" +
-            "<p>This protocol can be implemented with any server technology (PHP, Ruby, ..) and includes all the features of SmartGWT's databinding " +
+            "<p>This protocol can be implemented with any server technology (PHP, Ruby, ..) and includes all the features of Smart GWT's databinding " +
             "layer (data paging, server validation errors, cache sync, etc).</p>" +
             "<p>In this example, each DataSource operation is directed to a different XML file containing a sample response for that operationType. " +
             "The server returns the data-as-saved to allow the grid to update its cache.</p>";

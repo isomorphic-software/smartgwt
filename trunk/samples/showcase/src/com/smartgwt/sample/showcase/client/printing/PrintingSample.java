@@ -21,7 +21,7 @@ import com.smartgwt.sample.showcase.client.data.CountryXmlDS;
 
 public class PrintingSample extends ShowcasePanel {
     private static final String DESCRIPTION = "" +
-            "SmartGWT provides comprehensive support for rendering your UI in a print-friendly " +
+            "Smart GWT provides comprehensive support for rendering your UI in a print-friendly " +
             "fashion.  Click the \"Print Preview\" button and note the following things: " +
             "<ul>" +
             "<li>All components have simplified appearance (eg gradients omitted) to be legible in black and white</li>" +

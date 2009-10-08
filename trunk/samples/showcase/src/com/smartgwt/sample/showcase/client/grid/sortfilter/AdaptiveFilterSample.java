@@ -14,10 +14,10 @@ import com.smartgwt.sample.showcase.client.data.ItemSupplyXmlDS;
 
 public class AdaptiveFilterSample extends ShowcasePanel {
 
-    private static final String DESCRIPTION = "<p>SmartGWT combines large dataset handling with adaptive use of client-side filtering.</p>" +
-            "<p>Begin typing an Item name in the filter box above the \"Item\" column (for example type \"Pens\") . When the dataset becomes small enough, SmartGWT switches to client-side filtering automatically.</p>" +
+    private static final String DESCRIPTION = "<p>Smart GWT combines large dataset handling with adaptive use of client-side filtering.</p>" +
+            "<p>Begin typing an Item name in the filter box above the \"Item\" column (for example type \"Pens\") . When the dataset becomes small enough, Smart GWT switches to client-side filtering automatically.</p>" +
             "<p>Delete part of the item name to see SmartClient automatically switch back to server-side filtering. " +
-            "The label underneath the grid flashes briefly every time SmartGWT needs to visit the server.</p>";
+            "The label underneath the grid flashes briefly every time Smart GWT needs to visit the server.</p>";
 
     public static class Factory implements PanelFactory {
         private String id;

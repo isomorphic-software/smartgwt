@@ -1,10 +1,10 @@
 /*
- * SmartGWT (GWT for SmartClient)
+ * Smart GWT (GWT for SmartClient)
  * Copyright 2008 and beyond, Isomorphic Software, Inc.
  *
- * SmartGWT is free software; you can redistribute it and/or modify it
+ * Smart GWT is free software; you can redistribute it and/or modify it
  * under the terms of the GNU Lesser General Public License version 3
- * as published by the Free Software Foundation.  SmartGWT is also
+ * as published by the Free Software Foundation.  Smart GWT is also
  * available under typical commercial license terms - see
  * smartclient.com/license.
  *
@@ -46,7 +46,7 @@ public class SideNavTree extends TreeGrid {
         TreeGridField field = new TreeGridField();
         field.setCanFilter(true);
         field.setName("name");
-        field.setTitle("<b>SmartGWT Showcase</b>");
+        field.setTitle("<b>Smart GWT Showcase</b>");
         setFields(field);
 
         Tree tree = new Tree();

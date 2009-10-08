@@ -1,10 +1,10 @@
 /*
- * SmartGWT (GWT for SmartClient)
+ * Smart GWT (GWT for SmartClient)
  * Copyright 2008 and beyond, Isomorphic Software, Inc.
  *
- * SmartGWT is free software; you can redistribute it and/or modify it
+ * Smart GWT is free software; you can redistribute it and/or modify it
  * under the terms of the GNU Lesser General Public License version 3
- * as published by the Free Software Foundation.  SmartGWT is also
+ * as published by the Free Software Foundation.  Smart GWT is also
  * available under typical commercial license terms - see
  * http://smartclient.com/license
  * This software is distributed in the hope that it will be useful,
@@ -28,7 +28,7 @@ import com.smartgwt.sample.showcase.client.ShowcasePanel;
 
 public class MiniAppSample extends ShowcasePanel {
 
-    private static final String DESCRIPTION = "<p>Demonstrates a range of SmartGWT GUI components, data binding operations, " +
+    private static final String DESCRIPTION = "<p>Demonstrates a range of Smart GWT GUI components, data binding operations, " +
             "and layout managers in a single-page application.</p>";
 
     public static class Factory implements PanelFactory {

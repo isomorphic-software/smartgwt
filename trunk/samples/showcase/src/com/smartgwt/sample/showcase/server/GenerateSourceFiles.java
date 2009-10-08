@@ -380,9 +380,9 @@ private static ESourceFileType loadFileIntoStringList(final String filePath,
 public static void main(final String... args) {
   if (args.length < 2) {
     System.err.println("The first parameter is the showcase client directory");
-    System.err.println(" (e.g., c:/SmartGWT/Showcase/com/smartgwt/sample/showcase/client)");
+    System.err.println(" (e.g., c:/Smart GWT/Showcase/com/smartgwt/sample/showcase/client)");
     System.err.println("The second parameter is the source HTML root directory");
-    System.err.println(" (e.g., c:/SmartGWT/Showcase/com/smartgwt/sample/showcase/public/source)");
+    System.err.println(" (e.g., c:/Smart GWT/Showcase/com/smartgwt/sample/showcase/public/source)");
     System.err.println("Subsequent parameters are directories that contain data or data source");
     System.err.println(" files. The following files are automatically included:");
     System.err.println("  .../com/smartgwt/sample/showcase/public/data");
@@ -558,12 +558,12 @@ private static void writeStartOfHTMLFile(final PrintWriter sourceWriter,
 
 private static void writeStartOfSampleHTMLFile(final PrintWriter sourceWriter) {
   sourceWriter.println("/*");
-  sourceWriter.println(" * SmartGWT (GWT for SmartClient)");
+  sourceWriter.println(" * Smart GWT (GWT for SmartClient)");
   sourceWriter.println(" * Copyright 2008 and beyond, Isomorphic Software, Inc.");
   sourceWriter.println(" *");
-  sourceWriter.println(" * SmartGWT is free software; you can redistribute it and/or modify it");
+  sourceWriter.println(" * Smart GWT is free software; you can redistribute it and/or modify it");
   sourceWriter.println(" * under the terms of the GNU Lesser General Public License version 3");
-  sourceWriter.println(" * as published by the Free Software Foundation.  SmartGWT is also");
+  sourceWriter.println(" * as published by the Free Software Foundation.  Smart GWT is also");
   sourceWriter.println(" * available under typical commercial license terms - see");
   sourceWriter.println(" * http://smartclient.com/license");
   sourceWriter.println(" *");

@@ -12,7 +12,7 @@ import com.smartgwt.sample.showcase.client.ShowcasePanel;
 
 public class MouseEventsSample extends ShowcasePanel {
     private static final String DESCRIPTION = "<p>Mouse over the blue square to see the color respond to your position. Click and hold to see a fade. " +
-            "If you have a mousewheel, roll up and down to change size.<p><p>SmartGWT components support the standard " +
+            "If you have a mousewheel, roll up and down to change size.<p><p>Smart GWT components support the standard " +
             "mouse events in addition to custom events like \"mouseStillDown\".</p>";
 
     public static class Factory implements PanelFactory {

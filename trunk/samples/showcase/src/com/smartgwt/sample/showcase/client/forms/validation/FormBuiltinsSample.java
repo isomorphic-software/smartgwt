@@ -14,7 +14,7 @@ import com.smartgwt.sample.showcase.client.ShowcasePanel;
 
 public class FormBuiltinsSample extends ShowcasePanel {
     private static final String DESCRIPTION = "Type a number greater than 20 or less than 1 and press \"Validate\" " + 
-    "to receive a validation error. SmartGWT implements the XML Schema set of validators on both client and server."; 
+    "to receive a validation error. Smart GWT implements the XML Schema set of validators on both client and server.";
 
     public static class Factory implements PanelFactory {
         private String id;
