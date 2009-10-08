@@ -3,13 +3,13 @@ package com.smartgwt.client.docs;
 
 /**
  * <h3>Keyboard Events</h3>
- * SmartGWT allows keybaord events to be captured at the page level via  {@link com.smartgwt.client.util.Page#registerKey}
+ * Smart GWT allows keybaord events to be captured at the page level via  {@link com.smartgwt.client.util.Page#registerKey}
  * or {@link com.smartgwt.client.util.Page#setEvent} or at the widget level via {@link
  * com.smartgwt.client.widgets.Canvas#addKeyDownHandler}, {@link com.smartgwt.client.widgets.Canvas#addKeyPressHandler},
  * and {@link com.smartgwt.client.widgets.Canvas#keyUp}. <P> Details about the key events can be retrieved via static
  * methods on the EventHandler class including {@link com.smartgwt.client.util.EventHandler#getKey}, {@link
  * com.smartgwt.client.util.EventHandler#getKeyEventCharacter} and {@link
- * com.smartgwt.client.util.EventHandler#getKeyEventCharacterValue}. <P> As with other SmartGWT event handling code,
+ * com.smartgwt.client.util.EventHandler#getKeyEventCharacterValue}. <P> As with other Smart GWT event handling code,
  * returning <code>false</code> will suppress the default native browser behavior.<br> <b>Note:</b> browsers do not allow
  * cancellation of some keys' default behaviors. These cases vary by browser, and wherever native cancellation is
  * supported, returning false from your event handler should be sufficient to suppress the behavior. <br> Some specific

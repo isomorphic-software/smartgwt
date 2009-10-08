@@ -26,12 +26,12 @@ package com.smartgwt.client.docs;
  * operations for new records.  If multiple records have been edited and {@link
  * com.smartgwt.client.widgets.grid.ListGrid#saveAllEdits} is called,  {@link
  * com.smartgwt.client.rpc.RPCManager#startQueue} will be automatically used to enable all edits to be saved in one HTTP
- * turnaround (if using the SmartGWT Server). <P> By default, a grid will send only updated fields and the primaryKey field
- * as part of  {@link com.smartgwt.client.data.DSRequest#getData data} so that the server can discern which fields the user
- * actually changed. However, the grid always includes the original field values in the dsRequest as {@link
+ * turnaround (if using the Smart GWT Server). <P> By default, a grid will send only updated fields and the primaryKey
+ * field as part of  {@link com.smartgwt.client.data.DSRequest#getData data} so that the server can discern which fields
+ * the user actually changed. However, the grid always includes the original field values in the dsRequest as {@link
  * com.smartgwt.client.data.DSRequest#getOldValues oldValues}. <P> Note that although it is possible to load DataSource
  * data without actually declaring a {@link com.smartgwt.client.data.DataSourceField#getPrimaryKey 'primaryKey field'}, a
- * primaryKey must be declared for editing and saving.  The primaryKey value is how SmartGWT identifies the changed record
+ * primaryKey must be declared for editing and saving.  The primaryKey value is how Smart GWT identifies the changed record
  * to the server. <P> <b>Validation</b> <P> Any time saving is attempted, validation is automatically triggered.  Values
  * entered by the user will be checked against the {@link com.smartgwt.client.widgets.grid.ListGridField#getValidators
  * validators} and the {@link com.smartgwt.client.data.DataSourceField#getValidators validators}. Any invalid values abort

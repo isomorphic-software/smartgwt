@@ -3,8 +3,8 @@ package com.smartgwt.client.docs;
 
 /**
  * <h3>Admin Console</h3>
- * The Admin Console allows you to configure database access for DataSources that use&#010 SmartGWT's built-in {@link
- * com.smartgwt.client.docs.SqlDataSource 'SQL engine'}.&#010 <P>&#010 NOTE: You must have the Isomorphic SmartGWT package
+ * The Admin Console allows you to configure database access for DataSources that use&#010 Smart GWT's built-in {@link
+ * com.smartgwt.client.docs.SqlDataSource 'SQL engine'}.&#010 <P>&#010 NOTE: You must have the Isomorphic Smart GWT package
  * installed and your servlet engine&#010 started. &#010 <p>&#010 Direct your browser to the following URL to access the
  * Admin Console: &#010 <p>&#010 &nbsp;&nbsp;<a href='http://localhost:8080/tools/adminConsole.jsp'
  * onclick="window.open('http://localhost:8080/tools/adminConsole.jsp');return
@@ -18,7 +18,7 @@ package com.smartgwt.client.docs;
  * <p>&#010 The test data file should consist of a top-level &lt;List&gt; element containing a series of XML&#010 elements
  * named after your DataSource's ID, each of which creates one DataSource&#010 record. Values for each field are given
  * within tags named after the field name. &#010 <p>&#010 For example, the following XML is from the supplyItem.data.xml
- * test data file supplied with&#010 the Isomorphic SmartGWT package. This file is located in&#010
+ * test data file supplied with&#010 the Isomorphic Smart GWT package. This file is located in&#010
  * [webroot]/examples/shared/ds/test_data/.&#010 <p>&#010 <pre>&#010 &lt;List&gt;&#010  &lt;supplyItem&gt;&#010     
  * &lt;description&gt;A revolutionary cushion-grip ballpoint pen that reduces &#010          required gripping power,
  * relieving stress and alleviating writing &#010          fatigue. Excellent for people who suffer from arthritis or

@@ -1,10 +1,10 @@
 /*
- * SmartGWT (GWT for SmartClient)
+ * Smart GWT (GWT for SmartClient)
  * Copyright 2008 and beyond, Isomorphic Software, Inc.
  *
- * SmartGWT is free software; you can redistribute it and/or modify it
+ * Smart GWT is free software; you can redistribute it and/or modify it
  * under the terms of the GNU Lesser General Public License version 3
- * as published by the Free Software Foundation.  SmartGWT is also
+ * as published by the Free Software Foundation.  Smart GWT is also
  * available under typical commercial license terms - see
  * http://smartclient.com/license
  *
@@ -58,7 +58,7 @@ import com.google.gwt.event.shared.HasHandlers;
 
 /**
  * A general purpose Window class for implementing dialogs, portlets, alerts, prompts, wizards and desktop-like windowing
- * interfaces. <P> Windows can contain arbitrary SmartGWT components, configured via the {@link
+ * interfaces. <P> Windows can contain arbitrary Smart GWT components, configured via the {@link
  * com.smartgwt.client.widgets.Window#getItems items} property.  Windows may be {@link
  * com.smartgwt.client.widgets.Window#getIsModal 'modal'} or non-modal. <P> Windows provide a series of highly configurable
  * and skinnable {@link com.smartgwt.client..AutoChild} including a header, various header controls, footer, and corner

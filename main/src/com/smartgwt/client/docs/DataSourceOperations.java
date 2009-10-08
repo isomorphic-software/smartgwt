@@ -13,7 +13,7 @@ package com.smartgwt.client.docs;
  * DataSource operation type, and what they mean.   <P> DataSource records are represented on the client by a JavaScript
  * Object, where each property in the Object maps a DataSource field name to the field value - hence the DataSource
  * operations below are in essence a way of exchanging records from client to server and back. <P> If you are using {@link
- * com.smartgwt.client.docs.ServerDataIntegration 'server-side data integration'} with the SmartGWT Java server, see the
+ * com.smartgwt.client.docs.ServerDataIntegration 'server-side data integration'} with the Smart GWT Java server, see the
  * ${isc.DocUtils.linkForDocNode('javaServerReference', 'Java Server Reference')} for information about how DataSource
  * Requests arrive on the server (specifically com.isomophic.datasource.DSRequest) and how to provide responses 
  * (specifically com.isomorphic.datasource.DSResponse.setData()). <P> If you are using {@link

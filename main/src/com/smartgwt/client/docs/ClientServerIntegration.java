@@ -3,20 +3,20 @@ package com.smartgwt.client.docs;
 
 /**
  * <h3>Client-Server Integration</h3>
- * Like client-server desktop applications, SmartGWT browser-based applications interact with remote data and services via
+ * Like client-server desktop applications, Smart GWT browser-based applications interact with remote data and services via
  * background communication channels. Background requests retrieve chunks of data rather than new HTML pages, and update
  * your visual components in place rather than rebuilding the entire user interface. <P> <b>DataSources</b> <p> First you
  * must create {@link com.smartgwt.client.data.DataSource} that describe the objects from your object model that will be
- * loaded or manipulated within your application.  All of  SmartGWT's most powerful functionality builds on the concept of
- * a DataSource, and because  of SmartGWT's databinding framework (see {@link
+ * loaded or manipulated within your application.  All of  Smart GWT's most powerful functionality builds on the concept of
+ * a DataSource, and because  of Smart GWT's databinding framework (see {@link
  * com.smartgwt.client.widgets.DataBoundComponent}), it's as easy to  create a DataSource that can configure an unlimited
  * number of components as it is to  configure a single component. <P> For background information on how to create
  * DataSources, {@link com.smartgwt.client.widgets.DataBoundComponent} components to DataSources and initiate {@link
- * com.smartgwt.client.data.DSRequest}s, please see the <em>Data  Binding</em> chapter of the <em>SmartGWT Quickstart
- * Guide</em>. <P> <b>Data Integration</b> <P> DataSources provide a data-provider agnostic API to SmartGWT Visual
+ * com.smartgwt.client.data.DSRequest}s, please see the <em>Data  Binding</em> chapter of the <em>Smart GWT Quickstart
+ * Guide</em>. <P> <b>Data Integration</b> <P> DataSources provide a data-provider agnostic API to Smart GWT Visual
  * Components that  allow them to perform the 4 CRUD operations (<b>C</b>reate, <b>R</b>etrieve,  <b>U</b>pdate,
  * <b>D</b>elete).  By "agnostic" we mean that the implementation details -  the nuts and bolts of how a given DataSource
- * actually retrieves or updates data - are  unknown to bound SmartGWT components.  One effect of this is that DataSources
+ * actually retrieves or updates data - are  unknown to bound Smart GWT components.  One effect of this is that DataSources
  * are  "pluggable": they can be replaced without affecting the User Interface. <p> When a visual component, or your own
  * custom code, performs a CRUD operation on a DataSource, the DataSource creates a {@link
  * com.smartgwt.client.data.DSRequest} (DataSource Request) representing the operation. "Data Integration" is the process
@@ -29,9 +29,9 @@ package com.smartgwt.client.docs;
  * requests which your server code receives directly (in Java, you use the  Servlet API or .jsps to handle the requests).
  * Responses are sent as XML or JSON which you  directly generate.</li> </ul> The possible approaches are summarized in the
  * diagram below. Paths 2, 3 and 4 are  client-side integration approaches, and path 1 includes all server-side integration
- * approaches.  <p> <img src="skin/ClientServerIntegration.png" width="866px" height="495px"> <p> SmartGWT supports, out of
- * the box, codeless connectivity to various kinds of common data providers, including SQL and Hibernate.  SmartGWT also
- * provides functionality and tools for accelerated integration with broad categories of data providers, such as Java
+ * approaches.  <p> <img src="skin/ClientServerIntegration.png" width="866px" height="495px"> <p> Smart GWT supports, out
+ * of the box, codeless connectivity to various kinds of common data providers, including SQL and Hibernate.  Smart GWT
+ * also provides functionality and tools for accelerated integration with broad categories of data providers, such as Java
  * Object-based persistence mechanisms (JPA, EJB, Ibatis, in-house written systems), and REST  and WSDL web services in XML
  * or JSON formats.  Ultimately, a DataSource can be connected to  anything that is accessible via HTTP or HTTPS, and also
  * to in-browser persistence engines  such as <a href='http://gears.google.com'
@@ -53,9 +53,9 @@ package com.smartgwt.client.docs;
  * com.smartgwt.client.data.OperationBinding}           allow you to dynamically set data values at transaction-processing
  * time, using            built-in {@link com.smartgwt.client.docs.VelocitySupport 'Velocity support'}</li>      
  * <li>Override the <code>validate()</code> method of the DataSource to provide extra           custom validations - just
- * call <code>super</code> to obtain the list of errors            derived from SmartGWT validations, then add to that list
- * as required with your           own custom code</li>       <li>Override the <code>execute()</code> method of the
- * DataSource to add extra processing           either before or after the SmartGWT processing</li>       <li>Use {@link
+ * call <code>super</code> to obtain the list of errors            derived from Smart GWT validations, then add to that
+ * list as required with your           own custom code</li>       <li>Override the <code>execute()</code> method of the
+ * DataSource to add extra processing           either before or after the Smart GWT processing</li>       <li>Use {@link
  * com.smartgwt.client..DSRequestModifier#getValue 'Transaction Chaining'} to dynamically set           data values
  * according to the results of earlier transactions</li>       <li>For SQL DataSources, use {@link
  * com.smartgwt.client.docs.CustomQuerying 'SQL Templating'} to change,            add to or even completely replace the
@@ -67,7 +67,7 @@ package com.smartgwt.client.docs;
  * network protocol, use the            {@link com.smartgwt.client.data.RestDataSource}</li>       <li>Otherwise, use
  * {@link com.smartgwt.client.docs.ClientDataIntegration 'client-side data integration'} features           to create a
  * custom client-side DataSource that adapts the DataSource protocol to            your existing services</li>   </ul>
- * </ul> <p><br> <b>RPCs: Unstructured Server Communication</b> <P> SmartGWT also supports "unstructured" client-server
+ * </ul> <p><br> <b>RPCs: Unstructured Server Communication</b> <P> Smart GWT also supports "unstructured" client-server
  * operations.  These  {@link com.smartgwt.client.rpc.RPCRequest}s (Remote Procedure Call Requests) are a low-level, very
  * flexible  mechanism for custom client-server communications.  In an nutshell, RPCRequests: <ul> <li> may contain
  * arbitrary data <li> are always initiated by custom code (a call to {@link com.smartgwt.client.rpc.RPCManager#send}), and

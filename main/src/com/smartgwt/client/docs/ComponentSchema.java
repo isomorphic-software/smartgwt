@@ -21,7 +21,7 @@ package com.smartgwt.client.docs;
  * the filename (ID="MyListGrid" means the&#010 filename must be MyListGrid.ds.xml) and typically also matches the name of
  * the class.&#010 <li>{@link com.smartgwt.client.data.DataSource#getInheritsFrom inheritsFrom}="ListGrid" inherits the
  * ListGrid property definitions via&#010 {@link com.smartgwt.client.data.DataSource#getInheritsFrom inheritsFrom}.  &#010
- * <li>instanceConstructor="MyListGrid" indicates the SmartGWT class that&#010 {@link com.smartgwt.client..Class#create}
+ * <li>instanceConstructor="MyListGrid" indicates the Smart GWT class that&#010 {@link com.smartgwt.client..Class#create}
  * should be called on to construct an instance.&#010 <li>showLocalFieldsOnly is a boolean that, when set to true, tells
  * the {@link com.smartgwt.client..VisualBuilder}&#010 to show only the fields declared in this schema in the component
  * editor.  Otherwise fields&#010 inherited via {@link com.smartgwt.client.data.DataSource#getInheritsFrom inheritsFrom}
@@ -58,7 +58,7 @@ package com.smartgwt.client.docs;
  * compact or to make it conform to externally set standards.&#010 </ul>&#010 <P>&#010 <b>Declaring Events and
  * Actions</b>&#010 <P>&#010 Events and Actions are declared via a methods array.  In order for a method to be
  * considered&#010 an event, it needs to have a method definition in the methods array (or be publicly&#010 documented in
- * the SmartGWT reference) and have been added to&#010 the class as a {@link com.smartgwt.client.docs.StringMethods
+ * the Smart GWT reference) and have been added to&#010 the class as a {@link com.smartgwt.client.docs.StringMethods
  * 'StringMethod'} via {@link com.smartgwt.client..Class#registerStringMethods}.&#010 <p>&#010 In order for a method to be
  * considered an action, it needs to have a method definition in&#010 the methods array and have the <code>action</code>
  * property set to <code>true</code>.  For&#010 example, the following is a definition of the 'hide' action available on

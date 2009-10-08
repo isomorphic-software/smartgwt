@@ -3,7 +3,7 @@ package com.smartgwt.client.docs;
 
 /**
  * <h3>Sharing Nodes</h3>
- * For local Trees, that is, Trees that don't use load on demand, SmartGWT supports setting&#010 up the Tree structure by
+ * For local Trees, that is, Trees that don't use load on demand, Smart GWT supports setting&#010 up the Tree structure by
  * setting properties such as "childrenProperty", directly on data&#010 nodes.  This allows for simpler, faster structures
  * for many common tree uses, but can create&#010 confusion if nodes need to be shared across Trees.&#010 <P>&#010 <b>using
  * one node in two places in one Tree</b>&#010 <P>&#010 To do this, either clone the shared node like so:<pre>&#010&#010   

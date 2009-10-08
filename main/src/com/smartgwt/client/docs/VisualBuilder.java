@@ -3,10 +3,10 @@ package com.smartgwt.client.docs;
 
 /**
  * <h3>Visual Builder</h3>
- * The SmartGWT Visual Builder tool, accessible from the SDK Explorer as Tools->Visual&#010 Builder, is intended for:&#010
+ * The Smart GWT Visual Builder tool, accessible from the SDK Explorer as Tools->Visual&#010 Builder, is intended for:&#010
  * <ul>&#010 <li> business analysts and others doing functional application design, who want to create&#010 functional
- * prototypes in a codeless, "what you see is what you get" environment&#010 <li> developers new to SmartGWT who want to
- * get a basic familiarity with component&#010 layout, component properties and SmartGWT code structure&#010 <li>
+ * prototypes in a codeless, "what you see is what you get" environment&#010 <li> developers new to Smart GWT who want to
+ * get a basic familiarity with component&#010 layout, component properties and Smart GWT code structure&#010 <li>
  * developers building simple applications that can be completed entirely within Visual&#010 Builder&#010 </ul>&#010
  * <P>&#010 <h4>Using Visual Builder</h4>&#010 <P>&#010 Basic usage instructions are embedded in Visual Builder itself, in
  * the "About Visual&#010 Builder" pane.  Click on it to open it.&#010 <P>&#010 <b>Visual Builder for Functional
@@ -18,13 +18,13 @@ package com.smartgwt.client.docs;
  * can proceed.  This reduces both effort and the&#010 potential for miscommunication&#010 <li> developers can add custom
  * skinning, components with custom behaviors, and custom&#010 DataSources with sample datasets to Visual Builder so that
  * the design environment is an even&#010 closer match to the final application.  This helps eliminate many types of
- * unimplementable&#010 designs &#010 <li> because Visual Builder is built in SmartGWT itself, Visual Builder is simply a
+ * unimplementable&#010 designs &#010 <li> because Visual Builder is built in Smart GWT itself, Visual Builder is simply a
  * &#010 web page, and does not require installation.  Visual Builder can be deployed to &#010 an internal network to allow
- * teams with a mixture of technical and semi-technical &#010 users to collaboratively build and share prototypes of
- * SmartGWT-based applications.  &#010 </ul>&#010 <P>&#010 <b>Loading and Saving</b>&#010 <P>&#010 The "File" menu within
- * Visual Builder allows screens to be saved and reloaded for further&#010 editing.  Saved screens <b>can</b> be edited
- * outside of Visual Builder and successfully&#010 reloaded, however, as with any design tool that provides a drag and
- * drop, dialog-driven&#010 approach to screen creation, Visual Builder cannot work with entirely free-form code.  In&#010
+ * teams with a mixture of technical and semi-technical &#010 users to collaboratively build and share prototypes of Smart
+ * GWT-based applications.  &#010 </ul>&#010 <P>&#010 <b>Loading and Saving</b>&#010 <P>&#010 The "File" menu within Visual
+ * Builder allows screens to be saved and reloaded for further&#010 editing.  Saved screens <b>can</b> be edited outside of
+ * Visual Builder and successfully&#010 reloaded, however, as with any design tool that provides a drag and drop,
+ * dialog-driven&#010 approach to screen creation, Visual Builder cannot work with entirely free-form code.  In&#010
  * particular, when a screen is loaded and then re-saved:&#010 <ul>&#010 <li> any indenting or spacing changes are not
  * preserved &#010 <li> order of property or method defintions will revert to Visual Builder's default&#010 <li> while
  * method definitions on components are preserved, any code <b>outside of</b>&#010      component definitions will be
@@ -59,10 +59,10 @@ package com.smartgwt.client.docs;
  * Builder</b>&#010 <P>&#010 The Component Library on the right hand side of Visual Builder loads component
  * definitions&#010 from two XML files in the [webroot]/tools/visualBuilder directory: customComponents.xml and&#010
  * defaultComponents.xml.  customComponents.xml is empty and is intended for developers to add&#010 their own components. 
- * defaultComponents.xml can also be customized, but the base version&#010 will change between SmartGWT releases.&#010
+ * defaultComponents.xml can also be customized, but the base version&#010 will change between Smart GWT releases.&#010
  * <P>&#010 As can be seen by looking at defaultComponents.xml, components are specified using a tree&#010 structure
  * similar to that shown in the &#010 ${isc.DocUtils.linkForExampleId('treeLoadXML', 'tree XML loading example')}.  The
- * properties that can be set on&#010 nodes are:&#010 <ul>&#010 <li> <code>className</code>: name of the SmartGWT Class on
+ * properties that can be set on&#010 nodes are:&#010 <ul>&#010 <li> <code>className</code>: name of the Smart GWT Class on
  * which {@link com.smartgwt.client..Class#create} will be&#010 called in order to construct the component. 
  * <code>className</code> can be omitted to create&#010 a folder that cannot be dropped&#010 <li> <code>title</code>: title
  * for the node&#010 <li> <code>defaults</code>: an Object specifying defaults to be passed to&#010 {@link
@@ -92,7 +92,7 @@ package com.smartgwt.client.docs;
  * Properties pane contains an Events tab that allows you wire components events&#010 to actions on any other component
  * currently in the project.&#010 <P>&#010 Events are simply {@link com.smartgwt.client.docs.StringMethods 'StringMethods'}
  * defined on the component.  In&#010 order to be considered events, method definitions must have been added to the class
- * via&#010 {@link com.smartgwt.client..Class#registerStringMethods} and either be publicly documented SmartGWT methods
+ * via&#010 {@link com.smartgwt.client..Class#registerStringMethods} and either be publicly documented Smart GWT methods
  * or,&#010 for custom classes, have a methods definition in the {@link com.smartgwt.client.docs.ComponentSchema
  * 'component&#010 schema'}.&#010 Examples of events are: {@link
  * com.smartgwt.client.widgets.grid.ListGrid#addRecordClickHandler} and {@link
@@ -105,8 +105,8 @@ package com.smartgwt.client.docs;
  * performed to pass arguments&#010 from the event to the action as follows:&#010 <ul>&#010 <li>Only non-optional
  * parameters of the action are bound.&#010 <li>For each non-optional parameter of the action method, every parameter of
  * the&#010 event method is inspected in order to either directly match the type (for non-object types)&#010 or to match an
- * isAssignableFrom type check via a SmartGWT schema inheritance check.&#010 <li>The 'type' of a parameter is determined
- * from the type documented in the SmartGWT&#010 reference for built-in components, or from the <code>type</code> atribute
+ * isAssignableFrom type check via a Smart GWT schema inheritance check.&#010 <li>The 'type' of a parameter is determined
+ * from the type documented in the Smart GWT&#010 reference for built-in components, or from the <code>type</code> atribute
  * on the method&#010 param in the {@link com.smartgwt.client.docs.ComponentSchema 'component schema'} definition of a
  * custom component.&#010 <li>When a matching parameter is found, it is assigned to the current slot of the action and&#010
  * not considered for further parameter matching.&#010 <li>The above pattern is repeated until all non-optional parameters
@@ -131,8 +131,8 @@ package com.smartgwt.client.docs;
  * Console to troubleshoot issues&#010 with schema-driven drag and drop and automatic lookup of getter/setter and
  * adder/remover&#010 methods.&#010 <P>&#010 <B>NOTE:</B> after modifying component schema, it may be necessary to restart
  * the servlet&#010 engine and reload Visual Builder&#010 <P>&#010 <b>Presenting simplified components</b>&#010 <P>&#010
- * SmartGWT components expose many methods and properties.  For some environments, it is&#010 more appropriate to provide a
- * simplified list of properties, events, and actions on either&#010 built-in SmartGWT components or your custom
+ * Smart GWT components expose many methods and properties.  For some environments, it is&#010 more appropriate to provide
+ * a simplified list of properties, events, and actions on either&#010 built-in Smart GWT components or your custom
  * components.  This can be done by providing a&#010 custom {@link com.smartgwt.client.docs.ComponentSchema 'component
  * schema'} for an existing component that exposes&#010 your minimal set.  You also need to provide a trivial subclass of
  * the class you're exposing&#010 so that it can be instantiated.&#010 <P>&#010 For example, let's say you want to make a
@@ -156,7 +156,7 @@ package com.smartgwt.client.docs;
  * <h4>Deploying Visual Builder for Functional Designers</h4>&#010 <P>&#010 The normal {@link
  * com.smartgwt.client.docs.IscInstall} deployment instructions apply to Visual Builder <b>except&#010 that</b> the
  * "BuiltinRPCs", which are configured via server.properties, must be enabled&#010 in order for Visual Builder to load and
- * save files to the SmartGWT server.  This also&#010 means that Visual Builder should only be deployed within trusted
+ * save files to the Smart GWT server.  This also&#010 means that Visual Builder should only be deployed within trusted
  * environments.  &#010 <P>&#010 Note that the Visual Builder provides a "live" interface to the provided DataSources. 
  * In&#010 other words, if a DataSource supports saving and a designer enables inline editing in a grid,&#010 real saves
  * will be initiated.  The Visual Builder tool should be configured to use the same&#010 sample data that developers use

@@ -1,10 +1,10 @@
 /*
- * SmartGWT (GWT for SmartClient)
+ * Smart GWT (GWT for SmartClient)
  * Copyright 2008 and beyond, Isomorphic Software, Inc.
  *
- * SmartGWT is free software; you can redistribute it and/or modify it
+ * Smart GWT is free software; you can redistribute it and/or modify it
  * under the terms of the GNU Lesser General Public License version 3
- * as published by the Free Software Foundation.  SmartGWT is also
+ * as published by the Free Software Foundation.  Smart GWT is also
  * available under typical commercial license terms - see
  * http://smartclient.com/license
  *
@@ -59,7 +59,7 @@ import com.google.gwt.event.shared.HasHandlers;
 /**
  * Use the HTMLFlow component to display HTML content that should expand to its natural size without scrolling.   <p> HTML
  * content can be loaded and reloaded from a URL via the property <code>contentsURL</code>.  This method of loading is for
- * simple HTML content only; SmartGWT components should be loaded via the {@link com.smartgwt.client.widgets.ViewLoader}
+ * simple HTML content only; Smart GWT components should be loaded via the {@link com.smartgwt.client.widgets.ViewLoader}
  * class. <P> NOTE: Since the size of an HTMLFlow component is determined by its HTML contents, this component will draw at
  * varying sizes if given content of varying size.  When using HTMLFlow components within a Layout, consider what will
  * happen if the HTMLFlow renders at various sizes.  An HTMLFlow which can expand should be placed in a container where
@@ -272,7 +272,7 @@ public class HTMLFlow extends Canvas  implements com.smartgwt.client.widgets.eve
     /**
      * If <code>evalScriptBlocks</code> is true, HTMLFlow will pre-process the loaded HTML in order to mimic how the HTML would
      * execute if it were loaded as an independent page or loaded via an IFRAME.   <P> This feature is intended to assist with
-     * migrating existing applications to SmartGWT. <P> Note that, if evalScriptBlocks is false, &lt;SCRIPT&gt; blocks will
+     * migrating existing applications to Smart GWT. <P> Note that, if evalScriptBlocks is false, &lt;SCRIPT&gt; blocks will
      * still be detected and disabled to avoid the inconsistent results across different browsers. <P> Only applies when
      * contentsType is <b>not</b> "page".
      *
@@ -286,7 +286,7 @@ public class HTMLFlow extends Canvas  implements com.smartgwt.client.widgets.eve
     /**
      * If <code>evalScriptBlocks</code> is true, HTMLFlow will pre-process the loaded HTML in order to mimic how the HTML would
      * execute if it were loaded as an independent page or loaded via an IFRAME.   <P> This feature is intended to assist with
-     * migrating existing applications to SmartGWT. <P> Note that, if evalScriptBlocks is false, &lt;SCRIPT&gt; blocks will
+     * migrating existing applications to Smart GWT. <P> Note that, if evalScriptBlocks is false, &lt;SCRIPT&gt; blocks will
      * still be detected and disabled to avoid the inconsistent results across different browsers. <P> Only applies when
      * contentsType is <b>not</b> "page".
      *
@@ -298,8 +298,8 @@ public class HTMLFlow extends Canvas  implements com.smartgwt.client.widgets.eve
     }
 
     /**
-     * If true, SmartGWT components created while executing the loaded HTML are captured for rendering inside the HTMLFlow. <P>
-     * Only applies when contentsType is <b>not</b> "page".
+     * If true, Smart GWT components created while executing the loaded HTML are captured for rendering inside the HTMLFlow.
+     * <P> Only applies when contentsType is <b>not</b> "page".
      *
      * @param captureSCComponents captureSCComponents Default value is true
      * @throws IllegalStateException this property cannot be changed after the component has been created
@@ -309,8 +309,8 @@ public class HTMLFlow extends Canvas  implements com.smartgwt.client.widgets.eve
     }
 
     /**
-     * If true, SmartGWT components created while executing the loaded HTML are captured for rendering inside the HTMLFlow. <P>
-     * Only applies when contentsType is <b>not</b> "page".
+     * If true, Smart GWT components created while executing the loaded HTML are captured for rendering inside the HTMLFlow.
+     * <P> Only applies when contentsType is <b>not</b> "page".
      *
      *
      * @return Boolean
@@ -388,7 +388,7 @@ public class HTMLFlow extends Canvas  implements com.smartgwt.client.widgets.eve
      * com.smartgwt.client.widgets.HTMLFlow#getContentsURL contentsURL} is assumed to be an HTML fragment rather than a
      * complete page.  Set to "page" to load HTML as a standalone page, via an IFRAME.   <P>
      * <code>contentsType:"page"</code> should only be used for controlled HTML content, and only when such content
-     * cannot be delivered as an HTML fragment instead (the default).  To dynamically load SmartGWT components, use
+     * cannot be delivered as an HTML fragment instead (the default).  To dynamically load Smart GWT components, use
      * {@link com.smartgwt.client.widgets.ViewLoader}, <b>never</b> this mechanism (click here for why). <P> Loading
      * HTML content as a fragment is less resource intensive and avoids visual artifacts such as translucent media
      * becoming opaque or disappearing when placed over an IFRAME.   <P> Loading third-party, uncontrolled content could
@@ -409,7 +409,7 @@ public class HTMLFlow extends Canvas  implements com.smartgwt.client.widgets.eve
      * com.smartgwt.client.widgets.HTMLFlow#getContentsURL contentsURL} is assumed to be an HTML fragment rather than a
      * complete page.  Set to "page" to load HTML as a standalone page, via an IFRAME.   <P>
      * <code>contentsType:"page"</code> should only be used for controlled HTML content, and only when such content
-     * cannot be delivered as an HTML fragment instead (the default).  To dynamically load SmartGWT components, use
+     * cannot be delivered as an HTML fragment instead (the default).  To dynamically load Smart GWT components, use
      * {@link com.smartgwt.client.widgets.ViewLoader}, <b>never</b> this mechanism (click here for why). <P> Loading
      * HTML content as a fragment is less resource intensive and avoids visual artifacts such as translucent media
      * becoming opaque or disappearing when placed over an IFRAME.   <P> Loading third-party, uncontrolled content could

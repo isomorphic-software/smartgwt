@@ -1,10 +1,10 @@
 /*
- * SmartGWT (GWT for SmartClient)
+ * Smart GWT (GWT for SmartClient)
  * Copyright 2008 and beyond, Isomorphic Software, Inc.
  *
- * SmartGWT is free software; you can redistribute it and/or modify it
+ * Smart GWT is free software; you can redistribute it and/or modify it
  * under the terms of the GNU Lesser General Public License version 3
- * as published by the Free Software Foundation.  SmartGWT is also
+ * as published by the Free Software Foundation.  Smart GWT is also
  * available under typical commercial license terms - see
  * http://smartclient.com/license
  *
@@ -60,7 +60,7 @@ import com.google.gwt.event.shared.HasHandlers;
  * RPCManager is a static singleton class that manages transparent client/server RPC (remote procedure call).  This class
  * provides a generic, low-level client/server communication integration point.  You can use it to send arbitrary data to a
  * URL of your choosing on the server and optionally be called back with server-returned data when the server replies.  
- * You can process the RPC request in a JSP, Servlet or Filter on the server. <P> SmartGWT's powerful {@link
+ * You can process the RPC request in a JSP, Servlet or Filter on the server. <P> Smart GWT's powerful {@link
  * com.smartgwt.client.widgets.DataBoundComponent} automatically issue RPCs as necessary, based on the  {@link
  * com.smartgwt.client.docs.DataSourceOperations 'DataSource protocol'}.  To integrate DataBoundComponents with your
  * server, {@link com.smartgwt.client.docs.ClientServerIntegration 'start here'}. <P> <u>Simple example (client code):</u>
@@ -68,8 +68,8 @@ import com.google.gwt.event.shared.HasHandlers;
  * callback: "myCallback(data)", actionURL: "/rpcHandler.jsp"});<br> function myCallback(data) { alert("response from the
  * server: " + data); } </code><br><br> <u>Simple example (server code: /rpcHandler.jsp):</u> <br><br><code> RPCManager rpc
  * = new RPCManager(request, response, out);<br> Object data = rpc.getData();<br> System.out.println("client sent: " +
- * data.toString());<br> rpc.send("here's a response");<br> </code> <P> Note that, while the example above uses the
- * SmartGWT Java Server, the RPCManager is also capable of issuing RPCs that do not require a SmartGWT server.  See {@link
+ * data.toString());<br> rpc.send("here's a response");<br> </code> <P> Note that, while the example above uses the Smart
+ * GWT Java Server, the RPCManager is also capable of issuing RPCs that do not require a Smart GWT server.  See {@link
  * com.smartgwt.client.docs.ClientDataIntegration 'Client-Side Data Integration'} for details. <P> <u><b>Queuing</b></u>
  * <br> Because of browser limitations on the total number of simultaneous HTTP connections to a given server, batching
  * multiple RPC requests into a single HTTP request is highly advisable whenever possible.  The RPCManager provides a
@@ -148,7 +148,7 @@ public class RPCManager {
      * transaction has been sent. <P> Note that cancelQueue() calls {@link com.smartgwt.client.rpc.RPCManager#clearTransaction}
      * and attempts to abort the request.  However, note also that whilst cancelling a  transaction that has already been sent
      * will not necessarily stop the HTTP request that  has been issued - this is only possible on some browsers and with some
-     * transports - it  will reliably cause SmartGWT to ignore any response returned by the server and not  fire any callbacks
+     * transports - it  will reliably cause Smart GWT to ignore any response returned by the server and not  fire any callbacks
      * that have been passed in.
      */
     public static native void cancelQueue() /*-{
@@ -162,7 +162,7 @@ public class RPCManager {
      * transaction has been sent. <P> Note that cancelQueue() calls {@link com.smartgwt.client.rpc.RPCManager#clearTransaction}
      * and attempts to abort the request.  However, note also that whilst cancelling a  transaction that has already been sent
      * will not necessarily stop the HTTP request that  has been issued - this is only possible on some browsers and with some
-     * transports - it  will reliably cause SmartGWT to ignore any response returned by the server and not  fire any callbacks
+     * transports - it  will reliably cause Smart GWT to ignore any response returned by the server and not  fire any callbacks
      * that have been passed in.
      * @param transactionNum transactionId of the queue.
      */
@@ -451,7 +451,7 @@ public class RPCManager {
      * server (note that if you not using queuing, the system simply sends queues containing
      * just one request, so this API is valid regardless).
      * <p/>
-     * It is intended to be used by user code that needs to be notified when SmartGWT sends
+     * It is intended to be used by user code that needs to be notified when Smart GWT sends
      * requests to the server.  Note that the list of {@link com.smartgwt.client.rpc.RPCRequest}'s passed to this
      * callback is strictly <b>read-only</b>.
      *

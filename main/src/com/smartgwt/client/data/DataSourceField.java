@@ -1,10 +1,10 @@
 /*
- * SmartGWT (GWT for SmartClient)
+ * Smart GWT (GWT for SmartClient)
  * Copyright 2008 and beyond, Isomorphic Software, Inc.
  *
- * SmartGWT is free software; you can redistribute it and/or modify it
+ * Smart GWT is free software; you can redistribute it and/or modify it
  * under the terms of the GNU Lesser General Public License version 3
- * as published by the Free Software Foundation.  SmartGWT is also
+ * as published by the Free Software Foundation.  Smart GWT is also
  * available under typical commercial license terms - see
  * http://smartclient.com/license
  *
@@ -207,10 +207,10 @@ public class DataSourceField extends DataClass {
      * &lt;/book&gt;&#010 </pre>&#010 <P>&#010 If <code>valueXPath</code> is not required for your field because of the default
      * handling&#010 described above, don't specify it, as it's slightly slower.&#010 <p>&#010 To learn about XPath, try the
      * following search:&#010 <a href="http://www.google.com/search?q=xpath+tutorial" target="_blank"&#010
-     * >http://www.google.com/search?q=xpath+tutorial</a>&#010 <P>&#010 <B>Using valueXPath with the SmartGWT server</B>&#010
-     * <p>&#010 If you're using the SmartGWT server to return data via the DSResponse object (or&#010 indirectly doing so using
-     * DataSource DMI), the valueXPath you specify on the DataSource&#010 fields will be applied to the data you return via the
-     * &#010 <a href='http://jakarta.apache.org/commons/jxpath/'
+     * >http://www.google.com/search?q=xpath+tutorial</a>&#010 <P>&#010 <B>Using valueXPath with the Smart GWT server</B>&#010
+     * <p>&#010 If you're using the Smart GWT server to return data via the DSResponse object (or&#010 indirectly doing so
+     * using DataSource DMI), the valueXPath you specify on the DataSource&#010 fields will be applied to the data you return
+     * via the &#010 <a href='http://jakarta.apache.org/commons/jxpath/'
      * onclick="window.open('http://jakarta.apache.org/commons/jxpath/');return false;">JXPath</a> library.&#010 <P>&#010 If
      * you are returning Java Beans as your DSResponse data, normally each dataSource field&#010 receives the value of the
      * same-named Java Bean property, that is, a field "zipCode" is&#010 populated by looking for "getZipCode()" on the objects
@@ -249,10 +249,10 @@ public class DataSourceField extends DataClass {
      * &lt;/book&gt;&#010 </pre>&#010 <P>&#010 If <code>valueXPath</code> is not required for your field because of the default
      * handling&#010 described above, don't specify it, as it's slightly slower.&#010 <p>&#010 To learn about XPath, try the
      * following search:&#010 <a href="http://www.google.com/search?q=xpath+tutorial" target="_blank"&#010
-     * >http://www.google.com/search?q=xpath+tutorial</a>&#010 <P>&#010 <B>Using valueXPath with the SmartGWT server</B>&#010
-     * <p>&#010 If you're using the SmartGWT server to return data via the DSResponse object (or&#010 indirectly doing so using
-     * DataSource DMI), the valueXPath you specify on the DataSource&#010 fields will be applied to the data you return via the
-     * &#010 <a href='http://jakarta.apache.org/commons/jxpath/'
+     * >http://www.google.com/search?q=xpath+tutorial</a>&#010 <P>&#010 <B>Using valueXPath with the Smart GWT server</B>&#010
+     * <p>&#010 If you're using the Smart GWT server to return data via the DSResponse object (or&#010 indirectly doing so
+     * using DataSource DMI), the valueXPath you specify on the DataSource&#010 fields will be applied to the data you return
+     * via the &#010 <a href='http://jakarta.apache.org/commons/jxpath/'
      * onclick="window.open('http://jakarta.apache.org/commons/jxpath/');return false;">JXPath</a> library.&#010 <P>&#010 If
      * you are returning Java Beans as your DSResponse data, normally each dataSource field&#010 receives the value of the
      * same-named Java Bean property, that is, a field "zipCode" is&#010 populated by looking for "getZipCode()" on the objects
@@ -454,7 +454,7 @@ public class DataSourceField extends DataClass {
      * Whether this field holds a value unique across all records in this DataSource.&#010 <p>&#010 A DataSource that can
      * <i>only</i> perform the "fetch" operation does not require a&#010 primaryKey.  If a DataSource allows modification of
      * DataSource records through add, update&#010 and remove DataSource operations, exactly one field must be marked as the
-     * primary key.&#010 <P>&#010 SmartGWT requires a primary key value to uniquely identify records when communicating&#010
+     * primary key.&#010 <P>&#010 Smart GWT requires a primary key value to uniquely identify records when communicating&#010
      * updates or deletions to the server.  There is no requirement that the primaryKey field be&#010 mapped to an actual
      * "primary key" in your object model, web service, or database.  The only&#010 requirement is that values of the
      * primaryKey field be unique for a given browser instance&#010 for the lifetime of the page.  &#010 <P>&#010 If your
@@ -483,7 +483,7 @@ public class DataSourceField extends DataClass {
      * Whether this field holds a value unique across all records in this DataSource.&#010 <p>&#010 A DataSource that can
      * <i>only</i> perform the "fetch" operation does not require a&#010 primaryKey.  If a DataSource allows modification of
      * DataSource records through add, update&#010 and remove DataSource operations, exactly one field must be marked as the
-     * primary key.&#010 <P>&#010 SmartGWT requires a primary key value to uniquely identify records when communicating&#010
+     * primary key.&#010 <P>&#010 Smart GWT requires a primary key value to uniquely identify records when communicating&#010
      * updates or deletions to the server.  There is no requirement that the primaryKey field be&#010 mapped to an actual
      * "primary key" in your object model, web service, or database.  The only&#010 requirement is that values of the
      * primaryKey field be unique for a given browser instance&#010 for the lifetime of the page.  &#010 <P>&#010 If your
@@ -572,11 +572,11 @@ public class DataSourceField extends DataClass {
     /**
      * For a DataSource with {@link com.smartgwt.client.data.DataSource#getServerType 'serverType:"sql"'} with a field of type
      * "sequence", the name of the SQL sequence that should be used when inserting new records into this table. <P> Note that
-     * this is never required for SQL tables that are generated from SmartGWT DataSources (a default sequence name of tableName
-     * + "_" + columnName is chosen), and is  never required for databases where inserting null into a sequence column is
-     * sufficient (MySQL, SQL Server, DB2 and others).   <P> You would only need to set sequenceName if you are integrating
-     * with a pre-existing table stored in a database where the sequence must be named for insertion to work (Oracle, Postgres)
-     * OR you are trying to use the same sequence across multiple DataSources.
+     * this is never required for SQL tables that are generated from Smart GWT DataSources (a default sequence name of
+     * tableName + "_" + columnName is chosen), and is  never required for databases where inserting null into a sequence
+     * column is sufficient (MySQL, SQL Server, DB2 and others).   <P> You would only need to set sequenceName if you are
+     * integrating with a pre-existing table stored in a database where the sequence must be named for insertion to work
+     * (Oracle, Postgres) OR you are trying to use the same sequence across multiple DataSources.
      *
      * @param sequenceName sequenceName Default value is null
      */
@@ -587,11 +587,11 @@ public class DataSourceField extends DataClass {
     /**
      * For a DataSource with {@link com.smartgwt.client.data.DataSource#getServerType 'serverType:"sql"'} with a field of type
      * "sequence", the name of the SQL sequence that should be used when inserting new records into this table. <P> Note that
-     * this is never required for SQL tables that are generated from SmartGWT DataSources (a default sequence name of tableName
-     * + "_" + columnName is chosen), and is  never required for databases where inserting null into a sequence column is
-     * sufficient (MySQL, SQL Server, DB2 and others).   <P> You would only need to set sequenceName if you are integrating
-     * with a pre-existing table stored in a database where the sequence must be named for insertion to work (Oracle, Postgres)
-     * OR you are trying to use the same sequence across multiple DataSources.
+     * this is never required for SQL tables that are generated from Smart GWT DataSources (a default sequence name of
+     * tableName + "_" + columnName is chosen), and is  never required for databases where inserting null into a sequence
+     * column is sufficient (MySQL, SQL Server, DB2 and others).   <P> You would only need to set sequenceName if you are
+     * integrating with a pre-existing table stored in a database where the sequence must be named for insertion to work
+     * (Oracle, Postgres) OR you are trying to use the same sequence across multiple DataSources.
      *
      *
      * @return String
@@ -781,18 +781,18 @@ public class DataSourceField extends DataClass {
     }
 
     /**
-     * For use with the SmartGWT server when populating Java Beans / POJOs based on data contained in a DSRequest,
+     * For use with the Smart GWT server when populating Java Beans / POJOs based on data contained in a DSRequest,
      * <code>javaClass</code> specifies the fully qualified Java className to be created and passed to the setter for the Java
      * Bean Property with the same name as this field.   <code>javaClass</code> is used both when manually calling
      * DataSource.setProperties() and when auto-populating POJO arguments of a {@link com.smartgwt.client..DMI} method. <P> The
-     * Java class to create does not normally have to be specified: SmartGWT will use Java reflection to inspect the type of
+     * Java class to create does not normally have to be specified: Smart GWT will use Java reflection to inspect the type of
      * argument expected by a setter method and will attempt conversion of inbound data to that type.  As described in the
      * documentation for DataTools.setProperties(), this works for almost all typical cases.  However
      * <code>field.javaClass</code> is useful for: <ul> <li> subobject of abstract or interface type: in this case Java
      * Reflection is not sufficient to discover the concrete type that should be instantiated, and <code>javaClass</code>
      * should be set instead.</li> <li> subobject of Collection or Map type, when Java generics are not used or the Collection
      * member type or Map value type is abstract.  When Java generics are used (for example the setter takes an argument is of
-     * type Collection&lt;SomePOJO&gt; or Map&lt;KeyType,SomePOJO&gt;, SmartGWT will automatically attempt to convert inbound
+     * type Collection&lt;SomePOJO&gt; or Map&lt;KeyType,SomePOJO&gt;, Smart GWT will automatically attempt to convert inbound
      * data to the type of the members of the Collection or values of the Map.  Without generics, <code>javaClass</code> needs
      * to be specified.  Note that <code>javaClass</code> will take precendence over generics if both  are used. Also note that
      * {@link com.smartgwt.client.data.DataSourceField#getJavaCollectionClass javaCollectionClass} can be specified if a
@@ -806,18 +806,18 @@ public class DataSourceField extends DataClass {
     }
 
     /**
-     * For use with the SmartGWT server when populating Java Beans / POJOs based on data contained in a DSRequest,
+     * For use with the Smart GWT server when populating Java Beans / POJOs based on data contained in a DSRequest,
      * <code>javaClass</code> specifies the fully qualified Java className to be created and passed to the setter for the Java
      * Bean Property with the same name as this field.   <code>javaClass</code> is used both when manually calling
      * DataSource.setProperties() and when auto-populating POJO arguments of a {@link com.smartgwt.client..DMI} method. <P> The
-     * Java class to create does not normally have to be specified: SmartGWT will use Java reflection to inspect the type of
+     * Java class to create does not normally have to be specified: Smart GWT will use Java reflection to inspect the type of
      * argument expected by a setter method and will attempt conversion of inbound data to that type.  As described in the
      * documentation for DataTools.setProperties(), this works for almost all typical cases.  However
      * <code>field.javaClass</code> is useful for: <ul> <li> subobject of abstract or interface type: in this case Java
      * Reflection is not sufficient to discover the concrete type that should be instantiated, and <code>javaClass</code>
      * should be set instead.</li> <li> subobject of Collection or Map type, when Java generics are not used or the Collection
      * member type or Map value type is abstract.  When Java generics are used (for example the setter takes an argument is of
-     * type Collection&lt;SomePOJO&gt; or Map&lt;KeyType,SomePOJO&gt;, SmartGWT will automatically attempt to convert inbound
+     * type Collection&lt;SomePOJO&gt; or Map&lt;KeyType,SomePOJO&gt;, Smart GWT will automatically attempt to convert inbound
      * data to the type of the members of the Collection or values of the Map.  Without generics, <code>javaClass</code> needs
      * to be specified.  Note that <code>javaClass</code> will take precendence over generics if both  are used. Also note that
      * {@link com.smartgwt.client.data.DataSourceField#getJavaCollectionClass javaCollectionClass} can be specified if a

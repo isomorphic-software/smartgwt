@@ -1,10 +1,10 @@
 /*
- * SmartGWT (GWT for SmartClient)
+ * Smart GWT (GWT for SmartClient)
  * Copyright 2008 and beyond, Isomorphic Software, Inc.
  *
- * SmartGWT is free software; you can redistribute it and/or modify it
+ * Smart GWT is free software; you can redistribute it and/or modify it
  * under the terms of the GNU Lesser General Public License version 3
- * as published by the Free Software Foundation.  SmartGWT is also
+ * as published by the Free Software Foundation.  Smart GWT is also
  * available under typical commercial license terms - see
  * http://smartclient.com/license
  *
@@ -1110,7 +1110,7 @@ public class DynamicForm extends Canvas  implements DataBoundComponent, com.smar
      * given focus programmatically  (see {@link com.smartgwt.client.widgets.form.DynamicForm#focusInItem}), all text within
      * the item will be selected. <P> Note that this flag affects only programmatic focus.  It's the normal behavior of text
      * fields to select all text if the user navigates into them via keyboard, or if the user navigates via mouse, to place the
-     * text insertion point at the mouse click, and SmartGWT preserves these behaviors.  <code>selectOnFocus</code> if only
+     * text insertion point at the mouse click, and Smart GWT preserves these behaviors.  <code>selectOnFocus</code> if only
      * needed for cases like a form within a pop-up dialog that should have the first field selected. <P> If
      * <code>selectOnFocus</code> is false, the selection is not modified on focus - any previous selection within the item
      * will be maintained. <P> May be overridden at the form item level via {@link
@@ -1128,7 +1128,7 @@ public class DynamicForm extends Canvas  implements DataBoundComponent, com.smar
      * given focus programmatically  (see {@link com.smartgwt.client.widgets.form.DynamicForm#focusInItem}), all text within
      * the item will be selected. <P> Note that this flag affects only programmatic focus.  It's the normal behavior of text
      * fields to select all text if the user navigates into them via keyboard, or if the user navigates via mouse, to place the
-     * text insertion point at the mouse click, and SmartGWT preserves these behaviors.  <code>selectOnFocus</code> if only
+     * text insertion point at the mouse click, and Smart GWT preserves these behaviors.  <code>selectOnFocus</code> if only
      * needed for cases like a form within a pop-up dialog that should have the first field selected. <P> If
      * <code>selectOnFocus</code> is false, the selection is not modified on focus - any previous selection within the item
      * will be maintained. <P> May be overridden at the form item level via {@link
@@ -2395,11 +2395,11 @@ public class DynamicForm extends Canvas  implements DataBoundComponent, com.smar
      * {@link com.smartgwt.client.widgets.form.DynamicForm#submitValues} exists, it will be called, then immediately
      * return. <P> Otherwise, default behavior varies based on {@link com.smartgwt.client.widgets.form.DynamicForm#getCanSubmit
      * canSubmit}: if <code>canSubmit</code> is false, {@link com.smartgwt.client.widgets.form.DynamicForm#saveData}
-     * will be called to handle saving via SmartGWT databinding.   <P> If <code>canSubmit</code> is true, the form
+     * will be called to handle saving via Smart GWT databinding.   <P> If <code>canSubmit</code> is true, the form
      * will be submitted like an ordinary HTML form via {@link com.smartgwt.client.widgets.form.DynamicForm#submitForm}.
      * <P> The parameters to <code>submit()</code> apply only if <code>submit()</code> will be calling {@link
      * com.smartgwt.client.widgets.form.ValuesManager#saveData}.  If you override <code>submit()</code>, you can safely
-     * ignore the parameters as SmartGWT framework code does not pass them.
+     * ignore the parameters as Smart GWT framework code does not pass them.
      */
     public native void submit() /*-{
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
@@ -2413,11 +2413,11 @@ public class DynamicForm extends Canvas  implements DataBoundComponent, com.smar
      * {@link com.smartgwt.client.widgets.form.DynamicForm#submitValues} exists, it will be called, then immediately
      * return. <P> Otherwise, default behavior varies based on {@link com.smartgwt.client.widgets.form.DynamicForm#getCanSubmit
      * canSubmit}: if <code>canSubmit</code> is false, {@link com.smartgwt.client.widgets.form.DynamicForm#saveData}
-     * will be called to handle saving via SmartGWT databinding.   <P> If <code>canSubmit</code> is true, the form
+     * will be called to handle saving via Smart GWT databinding.   <P> If <code>canSubmit</code> is true, the form
      * will be submitted like an ordinary HTML form via {@link com.smartgwt.client.widgets.form.DynamicForm#submitForm}.
      * <P> The parameters to <code>submit()</code> apply only if <code>submit()</code> will be calling {@link
      * com.smartgwt.client.widgets.form.ValuesManager#saveData}.  If you override <code>submit()</code>, you can safely
-     * ignore the parameters as SmartGWT framework code does not pass them.
+     * ignore the parameters as Smart GWT framework code does not pass them.
      *
      * @param callback callback to invoke on completion. [Ignored if canSubmit is true]
      */
@@ -2437,11 +2437,11 @@ public class DynamicForm extends Canvas  implements DataBoundComponent, com.smar
      * {@link com.smartgwt.client.widgets.form.DynamicForm#submitValues} exists, it will be called, then immediately
      * return. <P> Otherwise, default behavior varies based on {@link com.smartgwt.client.widgets.form.DynamicForm#getCanSubmit
      * canSubmit}: if <code>canSubmit</code> is false, {@link com.smartgwt.client.widgets.form.DynamicForm#saveData}
-     * will be called to handle saving via SmartGWT databinding.   <P> If <code>canSubmit</code> is true, the form
+     * will be called to handle saving via Smart GWT databinding.   <P> If <code>canSubmit</code> is true, the form
      * will be submitted like an ordinary HTML form via {@link com.smartgwt.client.widgets.form.DynamicForm#submitForm}.
      * <P> The parameters to <code>submit()</code> apply only if <code>submit()</code> will be calling {@link
      * com.smartgwt.client.widgets.form.ValuesManager#saveData}.  If you override <code>submit()</code>, you can safely
-     * ignore the parameters as SmartGWT framework code does not pass them.
+     * ignore the parameters as Smart GWT framework code does not pass them.
      *
      * @param callback          callback to invoke on completion.                                          [Ignored if
      *                          this.canSubmit is true]

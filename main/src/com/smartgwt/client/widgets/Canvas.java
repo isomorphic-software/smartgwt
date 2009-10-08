@@ -1,10 +1,10 @@
 /*
- * SmartGWT (GWT for SmartClient)
+ * Smart GWT (GWT for SmartClient)
  * Copyright 2008 and beyond, Isomorphic Software, Inc.
  *
- * SmartGWT is free software; you can redistribute it and/or modify it
+ * Smart GWT is free software; you can redistribute it and/or modify it
  * under the terms of the GNU Lesser General Public License version 3
- * as published by the Free Software Foundation.  SmartGWT is also
+ * as published by the Free Software Foundation.  Smart GWT is also
  * available under typical commercial license terms - see
  * http://smartclient.com/license
  *
@@ -142,7 +142,7 @@ public class Canvas extends BaseWidget  implements com.smartgwt.client.widgets.e
     /**
      * Absolute or relative, corresponding to the "absolute" (with respect to parent) or&#010 "relative" (with respect to
      * document flow) values for the CSS position attribute.&#010 <P>&#010 Setting <code>position:"relative"</code> enables
-     * SmartGWT components to be embedded&#010 directly into the native HTML flow of a page, causing the component to be
+     * Smart GWT components to be embedded&#010 directly into the native HTML flow of a page, causing the component to be
      * rendered &#010 within an existing DOM structure. &#010 This attribute should only be set to <code>"relative"</code> on a
      * top level component &#010 (a component with no {@link com.smartgwt.client.widgets.Canvas#getParentElement
      * parentElement}). &#010 <P>&#010 There are 2 ways to embed relatively positioned canvases in the DOM - by default
@@ -153,10 +153,10 @@ public class Canvas extends BaseWidget  implements com.smartgwt.client.widgets.e
      * &lt;/table&gt;&#010 </pre>&#010 Alternatively you can make use of the {@link
      * com.smartgwt.client.widgets.Canvas#getHtmlElement htmlElement} attribute.&#010 <P>&#010 Relative positioning is intended
      * as a short-term integration scenario while incrementally&#010 upgrading existing applications.&#010 Note that relative
-     * positioning is not used to manage layout within SmartGWT components -&#010 instead the {@link
+     * positioning is not used to manage layout within Smart GWT components -&#010 instead the {@link
      * com.smartgwt.client.widgets.layout.Layout} class would typically be used.&#010 For best consistency and flexibility
-     * across browsers, all SmartGWT layout managers&#010 use absolute positioning.&#010 <P>&#010 For canvases with a specified
-     * {@link com.smartgwt.client.widgets.Canvas#getHtmlElement htmlElement}, this attribute defaults to&#010
+     * across browsers, all Smart GWT layout managers&#010 use absolute positioning.&#010 <P>&#010 For canvases with a
+     * specified {@link com.smartgwt.client.widgets.Canvas#getHtmlElement htmlElement}, this attribute defaults to&#010
      * <code>"relative"</code>. In all other cases the default value will be &#010 <code>"aboslute"</code>.
      * <p><b>Note : </b> This is an advanced setting</p>
      *
@@ -169,7 +169,7 @@ public class Canvas extends BaseWidget  implements com.smartgwt.client.widgets.e
     /**
      * Absolute or relative, corresponding to the "absolute" (with respect to parent) or&#010 "relative" (with respect to
      * document flow) values for the CSS position attribute.&#010 <P>&#010 Setting <code>position:"relative"</code> enables
-     * SmartGWT components to be embedded&#010 directly into the native HTML flow of a page, causing the component to be
+     * Smart GWT components to be embedded&#010 directly into the native HTML flow of a page, causing the component to be
      * rendered &#010 within an existing DOM structure. &#010 This attribute should only be set to <code>"relative"</code> on a
      * top level component &#010 (a component with no {@link com.smartgwt.client.widgets.Canvas#getParentElement
      * parentElement}). &#010 <P>&#010 There are 2 ways to embed relatively positioned canvases in the DOM - by default
@@ -180,10 +180,10 @@ public class Canvas extends BaseWidget  implements com.smartgwt.client.widgets.e
      * &lt;/table&gt;&#010 </pre>&#010 Alternatively you can make use of the {@link
      * com.smartgwt.client.widgets.Canvas#getHtmlElement htmlElement} attribute.&#010 <P>&#010 Relative positioning is intended
      * as a short-term integration scenario while incrementally&#010 upgrading existing applications.&#010 Note that relative
-     * positioning is not used to manage layout within SmartGWT components -&#010 instead the {@link
+     * positioning is not used to manage layout within Smart GWT components -&#010 instead the {@link
      * com.smartgwt.client.widgets.layout.Layout} class would typically be used.&#010 For best consistency and flexibility
-     * across browsers, all SmartGWT layout managers&#010 use absolute positioning.&#010 <P>&#010 For canvases with a specified
-     * {@link com.smartgwt.client.widgets.Canvas#getHtmlElement htmlElement}, this attribute defaults to&#010
+     * across browsers, all Smart GWT layout managers&#010 use absolute positioning.&#010 <P>&#010 For canvases with a
+     * specified {@link com.smartgwt.client.widgets.Canvas#getHtmlElement htmlElement}, this attribute defaults to&#010
      * <code>"relative"</code>. In all other cases the default value will be &#010 <code>"aboslute"</code>.
      *
      *
@@ -774,20 +774,21 @@ public class Canvas extends BaseWidget  implements com.smartgwt.client.widgets.e
     }
 
     /**
-     * Whether to use the browser's native scrollbars or SmartGWT-based scrollbars.&#010 <P>&#010 SmartGWT-based scrollbars are
-     * skinnable, giving you complete control over look and&#010 feel.  SmartGWT-based scrollbars also enable some interactions
-     * not possible with&#010 native scrollbars, such as {@link com.smartgwt.client.widgets.grid.ListGrid#getFixedRecordHeights
-     * 'variable height records'}&#010 in grids in combination with {@link
-     * com.smartgwt.client.widgets.grid.ListGrid#getDataPageSize 'data paging'}.&#010 <P>&#010 Native browser scrollbars are
-     * slightly faster simply because there are less SmartGWT&#010 components that need to be created, drawn and updated.  Each
-     * visible SmartGWT-based&#010 scrollbar on the screen has roughly the impact of two StretchImgButtons.&#010 <P>&#010
-     * SmartGWT is always aware of the size of the scrollbar, regardless of whether native&#010 or custom scrollbars are used,
-     * and regardless of what operating system and/or operating&#010 system "theme" or "skin" is in use.  This means SmartGWT
-     * will correctly report the&#010 {@link com.smartgwt.client.widgets.Canvas#getViewportHeight}, that is, the interior area
-     * of the&#010 widget excluding space taken by scrollbars, which is key for exactly filling a component&#010 with content
-     * without creating unnecessary scrolling.&#010 <P>&#010 The <code>showCustomScrollbars</code> setting is typically
-     * overridden in load_skin.js in&#010 order to change the default for all SmartGWT components at once, like so:&#010
-     * <pre>&#010     isc.Canvas.addProperties({ showCustomScrollbars:false });&#010 </pre>
+     * Whether to use the browser's native scrollbars or Smart GWT-based scrollbars.&#010 <P>&#010 Smart GWT-based scrollbars
+     * are skinnable, giving you complete control over look and&#010 feel.  Smart GWT-based scrollbars also enable some
+     * interactions not possible with&#010 native scrollbars, such as {@link
+     * com.smartgwt.client.widgets.grid.ListGrid#getFixedRecordHeights 'variable height records'}&#010 in grids in combination
+     * with {@link com.smartgwt.client.widgets.grid.ListGrid#getDataPageSize 'data paging'}.&#010 <P>&#010 Native browser
+     * scrollbars are slightly faster simply because there are less Smart GWT&#010 components that need to be created, drawn
+     * and updated.  Each visible Smart GWT-based&#010 scrollbar on the screen has roughly the impact of two
+     * StretchImgButtons.&#010 <P>&#010 Smart GWT is always aware of the size of the scrollbar, regardless of whether
+     * native&#010 or custom scrollbars are used, and regardless of what operating system and/or operating&#010 system "theme"
+     * or "skin" is in use.  This means Smart GWT will correctly report the&#010 {@link
+     * com.smartgwt.client.widgets.Canvas#getViewportHeight}, that is, the interior area of the&#010 widget excluding space
+     * taken by scrollbars, which is key for exactly filling a component&#010 with content without creating unnecessary
+     * scrolling.&#010 <P>&#010 The <code>showCustomScrollbars</code> setting is typically overridden in load_skin.js in&#010
+     * order to change the default for all Smart GWT components at once, like so:&#010 <pre>&#010    
+     * isc.Canvas.addProperties({ showCustomScrollbars:false });&#010 </pre>
      * <p><b>Note : </b> This is an advanced setting</p>
      *
      * @param showCustomScrollbars showCustomScrollbars Default value is true
@@ -797,20 +798,21 @@ public class Canvas extends BaseWidget  implements com.smartgwt.client.widgets.e
     }
 
     /**
-     * Whether to use the browser's native scrollbars or SmartGWT-based scrollbars.&#010 <P>&#010 SmartGWT-based scrollbars are
-     * skinnable, giving you complete control over look and&#010 feel.  SmartGWT-based scrollbars also enable some interactions
-     * not possible with&#010 native scrollbars, such as {@link com.smartgwt.client.widgets.grid.ListGrid#getFixedRecordHeights
-     * 'variable height records'}&#010 in grids in combination with {@link
-     * com.smartgwt.client.widgets.grid.ListGrid#getDataPageSize 'data paging'}.&#010 <P>&#010 Native browser scrollbars are
-     * slightly faster simply because there are less SmartGWT&#010 components that need to be created, drawn and updated.  Each
-     * visible SmartGWT-based&#010 scrollbar on the screen has roughly the impact of two StretchImgButtons.&#010 <P>&#010
-     * SmartGWT is always aware of the size of the scrollbar, regardless of whether native&#010 or custom scrollbars are used,
-     * and regardless of what operating system and/or operating&#010 system "theme" or "skin" is in use.  This means SmartGWT
-     * will correctly report the&#010 {@link com.smartgwt.client.widgets.Canvas#getViewportHeight}, that is, the interior area
-     * of the&#010 widget excluding space taken by scrollbars, which is key for exactly filling a component&#010 with content
-     * without creating unnecessary scrolling.&#010 <P>&#010 The <code>showCustomScrollbars</code> setting is typically
-     * overridden in load_skin.js in&#010 order to change the default for all SmartGWT components at once, like so:&#010
-     * <pre>&#010     isc.Canvas.addProperties({ showCustomScrollbars:false });&#010 </pre>
+     * Whether to use the browser's native scrollbars or Smart GWT-based scrollbars.&#010 <P>&#010 Smart GWT-based scrollbars
+     * are skinnable, giving you complete control over look and&#010 feel.  Smart GWT-based scrollbars also enable some
+     * interactions not possible with&#010 native scrollbars, such as {@link
+     * com.smartgwt.client.widgets.grid.ListGrid#getFixedRecordHeights 'variable height records'}&#010 in grids in combination
+     * with {@link com.smartgwt.client.widgets.grid.ListGrid#getDataPageSize 'data paging'}.&#010 <P>&#010 Native browser
+     * scrollbars are slightly faster simply because there are less Smart GWT&#010 components that need to be created, drawn
+     * and updated.  Each visible Smart GWT-based&#010 scrollbar on the screen has roughly the impact of two
+     * StretchImgButtons.&#010 <P>&#010 Smart GWT is always aware of the size of the scrollbar, regardless of whether
+     * native&#010 or custom scrollbars are used, and regardless of what operating system and/or operating&#010 system "theme"
+     * or "skin" is in use.  This means Smart GWT will correctly report the&#010 {@link
+     * com.smartgwt.client.widgets.Canvas#getViewportHeight}, that is, the interior area of the&#010 widget excluding space
+     * taken by scrollbars, which is key for exactly filling a component&#010 with content without creating unnecessary
+     * scrolling.&#010 <P>&#010 The <code>showCustomScrollbars</code> setting is typically overridden in load_skin.js in&#010
+     * order to change the default for all Smart GWT components at once, like so:&#010 <pre>&#010    
+     * isc.Canvas.addProperties({ showCustomScrollbars:false });&#010 </pre>
      *
      *
      * @return Boolean
@@ -914,10 +916,11 @@ public class Canvas extends BaseWidget  implements com.smartgwt.client.widgets.e
     }
 
     /**
-     * If specified this governs the tabIndex of the widget in the page's tab order. Note that by default SmartGWT auto-assigns
-     * tab-indices, ensuring focusable widgets are reachable by tabbing in the order in which they are drawn on the page.
-     * <code>canvas.tabIndex</code> cannot be set to greater than  {@link com.smartgwt.client.widgets.Canvas#TAB_INDEX_FLOOR} -
-     * as we reserve the values above this range for auto-assigned tab-indices.
+     * If specified this governs the tabIndex of the widget in the page's tab order. Note that by default Smart GWT
+     * auto-assigns tab-indices, ensuring focusable widgets are reachable by tabbing in the order in which they are drawn on
+     * the page. <code>canvas.tabIndex</code> cannot be set to greater than  {@link
+     * com.smartgwt.client.widgets.Canvas#TAB_INDEX_FLOOR} - as we reserve the values above this range for auto-assigned
+     * tab-indices.
      * Assign an explicit tabIndex to this widget.
      * <p><b>Note : </b> This is an advanced setting</p>
      *
@@ -930,10 +933,11 @@ public class Canvas extends BaseWidget  implements com.smartgwt.client.widgets.e
     }
 
     /**
-     * If specified this governs the tabIndex of the widget in the page's tab order. Note that by default SmartGWT auto-assigns
-     * tab-indices, ensuring focusable widgets are reachable by tabbing in the order in which they are drawn on the page.
-     * <code>canvas.tabIndex</code> cannot be set to greater than  {@link com.smartgwt.client.widgets.Canvas#TAB_INDEX_FLOOR} -
-     * as we reserve the values above this range for auto-assigned tab-indices.
+     * If specified this governs the tabIndex of the widget in the page's tab order. Note that by default Smart GWT
+     * auto-assigns tab-indices, ensuring focusable widgets are reachable by tabbing in the order in which they are drawn on
+     * the page. <code>canvas.tabIndex</code> cannot be set to greater than  {@link
+     * com.smartgwt.client.widgets.Canvas#TAB_INDEX_FLOOR} - as we reserve the values above this range for auto-assigned
+     * tab-indices.
      *
      *
      * @return Integer
@@ -3698,10 +3702,10 @@ public class Canvas extends BaseWidget  implements com.smartgwt.client.widgets.e
      * This method tells a component to adjust for size changes made to content by external code. <P> This is for very advanced
      * use in which the contents of a Canvas are being directly updated by Ajax techniques, which is required for integration
      * with some third-party libraries. Calling this method is required because browsers do not provide consistent events by
-     * which SmartGWT can be notified of external content changes. <P> Only contents supplied to a widget via {@link
+     * which Smart GWT can be notified of external content changes. <P> Only contents supplied to a widget via {@link
      * com.smartgwt.client.widgets.Canvas#getContents contents} or via an override of {@link
      * com.smartgwt.client.widgets.Canvas#getInnerHTML} should be manipulated directly.  Contents automatically generated by
-     * SmartGWT components (such as the basic structure of a Button) should never be manipulated: these structures are
+     * Smart GWT components (such as the basic structure of a Button) should never be manipulated: these structures are
      * considered internal, differ by platform, and will change without notice.
      * @param immediate By default the adjustment will occur on a small delay for performance reasons.   Pass in this parameter to force
      * immediate adjustment.

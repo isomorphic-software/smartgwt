@@ -1,10 +1,10 @@
 /*
- * SmartGWT (GWT for SmartClient)
+ * Smart GWT (GWT for SmartClient)
  * Copyright 2008 and beyond, Isomorphic Software, Inc.
  *
- * SmartGWT is free software; you can redistribute it and/or modify it
+ * Smart GWT is free software; you can redistribute it and/or modify it
  * under the terms of the GNU Lesser General Public License version 3
- * as published by the Free Software Foundation.  SmartGWT is also
+ * as published by the Free Software Foundation.  Smart GWT is also
  * available under typical commercial license terms - see
  * http://smartclient.com/license
  *
@@ -856,11 +856,11 @@ public class ValuesManager extends BaseClass {
      * {@link com.smartgwt.client.widgets.form.DynamicForm#submitValues} exists, it will be called, then immediately
      * return. <P> Otherwise, default behavior varies based on {@link com.smartgwt.client.widgets.form.DynamicForm#getCanSubmit
      * canSubmit}: if <code>canSubmit</code> is false, {@link com.smartgwt.client.widgets.form.DynamicForm#saveData}
-     * will be called to handle saving via SmartGWT databinding.   <P> If <code>canSubmit</code> is true, the form
+     * will be called to handle saving via Smart GWT databinding.   <P> If <code>canSubmit</code> is true, the form
      * will be submitted like an ordinary HTML form via {@link com.smartgwt.client.widgets.form.DynamicForm#submitForm}.
      * <P> The parameters to <code>submit()</code> apply only if <code>submit()</code> will be calling {@link
      * com.smartgwt.client.widgets.form.ValuesManager#saveData}.  If you override <code>submit()</code>, you can safely
-     * ignore the parameters as SmartGWT framework code does not pass them.
+     * ignore the parameters as Smart GWT framework code does not pass them.
      */
     public native void submit() /*-{
         var self = this.@com.smartgwt.client.core.BaseClass::getOrCreateJsObj()();
@@ -874,11 +874,11 @@ public class ValuesManager extends BaseClass {
      * {@link com.smartgwt.client.widgets.form.DynamicForm#submitValues} exists, it will be called, then immediately
      * return. <P> Otherwise, default behavior varies based on {@link com.smartgwt.client.widgets.form.DynamicForm#getCanSubmit
      * canSubmit}: if <code>canSubmit</code> is false, {@link com.smartgwt.client.widgets.form.DynamicForm#saveData}
-     * will be called to handle saving via SmartGWT databinding.   <P> If <code>canSubmit</code> is true, the form
+     * will be called to handle saving via Smart GWT databinding.   <P> If <code>canSubmit</code> is true, the form
      * will be submitted like an ordinary HTML form via {@link com.smartgwt.client.widgets.form.DynamicForm#submitForm}.
      * <P> The parameters to <code>submit()</code> apply only if <code>submit()</code> will be calling {@link
      * com.smartgwt.client.widgets.form.ValuesManager#saveData}.  If you override <code>submit()</code>, you can safely
-     * ignore the parameters as SmartGWT framework code does not pass them.
+     * ignore the parameters as Smart GWT framework code does not pass them.
      *
      * @param callback callback to invoke on completion.                                          [Ignored if
      *                 this.canSubmit is true]
@@ -899,11 +899,11 @@ public class ValuesManager extends BaseClass {
      * {@link com.smartgwt.client.widgets.form.DynamicForm#submitValues} exists, it will be called, then immediately
      * return. <P> Otherwise, default behavior varies based on {@link com.smartgwt.client.widgets.form.DynamicForm#getCanSubmit
      * canSubmit}: if <code>canSubmit</code> is false, {@link com.smartgwt.client.widgets.form.DynamicForm#saveData}
-     * will be called to handle saving via SmartGWT databinding.   <P> If <code>canSubmit</code> is true, the form
+     * will be called to handle saving via Smart GWT databinding.   <P> If <code>canSubmit</code> is true, the form
      * will be submitted like an ordinary HTML form via {@link com.smartgwt.client.widgets.form.DynamicForm#submitForm}.
      * <P> The parameters to <code>submit()</code> apply only if <code>submit()</code> will be calling {@link
      * com.smartgwt.client.widgets.form.ValuesManager#saveData}.  If you override <code>submit()</code>, you can safely
-     * ignore the parameters as SmartGWT framework code does not pass them.
+     * ignore the parameters as Smart GWT framework code does not pass them.
      *
      * @param callback          callback to invoke on completion.                                          [Ignored if
      *                          this.canSubmit is true]

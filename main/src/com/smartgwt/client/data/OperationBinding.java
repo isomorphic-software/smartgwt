@@ -1,10 +1,10 @@
 /*
- * SmartGWT (GWT for SmartClient)
+ * Smart GWT (GWT for SmartClient)
  * Copyright 2008 and beyond, Isomorphic Software, Inc.
  *
- * SmartGWT is free software; you can redistribute it and/or modify it
+ * Smart GWT is free software; you can redistribute it and/or modify it
  * under the terms of the GNU Lesser General Public License version 3
- * as published by the Free Software Foundation.  SmartGWT is also
+ * as published by the Free Software Foundation.  Smart GWT is also
  * available under typical commercial license terms - see
  * http://smartclient.com/license
  *
@@ -181,16 +181,16 @@ public class OperationBinding extends DataClass {
      * sent to the <code>dataURL</code>.  The <code>dataProtocol</code> property controls the format in which the data is sent:
      * SOAP message, HTTP GET or POST of parameters, etc. <P> The <code>dataProtocol</code> property need not be set for a
      * DataSource with a WebService ( {@link com.smartgwt.client.data.DataSource#getServiceNamespace serviceNamespace} is set),
-     * in this case, SOAP messaging is used by default. <P> Developers may completely bypass the SmartGWT comm system by
-     * setting dataProtocol to <code>"clientCustom"</code>. In this case SmartGWT will not attempt to send any data to the
+     * in this case, SOAP messaging is used by default. <P> Developers may completely bypass the Smart GWT comm system by
+     * setting dataProtocol to <code>"clientCustom"</code>. In this case Smart GWT will not attempt to send any data to the
      * server after calling {@link com.smartgwt.client.data.DataSource#transformRequest}. Instead the developer is expected to
-     * implement <code>transformRequest()</code> such that it performs the necessary data action outside of SmartGWT, and then
+     * implement <code>transformRequest()</code> such that it performs the necessary data action outside of Smart GWT, and then
      * calls {@link com.smartgwt.client.data.DataSource#processResponse},  passing in the {@link
      * com.smartgwt.client.data.DSRequest#getRequestId requestId} and an appropriate set of DSResponse properties to indicate
      * the result of the action. <P> NOTE: when {@link com.smartgwt.client.data.OperationBinding#getDataFormat dataFormat} is
-     * "iscServer", <code>dataProtocol</code> is not consulted. Instead, SmartGWT uses a proprietary wire format to communicate
-     * with the SmartGWT server, and the server-side DSRequest and DSResponse objects should be used to access request data and
-     * form responses.
+     * "iscServer", <code>dataProtocol</code> is not consulted. Instead, Smart GWT uses a proprietary wire format to
+     * communicate with the Smart GWT server, and the server-side DSRequest and DSResponse objects should be used to access
+     * request data and form responses.
      *
      * @param dataProtocol dataProtocol Default value is "getParams"
      */
@@ -204,16 +204,16 @@ public class OperationBinding extends DataClass {
      * sent to the <code>dataURL</code>.  The <code>dataProtocol</code> property controls the format in which the data is sent:
      * SOAP message, HTTP GET or POST of parameters, etc. <P> The <code>dataProtocol</code> property need not be set for a
      * DataSource with a WebService ( {@link com.smartgwt.client.data.DataSource#getServiceNamespace serviceNamespace} is set),
-     * in this case, SOAP messaging is used by default. <P> Developers may completely bypass the SmartGWT comm system by
-     * setting dataProtocol to <code>"clientCustom"</code>. In this case SmartGWT will not attempt to send any data to the
+     * in this case, SOAP messaging is used by default. <P> Developers may completely bypass the Smart GWT comm system by
+     * setting dataProtocol to <code>"clientCustom"</code>. In this case Smart GWT will not attempt to send any data to the
      * server after calling {@link com.smartgwt.client.data.DataSource#transformRequest}. Instead the developer is expected to
-     * implement <code>transformRequest()</code> such that it performs the necessary data action outside of SmartGWT, and then
+     * implement <code>transformRequest()</code> such that it performs the necessary data action outside of Smart GWT, and then
      * calls {@link com.smartgwt.client.data.DataSource#processResponse},  passing in the {@link
      * com.smartgwt.client.data.DSRequest#getRequestId requestId} and an appropriate set of DSResponse properties to indicate
      * the result of the action. <P> NOTE: when {@link com.smartgwt.client.data.OperationBinding#getDataFormat dataFormat} is
-     * "iscServer", <code>dataProtocol</code> is not consulted. Instead, SmartGWT uses a proprietary wire format to communicate
-     * with the SmartGWT server, and the server-side DSRequest and DSResponse objects should be used to access request data and
-     * form responses.
+     * "iscServer", <code>dataProtocol</code> is not consulted. Instead, Smart GWT uses a proprietary wire format to
+     * communicate with the Smart GWT server, and the server-side DSRequest and DSResponse objects should be used to access
+     * request data and form responses.
      *
      *
      * @return DSProtocol
@@ -425,7 +425,7 @@ public class OperationBinding extends DataClass {
      * instead, based on the XML Schema of the response message embedded in the WSDL. <P> The spoofed response will include all
      * complexType elements and will fill in appropriate values by type for all simpleType elements, although the spoofed data
      * will not conform to all xs:restriction declarations (eg xs:pattern). <P> Note that if your WSDL does not fully describe
-     * the response format (some WSDL services just have a placeholder &lt;xs:any&gt; element), SmartGWT can only produce a
+     * the response format (some WSDL services just have a placeholder &lt;xs:any&gt; element), Smart GWT can only produce a
      * partial response.  To use a hand-generated sample response, just save an XML file to disk and use the {@link
      * com.smartgwt.client.data.OperationBinding#getDataURL dataURL} setting to point to it.
      *
@@ -441,7 +441,7 @@ public class OperationBinding extends DataClass {
      * instead, based on the XML Schema of the response message embedded in the WSDL. <P> The spoofed response will include all
      * complexType elements and will fill in appropriate values by type for all simpleType elements, although the spoofed data
      * will not conform to all xs:restriction declarations (eg xs:pattern). <P> Note that if your WSDL does not fully describe
-     * the response format (some WSDL services just have a placeholder &lt;xs:any&gt; element), SmartGWT can only produce a
+     * the response format (some WSDL services just have a placeholder &lt;xs:any&gt; element), Smart GWT can only produce a
      * partial response.  To use a hand-generated sample response, just save an XML file to disk and use the {@link
      * com.smartgwt.client.data.OperationBinding#getDataURL dataURL} setting to point to it.
      *

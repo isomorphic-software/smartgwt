@@ -3,7 +3,7 @@ package com.smartgwt.client.docs;
 
 /**
  * <h3>Date and Time Format and Storage</h3>
- * The SmartGWT system has the following features for handling Date and Time type values within DataSources and databound
+ * The Smart GWT system has the following features for handling Date and Time type values within DataSources and databound
  * components. <P> DataSources and databound components may define fields of type <code>date</code>, <code>time</code>, or
  * <code>datetime</code>. <P> Fields of type {@link com.smartgwt.client.types.FieldType} are considered to be logical
  * Dates. System wide formatting for dates may be controlled via the {@link
@@ -11,7 +11,7 @@ package com.smartgwt.client.docs;
  * Components also support applying custom display formats for specific date fields, typically achieved via the
  * <code>dateFormatter</code> or <code>field.displayFormat</code> attributes. <P> On the client date type fields are stored
  * as JavaScript Date objects. When formatted for display to the user, they are typically displayed without any time
- * information. <P> When communicating with a non SmartGWT server via an "xml" DataSource, date field values in requests
+ * information. <P> When communicating with a non Smart GWT server via an "xml" DataSource, date field values in requests
  * will be serialized out as logical date information only (omitting time) in the standard truncated <a target=_blank
  * href="http://www.w3.org/TR/xmlschema-2/#dateTime">XML Schema date format</a> - <code>YYYY-MM-DD</code>. Date values
  * received from the server in responses are expected to be in the same format, though if time information is included in
@@ -23,7 +23,7 @@ package com.smartgwt.client.docs;
  * component level by <code>datetimeFormatter</code> or <code>field.displayFormat</code> attributes. DateTimes willbe
  * displayed to the user in local time as set up via  {@link com.smartgwt.client..Time#setDefaultDisplayTimezone}. Note
  * that if not explicitly set, this will default to the browser native timezone. <P> On the client datetime type fields are
- * stored as JavaScript Date objects.  When communicating with a non SmartGWT server via an "xml" DataSource, datetime
+ * stored as JavaScript Date objects.  When communicating with a non Smart GWT server via an "xml" DataSource, datetime
  * field values in requests will be serialized out as full datetimes in UTC using the standard <a target=_blank
  * href="http://www.w3.org/TR/xmlschema-2/#dateTime">XML Schema date format</a> - <code>YYYY-MM-DDTHH:MM:SS</code>. Date
  * values received from the server in responses are expected to also be in XML Schema date format - and assumed to be in
@@ -34,7 +34,7 @@ package com.smartgwt.client.docs;
  * but only the time information is displayed to the user. Time formatting is handled by the {@link
  * com.smartgwt.client..Time} class APIs. By default times are displayed to users in the display timezone set up via {@link
  * com.smartgwt.client..Time#setDefaultDisplayTimezone} [if not explicitly set, defaults to native browser local time].<br>
- * When communicating with a non SmartGWT server via an "xml" DataSource, time field values in requests will be serialized
+ * When communicating with a non Smart GWT server via an "xml" DataSource, time field values in requests will be serialized
  * out as full times in UTC using the standard <a target=_blank href="http://www.w3.org/TR/xmlschema-2/#dateTime">XML
  * Schema date / time format</a> - <code>HH:MM:SS</code>. Note that the flag {@link
  * com.smartgwt.client.data.DataSource#serializeTimeAsDatetime} may be set to serialize all times as full datetimes rather

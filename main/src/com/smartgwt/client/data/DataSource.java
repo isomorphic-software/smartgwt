@@ -1,10 +1,10 @@
 /*
- * SmartGWT (GWT for SmartClient)
+ * Smart GWT (GWT for SmartClient)
  * Copyright 2008 and beyond, Isomorphic Software, Inc.
  *
- * SmartGWT is free software; you can redistribute it and/or modify it
+ * Smart GWT is free software; you can redistribute it and/or modify it
  * under the terms of the GNU Lesser General Public License version 3
- * as published by the Free Software Foundation.  SmartGWT is also
+ * as published by the Free Software Foundation.  Smart GWT is also
  * available under typical commercial license terms - see
  * http://smartclient.com/license
  *
@@ -65,7 +65,7 @@ import com.google.gwt.event.shared.HasHandlers;
  * com.smartgwt.client.data.DataSourceField#getForeignKey 'relationships'} to other DataSources, and other metadata. <P>
  * The abstract object description provided by a DataSource is easily mapped to a variety of backend object models and
  * storage schemes.  The following table shows analogous terminology across systems. <table border=1 class="normal"> <tr>  
- * <td>Isomorphic SmartGWT</td>   <td>Relational Database</td>   <td>Enterprise Java Beans (EJB)</td>  
+ * <td>Isomorphic Smart GWT</td>   <td>Relational Database</td>   <td>Enterprise Java Beans (EJB)</td>  
  * <td>Entity/Relationship Modelling</td>   <td>OO/UML</td>   <td>XML Schema/WSDL</td>   <td>LDAP</td> </tr><tr>  
  * <td>DataSource</td>   <td>Table</td>   <td>EJB class</td>   <td>Entity</td>   <td>Class</td>   <td>Element Schema
  * (ComplexType)</td>   <td>Objectclass</td> </tr><tr>   <td>Record</td>   <td>Row</td>   <td>EJB instance</td>  
@@ -80,9 +80,9 @@ import com.google.gwt.event.shared.HasHandlers;
  * com.smartgwt.client.docs.ClientServerIntegration 'Data Integration'} is the process by which a DataSource can be
  * connected to server systems such as SQL DataBases, Java Object models, WSDL web services and other data providers.  Data
  * Integration comes in two variants: client-side and server-side.  {@link com.smartgwt.client.docs.ServerDataIntegration
- * 'Server-side integration'} uses the SmartGWT Java-based server to connect to data represented by Java Objects or
+ * 'Server-side integration'} uses the Smart GWT Java-based server to connect to data represented by Java Objects or
  * JDBC-accessible databases.  {@link com.smartgwt.client.docs.ClientDataIntegration 'Client-side integration'} connects
- * SmartGWT DataSources to XML, JSON or other formats accessible via HTTP. <P> DataSources have a concept of {@link
+ * Smart GWT DataSources to XML, JSON or other formats accessible via HTTP. <P> DataSources have a concept of {@link
  * com.smartgwt.client.docs.DataSourceOperations '4 core operations'} ("fetch", "add", "update" and "remove") that can be
  * performed on the set of objects represented by a DataSource.  Once a DataSource has been integrated with your data
  * store, databinding-capable  UI components can leverage the 4 core DataSource operations to provide many complete user
@@ -270,7 +270,7 @@ public class DataSource extends BaseClass  implements com.smartgwt.client.data.e
     }
 
     /**
-     * For DataSources using the {@link com.smartgwt.client.docs.SqlDataSource 'SmartGWT SQL engine'} for persistence, what
+     * For DataSources using the {@link com.smartgwt.client.docs.SqlDataSource 'Smart GWT SQL engine'} for persistence, what
      * database table name to use.  The default is to use the DataSource ID as the table name.
      *
      * @param tableName tableName Default value is null
@@ -281,7 +281,7 @@ public class DataSource extends BaseClass  implements com.smartgwt.client.data.e
     }
 
     /**
-     * For DataSources using the {@link com.smartgwt.client.docs.SqlDataSource 'SmartGWT SQL engine'} for persistence, what
+     * For DataSources using the {@link com.smartgwt.client.docs.SqlDataSource 'Smart GWT SQL engine'} for persistence, what
      * database table name to use.  The default is to use the DataSource ID as the table name.
      *
      *
@@ -292,7 +292,7 @@ public class DataSource extends BaseClass  implements com.smartgwt.client.data.e
     }
 
     /**
-     * For DataSources using the {@link com.smartgwt.client.docs.SqlDataSource 'SmartGWT SQL engine'} for persistence, which
+     * For DataSources using the {@link com.smartgwt.client.docs.SqlDataSource 'Smart GWT SQL engine'} for persistence, which
      * database configuration to use.  Database configurations can be created using the "Databases" tab in the Developer
      * Console.  If unset, the default database configuration is used (which is also settable using the "Databases" tab).
      *
@@ -304,7 +304,7 @@ public class DataSource extends BaseClass  implements com.smartgwt.client.data.e
     }
 
     /**
-     * For DataSources using the {@link com.smartgwt.client.docs.SqlDataSource 'SmartGWT SQL engine'} for persistence, which
+     * For DataSources using the {@link com.smartgwt.client.docs.SqlDataSource 'Smart GWT SQL engine'} for persistence, which
      * database configuration to use.  Database configurations can be created using the "Databases" tab in the Developer
      * Console.  If unset, the default database configuration is used (which is also settable using the "Databases" tab).
      *
@@ -550,9 +550,9 @@ public class DataSource extends BaseClass  implements com.smartgwt.client.data.e
     /**
      * For a DataSource with serverType: "sql" or serverType: "hibernate", automatically derive the dataSource's schema (field
      * definitions) from the SQL table specified in  {@link com.smartgwt.client.data.DataSource#getTableName tableName}.  This
-     * causes SmartGWT to create a "super" DataSource, which this dataSource then automatically {@link
+     * causes Smart GWT to create a "super" DataSource, which this dataSource then automatically {@link
      * com.smartgwt.client.data.DataSource#getInheritsFrom 'inheritsFrom'}.  This allows you to  override auto-derived schema
-     * as required. <p> This property is only applicable if you are using the SmartGWT server.
+     * as required. <p> This property is only applicable if you are using the Smart GWT server.
      *
      * @param autoDeriveSchema autoDeriveSchema Default value is null
      * @throws IllegalStateException this property cannot be changed after the underlying component has been created
@@ -564,9 +564,9 @@ public class DataSource extends BaseClass  implements com.smartgwt.client.data.e
     /**
      * For a DataSource with serverType: "sql" or serverType: "hibernate", automatically derive the dataSource's schema (field
      * definitions) from the SQL table specified in  {@link com.smartgwt.client.data.DataSource#getTableName tableName}.  This
-     * causes SmartGWT to create a "super" DataSource, which this dataSource then automatically {@link
+     * causes Smart GWT to create a "super" DataSource, which this dataSource then automatically {@link
      * com.smartgwt.client.data.DataSource#getInheritsFrom 'inheritsFrom'}.  This allows you to  override auto-derived schema
-     * as required. <p> This property is only applicable if you are using the SmartGWT server.
+     * as required. <p> This property is only applicable if you are using the Smart GWT server.
      *
      *
      * @return Boolean
@@ -791,7 +791,7 @@ public class DataSource extends BaseClass  implements com.smartgwt.client.data.e
              
     /**
      * Sets the strategy this DataSource uses to translate Java enumerated types (objects of type enum) to and from Javascript.
-     *  This property is only applicable if you are using the SmartGWT server
+     *  This property is only applicable if you are using the Smart GWT server
      * <p><b>Note : </b> This is an advanced setting</p>
      *
      * @param enumTranslateStrategy enumTranslateStrategy Default value is null
@@ -804,7 +804,7 @@ public class DataSource extends BaseClass  implements com.smartgwt.client.data.e
     /**
      * The name of the property this DataSource uses for constant name when translating Java enumerated types to and from
      * Javascript, if the {@link com.smartgwt.client.types.EnumTranslateStrategy} is set to "bean".  Defaults to "_constant" if
-     * not set. <p>  This property is only applicable if you are using the SmartGWT server
+     * not set. <p>  This property is only applicable if you are using the Smart GWT server
      * <p><b>Note : </b> This is an advanced setting</p>
      *
      * @param enumConstantProperty enumConstantProperty Default value is null
@@ -817,7 +817,7 @@ public class DataSource extends BaseClass  implements com.smartgwt.client.data.e
     /**
      * The name of the property this DataSource uses for ordinal number when translating Java enumerated types to and from
      * Javascript, if the {@link com.smartgwt.client.types.EnumTranslateStrategy} is set to "bean".  Defaults to "_ordinal" if
-     * not set. <p>  This property is only applicable if you are using the SmartGWT server
+     * not set. <p>  This property is only applicable if you are using the Smart GWT server
      * <p><b>Note : </b> This is an advanced setting</p>
      *
      * @param enumOrdinalProperty enumOrdinalProperty Default value is null
@@ -860,17 +860,17 @@ public class DataSource extends BaseClass  implements com.smartgwt.client.data.e
      * com.smartgwt.client.docs.serverds.OperationBinding#requiresAuthentication requiresAuthentication}. <P> Whether the user
      * is authenticated is determined by calling <code>httpServletRequest.getRemoteUser()</code>, hence works with both simple
      * J2EE security (realms and form-based authentication) and JAAS (Java Authentication & Authorization Service). <P> If you
-     * wish to use an authentication scheme that does not make use of the servlet API's  standards, SmartGWT Server also
-     * implements the <code>setAuthenticated</code> method on <code>RPCManager</code>.  You can use this API to tell SmartGWT
+     * wish to use an authentication scheme that does not make use of the servlet API's  standards, Smart GWT Server also
+     * implements the <code>setAuthenticated</code> method on <code>RPCManager</code>.  You can use this API to tell Smart GWT
      * that all the  requests in the queue currently being processed are associated with an authenticated user; in this case,
-     * SmartGWT will not attempt to authenticate the user via  <code>httpServletRequest.getRemoteUser()</code> <P> You can set
+     * Smart GWT will not attempt to authenticate the user via  <code>httpServletRequest.getRemoteUser()</code> <P> You can set
      * the default value for this property via setting "authentication.defaultRequired" in server.properties.  This allows you
      * to, for example, cause all DataSources to require authentication for all operations by default. <P> Note that setting
      * this property does not automatically cause an authentication mechanism to appear - you still need to separately
      * configure an authentication system.  Likewise, setting requiresAuthentication="false" does not automatically allow users
      * to bypass your authentication mechanism - you need to set up a URL that will accept DSRequests and process them similar
      * to the default "IDACall" servlet, and which is not protected by the authentication system.  See {@link
-     * com.smartgwt.client.docs.ServletDetails 'Deploying SmartGWT'} for details on the IDACall servlet.
+     * com.smartgwt.client.docs.ServletDetails 'Deploying Smart GWT'} for details on the IDACall servlet.
      *
      * @param requiresAuthentication requiresAuthentication Default value is null
      * @throws IllegalStateException this property cannot be changed after the underlying component has been created
@@ -886,17 +886,17 @@ public class DataSource extends BaseClass  implements com.smartgwt.client.data.e
      * com.smartgwt.client.docs.serverds.OperationBinding#requiresAuthentication requiresAuthentication}. <P> Whether the user
      * is authenticated is determined by calling <code>httpServletRequest.getRemoteUser()</code>, hence works with both simple
      * J2EE security (realms and form-based authentication) and JAAS (Java Authentication & Authorization Service). <P> If you
-     * wish to use an authentication scheme that does not make use of the servlet API's  standards, SmartGWT Server also
-     * implements the <code>setAuthenticated</code> method on <code>RPCManager</code>.  You can use this API to tell SmartGWT
+     * wish to use an authentication scheme that does not make use of the servlet API's  standards, Smart GWT Server also
+     * implements the <code>setAuthenticated</code> method on <code>RPCManager</code>.  You can use this API to tell Smart GWT
      * that all the  requests in the queue currently being processed are associated with an authenticated user; in this case,
-     * SmartGWT will not attempt to authenticate the user via  <code>httpServletRequest.getRemoteUser()</code> <P> You can set
+     * Smart GWT will not attempt to authenticate the user via  <code>httpServletRequest.getRemoteUser()</code> <P> You can set
      * the default value for this property via setting "authentication.defaultRequired" in server.properties.  This allows you
      * to, for example, cause all DataSources to require authentication for all operations by default. <P> Note that setting
      * this property does not automatically cause an authentication mechanism to appear - you still need to separately
      * configure an authentication system.  Likewise, setting requiresAuthentication="false" does not automatically allow users
      * to bypass your authentication mechanism - you need to set up a URL that will accept DSRequests and process them similar
      * to the default "IDACall" servlet, and which is not protected by the authentication system.  See {@link
-     * com.smartgwt.client.docs.ServletDetails 'Deploying SmartGWT'} for details on the IDACall servlet.
+     * com.smartgwt.client.docs.ServletDetails 'Deploying Smart GWT'} for details on the IDACall servlet.
      *
      *
      * @return Boolean
@@ -1131,7 +1131,7 @@ public class DataSource extends BaseClass  implements com.smartgwt.client.data.e
     }
 
     /**
-     * If true, indicates that the SmartGWT Server should automatically apply a  {@link
+     * If true, indicates that the Smart GWT Server should automatically apply a  {@link
      * com.smartgwt.client..ValidatorTypes#hasRelatedRecord} validator to every field  on this dataSource that has a {@link
      * com.smartgwt.client.data.DataSourceField#getForeignKey 'foreignKey'} defined.
      *
@@ -1143,7 +1143,7 @@ public class DataSource extends BaseClass  implements com.smartgwt.client.data.e
     }
 
     /**
-     * If true, indicates that the SmartGWT Server should automatically apply a  {@link
+     * If true, indicates that the Smart GWT Server should automatically apply a  {@link
      * com.smartgwt.client..ValidatorTypes#hasRelatedRecord} validator to every field  on this dataSource that has a {@link
      * com.smartgwt.client.data.DataSourceField#getForeignKey 'foreignKey'} defined.
      *
@@ -1160,7 +1160,7 @@ public class DataSource extends BaseClass  implements com.smartgwt.client.data.e
      * is mapped in Hibernate.  This will typically  be the fully-qualified class name - eg <code>com.foo.MyClass</code> - but
      * it may be the  simple class name - just <code>MyClass</code> - or it may be some other value.  It all  depends on how
      * your classes have been mapped in Hibernate. <p> Note:  If you are intending to use Hibernate as a data-access layer
-     * only,  you do not need to create Hibernate mappings or Java objects: SmartGWT will generate everything it needs on the
+     * only,  you do not need to create Hibernate mappings or Java objects: Smart GWT will generate everything it needs on the
      * fly. <p> <b>For DataSources with serverType "sql"</b><br> If set, results from the database will be used to create one
      * instance of the indicated Java bean per database row.  Otherwise a Map is used to represent each row retrieved from SQL.
      * <P> With this feature active, a DSResponse from this DataSource will contain a Collection of instances of the indicated
@@ -1198,7 +1198,7 @@ public class DataSource extends BaseClass  implements com.smartgwt.client.data.e
      * is mapped in Hibernate.  This will typically  be the fully-qualified class name - eg <code>com.foo.MyClass</code> - but
      * it may be the  simple class name - just <code>MyClass</code> - or it may be some other value.  It all  depends on how
      * your classes have been mapped in Hibernate. <p> Note:  If you are intending to use Hibernate as a data-access layer
-     * only,  you do not need to create Hibernate mappings or Java objects: SmartGWT will generate everything it needs on the
+     * only,  you do not need to create Hibernate mappings or Java objects: Smart GWT will generate everything it needs on the
      * fly. <p> <b>For DataSources with serverType "sql"</b><br> If set, results from the database will be used to create one
      * instance of the indicated Java bean per database row.  Otherwise a Map is used to represent each row retrieved from SQL.
      * <P> With this feature active, a DSResponse from this DataSource will contain a Collection of instances of the indicated
@@ -1232,7 +1232,7 @@ public class DataSource extends BaseClass  implements com.smartgwt.client.data.e
 
     /**
      * Very advanced: for servers that do not support paging, and must return large numbers of XML records in one HTTP
-     * response, SmartGWT breaks up the processing of the response in order to avoid the "script running slowly" dialog
+     * response, Smart GWT breaks up the processing of the response in order to avoid the "script running slowly" dialog
      * appearing for an end user. <P> If you have a relatively small number of records with a great deal of properties or
      * subojects on each record, and you have not set {@link com.smartgwt.client.data.DataSource#getDropExtraFields
      * dropExtraFields} to eliminate unused data, and you see the "script running slowly" dialog, you may need to set this
@@ -1247,7 +1247,7 @@ public class DataSource extends BaseClass  implements com.smartgwt.client.data.e
 
     /**
      * Very advanced: for servers that do not support paging, and must return large numbers of XML records in one HTTP
-     * response, SmartGWT breaks up the processing of the response in order to avoid the "script running slowly" dialog
+     * response, Smart GWT breaks up the processing of the response in order to avoid the "script running slowly" dialog
      * appearing for an end user. <P> If you have a relatively small number of records with a great deal of properties or
      * subojects on each record, and you have not set {@link com.smartgwt.client.data.DataSource#getDropExtraFields
      * dropExtraFields} to eliminate unused data, and you see the "script running slowly" dialog, you may need to set this
@@ -1261,7 +1261,7 @@ public class DataSource extends BaseClass  implements com.smartgwt.client.data.e
     }
 
     /**
-     * [A] If set to true, both client and server-side advanced filtering used by SmartGWT will follow&#010 SQL99 behavior for
+     * [A] If set to true, both client and server-side advanced filtering used by Smart GWT will follow&#010 SQL99 behavior for
      * dealing with NULL values, which is often counter-intuitive to users.&#010 Specifically, when a field has NULL value, all
      * of the following expressions are false:&#010 <pre>&#010    field == "someValue"  (normally false)&#010    field !=
      * "someValue"  (normally true)&#010    not (field == "someValue")   (normally true)&#010    not (field != "someValue")  
@@ -1275,7 +1275,7 @@ public class DataSource extends BaseClass  implements com.smartgwt.client.data.e
     }
 
     /**
-     * [A] If set to true, both client and server-side advanced filtering used by SmartGWT will follow&#010 SQL99 behavior for
+     * [A] If set to true, both client and server-side advanced filtering used by Smart GWT will follow&#010 SQL99 behavior for
      * dealing with NULL values, which is often counter-intuitive to users.&#010 Specifically, when a field has NULL value, all
      * of the following expressions are false:&#010 <pre>&#010    field == "someValue"  (normally false)&#010    field !=
      * "someValue"  (normally true)&#010    not (field == "someValue")   (normally true)&#010    not (field != "someValue")  
@@ -1326,7 +1326,7 @@ public class DataSource extends BaseClass  implements com.smartgwt.client.data.e
      * If you define this method on a DataSource, it will be called whenever the server returns a DSResponse with a status
      * other than {@link com.smartgwt.client.rpc.RPCResponse#STATUS_SUCCESS}.  You can use this hook to do DataSource-specific
      * error handling.  Unless you return <code>false</code> from this method, {@link
-     * com.smartgwt.client.rpc.RPCManager#handleError} will be called by SmartGWT right after this method completes.
+     * com.smartgwt.client.rpc.RPCManager#handleError} will be called by Smart GWT right after this method completes.
      *
      * @param handler the handleError handler
      * @return {@link HandlerRegistration} used to remove this handler
@@ -1553,7 +1553,7 @@ public class DataSource extends BaseClass  implements com.smartgwt.client.data.e
 
     /**
      * For a dataSource using client-side data integration, return the data that should be sent to the
-     * DataSource.dataURL. <br> By default, HTTP requests sent to non-SmartGWT servers do not include DSRequest
+     * DataSource.dataURL. <br> By default, HTTP requests sent to non-Smart GWT servers do not include DSRequest
      * metadata such as DSRequest.startRow, endRow, and oldValues. Only the core datasource protocol data is sent, such
      * as the criteria passed to fetchData() or the updated values submitted by form.saveData(). <br> transformRequest()
      * allows you to transform dsRequest metadata into a format understood by your server and include it in the HTTP
@@ -1888,7 +1888,7 @@ public class DataSource extends BaseClass  implements com.smartgwt.client.data.e
      * from
      * the DataSource: <pre>    isc.DataSource.get("employees").fetchData(null, "myGrid.setData(data)"); </pre> Unlike
      * calling <code>myGrid.fetchData()</code>, which creates a {@link com.smartgwt.client.data.ResultSet}, the data
-     * provided to the grid is "disconnected" data, unmanaged by SmartGWT's databinding facilities and safe to
+     * provided to the grid is "disconnected" data, unmanaged by Smart GWT's databinding facilities and safe to
      * directly modify.  This is useful when, for example, a ListGrid is being used as a more sophisticated version of
      * HTML's multi-select component. <P> Disconnected datasets may be used to populate various visual components.  For
      * example, while an individual FormItem can be configured to fetch {@link com.smartgwt.client.widgets.form.fields.FormItem#getValueMap
@@ -1910,8 +1910,8 @@ public class DataSource extends BaseClass  implements com.smartgwt.client.data.e
      * approach.  Large datasets degrade the basic performance of some browsers, so use {@link
      * com.smartgwt.client..PickList#getOptionDataSource optionDataSource} and similar facilities to manage datasets
      * that may become very large. <P> <b>Data-Driven Visual Component Creation</b> <P>
-     * <code>DataSource.fetchData()</code> can also be used to create SmartGWT components in a data-driven way.  Many
-     * properties on SmartGWT visual components are configured via an Array of Objects - the same data format that
+     * <code>DataSource.fetchData()</code> can also be used to create Smart GWT components in a data-driven way.  Many
+     * properties on Smart GWT visual components are configured via an Array of Objects - the same data format that
      * <code>dataSource.fetchData()</code> returns.  These include {@link com.smartgwt.client.widgets.grid.ListGrid#getFields
      * fields}, {@link com.smartgwt.client.widgets.tab.TabSet#getTabs tabs}, {@link
      * com.smartgwt.client.widgets.form.DynamicForm#getItems items}, {@link com.smartgwt.client..Facet#getValues values}
@@ -1940,7 +1940,7 @@ public class DataSource extends BaseClass  implements com.smartgwt.client.data.e
      * from
      * the DataSource: <pre>    isc.DataSource.get("employees").fetchData(null, "myGrid.setData(data)"); </pre> Unlike
      * calling <code>myGrid.fetchData()</code>, which creates a {@link com.smartgwt.client.data.ResultSet}, the data
-     * provided to the grid is "disconnected" data, unmanaged by SmartGWT's databinding facilities and safe to
+     * provided to the grid is "disconnected" data, unmanaged by Smart GWT's databinding facilities and safe to
      * directly modify.  This is useful when, for example, a ListGrid is being used as a more sophisticated version of
      * HTML's multi-select component. <P> Disconnected datasets may be used to populate various visual components.  For
      * example, while an individual FormItem can be configured to fetch {@link com.smartgwt.client.widgets.form.fields.FormItem#getValueMap
@@ -1962,8 +1962,8 @@ public class DataSource extends BaseClass  implements com.smartgwt.client.data.e
      * approach.  Large datasets degrade the basic performance of some browsers, so use {@link
      * com.smartgwt.client..PickList#getOptionDataSource optionDataSource} and similar facilities to manage datasets
      * that may become very large. <P> <b>Data-Driven Visual Component Creation</b> <P>
-     * <code>DataSource.fetchData()</code> can also be used to create SmartGWT components in a data-driven way.  Many
-     * properties on SmartGWT visual components are configured via an Array of Objects - the same data format that
+     * <code>DataSource.fetchData()</code> can also be used to create Smart GWT components in a data-driven way.  Many
+     * properties on Smart GWT visual components are configured via an Array of Objects - the same data format that
      * <code>dataSource.fetchData()</code> returns.  These include {@link com.smartgwt.client.widgets.grid.ListGrid#getFields
      * fields}, {@link com.smartgwt.client.widgets.tab.TabSet#getTabs tabs}, {@link
      * com.smartgwt.client.widgets.form.DynamicForm#getItems items}, {@link com.smartgwt.client..Facet#getValues values}
@@ -1994,7 +1994,7 @@ public class DataSource extends BaseClass  implements com.smartgwt.client.data.e
      * from
      * the DataSource: <pre>    isc.DataSource.get("employees").fetchData(null, "myGrid.setData(data)"); </pre> Unlike
      * calling <code>myGrid.fetchData()</code>, which creates a {@link com.smartgwt.client.data.ResultSet}, the data
-     * provided to the grid is "disconnected" data, unmanaged by SmartGWT's databinding facilities and safe to
+     * provided to the grid is "disconnected" data, unmanaged by Smart GWT's databinding facilities and safe to
      * directly modify.  This is useful when, for example, a ListGrid is being used as a more sophisticated version of
      * HTML's multi-select component. <P> Disconnected datasets may be used to populate various visual components.  For
      * example, while an individual FormItem can be configured to fetch {@link com.smartgwt.client.widgets.form.fields.FormItem#getValueMap
@@ -2016,8 +2016,8 @@ public class DataSource extends BaseClass  implements com.smartgwt.client.data.e
      * approach.  Large datasets degrade the basic performance of some browsers, so use {@link
      * com.smartgwt.client..PickList#getOptionDataSource optionDataSource} and similar facilities to manage datasets
      * that may become very large. <P> <b>Data-Driven Visual Component Creation</b> <P>
-     * <code>DataSource.fetchData()</code> can also be used to create SmartGWT components in a data-driven way.  Many
-     * properties on SmartGWT visual components are configured via an Array of Objects - the same data format that
+     * <code>DataSource.fetchData()</code> can also be used to create Smart GWT components in a data-driven way.  Many
+     * properties on Smart GWT visual components are configured via an Array of Objects - the same data format that
      * <code>dataSource.fetchData()</code> returns.  These include {@link com.smartgwt.client.widgets.grid.ListGrid#getFields
      * fields}, {@link com.smartgwt.client.widgets.tab.TabSet#getTabs tabs}, {@link
      * com.smartgwt.client.widgets.form.DynamicForm#getItems items}, {@link com.smartgwt.client..Facet#getValues values}
@@ -2054,7 +2054,7 @@ public class DataSource extends BaseClass  implements com.smartgwt.client.data.e
      * from
      * the DataSource: <pre>    isc.DataSource.get("employees").fetchData(null, "myGrid.setData(data)"); </pre> Unlike
      * calling <code>myGrid.fetchData()</code>, which creates a {@link com.smartgwt.client.data.ResultSet}, the data
-     * provided to the grid is "disconnected" data, unmanaged by SmartGWT's databinding facilities and safe to
+     * provided to the grid is "disconnected" data, unmanaged by Smart GWT's databinding facilities and safe to
      * directly modify.  This is useful when, for example, a ListGrid is being used as a more sophisticated version of
      * HTML's multi-select component. <P> Disconnected datasets may be used to populate various visual components.  For
      * example, while an individual FormItem can be configured to fetch {@link com.smartgwt.client.widgets.form.fields.FormItem#getValueMap
@@ -2076,8 +2076,8 @@ public class DataSource extends BaseClass  implements com.smartgwt.client.data.e
      * approach.  Large datasets degrade the basic performance of some browsers, so use {@link
      * com.smartgwt.client..PickList#getOptionDataSource optionDataSource} and similar facilities to manage datasets
      * that may become very large. <P> <b>Data-Driven Visual Component Creation</b> <P>
-     * <code>DataSource.fetchData()</code> can also be used to create SmartGWT components in a data-driven way.  Many
-     * properties on SmartGWT visual components are configured via an Array of Objects - the same data format that
+     * <code>DataSource.fetchData()</code> can also be used to create Smart GWT components in a data-driven way.  Many
+     * properties on Smart GWT visual components are configured via an Array of Objects - the same data format that
      * <code>dataSource.fetchData()</code> returns.  These include {@link com.smartgwt.client.widgets.grid.ListGrid#getFields
      * fields}, {@link com.smartgwt.client.widgets.tab.TabSet#getTabs tabs}, {@link
      * com.smartgwt.client.widgets.form.DynamicForm#getItems items}, {@link com.smartgwt.client..Facet#getValues values}
@@ -2289,7 +2289,7 @@ public class DataSource extends BaseClass  implements com.smartgwt.client.data.e
     }-*/;
 
    /**
-    * Serialize a JavaScript object as XML.&#010 <P>&#010 The JavaScript Object passed to {@link com.smartgwt.client.data.DataSource#xmlSerialize} becomes an XML&#010 element named after the {@link com.smartgwt.client.data.DataSource#getTagName tagName} (or {@link com.smartgwt.client.data.DataSource#getID ID} if&#010 tagName is unset).  Each property of the object becomes a subElement.  For example,&#010 using a DataSource to serialize like this:&#010 <pre>&#010     var inputObject = {&#010        startRow : 5,&#010        endRow : 50,&#010        data : [&#010           { field1 : "value1", field2: new Date() },&#010           { field1 : "value3", field2: null }&#010        ]&#010     };&#010     var myDS = isc.DataSource.create({ tagName:"DSRequest" });&#010     myDS.xmlSerialize(inputObject);&#010 </pre>&#010 .. produces the following XML:&#010 <pre>&#010     &lt;DSRequest&gt;&#010         &lt;startRow&gt;5&lt;/startRow&gt;&#010         &lt;endRow&gt;50&lt;/endRow&gt;&#010         &lt;data&gt;&#010             &lt;field1&gt;value1&lt;/field1&gt;&#010             &lt;field2&gt;2005-10-14T18:01:16&lt;/field2&gt;&#010         &lt;/data&gt;&#010         &lt;data&gt;&#010             &lt;field1&gt;value3&lt;/field1&gt;&#010             &lt;field2&gt;&lt;/field2&gt;&#010         &lt;/data&gt;&#010     &lt;/DSRequest&gt;&#010 </pre>&#010 <P>&#010 If you are working with a WSDL-described web service, XML serialization is performed&#010 automatically by APIs like {@link com.smartgwt.client.data.WebService#callOperation} - you only need to&#010 know about serialization in order to understand how to put together JavaScript data that&#010 will fill in an XML message properly.   &#010 <br>&#010 <b>Note:</b> when trying to send data to a web service, it is best to avoid putting&#010 together any XML yourself, instead modify the JavaScript data being fed to ISC's SOAP&#010 engine.  This is because the WSDL and SOAP rules for correctly namespacing and encoding&#010 Web Service messages are very complex and are subject to change with new versions of the&#010 web service you are contacting, whereas the data itself is easy to manipulate and less&#010 likely to change.&#010 <br>&#010 To troubleshoot message formation, you can set the log category "xmlComm" to &#010 <code>DEBUG</code> level in order to see the XML message formed by SmartGWT reported&#010 in log statements in the Developer Console.&#010&#010
+    * Serialize a JavaScript object as XML.&#010 <P>&#010 The JavaScript Object passed to {@link com.smartgwt.client.data.DataSource#xmlSerialize} becomes an XML&#010 element named after the {@link com.smartgwt.client.data.DataSource#getTagName tagName} (or {@link com.smartgwt.client.data.DataSource#getID ID} if&#010 tagName is unset).  Each property of the object becomes a subElement.  For example,&#010 using a DataSource to serialize like this:&#010 <pre>&#010     var inputObject = {&#010        startRow : 5,&#010        endRow : 50,&#010        data : [&#010           { field1 : "value1", field2: new Date() },&#010           { field1 : "value3", field2: null }&#010        ]&#010     };&#010     var myDS = isc.DataSource.create({ tagName:"DSRequest" });&#010     myDS.xmlSerialize(inputObject);&#010 </pre>&#010 .. produces the following XML:&#010 <pre>&#010     &lt;DSRequest&gt;&#010         &lt;startRow&gt;5&lt;/startRow&gt;&#010         &lt;endRow&gt;50&lt;/endRow&gt;&#010         &lt;data&gt;&#010             &lt;field1&gt;value1&lt;/field1&gt;&#010             &lt;field2&gt;2005-10-14T18:01:16&lt;/field2&gt;&#010         &lt;/data&gt;&#010         &lt;data&gt;&#010             &lt;field1&gt;value3&lt;/field1&gt;&#010             &lt;field2&gt;&lt;/field2&gt;&#010         &lt;/data&gt;&#010     &lt;/DSRequest&gt;&#010 </pre>&#010 <P>&#010 If you are working with a WSDL-described web service, XML serialization is performed&#010 automatically by APIs like {@link com.smartgwt.client.data.WebService#callOperation} - you only need to&#010 know about serialization in order to understand how to put together JavaScript data that&#010 will fill in an XML message properly.   &#010 <br>&#010 <b>Note:</b> when trying to send data to a web service, it is best to avoid putting&#010 together any XML yourself, instead modify the JavaScript data being fed to ISC's SOAP&#010 engine.  This is because the WSDL and SOAP rules for correctly namespacing and encoding&#010 Web Service messages are very complex and are subject to change with new versions of the&#010 web service you are contacting, whereas the data itself is easy to manipulate and less&#010 likely to change.&#010 <br>&#010 To troubleshoot message formation, you can set the log category "xmlComm" to &#010 <code>DEBUG</code> level in order to see the XML message formed by Smart GWT reported&#010 in log statements in the Developer Console.&#010&#010
     * @param data data to be serialized
     *
     * @return data as serialized to XML
@@ -2301,7 +2301,7 @@ public class DataSource extends BaseClass  implements com.smartgwt.client.data.e
 
 
     /**
-     * Serialize a JavaScript object as XML.&#010 <P>&#010 The JavaScript Object passed to {@link com.smartgwt.client.data.DataSource#xmlSerialize} becomes an XML&#010 element named after the {@link com.smartgwt.client.data.DataSource#getTagName tagName} (or {@link com.smartgwt.client.data.DataSource#getID ID} if&#010 tagName is unset).  Each property of the object becomes a subElement.  For example,&#010 using a DataSource to serialize like this:&#010 <pre>&#010     var inputObject = {&#010        startRow : 5,&#010        endRow : 50,&#010        data : [&#010           { field1 : "value1", field2: new Date() },&#010           { field1 : "value3", field2: null }&#010        ]&#010     };&#010     var myDS = isc.DataSource.create({ tagName:"DSRequest" });&#010     myDS.xmlSerialize(inputObject);&#010 </pre>&#010 .. produces the following XML:&#010 <pre>&#010     &lt;DSRequest&gt;&#010         &lt;startRow&gt;5&lt;/startRow&gt;&#010         &lt;endRow&gt;50&lt;/endRow&gt;&#010         &lt;data&gt;&#010             &lt;field1&gt;value1&lt;/field1&gt;&#010             &lt;field2&gt;2005-10-14T18:01:16&lt;/field2&gt;&#010         &lt;/data&gt;&#010         &lt;data&gt;&#010             &lt;field1&gt;value3&lt;/field1&gt;&#010             &lt;field2&gt;&lt;/field2&gt;&#010         &lt;/data&gt;&#010     &lt;/DSRequest&gt;&#010 </pre>&#010 <P>&#010 If you are working with a WSDL-described web service, XML serialization is performed&#010 automatically by APIs like {@link com.smartgwt.client.data.WebService#callOperation} - you only need to&#010 know about serialization in order to understand how to put together JavaScript data that&#010 will fill in an XML message properly.   &#010 <br>&#010 <b>Note:</b> when trying to send data to a web service, it is best to avoid putting&#010 together any XML yourself, instead modify the JavaScript data being fed to ISC's SOAP&#010 engine.  This is because the WSDL and SOAP rules for correctly namespacing and encoding&#010 Web Service messages are very complex and are subject to change with new versions of the&#010 web service you are contacting, whereas the data itself is easy to manipulate and less&#010 likely to change.&#010 <br>&#010 To troubleshoot message formation, you can set the log category "xmlComm" to &#010 <code>DEBUG</code> level in order to see the XML message formed by SmartGWT reported&#010 in log statements in the Developer Console.&#010&#010
+     * Serialize a JavaScript object as XML.&#010 <P>&#010 The JavaScript Object passed to {@link com.smartgwt.client.data.DataSource#xmlSerialize} becomes an XML&#010 element named after the {@link com.smartgwt.client.data.DataSource#getTagName tagName} (or {@link com.smartgwt.client.data.DataSource#getID ID} if&#010 tagName is unset).  Each property of the object becomes a subElement.  For example,&#010 using a DataSource to serialize like this:&#010 <pre>&#010     var inputObject = {&#010        startRow : 5,&#010        endRow : 50,&#010        data : [&#010           { field1 : "value1", field2: new Date() },&#010           { field1 : "value3", field2: null }&#010        ]&#010     };&#010     var myDS = isc.DataSource.create({ tagName:"DSRequest" });&#010     myDS.xmlSerialize(inputObject);&#010 </pre>&#010 .. produces the following XML:&#010 <pre>&#010     &lt;DSRequest&gt;&#010         &lt;startRow&gt;5&lt;/startRow&gt;&#010         &lt;endRow&gt;50&lt;/endRow&gt;&#010         &lt;data&gt;&#010             &lt;field1&gt;value1&lt;/field1&gt;&#010             &lt;field2&gt;2005-10-14T18:01:16&lt;/field2&gt;&#010         &lt;/data&gt;&#010         &lt;data&gt;&#010             &lt;field1&gt;value3&lt;/field1&gt;&#010             &lt;field2&gt;&lt;/field2&gt;&#010         &lt;/data&gt;&#010     &lt;/DSRequest&gt;&#010 </pre>&#010 <P>&#010 If you are working with a WSDL-described web service, XML serialization is performed&#010 automatically by APIs like {@link com.smartgwt.client.data.WebService#callOperation} - you only need to&#010 know about serialization in order to understand how to put together JavaScript data that&#010 will fill in an XML message properly.   &#010 <br>&#010 <b>Note:</b> when trying to send data to a web service, it is best to avoid putting&#010 together any XML yourself, instead modify the JavaScript data being fed to ISC's SOAP&#010 engine.  This is because the WSDL and SOAP rules for correctly namespacing and encoding&#010 Web Service messages are very complex and are subject to change with new versions of the&#010 web service you are contacting, whereas the data itself is easy to manipulate and less&#010 likely to change.&#010 <br>&#010 To troubleshoot message formation, you can set the log category "xmlComm" to &#010 <code>DEBUG</code> level in order to see the XML message formed by Smart GWT reported&#010 in log statements in the Developer Console.&#010&#010
      * @param data data to be serialized
      * @param flags options for the serialization engine
      *

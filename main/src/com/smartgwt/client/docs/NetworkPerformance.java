@@ -3,12 +3,12 @@ package com.smartgwt.client.docs;
 
 /**
  * <h3>Network Performance</h3>
- * This section describes various methods for optimizing delivery of your SmartGWT-based application to the browser.  The
- * various techniques discussed here should enable you to drastically reduce the time to load your SmartGWT based
+ * This section describes various methods for optimizing delivery of your Smart GWT-based application to the browser.  The
+ * various techniques discussed here should enable you to drastically reduce the time to load your Smart GWT based
  * application and to cut down on bandwidth costs and server-side CPU usage. There are three main ways of improving the
  * performance of your application: <p> <u><b>Compression</b></u> <p> You'll want to deliver as much of your application
- * assets compressed as possible.  For a start, the SmartGWT modules come pre-compressed.  The {@link
- * com.smartgwt.client.docs.Compression} section describes how to make sure that SmartGWT modules and your application
+ * assets compressed as possible.  For a start, the Smart GWT modules come pre-compressed.  The {@link
+ * com.smartgwt.client.docs.Compression} section describes how to make sure that Smart GWT modules and your application
  * logic are delivered compressed and how to enable dynamic compression of your dynamic content. <p> Compression
  * drastically reduces transfer times to the browser.  Compression ratios for css and javascript files can be as high as
  * 8:1. <p> <u><b>Caching</b></u> <p> The {@link com.smartgwt.client.docs.Caching} section deals with delivering as much
@@ -23,7 +23,7 @@ package com.smartgwt.client.docs;
  * together also helps to increase the compression ratio because the commpression engine has more redundant data to work
  * with. <p> <u><b>FileLoader</b></u> <p> The FileLoader is a standalone client-side module that allows you to performing
  * caching or loading of various resources in the background on any page.  The typical usage pattern is to use this module
- * to pre-cache SmartGWT modules, skin images, and application logic while the user is, for example filling in a login
+ * to pre-cache Smart GWT modules, skin images, and application logic while the user is, for example filling in a login
  * form.  See the {@link com.smartgwt.client..FileLoader} documentation on usage. <p> <u><b>SSL Considerations</b></u> <p>
  * Some quirks to be aware of when optimizing for pages servied via HTTPS: <ul> <li>If your top-level https page loads an
  * image via http, IE will pop a warning to the user asking if it's ok to serve the "unsecure" content.  Firefox does not
@@ -32,7 +32,7 @@ package com.smartgwt.client.docs;
  * memory for the duration of the browser session.  This makes the use of the {@link com.smartgwt.client..FileLoader} even
  * more important for SSL applications.  IE will cache SSL content across browser restarts. <li>If your only concern is
  * with actual security and not with perception, it makes a lot of sense to serve the top-level page via plain HTTP and
- * then use the SmartGWT RPC mechanism to fetch sensitive data with no-cache headers via HTTPS.  Unfortunately this almost
+ * then use the Smart GWT RPC mechanism to fetch sensitive data with no-cache headers via HTTPS.  Unfortunately this almost
  * never practical because most users look for the secure lock icon on the top-level page and may become worried that the
  * application is not secure if they don't see it. </ul> <p> <u><b>Other Tips</b></u> <p> 1.  Modern applications often use
  * a number of cookies to keep track of session state, application state, etc.  If you don't limit the paths these cookies

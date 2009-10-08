@@ -1,10 +1,10 @@
 /*
- * SmartGWT (GWT for SmartClient)
+ * Smart GWT (GWT for SmartClient)
  * Copyright 2008 and beyond, Isomorphic Software, Inc.
  *
- * SmartGWT is free software; you can redistribute it and/or modify it
+ * Smart GWT is free software; you can redistribute it and/or modify it
  * under the terms of the GNU Lesser General Public License version 3
- * as published by the Free Software Foundation.  SmartGWT is also
+ * as published by the Free Software Foundation.  Smart GWT is also
  * available under typical commercial license terms - see
  * http://smartclient.com/license
  *
@@ -76,8 +76,8 @@ import com.google.gwt.event.shared.HasHandlers;
  * children,      and allows you to create generalized parent-level handlers rather than duplicating      code in each
  * child. </ul> Note: Canceling propagation of an event may cancel its side effects as well, including the generation of
  * other (synthetic) events. For example, if a global mouseDown handler returns false, drag-and-drop events will not be
- * generated. Specific effects are discussed in the descriptions of the various events in the following sections. <p>
- * SmartGWT libraries will not interfere with native event handling when events occur outside of a target widget. You can
+ * generated. Specific effects are discussed in the descriptions of the various events in the following sections. <p> Smart
+ * GWT libraries will not interfere with native event handling when events occur outside of a target widget. You can
  * therefore have HTML that is not ISC-based on the same page as widget objects that will react to native events as you
  * would expect. <p> You can use isc.Event as an alias for isc.EventHandler.
  */
