@@ -1704,6 +1704,29 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
     }
 
     /**
+     * If this property is true, users can drag the mouse to select text within grid rows. This is mutually exclusive with 
+     * ${isc.DocUtils.linkForRef('canDragReorder','rearranging rows or cells by dragging')}, and with  {@link
+     * com.smartgwt.client.widgets.grid.ListGrid#getCanDragSelect 'drag selection of rows'}.
+     *
+     * @param canDragSelectText canDragSelectText Default value is false
+     */
+    public void setCanDragSelectText(Boolean canDragSelectText) {
+        setAttribute("canDragSelectText", canDragSelectText, true);
+    }
+
+    /**
+     * If this property is true, users can drag the mouse to select text within grid rows. This is mutually exclusive with 
+     * ${isc.DocUtils.linkForRef('canDragReorder','rearranging rows or cells by dragging')}, and with  {@link
+     * com.smartgwt.client.widgets.grid.ListGrid#getCanDragSelect 'drag selection of rows'}.
+     *
+     *
+     * @return Boolean
+     */
+    public Boolean getCanDragSelectText()  {
+        return getAttributeAsBoolean("canDragSelectText");
+    }
+
+    /**
      * If {@link com.smartgwt.client.widgets.grid.ListGrid#getSelectionAppearance selectionAppearance} is set to
      * <code>"checkbox"</code> this property determines the image to display in the checkbox field for a selected row. If
      * unset, the {@link com.smartgwt.client.widgets.grid.ListGrid#getBooleanTrueImage booleanTrueImage} will be used.
@@ -4083,109 +4106,6 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
 
     // ********************* Methods ***********************
 
-
-    /**
-     * Uses a "fetch" operation on the current {@link com.smartgwt.client.widgets.DataBoundComponent#getDataSource
-     * 'DataSource'} to  retrieve data that matches the current filter and sort criteria for this component, then  exports the
-     * resulting data to a file or window in the requested format. <P> For more information on exporting data, see {@link
-     * com.smartgwt.client.data.DataSource#exportData}.
-     */
-    public native void exportData() /*-{
-        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
-        self.exportData();
-    }-*/;
-
-    /**
-     * Uses a "fetch" operation on the current {@link com.smartgwt.client.widgets.DataBoundComponent#getDataSource
-     * 'DataSource'} to  retrieve data that matches the current filter and sort criteria for this component, then  exports the
-     * resulting data to a file or window in the requested format. <P> For more information on exporting data, see {@link
-     * com.smartgwt.client.data.DataSource#exportData}.
-     * @param requestProperties additional properties to set on the DSRequest                                            that will be issued
-     */
-    public native void exportData(DSRequest requestProperties) /*-{
-        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
-        self.exportData(requestProperties.@com.smartgwt.client.core.DataClass::getJsObj()());
-    }-*/;
-
-
-
-
-    /**
-     * Retrieves the current criteria for this component (may be null)
-     *
-     * @return current filter criteria
-     */
-    public native Criteria getCriteria() /*-{
-        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
-        var ret = self.getCriteria();
-        if(ret == null || ret === undefined) return null;
-        return @com.smartgwt.client.data.Criteria::new(Lcom/google/gwt/core/client/JavaScriptObject;)(ret);
-    }-*/;
-
-
-
-    /**
-     * Compares the specified criteria with the current criteria applied to this component's data object and determines whether
-     * the new criteria could be satisfied from the currently cached set of data, or if a new filter/fetch operation will be
-     * required. <P> This is equivalent to calling <code>this.data.willFetchData(...)</code>. Always returns true if this
-     * component is not showing a set of data from the dataSource.
-     * @param newCriteria new criteria to test.
-     *
-     * @return true if server fetch would be required to satisfy new criteria.
-     */
-    public native Boolean willFetchData(Criteria newCriteria) /*-{
-        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
-        var retVal =self.willFetchData(newCriteria.@com.smartgwt.client.core.DataClass::getJsObj()());
-        if(retVal == null || retVal === undefined) {
-            return null;
-        } else {
-            return @com.smartgwt.client.util.JSOHelper::toBoolean(Z)(retVal);
-        }
-    }-*/;
-
-    /**
-     * Compares the specified criteria with the current criteria applied to this component's data object and determines whether
-     * the new criteria could be satisfied from the currently cached set of data, or if a new filter/fetch operation will be
-     * required. <P> This is equivalent to calling <code>this.data.willFetchData(...)</code>. Always returns true if this
-     * component is not showing a set of data from the dataSource.
-     * @param newCriteria new criteria to test.
-     * @param textMatchStyle New text match style. If not passed assumes       textMatchStyle will not be modified.
-     *
-     * @return true if server fetch would be required to satisfy new criteria.
-     */
-    public native Boolean willFetchData(Criteria newCriteria, TextMatchStyle textMatchStyle) /*-{
-        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
-        var retVal =self.willFetchData(newCriteria.@com.smartgwt.client.core.DataClass::getJsObj()(), textMatchStyle.@com.smartgwt.client.types.TextMatchStyle::getValue()());
-        if(retVal == null || retVal === undefined) {
-            return null;
-        } else {
-                return @com.smartgwt.client.util.JSOHelper::toBoolean(Z)(retVal);
-        }
-    }-*/;
-
-
-
-
-
-    /**
-     * Return the first selected record in this component.<br><br> This method is appropriate if <code>{@link
-     * com.smartgwt.client.widgets.grid.ListGrid#getSelectionType selectionType}</code> is <code>"single"</code>, or if you
-     * only care about the first selected record in a multiple-record selection. To access all selected records, use
-     * <code>{@link com.smartgwt.client.widgets.grid.ListGrid#getSelection}</code> instead.
-     *
-     * @return first selected record, or null if nothing selected
-     */
-    public native ListGridRecord getSelectedRecord() /*-{
-        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
-        var ret = self.getSelectedRecord();
-        if(ret == null || ret === undefined) return null;
-        var retVal = @com.smartgwt.client.core.RefDataClass::getRef(Lcom/google/gwt/core/client/JavaScriptObject;)(ret);
-        if(retVal == null) {
-            retVal = @com.smartgwt.client.widgets.grid.ListGridRecord::new(Lcom/google/gwt/core/client/JavaScriptObject;)(ret);
-        }
-        return retVal;
-    }-*/;
-
     /**
      * Marks the widget as "dirty" so that it will be added to a queue for redraw. Redraw of dirty components is handled by a
      * looping timer and will after a very short delay (typically less than 100ms). In most cases it is recommended that
@@ -5922,29 +5842,115 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
         }
    }-*/;
 
+
+    /**
+     * Uses a "fetch" operation on the current {@link com.smartgwt.client.widgets.DataBoundComponent#getDataSource
+     * 'DataSource'} to  retrieve data that matches the current filter and sort criteria for this component, then  exports the
+     * resulting data to a file or window in the requested format. <P> For more information on exporting data, see {@link
+     * com.smartgwt.client.data.DataSource#exportData}.
+     */
+    public native void exportData() /*-{
+        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
+        self.exportData();
+    }-*/;
+
+    /**
+     * Uses a "fetch" operation on the current {@link com.smartgwt.client.widgets.DataBoundComponent#getDataSource
+     * 'DataSource'} to  retrieve data that matches the current filter and sort criteria for this component, then  exports the
+     * resulting data to a file or window in the requested format. <P> For more information on exporting data, see {@link
+     * com.smartgwt.client.data.DataSource#exportData}.
+     * @param requestProperties additional properties to set on the DSRequest                                            that will be issued
+     */
+    public native void exportData(DSRequest requestProperties) /*-{
+        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
+        self.exportData(requestProperties.@com.smartgwt.client.core.DataClass::getJsObj()());
+    }-*/;
+
+
+
+
+    /**
+     * Retrieves the current criteria for this component (may be null)
+     *
+     * @return current filter criteria
+     */
+    public native Criteria getCriteria() /*-{
+        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
+        var ret = self.getCriteria();
+        if(ret == null || ret === undefined) return null;
+        return @com.smartgwt.client.data.Criteria::new(Lcom/google/gwt/core/client/JavaScriptObject;)(ret);
+    }-*/;
+
+
+
+    /**
+     * Compares the specified criteria with the current criteria applied to this component's data object and determines whether
+     * the new criteria could be satisfied from the currently cached set of data, or if a new filter/fetch operation will be
+     * required. <P> This is equivalent to calling <code>this.data.willFetchData(...)</code>. Always returns true if this
+     * component is not showing a set of data from the dataSource.
+     * @param newCriteria new criteria to test.
+     *
+     * @return true if server fetch would be required to satisfy new criteria.
+     */
+    public native Boolean willFetchData(Criteria newCriteria) /*-{
+        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
+        var retVal =self.willFetchData(newCriteria.@com.smartgwt.client.core.DataClass::getJsObj()());
+        if(retVal == null || retVal === undefined) {
+            return null;
+        } else {
+            return @com.smartgwt.client.util.JSOHelper::toBoolean(Z)(retVal);
+        }
+    }-*/;
+
+    /**
+     * Compares the specified criteria with the current criteria applied to this component's data object and determines whether
+     * the new criteria could be satisfied from the currently cached set of data, or if a new filter/fetch operation will be
+     * required. <P> This is equivalent to calling <code>this.data.willFetchData(...)</code>. Always returns true if this
+     * component is not showing a set of data from the dataSource.
+     * @param newCriteria new criteria to test.
+     * @param textMatchStyle New text match style. If not passed assumes       textMatchStyle will not be modified.
+     *
+     * @return true if server fetch would be required to satisfy new criteria.
+     */
+    public native Boolean willFetchData(Criteria newCriteria, TextMatchStyle textMatchStyle) /*-{
+        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
+        var retVal =self.willFetchData(newCriteria.@com.smartgwt.client.core.DataClass::getJsObj()(), textMatchStyle.@com.smartgwt.client.types.TextMatchStyle::getValue()());
+        if(retVal == null || retVal === undefined) {
+            return null;
+        } else {
+                return @com.smartgwt.client.util.JSOHelper::toBoolean(Z)(retVal);
+        }
+    }-*/;
+
+
+
+
+
+    /**
+     * Return the first selected record in this component.<br><br> This method is appropriate if <code>{@link
+     * com.smartgwt.client.widgets.grid.ListGrid#getSelectionType selectionType}</code> is <code>"single"</code>, or if you
+     * only care about the first selected record in a multiple-record selection. To access all selected records, use
+     * <code>{@link com.smartgwt.client.widgets.grid.ListGrid#getSelection}</code> instead.
+     *
+     * @return first selected record, or null if nothing selected
+     */
+    public native ListGridRecord getSelectedRecord() /*-{
+        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
+        var ret = self.getSelectedRecord();
+        if(ret == null || ret === undefined) return null;
+        var retVal = @com.smartgwt.client.core.RefDataClass::getRef(Lcom/google/gwt/core/client/JavaScriptObject;)(ret);
+        if(retVal == null) {
+            retVal = @com.smartgwt.client.widgets.grid.ListGridRecord::new(Lcom/google/gwt/core/client/JavaScriptObject;)(ret);
+        }
+        return retVal;
+    }-*/;
+
     // ********************* Static Methods ***********************
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+
+
+
     protected native void onInit() /*-{
 
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
@@ -7765,7 +7771,7 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
 
     /**
      * Returns an array of every rowNum for which we have pending (unsubmitted) edits.
-     *
+     * 
      * @return array of rowNums for rows with edit values pending submission
      */
     public native int[] getAllEditRows() /*-{
