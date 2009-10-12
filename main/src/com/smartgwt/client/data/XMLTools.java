@@ -112,15 +112,37 @@ public class XMLTools {
      *
      * @param wsdlURL URL to load the WSDL file from
      * @param callback the callback
-     * @param returnSchemaSet returnSchemaSet
      * @param requestProperties  additional properties to set on the RPCRequest that will be issued
      */
-    public static native void loadWSDL(String wsdlURL, WSDLLoadCallback callback, boolean returnSchemaSet, RPCRequest requestProperties) /*-{
+    public static native void loadWSDL(String wsdlURL, WSDLLoadCallback callback, RPCRequest requestProperties) /*-{
         var reqJS = requestProperties == null ? null : requestProperties.@com.smartgwt.client.rpc.RPCRequest::getJsObj()();
         $wnd.isc.XMLTools.loadWSDL(wsdlURL, function(service) {
             var serviceJ = @com.smartgwt.client.data.WebService::new(Lcom/google/gwt/core/client/JavaScriptObject;)(service);
             callback.@com.smartgwt.client.data.WSDLLoadCallback::execute(Lcom/smartgwt/client/data/WebService;)(serviceJ);
-        }, returnSchemaSet, reqJS);
+        }, reqJS);
+    }-*/;
+
+    /**
+     * Load a WSDL file and create an instance of WebService that allows invoking operations and binding DataSources to web service operations.
+     * The created WebService object is available in the callback as the single parameter "service", or can retrieved via WebService.get(serviceNamespace).
+     * <p>
+     * XML Schema present in the WSDL file will also will also be processed as described in XMLTools.loadXMLSchema().
+     * <p>
+     *
+     * Platform notes: loadWSDL() is not supported in Safari 2.0 (but is supported in Safari 3.0.3 and greater)
+     *
+     * @param wsdlURL URL to load the WSDL file from
+     * @param callback the callback
+     * @param requestProperties  additional properties to set on the RPCRequest that will be issued
+     * @param autoLoadImports  if set, xsd:import statements will be processed automatically to load dependent XSD files where a "location" is specified.
+     * The callback will not fire until all dependencies have been loaded
+     */
+    public static native void loadWSDL(String wsdlURL, WSDLLoadCallback callback, RPCRequest requestProperties, boolean autoLoadImports) /*-{
+        var reqJS = requestProperties == null ? null : requestProperties.@com.smartgwt.client.rpc.RPCRequest::getJsObj()();
+        $wnd.isc.XMLTools.loadWSDL(wsdlURL, function(service) {
+            var serviceJ = @com.smartgwt.client.data.WebService::new(Lcom/google/gwt/core/client/JavaScriptObject;)(service);
+            callback.@com.smartgwt.client.data.WSDLLoadCallback::execute(Lcom/smartgwt/client/data/WebService;)(serviceJ);
+        }, reqJS, autoLoadImports);
     }-*/;
 
     /**
