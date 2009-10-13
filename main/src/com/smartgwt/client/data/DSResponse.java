@@ -129,9 +129,15 @@ public class DSResponse extends RPCResponse {
     // ********************* Static Methods ***********************
 
 
-
-
-
+
+
+
+
+
+
+
+
+
 
     /**
      * Starting row of returned server results, when using paged result fetching <p> Note that startRow and endRow are
@@ -209,7 +215,12 @@ public class DSResponse extends RPCResponse {
      * @return the errors map
      */
     public Map getErrors() {
-        return getAttributeAsMap("errors");
+        //internally the errors object can be a JSO, or single values array
+        JavaScriptObject jsObj = getAttributeAsJavaScriptObject("errors");
+        if(JSOHelper.isArray(jsObj)) {
+            jsObj = JSOHelper.getJSOArrayValue(jsObj, 0);
+        }
+        return JSOHelper.convertToMap(jsObj);
     }
 
     /**
