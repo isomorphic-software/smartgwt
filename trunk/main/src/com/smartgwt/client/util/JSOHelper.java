@@ -582,6 +582,11 @@ public class JSOHelper {
         return (result == null || result === undefined) ? null : result;
     }-*/;
 
+    public static native JavaScriptObject getJSOArrayValue(JavaScriptObject array, int index) /*-{
+        var result = array[index];
+        return (result == null || result === undefined) ? null : result;
+    }-*/;
+
     public static native Object getObjectArrayValue(JavaScriptObject array, int index) /*-{
         var result = array[index];
         return (result == null || result === undefined) ? null : result;
