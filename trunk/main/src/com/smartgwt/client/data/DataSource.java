@@ -1461,9 +1461,18 @@ public class DataSource extends BaseClass  implements com.smartgwt.client.data.e
 
 
 
-
-
-
+
+
+
+
+
+
+
+
+
+
+
+
 
 
     protected native void onInit() /*-{
@@ -2360,7 +2369,7 @@ public class DataSource extends BaseClass  implements com.smartgwt.client.data.e
         var self = this.@com.smartgwt.client.core.BaseClass::getOrCreateJsObj()();
         var value = self.getFieldNames(excludeHidden);
         if(value == null) return null;
-        if(!@com.smartgwt.client.util.JSOHelper::isArray(Lcom/google/gwt/core/client/JavaScriptObject;)(data)) {
+        if(!@com.smartgwt.client.util.JSOHelper::isArray(Lcom/google/gwt/core/client/JavaScriptObject;)(value)) {
             value = [value];
         }
         return @com.smartgwt.client.util.JSOHelper::convertToJavaStringArray(Lcom/google/gwt/core/client/JavaScriptObject;)(value);
