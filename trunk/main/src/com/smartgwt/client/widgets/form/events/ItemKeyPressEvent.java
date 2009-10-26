@@ -55,7 +55,8 @@ import com.smartgwt.client.util.JSOHelper;
 import com.smartgwt.client.util.EnumUtil;
 import com.google.gwt.event.shared.*;
 import com.google.gwt.event.shared.HasHandlers;
-public class ItemKeyPressEvent extends BrowserEvent<ItemKeyPressHandler>  {
+public class ItemKeyPressEvent extends BrowserEvent<ItemKeyPressHandler>  implements Cancellable {
+    private boolean cancel = false;
 
     /**
      * Handler type.
@@ -110,6 +111,19 @@ public class ItemKeyPressEvent extends BrowserEvent<ItemKeyPressHandler>  {
     }
 
 
+    /**
+     * return false to cancel the keyPress, or true to allow it
+     */
+    public void cancel() {
+        cancel = true;
+    }
+
+    /**
+     * @return true if cancelled
+     */
+    public boolean isCancelled() {
+        return cancel;
+    }
 
     /**
      * the FormItem where the change event occurred

@@ -1880,6 +1880,8 @@ public class DynamicForm extends Canvas  implements DataBoundComponent, com.smar
                         var param = {"item" : arguments[0], "keyName" : arguments[1], "characterValue" : arguments[2]};
                         var event = @com.smartgwt.client.widgets.form.events.ItemKeyPressEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
                         selfJ.@com.smartgwt.client.widgets.BaseWidget::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
+                        var ret = event.@com.smartgwt.client.event.Cancellable::isCancelled()();
+                        return !ret;
                     }
              });
         } else {
@@ -1888,6 +1890,8 @@ public class DynamicForm extends Canvas  implements DataBoundComponent, com.smar
                    var param = {"item" : arguments[0], "keyName" : arguments[1], "characterValue" : arguments[2]};
                    var event = @com.smartgwt.client.widgets.form.events.ItemKeyPressEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
                    selfJ.@com.smartgwt.client.widgets.BaseWidget::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
+                   var ret = event.@com.smartgwt.client.event.Cancellable::isCancelled()();
+                   return !ret;
                };
         }
    }-*/;
