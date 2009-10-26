@@ -275,6 +275,31 @@ public class OperationBinding extends DataClass {
     }
 
     /**
+     * Whether to use the {@link com.smartgwt.client.rpc.RPCManager#sendProxied} servlet to send requests described by this
+     * operationBinding.  If unset, automatically detects whether using the HttpProxy is necessary based on the same-origin
+     * policy. <P> Valid only with {@link com.smartgwt.client.data.OperationBinding#getDataProtocol dataProtocol} settings
+     * other than ISCServer.
+     *
+     * @param useHttpProxy useHttpProxy Default value is null
+     */
+    public void setUseHttpProxy(Boolean useHttpProxy) {
+        setAttribute("useHttpProxy", useHttpProxy);
+    }
+
+    /**
+     * Whether to use the {@link com.smartgwt.client.rpc.RPCManager#sendProxied} servlet to send requests described by this
+     * operationBinding.  If unset, automatically detects whether using the HttpProxy is necessary based on the same-origin
+     * policy. <P> Valid only with {@link com.smartgwt.client.data.OperationBinding#getDataProtocol dataProtocol} settings
+     * other than ISCServer.
+     *
+     *
+     * @return Boolean
+     */
+    public Boolean getUseHttpProxy()  {
+        return getAttributeAsBoolean("useHttpProxy");
+    }
+
+    /**
      * Applies only to dataFormat: "json".  Specifies the name of the query parameter that tells your JSON service what
      * function to call as part of the response for this operation. <P> Typically set once for the DataSource as a whole via
      * {@link com.smartgwt.client.data.DataSource#getCallbackParam callbackParam}.
@@ -367,8 +392,11 @@ public class OperationBinding extends DataClass {
      * applied to the returned JSON data via {@link com.smartgwt.client.data.XMLTools#selectObjects}.  Only limited XPath
      * syntax is allowed; see  {@link com.smartgwt.client.data.XMLTools#selectObjects} for details. <P> For processing XML
      * results, see {@link com.smartgwt.client.data.OperationBinding#getXmlNamespaces xmlNamespaces} for information on the
-     * namespaces that are available in this XPath expression. <P> To learn about XPath, try the following search: <a
-     * href="http://www.google.com/search?q=xpath+tutorial" target="_blank" >http://www.google.com/search?q=xpath+tutorial</a>
+     * namespaces that are available in this XPath expression.  If you are contacting a WSDL web service, note that {@link
+     * com.smartgwt.client.data.OperationBinding#getRecordName recordName} is an alternative way to specify which records
+     * should be selected by their tagName or type, and this is usually simpler. <P> To learn about XPath, try the following
+     * search: <a href="http://www.google.com/search?q=xpath+tutorial" target="_blank"
+     * >http://www.google.com/search?q=xpath+tutorial</a>
      *
      * @param recordXPath recordXPath Default value is null
      */
@@ -384,8 +412,11 @@ public class OperationBinding extends DataClass {
      * applied to the returned JSON data via {@link com.smartgwt.client.data.XMLTools#selectObjects}.  Only limited XPath
      * syntax is allowed; see  {@link com.smartgwt.client.data.XMLTools#selectObjects} for details. <P> For processing XML
      * results, see {@link com.smartgwt.client.data.OperationBinding#getXmlNamespaces xmlNamespaces} for information on the
-     * namespaces that are available in this XPath expression. <P> To learn about XPath, try the following search: <a
-     * href="http://www.google.com/search?q=xpath+tutorial" target="_blank" >http://www.google.com/search?q=xpath+tutorial</a>
+     * namespaces that are available in this XPath expression.  If you are contacting a WSDL web service, note that {@link
+     * com.smartgwt.client.data.OperationBinding#getRecordName recordName} is an alternative way to specify which records
+     * should be selected by their tagName or type, and this is usually simpler. <P> To learn about XPath, try the following
+     * search: <a href="http://www.google.com/search?q=xpath+tutorial" target="_blank"
+     * >http://www.google.com/search?q=xpath+tutorial</a>
      *
      *
      * @return String

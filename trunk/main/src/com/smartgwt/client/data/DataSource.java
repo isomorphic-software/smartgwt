@@ -170,6 +170,28 @@ public class DataSource extends BaseClass  implements com.smartgwt.client.data.e
     }
 
     /**
+     * Like {@link com.smartgwt.client.data.OperationBinding#getUseHttpProxy useHttpProxy}, but serves as a default for this
+     * DataSource that may be overriden by individual operationBindings.
+     *
+     * @param useHttpProxy useHttpProxy Default value is null
+     * @throws IllegalStateException this property cannot be changed after the underlying component has been created
+     */
+    public void setUseHttpProxy(Boolean useHttpProxy)  throws IllegalStateException {
+        setAttribute("useHttpProxy", useHttpProxy, false);
+    }
+
+    /**
+     * Like {@link com.smartgwt.client.data.OperationBinding#getUseHttpProxy useHttpProxy}, but serves as a default for this
+     * DataSource that may be overriden by individual operationBindings.
+     *
+     *
+     * @return Boolean
+     */
+    public Boolean getUseHttpProxy()  {
+        return getAttributeAsBoolean("useHttpProxy");
+    }
+
+    /**
      * Applies only to dataFormat: "json".  Specifies the name of the query parameter that tells your JSON service what
      * function to call as part of the response.
      *
@@ -1461,18 +1483,9 @@ public class DataSource extends BaseClass  implements com.smartgwt.client.data.e
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
+
+
+
 
 
     protected native void onInit() /*-{
