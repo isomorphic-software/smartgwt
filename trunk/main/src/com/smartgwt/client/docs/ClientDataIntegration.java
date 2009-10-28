@@ -109,6 +109,7 @@ package com.smartgwt.client.docs;
  * @see com.smartgwt.client.data.DataSourceField#getFieldValue
  * @see com.smartgwt.client.data.DataSource#getDataFormat
  * @see com.smartgwt.client.data.DataSource#getDataProtocol
+ * @see com.smartgwt.client.data.DataSource#getUseHttpProxy
  * @see com.smartgwt.client.data.DataSource#getCallbackParam
  * @see com.smartgwt.client.data.DataSource#getRequestProperties
  * @see com.smartgwt.client.data.DataSource#getDataTransport
@@ -127,6 +128,7 @@ package com.smartgwt.client.docs;
  * @see com.smartgwt.client.data.OperationBinding#getDataProtocol
  * @see com.smartgwt.client.data.OperationBinding#getDataFormat
  * @see com.smartgwt.client.data.OperationBinding#getDataTransport
+ * @see com.smartgwt.client.data.OperationBinding#getUseHttpProxy
  * @see com.smartgwt.client.data.OperationBinding#getCallbackParam
  * @see com.smartgwt.client.data.OperationBinding#getRequestProperties
  * @see com.smartgwt.client.data.OperationBinding#getDefaultParams
