@@ -150,6 +150,11 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
         return getAttributeAsBoolean("autoFetchDisplayMap");
     }
 
+    //TODO : convert to enum and add docs
+    public void setExpansionMode(String expansionMode) throws IllegalStateException {
+        setAttribute("expansionMode", expansionMode, false);
+    }
+
     /**
      * For grids with a specified {@link com.smartgwt.client.widgets.grid.ListGrid#getDataSource dataSource}, this property can
      * be set to  <code>true</code> to avoid the grid from attempting to save / retrieve data from the server.  In this case
