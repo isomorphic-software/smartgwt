@@ -6239,7 +6239,7 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
             var jObj = this.__ref;
             var recordJ = @com.smartgwt.client.widgets.grid.ListGridRecord::getOrCreateRef(Lcom/google/gwt/core/client/JavaScriptObject;)(record);
             var componentJ = jObj.@com.smartgwt.client.widgets.grid.ListGrid::getExpansionComponent(Lcom/smartgwt/client/widgets/grid/ListGridRecord;)(recordJ);
-            return componentJ == null ? null : componentJ.@com.smartgwt.client.widgets.Canvas::getJsObj()();
+            return componentJ == null ? null : componentJ.@com.smartgwt.client.widgets.Canvas::getOrCreateJsObj()();
         };
 
         self.__getGridSummary = self.getGridSummary;
