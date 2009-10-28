@@ -2170,6 +2170,9 @@ public class FormItem extends RefDataClass  implements com.smartgwt.client.widge
 
 
 
+
+
+
     /**
      * Getter method to retrieve the {@link com.smartgwt.client.widgets.form.fields.FormItem#getValueField valueField} for this
      * item. If unset, default behavior will return the {@link com.smartgwt.client.widgets.form.fields.FormItem#getName name}
@@ -2625,7 +2628,7 @@ public class FormItem extends RefDataClass  implements com.smartgwt.client.widge
 
 
 
-
+
 
 
     public void setAttribute(String attribute, String value) {
@@ -3385,6 +3388,71 @@ public class FormItem extends RefDataClass  implements com.smartgwt.client.widge
         } else {
             return null;
         }
+    }-*/;
+
+    /**
+     * Optional {@link FormItemValueFormatter}, if provided, is evaluated to get the
+     * display value to show for this form items underlying data value. <P> This provides a way to perform a more complex data
+     * to display value manipulation  than a simple {@link com.smartgwt.client.widgets.form.fields.FormItem#getValueMap
+     * valueMap}. Note that this method will not be applied to values displayed in a freeform text entry field (such as a
+     * {@link com.smartgwt.client.widgets.form.fields.TextItem} or {@link
+     * com.smartgwt.client.widgets.form.fields.TextAreaItem}), where an equivalent parser method would be required to convert a
+     * user-entered value back into a data value.  Use {@link
+     * com.smartgwt.client.widgets.form.fields.FormItem#setEditorValueFormatter(com.smartgwt.client.widgets.form.FormItemValueFormatter)} and {@link
+     * com.smartgwt.client.widgets.form.fields.FormItem#setEditorValueParser(com.smartgwt.client.widgets.form.FormItemValueParser)} instead for these cases.
+     *
+     * @param formatter the FormItemValueFormatter
+     */
+    public native void setValueFormatter(FormItemValueFormatter formatter) /*-{
+        var self = this.@com.smartgwt.client.core.DataClass::getJsObj()();
+        self.formatValue = function(value, record, form, item) {
+            var valueJ =  $wnd.SmartGWT.convertToJavaType(value);
+            var formJ = @com.smartgwt.client.widgets.form.DynamicForm::getOrCreateRef(Lcom/google/gwt/core/client/JavaScriptObject;)(form);
+            var itemJ = @com.smartgwt.client.widgets.form.fields.FormItem::getOrCreateRef(Lcom/google/gwt/core/client/JavaScriptObject;)(item);
+            var recordJ = @com.smartgwt.client.data.Record::getOrCreateRef(Lcom/google/gwt/core/client/JavaScriptObject;)(record);
+            return formatter.@com.smartgwt.client.widgets.form.FormItemValueFormatter::formatValue(Ljava/lang/Object;Lcom/smartgwt/client/data/Record;Lcom/smartgwt/client/widgets/form/DynamicForm;Lcom/smartgwt/client/widgets/form/fields/FormItem;)(valueJ, recordJ, formJ, itemJ);
+        }
+    }-*/;
+
+    /**
+     * An optional {@link com.smartgwt.client.widgets.form.FormItemValueFormatter} to map this item's current data value  to a
+     * display value. <P> Note that this only applies to items which show a freeform entry area, such as a {@link
+     * com.smartgwt.client.widgets.form.fields.TextItem} or {@link com.smartgwt.client.widgets.form.fields.TextAreaItem}. For
+     * display values which will not be directly  manipulated by the user, use {@link
+     * com.smartgwt.client.widgets.form.fields.FormItem#setValueFormatter(com.smartgwt.client.widgets.form.FormItemValueFormatter)} instead. <P> See also {@link
+     * com.smartgwt.client.widgets.form.fields.FormItem#setEditorValueParser(com.smartgwt.client.widgets.form.FormItemValueParser)}.
+     *
+     * @param formatter the FormItemValueFormatter
+     *
+     */
+    public native void setEditorValueFormatter(FormItemValueFormatter formatter) /*-{
+        var self = this.@com.smartgwt.client.core.DataClass::getJsObj()();
+        self.formatEditorValue = function(value, record, form, item) {
+            var valueJ =  $wnd.SmartGWT.convertToJavaType(value);
+            var formJ = @com.smartgwt.client.widgets.form.DynamicForm::getOrCreateRef(Lcom/google/gwt/core/client/JavaScriptObject;)(form);
+            var itemJ = @com.smartgwt.client.widgets.form.fields.FormItem::getOrCreateRef(Lcom/google/gwt/core/client/JavaScriptObject;)(item);
+            var recordJ = @com.smartgwt.client.data.Record::getOrCreateRef(Lcom/google/gwt/core/client/JavaScriptObject;)(record);
+            return formatter.@com.smartgwt.client.widgets.form.FormItemValueFormatter::formatValue(Ljava/lang/Object;Lcom/smartgwt/client/data/Record;Lcom/smartgwt/client/widgets/form/DynamicForm;Lcom/smartgwt/client/widgets/form/fields/FormItem;)(valueJ, recordJ, formJ, itemJ);
+        }
+   }-*/;
+
+    /**
+     * An optional {@link com.smartgwt.client.widgets.form.FormItemValueParser} to map a user-entered display value to a data
+     * value for storage.  This method only applies to form items which show a freeform text entry area, such at the {@link
+     * com.smartgwt.client.widgets.form.fields.TextItem} or {@link com.smartgwt.client.widgets.form.fields.TextAreaItem}. <P>
+     * See also {@link com.smartgwt.client.widgets.form.fields.FormItem#formatEditorValue}
+     *
+     * @param valueParser the FormItemValueParser
+     */
+    public native void setEditorValueParser(FormItemValueParser valueParser) /*-{
+        var self = this.@com.smartgwt.client.core.DataClass::getJsObj()();
+        self.parseEditorValue = function(value, form, item) {
+            var formJ = @com.smartgwt.client.widgets.form.DynamicForm::getOrCreateRef(Lcom/google/gwt/core/client/JavaScriptObject;)(form);
+            var itemJ = @com.smartgwt.client.widgets.form.fields.FormItem::getOrCreateRef(Lcom/google/gwt/core/client/JavaScriptObject;)(item);
+            var data = valueParser.@com.smartgwt.client.widgets.form.FormItemValueParser::parseValue(Ljava/lang/String;Lcom/smartgwt/client/widgets/form/DynamicForm;Lcom/smartgwt/client/widgets/form/fields/FormItem;)(value, formJ, itemJ);
+            var dataJ =  data == null ? null : $wnd.SmartGWT.convertToJavaType(data);
+            return dataJ;
+        };
     }-*/;
 
 }
