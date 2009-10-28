@@ -148,11 +148,10 @@
 						
 		</zip>
 
-	    <!--
-        <delete dir="${smartgwt.root}/main/src/com/smartclient"/>
-		
-        <unjar dest="${smartgwt.root}/main/src" src="${smartgwt.tools.lib}/sc/${SC_VER}/smartclient.jar"/>
-		-->
+		<delete dir="${smartgwt.root}/main/src/com/smartclient"/>
+	    <unjar dest="${smartgwt.root}/main/src" src="${smartgwt.tools.lib}/sc/${SC_VER}/smartclient.jar"/>
+		<move file="${smartgwt.root}/fmpp/data/referenceDocs.xml" tofile="${smartgwt.root}/fmpp/data/referenceDocs-bak.xml"/>
+		<copy file="${SC_HOME}/smartclientSDK/isomorphic/system/reference/referenceDocs.xml" tofile="${smartgwt.root}/fmpp/data/referenceDocs.xml"/>	
 	
     </target>
 
