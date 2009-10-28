@@ -4912,17 +4912,6 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
         self.collapseRecord(record.@com.smartgwt.client.core.DataClass::getJsObj()());
     }-*/;
 
-    /**
-     * Gets the embedded-component to show as a given record's expansionComponent.  This  component is then housed in a VLayout
-     * and embedded into a record's row. <P> By default, this method returns one of a set of builtin components, according the
-     * value  of {@link com.smartgwt.client.widgets.grid.ListGrid#getExpansionMode expansionMode}.  You can override this
-     * method to return any component  you wish to provide as an expansionComponent.
-     * @param record record to get the expansionComponent for
-     */
-    public native void getExpansionComponent(ListGridRecord record) /*-{
-        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
-        self.getExpansionComponent(record.@com.smartgwt.client.core.DataClass::getJsObj()());
-    }-*/;
 
 
 
@@ -6188,9 +6177,26 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
     // ********************* Static Methods ***********************
 
 
-
-
-
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     protected native void onInit() /*-{
 
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
@@ -6222,7 +6228,69 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
             var jObj = this.__ref;
             return jObj.@com.smartgwt.client.widgets.grid.ListGrid::canEditCell(II)(rowNum, colNum);
         };
+
+        self.__getExpansionComponent = self.getExpansionComponent;
+        self.getExpansionComponent = function(record) {
+            var jObj = this.__ref;
+            var recordJ = @com.smartgwt.client.widgets.grid.ListGridRecord::getOrCreateRef(Lcom/google/gwt/core/client/JavaScriptObject;)(record);
+            var componentJ = jObj.@com.smartgwt.client.widgets.grid.ListGrid::getExpansionComponent(Lcom/smartgwt/client/widgets/grid/ListGridRecord;)(recordJ);
+            return componentJ == null ? null : componentJ.@com.smartgwt.client.widgets.Canvas::getJsObj()();
+        };
+
+        self.__getGridSummary = self.getGridSummary;
+        self.getGridSummary = function(field) {
+            var jObj = this.__ref;
+            var fieldJ = @com.smartgwt.client.widgets.grid.ListGridField::getOrCreateRef(Lcom/google/gwt/core/client/JavaScriptObject;)(field);
+            var val = jObj.@com.smartgwt.client.widgets.grid.ListGrid::getGridSummary(Lcom/smartgwt/client/widgets/grid/ListGridField;)(fieldJ);
+            if(val == null || $wnd.isc.isA.String(val) || $wnd.isc.isA.Number(val)) return val;
+            if(@com.smartgwt.client.util.JSOHelper::isJavaNumber(Ljava/lang/Object;)(val)) return val.@java.lang.Number::doubleValue()();
+            if(@com.smartgwt.client.util.JSOHelper::isJavaDate(Ljava/lang/Object;)(val)) return @com.smartgwt.client.util.JSOHelper::convertToJavaScriptDate(Ljava/util/Date;)(val);
+            $wnd.isc.logWarn('Unrecognized type of value ' + val + ' returned by getGridSummary');
+        };
     }-*/;
+
+    /**
+     * Gets the embedded-component to show as a given record's expansionComponent.  This  component is then housed in a VLayout
+     * and embedded into a record's row. <P> By default, this method returns one of a set of builtin components, according the
+     * value  of {@link com.smartgwt.client.widgets.grid.ListGrid#getExpansionMode expansionMode}.  You can override this
+     * method to return any component  you wish to provide as an expansionComponent.
+     * <br><b>Note: This is an override point</b>
+     *
+     * @param record record to get the expansionComponent for
+     * @return the embedded component
+     */
+    protected native Canvas getExpansionComponent(ListGridRecord record) /*-{
+        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
+        var component = self.__getExpansionComponent(record.@com.smartgwt.client.core.DataClass::getJsObj()());
+        return @com.smartgwt.client.widgets.Canvas::getOrCreateRef(Lcom/google/gwt/core/client/JavaScriptObject;)(component);
+    }-*/;
+
+    /**
+     * When {@link com.smartgwt.client.widgets.grid.ListGrid#getShowGridSummary showGridSummary} is <code>true</code> this
+     * method is called for each field which will show a grid summary value (as described in {@link
+     * com.smartgwt.client.widgets.grid.ListGridField#getShowGridSummary showGridSummary} to get the summary value to display
+     * below the relevant column. <P> The default implementation is as follows: <ul><li>If this is a databound grid and not all
+     * data is loaded, returns null for every field</li>     <li>Otherwise if {@link
+     * com.smartgwt.client.widgets.grid.ListGridField#getGridSummary} is defined, calls that method passing         in the
+     * current data set for the grid</li>     <li>If {@link com.smartgwt.client.widgets.grid.ListGridField#getGridSummary} is
+     * undefined, makes use of the          {@link com.smartgwt.client.widgets.grid.ListGrid#getGridSummaryFunction} for the
+     * field to          calculate the summary based on the current data set</li> </ul> This method may be overridden to
+     * completely customize the summary value displayed for columns in this grid. An example use case would be when summary
+     * information is available on the client and does note need to be calculated directly from the data. <b>Note:</b> this
+     * method will not be called if ${isc.DocUtils.linkForRef('listGrid.gridSummaryDataSource')} is specified.
+     * @param field field for which the summary value should be returned
+     *
+     * <br><b>Note: This is an override point</b>
+     *
+     * @return summary value to display for the specified field.
+     */
+    protected native Object getGridSummary(ListGridField field) /*-{
+        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
+        var value = self.__getGridSummary(field.@com.smartgwt.client.core.DataClass::getJsObj()());
+        var valueJ = $wnd.SmartGWT.convertToJavaType(value);
+        return valueJ;
+    }-*/;
+
 
     /**
      * Return CSS text for styling this cell, which will be applied in addition to the CSS class for the cell, as
