@@ -546,19 +546,23 @@ public class ResultSet extends RecordList implements com.smartgwt.client.data.ev
     /**
      * Do we have a complete client-side cache of records for the current filter criteria? <P> Returns false if this is a paged
      * data set, and the entire set of records that match the current criteria has not been retrieved from the server.
+     *
+     * @return allMatchingRowsCached
      */
-    public native void allMatchingRowsCached() /*-{
+    public native boolean allMatchingRowsCached() /*-{
         var self = this.@com.smartgwt.client.core.BaseClass::getOrCreateJsObj()();
-        self.allMatchingRowsCached();
+        return self.allMatchingRowsCached();
     }-*/;
 
     /**
      * Do we have a complete client-side cache of all records for this DataSource? <P> Becomes true only when the ResultSet
      * obtains a complete cache after a fetch with empty criteria.
+     *
+     * @return allRowsCached
      */
-    public native void allRowsCached() /*-{
+    public native boolean allRowsCached() /*-{
         var self = this.@com.smartgwt.client.core.BaseClass::getOrCreateJsObj()();
-        self.allRowsCached();
+        return self.allRowsCached();
     }-*/;
 
     /**
