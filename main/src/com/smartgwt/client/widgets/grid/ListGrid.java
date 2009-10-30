@@ -120,6 +120,26 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
     }
 
     /**
+     * Property name on a record that will be checked to determine whether a record can be expanded.
+     *
+     * @param canExpandRecordProperty canExpandRecordProperty Default value is "canExpand"
+     * @throws IllegalStateException this property cannot be changed after the component has been created
+     */
+    public void setCanExpandRecordProperty(String canExpandRecordProperty)  throws IllegalStateException {
+        setAttribute("canExpandRecordProperty", canExpandRecordProperty, false);
+    }
+
+    /**
+     * Property name on a record that will be checked to determine whether a record can be expanded.
+     *
+     *
+     * @return String
+     */
+    public String getCanExpandRecordProperty()  {
+        return getAttributeAsString("canExpandRecordProperty");
+    }
+
+    /**
      * If true, for fields where {@link com.smartgwt.client.widgets.grid.ListGridField#getOptionDataSource optionDataSource} is
      * specified, a valueMap will be automatically created by making a {@link com.smartgwt.client.data.DataSource#fetchData}
      * call against the specified dataSource and extracting a valueMap from the returned records based on the displayField and
@@ -148,11 +168,6 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
      */
     public Boolean getAutoFetchDisplayMap()  {
         return getAttributeAsBoolean("autoFetchDisplayMap");
-    }
-
-    //TODO : convert to enum and add docs
-    public void setExpansionMode(String expansionMode) throws IllegalStateException {
-        setAttribute("expansionMode", expansionMode, false);
     }
 
     /**
@@ -3669,6 +3684,28 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
     public Boolean getCanExpandRecords()  {
         return getAttributeAsBoolean("canExpandRecords");
     }
+             
+    /**
+     * The {@link com.smartgwt.client.types.ExpansionMode} for records in this grid. Default <code>null</code> value means no
+     * expansion.
+     * <p><b>Note : </b> This is an advanced setting</p>
+     *
+     * @param expansionMode expansionMode Default value is null
+     */
+    public void setExpansionMode(ExpansionMode expansionMode) {
+        setAttribute("expansionMode", expansionMode.getValue(), true);
+    }
+
+    /**
+     * The {@link com.smartgwt.client.types.ExpansionMode} for records in this grid. Default <code>null</code> value means no
+     * expansion.
+     *
+     *
+     * @return ExpansionMode
+     */
+    public ExpansionMode getExpansionMode()  {
+        return EnumUtil.getEnum(ExpansionMode.values(), getAttribute("expansionMode"));
+    }
 
     /**
      * If {@link com.smartgwt.client.widgets.grid.ListGrid#getCanExpandRecords canExpandRecords} is set to <code>true</code>,
@@ -3768,6 +3805,72 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
      */
     public Integer getExpansionFieldImageHeight()  {
         return getAttributeAsInt("expansionFieldImageHeight");
+    }
+
+    /**
+     * The name of the ListGridRecord property that specifies the DataSource to use when  {@link
+     * com.smartgwt.client.widgets.grid.ListGrid#getExpansionMode expansionMode} is "related".  The default is {@link
+     * com.smartgwt.client.widgets.grid.ListGridRecord#getDetailDS detailDS}.
+     * <p><b>Note : </b> This is an advanced setting</p>
+     *
+     * @param recordDetailDSProperty recordDetailDSProperty Default value is "detailDS"
+     */
+    public void setRecordDetailDSProperty(String recordDetailDSProperty) {
+        setAttribute("recordDetailDSProperty", recordDetailDSProperty, true);
+    }
+
+    /**
+     * The name of the ListGridRecord property that specifies the DataSource to use when  {@link
+     * com.smartgwt.client.widgets.grid.ListGrid#getExpansionMode expansionMode} is "related".  The default is {@link
+     * com.smartgwt.client.widgets.grid.ListGridRecord#getDetailDS detailDS}.
+     *
+     *
+     * @return String
+     */
+    public String getRecordDetailDSProperty()  {
+        return getAttributeAsString("recordDetailDSProperty");
+    }
+             
+    /**
+     * For expansionModes that show another grid or tree, what the child's expansionMode should be.  Default <code>null</code>
+     * value means no further expansion.
+     * <p><b>Note : </b> This is an advanced setting</p>
+     *
+     * @param childExpansionMode childExpansionMode Default value is null
+     */
+    public void setChildExpansionMode(ExpansionMode childExpansionMode) {
+        setAttribute("childExpansionMode", childExpansionMode.getValue(), true);
+    }
+
+    /**
+     * For expansionModes that show another grid or tree, what the child's expansionMode should be.  Default <code>null</code>
+     * value means no further expansion.
+     *
+     *
+     * @return ExpansionMode
+     */
+    public ExpansionMode getChildExpansionMode()  {
+        return EnumUtil.getEnum(ExpansionMode.values(), getAttribute("childExpansionMode"));
+    }
+
+    /**
+     * For expansionModes that show another grid or tree, is that component editable?
+     * <p><b>Note : </b> This is an advanced setting</p>
+     *
+     * @param expansionCanEdit expansionCanEdit Default value is false
+     */
+    public void setExpansionCanEdit(Boolean expansionCanEdit) {
+        setAttribute("expansionCanEdit", expansionCanEdit, true);
+    }
+
+    /**
+     * For expansionModes that show another grid or tree, is that component editable?
+     *
+     *
+     * @return Boolean
+     */
+    public Boolean getExpansionCanEdit()  {
+        return getAttributeAsBoolean("expansionCanEdit");
     }
 
     /**
@@ -3890,13 +3993,14 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
     }
             
     /**
-     * If ${isc.DocUtils.linkForRef('listGrid.showSummaryRow')} is true, by default summary values are calculated on the 
-     * client based on the current data-set for the grid (see {@link com.smartgwt.client.widgets.grid.ListGrid#getGridSummary}
-     * and {@link com.smartgwt.client.widgets.grid.ListGrid#getGridSummaryFunction}). <P> In some cases however it may make
-     * sense to calculate summary values on the server and retrieve them via a dataSource fetch. If set, this property
-     * specifies a dataSource to fetch against for the summary row. The dataSource should return a single record with summary
-     * data for each field for which summary data should be shown. Note that specifying this property completely bypasses the
-     * standard client-side grid summary calculation logic. <P> The fetch may be further customized via {@link
+     * If {@link com.smartgwt.client.widgets.grid.ListGrid#getShowGridSummary showGridSummary} is true, by default summary
+     * values are calculated on the  client based on the current data-set for the grid (see {@link
+     * com.smartgwt.client.widgets.grid.ListGrid#getGridSummary} and {@link
+     * com.smartgwt.client.widgets.grid.ListGrid#getGridSummaryFunction}). <P> In some cases however it may make sense to
+     * calculate summary values on the server and retrieve them via a dataSource fetch. If set, this property specifies a
+     * dataSource to fetch against for the summary row. The dataSource should return a single record with summary data for each
+     * field for which summary data should be shown. Note that specifying this property completely bypasses the standard
+     * client-side grid summary calculation logic. <P> The fetch may be further customized via {@link
      * com.smartgwt.client.widgets.grid.ListGrid#getSummaryRowCriteria summaryRowCriteria} and {@link
      * com.smartgwt.client.widgets.grid.ListGrid#getSummaryRowFetchRequestProperties summaryRowFetchRequestProperties}
      * <p><b>Note : </b> This is an advanced setting</p>
@@ -3909,13 +4013,14 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
     }
 
     /**
-     * If ${isc.DocUtils.linkForRef('listGrid.showSummaryRow')} is true, by default summary values are calculated on the 
-     * client based on the current data-set for the grid (see {@link com.smartgwt.client.widgets.grid.ListGrid#getGridSummary}
-     * and {@link com.smartgwt.client.widgets.grid.ListGrid#getGridSummaryFunction}). <P> In some cases however it may make
-     * sense to calculate summary values on the server and retrieve them via a dataSource fetch. If set, this property
-     * specifies a dataSource to fetch against for the summary row. The dataSource should return a single record with summary
-     * data for each field for which summary data should be shown. Note that specifying this property completely bypasses the
-     * standard client-side grid summary calculation logic. <P> The fetch may be further customized via {@link
+     * If {@link com.smartgwt.client.widgets.grid.ListGrid#getShowGridSummary showGridSummary} is true, by default summary
+     * values are calculated on the  client based on the current data-set for the grid (see {@link
+     * com.smartgwt.client.widgets.grid.ListGrid#getGridSummary} and {@link
+     * com.smartgwt.client.widgets.grid.ListGrid#getGridSummaryFunction}). <P> In some cases however it may make sense to
+     * calculate summary values on the server and retrieve them via a dataSource fetch. If set, this property specifies a
+     * dataSource to fetch against for the summary row. The dataSource should return a single record with summary data for each
+     * field for which summary data should be shown. Note that specifying this property completely bypasses the standard
+     * client-side grid summary calculation logic. <P> The fetch may be further customized via {@link
      * com.smartgwt.client.widgets.grid.ListGrid#getSummaryRowCriteria summaryRowCriteria} and {@link
      * com.smartgwt.client.widgets.grid.ListGrid#getSummaryRowFetchRequestProperties summaryRowFetchRequestProperties}
      *
@@ -3927,7 +4032,7 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
     }
             
     /**
-     * If ${isc.DocUtils.linkForRef('listGrid.showSummaryRow')} is true, and a
+     * If {@link com.smartgwt.client.widgets.grid.ListGrid#getShowGridSummary showGridSummary} is true, and a
      * ${isc.DocUtils.linkForRef('listGrid.summaryDataSource')} is specified this property may be used to specify fetch
      * criteria to apply when retrieving summary data to show in the summary row. If unset, and any filter criteria have been
      * specified for the grid, they will be used.
@@ -3940,7 +4045,7 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
     }
 
     /**
-     * If ${isc.DocUtils.linkForRef('listGrid.showSummaryRow')} is true, and a
+     * If {@link com.smartgwt.client.widgets.grid.ListGrid#getShowGridSummary showGridSummary} is true, and a
      * ${isc.DocUtils.linkForRef('listGrid.summaryDataSource')} is specified this property may be used to specify fetch
      * criteria to apply when retrieving summary data to show in the summary row. If unset, and any filter criteria have been
      * specified for the grid, they will be used.
@@ -4895,9 +5000,10 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
         }
     }-*/;
 
+
     /**
      * Expands a given ${isc.DocUtils.linkForRef('object:ListGridRecord','record')} by creating a subcomponent and inserting it
-     * in to the record's grid-row.  A number of built-in {@link com.smartgwt.client..ExpansionMode}  are supported by the
+     * in to the record's grid-row.  A number of built-in {@link com.smartgwt.client.types.ExpansionMode}  are supported by the
      * default implementation of  {@link com.smartgwt.client.widgets.grid.ListGrid#getExpansionComponent} and you can override
      * that method to provide more specific expansionComponents.
      * @param record record to expand
@@ -4917,6 +5023,24 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
         self.collapseRecord(record.@com.smartgwt.client.core.DataClass::getJsObj()());
     }-*/;
 
+
+    /**
+     * Initialize the data object with the given array. Observes methods of the data object so that when the data changes, the
+     * listGrid will redraw automatically.
+     * @param record The record to get the Related dataSource for.
+     *
+     * @return The related DataSource for ther "record" param
+     */
+    public native DataSource getRelatedDataSource(ListGridRecord record) /*-{
+        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
+        var ret = self.getRelatedDataSource(record.@com.smartgwt.client.core.DataClass::getJsObj()());
+        if(ret == null || ret === undefined) return null;
+        var retVal = @com.smartgwt.client.core.BaseClass::getRef(Lcom/google/gwt/core/client/JavaScriptObject;)(ret);
+        if(retVal == null) {
+            retVal = @com.smartgwt.client.data.DataSource::new(Lcom/google/gwt/core/client/JavaScriptObject;)(ret);
+        }
+        return retVal;
+    }-*/;
 
 
 
@@ -6182,26 +6306,9 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
     // ********************* Static Methods ***********************
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+
+
+
     protected native void onInit() /*-{
 
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
@@ -6252,6 +6359,36 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
             if(@com.smartgwt.client.util.JSOHelper::isJavaDate(Ljava/lang/Object;)(val)) return @com.smartgwt.client.util.JSOHelper::convertToJavaScriptDate(Ljava/util/Date;)(val);
             $wnd.isc.logWarn('Unrecognized type of value ' + val + ' returned by getGridSummary');
         };
+
+        self.__canExpandRecord = self.canExpandRecord;
+        self.canExpandRecord = function(record, rowNum) {
+            var jObj = this.__ref;
+            var recordJ = @com.smartgwt.client.widgets.grid.ListGridRecord::getOrCreateRef(Lcom/google/gwt/core/client/JavaScriptObject;)(record);
+            var retVal = jObj.@com.smartgwt.client.widgets.grid.ListGrid::canExpandRecord(Lcom/smartgwt/client/widgets/grid/ListGridRecord;I)(recordJ, rowNum);
+            return retVal;
+        };
+    }-*/;
+
+    /**
+     * Expands a given ${isc.DocUtils.linkForRef('object:ListGridRecord','record')} by creating a subcomponent and inserting it
+     * in to the record's grid-row.  A number of built-in {@link com.smartgwt.client..ExpansionMode}  are supported by the
+     * default implementation of  {@link com.smartgwt.client.widgets.grid.ListGrid#getExpansionComponent} and you can override
+     * that method to provide more specific expansionComponents.
+     * <br><b>Note: This is an override point</b>
+     *
+     * @param record record to work with
+     * @param rowNum rowNum of the record to work with
+     *
+     * @return true if the record can be expanded
+     */
+    public native boolean canExpandRecord(ListGridRecord record, int rowNum) /*-{
+        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
+        var retVal =self.__canExpandRecord(record.@com.smartgwt.client.core.DataClass::getJsObj()(), rowNum);
+        if(retVal == null || retVal === undefined) {
+            return false;
+        } else {
+            return retVal;
+        }
     }-*/;
 
     /**

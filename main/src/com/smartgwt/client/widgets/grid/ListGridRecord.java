@@ -126,6 +126,27 @@ public class ListGridRecord extends Record {
     }
 
     /**
+     * Default property name denoting whether this record can be expanded. Property name may be  modified for some grid via
+     * {@link com.smartgwt.client.widgets.grid.ListGrid#getCanExpandRecordProperty canExpandRecordProperty}.
+     *
+     * @param canExpand canExpand Default value is null
+     */
+    public void setCanExpand(Boolean canExpand) {
+        setAttribute("canExpand", canExpand);
+    }
+
+    /**
+     * Default property name denoting whether this record can be expanded. Property name may be  modified for some grid via
+     * {@link com.smartgwt.client.widgets.grid.ListGrid#getCanExpandRecordProperty canExpandRecordProperty}.
+     *
+     *
+     * @return Boolean
+     */
+    public Boolean getCanExpand()  {
+        return getAttributeAsBoolean("canExpand");
+    }
+
+    /**
      * Default property name denoting a separator row.<br> When set to <code>true</code>, defines a horizontal separator in the
      * listGrid object. Typically this is specified as the only property of a record object, since a record with
      * <code>isSeparator:true</code> will not display any values.<br> Note: this attribute name is governed by {@link
@@ -308,6 +329,28 @@ public class ListGridRecord extends Record {
      */
     public String getLinkText()  {
         return getAttributeAsString("linkText");
+    }
+            
+    /**
+     * The DataSource providing related-records when  {@link com.smartgwt.client.widgets.grid.ListGrid#getCanExpandRecords
+     * canExpandRecords} is true and {@link com.smartgwt.client.types.ExpansionMode} is "related".
+     * <p><b>Note : </b> This is an advanced setting</p>
+     *
+     * @param detailDS detailDS Default value is null
+     */
+    public void setDetailDS(DataSource detailDS) {
+        setAttribute("detailDS", detailDS.getOrCreateJsObj());
+    }
+
+    /**
+     * The DataSource providing related-records when  {@link com.smartgwt.client.widgets.grid.ListGrid#getCanExpandRecords
+     * canExpandRecords} is true and {@link com.smartgwt.client.types.ExpansionMode} is "related".
+     *
+     *
+     * @return DataSource
+     */
+    public DataSource getDetailDS()  {
+            return DataSource.getOrCreateRef(getAttributeAsJavaScriptObject("detailDS"));
     }
 
     /**
