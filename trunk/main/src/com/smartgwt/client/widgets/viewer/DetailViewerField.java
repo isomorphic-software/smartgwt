@@ -341,10 +341,15 @@ public class DetailViewerField extends DataClass {
     // ********************* Static Methods ***********************
 
 
-
-
 
-
+
+
+
+
+
+
+
+
     /**
      * Set the cellStyle.
      *
@@ -418,7 +423,7 @@ public class DetailViewerField extends DataClass {
                 var recordJ = @com.smartgwt.client.widgets.viewer.DetailViewerRecord::getOrCreateRef(Lcom/google/gwt/core/client/JavaScriptObject;)(record);
                 var valueJ = $wnd.SmartGWT.convertToJavaType(value);
                 var fieldJ = @com.smartgwt.client.widgets.viewer.DetailViewerField::new(Lcom/google/gwt/core/client/JavaScriptObject;)(field);
-                return formatter.@com.smartgwt.client.widgets.viewer.DetailFormatter::format(Ljava/lang/Object;Lcom/smartgwt/client/widgets/viewer/DetailViewerRecord;Lcom/smartgwt/client/widgets/viewer/DetailViewerField;)(valueJ, recordJ, fieldJ);
+                return formatter.@com.smartgwt.client.widgets.viewer.DetailFormatter::format(Ljava/lang/Object;Lcom/smartgwt/client/data/Record;Lcom/smartgwt/client/widgets/viewer/DetailViewerField;)(valueJ, recordJ, fieldJ);
             };
     }-*/;
 
@@ -438,7 +443,7 @@ public class DetailViewerField extends DataClass {
             var valueJ = $wnd.SmartGWT.convertToJavaType(value);
             var fieldJ = @com.smartgwt.client.widgets.viewer.DetailViewerField::new(Lcom/google/gwt/core/client/JavaScriptObject;)(field);
             var recordJ = @com.smartgwt.client.widgets.viewer.DetailViewerRecord::getOrCreateRef(Lcom/google/gwt/core/client/JavaScriptObject;)(record);
-            return handler.@com.smartgwt.client.widgets.viewer.CellStyleHandler::execute(Ljava/lang/Object;Lcom/smartgwt/client/widgets/viewer/DetailViewerField;Lcom/smartgwt/client/widgets/viewer/DetailViewerRecord;)(valueJ, fieldJ, recordJ);
+            return handler.@com.smartgwt.client.widgets.viewer.CellStyleHandler::execute(Ljava/lang/Object;Lcom/smartgwt/client/widgets/viewer/DetailViewerField;Lcom/smartgwt/client/data/Record;)(valueJ, fieldJ, recordJ);
         };
     }-*/;
 
