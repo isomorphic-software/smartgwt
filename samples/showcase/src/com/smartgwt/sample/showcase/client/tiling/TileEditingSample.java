@@ -3,6 +3,7 @@ package com.smartgwt.sample.showcase.client.tiling;
 import com.smartgwt.client.data.DSCallback;
 import com.smartgwt.client.data.DSRequest;
 import com.smartgwt.client.data.DSResponse;
+import com.smartgwt.client.data.Record;
 import com.smartgwt.client.types.SelectionStyle;
 import com.smartgwt.client.widgets.Canvas;
 import com.smartgwt.client.widgets.IButton;
@@ -69,14 +70,14 @@ public class TileEditingSample extends ShowcasePanel {
         DetailViewerField lifeSpanField = new DetailViewerField("lifeSpan");
         lifeSpanField.setCellStyle("lifeSpan");
         lifeSpanField.setDetailFormatter(new DetailFormatter() {
-            public String format(Object value, DetailViewerRecord record, DetailViewerField field) {
+            public String format(Object value, Record record, DetailViewerField field) {
                 return "Lifespan: " + value;
             }
         });
 
         DetailViewerField statusField = new DetailViewerField("status");
         statusField.setCellStyleHandler(new CellStyleHandler() {
-            public String execute(Object value, DetailViewerField field, DetailViewerRecord record) {
+            public String execute(Object value, DetailViewerField field, Record record) {
                 if ("Endangered".equals(value)) {
                     return "endangered";
                 } else if ("Threatened".equals(value)) {
