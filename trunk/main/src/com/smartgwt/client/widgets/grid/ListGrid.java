@@ -73,7 +73,7 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
     }
 
     public ListGrid(){
-        setModalEditing(true);setLeaveScrollbarGap(false);
+        setModalEditing(true);
     }
 
     public ListGrid(JavaScriptObject jsObj){
@@ -6306,9 +6306,26 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
     // ********************* Static Methods ***********************
 
 
-
-
-
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     protected native void onInit() /*-{
 
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
