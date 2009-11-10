@@ -103,7 +103,91 @@ public class TimeItem extends TextItem {
 
     // ********************* Properties / Attributes ***********************
 
+    /**
+     * If true, a data entry mask will be enabled in the field based on the {@link
+     * com.smartgwt.client.widgets.form.fields.TimeItem#getDisplayFormat displayFormat}.
+     * <p><b>Note : </b> This is an advanced setting</p>
+     *
+     * @param useMask useMask Default value is null
+     */
+    public void setUseMask(Boolean useMask) {
+        setAttribute("useMask", useMask);
+    }
+
+    /**
+     * If true, a data entry mask will be enabled in the field based on the {@link
+     * com.smartgwt.client.widgets.form.fields.TimeItem#getDisplayFormat displayFormat}.
+     *
+     *
+     * @return Boolean
+     */
+    public Boolean getUseMask()  {
+        return getAttributeAsBoolean("useMask");
+    }
+
+    /**
+     * Internal-use only for a TimeItem.
+     * A custom mask cannot be defined for a time item.
+     * <p><b>Note : </b> This is an advanced setting</p>
+     *
+     * @param mask mask Default value is null
+     */
+    public void setMask(String mask) {
+        setAttribute("mask", mask);
+    }
+
+    /**
+     * Internal-use only for a TimeItem.
+     *
+     *
+     * @return String
+     */
+    public String getMask()  {
+        return getAttributeAsString("mask");
+    }
+
+    /**
+     * Internal-use only for a TimeItem.
+     * <p><b>Note : </b> This is an advanced setting</p>
+     *
+     * @param maskSaveLiterals maskSaveLiterals Default value is null
+     */
+    public void setMaskSaveLiterals(Boolean maskSaveLiterals) {
+        setAttribute("maskSaveLiterals", maskSaveLiterals);
+    }
+
+    /**
+     * Internal-use only for a TimeItem.
+     *
+     *
+     * @return Boolean
+     */
+    public Boolean getMaskSaveLiterals()  {
+        return getAttributeAsBoolean("maskSaveLiterals");
+    }
+
+    /**
+     * Internal-use only for a TimeItem.
+     * <p><b>Note : </b> This is an advanced setting</p>
+     *
+     * @param maskOverwriteMode maskOverwriteMode Default value is null
+     */
+    public void setMaskOverwriteMode(Boolean maskOverwriteMode) {
+        setAttribute("maskOverwriteMode", maskOverwriteMode);
+    }
+
+    /**
+     * Internal-use only for a TimeItem.
+     *
+     *
+     * @return Boolean
+     */
+    public Boolean getMaskOverwriteMode()  {
+        return getAttributeAsBoolean("maskOverwriteMode");
+    }
+
     // ********************* Methods ***********************
+
 
     // ********************* Static Methods ***********************
 

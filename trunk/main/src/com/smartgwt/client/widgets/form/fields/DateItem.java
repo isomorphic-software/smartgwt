@@ -135,6 +135,34 @@ public class DateItem extends FormItem {
     }
 
     /**
+     * If {@link com.smartgwt.client.widgets.form.fields.DateItem#getUseTextField useTextField} is <code>true</code> this
+     * property determines if an input mask should be used. The format of the mask is determined by the  {@link
+     * com.smartgwt.client.widgets.form.fields.DateItem#getInputFormat inputFormat} or {@link
+     * com.smartgwt.client.widgets.form.fields.DateItem#getDisplayFormat displayFormat} (in that order). <p>NOTE: If neither
+     * {@link com.smartgwt.client.widgets.form.fields.DateItem#getInputFormat inputFormat} nor {@link
+     * com.smartgwt.client.widgets.form.fields.DateItem#getDisplayFormat displayFormat} is set (default), the mask for input
+     * format MDY is used.
+     * <p><b>Note : </b> This is an advanced setting</p>
+     *
+     * @param useMask useMask Default value is null
+     */
+    public void setUseMask(Boolean useMask) {
+        setAttribute("useMask", useMask);
+    }
+
+    /**
+     * If {@link com.smartgwt.client.widgets.form.fields.DateItem#getUseTextField useTextField} and {@link
+     * com.smartgwt.client.widgets.form.fields.DateItem#getUseMask useMask} are both <code>true</code> this value is the
+     * separator between date components.
+     * <p><b>Note : </b> This is an advanced setting</p>
+     *
+     * @param maskDateSeparator maskDateSeparator Default value is "/"
+     */
+    public void setMaskDateSeparator(String maskDateSeparator) {
+        setAttribute("maskDateSeparator", maskDateSeparator);
+    }
+
+    /**
      * Can this field be set to a non-date value [other than null]?&#010 <P>&#010 When set to true, {@link
      * com.smartgwt.client.widgets.form.fields.FormItem#setValue} will return false without setting the item value&#010 and log
      * a warning if passed something other than a valid date value.&#010 If the dateItem is showing a {@link
