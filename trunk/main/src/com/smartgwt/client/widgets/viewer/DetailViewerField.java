@@ -392,11 +392,13 @@ public class DetailViewerField extends DataClass {
      * If specified on a field, this method is evaluated at draw time to determine whether or not to show this
      * particular field. <p> This method can be specified either as a function or a string that will be auto-converted
      * to a function.
+     *
+     * @param showIf the showIf criteria
      */
     public native void setShowIfCondition(DetailViewerFieldIfFunction showIf) /*-{
         var self = this.@com.smartgwt.client.core.DataClass::getJsObj()();
         self.showIf = function(viewer, records) {
-            var viewerJ = @com.smartgwt.client.widgets.BaseWidget::getRef(Lcom/google/gwt/core/client/JavaScriptObject;)(target);
+            var viewerJ = @com.smartgwt.client.widgets.BaseWidget::getRef(Lcom/google/gwt/core/client/JavaScriptObject;)(viewer);
             var recordsJ = @com.smartgwt.client.widgets.viewer.DetailViewerField::convertToDetailViewerRecordArray(Lcom/google/gwt/core/client/JavaScriptObject;)(records);
             return showIf.@com.smartgwt.client.widgets.viewer.DetailViewerFieldIfFunction::execute(Lcom/smartgwt/client/widgets/viewer/DetailViewer;[Lcom/smartgwt/client/widgets/viewer/DetailViewerRecord;)(viewerJ, recordsJ);
         };
