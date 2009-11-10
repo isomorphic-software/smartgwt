@@ -967,7 +967,7 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
     }
 
     /**
-     * if {@link com.smartgwt.client.widgets.grid.ListGrid#getAutoFitData autoFitData} is set to <code>"vertical"</code> or
+     * If {@link com.smartgwt.client.widgets.grid.ListGrid#getAutoFitData autoFitData} is set to <code>"vertical"</code> or
      * <code>"both"</code> this property provides the maximum number of records for which the ListGrid will expand. If more
      * records are present, scrolling will be introduced to reach them as normal. If unset, by default the ListGrid will expand
      * to accomodate as many records as are present.
@@ -981,7 +981,7 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
     }
 
     /**
-     * if {@link com.smartgwt.client.widgets.grid.ListGrid#getAutoFitData autoFitData} is set to <code>"vertical"</code> or
+     * If {@link com.smartgwt.client.widgets.grid.ListGrid#getAutoFitData autoFitData} is set to <code>"vertical"</code> or
      * <code>"both"</code> this property provides the maximum number of records for which the ListGrid will expand. If more
      * records are present, scrolling will be introduced to reach them as normal. If unset, by default the ListGrid will expand
      * to accomodate as many records as are present.
@@ -991,6 +991,31 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
      */
     public int getAutoFitMaxRecords()  {
         return getAttributeAsInt("autoFitMaxRecords");
+    }
+
+    /**
+     * If {@link com.smartgwt.client.widgets.grid.ListGrid#getAutoFitData autoFitData} is set to <code>"vertical"</code> or
+     * <code>"both"</code>  this property specifies the number of additional records for which the grid  will expeand. If more
+     * records are present, scrolling will be introduced to reach them as normal.
+     * Setter for {@link com.smartgwt.client.widgets.grid.ListGrid#getAutoFitExtraRecords autoFitExtraRecords}.
+     *
+     * @param autoFitExtraRecords Number of extra rows beyond the data-size we'll expand to  accomodate if {@link
+     * com.smartgwt.client.widgets.grid.ListGrid#getAutoFitData 'auto fit'} is enabled vertically.. Default value is null
+     */
+    public void setAutoFitExtraRecords(Integer autoFitExtraRecords) {
+        setAttribute("autoFitExtraRecords", autoFitExtraRecords, true);
+    }
+
+    /**
+     * If {@link com.smartgwt.client.widgets.grid.ListGrid#getAutoFitData autoFitData} is set to <code>"vertical"</code> or
+     * <code>"both"</code>  this property specifies the number of additional records for which the grid  will expeand. If more
+     * records are present, scrolling will be introduced to reach them as normal.
+     *
+     *
+     * @return Integer
+     */
+    public Integer getAutoFitExtraRecords()  {
+        return getAttributeAsInt("autoFitExtraRecords");
     }
 
     /**
@@ -1023,7 +1048,7 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
     }
 
     /**
-     * if {@link com.smartgwt.client.widgets.grid.ListGrid#getAutoFitData autoFitData} is set to <code>"horizontal"</code> or
+     * If {@link com.smartgwt.client.widgets.grid.ListGrid#getAutoFitData autoFitData} is set to <code>"horizontal"</code> or
      * <code>"both"</code> this property provides the maximum number of columns for which the ListGrid will expand. If more
      * columns are present, scrolling will be introduced to reach them as normal. If unset the ListGrid will expand to
      * accomodate as many columns as are defined for the grid.
@@ -1037,7 +1062,7 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
     }
 
     /**
-     * if {@link com.smartgwt.client.widgets.grid.ListGrid#getAutoFitData autoFitData} is set to <code>"horizontal"</code> or
+     * If {@link com.smartgwt.client.widgets.grid.ListGrid#getAutoFitData autoFitData} is set to <code>"horizontal"</code> or
      * <code>"both"</code> this property provides the maximum number of columns for which the ListGrid will expand. If more
      * columns are present, scrolling will be introduced to reach them as normal. If unset the ListGrid will expand to
      * accomodate as many columns as are defined for the grid.
@@ -3832,8 +3857,8 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
     }
              
     /**
-     * For expansionModes that show another grid or tree, what the child's expansionMode should be.  Default <code>null</code>
-     * value means no further expansion.
+     * For expansionModes that show another grid or tree, what the child's expansionMode should be.  Default value
+     * <code>null</code> means no further expansion.
      * <p><b>Note : </b> This is an advanced setting</p>
      *
      * @param childExpansionMode childExpansionMode Default value is null
@@ -3843,8 +3868,8 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
     }
 
     /**
-     * For expansionModes that show another grid or tree, what the child's expansionMode should be.  Default <code>null</code>
-     * value means no further expansion.
+     * For expansionModes that show another grid or tree, what the child's expansionMode should be.  Default value
+     * <code>null</code> means no further expansion.
      *
      *
      * @return ExpansionMode
@@ -5029,7 +5054,7 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
      * listGrid will redraw automatically.
      * @param record The record to get the Related dataSource for.
      *
-     * @return The related DataSource for ther "record" param
+     * @return The related DataSource for the "record" param
      */
     public native DataSource getRelatedDataSource(ListGridRecord record) /*-{
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
@@ -5041,6 +5066,7 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
         }
         return retVal;
     }-*/;
+
 
 
 
