@@ -9,6 +9,9 @@ package com.smartgwt.client.docs;
  * @see com.smartgwt.client.widgets.Canvas#animateScroll
  * @see com.smartgwt.client.widgets.Canvas#animateShow
  * @see com.smartgwt.client.widgets.Canvas#animateHide
+ * @see com.smartgwt.client.widgets.Slider#getAnimateThumb
+ * @see com.smartgwt.client.widgets.Slider#getAnimateThumbTime
+ * @see com.smartgwt.client.widgets.Slider#getAnimateThumbInit
  * @see com.smartgwt.client.widgets.tree.TreeGrid#getAnimateFolders
  * @see com.smartgwt.client.widgets.tree.TreeGrid#getAnimateFolderTime
  * @see com.smartgwt.client.widgets.tree.TreeGrid#getAnimateFolderSpeed
@@ -38,9 +41,6 @@ package com.smartgwt.client.docs;
  * @see com.smartgwt.client.widgets.layout.Layout#getAnimateMembers
  * @see com.smartgwt.client.widgets.layout.Layout#getAnimateMemberTime
  * @see com.smartgwt.client.widgets.layout.SectionStack#getAnimateSections
- * @see com.smartgwt.client.widgets.Slider#getAnimateThumb
- * @see com.smartgwt.client.widgets.Slider#getAnimateThumbTime
- * @see com.smartgwt.client.widgets.Slider#getAnimateThumbInit
  */
 public interface Animation {
 }

@@ -18,7 +18,6 @@ package com.smartgwt.client.docs;
  * @see com.smartgwt.client.widgets.tree.TreeGrid#getCanReorderRecords
  * @see com.smartgwt.client.widgets.tree.TreeGrid#getCanReparentNodes
  * @see com.smartgwt.client.widgets.tree.TreeGrid#getManyItemsImage
- * @see com.smartgwt.client.widgets.Window#getKeepInParentRect
  * @see com.smartgwt.client.widgets.Canvas#getCanDrag
  * @see com.smartgwt.client.widgets.Canvas#getDragStartDistance
  * @see com.smartgwt.client.widgets.Canvas#getDragIntersectStyle
@@ -46,6 +45,7 @@ package com.smartgwt.client.docs;
  * @see com.smartgwt.client.widgets.Canvas#getSnapVDirection
  * @see com.smartgwt.client.widgets.Canvas#getSnapAxis
  * @see com.smartgwt.client.widgets.Canvas#getSnapOnDrop
+ * @see com.smartgwt.client.widgets.Window#getKeepInParentRect
  * @see com.smartgwt.client.widgets.layout.Layout#getCanDropComponents
  * @see com.smartgwt.client.widgets.layout.Layout#getDropLineThickness
  * @see com.smartgwt.client.widgets.layout.Layout#getShowDragPlaceHolder

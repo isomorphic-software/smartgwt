@@ -4,6 +4,7 @@ package com.smartgwt.client.docs;
 /**
  * <h3>Button Icon</h3>
  * Control over optional icons shown in Buttons, Labels and other contexts
+ * @see com.smartgwt.client..PanelHeader#iconClick
  * @see com.smartgwt.client.widgets.StatefulCanvas#setIconOrientation
  * @see com.smartgwt.client.widgets.StatefulCanvas#setIcon
  * @see com.smartgwt.client.widgets.Button#setIconOrientation
@@ -16,7 +17,6 @@ package com.smartgwt.client.docs;
  * @see com.smartgwt.client.widgets.StretchImgButton#setIconOrientation
  * @see com.smartgwt.client.widgets.StretchImgButton#setIcon
  * @see com.smartgwt.client.widgets.StretchImgButton#iconClick
- * @see com.smartgwt.client..PanelHeader#iconClick
  * @see com.smartgwt.client.widgets.grid.ListGridField#getIconSpacing
  * @see com.smartgwt.client.widgets.grid.ListGridField#getShowDisabledIcon
  * @see com.smartgwt.client.widgets.grid.ListGridField#getShowRollOverIcon

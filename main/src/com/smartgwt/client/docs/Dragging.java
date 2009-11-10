@@ -23,14 +23,14 @@ package com.smartgwt.client.docs;
  * @see com.smartgwt.client.widgets.grid.ListGrid#getDragDataAction
  * @see com.smartgwt.client.widgets.tile.TileLayout#getDragDataAction
  * @see com.smartgwt.client.widgets.tile.TileGrid#getDragDataAction
- * @see com.smartgwt.client.widgets.Window#getCanDragReposition
- * @see com.smartgwt.client.widgets.Window#getCanDragResize
- * @see com.smartgwt.client.widgets.Window#getShowResizer
  * @see com.smartgwt.client.widgets.Canvas#getCanDragScroll
  * @see com.smartgwt.client.widgets.Canvas#getDragScrollDelay
  * @see com.smartgwt.client.widgets.DataBoundComponent#getAddDropValues
  * @see com.smartgwt.client.widgets.DataBoundComponent#getDropValues
  * @see com.smartgwt.client.widgets.DataBoundComponent#getDragDataAction
+ * @see com.smartgwt.client.widgets.Window#getCanDragReposition
+ * @see com.smartgwt.client.widgets.Window#getCanDragResize
+ * @see com.smartgwt.client.widgets.Window#getShowResizer
  * @see com.smartgwt.client..ReorderPosition
  */
 public interface Dragging {

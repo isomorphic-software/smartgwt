@@ -8,8 +8,18 @@ package com.smartgwt.client.docs;
  * record currently being edited in the form, transparently handling the trip to the server, standard error conditions such
  * as validation errors (whether the validation error happens on the client or server), and update of client-side caches.
  * <P> Action Methods are available on DataBoundComponents.
- * @see com.smartgwt.client.widgets.calendar.Calendar#fetchData
- * @see com.smartgwt.client.widgets.calendar.Calendar#filterData
+ * @see com.smartgwt.client..MultiView#fetchData
+ * @see com.smartgwt.client..MultiView#filterData
+ * @see com.smartgwt.client..MultiView#fetchRelatedData
+ * @see com.smartgwt.client..MultiView#removeSelectedData
+ * @see com.smartgwt.client..MultiView#anySelected
+ * @see com.smartgwt.client..MultiView#getSelection
+ * @see com.smartgwt.client..MultiView#selectRecord
+ * @see com.smartgwt.client..MultiView#selectRecords
+ * @see com.smartgwt.client..MultiView#selectAllRecords
+ * @see com.smartgwt.client..MultiView#deselectRecord
+ * @see com.smartgwt.client..MultiView#deselectRecords
+ * @see com.smartgwt.client..MultiView#deselectAllRecords
  * @see com.smartgwt.client.widgets.form.DynamicForm#editNewRecord
  * @see com.smartgwt.client.widgets.form.DynamicForm#editRecord
  * @see com.smartgwt.client.widgets.form.DynamicForm#editSelectedData
@@ -25,6 +35,8 @@ package com.smartgwt.client.docs;
  * @see com.smartgwt.client.widgets.form.ValuesManager#filterData
  * @see com.smartgwt.client.widgets.form.ValuesManager#fetchData
  * @see com.smartgwt.client.widgets.viewer.DetailViewer#viewSelectedData
+ * @see com.smartgwt.client.widgets.calendar.Calendar#fetchData
+ * @see com.smartgwt.client.widgets.calendar.Calendar#filterData
  * @see com.smartgwt.client.widgets.grid.ListGrid#removeData
  * @see com.smartgwt.client.widgets.tile.TileGrid#fetchData
  * @see com.smartgwt.client.widgets.tile.TileGrid#filterData
@@ -50,18 +62,6 @@ package com.smartgwt.client.docs;
  * @see com.smartgwt.client.widgets.tree.TreeGrid#filterData
  * @see com.smartgwt.client.widgets.tile.TileGrid#exportData
  * @see com.smartgwt.client.widgets.viewer.DetailViewer#exportData
- * @see com.smartgwt.client..MultiView#fetchData
- * @see com.smartgwt.client..MultiView#filterData
- * @see com.smartgwt.client..MultiView#fetchRelatedData
- * @see com.smartgwt.client..MultiView#removeSelectedData
- * @see com.smartgwt.client..MultiView#anySelected
- * @see com.smartgwt.client..MultiView#getSelection
- * @see com.smartgwt.client..MultiView#selectRecord
- * @see com.smartgwt.client..MultiView#selectRecords
- * @see com.smartgwt.client..MultiView#selectAllRecords
- * @see com.smartgwt.client..MultiView#deselectRecord
- * @see com.smartgwt.client..MultiView#deselectRecords
- * @see com.smartgwt.client..MultiView#deselectAllRecords
  */
 public interface DataBoundComponentMethods {
 }

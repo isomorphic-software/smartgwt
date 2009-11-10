@@ -2,6 +2,7 @@
 package com.smartgwt.client.docs;
 
 /**
+ * @see com.smartgwt.client..CubeGrid#getBaseStyle
  * @see com.smartgwt.client.grid.GridRenderer#getCellHeight
  * @see com.smartgwt.client.grid.GridRenderer#getFixedRowHeights
  * @see com.smartgwt.client.grid.GridRenderer#getWrapCells
@@ -19,7 +20,6 @@ package com.smartgwt.client.docs;
  * @see com.smartgwt.client.widgets.grid.ListGrid#getBaseStyle
  * @see com.smartgwt.client.widgets.grid.ListGrid#getAlternateRecordStyles
  * @see com.smartgwt.client.widgets.grid.ListGrid#getAlternateRecordFrequency
- * @see com.smartgwt.client..CubeGrid#getBaseStyle
  */
 public interface CellStyling {
 }
