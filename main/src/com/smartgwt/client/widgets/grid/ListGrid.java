@@ -6788,7 +6788,7 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
      * @return String
      */
     public Autofit getAutoFitData() {
-        return Autofit.valueOf(getAttributeAsString("autoFitData"));
+        return EnumUtil.getEnum(Autofit.values(), getAttribute("autoFitData"));
     }
 
     /**
