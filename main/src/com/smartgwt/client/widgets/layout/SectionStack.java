@@ -115,7 +115,7 @@ public class SectionStack extends VLayout  implements com.smartgwt.client.widget
 
     /**
      * Name of the Canvas subclass to use as a header that labels the section and allows showing and hiding.  The default class
-     * be skinned, or trivial subclasses created to allow different appearances for headers in different SectionStacks. <P>
+     * can be skinned, or trivial subclasses created to allow different appearances for headers in different SectionStacks. <P>
      * Very advanced developers can use the following information to create custom header classes. <P> The SectionStack will
      * instantiate this class, giving the following properties on init: <ul> <li><code>layout</code>: the SectionStack
      * <li><code>expanded</code>: true or false <li><code>hidden</code>: true or false <li><code>title</code>: section title
@@ -133,7 +133,7 @@ public class SectionStack extends VLayout  implements com.smartgwt.client.widget
 
     /**
      * Name of the Canvas subclass to use as a header that labels the section and allows showing and hiding.  The default class
-     * be skinned, or trivial subclasses created to allow different appearances for headers in different SectionStacks. <P>
+     * can be skinned, or trivial subclasses created to allow different appearances for headers in different SectionStacks. <P>
      * Very advanced developers can use the following information to create custom header classes. <P> The SectionStack will
      * instantiate this class, giving the following properties on init: <ul> <li><code>layout</code>: the SectionStack
      * <li><code>expanded</code>: true or false <li><code>hidden</code>: true or false <li><code>title</code>: section title
@@ -345,6 +345,27 @@ public class SectionStack extends VLayout  implements com.smartgwt.client.widget
      */
     public int getItemEndIndent()  {
         return getAttributeAsInt("itemEndIndent");
+    }
+
+    /**
+     * Whether to show the Expand/Collapse controls in the headers of sections.  If false, hides the expand/collapse controls
+     * and, instead, treats a click anywhere on the header as if  it were a click on the expand control.
+     *
+     * @param showExpandControls showExpandControls Default value is true
+     */
+    public void setShowExpandControls(Boolean showExpandControls) {
+        setAttribute("showExpandControls", showExpandControls, true);
+    }
+
+    /**
+     * Whether to show the Expand/Collapse controls in the headers of sections.  If false, hides the expand/collapse controls
+     * and, instead, treats a click anywhere on the header as if  it were a click on the expand control.
+     *
+     *
+     * @return Boolean
+     */
+    public Boolean getShowExpandControls()  {
+        return getAttributeAsBoolean("showExpandControls");
     }
 
     // ********************* Methods ***********************
