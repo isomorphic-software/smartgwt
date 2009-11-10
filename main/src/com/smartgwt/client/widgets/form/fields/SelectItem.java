@@ -685,8 +685,17 @@ public class SelectItem extends FormItem  implements PickList, com.smartgwt.clie
     // ********************* Static Methods ***********************
 
 
-
-
+
+
+
+
+
+
+
+
+
+
+
     static {
         init();
     }
@@ -1152,7 +1161,7 @@ public class SelectItem extends FormItem  implements PickList, com.smartgwt.clie
      */
     public native void fetchData(DSCallback callback) /*-{
         var self = this.@com.smartgwt.client.core.DataClass::getJsObj()();
-        self.fetchData(function (dsResponse, data, dsRequest) {
+        self.fetchData(function (item, dsResponse, data, dsRequest) {
             var responseJ = @com.smartgwt.client.data.DSResponse::new(Lcom/google/gwt/core/client/JavaScriptObject;)(dsResponse);
             var requestJ = @com.smartgwt.client.data.DSRequest::new(Lcom/google/gwt/core/client/JavaScriptObject;)(dsRequest);
             if(callback != null) callback.@com.smartgwt.client.data.DSCallback::execute(Lcom/smartgwt/client/data/DSResponse;Ljava/lang/Object;Lcom/smartgwt/client/data/DSRequest;)(responseJ, data, requestJ);
@@ -1174,7 +1183,7 @@ public class SelectItem extends FormItem  implements PickList, com.smartgwt.clie
     public native void fetchData(DSCallback callback, DSRequest requestProperties) /*-{
         var self = this.@com.smartgwt.client.core.DataClass::getJsObj()();
         var requestPropertiesJS = requestProperties == null ? null : requestProperties.@com.smartgwt.client.core.DataClass::getJsObj()();
-        self.fetchData(function (dsResponse, data, dsRequest) {
+        self.fetchData(function (item, dsResponse, data, dsRequest) {
             var responseJ = @com.smartgwt.client.data.DSResponse::new(Lcom/google/gwt/core/client/JavaScriptObject;)(dsResponse);
             var requestJ = @com.smartgwt.client.data.DSRequest::new(Lcom/google/gwt/core/client/JavaScriptObject;)(dsRequest);
             if(callback != null) callback.@com.smartgwt.client.data.DSCallback::execute(Lcom/smartgwt/client/data/DSResponse;Ljava/lang/Object;Lcom/smartgwt/client/data/DSRequest;)(responseJ, data, requestJ);
