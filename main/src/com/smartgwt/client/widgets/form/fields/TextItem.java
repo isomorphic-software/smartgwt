@@ -313,6 +313,28 @@ public class TextItem extends FormItem {
     }
 
     /**
+     * During entry into masked field, should keystrokes overwrite current position value? By default new keystrokes are
+     * inserted into the field.
+     * <p><b>Note : </b> This is an advanced setting</p>
+     *
+     * @param maskOverwriteMode maskOverwriteMode Default value is null
+     */
+    public void setMaskOverwriteMode(Boolean maskOverwriteMode) {
+        setAttribute("maskOverwriteMode", maskOverwriteMode);
+    }
+
+    /**
+     * During entry into masked field, should keystrokes overwrite current position value? By default new keystrokes are
+     * inserted into the field.
+     *
+     *
+     * @return Boolean
+     */
+    public Boolean getMaskOverwriteMode()  {
+        return getAttributeAsBoolean("maskOverwriteMode");
+    }
+
+    /**
      * Should entered mask value be saved with embedded literals?
      * <p><b>Note : </b> This is an advanced setting</p>
      *

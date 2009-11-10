@@ -165,6 +165,11 @@ public class ComboBoxItem extends FormItem  implements PickList, com.smartgwt.cl
     public Boolean getShowHintInField()  {
         return getAttributeAsBoolean("showHintInField");
     }
+ 
+ 
+ 
+ 
+ 
 
     /**
      * Show the picker icon for the combo box
