@@ -101,42 +101,6 @@ public class ValuesManager extends BaseClass {
         return $wnd.isc.ValuesManager.create(config);
     }-*/;
     // ********************* Properties / Attributes ***********************
-             
-    /**
-     * Default {@link com.smartgwt.client.types.DSOperationType} to be performed when {@link
-     * com.smartgwt.client.widgets.form.DynamicForm#saveData} is called. This property is automatically set on a call to {@link
-     * com.smartgwt.client.widgets.form.DynamicForm#editRecord} or {@link
-     * com.smartgwt.client.widgets.form.DynamicForm#editNewRecord}, or may be set directly via  {@link
-     * com.smartgwt.client.widgets.form.DynamicForm#setSaveOperationType}. <P> If <code>saveOperationType</code> is unset, the
-     * form will heuristically determine whether an "add" or "update" operation is intended based on whether the primaryKey
-     * field is present and editable.
-     * Setter for the default {@link com.smartgwt.client.types.DSOperationType} when {@link com.smartgwt.client.widgets.form.DynamicForm#saveData} is called. Note that this property can also be set by calling {@link com.smartgwt.client.widgets.form.DynamicForm#editRecord} or  {@link com.smartgwt.client.widgets.form.DynamicForm#editNewRecord}
-     *
-     * @param saveOperationType Operation type to use as a default. Valid values are  <code>"add"</code> or <code>"update"</code>.. Default value is null
-     */
-    public void setSaveOperationType(DSOperationType saveOperationType) {
-        setAttribute("saveOperationType", saveOperationType.getValue(), true);
-    }
-
-    /**
-     * Default {@link com.smartgwt.client.types.DSOperationType} to be performed when {@link
-     * com.smartgwt.client.widgets.form.DynamicForm#saveData} is called. This property is automatically set on a call to {@link
-     * com.smartgwt.client.widgets.form.DynamicForm#editRecord} or {@link
-     * com.smartgwt.client.widgets.form.DynamicForm#editNewRecord}, or may be set directly via  {@link
-     * com.smartgwt.client.widgets.form.DynamicForm#setSaveOperationType}. <P> If <code>saveOperationType</code> is unset, the
-     * form will heuristically determine whether an "add" or "update" operation is intended based on whether the primaryKey
-     * field is present and editable.
-     *
-     *
-     * @return Returns the {@link com.smartgwt.client.types.DSOperationType} to be performed when {@link
-     * com.smartgwt.client.widgets.form.DynamicForm#saveData} is called. Valid options are <code>"add"</code> or
-     * <code>"update"</code>. <P> If a {@link com.smartgwt.client.data.DSRequest} configuration object is passed in containing
-     * an explicit operationType this will be returned. Otherwise {@link
-     * com.smartgwt.client.widgets.form.DynamicForm#getSaveOperationType saveOperationType} will be returned.
-     */
-    public DSOperationType getSaveOperationType()  {
-        return EnumUtil.getEnum(DSOperationType.values(), getAttribute("saveOperationType"));
-    }
 
     /**
      * The error message for a failed validator that does not specify its own errorMessage.
@@ -178,62 +142,44 @@ public class ValuesManager extends BaseClass {
     public Boolean getDisableValidation()  {
         return getAttributeAsBoolean("disableValidation");
     }
+             
+    /**
+     * Default {@link com.smartgwt.client.types.DSOperationType} to be performed when {@link
+     * com.smartgwt.client.widgets.form.DynamicForm#saveData} is called. This property is automatically set on a call to {@link
+     * com.smartgwt.client.widgets.form.DynamicForm#editRecord} or {@link
+     * com.smartgwt.client.widgets.form.DynamicForm#editNewRecord}, or may be set directly via  {@link
+     * com.smartgwt.client.widgets.form.DynamicForm#setSaveOperationType}. <P> If <code>saveOperationType</code> is unset, the
+     * form will heuristically determine whether an "add" or "update" operation is intended based on whether the primaryKey
+     * field is present and editable.
+     * Setter for the default {@link com.smartgwt.client.types.DSOperationType} when {@link com.smartgwt.client.widgets.form.DynamicForm#saveData} is called. Note that this property can also be set by calling {@link com.smartgwt.client.widgets.form.DynamicForm#editRecord} or  {@link com.smartgwt.client.widgets.form.DynamicForm#editNewRecord}
+     *
+     * @param saveOperationType Operation type to use as a default. Valid values are  <code>"add"</code> or <code>"update"</code>.. Default value is null
+     */
+    public void setSaveOperationType(DSOperationType saveOperationType) {
+        setAttribute("saveOperationType", saveOperationType.getValue(), true);
+    }
+
+    /**
+     * Default {@link com.smartgwt.client.types.DSOperationType} to be performed when {@link
+     * com.smartgwt.client.widgets.form.DynamicForm#saveData} is called. This property is automatically set on a call to {@link
+     * com.smartgwt.client.widgets.form.DynamicForm#editRecord} or {@link
+     * com.smartgwt.client.widgets.form.DynamicForm#editNewRecord}, or may be set directly via  {@link
+     * com.smartgwt.client.widgets.form.DynamicForm#setSaveOperationType}. <P> If <code>saveOperationType</code> is unset, the
+     * form will heuristically determine whether an "add" or "update" operation is intended based on whether the primaryKey
+     * field is present and editable.
+     *
+     *
+     * @return Returns the {@link com.smartgwt.client.types.DSOperationType} to be performed when {@link
+     * com.smartgwt.client.widgets.form.DynamicForm#saveData} is called. Valid options are <code>"add"</code> or
+     * <code>"update"</code>. <P> If a {@link com.smartgwt.client.data.DSRequest} configuration object is passed in containing
+     * an explicit operationType this will be returned. Otherwise {@link
+     * com.smartgwt.client.widgets.form.DynamicForm#getSaveOperationType saveOperationType} will be returned.
+     */
+    public DSOperationType getSaveOperationType()  {
+        return EnumUtil.getEnum(DSOperationType.values(), getAttribute("saveOperationType"));
+    }
 
     // ********************* Methods ***********************
-
-
-
-
-    /**
-     * Returns true if {@link com.smartgwt.client.widgets.form.ValuesManager#getSaveOperationType saveOperationType} is
-     * currently "add".  See {@link com.smartgwt.client.widgets.form.ValuesManager#getSaveOperationType saveOperationType}.
-     *
-     * @return whether this form will use an "add" operation when saving
-     */
-    public native Boolean isNewRecord() /*-{
-        var self = this.@com.smartgwt.client.core.BaseClass::getOrCreateJsObj()();
-        var retVal =self.isNewRecord();
-        if(retVal == null || retVal === undefined) {
-            return null;
-        } else {
-            return @com.smartgwt.client.util.JSOHelper::toBoolean(Z)(retVal);
-        }
-    }-*/;
-
-
-
-
-
-    /**
-     * &#010 This method exists for clean integration with existing server frameworks that have a 'cancel'&#010 feature which
-     * typically clears session state associated with the form.  When this method is&#010 called, an RPC is sent to the server
-     * with a parameter named&#010 {@link com.smartgwt.client.widgets.form.DynamicForm#getCancelParamName cancelParamName} with
-     * the value&#010 {@link com.smartgwt.client.widgets.form.DynamicForm#getCancelParamValue cancelParamValue}.<p>&#010&#010
-     * Note that no other form data is sent.  By default the current top-level page is replaced with the&#010 reply.  If you
-     * wish to ignore the server reply instead, call this method like this:&#010 <pre>&#010
-     * dynamicFormInstance.cancel({ignoreTimeout: true, target: null});&#010 </pre>&#010&#010
-     */
-    public native void cancel() /*-{
-        var self = this.@com.smartgwt.client.core.BaseClass::getOrCreateJsObj()();
-        self.cancel();
-    }-*/;
-
-    /**
-     * &#010 This method exists for clean integration with existing server frameworks that have a 'cancel'&#010 feature which
-     * typically clears session state associated with the form.  When this method is&#010 called, an RPC is sent to the server
-     * with a parameter named&#010 {@link com.smartgwt.client.widgets.form.DynamicForm#getCancelParamName cancelParamName} with
-     * the value&#010 {@link com.smartgwt.client.widgets.form.DynamicForm#getCancelParamValue cancelParamValue}.<p>&#010&#010
-     * Note that no other form data is sent.  By default the current top-level page is replaced with the&#010 reply.  If you
-     * wish to ignore the server reply instead, call this method like this:&#010 <pre>&#010
-     * dynamicFormInstance.cancel({ignoreTimeout: true, target: null});&#010 </pre>&#010&#010
-     * @param requestProperties additional properties to set on the RPCRequest                                          that will be issued
-     */
-    public native void cancel(DSRequest requestProperties) /*-{
-        var self = this.@com.smartgwt.client.core.BaseClass::getOrCreateJsObj()();
-        self.cancel(requestProperties.@com.smartgwt.client.core.DataClass::getJsObj()());
-    }-*/;
-
-
 
 
 
@@ -389,6 +335,60 @@ public class ValuesManager extends BaseClass {
 
 
 
+
+
+
+
+
+
+    /**
+     * Returns true if {@link com.smartgwt.client.widgets.form.ValuesManager#getSaveOperationType saveOperationType} is
+     * currently "add".  See {@link com.smartgwt.client.widgets.form.ValuesManager#getSaveOperationType saveOperationType}.
+     *
+     * @return whether this form will use an "add" operation when saving
+     */
+    public native Boolean isNewRecord() /*-{
+        var self = this.@com.smartgwt.client.core.BaseClass::getOrCreateJsObj()();
+        var retVal =self.isNewRecord();
+        if(retVal == null || retVal === undefined) {
+            return null;
+        } else {
+            return @com.smartgwt.client.util.JSOHelper::toBoolean(Z)(retVal);
+        }
+    }-*/;
+
+
+
+
+
+    /**
+     * &#010 This method exists for clean integration with existing server frameworks that have a 'cancel'&#010 feature which
+     * typically clears session state associated with the form.  When this method is&#010 called, an RPC is sent to the server
+     * with a parameter named&#010 {@link com.smartgwt.client.widgets.form.DynamicForm#getCancelParamName cancelParamName} with
+     * the value&#010 {@link com.smartgwt.client.widgets.form.DynamicForm#getCancelParamValue cancelParamValue}.<p>&#010&#010
+     * Note that no other form data is sent.  By default the current top-level page is replaced with the&#010 reply.  If you
+     * wish to ignore the server reply instead, call this method like this:&#010 <pre>&#010
+     * dynamicFormInstance.cancel({ignoreTimeout: true, target: null});&#010 </pre>&#010&#010
+     */
+    public native void cancel() /*-{
+        var self = this.@com.smartgwt.client.core.BaseClass::getOrCreateJsObj()();
+        self.cancel();
+    }-*/;
+
+    /**
+     * &#010 This method exists for clean integration with existing server frameworks that have a 'cancel'&#010 feature which
+     * typically clears session state associated with the form.  When this method is&#010 called, an RPC is sent to the server
+     * with a parameter named&#010 {@link com.smartgwt.client.widgets.form.DynamicForm#getCancelParamName cancelParamName} with
+     * the value&#010 {@link com.smartgwt.client.widgets.form.DynamicForm#getCancelParamValue cancelParamValue}.<p>&#010&#010
+     * Note that no other form data is sent.  By default the current top-level page is replaced with the&#010 reply.  If you
+     * wish to ignore the server reply instead, call this method like this:&#010 <pre>&#010
+     * dynamicFormInstance.cancel({ignoreTimeout: true, target: null});&#010 </pre>&#010&#010
+     * @param requestProperties additional properties to set on the RPCRequest                                          that will be issued
+     */
+    public native void cancel(DSRequest requestProperties) /*-{
+        var self = this.@com.smartgwt.client.core.BaseClass::getOrCreateJsObj()();
+        self.cancel(requestProperties.@com.smartgwt.client.core.DataClass::getJsObj()());
+    }-*/;
 
 
 

@@ -107,66 +107,6 @@ public class DynamicForm extends Canvas  implements DataBoundComponent, com.smar
     // ********************* Properties / Attributes ***********************
              
     /**
-     * Default {@link com.smartgwt.client.types.DSOperationType} to be performed when {@link
-     * com.smartgwt.client.widgets.form.DynamicForm#saveData} is called. This property is automatically set on a call to {@link
-     * com.smartgwt.client.widgets.form.DynamicForm#editRecord} or {@link
-     * com.smartgwt.client.widgets.form.DynamicForm#editNewRecord}, or may be set directly via  {@link
-     * com.smartgwt.client.widgets.form.DynamicForm#setSaveOperationType}. <P> If <code>saveOperationType</code> is unset, the
-     * form will heuristically determine whether an "add" or "update" operation is intended based on whether the primaryKey
-     * field is present and editable.
-     * Setter for the default {@link com.smartgwt.client.types.DSOperationType} when {@link com.smartgwt.client.widgets.form.DynamicForm#saveData} is called. Note that this property can also be set by calling {@link com.smartgwt.client.widgets.form.DynamicForm#editRecord} or  {@link com.smartgwt.client.widgets.form.DynamicForm#editNewRecord}
-     *
-     * @param saveOperationType Operation type to use as a default. Valid values are  <code>"add"</code> or <code>"update"</code>.. Default value is null
-     */
-    public void setSaveOperationType(DSOperationType saveOperationType) {
-        setAttribute("saveOperationType", saveOperationType.getValue(), true);
-    }
-
-    /**
-     * Default {@link com.smartgwt.client.types.DSOperationType} to be performed when {@link
-     * com.smartgwt.client.widgets.form.DynamicForm#saveData} is called. This property is automatically set on a call to {@link
-     * com.smartgwt.client.widgets.form.DynamicForm#editRecord} or {@link
-     * com.smartgwt.client.widgets.form.DynamicForm#editNewRecord}, or may be set directly via  {@link
-     * com.smartgwt.client.widgets.form.DynamicForm#setSaveOperationType}. <P> If <code>saveOperationType</code> is unset, the
-     * form will heuristically determine whether an "add" or "update" operation is intended based on whether the primaryKey
-     * field is present and editable.
-     *
-     *
-     * @return Returns the {@link com.smartgwt.client.types.DSOperationType} to be performed when {@link
-     * com.smartgwt.client.widgets.form.DynamicForm#saveData} is called. Valid options are <code>"add"</code> or
-     * <code>"update"</code>. <P> If a {@link com.smartgwt.client.data.DSRequest} configuration object is passed in containing
-     * an explicit operationType this will be returned. Otherwise {@link
-     * com.smartgwt.client.widgets.form.DynamicForm#getSaveOperationType saveOperationType} will be returned.
-     */
-    public DSOperationType getSaveOperationType()  {
-        return EnumUtil.getEnum(DSOperationType.values(), getAttribute("saveOperationType"));
-    }
-             
-    /**
-     * If {@link com.smartgwt.client.widgets.form.DynamicForm#getAutoFetchData autoFetchData} is <code>true</code>, this
-     * attribute allows the developer to specify a textMatchStyle for the initial {@link
-     * com.smartgwt.client.widgets.form.DynamicForm#fetchData} call.
-     *
-     * @param autoFetchTextMatchStyle autoFetchTextMatchStyle Default value is null
-     * @throws IllegalStateException this property cannot be changed after the component has been created
-     */
-    public void setAutoFetchTextMatchStyle(TextMatchStyle autoFetchTextMatchStyle)  throws IllegalStateException {
-        setAttribute("autoFetchTextMatchStyle", autoFetchTextMatchStyle.getValue(), false);
-    }
-
-    /**
-     * If {@link com.smartgwt.client.widgets.form.DynamicForm#getAutoFetchData autoFetchData} is <code>true</code>, this
-     * attribute allows the developer to specify a textMatchStyle for the initial {@link
-     * com.smartgwt.client.widgets.form.DynamicForm#fetchData} call.
-     *
-     *
-     * @return TextMatchStyle
-     */
-    public TextMatchStyle getAutoFetchTextMatchStyle()  {
-        return EnumUtil.getEnum(TextMatchStyle.values(), getAttribute("autoFetchTextMatchStyle"));
-    }
-             
-    /**
      * Layout style to use with this form.   <P> The default of "table" uses a tabular layout similar to HTML tables, but with
      * much more powerful control over sizing, item visibility and reflow, overflow handling, etc. <P>
      * <code>itemLayout:"absolute"</code> allows absolute positioning of every form item.  This provides maximum flexibility in
@@ -1462,79 +1402,68 @@ public class DynamicForm extends Canvas  implements DataBoundComponent, com.smar
     public String getFormSubmitFailedWarning()  {
         return getAttributeAsString("formSubmitFailedWarning");
     }
+             
+    /**
+     * Default {@link com.smartgwt.client.types.DSOperationType} to be performed when {@link
+     * com.smartgwt.client.widgets.form.DynamicForm#saveData} is called. This property is automatically set on a call to {@link
+     * com.smartgwt.client.widgets.form.DynamicForm#editRecord} or {@link
+     * com.smartgwt.client.widgets.form.DynamicForm#editNewRecord}, or may be set directly via  {@link
+     * com.smartgwt.client.widgets.form.DynamicForm#setSaveOperationType}. <P> If <code>saveOperationType</code> is unset, the
+     * form will heuristically determine whether an "add" or "update" operation is intended based on whether the primaryKey
+     * field is present and editable.
+     * Setter for the default {@link com.smartgwt.client.types.DSOperationType} when {@link com.smartgwt.client.widgets.form.DynamicForm#saveData} is called. Note that this property can also be set by calling {@link com.smartgwt.client.widgets.form.DynamicForm#editRecord} or  {@link com.smartgwt.client.widgets.form.DynamicForm#editNewRecord}
+     *
+     * @param saveOperationType Operation type to use as a default. Valid values are  <code>"add"</code> or <code>"update"</code>.. Default value is null
+     */
+    public void setSaveOperationType(DSOperationType saveOperationType) {
+        setAttribute("saveOperationType", saveOperationType.getValue(), true);
+    }
+
+    /**
+     * Default {@link com.smartgwt.client.types.DSOperationType} to be performed when {@link
+     * com.smartgwt.client.widgets.form.DynamicForm#saveData} is called. This property is automatically set on a call to {@link
+     * com.smartgwt.client.widgets.form.DynamicForm#editRecord} or {@link
+     * com.smartgwt.client.widgets.form.DynamicForm#editNewRecord}, or may be set directly via  {@link
+     * com.smartgwt.client.widgets.form.DynamicForm#setSaveOperationType}. <P> If <code>saveOperationType</code> is unset, the
+     * form will heuristically determine whether an "add" or "update" operation is intended based on whether the primaryKey
+     * field is present and editable.
+     *
+     *
+     * @return Returns the {@link com.smartgwt.client.types.DSOperationType} to be performed when {@link
+     * com.smartgwt.client.widgets.form.DynamicForm#saveData} is called. Valid options are <code>"add"</code> or
+     * <code>"update"</code>. <P> If a {@link com.smartgwt.client.data.DSRequest} configuration object is passed in containing
+     * an explicit operationType this will be returned. Otherwise {@link
+     * com.smartgwt.client.widgets.form.DynamicForm#getSaveOperationType saveOperationType} will be returned.
+     */
+    public DSOperationType getSaveOperationType()  {
+        return EnumUtil.getEnum(DSOperationType.values(), getAttribute("saveOperationType"));
+    }
+             
+    /**
+     * If {@link com.smartgwt.client.widgets.form.DynamicForm#getAutoFetchData autoFetchData} is <code>true</code>, this
+     * attribute allows the developer to specify a textMatchStyle for the initial {@link
+     * com.smartgwt.client.widgets.form.DynamicForm#fetchData} call.
+     *
+     * @param autoFetchTextMatchStyle autoFetchTextMatchStyle Default value is null
+     * @throws IllegalStateException this property cannot be changed after the component has been created
+     */
+    public void setAutoFetchTextMatchStyle(TextMatchStyle autoFetchTextMatchStyle)  throws IllegalStateException {
+        setAttribute("autoFetchTextMatchStyle", autoFetchTextMatchStyle.getValue(), false);
+    }
+
+    /**
+     * If {@link com.smartgwt.client.widgets.form.DynamicForm#getAutoFetchData autoFetchData} is <code>true</code>, this
+     * attribute allows the developer to specify a textMatchStyle for the initial {@link
+     * com.smartgwt.client.widgets.form.DynamicForm#fetchData} call.
+     *
+     *
+     * @return TextMatchStyle
+     */
+    public TextMatchStyle getAutoFetchTextMatchStyle()  {
+        return EnumUtil.getEnum(TextMatchStyle.values(), getAttribute("autoFetchTextMatchStyle"));
+    }
 
     // ********************* Methods ***********************
-
-
-
-
-    /**
-     * Perform validation on the client and the server.
-     */
-    public native void validateData() /*-{
-        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
-        self.validateData();
-    }-*/;
-
-    /**
-     * Resets values to the state it was the last time <code>setValues()</code> or <code>rememberValues()</code> was called. If
-     * neither of those methods has been called, values will be set back to their inital values at init time.
-     */
-    public native void reset() /*-{
-        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
-        self.reset();
-    }-*/;
-
-    /**
-     * &#010 This method exists for clean integration with existing server frameworks that have a 'cancel'&#010 feature which
-     * typically clears session state associated with the form.  When this method is&#010 called, an RPC is sent to the server
-     * with a parameter named&#010 {@link com.smartgwt.client.widgets.form.DynamicForm#getCancelParamName cancelParamName} with
-     * the value&#010 {@link com.smartgwt.client.widgets.form.DynamicForm#getCancelParamValue cancelParamValue}.<p>&#010&#010
-     * Note that no other form data is sent.  By default the current top-level page is replaced with the&#010 reply.  If you
-     * wish to ignore the server reply instead, call this method like this:&#010 <pre>&#010
-     * dynamicFormInstance.cancel({ignoreTimeout: true, target: null});&#010 </pre>&#010&#010
-     */
-    public native void cancel() /*-{
-        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
-        self.cancel();
-    }-*/;
-
-    /**
-     * &#010 This method exists for clean integration with existing server frameworks that have a 'cancel'&#010 feature which
-     * typically clears session state associated with the form.  When this method is&#010 called, an RPC is sent to the server
-     * with a parameter named&#010 {@link com.smartgwt.client.widgets.form.DynamicForm#getCancelParamName cancelParamName} with
-     * the value&#010 {@link com.smartgwt.client.widgets.form.DynamicForm#getCancelParamValue cancelParamValue}.<p>&#010&#010
-     * Note that no other form data is sent.  By default the current top-level page is replaced with the&#010 reply.  If you
-     * wish to ignore the server reply instead, call this method like this:&#010 <pre>&#010
-     * dynamicFormInstance.cancel({ignoreTimeout: true, target: null});&#010 </pre>&#010&#010
-     * @param requestProperties additional properties to set on the RPCRequest                                          that will be issued
-     */
-    public native void cancel(DSRequest requestProperties) /*-{
-        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
-        self.cancel(requestProperties.@com.smartgwt.client.core.DataClass::getJsObj()());
-    }-*/;
-
-
-
-    /**
-     * Returns true if {@link com.smartgwt.client.widgets.form.DynamicForm#getSaveOperationType saveOperationType} is currently
-     * "add".  See {@link com.smartgwt.client.widgets.form.DynamicForm#getSaveOperationType saveOperationType}.
-     *
-     * @return whether this form will use an "add" operation when saving
-     */
-    public native Boolean isNewRecord() /*-{
-        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
-        var retVal =self.isNewRecord();
-        if(retVal == null || retVal === undefined) {
-            return null;
-        } else {
-            return @com.smartgwt.client.util.JSOHelper::toBoolean(Z)(retVal);
-        }
-    }-*/;
-
-
-
-
 
 
 
@@ -1929,6 +1858,77 @@ public class DynamicForm extends Canvas  implements DataBoundComponent, com.smar
                };
         }
    }-*/;
+
+
+
+
+
+    /**
+     * Perform validation on the client and the server.
+     */
+    public native void validateData() /*-{
+        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
+        self.validateData();
+    }-*/;
+
+    /**
+     * Resets values to the state it was the last time <code>setValues()</code> or <code>rememberValues()</code> was called. If
+     * neither of those methods has been called, values will be set back to their inital values at init time.
+     */
+    public native void reset() /*-{
+        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
+        self.reset();
+    }-*/;
+
+    /**
+     * &#010 This method exists for clean integration with existing server frameworks that have a 'cancel'&#010 feature which
+     * typically clears session state associated with the form.  When this method is&#010 called, an RPC is sent to the server
+     * with a parameter named&#010 {@link com.smartgwt.client.widgets.form.DynamicForm#getCancelParamName cancelParamName} with
+     * the value&#010 {@link com.smartgwt.client.widgets.form.DynamicForm#getCancelParamValue cancelParamValue}.<p>&#010&#010
+     * Note that no other form data is sent.  By default the current top-level page is replaced with the&#010 reply.  If you
+     * wish to ignore the server reply instead, call this method like this:&#010 <pre>&#010
+     * dynamicFormInstance.cancel({ignoreTimeout: true, target: null});&#010 </pre>&#010&#010
+     */
+    public native void cancel() /*-{
+        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
+        self.cancel();
+    }-*/;
+
+    /**
+     * &#010 This method exists for clean integration with existing server frameworks that have a 'cancel'&#010 feature which
+     * typically clears session state associated with the form.  When this method is&#010 called, an RPC is sent to the server
+     * with a parameter named&#010 {@link com.smartgwt.client.widgets.form.DynamicForm#getCancelParamName cancelParamName} with
+     * the value&#010 {@link com.smartgwt.client.widgets.form.DynamicForm#getCancelParamValue cancelParamValue}.<p>&#010&#010
+     * Note that no other form data is sent.  By default the current top-level page is replaced with the&#010 reply.  If you
+     * wish to ignore the server reply instead, call this method like this:&#010 <pre>&#010
+     * dynamicFormInstance.cancel({ignoreTimeout: true, target: null});&#010 </pre>&#010&#010
+     * @param requestProperties additional properties to set on the RPCRequest                                          that will be issued
+     */
+    public native void cancel(DSRequest requestProperties) /*-{
+        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
+        self.cancel(requestProperties.@com.smartgwt.client.core.DataClass::getJsObj()());
+    }-*/;
+
+
+
+    /**
+     * Returns true if {@link com.smartgwt.client.widgets.form.DynamicForm#getSaveOperationType saveOperationType} is currently
+     * "add".  See {@link com.smartgwt.client.widgets.form.DynamicForm#getSaveOperationType saveOperationType}.
+     *
+     * @return whether this form will use an "add" operation when saving
+     */
+    public native Boolean isNewRecord() /*-{
+        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
+        var retVal =self.isNewRecord();
+        if(retVal == null || retVal === undefined) {
+            return null;
+        } else {
+            return @com.smartgwt.client.util.JSOHelper::toBoolean(Z)(retVal);
+        }
+    }-*/;
+
+
+
 
 
     // ********************* Static Methods ***********************
