@@ -5303,7 +5303,7 @@ public class Canvas extends BaseWidget  implements com.smartgwt.client.widgets.e
 
 
 
-
+
 
 
 
@@ -6546,6 +6546,29 @@ public class Canvas extends BaseWidget  implements com.smartgwt.client.widgets.e
         setWidth(1);
     }
 
+    /**
+     * Show a clickMask over the entire screen that intercepts mouse clicks and fires some action. The mask created will be
+     * associated with this canvas - calling this method multiple times will not show multiple (stacked) clickMasks if the mask
+     * associated with this canvas is  already up.<br><br> The clickMask useful for modal dialogs, menus and similar uses,
+     * where any click outside of some Canvas should either be suppressed (as in a modal dialog) or just cause something (like
+     * dismissing a menu).
+     * @param clickActionCallback action to fire when the user clicks on the mask
+     * @param mode whether to automatically hide the clickMask on mouseDown                                      and suppress the mouseDown
+     * event from reaching                                      the target under the mouse
+     * @param unmaskedTargets initially unmasked targets for this clickMask. Note that if this is a  <code>"hard"</code> mask, unmasked children of
+     * masked parents are not supported  so any non-top-level widgets passed in will have their parents unmasked.  Children of
+     * masked parents can never be masked.
+     *
+     * @return clickMask ID
+     */
+    public native String showClickMask(Function clickActionCallback, ClickMaskMode mode, Canvas[] unmaskedTargets) /*-{
+        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
+        var unmaskedTargetsJS = @com.smartgwt.client.util.JSOHelper::convertToJavaScriptArray([Ljava/lang/Object;)(members);
+        return self.showClickMask(function() {
+           if(clickActionCallback != null) clickActionCallback.@com.smartgwt.client.core.Function::execute()();
+        }, mode.@com.smartgwt.client.types.ClickMaskMode::getValue()(), unmaskedTargetsJS);
+    }-*/;
+    
     /**
      * Add a onDrop handler.
      * <p>
