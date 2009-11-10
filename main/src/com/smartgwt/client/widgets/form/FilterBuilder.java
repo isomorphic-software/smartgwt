@@ -95,11 +95,11 @@ public class FilterBuilder extends Layout  implements com.smartgwt.client.widget
      * If true, when the user hits the Enter key while focussed in a text-item in this  FilterBuilder, we automatically invoke
      * the user-supplied {@link com.smartgwt.client.widgets.form.FilterBuilder#addSearchHandler} method.
      *
-     * @param saveOnExit saveOnExit Default value is null
+     * @param saveOnEnter saveOnEnter Default value is null
      * @throws IllegalStateException this property cannot be changed after the component has been created
      */
-    public void setSaveOnExit(Boolean saveOnExit)  throws IllegalStateException {
-        setAttribute("saveOnExit", saveOnExit, false);
+    public void setSaveOnEnter(Boolean saveOnEnter)  throws IllegalStateException {
+        setAttribute("saveOnEnter", saveOnEnter, false);
     }
 
     /**
@@ -109,8 +109,8 @@ public class FilterBuilder extends Layout  implements com.smartgwt.client.widget
      *
      * @return Boolean
      */
-    public Boolean getSaveOnExit()  {
-        return getAttributeAsBoolean("saveOnExit");
+    public Boolean getSaveOnEnter()  {
+        return getAttributeAsBoolean("saveOnEnter");
     }
 
     /**
@@ -387,8 +387,8 @@ public class FilterBuilder extends Layout  implements com.smartgwt.client.widget
     /**
      * Add a search handler.
      * <p>
-     * A StringMethod that is automatically invoked if {@link com.smartgwt.client.widgets.form.FilterBuilder#getSaveOnExit
-     * saveOnExit} is set  and the user presses Enter whilst in a text-item in any clause or subclause.
+     * A StringMethod that is automatically invoked if {@link com.smartgwt.client.widgets.form.FilterBuilder#getSaveOnEnter
+     * saveOnEnter} is set  and the user presses Enter whilst in a text-item in any clause or subclause.
      *
      * @param handler the search handler
      * @return {@link HandlerRegistration} used to remove this handler

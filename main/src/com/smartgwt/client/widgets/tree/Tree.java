@@ -905,6 +905,7 @@ public class Tree extends BaseClass  implements com.smartgwt.client.widgets.tree
     }-*/;
 
 
+
     /**
      * Returns the number of items in the current open list.
      *
@@ -1534,6 +1535,29 @@ public class Tree extends BaseClass  implements com.smartgwt.client.widgets.tree
        var self = this.@com.smartgwt.client.core.BaseClass::getOrCreateJsObj()();
        self.openFolder(node.@com.smartgwt.client.core.DataClass::getJsObj()());
    }-*/;
+
+    /**
+     * Get all the nodes that exist in the tree under a particular node, as a flat list, in depth-first traversal order.
+     *
+     * @return all the nodes that exist in the tree
+     */
+    public native TreeNode[] getAllNodes() /*-{
+        var self = this.@com.smartgwt.client.core.BaseClass::getOrCreateJsObj()();
+        var nodesJS = self.getAllNodes();
+        return @com.smartgwt.client.widgets.tree.Tree::convertToTreeNodeArray(Lcom/google/gwt/core/client/JavaScriptObject;)(nodesJS);
+    }-*/;
+
+    /**
+     * Get all the nodes that exist in the tree under a particular node, as a flat list, in depth-first traversal order.
+     * @param node optional node to start from.  Default is root.
+     *
+     * @return all the nodes that exist in the tree
+     */
+    public native TreeNode getAllNodes(TreeNode node) /*-{
+        var self = this.@com.smartgwt.client.core.BaseClass::getOrCreateJsObj()();
+        var nodesJS = self.getAllNodes(node.@com.smartgwt.client.core.DataClass::getJsObj()());
+        return @com.smartgwt.client.widgets.tree.Tree::convertToTreeNodeArray(Lcom/google/gwt/core/client/JavaScriptObject;)(nodesJS);
+    }-*/;
 
 }
 

@@ -95,7 +95,7 @@ public class Window extends VLayout  implements com.smartgwt.client.widgets.even
     // ********************* Properties / Attributes ***********************
 
     /**
-     * if true, this Window may be moved around by the user by dragging on the Window header.   Note that if the header is not
+     * If true, this Window may be moved around by the user by dragging on the Window header.   Note that if the header is not
      * showing, the Window can't be drag-repositioned regardless of this setting.
      *
      * @param canDragReposition canDragReposition Default value is true
@@ -105,7 +105,7 @@ public class Window extends VLayout  implements com.smartgwt.client.widgets.even
     }
 
     /**
-     * if true, this Window may be moved around by the user by dragging on the Window header.   Note that if the header is not
+     * If true, this Window may be moved around by the user by dragging on the Window header.   Note that if the header is not
      * showing, the Window can't be drag-repositioned regardless of this setting.
      *
      *
@@ -444,7 +444,7 @@ public class Window extends VLayout  implements com.smartgwt.client.widgets.even
     }
 
     /**
-     * If true, the window is resize automatically to accommodate the contents   of the body, if they would otherwise require
+     * If true, the window is resized automatically to accommodate the contents   of the body, if they would otherwise require
      * scrolling.
      * Setter for {@link com.smartgwt.client.widgets.Window#getAutoSize autoSize}
      *
@@ -455,7 +455,7 @@ public class Window extends VLayout  implements com.smartgwt.client.widgets.even
     }
 
     /**
-     * If true, the window is resize automatically to accommodate the contents   of the body, if they would otherwise require
+     * If true, the window is resized automatically to accommodate the contents   of the body, if they would otherwise require
      * scrolling.
      *
      *
