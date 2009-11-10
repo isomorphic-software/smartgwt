@@ -1003,6 +1003,26 @@ public class Calendar extends Canvas  implements DataBoundComponent, com.smartgw
  
 
     /**
+     * The granularity with which the timelineView will display events. Possible values are "day" or "hour".
+     *
+     * @param timelineGranularity timelineGranularity Default value is "day"
+     * @throws IllegalStateException this property cannot be changed after the component has been created
+     */
+    public void setTimelineGranularity(String timelineGranularity)  throws IllegalStateException {
+        setAttribute("timelineGranularity", timelineGranularity, false);
+    }
+
+    /**
+     * The granularity with which the timelineView will display events. Possible values are "day" or "hour".
+     *
+     *
+     * @return String
+     */
+    public String getTimelineGranularity()  {
+        return getAttributeAsString("timelineGranularity");
+    }
+
+    /**
      * The title for the day view
      *
      * @param dayViewTitle dayViewTitle Default value is "Day"
