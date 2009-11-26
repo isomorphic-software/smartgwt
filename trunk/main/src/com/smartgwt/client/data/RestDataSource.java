@@ -84,7 +84,7 @@ import com.google.gwt.event.shared.HasHandlers;
  * com.smartgwt.client.widgets.grid.ListGrid#exportData} and all {@link com.smartgwt.client.docs.IscServer 'server-based
  * features'} aren't&#010 available with RestDataSource and need to be re-implemented as needed.&#010 <P>&#010 <span
  * style="font-weight:bold;font-size:16px;">Examples</span>&#010 <p>&#010 <b>XML formatted responses:</b>&#010 <P>&#010
- * RestDataSource expects a response to like the following in response to a "fetch" request:&#010 <pre>&#010
+ * RestDataSource expects a response like the following in response to a "fetch" request:&#010 <pre>&#010
  * &lt;response&gt;&#010    &lt;status&gt;0&lt;/status&gt;&#010    &lt;startRow&gt;0&lt;/startRow&gt;&#010   
  * &lt;endRow&gt;76&lt;/endRow&gt;&#010    &lt;totalRows&gt;546&lt;/totalRows&gt;&#010    &lt;data&gt;&#010     
  * &lt;record&gt;&#010          &lt;field1&gt;value&lt;/field1&gt;&#010          &lt;field2&gt;value&lt;/field2&gt;&#010   
@@ -107,28 +107,28 @@ import com.google.gwt.event.shared.HasHandlers;
  * value(s) of the removed record would be expected to be &#010 present under the data element.&#010 <p>&#010 If a
  * validation failure occurred on the server, the response would&#010 have status set to {@link
  * com.smartgwt.client.rpc.RPCResponse#STATUS_VALIDATION_ERROR} [<code>-4</code>],&#010 and any validation errors could be
- * included as per-field sub-elements of an "errors"&#010 element.  For a validation error, the response is not be expected
- * to contain any&#010 &lt;data&gt; element.  &#010 <P>&#010 A response showing a validation error might look like
- * this:&#010 <pre>&#010 &lt;response&gt;&#010    &lt;status&gt;-4&lt;/status&gt;&#010    &lt;errors&gt;&#010     
- * &lt;field1&gt;&#010          &lt;errorMessage&gt;A validation error occurred for this field&lt;/errorMessage&gt;&#010   
- * &lt;/field1&gt;&#010    &lt;/errors&gt;&#010 &lt;/response&gt;&#010 </pre>&#010 <P>&#010 An unrecoverable error, such as
- * an unexpected server failure, can be flagged by setting&#010 &lt;status&gt; to -1 and setting &lt;data&gt; to an error
- * message.  In this case the&#010 &lt;errors&gt; element is not used (it's specific to validation errors).  An
- * unrecoverable&#010 error causes all response processing to be skipped and {@link
- * com.smartgwt.client.rpc.RPCManager#handleError} to be&#010 invoked, which by default will show the provided error
- * message as an alert using&#010 {@link com.smartgwt.client.util.isc#warn}.&#010 <p>&#010 <b>JSON formatted
- * responses:</b>&#010 <P>&#010 JSON format responses are expected to contain the same data / meta-data as
- * XMLresponses,&#010 encapsulated a simple object with a <code>"response"</code> attribute.<br>&#010 The response to a
- * "fetch" request would therefore have this format:<br>&#010 <pre>&#010 {    &#010    response:{&#010       status:0,&#010
- * startRows:0,&#010       endRow:76,&#010       totalRows:546,&#010       data:[&#010           {field1:"value",
- * field2:"value"},&#010           {field1:"value", field2:"value"},&#010           <i>... 75 total records ...</i>&#010   
- * ]&#010    }&#010 }&#010 </pre>&#010 The structure successful for "add", "update" and "remove" responses would be
- * similar, though&#010 the data array would be expected to contain only a single object, representing the values as&#010
- * saved.  This allows the server to return values such as an auto-generated sequence&#010 primaryKey, a last modified
- * timestamp, or similar server-generated field values.&#010 <P>&#010 For a remove, only the value for the primaryKey
- * field[s] would be required.&#010 <p>&#010 For a validation error, the <code>status</code> attribute would be set to
- * &#010 {@link com.smartgwt.client.rpc.RPCResponse#STATUS_VALIDATION_ERROR} [<code>-4</code>], and errors would&#010 be
- * specified in the <code>errors</code> attribute of the response. For example:&#010 <pre>&#010 {    response:&#010      { 
+ * included as per-field sub-elements of an "errors"&#010 element.  For a validation error, the response is not expected to
+ * contain any&#010 &lt;data&gt; element.  &#010 <P>&#010 A response showing a validation error might look like this:&#010
+ * <pre>&#010 &lt;response&gt;&#010    &lt;status&gt;-4&lt;/status&gt;&#010    &lt;errors&gt;&#010      &lt;field1&gt;&#010
+ * &lt;errorMessage&gt;A validation error occurred for this field&lt;/errorMessage&gt;&#010      &lt;/field1&gt;&#010   
+ * &lt;/errors&gt;&#010 &lt;/response&gt;&#010 </pre>&#010 <P>&#010 An unrecoverable error, such as an unexpected server
+ * failure, can be flagged by setting&#010 &lt;status&gt; to -1 and setting &lt;data&gt; to an error message.  In this case
+ * the&#010 &lt;errors&gt; element is not used (it's specific to validation errors).  An unrecoverable&#010 error causes
+ * all response processing to be skipped and {@link com.smartgwt.client.rpc.RPCManager#handleError} to be&#010 invoked,
+ * which by default will show the provided error message as an alert using&#010 {@link
+ * com.smartgwt.client.util.isc#warn}.&#010 <p>&#010 <b>JSON formatted responses:</b>&#010 <P>&#010 JSON format responses
+ * are expected to contain the same data / meta-data as XMLresponses,&#010 encapsulated a simple object with a
+ * <code>"response"</code> attribute.<br>&#010 The response to a "fetch" request would therefore have this format:<br>&#010
+ * <pre>&#010 {    &#010    response:{&#010       status:0,&#010       startRows:0,&#010       endRow:76,&#010      
+ * totalRows:546,&#010       data:[&#010           {field1:"value", field2:"value"},&#010           {field1:"value",
+ * field2:"value"},&#010           <i>... 75 total records ...</i>&#010       ]&#010    }&#010 }&#010 </pre>&#010 The
+ * structure successful for "add", "update" and "remove" responses would be similar, though&#010 the data array would be
+ * expected to contain only a single object, representing the values as&#010 saved.  This allows the server to return
+ * values such as an auto-generated sequence&#010 primaryKey, a last modified timestamp, or similar server-generated field
+ * values.&#010 <P>&#010 For a remove, only the value for the primaryKey field[s] would be required.&#010 <p>&#010 For a
+ * validation error, the <code>status</code> attribute would be set to &#010 {@link
+ * com.smartgwt.client.rpc.RPCResponse#STATUS_VALIDATION_ERROR} [<code>-4</code>], and errors would&#010 be specified in
+ * the <code>errors</code> attribute of the response. For example:&#010 <pre>&#010 {    response:&#010      {  
  * status:-4,&#010          errors: &#010              {   field1:{errorMessage:"A validation error on field1"},&#010      
  * field2:{errorMessage:"A validation error on field2"}&#010              }&#010      }&#010 }&#010 </pre>&#010 An array of
  * errors may also be returned for a single field, like this:&#010 <pre>&#010 {    response:&#010      {   status:-4,&#010 
@@ -274,9 +274,9 @@ public class RestDataSource extends DataSource {
 
     /**
      * For RestDataSources, by default, either the {@link com.smartgwt.client.data.RestDataSource#getXmlRecordXPath
-     * xmlRecordXPath} or  {@link com.smartgwt.client.data.RestDataSource#getJsonRecordXPath jsonRecordXPath} is used by
-     * default based on the {@link com.smartgwt.client.data.RestDataSource#getDataFormat dataFormat} setting. <P> Note that you
-     * can also apply record xpath binding via {@link com.smartgwt.client.data.OperationBinding#getRecordXPath recordXPath}.
+     * xmlRecordXPath} or  {@link com.smartgwt.client.data.RestDataSource#getJsonRecordXPath jsonRecordXPath} is used based on
+     * the {@link com.smartgwt.client.data.RestDataSource#getDataFormat dataFormat} setting. <P> Note that you can also apply
+     * record xpath binding via {@link com.smartgwt.client.data.OperationBinding#getRecordXPath recordXPath}.
      *
      * @param recordXPath recordXPath Default value is null
      */
@@ -286,9 +286,9 @@ public class RestDataSource extends DataSource {
 
     /**
      * For RestDataSources, by default, either the {@link com.smartgwt.client.data.RestDataSource#getXmlRecordXPath
-     * xmlRecordXPath} or  {@link com.smartgwt.client.data.RestDataSource#getJsonRecordXPath jsonRecordXPath} is used by
-     * default based on the {@link com.smartgwt.client.data.RestDataSource#getDataFormat dataFormat} setting. <P> Note that you
-     * can also apply record xpath binding via {@link com.smartgwt.client.data.OperationBinding#getRecordXPath recordXPath}.
+     * xmlRecordXPath} or  {@link com.smartgwt.client.data.RestDataSource#getJsonRecordXPath jsonRecordXPath} is used based on
+     * the {@link com.smartgwt.client.data.RestDataSource#getDataFormat dataFormat} setting. <P> Note that you can also apply
+     * record xpath binding via {@link com.smartgwt.client.data.OperationBinding#getRecordXPath recordXPath}.
      *
      *
      * @return String
@@ -412,7 +412,7 @@ public class RestDataSource extends DataSource {
     }
 
     /**
-     * dataURL for fetch type operations
+     * Custom dataURL for remove type operations
      *
      * @param removeDataURL removeDataURL Default value is null
      * @throws IllegalStateException this property cannot be changed after the underlying component has been created
@@ -422,7 +422,7 @@ public class RestDataSource extends DataSource {
     }
 
     /**
-     * dataURL for fetch type operations
+     * Custom dataURL for remove type operations
      *
      *
      * @return String
@@ -432,7 +432,7 @@ public class RestDataSource extends DataSource {
     }
 
     /**
-     * Should  operation meta data be included when assmebling parameters to send  to the server? If true, meta data parameters
+     * Should operation meta data be included when assmebling parameters to send  to the server? If true, meta data parameters
      * will be prefixed with the  {@link com.smartgwt.client.data.RestDataSource#getMetaDataPrefix metaDataPrefix}.<br> Applies
      * to operations where OperationBinding.dataProtocol is set to  <code>"getParams"</code> or <code>"postParams"</code> only.
      *
@@ -444,7 +444,7 @@ public class RestDataSource extends DataSource {
     }
 
     /**
-     * Should  operation meta data be included when assmebling parameters to send  to the server? If true, meta data parameters
+     * Should operation meta data be included when assmebling parameters to send  to the server? If true, meta data parameters
      * will be prefixed with the  {@link com.smartgwt.client.data.RestDataSource#getMetaDataPrefix metaDataPrefix}.<br> Applies
      * to operations where OperationBinding.dataProtocol is set to  <code>"getParams"</code> or <code>"postParams"</code> only.
      *
@@ -456,7 +456,7 @@ public class RestDataSource extends DataSource {
     }
 
     /**
-     * I {@link com.smartgwt.client.data.RestDataSource#getSendMetaData sendMetaData} is true, this attribute is used to
+     * If {@link com.smartgwt.client.data.RestDataSource#getSendMetaData sendMetaData} is true, this attribute is used to
      * specify the prefix to apply to 'meta data' properties when assembling parameters to send to the  server.  Applies to
      * operations where OperationBinding.dataProtocol is set to  <code>"getParams"</code> or <code>"postParams"</code> only.
      *
@@ -468,7 +468,7 @@ public class RestDataSource extends DataSource {
     }
 
     /**
-     * I {@link com.smartgwt.client.data.RestDataSource#getSendMetaData sendMetaData} is true, this attribute is used to
+     * If {@link com.smartgwt.client.data.RestDataSource#getSendMetaData sendMetaData} is true, this attribute is used to
      * specify the prefix to apply to 'meta data' properties when assembling parameters to send to the  server.  Applies to
      * operations where OperationBinding.dataProtocol is set to  <code>"getParams"</code> or <code>"postParams"</code> only.
      *

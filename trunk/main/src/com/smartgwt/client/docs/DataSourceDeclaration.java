@@ -23,7 +23,7 @@ package com.smartgwt.client.docs;
  * &lt;isomorphic:loadDS ID="supplyItem"/&gt;&#010     &lt;/SCRIPT&gt;&#010 </pre>&#010 Alternatively, XML DataSources can
  * be loaded by targetting a special servlet provided by &#010 the Smart GWT Server.  This servlet yields exactly the same
  * Javascript as the equivalent&#010 <code>&lt;isomorphic:loadDS/&gt;</code>, so the two methods are interchangeable. 
- * The&#010  servlet-based method is ideal in environments where JSP tags cannot be used (SmartGWT is &#010 one such
+ * The&#010 servlet-based method is ideal in environments where JSP tags cannot be used (SmartGWT is &#010 one such
  * environment).  Example usage:&#010 <pre>&#010     &lt;SCRIPT
  * SRC=isomorphic/DataSourceLoader?dataSource=supplyItem,employees,worldDS&lt;/SCRIPT&gt;&#010 </pre>&#010 When loading an
  * XML DataSource, by default, the ISC Server will look for a file named&#010 <code>&lt;dataSourceId&gt;.ds.xml</code> in

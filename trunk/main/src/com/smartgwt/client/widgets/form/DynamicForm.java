@@ -1506,6 +1506,21 @@ public class DynamicForm extends Canvas  implements DataBoundComponent, com.smar
 
 
 
+    /**
+     * Return an AdvancedCriteria object based on the current set of values within this form. <p> Similar to {@link
+     * com.smartgwt.client.widgets.form.DynamicForm#getValuesAsCriteria}, except the returned criteria object is guaranteed to
+     * be an AdvancedCriteria object, even if none of the form's fields has a specified {@link
+     * com.smartgwt.client.widgets.form.fields.FormItem#getOperator operator}
+     *
+     * @return a ${isc.DocUtils.linkForRef('object:AdvancedCriteria')} based on the form's current values
+     */
+    public native AdvancedCriteria getValuesAsAdvancedCriteria() /*-{
+        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
+        var ret = self.getValuesAsAdvancedCriteria();
+        if(ret == null || ret === undefined) return null;
+        return @com.smartgwt.client.data.AdvancedCriteria::new(Lcom/google/gwt/core/client/JavaScriptObject;)(ret);
+    }-*/;
+
 
 
 

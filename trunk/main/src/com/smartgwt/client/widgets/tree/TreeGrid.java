@@ -776,16 +776,8 @@ public class TreeGrid extends ListGrid  implements com.smartgwt.client.widgets.t
     }
 
     /**
-     * This property allows the developer to customize the icon displayed next to a node. Set
-     * <code>node[grid.customIconProperty]</code> to the URL of the desired icon to display and it will be shown instead of the
-     * standard {@link com.smartgwt.client.widgets.tree.TreeGrid#getNodeIcon nodeIcon} for this node.<br> Note that if {@link
-     * com.smartgwt.client.widgets.tree.TreeGrid#getShowCustomIconOpen showCustomIconOpen} and/or {@link
-     * com.smartgwt.client.widgets.tree.TreeGrid#getShowCustomIconDrop showCustomIconDrop}  is true for this grid, customized
-     * icons for folder nodes will be appended with the  {@link com.smartgwt.client.widgets.tree.TreeGrid#getDropIconSuffix
-     * dropIconSuffix} or {@link com.smartgwt.client.widgets.tree.TreeGrid#getOpenIconSuffix openIconSuffix} suffixes on state
-     * change  as with the standard {@link com.smartgwt.client.widgets.tree.TreeGrid#getFolderIcon folderIcon} for this
-     * treeGrid.  Also note that for custom folder icons, the {@link
-     * com.smartgwt.client.widgets.tree.TreeGrid#getClosedIconSuffix closedIconSuffix} will never be appened.
+     * This property allows the developer to rename the  {@link com.smartgwt.client.widgets.tree.TreeNode#getIcon 'default
+     * node.icon'} property.
      *
      * @param customIconProperty customIconProperty Default value is "icon"
      */
@@ -794,16 +786,8 @@ public class TreeGrid extends ListGrid  implements com.smartgwt.client.widgets.t
     }
 
     /**
-     * This property allows the developer to customize the icon displayed next to a node. Set
-     * <code>node[grid.customIconProperty]</code> to the URL of the desired icon to display and it will be shown instead of the
-     * standard {@link com.smartgwt.client.widgets.tree.TreeGrid#getNodeIcon nodeIcon} for this node.<br> Note that if {@link
-     * com.smartgwt.client.widgets.tree.TreeGrid#getShowCustomIconOpen showCustomIconOpen} and/or {@link
-     * com.smartgwt.client.widgets.tree.TreeGrid#getShowCustomIconDrop showCustomIconDrop}  is true for this grid, customized
-     * icons for folder nodes will be appended with the  {@link com.smartgwt.client.widgets.tree.TreeGrid#getDropIconSuffix
-     * dropIconSuffix} or {@link com.smartgwt.client.widgets.tree.TreeGrid#getOpenIconSuffix openIconSuffix} suffixes on state
-     * change  as with the standard {@link com.smartgwt.client.widgets.tree.TreeGrid#getFolderIcon folderIcon} for this
-     * treeGrid.  Also note that for custom folder icons, the {@link
-     * com.smartgwt.client.widgets.tree.TreeGrid#getClosedIconSuffix closedIconSuffix} will never be appened.
+     * This property allows the developer to rename the  {@link com.smartgwt.client.widgets.tree.TreeNode#getIcon 'default
+     * node.icon'} property.
      *
      *
      * @return String
@@ -813,14 +797,59 @@ public class TreeGrid extends ListGrid  implements com.smartgwt.client.widgets.t
     }
 
     /**
+     * This property allows the developer to rename the  {@link com.smartgwt.client.widgets.tree.TreeNode#getShowOpenIcon
+     * 'default node.showOpenIcon'} property.
+     * <p><b>Note : </b> This is an advanced setting</p>
+     *
+     * @param customIconOpenProperty customIconOpenProperty Default value is "showOpenIcon"
+     */
+    public void setCustomIconOpenProperty(String customIconOpenProperty) {
+        setAttribute("customIconOpenProperty", customIconOpenProperty, true);
+    }
+
+    /**
+     * This property allows the developer to rename the  {@link com.smartgwt.client.widgets.tree.TreeNode#getShowOpenIcon
+     * 'default node.showOpenIcon'} property.
+     *
+     *
+     * @return String
+     */
+    public String getCustomIconOpenProperty()  {
+        return getAttributeAsString("customIconOpenProperty");
+    }
+
+    /**
+     * This property allows the developer to rename the  {@link com.smartgwt.client.widgets.tree.TreeNode#getShowDropIcon
+     * 'default node.showDropIcon'} property.
+     * <p><b>Note : </b> This is an advanced setting</p>
+     *
+     * @param customIconDropProperty customIconDropProperty Default value is "showDropIcon"
+     */
+    public void setCustomIconDropProperty(String customIconDropProperty) {
+        setAttribute("customIconDropProperty", customIconDropProperty, true);
+    }
+
+    /**
+     * This property allows the developer to rename the  {@link com.smartgwt.client.widgets.tree.TreeNode#getShowDropIcon
+     * 'default node.showDropIcon'} property.
+     *
+     *
+     * @return String
+     */
+    public String getCustomIconDropProperty()  {
+        return getAttributeAsString("customIconDropProperty");
+    }
+
+    /**
      * Should folder nodes showing custom icons (set via the {@link
      * com.smartgwt.client.widgets.tree.TreeGrid#getCustomIconProperty customIconProperty}), show open state images when the
      * folder is opened. If true, the {@link com.smartgwt.client.widgets.tree.TreeGrid#getOpenIconSuffix openIconSuffix} will
      * be appended to the image URL (so <code>"customFolder.gif"</code> might be replaced with 
      * <code>"customFolder_open.gif"</code>).<br> <b>Note</b> that the {@link
      * com.smartgwt.client.widgets.tree.TreeGrid#getClosedIconSuffix closedIconSuffix} is never appended to custom folder
-     * icons.<br> Can be overridden at the node level via the {@link
-     * com.smartgwt.client.widgets.tree.TreeGrid#getCustomIconOpenProperty customIconOpenProperty} property.
+     * icons.<br> Can be overridden at the node level via the default property {@link
+     * com.smartgwt.client.widgets.tree.TreeNode#getShowOpenIcon showOpenIcon} and that property can be renamed via {@link
+     * com.smartgwt.client.widgets.tree.TreeGrid#getCustomIconOpenProperty customIconOpenProperty}.
      * <p><b>Note : </b> This is an advanced setting</p>
      *
      * @param showCustomIconOpen showCustomIconOpen Default value is false
@@ -836,8 +865,9 @@ public class TreeGrid extends ListGrid  implements com.smartgwt.client.widgets.t
      * be appended to the image URL (so <code>"customFolder.gif"</code> might be replaced with 
      * <code>"customFolder_open.gif"</code>).<br> <b>Note</b> that the {@link
      * com.smartgwt.client.widgets.tree.TreeGrid#getClosedIconSuffix closedIconSuffix} is never appended to custom folder
-     * icons.<br> Can be overridden at the node level via the {@link
-     * com.smartgwt.client.widgets.tree.TreeGrid#getCustomIconOpenProperty customIconOpenProperty} property.
+     * icons.<br> Can be overridden at the node level via the default property {@link
+     * com.smartgwt.client.widgets.tree.TreeNode#getShowOpenIcon showOpenIcon} and that property can be renamed via {@link
+     * com.smartgwt.client.widgets.tree.TreeGrid#getCustomIconOpenProperty customIconOpenProperty}.
      *
      *
      * @return Boolean
@@ -848,11 +878,13 @@ public class TreeGrid extends ListGrid  implements com.smartgwt.client.widgets.t
 
     /**
      * Should folder nodes showing custom icons (set via the {@link
-     * com.smartgwt.client.widgets.tree.TreeGrid#getCustomIconProperty customIconProperty}), show drop state images when the
-     * user is drop-hovering over the folder. If true, the {@link com.smartgwt.client.widgets.tree.TreeGrid#getDropIconSuffix
-     * dropIconSuffix} will be appended to the image URL (so <code>"customFolder.gif"</code> might be replaced with 
-     * <code>"customFolder_drop.gif"</code>).<br> Can be overridden at the node level via the {@link
-     * com.smartgwt.client.widgets.tree.TreeGrid#getCustomIconDropProperty customIconDropProperty} property.
+     * com.smartgwt.client.widgets.tree.TreeGrid#getCustomIconProperty customIconProperty}, default {@link
+     * com.smartgwt.client.widgets.tree.TreeNode#getIcon icon}), show drop state images when the user is drop-hovering over the
+     * folder. If true, the {@link com.smartgwt.client.widgets.tree.TreeGrid#getDropIconSuffix dropIconSuffix} will be appended
+     * to the image URL (so <code>"customFolder.gif"</code> might be replaced with  <code>"customFolder_drop.gif"</code>).<br>
+     * Can be overridden at the node level via the default property {@link
+     * com.smartgwt.client.widgets.tree.TreeNode#getShowDropIcon showDropIcon} and that property can be renamed via {@link
+     * com.smartgwt.client.widgets.tree.TreeGrid#getCustomIconDropProperty customIconDropProperty}.
      * <p><b>Note : </b> This is an advanced setting</p>
      *
      * @param showCustomIconDrop showCustomIconDrop Default value is false
@@ -863,77 +895,19 @@ public class TreeGrid extends ListGrid  implements com.smartgwt.client.widgets.t
 
     /**
      * Should folder nodes showing custom icons (set via the {@link
-     * com.smartgwt.client.widgets.tree.TreeGrid#getCustomIconProperty customIconProperty}), show drop state images when the
-     * user is drop-hovering over the folder. If true, the {@link com.smartgwt.client.widgets.tree.TreeGrid#getDropIconSuffix
-     * dropIconSuffix} will be appended to the image URL (so <code>"customFolder.gif"</code> might be replaced with 
-     * <code>"customFolder_drop.gif"</code>).<br> Can be overridden at the node level via the {@link
-     * com.smartgwt.client.widgets.tree.TreeGrid#getCustomIconDropProperty customIconDropProperty} property.
+     * com.smartgwt.client.widgets.tree.TreeGrid#getCustomIconProperty customIconProperty}, default {@link
+     * com.smartgwt.client.widgets.tree.TreeNode#getIcon icon}), show drop state images when the user is drop-hovering over the
+     * folder. If true, the {@link com.smartgwt.client.widgets.tree.TreeGrid#getDropIconSuffix dropIconSuffix} will be appended
+     * to the image URL (so <code>"customFolder.gif"</code> might be replaced with  <code>"customFolder_drop.gif"</code>).<br>
+     * Can be overridden at the node level via the default property {@link
+     * com.smartgwt.client.widgets.tree.TreeNode#getShowDropIcon showDropIcon} and that property can be renamed via {@link
+     * com.smartgwt.client.widgets.tree.TreeGrid#getCustomIconDropProperty customIconDropProperty}.
      *
      *
      * @return Boolean
      */
     public Boolean getShowCustomIconDrop()  {
         return getAttributeAsBoolean("showCustomIconDrop");
-    }
-
-    /**
-     * For folder nodes showing custom icons (set via the {@link
-     * com.smartgwt.client.widgets.tree.TreeGrid#getCustomIconProperty customIconProperty}), this property allows the developer
-     * to specify on a per-node basis whether a open state icon should be displayed when the folder is open. Set
-     * <code>node[treeGrid.customIconOpenProperty]</code> to true to show the open state icons, or false to suppress this.<br>
-     * If not specified, this behavior is determined by <code>grid.showCustomIconOpen</code> for this node.
-     * <p><b>Note : </b> This is an advanced setting</p>
-     *
-     * @param customIconOpenProperty customIconOpenProperty Default value is "showOpenIcon"
-     */
-    public void setCustomIconOpenProperty(String customIconOpenProperty) {
-        setAttribute("customIconOpenProperty", customIconOpenProperty, true);
-    }
-
-    /**
-     * For folder nodes showing custom icons (set via the {@link
-     * com.smartgwt.client.widgets.tree.TreeGrid#getCustomIconProperty customIconProperty}), this property allows the developer
-     * to specify on a per-node basis whether a open state icon should be displayed when the folder is open. Set
-     * <code>node[treeGrid.customIconOpenProperty]</code> to true to show the open state icons, or false to suppress this.<br>
-     * If not specified, this behavior is determined by <code>grid.showCustomIconOpen</code> for this node.
-     *
-     *
-     * @return String
-     */
-    public String getCustomIconOpenProperty()  {
-        return getAttributeAsString("customIconOpenProperty");
-    }
-
-    /**
-     * For folder nodes showing custom icons (set via the {@link
-     * com.smartgwt.client.widgets.tree.TreeGrid#getCustomIconProperty customIconProperty}), this property allows the developer
-     * to specify on a per-node basis whether a drop state icon (with {@link
-     * com.smartgwt.client.widgets.tree.TreeGrid#getDropIconSuffix dropIconSuffix}) should be displayed when the  user
-     * drop-hovers over this folder.<br> Set <code>node[treeGrid.customIconDropProperty]</code> to true to show the drop state
-     * icons, or false to suppress this.<br> If not specified this this behavior is determined by
-     * <code>treeGrid.showCustomIconDrop</code> for this node.
-     * <p><b>Note : </b> This is an advanced setting</p>
-     *
-     * @param customIconDropProperty customIconDropProperty Default value is "showDropIcon"
-     */
-    public void setCustomIconDropProperty(String customIconDropProperty) {
-        setAttribute("customIconDropProperty", customIconDropProperty, true);
-    }
-
-    /**
-     * For folder nodes showing custom icons (set via the {@link
-     * com.smartgwt.client.widgets.tree.TreeGrid#getCustomIconProperty customIconProperty}), this property allows the developer
-     * to specify on a per-node basis whether a drop state icon (with {@link
-     * com.smartgwt.client.widgets.tree.TreeGrid#getDropIconSuffix dropIconSuffix}) should be displayed when the  user
-     * drop-hovers over this folder.<br> Set <code>node[treeGrid.customIconDropProperty]</code> to true to show the drop state
-     * icons, or false to suppress this.<br> If not specified this this behavior is determined by
-     * <code>treeGrid.showCustomIconDrop</code> for this node.
-     *
-     *
-     * @return String
-     */
-    public String getCustomIconDropProperty()  {
-        return getAttributeAsString("customIconDropProperty");
     }
 
     /**
@@ -1273,6 +1247,7 @@ public class TreeGrid extends ListGrid  implements com.smartgwt.client.widgets.t
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
         return self.getEventRow(y);
     }-*/;
+
 
 
 
@@ -1646,7 +1621,7 @@ public class TreeGrid extends ListGrid  implements com.smartgwt.client.widgets.t
     // ********************* Static Methods ***********************
 
 
-
+
 
     protected void onInit() {
         super.onInit();
@@ -2054,6 +2029,26 @@ public class TreeGrid extends ListGrid  implements com.smartgwt.client.widgets.t
     public String getTreeRootValue() {
         return getAttribute("treeRootValue");
     }
+
+    /**
+     * Return the horizontal alignment for cell contents. Default implementation will always left-align the special {@link
+     * com.smartgwt.client.widgets.tree.TreeGridField#getTreeField treeField} [or right-align if the page is in RTL mode] -
+     * otherwise will return {@link com.smartgwt.client.widgets.grid.ListGridField#getCellAlign cellAlign} if specified,
+     * otherwise {@link com.smartgwt.client.widgets.grid.ListGridField#getAlign align}.
+     * @param record this cell's record
+     * @param rowNum row number for the cell
+     * @param colNum column number of the cell
+     *
+     * @return Horizontal alignment of cell contents: 'right', 'center', or 'left'
+     */
+    public native Alignment getCellAlign(ListGridRecord record, int rowNum, int colNum) /*-{
+        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
+        var recordJS = record.@com.smartgwt.client.data.Record::getJsObj()();
+        var ret = self.getCellAlign(recordJS, rowNum, colNum);
+        if(ret == null || ret === undefined) return null;
+        var enumValues = @com.smartgwt.client.types.Alignment::values()();
+        return @com.smartgwt.client.util.EnumUtil::getEnum([Lcom/smartgwt/client/types/ValueEnum;Ljava/lang/String;)(enumValues, ret);
+    }-*/;
 
     /**
      * Add a onFolderDrop handler.

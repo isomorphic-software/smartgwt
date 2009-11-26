@@ -58,7 +58,7 @@ import com.google.gwt.event.shared.HasHandlers;
 
 /**
  * FormItem that allows picking between several mutually exclusive options via a select list. <P> Options may be derived
- * from a <code>dataSource</code> or a <code>valueMap</code> <P> Note that to select the first option as a default value
+ * from a <code>dataSource</code> or a <code>valueMap</code>. <P> Note that to select the first option as a default value
  * for the item, {@link com.smartgwt.client.widgets.form.fields.SelectItem#getDefaultToFirstOption defaultToFirstOption}
  * may be set.
  */
@@ -301,7 +301,7 @@ public class SelectItem extends FormItem  implements PickList, com.smartgwt.clie
 
     /**
      * If {@link com.smartgwt.client.widgets.form.fields.SelectItem#getShowPickerIcon showPickerIcon} is true for this item,
-     * this property governs the size of the picker icon. If unset picker icon will be sized as a square to fit in the
+     * this property governs the size of the picker icon. If unset, the picker icon will be sized as a square to fit in the
      * avaliable height for the icon.
      * <p><b>Note : </b> This is an advanced setting</p>
      *
@@ -313,7 +313,7 @@ public class SelectItem extends FormItem  implements PickList, com.smartgwt.clie
 
     /**
      * If {@link com.smartgwt.client.widgets.form.fields.SelectItem#getShowPickerIcon showPickerIcon} is true for this item,
-     * this property governs the size of the picker icon. If unset picker icon will be sized as a square to fit in the
+     * this property governs the size of the picker icon. If unset, the picker icon will be sized as a square to fit in the
      * avaliable height for the icon.
      *
      *
@@ -325,7 +325,7 @@ public class SelectItem extends FormItem  implements PickList, com.smartgwt.clie
 
     /**
      * If {@link com.smartgwt.client.widgets.form.fields.SelectItem#getShowPickerIcon showPickerIcon} is true for this item,
-     * this property governs the size of the picker icon. If unset picker icon will be sized as a square to fit in the
+     * this property governs the size of the picker icon. If unset, the picker icon will be sized as a square to fit in the
      * avaliable height for the icon.
      * <p><b>Note : </b> This is an advanced setting</p>
      *
@@ -337,7 +337,7 @@ public class SelectItem extends FormItem  implements PickList, com.smartgwt.clie
 
     /**
      * If {@link com.smartgwt.client.widgets.form.fields.SelectItem#getShowPickerIcon showPickerIcon} is true for this item,
-     * this property governs the size of the picker icon. If unset picker icon will be sized as a square to fit in the
+     * this property governs the size of the picker icon. If unset, the picker icon will be sized as a square to fit in the
      * avaliable height for the icon.
      *
      *
@@ -445,7 +445,7 @@ public class SelectItem extends FormItem  implements PickList, com.smartgwt.clie
     }
 
     /**
-     * If showing hint for this form item, should it be shown within the field? <P>CSS style for the hint is {@link
+     * If showing a hint for this form item, should it be shown within the field? <P>CSS style for the hint is {@link
      * com.smartgwt.client.widgets.form.fields.SelectItem#getTextBoxStyle textBoxStyle} with the suffix "Hint" appended to it.
      * <p><b>Note : </b> This is an advanced setting</p>
      *
@@ -456,7 +456,7 @@ public class SelectItem extends FormItem  implements PickList, com.smartgwt.clie
     }
 
     /**
-     * If showing hint for this form item, should it be shown within the field? <P>CSS style for the hint is {@link
+     * If showing a hint for this form item, should it be shown within the field? <P>CSS style for the hint is {@link
      * com.smartgwt.client.widgets.form.fields.SelectItem#getTextBoxStyle textBoxStyle} with the suffix "Hint" appended to it.
      *
      *
@@ -464,6 +464,29 @@ public class SelectItem extends FormItem  implements PickList, com.smartgwt.clie
      */
     public Boolean getShowHintInField()  {
         return getAttributeAsBoolean("showHintInField");
+    }
+
+    /**
+     * If this item has a specified <code>optionDataSource</code>, this attribute may be set to specify an explicit {@link
+     * com.smartgwt.client.data.DSRequest#getOperationId operationId} when performing a fetch against the option dataSource to
+     * pick up display value mapping.
+     *
+     * @param optionOperationId optionOperationId Default value is null
+     */
+    public void setOptionOperationId(String optionOperationId) {
+        setAttribute("optionOperationId", optionOperationId);
+    }
+
+    /**
+     * If this item has a specified <code>optionDataSource</code>, this attribute may be set to specify an explicit {@link
+     * com.smartgwt.client.data.DSRequest#getOperationId operationId} when performing a fetch against the option dataSource to
+     * pick up display value mapping.
+     *
+     *
+     * @return String
+     */
+    public String getOptionOperationId()  {
+        return getAttributeAsString("optionOperationId");
     }
 
     /**
@@ -565,7 +588,7 @@ public class SelectItem extends FormItem  implements PickList, com.smartgwt.clie
     }
 
     /**
-     * If this item is part of a databound form, and has a specified <code>valueMap</code> by default we show the valueMap
+     * If this item is part of a databound form, and has a specified <code>valueMap</code>, by default we show the valueMap
      * options in the pickList for the item. Setting this property to true will ensure that the options displayed in our
      * pickList are derived from the form's <code>dataSource</code>.
      * <p><b>Note : </b> This is an advanced setting</p>
@@ -577,7 +600,7 @@ public class SelectItem extends FormItem  implements PickList, com.smartgwt.clie
     }
 
     /**
-     * If this item is part of a databound form, and has a specified <code>valueMap</code> by default we show the valueMap
+     * If this item is part of a databound form, and has a specified <code>valueMap</code>, by default we show the valueMap
      * options in the pickList for the item. Setting this property to true will ensure that the options displayed in our
      * pickList are derived from the form's <code>dataSource</code>.
      *
@@ -685,17 +708,8 @@ public class SelectItem extends FormItem  implements PickList, com.smartgwt.clie
     // ********************* Static Methods ***********************
 
 
-
-
-
-
-
-
-
-
-
-
-
+
+
     static {
         init();
     }
@@ -936,6 +950,59 @@ public class SelectItem extends FormItem  implements PickList, com.smartgwt.clie
         return getAttributeAsInt("pickListHeaderHeight");
     }
 
+    /**
+     * Specifies the field by which this item should be initially sorted.  Can be set to  either a {@link
+     * com.smartgwt.client.widgets.grid.ListGridField#getName 'field name'} or the index of the field in the fields  Array.
+     * Note that if <code>sortField</code> is initally specified as a number, it will be converted to a string (field name)
+     * after the item is initialized. <P> To programmatically change sort field or direction after initialization, call
+     * ${isc.DocUtils.linkForRef('sort')}.
+     *
+     * @param sortField sortField Default value is null
+     */
+    public void setSortField(String sortField) {
+        setAttribute("sortField", sortField);
+    }
+
+    /**
+     * Specifies the field by which this item should be initially sorted.  Can be set to  either a {@link
+     * com.smartgwt.client.widgets.grid.ListGridField#getName 'field name'} or the index of the field in the fields  Array.
+     * Note that if <code>sortField</code> is initally specified as a number, it will be converted to a string (field name)
+     * after the item is initialized. <P> To programmatically change sort field or direction after initialization, call
+     * ${isc.DocUtils.linkForRef('sort')}.
+     *
+     *
+     * @return String
+     */
+    public String getSortField()  {
+        return getAttributeAsString("sortField");
+    }
+
+    /**
+     * Specifies the field by which this item should be initially sorted.  Can be set to  either a {@link
+     * com.smartgwt.client.widgets.grid.ListGridField#getName 'field name'} or the index of the field in the fields  Array.
+     * Note that if <code>sortField</code> is initally specified as a number, it will be converted to a string (field name)
+     * after the item is initialized. <P> To programmatically change sort field or direction after initialization, call
+     * ${isc.DocUtils.linkForRef('sort')}.
+     *
+     * @param sortField sortField Default value is null
+     */
+    public void setSortField(Integer sortField) {
+        setAttribute("sortField", sortField);
+    }
+
+    /**
+     * Specifies the field by which this item should be initially sorted.  Can be set to  either a {@link
+     * com.smartgwt.client.widgets.grid.ListGridField#getName 'field name'} or the index of the field in the fields  Array.
+     * Note that if <code>sortField</code> is initally specified as a number, it will be converted to a string (field name)
+     * after the item is initialized. <P> To programmatically change sort field or direction after initialization, call
+     * ${isc.DocUtils.linkForRef('sort')}.
+     *
+     *
+     * @return Integer
+     */
+    public Integer getSortFieldAsInt()  {
+        return getAttributeAsInt("sortField");
+    }
 
     /**
      * For Databound formItems, this property determines which column  {@link com.smartgwt.client.widgets.form.fields.FormItem#getValueIcons

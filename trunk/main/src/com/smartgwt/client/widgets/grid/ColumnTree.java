@@ -310,8 +310,9 @@ public class ColumnTree extends Layout  implements DataBoundComponent, com.smart
      * be appended to the image URL (so <code>"customFolder.gif"</code> might be replaced with 
      * <code>"customFolder_open.gif"</code>).<br> <b>Note</b> that the {@link
      * com.smartgwt.client.widgets.grid.ColumnTree#getClosedIconSuffix closedIconSuffix} is never appended to custom folder
-     * icons.<br> Can be overridden at the node level via the {@link
-     * com.smartgwt.client.widgets.grid.ColumnTree#getCustomIconOpenProperty customIconOpenProperty} property.
+     * icons.<br> Can be overridden at the node level via the default property {@link
+     * com.smartgwt.client.widgets.tree.TreeNode#getShowOpenIcon showOpenIcon} and that property can be renamed via {@link
+     * com.smartgwt.client.widgets.tree.TreeGrid#getCustomIconOpenProperty customIconOpenProperty}.
      * <p><b>Note : </b> This is an advanced setting</p>
      *
      * @param showCustomIconOpen showCustomIconOpen Default value is false
@@ -327,8 +328,9 @@ public class ColumnTree extends Layout  implements DataBoundComponent, com.smart
      * be appended to the image URL (so <code>"customFolder.gif"</code> might be replaced with 
      * <code>"customFolder_open.gif"</code>).<br> <b>Note</b> that the {@link
      * com.smartgwt.client.widgets.grid.ColumnTree#getClosedIconSuffix closedIconSuffix} is never appended to custom folder
-     * icons.<br> Can be overridden at the node level via the {@link
-     * com.smartgwt.client.widgets.grid.ColumnTree#getCustomIconOpenProperty customIconOpenProperty} property.
+     * icons.<br> Can be overridden at the node level via the default property {@link
+     * com.smartgwt.client.widgets.tree.TreeNode#getShowOpenIcon showOpenIcon} and that property can be renamed via {@link
+     * com.smartgwt.client.widgets.tree.TreeGrid#getCustomIconOpenProperty customIconOpenProperty}.
      *
      *
      * @return Boolean
@@ -338,11 +340,8 @@ public class ColumnTree extends Layout  implements DataBoundComponent, com.smart
     }
 
     /**
-     * For folder nodes showing custom icons (set via the {@link
-     * com.smartgwt.client.widgets.grid.ColumnTree#getCustomIconProperty customIconProperty}), this property allows the
-     * developer to specify on a per-node basis whether a open state icon should be displayed when the folder is open. Set
-     * <code>node[treeGrid.customIconOpenProperty]</code> to true to show the open state icons, or false to suppress this.<br>
-     * If not specified, this behavior is determined by <code>grid.showCustomIconOpen</code> for this node.
+     * This property allows the developer to rename the  {@link com.smartgwt.client.widgets.tree.TreeNode#getShowOpenIcon
+     * 'default node.showOpenIcon'} property.
      * <p><b>Note : </b> This is an advanced setting</p>
      *
      * @param customIconOpenProperty customIconOpenProperty Default value is "showOpenIcon"
@@ -352,11 +351,8 @@ public class ColumnTree extends Layout  implements DataBoundComponent, com.smart
     }
 
     /**
-     * For folder nodes showing custom icons (set via the {@link
-     * com.smartgwt.client.widgets.grid.ColumnTree#getCustomIconProperty customIconProperty}), this property allows the
-     * developer to specify on a per-node basis whether a open state icon should be displayed when the folder is open. Set
-     * <code>node[treeGrid.customIconOpenProperty]</code> to true to show the open state icons, or false to suppress this.<br>
-     * If not specified, this behavior is determined by <code>grid.showCustomIconOpen</code> for this node.
+     * This property allows the developer to rename the  {@link com.smartgwt.client.widgets.tree.TreeNode#getShowOpenIcon
+     * 'default node.showOpenIcon'} property.
      *
      *
      * @return String
@@ -536,7 +532,7 @@ public class ColumnTree extends Layout  implements DataBoundComponent, com.smart
      * from this method.
      * @param node tree node in question
      *
-     * @return URL for icon to show for this node
+     * @return URL for the icon to show for this node
      */
     public native String getIcon(TreeNode node) /*-{
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
