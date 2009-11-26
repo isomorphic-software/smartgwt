@@ -1909,7 +1909,9 @@ public class Calendar extends Canvas  implements DataBoundComponent, com.smartgw
      */
     public native void addEvent(Date startDate, Date endDate, String name, String description) /*-{
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
-        self.addEvent(startDate, endDate, name, description);
+        self.addEvent(@com.smartgwt.client.util.JSOHelper::convertToJavaScriptDate(Ljava/util/Date;)(startDate),
+                      @com.smartgwt.client.util.JSOHelper::convertToJavaScriptDate(Ljava/util/Date;)(endDate),
+                      name, description);
     }-*/;
 
     /**
@@ -1924,7 +1926,10 @@ public class Calendar extends Canvas  implements DataBoundComponent, com.smartgw
     public native void addEvent(Date startDate, Date endDate, String name, String description, Map otherFields) /*-{
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
         var otherFieldsJS = @com.smartgwt.client.util.JSOHelper::convertMapToJavascriptObject(Ljava/util/Map;)(otherFields);
-        self.addEvent(startDate, endDate, name, description, otherFieldsJS);
+        self.addEvent(@com.smartgwt.client.util.JSOHelper::convertToJavaScriptDate(Ljava/util/Date;)(startDate),
+                      @com.smartgwt.client.util.JSOHelper::convertToJavaScriptDate(Ljava/util/Date;)(endDate),
+                      name, description,
+                      @com.smartgwt.client.util.JSOHelper::convertMapToJavascriptObject(Ljava/util/Map;)(otherFieldsJS));
     }-*/;
 
     /**
@@ -1948,7 +1953,9 @@ public class Calendar extends Canvas  implements DataBoundComponent, com.smartgw
      */
     public native void updateEvent(CalendarEvent event, Date startDate, Date endDate, String name, String description) /*-{
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
-        self.updateEvent(event.@com.smartgwt.client.widgets.calendar.CalendarEvent::getJsObj()(), startDate, endDate, name, description);
+        self.updateEvent(event.@com.smartgwt.client.widgets.calendar.CalendarEvent::getJsObj()(),
+                @com.smartgwt.client.util.JSOHelper::convertToJavaScriptDate(Ljava/util/Date;)(startDate),
+                @com.smartgwt.client.util.JSOHelper::convertToJavaScriptDate(Ljava/util/Date;)(endDate), name, description);
     }-*/;
 
     public void setShowDayView(Boolean showDayView) throws IllegalStateException {
