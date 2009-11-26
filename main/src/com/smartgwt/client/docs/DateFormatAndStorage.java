@@ -39,7 +39,9 @@ package com.smartgwt.client.docs;
  * Schema date / time format</a> - <code>HH:MM:SS</code>. Note that the flag {@link
  * com.smartgwt.client.data.DataSource#serializeTimeAsDatetime} may be set to serialize all times as full datetimes rather
  * than just time strings. Time values received from the server in responses are expected to be in the same format, in UTC,
- * or with an explicit timezone offset specified (for example <code>"22:01:45-01:00"</code>
+ * or with an explicit timezone offset specified (for example <code>"22:01:45-01:00"</code>) <P> When communicating with
+ * the Smart GWT server fields of type <code>date</code>, <code>datetime</code> and <code>time</code> are all automatically
+ * translated to Java date objects on the server side.
  */
 public interface DateFormatAndStorage {
 }

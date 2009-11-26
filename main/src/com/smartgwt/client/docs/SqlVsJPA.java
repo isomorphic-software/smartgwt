@@ -26,8 +26,8 @@ package com.smartgwt.client.docs;
  * generating efficient queries doesn't make sense - this just leads to a far more complex and fragile solution that now
  * requires deep knowledge of how the ORM system generates SQL as well as SQL itself.  <P> SQLDataSource allows you to
  * directly write SQL when it makes sense, and  {@link com.smartgwt.client.data.DataSource#getBeanClassName 'to use beans'}
- * when object oriented approaches are clearer and simpler.  When you do write SQL directly, you overriding just the parts
- * of the query that you need to change - you still leverage SQLDataSource's ability to generate cross-database SQL for
+ * when object oriented approaches are clearer and simpler.  When you do write SQL directly, you override just the parts of
+ * the query that you need to change - you still leverage SQLDataSource's ability to generate cross-database SQL for
  * complex search criteria, efficient data paging and sorting, even in a complex reporting query (see
  * ${isc.DocUtils.linkForExampleId('dynamicReporting', 'this example')}). <p> <b>Portability</b> <p> Smart GWT DataSources
  * provide cross-database portability like JPA and other solutions. However, DataSources can also be replaced with an

@@ -113,6 +113,27 @@ public class ButtonItem extends CanvasItem  implements com.smartgwt.client.widge
     }
 
     /**
+     * Optional icon image to display on the button for this item.  See {@link com.smartgwt.client.widgets.Button#getIcon
+     * icon}.
+     *
+     * @param icon icon Default value is null
+     */
+    public void setIcon(String icon) {
+        setAttribute("icon", icon);
+    }
+
+    /**
+     * Optional icon image to display on the button for this item.  See {@link com.smartgwt.client.widgets.Button#getIcon
+     * icon}.
+     *
+     *
+     * @return String
+     */
+    public String getIcon()  {
+        return getAttributeAsString("icon");
+    }
+
+    /**
      * Buttons do not show a title by default.
      *
      * @param showTitle showTitle Default value is false
@@ -224,24 +245,6 @@ public class ButtonItem extends CanvasItem  implements com.smartgwt.client.widge
 
 
 
-    /**
-     * Set the icon.
-     *
-     * @param icon the icon
-     */
-    public void setIcon(String icon) {
-        setAttribute("icon", icon);
-    }
-
-    /**
-     * Return the icon.
-     *
-     * @return the icon
-     */
-    public String getIcon() {
-        return getAttribute("icon");
-    }
-
     public Canvas getCanvas() {
         return Button.getOrCreateRef(getAttributeAsJavaScriptObject("canvas"));
     }

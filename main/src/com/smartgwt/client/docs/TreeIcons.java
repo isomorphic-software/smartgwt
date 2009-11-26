@@ -3,6 +3,9 @@ package com.smartgwt.client.docs;
 
 /**
  * @see com.smartgwt.client.widgets.tree.TreeGrid#setNodeIcon
+ * @see com.smartgwt.client.widgets.tree.TreeNode#getIcon
+ * @see com.smartgwt.client.widgets.tree.TreeNode#getShowOpenIcon
+ * @see com.smartgwt.client.widgets.tree.TreeNode#getShowDropIcon
  * @see com.smartgwt.client.widgets.tree.TreeGrid#getIconSize
  * @see com.smartgwt.client.widgets.tree.TreeGrid#getOpenerIconSize
  * @see com.smartgwt.client.widgets.tree.TreeGrid#getFolderIcon
@@ -13,10 +16,10 @@ package com.smartgwt.client.docs;
  * @see com.smartgwt.client.widgets.tree.TreeGrid#getShowOpenIcons
  * @see com.smartgwt.client.widgets.tree.TreeGrid#getShowDropIcons
  * @see com.smartgwt.client.widgets.tree.TreeGrid#getCustomIconProperty
- * @see com.smartgwt.client.widgets.tree.TreeGrid#getShowCustomIconOpen
- * @see com.smartgwt.client.widgets.tree.TreeGrid#getShowCustomIconDrop
  * @see com.smartgwt.client.widgets.tree.TreeGrid#getCustomIconOpenProperty
  * @see com.smartgwt.client.widgets.tree.TreeGrid#getCustomIconDropProperty
+ * @see com.smartgwt.client.widgets.tree.TreeGrid#getShowCustomIconOpen
+ * @see com.smartgwt.client.widgets.tree.TreeGrid#getShowCustomIconDrop
  * @see com.smartgwt.client.widgets.tree.TreeGrid#getShowConnectors
  * @see com.smartgwt.client.widgets.tree.TreeGrid#getShowFullConnectors
  * @see com.smartgwt.client.widgets.tree.TreeGrid#getOpenerImage

@@ -1441,8 +1441,6 @@ public class DataSource extends BaseClass  implements com.smartgwt.client.data.e
 
 
 
-
-
     // ********************* Static Methods ***********************
 
     /**
@@ -1483,7 +1481,12 @@ public class DataSource extends BaseClass  implements com.smartgwt.client.data.e
 
 
 
-
+
+
+
+
+
+
 
 
 
@@ -2454,7 +2457,67 @@ public class DataSource extends BaseClass  implements com.smartgwt.client.data.e
         self.viewFile(data.@com.smartgwt.client.data.Record::getJsObj()(), fieldName, requestPropertiesJS);
     }-*/;
 
+    /**
+     * Load a DataSource or an array of DataSources using the DataSourceLoader servlet.  When a callback is specified, this is
+     * fired after the DataSources are loaded.  If no loading occurs because the requested DataSource(s) are already loaded, a
+     * warning is  logged and the callback is fired. <P> To force reloading of DataSources that have already been loaded, pass
+     * <code>true</code> in the forceReload parameter.
+     * @param dsID DataSource ID
+     * @param callback Callback to fire after DataSource loading completes
+     * @param forceReload Forcibly reload a dataSource if it's already loaded
+     */
+    public static native void load(String dsID, Function callback, boolean forceReload) /*-{
+        $wnd.isc.DataSource.load(dsID,
+                function() {
+                    if(callback != null) callback.@com.smartgwt.client.core.Function::execute()();
+                },
+                forceReload);
+    }-*/;
+
+    /**
+     * Load a DataSource or an array of DataSources using the DataSourceLoader servlet.  When a callback is specified, this is
+     * fired after the DataSources are loaded.  If no loading occurs because the requested DataSource(s) are already loaded, a
+     * warning is  logged and the callback is fired. <P> To force reloading of DataSources that have already been loaded, pass
+     * <code>true</code> in the forceReload parameter.
+     * @param dsID Array of DataSource IDs
+     * @param callback Callback to fire after DataSource loading completes
+     * @param forceReload Forcibly reload a dataSource if it's already loaded
+     */
+    public static native void load(String[] dsID, Function callback, boolean forceReload) /*-{
+        $wnd.isc.DataSource.load(@com.smartgwt.client.util.JSOHelper::convertToJavaScriptArray([Ljava/lang/Object;)(dsID),
+                function() {
+                    if(callback != null) callback.@com.smartgwt.client.core.Function::execute()();
+                },
+                forceReload);
+    }-*/;
+
+    /**
+     * Given an array of ${isc.DocUtils.linkForRef('object:SortSpecifier')}s, return a simple list of Strings in the format
+     * expected by {@link com.smartgwt.client.data.DSRequest#getSortBy sortBy}.
+     * @param sortSpecifiers The list of specifiers to return in   sortBy format
+     *
+     * @return An array of sort-definitions in the format expected by  {@link com.smartgwt.client.data.DSRequest#getSortBy sortBy}
+     */
+    public static native String[] getSortBy(String[] sortSpecifiers) /*-{
+        var sortDefJS = $wnd.isc.DataSource.getSortBy(@com.smartgwt.client.util.JSOHelper::convertToJavaScriptArray([Ljava/lang/Object;)(sortSpecifiers));
+        return @com.smartgwt.client.util.JSOHelper::convertToJavaStringArray(Lcom/google/gwt/core/client/JavaScriptObject;)(sortDefJS);
+    }-*/;
+
+    /**
+     * Return a an array of ${isc.DocUtils.linkForRef('object:SortSpecifier')}s, given an array of Strings in the format
+     * expected by {@link com.smartgwt.client.data.DSRequest#getSortBy sortBy}.
+     * @param sortBy A list of sortBy strings in the format expected by {@link com.smartgwt.client.data.DSRequest#getSortBy sortBy}
+     *
+     * @return An array of ${isc.DocUtils.linkForRef('SortSpecifiers')} equivalent to the passed in string array
+     */
+    public static native String[] getSortSpecifiers(String[] sortBy) /*-{
+        var sortSpecJS = $wnd.isc.DataSource.getSortSpecifiers(@com.smartgwt.client.util.JSOHelper::convertToJavaScriptArray([Ljava/lang/Object;)(sortBy));
+        return @com.smartgwt.client.util.JSOHelper::convertToJavaStringArray(Lcom/google/gwt/core/client/JavaScriptObject;)(sortSpecJS);
+    }-*/;
+
+
 }
+
 
 
 

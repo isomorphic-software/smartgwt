@@ -123,7 +123,7 @@ public class ComboBoxItem extends FormItem  implements PickList, com.smartgwt.cl
      * Select the first option as the default value for this ComboBoxItem. If options are derived from a dataSource, the first
      * value returned by the server will be used, otherwise the first value in the valueMap. If enabled, this setting overrides
      * {@link com.smartgwt.client.widgets.form.fields.ComboBoxItem#getDefaultValue defaultValue} and {@link
-     * com.smartgwt.client.widgets.form.fields.ComboBoxItem#defaultDynamicValue}|.
+     * com.smartgwt.client.widgets.form.fields.ComboBoxItem#defaultDynamicValue}.
      *
      * @param defaultToFirstOption defaultToFirstOption Default value is false
      */
@@ -135,7 +135,7 @@ public class ComboBoxItem extends FormItem  implements PickList, com.smartgwt.cl
      * Select the first option as the default value for this ComboBoxItem. If options are derived from a dataSource, the first
      * value returned by the server will be used, otherwise the first value in the valueMap. If enabled, this setting overrides
      * {@link com.smartgwt.client.widgets.form.fields.ComboBoxItem#getDefaultValue defaultValue} and {@link
-     * com.smartgwt.client.widgets.form.fields.ComboBoxItem#defaultDynamicValue}|.
+     * com.smartgwt.client.widgets.form.fields.ComboBoxItem#defaultDynamicValue}.
      *
      *
      * @return Boolean
@@ -145,7 +145,7 @@ public class ComboBoxItem extends FormItem  implements PickList, com.smartgwt.cl
     }
 
     /**
-     * If showing hint for this form item, should it be shown within the field? <P>CSS style for the hint is {@link
+     * If showing a hint for this form item, should it be shown within the field? <P>CSS style for the hint is {@link
      * com.smartgwt.client.widgets.form.fields.SelectItem#getTextBoxStyle textBoxStyle} with the suffix "Hint" appended to it.
      * <p><b>Note : </b> This is an advanced setting</p>
      *
@@ -156,7 +156,7 @@ public class ComboBoxItem extends FormItem  implements PickList, com.smartgwt.cl
     }
 
     /**
-     * If showing hint for this form item, should it be shown within the field? <P>CSS style for the hint is {@link
+     * If showing a hint for this form item, should it be shown within the field? <P>CSS style for the hint is {@link
      * com.smartgwt.client.widgets.form.fields.SelectItem#getTextBoxStyle textBoxStyle} with the suffix "Hint" appended to it.
      *
      *
@@ -172,7 +172,7 @@ public class ComboBoxItem extends FormItem  implements PickList, com.smartgwt.cl
  
 
     /**
-     * Show the picker icon for the combo box
+     * Show the picker icon for the ComboBox.
      * <p><b>Note : </b> This is an advanced setting</p>
      *
      * @param showPickerIcon showPickerIcon Default value is true
@@ -182,7 +182,7 @@ public class ComboBoxItem extends FormItem  implements PickList, com.smartgwt.cl
     }
 
     /**
-     * Show the picker icon for the combo box
+     * Show the picker icon for the ComboBox.
      *
      *
      * @return Boolean
@@ -211,7 +211,7 @@ public class ComboBoxItem extends FormItem  implements PickList, com.smartgwt.cl
     }
 
     /**
-     * Src for the picker icon
+     * Src for the picker icon.
      * <p><b>Note : </b> This is an advanced setting</p>
      *
      * @param pickerIconSrc pickerIconSrc Default value is "[SKIN]/DynamicForm/ComboBoxItem_PickButton_icon.gif"
@@ -221,7 +221,7 @@ public class ComboBoxItem extends FormItem  implements PickList, com.smartgwt.cl
     }
 
     /**
-     * Src for the picker icon
+     * Src for the picker icon.
      *
      *
      * @return String
@@ -232,7 +232,7 @@ public class ComboBoxItem extends FormItem  implements PickList, com.smartgwt.cl
 
     /**
      * Should the list of options be displayed whenever the user types into the  the combo-box textArea, or only when the user
-     * clicks on the pick button or uses the  explicit <code>Alt+Arrow Down</code> key combo?
+     * clicks on the pick button or uses the  explicit <code>Alt+Arrow Down</code> key combination?
      *
      * @param showPickListOnKeypress showPickListOnKeypress Default value is true
      */
@@ -242,7 +242,7 @@ public class ComboBoxItem extends FormItem  implements PickList, com.smartgwt.cl
 
     /**
      * Should the list of options be displayed whenever the user types into the  the combo-box textArea, or only when the user
-     * clicks on the pick button or uses the  explicit <code>Alt+Arrow Down</code> key combo?
+     * clicks on the pick button or uses the  explicit <code>Alt+Arrow Down</code> key combination?
      *
      *
      * @return Boolean
@@ -268,6 +268,29 @@ public class ComboBoxItem extends FormItem  implements PickList, com.smartgwt.cl
      */
     public Boolean getCompleteOnTab()  {
         return getAttributeAsBoolean("completeOnTab");
+    }
+
+    /**
+     * If this item has a specified <code>optionDataSource</code>, this attribute may be set to specify an explicit {@link
+     * com.smartgwt.client.data.DSRequest#getOperationId operationId} when performing a fetch against the option dataSource to
+     * pick up display value mapping.
+     *
+     * @param optionOperationId optionOperationId Default value is null
+     */
+    public void setOptionOperationId(String optionOperationId) {
+        setAttribute("optionOperationId", optionOperationId);
+    }
+
+    /**
+     * If this item has a specified <code>optionDataSource</code>, this attribute may be set to specify an explicit {@link
+     * com.smartgwt.client.data.DSRequest#getOperationId operationId} when performing a fetch against the option dataSource to
+     * pick up display value mapping.
+     *
+     *
+     * @return String
+     */
+    public String getOptionOperationId()  {
+        return getAttributeAsString("optionOperationId");
     }
 
     /**
@@ -370,7 +393,7 @@ public class ComboBoxItem extends FormItem  implements PickList, com.smartgwt.cl
     }
 
     /**
-     * If this item is part of a databound form, and has a specified <code>valueMap</code> by default we show the valueMap
+     * If this item is part of a databound form, and has a specified <code>valueMap</code>, by default we show the valueMap
      * options in the pickList for the item. Setting this property to true will ensure that the options displayed in our
      * pickList are derived from the form's <code>dataSource</code>.
      * <p><b>Note : </b> This is an advanced setting</p>
@@ -382,7 +405,7 @@ public class ComboBoxItem extends FormItem  implements PickList, com.smartgwt.cl
     }
 
     /**
-     * If this item is part of a databound form, and has a specified <code>valueMap</code> by default we show the valueMap
+     * If this item is part of a databound form, and has a specified <code>valueMap</code>, by default we show the valueMap
      * options in the pickList for the item. Setting this property to true will ensure that the options displayed in our
      * pickList are derived from the form's <code>dataSource</code>.
      *
@@ -522,17 +545,8 @@ public class ComboBoxItem extends FormItem  implements PickList, com.smartgwt.cl
     // ********************* Static Methods ***********************
 
 
-
-
-
-
-
-
-
-
-
-
-
+
+
     static {
         init();
     }
@@ -849,6 +863,60 @@ public class ComboBoxItem extends FormItem  implements PickList, com.smartgwt.cl
 
     public Integer getFetchDelay() {
         return getAttributeAsInt("fetchDelay");
+    }
+
+    /**
+     * Specifies the field by which this item should be initially sorted.  Can be set to  either a {@link
+     * com.smartgwt.client.widgets.grid.ListGridField#getName 'field name'} or the index of the field in the fields  Array.
+     * Note that if <code>sortField</code> is initally specified as a number, it will be converted to a string (field name)
+     * after the item is initialized. <P> To programmatically change sort field or direction after initialization, call
+     * ${isc.DocUtils.linkForRef('sort')}.
+     *
+     * @param sortField sortField Default value is null
+     */
+    public void setSortField(String sortField) {
+        setAttribute("sortField", sortField);
+    }
+
+    /**
+     * Specifies the field by which this item should be initially sorted.  Can be set to  either a {@link
+     * com.smartgwt.client.widgets.grid.ListGridField#getName 'field name'} or the index of the field in the fields  Array.
+     * Note that if <code>sortField</code> is initally specified as a number, it will be converted to a string (field name)
+     * after the item is initialized. <P> To programmatically change sort field or direction after initialization, call
+     * ${isc.DocUtils.linkForRef('sort')}.
+     *
+     *
+     * @return String
+     */
+    public String getSortField()  {
+        return getAttributeAsString("sortField");
+    }
+
+    /**
+     * Specifies the field by which this item should be initially sorted.  Can be set to  either a {@link
+     * com.smartgwt.client.widgets.grid.ListGridField#getName 'field name'} or the index of the field in the fields  Array.
+     * Note that if <code>sortField</code> is initally specified as a number, it will be converted to a string (field name)
+     * after the item is initialized. <P> To programmatically change sort field or direction after initialization, call
+     * ${isc.DocUtils.linkForRef('sort')}.
+     *
+     * @param sortField sortField Default value is null
+     */
+    public void setSortField(Integer sortField) {
+        setAttribute("sortField", sortField);
+    }
+
+    /**
+     * Specifies the field by which this item should be initially sorted.  Can be set to  either a {@link
+     * com.smartgwt.client.widgets.grid.ListGridField#getName 'field name'} or the index of the field in the fields  Array.
+     * Note that if <code>sortField</code> is initally specified as a number, it will be converted to a string (field name)
+     * after the item is initialized. <P> To programmatically change sort field or direction after initialization, call
+     * ${isc.DocUtils.linkForRef('sort')}.
+     *
+     *
+     * @return Integer
+     */
+    public Integer getSortFieldAsInt()  {
+        return getAttributeAsInt("sortField");
     }
 
     /**

@@ -341,15 +341,10 @@ public class DetailViewerField extends DataClass {
     // ********************* Static Methods ***********************
 
 
+
+
 
-
-
-
-
-
-
-
-
+
     /**
      * Set the cellStyle.
      *
@@ -392,7 +387,6 @@ public class DetailViewerField extends DataClass {
      * If specified on a field, this method is evaluated at draw time to determine whether or not to show this
      * particular field. <p> This method can be specified either as a function or a string that will be auto-converted
      * to a function.
-     *
      * @param showIf the showIf criteria
      */
     public native void setShowIfCondition(DetailViewerFieldIfFunction showIf) /*-{

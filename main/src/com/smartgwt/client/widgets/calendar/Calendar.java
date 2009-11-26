@@ -868,6 +868,34 @@ public class Calendar extends Canvas  implements DataBoundComponent, com.smartgw
     }
 
     /**
+     * If false the controls bar at the top of the calendar will not be displayed. This consists  of the autoChildren: {@link
+     * com.smartgwt.client.widgets.calendar.Calendar#getPreviousButton previousButton}, {@link
+     * com.smartgwt.client.widgets.calendar.Calendar#getNextButton nextButton}, {@link
+     * com.smartgwt.client.widgets.calendar.Calendar#getAddEventButton addEventButton}, {@link
+     * com.smartgwt.client.widgets.calendar.Calendar#getDatePickerButton datePickerButton}
+     *
+     * @param showControlsBar showControlsBar Default value is true
+     * @throws IllegalStateException this property cannot be changed after the component has been created
+     */
+    public void setShowControlsBar(Boolean showControlsBar)  throws IllegalStateException {
+        setAttribute("showControlsBar", showControlsBar, false);
+    }
+
+    /**
+     * If false the controls bar at the top of the calendar will not be displayed. This consists  of the autoChildren: {@link
+     * com.smartgwt.client.widgets.calendar.Calendar#getPreviousButton previousButton}, {@link
+     * com.smartgwt.client.widgets.calendar.Calendar#getNextButton nextButton}, {@link
+     * com.smartgwt.client.widgets.calendar.Calendar#getAddEventButton addEventButton}, {@link
+     * com.smartgwt.client.widgets.calendar.Calendar#getDatePickerButton datePickerButton}
+     *
+     *
+     * @return Boolean
+     */
+    public Boolean getShowControlsBar()  {
+        return getAttributeAsBoolean("showControlsBar");
+    }
+
+    /**
      * The message to display in the {@link com.smartgwt.client.widgets.calendar.Calendar#getEventEditor eventEditor} when the
      * 'To' date is greater than the 'From' date and a save is attempted.
      *
@@ -999,27 +1027,6 @@ public class Calendar extends Canvas  implements DataBoundComponent, com.smartgw
      */
     public TextMatchStyle getAutoFetchTextMatchStyle()  {
         return EnumUtil.getEnum(TextMatchStyle.values(), getAttribute("autoFetchTextMatchStyle"));
-    }
- 
-
-    /**
-     * The granularity with which the timelineView will display events. Possible values are "day" or "hour".
-     *
-     * @param timelineGranularity timelineGranularity Default value is "day"
-     * @throws IllegalStateException this property cannot be changed after the component has been created
-     */
-    public void setTimelineGranularity(String timelineGranularity)  throws IllegalStateException {
-        setAttribute("timelineGranularity", timelineGranularity, false);
-    }
-
-    /**
-     * The granularity with which the timelineView will display events. Possible values are "day" or "hour".
-     *
-     *
-     * @return String
-     */
-    public String getTimelineGranularity()  {
-        return getAttributeAsString("timelineGranularity");
     }
 
     /**
@@ -1734,6 +1741,16 @@ public class Calendar extends Canvas  implements DataBoundComponent, com.smartgw
         } else {
             return @com.smartgwt.client.util.JSOHelper::toDate(D)(retVal.getTime());
         }
+    }-*/;
+
+    /**
+     * Sets the range over which the timeline will display events
+     * @param start start of range
+     * @param end end of range
+     */
+    public native void setTimelineRange(Date start, Date end) /*-{
+        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
+        self.setTimelineRange(@com.smartgwt.client.util.JSOHelper::convertToJavaScriptDate(Ljava/util/Date;)(start), @com.smartgwt.client.util.JSOHelper::convertToJavaScriptDate(Ljava/util/Date;)(end));
     }-*/;
 
     // ********************* Static Methods ***********************

@@ -405,7 +405,7 @@ public class Tree extends BaseClass  implements com.smartgwt.client.widgets.tree
      * <code>name:"root"</code>, then the path to the <code>bar</code> node would be&#010 <code>/foo/bar</code>.&#010
      * <br><br>&#010 Note: if you initialize a Tree with no <code>root</code> value, a root node will be&#010 auto-created for
      * you.  You can then call {@link com.smartgwt.client.widgets.tree.Tree#add} to construct the tree.
-     * Set the root of the tree.
+     * Set the root node of the tree.
      *
      * @param root new root node. Default value is null
      */
@@ -466,7 +466,7 @@ public class Tree extends BaseClass  implements com.smartgwt.client.widgets.tree
 
     /**
      * Controls whether a call to {@link com.smartgwt.client.widgets.tree.Tree#getOpenList} includes the root node.  Since view
-     * components such as a {@link com.smartgwt.client.widgets.tree.TreeGrid} use <code>getOpenList()</code> to display the
+     * components such as {@link com.smartgwt.client.widgets.tree.TreeGrid} use <code>getOpenList()</code> to display the
      * currently visible tree, <code>showRoot</code> controls whether the root node is shown to the user. <P> All Trees must
      * have a single, logical root, however, most applications want to show multiple nodes at the top level. 
      * <code>showRoot:false</code>, the default setting, prevents the logical root from being shown, so that the displayed tree
@@ -483,7 +483,7 @@ public class Tree extends BaseClass  implements com.smartgwt.client.widgets.tree
 
     /**
      * Controls whether a call to {@link com.smartgwt.client.widgets.tree.Tree#getOpenList} includes the root node.  Since view
-     * components such as a {@link com.smartgwt.client.widgets.tree.TreeGrid} use <code>getOpenList()</code> to display the
+     * components such as {@link com.smartgwt.client.widgets.tree.TreeGrid} use <code>getOpenList()</code> to display the
      * currently visible tree, <code>showRoot</code> controls whether the root node is shown to the user. <P> All Trees must
      * have a single, logical root, however, most applications want to show multiple nodes at the top level. 
      * <code>showRoot:false</code>, the default setting, prevents the logical root from being shown, so that the displayed tree
@@ -715,7 +715,7 @@ public class Tree extends BaseClass  implements com.smartgwt.client.widgets.tree
      * Return whether this node has any children that are leaves.
      * @param node node in question
      *
-     * @return true fi the node has children that are leaves
+     * @return true if the node has children that are leaves
      */
     public native Boolean hasLeaves(TreeNode node) /*-{
         var self = this.@com.smartgwt.client.core.BaseClass::getOrCreateJsObj()();

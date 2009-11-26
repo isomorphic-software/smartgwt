@@ -116,7 +116,7 @@ public class SelectOtherItem extends SelectItem {
 
     /**
      * Value for the separator item between normal items and the <code>Other...</code> value.  If necessary the value may be
-     * changed to ensure it doesn't colide with any data values in this items {@link
+     * changed to ensure it doesn't collide with any data values in this item's {@link
      * com.smartgwt.client.widgets.form.fields.FormItem#getValueMap 'valueMap'}.
      * <p><b>Note : </b> This is an advanced setting</p>
      *
@@ -128,7 +128,7 @@ public class SelectOtherItem extends SelectItem {
 
     /**
      * Value for the separator item between normal items and the <code>Other...</code> value.  If necessary the value may be
-     * changed to ensure it doesn't colide with any data values in this items {@link
+     * changed to ensure it doesn't collide with any data values in this item's {@link
      * com.smartgwt.client.widgets.form.fields.FormItem#getValueMap 'valueMap'}.
      *
      *
@@ -161,7 +161,7 @@ public class SelectOtherItem extends SelectItem {
 
     /**
      * Data value for the <code>Other...</code> item. If necessary this value may be changed to ensure it doesn't collide with
-     * any data values in this items {@link com.smartgwt.client.widgets.form.fields.FormItem#getValueMap 'valueMap'}.
+     * any data values in this item's {@link com.smartgwt.client.widgets.form.fields.FormItem#getValueMap 'valueMap'}.
      * <p><b>Note : </b> This is an advanced setting</p>
      *
      * @param otherValue otherValue Default value is "***other***"
@@ -172,7 +172,7 @@ public class SelectOtherItem extends SelectItem {
 
     /**
      * Data value for the <code>Other...</code> item. If necessary this value may be changed to ensure it doesn't collide with
-     * any data values in this items {@link com.smartgwt.client.widgets.form.fields.FormItem#getValueMap 'valueMap'}.
+     * any data values in this item's {@link com.smartgwt.client.widgets.form.fields.FormItem#getValueMap 'valueMap'}.
      *
      *
      * @return String
@@ -183,8 +183,8 @@ public class SelectOtherItem extends SelectItem {
 
     /**
      * Title to show in prompt for "other" value. Note this is a dynamic string. JavaScript content is supported within
-     * <code>\${...}</code> tags, with local variables for <code>item</code> (a pointer to this item), <code>value</code> a
-     * pointer to the currently selected item value
+     * <code>\${...}</code> tags, with local variables for <code>item</code> (a pointer to this item) and  <code>value</code> a
+     * pointer to the currently selected item value.
      *
      * @param selectOtherPrompt selectOtherPrompt Default value is "Other value for <br>${item.getTitle()}?"
      */
@@ -194,8 +194,8 @@ public class SelectOtherItem extends SelectItem {
 
     /**
      * Title to show in prompt for "other" value. Note this is a dynamic string. JavaScript content is supported within
-     * <code>\${...}</code> tags, with local variables for <code>item</code> (a pointer to this item), <code>value</code> a
-     * pointer to the currently selected item value
+     * <code>\${...}</code> tags, with local variables for <code>item</code> (a pointer to this item) and  <code>value</code> a
+     * pointer to the currently selected item value.
      *
      *
      * @return String

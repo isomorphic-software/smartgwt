@@ -2208,7 +2208,7 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
 
     /**
      * Determines whether when the user edits a cell in this listGrid the entire row becomes editable, or just the cell that
-     * recieved the edit event. <P> No effect if this.canEdit is false or null.
+     * received the edit event. <P> No effect if this.canEdit is false or null.
      *
      * @param editByCell editByCell Default value is null
      */
@@ -2218,7 +2218,7 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
 
     /**
      * Determines whether when the user edits a cell in this listGrid the entire row becomes editable, or just the cell that
-     * recieved the edit event. <P> No effect if this.canEdit is false or null.
+     * received the edit event. <P> No effect if this.canEdit is false or null.
      *
      *
      * @return Boolean
@@ -2817,7 +2817,7 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
     }
 
     /**
-     * Should we start editing when this widget recieves focus (if this ListGrid supports editing)? <P> Note that this property
+     * Should we start editing when this widget receives focus (if this ListGrid supports editing)? <P> Note that this property
      * being set to true will cause editing to occur on a single click, even if {@link
      * com.smartgwt.client.widgets.grid.ListGrid#getEditEvent editEvent} is <code>"doubleClick"</code>, because single clicking
      * the grid will place keyboard focus there automatically.
@@ -2830,7 +2830,7 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
     }
 
     /**
-     * Should we start editing when this widget recieves focus (if this ListGrid supports editing)? <P> Note that this property
+     * Should we start editing when this widget receives focus (if this ListGrid supports editing)? <P> Note that this property
      * being set to true will cause editing to occur on a single click, even if {@link
      * com.smartgwt.client.widgets.grid.ListGrid#getEditEvent editEvent} is <code>"doubleClick"</code>, because single clicking
      * the grid will place keyboard focus there automatically.
@@ -6332,26 +6332,9 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
     // ********************* Static Methods ***********************
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+
+
+
     protected native void onInit() /*-{
 
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();

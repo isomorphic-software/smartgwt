@@ -115,7 +115,11 @@ public class TileLayout extends Canvas {
     }
 
     /**
-     * Width of each tile in pixels.  See {@link com.smartgwt.client.widgets.tile.TileLayout#getTileSize tileSize}.
+     * Width of each tile in pixels.  See {@link com.smartgwt.client.widgets.tile.TileLayout#getTileSize tileSize}. If {@link
+     * com.smartgwt.client.types.LayoutPolicy} is "fit", {@link com.smartgwt.client.widgets.tile.TileLayout#getExpandMargins
+     * expandMargins} is false, {@link com.smartgwt.client.widgets.tile.TileLayout#getTilesPerLine tilesPerLine} is set, {@link
+     * com.smartgwt.client.types.Orientation} is "horizontal", and tileWidth is not set, tileWidth will be computed
+     * automatically based on {@link com.smartgwt.client.widgets.tile.TileLayout#getTilesPerLine tilesPerLine}.
      * sets the width of tiles
      *
      * @param tileWidth width. Default value is null
@@ -126,7 +130,11 @@ public class TileLayout extends Canvas {
     }
 
     /**
-     * Width of each tile in pixels.  See {@link com.smartgwt.client.widgets.tile.TileLayout#getTileSize tileSize}.
+     * Width of each tile in pixels.  See {@link com.smartgwt.client.widgets.tile.TileLayout#getTileSize tileSize}. If {@link
+     * com.smartgwt.client.types.LayoutPolicy} is "fit", {@link com.smartgwt.client.widgets.tile.TileLayout#getExpandMargins
+     * expandMargins} is false, {@link com.smartgwt.client.widgets.tile.TileLayout#getTilesPerLine tilesPerLine} is set, {@link
+     * com.smartgwt.client.types.Orientation} is "horizontal", and tileWidth is not set, tileWidth will be computed
+     * automatically based on {@link com.smartgwt.client.widgets.tile.TileLayout#getTilesPerLine tilesPerLine}.
      *
      *
      * @return Integer
@@ -136,7 +144,11 @@ public class TileLayout extends Canvas {
     }
 
     /**
-     * Height of each tile in pixels.  See {@link com.smartgwt.client.widgets.tile.TileLayout#getTileSize tileSize}.
+     * Height of each tile in pixels.  See {@link com.smartgwt.client.widgets.tile.TileLayout#getTileSize tileSize}. If {@link
+     * com.smartgwt.client.types.LayoutPolicy} is "fit", {@link com.smartgwt.client.widgets.tile.TileLayout#getExpandMargins
+     * expandMargins} is false, {@link com.smartgwt.client.widgets.tile.TileLayout#getTilesPerLine tilesPerLine} is set, 
+     * {@link com.smartgwt.client.types.Orientation} is "vertical", and tileHeight is not set, tileHeight will be computed
+     * automatically based on {@link com.smartgwt.client.widgets.tile.TileLayout#getTilesPerLine tilesPerLine}.
      * sets the height of tiles
      *
      * @param tileHeight height. Default value is null
@@ -147,7 +159,11 @@ public class TileLayout extends Canvas {
     }
 
     /**
-     * Height of each tile in pixels.  See {@link com.smartgwt.client.widgets.tile.TileLayout#getTileSize tileSize}.
+     * Height of each tile in pixels.  See {@link com.smartgwt.client.widgets.tile.TileLayout#getTileSize tileSize}. If {@link
+     * com.smartgwt.client.types.LayoutPolicy} is "fit", {@link com.smartgwt.client.widgets.tile.TileLayout#getExpandMargins
+     * expandMargins} is false, {@link com.smartgwt.client.widgets.tile.TileLayout#getTilesPerLine tilesPerLine} is set, 
+     * {@link com.smartgwt.client.types.Orientation} is "vertical", and tileHeight is not set, tileHeight will be computed
+     * automatically based on {@link com.smartgwt.client.widgets.tile.TileLayout#getTilesPerLine tilesPerLine}.
      *
      *
      * @return Integer
@@ -315,7 +331,9 @@ public class TileLayout extends Canvas {
 
     /**
      * Number of tiles to show in each line.  Auto-derived from {@link com.smartgwt.client.widgets.tile.TileLayout#getTileSize
-     * tileSize} for some layout modes.  See {@link com.smartgwt.client..TileLayoutPolicy}.
+     * tileSize} for some layout modes.  See {@link com.smartgwt.client..TileLayoutPolicy}. This can also affect {@link
+     * com.smartgwt.client.widgets.tile.TileLayout#getTileWidth tileWidth} or {@link
+     * com.smartgwt.client.widgets.tile.TileLayout#getTileHeight tileHeight}. See those properties for details.
      *
      * @param tilesPerLine tilesPerLine Default value is null
      * @throws IllegalStateException this property cannot be changed after the component has been created
@@ -326,7 +344,9 @@ public class TileLayout extends Canvas {
 
     /**
      * Number of tiles to show in each line.  Auto-derived from {@link com.smartgwt.client.widgets.tile.TileLayout#getTileSize
-     * tileSize} for some layout modes.  See {@link com.smartgwt.client..TileLayoutPolicy}.
+     * tileSize} for some layout modes.  See {@link com.smartgwt.client..TileLayoutPolicy}. This can also affect {@link
+     * com.smartgwt.client.widgets.tile.TileLayout#getTileWidth tileWidth} or {@link
+     * com.smartgwt.client.widgets.tile.TileLayout#getTileHeight tileHeight}. See those properties for details.
      *
      *
      * @return Integer
@@ -361,7 +381,9 @@ public class TileLayout extends Canvas {
 
     /**
      * With {@link com.smartgwt.client.types.LayoutPolicy}:"fit", should margins be expanded so that tiles fill the available
-     * space in the TileLayout on the breadth axis?
+     * space in the TileLayout on the breadth axis? This can also affect {@link
+     * com.smartgwt.client.widgets.tile.TileLayout#getTileWidth tileWidth} or {@link
+     * com.smartgwt.client.widgets.tile.TileLayout#getTileHeight tileHeight}. See those properties for details.
      *
      * @param expandMargins expandMargins Default value is true
      * @throws IllegalStateException this property cannot be changed after the component has been created
@@ -372,7 +394,9 @@ public class TileLayout extends Canvas {
 
     /**
      * With {@link com.smartgwt.client.types.LayoutPolicy}:"fit", should margins be expanded so that tiles fill the available
-     * space in the TileLayout on the breadth axis?
+     * space in the TileLayout on the breadth axis? This can also affect {@link
+     * com.smartgwt.client.widgets.tile.TileLayout#getTileWidth tileWidth} or {@link
+     * com.smartgwt.client.widgets.tile.TileLayout#getTileHeight tileHeight}. See those properties for details.
      *
      *
      * @return Boolean

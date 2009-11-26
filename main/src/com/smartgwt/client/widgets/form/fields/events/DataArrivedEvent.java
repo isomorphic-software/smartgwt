@@ -132,9 +132,9 @@ public class DataArrivedEvent extends AbstractSmartEvent<DataArrivedHandler>  {
     }-*/;
 
     /**
-     * pointer this pickList's data
+     * pointer to this pickList's data
      *
-     * @return pointer this pickList's data
+     * @return pointer to this pickList's data
      */
     public  native ResultSet getData() /*-{
         var jsObj = this.@com.smartgwt.client.event.AbstractSmartEvent::jsObj;
