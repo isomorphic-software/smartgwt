@@ -332,8 +332,7 @@ public class ListGridRecord extends Record {
     }
             
     /**
-     * The DataSource providing related-records when  {@link com.smartgwt.client.widgets.grid.ListGrid#getCanExpandRecords
-     * canExpandRecords} is true and {@link com.smartgwt.client.types.ExpansionMode} is "related".
+     * The default value of {@link com.smartgwt.client.widgets.grid.ListGrid#getRecordDetailDSProperty recordDetailDSProperty}.
      * <p><b>Note : </b> This is an advanced setting</p>
      *
      * @param detailDS detailDS Default value is null
@@ -343,8 +342,7 @@ public class ListGridRecord extends Record {
     }
 
     /**
-     * The DataSource providing related-records when  {@link com.smartgwt.client.widgets.grid.ListGrid#getCanExpandRecords
-     * canExpandRecords} is true and {@link com.smartgwt.client.types.ExpansionMode} is "related".
+     * The default value of {@link com.smartgwt.client.widgets.grid.ListGrid#getRecordDetailDSProperty recordDetailDSProperty}.
      *
      *
      * @return DataSource
