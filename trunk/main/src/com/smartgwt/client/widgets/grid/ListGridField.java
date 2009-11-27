@@ -232,6 +232,25 @@ public class ListGridField extends DataClass  implements com.smartgwt.client.wid
     }
 
     /**
+     * When set to false, this field will not show a context menu in it's header.
+     *
+     * @param showDefaultContextMenu showDefaultContextMenu Default value is true
+     */
+    public void setShowDefaultContextMenu(Boolean showDefaultContextMenu) {
+        setAttribute("showDefaultContextMenu", showDefaultContextMenu);
+    }
+
+    /**
+     * When set to false, this field will not show a context menu in it's header.
+     *
+     *
+     * @return Boolean
+     */
+    public Boolean getShowDefaultContextMenu()  {
+        return getAttributeAsBoolean("showDefaultContextMenu");
+    }
+
+    /**
      * Dictates whether the data in this field be exported.  Explicitly set this  to false to prevent exporting.  Has no effect
      * if the underlying   {@link com.smartgwt.client.data.DataSourceField#getCanExport 'dataSourceField'} is explicitly set to
      *   canExport: false.
