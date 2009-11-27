@@ -3709,6 +3709,30 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
     public Boolean getCanExpandRecords()  {
         return getAttributeAsBoolean("canExpandRecords");
     }
+
+    /**
+     * The field whose contents to show in the expanded portion of a record when  {@link
+     * com.smartgwt.client.widgets.grid.ListGrid#getCanExpandRecords 'canExpandRecords'} is <code>true</code> and  {@link
+     * com.smartgwt.client.types.ExpansionMode} is <code>detailField</code>.
+     * <p><b>Note : </b> This is an advanced setting</p>
+     *
+     * @param detailField detailField Default value is null
+     */
+    public void setDetailField(String detailField) {
+        setAttribute("detailField", detailField, true);
+    }
+
+    /**
+     * The field whose contents to show in the expanded portion of a record when  {@link
+     * com.smartgwt.client.widgets.grid.ListGrid#getCanExpandRecords 'canExpandRecords'} is <code>true</code> and  {@link
+     * com.smartgwt.client.types.ExpansionMode} is <code>detailField</code>.
+     *
+     *
+     * @return String
+     */
+    public String getDetailField()  {
+        return getAttributeAsString("detailField");
+    }
              
     /**
      * The {@link com.smartgwt.client.types.ExpansionMode} for records in this grid. Default <code>null</code> value means no
@@ -3834,7 +3858,7 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
 
     /**
      * The name of the ListGridRecord property that specifies the DataSource to use when  {@link
-     * com.smartgwt.client.widgets.grid.ListGrid#getExpansionMode expansionMode} is "related".  The default is {@link
+     * com.smartgwt.client.types.ExpansionMode} is "related".  The default is  {@link
      * com.smartgwt.client.widgets.grid.ListGridRecord#getDetailDS detailDS}.
      * <p><b>Note : </b> This is an advanced setting</p>
      *
@@ -3846,7 +3870,7 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
 
     /**
      * The name of the ListGridRecord property that specifies the DataSource to use when  {@link
-     * com.smartgwt.client.widgets.grid.ListGrid#getExpansionMode expansionMode} is "related".  The default is {@link
+     * com.smartgwt.client.types.ExpansionMode} is "related".  The default is  {@link
      * com.smartgwt.client.widgets.grid.ListGridRecord#getDetailDS detailDS}.
      *
      *
@@ -3857,8 +3881,8 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
     }
              
     /**
-     * For expansionModes that show another grid or tree, what the child's expansionMode should be.  Default value
-     * <code>null</code> means no further expansion.
+     * For {@link com.smartgwt.client.types.ExpansionMode} that show another grid or tree, what the  child's expansionMode
+     * should be. <P>Default value <code>null</code> means no further expansion.
      * <p><b>Note : </b> This is an advanced setting</p>
      *
      * @param childExpansionMode childExpansionMode Default value is null
@@ -3868,8 +3892,8 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
     }
 
     /**
-     * For expansionModes that show another grid or tree, what the child's expansionMode should be.  Default value
-     * <code>null</code> means no further expansion.
+     * For {@link com.smartgwt.client.types.ExpansionMode} that show another grid or tree, what the  child's expansionMode
+     * should be. <P>Default value <code>null</code> means no further expansion.
      *
      *
      * @return ExpansionMode
@@ -3879,7 +3903,8 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
     }
 
     /**
-     * For expansionModes that show another grid or tree, is that component editable?
+     * For {@link com.smartgwt.client.types.ExpansionMode} that show another grid or tree, is that  component editable? <P>The
+     * default value for this property is <code>false</code>.
      * <p><b>Note : </b> This is an advanced setting</p>
      *
      * @param expansionCanEdit expansionCanEdit Default value is false
@@ -3889,7 +3914,8 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
     }
 
     /**
-     * For expansionModes that show another grid or tree, is that component editable?
+     * For {@link com.smartgwt.client.types.ExpansionMode} that show another grid or tree, is that  component editable? <P>The
+     * default value for this property is <code>false</code>.
      *
      *
      * @return Boolean
@@ -5030,7 +5056,7 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
      * Expands a given ${isc.DocUtils.linkForRef('object:ListGridRecord','record')} by creating a subcomponent and inserting it
      * in to the record's grid-row.  A number of built-in {@link com.smartgwt.client.types.ExpansionMode}  are supported by the
      * default implementation of  {@link com.smartgwt.client.widgets.grid.ListGrid#getExpansionComponent} and you can override
-     * that method to provide more specific expansionComponents.
+     * that method to provide your own expansion behavior.
      * @param record record to expand
      */
     public native void expandRecord(ListGridRecord record) /*-{
@@ -5050,8 +5076,10 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
 
 
     /**
-     * Initialize the data object with the given array. Observes methods of the data object so that when the data changes, the
-     * listGrid will redraw automatically.
+     * Returns the {@link com.smartgwt.client.data.DataSource} containing data related to the passed record.  Used when {@link
+     * com.smartgwt.client.widgets.grid.ListGrid#getCanExpandRecords canExpandRecords} is true and {@link
+     * com.smartgwt.client.types.ExpansionMode} is "related". The default implementation returns the DataSource specified in 
+     * {@link com.smartgwt.client.widgets.grid.ListGridRecord#getDetailDS detailDS}.
      * @param record The record to get the Related dataSource for.
      *
      * @return The related DataSource for the "record" param
