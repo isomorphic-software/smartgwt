@@ -58,6 +58,11 @@ public enum FieldType implements ValueEnum {
     DATE("date"),
 
     /**
+     * A time of day, with no date. Represented internally on the client as a JavaScript Date object in UTC/GMT by default
+     */
+    TIME("time"),
+
+    /**
      * A date and time, accurate to the second. Represented on the client as a JavaScript Date object. 
      */
     DATETIME("datetime"),
@@ -72,7 +77,7 @@ public enum FieldType implements ValueEnum {
      */
     INTENUM("intEnum"),
     /**
-     * If you are using the SmartGWT SQL datasource connector, a                    <code>sequence</code> is a
+     * If you are using the SmartGWT SQL datasource connector, a <code>sequence</code> is a
      * unique, increasing whole number, incremented&#010                    whenever a new record is added. Otherwise,
      * <code>sequence</code> behaves&#010                    identically to <code>integer</code>. This type is typically
      * used with&#010                    <code>field.primaryKey</code> to auto-generate unique primary keys.
