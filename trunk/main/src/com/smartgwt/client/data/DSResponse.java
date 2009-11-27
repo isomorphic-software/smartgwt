@@ -129,9 +129,15 @@ public class DSResponse extends RPCResponse {
     // ********************* Static Methods ***********************
 
 
-
-
-
+
+
+
+
+
+
+
+
+
 
     /**
      * Starting row of returned server results, when using paged result fetching <p> Note that startRow and endRow are
@@ -227,9 +233,24 @@ public class DSResponse extends RPCResponse {
         setAttribute("data", data);
     }
 
+    /**
+     * Return the data as an array of Records.
+     *
+     * @return the data
+     */
     public Record[] getData() {
         JavaScriptObject dataJS = getAttributeAsJavaScriptObject("data");
         return Record.convertToRecordArray(dataJS);
+    }
+
+    /**
+     * Return the data as a RecordList.
+     * 
+     * @return the data
+     */
+    public RecordList getDataAsRecordList() {
+        JavaScriptObject dataJS = getAttributeAsJavaScriptObject("data");
+        return dataJS == null ? null : new RecordList(dataJS);
     }
 
 }
