@@ -57,6 +57,27 @@ public class Record extends RefDataClass {
         }
     }
 
+    /**
+     * Returns the nested structure as Record array.
+     *
+     * @param property the record property
+     * @return array of records
+     */
+    public Record[] getAttributeAsRecordArray(String property) {
+        return convertToRecordArray(getAttributeAsJavaScriptObject(property));
+    }
+
+    /**
+     * Returns the nested structure as a RecordList.
+     *
+     * @param property the record property
+     * @return the RecordList
+     */
+    public RecordList getAttributeAsRecordList(String property) {
+        JavaScriptObject jsObject = getAttributeAsJavaScriptObject(property);
+        return jsObject == null ? null : new RecordList(jsObject);
+    }
+
     public static Record[] convertToRecordArray(JavaScriptObject nativeArray) {
         if (nativeArray == null) {
             return new Record[]{};
