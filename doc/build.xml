@@ -179,6 +179,10 @@
 					<arg pathref="USER_SOURCE_PATH" />
 					<arg value="-packages" />
 					<arg value="${USER_PKGS}" />
+					<arg value="-link" />
+					<arg value="http://java.sun.com/j2se/1.5.0/docs/api/" />
+					<arg value="-link" />
+					<arg value="http://google-web-toolkit.googlecode.com/svn/javadoc/1.6/" />					
 				</java>
 			</sequential>
 		</outofdate>
