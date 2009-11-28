@@ -129,15 +129,9 @@ public class DSResponse extends RPCResponse {
     // ********************* Static Methods ***********************
 
 
-
-
-
-
-
-
-
-
-
+
+
+
 
     /**
      * Starting row of returned server results, when using paged result fetching <p> Note that startRow and endRow are
@@ -245,7 +239,7 @@ public class DSResponse extends RPCResponse {
 
     /**
      * Return the data as a RecordList.
-     * 
+     *
      * @return the data
      */
     public RecordList getDataAsRecordList() {
