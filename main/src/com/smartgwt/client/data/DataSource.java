@@ -1771,7 +1771,14 @@ public class DataSource extends BaseClass  implements com.smartgwt.client.data.e
      * @return array of DataSourceFields
      */
     public DataSourceField[] getFields() {
-        return DataSourceField.convertToDataSourceFieldArray(getAttributeAsJavaScriptObject("fields"));
+        String[] fields = getFieldNames();
+        if(fields == null) return null;
+        DataSourceField[] dsFields = new DataSourceField[fields.length];
+        for (int i = 0; i < fields.length; i++) {
+            String field = fields[i];
+            dsFields[i] = getField(field);
+        }
+        return dsFields;
     }
     
     /**
