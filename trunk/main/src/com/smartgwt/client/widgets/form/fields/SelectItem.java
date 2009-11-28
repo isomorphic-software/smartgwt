@@ -1114,7 +1114,7 @@ public class SelectItem extends FormItem  implements PickList, com.smartgwt.clie
      *
      * @param optionFilterContext optionFilterContext Default value is null
      */
-    public void setPickListCriteria(RPCRequest optionFilterContext) {
+    public void setPickListCriteria(DSRequest optionFilterContext) {
         setAttribute("optionFilterContext", optionFilterContext);
     }
 

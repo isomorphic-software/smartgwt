@@ -853,7 +853,7 @@ public class ComboBoxItem extends FormItem  implements PickList, com.smartgwt.cl
     }
 
 
-    public void setPickListCriteria(RPCRequest optionFilterContext) {
+    public void setPickListCriteria(DSRequest optionFilterContext) {
         setAttribute("optionFilterContext", optionFilterContext);
     }
 
