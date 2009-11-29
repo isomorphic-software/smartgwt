@@ -294,6 +294,17 @@ public class CheckboxItem extends FormItem {
         setAttribute("showUnsetImage", showUnsetImage);
     }
 
+    /**
+     * Return the value of the checkbox as a boolean
+     *
+     * @return the checbox value as Boolean
+     */
+    public Boolean getValueAsBoolean() {
+        Boolean origValue = (Boolean) super.getValue();
+        return !(!getAllowEmptyValue() && origValue == null) && origValue;
+    }
+
+
 }
 
 

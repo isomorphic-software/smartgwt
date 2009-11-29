@@ -7702,6 +7702,22 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
 
     }-*/;
 
+    /**
+     * Return the underlying GridRenderer. Note that this method should only be called after the ListGrid has been drawn. Calling it prior
+     * to it being rendered will return a null value. If you need to attach listeners to the GridRenderer at ListGrid configuration time,
+     * then add a {@link #addDrawHandler(com.smartgwt.client.widgets.events.DrawHandler)} for the ListGrid and access the GridRenderer
+     * from within the callback.
+     *
+     * @return the grid renderer
+     */
+    public native GridRenderer getGridRenderer() /*-{
+        if(this.@com.smartgwt.client.widgets.BaseWidget::isDrawn()()) {
+            var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
+            return @com.smartgwt.client.widgets.grid.GridRenderer::new(Lcom/google/gwt/core/client/JavaScriptObject;)(self.body);
+        } else {
+            return null;
+        }
+    }-*/;
 
     /**
      * Returns the current value of a cell. If the cell has an outstanding edit value,

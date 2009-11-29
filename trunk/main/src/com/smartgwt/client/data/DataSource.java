@@ -1704,7 +1704,7 @@ public class DataSource extends BaseClass  implements com.smartgwt.client.data.e
      * parent's field order, with new local fields appearing last.<br><br>
      * <p/>
      * You can set {@link com.smartgwt.client.data.DataSource#setShowLocalFieldsOnly(Boolean) showLocalFieldsOnly}  to
-     * have all non-local fields hidden.<br><br>Note that &lt;b&gt;only fields are inherited&lt;/b&gt; - other
+     * have all non-local fields hidden.<br><br>Note that <b>only fields are inherited</b> - other
      * properties such as dataURL and dataFormat are not.  You can use ordinary inheritance, that is, creating a
      * subclass of DataSource, in order to share properties such as dataURL across a series of DataSources that also
      * inherit fields from each other via <code>inheritsFrom</code> <br><br> This feature can be used for
@@ -1717,8 +1717,8 @@ public class DataSource extends BaseClass  implements com.smartgwt.client.data.e
      * dataSource&quot;customizedEmployee&quot; which inherits from &quot;employee&quot; but does not initially define
      * anyfields, and bind all databound components to&quot;customizedEmployee&quot;. Customizations of fields
      * (including appearance changes, fieldorder, new fields, hiding of fields, and custom validation rules) can be
-     * added to&quot;customizedEmployee&quot;, so that they are kept separtely from the original field data andhave the
-     * best possible chance of working with future versions of the &quot;employee&quot;dataSource.&lt;/ul&gt;
+     * added to&quot;customizedEmployee&quot;, so that they are kept separtely from the original field data and have the
+     * best possible chance of working with future versions of the &quot;employee&quot;dataSource.
      *
      * @param inheritsFrom the datasource to inherit from
      * @throws IllegalStateException this property cannot be changed after the underlying component has been created

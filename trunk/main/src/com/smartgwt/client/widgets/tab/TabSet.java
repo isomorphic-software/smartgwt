@@ -682,6 +682,25 @@ public class TabSet extends Canvas  implements com.smartgwt.client.widgets.tab.e
     public String getPickerButtonVSrc()  {
         return getAttributeAsString("pickerButtonVSrc");
     }
+
+    /**
+     * CSS style used for the paneContainer.
+     *
+     * @param paneContainerClassName paneContainerClassName Default value is null
+     */
+    public void setPaneContainerClassName(String paneContainerClassName) {
+        setAttribute("paneContainerClassName", paneContainerClassName, true);
+    }
+
+    /**
+     * CSS style used for the paneContainer.
+     *
+     *
+     * @return String
+     */
+    public String getPaneContainerClassName()  {
+        return getAttributeAsString("paneContainerClassName");
+    }
              
     /**
      * Specifies the overflow of the pane container (the component that holds the pane contents for all tabs).  By default this

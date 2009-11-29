@@ -449,16 +449,16 @@ public class TileGrid extends TileLayout  implements DataBoundComponent, com.sma
         self._getTileHTML = self.getTileHTML;
         self.getTileHTML = function(record) {
             var jObj = this.__ref;
-            var recordJ = @com.smartgwt.client.widgets.tile.TileRecord::getOrCreateRef(Lcom/google/gwt/core/client/JavaScriptObject;)(record);
-            return jObj.@com.smartgwt.client.widgets.tile.TileGrid::getTileHTML(Lcom/smartgwt/client/widgets/tile/TileRecord;)(recordJ);
+            var recordJ = @com.smartgwt.client.data.Record::getOrCreateRef(Lcom/google/gwt/core/client/JavaScriptObject;)(record);
+            return jObj.@com.smartgwt.client.widgets.tile.TileGrid::getTileHTML(Lcom/smartgwt/client/data/Record;)(recordJ);
         };
 
         self._getTile = self.getTile;
         self.getTile = function(record) {
             var jObj = this.__ref;
             if(!$wnd.isc.isA.Number(record)) {
-                var recordJ = @com.smartgwt.client.widgets.tile.TileRecord::getOrCreateRef(Lcom/google/gwt/core/client/JavaScriptObject;)(record);
-                var tile =  jObj.@com.smartgwt.client.widgets.tile.TileGrid::getTile(Lcom/smartgwt/client/widgets/tile/TileRecord;)(recordJ);
+                var recordJ = @com.smartgwt.client.data.Record::getOrCreateRef(Lcom/google/gwt/core/client/JavaScriptObject;)(record);
+                var tile =  jObj.@com.smartgwt.client.widgets.tile.TileGrid::getTile(Lcom/smartgwt/client/data/Record;)(recordJ);
                 return tile == null ? null : tile.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
             } else {
                 var tile =  jObj.@com.smartgwt.client.widgets.tile.TileGrid::getTile(I)(record);
@@ -476,12 +476,12 @@ public class TileGrid extends TileLayout  implements DataBoundComponent, com.sma
      * @param record the tile for which HTML should be retrieved
      * @return HTML contents for the tile, as a String
      */
-    protected native String getTileHTML(TileRecord record) /*-{
+    protected native String getTileHTML(Record record) /*-{
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
         return self._getTileHTML(record.@com.smartgwt.client.core.DataClass::getJsObj()());
     }-*/;
 
-    public native Canvas getTile(TileRecord record) /*-{
+    public native Canvas getTile(Record record) /*-{
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
         var canvasJS = self._getTile(record.@com.smartgwt.client.core.DataClass::getJsObj()());
         if(canvasJS == null) return null;
@@ -563,25 +563,10 @@ public class TileGrid extends TileLayout  implements DataBoundComponent, com.sma
      *
      * @return the records in the TileGrid
      */
-    public TileRecord[] getData() {
+    public Record[] getData() {
         JavaScriptObject dataJS = getAttributeAsJavaScriptObject("data");
-        TileRecord[] data = convertToTileRecordRecordArray(dataJS);
+        Record[] data = Record.convertToRecordArray(dataJS);
         return data;
-    }
-
-    private static TileRecord[] convertToTileRecordRecordArray(JavaScriptObject nativeArray) {
-        if (nativeArray == null) {
-            return new TileRecord[]{};
-        }
-        JavaScriptObject[] componentsj = JSOHelper.toArray(nativeArray);
-        TileRecord[] objects = new TileRecord[componentsj.length];
-        for (int i = 0; i < componentsj.length; i++) {
-            JavaScriptObject componentJS = componentsj[i];
-            TileRecord obj = (TileRecord) RefDataClass.getRef(componentJS);
-            if (obj == null) obj = new TileRecord(componentJS);
-            objects[i] = obj;
-        }
-        return objects;
     }
 
     /**
@@ -703,26 +688,12 @@ public class TileGrid extends TileLayout  implements DataBoundComponent, com.sma
      *
      * @return list of records, empty list if nothing selected
      */
-    public native TileRecord[] getSelection() /*-{
+    public native Record[] getSelection() /*-{
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
         var selection =  self.getSelection();
-        return @com.smartgwt.client.widgets.tile.TileGrid::convertToTileRecordArray(Lcom/google/gwt/core/client/JavaScriptObject;)(selection);
+        return @com.smartgwt.client.data.Record::convertToRecordArray(Lcom/google/gwt/core/client/JavaScriptObject;)(selection);
     }-*/;
 
-    private static TileRecord[] convertToTileRecordArray(JavaScriptObject nativeArray) {
-        if (nativeArray == null) {
-            return new TileRecord[]{};
-        }
-        JavaScriptObject[] componentsj = JSOHelper.toArray(nativeArray);
-        TileRecord[] objects = new TileRecord[componentsj.length];
-        for (int i = 0; i < componentsj.length; i++) {
-            JavaScriptObject componentJS = componentsj[i];
-            TileRecord obj = (TileRecord) RefDataClass.getRef(componentJS);
-            if (obj == null) obj = new TileRecord(componentJS);
-            objects[i] = obj;
-        }
-        return objects;
-    }
 
 
 

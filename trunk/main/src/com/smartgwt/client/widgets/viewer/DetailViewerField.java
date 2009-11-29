@@ -416,7 +416,7 @@ public class DetailViewerField extends DataClass {
     public native void setDetailFormatter(DetailFormatter formatter) /*-{
             var self = this.@com.smartgwt.client.core.DataClass::getJsObj()();
             self.formatCellValue = function(value, record, field) {
-                var recordJ = @com.smartgwt.client.widgets.viewer.DetailViewerRecord::getOrCreateRef(Lcom/google/gwt/core/client/JavaScriptObject;)(record);
+                var recordJ = @com.smartgwt.client.data.Record::getOrCreateRef(Lcom/google/gwt/core/client/JavaScriptObject;)(record);
                 var valueJ = $wnd.SmartGWT.convertToJavaType(value);
                 var fieldJ = @com.smartgwt.client.widgets.viewer.DetailViewerField::new(Lcom/google/gwt/core/client/JavaScriptObject;)(field);
                 return formatter.@com.smartgwt.client.widgets.viewer.DetailFormatter::format(Ljava/lang/Object;Lcom/smartgwt/client/data/Record;Lcom/smartgwt/client/widgets/viewer/DetailViewerField;)(valueJ, recordJ, fieldJ);

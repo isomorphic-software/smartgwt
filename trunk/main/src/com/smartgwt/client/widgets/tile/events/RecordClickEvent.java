@@ -131,15 +131,17 @@ public class RecordClickEvent extends BrowserEvent<RecordClickHandler>  {
         return @com.smartgwt.client.widgets.Canvas::getOrCreateRef(Lcom/google/gwt/core/client/JavaScriptObject;)(jsObj.tile);
     }-*/;
 
+
     /**
      * the record that was clicked on
      *
      * @return the record that was clicked on
      */
-    public  native TileRecord getRecord() /*-{
+    public  native Record getRecord() /*-{
         var jsObj = this.@com.smartgwt.client.event.AbstractSmartEvent::jsObj;
-        return @com.smartgwt.client.widgets.tile.TileRecord::getOrCreateRef(Lcom/google/gwt/core/client/JavaScriptObject;)(jsObj.record);
+        return @com.smartgwt.client.data.Record::getOrCreateRef(Lcom/google/gwt/core/client/JavaScriptObject;)(jsObj.record);
     }-*/;
+
 
 
 }
