@@ -1,21 +1,9 @@
-/*
- * SmartGWT (GWT for SmartClient)
- * Copyright 2008 and beyond, Isomorphic Software, Inc.
- *
- * SmartGWT is free software; you can redistribute it and/or modify it
- * under the terms of the GNU Lesser General Public License version 3
- * as published by the Free Software Foundation.  SmartGWT is also
- * available under typical commercial license terms - see
- * http://smartclient.com/license
- *
- * This software is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU
- * Lesser General Public License for more details.
- */
-
 package com.smartgwt.client.i18n;
 
+/**
+ * Interface to represent the messages contained in resource bundle:
+ * 	/Users/sjivan/java/smartgwt-svn/trunk/main/src/com/smartgwt/client/i18n/SmartGwtMessages.properties'.
+ */
 public interface SmartGwtMessages extends com.google.gwt.i18n.client.Messages {
   
   /**
@@ -1405,11 +1393,11 @@ public interface SmartGwtMessages extends com.google.gwt.i18n.client.Messages {
   String validator_mustBeEarlierThan();
 
   /**
-   * Translated "Must be exactly characters".
+   * Translated "Must be exactly $max characters".
    * 
-   * @return translated "Must be exactly characters"
+   * @return translated "Must be exactly $max characters"
    */
-  @DefaultMessage("Must be exactly characters")
+  @DefaultMessage("Must be exactly $max characters")
   @Key("validator_mustBeExactLength")
   String validator_mustBeExactLength();
 
@@ -1441,20 +1429,20 @@ public interface SmartGwtMessages extends com.google.gwt.i18n.client.Messages {
   String validator_mustBeLessThan();
 
   /**
-   * Translated "Must be more than characters".
+   * Translated "Must be more than $min characters".
    * 
-   * @return translated "Must be more than characters"
+   * @return translated "Must be more than $min characters"
    */
-  @DefaultMessage("Must be more than characters")
+  @DefaultMessage("Must be more than $min characters")
   @Key("validator_mustBeLongerThan")
   String validator_mustBeLongerThan();
 
   /**
-   * Translated "Must be less than characters".
+   * Translated "Must be less than $max characters".
    * 
-   * @return translated "Must be less than characters"
+   * @return translated "Must be less than $max characters"
    */
-  @DefaultMessage("Must be less than characters")
+  @DefaultMessage("Must be less than $max characters")
   @Key("validator_mustBeShorterThan")
   String validator_mustBeShorterThan();
 
