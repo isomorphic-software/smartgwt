@@ -3547,39 +3547,6 @@ public class Canvas extends BaseWidget  implements com.smartgwt.client.widgets.e
         self.showNextTo(otherWidget.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()(), side);
     }-*/;
 
-    /**
-     * Resizes the widget, adding deltaX to its width and deltaY to its height (moves the right          and/or bottom sides of
-     * the widget).
-     *
-     * @return whether the component actually changed size
-     */
-    public native Boolean resizeBy() /*-{
-        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
-        var retVal =self.resizeBy();
-        if(retVal == null || retVal === undefined) {
-            return null;
-        } else {
-            return @com.smartgwt.client.util.JSOHelper::toBoolean(Z)(retVal);
-        }
-    }-*/;
-
-    /**
-     * Resizes the widget, adding deltaX to its width and deltaY to its height (moves the right          and/or bottom sides of
-     * the widget).
-     * @param deltaX amount to resize horizontally (may be negative)
-     * @param deltaY amount to resize vertically (may be negative)
-     *
-     * @return whether the component actually changed size
-     */
-    public native Boolean resizeBy(int deltaX, int deltaY) /*-{
-        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
-        var retVal =self.resizeBy(deltaX, deltaY);
-        if(retVal == null || retVal === undefined) {
-            return null;
-        } else {
-                return @com.smartgwt.client.util.JSOHelper::toBoolean(Z)(retVal);
-        }
-    }-*/;
 
     /**
      * Add a resized handler.
@@ -3641,39 +3608,6 @@ public class Canvas extends BaseWidget  implements com.smartgwt.client.widgets.e
         self.layoutChildren(reason);
     }-*/;
 
-    /**
-     * Resizes the widget to the specified width and height (moves the right and/ or bottom          sides of the widget). The
-     * width and height parameters can be expressed as a percentage          of viewport size or as the number of pixels.
-     *
-     * @return whether the size actually changed
-     */
-    public native Boolean resizeTo() /*-{
-        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
-        var retVal =self.resizeTo();
-        if(retVal == null || retVal === undefined) {
-            return null;
-        } else {
-            return @com.smartgwt.client.util.JSOHelper::toBoolean(Z)(retVal);
-        }
-    }-*/;
-
-    /**
-     * Resizes the widget to the specified width and height (moves the right and/ or bottom          sides of the widget). The
-     * width and height parameters can be expressed as a percentage          of viewport size or as the number of pixels.
-     * @param width new width for canvas
-     * @param height new height for canvas
-     *
-     * @return whether the size actually changed
-     */
-    public native Boolean resizeTo(int width, int height) /*-{
-        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
-        var retVal =self.resizeTo(width, height);
-        if(retVal == null || retVal === undefined) {
-            return null;
-        } else {
-                return @com.smartgwt.client.util.JSOHelper::toBoolean(Z)(retVal);
-        }
-    }-*/;
 
     /**
      * Fires when the interior size of the parent changes, including parent resize and scrollbar introduction or removal. <p>
@@ -5781,6 +5715,60 @@ public class Canvas extends BaseWidget  implements com.smartgwt.client.widgets.e
     public native boolean moveTo(int left, int top) /*-{
         var widget = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
         return widget.moveTo(left, top);
+    }-*/;
+
+    /**
+     * Resizes the widget, adding deltaX to its width and deltaY to its height (moves the right          and/or bottom sides of
+     * the widget).
+     * @param deltaX amount to resize horizontally (may be negative)
+     * @param deltaY amount to resize vertically (may be negative)
+     *
+     * @return whether the component actually changed size
+     */
+    public native Boolean resizeBy(int deltaX, int deltaY) /*-{
+        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
+        var retVal =self.resizeBy(deltaX, deltaY);
+        if(retVal == null || retVal === undefined) {
+            return null;
+        } else {
+                return @com.smartgwt.client.util.JSOHelper::toBoolean(Z)(retVal);
+        }
+    }-*/;
+
+    /**
+     * Resizes the widget to the specified width and height (moves the right and/ or bottom          sides of the widget). The
+     * width and height parameters can be expressed as a percentage          of viewport size or as the number of pixels.
+     * @param width new width for canvas
+     * @param height new height for canvas
+     *
+     * @return whether the size actually changed
+     */
+    public native Boolean resizeTo(String width, String height) /*-{
+        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
+        var retVal =self.resizeTo(width, height);
+        if(retVal == null || retVal === undefined) {
+            return null;
+        } else {
+                return @com.smartgwt.client.util.JSOHelper::toBoolean(Z)(retVal);
+        }
+    }-*/;
+
+    /**
+     * Resizes the widget to the specified width and height (moves the right and/ or bottom          sides of the widget). The
+     * width and height parameters can be expressed as a percentage          of viewport size or as the number of pixels.
+     * @param width new width for canvas
+     * @param height new height for canvas
+     *
+     * @return whether the size actually changed
+     */
+    public native Boolean resizeTo(int width, int height) /*-{
+        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
+        var retVal =self.resizeTo(width, height);
+        if(retVal == null || retVal === undefined) {
+            return null;
+        } else {
+                return @com.smartgwt.client.util.JSOHelper::toBoolean(Z)(retVal);
+        }
     }-*/;
 
     /**
