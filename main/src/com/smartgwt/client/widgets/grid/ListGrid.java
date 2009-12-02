@@ -144,7 +144,7 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
      * specified, a valueMap will be automatically created by making a {@link com.smartgwt.client.data.DataSource#fetchData}
      * call against the specified dataSource and extracting a valueMap from the returned records based on the displayField and
      * valueField. <P> If set to false, valueMaps will not be automatically fetched.  In this case, setting
-     * field.optionDataSource on a is effectively a shortcut for setting optionDataSource on the editor via {@link
+     * field.optionDataSource is effectively a shortcut for setting optionDataSource on the editor via {@link
      * com.smartgwt.client.widgets.grid.ListGridField#getEditorProperties editorProperties}. <P> Can also be disabled on a
      * per-field basis with {@link com.smartgwt.client.widgets.grid.ListGridField#getAutoFetchDisplayMap autoFetchDisplayMap}.
      *
@@ -159,7 +159,7 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
      * specified, a valueMap will be automatically created by making a {@link com.smartgwt.client.data.DataSource#fetchData}
      * call against the specified dataSource and extracting a valueMap from the returned records based on the displayField and
      * valueField. <P> If set to false, valueMaps will not be automatically fetched.  In this case, setting
-     * field.optionDataSource on a is effectively a shortcut for setting optionDataSource on the editor via {@link
+     * field.optionDataSource is effectively a shortcut for setting optionDataSource on the editor via {@link
      * com.smartgwt.client.widgets.grid.ListGridField#getEditorProperties editorProperties}. <P> Can also be disabled on a
      * per-field basis with {@link com.smartgwt.client.widgets.grid.ListGridField#getAutoFetchDisplayMap autoFetchDisplayMap}.
      *
@@ -5075,25 +5075,6 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
     }-*/;
 
 
-    /**
-     * Returns the {@link com.smartgwt.client.data.DataSource} containing data related to the passed record.  Used when {@link
-     * com.smartgwt.client.widgets.grid.ListGrid#getCanExpandRecords canExpandRecords} is true and {@link
-     * com.smartgwt.client.types.ExpansionMode} is "related". The default implementation returns the DataSource specified in 
-     * {@link com.smartgwt.client.widgets.grid.ListGridRecord#getDetailDS detailDS}.
-     * @param record The record to get the Related dataSource for.
-     *
-     * @return The related DataSource for the "record" param
-     */
-    public native DataSource getRelatedDataSource(ListGridRecord record) /*-{
-        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
-        var ret = self.getRelatedDataSource(record.@com.smartgwt.client.core.DataClass::getJsObj()());
-        if(ret == null || ret === undefined) return null;
-        var retVal = @com.smartgwt.client.core.BaseClass::getRef(Lcom/google/gwt/core/client/JavaScriptObject;)(ret);
-        if(retVal == null) {
-            retVal = @com.smartgwt.client.data.DataSource::new(Lcom/google/gwt/core/client/JavaScriptObject;)(ret);
-        }
-        return retVal;
-    }-*/;
 
 
 
@@ -6360,9 +6341,26 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
     // ********************* Static Methods ***********************
 
 
-
-
-
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     protected native void onInit() /*-{
 
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
@@ -6418,8 +6416,40 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
             var retVal = jObj.@com.smartgwt.client.widgets.grid.ListGrid::canExpandRecord(Lcom/smartgwt/client/widgets/grid/ListGridRecord;I)(recordJ, rowNum);
             return retVal;
         };
+
+        self.__getRelatedDataSource = self.getRelatedDataSource;
+        self.getRelatedDataSource = function(record) {
+            var jObj = this.__ref;
+            var recordJ = @com.smartgwt.client.widgets.grid.ListGridRecord::getOrCreateRef(Lcom/google/gwt/core/client/JavaScriptObject;)(record);
+            var dataSourceJ = jObj.@com.smartgwt.client.widgets.grid.ListGrid::getRelatedDataSource(Lcom/smartgwt/client/widgets/grid/ListGridRecord;)(recordJ);
+            return dataSourceJ == null ? null : dataSourceJ.@com.smartgwt.client.core.BaseClass::getOrCreateJsObj()();
+        };
+
     }-*/;
 
+    /**
+     * Returns the {@link com.smartgwt.client.data.DataSource} containing data related to the passed record.  Used when {@link
+     * com.smartgwt.client.widgets.grid.ListGrid#getCanExpandRecords canExpandRecords} is true and {@link
+     * com.smartgwt.client.types.ExpansionMode} is "related". The default implementation returns the DataSource specified in
+     * {@link com.smartgwt.client.widgets.grid.ListGridRecord#getDetailDS detailDS}.
+     *
+     * <b> Note :</b> This is an override point
+     *
+     * @param record The record to get the Related dataSource for.
+     *
+     * @return The related DataSource for the "record" param
+     */
+    public native DataSource getRelatedDataSource(ListGridRecord record) /*-{
+        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
+        var ret = self.__getRelatedDataSource(record.@com.smartgwt.client.core.DataClass::getJsObj()());
+        if(ret == null || ret === undefined) return null;
+        var retVal = @com.smartgwt.client.core.BaseClass::getRef(Lcom/google/gwt/core/client/JavaScriptObject;)(ret);
+        if(retVal == null) {
+            retVal = @com.smartgwt.client.data.DataSource::new(Lcom/google/gwt/core/client/JavaScriptObject;)(ret);
+        }
+        return retVal;
+    }-*/;
+    
     /**
      * Expands a given ${isc.DocUtils.linkForRef('object:ListGridRecord','record')} by creating a subcomponent and inserting it
      * in to the record's grid-row.  A number of built-in {@link com.smartgwt.client..ExpansionMode}  are supported by the

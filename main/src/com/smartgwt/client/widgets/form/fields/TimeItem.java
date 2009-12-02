@@ -105,7 +105,9 @@ public class TimeItem extends TextItem {
 
     /**
      * If true, a data entry mask will be enabled in the field based on the {@link
-     * com.smartgwt.client.widgets.form.fields.TimeItem#getDisplayFormat displayFormat}.
+     * com.smartgwt.client.widgets.form.fields.TimeItem#getDisplayFormat displayFormat}. <p> Note that if a non-padded {@link
+     * com.smartgwt.client.widgets.form.fields.TimeItem#getDisplayFormat displayFormat} is specified, it will be changed to the
+     * corresponding padded version (ex. "toShort24HourTime" will be changed to "toShortPadded24HourTime").
      * <p><b>Note : </b> This is an advanced setting</p>
      *
      * @param useMask useMask Default value is null
@@ -116,7 +118,9 @@ public class TimeItem extends TextItem {
 
     /**
      * If true, a data entry mask will be enabled in the field based on the {@link
-     * com.smartgwt.client.widgets.form.fields.TimeItem#getDisplayFormat displayFormat}.
+     * com.smartgwt.client.widgets.form.fields.TimeItem#getDisplayFormat displayFormat}. <p> Note that if a non-padded {@link
+     * com.smartgwt.client.widgets.form.fields.TimeItem#getDisplayFormat displayFormat} is specified, it will be changed to the
+     * corresponding padded version (ex. "toShort24HourTime" will be changed to "toShortPadded24HourTime").
      *
      *
      * @return Boolean
