@@ -11,7 +11,7 @@ package com.smartgwt.client.docs;
  * @see com.smartgwt.client.widgets.form.fields.DateItem#getUseTextField
  * @see com.smartgwt.client.widgets.form.fields.DateItem#getUseMask
  * @see com.smartgwt.client.widgets.form.fields.DateItem#getMaskDateSeparator
- * @see com.smartgwt.client..DateTimeItem#getUseTextField
+ * @see com.smartgwt.client.widgets.form.fields.DateTimeItem#getUseTextField
  * @see com.smartgwt.client.data.DataSourceField#getName
  * @see com.smartgwt.client.data.DataSourceField#getType
  * @see com.smartgwt.client.widgets.viewer.DetailViewer#getData

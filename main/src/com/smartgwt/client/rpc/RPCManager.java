@@ -417,9 +417,11 @@ public class RPCManager {
      * All requests in a given queue must go to the same actionURL and use the same transport (XMLHttp or frames). If a request specifies a different actionURL or transport than that of the requests currently on the queue, it will be sent to the server separately, ahead of the queue, and a warning will be logged to the Developer Console.
      * <p/>
      * Note that the server must process all requests sent as part of the queue before any response is sent to the client. You should avoid batching a request that will take a long time to process on the server with any other requests because it will delay the response of all requests in the queue.
+     *
+     * @return whether queuing was already enabled before we called
      */
-    public static native void startQueue() /*-{
-        $wnd.isc.RPCManager.startQueue();
+    public static native boolean startQueue() /*-{
+        return $wnd.isc.RPCManager.startQueue();
     }-*/;
 
     /**
