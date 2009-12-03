@@ -72,7 +72,7 @@ public class EdgedCanvas extends Canvas {
     }
 
     public EdgedCanvas(){
-        
+        scClassName = "EdgedCanvas";
     }
 
     public EdgedCanvas(JavaScriptObject jsObj){

@@ -72,7 +72,7 @@ public class PropertySheet extends DynamicForm {
     }
 
     public PropertySheet(){
-        
+        scClassName = "PropertySheet";
     }
 
     public PropertySheet(JavaScriptObject jsObj){

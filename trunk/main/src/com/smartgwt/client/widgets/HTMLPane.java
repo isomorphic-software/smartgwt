@@ -76,7 +76,7 @@ public class HTMLPane extends HTMLFlow {
     }
 
     public HTMLPane(){
-        
+        scClassName = "HTMLPane";
     }
 
     public HTMLPane(JavaScriptObject jsObj){

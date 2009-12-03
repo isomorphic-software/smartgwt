@@ -75,7 +75,7 @@ public class Label extends Button {
     }
 
     public Label(){
-        
+        scClassName = "Label";
     }
 
     public Label(JavaScriptObject jsObj){
@@ -83,7 +83,7 @@ public class Label extends Button {
     }
 
     public Label(String contents) {
-        setContents(contents);
+        this();setContents(contents);
         
     }
 

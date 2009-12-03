@@ -67,7 +67,7 @@ public abstract class Toolbar extends Layout  implements com.smartgwt.client.wid
 
 
     public Toolbar(){
-        
+        scClassName = "Toolbar";
     }
 
     public Toolbar(JavaScriptObject jsObj){

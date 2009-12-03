@@ -82,7 +82,7 @@ public class ColumnTree extends Layout  implements DataBoundComponent, com.smart
     }
 
     public ColumnTree(){
-        
+        scClassName = "ColumnTree";
     }
 
     public ColumnTree(JavaScriptObject jsObj){

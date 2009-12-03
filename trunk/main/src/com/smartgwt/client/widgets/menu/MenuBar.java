@@ -72,7 +72,7 @@ public class MenuBar extends Toolbar {
     }
 
     public MenuBar(){
-        
+        scClassName = "MenuBar";
     }
 
     public MenuBar(JavaScriptObject jsObj){

@@ -72,7 +72,7 @@ public class SectionHeader extends Label {
     }
 
     public SectionHeader(){
-        
+        scClassName = "SectionHeader";
     }
 
     public SectionHeader(JavaScriptObject jsObj){

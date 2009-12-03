@@ -75,7 +75,7 @@ public class ImgSplitbar extends Img {
     }
 
     public ImgSplitbar(){
-        
+        scClassName = "ImgSplitbar";
     }
 
     public ImgSplitbar(JavaScriptObject jsObj){

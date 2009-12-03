@@ -76,7 +76,7 @@ public class Dialog extends Window {
     }
 
     public Dialog(){
-        
+        scClassName = "Dialog";
     }
 
     public Dialog(JavaScriptObject jsObj){

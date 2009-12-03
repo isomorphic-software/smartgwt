@@ -75,7 +75,7 @@ public class IButton extends StretchImgButton {
     }
 
     public IButton(){
-        
+        scClassName = "IButton";
     }
 
     public IButton(JavaScriptObject jsObj){
@@ -83,7 +83,7 @@ public class IButton extends StretchImgButton {
     }
 
     public IButton(String title) {
-        setTitle(title);
+        this();setTitle(title);
         
     }
 

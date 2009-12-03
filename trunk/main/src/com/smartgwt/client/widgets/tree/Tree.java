@@ -80,7 +80,7 @@ public class Tree extends BaseClass  implements com.smartgwt.client.widgets.tree
     }
 
     public Tree(){
-        
+        scClassName = "Tree";
     }
 
     public Tree(JavaScriptObject jsObj){

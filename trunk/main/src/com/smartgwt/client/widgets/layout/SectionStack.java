@@ -74,7 +74,7 @@ public class SectionStack extends VLayout  implements com.smartgwt.client.widget
     }
 
     public SectionStack(){
-        
+        scClassName = "SectionStack";
     }
 
     public SectionStack(JavaScriptObject jsObj){
@@ -412,12 +412,8 @@ public class SectionStack extends VLayout  implements com.smartgwt.client.widget
 
 
 
-
-
-
-
-
-
+
+
     public void setSections(SectionStackSection... sections) {
         for (SectionStackSection section : sections) {
             addSection(section);

@@ -73,7 +73,7 @@ public class VStack extends Layout {
     }
 
     public VStack(){
-        
+        scClassName = "VStack";
     }
 
     public VStack(JavaScriptObject jsObj){
@@ -81,7 +81,7 @@ public class VStack extends Layout {
     }
 
     public VStack(int membersMargin) {
-        setMembersMargin(membersMargin);
+        this();setMembersMargin(membersMargin);
         
     }
 

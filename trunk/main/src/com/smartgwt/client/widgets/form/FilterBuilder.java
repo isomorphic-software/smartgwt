@@ -76,7 +76,7 @@ public class FilterBuilder extends Layout  implements com.smartgwt.client.widget
     }
 
     public FilterBuilder(){
-        
+        scClassName = "FilterBuilder";
     }
 
     public FilterBuilder(JavaScriptObject jsObj){

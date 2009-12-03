@@ -73,7 +73,7 @@ public class MultiFilePicker extends VStack {
     }
 
     public MultiFilePicker(){
-        
+        scClassName = "MultiFilePicker";
     }
 
     public MultiFilePicker(JavaScriptObject jsObj){

@@ -73,7 +73,7 @@ public class DateChooser extends Canvas  implements com.smartgwt.client.widgets.
     }
 
     public DateChooser(){
-        
+        scClassName = "DateChooser";
     }
 
     public DateChooser(JavaScriptObject jsObj){

@@ -92,7 +92,7 @@ public class XJSONDataSource extends DataSource {
     }
 
     public XJSONDataSource(){
-        
+        scClassName = "XJSONDataSource";
     }
 
     public XJSONDataSource(JavaScriptObject jsObj){

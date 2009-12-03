@@ -108,7 +108,7 @@ public class DataSource extends BaseClass  implements com.smartgwt.client.data.e
     }
 
     public DataSource(){
-        
+        scClassName = "DataSource";
     }
 
     public DataSource(JavaScriptObject jsObj){
@@ -116,7 +116,7 @@ public class DataSource extends BaseClass  implements com.smartgwt.client.data.e
     }
 
     public DataSource(String dataURL) {
-        setDataURL(dataURL);
+        this();setDataURL(dataURL);
         
     }
 

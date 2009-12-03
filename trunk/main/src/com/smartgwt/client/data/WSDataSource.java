@@ -78,7 +78,7 @@ public class WSDataSource extends DataSource {
     }
 
     public WSDataSource(){
-        
+        scClassName = "WSDataSource";
     }
 
     public WSDataSource(JavaScriptObject jsObj){

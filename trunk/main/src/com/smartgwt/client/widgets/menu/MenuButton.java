@@ -72,7 +72,7 @@ public class MenuButton extends Button {
     }
 
     public MenuButton(){
-        
+        scClassName = "MenuButton";
     }
 
     public MenuButton(JavaScriptObject jsObj){
@@ -80,12 +80,12 @@ public class MenuButton extends Button {
     }
 
     public MenuButton(String title) {
-        setTitle(title);
+        this();setTitle(title);
         
     }
 
     public MenuButton(String title, Menu menu) {
-        setTitle(title);
+        this();setTitle(title);
 		setMenu(menu);
         
     }

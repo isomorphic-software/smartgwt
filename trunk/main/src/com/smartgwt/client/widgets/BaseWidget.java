@@ -53,7 +53,7 @@ public abstract class BaseWidget extends Widget implements HasHandlers {
     protected String id;
     protected JavaScriptObject config = JSOHelper.createObject();
     protected boolean isElementSet = false;
-
+    protected String scClassName;
     protected boolean configOnly;
 
     //event handling code
@@ -334,10 +334,6 @@ public abstract class BaseWidget extends Widget implements HasHandlers {
         return getAttributeAsString(attribute);                  
     }
 
-    private String getSCClassName() {
-        String className = getClass().getName();
-        return className.substring(className.lastIndexOf(".")+1);
-    }
 
     protected native String getAttributeAsString(String property)/*-{
         var ret;
@@ -349,7 +345,7 @@ public abstract class BaseWidget extends Widget implements HasHandlers {
             if(config[property] != undefined) {
                 ret = config[property];
             } else {
-               var scClassName = this.@com.smartgwt.client.widgets.BaseWidget::getSCClassName()();
+               var scClassName = this.@com.smartgwt.client.widgets.BaseWidget::scClassName;
                ret = eval("($wnd.isc." + scClassName + ".getInstanceProperty('" + property + "'))")
             }
         }
@@ -366,7 +362,7 @@ public abstract class BaseWidget extends Widget implements HasHandlers {
             if(config[property] != undefined) {
                 ret = config[property];
             } else {
-               var scClassName = this.@com.smartgwt.client.widgets.BaseWidget::getSCClassName()();
+               var scClassName = this.@com.smartgwt.client.widgets.BaseWidget::scClassName;
                ret = eval("($wnd.isc." + scClassName + ".getInstanceProperty('" + property + "'))")
             }
         }
@@ -383,7 +379,7 @@ public abstract class BaseWidget extends Widget implements HasHandlers {
             if(config[property] != undefined) {
                 ret = config[property];
             } else {
-               var scClassName = this.@com.smartgwt.client.widgets.BaseWidget::getSCClassName()();
+               var scClassName = this.@com.smartgwt.client.widgets.BaseWidget::scClassName;
                ret = eval("($wnd.isc." + scClassName + ".getInstanceProperty('" + property + "'))")
             }
         }
@@ -400,7 +396,7 @@ public abstract class BaseWidget extends Widget implements HasHandlers {
             if(config[property] != undefined) {
                 ret = config[property];
             } else {
-               var scClassName = this.@com.smartgwt.client.widgets.BaseWidget::getSCClassName()();
+               var scClassName = this.@com.smartgwt.client.widgets.BaseWidget::scClassName;
                ret = eval("($wnd.isc." + scClassName + ".getInstanceProperty('" + property + "'))")
             }
         }
@@ -417,7 +413,7 @@ public abstract class BaseWidget extends Widget implements HasHandlers {
             if(config[property] != undefined) {
                 ret = config[property];
             } else {
-               var scClassName = this.@com.smartgwt.client.widgets.BaseWidget::getSCClassName()();
+               var scClassName = this.@com.smartgwt.client.widgets.BaseWidget::scClassName;
                ret = eval("($wnd.isc." + scClassName + ".getInstanceProperty('" + property + "'))")
             }
         }
@@ -434,7 +430,7 @@ public abstract class BaseWidget extends Widget implements HasHandlers {
             if(config[property] != undefined) {
                 ret = config[property];
             } else {
-               var scClassName = this.@com.smartgwt.client.widgets.BaseWidget::getSCClassName()();
+               var scClassName = this.@com.smartgwt.client.widgets.BaseWidget::scClassName;
                ret = eval("($wnd.isc." + scClassName + ".getInstanceProperty('" + property + "'))")
             }
         }
@@ -451,7 +447,7 @@ public abstract class BaseWidget extends Widget implements HasHandlers {
             if(config[property] != undefined) {
                 ret = config[property];
             } else {
-               var scClassName = this.@com.smartgwt.client.widgets.BaseWidget::getSCClassName()();
+               var scClassName = this.@com.smartgwt.client.widgets.BaseWidget::scClassName;
                ret = eval("($wnd.isc." + scClassName + ".getInstanceProperty('" + property + "'))")
             }
         }
@@ -468,7 +464,7 @@ public abstract class BaseWidget extends Widget implements HasHandlers {
             if(config[property] != undefined) {
                 ret = config[property];
             } else {
-               var scClassName = this.@com.smartgwt.client.widgets.BaseWidget::getSCClassName()();
+               var scClassName = this.@com.smartgwt.client.widgets.BaseWidget::scClassName;
                ret = eval("($wnd.isc." + scClassName + ".getInstanceProperty('" + property + "'))")
             }
         }
@@ -485,7 +481,7 @@ public abstract class BaseWidget extends Widget implements HasHandlers {
             if(config[property] != undefined) {
                 ret = config[property];
             } else {
-               var scClassName = this.@com.smartgwt.client.widgets.BaseWidget::getSCClassName()();
+               var scClassName = this.@com.smartgwt.client.widgets.BaseWidget::scClassName;
                ret = eval("($wnd.isc." + scClassName + ".getInstanceProperty('" + property + "'))")
             }
         }
@@ -502,7 +498,7 @@ public abstract class BaseWidget extends Widget implements HasHandlers {
             if(config[property] != undefined) {
                 ret = config[property];
             } else {
-               var scClassName = this.@com.smartgwt.client.widgets.BaseWidget::getSCClassName()();
+               var scClassName = this.@com.smartgwt.client.widgets.BaseWidget::scClassName;
                ret = eval("($wnd.isc." + scClassName + ".getInstanceProperty('" + property + "'))")
             }
         }

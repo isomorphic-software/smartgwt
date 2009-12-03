@@ -73,7 +73,7 @@ public class LayoutSpacer extends Canvas {
     }
 
     public LayoutSpacer(){
-        
+        scClassName = "LayoutSpacer";
     }
 
     public LayoutSpacer(JavaScriptObject jsObj){

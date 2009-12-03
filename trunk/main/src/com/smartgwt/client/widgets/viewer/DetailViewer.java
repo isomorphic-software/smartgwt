@@ -72,7 +72,7 @@ public class DetailViewer extends Canvas  implements DataBoundComponent {
     }
 
     public DetailViewer(){
-        
+        scClassName = "DetailViewer";
     }
 
     public DetailViewer(JavaScriptObject jsObj){

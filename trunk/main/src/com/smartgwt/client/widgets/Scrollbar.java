@@ -77,7 +77,7 @@ public class Scrollbar extends StretchImg {
     }
 
     public Scrollbar(){
-        
+        scClassName = "Scrollbar";
     }
 
     public Scrollbar(JavaScriptObject jsObj){

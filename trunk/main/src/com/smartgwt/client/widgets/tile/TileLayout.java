@@ -72,7 +72,7 @@ public class TileLayout extends Canvas {
     }
 
     public TileLayout(){
-        
+        scClassName = "TileLayout";
     }
 
     public TileLayout(JavaScriptObject jsObj){

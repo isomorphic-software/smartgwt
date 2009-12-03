@@ -81,7 +81,7 @@ public class ToolStrip extends Layout {
     }
 
     public ToolStrip(){
-        
+        scClassName = "ToolStrip";
     }
 
     public ToolStrip(JavaScriptObject jsObj){
