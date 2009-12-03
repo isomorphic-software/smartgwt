@@ -131,111 +131,148 @@ public abstract class BaseClass {
     protected void onInit() {}
 
 
+    private String getSCClassName() {
+        String className = getClass().getName();
+        return className.substring(className.lastIndexOf(".")+1);
+    }
+    
     protected String getAttribute(String attribute) {
         return getAttributeAsString(attribute);
     }
-
-    protected String getAttributeAsString(String attribute) {
-        if (isCreated()) {
-            return getPropertyAsString(attribute);
-        } else {
-            return JSOHelper.getAttribute(config, attribute);
-        }
-    }
-
-    protected Double getAttributeAsDouble(String attribute) {
-        if (isCreated()) {
-            return getPropertyAsDouble(attribute);
-        } else {
-            return JSOHelper.getAttributeAsDouble(config, attribute);
-        }
-    }
-
-    protected Element getAttributeAsElement(String attribute) {
-        if (isCreated()) {
-            return getPropertyAsElement(attribute);
-        } else {
-            return JSOHelper.getAttributeAsElement(config, attribute);
-        }
-    }
-
-    protected JavaScriptObject getAttributeAsJavaScriptObject(String attribute) {
-        if (isCreated()) {
-            return getPropertyAsJSO(attribute);
-        } else {
-            return JSOHelper.getAttributeAsJavaScriptObject(config, attribute);
-        }
-    }
-
-    protected Integer getAttributeAsInt(String attribute) {
-        if (isCreated()) {
-            return getPropertyAsInt(attribute);
-        } else {
-            return JSOHelper.getAttributeAsInt(config, attribute);
-        }
-    }
-
-    protected Float getAttributeAsFloat(String attribute) {
-        if (isCreated()) {
-            return getPropertyAsFloat(attribute);
-        } else {
-            return JSOHelper.getAttributeAsFloat(config, attribute);
-        }
-    }
-
-    protected Boolean getAttributeAsBoolean(String attribute) {
-        if (isCreated()) {
-            return getPropertyAsBoolean(attribute);
-        } else {
-            return JSOHelper.getAttributeAsBoolean(config, attribute);
-        }
-    }
     
-    protected native String getPropertyAsString(String property)/*-{
-        var widget = this.@com.smartgwt.client.core.BaseClass::getJsObj()();
-        var ret = widget.getProperty(property);
+    protected native String getAttributeAsString(String property)/*-{
+        var ret;
+        if(this.@com.smartgwt.client.core.BaseClass::isCreated()()) {
+            var widget = this.@com.smartgwt.client.core.BaseClass::getJsObj()();
+            ret = widget.getProperty(property);
+        } else {
+            var config = this.@com.smartgwt.client.core.BaseClass::config;
+            if(config[property] != undefined) {
+                ret = config[property];
+            } else {
+               var scClassName = this.@com.smartgwt.client.core.BaseClass::getSCClassName()();
+               ret = eval("($wnd.isc." + scClassName + ".getInstanceProperty('" + property + "'))")
+            }
+        }
         return ret === undefined ? null : ret;
     }-*/;
 
-    protected native Date getPropertyAsDate(String property)/*-{
-        var widget = this.@com.smartgwt.client.core.BaseClass::getJsObj()();
-        var ret = widget.getProperty(property);
+    protected native Date getAttributeAsDate(String property)/*-{
+        var ret;
+        if(this.@com.smartgwt.client.core.BaseClass::isCreated()()) {
+            var widget = this.@com.smartgwt.client.core.BaseClass::getJsObj()();
+            ret = widget.getProperty(property);
+        } else {
+            var config = this.@com.smartgwt.client.core.BaseClass::config;
+            if(config[property] != undefined) {
+                ret = config[property];
+            } else {
+               var scClassName = this.@com.smartgwt.client.core.BaseClass::getSCClassName()();
+               ret = eval("($wnd.isc." + scClassName + ".getInstanceProperty('" + property + "'))")
+            }
+        }
         return ret == null || ret === undefined ? null : @com.smartgwt.client.util.JSOHelper::toDate(D)(ret.getTime());
     }-*/;
 
-    protected native Integer getPropertyAsInt(String property)/*-{
-        var widget = this.@com.smartgwt.client.core.BaseClass::getJsObj()();
-        var ret = widget.getProperty(property);
+    protected native Integer getAttributeAsInt(String property)/*-{
+        var ret;
+        if(this.@com.smartgwt.client.core.BaseClass::isCreated()()) {
+            var widget = this.@com.smartgwt.client.core.BaseClass::getJsObj()();
+            ret = widget.getProperty(property);
+        } else {
+            var config = this.@com.smartgwt.client.core.BaseClass::config;
+            if(config[property] != undefined) {
+                ret = config[property];
+            } else {
+               var scClassName = this.@com.smartgwt.client.core.BaseClass::getSCClassName()();
+               ret = eval("($wnd.isc." + scClassName + ".getInstanceProperty('" + property + "'))")
+            }
+        }
         return ret == null || ret === undefined ? null : @com.smartgwt.client.util.JSOHelper::toInteger(I)(ret);
     }-*/;
 
-    protected native Double getPropertyAsDouble(String property)/*-{
-        var widget = this.@com.smartgwt.client.core.BaseClass::getJsObj()();
-        var ret = widget.getProperty(property);
+    protected native Double getAttributeAsDouble(String property)/*-{
+        var ret;
+        if(this.@com.smartgwt.client.core.BaseClass::isCreated()()) {
+            var widget = this.@com.smartgwt.client.core.BaseClass::getJsObj()();
+            ret = widget.getProperty(property);
+        } else {
+            var config = this.@com.smartgwt.client.core.BaseClass::config;
+            if(config[property] != undefined) {
+                ret = config[property];
+            } else {
+               var scClassName = this.@com.smartgwt.client.core.BaseClass::getSCClassName()();
+               ret = eval("($wnd.isc." + scClassName + ".getInstanceProperty('" + property + "'))")
+            }
+        }
         return ret == null || ret === undefined ? null : @com.smartgwt.client.util.JSOHelper::toDouble(D)(ret);
     }-*/;
 
-    protected native Element getPropertyAsElement(String property)/*-{
-        var widget = this.@com.smartgwt.client.core.BaseClass::getJsObj()();
-        var ret = widget.getProperty(property);
+    protected native Element getAttributeAsElement(String property)/*-{
+        var ret;
+        if(this.@com.smartgwt.client.core.BaseClass::isCreated()()) {
+            var widget = this.@com.smartgwt.client.core.BaseClass::getJsObj()();
+            ret = widget.getProperty(property);
+        } else {
+            var config = this.@com.smartgwt.client.core.BaseClass::config;
+            if(config[property] != undefined) {
+                ret = config[property];
+            } else {
+               var scClassName = this.@com.smartgwt.client.core.BaseClass::getSCClassName()();
+               ret = eval("($wnd.isc." + scClassName + ".getInstanceProperty('" + property + "'))")
+            }
+        }
         return ret === undefined ? null : ret;
     }-*/;
 
-    protected native JavaScriptObject getPropertyAsJSO(String property)/*-{
-        var widget = this.@com.smartgwt.client.core.BaseClass::getJsObj()();
-        var ret = widget.getProperty(property);
+    protected native JavaScriptObject getAttributeAsJavaScriptObject(String property)/*-{
+        var ret;
+        if(this.@com.smartgwt.client.core.BaseClass::isCreated()()) {
+            var widget = this.@com.smartgwt.client.core.BaseClass::getJsObj()();
+            ret = widget.getProperty(property);
+        } else {
+            var config = this.@com.smartgwt.client.core.BaseClass::config;
+            if(config[property] != undefined) {
+                ret = config[property];
+            } else {
+               var scClassName = this.@com.smartgwt.client.core.BaseClass::getSCClassName()();
+               ret = eval("($wnd.isc." + scClassName + ".getInstanceProperty('" + property + "'))")
+            }
+        }
         return ret === undefined ? null : ret;
     }-*/;
 
-    protected native Float getPropertyAsFloat(String property)/*-{
-        var widget = this.@com.smartgwt.client.core.BaseClass::getJsObj()();
-        var ret = widget.getProperty(property);
+    protected native Float getAttributeAsFloat(String property)/*-{
+        var ret;
+        if(this.@com.smartgwt.client.core.BaseClass::isCreated()()) {
+            var widget = this.@com.smartgwt.client.core.BaseClass::getJsObj()();
+            ret = widget.getProperty(property);
+        } else {
+            var config = this.@com.smartgwt.client.core.BaseClass::config;
+            if(config[property] != undefined) {
+                ret = config[property];
+            } else {
+               var scClassName = this.@com.smartgwt.client.core.BaseClass::getSCClassName()();
+               ret = eval("($wnd.isc." + scClassName + ".getInstanceProperty('" + property + "'))")
+            }
+        }
         return ret == null || ret === undefined ? null : @com.smartgwt.client.util.JSOHelper::toFloat(F)(ret);
     }-*/;
 
-    protected native Boolean getPropertyAsBoolean(String property)/*-{
-        var widget = this.@com.smartgwt.client.core.BaseClass::getJsObj()();
-        var ret = widget.getProperty(property);
+    protected native Boolean getAttributeAsBoolean(String property)/*-{
+        var ret;
+        if(this.@com.smartgwt.client.core.BaseClass::isCreated()()) {
+            var widget = this.@com.smartgwt.client.core.BaseClass::getJsObj()();
+            ret = widget.getProperty(property);
+        } else {
+            var config = this.@com.smartgwt.client.core.BaseClass::config;
+            if(config[property] != undefined) {
+                ret = config[property];
+            } else {
+               var scClassName = this.@com.smartgwt.client.core.BaseClass::getSCClassName()();
+               ret = eval("($wnd.isc." + scClassName + ".getInstanceProperty('" + property + "'))")
+            }
+        }
         return ret == null || ret === undefined ? null : @com.smartgwt.client.util.JSOHelper::toBoolean(Z)(ret);
     }-*/;
 

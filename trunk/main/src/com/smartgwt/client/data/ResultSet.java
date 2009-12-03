@@ -1196,35 +1196,35 @@ public class ResultSet extends RecordList implements com.smartgwt.client.data.ev
     // override getProperty / setProperty logic for ResultSet class only
 
     //getters
-    protected String getPropertyAsString(String property) {
+    protected String getAttributeAsString(String property) {
         return JSOHelper.getAttribute(jsObj, property);
     }
 
-    protected Date getPropertyAsDate(String property) {
+    protected Date getAttributeAsDate(String property) {
         return JSOHelper.getAttributeAsDate(jsObj, property);
     }
 
-    protected Integer getPropertyAsInt(String property) {
+    protected Integer getAttributeAsInt(String property) {
         return JSOHelper.getAttributeAsInt(jsObj, property);
     }
 
-    protected Double getPropertyAsDouble(String property) {
+    protected Double getAttributeAsDouble(String property) {
         return JSOHelper.getAttributeAsDouble(jsObj, property);
     }
 
-    protected Element getPropertyAsElement(String property) {
+    protected Element getAttributeAsElement(String property) {
         return JSOHelper.getAttributeAsElement(jsObj, property);
     }
 
-    protected JavaScriptObject getPropertyAsJSO(String property) {
+    protected JavaScriptObject getAttributeAsJavaScriptObject(String property) {
         return JSOHelper.getAttributeAsJavaScriptObject(jsObj, property);
     }
 
-    protected Float getPropertyAsFloat(String property) {
+    protected Float getAttributeAsFloat(String property) {
         return JSOHelper.getAttributeAsFloat(jsObj, property);
     }
 
-    protected Boolean getPropertyAsBoolean(String property) {
+    protected Boolean getAttributeAsBoolean(String property) {
         return JSOHelper.getAttributeAsBoolean(jsObj, property);
     }
 
