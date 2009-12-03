@@ -72,7 +72,7 @@ public class ToolStripSeparator extends Img {
     }
 
     public ToolStripSeparator(){
-        
+        scClassName = "ToolStripSeparator";
     }
 
     public ToolStripSeparator(JavaScriptObject jsObj){

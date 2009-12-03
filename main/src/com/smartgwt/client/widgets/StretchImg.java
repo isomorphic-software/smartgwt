@@ -73,7 +73,7 @@ public class StretchImg extends StatefulCanvas {
     }
 
     public StretchImg(){
-        
+        scClassName = "StretchImg";
     }
 
     public StretchImg(JavaScriptObject jsObj){

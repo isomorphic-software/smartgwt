@@ -35,6 +35,7 @@ public abstract class BaseClass {
 
     protected String id;
     protected JavaScriptObject config = JSOHelper.createObject();
+    protected String scClassName;
 
     public BaseClass() {
         id = SC.generateID();
@@ -131,11 +132,7 @@ public abstract class BaseClass {
     protected void onInit() {}
 
 
-    private String getSCClassName() {
-        String className = getClass().getName();
-        return className.substring(className.lastIndexOf(".")+1);
-    }
-    
+ 
     protected String getAttribute(String attribute) {
         return getAttributeAsString(attribute);
     }
@@ -150,7 +147,7 @@ public abstract class BaseClass {
             if(config[property] != undefined) {
                 ret = config[property];
             } else {
-               var scClassName = this.@com.smartgwt.client.core.BaseClass::getSCClassName()();
+               var scClassName = this.@com.smartgwt.client.core.BaseClass::scClassName;
                ret = eval("($wnd.isc." + scClassName + ".getInstanceProperty('" + property + "'))")
             }
         }
@@ -167,7 +164,7 @@ public abstract class BaseClass {
             if(config[property] != undefined) {
                 ret = config[property];
             } else {
-               var scClassName = this.@com.smartgwt.client.core.BaseClass::getSCClassName()();
+               var scClassName = this.@com.smartgwt.client.core.BaseClass::scClassName;
                ret = eval("($wnd.isc." + scClassName + ".getInstanceProperty('" + property + "'))")
             }
         }
@@ -184,7 +181,7 @@ public abstract class BaseClass {
             if(config[property] != undefined) {
                 ret = config[property];
             } else {
-               var scClassName = this.@com.smartgwt.client.core.BaseClass::getSCClassName()();
+               var scClassName = this.@com.smartgwt.client.core.BaseClass::scClassName;
                ret = eval("($wnd.isc." + scClassName + ".getInstanceProperty('" + property + "'))")
             }
         }
@@ -201,7 +198,7 @@ public abstract class BaseClass {
             if(config[property] != undefined) {
                 ret = config[property];
             } else {
-               var scClassName = this.@com.smartgwt.client.core.BaseClass::getSCClassName()();
+               var scClassName = this.@com.smartgwt.client.core.BaseClass::scClassName;
                ret = eval("($wnd.isc." + scClassName + ".getInstanceProperty('" + property + "'))")
             }
         }
@@ -218,7 +215,7 @@ public abstract class BaseClass {
             if(config[property] != undefined) {
                 ret = config[property];
             } else {
-               var scClassName = this.@com.smartgwt.client.core.BaseClass::getSCClassName()();
+               var scClassName = this.@com.smartgwt.client.core.BaseClass::scClassName;
                ret = eval("($wnd.isc." + scClassName + ".getInstanceProperty('" + property + "'))")
             }
         }
@@ -235,7 +232,7 @@ public abstract class BaseClass {
             if(config[property] != undefined) {
                 ret = config[property];
             } else {
-               var scClassName = this.@com.smartgwt.client.core.BaseClass::getSCClassName()();
+               var scClassName = this.@com.smartgwt.client.core.BaseClass::scClassName;
                ret = eval("($wnd.isc." + scClassName + ".getInstanceProperty('" + property + "'))")
             }
         }
@@ -252,7 +249,7 @@ public abstract class BaseClass {
             if(config[property] != undefined) {
                 ret = config[property];
             } else {
-               var scClassName = this.@com.smartgwt.client.core.BaseClass::getSCClassName()();
+               var scClassName = this.@com.smartgwt.client.core.BaseClass::scClassName;
                ret = eval("($wnd.isc." + scClassName + ".getInstanceProperty('" + property + "'))")
             }
         }
@@ -269,7 +266,7 @@ public abstract class BaseClass {
             if(config[property] != undefined) {
                 ret = config[property];
             } else {
-               var scClassName = this.@com.smartgwt.client.core.BaseClass::getSCClassName()();
+               var scClassName = this.@com.smartgwt.client.core.BaseClass::scClassName;
                ret = eval("($wnd.isc." + scClassName + ".getInstanceProperty('" + property + "'))")
             }
         }

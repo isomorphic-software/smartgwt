@@ -76,7 +76,7 @@ public class Splitbar extends StretchImg {
     }
 
     public Splitbar(){
-        
+        scClassName = "Splitbar";
     }
 
     public Splitbar(JavaScriptObject jsObj){

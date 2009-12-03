@@ -74,7 +74,7 @@ public class VLayout extends Layout {
     }
 
     public VLayout(){
-        
+        scClassName = "VLayout";
     }
 
     public VLayout(JavaScriptObject jsObj){
@@ -82,7 +82,7 @@ public class VLayout extends Layout {
     }
 
     public VLayout(int membersMargin) {
-        setMembersMargin(membersMargin);
+        this();setMembersMargin(membersMargin);
         
     }
 

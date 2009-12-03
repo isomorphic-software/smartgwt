@@ -77,7 +77,7 @@ public class ColorPicker extends Window  implements com.smartgwt.client.widgets.
     }
 
     public ColorPicker(){
-        
+        scClassName = "ColorPicker";
     }
 
     public ColorPicker(JavaScriptObject jsObj){

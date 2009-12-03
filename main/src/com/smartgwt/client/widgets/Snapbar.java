@@ -73,7 +73,7 @@ public class Snapbar extends Splitbar {
     }
 
     public Snapbar(){
-        
+        scClassName = "Snapbar";
     }
 
     public Snapbar(JavaScriptObject jsObj){

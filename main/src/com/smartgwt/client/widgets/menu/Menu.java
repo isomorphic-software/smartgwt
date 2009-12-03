@@ -78,7 +78,7 @@ public class Menu extends ListGrid  implements com.smartgwt.client.widgets.menu.
     }
 
     public Menu(){
-        
+        scClassName = "Menu";
     }
 
     public Menu(JavaScriptObject jsObj){

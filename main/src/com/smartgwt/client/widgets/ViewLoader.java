@@ -88,7 +88,7 @@ public class ViewLoader extends Label {
     }
 
     public ViewLoader(){
-        
+        scClassName = "ViewLoader";
     }
 
     public ViewLoader(JavaScriptObject jsObj){

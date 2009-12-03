@@ -74,7 +74,7 @@ public class TileGrid extends TileLayout  implements DataBoundComponent, com.sma
     }
 
     public TileGrid(){
-        
+        scClassName = "TileGrid";
     }
 
     public TileGrid(JavaScriptObject jsObj){

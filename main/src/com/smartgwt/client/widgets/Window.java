@@ -79,7 +79,7 @@ public class Window extends VLayout  implements com.smartgwt.client.widgets.even
     }
 
     public Window(){
-        setShowHeaderIcon(false);
+        setShowHeaderIcon(false);scClassName = "Window";
     }
 
     public Window(JavaScriptObject jsObj){

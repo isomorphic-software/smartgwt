@@ -95,7 +95,7 @@ public class Calendar extends Canvas  implements DataBoundComponent, com.smartgw
     }
 
     public Calendar(){
-        
+        scClassName = "Calendar";
     }
 
     public Calendar(JavaScriptObject jsObj){

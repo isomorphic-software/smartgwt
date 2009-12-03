@@ -72,7 +72,7 @@ public class ToolStripResizer extends ImgSplitbar {
     }
 
     public ToolStripResizer(){
-        
+        scClassName = "ToolStripResizer";
     }
 
     public ToolStripResizer(JavaScriptObject jsObj){

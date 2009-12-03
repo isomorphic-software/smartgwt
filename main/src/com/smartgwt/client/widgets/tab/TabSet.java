@@ -74,7 +74,7 @@ public class TabSet extends Canvas  implements com.smartgwt.client.widgets.tab.e
     }
 
     public TabSet(){
-        
+        scClassName = "TabSet";
     }
 
     public TabSet(JavaScriptObject jsObj){

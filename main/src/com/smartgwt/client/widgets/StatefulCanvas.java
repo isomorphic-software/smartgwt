@@ -73,7 +73,7 @@ public class StatefulCanvas extends Canvas {
     }
 
     public StatefulCanvas(){
-        
+        scClassName = "StatefulCanvas";
     }
 
     public StatefulCanvas(JavaScriptObject jsObj){

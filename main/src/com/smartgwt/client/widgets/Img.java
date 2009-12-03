@@ -72,7 +72,7 @@ public class Img extends StatefulCanvas {
     }
 
     public Img(){
-        
+        scClassName = "Img";
     }
 
     public Img(JavaScriptObject jsObj){
@@ -80,12 +80,12 @@ public class Img extends StatefulCanvas {
     }
 
     public Img(String src) {
-        setSrc(src);
+        this();setSrc(src);
         
     }
 
     public Img(String src, int width, int height) {
-        setSrc(src);
+        this();setSrc(src);
 		setWidth(width);
 		setHeight(height);
         

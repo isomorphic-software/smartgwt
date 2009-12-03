@@ -78,7 +78,7 @@ public class HTMLFlow extends Canvas  implements com.smartgwt.client.widgets.eve
     }
 
     public HTMLFlow(){
-        
+        scClassName = "HTMLFlow";
     }
 
     public HTMLFlow(JavaScriptObject jsObj){
@@ -86,7 +86,7 @@ public class HTMLFlow extends Canvas  implements com.smartgwt.client.widgets.eve
     }
 
     public HTMLFlow(String contents) {
-        setContents(contents);
+        this();setContents(contents);
         
     }
 

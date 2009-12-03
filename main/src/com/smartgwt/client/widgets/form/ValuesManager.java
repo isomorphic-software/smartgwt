@@ -89,7 +89,7 @@ public class ValuesManager extends BaseClass {
     }
 
     public ValuesManager(){
-        
+        scClassName = "ValuesManager";
     }
 
     public ValuesManager(JavaScriptObject jsObj){

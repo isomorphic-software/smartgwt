@@ -73,7 +73,7 @@ public class FlowLayout extends TileLayout {
     }
 
     public FlowLayout(){
-        
+        scClassName = "FlowLayout";
     }
 
     public FlowLayout(JavaScriptObject jsObj){

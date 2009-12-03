@@ -81,7 +81,7 @@ public class Layout extends Canvas {
     }
 
     public Layout(){
-        
+        scClassName = "Layout";
     }
 
     public Layout(JavaScriptObject jsObj){

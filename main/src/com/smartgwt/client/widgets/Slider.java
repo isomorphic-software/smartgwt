@@ -79,7 +79,7 @@ public class Slider extends Canvas  implements com.smartgwt.client.widgets.event
     }
 
     public Slider(){
-        
+        scClassName = "Slider";
     }
 
     public Slider(JavaScriptObject jsObj){
@@ -87,7 +87,7 @@ public class Slider extends Canvas  implements com.smartgwt.client.widgets.event
     }
 
     public Slider(String title) {
-        setTitle(title);
+        this();setTitle(title);
         
     }
 

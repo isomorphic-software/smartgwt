@@ -75,7 +75,7 @@ public class RichTextEditor extends VLayout {
     }
 
     public RichTextEditor(){
-        
+        scClassName = "RichTextEditor";
     }
 
     public RichTextEditor(JavaScriptObject jsObj){

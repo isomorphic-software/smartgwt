@@ -74,7 +74,7 @@ public class SearchForm extends DynamicForm {
     }
 
     public SearchForm(){
-        
+        scClassName = "SearchForm";
     }
 
     public SearchForm(JavaScriptObject jsObj){

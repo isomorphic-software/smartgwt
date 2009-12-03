@@ -72,7 +72,7 @@ public class ImgTab extends StretchImgButton {
     }
 
     public ImgTab(){
-        
+        scClassName = "ImgTab";
     }
 
     public ImgTab(JavaScriptObject jsObj){

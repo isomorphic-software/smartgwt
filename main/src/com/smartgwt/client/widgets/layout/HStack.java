@@ -73,7 +73,7 @@ public class HStack extends Layout {
     }
 
     public HStack(){
-        
+        scClassName = "HStack";
     }
 
     public HStack(JavaScriptObject jsObj){
@@ -81,7 +81,7 @@ public class HStack extends Layout {
     }
 
     public HStack(int membersMargin) {
-        setMembersMargin(membersMargin);
+        this();setMembersMargin(membersMargin);
         
     }
 

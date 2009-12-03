@@ -74,7 +74,7 @@ public class ImgButton extends Img {
     }
 
     public ImgButton(){
-        
+        scClassName = "ImgButton";
     }
 
     public ImgButton(JavaScriptObject jsObj){

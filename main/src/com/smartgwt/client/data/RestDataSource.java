@@ -203,7 +203,7 @@ public class RestDataSource extends DataSource {
     }
 
     public RestDataSource(){
-        
+        scClassName = "RestDataSource";
     }
 
     public RestDataSource(JavaScriptObject jsObj){

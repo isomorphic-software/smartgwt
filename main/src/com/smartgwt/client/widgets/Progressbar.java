@@ -73,7 +73,7 @@ public class Progressbar extends StretchImg  implements com.smartgwt.client.widg
     }
 
     public Progressbar(){
-        
+        scClassName = "Progressbar";
     }
 
     public Progressbar(JavaScriptObject jsObj){

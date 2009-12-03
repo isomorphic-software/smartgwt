@@ -72,7 +72,7 @@ public class Button extends StatefulCanvas  implements com.smartgwt.client.widge
     }
 
     public Button(){
-        
+        scClassName = "Button";
     }
 
     public Button(JavaScriptObject jsObj){
@@ -80,7 +80,7 @@ public class Button extends StatefulCanvas  implements com.smartgwt.client.widge
     }
 
     public Button(String title) {
-        setTitle(title);
+        this();setTitle(title);
         
     }
 

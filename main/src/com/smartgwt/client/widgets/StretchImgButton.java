@@ -74,7 +74,7 @@ public class StretchImgButton extends StretchImg  implements com.smartgwt.client
     }
 
     public StretchImgButton(){
-        
+        scClassName = "StretchImgButton";
     }
 
     public StretchImgButton(JavaScriptObject jsObj){

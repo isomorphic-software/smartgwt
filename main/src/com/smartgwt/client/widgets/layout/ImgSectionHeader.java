@@ -72,7 +72,7 @@ public class ImgSectionHeader extends HLayout {
     }
 
     public ImgSectionHeader(){
-        
+        scClassName = "ImgSectionHeader";
     }
 
     public ImgSectionHeader(JavaScriptObject jsObj){

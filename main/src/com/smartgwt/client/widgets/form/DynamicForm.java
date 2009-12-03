@@ -91,7 +91,7 @@ public class DynamicForm extends Canvas  implements DataBoundComponent, com.smar
     }
 
     public DynamicForm(){
-        
+        scClassName = "DynamicForm";
     }
 
     public DynamicForm(JavaScriptObject jsObj){
