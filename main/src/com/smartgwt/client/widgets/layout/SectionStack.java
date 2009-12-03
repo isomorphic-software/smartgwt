@@ -412,8 +412,12 @@ public class SectionStack extends VLayout  implements com.smartgwt.client.widget
 
 
 
-
-
+
+
+
+
+
+
     public void setSections(SectionStackSection... sections) {
         for (SectionStackSection section : sections) {
             addSection(section);
@@ -697,10 +701,7 @@ public class SectionStack extends VLayout  implements com.smartgwt.client.widget
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
         var ret = self.getSectionHeader(sectionID);
         if(ret == null || ret === undefined) return null;
-        var retVal = @com.smartgwt.client.widgets.BaseWidget::getRef(Lcom/google/gwt/core/client/JavaScriptObject;)(ret);
-        if(retVal == null) {
-            retVal = @com.smartgwt.client.widgets.layout.SectionStackSection::new(Lcom/google/gwt/core/client/JavaScriptObject;)(ret);
-        }
+        var retVal = @com.smartgwt.client.widgets.layout.SectionStackSection::getOrCreateRef(Lcom/google/gwt/core/client/JavaScriptObject;)(ret);
         return retVal;
     }-*/;
 
