@@ -843,32 +843,6 @@ public class Canvas extends BaseWidget  implements com.smartgwt.client.widgets.e
     }
 
     /**
-     * If set to true, the widget will be disabled. A widget is only considered enabled       if it is individually enabled and
-     * all parents above it in the containment hierarchy       are enabled. This allows you to enable or disable all components
-     * of a complex       nested widget by enabling or disabling the top-level parent only.
-     * set the disabled state of this object
-     * <p><b>Note : </b> This is an advanced setting</p>
-     *
-     * @param disabled new disabled state of this object - pass <code>true</code> to disable the widget. Default value is false
-     */
-    public void setDisabled(Boolean disabled) {
-        setAttribute("disabled", disabled, true);
-    }
-
-    /**
-     * If set to true, the widget will be disabled. A widget is only considered enabled       if it is individually enabled and
-     * all parents above it in the containment hierarchy       are enabled. This allows you to enable or disable all components
-     * of a complex       nested widget by enabling or disabling the top-level parent only.
-     *
-     *
-     * @return Is this canvas disabled? Note that the disabled state is inherited - this method will return true if this widget, or any
-     * of its ancestors are marked disabled.
-     */
-    public Boolean getDisabled()  {
-        return getAttributeAsBoolean("disabled");
-    }
-
-    /**
      * Should this element be redrawn in response to a resize? <P> Should be set to true for components whose {@link
      * com.smartgwt.client.widgets.Canvas#getInnerHTML} will not automatically reflow to fit the component's new size.
      * <p><b>Note : </b> This is an advanced setting</p>
@@ -5514,6 +5488,33 @@ public class Canvas extends BaseWidget  implements com.smartgwt.client.widgets.e
 
     public int getAbsoluteTop() {
         return getPageTop();
+    }
+
+    /**
+     * If set to true, the widget will be disabled. A widget is only considered enabled       if it is individually enabled and
+     * all parents above it in the containment hierarchy       are enabled. This allows you to enable or disable all components
+     * of a complex       nested widget by enabling or disabling the top-level parent only.
+     * set the disabled state of this object
+     * <p><b>Note : </b> This is an advanced setting</p>
+     *
+     * @param disabled new disabled state of this object - pass <code>true</code> to disable the widget. Default value is false
+     */
+    public void setDisabled(boolean disabled) {
+        setAttribute("disabled", disabled, true);
+    }
+
+    /**
+     * If set to true, the widget will be disabled. A widget is only considered enabled       if it is individually enabled and
+     * all parents above it in the containment hierarchy       are enabled. This allows you to enable or disable all components
+     * of a complex       nested widget by enabling or disabling the top-level parent only.
+     *
+     *
+     * @return Is this canvas disabled? Note that the disabled state is inherited - this method will return true if this widget, or any
+     * of its ancestors are marked disabled.
+     */
+    public boolean getDisabled()  {
+        Boolean disabled =  getAttributeAsBoolean("disabled");
+        return disabled == null ? false : disabled; 
     }
 
     /**
