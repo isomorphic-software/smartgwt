@@ -83,8 +83,8 @@ public class Label extends Button {
     }
 
     public Label(String contents) {
-        this();setContents(contents);
-        
+        setContents(contents);
+        scClassName = "Label";
     }
 
     protected native JavaScriptObject create()/*-{

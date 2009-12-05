@@ -80,8 +80,8 @@ public class Button extends StatefulCanvas  implements com.smartgwt.client.widge
     }
 
     public Button(String title) {
-        this();setTitle(title);
-        
+        setTitle(title);
+        scClassName = "Button";
     }
 
     protected native JavaScriptObject create()/*-{

@@ -80,8 +80,8 @@ public class Canvas extends BaseWidget  implements com.smartgwt.client.widgets.e
     }
 
     public Canvas(String id) {
-        super(id);scClassName = "Canvas";
-        setRedrawOnResize(false);
+        super(id);
+        setRedrawOnResize(false);scClassName = "Canvas";
     }
 
     protected native JavaScriptObject create()/*-{

@@ -80,15 +80,15 @@ public class Img extends StatefulCanvas {
     }
 
     public Img(String src) {
-        this();setSrc(src);
-        
+        setSrc(src);
+        scClassName = "Img";
     }
 
     public Img(String src, int width, int height) {
-        this();setSrc(src);
+        setSrc(src);
 		setWidth(width);
 		setHeight(height);
-        
+        scClassName = "Img";
     }
 
     protected native JavaScriptObject create()/*-{

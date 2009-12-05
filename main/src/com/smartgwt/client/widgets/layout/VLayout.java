@@ -82,8 +82,8 @@ public class VLayout extends Layout {
     }
 
     public VLayout(int membersMargin) {
-        this();setMembersMargin(membersMargin);
-        
+        setMembersMargin(membersMargin);
+        scClassName = "VLayout";
     }
 
     protected native JavaScriptObject create()/*-{
