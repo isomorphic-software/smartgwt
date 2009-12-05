@@ -20,8 +20,8 @@ package com.smartgwt.client.docs;
  * application:&#010 <ul>&#010 <li> <b>call Spring beans via Smart GWT DMI</b> <span&#010
  * style="color:red">[Recommended]</span>: use Smart GWT Direct Method Invocation&#010 (DMI) to map {@link
  * com.smartgwt.client.data.DSRequest} to beans managed by Spring, via&#010 {@link
- * com.smartgwt.client.docs.serverds.ServerObject#getLookupStyle lookupStyle}:"spring".   Return data to the browser by
- * either simply&#010 returning it from your method, or via creating a DSResponse and calling DSResponse.setData()&#010
+ * com.smartgwt.client.docs.serverds.ServerObject#lookupStyle lookupStyle}:"spring".   Return data to the browser by either
+ * simply&#010 returning it from your method, or via creating a DSResponse and calling DSResponse.setData()&#010
  * (server-side method). &#010 <P>&#010 This is the easiest method and produces the best result.  A Collection of Java
  * Beans, such&#010 as EJB or Hibernate-managed beans, can be directly returned to Smart GWT as the result of&#010 a DMI
  * method, without the need to create an intervening&#010 +link{http://en.wikipedia.org/wiki/Data_transfer_object,Data

@@ -660,6 +660,17 @@ public class Menu extends ListGrid  implements com.smartgwt.client.widgets.menu.
         return self.getItemNum(itemJS);
     }-*/;
 
+    /**
+     * Set arbitrary properties for a particular menu item.
+     * @param item index of the MenuItem
+     * @param properties properties to apply to the item
+     */
+    public native void setItemProperties(int item, MenuItem properties) /*-{
+        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
+        var props = properties.@com.smartgwt.client.widgets.menu.MenuItem::getJsObj()();
+        self.setItemProperties(item, props);
+    }-*/;
+
 }
 
 

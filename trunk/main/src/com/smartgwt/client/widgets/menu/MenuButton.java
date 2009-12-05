@@ -80,14 +80,14 @@ public class MenuButton extends Button {
     }
 
     public MenuButton(String title) {
-        this();setTitle(title);
-        
+        setTitle(title);
+        scClassName = "MenuButton";
     }
 
     public MenuButton(String title, Menu menu) {
-        this();setTitle(title);
+        setTitle(title);
 		setMenu(menu);
-        
+        scClassName = "MenuButton";
     }
 
     protected native JavaScriptObject create()/*-{

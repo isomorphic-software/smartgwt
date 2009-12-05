@@ -81,8 +81,8 @@ public class HStack extends Layout {
     }
 
     public HStack(int membersMargin) {
-        this();setMembersMargin(membersMargin);
-        
+        setMembersMargin(membersMargin);
+        scClassName = "HStack";
     }
 
     protected native JavaScriptObject create()/*-{

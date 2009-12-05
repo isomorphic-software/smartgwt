@@ -83,8 +83,8 @@ public class IButton extends StretchImgButton {
     }
 
     public IButton(String title) {
-        this();setTitle(title);
-        
+        setTitle(title);
+        scClassName = "IButton";
     }
 
     protected native JavaScriptObject create()/*-{

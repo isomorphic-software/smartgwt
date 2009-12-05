@@ -81,8 +81,8 @@ public class VStack extends Layout {
     }
 
     public VStack(int membersMargin) {
-        this();setMembersMargin(membersMargin);
-        
+        setMembersMargin(membersMargin);
+        scClassName = "VStack";
     }
 
     protected native JavaScriptObject create()/*-{

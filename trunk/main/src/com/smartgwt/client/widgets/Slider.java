@@ -87,8 +87,8 @@ public class Slider extends Canvas  implements com.smartgwt.client.widgets.event
     }
 
     public Slider(String title) {
-        this();setTitle(title);
-        
+        setTitle(title);
+        scClassName = "Slider";
     }
 
     protected native JavaScriptObject create()/*-{

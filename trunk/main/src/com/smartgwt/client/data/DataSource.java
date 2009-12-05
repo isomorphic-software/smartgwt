@@ -116,8 +116,8 @@ public class DataSource extends BaseClass  implements com.smartgwt.client.data.e
     }
 
     public DataSource(String dataURL) {
-        this();setDataURL(dataURL);
-        
+        setDataURL(dataURL);
+        scClassName = "DataSource";
     }
 
     public native JavaScriptObject create()/*-{
@@ -517,7 +517,7 @@ public class DataSource extends BaseClass  implements com.smartgwt.client.data.e
      * defined on the DataSource.  This type of filtering can also be enabled for non-DMI DSResponses (see the overview in
      * {@link com.smartgwt.client..DMI}).  Setting this property to <code>false</code> disables this filtering for this
      * DataSource only.  This setting overrides the configuration in <code>server.properties</code>.  This setting can be
-     * overridden by {@link com.smartgwt.client.docs.serverds.ServerObject#getDropExtraFields dropExtraFields}.
+     * overridden by {@link com.smartgwt.client.docs.serverds.ServerObject#dropExtraFields dropExtraFields}.
      *
      * @param dropExtraFields dropExtraFields Default value is null
      * @throws IllegalStateException this property cannot be changed after the underlying component has been created
@@ -534,7 +534,7 @@ public class DataSource extends BaseClass  implements com.smartgwt.client.data.e
      * defined on the DataSource.  This type of filtering can also be enabled for non-DMI DSResponses (see the overview in
      * {@link com.smartgwt.client..DMI}).  Setting this property to <code>false</code> disables this filtering for this
      * DataSource only.  This setting overrides the configuration in <code>server.properties</code>.  This setting can be
-     * overridden by {@link com.smartgwt.client.docs.serverds.ServerObject#getDropExtraFields dropExtraFields}.
+     * overridden by {@link com.smartgwt.client.docs.serverds.ServerObject#dropExtraFields dropExtraFields}.
      *
      *
      * @return Boolean

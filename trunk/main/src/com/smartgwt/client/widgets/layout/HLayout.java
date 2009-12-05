@@ -82,8 +82,8 @@ public class HLayout extends Layout {
     }
 
     public HLayout(int membersMargin) {
-        this();setMembersMargin(membersMargin);
-        
+        setMembersMargin(membersMargin);
+        scClassName = "HLayout";
     }
 
     protected native JavaScriptObject create()/*-{

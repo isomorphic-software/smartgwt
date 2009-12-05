@@ -773,6 +773,40 @@ public class SectionStack extends VLayout  implements com.smartgwt.client.widget
             };
         }
     }-*/;
+    /**
+     * Set arbitrary properties for a particular section in this SectionStack. Properties will be applied to the sectionHeader
+     * for the section. <P> Note that where APIs exist to explicitly manipulate section properties these should be used in
+     * preference to this method. For example, to add or remove items in a section use {@link
+     * com.smartgwt.client.widgets.layout.SectionStack#addItem} or {@link
+     * com.smartgwt.client.widgets.layout.SectionStack#removeItem}. To change the title of a section, use {@link
+     * com.smartgwt.client.widgets.layout.SectionStack#setSectionTitle}. <P> Also note that to modify properties of items
+     * within a section, call the appropriate setter methods directly on the item you want to modify.
+     * @param section ID or index of the section to modify
+     * @param properties properties to apply to the section.
+     */
+     public native void setSectionProperties(String section, SectionStackSection properties)
+     /*-{
+         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
+         var props = properties.@com.smartgwt.client.widgets.layout.SectionStackSection::getJsObj()();
+         self.setSectionProperties(section, props);
+     }-*/;
+    /**
+     * Set arbitrary properties for a particular section in this SectionStack. Properties will be applied to the sectionHeader
+     * for the section. <P> Note that where APIs exist to explicitly manipulate section properties these should be used in
+     * preference to this method. For example, to add or remove items in a section use {@link
+     * com.smartgwt.client.widgets.layout.SectionStack#addItem} or {@link
+     * com.smartgwt.client.widgets.layout.SectionStack#removeItem}. To change the title of a section, use {@link
+     * com.smartgwt.client.widgets.layout.SectionStack#setSectionTitle}. <P> Also note that to modify properties of items
+     * within a section, call the appropriate setter methods directly on the item you want to modify.
+     * @param section ID or index of the section to modify
+     * @param properties properties to apply to the section.
+     */
+     public native void setSectionProperties(int section, SectionStackSection properties)
+     /*-{
+         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
+         var props = properties.@com.smartgwt.client.widgets.layout.SectionStackSection::getJsObj()();
+         self.setSectionProperties(section, props);
+     }-*/;
 
 }
 
