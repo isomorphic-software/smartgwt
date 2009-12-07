@@ -88,10 +88,10 @@
                         prefix="com/smartclient/public/sc/schema"/>
 
 
-            <zipfileset dir="${SC_HOME}/smartclientSDK/isomorphic/system/schema" includes="*.xsl"
+            <zipfileset dir="${SC_HOME}/smartclientSDK/isomorphic/system/schema" includes="*.xsl,*.wsdl"
                         prefix="com/smartclient/debug/public/sc/system/schema"/>
 
-            <zipfileset dir="${SC_HOME}/smartclientSDK/isomorphic/system/schema" includes="*.xsl"
+            <zipfileset dir="${SC_HOME}/smartclientSDK/isomorphic/system/schema" includes="*.xsl,*.wsdl"
                         prefix="com/smartclient/public/sc/system/schema"/>
 
             <zipfileset dir="${SC_HOME}/smartclientSDK/source/client/application" includes="*.js"
@@ -126,8 +126,11 @@
 
             <zipfileset dirmode="755" filemode="644" src="${smartgwt.tools.lib}/sc/smartclient_tpl.jar"/>
 						
-			<zipfileset dir="${SC_HOME}/smartclientSDK/isomorphic/skins/Enterprise" includes="**/*.*" excludes="*.gz"
-					                        prefix="com/smartclient/theme/enterprise/public/sc/skins/Enterprise"/>						
+			<zipfileset dir="${SC_HOME}/smartclientSDK/isomorphic/skins/Enterprise" includes="**/*.*" excludes="*.gz,*.psd"
+					                        prefix="com/smartclient/theme/enterprise/public/sc/skins/Enterprise"/>	
+					
+            <!-- <zipfileset dir="${SC_HOME}/smartclientSDK/isomorphic/skins/EnterpriseBlue" includes="**/*.*" excludes="*.gz,*.psd"
+					                        prefix="com/smartclient/theme/enterpriseblue/public/sc/skins/EnterpriseBlue"/> -->
 
         </zip>
 		
