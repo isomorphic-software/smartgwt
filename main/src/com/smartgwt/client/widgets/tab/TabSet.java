@@ -1464,6 +1464,17 @@ public class TabSet extends Canvas  implements com.smartgwt.client.widgets.tab.e
         }
     }-*/;
 
+    /**
+     * Preload primary tab skin images.
+     */
+    public static native void preloadImages() /*-{
+        var imgTabSkinImgDir = $wnd.isc.ImgTab.getInstanceProperty('skinImgDir') + 'top/';
+        if($wnd.isc.ImgTab.getInstanceProperty('src')) {
+            var src = $wnd.isc.ImgTab.getInstanceProperty('src');
+            @com.smartgwt.client.util.FileLoader::cacheStretchImgStates(Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;)(imgTabSkinImgDir, src, "Selected,Over");
+        }
+    }-*/;
+
 }
 
 

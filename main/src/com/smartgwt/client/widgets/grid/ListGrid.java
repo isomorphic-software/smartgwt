@@ -8440,6 +8440,32 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
         }
     }-*/;
 
+    /**
+     * Preload primary ListGrid skin images.
+     */
+    public static native void preloadImages() /*-{
+        var skinImgDir = $wnd.isc.ListGrid.getInstanceProperty('skinImgDir');
+        var canvasSkinImgDir = $wnd.isc.Canvas.getInstanceProperty('skinImgDir');
+        var sortAscImg = $wnd.isc.ListGrid.getInstanceProperty('sortAscendingImage').src;
+        var sortDescImg = $wnd.isc.ListGrid.getInstanceProperty('sortDescendingImage').src;
+        var headerMenuButtonSrc = $wnd.isc.ListGrid.getInstanceProperty('headerMenuButtonSrc');
+
+        @com.smartgwt.client.util.FileLoader::cacheImg(Ljava/lang/String;Ljava/lang/String;)(skinImgDir, sortAscImg);
+        @com.smartgwt.client.util.FileLoader::cacheImg(Ljava/lang/String;Ljava/lang/String;)(skinImgDir, sortDescImg);
+        @com.smartgwt.client.util.FileLoader::cacheImg(Ljava/lang/String;Ljava/lang/String;)(canvasSkinImgDir, headerMenuButtonSrc);
+
+        var headerButtonImg = $wnd.isc.ListGrid.getInstanceProperty('headerButtonDefaults').src;
+        @com.smartgwt.client.util.FileLoader::cacheImgStates(Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;)(canvasSkinImgDir, headerButtonImg, "Selected,Over,Selected_Over");
+
+        @com.smartgwt.client.util.FileLoader::cacheImg(Ljava/lang/String;Ljava/lang/String;)(canvasSkinImgDir, '[SKIN]/actions/column_preferences.png');
+        @com.smartgwt.client.util.FileLoader::cacheImg(Ljava/lang/String;Ljava/lang/String;)(canvasSkinImgDir, '[SKIN]/actions/freezeLeft.png');
+        @com.smartgwt.client.util.FileLoader::cacheImg(Ljava/lang/String;Ljava/lang/String;)(canvasSkinImgDir, '[SKIN]/actions/unfreeze.png');
+        @com.smartgwt.client.util.FileLoader::cacheImg(Ljava/lang/String;Ljava/lang/String;)(canvasSkinImgDir, '[SKIN]/actions/groupby.png');
+        @com.smartgwt.client.util.FileLoader::cacheImg(Ljava/lang/String;Ljava/lang/String;)(canvasSkinImgDir, '[SKIN]/actions/ungroup.png');
+        @com.smartgwt.client.util.FileLoader::cacheImg(Ljava/lang/String;Ljava/lang/String;)(canvasSkinImgDir, '[SKIN]/actions/sort_ascending.png');
+        @com.smartgwt.client.util.FileLoader::cacheImg(Ljava/lang/String;Ljava/lang/String;)(canvasSkinImgDir, '[SKIN]/actions/sort_descending.png');
+    }-*/;
+
 
 
 

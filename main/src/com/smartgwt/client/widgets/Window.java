@@ -1442,6 +1442,33 @@ public class Window extends VLayout  implements com.smartgwt.client.widgets.even
         }
     }-*/;
 
+    /**
+     * Preload primary window skin images
+     */
+    public static native void preloadImages() /*-{
+        var skinImgDir = $wnd.isc.Window.getInstanceProperty('skinImgDir');
+        var canvasSkinImgDir = $wnd.isc.Canvas.getInstanceProperty('skinImgDir');
+        if($wnd.isc.Window.getInstanceProperty('showEdges')) {
+            var edgeEdgeImage = $wnd.isc.Window.getInstanceProperty('edgeImage');
+            @com.smartgwt.client.util.FileLoader::cacheEdgeImages(Ljava/lang/String;Ljava/lang/String;)(skinImgDir,edgeEdgeImage)
+        }
+        if($wnd.isc.Window.getInstanceProperty('headerIconDefaults').src) {
+            @com.smartgwt.client.util.FileLoader::cacheImg(Ljava/lang/String;Ljava/lang/String;)(canvasSkinImgDir, $wnd.isc.Window.getInstanceProperty('headerIconDefaults').src);
+        }
+        if($wnd.isc.Window.getInstanceProperty('restoreButtonDefaults').src) {
+            @com.smartgwt.client.util.FileLoader::cacheImg(Ljava/lang/String;Ljava/lang/String;)(canvasSkinImgDir,$wnd.isc.Window.getInstanceProperty('restoreButtonDefaults').src);
+        }
+        if($wnd.isc.Window.getInstanceProperty('closeButtonDefaults').src) {
+            @com.smartgwt.client.util.FileLoader::cacheImg(Ljava/lang/String;Ljava/lang/String;)(canvasSkinImgDir,$wnd.isc.Window.getInstanceProperty('closeButtonDefaults').src);
+        }
+        if($wnd.isc.Window.getInstanceProperty('maximizeButtonDefaults').src) {
+            @com.smartgwt.client.util.FileLoader::cacheImg(Ljava/lang/String;Ljava/lang/String;)(canvasSkinImgDir,$wnd.isc.Window.getInstanceProperty('maximizeButtonDefaults').src);
+        }
+        if($wnd.isc.Window.getInstanceProperty('minimizeButtonDefaults').src) {
+            @com.smartgwt.client.util.FileLoader::cacheImg(Ljava/lang/String;Ljava/lang/String;)(canvasSkinImgDir,$wnd.isc.Window.getInstanceProperty('minimizeButtonDefaults').src);
+        }
+    }-*/;
+
 }
 
 
