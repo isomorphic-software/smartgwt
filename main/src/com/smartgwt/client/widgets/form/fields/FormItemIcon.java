@@ -299,6 +299,20 @@ public class FormItemIcon extends DataClass  implements com.smartgwt.client.widg
 
     // ********************* Static Methods ***********************
 
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        FormItemIcon that = (FormItemIcon) o;
+
+        if (getSrc() != null ? !getSrc().equals(that.getSrc()) : that.getSrc() != null) return false;
+
+        return true;
+    }
+
+    public int hashCode() {
+        return getSrc() != null ? getSrc().hashCode() : 0;
+    }
 }
 
 
