@@ -421,6 +421,16 @@ public class EdgedCanvas extends Canvas {
 
     // ********************* Static Methods ***********************
 
+
+    /**
+     * Preload primary EdgedCanvas images.
+     */
+    public static native void preloadImages() /*-{
+        var skinImgDir = $wnd.isc.EdgedCanvas.getInstanceProperty('skinImgDir');
+        var edgeEdgeImage = $wnd.isc.EdgedCanvas.getInstanceProperty('edgeImage');
+        @com.smartgwt.client.util.FileLoader::cacheEdgeImages(Ljava/lang/String;Ljava/lang/String;)(skinImgDir,edgeEdgeImage);
+    }-*/;
+
 }
 
 

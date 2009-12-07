@@ -99,6 +99,18 @@ public class IButton extends StretchImgButton {
 
     // ********************* Static Methods ***********************
 
+
+    /**
+     * Preload primary IButton skin images.
+     */
+    public static native void preloadImages() /*-{
+        var skinImgDir = $wnd.isc.IButton.getInstanceProperty('skinImgDir');
+        if($wnd.isc.IButton.getInstanceProperty('src')) {
+            var src = $wnd.isc.IButton.getInstanceProperty('src');
+            @com.smartgwt.client.util.FileLoader::cacheStretchImgStates(Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;)(skinImgDir, src, "Down,Over");
+        }
+    }-*/;
+
 }
 
 

@@ -508,6 +508,26 @@ public class Scrollbar extends StretchImg {
 
     // ********************* Static Methods ***********************
 
+
+
+    /**
+     * Preload primary Scrollbar skin images.
+     */
+    public static native void preloadImages() /*-{
+        if($wnd.isc.Canvas.getInstanceProperty('showCustomScrollbars')) {
+            var skinImgDir = $wnd.isc.Scrollbar.getInstanceProperty('skinImgDir');
+            var vSrc = $wnd.isc.ScrollThumb.getInstanceProperty('vSrc');
+            var hSrc = $wnd.isc.ScrollThumb.getInstanceProperty('hSrc');
+            @com.smartgwt.client.util.FileLoader::cacheStretchImgStates(Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;)(skinImgDir, hSrc, "Down,Over");
+            @com.smartgwt.client.util.FileLoader::cacheStretchImgStates(Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;)(skinImgDir, vSrc, "Down,Over");
+            skinImgDir = $wnd.isc.Scrollbar.getInstanceProperty('skinImgDir');
+            vSrc = $wnd.isc.ScrollThumb.getInstanceProperty('vSrc');
+            hSrc = $wnd.isc.ScrollThumb.getInstanceProperty('hSrc');
+            @com.smartgwt.client.util.FileLoader::cacheStretchImgStates(Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;)(skinImgDir, hSrc, "Down,Over");
+            @com.smartgwt.client.util.FileLoader::cacheStretchImgStates(Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;)(skinImgDir, vSrc, "Down,Over");
+        }
+    }-*/;
+
 }
 
 
