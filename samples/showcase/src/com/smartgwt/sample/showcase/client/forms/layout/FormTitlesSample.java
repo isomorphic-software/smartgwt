@@ -7,6 +7,7 @@ import com.smartgwt.client.widgets.events.ClickEvent;
 import com.smartgwt.client.widgets.events.ClickHandler;
 import com.smartgwt.client.widgets.form.DynamicForm;
 import com.smartgwt.client.widgets.form.fields.FormItem;
+import com.smartgwt.client.widgets.form.fields.PasswordItem;
 import com.smartgwt.client.widgets.form.fields.TextItem;
 import com.smartgwt.client.widgets.layout.HLayout;
 import com.smartgwt.sample.showcase.client.PanelFactory;
@@ -55,12 +56,11 @@ public class FormTitlesSample extends ShowcasePanel {
         emailItem.setRequired(true);
         emailItem.setDefaultValue("bob@isomorphic.com");
 
-        TextItem passwordItem = new TextItem();
+        PasswordItem passwordItem = new PasswordItem();
         passwordItem.setTitle("Password");
         passwordItem.setRequired(true);
-        passwordItem.setType("password");
 
-        TextItem password2Item = new TextItem();
+        PasswordItem password2Item = new PasswordItem();
         password2Item.setTitle("Password again");
         password2Item.setRequired(true);
         password2Item.setType("password");
