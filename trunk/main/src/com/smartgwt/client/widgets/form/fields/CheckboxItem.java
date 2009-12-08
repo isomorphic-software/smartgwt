@@ -17,44 +17,8 @@
 package com.smartgwt.client.widgets.form.fields;
 
 
-
-import com.smartgwt.client.event.*;
-import com.smartgwt.client.core.*;
-import com.smartgwt.client.types.*;
-import com.smartgwt.client.data.*;
-import com.smartgwt.client.data.events.*;
-import com.smartgwt.client.rpc.*;
-import com.smartgwt.client.widgets.*;
-import com.smartgwt.client.widgets.events.*;
-import com.smartgwt.client.widgets.form.*;
-import com.smartgwt.client.widgets.form.validator.*;
-import com.smartgwt.client.widgets.form.fields.*;
-import com.smartgwt.client.widgets.tile.*;
-import com.smartgwt.client.widgets.tile.events.*;
-import com.smartgwt.client.widgets.grid.*;
-import com.smartgwt.client.widgets.grid.events.*;
-import com.smartgwt.client.widgets.layout.*;
-import com.smartgwt.client.widgets.menu.*;
-import com.smartgwt.client.widgets.tab.*;
-import com.smartgwt.client.widgets.toolbar.*;
-import com.smartgwt.client.widgets.tree.*;
-import com.smartgwt.client.widgets.tree.events.*;
-import com.smartgwt.client.widgets.viewer.*;
-import com.smartgwt.client.widgets.calendar.*;
-import com.smartgwt.client.widgets.calendar.events.*;
-
-import java.util.Date;
-import java.util.List;
-import java.util.Map;
-import java.util.HashMap;
-
-import com.google.gwt.user.client.ui.Widget;
 import com.google.gwt.core.client.JavaScriptObject;
-import com.google.gwt.user.client.Element;
-import com.smartgwt.client.util.JSOHelper;
-import com.smartgwt.client.util.EnumUtil;
-import com.google.gwt.event.shared.*;
-import com.google.gwt.event.shared.HasHandlers;
+import com.smartgwt.client.core.RefDataClass;
 
 /**
  * Checkbox form item, implemented with customizeable checkbox images
@@ -92,6 +56,31 @@ public class CheckboxItem extends FormItem {
     }
 
     // ********************* Properties / Attributes ***********************
+
+    /**
+     * Base CSS class for this item's title cell. <P> <B>Note:</B> This styling applies to the standard form item title cell
+     * for this item - it does not apply to item's {@link com.smartgwt.client.widgets.form.fields.CheckboxItem#getShowLabel
+     * 'label'}. To modify the styling for that text, use {@link
+     * com.smartgwt.client.widgets.form.fields.CheckboxItem#getTextBoxStyle textBoxStyle} instead.
+     *
+     * @param titleStyle titleStyle Default value is null
+     */
+    public void setTitleStyle(String titleStyle) {
+        setAttribute("titleStyle", titleStyle);
+    }
+
+    /**
+     * Base CSS class for this item's title cell. <P> <B>Note:</B> This styling applies to the standard form item title cell
+     * for this item - it does not apply to item's {@link com.smartgwt.client.widgets.form.fields.CheckboxItem#getShowLabel
+     * 'label'}. To modify the styling for that text, use {@link
+     * com.smartgwt.client.widgets.form.fields.CheckboxItem#getTextBoxStyle textBoxStyle} instead.
+     *
+     *
+     * @return String
+     */
+    public String getTitleStyle()  {
+        return getAttributeAsString("titleStyle");
+    }
 
     /**
      * Base CSS class for this item's title text
@@ -284,7 +273,8 @@ public class CheckboxItem extends FormItem {
 
 
 
-
+
+
     /**
      * Determines what image to display when the value for this checkbox is unset. Set to true to display the {@link com.smartgwt.client.widgets.form.fields.CheckboxItem#getUnsetImage unsetImage} for null values, or false to use the {@link com.smartgwt.client.widgets.form.fields.CheckboxItem#getUncheckedImage uncheckedImage} for both null and explicitly unchecked values. <P> If this attribute is not set, the {@link com.smartgwt.client.widgets.form.fields.CheckboxItem#getUnsetImage unsetImage} for null values if  {@link com.smartgwt.client.widgets.form.fields.CheckboxItem#getAllowEmptyValue allowEmptyValue} is true for this item, otherwise the unchecked image will be used.
      *
