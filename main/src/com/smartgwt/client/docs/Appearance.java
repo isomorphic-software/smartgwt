@@ -100,6 +100,7 @@ package com.smartgwt.client.docs;
  * @see com.smartgwt.client.widgets.form.fields.CheckboxItem#getCheckedImage
  * @see com.smartgwt.client.widgets.form.fields.CheckboxItem#getUncheckedImage
  * @see com.smartgwt.client.widgets.form.fields.CheckboxItem#getUnsetImage
+ * @see com.smartgwt.client.widgets.form.fields.NativeCheckboxItem#getTextBoxStyle
  * @see com.smartgwt.client.widgets.form.fields.HeaderItem#getDefaultValue
  * @see com.smartgwt.client.widgets.form.fields.HeaderItem#getShowTitle
  * @see com.smartgwt.client.widgets.form.fields.HeaderItem#getTextBoxStyle
@@ -114,6 +115,8 @@ package com.smartgwt.client.docs;
  * @see com.smartgwt.client.widgets.form.fields.StaticTextItem#getTextBoxStyle
  * @see com.smartgwt.client.widgets.form.fields.StaticTextItem#getOutputAsHTML
  * @see com.smartgwt.client.widgets.form.fields.RadioGroupItem#getVertical
+ * @see com.smartgwt.client.widgets.form.fields.RadioGroupItem#getTextBoxStyle
+ * @see com.smartgwt.client.widgets.form.fields.RadioGroupItem#getWrap
  * @see com.smartgwt.client.widgets.form.fields.DateItem#getTextAlign
  * @see com.smartgwt.client.widgets.form.fields.DateItem#getStartDate
  * @see com.smartgwt.client.widgets.form.fields.DateItem#getEndDate
