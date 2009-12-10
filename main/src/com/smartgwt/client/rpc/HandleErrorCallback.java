@@ -1,7 +1,7 @@
 package com.smartgwt.client.rpc;
 
-import com.smartgwt.client.data.DSResponse;
 import com.smartgwt.client.data.DSRequest;
+import com.smartgwt.client.data.DSResponse;
 
 /**
  * The error handler callback
@@ -9,9 +9,10 @@ import com.smartgwt.client.data.DSRequest;
 public interface HandleErrorCallback {
 
     /**
+     * RPCManager error handler callback.
      *
-     * @param response
-     * @param request
+     * @param response the response
+     * @param request the request
      *
      * @see RPCManager#setHandleErrorCallback
      */

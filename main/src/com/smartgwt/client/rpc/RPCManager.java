@@ -17,44 +17,11 @@
 package com.smartgwt.client.rpc;
 
 
-
-import com.smartgwt.client.event.*;
-import com.smartgwt.client.core.*;
-import com.smartgwt.client.types.*;
-import com.smartgwt.client.data.*;
-import com.smartgwt.client.data.events.*;
-import com.smartgwt.client.rpc.*;
-import com.smartgwt.client.widgets.*;
-import com.smartgwt.client.widgets.events.*;
-import com.smartgwt.client.widgets.form.*;
-import com.smartgwt.client.widgets.form.validator.*;
-import com.smartgwt.client.widgets.form.fields.*;
-import com.smartgwt.client.widgets.tile.*;
-import com.smartgwt.client.widgets.tile.events.*;
-import com.smartgwt.client.widgets.grid.*;
-import com.smartgwt.client.widgets.grid.events.*;
-import com.smartgwt.client.widgets.layout.*;
-import com.smartgwt.client.widgets.menu.*;
-import com.smartgwt.client.widgets.tab.*;
-import com.smartgwt.client.widgets.toolbar.*;
-import com.smartgwt.client.widgets.tree.*;
-import com.smartgwt.client.widgets.tree.events.*;
-import com.smartgwt.client.widgets.viewer.*;
-import com.smartgwt.client.widgets.calendar.*;
-import com.smartgwt.client.widgets.calendar.events.*;
-
-import java.util.Date;
-import java.util.List;
-import java.util.Map;
-import java.util.HashMap;
-
-import com.google.gwt.user.client.ui.Widget;
 import com.google.gwt.core.client.JavaScriptObject;
-import com.google.gwt.user.client.Element;
+import com.smartgwt.client.types.PromptStyle;
 import com.smartgwt.client.util.JSOHelper;
-import com.smartgwt.client.util.EnumUtil;
-import com.google.gwt.event.shared.*;
-import com.google.gwt.event.shared.HasHandlers;
+
+import java.util.Map;
 
 /**
  * RPCManager is a static singleton class that manages transparent client/server RPC (remote procedure call).  This class
@@ -166,7 +133,7 @@ public class RPCManager {
      * that have been passed in.
      * @param transactionNum transactionId of the queue.
      */
-    public static native void cancelQueue(String transactionNum) /*-{
+    public static native void cancelQueue(int transactionNum) /*-{
         $wnd.isc.RPCManager.cancelQueue(transactionNum);
     }-*/;
 
@@ -177,7 +144,7 @@ public class RPCManager {
      * by  {@link com.smartgwt.client.rpc.RPCManager#getCurrentTransactionId} before the  transaction is sent.
      * @param transactionNum id of the transaction to be cleared
      */
-    public static native void clearTransaction(String transactionNum) /*-{
+    public static native void clearTransaction(int transactionNum) /*-{
         $wnd.isc.RPCManager.clearTransaction(transactionNum);
     }-*/;
 
@@ -201,7 +168,7 @@ public class RPCManager {
      * com.smartgwt.client.rpc.RPCManager#resendTransaction} with no arguments.
      * @param transactionNum id of the transaction to be re-sent, or null to resend all                              suspended transactions
      */
-    public static native void resendTransaction(String transactionNum) /*-{
+    public static native void resendTransaction(int transactionNum) /*-{
         $wnd.isc.RPCManager.resendTransaction(transactionNum);
     }-*/;
 
@@ -210,10 +177,15 @@ public class RPCManager {
 
 
 
-
-
 
-
+
+
+
+
+
+
+
+
     /**
      * The actionURL specifies the URL to which the RPC request will be sent. Note that if you override this global
      * default and your application uses DataSource databound components, you'll need to dispatch the DataSource
@@ -412,6 +384,26 @@ public class RPCManager {
     }-*/;
 
     /**
+     * Method to handle server error responses to submitted transactions. When the server responds to a submitted transaction with an HTTP error code this method
+     * will be called before any individual response callbacks are fired, regardless of whether RPCRequest.willHandleError was specified on the submitted request[s].
+     * <p>
+     * This provides the developer with an opportunity to handle a server error by (for example) suspending and resubmitting the transaction before any other
+     * handling occurs.
+     * <p>
+     * The default implementation takes no action - by default transport errors are handled via {#setHandleErrorCallback()}, or by the standard request callback
+     * methods, depending on request.willHandleError.
+     *
+     * @param callback the handleTransportError callback
+     */
+    public static native void setHandleTransportErrorCallback(HandleTransportErrorCallback callback) /*-{
+        $wnd.isc.RPCManager.addClassProperties({
+            handleTransportError : function (transactionNum, status, httpResponseCode, httpResponseText) {
+               callback.@com.smartgwt.client.rpc.HandleTransportErrorCallback::handleTransportError(IIILjava/lang/String;)(transactionNum, status, httpResponseCode, httpResponseText);
+            }
+        });
+    }-*/;
+    
+    /**
      * Start queuing requests. When queuing requests, an HTTP request will not be sent to the server until RPCManager.sendQueue() is called.
      * <p/>
      * All requests in a given queue must go to the same actionURL and use the same transport (XMLHttp or frames). If a request specifies a different actionURL or transport than that of the requests currently on the queue, it will be sent to the server separately, ahead of the queue, and a warning will be logged to the Developer Console.
@@ -434,17 +426,32 @@ public class RPCManager {
     }-*/;
 
     /**
-     * Suspends the current transaction, such that all processing of the transaction is halted, any remaining {@link com.smartgwt.client.rpc.RPCRequest#getCallback callback} in the transaction won't fire, and the transaction can never {@link com.smartgwt.client.rpc.RPCRequest#getTimeout timeout}. <P> <code>suspendTransaction()</code> is typically used to handle total failures for an entire transaction, such as HTTP status 500, or session timeout resulting in {@link com.smartgwt.client.rpc.RPCManager#loginRequired} being called.  In both cases the intent is to put the transaction on hold so that a transient problem can be resolved, and then the transaction can be re-sent successfully.  By using suspendTransaction(), components that submitted requests never realize there was a transient failure, and so error handling logic does not have to be implemented in every component. <P> Generally you can only validly suspend a transaction from either {@link com.smartgwt.client.rpc.RPCManager#loginRequired} or {@link com.smartgwt.client.rpc.RPCManager#handleError}, and in the case of handleError(), only when the first response in the transaction has an error.  Suspending and re-sending a partially processed transaction means that some responses will be processed twice, with undefined results for requests issued automatically by UI components. <P> A suspended transaction must ultimately be either cleared via {@link com.smartgwt.client.rpc.RPCManager#clearTransaction} or re-sent via {@link com.smartgwt.client.rpc.RPCManager#resendTransaction} or memory will be leaked.
+     * Suspends the current transaction, such that all processing of the transaction is halted, any remaining {@link com.smartgwt.client.rpc.RPCRequest#getCallback callback} in the
+     * transaction won't fire, and the transaction can never {@link com.smartgwt.client.rpc.RPCRequest#getTimeout timeout}. <P> <code>suspendTransaction()</code> is typically used
+     * to handle total failures for an entire transaction, such as HTTP status 500, or session timeout resulting in {@link com.smartgwt.client.rpc.RPCManager#loginRequired} being
+     * called.  In both cases the intent is to put the transaction on hold so that a transient problem can be resolved, and then the transaction can be re-sent successfully.
+     * By using suspendTransaction(), components that submitted requests never realize there was a transient failure, and so error handling logic does not have to be implemented
+     * in every component. <P> Generally you can only validly suspend a transaction from either {@link com.smartgwt.client.rpc.RPCManager#loginRequired} or
+     * {@link com.smartgwt.client.rpc.RPCManager#handleError}, and in the case of handleError(), only when the first response in the transaction has an error.
+     * Suspending and re-sending a partially processed transaction means that some responses will be processed twice, with undefined results for requests issued
+     * automatically by UI components. <P> A suspended transaction must ultimately be either cleared via {@link com.smartgwt.client.rpc.RPCManager#clearTransaction}
+     * or re-sent via {@link com.smartgwt.client.rpc.RPCManager#resendTransaction} or memory will be leaked.
      */
     public static native void suspendTransaction() /*-{
         $wnd.isc.RPCManager.suspendTransaction();
     }-*/;
 
     /**
-     * Suspends the current transaction, such that all processing of the transaction is halted, any remaining {@link com.smartgwt.client.rpc.RPCRequest#getCallback callback} in the transaction won't fire, and the transaction can never {@link com.smartgwt.client.rpc.RPCRequest#getTimeout timeout}. <P> <code>suspendTransaction()</code> is typically used to handle total failures for an entire transaction, such as HTTP status 500, or session timeout resulting in {@link com.smartgwt.client.rpc.RPCManager#loginRequired} being called.  In both cases the intent is to put the transaction on hold so that a transient problem can be resolved, and then the transaction can be re-sent successfully.  By using suspendTransaction(), components that submitted requests never realize there was a transient failure, and so error handling logic does not have to be implemented in every component. <P> Generally you can only validly suspend a transaction from either {@link com.smartgwt.client.rpc.RPCManager#loginRequired} or {@link com.smartgwt.client.rpc.RPCManager#handleError}, and in the case of handleError(), only when the first response in the transaction has an error.  Suspending and re-sending a partially processed transaction means that some responses will be processed twice, with undefined results for requests issued automatically by UI components. <P> A suspended transaction must ultimately be either cleared via {@link com.smartgwt.client.rpc.RPCManager#clearTransaction} or re-sent via {@link com.smartgwt.client.rpc.RPCManager#resendTransaction} or memory will be leaked.
+     * Suspends the current transaction, such that all processing of the transaction is halted, any remaining {@link com.smartgwt.client.rpc.RPCRequest#getCallback callback} in
+     * the transaction won't fire, and the transaction can never {@link com.smartgwt.client.rpc.RPCRequest#getTimeout timeout}. <P> <code>suspendTransaction()</code> is
+     * typically used to handle total failures for an entire transaction, such as HTTP status 500, or session timeout resulting in {@link com.smartgwt.client.rpc.RPCManager#loginRequired}
+     * being called.  In both cases the intent is to put the transaction on hold so that a transient problem can be resolved, and then the transaction can be re-sent successfully.
+     * By using suspendTransaction(), components that submitted requests never realize there was a transient failure, and so error handling logic does not have to be implemented
+     * in every component. <P> Generally you can only validly suspend a transaction from either {@link com.smartgwt.client.rpc.RPCManager#loginRequired} or
+     * {@link com.smartgwt.client.rpc.RPCManager#handleError}, and in the case of handleError(), only when the first response in the transaction has an error.  Suspending and re-sending a partially processed transaction means that some responses will be processed twice, with undefined results for requests issued automatically by UI components. <P> A suspended transaction must ultimately be either cleared via {@link com.smartgwt.client.rpc.RPCManager#clearTransaction} or re-sent via {@link com.smartgwt.client.rpc.RPCManager#resendTransaction} or memory will be leaked.
      * @param transactionID transaction to delay.  Defaults to the current transaction if there is one
      */
-    public static native void suspendTransaction(String transactionID) /*-{
+    public static native void suspendTransaction(int transactionID) /*-{
         $wnd.isc.RPCManager.suspendTransaction(transactionID);
     }-*/;
 
