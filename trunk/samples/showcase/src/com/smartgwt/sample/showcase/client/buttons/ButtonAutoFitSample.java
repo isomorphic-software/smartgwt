@@ -48,7 +48,7 @@ public class ButtonAutoFitSample extends ShowcasePanel {
         HStack stack = new HStack();
         stack.setMembersMargin(20);
         stack.setHeight(24);
-        stack.setBorder("1px solid blue");
+        stack.setBorder("1px solid gray");
         stack.addMember(findButton);
         stack.addMember(searchButton);
         canvas.addChild(stack);

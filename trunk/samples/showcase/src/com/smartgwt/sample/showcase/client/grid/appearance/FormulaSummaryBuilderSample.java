@@ -58,7 +58,6 @@ public class FormulaSummaryBuilderSample extends ShowcasePanel {
         final ListGrid countryGrid = new ListGrid();
         countryGrid.setWidth(750);
         countryGrid.setHeight(224);
-        countryGrid.setAlternateRecordStyles(true);
         countryGrid.setDataSource(CountryXmlDS.getInstance());
         countryGrid.setAutoFetchData(true);
         countryGrid.setAutoFitData(Autofit.HORIZONTAL);

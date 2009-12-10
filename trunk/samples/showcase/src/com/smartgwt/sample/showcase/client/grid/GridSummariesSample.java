@@ -117,7 +117,7 @@ public class GridSummariesSample extends ShowcasePanel {
         listGrid.setWidth(600);
         listGrid.setHeight(400);
         listGrid.setAutoFetchData(true);
-        listGrid.setAlternateRecordStyles(true);
+
         listGrid.setShowAllRecords(true);
         listGrid.setDataSource(dataSource);
         listGrid.setCanEdit(true);

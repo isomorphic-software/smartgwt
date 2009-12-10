@@ -42,7 +42,6 @@ public class GridEditByCellSample extends ShowcasePanel {
         final ListGrid countryGrid = new ListGrid();
         countryGrid.setWidth(550);
         countryGrid.setHeight(224);
-        countryGrid.setAlternateRecordStyles(true);
         countryGrid.setShowAllRecords(true);
         countryGrid.setCellHeight(22);
         // use server-side dataSource so edits are retained across page transitions

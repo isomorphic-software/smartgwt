@@ -38,7 +38,7 @@ public class CountryXmlDS extends DataSource {
         continentField.setValueMap("Europe", "Asia", "North America", "Australia/Oceania", "South America", "Africa");
 
         DataSourceDateField independenceField = new DataSourceDateField("independence", "Nationhood");
-        DataSourceFloatField areaField = new DataSourceFloatField("area", "Area (km&amp;sup2;)");
+        DataSourceFloatField areaField = new DataSourceFloatField("area", "Area (km&sup2;)"); 
         DataSourceIntegerField populationField = new DataSourceIntegerField("population", "Population");
         DataSourceFloatField gdpField = new DataSourceFloatField("gdp", "GDP ($M)");
         DataSourceLinkField articleField = new DataSourceLinkField("article", "Info");

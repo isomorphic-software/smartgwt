@@ -52,7 +52,6 @@ public class NestedGridSample extends ShowcasePanel {
         categoryGrid.setWidth(600);
         categoryGrid.setHeight(400);
         categoryGrid.setDataSource(SupplyCategoryXmlDS.getInstance());
-        categoryGrid.setAlternateRecordStyles(true);
 
         categoryGrid.addRecordDoubleClickHandler(new RecordDoubleClickHandler() {
             public void onRecordDoubleClick(RecordDoubleClickEvent event) {

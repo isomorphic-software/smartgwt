@@ -58,7 +58,6 @@ public class CustomHeaderMenuSample extends ShowcasePanel {
         countryGrid.setWidth(500);
         countryGrid.setHeight(224);
         countryGrid.setTop(100);
-        countryGrid.setAlternateRecordStyles(true);
         countryGrid.setShowAllRecords(true);
 
         ListGridField countryCodeField = new ListGridField("countryCode", "Flag", 50);
@@ -86,7 +85,6 @@ public class CustomHeaderMenuSample extends ShowcasePanel {
         CountryListGrid() {
             setWidth(500);
             setHeight(184);
-            setAlternateRecordStyles(true);
             setShowAllRecords(true);
             setCanDragSelect(true);
 

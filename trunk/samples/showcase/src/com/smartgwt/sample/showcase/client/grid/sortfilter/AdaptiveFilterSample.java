@@ -88,7 +88,6 @@ public class AdaptiveFilterSample extends ShowcasePanel {
         final ListGrid supplyItemGrid = new ListGrid();
         supplyItemGrid.setWidth(500);
         supplyItemGrid.setHeight(300);
-        supplyItemGrid.setAlternateRecordStyles(true);
         supplyItemGrid.setAutoFetchData(true);
         supplyItemGrid.setShowFilterEditor(true);
         supplyItemGrid.setFilterOnKeypress(true);

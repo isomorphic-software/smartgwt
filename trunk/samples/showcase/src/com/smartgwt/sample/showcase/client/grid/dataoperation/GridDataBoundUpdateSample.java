@@ -41,7 +41,6 @@ public class GridDataBoundUpdateSample extends ShowcasePanel {
         final ListGrid countryGrid = new ListGrid();
         countryGrid.setWidth(500);
         countryGrid.setHeight(224);
-        countryGrid.setAlternateRecordStyles(true);
 		countryGrid.setDataSource(WorldXmlDS.getInstance());
         
 

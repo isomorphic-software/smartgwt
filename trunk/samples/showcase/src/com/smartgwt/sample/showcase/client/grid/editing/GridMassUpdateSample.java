@@ -50,7 +50,6 @@ public class GridMassUpdateSample extends ShowcasePanel {
         final ListGrid countryGrid = new ListGrid();
         countryGrid.setWidth(500);
         countryGrid.setHeight(224);
-        countryGrid.setAlternateRecordStyles(true);
         countryGrid.setCellHeight(22);
         countryGrid.setDataSource(CountryXmlDS.getInstance());
 

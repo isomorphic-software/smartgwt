@@ -1,17 +1,13 @@
 package com.smartgwt.sample.showcase.client;
 
 import com.google.gwt.core.client.EntryPoint;
-import com.google.gwt.user.client.Cookies;
-import com.google.gwt.user.client.History;
-import com.google.gwt.user.client.HistoryListener;
+import com.google.gwt.user.client.*;
 import com.google.gwt.user.client.ui.RootPanel;
 import com.smartgwt.client.core.KeyIdentifier;
 import com.smartgwt.client.types.HeaderControls;
 import com.smartgwt.client.types.TabBarControls;
 import com.smartgwt.client.util.SC;
-import com.smartgwt.client.widgets.Canvas;
-import com.smartgwt.client.widgets.ImgButton;
-import com.smartgwt.client.widgets.Label;
+import com.smartgwt.client.widgets.*;
 import com.smartgwt.client.widgets.Window;
 import com.smartgwt.client.widgets.events.ClickEvent;
 import com.smartgwt.client.widgets.events.ShowContextMenuEvent;
@@ -20,6 +16,9 @@ import com.smartgwt.client.widgets.form.DynamicForm;
 import com.smartgwt.client.widgets.form.fields.SelectItem;
 import com.smartgwt.client.widgets.form.fields.events.ChangeEvent;
 import com.smartgwt.client.widgets.form.fields.events.ChangeHandler;
+import com.smartgwt.client.widgets.grid.ListGrid;
+import com.smartgwt.client.widgets.grid.events.NodeSelectedEvent;
+import com.smartgwt.client.widgets.grid.events.NodeSelectedHandler;
 import com.smartgwt.client.widgets.grid.events.RecordDoubleClickEvent;
 import com.smartgwt.client.widgets.grid.events.RecordDoubleClickHandler;
 import com.smartgwt.client.widgets.layout.HLayout;
@@ -50,6 +49,18 @@ public class Showcase implements EntryPoint, HistoryListener {
 
     public void onModuleLoad() {
 
+        EdgedCanvas.preloadImages();
+        Scrollbar.preloadImages();
+        TabSet.preloadImages();
+
+        DeferredCommand.addCommand(new com.google.gwt.user.client.Command() {
+            public void execute() {
+            Window.preloadImages();
+            IButton.preloadImages();
+            ListGrid.preloadImages();
+            }
+        });        
+        
         final String initToken = History.getToken();
 
         //setup overall layout
@@ -93,7 +104,7 @@ public class Showcase implements EntryPoint, HistoryListener {
         mainTabSet = new TabSet();
 
         //default is 22. required to increase to that select tab control displays well
-        mainTabSet.setTabBarThickness(23);
+        mainTabSet.setTabBarThickness(25);
         mainTabSet.setWidth100();
         mainTabSet.setHeight100();
         mainTabSet.addTabSelectedHandler(new TabSelectedHandler() {
@@ -114,23 +125,21 @@ public class Showcase implements EntryPoint, HistoryListener {
         SelectItem selectItem = new SelectItem();
         selectItem.setWidth(130);
         LinkedHashMap<String, String> valueMap = new LinkedHashMap<String, String>();
-        valueMap.put("Enterprise", "Enterprise");
-        valueMap.put("SilverWave", "Silver Wave");
-        valueMap.put("BlackOps", "Black Ops");
-        valueMap.put("TreeFrog", "Tree Frog");
-        valueMap.put("fleet", "Fleet");
+        valueMap.put("EnterpriseBlue", "Enterprise Blue");
+        valueMap.put("Enterprise", "Enterprise Gray");
+
 
         selectItem.setValueMap(valueMap);
 
-        String currentSkin = Cookies.getCookie("skin");
+        String currentSkin = Cookies.getCookie("skin_name");
         if (currentSkin == null) {
-            currentSkin = "Enterprise";
+            currentSkin = "EnterpriseBlue";
         }
         selectItem.setDefaultValue(currentSkin);
         selectItem.setShowTitle(false);
         selectItem.addChangeHandler(new ChangeHandler() {
             public void onChange(ChangeEvent event) {
-                Cookies.setCookie("skin", (String) event.getValue());
+                Cookies.setCookie("skin_name", (String) event.getValue());
                 com.google.gwt.user.client.Window.Location.reload();
             }
         });
@@ -184,30 +193,6 @@ public class Showcase implements EntryPoint, HistoryListener {
         tab.setTitle("Smart GWT Showcase&nbsp;&nbsp;");
         tab.setIcon("pieces/16/cube_green.png");
 
-        ShowcaseGrid tocGrid = new ShowcaseGrid();
-        tocGrid.setHeight100();
-        tocGrid.setWidth100();
-
-        tocGrid.addRecordDoubleClickHandler(new RecordDoubleClickHandler() {
-            public void onRecordDoubleClick(RecordDoubleClickEvent event) {
-                TreeNode node = (TreeNode) event.getRecord();
-                showSample(node);
-            }
-        });
-
-        Window window = new Window();
-        window.setTitle("Smart GWT Showcase");
-        window.setHeaderControls(HeaderControls.HEADER_LABEL, HeaderControls.MINIMIZE_BUTTON,
-                                    HeaderControls.MAXIMIZE_BUTTON, HeaderControls.CLOSE_BUTTON);
-        window.setWidth(500);
-        window.setHeight(375);
-        window.addItem(tocGrid);
-        window.setKeepInParentRect(true);
-        window.setTop(30);
-        window.setLeft(30);
-        window.setCanDragResize(true);
-
-
         HLayout mainPanel = new HLayout();
         mainPanel.setHeight100();
         mainPanel.setWidth100();
@@ -229,7 +214,9 @@ public class Showcase implements EntryPoint, HistoryListener {
             mainPanel.addMember(spacer);
             mainPanel.addMember(fbWindow);
         }
-        mainPanel.addChild(window);
+
+        TileView tileView = new TileView(mainPanel);
+        mainPanel.addMember(tileView);
 
         tab.setPane(mainPanel);
 
@@ -350,12 +337,7 @@ public class Showcase implements EntryPoint, HistoryListener {
                     tab.setPane(panel);
                     tab.setCanClose(true);
                     mainTabSet.addTab(tab);
-                    mainTabSet.selectTab(tab);
-                    if(!SC.isIE()) {
-                        if (mainTabSet.getNumTabs() == 10) {
-                            mainTabSet.removeTabs(new int[]{1});
-                        }
-                    }
+                    mainTabSet.selectTab(tab);                    
                 } else {
                     mainTabSet.selectTab(tab);
                 }
@@ -375,8 +357,6 @@ public class Showcase implements EntryPoint, HistoryListener {
                     sideNav.selectRecord(explorerTreeNode);
                     Tree tree = sideNav.getData();
                     TreeNode categoryNode = tree.getParent(explorerTreeNode);
-                    //TODO isRoot not working?
-                    //while (categoryNode != null && !tree.isRoot(categoryNode)) {
                     while (categoryNode != null && !"/".equals(tree.getName(categoryNode))) {
                         tree.openFolder(categoryNode);
                         categoryNode = tree.getParent(categoryNode);
@@ -385,4 +365,6 @@ public class Showcase implements EntryPoint, HistoryListener {
             }
         }
     }
+
+
 }

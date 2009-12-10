@@ -52,7 +52,6 @@ public class GridNestedFilterBulderSample extends ShowcasePanel {
         final ListGrid countryGrid = new ListGrid();
         countryGrid.setWidth(550);
         countryGrid.setHeight(224);
-        countryGrid.setAlternateRecordStyles(true);
         countryGrid.setDataSource(worldDS);
         countryGrid.setAutoFetchData(true);
 

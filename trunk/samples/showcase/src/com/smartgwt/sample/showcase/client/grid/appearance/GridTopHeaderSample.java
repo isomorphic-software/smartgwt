@@ -56,6 +56,7 @@ public class GridTopHeaderSample extends ShowcasePanel {
 
         SectionStack sectionStack = new SectionStack();
         sectionStack.setWidth(550);
+        sectionStack.setHeight(230);
 
         String title = Canvas.imgHTML("silk/world.png") + " Countries Visited";
         SectionStackSection section = new SectionStackSection(title);
@@ -66,7 +67,6 @@ public class GridTopHeaderSample extends ShowcasePanel {
         final ListGrid countryGrid = new ListGrid();
         countryGrid.setWidth(550);
         countryGrid.setHeight(224);
-        countryGrid.setAlternateRecordStyles(true);
         countryGrid.setShowAllRecords(true);
         countryGrid.setCellHeight(22);
         countryGrid.setDataSource(CountryXmlDS.getInstance());

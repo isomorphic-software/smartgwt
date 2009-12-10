@@ -58,7 +58,6 @@ public class HiliteCellsReplaceStyleSample extends ShowcasePanel {
         countryGrid.setWidth(500);
         countryGrid.setHeight(224);
         countryGrid.setCanDragSelect(true);
-        countryGrid.setAlternateRecordStyles(true);
         countryGrid.setShowAllRecords(true);
         countryGrid.setSortField(1);
 

@@ -36,7 +36,6 @@ public class MultilineSample extends ShowcasePanel {
         ListGrid countryGrid = new ListGrid();
         countryGrid.setWidth100();
         countryGrid.setHeight100();
-        countryGrid.setAlternateRecordStyles(true);
         countryGrid.setShowAllRecords(true);
         countryGrid.setWrapCells(true);
         countryGrid.setCellHeight(56);

@@ -56,7 +56,6 @@ public class HiliteCellsAddStyleSample extends ShowcasePanel {
         };
         countryGrid.setWidth(500);
         countryGrid.setHeight(224);
-        countryGrid.setAlternateRecordStyles(true);
         countryGrid.setShowAllRecords(true);
         countryGrid.setSortField(1);
 

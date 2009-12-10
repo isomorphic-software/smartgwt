@@ -47,7 +47,6 @@ public class GridDynamicGroupingSample extends ShowcasePanel {
 
         countryGrid.setWidth(522);
         countryGrid.setHeight(224);
-        countryGrid.setAlternateRecordStyles(true);
         countryGrid.setShowAllRecords(true);
         countryGrid.setCellHeight(22);
 

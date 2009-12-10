@@ -86,7 +86,6 @@ public class GridDragDropFreezeSample extends ShowcasePanel {
         countryGrid2.setWidth(225);
         countryGrid2.setHeight(224);
         countryGrid2.setLeft(350);
-        countryGrid2.setAlternateRecordStyles(true);
         countryGrid2.setEmptyMessage("Drop Rows Here");
         countryGrid2.setCanDragRecordsOut(true);
         countryGrid2.setCanAcceptDroppedRecords(true);

@@ -72,7 +72,6 @@ public class ItemListGrid extends ListGrid {
 
         setFields(itemName, unitCost, sku, description, category, inStock);
         setCanEdit(true);
-        setAlternateRecordStyles(true);
         setCanDragRecordsOut(true);
         setHoverWidth(200);
         setHoverHeight(20);

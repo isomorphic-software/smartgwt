@@ -55,7 +55,6 @@ public class CellStylesSample extends ShowcasePanel {
         CountryListGrid() {
             setWidth(500);
             setHeight(184);
-            setAlternateRecordStyles(true);
             setShowAllRecords(true);
             setCanDragSelect(true);
 

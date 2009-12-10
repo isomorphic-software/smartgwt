@@ -1,6 +1,10 @@
 package com.smartgwt.sample.showcase.client.data;
 
 import com.smartgwt.sample.showcase.client.DebugConsoleCommand;
+import com.smartgwt.sample.showcase.client.grid.expando.GridRowExpansionDetailFieldSample;
+import com.smartgwt.sample.showcase.client.grid.expando.GridRowExpansionDetailsSample;
+import com.smartgwt.sample.showcase.client.grid.expando.GridRowExpansionEditorSample;
+import com.smartgwt.sample.showcase.client.grid.expando.GridRowExpansionRelatedRecordsSample;
 import com.smartgwt.sample.showcase.client.miniapp.MiniAppSample;
 import com.smartgwt.sample.showcase.client.portal.SimplePortalSample;
 import com.smartgwt.sample.showcase.client.basics.components.*;
@@ -130,8 +134,13 @@ public class ShowcaseData {
 
                     new ExplorerTreeNode("New Samples", "new-category", "root", "crystal/16/actions/irc_online.png", null, true, idSuffix),
                     new ExplorerTreeNode("Grid Summaries", "grid-summaries-new-category", "new-category", "crystal/16/apps/tooloptions.png", new GridSummariesSample.Factory(), true, idSuffix),                    
-                    new ExplorerTreeNode("DataType Reuse", "type-reuse-new-category", "new-category", "silk/database_table.png", new TypeReuseSample.Factory(), true, idSuffix),
+                    new ExplorerTreeNode("Row Expand-Field", "grid-expanding-details-field-new-category", "new-category", null, new GridRowExpansionDetailFieldSample.Factory(), true, idSuffix),
+                    new ExplorerTreeNode("Row Expand-Details", "grid-expanding-details-new-category", "new-category", null, new GridRowExpansionDetailsSample.Factory(), true, idSuffix),
+                    new ExplorerTreeNode("Row Expand-Form Editor", "grid-expanding-editor-new-category", "new-category", null, new GridRowExpansionEditorSample.Factory(), true, idSuffix),
+                    new ExplorerTreeNode("Row Expand-Related Records", "grid-expanding-related-new-category", "new-category", null, new GridRowExpansionRelatedRecordsSample.Factory(), true, idSuffix),                    
                     new ExplorerTreeNode("Text Masking", "form-masking-new-category", "new-category", "silk/vcard_edit.png", new TextMaskingSample.Factory(), true, idSuffix),                    
+
+                    new CommandTreeNode("Enterprise Showcase", "smartgwtee-category", "root", "pieces/16/cube_yellow.png", new com.smartgwt.sample.showcase.client.SmartGwtEECommand(), true, idSuffix),
 
                     new ExplorerTreeNode("ComboBox &amp; Family", "combobox-category", "root", "widgets/combo_box.gif", null, true, idSuffix),
                     new ExplorerTreeNode("Styled ComboBox", "styled-combobox-category", "combobox-category", null, new ComboBoxStyledSample.Factory(), true, idSuffix),
@@ -220,6 +229,12 @@ public class ShowcaseData {
                     new ExplorerTreeNode("Dynamic Freeze", "grid-frozen-dynamic", "grid-frozen-category", null, new GridDynamicFreezeSample.Factory(), true, idSuffix),
                     new ExplorerTreeNode("Editing", "grid-frozen-editing", "grid-frozen-category", null, new GridEditFreezeSample.Factory(), true, idSuffix),
                     new ExplorerTreeNode("Drag Drop", "grid-frozen-dd", "grid-frozen-category", null, new GridDragDropFreezeSample.Factory(), true, idSuffix),
+
+                    new ExplorerTreeNode("Expanding Rows", "grid-expanding-rows-category", "grid-category", "crystal/16/apps/tooloptions.png", null, true, idSuffix),
+                    new ExplorerTreeNode("Details Field", "grid-expanding-details-field", "grid-expanding-rows-category", null, new GridRowExpansionDetailFieldSample.Factory(), true, idSuffix),
+                    new ExplorerTreeNode("Details", "grid-expanding-details", "grid-expanding-rows-category", null, new GridRowExpansionDetailsSample.Factory(), true, idSuffix),
+                    new ExplorerTreeNode("Form Editor", "grid-expanding-editor", "grid-expanding-rows-category", null, new GridRowExpansionEditorSample.Factory(), true, idSuffix),
+                    new ExplorerTreeNode("Related Records", "grid-expanding-related", "grid-expanding-rows-category", null, new GridRowExpansionRelatedRecordsSample.Factory(), true, idSuffix),                    
 
                     new ExplorerTreeNode("Grouping", "grid-grouping-category", "grid-category", "silk/chart_organisation.png", null, true, idSuffix),
                     new ExplorerTreeNode("Dynamic Grouping", "grid-grouping-dynamic", "grid-grouping-category", null, new GridDynamicGroupingSample.Factory(), true, idSuffix),

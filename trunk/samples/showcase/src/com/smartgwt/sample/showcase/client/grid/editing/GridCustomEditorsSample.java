@@ -46,7 +46,6 @@ public class GridCustomEditorsSample extends ShowcasePanel {
         final ListGrid countryGrid = new ListGrid();
         countryGrid.setWidth(620);
         countryGrid.setHeight(224);
-        countryGrid.setAlternateRecordStyles(true);
         countryGrid.setShowAllRecords(true);
         countryGrid.setCellHeight(42);
         countryGrid.setWrapCells(true);

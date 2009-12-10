@@ -117,7 +117,6 @@ public class TreeDragNodesSample extends ShowcasePanel {
             setShowEdges(true);
             setBorder("0px");
             setBodyStyleName("normal");
-            setAlternateRecordStyles(true);
             setShowHeader(false);
             setLeaveScrollbarGap(false);
             setEmptyMessage("<br>Drag &amp; drop parts here");

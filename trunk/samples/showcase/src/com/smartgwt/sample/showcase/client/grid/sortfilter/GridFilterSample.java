@@ -35,7 +35,6 @@ public class GridFilterSample extends ShowcasePanel {
         final ListGrid countryGrid = new ListGrid();
         countryGrid.setWidth(500);
         countryGrid.setHeight(300);
-        countryGrid.setAlternateRecordStyles(true);
         countryGrid.setDataSource(WorldXmlDS.getInstance());
 
         ListGridField countryCodeField = new ListGridField("countryCode", "Code", 50);
