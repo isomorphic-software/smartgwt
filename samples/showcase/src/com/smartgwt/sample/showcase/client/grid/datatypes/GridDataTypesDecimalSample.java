@@ -41,7 +41,6 @@ public class GridDataTypesDecimalSample extends ShowcasePanel {
         final ListGrid countryGrid = new ListGrid();
         countryGrid.setWidth(350);
         countryGrid.setHeight(224);
-        countryGrid.setAlternateRecordStyles(true);
         countryGrid.setShowAllRecords(true);
         countryGrid.setCanEdit(true);
         countryGrid.setEditEvent(ListGridEditEvent.CLICK);

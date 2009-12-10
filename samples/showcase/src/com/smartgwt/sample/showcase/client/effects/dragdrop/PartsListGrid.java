@@ -14,7 +14,6 @@ public class PartsListGrid extends ListGrid {
         setShowEdges(true);
         setBorder("0px");
         setBodyStyleName("normal");
-        setAlternateRecordStyles(true);
         setShowHeader(false);
         setLeaveScrollbarGap(false);
         setEmptyMessage("<br><br>Drag &amp; drop parts here");

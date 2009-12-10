@@ -50,7 +50,6 @@ public class NestedFormSample extends ShowcasePanel {
         itemGrid.setWidth(600);
         itemGrid.setHeight(400);
         itemGrid.setDataSource(itemSupplyXmlDS);
-        itemGrid.setAlternateRecordStyles(true);
         itemGrid.setUseAllDataSourceFields(true);
 
         itemGrid.addRecordDoubleClickHandler(new RecordDoubleClickHandler() {

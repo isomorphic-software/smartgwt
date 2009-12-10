@@ -66,7 +66,6 @@ public class PrintingSample extends ShowcasePanel {
 
         final ListGrid printGrid = new ListGrid();
         printGrid.setHeight(150);
-        printGrid.setAlternateRecordStyles(true);
 
         printGrid.setDataSource(countryDS);
 

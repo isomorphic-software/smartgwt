@@ -40,7 +40,6 @@ public class AutofitFilterSample extends ShowcasePanel {
         final ListGrid countryGrid = new ListGrid();
         countryGrid.setWidth(500);
         countryGrid.setTop(50);
-        countryGrid.setAlternateRecordStyles(true);
 
         countryGrid.setAutoFitData(Autofit.VERTICAL);
         countryGrid.setShowFilterEditor(true);

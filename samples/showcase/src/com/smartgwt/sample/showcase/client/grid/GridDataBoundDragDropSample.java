@@ -68,7 +68,6 @@ public class GridDataBoundDragDropSample extends ShowcasePanel {
         employeesGrid.setDataSource(employeesDS);
         employeesGrid.setCanDragRecordsOut(true);
         employeesGrid.setDragDataAction(DragDataAction.COPY);
-        employeesGrid.setAlternateRecordStyles(true);
         employeesGrid.setAutoFetchData(false);
 
         ListGridField employeeIdField = new ListGridField("EmployeeId");

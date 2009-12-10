@@ -47,7 +47,6 @@ public class AutofitNewRecordsSample extends ShowcasePanel {
 
         final ListGrid countryGrid = new ListGrid();
         countryGrid.setWidth(500);
-        countryGrid.setAlternateRecordStyles(true);
         countryGrid.setAutoFitMaxRecords(6);
         countryGrid.setAutoFitData(Autofit.VERTICAL);
         countryGrid.setCanEdit(true);

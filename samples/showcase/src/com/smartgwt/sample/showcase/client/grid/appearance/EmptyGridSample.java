@@ -42,7 +42,6 @@ public class EmptyGridSample extends ShowcasePanel {
         countryGrid.setWidth(500);
         countryGrid.setHeight(224);
         countryGrid.setTop(50);
-        countryGrid.setAlternateRecordStyles(true);
         countryGrid.setShowAllRecords(true);
         countryGrid.setShowEmptyMessage(true);
         countryGrid.setEmptyMessage("<br>Click the <b>Set data</b> button to populate this grid.");

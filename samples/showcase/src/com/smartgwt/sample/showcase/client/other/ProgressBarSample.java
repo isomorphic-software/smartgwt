@@ -40,16 +40,16 @@ public class ProgressBarSample extends ShowcasePanel {
     public Canvas getViewPanel() {
                     
         VLayout horizontalBars = new VLayout(4);
-        horizontalBars.setWidth(175);
+        horizontalBars.setWidth(300);
+
         
         final Label hBar1Label = new Label("Current File Progress");
         hBar1Label.setHeight(16);
         horizontalBars.addMember(hBar1Label);
         
         final Progressbar hBar1 = new Progressbar();
+        hBar1.setHeight(24);
         hBar1.setVertical(false);
-        hBar1.setHeight(14);   
-        hBar1.setLength(175);
         horizontalBars.addMember(hBar1);
         
         final Label hBar2Label = new Label("Total Progress");
@@ -58,8 +58,7 @@ public class ProgressBarSample extends ShowcasePanel {
 
         final Progressbar hBar2 = new Progressbar();
         hBar2.setVertical(false);
-        hBar2.setHeight(14);   
-        hBar2.setLength(175);
+        hBar2.setHeight(24);
         horizontalBars.addMember(hBar2);    
 
         

@@ -34,7 +34,6 @@ public class GridLiveFilterSample extends ShowcasePanel {
         final ListGrid countryGrid = new ListGrid();
         countryGrid.setWidth(500);
         countryGrid.setHeight(300);
-        countryGrid.setAlternateRecordStyles(true);
         countryGrid.setShowFilterEditor(true);
         countryGrid.setFilterOnKeypress(true);
         countryGrid.setDataSource(WorldXmlDS.getInstance());

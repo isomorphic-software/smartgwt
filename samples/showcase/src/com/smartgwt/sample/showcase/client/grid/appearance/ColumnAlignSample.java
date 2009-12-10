@@ -41,7 +41,6 @@ public class ColumnAlignSample extends ShowcasePanel {
         countryGrid.setWidth(500);
         countryGrid.setHeight(224);
         countryGrid.setTop(100);
-        countryGrid.setAlternateRecordStyles(true);
         countryGrid.setShowAllRecords(true);
 
         ListGridField countryCodeField = new ListGridField("countryCode", "Flag", 50);

@@ -35,7 +35,6 @@ public class DragReorderSample extends ShowcasePanel {
         ListGrid countryGrid = new ListGrid();
         countryGrid.setWidth(300);
         countryGrid.setHeight(224);
-        countryGrid.setAlternateRecordStyles(true);
         countryGrid.setShowAllRecords(true);
         countryGrid.setCanReorderRecords(true);
 

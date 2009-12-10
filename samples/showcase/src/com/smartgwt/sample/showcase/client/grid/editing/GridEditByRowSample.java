@@ -43,7 +43,6 @@ public class GridEditByRowSample extends ShowcasePanel {
         final ListGrid countryGrid = new ListGrid();
         countryGrid.setWidth(550);
         countryGrid.setHeight(224);
-        countryGrid.setAlternateRecordStyles(true);
         countryGrid.setShowAllRecords(true);
         countryGrid.setCellHeight(22);
         countryGrid.setDataSource(CountryXmlDS.getInstance());

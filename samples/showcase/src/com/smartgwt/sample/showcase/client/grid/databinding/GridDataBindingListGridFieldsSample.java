@@ -38,7 +38,6 @@ public class GridDataBindingListGridFieldsSample extends ShowcasePanel {
         final ListGrid countryGrid = new ListGrid();
         countryGrid.setWidth(500);
         countryGrid.setHeight(224);
-        countryGrid.setAlternateRecordStyles(true);
         countryGrid.setShowAllRecords(true);
 
         ListGridField countryCodeField = new ListGridField("countryCode", "Code", 40);

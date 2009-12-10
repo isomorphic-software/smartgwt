@@ -119,7 +119,6 @@ public class SectionsCustomControlsSample extends ShowcasePanel {
     class StatusCanvas extends Canvas {
         StatusCanvas() {
             setPadding(5);
-            setBorder("1px solid #808080");
 
         }
 

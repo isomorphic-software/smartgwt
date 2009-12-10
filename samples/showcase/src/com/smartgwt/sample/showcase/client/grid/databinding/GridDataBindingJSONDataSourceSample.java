@@ -38,7 +38,6 @@ public class GridDataBindingJSONDataSourceSample extends ShowcasePanel {
         final ListGrid countryGrid = new ListGrid();
         countryGrid.setWidth(400);
         countryGrid.setHeight(224);
-        countryGrid.setAlternateRecordStyles(true);
         countryGrid.setShowAllRecords(true);
         countryGrid.setDataSource(CountryDS.getInstance());
         countryGrid.setAutoFetchData(true);

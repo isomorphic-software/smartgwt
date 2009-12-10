@@ -2,7 +2,10 @@ package com.smartgwt.sample.showcase.client.forms;
 
 import com.smartgwt.client.widgets.Canvas;
 import com.smartgwt.client.widgets.form.DynamicForm;
+import com.smartgwt.client.widgets.form.fields.DateItem;
+import com.smartgwt.client.widgets.form.fields.DateTimeItem;
 import com.smartgwt.client.widgets.form.fields.TextItem;
+import com.smartgwt.client.widgets.form.fields.TimeItem;
 import com.smartgwt.sample.showcase.client.PanelFactory;
 import com.smartgwt.sample.showcase.client.ShowcasePanel;
 
@@ -61,7 +64,18 @@ public class TextMaskingSample extends ShowcasePanel {
         phoneNumberField.setMask("(###) ###-####");
         phoneNumberField.setHint("<nobr>(###)&nbsp;###-####</nobr>");
 
-        form.setFields(firstName, lastName, stateField, phoneNumberField);
+        DateItem dateField = new DateItem("dateItem", "Date");
+        dateField.setUseTextField(true);
+        dateField.setUseMask(true);
+
+        DateTimeItem dateTimeField = new DateTimeItem("dateTimeItem", "Date Time");
+        dateTimeField.setUseTextField(true);
+        dateTimeField.setUseMask(true);
+
+        TimeItem timeField = new TimeItem("timeItem", "Time");
+        timeField.setUseMask(true);
+
+        form.setFields(firstName, lastName, stateField, phoneNumberField, dateField, dateTimeField, timeField);
 
         return form;
     }

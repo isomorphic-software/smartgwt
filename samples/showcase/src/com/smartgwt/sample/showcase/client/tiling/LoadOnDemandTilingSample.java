@@ -47,7 +47,7 @@ public class LoadOnDemandTilingSample extends ShowcasePanel {
         Canvas yahooAttribution = new Canvas();
         yahooAttribution.setHeight(31);
         yahooAttribution.setContents("<a href='http://developer.yahoo.net/about'>"
-                + "<img src='http://us.dev1.yimg.com/us.yimg.com/i/us/nt/bdg/websrv_88_1.gif' border='0'>"
+                + "<img src='http://l.yimg.com/a/i/us/nt/bdg/websrv_88_1.gif' border='0'>"
                 + "</a>");
         canvas.addChild(yahooAttribution);
 

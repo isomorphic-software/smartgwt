@@ -58,7 +58,6 @@ public class SectionsShowHideSample extends ShowcasePanel {
         sectionStack.setVisibilityMode(VisibilityMode.MULTIPLE);
         sectionStack.setWidth(300);
         sectionStack.setHeight(350);
-        sectionStack.setBorder("2px solid #458B00");
 
         SectionStackSection section1 = new SectionStackSection("Blue Pawn");
         section1.setExpanded(true);

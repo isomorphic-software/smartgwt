@@ -15,6 +15,7 @@
 
 package com.smartgwt.sample.showcase.client.miniapp;
 
+import com.smartgwt.client.types.Side;
 import com.smartgwt.client.widgets.tab.TabSet;
 import com.smartgwt.client.widgets.tab.Tab;
 import com.smartgwt.client.widgets.tab.events.TabSelectedHandler;
@@ -40,9 +41,7 @@ public class ItemDetailTabPane extends TabSet {
     private ItemListGrid itemListGrid;
 
     public ItemDetailTabPane(DataSource supplyItemDS, DataSource supplyCategoryDS, ItemListGrid itemListGrid) {
-
         this.itemListGrid = itemListGrid;
-        setStyleName("defaultBorder");
         itemViewer = new DetailViewer();
         itemViewer.setDataSource(supplyItemDS);
         itemViewer.setWidth100();

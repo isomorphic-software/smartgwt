@@ -43,7 +43,6 @@ public class CheckboxSelectSample extends ShowcasePanel {
         selectedCountriesGrid.setWidth(250);
         selectedCountriesGrid.setHeight(100);
         selectedCountriesGrid.setTop(250);
-        selectedCountriesGrid.setAlternateRecordStyles(true);
         selectedCountriesGrid.setShowAllRecords(true);
         ListGridField selectedCountriesField = new ListGridField("countryName", "Selected Countries");
         selectedCountriesGrid.setFields(selectedCountriesField);
@@ -51,7 +50,6 @@ public class CheckboxSelectSample extends ShowcasePanel {
         final ListGrid countryGrid = new ListGrid();
         countryGrid.setWidth(500);
         countryGrid.setHeight(224);
-        countryGrid.setAlternateRecordStyles(true);
         countryGrid.setShowAllRecords(true);
         countryGrid.setSelectionType(SelectionStyle.SIMPLE);
         countryGrid.setSelectionAppearance(SelectionAppearance.CHECKBOX);

@@ -42,9 +42,9 @@ public class SectionsAddRemoveSample extends ShowcasePanel {
         sectionStack.setVisibilityMode(VisibilityMode.MULTIPLE);
         sectionStack.setWidth(300);
         sectionStack.setHeight(350);
-        sectionStack.setBorder("2px solid #458B00");
 
         SectionStackSection section1 = new SectionStackSection("Blue Pawn");
+        section1.setID("blueSection");
         section1.setExpanded(true);
         section1.addItem(new Img("pieces/48/pawn_blue.png", 48, 48));
         sectionStack.addSection(section1);
@@ -66,6 +66,8 @@ public class SectionsAddRemoveSample extends ShowcasePanel {
         addButton.setWidth(150);
         addButton.addClickHandler(new ClickHandler() {
             public void onClick(ClickEvent event) {
+
+                SectionStackSection section2 = sectionStack.getSection("blueSection");
                 String title = lastSectionIndex % 2 == 0 ? "Yellow Piece" : "Blue Cube";
                 String iconName = lastSectionIndex % 2 == 0 ? "piece_yellow" : "cube_blue";
                 SectionStackSection section = new SectionStackSection(title);

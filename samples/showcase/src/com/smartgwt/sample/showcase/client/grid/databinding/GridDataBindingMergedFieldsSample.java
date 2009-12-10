@@ -44,7 +44,6 @@ public class GridDataBindingMergedFieldsSample extends ShowcasePanel {
         final ListGrid countryGrid = new ListGrid();
         countryGrid.setWidth(500);
         countryGrid.setHeight(224);
-        countryGrid.setAlternateRecordStyles(true);
         countryGrid.setShowAllRecords(true);
         countryGrid.setDataSource(CountryDS.getInstance());
         countryGrid.setAutoFetchData(true);

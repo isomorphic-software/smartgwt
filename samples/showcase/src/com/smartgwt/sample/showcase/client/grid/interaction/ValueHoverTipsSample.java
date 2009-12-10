@@ -53,7 +53,6 @@ public class ValueHoverTipsSample extends ShowcasePanel {
         final ListGrid countryGrid = new ListGrid();
         countryGrid.setWidth(500);
         countryGrid.setHeight(224);
-        countryGrid.setAlternateRecordStyles(true);
         countryGrid.setShowAllRecords(true);
         countryGrid.setWrapCells(true);
         // taller rows to fit 'government' values

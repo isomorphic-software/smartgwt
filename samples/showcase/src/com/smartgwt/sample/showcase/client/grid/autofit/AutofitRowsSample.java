@@ -43,7 +43,6 @@ public class AutofitRowsSample extends ShowcasePanel {
         countryGrid.setWidth(500);
         countryGrid.setHeight(1);
         countryGrid.setTop(50);
-        countryGrid.setAlternateRecordStyles(true);
         countryGrid.setShowAllRecords(true);
         countryGrid.setBodyOverflow(Overflow.VISIBLE);
         countryGrid.setOverflow(Overflow.VISIBLE);

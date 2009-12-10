@@ -42,7 +42,6 @@ public class NestingSample extends ShowcasePanel {
         navigationLabel.setOverflow(Overflow.HIDDEN);
         navigationLabel.setWidth("30%");
         navigationLabel.setShowResizeBar(true);
-        navigationLabel.setBorder("1px solid blue");
 
         mainLayout.addMember(navigationLabel);
 
@@ -55,14 +54,12 @@ public class NestingSample extends ShowcasePanel {
         listingLabel.setOverflow(Overflow.HIDDEN);
         listingLabel.setHeight("30%");
         listingLabel.setShowResizeBar(true);
-        listingLabel.setBorder("1px solid blue");
 
         Label detailsLabel = new Label();
         detailsLabel.setContents("Details");
         detailsLabel.setAlign(Alignment.CENTER);
         detailsLabel.setOverflow(Overflow.HIDDEN);
         detailsLabel.setHeight("70%");
-        detailsLabel.setBorder("1px solid blue");
 
         vLayout.addMember(listingLabel);
         vLayout.addMember(detailsLabel);

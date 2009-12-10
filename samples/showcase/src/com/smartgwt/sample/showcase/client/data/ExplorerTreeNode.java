@@ -12,10 +12,12 @@ public class ExplorerTreeNode extends TreeNode {
             setName("<span style='color:808080'>" + name + "</span>");
         }
         setNodeID(nodeID.replace("-", "_") + idSuffix);
+        setThumbnail("thumbnails/" + nodeID.replace("-", "_") + ".gif");
         setParentNodeID(parentNodeID.replace("-", "_") + idSuffix);
         setIcon(icon);
+
         setFactory(factory);
-        //temp hack
+        
         if(nodeID.equals("featured-category")) {
             setIsOpen(true);
         }
@@ -24,7 +26,7 @@ public class ExplorerTreeNode extends TreeNode {
     public void setFactory(PanelFactory factory) {
         setAttribute("factory", factory);
     }
-
+    
     public PanelFactory getFactory() {
         return (PanelFactory) getAttributeAsObject("factory");
     }
@@ -57,6 +59,14 @@ public class ExplorerTreeNode extends TreeNode {
         return getAttributeAsString("icon");
     }
 
+    public void setThumbnail(String thumbnail) {
+        setAttribute("thumbnail", thumbnail);
+    }
+
+    public String getThumbnail() {
+        return getAttributeAsString("thumbnail");
+    }
+
     public void setIsOpen(boolean isOpen) {
         setAttribute("isOpen", isOpen);
     }
@@ -69,4 +79,21 @@ public class ExplorerTreeNode extends TreeNode {
         return getAttributeAsString("iconSrc");
     }
 
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        ExplorerTreeNode that = (ExplorerTreeNode) o;
+
+        if (!getName().equals(that.getName())) return false;
+
+        return true;
+    }
+
+    @Override
+    public int hashCode() {
+        return getName().hashCode();
+    }
 }

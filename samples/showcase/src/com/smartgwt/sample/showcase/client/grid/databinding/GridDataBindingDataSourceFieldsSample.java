@@ -2,6 +2,7 @@ package com.smartgwt.sample.showcase.client.grid.databinding;
 
 import com.smartgwt.client.data.DataSource;
 import com.smartgwt.client.data.DataSourceField;
+import com.smartgwt.client.types.ExpansionMode;
 import com.smartgwt.client.types.FieldType;
 import com.smartgwt.client.widgets.Canvas;
 import com.smartgwt.client.widgets.grid.ListGrid;
@@ -35,10 +36,9 @@ public class GridDataBindingDataSourceFieldsSample extends ShowcasePanel {
     }
 
     public Canvas getViewPanel() {
-        final ListGrid countryGrid = new ListGrid();
+        final ListGrid countryGrid = new ListGrid();        
         countryGrid.setWidth(500);
         countryGrid.setHeight(224);
-        countryGrid.setAlternateRecordStyles(true);
         countryGrid.setShowAllRecords(true);
         countryGrid.setDataSource(CountryDS.getInstance());
         countryGrid.setAutoFetchData(true);

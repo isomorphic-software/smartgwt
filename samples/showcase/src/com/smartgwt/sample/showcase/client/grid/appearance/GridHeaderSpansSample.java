@@ -45,7 +45,6 @@ public class GridHeaderSpansSample extends ShowcasePanel {
         countryGrid.setWidth(750);
         countryGrid.setHeight(224);
         countryGrid.setHeaderHeight(40);
-        countryGrid.setAlternateRecordStyles(true);
         countryGrid.setDataSource(CountryXmlDS.getInstance());
         countryGrid.setAutoFetchData(true);
 

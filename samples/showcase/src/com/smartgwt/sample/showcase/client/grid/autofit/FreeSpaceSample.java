@@ -87,7 +87,7 @@ public class FreeSpaceSample extends ShowcasePanel {
 
         treeGrid.setData(data);
         
-        TreeGridField field = new TreeGridField("Nasvigation");
+        TreeGridField field = new TreeGridField("Navigation");
         field.setCellFormatter(new CellFormatter() {
             public String format(Object value, ListGridRecord record, int rowNum, int colNum) {
                 return record.getAttribute("name");
@@ -98,8 +98,7 @@ public class FreeSpaceSample extends ShowcasePanel {
         HLayout navLayout = new HLayout();
         navLayout.setMembers(treeGrid, listGrid);
 
-        SectionStack sectionStack = new SectionStack();
-        sectionStack.setBorder("2px dotted blue");
+        SectionStack sectionStack = new SectionStack();        
         sectionStack.setWidth(600);
         sectionStack.setHeight(400);
         sectionStack.setVisibilityMode(VisibilityMode.MULTIPLE);
