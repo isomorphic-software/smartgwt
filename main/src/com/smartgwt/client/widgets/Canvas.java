@@ -17,16 +17,44 @@
 package com.smartgwt.client.widgets;
 
 
-import com.google.gwt.core.client.JavaScriptObject;
-import com.google.gwt.event.shared.HandlerRegistration;
-import com.google.gwt.user.client.ui.Widget;
-import com.smartgwt.client.core.Function;
-import com.smartgwt.client.core.Rectangle;
+
+import com.smartgwt.client.event.*;
+import com.smartgwt.client.core.*;
 import com.smartgwt.client.types.*;
-import com.smartgwt.client.util.EnumUtil;
+import com.smartgwt.client.data.*;
+import com.smartgwt.client.data.events.*;
+import com.smartgwt.client.rpc.*;
+import com.smartgwt.client.widgets.*;
+import com.smartgwt.client.widgets.events.*;
+import com.smartgwt.client.widgets.form.*;
+import com.smartgwt.client.widgets.form.validator.*;
+import com.smartgwt.client.widgets.form.fields.*;
+import com.smartgwt.client.widgets.tile.*;
+import com.smartgwt.client.widgets.tile.events.*;
+import com.smartgwt.client.widgets.grid.*;
+import com.smartgwt.client.widgets.grid.events.*;
+import com.smartgwt.client.widgets.layout.*;
+import com.smartgwt.client.widgets.menu.*;
+import com.smartgwt.client.widgets.tab.*;
+import com.smartgwt.client.widgets.toolbar.*;
+import com.smartgwt.client.widgets.tree.*;
+import com.smartgwt.client.widgets.tree.events.*;
+import com.smartgwt.client.widgets.viewer.*;
+import com.smartgwt.client.widgets.calendar.*;
+import com.smartgwt.client.widgets.calendar.events.*;
+
+import java.util.Date;
+import java.util.List;
+import java.util.Map;
+import java.util.HashMap;
+
+import com.google.gwt.user.client.ui.Widget;
+import com.google.gwt.core.client.JavaScriptObject;
+import com.google.gwt.user.client.Element;
 import com.smartgwt.client.util.JSOHelper;
-import com.smartgwt.client.widgets.form.ValuesManager;
-import com.smartgwt.client.widgets.menu.Menu;
+import com.smartgwt.client.util.EnumUtil;
+import com.google.gwt.event.shared.*;
+import com.google.gwt.event.shared.HasHandlers;
 
 /**
  * Canvas is the base abstraction for cross-browser DHTML drawing.  All DHTML widgets inherit from the Canvas class.
@@ -1556,7 +1584,7 @@ public class Canvas extends BaseWidget  implements com.smartgwt.client.widgets.e
     }
 
     /**
-     * If true, this canvas will recieve all mouse-clicks as single click events rather than doubleClicks.
+     * If true, this canvas will receive all mouse-clicks as single click events rather than doubleClicks.
      * <p><b>Note : </b> This is an advanced setting</p>
      *
      * @param noDoubleClicks noDoubleClicks Default value is null
@@ -1566,7 +1594,7 @@ public class Canvas extends BaseWidget  implements com.smartgwt.client.widgets.e
     }
 
     /**
-     * If true, this canvas will recieve all mouse-clicks as single click events rather than doubleClicks.
+     * If true, this canvas will receive all mouse-clicks as single click events rather than doubleClicks.
      *
      *
      * @return Boolean
@@ -3757,7 +3785,7 @@ public class Canvas extends BaseWidget  implements com.smartgwt.client.widgets.e
 
     /**
      * If this canvas can accept focus, give it keyboard focus. After this method, the canvas will appear focussed and will
-     * recieve keyboard events.
+     * receive keyboard events.
      */
     public native void focus() /*-{
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
@@ -5108,7 +5136,7 @@ public class Canvas extends BaseWidget  implements com.smartgwt.client.widgets.e
     /**
      * Add a focusChanged handler.
      * <p>
-     * Notification function fired when this widget recieves or loses keyboard focus.
+     * Notification function fired when this widget receives or loses keyboard focus.
      *
      * @param handler the focusChanged handler
      * @return {@link HandlerRegistration} used to remove this handler
@@ -5183,17 +5211,9 @@ public class Canvas extends BaseWidget  implements com.smartgwt.client.widgets.e
 
 
 
+
 
-
-
-
-
-
-
-
-
-
-
+
 
     /**
      * Multiple styles are currently not supported. This method essentially calls {@link #setStyleName(String)}

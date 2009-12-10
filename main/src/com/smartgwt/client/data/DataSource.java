@@ -876,6 +876,26 @@ public class DataSource extends BaseClass  implements com.smartgwt.client.data.e
     }
 
     /**
+     * When true, indicates that this DataSource supports multi-level sorting.
+     *
+     * @param canMultiSort canMultiSort Default value is true
+     * @throws IllegalStateException this property cannot be changed after the underlying component has been created
+     */
+    public void setCanMultiSort(Boolean canMultiSort)  throws IllegalStateException {
+        setAttribute("canMultiSort", canMultiSort, false);
+    }
+
+    /**
+     * When true, indicates that this DataSource supports multi-level sorting.
+     *
+     *
+     * @return Boolean
+     */
+    public Boolean getCanMultiSort()  {
+        return getAttributeAsBoolean("canMultiSort");
+    }
+
+    /**
      * Whether a user must be authenticated in order to access this DataSource.  This establishes a default for the DataSource
      * as a whole; individual {@link com.smartgwt.client.data.DataSource#getOperationBindings operationBindings} within the
      * DataSource may still override this setting by explicitly setting {@link
