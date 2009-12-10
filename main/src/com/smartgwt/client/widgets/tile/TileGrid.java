@@ -61,7 +61,7 @@ import com.google.gwt.event.shared.HasHandlers;
  * "tiles", where each tile represents one object, and the tiles are laid out in a grid with multiple tiles per row.  Each
  * tile displays one or more properties of the object it represents.
  */
-public class TileGrid extends TileLayout  implements DataBoundComponent, com.smartgwt.client.widgets.tile.events.HasRecordClickHandlers, com.smartgwt.client.widgets.tile.events.HasSelectionChangedHandlers {
+public class TileGrid extends TileLayout  implements DataBoundComponent, com.smartgwt.client.widgets.tile.events.HasRecordClickHandlers, com.smartgwt.client.widgets.tile.events.HasRecordDoubleClickHandlers, com.smartgwt.client.widgets.tile.events.HasSelectionChangedHandlers {
 
     public static TileGrid getOrCreateRef(JavaScriptObject jsObj) {
         if(jsObj == null) return null;
@@ -299,6 +299,44 @@ public class TileGrid extends TileLayout  implements DataBoundComponent, com.sma
             obj.recordClick = function(){
                    var param = {"viewer" : arguments[0], "tile" : arguments[1], "record" : arguments[2]};
                    var event = @com.smartgwt.client.widgets.tile.events.RecordClickEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
+                   selfJ.@com.smartgwt.client.widgets.BaseWidget::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
+               };
+        }
+   }-*/;
+
+    /**
+     * Add a recordDoubleClick handler.
+     * <p>
+     * Executed when the tileGrid receives a 'doubleclick' event on a tile. The default implementation does nothing -- override
+     * to perform some action when any record is doubleclicked.<br> A record event handler can be specified either as a
+     * function to execute, or as a string of script to evaluate. If the handler is defined as a string of script, all the
+     * parameters below will be available as variables for use in the script.<br> If you want to cancel the doubleclick based
+     * on the parameters, return false. Otherwise, return  true so that the doubleclick event be registered with the tile.
+     *
+     * @param handler the recordDoubleClick handler
+     * @return {@link HandlerRegistration} used to remove this handler
+     */
+    public HandlerRegistration addRecordDoubleClickHandler(com.smartgwt.client.widgets.tile.events.RecordDoubleClickHandler handler) {
+        if(getHandlerCount(com.smartgwt.client.widgets.tile.events.RecordDoubleClickEvent.getType()) == 0) setupRecordDoubleClickEvent();
+        return doAddHandler(handler, com.smartgwt.client.widgets.tile.events.RecordDoubleClickEvent.getType());
+    }
+
+    private native void setupRecordDoubleClickEvent() /*-{
+        var obj = null;
+        var selfJ = this;
+        if(this.@com.smartgwt.client.widgets.BaseWidget::isCreated()()) {
+            obj = this.@com.smartgwt.client.widgets.BaseWidget::getJsObj()();
+            obj.addProperties({recordDoubleClick:function(){
+                        var param = {"viewer" : arguments[0], "tile" : arguments[1], "record" : arguments[2]};
+                        var event = @com.smartgwt.client.widgets.tile.events.RecordDoubleClickEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
+                        selfJ.@com.smartgwt.client.widgets.BaseWidget::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
+                    }
+             });
+        } else {
+            obj = this.@com.smartgwt.client.widgets.BaseWidget::getConfig()();
+            obj.recordDoubleClick = function(){
+                   var param = {"viewer" : arguments[0], "tile" : arguments[1], "record" : arguments[2]};
+                   var event = @com.smartgwt.client.widgets.tile.events.RecordDoubleClickEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
                    selfJ.@com.smartgwt.client.widgets.BaseWidget::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
                };
         }
