@@ -17,23 +17,44 @@
 package com.smartgwt.client.widgets.grid;
 
 
-import com.google.gwt.core.client.JavaScriptObject;
-import com.google.gwt.event.shared.HandlerRegistration;
-import com.smartgwt.client.core.Function;
-import com.smartgwt.client.core.RefDataClass;
-import com.smartgwt.client.data.*;
+
+import com.smartgwt.client.event.*;
+import com.smartgwt.client.core.*;
 import com.smartgwt.client.types.*;
-import com.smartgwt.client.util.EnumUtil;
-import com.smartgwt.client.util.JSOHelper;
-import com.smartgwt.client.widgets.BaseWidget;
-import com.smartgwt.client.widgets.Canvas;
-import com.smartgwt.client.widgets.DataBoundComponent;
-import com.smartgwt.client.widgets.ImgProperties;
-import com.smartgwt.client.widgets.menu.MenuItem;
-import com.smartgwt.client.widgets.tree.Tree;
+import com.smartgwt.client.data.*;
+import com.smartgwt.client.data.events.*;
+import com.smartgwt.client.rpc.*;
+import com.smartgwt.client.widgets.*;
+import com.smartgwt.client.widgets.events.*;
+import com.smartgwt.client.widgets.form.*;
+import com.smartgwt.client.widgets.form.validator.*;
+import com.smartgwt.client.widgets.form.fields.*;
+import com.smartgwt.client.widgets.tile.*;
+import com.smartgwt.client.widgets.tile.events.*;
+import com.smartgwt.client.widgets.grid.*;
+import com.smartgwt.client.widgets.grid.events.*;
+import com.smartgwt.client.widgets.layout.*;
+import com.smartgwt.client.widgets.menu.*;
+import com.smartgwt.client.widgets.tab.*;
+import com.smartgwt.client.widgets.toolbar.*;
+import com.smartgwt.client.widgets.tree.*;
+import com.smartgwt.client.widgets.tree.events.*;
+import com.smartgwt.client.widgets.viewer.*;
+import com.smartgwt.client.widgets.calendar.*;
+import com.smartgwt.client.widgets.calendar.events.*;
 
 import java.util.Date;
+import java.util.List;
 import java.util.Map;
+import java.util.HashMap;
+
+import com.google.gwt.user.client.ui.Widget;
+import com.google.gwt.core.client.JavaScriptObject;
+import com.google.gwt.user.client.Element;
+import com.smartgwt.client.util.JSOHelper;
+import com.smartgwt.client.util.EnumUtil;
+import com.google.gwt.event.shared.*;
+import com.google.gwt.event.shared.HasHandlers;
 
 /**
  * A ListGrid is a {@link com.smartgwt.client.widgets.DataBoundComponent} that displays a list of objects in a grid, where
@@ -4384,10 +4405,9 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
      * When true, indicates that this ListGrid supports multi-level sorting.
      *
      * @param canMultiSort canMultiSort Default value is true
-     * @throws IllegalStateException this property cannot be changed after the component has been created
      */
-    public void setCanMultiSort(Boolean canMultiSort)  throws IllegalStateException {
-        setAttribute("canMultiSort", canMultiSort, false);
+    public void setCanMultiSort(Boolean canMultiSort) {
+        setAttribute("canMultiSort", canMultiSort, true);
     }
 
     /**
@@ -4398,6 +4418,28 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
      */
     public Boolean getCanMultiSort()  {
         return getAttributeAsBoolean("canMultiSort");
+    }
+
+    /**
+     * When multiple fields are sorted, the Style to apply to the numeral that appears after the  sort-arrows in the
+     * header-buttons of sorted fields.
+     * <p><b>Note : </b> This is an advanced setting</p>
+     *
+     * @param sortNumeralStyle sortNumeralStyle Default value is "sortNumeral"
+     */
+    public void setSortNumeralStyle(String sortNumeralStyle) {
+        setAttribute("sortNumeralStyle", sortNumeralStyle, true);
+    }
+
+    /**
+     * When multiple fields are sorted, the Style to apply to the numeral that appears after the  sort-arrows in the
+     * header-buttons of sorted fields.
+     *
+     *
+     * @return String
+     */
+    public String getSortNumeralStyle()  {
+        return getAttributeAsString("sortNumeralStyle");
     }
 
     /**
@@ -5868,6 +5910,57 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
     }-*/;
 
 
+    /**
+     * Reverses the direction of the field with the passed name and resorts the grid.
+     * @param fieldName The name of a field, visible, hidden or existing only in the dataSource
+     */
+    public native void alterSort(String fieldName) /*-{
+        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
+        self.alterSort(fieldName);
+    }-*/;
+
+
+
+    /**
+     * Returns the number of fields involved in this grid's current sort configuration.
+     *
+     * @return the number of fields this grid is currently sorted on.
+     */
+    public native int getSortFieldCount() /*-{
+        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
+        return self.getSortFieldCount();
+    }-*/;
+
+    /**
+     * Returns true if the passed fieldName is in the current sort-specification.
+     * @param fieldName The name of a field, visible, hidden or existing only in the dataSource
+     *
+     * @return True if the passed field is sorted, false otherwise
+     */
+    public native Boolean isSortField(String fieldName) /*-{
+        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
+        var retVal =self.isSortField(fieldName);
+        if(retVal == null || retVal === undefined) {
+            return null;
+        } else {
+            return @com.smartgwt.client.util.JSOHelper::toBoolean(Z)(retVal);
+        }
+    }-*/;
+
+    /**
+     * When multiple fields are sorted, this method returns the HTML for the sort-numeral that  appears after the sort-arrows
+     * in the header-buttons of sorted fields.  If you don't want sort-numerals in the header-buttons, you can override this
+     * method to return null or an empty string.
+     * @param fieldName The name of a sort-field to get the ${isc.DocUtils.linkForRef('listGrid.sortNumeral')} HTML for.
+     *
+     * @return The HTML for this field's sortNumeral
+     */
+    public native String getSortNumeralHTML(String fieldName) /*-{
+        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
+        return self.getSortNumeralHTML(fieldName);
+    }-*/;
+
+
 
 
 
@@ -6340,26 +6433,9 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
     // ********************* Static Methods ***********************
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+
+
+
     protected native void onInit() /*-{
 
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();

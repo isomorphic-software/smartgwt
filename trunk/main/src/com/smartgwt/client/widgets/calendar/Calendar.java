@@ -1312,6 +1312,24 @@ public class Calendar extends Canvas  implements DataBoundComponent, com.smartgw
 
 
     /**
+     * Should the parameter date be considered a workday? By default this method tries to find the parameter date day in {@link
+     * com.smartgwt.client.widgets.calendar.Calendar#getWorkdays workdays}, and returns true if found. Override this method to 
+     * provide custom logic for determining workday, for example returning false on holidays.
+     * @param date date to check for being a workday
+     *
+     * @return true if date is a workday, false otherwise
+     */
+    public native Boolean dateIsWorkday(Date date) /*-{
+        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
+        var retVal =self.dateIsWorkday(@com.smartgwt.client.util.JSOHelper::convertToJavaScriptDate(Ljava/util/Date;)(date));
+        if(retVal == null || retVal === undefined) {
+            return null;
+        } else {
+            return @com.smartgwt.client.util.JSOHelper::toBoolean(Z)(retVal);
+        }
+    }-*/;
+
+    /**
      * Move to the next day, week, or month, depending on which tab is selected.
      */
     public native void next() /*-{
@@ -1978,6 +1996,17 @@ public class Calendar extends Canvas  implements DataBoundComponent, com.smartgw
         setAttribute("showAddEventButton", showAddEventButton, false);
     }
 	
+    /**
+     * Array of days that are considered workdays when {@link com.smartgwt.client.widgets.calendar.Calendar#getShowWorkday
+     * showWorkday} is true
+     *
+     * @param workdays workdays Default value is [1,2,3,4,5]
+     * @throws IllegalStateException this property cannot be changed after the component has been created
+     */
+    public void setWorkdays(int[] workdays)  throws IllegalStateException {
+        setAttribute("workdays", workdays, false);
+    }
+
     public CalendarEvent[] getData() {
         JavaScriptObject dataJS = getAttributeAsJavaScriptObject("data");
         CalendarEvent[] data = convertToCalendarEventArray(dataJS);
