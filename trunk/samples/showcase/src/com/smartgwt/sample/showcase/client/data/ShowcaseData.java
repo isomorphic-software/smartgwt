@@ -108,7 +108,7 @@ public class ShowcaseData {
                     new ExplorerTreeNode("Demo Application", "featured-complete-app", "featured-category", "silk/layout_content.png", new MiniAppSample.Factory(), true, idSuffix),
                     new ExplorerTreeNode("Smart GWT MVC", "featured-smartgwt-mvc", "featured-category", "silk/arrow_join.png", new TreeEditingSample.Factory(), true, idSuffix),
                     new ExplorerTreeNode("Miller Columns", "featured-miller-columns", "featured-category", "silk/ipod.png", new MillerColumnsSample.Factory(), true, idSuffix),
-                    new ExplorerTreeNode("Nested Grid", "featured-nested-grid", "featured-category", "crystal/16/mimetypes/widget_doc.png", new NestedGridSample.Factory(), true, idSuffix),
+                    new ExplorerTreeNode("Nested Grid", "featured-nested-grid", "featured-category", "crystal/16/mimetypes/widget_doc.png", new GridRowExpansionRelatedRecordsSample.Factory(), true, idSuffix),
                     new ExplorerTreeNode("Tile Sort &amp; Filtering", "featured-tile-filtering", "featured-category", "silk/application_view_tile.png", new FilterSortTilingSample.Factory(), true, idSuffix),
                     new ExplorerTreeNode("Print Grid", "featured-print-grid", "featured-category", "silk/printer.png", new PrintingSample.Factory(), true, idSuffix),
                     new ExplorerTreeNode("Adv. Filter Builder", "featured-filter-builder-grid", "featured-category", "crystal/oo/sc_insertformula.png", new GridNestedFilterBulderSample.Factory(), true, idSuffix),
@@ -134,10 +134,10 @@ public class ShowcaseData {
 
                     new ExplorerTreeNode("New Samples", "new-category", "root", "crystal/16/actions/irc_online.png", null, true, idSuffix),
                     new ExplorerTreeNode("Grid Summaries", "grid-summaries-new-category", "new-category", "crystal/16/apps/tooloptions.png", new GridSummariesSample.Factory(), true, idSuffix),                    
-                    new ExplorerTreeNode("Row Expand-Field", "grid-expanding-details-field-new-category", "new-category", null, new GridRowExpansionDetailFieldSample.Factory(), true, idSuffix),
-                    new ExplorerTreeNode("Row Expand-Details", "grid-expanding-details-new-category", "new-category", null, new GridRowExpansionDetailsSample.Factory(), true, idSuffix),
-                    new ExplorerTreeNode("Row Expand-Form Editor", "grid-expanding-editor-new-category", "new-category", null, new GridRowExpansionEditorSample.Factory(), true, idSuffix),
-                    new ExplorerTreeNode("Row Expand-Related Records", "grid-expanding-related-new-category", "new-category", null, new GridRowExpansionRelatedRecordsSample.Factory(), true, idSuffix),                    
+                    new ExplorerTreeNode("Grid Memo Rows", "grid-memo-rows-new-category", "new-category", null, new GridRowExpansionDetailFieldSample.Factory(), true, idSuffix),
+                    new ExplorerTreeNode("Row Details", "grid-expanding-details-new-category", "new-category", null, new GridRowExpansionDetailsSample.Factory(), true, idSuffix),
+                    new ExplorerTreeNode("Nested Form", "grid-nested-form-new-category", "new-category", null, new GridRowExpansionEditorSample.Factory(), true, idSuffix),
+                    new ExplorerTreeNode("Nested Grid", "grid-nested-grid-new-category", "new-category", null, new GridRowExpansionRelatedRecordsSample.Factory(), true, idSuffix),
                     new ExplorerTreeNode("Text Masking", "form-masking-new-category", "new-category", "silk/vcard_edit.png", new TextMaskingSample.Factory(), true, idSuffix),                    
 
                     new CommandTreeNode("Enterprise Showcase", "smartgwtee-category", "root", "pieces/16/cube_yellow.png", new com.smartgwt.sample.showcase.client.SmartGwtEECommand(), true, idSuffix),
@@ -231,10 +231,10 @@ public class ShowcaseData {
                     new ExplorerTreeNode("Drag Drop", "grid-frozen-dd", "grid-frozen-category", null, new GridDragDropFreezeSample.Factory(), true, idSuffix),
 
                     new ExplorerTreeNode("Expanding Rows", "grid-expanding-rows-category", "grid-category", "crystal/16/apps/tooloptions.png", null, true, idSuffix),
-                    new ExplorerTreeNode("Details Field", "grid-expanding-details-field", "grid-expanding-rows-category", null, new GridRowExpansionDetailFieldSample.Factory(), true, idSuffix),
+                    new ExplorerTreeNode("Memo Rows", "grid-memo-rows", "grid-expanding-rows-category", null, new GridRowExpansionDetailFieldSample.Factory(), true, idSuffix),
                     new ExplorerTreeNode("Details", "grid-expanding-details", "grid-expanding-rows-category", null, new GridRowExpansionDetailsSample.Factory(), true, idSuffix),
-                    new ExplorerTreeNode("Form Editor", "grid-expanding-editor", "grid-expanding-rows-category", null, new GridRowExpansionEditorSample.Factory(), true, idSuffix),
-                    new ExplorerTreeNode("Related Records", "grid-expanding-related", "grid-expanding-rows-category", null, new GridRowExpansionRelatedRecordsSample.Factory(), true, idSuffix),                    
+                    new ExplorerTreeNode("Nested Form", "grid-nested-form", "grid-expanding-rows-category", null, new GridRowExpansionEditorSample.Factory(), true, idSuffix),
+                    new ExplorerTreeNode("Nested Grid", "grid-nested-grid", "grid-expanding-rows-category", null, new GridRowExpansionRelatedRecordsSample.Factory(), true, idSuffix),
 
                     new ExplorerTreeNode("Grouping", "grid-grouping-category", "grid-category", "silk/chart_organisation.png", null, true, idSuffix),
                     new ExplorerTreeNode("Dynamic Grouping", "grid-grouping-dynamic", "grid-grouping-category", null, new GridDynamicGroupingSample.Factory(), true, idSuffix),
@@ -282,7 +282,6 @@ public class ShowcaseData {
                     new ExplorerTreeNode("Pattern Reuse", "pattern-reuse-grid-from-category", "grid-form-category", "silk/database_table.png", new PatternReuseSample.Factory(), true, idSuffix),
 
                     new ExplorerTreeNode("Live Grid", "live-grid", "grid-category", null, new LiveGridFetchSample.Factory(), true, idSuffix),
-                    new ExplorerTreeNode("Nested Grid", "grid-nested-grid", "grid-category", "crystal/16/mimetypes/widget_doc.png", new NestedGridSample.Factory(), true, idSuffix),
                     new ExplorerTreeNode("Dependent Selects (Grid)", "dependent-selects-grid", "grid-category", null, new GridDependentSelectsSample.Factory(), true, idSuffix),
                     new ExplorerTreeNode("Databound Dragging", "grid-db-dragging", "grid-category", "silk/database_link.png", new GridDataBoundDragDropSample.Factory(), true, idSuffix),
                     new ExplorerTreeNode("Grid Summaries", "grid-summaries", "grid-category", "crystal/16/apps/tooloptions.png", new GridSummariesSample.Factory(), true, idSuffix),
