@@ -167,26 +167,21 @@ public class DSRequest extends RPCRequest {
     }
 
     /**
-     * Fieldname to sortBy, prefixed with optional "-" indicating descending sort.  For example, to sort by the field
-     * "userName" in ascending order, set <code>sortBy</code> to just "userName".  For descending sort on "userName", set
-     * <code>sortBy</code> to "-userName".
+     * Fieldnames to sortBy.
      *
-     * @param sortBy sortBy Default value is null
+     * @param sortSpecifiers  Default value is null
      */
-    public void setSortBy(String sortBy) {
-        setAttribute("sortBy", sortBy);
+    public void setSortBy(SortSpecifier[] sortSpecifiers) {
+        setAttribute("sortBy", sortSpecifiers);
     }
 
     /**
-     * Fieldname to sortBy, prefixed with optional "-" indicating descending sort.  For example, to sort by the field
-     * "userName" in ascending order, set <code>sortBy</code> to just "userName".  For descending sort on "userName", set
-     * <code>sortBy</code> to "-userName".
-     *
+     * Fieldname to sortBy
      *
      * @return String
      */
-    public String getSortBy()  {
-        return getAttributeAsString("sortBy");
+    public SortSpecifier[] getSortBy()  {
+        return SortSpecifier.convertToArray(getAttributeAsJavaScriptObject("sortBy"));
     }
              
     /**
