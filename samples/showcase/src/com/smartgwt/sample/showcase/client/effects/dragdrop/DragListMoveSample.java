@@ -4,6 +4,7 @@ import com.smartgwt.client.types.Alignment;
 import com.smartgwt.client.types.DragDataAction;
 import com.smartgwt.client.widgets.Canvas;
 import com.smartgwt.client.widgets.Img;
+import com.smartgwt.client.widgets.TransferImgButton;
 import com.smartgwt.client.widgets.events.ClickEvent;
 import com.smartgwt.client.widgets.events.ClickHandler;
 import com.smartgwt.client.widgets.layout.HStack;
@@ -57,8 +58,7 @@ public class DragListMoveSample extends ShowcasePanel {
         vStack.setHeight(74);
         vStack.setLayoutAlign(Alignment.CENTER);
 
-        Img rightImg = new Img("icons/32/arrow_right.png", 32, 32);
-        rightImg.setLayoutAlign(Alignment.CENTER);
+        TransferImgButton rightImg = new TransferImgButton(TransferImgButton.RIGHT);
         rightImg.addClickHandler(new ClickHandler() {
             public void onClick(ClickEvent event) {
                 myList2.transferSelectedData(myList1);
@@ -66,8 +66,7 @@ public class DragListMoveSample extends ShowcasePanel {
         });
         vStack.addMember(rightImg);
 
-        Img leftImg = new Img("icons/32/arrow_left.png", 32, 32);
-        leftImg.setLayoutAlign(Alignment.CENTER);
+        TransferImgButton leftImg = new TransferImgButton(TransferImgButton.LEFT);
         leftImg.addClickHandler(new ClickHandler() {
             public void onClick(ClickEvent event) {
                 myList1.transferSelectedData(myList2);

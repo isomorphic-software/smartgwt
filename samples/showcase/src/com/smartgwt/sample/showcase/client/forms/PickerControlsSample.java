@@ -11,7 +11,7 @@ import com.smartgwt.sample.showcase.client.PanelFactory;
 import com.smartgwt.sample.showcase.client.ShowcasePanel;
 
 public class PickerControlsSample extends ShowcasePanel {
-    private static final String DESCRIPTION = "<p>The CustomPicker example demonstrates various  standard picker icons that provided with the library. " +
+    private static final String DESCRIPTION = "<p>The CustomPicker example demonstrates various standard picker icons that provided with the library. " +
             "You can combine as many pickers as you like as illustrated by the sample below.</p>";
 
     public static class Factory implements PanelFactory {
