@@ -53,6 +53,7 @@ public class WindowHeaderControlsSample extends ShowcasePanel {
         systemSelector.setLayoutAlign(Alignment.CENTER);
 
         SelectItem selectFont = new SelectItem();
+        selectFont.setHeight(19);
         selectFont.setName("selectFont");
         selectFont.setWidth(120);
         selectFont.setShowTitle(false);
