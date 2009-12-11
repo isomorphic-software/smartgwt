@@ -7,6 +7,7 @@ import com.smartgwt.client.widgets.grid.ListGrid;
 import com.smartgwt.client.widgets.grid.ListGridField;
 import com.smartgwt.sample.showcase.client.PanelFactory;
 import com.smartgwt.sample.showcase.client.ShowcasePanel;
+import com.smartgwt.sample.showcase.client.data.AnimalXmlDS;
 import com.smartgwt.sample.showcase.client.data.CountryData;
 import com.smartgwt.sample.showcase.client.data.ItemSupplyLocalDS;
 import com.smartgwt.sample.showcase.client.data.ItemSupplyXmlDS;
@@ -36,20 +37,23 @@ public class GridRowExpansionDetailsSample extends ShowcasePanel {
     }
 
     public Canvas getViewPanel() {
-        DataSource dataSource = ItemSupplyXmlDS.getInstance();
+        DataSource dataSource = AnimalXmlDS.getInstance();
 
         ListGrid listGrid = new ListGrid();
         listGrid.setWidth(600);
         listGrid.setHeight(500);
         listGrid.setCanExpandRecords(true);
+        listGrid.setCanSort(true);
         listGrid.setExpansionMode(ExpansionMode.DETAILS);
         listGrid.setAutoFetchData(true);
+
         listGrid.setDataSource(dataSource);
 
-        ListGridField itemNameField = new ListGridField("itemName");
-        ListGridField skuField = new ListGridField("SKU");
+        ListGridField commonName = new ListGridField("commonName");
+        ListGridField scientificName = new ListGridField("scientificName");
+        ListGridField lifeSpan = new ListGridField("lifeSpan");
 
-        listGrid.setFields(itemNameField, skuField);
+        listGrid.setFields(commonName, scientificName, lifeSpan);
 
         return listGrid;
     }
