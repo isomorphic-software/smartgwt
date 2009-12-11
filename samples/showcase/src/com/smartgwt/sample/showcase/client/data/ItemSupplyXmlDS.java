@@ -27,7 +27,7 @@ public class ItemSupplyXmlDS extends DataSource {
         pkField.setHidden(true);
         pkField.setPrimaryKey(true);
 
-        DataSourceTextField itemNameField = new DataSourceTextField("itemName", "Item Name", 128, true);
+        DataSourceTextField itemNameField = new DataSourceTextField("itemName", "Item", 128, true);
         DataSourceTextField skuField = new DataSourceTextField("SKU", "SKU", 10, true);
 
         DataSourceTextField descriptionField = new DataSourceTextField("description", "Description", 2000);

@@ -133,7 +133,7 @@ public class ShowcaseData {
                     new ExplorerTreeNode("Grid Summaries", "grid-summaries-featured-category", "featured-category", "crystal/16/apps/tooloptions.png", new GridSummariesSample.Factory(), true, idSuffix),
 
                     new ExplorerTreeNode("New Samples", "new-category", "root", "crystal/16/actions/irc_online.png", null, true, idSuffix),
-                    new ExplorerTreeNode("Grid Summaries", "grid-summaries-new-category", "new-category", "crystal/16/apps/tooloptions.png", new GridSummariesSample.Factory(), true, idSuffix),                    
+                    new ExplorerTreeNode("Multilevel Sort", "grid-multisort-new-category", "new-category", null, new MultiLevelSortSample.Factory(), true, idSuffix),
                     new ExplorerTreeNode("Grid Memo Rows", "grid-memo-rows-new-category", "new-category", null, new GridRowExpansionDetailFieldSample.Factory(), true, idSuffix),
                     new ExplorerTreeNode("Row Details", "grid-expanding-details-new-category", "new-category", null, new GridRowExpansionDetailsSample.Factory(), true, idSuffix),
                     new ExplorerTreeNode("Nested Form", "grid-nested-form-new-category", "new-category", null, new GridRowExpansionEditorSample.Factory(), true, idSuffix),
@@ -201,6 +201,7 @@ public class ShowcaseData {
 
                     new ExplorerTreeNode("Sort & Filter", "grid-sortfilter-category", "grid-category", "pieces/16/cube_blue.png", null, true, idSuffix),
                     new ExplorerTreeNode("Sort", "grid-sortfilter-sort", "grid-sortfilter-category", null, new GridSortSample.Factory(), true, idSuffix),
+                    new ExplorerTreeNode("Multilevel Sort", "grid-multilevel-sort", "grid-sortfilter-category", null, new MultiLevelSortSample.Factory(), true, idSuffix),
                     new ExplorerTreeNode("Disable Sort", "grid-sortfilter-disable-sort", "grid-sortfilter-category", null, new DisableSortSample.Factory(), true, idSuffix),
                     new ExplorerTreeNode("Sort Arrows", "grid-sortfilter-sort-arrows", "grid-sortfilter-category", null, new SortArrowsSample.Factory(), true, idSuffix),
                     new ExplorerTreeNode("Data-Aware Sort", "grid-sortfilter-datatypes", "grid-sortfilter-category", null, new SortDataTypesSample.Factory(), true, idSuffix),
