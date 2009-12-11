@@ -1,6 +1,7 @@
 package com.smartgwt.sample.showcase.client.data;
 
 import com.smartgwt.sample.showcase.client.DebugConsoleCommand;
+import com.smartgwt.sample.showcase.client.forms.*;
 import com.smartgwt.sample.showcase.client.grid.expando.GridRowExpansionDetailFieldSample;
 import com.smartgwt.sample.showcase.client.grid.expando.GridRowExpansionDetailsSample;
 import com.smartgwt.sample.showcase.client.grid.expando.GridRowExpansionEditorSample;
@@ -24,10 +25,6 @@ import com.smartgwt.sample.showcase.client.dataintegration.xml.YahooXmlServicesS
 import com.smartgwt.sample.showcase.client.effects.animation.*;
 import com.smartgwt.sample.showcase.client.effects.dragdrop.*;
 import com.smartgwt.sample.showcase.client.effects.looknfeel.*;
-import com.smartgwt.sample.showcase.client.forms.CustomPickerSample;
-import com.smartgwt.sample.showcase.client.forms.FormDataBindingSample;
-import com.smartgwt.sample.showcase.client.forms.FormFocusFirstSample;
-import com.smartgwt.sample.showcase.client.forms.TextMaskingSample;
 import com.smartgwt.sample.showcase.client.forms.controls.FormVariousControlsSample;
 import com.smartgwt.sample.showcase.client.forms.dependencies.*;
 import com.smartgwt.sample.showcase.client.forms.details.FormHintsSample;
@@ -138,6 +135,7 @@ public class ShowcaseData {
                     new ExplorerTreeNode("Row Details", "grid-expanding-details-new-category", "new-category", null, new GridRowExpansionDetailsSample.Factory(), true, idSuffix),
                     new ExplorerTreeNode("Nested Form", "grid-nested-form-new-category", "new-category", null, new GridRowExpansionEditorSample.Factory(), true, idSuffix),
                     new ExplorerTreeNode("Nested Grid", "grid-nested-grid-new-category", "new-category", null, new GridRowExpansionRelatedRecordsSample.Factory(), true, idSuffix),
+                    new ExplorerTreeNode("Picker Icons", "picker-icons-new-category", "new-category", null, new PickerControlsSample.Factory(), true, idSuffix),
                     new ExplorerTreeNode("Text Masking", "form-masking-new-category", "new-category", "silk/vcard_edit.png", new TextMaskingSample.Factory(), true, idSuffix),                    
 
                     new CommandTreeNode("Enterprise Showcase", "smartgwtee-category", "root", "pieces/16/cube_yellow.png", new com.smartgwt.sample.showcase.client.SmartGwtEECommand(), true, idSuffix),
@@ -368,6 +366,8 @@ public class ShowcaseData {
                     new ExplorerTreeNode("Data Binding", "layout-form-databinding", "form-category", null, new FormDataBindingSample.Factory(), true, idSuffix),
                     new ExplorerTreeNode("Focus First Field", "form-category-focus-first", "form-category", null, new FormFocusFirstSample.Factory(), true, idSuffix),
                     new ExplorerTreeNode("Custom Picker", "form-category-custom-picker", "form-category", null, new CustomPickerSample.Factory(), true, idSuffix),
+                    new ExplorerTreeNode("Picker Icons", "form-category-picker-icons", "form-category", null, new PickerControlsSample.Factory(), true, idSuffix),
+
                     new ExplorerTreeNode("DataType Reuse", "form-type-reuse", "form-category", "silk/database_table.png", new TypeReuseSample.Factory(), true, idSuffix),
                     new ExplorerTreeNode("Text Masking", "form-masking", "form-category", "silk/vcard_edit.png", new TextMaskingSample.Factory(), true, idSuffix),
 

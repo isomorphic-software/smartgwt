@@ -16,7 +16,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class CustomPickerSample extends ShowcasePanel {
-    private static final String DESCRIPTION = "<p>The CustomPicker example demostrates a custom form control (YesNoMaybeItem) implemented as a \"picker\" that the user can pop up from a picker icon next to a form or grid value.</p>";
+    private static final String DESCRIPTION = "<p>The CustomPicker example demonstrates various custom picker icons that (YesNoMaybeItem) implemented as a \"picker\" that the user can pop up from a picker icon next to a form or grid value.</p>";
 
     public static class Factory implements PanelFactory {
         private String id;
