@@ -43,7 +43,8 @@ public class MultiSortDialog {
         $wnd.isc.MultiSortDialog.askForSort(dbcJS, initialSortJS,
                 
            callback == null ? null : function(sortLevels) {
-                var sortLevelsJ = sortLevels == null || sortLevels == undefined ? null : @com.smartgwt.client.data.SortSpecifier::convertToArray(Lcom/google/gwt/core/client/JavaScriptObject;)(sortLevels);
+               var sortLevelsJ = sortLevels == null || sortLevels == undefined ? null : @com.smartgwt.client.data.SortSpecifier::convertToArray(Lcom/google/gwt/core/client/JavaScriptObject;)(sortLevels);
+               callback.@com.smartgwt.client.data.MultiSortCallback::execute([Lcom/smartgwt/client/data/SortSpecifier;)(sortLevelsJ);
            }
         );
     }-*/;    
