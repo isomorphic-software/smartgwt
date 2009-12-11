@@ -383,6 +383,7 @@ public class ShowcaseData {
                     new ExplorerTreeNode("Modality", "layout-windows-modality", "layout-windows-category", null, new WindowModalitySample.Factory(), true, idSuffix),
                     new ExplorerTreeNode("Dragging", "layout-windows-dragging", "layout-windows-category", null, new WindowDraggingSample.Factory(), true, idSuffix),
                     new ExplorerTreeNode("Minimize", "layout-windows-minimize", "layout-windows-category", null, new WindowMinimizeSample.Factory(), true, idSuffix),
+                    new ExplorerTreeNode("Header Icons", "layout-windows-header-icons", "layout-windows-category", null, new WindowHeaderIconsSample.Factory(), true, idSuffix),
                     new ExplorerTreeNode("Header Controls", "layout-windows-header-controls", "layout-windows-category", null, new WindowHeaderControlsSample.Factory(), true, idSuffix),
                     new ExplorerTreeNode("Footer", "layout-windows-footer", "layout-windows-category", null, new WindowFooterSample.Factory(), true, idSuffix),
 
