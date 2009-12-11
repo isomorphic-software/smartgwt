@@ -1,21 +1,19 @@
 package com.smartgwt.sample.showcase.client.grid.expando;
 
-import com.google.gwt.i18n.client.NumberFormat;
 import com.smartgwt.client.data.DataSource;
-import com.smartgwt.client.types.*;
+import com.smartgwt.client.types.Alignment;
+import com.smartgwt.client.types.ListGridEditEvent;
+import com.smartgwt.client.types.RowEndEditAction;
 import com.smartgwt.client.widgets.Canvas;
 import com.smartgwt.client.widgets.IButton;
 import com.smartgwt.client.widgets.events.ClickEvent;
 import com.smartgwt.client.widgets.events.ClickHandler;
-import com.smartgwt.client.widgets.grid.CellFormatter;
 import com.smartgwt.client.widgets.grid.ListGrid;
-import com.smartgwt.client.widgets.grid.ListGridField;
 import com.smartgwt.client.widgets.grid.ListGridRecord;
 import com.smartgwt.client.widgets.layout.HLayout;
 import com.smartgwt.client.widgets.layout.VLayout;
 import com.smartgwt.sample.showcase.client.PanelFactory;
 import com.smartgwt.sample.showcase.client.ShowcasePanel;
-import com.smartgwt.sample.showcase.client.data.CountryXmlDS;
 import com.smartgwt.sample.showcase.client.data.ItemSupplyXmlDS;
 import com.smartgwt.sample.showcase.client.data.SupplyCategoryXmlDS;
 
@@ -79,14 +77,6 @@ public class GridRowExpansionRelatedRecordsSample extends ShowcasePanel {
                 HLayout hLayout = new HLayout(10);
                 hLayout.setAlign(Alignment.CENTER);
 
-                IButton editButton = new IButton("Edit New");
-                editButton.addClickHandler(new ClickHandler() {
-                    public void onClick(ClickEvent event) {
-                        countryGrid.startEditingNew();
-                    }
-                });
-                hLayout.addMember(editButton);
-
                 IButton saveButton = new IButton("Save");
                 saveButton.setTop(250);
                 saveButton.addClickHandler(new ClickHandler() {
@@ -126,10 +116,8 @@ public class GridRowExpansionRelatedRecordsSample extends ShowcasePanel {
         listGrid.setAutoFetchData(true);
         listGrid.setDataSource(dataSource);
 
-
         return listGrid;
     }
-
 
     public String getIntro() {
         return DESCRIPTION;
