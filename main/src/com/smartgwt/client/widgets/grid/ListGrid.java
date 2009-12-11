@@ -6433,9 +6433,26 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
     // ********************* Static Methods ***********************
 
 
-
-
-
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     protected native void onInit() /*-{
 
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
@@ -8455,7 +8472,86 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
         var retVal =self.rowDoubleClick(record.@com.smartgwt.client.core.DataClass::getJsObj()(), recordNum, fieldNum);
     }-*/;
-    
+
+
+    /**
+     * An array of SortSpecifier objects used to set up the initial sort configuration for
+     * this grid.
+     *
+     * @param initialSort initialSort Default value is null
+     * @throws IllegalStateException this property cannot be changed after the component has been created
+     */
+    public void setInitialSort(SortSpecifier[] initialSort)  throws IllegalStateException {
+        setAttribute("initialSort", initialSort, false);
+    }
+
+    /**
+     * An array of ${isc.DocUtils.linkForRef('object:SortSpecifier')} objects used to set up the initial sort configuration for
+     * this grid.
+     *
+     *
+     * @return Array of SortSpecifier
+     */
+    public SortSpecifier[] getInitialSort()  {
+        return SortSpecifier.convertToArray(getAttributeAsJavaScriptObject("initialSort"));
+    }
+
+
+    /**
+     * Returns the ${isc.DocUtils.linkForRef('object:SortSpecifier')} for the passed fieldName, or null if the field is not
+     * sorted.
+     * @param fieldName The name of a field, visible, hidden or existing only in the dataSource
+     *
+     * @return True if the passed field is sorted, false otherwise
+     */
+    public native SortSpecifier getSortSpecifier(String fieldName) /*-{
+        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
+        var retVal =self.getSortSpecifier(fieldName);
+        if(retVal == null || retVal === undefined) {
+            return null;
+        } else {
+            return @com.smartgwt.client.data.SortSpecifier::new(Lcom/google/gwt/core/client/JavaScriptObject;)(retVal);
+        }
+    }-*/;
+
+    /**
+     * Adds another SortSpecifierto this grid's sort configuration and resorts.
+     * @param sortSpecifier A SortSpecifier object indicating an additional field and direction to sort by
+     */
+    public native void addSort(SortSpecifier sortSpecifier) /*-{
+        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
+        self.addSort(sortSpecifier.@com.smartgwt.client.core.DataClass::getJsObj()());
+    }-*/;
+
+    /**
+     * This method sorts the grid on one or more fields.  Pass in an array of
+     * SortSpecifiers to have the grid's data sorted by the fields in each
+     * specifier.property and in  the directions specified.  The grid can be sorted by any combination of fields, including
+     * fields specified in the fields array, whether visible or hidden, and  {@link
+     * com.smartgwt.client.data.DataSource#getFields 'unused fields from the underlying dataSource'}, if there is one.  If
+     * multiple fields are sorted, those that are visible show a directional icon and a small  {@link
+     * com.smartgwt.client.widgets.grid.ListGrid#getSortNumeralStyle 'sort-numeral'}  indicating that field's index in the sort
+     * configuration. <P>See {@link com.smartgwt.client.widgets.grid.ListGrid#addSort} and {@link
+     * com.smartgwt.client.widgets.grid.ListGrid#alterSort} APIs for information on making changes to the current sort
+     * configuration.
+     * @param sortSpecifiers Array of SortSpecifier objects
+     */
+    public native void setSort(SortSpecifier[] sortSpecifiers) /*-{
+        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
+        self.setSort(@com.smartgwt.client.util.JSOHelper::convertToJavaScriptArray([Ljava/lang/Object;)(sortSpecifiers));
+    }-*/;
+
+    /**
+     * Return the grids current sort specification.
+     *
+     * @return sort specifiers
+     */
+    public native SortSpecifier[] getSort() /*-{
+        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
+        var sortSpec = self.getSort();
+        return @com.smartgwt.client.data.SortSpecifier::convertToArray(Lcom/google/gwt/core/client/JavaScriptObject;)(sortSpec);
+    }-*/;
+
     /**
      * Add a onHeaderClick handler.
      * <p>
