@@ -6,6 +6,7 @@ import com.smartgwt.client.types.Alignment;
 import com.smartgwt.client.types.DragDataAction;
 import com.smartgwt.client.widgets.Canvas;
 import com.smartgwt.client.widgets.Img;
+import com.smartgwt.client.widgets.TransferImgButton;
 import com.smartgwt.client.widgets.events.ClickEvent;
 import com.smartgwt.client.widgets.events.ClickHandler;
 import com.smartgwt.client.widgets.form.DynamicForm;
@@ -109,8 +110,7 @@ public class GridDataBoundDragDropSample extends ShowcasePanel {
 
         hStack.addMember(vStack);
 
-        Img arrowImg = new Img("icons/32/arrow_right.png", 32, 32);
-        arrowImg.setLayoutAlign(Alignment.CENTER);
+        TransferImgButton arrowImg = new TransferImgButton(TransferImgButton.RIGHT);
         arrowImg.addClickHandler(new ClickHandler() {
             public void onClick(ClickEvent event) {
                 projectGrid.transferSelectedData(employeesGrid);

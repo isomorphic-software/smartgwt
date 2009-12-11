@@ -5,6 +5,7 @@ import com.smartgwt.client.types.DragDataAction;
 import com.smartgwt.client.types.TreeModelType;
 import com.smartgwt.client.widgets.Canvas;
 import com.smartgwt.client.widgets.Img;
+import com.smartgwt.client.widgets.TransferImgButton;
 import com.smartgwt.client.widgets.events.ClickEvent;
 import com.smartgwt.client.widgets.events.ClickHandler;
 import com.smartgwt.client.widgets.layout.HStack;
@@ -38,75 +39,69 @@ public class TreeDragNodesSample extends ShowcasePanel {
     }
 
     public Canvas getViewPanel() {
-        
+
         Tree grid1Tree = new Tree();
         grid1Tree.setModelType(TreeModelType.CHILDREN);
         grid1Tree.setNameProperty("Name");
         grid1Tree.setRoot(new PartsTreeNode("Root",
-            new PartsTreeNode("Bin 1",
-                new PartsTreeNode("Blue Cube", "cube_blue.png"),
-                new PartsTreeNode("Yellow Cube", "cube_yellow.png"),
-                new PartsTreeNode("Green Cube", "cube_green.png")
-            ),
-            new PartsTreeNode("Bin 2",
-                new PartsTreeNode("Blue Piece", "pawn_blue.png"),
-                new PartsTreeNode("Green Piece", "pawn_green.png"),
-                new PartsTreeNode("Yellow Piece", "pawn_yellow.png")
-            )
+                new PartsTreeNode("Bin 1",
+                        new PartsTreeNode("Blue Cube", "cube_blue.png"),
+                        new PartsTreeNode("Yellow Cube", "cube_yellow.png"),
+                        new PartsTreeNode("Green Cube", "cube_green.png")
+                ),
+                new PartsTreeNode("Bin 2",
+                        new PartsTreeNode("Blue Piece", "pawn_blue.png"),
+                        new PartsTreeNode("Green Piece", "pawn_green.png"),
+                        new PartsTreeNode("Yellow Piece", "pawn_yellow.png")
+                )
         ));
-        
+
         final PartsTreeGrid grid1 = new PartsTreeGrid();
         grid1.setDragDataAction(DragDataAction.MOVE);
         grid1.setData(grid1Tree);
         grid1.getData().openAll();
-        
+
         Tree grid2Tree = new Tree();
         grid2Tree.setModelType(TreeModelType.CHILDREN);
         grid2Tree.setNameProperty("Name");
-        grid2Tree.setRoot(new PartsTreeNode("Root", 
-            new PartsTreeNode("Bin 3", 
-                new PartsTreeNode("Blue Part", "piece_blue.png"),
-                new PartsTreeNode("Green Part", "piece_green.png"),
-                new PartsTreeNode("Yellow Part", "piece_yellow.png")
-            )
+        grid2Tree.setRoot(new PartsTreeNode("Root",
+                new PartsTreeNode("Bin 3",
+                        new PartsTreeNode("Blue Part", "piece_blue.png"),
+                        new PartsTreeNode("Green Part", "piece_green.png"),
+                        new PartsTreeNode("Yellow Part", "piece_yellow.png")
+                )
         ));
-        
+
         final PartsTreeGrid grid2 = new PartsTreeGrid();
         grid2.setLeft(250);
         grid2.setData(grid2Tree);
         grid2.getData().openAll();
-        
+
         VStack moveControls = new VStack(10);
         moveControls.setWidth(32);
         moveControls.setHeight(74);
         moveControls.setLayoutAlign(Alignment.CENTER);
-        
-        moveControls.addMember(new Img("icons/32/arrow_right.png", 32, 32) {
-            {
-                addClickHandler(new ClickHandler() {
-                    public void onClick(ClickEvent event) {
-                        grid2.transferSelectedData(grid1);
-                    }
-                });
+
+        TransferImgButton rightArrow = new TransferImgButton(TransferImgButton.RIGHT, new ClickHandler() {
+            public void onClick(ClickEvent event) {
+                grid2.transferSelectedData(grid1);
             }
         });
-        
-        moveControls.addMember(new Img("icons/32/arrow_left.png", 32, 32) {
-            {
-                addClickHandler(new ClickHandler() {
-                    public void onClick(ClickEvent event) {
-                        grid1.transferSelectedData(grid2);
-                    }
-                });
+        moveControls.addMember(rightArrow);
+
+        TransferImgButton leftArrow = new TransferImgButton(TransferImgButton.LEFT, new ClickHandler() {
+            public void onClick(ClickEvent event) {
+                grid1.transferSelectedData(grid2);
             }
         });
-        
+        moveControls.addMember(leftArrow);
+
         HStack grids = new HStack(10);
         grids.setHeight(160);
         grids.addMember(grid1);
         grids.addMember(moveControls);
         grids.addMember(grid2);
-        
+
         return grids;
     }
 
@@ -128,9 +123,9 @@ public class TreeDragNodesSample extends ShowcasePanel {
         }
     }
 
-    public static class PartsTreeNode extends TreeNode {     
+    public static class PartsTreeNode extends TreeNode {
         public PartsTreeNode(String name, String icon) {
-            this(name, icon, new PartsTreeNode[] {});
+            this(name, icon, new PartsTreeNode[]{});
         }
 
         public PartsTreeNode(String name, PartsTreeNode... children) {
@@ -140,7 +135,7 @@ public class TreeDragNodesSample extends ShowcasePanel {
         public PartsTreeNode(String name, String icon, PartsTreeNode... children) {
             setAttribute("Name", name);
             setAttribute("children", children);
-            if(icon!=null)
+            if (icon != null)
                 setAttribute("icon", icon);
         }
     }
