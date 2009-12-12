@@ -39,7 +39,7 @@ public class ButtonIconsSample extends ShowcasePanel {
 
         final IButton findButton = new IButton("Find Related");
         findButton.setWidth(120);
-        findButton.setIcon("icons/16/find.png");
+        findButton.setIcon("[SKINIMG]/actions/search.png");
 
         final IButton saveButton = new IButton("Save");
         saveButton.setShowRollOver(true);

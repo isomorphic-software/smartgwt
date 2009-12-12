@@ -42,7 +42,7 @@ public class FormFillingSample extends ShowcasePanel {
         VLayout messageLayout = new VLayout();
         messageLayout.setWidth(200);
         messageLayout.setHeight(300);
-        messageLayout.setBorder("2px solid black");
+        messageLayout.setBorder("1px solid #6a6a6a");
         messageLayout.setLayoutMargin(5);
         
         final Canvas textCanvas = new Canvas();

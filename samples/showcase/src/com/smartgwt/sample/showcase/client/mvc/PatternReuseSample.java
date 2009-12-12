@@ -122,7 +122,6 @@ public class PatternReuseSample extends ShowcasePanel {
             grid.setWidth(500);
             grid.setHeight(350);
             grid.setDataSource(datasource);
-            grid.setShowResizeBar(true);
             grid.setAutoFetchData(true);
             grid.addRecordClickHandler(new RecordClickHandler() {
                 public void onRecordClick(RecordClickEvent event) {

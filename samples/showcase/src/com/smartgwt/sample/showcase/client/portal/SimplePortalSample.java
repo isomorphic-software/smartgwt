@@ -192,7 +192,7 @@ public class SimplePortalSample extends ShowcasePanel {
             setCanDrop(true);
 
             // customize the appearance and order of the controls in the window header
-            setHeaderControls(HeaderControls.MINIMIZE_BUTTON, HeaderControls.HEADER_LABEL, HeaderControls.CLOSE_BUTTON);
+            setHeaderControls(HeaderControls.MINIMIZE_BUTTON, HeaderControls.HEADER_LABEL, new HeaderControl(HeaderControl.SETTINGS), new HeaderControl(HeaderControl.HELP), HeaderControls.CLOSE_BUTTON);
 
             // show either a shadow, or translucency, when dragging a portlet
             // (could do both at the same time, but these are not visually compatible effects)

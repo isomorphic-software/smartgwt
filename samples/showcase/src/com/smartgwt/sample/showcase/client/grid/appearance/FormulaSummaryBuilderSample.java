@@ -56,6 +56,8 @@ public class FormulaSummaryBuilderSample extends ShowcasePanel {
         VLayout layout = new VLayout(15);
 
         final ListGrid countryGrid = new ListGrid();
+        countryGrid.setLeaveScrollbarGap(true);
+        
         countryGrid.setWidth(750);
         countryGrid.setHeight(224);
         countryGrid.setDataSource(CountryXmlDS.getInstance());

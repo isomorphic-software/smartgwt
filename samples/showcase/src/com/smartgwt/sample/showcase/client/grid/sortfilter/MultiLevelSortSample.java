@@ -1,3 +1,19 @@
+/*
+ * Smart GWT (GWT for SmartClient)
+ * Copyright 2008 and beyond, Isomorphic Software, Inc.
+ *
+ * Smart GWT is free software; you can redistribute it and/or modify it
+ * under the terms of the GNU Lesser General Public License version 3
+ * is published by the Free Software Foundation.  Smart GWT is also
+ * available under typical commercial license terms - see
+ * http://smartclient.com/license
+ *
+ * This software is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU
+ * Lesser General Public License for more details.
+ */
+
 package com.smartgwt.sample.showcase.client.grid.sortfilter;
 
 import com.google.gwt.i18n.client.NumberFormat;
@@ -29,7 +45,7 @@ public class MultiLevelSortSample extends ShowcasePanel {
             "to reverse it's direction, or an unsorted column- header to add that field to the list of fields being sorted. Clicking a " +
             "column header without holding down SHIFT clears the current sort configuration and initializes a new sort on the selected field.</p>" +
             "<p>Click the \"Multilevel Sort\" button to show a MultiSortDialog. " +
-            "Select a set of sort properties and directions and click \"Save\" to see the grid resorted by those properties.</p>";
+            "Select a set of sort properties and directions and click \"Apply\" to see the grid resorted by those properties.</p>";
 
     public static class Factory implements PanelFactory {
         private String id;
@@ -68,7 +84,8 @@ public class MultiLevelSortSample extends ShowcasePanel {
         });
 
         IButton button = new IButton("Multilevel Sort");
-        button.setAutoFit(true);
+        button.setIcon("crystal/16/actions/sort_incr.png");
+        button.setWidth(120);
         button.addClickHandler(new ClickHandler() {
             public void onClick(ClickEvent event) {
                 MultiSortDialog.askForSort(listGrid, listGrid.getSort(), new MultiSortCallback() {

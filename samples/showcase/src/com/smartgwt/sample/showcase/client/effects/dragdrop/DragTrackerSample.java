@@ -67,7 +67,7 @@ public class DragTrackerSample extends ShowcasePanel {
     	label.setCanAcceptDrop(true);
     	label.addDropOverHandler(new DropOverHandler() {
 			public void onDropOver(DropOverEvent event) {
-				label.setBackgroundColor("#ffff80");			
+				label.setBackgroundColor("#FFFF88");			
 			}
     	});
     	

@@ -146,7 +146,7 @@ public class AdaptiveSortSample extends ShowcasePanel {
             setPadding(10);
             setWidth(500);
             setHeight(30);
-            setBorder("1px solid black");
+            setBorder("1px solid #6a6a6a");
         }
 
         public void incrementAndUpdate(int totalRows, int startRow, int endRow) {

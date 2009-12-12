@@ -41,7 +41,7 @@ public class FormTitlesSample extends ShowcasePanel {
     TitleOrientation titleOrientation = TitleOrientation.LEFT;
       
     public Canvas getViewPanel() {
-        HLayout layout = new HLayout();
+        HLayout layout = new HLayout(20);
         
         final DynamicForm form = new DynamicForm();
         form.setWidth(250);

@@ -40,7 +40,7 @@ public class ButtonAppearanceSample extends ShowcasePanel {
         stretchButton.setShowDisabled(true);
         stretchButton.setShowDown(true);
         stretchButton.setTitleStyle("stretchTitle");
-        stretchButton.setIcon("icons/16/find.png");
+        stretchButton.setIcon("[SKINIMG]/actions/search.png");
 
         final Button cssButton = new Button("CSS Button");
         cssButton.setShowRollOver(true);

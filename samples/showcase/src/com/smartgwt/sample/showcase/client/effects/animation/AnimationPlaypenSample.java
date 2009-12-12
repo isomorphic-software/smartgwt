@@ -45,7 +45,7 @@ public class AnimationPlaypenSample extends ShowcasePanel {
         dest.setAlign(Alignment.CENTER);
         dest.setShowEdges(true);
         dest.setEdgeSize(5);
-        dest.setBackgroundColor("#FFFFA0");
+        dest.setBackgroundColor("#FFFF88");
         dest.setCanDragReposition(true);
         dest.setCanDragResize(true);
         dest.setDragAppearance(DragAppearance.TARGET);
@@ -70,8 +70,8 @@ public class AnimationPlaypenSample extends ShowcasePanel {
 
         final Canvas anim = new Canvas();
         anim.setOverflow(Overflow.HIDDEN);
-        anim.setBorder("1px solid black");
-        anim.setBackgroundColor("#A0FFA0");
+        anim.setBorder("1px solid #6a6a6a");
+        anim.setBackgroundColor("#C3D9FF");
         anim.setCanDragReposition(true);
         anim.setCanDragResize(true);
         anim.setDragAppearance(DragAppearance.TARGET);
@@ -91,7 +91,6 @@ public class AnimationPlaypenSample extends ShowcasePanel {
         final HTMLPane scroller = new HTMLPane();
         scroller.setShowEdges(true);
         scroller.setEdgeSize(5);
-        scroller.setBackgroundColor("#D0D0FF");
         scroller.setCanDragReposition(true);
         scroller.setCanDragResize(true);
         scroller.setDragAppearance(DragAppearance.TARGET);
@@ -270,7 +269,7 @@ public class AnimationPlaypenSample extends ShowcasePanel {
         form.setTop(550);
         form.setWidth(300);
         form.setBackgroundColor("white");
-        form.setBorder("1px solid black");
+        form.setBorder("1px solid #6a6a6a");
         form.setTitlePrefix("<b>");
         form.setTitleSuffix("<b>");
 

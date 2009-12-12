@@ -46,7 +46,7 @@ public class SelectedValueComboBoxSample extends ShowcasePanel {
 
         final Label label = new Label();
         label.setAlign(Alignment.CENTER);
-        label.setBorder("1px solid blue");
+        label.setBorder("1px solid #287fd6");
         label.setTop(75);
         label.setHeight(50);
         label.setWidth(250);
@@ -81,7 +81,7 @@ public class SelectedValueComboBoxSample extends ShowcasePanel {
 
         final Label label2 = new Label();
         label2.setAlign(Alignment.CENTER);
-        label2.setBorder("1px solid blue");
+        label2.setBorder("1px solid #287fd6");
         label2.setTop(75);
         label2.setLeft(300);
         label2.setHeight(50);

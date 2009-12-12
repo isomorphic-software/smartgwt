@@ -53,7 +53,7 @@ public class DragEventsSample extends ShowcasePanel {
         label.setLeft(100);
         label.setWidth(300);
         label.setHeight(300);
-        label.setBackgroundColor("lightblue");
+        label.setBackgroundColor("#C3D9FF");
         label.setAlign(Alignment.CENTER);
         label.setContents("Show Drop Reticle");
         label.setOverflow(Overflow.HIDDEN);
@@ -106,7 +106,7 @@ public class DragEventsSample extends ShowcasePanel {
             Canvas canvas = new Canvas();
             canvas.setWidth(this.getWidth() + 2);
             canvas.setHeight(this.getHeight() + 2);
-            canvas.setBorder("1px solid black");
+            canvas.setBorder("1px solid #6a6a6a");
             canvas.setVisibility(Visibility.HIDDEN);
             return canvas;
         }

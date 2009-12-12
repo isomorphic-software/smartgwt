@@ -136,7 +136,8 @@ public class ShowcaseData {
                     new ExplorerTreeNode("Nested Form", "grid-nested-form-new-category", "new-category", null, new GridRowExpansionEditorSample.Factory(), true, idSuffix),
                     new ExplorerTreeNode("Nested Grid", "grid-nested-grid-new-category", "new-category", null, new GridRowExpansionRelatedRecordsSample.Factory(), true, idSuffix),
                     new ExplorerTreeNode("Picker Icons", "picker-icons-new-category", "new-category", null, new PickerControlsSample.Factory(), true, idSuffix),
-                    new ExplorerTreeNode("Text Masking", "form-masking-new-category", "new-category", "silk/vcard_edit.png", new TextMaskingSample.Factory(), true, idSuffix),                    
+                    new ExplorerTreeNode("Text Masking", "form-masking-new-category", "new-category", "silk/vcard_edit.png", new TextMaskingSample.Factory(), true, idSuffix),
+                    new ExplorerTreeNode("Progressbar", "progressbar-new-category", "new-category", null, new ProgressBarSample.Factory(), true, idSuffix),
 
                     new CommandTreeNode("Enterprise Showcase", "smartgwtee-category", "root", "pieces/16/cube_yellow.png", new com.smartgwt.sample.showcase.client.SmartGwtEECommand(), true, idSuffix),
 
@@ -346,7 +347,6 @@ public class ShowcaseData {
 
                     new ExplorerTreeNode("Various Controls", "form-controls-various", "form-category", null, new FormVariousControlsSample.Factory(), true, idSuffix),
                     new ExplorerTreeNode("Rich Text Editor", "form-controls-richedit", "form-category", null, new RichTextEditorSample.Factory(), true, idSuffix),
-                    new ExplorerTreeNode("Progressbar", "form-controls-progressbar", "form-category", null, new ProgressBarSample.Factory(), true, idSuffix),
 
                     new ExplorerTreeNode("Validation", "form-validation-category", "form-category", "silk/vcard_edit.png", null, true, idSuffix),
                     new ExplorerTreeNode("Type", "form-validation-type", "form-validation-category", null, new FormTypeSample.Factory(), true, idSuffix),
@@ -420,6 +420,7 @@ public class ShowcaseData {
                     new ExplorerTreeNode("ToolStrips", "controls-category-toolstrip", "controls-category", null, new ToolStripsSample.Factory(), true, idSuffix),
                     new ExplorerTreeNode("Dialogs", "controls-category-dialogs", "controls-category", null, new DialogsSample.Factory(), true, idSuffix),
                     new ExplorerTreeNode("Slider", "controls-category-slider", "controls-category", null, new SliderSample.Factory(), true, idSuffix),
+                    new ExplorerTreeNode("Progressbar", "controls-category-progressbar", "controls-category", null, new ProgressBarSample.Factory(), true, idSuffix),
 
 
                     new ExplorerTreeNode("Data Integration", "data-integration-category", "root", "silk/connect.png", null, true, idSuffix),

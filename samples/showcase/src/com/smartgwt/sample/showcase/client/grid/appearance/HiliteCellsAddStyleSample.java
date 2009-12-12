@@ -43,9 +43,9 @@ public class HiliteCellsAddStyleSample extends ShowcasePanel {
                 if (getFieldName(colNum).equals("population")) {
                     CountryRecord countryRecord = (CountryRecord) record;
                     if (countryRecord.getPopulation() > 1000000000) {
-                        return "font-weight:bold; color:red;";
+                        return "font-weight:bold; color:#d64949;";
                     } else if (countryRecord.getPopulation() < 50000000) {
-                        return "font-weight:bold; color:blue;";
+                        return "font-weight:bold; color:#287fd6;";
                     } else {
                         return super.getCellCSSText(record, rowNum, colNum);
                     }

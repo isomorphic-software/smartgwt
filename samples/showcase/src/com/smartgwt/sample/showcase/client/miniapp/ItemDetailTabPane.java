@@ -64,7 +64,7 @@ public class ItemDetailTabPane extends TabSet {
         editorForm.setUseAllDataSourceFields(true);
 
         TextItem sku = new TextItem("SKU", "SKU");
-        TextItem description = new TextItem("description");
+        TextAreaItem description = new TextAreaItem("description");
         description.setWidth(300);
         description.setRowSpan(3);
 
