@@ -4262,6 +4262,75 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
 
     /**
      * If we're showing a {@link com.smartgwt.client.widgets.grid.ListGrid#getShowHeaderContextMenu 'headerContextMenu'} for
+     * this grid, this attribute will be shown as the menu item title to clear an existing sort on this field.
+     *
+     * @param clearSortFieldText clearSortFieldText Default value is "Clear Sort"
+     */
+    public void setClearSortFieldText(String clearSortFieldText) {
+        setAttribute("clearSortFieldText", clearSortFieldText, true);
+    }
+
+    /**
+     * If we're showing a {@link com.smartgwt.client.widgets.grid.ListGrid#getShowHeaderContextMenu 'headerContextMenu'} for
+     * this grid, this attribute will be shown as the menu item title to clear an existing sort on this field.
+     *
+     *
+     * @return String
+     */
+    public String getClearSortFieldText()  {
+        return getAttributeAsString("clearSortFieldText");
+    }
+
+    /**
+     * If we're showing a {@link com.smartgwt.client.widgets.grid.ListGrid#getShowHeaderContextMenu 'headerContextMenu'} for
+     * this grid, this attribute will be shown as the menu item title to clear any existing sort on all fields.  This menu-item
+     * is displayed only in the context menu for the ${isc.DocUtils.linkForRef('listGrid.sorter','sorter button')}.
+     *
+     * @param clearAllSortingText clearAllSortingText Default value is "Clear Sort"
+     */
+    public void setClearAllSortingText(String clearAllSortingText) {
+        setAttribute("clearAllSortingText", clearAllSortingText, true);
+    }
+
+    /**
+     * If we're showing a {@link com.smartgwt.client.widgets.grid.ListGrid#getShowHeaderContextMenu 'headerContextMenu'} for
+     * this grid, this attribute will be shown as the menu item title to clear any existing sort on all fields.  This menu-item
+     * is displayed only in the context menu for the ${isc.DocUtils.linkForRef('listGrid.sorter','sorter button')}.
+     *
+     *
+     * @return String
+     */
+    public String getClearAllSortingText()  {
+        return getAttributeAsString("clearAllSortingText");
+    }
+
+    /**
+     * If we're showing a {@link com.smartgwt.client.widgets.grid.ListGrid#getShowHeaderContextMenu 'headerContextMenu'} for
+     * this grid,  and a {@link com.smartgwt.client.widgets.grid.ListGrid#getShowFilterEditor 'filter-editor'} is visible, this
+     * attribute will be shown as the menu item title to clear any existing filter.  This menu-item is displayed only in the
+     * context menu for the ${isc.DocUtils.linkForRef('listGrid.sorter','sorter button')}.
+     *
+     * @param clearFilterText clearFilterText Default value is "Clear Filter"
+     */
+    public void setClearFilterText(String clearFilterText) {
+        setAttribute("clearFilterText", clearFilterText, true);
+    }
+
+    /**
+     * If we're showing a {@link com.smartgwt.client.widgets.grid.ListGrid#getShowHeaderContextMenu 'headerContextMenu'} for
+     * this grid,  and a {@link com.smartgwt.client.widgets.grid.ListGrid#getShowFilterEditor 'filter-editor'} is visible, this
+     * attribute will be shown as the menu item title to clear any existing filter.  This menu-item is displayed only in the
+     * context menu for the ${isc.DocUtils.linkForRef('listGrid.sorter','sorter button')}.
+     *
+     *
+     * @return String
+     */
+    public String getClearFilterText()  {
+        return getAttributeAsString("clearFilterText");
+    }
+
+    /**
+     * If we're showing a {@link com.smartgwt.client.widgets.grid.ListGrid#getShowHeaderContextMenu 'headerContextMenu'} for
      * this grid, and {@link com.smartgwt.client.widgets.grid.ListGrid#getCanPickFields 'this.canPickFields'} is true, this
      * attribute will be shown as the title for the menu item which contains a submenu with items  allowing the user to show
      * and hide fields in the grid.
@@ -5911,12 +5980,12 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
 
 
     /**
-     * Reverses the direction of the field with the passed name and resorts the grid.
+     * Toggles the sort-direction of the field with the passed name and resorts the grid.
      * @param fieldName The name of a field, visible, hidden or existing only in the dataSource
      */
-    public native void alterSort(String fieldName) /*-{
+    public native void toggleSort(String fieldName) /*-{
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
-        self.alterSort(fieldName);
+        self.toggleSort(fieldName);
     }-*/;
 
 
@@ -7317,6 +7386,7 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
      *
      * @param record the record
      * @param detailDataSource the detail deta source
+     * @deprecated use {@link #setCanExpandRecords(Boolean)} with {@link #setExpansionMode(com.smartgwt.client.types.ExpansionMode)}, or override {@link #getExpansionComponent(ListGridRecord)}
      */
     public native void openRecordDetailGrid(ListGridRecord record, DataSource detailDataSource)/*-{
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
@@ -7329,6 +7399,7 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
      * Close the inline detail grid assoicated with the record.
      *
      * @param record the record
+     * @deprecated use {@link #setCanExpandRecords(Boolean)} with {@link #setExpansionMode(com.smartgwt.client.types.ExpansionMode)}, or override {@link #getExpansionComponent(ListGridRecord)}
      */
     public native void closeRecord(ListGridRecord record)/*-{
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
@@ -7340,6 +7411,7 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
      * Open the record editor associated with the record.
      *
      * @param record the record
+     * @deprecated use {@link #setCanExpandRecords(Boolean)} with {@link #setExpansionMode(com.smartgwt.client.types.ExpansionMode)}, or override {@link #getExpansionComponent(ListGridRecord)}
      */
     public native void openRecordEditor(ListGridRecord record)/*-{
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();

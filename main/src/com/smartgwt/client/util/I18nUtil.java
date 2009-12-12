@@ -159,7 +159,7 @@ public class I18nUtil {
 
         if($wnd.isc.SelectItem) {
             $wnd.isc.SelectItem.addProperties({otherTitle: messages.@com.smartgwt.client.i18n.SmartGwtMessages::selectOtherItem_otherTitle()()});
-            $wnd.isc.SelectItem.addProperties({selectOtherPrompt: messages.@com.smartgwt.client.i18n.SmartGwtMessages::selectOtherItem_selectOtherPrompt()()});
+            $wnd.isc.SelectItem.addProperties({selectOtherPrompt: messages.@com.smartgwt.client.i18n.SmartGwtMessages::selectOtherItem_selectOtherPrompt()() + ' ${item.getTitle()} :'});
         }
 
         if($wnd.isc.DateItem) {
@@ -181,6 +181,9 @@ public class I18nUtil {
             $wnd.isc.ListGrid.addProperties({freezeOnLeftText: messages.@com.smartgwt.client.i18n.SmartGwtMessages::listGrid_freezeOnLeftText()()});
             $wnd.isc.ListGrid.addProperties({sortFieldAscendingText: messages.@com.smartgwt.client.i18n.SmartGwtMessages::listGrid_sortFieldAscendingText()()});
             $wnd.isc.ListGrid.addProperties({sortFieldDescendingText: messages.@com.smartgwt.client.i18n.SmartGwtMessages::listGrid_sortFieldDescendingText()()});
+            $wnd.isc.ListGrid.addProperties({clearSortFieldText: messages.@com.smartgwt.client.i18n.SmartGwtMessages::listGrid_clearSortFieldText()()});
+            $wnd.isc.ListGrid.addProperties({clearAllSortingText: messages.@com.smartgwt.client.i18n.SmartGwtMessages::listGrid_clearAllSortingText()()});
+            $wnd.isc.ListGrid.addProperties({clearFilterText: messages.@com.smartgwt.client.i18n.SmartGwtMessages::listGrid_clearFilterText()()});
             $wnd.isc.ListGrid.addProperties({fieldVisibilitySubmenuTitle: messages.@com.smartgwt.client.i18n.SmartGwtMessages::listGrid_fieldVisibilitySubmenuTitle()()});
             $wnd.isc.ListGrid.addProperties({freezeFieldText: messages.@com.smartgwt.client.i18n.SmartGwtMessages::listGrid_freezeFieldText()() + ' ${viewer.getSummaryTitle(field)}'});
             $wnd.isc.ListGrid.addProperties({unfreezeFieldText: messages.@com.smartgwt.client.i18n.SmartGwtMessages::listGrid_unfreezeFieldText()() + ' ${viewer.getSummaryTitle(field)}'});
@@ -238,6 +241,13 @@ public class I18nUtil {
             $wnd.isc.FilterBuilder.addProperties({removeButtonPrompt: messages.@com.smartgwt.client.i18n.SmartGwtMessages::filterBuilder_removeButtonPrompt()()});
             $wnd.isc.FilterBuilder.addProperties({subClauseButtonPrompt: messages.@com.smartgwt.client.i18n.SmartGwtMessages::filterBuilder_subClauseButtonPrompt()()});
             $wnd.isc.FilterBuilder.addProperties({subClauseButtonPrompt: messages.@com.smartgwt.client.i18n.SmartGwtMessages::filterBuilder_subClauseButtonPrompt()()});
+        }
+        if($wnd.isc.MultiSortDialog) {
+            $wnd.isc.MultiSortDialog.addProperties({addLevelButtonTitle: messages.@com.smartgwt.client.i18n.SmartGwtMessages::multiSortDialog_addLevelButtonTitle()()});
+            $wnd.isc.MultiSortDialog.addProperties({deleteLevelButtonTitle: messages.@com.smartgwt.client.i18n.SmartGwtMessages::multiSortDialog_deleteLevelButtonTitle()()});
+            $wnd.isc.MultiSortDialog.addProperties({copyLevelButtonTitle: messages.@com.smartgwt.client.i18n.SmartGwtMessages::multiSortDialog_copyLevelButtonTitle()()});
+            $wnd.isc.MultiSortDialog.addProperties({applyButtonTitle: messages.@com.smartgwt.client.i18n.SmartGwtMessages::multiSortDialog_applyButtonTitle()()});
+            $wnd.isc.MultiSortDialog.addProperties({cancelButtonTitle: messages.@com.smartgwt.client.i18n.SmartGwtMessages::multiSortDialog_cancelButtonTitle()()});
         }
         $wnd.isc.addProperties($wnd.Date, {shortDayNames: [
             messages.@com.smartgwt.client.i18n.SmartGwtMessages::date_shortDayNames_1()(),
