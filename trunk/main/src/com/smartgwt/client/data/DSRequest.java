@@ -165,24 +165,6 @@ public class DSRequest extends RPCRequest {
     public Integer getEndRow()  {
         return getAttributeAsInt("endRow");
     }
-
-    /**
-     * Fieldnames to sortBy.
-     *
-     * @param sortSpecifiers  Default value is null
-     */
-    public void setSortBy(SortSpecifier[] sortSpecifiers) {
-        setAttribute("sortBy", sortSpecifiers);
-    }
-
-    /**
-     * Fieldname to sortBy
-     *
-     * @return String
-     */
-    public SortSpecifier[] getSortBy()  {
-        return SortSpecifier.convertToArray(getAttributeAsJavaScriptObject("sortBy"));
-    }
              
     /**
      * For "fetch" operations, how search criteria should be interpreted for text fields: either "exact" for exact match,
@@ -598,6 +580,24 @@ public class DSRequest extends RPCRequest {
      */
     public ResultSet getResultSet() {
         return ResultSet.getOrCreateRef(getAttributeAsJavaScriptObject("resultSet"));
+    }
+
+    /**
+     * Fieldnames to sortBy.
+     *
+     * @param sortSpecifiers  Default value is null
+     */
+    public void setSortBy(SortSpecifier[] sortSpecifiers) {
+        setAttribute("sortBy", sortSpecifiers);
+    }
+
+    /**
+     * Fieldname to sortBy
+     *
+     * @return String
+     */
+    public SortSpecifier[] getSortBy()  {
+        return SortSpecifier.convertToArray(getAttributeAsJavaScriptObject("sortBy"));
     }
 
     /**

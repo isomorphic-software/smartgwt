@@ -131,15 +131,6 @@ public class RPCManager {
 
 
 
-    /**
-     * Returns the id of the current transaction (a queue of requests). <P> This method must be called after startQueue() has
-     * been called and at least one request has been issued.
-     *
-     * @return the transactionNum of the current transaction.
-     */
-    public static native int getCurrentTransactionId() /*-{
-        return $wnd.isc.RPCManager.getCurrentTransactionId();
-    }-*/;
 
     /**
      * Cancel a queue of requests (also called a transaction). <P> If a transactionId is passed, that transaction will be
@@ -166,7 +157,7 @@ public class RPCManager {
      * that have been passed in.
      * @param transactionNum transactionId of the queue.
      */
-    public static native void cancelQueue(int transactionNum) /*-{
+    public static native void cancelQueue(String transactionNum) /*-{
         $wnd.isc.RPCManager.cancelQueue(transactionNum);
     }-*/;
 
@@ -177,7 +168,7 @@ public class RPCManager {
      * by  {@link com.smartgwt.client.rpc.RPCManager#getCurrentTransactionId} before the  transaction is sent.
      * @param transactionNum id of the transaction to be cleared
      */
-    public static native void clearTransaction(int transactionNum) /*-{
+    public static native void clearTransaction(String transactionNum) /*-{
         $wnd.isc.RPCManager.clearTransaction(transactionNum);
     }-*/;
 
@@ -201,7 +192,7 @@ public class RPCManager {
      * com.smartgwt.client.rpc.RPCManager#resendTransaction} with no arguments.
      * @param transactionNum id of the transaction to be re-sent, or null to resend all                              suspended transactions
      */
-    public static native void resendTransaction(int transactionNum) /*-{
+    public static native void resendTransaction(String transactionNum) /*-{
         $wnd.isc.RPCManager.resendTransaction(transactionNum);
     }-*/;
 
@@ -479,8 +470,19 @@ public class RPCManager {
      * {@link com.smartgwt.client.rpc.RPCManager#handleError}, and in the case of handleError(), only when the first response in the transaction has an error.  Suspending and re-sending a partially processed transaction means that some responses will be processed twice, with undefined results for requests issued automatically by UI components. <P> A suspended transaction must ultimately be either cleared via {@link com.smartgwt.client.rpc.RPCManager#clearTransaction} or re-sent via {@link com.smartgwt.client.rpc.RPCManager#resendTransaction} or memory will be leaked.
      * @param transactionID transaction to delay.  Defaults to the current transaction if there is one
      */
-    public static native void suspendTransaction(int transactionID) /*-{
+    public static native void suspendTransaction(String transactionID) /*-{
         $wnd.isc.RPCManager.suspendTransaction(transactionID);
+    }-*/;
+
+    
+    /**
+     * Returns the id of the current transaction (a queue of requests). <P> This method must be called after startQueue() has
+     * been called and at least one request has been issued.
+     *
+     * @return the transactionNum of the current transaction.
+     */
+    public static native String getCurrentTransactionId() /*-{
+        return $wnd.isc.RPCManager.getCurrentTransactionId().toString();
     }-*/;
 
     /**
