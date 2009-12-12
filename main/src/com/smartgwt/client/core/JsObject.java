@@ -52,6 +52,7 @@ public class JsObject {
             };
             $wnd.isc.isA.String = function (object) {
                 if (object == null) return false;
+                if (object.Class != null && object.Class == this._$String) return true;
                 return typeof object == "string";
             };
             $wnd.isc.isA.Number = function (object) {
