@@ -258,24 +258,23 @@ public class StretchImgButton extends StretchImg  implements com.smartgwt.client
     }
 
     /**
-     * Optional icon to be shown with the button title text.   <P> Specify as the partial URL to an image, relative to the
-     * imgDir of this component.
+     * Pixels between icon and title text.
      *
-     * @param iconSpacing iconSpacing Default value is null
+     * @param iconSpacing iconSpacing Default value is 6
+     * @throws IllegalStateException this property cannot be changed after the component has been created
      */
-    public void setIconSpacing(String iconSpacing) {
-        setAttribute("iconSpacing", iconSpacing, true);
+    public void setIconSpacing(int iconSpacing)  throws IllegalStateException {
+        setAttribute("iconSpacing", iconSpacing, false);
     }
 
     /**
-     * Optional icon to be shown with the button title text.   <P> Specify as the partial URL to an image, relative to the
-     * imgDir of this component.
+     * Pixels between icon and title text.
      *
      *
-     * @return String
+     * @return int
      */
-    public String getIconSpacing()  {
-        return getAttributeAsString("iconSpacing");
+    public int getIconSpacing()  {
+        return getAttributeAsInt("iconSpacing");
     }
 
     /**
