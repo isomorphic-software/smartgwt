@@ -62,7 +62,6 @@ public class FormulaSummaryBuilderSample extends ShowcasePanel {
         countryGrid.setHeight(224);
         countryGrid.setDataSource(CountryXmlDS.getInstance());
         countryGrid.setAutoFetchData(true);
-        countryGrid.setAutoFitData(Autofit.HORIZONTAL);
 
         //allow users to add formula and summary fields
         //accessible in the grid header context menu
