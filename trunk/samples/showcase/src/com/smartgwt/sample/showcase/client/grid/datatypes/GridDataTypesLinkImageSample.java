@@ -35,7 +35,7 @@ public class GridDataTypesLinkImageSample extends ShowcasePanel {
         Canvas canvas = new Canvas();
 
         final ListGrid countryGrid = new ListGrid();
-        countryGrid.setWidth(300);
+        countryGrid.setWidth(220);
         countryGrid.setHeight(224);
         countryGrid.setShowAllRecords(true);
 
@@ -49,7 +49,7 @@ public class GridDataTypesLinkImageSample extends ShowcasePanel {
         articleField.setType(ListGridFieldType.LINK);
         articleField.setWidth(50);
         articleField.setAlign(Alignment.CENTER);
-        articleField.setLinkText(Canvas.imgHTML("other/openbook.png", 24, 24, "openbook", "align=center", null));
+        articleField.setLinkText(Canvas.imgHTML("[SKINIMG]actions/help.png", 16, 16, "info", "align=center", null));
 
         countryGrid.setFields(new ListGridField[] {countryCodeField, nameField, articleField});
         countryGrid.setData(CountryData.getRecords());

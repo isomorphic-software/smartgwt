@@ -34,7 +34,7 @@ public class BasicTilingSample extends ShowcasePanel {
 
         TileGrid tileGrid = new TileGrid();
         tileGrid.setTileWidth(194);
-        tileGrid.setTileHeight(150);
+        tileGrid.setTileHeight(165);
         tileGrid.setHeight(400);
         tileGrid.setWidth100();
         tileGrid.setShowAllRecords(true);

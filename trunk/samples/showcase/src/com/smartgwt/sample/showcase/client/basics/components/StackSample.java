@@ -67,7 +67,7 @@ public class StackSample extends ShowcasePanel {
         public BlueBox(String contents) {
             setAlign(Alignment.CENTER);
             setBorder("1px solid #808080");
-            setBackgroundColor("lightblue");
+            setBackgroundColor("#C3D9FF");
             setContents(contents);
         }
 

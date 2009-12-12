@@ -97,7 +97,7 @@ public class GridRowExpansionRelatedRecordsSample extends ShowcasePanel {
                 IButton closeButton = new IButton("Close");
                 closeButton.addClickHandler(new ClickHandler() {
                     public void onClick(ClickEvent event) {
-                        grid.closeRecord(record);
+                        grid.collapseRecord(record);
                     }
                 });
                 hLayout.addMember(closeButton);

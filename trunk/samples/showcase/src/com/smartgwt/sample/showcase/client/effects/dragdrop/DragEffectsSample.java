@@ -59,7 +59,7 @@ public class DragEffectsSample extends ShowcasePanel {
             setAlign(Alignment.CENTER);
             setPadding(4);
             setShowEdges(true);
-            setBackgroundColor("#e0e0ff");
+            setBackgroundColor("#EEEEEE");
             setKeepInParentRect(true);
             setCanDragReposition(true);    
         }
