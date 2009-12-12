@@ -817,6 +817,33 @@ public interface SmartGwtMessages extends com.google.gwt.i18n.client.Messages {
   String listGrid_cancelEditingConfirmationMessage();
 
   /**
+   * Translated "Clear All Sorting".
+   * 
+   * @return translated "Clear All Sorting"
+   */
+  @DefaultMessage("Clear All Sorting")
+  @Key("listGrid_clearAllSortingText")
+  String listGrid_clearAllSortingText();
+
+  /**
+   * Translated "Clear Filter".
+   * 
+   * @return translated "Clear Filter"
+   */
+  @DefaultMessage("Clear Filter")
+  @Key("listGrid_clearFilterText")
+  String listGrid_clearFilterText();
+
+  /**
+   * Translated "Clear Sort".
+   * 
+   * @return translated "Clear Sort"
+   */
+  @DefaultMessage("Clear Sort")
+  @Key("listGrid_clearSortFieldText")
+  String listGrid_clearSortFieldText();
+
+  /**
    * Translated "This action will discard all unsaved edited values for this list.".
    * 
    * @return translated "This action will discard all unsaved edited values for this list."
@@ -941,6 +968,78 @@ public interface SmartGwtMessages extends com.google.gwt.i18n.client.Messages {
   @DefaultMessage("Show Menu")
   @Key("menuButton_title")
   String menuButton_title();
+
+  /**
+   * Translated "Add Level".
+   * 
+   * @return translated "Add Level"
+   */
+  @DefaultMessage("Add Level")
+  @Key("multiSortDialog_addLevelButtonTitle")
+  String multiSortDialog_addLevelButtonTitle();
+
+  /**
+   * Translated "Apply".
+   * 
+   * @return translated "Apply"
+   */
+  @DefaultMessage("Apply")
+  @Key("multiSortDialog_applyButtonTitle")
+  String multiSortDialog_applyButtonTitle();
+
+  /**
+   * Translated "Cancel".
+   * 
+   * @return translated "Cancel"
+   */
+  @DefaultMessage("Cancel")
+  @Key("multiSortDialog_cancelButtonTitle")
+  String multiSortDialog_cancelButtonTitle();
+
+  /**
+   * Translated "Copy Level".
+   * 
+   * @return translated "Copy Level"
+   */
+  @DefaultMessage("Copy Level")
+  @Key("multiSortDialog_copyLevelButtonTitle")
+  String multiSortDialog_copyLevelButtonTitle();
+
+  /**
+   * Translated "Delete Level".
+   * 
+   * @return translated "Delete Level"
+   */
+  @DefaultMessage("Delete Level")
+  @Key("multiSortDialog_deleteLevelButtonTitle")
+  String multiSortDialog_deleteLevelButtonTitle();
+
+  /**
+   * Translated "Columns may only be used once: $title is used multiple times.".
+   * 
+   * @return translated "Columns may only be used once: $title is used multiple times."
+   */
+  @DefaultMessage("Columns may only be used once: $title is used multiple times.")
+  @Key("multiSortDialog_invalidListPrompt")
+  String multiSortDialog_invalidListPrompt();
+
+  /**
+   * Translated "Move Level Down".
+   * 
+   * @return translated "Move Level Down"
+   */
+  @DefaultMessage("Move Level Down")
+  @Key("multiSortDialog_levelDownPrompt")
+  String multiSortDialog_levelDownPrompt();
+
+  /**
+   * Translated "Move Level Up".
+   * 
+   * @return translated "Move Level Up"
+   */
+  @DefaultMessage("Move Level Up")
+  @Key("multiSortDialog_levelUpPrompt")
+  String multiSortDialog_levelUpPrompt();
 
   /**
    * Translated "Match All".
@@ -1303,11 +1402,11 @@ public interface SmartGwtMessages extends com.google.gwt.i18n.client.Messages {
   String selectOtherItem_otherTitle();
 
   /**
-   * Translated "Other value for <br>?".
+   * Translated "Other value for".
    * 
-   * @return translated "Other value for <br>?"
+   * @return translated "Other value for"
    */
-  @DefaultMessage("Other value for <br>?")
+  @DefaultMessage("Other value for")
   @Key("selectOtherItem_selectOtherPrompt")
   String selectOtherItem_selectOtherPrompt();
 
