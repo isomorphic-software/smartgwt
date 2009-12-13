@@ -35,6 +35,12 @@
 				<exclude name="helloworld-1.6/*.iml" />
 			</zipfileset>
 
+			<zipfileset dir="${smartgwt.root}/samples" prefix="${project.distname}">
+				<include name="helloworld-2.0"/>
+				<include name="helloworld-2.0/**"/>
+				<exclude name="helloworld-2.0/*.iml" />
+			</zipfileset>
+
 			<!-- doc -->
 			<zipfileset dir="${smartgwt.build.out}" prefix="${project.distname}">
 				<include name="doc" />
