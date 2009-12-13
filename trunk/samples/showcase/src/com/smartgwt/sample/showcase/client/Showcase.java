@@ -46,20 +46,9 @@ public class Showcase implements EntryPoint, HistoryListener {
 
     public void onModuleLoad() {
 
-        EdgedCanvas.preloadImages();
-        Scrollbar.preloadImages();
-
-        DeferredCommand.addCommand(new com.google.gwt.user.client.Command() {
-            public void execute() {
-            Window.preloadImages();
-            ListGrid.preloadImages();
-            }
-        });        
-        
         final String initToken = History.getToken();
 
-        //setup overall layout
-        //viewport
+        //setup overall layout / viewport
         VLayout main = new VLayout() {
             protected void onInit() {
                 super.onInit();
