@@ -10,10 +10,7 @@
     <inherits name="com.smartgwt.SmartGwtNoScript"/>
     <inherits name="com.smartgwt.tools.SmartGwtTools"/>
     <inherits name="com.smartclient.theme.enterprise.EnterpriseResources"/>
-    <inherits name="com.smartclient.theme.blackops.BlackOpsResources"/>
-    <inherits name="com.smartclient.theme.silverwave.SilverWaveResources"/>
-    <inherits name="com.smartclient.theme.treefrog.TreeFrogResources"/>
-    <inherits name="com.smartclient.theme.fleet.FleetResources"/>
+    <inherits name="com.smartclient.theme.enterpriseblue.EnterpriseBlueResources"/>
 
     <entry-point class='com.smartgwt.sample.showcase.client.Showcase'/>
 
