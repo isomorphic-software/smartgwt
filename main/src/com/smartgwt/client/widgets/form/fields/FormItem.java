@@ -85,25 +85,6 @@ public class FormItem extends RefDataClass  implements com.smartgwt.client.widge
     // ********************* Properties / Attributes ***********************
 
     /**
-     * Name for this form field. <br><br> The FormItem's name determines the name of the property it edits within the form.
-     *
-     * @param name name Default value is null
-     */
-    public void setName(String name) {
-        setAttribute("name", name);
-    }
-
-    /**
-     * Name for this form field. <br><br> The FormItem's name determines the name of the property it edits within the form.
-     *
-     *
-     * @return String
-     */
-    public String getName()  {
-        return getAttributeAsString("name");
-    }
-
-    /**
      * dataPath for this item. Allows the user to edit details nested data structures in a flat set of form fields
      *
      * @param dataPath dataPath Default value is null
@@ -2881,6 +2862,26 @@ public class FormItem extends RefDataClass  implements com.smartgwt.client.widge
         setAttribute("optionDataSource", dataSource.getOrCreateJsObj());
     }
 
+    /**
+     * Name for this form field. <br><br> The FormItem's name determines the name of the property it edits within the form.
+     *
+     * @param name name Default value is null
+     */
+    public void setName(String name) {
+        assert name.indexOf(".") == -1 : "Invalid FormItem name. Cannot use \".\" in FormItem name.";
+        assert name.indexOf(" ") == -1 : "Invalid FormItem name. Cannot use spaces in FormItem name.";
+        setAttribute("name", name);
+    }
+
+    /**
+     * Name for this form field. <br><br> The FormItem's name determines the name of the property it edits within the form.
+     *
+     *
+     * @return String
+     */
+    public String getName()  {
+        return getAttributeAsString("name");
+    }
 
     /**
      * Validators for this form item.

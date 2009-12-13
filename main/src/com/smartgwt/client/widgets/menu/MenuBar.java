@@ -108,6 +108,18 @@ public class MenuBar extends Toolbar {
         setAttribute("menus", menus, true);
     }
 
+    /**
+     * Dynamically update the menuBar to include additional menus. Will update the visible set of buttons as appropriate.
+     *
+     * @param menus  Array of new menus to add
+     * @param position desired starting position of the new menus in the existing menus array
+     */
+    public native void addMenus(Menu[] menus, int position) /*-{
+        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
+        var menusJS = @com.smartgwt.client.util.JSOHelper::convertToJavaScriptArray([Ljava/lang/Object;)(menus);
+        self.addMenus(menusJS, position);
+    }-*/;
+
 }
 
 

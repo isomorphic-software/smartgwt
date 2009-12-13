@@ -1206,6 +1206,21 @@ public class SelectItem extends FormItem  implements PickList, com.smartgwt.clie
     }-*/;
 
     /**
+     * Set the values of a SelectItem with multiple=true.
+     *
+     * @param values the SelectItem values
+     */
+    public native void setValues(String... values) /*-{
+        var self = this.@com.smartgwt.client.core.DataClass::getJsObj()();
+        var valuesJS = @com.smartgwt.client.util.JSOHelper::convertToJavaScriptArray([Ljava/lang/Object;)(values);
+        if(self.setValue) {
+            self.setValue(valuesJS);
+        } else {
+            self.defaultValue = valuesJS;
+        }
+    }-*/;
+
+    /**
      * Only applies to databound items (see {@link com.smartgwt.client.widgets.form.fields.PickList#getOptionDataSource
      * optionDataSource}).<br> Performs a fetch type operation on this item's DataSource to retrieve the set of valid
      * options for the item, based on the current {@link com.smartgwt.client.widgets.form.fields.PickList#getPickListCriteria
