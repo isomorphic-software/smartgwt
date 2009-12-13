@@ -177,6 +177,41 @@ public class DSRequest extends RPCRequest {
     public void setTextMatchStyle(TextMatchStyle textMatchStyle) {
         setAttribute("textMatchStyle", textMatchStyle.getValue());
     }
+            
+    /**
+     * For an <code>update</code> or <code>remove</code> operation, the original values from the record that is being updated
+     * or removed.  <code>oldValues</code> is automatically added to DSRequests submitted by DataBound Components.  Available
+     * on the server via <code>DSRequest.getOldValues()</code>. <P> The server can compare the <code>oldValues</code> to the
+     * most recent stored values in order to detect that the user was looking at stale values when the user submitted changes
+     * (NOTE: this means of detecting concurrent edit is sometimes called "optimistic concurrency" or "long transactions").  
+     * <P> In applications where a policy of "last update wins" is not appropriate when updating certain fields, special UI can
+     * be shown for this case.  For example, on detecting concurrent edit, the server may send back a special
+     * <code>dsResponse.status</code> code that the client application detects, offering the user a choice of proceeding with
+     * the operation, discarding edits, or reconciling new and old values in a special interface.
+     *
+     * @param oldValues oldValues Default value is null
+     */
+    public void setOldValues(Record oldValues) {
+        setAttribute("oldValues", oldValues.getJsObj());
+    }
+
+    /**
+     * For an <code>update</code> or <code>remove</code> operation, the original values from the record that is being updated
+     * or removed.  <code>oldValues</code> is automatically added to DSRequests submitted by DataBound Components.  Available
+     * on the server via <code>DSRequest.getOldValues()</code>. <P> The server can compare the <code>oldValues</code> to the
+     * most recent stored values in order to detect that the user was looking at stale values when the user submitted changes
+     * (NOTE: this means of detecting concurrent edit is sometimes called "optimistic concurrency" or "long transactions").  
+     * <P> In applications where a policy of "last update wins" is not appropriate when updating certain fields, special UI can
+     * be shown for this case.  For example, on detecting concurrent edit, the server may send back a special
+     * <code>dsResponse.status</code> code that the client application detects, offering the user a choice of proceeding with
+     * the operation, discarding edits, or reconciling new and old values in a special interface.
+     *
+     *
+     * @return Record
+     */
+    public Record getOldValues()  {
+        return Record.getOrCreateRef(getAttributeAsJavaScriptObject("oldValues"));
+    }
 
     /**
      * For requests submitted by a {@link com.smartgwt.client.widgets.DataBoundComponent}, the {@link
@@ -598,6 +633,40 @@ public class DSRequest extends RPCRequest {
      */
     public SortSpecifier[] getSortBy()  {
         return SortSpecifier.convertToArray(getAttributeAsJavaScriptObject("sortBy"));
+    }
+
+    /**
+     * For an <code>update</code> or <code>remove</code> operation, the original values from the record that is being updated
+     * or removed.  <code>oldValues</code> is automatically added to DSRequests submitted by DataBound Components.  Available
+     * on the server via <code>DSRequest.getOldValues()</code>. <P> The server can compare the <code>oldValues</code> to the
+     * most recent stored values in order to detect that the user was looking at stale values when the user submitted changes
+     * (NOTE: this means of detecting concurrent edit is sometimes called "optimistic concurrency" or "long transactions").
+     * <P> In applications where a policy of "last update wins" is not appropriate when updating certain fields, special UI can
+     * be shown for this case.  For example, on detecting concurrent edit, the server may send back a special
+     * <code>dsResponse.status</code> code that the client application detects, offering the user a choice of proceeding with
+     * the operation, discarding edits, or reconciling new and old values in a special interface.
+     *
+     * @param oldValues oldValues Default value is null
+     */
+    public void setOldValues(Map oldValues) {
+        setAttribute("oldValues", oldValues);
+    }
+
+    /**
+     * For an <code>update</code> or <code>remove</code> operation, the original values from the record that is being updated
+     * or removed.  <code>oldValues</code> is automatically added to DSRequests submitted by DataBound Components.  Available
+     * on the server via <code>DSRequest.getOldValues()</code>. <P> The server can compare the <code>oldValues</code> to the
+     * most recent stored values in order to detect that the user was looking at stale values when the user submitted changes
+     * (NOTE: this means of detecting concurrent edit is sometimes called "optimistic concurrency" or "long transactions").
+     * <P> In applications where a policy of "last update wins" is not appropriate when updating certain fields, special UI can
+     * be shown for this case.  For example, on detecting concurrent edit, the server may send back a special
+     * <code>dsResponse.status</code> code that the client application detects, offering the user a choice of proceeding with
+     * the operation, discarding edits, or reconciling new and old values in a special interface.
+     *
+     * @param oldValues oldValues Default value is null
+     */
+    public void setOldValues(JavaScriptObject oldValues) {
+        setAttribute("oldValues", oldValues);
     }
 
     /**
