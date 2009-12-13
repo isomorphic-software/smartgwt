@@ -1,0 +1,197 @@
+<project name="doc" default="all" basedir=".">
+	<property name="smartgwt.root" location=".." />
+	<property name="project.tail" value="doc" />
+	<import file="${smartgwt.root}/common.ant.xml" />
+
+	<property.ensure name="java.tools.path" location="${java.home}/../lib/tools.jar" unless="build.host.ismac" message="Cannot find ${java.home}/../lib/tools.jar; please use a JDK when building doc rather than a JRE." />
+
+	<property name="USER_PKGS" value="com.google.gwt.event.shared;com.smartgwt.client.docs;com.smartgwt.client.core;com.smartgwt.client.data;com.smartgwt.client.data.events;com.smartgwt.client.data.fields;com.smartgwt.client.event;com.smartgwt.client.rpc;com.smartgwt.client.types;com.smartgwt.client.util;com.smartgwt.client.widgets;com.smartgwt.client.widgets.calendar;com.smartgwt.client.widgets.calendar.events;com.smartgwt.client.widgets.events;com.smartgwt.client.widgets.form;com.smartgwt.client.widgets.form.events;com.smartgwt.client.widgets.form.fields;com.smartgwt.client.widgets.form.fields.events;com.smartgwt.client.widgets.form.validator;com.smartgwt.client.widgets.grid;com.smartgwt.client.widgets.grid.events;com.smartgwt.client.widgets.layout;com.smartgwt.client.widgets.menu;com.smartgwt.client.widgets.menu.events;com.smartgwt.client.widgets.tab;com.smartgwt.client.widgets.tab.events;com.smartgwt.client.widgets.toolbar;com.smartgwt.client.widgets.toolbar.events;com.smartgwt.client.widgets.tree;com.smartgwt.client.widgets.tree.events;com.smartgwt.client.widgets.viewer;com.smartgwt.client.widgets.tile;com.smartgwt.client.widgets.tile.events;" />
+	<property name="DOC_PKGS" value="com.google.gwt.doc" />
+
+	<!--
+		*** Note that if the USER_SOURCE_PATH paths are updated,
+		the fileset dependencies in the outofdate tags in the doc,
+		user, and javadoc targets must be updated as well.
+	-->
+	<path id="USER_SOURCE_PATH">
+		<pathelement location="${smartgwt.root}/main/src" />
+	</path>
+
+	<path id="USER_CLASS_PATH">
+		<pathelement location="${gwt.user.jar}" />
+		<pathelement location="${gwt.dev.jar}" />
+		<pathelement location="${smartgwt.tools.lib}/junit/junit-3.8.1.jar" />
+	</path>
+
+	<!--
+		*** Note that if the DOC_SOURCE_PATH paths are updated,
+		the fileset dependencies in the outofdate tags in the
+		doc target must be updated as well.
+	-->
+	<path id="DOC_SOURCE_PATH">
+		<pathelement location="./src" />
+		<path refid="USER_SOURCE_PATH" />
+	</path>
+
+	<path id="DOC_PATH">
+		<pathelement location="./src" />
+        <pathelement location="${smartgwt.build.lib}/smartgwt-doctool.jar" />
+        <pathelement location="${gwt.doctool.jar}" />
+		<path path="${java.tools.path}" />
+		<path refid="USER_SOURCE_PATH" />
+	</path>
+
+	<target name="smartgwt-doc">
+		<outofdate>
+			<sourcefiles>
+				<fileset dir="./src">
+                    <include name="**/*.java" />
+				</fileset>
+				<fileset dir="${smartgwt.root}/main/src">
+					<include name="**/*.java" />
+				</fileset>
+			</sourcefiles>
+			<targetfiles>
+				<!--
+					only checks one output file, will not
+					rebuild other files if this one is up
+					to date
+				-->
+				<pathelement path="${project.build}/smartgwt-doc.doc.xml" />
+			</targetfiles>
+			<sequential>
+				<java classpathref="DOC_PATH" classname="com.google.doctool.DocTool" fork="no" failonerror="true">
+					<arg value="doc" />
+					<arg value="smartgwt-doc" />
+					<arg value="-out" />
+					<arg value="${project.build}" />
+					<arg value="-classpath" />
+					<arg pathref="USER_CLASS_PATH" />
+					<arg value="-sourcepath" />
+					<arg pathref="DOC_SOURCE_PATH" />
+					<arg value="-packages" />
+					<arg value="${DOC_PKGS}" />
+				</java>
+			</sequential>
+		</outofdate>
+	</target>
+
+	<target name="smartgwt">
+		<outofdate>
+			<sourcefiles>
+				<fileset file="./src/smartgwt.html" />
+				<fileset dir="${smartgwt.root}/main/src">
+					<include name="**/*.java" />
+				</fileset>
+			</sourcefiles>
+			<targetfiles>
+				<!--
+					only checks one output file, will not rebuild other files
+					if this one is up to date
+				-->
+				<pathelement path="${project.build}/smartgwt.java.xml" />
+			</targetfiles>
+			<sequential>
+
+				<java classpathref="DOC_PATH" classname="com.google.doctool.DocTool" fork="yes" failonerror="true">
+					<arg value="java" />
+					<arg value="smartgwt" />
+					<arg value="-out" />
+					<arg value="${project.build}" />
+					<arg value="-overview" />
+					<arg value="./src/smartgwt.html" />
+					<arg value="-classpath" />
+					<arg pathref="USER_CLASS_PATH" />
+					<arg value="-sourcepath" />
+					<arg pathref="USER_SOURCE_PATH" />
+					<arg value="-packages" />
+					<arg value="${USER_PKGS}" />
+				</java>
+
+			</sequential>
+		</outofdate>
+	</target>
+
+
+	<target name="html" depends="smartgwt,smartgwt-doc">
+		<outofdate>
+			<sourcefiles>
+				<fileset dir="${project.build}">
+					<include name="gwt-*.xml" />
+				</fileset>
+			</sourcefiles>
+			<targetfiles>
+				<!--
+					only checks one output file, will not rebuild other
+				 	files if this one is up to date
+				-->
+				<pathelement path="${project.build}/topics.xml" />
+			</targetfiles>
+			<sequential>
+				<java classpathref="DOC_PATH" classname="com.google.doctool.DocTool" fork="yes" failonerror="true">
+					<arg value="-html" />
+					<arg value="SmartGWT " />
+					<arg value="smartgwt-doc" />
+					<arg value="smartgwt" />
+					<!--<arg value="gwt-lang" />-->
+					<arg value="-out" />
+					<arg value="${project.build}" />
+					<arg value="-imagepath" />
+					<arg path="./src" />
+				</java>
+				<delete file="${project.build}/html/topics.htmls" />
+				<mkdir dir="${project.build}/css" />
+				<copy todir="${project.build}/css">
+					<fileset dir="src" includes="*.css" />
+				</copy>
+			</sequential>
+		</outofdate>
+	</target>
+
+	<target name="javadoc">
+		<outofdate>
+			<sourcefiles>
+				<fileset file="./src/smartgwt.html" />
+				<fileset dir="${smartgwt.root}/main/src">
+					<include name="**/*.java" />
+				</fileset>
+			</sourcefiles>
+			<targetfiles>
+				<!--
+					only checks one output file, will not rebuild other
+					files if this one is up to date
+				-->
+				<pathelement path="${project.build}/javadoc/index.html" />
+			</targetfiles>
+			<sequential>
+				<echo>Building javadoc</echo>
+				<java classpathref="DOC_PATH" classname="com.google.doctool.custom.GWTJavaDoclet" fork="yes" failonerror="true" maxmemory="500m">
+					<arg value="-quiet" />
+					<arg value="-source" />
+					<arg value="1.5" />
+					<arg value="-encoding"/>
+					<arg value="UTF-8"/>
+					<arg value="-d" />
+					<arg value="${project.build}/javadoc" />
+					<arg value="-classpath" />
+					<arg pathref="USER_CLASS_PATH" />
+					<arg value="-sourcepath" />
+					<arg pathref="USER_SOURCE_PATH" />
+					<arg value="-packages" />
+					<arg value="${USER_PKGS}" />
+					<arg value="-link" />
+					<arg value="http://java.sun.com/j2se/1.5.0/docs/api/" />
+					<arg value="-link" />
+					<arg value="http://google-web-toolkit.googlecode.com/svn/javadoc/1.6/" />					
+				</java>
+			</sequential>
+		</outofdate>
+        <copy file="${smartgwt.tools.lib}/css/javadoc/stylesheet.css" todir="${project.build}/javadoc" overwrite="yes"/>			
+        <copy todir="${project.build}/javadoc/com/smartgwt/client/docs/skin" overwrite="yes">			
+			<fileset dir="${smartgwt.root}/main/src/com/smartgwt/client/docs/skin/"/>
+		</copy>
+	</target>
+
+	<target name="build" depends="javadoc" />
+</project>
+
