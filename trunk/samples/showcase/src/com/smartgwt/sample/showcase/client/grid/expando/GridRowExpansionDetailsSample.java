@@ -7,8 +7,6 @@ import com.smartgwt.client.widgets.grid.ListGrid;
 import com.smartgwt.client.widgets.grid.ListGridField;
 import com.smartgwt.sample.showcase.client.PanelFactory;
 import com.smartgwt.sample.showcase.client.ShowcasePanel;
-import com.smartgwt.sample.showcase.client.data.CountryData;
-import com.smartgwt.sample.showcase.client.data.ItemSupplyLocalDS;
 import com.smartgwt.sample.showcase.client.data.ItemSupplyXmlDS;
 
 public class GridRowExpansionDetailsSample extends ShowcasePanel {

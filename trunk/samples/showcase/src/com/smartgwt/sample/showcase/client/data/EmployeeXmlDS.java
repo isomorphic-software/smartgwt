@@ -1,7 +1,6 @@
 package com.smartgwt.sample.showcase.client.data;
 
 import com.smartgwt.client.data.DataSource;
-import com.smartgwt.client.data.DataSourceField;
 import com.smartgwt.client.data.fields.DataSourceFloatField;
 import com.smartgwt.client.data.fields.DataSourceIntegerField;
 import com.smartgwt.client.data.fields.DataSourceTextField;

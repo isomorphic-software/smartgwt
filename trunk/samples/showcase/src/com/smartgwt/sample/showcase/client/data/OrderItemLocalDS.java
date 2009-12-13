@@ -17,8 +17,6 @@ package com.smartgwt.sample.showcase.client.data;
 
 import com.smartgwt.client.data.DataSource;
 import com.smartgwt.client.data.fields.*;
-import com.smartgwt.client.widgets.form.validator.FloatPrecisionValidator;
-import com.smartgwt.client.widgets.form.validator.FloatRangeValidator;
 
 public class OrderItemLocalDS extends DataSource {
 

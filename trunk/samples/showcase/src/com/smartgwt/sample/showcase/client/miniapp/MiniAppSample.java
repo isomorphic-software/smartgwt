@@ -15,14 +15,14 @@
 
 package com.smartgwt.sample.showcase.client.miniapp;
 
+import com.smartgwt.client.core.Rectangle;
 import com.smartgwt.client.util.Page;
 import com.smartgwt.client.widgets.*;
-import com.smartgwt.client.widgets.layout.VLayout;
 import com.smartgwt.client.widgets.events.ClickEvent;
 import com.smartgwt.client.widgets.events.ClickHandler;
 import com.smartgwt.client.widgets.events.CloseClickHandler;
 import com.smartgwt.client.widgets.events.CloseClientEvent;
-import com.smartgwt.client.core.Rectangle;
+import com.smartgwt.client.widgets.layout.VLayout;
 import com.smartgwt.sample.showcase.client.PanelFactory;
 import com.smartgwt.sample.showcase.client.ShowcasePanel;
 

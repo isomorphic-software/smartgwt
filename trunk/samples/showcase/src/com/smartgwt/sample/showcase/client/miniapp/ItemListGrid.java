@@ -15,12 +15,12 @@
 
 package com.smartgwt.sample.showcase.client.miniapp;
 
-import com.smartgwt.client.widgets.grid.*;
-import com.smartgwt.client.widgets.form.fields.SpinnerItem;
+import com.google.gwt.i18n.client.NumberFormat;
 import com.smartgwt.client.data.DataSource;
 import com.smartgwt.client.types.Alignment;
 import com.smartgwt.client.types.SelectionStyle;
-import com.google.gwt.i18n.client.NumberFormat;
+import com.smartgwt.client.widgets.form.fields.SpinnerItem;
+import com.smartgwt.client.widgets.grid.*;
 
 public class ItemListGrid extends ListGrid {
 

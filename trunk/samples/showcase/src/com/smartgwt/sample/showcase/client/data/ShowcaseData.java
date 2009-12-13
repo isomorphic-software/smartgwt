@@ -1,13 +1,6 @@
 package com.smartgwt.sample.showcase.client.data;
 
 import com.smartgwt.sample.showcase.client.DebugConsoleCommand;
-import com.smartgwt.sample.showcase.client.forms.*;
-import com.smartgwt.sample.showcase.client.grid.expando.GridRowExpansionDetailFieldSample;
-import com.smartgwt.sample.showcase.client.grid.expando.GridRowExpansionDetailsSample;
-import com.smartgwt.sample.showcase.client.grid.expando.GridRowExpansionEditorSample;
-import com.smartgwt.sample.showcase.client.grid.expando.GridRowExpansionRelatedRecordsSample;
-import com.smartgwt.sample.showcase.client.miniapp.MiniAppSample;
-import com.smartgwt.sample.showcase.client.portal.SimplePortalSample;
 import com.smartgwt.sample.showcase.client.basics.components.*;
 import com.smartgwt.sample.showcase.client.basics.html.*;
 import com.smartgwt.sample.showcase.client.basics.interaction.*;
@@ -25,6 +18,7 @@ import com.smartgwt.sample.showcase.client.dataintegration.xml.YahooXmlServicesS
 import com.smartgwt.sample.showcase.client.effects.animation.*;
 import com.smartgwt.sample.showcase.client.effects.dragdrop.*;
 import com.smartgwt.sample.showcase.client.effects.looknfeel.*;
+import com.smartgwt.sample.showcase.client.forms.*;
 import com.smartgwt.sample.showcase.client.forms.controls.FormVariousControlsSample;
 import com.smartgwt.sample.showcase.client.forms.dependencies.*;
 import com.smartgwt.sample.showcase.client.forms.details.FormHintsSample;
@@ -44,6 +38,10 @@ import com.smartgwt.sample.showcase.client.grid.databinding.*;
 import com.smartgwt.sample.showcase.client.grid.dataoperation.*;
 import com.smartgwt.sample.showcase.client.grid.datatypes.*;
 import com.smartgwt.sample.showcase.client.grid.editing.*;
+import com.smartgwt.sample.showcase.client.grid.expando.GridRowExpansionDetailFieldSample;
+import com.smartgwt.sample.showcase.client.grid.expando.GridRowExpansionDetailsSample;
+import com.smartgwt.sample.showcase.client.grid.expando.GridRowExpansionEditorSample;
+import com.smartgwt.sample.showcase.client.grid.expando.GridRowExpansionRelatedRecordsSample;
 import com.smartgwt.sample.showcase.client.grid.frozen.GridDragDropFreezeSample;
 import com.smartgwt.sample.showcase.client.grid.frozen.GridDynamicFreezeSample;
 import com.smartgwt.sample.showcase.client.grid.frozen.GridEditFreezeSample;
@@ -52,9 +50,9 @@ import com.smartgwt.sample.showcase.client.grid.gridform.GridFormAddSample;
 import com.smartgwt.sample.showcase.client.grid.gridform.GridFormUpdateSample;
 import com.smartgwt.sample.showcase.client.grid.gridform.GridRecordRemoveSample;
 import com.smartgwt.sample.showcase.client.grid.gridform.XsdDataSourceSample;
+import com.smartgwt.sample.showcase.client.grid.grouping.GridCustomGroupingSample;
 import com.smartgwt.sample.showcase.client.grid.grouping.GridDynamicGroupingSample;
 import com.smartgwt.sample.showcase.client.grid.grouping.GroupedEditingSample;
-import com.smartgwt.sample.showcase.client.grid.grouping.GridCustomGroupingSample;
 import com.smartgwt.sample.showcase.client.grid.interaction.*;
 import com.smartgwt.sample.showcase.client.grid.sortfilter.*;
 import com.smartgwt.sample.showcase.client.gwtintegration.GwtShowcaseSample;
@@ -63,8 +61,10 @@ import com.smartgwt.sample.showcase.client.layout.UserSizingSample;
 import com.smartgwt.sample.showcase.client.menu.MenuAppearanceSample;
 import com.smartgwt.sample.showcase.client.menu.MenuSubmenusSample;
 import com.smartgwt.sample.showcase.client.menu.MenuTreeBindingSample;
+import com.smartgwt.sample.showcase.client.miniapp.MiniAppSample;
 import com.smartgwt.sample.showcase.client.mvc.PatternReuseSample;
 import com.smartgwt.sample.showcase.client.other.*;
+import com.smartgwt.sample.showcase.client.portal.SimplePortalSample;
 import com.smartgwt.sample.showcase.client.printing.PrintingSample;
 import com.smartgwt.sample.showcase.client.sections.*;
 import com.smartgwt.sample.showcase.client.tabs.*;
@@ -137,6 +137,7 @@ public class ShowcaseData {
                     new ExplorerTreeNode("Nested Grid", "grid-nested-grid-new-category", "new-category", null, new GridRowExpansionRelatedRecordsSample.Factory(), true, idSuffix),
                     new ExplorerTreeNode("Window Icons", "window-icons-new-category", "new-category", null, new WindowHeaderIconsSample.Factory(), true, idSuffix),
                     new ExplorerTreeNode("Picker Icons", "picker-icons-new-category", "new-category", null, new PickerControlsSample.Factory(), true, idSuffix),
+                    new ExplorerTreeNode("Transfer Buttons", "transfer-buttons-new-category", "new-category", null, new DragListCopySample.Factory(), true, idSuffix),
                     new ExplorerTreeNode("Text Masking", "form-masking-new-category", "new-category", "silk/vcard_edit.png", new TextMaskingSample.Factory(), true, idSuffix),
                     new ExplorerTreeNode("Progressbar", "progressbar-new-category", "new-category", null, new ProgressBarSample.Factory(), true, idSuffix),
 
@@ -440,7 +441,7 @@ public class ShowcaseData {
 
 
                     new ExplorerTreeNode("Drag & Drop", "effects-dd-category", "root", "silk/layers.png", null, true, idSuffix),
-                    //new ExplorerTreeNode("Drag List (copy)", "effects-dd-copy-list", "effects-dd-category", null, new DragListCopySample.Factory(), true, idSuffix),
+                    new ExplorerTreeNode("Drag List (copy)", "effects-dd-copy-list", "effects-dd-category", null, new DragListCopySample.Factory(), true, idSuffix),
                     new ExplorerTreeNode("Drag List (move)", "effects-dd-move-list", "effects-dd-category", null, new DragListMoveSample.Factory(), true, idSuffix),
                     new ExplorerTreeNode("Drag List (select)", "effects-dd-select-list", "effects-dd-category", null, new DragListSelectSample.Factory(), true, idSuffix),
                     new ExplorerTreeNode("Drag Tree (move)", "effects-dd-tree-move-drag-nodes", "effects-dd-category", null, new TreeDragNodesSample.Factory(), true, idSuffix),

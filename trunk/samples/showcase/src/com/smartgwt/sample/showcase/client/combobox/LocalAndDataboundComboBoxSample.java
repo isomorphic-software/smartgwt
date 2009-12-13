@@ -9,7 +9,6 @@ import com.smartgwt.sample.showcase.client.ShowcasePanel;
 import com.smartgwt.sample.showcase.client.data.ItemSupplyXmlDS;
 
 import java.util.LinkedHashMap;
-import java.util.Map;
 
 public class LocalAndDataboundComboBoxSample extends ShowcasePanel {
 

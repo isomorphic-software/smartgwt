@@ -15,9 +15,9 @@
 
 package com.smartgwt.sample.showcase.client.miniapp;
 
-import com.smartgwt.client.widgets.tree.TreeGrid;
 import com.smartgwt.client.data.DataSource;
 import com.smartgwt.client.types.SelectionStyle;
+import com.smartgwt.client.widgets.tree.TreeGrid;
 
 public class CategoryTreeGrid extends TreeGrid {
 

@@ -1,24 +1,14 @@
 package com.smartgwt.sample.showcase.client.effects.dragdrop;
 
-import com.smartgwt.client.types.Cursor;
-import com.smartgwt.client.types.DragAppearance;
-import com.smartgwt.client.types.ImageStyle;
-import com.smartgwt.client.types.Overflow;
-import com.smartgwt.client.util.EventHandler;
 import com.smartgwt.client.widgets.Canvas;
-import com.smartgwt.client.widgets.Img;
 import com.smartgwt.client.widgets.HTMLFlow;
 import com.smartgwt.client.widgets.grid.ListGrid;
 import com.smartgwt.client.widgets.grid.ListGridField;
 import com.smartgwt.client.widgets.layout.HLayout;
 import com.smartgwt.client.widgets.layout.VLayout;
-import com.smartgwt.client.widgets.viewer.DetailViewerField;
 import com.smartgwt.client.widgets.tile.TileGrid;
 import com.smartgwt.client.widgets.tile.TileRecord;
-import com.smartgwt.client.widgets.events.DragMoveEvent;
-import com.smartgwt.client.widgets.events.DragMoveHandler;
-import com.smartgwt.client.widgets.events.DragStartEvent;
-import com.smartgwt.client.widgets.events.DragStartHandler;
+import com.smartgwt.client.widgets.viewer.DetailViewerField;
 import com.smartgwt.sample.showcase.client.PanelFactory;
 import com.smartgwt.sample.showcase.client.ShowcasePanel;
 import com.smartgwt.sample.showcase.client.data.AnimalXmlDS;

@@ -1,9 +1,9 @@
 package com.smartgwt.sample.showcase.client.forms.details;
 
+import com.smartgwt.client.types.CharacterCasing;
 import com.smartgwt.client.widgets.Canvas;
 import com.smartgwt.client.widgets.form.DynamicForm;
 import com.smartgwt.client.widgets.form.fields.TextItem;
-import com.smartgwt.client.types.CharacterCasing;
 import com.smartgwt.sample.showcase.client.PanelFactory;
 import com.smartgwt.sample.showcase.client.ShowcasePanel;
 

@@ -1,33 +1,30 @@
 package com.smartgwt.sample.showcase.client.grid;
 
-import com.google.gwt.i18n.client.NumberFormat;
-import com.smartgwt.client.data.DataSource;
 import com.smartgwt.client.data.Criteria;
+import com.smartgwt.client.data.DataSource;
 import com.smartgwt.client.types.ListGridFieldType;
-import com.smartgwt.client.types.TopOperatorAppearance;
 import com.smartgwt.client.widgets.Canvas;
 import com.smartgwt.client.widgets.IButton;
 import com.smartgwt.client.widgets.Label;
 import com.smartgwt.client.widgets.events.ClickEvent;
 import com.smartgwt.client.widgets.events.ClickHandler;
-import com.smartgwt.client.widgets.form.FilterBuilder;
-import com.smartgwt.client.widgets.form.fields.SelectItem;
 import com.smartgwt.client.widgets.form.fields.FilterCriteriaFunction;
-import com.smartgwt.client.widgets.form.fields.events.ChangedHandler;
+import com.smartgwt.client.widgets.form.fields.SelectItem;
 import com.smartgwt.client.widgets.form.fields.events.ChangedEvent;
-import com.smartgwt.client.widgets.grid.*;
-import com.smartgwt.client.widgets.layout.VStack;
+import com.smartgwt.client.widgets.form.fields.events.ChangedHandler;
+import com.smartgwt.client.widgets.grid.EditorValueMapFunction;
+import com.smartgwt.client.widgets.grid.ListGrid;
+import com.smartgwt.client.widgets.grid.ListGridField;
 import com.smartgwt.client.widgets.layout.VLayout;
 import com.smartgwt.sample.showcase.client.PanelFactory;
 import com.smartgwt.sample.showcase.client.ShowcasePanel;
-import com.smartgwt.sample.showcase.client.data.WorldXmlDS;
 import com.smartgwt.sample.showcase.client.data.EmployeeData;
-import com.smartgwt.sample.showcase.client.data.SupplyCategoryXmlDS;
 import com.smartgwt.sample.showcase.client.data.ItemSupplyXmlDS;
+import com.smartgwt.sample.showcase.client.data.SupplyCategoryXmlDS;
 
+import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.Map;
-import java.util.HashMap;
 
 public class GridDependentSelectsSample extends ShowcasePanel {
 

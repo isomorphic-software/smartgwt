@@ -114,7 +114,7 @@ public class DragCreateSample extends ShowcasePanel {
             });
             addDropOverHandler(new DropOverHandler() {
                 public void onDropOver(DropOverEvent event) {
-                    if (willAcceptDrop())
+                    //if (willAcceptDrop())
                         setBackgroundColor("#ffff80");
                 }
             });

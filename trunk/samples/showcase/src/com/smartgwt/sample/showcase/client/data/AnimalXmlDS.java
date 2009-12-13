@@ -1,14 +1,10 @@
 package com.smartgwt.sample.showcase.client.data;
 
-import com.smartgwt.client.data.DataSource;
-import com.smartgwt.client.data.DataSourceField;
 import com.smartgwt.client.data.DSRequest;
-import com.smartgwt.client.data.fields.DataSourceFloatField;
+import com.smartgwt.client.data.DataSource;
+import com.smartgwt.client.data.fields.DataSourceImageField;
 import com.smartgwt.client.data.fields.DataSourceIntegerField;
 import com.smartgwt.client.data.fields.DataSourceTextField;
-import com.smartgwt.client.data.fields.DataSourceImageField;
-import com.google.gwt.core.client.GWT;
-import com.google.gwt.core.client.JavaScriptObject;
 
 public class AnimalXmlDS extends DataSource {
 

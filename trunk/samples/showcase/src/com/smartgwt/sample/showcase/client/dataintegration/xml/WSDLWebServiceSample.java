@@ -1,9 +1,11 @@
 package com.smartgwt.sample.showcase.client.dataintegration.xml;
 
+import com.google.gwt.core.client.JavaScriptObject;
 import com.smartgwt.client.data.WSDLLoadCallback;
 import com.smartgwt.client.data.WebService;
 import com.smartgwt.client.data.WebServiceCallback;
 import com.smartgwt.client.data.XMLTools;
+import com.smartgwt.client.rpc.RPCResponse;
 import com.smartgwt.client.util.SC;
 import com.smartgwt.client.widgets.Canvas;
 import com.smartgwt.client.widgets.form.DynamicForm;
@@ -14,10 +16,8 @@ import com.smartgwt.client.widgets.form.fields.events.ClickEvent;
 import com.smartgwt.client.widgets.form.fields.events.ClickHandler;
 import com.smartgwt.client.widgets.form.fields.events.KeyPressEvent;
 import com.smartgwt.client.widgets.form.fields.events.KeyPressHandler;
-import com.smartgwt.client.rpc.RPCResponse;
 import com.smartgwt.sample.showcase.client.PanelFactory;
 import com.smartgwt.sample.showcase.client.ShowcasePanel;
-import com.google.gwt.core.client.JavaScriptObject;
 
 import java.util.LinkedHashMap;
 import java.util.Map;
