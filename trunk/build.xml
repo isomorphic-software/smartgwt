@@ -129,8 +129,8 @@
 			<zipfileset dir="${SC_HOME}/smartclientSDK/isomorphic/skins/Enterprise" includes="**/*.*" excludes="*.gz,*.psd"
 					                        prefix="com/smartclient/theme/enterprise/public/sc/skins/Enterprise"/>	
 					
-            <!-- <zipfileset dir="${SC_HOME}/smartclientSDK/isomorphic/skins/EnterpriseBlue" includes="**/*.*" excludes="*.gz,*.psd"
-					                        prefix="com/smartclient/theme/enterpriseblue/public/sc/skins/EnterpriseBlue"/> -->
+             <zipfileset dir="${SC_HOME}/smartclientSDK/isomorphic/skins/EnterpriseBlue" includes="**/*.*" excludes="*.gz,*.psd"
+					                        prefix="com/smartclient/theme/enterpriseblue/public/sc/skins/EnterpriseBlue"/>
 
         </zip>
 		
