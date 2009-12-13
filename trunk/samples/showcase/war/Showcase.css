@@ -719,3 +719,26 @@ html>body .gwt-DecoratedTabBar .gwt-TabBarItem-selected .tabTopRight {
 .vpDotted {
   border: 1px dotted blue;
 }
+
+.thumbnail,
+.thumbnailOver,
+.thumbnailSelected,
+.thumbnailSelectedOver {
+    border : 1px solid #CDCDCB;
+}
+
+.thumbnailTitle,
+.thumbnailTitleOver,
+.thumbnailTitleSelected,
+.thumbnailTitleSelectedOver {
+    font-size:9px;
+    text-overflow:ellipsis;
+}
+
+.thumbnailTitleOver,
+.thumbnailTitleSelected,
+.thumbnailTitleSelectedOver {
+    font-size:9px;
+    text-overflow:ellipsis;    
+    color: #336699;
+}
