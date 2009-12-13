@@ -28,6 +28,7 @@
    <body>
       <h1>Smart GWT Release Notes</h1>
       <ul>
+            <li><a href="#2_0">2.0</a></li>
             <li><a href="#1_3">1.3</a></li>
             <li><a href="#1_2">1.2</a></li>
             <li><a href="#1_1">1.1</a></li>
@@ -35,6 +36,33 @@
       </ul>
       <hr/>
 
+    <a name="2_0"></a>
+      <h2>Release Notes for Smart GWT 2.0</h2>
+        <div>- GWT 2.0 support</div>
+        <div>- New Enterprise Blue theme, and significant improvements to Enterprise Gray Skin. Other skins deprecated and will have replacements in a future release.</div>
+        <div>- Theme specific collection of standard Window Icons, Picker Icons and Transfer Button icons as part of the core library.</div>
+        <div>- MS Excel like MultiColumn sort capabilities for ListGrid</div>      
+        <div>- Support for ListGrid row expansions with in built expansion modes like details, editable form, related records as well
+            as allowing the user to display a custom widget via the override point ListGrid.getExpansionComponent(record)</div>
+        <div>- Exposed getGridSummary(field) as an override point. This allows you to return an entirely custom summary row value for any field</div>
+        <div>- Added the following methods to FormItem: setValueFormatter , setEditorValueFormatter and setEditorValueParser. These allow the user to customize the 
+            display and parsing of input in a FormItem.</div>
+        <div>- Enhancements to DetailViewer and TileGrid so better support working interchangeably with the Records from any other DataBoundComponent</div>
+        <div>- Disabled state of all components fully supported. Missing media added.</div>
+        <div>- Various enhancements to support IE8 and Safari strict mode</div>
+        <div>- Support for "center" Layout alignment setting.</div>
+        <div>- Added DateTimeItem form field type.</div>      
+        <div>- Support for masking DateItem, DateTimeItem and TimeItem input fields.</div>
+        <div>- Added Canvas.showClickMask(..) to do an 'auto-dismiss on outside click' type behavior on a component</div>
+        <div>- Fixed overflow issue with ListGrid.addData() under certain circumstances</div>
+        <div>- Fixed XSD support regression on Chrome / Safari</div>
+        <div>- Fixed "Too much recursion" issue with ValuesManager</div>
+        <div>- Fixed WSDL regression</div>
+        <div>- Javadoc improvements to link to GWT and JDK Javadoc APIs respectively</div>
+        <div>- Numerous new samples and improvements to the Showcase demo main page</div>
+        <div>- <a href="http://code.google.com/p/smartgwt/issues/list?can=1&q=label%3ASmartGWT-2.0">Various</a> additional enhancements and bug fixes that were logged in tracker</div>
+        <div>- See the detailed <a href="api-changes.html">API Changes</a> document</div>
+      <hr/>
       <a name="1_3"></a>
       <h2>Release Notes for Smart GWT 1.3</h2>
         <p>In this release the SmartGwt modules have been slightly refactored so that by default the compile output does not include debug sources, unused resources, developer tools etc.
