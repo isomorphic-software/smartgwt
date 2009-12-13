@@ -20,7 +20,6 @@ import com.smartgwt.client.widgets.tile.events.RecordClickHandler;
 import com.smartgwt.client.widgets.viewer.CellStyleHandler;
 import com.smartgwt.client.widgets.viewer.DetailFormatter;
 import com.smartgwt.client.widgets.viewer.DetailViewerField;
-import com.smartgwt.client.widgets.viewer.DetailViewerRecord;
 import com.smartgwt.sample.showcase.client.PanelFactory;
 import com.smartgwt.sample.showcase.client.ShowcasePanel;
 import com.smartgwt.sample.showcase.client.data.AnimalXmlDS;

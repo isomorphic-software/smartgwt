@@ -7,7 +7,6 @@ import com.smartgwt.client.widgets.Canvas;
 import com.smartgwt.client.widgets.form.fields.DateItem;
 import com.smartgwt.client.widgets.form.fields.SpinnerItem;
 import com.smartgwt.client.widgets.form.fields.TextAreaItem;
-import com.smartgwt.client.widgets.form.fields.SelectItem;
 import com.smartgwt.client.widgets.grid.CellFormatter;
 import com.smartgwt.client.widgets.grid.ListGrid;
 import com.smartgwt.client.widgets.grid.ListGridField;
@@ -15,9 +14,6 @@ import com.smartgwt.client.widgets.grid.ListGridRecord;
 import com.smartgwt.sample.showcase.client.PanelFactory;
 import com.smartgwt.sample.showcase.client.ShowcasePanel;
 import com.smartgwt.sample.showcase.client.data.CountryXmlDS;
-
-import java.util.LinkedHashMap;
-import java.util.Map;
 
 public class GridCustomEditorsSample extends ShowcasePanel {
     private static final String DESCRIPTION = "<b>Click</b> on any cell to start editing. The \"Country\", \"Government\", \"Population\", and \"Nationhood\" columns " +

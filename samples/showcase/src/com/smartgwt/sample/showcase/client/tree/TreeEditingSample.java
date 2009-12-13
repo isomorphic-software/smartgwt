@@ -2,12 +2,12 @@ package com.smartgwt.sample.showcase.client.tree;
 
 import com.smartgwt.client.data.Criteria;
 import com.smartgwt.client.widgets.Canvas;
-import com.smartgwt.client.widgets.layout.VLayout;
 import com.smartgwt.client.widgets.form.SearchForm;
 import com.smartgwt.client.widgets.form.fields.PickTreeItem;
 import com.smartgwt.client.widgets.form.fields.events.ChangedEvent;
 import com.smartgwt.client.widgets.form.fields.events.ChangedHandler;
 import com.smartgwt.client.widgets.grid.ListGrid;
+import com.smartgwt.client.widgets.layout.VLayout;
 import com.smartgwt.client.widgets.tree.TreeGrid;
 import com.smartgwt.client.widgets.tree.TreeGridField;
 import com.smartgwt.sample.showcase.client.PanelFactory;

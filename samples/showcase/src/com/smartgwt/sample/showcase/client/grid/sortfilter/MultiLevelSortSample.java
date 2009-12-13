@@ -16,25 +16,18 @@
 
 package com.smartgwt.sample.showcase.client.grid.sortfilter;
 
-import com.google.gwt.i18n.client.NumberFormat;
 import com.smartgwt.client.data.MultiSortCallback;
 import com.smartgwt.client.data.MultiSortDialog;
 import com.smartgwt.client.data.SortSpecifier;
-import com.smartgwt.client.types.Alignment;
-import com.smartgwt.client.types.ListGridFieldType;
 import com.smartgwt.client.types.SortDirection;
 import com.smartgwt.client.widgets.Canvas;
 import com.smartgwt.client.widgets.IButton;
 import com.smartgwt.client.widgets.events.ClickEvent;
 import com.smartgwt.client.widgets.events.ClickHandler;
-import com.smartgwt.client.widgets.grid.CellFormatter;
 import com.smartgwt.client.widgets.grid.ListGrid;
-import com.smartgwt.client.widgets.grid.ListGridField;
-import com.smartgwt.client.widgets.grid.ListGridRecord;
 import com.smartgwt.client.widgets.layout.VLayout;
 import com.smartgwt.sample.showcase.client.PanelFactory;
 import com.smartgwt.sample.showcase.client.ShowcasePanel;
-import com.smartgwt.sample.showcase.client.data.CountryData;
 import com.smartgwt.sample.showcase.client.data.ItemSupplyXmlDS;
 
 public class MultiLevelSortSample extends ShowcasePanel {
@@ -90,7 +83,11 @@ public class MultiLevelSortSample extends ShowcasePanel {
             public void onClick(ClickEvent event) {
                 MultiSortDialog.askForSort(listGrid, listGrid.getSort(), new MultiSortCallback() {
                     public void execute(SortSpecifier[] sortLevels) {
-                        listGrid.setSort(sortLevels);
+                        //if sortLevels is null, it means that the Cancel button was clicked
+                        //in which case we simply want to dismiss the dialog
+                        if(sortLevels != null) {
+                            listGrid.setSort(sortLevels);
+                        }
                     }
                 });
             }

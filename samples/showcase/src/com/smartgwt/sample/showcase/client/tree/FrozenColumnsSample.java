@@ -3,8 +3,6 @@ package com.smartgwt.sample.showcase.client.tree;
 import com.smartgwt.client.widgets.Canvas;
 import com.smartgwt.client.widgets.tree.TreeGrid;
 import com.smartgwt.client.widgets.tree.TreeGridField;
-import com.smartgwt.client.widgets.tree.events.DataArrivedHandler;
-import com.smartgwt.client.widgets.tree.events.DataArrivedEvent;
 import com.smartgwt.sample.showcase.client.PanelFactory;
 import com.smartgwt.sample.showcase.client.ShowcasePanel;
 import com.smartgwt.sample.showcase.client.data.EmployeeXmlDS;

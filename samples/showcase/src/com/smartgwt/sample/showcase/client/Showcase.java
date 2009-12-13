@@ -1,14 +1,15 @@
 package com.smartgwt.sample.showcase.client;
 
 import com.google.gwt.core.client.EntryPoint;
-import com.google.gwt.user.client.*;
+import com.google.gwt.user.client.Cookies;
+import com.google.gwt.user.client.DeferredCommand;
+import com.google.gwt.user.client.History;
+import com.google.gwt.user.client.HistoryListener;
 import com.google.gwt.user.client.ui.RootPanel;
 import com.smartgwt.client.core.KeyIdentifier;
-import com.smartgwt.client.types.HeaderControls;
 import com.smartgwt.client.types.TabBarControls;
 import com.smartgwt.client.util.SC;
 import com.smartgwt.client.widgets.*;
-import com.smartgwt.client.widgets.Window;
 import com.smartgwt.client.widgets.events.ClickEvent;
 import com.smartgwt.client.widgets.events.ShowContextMenuEvent;
 import com.smartgwt.client.widgets.events.ShowContextMenuHandler;
@@ -17,10 +18,6 @@ import com.smartgwt.client.widgets.form.fields.SelectItem;
 import com.smartgwt.client.widgets.form.fields.events.ChangeEvent;
 import com.smartgwt.client.widgets.form.fields.events.ChangeHandler;
 import com.smartgwt.client.widgets.grid.ListGrid;
-import com.smartgwt.client.widgets.grid.events.NodeSelectedEvent;
-import com.smartgwt.client.widgets.grid.events.NodeSelectedHandler;
-import com.smartgwt.client.widgets.grid.events.RecordDoubleClickEvent;
-import com.smartgwt.client.widgets.grid.events.RecordDoubleClickHandler;
 import com.smartgwt.client.widgets.layout.HLayout;
 import com.smartgwt.client.widgets.layout.LayoutSpacer;
 import com.smartgwt.client.widgets.layout.VLayout;
@@ -31,8 +28,8 @@ import com.smartgwt.client.widgets.menu.events.ClickHandler;
 import com.smartgwt.client.widgets.menu.events.MenuItemClickEvent;
 import com.smartgwt.client.widgets.tab.Tab;
 import com.smartgwt.client.widgets.tab.TabSet;
-import com.smartgwt.client.widgets.tab.events.TabSelectedHandler;
 import com.smartgwt.client.widgets.tab.events.TabSelectedEvent;
+import com.smartgwt.client.widgets.tab.events.TabSelectedHandler;
 import com.smartgwt.client.widgets.tree.Tree;
 import com.smartgwt.client.widgets.tree.TreeNode;
 import com.smartgwt.client.widgets.tree.events.LeafClickEvent;
@@ -101,8 +98,6 @@ public class Showcase implements EntryPoint, HistoryListener {
 
         mainTabSet = new TabSet();
 
-        //default is 22. required to increase to that select tab control displays well
-        mainTabSet.setTabBarThickness(25);
         mainTabSet.setWidth100();
         mainTabSet.setHeight100();
         mainTabSet.addTabSelectedHandler(new TabSelectedHandler() {
@@ -121,6 +116,7 @@ public class Showcase implements EntryPoint, HistoryListener {
         layoutSpacer.setWidth(5);
 
         SelectItem selectItem = new SelectItem();
+        selectItem.setHeight(21);
         selectItem.setWidth(130);
         LinkedHashMap<String, String> valueMap = new LinkedHashMap<String, String>();
         valueMap.put("EnterpriseBlue", "Enterprise Blue");

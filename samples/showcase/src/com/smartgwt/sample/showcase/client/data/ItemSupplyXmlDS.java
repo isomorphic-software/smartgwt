@@ -1,12 +1,9 @@
 package com.smartgwt.sample.showcase.client.data;
 
 import com.smartgwt.client.data.DataSource;
-import com.smartgwt.client.data.DataSourceField;
 import com.smartgwt.client.data.fields.*;
 import com.smartgwt.client.widgets.form.validator.FloatPrecisionValidator;
 import com.smartgwt.client.widgets.form.validator.FloatRangeValidator;
-import com.smartgwt.client.widgets.form.validator.Validator;
-import com.google.gwt.core.client.GWT;
 
 public class ItemSupplyXmlDS extends DataSource {
 

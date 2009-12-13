@@ -1,7 +1,5 @@
 package com.smartgwt.sample.showcase.client.data;
 
-import java.util.Date;
-
 public class EmployeeData {
 
     private static EmployeeRecord[] records;

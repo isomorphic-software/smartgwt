@@ -1,12 +1,7 @@
 package com.smartgwt.sample.showcase.client.data;
 
-import com.google.gwt.core.client.GWT;
 import com.smartgwt.client.data.DataSource;
-import com.smartgwt.client.data.fields.DataSourceBooleanField;
-import com.smartgwt.client.data.fields.DataSourceDateField;
-import com.smartgwt.client.data.fields.DataSourceFloatField;
-import com.smartgwt.client.data.fields.DataSourceIntegerField;
-import com.smartgwt.client.data.fields.DataSourceTextField;
+import com.smartgwt.client.data.fields.*;
 
 public class WorldXmlDS extends DataSource {
 

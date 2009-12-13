@@ -1,19 +1,15 @@
 package com.smartgwt.sample.showcase.client.effects.dragdrop;
 
-import com.smartgwt.client.types.*;
-import com.smartgwt.client.util.EventHandler;
+import com.smartgwt.client.data.Record;
+import com.smartgwt.client.types.DragDataAction;
+import com.smartgwt.client.types.ListGridFieldType;
+import com.smartgwt.client.types.SelectionStyle;
 import com.smartgwt.client.widgets.Canvas;
-import com.smartgwt.client.widgets.Img;
-import com.smartgwt.client.widgets.ImgProperties;
-import com.smartgwt.client.widgets.grid.ListGridField;
 import com.smartgwt.client.widgets.grid.ListGrid;
+import com.smartgwt.client.widgets.grid.ListGridField;
+import com.smartgwt.client.widgets.layout.HStack;
 import com.smartgwt.client.widgets.menu.Menu;
 import com.smartgwt.client.widgets.menu.MenuButton;
-import com.smartgwt.client.widgets.events.*;
-import com.smartgwt.client.widgets.layout.HStack;
-import com.smartgwt.client.widgets.layout.VStack;
-import com.smartgwt.client.widgets.layout.HLayout;
-import com.smartgwt.client.data.Record;
 import com.smartgwt.sample.showcase.client.PanelFactory;
 import com.smartgwt.sample.showcase.client.ShowcasePanel;
 import com.smartgwt.sample.showcase.client.data.PartData;

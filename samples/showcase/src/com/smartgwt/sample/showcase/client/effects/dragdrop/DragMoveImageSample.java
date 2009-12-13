@@ -9,9 +9,6 @@ import com.smartgwt.client.widgets.layout.VStack;
 import com.smartgwt.sample.showcase.client.PanelFactory;
 import com.smartgwt.sample.showcase.client.ShowcasePanel;
 
-import java.util.HashMap;
-import java.util.Map;
-
 
 public class DragMoveImageSample extends ShowcasePanel {
     private static final String DESCRIPTION = "Drag and drop to move pieces between the boxes. The green box sets a thicker green \"drop line\" indicator to match its border. " +

@@ -1,20 +1,20 @@
 package com.smartgwt.sample.showcase.client.grid;
 
+import com.google.gwt.i18n.client.NumberFormat;
 import com.smartgwt.client.data.DataSource;
 import com.smartgwt.client.data.Record;
-import com.smartgwt.client.types.SummaryFunctionType;
 import com.smartgwt.client.types.Alignment;
 import com.smartgwt.client.types.RecordSummaryFunctionType;
+import com.smartgwt.client.types.SummaryFunctionType;
 import com.smartgwt.client.widgets.Canvas;
 import com.smartgwt.client.widgets.grid.*;
 import com.smartgwt.sample.showcase.client.PanelFactory;
 import com.smartgwt.sample.showcase.client.ShowcasePanel;
-import com.smartgwt.sample.showcase.client.data.OrderItemLocalDS;
 import com.smartgwt.sample.showcase.client.data.OrderItem;
-import com.google.gwt.i18n.client.NumberFormat;
+import com.smartgwt.sample.showcase.client.data.OrderItemLocalDS;
 
-import java.util.Set;
 import java.util.HashSet;
+import java.util.Set;
 
 public class GridSummariesSample extends ShowcasePanel {
 

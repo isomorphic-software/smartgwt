@@ -15,8 +15,8 @@
 
 package com.smartgwt.sample.showcase.client.miniapp;
 
-import com.smartgwt.client.widgets.HTMLPane;
 import com.smartgwt.client.types.Overflow;
+import com.smartgwt.client.widgets.HTMLPane;
 
 public class HelpPane extends HTMLPane {
     public HelpPane() {

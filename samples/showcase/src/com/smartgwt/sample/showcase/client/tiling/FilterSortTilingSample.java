@@ -19,13 +19,11 @@ import com.smartgwt.client.widgets.tile.TileGrid;
 import com.smartgwt.client.widgets.viewer.CellStyleHandler;
 import com.smartgwt.client.widgets.viewer.DetailFormatter;
 import com.smartgwt.client.widgets.viewer.DetailViewerField;
-import com.smartgwt.client.widgets.viewer.DetailViewerRecord;
 import com.smartgwt.sample.showcase.client.PanelFactory;
 import com.smartgwt.sample.showcase.client.ShowcasePanel;
 import com.smartgwt.sample.showcase.client.data.AnimalXmlDS;
 
 import java.util.LinkedHashMap;
-import java.util.Map;
 
 public class FilterSortTilingSample extends ShowcasePanel {
 

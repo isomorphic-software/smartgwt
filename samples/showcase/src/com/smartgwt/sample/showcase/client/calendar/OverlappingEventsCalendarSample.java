@@ -1,14 +1,9 @@
 package com.smartgwt.sample.showcase.client.calendar;
 
-import com.smartgwt.client.data.DataSource;
-import com.smartgwt.client.data.fields.DataSourceDateField;
-import com.smartgwt.client.data.fields.DataSourceSequenceField;
-import com.smartgwt.client.data.fields.DataSourceTextField;
 import com.smartgwt.client.widgets.Canvas;
 import com.smartgwt.client.widgets.calendar.Calendar;
 import com.smartgwt.sample.showcase.client.PanelFactory;
 import com.smartgwt.sample.showcase.client.ShowcasePanel;
-import com.smartgwt.sample.showcase.client.data.CalendarData;
 import com.smartgwt.sample.showcase.client.data.CalendarOverlappingData;
 
 public class OverlappingEventsCalendarSample extends ShowcasePanel {

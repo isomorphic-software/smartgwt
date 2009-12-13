@@ -1,7 +1,6 @@
 
 package com.smartgwt.sample.showcase.client.buttons;
 
-import com.smartgwt.client.widgets.Button;
 import com.smartgwt.client.widgets.Canvas;
 import com.smartgwt.client.widgets.IButton;
 import com.smartgwt.client.widgets.events.ClickEvent;

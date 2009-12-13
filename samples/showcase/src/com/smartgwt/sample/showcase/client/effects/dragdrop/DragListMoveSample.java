@@ -3,7 +3,6 @@ package com.smartgwt.sample.showcase.client.effects.dragdrop;
 import com.smartgwt.client.types.Alignment;
 import com.smartgwt.client.types.DragDataAction;
 import com.smartgwt.client.widgets.Canvas;
-import com.smartgwt.client.widgets.Img;
 import com.smartgwt.client.widgets.TransferImgButton;
 import com.smartgwt.client.widgets.events.ClickEvent;
 import com.smartgwt.client.widgets.events.ClickHandler;

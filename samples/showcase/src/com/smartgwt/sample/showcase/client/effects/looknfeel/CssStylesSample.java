@@ -9,8 +9,6 @@ import com.smartgwt.client.widgets.form.fields.events.ChangedHandler;
 import com.smartgwt.sample.showcase.client.PanelFactory;
 import com.smartgwt.sample.showcase.client.ShowcasePanel;
 
-import java.util.HashMap;
-import java.util.Map;
 import java.util.LinkedHashMap;
 
 public class CssStylesSample extends ShowcasePanel {

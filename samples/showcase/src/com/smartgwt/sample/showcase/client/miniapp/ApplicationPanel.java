@@ -15,37 +15,23 @@
 
 package com.smartgwt.sample.showcase.client.miniapp;
 
-import com.smartgwt.client.data.DataSource;
 import com.smartgwt.client.data.Criteria;
-import com.smartgwt.client.types.Overflow;
+import com.smartgwt.client.data.DataSource;
 import com.smartgwt.client.types.VisibilityMode;
-import com.smartgwt.client.widgets.IButton;
-import com.smartgwt.client.widgets.menu.Menu;
-import com.smartgwt.client.widgets.menu.MenuItem;
-import com.smartgwt.client.widgets.menu.events.MenuItemClickEvent;
 import com.smartgwt.client.widgets.form.fields.ComboBoxItem;
 import com.smartgwt.client.widgets.form.fields.FilterCriteriaFunction;
-import com.smartgwt.client.widgets.form.fields.SelectItem;
-import com.smartgwt.client.widgets.form.fields.CheckboxItem;
-import com.smartgwt.client.widgets.form.fields.events.*;
-import com.smartgwt.client.widgets.form.DynamicForm;
 import com.smartgwt.client.widgets.grid.ListGridRecord;
 import com.smartgwt.client.widgets.grid.events.*;
-import com.smartgwt.client.widgets.grid.events.ChangeEvent;
-import com.smartgwt.client.widgets.events.ClickEvent;
-import com.smartgwt.client.widgets.events.ClickHandler;
 import com.smartgwt.client.widgets.layout.HLayout;
 import com.smartgwt.client.widgets.layout.SectionStack;
 import com.smartgwt.client.widgets.layout.SectionStackSection;
+import com.smartgwt.client.widgets.menu.Menu;
+import com.smartgwt.client.widgets.menu.MenuItem;
+import com.smartgwt.client.widgets.menu.events.MenuItemClickEvent;
 import com.smartgwt.client.widgets.tree.events.NodeClickEvent;
 import com.smartgwt.client.widgets.tree.events.NodeClickHandler;
-import com.smartgwt.client.util.SC;
-import com.smartgwt.client.util.JSOHelper;
 import com.smartgwt.sample.showcase.client.data.ItemSupplyXmlDS;
 import com.smartgwt.sample.showcase.client.data.SupplyCategoryXmlDS;
-
-import java.util.Map;
-import java.util.HashMap;
 
 class ApplicationPanel extends HLayout {
 

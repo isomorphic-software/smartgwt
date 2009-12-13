@@ -1,9 +1,9 @@
 package com.smartgwt.sample.showcase.client.dataintegration.xml;
 
-import com.smartgwt.client.data.RestDataSource;
-import com.smartgwt.client.data.OperationBinding;
 import com.smartgwt.client.data.DSRequest;
 import com.smartgwt.client.data.DSResponse;
+import com.smartgwt.client.data.OperationBinding;
+import com.smartgwt.client.data.RestDataSource;
 import com.smartgwt.client.data.fields.DataSourceTextField;
 import com.smartgwt.client.types.ContentsType;
 import com.smartgwt.client.types.DSOperationType;

@@ -7,12 +7,10 @@ import com.smartgwt.client.widgets.form.DynamicForm;
 import com.smartgwt.client.widgets.form.fields.SelectItem;
 import com.smartgwt.client.widgets.toolbar.ToolStrip;
 import com.smartgwt.client.widgets.toolbar.ToolStripSeparator;
-import com.smartgwt.client.widgets.toolbar.ToolStripResizer;
 import com.smartgwt.sample.showcase.client.PanelFactory;
 import com.smartgwt.sample.showcase.client.ShowcasePanel;
 
 import java.util.LinkedHashMap;
-import java.util.Map;
 
 public class ToolStripsSample extends ShowcasePanel {
     private static final String DESCRIPTION = "Click the icons at left to see \"radio\"-style selection. Click the drop-down to see font options.";

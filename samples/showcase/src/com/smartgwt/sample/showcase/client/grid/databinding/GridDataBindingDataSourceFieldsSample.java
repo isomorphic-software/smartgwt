@@ -2,7 +2,6 @@ package com.smartgwt.sample.showcase.client.grid.databinding;
 
 import com.smartgwt.client.data.DataSource;
 import com.smartgwt.client.data.DataSourceField;
-import com.smartgwt.client.types.ExpansionMode;
 import com.smartgwt.client.types.FieldType;
 import com.smartgwt.client.widgets.Canvas;
 import com.smartgwt.client.widgets.grid.ListGrid;
