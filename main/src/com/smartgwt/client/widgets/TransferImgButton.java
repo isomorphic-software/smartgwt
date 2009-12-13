@@ -17,6 +17,7 @@ public class TransferImgButton extends ImgButton {
     public static TransferImg UP_FIRST = new TransferImg("[SKIN]/TransferIcons/up_first.png");
     public static TransferImg DOWN = new TransferImg("[SKIN]/TransferIcons/down.png");
     public static TransferImg DOWN_LAST = new TransferImg("[SKIN]/TransferIcons/down_last.png");
+    public static TransferImg DELETE = new TransferImg("[SKIN]/TransferIcons/delete.png");
 
     /**
      * Create a new HeaderControl with the specific icon.
