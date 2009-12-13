@@ -135,6 +135,7 @@ public class ShowcaseData {
                     new ExplorerTreeNode("Row Details", "grid-expanding-details-new-category", "new-category", null, new GridRowExpansionDetailsSample.Factory(), true, idSuffix),
                     new ExplorerTreeNode("Nested Form", "grid-nested-form-new-category", "new-category", null, new GridRowExpansionEditorSample.Factory(), true, idSuffix),
                     new ExplorerTreeNode("Nested Grid", "grid-nested-grid-new-category", "new-category", null, new GridRowExpansionRelatedRecordsSample.Factory(), true, idSuffix),
+                    new ExplorerTreeNode("Window Icons", "window-icons-new-category", "new-category", null, new WindowHeaderIconsSample.Factory(), true, idSuffix),
                     new ExplorerTreeNode("Picker Icons", "picker-icons-new-category", "new-category", null, new PickerControlsSample.Factory(), true, idSuffix),
                     new ExplorerTreeNode("Text Masking", "form-masking-new-category", "new-category", "silk/vcard_edit.png", new TextMaskingSample.Factory(), true, idSuffix),
                     new ExplorerTreeNode("Progressbar", "progressbar-new-category", "new-category", null, new ProgressBarSample.Factory(), true, idSuffix),
@@ -279,7 +280,7 @@ public class ShowcaseData {
                     new ExplorerTreeNode("Add", "add-grid-form-category", "grid-form-category", "pieces/16/cube_blue.png", new GridFormAddSample.Factory(), true, idSuffix),
                     new ExplorerTreeNode("Update", "update-grid-form-category", "grid-form-category", "pieces/16/cube_blue.png", new GridFormUpdateSample.Factory(), true, idSuffix),
                     new ExplorerTreeNode("Remove", "remove-grid-form-category", "grid-form-category", "pieces/16/cube_blue.png", new GridRecordRemoveSample.Factory(), true, idSuffix),
-                    new ExplorerTreeNode("Pattern Reuse", "pattern-reuse-grid-from-category", "grid-form-category", "silk/database_table.png", new PatternReuseSample.Factory(), true, idSuffix),
+                    new ExplorerTreeNode("Pattern Reuse", "pattern-reuse-grid-form-category", "grid-form-category", "silk/database_table.png", new PatternReuseSample.Factory(), true, idSuffix),
 
                     new ExplorerTreeNode("Live Grid", "live-grid", "grid-category", null, new LiveGridFetchSample.Factory(), true, idSuffix),
                     new ExplorerTreeNode("Dependent Selects (Grid)", "dependent-selects-grid", "grid-category", null, new GridDependentSelectsSample.Factory(), true, idSuffix),
@@ -324,7 +325,7 @@ public class ShowcaseData {
 
                     new ExplorerTreeNode("Data View / Tiling", "tiling-category", "root", "crystal/16/actions/view_icon.png", null, true, idSuffix),
                     new ExplorerTreeNode("Basic", "tiling-basic", "tiling-category", null, new BasicTilingSample.Factory(), true, idSuffix),
-                    new ExplorerTreeNode("Load on Demand", "tiling-load-on-deamnd", "tiling-category", null, new LoadOnDemandTilingSample.Factory(), true, idSuffix),
+                    new ExplorerTreeNode("Load on Demand", "tiling-load-on-demand", "tiling-category", null, new LoadOnDemandTilingSample.Factory(), true, idSuffix),
                     new ExplorerTreeNode("Filter and Sort", "tiling-filter-sort", "tiling-category", null, new FilterSortTilingSample.Factory(), true, idSuffix),
                     new ExplorerTreeNode("Tile Editing", "tiling-editing", "tiling-category", null, new TileEditingSample.Factory(), true, idSuffix),
 
