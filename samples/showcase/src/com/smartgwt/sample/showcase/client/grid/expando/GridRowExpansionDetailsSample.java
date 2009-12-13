@@ -2,14 +2,11 @@ package com.smartgwt.sample.showcase.client.grid.expando;
 
 import com.smartgwt.client.data.DataSource;
 import com.smartgwt.client.types.ExpansionMode;
-import com.smartgwt.client.types.Overflow;
 import com.smartgwt.client.widgets.Canvas;
 import com.smartgwt.client.widgets.grid.ListGrid;
 import com.smartgwt.client.widgets.grid.ListGridField;
-import com.smartgwt.client.widgets.grid.ListGridRecord;
 import com.smartgwt.sample.showcase.client.PanelFactory;
 import com.smartgwt.sample.showcase.client.ShowcasePanel;
-import com.smartgwt.sample.showcase.client.data.AnimalXmlDS;
 import com.smartgwt.sample.showcase.client.data.CountryData;
 import com.smartgwt.sample.showcase.client.data.ItemSupplyLocalDS;
 import com.smartgwt.sample.showcase.client.data.ItemSupplyXmlDS;
@@ -39,23 +36,20 @@ public class GridRowExpansionDetailsSample extends ShowcasePanel {
     }
 
     public Canvas getViewPanel() {
-        DataSource dataSource = AnimalXmlDS.getInstance();
+        DataSource dataSource = ItemSupplyXmlDS.getInstance();
 
         ListGrid listGrid = new ListGrid();
         listGrid.setWidth(600);
         listGrid.setHeight(500);
         listGrid.setCanExpandRecords(true);
-        listGrid.setCanSort(true);
         listGrid.setExpansionMode(ExpansionMode.DETAILS);
         listGrid.setAutoFetchData(true);
-
         listGrid.setDataSource(dataSource);
 
-        ListGridField commonName = new ListGridField("commonName");
-        ListGridField scientificName = new ListGridField("scientificName");
-        ListGridField lifeSpan = new ListGridField("lifeSpan");
+        ListGridField itemNameField = new ListGridField("itemName");
+        ListGridField skuField = new ListGridField("SKU");
 
-        listGrid.setFields(commonName, scientificName, lifeSpan);
+        listGrid.setFields(itemNameField, skuField);
 
         return listGrid;
     }
@@ -63,5 +57,5 @@ public class GridRowExpansionDetailsSample extends ShowcasePanel {
 
     public String getIntro() {
         return DESCRIPTION;
-    }    
+    }
 }
