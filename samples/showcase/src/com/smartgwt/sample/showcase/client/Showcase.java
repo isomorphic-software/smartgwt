@@ -51,12 +51,10 @@ public class Showcase implements EntryPoint, HistoryListener {
 
         EdgedCanvas.preloadImages();
         Scrollbar.preloadImages();
-        TabSet.preloadImages();
 
         DeferredCommand.addCommand(new com.google.gwt.user.client.Command() {
             public void execute() {
             Window.preloadImages();
-            IButton.preloadImages();
             ListGrid.preloadImages();
             }
         });        
@@ -192,6 +190,7 @@ public class Showcase implements EntryPoint, HistoryListener {
         Tab tab = new Tab();
         tab.setTitle("Smart GWT Showcase&nbsp;&nbsp;");
         tab.setIcon("pieces/16/cube_green.png");
+        tab.setWidth(155);
 
         HLayout mainPanel = new HLayout();
         mainPanel.setHeight100();
@@ -332,7 +331,7 @@ public class Showcase implements EntryPoint, HistoryListener {
                     if (icon == null) {
                         icon = "silk/plugin.png";
                     }
-                    String imgHTML = Canvas.imgHTML(icon);
+                    String imgHTML = Canvas.imgHTML(icon, 16, 16);
                     tab.setTitle("<span>" + imgHTML + "&nbsp;" + sampleName + "</span>");
                     tab.setPane(panel);
                     tab.setCanClose(true);
