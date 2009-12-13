@@ -140,11 +140,8 @@ public class TileView extends VLayout {
                 }
             }
         });
-        final FormItemIcon findIcon = new FormItemIcon();
-        findIcon.setSrc("silk/find.png");
-
-        final FormItemIcon cancelIcon = new FormItemIcon();
-        cancelIcon.setSrc("silk/arrow_refresh_small.png");
+        final PickerIcon findIcon = new PickerIcon(PickerIcon.SEARCH);
+        final PickerIcon cancelIcon = new PickerIcon(PickerIcon.CLEAR);
         searchItem.setIcons(findIcon, cancelIcon);
 
         searchItem.addIconClickHandler(new IconClickHandler() {
@@ -183,7 +180,7 @@ public class TileView extends VLayout {
         buttonsCB = new CheckboxItem("buttonsCB", "Buttons");
         menusCB = new CheckboxItem("menusCB", "Menus");
         otherControlsCB = new CheckboxItem("otherControlsCB", "Other Controls");
-        dataIntegrationCB = new CheckboxItem("dataIntegrationCB", "Other Controls");
+        dataIntegrationCB = new CheckboxItem("dataIntegrationCB", "Data Integration");
         dragDropCB = new CheckboxItem("dragDropCB", "Drag &amp; Drop");
         basicsCB = new CheckboxItem("basicsCB", "Basics");
         effectsCB = new CheckboxItem("effectsCB", "Effects &amp; Animation");
