@@ -68,7 +68,7 @@
 			</sourcefiles>
 			<targetfiles path="${sample.build}/war/${sample.package}/${sample.package}.nocache.html" />
 			<sequential>
-				<java dir="${sample.build}" classname="com.google.gwt.dev.Compiler" classpath="${sample.build}/src:${gwt.user.jar}:${gwt.dev.jar}:${smartgwt.dev.jar}:${smartgwt-skins.dev.jar}" fork="yes" failonerror="true" maxmemory="512m">
+				<java dir="${sample.build}" classname="com.google.gwt.dev.Compiler" classpath="${sample.build}/src:${gwt.user.jar}:${gwt.dev.jar}:${gwt.dev2.jar}:${smartgwt.dev.jar}:${smartgwt-skins.dev.jar}" fork="yes" failonerror="true" maxmemory="512m">
 					<arg value="com.smartgwt.sample.${sample.package}.${sample.module}" />
 				</java>
 				<!--
