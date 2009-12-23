@@ -2609,9 +2609,27 @@ public class FormItem extends RefDataClass  implements com.smartgwt.client.widge
 
 
 
-
-
-
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     public void setAttribute(String attribute, String value) {
         if (!isCreated()) {
             JSOHelper.setAttribute(jsObj, attribute, value);
@@ -2868,7 +2886,6 @@ public class FormItem extends RefDataClass  implements com.smartgwt.client.widge
      * @param name name Default value is null
      */
     public void setName(String name) {
-        assert name.indexOf(".") == -1 : "Invalid FormItem name. Cannot use \".\" in FormItem name.";
         assert name.indexOf(" ") == -1 : "Invalid FormItem name. Cannot use spaces in FormItem name.";
         setAttribute("name", name);
     }
