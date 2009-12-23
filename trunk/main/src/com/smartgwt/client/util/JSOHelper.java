@@ -77,9 +77,9 @@ public class JSOHelper {
 
     public static JavaScriptObject[] toArray(JavaScriptObject array) {
         //handle case where a ResultSet is passed
-        if(JSOHelper.getAttributeAsJavaScriptObject(array, "allRows") != null) {
-            array = JSOHelper.getAttributeAsJavaScriptObject(array, "allRows");
-        }
+    	if (isResultSet(array)) {
+    		array = JSOHelper.resultSetToArray(array);
+    	}
         int length = getJavaScriptObjectArraySize(array);
         JavaScriptObject[] recs = new JavaScriptObject[length];
         for (int i = 0; i < length; i++) {
@@ -87,11 +87,20 @@ public class JSOHelper {
         }
         return recs;
     }
+    private static native JavaScriptObject resultSetToArray(JavaScriptObject rs) /*-{
+    	if (!rs.lengthIsKnown() || !rs.allMatchingRowsCached()) return [];
+    	return rs.getRange(0, rs.getLength()-1);
+    	
+    }-*/;
 
     public static native boolean isArray(JavaScriptObject jsObj)/*-{
         return $wnd.isA.Array(jsObj);
     }-*/;
     
+    public static native boolean isResultSet(JavaScriptObject jsObj)/*-{
+    	return $wnd.isA.ResultSet != null && $wnd.isA.ResultSet(jsObj);
+	}-*/;
+
     public static Element[] toElementArray(JavaScriptObject array) {
         int length = getJavaScriptObjectArraySize(array);
         Element[] recs = new Element[length];
