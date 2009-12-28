@@ -23,6 +23,7 @@ import com.smartgwt.client.core.DataClass;
 import com.smartgwt.client.core.Function;
 import com.smartgwt.client.core.RefDataClass;
 import com.smartgwt.client.data.Record;
+import com.smartgwt.client.data.ResultSet;
 import com.smartgwt.client.types.ValueEnum;
 import com.smartgwt.client.widgets.BaseWidget;
 
@@ -77,7 +78,7 @@ public class JSOHelper {
 
     public static JavaScriptObject[] toArray(JavaScriptObject array) {
         //handle case where a ResultSet is passed
-    	if (isResultSet(array)) {
+    	if (com.smartgwt.client.data.ResultSet.isResultSet(array)) {
     		array = JSOHelper.resultSetToArray(array);
     	}
         int length = getJavaScriptObjectArraySize(array);
@@ -88,7 +89,7 @@ public class JSOHelper {
         return recs;
     }
     private static native JavaScriptObject resultSetToArray(JavaScriptObject rs) /*-{
-    	if (!rs.lengthIsKnown() || !rs.allMatchingRowsCached()) return [];
+    	if (!rs.lengthIsKnown() || !rs.allMatchingRowsCached()) return $wnd.Array.create();
     	return rs.getRange(0, rs.getLength()-1);
     	
     }-*/;
@@ -97,10 +98,6 @@ public class JSOHelper {
         return $wnd.isA.Array(jsObj);
     }-*/;
     
-    public static native boolean isResultSet(JavaScriptObject jsObj)/*-{
-    	return $wnd.isA.ResultSet != null && $wnd.isA.ResultSet(jsObj);
-	}-*/;
-
     public static Element[] toElementArray(JavaScriptObject array) {
         int length = getJavaScriptObjectArraySize(array);
         Element[] recs = new Element[length];
