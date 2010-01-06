@@ -134,7 +134,7 @@ public class TreeNode extends ListGridRecord {
     }
 
     /**
-     * Governs whether dragged data (typicaly other <code>treeNode</code>s) may be dropped over this node. Only has an effect
+     * Governs whether dragged data (typically other <code>treeNode</code>s) may be dropped over this node. Only has an effect
      * if this node is displayed in a {@link com.smartgwt.client.widgets.tree.TreeGrid} where {@link
      * com.smartgwt.client.widgets.tree.TreeGrid#getCanAcceptDroppedRecords canAcceptDroppedRecords}, {@link
      * com.smartgwt.client.widgets.tree.TreeGrid#getCanReorderRecords canReorderRecords} or  {@link
@@ -148,7 +148,7 @@ public class TreeNode extends ListGridRecord {
     }
 
     /**
-     * Governs whether dragged data (typicaly other <code>treeNode</code>s) may be dropped over this node. Only has an effect
+     * Governs whether dragged data (typically other <code>treeNode</code>s) may be dropped over this node. Only has an effect
      * if this node is displayed in a {@link com.smartgwt.client.widgets.tree.TreeGrid} where {@link
      * com.smartgwt.client.widgets.tree.TreeGrid#getCanAcceptDroppedRecords canAcceptDroppedRecords}, {@link
      * com.smartgwt.client.widgets.tree.TreeGrid#getCanReorderRecords canReorderRecords} or  {@link

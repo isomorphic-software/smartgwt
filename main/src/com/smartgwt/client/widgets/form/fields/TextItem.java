@@ -275,12 +275,13 @@ public class TextItem extends FormItem {
      * space</td></tr> <tr><td>#</td><td>Digit</td></tr> <tr><td>L</td><td>Letter (A through Z)</td></tr>
      * <tr><td>?</td><td>Letter (A through Z) or space</td></tr> <tr><td>A</td><td>Letter or digit</td></tr>
      * <tr><td>a</td><td>Letter or digit</td></tr> <tr><td>C</td><td>Any character or space</td></tr> <tr><td>&nbsp;</td></tr>
-     * <tr><td>&lt;</td><td>Causes all characters that follow to be convered to lowercase</td></tr> <tr><td>&gt;</td><td>Causes
-     * all characters that follow to be convered to uppercase</td></tr> </table> <P> Any character not matching one of the
-     * above mask characters or that is escaped with a backslash (\) is considered to be a literal. <P> Custom mask characters
-     * can be defined by standard regular expression character set or range. For example, a hexadecimal color code mask could
-     * be: <UL> <LI>Color: \#>[0-9A-F][0-9A-F][0-9A-F][0-9A-F][0-9A-F][0-9A-F]</LI> </UL> <P> Note: input mask cannot be used
-     * at the same time as a {@link com.smartgwt.client.widgets.form.fields.TextItem#getKeyPressFilter keyPressFilter}.
+     * <tr><td>&lt;</td><td>Causes all characters that follow to be converted to lowercase</td></tr>
+     * <tr><td>&gt;</td><td>Causes all characters that follow to be converted to uppercase</td></tr> </table> <P> Any character
+     * not matching one of the above mask characters or that is escaped with a backslash (\) is considered to be a literal. <P>
+     * Custom mask characters can be defined by standard regular expression character set or range. For example, a hexadecimal
+     * color code mask could be: <UL> <LI>Color: \#>[0-9A-F][0-9A-F][0-9A-F][0-9A-F][0-9A-F][0-9A-F]</LI> </UL> <P> Note: input
+     * mask cannot be used at the same time as a {@link com.smartgwt.client.widgets.form.fields.TextItem#getKeyPressFilter
+     * keyPressFilter}.
      * Set the mask for this item. <P> Note that the current value of the field is cleared when changing the mask.
      * <p><b>Note : </b> This is an advanced setting</p>
      *
@@ -298,12 +299,13 @@ public class TextItem extends FormItem {
      * space</td></tr> <tr><td>#</td><td>Digit</td></tr> <tr><td>L</td><td>Letter (A through Z)</td></tr>
      * <tr><td>?</td><td>Letter (A through Z) or space</td></tr> <tr><td>A</td><td>Letter or digit</td></tr>
      * <tr><td>a</td><td>Letter or digit</td></tr> <tr><td>C</td><td>Any character or space</td></tr> <tr><td>&nbsp;</td></tr>
-     * <tr><td>&lt;</td><td>Causes all characters that follow to be convered to lowercase</td></tr> <tr><td>&gt;</td><td>Causes
-     * all characters that follow to be convered to uppercase</td></tr> </table> <P> Any character not matching one of the
-     * above mask characters or that is escaped with a backslash (\) is considered to be a literal. <P> Custom mask characters
-     * can be defined by standard regular expression character set or range. For example, a hexadecimal color code mask could
-     * be: <UL> <LI>Color: \#>[0-9A-F][0-9A-F][0-9A-F][0-9A-F][0-9A-F][0-9A-F]</LI> </UL> <P> Note: input mask cannot be used
-     * at the same time as a {@link com.smartgwt.client.widgets.form.fields.TextItem#getKeyPressFilter keyPressFilter}.
+     * <tr><td>&lt;</td><td>Causes all characters that follow to be converted to lowercase</td></tr>
+     * <tr><td>&gt;</td><td>Causes all characters that follow to be converted to uppercase</td></tr> </table> <P> Any character
+     * not matching one of the above mask characters or that is escaped with a backslash (\) is considered to be a literal. <P>
+     * Custom mask characters can be defined by standard regular expression character set or range. For example, a hexadecimal
+     * color code mask could be: <UL> <LI>Color: \#>[0-9A-F][0-9A-F][0-9A-F][0-9A-F][0-9A-F][0-9A-F]</LI> </UL> <P> Note: input
+     * mask cannot be used at the same time as a {@link com.smartgwt.client.widgets.form.fields.TextItem#getKeyPressFilter
+     * keyPressFilter}.
      *
      *
      * @return String

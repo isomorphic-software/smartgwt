@@ -136,8 +136,6 @@ public class RPCResponse extends DataClass {
     // ********************* Static Methods ***********************
 
 
-
-
 
     public static int STATUS_FAILURE = -1;
     public static int STATUS_LOGIN_INCORRECT = -5;

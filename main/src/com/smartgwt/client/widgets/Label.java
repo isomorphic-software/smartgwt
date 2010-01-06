@@ -133,7 +133,7 @@ public class Label extends Button {
      * string.  The&#010 search and replace is optimized for speed.&#010 <p>&#010 If an error occurs during the evaluation of
      * one of the expressions, a warning is logged&#010 to the ISC Developer Console and the error string is embedded in place
      * of the expected&#010 value in the Canvas.&#010 <p>&#010 The value of a function is its return value.  The value of any
-     * variable is the same as&#010 that returned by its toString() representation.&#010 <p>&#010 Inside the evalution
+     * variable is the same as&#010 that returned by its toString() representation.&#010 <p>&#010 Inside the evaluation
      * contentext, <code>this</code> points to the canvas instance that&#010 has the dynamicContents string as its contents -
      * in other words the canvas instance on&#010 which the template is declared.
      * <p><b>Note : </b> This is an advanced setting</p>
@@ -162,7 +162,7 @@ public class Label extends Button {
      * string.  The&#010 search and replace is optimized for speed.&#010 <p>&#010 If an error occurs during the evaluation of
      * one of the expressions, a warning is logged&#010 to the ISC Developer Console and the error string is embedded in place
      * of the expected&#010 value in the Canvas.&#010 <p>&#010 The value of a function is its return value.  The value of any
-     * variable is the same as&#010 that returned by its toString() representation.&#010 <p>&#010 Inside the evalution
+     * variable is the same as&#010 that returned by its toString() representation.&#010 <p>&#010 Inside the evaluation
      * contentext, <code>this</code> points to the canvas instance that&#010 has the dynamicContents string as its contents -
      * in other words the canvas instance on&#010 which the template is declared.
      *

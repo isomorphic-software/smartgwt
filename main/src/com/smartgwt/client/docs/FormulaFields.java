@@ -42,6 +42,7 @@ package com.smartgwt.client.docs;
  * @see com.smartgwt.client..FormulaBuilder#getAutoTestDelay
  * @see com.smartgwt.client..FormulaBuilder#getTestRecord
  * @see com.smartgwt.client..SummaryBuilder#getTestRecord
+ * @see com.smartgwt.client.widgets.DataBoundComponent#getBadFormulaResultValue
  * @see com.smartgwt.client.widgets.DataBoundComponent#getCanAddFormulaFields
  * @see com.smartgwt.client..MathFunction#getName
  * @see com.smartgwt.client..MathFunction#getDescription

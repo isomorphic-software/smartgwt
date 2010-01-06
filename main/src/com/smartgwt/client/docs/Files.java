@@ -2,7 +2,7 @@
 package com.smartgwt.client.docs;
 
 /**
- * Refering to and loading other files. <P> The two main URL settings relevant to file loading are:<br> * appDir  (where
+ * Referring to and loading other files. <P> The two main URL settings relevant to file loading are:<br> * appDir  (where
  * application-specific files live)<br> * isomorphicDir (where system supplied files live)<br>
  * @see com.smartgwt.client.widgets.layout.Layout#getReverseOrder
  * @see com.smartgwt.client.util.Page#getAppDir

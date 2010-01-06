@@ -13,6 +13,7 @@ package com.smartgwt.client.docs;
  * @see com.smartgwt.client.widgets.Canvas#getShowResizeBar
  * @see com.smartgwt.client.widgets.Canvas#getResizeBarTarget
  * @see com.smartgwt.client.widgets.Canvas#getExtraSpace
+ * @see com.smartgwt.client.widgets.layout.SectionStackSection#getCanDropBefore
  * @see com.smartgwt.client.widgets.layout.SectionStack#getItemIndent
  * @see com.smartgwt.client.widgets.layout.SectionStack#getItemStartIndent
  * @see com.smartgwt.client.widgets.layout.SectionStack#getItemEndIndent

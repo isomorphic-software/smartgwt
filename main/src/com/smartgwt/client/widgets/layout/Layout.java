@@ -98,7 +98,7 @@ public class Layout extends Canvas {
              
     /**
      * Normal {@link com.smartgwt.client.types.Overflow} settings can be used on layouts, for example, an overflow:auto Layout
-     * will scroll if members exceed its specified size, whereas an overflow:visible Layout will grow to accomodate members.
+     * will scroll if members exceed its specified size, whereas an overflow:visible Layout will grow to accommodate members.
      *
      * @param overflow overflow Default value is "visible"
      * @throws IllegalStateException this property cannot be changed after the component has been created
@@ -109,7 +109,7 @@ public class Layout extends Canvas {
 
     /**
      * Normal {@link com.smartgwt.client.types.Overflow} settings can be used on layouts, for example, an overflow:auto Layout
-     * will scroll if members exceed its specified size, whereas an overflow:visible Layout will grow to accomodate members.
+     * will scroll if members exceed its specified size, whereas an overflow:visible Layout will grow to accommodate members.
      *
      *
      * @return Overflow
@@ -252,7 +252,7 @@ public class Layout extends Canvas {
      * setting is false, padding will not affect member positioning (as CSS padding normally does not affect absolutely
      * positioned children).  Leaving this setting true allows a designer to more effectively control layout purely from CSS.
      * <P> Note that {@link com.smartgwt.client.widgets.layout.Layout#getLayoutMargin layoutMargin} if specified, takes
-     * precidence over this value.
+     * precedence over this value.
      * <p><b>Note : </b> This is an advanced setting</p>
      *
      * @param paddingAsLayoutMargin paddingAsLayoutMargin Default value is true
@@ -267,7 +267,7 @@ public class Layout extends Canvas {
      * setting is false, padding will not affect member positioning (as CSS padding normally does not affect absolutely
      * positioned children).  Leaving this setting true allows a designer to more effectively control layout purely from CSS.
      * <P> Note that {@link com.smartgwt.client.widgets.layout.Layout#getLayoutMargin layoutMargin} if specified, takes
-     * precidence over this value.
+     * precedence over this value.
      *
      *
      * @return Boolean
@@ -747,7 +747,7 @@ public class Layout extends Canvas {
      * An optional method that, if it exists, allows the manipulation of the calculated offset for members of this layout. 
      * Returns the offset for the specified member.
      * @param member Component to be positioned
-     * @param defaultOffset Value of the currently calculated member offset. This      may be returned verbatim or manupulated in this method.
+     * @param defaultOffset Value of the currently calculated member offset. This      may be returned verbatim or manipulated in this method.
      * @param alignment alignment of the enclosing layout
      */
     public native void getMemberOffset(Canvas member, int defaultOffset, String alignment) /*-{
@@ -901,9 +901,6 @@ public class Layout extends Canvas {
     // ********************* Static Methods ***********************
 
 
-
-
-
 
     protected native void onInit() /*-{
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
@@ -1259,7 +1256,6 @@ public class Layout extends Canvas {
     }-*/;
 
 }
-
 
 
 

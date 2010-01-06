@@ -241,8 +241,9 @@ public class TreeGrid extends ListGrid  implements com.smartgwt.client.widgets.t
     }
              
     /**
-     * With ${isc.DocUtils.linkForRef('loadDataOnDemand:true')}, TreeGrids fetch data by selecting the child nodes of each
-     * parent, which should be exact match, so we default to <code>autoFetchTextMatchStyle:"exact"</code>. See {@link
+     * With {@link com.smartgwt.client.widgets.tree.TreeGrid#getLoadDataOnDemand loadDataOnDemand}:true, TreeGrids fetch data
+     * by selecting the child nodes of each parent, which should be exact match, so we default to
+     * <code>autoFetchTextMatchStyle:"exact"</code>. See {@link
      * com.smartgwt.client.widgets.grid.ListGrid#getAutoFetchTextMatchStyle autoFetchTextMatchStyle} for details.
      *
      * @param autoFetchTextMatchStyle autoFetchTextMatchStyle Default value is "exact"
@@ -253,8 +254,9 @@ public class TreeGrid extends ListGrid  implements com.smartgwt.client.widgets.t
     }
 
     /**
-     * With ${isc.DocUtils.linkForRef('loadDataOnDemand:true')}, TreeGrids fetch data by selecting the child nodes of each
-     * parent, which should be exact match, so we default to <code>autoFetchTextMatchStyle:"exact"</code>. See {@link
+     * With {@link com.smartgwt.client.widgets.tree.TreeGrid#getLoadDataOnDemand loadDataOnDemand}:true, TreeGrids fetch data
+     * by selecting the child nodes of each parent, which should be exact match, so we default to
+     * <code>autoFetchTextMatchStyle:"exact"</code>. See {@link
      * com.smartgwt.client.widgets.grid.ListGrid#getAutoFetchTextMatchStyle autoFetchTextMatchStyle} for details.
      *
      *
@@ -932,7 +934,7 @@ public class TreeGrid extends ListGrid  implements com.smartgwt.client.widgets.t
     }
 
     /**
-     * Should this treeGrid show connector lines illustrating the tree's hierachy? <P> For the set of images used to show
+     * Should this treeGrid show connector lines illustrating the tree's hierarchy? <P> For the set of images used to show
      * connectors, see {@link com.smartgwt.client.widgets.tree.TreeGrid#getConnectorImage connectorImage}. <P> <b>Note</b>: in
      * order for connector images to be perfectly connected, all styles for cells must have no top or bottom border or padding.
      * If you see small gaps in connector lines, check your CSS files.  See the example below for an example of correct
@@ -945,7 +947,7 @@ public class TreeGrid extends ListGrid  implements com.smartgwt.client.widgets.t
     }
 
     /**
-     * Should this treeGrid show connector lines illustrating the tree's hierachy? <P> For the set of images used to show
+     * Should this treeGrid show connector lines illustrating the tree's hierarchy? <P> For the set of images used to show
      * connectors, see {@link com.smartgwt.client.widgets.tree.TreeGrid#getConnectorImage connectorImage}. <P> <b>Note</b>: in
      * order for connector images to be perfectly connected, all styles for cells must have no top or bottom border or padding.
      * If you see small gaps in connector lines, check your CSS files.  See the example below for an example of correct
@@ -961,7 +963,7 @@ public class TreeGrid extends ListGrid  implements com.smartgwt.client.widgets.t
     /**
      * If {@link com.smartgwt.client.widgets.tree.TreeGrid#getShowConnectors showConnectors} is true, this property determines
      * whether we should show showing vertical continuation lines for each level of indenting within the tree. Setting to false
-     * will show only the hierachy lines are only shown for the most indented path ("sparse" connectors).
+     * will show only the hierarchy lines are only shown for the most indented path ("sparse" connectors).
      *
      * @param showFullConnectors showFullConnectors Default value is true
      */
@@ -972,7 +974,7 @@ public class TreeGrid extends ListGrid  implements com.smartgwt.client.widgets.t
     /**
      * If {@link com.smartgwt.client.widgets.tree.TreeGrid#getShowConnectors showConnectors} is true, this property determines
      * whether we should show showing vertical continuation lines for each level of indenting within the tree. Setting to false
-     * will show only the hierachy lines are only shown for the most indented path ("sparse" connectors).
+     * will show only the hierarchy lines are only shown for the most indented path ("sparse" connectors).
      *
      *
      * @return Boolean
@@ -1266,7 +1268,9 @@ public class TreeGrid extends ListGrid  implements com.smartgwt.client.widgets.t
     }-*/;
 
     /**
-     * Get an additional icon to show between the open icon and folder/node icon for a particular  node.
+     * Get an additional icon to show between the open icon and folder/node icon for a particular  node. <P> NOTE: If {@link
+     * com.smartgwt.client.widgets.grid.ListGrid#getSelectionAppearance selectionAppearance} is <code>"checkbox"</code>, this
+     * method will NOT be called. Extra icons cannot be shown for that appearance.
      * @param node tree node in question
      *
      * @return URL for the extra icon (null if none required)
@@ -1581,7 +1585,7 @@ public class TreeGrid extends ListGrid  implements com.smartgwt.client.widgets.t
     /**
      * Add a dataArrived handler.
      * <p>
-     * Notification method fired whenever this TreeGrid recieves new data nodes from the  dataSource. Only applies to databound
+     * Notification method fired whenever this TreeGrid receives new data nodes from the  dataSource. Only applies to databound
      * TreeGrids where {@link com.smartgwt.client.widgets.tree.TreeGrid#getData data} is a  {@link
      * com.smartgwt.client..ResultTree} - either explicitly created and applied via {@link
      * com.smartgwt.client.widgets.tree.TreeGrid#setData} or automatically generated via a {@link
@@ -1621,8 +1625,6 @@ public class TreeGrid extends ListGrid  implements com.smartgwt.client.widgets.t
     // ********************* Static Methods ***********************
 
 
-
-
     protected void onInit() {
         super.onInit();
         onInit2();

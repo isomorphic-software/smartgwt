@@ -160,7 +160,6 @@ public class Validator extends DataClass {
 
 
 
-
     /**
      * An expression in the Velocity Template Language that will run on the server.  Unlike most &#010 other Smart GWT Server features involving Velocity, server-side custom validators do not&#010 have access to the standard set of context variables.  This is deliberate, to ensure that &#010 custom validators can run in the widest possible variety of circumstances, without being &#010 tied to operating in the context of, say, an <code>HttpSession</code> or a &#010 <code>DSRequest</code>.  Server-side custom validators only have the following variables &#010 available:&#010 <ul>&#010 <li><b>dataSources</b> - The list of all DataSources, accessible by name (so, for example, &#010     <code>$dataSources.supplyItem</code> refers to the <code>supplyItem</code> DataSource&#010     object).</li>&#010 <li><b>dataSource</b> - The current DataSource</li>&#010 <li><b>record</b> - The DataSource record being validated, if available</li>&#010 <li><b>value</b> - The value of the field</li>&#010 <li><b>validator</b> - The config of this validator, presented as a <code>Map</code></li>&#010 <li><b>field</b> - The field (as a <code>DSField</code> object)</li>&#010 <li><b>util</b> - A <code>DataTools</code> object, giving you access to all of that&#010     class's useful helper functions</li>&#010 </ul>
      *

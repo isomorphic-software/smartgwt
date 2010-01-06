@@ -265,7 +265,7 @@ public class TileLayout extends Canvas {
      * setting is false, padding will not affect member positioning (as CSS padding normally does not affect absolutely
      * positioned children).  Leaving this setting true allows a designer to more effectively control layout purely from CSS.
      * <P> Note that {@link com.smartgwt.client.widgets.layout.Layout#getLayoutMargin layoutMargin} if specified, takes
-     * precidence over this value.
+     * precedence over this value.
      * <p><b>Note : </b> This is an advanced setting</p>
      *
      * @param paddingAsLayoutMargin paddingAsLayoutMargin Default value is true
@@ -280,7 +280,7 @@ public class TileLayout extends Canvas {
      * setting is false, padding will not affect member positioning (as CSS padding normally does not affect absolutely
      * positioned children).  Leaving this setting true allows a designer to more effectively control layout purely from CSS.
      * <P> Note that {@link com.smartgwt.client.widgets.layout.Layout#getLayoutMargin layoutMargin} if specified, takes
-     * precidence over this value.
+     * precedence over this value.
      *
      *
      * @return Boolean

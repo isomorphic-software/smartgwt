@@ -60,7 +60,7 @@ import com.google.gwt.event.shared.HasHandlers;
  * A ListGrid is a {@link com.smartgwt.client.widgets.DataBoundComponent} that displays a list of objects in a grid, where
  * each row represents one object and each cell in the row represents one property.
  */
-public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgwt.client.widgets.grid.events.HasHeaderClickHandlers, com.smartgwt.client.widgets.grid.events.HasRecordDropHandlers, com.smartgwt.client.widgets.grid.events.HasDataArrivedHandlers, com.smartgwt.client.widgets.grid.events.HasFieldStateChangedHandlers, com.smartgwt.client.widgets.grid.events.HasEditCompleteHandlers, com.smartgwt.client.widgets.grid.events.HasEditFailedHandlers, com.smartgwt.client.widgets.grid.events.HasEditorExitHandlers, com.smartgwt.client.widgets.grid.events.HasRowEditorEnterHandlers, com.smartgwt.client.widgets.grid.events.HasRowEditorExitHandlers, com.smartgwt.client.widgets.grid.events.HasEditorEnterHandlers, com.smartgwt.client.widgets.grid.events.HasCellSavedHandlers, com.smartgwt.client.widgets.grid.events.HasCellOutHandlers, com.smartgwt.client.widgets.grid.events.HasCellOverHandlers, com.smartgwt.client.widgets.grid.events.HasCellContextClickHandlers, com.smartgwt.client.widgets.grid.events.HasCellMouseDownHandlers, com.smartgwt.client.widgets.grid.events.HasCellMouseUpHandlers, com.smartgwt.client.widgets.grid.events.HasCellClickHandlers, com.smartgwt.client.widgets.grid.events.HasCellDoubleClickHandlers, com.smartgwt.client.widgets.grid.events.HasRowOutHandlers, com.smartgwt.client.widgets.grid.events.HasRowOverHandlers, com.smartgwt.client.widgets.grid.events.HasRowContextClickHandlers, com.smartgwt.client.widgets.grid.events.HasRowMouseDownHandlers, com.smartgwt.client.widgets.grid.events.HasRowMouseUpHandlers, com.smartgwt.client.widgets.grid.events.HasRecordClickHandlers, com.smartgwt.client.widgets.grid.events.HasRecordDoubleClickHandlers, com.smartgwt.client.widgets.grid.events.HasCellHoverHandlers, com.smartgwt.client.widgets.grid.events.HasRowHoverHandlers, com.smartgwt.client.widgets.grid.events.HasSelectionChangedHandlers {
+public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgwt.client.widgets.grid.events.HasHeaderClickHandlers, com.smartgwt.client.widgets.grid.events.HasRecordDropHandlers, com.smartgwt.client.widgets.grid.events.HasRecordExpandHandlers, com.smartgwt.client.widgets.grid.events.HasRecordCollapseHandlers, com.smartgwt.client.widgets.grid.events.HasDataArrivedHandlers, com.smartgwt.client.widgets.grid.events.HasFieldStateChangedHandlers, com.smartgwt.client.widgets.grid.events.HasEditCompleteHandlers, com.smartgwt.client.widgets.grid.events.HasEditFailedHandlers, com.smartgwt.client.widgets.grid.events.HasEditorExitHandlers, com.smartgwt.client.widgets.grid.events.HasRowEditorEnterHandlers, com.smartgwt.client.widgets.grid.events.HasRowEditorExitHandlers, com.smartgwt.client.widgets.grid.events.HasEditorEnterHandlers, com.smartgwt.client.widgets.grid.events.HasCellSavedHandlers, com.smartgwt.client.widgets.grid.events.HasCellOutHandlers, com.smartgwt.client.widgets.grid.events.HasCellOverHandlers, com.smartgwt.client.widgets.grid.events.HasCellContextClickHandlers, com.smartgwt.client.widgets.grid.events.HasCellMouseDownHandlers, com.smartgwt.client.widgets.grid.events.HasCellMouseUpHandlers, com.smartgwt.client.widgets.grid.events.HasCellClickHandlers, com.smartgwt.client.widgets.grid.events.HasCellDoubleClickHandlers, com.smartgwt.client.widgets.grid.events.HasRowOutHandlers, com.smartgwt.client.widgets.grid.events.HasRowOverHandlers, com.smartgwt.client.widgets.grid.events.HasRowContextClickHandlers, com.smartgwt.client.widgets.grid.events.HasRowMouseDownHandlers, com.smartgwt.client.widgets.grid.events.HasRowMouseUpHandlers, com.smartgwt.client.widgets.grid.events.HasRecordClickHandlers, com.smartgwt.client.widgets.grid.events.HasRecordDoubleClickHandlers, com.smartgwt.client.widgets.grid.events.HasCellHoverHandlers, com.smartgwt.client.widgets.grid.events.HasRowHoverHandlers, com.smartgwt.client.widgets.grid.events.HasSelectionChangedHandlers {
 
     public static ListGrid getOrCreateRef(JavaScriptObject jsObj) {
         if(jsObj == null) return null;
@@ -1460,6 +1460,25 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
     }
 
     /**
+     * Should the "Selected" style be applied to selected records?
+     *
+     * @param showSelectedStyle showSelectedStyle Default value is true
+     */
+    public void setShowSelectedStyle(Boolean showSelectedStyle) {
+        setAttribute("showSelectedStyle", showSelectedStyle, true);
+    }
+
+    /**
+     * Should the "Selected" style be applied to selected records?
+     *
+     *
+     * @return Boolean
+     */
+    public Boolean getShowSelectedStyle()  {
+        return getAttributeAsBoolean("showSelectedStyle");
+    }
+
+    /**
      * If true, when the user navigates to a cell using arrow keys and hits space,  the cell will respond to a click event.
      * <p><b>Note : </b> This is an advanced setting</p>
      *
@@ -1593,6 +1612,111 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
     }
 
     /**
+     * If {@link com.smartgwt.client.widgets.grid.ListGrid#getShowRollOver showRollOver} is true, this property provides an
+     * option to show roll over styling with the {@link com.smartgwt.client.widgets.grid.ListGrid#getRollOverCanvas
+     * rollOverCanvas} and {@link com.smartgwt.client.widgets.grid.ListGrid#getRollUnderCanvas rollUnderCanvas} rather than
+     * using css styling.
+     * <p><b>Note : </b> This is an advanced setting</p>
+     *
+     * @param showRollOverCanvas showRollOverCanvas Default value is null
+     */
+    public void setShowRollOverCanvas(Boolean showRollOverCanvas) {
+        setAttribute("showRollOverCanvas", showRollOverCanvas, true);
+    }
+
+    /**
+     * If {@link com.smartgwt.client.widgets.grid.ListGrid#getShowRollOver showRollOver} is true, this property provides an
+     * option to show roll over styling with the {@link com.smartgwt.client.widgets.grid.ListGrid#getRollOverCanvas
+     * rollOverCanvas} and {@link com.smartgwt.client.widgets.grid.ListGrid#getRollUnderCanvas rollUnderCanvas} rather than
+     * using css styling.
+     *
+     *
+     * @return Boolean
+     */
+    public Boolean getShowRollOverCanvas()  {
+        return getAttributeAsBoolean("showRollOverCanvas");
+    }
+
+    /**
+     * If {@link com.smartgwt.client.widgets.grid.ListGrid#getShowRollOverCanvas showRollOverCanvas} is <code>true</code>
+     * setting this property to true ensures that when the rollOver canvas is displayed it animates into view via an {@link
+     * com.smartgwt.client.widgets.Canvas#animateShow}. Note that the animation effect may be customized via the standard
+     * {@link com.smartgwt.client.widgets.Canvas#getAnimateShowEffect animateShowEffect}, {@link
+     * com.smartgwt.client.widgets.Canvas#getAnimateShowTime animateShowTime} and  {@link
+     * com.smartgwt.client.widgets.Canvas#getAnimateShowAcceleration animateShowAcceleration}.
+     * <p><b>Note : </b> This is an advanced setting</p>
+     *
+     * @param animateRollOver animateRollOver Default value is false
+     */
+    public void setAnimateRollOver(Boolean animateRollOver) {
+        setAttribute("animateRollOver", animateRollOver, true);
+    }
+
+    /**
+     * If {@link com.smartgwt.client.widgets.grid.ListGrid#getShowRollOverCanvas showRollOverCanvas} is <code>true</code>
+     * setting this property to true ensures that when the rollOver canvas is displayed it animates into view via an {@link
+     * com.smartgwt.client.widgets.Canvas#animateShow}. Note that the animation effect may be customized via the standard
+     * {@link com.smartgwt.client.widgets.Canvas#getAnimateShowEffect animateShowEffect}, {@link
+     * com.smartgwt.client.widgets.Canvas#getAnimateShowTime animateShowTime} and  {@link
+     * com.smartgwt.client.widgets.Canvas#getAnimateShowAcceleration animateShowAcceleration}.
+     *
+     *
+     * @return Boolean
+     */
+    public Boolean getAnimateRollOver()  {
+        return getAttributeAsBoolean("animateRollOver");
+    }
+
+    /**
+     * If {@link com.smartgwt.client.widgets.grid.ListGrid#getShowRollOverCanvas showRollOverCanvas} is <code>true</code>
+     * setting this property to true ensures that when the rollUnder canvas is displayed it animates into view via an {@link
+     * com.smartgwt.client.widgets.Canvas#animateShow}. Note that the animation effect may be customized via the standard
+     * {@link com.smartgwt.client.widgets.Canvas#getAnimateShowEffect animateShowEffect}, {@link
+     * com.smartgwt.client.widgets.Canvas#getAnimateShowTime animateShowTime} and  {@link
+     * com.smartgwt.client.widgets.Canvas#getAnimateShowAcceleration animateShowAcceleration}.
+     * <p><b>Note : </b> This is an advanced setting</p>
+     *
+     * @param animateRollUnder animateRollUnder Default value is false
+     */
+    public void setAnimateRollUnder(Boolean animateRollUnder) {
+        setAttribute("animateRollUnder", animateRollUnder, true);
+    }
+
+    /**
+     * If {@link com.smartgwt.client.widgets.grid.ListGrid#getShowRollOverCanvas showRollOverCanvas} is <code>true</code>
+     * setting this property to true ensures that when the rollUnder canvas is displayed it animates into view via an {@link
+     * com.smartgwt.client.widgets.Canvas#animateShow}. Note that the animation effect may be customized via the standard
+     * {@link com.smartgwt.client.widgets.Canvas#getAnimateShowEffect animateShowEffect}, {@link
+     * com.smartgwt.client.widgets.Canvas#getAnimateShowTime animateShowTime} and  {@link
+     * com.smartgwt.client.widgets.Canvas#getAnimateShowAcceleration animateShowAcceleration}.
+     *
+     *
+     * @return Boolean
+     */
+    public Boolean getAnimateRollUnder()  {
+        return getAttributeAsBoolean("animateRollUnder");
+    }
+
+    /**
+     * Are rollovers cell-level or row-level?
+     *
+     * @param useCellRollOvers useCellRollOvers Default value is false
+     */
+    public void setUseCellRollOvers(Boolean useCellRollOvers) {
+        setAttribute("useCellRollOvers", useCellRollOvers, true);
+    }
+
+    /**
+     * Are rollovers cell-level or row-level?
+     *
+     *
+     * @return Boolean
+     */
+    public Boolean getUseCellRollOvers()  {
+        return getAttributeAsBoolean("useCellRollOvers");
+    }
+
+    /**
      * If true, cellHover and rowHover events will fire when the user leaves the mouse over a  row / cell.
      *
      * @param canHover canHover Default value is null
@@ -1654,11 +1778,15 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
              
     /**
      * How selection of rows should be presented to the user. <P> For <code>selectionAppearance:"checkbox"</code> with multiple
-     * selection allowed, you would typically use {@link com.smartgwt.client.types.SelectionType}:"simple" (the default). 
-     * Because  <code>selectionType</code> and <code>selectionAppearance</code> are unrelated,  the combination of
-     * <code>selectionAppearance:"checkbox"</code> and <code>selectionType:"multiple"</code> results in a grid where multiple
-     * selection can only be achieved via shift-click or ctrl-click.   <P> If using "checkbox", see also {@link
-     * com.smartgwt.client.widgets.grid.ListGrid#getCheckboxField checkboxField} for customization APIs.
+     * selection allowed, you would typically use {@link com.smartgwt.client.widgets.grid.ListGrid#getSelectionType
+     * selectionType}:"simple" (the default).  Because  <code>selectionType</code> and <code>selectionAppearance</code> are
+     * unrelated,  the combination of <code>selectionAppearance:"checkbox"</code> and <code>selectionType:"multiple"</code>
+     * results in a grid where multiple selection can only be achieved via shift-click or ctrl-click.   <P> If using
+     * <code>"checkbox"</code> for a {@link com.smartgwt.client.widgets.grid.ListGrid}, see also {@link
+     * com.smartgwt.client.widgets.grid.ListGrid#getCheckboxField checkboxField} for customization APIs. <P> If using
+     * <code>"checkbox"</code> for a {@link com.smartgwt.client.widgets.tree.TreeGrid}, an extra icon, {@link
+     * com.smartgwt.client.widgets.tree.TreeGrid#getExtraIcon} is not supported. Additionally only {@link
+     * com.smartgwt.client.widgets.grid.ListGrid#getSelectionType selectionType}:"simple" and "single" are supported.
      * Changes selectionAppearance on the fly.
      *
      * @param selectionAppearance new selection appearance. Default value is "rowStyle"
@@ -1669,11 +1797,15 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
 
     /**
      * How selection of rows should be presented to the user. <P> For <code>selectionAppearance:"checkbox"</code> with multiple
-     * selection allowed, you would typically use {@link com.smartgwt.client.types.SelectionType}:"simple" (the default). 
-     * Because  <code>selectionType</code> and <code>selectionAppearance</code> are unrelated,  the combination of
-     * <code>selectionAppearance:"checkbox"</code> and <code>selectionType:"multiple"</code> results in a grid where multiple
-     * selection can only be achieved via shift-click or ctrl-click.   <P> If using "checkbox", see also {@link
-     * com.smartgwt.client.widgets.grid.ListGrid#getCheckboxField checkboxField} for customization APIs.
+     * selection allowed, you would typically use {@link com.smartgwt.client.widgets.grid.ListGrid#getSelectionType
+     * selectionType}:"simple" (the default).  Because  <code>selectionType</code> and <code>selectionAppearance</code> are
+     * unrelated,  the combination of <code>selectionAppearance:"checkbox"</code> and <code>selectionType:"multiple"</code>
+     * results in a grid where multiple selection can only be achieved via shift-click or ctrl-click.   <P> If using
+     * <code>"checkbox"</code> for a {@link com.smartgwt.client.widgets.grid.ListGrid}, see also {@link
+     * com.smartgwt.client.widgets.grid.ListGrid#getCheckboxField checkboxField} for customization APIs. <P> If using
+     * <code>"checkbox"</code> for a {@link com.smartgwt.client.widgets.tree.TreeGrid}, an extra icon, {@link
+     * com.smartgwt.client.widgets.tree.TreeGrid#getExtraIcon} is not supported. Additionally only {@link
+     * com.smartgwt.client.widgets.grid.ListGrid#getSelectionType selectionType}:"simple" and "single" are supported.
      *
      *
      * @return SelectionAppearance
@@ -2448,7 +2580,31 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
     public int getAnimateRemoveSpeed()  {
         return getAttributeAsInt("animateRemoveSpeed");
     }
- 
+
+    /**
+     * The title to use for the ${isc.DocUtils.linkForRef('listGrid.removeField','remove field')}.  Note that this text will
+     * appear in the column-picker but the not in the field-header because the removeField has
+     * ${isc.DocUtils.linkForRef('listGridField.showTitle','showTitle')} set to false by default.  This can be changed via
+     * {@link com.smartgwt.client.widgets.grid.ListGrid#getRemoveFieldProperties removeFieldProperties}.
+     *
+     * @param removeFieldTitle removeFieldTitle Default value is "[Remove record]"
+     */
+    public void setRemoveFieldTitle(String removeFieldTitle) {
+        setAttribute("removeFieldTitle", removeFieldTitle, true);
+    }
+
+    /**
+     * The title to use for the ${isc.DocUtils.linkForRef('listGrid.removeField','remove field')}.  Note that this text will
+     * appear in the column-picker but the not in the field-header because the removeField has
+     * ${isc.DocUtils.linkForRef('listGridField.showTitle','showTitle')} set to false by default.  This can be changed via
+     * {@link com.smartgwt.client.widgets.grid.ListGrid#getRemoveFieldProperties removeFieldProperties}.
+     *
+     *
+     * @return String
+     */
+    public String getRemoveFieldTitle()  {
+        return getAttributeAsString("removeFieldTitle");
+    }
 
     /**
      * If we're showing the filterEditor (this.showFilterEditor is true), this property  determines whether this list should be
@@ -3711,6 +3867,90 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
     }
 
     /**
+     * When {@link com.smartgwt.client.widgets.grid.ListGrid#getCanExpandRecords canExpandRecords} is true, this property
+     * indicates whether multiple records can be expanded simultaneously.  If set to false, expanding a record will
+     * automatically collapse any record which is already expanded.  The default value is  <code>true</code>.
+     * <p><b>Note : </b> This is an advanced setting</p>
+     *
+     * @param canExpandMultipleRecords canExpandMultipleRecords Default value is true
+     */
+    public void setCanExpandMultipleRecords(Boolean canExpandMultipleRecords) {
+        setAttribute("canExpandMultipleRecords", canExpandMultipleRecords, true);
+    }
+
+    /**
+     * When {@link com.smartgwt.client.widgets.grid.ListGrid#getCanExpandRecords canExpandRecords} is true, this property
+     * indicates whether multiple records can be expanded simultaneously.  If set to false, expanding a record will
+     * automatically collapse any record which is already expanded.  The default value is  <code>true</code>.
+     *
+     *
+     * @return Boolean
+     */
+    public Boolean getCanExpandMultipleRecords()  {
+        return getAttributeAsBoolean("canExpandMultipleRecords");
+    }
+
+    /**
+     * When {@link com.smartgwt.client.widgets.grid.ListGrid#getCanExpandRecords canExpandRecords} and {@link
+     * com.smartgwt.client.widgets.grid.ListGrid#getCanExpandMultipleRecords canExpandMultipleRecords} are both true, this
+     * property dictates the number of records which can be expanded simultaneously.  If the expanded record count hits the
+     * value of this property, further attempts to expand records will result in a popup warning (see {@link
+     * com.smartgwt.client.widgets.grid.ListGrid#getMaxExpandedRecordsPrompt maxExpandedRecordsPrompt}) and expansion will be
+     * cancelled. <P>The default value is null, meaning there is no limit on the number of expanded records.
+     * <p><b>Note : </b> This is an advanced setting</p>
+     *
+     * @param maxExpandedRecords maxExpandedRecords Default value is null
+     */
+    public void setMaxExpandedRecords(Integer maxExpandedRecords) {
+        setAttribute("maxExpandedRecords", maxExpandedRecords, true);
+    }
+
+    /**
+     * When {@link com.smartgwt.client.widgets.grid.ListGrid#getCanExpandRecords canExpandRecords} and {@link
+     * com.smartgwt.client.widgets.grid.ListGrid#getCanExpandMultipleRecords canExpandMultipleRecords} are both true, this
+     * property dictates the number of records which can be expanded simultaneously.  If the expanded record count hits the
+     * value of this property, further attempts to expand records will result in a popup warning (see {@link
+     * com.smartgwt.client.widgets.grid.ListGrid#getMaxExpandedRecordsPrompt maxExpandedRecordsPrompt}) and expansion will be
+     * cancelled. <P>The default value is null, meaning there is no limit on the number of expanded records.
+     *
+     *
+     * @return Integer
+     */
+    public Integer getMaxExpandedRecords()  {
+        return getAttributeAsInt("maxExpandedRecords");
+    }
+
+    /**
+     * This is a dynamic string - text within <code>\${...}</code> will be evaluated as JS code when the message is displayed.
+     * Note that the local variable <code>count</code> will be available and set to this.maxExpandedRecords. The string will be
+     * executed in the scope of the ListGrid so <code>this</code> may also be used to determine other information about this
+     * grid. <P> Default value returns <P> <code> <i>This grid is limited to <code>[{@link
+     * com.smartgwt.client.widgets.grid.ListGrid#getMaxExpandedRecords maxExpandedRecords}]</code> simultaneously  expanded
+     * records.  Please collapse some expanded records and retry.</i> </code>
+     *
+     * @param maxExpandedRecordsPrompt maxExpandedRecordsPrompt Default value is "This grid is limited to \${count} simultaneously expanded records.  Please collapse some expanded records and retry."
+     * @throws IllegalStateException this property cannot be changed after the component has been created
+     */
+    public void setMaxExpandedRecordsPrompt(String maxExpandedRecordsPrompt)  throws IllegalStateException {
+        setAttribute("maxExpandedRecordsPrompt", maxExpandedRecordsPrompt, false);
+    }
+
+    /**
+     * This is a dynamic string - text within <code>\${...}</code> will be evaluated as JS code when the message is displayed.
+     * Note that the local variable <code>count</code> will be available and set to this.maxExpandedRecords. The string will be
+     * executed in the scope of the ListGrid so <code>this</code> may also be used to determine other information about this
+     * grid. <P> Default value returns <P> <code> <i>This grid is limited to <code>[{@link
+     * com.smartgwt.client.widgets.grid.ListGrid#getMaxExpandedRecords maxExpandedRecords}]</code> simultaneously  expanded
+     * records.  Please collapse some expanded records and retry.</i> </code>
+     *
+     *
+     * @return String
+     */
+    public String getMaxExpandedRecordsPrompt()  {
+        return getAttributeAsString("maxExpandedRecordsPrompt");
+    }
+
+    /**
      * The field whose contents to show in the expanded portion of a record when  {@link
      * com.smartgwt.client.widgets.grid.ListGrid#getCanExpandRecords 'canExpandRecords'} is <code>true</code> and  {@link
      * com.smartgwt.client.types.ExpansionMode} is <code>detailField</code>.
@@ -3927,9 +4167,10 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
     /**
      * Should this ListGrid show a summary row beneath the last record of the grid. This summary row will contain per-field
      * summary information. See {@link com.smartgwt.client.widgets.grid.ListGridField#getShowGridSummary showGridSummary} and
-     * ${isc.DocUtils.linkForRef('listGrid.getSummaryFunction')} for details on how the summary value to be displayed for each
-     * column will be caculated. <P> Note that the {@link com.smartgwt.client.widgets.grid.ListGrid#getSummaryRow 'summaryRow
-     * autoChild'} will be created to actually display the summary row.
+     * {@link com.smartgwt.client.widgets.grid.ListGrid#getGridSummaryFunction} for details on how the summary value to be
+     * displayed for each column will be caculated. <P> Note that the {@link
+     * com.smartgwt.client.widgets.grid.ListGrid#getSummaryRow 'summaryRow autoChild'} will be created to actually display the
+     * summary row.
      * Setter for the {@link com.smartgwt.client.widgets.grid.ListGrid#getShowGridSummary showGridSummary} attribute
      *
      * @param showGridSummary new value for this.showGridSummary. Default value is false
@@ -3941,9 +4182,10 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
     /**
      * Should this ListGrid show a summary row beneath the last record of the grid. This summary row will contain per-field
      * summary information. See {@link com.smartgwt.client.widgets.grid.ListGridField#getShowGridSummary showGridSummary} and
-     * ${isc.DocUtils.linkForRef('listGrid.getSummaryFunction')} for details on how the summary value to be displayed for each
-     * column will be caculated. <P> Note that the {@link com.smartgwt.client.widgets.grid.ListGrid#getSummaryRow 'summaryRow
-     * autoChild'} will be created to actually display the summary row.
+     * {@link com.smartgwt.client.widgets.grid.ListGrid#getGridSummaryFunction} for details on how the summary value to be
+     * displayed for each column will be caculated. <P> Note that the {@link
+     * com.smartgwt.client.widgets.grid.ListGrid#getSummaryRow 'summaryRow autoChild'} will be created to actually display the
+     * summary row.
      *
      *
      * @return Boolean
@@ -4083,10 +4325,10 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
     }
             
     /**
-     * If {@link com.smartgwt.client.widgets.grid.ListGrid#getShowGridSummary showGridSummary} is true, and a
-     * ${isc.DocUtils.linkForRef('listGrid.summaryDataSource')} is specified this property may be used to specify fetch
-     * criteria to apply when retrieving summary data to show in the summary row. If unset, and any filter criteria have been
-     * specified for the grid, they will be used.
+     * If {@link com.smartgwt.client.widgets.grid.ListGrid#getShowGridSummary showGridSummary} is true, and a {@link
+     * com.smartgwt.client.widgets.grid.ListGrid#getSummaryRowDataSource summaryRowDataSource} is specified this property may
+     * be used to specify fetch criteria to apply when retrieving summary data to show in the summary row. If unset, and any
+     * filter criteria have been specified for the grid, they will be used.
      * <p><b>Note : </b> This is an advanced setting</p>
      *
      * @param summaryRowCriteria summaryRowCriteria Default value is null
@@ -4096,10 +4338,10 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
     }
 
     /**
-     * If {@link com.smartgwt.client.widgets.grid.ListGrid#getShowGridSummary showGridSummary} is true, and a
-     * ${isc.DocUtils.linkForRef('listGrid.summaryDataSource')} is specified this property may be used to specify fetch
-     * criteria to apply when retrieving summary data to show in the summary row. If unset, and any filter criteria have been
-     * specified for the grid, they will be used.
+     * If {@link com.smartgwt.client.widgets.grid.ListGrid#getShowGridSummary showGridSummary} is true, and a {@link
+     * com.smartgwt.client.widgets.grid.ListGrid#getSummaryRowDataSource summaryRowDataSource} is specified this property may
+     * be used to specify fetch criteria to apply when retrieving summary data to show in the summary row. If unset, and any
+     * filter criteria have been specified for the grid, they will be used.
      *
      *
      * @return Criteria
@@ -4284,9 +4526,9 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
     /**
      * If we're showing a {@link com.smartgwt.client.widgets.grid.ListGrid#getShowHeaderContextMenu 'headerContextMenu'} for
      * this grid, this attribute will be shown as the menu item title to clear any existing sort on all fields.  This menu-item
-     * is displayed only in the context menu for the ${isc.DocUtils.linkForRef('listGrid.sorter','sorter button')}.
+     * is displayed only in the context menu for the sorter button.
      *
-     * @param clearAllSortingText clearAllSortingText Default value is "Clear Sort"
+     * @param clearAllSortingText clearAllSortingText Default value is "Clear All Sorting"
      */
     public void setClearAllSortingText(String clearAllSortingText) {
         setAttribute("clearAllSortingText", clearAllSortingText, true);
@@ -4295,7 +4537,7 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
     /**
      * If we're showing a {@link com.smartgwt.client.widgets.grid.ListGrid#getShowHeaderContextMenu 'headerContextMenu'} for
      * this grid, this attribute will be shown as the menu item title to clear any existing sort on all fields.  This menu-item
-     * is displayed only in the context menu for the ${isc.DocUtils.linkForRef('listGrid.sorter','sorter button')}.
+     * is displayed only in the context menu for the sorter button.
      *
      *
      * @return String
@@ -4308,7 +4550,7 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
      * If we're showing a {@link com.smartgwt.client.widgets.grid.ListGrid#getShowHeaderContextMenu 'headerContextMenu'} for
      * this grid,  and a {@link com.smartgwt.client.widgets.grid.ListGrid#getShowFilterEditor 'filter-editor'} is visible, this
      * attribute will be shown as the menu item title to clear any existing filter.  This menu-item is displayed only in the
-     * context menu for the ${isc.DocUtils.linkForRef('listGrid.sorter','sorter button')}.
+     * context menu for the sorter button.
      *
      * @param clearFilterText clearFilterText Default value is "Clear Filter"
      */
@@ -4320,7 +4562,7 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
      * If we're showing a {@link com.smartgwt.client.widgets.grid.ListGrid#getShowHeaderContextMenu 'headerContextMenu'} for
      * this grid,  and a {@link com.smartgwt.client.widgets.grid.ListGrid#getShowFilterEditor 'filter-editor'} is visible, this
      * attribute will be shown as the menu item title to clear any existing filter.  This menu-item is displayed only in the
-     * context menu for the ${isc.DocUtils.linkForRef('listGrid.sorter','sorter button')}.
+     * context menu for the sorter button.
      *
      *
      * @return String
@@ -4566,7 +4808,7 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
      * Marks the widget as "dirty" so that it will be added to a queue for redraw. Redraw of dirty components is handled by a
      * looping timer and will after a very short delay (typically less than 100ms). In most cases it is recommended that
      * developers use <code>markForRedraw()</code> instead of calling {@link com.smartgwt.client.widgets.Canvas#redraw}
-     * directly. Since this method queues the redraw, multiple calls to markForRedraw() within a single thread of excecution
+     * directly. Since this method queues the redraw, multiple calls to markForRedraw() within a single thread of execution
      * will only lead to a single DOM manipulation which greatly improves application performance.
      */
     public native void markForRedraw() /*-{
@@ -4578,7 +4820,7 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
      * Marks the widget as "dirty" so that it will be added to a queue for redraw. Redraw of dirty components is handled by a
      * looping timer and will after a very short delay (typically less than 100ms). In most cases it is recommended that
      * developers use <code>markForRedraw()</code> instead of calling {@link com.smartgwt.client.widgets.Canvas#redraw}
-     * directly. Since this method queues the redraw, multiple calls to markForRedraw() within a single thread of excecution
+     * directly. Since this method queues the redraw, multiple calls to markForRedraw() within a single thread of execution
      * will only lead to a single DOM manipulation which greatly improves application performance.
      * @param reason reason for performing the redraw
      */
@@ -6020,7 +6262,8 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
      * When multiple fields are sorted, this method returns the HTML for the sort-numeral that  appears after the sort-arrows
      * in the header-buttons of sorted fields.  If you don't want sort-numerals in the header-buttons, you can override this
      * method to return null or an empty string.
-     * @param fieldName The name of a sort-field to get the ${isc.DocUtils.linkForRef('listGrid.sortNumeral')} HTML for.
+     * @param fieldName The name of a sort-field to get the   {@link com.smartgwt.client.widgets.grid.ListGrid#getSortNumeralStyle
+     * 'sortNumeral'} HTML for.
      *
      * @return The HTML for this field's sortNumeral
      */
@@ -6502,9 +6745,6 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
     // ********************* Static Methods ***********************
 
 
-
-
-
     protected native void onInit() /*-{
 
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
@@ -6535,6 +6775,28 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
         self.canEditCell = function(rowNum, colNum) {
             var jObj = this.__ref;
             return jObj.@com.smartgwt.client.widgets.grid.ListGrid::canEditCell(II)(rowNum, colNum);
+        };
+
+        
+        self.__getRollOverCanvas = self.getRollOverCanvas;
+        self.getRollOverCanvas = function(rowNum, colNum) {
+            var jObj = this.__ref;
+            
+            var rowNumJ = rowNum == null ? null : @com.smartgwt.client.util.JSOHelper::toInteger(I)(rowNum),
+            	colNumJ = colNum == null ? null : @com.smartgwt.client.util.JSOHelper::toInteger(I)(colNum);
+
+            var componentJ = jObj.@com.smartgwt.client.widgets.grid.ListGrid::getRollOverCanvas(Ljava/lang/Integer;Ljava/lang/Integer;)(rowNumJ, colNumJ);
+            return componentJ == null ? null : componentJ.@com.smartgwt.client.widgets.Canvas::getOrCreateJsObj()();
+        };
+
+        self.__getRollUnderCanvas = self.getRollUnderCanvas;
+        self.getRollUnderCanvas = function(rowNum, colNum) {
+            var jObj = this.__ref;
+            var rowNumJ = rowNum == null ? null : @com.smartgwt.client.util.JSOHelper::toInteger(I)(rowNum),
+            	colNumJ = colNum == null ? null : @com.smartgwt.client.util.JSOHelper::toInteger(I)(colNum);
+
+            var componentJ = jObj.@com.smartgwt.client.widgets.grid.ListGrid::getRollUnderCanvas(Ljava/lang/Integer;Ljava/lang/Integer;)(rowNumJ, colNumJ);
+            return componentJ == null ? null : componentJ.@com.smartgwt.client.widgets.Canvas::getOrCreateJsObj()();
         };
 
         self.__getExpansionComponent = self.getExpansionComponent;
@@ -6595,6 +6857,49 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
     }-*/;
     
     /**
+     * If  {@link com.smartgwt.client.widgets.grid.ListGrid#showRollUnderCanvas showRollUnderCanvas} is true, this
+     * method will be called to create the canvas to display under the current row when a
+     * user moves their mouse under the row.<br>
+     * Note that for efficiency this should not typically create a new canvas instance, every time it is called.
+     * Instead typically a single rollUnder canvas should be created and updated to reflect the current rollOver row if
+     * necessary.
+     * <br><b>Note: This is an override point</b>
+     *
+     * @param rowNum Index of the current roll-over row
+     * @param colNum Index of the current roll-over column. This parameter will be null unless useCellRollOvers is true on the grid
+     * @return the embedded component
+     */
+    protected native Canvas getRollUnderCanvas (Integer rowNum, Integer colNum) /*-{
+        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
+        rowNum = rowNum == null ? null : rowNum.@java.lang.Integer::intValue()();
+        colNum = colNum == null ? null : colNum.@java.lang.Integer::intValue()();
+        var component = self.__getRollUnderCanvas(rowNum, colNum);
+        return @com.smartgwt.client.widgets.Canvas::getOrCreateRef(Lcom/google/gwt/core/client/JavaScriptObject;)(component);
+    }-*/;
+
+    /**
+     * If  {@link com.smartgwt.client.widgets.grid.ListGrid#showRollOverCanvas showRollOverCanvas} is true, this
+     * method will be called to create the canvas to display over the current row when a
+     * user moves their mouse over the row.<br>
+     * Note that for efficiency this should not typically create a new canvas instance, every time it is called.
+     * Instead typically a single rollOver canvas should be created and updated to reflect the current rollOver row if
+     * necessary.
+     * <br><b>Note: This is an override point</b>
+     *
+     * @param rowNum Index of the current roll-over row
+     * @param colNum Index of the current roll-over column. This parameter will be null unless useCellRollOvers is true for the grid 
+     * @return the embedded component
+     */
+    protected native Canvas getRollOverCanvas (Integer rowNum, Integer colNum) /*-{
+        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
+        rowNum = rowNum == null ? null : rowNum.@java.lang.Integer::intValue()();
+        colNum = colNum == null ? null : colNum.@java.lang.Integer::intValue()();
+    
+        var component = self.__getRollOverCanvas(rowNum, colNum);
+        return @com.smartgwt.client.widgets.Canvas::getOrCreateRef(Lcom/google/gwt/core/client/JavaScriptObject;)(component);
+    }-*/;
+    
+    /**
      * Expands a given ${isc.DocUtils.linkForRef('object:ListGridRecord','record')} by creating a subcomponent and inserting it
      * in to the record's grid-row.  A number of built-in {@link com.smartgwt.client..ExpansionMode}  are supported by the
      * default implementation of  {@link com.smartgwt.client.widgets.grid.ListGrid#getExpansionComponent} and you can override
@@ -6651,10 +6956,11 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
      *
      * @return summary value to display for the specified field.
      */
-    protected native String getGridSummary(ListGridField field) /*-{
+    protected native Object getGridSummary(ListGridField field) /*-{
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
         var value = self.__getGridSummary(field.@com.smartgwt.client.core.DataClass::getJsObj()());
-        return value == null ? null : value.toString();
+        var valueJ = $wnd.SmartGWT.convertToJavaType(value);
+        return valueJ;
     }-*/;
 
 
@@ -6886,9 +7192,16 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
     }
 
     /**
-     * An array of ListGridRecord objects. Note that if the ListGrid is grouped, you can call {@link #getGroupTree()}
+     * Returns the current set of records displayed in this grid as an array of ListGridRecord objects. 
+     * Note that if the ListGrid is grouped, you can call {@link #getGroupTree()}
      * to get the underlying Tree data representation. You can call {@link #isGrouped()} to test whether the ListGrid is
      * grouped on a field.
+     * <p>
+     * If this is a DataBound grid this method will return an empty array unless
+     * the entire set of data for the current criteria has been loaded into the
+     * client, in which case all matching rows will be returned.  
+     * For DataBound grids, you can call {@link #getResultSet()} to retrieve
+     * the current data set as a ResultSet object.
      *
      * @return an array or records.
      */
@@ -8682,6 +8995,87 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
             };
         }
     }-*/;
+    
+    
+    /**
+     * Add a recordExpand handler.
+     * <p>
+     * Handler fired when a record is expanded in a grid with <code>canExpandRecords</code> set to  true. Allows the expansion
+     * to be cancelled.
+     *
+     * @param handler the recordExpand handler
+     * @return {@link HandlerRegistration} used to remove this handler
+     */
+    public HandlerRegistration addRecordExpandHandler(com.smartgwt.client.widgets.grid.events.RecordExpandHandler handler) {
+        if(getHandlerCount(com.smartgwt.client.widgets.grid.events.RecordExpandEvent.getType()) == 0) setupRecordExpandEvent();
+        return doAddHandler(handler, com.smartgwt.client.widgets.grid.events.RecordExpandEvent.getType());
+    }
+
+    private native void setupRecordExpandEvent() /*-{
+        var obj = null;
+        var selfJ = this;
+        if(this.@com.smartgwt.client.widgets.BaseWidget::isCreated()()) {
+            obj = this.@com.smartgwt.client.widgets.BaseWidget::getJsObj()();
+            obj.addProperties({onExpandRecord:function(){
+                        var param = {"record" : arguments[0]};
+                        var event = @com.smartgwt.client.widgets.grid.events.RecordExpandEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
+                        selfJ.@com.smartgwt.client.widgets.BaseWidget::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
+                        var ret = event.@com.smartgwt.client.event.Cancellable::isCancelled()();
+                        return !ret;
+                    }
+             });
+        } else {
+            obj = this.@com.smartgwt.client.widgets.BaseWidget::getConfig()();
+            obj.onExpandRecord = function(){
+                   var param = {"record" : arguments[0]};
+                   var event = @com.smartgwt.client.widgets.grid.events.RecordExpandEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
+                   selfJ.@com.smartgwt.client.widgets.BaseWidget::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
+                   var ret = event.@com.smartgwt.client.event.Cancellable::isCancelled()();
+                   return !ret;
+               };
+        }
+   }-*/;
+
+    /**
+     * Add a recordCollapse handler.
+     * <p>
+     * Handler fired when a record is collapsed in a grid with <code>canExpandRecords</code> set to  true. Allows the collapse
+     * to be cancelled.
+     *
+     * @param handler the recordCollapse handler
+     * @return {@link HandlerRegistration} used to remove this handler
+     */
+    public HandlerRegistration addRecordCollapseHandler(com.smartgwt.client.widgets.grid.events.RecordCollapseHandler handler) {
+        if(getHandlerCount(com.smartgwt.client.widgets.grid.events.RecordCollapseEvent.getType()) == 0) setupRecordCollapseEvent();
+        return doAddHandler(handler, com.smartgwt.client.widgets.grid.events.RecordCollapseEvent.getType());
+    }
+
+    private native void setupRecordCollapseEvent() /*-{
+        var obj = null;
+        var selfJ = this;
+        if(this.@com.smartgwt.client.widgets.BaseWidget::isCreated()()) {
+            obj = this.@com.smartgwt.client.widgets.BaseWidget::getJsObj()();
+            obj.addProperties({onCollapseRecord:function(){
+                        var param = {"record" : arguments[0]};
+                        var event = @com.smartgwt.client.widgets.grid.events.RecordCollapseEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
+                        selfJ.@com.smartgwt.client.widgets.BaseWidget::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
+                        var ret = event.@com.smartgwt.client.event.Cancellable::isCancelled()();
+                        return !ret;
+                    }
+             });
+        } else {
+            obj = this.@com.smartgwt.client.widgets.BaseWidget::getConfig()();
+            obj.onCollapseRecord = function(){
+                   var param = {"record" : arguments[0]};
+                   var event = @com.smartgwt.client.widgets.grid.events.RecordCollapseEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
+                   selfJ.@com.smartgwt.client.widgets.BaseWidget::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
+                   var ret = event.@com.smartgwt.client.event.Cancellable::isCancelled()();
+                   return !ret;
+               };
+        }
+   }-*/;
+
+
 
     /**
      * Preload primary ListGrid skin images.

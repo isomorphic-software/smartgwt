@@ -516,6 +516,25 @@ public class DSRequest extends RPCRequest {
     }
 
     /**
+     * The character to use as a field-separator in CSV exports.  The default delimiter is comma.
+     *
+     * @param exportDelimiter exportDelimiter Default value is ","
+     */
+    public void setExportDelimiter(String exportDelimiter) {
+        setAttribute("exportDelimiter", exportDelimiter);
+    }
+
+    /**
+     * The character to use as a field-separator in CSV exports.  The default delimiter is comma.
+     *
+     *
+     * @return String
+     */
+    public String getExportDelimiter()  {
+        return getAttributeAsString("exportDelimiter");
+    }
+
+    /**
      * Optional text to appear at the beginning of the file.
      *
      * @param exportHeader exportHeader Default value is null

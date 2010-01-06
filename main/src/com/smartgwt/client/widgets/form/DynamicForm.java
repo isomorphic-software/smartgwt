@@ -1953,9 +1953,6 @@ public class DynamicForm extends Canvas  implements DataBoundComponent, com.smar
     // ********************* Static Methods ***********************
 
 
-
-
-
 
     private FormItem[] fields;
 

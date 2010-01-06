@@ -992,8 +992,6 @@ public class TabSet extends Canvas  implements com.smartgwt.client.widgets.tab.e
     // ********************* Static Methods ***********************
 
 
-
-
     /**
     * Specifies the index of the initially selected tab.
     *

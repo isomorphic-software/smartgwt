@@ -126,9 +126,9 @@ public class NodeContextClickEvent extends BrowserEvent<NodeContextClickHandler>
     }
 
     /**
-     * The TreeGrid on which the contexclick occurred.
+     * The TreeGrid on which the contextclick occurred.
      *
-     * @return The TreeGrid on which the contexclick occurred.
+     * @return The TreeGrid on which the contextclick occurred.
      */
     public  native TreeGrid getViewer() /*-{
         var jsObj = this.@com.smartgwt.client.event.AbstractSmartEvent::jsObj;

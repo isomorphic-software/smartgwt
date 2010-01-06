@@ -157,7 +157,7 @@ public class Canvas extends BaseWidget  implements com.smartgwt.client.widgets.e
      * com.smartgwt.client.widgets.layout.Layout} class would typically be used.&#010 For best consistency and flexibility
      * across browsers, all Smart GWT layout managers&#010 use absolute positioning.&#010 <P>&#010 For canvases with a
      * specified {@link com.smartgwt.client.widgets.Canvas#getHtmlElement htmlElement}, this attribute defaults to&#010
-     * <code>"relative"</code>. In all other cases the default value will be &#010 <code>"aboslute"</code>.
+     * <code>"relative"</code>. In all other cases the default value will be &#010 <code>"absolute"</code>.
      * <p><b>Note : </b> This is an advanced setting</p>
      *
      * @param position position Default value is null
@@ -184,7 +184,7 @@ public class Canvas extends BaseWidget  implements com.smartgwt.client.widgets.e
      * com.smartgwt.client.widgets.layout.Layout} class would typically be used.&#010 For best consistency and flexibility
      * across browsers, all Smart GWT layout managers&#010 use absolute positioning.&#010 <P>&#010 For canvases with a
      * specified {@link com.smartgwt.client.widgets.Canvas#getHtmlElement htmlElement}, this attribute defaults to&#010
-     * <code>"relative"</code>. In all other cases the default value will be &#010 <code>"aboslute"</code>.
+     * <code>"relative"</code>. In all other cases the default value will be &#010 <code>"absolute"</code>.
      *
      *
      * @return Positioning
@@ -450,7 +450,7 @@ public class Canvas extends BaseWidget  implements com.smartgwt.client.widgets.e
      * string.  The&#010 search and replace is optimized for speed.&#010 <p>&#010 If an error occurs during the evaluation of
      * one of the expressions, a warning is logged&#010 to the ISC Developer Console and the error string is embedded in place
      * of the expected&#010 value in the Canvas.&#010 <p>&#010 The value of a function is its return value.  The value of any
-     * variable is the same as&#010 that returned by its toString() representation.&#010 <p>&#010 Inside the evalution
+     * variable is the same as&#010 that returned by its toString() representation.&#010 <p>&#010 Inside the evaluation
      * contentext, <code>this</code> points to the canvas instance that&#010 has the dynamicContents string as its contents -
      * in other words the canvas instance on&#010 which the template is declared.
      * <p><b>Note : </b> This is an advanced setting</p>
@@ -479,7 +479,7 @@ public class Canvas extends BaseWidget  implements com.smartgwt.client.widgets.e
      * string.  The&#010 search and replace is optimized for speed.&#010 <p>&#010 If an error occurs during the evaluation of
      * one of the expressions, a warning is logged&#010 to the ISC Developer Console and the error string is embedded in place
      * of the expected&#010 value in the Canvas.&#010 <p>&#010 The value of a function is its return value.  The value of any
-     * variable is the same as&#010 that returned by its toString() representation.&#010 <p>&#010 Inside the evalution
+     * variable is the same as&#010 that returned by its toString() representation.&#010 <p>&#010 Inside the evaluation
      * contentext, <code>this</code> points to the canvas instance that&#010 has the dynamicContents string as its contents -
      * in other words the canvas instance on&#010 which the template is declared.
      *
@@ -1640,7 +1640,7 @@ public class Canvas extends BaseWidget  implements com.smartgwt.client.widgets.e
      * Position this widget such that it is aligned with ("snapped to") an edge of its  {@link
      * com.smartgwt.client.widgets.Canvas#getMasterElement 'masterElement'} (if specified), or its {@link
      * com.smartgwt.client.widgets.Canvas#getParentElement 'parentElement'}. <P> Note that this property also impacts the
-     * sizing of this widget. If this widgets size is specifed as a percent value, and has no explicit {@link
+     * sizing of this widget. If this widgets size is specified as a percent value, and has no explicit {@link
      * com.smartgwt.client.widgets.Canvas#getPercentSource percentSource}, sizing will be calculated based on the size of the 
      * masterElement when snapTo is set. <P> Possible values: BR, BL, TR, TL, R, L, B, T, C where B=Bottom, T=Top, L=Left,
      * R=right and C=center
@@ -1656,7 +1656,7 @@ public class Canvas extends BaseWidget  implements com.smartgwt.client.widgets.e
      * Position this widget such that it is aligned with ("snapped to") an edge of its  {@link
      * com.smartgwt.client.widgets.Canvas#getMasterElement 'masterElement'} (if specified), or its {@link
      * com.smartgwt.client.widgets.Canvas#getParentElement 'parentElement'}. <P> Note that this property also impacts the
-     * sizing of this widget. If this widgets size is specifed as a percent value, and has no explicit {@link
+     * sizing of this widget. If this widgets size is specified as a percent value, and has no explicit {@link
      * com.smartgwt.client.widgets.Canvas#getPercentSource percentSource}, sizing will be calculated based on the size of the 
      * masterElement when snapTo is set. <P> Possible values: BR, BL, TR, TL, R, L, B, T, C where B=Bottom, T=Top, L=Left,
      * R=right and C=center
@@ -1697,7 +1697,7 @@ public class Canvas extends BaseWidget  implements com.smartgwt.client.widgets.e
     /**
      * If {@link com.smartgwt.client.widgets.Canvas#getSnapTo 'snapTo'} is defined for this widget, this property can be used
      * to specify an offset in px or percentage for the left coordinate of this widget. <P> For example if <code>snapTo</code>
-     * is specifed as <code>"L"</code> and  <code>snapOffsetLeft</code> is set to 6, this widget will be rendered 6px inside
+     * is specified as <code>"L"</code> and  <code>snapOffsetLeft</code> is set to 6, this widget will be rendered 6px inside
      * the left edge of its parent or master element.
      *
      * @param snapOffsetLeft snapOffsetLeft Default value is null
@@ -1709,7 +1709,7 @@ public class Canvas extends BaseWidget  implements com.smartgwt.client.widgets.e
     /**
      * If {@link com.smartgwt.client.widgets.Canvas#getSnapTo 'snapTo'} is defined for this widget, this property can be used
      * to specify an offset in px or percentage for the left coordinate of this widget. <P> For example if <code>snapTo</code>
-     * is specifed as <code>"L"</code> and  <code>snapOffsetLeft</code> is set to 6, this widget will be rendered 6px inside
+     * is specified as <code>"L"</code> and  <code>snapOffsetLeft</code> is set to 6, this widget will be rendered 6px inside
      * the left edge of its parent or master element.
      *
      *
@@ -1722,7 +1722,7 @@ public class Canvas extends BaseWidget  implements com.smartgwt.client.widgets.e
     /**
      * If {@link com.smartgwt.client.widgets.Canvas#getSnapTo 'snapTo'} is defined for this widget, this property can be used
      * to specify an offset in px or percentage for the top coordinate of this widget. <P> For example if <code>snapTo</code>
-     * is specifed as <code>"T"</code> and  <code>snapOffsetTop</code> is set to 6, this widget will be rendered 6px below the
+     * is specified as <code>"T"</code> and  <code>snapOffsetTop</code> is set to 6, this widget will be rendered 6px below the
      * top edge of its parent or master element.
      *
      * @param snapOffsetTop snapOffsetTop Default value is null
@@ -1734,7 +1734,7 @@ public class Canvas extends BaseWidget  implements com.smartgwt.client.widgets.e
     /**
      * If {@link com.smartgwt.client.widgets.Canvas#getSnapTo 'snapTo'} is defined for this widget, this property can be used
      * to specify an offset in px or percentage for the top coordinate of this widget. <P> For example if <code>snapTo</code>
-     * is specifed as <code>"T"</code> and  <code>snapOffsetTop</code> is set to 6, this widget will be rendered 6px below the
+     * is specified as <code>"T"</code> and  <code>snapOffsetTop</code> is set to 6, this widget will be rendered 6px below the
      * top edge of its parent or master element.
      *
      *
@@ -2834,7 +2834,7 @@ public class Canvas extends BaseWidget  implements com.smartgwt.client.widgets.e
      * Marks the widget as "dirty" so that it will be added to a queue for redraw. Redraw of dirty components is handled by a
      * looping timer and will after a very short delay (typically less than 100ms). In most cases it is recommended that
      * developers use <code>markForRedraw()</code> instead of calling {@link com.smartgwt.client.widgets.Canvas#redraw}
-     * directly. Since this method queues the redraw, multiple calls to markForRedraw() within a single thread of excecution
+     * directly. Since this method queues the redraw, multiple calls to markForRedraw() within a single thread of execution
      * will only lead to a single DOM manipulation which greatly improves application performance.
      */
     public native void markForRedraw() /*-{
@@ -2846,7 +2846,7 @@ public class Canvas extends BaseWidget  implements com.smartgwt.client.widgets.e
      * Marks the widget as "dirty" so that it will be added to a queue for redraw. Redraw of dirty components is handled by a
      * looping timer and will after a very short delay (typically less than 100ms). In most cases it is recommended that
      * developers use <code>markForRedraw()</code> instead of calling {@link com.smartgwt.client.widgets.Canvas#redraw}
-     * directly. Since this method queues the redraw, multiple calls to markForRedraw() within a single thread of excecution
+     * directly. Since this method queues the redraw, multiple calls to markForRedraw() within a single thread of execution
      * will only lead to a single DOM manipulation which greatly improves application performance.
      * @param reason reason for performing the redraw
      */
@@ -3242,8 +3242,8 @@ public class Canvas extends BaseWidget  implements com.smartgwt.client.widgets.e
      * scrolled out of  view in a parent element)
      * @param x GLOBAL x-coordinate
      * @param y GLOBAL y-coordinate
-     * @param withinViewport point lies specificly within our viewport                                              (drawn area excluding margins and
-     * scrollbars if                                              present)
+     * @param withinViewport point lies specifically within our viewport                                              (drawn area excluding margins
+     * and scrollbars if                                              present)
      *
      * @return true if this object contains the specified point; false otherwise
      */
@@ -3316,7 +3316,7 @@ public class Canvas extends BaseWidget  implements com.smartgwt.client.widgets.e
     /**
      * Return true if the last event's mouse coordinates are within the bounds of this component.  NOTE: Z-ordering is not
      * considered for the purposes of this test.  If the coordinate you're  testing is occluded by other component, but the X,Y
-     * coordiates are still within the bounds  of that component, this method will return true.
+     * coordinates are still within the bounds  of that component, this method will return true.
      *
      * @return true if the event occurred within the bounds of this component
      */
@@ -3685,7 +3685,7 @@ public class Canvas extends BaseWidget  implements com.smartgwt.client.widgets.e
      * called whenever this Canvas is scrolled, whether scrolling is initiated programmatically, by custom scrollbars, or a by
      * a native scrollbar.
      * @param left the left coordinate
-     * @param top the top coordiante
+     * @param top the top coordinate
      */
     public native void scrollTo(int left, int top) /*-{
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
@@ -3784,7 +3784,7 @@ public class Canvas extends BaseWidget  implements com.smartgwt.client.widgets.e
 
 
     /**
-     * If this canvas can accept focus, give it keyboard focus. After this method, the canvas will appear focussed and will
+     * If this canvas can accept focus, give it keyboard focus. After this method, the canvas will appear focused and will
      * receive keyboard events.
      */
     public native void focus() /*-{
@@ -3793,8 +3793,8 @@ public class Canvas extends BaseWidget  implements com.smartgwt.client.widgets.e
     }-*/;
 
     /**
-     * If this canvas has keyboard focus, blur it. After this method, the canvas will no longer appear focussed and will stop
-     * recieving keyboard events.
+     * If this canvas has keyboard focus, blur it. After this method, the canvas will no longer appear focused and will stop
+     * receiving keyboard events.
      */
     public native void blur() /*-{
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
@@ -5211,10 +5211,6 @@ public class Canvas extends BaseWidget  implements com.smartgwt.client.widgets.e
 
 
 
-
-
-
-
     /**
      * Multiple styles are currently not supported. This method essentially calls {@link #setStyleName(String)}
      *
@@ -6552,7 +6548,7 @@ public class Canvas extends BaseWidget  implements com.smartgwt.client.widgets.e
      */
     public native String showClickMask(Function clickActionCallback, ClickMaskMode mode, Canvas[] unmaskedTargets) /*-{
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
-        var unmaskedTargetsJS = @com.smartgwt.client.util.JSOHelper::convertToJavaScriptArray([Ljava/lang/Object;)(members);
+        var unmaskedTargetsJS = @com.smartgwt.client.util.JSOHelper::convertToJavaScriptArray([Ljava/lang/Object;)(unmaskedTargets);
         return self.showClickMask(function() {
            if(clickActionCallback != null) clickActionCallback.@com.smartgwt.client.core.Function::execute()();
         }, mode.@com.smartgwt.client.types.ClickMaskMode::getValue()(), unmaskedTargetsJS);

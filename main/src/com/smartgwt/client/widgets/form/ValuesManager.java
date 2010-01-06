@@ -395,9 +395,6 @@ public class ValuesManager extends BaseClass {
     // ********************* Static Methods ***********************
 
 
-
-
-
     /**
      * The DataSource that this component should bind to for default fields and for performing&#010 DataSource
      * requests<P>

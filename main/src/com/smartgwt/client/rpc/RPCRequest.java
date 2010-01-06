@@ -648,9 +648,6 @@ public class RPCRequest extends DataClass {
     }-*/;
 
 
-
-
-
 
     /**
      * This attribute specifies the payload of the RPCRequest.  When using the Smart GWT server, any JavaScript simple
