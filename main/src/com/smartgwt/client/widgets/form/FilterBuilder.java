@@ -138,8 +138,8 @@ public class FilterBuilder extends Layout  implements com.smartgwt.client.widget
     /**
      * If true (the default), validates each entered value when it changes, to make sure it is a  a valid value of its type
      * (valid string, number, and so on).  No other validation is  carried out.  If you switch this property off, it is still
-     * possible to validate the  <code>FilterBuilder</code> by calling ${isc.DocUtils.linkForRef('filterBuilder.validate')}
-     * from your own code.
+     * possible to validate the  <code>FilterBuilder</code> by calling {@link
+     * com.smartgwt.client.widgets.form.FilterBuilder#validate} from your own code.
      *
      * @param validateOnChange validateOnChange Default value is true
      * @throws IllegalStateException this property cannot be changed after the component has been created
@@ -151,8 +151,8 @@ public class FilterBuilder extends Layout  implements com.smartgwt.client.widget
     /**
      * If true (the default), validates each entered value when it changes, to make sure it is a  a valid value of its type
      * (valid string, number, and so on).  No other validation is  carried out.  If you switch this property off, it is still
-     * possible to validate the  <code>FilterBuilder</code> by calling ${isc.DocUtils.linkForRef('filterBuilder.validate')}
-     * from your own code.
+     * possible to validate the  <code>FilterBuilder</code> by calling {@link
+     * com.smartgwt.client.widgets.form.FilterBuilder#validate} from your own code.
      *
      *
      * @return Boolean
@@ -371,6 +371,32 @@ public class FilterBuilder extends Layout  implements com.smartgwt.client.widget
 
 
 
+    /**
+     * Add a new {@link com.smartgwt.client.widgets.form.FilterClause} to this FilterBuilder.
+     * @param filterClause A {@link com.smartgwt.client.widgets.form.FilterClause} instance
+     */
+    public native void addClause(FilterClause filterClause) /*-{
+        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
+        self.addClause(filterClause.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()());
+    }-*/;
+
+
+
+    /**
+     * Validate the clauses of this FilterBuilder.
+     *
+     * @return true if all clauses are valid, false otherwise
+     */
+    public native Boolean validate() /*-{
+        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
+        var retVal =self.validate();
+        if(retVal == null || retVal === undefined) {
+            return null;
+        } else {
+            return @com.smartgwt.client.util.JSOHelper::toBoolean(Z)(retVal);
+        }
+    }-*/;
+
 
 
 
@@ -456,8 +482,7 @@ public class FilterBuilder extends Layout  implements com.smartgwt.client.widget
     // ********************* Static Methods ***********************
 
 
-
-
+
     /**
      * If true (the default), show field titles in the drop-down box used to select a field for querying. If false, show
      * actual field names instead.
