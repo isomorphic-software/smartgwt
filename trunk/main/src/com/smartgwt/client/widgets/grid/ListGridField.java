@@ -846,6 +846,58 @@ public class ListGridField extends DataClass  implements com.smartgwt.client.wid
     }
 
     /**
+     * Whether this field can be dragResized using the mouse.  If unset, the default behavior is governed by {@link
+     * com.smartgwt.client.widgets.grid.ListGrid#getCanResizeFields canResizeFields}.
+     *
+     * @param canDragResize canDragResize Default value is null
+     */
+    public void setCanDragResize(Boolean canDragResize) {
+        setAttribute("canDragResize", canDragResize);
+    }
+
+    /**
+     * Whether this field can be dragResized using the mouse.  If unset, the default behavior is governed by {@link
+     * com.smartgwt.client.widgets.grid.ListGrid#getCanResizeFields canResizeFields}.
+     *
+     *
+     * @return Boolean
+     */
+    public Boolean getCanDragResize()  {
+        return getAttributeAsBoolean("canDragResize");
+    }
+
+    /**
+     * Whether this field can be reordered using the mouse.  If unset, the default behavior is governed by {@link
+     * com.smartgwt.client.widgets.grid.ListGrid#getCanReorderFields canReorderFields}.  Note that setting this property to 
+     * <code>false</code> will lock this field from being moved - that is, the user is  prevented from moving this field
+     * directly by dragging with the mouse, or by dropping another  field onto this field.  However, unless this field is at
+     * the extreme edge of the grid,  or all fields between it and the extreme edge of the grid are also <code>canReorder:
+     * false</code>, (ie, if there are unlocked fields on either side of this field), then it is possible that this locked
+     * field may be  reordered automatically, as a result of the user dragging one unlocked field onto another  unlocked field.
+     *
+     * @param canReorder canReorder Default value is null
+     */
+    public void setCanReorder(Boolean canReorder) {
+        setAttribute("canReorder", canReorder);
+    }
+
+    /**
+     * Whether this field can be reordered using the mouse.  If unset, the default behavior is governed by {@link
+     * com.smartgwt.client.widgets.grid.ListGrid#getCanReorderFields canReorderFields}.  Note that setting this property to 
+     * <code>false</code> will lock this field from being moved - that is, the user is  prevented from moving this field
+     * directly by dragging with the mouse, or by dropping another  field onto this field.  However, unless this field is at
+     * the extreme edge of the grid,  or all fields between it and the extreme edge of the grid are also <code>canReorder:
+     * false</code>, (ie, if there are unlocked fields on either side of this field), then it is possible that this locked
+     * field may be  reordered automatically, as a result of the user dragging one unlocked field onto another  unlocked field.
+     *
+     *
+     * @return Boolean
+     */
+    public Boolean getCanReorder()  {
+        return getAttributeAsBoolean("canReorder");
+    }
+
+    /**
      * If {@link com.smartgwt.client.widgets.grid.ListGrid#getShowGridSummary showGridSummary} is true, should this field show
      * a summary value. If unset, this field will show a summary value in the summary row if an explicit {@link
      * com.smartgwt.client.widgets.grid.ListGridField#getSummaryFunction summaryFunction} is specified or if a {@link
@@ -2076,9 +2128,6 @@ public class ListGridField extends DataClass  implements com.smartgwt.client.wid
     // ********************* Static Methods ***********************
 
 
-
-
-
     /**
      * If this ListGrid is showing a filter row, this property can be used to apply a default value to show in the filter editor for this field.
      *

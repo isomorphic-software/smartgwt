@@ -708,8 +708,6 @@ public class SelectItem extends FormItem  implements PickList, com.smartgwt.clie
     // ********************* Static Methods ***********************
 
 
-
-
     static {
         init();
     }

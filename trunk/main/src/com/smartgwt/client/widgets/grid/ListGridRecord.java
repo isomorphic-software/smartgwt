@@ -354,8 +354,8 @@ public class ListGridRecord extends Record {
     /**
      * If specified as false this record should be ignored when calculating summary totals  to be shown in the {@link
      * com.smartgwt.client.widgets.grid.ListGrid#getShowGridSummary 'summary row'} for this grid. <P> Note that
-     * <code>includeInTotals</code> is the default property name for this attribute, but it may be modified via
-     * ${isc.DocUtils.linkForRef('listGrid.includeInTotalsProperty')}.
+     * <code>includeInSummary</code> is the default property name for this attribute, but it may be modified via {@link
+     * com.smartgwt.client.widgets.grid.ListGrid#getIncludeInSummaryProperty includeInSummaryProperty}.
      *
      * @param includeInSummary includeInSummary Default value is null
      */
@@ -366,8 +366,8 @@ public class ListGridRecord extends Record {
     /**
      * If specified as false this record should be ignored when calculating summary totals  to be shown in the {@link
      * com.smartgwt.client.widgets.grid.ListGrid#getShowGridSummary 'summary row'} for this grid. <P> Note that
-     * <code>includeInTotals</code> is the default property name for this attribute, but it may be modified via
-     * ${isc.DocUtils.linkForRef('listGrid.includeInTotalsProperty')}.
+     * <code>includeInSummary</code> is the default property name for this attribute, but it may be modified via {@link
+     * com.smartgwt.client.widgets.grid.ListGrid#getIncludeInSummaryProperty includeInSummaryProperty}.
      *
      *
      * @return Boolean

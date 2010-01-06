@@ -33,6 +33,7 @@ package com.smartgwt.client.docs;
  * @see com.smartgwt.client..CubeGrid#deselectAll
  * @see com.smartgwt.client..CubeGrid#cellSelectionChanged
  * @see com.smartgwt.client..Selection#isSelected
+ * @see com.smartgwt.client..Selection#isPartiallySelected
  * @see com.smartgwt.client..Selection#anySelected
  * @see com.smartgwt.client..Selection#multipleSelected
  * @see com.smartgwt.client..Selection#getSelection

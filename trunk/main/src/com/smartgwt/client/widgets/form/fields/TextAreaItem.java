@@ -262,8 +262,6 @@ public class TextAreaItem extends FormItem {
     // ********************* Static Methods ***********************
 
 
-
-
     /**
      * Set the length.
      *

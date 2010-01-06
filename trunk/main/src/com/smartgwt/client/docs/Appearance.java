@@ -2,7 +2,7 @@
 package com.smartgwt.client.docs;
 
 /**
- * Properties defining an object's apperance
+ * Properties defining an object's appearance
  * @see com.smartgwt.client..CubeGrid#getCellStyle
  * @see com.smartgwt.client.widgets.form.fields.TextItem#getHint
  * @see com.smartgwt.client.widgets.form.fields.ButtonItem#setTitle

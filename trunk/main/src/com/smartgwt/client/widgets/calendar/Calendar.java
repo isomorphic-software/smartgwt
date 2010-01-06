@@ -1774,9 +1774,6 @@ public class Calendar extends Canvas  implements DataBoundComponent, com.smartgw
     // ********************* Static Methods ***********************
 
 
-
-
-
     protected native void onInit() /*-{
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
         self._getDayBodyHTML = self.getDayBodyHTML;
@@ -1946,7 +1943,8 @@ public class Calendar extends Canvas  implements DataBoundComponent, com.smartgw
         var otherFieldsJS = @com.smartgwt.client.util.JSOHelper::convertMapToJavascriptObject(Ljava/util/Map;)(otherFields);
         self.addEvent(@com.smartgwt.client.util.JSOHelper::convertToJavaScriptDate(Ljava/util/Date;)(startDate),
                       @com.smartgwt.client.util.JSOHelper::convertToJavaScriptDate(Ljava/util/Date;)(endDate),
-                      name, description,otherFieldsJS);
+                      name, description,
+                      @com.smartgwt.client.util.JSOHelper::convertMapToJavascriptObject(Ljava/util/Map;)(otherFieldsJS));
     }-*/;
 
     /**

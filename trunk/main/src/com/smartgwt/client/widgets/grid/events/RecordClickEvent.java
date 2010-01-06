@@ -176,8 +176,6 @@ public class RecordClickEvent extends AbstractSmartEvent<RecordClickHandler>  im
     }-*/;
 
 
-
-
 
     //TODO custom
     public  native JavaScriptObject getValue() /*-{

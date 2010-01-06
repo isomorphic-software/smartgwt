@@ -168,7 +168,7 @@ public class Tree extends BaseClass  implements com.smartgwt.client.widgets.tree
 
     /**
      * If new nodes are added to a tree with modelType:"parent" which have the same {@link
-     * com.smartgwt.client.widgets.tree.Tree#getIdField 'id field value'} as existing nodes, the existing nodess are removed
+     * com.smartgwt.client.widgets.tree.Tree#getIdField 'id field value'} as existing nodes, the existing nodes are removed
      * when the new nodes are added. <P> If reportCollisions is true, the Tree will log a warning in the developer console
      * about this. <P> Note that if an id collision occurs between a new node and its ancestor, the ancestor will be removed
      * and the new node will not be added to the tree.
@@ -182,7 +182,7 @@ public class Tree extends BaseClass  implements com.smartgwt.client.widgets.tree
 
     /**
      * If new nodes are added to a tree with modelType:"parent" which have the same {@link
-     * com.smartgwt.client.widgets.tree.Tree#getIdField 'id field value'} as existing nodes, the existing nodess are removed
+     * com.smartgwt.client.widgets.tree.Tree#getIdField 'id field value'} as existing nodes, the existing nodes are removed
      * when the new nodes are added. <P> If reportCollisions is true, the Tree will log a warning in the developer console
      * about this. <P> Note that if an id collision occurs between a new node and its ancestor, the ancestor will be removed
      * and the new node will not be added to the tree.
@@ -643,7 +643,7 @@ public class Tree extends BaseClass  implements com.smartgwt.client.widgets.tree
      * com.smartgwt.client.widgets.tree.TreeNode#getChildren children}) is checked on the {@link
      * com.smartgwt.client.widgets.tree.TreeNode}.  If the node has the children property defined (regardless of whether it
      * actually has any children), then isFolder() returns true for that node. </ul> <P> You can override this method to
-     * provide your own intepretation of what constitutes a folder.
+     * provide your own interpretation of what constitutes a folder.
      * @param node node in question
      *
      * @return true if the node is a folder
@@ -921,9 +921,6 @@ public class Tree extends BaseClass  implements com.smartgwt.client.widgets.tree
     // ********************* Static Methods ***********************
 
 
-
-
-
     /**
      * Optional initial data for the tree. How this data is interpreted depends on this tree's {@link
      * com.smartgwt.client.widgets.tree.Tree#getModelType modelType}. <P> If <code>modelType</code> is

@@ -525,11 +525,11 @@ public class ColumnTree extends Layout  implements DataBoundComponent, com.smart
     /**
      * Get the appropriate icon for a node. <P> By default icons are derived from {@link
      * com.smartgwt.client.widgets.grid.ColumnTree#getFolderIcon folderIcon} and {@link
-     * com.smartgwt.client.widgets.grid.ColumnTree#getNodeIcon nodeIcon}. Custom icons for individual nodes can be overriden by
-     * setting the {@link com.smartgwt.client.widgets.grid.ColumnTree#getCustomIconProperty customIconProperty} on a node. <p>
-     * If you want to suppress icons altogether, provide an override of this method that simply returns null. <p>  Note that
-     * the full icon URL will be derived by applying {@link com.smartgwt.client.widgets.Canvas#getImgURL} to the value returned
-     * from this method.
+     * com.smartgwt.client.widgets.grid.ColumnTree#getNodeIcon nodeIcon}. Custom icons for individual nodes can be overridden
+     * by setting the {@link com.smartgwt.client.widgets.grid.ColumnTree#getCustomIconProperty customIconProperty} on a node.
+     * <p> If you want to suppress icons altogether, provide an override of this method that simply returns null. <p>  Note
+     * that the full icon URL will be derived by applying {@link com.smartgwt.client.widgets.Canvas#getImgURL} to the value
+     * returned from this method.
      * @param node tree node in question
      *
      * @return URL for the icon to show for this node
