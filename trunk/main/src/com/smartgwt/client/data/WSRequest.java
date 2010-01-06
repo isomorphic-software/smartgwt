@@ -120,9 +120,9 @@ public class WSRequest extends RPCRequest {
     // ********************* Static Methods ***********************
 
 
-
-
-
+
+
+
     /**
      * Data to be serialized to form the SOAP headers, as a map from the header part name to the&#010 data.  For example, given WSDL like this:&#010 <pre>&#010     &lt;soap:header part="SessionHeader" message="tns:HeaderMessage"/&gt;&#010     &lt;soap:header part="CallOptions" message="tns:HeaderMessage/&gt;&#010 </pre>&#010 <code>headerData</code> like this might be provided:&#010 <pre>&#010     dsRequest.headerData = &#010         { SessionHeader : <i>data</i>&#010           CallOptions : <i>data</i> };&#010 </pre>&#010 The provided data will be serialized to XML by the&#010 {@link com.smartgwt.client.data.WebService#getInputHeaderSchema} via&#010 {@link com.smartgwt.client.data.DataSource#xmlSerialize}
      *
