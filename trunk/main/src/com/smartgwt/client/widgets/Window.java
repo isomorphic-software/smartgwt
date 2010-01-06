@@ -1161,9 +1161,6 @@ public class Window extends VLayout  implements com.smartgwt.client.widgets.even
     // ********************* Static Methods ***********************
 
 
-
-
-
     /**
      * Adds a widget to the window.
      *
@@ -1303,6 +1300,25 @@ public class Window extends VLayout  implements com.smartgwt.client.widgets.even
      */
     public void setHeaderControls(Object... headerControls) {
         setAttribute("headerControls", headerControls, false);
+    }
+    /**
+     * Array of members to show in the Window footer. <pb> The default value of headerControls is an Array of {@link
+     * com.smartgwt.client.types.FooterControls} listing the standard footer controls in their default order: <br>
+     * headerControls : [HeaderControls.SPACER, HeaderControls.RESIZER] <br>
+     * <p/>
+     * You can set footerControls to change the order of standard controls in the footer. You can also omit standard
+     * controls this way, although it more efficient to use the related "show" property if available (eg
+     * Window.showResizer). <br> By embedding a Canvas directly in this list you can add arbitrary additional
+     * controls to the footer.<br> Note that the statusBar is not part of the set of footer controls - it is a
+     * separate canvas rendered behind all footer controls. If you include some custom status bar
+     * directly in the footerControls you may want to set +link{window.showFooter} to false.
+     * Tip: custom controls need to set layoutAlign:"center" to appear vertically centered.
+     *
+     * @param footerControls an array containing either FooterControl enums values or Canvas instances
+     * @see com.smartgwt.client.types.FooterControls
+     */
+    public void setFooterControls(Object... footerControls) {
+        setAttribute("footerControls", footerControls, false);
     }
 
     /**
