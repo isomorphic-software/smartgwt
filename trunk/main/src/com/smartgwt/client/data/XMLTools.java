@@ -81,6 +81,46 @@ public class XMLTools {
             callback.@com.smartgwt.client.data.XSDLoadCallback::execute(Lcom/smartgwt/client/data/SchemaSet;)(schemaSetJ);
         }, reqJS);
     }-*/;
+    
+    /**
+     * Load an XML file containing XML schema definitions and create DataSource and SimpleType objects to represent the schema.
+     * You can use to loaded schema to bind ISC components, perform validation, create editing interfaces, and build other
+     * metadata-driven interfaces.
+     * <p>
+     * All &lt;xsd:complexType&gt; declarations become ISC DataSources, and all &lt;xsd:simpleType&gt; definitions become
+     * atomic type definitions.
+     * <p>
+     * By default, named complexType definitions and named element definitions containing complexTypes become global
+     * DataSources, that is, they can be fetched with DataSource.getDataSource(). Inline complexType definitions get
+     * automatically generated names.
+     * <p>
+     * Named simpleType declarations become global ISC atomic types, that is, subsequently defined DataSources can use
+     * them for DataSourceField.type. XML schema "restrictions" for simple types are automatically translated to
+     * DataSourceField.valueMap or DataSourceField.validators as appropriate.
+     * <p>
+     * The created SchemaSet object is available in the callback as the single parameter "schemaSet", or can retrieved
+     * via SchemaSet.get(schemaNamespace).
+     * <p>
+     * NOTE: required fields: the XML concept of "required" for an attribute or subelement, expressed via use="required"
+     * (for an attribute) or minOccurs > 0 (for a subelement), is that the attribute or element must be present in the
+     * XML document but can have any value, including being empty or null. The SmartGWT notion of required means non-null.
+     * You can express the SmartClient notion of required in XML Schema with the combination of maxOccurs>0 and a minLength
+     * or length "restriction", and SmartClient will recognize the field as SmartClient-required, with all of the behaviors
+     *  that implies (eg, specially styled form titles, automatic validation, etc).
+     *
+     * @param schemaURL URL to load the schema from
+     * @param callback the callback
+     * @param requestProperties additional properties to set on the RPCRequest that will be issued
+     * @param autoLoadImports if set, xsd:import statements will be processed automatically to load dependent XSD files where a "location" is specified.
+     * The callback will not fire until all dependencies have been loaded
+     */
+    public static native void loadXMLSchema(String schemaURL, XSDLoadCallback callback, RPCRequest requestProperties, boolean autoLoadImports) /*-{
+        var reqJS = requestProperties == null ? null : requestProperties.@com.smartgwt.client.rpc.RPCRequest::getJsObj()();
+        $wnd.isc.XMLTools.loadXMLSchema(schemaURL, function(schemaSet) {
+            var schemaSetJ = @com.smartgwt.client.data.SchemaSet::new(Lcom/google/gwt/core/client/JavaScriptObject;)(schemaSet);
+            callback.@com.smartgwt.client.data.XSDLoadCallback::execute(Lcom/smartgwt/client/data/SchemaSet;)(schemaSetJ);
+        }, reqJS, autoLoadImports);
+    }-*/;
 
     /**
      * Load a WSDL file and create an instance of WebService that allows invoking operations and binding DataSources to web service operations.
