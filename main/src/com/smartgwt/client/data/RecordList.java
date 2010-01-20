@@ -664,7 +664,7 @@ public class RecordList extends BaseClass implements com.smartgwt.client.data.ev
      */
     public native void add(Record record) /*-{
         var self = this.@com.smartgwt.client.core.BaseClass::getOrCreateJsObj()();
-        return self.add(record.@com.smartgwt.client.data.Record::getJsObj()());
+        self.add(record.@com.smartgwt.client.data.Record::getJsObj()());
     }-*/;
 
     /**
