@@ -675,6 +675,7 @@ public class JSOHelper {
     }
 
     public static JavaScriptObject convertMapToJavascriptObject(Map valueMap) {
+    	
         if(valueMap == null) return null;
         JavaScriptObject valueJS = JSOHelper.createObject();
         for (Iterator iterator = valueMap.keySet().iterator(); iterator.hasNext();) {
@@ -695,6 +696,9 @@ public class JSOHelper {
                 setNullAttribute(valueJS, key);
             } else if(value instanceof String[]) {
                 setAttribute(valueJS, key, convertToJavaScriptArray((String[]) value));
+            } else if (value instanceof Map) {
+            	JavaScriptObject innerMapJS = convertMapToJavascriptObject((Map) value); 
+            	setAttribute(valueJS, key, innerMapJS);
             } else {
                 throw new IllegalArgumentException("Unsupported type for attribute " + key + " : " + value);
             }
