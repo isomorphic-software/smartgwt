@@ -29,7 +29,7 @@ public interface HasChangeHandlers extends HasHandlers {
      * com.smartgwt.client.widgets.form.fields.FormItem#setInputTransformer} rather than using a combination of change() and
      * setValue() to accomplish the same thing.  Returning false from <code>change</code> is intended for rejecting input
      * entirely, such as typing invalid characters. <p> Note that if you ask the form for the current value in this handler,
-     * you will get the old value because the change has not yet been commited.  The new value is available as a parameter to
+     * you will get the old value because the change has not yet been committed.  The new value is available as a parameter to
      * this method.
      *
      * @param handler the change handler

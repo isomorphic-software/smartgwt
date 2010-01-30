@@ -132,9 +132,9 @@ public class IconClickEvent extends AbstractSmartEvent<IconClickHandler>  {
     }-*/;
 
     /**
-     * a pointer to the icon that recieved the click event.
+     * a pointer to the icon that received the click event.
      *
-     * @return a pointer to the icon that recieved the click event.
+     * @return a pointer to the icon that received the click event.
      */
     public  native FormItemIcon getIcon() /*-{
         var jsObj = this.@com.smartgwt.client.event.AbstractSmartEvent::jsObj;
