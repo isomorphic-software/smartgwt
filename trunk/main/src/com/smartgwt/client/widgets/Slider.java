@@ -101,8 +101,9 @@ public class Slider extends Canvas  implements com.smartgwt.client.widgets.event
 
     /**
      * Optional display title for the slider.
+     * Sets the {@link com.smartgwt.client.widgets.Slider#getTitle title} of the slider
      *
-     * @param title title Default value is "Set Value"
+     * @param title new title for the slider. Default value is "Set Value"
      */
     public void setTitle(String title) {
         setAttribute("title", title, true);
@@ -141,8 +142,9 @@ public class Slider extends Canvas  implements com.smartgwt.client.widgets.event
 
     /**
      * Indicates whether this is a vertical or horizontal slider.
+     * Sets the {@link com.smartgwt.client.widgets.Slider#getVertical vertical} property of the slider
      *
-     * @param vertical vertical Default value is true
+     * @param vertical is the slider vertical. Default value is true
      */
     public void setVertical(Boolean vertical) {
         setAttribute("vertical", vertical, true);
@@ -160,8 +162,9 @@ public class Slider extends Canvas  implements com.smartgwt.client.widgets.event
 
     /**
      * The dimension of the thumb perpendicular to the slider track.
+     * Sets the {@link com.smartgwt.client.widgets.Slider#getThumbThickWidth thumbThickWidth} property of the slider
      *
-     * @param thumbThickWidth thumbThickWidth Default value is 23
+     * @param thumbThickWidth new thumbThickWidth. Default value is 23
      */
     public void setThumbThickWidth(int thumbThickWidth) {
         setAttribute("thumbThickWidth", thumbThickWidth, true);
@@ -179,8 +182,9 @@ public class Slider extends Canvas  implements com.smartgwt.client.widgets.event
 
     /**
      * The dimension of the thumb parallel to the slider track.
+     * Sets the {@link com.smartgwt.client.widgets.Slider#getThumbThinWidth thumbThinWidth} property of the slider
      *
-     * @param thumbThinWidth thumbThinWidth Default value is 17
+     * @param thumbThinWidth new thumbThinWidth. Default value is 17
      */
     public void setThumbThinWidth(int thumbThinWidth) {
         setAttribute("thumbThinWidth", thumbThinWidth, true);
@@ -198,8 +202,9 @@ public class Slider extends Canvas  implements com.smartgwt.client.widgets.event
 
     /**
      * The thickness of the track. This is the width, for a vertical slider, or the height, for a horizontal slider.
+     * Sets the {@link com.smartgwt.client.widgets.Slider#getTrackWidth trackWidth} property of the slider
      *
-     * @param trackWidth trackWidth Default value is 7
+     * @param trackWidth new trackWidth. Default value is 7
      */
     public void setTrackWidth(int trackWidth) {
         setAttribute("trackWidth", trackWidth, true);
@@ -224,8 +229,9 @@ public class Slider extends Canvas  implements com.smartgwt.client.widgets.event
      * For vertical sliders: <ul> <li><code>v{baseName}.{extension}</code>: default enabled appearance.
      * <li><code>v{baseName}_down.{extension}</code>:  appearance when the slider is enabled and the     thumb is clicked.
      * <li><code>v{baseName}_off.{extension}</code>:  appearance when the slider is disabled. </ul>
+     * Sets the {@link com.smartgwt.client.widgets.Slider#getThumbSrc thumbSrc} property of the slider
      *
-     * @param thumbSrc thumbSrc Default value is "thumb.gif"
+     * @param thumbSrc new thumbSrc. Default value is "thumb.gif"
      */
     public void setThumbSrc(String thumbSrc) {
         setAttribute("thumbSrc", thumbSrc, true);
@@ -265,8 +271,9 @@ public class Slider extends Canvas  implements com.smartgwt.client.widgets.event
      * the track for a slider     that is disabled. <li><code>v{baseName}_off_stretch.{extension}</code>:  the track for a
      * disabled slider; this     may be centered, tiled, or stretched. <li><code>v{baseName}_off_end.{extension}</code>:  end
      * (top edge) of the track for a slider     that is disabled. </ul>
+     * Sets the {@link com.smartgwt.client.widgets.Slider#getTrackSrc trackSrc} property of the slider
      *
-     * @param trackSrc trackSrc Default value is "track.gif"
+     * @param trackSrc new trackSrc. Default value is "track.gif"
      */
     public void setTrackSrc(String trackSrc) {
         setAttribute("trackSrc", trackSrc, true);
@@ -299,8 +306,9 @@ public class Slider extends Canvas  implements com.smartgwt.client.widgets.event
 
     /**
      * The height of vertical slider start and end images, or width of horizontal slider start and end images.
+     * Sets the {@link com.smartgwt.client.widgets.Slider#getTrackCapSize trackCapSize} property of the slider
      *
-     * @param trackCapSize trackCapSize Default value is 6
+     * @param trackCapSize new trackCapSize. Default value is 6
      */
     public void setTrackCapSize(int trackCapSize) {
         setAttribute("trackCapSize", trackCapSize, true);
@@ -318,8 +326,9 @@ public class Slider extends Canvas  implements com.smartgwt.client.widgets.event
              
     /**
      * The imageType setting for the slider track.
+     * Sets the {@link com.smartgwt.client.widgets.Slider#getTrackImageType trackImageType} property of the slider
      *
-     * @param trackImageType trackImageType Default value is "stretch"
+     * @param trackImageType new trackImageType. Default value is "stretch"
      */
     public void setTrackImageType(ImageStyle trackImageType) {
         setAttribute("trackImageType", trackImageType.getValue(), true);
@@ -338,8 +347,9 @@ public class Slider extends Canvas  implements com.smartgwt.client.widgets.event
     /**
      * Indicates whether the slider's title should be displayed. The default position for this label is to the left of a
      * horizontal slider, or above a vertical slider.
+     * Sets the {@link com.smartgwt.client.widgets.Slider#getShowTitle showTitle} property of the slider
      *
-     * @param showTitle showTitle Default value is true
+     * @param showTitle show the slider title?. Default value is true
      */
     public void setShowTitle(Boolean showTitle) {
         setAttribute("showTitle", showTitle, true);
@@ -359,8 +369,9 @@ public class Slider extends Canvas  implements com.smartgwt.client.widgets.event
     /**
      * Indicates whether labels for the min and max values of the slider should be displayed. The default positions for these
      * labels are below the start/end of a horizontal slider, or to the right of the start/end of a vertical slider.
+     * Sets the {@link com.smartgwt.client.widgets.Slider#getShowRange showRange} property of the slider
      *
-     * @param showRange showRange Default value is true
+     * @param showRange show the slider range?. Default value is true
      */
     public void setShowRange(Boolean showRange) {
         setAttribute("showRange", showRange, true);
@@ -380,8 +391,9 @@ public class Slider extends Canvas  implements com.smartgwt.client.widgets.event
     /**
      * Indicates whether a label for the value of the slider should be displayed. The default position for this label is to the
      * right of a horizontal slider, or below a vertical slider.
+     * Sets the {@link com.smartgwt.client.widgets.Slider#getShowValue showValue} property of the slider
      *
-     * @param showValue showValue Default value is true
+     * @param showValue show the slider value?. Default value is true
      */
     public void setShowValue(Boolean showValue) {
         setAttribute("showValue", showValue, true);
@@ -400,8 +412,9 @@ public class Slider extends Canvas  implements com.smartgwt.client.widgets.event
 
     /**
      * The width of the labels used to display the minimum, maximum and current values of the slider.
+     * Sets the {@link com.smartgwt.client.widgets.Slider#getLabelWidth labelWidth} property of the slider
      *
-     * @param labelWidth labelWidth Default value is 50
+     * @param labelWidth new label width. Default value is 50
      */
     public void setLabelWidth(int labelWidth) {
         setAttribute("labelWidth", labelWidth, true);
@@ -419,8 +432,9 @@ public class Slider extends Canvas  implements com.smartgwt.client.widgets.event
 
     /**
      * The height of the labels used to display the minimum, maximum and current values of the slider.
+     * Sets the {@link com.smartgwt.client.widgets.Slider#getLabelHeight labelHeight} property of the slider
      *
-     * @param labelHeight labelHeight Default value is 20
+     * @param labelHeight new label height. Default value is 20
      */
     public void setLabelHeight(int labelHeight) {
         setAttribute("labelHeight", labelHeight, true);
@@ -438,8 +452,9 @@ public class Slider extends Canvas  implements com.smartgwt.client.widgets.event
 
     /**
      * The space around the labels used to display the minimum, maximum and current values of the slider.
+     * Sets the {@link com.smartgwt.client.widgets.Slider#getLabelSpacing labelSpacing} property of the slider
      *
-     * @param labelSpacing labelSpacing Default value is 5
+     * @param labelSpacing new label spacing. Default value is 5
      */
     public void setLabelSpacing(int labelSpacing) {
         setAttribute("labelSpacing", labelSpacing, true);
@@ -545,8 +560,9 @@ public class Slider extends Canvas  implements com.smartgwt.client.widgets.event
     /**
      * The text displayed in the label for the maximum value of the slider. If left as null, then slider.maxValue will be
      * displayed.
+     * Sets the {@link com.smartgwt.client.widgets.Slider#getMaxValueLabel maxValueLabel} property of the slider
      *
-     * @param maxValueLabel maxValueLabel Default value is null
+     * @param maxValueLabel new label text. Default value is null
      */
     public void setMaxValueLabel(String maxValueLabel) {
         setAttribute("maxValueLabel", maxValueLabel, true);
@@ -613,8 +629,9 @@ public class Slider extends Canvas  implements com.smartgwt.client.widgets.event
     /**
      * If {@link com.smartgwt.client.widgets.Slider#getRoundValues roundValues} is false, the slider value will be rounded to
      * this number of decimal places. If set to null the value will not be rounded
+     * Sets the {@link com.smartgwt.client.widgets.Slider#getRoundPrecision roundPrecision} property of the slider
      *
-     * @param roundPrecision roundPrecision Default value is 1
+     * @param roundPrecision new round precision. Default value is 1
      */
     public void setRoundPrecision(int roundPrecision) {
         setAttribute("roundPrecision", roundPrecision, true);
@@ -634,8 +651,9 @@ public class Slider extends Canvas  implements com.smartgwt.client.widgets.event
     /**
      * Specifies whether the value range of the slider should be flipped so that values increase as the thumb is moved down
      * (for a vertical slider) or to the left (for a horizontal slider).
+     * Sets the {@link com.smartgwt.client.widgets.Slider#getFlipValues flipValues} property of the slider
      *
-     * @param flipValues flipValues Default value is false
+     * @param flipValues flip slider values?. Default value is false
      */
     public void setFlipValues(Boolean flipValues) {
         setAttribute("flipValues", flipValues, true);
@@ -674,8 +692,9 @@ public class Slider extends Canvas  implements com.smartgwt.client.widgets.event
     /**
      * The percentage of the total slider that constitutes one discrete step. The slider will move one step when the
      * appropriate arrow key is pressed.
+     * Sets the {@link com.smartgwt.client.widgets.Slider#getStepPercent stepPercent} property of the slider
      *
-     * @param stepPercent stepPercent Default value is 5
+     * @param stepPercent new slider step percent. Default value is 5
      */
     public void setStepPercent(float stepPercent) {
         setAttribute("stepPercent", stepPercent, true);
@@ -806,6 +825,34 @@ public class Slider extends Canvas  implements com.smartgwt.client.widgets.event
         } else {
             return @com.smartgwt.client.util.JSOHelper::toBoolean(Z)(retVal);
         }
+    }-*/;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    /**
+     * Sets the {@link com.smartgwt.client.widgets.Slider#getRoundValues roundValues} property of the slider
+     * @param roundValues round slider values?
+     */
+    public native void setRoundValue(boolean roundValues) /*-{
+        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
+        self.setRoundValue(roundValues);
     }-*/;
 
 
