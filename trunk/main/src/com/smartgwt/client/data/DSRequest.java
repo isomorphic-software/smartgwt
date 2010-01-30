@@ -651,7 +651,7 @@ public class DSRequest extends RPCRequest {
      * @return String
      */
     public SortSpecifier[] getSortBy()  {
-        return SortSpecifier.convertToArray(getAttributeAsJavaScriptObject("sortBy"));
+        return SortSpecifier.convertToArray(getAttribute("sortBy"));
     }
 
     /**
