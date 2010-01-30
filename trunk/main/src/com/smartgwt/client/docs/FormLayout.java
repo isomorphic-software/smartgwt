@@ -30,7 +30,7 @@ package com.smartgwt.client.docs;
  * com.smartgwt.client.widgets.Canvas#getOverflow 'overflow:auto'}, either on the immediate form, or on some parent. <li>
  * Place the form in a Layout along with a component that can render any specified size, such as a {@link
  * com.smartgwt.client.widgets.grid.ListGrid}.  In this case, the Layout will automatically shrink the grid in order to
- * accomodate the form. <li> Ensure that the form can always render at a designed minimum size by reducing the number of
+ * accommodate the form. <li> Ensure that the form can always render at a designed minimum size by reducing the number of
  * cases of variable-sized text, and testing remaining cases across all supported skins.  For example, move help text into
  * hovers on help icons, or clip  long text values at a maximum length and provide a hover to see the rest. </ol> Several
  * examples of Form Layout are available ${isc.DocUtils.linkForExampleId('formsLayout', 'here')}.

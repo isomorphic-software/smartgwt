@@ -99,6 +99,7 @@ package com.smartgwt.client.docs;
  * @see com.smartgwt.client.widgets.form.fields.CheckboxItem#getTextBoxStyle
  * @see com.smartgwt.client.widgets.form.fields.CheckboxItem#getCheckedImage
  * @see com.smartgwt.client.widgets.form.fields.CheckboxItem#getUncheckedImage
+ * @see com.smartgwt.client.widgets.form.fields.CheckboxItem#getPartialSelectedImage
  * @see com.smartgwt.client.widgets.form.fields.CheckboxItem#getUnsetImage
  * @see com.smartgwt.client.widgets.form.fields.NativeCheckboxItem#getTextBoxStyle
  * @see com.smartgwt.client.widgets.form.fields.HeaderItem#getDefaultValue

@@ -53,10 +53,10 @@ package com.smartgwt.client.docs;
  * <P>&#010 If you have created a custom subclass of DataSource (eg, as a base class for several&#010 DataSources that
  * contact the same web service), you can use it with Visual Builder by:&#010 <ul>&#010 <li> creating an XML version of the
  * DataSource using the XML tag &lt;DataSource&gt; and the&#010 <code>constructor</code> property set to the name of your
- * custom DataSource subclass (as&#010 described componentXML under the heading <i>Custom Components</i>)&#010 <li>
- * modifying [webroot]/tools/visualBuilder/globalDependencies.xml to load the JavaScript&#010 code for your custom
- * DataSource class.  See examples in that file.&#010 </ul>&#010 <P>&#010 <b>Adding Custom Components to Visual
- * Builder</b>&#010 <P>&#010 The Component Library on the right hand side of Visual Builder loads component
+ * custom DataSource subclass (as&#010 described {@link com.smartgwt.client.docs.ComponentXML} under the heading <i>Custom
+ * Components</i>)&#010 <li> modifying [webroot]/tools/visualBuilder/globalDependencies.xml to load the JavaScript&#010
+ * code for your custom DataSource class.  See examples in that file.&#010 </ul>&#010 <P>&#010 <b>Adding Custom Components
+ * to Visual Builder</b>&#010 <P>&#010 The Component Library on the right hand side of Visual Builder loads component
  * definitions&#010 from two XML files in the [webroot]/tools/visualBuilder directory: customComponents.xml and&#010
  * defaultComponents.xml.  customComponents.xml is empty and is intended for developers to add&#010 their own components. 
  * defaultComponents.xml can also be customized, but the base version&#010 will change between Smart GWT releases.&#010
@@ -69,12 +69,12 @@ package com.smartgwt.client.docs;
  * com.smartgwt.client..Class#create}.&#010 For example, you could add an "EditableGrid" node by using
  * <code>className:"ListGrid"</code>&#010 and specifying:&#010 <pre>&#010 &lt;defaults canEdit="true"/&gt;</pre>&#010 NOTE:
  * if you set any defaults that are not Canvas properties, you need to provide explicit&#010 type as documented under
- * <i>Custom Properties</i> for componentXML.&#010 <li> <code>children</code>: components that should appear as children in
- * the tree under this&#010 node&#010 <li> <code>icon</code>: icon to show in the Visual Builder component tree (if
- * desired)&#010 <li> <code>iconWidth/Height/Size</code>: dimensions of the icon in pixels ("iconSize" sets&#010 both)&#010
- * <li> <code>showDropIcon</code>: for components that allow children, whether to show a&#010 special drop icon on valid
- * drop (like {@link com.smartgwt.client.widgets.tree.TreeGrid#getShowDropIcons showDropIcons}).&#010 </ul>&#010 <P>&#010
- * In order to use custom classes in Visual Builder, you must modify&#010
+ * <i>Custom Properties</i> for {@link com.smartgwt.client.docs.ComponentXML}.&#010 <li> <code>children</code>: components
+ * that should appear as children in the tree under this&#010 node&#010 <li> <code>icon</code>: icon to show in the Visual
+ * Builder component tree (if desired)&#010 <li> <code>iconWidth/Height/Size</code>: dimensions of the icon in pixels
+ * ("iconSize" sets&#010 both)&#010 <li> <code>showDropIcon</code>: for components that allow children, whether to show
+ * a&#010 special drop icon on valid drop (like {@link com.smartgwt.client.widgets.tree.TreeGrid#getShowDropIcons
+ * showDropIcons}).&#010 </ul>&#010 <P>&#010 In order to use custom classes in Visual Builder, you must modify&#010
  * <code>[webroot]/tools/visualBuilder/globalDependences.xml</code> to include:&#010 <ul>&#010 <li> the JavaScript class
  * definition for the custom class (in other words, the&#010 {@link com.smartgwt.client.util.isc#defineClass} call)&#010
  * <li> a {@link com.smartgwt.client.docs.ComponentSchema 'component schema'} for the custom component&#010 </ul>&#010 See
