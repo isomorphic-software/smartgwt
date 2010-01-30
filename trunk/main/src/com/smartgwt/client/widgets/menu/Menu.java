@@ -530,6 +530,14 @@ public class Menu extends ListGrid  implements com.smartgwt.client.widgets.menu.
     // ********************* Static Methods ***********************
 
 
+
+
+
+
+
+
+
+
     //override to avoid call of ListGrid's onInit
     protected void onInit() {
     }

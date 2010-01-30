@@ -921,6 +921,13 @@ public class Tree extends BaseClass  implements com.smartgwt.client.widgets.tree
     // ********************* Static Methods ***********************
 
 
+
+
+
+
+
+
+
     /**
      * Optional initial data for the tree. How this data is interpreted depends on this tree's {@link
      * com.smartgwt.client.widgets.tree.Tree#getModelType modelType}. <P> If <code>modelType</code> is

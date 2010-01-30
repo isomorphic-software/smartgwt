@@ -902,6 +902,15 @@ public class Layout extends Canvas {
 
 
 
+
+
+
+
+
+
+
+
+
     protected native void onInit() /*-{
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
         self.__getDropComponent = self.getDropComponent;

@@ -122,7 +122,7 @@ public class ValuesManager extends BaseClass {
     }
 
     /**
-     * If set to true, client-side validators will not run on the form when validate() is called.  Server-side validatiors (if
+     * If set to true, client-side validators will not run on the form when validate() is called.  Server-side validators (if
      * any) will still run on attempted save.
      * <p><b>Note : </b> This is an advanced setting</p>
      *
@@ -133,7 +133,7 @@ public class ValuesManager extends BaseClass {
     }
 
     /**
-     * If set to true, client-side validators will not run on the form when validate() is called.  Server-side validatiors (if
+     * If set to true, client-side validators will not run on the form when validate() is called.  Server-side validators (if
      * any) will still run on attempted save.
      *
      *
@@ -192,7 +192,7 @@ public class ValuesManager extends BaseClass {
      * valuesManagers, also perform validation against any validators defined on datasource fields. <P> Note that if validation
      * errors occur for a value that is not shown in any member forms, those errors will cause a warning and {@link
      * com.smartgwt.client.widgets.form.ValuesManager#handleHiddenValidationErrors} will be called.  This can occur if:<br> - A
-     * datasource field has no correspending item in any member form<br> - The item in question is hidden<br> - The member form
+     * datasource field has no corresponding item in any member form<br> - The item in question is hidden<br> - The member form
      * containing the item is hidden.
      *
      * @return true if all validation passed
@@ -236,7 +236,7 @@ public class ValuesManager extends BaseClass {
     /**
      * Are there any errors associated with any fields in this valuesManager?
      *
-     * @return returns true if there are any oustanding validation errors, false                   otherwise.
+     * @return returns true if there are any outstanding validation errors, false                   otherwise.
      */
     public native Boolean hasErrors() /*-{
         var self = this.@com.smartgwt.client.core.BaseClass::getOrCreateJsObj()();
@@ -252,7 +252,7 @@ public class ValuesManager extends BaseClass {
      * Are there any errors associated with a field in this valuesManager?
      * @param fieldName field to check for errors
      *
-     * @return returns true if there are any oustanding validation errors, false                   otherwise.
+     * @return returns true if there are any outstanding validation errors, false                   otherwise.
      */
     public native Boolean hasFieldErrors(String fieldName) /*-{
         var self = this.@com.smartgwt.client.core.BaseClass::getOrCreateJsObj()();
@@ -393,6 +393,19 @@ public class ValuesManager extends BaseClass {
 
 
     // ********************* Static Methods ***********************
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
     /**

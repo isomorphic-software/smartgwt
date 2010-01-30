@@ -380,6 +380,11 @@ public class HTMLFlow extends Canvas  implements com.smartgwt.client.widgets.eve
     // ********************* Static Methods ***********************
 
 
+
+
+
+
+
     /**
      * The default setting of 'null' or 'fragment' indicates that HTML loaded from {@link
      * com.smartgwt.client.widgets.HTMLFlow#getContentsURL contentsURL} is assumed to be an HTML fragment rather than a
