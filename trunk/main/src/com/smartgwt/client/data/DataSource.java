@@ -57,7 +57,7 @@ import com.google.gwt.event.shared.*;
 import com.google.gwt.event.shared.HasHandlers;
 
 /**
- * A DataSource is data-provider-independant description of a set of objects that will be loaded, edited and saved within
+ * A DataSource is data-provider-independent description of a set of objects that will be loaded, edited and saved within
  * the user interface of your application. <P> Each DataSource consists of a list of {@link
  * com.smartgwt.client.data.DataSource#getFields 'fields'} that make up a DataSource <code>record</code>, along with {@link
  * com.smartgwt.client.data.DataSourceField#getType 'field types'},  {@link
@@ -66,7 +66,7 @@ import com.google.gwt.event.shared.HasHandlers;
  * The abstract object description provided by a DataSource is easily mapped to a variety of backend object models and
  * storage schemes.  The following table shows analogous terminology across systems. <table border=1 class="normal"> <tr>  
  * <td>Isomorphic Smart GWT</td>   <td>Relational Database</td>   <td>Enterprise Java Beans (EJB)</td>  
- * <td>Entity/Relationship Modelling</td>   <td>OO/UML</td>   <td>XML Schema/WSDL</td>   <td>LDAP</td> </tr><tr>  
+ * <td>Entity/Relationship Modeling</td>   <td>OO/UML</td>   <td>XML Schema/WSDL</td>   <td>LDAP</td> </tr><tr>  
  * <td>DataSource</td>   <td>Table</td>   <td>EJB class</td>   <td>Entity</td>   <td>Class</td>   <td>Element Schema
  * (ComplexType)</td>   <td>Objectclass</td> </tr><tr>   <td>Record</td>   <td>Row</td>   <td>EJB instance</td>  
  * <td>Entity instance</td>   <td>Class instance/Object</td>   <td>Element instance (ComplexType)</td>   <td>Entry</td>
@@ -171,7 +171,7 @@ public class DataSource extends BaseClass  implements com.smartgwt.client.data.e
 
     /**
      * Like {@link com.smartgwt.client.data.OperationBinding#getUseHttpProxy useHttpProxy}, but serves as a default for this
-     * DataSource that may be overriden by individual operationBindings.
+     * DataSource that may be overridden by individual operationBindings.
      *
      * @param useHttpProxy useHttpProxy Default value is null
      * @throws IllegalStateException this property cannot be changed after the underlying component has been created
@@ -182,7 +182,7 @@ public class DataSource extends BaseClass  implements com.smartgwt.client.data.e
 
     /**
      * Like {@link com.smartgwt.client.data.OperationBinding#getUseHttpProxy useHttpProxy}, but serves as a default for this
-     * DataSource that may be overriden by individual operationBindings.
+     * DataSource that may be overridden by individual operationBindings.
      *
      *
      * @return Boolean
@@ -374,7 +374,7 @@ public class DataSource extends BaseClass  implements com.smartgwt.client.data.e
     /**
      * Allows you to specify an arbitrary prefix string to apply to all json format responses  sent from the server to this
      * application.<br> The inclusion of such a prefix ensures your code is not directly executable outside of your
-     * application, as a preventitive measure against <a href='http://www.google.com/search?q=javascript+hijacking'
+     * application, as a preventative measure against <a href='http://www.google.com/search?q=javascript+hijacking'
      * onclick="window.open('http://www.google.com/search?q=javascript+hijacking');return false;">javascript hijacking</a>.
      * <br> Only applies to responses formatted as json objects. Does not apply to responses returned via scriptInclude type
      * transport.<br> Note: If the prefix / suffix served by your backend is not a constant, you can use  {@link
@@ -392,7 +392,7 @@ public class DataSource extends BaseClass  implements com.smartgwt.client.data.e
     /**
      * Allows you to specify an arbitrary prefix string to apply to all json format responses  sent from the server to this
      * application.<br> The inclusion of such a prefix ensures your code is not directly executable outside of your
-     * application, as a preventitive measure against <a href='http://www.google.com/search?q=javascript+hijacking'
+     * application, as a preventative measure against <a href='http://www.google.com/search?q=javascript+hijacking'
      * onclick="window.open('http://www.google.com/search?q=javascript+hijacking');return false;">javascript hijacking</a>.
      * <br> Only applies to responses formatted as json objects. Does not apply to responses returned via scriptInclude type
      * transport.<br> Note: If the prefix / suffix served by your backend is not a constant, you can use  {@link
@@ -409,7 +409,7 @@ public class DataSource extends BaseClass  implements com.smartgwt.client.data.e
     /**
      * Allows you to specify an arbitrary suffix string to apply to all json format responses  sent from the server to this
      * application.<br> The inclusion of such a suffix ensures your code is not directly executable outside of your
-     * application, as a preventitive measure against <a href='http://www.google.com/search?q=javascript+hijacking'
+     * application, as a preventative measure against <a href='http://www.google.com/search?q=javascript+hijacking'
      * onclick="window.open('http://www.google.com/search?q=javascript+hijacking');return false;">javascript hijacking</a>.
      * <br> Only applies to responses formatted as json objects. Does not apply to responses returned via scriptInclude type
      * transport.
@@ -425,7 +425,7 @@ public class DataSource extends BaseClass  implements com.smartgwt.client.data.e
     /**
      * Allows you to specify an arbitrary suffix string to apply to all json format responses  sent from the server to this
      * application.<br> The inclusion of such a suffix ensures your code is not directly executable outside of your
-     * application, as a preventitive measure against <a href='http://www.google.com/search?q=javascript+hijacking'
+     * application, as a preventative measure against <a href='http://www.google.com/search?q=javascript+hijacking'
      * onclick="window.open('http://www.google.com/search?q=javascript+hijacking');return false;">javascript hijacking</a>.
      * <br> Only applies to responses formatted as json objects. Does not apply to responses returned via scriptInclude type
      * transport.
@@ -544,7 +544,7 @@ public class DataSource extends BaseClass  implements com.smartgwt.client.data.e
     }
 
     /**
-     * Analagous to {@link com.smartgwt.client.data.DataSource#getDropExtraFields dropExtraFields}, for data sent to the
+     * Analogous to {@link com.smartgwt.client.data.DataSource#getDropExtraFields dropExtraFields}, for data sent to the
      * server.  Setting this attribute to false ensures that for any records in the data object, only fields that correspond to
      * declared dataSource fields will be present on the dsRequest data object passed to {@link
      * com.smartgwt.client.data.DataSource#transformRequest} and ultimately sent to the server.
@@ -557,7 +557,7 @@ public class DataSource extends BaseClass  implements com.smartgwt.client.data.e
     }
 
     /**
-     * Analagous to {@link com.smartgwt.client.data.DataSource#getDropExtraFields dropExtraFields}, for data sent to the
+     * Analogous to {@link com.smartgwt.client.data.DataSource#getDropExtraFields dropExtraFields}, for data sent to the
      * server.  Setting this attribute to false ensures that for any records in the data object, only fields that correspond to
      * declared dataSource fields will be present on the dsRequest data object passed to {@link
      * com.smartgwt.client.data.DataSource#transformRequest} and ultimately sent to the server.
@@ -1118,8 +1118,8 @@ public class DataSource extends BaseClass  implements com.smartgwt.client.data.e
      * making sure that it refers to a valid server-side class that extends
      * <code>com.isomorphic.datasource.BasicDataSource</code>. If your implementation relies on methods or state only present
      * in certain specialized  subclasses of DataSource (for example, you want the normal behavior and features of a 
-     * HibernateDataSource, but with a specialized validate() method), then you shoud extend the  subclass rather than the base
-     * class.
+     * HibernateDataSource, but with a specialized validate() method), then you should extend the  subclass rather than the
+     * base class.
      *
      * @param serverConstructor serverConstructor Default value is null
      * @throws IllegalStateException this property cannot be changed after the underlying component has been created
@@ -1138,8 +1138,8 @@ public class DataSource extends BaseClass  implements com.smartgwt.client.data.e
      * making sure that it refers to a valid server-side class that extends
      * <code>com.isomorphic.datasource.BasicDataSource</code>. If your implementation relies on methods or state only present
      * in certain specialized  subclasses of DataSource (for example, you want the normal behavior and features of a 
-     * HibernateDataSource, but with a specialized validate() method), then you shoud extend the  subclass rather than the base
-     * class.
+     * HibernateDataSource, but with a specialized validate() method), then you should extend the  subclass rather than the
+     * base class.
      *
      *
      * @return String
@@ -1276,7 +1276,7 @@ public class DataSource extends BaseClass  implements com.smartgwt.client.data.e
      * Very advanced: for servers that do not support paging, and must return large numbers of XML records in one HTTP
      * response, Smart GWT breaks up the processing of the response in order to avoid the "script running slowly" dialog
      * appearing for an end user. <P> If you have a relatively small number of records with a great deal of properties or
-     * subojects on each record, and you have not set {@link com.smartgwt.client.data.DataSource#getDropExtraFields
+     * subobjects on each record, and you have not set {@link com.smartgwt.client.data.DataSource#getDropExtraFields
      * dropExtraFields} to eliminate unused data, and you see the "script running slowly" dialog, you may need to set this
      * number lower.
      * <p><b>Note : </b> This is an advanced setting</p>
@@ -1291,7 +1291,7 @@ public class DataSource extends BaseClass  implements com.smartgwt.client.data.e
      * Very advanced: for servers that do not support paging, and must return large numbers of XML records in one HTTP
      * response, Smart GWT breaks up the processing of the response in order to avoid the "script running slowly" dialog
      * appearing for an end user. <P> If you have a relatively small number of records with a great deal of properties or
-     * subojects on each record, and you have not set {@link com.smartgwt.client.data.DataSource#getDropExtraFields
+     * subobjects on each record, and you have not set {@link com.smartgwt.client.data.DataSource#getDropExtraFields
      * dropExtraFields} to eliminate unused data, and you see the "script running slowly" dialog, you may need to set this
      * number lower.
      *
@@ -1494,6 +1494,17 @@ public class DataSource extends BaseClass  implements com.smartgwt.client.data.e
         }
         return retVal;
     }-*/;
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -1798,6 +1809,20 @@ public class DataSource extends BaseClass  implements com.smartgwt.client.data.e
         return dsFields;
     }
     
+    /**
+     * Given a fieldName and a dataValue, apply any {@link com.smartgwt.client.data.DataSourceField#getValueMap valueMap} for
+     * the field and return the display value for the field. If the field has no specified valueMap or the value does not
+     * resolve to an entry in the valueMap it will be returned unaltered.
+     * @param fieldName name of the field to retrieve a value for
+     * @param value data value for the field
+     *
+     * @return display value for the field
+     */
+    public native Object getDisplayValue(String fieldName, Object value) /*-{
+        var self = this.@com.smartgwt.client.core.BaseClass::getOrCreateJsObj()();
+        return self.getDisplayValue(fieldName, value);
+    }-*/;
+
     /**
      * For a client-only DataSource, a set of records to use as a dataset, specified as an Array of JavaScript Objects.
      * <P> See this discussion for ways to populate a client-only DataSource with test data.

@@ -161,6 +161,13 @@ public class SimpleType extends BaseClass {
 
 
 
+
+
+
+
+
+
+
     /**
      * Create a new simple type.
      *

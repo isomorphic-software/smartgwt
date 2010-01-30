@@ -794,7 +794,7 @@ public class DataSourceField extends DataClass {
      * member type or Map value type is abstract.  When Java generics are used (for example the setter takes an argument is of
      * type Collection&lt;SomePOJO&gt; or Map&lt;KeyType,SomePOJO&gt;, Smart GWT will automatically attempt to convert inbound
      * data to the type of the members of the Collection or values of the Map.  Without generics, <code>javaClass</code> needs
-     * to be specified.  Note that <code>javaClass</code> will take precendence over generics if both  are used. Also note that
+     * to be specified.  Note that <code>javaClass</code> will take precedence over generics if both  are used. Also note that
      * {@link com.smartgwt.client.data.DataSourceField#getJavaCollectionClass javaCollectionClass} can be specified if a
      * particular Collection or Map type is needed, and {@link com.smartgwt.client.data.DataSourceField#getJavaKeyClass
      * javaKeyClass} can be specified for a field of type <code>java.util.Map</code>.</li> </ul>
@@ -819,7 +819,7 @@ public class DataSourceField extends DataClass {
      * member type or Map value type is abstract.  When Java generics are used (for example the setter takes an argument is of
      * type Collection&lt;SomePOJO&gt; or Map&lt;KeyType,SomePOJO&gt;, Smart GWT will automatically attempt to convert inbound
      * data to the type of the members of the Collection or values of the Map.  Without generics, <code>javaClass</code> needs
-     * to be specified.  Note that <code>javaClass</code> will take precendence over generics if both  are used. Also note that
+     * to be specified.  Note that <code>javaClass</code> will take precedence over generics if both  are used. Also note that
      * {@link com.smartgwt.client.data.DataSourceField#getJavaCollectionClass javaCollectionClass} can be specified if a
      * particular Collection or Map type is needed, and {@link com.smartgwt.client.data.DataSourceField#getJavaKeyClass
      * javaKeyClass} can be specified for a field of type <code>java.util.Map</code>.</li> </ul>
@@ -1023,6 +1023,17 @@ public class DataSourceField extends DataClass {
 
 
     // ********************* Static Methods ***********************
+
+
+
+
+
+
+
+
+
+
+
 
 
     /**
