@@ -135,11 +135,28 @@ public class SectionHeader extends Label {
 
     // ********************* Methods ***********************
 
+    /**
+     * For a SectionHeader embedded in a SectionStack, this method will return  a pointer to the {@link
+     * com.smartgwt.client.widgets.layout.SectionStack} in which this section header is embedded.
+     *
+     * @return Section Stack containing this section header
+     */
+    public native SectionStack getSectionStack() /*-{
+        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
+        var ret = self.getSectionStack();
+        if(ret == null || ret === undefined) return null;
+        var retVal = @com.smartgwt.client.widgets.BaseWidget::getRef(Lcom/google/gwt/core/client/JavaScriptObject;)(ret);
+        if(retVal == null) {
+            retVal = @com.smartgwt.client.widgets.layout.SectionStack::new(Lcom/google/gwt/core/client/JavaScriptObject;)(ret);
+        }
+        return retVal;
+    }-*/;
+
     // ********************* Static Methods ***********************
 
 
-
-
+
+
     /**
      * Set the controls.
      *

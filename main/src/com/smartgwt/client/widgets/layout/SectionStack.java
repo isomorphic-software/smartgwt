@@ -196,6 +196,35 @@ public class SectionStack extends VLayout  implements com.smartgwt.client.widget
     }
 
     /**
+     * Whether sections can be drag reordered by the user dragging the section header. <P> Note that, with
+     * <code>canReorderSections:true</code>, sections with  {@link
+     * com.smartgwt.client.widgets.layout.SectionStackSection#getCanReorder 'section.canReorder:false'} will not be able to be
+     * drag-reordered (though their index may still be changed by dropping other sections above or below them in the section
+     * stack).
+     * <p><b>Note : </b> This is an advanced setting</p>
+     *
+     * @param canReorderSections canReorderSections Default value is false
+     * @throws IllegalStateException this property cannot be changed after the component has been created
+     */
+    public void setCanReorderSections(Boolean canReorderSections)  throws IllegalStateException {
+        setAttribute("canReorderSections", canReorderSections, false);
+    }
+
+    /**
+     * Whether sections can be drag reordered by the user dragging the section header. <P> Note that, with
+     * <code>canReorderSections:true</code>, sections with  {@link
+     * com.smartgwt.client.widgets.layout.SectionStackSection#getCanReorder 'section.canReorder:false'} will not be able to be
+     * drag-reordered (though their index may still be changed by dropping other sections above or below them in the section
+     * stack).
+     *
+     *
+     * @return Boolean
+     */
+    public Boolean getCanReorderSections()  {
+        return getAttributeAsBoolean("canReorderSections");
+    }
+
+    /**
      * If true, the headers for the sections (if shown) will be included in the page's tab order for accessibility.
      * <p><b>Note : </b> This is an advanced setting</p>
      *
@@ -238,6 +267,30 @@ public class SectionStack extends VLayout  implements com.smartgwt.client.widget
      */
     public Boolean getScrollSectionIntoView()  {
         return getAttributeAsBoolean("scrollSectionIntoView");
+    }
+
+    /**
+     * Should any specified {@link com.smartgwt.client.widgets.layout.SectionStackSection#getID ID} be applied to the generated
+     * SectionHeader widget for the section as a widget ID? If set to false, SectionStackSection.ID will behave as a synonym
+     * for SectionStackSection.name.
+     *
+     * @param useGlobalSectionIDs useGlobalSectionIDs Default value is true
+     * @throws IllegalStateException this property cannot be changed after the component has been created
+     */
+    public void setUseGlobalSectionIDs(Boolean useGlobalSectionIDs)  throws IllegalStateException {
+        setAttribute("useGlobalSectionIDs", useGlobalSectionIDs, false);
+    }
+
+    /**
+     * Should any specified {@link com.smartgwt.client.widgets.layout.SectionStackSection#getID ID} be applied to the generated
+     * SectionHeader widget for the section as a widget ID? If set to false, SectionStackSection.ID will behave as a synonym
+     * for SectionStackSection.name.
+     *
+     *
+     * @return Boolean
+     */
+    public Boolean getUseGlobalSectionIDs()  {
+        return getAttributeAsBoolean("useGlobalSectionIDs");
     }
 
     /**
@@ -390,14 +443,14 @@ public class SectionStack extends VLayout  implements com.smartgwt.client.widget
 
     /**
      * Returns the position of the specified section in the SectionStack.  The numbering is zero-based.
-     * @param sectionID ID of a section for which you want to obtain the position.
+     * @param sectionName name of a section for which you want to obtain the position.
      *
      * @return Position of the section in the SectionStack or -1 if the specified                      section is not a member of this
      * SectionStack.
      */
-    public native int getSectionNumber(String sectionID) /*-{
+    public native int getSectionNumber(String sectionName) /*-{
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
-        return self.getSectionNumber(sectionID);
+        return self.getSectionNumber(sectionName);
     }-*/;
 
     /**
@@ -413,9 +466,24 @@ public class SectionStack extends VLayout  implements com.smartgwt.client.widget
 
 
 
-
-
-    public void setSections(SectionStackSection... sections) {
+
+
+
+
+
+	  protected void onInit() {
+		  updateSectionJsObjects(this.getJsObj());
+		  super.onInit();
+	  }
+	  protected native void updateSectionJsObjects(JavaScriptObject stack) /*-{
+	  	  if (stack.sections == null) return;
+		  for (var i = 0; i < stack.sections.length; i++) {
+		    var section = stack.sections[i];
+			@com.smartgwt.client.widgets.layout.SectionStackSection::getOrCreateRef(Lcom/google/gwt/core/client/JavaScriptObject;)(section);
+		  }
+	  }-*/;
+
+	  public void setSections(SectionStackSection... sections) {
         for (SectionStackSection section : sections) {
             addSection(section);
         }
@@ -435,6 +503,7 @@ public class SectionStack extends VLayout  implements com.smartgwt.client.widget
         } else {
             addSectionPreCreate(componentJS);
         }
+        section.stack = this;
     }
 
     /**
@@ -452,6 +521,7 @@ public class SectionStack extends VLayout  implements com.smartgwt.client.widget
         } else {
             addSectionPreCreate(componentJS, position);
         }
+        section.stack = this;
     }
 
     private native void addSectionPreCreate(JavaScriptObject componentJS) /*-{
@@ -466,6 +536,11 @@ public class SectionStack extends VLayout  implements com.smartgwt.client.widget
     private native void addSectionPostCreate(JavaScriptObject componentJS) /*-{
         var container = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
         container.addSection(componentJS);
+        
+        var sectionHeaderJS = container.sections[container.sections.length-1];
+        @com.smartgwt.client.widgets.layout.SectionStackSection::getOrCreateRef(Lcom/google/gwt/core/client/JavaScriptObject;)(sectionHeaderJS);
+            
+    
     }-*/;
 
     private native void addSectionPreCreate(JavaScriptObject componentJS, int position) /*-{
@@ -479,9 +554,15 @@ public class SectionStack extends VLayout  implements com.smartgwt.client.widget
 
     private native void addSectionPostCreate(JavaScriptObject componentJS, int position) /*-{
         var container = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
+        if (position < 0 || container.sections == null) position = 0;
+        else if (position > container.sections.length) position = container.sections.length;
         container.addSection(componentJS, position);
+        
+        var sectionHeaderJS = container.sections[position];
+        @com.smartgwt.client.widgets.layout.SectionStackSection::getOrCreateRef(Lcom/google/gwt/core/client/JavaScriptObject;)(sectionHeaderJS);
+        
     }-*/;
-
+    
     /**
      * Remove a section from the SectionStack. The removed sections' header and items (if any) are automatically
      * destroyed.
