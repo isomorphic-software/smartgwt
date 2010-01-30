@@ -260,6 +260,29 @@ public class FilterBuilder extends Layout  implements com.smartgwt.client.widget
     public Boolean getAllowEmpty()  {
         return getAttributeAsBoolean("allowEmpty");
     }
+
+    /**
+     * Dictates whether values entered by a user should be retained in the value fields when a  different field is selected. 
+     * Default value is true. <P> Note that, when switching between fields that have an optionDataSource or valueMap, this
+     * property is ignored and the values are never retained.
+     *
+     * @param retainValuesAcrossFields retainValuesAcrossFields Default value is true
+     */
+    public void setRetainValuesAcrossFields(Boolean retainValuesAcrossFields) {
+        setAttribute("retainValuesAcrossFields", retainValuesAcrossFields, true);
+    }
+
+    /**
+     * Dictates whether values entered by a user should be retained in the value fields when a  different field is selected. 
+     * Default value is true. <P> Note that, when switching between fields that have an optionDataSource or valueMap, this
+     * property is ignored and the values are never retained.
+     *
+     *
+     * @return Boolean
+     */
+    public Boolean getRetainValuesAcrossFields()  {
+        return getAttributeAsBoolean("retainValuesAcrossFields");
+    }
              
     /**
      * Default logical operator for all top-level clauses in the FilterBuilder. <P> May be able to be changed by the user via
@@ -480,6 +503,10 @@ public class FilterBuilder extends Layout  implements com.smartgwt.client.widget
    }-*/;
 
     // ********************* Static Methods ***********************
+
+
+
+
 
 
 
