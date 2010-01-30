@@ -89,9 +89,42 @@ public class SectionStackSection extends RefDataClass {
     // ********************* Properties / Attributes ***********************
 
     /**
-     * Optional ID for the section.  This can be used later in calls to {@link com.smartgwt.client.widgets.layout.SectionStack}
+     * Identifier for the section.  This can be used later in calls to {@link com.smartgwt.client.widgets.layout.SectionStack}
      * APIs such as {@link com.smartgwt.client.widgets.layout.SectionStack#expandSection} and {@link
-     * com.smartgwt.client.widgets.layout.SectionStack#collapseSection}.
+     * com.smartgwt.client.widgets.layout.SectionStack#collapseSection}. Note that if no name is specified for the section, one
+     * will be auto-generated when the section is created.
+     *
+     * @param name name Default value is null
+     */
+    public void setName(String name) {
+        setAttribute("name", name);
+    }
+
+    /**
+     * Identifier for the section.  This can be used later in calls to {@link com.smartgwt.client.widgets.layout.SectionStack}
+     * APIs such as {@link com.smartgwt.client.widgets.layout.SectionStack#expandSection} and {@link
+     * com.smartgwt.client.widgets.layout.SectionStack#collapseSection}. Note that if no name is specified for the section, one
+     * will be auto-generated when the section is created.
+     *
+     *
+     * @return String
+     */
+    public String getName()  {
+        return getAttributeAsString("name");
+    }
+
+    /**
+     * Optional ID for the section. By default this will be applied to the generated  SectionStackHeader widget as a standard
+     * widget ID, meaning it should be unique within a page. To disable this behavior, set
+     * ${isc.DocUtils.linkForRef('SectionStackSection.useGlobalSectionIDs')} to false. <P> <b>Backcompat Note</b>: Section
+     * stack sections may be uniquely identified within a stack via the {@link
+     * com.smartgwt.client.widgets.layout.SectionStackSection#getName name} attribute (introduced in Jan 2010). Prior to this,
+     * the section ID attribute was used in this way (and would not be applied to the section header  as a widget ID). For
+     * backwards compatibility this is still supported: If  <code>section.name</code> is unspecified for a section but
+     * <code>section.ID</code> is set, the ID will be used as a default name attribute for the section. You can also disable
+     * the standard behavior of having the <code>section.ID</code> being applied to the generated section header (thereby
+     * avoiding the page-level uniqueness requirement) by setting 
+     * ${isc.DocUtils.linkForRef('SectionStackSection.useGlobalSectionIDs')} to false.
      *
      * @param ID ID Default value is null
      */
@@ -100,9 +133,17 @@ public class SectionStackSection extends RefDataClass {
     }
 
     /**
-     * Optional ID for the section.  This can be used later in calls to {@link com.smartgwt.client.widgets.layout.SectionStack}
-     * APIs such as {@link com.smartgwt.client.widgets.layout.SectionStack#expandSection} and {@link
-     * com.smartgwt.client.widgets.layout.SectionStack#collapseSection}.
+     * Optional ID for the section. By default this will be applied to the generated  SectionStackHeader widget as a standard
+     * widget ID, meaning it should be unique within a page. To disable this behavior, set
+     * ${isc.DocUtils.linkForRef('SectionStackSection.useGlobalSectionIDs')} to false. <P> <b>Backcompat Note</b>: Section
+     * stack sections may be uniquely identified within a stack via the {@link
+     * com.smartgwt.client.widgets.layout.SectionStackSection#getName name} attribute (introduced in Jan 2010). Prior to this,
+     * the section ID attribute was used in this way (and would not be applied to the section header  as a widget ID). For
+     * backwards compatibility this is still supported: If  <code>section.name</code> is unspecified for a section but
+     * <code>section.ID</code> is set, the ID will be used as a default name attribute for the section. You can also disable
+     * the standard behavior of having the <code>section.ID</code> being applied to the generated section header (thereby
+     * avoiding the page-level uniqueness requirement) by setting 
+     * ${isc.DocUtils.linkForRef('SectionStackSection.useGlobalSectionIDs')} to false.
      *
      *
      * @return String
@@ -150,6 +191,27 @@ public class SectionStackSection extends RefDataClass {
     }
 
     /**
+     * If set to false, then this sectionHeader will not be able to be dragged to perform a drag reorder, if {@link
+     * com.smartgwt.client.widgets.layout.SectionStack#getCanReorderSections canReorderSections} is true. You can also disable
+     * dropping other sections before this one by setting  {@link com.smartgwt.client.widgets.Canvas#getCanDropBefore
+     * 'canDropBefore'} to false.
+     *
+     * @param canReorder canReorder Default value is null
+     */
+    public void setCanReorder(Boolean canReorder) {
+        setAttribute("canReorder", canReorder);
+    }
+
+    /**
+     * When explicitly set to false, disallows drop before this member in the Layout.
+     *
+     * @param canDropBefore canDropBefore Default value is null
+     */
+    public void setCanDropBefore(Boolean canDropBefore) {
+        setAttribute("canDropBefore", canDropBefore);
+    }
+
+    /**
      * Sections default to the collapsed state unless {@link
      * com.smartgwt.client.widgets.layout.SectionStackSection#getShowHeader showHeader} is set to <code>false</code> in which
      * case they default to the expanded state.  This attribute allows you to explicitly control the expand/collapse state of
@@ -186,8 +248,10 @@ public class SectionStackSection extends RefDataClass {
     // ********************* Static Methods ***********************
 
 
-
-
+
+
+
+
     /**
      * List of Canvases that constitute the section. These Canvases will be shown and hidden together.
      *
@@ -229,6 +293,18 @@ public class SectionStackSection extends RefDataClass {
     public void setControls(Canvas... controls) {
         setAttribute("controls", controls);
     }
+   
+    /**
+     * Once a SectionStackSection has been applied to a SectionStack, this method may be used to return  a pointer to the 
+     * SectionStack in which this section header is embedded.
+     *
+     * @return the SectionStack in which this section is embedded
+     */
+    protected SectionStack stack;
+    public SectionStack getSectionStack() {
+    	return stack;
+    }
+    
 
 }
 
