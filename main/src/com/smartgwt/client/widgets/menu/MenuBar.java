@@ -96,6 +96,7 @@ public class MenuBar extends Toolbar {
     // ********************* Static Methods ***********************
 
 
+
     /**
      * An array of menu instantiated menu objects. Buttons for each menu item will automatically be created.
      * See the Menu Widget Class for fundamental menu properties and other properties. Titles for the buttons are

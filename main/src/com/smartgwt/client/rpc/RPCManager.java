@@ -201,6 +201,12 @@ public class RPCManager {
 
 
 
+
+
+
+
+
+
     /**
      * The actionURL specifies the URL to which the RPC request will be sent. Note that if you override this global
      * default and your application uses DataSource databound components, you'll need to dispatch the DataSource
@@ -418,6 +424,7 @@ public class RPCManager {
         });
     }-*/;
     
+
     /**
      * Start queuing requests. When queuing requests, an HTTP request will not be sent to the server until RPCManager.sendQueue() is called.
      * <p/>
@@ -428,7 +435,9 @@ public class RPCManager {
      * @return whether queuing was already enabled before we called
      */
     public static native boolean startQueue() /*-{
-        return $wnd.isc.RPCManager.startQueue();
+        var isQueuing = $wnd.isc.RPCManager.startQueue();
+        if (isQueuing == null) isQueuing = false;
+        return isQueuing;
     }-*/;
 
     /**

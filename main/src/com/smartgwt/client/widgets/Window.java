@@ -1161,6 +1161,15 @@ public class Window extends VLayout  implements com.smartgwt.client.widgets.even
     // ********************* Static Methods ***********************
 
 
+
+
+
+
+
+
+
+
+
     /**
      * Adds a widget to the window.
      *

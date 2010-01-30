@@ -154,9 +154,9 @@ public class NodeSelectedEvent extends BrowserEvent<NodeSelectedHandler>  implem
     }-*/;
 
 
-
 
-
+
+
     /**
      * node the node that was selected
      *

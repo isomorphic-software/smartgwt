@@ -222,8 +222,8 @@ public class ToolStrip extends Layout {
     // ********************* Static Methods ***********************
 
 
-
-
+
+
     /**
      * Add a canvas to the layout, optionally at a specific position.
      *

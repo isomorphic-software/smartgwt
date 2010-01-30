@@ -199,6 +199,7 @@ public class Dialog extends Window {
     // ********************* Static Methods ***********************
 
 
+
     /**
      * Array of Buttons to show in the {@link com.smartgwt.client.widgets.Dialog#getShowToolbar showToolbar}, if shown.
      * <P> The set of buttons to use is typically set by calling one of the shortcuts.
