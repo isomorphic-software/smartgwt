@@ -11,6 +11,7 @@ package com.smartgwt.client.docs;
  * @see com.smartgwt.client.widgets.calendar.Calendar#getEventTypeField
  * @see com.smartgwt.client.widgets.calendar.Calendar#getEventWindowStyleField
  * @see com.smartgwt.client.widgets.calendar.Calendar#getCanEditField
+ * @see com.smartgwt.client.widgets.calendar.Calendar#getCanDragEventField
  * @see com.smartgwt.client.widgets.calendar.Calendar#getEventAutoArrange
  * @see com.smartgwt.client.widgets.calendar.Calendar#getEventOverlap
  * @see com.smartgwt.client.widgets.calendar.Calendar#getEventOverlapPercent

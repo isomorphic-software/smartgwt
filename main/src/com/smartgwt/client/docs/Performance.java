@@ -10,6 +10,7 @@ package com.smartgwt.client.docs;
  * @see com.smartgwt.client.grid.GridRenderer#getQuickDrawAheadRatio
  * @see com.smartgwt.client.widgets.grid.ListGrid#getFastCellUpdates
  * @see com.smartgwt.client.widgets.grid.ListGrid#getShowAllRecords
+ * @see com.smartgwt.client.widgets.grid.ListGrid#getShowAllColumns
  * @see com.smartgwt.client.widgets.grid.ListGrid#getDrawAllMaxCells
  * @see com.smartgwt.client.widgets.grid.ListGrid#getDrawAheadRatio
  * @see com.smartgwt.client.widgets.grid.ListGrid#getQuickDrawAheadRatio

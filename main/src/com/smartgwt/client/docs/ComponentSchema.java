@@ -6,10 +6,10 @@ package com.smartgwt.client.docs;
  * A component schema is a special type of DataSource that describes a custom component.  &#010 <P>&#010 Declaring a
  * component schema for your custom component allows you to:&#010 <ul>&#010 <li> use simpler XML when creating your custom
  * component: avoid having to specify the&#010 <code>constructor</code> and <code>xsi:type</code> attributes as described
- * under&#010 componentXML&#010 <li> use your custom component within {@link com.smartgwt.client.docs.VisualBuilder}&#010
- * </ul>&#010 <P>&#010 <b>Example of a Component Schema</b>&#010 <P>&#010 It's most basic form, a component schema for a
- * custom subclass of ListGrid called&#010 "MyListGrid" looks like this:&#010 <pre>&#010 &lt;DataSource
- * serverType="component" ID="MyListGrid" &#010             inheritsFrom="ListGrid"
+ * under&#010 {@link com.smartgwt.client.docs.ComponentXML}&#010 <li> use your custom component within {@link
+ * com.smartgwt.client.docs.VisualBuilder}&#010 </ul>&#010 <P>&#010 <b>Example of a Component Schema</b>&#010 <P>&#010 It's
+ * most basic form, a component schema for a custom subclass of ListGrid called&#010 "MyListGrid" looks like this:&#010
+ * <pre>&#010 &lt;DataSource serverType="component" ID="MyListGrid" &#010             inheritsFrom="ListGrid"
  * instanceConstructor="MyListGrid"/&gt;&#010 </pre>&#010 With this definition saved as "MyListGrid.ds.xml" in the project
  * dataSources directory&#010 ([webroot]/shared/ds/ by default), you can now create an instance of MyListGrid with
  * just:&#010 <pre>&#010 &lt;MyListGrid width="500"/&gt;&#010 </pre>&#010 Note: you may need to restart your servlet

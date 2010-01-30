@@ -21,7 +21,7 @@ package com.smartgwt.client.docs;
  * </pre>&#010 XML DataSources are loaded via a special JSP tag supported by the Smart GWT Server:&#010 <pre>&#010    
  * &lt;%&#64; taglib uri="/WEB-INF/iscTaglib.xml" prefix="isomorphic" %&gt;&#010     ...&#010     &lt;SCRIPT&gt;&#010    
  * &lt;isomorphic:loadDS ID="supplyItem"/&gt;&#010     &lt;/SCRIPT&gt;&#010 </pre>&#010 Alternatively, XML DataSources can
- * be loaded by targetting a special servlet provided by &#010 the Smart GWT Server.  This servlet yields exactly the same
+ * be loaded by targeting a special servlet provided by &#010 the Smart GWT Server.  This servlet yields exactly the same
  * Javascript as the equivalent&#010 <code>&lt;isomorphic:loadDS/&gt;</code>, so the two methods are interchangeable. 
  * The&#010 servlet-based method is ideal in environments where JSP tags cannot be used (SmartGWT is &#010 one such
  * environment).  Example usage:&#010 <pre>&#010     &lt;SCRIPT

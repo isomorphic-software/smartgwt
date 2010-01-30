@@ -34,6 +34,7 @@ package com.smartgwt.client.docs;
  * @see com.smartgwt.client.widgets.grid.ListGridField#getImageHeight
  * @see com.smartgwt.client.widgets.grid.ListGrid#getBooleanTrueImage
  * @see com.smartgwt.client.widgets.grid.ListGrid#getBooleanFalseImage
+ * @see com.smartgwt.client.widgets.grid.ListGrid#getBooleanPartialImage
  * @see com.smartgwt.client.widgets.grid.ListGrid#getBooleanImageWidth
  * @see com.smartgwt.client.widgets.grid.ListGrid#getBooleanImageHeight
  */

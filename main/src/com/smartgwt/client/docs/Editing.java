@@ -58,7 +58,7 @@ package com.smartgwt.client.docs;
  * com.smartgwt.client.widgets.grid.ListGrid#getEditedRecord}. <P> When accessing and manipulating edited data, you should
  * think carefully about whether you want to be working with the original data or with the edited version.  Values entered
  * by the user may not have been validated yet, or may have failed validation, hence you may find a String value in a field
- * of type "date" or "int", which could cause naive formatters or totalling functions to crash. <P> Setting editValues is
+ * of type "date" or "int", which could cause naive formatters or totaling functions to crash. <P> Setting editValues is
  * fully equivalent to the user making changes to data via the editing UI. If you <i>also</i> allow editing external to the
  * grid, setting editValues is one way to  combine changes from external editors into the grid's edits, so that you can do
  * a single  save. <P> <b>Customizing Cell Editors</b> <P> When a cell is being edited, the editor displayed in the cell
