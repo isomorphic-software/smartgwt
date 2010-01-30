@@ -9411,7 +9411,7 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
     public native SortSpecifier[] getSort() /*-{
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
         var sortSpec = self.getSort();
-        return @com.smartgwt.client.data.SortSpecifier::convertToArray(Lcom/google/gwt/core/client/JavaScriptObject;)(sortSpec);
+        return @com.smartgwt.client.data.SortSpecifier::convertToArray(Ljava/lang/String;)(sortSpec);
     }-*/;
 
     /**

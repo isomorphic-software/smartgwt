@@ -74,6 +74,24 @@ public class SortSpecifier extends DataClass {
 
     }
 
+    public static SortSpecifier[] convertToArray(String sortByString) {
+        if (sortByString == null) {
+            return new SortSpecifier[]{};
+        }
+        String[] sortFields = sortByString.split(",");
+        SortSpecifier[] sortSpecifiers = new SortSpecifier[sortFields.length];
+        for (int i = 0; i < sortFields.length; i++) {
+            String sortField = sortFields[i];
+            SortDirection sortDirection = SortDirection.ASCENDING;
+            if(sortField.startsWith("-")) {
+                sortDirection = SortDirection.DESCENDING;
+                sortField = sortField.substring(1, sortField.length());
+            }
+            sortSpecifiers[i] = new SortSpecifier(sortField, sortDirection);
+        }
+        return sortSpecifiers;
+    }
+
     public static SortSpecifier[] convertToArray(JavaScriptObject nativeArray) {
         if (nativeArray == null) {
             return new SortSpecifier[]{};
