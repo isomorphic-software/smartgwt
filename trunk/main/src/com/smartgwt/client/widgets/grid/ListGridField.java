@@ -249,6 +249,41 @@ public class ListGridField extends DataClass  implements com.smartgwt.client.wid
     public Boolean getShowDefaultContextMenu()  {
         return getAttributeAsBoolean("showDefaultContextMenu");
     }
+             
+    /**
+     * With the {@link com.smartgwt.client.widgets.grid.ListGrid#getShowFilterEditor 'FilterEditor'} showing, the
+     * ${isc.DocUtils.linkForRef('object:Operator')} to  use when matching values for this field. <P> Note that you can set all
+     * FilterEditor fields to default to either substring or exact  match via {@link
+     * com.smartgwt.client.widgets.grid.ListGrid#getAutoFetchAsFilter autoFetchAsFilter}, but if you want a mix of exact vs
+     * substring  match on different fields, you need to use this property, and your ListGrid will produce
+     * ${isc.DocUtils.linkForRef('object:AdvancedCriteria')} rather than the simpler {@link com.smartgwt.client.data.Criteria}
+     * format.  This is automatically and transparently handled by the Smart GWT Server's SQLDataSource and HibernateDataSource
+     * in Power Edition or above, but if you have your own filtering implementation, it will need to be able to handle
+     * AdvancedCriteria.
+     *
+     * @param filterOperator filterOperator Default value is null
+     */
+    public void setFilterOperator(OperatorId filterOperator) {
+        setAttribute("filterOperator", filterOperator.getValue());
+    }
+
+    /**
+     * With the {@link com.smartgwt.client.widgets.grid.ListGrid#getShowFilterEditor 'FilterEditor'} showing, the
+     * ${isc.DocUtils.linkForRef('object:Operator')} to  use when matching values for this field. <P> Note that you can set all
+     * FilterEditor fields to default to either substring or exact  match via {@link
+     * com.smartgwt.client.widgets.grid.ListGrid#getAutoFetchAsFilter autoFetchAsFilter}, but if you want a mix of exact vs
+     * substring  match on different fields, you need to use this property, and your ListGrid will produce
+     * ${isc.DocUtils.linkForRef('object:AdvancedCriteria')} rather than the simpler {@link com.smartgwt.client.data.Criteria}
+     * format.  This is automatically and transparently handled by the Smart GWT Server's SQLDataSource and HibernateDataSource
+     * in Power Edition or above, but if you have your own filtering implementation, it will need to be able to handle
+     * AdvancedCriteria.
+     *
+     *
+     * @return OperatorId
+     */
+    public OperatorId getFilterOperator()  {
+        return EnumUtil.getEnum(OperatorId.values(), getAttribute("filterOperator"));
+    }
 
     /**
      * Dictates whether the data in this field be exported.  Explicitly set this  to false to prevent exporting.  Has no effect
@@ -274,7 +309,7 @@ public class ListGridField extends DataClass  implements com.smartgwt.client.wid
     }
 
     /**
-     * Default width and height of value icons in this field. Takes precidence over valueIconWidth, valueIconHeight and
+     * Default width and height of value icons in this field. Takes precedence over valueIconWidth, valueIconHeight and
      * valueIconSize specified at the ListGrid level. Can be overridden via {@link
      * com.smartgwt.client.widgets.grid.ListGridField#getValueIconWidth valueIconWidth} and {ListGridField.valueIconHeight}
      *
@@ -285,7 +320,7 @@ public class ListGridField extends DataClass  implements com.smartgwt.client.wid
     }
 
     /**
-     * Default width and height of value icons in this field. Takes precidence over valueIconWidth, valueIconHeight and
+     * Default width and height of value icons in this field. Takes precedence over valueIconWidth, valueIconHeight and
      * valueIconSize specified at the ListGrid level. Can be overridden via {@link
      * com.smartgwt.client.widgets.grid.ListGridField#getValueIconWidth valueIconWidth} and {ListGridField.valueIconHeight}
      *
@@ -670,7 +705,7 @@ public class ListGridField extends DataClass  implements com.smartgwt.client.wid
     /**
      * Height of image shown for fieldTypes image and imageFile in this field. <P> If set to a String, assumed to be a property
      * on each record that specifies the image height.  For example, if <code>field.imageHeight</code> is "logoHeight",
-     * <code>record.logoHeight</code> will control the heigt of the image.
+     * <code>record.logoHeight</code> will control the height of the image.
      *
      * @param imageHeight imageHeight Default value is 16
      */
@@ -681,7 +716,7 @@ public class ListGridField extends DataClass  implements com.smartgwt.client.wid
     /**
      * Height of image shown for fieldTypes image and imageFile in this field. <P> If set to a String, assumed to be a property
      * on each record that specifies the image height.  For example, if <code>field.imageHeight</code> is "logoHeight",
-     * <code>record.logoHeight</code> will control the heigt of the image.
+     * <code>record.logoHeight</code> will control the height of the image.
      *
      *
      * @return int
@@ -760,8 +795,8 @@ public class ListGridField extends DataClass  implements com.smartgwt.client.wid
     /**
      * By default, clicking a link rendered by this item opens it in a new browser window.  You  can alter this behavior by
      * setting this property.  The value of this property will be  passed as the value to the <code>target</code> attribute of
-     * the anchor tag used to render  the link. <P> If you set listGridField.target to "javascript", the default behaviour is
-     * to catch and  consume mouse-clicks that would result in the link being followed.  Instead, the {@link
+     * the anchor tag used to render  the link. <P> If you set listGridField.target to "javascript", the default behavior is to
+     * catch and  consume mouse-clicks that would result in the link being followed.  Instead, the {@link
      * com.smartgwt.client.widgets.grid.ListGrid#addCellClickHandler} event is fired for the containing cell.
      *
      * @param target target Default value is "_blank"
@@ -773,8 +808,8 @@ public class ListGridField extends DataClass  implements com.smartgwt.client.wid
     /**
      * By default, clicking a link rendered by this item opens it in a new browser window.  You  can alter this behavior by
      * setting this property.  The value of this property will be  passed as the value to the <code>target</code> attribute of
-     * the anchor tag used to render  the link. <P> If you set listGridField.target to "javascript", the default behaviour is
-     * to catch and  consume mouse-clicks that would result in the link being followed.  Instead, the {@link
+     * the anchor tag used to render  the link. <P> If you set listGridField.target to "javascript", the default behavior is to
+     * catch and  consume mouse-clicks that would result in the link being followed.  Instead, the {@link
      * com.smartgwt.client.widgets.grid.ListGrid#addCellClickHandler} event is fired for the containing cell.
      *
      *
@@ -1601,7 +1636,7 @@ public class ListGridField extends DataClass  implements com.smartgwt.client.wid
 
     /**
      * If set to true, any {@link com.smartgwt.client.widgets.grid.ListGridField#getValidators validators} for this field will
-     * be run whenever the value of the field is changed. <P> Analgous to the {@link
+     * be run whenever the value of the field is changed. <P> Analogous to the {@link
      * com.smartgwt.client.widgets.form.fields.FormItem#getValidateOnChange validateOnChange} property.
      *
      * @param validateOnChange validateOnChange Default value is null
@@ -1612,7 +1647,7 @@ public class ListGridField extends DataClass  implements com.smartgwt.client.wid
 
     /**
      * If set to true, any {@link com.smartgwt.client.widgets.grid.ListGridField#getValidators validators} for this field will
-     * be run whenever the value of the field is changed. <P> Analgous to the {@link
+     * be run whenever the value of the field is changed. <P> Analogous to the {@link
      * com.smartgwt.client.widgets.form.fields.FormItem#getValidateOnChange validateOnChange} property.
      *
      *
@@ -1784,7 +1819,7 @@ public class ListGridField extends DataClass  implements com.smartgwt.client.wid
      * {@link com.smartgwt.client.widgets.grid.ListGridField#getAutoFetchDisplayMap autoFetchDisplayMap} is true, this property
      * will govern the <code>textMatchStyle</code> attribute of the {@link com.smartgwt.client.data.DSRequest} parameter passed
      * to  {@link com.smartgwt.client.data.DataSource#fetchData} when retrieving the remote data set to be used as  a basis for
-     * thiis field's valueMap.
+     * this field's valueMap.
      *
      * @param optionTextMatchStyle optionTextMatchStyle Default value is null
      */
@@ -1797,7 +1832,7 @@ public class ListGridField extends DataClass  implements com.smartgwt.client.wid
      * {@link com.smartgwt.client.widgets.grid.ListGridField#getAutoFetchDisplayMap autoFetchDisplayMap} is true, this property
      * will govern the <code>textMatchStyle</code> attribute of the {@link com.smartgwt.client.data.DSRequest} parameter passed
      * to  {@link com.smartgwt.client.data.DataSource#fetchData} when retrieving the remote data set to be used as  a basis for
-     * thiis field's valueMap.
+     * this field's valueMap.
      *
      *
      * @return TextMatchStyle
@@ -2126,6 +2161,21 @@ public class ListGridField extends DataClass  implements com.smartgwt.client.wid
 
 
     // ********************* Static Methods ***********************
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
     /**
