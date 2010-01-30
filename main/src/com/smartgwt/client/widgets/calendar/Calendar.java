@@ -635,6 +635,26 @@ public class Calendar extends Canvas  implements DataBoundComponent, com.smartgw
     }
 
     /**
+     * Name of the field on each {@link com.smartgwt.client.widgets.calendar.CalendarEvent} that determines dragability.
+     *
+     * @param canDragEventField canDragEventField Default value is "canEdit"
+     * @throws IllegalStateException this property cannot be changed after the component has been created
+     */
+    public void setCanDragEventField(String canDragEventField)  throws IllegalStateException {
+        setAttribute("canDragEventField", canDragEventField, false);
+    }
+
+    /**
+     * Name of the field on each {@link com.smartgwt.client.widgets.calendar.CalendarEvent} that determines dragability.
+     *
+     *
+     * @return String
+     */
+    public String getCanDragEventField()  {
+        return getAttributeAsString("canDragEventField");
+    }
+
+    /**
      * Augments the width of week event windows slightly to avoid duplicate adjacent borders between events.
      *
      * @param weekEventBorderOverlap weekEventBorderOverlap Default value is false
@@ -756,6 +776,26 @@ public class Calendar extends Canvas  implements DataBoundComponent, com.smartgw
      */
     public Boolean getCanDeleteEvents()  {
         return getAttributeAsBoolean("canDeleteEvents");
+    }
+
+    /**
+     * If true, users can drag-reposition existing events.
+     *
+     * @param canDragEvents canDragEvents Default value is true
+     * @throws IllegalStateException this property cannot be changed after the component has been created
+     */
+    public void setCanDragEvents(Boolean canDragEvents)  throws IllegalStateException {
+        setAttribute("canDragEvents", canDragEvents, false);
+    }
+
+    /**
+     * If true, users can drag-reposition existing events.
+     *
+     *
+     * @return Boolean
+     */
+    public Boolean getCanDragEvents()  {
+        return getAttributeAsBoolean("canDragEvents");
     }
 
     /**
@@ -1772,6 +1812,19 @@ public class Calendar extends Canvas  implements DataBoundComponent, com.smartgw
     }-*/;
 
     // ********************* Static Methods ***********************
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
     protected native void onInit() /*-{
