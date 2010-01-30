@@ -145,7 +145,7 @@ public class TreeGrid extends ListGrid  implements com.smartgwt.client.widgets.t
 
     /**
      * When animating folder opening / closing, this property designates the speed of the animation in pixels shown (or hidden)
-     * per second. Takes presidence over the  {@link com.smartgwt.client.widgets.tree.TreeGrid#getAnimateFolderTime
+     * per second. Takes precedence over the  {@link com.smartgwt.client.widgets.tree.TreeGrid#getAnimateFolderTime
      * animateFolderTime} property, which allows the developer to specify a duration for the animation rather than a speed.
      *
      * @param animateFolderSpeed animateFolderSpeed Default value is 1000
@@ -156,7 +156,7 @@ public class TreeGrid extends ListGrid  implements com.smartgwt.client.widgets.t
 
     /**
      * When animating folder opening / closing, this property designates the speed of the animation in pixels shown (or hidden)
-     * per second. Takes presidence over the  {@link com.smartgwt.client.widgets.tree.TreeGrid#getAnimateFolderTime
+     * per second. Takes precedence over the  {@link com.smartgwt.client.widgets.tree.TreeGrid#getAnimateFolderTime
      * animateFolderTime} property, which allows the developer to specify a duration for the animation rather than a speed.
      *
      *
@@ -264,6 +264,45 @@ public class TreeGrid extends ListGrid  implements com.smartgwt.client.widgets.t
      */
     public TextMatchStyle getAutoFetchTextMatchStyle()  {
         return EnumUtil.getEnum(TextMatchStyle.values(), getAttribute("autoFetchTextMatchStyle"));
+    }
+
+    /**
+     * Should children be selected when parent is selected? And should parent be selected when any child is selected?
+     *
+     * @param cascadeSelection cascadeSelection Default value is false
+     * @throws IllegalStateException this property cannot be changed after the component has been created
+     */
+    public void setCascadeSelection(Boolean cascadeSelection)  throws IllegalStateException {
+        setAttribute("cascadeSelection", cascadeSelection, false);
+    }
+
+    /**
+     * Should children be selected when parent is selected? And should parent be selected when any child is selected?
+     *
+     *
+     * @return Boolean
+     */
+    public Boolean getCascadeSelection()  {
+        return getAttributeAsBoolean("cascadeSelection");
+    }
+
+    /**
+     * Should partially selected parents be shown with special icon?
+     *
+     * @param showPartialSelection showPartialSelection Default value is false
+     */
+    public void setShowPartialSelection(Boolean showPartialSelection) {
+        setAttribute("showPartialSelection", showPartialSelection, true);
+    }
+
+    /**
+     * Should partially selected parents be shown with special icon?
+     *
+     *
+     * @return Boolean
+     */
+    public Boolean getShowPartialSelection()  {
+        return getAttributeAsBoolean("showPartialSelection");
     }
 
     /**
@@ -1203,31 +1242,6 @@ public class TreeGrid extends ListGrid  implements com.smartgwt.client.widgets.t
 
 
 
-    /**
-     * This method overrides {@link com.smartgwt.client.widgets.grid.ListGrid#willAcceptDrop} and works as follows: <br><br>
-     * First, {@link com.smartgwt.client.widgets.grid.ListGrid#willAcceptDrop} (the superclass definition) is consulted.  If it
-     * returns false, then this method returns false immediately.<br> This handles the following cases:<br> - reordering of
-     * records withing this TreeGrid when {@link com.smartgwt.client.widgets.grid.ListGrid#getCanReorderRecords
-     * canReorderRecords} is true<br> - accepting dropped records from another dragTarget when {@link
-     * com.smartgwt.client.widgets.grid.ListGrid#getCanAcceptDroppedRecords canAcceptDroppedRecords}    is true and the
-     * dragTarget gives us a valid set of records to drop into place.<br> - disallowing drop over disabled nodes, or nodes with
-     * <code>canAcceptDrop:false</code> <br> This method will also return false if the drop occurred over a leaf node whos
-     * immediate  parent has <code>canAcceptDrop</code> set to <code>false</code><br> If {@link
-     * com.smartgwt.client.widgets.tree.TreeGrid#getCanReparentNodes canReparentNodes} is true, and the user is dragging a node
-     * from one folder to another, this method will return true to allow the change of parent folder.<br> <br><br> Otherwise
-     * this method returns true.
-     *
-     * @return true if this component will accept a drop of the dragData
-     */
-    public native Boolean willAcceptDrop() /*-{
-        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
-        var retVal =self.willAcceptDrop();
-        if(retVal == null || retVal === undefined) {
-            return null;
-        } else {
-            return @com.smartgwt.client.util.JSOHelper::toBoolean(Z)(retVal);
-        }
-    }-*/;
 
     /**
      * Returns the row number of the most recent mouse event.
@@ -1625,6 +1639,16 @@ public class TreeGrid extends ListGrid  implements com.smartgwt.client.widgets.t
     // ********************* Static Methods ***********************
 
 
+
+
+
+
+
+
+
+
+
+
     protected void onInit() {
         super.onInit();
         onInit2();
@@ -1648,6 +1672,7 @@ public class TreeGrid extends ListGrid  implements com.smartgwt.client.widgets.t
             var nodeJ = @com.smartgwt.client.data.Record::getOrCreateRef(Lcom/google/gwt/core/client/JavaScriptObject;)(node);
             return jObj.@com.smartgwt.client.widgets.tree.TreeGrid::getIcon(Lcom/smartgwt/client/data/Record;Z)(nodeJ, defaultState);
         };
+        
     }-*/;
 
     /**
@@ -2088,6 +2113,29 @@ public class TreeGrid extends ListGrid  implements com.smartgwt.client.widgets.t
             };
         }
     }-*/;
+    
+
+
+    /**
+     * This method overrides {@link com.smartgwt.client.widgets.grid.ListGrid#willAcceptDrop} and works as follows: <br><br>
+     * First, {@link com.smartgwt.client.widgets.grid.ListGrid#willAcceptDrop} (the superclass definition) is consulted.  If it
+     * returns false, then this method returns false immediately.<br> This handles the following cases:<br> - reordering of
+     * records withing this TreeGrid when {@link com.smartgwt.client.widgets.grid.ListGrid#getCanReorderRecords
+     * canReorderRecords} is true<br> - accepting dropped records from another dragTarget when {@link
+     * com.smartgwt.client.widgets.grid.ListGrid#getCanAcceptDroppedRecords canAcceptDroppedRecords}    is true and the
+     * dragTarget gives us a valid set of records to drop into place.<br> - disallowing drop over disabled nodes, or nodes with
+     * <code>canAcceptDrop:false</code> <br> This method will also return false if the drop occurred over a leaf node whos
+     * immediate  parent has <code>canAcceptDrop</code> set to <code>false</code><br> If {@link
+     * com.smartgwt.client.widgets.tree.TreeGrid#getCanReparentNodes canReparentNodes} is true, and the user is dragging a node
+     * from one folder to another, this method will return true to allow the change of parent folder.<br> <br><br> Otherwise
+     * this method returns true.
+     * <b>  Note: </b> This is an override point.
+     *
+     * @return true if this component will accept a drop of the dragData
+     */
+    public Boolean willAcceptDrop() {
+    	return super.willAcceptDrop();
+    }
     
     /**
      * This ListGrid suporclass event does not fire on a TreeGrid, use {@link #addFolderDropHandler(com.smartgwt.client.widgets.tree.events.FolderDropHandler)} instead.
