@@ -577,10 +577,9 @@ public class Canvas extends BaseWidget  implements com.smartgwt.client.widgets.e
      * Sets the background to an image file given by newImage. This URL should be given as a          string relative to the image directory for the page (./images by default).
      *
      * @param backgroundImage new URL (local to Page image directory) for background image. Default value is null
-     * @throws IllegalStateException this property cannot be changed after the component has been created
      */
-    public void setBackgroundImage(String backgroundImage)  throws IllegalStateException {
-        setAttribute("backgroundImage", backgroundImage, false);
+    public void setBackgroundImage(String backgroundImage) {
+        setAttribute("backgroundImage", backgroundImage, true);
     }
 
     /**
@@ -598,9 +597,10 @@ public class Canvas extends BaseWidget  implements com.smartgwt.client.widgets.e
      * CSS background-repeat attribute.      See BkgndRepeat type for details.
      *
      * @param backgroundRepeat backgroundRepeat Default value is Canvas.REPEAT
+     * @throws IllegalStateException this property cannot be changed after the component has been created
      */
-    public void setBackgroundRepeat(BkgndRepeat backgroundRepeat) {
-        setAttribute("backgroundRepeat", backgroundRepeat.getValue(), true);
+    public void setBackgroundRepeat(BkgndRepeat backgroundRepeat)  throws IllegalStateException {
+        setAttribute("backgroundRepeat", backgroundRepeat.getValue(), false);
     }
 
     /**
@@ -620,9 +620,10 @@ public class Canvas extends BaseWidget  implements com.smartgwt.client.widgets.e
      *  specified.
      *
      * @param backgroundPosition backgroundPosition Default value is null
+     * @throws IllegalStateException this property cannot be changed after the component has been created
      */
-    public void setBackgroundPosition(String backgroundPosition) {
-        setAttribute("backgroundPosition", backgroundPosition, true);
+    public void setBackgroundPosition(String backgroundPosition)  throws IllegalStateException {
+        setAttribute("backgroundPosition", backgroundPosition, false);
     }
 
     /**
@@ -2308,7 +2309,7 @@ public class Canvas extends BaseWidget  implements com.smartgwt.client.widgets.e
      * data structure.&#010 <P>&#010 dataPaths from multiple nested components may also be combined. For example:&#010
      * <pre>&#010 isc.ValuesManager.create({&#010      ID:'vm',&#010      values: { companyName:"Some Company",&#010           
      * address:{    street:"123 Main Street", city:"New York", state:"NY"  }&#010              parentCompany:{&#010            
-     * companyName:"Some Coorporation",&#010                  address:{   street:"1 High Street", city:"New York", state:"NY"
+     * companyName:"Some Corporation",&#010                  address:{   street:"1 High Street", city:"New York", state:"NY"
      * }&#010              }&#010      }&#010 });&#010&#010 isc.Layout.create({&#010      valuesManager:"vm",&#010     
      * members:[&#010          isc.DynamicForm.create({&#010              dataPath:"/",&#010             
      * items:[{name:"companyName"}]&#010          }),&#010          isc.DynamicForm.create({&#010             
@@ -2362,7 +2363,7 @@ public class Canvas extends BaseWidget  implements com.smartgwt.client.widgets.e
      * data structure.&#010 <P>&#010 dataPaths from multiple nested components may also be combined. For example:&#010
      * <pre>&#010 isc.ValuesManager.create({&#010      ID:'vm',&#010      values: { companyName:"Some Company",&#010           
      * address:{    street:"123 Main Street", city:"New York", state:"NY"  }&#010              parentCompany:{&#010            
-     * companyName:"Some Coorporation",&#010                  address:{   street:"1 High Street", city:"New York", state:"NY"
+     * companyName:"Some Corporation",&#010                  address:{   street:"1 High Street", city:"New York", state:"NY"
      * }&#010              }&#010      }&#010 });&#010&#010 isc.Layout.create({&#010      valuesManager:"vm",&#010     
      * members:[&#010          isc.DynamicForm.create({&#010              dataPath:"/",&#010             
      * items:[{name:"companyName"}]&#010          }),&#010          isc.DynamicForm.create({&#010             
@@ -4996,26 +4997,6 @@ public class Canvas extends BaseWidget  implements com.smartgwt.client.widgets.e
         }
    }-*/;
 
-    /**
-     * Returns true if the widget object being dragged can be dropped on this widget, and false otherwise.  The default
-     * implementation of this method simply compares the {@link com.smartgwt.client.widgets.Canvas#getDragType dragType} of the
-     * <code>dragTarget</code> (the component being dragged from) with the list of {@link
-     * com.smartgwt.client.widgets.Canvas#getDropTypes dropTypes} on this Canvas.  If the {@link
-     * com.smartgwt.client.widgets.Canvas#getDropTypes dropTypes} list contains the {@link
-     * com.smartgwt.client.widgets.Canvas#getDragType dragType} value, then this method returns true.  Otherwise it returns
-     * false.
-     *
-     * @return true if the widget object being dragged can be dropped on this widget,                      false otherwise
-     */
-    public native Boolean willAcceptDrop() /*-{
-        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
-        var retVal =self.willAcceptDrop();
-        if(retVal == null || retVal === undefined) {
-            return null;
-        } else {
-            return @com.smartgwt.client.util.JSOHelper::toBoolean(Z)(retVal);
-        }
-    }-*/;
 
     /**
      * Override this method to provide a custom snap-to grid.  Note that you do not need to do this if your grid is regular
@@ -5210,6 +5191,28 @@ public class Canvas extends BaseWidget  implements com.smartgwt.client.widgets.e
 
 
 
+
+
+
+
+
+
+
+
+
+
+	
+	protected native void onInit () /*-{
+	
+        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
+        
+        self.__willAcceptDrop = self.willAcceptDrop;
+        self.willAcceptDrop = function() {
+            var jObj = this.__ref;
+            var retVal = jObj.@com.smartgwt.client.widgets.Canvas::willAcceptDrop()();
+            return retVal.@java.lang.Boolean::booleanValue()();
+        };
+	}-*/;
 
     /**
      * Multiple styles are currently not supported. This method essentially calls {@link #setStyleName(String)}
@@ -5532,6 +5535,34 @@ public class Canvas extends BaseWidget  implements com.smartgwt.client.widgets.e
     public Canvas getDragTarget()  {
             return Canvas.getOrCreateRef(getAttributeAsJavaScriptObject("dragTarget"));
     }    
+    
+
+    /**
+     * Returns true if the widget object being dragged can be dropped on this widget, and false otherwise.  The default
+     * implementation of this method simply compares the {@link com.smartgwt.client.widgets.Canvas#getDragType dragType} of the
+     * <code>dragTarget</code> (the component being dragged from) with the list of {@link
+     * com.smartgwt.client.widgets.Canvas#getDropTypes dropTypes} on this Canvas.  If the {@link
+     * com.smartgwt.client.widgets.Canvas#getDropTypes dropTypes} list contains the {@link
+     * com.smartgwt.client.widgets.Canvas#getDragType dragType} value, then this method returns true.  Otherwise it returns
+     * false.
+     * <br><b>Note: This is an override point</b>
+     * 
+     *
+     * @return true if the widget object being dragged can be dropped on this widget,                      false otherwise
+     */
+    public native Boolean willAcceptDrop() /*-{
+    
+        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
+        var retVal = self.__willAcceptDrop();
+        if(retVal == null || retVal === undefined) {
+            return null;
+        } else {
+            return @com.smartgwt.client.util.JSOHelper::toBoolean(Z)(retVal);
+        }
+        
+    }-*/;
+
+    
 
     /**
      * Offset of the shadow.  Defaults to half of <code>shadowDepth</code> if unset. <P> Because of the blurred edges, a
