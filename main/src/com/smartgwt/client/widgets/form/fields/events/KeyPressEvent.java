@@ -158,8 +158,8 @@ public class KeyPressEvent extends AbstractSmartEvent<KeyPressHandler>  implemen
     }-*/;
 
 
-
-
+
+
     /**
      * If this was a character key, this is the numeric value for the character
      *
