@@ -80,7 +80,7 @@ public class ItemDetailTabPane extends TabSet {
         DateItem nextShipment = new DateItem("nextShipment");
         nextShipment.setUseTextField(true);
 
-        ButtonItem saveButton = new ButtonItem("Save Item");
+        ButtonItem saveButton = new ButtonItem("saveItem", "Save Item");
         saveButton.setAlign(Alignment.CENTER);
         saveButton.setWidth(100);
         saveButton.setColSpan(4);
