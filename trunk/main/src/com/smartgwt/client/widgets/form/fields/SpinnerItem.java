@@ -103,7 +103,7 @@ public class SpinnerItem extends TextItem {
     // ********************* Static Methods ***********************
 
 
-
+
     /**
      * How much should the value be incremented / decremented when the user hits the icons  to increase / decrease the
      * value?

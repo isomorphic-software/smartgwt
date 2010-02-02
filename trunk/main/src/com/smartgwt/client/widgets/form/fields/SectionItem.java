@@ -199,7 +199,7 @@ public class SectionItem extends CanvasItem {
     // ********************* Static Methods ***********************
 
 
-
+
     /**
      * IDs of the items that should be considered a member of this section.
      *
