@@ -337,9 +337,10 @@ public class FormItem extends RefDataClass  implements com.smartgwt.client.widge
              
     /**
      * Time-format to apply to date type values within this formItem.  If specified, any dates displayed in this item will be
-     * formatted as times using the appropriate format.<br> Has no effect if +lilnk{formItem.dateFormatter} is also set.<br>
-     * See also {@link com.smartgwt.client.widgets.form.fields.TimeItem#getDisplayFormat displayFormat} for formatting values
-     * displayed in TimeItems.
+     * formatted as times using the appropriate format.<br> Has no effect if {@link
+     * com.smartgwt.client.widgets.form.fields.FormItem#getDateFormatter dateFormatter} is also set.<br> See also {@link
+     * com.smartgwt.client.widgets.form.fields.TimeItem#getDisplayFormat displayFormat} for formatting values displayed in
+     * TimeItems.
      * <p><b>Note : </b> This is an advanced setting</p>
      *
      * @param timeFormatter timeFormatter Default value is null
@@ -350,9 +351,10 @@ public class FormItem extends RefDataClass  implements com.smartgwt.client.widge
 
     /**
      * Time-format to apply to date type values within this formItem.  If specified, any dates displayed in this item will be
-     * formatted as times using the appropriate format.<br> Has no effect if +lilnk{formItem.dateFormatter} is also set.<br>
-     * See also {@link com.smartgwt.client.widgets.form.fields.TimeItem#getDisplayFormat displayFormat} for formatting values
-     * displayed in TimeItems.
+     * formatted as times using the appropriate format.<br> Has no effect if {@link
+     * com.smartgwt.client.widgets.form.fields.FormItem#getDateFormatter dateFormatter} is also set.<br> See also {@link
+     * com.smartgwt.client.widgets.form.fields.TimeItem#getDisplayFormat displayFormat} for formatting values displayed in
+     * TimeItems.
      *
      *
      * @return TimeFormatter
@@ -472,7 +474,7 @@ public class FormItem extends RefDataClass  implements com.smartgwt.client.widge
      * If {@link com.smartgwt.client.widgets.form.fields.FormItem#getValueIcons valueIcons} is specified, this property may be
      * used to specify both the width and height of the icon written out. Note that {@link
      * com.smartgwt.client.widgets.form.fields.FormItem#getValueIconWidth valueIconWidth} and {@link
-     * com.smartgwt.client.widgets.form.fields.FormItem#getValueIconHeight valueIconHeight} take presidence over this value, if
+     * com.smartgwt.client.widgets.form.fields.FormItem#getValueIconHeight valueIconHeight} take precedence over this value, if
      * specified.
      *
      * @param valueIconSize valueIconSize Default value is 16
@@ -485,7 +487,7 @@ public class FormItem extends RefDataClass  implements com.smartgwt.client.widge
      * If {@link com.smartgwt.client.widgets.form.fields.FormItem#getValueIcons valueIcons} is specified, this property may be
      * used to specify both the width and height of the icon written out. Note that {@link
      * com.smartgwt.client.widgets.form.fields.FormItem#getValueIconWidth valueIconWidth} and {@link
-     * com.smartgwt.client.widgets.form.fields.FormItem#getValueIconHeight valueIconHeight} take presidence over this value, if
+     * com.smartgwt.client.widgets.form.fields.FormItem#getValueIconHeight valueIconHeight} take precedence over this value, if
      * specified.
      *
      *
@@ -585,7 +587,7 @@ public class FormItem extends RefDataClass  implements com.smartgwt.client.widge
 
     /**
      * Should we show a special 'picker' {@link com.smartgwt.client.widgets.form.fields.FormItemIcon icon} for this form item.
-     * Picker icons are customizeable via {@link com.smartgwt.client.widgets.form.fields.FormItem#getPickerIconProperties
+     * Picker icons are customizable via {@link com.smartgwt.client.widgets.form.fields.FormItem#getPickerIconProperties
      * pickerIconProperties}. By default they will be rendered inside the Form Item's "control box" area, and will call {@link
      * com.smartgwt.client.widgets.form.fields.FormItem#showPicker} when clicked.
      *
@@ -597,7 +599,7 @@ public class FormItem extends RefDataClass  implements com.smartgwt.client.widge
 
     /**
      * Should we show a special 'picker' {@link com.smartgwt.client.widgets.form.fields.FormItemIcon icon} for this form item.
-     * Picker icons are customizeable via {@link com.smartgwt.client.widgets.form.fields.FormItem#getPickerIconProperties
+     * Picker icons are customizable via {@link com.smartgwt.client.widgets.form.fields.FormItem#getPickerIconProperties
      * pickerIconProperties}. By default they will be rendered inside the Form Item's "control box" area, and will call {@link
      * com.smartgwt.client.widgets.form.fields.FormItem#showPicker} when clicked.
      *
@@ -653,7 +655,7 @@ public class FormItem extends RefDataClass  implements com.smartgwt.client.widge
 
     /**
      * If {@link com.smartgwt.client.widgets.form.fields.FormItem#getShowPickerIcon showPickerIcon} is true for this item, this
-     * property governs the size of the picker icon. If unset picker icon will be sized as a square to fit in the avaliable
+     * property governs the size of the picker icon. If unset picker icon will be sized as a square to fit in the available
      * height for the icon.
      * <p><b>Note : </b> This is an advanced setting</p>
      *
@@ -665,7 +667,7 @@ public class FormItem extends RefDataClass  implements com.smartgwt.client.widge
 
     /**
      * If {@link com.smartgwt.client.widgets.form.fields.FormItem#getShowPickerIcon showPickerIcon} is true for this item, this
-     * property governs the size of the picker icon. If unset picker icon will be sized as a square to fit in the avaliable
+     * property governs the size of the picker icon. If unset picker icon will be sized as a square to fit in the available
      * height for the icon.
      *
      *
@@ -677,7 +679,7 @@ public class FormItem extends RefDataClass  implements com.smartgwt.client.widge
 
     /**
      * If {@link com.smartgwt.client.widgets.form.fields.FormItem#getShowPickerIcon showPickerIcon} is true for this item, this
-     * property governs the size of the picker icon. If unset picker icon will be sized as a square to fit in the avaliable
+     * property governs the size of the picker icon. If unset picker icon will be sized as a square to fit in the available
      * height for the icon.
      * <p><b>Note : </b> This is an advanced setting</p>
      *
@@ -689,7 +691,7 @@ public class FormItem extends RefDataClass  implements com.smartgwt.client.widge
 
     /**
      * If {@link com.smartgwt.client.widgets.form.fields.FormItem#getShowPickerIcon showPickerIcon} is true for this item, this
-     * property governs the size of the picker icon. If unset picker icon will be sized as a square to fit in the avaliable
+     * property governs the size of the picker icon. If unset picker icon will be sized as a square to fit in the available
      * height for the icon.
      *
      *
@@ -701,9 +703,13 @@ public class FormItem extends RefDataClass  implements com.smartgwt.client.widge
 
     /**
      * Whether a non-empty value is required for this field to pass validation. <P> If the user does not fill in the required
-     * field, the {@link com.smartgwt.client.widgets.form.validator.Validator#requiredField} error message will be shown. <P>
-     * <b>Note:</b> if specified on a FormItem, <code>required</code> is only enforced on the client.  <code>required</code>
-     * should generally be specified on a {@link com.smartgwt.client.data.DataSourceField}.
+     * field, the error message to be shown will be taken from these properties in the following order: {@link
+     * com.smartgwt.client.widgets.form.fields.FormItem#getRequiredMessage requiredMessage}, {@link
+     * com.smartgwt.client.widgets.form.DynamicForm#getRequiredMessage requiredMessage}, {@link
+     * com.smartgwt.client.data.DataSource#getRequiredMessage requiredMessage},  {@link
+     * com.smartgwt.client.widgets.form.validator.Validator#requiredField}. <P> <b>Note:</b> if specified on a FormItem,
+     * <code>required</code> is only enforced on the client.  <code>required</code> should generally be specified on a {@link
+     * com.smartgwt.client.data.DataSourceField}.
      *
      * @param required required Default value is null
      */
@@ -713,15 +719,38 @@ public class FormItem extends RefDataClass  implements com.smartgwt.client.widge
 
     /**
      * Whether a non-empty value is required for this field to pass validation. <P> If the user does not fill in the required
-     * field, the {@link com.smartgwt.client.widgets.form.validator.Validator#requiredField} error message will be shown. <P>
-     * <b>Note:</b> if specified on a FormItem, <code>required</code> is only enforced on the client.  <code>required</code>
-     * should generally be specified on a {@link com.smartgwt.client.data.DataSourceField}.
+     * field, the error message to be shown will be taken from these properties in the following order: {@link
+     * com.smartgwt.client.widgets.form.fields.FormItem#getRequiredMessage requiredMessage}, {@link
+     * com.smartgwt.client.widgets.form.DynamicForm#getRequiredMessage requiredMessage}, {@link
+     * com.smartgwt.client.data.DataSource#getRequiredMessage requiredMessage},  {@link
+     * com.smartgwt.client.widgets.form.validator.Validator#requiredField}. <P> <b>Note:</b> if specified on a FormItem,
+     * <code>required</code> is only enforced on the client.  <code>required</code> should generally be specified on a {@link
+     * com.smartgwt.client.data.DataSourceField}.
      *
      *
      * @return Boolean
      */
     public Boolean getRequired()  {
         return getAttributeAsBoolean("required");
+    }
+
+    /**
+     * The required message for required field errors.
+     *
+     * @param requiredMessage requiredMessage Default value is null
+     */
+    public void setRequiredMessage(String requiredMessage) {
+        setAttribute("requiredMessage", requiredMessage);
+    }
+
+    /**
+     * The required message for required field errors.
+     *
+     *
+     * @return String
+     */
+    public String getRequiredMessage()  {
+        return getAttributeAsString("requiredMessage");
     }
 
     /**
@@ -818,7 +847,7 @@ public class FormItem extends RefDataClass  implements com.smartgwt.client.widge
     }
 
     /**
-     * TabIndex for the form item within the page. Takes presidence over any local tab index specified as {@link
+     * TabIndex for the form item within the page. Takes precedence over any local tab index specified as {@link
      * com.smartgwt.client.widgets.form.fields.FormItem#getTabIndex 'item.tabIndex'}.
      * <p><b>Note : </b> This is an advanced setting</p>
      *
@@ -829,7 +858,7 @@ public class FormItem extends RefDataClass  implements com.smartgwt.client.widge
     }
 
     /**
-     * TabIndex for the form item within the page. Takes presidence over any local tab index specified as {@link
+     * TabIndex for the form item within the page. Takes precedence over any local tab index specified as {@link
      * com.smartgwt.client.widgets.form.fields.FormItem#getTabIndex 'item.tabIndex'}.
      *
      *
@@ -924,6 +953,29 @@ public class FormItem extends RefDataClass  implements com.smartgwt.client.widge
     public Alignment getTitleAlign()  {
         return EnumUtil.getEnum(Alignment.values(), getAttribute("titleAlign"));
     }
+             
+    /**
+     * Vertical alignment of this item's title in its cell. Only applies when {@link
+     * com.smartgwt.client.widgets.form.fields.FormItem#getTitleOrientation titleOrientation} is <code>"left"</code> or
+     * <code>"right"</code>.
+     *
+     * @param titleVAlign titleVAlign Default value is Canvas.CENTER
+     */
+    public void setTitleVAlign(VerticalAlignment titleVAlign) {
+        setAttribute("titleVAlign", titleVAlign.getValue());
+    }
+
+    /**
+     * Vertical alignment of this item's title in its cell. Only applies when {@link
+     * com.smartgwt.client.widgets.form.fields.FormItem#getTitleOrientation titleOrientation} is <code>"left"</code> or
+     * <code>"right"</code>.
+     *
+     *
+     * @return VerticalAlignment
+     */
+    public VerticalAlignment getTitleVAlign()  {
+        return EnumUtil.getEnum(VerticalAlignment.values(), getAttribute("titleVAlign"));
+    }
 
     /**
      * If specified determines whether this items title should wrap. Overrides {@link
@@ -949,7 +1001,7 @@ public class FormItem extends RefDataClass  implements com.smartgwt.client.widge
     /**
      * If true, form items will be validated when each item's "change" handler is fired as well as when the entire form is
      * submitted or validated. <p> Note that this property can also be set at the form, level; If true at either level the
-     * valiator will be fired on change - displaying errors and rejecting the change on validation failure.
+     * validator will be fired on change - displaying errors and rejecting the change on validation failure.
      *
      * @param validateOnChange validateOnChange Default value is false
      */
@@ -960,7 +1012,7 @@ public class FormItem extends RefDataClass  implements com.smartgwt.client.widge
     /**
      * If true, form items will be validated when each item's "change" handler is fired as well as when the entire form is
      * submitted or validated. <p> Note that this property can also be set at the form, level; If true at either level the
-     * valiator will be fired on change - displaying errors and rejecting the change on validation failure.
+     * validator will be fired on change - displaying errors and rejecting the change on validation failure.
      *
      *
      * @return Boolean
@@ -1437,8 +1489,8 @@ public class FormItem extends RefDataClass  implements com.smartgwt.client.widge
      * displayed next to form items when {@link com.smartgwt.client.widgets.form.DynamicForm#getShowInlineErrors
      * showInlineErrors} is true. These properties are boolean values, and can be set on a DynamicForm to control the  behavior
      * form-wide, or set on individual FormItems. <P> The HTML displayed next to a form item with errors is generated by 
-     * {@link com.smartgwt.client.widgets.form.fields.FormItem#getErrorHTML}. The default implemenation of that method respects
-     * <code>showErrorIcons</code> and <code>showErrorText</code> as follows: <P> <code>showErrorIcons</code>, or
+     * {@link com.smartgwt.client.widgets.form.fields.FormItem#getErrorHTML}. The default implementation of that method
+     * respects <code>showErrorIcons</code> and <code>showErrorText</code> as follows: <P> <code>showErrorIcons</code>, or
      * <code>showErrorIcon</code> at the FormItem level controls whether an error icon should appear next to fields which have
      * validation errors.  The icon's appearance is governed by {@link
      * com.smartgwt.client.widgets.form.fields.FormItem#getErrorIconSrc errorIconSrc}, {@link
@@ -1470,8 +1522,8 @@ public class FormItem extends RefDataClass  implements com.smartgwt.client.widge
      * displayed next to form items when {@link com.smartgwt.client.widgets.form.DynamicForm#getShowInlineErrors
      * showInlineErrors} is true. These properties are boolean values, and can be set on a DynamicForm to control the  behavior
      * form-wide, or set on individual FormItems. <P> The HTML displayed next to a form item with errors is generated by 
-     * {@link com.smartgwt.client.widgets.form.fields.FormItem#getErrorHTML}. The default implemenation of that method respects
-     * <code>showErrorIcons</code> and <code>showErrorText</code> as follows: <P> <code>showErrorIcons</code>, or
+     * {@link com.smartgwt.client.widgets.form.fields.FormItem#getErrorHTML}. The default implementation of that method
+     * respects <code>showErrorIcons</code> and <code>showErrorText</code> as follows: <P> <code>showErrorIcons</code>, or
      * <code>showErrorIcon</code> at the FormItem level controls whether an error icon should appear next to fields which have
      * validation errors.  The icon's appearance is governed by {@link
      * com.smartgwt.client.widgets.form.fields.FormItem#getErrorIconSrc errorIconSrc}, {@link
@@ -1504,8 +1556,8 @@ public class FormItem extends RefDataClass  implements com.smartgwt.client.widge
      * displayed next to form items when {@link com.smartgwt.client.widgets.form.DynamicForm#getShowInlineErrors
      * showInlineErrors} is true. These properties are boolean values, and can be set on a DynamicForm to control the  behavior
      * form-wide, or set on individual FormItems. <P> The HTML displayed next to a form item with errors is generated by 
-     * {@link com.smartgwt.client.widgets.form.fields.FormItem#getErrorHTML}. The default implemenation of that method respects
-     * <code>showErrorIcons</code> and <code>showErrorText</code> as follows: <P> <code>showErrorIcons</code>, or
+     * {@link com.smartgwt.client.widgets.form.fields.FormItem#getErrorHTML}. The default implementation of that method
+     * respects <code>showErrorIcons</code> and <code>showErrorText</code> as follows: <P> <code>showErrorIcons</code>, or
      * <code>showErrorIcon</code> at the FormItem level controls whether an error icon should appear next to fields which have
      * validation errors.  The icon's appearance is governed by {@link
      * com.smartgwt.client.widgets.form.fields.FormItem#getErrorIconSrc errorIconSrc}, {@link
@@ -1537,8 +1589,8 @@ public class FormItem extends RefDataClass  implements com.smartgwt.client.widge
      * displayed next to form items when {@link com.smartgwt.client.widgets.form.DynamicForm#getShowInlineErrors
      * showInlineErrors} is true. These properties are boolean values, and can be set on a DynamicForm to control the  behavior
      * form-wide, or set on individual FormItems. <P> The HTML displayed next to a form item with errors is generated by 
-     * {@link com.smartgwt.client.widgets.form.fields.FormItem#getErrorHTML}. The default implemenation of that method respects
-     * <code>showErrorIcons</code> and <code>showErrorText</code> as follows: <P> <code>showErrorIcons</code>, or
+     * {@link com.smartgwt.client.widgets.form.fields.FormItem#getErrorHTML}. The default implementation of that method
+     * respects <code>showErrorIcons</code> and <code>showErrorText</code> as follows: <P> <code>showErrorIcons</code>, or
      * <code>showErrorIcon</code> at the FormItem level controls whether an error icon should appear next to fields which have
      * validation errors.  The icon's appearance is governed by {@link
      * com.smartgwt.client.widgets.form.fields.FormItem#getErrorIconSrc errorIconSrc}, {@link
@@ -1571,8 +1623,8 @@ public class FormItem extends RefDataClass  implements com.smartgwt.client.widge
      * displayed next to form items when {@link com.smartgwt.client.widgets.form.DynamicForm#getShowInlineErrors
      * showInlineErrors} is true. These properties are boolean values, and can be set on a DynamicForm to control the  behavior
      * form-wide, or set on individual FormItems. <P> The HTML displayed next to a form item with errors is generated by 
-     * {@link com.smartgwt.client.widgets.form.fields.FormItem#getErrorHTML}. The default implemenation of that method respects
-     * <code>showErrorIcons</code> and <code>showErrorText</code> as follows: <P> <code>showErrorIcons</code>, or
+     * {@link com.smartgwt.client.widgets.form.fields.FormItem#getErrorHTML}. The default implementation of that method
+     * respects <code>showErrorIcons</code> and <code>showErrorText</code> as follows: <P> <code>showErrorIcons</code>, or
      * <code>showErrorIcon</code> at the FormItem level controls whether an error icon should appear next to fields which have
      * validation errors.  The icon's appearance is governed by {@link
      * com.smartgwt.client.widgets.form.fields.FormItem#getErrorIconSrc errorIconSrc}, {@link
@@ -1604,8 +1656,8 @@ public class FormItem extends RefDataClass  implements com.smartgwt.client.widge
      * displayed next to form items when {@link com.smartgwt.client.widgets.form.DynamicForm#getShowInlineErrors
      * showInlineErrors} is true. These properties are boolean values, and can be set on a DynamicForm to control the  behavior
      * form-wide, or set on individual FormItems. <P> The HTML displayed next to a form item with errors is generated by 
-     * {@link com.smartgwt.client.widgets.form.fields.FormItem#getErrorHTML}. The default implemenation of that method respects
-     * <code>showErrorIcons</code> and <code>showErrorText</code> as follows: <P> <code>showErrorIcons</code>, or
+     * {@link com.smartgwt.client.widgets.form.fields.FormItem#getErrorHTML}. The default implementation of that method
+     * respects <code>showErrorIcons</code> and <code>showErrorText</code> as follows: <P> <code>showErrorIcons</code>, or
      * <code>showErrorIcon</code> at the FormItem level controls whether an error icon should appear next to fields which have
      * validation errors.  The icon's appearance is governed by {@link
      * com.smartgwt.client.widgets.form.fields.FormItem#getErrorIconSrc errorIconSrc}, {@link
@@ -1674,7 +1726,7 @@ public class FormItem extends RefDataClass  implements com.smartgwt.client.widge
     }
 
     /**
-     * When this item recieves focus, should it be re-styled to indicate it has focus?
+     * When this item receives focus, should it be re-styled to indicate it has focus?
      * <p><b>Note : </b> This is an advanced setting</p>
      *
      * @param showFocused showFocused Default value is false
@@ -1684,7 +1736,7 @@ public class FormItem extends RefDataClass  implements com.smartgwt.client.widge
     }
 
     /**
-     * When this item recieves focus, should it be re-styled to indicate it has focus?
+     * When this item receives focus, should it be re-styled to indicate it has focus?
      *
      *
      * @return Boolean
@@ -1776,6 +1828,27 @@ public class FormItem extends RefDataClass  implements com.smartgwt.client.widge
     }
 
     /**
+     * Base CSS stylename for a form item's title when generating print HTML for the item. If unset {@link
+     * com.smartgwt.client.widgets.form.fields.FormItem#getTitleStyle titleStyle} will be used instead.
+     *
+     * @param printTitleStyle printTitleStyle Default value is null
+     */
+    public void setPrintTitleStyle(String printTitleStyle) {
+        setAttribute("printTitleStyle", printTitleStyle);
+    }
+
+    /**
+     * Base CSS stylename for a form item's title when generating print HTML for the item. If unset {@link
+     * com.smartgwt.client.widgets.form.fields.FormItem#getTitleStyle titleStyle} will be used instead.
+     *
+     *
+     * @return String
+     */
+    public String getPrintTitleStyle()  {
+        return getAttributeAsString("printTitleStyle");
+    }
+
+    /**
      * Base CSS class name for a form item's text box element. <P> NOTE: See the CompoundFormItem_skinning discussion for
      * special skinning considerations.
      *
@@ -1797,7 +1870,30 @@ public class FormItem extends RefDataClass  implements com.smartgwt.client.widge
     }
 
     /**
-     * If specified, this is the number of miliseconds to wait between the user rolling over  this form item, and triggering
+     * Base CSS class name for a form item's text box element when getting printable HTML for the form. If unset {@link
+     * com.smartgwt.client.widgets.form.fields.FormItem#getTextBoxStyle textBoxStyle} will be used instead. Note that focused
+     * styling will never be displayed while printing, though error and disabled styling will.
+     *
+     * @param printTextBoxStyle printTextBoxStyle Default value is null
+     */
+    public void setPrintTextBoxStyle(String printTextBoxStyle) {
+        setAttribute("printTextBoxStyle", printTextBoxStyle);
+    }
+
+    /**
+     * Base CSS class name for a form item's text box element when getting printable HTML for the form. If unset {@link
+     * com.smartgwt.client.widgets.form.fields.FormItem#getTextBoxStyle textBoxStyle} will be used instead. Note that focused
+     * styling will never be displayed while printing, though error and disabled styling will.
+     *
+     *
+     * @return String
+     */
+    public String getPrintTextBoxStyle()  {
+        return getAttributeAsString("printTextBoxStyle");
+    }
+
+    /**
+     * If specified, this is the number of milliseconds to wait between the user rolling over  this form item, and triggering
      * any hover action for it.<br> If not specified <code>this.form.itemHoverDelay</code> will be used instead.
      * <p><b>Note : </b> This is an advanced setting</p>
      *
@@ -1808,7 +1904,7 @@ public class FormItem extends RefDataClass  implements com.smartgwt.client.widge
     }
 
     /**
-     * If specified, this is the number of miliseconds to wait between the user rolling over  this form item, and triggering
+     * If specified, this is the number of milliseconds to wait between the user rolling over  this form item, and triggering
      * any hover action for it.<br> If not specified <code>this.form.itemHoverDelay</code> will be used instead.
      *
      *
@@ -1895,7 +1991,7 @@ public class FormItem extends RefDataClass  implements com.smartgwt.client.widge
     }
 
     /**
-     * Explict CSS Style for any hover shown for this item.
+     * Explicit CSS Style for any hover shown for this item.
      *
      * @param hoverStyle hoverStyle Default value is null
      */
@@ -1904,7 +2000,7 @@ public class FormItem extends RefDataClass  implements com.smartgwt.client.widge
     }
 
     /**
-     * Explict CSS Style for any hover shown for this item.
+     * Explicit CSS Style for any hover shown for this item.
      *
      *
      * @return String
@@ -2022,7 +2118,7 @@ public class FormItem extends RefDataClass  implements com.smartgwt.client.widge
      * When {@link com.smartgwt.client.widgets.form.DynamicForm#getShowInlineErrors showInlineErrors} and {@link
      * com.smartgwt.client.widgets.form.fields.FormItem#getShowErrorText showErrorText} are both true and {@link
      * com.smartgwt.client.widgets.form.fields.FormItem#getErrorOrientation errorOrientation} is "left" or "right",
-     * errorMessageWidth is the amount to reduce the width of the editor to accomodate the error message and icon.
+     * errorMessageWidth is the amount to reduce the width of the editor to accommodate the error message and icon.
      *
      * @param errorMessageWidth errorMessageWidth Default value is 80
      */
@@ -2034,7 +2130,7 @@ public class FormItem extends RefDataClass  implements com.smartgwt.client.widge
      * When {@link com.smartgwt.client.widgets.form.DynamicForm#getShowInlineErrors showInlineErrors} and {@link
      * com.smartgwt.client.widgets.form.fields.FormItem#getShowErrorText showErrorText} are both true and {@link
      * com.smartgwt.client.widgets.form.fields.FormItem#getErrorOrientation errorOrientation} is "left" or "right",
-     * errorMessageWidth is the amount to reduce the width of the editor to accomodate the error message and icon.
+     * errorMessageWidth is the amount to reduce the width of the editor to accommodate the error message and icon.
      *
      *
      * @return int
@@ -2476,7 +2572,7 @@ public class FormItem extends RefDataClass  implements com.smartgwt.client.widge
      * com.smartgwt.client.widgets.form.fields.FormItem#setInputTransformer} rather than using a combination of change() and
      * setValue() to accomplish the same thing.  Returning false from <code>change</code> is intended for rejecting input
      * entirely, such as typing invalid characters. <p> Note that if you ask the form for the current value in this handler,
-     * you will get the old value because the change has not yet been commited.  The new value is available as a parameter to
+     * you will get the old value because the change has not yet been committed.  The new value is available as a parameter to
      * this method.
      *
      * @param handler the change handler
@@ -2606,6 +2702,25 @@ public class FormItem extends RefDataClass  implements com.smartgwt.client.widge
 
 
     // ********************* Static Methods ***********************
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

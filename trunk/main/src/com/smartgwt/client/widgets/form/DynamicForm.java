@@ -827,6 +827,25 @@ public class DynamicForm extends Canvas  implements DataBoundComponent, com.smar
     }
 
     /**
+     * The required message for required field errors.
+     *
+     * @param requiredMessage requiredMessage Default value is null
+     */
+    public void setRequiredMessage(String requiredMessage) {
+        setAttribute("requiredMessage", requiredMessage, true);
+    }
+
+    /**
+     * The required message for required field errors.
+     *
+     *
+     * @return String
+     */
+    public String getRequiredMessage()  {
+        return getAttributeAsString("requiredMessage");
+    }
+
+    /**
      * If the user rolls over an item, how long a delay before we fire any hover action / show a hover for that item?
      *
      * @param itemHoverDelay itemHoverDelay Default value is 500
