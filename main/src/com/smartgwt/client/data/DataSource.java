@@ -791,6 +791,25 @@ public class DataSource extends BaseClass  implements com.smartgwt.client.data.e
     }
 
     /**
+     * The required message for required field errors.
+     *
+     * @param requiredMessage requiredMessage Default value is null
+     */
+    public void setRequiredMessage(String requiredMessage) {
+        setAttribute("requiredMessage", requiredMessage, true);
+    }
+
+    /**
+     * The required message for required field errors.
+     *
+     *
+     * @return String
+     */
+    public String getRequiredMessage()  {
+        return getAttributeAsString("requiredMessage");
+    }
+
+    /**
      * Whether RPCRequests sent by this DataSource should enable  {@link com.smartgwt.client.rpc.RPCRequest#getShowPrompt
      * showPrompt} if it's unset.
      *
@@ -1333,6 +1352,59 @@ public class DataSource extends BaseClass  implements com.smartgwt.client.data.e
     // ********************* Methods ***********************
 
     /**
+     * Causes any components using this DataSource to be notified of changes that have been made to the remote dataset accessed
+     * via this DataSource, as though the provided DSResponse had just successfully completed.  This will cause cache managers
+     * such as {@link com.smartgwt.client.data.ResultSet} or  {@link com.smartgwt.client..ResultTree} to automatically update
+     * their caches, and components using such cache managers to visually update to show modified data. <P> This API should be
+     * used when you have found out about changes made by other users or by automatic processes.  For example, using the Smart
+     * GWT ${isc.DocUtils.linkForRef('Messaging')} system to receive real-time updates via HTTP streaming, you may get updates
+     * that should affect a ListGrid which is using a ResultSet to view a portion of a large dataset.   <P> Alternatively, an
+     * operation that removes a record from one DataSource may cause a new record to be added to another DataSource (such as
+     * Lead -> Account conversion in CRM applications). This could be accomplished by using the callback from the "remove"
+     * operation to call <code>updateCaches</code> with a DSResponse representing an "add" operation on the related DataSource.
+     * <P> Cache updates of this kind can also be driven from server-side code - see the related server-side API
+     * <code>DSResponse.addRelatedUpdate()</code>. <P> <b>NOTE:</b>: this API should <b>not</b> be used with a {@link
+     * com.smartgwt.client.data.DataSource#getClientOnly clientOnly} DataSource, because in this case, the "remote dataset" is
+     * actually within the browser.  Instead,  {@link com.smartgwt.client.data.DataSource#updateData}, addData() or
+     * removeData() can be called in order to both change the dataset stored inside the browser and notify all cache managers.
+     * <P> Note that this DSResponse will <b>not</b> go through {@link com.smartgwt.client.data.DataSource#transformResponse}
+     * or other processing that would normally occur for a DSResponse resulting from a DSRequest sent by the application in
+     * this page.
+     * @param dsResponse 
+     */
+    public native void updateCaches(DSResponse dsResponse) /*-{
+        var self = this.@com.smartgwt.client.core.BaseClass::getOrCreateJsObj()();
+        self.updateCaches(dsResponse.@com.smartgwt.client.core.DataClass::getJsObj()());
+    }-*/;
+
+    /**
+     * Causes any components using this DataSource to be notified of changes that have been made to the remote dataset accessed
+     * via this DataSource, as though the provided DSResponse had just successfully completed.  This will cause cache managers
+     * such as {@link com.smartgwt.client.data.ResultSet} or  {@link com.smartgwt.client..ResultTree} to automatically update
+     * their caches, and components using such cache managers to visually update to show modified data. <P> This API should be
+     * used when you have found out about changes made by other users or by automatic processes.  For example, using the Smart
+     * GWT ${isc.DocUtils.linkForRef('Messaging')} system to receive real-time updates via HTTP streaming, you may get updates
+     * that should affect a ListGrid which is using a ResultSet to view a portion of a large dataset.   <P> Alternatively, an
+     * operation that removes a record from one DataSource may cause a new record to be added to another DataSource (such as
+     * Lead -> Account conversion in CRM applications). This could be accomplished by using the callback from the "remove"
+     * operation to call <code>updateCaches</code> with a DSResponse representing an "add" operation on the related DataSource.
+     * <P> Cache updates of this kind can also be driven from server-side code - see the related server-side API
+     * <code>DSResponse.addRelatedUpdate()</code>. <P> <b>NOTE:</b>: this API should <b>not</b> be used with a {@link
+     * com.smartgwt.client.data.DataSource#getClientOnly clientOnly} DataSource, because in this case, the "remote dataset" is
+     * actually within the browser.  Instead,  {@link com.smartgwt.client.data.DataSource#updateData}, addData() or
+     * removeData() can be called in order to both change the dataset stored inside the browser and notify all cache managers.
+     * <P> Note that this DSResponse will <b>not</b> go through {@link com.smartgwt.client.data.DataSource#transformResponse}
+     * or other processing that would normally occur for a DSResponse resulting from a DSRequest sent by the application in
+     * this page.
+     * @param dsResponse 
+     * @param dsRequest 
+     */
+    public native void updateCaches(DSResponse dsResponse, DSRequest dsRequest) /*-{
+        var self = this.@com.smartgwt.client.core.BaseClass::getOrCreateJsObj()();
+        self.updateCaches(dsResponse.@com.smartgwt.client.core.DataClass::getJsObj()(), dsRequest.@com.smartgwt.client.core.DataClass::getJsObj()());
+    }-*/;
+
+    /**
      * For a DataSource that describes a DOM structure, the list of legal child elements that can be contained by the element
      * described by this DataSource. <p> For a DataSource described by XML schema, this is the list of legal subelements <b>of
      * complexType</b> (elements of simpleType become DataSourceFields with atomic type). <p> Note that currently, if an XML
@@ -1415,6 +1487,7 @@ public class DataSource extends BaseClass  implements com.smartgwt.client.data.e
         if(ret == null || ret === undefined) return null;
         return @com.smartgwt.client.data.DataSourceField::new(Lcom/google/gwt/core/client/JavaScriptObject;)(ret);
     }-*/;
+
 
 
     /**
