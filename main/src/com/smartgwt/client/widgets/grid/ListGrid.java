@@ -306,7 +306,7 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
     /**
      * Default number of pixels by which to indent all groups.
      *
-     * @param groupLeadingIndent groupLeadingIndent Default value is 20
+     * @param groupLeadingIndent groupLeadingIndent Default value is 10
      */
     public void setGroupLeadingIndent(int groupLeadingIndent) {
         setAttribute("groupLeadingIndent", groupLeadingIndent, true);
@@ -655,8 +655,8 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
     }
 
     /**
-     * Whether all columns should be drawn all at once, or only columns visible in the viewport.<br><br> Drawing all columns
-     * causes longer initial rendering time, but allows smoother horizontal scrolling.  With a very large number of columns,
+     * Whether all columns should be drawn all at once, or only columns visible in the viewport. <P> Drawing all columns causes
+     * longer initial rendering time, but allows smoother horizontal scrolling.  With a very large number of columns,
      * showAllColumns will become too slow.
      *
      * @param showAllColumns showAllColumns Default value is false
@@ -667,8 +667,8 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
     }
 
     /**
-     * Whether all columns should be drawn all at once, or only columns visible in the viewport.<br><br> Drawing all columns
-     * causes longer initial rendering time, but allows smoother horizontal scrolling.  With a very large number of columns,
+     * Whether all columns should be drawn all at once, or only columns visible in the viewport. <P> Drawing all columns causes
+     * longer initial rendering time, but allows smoother horizontal scrolling.  With a very large number of columns,
      * showAllColumns will become too slow.
      *
      *
@@ -4422,6 +4422,114 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
      */
     public Boolean getExpansionCanEdit()  {
         return getAttributeAsBoolean("expansionCanEdit");
+    }
+
+    /**
+     * Whether cell contents should wrap during printing.  Equivalent to {@link
+     * com.smartgwt.client.widgets.grid.ListGrid#getAutoFit autoFit}, but specific to printed output.
+     *
+     * @param printAutoFit printAutoFit Default value is true
+     */
+    public void setPrintAutoFit(Boolean printAutoFit) {
+        setAttribute("printAutoFit", printAutoFit, true);
+    }
+
+    /**
+     * Whether cell contents should wrap during printing.  Equivalent to {@link
+     * com.smartgwt.client.widgets.grid.ListGrid#getAutoFit autoFit}, but specific to printed output.
+     *
+     *
+     * @return Boolean
+     */
+    public Boolean getPrintAutoFit()  {
+        return getAttributeAsBoolean("printAutoFit");
+    }
+
+    /**
+     * Whether cell contents should wrap during printing.  Equivalent to {@link
+     * com.smartgwt.client.widgets.grid.ListGrid#getWrapCells wrapCells}, but specific to printed output.
+     *
+     * @param printWrapCells printWrapCells Default value is true
+     */
+    public void setPrintWrapCells(Boolean printWrapCells) {
+        setAttribute("printWrapCells", printWrapCells, true);
+    }
+
+    /**
+     * Whether cell contents should wrap during printing.  Equivalent to {@link
+     * com.smartgwt.client.widgets.grid.ListGrid#getWrapCells wrapCells}, but specific to printed output.
+     *
+     *
+     * @return Boolean
+     */
+    public Boolean getPrintWrapCells()  {
+        return getAttributeAsBoolean("printWrapCells");
+    }
+
+    /**
+     * Style for header cells in printed output.  Defaults to {@link
+     * com.smartgwt.client.widgets.grid.ListGrid#getHeaderBaseStyle headerBaseStyle} if null.
+     *
+     * @param printHeaderStyle printHeaderStyle Default value is "printHeader"
+     */
+    public void setPrintHeaderStyle(String printHeaderStyle) {
+        setAttribute("printHeaderStyle", printHeaderStyle, true);
+    }
+
+    /**
+     * Style for header cells in printed output.  Defaults to {@link
+     * com.smartgwt.client.widgets.grid.ListGrid#getHeaderBaseStyle headerBaseStyle} if null.
+     *
+     *
+     * @return String
+     */
+    public String getPrintHeaderStyle()  {
+        return getAttributeAsString("printHeaderStyle");
+    }
+
+    /**
+     * Style for non-header cells in printed output.  Defaults to {@link com.smartgwt.client.widgets.grid.ListGrid#getBaseStyle
+     * baseStyle} if null.
+     *
+     * @param printBaseStyle printBaseStyle Default value is null
+     */
+    public void setPrintBaseStyle(String printBaseStyle) {
+        setAttribute("printBaseStyle", printBaseStyle, true);
+    }
+
+    /**
+     * Style for non-header cells in printed output.  Defaults to {@link com.smartgwt.client.widgets.grid.ListGrid#getBaseStyle
+     * baseStyle} if null.
+     *
+     *
+     * @return String
+     */
+    public String getPrintBaseStyle()  {
+        return getAttributeAsString("printBaseStyle");
+    }
+
+    /**
+     * Advanced property - when generating printHTML for a large ListGrid, rows are printed in batches in order to avoid
+     * triggering a native "script is running slowly" browser dialog. <P> For grids with exceptional numbers of columns or
+     * complex formatting logic, this number might need to be adjusted downward.
+     * <p><b>Note : </b> This is an advanced setting</p>
+     *
+     * @param printMaxRows printMaxRows Default value is 100
+     */
+    public void setPrintMaxRows(int printMaxRows) {
+        setAttribute("printMaxRows", printMaxRows, true);
+    }
+
+    /**
+     * Advanced property - when generating printHTML for a large ListGrid, rows are printed in batches in order to avoid
+     * triggering a native "script is running slowly" browser dialog. <P> For grids with exceptional numbers of columns or
+     * complex formatting logic, this number might need to be adjusted downward.
+     *
+     *
+     * @return int
+     */
+    public int getPrintMaxRows()  {
+        return getAttributeAsInt("printMaxRows");
     }
 
     /**
@@ -9622,7 +9730,30 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
         @com.smartgwt.client.util.FileLoader::cacheImg(Ljava/lang/String;Ljava/lang/String;)(canvasSkinImgDir, '[SKIN]/actions/ungroup.png');
         @com.smartgwt.client.util.FileLoader::cacheImg(Ljava/lang/String;Ljava/lang/String;)(canvasSkinImgDir, '[SKIN]/actions/sort_ascending.png');
         @com.smartgwt.client.util.FileLoader::cacheImg(Ljava/lang/String;Ljava/lang/String;)(canvasSkinImgDir, '[SKIN]/actions/sort_descending.png');
-    }-*/; 
+    }-*/;
+    
+    /**
+     * Returns a numeric value for the width of some field within this listGrid.
+     * @param fieldNum Index of field for which width is to be determined.
+     *
+     * @return width of the field in px, or null if the width can't be determined
+     */
+    public native int getFieldWidth(Number fieldNum) /*-{
+        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
+        return self.getFieldWidth(fieldNum);
+    }-*/;
+ 
+    /**
+     * Returns a numeric value for the width of some field within this listGrid.
+     * @param fieldName Name of field for which width is to be determined.
+     *
+     * @return width of the field in px, or null if the width can't be determined
+     */
+    public native int getFieldWidth(String fieldName) /*-{
+        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
+        return self.getFieldWidth(fieldName);
+    }-*/;
+    
 
 
 
