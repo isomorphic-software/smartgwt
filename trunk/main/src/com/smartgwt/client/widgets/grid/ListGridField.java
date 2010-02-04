@@ -1748,6 +1748,25 @@ public class ListGridField extends DataClass  implements com.smartgwt.client.wid
     }
 
     /**
+     * Whether this field should be included in the printable representation of the grid.
+     *
+     * @param shouldPrint shouldPrint Default value is null
+     */
+    public void setShouldPrint(Boolean shouldPrint) {
+        setAttribute("shouldPrint", shouldPrint);
+    }
+
+    /**
+     * Whether this field should be included in the printable representation of the grid.
+     *
+     *
+     * @return Boolean
+     */
+    public Boolean getShouldPrint()  {
+        return getAttributeAsBoolean("shouldPrint");
+    }
+
+    /**
      * The HTML to display in cells of this field if the fieldType is set to link. Can be  overridden by {@link
      * com.smartgwt.client.widgets.grid.ListGridRecord#getLinkText linkText}.
      *
