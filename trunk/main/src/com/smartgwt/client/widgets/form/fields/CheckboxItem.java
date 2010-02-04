@@ -255,6 +255,25 @@ public class CheckboxItem extends FormItem {
     }
 
     /**
+     * URL for the image to display when this checkbox is partially selected
+     *
+     * @param partialSelectedImage partialSelectedImage Default value is "[SKIN]/DynamicForm/partialcheck.gif"
+     */
+    public void setPartialSelectedImage(String partialSelectedImage) {
+        setAttribute("partialSelectedImage", partialSelectedImage);
+    }
+
+    /**
+     * URL for the image to display when this checkbox is partially selected
+     *
+     *
+     * @return String
+     */
+    public String getPartialSelectedImage()  {
+        return getAttributeAsString("partialSelectedImage");
+    }
+
+    /**
      * URL for the image to display when this checkbox is unset. Note that if  {@link
      * com.smartgwt.client.widgets.form.fields.CheckboxItem#getShowUnsetImage showUnsetImage} is false or {@link
      * com.smartgwt.client.widgets.form.fields.CheckboxItem#getAllowEmptyValue allowEmptyValue} is false the {@link
@@ -306,6 +325,8 @@ public class CheckboxItem extends FormItem {
 
 
     // ********************* Static Methods ***********************
+
+
 
 
     /**

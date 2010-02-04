@@ -25,6 +25,7 @@ package com.smartgwt.client.docs;
  * @see com.smartgwt.client.widgets.form.DynamicForm#getValidationURL
  * @see com.smartgwt.client.widgets.form.DynamicForm#getDisableValidation
  * @see com.smartgwt.client.widgets.form.fields.FormItem#getRequired
+ * @see com.smartgwt.client.widgets.form.fields.FormItem#getRequiredMessage
  * @see com.smartgwt.client.widgets.form.fields.FormItem#getShowErrorIcon
  * @see com.smartgwt.client.widgets.form.fields.FormItem#getShowErrorText
  * @see com.smartgwt.client.widgets.form.fields.FormItem#getShowErrorStyle

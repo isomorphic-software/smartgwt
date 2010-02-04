@@ -244,6 +244,31 @@ public class SliderItem extends CanvasItem {
         return getAttributeAsInt("defaultValue");
     }
 
+    /**
+     * Should this sliderItem update its value and fire change handlers while the user is actively dragging the slider. Setting
+     * this attribute value to <code>false</code> will suppress any change notifications from the user dragging the slider
+     * thumb until the user releases the mouse at the final position. This can be useful to avoid repeatedly firing expensive
+     * operations such as server fetches while the user drags through a range of values.
+     *
+     * @param changeOnDrag changeOnDrag Default value is true
+     */
+    public void setChangeOnDrag(Boolean changeOnDrag) {
+        setAttribute("changeOnDrag", changeOnDrag);
+    }
+
+    /**
+     * Should this sliderItem update its value and fire change handlers while the user is actively dragging the slider. Setting
+     * this attribute value to <code>false</code> will suppress any change notifications from the user dragging the slider
+     * thumb until the user releases the mouse at the final position. This can be useful to avoid repeatedly firing expensive
+     * operations such as server fetches while the user drags through a range of values.
+     *
+     *
+     * @return Boolean
+     */
+    public Boolean getChangeOnDrag()  {
+        return getAttributeAsBoolean("changeOnDrag");
+    }
+
     // ********************* Methods ***********************
 
 

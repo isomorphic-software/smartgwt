@@ -144,8 +144,8 @@ public class FormItemIcon extends DataClass  implements com.smartgwt.client.widg
      * If this icon will be updated to show focus (see {@link
      * com.smartgwt.client.widgets.form.fields.FormItemIcon#getShowFocused showFocused},  {@link
      * com.smartgwt.client.widgets.form.fields.FormItem#getShowFocusedIcons showFocusedIcons}), this property governs whether
-     * the focused state should be shown when the item as a whole recieves focus or just if the icon recieves focus. If this
-     * property is unset, default behavior is to show focused state when the item recieves focus.
+     * the focused state should be shown when the item as a whole receives focus or just if the icon receives focus. If this
+     * property is unset, default behavior is to show focused state when the item receives focus.
      * <p><b>Note : </b> This is an advanced setting</p>
      *
      * @param showFocusedWithItem showFocusedWithItem Default value is null
@@ -158,8 +158,8 @@ public class FormItemIcon extends DataClass  implements com.smartgwt.client.widg
      * If this icon will be updated to show focus (see {@link
      * com.smartgwt.client.widgets.form.fields.FormItemIcon#getShowFocused showFocused},  {@link
      * com.smartgwt.client.widgets.form.fields.FormItem#getShowFocusedIcons showFocusedIcons}), this property governs whether
-     * the focused state should be shown when the item as a whole recieves focus or just if the icon recieves focus. If this
-     * property is unset, default behavior is to show focused state when the item recieves focus.
+     * the focused state should be shown when the item as a whole receives focus or just if the icon receives focus. If this
+     * property is unset, default behavior is to show focused state when the item receives focus.
      *
      *
      * @return Boolean
@@ -284,7 +284,7 @@ public class FormItemIcon extends DataClass  implements com.smartgwt.client.widg
    }-*/;
 
     /**
-     * StringMethod action to fire when this icon has focus and recieves a keypress      event.      If unset the form item's
+     * StringMethod action to fire when this icon has focus and receives a keypress      event.      If unset the form item's
      * <code>iconKeyPress</code> method will be fired instead       (if specified).
      * @param keyName Name of the key pressed
      * @param character character produced by the keypress

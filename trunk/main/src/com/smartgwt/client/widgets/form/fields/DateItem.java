@@ -251,7 +251,13 @@ public class DateItem extends FormItem {
     }
 
     /**
-     * Minimum date the selectors will allow the user to pick.
+     * Minimum date the selectors will allow the user to pick. <P> <b>NOTE:</b> by design, setting <code>startDate</code> and
+     * <code>endDate</code> will not always prevent the user from picking invalid values.  In particular: <ul> <li> the set of
+     * available days will only be restricted if the start and end dates fall within the same month <li> the set of available
+     * months will only be restricted if the start and end dates fall within the same year </ul> <P> This is <b>by design</b>
+     * as it allows the user to set the day, month and year in whatever order is convenient, rather than forcing them to pick
+     * in a specific order. <P> For actual enforcement of a date being in correct range before data is submitted, a {@link
+     * com.smartgwt.client.widgets.form.validator.Validator} of type "dateRange" should always be declared.
      *
      * @param startDate startDate Default value is 1/1/1995
      */
@@ -260,7 +266,13 @@ public class DateItem extends FormItem {
     }
 
     /**
-     * Minimum date the selectors will allow the user to pick.
+     * Minimum date the selectors will allow the user to pick. <P> <b>NOTE:</b> by design, setting <code>startDate</code> and
+     * <code>endDate</code> will not always prevent the user from picking invalid values.  In particular: <ul> <li> the set of
+     * available days will only be restricted if the start and end dates fall within the same month <li> the set of available
+     * months will only be restricted if the start and end dates fall within the same year </ul> <P> This is <b>by design</b>
+     * as it allows the user to set the day, month and year in whatever order is convenient, rather than forcing them to pick
+     * in a specific order. <P> For actual enforcement of a date being in correct range before data is submitted, a {@link
+     * com.smartgwt.client.widgets.form.validator.Validator} of type "dateRange" should always be declared.
      *
      *
      * @return java.util.Date
@@ -270,7 +282,8 @@ public class DateItem extends FormItem {
     }
 
     /**
-     * Maximum date the selectors will allow the user to pick.
+     * Maximum date the selectors will allow the user to pick. <P> See {@link
+     * com.smartgwt.client.widgets.form.fields.DateItem#getStartDate startDate} for details on how this restriction works.
      *
      * @param endDate endDate Default value is 12/31/2015
      */
@@ -279,7 +292,8 @@ public class DateItem extends FormItem {
     }
 
     /**
-     * Maximum date the selectors will allow the user to pick.
+     * Maximum date the selectors will allow the user to pick. <P> See {@link
+     * com.smartgwt.client.widgets.form.fields.DateItem#getStartDate startDate} for details on how this restriction works.
      *
      *
      * @return java.util.Date

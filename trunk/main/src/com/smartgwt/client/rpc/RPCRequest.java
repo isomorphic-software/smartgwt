@@ -649,6 +649,11 @@ public class RPCRequest extends DataClass {
 
 
 
+
+
+
+
+
     /**
      * This attribute specifies the payload of the RPCRequest.  When using the Smart GWT server, any JavaScript simple
      * type or arbitrarily nested set of Objects and Arrays can be sent to server and automatically translated to Java
