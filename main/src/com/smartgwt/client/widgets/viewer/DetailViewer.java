@@ -368,6 +368,75 @@ public class DetailViewer extends Canvas  implements DataBoundComponent {
     }
 
     /**
+     * Optional CSS style for a cell in printable HTML for this component. If unset {@link
+     * com.smartgwt.client.widgets.viewer.DetailViewer#getCellStyle cellStyle} will be used for printing as well as normal
+     * presentation.
+     *
+     * @param printCellStyle printCellStyle Default value is null
+     */
+    public void setPrintCellStyle(String printCellStyle) {
+        setAttribute("printCellStyle", printCellStyle, true);
+    }
+
+    /**
+     * Optional CSS style for a cell in printable HTML for this component. If unset {@link
+     * com.smartgwt.client.widgets.viewer.DetailViewer#getCellStyle cellStyle} will be used for printing as well as normal
+     * presentation.
+     *
+     *
+     * @return String
+     */
+    public String getPrintCellStyle()  {
+        return getAttributeAsString("printCellStyle");
+    }
+
+    /**
+     * Optional CSS style for a label cell in printable HTML for this component. If unset {@link
+     * com.smartgwt.client.widgets.viewer.DetailViewer#getLabelStyle labelStyle} will be used for printing as well as normal
+     * presentation.
+     *
+     * @param printLabelStyle printLabelStyle Default value is null
+     */
+    public void setPrintLabelStyle(String printLabelStyle) {
+        setAttribute("printLabelStyle", printLabelStyle, true);
+    }
+
+    /**
+     * Optional CSS style for a label cell in printable HTML for this component. If unset {@link
+     * com.smartgwt.client.widgets.viewer.DetailViewer#getLabelStyle labelStyle} will be used for printing as well as normal
+     * presentation.
+     *
+     *
+     * @return String
+     */
+    public String getPrintLabelStyle()  {
+        return getAttributeAsString("printLabelStyle");
+    }
+
+    /**
+     * Optional CSS style for a header in printable HTML for this component. If unset {@link
+     * com.smartgwt.client.widgets.viewer.DetailViewer#getHeaderStyle headerStyle} will be used for printing as well as normal
+     * presentation.
+     *
+     * @param printHeaderStyle printHeaderStyle Default value is null
+     */
+    public void setPrintHeaderStyle(String printHeaderStyle) {
+        setAttribute("printHeaderStyle", printHeaderStyle, true);
+    }
+
+    /**
+     * Optional CSS style for a header in printable HTML for this component. If unset {@link
+     * com.smartgwt.client.widgets.viewer.DetailViewer#getHeaderStyle headerStyle} will be used for printing as well as normal
+     * presentation.
+     *
+     *
+     * @return String
+     */
+    public String getPrintHeaderStyle()  {
+        return getAttributeAsString("printHeaderStyle");
+    }
+
+    /**
      * CSS style for a separator
      *
      * @param separatorStyle separatorStyle Default value is "detail"
