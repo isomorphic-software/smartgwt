@@ -430,7 +430,7 @@ public class TextItem extends FormItem {
 
     /**
      * If this item currently has focus, clear the current selection. leaving focus in the item. Has no effect if the item is
-     * undrawn or unfocussed. Only applies to text-based items.
+     * undrawn or unfocused. Only applies to text-based items.
      */
     public native void deselectValue() /*-{
         var self = this.@com.smartgwt.client.core.DataClass::getJsObj()();
@@ -439,7 +439,7 @@ public class TextItem extends FormItem {
 
     /**
      * If this item currently has focus, clear the current selection. leaving focus in the item. Has no effect if the item is
-     * undrawn or unfocussed. Only applies to text-based items.
+     * undrawn or unfocused. Only applies to text-based items.
      * @param start By default the text insertion cursor will be moved to the end of the   current value - pass in this parameter to move to
      * the start instead
      */

@@ -280,7 +280,7 @@ public class SelectItem extends FormItem  implements PickList, com.smartgwt.clie
     }
 
     /**
-     * When this item recieves focus, should it be re-styled to indicate it has focus?
+     * When this item receives focus, should it be re-styled to indicate it has focus?
      * <p><b>Note : </b> This is an advanced setting</p>
      *
      * @param showFocused showFocused Default value is true, [IRWA]
@@ -290,7 +290,7 @@ public class SelectItem extends FormItem  implements PickList, com.smartgwt.clie
     }
 
     /**
-     * When this item recieves focus, should it be re-styled to indicate it has focus?
+     * When this item receives focus, should it be re-styled to indicate it has focus?
      *
      *
      * @return Boolean
@@ -706,6 +706,16 @@ public class SelectItem extends FormItem  implements PickList, com.smartgwt.clie
 
 
     // ********************* Static Methods ***********************
+
+
+
+
+
+
+
+
+
+
 
 
     static {

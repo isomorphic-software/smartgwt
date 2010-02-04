@@ -16,6 +16,8 @@ package com.smartgwt.client.docs;
  * @see com.smartgwt.client.widgets.form.DynamicForm#getRequiredRightTitlePrefix
  * @see com.smartgwt.client.widgets.form.DynamicForm#getRequiredTitleSuffix
  * @see com.smartgwt.client.widgets.form.DynamicForm#getRequiredRightTitleSuffix
+ * @see com.smartgwt.client.widgets.form.DynamicForm#getRequiredMessage
+ * @see com.smartgwt.client.data.DataSource#getRequiredMessage
  * @see com.smartgwt.client.types.TitleOrientation
  */
 public interface FormTitles {
