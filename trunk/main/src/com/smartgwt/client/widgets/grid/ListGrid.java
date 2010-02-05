@@ -7696,7 +7696,7 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
      * @param dateInputFormat the dateInputFormat
      */
     public void setDateInputFormat(String dateInputFormat) {
-        setAttribute("dateInputFormat", "dateInputFormat", true);
+        setAttribute("dateInputFormat", dateInputFormat, true);
     }
 
     /**
