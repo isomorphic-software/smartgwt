@@ -45,6 +45,7 @@ public class JsObject {
 
     private static native void init() /*-{
 
+        //pre GWT 2.0 fallback
         if(!$entry) {
             $entry = function(func, thisObj, args) {
                         return func.apply(thisObj, args);
