@@ -387,11 +387,11 @@ public class MenuItem extends ListGridRecord  implements com.smartgwt.client.wid
         var obj = null;
             obj = this.@com.smartgwt.client.core.DataClass::getJsObj()();
             var selfJ = this;
-            obj.click = function(){
+            obj.click = $entry(function(){
                 var param = {"target" : arguments[0], "item" : arguments[1], "menu" : arguments[2], "colNum" : arguments[3]};
                 var event = @com.smartgwt.client.widgets.menu.events.MenuItemClickEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
                 selfJ.@com.smartgwt.client.core.DataClass::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
-            };
+            });
    }-*/;
 
 
@@ -417,12 +417,12 @@ public class MenuItem extends ListGridRecord  implements com.smartgwt.client.wid
      */
     public native void setEnableIfCondition(MenuItemIfFunction enableIf) /*-{
         var self = this.@com.smartgwt.client.core.DataClass::getJsObj()();
-        self.enableIf = function(target, menu, item) {
+        self.enableIf = $entry(function(target, menu, item) {
             var targetJ = @com.smartgwt.client.widgets.BaseWidget::getRef(Lcom/google/gwt/core/client/JavaScriptObject;)(target);
             var menuJ = @com.smartgwt.client.widgets.BaseWidget::getRef(Lcom/google/gwt/core/client/JavaScriptObject;)(menu);
             var itemJ = @com.smartgwt.client.widgets.menu.MenuItem::getRef(Lcom/google/gwt/core/client/JavaScriptObject;)(item);
             return enableIf.@com.smartgwt.client.widgets.menu.MenuItemIfFunction::execute(Lcom/smartgwt/client/widgets/Canvas;Lcom/smartgwt/client/widgets/menu/Menu;Lcom/smartgwt/client/widgets/menu/MenuItem;)(targetJ, menuJ, itemJ);
-        };
+        });
     }-*/;
 
     /**
@@ -432,12 +432,12 @@ public class MenuItem extends ListGridRecord  implements com.smartgwt.client.wid
      */
     public native void setCheckIfCondition(MenuItemIfFunction checkIf) /*-{
         var self = this.@com.smartgwt.client.core.DataClass::getJsObj()();
-        self.checkIf = function(target, menu, item) {
+        self.checkIf = $entry(function(target, menu, item) {
             var targetJ = @com.smartgwt.client.widgets.BaseWidget::getRef(Lcom/google/gwt/core/client/JavaScriptObject;)(target);
             var menuJ = @com.smartgwt.client.widgets.BaseWidget::getRef(Lcom/google/gwt/core/client/JavaScriptObject;)(menu);
             var itemJ = @com.smartgwt.client.widgets.menu.MenuItem::getRef(Lcom/google/gwt/core/client/JavaScriptObject;)(item);
             return checkIf.@com.smartgwt.client.widgets.menu.MenuItemIfFunction::execute(Lcom/smartgwt/client/widgets/Canvas;Lcom/smartgwt/client/widgets/menu/Menu;Lcom/smartgwt/client/widgets/menu/MenuItem;)(targetJ, menuJ, itemJ);
-        };
+        });
     }-*/;
 
     /**
@@ -447,12 +447,12 @@ public class MenuItem extends ListGridRecord  implements com.smartgwt.client.wid
      */
     public native void setDynamicTitleFunction(MenuItemStringFunction handler) /*-{
         var self = this.@com.smartgwt.client.core.DataClass::getJsObj()();
-        self.dynamicTitle = function(target, menu, item) {
+        self.dynamicTitle = $entry(function(target, menu, item) {
             var targetJ = @com.smartgwt.client.widgets.BaseWidget::getRef(Lcom/google/gwt/core/client/JavaScriptObject;)(target);
             var menuJ = @com.smartgwt.client.widgets.BaseWidget::getRef(Lcom/google/gwt/core/client/JavaScriptObject;)(menu);
             var itemJ = @com.smartgwt.client.widgets.menu.MenuItem::getRef(Lcom/google/gwt/core/client/JavaScriptObject;)(item);
             return handler.@com.smartgwt.client.widgets.menu.MenuItemStringFunction::execute(Lcom/smartgwt/client/widgets/Canvas;Lcom/smartgwt/client/widgets/menu/Menu;Lcom/smartgwt/client/widgets/menu/MenuItem;)(targetJ, menuJ, itemJ);
-        };
+        });
     }-*/;
 
     /**
@@ -462,12 +462,12 @@ public class MenuItem extends ListGridRecord  implements com.smartgwt.client.wid
      */
     public native void setDynamicIconFunction(MenuItemStringFunction handler) /*-{
         var self = this.@com.smartgwt.client.core.DataClass::getJsObj()();
-        self.dynamicIcon = function(target, menu, item) {
+        self.dynamicIcon = $entry(function(target, menu, item) {
             var targetJ = @com.smartgwt.client.widgets.BaseWidget::getRef(Lcom/google/gwt/core/client/JavaScriptObject;)(target);
             var menuJ = @com.smartgwt.client.widgets.BaseWidget::getRef(Lcom/google/gwt/core/client/JavaScriptObject;)(menu);
             var itemJ = @com.smartgwt.client.widgets.menu.MenuItem::getRef(Lcom/google/gwt/core/client/JavaScriptObject;)(item);
             return handler.@com.smartgwt.client.widgets.menu.MenuItemStringFunction::execute(Lcom/smartgwt/client/widgets/Canvas;Lcom/smartgwt/client/widgets/menu/Menu;Lcom/smartgwt/client/widgets/menu/MenuItem;)(targetJ, menuJ, itemJ);
-        };
+        });
     }-*/;
 
 }

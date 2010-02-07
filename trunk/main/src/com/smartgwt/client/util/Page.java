@@ -424,9 +424,9 @@ public class Page {
     * @param callback the callback function
     */
     public static native void registerKey(String keyName, KeyCallback callback)/*-{
-        $wnd.isc.Page.registerKey(keyName, function(key) {
+        $wnd.isc.Page.registerKey(keyName, $entry(function(key) {
             callback.@com.smartgwt.client.util.KeyCallback::execute(Ljava/lang/String;)(key);
-        });
+        }));
     }-*/;
 
    /**
@@ -443,9 +443,9 @@ public class Page {
     */
     public static native void registerKey(KeyIdentifier keyIdentifier, KeyCallback callback)/*-{
         var keyIdentifierJS = keyIdentifier.@com.smartgwt.client.core.DataClass::getJsObj()();
-        $wnd.isc.Page.registerKey(keyIdentifierJS, function(key) {
+        $wnd.isc.Page.registerKey(keyIdentifierJS, $entry(function(key) {
             callback.@com.smartgwt.client.util.KeyCallback::execute(Ljava/lang/String;)(key);
-        });
+        }));
     }-*/;
 
     /**

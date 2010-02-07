@@ -1954,6 +1954,31 @@ public class Canvas extends BaseWidget  implements com.smartgwt.client.widgets.e
         return getAttributeAsBoolean("snapOnDrop");
     }
 
+    /**
+     * Whether this canvas should be included in a printable view. <P> Default is to: <ul> <li> omit all peers (edges generated
+     * by showEdges:true, etc) <li> omit anything considered a "control", such as a button or menu (see {@link
+     * com.smartgwt.client..PrintProperties#getOmitControls omitControls}) <li> include everything else not marked
+     * shouldPrint:false </ul>
+     *
+     * @param shouldPrint shouldPrint Default value is null
+     */
+    public void setShouldPrint(Boolean shouldPrint) {
+        setAttribute("shouldPrint", shouldPrint, true);
+    }
+
+    /**
+     * Whether this canvas should be included in a printable view. <P> Default is to: <ul> <li> omit all peers (edges generated
+     * by showEdges:true, etc) <li> omit anything considered a "control", such as a button or menu (see {@link
+     * com.smartgwt.client..PrintProperties#getOmitControls omitControls}) <li> include everything else not marked
+     * shouldPrint:false </ul>
+     *
+     *
+     * @return Boolean
+     */
+    public Boolean getShouldPrint()  {
+        return getAttributeAsBoolean("shouldPrint");
+    }
+
 
     /**
      * If this property is set to <code>true</code>, the {@link com.smartgwt.client.widgets.Canvas#destroy} method has been
@@ -2815,6 +2840,7 @@ public class Canvas extends BaseWidget  implements com.smartgwt.client.widgets.e
 
 
 
+
     /**
      * Returns whether a canvas is waiting to be redrawn. Will return true if  {@link
      * com.smartgwt.client.widgets.Canvas#markForRedraw} has been called, but this canvas has not yet been redrawn.
@@ -3544,19 +3570,19 @@ public class Canvas extends BaseWidget  implements com.smartgwt.client.widgets.e
         var selfJ = this;
         if(this.@com.smartgwt.client.widgets.BaseWidget::isCreated()()) {
             obj = this.@com.smartgwt.client.widgets.BaseWidget::getJsObj()();
-            obj.addProperties({resized:function(){
+            obj.addProperties({resized:$entry(function(){
                         var param = {};
                         var event = @com.smartgwt.client.widgets.events.ResizedEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
                         selfJ.@com.smartgwt.client.widgets.BaseWidget::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
-                    }
+                    })
              });
         } else {
             obj = this.@com.smartgwt.client.widgets.BaseWidget::getConfig()();
-            obj.resized = function(){
+            obj.resized = $entry(function(){
                    var param = {};
                    var event = @com.smartgwt.client.widgets.events.ResizedEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
                    selfJ.@com.smartgwt.client.widgets.BaseWidget::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
-               };
+               });
         }
    }-*/;
 
@@ -3712,19 +3738,19 @@ public class Canvas extends BaseWidget  implements com.smartgwt.client.widgets.e
         var selfJ = this;
         if(this.@com.smartgwt.client.widgets.BaseWidget::isCreated()()) {
             obj = this.@com.smartgwt.client.widgets.BaseWidget::getJsObj()();
-            obj.addProperties({scrolled:function(){
+            obj.addProperties({scrolled:$entry(function(){
                         var param = {};
                         var event = @com.smartgwt.client.widgets.events.ScrolledEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
                         selfJ.@com.smartgwt.client.widgets.BaseWidget::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
-                    }
+                    })
              });
         } else {
             obj = this.@com.smartgwt.client.widgets.BaseWidget::getConfig()();
-            obj.scrolled = function(){
+            obj.scrolled = $entry(function(){
                    var param = {};
                    var event = @com.smartgwt.client.widgets.events.ScrolledEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
                    selfJ.@com.smartgwt.client.widgets.BaseWidget::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
-               };
+               });
         }
    }-*/;
 
@@ -3912,19 +3938,19 @@ public class Canvas extends BaseWidget  implements com.smartgwt.client.widgets.e
         var selfJ = this;
         if(this.@com.smartgwt.client.widgets.BaseWidget::isCreated()()) {
             obj = this.@com.smartgwt.client.widgets.BaseWidget::getJsObj()();
-            obj.addProperties({hoverHidden:function(){
+            obj.addProperties({hoverHidden:$entry(function(){
                         var param = {};
                         var event = @com.smartgwt.client.widgets.events.HoverHiddenEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
                         selfJ.@com.smartgwt.client.widgets.BaseWidget::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
-                    }
+                    })
              });
         } else {
             obj = this.@com.smartgwt.client.widgets.BaseWidget::getConfig()();
-            obj.hoverHidden = function(){
+            obj.hoverHidden = $entry(function(){
                    var param = {};
                    var event = @com.smartgwt.client.widgets.events.HoverHiddenEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
                    selfJ.@com.smartgwt.client.widgets.BaseWidget::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
-               };
+               });
         }
    }-*/;
 
@@ -3948,19 +3974,19 @@ public class Canvas extends BaseWidget  implements com.smartgwt.client.widgets.e
         var selfJ = this;
         if(this.@com.smartgwt.client.widgets.BaseWidget::isCreated()()) {
             obj = this.@com.smartgwt.client.widgets.BaseWidget::getJsObj()();
-            obj.addProperties({hover:function(){
+            obj.addProperties({hover:$entry(function(){
                         var param = {};
                         var event = @com.smartgwt.client.widgets.events.HoverEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
                         selfJ.@com.smartgwt.client.widgets.BaseWidget::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
-                    }
+                    })
              });
         } else {
             obj = this.@com.smartgwt.client.widgets.BaseWidget::getConfig()();
-            obj.hover = function(){
+            obj.hover = $entry(function(){
                    var param = {};
                    var event = @com.smartgwt.client.widgets.events.HoverEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
                    selfJ.@com.smartgwt.client.widgets.BaseWidget::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
-               };
+               });
         }
    }-*/;
 
@@ -4001,23 +4027,23 @@ public class Canvas extends BaseWidget  implements com.smartgwt.client.widgets.e
         var selfJ = this;
         if(this.@com.smartgwt.client.widgets.BaseWidget::isCreated()()) {
             obj = this.@com.smartgwt.client.widgets.BaseWidget::getJsObj()();
-            obj.addProperties({showContextMenu:function(){
+            obj.addProperties({showContextMenu:$entry(function(){
                         var param = {};
                         var event = @com.smartgwt.client.widgets.events.ShowContextMenuEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
                         selfJ.@com.smartgwt.client.widgets.BaseWidget::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
                         var ret = event.@com.smartgwt.client.event.Cancellable::isCancelled()();
                         return !ret;
-                    }
+                    })
              });
         } else {
             obj = this.@com.smartgwt.client.widgets.BaseWidget::getConfig()();
-            obj.showContextMenu = function(){
+            obj.showContextMenu = $entry(function(){
                    var param = {};
                    var event = @com.smartgwt.client.widgets.events.ShowContextMenuEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
                    selfJ.@com.smartgwt.client.widgets.BaseWidget::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
                    var ret = event.@com.smartgwt.client.event.Cancellable::isCancelled()();
                    return !ret;
-               };
+               });
         }
    }-*/;
 
@@ -4048,23 +4074,23 @@ public class Canvas extends BaseWidget  implements com.smartgwt.client.widgets.e
         var selfJ = this;
         if(this.@com.smartgwt.client.widgets.BaseWidget::isCreated()()) {
             obj = this.@com.smartgwt.client.widgets.BaseWidget::getJsObj()();
-            obj.addProperties({mouseOver:function(){
+            obj.addProperties({mouseOver:$entry(function(){
                         var param = {};
                         var event = @com.smartgwt.client.widgets.events.MouseOverEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
                         selfJ.@com.smartgwt.client.widgets.BaseWidget::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
                         var ret = event.@com.smartgwt.client.event.Cancellable::isCancelled()();
                         return !ret;
-                    }
+                    })
              });
         } else {
             obj = this.@com.smartgwt.client.widgets.BaseWidget::getConfig()();
-            obj.mouseOver = function(){
+            obj.mouseOver = $entry(function(){
                    var param = {};
                    var event = @com.smartgwt.client.widgets.events.MouseOverEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
                    selfJ.@com.smartgwt.client.widgets.BaseWidget::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
                    var ret = event.@com.smartgwt.client.event.Cancellable::isCancelled()();
                    return !ret;
-               };
+               });
         }
    }-*/;
 
@@ -4086,23 +4112,23 @@ public class Canvas extends BaseWidget  implements com.smartgwt.client.widgets.e
         var selfJ = this;
         if(this.@com.smartgwt.client.widgets.BaseWidget::isCreated()()) {
             obj = this.@com.smartgwt.client.widgets.BaseWidget::getJsObj()();
-            obj.addProperties({mouseDown:function(){
+            obj.addProperties({mouseDown:$entry(function(){
                         var param = {};
                         var event = @com.smartgwt.client.widgets.events.MouseDownEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
                         selfJ.@com.smartgwt.client.widgets.BaseWidget::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
                         var ret = event.@com.smartgwt.client.event.Cancellable::isCancelled()();
                         return !ret;
-                    }
+                    })
              });
         } else {
             obj = this.@com.smartgwt.client.widgets.BaseWidget::getConfig()();
-            obj.mouseDown = function(){
+            obj.mouseDown = $entry(function(){
                    var param = {};
                    var event = @com.smartgwt.client.widgets.events.MouseDownEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
                    selfJ.@com.smartgwt.client.widgets.BaseWidget::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
                    var ret = event.@com.smartgwt.client.event.Cancellable::isCancelled()();
                    return !ret;
-               };
+               });
         }
    }-*/;
 
@@ -4124,23 +4150,23 @@ public class Canvas extends BaseWidget  implements com.smartgwt.client.widgets.e
         var selfJ = this;
         if(this.@com.smartgwt.client.widgets.BaseWidget::isCreated()()) {
             obj = this.@com.smartgwt.client.widgets.BaseWidget::getJsObj()();
-            obj.addProperties({rightMouseDown:function(){
+            obj.addProperties({rightMouseDown:$entry(function(){
                         var param = {};
                         var event = @com.smartgwt.client.widgets.events.RightMouseDownEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
                         selfJ.@com.smartgwt.client.widgets.BaseWidget::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
                         var ret = event.@com.smartgwt.client.event.Cancellable::isCancelled()();
                         return !ret;
-                    }
+                    })
              });
         } else {
             obj = this.@com.smartgwt.client.widgets.BaseWidget::getConfig()();
-            obj.rightMouseDown = function(){
+            obj.rightMouseDown = $entry(function(){
                    var param = {};
                    var event = @com.smartgwt.client.widgets.events.RightMouseDownEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
                    selfJ.@com.smartgwt.client.widgets.BaseWidget::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
                    var ret = event.@com.smartgwt.client.event.Cancellable::isCancelled()();
                    return !ret;
-               };
+               });
         }
    }-*/;
 
@@ -4168,23 +4194,23 @@ public class Canvas extends BaseWidget  implements com.smartgwt.client.widgets.e
         var selfJ = this;
         if(this.@com.smartgwt.client.widgets.BaseWidget::isCreated()()) {
             obj = this.@com.smartgwt.client.widgets.BaseWidget::getJsObj()();
-            obj.addProperties({mouseStillDown:function(){
+            obj.addProperties({mouseStillDown:$entry(function(){
                         var param = {};
                         var event = @com.smartgwt.client.widgets.events.MouseStillDownEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
                         selfJ.@com.smartgwt.client.widgets.BaseWidget::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
                         var ret = event.@com.smartgwt.client.event.Cancellable::isCancelled()();
                         return !ret;
-                    }
+                    })
              });
         } else {
             obj = this.@com.smartgwt.client.widgets.BaseWidget::getConfig()();
-            obj.mouseStillDown = function(){
+            obj.mouseStillDown = $entry(function(){
                    var param = {};
                    var event = @com.smartgwt.client.widgets.events.MouseStillDownEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
                    selfJ.@com.smartgwt.client.widgets.BaseWidget::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
                    var ret = event.@com.smartgwt.client.event.Cancellable::isCancelled()();
                    return !ret;
-               };
+               });
         }
    }-*/;
 
@@ -4206,23 +4232,23 @@ public class Canvas extends BaseWidget  implements com.smartgwt.client.widgets.e
         var selfJ = this;
         if(this.@com.smartgwt.client.widgets.BaseWidget::isCreated()()) {
             obj = this.@com.smartgwt.client.widgets.BaseWidget::getJsObj()();
-            obj.addProperties({mouseMove:function(){
+            obj.addProperties({mouseMove:$entry(function(){
                         var param = {};
                         var event = @com.smartgwt.client.widgets.events.MouseMoveEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
                         selfJ.@com.smartgwt.client.widgets.BaseWidget::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
                         var ret = event.@com.smartgwt.client.event.Cancellable::isCancelled()();
                         return !ret;
-                    }
+                    })
              });
         } else {
             obj = this.@com.smartgwt.client.widgets.BaseWidget::getConfig()();
-            obj.mouseMove = function(){
+            obj.mouseMove = $entry(function(){
                    var param = {};
                    var event = @com.smartgwt.client.widgets.events.MouseMoveEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
                    selfJ.@com.smartgwt.client.widgets.BaseWidget::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
                    var ret = event.@com.smartgwt.client.event.Cancellable::isCancelled()();
                    return !ret;
-               };
+               });
         }
    }-*/;
 
@@ -4244,23 +4270,23 @@ public class Canvas extends BaseWidget  implements com.smartgwt.client.widgets.e
         var selfJ = this;
         if(this.@com.smartgwt.client.widgets.BaseWidget::isCreated()()) {
             obj = this.@com.smartgwt.client.widgets.BaseWidget::getJsObj()();
-            obj.addProperties({mouseOut:function(){
+            obj.addProperties({mouseOut:$entry(function(){
                         var param = {};
                         var event = @com.smartgwt.client.widgets.events.MouseOutEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
                         selfJ.@com.smartgwt.client.widgets.BaseWidget::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
                         var ret = event.@com.smartgwt.client.event.Cancellable::isCancelled()();
                         return !ret;
-                    }
+                    })
              });
         } else {
             obj = this.@com.smartgwt.client.widgets.BaseWidget::getConfig()();
-            obj.mouseOut = function(){
+            obj.mouseOut = $entry(function(){
                    var param = {};
                    var event = @com.smartgwt.client.widgets.events.MouseOutEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
                    selfJ.@com.smartgwt.client.widgets.BaseWidget::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
                    var ret = event.@com.smartgwt.client.event.Cancellable::isCancelled()();
                    return !ret;
-               };
+               });
         }
    }-*/;
 
@@ -4282,23 +4308,23 @@ public class Canvas extends BaseWidget  implements com.smartgwt.client.widgets.e
         var selfJ = this;
         if(this.@com.smartgwt.client.widgets.BaseWidget::isCreated()()) {
             obj = this.@com.smartgwt.client.widgets.BaseWidget::getJsObj()();
-            obj.addProperties({mouseUp:function(){
+            obj.addProperties({mouseUp:$entry(function(){
                         var param = {};
                         var event = @com.smartgwt.client.widgets.events.MouseUpEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
                         selfJ.@com.smartgwt.client.widgets.BaseWidget::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
                         var ret = event.@com.smartgwt.client.event.Cancellable::isCancelled()();
                         return !ret;
-                    }
+                    })
              });
         } else {
             obj = this.@com.smartgwt.client.widgets.BaseWidget::getConfig()();
-            obj.mouseUp = function(){
+            obj.mouseUp = $entry(function(){
                    var param = {};
                    var event = @com.smartgwt.client.widgets.events.MouseUpEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
                    selfJ.@com.smartgwt.client.widgets.BaseWidget::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
                    var ret = event.@com.smartgwt.client.event.Cancellable::isCancelled()();
                    return !ret;
-               };
+               });
         }
    }-*/;
 
@@ -4320,23 +4346,23 @@ public class Canvas extends BaseWidget  implements com.smartgwt.client.widgets.e
         var selfJ = this;
         if(this.@com.smartgwt.client.widgets.BaseWidget::isCreated()()) {
             obj = this.@com.smartgwt.client.widgets.BaseWidget::getJsObj()();
-            obj.addProperties({click:function(){
+            obj.addProperties({click:$entry(function(){
                         var param = {};
                         var event = @com.smartgwt.client.widgets.events.ClickEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
                         selfJ.@com.smartgwt.client.widgets.BaseWidget::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
                         var ret = event.@com.smartgwt.client.event.Cancellable::isCancelled()();
                         return !ret;
-                    }
+                    })
              });
         } else {
             obj = this.@com.smartgwt.client.widgets.BaseWidget::getConfig()();
-            obj.click = function(){
+            obj.click = $entry(function(){
                    var param = {};
                    var event = @com.smartgwt.client.widgets.events.ClickEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
                    selfJ.@com.smartgwt.client.widgets.BaseWidget::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
                    var ret = event.@com.smartgwt.client.event.Cancellable::isCancelled()();
                    return !ret;
-               };
+               });
         }
    }-*/;
 
@@ -4359,23 +4385,23 @@ public class Canvas extends BaseWidget  implements com.smartgwt.client.widgets.e
         var selfJ = this;
         if(this.@com.smartgwt.client.widgets.BaseWidget::isCreated()()) {
             obj = this.@com.smartgwt.client.widgets.BaseWidget::getJsObj()();
-            obj.addProperties({doubleClick:function(){
+            obj.addProperties({doubleClick:$entry(function(){
                         var param = {};
                         var event = @com.smartgwt.client.widgets.events.DoubleClickEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
                         selfJ.@com.smartgwt.client.widgets.BaseWidget::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
                         var ret = event.@com.smartgwt.client.event.Cancellable::isCancelled()();
                         return !ret;
-                    }
+                    })
              });
         } else {
             obj = this.@com.smartgwt.client.widgets.BaseWidget::getConfig()();
-            obj.doubleClick = function(){
+            obj.doubleClick = $entry(function(){
                    var param = {};
                    var event = @com.smartgwt.client.widgets.events.DoubleClickEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
                    selfJ.@com.smartgwt.client.widgets.BaseWidget::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
                    var ret = event.@com.smartgwt.client.event.Cancellable::isCancelled()();
                    return !ret;
-               };
+               });
         }
    }-*/;
 
@@ -4397,23 +4423,23 @@ public class Canvas extends BaseWidget  implements com.smartgwt.client.widgets.e
         var selfJ = this;
         if(this.@com.smartgwt.client.widgets.BaseWidget::isCreated()()) {
             obj = this.@com.smartgwt.client.widgets.BaseWidget::getJsObj()();
-            obj.addProperties({mouseWheel:function(){
+            obj.addProperties({mouseWheel:$entry(function(){
                         var param = {};
                         var event = @com.smartgwt.client.widgets.events.MouseWheelEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
                         selfJ.@com.smartgwt.client.widgets.BaseWidget::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
                         var ret = event.@com.smartgwt.client.event.Cancellable::isCancelled()();
                         return !ret;
-                    }
+                    })
              });
         } else {
             obj = this.@com.smartgwt.client.widgets.BaseWidget::getConfig()();
-            obj.mouseWheel = function(){
+            obj.mouseWheel = $entry(function(){
                    var param = {};
                    var event = @com.smartgwt.client.widgets.events.MouseWheelEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
                    selfJ.@com.smartgwt.client.widgets.BaseWidget::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
                    var ret = event.@com.smartgwt.client.event.Cancellable::isCancelled()();
                    return !ret;
-               };
+               });
         }
    }-*/;
 
@@ -4436,23 +4462,23 @@ public class Canvas extends BaseWidget  implements com.smartgwt.client.widgets.e
         var selfJ = this;
         if(this.@com.smartgwt.client.widgets.BaseWidget::isCreated()()) {
             obj = this.@com.smartgwt.client.widgets.BaseWidget::getJsObj()();
-            obj.addProperties({dragRepositionStart:function(){
+            obj.addProperties({dragRepositionStart:$entry(function(){
                         var param = {};
                         var event = @com.smartgwt.client.widgets.events.DragRepositionStartEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
                         selfJ.@com.smartgwt.client.widgets.BaseWidget::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
                         var ret = event.@com.smartgwt.client.event.Cancellable::isCancelled()();
                         return !ret;
-                    }
+                    })
              });
         } else {
             obj = this.@com.smartgwt.client.widgets.BaseWidget::getConfig()();
-            obj.dragRepositionStart = function(){
+            obj.dragRepositionStart = $entry(function(){
                    var param = {};
                    var event = @com.smartgwt.client.widgets.events.DragRepositionStartEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
                    selfJ.@com.smartgwt.client.widgets.BaseWidget::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
                    var ret = event.@com.smartgwt.client.event.Cancellable::isCancelled()();
                    return !ret;
-               };
+               });
         }
    }-*/;
 
@@ -4477,23 +4503,23 @@ public class Canvas extends BaseWidget  implements com.smartgwt.client.widgets.e
         var selfJ = this;
         if(this.@com.smartgwt.client.widgets.BaseWidget::isCreated()()) {
             obj = this.@com.smartgwt.client.widgets.BaseWidget::getJsObj()();
-            obj.addProperties({dragRepositionMove:function(){
+            obj.addProperties({dragRepositionMove:$entry(function(){
                         var param = {};
                         var event = @com.smartgwt.client.widgets.events.DragRepositionMoveEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
                         selfJ.@com.smartgwt.client.widgets.BaseWidget::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
                         var ret = event.@com.smartgwt.client.event.Cancellable::isCancelled()();
                         return !ret;
-                    }
+                    })
              });
         } else {
             obj = this.@com.smartgwt.client.widgets.BaseWidget::getConfig()();
-            obj.dragRepositionMove = function(){
+            obj.dragRepositionMove = $entry(function(){
                    var param = {};
                    var event = @com.smartgwt.client.widgets.events.DragRepositionMoveEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
                    selfJ.@com.smartgwt.client.widgets.BaseWidget::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
                    var ret = event.@com.smartgwt.client.event.Cancellable::isCancelled()();
                    return !ret;
-               };
+               });
         }
    }-*/;
 
@@ -4519,23 +4545,23 @@ public class Canvas extends BaseWidget  implements com.smartgwt.client.widgets.e
         var selfJ = this;
         if(this.@com.smartgwt.client.widgets.BaseWidget::isCreated()()) {
             obj = this.@com.smartgwt.client.widgets.BaseWidget::getJsObj()();
-            obj.addProperties({dragRepositionStop:function(){
+            obj.addProperties({dragRepositionStop:$entry(function(){
                         var param = {};
                         var event = @com.smartgwt.client.widgets.events.DragRepositionStopEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
                         selfJ.@com.smartgwt.client.widgets.BaseWidget::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
                         var ret = event.@com.smartgwt.client.event.Cancellable::isCancelled()();
                         return !ret;
-                    }
+                    })
              });
         } else {
             obj = this.@com.smartgwt.client.widgets.BaseWidget::getConfig()();
-            obj.dragRepositionStop = function(){
+            obj.dragRepositionStop = $entry(function(){
                    var param = {};
                    var event = @com.smartgwt.client.widgets.events.DragRepositionStopEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
                    selfJ.@com.smartgwt.client.widgets.BaseWidget::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
                    var ret = event.@com.smartgwt.client.event.Cancellable::isCancelled()();
                    return !ret;
-               };
+               });
         }
    }-*/;
 
@@ -4558,23 +4584,23 @@ public class Canvas extends BaseWidget  implements com.smartgwt.client.widgets.e
         var selfJ = this;
         if(this.@com.smartgwt.client.widgets.BaseWidget::isCreated()()) {
             obj = this.@com.smartgwt.client.widgets.BaseWidget::getJsObj()();
-            obj.addProperties({dragResizeStart:function(){
+            obj.addProperties({dragResizeStart:$entry(function(){
                         var param = {};
                         var event = @com.smartgwt.client.widgets.events.DragResizeStartEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
                         selfJ.@com.smartgwt.client.widgets.BaseWidget::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
                         var ret = event.@com.smartgwt.client.event.Cancellable::isCancelled()();
                         return !ret;
-                    }
+                    })
              });
         } else {
             obj = this.@com.smartgwt.client.widgets.BaseWidget::getConfig()();
-            obj.dragResizeStart = function(){
+            obj.dragResizeStart = $entry(function(){
                    var param = {};
                    var event = @com.smartgwt.client.widgets.events.DragResizeStartEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
                    selfJ.@com.smartgwt.client.widgets.BaseWidget::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
                    var ret = event.@com.smartgwt.client.event.Cancellable::isCancelled()();
                    return !ret;
-               };
+               });
         }
    }-*/;
 
@@ -4599,23 +4625,23 @@ public class Canvas extends BaseWidget  implements com.smartgwt.client.widgets.e
         var selfJ = this;
         if(this.@com.smartgwt.client.widgets.BaseWidget::isCreated()()) {
             obj = this.@com.smartgwt.client.widgets.BaseWidget::getJsObj()();
-            obj.addProperties({dragResizeMove:function(){
+            obj.addProperties({dragResizeMove:$entry(function(){
                         var param = {};
                         var event = @com.smartgwt.client.widgets.events.DragResizeMoveEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
                         selfJ.@com.smartgwt.client.widgets.BaseWidget::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
                         var ret = event.@com.smartgwt.client.event.Cancellable::isCancelled()();
                         return !ret;
-                    }
+                    })
              });
         } else {
             obj = this.@com.smartgwt.client.widgets.BaseWidget::getConfig()();
-            obj.dragResizeMove = function(){
+            obj.dragResizeMove = $entry(function(){
                    var param = {};
                    var event = @com.smartgwt.client.widgets.events.DragResizeMoveEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
                    selfJ.@com.smartgwt.client.widgets.BaseWidget::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
                    var ret = event.@com.smartgwt.client.event.Cancellable::isCancelled()();
                    return !ret;
-               };
+               });
         }
    }-*/;
 
@@ -4641,23 +4667,23 @@ public class Canvas extends BaseWidget  implements com.smartgwt.client.widgets.e
         var selfJ = this;
         if(this.@com.smartgwt.client.widgets.BaseWidget::isCreated()()) {
             obj = this.@com.smartgwt.client.widgets.BaseWidget::getJsObj()();
-            obj.addProperties({dragResizeStop:function(){
+            obj.addProperties({dragResizeStop:$entry(function(){
                         var param = {};
                         var event = @com.smartgwt.client.widgets.events.DragResizeStopEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
                         selfJ.@com.smartgwt.client.widgets.BaseWidget::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
                         var ret = event.@com.smartgwt.client.event.Cancellable::isCancelled()();
                         return !ret;
-                    }
+                    })
              });
         } else {
             obj = this.@com.smartgwt.client.widgets.BaseWidget::getConfig()();
-            obj.dragResizeStop = function(){
+            obj.dragResizeStop = $entry(function(){
                    var param = {};
                    var event = @com.smartgwt.client.widgets.events.DragResizeStopEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
                    selfJ.@com.smartgwt.client.widgets.BaseWidget::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
                    var ret = event.@com.smartgwt.client.event.Cancellable::isCancelled()();
                    return !ret;
-               };
+               });
         }
    }-*/;
 
@@ -4682,23 +4708,23 @@ public class Canvas extends BaseWidget  implements com.smartgwt.client.widgets.e
         var selfJ = this;
         if(this.@com.smartgwt.client.widgets.BaseWidget::isCreated()()) {
             obj = this.@com.smartgwt.client.widgets.BaseWidget::getJsObj()();
-            obj.addProperties({dragStart:function(){
+            obj.addProperties({dragStart:$entry(function(){
                         var param = {};
                         var event = @com.smartgwt.client.widgets.events.DragStartEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
                         selfJ.@com.smartgwt.client.widgets.BaseWidget::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
                         var ret = event.@com.smartgwt.client.event.Cancellable::isCancelled()();
                         return !ret;
-                    }
+                    })
              });
         } else {
             obj = this.@com.smartgwt.client.widgets.BaseWidget::getConfig()();
-            obj.dragStart = function(){
+            obj.dragStart = $entry(function(){
                    var param = {};
                    var event = @com.smartgwt.client.widgets.events.DragStartEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
                    selfJ.@com.smartgwt.client.widgets.BaseWidget::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
                    var ret = event.@com.smartgwt.client.event.Cancellable::isCancelled()();
                    return !ret;
-               };
+               });
         }
    }-*/;
 
@@ -4720,23 +4746,23 @@ public class Canvas extends BaseWidget  implements com.smartgwt.client.widgets.e
         var selfJ = this;
         if(this.@com.smartgwt.client.widgets.BaseWidget::isCreated()()) {
             obj = this.@com.smartgwt.client.widgets.BaseWidget::getJsObj()();
-            obj.addProperties({dragMove:function(){
+            obj.addProperties({dragMove:$entry(function(){
                         var param = {};
                         var event = @com.smartgwt.client.widgets.events.DragMoveEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
                         selfJ.@com.smartgwt.client.widgets.BaseWidget::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
                         var ret = event.@com.smartgwt.client.event.Cancellable::isCancelled()();
                         return !ret;
-                    }
+                    })
              });
         } else {
             obj = this.@com.smartgwt.client.widgets.BaseWidget::getConfig()();
-            obj.dragMove = function(){
+            obj.dragMove = $entry(function(){
                    var param = {};
                    var event = @com.smartgwt.client.widgets.events.DragMoveEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
                    selfJ.@com.smartgwt.client.widgets.BaseWidget::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
                    var ret = event.@com.smartgwt.client.event.Cancellable::isCancelled()();
                    return !ret;
-               };
+               });
         }
    }-*/;
 
@@ -4759,23 +4785,23 @@ public class Canvas extends BaseWidget  implements com.smartgwt.client.widgets.e
         var selfJ = this;
         if(this.@com.smartgwt.client.widgets.BaseWidget::isCreated()()) {
             obj = this.@com.smartgwt.client.widgets.BaseWidget::getJsObj()();
-            obj.addProperties({dragStop:function(){
+            obj.addProperties({dragStop:$entry(function(){
                         var param = {};
                         var event = @com.smartgwt.client.widgets.events.DragStopEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
                         selfJ.@com.smartgwt.client.widgets.BaseWidget::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
                         var ret = event.@com.smartgwt.client.event.Cancellable::isCancelled()();
                         return !ret;
-                    }
+                    })
              });
         } else {
             obj = this.@com.smartgwt.client.widgets.BaseWidget::getConfig()();
-            obj.dragStop = function(){
+            obj.dragStop = $entry(function(){
                    var param = {};
                    var event = @com.smartgwt.client.widgets.events.DragStopEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
                    selfJ.@com.smartgwt.client.widgets.BaseWidget::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
                    var ret = event.@com.smartgwt.client.event.Cancellable::isCancelled()();
                    return !ret;
-               };
+               });
         }
    }-*/;
 
@@ -4798,23 +4824,23 @@ public class Canvas extends BaseWidget  implements com.smartgwt.client.widgets.e
         var selfJ = this;
         if(this.@com.smartgwt.client.widgets.BaseWidget::isCreated()()) {
             obj = this.@com.smartgwt.client.widgets.BaseWidget::getJsObj()();
-            obj.addProperties({dropOver:function(){
+            obj.addProperties({dropOver:$entry(function(){
                         var param = {};
                         var event = @com.smartgwt.client.widgets.events.DropOverEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
                         selfJ.@com.smartgwt.client.widgets.BaseWidget::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
                         var ret = event.@com.smartgwt.client.event.Cancellable::isCancelled()();
                         return !ret;
-                    }
+                    })
              });
         } else {
             obj = this.@com.smartgwt.client.widgets.BaseWidget::getConfig()();
-            obj.dropOver = function(){
+            obj.dropOver = $entry(function(){
                    var param = {};
                    var event = @com.smartgwt.client.widgets.events.DropOverEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
                    selfJ.@com.smartgwt.client.widgets.BaseWidget::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
                    var ret = event.@com.smartgwt.client.event.Cancellable::isCancelled()();
                    return !ret;
-               };
+               });
         }
    }-*/;
 
@@ -4837,23 +4863,23 @@ public class Canvas extends BaseWidget  implements com.smartgwt.client.widgets.e
         var selfJ = this;
         if(this.@com.smartgwt.client.widgets.BaseWidget::isCreated()()) {
             obj = this.@com.smartgwt.client.widgets.BaseWidget::getJsObj()();
-            obj.addProperties({dropMove:function(){
+            obj.addProperties({dropMove:$entry(function(){
                         var param = {};
                         var event = @com.smartgwt.client.widgets.events.DropMoveEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
                         selfJ.@com.smartgwt.client.widgets.BaseWidget::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
                         var ret = event.@com.smartgwt.client.event.Cancellable::isCancelled()();
                         return !ret;
-                    }
+                    })
              });
         } else {
             obj = this.@com.smartgwt.client.widgets.BaseWidget::getConfig()();
-            obj.dropMove = function(){
+            obj.dropMove = $entry(function(){
                    var param = {};
                    var event = @com.smartgwt.client.widgets.events.DropMoveEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
                    selfJ.@com.smartgwt.client.widgets.BaseWidget::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
                    var ret = event.@com.smartgwt.client.event.Cancellable::isCancelled()();
                    return !ret;
-               };
+               });
         }
    }-*/;
 
@@ -4876,23 +4902,23 @@ public class Canvas extends BaseWidget  implements com.smartgwt.client.widgets.e
         var selfJ = this;
         if(this.@com.smartgwt.client.widgets.BaseWidget::isCreated()()) {
             obj = this.@com.smartgwt.client.widgets.BaseWidget::getJsObj()();
-            obj.addProperties({dropOut:function(){
+            obj.addProperties({dropOut:$entry(function(){
                         var param = {};
                         var event = @com.smartgwt.client.widgets.events.DropOutEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
                         selfJ.@com.smartgwt.client.widgets.BaseWidget::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
                         var ret = event.@com.smartgwt.client.event.Cancellable::isCancelled()();
                         return !ret;
-                    }
+                    })
              });
         } else {
             obj = this.@com.smartgwt.client.widgets.BaseWidget::getConfig()();
-            obj.dropOut = function(){
+            obj.dropOut = $entry(function(){
                    var param = {};
                    var event = @com.smartgwt.client.widgets.events.DropOutEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
                    selfJ.@com.smartgwt.client.widgets.BaseWidget::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
                    var ret = event.@com.smartgwt.client.event.Cancellable::isCancelled()();
                    return !ret;
-               };
+               });
         }
    }-*/;
 
@@ -4918,23 +4944,23 @@ public class Canvas extends BaseWidget  implements com.smartgwt.client.widgets.e
         var selfJ = this;
         if(this.@com.smartgwt.client.widgets.BaseWidget::isCreated()()) {
             obj = this.@com.smartgwt.client.widgets.BaseWidget::getJsObj()();
-            obj.addProperties({keyDown:function(){
+            obj.addProperties({keyDown:$entry(function(){
                         var param = {};
                         var event = @com.smartgwt.client.widgets.events.KeyDownEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
                         selfJ.@com.smartgwt.client.widgets.BaseWidget::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
                         var ret = event.@com.smartgwt.client.event.Cancellable::isCancelled()();
                         return !ret;
-                    }
+                    })
              });
         } else {
             obj = this.@com.smartgwt.client.widgets.BaseWidget::getConfig()();
-            obj.keyDown = function(){
+            obj.keyDown = $entry(function(){
                    var param = {};
                    var event = @com.smartgwt.client.widgets.events.KeyDownEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
                    selfJ.@com.smartgwt.client.widgets.BaseWidget::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
                    var ret = event.@com.smartgwt.client.event.Cancellable::isCancelled()();
                    return !ret;
-               };
+               });
         }
    }-*/;
 
@@ -4977,23 +5003,23 @@ public class Canvas extends BaseWidget  implements com.smartgwt.client.widgets.e
         var selfJ = this;
         if(this.@com.smartgwt.client.widgets.BaseWidget::isCreated()()) {
             obj = this.@com.smartgwt.client.widgets.BaseWidget::getJsObj()();
-            obj.addProperties({keyPress:function(){
+            obj.addProperties({keyPress:$entry(function(){
                         var param = {};
                         var event = @com.smartgwt.client.widgets.events.KeyPressEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
                         selfJ.@com.smartgwt.client.widgets.BaseWidget::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
                         var ret = event.@com.smartgwt.client.event.Cancellable::isCancelled()();
                         return !ret;
-                    }
+                    })
              });
         } else {
             obj = this.@com.smartgwt.client.widgets.BaseWidget::getConfig()();
-            obj.keyPress = function(){
+            obj.keyPress = $entry(function(){
                    var param = {};
                    var event = @com.smartgwt.client.widgets.events.KeyPressEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
                    selfJ.@com.smartgwt.client.widgets.BaseWidget::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
                    var ret = event.@com.smartgwt.client.event.Cancellable::isCancelled()();
                    return !ret;
-               };
+               });
         }
    }-*/;
 
@@ -5132,19 +5158,19 @@ public class Canvas extends BaseWidget  implements com.smartgwt.client.widgets.e
         var selfJ = this;
         if(this.@com.smartgwt.client.widgets.BaseWidget::isCreated()()) {
             obj = this.@com.smartgwt.client.widgets.BaseWidget::getJsObj()();
-            obj.addProperties({focusChanged:function(){
+            obj.addProperties({focusChanged:$entry(function(){
                         var param = {"hasFocus" : arguments[0]};
                         var event = @com.smartgwt.client.widgets.events.FocusChangedEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
                         selfJ.@com.smartgwt.client.widgets.BaseWidget::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
-                    }
+                    })
              });
         } else {
             obj = this.@com.smartgwt.client.widgets.BaseWidget::getConfig()();
-            obj.focusChanged = function(){
+            obj.focusChanged = $entry(function(){
                    var param = {"hasFocus" : arguments[0]};
                    var event = @com.smartgwt.client.widgets.events.FocusChangedEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
                    selfJ.@com.smartgwt.client.widgets.BaseWidget::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
-               };
+               });
         }
    }-*/;
 
@@ -5201,17 +5227,21 @@ public class Canvas extends BaseWidget  implements com.smartgwt.client.widgets.e
 
 
 
+
+
+
+
 	
 	protected native void onInit () /*-{
 	
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
         
         self.__willAcceptDrop = self.willAcceptDrop;
-        self.willAcceptDrop = function() {
+        self.willAcceptDrop = $entry(function() {
             var jObj = this.__ref;
             var retVal = jObj.@com.smartgwt.client.widgets.Canvas::willAcceptDrop()();
             return retVal.@java.lang.Boolean::booleanValue()();
-        };
+        });
 	}-*/;
 
     /**
@@ -5860,10 +5890,10 @@ public class Canvas extends BaseWidget  implements com.smartgwt.client.widgets.e
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
         var leftJS = left == null ? null : left.@java.lang.Integer::intValue()();
         var topJS = top == null ? null : top.@java.lang.Integer::intValue()();
-        self.animateMove(leftJS, topJS, function(earlyFinish) {
+        self.animateMove(leftJS, topJS, $entry(function(earlyFinish) {
              earlyFinish = earlyFinish === undefined ? false : earlyFinish;
              if(callback != null) callback.@com.smartgwt.client.widgets.AnimationCallback::execute(Z)(earlyFinish);
-        });
+        }));
     }-*/;
 
     /**
@@ -5880,10 +5910,10 @@ public class Canvas extends BaseWidget  implements com.smartgwt.client.widgets.e
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
         var leftJS = left == null ? null : left.@java.lang.Integer::intValue()();
         var topJS = top == null ? null : top.@java.lang.Integer::intValue()();
-        self.animateMove(leftJS, topJS, function(earlyFinish) {
+        self.animateMove(leftJS, topJS, $entry(function(earlyFinish) {
             earlyFinish = earlyFinish === undefined ? false : earlyFinish;
             if(callback != null) callback.@com.smartgwt.client.widgets.AnimationCallback::execute(Z)(earlyFinish);
-        }, duration);
+        }), duration);
     }-*/;
 
     /**
@@ -5901,10 +5931,10 @@ public class Canvas extends BaseWidget  implements com.smartgwt.client.widgets.e
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
         var leftJS = left == null ? null : left.@java.lang.Integer::intValue()();
         var topJS = top == null ? null : top.@java.lang.Integer::intValue()();
-        self.animateMove(leftJS, topJS, function(earlyFinish) {
+        self.animateMove(leftJS, topJS, $entry(function(earlyFinish) {
             earlyFinish = earlyFinish === undefined ? false : earlyFinish;
             if(callback != null) callback.@com.smartgwt.client.widgets.AnimationCallback::execute(Z)(earlyFinish);
-        }, duration, acceleration == null ? null : acceleration.@com.smartgwt.client.types.ValueEnum::getValue()());
+        }), duration, acceleration == null ? null : acceleration.@com.smartgwt.client.types.ValueEnum::getValue()());
     }-*/;
 
     /**
@@ -5929,10 +5959,10 @@ public class Canvas extends BaseWidget  implements com.smartgwt.client.widgets.e
      */
     public native void animateScroll(int scrollLeft, int scrollTop, AnimationCallback callback) /*-{
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
-        self.animateScroll(scrollLeft, scrollTop, function(earlyFinish) {
+        self.animateScroll(scrollLeft, scrollTop, $entry(function(earlyFinish) {
             earlyFinish = earlyFinish === undefined ? false : earlyFinish;
             if(callback != null) callback.@com.smartgwt.client.widgets.AnimationCallback::execute(Z)(earlyFinish);
-        });
+        }));
     }-*/;
 
     /**
@@ -5947,10 +5977,10 @@ public class Canvas extends BaseWidget  implements com.smartgwt.client.widgets.e
      */
     public native void animateScroll(int scrollLeft, int scrollTop, AnimationCallback callback, int duration) /*-{
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
-        self.animateScroll(scrollLeft, scrollTop, function(earlyFinish) {
+        self.animateScroll(scrollLeft, scrollTop, $entry(function(earlyFinish) {
             earlyFinish = earlyFinish === undefined ? false : earlyFinish;
             if(callback != null) callback.@com.smartgwt.client.widgets.AnimationCallback::execute(Z)(earlyFinish);
-        }, duration);
+        }), duration);
     }-*/;
 
     /**
@@ -5988,10 +6018,10 @@ public class Canvas extends BaseWidget  implements com.smartgwt.client.widgets.e
         var widthJS = width == null ? null : width.@java.lang.Integer::intValue()();
         var heightJS = height == null ? null : height.@java.lang.Integer::intValue()();
 
-        self.animateRect(leftJS, topJS, widthJS, heightJS, function(earlyFinish) {
+        self.animateRect(leftJS, topJS, widthJS, heightJS, $entry(function(earlyFinish) {
             earlyFinish = earlyFinish === undefined ? false : earlyFinish;
             if(callback != null) callback.@com.smartgwt.client.widgets.AnimationCallback::execute(Z)(earlyFinish);
-        });
+        }));
     }-*/;
 
     /**
@@ -6013,10 +6043,10 @@ public class Canvas extends BaseWidget  implements com.smartgwt.client.widgets.e
         var widthJS = width == null ? null : width.@java.lang.Integer::intValue()();
         var heightJS = height == null ? null : height.@java.lang.Integer::intValue()();
 
-        self.animateRect(leftJS, topJS, widthJS, heightJS, function(earlyFinish) {
+        self.animateRect(leftJS, topJS, widthJS, heightJS, $entry(function(earlyFinish) {
             earlyFinish = earlyFinish === undefined ? false : earlyFinish;
             if(callback != null) callback.@com.smartgwt.client.widgets.AnimationCallback::execute(Z)(earlyFinish);
-        }, duration);
+        }), duration);
     }-*/;
 
     /**
@@ -6045,10 +6075,10 @@ public class Canvas extends BaseWidget  implements com.smartgwt.client.widgets.e
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
         var widthJS = width == null ? null : width.@java.lang.Integer::intValue()();
         var heightJS = height == null ? null : height.@java.lang.Integer::intValue()();
-        self.animateResize(widthJS, heightJS, function(earlyFinish) {
+        self.animateResize(widthJS, heightJS, $entry(function(earlyFinish) {
             earlyFinish = earlyFinish === undefined ? false : earlyFinish;
             if(callback != null) callback.@com.smartgwt.client.widgets.AnimationCallback::execute(Z)(earlyFinish);
-        });
+        }));
     }-*/;
 
     /**
@@ -6065,10 +6095,10 @@ public class Canvas extends BaseWidget  implements com.smartgwt.client.widgets.e
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
         var widthJS = width == null ? null : width.@java.lang.Integer::intValue()();
         var heightJS = height == null ? null : height.@java.lang.Integer::intValue()();
-        self.animateResize(widthJS, heightJS, function(earlyFinish) {
+        self.animateResize(widthJS, heightJS, $entry(function(earlyFinish) {
             earlyFinish = earlyFinish === undefined ? false : earlyFinish;
             if(callback != null) callback.@com.smartgwt.client.widgets.AnimationCallback::execute(Z)(earlyFinish);
-        }, duration);
+        }), duration);
     }-*/;
 
 
@@ -6092,10 +6122,10 @@ public class Canvas extends BaseWidget  implements com.smartgwt.client.widgets.e
      */
     public native void animateFade(int opacity, AnimationCallback callback) /*-{
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
-        self.animateFade(opacity, function(earlyFinish) {
+        self.animateFade(opacity, $entry(function(earlyFinish) {
             earlyFinish = earlyFinish === undefined ? false : earlyFinish;
             if(callback != null) callback.@com.smartgwt.client.widgets.AnimationCallback::execute(Z)(earlyFinish);
-        });
+        }));
     }-*/;
 
     /**
@@ -6109,10 +6139,10 @@ public class Canvas extends BaseWidget  implements com.smartgwt.client.widgets.e
      */
     public native void animateFade(int opacity, AnimationCallback callback, int duration) /*-{
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
-        self.animateFade(opacity, function(earlyFinish) {
+        self.animateFade(opacity, $entry(function(earlyFinish) {
             earlyFinish = earlyFinish === undefined ? false : earlyFinish;
             if(callback != null) callback.@com.smartgwt.client.widgets.AnimationCallback::execute(Z)(earlyFinish);
-        }, duration);
+        }), duration);
     }-*/;
 
     /**
@@ -6143,10 +6173,10 @@ public class Canvas extends BaseWidget  implements com.smartgwt.client.widgets.e
     public native void animateHide(AnimationEffect effect, AnimationCallback callback) /*-{
         var effectVal = effect.@com.smartgwt.client.types.AnimationEffect::getValue()();
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
-        self.animateHide(effectVal, function(earlyFinish) {
+        self.animateHide(effectVal, $entry(function(earlyFinish) {
             earlyFinish = earlyFinish === undefined ? false : earlyFinish;
             if(callback != null) callback.@com.smartgwt.client.widgets.AnimationCallback::execute(Z)(earlyFinish);
-        });
+        }));
     }-*/;
 
     /**
@@ -6165,10 +6195,10 @@ public class Canvas extends BaseWidget  implements com.smartgwt.client.widgets.e
     public native void animateHide(AnimationEffect effect, AnimationCallback callback, int duration) /*-{
         var effectVal = effect.@com.smartgwt.client.types.AnimationEffect::getValue()();
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
-        self.animateHide(effectVal, function(earlyFinish) {
+        self.animateHide(effectVal, $entry(function(earlyFinish) {
             earlyFinish = earlyFinish === undefined ? false : earlyFinish;
             if(callback != null) callback.@com.smartgwt.client.widgets.AnimationCallback::execute(Z)(earlyFinish);
-        }, duration);
+        }), duration);
     }-*/;
 
     /**
@@ -6201,10 +6231,10 @@ public class Canvas extends BaseWidget  implements com.smartgwt.client.widgets.e
     public native void animateShow(AnimationEffect effect, AnimationCallback callback) /*-{
         var effectVal = effect.@com.smartgwt.client.types.AnimationEffect::getValue()();
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
-        self.animateShow(effectVal, function(earlyFinish) {
+        self.animateShow(effectVal, $entry(function(earlyFinish) {
             earlyFinish = earlyFinish === undefined ? false : earlyFinish;
             if(callback != null) callback.@com.smartgwt.client.widgets.AnimationCallback::execute(Z)(earlyFinish);
-        });
+        }));
     }-*/;
 
     /**
@@ -6224,14 +6254,14 @@ public class Canvas extends BaseWidget  implements com.smartgwt.client.widgets.e
     public native void animateShow(AnimationEffect effect, AnimationCallback callback, int duration) /*-{
         var effectVal = effect.@com.smartgwt.client.types.AnimationEffect::getValue()();
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
-        self.animateShow(effectVal, function(earlyFinish) {
+        self.animateShow(effectVal, $entry(function(earlyFinish) {
             earlyFinish = earlyFinish === undefined ? false : earlyFinish;
             if(callback != null) callback.@com.smartgwt.client.widgets.AnimationCallback::execute(Z)(earlyFinish);
-        }, duration);
+        }), duration);
     }-*/;
 
     /**
-     * Update teh canvas shadow.
+     * Update the canvas shadow.
      */
     public native void updateShadow() /*-{
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
@@ -6580,9 +6610,9 @@ public class Canvas extends BaseWidget  implements com.smartgwt.client.widgets.e
     public native String showClickMask(Function clickActionCallback, ClickMaskMode mode, Canvas[] unmaskedTargets) /*-{
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
         var unmaskedTargetsJS = @com.smartgwt.client.util.JSOHelper::convertToJavaScriptArray([Ljava/lang/Object;)(unmaskedTargets);
-        return self.showClickMask(function() {
+        return self.showClickMask($entry(function() {
            if(clickActionCallback != null) clickActionCallback.@com.smartgwt.client.core.Function::execute()();
-        }, mode.@com.smartgwt.client.types.ClickMaskMode::getValue()(), unmaskedTargetsJS);
+        }), mode.@com.smartgwt.client.types.ClickMaskMode::getValue()(), unmaskedTargetsJS);
     }-*/;
     
     /**
@@ -6602,23 +6632,23 @@ public class Canvas extends BaseWidget  implements com.smartgwt.client.widgets.e
         var selfJ = this;
         if(this.@com.smartgwt.client.widgets.BaseWidget::isCreated()()) {
             obj = this.@com.smartgwt.client.widgets.BaseWidget::getJsObj()();
-            obj.addProperties({onDrop:function(){
+            obj.addProperties({onDrop:$entry(function(){
                     var param = {};
                     var event = @com.smartgwt.client.widgets.events.DropEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
                     selfJ.@com.smartgwt.client.widgets.BaseWidget::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
                     var ret = event.@com.smartgwt.client.event.Cancellable::isCancelled()();
                     return !ret;
-                }
+                })
             });
         } else {
             obj = this.@com.smartgwt.client.widgets.BaseWidget::getConfig()();
-            obj.onDrop = function(){
+            obj.onDrop = $entry(function(){
                 var param = {};
                 var event = @com.smartgwt.client.widgets.events.DropEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
                 selfJ.@com.smartgwt.client.widgets.BaseWidget::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
                 var ret = event.@com.smartgwt.client.event.Cancellable::isCancelled()();
                 return !ret;
-            };
+            });
         }
     }-*/;
 

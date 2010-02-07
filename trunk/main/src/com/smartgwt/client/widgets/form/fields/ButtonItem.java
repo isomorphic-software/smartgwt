@@ -232,11 +232,11 @@ public class ButtonItem extends CanvasItem  implements com.smartgwt.client.widge
         var obj = null;
             obj = this.@com.smartgwt.client.core.DataClass::getJsObj()();
             var selfJ = this;
-            obj.click = function(){
+            obj.click = $entry(function(){
                 var param = {"form" : arguments[0], "item" : arguments[1]};
                 var event = @com.smartgwt.client.widgets.form.fields.events.ClickEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
                 selfJ.@com.smartgwt.client.core.DataClass::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
-            };
+            });
    }-*/;
 
 

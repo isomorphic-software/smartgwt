@@ -13,7 +13,7 @@
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU
  * Lesser General Public License for more details.
  */
- 
+
 package com.smartgwt.client.widgets.grid;
 
 
@@ -821,10 +821,10 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
     public Boolean getVirtualScrolling()  {
         return getAttributeAsBoolean("virtualScrolling");
     }
-             
+
     /**
      * Overflow setting for the "body", that is, the area of the grid where data values are rendered. <P> By setting both the
-     * grid itself and the body to overflow:visible, it is possible to "auto-fit" to the rendered height or width of the rows. 
+     * grid itself and the body to overflow:visible, it is possible to "auto-fit" to the rendered height or width of the rows.
      * Note that in this case <code>grid.width</code> and <code>grid.height</code> act as minimums.
      * Update the {@link com.smartgwt.client.widgets.grid.ListGrid#getBodyOverflow 'bodyOverflow'} for this listGrid.
      * <p><b>Note : </b> This is an advanced setting</p>
@@ -837,7 +837,7 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
 
     /**
      * Overflow setting for the "body", that is, the area of the grid where data values are rendered. <P> By setting both the
-     * grid itself and the body to overflow:visible, it is possible to "auto-fit" to the rendered height or width of the rows. 
+     * grid itself and the body to overflow:visible, it is possible to "auto-fit" to the rendered height or width of the rows.
      * Note that in this case <code>grid.width</code> and <code>grid.height</code> act as minimums.
      *
      *
@@ -941,7 +941,7 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
      * Should we vertically clip cell contents, or allow rows to expand vertically to show all contents? <P> If we allow rows
      * to expand, the row height as derived from {@link com.smartgwt.client.grid.GridRenderer#getRowHeight} or the default
      * {@link com.smartgwt.client.widgets.grid.ListGrid#getCellHeight cellHeight} is treated as a minimum. <P> <b>NOTE:</b> by
-     * default, for performance reasons, clipping is not enforced for some kinds of content (such as images) on all browsers. 
+     * default, for performance reasons, clipping is not enforced for some kinds of content (such as images) on all browsers.
      * Set {@link com.smartgwt.client.widgets.grid.ListGrid#getEnforceVClipping 'enforceVClipping:true'} to enforce clipping
      * for all types of content on all browsers.
      * <p><b>Note : </b> This is an advanced setting</p>
@@ -956,7 +956,7 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
      * Should we vertically clip cell contents, or allow rows to expand vertically to show all contents? <P> If we allow rows
      * to expand, the row height as derived from {@link com.smartgwt.client.grid.GridRenderer#getRowHeight} or the default
      * {@link com.smartgwt.client.widgets.grid.ListGrid#getCellHeight cellHeight} is treated as a minimum. <P> <b>NOTE:</b> by
-     * default, for performance reasons, clipping is not enforced for some kinds of content (such as images) on all browsers. 
+     * default, for performance reasons, clipping is not enforced for some kinds of content (such as images) on all browsers.
      * Set {@link com.smartgwt.client.widgets.grid.ListGrid#getEnforceVClipping 'enforceVClipping:true'} to enforce clipping
      * for all types of content on all browsers.
      *
@@ -1103,7 +1103,7 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
      * If {@link com.smartgwt.client.widgets.grid.ListGrid#getAutoFitData autoFitData} is set to <code>"horizontal"</code> or
      * <code>"both"</code> this property provides an upper limit on how far the ListGrid will expand horizontally to
      * accommodate its content.  If content exceeds this width, scrollbars will be introduced as usual.   In addition to this
-     * property, {@link com.smartgwt.client.widgets.grid.ListGrid#getAutoFitMaxColumns autoFitMaxColumns} allows you to limit 
+     * property, {@link com.smartgwt.client.widgets.grid.ListGrid#getAutoFitMaxColumns autoFitMaxColumns} allows you to limit
      * horizontal expansion based on the number of columns to be rendered.
      * Setter for {@link com.smartgwt.client.widgets.grid.ListGrid#getAutoFitMaxWidth autoFitMaxWidth}.
      *
@@ -1118,7 +1118,7 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
      * If {@link com.smartgwt.client.widgets.grid.ListGrid#getAutoFitData autoFitData} is set to <code>"horizontal"</code> or
      * <code>"both"</code> this property provides an upper limit on how far the ListGrid will expand horizontally to
      * accommodate its content.  If content exceeds this width, scrollbars will be introduced as usual.   In addition to this
-     * property, {@link com.smartgwt.client.widgets.grid.ListGrid#getAutoFitMaxColumns autoFitMaxColumns} allows you to limit 
+     * property, {@link com.smartgwt.client.widgets.grid.ListGrid#getAutoFitMaxColumns autoFitMaxColumns} allows you to limit
      * horizontal expansion based on the number of columns to be rendered.
      *
      *
@@ -1216,7 +1216,7 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
     public int getCellPadding()  {
         return getAttributeAsInt("cellPadding");
     }
-             
+
     /**
      * Display format to use for fields specified as type 'date'.  Default is to use the system-wide default short date format,
      * configured via {@link com.smartgwt.client..Date#setShortDisplayFormat}.  Specify any valid {@link
@@ -1251,7 +1251,7 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
     public DateDisplayFormat getDateFormatter()  {
         return EnumUtil.getEnum(DateDisplayFormat.values(), getAttribute("dateFormatter"));
     }
-             
+
     /**
      * Display format to use for fields specified as type 'datetime'.  Default is to use the system-wide default date time
      * format, configured via {@link com.smartgwt.client..Date#setShortDatetimeDisplayFormat}.  Specify any valid {@link
@@ -1804,7 +1804,7 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
     public Boolean getShowRollOverCanvas()  {
         return getAttributeAsBoolean("showRollOverCanvas");
     }
-            
+
     /**
      * Canvas created and embedded in the body behind a given record.   When  {@link
      * com.smartgwt.client.widgets.grid.ListGridRecord#getBackgroundComponent backgroundComponent} is set, this autoChild
@@ -1971,7 +1971,7 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
     public String getHoverStyle()  {
         return getAttributeAsString("hoverStyle");
     }
-             
+
     /**
      * How selection of rows should be presented to the user. <P> For <code>selectionAppearance:"checkbox"</code> with multiple
      * selection allowed, you would typically use {@link com.smartgwt.client.widgets.grid.ListGrid#getSelectionType
@@ -2030,7 +2030,7 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
     public Boolean getCanSelectAll()  {
         return getAttributeAsBoolean("canSelectAll");
     }
-             
+
     /**
      * Defines a listGrid's clickable-selection behavior.   <P> The default selection appearance is governed by {@link
      * com.smartgwt.client.widgets.grid.ListGrid#getSelectionAppearance selectionAppearance}: if selectionAppearance is
@@ -2077,7 +2077,7 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
     }
 
     /**
-     * If this property is true, users can drag the mouse to select text within grid rows. This is mutually exclusive with 
+     * If this property is true, users can drag the mouse to select text within grid rows. This is mutually exclusive with
      * ${isc.DocUtils.linkForRef('canDragReorder','rearranging rows or cells by dragging')}, and with  {@link
      * com.smartgwt.client.widgets.grid.ListGrid#getCanDragSelect 'drag selection of rows'}.
      *
@@ -2088,7 +2088,7 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
     }
 
     /**
-     * If this property is true, users can drag the mouse to select text within grid rows. This is mutually exclusive with 
+     * If this property is true, users can drag the mouse to select text within grid rows. This is mutually exclusive with
      * ${isc.DocUtils.linkForRef('canDragReorder','rearranging rows or cells by dragging')}, and with  {@link
      * com.smartgwt.client.widgets.grid.ListGrid#getCanDragSelect 'drag selection of rows'}.
      *
@@ -2401,7 +2401,7 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
      * filter editor values will be updated to reflect the&#010 new set of criteria. If you wish to retain the user entered
      * filter criteria and &#010 programmatically modify a subset of field values programmatically this can be achieved by&#010
      * deriving new criteria by copying the existing set of criteria and adding other changes - &#010 something like this:&#010
-     * <pre><code>&#010   var newCriteria = isc.clone(myListGrid.getCriteria());&#010   isc.addProperties(newCriteria, {&#010  
+     * <pre><code>&#010   var newCriteria = isc.clone(myListGrid.getCriteria());&#010   isc.addProperties(newCriteria, {&#010
      * field1:"new value1",&#010      field2:"new value2"&#010   });&#010   myListGrid.setCriteria(newCriteria);&#010
      * </code></pre>&#010 <P>&#010 Also note that if you call <code>filterData()</code> and pass in criteria for dataSource
      * &#010 fields that are not present in the ListGrid, these criteria will continue to be applied along&#010 with the user
@@ -2425,7 +2425,7 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
      * filter editor values will be updated to reflect the&#010 new set of criteria. If you wish to retain the user entered
      * filter criteria and &#010 programmatically modify a subset of field values programmatically this can be achieved by&#010
      * deriving new criteria by copying the existing set of criteria and adding other changes - &#010 something like this:&#010
-     * <pre><code>&#010   var newCriteria = isc.clone(myListGrid.getCriteria());&#010   isc.addProperties(newCriteria, {&#010  
+     * <pre><code>&#010   var newCriteria = isc.clone(myListGrid.getCriteria());&#010   isc.addProperties(newCriteria, {&#010
      * field1:"new value1",&#010      field2:"new value2"&#010   });&#010   myListGrid.setCriteria(newCriteria);&#010
      * </code></pre>&#010 <P>&#010 Also note that if you call <code>filterData()</code> and pass in criteria for dataSource
      * &#010 fields that are not present in the ListGrid, these criteria will continue to be applied along&#010 with the user
@@ -2456,7 +2456,7 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
     public int getFilterEditorHeight()  {
         return getAttributeAsInt("filterEditorHeight");
     }
-             
+
     /**
      * When this grid is initially filtered via {@link com.smartgwt.client.widgets.grid.ListGrid#getAutoFetchData
      * autoFetchData}, or filtered by the user  via the {@link com.smartgwt.client.widgets.grid.ListGrid#getShowFilterEditor
@@ -2484,7 +2484,7 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
     }
 
     /**
-     * Can the user edit cells in this listGrid? Can be set for the listGrid, and overridden for       individual fields.<br>  
+     * Can the user edit cells in this listGrid? Can be set for the listGrid, and overridden for       individual fields.<br>
      * If 'canEdit' is false at the listGrid level, fields can never be edited - in this case      the canEdit property on
      * individual fields will be ignored.<br>      If 'canEdit' is set to true at the listGrid level, setting the 'canEdit'
      * property to      false at the field level will prevent the field from being edited inline.<br>      If 'canEdit' is not
@@ -2497,7 +2497,7 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
     }
 
     /**
-     * Can the user edit cells in this listGrid? Can be set for the listGrid, and overridden for       individual fields.<br>  
+     * Can the user edit cells in this listGrid? Can be set for the listGrid, and overridden for       individual fields.<br>
      * If 'canEdit' is false at the listGrid level, fields can never be edited - in this case      the canEdit property on
      * individual fields will be ignored.<br>      If 'canEdit' is set to true at the listGrid level, setting the 'canEdit'
      * property to      false at the field level will prevent the field from being edited inline.<br>      If 'canEdit' is not
@@ -2779,7 +2779,7 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
     }
 
     /**
-     * When {@link com.smartgwt.client.widgets.grid.ListGrid#getAnimateRemoveRecord 'animating record removal'}, this property 
+     * When {@link com.smartgwt.client.widgets.grid.ListGrid#getAnimateRemoveRecord 'animating record removal'}, this property
      * designates the speed of the animation in pixels per second. Takes precedence over the {@link
      * com.smartgwt.client.widgets.grid.ListGrid#getAnimateRemoveTime animateRemoveTime} property, which allows the developer
      * to specify a duration for the animation rather than a speed.
@@ -2791,7 +2791,7 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
     }
 
     /**
-     * When {@link com.smartgwt.client.widgets.grid.ListGrid#getAnimateRemoveRecord 'animating record removal'}, this property 
+     * When {@link com.smartgwt.client.widgets.grid.ListGrid#getAnimateRemoveRecord 'animating record removal'}, this property
      * designates the speed of the animation in pixels per second. Takes precedence over the {@link
      * com.smartgwt.client.widgets.grid.ListGrid#getAnimateRemoveTime animateRemoveTime} property, which allows the developer
      * to specify a duration for the animation rather than a speed.
@@ -3066,7 +3066,7 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
     public String getDiscardEditsSaveButtonTitle()  {
         return getAttributeAsString("discardEditsSaveButtonTitle");
     }
-             
+
     /**
      * If the user is editing a record in this listGrid, and attempts to navigate to a field beyond the end of the row, via tab
      * (or shift-tab off the first editable field), this  property determines what action to take:<ul> <li>"next": start
@@ -3091,7 +3091,7 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
     public RowEndEditAction getRowEndEditAction()  {
         return EnumUtil.getEnum(RowEndEditAction.values(), getAttribute("rowEndEditAction"));
     }
-             
+
     /**
      * If the user is editing the last record in this listGrid, and attempts to navigate  beyond the last row either by tabbing
      * off the last editable field, or using the down arrow key, this property determines what action to take:<ul> <li>"next":
@@ -3116,7 +3116,7 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
     public RowEndEditAction getListEndEditAction()  {
         return EnumUtil.getEnum(RowEndEditAction.values(), getAttribute("listEndEditAction"));
     }
-             
+
     /**
      * What to do when a user hits enter while editing a cell: <ul> <li>"nextCell": start editing the next editable cell in
      * this record (or the first     editable cell in the next record if focus is in the last editable cell in the row)
@@ -3143,7 +3143,7 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
     public EnterKeyEditAction getEnterKeyEditAction()  {
         return EnumUtil.getEnum(EnterKeyEditAction.values(), getAttribute("enterKeyEditAction"));
     }
-             
+
     /**
      * What to do when a user hits escape while editing a cell:<ul> <li>"cancel": close the editor and discard the current set
      * of edit values <li>"done": just close the editor (the edit is complete, but the edited values are retained). </ul> Note
@@ -3168,7 +3168,7 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
     public EscapeKeyEditAction getEscapeKeyEditAction()  {
         return EnumUtil.getEnum(EscapeKeyEditAction.values(), getAttribute("escapeKeyEditAction"));
     }
-             
+
     /**
      * Event that will trigger inline editing, see {@link com.smartgwt.client.types.ListGridEditEvent} for options. <P> Note
      * this setting has no effect unless {@link com.smartgwt.client.widgets.grid.ListGrid#getCanEdit canEdit} has been set to
@@ -3266,7 +3266,7 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
     }
 
     /**
-     * When the length of the field specified by {@link com.smartgwt.client.data.DataSourceField#getLength length} exceeds 
+     * When the length of the field specified by {@link com.smartgwt.client.data.DataSourceField#getLength length} exceeds
      * <code>this.longTextEditorThreshold</code> show an edit field of this type rather than the standard text field when the
      * field enters inline edit mode.
      *
@@ -3277,7 +3277,7 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
     }
 
     /**
-     * When the length of the field specified by {@link com.smartgwt.client.data.DataSourceField#getLength length} exceeds 
+     * When the length of the field specified by {@link com.smartgwt.client.data.DataSourceField#getLength length} exceeds
      * <code>this.longTextEditorThreshold</code> show an edit field of this type rather than the standard text field when the
      * field enters inline edit mode.
      *
@@ -3502,7 +3502,7 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
     public Boolean getCanSort()  {
         return getAttributeAsBoolean("canSort");
     }
-             
+
     /**
      * Indicates whether a sorting arrow should appear for the listGrid, and its          location. See SortArrow type for
      * details.<br>          Clicking the sort arrow reverses the direction of sorting for the current sort          column (if
@@ -3824,7 +3824,7 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
     public Boolean getCanResizeFields()  {
         return getAttributeAsBoolean("canResizeFields");
     }
-             
+
     /**
      * When records are being dragged from within a ListGrid, what sort of drag-tracker should be displayed?<br> Note that if
      * multiple records are being dragged the displayed tracker will be based on the first selected record.
@@ -3889,7 +3889,7 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
     public String getSkinImgDir()  {
         return getAttributeAsString("skinImgDir");
     }
-            
+
     /**
      * Image to show when sorting ascending. See ${isc.DocUtils.linkForRef('object:ImgProperties')} for format.
      * <p><b>Note : </b> This is an advanced setting</p>
@@ -3909,7 +3909,7 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
     public ImgProperties getSortAscendingImage()  {
         return new ImgProperties(getAttributeAsJavaScriptObject("sortAscendingImage"));
     }
-            
+
     /**
      * Image to show when sorting descending. See ${isc.DocUtils.linkForRef('object:ImgProperties')} for format.
      * <p><b>Note : </b> This is an advanced setting</p>
@@ -3929,7 +3929,7 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
     public ImgProperties getSortDescendingImage()  {
         return new ImgProperties(getAttributeAsJavaScriptObject("sortDescendingImage"));
     }
-            
+
     /**
      * Default image to use for the dragTracker when things are dragged within or out of this  list. See
      * ${isc.DocUtils.linkForRef('object:ImgProperties')} for format.
@@ -4233,7 +4233,7 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
     public String getDetailField()  {
         return getAttributeAsString("detailField");
     }
-             
+
     /**
      * The {@link com.smartgwt.client.types.ExpansionMode} for records in this grid. Default <code>null</code> value means no
      * expansion.
@@ -4379,7 +4379,7 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
     public String getRecordDetailDSProperty()  {
         return getAttributeAsString("recordDetailDSProperty");
     }
-             
+
     /**
      * For {@link com.smartgwt.client.types.ExpansionMode} that show another grid or tree, what the  child's expansionMode
      * should be. <P>Default value <code>null</code> means no further expansion.
@@ -4652,7 +4652,7 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
     public String getGroupSummaryRecordProperty()  {
         return getAttributeAsString("groupSummaryRecordProperty");
     }
-            
+
     /**
      * If {@link com.smartgwt.client.widgets.grid.ListGrid#getShowGridSummary showGridSummary} is true, by default summary
      * values are calculated on the  client based on the current data-set for the grid (see {@link
@@ -4691,7 +4691,7 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
     public DataSource getSummaryRowDataSource()  {
             return DataSource.getOrCreateRef(getAttributeAsJavaScriptObject("summaryRowDataSource"));
     }
-            
+
     /**
      * If {@link com.smartgwt.client.widgets.grid.ListGrid#getShowGridSummary showGridSummary} is true, and a {@link
      * com.smartgwt.client.widgets.grid.ListGrid#getSummaryRowDataSource summaryRowDataSource} is specified this property may
@@ -5232,23 +5232,23 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
         var selfJ = this;
         if(this.@com.smartgwt.client.widgets.BaseWidget::isCreated()()) {
             obj = this.@com.smartgwt.client.widgets.BaseWidget::getJsObj()();
-            obj.addProperties({cellOver:function(){
+            obj.addProperties({cellOver:$entry(function(){
                         var param = {"record" : arguments[0], "rowNum" : arguments[1], "colNum" : arguments[2]};
                         var event = @com.smartgwt.client.widgets.grid.events.CellOverEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
                         selfJ.@com.smartgwt.client.widgets.BaseWidget::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
                         var ret = event.@com.smartgwt.client.event.Cancellable::isCancelled()();
                         return !ret;
-                    }
+                    })
              });
         } else {
             obj = this.@com.smartgwt.client.widgets.BaseWidget::getConfig()();
-            obj.cellOver = function(){
+            obj.cellOver = $entry(function(){
                    var param = {"record" : arguments[0], "rowNum" : arguments[1], "colNum" : arguments[2]};
                    var event = @com.smartgwt.client.widgets.grid.events.CellOverEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
                    selfJ.@com.smartgwt.client.widgets.BaseWidget::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
                    var ret = event.@com.smartgwt.client.event.Cancellable::isCancelled()();
                    return !ret;
-               };
+               });
         }
    }-*/;
 
@@ -5270,23 +5270,23 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
         var selfJ = this;
         if(this.@com.smartgwt.client.widgets.BaseWidget::isCreated()()) {
             obj = this.@com.smartgwt.client.widgets.BaseWidget::getJsObj()();
-            obj.addProperties({rowOver:function(){
+            obj.addProperties({rowOver:$entry(function(){
                         var param = {"record" : arguments[0], "rowNum" : arguments[1], "colNum" : arguments[2]};
                         var event = @com.smartgwt.client.widgets.grid.events.RowOverEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
                         selfJ.@com.smartgwt.client.widgets.BaseWidget::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
                         var ret = event.@com.smartgwt.client.event.Cancellable::isCancelled()();
                         return !ret;
-                    }
+                    })
              });
         } else {
             obj = this.@com.smartgwt.client.widgets.BaseWidget::getConfig()();
-            obj.rowOver = function(){
+            obj.rowOver = $entry(function(){
                    var param = {"record" : arguments[0], "rowNum" : arguments[1], "colNum" : arguments[2]};
                    var event = @com.smartgwt.client.widgets.grid.events.RowOverEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
                    selfJ.@com.smartgwt.client.widgets.BaseWidget::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
                    var ret = event.@com.smartgwt.client.event.Cancellable::isCancelled()();
                    return !ret;
-               };
+               });
         }
    }-*/;
 
@@ -5308,23 +5308,23 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
         var selfJ = this;
         if(this.@com.smartgwt.client.widgets.BaseWidget::isCreated()()) {
             obj = this.@com.smartgwt.client.widgets.BaseWidget::getJsObj()();
-            obj.addProperties({cellOut:function(){
+            obj.addProperties({cellOut:$entry(function(){
                         var param = {"record" : arguments[0], "rowNum" : arguments[1], "colNum" : arguments[2]};
                         var event = @com.smartgwt.client.widgets.grid.events.CellOutEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
                         selfJ.@com.smartgwt.client.widgets.BaseWidget::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
                         var ret = event.@com.smartgwt.client.event.Cancellable::isCancelled()();
                         return !ret;
-                    }
+                    })
              });
         } else {
             obj = this.@com.smartgwt.client.widgets.BaseWidget::getConfig()();
-            obj.cellOut = function(){
+            obj.cellOut = $entry(function(){
                    var param = {"record" : arguments[0], "rowNum" : arguments[1], "colNum" : arguments[2]};
                    var event = @com.smartgwt.client.widgets.grid.events.CellOutEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
                    selfJ.@com.smartgwt.client.widgets.BaseWidget::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
                    var ret = event.@com.smartgwt.client.event.Cancellable::isCancelled()();
                    return !ret;
-               };
+               });
         }
    }-*/;
 
@@ -5346,23 +5346,23 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
         var selfJ = this;
         if(this.@com.smartgwt.client.widgets.BaseWidget::isCreated()()) {
             obj = this.@com.smartgwt.client.widgets.BaseWidget::getJsObj()();
-            obj.addProperties({rowOut:function(){
+            obj.addProperties({rowOut:$entry(function(){
                         var param = {"record" : arguments[0], "rowNum" : arguments[1], "colNum" : arguments[2]};
                         var event = @com.smartgwt.client.widgets.grid.events.RowOutEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
                         selfJ.@com.smartgwt.client.widgets.BaseWidget::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
                         var ret = event.@com.smartgwt.client.event.Cancellable::isCancelled()();
                         return !ret;
-                    }
+                    })
              });
         } else {
             obj = this.@com.smartgwt.client.widgets.BaseWidget::getConfig()();
-            obj.rowOut = function(){
+            obj.rowOut = $entry(function(){
                    var param = {"record" : arguments[0], "rowNum" : arguments[1], "colNum" : arguments[2]};
                    var event = @com.smartgwt.client.widgets.grid.events.RowOutEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
                    selfJ.@com.smartgwt.client.widgets.BaseWidget::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
                    var ret = event.@com.smartgwt.client.event.Cancellable::isCancelled()();
                    return !ret;
-               };
+               });
         }
    }-*/;
 
@@ -5385,23 +5385,23 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
         var selfJ = this;
         if(this.@com.smartgwt.client.widgets.BaseWidget::isCreated()()) {
             obj = this.@com.smartgwt.client.widgets.BaseWidget::getJsObj()();
-            obj.addProperties({cellHover:function(){
+            obj.addProperties({cellHover:$entry(function(){
                         var param = {"record" : arguments[0], "rowNum" : arguments[1], "colNum" : arguments[2]};
                         var event = @com.smartgwt.client.widgets.grid.events.CellHoverEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
                         selfJ.@com.smartgwt.client.widgets.BaseWidget::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
                         var ret = event.@com.smartgwt.client.event.Cancellable::isCancelled()();
                         return !ret;
-                    }
+                    })
              });
         } else {
             obj = this.@com.smartgwt.client.widgets.BaseWidget::getConfig()();
-            obj.cellHover = function(){
+            obj.cellHover = $entry(function(){
                    var param = {"record" : arguments[0], "rowNum" : arguments[1], "colNum" : arguments[2]};
                    var event = @com.smartgwt.client.widgets.grid.events.CellHoverEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
                    selfJ.@com.smartgwt.client.widgets.BaseWidget::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
                    var ret = event.@com.smartgwt.client.event.Cancellable::isCancelled()();
                    return !ret;
-               };
+               });
         }
    }-*/;
 
@@ -5424,23 +5424,23 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
         var selfJ = this;
         if(this.@com.smartgwt.client.widgets.BaseWidget::isCreated()()) {
             obj = this.@com.smartgwt.client.widgets.BaseWidget::getJsObj()();
-            obj.addProperties({rowHover:function(){
+            obj.addProperties({rowHover:$entry(function(){
                         var param = {"record" : arguments[0], "rowNum" : arguments[1], "colNum" : arguments[2]};
                         var event = @com.smartgwt.client.widgets.grid.events.RowHoverEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
                         selfJ.@com.smartgwt.client.widgets.BaseWidget::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
                         var ret = event.@com.smartgwt.client.event.Cancellable::isCancelled()();
                         return !ret;
-                    }
+                    })
              });
         } else {
             obj = this.@com.smartgwt.client.widgets.BaseWidget::getConfig()();
-            obj.rowHover = function(){
+            obj.rowHover = $entry(function(){
                    var param = {"record" : arguments[0], "rowNum" : arguments[1], "colNum" : arguments[2]};
                    var event = @com.smartgwt.client.widgets.grid.events.RowHoverEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
                    selfJ.@com.smartgwt.client.widgets.BaseWidget::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
                    var ret = event.@com.smartgwt.client.event.Cancellable::isCancelled()();
                    return !ret;
-               };
+               });
         }
    }-*/;
 
@@ -5463,23 +5463,23 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
         var selfJ = this;
         if(this.@com.smartgwt.client.widgets.BaseWidget::isCreated()()) {
             obj = this.@com.smartgwt.client.widgets.BaseWidget::getJsObj()();
-            obj.addProperties({cellContextClick:function(){
+            obj.addProperties({cellContextClick:$entry(function(){
                         var param = {"record" : arguments[0], "rowNum" : arguments[1], "colNum" : arguments[2]};
                         var event = @com.smartgwt.client.widgets.grid.events.CellContextClickEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
                         selfJ.@com.smartgwt.client.widgets.BaseWidget::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
                         var ret = event.@com.smartgwt.client.event.Cancellable::isCancelled()();
                         return !ret;
-                    }
+                    })
              });
         } else {
             obj = this.@com.smartgwt.client.widgets.BaseWidget::getConfig()();
-            obj.cellContextClick = function(){
+            obj.cellContextClick = $entry(function(){
                    var param = {"record" : arguments[0], "rowNum" : arguments[1], "colNum" : arguments[2]};
                    var event = @com.smartgwt.client.widgets.grid.events.CellContextClickEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
                    selfJ.@com.smartgwt.client.widgets.BaseWidget::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
                    var ret = event.@com.smartgwt.client.event.Cancellable::isCancelled()();
                    return !ret;
-               };
+               });
         }
    }-*/;
 
@@ -5501,23 +5501,23 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
         var selfJ = this;
         if(this.@com.smartgwt.client.widgets.BaseWidget::isCreated()()) {
             obj = this.@com.smartgwt.client.widgets.BaseWidget::getJsObj()();
-            obj.addProperties({rowContextClick:function(){
+            obj.addProperties({rowContextClick:$entry(function(){
                         var param = {"record" : arguments[0], "rowNum" : arguments[1], "colNum" : arguments[2]};
                         var event = @com.smartgwt.client.widgets.grid.events.RowContextClickEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
                         selfJ.@com.smartgwt.client.widgets.BaseWidget::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
                         var ret = event.@com.smartgwt.client.event.Cancellable::isCancelled()();
                         return !ret;
-                    }
+                    })
              });
         } else {
             obj = this.@com.smartgwt.client.widgets.BaseWidget::getConfig()();
-            obj.rowContextClick = function(){
+            obj.rowContextClick = $entry(function(){
                    var param = {"record" : arguments[0], "rowNum" : arguments[1], "colNum" : arguments[2]};
                    var event = @com.smartgwt.client.widgets.grid.events.RowContextClickEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
                    selfJ.@com.smartgwt.client.widgets.BaseWidget::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
                    var ret = event.@com.smartgwt.client.event.Cancellable::isCancelled()();
                    return !ret;
-               };
+               });
         }
    }-*/;
 
@@ -5539,23 +5539,23 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
         var selfJ = this;
         if(this.@com.smartgwt.client.widgets.BaseWidget::isCreated()()) {
             obj = this.@com.smartgwt.client.widgets.BaseWidget::getJsObj()();
-            obj.addProperties({cellMouseDown:function(){
+            obj.addProperties({cellMouseDown:$entry(function(){
                         var param = {"record" : arguments[0], "rowNum" : arguments[1], "colNum" : arguments[2]};
                         var event = @com.smartgwt.client.widgets.grid.events.CellMouseDownEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
                         selfJ.@com.smartgwt.client.widgets.BaseWidget::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
                         var ret = event.@com.smartgwt.client.event.Cancellable::isCancelled()();
                         return !ret;
-                    }
+                    })
              });
         } else {
             obj = this.@com.smartgwt.client.widgets.BaseWidget::getConfig()();
-            obj.cellMouseDown = function(){
+            obj.cellMouseDown = $entry(function(){
                    var param = {"record" : arguments[0], "rowNum" : arguments[1], "colNum" : arguments[2]};
                    var event = @com.smartgwt.client.widgets.grid.events.CellMouseDownEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
                    selfJ.@com.smartgwt.client.widgets.BaseWidget::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
                    var ret = event.@com.smartgwt.client.event.Cancellable::isCancelled()();
                    return !ret;
-               };
+               });
         }
    }-*/;
 
@@ -5577,23 +5577,23 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
         var selfJ = this;
         if(this.@com.smartgwt.client.widgets.BaseWidget::isCreated()()) {
             obj = this.@com.smartgwt.client.widgets.BaseWidget::getJsObj()();
-            obj.addProperties({rowMouseDown:function(){
+            obj.addProperties({rowMouseDown:$entry(function(){
                         var param = {"record" : arguments[0], "rowNum" : arguments[1], "colNum" : arguments[2]};
                         var event = @com.smartgwt.client.widgets.grid.events.RowMouseDownEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
                         selfJ.@com.smartgwt.client.widgets.BaseWidget::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
                         var ret = event.@com.smartgwt.client.event.Cancellable::isCancelled()();
                         return !ret;
-                    }
+                    })
              });
         } else {
             obj = this.@com.smartgwt.client.widgets.BaseWidget::getConfig()();
-            obj.rowMouseDown = function(){
+            obj.rowMouseDown = $entry(function(){
                    var param = {"record" : arguments[0], "rowNum" : arguments[1], "colNum" : arguments[2]};
                    var event = @com.smartgwt.client.widgets.grid.events.RowMouseDownEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
                    selfJ.@com.smartgwt.client.widgets.BaseWidget::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
                    var ret = event.@com.smartgwt.client.event.Cancellable::isCancelled()();
                    return !ret;
-               };
+               });
         }
    }-*/;
 
@@ -5615,23 +5615,23 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
         var selfJ = this;
         if(this.@com.smartgwt.client.widgets.BaseWidget::isCreated()()) {
             obj = this.@com.smartgwt.client.widgets.BaseWidget::getJsObj()();
-            obj.addProperties({cellMouseUp:function(){
+            obj.addProperties({cellMouseUp:$entry(function(){
                         var param = {"record" : arguments[0], "rowNum" : arguments[1], "colNum" : arguments[2]};
                         var event = @com.smartgwt.client.widgets.grid.events.CellMouseUpEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
                         selfJ.@com.smartgwt.client.widgets.BaseWidget::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
                         var ret = event.@com.smartgwt.client.event.Cancellable::isCancelled()();
                         return !ret;
-                    }
+                    })
              });
         } else {
             obj = this.@com.smartgwt.client.widgets.BaseWidget::getConfig()();
-            obj.cellMouseUp = function(){
+            obj.cellMouseUp = $entry(function(){
                    var param = {"record" : arguments[0], "rowNum" : arguments[1], "colNum" : arguments[2]};
                    var event = @com.smartgwt.client.widgets.grid.events.CellMouseUpEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
                    selfJ.@com.smartgwt.client.widgets.BaseWidget::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
                    var ret = event.@com.smartgwt.client.event.Cancellable::isCancelled()();
                    return !ret;
-               };
+               });
         }
    }-*/;
 
@@ -5653,23 +5653,23 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
         var selfJ = this;
         if(this.@com.smartgwt.client.widgets.BaseWidget::isCreated()()) {
             obj = this.@com.smartgwt.client.widgets.BaseWidget::getJsObj()();
-            obj.addProperties({rowMouseUp:function(){
+            obj.addProperties({rowMouseUp:$entry(function(){
                         var param = {"record" : arguments[0], "rowNum" : arguments[1], "colNum" : arguments[2]};
                         var event = @com.smartgwt.client.widgets.grid.events.RowMouseUpEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
                         selfJ.@com.smartgwt.client.widgets.BaseWidget::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
                         var ret = event.@com.smartgwt.client.event.Cancellable::isCancelled()();
                         return !ret;
-                    }
+                    })
              });
         } else {
             obj = this.@com.smartgwt.client.widgets.BaseWidget::getConfig()();
-            obj.rowMouseUp = function(){
+            obj.rowMouseUp = $entry(function(){
                    var param = {"record" : arguments[0], "rowNum" : arguments[1], "colNum" : arguments[2]};
                    var event = @com.smartgwt.client.widgets.grid.events.RowMouseUpEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
                    selfJ.@com.smartgwt.client.widgets.BaseWidget::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
                    var ret = event.@com.smartgwt.client.event.Cancellable::isCancelled()();
                    return !ret;
-               };
+               });
         }
    }-*/;
 
@@ -5691,23 +5691,23 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
         var selfJ = this;
         if(this.@com.smartgwt.client.widgets.BaseWidget::isCreated()()) {
             obj = this.@com.smartgwt.client.widgets.BaseWidget::getJsObj()();
-            obj.addProperties({cellClick:function(){
+            obj.addProperties({cellClick:$entry(function(){
                         var param = {"record" : arguments[0], "rowNum" : arguments[1], "colNum" : arguments[2]};
                         var event = @com.smartgwt.client.widgets.grid.events.CellClickEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
                         selfJ.@com.smartgwt.client.widgets.BaseWidget::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
                         var ret = event.@com.smartgwt.client.event.Cancellable::isCancelled()();
                         return !ret;
-                    }
+                    })
              });
         } else {
             obj = this.@com.smartgwt.client.widgets.BaseWidget::getConfig()();
-            obj.cellClick = function(){
+            obj.cellClick = $entry(function(){
                    var param = {"record" : arguments[0], "rowNum" : arguments[1], "colNum" : arguments[2]};
                    var event = @com.smartgwt.client.widgets.grid.events.CellClickEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
                    selfJ.@com.smartgwt.client.widgets.BaseWidget::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
                    var ret = event.@com.smartgwt.client.event.Cancellable::isCancelled()();
                    return !ret;
-               };
+               });
         }
    }-*/;
 
@@ -5729,23 +5729,23 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
         var selfJ = this;
         if(this.@com.smartgwt.client.widgets.BaseWidget::isCreated()()) {
             obj = this.@com.smartgwt.client.widgets.BaseWidget::getJsObj()();
-            obj.addProperties({cellDoubleClick:function(){
+            obj.addProperties({cellDoubleClick:$entry(function(){
                         var param = {"record" : arguments[0], "rowNum" : arguments[1], "colNum" : arguments[2]};
                         var event = @com.smartgwt.client.widgets.grid.events.CellDoubleClickEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
                         selfJ.@com.smartgwt.client.widgets.BaseWidget::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
                         var ret = event.@com.smartgwt.client.event.Cancellable::isCancelled()();
                         return !ret;
-                    }
+                    })
              });
         } else {
             obj = this.@com.smartgwt.client.widgets.BaseWidget::getConfig()();
-            obj.cellDoubleClick = function(){
+            obj.cellDoubleClick = $entry(function(){
                    var param = {"record" : arguments[0], "rowNum" : arguments[1], "colNum" : arguments[2]};
                    var event = @com.smartgwt.client.widgets.grid.events.CellDoubleClickEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
                    selfJ.@com.smartgwt.client.widgets.BaseWidget::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
                    var ret = event.@com.smartgwt.client.event.Cancellable::isCancelled()();
                    return !ret;
-               };
+               });
         }
    }-*/;
 
@@ -5959,7 +5959,7 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
     }-*/;
 
     /**
-     * Re-evaluates {@link com.smartgwt.client.widgets.grid.ListGridField#showIf} for each field, dynamically showing and 
+     * Re-evaluates {@link com.smartgwt.client.widgets.grid.ListGridField#showIf} for each field, dynamically showing and
      * hiding the appropriate set of fields
      */
     public native void refreshFields() /*-{
@@ -6023,19 +6023,19 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
         var selfJ = this;
         if(this.@com.smartgwt.client.widgets.BaseWidget::isCreated()()) {
             obj = this.@com.smartgwt.client.widgets.BaseWidget::getJsObj()();
-            obj.addProperties({recordClick:function(){
+            obj.addProperties({recordClick:$entry(function(){
                         var param = {"viewer" : arguments[0], "record" : arguments[1], "recordNum" : arguments[2], "field" : arguments[3], "fieldNum" : arguments[4], "value" : arguments[5], "rawValue" : arguments[6]};
                         var event = @com.smartgwt.client.widgets.grid.events.RecordClickEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
                         selfJ.@com.smartgwt.client.widgets.BaseWidget::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
-                    }
+                    })
              });
         } else {
             obj = this.@com.smartgwt.client.widgets.BaseWidget::getConfig()();
-            obj.recordClick = function(){
+            obj.recordClick = $entry(function(){
                    var param = {"viewer" : arguments[0], "record" : arguments[1], "recordNum" : arguments[2], "field" : arguments[3], "fieldNum" : arguments[4], "value" : arguments[5], "rawValue" : arguments[6]};
                    var event = @com.smartgwt.client.widgets.grid.events.RecordClickEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
                    selfJ.@com.smartgwt.client.widgets.BaseWidget::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
-               };
+               });
         }
    }-*/;
 
@@ -6065,19 +6065,19 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
         var selfJ = this;
         if(this.@com.smartgwt.client.widgets.BaseWidget::isCreated()()) {
             obj = this.@com.smartgwt.client.widgets.BaseWidget::getJsObj()();
-            obj.addProperties({recordDoubleClick:function(){
+            obj.addProperties({recordDoubleClick:$entry(function(){
                         var param = {"viewer" : arguments[0], "record" : arguments[1], "recordNum" : arguments[2], "field" : arguments[3], "fieldNum" : arguments[4], "value" : arguments[5], "rawValue" : arguments[6]};
                         var event = @com.smartgwt.client.widgets.grid.events.RecordDoubleClickEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
                         selfJ.@com.smartgwt.client.widgets.BaseWidget::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
-                    }
+                    })
              });
         } else {
             obj = this.@com.smartgwt.client.widgets.BaseWidget::getConfig()();
-            obj.recordDoubleClick = function(){
+            obj.recordDoubleClick = $entry(function(){
                    var param = {"viewer" : arguments[0], "record" : arguments[1], "recordNum" : arguments[2], "field" : arguments[3], "fieldNum" : arguments[4], "value" : arguments[5], "rawValue" : arguments[6]};
                    var event = @com.smartgwt.client.widgets.grid.events.RecordDoubleClickEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
                    selfJ.@com.smartgwt.client.widgets.BaseWidget::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
-               };
+               });
         }
    }-*/;
 
@@ -6221,7 +6221,7 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
      * @param colNum Column to cancel. Note that this parameter is ignored in ListGrids but                        may be required in
      * subclasses of ListGrid where each cell represents                        one record in the data set (EG CubeGrid)
      * @param dontHideEditor By default this method will hide the editor if                              it is currently showing for the row in
-     * question. Passing in                              this parameter will leave the editor visible (and just reset          
+     * question. Passing in                              this parameter will leave the editor visible (and just reset
      *                    the edit values underneath the editor).
      */
     public native void discardEdits(int rowNum, int colNum, boolean dontHideEditor) /*-{
@@ -6474,19 +6474,19 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
         var selfJ = this;
         if(this.@com.smartgwt.client.widgets.BaseWidget::isCreated()()) {
             obj = this.@com.smartgwt.client.widgets.BaseWidget::getJsObj()();
-            obj.addProperties({selectionChanged:function(){
+            obj.addProperties({selectionChanged:$entry(function(){
                         var param = {"record" : arguments[0], "state" : arguments[1]};
                         var event = @com.smartgwt.client.widgets.grid.events.SelectionEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
                         selfJ.@com.smartgwt.client.widgets.BaseWidget::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
-                    }
+                    })
              });
         } else {
             obj = this.@com.smartgwt.client.widgets.BaseWidget::getConfig()();
-            obj.selectionChanged = function(){
+            obj.selectionChanged = $entry(function(){
                    var param = {"record" : arguments[0], "state" : arguments[1]};
                    var event = @com.smartgwt.client.widgets.grid.events.SelectionEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
                    selfJ.@com.smartgwt.client.widgets.BaseWidget::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
-               };
+               });
         }
    }-*/;
 
@@ -6722,19 +6722,19 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
         var selfJ = this;
         if(this.@com.smartgwt.client.widgets.BaseWidget::isCreated()()) {
             obj = this.@com.smartgwt.client.widgets.BaseWidget::getJsObj()();
-            obj.addProperties({cellChanged:function(){
+            obj.addProperties({cellChanged:$entry(function(){
                         var param = {"record" : arguments[0], "newValue" : arguments[1], "oldValue" : arguments[2], "rowNum" : arguments[3], "colNum" : arguments[4], "grid" : arguments[5]};
                         var event = @com.smartgwt.client.widgets.grid.events.CellSavedEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
                         selfJ.@com.smartgwt.client.widgets.BaseWidget::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
-                    }
+                    })
              });
         } else {
             obj = this.@com.smartgwt.client.widgets.BaseWidget::getConfig()();
-            obj.cellChanged = function(){
+            obj.cellChanged = $entry(function(){
                    var param = {"record" : arguments[0], "newValue" : arguments[1], "oldValue" : arguments[2], "rowNum" : arguments[3], "colNum" : arguments[4], "grid" : arguments[5]};
                    var event = @com.smartgwt.client.widgets.grid.events.CellSavedEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
                    selfJ.@com.smartgwt.client.widgets.BaseWidget::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
-               };
+               });
         }
    }-*/;
 
@@ -6756,19 +6756,19 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
         var selfJ = this;
         if(this.@com.smartgwt.client.widgets.BaseWidget::isCreated()()) {
             obj = this.@com.smartgwt.client.widgets.BaseWidget::getJsObj()();
-            obj.addProperties({editComplete:function(){
+            obj.addProperties({editComplete:$entry(function(){
                         var param = {"rowNum" : arguments[0], "colNum" : arguments[1], "newValues" : arguments[2], "oldValues" : arguments[3], "editCompletionEvent" : arguments[4], "dsResponse" : arguments[5]};
                         var event = @com.smartgwt.client.widgets.grid.events.EditCompleteEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
                         selfJ.@com.smartgwt.client.widgets.BaseWidget::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
-                    }
+                    })
              });
         } else {
             obj = this.@com.smartgwt.client.widgets.BaseWidget::getConfig()();
-            obj.editComplete = function(){
+            obj.editComplete = $entry(function(){
                    var param = {"rowNum" : arguments[0], "colNum" : arguments[1], "newValues" : arguments[2], "oldValues" : arguments[3], "editCompletionEvent" : arguments[4], "dsResponse" : arguments[5]};
                    var event = @com.smartgwt.client.widgets.grid.events.EditCompleteEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
                    selfJ.@com.smartgwt.client.widgets.BaseWidget::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
-               };
+               });
         }
    }-*/;
 
@@ -6793,19 +6793,19 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
         var selfJ = this;
         if(this.@com.smartgwt.client.widgets.BaseWidget::isCreated()()) {
             obj = this.@com.smartgwt.client.widgets.BaseWidget::getJsObj()();
-            obj.addProperties({editFailed:function(){
+            obj.addProperties({editFailed:$entry(function(){
                         var param = {"rowNum" : arguments[0], "colNum" : arguments[1], "newValues" : arguments[2], "oldValues" : arguments[3], "editCompletionEvent" : arguments[4], "dsResponse" : arguments[5]};
                         var event = @com.smartgwt.client.widgets.grid.events.EditFailedEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
                         selfJ.@com.smartgwt.client.widgets.BaseWidget::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
-                    }
+                    })
              });
         } else {
             obj = this.@com.smartgwt.client.widgets.BaseWidget::getConfig()();
-            obj.editFailed = function(){
+            obj.editFailed = $entry(function(){
                    var param = {"rowNum" : arguments[0], "colNum" : arguments[1], "newValues" : arguments[2], "oldValues" : arguments[3], "editCompletionEvent" : arguments[4], "dsResponse" : arguments[5]};
                    var event = @com.smartgwt.client.widgets.grid.events.EditFailedEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
                    selfJ.@com.smartgwt.client.widgets.BaseWidget::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
-               };
+               });
         }
    }-*/;
 
@@ -6830,19 +6830,19 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
         var selfJ = this;
         if(this.@com.smartgwt.client.widgets.BaseWidget::isCreated()()) {
             obj = this.@com.smartgwt.client.widgets.BaseWidget::getJsObj()();
-            obj.addProperties({editorEnter:function(){
+            obj.addProperties({editorEnter:$entry(function(){
                         var param = {"record" : arguments[0], "value" : arguments[1], "rowNum" : arguments[2], "colNum" : arguments[3]};
                         var event = @com.smartgwt.client.widgets.grid.events.EditorEnterEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
                         selfJ.@com.smartgwt.client.widgets.BaseWidget::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
-                    }
+                    })
              });
         } else {
             obj = this.@com.smartgwt.client.widgets.BaseWidget::getConfig()();
-            obj.editorEnter = function(){
+            obj.editorEnter = $entry(function(){
                    var param = {"record" : arguments[0], "value" : arguments[1], "rowNum" : arguments[2], "colNum" : arguments[3]};
                    var event = @com.smartgwt.client.widgets.grid.events.EditorEnterEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
                    selfJ.@com.smartgwt.client.widgets.BaseWidget::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
-               };
+               });
         }
    }-*/;
 
@@ -6864,19 +6864,19 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
         var selfJ = this;
         if(this.@com.smartgwt.client.widgets.BaseWidget::isCreated()()) {
             obj = this.@com.smartgwt.client.widgets.BaseWidget::getJsObj()();
-            obj.addProperties({rowEditorEnter:function(){
+            obj.addProperties({rowEditorEnter:$entry(function(){
                         var param = {"record" : arguments[0], "editValues" : arguments[1], "rowNum" : arguments[2]};
                         var event = @com.smartgwt.client.widgets.grid.events.RowEditorEnterEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
                         selfJ.@com.smartgwt.client.widgets.BaseWidget::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
-                    }
+                    })
              });
         } else {
             obj = this.@com.smartgwt.client.widgets.BaseWidget::getConfig()();
-            obj.rowEditorEnter = function(){
+            obj.rowEditorEnter = $entry(function(){
                    var param = {"record" : arguments[0], "editValues" : arguments[1], "rowNum" : arguments[2]};
                    var event = @com.smartgwt.client.widgets.grid.events.RowEditorEnterEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
                    selfJ.@com.smartgwt.client.widgets.BaseWidget::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
-               };
+               });
         }
    }-*/;
 
@@ -6903,23 +6903,23 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
         var selfJ = this;
         if(this.@com.smartgwt.client.widgets.BaseWidget::isCreated()()) {
             obj = this.@com.smartgwt.client.widgets.BaseWidget::getJsObj()();
-            obj.addProperties({editorExit:function(){
+            obj.addProperties({editorExit:$entry(function(){
                         var param = {"editCompletionEvent" : arguments[0], "record" : arguments[1], "newValue" : arguments[2], "rowNum" : arguments[3], "colNum" : arguments[4]};
                         var event = @com.smartgwt.client.widgets.grid.events.EditorExitEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
                         selfJ.@com.smartgwt.client.widgets.BaseWidget::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
                         var ret = event.@com.smartgwt.client.event.Cancellable::isCancelled()();
                         return !ret;
-                    }
+                    })
              });
         } else {
             obj = this.@com.smartgwt.client.widgets.BaseWidget::getConfig()();
-            obj.editorExit = function(){
+            obj.editorExit = $entry(function(){
                    var param = {"editCompletionEvent" : arguments[0], "record" : arguments[1], "newValue" : arguments[2], "rowNum" : arguments[3], "colNum" : arguments[4]};
                    var event = @com.smartgwt.client.widgets.grid.events.EditorExitEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
                    selfJ.@com.smartgwt.client.widgets.BaseWidget::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
                    var ret = event.@com.smartgwt.client.event.Cancellable::isCancelled()();
                    return !ret;
-               };
+               });
         }
    }-*/;
 
@@ -6943,23 +6943,23 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
         var selfJ = this;
         if(this.@com.smartgwt.client.widgets.BaseWidget::isCreated()()) {
             obj = this.@com.smartgwt.client.widgets.BaseWidget::getJsObj()();
-            obj.addProperties({rowEditorExit:function(){
+            obj.addProperties({rowEditorExit:$entry(function(){
                         var param = {"editCompletionEvent" : arguments[0], "record" : arguments[1], "newValues" : arguments[2], "rowNum" : arguments[3]};
                         var event = @com.smartgwt.client.widgets.grid.events.RowEditorExitEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
                         selfJ.@com.smartgwt.client.widgets.BaseWidget::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
                         var ret = event.@com.smartgwt.client.event.Cancellable::isCancelled()();
                         return !ret;
-                    }
+                    })
              });
         } else {
             obj = this.@com.smartgwt.client.widgets.BaseWidget::getConfig()();
-            obj.rowEditorExit = function(){
+            obj.rowEditorExit = $entry(function(){
                    var param = {"editCompletionEvent" : arguments[0], "record" : arguments[1], "newValues" : arguments[2], "rowNum" : arguments[3]};
                    var event = @com.smartgwt.client.widgets.grid.events.RowEditorExitEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
                    selfJ.@com.smartgwt.client.widgets.BaseWidget::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
                    var ret = event.@com.smartgwt.client.event.Cancellable::isCancelled()();
                    return !ret;
-               };
+               });
         }
    }-*/;
 
@@ -6985,19 +6985,19 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
         var selfJ = this;
         if(this.@com.smartgwt.client.widgets.BaseWidget::isCreated()()) {
             obj = this.@com.smartgwt.client.widgets.BaseWidget::getJsObj()();
-            obj.addProperties({fieldStateChanged:function(){
+            obj.addProperties({fieldStateChanged:$entry(function(){
                         var param = {};
                         var event = @com.smartgwt.client.widgets.grid.events.FieldStateChangedEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
                         selfJ.@com.smartgwt.client.widgets.BaseWidget::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
-                    }
+                    })
              });
         } else {
             obj = this.@com.smartgwt.client.widgets.BaseWidget::getConfig()();
-            obj.fieldStateChanged = function(){
+            obj.fieldStateChanged = $entry(function(){
                    var param = {};
                    var event = @com.smartgwt.client.widgets.grid.events.FieldStateChangedEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
                    selfJ.@com.smartgwt.client.widgets.BaseWidget::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
-               };
+               });
         }
    }-*/;
 
@@ -7025,19 +7025,19 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
         var selfJ = this;
         if(this.@com.smartgwt.client.widgets.BaseWidget::isCreated()()) {
             obj = this.@com.smartgwt.client.widgets.BaseWidget::getJsObj()();
-            obj.addProperties({dataArrived:function(){
+            obj.addProperties({dataArrived:$entry(function(){
                         var param = {"startRow" : arguments[0], "endRow" : arguments[1]};
                         var event = @com.smartgwt.client.widgets.grid.events.DataArrivedEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
                         selfJ.@com.smartgwt.client.widgets.BaseWidget::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
-                    }
+                    })
              });
         } else {
             obj = this.@com.smartgwt.client.widgets.BaseWidget::getConfig()();
-            obj.dataArrived = function(){
+            obj.dataArrived = $entry(function(){
                    var param = {"startRow" : arguments[0], "endRow" : arguments[1]};
                    var event = @com.smartgwt.client.widgets.grid.events.DataArrivedEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
                    selfJ.@com.smartgwt.client.widgets.BaseWidget::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
-               };
+               });
         }
    }-*/;
 
@@ -7061,19 +7061,19 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
         var selfJ = this;
         if(this.@com.smartgwt.client.widgets.BaseWidget::isCreated()()) {
             obj = this.@com.smartgwt.client.widgets.BaseWidget::getJsObj()();
-            obj.addProperties({drawAreaChanged:function(){
+            obj.addProperties({drawAreaChanged:$entry(function(){
                         var param = {"oldStartRow" : arguments[0], "oldEndRow" : arguments[1], "oldStartCol" : arguments[2], "oldEndCol" : arguments[3]};
                         var event = @com.smartgwt.client.widgets.grid.events.DrawAreaChangedEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
                         selfJ.@com.smartgwt.client.widgets.BaseWidget::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
-                    }
+                    })
              });
         } else {
             obj = this.@com.smartgwt.client.widgets.BaseWidget::getConfig()();
-            obj.drawAreaChanged = function(){
+            obj.drawAreaChanged = $entry(function(){
                    var param = {"oldStartRow" : arguments[0], "oldEndRow" : arguments[1], "oldStartCol" : arguments[2], "oldEndCol" : arguments[3]};
                    var event = @com.smartgwt.client.widgets.grid.events.DrawAreaChangedEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
                    selfJ.@com.smartgwt.client.widgets.BaseWidget::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
-               };
+               });
         }
    }-*/;
 
@@ -7223,124 +7223,124 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
 
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
         self._getCellCSSText = self.getCellCSSText;
-        self.getCellCSSText = function(record, rowNum, colNum) {
+        self.getCellCSSText = $entry(function(record, rowNum, colNum) {
             var jObj = this.__ref;
             var recordJ = @com.smartgwt.client.widgets.grid.ListGridRecord::getOrCreateRef(Lcom/google/gwt/core/client/JavaScriptObject;)(record);
             return jObj.@com.smartgwt.client.widgets.grid.ListGrid::getCellCSSText(Lcom/smartgwt/client/widgets/grid/ListGridRecord;II)(recordJ, rowNum, colNum);
-        };
+        });
 
         self._getBaseStyle = self.getBaseStyle;
-        self.getBaseStyle = function(record, rowNum, colNum) {
+        self.getBaseStyle = $entry(function(record, rowNum, colNum) {
             var jObj = this.__ref;
             var recordJ = @com.smartgwt.client.widgets.grid.ListGridRecord::getOrCreateRef(Lcom/google/gwt/core/client/JavaScriptObject;)(record);
             return jObj.@com.smartgwt.client.widgets.grid.ListGrid::getBaseStyle(Lcom/smartgwt/client/widgets/grid/ListGridRecord;II)(recordJ, rowNum, colNum);
-        };
+        });
 
         self.__getHeaderContextMenuItems = self.getHeaderContextMenuItems;
-        self.getHeaderContextMenuItems = function(fieldNum) {
+        self.getHeaderContextMenuItems = $entry(function(fieldNum) {
             var jObj = this.__ref;
             var fieldNumJ = fieldNum == null ? null : @com.smartgwt.client.util.JSOHelper::toInteger(I)(fieldNum);
             var menuItemsJ = jObj.@com.smartgwt.client.widgets.grid.ListGrid::getHeaderContextMenuItems(Ljava/lang/Integer;)(fieldNumJ);
             var menuItemsJS = @com.smartgwt.client.util.JSOHelper::convertToJavaScriptArray([Ljava/lang/Object;)(menuItemsJ);
             return menuItemsJS;
-        };
+        });
 
         self._canEditCell = self.canEditCell;
-        self.canEditCell = function(rowNum, colNum) {
+        self.canEditCell = $entry(function(rowNum, colNum) {
             var jObj = this.__ref;
             return jObj.@com.smartgwt.client.widgets.grid.ListGrid::canEditCell(II)(rowNum, colNum);
-        };
+        });
 
-        
+
         self.__getRollOverCanvas = self.getRollOverCanvas;
-        self.getRollOverCanvas = function(rowNum, colNum) {
+        self.getRollOverCanvas = $entry(function(rowNum, colNum) {
             var jObj = this.__ref;
-            
+
             var rowNumJ = rowNum == null ? null : @com.smartgwt.client.util.JSOHelper::toInteger(I)(rowNum),
             	colNumJ = colNum == null ? null : @com.smartgwt.client.util.JSOHelper::toInteger(I)(colNum);
 
             var componentJ = jObj.@com.smartgwt.client.widgets.grid.ListGrid::getRollOverCanvas(Ljava/lang/Integer;Ljava/lang/Integer;)(rowNumJ, colNumJ);
             return componentJ == null ? null : componentJ.@com.smartgwt.client.widgets.Canvas::getOrCreateJsObj()();
-        };
+        });
 
         self.__getRollUnderCanvas = self.getRollUnderCanvas;
-        self.getRollUnderCanvas = function(rowNum, colNum) {
+        self.getRollUnderCanvas = $entry(function(rowNum, colNum) {
             var jObj = this.__ref;
             var rowNumJ = rowNum == null ? null : @com.smartgwt.client.util.JSOHelper::toInteger(I)(rowNum),
             	colNumJ = colNum == null ? null : @com.smartgwt.client.util.JSOHelper::toInteger(I)(colNum);
 
             var componentJ = jObj.@com.smartgwt.client.widgets.grid.ListGrid::getRollUnderCanvas(Ljava/lang/Integer;Ljava/lang/Integer;)(rowNumJ, colNumJ);
             return componentJ == null ? null : componentJ.@com.smartgwt.client.widgets.Canvas::getOrCreateJsObj()();
-        };
-        
+        });
+
         self.__createRecordComponent = self.createRecordComponent;
         if (self.__createRecordComponent == null) {
         	self.__createRecordComponent = function () {
         	}
         }
-        self.createRecordComponent = function (record, colNum) {
+        self.createRecordComponent = $entry(function (record, colNum) {
     		var jObj = this.__ref;
     		var recordJ =  @com.smartgwt.client.widgets.grid.ListGridRecord::getOrCreateRef(Lcom/google/gwt/core/client/JavaScriptObject;)(record);
             var colNumJ = colNum == null ? null : @com.smartgwt.client.util.JSOHelper::toInteger(I)(colNum);
 
             var componentJ = jObj.@com.smartgwt.client.widgets.grid.ListGrid::createRecordComponent(Lcom/smartgwt/client/widgets/grid/ListGridRecord;Ljava/lang/Integer;)(recordJ, colNumJ);
             return componentJ == null ? null : componentJ.@com.smartgwt.client.widgets.Canvas::getOrCreateJsObj()();
-        }
-        
+        })
+
         self.__updateRecordComponent = self.updateRecordComponent;
         if (self.__updateRecordComponent == null) {
         	self.__updateRecordComponent = function (record, colNum, component, recordChanged) {
         	    return component;
         	}
     	}
-        self.updateRecordComponent = function (record, colNum, component, recordChanged) {
+        self.updateRecordComponent = $entry(function (record, colNum, component, recordChanged) {
 			var jObj = this.__ref;
     		var recordJ =  @com.smartgwt.client.widgets.grid.ListGridRecord::getOrCreateRef(Lcom/google/gwt/core/client/JavaScriptObject;)(record);
             var colNumJ = colNum == null ? null : @com.smartgwt.client.util.JSOHelper::toInteger(I)(colNum);
-            var componentJ = component == null ? null : 
+            var componentJ = component == null ? null :
                @com.smartgwt.client.widgets.Canvas::getOrCreateRef(Lcom/google/gwt/core/client/JavaScriptObject;)(component);
             componentJ = jObj.@com.smartgwt.client.widgets.grid.ListGrid::updateRecordComponent(Lcom/smartgwt/client/widgets/grid/ListGridRecord;Ljava/lang/Integer;Lcom/smartgwt/client/widgets/Canvas;Z)(recordJ, colNumJ, componentJ, recordChanged);
-            return componentJ == null ? null : componentJ.@com.smartgwt.client.widgets.Canvas::getOrCreateJsObj()();        	
-        }
+            return componentJ == null ? null : componentJ.@com.smartgwt.client.widgets.Canvas::getOrCreateJsObj()();
+        })
 
         self.__getExpansionComponent = self.getExpansionComponent;
-        self.getExpansionComponent = function(record) {
+        self.getExpansionComponent = $entry(function(record) {
             var jObj = this.__ref;
             var recordJ = @com.smartgwt.client.widgets.grid.ListGridRecord::getOrCreateRef(Lcom/google/gwt/core/client/JavaScriptObject;)(record);
             var componentJ = jObj.@com.smartgwt.client.widgets.grid.ListGrid::getExpansionComponent(Lcom/smartgwt/client/widgets/grid/ListGridRecord;)(recordJ);
             return componentJ == null ? null : componentJ.@com.smartgwt.client.widgets.Canvas::getOrCreateJsObj()();
-        };
+        });
 
         self.__getGridSummary = self.getGridSummary;
-        self.getGridSummary = function(field) {
+        self.getGridSummary = $entry(function(field) {
             var jObj = this.__ref;
             var fieldJ = @com.smartgwt.client.widgets.grid.ListGridField::getOrCreateRef(Lcom/google/gwt/core/client/JavaScriptObject;)(field);
             var val = jObj.@com.smartgwt.client.widgets.grid.ListGrid::getGridSummary(Lcom/smartgwt/client/widgets/grid/ListGridField;)(fieldJ);
             return val;
-        };
+        });
 
         self.__canExpandRecord = self.canExpandRecord;
-        self.canExpandRecord = function(record, rowNum) {
+        self.canExpandRecord = $entry(function(record, rowNum) {
             var jObj = this.__ref;
             var recordJ = @com.smartgwt.client.widgets.grid.ListGridRecord::getOrCreateRef(Lcom/google/gwt/core/client/JavaScriptObject;)(record);
             var retVal = jObj.@com.smartgwt.client.widgets.grid.ListGrid::canExpandRecord(Lcom/smartgwt/client/widgets/grid/ListGridRecord;I)(recordJ, rowNum);
             return retVal;
-        };
+        });
 
         self.__getRelatedDataSource = self.getRelatedDataSource;
-        self.getRelatedDataSource = function(record) {
+        self.getRelatedDataSource = $entry(function(record) {
             var jObj = this.__ref;
             var recordJ = @com.smartgwt.client.widgets.grid.ListGridRecord::getOrCreateRef(Lcom/google/gwt/core/client/JavaScriptObject;)(record);
             var dataSourceJ = jObj.@com.smartgwt.client.widgets.grid.ListGrid::getRelatedDataSource(Lcom/smartgwt/client/widgets/grid/ListGridRecord;)(recordJ);
             return dataSourceJ == null ? null : dataSourceJ.@com.smartgwt.client.core.BaseClass::getOrCreateJsObj()();
-        };
-        
+        });
+
         self.__willAcceptDrop = self.willAcceptDrop;
-        self.willAcceptDrop = function() {
+        self.willAcceptDrop = $entry(function() {
             var jObj = this.__ref;
             var retVal = jObj.@com.smartgwt.client.widgets.grid.ListGrid::willAcceptDrop()();
             return retVal.@java.lang.Boolean::booleanValue()();
-        };
+        });
 
     }-*/;
 
@@ -7366,10 +7366,10 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
         }
         return retVal;
     }-*/;
-    
+
 
     /**
-     * Removes an embedded component previously associated with the provided record. 
+     * Removes an embedded component previously associated with the provided record.
      * If <code>destroyOnUnEmbed</code> is <code>true</code> for the component, it will also be destroyed.
      * @param record record that the component was previously attached to
      */
@@ -7377,10 +7377,10 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
         self.removeEmbeddedComponent(record.@com.smartgwt.client.core.DataClass::getJsObj()());
     }-*/;
-    
+
     /**
-     * Removes an embedded component from a grid. The record in which the component is embedded is 
-     * automatically derived from the Component passed in. If 
+     * Removes an embedded component from a grid. The record in which the component is embedded is
+     * automatically derived from the Component passed in. If
      * <code>destroyOnUnEmbed</code> is <code>true</code> for the component, it will also be destroyed.
      * @param component the embedded component
      */
@@ -7388,11 +7388,11 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
         self.removeEmbeddedComponent(component.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()());
     }-*/;
-    
+
 
     /**
      * Removes an embedded component previously associated with the provided record and colNum.
-     * Only applies to components embedded directly in a specific cell. If 
+     * Only applies to components embedded directly in a specific cell. If
      * <code>destroyOnUnEmbed</code> is <code>true</code> for the component, it will also be destroyed.
      * @param record record that the component was previously attached to
      * @param colNum the colNum in which it appears
@@ -7401,7 +7401,7 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
         self.removeEmbeddedComponent(record.@com.smartgwt.client.core.DataClass::getJsObj()(), colNum);
     }-*/;
-    
+
     /**
      * If  {@link com.smartgwt.client.widgets.grid.ListGrid#showRollUnderCanvas showRollUnderCanvas} is true, this
      * method will be called to create the canvas to display under the current row when a
@@ -7433,17 +7433,17 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
      * @return the embedded component
      */
     protected native Canvas createRecordComponent (ListGridRecord record, Integer colNum) /*-{
-    
+
       	var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
-      	
+
       	record = record.@com.smartgwt.client.core.DataClass::getJsObj()();
       	colNum = colNum == null ? null : colNum.@java.lang.Integer::intValue()();
-      	
+
       	var component = self.__createRecordComponent(record, colNum);
-        return component == null ? null : 
+        return component == null ? null :
                @com.smartgwt.client.widgets.Canvas::getOrCreateRef(Lcom/google/gwt/core/client/JavaScriptObject;)(component);
     }-*/;
-    
+
     /**
      * When {@link com.smartgwt.client.widgets.grid.ListGrid#getShowRecordComponents showRecordComponents} is true, this method
      * is called for a row/cell  that has already been rendered.  The colNum parameter is applicable only when  {@link
@@ -7462,12 +7462,12 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
         record = record.@com.smartgwt.client.core.DataClass::getJsObj()();
         colNum = colNum == null ? null : colNum.@java.lang.Integer::intValue()();
         component = component.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
-        
+
         component = self.__updateRecordComponent(record, colNum, component, recordChanged);
         return component == null ? null : @com.smartgwt.client.widgets.Canvas::getOrCreateRef(Lcom/google/gwt/core/client/JavaScriptObject;)(component);
-        
+
     }-*/;
-    
+
     /**
      * If  {@link com.smartgwt.client.widgets.grid.ListGrid#showRollOverCanvas showRollOverCanvas} is true, this
      * method will be called to create the canvas to display over the current row when a
@@ -7478,18 +7478,18 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
      * <br><b>Note: This is an override point</b>
      *
      * @param rowNum Index of the current roll-over row
-     * @param colNum Index of the current roll-over column. This parameter will be null unless useCellRollOvers is true for the grid 
+     * @param colNum Index of the current roll-over column. This parameter will be null unless useCellRollOvers is true for the grid
      * @return the embedded component
      */
     protected native Canvas getRollOverCanvas (Integer rowNum, Integer colNum) /*-{
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
         rowNum = rowNum == null ? null : rowNum.@java.lang.Integer::intValue()();
         colNum = colNum == null ? null : colNum.@java.lang.Integer::intValue()();
-    
+
         var component = self.__getRollOverCanvas(rowNum, colNum);
         return @com.smartgwt.client.widgets.Canvas::getOrCreateRef(Lcom/google/gwt/core/client/JavaScriptObject;)(component);
     }-*/;
-    
+
     /**
      * Expands a given ${isc.DocUtils.linkForRef('object:ListGridRecord','record')} by creating a subcomponent and inserting it
      * in to the record's grid-row.  A number of built-in {@link com.smartgwt.client..ExpansionMode}  are supported by the
@@ -7644,7 +7644,7 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
     public void setBaseStyle(String baseStyle)  throws IllegalStateException {
         setAttribute("baseStyle", baseStyle, false);
     }
-    
+
     /**
      * The base name for the CSS class applied to cells. This style will have "Dark",  "Over", "Selected", or "Disabled" appended to it according to the state of the cell.
      *
@@ -7745,10 +7745,10 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
     }
 
     /**
-     * An array of Record objects, specifying the data to be used to populate the DataBoundComponent. 
+     * An array of Record objects, specifying the data to be used to populate the DataBoundComponent.
      *
      * @param data array of Record objects.
-     * @see #setData(ListGridRecord[])   
+     * @see #setData(ListGridRecord[])
      */
     public void setData(Record[] data) {
         setAttribute("data", data, true);
@@ -7772,7 +7772,7 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
     public RecordList getDataAsRecordList() {
         return getRecordList();
     }
-    
+
     /**
      * Synonym for {@link #setData(ListGridRecord[])}
      *
@@ -7783,14 +7783,14 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
     }
 
     /**
-     * Returns the current set of records displayed in this grid as an array of ListGridRecord objects. 
+     * Returns the current set of records displayed in this grid as an array of ListGridRecord objects.
      * Note that if the ListGrid is grouped, you can call {@link #getGroupTree()}
      * to get the underlying Tree data representation. You can call {@link #isGrouped()} to test whether the ListGrid is
      * grouped on a field.
      * <p>
      * If this is a DataBound grid this method will return an empty array unless
      * the entire set of data for the current criteria has been loaded into the
-     * client, in which case all matching rows will be returned.  
+     * client, in which case all matching rows will be returned.
      * For DataBound grids, you can call {@link #getResultSet()} to retrieve
      * the current data set as a ResultSet object.
      *
@@ -8169,7 +8169,7 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
         var field = self.getField(fieldName);
 
         if(field == null || field === undefined) return null;
-        var fieldJ = @com.smartgwt.client.widgets.grid.ListGridField::getOrCreateRef(Lcom/google/gwt/core/client/JavaScriptObject;)(field);        
+        var fieldJ = @com.smartgwt.client.widgets.grid.ListGridField::getOrCreateRef(Lcom/google/gwt/core/client/JavaScriptObject;)(field);
         return fieldJ;
     }-*/;
 
@@ -8343,11 +8343,11 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
     public native void addData(Record record, DSCallback callback) /*-{
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
         var recordJS = record.@com.smartgwt.client.data.Record::getJsObj()();
-        self.addData(recordJS, function (dsResponse, data, dsRequest) {
+        self.addData(recordJS, $entry(function (dsResponse, data, dsRequest) {
             var responseJ = @com.smartgwt.client.data.DSResponse::new(Lcom/google/gwt/core/client/JavaScriptObject;)(dsResponse);
             var requestJ = @com.smartgwt.client.data.DSRequest::new(Lcom/google/gwt/core/client/JavaScriptObject;)(dsRequest);
             if(callback != null) callback.@com.smartgwt.client.data.DSCallback::execute(Lcom/smartgwt/client/data/DSResponse;Ljava/lang/Object;Lcom/smartgwt/client/data/DSRequest;)(responseJ, data, requestJ);
-        });
+        }));
     }-*/;
 
     /**
@@ -8362,11 +8362,11 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
         var recordJS = record.@com.smartgwt.client.data.Record::getJsObj()();
         var requestPropertiesJS = requestProperties == null ? null : requestProperties.@com.smartgwt.client.core.DataClass::getJsObj()();
-        self.addData(recordJS, function (dsResponse, data, dsRequest) {
+        self.addData(recordJS, $entry(function (dsResponse, data, dsRequest) {
             var responseJ = @com.smartgwt.client.data.DSResponse::new(Lcom/google/gwt/core/client/JavaScriptObject;)(dsResponse);
             var requestJ = @com.smartgwt.client.data.DSRequest::new(Lcom/google/gwt/core/client/JavaScriptObject;)(dsRequest);
             if(callback != null) callback.@com.smartgwt.client.data.DSCallback::execute(Lcom/smartgwt/client/data/DSResponse;Ljava/lang/Object;Lcom/smartgwt/client/data/DSRequest;)(responseJ, data, requestJ);
-        }, requestPropertiesJS);
+        }), requestPropertiesJS);
     }-*/;
 
     /**
@@ -8389,11 +8389,11 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
     public native void updateData(Record record, DSCallback callback) /*-{
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
         var recordJS = record.@com.smartgwt.client.data.Record::getJsObj()();
-        self.updateData(recordJS, function (dsResponse, data, dsRequest) {
+        self.updateData(recordJS, $entry(function (dsResponse, data, dsRequest) {
             var responseJ = @com.smartgwt.client.data.DSResponse::new(Lcom/google/gwt/core/client/JavaScriptObject;)(dsResponse);
             var requestJ = @com.smartgwt.client.data.DSRequest::new(Lcom/google/gwt/core/client/JavaScriptObject;)(dsRequest);
             if(callback != null) callback.@com.smartgwt.client.data.DSCallback::execute(Lcom/smartgwt/client/data/DSResponse;Ljava/lang/Object;Lcom/smartgwt/client/data/DSRequest;)(responseJ, data, requestJ);
-        });
+        }));
     }-*/;
 
     /**
@@ -8408,11 +8408,11 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
         var recordJS = record.@com.smartgwt.client.data.Record::getJsObj()();
         var requestPropertiesJS = requestProperties == null ? null : requestProperties.@com.smartgwt.client.core.DataClass::getJsObj()();
-        self.updateData(recordJS, function (dsResponse, data, dsRequest) {
+        self.updateData(recordJS, $entry(function (dsResponse, data, dsRequest) {
             var responseJ = @com.smartgwt.client.data.DSResponse::new(Lcom/google/gwt/core/client/JavaScriptObject;)(dsResponse);
             var requestJ = @com.smartgwt.client.data.DSRequest::new(Lcom/google/gwt/core/client/JavaScriptObject;)(dsRequest);
             if(callback != null) callback.@com.smartgwt.client.data.DSCallback::execute(Lcom/smartgwt/client/data/DSResponse;Ljava/lang/Object;Lcom/smartgwt/client/data/DSRequest;)(responseJ, data, requestJ);
-        }, requestPropertiesJS);
+        }), requestPropertiesJS);
     }-*/;
 
     /**
@@ -8437,11 +8437,11 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
     public native void removeData(Record record, DSCallback callback) /*-{
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
         var recordJS = record.@com.smartgwt.client.data.Record::getJsObj()();
-        self.removeData(recordJS, function (dsResponse, data, dsRequest) {
+        self.removeData(recordJS, $entry(function (dsResponse, data, dsRequest) {
             var responseJ = @com.smartgwt.client.data.DSResponse::new(Lcom/google/gwt/core/client/JavaScriptObject;)(dsResponse);
             var requestJ = @com.smartgwt.client.data.DSRequest::new(Lcom/google/gwt/core/client/JavaScriptObject;)(dsRequest);
             if(callback != null) callback.@com.smartgwt.client.data.DSCallback::execute(Lcom/smartgwt/client/data/DSResponse;Ljava/lang/Object;Lcom/smartgwt/client/data/DSRequest;)(responseJ, data, requestJ);
-        });
+        }));
     }-*/;
 
     /**
@@ -8456,12 +8456,12 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
     public native void removeData(Record record, DSCallback callback, DSRequest requestProperties) /*-{
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
         var recordJS = record.@com.smartgwt.client.data.Record::getJsObj()();
-        var requestPropertiesJS = requestProperties == null ? null : requestProperties.@com.smartgwt.client.core.DataClass::getJsObj()();       
-        self.removeData(recordJS, function (dsResponse, data, dsRequest) {
+        var requestPropertiesJS = requestProperties == null ? null : requestProperties.@com.smartgwt.client.core.DataClass::getJsObj()();
+        self.removeData(recordJS, $entry(function (dsResponse, data, dsRequest) {
             var responseJ = @com.smartgwt.client.data.DSResponse::new(Lcom/google/gwt/core/client/JavaScriptObject;)(dsResponse);
             var requestJ = @com.smartgwt.client.data.DSRequest::new(Lcom/google/gwt/core/client/JavaScriptObject;)(dsRequest);
             if(callback != null) callback.@com.smartgwt.client.data.DSCallback::execute(Lcom/smartgwt/client/data/DSResponse;Ljava/lang/Object;Lcom/smartgwt/client/data/DSRequest;)(responseJ, data, requestJ);
-        }, requestPropertiesJS);
+        }), requestPropertiesJS);
     }-*/;
 
     /**
@@ -8486,11 +8486,11 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
     public native void removeSelectedData(DSCallback callback, DSRequest requestProperties) /*-{
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
         var requestPropertiesJS = requestProperties == null ? null : requestProperties.@com.smartgwt.client.core.DataClass::getJsObj()();
-        self.removeSelectedData(function (dsResponse, data, dsRequest) {
+        self.removeSelectedData($entry(function (dsResponse, data, dsRequest) {
             var responseJ = @com.smartgwt.client.data.DSResponse::new(Lcom/google/gwt/core/client/JavaScriptObject;)(dsResponse);
             var requestJ = @com.smartgwt.client.data.DSRequest::new(Lcom/google/gwt/core/client/JavaScriptObject;)(dsRequest);
             if(callback != null) callback.@com.smartgwt.client.data.DSCallback::execute(Lcom/smartgwt/client/data/DSResponse;Ljava/lang/Object;Lcom/smartgwt/client/data/DSRequest;)(responseJ, data, requestJ);
-        }, requestPropertiesJS);
+        }), requestPropertiesJS);
     }-*/;
 
     /**
@@ -8532,11 +8532,11 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
     public native void clearCriteria(DSCallback callback, DSRequest requestProperties) /*-{
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
         var requestPropertiesJS = requestProperties == null ? null : requestProperties.@com.smartgwt.client.core.DataClass::getJsObj()();
-        self.clearCriteria(function (dsResponse, data, dsRequest) {
+        self.clearCriteria($entry(function (dsResponse, data, dsRequest) {
             var responseJ = @com.smartgwt.client.data.DSResponse::new(Lcom/google/gwt/core/client/JavaScriptObject;)(dsResponse);
             var requestJ = @com.smartgwt.client.data.DSRequest::new(Lcom/google/gwt/core/client/JavaScriptObject;)(dsRequest);
             if(callback != null) callback.@com.smartgwt.client.data.DSCallback::execute(Lcom/smartgwt/client/data/DSResponse;Ljava/lang/Object;Lcom/smartgwt/client/data/DSRequest;)(responseJ, data, requestJ);
-        }, requestPropertiesJS);
+        }), requestPropertiesJS);
     }-*/;
 
     /**
@@ -8616,9 +8616,9 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
      */
     public native void saveAllEdits(Function callback) /*-{
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
-        self.saveAllEdits(null, callback == null ? null : function() {
+        self.saveAllEdits(null, callback == null ? null : $entry(function() {
             callback.@com.smartgwt.client.core.Function::execute()();
-        });
+        }));
     }-*/;
 
     /**
@@ -8631,9 +8631,9 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
     public native void saveAllEdits(Function callback, int[] rows) /*-{
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
         var rowsJS = rows == null ? null : @com.smartgwt.client.util.JSOHelper::convertToJavaScriptArray([I)(rows);
-        self.saveAllEdits(rowsJS, callback == null ? null : function() {
+        self.saveAllEdits(rowsJS, callback == null ? null : $entry(function() {
             callback.@com.smartgwt.client.core.Function::execute()();
-        });
+        }));
     }-*/;
 
     /**
@@ -8720,7 +8720,7 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
         var ret = self.getVisibleRows();
         return @com.smartgwt.client.util.JSOHelper::convertToJavaInterArray(Lcom/google/gwt/core/client/JavaScriptObject;)(ret);
     }-*/;
-    
+
     /**
      * Returns the extents of the rows and columns current visible in this grid's viewport.
      *
@@ -8729,7 +8729,7 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
     public native Integer[] getDrawArea() /*-{
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
         var ret = self.getDrawArea();
-        return @com.smartgwt.client.util.JSOHelper::convertToJavaInterArray(Lcom/google/gwt/core/client/JavaScriptObject;)(ret); 
+        return @com.smartgwt.client.util.JSOHelper::convertToJavaInterArray(Lcom/google/gwt/core/client/JavaScriptObject;)(ret);
     }-*/;
 
     /**
@@ -8786,11 +8786,11 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
         var datasourceJS = dataSource.@com.smartgwt.client.data.DataSource::getOrCreateJsObj()();
         var requestPropertiesJS = requestProperties == null ? null : requestProperties.@com.smartgwt.client.core.DataClass::getJsObj()();
 
-        self.fetchRelatedData(recordJS, datasourceJS, function (dsResponse, data, dsRequest) {
+        self.fetchRelatedData(recordJS, datasourceJS, $entry(function (dsResponse, data, dsRequest) {
             var responseJ = @com.smartgwt.client.data.DSResponse::new(Lcom/google/gwt/core/client/JavaScriptObject;)(dsResponse);
             var requestJ = @com.smartgwt.client.data.DSRequest::new(Lcom/google/gwt/core/client/JavaScriptObject;)(dsRequest);
             if(callback != null) callback.@com.smartgwt.client.data.DSCallback::execute(Lcom/smartgwt/client/data/DSResponse;Ljava/lang/Object;Lcom/smartgwt/client/data/DSRequest;)(responseJ, data, requestJ);
-        }, requestPropertiesJS);
+        }), requestPropertiesJS);
 
     }-*/;
 
@@ -8900,10 +8900,10 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
 
     /**
      * Returns the current temporary locally stored edit value for some field within a record being edited.
-     * 
+     *
      * @param rowNum index of the row for which the editValue should be returned
      * @param colNum index of the field for which value should be returned
-     * 
+     *
      * @return   edit value for the field in question
      */
     public native Object getEditValue(int rowNum, int colNum) /*-{
@@ -8915,7 +8915,7 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
 
     /**
      * Modifies a field value being tracked as an unsaved user edit.
-     * 
+     *
      * @param rowNum row number
      * @param colNum column number of cell
      * @param value new value for the appropriate field
@@ -9066,7 +9066,7 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
      * <li>it takes values for multiple fields</li>
      * <li>it clears out any previous edit values for the record</li>
      * </ul>
-     * 
+     *
      * @param rowNum the row num for the record being edited
      * @param values new values for the row
      */
@@ -9075,7 +9075,7 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
         var valuesJS = @com.smartgwt.client.util.JSOHelper::convertMapToJavascriptObject(Ljava/util/Map;)(values);
         self.setEditValues(rowNum, valuesJS);
     }-*/;
-    
+
     /**
      * Returns the current temporary locally stored edit value for some field within a record being edited.
      *
@@ -9093,7 +9093,7 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
 
     /**
      * Returns the current set of unsaved edits for a given row being edited.
-     * 
+     *
      * @param rowNum rowNum of the record being edited
      * @return current editValues object for the row. This contains the current edit values in {fieldName1:value1, fieldName2:value2} format
      */
@@ -9122,7 +9122,7 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
     /**
      * Set the validation errors for some row (replacing any pre-existant validation errors)
      *
-     * 
+     *
      * @param rowNum row to add validation error for
      * @param errors validation errors for the row. The key of the map must be the field name, and the value can either be a String error message
      * or an array of Strings for multiple errors
@@ -9135,7 +9135,7 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
 
     /**
      * Set a validation error for some cell.
-     * 
+     *
      * @param rowNum row index of cell to add validation error for
      * @param fieldName field name of cell to add validation error for
      * @param errorMessage validation error message
@@ -9239,7 +9239,7 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
             setAttribute("sortDirection", sortDirection == SortDirection.ASCENDING, true);
         }
     }
-    
+
     /**
      * Sorting direction of this ListGrid. If specified when the ListGrid is initialized, this property will be the default sorting direction for the {@link com.smartgwt.client.widgets.grid.ListGrid#getSortField sortField}. May be overridden by specifying {@link com.smartgwt.client.widgets.grid.ListGridField#getSortDirection sortDirection}. <P> After initialization, this property will be updated on {@link com.smartgwt.client.widgets.grid.ListGrid#sort} to reflect the current sort direction of the grid.
      *
@@ -9393,7 +9393,7 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
         self.setValueMap(fieldName, @com.smartgwt.client.util.JSOHelper::convertToJavaScriptArray([Ljava/lang/Object;)(valueMap));
     }-*/;
-    
+
     /**
      * &#010  Clear a field value being tracked as an unsaved user edit.<P>&#010  The saved record value will be displayed in the the appropriate cell instead.&#010  Will also discard any validation errors for the specified field / row.&#010&#010
      *
@@ -9407,7 +9407,7 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
 
     /**
      * Returns an array of every rowNum for which we have pending (unsubmitted) edits.
-     * 
+     *
      * @return array of rowNums for rows with edit values pending submission
      */
     public native int[] getAllEditRows() /*-{
@@ -9540,52 +9540,52 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
         var selfJ = this;
         if(this.@com.smartgwt.client.widgets.BaseWidget::isCreated()()) {
             obj = this.@com.smartgwt.client.widgets.BaseWidget::getJsObj()();
-            obj.addProperties({onHeaderClick:function(){
+            obj.addProperties({onHeaderClick:$entry(function(){
                     var param = {"fieldNum" : arguments[0]};
                     var event = @com.smartgwt.client.widgets.grid.events.HeaderClickEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
                     selfJ.@com.smartgwt.client.widgets.BaseWidget::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
                     var ret = event.@com.smartgwt.client.event.Cancellable::isCancelled()();
                     return !ret;
-                }
+                })
             });
         } else {
             obj = this.@com.smartgwt.client.widgets.BaseWidget::getConfig()();
-            obj.onHeaderClick = function(){
+            obj.onHeaderClick = $entry(function(){
                 var param = {"fieldNum" : arguments[0]};
                 var event = @com.smartgwt.client.widgets.grid.events.HeaderClickEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
                 selfJ.@com.smartgwt.client.widgets.BaseWidget::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
                 var ret = event.@com.smartgwt.client.event.Cancellable::isCancelled()();
                 return !ret;
-            };
+            });
         }
     }-*/;
-    
+
 
     /**
      * This method overrides {@link com.smartgwt.client.widgets.Canvas#willAcceptDrop} and works as follows:<br> <ul> <li>If
      * {@link com.smartgwt.client.widgets.Canvas#willAcceptDrop} (the superclass definition) returns false, this      method
      * always returns false.  This allows {@link com.smartgwt.client.widgets.Canvas#getDragType dragType} and     {@link
-     * com.smartgwt.client.widgets.Canvas#getDropTypes dropTypes} to be used to configure eligibility for drop.  By default,   
+     * com.smartgwt.client.widgets.Canvas#getDropTypes dropTypes} to be used to configure eligibility for drop.  By default,
      * a ListGrid has no dropTypes configured and so this check will not prevent a drop.</li> <li>If this is a self-drop, that
      * is, the user is dragging a record within this list, this is     an attempted drag-reorder.  If {@link
      * com.smartgwt.client.widgets.grid.ListGrid#getCanReorderRecords canReorderRecords} is      false, this method returns
      * false.</li> <li>If the {@link com.smartgwt.client.util.EventHandler#getDragTarget} is another widget, if     {@link
      * com.smartgwt.client.widgets.grid.ListGrid#getCanAcceptDroppedRecords canAcceptDroppedRecords} is false this method
      * returns false.</li> <li>If a call to {@link com.smartgwt.client.widgets.grid.ListGrid#getDragData} on the
-     * <code>dragTarget</code> fails to return     an record object or an array of records, this method returns false.</li> 
+     * <code>dragTarget</code> fails to return     an record object or an array of records, this method returns false.</li>
      * <li>If a the drop target record is disabled or has {@link
      * com.smartgwt.client.widgets.grid.ListGridRecord#getCanAcceptDrop canAcceptDrop}      set to false, return false.</li>
      * </ul> Note that this method may be called repeatedly during a drag-drop interaction to update the UI and notify the user
      * as to when they may validly drop data.
-     * 
+     *
      * <b> Note :</b> This is an override point
      *
      * @return true if this component will accept a drop of the dragData
      */
     public Boolean willAcceptDrop() {
-    	return super.willAcceptDrop();   
+    	return super.willAcceptDrop();
     }
-    
+
 
     /**
      * Add a onRecordDrop handler.
@@ -9605,27 +9605,27 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
         var selfJ = this;
         if(this.@com.smartgwt.client.widgets.BaseWidget::isCreated()()) {
             obj = this.@com.smartgwt.client.widgets.BaseWidget::getJsObj()();
-            obj.addProperties({onRecordDrop:function(){
+            obj.addProperties({onRecordDrop:$entry(function(){
                     var param = {"dropRecords" : arguments[0], "targetRecord" : arguments[1], "index" : arguments[2], "sourceWidget" : arguments[3]};
                     var event = @com.smartgwt.client.widgets.grid.events.RecordDropEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
                     selfJ.@com.smartgwt.client.widgets.BaseWidget::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
                     var ret = event.@com.smartgwt.client.event.Cancellable::isCancelled()();
                     return !ret;
-                }
+                })
             });
         } else {
             obj = this.@com.smartgwt.client.widgets.BaseWidget::getConfig()();
-            obj.onRecordDrop = function(){
+            obj.onRecordDrop = $entry(function(){
                 var param = {"dropRecords" : arguments[0], "targetRecord" : arguments[1], "index" : arguments[2], "sourceWidget" : arguments[3]};
                 var event = @com.smartgwt.client.widgets.grid.events.RecordDropEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
                 selfJ.@com.smartgwt.client.widgets.BaseWidget::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
                 var ret = event.@com.smartgwt.client.event.Cancellable::isCancelled()();
                 return !ret;
-            };
+            });
         }
     }-*/;
-    
-    
+
+
     /**
      * Add a recordExpand handler.
      * <p>
@@ -9645,23 +9645,23 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
         var selfJ = this;
         if(this.@com.smartgwt.client.widgets.BaseWidget::isCreated()()) {
             obj = this.@com.smartgwt.client.widgets.BaseWidget::getJsObj()();
-            obj.addProperties({onExpandRecord:function(){
+            obj.addProperties({onExpandRecord:$entry(function(){
                         var param = {"record" : arguments[0]};
                         var event = @com.smartgwt.client.widgets.grid.events.RecordExpandEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
                         selfJ.@com.smartgwt.client.widgets.BaseWidget::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
                         var ret = event.@com.smartgwt.client.event.Cancellable::isCancelled()();
                         return !ret;
-                    }
+                    })
              });
         } else {
             obj = this.@com.smartgwt.client.widgets.BaseWidget::getConfig()();
-            obj.onExpandRecord = function(){
+            obj.onExpandRecord = $entry(function(){
                    var param = {"record" : arguments[0]};
                    var event = @com.smartgwt.client.widgets.grid.events.RecordExpandEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
                    selfJ.@com.smartgwt.client.widgets.BaseWidget::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
                    var ret = event.@com.smartgwt.client.event.Cancellable::isCancelled()();
                    return !ret;
-               };
+               });
         }
    }-*/;
 
@@ -9684,23 +9684,23 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
         var selfJ = this;
         if(this.@com.smartgwt.client.widgets.BaseWidget::isCreated()()) {
             obj = this.@com.smartgwt.client.widgets.BaseWidget::getJsObj()();
-            obj.addProperties({onCollapseRecord:function(){
+            obj.addProperties({onCollapseRecord:$entry(function(){
                         var param = {"record" : arguments[0]};
                         var event = @com.smartgwt.client.widgets.grid.events.RecordCollapseEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
                         selfJ.@com.smartgwt.client.widgets.BaseWidget::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
                         var ret = event.@com.smartgwt.client.event.Cancellable::isCancelled()();
                         return !ret;
-                    }
+                    })
              });
         } else {
             obj = this.@com.smartgwt.client.widgets.BaseWidget::getConfig()();
-            obj.onCollapseRecord = function(){
+            obj.onCollapseRecord = $entry(function(){
                    var param = {"record" : arguments[0]};
                    var event = @com.smartgwt.client.widgets.grid.events.RecordCollapseEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
                    selfJ.@com.smartgwt.client.widgets.BaseWidget::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
                    var ret = event.@com.smartgwt.client.event.Cancellable::isCancelled()();
                    return !ret;
-               };
+               });
         }
    }-*/;
 
@@ -9731,7 +9731,7 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
         @com.smartgwt.client.util.FileLoader::cacheImg(Ljava/lang/String;Ljava/lang/String;)(canvasSkinImgDir, '[SKIN]/actions/sort_ascending.png');
         @com.smartgwt.client.util.FileLoader::cacheImg(Ljava/lang/String;Ljava/lang/String;)(canvasSkinImgDir, '[SKIN]/actions/sort_descending.png');
     }-*/;
-    
+
     /**
      * Returns a numeric value for the width of some field within this listGrid.
      * @param fieldNum Index of field for which width is to be determined.
@@ -9742,7 +9742,7 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
         return self.getFieldWidth(fieldNum);
     }-*/;
- 
+
     /**
      * Returns a numeric value for the width of some field within this listGrid.
      * @param fieldName Name of field for which width is to be determined.
@@ -9753,7 +9753,7 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
         return self.getFieldWidth(fieldName);
     }-*/;
-    
+
 
 
 
@@ -9769,7 +9769,7 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
     public FetchMode getDataFetchMode() {
         return EnumUtil.getEnum(FetchMode.values(), getAttribute("dataFetchMode"));
     }
-    
+
     public void setDataPageSize(int dataPageSize) {
         setAttribute("dataPageSize", dataPageSize, true);
     }
@@ -10181,22 +10181,22 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
     public native void fetchData(Criteria criteria, DSCallback callback) /*-{
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
         var critJS = criteria == null ? null : criteria.@com.smartgwt.client.data.Criteria::getJsObj()();
-        self.fetchData(critJS, function (dsResponse, data, dsRequest) {
+        self.fetchData(critJS, $entry(function (dsResponse, data, dsRequest) {
             var responseJ = @com.smartgwt.client.data.DSResponse::new(Lcom/google/gwt/core/client/JavaScriptObject;)(dsResponse);
             var requestJ = @com.smartgwt.client.data.DSRequest::new(Lcom/google/gwt/core/client/JavaScriptObject;)(dsRequest);
             if(callback != null) callback.@com.smartgwt.client.data.DSCallback::execute(Lcom/smartgwt/client/data/DSResponse;Ljava/lang/Object;Lcom/smartgwt/client/data/DSRequest;)(responseJ, data, requestJ);
-        });
+        }));
     }-*/;
 
     public native void fetchData(Criteria criteria, DSCallback callback, DSRequest requestProperties) /*-{
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
         var critJS = criteria == null ? null : criteria.@com.smartgwt.client.data.Criteria::getJsObj()();
         var requestPropertiesJS = requestProperties == null ? null : requestProperties.@com.smartgwt.client.core.DataClass::getJsObj()();
-        self.fetchData(critJS, function (dsResponse, data, dsRequest) {
+        self.fetchData(critJS, $entry(function (dsResponse, data, dsRequest) {
             var responseJ = @com.smartgwt.client.data.DSResponse::new(Lcom/google/gwt/core/client/JavaScriptObject;)(dsResponse);
             var requestJ = @com.smartgwt.client.data.DSRequest::new(Lcom/google/gwt/core/client/JavaScriptObject;)(dsRequest);
             if(callback != null) callback.@com.smartgwt.client.data.DSCallback::execute(Lcom/smartgwt/client/data/DSResponse;Ljava/lang/Object;Lcom/smartgwt/client/data/DSRequest;)(responseJ, data, requestJ);
-        }, requestPropertiesJS);
+        }), requestPropertiesJS);
     }-*/;
 
     public native void filterData() /*-{
@@ -10212,22 +10212,22 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
     public native void filterData(Criteria criteria, DSCallback callback) /*-{
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
         var critJS = criteria == null ? null : criteria.@com.smartgwt.client.data.Criteria::getJsObj()();
-        self.filterData(critJS, function (dsResponse, data, dsRequest) {
+        self.filterData(critJS, $entry(function (dsResponse, data, dsRequest) {
             var responseJ = @com.smartgwt.client.data.DSResponse::new(Lcom/google/gwt/core/client/JavaScriptObject;)(dsResponse);
             var requestJ = @com.smartgwt.client.data.DSRequest::new(Lcom/google/gwt/core/client/JavaScriptObject;)(dsRequest);
             if(callback != null) callback.@com.smartgwt.client.data.DSCallback::execute(Lcom/smartgwt/client/data/DSResponse;Ljava/lang/Object;Lcom/smartgwt/client/data/DSRequest;)(responseJ, data, requestJ);
-        });
+        }));
     }-*/;
 
     public native void filterData(Criteria criteria, DSCallback callback, DSRequest requestProperties) /*-{
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
         var critJS = criteria == null ? null : criteria.@com.smartgwt.client.data.Criteria::getJsObj()();
         var requestPropertiesJS = requestProperties == null ? null : requestProperties.@com.smartgwt.client.core.DataClass::getJsObj()();
-        self.filterData(critJS, function (dsResponse, data, dsRequest) {
+        self.filterData(critJS, $entry(function (dsResponse, data, dsRequest) {
             var responseJ = @com.smartgwt.client.data.DSResponse::new(Lcom/google/gwt/core/client/JavaScriptObject;)(dsResponse);
             var requestJ = @com.smartgwt.client.data.DSRequest::new(Lcom/google/gwt/core/client/JavaScriptObject;)(dsRequest);
             if(callback != null) callback.@com.smartgwt.client.data.DSCallback::execute(Lcom/smartgwt/client/data/DSResponse;Ljava/lang/Object;Lcom/smartgwt/client/data/DSRequest;)(responseJ, data, requestJ);
-        }, requestPropertiesJS);
+        }), requestPropertiesJS);
     }-*/;
 
     public native void invalidateCache() /*-{

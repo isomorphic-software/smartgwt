@@ -2330,11 +2330,11 @@ public class FormItem extends RefDataClass  implements com.smartgwt.client.widge
         var obj = null;
             obj = this.@com.smartgwt.client.core.DataClass::getJsObj()();
             var selfJ = this;
-            obj.itemHover = function(){
+            obj.itemHover = $entry(function(){
                 var param = {"item" : arguments[0], "form" : arguments[1]};
                 var event = @com.smartgwt.client.widgets.form.fields.events.ItemHoverEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
                 selfJ.@com.smartgwt.client.core.DataClass::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
-            };
+            });
    }-*/;
 
     /**
@@ -2356,11 +2356,11 @@ public class FormItem extends RefDataClass  implements com.smartgwt.client.widge
         var obj = null;
             obj = this.@com.smartgwt.client.core.DataClass::getJsObj()();
             var selfJ = this;
-            obj.titleHover = function(){
+            obj.titleHover = $entry(function(){
                 var param = {"item" : arguments[0], "form" : arguments[1]};
                 var event = @com.smartgwt.client.widgets.form.fields.events.TitleHoverEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
                 selfJ.@com.smartgwt.client.core.DataClass::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
-            };
+            });
    }-*/;
 
 
@@ -2432,11 +2432,11 @@ public class FormItem extends RefDataClass  implements com.smartgwt.client.widge
         var obj = null;
             obj = this.@com.smartgwt.client.core.DataClass::getJsObj()();
             var selfJ = this;
-            obj.focus = function(){
+            obj.focus = $entry(function(){
                 var param = {"form" : arguments[0], "item" : arguments[1]};
                 var event = @com.smartgwt.client.widgets.form.fields.events.FocusEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
                 selfJ.@com.smartgwt.client.core.DataClass::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
-            };
+            });
    }-*/;
 
     /**
@@ -2456,11 +2456,11 @@ public class FormItem extends RefDataClass  implements com.smartgwt.client.widge
         var obj = null;
             obj = this.@com.smartgwt.client.core.DataClass::getJsObj()();
             var selfJ = this;
-            obj.blur = function(){
+            obj.blur = $entry(function(){
                 var param = {"form" : arguments[0], "item" : arguments[1]};
                 var event = @com.smartgwt.client.widgets.form.fields.events.BlurEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
                 selfJ.@com.smartgwt.client.core.DataClass::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
-            };
+            });
    }-*/;
 
     /**
@@ -2481,11 +2481,11 @@ public class FormItem extends RefDataClass  implements com.smartgwt.client.widge
         var obj = null;
             obj = this.@com.smartgwt.client.core.DataClass::getJsObj()();
             var selfJ = this;
-            obj.click = function(){
+            obj.click = $entry(function(){
                 var param = {"form" : arguments[0], "item" : arguments[1]};
                 var event = @com.smartgwt.client.widgets.form.fields.events.ClickEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
                 selfJ.@com.smartgwt.client.core.DataClass::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
-            };
+            });
    }-*/;
 
     /**
@@ -2505,11 +2505,11 @@ public class FormItem extends RefDataClass  implements com.smartgwt.client.widge
         var obj = null;
             obj = this.@com.smartgwt.client.core.DataClass::getJsObj()();
             var selfJ = this;
-            obj.doubleClick = function(){
+            obj.doubleClick = $entry(function(){
                 var param = {"form" : arguments[0], "item" : arguments[1]};
                 var event = @com.smartgwt.client.widgets.form.fields.events.DoubleClickEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
                 selfJ.@com.smartgwt.client.core.DataClass::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
-            };
+            });
    }-*/;
 
     /**
@@ -2530,11 +2530,11 @@ public class FormItem extends RefDataClass  implements com.smartgwt.client.widge
         var obj = null;
             obj = this.@com.smartgwt.client.core.DataClass::getJsObj()();
             var selfJ = this;
-            obj.iconClick = function(){
+            obj.iconClick = $entry(function(){
                 var param = {"form" : arguments[0], "item" : arguments[1], "icon" : arguments[2]};
                 var event = @com.smartgwt.client.widgets.form.fields.events.IconClickEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
                 selfJ.@com.smartgwt.client.core.DataClass::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
-            };
+            });
    }-*/;
 
     /**
@@ -2555,11 +2555,11 @@ public class FormItem extends RefDataClass  implements com.smartgwt.client.widge
         var obj = null;
             obj = this.@com.smartgwt.client.core.DataClass::getJsObj()();
             var selfJ = this;
-            obj.iconKeyPress = function(){
+            obj.iconKeyPress = $entry(function(){
                 var param = {"keyName" : arguments[0], "character" : arguments[1], "form" : arguments[2], "item" : arguments[3], "icon" : arguments[4]};
                 var event = @com.smartgwt.client.widgets.form.fields.events.IconKeyPressEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
                 selfJ.@com.smartgwt.client.core.DataClass::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
-            };
+            });
    }-*/;
 
     /**
@@ -2587,13 +2587,13 @@ public class FormItem extends RefDataClass  implements com.smartgwt.client.widge
         var obj = null;
             obj = this.@com.smartgwt.client.core.DataClass::getJsObj()();
             var selfJ = this;
-            obj.change = function(){
+            obj.change = $entry(function(){
                 var param = {"form" : arguments[0], "item" : arguments[1], "value" : arguments[2], "oldValue" : arguments[3]};
                 var event = @com.smartgwt.client.widgets.form.fields.events.ChangeEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
                 selfJ.@com.smartgwt.client.core.DataClass::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
                 var ret = event.@com.smartgwt.client.event.Cancellable::isCancelled()();
                 return !ret;
-            };
+            });
    }-*/;
 
     /**
@@ -2614,11 +2614,11 @@ public class FormItem extends RefDataClass  implements com.smartgwt.client.widge
         var obj = null;
             obj = this.@com.smartgwt.client.core.DataClass::getJsObj()();
             var selfJ = this;
-            obj.changed = function(){
+            obj.changed = $entry(function(){
                 var param = {"form" : arguments[0], "item" : arguments[1], "value" : arguments[2]};
                 var event = @com.smartgwt.client.widgets.form.fields.events.ChangedEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
                 selfJ.@com.smartgwt.client.core.DataClass::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
-            };
+            });
    }-*/;
 
 
@@ -2639,13 +2639,13 @@ public class FormItem extends RefDataClass  implements com.smartgwt.client.widge
         var obj = null;
             obj = this.@com.smartgwt.client.core.DataClass::getJsObj()();
             var selfJ = this;
-            obj.keyPress = function(){
+            obj.keyPress = $entry(function(){
                 var param = {"item" : arguments[0], "form" : arguments[1], "keyName" : arguments[2], "characterValue" : arguments[3]};
                 var event = @com.smartgwt.client.widgets.form.fields.events.KeyPressEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
                 selfJ.@com.smartgwt.client.core.DataClass::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
                 var ret = event.@com.smartgwt.client.event.Cancellable::isCancelled()();
                 return !ret;
-            };
+            });
    }-*/;
 
     /**
@@ -2665,13 +2665,13 @@ public class FormItem extends RefDataClass  implements com.smartgwt.client.widge
         var obj = null;
             obj = this.@com.smartgwt.client.core.DataClass::getJsObj()();
             var selfJ = this;
-            obj.keyDown = function(){
+            obj.keyDown = $entry(function(){
                 var param = {"item" : arguments[0], "form" : arguments[1], "keyName" : arguments[2]};
                 var event = @com.smartgwt.client.widgets.form.fields.events.KeyDownEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
                 selfJ.@com.smartgwt.client.core.DataClass::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
                 var ret = event.@com.smartgwt.client.event.Cancellable::isCancelled()();
                 return !ret;
-            };
+            });
    }-*/;
 
     /**
@@ -2691,13 +2691,13 @@ public class FormItem extends RefDataClass  implements com.smartgwt.client.widge
         var obj = null;
             obj = this.@com.smartgwt.client.core.DataClass::getJsObj()();
             var selfJ = this;
-            obj.keyUp = function(){
+            obj.keyUp = $entry(function(){
                 var param = {"item" : arguments[0], "form" : arguments[1], "keyName" : arguments[2]};
                 var event = @com.smartgwt.client.widgets.form.fields.events.KeyUpEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
                 selfJ.@com.smartgwt.client.core.DataClass::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
                 var ret = event.@com.smartgwt.client.event.Cancellable::isCancelled()();
                 return !ret;
-            };
+            });
    }-*/;
 
 
@@ -3414,12 +3414,12 @@ public class FormItem extends RefDataClass  implements com.smartgwt.client.widge
      */
     public native void setShowIfCondition(FormItemIfFunction showIf) /*-{
         var self = this.@com.smartgwt.client.core.DataClass::getJsObj()();
-        self.showIf = function(item, value, form, values) {
+        self.showIf = $entry(function(item, value, form, values) {
             var itemJ = @com.smartgwt.client.widgets.form.fields.FormItem::getOrCreateRef(Lcom/google/gwt/core/client/JavaScriptObject;)(item);
             var valueJ =  $wnd.SmartGWT.convertToJavaType(value);
             var formJ = @com.smartgwt.client.widgets.form.DynamicForm::getOrCreateRef(Lcom/google/gwt/core/client/JavaScriptObject;)(form);
             return showIf.@com.smartgwt.client.widgets.form.FormItemIfFunction::execute(Lcom/smartgwt/client/widgets/form/fields/FormItem;Ljava/lang/Object;Lcom/smartgwt/client/widgets/form/DynamicForm;)(itemJ, valueJ, formJ);
-        };
+        });
     }-*/;
 
     /**
@@ -3429,13 +3429,13 @@ public class FormItem extends RefDataClass  implements com.smartgwt.client.widge
      */
     public native void setErrorFormatter(FormItemErrorFormatter errorFormatter) /*-{
         var self = this.@com.smartgwt.client.core.DataClass::getJsObj()();
-        self.getErrorHTML = function(errors) {
+        self.getErrorHTML = $entry(function(errors) {
             if(!$wnd.isc.isA.Array(errors)){
                 errors = [errors];
             }
             var errorsJ = @com.smartgwt.client.util.JSOHelper::convertToJavaStringArray(Lcom/google/gwt/core/client/JavaScriptObject;)(errors);
             return errorFormatter.@com.smartgwt.client.widgets.form.FormItemErrorFormatter::getErrorHTML([Ljava/lang/String;)(errorsJ);
-        };
+        });
     }-*/;
 
     /**
@@ -3447,13 +3447,13 @@ public class FormItem extends RefDataClass  implements com.smartgwt.client.widge
      */
     public native void setInputTransformer(FormItemInputTransformer inputTransformer) /*-{
         var self = this.@com.smartgwt.client.core.DataClass::getJsObj()();
-        self.transformInput = function(form, item, value, oldValue) {
+        self.transformInput = $entry(function(form, item, value, oldValue) {
             var formJ = @com.smartgwt.client.widgets.form.DynamicForm::getOrCreateRef(Lcom/google/gwt/core/client/JavaScriptObject;)(form);
             var itemJ = @com.smartgwt.client.widgets.form.fields.FormItem::getOrCreateRef(Lcom/google/gwt/core/client/JavaScriptObject;)(item);
             var valueJ =  $wnd.SmartGWT.convertToJavaType(value);
             var oldValueJ =  $wnd.SmartGWT.convertToJavaType(oldValue);
             return inputTransformer.@com.smartgwt.client.widgets.form.FormItemInputTransformer::transformInput(Lcom/smartgwt/client/widgets/form/DynamicForm;Lcom/smartgwt/client/widgets/form/fields/FormItem;Ljava/lang/Object;Ljava/lang/Object;)(formJ, itemJ, valueJ, oldValueJ);
-        };
+        });
     }-*/;
     
    /**
@@ -3464,11 +3464,11 @@ public class FormItem extends RefDataClass  implements com.smartgwt.client.widge
     */
     public native void setItemHoverFormatter(FormItemHoverFormatter hoverFormatter) /*-{
         var self = this.@com.smartgwt.client.core.DataClass::getJsObj()();
-        self.itemHoverHTML = function(item, form) {
+        self.itemHoverHTML = $entry(function(item, form) {
             var formJ = @com.smartgwt.client.widgets.form.DynamicForm::getOrCreateRef(Lcom/google/gwt/core/client/JavaScriptObject;)(form);
             var itemJ = @com.smartgwt.client.widgets.form.fields.FormItem::getOrCreateRef(Lcom/google/gwt/core/client/JavaScriptObject;)(item);
             return hoverFormatter.@com.smartgwt.client.widgets.form.FormItemHoverFormatter::getHoverHTML(Lcom/smartgwt/client/widgets/form/fields/FormItem;Lcom/smartgwt/client/widgets/form/DynamicForm;)(itemJ, formJ);
-        };
+        });
     }-*/;
 
    /**
@@ -3479,11 +3479,11 @@ public class FormItem extends RefDataClass  implements com.smartgwt.client.widge
     */
     public native void setItemTitleHoverFormatter(FormItemHoverFormatter hoverFormatter) /*-{
         var self = this.@com.smartgwt.client.core.DataClass::getJsObj()();
-        self.titleHoverHTML = function(item, form) {
+        self.titleHoverHTML = $entry(function(item, form) {
             var formJ = @com.smartgwt.client.widgets.form.DynamicForm::getOrCreateRef(Lcom/google/gwt/core/client/JavaScriptObject;)(form);
             var itemJ = @com.smartgwt.client.widgets.form.fields.FormItem::getOrCreateRef(Lcom/google/gwt/core/client/JavaScriptObject;)(item);
             return hoverFormatter.@com.smartgwt.client.widgets.form.FormItemHoverFormatter::getHoverHTML(Lcom/smartgwt/client/widgets/form/fields/FormItem;Lcom/smartgwt/client/widgets/form/DynamicForm;)(itemJ, formJ);
-        };
+        });
     }-*/;
 
     /**
@@ -3517,13 +3517,13 @@ public class FormItem extends RefDataClass  implements com.smartgwt.client.widge
      */
     public native void setValueFormatter(FormItemValueFormatter formatter) /*-{
         var self = this.@com.smartgwt.client.core.DataClass::getJsObj()();
-        self.formatValue = function(value, record, form, item) {
+        self.formatValue = $entry(function(value, record, form, item) {
             var valueJ =  $wnd.SmartGWT.convertToJavaType(value);
             var formJ = @com.smartgwt.client.widgets.form.DynamicForm::getOrCreateRef(Lcom/google/gwt/core/client/JavaScriptObject;)(form);
             var itemJ = @com.smartgwt.client.widgets.form.fields.FormItem::getOrCreateRef(Lcom/google/gwt/core/client/JavaScriptObject;)(item);
             var recordJ = @com.smartgwt.client.data.Record::getOrCreateRef(Lcom/google/gwt/core/client/JavaScriptObject;)(record);
             return formatter.@com.smartgwt.client.widgets.form.FormItemValueFormatter::formatValue(Ljava/lang/Object;Lcom/smartgwt/client/data/Record;Lcom/smartgwt/client/widgets/form/DynamicForm;Lcom/smartgwt/client/widgets/form/fields/FormItem;)(valueJ, recordJ, formJ, itemJ);
-        }
+        });
     }-*/;
 
     /**
@@ -3539,13 +3539,13 @@ public class FormItem extends RefDataClass  implements com.smartgwt.client.widge
      */
     public native void setEditorValueFormatter(FormItemValueFormatter formatter) /*-{
         var self = this.@com.smartgwt.client.core.DataClass::getJsObj()();
-        self.formatEditorValue = function(value, record, form, item) {
+        self.formatEditorValue = $entry(function(value, record, form, item) {
             var valueJ =  $wnd.SmartGWT.convertToJavaType(value);
             var formJ = @com.smartgwt.client.widgets.form.DynamicForm::getOrCreateRef(Lcom/google/gwt/core/client/JavaScriptObject;)(form);
             var itemJ = @com.smartgwt.client.widgets.form.fields.FormItem::getOrCreateRef(Lcom/google/gwt/core/client/JavaScriptObject;)(item);
             var recordJ = @com.smartgwt.client.data.Record::getOrCreateRef(Lcom/google/gwt/core/client/JavaScriptObject;)(record);
             return formatter.@com.smartgwt.client.widgets.form.FormItemValueFormatter::formatValue(Ljava/lang/Object;Lcom/smartgwt/client/data/Record;Lcom/smartgwt/client/widgets/form/DynamicForm;Lcom/smartgwt/client/widgets/form/fields/FormItem;)(valueJ, recordJ, formJ, itemJ);
-        }
+        });
    }-*/;
 
     /**
@@ -3558,13 +3558,13 @@ public class FormItem extends RefDataClass  implements com.smartgwt.client.widge
      */
     public native void setEditorValueParser(FormItemValueParser valueParser) /*-{
         var self = this.@com.smartgwt.client.core.DataClass::getJsObj()();
-        self.parseEditorValue = function(value, form, item) {
+        self.parseEditorValue = $entry(function(value, form, item) {
             var formJ = @com.smartgwt.client.widgets.form.DynamicForm::getOrCreateRef(Lcom/google/gwt/core/client/JavaScriptObject;)(form);
             var itemJ = @com.smartgwt.client.widgets.form.fields.FormItem::getOrCreateRef(Lcom/google/gwt/core/client/JavaScriptObject;)(item);
             var data = valueParser.@com.smartgwt.client.widgets.form.FormItemValueParser::parseValue(Ljava/lang/String;Lcom/smartgwt/client/widgets/form/DynamicForm;Lcom/smartgwt/client/widgets/form/fields/FormItem;)(value, formJ, itemJ);
             var dataJ =  data == null ? null : $wnd.SmartGWT.convertToJavaType(data);
             return dataJ;
-        };
+        });
     }-*/;
 
 }
