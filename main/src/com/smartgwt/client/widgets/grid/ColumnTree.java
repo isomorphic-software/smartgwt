@@ -785,23 +785,23 @@ public class ColumnTree extends Layout  implements DataBoundComponent, com.smart
         var selfJ = this;
         if(this.@com.smartgwt.client.widgets.BaseWidget::isCreated()()) {
             obj = this.@com.smartgwt.client.widgets.BaseWidget::getJsObj()();
-            obj.addProperties({onNodeSelected:function(){
+            obj.addProperties({onNodeSelected:$entry(function(){
                     var param = {"column" : arguments[0], "node" : arguments[1]};
                     var event = @com.smartgwt.client.widgets.grid.events.NodeSelectedEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
                     selfJ.@com.smartgwt.client.widgets.BaseWidget::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
                     var ret = event.@com.smartgwt.client.event.Cancellable::isCancelled()();
                     return !ret;
-                }
+                })
             });
         } else {
             obj = this.@com.smartgwt.client.widgets.BaseWidget::getConfig()();
-            obj.onNodeSelected = function(){
+            obj.onNodeSelected = $entry(function(){
                 var param = {"column" : arguments[0], "node" : arguments[1]};
                 var event = @com.smartgwt.client.widgets.grid.events.NodeSelectedEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
                 selfJ.@com.smartgwt.client.widgets.BaseWidget::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
                 var ret = event.@com.smartgwt.client.event.Cancellable::isCancelled()();
                 return !ret;
-            };
+            });
         }
     }-*/;
 
@@ -1231,22 +1231,22 @@ public class ColumnTree extends Layout  implements DataBoundComponent, com.smart
     public native void fetchData(Criteria criteria, DSCallback callback) /*-{
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
         var critJS = criteria == null ? null : criteria.@com.smartgwt.client.data.Criteria::getJsObj()();
-        self.fetchData(critJS, function (dsResponse, data, dsRequest) {
+        self.fetchData(critJS, $entry(function (dsResponse, data, dsRequest) {
             var responseJ = @com.smartgwt.client.data.DSResponse::new(Lcom/google/gwt/core/client/JavaScriptObject;)(dsResponse);
             var requestJ = @com.smartgwt.client.data.DSRequest::new(Lcom/google/gwt/core/client/JavaScriptObject;)(dsRequest);
             if(callback != null) callback.@com.smartgwt.client.data.DSCallback::execute(Lcom/smartgwt/client/data/DSResponse;Ljava/lang/Object;Lcom/smartgwt/client/data/DSRequest;)(responseJ, data, requestJ);
-        });
+        }));
     }-*/;
 
     public native void fetchData(Criteria criteria, DSCallback callback, DSRequest requestProperties) /*-{
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
         var critJS = criteria == null ? null : criteria.@com.smartgwt.client.data.Criteria::getJsObj()();
         var requestPropertiesJS = requestProperties == null ? null : requestProperties.@com.smartgwt.client.core.DataClass::getJsObj()();
-        self.fetchData(critJS, function (dsResponse, data, dsRequest) {
+        self.fetchData(critJS, $entry(function (dsResponse, data, dsRequest) {
             var responseJ = @com.smartgwt.client.data.DSResponse::new(Lcom/google/gwt/core/client/JavaScriptObject;)(dsResponse);
             var requestJ = @com.smartgwt.client.data.DSRequest::new(Lcom/google/gwt/core/client/JavaScriptObject;)(dsRequest);
             if(callback != null) callback.@com.smartgwt.client.data.DSCallback::execute(Lcom/smartgwt/client/data/DSResponse;Ljava/lang/Object;Lcom/smartgwt/client/data/DSRequest;)(responseJ, data, requestJ);
-        }, requestPropertiesJS);
+        }), requestPropertiesJS);
     }-*/;
 
     public native void filterData() /*-{
@@ -1262,22 +1262,22 @@ public class ColumnTree extends Layout  implements DataBoundComponent, com.smart
     public native void filterData(Criteria criteria, DSCallback callback) /*-{
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
         var critJS = criteria == null ? null : criteria.@com.smartgwt.client.data.Criteria::getJsObj()();
-        self.filterData(critJS, function (dsResponse, data, dsRequest) {
+        self.filterData(critJS, $entry(function (dsResponse, data, dsRequest) {
             var responseJ = @com.smartgwt.client.data.DSResponse::new(Lcom/google/gwt/core/client/JavaScriptObject;)(dsResponse);
             var requestJ = @com.smartgwt.client.data.DSRequest::new(Lcom/google/gwt/core/client/JavaScriptObject;)(dsRequest);
             if(callback != null) callback.@com.smartgwt.client.data.DSCallback::execute(Lcom/smartgwt/client/data/DSResponse;Ljava/lang/Object;Lcom/smartgwt/client/data/DSRequest;)(responseJ, data, requestJ);
-        });
+        }));
     }-*/;
 
     public native void filterData(Criteria criteria, DSCallback callback, DSRequest requestProperties) /*-{
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
         var critJS = criteria == null ? null : criteria.@com.smartgwt.client.data.Criteria::getJsObj()();
         var requestPropertiesJS = requestProperties == null ? null : requestProperties.@com.smartgwt.client.core.DataClass::getJsObj()();
-        self.filterData(critJS, function (dsResponse, data, dsRequest) {
+        self.filterData(critJS, $entry(function (dsResponse, data, dsRequest) {
             var responseJ = @com.smartgwt.client.data.DSResponse::new(Lcom/google/gwt/core/client/JavaScriptObject;)(dsResponse);
             var requestJ = @com.smartgwt.client.data.DSRequest::new(Lcom/google/gwt/core/client/JavaScriptObject;)(dsRequest);
             if(callback != null) callback.@com.smartgwt.client.data.DSCallback::execute(Lcom/smartgwt/client/data/DSResponse;Ljava/lang/Object;Lcom/smartgwt/client/data/DSRequest;)(responseJ, data, requestJ);
-        }, requestPropertiesJS);
+        }), requestPropertiesJS);
     }-*/;
 
     public native void invalidateCache() /*-{

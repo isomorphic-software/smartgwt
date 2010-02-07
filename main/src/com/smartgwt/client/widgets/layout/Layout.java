@@ -914,12 +914,12 @@ public class Layout extends Canvas {
     protected native void onInit() /*-{
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
         self.__getDropComponent = self.getDropComponent;
-        self.getDropComponent = function(dragTarget, dropPosition) {
+        self.getDropComponent = $entry(function(dragTarget, dropPosition) {
             var jObj = this.__ref;
             var dragTargetJ = @com.smartgwt.client.widgets.Canvas::getOrCreateRef(Lcom/google/gwt/core/client/JavaScriptObject;)(dragTarget);
             var dragTarget2J = jObj.@com.smartgwt.client.widgets.layout.Layout::getDropComponent(Lcom/smartgwt/client/widgets/Canvas;I)(dragTargetJ, dropPosition);
             return dragTarget2J == null ? false : dragTarget2J.@com.smartgwt.client.widgets.Canvas::getOrCreateJsObj()();
-        };
+        });
     }-*/;
 
     /*
@@ -1176,9 +1176,9 @@ public class Layout extends Canvas {
     public native void showMember(Canvas member, Function callback) /*-{
         var self  = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
         var memberJS = member.@com.smartgwt.client.widgets.Canvas::getOrCreateJsObj()();
-        self.showMember(memberJS, function() {
+        self.showMember(memberJS, $entry(function() {
             callback.@com.smartgwt.client.core.Function::execute()();
-        });
+        }));
     }-*/;
 
 
@@ -1208,9 +1208,9 @@ public class Layout extends Canvas {
     public native void hideMember(Canvas member, Function callback) /*-{
         var self  = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
         var memberJS = member.@com.smartgwt.client.widgets.Canvas::getOrCreateJsObj()();
-        self.hideMember(memberJS, function() {
+        self.hideMember(memberJS, $entry(function() {
             callback.@com.smartgwt.client.core.Function::execute()();
-        });
+        }));
     }-*/;
 
     /**

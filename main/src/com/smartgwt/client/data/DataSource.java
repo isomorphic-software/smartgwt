@@ -1455,23 +1455,23 @@ public class DataSource extends BaseClass  implements com.smartgwt.client.data.e
         var selfJ = this;
             if(this.@com.smartgwt.client.core.BaseClass::isCreated()()) {
                 obj = this.@com.smartgwt.client.core.BaseClass::getJsObj()();
-                obj.addProperties({handleError:function(){
+                obj.addProperties({handleError:$entry(function(){
                         var param = {"response" : arguments[0], "request" : arguments[1]};
                         var event = @com.smartgwt.client.data.events.ErrorEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
                         selfJ.@com.smartgwt.client.core.BaseClass::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
                         var ret = event.@com.smartgwt.client.event.Cancellable::isCancelled()();
                         return !ret;
-                    }
+                    })
                 });
             } else {
                 obj = this.@com.smartgwt.client.core.BaseClass::getConfig()();
-                obj.handleError = function(){
+                obj.handleError = $entry(function(){
                     var param = {"response" : arguments[0], "request" : arguments[1]};
                     var event = @com.smartgwt.client.data.events.ErrorEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
                     selfJ.@com.smartgwt.client.core.BaseClass::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
                     var ret = event.@com.smartgwt.client.event.Cancellable::isCancelled()();
                     return !ret;
-                };
+                });
             }
    }-*/;
 
@@ -1596,7 +1596,7 @@ public class DataSource extends BaseClass  implements com.smartgwt.client.data.e
         var self = this.@com.smartgwt.client.core.BaseClass::getOrCreateJsObj()();
 
         self.__transformRequest = self.transformRequest;
-        self.transformRequest = function(dsRequest) {
+        self.transformRequest = $entry(function(dsRequest) {
             var jObj = this.__ref;
             if(jObj === undefined) {
                 //handle case where oneTimeDS is cared from original DS (when clientOnly=true with dataURL)
@@ -1605,11 +1605,11 @@ public class DataSource extends BaseClass  implements com.smartgwt.client.data.e
             var dsRequestJ = @com.smartgwt.client.data.DSRequest::new(Lcom/google/gwt/core/client/JavaScriptObject;)(dsRequest);
             var data = jObj.@com.smartgwt.client.data.DataSource::transformRequest(Lcom/smartgwt/client/data/DSRequest;)(dsRequestJ);
             return data;
-        };
+        });
 
 
         self.__transformResponse = self.transformResponse;
-        self.transformResponse = function(dsResponse, dsRequest, data) {
+        self.transformResponse = $entry(function(dsResponse, dsRequest, data) {
             var jObj = this.__ref;
             if(jObj === undefined) {
                 //handle case where oneTimeDS is cared from original DS (when clientOnly=true with dataURL)
@@ -1618,10 +1618,10 @@ public class DataSource extends BaseClass  implements com.smartgwt.client.data.e
             var responseJ = @com.smartgwt.client.data.DSResponse::new(Lcom/google/gwt/core/client/JavaScriptObject;)(dsResponse);
             var requestJ = @com.smartgwt.client.data.DSRequest::new(Lcom/google/gwt/core/client/JavaScriptObject;)(dsRequest);
             jObj.@com.smartgwt.client.data.DataSource::transformResponse(Lcom/smartgwt/client/data/DSResponse;Lcom/smartgwt/client/data/DSRequest;Ljava/lang/Object;)(responseJ, requestJ, data);
-        };
+        });
 
         self.__getClientOnlyResponse = self.getClientOnlyResponse;
-        self.getClientOnlyResponse = function(dsRequest) {
+        self.getClientOnlyResponse = $entry(function(dsRequest) {
             var jObj = this.__ref;
             if(jObj === undefined) {
                 //handle case where oneTimeDS is cared from original DS (when clientOnly=true with dataURL)
@@ -1630,7 +1630,7 @@ public class DataSource extends BaseClass  implements com.smartgwt.client.data.e
             var requestJ = @com.smartgwt.client.data.DSRequest::new(Lcom/google/gwt/core/client/JavaScriptObject;)(dsRequest);
             var responseJ = jObj.@com.smartgwt.client.data.DataSource::getClientOnlyResponse(Lcom/smartgwt/client/data/DSRequest;)(requestJ);
             return responseJ == null ? null : responseJ.@com.smartgwt.client.data.DSResponse::getJsObj()();
-        };
+        });
     }-*/;
 
 
@@ -2183,11 +2183,11 @@ public class DataSource extends BaseClass  implements com.smartgwt.client.data.e
     public native void fetchData(Criteria criteria, DSCallback callback) /*-{
         var self = this.@com.smartgwt.client.core.BaseClass::getOrCreateJsObj()();
         var critJS = criteria == null ? null : criteria.@com.smartgwt.client.data.Criteria::getJsObj()();
-        self.fetchData(critJS, function (dsResponse, data, dsRequest) {
+        self.fetchData(critJS, $entry(function (dsResponse, data, dsRequest) {
             var responseJ = @com.smartgwt.client.data.DSResponse::new(Lcom/google/gwt/core/client/JavaScriptObject;)(dsResponse);
             var requestJ = @com.smartgwt.client.data.DSRequest::new(Lcom/google/gwt/core/client/JavaScriptObject;)(dsRequest);
             if(callback != null) callback.@com.smartgwt.client.data.DSCallback::execute(Lcom/smartgwt/client/data/DSResponse;Ljava/lang/Object;Lcom/smartgwt/client/data/DSRequest;)(responseJ, data, requestJ);
-        });
+        }));
     }-*/;
 
     /**
@@ -2245,11 +2245,11 @@ public class DataSource extends BaseClass  implements com.smartgwt.client.data.e
         var self = this.@com.smartgwt.client.core.BaseClass::getOrCreateJsObj()();
         var critJS = criteria == null ? null : criteria.@com.smartgwt.client.data.Criteria::getJsObj()();
         var requestPropertiesJS = requestProperties == null ? null : requestProperties.@com.smartgwt.client.core.DataClass::getJsObj()();
-        self.fetchData(critJS, function (dsResponse, data, dsRequest) {
+        self.fetchData(critJS, $entry(function (dsResponse, data, dsRequest) {
             var responseJ = @com.smartgwt.client.data.DSResponse::new(Lcom/google/gwt/core/client/JavaScriptObject;)(dsResponse);
             var requestJ = @com.smartgwt.client.data.DSRequest::new(Lcom/google/gwt/core/client/JavaScriptObject;)(dsRequest);
             if(callback != null) callback.@com.smartgwt.client.data.DSCallback::execute(Lcom/smartgwt/client/data/DSResponse;Ljava/lang/Object;Lcom/smartgwt/client/data/DSRequest;)(responseJ, data, requestJ);
-        }, requestPropertiesJS);
+        }), requestPropertiesJS);
     }-*/;
 
     /**
@@ -2277,22 +2277,22 @@ public class DataSource extends BaseClass  implements com.smartgwt.client.data.e
     public native void filterData(Criteria criteria, DSCallback callback) /*-{
         var self = this.@com.smartgwt.client.core.BaseClass::getOrCreateJsObj()();
         var critJS = criteria == null ? null : criteria.@com.smartgwt.client.data.Criteria::getJsObj()();
-        self.filterData(critJS, function (dsResponse, data, dsRequest) {
+        self.filterData(critJS, $entry(function (dsResponse, data, dsRequest) {
             var responseJ = @com.smartgwt.client.data.DSResponse::new(Lcom/google/gwt/core/client/JavaScriptObject;)(dsResponse);
             var requestJ = @com.smartgwt.client.data.DSRequest::new(Lcom/google/gwt/core/client/JavaScriptObject;)(dsRequest);
             if(callback != null) callback.@com.smartgwt.client.data.DSCallback::execute(Lcom/smartgwt/client/data/DSResponse;Ljava/lang/Object;Lcom/smartgwt/client/data/DSRequest;)(responseJ, data, requestJ);
-        });
+        }));
     }-*/;
 
     public native void filterData(Criteria criteria, DSCallback callback, DSRequest requestProperties) /*-{
         var self = this.@com.smartgwt.client.core.BaseClass::getOrCreateJsObj()();
         var critJS = criteria == null ? null : criteria.@com.smartgwt.client.data.Criteria::getJsObj()();
         var requestPropertiesJS = requestProperties == null ? null : requestProperties.@com.smartgwt.client.core.DataClass::getJsObj()();
-        self.filterData(critJS, function (dsResponse, data, dsRequest) {
+        self.filterData(critJS, $entry(function (dsResponse, data, dsRequest) {
             var responseJ = @com.smartgwt.client.data.DSResponse::new(Lcom/google/gwt/core/client/JavaScriptObject;)(dsResponse);
             var requestJ = @com.smartgwt.client.data.DSRequest::new(Lcom/google/gwt/core/client/JavaScriptObject;)(dsRequest);
             if(callback != null) callback.@com.smartgwt.client.data.DSCallback::execute(Lcom/smartgwt/client/data/DSResponse;Ljava/lang/Object;Lcom/smartgwt/client/data/DSRequest;)(responseJ, data, requestJ);
-        }, requestPropertiesJS);
+        }), requestPropertiesJS);
     }-*/;
 
     /**
@@ -2315,11 +2315,11 @@ public class DataSource extends BaseClass  implements com.smartgwt.client.data.e
     public native void addData(Record record, DSCallback callback) /*-{
         var self = this.@com.smartgwt.client.core.BaseClass::getOrCreateJsObj()();
         var recordJS = record.@com.smartgwt.client.data.Record::getJsObj()();
-        self.addData(recordJS, function (dsResponse, data, dsRequest) {
+        self.addData(recordJS, $entry(function (dsResponse, data, dsRequest) {
             var responseJ = @com.smartgwt.client.data.DSResponse::new(Lcom/google/gwt/core/client/JavaScriptObject;)(dsResponse);
             var requestJ = @com.smartgwt.client.data.DSRequest::new(Lcom/google/gwt/core/client/JavaScriptObject;)(dsRequest);
             if(callback != null) callback.@com.smartgwt.client.data.DSCallback::execute(Lcom/smartgwt/client/data/DSResponse;Ljava/lang/Object;Lcom/smartgwt/client/data/DSRequest;)(responseJ, data, requestJ);
-        });
+        }));
     }-*/;
 
     /**
@@ -2333,11 +2333,11 @@ public class DataSource extends BaseClass  implements com.smartgwt.client.data.e
         var self = this.@com.smartgwt.client.core.BaseClass::getOrCreateJsObj()();
         var recordJS = record.@com.smartgwt.client.data.Record::getJsObj()();
         var requestPropertiesJS = requestProperties == null ? null : requestProperties.@com.smartgwt.client.core.DataClass::getJsObj()();
-        self.addData(recordJS, function (dsResponse, data, dsRequest) {
+        self.addData(recordJS, $entry(function (dsResponse, data, dsRequest) {
             var responseJ = @com.smartgwt.client.data.DSResponse::new(Lcom/google/gwt/core/client/JavaScriptObject;)(dsResponse);
             var requestJ = @com.smartgwt.client.data.DSRequest::new(Lcom/google/gwt/core/client/JavaScriptObject;)(dsRequest);
             if(callback != null) callback.@com.smartgwt.client.data.DSCallback::execute(Lcom/smartgwt/client/data/DSResponse;Ljava/lang/Object;Lcom/smartgwt/client/data/DSRequest;)(responseJ, data, requestJ);
-        }, requestPropertiesJS);
+        }), requestPropertiesJS);
     }-*/;
 
     /**
@@ -2362,11 +2362,11 @@ public class DataSource extends BaseClass  implements com.smartgwt.client.data.e
     public native void updateData(Record record, DSCallback callback) /*-{
         var self = this.@com.smartgwt.client.core.BaseClass::getOrCreateJsObj()();
         var recordJS = record.@com.smartgwt.client.data.Record::getJsObj()();
-        self.updateData(recordJS, function (dsResponse, data, dsRequest) {
+        self.updateData(recordJS, $entry(function (dsResponse, data, dsRequest) {
             var responseJ = @com.smartgwt.client.data.DSResponse::new(Lcom/google/gwt/core/client/JavaScriptObject;)(dsResponse);
             var requestJ = @com.smartgwt.client.data.DSRequest::new(Lcom/google/gwt/core/client/JavaScriptObject;)(dsRequest);
             if(callback != null) callback.@com.smartgwt.client.data.DSCallback::execute(Lcom/smartgwt/client/data/DSResponse;Ljava/lang/Object;Lcom/smartgwt/client/data/DSRequest;)(responseJ, data, requestJ);
-        });
+        }));
     }-*/;
 
     /**
@@ -2381,11 +2381,11 @@ public class DataSource extends BaseClass  implements com.smartgwt.client.data.e
         var self = this.@com.smartgwt.client.core.BaseClass::getOrCreateJsObj()();
         var recordJS = record.@com.smartgwt.client.data.Record::getJsObj()();
         var requestPropertiesJS = requestProperties == null ? null : requestProperties.@com.smartgwt.client.core.DataClass::getJsObj()();
-        self.updateData(recordJS, function (dsResponse, data, dsRequest) {
+        self.updateData(recordJS, $entry(function (dsResponse, data, dsRequest) {
             var responseJ = @com.smartgwt.client.data.DSResponse::new(Lcom/google/gwt/core/client/JavaScriptObject;)(dsResponse);
             var requestJ = @com.smartgwt.client.data.DSRequest::new(Lcom/google/gwt/core/client/JavaScriptObject;)(dsRequest);
             if(callback != null) callback.@com.smartgwt.client.data.DSCallback::execute(Lcom/smartgwt/client/data/DSResponse;Ljava/lang/Object;Lcom/smartgwt/client/data/DSRequest;)(responseJ, data, requestJ);
-        }, requestPropertiesJS);
+        }), requestPropertiesJS);
     }-*/;
 
     /**
@@ -2410,11 +2410,11 @@ public class DataSource extends BaseClass  implements com.smartgwt.client.data.e
     public native void removeData(Record record, DSCallback callback) /*-{
         var self = this.@com.smartgwt.client.core.BaseClass::getOrCreateJsObj()();
         var recordJS = record.@com.smartgwt.client.data.Record::getJsObj()();
-        self.removeData(recordJS, function (dsResponse, data, dsRequest) {
+        self.removeData(recordJS, $entry(function (dsResponse, data, dsRequest) {
             var responseJ = @com.smartgwt.client.data.DSResponse::new(Lcom/google/gwt/core/client/JavaScriptObject;)(dsResponse);
             var requestJ = @com.smartgwt.client.data.DSRequest::new(Lcom/google/gwt/core/client/JavaScriptObject;)(dsRequest);
             if(callback != null) callback.@com.smartgwt.client.data.DSCallback::execute(Lcom/smartgwt/client/data/DSResponse;Ljava/lang/Object;Lcom/smartgwt/client/data/DSRequest;)(responseJ, data, requestJ);
-        });
+        }));
     }-*/;
 
     /**
@@ -2428,11 +2428,11 @@ public class DataSource extends BaseClass  implements com.smartgwt.client.data.e
         var self = this.@com.smartgwt.client.core.BaseClass::getOrCreateJsObj()();
         var recordJS = record.@com.smartgwt.client.data.Record::getJsObj()();
         var requestPropertiesJS = requestProperties == null ? null : requestProperties.@com.smartgwt.client.core.DataClass::getJsObj()();
-        self.removeData(recordJS, function (dsResponse, data, dsRequest) {
+        self.removeData(recordJS, $entry(function (dsResponse, data, dsRequest) {
             var responseJ = @com.smartgwt.client.data.DSResponse::new(Lcom/google/gwt/core/client/JavaScriptObject;)(dsResponse);
             var requestJ = @com.smartgwt.client.data.DSRequest::new(Lcom/google/gwt/core/client/JavaScriptObject;)(dsRequest);
             if(callback != null) callback.@com.smartgwt.client.data.DSCallback::execute(Lcom/smartgwt/client/data/DSResponse;Ljava/lang/Object;Lcom/smartgwt/client/data/DSRequest;)(responseJ, data, requestJ);
-        }, requestPropertiesJS);
+        }), requestPropertiesJS);
     }-*/;
 
    /**
@@ -2590,9 +2590,9 @@ public class DataSource extends BaseClass  implements com.smartgwt.client.data.e
      */
     public static native void load(String dsID, Function callback, boolean forceReload) /*-{
         $wnd.isc.DataSource.load(dsID,
-                function() {
+                $entry(function() {
                     if(callback != null) callback.@com.smartgwt.client.core.Function::execute()();
-                },
+                }),
                 forceReload);
     }-*/;
 
@@ -2607,9 +2607,9 @@ public class DataSource extends BaseClass  implements com.smartgwt.client.data.e
      */
     public static native void load(String[] dsID, Function callback, boolean forceReload) /*-{
         $wnd.isc.DataSource.load(@com.smartgwt.client.util.JSOHelper::convertToJavaScriptArray([Ljava/lang/Object;)(dsID),
-                function() {
+                $entry(function() {
                     if(callback != null) callback.@com.smartgwt.client.core.Function::execute()();
-                },
+                }),
                 forceReload);
     }-*/;
 

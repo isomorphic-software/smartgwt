@@ -535,11 +535,11 @@ public class ComboBoxItem extends FormItem  implements PickList, com.smartgwt.cl
         var obj = null;
             obj = this.@com.smartgwt.client.core.DataClass::getJsObj()();
             var selfJ = this;
-            obj.dataArrived = function(){
+            obj.dataArrived = $entry(function(){
                 var param = {"startRow" : arguments[0], "endRow" : arguments[1], "data" : arguments[2]};
                 var event = @com.smartgwt.client.widgets.form.fields.events.DataArrivedEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
                 selfJ.@com.smartgwt.client.core.DataClass::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
-            };
+            });
    }-*/;
 
     // ********************* Static Methods ***********************
@@ -561,7 +561,7 @@ public class ComboBoxItem extends FormItem  implements PickList, com.smartgwt.cl
 
     private static native void init()/*-{
         $wnd.isc.ComboBoxItem.getPrototype().__getPickListFilterCriteria = $wnd.isc.ComboBoxItem.getPrototype().getPickListFilterCriteria;
-        $wnd.isc.ComboBoxItem.getPrototype().getPickListFilterCriteria = function() {
+        $wnd.isc.ComboBoxItem.getPrototype().getPickListFilterCriteria = $entry(function() {
             var jObj = this.__ref;
             //if widget was not creatind in java via smartgwt, fallback to old behavior
             if(jObj) {
@@ -571,7 +571,7 @@ public class ComboBoxItem extends FormItem  implements PickList, com.smartgwt.cl
             } else {
                 return this.__getPickListFilterCriteria();
             }
-        };
+        });
     }-*/;
 
     /**
@@ -993,11 +993,11 @@ public class ComboBoxItem extends FormItem  implements PickList, com.smartgwt.cl
      */
     public native void fetchData(DSCallback callback) /*-{
         var self = this.@com.smartgwt.client.core.DataClass::getJsObj()();
-        self.fetchData(function (item, dsResponse, data, dsRequest) {
+        self.fetchData($entry(function (item, dsResponse, data, dsRequest) {
             var responseJ = @com.smartgwt.client.data.DSResponse::new(Lcom/google/gwt/core/client/JavaScriptObject;)(dsResponse);
             var requestJ = @com.smartgwt.client.data.DSRequest::new(Lcom/google/gwt/core/client/JavaScriptObject;)(dsRequest);
             if(callback != null) callback.@com.smartgwt.client.data.DSCallback::execute(Lcom/smartgwt/client/data/DSResponse;Ljava/lang/Object;Lcom/smartgwt/client/data/DSRequest;)(responseJ, data, requestJ);
-        });
+        }));
     }-*/;
 
     /**
@@ -1015,11 +1015,11 @@ public class ComboBoxItem extends FormItem  implements PickList, com.smartgwt.cl
     public native void fetchData(DSCallback callback, DSRequest requestProperties) /*-{
         var self = this.@com.smartgwt.client.core.DataClass::getJsObj()();
         var requestPropertiesJS = requestProperties == null ? null : requestProperties.@com.smartgwt.client.core.DataClass::getJsObj()();
-        self.fetchData(function (item, dsResponse, data, dsRequest) {
+        self.fetchData($entry(function (item, dsResponse, data, dsRequest) {
             var responseJ = @com.smartgwt.client.data.DSResponse::new(Lcom/google/gwt/core/client/JavaScriptObject;)(dsResponse);
             var requestJ = @com.smartgwt.client.data.DSRequest::new(Lcom/google/gwt/core/client/JavaScriptObject;)(dsRequest);
             if(callback != null) callback.@com.smartgwt.client.data.DSCallback::execute(Lcom/smartgwt/client/data/DSResponse;Ljava/lang/Object;Lcom/smartgwt/client/data/DSRequest;)(responseJ, data, requestJ);
-        }, requestPropertiesJS);
+        }), requestPropertiesJS);
     }-*/;
 
     public native ListGridRecord[] filterClientPickListData() /*-{
@@ -1065,10 +1065,10 @@ public class ComboBoxItem extends FormItem  implements PickList, com.smartgwt.cl
      */
     public native void setPickListFilterCriteriaFunction(FilterCriteriaFunction filterCriteriaFunction) /*-{
         var self = this.@com.smartgwt.client.core.DataClass::getJsObj()();
-        self.getPickListFilterCriteria = function() {
+        self.getPickListFilterCriteria = $entry(function() {
             var crit = filterCriteriaFunction.@com.smartgwt.client.widgets.form.fields.FilterCriteriaFunction::getCriteria()();
             return crit == null ? null : crit.@com.smartgwt.client.data.Criteria::getJsObj()();
-        };
+        });
     }-*/;
 
 }

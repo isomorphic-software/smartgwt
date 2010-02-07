@@ -1315,23 +1315,23 @@ public class TreeGrid extends ListGrid  implements com.smartgwt.client.widgets.t
         var selfJ = this;
         if(this.@com.smartgwt.client.widgets.BaseWidget::isCreated()()) {
             obj = this.@com.smartgwt.client.widgets.BaseWidget::getJsObj()();
-            obj.addProperties({folderOpened:function(){
+            obj.addProperties({folderOpened:$entry(function(){
                         var param = {"node" : arguments[0]};
                         var event = @com.smartgwt.client.widgets.tree.events.FolderOpenedEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
                         selfJ.@com.smartgwt.client.widgets.BaseWidget::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
                         var ret = event.@com.smartgwt.client.event.Cancellable::isCancelled()();
                         return !ret;
-                    }
+                    })
              });
         } else {
             obj = this.@com.smartgwt.client.widgets.BaseWidget::getConfig()();
-            obj.folderOpened = function(){
+            obj.folderOpened = $entry(function(){
                    var param = {"node" : arguments[0]};
                    var event = @com.smartgwt.client.widgets.tree.events.FolderOpenedEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
                    selfJ.@com.smartgwt.client.widgets.BaseWidget::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
                    var ret = event.@com.smartgwt.client.event.Cancellable::isCancelled()();
                    return !ret;
-               };
+               });
         }
    }-*/;
 
@@ -1355,23 +1355,23 @@ public class TreeGrid extends ListGrid  implements com.smartgwt.client.widgets.t
         var selfJ = this;
         if(this.@com.smartgwt.client.widgets.BaseWidget::isCreated()()) {
             obj = this.@com.smartgwt.client.widgets.BaseWidget::getJsObj()();
-            obj.addProperties({folderClosed:function(){
+            obj.addProperties({folderClosed:$entry(function(){
                         var param = {"node" : arguments[0]};
                         var event = @com.smartgwt.client.widgets.tree.events.FolderClosedEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
                         selfJ.@com.smartgwt.client.widgets.BaseWidget::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
                         var ret = event.@com.smartgwt.client.event.Cancellable::isCancelled()();
                         return !ret;
-                    }
+                    })
              });
         } else {
             obj = this.@com.smartgwt.client.widgets.BaseWidget::getConfig()();
-            obj.folderClosed = function(){
+            obj.folderClosed = $entry(function(){
                    var param = {"node" : arguments[0]};
                    var event = @com.smartgwt.client.widgets.tree.events.FolderClosedEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
                    selfJ.@com.smartgwt.client.widgets.BaseWidget::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
                    var ret = event.@com.smartgwt.client.event.Cancellable::isCancelled()();
                    return !ret;
-               };
+               });
         }
    }-*/;
 
@@ -1393,19 +1393,19 @@ public class TreeGrid extends ListGrid  implements com.smartgwt.client.widgets.t
         var selfJ = this;
         if(this.@com.smartgwt.client.widgets.BaseWidget::isCreated()()) {
             obj = this.@com.smartgwt.client.widgets.BaseWidget::getJsObj()();
-            obj.addProperties({folderClick:function(){
+            obj.addProperties({folderClick:$entry(function(){
                         var param = {"viewer" : arguments[0], "folder" : arguments[1], "recordNum" : arguments[2]};
                         var event = @com.smartgwt.client.widgets.tree.events.FolderClickEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
                         selfJ.@com.smartgwt.client.widgets.BaseWidget::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
-                    }
+                    })
              });
         } else {
             obj = this.@com.smartgwt.client.widgets.BaseWidget::getConfig()();
-            obj.folderClick = function(){
+            obj.folderClick = $entry(function(){
                    var param = {"viewer" : arguments[0], "folder" : arguments[1], "recordNum" : arguments[2]};
                    var event = @com.smartgwt.client.widgets.tree.events.FolderClickEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
                    selfJ.@com.smartgwt.client.widgets.BaseWidget::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
-               };
+               });
         }
    }-*/;
 
@@ -1427,19 +1427,19 @@ public class TreeGrid extends ListGrid  implements com.smartgwt.client.widgets.t
         var selfJ = this;
         if(this.@com.smartgwt.client.widgets.BaseWidget::isCreated()()) {
             obj = this.@com.smartgwt.client.widgets.BaseWidget::getJsObj()();
-            obj.addProperties({leafClick:function(){
+            obj.addProperties({leafClick:$entry(function(){
                         var param = {"viewer" : arguments[0], "leaf" : arguments[1], "recordNum" : arguments[2]};
                         var event = @com.smartgwt.client.widgets.tree.events.LeafClickEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
                         selfJ.@com.smartgwt.client.widgets.BaseWidget::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
-                    }
+                    })
              });
         } else {
             obj = this.@com.smartgwt.client.widgets.BaseWidget::getConfig()();
-            obj.leafClick = function(){
+            obj.leafClick = $entry(function(){
                    var param = {"viewer" : arguments[0], "leaf" : arguments[1], "recordNum" : arguments[2]};
                    var event = @com.smartgwt.client.widgets.tree.events.LeafClickEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
                    selfJ.@com.smartgwt.client.widgets.BaseWidget::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
-               };
+               });
         }
    }-*/;
 
@@ -1463,19 +1463,19 @@ public class TreeGrid extends ListGrid  implements com.smartgwt.client.widgets.t
         var selfJ = this;
         if(this.@com.smartgwt.client.widgets.BaseWidget::isCreated()()) {
             obj = this.@com.smartgwt.client.widgets.BaseWidget::getJsObj()();
-            obj.addProperties({nodeClick:function(){
+            obj.addProperties({nodeClick:$entry(function(){
                         var param = {"viewer" : arguments[0], "node" : arguments[1], "recordNum" : arguments[2]};
                         var event = @com.smartgwt.client.widgets.tree.events.NodeClickEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
                         selfJ.@com.smartgwt.client.widgets.BaseWidget::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
-                    }
+                    })
              });
         } else {
             obj = this.@com.smartgwt.client.widgets.BaseWidget::getConfig()();
-            obj.nodeClick = function(){
+            obj.nodeClick = $entry(function(){
                    var param = {"viewer" : arguments[0], "node" : arguments[1], "recordNum" : arguments[2]};
                    var event = @com.smartgwt.client.widgets.tree.events.NodeClickEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
                    selfJ.@com.smartgwt.client.widgets.BaseWidget::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
-               };
+               });
         }
    }-*/;
 
@@ -1497,23 +1497,23 @@ public class TreeGrid extends ListGrid  implements com.smartgwt.client.widgets.t
         var selfJ = this;
         if(this.@com.smartgwt.client.widgets.BaseWidget::isCreated()()) {
             obj = this.@com.smartgwt.client.widgets.BaseWidget::getJsObj()();
-            obj.addProperties({folderContextClick:function(){
+            obj.addProperties({folderContextClick:$entry(function(){
                         var param = {"viewer" : arguments[0], "folder" : arguments[1], "recordNum" : arguments[2]};
                         var event = @com.smartgwt.client.widgets.tree.events.FolderContextClickEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
                         selfJ.@com.smartgwt.client.widgets.BaseWidget::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
                         var ret = event.@com.smartgwt.client.event.Cancellable::isCancelled()();
                         return !ret;
-                    }
+                    })
              });
         } else {
             obj = this.@com.smartgwt.client.widgets.BaseWidget::getConfig()();
-            obj.folderContextClick = function(){
+            obj.folderContextClick = $entry(function(){
                    var param = {"viewer" : arguments[0], "folder" : arguments[1], "recordNum" : arguments[2]};
                    var event = @com.smartgwt.client.widgets.tree.events.FolderContextClickEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
                    selfJ.@com.smartgwt.client.widgets.BaseWidget::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
                    var ret = event.@com.smartgwt.client.event.Cancellable::isCancelled()();
                    return !ret;
-               };
+               });
         }
    }-*/;
 
@@ -1535,23 +1535,23 @@ public class TreeGrid extends ListGrid  implements com.smartgwt.client.widgets.t
         var selfJ = this;
         if(this.@com.smartgwt.client.widgets.BaseWidget::isCreated()()) {
             obj = this.@com.smartgwt.client.widgets.BaseWidget::getJsObj()();
-            obj.addProperties({leafContextClick:function(){
+            obj.addProperties({leafContextClick:$entry(function(){
                         var param = {"viewer" : arguments[0], "leaf" : arguments[1], "recordNum" : arguments[2]};
                         var event = @com.smartgwt.client.widgets.tree.events.LeafContextClickEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
                         selfJ.@com.smartgwt.client.widgets.BaseWidget::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
                         var ret = event.@com.smartgwt.client.event.Cancellable::isCancelled()();
                         return !ret;
-                    }
+                    })
              });
         } else {
             obj = this.@com.smartgwt.client.widgets.BaseWidget::getConfig()();
-            obj.leafContextClick = function(){
+            obj.leafContextClick = $entry(function(){
                    var param = {"viewer" : arguments[0], "leaf" : arguments[1], "recordNum" : arguments[2]};
                    var event = @com.smartgwt.client.widgets.tree.events.LeafContextClickEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
                    selfJ.@com.smartgwt.client.widgets.BaseWidget::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
                    var ret = event.@com.smartgwt.client.event.Cancellable::isCancelled()();
                    return !ret;
-               };
+               });
         }
    }-*/;
 
@@ -1576,23 +1576,23 @@ public class TreeGrid extends ListGrid  implements com.smartgwt.client.widgets.t
         var selfJ = this;
         if(this.@com.smartgwt.client.widgets.BaseWidget::isCreated()()) {
             obj = this.@com.smartgwt.client.widgets.BaseWidget::getJsObj()();
-            obj.addProperties({nodeContextClick:function(){
+            obj.addProperties({nodeContextClick:$entry(function(){
                         var param = {"viewer" : arguments[0], "node" : arguments[1], "recordNum" : arguments[2]};
                         var event = @com.smartgwt.client.widgets.tree.events.NodeContextClickEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
                         selfJ.@com.smartgwt.client.widgets.BaseWidget::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
                         var ret = event.@com.smartgwt.client.event.Cancellable::isCancelled()();
                         return !ret;
-                    }
+                    })
              });
         } else {
             obj = this.@com.smartgwt.client.widgets.BaseWidget::getConfig()();
-            obj.nodeContextClick = function(){
+            obj.nodeContextClick = $entry(function(){
                    var param = {"viewer" : arguments[0], "node" : arguments[1], "recordNum" : arguments[2]};
                    var event = @com.smartgwt.client.widgets.tree.events.NodeContextClickEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
                    selfJ.@com.smartgwt.client.widgets.BaseWidget::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
                    var ret = event.@com.smartgwt.client.event.Cancellable::isCancelled()();
                    return !ret;
-               };
+               });
         }
    }-*/;
 
@@ -1618,19 +1618,19 @@ public class TreeGrid extends ListGrid  implements com.smartgwt.client.widgets.t
         var selfJ = this;
         if(this.@com.smartgwt.client.widgets.BaseWidget::isCreated()()) {
             obj = this.@com.smartgwt.client.widgets.BaseWidget::getJsObj()();
-            obj.addProperties({dataArrived:function(){
+            obj.addProperties({dataArrived:$entry(function(){
                         var param = {"parentNode" : arguments[0]};
                         var event = @com.smartgwt.client.widgets.tree.events.DataArrivedEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
                         selfJ.@com.smartgwt.client.widgets.BaseWidget::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
-                    }
+                    })
              });
         } else {
             obj = this.@com.smartgwt.client.widgets.BaseWidget::getConfig()();
-            obj.dataArrived = function(){
+            obj.dataArrived = $entry(function(){
                    var param = {"parentNode" : arguments[0]};
                    var event = @com.smartgwt.client.widgets.tree.events.DataArrivedEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
                    selfJ.@com.smartgwt.client.widgets.BaseWidget::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
-               };
+               });
         }
    }-*/;
 
@@ -1657,21 +1657,21 @@ public class TreeGrid extends ListGrid  implements com.smartgwt.client.widgets.t
     private native void onInit2() /*-{
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
         self._getNodeTitle = self.getNodeTitle;
-        self.getNodeTitle = function(node, recordNum, field) {
+        self.getNodeTitle = $entry(function(node, recordNum, field) {
             var jObj = this.__ref;
             var nodeJ = @com.smartgwt.client.data.Record::getOrCreateRef(Lcom/google/gwt/core/client/JavaScriptObject;)(node);
             var fieldJ = @com.smartgwt.client.widgets.grid.ListGridField::getOrCreateRef(Lcom/google/gwt/core/client/JavaScriptObject;)(field);
             return jObj.@com.smartgwt.client.widgets.tree.TreeGrid::getNodeTitle(Lcom/smartgwt/client/data/Record;ILcom/smartgwt/client/widgets/grid/ListGridField;)(nodeJ, recordNum, fieldJ);
-        };
+        });
 
         self._getIcon = self.getIcon;
-        self.getIcon = function(node, defaultState) {
+        self.getIcon = $entry(function(node, defaultState) {
             defaultState = !!defaultState;
             if ($wnd.isc.isA.Number(node)) node = this.data.get(node);
             var jObj = this.__ref;
             var nodeJ = @com.smartgwt.client.data.Record::getOrCreateRef(Lcom/google/gwt/core/client/JavaScriptObject;)(node);
             return jObj.@com.smartgwt.client.widgets.tree.TreeGrid::getIcon(Lcom/smartgwt/client/data/Record;Z)(nodeJ, defaultState);
-        };
+        });
         
     }-*/;
 
@@ -1887,11 +1887,11 @@ public class TreeGrid extends ListGrid  implements com.smartgwt.client.widgets.t
     public native void fetchData(Criteria criteria, DSCallback callback) /*-{
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
         var critJS = criteria == null ? null : criteria.@com.smartgwt.client.data.Criteria::getJsObj()();
-        self.fetchData(critJS, function (dsResponse, data, dsRequest) {
+        self.fetchData(critJS, $entry(function (dsResponse, data, dsRequest) {
             var responseJ = @com.smartgwt.client.data.DSResponse::new(Lcom/google/gwt/core/client/JavaScriptObject;)(dsResponse);
             var requestJ = @com.smartgwt.client.data.DSRequest::new(Lcom/google/gwt/core/client/JavaScriptObject;)(dsRequest);
             if(callback != null) callback.@com.smartgwt.client.data.DSCallback::execute(Lcom/smartgwt/client/data/DSResponse;Ljava/lang/Object;Lcom/smartgwt/client/data/DSRequest;)(responseJ, data, requestJ);
-        });
+        }));
     }-*/;
 
     /**
@@ -1928,11 +1928,11 @@ public class TreeGrid extends ListGrid  implements com.smartgwt.client.widgets.t
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
         var critJS = criteria == null ? null : criteria.@com.smartgwt.client.data.Criteria::getJsObj()();
         var requestPropertiesJS = requestProperties == null ? null : requestProperties.@com.smartgwt.client.core.DataClass::getJsObj()();
-        self.fetchData(critJS, function (dsResponse, data, dsRequest) {
+        self.fetchData(critJS, $entry(function (dsResponse, data, dsRequest) {
             var responseJ = @com.smartgwt.client.data.DSResponse::new(Lcom/google/gwt/core/client/JavaScriptObject;)(dsResponse);
             var requestJ = @com.smartgwt.client.data.DSRequest::new(Lcom/google/gwt/core/client/JavaScriptObject;)(dsRequest);
             if(callback != null) callback.@com.smartgwt.client.data.DSCallback::execute(Lcom/smartgwt/client/data/DSResponse;Ljava/lang/Object;Lcom/smartgwt/client/data/DSRequest;)(responseJ, data, requestJ);
-        }, requestPropertiesJS);
+        }), requestPropertiesJS);
     }-*/;
 
     /**
@@ -1966,11 +1966,11 @@ public class TreeGrid extends ListGrid  implements com.smartgwt.client.widgets.t
     public native void filterData(Criteria criteria, DSCallback callback) /*-{
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
         var critJS = criteria == null ? null : criteria.@com.smartgwt.client.data.Criteria::getJsObj()();
-        self.filterData(critJS, function (dsResponse, data, dsRequest) {
+        self.filterData(critJS, $entry(function (dsResponse, data, dsRequest) {
             var responseJ = @com.smartgwt.client.data.DSResponse::new(Lcom/google/gwt/core/client/JavaScriptObject;)(dsResponse);
             var requestJ = @com.smartgwt.client.data.DSRequest::new(Lcom/google/gwt/core/client/JavaScriptObject;)(dsRequest);
             if(callback != null) callback.@com.smartgwt.client.data.DSCallback::execute(Lcom/smartgwt/client/data/DSResponse;Ljava/lang/Object;Lcom/smartgwt/client/data/DSRequest;)(responseJ, data, requestJ);
-        });
+        }));
     }-*/;
 
     /**
@@ -1992,11 +1992,11 @@ public class TreeGrid extends ListGrid  implements com.smartgwt.client.widgets.t
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
         var critJS = criteria == null ? null : criteria.@com.smartgwt.client.data.Criteria::getJsObj()();
         var requestPropertiesJS = requestProperties == null ? null : requestProperties.@com.smartgwt.client.core.DataClass::getJsObj()();
-        self.filterData(critJS, function (dsResponse, data, dsRequest) {
+        self.filterData(critJS, $entry(function (dsResponse, data, dsRequest) {
             var responseJ = @com.smartgwt.client.data.DSResponse::new(Lcom/google/gwt/core/client/JavaScriptObject;)(dsResponse);
             var requestJ = @com.smartgwt.client.data.DSRequest::new(Lcom/google/gwt/core/client/JavaScriptObject;)(dsRequest);
             if(callback != null) callback.@com.smartgwt.client.data.DSCallback::execute(Lcom/smartgwt/client/data/DSResponse;Ljava/lang/Object;Lcom/smartgwt/client/data/DSRequest;)(responseJ, data, requestJ);
-        }, requestPropertiesJS);
+        }), requestPropertiesJS);
     }-*/;
 
     /**
@@ -2094,23 +2094,23 @@ public class TreeGrid extends ListGrid  implements com.smartgwt.client.widgets.t
         var selfJ = this;
         if(this.@com.smartgwt.client.widgets.BaseWidget::isCreated()()) {
             obj = this.@com.smartgwt.client.widgets.BaseWidget::getJsObj()();
-            obj.addProperties({onFolderDrop:function(){
+            obj.addProperties({onFolderDrop:$entry(function(){
                     var param = {"nodes" : arguments[0], "folder" : arguments[1], "index" : arguments[2], "sourceWidget" : arguments[3]};
                     var event = @com.smartgwt.client.widgets.tree.events.FolderDropEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
                     selfJ.@com.smartgwt.client.widgets.BaseWidget::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
                     var ret = event.@com.smartgwt.client.event.Cancellable::isCancelled()();
                     return !ret;
-                }
+                })
             });
         } else {
             obj = this.@com.smartgwt.client.widgets.BaseWidget::getConfig()();
-            obj.onFolderDrop = function(){
+            obj.onFolderDrop = $entry(function(){
                 var param = {"nodes" : arguments[0], "folder" : arguments[1], "index" : arguments[2], "sourceWidget" : arguments[3]};
                 var event = @com.smartgwt.client.widgets.tree.events.FolderDropEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
                 selfJ.@com.smartgwt.client.widgets.BaseWidget::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
                 var ret = event.@com.smartgwt.client.event.Cancellable::isCancelled()();
                 return !ret;
-            };
+            });
         }
     }-*/;
     

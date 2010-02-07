@@ -18,6 +18,7 @@ package com.smartgwt.client.core;
 
 import com.google.gwt.core.client.JavaScriptObject;
 import com.google.gwt.core.client.GWT;
+import com.google.gwt.user.client.Window;
 import com.smartgwt.client.util.LogUtil;
 import com.smartgwt.client.util.I18nUtil;
 
@@ -27,10 +28,28 @@ public class JsObject {
         LogUtil.setJSNIErrorHandler();
         init();
         I18nUtil.init();
+        //install a default UEH that displays the error message in an alert when in development mode so that
+        //is is not overlooked by the user during development
+        GWT.setUncaughtExceptionHandler(new GWT.UncaughtExceptionHandler() {
+            public void onUncaughtException(Throwable e) {
+                if (!GWT.isScript()) {
+                    Window.alert("Uncaught exception escaped : " + e.getClass().getName() + "\n" + e.getMessage() +
+                            "\nSee the Development console log for details." +
+                            "\nRegister a GWT.setUncaughtExceptionHandler(..) for custom uncaught exception handling."
+                    );
+                }
+                GWT.log("Uncaught exception escaped", e);
+            }
+        });
     }
 
     private static native void init() /*-{
 
+        if(!$entry) {
+            $entry = function(func, thisObj, args) {
+                        return func.apply(thisObj, args);
+                     };
+        }
         if ($wnd.isc.Browser.isIE && $wnd.isc.Browser.version >= 7) {
             $wnd.isc.EventHandler._IECanSetKeyCode = {};
         }

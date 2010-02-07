@@ -1174,11 +1174,11 @@ public class DataSourceField extends DataClass {
      */
     public native void setFieldValueExtractor(FieldValueExtractor extractor) /*-{
         var self = this.@com.smartgwt.client.core.DataClass::getJsObj()();
-        self.getFieldValue = function(record, value, field, fieldName) {
+        self.getFieldValue = $entry(function(record, value, field, fieldName) {
             var valueJ =  $wnd.SmartGWT.convertToJavaType(value);
             var fieldJ = @com.smartgwt.client.data.DataSourceField::new(Lcom/google/gwt/core/client/JavaScriptObject;)(field);
             return extractor.@com.smartgwt.client.data.FieldValueExtractor::execute(Ljava/lang/Object;Ljava/lang/Object;Lcom/smartgwt/client/data/DataSourceField;Ljava/lang/String;)(record, valueJ, fieldJ, fieldName);
-        };
+        });
     }-*/;
 
     /**
@@ -1266,7 +1266,7 @@ public class DataSourceField extends DataClass {
      */
     public native void setSummaryFunction(SummaryFunction summaryFunction) /*-{
         var self = this.@com.smartgwt.client.core.DataClass::getJsObj()();
-        self.summaryFunction = function(records, field) {
+        self.summaryFunction = $entry(function(records, field) {
             var recordsJ =  @com.smartgwt.client.data.Record::convertToRecordArray(Lcom/google/gwt/core/client/JavaScriptObject;)(records);
             var fieldJ = @com.smartgwt.client.widgets.grid.ListGridField::getOrCreateRef(Lcom/google/gwt/core/client/JavaScriptObject;)(field);
             var val = summaryFunction.@com.smartgwt.client.widgets.grid.SummaryFunction::getSummaryValue([Lcom/smartgwt/client/data/Record;Lcom/smartgwt/client/widgets/grid/ListGridField;)(recordsJ, fieldJ);
@@ -1274,7 +1274,7 @@ public class DataSourceField extends DataClass {
             if(@com.smartgwt.client.util.JSOHelper::isJavaNumber(Ljava/lang/Object;)(val)) return val.@java.lang.Number::doubleValue()();
             if(@com.smartgwt.client.util.JSOHelper::isJavaDate(Ljava/lang/Object;)(val)) return @com.smartgwt.client.util.JSOHelper::convertToJavaScriptDate(Ljava/util/Date;)(val);
             $wnd.isc.logWarn('Unrecognized type of value ' + val + ' returned by the summaryFunction');
-        };
+        });
     }-*/;
 
 }

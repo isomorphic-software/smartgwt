@@ -766,19 +766,19 @@ public class Tree extends BaseClass  implements com.smartgwt.client.widgets.tree
         var selfJ = this;
             if(this.@com.smartgwt.client.core.BaseClass::isCreated()()) {
                 obj = this.@com.smartgwt.client.core.BaseClass::getJsObj()();
-                obj.addProperties({dataChanged:function(){
+                obj.addProperties({dataChanged:$entry(function(){
                         var param = {};
                         var event = @com.smartgwt.client.widgets.tree.DataChangedEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
                         selfJ.@com.smartgwt.client.core.BaseClass::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
-                    }
+                    })
                 });
             } else {
                 obj = this.@com.smartgwt.client.core.BaseClass::getConfig()();
-                obj.dataChanged = function(){
+                obj.dataChanged = $entry(function(){
                     var param = {};
                     var event = @com.smartgwt.client.widgets.tree.DataChangedEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
                     selfJ.@com.smartgwt.client.core.BaseClass::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
-                };
+                });
             }
    }-*/;
 

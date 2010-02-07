@@ -2057,11 +2057,11 @@ public class ListGridField extends DataClass  implements com.smartgwt.client.wid
         var obj = null;
             obj = this.@com.smartgwt.client.core.DataClass::getJsObj()();
             var selfJ = this;
-            obj.editorEnter = function(){
+            obj.editorEnter = $entry(function(){
                 var param = {"record" : arguments[0], "value" : arguments[1], "rowNum" : arguments[2], "colNum" : arguments[3], "grid" : arguments[4]};
                 var event = @com.smartgwt.client.widgets.grid.events.EditorEnterEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
                 selfJ.@com.smartgwt.client.core.DataClass::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
-            };
+            });
    }-*/;
 
     /**
@@ -2083,13 +2083,13 @@ public class ListGridField extends DataClass  implements com.smartgwt.client.wid
         var obj = null;
             obj = this.@com.smartgwt.client.core.DataClass::getJsObj()();
             var selfJ = this;
-            obj.editorExit = function(){
+            obj.editorExit = $entry(function(){
                 var param = {"editCompletionEvent" : arguments[0], "record" : arguments[1], "newValue" : arguments[2], "rowNum" : arguments[3], "colNum" : arguments[4], "grid" : arguments[5]};
                 var event = @com.smartgwt.client.widgets.grid.events.EditorExitEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
                 selfJ.@com.smartgwt.client.core.DataClass::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
                 var ret = event.@com.smartgwt.client.event.Cancellable::isCancelled()();
                 return !ret;
-            };
+            });
    }-*/;
 
 
@@ -2113,13 +2113,13 @@ public class ListGridField extends DataClass  implements com.smartgwt.client.wid
         var obj = null;
             obj = this.@com.smartgwt.client.core.DataClass::getJsObj()();
             var selfJ = this;
-            obj.recordClick = function(){
+            obj.recordClick = $entry(function(){
                 var param = {"viewer" : arguments[0], "record" : arguments[1], "recordNum" : arguments[2], "field" : arguments[3], "fieldNum" : arguments[4], "value" : arguments[5], "rawValue" : arguments[6]};
                 var event = @com.smartgwt.client.widgets.grid.events.RecordClickEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
                 selfJ.@com.smartgwt.client.core.DataClass::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
                 var ret = event.@com.smartgwt.client.event.Cancellable::isCancelled()();
                 return !ret;
-            };
+            });
    }-*/;
 
 
@@ -2145,11 +2145,11 @@ public class ListGridField extends DataClass  implements com.smartgwt.client.wid
         var obj = null;
             obj = this.@com.smartgwt.client.core.DataClass::getJsObj()();
             var selfJ = this;
-            obj.change = function(){
+            obj.change = $entry(function(){
                 var param = {"form" : arguments[0], "item" : arguments[1], "value" : arguments[2], "oldValue" : arguments[3]};
                 var event = @com.smartgwt.client.widgets.grid.events.ChangeEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
                 selfJ.@com.smartgwt.client.core.DataClass::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
-            };
+            });
    }-*/;
 
     /**
@@ -2170,11 +2170,11 @@ public class ListGridField extends DataClass  implements com.smartgwt.client.wid
         var obj = null;
             obj = this.@com.smartgwt.client.core.DataClass::getJsObj()();
             var selfJ = this;
-            obj.changed = function(){
+            obj.changed = $entry(function(){
                 var param = {"form" : arguments[0], "item" : arguments[1], "value" : arguments[2]};
                 var event = @com.smartgwt.client.widgets.grid.events.ChangedEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
                 selfJ.@com.smartgwt.client.core.DataClass::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
-            };
+            });
    }-*/;
 
 
@@ -2300,11 +2300,11 @@ public class ListGridField extends DataClass  implements com.smartgwt.client.wid
      */
     public native void setCellFormatter(CellFormatter formatter) /*-{
             var self = this.@com.smartgwt.client.core.DataClass::getJsObj()();
-            self.formatCellValue = function(value, record, rowNum, colNum) {
+            self.formatCellValue = $entry(function(value, record, rowNum, colNum) {
                 var recordJ = @com.smartgwt.client.widgets.grid.ListGridRecord::getOrCreateRef(Lcom/google/gwt/core/client/JavaScriptObject;)(record);
                 var valueJ = $wnd.SmartGWT.convertToJavaType(value);
                 return formatter.@com.smartgwt.client.widgets.grid.CellFormatter::format(Ljava/lang/Object;Lcom/smartgwt/client/widgets/grid/ListGridRecord;II)(valueJ, recordJ, rowNum, colNum);
-            };
+            });
     }-*/;
 
     /**
@@ -2316,7 +2316,7 @@ public class ListGridField extends DataClass  implements com.smartgwt.client.wid
      */
     public native void setSortNormalizer(SortNormalizer normalizer) /*-{
             var self = this.@com.smartgwt.client.core.DataClass::getJsObj()();
-            self.sortNormalizer = function(record, fieldName) {
+            self.sortNormalizer = $entry(function(record, fieldName) {
                 var recordJ = @com.smartgwt.client.widgets.grid.ListGridRecord::getOrCreateRef(Lcom/google/gwt/core/client/JavaScriptObject;)(record);
                 var value = normalizer.@com.smartgwt.client.widgets.grid.SortNormalizer::normalize(Lcom/smartgwt/client/widgets/grid/ListGridRecord;Ljava/lang/String;)(recordJ, fieldName);
                 if(value == null) return null;
@@ -2325,7 +2325,7 @@ public class ListGridField extends DataClass  implements com.smartgwt.client.wid
                 } else {
                     return @com.smartgwt.client.widgets.grid.ListGridField::normalizedValue(Ljava/lang/Number;)(value);
                 }
-            };
+            });
     }-*/;
 
     private static double normalizedValue(Number number) {
@@ -2339,11 +2339,11 @@ public class ListGridField extends DataClass  implements com.smartgwt.client.wid
      */
     public native void setHoverCustomizer(HoverCustomizer hoverCustomizer) /*-{
         var self = this.@com.smartgwt.client.core.DataClass::getJsObj()();
-        self.hoverHTML = function(record, value, rowNum, colNum, grid) {
+        self.hoverHTML = $entry(function(record, value, rowNum, colNum, grid) {
             var recordJ = @com.smartgwt.client.widgets.grid.ListGridRecord::getOrCreateRef(Lcom/google/gwt/core/client/JavaScriptObject;)(record);            
             var valueJ = $wnd.SmartGWT.convertToJavaType(value);
             return hoverCustomizer.@com.smartgwt.client.widgets.grid.HoverCustomizer::hoverHTML(Ljava/lang/Object;Lcom/smartgwt/client/widgets/grid/ListGridRecord;II)(valueJ, recordJ, rowNum, colNum);
-        };
+        });
     }-*/;
 
     /**
@@ -2620,12 +2620,11 @@ public class ListGridField extends DataClass  implements com.smartgwt.client.wid
      */
     public native void setShowIfCondition(ListGridFieldIfFunction showIf) /*-{
         var self = this.@com.smartgwt.client.core.DataClass::getJsObj()();
-        self.showIf = function(grid, field, fieldNum) {
+        self.showIf = $entry(function(grid, field, fieldNum) {
             var gridJ = @com.smartgwt.client.widgets.grid.ListGrid::getOrCreateRef(Lcom/google/gwt/core/client/JavaScriptObject;)(grid);
             var fieldJ = @com.smartgwt.client.widgets.grid.ListGridField::getOrCreateRef(Lcom/google/gwt/core/client/JavaScriptObject;)(field);        
             return showIf.@com.smartgwt.client.widgets.grid.ListGridFieldIfFunction::execute(Lcom/smartgwt/client/widgets/grid/ListGrid;Lcom/smartgwt/client/widgets/grid/ListGridField;I)(gridJ, fieldJ, fieldNum);
-
-        };
+        });
     }-*/;
 
     /**
@@ -2689,11 +2688,11 @@ public class ListGridField extends DataClass  implements com.smartgwt.client.wid
         var obj = null;
             obj = this.@com.smartgwt.client.core.DataClass::getJsObj()();
             var selfJ = this;
-            obj.cellChanged = function(){
+            obj.cellChanged = $entry(function(){
                 var param = {"record" : arguments[0], "newValue" : arguments[1], "oldValue" : arguments[2], "rowNum" : arguments[3], "colNum" : arguments[4]};
                 var event = @com.smartgwt.client.widgets.grid.events.CellSavedEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
                 selfJ.@com.smartgwt.client.core.DataClass::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
-            };
+            });
     }-*/;
 
     /**
@@ -2705,13 +2704,13 @@ public class ListGridField extends DataClass  implements com.smartgwt.client.wid
      */
     public native void setGroupTitleRenderer(GroupTitleRenderer groupTitleRenderer) /*-{
         var self = this.@com.smartgwt.client.core.DataClass::getJsObj()();
-        self.getGroupTitle = function(groupValue, groupNode, field, fieldName, grid) {
+        self.getGroupTitle = $entry(function(groupValue, groupNode, field, fieldName, grid) {
             var groupValueJ =  $wnd.SmartGWT.convertToJavaType(groupValue);
             var groupNodeJ = @com.smartgwt.client.widgets.grid.GroupNode::new(Lcom/google/gwt/core/client/JavaScriptObject;)(groupNode);
             var fieldJ = @com.smartgwt.client.widgets.grid.ListGridField::getOrCreateRef(Lcom/google/gwt/core/client/JavaScriptObject;)(field);
             var gridJ = @com.smartgwt.client.widgets.grid.ListGrid::getOrCreateRef(Lcom/google/gwt/core/client/JavaScriptObject;)(grid);
             return groupTitleRenderer.@com.smartgwt.client.widgets.grid.GroupTitleRenderer::getGroupTitle(Ljava/lang/Object;Lcom/smartgwt/client/widgets/grid/GroupNode;Lcom/smartgwt/client/widgets/grid/ListGridField;Ljava/lang/String;Lcom/smartgwt/client/widgets/grid/ListGrid;)(groupValueJ, groupNodeJ, fieldJ, fieldName, gridJ);
-        };
+        });
     }-*/;
 
     /**
@@ -2728,13 +2727,13 @@ public class ListGridField extends DataClass  implements com.smartgwt.client.wid
      */
     public native void setGroupValueFunction(GroupValueFunction groupValueFunction) /*-{
         var self = this.@com.smartgwt.client.core.DataClass::getJsObj()();
-        self.getGroupValue = function(value, record, field, fieldName, grid) {
+        self.getGroupValue = $entry(function(value, record, field, fieldName, grid) {
             var valueJ =  $wnd.SmartGWT.convertToJavaType(value);
             var recordJ = @com.smartgwt.client.widgets.grid.ListGridRecord::getOrCreateRef(Lcom/google/gwt/core/client/JavaScriptObject;)(record);
             var fieldJ = @com.smartgwt.client.widgets.grid.ListGridField::getOrCreateRef(Lcom/google/gwt/core/client/JavaScriptObject;)(field);
             var gridJ = @com.smartgwt.client.widgets.grid.ListGrid::getOrCreateRef(Lcom/google/gwt/core/client/JavaScriptObject;)(grid);
             return groupValueFunction.@com.smartgwt.client.widgets.grid.GroupValueFunction::getGroupValue(Ljava/lang/Object;Lcom/smartgwt/client/widgets/grid/ListGridRecord;Lcom/smartgwt/client/widgets/grid/ListGridField;Ljava/lang/String;Lcom/smartgwt/client/widgets/grid/ListGrid;)(valueJ, recordJ, fieldJ, fieldName, gridJ);
-        };
+        });
     }-*/;
 
     /**
@@ -2744,13 +2743,13 @@ public class ListGridField extends DataClass  implements com.smartgwt.client.wid
      */
     public native void setEditorValueMapFunction(EditorValueMapFunction editorValueMapFunction) /*-{
         var self = this.@com.smartgwt.client.core.DataClass::getJsObj()();
-        self.getEditorValueMap = function(values, field, grid) {
+        self.getEditorValueMap = $entry(function(values, field, grid) {
             var valuesJ =  @com.smartgwt.client.util.JSOHelper::convertToMap(Lcom/google/gwt/core/client/JavaScriptObject;)(values);
             var fieldJ = @com.smartgwt.client.widgets.grid.ListGridField::getOrCreateRef(Lcom/google/gwt/core/client/JavaScriptObject;)(field);
             var gridJ = @com.smartgwt.client.widgets.grid.ListGrid::getOrCreateRef(Lcom/google/gwt/core/client/JavaScriptObject;)(grid);
             var map = editorValueMapFunction.@com.smartgwt.client.widgets.grid.EditorValueMapFunction::getEditorValueMap(Ljava/util/Map;Lcom/smartgwt/client/widgets/grid/ListGridField;Lcom/smartgwt/client/widgets/grid/ListGrid;)(valuesJ, fieldJ, gridJ);
             return @com.smartgwt.client.util.JSOHelper::convertMapToJavascriptObject(Ljava/util/Map;)(map);
-        };
+        });
     }-*/;
 
     /**
@@ -2795,7 +2794,7 @@ public class ListGridField extends DataClass  implements com.smartgwt.client.wid
      */
     public native void setSummaryFunction(SummaryFunction summaryFunction) /*-{
         var self = this.@com.smartgwt.client.core.DataClass::getJsObj()();
-        self.summaryFunction = function(records, field) {
+        self.summaryFunction = $entry(function(records, field) {
             var recordsJ =  @com.smartgwt.client.data.Record::convertToRecordArray(Lcom/google/gwt/core/client/JavaScriptObject;)(records);
             var fieldJ = @com.smartgwt.client.widgets.grid.ListGridField::getOrCreateRef(Lcom/google/gwt/core/client/JavaScriptObject;)(field);
             var val = summaryFunction.@com.smartgwt.client.widgets.grid.SummaryFunction::getSummaryValue([Lcom/smartgwt/client/data/Record;Lcom/smartgwt/client/widgets/grid/ListGridField;)(recordsJ, fieldJ);
@@ -2803,7 +2802,7 @@ public class ListGridField extends DataClass  implements com.smartgwt.client.wid
             if(@com.smartgwt.client.util.JSOHelper::isJavaNumber(Ljava/lang/Object;)(val)) return val.@java.lang.Number::doubleValue()();
             if(@com.smartgwt.client.util.JSOHelper::isJavaDate(Ljava/lang/Object;)(val)) return @com.smartgwt.client.util.JSOHelper::convertToJavaScriptDate(Ljava/util/Date;)(val);
             $wnd.isc.logWarn('Unrecognized type of value ' + val + ' returned by the summaryFunction');
-        };
+        });
     }-*/;
 
     /**
@@ -2842,7 +2841,7 @@ public class ListGridField extends DataClass  implements com.smartgwt.client.wid
      */
     public native void setRecordSummaryFunction(RecordSummaryFunction recordSummaryFunction) /*-{
         var self = this.@com.smartgwt.client.core.DataClass::getJsObj()();
-        self.recordSummaryFunction = function(record, fields, summaryField) {
+        self.recordSummaryFunction = $entry(function(record, fields, summaryField) {
             var recordJ =  @com.smartgwt.client.data.Record::getOrCreateRef(Lcom/google/gwt/core/client/JavaScriptObject;)(record);
             var fieldsJ = @com.smartgwt.client.widgets.grid.ListGrid::convertToListGridFieldArray(Lcom/google/gwt/core/client/JavaScriptObject;)(fields);
             var summaryFieldJ = @com.smartgwt.client.widgets.grid.ListGridField::getOrCreateRef(Lcom/google/gwt/core/client/JavaScriptObject;)(summaryField);
@@ -2851,7 +2850,7 @@ public class ListGridField extends DataClass  implements com.smartgwt.client.wid
             if(@com.smartgwt.client.util.JSOHelper::isJavaNumber(Ljava/lang/Object;)(val)) return val.@java.lang.Number::doubleValue()();
             if(@com.smartgwt.client.util.JSOHelper::isJavaDate(Ljava/lang/Object;)(val)) return @com.smartgwt.client.util.JSOHelper::convertToJavaScriptDate(Ljava/util/Date;)(val);
             $wnd.isc.logWarn('Unrecognized type of value ' + val + ' returned by the summaryFunction');
-        };
+        });
     }-*/;
 
     /**

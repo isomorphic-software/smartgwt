@@ -288,19 +288,19 @@ public class TileGrid extends TileLayout  implements DataBoundComponent, com.sma
         var selfJ = this;
         if(this.@com.smartgwt.client.widgets.BaseWidget::isCreated()()) {
             obj = this.@com.smartgwt.client.widgets.BaseWidget::getJsObj()();
-            obj.addProperties({recordClick:function(){
+            obj.addProperties({recordClick:$entry(function(){
                         var param = {"viewer" : arguments[0], "tile" : arguments[1], "record" : arguments[2]};
                         var event = @com.smartgwt.client.widgets.tile.events.RecordClickEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
                         selfJ.@com.smartgwt.client.widgets.BaseWidget::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
-                    }
+                    })
              });
         } else {
             obj = this.@com.smartgwt.client.widgets.BaseWidget::getConfig()();
-            obj.recordClick = function(){
+            obj.recordClick = $entry(function(){
                    var param = {"viewer" : arguments[0], "tile" : arguments[1], "record" : arguments[2]};
                    var event = @com.smartgwt.client.widgets.tile.events.RecordClickEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
                    selfJ.@com.smartgwt.client.widgets.BaseWidget::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
-               };
+               });
         }
    }-*/;
 
@@ -326,19 +326,19 @@ public class TileGrid extends TileLayout  implements DataBoundComponent, com.sma
         var selfJ = this;
         if(this.@com.smartgwt.client.widgets.BaseWidget::isCreated()()) {
             obj = this.@com.smartgwt.client.widgets.BaseWidget::getJsObj()();
-            obj.addProperties({recordDoubleClick:function(){
+            obj.addProperties({recordDoubleClick:$entry(function(){
                         var param = {"viewer" : arguments[0], "tile" : arguments[1], "record" : arguments[2]};
                         var event = @com.smartgwt.client.widgets.tile.events.RecordDoubleClickEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
                         selfJ.@com.smartgwt.client.widgets.BaseWidget::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
-                    }
+                    })
              });
         } else {
             obj = this.@com.smartgwt.client.widgets.BaseWidget::getConfig()();
-            obj.recordDoubleClick = function(){
+            obj.recordDoubleClick = $entry(function(){
                    var param = {"viewer" : arguments[0], "tile" : arguments[1], "record" : arguments[2]};
                    var event = @com.smartgwt.client.widgets.tile.events.RecordDoubleClickEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
                    selfJ.@com.smartgwt.client.widgets.BaseWidget::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
-               };
+               });
         }
    }-*/;
 
@@ -362,19 +362,19 @@ public class TileGrid extends TileLayout  implements DataBoundComponent, com.sma
         var selfJ = this;
         if(this.@com.smartgwt.client.widgets.BaseWidget::isCreated()()) {
             obj = this.@com.smartgwt.client.widgets.BaseWidget::getJsObj()();
-            obj.addProperties({selectionChanged:function(){
+            obj.addProperties({selectionChanged:$entry(function(){
                         var param = {"record" : arguments[0], "state" : arguments[1]};
                         var event = @com.smartgwt.client.widgets.tile.events.SelectionChangedEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
                         selfJ.@com.smartgwt.client.widgets.BaseWidget::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
-                    }
+                    })
              });
         } else {
             obj = this.@com.smartgwt.client.widgets.BaseWidget::getConfig()();
-            obj.selectionChanged = function(){
+            obj.selectionChanged = $entry(function(){
                    var param = {"record" : arguments[0], "state" : arguments[1]};
                    var event = @com.smartgwt.client.widgets.tile.events.SelectionChangedEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
                    selfJ.@com.smartgwt.client.widgets.BaseWidget::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
-               };
+               });
         }
    }-*/;
 
@@ -493,14 +493,14 @@ public class TileGrid extends TileLayout  implements DataBoundComponent, com.sma
     protected native void onInit() /*-{
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
         self._getTileHTML = self.getTileHTML;
-        self.getTileHTML = function(record) {
+        self.getTileHTML = $entry(function(record) {
             var jObj = this.__ref;
             var recordJ = @com.smartgwt.client.data.Record::getOrCreateRef(Lcom/google/gwt/core/client/JavaScriptObject;)(record);
             return jObj.@com.smartgwt.client.widgets.tile.TileGrid::getTileHTML(Lcom/smartgwt/client/data/Record;)(recordJ);
-        };
+        });
 
         self._getTile = self.getTile;
-        self.getTile = function(record) {
+        self.getTile = $entry(function(record) {
             var jObj = this.__ref;
             if(!$wnd.isc.isA.Number(record)) {
                 var recordJ = @com.smartgwt.client.data.Record::getOrCreateRef(Lcom/google/gwt/core/client/JavaScriptObject;)(record);
@@ -510,7 +510,7 @@ public class TileGrid extends TileLayout  implements DataBoundComponent, com.sma
                 var tile =  jObj.@com.smartgwt.client.widgets.tile.TileGrid::getTile(I)(record);
                 return tile == null ? null : tile.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
             }
-        };
+        });
     }-*/;
 
     /**
@@ -635,11 +635,11 @@ public class TileGrid extends TileLayout  implements DataBoundComponent, com.sma
     public native void addData(Record record, DSCallback callback) /*-{
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
         var recordJS = record.@com.smartgwt.client.data.Record::getJsObj()();
-        self.addData(recordJS, function (dsResponse, data, dsRequest) {
+        self.addData(recordJS, $entry(function (dsResponse, data, dsRequest) {
             var responseJ = @com.smartgwt.client.data.DSResponse::new(Lcom/google/gwt/core/client/JavaScriptObject;)(dsResponse);
             var requestJ = @com.smartgwt.client.data.DSRequest::new(Lcom/google/gwt/core/client/JavaScriptObject;)(dsRequest);
             if(callback != null) callback.@com.smartgwt.client.data.DSCallback::execute(Lcom/smartgwt/client/data/DSResponse;Ljava/lang/Object;Lcom/smartgwt/client/data/DSRequest;)(responseJ, data, requestJ);
-        });
+        }));
     }-*/;
 
     /**
@@ -654,11 +654,11 @@ public class TileGrid extends TileLayout  implements DataBoundComponent, com.sma
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
         var recordJS = record.@com.smartgwt.client.data.Record::getJsObj()();
         var requestPropertiesJS = requestProperties == null ? null : requestProperties.@com.smartgwt.client.core.DataClass::getJsObj()();
-        self.addData(recordJS, function (dsResponse, data, dsRequest) {
+        self.addData(recordJS, $entry(function (dsResponse, data, dsRequest) {
             var responseJ = @com.smartgwt.client.data.DSResponse::new(Lcom/google/gwt/core/client/JavaScriptObject;)(dsResponse);
             var requestJ = @com.smartgwt.client.data.DSRequest::new(Lcom/google/gwt/core/client/JavaScriptObject;)(dsRequest);
             if(callback != null) callback.@com.smartgwt.client.data.DSCallback::execute(Lcom/smartgwt/client/data/DSResponse;Ljava/lang/Object;Lcom/smartgwt/client/data/DSRequest;)(responseJ, data, requestJ);
-        }, requestPropertiesJS);
+        }), requestPropertiesJS);
     }-*/;
 
     /**
@@ -683,11 +683,11 @@ public class TileGrid extends TileLayout  implements DataBoundComponent, com.sma
     public native void removeData(Record record, DSCallback callback) /*-{
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
         var recordJS = record.@com.smartgwt.client.data.Record::getJsObj()();
-        self.removeData(recordJS, function (dsResponse, data, dsRequest) {
+        self.removeData(recordJS, $entry(function (dsResponse, data, dsRequest) {
             var responseJ = @com.smartgwt.client.data.DSResponse::new(Lcom/google/gwt/core/client/JavaScriptObject;)(dsResponse);
             var requestJ = @com.smartgwt.client.data.DSRequest::new(Lcom/google/gwt/core/client/JavaScriptObject;)(dsRequest);
             if(callback != null) callback.@com.smartgwt.client.data.DSCallback::execute(Lcom/smartgwt/client/data/DSResponse;Ljava/lang/Object;Lcom/smartgwt/client/data/DSRequest;)(responseJ, data, requestJ);
-        });
+        }));
     }-*/;
 
     /**
@@ -703,11 +703,11 @@ public class TileGrid extends TileLayout  implements DataBoundComponent, com.sma
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
         var recordJS = record.@com.smartgwt.client.data.Record::getJsObj()();
         var requestPropertiesJS = requestProperties == null ? null : requestProperties.@com.smartgwt.client.core.DataClass::getJsObj()();
-        self.removeData(recordJS, function (dsResponse, data, dsRequest) {
+        self.removeData(recordJS, $entry(function (dsResponse, data, dsRequest) {
             var responseJ = @com.smartgwt.client.data.DSResponse::new(Lcom/google/gwt/core/client/JavaScriptObject;)(dsResponse);
             var requestJ = @com.smartgwt.client.data.DSRequest::new(Lcom/google/gwt/core/client/JavaScriptObject;)(dsRequest);
             if(callback != null) callback.@com.smartgwt.client.data.DSCallback::execute(Lcom/smartgwt/client/data/DSResponse;Ljava/lang/Object;Lcom/smartgwt/client/data/DSRequest;)(responseJ, data, requestJ);
-        }, requestPropertiesJS);
+        }), requestPropertiesJS);
     }-*/;
 
     /**
@@ -1167,22 +1167,22 @@ public class TileGrid extends TileLayout  implements DataBoundComponent, com.sma
     public native void fetchData(Criteria criteria, DSCallback callback) /*-{
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
         var critJS = criteria == null ? null : criteria.@com.smartgwt.client.data.Criteria::getJsObj()();
-        self.fetchData(critJS, function (dsResponse, data, dsRequest) {
+        self.fetchData(critJS, $entry(function (dsResponse, data, dsRequest) {
             var responseJ = @com.smartgwt.client.data.DSResponse::new(Lcom/google/gwt/core/client/JavaScriptObject;)(dsResponse);
             var requestJ = @com.smartgwt.client.data.DSRequest::new(Lcom/google/gwt/core/client/JavaScriptObject;)(dsRequest);
             if(callback != null) callback.@com.smartgwt.client.data.DSCallback::execute(Lcom/smartgwt/client/data/DSResponse;Ljava/lang/Object;Lcom/smartgwt/client/data/DSRequest;)(responseJ, data, requestJ);
-        });
+        }));
     }-*/;
 
     public native void fetchData(Criteria criteria, DSCallback callback, DSRequest requestProperties) /*-{
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
         var critJS = criteria == null ? null : criteria.@com.smartgwt.client.data.Criteria::getJsObj()();
         var requestPropertiesJS = requestProperties == null ? null : requestProperties.@com.smartgwt.client.core.DataClass::getJsObj()();
-        self.fetchData(critJS, function (dsResponse, data, dsRequest) {
+        self.fetchData(critJS, $entry(function (dsResponse, data, dsRequest) {
             var responseJ = @com.smartgwt.client.data.DSResponse::new(Lcom/google/gwt/core/client/JavaScriptObject;)(dsResponse);
             var requestJ = @com.smartgwt.client.data.DSRequest::new(Lcom/google/gwt/core/client/JavaScriptObject;)(dsRequest);
             if(callback != null) callback.@com.smartgwt.client.data.DSCallback::execute(Lcom/smartgwt/client/data/DSResponse;Ljava/lang/Object;Lcom/smartgwt/client/data/DSRequest;)(responseJ, data, requestJ);
-        }, requestPropertiesJS);
+        }), requestPropertiesJS);
     }-*/;
 
     public native void filterData() /*-{
@@ -1198,22 +1198,22 @@ public class TileGrid extends TileLayout  implements DataBoundComponent, com.sma
     public native void filterData(Criteria criteria, DSCallback callback) /*-{
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
         var critJS = criteria == null ? null : criteria.@com.smartgwt.client.data.Criteria::getJsObj()();
-        self.filterData(critJS, function (dsResponse, data, dsRequest) {
+        self.filterData(critJS, $entry(function (dsResponse, data, dsRequest) {
             var responseJ = @com.smartgwt.client.data.DSResponse::new(Lcom/google/gwt/core/client/JavaScriptObject;)(dsResponse);
             var requestJ = @com.smartgwt.client.data.DSRequest::new(Lcom/google/gwt/core/client/JavaScriptObject;)(dsRequest);
             if(callback != null) callback.@com.smartgwt.client.data.DSCallback::execute(Lcom/smartgwt/client/data/DSResponse;Ljava/lang/Object;Lcom/smartgwt/client/data/DSRequest;)(responseJ, data, requestJ);
-        });
+        }));
     }-*/;
 
     public native void filterData(Criteria criteria, DSCallback callback, DSRequest requestProperties) /*-{
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
         var critJS = criteria == null ? null : criteria.@com.smartgwt.client.data.Criteria::getJsObj()();
         var requestPropertiesJS = requestProperties == null ? null : requestProperties.@com.smartgwt.client.core.DataClass::getJsObj()();
-        self.filterData(critJS, function (dsResponse, data, dsRequest) {
+        self.filterData(critJS, $entry(function (dsResponse, data, dsRequest) {
             var responseJ = @com.smartgwt.client.data.DSResponse::new(Lcom/google/gwt/core/client/JavaScriptObject;)(dsResponse);
             var requestJ = @com.smartgwt.client.data.DSRequest::new(Lcom/google/gwt/core/client/JavaScriptObject;)(dsRequest);
             if(callback != null) callback.@com.smartgwt.client.data.DSCallback::execute(Lcom/smartgwt/client/data/DSResponse;Ljava/lang/Object;Lcom/smartgwt/client/data/DSRequest;)(responseJ, data, requestJ);
-        }, requestPropertiesJS);
+        }), requestPropertiesJS);
     }-*/;
 
     public native void invalidateCache() /*-{

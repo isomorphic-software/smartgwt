@@ -366,11 +366,11 @@ public class RPCManager {
      */
     public static native void setLoginRequiredCallback(LoginRequiredCallback callback) /*-{
         $wnd.isc.RPCManager.addClassProperties({
-            loginRequired : function (transactionNum, request, response) {
+            loginRequired : $entry(function (transactionNum, request, response) {
                var requestJ = @com.smartgwt.client.rpc.RPCRequest::new(Lcom/google/gwt/core/client/JavaScriptObject;)(request);
                var responseJ = @com.smartgwt.client.rpc.RPCResponse::new(Lcom/google/gwt/core/client/JavaScriptObject;)(response);
                callback.@com.smartgwt.client.rpc.LoginRequiredCallback::loginRequired(ILcom/smartgwt/client/rpc/RPCRequest;Lcom/smartgwt/client/rpc/RPCResponse;)(transactionNum, requestJ, responseJ);
-            }
+            })
         });
     }-*/;
 
@@ -396,11 +396,11 @@ public class RPCManager {
      */
     public static native void setHandleErrorCallback(HandleErrorCallback callback) /*-{
         $wnd.isc.RPCManager.addClassProperties({
-            handleError : function (response, request) {
+            handleError : $entry(function (response, request) {
                var responseJ = @com.smartgwt.client.data.DSResponse::new(Lcom/google/gwt/core/client/JavaScriptObject;)(response);
                var requestJ = @com.smartgwt.client.data.DSRequest::new(Lcom/google/gwt/core/client/JavaScriptObject;)(request);
                callback.@com.smartgwt.client.rpc.HandleErrorCallback::handleError(Lcom/smartgwt/client/data/DSResponse;Lcom/smartgwt/client/data/DSRequest;)(responseJ, requestJ);
-            }
+            })
         });
     }-*/;
 
@@ -418,9 +418,9 @@ public class RPCManager {
      */
     public static native void setHandleTransportErrorCallback(HandleTransportErrorCallback callback) /*-{
         $wnd.isc.RPCManager.addClassProperties({
-            handleTransportError : function (transactionNum, status, httpResponseCode, httpResponseText) {
+            handleTransportError : $entry(function (transactionNum, status, httpResponseCode, httpResponseText) {
                callback.@com.smartgwt.client.rpc.HandleTransportErrorCallback::handleTransportError(IIILjava/lang/String;)(transactionNum, status, httpResponseCode, httpResponseText);
-            }
+            })
         });
     }-*/;
     
@@ -503,10 +503,10 @@ public class RPCManager {
      */
     public static native void setQueueSentCallback(QueueSentCallback callback) /*-{
         $wnd.isc.RPCManager.addClassProperties({
-            queueSent : function (requests) {
+            queueSent : $entry(function (requests) {
                var requestsJ = @com.smartgwt.client.rpc.RPCManager::convertToRPCRequestArray(Lcom/google/gwt/core/client/JavaScriptObject;)(requests);
                callback.@com.smartgwt.client.rpc.QueueSentCallback::queueSent([Lcom/smartgwt/client/rpc/RPCRequest;)(requestsJ);
-            }
+            })
         });
     }-*/;
 
@@ -540,11 +540,11 @@ public class RPCManager {
      */
     public static native void sendRequest(RPCRequest rpcRequestProperties, RPCCallback callback) /*-{
         var rpcRequest = rpcRequestProperties.@com.smartgwt.client.core.DataClass::getJsObj()();
-        rpcRequest.callback = function (rpcResponse, data, rpcRequest) {
+        rpcRequest.callback = $entry(function (rpcResponse, data, rpcRequest) {
             var responseJ = @com.smartgwt.client.rpc.RPCResponse::new(Lcom/google/gwt/core/client/JavaScriptObject;)(rpcResponse);
             var requestJ = @com.smartgwt.client.rpc.RPCRequest::new(Lcom/google/gwt/core/client/JavaScriptObject;)(rpcRequest);
             if(callback != null) callback.@com.smartgwt.client.rpc.RPCCallback::execute(Lcom/smartgwt/client/rpc/RPCResponse;Ljava/lang/Object;Lcom/smartgwt/client/rpc/RPCRequest;)(responseJ, data, requestJ);
-        };
+        });
         $wnd.isc.RPCManager.sendRequest(rpcRequest);
     }-*/;
 
@@ -556,11 +556,11 @@ public class RPCManager {
      * @param requestParams any additional properties you want to set - these will be applied to the RPCRequest object that will be auto-created for you.
      */
     public static native void send(String data, RPCCallback callback, RPCRequest requestParams) /*-{
-        $wnd.isc.RPCManager.send(data, function (rpcResponse, data, rpcRequest) {
+        $wnd.isc.RPCManager.send(data, $entry(function (rpcResponse, data, rpcRequest) {
             var responseJ = @com.smartgwt.client.rpc.RPCResponse::new(Lcom/google/gwt/core/client/JavaScriptObject;)(rpcResponse);
             var requestJ = @com.smartgwt.client.rpc.RPCRequest::new(Lcom/google/gwt/core/client/JavaScriptObject;)(rpcRequest);
             if(callback != null) callback.@com.smartgwt.client.rpc.RPCCallback::execute(Lcom/smartgwt/client/rpc/RPCResponse;Ljava/lang/Object;Lcom/smartgwt/client/rpc/RPCRequest;)(responseJ, data, requestJ);
-        }, requestParams == null ? null : @com.smartgwt.client.util.JSOHelper::convertMapToJavascriptObject(Ljava/util/Map;)(requestParams));
+        }), requestParams == null ? null : @com.smartgwt.client.util.JSOHelper::convertMapToJavascriptObject(Ljava/util/Map;)(requestParams));
     }-*/;
 
     /**
@@ -572,11 +572,11 @@ public class RPCManager {
      *
      */
     public static native void send(String data, RPCCallback callback, Map requestParams) /*-{
-        $wnd.isc.RPCManager.send(data, function (rpcResponse, data, rpcRequest) {
+        $wnd.isc.RPCManager.send(data, $entry(function (rpcResponse, data, rpcRequest) {
             var responseJ = @com.smartgwt.client.rpc.RPCResponse::new(Lcom/google/gwt/core/client/JavaScriptObject;)(rpcResponse);
             var requestJ = @com.smartgwt.client.rpc.RPCRequest::new(Lcom/google/gwt/core/client/JavaScriptObject;)(rpcRequest);
             if(callback != null) callback.@com.smartgwt.client.rpc.RPCCallback::execute(Lcom/smartgwt/client/rpc/RPCResponse;Ljava/lang/Object;Lcom/smartgwt/client/rpc/RPCRequest;)(responseJ, data, requestJ);
-        }, requestParams == null ? null : @com.smartgwt.client.util.JSOHelper::convertMapToJavascriptObject(Ljava/util/Map;)(requestParams));
+        }), requestParams == null ? null : @com.smartgwt.client.util.JSOHelper::convertMapToJavascriptObject(Ljava/util/Map;)(requestParams));
     }-*/;
 
     /**
@@ -587,11 +587,11 @@ public class RPCManager {
      * @param requestParams any additional properties you want to set - these will be applied to the RPCRequest object that will be auto-created for you.
      */
     public static native void send(JavaScriptObject data, RPCCallback callback, RPCRequest requestParams) /*-{
-        $wnd.isc.RPCManager.send(data, function (rpcResponse, data, rpcRequest) {
+        $wnd.isc.RPCManager.send(data, $entry(function (rpcResponse, data, rpcRequest) {
             var responseJ = @com.smartgwt.client.rpc.RPCResponse::new(Lcom/google/gwt/core/client/JavaScriptObject;)(rpcResponse);
             var requestJ = @com.smartgwt.client.rpc.RPCRequest::new(Lcom/google/gwt/core/client/JavaScriptObject;)(rpcRequest);
             if(callback != null) callback.@com.smartgwt.client.rpc.RPCCallback::execute(Lcom/smartgwt/client/rpc/RPCResponse;Ljava/lang/Object;Lcom/smartgwt/client/rpc/RPCRequest;)(responseJ, data, requestJ);
-        }, requestParams == null ? null : @com.smartgwt.client.util.JSOHelper::convertMapToJavascriptObject(Ljava/util/Map;)(requestParams));
+        }), requestParams == null ? null : @com.smartgwt.client.util.JSOHelper::convertMapToJavascriptObject(Ljava/util/Map;)(requestParams));
     }-*/;
 
     /**
@@ -602,11 +602,11 @@ public class RPCManager {
      * @param requestParams any additional properties you want to set - these will be applied to the RPCRequest object that will be auto-created for you.
      */
     public static native void send(JavaScriptObject data, RPCCallback callback, Map requestParams) /*-{
-        $wnd.isc.RPCManager.send(data, function (rpcResponse, data, rpcRequest) {
+        $wnd.isc.RPCManager.send(data, $entry(function (rpcResponse, data, rpcRequest) {
             var responseJ = @com.smartgwt.client.rpc.RPCResponse::new(Lcom/google/gwt/core/client/JavaScriptObject;)(rpcResponse);
             var requestJ = @com.smartgwt.client.rpc.RPCRequest::new(Lcom/google/gwt/core/client/JavaScriptObject;)(rpcRequest);
             if(callback != null) callback.@com.smartgwt.client.rpc.RPCCallback::execute(Lcom/smartgwt/client/rpc/RPCResponse;Ljava/lang/Object;Lcom/smartgwt/client/rpc/RPCRequest;)(responseJ, data, requestJ);
-        }, requestParams == null ? null : @com.smartgwt.client.util.JSOHelper::convertMapToJavascriptObject(Ljava/util/Map;)(requestParams));
+        }), requestParams == null ? null : @com.smartgwt.client.util.JSOHelper::convertMapToJavascriptObject(Ljava/util/Map;)(requestParams));
     }-*/;
 
 }
