@@ -47,7 +47,7 @@ package com.smartgwt.client.docs;
  * drawing'}&#010 and to allow subcomponents to be modified by their parent component before they are created&#010 and
  * drawn&#010 </ul>&#010 When a component is edited within Visual Builder, the DataSource properties that normally&#010
  * influence databound forms will influence the Component Editor (for example, field.title,&#010 field.editorType).  In
- * addition, the following properties have special signficance in&#010 component editing and component drag and drop:&#010
+ * addition, the following properties have special significance in&#010 component editing and component drag and drop:&#010
  * <ul>&#010 <li> {@link com.smartgwt.client.data.DataSourceField#getInapplicable 'field.inapplicable'} indicates that an
  * inherited&#010 field is inapplicable in this component.&#010 <li> {@link
  * com.smartgwt.client.data.DataSourceField#getGroup 'field.group'} indicates what group the property should be&#010 placed

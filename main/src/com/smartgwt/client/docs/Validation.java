@@ -10,6 +10,8 @@ package com.smartgwt.client.docs;
  * @see com.smartgwt.client.widgets.form.DynamicForm#validateData
  * @see com.smartgwt.client.widgets.form.validator.Validator#addValidator
  * @see com.smartgwt.client.widgets.form.validator.Validator#addValidators
+ * @see com.smartgwt.client.widgets.form.validator.Validator#addValidatorDefinition
+ * @see com.smartgwt.client.widgets.form.validator.Validator#addValidatorDefinitions
  * @see com.smartgwt.client.widgets.form.DynamicForm#getShowInlineErrors
  * @see com.smartgwt.client.widgets.form.DynamicForm#getShowErrorIcons
  * @see com.smartgwt.client.widgets.form.DynamicForm#getShowErrorText

@@ -5,7 +5,7 @@ package com.smartgwt.client.docs;
  * <h3>DataBinding</h3>
  * DataBinding means the automatic, highly customizable process of 'binding' a UI component to a DataSource, so that a UI
  * component displays, edits and saves DataSource records using appropriate formatters, editors, validation rules, and
- * persistance logic.
+ * persistence logic.
  * @see com.smartgwt.client..PickListMenu#getDataProperties
  * @see com.smartgwt.client..PickList#getShowOptionsFromDataSource
  * @see com.smartgwt.client.widgets.form.fields.SelectItem#getShowOptionsFromDataSource

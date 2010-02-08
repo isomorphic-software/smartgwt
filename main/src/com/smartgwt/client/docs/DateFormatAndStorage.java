@@ -29,7 +29,7 @@ package com.smartgwt.client.docs;
  * values received from the server in responses are expected to also be in XML Schema date format - and assumed to be in
  * UTC time unless an explicit timezone offset is specified on the datetime string
  * (EG:<code>2006-01-10T12:22:04-04:00</code>). As with dates, "json" format dataSources use the same XML Schema format by
- * default but may use JavaScript date instantiaion strings instead. <P> Fields of type {@link
+ * default but may use JavaScript date instantiation strings instead. <P> Fields of type {@link
  * com.smartgwt.client.types.FieldType} are logical time values. These are stored on the client as JavaScript date objects,
  * but only the time information is displayed to the user. Time formatting is handled by the {@link
  * com.smartgwt.client..Time} class APIs. By default times are displayed to users in the display timezone set up via {@link

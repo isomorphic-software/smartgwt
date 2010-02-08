@@ -33,7 +33,7 @@ package com.smartgwt.client.docs;
  * GWT's SQL subsystem. <P> <h4>Transparent Queuing / "Batch" Operations</h4> <P> Any request transmitted to the Smart GWT
  * Server can be combined into a "queue" transmitted as a single HTTP request, with in-order execution for all queued
  * operations.  {@link com.smartgwt.client.rpc.RPCManager#startQueue} starts a queue and {@link
- * com.smartgwt.client.rpc.RPCManager#sendQueue} transmits it; queueing is transparent to the code that initiates the
+ * com.smartgwt.client.rpc.RPCManager#sendQueue} transmits it; queuing is transparent to the code that initiates the
  * individual requests.  This enables: <ul> <li> re-use of data access operations across different screens <li> easy
  * implementation of transaction boundaries <li> simplified saving and loading of screens with complex, master-detail views
  * <li> guaranteed in-order processing of operations <li> more efficient network usage </ul> <P> <h4>Visual Builder</h4>

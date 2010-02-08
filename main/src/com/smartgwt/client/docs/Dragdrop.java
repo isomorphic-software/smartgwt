@@ -25,6 +25,7 @@ package com.smartgwt.client.docs;
  * @see com.smartgwt.client.widgets.Canvas#getDragRepositionCursor
  * @see com.smartgwt.client.widgets.Canvas#getCanDragResize
  * @see com.smartgwt.client.widgets.Canvas#getResizeFrom
+ * @see com.smartgwt.client.widgets.Canvas#getEdgeMarginSize
  * @see com.smartgwt.client.widgets.Canvas#getEdgeCursorMap
  * @see com.smartgwt.client.widgets.Canvas#getKeepInParentRect
  * @see com.smartgwt.client.widgets.Canvas#getDragAppearance

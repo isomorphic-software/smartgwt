@@ -19,7 +19,7 @@ package com.smartgwt.client.docs;
  * on the server and use either the Smart GWT DSRequest or JSON operation pathways (integration paths 1 and 4 in the
  * diagram below).  See the discussion in {@link com.smartgwt.client.docs.ClientServerIntegration} for more information on
  * the integration paths shown in the diagram below. <p> You call {@link
- * com.smartgwt.client.data.XMLTools#nativeXMLAvailable} to check for the avialability of a native XML parser at runtime.
+ * com.smartgwt.client.data.XMLTools#nativeXMLAvailable} to check for the availability of a native XML parser at runtime.
  * <p> <img src="${isc.DocViewer.instance.referenceRoot}skin/ds_bindings.png" width=763 height=475> <p>
  * <b><u>XMLHttpRequest</u></b> <p> The XMLHttpRequest object is used for the <code>xmlHttpRequest</code> {@link
  * com.smartgwt.client.types.RPCTransport}. Safari, Mozilla, Firefox, and IE 7 provide a native XMLHttpRequest
