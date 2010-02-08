@@ -571,6 +571,25 @@ public class DSRequest extends RPCRequest {
     public String getExportFooter()  {
         return getAttributeAsString("exportFooter");
     }
+             
+    /**
+     * Mode of validation for entered data.
+     *
+     * @param validationMode validationMode Default value is "full"
+     */
+    public void setValidationMode(ValidationMode validationMode) {
+        setAttribute("validationMode", validationMode.getValue());
+    }
+
+    /**
+     * Mode of validation for entered data.
+     *
+     *
+     * @return ValidationMode
+     */
+    public ValidationMode getValidationMode()  {
+        return EnumUtil.getEnum(ValidationMode.values(), getAttribute("validationMode"));
+    }
 
     // ********************* Methods ***********************
 
