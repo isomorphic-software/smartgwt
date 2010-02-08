@@ -103,7 +103,7 @@ public class RPCResponse extends DataClass {
 
 
     /**
-     * This attribute (avialable when using the the <code>xmlHttpRequest</code> transport) contains the HTTP response code sent
+     * This attribute (available when using the the <code>xmlHttpRequest</code> transport) contains the HTTP response code sent
      * by the server. <p> Note that this is different from {@link com.smartgwt.client.rpc.RPCResponse#getStatus status} - that
      * attribute is used to indicate a status code for the RPC itself whereas httpResponseCode is the raw HTTP response code
      * for the HTTP request that contained the RPCRequest. <p> This feature relies on the XMLHttpRequest object which can be
@@ -134,8 +134,6 @@ public class RPCResponse extends DataClass {
     // ********************* Methods ***********************
 
     // ********************* Static Methods ***********************
-
-
 
 
 
