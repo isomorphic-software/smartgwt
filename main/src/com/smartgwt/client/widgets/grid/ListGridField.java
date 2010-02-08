@@ -862,6 +862,37 @@ public class ListGridField extends DataClass  implements com.smartgwt.client.wid
     }
 
     /**
+     * Whether this field should be automatically frozen when other fields are frozen.  When true, the field will be
+     * automatically frozen to the extreme of the grid.  The automatically generated {@link
+     * com.smartgwt.client.widgets.grid.ListGrid#getCheckboxField 'checkbox'}, {@link
+     * com.smartgwt.client.widgets.grid.ListGrid#getExpansionField 'expansion'} and  {@link
+     * com.smartgwt.client.widgets.grid.ListGrid#getRowNumberField 'rowNumber'} fields are examples of fields that specify
+     * <code>autoFreeze: true</code>. <P> You can control the position of this field in the array of frozen fields by setting
+     * {@link com.smartgwt.client.widgets.grid.ListGridField#getAutoFreezePosition autoFreezePosition}.
+     *
+     * @param autoFreeze autoFreeze Default value is null
+     */
+    public void setAutoFreeze(Boolean autoFreeze) {
+        setAttribute("autoFreeze", autoFreeze);
+    }
+
+    /**
+     * Whether this field should be automatically frozen when other fields are frozen.  When true, the field will be
+     * automatically frozen to the extreme of the grid.  The automatically generated {@link
+     * com.smartgwt.client.widgets.grid.ListGrid#getCheckboxField 'checkbox'}, {@link
+     * com.smartgwt.client.widgets.grid.ListGrid#getExpansionField 'expansion'} and  {@link
+     * com.smartgwt.client.widgets.grid.ListGrid#getRowNumberField 'rowNumber'} fields are examples of fields that specify
+     * <code>autoFreeze: true</code>. <P> You can control the position of this field in the array of frozen fields by setting
+     * {@link com.smartgwt.client.widgets.grid.ListGridField#getAutoFreezePosition autoFreezePosition}.
+     *
+     *
+     * @return Boolean
+     */
+    public Boolean getAutoFreeze()  {
+        return getAttributeAsBoolean("autoFreeze");
+    }
+
+    /**
      * Whether this field can be hidden via the header context menu.
      *
      * @param canHide canHide Default value is null
@@ -2180,21 +2211,6 @@ public class ListGridField extends DataClass  implements com.smartgwt.client.wid
 
 
     // ********************* Static Methods ***********************
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
     /**
