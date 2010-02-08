@@ -1043,6 +1043,29 @@ public class DynamicForm extends Canvas  implements DataBoundComponent, com.smar
     }
 
     /**
+     * If true, form items will be validated when each item's "editorExit" handler is fired as well as when the entire form is
+     * submitted or validated. <P> Note that this property can also be set at the item level to enable finer granularity
+     * validation in response to user interaction - if true at either level, validation will occur on editorExit.
+     *
+     * @param validateOnExit validateOnExit Default value is false
+     */
+    public void setValidateOnExit(Boolean validateOnExit) {
+        setAttribute("validateOnExit", validateOnExit, true);
+    }
+
+    /**
+     * If true, form items will be validated when each item's "editorExit" handler is fired as well as when the entire form is
+     * submitted or validated. <P> Note that this property can also be set at the item level to enable finer granularity
+     * validation in response to user interaction - if true at either level, validation will occur on editorExit.
+     *
+     *
+     * @return Boolean
+     */
+    public Boolean getValidateOnExit()  {
+        return getAttributeAsBoolean("validateOnExit");
+    }
+
+    /**
      * If true, when the form is drawn, focus will automatically be put into the first focusable element in the form.<br> Note
      * that to put focus in a different item you can explicitly call  <code>dynamicForm.focusInItem(<i>itemName</i>)</code>
      *
@@ -1911,7 +1934,7 @@ public class DynamicForm extends Canvas  implements DataBoundComponent, com.smar
 
     /**
      * Resets values to the state it was the last time <code>setValues()</code> or <code>rememberValues()</code> was called. If
-     * neither of those methods has been called, values will be set back to their inital values at init time.
+     * neither of those methods has been called, values will be set back to their initial values at init time.
      */
     public native void reset() /*-{
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
@@ -1970,21 +1993,6 @@ public class DynamicForm extends Canvas  implements DataBoundComponent, com.smar
 
 
     // ********************* Static Methods ***********************
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -2366,6 +2374,18 @@ public class DynamicForm extends Canvas  implements DataBoundComponent, com.smar
         var critJS = self.getValuesAsCriteria();
         return @com.smartgwt.client.data.Criteria::new(Lcom/google/gwt/core/client/JavaScriptObject;)(critJS);
     }-*/;
+    
+
+    /**
+     * Return the current set of values within this form as a Record.
+     *
+     * @return a Record object containing the form's current values
+     */
+    public Record getValuesAsRecord() {
+    	Map values = getValues();
+    	return new Record(JSOHelper.convertMapToJavascriptObject(values));
+    }
+
 
     /**
      * An array of widths for the columns of items in this form's layout grid. <p> If specified, these widths should sum
