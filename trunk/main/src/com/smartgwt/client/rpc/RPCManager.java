@@ -90,7 +90,7 @@ import com.google.gwt.event.shared.HasHandlers;
  * Otherwise it is considered to have succeeded.  This value is settable via the setStatus() method call on the RPCResponse
  * server-side object. <br><br> If the status field shows a failure, the RPCManager will, by default, show a dialog with
  * the contents of the {@link com.smartgwt.client.rpc.RPCRequest#getData data} field (which is assumed to contain a 
- * meaningful description of the error that occured).  If you specified a callback in your RPCRequest, it will <b>not</b>
+ * meaningful description of the error that occurred).  If you specified a callback in your RPCRequest, it will <b>not</b>
  * be called if the status shows a failure (see below for how to change this). <br><br> If the status field shows success,
  * the RPCManager takes no special action. <br><br> The built-in status codes and default behavior are there for
  * convenience.  You can choose to completely ignore it and handle errors as you see fit (for example by encoding them into
@@ -195,12 +195,6 @@ public class RPCManager {
     public static native void resendTransaction(String transactionNum) /*-{
         $wnd.isc.RPCManager.resendTransaction(transactionNum);
     }-*/;
-
-
-
-
-
-
 
 
 

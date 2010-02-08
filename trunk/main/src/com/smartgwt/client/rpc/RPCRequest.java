@@ -390,7 +390,7 @@ public class RPCRequest extends DataClass {
      * {@link com.smartgwt.client.rpc.RPCManager#defaultTransport} will be used instead. <p> If you specify the
      * <code>xmlHttpRequest</code> transport and it is not available, a warning will be logged to the Developer Console and the
      * RPCManager will attempt to use the <code>hiddenFrame</code> transport instead for this request.  Note that some features
-     * like {@link com.smartgwt.client.rpc.RPCRequest#getServerOutputAsString serverOutputAsString} requre the
+     * like {@link com.smartgwt.client.rpc.RPCRequest#getServerOutputAsString serverOutputAsString} require the
      * <code>xmlHttpRequest</code> transport and will not work if the <code>xmlHttpRequest</code> transport is unavailable
      * (this can happen if the end user is using Internet Explorer and has disabled ActiveX).  You can check whether or not the
      * <code>xmlHttpRequest</code> transport is currently available by calling {@link
@@ -412,7 +412,7 @@ public class RPCRequest extends DataClass {
      * {@link com.smartgwt.client.rpc.RPCManager#defaultTransport} will be used instead. <p> If you specify the
      * <code>xmlHttpRequest</code> transport and it is not available, a warning will be logged to the Developer Console and the
      * RPCManager will attempt to use the <code>hiddenFrame</code> transport instead for this request.  Note that some features
-     * like {@link com.smartgwt.client.rpc.RPCRequest#getServerOutputAsString serverOutputAsString} requre the
+     * like {@link com.smartgwt.client.rpc.RPCRequest#getServerOutputAsString serverOutputAsString} require the
      * <code>xmlHttpRequest</code> transport and will not work if the <code>xmlHttpRequest</code> transport is unavailable
      * (this can happen if the end user is using Internet Explorer and has disabled ActiveX).  You can check whether or not the
      * <code>xmlHttpRequest</code> transport is currently available by calling {@link
@@ -646,11 +646,6 @@ public class RPCRequest extends DataClass {
     public static native void create() /*-{
         $wnd.isc.RPCRequest.create();
     }-*/;
-
-
-
-
-
 
 
 
