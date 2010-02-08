@@ -48,7 +48,7 @@ package com.smartgwt.client.docs;
  * the results of earlier transactions   <li>For SQL DataSources, use {@link com.smartgwt.client.docs.CustomQuerying 'SQL
  * Templating'} to change, add        to or even completely replace the SQL sent to the database, including calling      
  * stored procedures</li>   <li>Use {@link com.smartgwt.client..DMI} to call directly into your own Java        classes. 
- * As descibed in the DMI discussion linked to above, DMI calls can be used        in conjunction with normal
+ * As described in the DMI discussion linked to above, DMI calls can be used        in conjunction with normal
  * <code>DSRequest</code> process flow, thus enabling you       to add custom logic to built-in DataSources without having
  * to create your own        overridden versions of them</li> </ul><br> <li>If you need to use a Front Controller servlet
  * for some other reason than authentication - for example, you are using Spring, Struts, or some other similar system

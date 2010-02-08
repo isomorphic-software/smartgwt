@@ -51,6 +51,7 @@ package com.smartgwt.client.docs;
  * @see com.smartgwt.client.data.DataSource#addData
  * @see com.smartgwt.client.data.DataSource#updateData
  * @see com.smartgwt.client.data.DataSource#removeData
+ * @see com.smartgwt.client.data.DataSource#validateData
  * @see com.smartgwt.client.data.DataSource#performCustomOperation
  * @see com.smartgwt.client.rpc.RPCManager#handleError
  * @see com.smartgwt.client.data.DSRequest#getOperationId
