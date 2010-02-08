@@ -1000,7 +1000,7 @@ public class FormItem extends RefDataClass  implements com.smartgwt.client.widge
 
     /**
      * If true, form items will be validated when each item's "change" handler is fired as well as when the entire form is
-     * submitted or validated. <p> Note that this property can also be set at the form, level; If true at either level the
+     * submitted or validated. <p> Note that this property can also be set at the form level; If true at either level the
      * validator will be fired on change - displaying errors and rejecting the change on validation failure.
      *
      * @param validateOnChange validateOnChange Default value is false
@@ -1011,7 +1011,7 @@ public class FormItem extends RefDataClass  implements com.smartgwt.client.widge
 
     /**
      * If true, form items will be validated when each item's "change" handler is fired as well as when the entire form is
-     * submitted or validated. <p> Note that this property can also be set at the form, level; If true at either level the
+     * submitted or validated. <p> Note that this property can also be set at the form level; If true at either level the
      * validator will be fired on change - displaying errors and rejecting the change on validation failure.
      *
      *
@@ -1019,6 +1019,29 @@ public class FormItem extends RefDataClass  implements com.smartgwt.client.widge
      */
     public Boolean getValidateOnChange()  {
         return getAttributeAsBoolean("validateOnChange");
+    }
+
+    /**
+     * If true, form items will be validated when each item's "editorExit" handler is fired as well as when the entire form is
+     * submitted or validated. <p> Note that this property can also be set at the form level. If true at either level the
+     * validator will be fired on editorExit.
+     *
+     * @param validateOnExit validateOnExit Default value is false
+     */
+    public void setValidateOnExit(Boolean validateOnExit) {
+        setAttribute("validateOnExit", validateOnExit);
+    }
+
+    /**
+     * If true, form items will be validated when each item's "editorExit" handler is fired as well as when the entire form is
+     * submitted or validated. <p> Note that this property can also be set at the form level. If true at either level the
+     * validator will be fired on editorExit.
+     *
+     *
+     * @return Boolean
+     */
+    public Boolean getValidateOnExit()  {
+        return getAttributeAsBoolean("validateOnExit");
     }
 
     /**
@@ -2303,6 +2326,21 @@ public class FormItem extends RefDataClass  implements com.smartgwt.client.widge
     }-*/;
 
     /**
+     * Validate this item.
+     *
+     * @return returns true if validation was successful (no errors encountered), false                   otherwise.
+     */
+    public native Boolean validate() /*-{
+        var self = this.@com.smartgwt.client.core.DataClass::getJsObj()();
+        var retVal =self.validate();
+        if(retVal == null || retVal === undefined) {
+            return null;
+        } else {
+            return @com.smartgwt.client.util.JSOHelper::toBoolean(Z)(retVal);
+        }
+    }-*/;
+
+    /**
      * This method is fired when the user rolls off this item (or the title for this item) and will clear any hover canvas
      * shown by the item.
      */
@@ -2702,25 +2740,6 @@ public class FormItem extends RefDataClass  implements com.smartgwt.client.widge
 
 
     // ********************* Static Methods ***********************
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -3568,6 +3587,7 @@ public class FormItem extends RefDataClass  implements com.smartgwt.client.widge
     }-*/;
 
 }
+
 
 
 
