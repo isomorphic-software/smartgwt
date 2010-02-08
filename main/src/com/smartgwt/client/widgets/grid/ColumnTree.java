@@ -180,7 +180,7 @@ public class ColumnTree extends Layout  implements DataBoundComponent, com.smart
      * icons for folder nodes will be appended with the  {@link com.smartgwt.client.widgets.grid.ColumnTree#getOpenIconSuffix
      * openIconSuffix} suffix on state change, as with the standard {@link
      * com.smartgwt.client.widgets.grid.ColumnTree#getFolderIcon folderIcon}.  Also note that for custom folder icons, the
-     * {@link com.smartgwt.client.widgets.grid.ColumnTree#getClosedIconSuffix closedIconSuffix} will never be appened.
+     * {@link com.smartgwt.client.widgets.grid.ColumnTree#getClosedIconSuffix closedIconSuffix} will never be appended.
      *
      * @param customIconProperty customIconProperty Default value is "icon"
      */
@@ -196,7 +196,7 @@ public class ColumnTree extends Layout  implements DataBoundComponent, com.smart
      * icons for folder nodes will be appended with the  {@link com.smartgwt.client.widgets.grid.ColumnTree#getOpenIconSuffix
      * openIconSuffix} suffix on state change, as with the standard {@link
      * com.smartgwt.client.widgets.grid.ColumnTree#getFolderIcon folderIcon}.  Also note that for custom folder icons, the
-     * {@link com.smartgwt.client.widgets.grid.ColumnTree#getClosedIconSuffix closedIconSuffix} will never be appened.
+     * {@link com.smartgwt.client.widgets.grid.ColumnTree#getClosedIconSuffix closedIconSuffix} will never be appended.
      *
      *
      * @return String
@@ -552,10 +552,6 @@ public class ColumnTree extends Layout  implements DataBoundComponent, com.smart
 
 
     // ********************* Static Methods ***********************
-
-
-
-
 
 
     public void setFields(ListGridField... fields) {
