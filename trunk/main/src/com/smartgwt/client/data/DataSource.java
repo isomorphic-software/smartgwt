@@ -1089,7 +1089,7 @@ public class DataSource extends BaseClass  implements com.smartgwt.client.data.e
 
     /**
      * fieldName for a field in the dataSource expected to contain an explicit array of child nodes.&#010 Enables loading a
-     * databound tree as a hierachical data structure, rather than a flat list of&#010 nodes linked by foreignKey.<br>&#010
+     * databound tree as a hierarchical data structure, rather than a flat list of&#010 nodes linked by foreignKey.<br>&#010
      * Note this is an alternative to setting {@link com.smartgwt.client.data.DataSourceField#getChildrenProperty
      * childrenProperty} directly on&#010 the childrenField object.<P>&#010 By default the children field will be assumed to be
      * {@link com.smartgwt.client.data.DataSourceField#getMultiple 'multiple'},&#010 for XML databinding. This implies that
@@ -1109,7 +1109,7 @@ public class DataSource extends BaseClass  implements com.smartgwt.client.data.e
 
     /**
      * fieldName for a field in the dataSource expected to contain an explicit array of child nodes.&#010 Enables loading a
-     * databound tree as a hierachical data structure, rather than a flat list of&#010 nodes linked by foreignKey.<br>&#010
+     * databound tree as a hierarchical data structure, rather than a flat list of&#010 nodes linked by foreignKey.<br>&#010
      * Note this is an alternative to setting {@link com.smartgwt.client.data.DataSourceField#getChildrenProperty
      * childrenProperty} directly on&#010 the childrenField object.<P>&#010 By default the children field will be assumed to be
      * {@link com.smartgwt.client.data.DataSourceField#getMultiple 'multiple'},&#010 for XML databinding. This implies that
@@ -1431,6 +1431,18 @@ public class DataSource extends BaseClass  implements com.smartgwt.client.data.e
 
 
 
+    /**
+     * Contacts the server to run server-side validation on a DSRequest and either returns
+     * ${isc.DocUtils.linkForRef('dsReponse.errors')} vlidation errors or a ${isc.DocUtils.linkForRef('dsRequest.status')} code
+     * of 0. <p> A "validate" dsRequest is effectively always {@link com.smartgwt.client.rpc.RPCRequest#getWillHandleError
+     * willHandleError}:true. It is a normal condition for a "validate" DSResponse to have validation errors and the response
+     * will never go to system-wide handling for unexpected errors ({@link com.smartgwt.client.rpc.RPCManager#handleError}).
+     */
+    public native void validateData() /*-{
+        var self = this.@com.smartgwt.client.core.BaseClass::getOrCreateJsObj()();
+        self.validateData();
+    }-*/;
+
 
 
 
@@ -1567,17 +1579,6 @@ public class DataSource extends BaseClass  implements com.smartgwt.client.data.e
         }
         return retVal;
     }-*/;
-
-
-
-
-
-
-
-
-
-
-
 
 
 
