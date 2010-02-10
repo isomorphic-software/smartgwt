@@ -1,0 +1,71 @@
+
+package com.smartgwt.client.docs;
+
+/**
+ * <h3>Using Smart GWT Server framework with custom persistence logic</h3>
+ * The vast majority of the Smart GWT Server framework's key features are not specific to the built-in SQL and Hibernate
+ * connectors, and still apply even when using a custom persistence mechanism. <P> See the listing below of major features
+ * and how to apply them with custom persistence: <p> <b>Server Data Binding:</b> Using the Smart GWT Server framework
+ * means that the starting point for connecting to custom persistence logic is a clean Java API.  Smart GWT provides Java
+ * <code>DSRequest</code> and <code>DSResponse</code> objects with all of the methods necessary to handle data paging,
+ * sorting, validation error reporting, and other features. In most cases, you can fulfill a DSResponse by simply returning
+ * one of your Java business objects rather than worrying about how to encode objects to XML or JSON. Communication with
+ * the browser is automatically handled with an efficient, compressed protocol.  
+ * ${isc.DocUtils.linkForExampleId('ormDataSource', 'Custom DataSource example')},  ${isc.DocUtils.linkForExampleId('DMI',
+ * 'DMI example')} <p> <b>Data Selection (No DTOs):</b> When using a DataSource, Java data you return in your
+ * <code>DSResponse</code> is automatically trimmed to just the fields declared in the DataSource before delivery to the
+ * browser (see {@link com.smartgwt.client.data.DataSource#getDropExtraFields 'dropExtraFields'}).  This eliminates the
+ * need to create  redundant <a href='http://en.wikipedia.org/wiki/Data_transfer_object'
+ * onclick="window.open('http://en.wikipedia.org/wiki/Data_transfer_object');return false;">Data Transfer Objects</a>  to
+ * express the list of fields that need to be delivered to the UI - the DataSource already has this information, and can
+ * serve two purposes by both configuring UI components and trimming relevant data, from a single definition. <P>
+ * Furthermore, DataSources can extract specific fields from complex nested  object graphs via XPath expressions, for both
+ * loading and saving of data. ${isc.DocUtils.linkForExampleId('flattenedBeans', 'XPath Binding example')} <p> <b>Server
+ * Validation:</b> Both client and server validation are driven from declarations in a single DataSource definition.  You
+ * already have a need to declare validators to drive Smart GWT's client-side validation; when you use the Smart GWT Server
+ * framework you get automatic server-side enforcement of the same validation rules, without the need to write any
+ * additional code. ${isc.DocUtils.linkForExampleId('serverValidation', 'Server Validation example')} <p> <b>Queuing:</b>
+ * Queuing allows multiple data load or save requests from different UI  components to be transparently combined into a
+ * single HTTP request with guaranteed in-order execution.  The type of DataSource handling each request is not important,
+ * so queuing will work with your custom DataSource; in fact, a single queue could contain operations to be  handled by
+ * many different types of DataSource.   ${isc.DocUtils.linkForExampleId('transactionsFolder', 'Queuing examples')} <p>
+ * <b>Transaction Chaining:</b> allows one request in a queue of operations to incorporate values from previously executed
+ * requests in the same queue.  This allows a series of dependent operations - such as fetching a value from one DataSource
+ * to be used in a query on another - to be defined with simple declarations right in the DataSource definition, with no
+ * need to write a custom Java class to manually pass data between the different operations. Since Transaction Chaining
+ * works strictly in terms of DataSource requests and responses and knows nothing about the underlying persistence
+ * mechanism, it works with any persistence strategy. <p> <b>Java / JS Reflection:</b> Any Java object can be delivered to
+ * the browser as a JavaScript  object, and vice versa.  As a developer of a custom DataSource, you do not need to concern 
+ * yourself with dealing with translations to and from JSON or XML; you work directly with native Java objects.  For
+ * example, a method you write to fulfill a "fetch" operation can simply return a <code>Collection</code> of Java beans;
+ * the Smart GWT Server framework would  transparently handle converting this into a matching Javascript structure.
+ * ${isc.DocUtils.linkForExampleId('masterDetail', 'Saving nested objects example')} <p> <b>Visual Builder:</b> The
+ * DataSource Wizards in Visual Builder are pluggable; we provide wizards for SQL and Hibernate DataSources, and it is easy
+ * to write a new wizard to integrate  your custom DataSource into Visual Builder. 
+ * ${isc.DocUtils.linkForExampleId('sqlWizard', 'SQL Wizard screenshots')},
+ * ${isc.DocUtils.linkForExampleId('hibernateWizard', 'Hibernate Wizard screenshots')} <p> <b>Batch DataSource
+ * Generator:</b> If the persistence scheme you are implementing your  custom DataSource for is based on collections of
+ * Javabeans, the Batch DataSource Generator  can generate DataSource definition files for instances of your custom
+ * DataSource.  This is out of the box behavior, but you can also alter and extend the DataSource Generator to suit  your
+ * exact needs - we supply the source and it has been specifically designed to be easy  to modify. <p> <b>Batch
+ * Uploader:</b> A user interface for end-to-end batch upload of data as a pre-built,  customizable component.  This
+ * component - like any Smart GWT databound component - only cares that a DataSource is a DataSource, so custom DataSources
+ * will work just like built-in ones.  ${isc.DocUtils.linkForExampleId('batchUpload', 'Batch Uploader example')} <p>
+ * <b>File Upload:</b> Single and multiple file uploads can be handled as a normal DataSource  operation, including normal
+ * handling of validation errors. Optional automatic storage to SQL  (no server code required) means you can upload to SQL
+ * tables for holding files, which can be related to Java Objects by id (eg, a User's uploaded files). 
+ * ${isc.DocUtils.linkForExampleId('upload', 'File Upload example')} <p> <b>Export:</b> Allows any grid component to export
+ * its current dataset in CSV, XML or JSON format.  This feature works by issuing the DataSource with an ordinary "fetch",
+ * and then  changing the <code>DSResponse</code> to send back an import file rather than a resultset. Accordingly, this
+ * just works with custom DataSources.  ${isc.DocUtils.linkForExampleId('export', 'Export example')} <p> <b>HTTP Proxy:</b>
+ * The HTTP Proxy allows an application to access web services hosted on  remote servers which are not normally accessible
+ * to web applications due to the  <a href='http://www.google.com/search?q=same+origin+policy'
+ * onclick="window.open('http://www.google.com/search?q=same+origin+policy');return false;">"same origin policy"</a>). This
+ * is a general feature of the Smart GWT Server framework that does not directly apply to DataSources. 
+ * ${isc.DocUtils.linkForExampleId('rssFeed', 'HTTP Proxy example')} <p> <b>Lightweight Persistence / Reporting:</b> Even
+ * while using a custom DataSource to connect to a custom ORM system, you can still make use of the SQL DataSource for
+ * simple storage-only entities where an object-based representation is a waste of time.  You can also do this for
+ * reporting scenarios that don't correspond to the object model.
+ */
+public interface FeaturesCustomPersistence {
+}
