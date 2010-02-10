@@ -51,8 +51,7 @@ import java.util.HashMap;
 import com.google.gwt.user.client.ui.Widget;
 import com.google.gwt.core.client.JavaScriptObject;
 import com.google.gwt.user.client.Element;
-import com.smartgwt.client.util.JSOHelper;
-import com.smartgwt.client.util.EnumUtil;
+import com.smartgwt.client.util.*;
 import com.google.gwt.event.shared.*;
 import com.google.gwt.event.shared.HasHandlers;
 
@@ -84,6 +83,30 @@ public class Validator extends DataClass {
     }
 
     // ********************* Properties / Attributes ***********************
+            
+    /**
+     * Used to create a conditional validator based on client-side criteria. The criteria defines when the validator applies.
+     * The form current values or ListGrid record is used as reference for the criteria. If the criteria matches the validator
+     * will be processed. Otherwise the validator is skipped and assumed valid.
+     * <p><b>Note : </b> This is an advanced setting</p>
+     *
+     * @param applyWhen applyWhen Default value is null
+     */
+    public void setApplyWhen(AdvancedCriteria applyWhen) {
+        setAttribute("applyWhen", applyWhen.getJsObj());
+    }
+
+    /**
+     * Used to create a conditional validator based on client-side criteria. The criteria defines when the validator applies.
+     * The form current values or ListGrid record is used as reference for the criteria. If the criteria matches the validator
+     * will be processed. Otherwise the validator is skipped and assumed valid.
+     *
+     *
+     * @return AdvancedCriteria
+     */
+    public AdvancedCriteria getApplyWhen()  {
+        return new AdvancedCriteria(getAttributeAsJavaScriptObject("applyWhen"));
+    }
 
     /**
      * Normally, all validators defined for a field will be run even if one of the validators has already failed.  However, if
@@ -165,7 +188,7 @@ public class Validator extends DataClass {
 
 
 
-//
+
     /**
      * An expression in the Velocity Template Language that will run on the server.  Unlike most &#010 other Smart GWT Server features involving Velocity, server-side custom validators do not&#010 have access to the standard set of context variables.  This is deliberate, to ensure that &#010 custom validators can run in the widest possible variety of circumstances, without being &#010 tied to operating in the context of, say, an <code>HttpSession</code> or a &#010 <code>DSRequest</code>.  Server-side custom validators only have the following variables &#010 available:&#010 <ul>&#010 <li><b>dataSources</b> - The list of all DataSources, accessible by name (so, for example, &#010     <code>$dataSources.supplyItem</code> refers to the <code>supplyItem</code> DataSource&#010     object).</li>&#010 <li><b>dataSource</b> - The current DataSource</li>&#010 <li><b>record</b> - The DataSource record being validated, if available</li>&#010 <li><b>value</b> - The value of the field</li>&#010 <li><b>validator</b> - The config of this validator, presented as a <code>Map</code></li>&#010 <li><b>field</b> - The field (as a <code>DSField</code> object)</li>&#010 <li><b>util</b> - A <code>DataTools</code> object, giving you access to all of that&#010     class's useful helper functions</li>&#010 </ul>
      *
@@ -192,6 +215,29 @@ public class Validator extends DataClass {
      */
     public void setErrorMessage(String errorMessage) {
         setAttribute("errorMessage", errorMessage);
+    }
+    
+
+    /**
+     * User-defined list of fields on which this validator depends. Primarily used for validators of type "custom" but can also
+     * be used to supplement {@link com.smartgwt.client.widgets.form.validator.Validator#getApplyWhen applyWhen} criteria.
+     * <p><b>Note : </b> This is an advanced setting</p>
+     *
+     * @param dependentFields dependentFields Default value is null
+     */
+    public void setDependentFields(String[] dependentFields) {
+        setAttribute("dependentFields", dependentFields);
+    }
+
+    /**
+     * User-defined list of fields on which this validator depends. Primarily used for validators of type "custom" but can also
+     * be used to supplement {@link com.smartgwt.client.widgets.form.validator.Validator#getApplyWhen applyWhen} criteria.
+     *
+     *
+     * @return dependent fields
+     */
+    public String[] getDependentFields()  {
+        return getAttributeAsStringArray("dependentFields");
     }
 
 }
