@@ -13,8 +13,9 @@ package com.smartgwt.client.docs;
  * method overrides as necessary, including the ability to created printed representations of custom components you have
  * created.
  * @see com.smartgwt.client.widgets.Canvas#getPrintHTML
- * @see com.smartgwt.client..PrintProperties
- * @see com.smartgwt.client..PrintProperties
+ * @see com.smartgwt.client.util.PrintProperties
+ * @see com.smartgwt.client.util.PrintProperties
+ * @see com.smartgwt.client.util.PrintProperties
  * @see com.smartgwt.client.widgets.Canvas#printComponents
  * @see com.smartgwt.client.widgets.Canvas#getPrintPreview
  * @see com.smartgwt.client.widgets.Canvas#showPrintPreview
@@ -30,8 +31,8 @@ package com.smartgwt.client.docs;
  * @see com.smartgwt.client.widgets.grid.ListGrid#getPrintBaseStyle
  * @see com.smartgwt.client.widgets.grid.ListGrid#getPrintMaxRows
  * @see com.smartgwt.client.widgets.Canvas#getShouldPrint
- * @see com.smartgwt.client..PrintProperties#getOmitControls
- * @see com.smartgwt.client..PrintProperties#getIncludeControls
+ * @see com.smartgwt.client.util.PrintProperties#getOmitControls
+ * @see com.smartgwt.client.util.PrintProperties#getIncludeControls
  */
 public interface Printing {
 }
