@@ -51,13 +51,12 @@ import java.util.HashMap;
 import com.google.gwt.user.client.ui.Widget;
 import com.google.gwt.core.client.JavaScriptObject;
 import com.google.gwt.user.client.Element;
-import com.smartgwt.client.util.JSOHelper;
-import com.smartgwt.client.util.EnumUtil;
+import com.smartgwt.client.util.*;
 import com.google.gwt.event.shared.*;
 import com.google.gwt.event.shared.HasHandlers;
 
 /**
- * Checkbox form item, implemented with customizeable checkbox images
+ * Checkbox form item, implemented with customizable checkbox images
  */
 public class CheckboxItem extends FormItem {
 
@@ -213,7 +212,7 @@ public class CheckboxItem extends FormItem {
     /**
      * URL for the image to display when this checkbox is selected, or checked. This is the base image name - if
      * <code>showValueIconOver</code> et al are set, the state (<code>"Over"</code>, <code>"Down"</code> and
-     * <code>"Disabled"</code>) will be added to this name as the user intereacts with the checkbox, as well as the 
+     * <code>"Disabled"</code>) will be added to this name as the user interacts with the checkbox, as well as the 
      * <code>".gif"</code> extension
      *
      * @param checkedImage checkedImage Default value is "[SKIN]/DynamicForm/checked.gif"
@@ -225,7 +224,7 @@ public class CheckboxItem extends FormItem {
     /**
      * URL for the image to display when this checkbox is selected, or checked. This is the base image name - if
      * <code>showValueIconOver</code> et al are set, the state (<code>"Over"</code>, <code>"Down"</code> and
-     * <code>"Disabled"</code>) will be added to this name as the user intereacts with the checkbox, as well as the 
+     * <code>"Disabled"</code>) will be added to this name as the user interacts with the checkbox, as well as the 
      * <code>".gif"</code> extension
      *
      *
@@ -325,8 +324,6 @@ public class CheckboxItem extends FormItem {
 
 
     // ********************* Static Methods ***********************
-
-
 
 
     /**
