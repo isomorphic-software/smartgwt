@@ -51,8 +51,7 @@ import java.util.HashMap;
 import com.google.gwt.user.client.ui.Widget;
 import com.google.gwt.core.client.JavaScriptObject;
 import com.google.gwt.user.client.Element;
-import com.smartgwt.client.util.JSOHelper;
-import com.smartgwt.client.util.EnumUtil;
+import com.smartgwt.client.util.*;
 import com.google.gwt.event.shared.*;
 import com.google.gwt.event.shared.HasHandlers;
 
@@ -360,7 +359,7 @@ public class TileLayout extends Canvas {
      * TileLayout will scroll if members exceed its specified size, whereas an overflow:visible TileLayout will grow to
      * accomodate members.
      *
-     * @param overflow overflow Default value is "visible"
+     * @param overflow overflow Default value is "auto"
      * @throws IllegalStateException this property cannot be changed after the component has been created
      */
     public void setOverflow(Overflow overflow)  throws IllegalStateException {
