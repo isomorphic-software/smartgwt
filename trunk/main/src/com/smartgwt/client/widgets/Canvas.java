@@ -51,8 +51,7 @@ import java.util.HashMap;
 import com.google.gwt.user.client.ui.Widget;
 import com.google.gwt.core.client.JavaScriptObject;
 import com.google.gwt.user.client.Element;
-import com.smartgwt.client.util.JSOHelper;
-import com.smartgwt.client.util.EnumUtil;
+import com.smartgwt.client.util.*;
 import com.google.gwt.event.shared.*;
 import com.google.gwt.event.shared.HasHandlers;
 
@@ -1375,6 +1374,26 @@ public class Canvas extends BaseWidget  implements com.smartgwt.client.widgets.e
     public Boolean getHoverMoveWithMouse()  {
         return getAttributeAsBoolean("hoverMoveWithMouse");
     }
+
+    /**
+     * How far into the edge of an object do we consider the "edge" for drag resize purposes?
+     * <p><b>Note : </b> This is an advanced setting</p>
+     *
+     * @param edgeMarginSize edgeMarginSize Default value is 5
+     */
+    public void setEdgeMarginSize(int edgeMarginSize) {
+        setAttribute("edgeMarginSize", edgeMarginSize, true);
+    }
+
+    /**
+     * How far into the edge of an object do we consider the "edge" for drag resize purposes?
+     *
+     *
+     * @return int
+     */
+    public int getEdgeMarginSize()  {
+        return getAttributeAsInt("edgeMarginSize");
+    }
              
     /**
      * Visual appearance to show when the object is being dragged.
@@ -1957,7 +1976,7 @@ public class Canvas extends BaseWidget  implements com.smartgwt.client.widgets.e
     /**
      * Whether this canvas should be included in a printable view. <P> Default is to: <ul> <li> omit all peers (edges generated
      * by showEdges:true, etc) <li> omit anything considered a "control", such as a button or menu (see {@link
-     * com.smartgwt.client..PrintProperties#getOmitControls omitControls}) <li> include everything else not marked
+     * com.smartgwt.client.util.PrintProperties#getOmitControls omitControls}) <li> include everything else not marked
      * shouldPrint:false </ul>
      *
      * @param shouldPrint shouldPrint Default value is null
@@ -1969,7 +1988,7 @@ public class Canvas extends BaseWidget  implements com.smartgwt.client.widgets.e
     /**
      * Whether this canvas should be included in a printable view. <P> Default is to: <ul> <li> omit all peers (edges generated
      * by showEdges:true, etc) <li> omit anything considered a "control", such as a button or menu (see {@link
-     * com.smartgwt.client..PrintProperties#getOmitControls omitControls}) <li> include everything else not marked
+     * com.smartgwt.client.util.PrintProperties#getOmitControls omitControls}) <li> include everything else not marked
      * shouldPrint:false </ul>
      *
      *
@@ -5221,16 +5240,6 @@ public class Canvas extends BaseWidget  implements com.smartgwt.client.widgets.e
 
 
 
-
-
-
-
-
-
-
-
-
-
 	
 	protected native void onInit () /*-{
 	
@@ -5242,6 +5251,16 @@ public class Canvas extends BaseWidget  implements com.smartgwt.client.widgets.e
             var retVal = jObj.@com.smartgwt.client.widgets.Canvas::willAcceptDrop()();
             return retVal.@java.lang.Boolean::booleanValue()();
         });
+         
+        self.__getPrintHTML = self.getPrintHTML;
+        self.getPrintHTML = $entry(function(printProperties,callback) {
+             var jObj = this.__ref;
+             var jPP = printProperties == null ? null :
+             			@com.smartgwt.client.util.PrintProperties::getOrCreateRef(Lcom/google/gwt/core/client/JavaScriptObject;)(printProperties);
+             jObj.@com.smartgwt.client.widgets.Canvas::getPrintHTMLJSCB(Lcom/smartgwt/client/util/PrintProperties;Lcom/google/gwt/core/client/JavaScriptObject;)(jPP,callback);
+        	 return null;
+         });
+         
 	}-*/;
 
     /**
@@ -5717,9 +5736,6 @@ public class Canvas extends BaseWidget  implements com.smartgwt.client.widgets.e
         setAttribute("resizeFrom", resizeFrom, true);
     }
 
-    public void setEdgeMarginSize(int edgeMarginSize) {
-        setAttribute("edgeMarginSize", edgeMarginSize, true);
-    }
 
     /**
      * When this Canvas is included as a member in a Layout, layoutAlign controls alignment on the&#010 breadth axis of
@@ -6449,16 +6465,127 @@ public class Canvas extends BaseWidget  implements com.smartgwt.client.widgets.e
 
 
     /**
-     * Show a PrintWindow containing a printable view of the components passed in components to get the print HTML
-     * for.
+     * Show a PrintWindow containing a printable view of the component passed in containing print HTML.
      *
-     * @param component
+     * @param component to get printable HTML for.
      */
     public static native void showPrintPreview(Canvas component) /*-{
          var componentJS = component.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
          return $wnd.isc.Canvas.showPrintPreview(componentJS);
      }-*/;
 
+    /**
+     * Show a Print containing a printable view of the components passed in.
+     * @param components components to get the print HTML for. May also include  raw HTML strings which will be folded into the generated print
+     * output
+     */
+    public static native void showPrintPreview(Object[] components) /*-{
+     	var componentsJS = @com.smartgwt.client.util.JSOHelper::convertToJavaScriptArray([Ljava/lang/Object;)(components);
+        $wnd.isc.Canvas.showPrintPreview(componentsJS);
+    }-*/;
+
+
+    /**
+     * Show a Print containing a printable view of the components passed in.
+     * @param components components to get the print HTML for. May also include  raw HTML strings which will be folded into the generated print
+     * output
+     * @param printProperties for customizing the print HTML output. If this parameter is passed as null, it will be ignored.
+     * @param title for the print window
+     * @param callback to fire when the print preview window has been created and shown
+     */
+    public static native void showPrintPreview(Object[] components, PrintProperties printProperties, String title, PrintPreviewCallback callback) /*-{
+        var componentsJS = @com.smartgwt.client.util.JSOHelper::convertToJavaScriptArray([Ljava/lang/Object;)(components);
+        var ppJS = printProperties == null ? null : printProperties.@com.smartgwt.client.util.PrintProperties::getJsObj()();
+        var pvpJS = {title:title};
+        
+        $wnd.isc.Canvas.showPrintPreview(componentsJS, ppJS, pvpJS,
+        callback == null ? null : 
+	        $entry(function (printCanvas, printWindow) {
+	        	var canvasJ = @com.smartgwt.client.widgets.PrintCanvas::getOrCreateRef(Lcom/google/gwt/core/client/JavaScriptObject;)(printCanvas);
+	        	var windowJ = @com.smartgwt.client.widgets.PrintWindow::getOrCreateRef(Lcom/google/gwt/core/client/JavaScriptObject;)(printWindow);
+	        	callback.@com.smartgwt.client.util.PrintPreviewCallback::execute(Lcom/smartgwt/client/widgets/PrintCanvas;Lcom/smartgwt/client/widgets/PrintWindow;)(canvasJ, windowJ);
+	        })
+         );
+    }-*/;
+
+    /**
+     * Returns print-formatted HTML for the specified list of components.
+     * @param components Components to get the print HTML for. Strings of raw HTML may  also be included in this array, and will be integrated
+     * into the final HTML at the appropriate  point.
+     * <code>HTML</code>.
+     * @param printProperties for customizing the print HTML output. If this parameter is passed as null, it will be ignored.
+     * @param callback to fire when the HTML has been generated
+  
+     */
+    public static native void getPrintHTML(Object[] components, PrintProperties printProperties, PrintHTMLCallback callback) /*-{
+    	var componentsJS = @com.smartgwt.client.util.JSOHelper::convertToJavaScriptArray([Ljava/lang/Object;)(components);
+        var ppJS = printProperties == null ? null : printProperties.@com.smartgwt.client.util.PrintProperties::getJsObj()();
+        $wnd.isc.Canvas.getPrintHTML(componentsJS, ppJS,
+         callback == null ? null : 
+         $entry(function (HTML) {
+        	callback.@com.smartgwt.client.util.PrintHTMLCallback::execute(Ljava/lang/String;)(HTML);
+        }));
+    }-*/;
+    
+    
+    /**
+     * Retrieves printable HTML for this component and all printable subcomponents.
+     * By default any Canvas with children will simply collect the printable HTML of its
+     * children by calling getPrintHTML() on each child that has shouldPrint set to true and is not
+     * omitted as a control.
+     *  
+     *  <b>Note: this is an override point.</b>
+     * @param printProperties properties to configure printing behavior - may be null
+     * @param callback to fire. Generated HTML should be passed to the execute method of the callback.
+     */
+	public native void getPrintHTML(PrintProperties printProperties, PrintHTMLCallback callback) /*-{
+	
+        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
+        var ppJS = printProperties == null ? null : printProperties.@com.smartgwt.client.util.PrintProperties::getJsObj()();
+        
+        self.__getPrintHTML(
+        		ppJS,
+		        callback == null ? null :  
+			        $entry(function (HTML) {
+			        	callback.@com.smartgwt.client.util.PrintHTMLCallback::execute(Ljava/lang/String;)(HTML);
+			        })
+         );
+         
+	}-*/;
+	
+
+	private void getPrintHTMLJSCB(PrintProperties printProperties, final JavaScriptObject jscallback) {
+		if (jscallback == null) {
+			getPrintHTML(printProperties, null);
+		} else {
+			PrintHTMLCallback jcb = new PrintHTMLCallback() {
+				@Override
+				public void execute (String HTML) {
+					executeJS(HTML, jscallback, getOrCreateJsObj());
+				}
+				private native void executeJS (String HTML, JavaScriptObject jscallback, JavaScriptObject canvas) /*-{
+					canvas.fireCallback(jscallback, ["HTML"], [HTML]);
+				}-*/;
+			};
+			getPrintHTML(printProperties, jcb);
+		}
+	}
+
+
+
+    /**
+     * Generate printable HTML for the designated components and trigger the native print dialog, without ever showing the
+     * printable HTML to the user.
+     * @param components components to get the print HTML for. May also include        raw HTML strings which will be folded into the generated
+     * print output
+     */
+    public static native void printComponents(Object[] components) /*-{
+    	var componentsJS = @com.smartgwt.client.util.JSOHelper::convertToJavaScriptArray([Ljava/lang/Object;)(components);
+        $wnd.isc.Canvas.printComponents(componentsJS);
+    }-*/;
+
+
+    
 
     /**
      * This Canvas's immediate parent, if any. <BR> Can be initialized, but any subsequent manipulation should be via
