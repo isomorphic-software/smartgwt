@@ -6559,7 +6559,6 @@ public class Canvas extends BaseWidget  implements com.smartgwt.client.widgets.e
 			getPrintHTML(printProperties, null);
 		} else {
 			PrintHTMLCallback jcb = new PrintHTMLCallback() {
-				@Override
 				public void execute (String HTML) {
 					executeJS(HTML, jscallback, getOrCreateJsObj());
 				}
