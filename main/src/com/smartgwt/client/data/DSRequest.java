@@ -668,9 +668,15 @@ public class DSRequest extends RPCRequest {
      *
      * @return String
      */
-    public SortSpecifier[] getSortBy()  {
-        return SortSpecifier.convertToArray(getAttribute("sortBy"));
-    }
+    public native SortSpecifier[] getSortBy() /*-{
+        var self = this.@com.smartgwt.client.core.DataClass::getJsObj()();
+        var sortSpec = self.sortBy;
+        if($wnd.isA.String(sortSpec)) {
+            return @com.smartgwt.client.data.SortSpecifier::convertToArray(Ljava/lang/String;)(sortSpec);
+        } else {
+            return @com.smartgwt.client.data.SortSpecifier::convertToArray(Lcom/google/gwt/core/client/JavaScriptObject;)(sortSpec);
+        }
+    }-*/;
 
     /**
      * For an <code>update</code> or <code>remove</code> operation, the original values from the record that is being updated
