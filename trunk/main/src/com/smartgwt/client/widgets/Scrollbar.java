@@ -504,7 +504,6 @@ public class Scrollbar extends StretchImg {
 
     // ********************* Methods ***********************
 
-
     // ********************* Static Methods ***********************
 
 

@@ -251,9 +251,7 @@ public class Img extends StatefulCanvas {
     }
 
     // ********************* Methods ***********************
-
-
-
+            
     /**
      * Refresh the image being shown.  Call this when the {@link com.smartgwt.client.widgets.Img#getSrc src} attribute has not
      * changed, but other state that affects the image URL (such as being selected) has changed.

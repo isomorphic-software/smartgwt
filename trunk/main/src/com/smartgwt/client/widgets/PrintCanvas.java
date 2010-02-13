@@ -111,8 +111,7 @@ public class PrintCanvas extends Canvas {
     }
 
     // ********************* Methods ***********************
-
-
+            
     /**
      * Show the native print dialog and allow the user to print the current HTML for this printCanvas. Note that the
      * PrintCanvas must be drawn to be printed.

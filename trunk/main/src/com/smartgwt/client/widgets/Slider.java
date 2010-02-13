@@ -770,9 +770,6 @@ public class Slider extends Canvas  implements com.smartgwt.client.widgets.event
     }
 
     // ********************* Methods ***********************
-
-
-
     /**
      * Add a valueChanged handler.
      * <p>
@@ -807,7 +804,7 @@ public class Slider extends Canvas  implements com.smartgwt.client.widgets.event
                });
         }
    }-*/;
-
+            
     /**
      * Call this method in your {@link com.smartgwt.client.widgets.Slider#addValueChangedHandler} handler to determine whether
      * the value change is due to an ongoing drag interaction (true) or due to a thumb-release, mouse click, keypress, or
@@ -825,26 +822,7 @@ public class Slider extends Canvas  implements com.smartgwt.client.widgets.event
             return @com.smartgwt.client.util.JSOHelper::toBoolean(Z)(retVal);
         }
     }-*/;
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+            
     /**
      * Sets the {@link com.smartgwt.client.widgets.Slider#getRoundValues roundValues} property of the slider
      * @param roundValues round slider values?
@@ -853,9 +831,6 @@ public class Slider extends Canvas  implements com.smartgwt.client.widgets.event
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
         self.setRoundValue(roundValues);
     }-*/;
-
-
-
 
     // ********************* Static Methods ***********************
 

@@ -192,8 +192,6 @@ public class Progressbar extends StretchImg  implements com.smartgwt.client.widg
     }
 
     // ********************* Methods ***********************
-
-
     /**
      * Add a percentChanged handler.
      * <p>
@@ -228,10 +226,6 @@ public class Progressbar extends StretchImg  implements com.smartgwt.client.widg
                });
         }
    }-*/;
-
-
-
-
 
     // ********************* Static Methods ***********************
 

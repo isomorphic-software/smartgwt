@@ -509,9 +509,6 @@ public class Label extends Button {
 
     // ********************* Methods ***********************
 
-
-
-
     // ********************* Static Methods ***********************
 
 }

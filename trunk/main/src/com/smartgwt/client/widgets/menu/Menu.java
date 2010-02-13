@@ -435,7 +435,6 @@ public class Menu extends ListGrid  implements com.smartgwt.client.widgets.menu.
     }
 
     // ********************* Methods ***********************
-
     /**
      * Add a itemClick handler.
      * <p>
@@ -474,7 +473,7 @@ public class Menu extends ListGrid  implements com.smartgwt.client.widgets.menu.
                });
         }
    }-*/;
-
+            
     /**
      * Show this menu as a context menu, that is, immediately adjacent to the current mouse position.
      *
@@ -489,9 +488,7 @@ public class Menu extends ListGrid  implements com.smartgwt.client.widgets.menu.
             return @com.smartgwt.client.util.JSOHelper::toBoolean(Z)(retVal);
         }
     }-*/;
-
-
-
+            
     /**
      * Hide the context menu - alias for hide()
      */
@@ -499,7 +496,7 @@ public class Menu extends ListGrid  implements com.smartgwt.client.widgets.menu.
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
         self.hideContextMenu();
     }-*/;
-
+            
     /**
      * Get a particular MenuItem by index. <P> If passed a MenuItem, returns it.
      * @param item index of the MenuItem
@@ -516,15 +513,6 @@ public class Menu extends ListGrid  implements com.smartgwt.client.widgets.menu.
         }
         return retVal;
     }-*/;
-
-
-
-
-
-
-
-
-
 
     // ********************* Static Methods ***********************
 

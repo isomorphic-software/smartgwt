@@ -334,9 +334,6 @@ public class DetailViewerField extends DataClass {
 
     // ********************* Methods ***********************
 
-
-
-
     // ********************* Static Methods ***********************
 
 

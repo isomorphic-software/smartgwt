@@ -213,7 +213,6 @@ public class ButtonItem extends CanvasItem  implements com.smartgwt.client.widge
     }
 
     // ********************* Methods ***********************
-
     /**
      * Add a click handler.
      * <p>
@@ -237,7 +236,6 @@ public class ButtonItem extends CanvasItem  implements com.smartgwt.client.widge
                 selfJ.@com.smartgwt.client.core.DataClass::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
             });
    }-*/;
-
 
     // ********************* Static Methods ***********************
 

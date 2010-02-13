@@ -1014,18 +1014,7 @@ public class Window extends VLayout  implements com.smartgwt.client.widgets.even
     }
 
     // ********************* Methods ***********************
-
-
-
-
-
-
-
-
-
-
-
-
+            
     /**
      * Add a canvas to the layout, optionally at a specific position.
      * @param newMember the canvas object to be added to the layout
@@ -1045,9 +1034,7 @@ public class Window extends VLayout  implements com.smartgwt.client.widgets.even
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
         self.addMember(newMember.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()(), position);
     }-*/;
-
-
-
+            
     /**
      * Should this window be dismissed (same effect as pressing the "Cancel" button) when the  user presses the "Escape"
      * key?<br> Default behavior: if {@link com.smartgwt.client.widgets.Window#getDismissOnEscape dismissOnEscape} is set, just
@@ -1065,7 +1052,7 @@ public class Window extends VLayout  implements com.smartgwt.client.widgets.even
             return @com.smartgwt.client.util.JSOHelper::toBoolean(Z)(retVal);
         }
     }-*/;
-
+            
     /**
      * Centers the Window in the page. This is called automatically in window.show() if Window.autoCenter is true. Note - if
      * the Window is a child of another widget, we center in the parent widget rather than centering in the page.
@@ -1074,7 +1061,7 @@ public class Window extends VLayout  implements com.smartgwt.client.widgets.even
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
         self.centerInPage();
     }-*/;
-
+            
     /**
      * Makes the window header flash if it's visible; if there's no header, or the header          is hidden, makes the window
      * body flash instead.          <p>   This method is executed when users click outside the bounds of a modal window   so
@@ -1084,7 +1071,7 @@ public class Window extends VLayout  implements com.smartgwt.client.widgets.even
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
         self.flash();
     }-*/;
-
+            
     /**
      * Minimize the window. Fired when the user clicks the minimize button if  {@link
      * com.smartgwt.client.widgets.Window#getShowMinimizeButton 'this.showMinimizeButton'} is true.<br> Default implementation
@@ -1096,7 +1083,7 @@ public class Window extends VLayout  implements com.smartgwt.client.widgets.even
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
         self.minimize();
     }-*/;
-
+            
     /**
      * Restores the window to its specified height and width after a call to {@link
      * com.smartgwt.client.widgets.Window#minimize} or  {@link com.smartgwt.client.widgets.Window#maximize}. Called from a
@@ -1108,7 +1095,7 @@ public class Window extends VLayout  implements com.smartgwt.client.widgets.even
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
         self.restore();
     }-*/;
-
+            
     /**
      * Maximize the window. Fired when the user clicks the maximize button if  {@link
      * com.smartgwt.client.widgets.Window#getShowMaximizeButton 'this.showMaximizeButton'} is true.<br> Default implementation
@@ -1121,7 +1108,6 @@ public class Window extends VLayout  implements com.smartgwt.client.widgets.even
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
         self.maximize();
     }-*/;
-
     /**
      * Add a closeClick handler.
      * <p>

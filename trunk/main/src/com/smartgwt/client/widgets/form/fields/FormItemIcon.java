@@ -256,7 +256,6 @@ public class FormItemIcon extends DataClass  implements com.smartgwt.client.widg
     }
 
     // ********************* Methods ***********************
-
     /**
      * Add a formItemClick handler.
      * <p>
@@ -281,7 +280,7 @@ public class FormItemIcon extends DataClass  implements com.smartgwt.client.widg
                 selfJ.@com.smartgwt.client.core.DataClass::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
             });
    }-*/;
-
+            
     /**
      * StringMethod action to fire when this icon has focus and receives a keypress      event.      If unset the form item's
      * <code>iconKeyPress</code> method will be fired instead       (if specified).

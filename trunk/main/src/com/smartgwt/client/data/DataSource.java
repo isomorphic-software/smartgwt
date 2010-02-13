@@ -1191,8 +1191,8 @@ public class DataSource extends BaseClass  implements com.smartgwt.client.data.e
     }
 
     /**
-     * If true, indicates that the Smart GWT Server should automatically apply a  {@link
-     * com.smartgwt.client..ValidatorTypes#hasRelatedRecord} validator to every field  on this dataSource that has a {@link
+     * If true, indicates that the Smart GWT Server should automatically apply a  {@link com.smartgwt.client..ValidatorType} of
+     * "hasRelatedRecord" to every field  on this dataSource that has a {@link
      * com.smartgwt.client.data.DataSourceField#getForeignKey 'foreignKey'} defined.
      *
      * @param validateRelatedRecords validateRelatedRecords Default value is null
@@ -1203,8 +1203,8 @@ public class DataSource extends BaseClass  implements com.smartgwt.client.data.e
     }
 
     /**
-     * If true, indicates that the Smart GWT Server should automatically apply a  {@link
-     * com.smartgwt.client..ValidatorTypes#hasRelatedRecord} validator to every field  on this dataSource that has a {@link
+     * If true, indicates that the Smart GWT Server should automatically apply a  {@link com.smartgwt.client..ValidatorType} of
+     * "hasRelatedRecord" to every field  on this dataSource that has a {@link
      * com.smartgwt.client.data.DataSourceField#getForeignKey 'foreignKey'} defined.
      *
      *
@@ -1349,7 +1349,7 @@ public class DataSource extends BaseClass  implements com.smartgwt.client.data.e
     }
 
     // ********************* Methods ***********************
-
+            
     /**
      * Causes any components using this DataSource to be notified of changes that have been made to the remote dataset accessed
      * via this DataSource, as though the provided DSResponse had just successfully completed.  This will cause cache managers
@@ -1402,7 +1402,7 @@ public class DataSource extends BaseClass  implements com.smartgwt.client.data.e
         var self = this.@com.smartgwt.client.core.BaseClass::getOrCreateJsObj()();
         self.updateCaches(dsResponse.@com.smartgwt.client.core.DataClass::getJsObj()(), dsRequest.@com.smartgwt.client.core.DataClass::getJsObj()());
     }-*/;
-
+            
     /**
      * For a DataSource that describes a DOM structure, the list of legal child elements that can be contained by the element
      * described by this DataSource. <p> For a DataSource described by XML schema, this is the list of legal subelements <b>of
@@ -1413,38 +1413,19 @@ public class DataSource extends BaseClass  implements com.smartgwt.client.data.e
         var self = this.@com.smartgwt.client.core.BaseClass::getOrCreateJsObj()();
         self.getLegalChildTags();
     }-*/;
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+            
     /**
-     * Contacts the server to run server-side validation on a DSRequest and either returns
-     * ${isc.DocUtils.linkForRef('dsReponse.errors')} vlidation errors or a ${isc.DocUtils.linkForRef('dsRequest.status')} code
-     * of 0. <p> A "validate" dsRequest is effectively always {@link com.smartgwt.client.rpc.RPCRequest#getWillHandleError
-     * willHandleError}:true. It is a normal condition for a "validate" DSResponse to have validation errors and the response
-     * will never go to system-wide handling for unexpected errors ({@link com.smartgwt.client.rpc.RPCManager#handleError}).
+     * Contacts the server to run server-side validation on a DSRequest and either returns {@link
+     * com.smartgwt.client.data.DSResponse#getErrors errors} validation errors or a
+     * ${isc.DocUtils.linkForRef('dsRequest.status')} code of 0. <p> A "validate" dsRequest is effectively always {@link
+     * com.smartgwt.client.rpc.RPCRequest#getWillHandleError willHandleError}:true. It is a normal condition for a "validate"
+     * DSResponse to have validation errors and the response will never go to system-wide handling for unexpected errors
+     * ({@link com.smartgwt.client.rpc.RPCManager#handleError}).
      */
     public native void validateData() /*-{
         var self = this.@com.smartgwt.client.core.BaseClass::getOrCreateJsObj()();
         self.validateData();
     }-*/;
-
-
-
-
     /**
      * Add a handleError handler.
      * <p>
@@ -1485,7 +1466,7 @@ public class DataSource extends BaseClass  implements com.smartgwt.client.data.e
                 });
             }
    }-*/;
-
+            
     /**
      * Return the field definition object.
      * @param fieldName Name of the field to retrieve
@@ -1498,9 +1479,7 @@ public class DataSource extends BaseClass  implements com.smartgwt.client.data.e
         if(ret == null || ret === undefined) return null;
         return @com.smartgwt.client.data.DataSourceField::new(Lcom/google/gwt/core/client/JavaScriptObject;)(ret);
     }-*/;
-
-
-
+            
     /**
      * Returns a pointer to the primaryKey field for this DataSource
      *
@@ -1512,7 +1491,7 @@ public class DataSource extends BaseClass  implements com.smartgwt.client.data.e
         if(ret == null || ret === undefined) return null;
         return @com.smartgwt.client.data.DataSourceField::new(Lcom/google/gwt/core/client/JavaScriptObject;)(ret);
     }-*/;
-
+            
     /**
      * Returns the primary key fieldName for this DataSource
      *
@@ -1522,11 +1501,7 @@ public class DataSource extends BaseClass  implements com.smartgwt.client.data.e
         var self = this.@com.smartgwt.client.core.BaseClass::getOrCreateJsObj()();
         return self.getPrimaryKeyFieldName();
     }-*/;
-
-
-
-
-
+            
     /**
      * Does this dataSource support the specified "textMatchStyle" when performing a filter operation against a text field.
      * @param textMatchStyle textMatchStyle to check. If passed a null value,      assume an exact match is being requested.
@@ -1536,17 +1511,8 @@ public class DataSource extends BaseClass  implements com.smartgwt.client.data.e
         self.supportsTextMatchStyle(textMatchStyle.@com.smartgwt.client.types.TextMatchStyle::getValue()());
     }-*/;
 
-
-
-
-
-
-
-
-
-
     // ********************* Static Methods ***********************
-
+            
     /**
      * Lookup a DataSource by ID.
      * @param ID DataSource ID
@@ -1562,7 +1528,7 @@ public class DataSource extends BaseClass  implements com.smartgwt.client.data.e
         }
         return retVal;
     }-*/;
-
+            
     /**
      * Synonym of {@link com.smartgwt.client.data.DataSource#getDataSource}: Lookup a DataSource by ID.
      * @param ID DataSource ID
@@ -1578,16 +1544,6 @@ public class DataSource extends BaseClass  implements com.smartgwt.client.data.e
         }
         return retVal;
     }-*/;
-
-
-
-
-
-
-
-
-
-
 
 
 

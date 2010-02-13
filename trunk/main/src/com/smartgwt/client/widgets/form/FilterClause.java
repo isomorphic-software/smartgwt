@@ -200,8 +200,7 @@ public class FilterClause extends HStack {
     }
 
     // ********************* Methods ***********************
-
-
+            
     /**
      * Remove this clause by destroy()ing it.
      */
@@ -209,8 +208,7 @@ public class FilterClause extends HStack {
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
         self.remove();
     }-*/;
-
-
+            
     /**
      * Validate this clause.
      *
@@ -225,7 +223,6 @@ public class FilterClause extends HStack {
             return @com.smartgwt.client.util.JSOHelper::toBoolean(Z)(retVal);
         }
     }-*/;
-
 
     // ********************* Static Methods ***********************
 

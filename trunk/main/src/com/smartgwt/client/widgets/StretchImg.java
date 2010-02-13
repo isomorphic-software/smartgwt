@@ -289,7 +289,7 @@ public class StretchImg extends StatefulCanvas {
     }
 
     // ********************* Methods ***********************
-
+            
     /**
      * Set the specified image's state to newState and update the displayed image given by whichPart, or set the state for all
      * images to newState and update the displayed images if whichPart is not provided.
@@ -310,7 +310,6 @@ public class StretchImg extends StatefulCanvas {
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
         self.setState(newState, whichPart);
     }-*/;
-
 
     // ********************* Static Methods ***********************
 

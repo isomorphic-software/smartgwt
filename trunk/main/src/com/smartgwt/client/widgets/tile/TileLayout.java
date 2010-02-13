@@ -448,7 +448,7 @@ public class TileLayout extends Canvas {
     }
 
     // ********************* Methods ***********************
-
+            
     /**
      * Retrieve a tile by index.   <P> The TileLayout consistently uses this method to access tiles, in order to allow
      * subclasses to create tiles on demand.
@@ -466,7 +466,7 @@ public class TileLayout extends Canvas {
         }
         return retVal;
     }-*/;
-
+            
     /**
      * Add a tile to the layout, dynamically.
      * @param tile new tile to add
@@ -486,20 +486,7 @@ public class TileLayout extends Canvas {
         self.addTile(tile.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()(), index);
     }-*/;
 
-
-
-
-
-
-
-
-
-
     // ********************* Static Methods ***********************
-
-
-
-
 
 
     /**

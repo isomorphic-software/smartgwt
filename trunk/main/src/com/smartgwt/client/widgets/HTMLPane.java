@@ -95,8 +95,6 @@ public class HTMLPane extends HTMLFlow {
     // ********************* Static Methods ***********************
 
 
-
-
     /**
      * Set the url of the IFrame.
      *

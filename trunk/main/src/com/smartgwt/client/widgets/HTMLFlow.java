@@ -319,8 +319,7 @@ public class HTMLFlow extends Canvas  implements com.smartgwt.client.widgets.eve
     }
 
     // ********************* Methods ***********************
-
-
+            
     /**
      * Returns true if this htmlFlow is currently loading content from the server.<br> Note: Does not apply to htmlFlows with
      * {@link com.smartgwt.client.widgets.HTMLFlow#getContentsType 'contentsType'} set to  <code>"page"</code>
@@ -329,8 +328,7 @@ public class HTMLFlow extends Canvas  implements com.smartgwt.client.widgets.eve
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
         self.loadingContent();
     }-*/;
-
-
+            
     /**
      * Override to modify the loaded HTML before it is rendered.
      * @param html the html as loaded from the server return (HTML) html to be rendered
@@ -339,7 +337,6 @@ public class HTMLFlow extends Canvas  implements com.smartgwt.client.widgets.eve
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
         self.transformHTML(html);
     }-*/;
-
     /**
      * Add a contentLoaded handler.
      * <p>

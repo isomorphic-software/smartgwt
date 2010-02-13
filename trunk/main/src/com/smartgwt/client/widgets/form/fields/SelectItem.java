@@ -640,7 +640,7 @@ public class SelectItem extends FormItem  implements PickList, com.smartgwt.clie
     }
 
     // ********************* Methods ***********************
-
+            
     /**
      * Expression evaluated to determine the {@link com.smartgwt.client.widgets.form.fields.SelectItem#getDefaultValue
      * defaultValue} when no value is provided for this item. To default to the first option use {@link
@@ -650,9 +650,7 @@ public class SelectItem extends FormItem  implements PickList, com.smartgwt.clie
         var self = this.@com.smartgwt.client.core.DataClass::getJsObj()();
         self.defaultDynamicValue();
     }-*/;
-
-
-
+            
     /**
      * Returns the {@link com.smartgwt.client.widgets.form.fields.FormItem#getDisplayField displayField} for this form item. If
      * unset, and {@link com.smartgwt.client.widgets.form.fields.FormItem#getOptionDataSource optionDataSource} is explicitly
@@ -664,7 +662,7 @@ public class SelectItem extends FormItem  implements PickList, com.smartgwt.clie
         var self = this.@com.smartgwt.client.core.DataClass::getJsObj()();
         return self.getDisplayFieldName();
     }-*/;
-
+            
     /**
      * Getter method to retrieve the {@link com.smartgwt.client.widgets.form.fields.FormItem#getValueField valueField} for this
      * item. If unset, default behavior will return the {@link com.smartgwt.client.widgets.form.fields.FormItem#getName name}
@@ -677,7 +675,6 @@ public class SelectItem extends FormItem  implements PickList, com.smartgwt.clie
         var self = this.@com.smartgwt.client.core.DataClass::getJsObj()();
         return self.getValueFieldName();
     }-*/;
-
     /**
      * Add a dataArrived handler.
      * <p>
@@ -702,7 +699,6 @@ public class SelectItem extends FormItem  implements PickList, com.smartgwt.clie
                 selfJ.@com.smartgwt.client.core.DataClass::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
             });
    }-*/;
-
 
     // ********************* Static Methods ***********************
 

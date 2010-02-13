@@ -2045,9 +2045,7 @@ public class ListGridField extends DataClass  implements com.smartgwt.client.wid
     }
 
     // ********************* Methods ***********************
-
-
-
+            
     /**
      * If your derivation of the field title is more complex than specifying a static string, you can specify a getFieldTitle()
      * method on your field to return the title string. Otherwise you can use the {@link
@@ -2060,14 +2058,6 @@ public class ListGridField extends DataClass  implements com.smartgwt.client.wid
         var self = this.@com.smartgwt.client.core.DataClass::getJsObj()();
         self.getFieldTitle(viewer.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()(), fieldNum);
     }-*/;
-
-
-
-
-
-
-
-
     /**
      * Add a editorEnter handler.
      * <p>
@@ -2093,7 +2083,6 @@ public class ListGridField extends DataClass  implements com.smartgwt.client.wid
                 selfJ.@com.smartgwt.client.core.DataClass::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
             });
    }-*/;
-
     /**
      * Add a editorExit handler.
      * <p>
@@ -2121,8 +2110,6 @@ public class ListGridField extends DataClass  implements com.smartgwt.client.wid
                 return !ret;
             });
    }-*/;
-
-
     /**
      * Add a recordClick handler.
      * <p>
@@ -2151,12 +2138,6 @@ public class ListGridField extends DataClass  implements com.smartgwt.client.wid
                 return !ret;
             });
    }-*/;
-
-
-
-
-
-
     /**
      * Add a change handler.
      * <p>
@@ -2181,7 +2162,6 @@ public class ListGridField extends DataClass  implements com.smartgwt.client.wid
                 selfJ.@com.smartgwt.client.core.DataClass::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
             });
    }-*/;
-
     /**
      * Add a changed handler.
      * <p>
@@ -2206,8 +2186,6 @@ public class ListGridField extends DataClass  implements com.smartgwt.client.wid
                 selfJ.@com.smartgwt.client.core.DataClass::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
             });
    }-*/;
-
-
 
     // ********************* Static Methods ***********************
 

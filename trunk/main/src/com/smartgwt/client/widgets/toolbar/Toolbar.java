@@ -166,15 +166,6 @@ public abstract class Toolbar extends Layout  implements com.smartgwt.client.wid
     }
 
     // ********************* Methods ***********************
-
-
-
-
-
-
-
-
-
     /**
      * Add a itemClick handler.
      * <p>
@@ -208,7 +199,6 @@ public abstract class Toolbar extends Layout  implements com.smartgwt.client.wid
                });
         }
    }-*/;
-
     /**
      * Add a itemDragResized handler.
      * <p>

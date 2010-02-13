@@ -163,7 +163,7 @@ public class SectionItem extends CanvasItem {
     }
 
     // ********************* Methods ***********************
-
+            
     /**
      * Returns a boolean indicating whether this SectionItem is expanded.
      *
@@ -178,7 +178,7 @@ public class SectionItem extends CanvasItem {
             return @com.smartgwt.client.util.JSOHelper::toBoolean(Z)(retVal);
         }
     }-*/;
-
+            
     /**
      * Expands a section, showing all the items contained within the section.
      */
@@ -186,7 +186,7 @@ public class SectionItem extends CanvasItem {
         var self = this.@com.smartgwt.client.core.DataClass::getJsObj()();
         self.expandSection();
     }-*/;
-
+            
     /**
      * Collapse a sectionItem, and hide all the items within the section (not including the header).
      */
@@ -196,7 +196,6 @@ public class SectionItem extends CanvasItem {
     }-*/;
 
     // ********************* Static Methods ***********************
-
 
 
     /**

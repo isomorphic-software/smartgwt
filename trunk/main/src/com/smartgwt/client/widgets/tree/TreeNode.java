@@ -336,7 +336,6 @@ public class TreeNode extends ListGridRecord {
     // ********************* Static Methods ***********************
 
 
-
     /**
      * Constructor
      *

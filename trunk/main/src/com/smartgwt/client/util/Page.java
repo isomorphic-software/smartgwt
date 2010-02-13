@@ -66,7 +66,7 @@ public class Page {
     // ********************* Methods ***********************
 
     // ********************* Static Methods ***********************
-
+            
     /**
      * Has the page finished loading?
      *
@@ -80,8 +80,7 @@ public class Page {
             return @com.smartgwt.client.util.JSOHelper::toBoolean(Z)(retVal);
         }
     }-*/;
-
-
+            
     /**
      * Returns the base URL of the application, which is the page URL minus the last non-directory  path component.  For
      * example, if the page is loaded from <code>http://foo.com/bar/zoo.jsp</code>, appDir will be
@@ -94,7 +93,7 @@ public class Page {
     public static native String getAppDir() /*-{
         return $wnd.isc.Page.getAppDir();
     }-*/;
-
+            
     /**
      * Specify the directory for app-specific images. <P> This becomes the default location where any Smart GWT component will
      * load images from unless the special "[SKIN]" prefix is used to indicate that an image is part of a skin. <P> Default is
@@ -113,7 +112,7 @@ public class Page {
     public static native void setAppImgDir(String URL) /*-{
         $wnd.isc.Page.setAppImgDir(URL);
     }-*/;
-
+            
     /**
      * Return the directory for app-specific images.
      *
@@ -122,7 +121,7 @@ public class Page {
     public static native String getAppImgDir() /*-{
         return $wnd.isc.Page.getAppImgDir();
     }-*/;
-
+            
     /**
      * Specify the directory for miscellaneous app-specific files <b>other than</b> images, such as {@link
      * com.smartgwt.client.widgets.HTMLFlow#getContentsURL 'HTML fragments'}, {@link com.smartgwt.client.widgets.ViewLoader}, 
@@ -145,7 +144,7 @@ public class Page {
     public static native void setAppFilesDir(String URL) /*-{
         $wnd.isc.Page.setAppFilesDir(URL);
     }-*/;
-
+            
     /**
      * Returns the directory for application-specific files (other than images).
      */
@@ -160,7 +159,7 @@ public class Page {
     public static native void getAppFilesDir(String URL) /*-{
         $wnd.isc.Page.getAppFilesDir(URL);
     }-*/;
-
+            
     /**
      * Specify the root directory for Isomorphic-supplied files.
      */
@@ -175,7 +174,7 @@ public class Page {
     public static native void setIsomorphicDir(String URL) /*-{
         $wnd.isc.Page.setIsomorphicDir(URL);
     }-*/;
-
+            
     /**
      * Return the root directory for Isomorphic-specific files.
      *
@@ -184,7 +183,7 @@ public class Page {
     public static native String getIsomorphicDir() /*-{
         return $wnd.isc.Page.getIsomorphicDir();
     }-*/;
-
+            
     /**
      * Specify the URL for media that's part of the skin
      */
@@ -199,7 +198,7 @@ public class Page {
     public static native void setSkinDir(String URL) /*-{
         $wnd.isc.Page.setSkinDir(URL);
     }-*/;
-
+            
     /**
      * Return the directory for media that's part of the skin
      *
@@ -208,7 +207,7 @@ public class Page {
     public static native String getSkinDir() /*-{
         return $wnd.isc.Page.getSkinDir();
     }-*/;
-
+            
     /**
      * Return the directory for a skin image.
      *
@@ -227,7 +226,7 @@ public class Page {
     public static native String getSkinImgDir(String imgDir) /*-{
         return $wnd.isc.Page.getSkinImgDir(imgDir);
     }-*/;
-
+            
     /**
      * Return the full URL for app-specific or skin image. <P> To use a skin image, start the URL with "[SKIN]".  Any other
      * relative URL is assumed relative to the {@link com.smartgwt.client.util.Page#getAppImgDir}.
@@ -250,7 +249,7 @@ public class Page {
     public static native String getImgURL(String src, String imgDir) /*-{
         return $wnd.isc.Page.getImgURL(src, imgDir);
     }-*/;
-
+            
     /**
      * Return a full URL for a relative path that uses a special prefix such as "[APPFILES]" or "[SKIN]". <P> For images, use
      * {@link com.smartgwt.client.util.Page#getImgURL} instead.
@@ -261,7 +260,7 @@ public class Page {
     public static native String getURL(String fileName) /*-{
         return $wnd.isc.Page.getURL(fileName);
     }-*/;
-
+            
     /**
      * Return whether the page text direction is right to left.  If you set "DIR=RTL" in the BODY tag of the page, then this
      * method will return true.  If you set "DIR=LTR" then this method will return false.
@@ -276,7 +275,7 @@ public class Page {
             return @com.smartgwt.client.util.JSOHelper::toBoolean(Z)(retVal);
         }
     }-*/;
-
+            
     /**
      * Load a styleSheet for this application.    The styleSheetURL parameter can use any special directories, eg:<br>     
      * &nbsp;&nbsp;<code>Page.loadStylesheet("[SKIN]/skin_styles.css")</code><br>      or<br>     
@@ -288,7 +287,7 @@ public class Page {
     public static native void loadStyleSheet(String styleSheetURL) /*-{
         $wnd.isc.Page.loadStyleSheet(styleSheetURL);
     }-*/;
-
+            
     /**
      * Resize the outer portion of the window to a specific width and height.
      * @param width new width for the window
@@ -297,7 +296,7 @@ public class Page {
     public static native void resizeTo(int width, int height) /*-{
         $wnd.isc.Page.resizeTo(width, height);
     }-*/;
-
+            
     /**
      * Move the window to a specified top and left in screen coordinates.
      * @param left new left coordinate for window
@@ -306,7 +305,7 @@ public class Page {
     public static native void moveTo(int left, int top) /*-{
         $wnd.isc.Page.moveTo(left, top);
     }-*/;
-
+            
     /**
      * Scroll the window to a specified top and left coordinate.
      * @param left new left coordinate for window
@@ -315,9 +314,7 @@ public class Page {
     public static native void scrollTo(int left, int top) /*-{
         $wnd.isc.Page.scrollTo(left, top);
     }-*/;
-
-
-
+            
     /**
      * Get the width of the window contents as they have been drawn.  If the page scrolls, this may be larger than the
      * page.getWidth().
@@ -327,7 +324,7 @@ public class Page {
     public static native int getScrollWidth() /*-{
         return $wnd.isc.Page.getScrollWidth();
     }-*/;
-
+            
     /**
      * Get the height of the window contents as they have been drawn.  If the page scrolls, this may be larger than the
      * page.getHeight().
@@ -337,7 +334,7 @@ public class Page {
     public static native int getScrollHeight() /*-{
         return $wnd.isc.Page.getScrollHeight();
     }-*/;
-
+            
     /**
      * Get the amount that the browser window has been scrolled horizontally.
      *
@@ -346,7 +343,7 @@ public class Page {
     public static native int getScrollLeft() /*-{
         return $wnd.isc.Page.getScrollLeft();
     }-*/;
-
+            
     /**
      * Get the amount that the browser window has been scrolled vertically.
      *
@@ -355,12 +352,7 @@ public class Page {
     public static native int getScrollTop() /*-{
         return $wnd.isc.Page.getScrollTop();
     }-*/;
-
-
-
-
-
-
+            
     /**
      * Check whether the browser is supported by the Isomorphic Smart GWT system. Behavior depends upon the value of {@link
      * com.smartgwt.client.util.Page#unsupportedBrowserAction}: <ul> <li><code>"continue"</code> Load the page without
@@ -391,7 +383,7 @@ public class Page {
     public static native void checkBrowserAndRedirect(String URL) /*-{
         $wnd.isc.Page.checkBrowserAndRedirect(URL);
     }-*/;
-
+            
     /**
      * Returns the text for the prompt shown to user from {@link com.smartgwt.client.util.Page#checkBrowserAndRedirect} if they
      * are accessing this page in an unsupported browser and {@link com.smartgwt.client.util.Page#unsupportedBrowserAction} is
@@ -402,10 +394,6 @@ public class Page {
     public static native String getUnsupportedBrowserPromptString() /*-{
         return $wnd.isc.Page.getUnsupportedBrowserPromptString();
     }-*/;
-
-
-
-
 
 
    /**

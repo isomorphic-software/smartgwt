@@ -137,7 +137,6 @@ public class LinkItem extends StaticTextItem {
 
     // ********************* Methods ***********************
 
-
     // ********************* Static Methods ***********************
 
 

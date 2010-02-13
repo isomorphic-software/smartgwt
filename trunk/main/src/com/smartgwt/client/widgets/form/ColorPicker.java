@@ -481,8 +481,7 @@ public class ColorPicker extends Window  implements com.smartgwt.client.widgets.
     }
 
     // ********************* Methods ***********************
-
-
+            
     /**
      * Returns the Red element of the currently-selected color, as an integer from 0-255
      *
@@ -492,7 +491,7 @@ public class ColorPicker extends Window  implements com.smartgwt.client.widgets.
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
         return self.getRed();
     }-*/;
-
+            
     /**
      * Returns the Green element of the currently-selected color, as an integer from 0-255
      *
@@ -502,7 +501,7 @@ public class ColorPicker extends Window  implements com.smartgwt.client.widgets.
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
         return self.getGreen();
     }-*/;
-
+            
     /**
      * Returns the Blue element of the currently-selected color, as an integer from 0-255
      *
@@ -512,7 +511,7 @@ public class ColorPicker extends Window  implements com.smartgwt.client.widgets.
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
         return self.getBlue();
     }-*/;
-
+            
     /**
      * Returns the Hue of the currently-selected color, as an integer from 0-239
      *
@@ -522,7 +521,7 @@ public class ColorPicker extends Window  implements com.smartgwt.client.widgets.
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
         return self.getHue();
     }-*/;
-
+            
     /**
      * Returns the Saturation of the currently-selected color, as an integer from 0-240
      *
@@ -532,7 +531,7 @@ public class ColorPicker extends Window  implements com.smartgwt.client.widgets.
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
         return self.getSaturation();
     }-*/;
-
+            
     /**
      * Returns the Luminosity (brightness) of the currently-selected color, as an  integer from 0-240
      *
@@ -542,7 +541,7 @@ public class ColorPicker extends Window  implements com.smartgwt.client.widgets.
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
         return self.getLuminosity();
     }-*/;
-
+            
     /**
      * Returns the currently-selected color, in HTML color representation form, as a string. HTML color representation is a
      * hash sign, followed by the red, green and blue elements of the color in 2-digit hex form - for example "#F17F1D"
@@ -553,8 +552,7 @@ public class ColorPicker extends Window  implements com.smartgwt.client.widgets.
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
         return self.getHtmlColor();
     }-*/;
-
-
+            
     /**
      * Sets the Red element of the selected color
      * @param newValue An integer between 0 and 255
@@ -563,7 +561,7 @@ public class ColorPicker extends Window  implements com.smartgwt.client.widgets.
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
         self.setRed(newValue);
     }-*/;
-
+            
     /**
      * Sets the Green element of the selected color
      * @param newValue An integer between 0 and 255
@@ -572,7 +570,7 @@ public class ColorPicker extends Window  implements com.smartgwt.client.widgets.
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
         self.setGreen(newValue);
     }-*/;
-
+            
     /**
      * Sets the Blue element of the selected color
      * @param newValue An integer between 0 and 255
@@ -581,7 +579,7 @@ public class ColorPicker extends Window  implements com.smartgwt.client.widgets.
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
         self.setBlue(newValue);
     }-*/;
-
+            
     /**
      * Sets the Hue of the selected color
      * @param newValue An integer between 0 and 239
@@ -590,7 +588,7 @@ public class ColorPicker extends Window  implements com.smartgwt.client.widgets.
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
         self.setHue(newValue);
     }-*/;
-
+            
     /**
      * Sets the Saturation of the selected color
      * @param newValue An integer between 0 and 240
@@ -599,7 +597,7 @@ public class ColorPicker extends Window  implements com.smartgwt.client.widgets.
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
         self.setSaturation(newValue);
     }-*/;
-
+            
     /**
      * Sets the Luminosity (brightness) of the selected color
      * @param newValue An integer between 0 and 240
@@ -608,7 +606,7 @@ public class ColorPicker extends Window  implements com.smartgwt.client.widgets.
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
         self.setLuminosity(newValue);
     }-*/;
-
+            
     /**
      * Changes the selected color to the one represented by the supplied HTML color  string. Note that ths method only accepts
      * the parameter if it represents a  valid color (otherwise it is simply ignored).
@@ -618,7 +616,7 @@ public class ColorPicker extends Window  implements com.smartgwt.client.widgets.
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
         self.setHtmlColor(newValue);
     }-*/;
-
+            
     /**
      * Sets the Opacity of the selected color. Ignored if opacity is switched off.
      * @param newValue An integer between 0 and 100
@@ -627,7 +625,7 @@ public class ColorPicker extends Window  implements com.smartgwt.client.widgets.
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
         self.setOpacity(newValue);
     }-*/;
-
+            
     /**
      * Override this method to be kept informed when the ColorPicker changes in real-time  (for example, if you need to update
      * your own GUI accordingly). Then use the  getXxxx() methods (for example, {@link
@@ -638,7 +636,6 @@ public class ColorPicker extends Window  implements com.smartgwt.client.widgets.
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
         self.colorChanged();
     }-*/;
-
     /**
      * Add a colorSelected handler.
      * <p>
@@ -675,7 +672,6 @@ public class ColorPicker extends Window  implements com.smartgwt.client.widgets.
    }-*/;
 
     // ********************* Static Methods ***********************
-
 
 }
 

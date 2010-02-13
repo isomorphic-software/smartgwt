@@ -129,7 +129,7 @@ public class Portlet extends Window {
     }
 
     // ********************* Methods ***********************
-
+            
     /**
      * closeClick overridden to show {@link com.smartgwt.client.widgets.layout.Portlet#getCloseConfirmationMessage
      * closeConfirmationMessage} to the user before removing the portlet from the PortalLayout via {@link

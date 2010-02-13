@@ -193,8 +193,6 @@ public class ToolbarItem extends CanvasItem {
     // ********************* Static Methods ***********************
 
 
-
-
     /**
      * List of buttons for the toolbar.  Each buttons should be specified as a simple JS object with properties to apply
      * to the  button to be displayed. Note that any <code>click</code> stringMethod applied to the  button will be

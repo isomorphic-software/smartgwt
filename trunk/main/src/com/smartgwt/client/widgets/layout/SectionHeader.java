@@ -133,7 +133,7 @@ public class SectionHeader extends Label {
     }
 
     // ********************* Methods ***********************
-
+            
     /**
      * For a SectionHeader embedded in a SectionStack, this method will return  a pointer to the {@link
      * com.smartgwt.client.widgets.layout.SectionStack} in which this section header is embedded.
@@ -152,8 +152,6 @@ public class SectionHeader extends Label {
     }-*/;
 
     // ********************* Static Methods ***********************
-
-
 
 
     /**

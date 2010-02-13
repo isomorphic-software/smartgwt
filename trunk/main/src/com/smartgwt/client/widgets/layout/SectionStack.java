@@ -421,25 +421,7 @@ public class SectionStack extends VLayout  implements com.smartgwt.client.widget
     }
 
     // ********************* Methods ***********************
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+            
     /**
      * Returns the position of the specified section in the SectionStack.  The numbering is zero-based.
      * @param sectionName name of a section for which you want to obtain the position.
@@ -451,7 +433,7 @@ public class SectionStack extends VLayout  implements com.smartgwt.client.widget
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
         return self.getSectionNumber(sectionName);
     }-*/;
-
+            
     /**
      * Method intended to be called by the sectionHeader when it is clicked on.
      * @param sectionHeader the sectionHeader clicked on

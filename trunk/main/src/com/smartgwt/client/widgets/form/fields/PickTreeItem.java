@@ -214,10 +214,6 @@ public class PickTreeItem extends CanvasItem {
     // ********************* Static Methods ***********************
 
 
-
-
-
-
     /**
      * If specified, the tree of possible options will be derived from the dataSource as a ResultTree, rather than using
      * this.valueTree.  Options can be loaded on demand or up front according tp {@link

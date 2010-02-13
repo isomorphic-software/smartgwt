@@ -247,10 +247,6 @@ public class SectionStackSection extends RefDataClass {
     // ********************* Static Methods ***********************
 
 
-
-
-
-
     /**
      * List of Canvases that constitute the section. These Canvases will be shown and hidden together.
      *

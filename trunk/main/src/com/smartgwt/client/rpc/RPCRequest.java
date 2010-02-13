@@ -637,7 +637,7 @@ public class RPCRequest extends DataClass {
     // ********************* Methods ***********************
 
     // ********************* Static Methods ***********************
-
+            
     /**
      * RPCRequest shouldn't be created directly. Instead, pass {@link com.smartgwt.client..Properties} to  {@link
      * com.smartgwt.client.rpc.RPCManager#sendRequest} and {@link com.smartgwt.client.rpc.RPCManager#send}.

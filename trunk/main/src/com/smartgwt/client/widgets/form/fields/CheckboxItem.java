@@ -322,7 +322,6 @@ public class CheckboxItem extends FormItem {
 
     // ********************* Methods ***********************
 
-
     // ********************* Static Methods ***********************
 
 

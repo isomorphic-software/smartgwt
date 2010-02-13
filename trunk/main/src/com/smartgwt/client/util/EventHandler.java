@@ -87,7 +87,7 @@ public class EventHandler {
     // ********************* Methods ***********************
 
     // ********************* Static Methods ***********************
-
+            
     /**
      * Applies to {@link com.smartgwt.client.widgets.Canvas#addMouseWheelHandler} events only. Returns an integer indicating
      * how far the mouse wheel was rotated. This value will be positive if the user scrolled the mousewheel forward or up, or
@@ -99,9 +99,7 @@ public class EventHandler {
     public static native int getWheelDelta() /*-{
         return $wnd.isc.EventHandler.getWheelDelta();
     }-*/;
-
-
-
+            
     /**
      * Return the canvas that is the target of the mouse event. Returns null if no canvas found.
      *
@@ -116,7 +114,7 @@ public class EventHandler {
         }
         return retVal;
     }-*/;
-
+            
     /**
      * Returns the current dragTarget.  This is the component on which the drag and drop interaction was initiated.  This only
      * returns something meaningful during a drag and drop interaction.
@@ -132,7 +130,7 @@ public class EventHandler {
         }
         return retVal;
     }-*/;
-
+            
     /**
      * Return the page-relative X (horizontal) coordinate of an event.
      *
@@ -141,7 +139,7 @@ public class EventHandler {
     public static native int getX() /*-{
         return $wnd.isc.EventHandler.getX();
     }-*/;
-
+            
     /**
      * Return the page-relative Y (vertical) coordinate of an event.
      *
@@ -150,7 +148,7 @@ public class EventHandler {
     public static native int getY() /*-{
         return $wnd.isc.EventHandler.getY();
     }-*/;
-
+            
     /**
      * Returns true if the left mouse button is being pressed.
      *
@@ -164,7 +162,7 @@ public class EventHandler {
             return @com.smartgwt.client.util.JSOHelper::toBoolean(Z)(retVal);
         }
     }-*/;
-
+            
     /**
      * Returns true if the right mouse button is being pressed.
      *
@@ -178,7 +176,7 @@ public class EventHandler {
             return @com.smartgwt.client.util.JSOHelper::toBoolean(Z)(retVal);
         }
     }-*/;
-
+            
     /**
      * Returns the numeric characterValue reported by the browser.          Only available on keyPress events, and only for
      * character (or ascii control) keys
@@ -188,7 +186,7 @@ public class EventHandler {
     public static native int getKeyEventCharacterValue() /*-{
         return $wnd.isc.EventHandler.getKeyEventCharacterValue();
     }-*/;
-
+            
     /**
      * Return the character for the current key being pressed.   Note that this is only set reliably for keyPress events on
      * character keys.
@@ -198,8 +196,7 @@ public class EventHandler {
     public static native String getKeyEventCharacter() /*-{
         return $wnd.isc.EventHandler.getKeyEventCharacter();
     }-*/;
-
-
+            
     /**
      * Return true if the shift key is being held down.   Note that this is only set reliably for keyboard events.
      *
@@ -213,7 +210,7 @@ public class EventHandler {
             return @com.smartgwt.client.util.JSOHelper::toBoolean(Z)(retVal);
         }
     }-*/;
-
+            
     /**
      * Return true if the control key is being held down.   Note that this is only set reliably for keyboard events.
      *
@@ -227,7 +224,7 @@ public class EventHandler {
             return @com.smartgwt.client.util.JSOHelper::toBoolean(Z)(retVal);
         }
     }-*/;
-
+            
     /**
      * Return true if the alt (option) key is being held down.   Note that this is only set reliably for keyboard events.
      *
@@ -241,8 +238,6 @@ public class EventHandler {
             return @com.smartgwt.client.util.JSOHelper::toBoolean(Z)(retVal);
         }
     }-*/;
-
-
 
 
     /**

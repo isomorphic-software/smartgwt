@@ -832,20 +832,6 @@ public class TabSet extends Canvas  implements com.smartgwt.client.widgets.tab.e
     }
 
     // ********************* Methods ***********************
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     /**
      * Add a tabIconClick handler.
      * <p>
@@ -882,12 +868,7 @@ public class TabSet extends Canvas  implements com.smartgwt.client.widgets.tab.e
                });
         }
    }-*/;
-
-
-
-
-
-
+            
     /**
      * If there is not enough space to display all the tabs in this tabSet, this method will  scroll the next tab (that first
      * tab that is clipped at the end of the tab-bar) into view.
@@ -896,7 +877,7 @@ public class TabSet extends Canvas  implements com.smartgwt.client.widgets.tab.e
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
         self.scrollForward();
     }-*/;
-
+            
     /**
      * If there is not enough space to display all the tabs in this tabSet, this method will  scroll the previous tab (that
      * first tab that is clipped at the beginning of the tab-bar)  into view.
@@ -905,8 +886,7 @@ public class TabSet extends Canvas  implements com.smartgwt.client.widgets.tab.e
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
         self.scrollBack();
     }-*/;
-
-
+            
     /**
      * Returns the index of the currently selected tab object.
      *
@@ -916,8 +896,6 @@ public class TabSet extends Canvas  implements com.smartgwt.client.widgets.tab.e
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
         return self.getSelectedTabNumber();
     }-*/;
-
-
     /**
      * Add a tabSelected handler.
      * <p>
@@ -953,7 +931,6 @@ public class TabSet extends Canvas  implements com.smartgwt.client.widgets.tab.e
                });
         }
    }-*/;
-
     /**
      * Add a tabDeselected handler.
      * <p>

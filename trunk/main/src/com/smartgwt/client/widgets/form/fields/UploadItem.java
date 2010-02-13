@@ -101,7 +101,7 @@ public class UploadItem extends TextItem {
     // ********************* Properties / Attributes ***********************
 
     // ********************* Methods ***********************
-
+            
     /**
      * Attempting to set the value for an upload form item is disallowed for security reasons. Therefore this method will just
      * log a warning, and not modify the value of the item.
