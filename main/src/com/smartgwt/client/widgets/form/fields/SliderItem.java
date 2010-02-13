@@ -270,9 +270,6 @@ public class SliderItem extends CanvasItem {
 
     // ********************* Methods ***********************
 
-
-
-
     // ********************* Static Methods ***********************
 
 }

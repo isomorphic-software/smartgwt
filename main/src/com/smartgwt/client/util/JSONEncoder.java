@@ -74,6 +74,25 @@ public class JSONEncoder extends DataClass {
     }
 
     // ********************* Properties / Attributes ***********************
+
+    /**
+     * If false, output all Smart GWT objects with a call to ${isc.DocUtils.linkForRef('isc.echoLeaf')}
+     *
+     * @param serializeInstances serializeInstances Default value is true
+     */
+    public void setSerializeInstances(Boolean serializeInstances) {
+        setAttribute("serializeInstances", serializeInstances);
+    }
+
+    /**
+     * If false, output all Smart GWT objects with a call to ${isc.DocUtils.linkForRef('isc.echoLeaf')}
+     *
+     *
+     * @return Boolean
+     */
+    public Boolean getSerializeInstances()  {
+        return getAttributeAsBoolean("serializeInstances");
+    }
              
     /**
      * Format for encoding JavaScript Date values in JSON.  See {@link com.smartgwt.client.types.JSONDateFormat} for valid
@@ -187,7 +206,7 @@ public class JSONEncoder extends DataClass {
     }
 
     // ********************* Methods ***********************
-
+            
     /**
      * Serialize an object as a JSON string.
      * @param object object to serialize
@@ -198,7 +217,7 @@ public class JSONEncoder extends DataClass {
         var self = this.@com.smartgwt.client.core.DataClass::getJsObj()();
         return self.encode(object);
     }-*/;
-
+            
     /**
      * Encode a JavaScript Date value. <P> By default, follows the {@link com.smartgwt.client.util.JSONEncoder#getDateFormat
      * dateFormat} setting.  Override to do custom encoding.

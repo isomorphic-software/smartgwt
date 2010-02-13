@@ -187,9 +187,7 @@ public class ViewLoader extends Label {
     }
 
     // ********************* Methods ***********************
-
-
-
+            
     /**
      * Retrieve the current view.  May be null if the view has not yet been loaded, or has been explicitly set to null.
      *
@@ -205,7 +203,7 @@ public class ViewLoader extends Label {
         }
         return retVal;
     }-*/;
-
+            
     /**
      * StringMethod fired when the view has been loaded.  Has no default implementation.  May be observed or overridden to fire
      * custom logic when loading completes.

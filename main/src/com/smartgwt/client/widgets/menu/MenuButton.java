@@ -272,8 +272,6 @@ public class MenuButton extends Button {
 
     // ********************* Methods ***********************
 
-
-
     // ********************* Static Methods ***********************
 
 }

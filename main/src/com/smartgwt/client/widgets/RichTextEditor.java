@@ -110,7 +110,7 @@ public class RichTextEditor extends VLayout {
     }
 
     // ********************* Methods ***********************
-
+            
     /**
      * Display a warning if Rich Text Editing is not fully supported in this browser. Default behavior logs a warning to the
      * devloper console - Override this if a user-visible warning is required
@@ -119,7 +119,7 @@ public class RichTextEditor extends VLayout {
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
         self.doWarn();
     }-*/;
-
+            
     /**
      * Does this browser support the full RichTextEditor feature set. Returns false for browsers in which some features are not
      * natively supported - currently Safari and Opera.
@@ -136,10 +136,7 @@ public class RichTextEditor extends VLayout {
         }
     }-*/;
 
-
-
     // ********************* Static Methods ***********************
-
 
 
     /**

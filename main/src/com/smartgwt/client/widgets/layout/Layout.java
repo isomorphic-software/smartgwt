@@ -741,7 +741,7 @@ public class Layout extends Canvas {
     }
 
     // ********************* Methods ***********************
-
+            
     /**
      * An optional method that, if it exists, allows the manipulation of the calculated offset for members of this layout. 
      * Returns the offset for the specified member.
@@ -753,8 +753,7 @@ public class Layout extends Canvas {
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
         self.getMemberOffset(member.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()(), defaultOffset, alignment);
     }-*/;
-
-
+            
     /**
      * Return the breadth for a member of this layout which either didn't specify a breadth or specified a percent breadth with
      * {@link com.smartgwt.client.widgets.layout.Layout#getManagePercentBreadth managePercentBreadth}:true. <P> Called only for
@@ -767,8 +766,7 @@ public class Layout extends Canvas {
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
         self.getMemberDefaultBreadth(member.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()(), defaultBreadth);
     }-*/;
-
-
+            
     /**
      * Layout members according to current settings. <P> Members will reflow automatically when the layout is resized, members
      * resize, the list of members changes or members change visibility.  It is only necessary to manually call
@@ -789,7 +787,7 @@ public class Layout extends Canvas {
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
         self.reflow(reason);
     }-*/;
-
+            
     /**
      * Layout members according to current settings, immediately. <br> Generally, when changes occur that require a layout to
      * reflow (such as members being shown or hidden), the Layout will reflow only after a delay, so that multiple changes
@@ -799,9 +797,7 @@ public class Layout extends Canvas {
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
         self.reflowNow();
     }-*/;
-
-
-
+            
     /**
      * Returns true if the layout includes the specified canvas.
      * @param canvas the canvas to check for
@@ -817,10 +813,7 @@ public class Layout extends Canvas {
             return @com.smartgwt.client.util.JSOHelper::toBoolean(Z)(retVal);
         }
     }-*/;
-
-
-
-
+            
     /**
      * Removes the specified member from the layout. If it has a resize bar, the bar will be destroyed.
      * @param member the canvas to be removed from the layout
@@ -829,10 +822,7 @@ public class Layout extends Canvas {
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
         self.removeMember(member.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()());
     }-*/;
-
-
-
-
+            
     /**
      * Hide all other members and make the single parameter member visible.
      * @param member member to show
@@ -841,7 +831,7 @@ public class Layout extends Canvas {
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
         self.setVisibleMember(member.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()());
     }-*/;
-
+            
     /**
      * Shift a member of the layout to a new position
      * @param memberNum current position of the member to move to a new position
@@ -851,7 +841,7 @@ public class Layout extends Canvas {
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
         self.reorderMember(memberNum, newPosition);
     }-*/;
-
+            
     /**
      * Move a range of members to a new position
      * @param start beginning of range of members to move
@@ -862,7 +852,7 @@ public class Layout extends Canvas {
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
         self.reorderMembers(start, end, newPosition);
     }-*/;
-
+            
     /**
      * Fires once at initialization if the layout has any initial members, and then fires whenever members are added, removed
      * or reordered.
@@ -871,9 +861,7 @@ public class Layout extends Canvas {
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
         self.membersChanged();
     }-*/;
-
-
-
+            
     /**
      * Get the position a new member would be dropped.  This drop position switches in the middle of each member, and both
      * edges (before beginning, after end) are legal drop positions <p> Use this method to obtain the drop position for e.g. a
@@ -885,7 +873,7 @@ public class Layout extends Canvas {
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
         return self.getDropPosition();
     }-*/;
-
+            
     /**
      * Calling this method hides the dropLine shown during a drag and drop interaction with a Layout that has {@link
      * com.smartgwt.client.widgets.layout.Layout#getCanDropComponents canDropComponents} set to true.  This method is only

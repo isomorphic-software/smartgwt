@@ -200,8 +200,7 @@ public class PortalLayout extends Layout {
     }
 
     // ********************* Methods ***********************
-
-
+            
     /**
      * Adds a new portal column to this layout at the specified position
      * @param index target position for the new column
@@ -210,7 +209,7 @@ public class PortalLayout extends Layout {
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
         self.addColumn(index);
     }-*/;
-
+            
     /**
      * Removes the specified column from this layout. All portlets displayed within this column will be destroyed when the
      * column is removed.
@@ -220,7 +219,7 @@ public class PortalLayout extends Layout {
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
         self.removeColumn(index);
     }-*/;
-
+            
     /**
      * Adds a {@link com.smartgwt.client.widgets.layout.Portlet} instance to this portalLayout in the specified position.
      * @param portlet Portlet to add to this layout.
@@ -240,7 +239,7 @@ public class PortalLayout extends Layout {
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
         self.addPortlet(portlet.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()(), colNum, rowNum);
     }-*/;
-
+            
     /**
      * Removes a {@link com.smartgwt.client.widgets.layout.Portlet} which is currently rendered in this PortalLayout. Portlet
      * will not be destroyed by default - if this is desired the calling code should do this explicitly.

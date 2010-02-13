@@ -88,10 +88,6 @@ public class MenuBar extends Toolbar {
 
     // ********************* Methods ***********************
 
-
-
-
-
     // ********************* Static Methods ***********************
 
 

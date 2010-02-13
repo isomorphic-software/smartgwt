@@ -434,7 +434,7 @@ public class DateItem extends FormItem {
     }
 
     // ********************* Methods ***********************
-
+            
     /**
      * If {@link com.smartgwt.client.widgets.form.fields.DateItem#getUseTextField useTextField} is true, falls through to
      * standard {@link com.smartgwt.client.widgets.form.fields.FormItem#setSelectionRange} implementation on this items
@@ -446,8 +446,7 @@ public class DateItem extends FormItem {
         var self = this.@com.smartgwt.client.core.DataClass::getJsObj()();
         self.setSelectionRange(start, end);
     }-*/;
-
-
+            
     /**
      * If {@link com.smartgwt.client.widgets.form.fields.DateItem#getUseTextField useTextField} is true, falls through to
      * standard {@link com.smartgwt.client.widgets.form.fields.FormItem#selectValue} implementation on this items freeform text
@@ -457,7 +456,7 @@ public class DateItem extends FormItem {
         var self = this.@com.smartgwt.client.core.DataClass::getJsObj()();
         self.selectValue();
     }-*/;
-
+            
     /**
      * If {@link com.smartgwt.client.widgets.form.fields.DateItem#getUseTextField useTextField} is true, falls through to
      * standard {@link com.smartgwt.client.widgets.form.fields.FormItem#deselectValue} implementation on this items freeform
@@ -479,7 +478,6 @@ public class DateItem extends FormItem {
         var self = this.@com.smartgwt.client.core.DataClass::getJsObj()();
         self.deselectValue(start);
     }-*/;
-
 
     // ********************* Static Methods ***********************
 

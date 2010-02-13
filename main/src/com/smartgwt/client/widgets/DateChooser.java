@@ -777,7 +777,7 @@ public class DateChooser extends Canvas  implements com.smartgwt.client.widgets.
     }
 
     // ********************* Methods ***********************
-
+            
     /**
      * Set the picker to show the given date.
      * @param date new value
@@ -786,7 +786,7 @@ public class DateChooser extends Canvas  implements com.smartgwt.client.widgets.
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
         self.setData(@com.smartgwt.client.util.JSOHelper::convertToJavaScriptDate(Ljava/util/Date;)(date));
     }-*/;
-
+            
     /**
      * Get the current value of the picker. <P> See {@link com.smartgwt.client.widgets.DateChooser#addDataChangedHandler} for
      * how to respond to the user picking a date.
@@ -802,7 +802,6 @@ public class DateChooser extends Canvas  implements com.smartgwt.client.widgets.
             return @com.smartgwt.client.util.JSOHelper::toDate(D)(retVal.getTime());
         }
     }-*/;
-
     /**
      * Add a dataChanged handler.
      * <p>
@@ -837,7 +836,7 @@ public class DateChooser extends Canvas  implements com.smartgwt.client.widgets.
                });
         }
    }-*/;
-
+            
     /**
      * Fired when the user clicks the cancel button in this date chooser. Default implementation clears the date chooser.
      */
@@ -845,7 +844,7 @@ public class DateChooser extends Canvas  implements com.smartgwt.client.widgets.
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
         self.cancelClick();
     }-*/;
-
+            
     /**
      * Fired when the user clicks the Today button. Default implementation will select the current date in the date chooser.
      */

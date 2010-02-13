@@ -322,7 +322,7 @@ public class MenuItem extends ListGridRecord  implements com.smartgwt.client.wid
     }
 
     // ********************* Methods ***********************
-
+            
     /**
      * Contains the condition that will enable or disable the curent menuItem. The handler must be specified as a function or
      * string of script.  Return false to disable the menuItem or true to enable it <p> If you don't need to set this state
@@ -343,7 +343,7 @@ public class MenuItem extends ListGridRecord  implements com.smartgwt.client.wid
             return @com.smartgwt.client.util.JSOHelper::toBoolean(Z)(retVal);
         }
     }-*/;
-
+            
     /**
      * Contains the condition that will check or uncheck the curent menuItem. The handler must be specified as a function or
      * string of script.  Return false to uncheck the menuItem or true to check it <p> If you don't need to set this state
@@ -364,9 +364,6 @@ public class MenuItem extends ListGridRecord  implements com.smartgwt.client.wid
             return @com.smartgwt.client.util.JSOHelper::toBoolean(Z)(retVal);
         }
     }-*/;
-
-
-
     /**
      * Add a click handler.
      * <p>
@@ -392,7 +389,6 @@ public class MenuItem extends ListGridRecord  implements com.smartgwt.client.wid
                 selfJ.@com.smartgwt.client.core.DataClass::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
             });
    }-*/;
-
 
     // ********************* Static Methods ***********************
 

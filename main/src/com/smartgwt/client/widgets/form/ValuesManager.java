@@ -179,13 +179,7 @@ public class ValuesManager extends BaseClass {
     }
 
     // ********************* Methods ***********************
-
-
-
-
-
-
-
+            
     /**
      * Validate the current set of values for this values manager against validators defined in the member forms. For databound
      * valuesManagers, also perform validation against any validators defined on datasource fields. <P> Note that if validation
@@ -205,11 +199,7 @@ public class ValuesManager extends BaseClass {
             return @com.smartgwt.client.util.JSOHelper::toBoolean(Z)(retVal);
         }
     }-*/;
-
-
-
-
-
+            
     /**
      * Clears all errors from member forms.
      * @param showErrors If true, clear any visible error messages.
@@ -218,7 +208,7 @@ public class ValuesManager extends BaseClass {
         var self = this.@com.smartgwt.client.core.BaseClass::getOrCreateJsObj()();
         self.clearErrors(showErrors);
     }-*/;
-
+            
     /**
      * Clear all validation errors associated with some field in this form
      * @param fieldName field for which errors should be cleared
@@ -229,9 +219,7 @@ public class ValuesManager extends BaseClass {
         var self = this.@com.smartgwt.client.core.BaseClass::getOrCreateJsObj()();
         self.clearFieldErrors(fieldName, show);
     }-*/;
-
-
-
+            
     /**
      * Are there any errors associated with any fields in this valuesManager?
      *
@@ -246,7 +234,7 @@ public class ValuesManager extends BaseClass {
             return @com.smartgwt.client.util.JSOHelper::toBoolean(Z)(retVal);
         }
     }-*/;
-
+            
     /**
      * Are there any errors associated with a field in this valuesManager?
      * @param fieldName field to check for errors
@@ -262,7 +250,7 @@ public class ValuesManager extends BaseClass {
             return @com.smartgwt.client.util.JSOHelper::toBoolean(Z)(retVal);
         }
     }-*/;
-
+            
     /**
      * Method to explicitly show the latest set of validation errors present on this  ValuesManager.<br> Will redraw all member
      * forms to display (or clear) currently visible errors, and fire {@link
@@ -272,7 +260,7 @@ public class ValuesManager extends BaseClass {
         var self = this.@com.smartgwt.client.core.BaseClass::getOrCreateJsObj()();
         self.showErrors();
     }-*/;
-
+            
     /**
      * Method to explicitly show the latest set of validation errors present on some field  within this ValuesManager.<br> If
      * the field in question is present as a visible item in a member form, the form item will be redrawn to display the error
@@ -283,9 +271,7 @@ public class ValuesManager extends BaseClass {
         var self = this.@com.smartgwt.client.core.BaseClass::getOrCreateJsObj()();
         self.showFieldErrors();
     }-*/;
-
-
-
+            
     /**
      * Clear out all the values managed by this values manager.
      */
@@ -293,10 +279,7 @@ public class ValuesManager extends BaseClass {
         var self = this.@com.smartgwt.client.core.BaseClass::getOrCreateJsObj()();
         self.clearValues();
     }-*/;
-
-
-
-
+            
     /**
      * Same as {@link com.smartgwt.client.widgets.form.DynamicForm#reset}.
      */
@@ -304,7 +287,7 @@ public class ValuesManager extends BaseClass {
         var self = this.@com.smartgwt.client.core.BaseClass::getOrCreateJsObj()();
         self.resetValues();
     }-*/;
-
+            
     /**
      * Compares the current set of values with the values stored by the call to the          <code>rememberValues()</code>
      * method. Returns true if the values have changed, and false          otherwise.
@@ -320,9 +303,7 @@ public class ValuesManager extends BaseClass {
             return @com.smartgwt.client.util.JSOHelper::toBoolean(Z)(retVal);
         }
     }-*/;
-
-
-
+            
     /**
      * Clear the value for some field.
      * @param fieldName Which field to set the value for
@@ -331,15 +312,7 @@ public class ValuesManager extends BaseClass {
         var self = this.@com.smartgwt.client.core.BaseClass::getOrCreateJsObj()();
         self.clearValue(fieldName);
     }-*/;
-
-
-
-
-
-
-
-
-
+            
     /**
      * Returns true if {@link com.smartgwt.client.widgets.form.ValuesManager#getSaveOperationType saveOperationType} is
      * currently "add".  See {@link com.smartgwt.client.widgets.form.ValuesManager#getSaveOperationType saveOperationType}.
@@ -355,11 +328,7 @@ public class ValuesManager extends BaseClass {
             return @com.smartgwt.client.util.JSOHelper::toBoolean(Z)(retVal);
         }
     }-*/;
-
-
-
-
-
+            
     /**
      * &#010 This method exists for clean integration with existing server frameworks that have a 'cancel'&#010 feature which
      * typically clears session state associated with the form.  When this method is&#010 called, an RPC is sent to the server
@@ -388,8 +357,6 @@ public class ValuesManager extends BaseClass {
         var self = this.@com.smartgwt.client.core.BaseClass::getOrCreateJsObj()();
         self.cancel(requestProperties.@com.smartgwt.client.core.DataClass::getJsObj()());
     }-*/;
-
-
 
     // ********************* Static Methods ***********************
 

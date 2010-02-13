@@ -67,8 +67,6 @@ public class JSON {
     // ********************* Static Methods ***********************
 
 
-
-
     /**
      * Serialize an object as a JSON string. <P> Automatically handles circular references - see {@link
      * com.smartgwt.client.util.JSONEncoder#getCircularReferenceMode circularReferenceMode}.

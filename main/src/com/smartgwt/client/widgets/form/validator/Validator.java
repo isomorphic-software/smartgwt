@@ -60,7 +60,7 @@ import com.google.gwt.event.shared.HasHandlers;
  * specified for DataSource fields via the {@link com.smartgwt.client.data.DataSourceField#getValidators validators}
  * property.  Validators that need not be run on the server can also be specified for a specific {@link
  * com.smartgwt.client.widgets.form.fields.FormItem} or ${isc.DocUtils.linkForRef('object:ListGridField')}. <p> Smart GWT
- * supports a powerful library of {@link com.smartgwt.client..ValidatorTypes} which have identical  behavior on both the
+ * supports a powerful library of {@link com.smartgwt.client..ValidatorType} which have identical behavior on both the
  * client and the server.   <p>  Beyond this, custom validators can be defined on the client and custom validation logic
  * added on the server.  Note that the <code>regexp</code> and <code>mask</code> validator types are very flexible and can
  * be used to perform virtually any kind of formatting check that doesn't involve some large external dataset. <p> Custom
@@ -181,12 +181,7 @@ public class Validator extends DataClass {
 
     // ********************* Methods ***********************
 
-
     // ********************* Static Methods ***********************
-
-
-
-
 
 
     /**

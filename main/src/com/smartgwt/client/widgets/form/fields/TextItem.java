@@ -396,7 +396,7 @@ public class TextItem extends FormItem {
     }
 
     // ********************* Methods ***********************
-
+            
     /**
      * Returns the hint text for this item. Default implementation returns {@link
      * com.smartgwt.client.widgets.form.fields.FormItem#getHint hint}, or  null if there is no hint to show.
@@ -407,8 +407,7 @@ public class TextItem extends FormItem {
         var self = this.@com.smartgwt.client.core.DataClass::getJsObj()();
         return self.getHint();
     }-*/;
-
-
+            
     /**
      * Puts focus into this form item and selects characters between the given indices. Only applies to drawn text based items.
      * @param start selection starting character index
@@ -418,7 +417,7 @@ public class TextItem extends FormItem {
         var self = this.@com.smartgwt.client.core.DataClass::getJsObj()();
         self.setSelectionRange(start, end);
     }-*/;
-
+            
     /**
      * Put focus in this item and select the entire value. Only applies to text based items
      */
@@ -426,7 +425,7 @@ public class TextItem extends FormItem {
         var self = this.@com.smartgwt.client.core.DataClass::getJsObj()();
         self.selectValue();
     }-*/;
-
+            
     /**
      * If this item currently has focus, clear the current selection. leaving focus in the item. Has no effect if the item is
      * undrawn or unfocused. Only applies to text-based items.
@@ -446,8 +445,6 @@ public class TextItem extends FormItem {
         var self = this.@com.smartgwt.client.core.DataClass::getJsObj()();
         self.deselectValue(start);
     }-*/;
-
-
 
     // ********************* Static Methods ***********************
 

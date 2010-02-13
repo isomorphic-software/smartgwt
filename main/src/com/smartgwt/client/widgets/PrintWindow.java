@@ -128,7 +128,6 @@ public class PrintWindow extends Window {
 
     // ********************* Methods ***********************
 
-
     // ********************* Static Methods ***********************
 
 }

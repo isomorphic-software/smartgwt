@@ -541,7 +541,7 @@ public class Tree extends BaseClass  implements com.smartgwt.client.widgets.tree
     }
 
     // ********************* Methods ***********************
-
+            
     /**
      * Return true if the passed node is the root node.
      * @param node node to test
@@ -557,10 +557,7 @@ public class Tree extends BaseClass  implements com.smartgwt.client.widgets.tree
             return @com.smartgwt.client.util.JSOHelper::toBoolean(Z)(retVal);
         }
     }-*/;
-
-
-
-
+            
     /**
      * Get the 'name' of a node.  This is node[{@link com.smartgwt.client.widgets.tree.Tree#getNameProperty nameProperty}].  If
      * that value has not been set on the node, a unique value (within this parent) will be auto-generated and returned.
@@ -572,7 +569,7 @@ public class Tree extends BaseClass  implements com.smartgwt.client.widgets.tree
         var self = this.@com.smartgwt.client.core.BaseClass::getOrCreateJsObj()();
         return self.getName(node.@com.smartgwt.client.core.DataClass::getJsObj()());
     }-*/;
-
+            
     /**
      * Return the title of a node -- the name as it should be presented to the user.  This method works as follows: <ul> <li>
      * If a {@link com.smartgwt.client.widgets.tree.Tree#getTitleProperty titleProperty} is set on the node, the value of that
@@ -590,7 +587,7 @@ public class Tree extends BaseClass  implements com.smartgwt.client.widgets.tree
         var self = this.@com.smartgwt.client.core.BaseClass::getOrCreateJsObj()();
         return self.getTitle(node.@com.smartgwt.client.core.DataClass::getJsObj()());
     }-*/;
-
+            
     /**
      * &#010 Returns the path of a node - a path has the following format:&#010 <code>([name][pathDelim]?)*</code>&#010
      * <br><br>&#010 For example, in this tree:&#010 <pre>&#010 root&#010   foo&#010     bar&#010 </pre>&#010 Assuming that
@@ -606,7 +603,7 @@ public class Tree extends BaseClass  implements com.smartgwt.client.widgets.tree
         var self = this.@com.smartgwt.client.core.BaseClass::getOrCreateJsObj()();
         return self.getPath(node.@com.smartgwt.client.core.DataClass::getJsObj()());
     }-*/;
-
+            
     /**
      * Given a node, return the path to it's parent.  This works just like {@link
      * com.smartgwt.client.widgets.tree.Tree#getPath} except the node itself is not reported as part of the path.
@@ -618,9 +615,7 @@ public class Tree extends BaseClass  implements com.smartgwt.client.widgets.tree
         var self = this.@com.smartgwt.client.core.BaseClass::getOrCreateJsObj()();
         return self.getParentPath(node.@com.smartgwt.client.core.DataClass::getJsObj()());
     }-*/;
-
-
-
+            
     /**
      * &#010 Return the number of levels deep this node is in the tree.  For example, for this tree:&#010 <pre>&#010 root&#010 
      *  foo&#010     bar&#010 </pre>&#010 Calling <code>tree.getLevel(bar)</code> will return <code>2</code>. &#010&#010
@@ -632,7 +627,7 @@ public class Tree extends BaseClass  implements com.smartgwt.client.widgets.tree
         var self = this.@com.smartgwt.client.core.BaseClass::getOrCreateJsObj()();
         return self.getLevel(node.@com.smartgwt.client.core.DataClass::getJsObj()());
     }-*/;
-
+            
     /**
      * Determines whether a particular node is a folder.  The logic works as follows:<br><br> <ul> <li> If the {@link
      * com.smartgwt.client.widgets.tree.TreeNode} has a value for the {@link
@@ -656,7 +651,7 @@ public class Tree extends BaseClass  implements com.smartgwt.client.widgets.tree
             return @com.smartgwt.client.util.JSOHelper::toBoolean(Z)(retVal);
         }
     }-*/;
-
+            
     /**
      * Returns true if the passed in node is a leaf.
      * @param node node in question
@@ -672,12 +667,7 @@ public class Tree extends BaseClass  implements com.smartgwt.client.widgets.tree
             return @com.smartgwt.client.util.JSOHelper::toBoolean(Z)(retVal);
         }
     }-*/;
-
-
-
-
-
-
+            
     /**
      * Returns true if this node has any children.
      * @param node node in question
@@ -693,7 +683,7 @@ public class Tree extends BaseClass  implements com.smartgwt.client.widgets.tree
             return @com.smartgwt.client.util.JSOHelper::toBoolean(Z)(retVal);
         }
     }-*/;
-
+            
     /**
      * Return true if this this node has any children that are folders.
      * @param node node in question
@@ -709,7 +699,7 @@ public class Tree extends BaseClass  implements com.smartgwt.client.widgets.tree
             return @com.smartgwt.client.util.JSOHelper::toBoolean(Z)(retVal);
         }
     }-*/;
-
+            
     /**
      * Return whether this node has any children that are leaves.
      * @param node node in question
@@ -725,7 +715,7 @@ public class Tree extends BaseClass  implements com.smartgwt.client.widgets.tree
             return @com.smartgwt.client.util.JSOHelper::toBoolean(Z)(retVal);
         }
     }-*/;
-
+            
     /**
      * Is one node a descendant of the other?
      * @param child child node
@@ -742,10 +732,6 @@ public class Tree extends BaseClass  implements com.smartgwt.client.widgets.tree
             return @com.smartgwt.client.util.JSOHelper::toBoolean(Z)(retVal);
         }
     }-*/;
-
-
-
-
     /**
      * Add a dataChanged handler.
      * <p>
@@ -780,9 +766,7 @@ public class Tree extends BaseClass  implements com.smartgwt.client.widgets.tree
                 });
             }
    }-*/;
-
-
-
+            
     /**
      * Moves the specified node to a new parent.
      * @param node node to move
@@ -804,7 +788,7 @@ public class Tree extends BaseClass  implements com.smartgwt.client.widgets.tree
         var self = this.@com.smartgwt.client.core.BaseClass::getOrCreateJsObj()();
         self.move(node.@com.smartgwt.client.core.DataClass::getJsObj()(), newParent.@com.smartgwt.client.core.DataClass::getJsObj()(), position);
     }-*/;
-
+            
     /**
      * Removes a node, along with all its children.
      * @param node node to remove
@@ -820,9 +804,7 @@ public class Tree extends BaseClass  implements com.smartgwt.client.widgets.tree
             return @com.smartgwt.client.util.JSOHelper::toBoolean(Z)(retVal);
         }
     }-*/;
-
-
-
+            
     /**
      * Unload the children of a node
      * @param node node in question
@@ -831,7 +813,7 @@ public class Tree extends BaseClass  implements com.smartgwt.client.widgets.tree
         var self = this.@com.smartgwt.client.core.BaseClass::getOrCreateJsObj()();
         self.unloadChildren(node.@com.smartgwt.client.core.DataClass::getJsObj()());
     }-*/;
-
+            
     /**
      * Reload the children of a node
      * @param node node in question
@@ -840,7 +822,7 @@ public class Tree extends BaseClass  implements com.smartgwt.client.widgets.tree
         var self = this.@com.smartgwt.client.core.BaseClass::getOrCreateJsObj()();
         self.reloadChildren(node.@com.smartgwt.client.core.DataClass::getJsObj()());
     }-*/;
-
+            
     /**
      * Whether a particular node is open or closed (works for leaves and folders).
      * @param node node in question
@@ -856,9 +838,7 @@ public class Tree extends BaseClass  implements com.smartgwt.client.widgets.tree
             return @com.smartgwt.client.util.JSOHelper::toBoolean(Z)(retVal);
         }
     }-*/;
-
-
-
+            
     /**
      * Closes a folder
      * @param node folder to close
@@ -867,8 +847,7 @@ public class Tree extends BaseClass  implements com.smartgwt.client.widgets.tree
         var self = this.@com.smartgwt.client.core.BaseClass::getOrCreateJsObj()();
         self.closeFolder(node.@com.smartgwt.client.core.DataClass::getJsObj()());
     }-*/;
-
-
+            
     /**
      * Open all nodes under a particular node.
      */
@@ -885,7 +864,7 @@ public class Tree extends BaseClass  implements com.smartgwt.client.widgets.tree
         var self = this.@com.smartgwt.client.core.BaseClass::getOrCreateJsObj()();
         self.openAll(node.@com.smartgwt.client.core.DataClass::getJsObj()());
     }-*/;
-
+            
     /**
      * Close all nodes under a particular node
      */
@@ -902,9 +881,7 @@ public class Tree extends BaseClass  implements com.smartgwt.client.widgets.tree
         var self = this.@com.smartgwt.client.core.BaseClass::getOrCreateJsObj()();
         self.closeAll(node.@com.smartgwt.client.core.DataClass::getJsObj()());
     }-*/;
-
-
-
+            
     /**
      * Returns the number of items in the current open list.
      *
@@ -914,8 +891,6 @@ public class Tree extends BaseClass  implements com.smartgwt.client.widgets.tree
         var self = this.@com.smartgwt.client.core.BaseClass::getOrCreateJsObj()();
         return self.getLength();
     }-*/;
-
-
 
     // ********************* Static Methods ***********************
 

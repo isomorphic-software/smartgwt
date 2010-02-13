@@ -108,8 +108,7 @@ public class RPCManager {
     // ********************* Methods ***********************
 
     // ********************* Static Methods ***********************
-
-
+            
     /**
      * Returns true if the XMLHttpRequest object is available, false otherwise.  See {@link
      * com.smartgwt.client.docs.PlatformDependencies} for more information on when XMLHttpRequest parser may not available and
@@ -125,12 +124,7 @@ public class RPCManager {
             return @com.smartgwt.client.util.JSOHelper::toBoolean(Z)(retVal);
         }
     }-*/;
-
-
-
-
-
-
+            
     /**
      * Cancel a queue of requests (also called a transaction). <P> If a transactionId is passed, that transaction will be
      * cancelled, otherwise, the current  (not yet sent) transaction is cancelled.  You can retrieve the id of the current 
@@ -159,7 +153,7 @@ public class RPCManager {
     public static native void cancelQueue(String transactionNum) /*-{
         $wnd.isc.RPCManager.cancelQueue(transactionNum);
     }-*/;
-
+            
     /**
      * Erase all client-side record of a transaction, such that any response from the server will be ignored. <P> A transaction
      * means a batch of one or more RPCRequests that have already been sent to the server via {@link
@@ -170,8 +164,7 @@ public class RPCManager {
     public static native void clearTransaction(String transactionNum) /*-{
         $wnd.isc.RPCManager.clearTransaction(transactionNum);
     }-*/;
-
-
+            
     /**
      * Resend a suspended transaction to the server.  See {@link com.smartgwt.client.rpc.RPCManager#suspendTransaction} for
      * context.   <P> Note that the transaction must have been previously suspended, and in particular suspended validly
@@ -194,10 +187,6 @@ public class RPCManager {
     public static native void resendTransaction(String transactionNum) /*-{
         $wnd.isc.RPCManager.resendTransaction(transactionNum);
     }-*/;
-
-
-
-
 
 
     /**

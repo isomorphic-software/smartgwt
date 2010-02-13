@@ -759,13 +759,7 @@ public class ImgButton extends Img {
     }
 
     // ********************* Methods ***********************
-
-
-
-
-
-
-
+            
     /**
      * Select this object.
      */
@@ -773,7 +767,7 @@ public class ImgButton extends Img {
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
         self.select();
     }-*/;
-
+            
     /**
      * Select this object.
      */
@@ -781,7 +775,7 @@ public class ImgButton extends Img {
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
         self.deselect();
     }-*/;
-
+            
     /**
      * Find out if this object is selected
      *
@@ -796,8 +790,7 @@ public class ImgButton extends Img {
             return @com.smartgwt.client.util.JSOHelper::toBoolean(Z)(retVal);
         }
     }-*/;
-
-
+            
     /**
      * Add this widget to the specified mutually exclusive selection group with the ID passed in. Selecting this widget will
      * then deselect any other StatefulCanvases with the same radioGroup ID. StatefulCanvases can belong to only one
@@ -808,7 +801,7 @@ public class ImgButton extends Img {
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
         self.addToRadioGroup(groupID);
     }-*/;
-
+            
     /**
      * Remove this widget from the specified mutually exclusive selection group with the ID passed in. No-op's if this widget
      * is not a member of the groupID passed in. If no groupID is passed in, defaults to removing from whatever radioGroup this
@@ -830,10 +823,7 @@ public class ImgButton extends Img {
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
         self.removeFromRadioGroup(groupID);
     }-*/;
-
-
-
-
+            
     /**
      * Enable or disable this object
      * @param disabled true if this widget is to be disabled
@@ -842,8 +832,7 @@ public class ImgButton extends Img {
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
         self.setDisabled(disabled);
     }-*/;
-
-
+            
     /**
      * This property contains the default 'action' for the Button to fire when activated.
      */

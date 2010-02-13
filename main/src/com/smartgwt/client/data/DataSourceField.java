@@ -1020,7 +1020,6 @@ public class DataSourceField extends DataClass {
 
     // ********************* Methods ***********************
 
-
     // ********************* Static Methods ***********************
 
 

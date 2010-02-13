@@ -666,7 +666,7 @@ public class DSRequest extends RPCRequest {
     /**
      * Fieldname to sortBy
      *
-     * @return String
+     * @return SortSpecifier array
      */
     public native SortSpecifier[] getSortBy() /*-{
         var self = this.@com.smartgwt.client.core.DataClass::getJsObj()();

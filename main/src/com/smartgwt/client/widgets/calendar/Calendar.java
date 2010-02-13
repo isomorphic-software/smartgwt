@@ -1338,18 +1338,7 @@ public class Calendar extends Canvas  implements DataBoundComponent, com.smartgw
  
 
     // ********************* Methods ***********************
-
-
-
-
-
-
-
-
-
-
-
-
+            
     /**
      * Should the parameter date be considered a workday? By default this method tries to find the parameter date day in {@link
      * com.smartgwt.client.widgets.calendar.Calendar#getWorkdays workdays}, and returns true if found. Override this method to 
@@ -1367,7 +1356,7 @@ public class Calendar extends Canvas  implements DataBoundComponent, com.smartgw
             return @com.smartgwt.client.util.JSOHelper::toBoolean(Z)(retVal);
         }
     }-*/;
-
+            
     /**
      * Move to the next day, week, or month, depending on which tab is selected.
      */
@@ -1375,7 +1364,7 @@ public class Calendar extends Canvas  implements DataBoundComponent, com.smartgw
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
         self.next();
     }-*/;
-
+            
     /**
      * Move to the previous day, week, or month, depending on which tab is selected.
      */
@@ -1383,8 +1372,6 @@ public class Calendar extends Canvas  implements DataBoundComponent, com.smartgw
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
         self.previous();
     }-*/;
-
-
     /**
      * Add a dayBodyClick handler.
      * <p>
@@ -1425,7 +1412,6 @@ public class Calendar extends Canvas  implements DataBoundComponent, com.smartgw
                });
         }
    }-*/;
-
     /**
      * Add a dayHeaderClick handler.
      * <p>
@@ -1465,7 +1451,6 @@ public class Calendar extends Canvas  implements DataBoundComponent, com.smartgw
                });
         }
    }-*/;
-
     /**
      * Add a eventChanged handler.
      * <p>
@@ -1501,7 +1486,6 @@ public class Calendar extends Canvas  implements DataBoundComponent, com.smartgw
                });
         }
    }-*/;
-
     /**
      * Add a eventRemoved handler.
      * <p>
@@ -1536,7 +1520,6 @@ public class Calendar extends Canvas  implements DataBoundComponent, com.smartgw
                });
         }
    }-*/;
-
     /**
      * Add a eventAdded handler.
      * <p>
@@ -1571,7 +1554,6 @@ public class Calendar extends Canvas  implements DataBoundComponent, com.smartgw
                });
         }
    }-*/;
-
     /**
      * Add a eventClick handler.
      * <p>
@@ -1611,7 +1593,6 @@ public class Calendar extends Canvas  implements DataBoundComponent, com.smartgw
                });
         }
    }-*/;
-
     /**
      * Add a eventRemoveClick handler.
      * <p>
@@ -1651,7 +1632,6 @@ public class Calendar extends Canvas  implements DataBoundComponent, com.smartgw
                });
         }
    }-*/;
-
     /**
      * Add a eventMoved handler.
      * <p>
@@ -1689,7 +1669,6 @@ public class Calendar extends Canvas  implements DataBoundComponent, com.smartgw
                });
         }
    }-*/;
-
     /**
      * Add a eventResized handler.
      * <p>
@@ -1727,7 +1706,7 @@ public class Calendar extends Canvas  implements DataBoundComponent, com.smartgw
                });
         }
    }-*/;
-
+            
     /**
      * Fires whenever the user changes the current date, including picking a specific date or navigating to a new week or
      * month.
@@ -1737,7 +1716,6 @@ public class Calendar extends Canvas  implements DataBoundComponent, com.smartgw
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
         self.selectTab(tabnum);
     }-*/;
-
     /**
      * Add a dateChanged handler.
      * <p>
@@ -1772,7 +1750,7 @@ public class Calendar extends Canvas  implements DataBoundComponent, com.smartgw
                });
         }
    }-*/;
-
+            
     /**
      * Gets the day of the week (0-6) that the mouse is currently over.
      *
@@ -1782,7 +1760,7 @@ public class Calendar extends Canvas  implements DataBoundComponent, com.smartgw
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
         return self.getActiveDay();
     }-*/;
-
+            
     /**
      * Gets a date object representing the date over which the mouse is hovering for the current selected view. For month view,
      * the time will be set to midnight of the active day. For dayview and week view, the time will be the rounded to the
@@ -1799,7 +1777,7 @@ public class Calendar extends Canvas  implements DataBoundComponent, com.smartgw
             return @com.smartgwt.client.util.JSOHelper::toDate(D)(retVal.getTime());
         }
     }-*/;
-
+            
     /**
      * Sets the range over which the timeline will display events
      * @param start start of range

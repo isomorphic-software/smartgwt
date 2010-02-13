@@ -129,8 +129,7 @@ public class Dialog extends Window {
     }
 
     // ********************* Methods ***********************
-
-
+            
     /**
      * Method to save this Dialog's data. Called from <code>okClick()</code>,  <code>applyClick()</code>. No default
      * implementation - override to perform some action if required.
@@ -139,7 +138,7 @@ public class Dialog extends Window {
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
         self.saveData();
     }-*/;
-
+            
     /**
      * Handles a click on the close button of this window. The default implementation hides the window and returns false to
      * cancel bubbling.  Override this method if you want other actions to be taken.
@@ -148,7 +147,7 @@ public class Dialog extends Window {
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
         self.closeClick();
     }-*/;
-
+            
     /**
      * Handle a click on the 'cancel' button of this Dialog. Default implementation is to return null and hide the Dialog.
      * Override to do something else.
@@ -157,7 +156,7 @@ public class Dialog extends Window {
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
         self.cancelClick();
     }-*/;
-
+            
     /**
      * Handle a click on the 'ok' button of this Dialog. Default implementation is to call <code>saveData()</code>, hide the
      * Dialog, then return <code>true</code>.   Override to do something else.
@@ -166,7 +165,7 @@ public class Dialog extends Window {
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
         self.okClick();
     }-*/;
-
+            
     /**
      * Handle a click on the 'apply' button of this Dialog.   Default implementation is to call <code>saveData()</code>, but
      * NOT close the Dialog.
@@ -175,7 +174,7 @@ public class Dialog extends Window {
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
         self.applyClick();
     }-*/;
-
+            
     /**
      * Handle a click on the 'yes' button of this Dialog. Default implementation is to return <code>true</code>. Override to do
      * something else
@@ -184,7 +183,7 @@ public class Dialog extends Window {
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
         self.yesClick();
     }-*/;
-
+            
     /**
      * Handle a click on the 'no' button of this Dialog. Default implementation is to return <code>false</code>. Override to do
      * something else.
@@ -193,7 +192,6 @@ public class Dialog extends Window {
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
         self.noClick();
     }-*/;
-
 
     // ********************* Static Methods ***********************
 

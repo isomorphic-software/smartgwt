@@ -1158,10 +1158,7 @@ public class TreeGrid extends ListGrid  implements com.smartgwt.client.widgets.t
     }
 
     // ********************* Methods ***********************
-
-
-
-
+            
     /**
      * Returns a snapshot of the current open state of this grid's data as a {@link java.lang.String} object.<br> This object
      * can be passed to {@link com.smartgwt.client.widgets.tree.TreeGrid#setOpenState} to open the same set of folders within
@@ -1173,7 +1170,7 @@ public class TreeGrid extends ListGrid  implements com.smartgwt.client.widgets.t
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
         return self.getOpenState();
     }-*/;
-
+            
     /**
      * Reset this set of open folders within this grid's data to match the  {@link java.lang.String} object passed in.<br> Used
      * to restore previous state retrieved from the grid by a call to  {@link
@@ -1184,7 +1181,7 @@ public class TreeGrid extends ListGrid  implements com.smartgwt.client.widgets.t
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
         self.setOpenState(openState);
     }-*/;
-
+            
     /**
      * Returns a snapshot of the current selection within this treeGrid as  a {@link java.lang.String} object.<br> This object
      * can be passed to {@link com.smartgwt.client.widgets.tree.TreeGrid#setSelectedPaths} to reset this grid's selection the
@@ -1196,7 +1193,7 @@ public class TreeGrid extends ListGrid  implements com.smartgwt.client.widgets.t
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
         return self.getSelectedPaths();
     }-*/;
-
+            
     /**
      * Reset this grid's selection to match the {@link java.lang.String} object passed in.<br> Used to restore previous state
      * retrieved from the grid by a call to  {@link com.smartgwt.client.widgets.tree.TreeGrid#getSelectedPaths}.
@@ -1206,10 +1203,7 @@ public class TreeGrid extends ListGrid  implements com.smartgwt.client.widgets.t
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
         self.setSelectedPaths(selectedPaths);
     }-*/;
-
-
-
-
+            
     /**
      * Overridden to disallow editing of the {@link com.smartgwt.client.widgets.tree.TreeNode#getName 'name'} field of this
      * grid's data tree. Also disallows editing of the auto-generated tree field, which displays the result of {@link
@@ -1226,8 +1220,7 @@ public class TreeGrid extends ListGrid  implements com.smartgwt.client.widgets.t
             return @com.smartgwt.client.util.JSOHelper::toBoolean(Z)(retVal);
         }
     }-*/;
-
-
+            
     /**
      * Handle a doubleClick on a tree node - override of ListGrid stringMethod of same name.  If the node is a folder, this
      * implementation calls {@link com.smartgwt.client.widgets.tree.TreeGrid#toggleFolder} on it.  If the node is a leaf, calls
@@ -1237,11 +1230,7 @@ public class TreeGrid extends ListGrid  implements com.smartgwt.client.widgets.t
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
         self.recordDoubleClick();
     }-*/;
-
-
-
-
-
+            
     /**
      * Returns the row number of the most recent mouse event.
      *
@@ -1262,13 +1251,7 @@ public class TreeGrid extends ListGrid  implements com.smartgwt.client.widgets.t
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
         return self.getEventRow(y);
     }-*/;
-
-
-
-
-
-
-
+            
     /**
      * Get the appropriate open/close opener icon for a node.
      * @param node tree node in question
@@ -1279,7 +1262,7 @@ public class TreeGrid extends ListGrid  implements com.smartgwt.client.widgets.t
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
         return self.getOpenIcon(node.@com.smartgwt.client.core.DataClass::getJsObj()());
     }-*/;
-
+            
     /**
      * Get an additional icon to show between the open icon and folder/node icon for a particular  node. <P> NOTE: If {@link
      * com.smartgwt.client.widgets.grid.ListGrid#getSelectionAppearance selectionAppearance} is <code>"checkbox"</code>, this
@@ -1292,9 +1275,6 @@ public class TreeGrid extends ListGrid  implements com.smartgwt.client.widgets.t
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
         return self.getExtraIcon(node.@com.smartgwt.client.core.DataClass::getJsObj()());
     }-*/;
-
-
-
     /**
      * Add a folderOpened handler.
      * <p>
@@ -1333,7 +1313,6 @@ public class TreeGrid extends ListGrid  implements com.smartgwt.client.widgets.t
                });
         }
    }-*/;
-
     /**
      * Add a folderClosed handler.
      * <p>
@@ -1373,7 +1352,6 @@ public class TreeGrid extends ListGrid  implements com.smartgwt.client.widgets.t
                });
         }
    }-*/;
-
     /**
      * Add a folderClick handler.
      * <p>
@@ -1407,7 +1385,6 @@ public class TreeGrid extends ListGrid  implements com.smartgwt.client.widgets.t
                });
         }
    }-*/;
-
     /**
      * Add a leafClick handler.
      * <p>
@@ -1441,7 +1418,6 @@ public class TreeGrid extends ListGrid  implements com.smartgwt.client.widgets.t
                });
         }
    }-*/;
-
     /**
      * Add a nodeClick handler.
      * <p>
@@ -1477,7 +1453,6 @@ public class TreeGrid extends ListGrid  implements com.smartgwt.client.widgets.t
                });
         }
    }-*/;
-
     /**
      * Add a folderContextClick handler.
      * <p>
@@ -1515,7 +1490,6 @@ public class TreeGrid extends ListGrid  implements com.smartgwt.client.widgets.t
                });
         }
    }-*/;
-
     /**
      * Add a leafContextClick handler.
      * <p>
@@ -1553,7 +1527,6 @@ public class TreeGrid extends ListGrid  implements com.smartgwt.client.widgets.t
                });
         }
    }-*/;
-
     /**
      * Add a nodeContextClick handler.
      * <p>
@@ -1594,7 +1567,6 @@ public class TreeGrid extends ListGrid  implements com.smartgwt.client.widgets.t
                });
         }
    }-*/;
-
     /**
      * Add a dataArrived handler.
      * <p>
@@ -1632,8 +1604,6 @@ public class TreeGrid extends ListGrid  implements com.smartgwt.client.widgets.t
                });
         }
    }-*/;
-
-
 
     // ********************* Static Methods ***********************
 

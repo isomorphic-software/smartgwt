@@ -155,7 +155,6 @@ public class RichTextItem extends CanvasItem {
     // ********************* Static Methods ***********************
 
 
-
     /**
      * An array of control group names specifying which groups of controls should be included in the editor toolbar.
      *

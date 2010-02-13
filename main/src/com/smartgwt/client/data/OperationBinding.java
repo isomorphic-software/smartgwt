@@ -687,9 +687,6 @@ public class OperationBinding extends DataClass {
 
 
 
-
-
-
     public OperationBinding(DSOperationType operationType, String dataURL) {
         setOperationType(operationType);
         setDataURL(dataURL);

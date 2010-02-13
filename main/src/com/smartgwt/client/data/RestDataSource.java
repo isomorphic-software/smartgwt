@@ -480,8 +480,6 @@ public class RestDataSource extends DataSource {
 
     // ********************* Methods ***********************
 
-
-
     // ********************* Static Methods ***********************
 
 }

@@ -114,7 +114,6 @@ public class SearchForm extends DynamicForm {
 
     // ********************* Methods ***********************
 
-
     // ********************* Static Methods ***********************
 
 }

@@ -134,10 +134,8 @@ public class SimpleType extends BaseClass {
 
     // ********************* Methods ***********************
 
-
-
     // ********************* Static Methods ***********************
-
+            
     /**
      * Retrieve a simpleType definition by type name
      * @param typeName the <code>name</code> of the simpleType to return
@@ -153,10 +151,6 @@ public class SimpleType extends BaseClass {
         }
         return retVal;
     }-*/;
-
-
-
-
 
 
 

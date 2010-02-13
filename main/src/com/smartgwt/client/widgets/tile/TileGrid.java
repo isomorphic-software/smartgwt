@@ -234,12 +234,7 @@ public class TileGrid extends TileLayout  implements DataBoundComponent, com.sma
     }
 
     // ********************* Methods ***********************
-
-
-
-
-
-
+            
     /**
      * Return the first selected record in this component
      *
@@ -255,16 +250,6 @@ public class TileGrid extends TileLayout  implements DataBoundComponent, com.sma
         }
         return retVal;
     }-*/;
-
-
-
-
-
-
-
-
-
-
     /**
      * Add a recordClick handler.
      * <p>
@@ -302,7 +287,6 @@ public class TileGrid extends TileLayout  implements DataBoundComponent, com.sma
                });
         }
    }-*/;
-
     /**
      * Add a recordDoubleClick handler.
      * <p>
@@ -340,7 +324,6 @@ public class TileGrid extends TileLayout  implements DataBoundComponent, com.sma
                });
         }
    }-*/;
-
     /**
      * Add a selectionChanged handler.
      * <p>
@@ -376,7 +359,7 @@ public class TileGrid extends TileLayout  implements DataBoundComponent, com.sma
                });
         }
    }-*/;
-
+            
     /**
      * This is not allowed for tileGrid. Instead, use {@link com.smartgwt.client.widgets.tile.TileGrid#addData}.
      */
@@ -384,7 +367,7 @@ public class TileGrid extends TileLayout  implements DataBoundComponent, com.sma
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
         self.addTile();
     }-*/;
-
+            
     /**
      * This is not allowed for tileGrid. Instead, use {@link com.smartgwt.client.widgets.tile.TileGrid#removeData}.
      */
@@ -392,11 +375,7 @@ public class TileGrid extends TileLayout  implements DataBoundComponent, com.sma
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
         self.removeTile();
     }-*/;
-
-
-
-
-
+            
     /**
      * Return "title" HTML to display as a drag tracker when the user drags some record.<br> Default implementation will
      * display the cell value for the title field (see  {@link com.smartgwt.client.widgets.grid.ListGrid#getTitleField}) for
@@ -411,10 +390,7 @@ public class TileGrid extends TileLayout  implements DataBoundComponent, com.sma
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
         return self.getDragTrackerTitle(record.@com.smartgwt.client.core.DataClass::getJsObj()(), rowNum);
     }-*/;
-
-
-
-
+            
     /**
      * Sets some presentation properties (visibility, width, userFormula and userSummary) of the  grid fields based on the
      * {@link java.lang.String} object passed in.<br> Used to restore previous state retrieved from the grid by a call to
@@ -425,7 +401,7 @@ public class TileGrid extends TileLayout  implements DataBoundComponent, com.sma
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
         self.setFieldState(fieldState);
     }-*/;
-
+            
     /**
      * Returns a snapshot of the current presentation of this grid's fields as  a {@link java.lang.String} object. <P> This
      * object can be passed to {@link com.smartgwt.client.widgets.tile.TileGrid#setFieldState} to reset this grid's fields to
@@ -438,7 +414,7 @@ public class TileGrid extends TileLayout  implements DataBoundComponent, com.sma
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
         return self.getFieldState();
     }-*/;
-
+            
     /**
      * Notification method fired when new data arrives from the server to be displayed in this tileGrid, (for example in
      * response to the user scrolling a new set of tiles into view). Only applies to databound tileGrid where the {@link
@@ -452,7 +428,7 @@ public class TileGrid extends TileLayout  implements DataBoundComponent, com.sma
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
         self.dataArrived(startRecord, endRecord);
     }-*/;
-
+            
     /**
      * Uses a "fetch" operation on the current {@link com.smartgwt.client.widgets.DataBoundComponent#getDataSource
      * 'DataSource'} to  retrieve data that matches the current filter and sort criteria for this component, then  exports the

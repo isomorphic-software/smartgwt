@@ -455,10 +455,7 @@ public class ColumnTree extends Layout  implements DataBoundComponent, com.smart
     }
 
     // ********************* Methods ***********************
-
-
-
-
+            
     /**
      * Whether the indicated column should show a header.  Returns this.showHeaders by default, override for different
      * behavior.
@@ -469,7 +466,7 @@ public class ColumnTree extends Layout  implements DataBoundComponent, com.smart
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
         self.shouldShowHeader(node.@com.smartgwt.client.core.DataClass::getJsObj()(), colNum);
     }-*/;
-
+            
     /**
      * Returns the title to show for the header of indicated column.  Only called if {@link
      * com.smartgwt.client.widgets.grid.ColumnTree#shouldShowHeader} returns true for this column. <P> By default, returns
@@ -483,7 +480,7 @@ public class ColumnTree extends Layout  implements DataBoundComponent, com.smart
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
         self.getColumnTitle(node.@com.smartgwt.client.core.DataClass::getJsObj()(), colNum);
     }-*/;
-
+            
     /**
      * Retrieve a record by index.   <P> If <code>colNum</code> is passed, returns the record found in that column at that
      * index, or null if the column doesn't exist or the index is too high. <P> With no <code>colNum</code> parameter, a
@@ -520,7 +517,7 @@ public class ColumnTree extends Layout  implements DataBoundComponent, com.smart
         if(ret == null || ret === undefined) return null;
         return @com.smartgwt.client.widgets.tree.TreeNode::new(Lcom/google/gwt/core/client/JavaScriptObject;)(ret);
     }-*/;
-
+            
     /**
      * Get the appropriate icon for a node. <P> By default icons are derived from {@link
      * com.smartgwt.client.widgets.grid.ColumnTree#getFolderIcon folderIcon} and {@link
@@ -537,18 +534,6 @@ public class ColumnTree extends Layout  implements DataBoundComponent, com.smart
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
         return self.getIcon(node.@com.smartgwt.client.core.DataClass::getJsObj()());
     }-*/;
-
-
-
-
-
-
-
-
-
-
-
-
 
     // ********************* Static Methods ***********************
 

@@ -3,7 +3,7 @@ package com.smartgwt.client.docs;
 
 /**
  * Validation
- * @see com.smartgwt.client.util.isc#getErrorsHTML
+ * @see com.smartgwt.client.widgets.form.DynamicForm#getErrorsHTML
  * @see com.smartgwt.client.widgets.form.DynamicForm#getItemErrorHTML
  * @see com.smartgwt.client.widgets.form.DynamicForm#validate
  * @see com.smartgwt.client.widgets.form.DynamicForm#valuesAreValid
