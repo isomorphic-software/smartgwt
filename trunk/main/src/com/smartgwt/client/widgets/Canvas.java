@@ -2836,9 +2836,7 @@ public class Canvas extends BaseWidget  implements com.smartgwt.client.widgets.e
     }
 
     // ********************* Methods ***********************
-
-
-
+            
     /**
      * Returns the boolean true, if the widget has been completely drawn, and false otherwise.
      *
@@ -2853,13 +2851,7 @@ public class Canvas extends BaseWidget  implements com.smartgwt.client.widgets.e
             return @com.smartgwt.client.util.JSOHelper::toBoolean(Z)(retVal);
         }
     }-*/;
-
-
-
-
-
-
-
+            
     /**
      * Returns whether a canvas is waiting to be redrawn. Will return true if  {@link
      * com.smartgwt.client.widgets.Canvas#markForRedraw} has been called, but this canvas has not yet been redrawn.
@@ -2875,7 +2867,7 @@ public class Canvas extends BaseWidget  implements com.smartgwt.client.widgets.e
             return @com.smartgwt.client.util.JSOHelper::toBoolean(Z)(retVal);
         }
     }-*/;
-
+            
     /**
      * Marks the widget as "dirty" so that it will be added to a queue for redraw. Redraw of dirty components is handled by a
      * looping timer and will after a very short delay (typically less than 100ms). In most cases it is recommended that
@@ -2900,7 +2892,7 @@ public class Canvas extends BaseWidget  implements com.smartgwt.client.widgets.e
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
         self.markForRedraw(reason);
     }-*/;
-
+            
     /**
      * Redraws the widget immediately with its current property values.   Generally, if you want a Canvas to redraw, call
      * markForRedraw() - this will cause the Canvas to be redrawn when current processing ends, so that a series of
@@ -2923,7 +2915,7 @@ public class Canvas extends BaseWidget  implements com.smartgwt.client.widgets.e
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
         self.redraw(reason);
     }-*/;
-
+            
     /**
      * Remove all visual representation of a Canvas. <P> This is far more expensive than hide(), because in order to become
      * visible again, the Canvas must be draw()n again.  Generally, application code has no reason to call clear(); if you want
@@ -2934,8 +2926,7 @@ public class Canvas extends BaseWidget  implements com.smartgwt.client.widgets.e
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
         self.clear();
     }-*/;
-
-
+            
     /**
      * {@link com.smartgwt.client.widgets.Canvas#destroy} this canvas on a timeout. This method should be used instead of
      * calling <code>canvas.destroy()</code> directly unless there's a reason a the canvas needs to be destroyed synchronously.
@@ -2947,7 +2938,7 @@ public class Canvas extends BaseWidget  implements com.smartgwt.client.widgets.e
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
         self.markForDestroy();
     }-*/;
-
+            
     /**
      * Adds newChild as a child of this widget, set up a named object reference (i.e., this[name]) to the new widget if name
      * argument is provided, and draw the child if this widget has been drawn already. <P> If newChild has a parent it will be
@@ -2989,9 +2980,7 @@ public class Canvas extends BaseWidget  implements com.smartgwt.client.widgets.e
         }
         return retVal;
     }-*/;
-
-
-
+            
     /**
      * Adds newPeer as a peer of this widget (also making it a child of this widget's parent, if      any), set up a named
      * object reference (i.e., this[name]) to the new widget if name is      provided, and draw the peer if this widget has
@@ -3035,12 +3024,7 @@ public class Canvas extends BaseWidget  implements com.smartgwt.client.widgets.e
         }
         return retVal;
     }-*/;
-
-
-
-
-
-
+            
     /**
      * Returns true if element is a descendant of this widget (i.e., exists below this widget in      the containment
      * hierarchy); and false otherwise.
@@ -3076,8 +3060,7 @@ public class Canvas extends BaseWidget  implements com.smartgwt.client.widgets.e
                 return @com.smartgwt.client.util.JSOHelper::toBoolean(Z)(retVal);
         }
     }-*/;
-
-
+            
     /**
      * Hides the click mask associated with this canvas.
      */
@@ -3095,7 +3078,7 @@ public class Canvas extends BaseWidget  implements com.smartgwt.client.widgets.e
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
         self.hideClickMask(ID);
     }-*/;
-
+            
     /**
      * Determines whether a clickmask is showing
      */
@@ -3113,16 +3096,7 @@ public class Canvas extends BaseWidget  implements com.smartgwt.client.widgets.e
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
         self.clickMaskUp(ID);
     }-*/;
-
-
-
-
-
-
-
-
-
-
+            
     /**
      * Return the right coordinate of this object as rendered, relative to its enclosing context, in pixels.
      *
@@ -3132,7 +3106,7 @@ public class Canvas extends BaseWidget  implements com.smartgwt.client.widgets.e
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
         return self.getRight();
     }-*/;
-
+            
     /**
      * Resizes the widget horizontally to position its right side at the specified coordinate. <P> NOTE: if you're setting
      * multiple coordinates, use setRect(), moveTo() or resizeTo() instead
@@ -3142,7 +3116,7 @@ public class Canvas extends BaseWidget  implements com.smartgwt.client.widgets.e
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
         self.setRight(right);
     }-*/;
-
+            
     /**
      * Return the bottom coordinate of this object as rendered, relative to its enclosing context, in pixels.
      *
@@ -3152,7 +3126,7 @@ public class Canvas extends BaseWidget  implements com.smartgwt.client.widgets.e
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
         return self.getBottom();
     }-*/;
-
+            
     /**
      * Resizes the widget vertically to position its bottom edge at the specified coordinate. <P> NOTE: if you're setting
      * multiple coordinates, use setRect(), moveTo() or resizeTo() instead
@@ -3162,7 +3136,7 @@ public class Canvas extends BaseWidget  implements com.smartgwt.client.widgets.e
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
         self.setBottom(bottom);
     }-*/;
-
+            
     /**
      * Returns the scrollable width of the widget's contents, including children, ignoring clipping.
      *
@@ -3172,7 +3146,7 @@ public class Canvas extends BaseWidget  implements com.smartgwt.client.widgets.e
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
         return self.getScrollWidth();
     }-*/;
-
+            
     /**
      * Returns the scrollable height of the widget's contents, including children, ignoring          clipping.
      *
@@ -3182,7 +3156,7 @@ public class Canvas extends BaseWidget  implements com.smartgwt.client.widgets.e
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
         return self.getScrollHeight();
     }-*/;
-
+            
     /**
      * Get the number of pixels this Canvas is scrolled from its left edge.
      *
@@ -3192,7 +3166,7 @@ public class Canvas extends BaseWidget  implements com.smartgwt.client.widgets.e
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
         return self.getScrollLeft();
     }-*/;
-
+            
     /**
      * Get the number of pixels this Canvas is scrolled from its top edge.
      *
@@ -3202,7 +3176,7 @@ public class Canvas extends BaseWidget  implements com.smartgwt.client.widgets.e
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
         return self.getScrollTop();
     }-*/;
-
+            
     /**
      * Set the page-relative left coordinate of this widget.
      * @param left new left coordinate in pixels
@@ -3211,7 +3185,7 @@ public class Canvas extends BaseWidget  implements com.smartgwt.client.widgets.e
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
         self.setPageLeft(left);
     }-*/;
-
+            
     /**
      * Set the page-relative top coordinate of this widget.
      * @param top new top coordinate in pixels
@@ -3220,7 +3194,7 @@ public class Canvas extends BaseWidget  implements com.smartgwt.client.widgets.e
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
         self.setPageTop(top);
     }-*/;
-
+            
     /**
      * Returns the page-relative left coordinate of the widget on the page, in pixels.
      *
@@ -3230,7 +3204,7 @@ public class Canvas extends BaseWidget  implements com.smartgwt.client.widgets.e
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
         return self.getPageLeft();
     }-*/;
-
+            
     /**
      * Returns the page-relative top coordinate of the widget on the page, in pixels
      *
@@ -3240,7 +3214,7 @@ public class Canvas extends BaseWidget  implements com.smartgwt.client.widgets.e
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
         return self.getPageTop();
     }-*/;
-
+            
     /**
      * Return the page-relative right coordinate of this object, in pixels.
      *
@@ -3250,7 +3224,7 @@ public class Canvas extends BaseWidget  implements com.smartgwt.client.widgets.e
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
         return self.getPageRight();
     }-*/;
-
+            
     /**
      * Return the page-relative bottom coordinate of this object, in pixels.
      *
@@ -3260,9 +3234,7 @@ public class Canvas extends BaseWidget  implements com.smartgwt.client.widgets.e
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
         return self.getPageBottom();
     }-*/;
-
-
-
+            
     /**
      * Return whether or not this object contains the specified global (x,y) coordinates. <P> Will return false if any
      * parentElement does not contain the specified point, (EG: you're hovering over an element's absolute location, but it is
@@ -3302,7 +3274,7 @@ public class Canvas extends BaseWidget  implements com.smartgwt.client.widgets.e
                 return @com.smartgwt.client.util.JSOHelper::toBoolean(Z)(retVal);
         }
     }-*/;
-
+            
     /**
      * Does this widget contain the specified global (x,y) coordinates, and have no other widgets also at the specified
      * position, obscuring this one?  This is commonly used for (for example) drag and drop interactions.
@@ -3341,7 +3313,7 @@ public class Canvas extends BaseWidget  implements com.smartgwt.client.widgets.e
                 return @com.smartgwt.client.util.JSOHelper::toBoolean(Z)(retVal);
         }
     }-*/;
-
+            
     /**
      * Returns true if the rectangles of this widget and the specified widget overlap.
      * @param other other canvas to test for intersection
@@ -3357,8 +3329,7 @@ public class Canvas extends BaseWidget  implements com.smartgwt.client.widgets.e
             return @com.smartgwt.client.util.JSOHelper::toBoolean(Z)(retVal);
         }
     }-*/;
-
-
+            
     /**
      * Return true if the last event's mouse coordinates are within the bounds of this component.  NOTE: Z-ordering is not
      * considered for the purposes of this test.  If the coordinate you're  testing is occluded by other component, but the X,Y
@@ -3375,7 +3346,7 @@ public class Canvas extends BaseWidget  implements com.smartgwt.client.widgets.e
             return @com.smartgwt.client.util.JSOHelper::toBoolean(Z)(retVal);
         }
     }-*/;
-
+            
     /**
      * Return the X-coordinate of the last event relative to the left edge of the content of this Canvas.<br><br>  NOTE: To get
      * a coordinate relative to the <b>viewport</b> of this Canvas, subtract  this.getScrollLeft()
@@ -3386,7 +3357,7 @@ public class Canvas extends BaseWidget  implements com.smartgwt.client.widgets.e
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
         return self.getOffsetX();
     }-*/;
-
+            
     /**
      * Return the Y-coordinate of the last event, relative to the top edge of the content of this Canvas.<br><br>  NOTE: To get
      * a coordinate relative to the <b>viewport</b> of this Canvas, subtract  this.getScrollTop()
@@ -3397,8 +3368,7 @@ public class Canvas extends BaseWidget  implements com.smartgwt.client.widgets.e
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
         return self.getOffsetY();
     }-*/;
-
-
+            
     /**
      * Returns the width of the viewport onto the scrollable content.
      *
@@ -3408,7 +3378,7 @@ public class Canvas extends BaseWidget  implements com.smartgwt.client.widgets.e
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
         return self.getViewportWidth();
     }-*/;
-
+            
     /**
      * Returns the height of the viewport onto the scrollable content.
      *
@@ -3418,7 +3388,7 @@ public class Canvas extends BaseWidget  implements com.smartgwt.client.widgets.e
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
         return self.getViewportHeight();
     }-*/;
-
+            
     /**
      * Returns the amount of space available for (an) absolutely positioned child widget(s) or   HTML content, without
      * introducing clipping, scrolling or overflow.<br>  This is the space within the viewport of the widget (including
@@ -3430,7 +3400,7 @@ public class Canvas extends BaseWidget  implements com.smartgwt.client.widgets.e
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
         return self.getInnerHeight();
     }-*/;
-
+            
     /**
      * Returns the amount of space available for (an) absolutely positioned child widget(s) or   HTML content, without
      * introducing clipping, scrolling or overflow.<br>  This is the space within the viewport of the widget (including
@@ -3442,7 +3412,7 @@ public class Canvas extends BaseWidget  implements com.smartgwt.client.widgets.e
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
         return self.getInnerWidth();
     }-*/;
-
+            
     /**
      * Returns the amount of space available for interior content (or relatively positioned child  widget(s)) without
      * introducing clipping, scrolling or overflow.<br>  This is the space within the viewport of the widget (not including
@@ -3454,7 +3424,7 @@ public class Canvas extends BaseWidget  implements com.smartgwt.client.widgets.e
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
         return self.getInnerContentHeight();
     }-*/;
-
+            
     /**
      * Returns the amount of space available for interior content (or relatively positioned child  widget(s)) without
      * introducing clipping, scrolling or overflow.<br>  This is the space within the viewport of the widget (not including
@@ -3466,7 +3436,7 @@ public class Canvas extends BaseWidget  implements com.smartgwt.client.widgets.e
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
         return self.getInnerContentWidth();
     }-*/;
-
+            
     /**
      * Return the visible width of the Canvas.
      *
@@ -3476,7 +3446,7 @@ public class Canvas extends BaseWidget  implements com.smartgwt.client.widgets.e
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
         return self.getVisibleWidth();
     }-*/;
-
+            
     /**
      * Return the visible height of the Canvas.
      *
@@ -3486,7 +3456,7 @@ public class Canvas extends BaseWidget  implements com.smartgwt.client.widgets.e
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
         return self.getVisibleHeight();
     }-*/;
-
+            
     /**
      * Moves the widget deltaX pixels to the right and deltaY pixels down. Pass negative          numbers to move up and/or to
      * the left.
@@ -3504,8 +3474,7 @@ public class Canvas extends BaseWidget  implements com.smartgwt.client.widgets.e
             return @com.smartgwt.client.util.JSOHelper::toBoolean(Z)(retVal);
         }
     }-*/;
-
-
+            
     /**
      * Get an offset to be used when calculating snap positioning. Returns 0 by default.
      *
@@ -3526,7 +3495,7 @@ public class Canvas extends BaseWidget  implements com.smartgwt.client.widgets.e
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
         return self.getVSnapOrigin(snapChild.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()());
     }-*/;
-
+            
     /**
      * Get an offset to be used when calculating snap positioning. Returns 0 by default.
      *
@@ -3547,7 +3516,7 @@ public class Canvas extends BaseWidget  implements com.smartgwt.client.widgets.e
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
         return self.getHSnapOrigin(snapChild.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()());
     }-*/;
-
+            
     /**
      * Show this widget next to another widget.
      * @param otherWidget Canvas to show next to
@@ -3566,8 +3535,6 @@ public class Canvas extends BaseWidget  implements com.smartgwt.client.widgets.e
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
         self.showNextTo(otherWidget.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()(), side);
     }-*/;
-
-
     /**
      * Add a resized handler.
      * <p>
@@ -3604,8 +3571,7 @@ public class Canvas extends BaseWidget  implements com.smartgwt.client.widgets.e
                });
         }
    }-*/;
-
-
+            
     /**
      * <code>layoutChildren()</code> is where a Canvas should implement a sizing policy for it's Canvas children.  Since
      * <code>layoutChildren</code> calls parentResized() on its children, {@link
@@ -3627,8 +3593,7 @@ public class Canvas extends BaseWidget  implements com.smartgwt.client.widgets.e
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
         self.layoutChildren(reason);
     }-*/;
-
-
+            
     /**
      * Fires when the interior size of the parent changes, including parent resize and scrollbar introduction or removal. <p>
      * This method allows a child to implement a layout policy that can be used within any  parent, such as a Resizer component
@@ -3640,8 +3605,7 @@ public class Canvas extends BaseWidget  implements com.smartgwt.client.widgets.e
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
         self.parentResized();
     }-*/;
-
-
+            
     /**
      * If this widget is showing scrollbars, and a user drags close to the edge of the viewport, should we scroll the viewport
      * in the appropriate direction? Returns this.canDragScroll by default.
@@ -3650,8 +3614,7 @@ public class Canvas extends BaseWidget  implements com.smartgwt.client.widgets.e
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
         self.shouldDragScroll();
     }-*/;
-
-
+            
     /**
      * This method tells a component to adjust for size changes made to content by external code. <P> This is for very advanced
      * use in which the contents of a Canvas are being directly updated by Ajax techniques, which is required for integration
@@ -3668,9 +3631,7 @@ public class Canvas extends BaseWidget  implements com.smartgwt.client.widgets.e
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
         self.adjustForContent(immediate);
     }-*/;
-
-
-
+            
     /**
      * Vertically scrolls the content of the widget to 0
      */
@@ -3678,7 +3639,7 @@ public class Canvas extends BaseWidget  implements com.smartgwt.client.widgets.e
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
         self.scrollToTop();
     }-*/;
-
+            
     /**
      * Vertically scrolls the content of the widget to the end of its content
      */
@@ -3686,7 +3647,7 @@ public class Canvas extends BaseWidget  implements com.smartgwt.client.widgets.e
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
         self.scrollToBottom();
     }-*/;
-
+            
     /**
      * Horizontally scrolls the content of the widget to 0
      */
@@ -3694,7 +3655,7 @@ public class Canvas extends BaseWidget  implements com.smartgwt.client.widgets.e
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
         self.scrollToLeft();
     }-*/;
-
+            
     /**
      * Horizontally scrolls the content of the widget to the end of its content
      */
@@ -3702,7 +3663,7 @@ public class Canvas extends BaseWidget  implements com.smartgwt.client.widgets.e
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
         self.scrollToRight();
     }-*/;
-
+            
     /**
      * Scroll this widget by some pixel increment in either (or both) direction(s).
      * @param dX Number of pixels to scroll horizontally
@@ -3712,8 +3673,7 @@ public class Canvas extends BaseWidget  implements com.smartgwt.client.widgets.e
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
         self.scrollBy(dX, dY);
     }-*/;
-
-
+            
     /**
      * Scrolls the content of the widget so that the origin (top-left corner) of the content is left pixels to the left and top
      * pixels above the widget's top-left corner (but still clipped by the widget's dimensions). <p> This is guaranteed to be
@@ -3737,7 +3697,6 @@ public class Canvas extends BaseWidget  implements com.smartgwt.client.widgets.e
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
         self.scrollTo(left, top);
     }-*/;
-
     /**
      * Add a scrolled handler.
      * <p>
@@ -3772,8 +3731,7 @@ public class Canvas extends BaseWidget  implements com.smartgwt.client.widgets.e
                });
         }
    }-*/;
-
-
+            
     /**
      * Sets this widget's visibility to "inherit", so that it becomes visible if all it's parents are visible or it has no
      * parents. <P> If the widget has not yet been drawn (and doesn't have a parent or master), this method calls the draw
@@ -3783,7 +3741,7 @@ public class Canvas extends BaseWidget  implements com.smartgwt.client.widgets.e
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
         self.show();
     }-*/;
-
+            
     /**
      * Sets the widget's CSS visibility attribute to "hidden".
      */
@@ -3791,10 +3749,7 @@ public class Canvas extends BaseWidget  implements com.smartgwt.client.widgets.e
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
         self.hide();
     }-*/;
-
-
-
-
+            
     /**
      * Enables this widget and any children / peers of this widget.
      */
@@ -3802,7 +3757,7 @@ public class Canvas extends BaseWidget  implements com.smartgwt.client.widgets.e
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
         self.enable();
     }-*/;
-
+            
     /**
      * Disables this widget and any children and peers of this widget.
      */
@@ -3810,7 +3765,7 @@ public class Canvas extends BaseWidget  implements com.smartgwt.client.widgets.e
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
         self.disable();
     }-*/;
-
+            
     /**
      * Is this canvas disabled? Note that the disabled state is inherited - this method will return true if this widget, or any
      * of its ancestors are marked disabled.
@@ -3826,9 +3781,7 @@ public class Canvas extends BaseWidget  implements com.smartgwt.client.widgets.e
             return @com.smartgwt.client.util.JSOHelper::toBoolean(Z)(retVal);
         }
     }-*/;
-
-
-
+            
     /**
      * If this canvas can accept focus, give it keyboard focus. After this method, the canvas will appear focused and will
      * receive keyboard events.
@@ -3837,7 +3790,7 @@ public class Canvas extends BaseWidget  implements com.smartgwt.client.widgets.e
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
         self.focus();
     }-*/;
-
+            
     /**
      * If this canvas has keyboard focus, blur it. After this method, the canvas will no longer appear focused and will stop
      * receiving keyboard events.
@@ -3846,7 +3799,7 @@ public class Canvas extends BaseWidget  implements com.smartgwt.client.widgets.e
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
         self.blur();
     }-*/;
-
+            
     /**
      * Returns true if the keyboard focus is in this Canvas or any child of this Canvas.
      *
@@ -3861,9 +3814,7 @@ public class Canvas extends BaseWidget  implements com.smartgwt.client.widgets.e
             return @com.smartgwt.client.util.JSOHelper::toBoolean(Z)(retVal);
         }
     }-*/;
-
-
-
+            
     /**
      * Puts this widget at the top of the stacking order, so it appears in front of all other widgets in the same parent.
      */
@@ -3871,7 +3822,7 @@ public class Canvas extends BaseWidget  implements com.smartgwt.client.widgets.e
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
         self.bringToFront();
     }-*/;
-
+            
     /**
      * Puts this widget at the bottom of the stacking order, so it appears behind all other widgets in the same parent.
      */
@@ -3879,7 +3830,7 @@ public class Canvas extends BaseWidget  implements com.smartgwt.client.widgets.e
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
         self.sendToBack();
     }-*/;
-
+            
     /**
      * Puts this widget just above the specified widget in the stacking order, so it appears in front of the specified widget
      * if both widgets have the same parent.
@@ -3889,7 +3840,7 @@ public class Canvas extends BaseWidget  implements com.smartgwt.client.widgets.e
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
         self.moveAbove(canvas.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()());
     }-*/;
-
+            
     /**
      * Puts this widget just below the specified widget in the stacking order, so it appears behind the specified widget if
      * both widgets have the same parent.
@@ -3899,14 +3850,7 @@ public class Canvas extends BaseWidget  implements com.smartgwt.client.widgets.e
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
         self.moveBelow(canvas.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()());
     }-*/;
-
-
-
-
-
-
-
-
+            
     /**
      * Handler fired on a delay when the user hovers the mouse over this hover-target. Default implementation will fire
      * <code>this.hover()</code> (if defined), and handle  showing the hover canvas if <code>this.showHover</code> is true.
@@ -3915,7 +3859,7 @@ public class Canvas extends BaseWidget  implements com.smartgwt.client.widgets.e
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
         self.handleHover();
     }-*/;
-
+            
     /**
      * If this canvas is currently showing a hover (see {@link com.smartgwt.client.widgets.Canvas#handleHover}), this method
      * can be called to update the contents of the hover. Has no effect if the hover canvas is not showing for this widget.
@@ -3936,7 +3880,6 @@ public class Canvas extends BaseWidget  implements com.smartgwt.client.widgets.e
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
         self.updateHover(hoverHTML);
     }-*/;
-
     /**
      * Add a hoverHidden handler.
      * <p>
@@ -3972,7 +3915,6 @@ public class Canvas extends BaseWidget  implements com.smartgwt.client.widgets.e
                });
         }
    }-*/;
-
     /**
      * Add a hover handler.
      * <p>
@@ -4008,7 +3950,7 @@ public class Canvas extends BaseWidget  implements com.smartgwt.client.widgets.e
                });
         }
    }-*/;
-
+            
     /**
      * If <code>this.showHover</code> is true, when the user holds the mouse over this Canvas for long enough to trigger a
      * hover event, a hover canvas is shown by default. This method returns the contents of that hover canvas. Default
@@ -4019,9 +3961,6 @@ public class Canvas extends BaseWidget  implements com.smartgwt.client.widgets.e
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
         self.getHoverHTML();
     }-*/;
-
-
-
     /**
      * Add a showContextMenu handler.
      * <p>
@@ -4065,7 +4004,7 @@ public class Canvas extends BaseWidget  implements com.smartgwt.client.widgets.e
                });
         }
    }-*/;
-
+            
     /**
      * The default implementation of this method hides the contextMenu currently being shown for this component (which occurs
      * when the mouse button that toggles the context menu is released). Override if you want some other behavior.
@@ -4074,7 +4013,6 @@ public class Canvas extends BaseWidget  implements com.smartgwt.client.widgets.e
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
         self.hideContextMenu();
     }-*/;
-
     /**
      * Add a mouseOver handler.
      * <p>
@@ -4112,7 +4050,6 @@ public class Canvas extends BaseWidget  implements com.smartgwt.client.widgets.e
                });
         }
    }-*/;
-
     /**
      * Add a mouseDown handler.
      * <p>
@@ -4150,7 +4087,6 @@ public class Canvas extends BaseWidget  implements com.smartgwt.client.widgets.e
                });
         }
    }-*/;
-
     /**
      * Add a rightMouseDown handler.
      * <p>
@@ -4188,7 +4124,6 @@ public class Canvas extends BaseWidget  implements com.smartgwt.client.widgets.e
                });
         }
    }-*/;
-
     /**
      * Add a mouseStillDown handler.
      * <p>
@@ -4232,7 +4167,6 @@ public class Canvas extends BaseWidget  implements com.smartgwt.client.widgets.e
                });
         }
    }-*/;
-
     /**
      * Add a mouseMove handler.
      * <p>
@@ -4270,7 +4204,6 @@ public class Canvas extends BaseWidget  implements com.smartgwt.client.widgets.e
                });
         }
    }-*/;
-
     /**
      * Add a mouseOut handler.
      * <p>
@@ -4308,7 +4241,6 @@ public class Canvas extends BaseWidget  implements com.smartgwt.client.widgets.e
                });
         }
    }-*/;
-
     /**
      * Add a mouseUp handler.
      * <p>
@@ -4346,7 +4278,6 @@ public class Canvas extends BaseWidget  implements com.smartgwt.client.widgets.e
                });
         }
    }-*/;
-
     /**
      * Add a click handler.
      * <p>
@@ -4384,7 +4315,6 @@ public class Canvas extends BaseWidget  implements com.smartgwt.client.widgets.e
                });
         }
    }-*/;
-
     /**
      * Add a doubleClick handler.
      * <p>
@@ -4423,7 +4353,6 @@ public class Canvas extends BaseWidget  implements com.smartgwt.client.widgets.e
                });
         }
    }-*/;
-
     /**
      * Add a mouseWheel handler.
      * <p>
@@ -4461,7 +4390,6 @@ public class Canvas extends BaseWidget  implements com.smartgwt.client.widgets.e
                });
         }
    }-*/;
-
     /**
      * Add a dragRepositionStart handler.
      * <p>
@@ -4500,7 +4428,6 @@ public class Canvas extends BaseWidget  implements com.smartgwt.client.widgets.e
                });
         }
    }-*/;
-
     /**
      * Add a dragRepositionMove handler.
      * <p>
@@ -4541,7 +4468,6 @@ public class Canvas extends BaseWidget  implements com.smartgwt.client.widgets.e
                });
         }
    }-*/;
-
     /**
      * Add a dragRepositionStop handler.
      * <p>
@@ -4583,7 +4509,6 @@ public class Canvas extends BaseWidget  implements com.smartgwt.client.widgets.e
                });
         }
    }-*/;
-
     /**
      * Add a dragResizeStart handler.
      * <p>
@@ -4622,7 +4547,6 @@ public class Canvas extends BaseWidget  implements com.smartgwt.client.widgets.e
                });
         }
    }-*/;
-
     /**
      * Add a dragResizeMove handler.
      * <p>
@@ -4663,7 +4587,6 @@ public class Canvas extends BaseWidget  implements com.smartgwt.client.widgets.e
                });
         }
    }-*/;
-
     /**
      * Add a dragResizeStop handler.
      * <p>
@@ -4705,7 +4628,6 @@ public class Canvas extends BaseWidget  implements com.smartgwt.client.widgets.e
                });
         }
    }-*/;
-
     /**
      * Add a dragStart handler.
      * <p>
@@ -4746,7 +4668,6 @@ public class Canvas extends BaseWidget  implements com.smartgwt.client.widgets.e
                });
         }
    }-*/;
-
     /**
      * Add a dragMove handler.
      * <p>
@@ -4784,7 +4705,6 @@ public class Canvas extends BaseWidget  implements com.smartgwt.client.widgets.e
                });
         }
    }-*/;
-
     /**
      * Add a dragStop handler.
      * <p>
@@ -4823,7 +4743,6 @@ public class Canvas extends BaseWidget  implements com.smartgwt.client.widgets.e
                });
         }
    }-*/;
-
     /**
      * Add a dropOver handler.
      * <p>
@@ -4862,7 +4781,6 @@ public class Canvas extends BaseWidget  implements com.smartgwt.client.widgets.e
                });
         }
    }-*/;
-
     /**
      * Add a dropMove handler.
      * <p>
@@ -4901,7 +4819,6 @@ public class Canvas extends BaseWidget  implements com.smartgwt.client.widgets.e
                });
         }
    }-*/;
-
     /**
      * Add a dropOut handler.
      * <p>
@@ -4940,8 +4857,6 @@ public class Canvas extends BaseWidget  implements com.smartgwt.client.widgets.e
                });
         }
    }-*/;
-
-
     /**
      * Add a keyDown handler.
      * <p>
@@ -4982,7 +4897,7 @@ public class Canvas extends BaseWidget  implements com.smartgwt.client.widgets.e
                });
         }
    }-*/;
-
+            
     /**
      * Executed when a key is released on a focusable widget ({@link com.smartgwt.client.widgets.Canvas#getCanFocus canFocus}:
      * true).  <P> Use {@link com.smartgwt.client.util.EventHandler#getKey} to find out the {@link
@@ -5000,7 +4915,6 @@ public class Canvas extends BaseWidget  implements com.smartgwt.client.widgets.e
             return @com.smartgwt.client.util.JSOHelper::toBoolean(Z)(retVal);
         }
     }-*/;
-
     /**
      * Add a keyPress handler.
      * <p>
@@ -5041,8 +4955,7 @@ public class Canvas extends BaseWidget  implements com.smartgwt.client.widgets.e
                });
         }
    }-*/;
-
-
+            
     /**
      * Override this method to provide a custom snap-to grid.  Note that you do not need to do this if your grid is regular
      * (ie, grid points are every x pixels); regular grids should be  defined using {@link
@@ -5072,7 +4985,7 @@ public class Canvas extends BaseWidget  implements com.smartgwt.client.widgets.e
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
         return self.getHSnapPosition(coordinate, direction);
     }-*/;
-
+            
     /**
      * Override this method to provide a custom snap-to grid.  Note that you do not need to do this if your grid is regular
      * (ie, grid points are every x pixels) - regular grids should be  defined using {@link
@@ -5102,11 +5015,7 @@ public class Canvas extends BaseWidget  implements com.smartgwt.client.widgets.e
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
         return self.getVSnapPosition(coordinate, direction);
     }-*/;
-
-
-
-
-
+            
     /**
      * Set the URL of an image element by name. <p> The image element must have been created from HTML generated by calling
      * <code>canvas.imgHTML()</code> on this particular Canvas.
@@ -5129,7 +5038,7 @@ public class Canvas extends BaseWidget  implements com.smartgwt.client.widgets.e
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
         self.setImage(identifier, URL, imgDir);
     }-*/;
-
+            
     /**
      * Generates the HTML for a standard link element
      * @param href URL for the link to point to
@@ -5156,9 +5065,6 @@ public class Canvas extends BaseWidget  implements com.smartgwt.client.widgets.e
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
         return self.linkHTML(href, text, target, ID, tabIndex, accessKey);
     }-*/;
-
-
-
     /**
      * Add a focusChanged handler.
      * <p>
@@ -5192,8 +5098,7 @@ public class Canvas extends BaseWidget  implements com.smartgwt.client.widgets.e
                });
         }
    }-*/;
-
-
+            
     /**
      * Returns a fully qualified {@link com.smartgwt.client..dataPath} for this canvas. This is calculated by combining the
      * canvas' specified {@link com.smartgwt.client.widgets.Canvas#getDataPath dataPath} with the <code>dataPath</code> of any
@@ -5207,17 +5112,8 @@ public class Canvas extends BaseWidget  implements com.smartgwt.client.widgets.e
         return self.getFullDataPath();
     }-*/;
 
-
-
-
-
-
-
-
-
     // ********************* Static Methods ***********************
-
-
+            
     /**
      * Retrieve a Canvas by it's global {@link com.smartgwt.client.widgets.Canvas#getID 'ID'}.
      * @param ID global ID of the Canvas
@@ -5235,12 +5131,6 @@ public class Canvas extends BaseWidget  implements com.smartgwt.client.widgets.e
     }-*/;
 
 
-
-
-
-
-
-	
 	protected native void onInit () /*-{
 	
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
@@ -6523,7 +6413,7 @@ public class Canvas extends BaseWidget  implements com.smartgwt.client.widgets.e
         $wnd.isc.Canvas.getPrintHTML(componentsJS, ppJS,
          callback == null ? null : 
          $entry(function (HTML) {
-        	callback.@com.smartgwt.client.util.PrintHTMLCallback::execute(Ljava/lang/String;)(HTML);
+        	callback.@com.smartgwt.client.util.PrintHTMLCallback::setHTML(Ljava/lang/String;)(HTML);
         }));
     }-*/;
     
@@ -6532,7 +6422,9 @@ public class Canvas extends BaseWidget  implements com.smartgwt.client.widgets.e
      * Retrieves printable HTML for this component and all printable subcomponents.
      * By default any Canvas with children will simply collect the printable HTML of its
      * children by calling getPrintHTML() on each child that has shouldPrint set to true and is not
-     * omitted as a control.
+     * omitted as a control. The return type of this method is void because the print html is to be applied
+     * to {@link com.smartgwt.client.util.PrintHTMLCallback}. This allows for providing a printable view for asynch interfaces
+     * - for example fetching records that aren't yet loaded for the print view, etc
      *  
      *  <b>Note: this is an override point.</b>
      * @param printProperties properties to configure printing behavior - may be null
@@ -6547,7 +6439,7 @@ public class Canvas extends BaseWidget  implements com.smartgwt.client.widgets.e
         		ppJS,
 		        callback == null ? null :  
 			        $entry(function (HTML) {
-			        	callback.@com.smartgwt.client.util.PrintHTMLCallback::execute(Ljava/lang/String;)(HTML);
+			        	callback.@com.smartgwt.client.util.PrintHTMLCallback::setHTML(Ljava/lang/String;)(HTML);
 			        })
          );
          
@@ -6559,7 +6451,7 @@ public class Canvas extends BaseWidget  implements com.smartgwt.client.widgets.e
 			getPrintHTML(printProperties, null);
 		} else {
 			PrintHTMLCallback jcb = new PrintHTMLCallback() {
-				public void execute (String HTML) {
+				public void setHTML (String HTML) {
 					executeJS(HTML, jscallback, getOrCreateJsObj());
 				}
 				private native void executeJS (String HTML, JavaScriptObject jscallback, JavaScriptObject canvas) /*-{
