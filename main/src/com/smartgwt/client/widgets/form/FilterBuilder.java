@@ -89,6 +89,48 @@ public class FilterBuilder extends Layout  implements com.smartgwt.client.widget
         return widget;
     }-*/;
     // ********************* Properties / Attributes ***********************
+            
+    /**
+     * If specified, the FilterBuilder will dynamically fetch DataSourceField definitions from  this DataSource rather than
+     * using {@link com.smartgwt.client.widgets.form.FilterBuilder#getDataSource dataSource}.  The {@link
+     * com.smartgwt.client.widgets.form.FilterBuilder#getFieldPicker fieldPicker}  will default to being a {@link
+     * com.smartgwt.client.widgets.form.fields.ComboBoxItem} rather than a {@link
+     * com.smartgwt.client.widgets.form.fields.SelectItem} so that the user  will have type-ahead auto-completion. <P> The
+     * records returned from the <code>fieldDataSource</code> must have properties  corresponding to a {@link
+     * com.smartgwt.client.data.DataSourceField} defintion, at a minimum,  {@link
+     * com.smartgwt.client.data.DataSourceField#getName '"name"'} and {@link com.smartgwt.client.data.DataSourceField#getType
+     * '"type"'}.  Any property  legal on a DataSourceField is legal on the returned records, including  {@link
+     * com.smartgwt.client.data.DataSourceField#getValueMap 'valueMap'}. <P> Even when a <code>fieldDataSource</code> is
+     * specified, {@link com.smartgwt.client.widgets.form.FilterBuilder#getDataSource dataSource} may still be specified in
+     * order to control the list of  {@link com.smartgwt.client.data.DataSource#setTypeOperators} for each field.
+     *
+     * @param fieldDataSource fieldDataSource Default value is null
+     * @throws IllegalStateException this property cannot be changed after the component has been created
+     */
+    public void setFieldDataSource(DataSource fieldDataSource)  throws IllegalStateException {
+        setAttribute("fieldDataSource", fieldDataSource.getOrCreateJsObj(), false);
+    }
+
+    /**
+     * If specified, the FilterBuilder will dynamically fetch DataSourceField definitions from  this DataSource rather than
+     * using {@link com.smartgwt.client.widgets.form.FilterBuilder#getDataSource dataSource}.  The {@link
+     * com.smartgwt.client.widgets.form.FilterBuilder#getFieldPicker fieldPicker}  will default to being a {@link
+     * com.smartgwt.client.widgets.form.fields.ComboBoxItem} rather than a {@link
+     * com.smartgwt.client.widgets.form.fields.SelectItem} so that the user  will have type-ahead auto-completion. <P> The
+     * records returned from the <code>fieldDataSource</code> must have properties  corresponding to a {@link
+     * com.smartgwt.client.data.DataSourceField} defintion, at a minimum,  {@link
+     * com.smartgwt.client.data.DataSourceField#getName '"name"'} and {@link com.smartgwt.client.data.DataSourceField#getType
+     * '"type"'}.  Any property  legal on a DataSourceField is legal on the returned records, including  {@link
+     * com.smartgwt.client.data.DataSourceField#getValueMap 'valueMap'}. <P> Even when a <code>fieldDataSource</code> is
+     * specified, {@link com.smartgwt.client.widgets.form.FilterBuilder#getDataSource dataSource} may still be specified in
+     * order to control the list of  {@link com.smartgwt.client.data.DataSource#setTypeOperators} for each field.
+     *
+     *
+     * @return DataSource
+     */
+    public DataSource getFieldDataSource()  {
+            return DataSource.getOrCreateRef(getAttributeAsJavaScriptObject("fieldDataSource"));
+    }
 
     /**
      * If true, when the user hits the Enter key while focussed in a text-item in this  FilterBuilder, we automatically invoke
@@ -390,9 +432,7 @@ public class FilterBuilder extends Layout  implements com.smartgwt.client.widget
     }
 
     // ********************* Methods ***********************
-
-
-
+            
     /**
      * Add a new {@link com.smartgwt.client.widgets.form.FilterClause} to this FilterBuilder.
      * @param filterClause A {@link com.smartgwt.client.widgets.form.FilterClause} instance
@@ -401,9 +441,7 @@ public class FilterBuilder extends Layout  implements com.smartgwt.client.widget
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
         self.addClause(filterClause.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()());
     }-*/;
-
-
-
+            
     /**
      * Validate the clauses of this FilterBuilder.
      *
@@ -418,11 +456,7 @@ public class FilterBuilder extends Layout  implements com.smartgwt.client.widget
             return @com.smartgwt.client.util.JSOHelper::toBoolean(Z)(retVal);
         }
     }-*/;
-
-
-
-
-
+            
     /**
      * Clear all current criteria.
      */
@@ -430,8 +464,6 @@ public class FilterBuilder extends Layout  implements com.smartgwt.client.widget
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
         self.clearCriteria();
     }-*/;
-
-
     /**
      * Add a search handler.
      * <p>
@@ -466,7 +498,6 @@ public class FilterBuilder extends Layout  implements com.smartgwt.client.widget
                });
         }
    }-*/;
-
     /**
      * Add a filterChanged handler.
      * <p>
@@ -502,7 +533,6 @@ public class FilterBuilder extends Layout  implements com.smartgwt.client.widget
    }-*/;
 
     // ********************* Static Methods ***********************
-
 
 
     /**
@@ -581,7 +611,6 @@ public class FilterBuilder extends Layout  implements com.smartgwt.client.widget
     }-*/;
 
 }
-
 
 
 
