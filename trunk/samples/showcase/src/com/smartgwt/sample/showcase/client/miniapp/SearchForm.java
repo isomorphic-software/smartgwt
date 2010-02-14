@@ -23,7 +23,7 @@ import com.smartgwt.client.widgets.form.fields.ComboBoxItem;
 import com.smartgwt.client.widgets.form.fields.TextItem;
 import com.smartgwt.client.widgets.form.fields.events.ClickHandler;
 
-public class SearchForm extends DynamicForm {
+public class SearchForm extends com.smartgwt.client.widgets.form.SearchForm {
     private ComboBoxItem itemName;
     private ButtonItem findItem;
 
