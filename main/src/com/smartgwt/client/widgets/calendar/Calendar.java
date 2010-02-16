@@ -2044,9 +2044,6 @@ public class Calendar extends Canvas  implements DataBoundComponent, com.smartgw
 
 
 
-
-
-
     // ********************* DataBoundComponent Properties / Attributes ***********************
 
     public void setDataFetchMode(FetchMode fetchMode) {

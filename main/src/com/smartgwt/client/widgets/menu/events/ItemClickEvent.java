@@ -135,8 +135,6 @@ public class ItemClickEvent extends BrowserEvent<ItemClickHandler>  implements C
     }-*/;
 
 
-
-
     /**
      * pointer to the item in question
      *

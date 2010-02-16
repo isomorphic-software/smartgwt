@@ -157,8 +157,6 @@ public class RowEditorExitEvent extends BrowserEvent<RowEditorExitHandler>  impl
     }-*/;
 
 
-
-
     /**
      * edit values for the current row
      *

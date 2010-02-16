@@ -713,9 +713,6 @@ public class DetailViewer extends Canvas  implements DataBoundComponent {
 
 
 
-
-
-
     // ********************* DataBoundComponent Properties / Attributes ***********************
 
     public void setDataFetchMode(FetchMode fetchMode) {

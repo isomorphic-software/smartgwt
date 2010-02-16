@@ -165,8 +165,6 @@ public class DayHeaderClickEvent extends BrowserEvent<DayHeaderClickHandler>  im
     }-*/;
 
 
-
-
     /**
      * events that fall on this day
      *
