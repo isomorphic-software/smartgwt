@@ -1655,7 +1655,7 @@ public class DynamicForm extends Canvas  implements DataBoundComponent, com.smar
         } else {
             return @com.smartgwt.client.util.JSOHelper::toBoolean(Z)(retVal);
         }
-    }-*/;            
+    }-*/;
             
     /**
      * Submits the form to the URL defined by {@link com.smartgwt.client.widgets.form.DynamicForm#getAction action}, 
@@ -2664,9 +2664,6 @@ public class DynamicForm extends Canvas  implements DataBoundComponent, com.smar
             return hoverFormatter.@com.smartgwt.client.widgets.form.FormItemHoverFormatter::getHoverHTML(Lcom/smartgwt/client/widgets/form/fields/FormItem;Lcom/smartgwt/client/widgets/form/DynamicForm;)(itemJ, formJ);
         });
     }-*/;
-
-
-
 
 
 

@@ -151,8 +151,6 @@ public class ChangeEvent extends AbstractSmartEvent<ChangeHandler>  {
     }-*/;
 
 
-
-
     /**
      * row number for the cell
      *

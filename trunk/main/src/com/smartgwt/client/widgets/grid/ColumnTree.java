@@ -787,9 +787,6 @@ public class ColumnTree extends Layout  implements DataBoundComponent, com.smart
 
 
 
-
-
-
     // ********************* DataBoundComponent Properties / Attributes ***********************
 
     public void setDataFetchMode(FetchMode fetchMode) {

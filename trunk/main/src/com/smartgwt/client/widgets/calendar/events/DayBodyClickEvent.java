@@ -165,8 +165,6 @@ public class DayBodyClickEvent extends BrowserEvent<DayBodyClickHandler>  implem
     }-*/;
 
 
-
-
     /**
      * events that fall on this day
      *

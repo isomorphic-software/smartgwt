@@ -131,8 +131,6 @@ public class RowEditorEnterEvent extends BrowserEvent<RowEditorEnterHandler>  {
     }-*/;
 
 
-
-
     public  native JavaScriptObject getEditValues() /*-{
         var jsObj = this.@com.smartgwt.client.event.AbstractSmartEvent::jsObj;
         return jsObj.editValues;

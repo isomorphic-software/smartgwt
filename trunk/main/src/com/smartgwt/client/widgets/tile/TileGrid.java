@@ -708,9 +708,6 @@ public class TileGrid extends TileLayout  implements DataBoundComponent, com.sma
 
 
 
-
-
-
     // ********************* DataBoundComponent Properties / Attributes ***********************
 
     public void setDataFetchMode(FetchMode fetchMode) {

@@ -121,8 +121,6 @@ public class SubmitValuesEvent extends BrowserEvent<SubmitValuesHandler>  {
     }-*/;
 
 
-
-
     /**
      * The form values
      *
