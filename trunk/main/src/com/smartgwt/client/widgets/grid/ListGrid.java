@@ -7111,15 +7111,15 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
         self._getCellCSSText = self.getCellCSSText;
         self.getCellCSSText = $entry(function(record, rowNum, colNum) {
             var jObj = this.__ref;
-            var recordJ = @com.smartgwt.client.widgets.grid.ListGridRecord::getOrCreateRef(Lcom/google/gwt/core/client/JavaScriptObject;)(record);
-            return jObj.@com.smartgwt.client.widgets.grid.ListGrid::getCellCSSText(Lcom/smartgwt/client/widgets/grid/ListGridRecord;II)(recordJ, rowNum, colNum);
+            var recordJ = @com.smartgwt.client.data.Record::getOrCreateRef(Lcom/google/gwt/core/client/JavaScriptObject;)(record);
+            return jObj.@com.smartgwt.client.widgets.grid.ListGrid::getCellCSSText(Lcom/smartgwt/client/data/Record;II)(recordJ, rowNum, colNum);
         });
 
         self._getBaseStyle = self.getBaseStyle;
         self.getBaseStyle = $entry(function(record, rowNum, colNum) {
             var jObj = this.__ref;
-            var recordJ = @com.smartgwt.client.widgets.grid.ListGridRecord::getOrCreateRef(Lcom/google/gwt/core/client/JavaScriptObject;)(record);
-            return jObj.@com.smartgwt.client.widgets.grid.ListGrid::getBaseStyle(Lcom/smartgwt/client/widgets/grid/ListGridRecord;II)(recordJ, rowNum, colNum);
+            var recordJ = @com.smartgwt.client.data.Record::getOrCreateRef(Lcom/google/gwt/core/client/JavaScriptObject;)(record);
+            return jObj.@com.smartgwt.client.widgets.grid.ListGrid::getBaseStyle(Lcom/smartgwt/client/data/Record;II)(recordJ, rowNum, colNum);
         });
 
         self.__getHeaderContextMenuItems = self.getHeaderContextMenuItems;
@@ -7166,10 +7166,10 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
         }
         self.createRecordComponent = $entry(function (record, colNum) {
     		var jObj = this.__ref;
-    		var recordJ =  @com.smartgwt.client.widgets.grid.ListGridRecord::getOrCreateRef(Lcom/google/gwt/core/client/JavaScriptObject;)(record);
+    		var recordJ = @com.smartgwt.client.data.Record::getOrCreateRef(Lcom/google/gwt/core/client/JavaScriptObject;)(record);
             var colNumJ = colNum == null ? null : @com.smartgwt.client.util.JSOHelper::toInteger(I)(colNum);
 
-            var componentJ = jObj.@com.smartgwt.client.widgets.grid.ListGrid::createRecordComponent(Lcom/smartgwt/client/widgets/grid/ListGridRecord;Ljava/lang/Integer;)(recordJ, colNumJ);
+            var componentJ = jObj.@com.smartgwt.client.widgets.grid.ListGrid::createRecordComponent(Lcom/smartgwt/client/data/Record;Ljava/lang/Integer;)(recordJ, colNumJ);
             return componentJ == null ? null : componentJ.@com.smartgwt.client.widgets.Canvas::getOrCreateJsObj()();
         })
         
@@ -7181,19 +7181,19 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
     	}
         self.updateRecordComponent = $entry(function (record, colNum, component, recordChanged) {
 			var jObj = this.__ref;
-    		var recordJ =  @com.smartgwt.client.widgets.grid.ListGridRecord::getOrCreateRef(Lcom/google/gwt/core/client/JavaScriptObject;)(record);
+    		var recordJ = @com.smartgwt.client.data.Record::getOrCreateRef(Lcom/google/gwt/core/client/JavaScriptObject;)(record);
             var colNumJ = colNum == null ? null : @com.smartgwt.client.util.JSOHelper::toInteger(I)(colNum);
             var componentJ = component == null ? null : 
                @com.smartgwt.client.widgets.Canvas::getOrCreateRef(Lcom/google/gwt/core/client/JavaScriptObject;)(component);
-            componentJ = jObj.@com.smartgwt.client.widgets.grid.ListGrid::updateRecordComponent(Lcom/smartgwt/client/widgets/grid/ListGridRecord;Ljava/lang/Integer;Lcom/smartgwt/client/widgets/Canvas;Z)(recordJ, colNumJ, componentJ, recordChanged);
+            componentJ = jObj.@com.smartgwt.client.widgets.grid.ListGrid::updateRecordComponent(Lcom/smartgwt/client/data/Record;Ljava/lang/Integer;Lcom/smartgwt/client/widgets/Canvas;Z)(recordJ, colNumJ, componentJ, recordChanged);
             return componentJ == null ? null : componentJ.@com.smartgwt.client.widgets.Canvas::getOrCreateJsObj()();        	
         })
 
         self.__getExpansionComponent = self.getExpansionComponent;
         self.getExpansionComponent = $entry(function(record) {
             var jObj = this.__ref;
-            var recordJ = @com.smartgwt.client.widgets.grid.ListGridRecord::getOrCreateRef(Lcom/google/gwt/core/client/JavaScriptObject;)(record);
-            var componentJ = jObj.@com.smartgwt.client.widgets.grid.ListGrid::getExpansionComponent(Lcom/smartgwt/client/widgets/grid/ListGridRecord;)(recordJ);
+            var recordJ = @com.smartgwt.client.data.Record::getOrCreateRef(Lcom/google/gwt/core/client/JavaScriptObject;)(record);
+            var componentJ = jObj.@com.smartgwt.client.widgets.grid.ListGrid::getExpansionComponent(Lcom/smartgwt/client/data/Record;)(recordJ);
             return componentJ == null ? null : componentJ.@com.smartgwt.client.widgets.Canvas::getOrCreateJsObj()();
         });
 
@@ -7208,16 +7208,16 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
         self.__canExpandRecord = self.canExpandRecord;
         self.canExpandRecord = $entry(function(record, rowNum) {
             var jObj = this.__ref;
-            var recordJ = @com.smartgwt.client.widgets.grid.ListGridRecord::getOrCreateRef(Lcom/google/gwt/core/client/JavaScriptObject;)(record);
-            var retVal = jObj.@com.smartgwt.client.widgets.grid.ListGrid::canExpandRecord(Lcom/smartgwt/client/widgets/grid/ListGridRecord;I)(recordJ, rowNum);
+            var recordJ = @com.smartgwt.client.data.Record::getOrCreateRef(Lcom/google/gwt/core/client/JavaScriptObject;)(record);
+            var retVal = jObj.@com.smartgwt.client.widgets.grid.ListGrid::canExpandRecord(Lcom/smartgwt/client/data/Record;I)(recordJ, rowNum);
             return retVal;
         });
 
         self.__getRelatedDataSource = self.getRelatedDataSource;
         self.getRelatedDataSource = $entry(function(record) {
             var jObj = this.__ref;
-            var recordJ = @com.smartgwt.client.widgets.grid.ListGridRecord::getOrCreateRef(Lcom/google/gwt/core/client/JavaScriptObject;)(record);
-            var dataSourceJ = jObj.@com.smartgwt.client.widgets.grid.ListGrid::getRelatedDataSource(Lcom/smartgwt/client/widgets/grid/ListGridRecord;)(recordJ);
+            var recordJ = @com.smartgwt.client.data.Record::getOrCreateRef(Lcom/google/gwt/core/client/JavaScriptObject;)(record);
+            var dataSourceJ = jObj.@com.smartgwt.client.widgets.grid.ListGrid::getRelatedDataSource(Lcom/smartgwt/client/data/Record;)(recordJ);
             return dataSourceJ == null ? null : dataSourceJ.@com.smartgwt.client.core.BaseClass::getOrCreateJsObj()();
         });
         
@@ -7238,11 +7238,13 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
      *
      * <b> Note :</b> This is an override point
      *
-     * @param record The record to get the Related dataSource for.
+     * @param record The record (typically a ListGridRecord) to get the Related dataSource for.
      *
      * @return The related DataSource for the "record" param
+     * @see com.smartgwt.client.widgets.grid.ListGridRecord
+     * @see com.smartgwt.client.widgets.grid.ListGridRecord
      */
-    public native DataSource getRelatedDataSource(ListGridRecord record) /*-{
+    public native DataSource getRelatedDataSource(Record record) /*-{
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
         var ret = self.__getRelatedDataSource(record.@com.smartgwt.client.core.DataClass::getJsObj()());
         if(ret == null || ret === undefined) return null;
@@ -7255,11 +7257,13 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
     
 
     /**
-     * Removes an embedded component previously associated with the provided record. 
+     * Removes an embedded component previously associated with the provided record.
      * If <code>destroyOnUnEmbed</code> is <code>true</code> for the component, it will also be destroyed.
-     * @param record record that the component was previously attached to
+     *
+     * @param record record (typically a ListGridRecord) that the component was previously attached to
+     * @see com.smartgwt.client.widgets.grid.ListGridRecord
      */
-    public native void removeEmbeddedComponent(ListGridRecord record) /*-{
+    public native void removeEmbeddedComponent(Record record) /*-{
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
         self.removeEmbeddedComponent(record.@com.smartgwt.client.core.DataClass::getJsObj()());
     }-*/;
@@ -7280,10 +7284,11 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
      * Removes an embedded component previously associated with the provided record and colNum.
      * Only applies to components embedded directly in a specific cell. If 
      * <code>destroyOnUnEmbed</code> is <code>true</code> for the component, it will also be destroyed.
-     * @param record record that the component was previously attached to
+     * @param record record (typically a ListGridRecord) that the component was previously attached to
      * @param colNum the colNum in which it appears
+     * @see com.smartgwt.client.widgets.grid.ListGridRecord
      */
-    public native void removeEmbeddedComponent(ListGridRecord record, Integer colNum) /*-{
+    public native void removeEmbeddedComponent(Record record, Integer colNum) /*-{
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
         self.removeEmbeddedComponent(record.@com.smartgwt.client.core.DataClass::getJsObj()(), colNum);
     }-*/;
@@ -7314,11 +7319,12 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
      * is called for a row/cell  the first time it is brought into the drawArea, or when there are not yet any components  in
      * the pool.   <P>The colNum parameter is applicable only when  listGrid.getShowRecordComponentsByCell returns true.
      * <br><b>Note: This is an override point</b>
-     * @param record record to create a component for
+     * @param record record (typically a ListGridRecord) to create a component for
      * @param colNum Column to show the new component in. This parameter will be null unless showRecordComponentsByCell is true on the grid
      * @return the embedded component
+     * @see com.smartgwt.client.widgets.grid.ListGridRecord
      */
-    protected native Canvas createRecordComponent (ListGridRecord record, Integer colNum) /*-{
+    protected native Canvas createRecordComponent (Record record, Integer colNum) /*-{
     
       	var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
       	
@@ -7336,14 +7342,15 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
      * com.smartgwt.client.widgets.grid.ListGrid#getShowRecordComponentsByCell showRecordComponentsByCell}
      *  is true.
      * <br><b>Note: This is an override point</b>
-     * @param record record to which the passed component applies
+     * @param record record (typically a ListGridRecord) to which the passed component applies
      * @param colNum cell to which the passed component applies. This parameter will be null unless showRecordComponentsByCell has been set for this grid
      * @param component the component to update
      * @param recordChanged was the passed component previously embedded in a different record?
      *
      * @return return the updated embedded component
+     * @see com.smartgwt.client.widgets.grid.ListGridRecord
      */
-    public native Canvas updateRecordComponent(ListGridRecord record, Integer colNum, Canvas component, boolean recordChanged) /*-{
+    public native Canvas updateRecordComponent(Record record, Integer colNum, Canvas component, boolean recordChanged) /*-{
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
         record = record.@com.smartgwt.client.core.DataClass::getJsObj()();
         colNum = colNum == null ? null : colNum.@java.lang.Integer::intValue()();
@@ -7377,18 +7384,19 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
     }-*/;
     
     /**
-     * Expands a given ${isc.DocUtils.linkForRef('object:ListGridRecord','record')} by creating a subcomponent and inserting it
+     * Expands a given record by creating a subcomponent and inserting it
      * in to the record's grid-row.  A number of built-in {@link com.smartgwt.client..ExpansionMode}  are supported by the
      * default implementation of  {@link com.smartgwt.client.widgets.grid.ListGrid#getExpansionComponent} and you can override
      * that method to provide more specific expansionComponents.
      * <br><b>Note: This is an override point</b>
      *
-     * @param record record to work with
+     * @param record record (typically a ListGridRecord) to work with
      * @param rowNum rowNum of the record to work with
      *
      * @return true if the record can be expanded
+     * @see com.smartgwt.client.widgets.grid.ListGridRecord
      */
-    public native boolean canExpandRecord(ListGridRecord record, int rowNum) /*-{
+    public native boolean canExpandRecord(Record record, int rowNum) /*-{
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
         var retVal =self.__canExpandRecord(record.@com.smartgwt.client.core.DataClass::getJsObj()(), rowNum);
         if(retVal == null || retVal === undefined) {
@@ -7405,10 +7413,11 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
      * method to return any component  you wish to provide as an expansionComponent.
      * <br><b>Note: This is an override point</b>
      *
-     * @param record record to get the expansionComponent for
+     * @param record record (typically a ListGridRecord) to get the expansionComponent for
      * @return the embedded component
+     * @see com.smartgwt.client.widgets.grid.ListGridRecord
      */
-    protected native Canvas getExpansionComponent(ListGridRecord record) /*-{
+    protected native Canvas getExpansionComponent(Record record) /*-{
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
         var component = self.__getExpansionComponent(record.@com.smartgwt.client.core.DataClass::getJsObj()());
         return @com.smartgwt.client.widgets.Canvas::getOrCreateRef(Lcom/google/gwt/core/client/JavaScriptObject;)(component);
@@ -7448,12 +7457,13 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
      * <br><b>Note: This is an override point</b>
      *
      *
-     * @param record cell record as returned by getCellRecord
+     * @param record cell record (typically a ListGridRecord) as returned by getCellRecord
      * @param rowNum row number for the cell
      * @param colNum column number of the cell
      * @return CSS text for this cell
+     * @see com.smartgwt.client.widgets.grid.ListGridRecord
      */
-    protected native String getCellCSSText(ListGridRecord record, int rowNum, int colNum) /*-{
+    protected native String getCellCSSText(Record record, int rowNum, int colNum) /*-{
 
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
         return self._getCellCSSText(record == null ? null : record.@com.smartgwt.client.core.DataClass::getJsObj()(), rowNum, colNum);
@@ -7511,12 +7521,13 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
      * defined, otherwise field.baseStyle, or finally this.baseStyle</li> </ul>
      * <br><b>Note: This is an override point</b>
      *
-     * @param record the record
+     * @param record the record (typically a ListGridRecord)
      * @param rowNum the row num
      * @param colNum the colum num
      * @return the CSS class for this cell
+     * @see com.smartgwt.client.widgets.grid.ListGridRecord
      */
-    protected native String getBaseStyle(ListGridRecord record, int rowNum, int colNum) /*-{
+    protected native String getBaseStyle(Record record, int rowNum, int colNum) /*-{
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
         return self._getBaseStyle(record == null ? null : record.@com.smartgwt.client.core.DataClass::getJsObj()(), rowNum, colNum);
     }-*/;
@@ -9644,9 +9655,6 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
         return self.getFieldWidth(fieldName);
     }-*/;
     
-
-
-
 
 
 
