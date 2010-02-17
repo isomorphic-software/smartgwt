@@ -1,6 +1,7 @@
 package com.smartgwt.sample.showcase.client.grid.expando;
 
 import com.smartgwt.client.data.DataSource;
+import com.smartgwt.client.data.Record;
 import com.smartgwt.client.types.Alignment;
 import com.smartgwt.client.widgets.Canvas;
 import com.smartgwt.client.widgets.IButton;
@@ -48,7 +49,7 @@ public class GridRowExpansionEditorSample extends ShowcasePanel {
 
         final ListGrid listGrid = new ListGrid() {
             @Override
-            protected Canvas getExpansionComponent(final ListGridRecord record) {
+            protected Canvas getExpansionComponent(final Record record) {
 
                 final ListGrid grid = this;
                 VLayout layout = new VLayout(5);
@@ -73,7 +74,7 @@ public class GridRowExpansionEditorSample extends ShowcasePanel {
                 IButton cancelButton = new IButton("Done");
                 cancelButton.addClickHandler(new ClickHandler() {
                     public void onClick(ClickEvent event) {
-                        grid.collapseRecord(record);
+                        grid.collapseRecord(ListGridRecord.getOrCreateRef(record.getJsObj()));
                     }
                 });
 
