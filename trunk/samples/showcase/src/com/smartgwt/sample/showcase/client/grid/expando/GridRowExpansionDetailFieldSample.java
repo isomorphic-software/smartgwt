@@ -1,5 +1,6 @@
 package com.smartgwt.sample.showcase.client.grid.expando;
 
+import com.smartgwt.client.data.Record;
 import com.smartgwt.client.types.ExpansionMode;
 import com.smartgwt.client.widgets.Canvas;
 import com.smartgwt.client.widgets.grid.ListGrid;
@@ -36,7 +37,7 @@ public class GridRowExpansionDetailFieldSample extends ShowcasePanel {
 
         ListGrid listGrid = new ListGrid() {
             @Override
-            protected Canvas getExpansionComponent(ListGridRecord record) {
+            protected Canvas getExpansionComponent(Record record) {
                 Canvas canvas = super.getExpansionComponent(record);
                 canvas.setPadding(5);
                 return canvas;
