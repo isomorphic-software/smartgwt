@@ -132,6 +132,8 @@
              <zipfileset dir="${SC_HOME}/smartclientSDK/isomorphic/skins/EnterpriseBlue" includes="**/*.*" excludes="*.gz,*.psd"
 					                        prefix="com/smartclient/theme/enterpriseblue/public/sc/skins/EnterpriseBlue"/>
 
+             <zipfileset dir="${SC_HOME}/smartclientSDK/isomorphic/skins/Graphite" includes="**/*.*" excludes="*.gz,*.psd"
+					                        prefix="com/smartclient/theme/graphite/public/sc/skins/Graphite"/>
         </zip>
 		
 		<zip destfile="${smartgwt.tools.lib}/sc/${SC_VER}/smartgwt-skins.jar">

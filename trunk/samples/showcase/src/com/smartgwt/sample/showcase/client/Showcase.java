@@ -110,6 +110,7 @@ public class Showcase implements EntryPoint, HistoryListener {
         LinkedHashMap<String, String> valueMap = new LinkedHashMap<String, String>();
         valueMap.put("EnterpriseBlue", "Enterprise Blue");
         valueMap.put("Enterprise", "Enterprise Gray");
+	valueMap.put("Graphite", "Graphite");
 
 
         selectItem.setValueMap(valueMap);
