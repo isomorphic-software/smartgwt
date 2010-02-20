@@ -110,42 +110,49 @@ public class Calendar extends Canvas  implements DataBoundComponent, com.smartgw
     // ********************* Properties / Attributes ***********************
 
     /**
-     * The date for which events are displayed in the day, week, and month tabs of  the calendar.  Default is today.
-     * Set the current date for which the calendar will display events.
+     * The text to be displayed when a user hovers over the {@link
+     * com.smartgwt.client.widgets.calendar.Calendar#getAddEventButton 'add event'} toolbar button
      *
-     * @param chosenDate the new date to set as the current date. Default value is 'Today'
+     * @param addEventButtonHoverText addEventButtonHoverText Default value is "Add an event"
+     * @throws IllegalStateException this property cannot be changed after the component has been created
      */
-    public void setChosenDate(java.util.Date chosenDate) {
-        setAttribute("chosenDate", chosenDate, true);
+    public void setAddEventButtonHoverText(String addEventButtonHoverText)  throws IllegalStateException {
+        setAttribute("addEventButtonHoverText", addEventButtonHoverText, false);
     }
 
     /**
-     * The date for which events are displayed in the day, week, and month tabs of  the calendar.  Default is today.
+     * The text to be displayed when a user hovers over the {@link
+     * com.smartgwt.client.widgets.calendar.Calendar#getAddEventButton 'add event'} toolbar button
      *
      *
-     * @return java.util.Date
+     * @return String
      */
-    public java.util.Date getChosenDate()  {
-        return getAttributeAsDate("chosenDate");
+    public String getAddEventButtonHoverText()  {
+        return getAttributeAsString("addEventButtonHoverText");
+    }
+             
+    /**
+     * If {@link com.smartgwt.client.widgets.calendar.Calendar#getAutoFetchData autoFetchData} is <code>true</code>, this
+     * attribute allows the developer to specify a textMatchStyle for the initial {@link
+     * com.smartgwt.client.widgets.calendar.Calendar#fetchData} call.
+     *
+     * @param autoFetchTextMatchStyle autoFetchTextMatchStyle Default value is null
+     * @throws IllegalStateException this property cannot be changed after the component has been created
+     */
+    public void setAutoFetchTextMatchStyle(TextMatchStyle autoFetchTextMatchStyle)  throws IllegalStateException {
+        setAttribute("autoFetchTextMatchStyle", autoFetchTextMatchStyle.getValue(), false);
     }
 
     /**
-     * The numeric day (0-6) which the calendar should consider as the first day of the week
+     * If {@link com.smartgwt.client.widgets.calendar.Calendar#getAutoFetchData autoFetchData} is <code>true</code>, this
+     * attribute allows the developer to specify a textMatchStyle for the initial {@link
+     * com.smartgwt.client.widgets.calendar.Calendar#fetchData} call.
      *
-     * @param firstDayOfWeek firstDayOfWeek Default value is 0
+     *
+     * @return TextMatchStyle
      */
-    public void setFirstDayOfWeek(int firstDayOfWeek) {
-        setAttribute("firstDayOfWeek", firstDayOfWeek, true);
-    }
-
-    /**
-     * The numeric day (0-6) which the calendar should consider as the first day of the week
-     *
-     *
-     * @return int
-     */
-    public int getFirstDayOfWeek()  {
-        return getAttributeAsInt("firstDayOfWeek");
+    public TextMatchStyle getAutoFetchTextMatchStyle()  {
+        return EnumUtil.getEnum(TextMatchStyle.values(), getAttribute("autoFetchTextMatchStyle"));
     }
 
     /**
@@ -170,24 +177,207 @@ public class Calendar extends Canvas  implements DataBoundComponent, com.smartgw
     }
 
     /**
-     * The base name for the CSS class applied to the day headers of the month view. This style will have "Dark", "Over",
-     * "Selected", or "Disabled" appended to it according to the state of the cell.
+     * The title for the cancel button in the event editor
      *
-     * @param dayHeaderBaseStyle dayHeaderBaseStyle Default value is "calMonthDayHeader"
+     * @param cancelButtonTitle cancelButtonTitle Default value is "Cancel"
+     * @throws IllegalStateException this property cannot be changed after the component has been created
      */
-    public void setDayHeaderBaseStyle(String dayHeaderBaseStyle) {
-        setAttribute("dayHeaderBaseStyle", dayHeaderBaseStyle, true);
+    public void setCancelButtonTitle(String cancelButtonTitle)  throws IllegalStateException {
+        setAttribute("cancelButtonTitle", cancelButtonTitle, false);
     }
 
     /**
-     * The base name for the CSS class applied to the day headers of the month view. This style will have "Dark", "Over",
-     * "Selected", or "Disabled" appended to it according to the state of the cell.
+     * The title for the cancel button in the event editor
      *
      *
      * @return String
      */
-    public String getDayHeaderBaseStyle()  {
-        return getAttributeAsString("dayHeaderBaseStyle");
+    public String getCancelButtonTitle()  {
+        return getAttributeAsString("cancelButtonTitle");
+    }
+
+    /**
+     * If true, users can create new events
+     *
+     * @param canCreateEvents canCreateEvents Default value is true
+     * @throws IllegalStateException this property cannot be changed after the component has been created
+     */
+    public void setCanCreateEvents(Boolean canCreateEvents)  throws IllegalStateException {
+        setAttribute("canCreateEvents", canCreateEvents, false);
+    }
+
+    /**
+     * If true, users can create new events
+     *
+     *
+     * @return Boolean
+     */
+    public Boolean getCanCreateEvents()  {
+        return getAttributeAsBoolean("canCreateEvents");
+    }
+
+    /**
+     * If true, users can delete existing events. Defaults to {@link
+     * com.smartgwt.client.widgets.calendar.Calendar#getCanEditEvents canEditEvents}
+     *
+     * @param canDeleteEvents canDeleteEvents Default value is true
+     * @throws IllegalStateException this property cannot be changed after the component has been created
+     */
+    public void setCanDeleteEvents(Boolean canDeleteEvents)  throws IllegalStateException {
+        setAttribute("canDeleteEvents", canDeleteEvents, false);
+    }
+
+    /**
+     * If true, users can delete existing events. Defaults to {@link
+     * com.smartgwt.client.widgets.calendar.Calendar#getCanEditEvents canEditEvents}
+     *
+     *
+     * @return Boolean
+     */
+    public Boolean getCanDeleteEvents()  {
+        return getAttributeAsBoolean("canDeleteEvents");
+    }
+
+    /**
+     * Name of the field on each {@link com.smartgwt.client.widgets.calendar.CalendarEvent} that determines dragability.
+     *
+     * @param canDragEventField canDragEventField Default value is "canEdit"
+     * @throws IllegalStateException this property cannot be changed after the component has been created
+     */
+    public void setCanDragEventField(String canDragEventField)  throws IllegalStateException {
+        setAttribute("canDragEventField", canDragEventField, false);
+    }
+
+    /**
+     * Name of the field on each {@link com.smartgwt.client.widgets.calendar.CalendarEvent} that determines dragability.
+     *
+     *
+     * @return String
+     */
+    public String getCanDragEventField()  {
+        return getAttributeAsString("canDragEventField");
+    }
+
+    /**
+     * If true, users can drag-reposition existing events.
+     *
+     * @param canDragEvents canDragEvents Default value is true
+     * @throws IllegalStateException this property cannot be changed after the component has been created
+     */
+    public void setCanDragEvents(Boolean canDragEvents)  throws IllegalStateException {
+        setAttribute("canDragEvents", canDragEvents, false);
+    }
+
+    /**
+     * If true, users can drag-reposition existing events.
+     *
+     *
+     * @return Boolean
+     */
+    public Boolean getCanDragEvents()  {
+        return getAttributeAsBoolean("canDragEvents");
+    }
+
+    /**
+     * If true, users can edit existing events
+     *
+     * @param canEditEvents canEditEvents Default value is true
+     * @throws IllegalStateException this property cannot be changed after the component has been created
+     */
+    public void setCanEditEvents(Boolean canEditEvents)  throws IllegalStateException {
+        setAttribute("canEditEvents", canEditEvents, false);
+    }
+
+    /**
+     * If true, users can edit existing events
+     *
+     *
+     * @return Boolean
+     */
+    public Boolean getCanEditEvents()  {
+        return getAttributeAsBoolean("canEditEvents");
+    }
+
+    /**
+     * Name of the field on each {@link com.smartgwt.client.widgets.calendar.CalendarEvent} that determines editability.
+     *
+     * @param canEditField canEditField Default value is "canEdit"
+     * @throws IllegalStateException this property cannot be changed after the component has been created
+     */
+    public void setCanEditField(String canEditField)  throws IllegalStateException {
+        setAttribute("canEditField", canEditField, false);
+    }
+
+    /**
+     * Name of the field on each {@link com.smartgwt.client.widgets.calendar.CalendarEvent} that determines editability.
+     *
+     *
+     * @return String
+     */
+    public String getCanEditField()  {
+        return getAttributeAsString("canEditField");
+    }
+
+    /**
+     * The date for which events are displayed in the day, week, and month tabs of  the calendar.  Default is today.
+     * Set the current date for which the calendar will display events.
+     *
+     * @param chosenDate the new date to set as the current date. Default value is 'Today'
+     */
+    public void setChosenDate(java.util.Date chosenDate) {
+        setAttribute("chosenDate", chosenDate, true);
+    }
+
+    /**
+     * The date for which events are displayed in the day, week, and month tabs of  the calendar.  Default is today.
+     *
+     *
+     * @return java.util.Date
+     */
+    public java.util.Date getChosenDate()  {
+        return getAttributeAsDate("chosenDate");
+    }
+             
+    /**
+     * The name of the view that should be visible initially by default.
+     * Sets the currently visible view
+     *
+     * @param currentViewName The name of the view that should be made visible.. Default value is null
+     */
+    public void setCurrentViewName(ViewName currentViewName) {
+        setAttribute("currentViewName", currentViewName.getValue(), true);
+    }
+
+    /**
+     * The name of the view that should be visible initially by default.
+     *
+     *
+     * @return Get the name of the visible view. Either 'day', 'week', or 'month'.
+     */
+    public ViewName getCurrentViewName()  {
+        return EnumUtil.getEnum(ViewName.values(), getAttribute("currentViewName"));
+    }
+
+    /**
+     * The text to be displayed when a user hovers over the {@link
+     * com.smartgwt.client.widgets.calendar.Calendar#getDatePickerButton 'date picker'} toolbar button
+     *
+     * @param datePickerHoverText datePickerHoverText Default value is "Choose a date"
+     * @throws IllegalStateException this property cannot be changed after the component has been created
+     */
+    public void setDatePickerHoverText(String datePickerHoverText)  throws IllegalStateException {
+        setAttribute("datePickerHoverText", datePickerHoverText, false);
+    }
+
+    /**
+     * The text to be displayed when a user hovers over the {@link
+     * com.smartgwt.client.widgets.calendar.Calendar#getDatePickerButton 'date picker'} toolbar button
+     *
+     *
+     * @return String
+     */
+    public String getDatePickerHoverText()  {
+        return getAttributeAsString("datePickerHoverText");
     }
 
     /**
@@ -215,10 +405,10 @@ public class Calendar extends Canvas  implements DataBoundComponent, com.smartgw
      * The base name for the CSS class applied to the day headers of the month view. This style will have "Dark", "Over",
      * "Selected", or "Disabled" appended to it according to the state of the cell.
      *
-     * @param otherDayHeaderBaseStyle otherDayHeaderBaseStyle Default value is "calMonthDayHeader"
+     * @param dayHeaderBaseStyle dayHeaderBaseStyle Default value is "calMonthDayHeader"
      */
-    public void setOtherDayHeaderBaseStyle(String otherDayHeaderBaseStyle) {
-        setAttribute("otherDayHeaderBaseStyle", otherDayHeaderBaseStyle, true);
+    public void setDayHeaderBaseStyle(String dayHeaderBaseStyle) {
+        setAttribute("dayHeaderBaseStyle", dayHeaderBaseStyle, true);
     }
 
     /**
@@ -228,243 +418,28 @@ public class Calendar extends Canvas  implements DataBoundComponent, com.smartgw
      *
      * @return String
      */
-    public String getOtherDayHeaderBaseStyle()  {
-        return getAttributeAsString("otherDayHeaderBaseStyle");
+    public String getDayHeaderBaseStyle()  {
+        return getAttributeAsString("dayHeaderBaseStyle");
     }
 
     /**
-     * The base name for the CSS class applied to the day body of the month view of the calendar. This style will have "Dark",
-     * "Over", "Selected", or "Disabled" appended to it according to the state of the cell.
+     * The title for the day view
      *
-     * @param otherDayBodyBaseStyle otherDayBodyBaseStyle Default value is "calMonthDayBody"
-     */
-    public void setOtherDayBodyBaseStyle(String otherDayBodyBaseStyle) {
-        setAttribute("otherDayBodyBaseStyle", otherDayBodyBaseStyle, true);
-    }
-
-    /**
-     * The base name for the CSS class applied to the day body of the month view of the calendar. This style will have "Dark",
-     * "Over", "Selected", or "Disabled" appended to it according to the state of the cell.
-     *
-     *
-     * @return String
-     */
-    public String getOtherDayBodyBaseStyle()  {
-        return getAttributeAsString("otherDayBodyBaseStyle");
-    }
-
-    /**
-     * In the month CSS style applied to both the header and body of days from other months when {@link
-     * com.smartgwt.client.widgets.calendar.Calendar#getShowOtherDays showOtherDays} is false.
-     *
-     * @param otherDayBlankStyle otherDayBlankStyle Default value is "calMonthOtherDayBlank"
+     * @param dayViewTitle dayViewTitle Default value is "Day"
      * @throws IllegalStateException this property cannot be changed after the component has been created
      */
-    public void setOtherDayBlankStyle(String otherDayBlankStyle)  throws IllegalStateException {
-        setAttribute("otherDayBlankStyle", otherDayBlankStyle, false);
+    public void setDayViewTitle(String dayViewTitle)  throws IllegalStateException {
+        setAttribute("dayViewTitle", dayViewTitle, false);
     }
 
     /**
-     * In the month CSS style applied to both the header and body of days from other months when {@link
-     * com.smartgwt.client.widgets.calendar.Calendar#getShowOtherDays showOtherDays} is false.
+     * The title for the day view
      *
      *
      * @return String
      */
-    public String getOtherDayBlankStyle()  {
-        return getAttributeAsString("otherDayBlankStyle");
-    }
-
-    /**
-     * The base name for the CSS class applied to a cell that is selected via a mouse drag.
-     *
-     * @param selectedCellStyle selectedCellStyle Default value is "calendarCellSelected"
-     */
-    public void setSelectedCellStyle(String selectedCellStyle) {
-        setAttribute("selectedCellStyle", selectedCellStyle, true);
-    }
-
-    /**
-     * The base name for the CSS class applied to a cell that is selected via a mouse drag.
-     *
-     *
-     * @return String
-     */
-    public String getSelectedCellStyle()  {
-        return getAttributeAsString("selectedCellStyle");
-    }
-
-    /**
-     * The base name for the CSS class applied to event windows within calendars. This style will have "Header", "HeaderLabel",
-     * and "Body" appended to it, according to  which part of the event window is being styled. For example, to style the
-     * header, define a css class called 'eventWindowHeader'.
-     *
-     * @param eventWindowStyle eventWindowStyle Default value is "eventWindow"
-     */
-    public void setEventWindowStyle(String eventWindowStyle) {
-        setAttribute("eventWindowStyle", eventWindowStyle, true);
-    }
-
-    /**
-     * The base name for the CSS class applied to event windows within calendars. This style will have "Header", "HeaderLabel",
-     * and "Body" appended to it, according to  which part of the event window is being styled. For example, to style the
-     * header, define a css class called 'eventWindowHeader'.
-     *
-     *
-     * @return String
-     */
-    public String getEventWindowStyle()  {
-        return getAttributeAsString("eventWindowStyle");
-    }
-
-    /**
-     * If {@link com.smartgwt.client.widgets.calendar.Calendar#getShowWorkday showWorkday} is set, style used for cells that
-     * are within the workday, as defined by {@link com.smartgwt.client.widgets.calendar.Calendar#getWorkdayStart workdayStart}
-     * and {@link com.smartgwt.client.widgets.calendar.Calendar#getWorkdayEnd workdayEnd}.
-     *
-     * @param workdayBaseStyle workdayBaseStyle Default value is "calendarWorkday"
-     * @throws IllegalStateException this property cannot be changed after the component has been created
-     */
-    public void setWorkdayBaseStyle(String workdayBaseStyle)  throws IllegalStateException {
-        setAttribute("workdayBaseStyle", workdayBaseStyle, false);
-    }
-
-    /**
-     * If {@link com.smartgwt.client.widgets.calendar.Calendar#getShowWorkday showWorkday} is set, style used for cells that
-     * are within the workday, as defined by {@link com.smartgwt.client.widgets.calendar.Calendar#getWorkdayStart workdayStart}
-     * and {@link com.smartgwt.client.widgets.calendar.Calendar#getWorkdayEnd workdayEnd}.
-     *
-     *
-     * @return String
-     */
-    public String getWorkdayBaseStyle()  {
-        return getAttributeAsString("workdayBaseStyle");
-    }
-
-    /**
-     * When using {@link com.smartgwt.client.widgets.calendar.Calendar#getShowWorkday showWorkday}:true,
-     * <code>workdayStart</code> and <code>workdayEnd</code> specify the time of day when the workday starts and ends,
-     * specified as a String acceptable to {@link com.smartgwt.client..Time#parseInput}. <P> Both start and end time must fall
-     * on a 30 minute increment (eg 9:30, but not 9:45).
-     *
-     * @param workdayStart workdayStart Default value is "9:00am"
-     * @throws IllegalStateException this property cannot be changed after the component has been created
-     */
-    public void setWorkdayStart(String workdayStart)  throws IllegalStateException {
-        setAttribute("workdayStart", workdayStart, false);
-    }
-
-    /**
-     * When using {@link com.smartgwt.client.widgets.calendar.Calendar#getShowWorkday showWorkday}:true,
-     * <code>workdayStart</code> and <code>workdayEnd</code> specify the time of day when the workday starts and ends,
-     * specified as a String acceptable to {@link com.smartgwt.client..Time#parseInput}. <P> Both start and end time must fall
-     * on a 30 minute increment (eg 9:30, but not 9:45).
-     *
-     *
-     * @return String
-     */
-    public String getWorkdayStart()  {
-        return getAttributeAsString("workdayStart");
-    }
-
-    /**
-     * When using {@link com.smartgwt.client.widgets.calendar.Calendar#getShowWorkday showWorkday}:true,
-     * <code>workdayStart</code> and <code>workdayEnd</code> specify the time of day when the workday starts and ends,
-     * specified as a String acceptable to {@link com.smartgwt.client..Time#parseInput}. <P> Both start and end time must fall
-     * on a 30 minute increment (eg 9:30, but not 9:45).
-     *
-     * @param workdayEnd workdayEnd Default value is "5:00pm"
-     * @throws IllegalStateException this property cannot be changed after the component has been created
-     */
-    public void setWorkdayEnd(String workdayEnd)  throws IllegalStateException {
-        setAttribute("workdayEnd", workdayEnd, false);
-    }
-
-    /**
-     * When using {@link com.smartgwt.client.widgets.calendar.Calendar#getShowWorkday showWorkday}:true,
-     * <code>workdayStart</code> and <code>workdayEnd</code> specify the time of day when the workday starts and ends,
-     * specified as a String acceptable to {@link com.smartgwt.client..Time#parseInput}. <P> Both start and end time must fall
-     * on a 30 minute increment (eg 9:30, but not 9:45).
-     *
-     *
-     * @return String
-     */
-    public String getWorkdayEnd()  {
-        return getAttributeAsString("workdayEnd");
-    }
-
-    /**
-     * If set, causes the calendar to use {@link com.smartgwt.client.widgets.calendar.Calendar#getWorkdayBaseStyle
-     * workdayBaseStyle} for cells falling within the workday as defined by {@link
-     * com.smartgwt.client.widgets.calendar.Calendar#getWorkdayStart workdayStart} and {@link
-     * com.smartgwt.client.widgets.calendar.Calendar#getWorkdayEnd workdayEnd}, in both the {@link
-     * com.smartgwt.client.widgets.calendar.Calendar#getWeekView weekView} and {@link
-     * com.smartgwt.client.widgets.calendar.Calendar#getDayView dayView}.
-     *
-     * @param showWorkday showWorkday Default value is false
-     * @throws IllegalStateException this property cannot be changed after the component has been created
-     */
-    public void setShowWorkday(Boolean showWorkday)  throws IllegalStateException {
-        setAttribute("showWorkday", showWorkday, false);
-    }
-
-    /**
-     * If set, causes the calendar to use {@link com.smartgwt.client.widgets.calendar.Calendar#getWorkdayBaseStyle
-     * workdayBaseStyle} for cells falling within the workday as defined by {@link
-     * com.smartgwt.client.widgets.calendar.Calendar#getWorkdayStart workdayStart} and {@link
-     * com.smartgwt.client.widgets.calendar.Calendar#getWorkdayEnd workdayEnd}, in both the {@link
-     * com.smartgwt.client.widgets.calendar.Calendar#getWeekView weekView} and {@link
-     * com.smartgwt.client.widgets.calendar.Calendar#getDayView dayView}.
-     *
-     *
-     * @return Boolean
-     */
-    public Boolean getShowWorkday()  {
-        return getAttributeAsBoolean("showWorkday");
-    }
-
-    /**
-     * If set, causes the {@link com.smartgwt.client.widgets.calendar.Calendar#getWorkdayStart 'workday hours'} to be sized to
-     * fill the available space in the day view and week view, and automatically scrolls these views to the start of the
-     * workday when the calendar is first displayed and whenever the user switches to a new day or week.
-     *
-     * @param scrollToWorkday scrollToWorkday Default value is false
-     * @throws IllegalStateException this property cannot be changed after the component has been created
-     */
-    public void setScrollToWorkday(Boolean scrollToWorkday)  throws IllegalStateException {
-        setAttribute("scrollToWorkday", scrollToWorkday, false);
-    }
-
-    /**
-     * If set, causes the {@link com.smartgwt.client.widgets.calendar.Calendar#getWorkdayStart 'workday hours'} to be sized to
-     * fill the available space in the day view and week view, and automatically scrolls these views to the start of the
-     * workday when the calendar is first displayed and whenever the user switches to a new day or week.
-     *
-     *
-     * @return Boolean
-     */
-    public Boolean getScrollToWorkday()  {
-        return getAttributeAsBoolean("scrollToWorkday");
-    }
-
-    /**
-     * The name of the name field in a {@link com.smartgwt.client.widgets.calendar.CalendarEvent}.
-     *
-     * @param nameField nameField Default value is "name"
-     * @throws IllegalStateException this property cannot be changed after the component has been created
-     */
-    public void setNameField(String nameField)  throws IllegalStateException {
-        setAttribute("nameField", nameField, false);
-    }
-
-    /**
-     * The name of the name field in a {@link com.smartgwt.client.widgets.calendar.CalendarEvent}.
-     *
-     *
-     * @return String
-     */
-    public String getNameField()  {
-        return getAttributeAsString("nameField");
+    public String getDayViewTitle()  {
+        return getAttributeAsString("dayViewTitle");
     }
 
     /**
@@ -488,23 +463,45 @@ public class Calendar extends Canvas  implements DataBoundComponent, com.smartgw
     }
 
     /**
-     * The name of the start date field in a {@link com.smartgwt.client.widgets.calendar.CalendarEvent}.
+     * The title for the edit button in the quick event dialog
      *
-     * @param startDateField startDateField Default value is "startDate"
+     * @param detailsButtonTitle detailsButtonTitle Default value is "Edit Details"
      * @throws IllegalStateException this property cannot be changed after the component has been created
      */
-    public void setStartDateField(String startDateField)  throws IllegalStateException {
-        setAttribute("startDateField", startDateField, false);
+    public void setDetailsButtonTitle(String detailsButtonTitle)  throws IllegalStateException {
+        setAttribute("detailsButtonTitle", detailsButtonTitle, false);
     }
 
     /**
-     * The name of the start date field in a {@link com.smartgwt.client.widgets.calendar.CalendarEvent}.
+     * The title for the edit button in the quick event dialog
      *
      *
      * @return String
      */
-    public String getStartDateField()  {
-        return getAttributeAsString("startDateField");
+    public String getDetailsButtonTitle()  {
+        return getAttributeAsString("detailsButtonTitle");
+    }
+
+    /**
+     * If set, weekend days appear in disabled style and events cannot be created on weekends. Which days are considered
+     * weekends is controlled by {@link com.smartgwt.client..Date#weekendDays}.
+     *
+     * @param disableWeekends disableWeekends Default value is true
+     * @throws IllegalStateException this property cannot be changed after the component has been created
+     */
+    public void setDisableWeekends(Boolean disableWeekends)  throws IllegalStateException {
+        setAttribute("disableWeekends", disableWeekends, false);
+    }
+
+    /**
+     * If set, weekend days appear in disabled style and events cannot be created on weekends. Which days are considered
+     * weekends is controlled by {@link com.smartgwt.client..Date#weekendDays}.
+     *
+     *
+     * @return Boolean
+     */
+    public Boolean getDisableWeekends()  {
+        return getAttributeAsBoolean("disableWeekends");
     }
 
     /**
@@ -528,43 +525,131 @@ public class Calendar extends Canvas  implements DataBoundComponent, com.smartgw
     }
 
     /**
-     * The name of the end date field in a {@link com.smartgwt.client.widgets.calendar.CalendarEvent}.
+     * If set to true, enables the auto-arrangement of events that share time in the calendar.  The default is true.
      *
-     * @param leadingDateField leadingDateField Default value is "leadingDate"
+     * @param eventAutoArrange eventAutoArrange Default value is true
      * @throws IllegalStateException this property cannot be changed after the component has been created
      */
-    public void setLeadingDateField(String leadingDateField)  throws IllegalStateException {
-        setAttribute("leadingDateField", leadingDateField, false);
+    public void setEventAutoArrange(Boolean eventAutoArrange)  throws IllegalStateException {
+        setAttribute("eventAutoArrange", eventAutoArrange, false);
     }
 
     /**
-     * The name of the end date field in a {@link com.smartgwt.client.widgets.calendar.CalendarEvent}.
+     * If set to true, enables the auto-arrangement of events that share time in the calendar.  The default is true.
+     *
+     *
+     * @return Boolean
+     */
+    public Boolean getEventAutoArrange()  {
+        return getAttributeAsBoolean("eventAutoArrange");
+    }
+
+    /**
+     * The title for the event name field in the quick event dialog
+     *
+     * @param eventNameFieldTitle eventNameFieldTitle Default value is "Event Name"
+     * @throws IllegalStateException this property cannot be changed after the component has been created
+     */
+    public void setEventNameFieldTitle(String eventNameFieldTitle)  throws IllegalStateException {
+        setAttribute("eventNameFieldTitle", eventNameFieldTitle, false);
+    }
+
+    /**
+     * The title for the event name field in the quick event dialog
      *
      *
      * @return String
      */
-    public String getLeadingDateField()  {
-        return getAttributeAsString("leadingDateField");
+    public String getEventNameFieldTitle()  {
+        return getAttributeAsString("eventNameFieldTitle");
     }
 
     /**
-     * The name of the end date field in a {@link com.smartgwt.client.widgets.calendar.CalendarEvent}.
+     * When {@link com.smartgwt.client.widgets.calendar.Calendar#getEventAutoArrange eventAutoArrange} is true, setting
+     * eventOverlap to true causes events that  share timeslots to overlap each other by a percentage of their width, specified
+     * by  {@link com.smartgwt.client.widgets.calendar.Calendar#getEventOverlapPercent eventOverlapPercent}.  The default is
+     * true.
      *
-     * @param trailingDateField trailingDateField Default value is "trailingDate"
+     * @param eventOverlap eventOverlap Default value is true
      * @throws IllegalStateException this property cannot be changed after the component has been created
      */
-    public void setTrailingDateField(String trailingDateField)  throws IllegalStateException {
-        setAttribute("trailingDateField", trailingDateField, false);
+    public void setEventOverlap(Boolean eventOverlap)  throws IllegalStateException {
+        setAttribute("eventOverlap", eventOverlap, false);
     }
 
     /**
-     * The name of the end date field in a {@link com.smartgwt.client.widgets.calendar.CalendarEvent}.
+     * When {@link com.smartgwt.client.widgets.calendar.Calendar#getEventAutoArrange eventAutoArrange} is true, setting
+     * eventOverlap to true causes events that  share timeslots to overlap each other by a percentage of their width, specified
+     * by  {@link com.smartgwt.client.widgets.calendar.Calendar#getEventOverlapPercent eventOverlapPercent}.  The default is
+     * true.
      *
      *
-     * @return String
+     * @return Boolean
      */
-    public String getTrailingDateField()  {
-        return getAttributeAsString("trailingDateField");
+    public Boolean getEventOverlap()  {
+        return getAttributeAsBoolean("eventOverlap");
+    }
+
+    /**
+     * When set to true, events that start at the same time will not overlap each other to prevent  events having their close
+     * button hidden
+     *
+     * @param eventOverlapIdenticalStartTimes eventOverlapIdenticalStartTimes Default value is false
+     * @throws IllegalStateException this property cannot be changed after the component has been created
+     */
+    public void setEventOverlapIdenticalStartTimes(Boolean eventOverlapIdenticalStartTimes)  throws IllegalStateException {
+        setAttribute("eventOverlapIdenticalStartTimes", eventOverlapIdenticalStartTimes, false);
+    }
+
+    /**
+     * When set to true, events that start at the same time will not overlap each other to prevent  events having their close
+     * button hidden
+     *
+     *
+     * @return Boolean
+     */
+    public Boolean getEventOverlapIdenticalStartTimes()  {
+        return getAttributeAsBoolean("eventOverlapIdenticalStartTimes");
+    }
+
+    /**
+     * The size of the overlap, presented as a percentage of the width of events sharing timeslots
+     *
+     * @param eventOverlapPercent eventOverlapPercent Default value is 10
+     * @throws IllegalStateException this property cannot be changed after the component has been created
+     */
+    public void setEventOverlapPercent(int eventOverlapPercent)  throws IllegalStateException {
+        setAttribute("eventOverlapPercent", eventOverlapPercent, false);
+    }
+
+    /**
+     * The size of the overlap, presented as a percentage of the width of events sharing timeslots
+     *
+     *
+     * @return int
+     */
+    public int getEventOverlapPercent()  {
+        return getAttributeAsInt("eventOverlapPercent");
+    }
+
+    /**
+     * Determines how many minutes an event can be moved or resized by.
+     *
+     * @param eventSnapGap eventSnapGap Default value is 30
+     * @throws IllegalStateException this property cannot be changed after the component has been created
+     */
+    public void setEventSnapGap(int eventSnapGap)  throws IllegalStateException {
+        setAttribute("eventSnapGap", eventSnapGap, false);
+    }
+
+    /**
+     * Determines how many minutes an event can be moved or resized by.
+     *
+     *
+     * @return int
+     */
+    public int getEventSnapGap()  {
+        return getAttributeAsInt("eventSnapGap");
     }
 
     /**
@@ -587,6 +672,30 @@ public class Calendar extends Canvas  implements DataBoundComponent, com.smartgw
      */
     public String getEventTypeField()  {
         return getAttributeAsString("eventTypeField");
+    }
+ 
+
+    /**
+     * The base name for the CSS class applied to event windows within calendars. This style will have "Header", "HeaderLabel",
+     * and "Body" appended to it, according to  which part of the event window is being styled. For example, to style the
+     * header, define a css class called 'eventWindowHeader'.
+     *
+     * @param eventWindowStyle eventWindowStyle Default value is "eventWindow"
+     */
+    public void setEventWindowStyle(String eventWindowStyle) {
+        setAttribute("eventWindowStyle", eventWindowStyle, true);
+    }
+
+    /**
+     * The base name for the CSS class applied to event windows within calendars. This style will have "Header", "HeaderLabel",
+     * and "Body" appended to it, according to  which part of the event window is being styled. For example, to style the
+     * header, define a css class called 'eventWindowHeader'.
+     *
+     *
+     * @return String
+     */
+    public String getEventWindowStyle()  {
+        return getAttributeAsString("eventWindowStyle");
     }
 
     /**
@@ -614,187 +723,303 @@ public class Calendar extends Canvas  implements DataBoundComponent, com.smartgw
     }
 
     /**
-     * Name of the field on each {@link com.smartgwt.client.widgets.calendar.CalendarEvent} that determines editability.
+     * The numeric day (0-6) which the calendar should consider as the first day of the week
      *
-     * @param canEditField canEditField Default value is "canEdit"
-     * @throws IllegalStateException this property cannot be changed after the component has been created
+     * @param firstDayOfWeek firstDayOfWeek Default value is 0
      */
-    public void setCanEditField(String canEditField)  throws IllegalStateException {
-        setAttribute("canEditField", canEditField, false);
+    public void setFirstDayOfWeek(int firstDayOfWeek) {
+        setAttribute("firstDayOfWeek", firstDayOfWeek, true);
     }
 
     /**
-     * Name of the field on each {@link com.smartgwt.client.widgets.calendar.CalendarEvent} that determines editability.
-     *
-     *
-     * @return String
-     */
-    public String getCanEditField()  {
-        return getAttributeAsString("canEditField");
-    }
-
-    /**
-     * Name of the field on each {@link com.smartgwt.client.widgets.calendar.CalendarEvent} that determines dragability.
-     *
-     * @param canDragEventField canDragEventField Default value is "canEdit"
-     * @throws IllegalStateException this property cannot be changed after the component has been created
-     */
-    public void setCanDragEventField(String canDragEventField)  throws IllegalStateException {
-        setAttribute("canDragEventField", canDragEventField, false);
-    }
-
-    /**
-     * Name of the field on each {@link com.smartgwt.client.widgets.calendar.CalendarEvent} that determines dragability.
-     *
-     *
-     * @return String
-     */
-    public String getCanDragEventField()  {
-        return getAttributeAsString("canDragEventField");
-    }
-
-    /**
-     * Augments the width of week event windows slightly to avoid duplicate adjacent borders between events.
-     *
-     * @param weekEventBorderOverlap weekEventBorderOverlap Default value is false
-     * @throws IllegalStateException this property cannot be changed after the component has been created
-     */
-    public void setWeekEventBorderOverlap(Boolean weekEventBorderOverlap)  throws IllegalStateException {
-        setAttribute("weekEventBorderOverlap", weekEventBorderOverlap, false);
-    }
-
-    /**
-     * Augments the width of week event windows slightly to avoid duplicate adjacent borders between events.
-     *
-     *
-     * @return Boolean
-     */
-    public Boolean getWeekEventBorderOverlap()  {
-        return getAttributeAsBoolean("weekEventBorderOverlap");
-    }
-
-    /**
-     * Determines how many minutes an event can be moved or resized by.
-     *
-     * @param eventSnapGap eventSnapGap Default value is 30
-     * @throws IllegalStateException this property cannot be changed after the component has been created
-     */
-    public void setEventSnapGap(int eventSnapGap)  throws IllegalStateException {
-        setAttribute("eventSnapGap", eventSnapGap, false);
-    }
-
-    /**
-     * Determines how many minutes an event can be moved or resized by.
+     * The numeric day (0-6) which the calendar should consider as the first day of the week
      *
      *
      * @return int
      */
-    public int getEventSnapGap()  {
-        return getAttributeAsInt("eventSnapGap");
+    public int getFirstDayOfWeek()  {
+        return getAttributeAsInt("firstDayOfWeek");
     }
 
     /**
-     * Determines whether the quick event dialog is displayed when a time is clicked. If this is false, the full event editor
-     * is displayed.
+     * The message to display in the {@link com.smartgwt.client.widgets.calendar.Calendar#getEventEditor eventEditor} when the
+     * 'To' date is greater than the 'From' date and a save is attempted.
      *
-     * @param showQuickEventDialog showQuickEventDialog Default value is true
+     * @param invalidDateMessage invalidDateMessage Default value is "From must be before To"
      * @throws IllegalStateException this property cannot be changed after the component has been created
      */
-    public void setShowQuickEventDialog(Boolean showQuickEventDialog)  throws IllegalStateException {
-        setAttribute("showQuickEventDialog", showQuickEventDialog, false);
+    public void setInvalidDateMessage(Boolean invalidDateMessage)  throws IllegalStateException {
+        setAttribute("invalidDateMessage", invalidDateMessage, false);
     }
 
     /**
-     * Determines whether the quick event dialog is displayed when a time is clicked. If this is false, the full event editor
-     * is displayed.
+     * The message to display in the {@link com.smartgwt.client.widgets.calendar.Calendar#getEventEditor eventEditor} when the
+     * 'To' date is greater than the 'From' date and a save is attempted.
      *
      *
      * @return Boolean
      */
-    public Boolean getShowQuickEventDialog()  {
-        return getAttributeAsBoolean("showQuickEventDialog");
+    public Boolean getInvalidDateMessage()  {
+        return getAttributeAsBoolean("invalidDateMessage");
     }
 
     /**
-     * If true, users can create new events
+     * The name of the end date field in a {@link com.smartgwt.client.widgets.calendar.CalendarEvent}.
      *
-     * @param canCreateEvents canCreateEvents Default value is true
+     * @param leadingDateField leadingDateField Default value is "leadingDate"
      * @throws IllegalStateException this property cannot be changed after the component has been created
      */
-    public void setCanCreateEvents(Boolean canCreateEvents)  throws IllegalStateException {
-        setAttribute("canCreateEvents", canCreateEvents, false);
+    public void setLeadingDateField(String leadingDateField)  throws IllegalStateException {
+        setAttribute("leadingDateField", leadingDateField, false);
     }
 
     /**
-     * If true, users can create new events
+     * The name of the end date field in a {@link com.smartgwt.client.widgets.calendar.CalendarEvent}.
+     *
+     *
+     * @return String
+     */
+    public String getLeadingDateField()  {
+        return getAttributeAsString("leadingDateField");
+    }
+
+    /**
+     * The title for the month view
+     *
+     * @param monthViewTitle monthViewTitle Default value is "Month"
+     * @throws IllegalStateException this property cannot be changed after the component has been created
+     */
+    public void setMonthViewTitle(String monthViewTitle)  throws IllegalStateException {
+        setAttribute("monthViewTitle", monthViewTitle, false);
+    }
+
+    /**
+     * The title for the month view
+     *
+     *
+     * @return String
+     */
+    public String getMonthViewTitle()  {
+        return getAttributeAsString("monthViewTitle");
+    }
+
+    /**
+     * The name of the name field in a {@link com.smartgwt.client.widgets.calendar.CalendarEvent}.
+     *
+     * @param nameField nameField Default value is "name"
+     * @throws IllegalStateException this property cannot be changed after the component has been created
+     */
+    public void setNameField(String nameField)  throws IllegalStateException {
+        setAttribute("nameField", nameField, false);
+    }
+
+    /**
+     * The name of the name field in a {@link com.smartgwt.client.widgets.calendar.CalendarEvent}.
+     *
+     *
+     * @return String
+     */
+    public String getNameField()  {
+        return getAttributeAsString("nameField");
+    }
+
+    /**
+     * The text to be displayed when a user hovers over the {@link com.smartgwt.client.widgets.calendar.Calendar#getNextButton
+     * 'next'}  toolbar button
+     *
+     * @param nextButtonHoverText nextButtonHoverText Default value is "Next"
+     * @throws IllegalStateException this property cannot be changed after the component has been created
+     */
+    public void setNextButtonHoverText(String nextButtonHoverText)  throws IllegalStateException {
+        setAttribute("nextButtonHoverText", nextButtonHoverText, false);
+    }
+
+    /**
+     * The text to be displayed when a user hovers over the {@link com.smartgwt.client.widgets.calendar.Calendar#getNextButton
+     * 'next'}  toolbar button
+     *
+     *
+     * @return String
+     */
+    public String getNextButtonHoverText()  {
+        return getAttributeAsString("nextButtonHoverText");
+    }
+
+    /**
+     * In the month CSS style applied to both the header and body of days from other months when {@link
+     * com.smartgwt.client.widgets.calendar.Calendar#getShowOtherDays showOtherDays} is false.
+     *
+     * @param otherDayBlankStyle otherDayBlankStyle Default value is "calMonthOtherDayBlank"
+     * @throws IllegalStateException this property cannot be changed after the component has been created
+     */
+    public void setOtherDayBlankStyle(String otherDayBlankStyle)  throws IllegalStateException {
+        setAttribute("otherDayBlankStyle", otherDayBlankStyle, false);
+    }
+
+    /**
+     * In the month CSS style applied to both the header and body of days from other months when {@link
+     * com.smartgwt.client.widgets.calendar.Calendar#getShowOtherDays showOtherDays} is false.
+     *
+     *
+     * @return String
+     */
+    public String getOtherDayBlankStyle()  {
+        return getAttributeAsString("otherDayBlankStyle");
+    }
+
+    /**
+     * The base name for the CSS class applied to the day body of the month view of the calendar. This style will have "Dark",
+     * "Over", "Selected", or "Disabled" appended to it according to the state of the cell.
+     *
+     * @param otherDayBodyBaseStyle otherDayBodyBaseStyle Default value is "calMonthDayBody"
+     */
+    public void setOtherDayBodyBaseStyle(String otherDayBodyBaseStyle) {
+        setAttribute("otherDayBodyBaseStyle", otherDayBodyBaseStyle, true);
+    }
+
+    /**
+     * The base name for the CSS class applied to the day body of the month view of the calendar. This style will have "Dark",
+     * "Over", "Selected", or "Disabled" appended to it according to the state of the cell.
+     *
+     *
+     * @return String
+     */
+    public String getOtherDayBodyBaseStyle()  {
+        return getAttributeAsString("otherDayBodyBaseStyle");
+    }
+
+    /**
+     * The base name for the CSS class applied to the day headers of the month view. This style will have "Dark", "Over",
+     * "Selected", or "Disabled" appended to it according to the state of the cell.
+     *
+     * @param otherDayHeaderBaseStyle otherDayHeaderBaseStyle Default value is "calMonthDayHeader"
+     */
+    public void setOtherDayHeaderBaseStyle(String otherDayHeaderBaseStyle) {
+        setAttribute("otherDayHeaderBaseStyle", otherDayHeaderBaseStyle, true);
+    }
+
+    /**
+     * The base name for the CSS class applied to the day headers of the month view. This style will have "Dark", "Over",
+     * "Selected", or "Disabled" appended to it according to the state of the cell.
+     *
+     *
+     * @return String
+     */
+    public String getOtherDayHeaderBaseStyle()  {
+        return getAttributeAsString("otherDayHeaderBaseStyle");
+    }
+
+    /**
+     * The text to be displayed when a user hovers over the {@link
+     * com.smartgwt.client.widgets.calendar.Calendar#getPreviousButton 'previous'} toolbar button
+     *
+     * @param previousButtonHoverText previousButtonHoverText Default value is "Previous"
+     * @throws IllegalStateException this property cannot be changed after the component has been created
+     */
+    public void setPreviousButtonHoverText(String previousButtonHoverText)  throws IllegalStateException {
+        setAttribute("previousButtonHoverText", previousButtonHoverText, false);
+    }
+
+    /**
+     * The text to be displayed when a user hovers over the {@link
+     * com.smartgwt.client.widgets.calendar.Calendar#getPreviousButton 'previous'} toolbar button
+     *
+     *
+     * @return String
+     */
+    public String getPreviousButtonHoverText()  {
+        return getAttributeAsString("previousButtonHoverText");
+    }
+
+    /**
+     * The title for the save button in the quick event dialog and the event editor
+     *
+     * @param saveButtonTitle saveButtonTitle Default value is "Save Event"
+     * @throws IllegalStateException this property cannot be changed after the component has been created
+     */
+    public void setSaveButtonTitle(String saveButtonTitle)  throws IllegalStateException {
+        setAttribute("saveButtonTitle", saveButtonTitle, false);
+    }
+
+    /**
+     * The title for the save button in the quick event dialog and the event editor
+     *
+     *
+     * @return String
+     */
+    public String getSaveButtonTitle()  {
+        return getAttributeAsString("saveButtonTitle");
+    }
+
+    /**
+     * If set, causes the {@link com.smartgwt.client.widgets.calendar.Calendar#getWorkdayStart 'workday hours'} to be sized to
+     * fill the available space in the day view and week view, and automatically scrolls these views to the start of the
+     * workday when the calendar is first displayed and whenever the user switches to a new day or week.
+     *
+     * @param scrollToWorkday scrollToWorkday Default value is false
+     * @throws IllegalStateException this property cannot be changed after the component has been created
+     */
+    public void setScrollToWorkday(Boolean scrollToWorkday)  throws IllegalStateException {
+        setAttribute("scrollToWorkday", scrollToWorkday, false);
+    }
+
+    /**
+     * If set, causes the {@link com.smartgwt.client.widgets.calendar.Calendar#getWorkdayStart 'workday hours'} to be sized to
+     * fill the available space in the day view and week view, and automatically scrolls these views to the start of the
+     * workday when the calendar is first displayed and whenever the user switches to a new day or week.
      *
      *
      * @return Boolean
      */
-    public Boolean getCanCreateEvents()  {
-        return getAttributeAsBoolean("canCreateEvents");
+    public Boolean getScrollToWorkday()  {
+        return getAttributeAsBoolean("scrollToWorkday");
     }
 
     /**
-     * If true, users can edit existing events
+     * The base name for the CSS class applied to a cell that is selected via a mouse drag.
      *
-     * @param canEditEvents canEditEvents Default value is true
+     * @param selectedCellStyle selectedCellStyle Default value is "calendarCellSelected"
+     */
+    public void setSelectedCellStyle(String selectedCellStyle) {
+        setAttribute("selectedCellStyle", selectedCellStyle, true);
+    }
+
+    /**
+     * The base name for the CSS class applied to a cell that is selected via a mouse drag.
+     *
+     *
+     * @return String
+     */
+    public String getSelectedCellStyle()  {
+        return getAttributeAsString("selectedCellStyle");
+    }
+
+    /**
+     * If false the controls bar at the top of the calendar will not be displayed. This consists  of the autoChildren: {@link
+     * com.smartgwt.client.widgets.calendar.Calendar#getPreviousButton previousButton}, {@link
+     * com.smartgwt.client.widgets.calendar.Calendar#getNextButton nextButton}, {@link
+     * com.smartgwt.client.widgets.calendar.Calendar#getAddEventButton addEventButton}, {@link
+     * com.smartgwt.client.widgets.calendar.Calendar#getDatePickerButton datePickerButton}
+     *
+     * @param showControlsBar showControlsBar Default value is true
      * @throws IllegalStateException this property cannot be changed after the component has been created
      */
-    public void setCanEditEvents(Boolean canEditEvents)  throws IllegalStateException {
-        setAttribute("canEditEvents", canEditEvents, false);
+    public void setShowControlsBar(Boolean showControlsBar)  throws IllegalStateException {
+        setAttribute("showControlsBar", showControlsBar, false);
     }
 
     /**
-     * If true, users can edit existing events
+     * If false the controls bar at the top of the calendar will not be displayed. This consists  of the autoChildren: {@link
+     * com.smartgwt.client.widgets.calendar.Calendar#getPreviousButton previousButton}, {@link
+     * com.smartgwt.client.widgets.calendar.Calendar#getNextButton nextButton}, {@link
+     * com.smartgwt.client.widgets.calendar.Calendar#getAddEventButton addEventButton}, {@link
+     * com.smartgwt.client.widgets.calendar.Calendar#getDatePickerButton datePickerButton}
      *
      *
      * @return Boolean
      */
-    public Boolean getCanEditEvents()  {
-        return getAttributeAsBoolean("canEditEvents");
-    }
-
-    /**
-     * If true, users can delete existing events. Defaults to {@link
-     * com.smartgwt.client.widgets.calendar.Calendar#getCanEditEvents canEditEvents}
-     *
-     * @param canDeleteEvents canDeleteEvents Default value is true
-     * @throws IllegalStateException this property cannot be changed after the component has been created
-     */
-    public void setCanDeleteEvents(Boolean canDeleteEvents)  throws IllegalStateException {
-        setAttribute("canDeleteEvents", canDeleteEvents, false);
-    }
-
-    /**
-     * If true, users can delete existing events. Defaults to {@link
-     * com.smartgwt.client.widgets.calendar.Calendar#getCanEditEvents canEditEvents}
-     *
-     *
-     * @return Boolean
-     */
-    public Boolean getCanDeleteEvents()  {
-        return getAttributeAsBoolean("canDeleteEvents");
-    }
-
-    /**
-     * If true, users can drag-reposition existing events.
-     *
-     * @param canDragEvents canDragEvents Default value is true
-     * @throws IllegalStateException this property cannot be changed after the component has been created
-     */
-    public void setCanDragEvents(Boolean canDragEvents)  throws IllegalStateException {
-        setAttribute("canDragEvents", canDragEvents, false);
-    }
-
-    /**
-     * If true, users can drag-reposition existing events.
-     *
-     *
-     * @return Boolean
-     */
-    public Boolean getCanDragEvents()  {
-        return getAttributeAsBoolean("canDragEvents");
+    public Boolean getShowControlsBar()  {
+        return getAttributeAsBoolean("showControlsBar");
     }
 
     /**
@@ -815,51 +1040,6 @@ public class Calendar extends Canvas  implements DataBoundComponent, com.smartgw
      */
     public Boolean getShowDateChooser()  {
         return getAttributeAsBoolean("showDateChooser");
-    }
-
-    /**
-     * If set, weekend days appear in disabled style and events cannot be created on weekends. Which days are considered
-     * weekends is controlled by {@link com.smartgwt.client..Date#weekendDays}.
-     *
-     * @param disableWeekends disableWeekends Default value is true
-     * @throws IllegalStateException this property cannot be changed after the component has been created
-     */
-    public void setDisableWeekends(Boolean disableWeekends)  throws IllegalStateException {
-        setAttribute("disableWeekends", disableWeekends, false);
-    }
-
-    /**
-     * If set, weekend days appear in disabled style and events cannot be created on weekends. Which days are considered
-     * weekends is controlled by {@link com.smartgwt.client..Date#weekendDays}.
-     *
-     *
-     * @return Boolean
-     */
-    public Boolean getDisableWeekends()  {
-        return getAttributeAsBoolean("disableWeekends");
-    }
-
-    /**
-     * Suppresses the display of weekend days in the week and month views, and disallows the creation of events on weekends. 
-     * Which days are considered weekends is controlled by {@link com.smartgwt.client..Date#weekendDays}.
-     * Setter for {@link com.smartgwt.client.widgets.calendar.Calendar#getShowWeekends showWeekends} to change this property at runtime.
-     *
-     * @param showWeekends showWeekends Default value is true
-     * @throws IllegalStateException this property cannot be changed after the component has been created
-     */
-    public void setShowWeekends(Boolean showWeekends)  throws IllegalStateException {
-        setAttribute("showWeekends", showWeekends, false);
-    }
-
-    /**
-     * Suppresses the display of weekend days in the week and month views, and disallows the creation of events on weekends. 
-     * Which days are considered weekends is controlled by {@link com.smartgwt.client..Date#weekendDays}.
-     *
-     *
-     * @return Boolean
-     */
-    public Boolean getShowWeekends()  {
-        return getAttributeAsBoolean("showWeekends");
     }
 
     /**
@@ -907,225 +1087,98 @@ public class Calendar extends Canvas  implements DataBoundComponent, com.smartgw
     }
 
     /**
-     * If false the controls bar at the top of the calendar will not be displayed. This consists  of the autoChildren: {@link
-     * com.smartgwt.client.widgets.calendar.Calendar#getPreviousButton previousButton}, {@link
-     * com.smartgwt.client.widgets.calendar.Calendar#getNextButton nextButton}, {@link
-     * com.smartgwt.client.widgets.calendar.Calendar#getAddEventButton addEventButton}, {@link
-     * com.smartgwt.client.widgets.calendar.Calendar#getDatePickerButton datePickerButton}
+     * Determines whether the quick event dialog is displayed when a time is clicked. If this is false, the full event editor
+     * is displayed.
      *
-     * @param showControlsBar showControlsBar Default value is true
+     * @param showQuickEventDialog showQuickEventDialog Default value is true
      * @throws IllegalStateException this property cannot be changed after the component has been created
      */
-    public void setShowControlsBar(Boolean showControlsBar)  throws IllegalStateException {
-        setAttribute("showControlsBar", showControlsBar, false);
+    public void setShowQuickEventDialog(Boolean showQuickEventDialog)  throws IllegalStateException {
+        setAttribute("showQuickEventDialog", showQuickEventDialog, false);
     }
 
     /**
-     * If false the controls bar at the top of the calendar will not be displayed. This consists  of the autoChildren: {@link
-     * com.smartgwt.client.widgets.calendar.Calendar#getPreviousButton previousButton}, {@link
-     * com.smartgwt.client.widgets.calendar.Calendar#getNextButton nextButton}, {@link
-     * com.smartgwt.client.widgets.calendar.Calendar#getAddEventButton addEventButton}, {@link
-     * com.smartgwt.client.widgets.calendar.Calendar#getDatePickerButton datePickerButton}
+     * Determines whether the quick event dialog is displayed when a time is clicked. If this is false, the full event editor
+     * is displayed.
      *
      *
      * @return Boolean
      */
-    public Boolean getShowControlsBar()  {
-        return getAttributeAsBoolean("showControlsBar");
+    public Boolean getShowQuickEventDialog()  {
+        return getAttributeAsBoolean("showQuickEventDialog");
     }
 
     /**
-     * The message to display in the {@link com.smartgwt.client.widgets.calendar.Calendar#getEventEditor eventEditor} when the
-     * 'To' date is greater than the 'From' date and a save is attempted.
+     * Suppresses the display of weekend days in the week and month views, and disallows the creation of events on weekends. 
+     * Which days are considered weekends is controlled by {@link com.smartgwt.client..Date#weekendDays}.
+     * Setter for {@link com.smartgwt.client.widgets.calendar.Calendar#getShowWeekends showWeekends} to change this property at runtime.
      *
-     * @param invalidDateMessage invalidDateMessage Default value is "From must be before To"
+     * @param showWeekends showWeekends Default value is true
      * @throws IllegalStateException this property cannot be changed after the component has been created
      */
-    public void setInvalidDateMessage(Boolean invalidDateMessage)  throws IllegalStateException {
-        setAttribute("invalidDateMessage", invalidDateMessage, false);
+    public void setShowWeekends(Boolean showWeekends)  throws IllegalStateException {
+        setAttribute("showWeekends", showWeekends, false);
     }
 
     /**
-     * The message to display in the {@link com.smartgwt.client.widgets.calendar.Calendar#getEventEditor eventEditor} when the
-     * 'To' date is greater than the 'From' date and a save is attempted.
+     * Suppresses the display of weekend days in the week and month views, and disallows the creation of events on weekends. 
+     * Which days are considered weekends is controlled by {@link com.smartgwt.client..Date#weekendDays}.
      *
      *
      * @return Boolean
      */
-    public Boolean getInvalidDateMessage()  {
-        return getAttributeAsBoolean("invalidDateMessage");
+    public Boolean getShowWeekends()  {
+        return getAttributeAsBoolean("showWeekends");
     }
 
     /**
-     * If set to true, enables the auto-arrangement of events that share time in the calendar.  The default is true.
+     * If set, causes the calendar to use {@link com.smartgwt.client.widgets.calendar.Calendar#getWorkdayBaseStyle
+     * workdayBaseStyle} for cells falling within the workday as defined by {@link
+     * com.smartgwt.client.widgets.calendar.Calendar#getWorkdayStart workdayStart} and {@link
+     * com.smartgwt.client.widgets.calendar.Calendar#getWorkdayEnd workdayEnd}, in both the {@link
+     * com.smartgwt.client.widgets.calendar.Calendar#getWeekView weekView} and {@link
+     * com.smartgwt.client.widgets.calendar.Calendar#getDayView dayView}.
      *
-     * @param eventAutoArrange eventAutoArrange Default value is true
+     * @param showWorkday showWorkday Default value is false
      * @throws IllegalStateException this property cannot be changed after the component has been created
      */
-    public void setEventAutoArrange(Boolean eventAutoArrange)  throws IllegalStateException {
-        setAttribute("eventAutoArrange", eventAutoArrange, false);
+    public void setShowWorkday(Boolean showWorkday)  throws IllegalStateException {
+        setAttribute("showWorkday", showWorkday, false);
     }
 
     /**
-     * If set to true, enables the auto-arrangement of events that share time in the calendar.  The default is true.
+     * If set, causes the calendar to use {@link com.smartgwt.client.widgets.calendar.Calendar#getWorkdayBaseStyle
+     * workdayBaseStyle} for cells falling within the workday as defined by {@link
+     * com.smartgwt.client.widgets.calendar.Calendar#getWorkdayStart workdayStart} and {@link
+     * com.smartgwt.client.widgets.calendar.Calendar#getWorkdayEnd workdayEnd}, in both the {@link
+     * com.smartgwt.client.widgets.calendar.Calendar#getWeekView weekView} and {@link
+     * com.smartgwt.client.widgets.calendar.Calendar#getDayView dayView}.
      *
      *
      * @return Boolean
      */
-    public Boolean getEventAutoArrange()  {
-        return getAttributeAsBoolean("eventAutoArrange");
+    public Boolean getShowWorkday()  {
+        return getAttributeAsBoolean("showWorkday");
     }
 
     /**
-     * When {@link com.smartgwt.client.widgets.calendar.Calendar#getEventAutoArrange eventAutoArrange} is true, setting
-     * eventOverlap to true causes events that  share timeslots to overlap each other by a percentage of their width, specified
-     * by  {@link com.smartgwt.client.widgets.calendar.Calendar#getEventOverlapPercent eventOverlapPercent}.  The default is
-     * true.
+     * The name of the start date field in a {@link com.smartgwt.client.widgets.calendar.CalendarEvent}.
      *
-     * @param eventOverlap eventOverlap Default value is true
+     * @param startDateField startDateField Default value is "startDate"
      * @throws IllegalStateException this property cannot be changed after the component has been created
      */
-    public void setEventOverlap(Boolean eventOverlap)  throws IllegalStateException {
-        setAttribute("eventOverlap", eventOverlap, false);
+    public void setStartDateField(String startDateField)  throws IllegalStateException {
+        setAttribute("startDateField", startDateField, false);
     }
 
     /**
-     * When {@link com.smartgwt.client.widgets.calendar.Calendar#getEventAutoArrange eventAutoArrange} is true, setting
-     * eventOverlap to true causes events that  share timeslots to overlap each other by a percentage of their width, specified
-     * by  {@link com.smartgwt.client.widgets.calendar.Calendar#getEventOverlapPercent eventOverlapPercent}.  The default is
-     * true.
-     *
-     *
-     * @return Boolean
-     */
-    public Boolean getEventOverlap()  {
-        return getAttributeAsBoolean("eventOverlap");
-    }
-
-    /**
-     * The size of the overlap, presented as a percentage of the width of events sharing timeslots
-     *
-     * @param eventOverlapPercent eventOverlapPercent Default value is 10
-     * @throws IllegalStateException this property cannot be changed after the component has been created
-     */
-    public void setEventOverlapPercent(int eventOverlapPercent)  throws IllegalStateException {
-        setAttribute("eventOverlapPercent", eventOverlapPercent, false);
-    }
-
-    /**
-     * The size of the overlap, presented as a percentage of the width of events sharing timeslots
-     *
-     *
-     * @return int
-     */
-    public int getEventOverlapPercent()  {
-        return getAttributeAsInt("eventOverlapPercent");
-    }
-
-    /**
-     * When set to true, events that start at the same time will not overlap each other to prevent  events having their close
-     * button hidden
-     *
-     * @param eventOverlapIdenticalStartTimes eventOverlapIdenticalStartTimes Default value is false
-     * @throws IllegalStateException this property cannot be changed after the component has been created
-     */
-    public void setEventOverlapIdenticalStartTimes(Boolean eventOverlapIdenticalStartTimes)  throws IllegalStateException {
-        setAttribute("eventOverlapIdenticalStartTimes", eventOverlapIdenticalStartTimes, false);
-    }
-
-    /**
-     * When set to true, events that start at the same time will not overlap each other to prevent  events having their close
-     * button hidden
-     *
-     *
-     * @return Boolean
-     */
-    public Boolean getEventOverlapIdenticalStartTimes()  {
-        return getAttributeAsBoolean("eventOverlapIdenticalStartTimes");
-    }
-             
-    /**
-     * If {@link com.smartgwt.client.widgets.calendar.Calendar#getAutoFetchData autoFetchData} is <code>true</code>, this
-     * attribute allows the developer to specify a textMatchStyle for the initial {@link
-     * com.smartgwt.client.widgets.calendar.Calendar#fetchData} call.
-     *
-     * @param autoFetchTextMatchStyle autoFetchTextMatchStyle Default value is null
-     * @throws IllegalStateException this property cannot be changed after the component has been created
-     */
-    public void setAutoFetchTextMatchStyle(TextMatchStyle autoFetchTextMatchStyle)  throws IllegalStateException {
-        setAttribute("autoFetchTextMatchStyle", autoFetchTextMatchStyle.getValue(), false);
-    }
-
-    /**
-     * If {@link com.smartgwt.client.widgets.calendar.Calendar#getAutoFetchData autoFetchData} is <code>true</code>, this
-     * attribute allows the developer to specify a textMatchStyle for the initial {@link
-     * com.smartgwt.client.widgets.calendar.Calendar#fetchData} call.
-     *
-     *
-     * @return TextMatchStyle
-     */
-    public TextMatchStyle getAutoFetchTextMatchStyle()  {
-        return EnumUtil.getEnum(TextMatchStyle.values(), getAttribute("autoFetchTextMatchStyle"));
-    }
-
-    /**
-     * The title for the day view
-     *
-     * @param dayViewTitle dayViewTitle Default value is "Day"
-     * @throws IllegalStateException this property cannot be changed after the component has been created
-     */
-    public void setDayViewTitle(String dayViewTitle)  throws IllegalStateException {
-        setAttribute("dayViewTitle", dayViewTitle, false);
-    }
-
-    /**
-     * The title for the day view
+     * The name of the start date field in a {@link com.smartgwt.client.widgets.calendar.CalendarEvent}.
      *
      *
      * @return String
      */
-    public String getDayViewTitle()  {
-        return getAttributeAsString("dayViewTitle");
-    }
-
-    /**
-     * The title for the week view
-     *
-     * @param weekViewTitle weekViewTitle Default value is "Week"
-     * @throws IllegalStateException this property cannot be changed after the component has been created
-     */
-    public void setWeekViewTitle(String weekViewTitle)  throws IllegalStateException {
-        setAttribute("weekViewTitle", weekViewTitle, false);
-    }
-
-    /**
-     * The title for the week view
-     *
-     *
-     * @return String
-     */
-    public String getWeekViewTitle()  {
-        return getAttributeAsString("weekViewTitle");
-    }
-
-    /**
-     * The title for the month view
-     *
-     * @param monthViewTitle monthViewTitle Default value is "Month"
-     * @throws IllegalStateException this property cannot be changed after the component has been created
-     */
-    public void setMonthViewTitle(String monthViewTitle)  throws IllegalStateException {
-        setAttribute("monthViewTitle", monthViewTitle, false);
-    }
-
-    /**
-     * The title for the month view
-     *
-     *
-     * @return String
-     */
-    public String getMonthViewTitle()  {
-        return getAttributeAsString("monthViewTitle");
+    public String getStartDateField()  {
+        return getAttributeAsString("startDateField");
     }
 
     /**
@@ -1149,195 +1202,176 @@ public class Calendar extends Canvas  implements DataBoundComponent, com.smartgw
     }
 
     /**
-     * The title for the event name field in the quick event dialog
+     * The name of the end date field in a {@link com.smartgwt.client.widgets.calendar.CalendarEvent}.
      *
-     * @param eventNameFieldTitle eventNameFieldTitle Default value is "Event Name"
+     * @param trailingDateField trailingDateField Default value is "trailingDate"
      * @throws IllegalStateException this property cannot be changed after the component has been created
      */
-    public void setEventNameFieldTitle(String eventNameFieldTitle)  throws IllegalStateException {
-        setAttribute("eventNameFieldTitle", eventNameFieldTitle, false);
+    public void setTrailingDateField(String trailingDateField)  throws IllegalStateException {
+        setAttribute("trailingDateField", trailingDateField, false);
     }
 
     /**
-     * The title for the event name field in the quick event dialog
+     * The name of the end date field in a {@link com.smartgwt.client.widgets.calendar.CalendarEvent}.
      *
      *
      * @return String
      */
-    public String getEventNameFieldTitle()  {
-        return getAttributeAsString("eventNameFieldTitle");
+    public String getTrailingDateField()  {
+        return getAttributeAsString("trailingDateField");
     }
 
     /**
-     * The title for the save button in the quick event dialog and the event editor
+     * Augments the width of week event windows slightly to avoid duplicate adjacent borders between events.
      *
-     * @param saveButtonTitle saveButtonTitle Default value is "Save Event"
+     * @param weekEventBorderOverlap weekEventBorderOverlap Default value is false
      * @throws IllegalStateException this property cannot be changed after the component has been created
      */
-    public void setSaveButtonTitle(String saveButtonTitle)  throws IllegalStateException {
-        setAttribute("saveButtonTitle", saveButtonTitle, false);
+    public void setWeekEventBorderOverlap(Boolean weekEventBorderOverlap)  throws IllegalStateException {
+        setAttribute("weekEventBorderOverlap", weekEventBorderOverlap, false);
     }
 
     /**
-     * The title for the save button in the quick event dialog and the event editor
+     * Augments the width of week event windows slightly to avoid duplicate adjacent borders between events.
+     *
+     *
+     * @return Boolean
+     */
+    public Boolean getWeekEventBorderOverlap()  {
+        return getAttributeAsBoolean("weekEventBorderOverlap");
+    }
+
+    /**
+     * The title for the week view
+     *
+     * @param weekViewTitle weekViewTitle Default value is "Week"
+     * @throws IllegalStateException this property cannot be changed after the component has been created
+     */
+    public void setWeekViewTitle(String weekViewTitle)  throws IllegalStateException {
+        setAttribute("weekViewTitle", weekViewTitle, false);
+    }
+
+    /**
+     * The title for the week view
      *
      *
      * @return String
      */
-    public String getSaveButtonTitle()  {
-        return getAttributeAsString("saveButtonTitle");
+    public String getWeekViewTitle()  {
+        return getAttributeAsString("weekViewTitle");
     }
 
     /**
-     * The title for the edit button in the quick event dialog
+     * If {@link com.smartgwt.client.widgets.calendar.Calendar#getShowWorkday showWorkday} is set, style used for cells that
+     * are within the workday, as defined by {@link com.smartgwt.client.widgets.calendar.Calendar#getWorkdayStart workdayStart}
+     * and {@link com.smartgwt.client.widgets.calendar.Calendar#getWorkdayEnd workdayEnd}.
      *
-     * @param detailsButtonTitle detailsButtonTitle Default value is "Edit Details"
+     * @param workdayBaseStyle workdayBaseStyle Default value is "calendarWorkday"
      * @throws IllegalStateException this property cannot be changed after the component has been created
      */
-    public void setDetailsButtonTitle(String detailsButtonTitle)  throws IllegalStateException {
-        setAttribute("detailsButtonTitle", detailsButtonTitle, false);
+    public void setWorkdayBaseStyle(String workdayBaseStyle)  throws IllegalStateException {
+        setAttribute("workdayBaseStyle", workdayBaseStyle, false);
     }
 
     /**
-     * The title for the edit button in the quick event dialog
+     * If {@link com.smartgwt.client.widgets.calendar.Calendar#getShowWorkday showWorkday} is set, style used for cells that
+     * are within the workday, as defined by {@link com.smartgwt.client.widgets.calendar.Calendar#getWorkdayStart workdayStart}
+     * and {@link com.smartgwt.client.widgets.calendar.Calendar#getWorkdayEnd workdayEnd}.
      *
      *
      * @return String
      */
-    public String getDetailsButtonTitle()  {
-        return getAttributeAsString("detailsButtonTitle");
+    public String getWorkdayBaseStyle()  {
+        return getAttributeAsString("workdayBaseStyle");
     }
 
     /**
-     * The title for the cancel button in the event editor
+     * When using {@link com.smartgwt.client.widgets.calendar.Calendar#getShowWorkday showWorkday}:true,
+     * <code>workdayStart</code> and <code>workdayEnd</code> specify the time of day when the workday starts and ends,
+     * specified as a String acceptable to {@link com.smartgwt.client..Time#parseInput}. <P> Both start and end time must fall
+     * on a 30 minute increment (eg 9:30, but not 9:45).
      *
-     * @param cancelButtonTitle cancelButtonTitle Default value is "Cancel"
+     * @param workdayEnd workdayEnd Default value is "5:00pm"
      * @throws IllegalStateException this property cannot be changed after the component has been created
      */
-    public void setCancelButtonTitle(String cancelButtonTitle)  throws IllegalStateException {
-        setAttribute("cancelButtonTitle", cancelButtonTitle, false);
+    public void setWorkdayEnd(String workdayEnd)  throws IllegalStateException {
+        setAttribute("workdayEnd", workdayEnd, false);
     }
 
     /**
-     * The title for the cancel button in the event editor
+     * When using {@link com.smartgwt.client.widgets.calendar.Calendar#getShowWorkday showWorkday}:true,
+     * <code>workdayStart</code> and <code>workdayEnd</code> specify the time of day when the workday starts and ends,
+     * specified as a String acceptable to {@link com.smartgwt.client..Time#parseInput}. <P> Both start and end time must fall
+     * on a 30 minute increment (eg 9:30, but not 9:45).
      *
      *
      * @return String
      */
-    public String getCancelButtonTitle()  {
-        return getAttributeAsString("cancelButtonTitle");
+    public String getWorkdayEnd()  {
+        return getAttributeAsString("workdayEnd");
     }
 
     /**
-     * The text to be displayed when a user hovers over the {@link
-     * com.smartgwt.client.widgets.calendar.Calendar#getPreviousButton 'previous'} toolbar button
+     * When using {@link com.smartgwt.client.widgets.calendar.Calendar#getShowWorkday showWorkday}:true,
+     * <code>workdayStart</code> and <code>workdayEnd</code> specify the time of day when the workday starts and ends,
+     * specified as a String acceptable to {@link com.smartgwt.client..Time#parseInput}. <P> Both start and end time must fall
+     * on a 30 minute increment (eg 9:30, but not 9:45).
      *
-     * @param previousButtonHoverText previousButtonHoverText Default value is "Previous"
+     * @param workdayStart workdayStart Default value is "9:00am"
      * @throws IllegalStateException this property cannot be changed after the component has been created
      */
-    public void setPreviousButtonHoverText(String previousButtonHoverText)  throws IllegalStateException {
-        setAttribute("previousButtonHoverText", previousButtonHoverText, false);
+    public void setWorkdayStart(String workdayStart)  throws IllegalStateException {
+        setAttribute("workdayStart", workdayStart, false);
     }
 
     /**
-     * The text to be displayed when a user hovers over the {@link
-     * com.smartgwt.client.widgets.calendar.Calendar#getPreviousButton 'previous'} toolbar button
+     * When using {@link com.smartgwt.client.widgets.calendar.Calendar#getShowWorkday showWorkday}:true,
+     * <code>workdayStart</code> and <code>workdayEnd</code> specify the time of day when the workday starts and ends,
+     * specified as a String acceptable to {@link com.smartgwt.client..Time#parseInput}. <P> Both start and end time must fall
+     * on a 30 minute increment (eg 9:30, but not 9:45).
      *
      *
      * @return String
      */
-    public String getPreviousButtonHoverText()  {
-        return getAttributeAsString("previousButtonHoverText");
+    public String getWorkdayStart()  {
+        return getAttributeAsString("workdayStart");
     }
-
-    /**
-     * The text to be displayed when a user hovers over the {@link com.smartgwt.client.widgets.calendar.Calendar#getNextButton
-     * 'next'}  toolbar button
-     *
-     * @param nextButtonHoverText nextButtonHoverText Default value is "Next"
-     * @throws IllegalStateException this property cannot be changed after the component has been created
-     */
-    public void setNextButtonHoverText(String nextButtonHoverText)  throws IllegalStateException {
-        setAttribute("nextButtonHoverText", nextButtonHoverText, false);
-    }
-
-    /**
-     * The text to be displayed when a user hovers over the {@link com.smartgwt.client.widgets.calendar.Calendar#getNextButton
-     * 'next'}  toolbar button
-     *
-     *
-     * @return String
-     */
-    public String getNextButtonHoverText()  {
-        return getAttributeAsString("nextButtonHoverText");
-    }
-
-    /**
-     * The text to be displayed when a user hovers over the {@link
-     * com.smartgwt.client.widgets.calendar.Calendar#getAddEventButton 'add event'} toolbar button
-     *
-     * @param addEventButtonHoverText addEventButtonHoverText Default value is "Add an event"
-     * @throws IllegalStateException this property cannot be changed after the component has been created
-     */
-    public void setAddEventButtonHoverText(String addEventButtonHoverText)  throws IllegalStateException {
-        setAttribute("addEventButtonHoverText", addEventButtonHoverText, false);
-    }
-
-    /**
-     * The text to be displayed when a user hovers over the {@link
-     * com.smartgwt.client.widgets.calendar.Calendar#getAddEventButton 'add event'} toolbar button
-     *
-     *
-     * @return String
-     */
-    public String getAddEventButtonHoverText()  {
-        return getAttributeAsString("addEventButtonHoverText");
-    }
-
-    /**
-     * The text to be displayed when a user hovers over the {@link
-     * com.smartgwt.client.widgets.calendar.Calendar#getDatePickerButton 'date picker'} toolbar button
-     *
-     * @param datePickerHoverText datePickerHoverText Default value is "Choose a date"
-     * @throws IllegalStateException this property cannot be changed after the component has been created
-     */
-    public void setDatePickerHoverText(String datePickerHoverText)  throws IllegalStateException {
-        setAttribute("datePickerHoverText", datePickerHoverText, false);
-    }
-
-    /**
-     * The text to be displayed when a user hovers over the {@link
-     * com.smartgwt.client.widgets.calendar.Calendar#getDatePickerButton 'date picker'} toolbar button
-     *
-     *
-     * @return String
-     */
-    public String getDatePickerHoverText()  {
-        return getAttributeAsString("datePickerHoverText");
-    }
-             
-    /**
-     * The name of the view that should be visible initially by default.
-     * Sets the currently visible view
-     *
-     * @param currentViewName The name of the view that should be made visible.. Default value is null
-     */
-    public void setCurrentViewName(ViewName currentViewName) {
-        setAttribute("currentViewName", currentViewName.getValue(), true);
-    }
-
-    /**
-     * The name of the view that should be visible initially by default.
-     *
-     *
-     * @return Get the name of the visible view. Either 'day', 'week', or 'month'.
-     */
-    public ViewName getCurrentViewName()  {
-        return EnumUtil.getEnum(ViewName.values(), getAttribute("currentViewName"));
-    }
- 
 
     // ********************* Methods ***********************
+    /**
+     * Add a dateChanged handler.
+     * <p>
+     * Fires whenever the user changes the current date, including picking a specific date or navigating to a new week or
+     * month.
+     *
+     * @param handler the dateChanged handler
+     * @return {@link HandlerRegistration} used to remove this handler
+     */
+    public HandlerRegistration addDateChangedHandler(com.smartgwt.client.widgets.calendar.events.DateChangedHandler handler) {
+        if(getHandlerCount(com.smartgwt.client.widgets.calendar.events.DateChangedEvent.getType()) == 0) setupDateChangedEvent();
+        return doAddHandler(handler, com.smartgwt.client.widgets.calendar.events.DateChangedEvent.getType());
+    }
+
+    private native void setupDateChangedEvent() /*-{
+        var obj = null;
+        var selfJ = this;
+        if(this.@com.smartgwt.client.widgets.BaseWidget::isCreated()()) {
+            obj = this.@com.smartgwt.client.widgets.BaseWidget::getJsObj()();
+            obj.addProperties({dateChanged:$entry(function(){
+                        var param = {};
+                        var event = @com.smartgwt.client.widgets.calendar.events.DateChangedEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
+                        selfJ.@com.smartgwt.client.widgets.BaseWidget::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
+                    })
+             });
+        } else {
+            obj = this.@com.smartgwt.client.widgets.BaseWidget::getConfig()();
+            obj.dateChanged = $entry(function(){
+                   var param = {};
+                   var event = @com.smartgwt.client.widgets.calendar.events.DateChangedEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
+                   selfJ.@com.smartgwt.client.widgets.BaseWidget::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
+               });
+        }
+   }-*/;
             
     /**
      * Should the parameter date be considered a workday? By default this method tries to find the parameter date day in {@link
@@ -1355,22 +1389,6 @@ public class Calendar extends Canvas  implements DataBoundComponent, com.smartgw
         } else {
             return @com.smartgwt.client.util.JSOHelper::toBoolean(Z)(retVal);
         }
-    }-*/;
-            
-    /**
-     * Move to the next day, week, or month, depending on which tab is selected.
-     */
-    public native void next() /*-{
-        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
-        self.next();
-    }-*/;
-            
-    /**
-     * Move to the previous day, week, or month, depending on which tab is selected.
-     */
-    public native void previous() /*-{
-        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
-        self.previous();
     }-*/;
     /**
      * Add a dayBodyClick handler.
@@ -1452,6 +1470,40 @@ public class Calendar extends Canvas  implements DataBoundComponent, com.smartgw
         }
    }-*/;
     /**
+     * Add a eventAdded handler.
+     * <p>
+     * Notification fired whenever a user adds an event. <P> In a calendar with a DataSource, eventAdded() fires <b>after</b>
+     * the event has been successfully added to the server
+     *
+     * @param handler the eventAdded handler
+     * @return {@link HandlerRegistration} used to remove this handler
+     */
+    public HandlerRegistration addEventAddedHandler(com.smartgwt.client.widgets.calendar.events.EventAddedHandler handler) {
+        if(getHandlerCount(com.smartgwt.client.widgets.calendar.events.CalendarEventAdded.getType()) == 0) setupEventAddedEvent();
+        return doAddHandler(handler, com.smartgwt.client.widgets.calendar.events.CalendarEventAdded.getType());
+    }
+
+    private native void setupEventAddedEvent() /*-{
+        var obj = null;
+        var selfJ = this;
+        if(this.@com.smartgwt.client.widgets.BaseWidget::isCreated()()) {
+            obj = this.@com.smartgwt.client.widgets.BaseWidget::getJsObj()();
+            obj.addProperties({eventAdded:$entry(function(){
+                        var param = {"event" : arguments[0]};
+                        var event = @com.smartgwt.client.widgets.calendar.events.CalendarEventAdded::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
+                        selfJ.@com.smartgwt.client.widgets.BaseWidget::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
+                    })
+             });
+        } else {
+            obj = this.@com.smartgwt.client.widgets.BaseWidget::getConfig()();
+            obj.eventAdded = $entry(function(){
+                   var param = {"event" : arguments[0]};
+                   var event = @com.smartgwt.client.widgets.calendar.events.CalendarEventAdded::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
+                   selfJ.@com.smartgwt.client.widgets.BaseWidget::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
+               });
+        }
+   }-*/;
+    /**
      * Add a eventChanged handler.
      * <p>
      * Notification fired whenever a user changes an event, whether by dragging the event or by editing it in a dialog. <P> In
@@ -1482,74 +1534,6 @@ public class Calendar extends Canvas  implements DataBoundComponent, com.smartgw
             obj.eventChanged = $entry(function(){
                    var param = {"event" : arguments[0]};
                    var event = @com.smartgwt.client.widgets.calendar.events.CalendarEventChangedEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
-                   selfJ.@com.smartgwt.client.widgets.BaseWidget::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
-               });
-        }
-   }-*/;
-    /**
-     * Add a eventRemoved handler.
-     * <p>
-     * Notification fired whenever a user removes an event <P> In a calendar with a DataSource, eventRemoved() fires
-     * <b>after</b> the event has been successfully removed from the server
-     *
-     * @param handler the eventRemoved handler
-     * @return {@link HandlerRegistration} used to remove this handler
-     */
-    public HandlerRegistration addEventRemovedHandler(com.smartgwt.client.widgets.calendar.events.EventRemovedHandler handler) {
-        if(getHandlerCount(com.smartgwt.client.widgets.calendar.events.CalendarEventRemoved.getType()) == 0) setupEventRemovedEvent();
-        return doAddHandler(handler, com.smartgwt.client.widgets.calendar.events.CalendarEventRemoved.getType());
-    }
-
-    private native void setupEventRemovedEvent() /*-{
-        var obj = null;
-        var selfJ = this;
-        if(this.@com.smartgwt.client.widgets.BaseWidget::isCreated()()) {
-            obj = this.@com.smartgwt.client.widgets.BaseWidget::getJsObj()();
-            obj.addProperties({eventRemoved:$entry(function(){
-                        var param = {"event" : arguments[0]};
-                        var event = @com.smartgwt.client.widgets.calendar.events.CalendarEventRemoved::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
-                        selfJ.@com.smartgwt.client.widgets.BaseWidget::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
-                    })
-             });
-        } else {
-            obj = this.@com.smartgwt.client.widgets.BaseWidget::getConfig()();
-            obj.eventRemoved = $entry(function(){
-                   var param = {"event" : arguments[0]};
-                   var event = @com.smartgwt.client.widgets.calendar.events.CalendarEventRemoved::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
-                   selfJ.@com.smartgwt.client.widgets.BaseWidget::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
-               });
-        }
-   }-*/;
-    /**
-     * Add a eventAdded handler.
-     * <p>
-     * Notification fired whenever a user adds an event. <P> In a calendar with a DataSource, eventAdded() fires <b>after</b>
-     * the event has been successfully added to the server
-     *
-     * @param handler the eventAdded handler
-     * @return {@link HandlerRegistration} used to remove this handler
-     */
-    public HandlerRegistration addEventAddedHandler(com.smartgwt.client.widgets.calendar.events.EventAddedHandler handler) {
-        if(getHandlerCount(com.smartgwt.client.widgets.calendar.events.CalendarEventAdded.getType()) == 0) setupEventAddedEvent();
-        return doAddHandler(handler, com.smartgwt.client.widgets.calendar.events.CalendarEventAdded.getType());
-    }
-
-    private native void setupEventAddedEvent() /*-{
-        var obj = null;
-        var selfJ = this;
-        if(this.@com.smartgwt.client.widgets.BaseWidget::isCreated()()) {
-            obj = this.@com.smartgwt.client.widgets.BaseWidget::getJsObj()();
-            obj.addProperties({eventAdded:$entry(function(){
-                        var param = {"event" : arguments[0]};
-                        var event = @com.smartgwt.client.widgets.calendar.events.CalendarEventAdded::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
-                        selfJ.@com.smartgwt.client.widgets.BaseWidget::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
-                    })
-             });
-        } else {
-            obj = this.@com.smartgwt.client.widgets.BaseWidget::getConfig()();
-            obj.eventAdded = $entry(function(){
-                   var param = {"event" : arguments[0]};
-                   var event = @com.smartgwt.client.widgets.calendar.events.CalendarEventAdded::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
                    selfJ.@com.smartgwt.client.widgets.BaseWidget::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
                });
         }
@@ -1587,6 +1571,43 @@ public class Calendar extends Canvas  implements DataBoundComponent, com.smartgw
             obj.eventClick = $entry(function(){
                    var param = {"event" : arguments[0], "viewName" : arguments[1]};
                    var event = @com.smartgwt.client.widgets.calendar.events.CalendarEventClick::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
+                   selfJ.@com.smartgwt.client.widgets.BaseWidget::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
+                   var ret = event.@com.smartgwt.client.event.Cancellable::isCancelled()();
+                   return !ret;
+               });
+        }
+   }-*/;
+    /**
+     * Add a eventMoved handler.
+     * <p>
+     * Called when an event is moved via dragging by a user.  Return false to disallow the move.
+     *
+     * @param handler the eventMoved handler
+     * @return {@link HandlerRegistration} used to remove this handler
+     */
+    public HandlerRegistration addEventMovedHandler(com.smartgwt.client.widgets.calendar.events.EventMovedHandler handler) {
+        if(getHandlerCount(com.smartgwt.client.widgets.calendar.events.CalendarEventMoved.getType()) == 0) setupEventMovedEvent();
+        return doAddHandler(handler, com.smartgwt.client.widgets.calendar.events.CalendarEventMoved.getType());
+    }
+
+    private native void setupEventMovedEvent() /*-{
+        var obj = null;
+        var selfJ = this;
+        if(this.@com.smartgwt.client.widgets.BaseWidget::isCreated()()) {
+            obj = this.@com.smartgwt.client.widgets.BaseWidget::getJsObj()();
+            obj.addProperties({eventMoved:$entry(function(){
+                        var param = {"newDate" : arguments[0], "event" : arguments[1]};
+                        var event = @com.smartgwt.client.widgets.calendar.events.CalendarEventMoved::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
+                        selfJ.@com.smartgwt.client.widgets.BaseWidget::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
+                        var ret = event.@com.smartgwt.client.event.Cancellable::isCancelled()();
+                        return !ret;
+                    })
+             });
+        } else {
+            obj = this.@com.smartgwt.client.widgets.BaseWidget::getConfig()();
+            obj.eventMoved = $entry(function(){
+                   var param = {"newDate" : arguments[0], "event" : arguments[1]};
+                   var event = @com.smartgwt.client.widgets.calendar.events.CalendarEventMoved::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
                    selfJ.@com.smartgwt.client.widgets.BaseWidget::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
                    var ret = event.@com.smartgwt.client.event.Cancellable::isCancelled()();
                    return !ret;
@@ -1633,39 +1654,36 @@ public class Calendar extends Canvas  implements DataBoundComponent, com.smartgw
         }
    }-*/;
     /**
-     * Add a eventMoved handler.
+     * Add a eventRemoved handler.
      * <p>
-     * Called when an event is moved via dragging by a user.  Return false to disallow the move.
+     * Notification fired whenever a user removes an event <P> In a calendar with a DataSource, eventRemoved() fires
+     * <b>after</b> the event has been successfully removed from the server
      *
-     * @param handler the eventMoved handler
+     * @param handler the eventRemoved handler
      * @return {@link HandlerRegistration} used to remove this handler
      */
-    public HandlerRegistration addEventMovedHandler(com.smartgwt.client.widgets.calendar.events.EventMovedHandler handler) {
-        if(getHandlerCount(com.smartgwt.client.widgets.calendar.events.CalendarEventMoved.getType()) == 0) setupEventMovedEvent();
-        return doAddHandler(handler, com.smartgwt.client.widgets.calendar.events.CalendarEventMoved.getType());
+    public HandlerRegistration addEventRemovedHandler(com.smartgwt.client.widgets.calendar.events.EventRemovedHandler handler) {
+        if(getHandlerCount(com.smartgwt.client.widgets.calendar.events.CalendarEventRemoved.getType()) == 0) setupEventRemovedEvent();
+        return doAddHandler(handler, com.smartgwt.client.widgets.calendar.events.CalendarEventRemoved.getType());
     }
 
-    private native void setupEventMovedEvent() /*-{
+    private native void setupEventRemovedEvent() /*-{
         var obj = null;
         var selfJ = this;
         if(this.@com.smartgwt.client.widgets.BaseWidget::isCreated()()) {
             obj = this.@com.smartgwt.client.widgets.BaseWidget::getJsObj()();
-            obj.addProperties({eventMoved:$entry(function(){
-                        var param = {"newDate" : arguments[0], "event" : arguments[1]};
-                        var event = @com.smartgwt.client.widgets.calendar.events.CalendarEventMoved::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
+            obj.addProperties({eventRemoved:$entry(function(){
+                        var param = {"event" : arguments[0]};
+                        var event = @com.smartgwt.client.widgets.calendar.events.CalendarEventRemoved::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
                         selfJ.@com.smartgwt.client.widgets.BaseWidget::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
-                        var ret = event.@com.smartgwt.client.event.Cancellable::isCancelled()();
-                        return !ret;
                     })
              });
         } else {
             obj = this.@com.smartgwt.client.widgets.BaseWidget::getConfig()();
-            obj.eventMoved = $entry(function(){
-                   var param = {"newDate" : arguments[0], "event" : arguments[1]};
-                   var event = @com.smartgwt.client.widgets.calendar.events.CalendarEventMoved::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
+            obj.eventRemoved = $entry(function(){
+                   var param = {"event" : arguments[0]};
+                   var event = @com.smartgwt.client.widgets.calendar.events.CalendarEventRemoved::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
                    selfJ.@com.smartgwt.client.widgets.BaseWidget::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
-                   var ret = event.@com.smartgwt.client.event.Cancellable::isCancelled()();
-                   return !ret;
                });
         }
    }-*/;
@@ -1708,50 +1726,6 @@ public class Calendar extends Canvas  implements DataBoundComponent, com.smartgw
    }-*/;
             
     /**
-     * Fires whenever the user changes the current date, including picking a specific date or navigating to a new week or
-     * month.
-     * @param tabnum the index of the tab to select
-     */
-    public native void selectTab(int tabnum) /*-{
-        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
-        self.selectTab(tabnum);
-    }-*/;
-    /**
-     * Add a dateChanged handler.
-     * <p>
-     * Fires whenever the user changes the current date, including picking a specific date or navigating to a new week or
-     * month.
-     *
-     * @param handler the dateChanged handler
-     * @return {@link HandlerRegistration} used to remove this handler
-     */
-    public HandlerRegistration addDateChangedHandler(com.smartgwt.client.widgets.calendar.events.DateChangedHandler handler) {
-        if(getHandlerCount(com.smartgwt.client.widgets.calendar.events.DateChangedEvent.getType()) == 0) setupDateChangedEvent();
-        return doAddHandler(handler, com.smartgwt.client.widgets.calendar.events.DateChangedEvent.getType());
-    }
-
-    private native void setupDateChangedEvent() /*-{
-        var obj = null;
-        var selfJ = this;
-        if(this.@com.smartgwt.client.widgets.BaseWidget::isCreated()()) {
-            obj = this.@com.smartgwt.client.widgets.BaseWidget::getJsObj()();
-            obj.addProperties({dateChanged:$entry(function(){
-                        var param = {};
-                        var event = @com.smartgwt.client.widgets.calendar.events.DateChangedEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
-                        selfJ.@com.smartgwt.client.widgets.BaseWidget::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
-                    })
-             });
-        } else {
-            obj = this.@com.smartgwt.client.widgets.BaseWidget::getConfig()();
-            obj.dateChanged = $entry(function(){
-                   var param = {};
-                   var event = @com.smartgwt.client.widgets.calendar.events.DateChangedEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
-                   selfJ.@com.smartgwt.client.widgets.BaseWidget::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
-               });
-        }
-   }-*/;
-            
-    /**
      * Gets the day of the week (0-6) that the mouse is currently over.
      *
      * @return the day that the mouse is currently over
@@ -1776,6 +1750,32 @@ public class Calendar extends Canvas  implements DataBoundComponent, com.smartgw
         } else {
             return @com.smartgwt.client.util.JSOHelper::toDate(D)(retVal.getTime());
         }
+    }-*/;
+            
+    /**
+     * Move to the next day, week, or month, depending on which tab is selected.
+     */
+    public native void next() /*-{
+        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
+        self.next();
+    }-*/;
+            
+    /**
+     * Move to the previous day, week, or month, depending on which tab is selected.
+     */
+    public native void previous() /*-{
+        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
+        self.previous();
+    }-*/;
+            
+    /**
+     * Fires whenever the user changes the current date, including picking a specific date or navigating to a new week or
+     * month.
+     * @param tabnum the index of the tab to select
+     */
+    public native void selectTab(int tabnum) /*-{
+        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
+        self.selectTab(tabnum);
     }-*/;
             
     /**

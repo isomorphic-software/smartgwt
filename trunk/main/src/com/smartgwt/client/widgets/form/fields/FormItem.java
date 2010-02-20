@@ -84,6 +84,114 @@ public class FormItem extends RefDataClass  implements com.smartgwt.client.widge
     // ********************* Properties / Attributes ***********************
 
     /**
+     * AccessKey - a keyboard shortcut to trigger a form item's default behavior.<br>      Note: Alt+ (or in Moz Firefox 2.0
+     * and above, Shift+Alt+) the specified key will       trigger the form item's default behavior.
+     *
+     * @param accessKey accessKey Default value is null
+     */
+    public void setAccessKey(String accessKey) {
+        setAttribute("accessKey", accessKey);
+    }
+
+    /**
+     * AccessKey - a keyboard shortcut to trigger a form item's default behavior.<br>      Note: Alt+ (or in Moz Firefox 2.0
+     * and above, Shift+Alt+) the specified key will       trigger the form item's default behavior.
+     *
+     *
+     * @return String
+     */
+    public String getAccessKey()  {
+        return getAttributeAsString("accessKey");
+    }
+             
+    /**
+     * Alignment of this item in its cell. Note that the alignment of content within this item can be separately controlled via
+     * {@link com.smartgwt.client.widgets.form.fields.FormItem#getTextAlign textAlign} (typically only applies to items showing
+     * a "textBox", such as {@link com.smartgwt.client.widgets.form.fields.TextItem} or {@link
+     * com.smartgwt.client.widgets.form.fields.SelectItem}).
+     *
+     * @param align align Default value is Canvas.LEFT
+     */
+    public void setAlign(Alignment align) {
+        setAttribute("align", align.getValue());
+    }
+
+    /**
+     * Alignment of this item in its cell. Note that the alignment of content within this item can be separately controlled via
+     * {@link com.smartgwt.client.widgets.form.fields.FormItem#getTextAlign textAlign} (typically only applies to items showing
+     * a "textBox", such as {@link com.smartgwt.client.widgets.form.fields.TextItem} or {@link
+     * com.smartgwt.client.widgets.form.fields.SelectItem}).
+     *
+     *
+     * @return Alignment
+     */
+    public Alignment getAlign()  {
+        return EnumUtil.getEnum(Alignment.values(), getAttribute("align"));
+    }
+
+    /**
+     * CSS style applied to the form item as a whole, including the text element, any icons, and any hint text for the item.
+     * Applied to the cell containing the form item. <P> NOTE: See the CompoundFormItem_skinning discussion for special
+     * skinning considerations.
+     *
+     * @param cellStyle cellStyle Default value is "formCell"
+     */
+    public void setCellStyle(String cellStyle) {
+        setAttribute("cellStyle", cellStyle);
+    }
+
+    /**
+     * CSS style applied to the form item as a whole, including the text element, any icons, and any hint text for the item.
+     * Applied to the cell containing the form item. <P> NOTE: See the CompoundFormItem_skinning discussion for special
+     * skinning considerations.
+     *
+     *
+     * @return String
+     */
+    public String getCellStyle()  {
+        return getAttributeAsString("cellStyle");
+    }
+
+    /**
+     * When using {@link com.smartgwt.client.widgets.form.fields.FormItem#getOperator operator}, the name of the DataSource
+     * field for the ${isc.DocUtils.linkForRef('object:Criterion')} this FormItem generates.  If not specified, defaults to
+     * {@link com.smartgwt.client.widgets.form.fields.FormItem#getName name}. <P> Generally, because <code>criteriaField</code>
+     * defaults to <code>item.name</code>, you don't need to specify it.  However, if more than one FormItem specifies criteria
+     * for the same DataSource field, they will need unique values for {@link
+     * com.smartgwt.client.widgets.form.fields.FormItem#getName name} but should set {@link
+     * com.smartgwt.client.widgets.form.fields.FormItem#getCriteriaField criteriaField} to the name of DataSource field they
+     * both target. <P> For example, if two DateItems are used to provide a min and max date for a single field called
+     * "joinDate", set {@link com.smartgwt.client.widgets.form.fields.FormItem#getCriteriaField criteriaField} to "joinDate" on
+     * both fields but give the fields distinct names (eg "minDate" and "maxDate") and use those names for any programmatic
+     * access, such as {@link com.smartgwt.client.widgets.form.DynamicForm#setValue}.
+     *
+     * @param criteriaField criteriaField Default value is null
+     */
+    public void setCriteriaField(String criteriaField) {
+        setAttribute("criteriaField", criteriaField);
+    }
+
+    /**
+     * When using {@link com.smartgwt.client.widgets.form.fields.FormItem#getOperator operator}, the name of the DataSource
+     * field for the ${isc.DocUtils.linkForRef('object:Criterion')} this FormItem generates.  If not specified, defaults to
+     * {@link com.smartgwt.client.widgets.form.fields.FormItem#getName name}. <P> Generally, because <code>criteriaField</code>
+     * defaults to <code>item.name</code>, you don't need to specify it.  However, if more than one FormItem specifies criteria
+     * for the same DataSource field, they will need unique values for {@link
+     * com.smartgwt.client.widgets.form.fields.FormItem#getName name} but should set {@link
+     * com.smartgwt.client.widgets.form.fields.FormItem#getCriteriaField criteriaField} to the name of DataSource field they
+     * both target. <P> For example, if two DateItems are used to provide a min and max date for a single field called
+     * "joinDate", set {@link com.smartgwt.client.widgets.form.fields.FormItem#getCriteriaField criteriaField} to "joinDate" on
+     * both fields but give the fields distinct names (eg "minDate" and "maxDate") and use those names for any programmatic
+     * access, such as {@link com.smartgwt.client.widgets.form.DynamicForm#setValue}.
+     *
+     *
+     * @return String
+     */
+    public String getCriteriaField()  {
+        return getAttributeAsString("criteriaField");
+    }
+
+    /**
      * dataPath for this item. Allows the user to edit details nested data structures in a flat set of form fields
      *
      * @param dataPath dataPath Default value is null
@@ -101,94 +209,89 @@ public class FormItem extends RefDataClass  implements com.smartgwt.client.widge
     public String getDataPath()  {
         return getAttributeAsString("dataPath");
     }
-
+             
     /**
-     * User visible title for this form item.
-     *
-     * @param title title Default value is null
-     */
-    public void setTitle(String title) {
-        setAttribute("title", title);
-    }
-
-    /**
-     * User visible title for this form item.
-     *
-     *
-     * @return Return the title of this formItem
-     */
-    public String getTitle()  {
-        return getAttributeAsString("title");
-    }
-
-    /**
-     * Text to display when this form item has a null or undefined value.
-     *
-     * @param emptyDisplayValue emptyDisplayValue Default value is ""
-     */
-    public void setEmptyDisplayValue(String emptyDisplayValue) {
-        setAttribute("emptyDisplayValue", emptyDisplayValue);
-    }
-
-    /**
-     * Text to display when this form item has a null or undefined value.
-     *
-     *
-     * @return String
-     */
-    public String getEmptyDisplayValue()  {
-        return getAttributeAsString("emptyDisplayValue");
-    }
-
-    /**
-     * If this item has a specified <code>optionDataSource</code>, this attribute may be set to specify an explicit {@link
-     * com.smartgwt.client.data.DSRequest#getOperationId operationId} when performing a fetch against the option dataSource to
-     * pick up display value mapping.
+     * Display format to use for date type values within this formItem. Default is to use the system-wide default short date
+     * format, configured via {@link com.smartgwt.client..Date#setShortDisplayFormat}.  Specify any valid {@link
+     * com.smartgwt.client.types.DateDisplayFormat} to  change the format used by this item.<br> Note: if both
+     * <code>dateFormatter</code> and {@link com.smartgwt.client.widgets.form.fields.FormItem#getTimeFormatter 'timeFormatter'}
+     * are specified on an item, Date type values will be formatted as dates using  <code>dateFormatter</code>.<br> See also
+     * {@link com.smartgwt.client.widgets.form.fields.DateItem#getDisplayFormat displayFormat} for formatting dates displayed
+     * in DateItems.
      * <p><b>Note : </b> This is an advanced setting</p>
      *
-     * @param optionOperationId optionOperationId Default value is null
+     * @param dateFormatter dateFormatter Default value is null
      */
-    public void setOptionOperationId(String optionOperationId) {
-        setAttribute("optionOperationId", optionOperationId);
+    public void setDateFormatter(DateDisplayFormat dateFormatter) {
+        setAttribute("dateFormatter", dateFormatter.getValue());
     }
 
     /**
-     * If this item has a specified <code>optionDataSource</code>, this attribute may be set to specify an explicit {@link
-     * com.smartgwt.client.data.DSRequest#getOperationId operationId} when performing a fetch against the option dataSource to
-     * pick up display value mapping.
+     * Display format to use for date type values within this formItem. Default is to use the system-wide default short date
+     * format, configured via {@link com.smartgwt.client..Date#setShortDisplayFormat}.  Specify any valid {@link
+     * com.smartgwt.client.types.DateDisplayFormat} to  change the format used by this item.<br> Note: if both
+     * <code>dateFormatter</code> and {@link com.smartgwt.client.widgets.form.fields.FormItem#getTimeFormatter 'timeFormatter'}
+     * are specified on an item, Date type values will be formatted as dates using  <code>dateFormatter</code>.<br> See also
+     * {@link com.smartgwt.client.widgets.form.fields.DateItem#getDisplayFormat displayFormat} for formatting dates displayed
+     * in DateItems.
+     *
+     *
+     * @return DateDisplayFormat
+     */
+    public DateDisplayFormat getDateFormatter()  {
+        return EnumUtil.getEnum(DateDisplayFormat.values(), getAttribute("dateFormatter"));
+    }
+
+    /**
+     * Default icon image source.      Specify as the partial URL to an image, relative to the imgDir of this component. To
+     * specify image source for a specific icon use the <code>icon.src</code> property.<br> If this item is drawn in the
+     * disabled state, the url will be modified by adding  "_Disabled" to get a disabled state image for the icon. If
+     * <code>icon.showOver</code> is true, this url will be modified by adding "_Over" to get an over state image for the icon.
+     * <p><b>Note : </b> This is an advanced setting</p>
+     *
+     * @param defaultIconSrc defaultIconSrc Default value is "[SKIN]/DynamicForm/default_formItem_icon.gif"
+     */
+    public void setDefaultIconSrc(String defaultIconSrc) {
+        setAttribute("defaultIconSrc", defaultIconSrc);
+    }
+
+    /**
+     * Default icon image source.      Specify as the partial URL to an image, relative to the imgDir of this component. To
+     * specify image source for a specific icon use the <code>icon.src</code> property.<br> If this item is drawn in the
+     * disabled state, the url will be modified by adding  "_Disabled" to get a disabled state image for the icon. If
+     * <code>icon.showOver</code> is true, this url will be modified by adding "_Over" to get an over state image for the icon.
      *
      *
      * @return String
      */
-    public String getOptionOperationId()  {
-        return getAttributeAsString("optionOperationId");
+    public String getDefaultIconSrc()  {
+        return getAttributeAsString("defaultIconSrc");
     }
 
     /**
-     * If this form item maps data values to display values by retrieving the  {@link
-     * com.smartgwt.client.widgets.form.fields.FormItem#getDisplayField displayField} values from an  {@link
-     * com.smartgwt.client.widgets.form.fields.FormItem#getOptionDataSource 'optionDataSource'}, this property  denotes the the
-     * field to use as the underlying data value in records from the  optionDataSource.<br> If unset, assumed to be the {@link
-     * com.smartgwt.client.widgets.form.fields.FormItem#getName name} of this form item.
+     * Whether this item is disabled.  Can be updated at runtime via the <code>setDisabled()</code> method.  Note that if the
+     * widget containing this formItem is disabled, the formItem will behave in a disabled manner regardless of the setting of
+     * the item.disabled property. <p> Note that not all items can be disabled, and not all browsers show an obvious disabled
+     * style for native form elements.
+     * Set this item to be enabled or disabled at runtime.
      *
-     * @param valueField valueField Default value is null
+     * @param disabled true if this item should be disabled. Default value is false
      */
-    public void setValueField(String valueField) {
-        setAttribute("valueField", valueField);
+    public void setDisabled(Boolean disabled) {
+        setAttribute("disabled", disabled);
     }
 
     /**
-     * If this form item maps data values to display values by retrieving the  {@link
-     * com.smartgwt.client.widgets.form.fields.FormItem#getDisplayField displayField} values from an  {@link
-     * com.smartgwt.client.widgets.form.fields.FormItem#getOptionDataSource 'optionDataSource'}, this property  denotes the the
-     * field to use as the underlying data value in records from the  optionDataSource.<br> If unset, assumed to be the {@link
-     * com.smartgwt.client.widgets.form.fields.FormItem#getName name} of this form item.
+     * Whether this item is disabled.  Can be updated at runtime via the <code>setDisabled()</code> method.  Note that if the
+     * widget containing this formItem is disabled, the formItem will behave in a disabled manner regardless of the setting of
+     * the item.disabled property. <p> Note that not all items can be disabled, and not all browsers show an obvious disabled
+     * style for native form elements.
      *
      *
-     * @return String
+     * @return Boolean
      */
-    public String getValueField()  {
-        return getAttributeAsString("valueField");
+    public Boolean getDisabled()  {
+        return getAttributeAsBoolean("disabled");
     }
 
     /**
@@ -234,6 +337,147 @@ public class FormItem extends RefDataClass  implements com.smartgwt.client.widge
      */
     public String getDisplayField()  {
         return getAttributeAsString("displayField");
+    }
+
+    /**
+     * Text to display when this form item has a null or undefined value.
+     *
+     * @param emptyDisplayValue emptyDisplayValue Default value is ""
+     */
+    public void setEmptyDisplayValue(String emptyDisplayValue) {
+        setAttribute("emptyDisplayValue", emptyDisplayValue);
+    }
+
+    /**
+     * Text to display when this form item has a null or undefined value.
+     *
+     *
+     * @return String
+     */
+    public String getEmptyDisplayValue()  {
+        return getAttributeAsString("emptyDisplayValue");
+    }
+
+    /**
+     * This property allows the developer to specify an icon to display when this item has no value. It is configured in the
+     * same way as any other valueIcon  (see {@link com.smartgwt.client.widgets.form.fields.FormItem#getValueIcons valueIcons})
+     *
+     * @param emptyValueIcon emptyValueIcon Default value is null
+     */
+    public void setEmptyValueIcon(String emptyValueIcon) {
+        setAttribute("emptyValueIcon", emptyValueIcon);
+    }
+
+    /**
+     * This property allows the developer to specify an icon to display when this item has no value. It is configured in the
+     * same way as any other valueIcon  (see {@link com.smartgwt.client.widgets.form.fields.FormItem#getValueIcons valueIcons})
+     *
+     *
+     * @return String
+     */
+    public String getEmptyValueIcon()  {
+        return getAttributeAsString("emptyValueIcon");
+    }
+
+    /**
+     * Whether this item should end the row it's in in the form layout
+     *
+     * @param endRow endRow Default value is false
+     */
+    public void setEndRow(Boolean endRow) {
+        setAttribute("endRow", endRow);
+    }
+
+    /**
+     * Whether this item should end the row it's in in the form layout
+     *
+     *
+     * @return Boolean
+     */
+    public Boolean getEndRow()  {
+        return getAttributeAsBoolean("endRow");
+    }
+
+    /**
+     * Height of the error icon, if we're showing icons when validation errors occur.
+     *
+     * @param errorIconHeight errorIconHeight Default value is 16
+     */
+    public void setErrorIconHeight(int errorIconHeight) {
+        setAttribute("errorIconHeight", errorIconHeight);
+    }
+
+    /**
+     * Height of the error icon, if we're showing icons when validation errors occur.
+     *
+     *
+     * @return int
+     */
+    public int getErrorIconHeight()  {
+        return getAttributeAsInt("errorIconHeight");
+    }
+
+    /**
+     * URL of the image to show as an error icon, if we're showing icons when validation errors occur.
+     *
+     * @param errorIconSrc errorIconSrc Default value is "[SKIN]/DynamicForm/validation_error_icon.png"
+     */
+    public void setErrorIconSrc(String errorIconSrc) {
+        setAttribute("errorIconSrc", errorIconSrc);
+    }
+
+    /**
+     * URL of the image to show as an error icon, if we're showing icons when validation errors occur.
+     *
+     *
+     * @return String
+     */
+    public String getErrorIconSrc()  {
+        return getAttributeAsString("errorIconSrc");
+    }
+
+    /**
+     * Height of the error icon, if we're showing icons when validation errors occur.
+     *
+     * @param errorIconWidth errorIconWidth Default value is 16
+     */
+    public void setErrorIconWidth(int errorIconWidth) {
+        setAttribute("errorIconWidth", errorIconWidth);
+    }
+
+    /**
+     * Height of the error icon, if we're showing icons when validation errors occur.
+     *
+     *
+     * @return int
+     */
+    public int getErrorIconWidth()  {
+        return getAttributeAsInt("errorIconWidth");
+    }
+
+    /**
+     * When {@link com.smartgwt.client.widgets.form.DynamicForm#getShowInlineErrors showInlineErrors} and {@link
+     * com.smartgwt.client.widgets.form.fields.FormItem#getShowErrorText showErrorText} are both true and {@link
+     * com.smartgwt.client.widgets.form.fields.FormItem#getErrorOrientation errorOrientation} is "left" or "right",
+     * errorMessageWidth is the amount to reduce the width of the editor to accommodate the error message and icon.
+     *
+     * @param errorMessageWidth errorMessageWidth Default value is 80
+     */
+    public void setErrorMessageWidth(int errorMessageWidth) {
+        setAttribute("errorMessageWidth", errorMessageWidth);
+    }
+
+    /**
+     * When {@link com.smartgwt.client.widgets.form.DynamicForm#getShowInlineErrors showInlineErrors} and {@link
+     * com.smartgwt.client.widgets.form.fields.FormItem#getShowErrorText showErrorText} are both true and {@link
+     * com.smartgwt.client.widgets.form.fields.FormItem#getErrorOrientation errorOrientation} is "left" or "right",
+     * errorMessageWidth is the amount to reduce the width of the editor to accommodate the error message and icon.
+     *
+     *
+     * @return int
+     */
+    public int getErrorMessageWidth()  {
+        return getAttributeAsInt("errorMessageWidth");
     }
 
     /**
@@ -301,241 +545,304 @@ public class FormItem extends RefDataClass  implements com.smartgwt.client.widge
     public Boolean getFilterLocally()  {
         return getAttributeAsBoolean("filterLocally");
     }
-             
+
     /**
-     * Display format to use for date type values within this formItem. Default is to use the system-wide default short date
-     * format, configured via {@link com.smartgwt.client..Date#setShortDisplayFormat}.  Specify any valid {@link
-     * com.smartgwt.client.types.DateDisplayFormat} to  change the format used by this item.<br> Note: if both
-     * <code>dateFormatter</code> and {@link com.smartgwt.client.widgets.form.fields.FormItem#getTimeFormatter 'timeFormatter'}
-     * are specified on an item, Date type values will be formatted as dates using  <code>dateFormatter</code>.<br> See also
-     * {@link com.smartgwt.client.widgets.form.fields.DateItem#getDisplayFormat displayFormat} for formatting dates displayed
-     * in DateItems.
+     * TabIndex for the form item within the page. Takes precedence over any local tab index specified as {@link
+     * com.smartgwt.client.widgets.form.fields.FormItem#getTabIndex 'item.tabIndex'}.
      * <p><b>Note : </b> This is an advanced setting</p>
      *
-     * @param dateFormatter dateFormatter Default value is null
+     * @param globalTabIndex globalTabIndex Default value is null
      */
-    public void setDateFormatter(DateDisplayFormat dateFormatter) {
-        setAttribute("dateFormatter", dateFormatter.getValue());
+    public void setGlobalTabIndex(Integer globalTabIndex) {
+        setAttribute("globalTabIndex", globalTabIndex);
     }
 
     /**
-     * Display format to use for date type values within this formItem. Default is to use the system-wide default short date
-     * format, configured via {@link com.smartgwt.client..Date#setShortDisplayFormat}.  Specify any valid {@link
-     * com.smartgwt.client.types.DateDisplayFormat} to  change the format used by this item.<br> Note: if both
-     * <code>dateFormatter</code> and {@link com.smartgwt.client.widgets.form.fields.FormItem#getTimeFormatter 'timeFormatter'}
-     * are specified on an item, Date type values will be formatted as dates using  <code>dateFormatter</code>.<br> See also
-     * {@link com.smartgwt.client.widgets.form.fields.DateItem#getDisplayFormat displayFormat} for formatting dates displayed
-     * in DateItems.
+     * TabIndex for the form item within the page. Takes precedence over any local tab index specified as {@link
+     * com.smartgwt.client.widgets.form.fields.FormItem#getTabIndex 'item.tabIndex'}.
      *
      *
-     * @return DateDisplayFormat
+     * @return Integer
      */
-    public DateDisplayFormat getDateFormatter()  {
-        return EnumUtil.getEnum(DateDisplayFormat.values(), getAttribute("dateFormatter"));
-    }
-             
-    /**
-     * Time-format to apply to date type values within this formItem.  If specified, any dates displayed in this item will be
-     * formatted as times using the appropriate format.<br> Has no effect if {@link
-     * com.smartgwt.client.widgets.form.fields.FormItem#getDateFormatter dateFormatter} is also set.<br> See also {@link
-     * com.smartgwt.client.widgets.form.fields.TimeItem#getDisplayFormat displayFormat} for formatting values displayed in
-     * TimeItems.
-     * <p><b>Note : </b> This is an advanced setting</p>
-     *
-     * @param timeFormatter timeFormatter Default value is null
-     */
-    public void setTimeFormatter(TimeFormatter timeFormatter) {
-        setAttribute("timeFormatter", timeFormatter.getValue());
+    public Integer getGlobalTabIndex()  {
+        return getAttributeAsInt("globalTabIndex");
     }
 
     /**
-     * Time-format to apply to date type values within this formItem.  If specified, any dates displayed in this item will be
-     * formatted as times using the appropriate format.<br> Has no effect if {@link
-     * com.smartgwt.client.widgets.form.fields.FormItem#getDateFormatter dateFormatter} is also set.<br> See also {@link
-     * com.smartgwt.client.widgets.form.fields.TimeItem#getDisplayFormat displayFormat} for formatting values displayed in
-     * TimeItems.
+     * Default height of this item.
      *
-     *
-     * @return TimeFormatter
+     * @param height height Default value is 20
      */
-    public TimeFormatter getTimeFormatter()  {
-        return EnumUtil.getEnum(TimeFormatter.values(), getAttribute("timeFormatter"));
+    public void setHeight(int height) {
+        setAttribute("height", height);
     }
 
     /**
-     * This property allows the developer to specify an icon to display when this item has no value. It is configured in the
-     * same way as any other valueIcon  (see {@link com.smartgwt.client.widgets.form.fields.FormItem#getValueIcons valueIcons})
+     * Default height of this item.
      *
-     * @param emptyValueIcon emptyValueIcon Default value is null
+     *
+     * @return int
      */
-    public void setEmptyValueIcon(String emptyValueIcon) {
-        setAttribute("emptyValueIcon", emptyValueIcon);
+    public int getHeight()  {
+        return getAttributeAsInt("height");
     }
 
     /**
-     * This property allows the developer to specify an icon to display when this item has no value. It is configured in the
-     * same way as any other valueIcon  (see {@link com.smartgwt.client.widgets.form.fields.FormItem#getValueIcons valueIcons})
+     * Specifies "hint" string to show next to the form item to indicate something to the user. This string generally appears
+     * to the right of the form item.
+     * Set the hint text for this item
+     *
+     * @param hint new hint for the item. Default value is null
+     */
+    public void setHint(String hint) {
+        setAttribute("hint", hint);
+    }
+
+    /**
+     * Specifies "hint" string to show next to the form item to indicate something to the user. This string generally appears
+     * to the right of the form item.
      *
      *
      * @return String
      */
-    public String getEmptyValueIcon()  {
-        return getAttributeAsString("emptyValueIcon");
+    public String getHint()  {
+        return getAttributeAsString("hint");
     }
 
     /**
-     * If {@link com.smartgwt.client.widgets.form.fields.FormItem#getValueIcons valueIcons} is set, this property may be set to
-     * show the valueIcon only and prevent the standard form item element or text from displaying
+     * CSS class for the "hint" string.
+     * Set the hintStyle for this item
+     *
+     * @param hintStyle new style for hint text. Default value is "formHint"
+     */
+    public void setHintStyle(String hintStyle) {
+        setAttribute("hintStyle", hintStyle);
+    }
+
+    /**
+     * CSS class for the "hint" string.
+     *
+     *
+     * @return String
+     */
+    public String getHintStyle()  {
+        return getAttributeAsString("hintStyle");
+    }
+             
+    /**
+     * Text alignment  for text displayed in this item's hover canvas, if shown.
+     *
+     * @param hoverAlign hoverAlign Default value is null
+     */
+    public void setHoverAlign(Alignment hoverAlign) {
+        setAttribute("hoverAlign", hoverAlign.getValue());
+    }
+
+    /**
+     * Text alignment  for text displayed in this item's hover canvas, if shown.
+     *
+     *
+     * @return Alignment
+     */
+    public Alignment getHoverAlign()  {
+        return EnumUtil.getEnum(Alignment.values(), getAttribute("hoverAlign"));
+    }
+
+    /**
+     * If specified, this is the number of milliseconds to wait between the user rolling over  this form item, and triggering
+     * any hover action for it.<br> If not specified <code>this.form.itemHoverDelay</code> will be used instead.
      * <p><b>Note : </b> This is an advanced setting</p>
      *
-     * @param showValueIconOnly showValueIconOnly Default value is null
+     * @param hoverDelay hoverDelay Default value is null
      */
-    public void setShowValueIconOnly(Boolean showValueIconOnly) {
-        setAttribute("showValueIconOnly", showValueIconOnly);
+    public void setHoverDelay(Integer hoverDelay) {
+        setAttribute("hoverDelay", hoverDelay);
     }
 
     /**
-     * If {@link com.smartgwt.client.widgets.form.fields.FormItem#getValueIcons valueIcons} is set, this property may be set to
-     * show the valueIcon only and prevent the standard form item element or text from displaying
-     *
-     *
-     * @return Boolean
-     */
-    public Boolean getShowValueIconOnly()  {
-        return getAttributeAsBoolean("showValueIconOnly");
-    }
-
-    /**
-     * If {@link com.smartgwt.client.widgets.form.fields.FormItem#getValueIcons valueIcons} is set, this property may be set to
-     * prevent the value icons from showing up next to the form items value
-     * <p><b>Note : </b> This is an advanced setting</p>
-     *
-     * @param suppressValueIcon suppressValueIcon Default value is null
-     */
-    public void setSuppressValueIcon(Boolean suppressValueIcon) {
-        setAttribute("suppressValueIcon", suppressValueIcon);
-    }
-
-    /**
-     * If {@link com.smartgwt.client.widgets.form.fields.FormItem#getValueIcons valueIcons} is set, this property may be set to
-     * prevent the value icons from showing up next to the form items value
-     *
-     *
-     * @return Boolean
-     */
-    public Boolean getSuppressValueIcon()  {
-        return getAttributeAsBoolean("suppressValueIcon");
-    }
-
-    /**
-     * If {@link com.smartgwt.client.widgets.form.fields.FormItem#getValueIcons valueIcons} is specified, use this property to
-     * specify a width for the value icon written out.
-     *
-     * @param valueIconWidth valueIconWidth Default value is null
-     */
-    public void setValueIconWidth(Integer valueIconWidth) {
-        setAttribute("valueIconWidth", valueIconWidth);
-    }
-
-    /**
-     * If {@link com.smartgwt.client.widgets.form.fields.FormItem#getValueIcons valueIcons} is specified, use this property to
-     * specify a width for the value icon written out.
+     * If specified, this is the number of milliseconds to wait between the user rolling over  this form item, and triggering
+     * any hover action for it.<br> If not specified <code>this.form.itemHoverDelay</code> will be used instead.
      *
      *
      * @return Integer
      */
-    public Integer getValueIconWidth()  {
-        return getAttributeAsInt("valueIconWidth");
+    public Integer getHoverDelay()  {
+        return getAttributeAsInt("hoverDelay");
     }
 
     /**
-     * If {@link com.smartgwt.client.widgets.form.fields.FormItem#getValueIcons valueIcons} is specified, use this property to
-     * specify a height for the value icon written out.
+     * Option to specify a height for any hover shown for this item.
      *
-     * @param valueIconHeight valueIconHeight Default value is null
+     * @param hoverHeight hoverHeight Default value is null
      */
-    public void setValueIconHeight(Integer valueIconHeight) {
-        setAttribute("valueIconHeight", valueIconHeight);
+    public void setHoverHeight(Integer hoverHeight) {
+        setAttribute("hoverHeight", hoverHeight);
     }
 
     /**
-     * If {@link com.smartgwt.client.widgets.form.fields.FormItem#getValueIcons valueIcons} is specified, use this property to
-     * specify a height for the value icon written out.
+     * Option to specify a height for any hover shown for this item.
      *
      *
      * @return Integer
      */
-    public Integer getValueIconHeight()  {
-        return getAttributeAsInt("valueIconHeight");
+    public Integer getHoverHeight()  {
+        return getAttributeAsInt("hoverHeight");
     }
 
     /**
-     * If {@link com.smartgwt.client.widgets.form.fields.FormItem#getValueIcons valueIcons} is specified, this property may be
-     * used to specify both the width and height of the icon written out. Note that {@link
-     * com.smartgwt.client.widgets.form.fields.FormItem#getValueIconWidth valueIconWidth} and {@link
-     * com.smartgwt.client.widgets.form.fields.FormItem#getValueIconHeight valueIconHeight} take precedence over this value, if
-     * specified.
+     * Opacity for any hover shown for this item
      *
-     * @param valueIconSize valueIconSize Default value is 16
+     * @param hoverOpacity hoverOpacity Default value is null
      */
-    public void setValueIconSize(int valueIconSize) {
-        setAttribute("valueIconSize", valueIconSize);
+    public void setHoverOpacity(Integer hoverOpacity) {
+        setAttribute("hoverOpacity", hoverOpacity);
     }
 
     /**
-     * If {@link com.smartgwt.client.widgets.form.fields.FormItem#getValueIcons valueIcons} is specified, this property may be
-     * used to specify both the width and height of the icon written out. Note that {@link
-     * com.smartgwt.client.widgets.form.fields.FormItem#getValueIconWidth valueIconWidth} and {@link
-     * com.smartgwt.client.widgets.form.fields.FormItem#getValueIconHeight valueIconHeight} take precedence over this value, if
-     * specified.
+     * Opacity for any hover shown for this item
      *
      *
-     * @return int
+     * @return Integer
      */
-    public int getValueIconSize()  {
-        return getAttributeAsInt("valueIconSize");
+    public Integer getHoverOpacity()  {
+        return getAttributeAsInt("hoverOpacity");
     }
 
     /**
-     * If we're showing a value icon, this attribute governs the amount of space between the  icon and the left edge of the
-     * form item cell
+     * Explicit CSS Style for any hover shown for this item.
      *
-     * @param valueIconLeftPadding valueIconLeftPadding Default value is 0
+     * @param hoverStyle hoverStyle Default value is null
      */
-    public void setValueIconLeftPadding(int valueIconLeftPadding) {
-        setAttribute("valueIconLeftPadding", valueIconLeftPadding);
+    public void setHoverStyle(String hoverStyle) {
+        setAttribute("hoverStyle", hoverStyle);
     }
 
     /**
-     * If we're showing a value icon, this attribute governs the amount of space between the  icon and the left edge of the
-     * form item cell
+     * Explicit CSS Style for any hover shown for this item.
      *
      *
-     * @return int
+     * @return String
      */
-    public int getValueIconLeftPadding()  {
-        return getAttributeAsInt("valueIconLeftPadding");
+    public String getHoverStyle()  {
+        return getAttributeAsString("hoverStyle");
     }
 
     /**
-     * If we're showing a value icon, this attribute governs the amount of space between the  icon and the label of the form
-     * item
+     * Vertical text alignment  for text displayed in this item's hover canvas, if shown.
      *
-     * @param valueIconRightPadding valueIconRightPadding Default value is 3
+     * @param hoverVAlign hoverVAlign Default value is null
      */
-    public void setValueIconRightPadding(int valueIconRightPadding) {
-        setAttribute("valueIconRightPadding", valueIconRightPadding);
+    public void setHoverVAlign(Integer hoverVAlign) {
+        setAttribute("hoverVAlign", hoverVAlign);
     }
 
     /**
-     * If we're showing a value icon, this attribute governs the amount of space between the  icon and the label of the form
-     * item
+     * Vertical text alignment  for text displayed in this item's hover canvas, if shown.
      *
      *
-     * @return int
+     * @return Integer
      */
-    public int getValueIconRightPadding()  {
-        return getAttributeAsInt("valueIconRightPadding");
+    public Integer getHoverVAlign()  {
+        return getAttributeAsInt("hoverVAlign");
+    }
+
+    /**
+     * Option to specify a width for any hover shown for this item.
+     *
+     * @param hoverWidth hoverWidth Default value is null
+     */
+    public void setHoverWidth(Integer hoverWidth) {
+        setAttribute("hoverWidth", hoverWidth);
+    }
+
+    /**
+     * Option to specify a width for any hover shown for this item.
+     *
+     *
+     * @return Integer
+     */
+    public Integer getHoverWidth()  {
+        return getAttributeAsInt("hoverWidth");
+    }
+
+    /**
+     * Default height for form item icons
+     * <p><b>Note : </b> This is an advanced setting</p>
+     *
+     * @param iconHeight iconHeight Default value is 20
+     */
+    public void setIconHeight(int iconHeight) {
+        setAttribute("iconHeight", iconHeight);
+    }
+
+    /**
+     * Default height for form item icons
+     *
+     *
+     * @return Takes an icon definition object, and returns the height for that icon in px.
+     */
+    public int getIconHeight()  {
+        return getAttributeAsInt("iconHeight");
+    }
+
+    /**
+     * Default prompt (and tooltip-text) for icons.
+     * <p><b>Note : </b> This is an advanced setting</p>
+     *
+     * @param iconPrompt iconPrompt Default value is ""
+     */
+    public void setIconPrompt(String iconPrompt) {
+        setAttribute("iconPrompt", iconPrompt);
+    }
+
+    /**
+     * Default prompt (and tooltip-text) for icons.
+     *
+     *
+     * @return String
+     */
+    public String getIconPrompt()  {
+        return getAttributeAsString("iconPrompt");
+    }
+             
+    /**
+     * How should icons be aligned vertically for this form item.
+     * <p><b>Note : </b> This is an advanced setting</p>
+     *
+     * @param iconVAlign iconVAlign Default value is "bottom"
+     */
+    public void setIconVAlign(VerticalAlignment iconVAlign) {
+        setAttribute("iconVAlign", iconVAlign.getValue());
+    }
+
+    /**
+     * How should icons be aligned vertically for this form item.
+     *
+     *
+     * @return VerticalAlignment
+     */
+    public VerticalAlignment getIconVAlign()  {
+        return EnumUtil.getEnum(VerticalAlignment.values(), getAttribute("iconVAlign"));
+    }
+
+    /**
+     * Default width for form item icons
+     * <p><b>Note : </b> This is an advanced setting</p>
+     *
+     * @param iconWidth iconWidth Default value is 20
+     */
+    public void setIconWidth(int iconWidth) {
+        setAttribute("iconWidth", iconWidth);
+    }
+
+    /**
+     * Default width for form item icons
+     *
+     *
+     * @return Takes an icon definition object, and returns the width for that icon in px.
+     */
+    public int getIconWidth()  {
+        return getAttributeAsInt("iconWidth");
     }
 
     /**
@@ -585,49 +892,121 @@ public class FormItem extends RefDataClass  implements com.smartgwt.client.widge
     }
 
     /**
-     * Should we show a special 'picker' {@link com.smartgwt.client.widgets.form.fields.FormItemIcon icon} for this form item.
-     * Picker icons are customizable via {@link com.smartgwt.client.widgets.form.fields.FormItem#getPickerIconProperties
-     * pickerIconProperties}. By default they will be rendered inside the Form Item's "control box" area, and will call {@link
-     * com.smartgwt.client.widgets.form.fields.FormItem#showPicker} when clicked.
+     * Left coordinate of this item in pixels.  Applies only when the containing DynamicForm sets
+     * <code>itemLayout:"absolute"</code>.
+     * For a form with {@link com.smartgwt.client.widgets.form.DynamicForm#getItemLayout 'itemLayout'}:"absolute" only, set the left coordinate of this form item. <P> Causes the form to redraw.
+     * <p><b>Note : </b> This is an advanced setting</p>
      *
-     * @param showPickerIcon showPickerIcon Default value is false
+     * @param left left Default value is 0
      */
-    public void setShowPickerIcon(Boolean showPickerIcon) {
-        setAttribute("showPickerIcon", showPickerIcon);
+    public void setLeft(int left) {
+        setAttribute("left", left);
     }
 
     /**
-     * Should we show a special 'picker' {@link com.smartgwt.client.widgets.form.fields.FormItemIcon icon} for this form item.
-     * Picker icons are customizable via {@link com.smartgwt.client.widgets.form.fields.FormItem#getPickerIconProperties
-     * pickerIconProperties}. By default they will be rendered inside the Form Item's "control box" area, and will call {@link
-     * com.smartgwt.client.widgets.form.fields.FormItem#showPicker} when clicked.
+     * Left coordinate of this item in pixels.  Applies only when the containing DynamicForm sets
+     * <code>itemLayout:"absolute"</code>.
      *
      *
-     * @return Boolean
+     * @return int
      */
-    public Boolean getShowPickerIcon()  {
-        return getAttributeAsBoolean("showPickerIcon");
+    public int getLeft()  {
+        return getAttributeAsInt("left");
+    }
+             
+    /**
+     * {@link com.smartgwt.client.types.OperatorId} to be used when {@link
+     * com.smartgwt.client.widgets.form.DynamicForm#getValuesAsCriteria} is called. <P> <code>item.operator</code> can be used
+     * to create a form that offers search functions such as date range filtering, without the more advanced user interface of
+     * the {@link com.smartgwt.client.widgets.form.FilterBuilder}. <P> When <code>item.operator</code> is set for any FormItem
+     * in a form, <code>form.getValuesAsCriteria()</code> will return an ${isc.DocUtils.linkForRef('object:AdvancedCriteria')}
+     * object instead of a normal {@link com.smartgwt.client.data.Criteria} object.  Each FormItem will produce one
+     * ${isc.DocUtils.linkForRef('object:Criterion')} affecting the DataSource field specified by {@link
+     * com.smartgwt.client.widgets.form.fields.FormItem#getCriteriaField criteriaField}. The criteria produced by the FormItems
+     * will be grouped under the logical operator provided by {@link com.smartgwt.client.widgets.form.DynamicForm#getOperator
+     * operator}. <P> if <code>operator</code> is set for some fields but not others, the default operator is "equals" for
+     * fields with a valueMap or an optionDataSource, and for fields of type "enum" (or of a type that inherits from "enum"). 
+     * The default operator for all other fields is "iContains" (case-insensitive match)  <P> <b>Note:</b> Advanced criteria
+     * will only be created for items in a Databound form. If this item is part of a form with no {@link
+     * com.smartgwt.client.widgets.DataBoundComponent#getDataSource 'dataSource'}, the  <code>operator</code> attribute will
+     * have no effect.
+     *
+     * @param operator operator Default value is null
+     */
+    public void setOperator(OperatorId operator) {
+        setAttribute("operator", operator.getValue());
     }
 
     /**
-     * If {@link com.smartgwt.client.widgets.form.fields.FormItem#getShowPickerIcon showPickerIcon} is true for this item,
-     * should the picker icon show a focused image when the form item has focus?
+     * {@link com.smartgwt.client.types.OperatorId} to be used when {@link
+     * com.smartgwt.client.widgets.form.DynamicForm#getValuesAsCriteria} is called. <P> <code>item.operator</code> can be used
+     * to create a form that offers search functions such as date range filtering, without the more advanced user interface of
+     * the {@link com.smartgwt.client.widgets.form.FilterBuilder}. <P> When <code>item.operator</code> is set for any FormItem
+     * in a form, <code>form.getValuesAsCriteria()</code> will return an ${isc.DocUtils.linkForRef('object:AdvancedCriteria')}
+     * object instead of a normal {@link com.smartgwt.client.data.Criteria} object.  Each FormItem will produce one
+     * ${isc.DocUtils.linkForRef('object:Criterion')} affecting the DataSource field specified by {@link
+     * com.smartgwt.client.widgets.form.fields.FormItem#getCriteriaField criteriaField}. The criteria produced by the FormItems
+     * will be grouped under the logical operator provided by {@link com.smartgwt.client.widgets.form.DynamicForm#getOperator
+     * operator}. <P> if <code>operator</code> is set for some fields but not others, the default operator is "equals" for
+     * fields with a valueMap or an optionDataSource, and for fields of type "enum" (or of a type that inherits from "enum"). 
+     * The default operator for all other fields is "iContains" (case-insensitive match)  <P> <b>Note:</b> Advanced criteria
+     * will only be created for items in a Databound form. If this item is part of a form with no {@link
+     * com.smartgwt.client.widgets.DataBoundComponent#getDataSource 'dataSource'}, the  <code>operator</code> attribute will
+     * have no effect.
      *
-     * @param showFocusedPickerIcon showFocusedPickerIcon Default value is false
+     *
+     * @return OperatorId
      */
-    public void setShowFocusedPickerIcon(Boolean showFocusedPickerIcon) {
-        setAttribute("showFocusedPickerIcon", showFocusedPickerIcon);
+    public OperatorId getOperator()  {
+        return EnumUtil.getEnum(OperatorId.values(), getAttribute("operator"));
     }
 
     /**
-     * If {@link com.smartgwt.client.widgets.form.fields.FormItem#getShowPickerIcon showPickerIcon} is true for this item,
-     * should the picker icon show a focused image when the form item has focus?
+     * If this item has a specified <code>optionDataSource</code>, this attribute may be set to specify an explicit {@link
+     * com.smartgwt.client.data.DSRequest#getOperationId operationId} when performing a fetch against the option dataSource to
+     * pick up display value mapping.
+     * <p><b>Note : </b> This is an advanced setting</p>
      *
-     *
-     * @return Boolean
+     * @param optionOperationId optionOperationId Default value is null
      */
-    public Boolean getShowFocusedPickerIcon()  {
-        return getAttributeAsBoolean("showFocusedPickerIcon");
+    public void setOptionOperationId(String optionOperationId) {
+        setAttribute("optionOperationId", optionOperationId);
+    }
+
+    /**
+     * If this item has a specified <code>optionDataSource</code>, this attribute may be set to specify an explicit {@link
+     * com.smartgwt.client.data.DSRequest#getOperationId operationId} when performing a fetch against the option dataSource to
+     * pick up display value mapping.
+     *
+     *
+     * @return String
+     */
+    public String getOptionOperationId()  {
+        return getAttributeAsString("optionOperationId");
+    }
+
+    /**
+     * If {@link com.smartgwt.client.widgets.form.fields.FormItem#getShowPickerIcon showPickerIcon} is true for this item, this
+     * property governs the size of the picker icon. If unset picker icon will be sized as a square to fit in the available
+     * height for the icon.
+     * <p><b>Note : </b> This is an advanced setting</p>
+     *
+     * @param pickerIconHeight pickerIconHeight Default value is null
+     */
+    public void setPickerIconHeight(Integer pickerIconHeight) {
+        setAttribute("pickerIconHeight", pickerIconHeight);
+    }
+
+    /**
+     * If {@link com.smartgwt.client.widgets.form.fields.FormItem#getShowPickerIcon showPickerIcon} is true for this item, this
+     * property governs the size of the picker icon. If unset picker icon will be sized as a square to fit in the available
+     * height for the icon.
+     *
+     *
+     * @return Integer
+     */
+    public Integer getPickerIconHeight()  {
+        return getAttributeAsInt("pickerIconHeight");
     }
 
     /**
@@ -677,27 +1056,88 @@ public class FormItem extends RefDataClass  implements com.smartgwt.client.widge
     }
 
     /**
-     * If {@link com.smartgwt.client.widgets.form.fields.FormItem#getShowPickerIcon showPickerIcon} is true for this item, this
-     * property governs the size of the picker icon. If unset picker icon will be sized as a square to fit in the available
-     * height for the icon.
-     * <p><b>Note : </b> This is an advanced setting</p>
+     * Base CSS class name for a form item's text box element when getting printable HTML for the form. If unset {@link
+     * com.smartgwt.client.widgets.form.fields.FormItem#getTextBoxStyle textBoxStyle} will be used instead. Note that focused
+     * styling will never be displayed while printing, though error and disabled styling will.
      *
-     * @param pickerIconHeight pickerIconHeight Default value is null
+     * @param printTextBoxStyle printTextBoxStyle Default value is null
      */
-    public void setPickerIconHeight(Integer pickerIconHeight) {
-        setAttribute("pickerIconHeight", pickerIconHeight);
+    public void setPrintTextBoxStyle(String printTextBoxStyle) {
+        setAttribute("printTextBoxStyle", printTextBoxStyle);
     }
 
     /**
-     * If {@link com.smartgwt.client.widgets.form.fields.FormItem#getShowPickerIcon showPickerIcon} is true for this item, this
-     * property governs the size of the picker icon. If unset picker icon will be sized as a square to fit in the available
-     * height for the icon.
+     * Base CSS class name for a form item's text box element when getting printable HTML for the form. If unset {@link
+     * com.smartgwt.client.widgets.form.fields.FormItem#getTextBoxStyle textBoxStyle} will be used instead. Note that focused
+     * styling will never be displayed while printing, though error and disabled styling will.
      *
      *
-     * @return Integer
+     * @return String
      */
-    public Integer getPickerIconHeight()  {
-        return getAttributeAsInt("pickerIconHeight");
+    public String getPrintTextBoxStyle()  {
+        return getAttributeAsString("printTextBoxStyle");
+    }
+
+    /**
+     * Base CSS stylename for a form item's title when generating print HTML for the item. If unset {@link
+     * com.smartgwt.client.widgets.form.fields.FormItem#getTitleStyle titleStyle} will be used instead.
+     *
+     * @param printTitleStyle printTitleStyle Default value is null
+     */
+    public void setPrintTitleStyle(String printTitleStyle) {
+        setAttribute("printTitleStyle", printTitleStyle);
+    }
+
+    /**
+     * Base CSS stylename for a form item's title when generating print HTML for the item. If unset {@link
+     * com.smartgwt.client.widgets.form.fields.FormItem#getTitleStyle titleStyle} will be used instead.
+     *
+     *
+     * @return String
+     */
+    public String getPrintTitleStyle()  {
+        return getAttributeAsString("printTitleStyle");
+    }
+
+    /**
+     * This text is shown as a tooltip prompt when the cursor hovers over this item.
+     *
+     * @param prompt prompt Default value is null
+     */
+    public void setPrompt(String prompt) {
+        setAttribute("prompt", prompt);
+    }
+
+    /**
+     * This text is shown as a tooltip prompt when the cursor hovers over this item.
+     *
+     *
+     * @return String
+     */
+    public String getPrompt()  {
+        return getAttributeAsString("prompt");
+    }
+
+    /**
+     * If validateOnChange is true, and validation fails for this item on change, with no suggested value, should we revert to
+     * the previous value, or continue to display the bad value entered by the user. May be set at the item or form level.
+     * <p><b>Note : </b> This is an advanced setting</p>
+     *
+     * @param rejectInvalidValueOnChange rejectInvalidValueOnChange Default value is false
+     */
+    public void setRejectInvalidValueOnChange(Boolean rejectInvalidValueOnChange) {
+        setAttribute("rejectInvalidValueOnChange", rejectInvalidValueOnChange);
+    }
+
+    /**
+     * If validateOnChange is true, and validation fails for this item on change, with no suggested value, should we revert to
+     * the previous value, or continue to display the bad value entered by the user. May be set at the item or form level.
+     *
+     *
+     * @return Boolean
+     */
+    public Boolean getRejectInvalidValueOnChange()  {
+        return getAttributeAsBoolean("rejectInvalidValueOnChange");
     }
 
     /**
@@ -753,118 +1193,22 @@ public class FormItem extends RefDataClass  implements com.smartgwt.client.widge
     }
 
     /**
-     * Whether this item is currently visible. <P> <code>visible</code> can only be set on creation.  After creation, use
-     * {@link com.smartgwt.client.widgets.form.fields.FormItem#show} and {@link
-     * com.smartgwt.client.widgets.form.fields.FormItem#hide} to manipulate visibility.
+     * Number of rows that this item spans
      *
-     * @param visible visible Default value is true
+     * @param rowSpan rowSpan Default value is 1
      */
-    public void setVisible(Boolean visible) {
-        setAttribute("visible", visible);
+    public void setRowSpan(int rowSpan) {
+        setAttribute("rowSpan", rowSpan);
     }
 
     /**
-     * Whether this item is currently visible. <P> <code>visible</code> can only be set on creation.  After creation, use
-     * {@link com.smartgwt.client.widgets.form.fields.FormItem#show} and {@link
-     * com.smartgwt.client.widgets.form.fields.FormItem#hide} to manipulate visibility.
+     * Number of rows that this item spans
      *
      *
-     * @return Boolean
+     * @return int
      */
-    public Boolean getVisible()  {
-        return getAttributeAsBoolean("visible");
-    }
-
-    /**
-     * Whether this item is disabled.  Can be updated at runtime via the <code>setDisabled()</code> method.  Note that if the
-     * widget containing this formItem is disabled, the formItem will behave in a disabled manner regardless of the setting of
-     * the item.disabled property. <p> Note that not all items can be disabled, and not all browsers show an obvious disabled
-     * style for native form elements.
-     * Set this item to be enabled or disabled at runtime.
-     *
-     * @param disabled true if this item should be disabled. Default value is false
-     */
-    public void setDisabled(Boolean disabled) {
-        setAttribute("disabled", disabled);
-    }
-
-    /**
-     * Whether this item is disabled.  Can be updated at runtime via the <code>setDisabled()</code> method.  Note that if the
-     * widget containing this formItem is disabled, the formItem will behave in a disabled manner regardless of the setting of
-     * the item.disabled property. <p> Note that not all items can be disabled, and not all browsers show an obvious disabled
-     * style for native form elements.
-     *
-     *
-     * @return Boolean
-     */
-    public Boolean getDisabled()  {
-        return getAttributeAsBoolean("disabled");
-    }
-
-    /**
-     * AccessKey - a keyboard shortcut to trigger a form item's default behavior.<br>      Note: Alt+ (or in Moz Firefox 2.0
-     * and above, Shift+Alt+) the specified key will       trigger the form item's default behavior.
-     *
-     * @param accessKey accessKey Default value is null
-     */
-    public void setAccessKey(String accessKey) {
-        setAttribute("accessKey", accessKey);
-    }
-
-    /**
-     * AccessKey - a keyboard shortcut to trigger a form item's default behavior.<br>      Note: Alt+ (or in Moz Firefox 2.0
-     * and above, Shift+Alt+) the specified key will       trigger the form item's default behavior.
-     *
-     *
-     * @return String
-     */
-    public String getAccessKey()  {
-        return getAttributeAsString("accessKey");
-    }
-
-    /**
-     * tabIndex for the form item within the form.  Auto-assigned if not specified.<br> Note: This controls the tab order
-     * within the form. <P> To specify the tabindex of an item within the page as a whole (not just this form), use
-     * globalTabIndex instead.
-     *
-     * @param tabIndex tabIndex Default value is null
-     */
-    public void setTabIndex(Integer tabIndex) {
-        setAttribute("tabIndex", tabIndex);
-    }
-
-    /**
-     * tabIndex for the form item within the form.  Auto-assigned if not specified.<br> Note: This controls the tab order
-     * within the form. <P> To specify the tabindex of an item within the page as a whole (not just this form), use
-     * globalTabIndex instead.
-     *
-     *
-     * @return Integer
-     */
-    public Integer getTabIndex()  {
-        return getAttributeAsInt("tabIndex");
-    }
-
-    /**
-     * TabIndex for the form item within the page. Takes precedence over any local tab index specified as {@link
-     * com.smartgwt.client.widgets.form.fields.FormItem#getTabIndex 'item.tabIndex'}.
-     * <p><b>Note : </b> This is an advanced setting</p>
-     *
-     * @param globalTabIndex globalTabIndex Default value is null
-     */
-    public void setGlobalTabIndex(Integer globalTabIndex) {
-        setAttribute("globalTabIndex", globalTabIndex);
-    }
-
-    /**
-     * TabIndex for the form item within the page. Takes precedence over any local tab index specified as {@link
-     * com.smartgwt.client.widgets.form.fields.FormItem#getTabIndex 'item.tabIndex'}.
-     *
-     *
-     * @return Integer
-     */
-    public Integer getGlobalTabIndex()  {
-        return getAttributeAsInt("globalTabIndex");
+    public int getRowSpan()  {
+        return getAttributeAsInt("rowSpan");
     }
 
     /**
@@ -891,617 +1235,64 @@ public class FormItem extends RefDataClass  implements com.smartgwt.client.widge
     }
 
     /**
-     * Should we show a title cell for this formItem? <p> Note: the default value of this attribute is overridden by some
-     * subclasses.
+     * Should this item's value be saved in the form's values and hence returned from {@link
+     * com.smartgwt.client.widgets.form.DynamicForm#getValues}? <p> <code>shouldSaveValue:false</code> is used to mark
+     * formItems which do not correspond to the underlying data model and should not save a value into the form's {@link
+     * com.smartgwt.client.widgets.form.DynamicForm#getValues 'values'}.  Example includes visual separators, password re-type
+     * fields, or checkboxes used to show/hide other form items. <p> A <code>shouldSaveValue:false</code> item should be given
+     * a value either via {@link com.smartgwt.client.widgets.form.fields.FormItem#getDefaultValue defaultValue} or by calling
+     * can use {@link com.smartgwt.client.widgets.form.DynamicForm#setValue} or  {@link
+     * com.smartgwt.client.widgets.form.fields.FormItem#setValue}.  Providing a value via {@link
+     * com.smartgwt.client.widgets.form.DynamicForm#getValues 'form.values'} or {@link
+     * com.smartgwt.client.widgets.form.DynamicForm#setValues}  will automatically switch the item to
+     * <code>shouldSaveValue:true</code>. <P> Note that <ul> <li>if an item is shouldSaveValue true, but has no name, a warning
+     * is logged, and      shouldSaveValue will be set to false. </li></ul>
      *
-     * @param showTitle showTitle Default value is true
+     * @param shouldSaveValue shouldSaveValue Default value is true
      */
-    public void setShowTitle(Boolean showTitle) {
-        setAttribute("showTitle", showTitle);
+    public void setShouldSaveValue(Boolean shouldSaveValue) {
+        setAttribute("shouldSaveValue", shouldSaveValue);
     }
 
     /**
-     * Should we show a title cell for this formItem? <p> Note: the default value of this attribute is overridden by some
-     * subclasses.
+     * Should this item's value be saved in the form's values and hence returned from {@link
+     * com.smartgwt.client.widgets.form.DynamicForm#getValues}? <p> <code>shouldSaveValue:false</code> is used to mark
+     * formItems which do not correspond to the underlying data model and should not save a value into the form's {@link
+     * com.smartgwt.client.widgets.form.DynamicForm#getValues 'values'}.  Example includes visual separators, password re-type
+     * fields, or checkboxes used to show/hide other form items. <p> A <code>shouldSaveValue:false</code> item should be given
+     * a value either via {@link com.smartgwt.client.widgets.form.fields.FormItem#getDefaultValue defaultValue} or by calling
+     * can use {@link com.smartgwt.client.widgets.form.DynamicForm#setValue} or  {@link
+     * com.smartgwt.client.widgets.form.fields.FormItem#setValue}.  Providing a value via {@link
+     * com.smartgwt.client.widgets.form.DynamicForm#getValues 'form.values'} or {@link
+     * com.smartgwt.client.widgets.form.DynamicForm#setValues}  will automatically switch the item to
+     * <code>shouldSaveValue:true</code>. <P> Note that <ul> <li>if an item is shouldSaveValue true, but has no name, a warning
+     * is logged, and      shouldSaveValue will be set to false. </li></ul>
      *
      *
      * @return Boolean
      */
-    public Boolean getShowTitle()  {
-        return getAttributeAsBoolean("showTitle");
-    }
-             
-    /**
-     * On which side of this item should the title be placed.  {@link com.smartgwt.client.types.TitleOrientation} lists valid
-     * options. <P> Note that titles on the left or right take up a cell in tabular {@link com.smartgwt.client.docs.FormLayout
-     * 'form layouts'}, but titles on top do not.
-     *
-     * @param titleOrientation titleOrientation Default value is Canvas.LEFT
-     */
-    public void setTitleOrientation(TitleOrientation titleOrientation) {
-        setAttribute("titleOrientation", titleOrientation.getValue());
+    public Boolean getShouldSaveValue()  {
+        return getAttributeAsBoolean("shouldSaveValue");
     }
 
     /**
-     * On which side of this item should the title be placed.  {@link com.smartgwt.client.types.TitleOrientation} lists valid
-     * options. <P> Note that titles on the left or right take up a cell in tabular {@link com.smartgwt.client.docs.FormLayout
-     * 'form layouts'}, but titles on top do not.
+     * When this item is disabled, should it be re-styled to indicate its disabled state?
+     * <p><b>Note : </b> This is an advanced setting</p>
      *
-     *
-     * @return TitleOrientation
+     * @param showDisabled showDisabled Default value is true
      */
-    public TitleOrientation getTitleOrientation()  {
-        return EnumUtil.getEnum(TitleOrientation.values(), getAttribute("titleOrientation"));
-    }
-             
-    /**
-     * Alignment of this item's title in its cell. <p> If null, dynamically set according to text direction.
-     *
-     * @param titleAlign titleAlign Default value is null
-     */
-    public void setTitleAlign(Alignment titleAlign) {
-        setAttribute("titleAlign", titleAlign.getValue());
+    public void setShowDisabled(Boolean showDisabled) {
+        setAttribute("showDisabled", showDisabled);
     }
 
     /**
-     * Alignment of this item's title in its cell. <p> If null, dynamically set according to text direction.
-     *
-     *
-     * @return Alignment
-     */
-    public Alignment getTitleAlign()  {
-        return EnumUtil.getEnum(Alignment.values(), getAttribute("titleAlign"));
-    }
-             
-    /**
-     * Vertical alignment of this item's title in its cell. Only applies when {@link
-     * com.smartgwt.client.widgets.form.fields.FormItem#getTitleOrientation titleOrientation} is <code>"left"</code> or
-     * <code>"right"</code>.
-     *
-     * @param titleVAlign titleVAlign Default value is Canvas.CENTER
-     */
-    public void setTitleVAlign(VerticalAlignment titleVAlign) {
-        setAttribute("titleVAlign", titleVAlign.getValue());
-    }
-
-    /**
-     * Vertical alignment of this item's title in its cell. Only applies when {@link
-     * com.smartgwt.client.widgets.form.fields.FormItem#getTitleOrientation titleOrientation} is <code>"left"</code> or
-     * <code>"right"</code>.
-     *
-     *
-     * @return VerticalAlignment
-     */
-    public VerticalAlignment getTitleVAlign()  {
-        return EnumUtil.getEnum(VerticalAlignment.values(), getAttribute("titleVAlign"));
-    }
-
-    /**
-     * If specified determines whether this items title should wrap. Overrides {@link
-     * com.smartgwt.client.widgets.form.DynamicForm#getWrapItemTitles 'wrapItemTitles'} at the DynamicForm level.
-     *
-     * @param wrapTitle wrapTitle Default value is null
-     */
-    public void setWrapTitle(Boolean wrapTitle) {
-        setAttribute("wrapTitle", wrapTitle);
-    }
-
-    /**
-     * If specified determines whether this items title should wrap. Overrides {@link
-     * com.smartgwt.client.widgets.form.DynamicForm#getWrapItemTitles 'wrapItemTitles'} at the DynamicForm level.
+     * When this item is disabled, should it be re-styled to indicate its disabled state?
      *
      *
      * @return Boolean
      */
-    public Boolean getWrapTitle()  {
-        return getAttributeAsBoolean("wrapTitle");
-    }
-
-    /**
-     * If true, form items will be validated when each item's "change" handler is fired as well as when the entire form is
-     * submitted or validated. <p> Note that this property can also be set at the form level; If true at either level the
-     * validator will be fired on change - displaying errors and rejecting the change on validation failure.
-     *
-     * @param validateOnChange validateOnChange Default value is false
-     */
-    public void setValidateOnChange(Boolean validateOnChange) {
-        setAttribute("validateOnChange", validateOnChange);
-    }
-
-    /**
-     * If true, form items will be validated when each item's "change" handler is fired as well as when the entire form is
-     * submitted or validated. <p> Note that this property can also be set at the form level; If true at either level the
-     * validator will be fired on change - displaying errors and rejecting the change on validation failure.
-     *
-     *
-     * @return Boolean
-     */
-    public Boolean getValidateOnChange()  {
-        return getAttributeAsBoolean("validateOnChange");
-    }
-
-    /**
-     * If true, form items will be validated when each item's "editorExit" handler is fired as well as when the entire form is
-     * submitted or validated. <p> Note that this property can also be set at the form level. If true at either level the
-     * validator will be fired on editorExit.
-     *
-     * @param validateOnExit validateOnExit Default value is false
-     */
-    public void setValidateOnExit(Boolean validateOnExit) {
-        setAttribute("validateOnExit", validateOnExit);
-    }
-
-    /**
-     * If true, form items will be validated when each item's "editorExit" handler is fired as well as when the entire form is
-     * submitted or validated. <p> Note that this property can also be set at the form level. If true at either level the
-     * validator will be fired on editorExit.
-     *
-     *
-     * @return Boolean
-     */
-    public Boolean getValidateOnExit()  {
-        return getAttributeAsBoolean("validateOnExit");
-    }
-
-    /**
-     * If validateOnChange is true, and validation fails for this item on change, with no suggested value, should we revert to
-     * the previous value, or continue to display the bad value entered by the user. May be set at the item or form level.
-     * <p><b>Note : </b> This is an advanced setting</p>
-     *
-     * @param rejectInvalidValueOnChange rejectInvalidValueOnChange Default value is false
-     */
-    public void setRejectInvalidValueOnChange(Boolean rejectInvalidValueOnChange) {
-        setAttribute("rejectInvalidValueOnChange", rejectInvalidValueOnChange);
-    }
-
-    /**
-     * If validateOnChange is true, and validation fails for this item on change, with no suggested value, should we revert to
-     * the previous value, or continue to display the bad value entered by the user. May be set at the item or form level.
-     *
-     *
-     * @return Boolean
-     */
-    public Boolean getRejectInvalidValueOnChange()  {
-        return getAttributeAsBoolean("rejectInvalidValueOnChange");
-    }
-
-    /**
-     * By default, items take up the entire width of their cell
-     *
-     * @param width width Default value is "*"
-     */
-    public void setWidth(int width) {
-        setAttribute("width", width);
-    }
-
-    /**
-     * By default, items take up the entire width of their cell
-     *
-     *
-     * @return int
-     */
-    public int getWidth()  {
-        return getAttributeAsInt("width");
-    }
-
-    /**
-     * Default height of this item.
-     *
-     * @param height height Default value is 20
-     */
-    public void setHeight(int height) {
-        setAttribute("height", height);
-    }
-
-    /**
-     * Default height of this item.
-     *
-     *
-     * @return int
-     */
-    public int getHeight()  {
-        return getAttributeAsInt("height");
-    }
-
-    /**
-     * Number of rows that this item spans
-     *
-     * @param rowSpan rowSpan Default value is 1
-     */
-    public void setRowSpan(int rowSpan) {
-        setAttribute("rowSpan", rowSpan);
-    }
-
-    /**
-     * Number of rows that this item spans
-     *
-     *
-     * @return int
-     */
-    public int getRowSpan()  {
-        return getAttributeAsInt("rowSpan");
-    }
-
-    /**
-     * Whether this item should always start a new row in the form layout.
-     *
-     * @param startRow startRow Default value is false
-     */
-    public void setStartRow(Boolean startRow) {
-        setAttribute("startRow", startRow);
-    }
-
-    /**
-     * Whether this item should always start a new row in the form layout.
-     *
-     *
-     * @return Boolean
-     */
-    public Boolean getStartRow()  {
-        return getAttributeAsBoolean("startRow");
-    }
-
-    /**
-     * Whether this item should end the row it's in in the form layout
-     *
-     * @param endRow endRow Default value is false
-     */
-    public void setEndRow(Boolean endRow) {
-        setAttribute("endRow", endRow);
-    }
-
-    /**
-     * Whether this item should end the row it's in in the form layout
-     *
-     *
-     * @return Boolean
-     */
-    public Boolean getEndRow()  {
-        return getAttributeAsBoolean("endRow");
-    }
-             
-    /**
-     * Alignment of this item in its cell. Note that the alignment of content within this item can be separately controlled via
-     * {@link com.smartgwt.client.widgets.form.fields.FormItem#getTextAlign textAlign} (typically only applies to items showing
-     * a "textBox", such as {@link com.smartgwt.client.widgets.form.fields.TextItem} or {@link
-     * com.smartgwt.client.widgets.form.fields.SelectItem}).
-     *
-     * @param align align Default value is Canvas.LEFT
-     */
-    public void setAlign(Alignment align) {
-        setAttribute("align", align.getValue());
-    }
-
-    /**
-     * Alignment of this item in its cell. Note that the alignment of content within this item can be separately controlled via
-     * {@link com.smartgwt.client.widgets.form.fields.FormItem#getTextAlign textAlign} (typically only applies to items showing
-     * a "textBox", such as {@link com.smartgwt.client.widgets.form.fields.TextItem} or {@link
-     * com.smartgwt.client.widgets.form.fields.SelectItem}).
-     *
-     *
-     * @return Alignment
-     */
-    public Alignment getAlign()  {
-        return EnumUtil.getEnum(Alignment.values(), getAttribute("align"));
-    }
-             
-    /**
-     * Alignment of the text / content within this form item. Note that {@link
-     * com.smartgwt.client.widgets.form.fields.FormItem#getAlign align} may be used to control alignment of the entire form
-     * item within its cell. May not apply to all form item types.
-     *
-     * @param textAlign textAlign Default value is Canvas.LEFT
-     */
-    public void setTextAlign(Alignment textAlign) {
-        setAttribute("textAlign", textAlign.getValue());
-    }
-
-    /**
-     * Alignment of the text / content within this form item. Note that {@link
-     * com.smartgwt.client.widgets.form.fields.FormItem#getAlign align} may be used to control alignment of the entire form
-     * item within its cell. May not apply to all form item types.
-     *
-     *
-     * @return Alignment
-     */
-    public Alignment getTextAlign()  {
-        return EnumUtil.getEnum(Alignment.values(), getAttribute("textAlign"));
-    }
-
-    /**
-     * Left coordinate of this item in pixels.  Applies only when the containing DynamicForm sets
-     * <code>itemLayout:"absolute"</code>.
-     * For a form with {@link com.smartgwt.client.widgets.form.DynamicForm#getItemLayout 'itemLayout'}:"absolute" only, set the left coordinate of this form item. <P> Causes the form to redraw.
-     * <p><b>Note : </b> This is an advanced setting</p>
-     *
-     * @param left left Default value is 0
-     */
-    public void setLeft(int left) {
-        setAttribute("left", left);
-    }
-
-    /**
-     * Left coordinate of this item in pixels.  Applies only when the containing DynamicForm sets
-     * <code>itemLayout:"absolute"</code>.
-     *
-     *
-     * @return int
-     */
-    public int getLeft()  {
-        return getAttributeAsInt("left");
-    }
-
-    /**
-     * Top coordinate of this item in pixels.  Applies only when the containing DynamicForm sets
-     * <code>itemLayout:"absolute"</code>.
-     * For a form with {@link com.smartgwt.client.widgets.form.DynamicForm#getItemLayout 'itemLayout'}:"absolute" only, set the top coordinate of this form item. <P> Causes the form to redraw.
-     * <p><b>Note : </b> This is an advanced setting</p>
-     *
-     * @param top top Default value is 0
-     */
-    public void setTop(int top) {
-        setAttribute("top", top);
-    }
-
-    /**
-     * Top coordinate of this item in pixels.  Applies only when the containing DynamicForm sets
-     * <code>itemLayout:"absolute"</code>.
-     *
-     *
-     * @return int
-     */
-    public int getTop()  {
-        return getAttributeAsInt("top");
-    }
-
-    /**
-     * Default icon image source.      Specify as the partial URL to an image, relative to the imgDir of this component. To
-     * specify image source for a specific icon use the <code>icon.src</code> property.<br> If this item is drawn in the
-     * disabled state, the url will be modified by adding  "_Disabled" to get a disabled state image for the icon. If
-     * <code>icon.showOver</code> is true, this url will be modified by adding "_Over" to get an over state image for the icon.
-     * <p><b>Note : </b> This is an advanced setting</p>
-     *
-     * @param defaultIconSrc defaultIconSrc Default value is "[SKIN]/DynamicForm/default_formItem_icon.gif"
-     */
-    public void setDefaultIconSrc(String defaultIconSrc) {
-        setAttribute("defaultIconSrc", defaultIconSrc);
-    }
-
-    /**
-     * Default icon image source.      Specify as the partial URL to an image, relative to the imgDir of this component. To
-     * specify image source for a specific icon use the <code>icon.src</code> property.<br> If this item is drawn in the
-     * disabled state, the url will be modified by adding  "_Disabled" to get a disabled state image for the icon. If
-     * <code>icon.showOver</code> is true, this url will be modified by adding "_Over" to get an over state image for the icon.
-     *
-     *
-     * @return String
-     */
-    public String getDefaultIconSrc()  {
-        return getAttributeAsString("defaultIconSrc");
-    }
-
-    /**
-     * If we're showing icons, should we change their image source to the appropriate <i>over</i>  source when the user rolls
-     * over (or puts focus onto) them?  Can be overridden on a per  icon basis by the formItemIcon <code>showOver</code>
-     * property.
-     * <p><b>Note : </b> This is an advanced setting</p>
-     *
-     * @param showOverIcons showOverIcons Default value is null
-     */
-    public void setShowOverIcons(Boolean showOverIcons) {
-        setAttribute("showOverIcons", showOverIcons);
-    }
-
-    /**
-     * If we're showing icons, should we change their image source to the appropriate <i>over</i>  source when the user rolls
-     * over (or puts focus onto) them?  Can be overridden on a per  icon basis by the formItemIcon <code>showOver</code>
-     * property.
-     *
-     *
-     * @return Boolean
-     */
-    public Boolean getShowOverIcons()  {
-        return getAttributeAsBoolean("showOverIcons");
-    }
-
-    /**
-     * If we're showing icons, should we change their image source to the appropriate  <i>focused</i>  source when this item
-     * has focus?  Can be overridden on a per  icon basis by the formItemIcon <code>showFocused</code> property.
-     * <p><b>Note : </b> This is an advanced setting</p>
-     *
-     * @param showFocusedIcons showFocusedIcons Default value is null
-     */
-    public void setShowFocusedIcons(Boolean showFocusedIcons) {
-        setAttribute("showFocusedIcons", showFocusedIcons);
-    }
-
-    /**
-     * If we're showing icons, should we change their image source to the appropriate  <i>focused</i>  source when this item
-     * has focus?  Can be overridden on a per  icon basis by the formItemIcon <code>showFocused</code> property.
-     *
-     *
-     * @return Boolean
-     */
-    public Boolean getShowFocusedIcons()  {
-        return getAttributeAsBoolean("showFocusedIcons");
-    }
-             
-    /**
-     * How should icons be aligned vertically for this form item.
-     * <p><b>Note : </b> This is an advanced setting</p>
-     *
-     * @param iconVAlign iconVAlign Default value is "bottom"
-     */
-    public void setIconVAlign(VerticalAlignment iconVAlign) {
-        setAttribute("iconVAlign", iconVAlign.getValue());
-    }
-
-    /**
-     * How should icons be aligned vertically for this form item.
-     *
-     *
-     * @return VerticalAlignment
-     */
-    public VerticalAlignment getIconVAlign()  {
-        return EnumUtil.getEnum(VerticalAlignment.values(), getAttribute("iconVAlign"));
-    }
-
-    /**
-     * Default height for form item icons
-     * <p><b>Note : </b> This is an advanced setting</p>
-     *
-     * @param iconHeight iconHeight Default value is 20
-     */
-    public void setIconHeight(int iconHeight) {
-        setAttribute("iconHeight", iconHeight);
-    }
-
-    /**
-     * Default height for form item icons
-     *
-     *
-     * @return Takes an icon definition object, and returns the height for that icon in px.
-     */
-    public int getIconHeight()  {
-        return getAttributeAsInt("iconHeight");
-    }
-
-    /**
-     * Default width for form item icons
-     * <p><b>Note : </b> This is an advanced setting</p>
-     *
-     * @param iconWidth iconWidth Default value is 20
-     */
-    public void setIconWidth(int iconWidth) {
-        setAttribute("iconWidth", iconWidth);
-    }
-
-    /**
-     * Default width for form item icons
-     *
-     *
-     * @return Takes an icon definition object, and returns the width for that icon in px.
-     */
-    public int getIconWidth()  {
-        return getAttributeAsInt("iconWidth");
-    }
-
-    /**
-     * This text is shown as a tooltip prompt when the cursor hovers over this item.
-     *
-     * @param prompt prompt Default value is null
-     */
-    public void setPrompt(String prompt) {
-        setAttribute("prompt", prompt);
-    }
-
-    /**
-     * This text is shown as a tooltip prompt when the cursor hovers over this item.
-     *
-     *
-     * @return String
-     */
-    public String getPrompt()  {
-        return getAttributeAsString("prompt");
-    }
-
-    /**
-     * Default prompt (and tooltip-text) for icons.
-     * <p><b>Note : </b> This is an advanced setting</p>
-     *
-     * @param iconPrompt iconPrompt Default value is ""
-     */
-    public void setIconPrompt(String iconPrompt) {
-        setAttribute("iconPrompt", iconPrompt);
-    }
-
-    /**
-     * Default prompt (and tooltip-text) for icons.
-     *
-     *
-     * @return String
-     */
-    public String getIconPrompt()  {
-        return getAttributeAsString("iconPrompt");
-    }
-
-    /**
-     * Set to false to suppress writing out any {@link com.smartgwt.client.widgets.form.fields.FormItem#getIcons icons} for
-     * this item.
-     * <p><b>Note : </b> This is an advanced setting</p>
-     *
-     * @param showIcons showIcons Default value is true
-     */
-    public void setShowIcons(Boolean showIcons) {
-        setAttribute("showIcons", showIcons);
-    }
-
-    /**
-     * Set to false to suppress writing out any {@link com.smartgwt.client.widgets.form.fields.FormItem#getIcons icons} for
-     * this item.
-     *
-     *
-     * @return Boolean
-     */
-    public Boolean getShowIcons()  {
-        return getAttributeAsBoolean("showIcons");
-    }
-
-    /**
-     * Height of the error icon, if we're showing icons when validation errors occur.
-     *
-     * @param errorIconHeight errorIconHeight Default value is 16
-     */
-    public void setErrorIconHeight(int errorIconHeight) {
-        setAttribute("errorIconHeight", errorIconHeight);
-    }
-
-    /**
-     * Height of the error icon, if we're showing icons when validation errors occur.
-     *
-     *
-     * @return int
-     */
-    public int getErrorIconHeight()  {
-        return getAttributeAsInt("errorIconHeight");
-    }
-
-    /**
-     * Height of the error icon, if we're showing icons when validation errors occur.
-     *
-     * @param errorIconWidth errorIconWidth Default value is 16
-     */
-    public void setErrorIconWidth(int errorIconWidth) {
-        setAttribute("errorIconWidth", errorIconWidth);
-    }
-
-    /**
-     * Height of the error icon, if we're showing icons when validation errors occur.
-     *
-     *
-     * @return int
-     */
-    public int getErrorIconWidth()  {
-        return getAttributeAsInt("errorIconWidth");
-    }
-
-    /**
-     * URL of the image to show as an error icon, if we're showing icons when validation errors occur.
-     *
-     * @param errorIconSrc errorIconSrc Default value is "[SKIN]/DynamicForm/validation_error_icon.png"
-     */
-    public void setErrorIconSrc(String errorIconSrc) {
-        setAttribute("errorIconSrc", errorIconSrc);
-    }
-
-    /**
-     * URL of the image to show as an error icon, if we're showing icons when validation errors occur.
-     *
-     *
-     * @return String
-     */
-    public String getErrorIconSrc()  {
-        return getAttributeAsString("errorIconSrc");
+    public Boolean getShowDisabled()  {
+        return getAttributeAsBoolean("showDisabled");
     }
 
     /**
@@ -1601,75 +1392,6 @@ public class FormItem extends RefDataClass  implements com.smartgwt.client.widge
      * <code>showErrorStyle</code> determines whether fields  with validation errors should have special styling applied to
      * them. See {@link com.smartgwt.client..FormItemBaseStyle} for a  discussion for how error styling is calculated.
      *
-     * @param showErrorText showErrorText Default value is null
-     */
-    public void setShowErrorText(Boolean showErrorText) {
-        setAttribute("showErrorText", showErrorText);
-    }
-
-    /**
-     * {@link com.smartgwt.client.widgets.form.DynamicForm#getShowErrorIcons 'showErrorIcons'},  {@link
-     * com.smartgwt.client.widgets.form.DynamicForm#getShowErrorText 'showErrorText'}, and {@link
-     * com.smartgwt.client.widgets.form.DynamicForm#getShowErrorStyle 'showErrorStyle'} control how validation errors are
-     * displayed when they are displayed inline in the form (next to the form item where there is a validation error).  To
-     * instead display all errors at the top of the form, set ${isc.DocUtils.linkForRef('showInlineErrors:false')}. <P>
-     * <code>showErrorIcons</code>, <code>showErrorText</code> and <code>showErrorStyle</code> are all boolean properties, and
-     * can be set on a DynamicForm to control the behavior form-wide, or set on individual FormItems.   <P> The HTML displayed
-     * next to a form item with errors is generated by  {@link com.smartgwt.client.widgets.form.fields.FormItem#getErrorHTML}.
-     * The default implementation of that method respects <code>showErrorIcons</code> and <code>showErrorText</code> as
-     * follows: <P> <code>showErrorIcons</code>, or <code>showErrorIcon</code> at the FormItem level controls whether an error
-     * icon should appear next to fields which have validation errors.  The icon's appearance is governed by {@link
-     * com.smartgwt.client.widgets.form.fields.FormItem#getErrorIconSrc errorIconSrc}, {@link
-     * com.smartgwt.client.widgets.form.fields.FormItem#getErrorIconWidth errorIconWidth} and {@link
-     * com.smartgwt.client.widgets.form.fields.FormItem#getErrorIconHeight errorIconHeight} <P> <code>showErrorText</code>
-     * determines whether the text of the validation error should be displayed next to fields which have validation errors. The
-     * attribute {@link com.smartgwt.client.widgets.form.DynamicForm#getShowTitlesWithErrorMessages
-     * showTitlesWithErrorMessages} may be set to prefix error messages with the  form item's title + <code>":"</code> (may be
-     * desired if the item has  {@link com.smartgwt.client.widgets.form.fields.FormItem#getShowTitle showTitle} set to false).
-     * <P> {@link com.smartgwt.client.widgets.form.DynamicForm#getErrorOrientation errorOrientation} controls where the error
-     * HTML should appear relative  to form items. Therefore the combination of {@link
-     * com.smartgwt.client.widgets.form.fields.FormItem#getShowErrorText showErrorText}<code>:false</code> and {@link
-     * com.smartgwt.client.widgets.form.fields.FormItem#getErrorOrientation errorOrientation}<code>:"left"</code> creates a
-     * compact validation error display consisting of just an icon, to the left of the item with the error message available
-     * via a hover (similar appearance to ListGrid validation error display).   <P> In addition to this,
-     * <code>showErrorStyle</code> determines whether fields  with validation errors should have special styling applied to
-     * them. See {@link com.smartgwt.client..FormItemBaseStyle} for a  discussion for how error styling is calculated.
-     *
-     *
-     * @return Boolean
-     */
-    public Boolean getShowErrorText()  {
-        return getAttributeAsBoolean("showErrorText");
-    }
-
-    /**
-     * {@link com.smartgwt.client.widgets.form.DynamicForm#getShowErrorIcons 'showErrorIcons'},  {@link
-     * com.smartgwt.client.widgets.form.DynamicForm#getShowErrorText 'showErrorText'}, and {@link
-     * com.smartgwt.client.widgets.form.DynamicForm#getShowErrorStyle 'showErrorStyle'} control how validation errors are
-     * displayed when they are displayed inline in the form (next to the form item where there is a validation error).  To
-     * instead display all errors at the top of the form, set ${isc.DocUtils.linkForRef('showInlineErrors:false')}. <P>
-     * <code>showErrorIcons</code>, <code>showErrorText</code> and <code>showErrorStyle</code> are all boolean properties, and
-     * can be set on a DynamicForm to control the behavior form-wide, or set on individual FormItems.   <P> The HTML displayed
-     * next to a form item with errors is generated by  {@link com.smartgwt.client.widgets.form.fields.FormItem#getErrorHTML}.
-     * The default implementation of that method respects <code>showErrorIcons</code> and <code>showErrorText</code> as
-     * follows: <P> <code>showErrorIcons</code>, or <code>showErrorIcon</code> at the FormItem level controls whether an error
-     * icon should appear next to fields which have validation errors.  The icon's appearance is governed by {@link
-     * com.smartgwt.client.widgets.form.fields.FormItem#getErrorIconSrc errorIconSrc}, {@link
-     * com.smartgwt.client.widgets.form.fields.FormItem#getErrorIconWidth errorIconWidth} and {@link
-     * com.smartgwt.client.widgets.form.fields.FormItem#getErrorIconHeight errorIconHeight} <P> <code>showErrorText</code>
-     * determines whether the text of the validation error should be displayed next to fields which have validation errors. The
-     * attribute {@link com.smartgwt.client.widgets.form.DynamicForm#getShowTitlesWithErrorMessages
-     * showTitlesWithErrorMessages} may be set to prefix error messages with the  form item's title + <code>":"</code> (may be
-     * desired if the item has  {@link com.smartgwt.client.widgets.form.fields.FormItem#getShowTitle showTitle} set to false).
-     * <P> {@link com.smartgwt.client.widgets.form.DynamicForm#getErrorOrientation errorOrientation} controls where the error
-     * HTML should appear relative  to form items. Therefore the combination of {@link
-     * com.smartgwt.client.widgets.form.fields.FormItem#getShowErrorText showErrorText}<code>:false</code> and {@link
-     * com.smartgwt.client.widgets.form.fields.FormItem#getErrorOrientation errorOrientation}<code>:"left"</code> creates a
-     * compact validation error display consisting of just an icon, to the left of the item with the error message available
-     * via a hover (similar appearance to ListGrid validation error display).   <P> In addition to this,
-     * <code>showErrorStyle</code> determines whether fields  with validation errors should have special styling applied to
-     * them. See {@link com.smartgwt.client..FormItemBaseStyle} for a  discussion for how error styling is calculated.
-     *
      * @param showErrorStyle showErrorStyle Default value is null
      */
     public void setShowErrorStyle(Boolean showErrorStyle) {
@@ -1712,45 +1434,72 @@ public class FormItem extends RefDataClass  implements com.smartgwt.client.widge
     }
 
     /**
-     * Specifies "hint" string to show next to the form item to indicate something to the user. This string generally appears
-     * to the right of the form item.
-     * Set the hint text for this item
+     * {@link com.smartgwt.client.widgets.form.DynamicForm#getShowErrorIcons 'showErrorIcons'},  {@link
+     * com.smartgwt.client.widgets.form.DynamicForm#getShowErrorText 'showErrorText'}, and {@link
+     * com.smartgwt.client.widgets.form.DynamicForm#getShowErrorStyle 'showErrorStyle'} control how validation errors are
+     * displayed when they are displayed inline in the form (next to the form item where there is a validation error).  To
+     * instead display all errors at the top of the form, set ${isc.DocUtils.linkForRef('showInlineErrors:false')}. <P>
+     * <code>showErrorIcons</code>, <code>showErrorText</code> and <code>showErrorStyle</code> are all boolean properties, and
+     * can be set on a DynamicForm to control the behavior form-wide, or set on individual FormItems.   <P> The HTML displayed
+     * next to a form item with errors is generated by  {@link com.smartgwt.client.widgets.form.fields.FormItem#getErrorHTML}.
+     * The default implementation of that method respects <code>showErrorIcons</code> and <code>showErrorText</code> as
+     * follows: <P> <code>showErrorIcons</code>, or <code>showErrorIcon</code> at the FormItem level controls whether an error
+     * icon should appear next to fields which have validation errors.  The icon's appearance is governed by {@link
+     * com.smartgwt.client.widgets.form.fields.FormItem#getErrorIconSrc errorIconSrc}, {@link
+     * com.smartgwt.client.widgets.form.fields.FormItem#getErrorIconWidth errorIconWidth} and {@link
+     * com.smartgwt.client.widgets.form.fields.FormItem#getErrorIconHeight errorIconHeight} <P> <code>showErrorText</code>
+     * determines whether the text of the validation error should be displayed next to fields which have validation errors. The
+     * attribute {@link com.smartgwt.client.widgets.form.DynamicForm#getShowTitlesWithErrorMessages
+     * showTitlesWithErrorMessages} may be set to prefix error messages with the  form item's title + <code>":"</code> (may be
+     * desired if the item has  {@link com.smartgwt.client.widgets.form.fields.FormItem#getShowTitle showTitle} set to false).
+     * <P> {@link com.smartgwt.client.widgets.form.DynamicForm#getErrorOrientation errorOrientation} controls where the error
+     * HTML should appear relative  to form items. Therefore the combination of {@link
+     * com.smartgwt.client.widgets.form.fields.FormItem#getShowErrorText showErrorText}<code>:false</code> and {@link
+     * com.smartgwt.client.widgets.form.fields.FormItem#getErrorOrientation errorOrientation}<code>:"left"</code> creates a
+     * compact validation error display consisting of just an icon, to the left of the item with the error message available
+     * via a hover (similar appearance to ListGrid validation error display).   <P> In addition to this,
+     * <code>showErrorStyle</code> determines whether fields  with validation errors should have special styling applied to
+     * them. See {@link com.smartgwt.client..FormItemBaseStyle} for a  discussion for how error styling is calculated.
      *
-     * @param hint new hint for the item. Default value is null
+     * @param showErrorText showErrorText Default value is null
      */
-    public void setHint(String hint) {
-        setAttribute("hint", hint);
+    public void setShowErrorText(Boolean showErrorText) {
+        setAttribute("showErrorText", showErrorText);
     }
 
     /**
-     * Specifies "hint" string to show next to the form item to indicate something to the user. This string generally appears
-     * to the right of the form item.
-     *
-     *
-     * @return String
-     */
-    public String getHint()  {
-        return getAttributeAsString("hint");
-    }
-
-    /**
-     * If a hint is defined for this form item, should it be shown?
-     * <p><b>Note : </b> This is an advanced setting</p>
-     *
-     * @param showHint showHint Default value is true
-     */
-    public void setShowHint(Boolean showHint) {
-        setAttribute("showHint", showHint);
-    }
-
-    /**
-     * If a hint is defined for this form item, should it be shown?
+     * {@link com.smartgwt.client.widgets.form.DynamicForm#getShowErrorIcons 'showErrorIcons'},  {@link
+     * com.smartgwt.client.widgets.form.DynamicForm#getShowErrorText 'showErrorText'}, and {@link
+     * com.smartgwt.client.widgets.form.DynamicForm#getShowErrorStyle 'showErrorStyle'} control how validation errors are
+     * displayed when they are displayed inline in the form (next to the form item where there is a validation error).  To
+     * instead display all errors at the top of the form, set ${isc.DocUtils.linkForRef('showInlineErrors:false')}. <P>
+     * <code>showErrorIcons</code>, <code>showErrorText</code> and <code>showErrorStyle</code> are all boolean properties, and
+     * can be set on a DynamicForm to control the behavior form-wide, or set on individual FormItems.   <P> The HTML displayed
+     * next to a form item with errors is generated by  {@link com.smartgwt.client.widgets.form.fields.FormItem#getErrorHTML}.
+     * The default implementation of that method respects <code>showErrorIcons</code> and <code>showErrorText</code> as
+     * follows: <P> <code>showErrorIcons</code>, or <code>showErrorIcon</code> at the FormItem level controls whether an error
+     * icon should appear next to fields which have validation errors.  The icon's appearance is governed by {@link
+     * com.smartgwt.client.widgets.form.fields.FormItem#getErrorIconSrc errorIconSrc}, {@link
+     * com.smartgwt.client.widgets.form.fields.FormItem#getErrorIconWidth errorIconWidth} and {@link
+     * com.smartgwt.client.widgets.form.fields.FormItem#getErrorIconHeight errorIconHeight} <P> <code>showErrorText</code>
+     * determines whether the text of the validation error should be displayed next to fields which have validation errors. The
+     * attribute {@link com.smartgwt.client.widgets.form.DynamicForm#getShowTitlesWithErrorMessages
+     * showTitlesWithErrorMessages} may be set to prefix error messages with the  form item's title + <code>":"</code> (may be
+     * desired if the item has  {@link com.smartgwt.client.widgets.form.fields.FormItem#getShowTitle showTitle} set to false).
+     * <P> {@link com.smartgwt.client.widgets.form.DynamicForm#getErrorOrientation errorOrientation} controls where the error
+     * HTML should appear relative  to form items. Therefore the combination of {@link
+     * com.smartgwt.client.widgets.form.fields.FormItem#getShowErrorText showErrorText}<code>:false</code> and {@link
+     * com.smartgwt.client.widgets.form.fields.FormItem#getErrorOrientation errorOrientation}<code>:"left"</code> creates a
+     * compact validation error display consisting of just an icon, to the left of the item with the error message available
+     * via a hover (similar appearance to ListGrid validation error display).   <P> In addition to this,
+     * <code>showErrorStyle</code> determines whether fields  with validation errors should have special styling applied to
+     * them. See {@link com.smartgwt.client..FormItemBaseStyle} for a  discussion for how error styling is calculated.
      *
      *
      * @return Boolean
      */
-    public Boolean getShowHint()  {
-        return getAttributeAsBoolean("showHint");
+    public Boolean getShowErrorText()  {
+        return getAttributeAsBoolean("showErrorText");
     }
 
     /**
@@ -1774,106 +1523,267 @@ public class FormItem extends RefDataClass  implements com.smartgwt.client.widge
     }
 
     /**
-     * When this item is disabled, should it be re-styled to indicate its disabled state?
+     * If we're showing icons, should we change their image source to the appropriate  <i>focused</i>  source when this item
+     * has focus?  Can be overridden on a per  icon basis by the formItemIcon <code>showFocused</code> property.
      * <p><b>Note : </b> This is an advanced setting</p>
      *
-     * @param showDisabled showDisabled Default value is true
+     * @param showFocusedIcons showFocusedIcons Default value is null
      */
-    public void setShowDisabled(Boolean showDisabled) {
-        setAttribute("showDisabled", showDisabled);
+    public void setShowFocusedIcons(Boolean showFocusedIcons) {
+        setAttribute("showFocusedIcons", showFocusedIcons);
     }
 
     /**
-     * When this item is disabled, should it be re-styled to indicate its disabled state?
+     * If we're showing icons, should we change their image source to the appropriate  <i>focused</i>  source when this item
+     * has focus?  Can be overridden on a per  icon basis by the formItemIcon <code>showFocused</code> property.
      *
      *
      * @return Boolean
      */
-    public Boolean getShowDisabled()  {
-        return getAttributeAsBoolean("showDisabled");
+    public Boolean getShowFocusedIcons()  {
+        return getAttributeAsBoolean("showFocusedIcons");
     }
 
     /**
-     * CSS style applied to the form item as a whole, including the text element, any icons, and any hint text for the item.
-     * Applied to the cell containing the form item. <P> NOTE: See the CompoundFormItem_skinning discussion for special
-     * skinning considerations.
+     * If {@link com.smartgwt.client.widgets.form.fields.FormItem#getShowPickerIcon showPickerIcon} is true for this item,
+     * should the picker icon show a focused image when the form item has focus?
      *
-     * @param cellStyle cellStyle Default value is "formCell"
+     * @param showFocusedPickerIcon showFocusedPickerIcon Default value is false
      */
-    public void setCellStyle(String cellStyle) {
-        setAttribute("cellStyle", cellStyle);
+    public void setShowFocusedPickerIcon(Boolean showFocusedPickerIcon) {
+        setAttribute("showFocusedPickerIcon", showFocusedPickerIcon);
     }
 
     /**
-     * CSS style applied to the form item as a whole, including the text element, any icons, and any hint text for the item.
-     * Applied to the cell containing the form item. <P> NOTE: See the CompoundFormItem_skinning discussion for special
-     * skinning considerations.
+     * If {@link com.smartgwt.client.widgets.form.fields.FormItem#getShowPickerIcon showPickerIcon} is true for this item,
+     * should the picker icon show a focused image when the form item has focus?
      *
      *
-     * @return String
+     * @return Boolean
      */
-    public String getCellStyle()  {
-        return getAttributeAsString("cellStyle");
+    public Boolean getShowFocusedPickerIcon()  {
+        return getAttributeAsBoolean("showFocusedPickerIcon");
     }
 
     /**
-     * CSS class for the "hint" string.
-     * Set the hintStyle for this item
+     * If a hint is defined for this form item, should it be shown?
+     * <p><b>Note : </b> This is an advanced setting</p>
      *
-     * @param hintStyle new style for hint text. Default value is "formHint"
+     * @param showHint showHint Default value is true
      */
-    public void setHintStyle(String hintStyle) {
-        setAttribute("hintStyle", hintStyle);
+    public void setShowHint(Boolean showHint) {
+        setAttribute("showHint", showHint);
     }
 
     /**
-     * CSS class for the "hint" string.
+     * If a hint is defined for this form item, should it be shown?
      *
      *
-     * @return String
+     * @return Boolean
      */
-    public String getHintStyle()  {
-        return getAttributeAsString("hintStyle");
+    public Boolean getShowHint()  {
+        return getAttributeAsBoolean("showHint");
     }
 
     /**
-     * Base CSS class name for a form item's title.
+     * Set to false to suppress writing out any {@link com.smartgwt.client.widgets.form.fields.FormItem#getIcons icons} for
+     * this item.
+     * <p><b>Note : </b> This is an advanced setting</p>
      *
-     * @param titleStyle titleStyle Default value is "formTitle"
+     * @param showIcons showIcons Default value is true
      */
-    public void setTitleStyle(String titleStyle) {
-        setAttribute("titleStyle", titleStyle);
+    public void setShowIcons(Boolean showIcons) {
+        setAttribute("showIcons", showIcons);
     }
 
     /**
-     * Base CSS class name for a form item's title.
+     * Set to false to suppress writing out any {@link com.smartgwt.client.widgets.form.fields.FormItem#getIcons icons} for
+     * this item.
      *
      *
-     * @return String
+     * @return Boolean
      */
-    public String getTitleStyle()  {
-        return getAttributeAsString("titleStyle");
+    public Boolean getShowIcons()  {
+        return getAttributeAsBoolean("showIcons");
     }
 
     /**
-     * Base CSS stylename for a form item's title when generating print HTML for the item. If unset {@link
-     * com.smartgwt.client.widgets.form.fields.FormItem#getTitleStyle titleStyle} will be used instead.
+     * If we're showing icons, should we change their image source to the appropriate <i>over</i>  source when the user rolls
+     * over (or puts focus onto) them?  Can be overridden on a per  icon basis by the formItemIcon <code>showOver</code>
+     * property.
+     * <p><b>Note : </b> This is an advanced setting</p>
      *
-     * @param printTitleStyle printTitleStyle Default value is null
+     * @param showOverIcons showOverIcons Default value is null
      */
-    public void setPrintTitleStyle(String printTitleStyle) {
-        setAttribute("printTitleStyle", printTitleStyle);
+    public void setShowOverIcons(Boolean showOverIcons) {
+        setAttribute("showOverIcons", showOverIcons);
     }
 
     /**
-     * Base CSS stylename for a form item's title when generating print HTML for the item. If unset {@link
-     * com.smartgwt.client.widgets.form.fields.FormItem#getTitleStyle titleStyle} will be used instead.
+     * If we're showing icons, should we change their image source to the appropriate <i>over</i>  source when the user rolls
+     * over (or puts focus onto) them?  Can be overridden on a per  icon basis by the formItemIcon <code>showOver</code>
+     * property.
      *
      *
-     * @return String
+     * @return Boolean
      */
-    public String getPrintTitleStyle()  {
-        return getAttributeAsString("printTitleStyle");
+    public Boolean getShowOverIcons()  {
+        return getAttributeAsBoolean("showOverIcons");
+    }
+
+    /**
+     * Should we show a special 'picker' {@link com.smartgwt.client.widgets.form.fields.FormItemIcon icon} for this form item.
+     * Picker icons are customizable via {@link com.smartgwt.client.widgets.form.fields.FormItem#getPickerIconProperties
+     * pickerIconProperties}. By default they will be rendered inside the Form Item's "control box" area, and will call {@link
+     * com.smartgwt.client.widgets.form.fields.FormItem#showPicker} when clicked.
+     *
+     * @param showPickerIcon showPickerIcon Default value is false
+     */
+    public void setShowPickerIcon(Boolean showPickerIcon) {
+        setAttribute("showPickerIcon", showPickerIcon);
+    }
+
+    /**
+     * Should we show a special 'picker' {@link com.smartgwt.client.widgets.form.fields.FormItemIcon icon} for this form item.
+     * Picker icons are customizable via {@link com.smartgwt.client.widgets.form.fields.FormItem#getPickerIconProperties
+     * pickerIconProperties}. By default they will be rendered inside the Form Item's "control box" area, and will call {@link
+     * com.smartgwt.client.widgets.form.fields.FormItem#showPicker} when clicked.
+     *
+     *
+     * @return Boolean
+     */
+    public Boolean getShowPickerIcon()  {
+        return getAttributeAsBoolean("showPickerIcon");
+    }
+
+    /**
+     * Should we show a title cell for this formItem? <p> Note: the default value of this attribute is overridden by some
+     * subclasses.
+     *
+     * @param showTitle showTitle Default value is true
+     */
+    public void setShowTitle(Boolean showTitle) {
+        setAttribute("showTitle", showTitle);
+    }
+
+    /**
+     * Should we show a title cell for this formItem? <p> Note: the default value of this attribute is overridden by some
+     * subclasses.
+     *
+     *
+     * @return Boolean
+     */
+    public Boolean getShowTitle()  {
+        return getAttributeAsBoolean("showTitle");
+    }
+
+    /**
+     * If {@link com.smartgwt.client.widgets.form.fields.FormItem#getValueIcons valueIcons} is set, this property may be set to
+     * show the valueIcon only and prevent the standard form item element or text from displaying
+     * <p><b>Note : </b> This is an advanced setting</p>
+     *
+     * @param showValueIconOnly showValueIconOnly Default value is null
+     */
+    public void setShowValueIconOnly(Boolean showValueIconOnly) {
+        setAttribute("showValueIconOnly", showValueIconOnly);
+    }
+
+    /**
+     * If {@link com.smartgwt.client.widgets.form.fields.FormItem#getValueIcons valueIcons} is set, this property may be set to
+     * show the valueIcon only and prevent the standard form item element or text from displaying
+     *
+     *
+     * @return Boolean
+     */
+    public Boolean getShowValueIconOnly()  {
+        return getAttributeAsBoolean("showValueIconOnly");
+    }
+
+    /**
+     * Whether this item should always start a new row in the form layout.
+     *
+     * @param startRow startRow Default value is false
+     */
+    public void setStartRow(Boolean startRow) {
+        setAttribute("startRow", startRow);
+    }
+
+    /**
+     * Whether this item should always start a new row in the form layout.
+     *
+     *
+     * @return Boolean
+     */
+    public Boolean getStartRow()  {
+        return getAttributeAsBoolean("startRow");
+    }
+
+    /**
+     * If {@link com.smartgwt.client.widgets.form.fields.FormItem#getValueIcons valueIcons} is set, this property may be set to
+     * prevent the value icons from showing up next to the form items value
+     * <p><b>Note : </b> This is an advanced setting</p>
+     *
+     * @param suppressValueIcon suppressValueIcon Default value is null
+     */
+    public void setSuppressValueIcon(Boolean suppressValueIcon) {
+        setAttribute("suppressValueIcon", suppressValueIcon);
+    }
+
+    /**
+     * If {@link com.smartgwt.client.widgets.form.fields.FormItem#getValueIcons valueIcons} is set, this property may be set to
+     * prevent the value icons from showing up next to the form items value
+     *
+     *
+     * @return Boolean
+     */
+    public Boolean getSuppressValueIcon()  {
+        return getAttributeAsBoolean("suppressValueIcon");
+    }
+
+    /**
+     * tabIndex for the form item within the form.  Auto-assigned if not specified.<br> Note: This controls the tab order
+     * within the form. <P> To specify the tabindex of an item within the page as a whole (not just this form), use
+     * globalTabIndex instead.
+     *
+     * @param tabIndex tabIndex Default value is null
+     */
+    public void setTabIndex(Integer tabIndex) {
+        setAttribute("tabIndex", tabIndex);
+    }
+
+    /**
+     * tabIndex for the form item within the form.  Auto-assigned if not specified.<br> Note: This controls the tab order
+     * within the form. <P> To specify the tabindex of an item within the page as a whole (not just this form), use
+     * globalTabIndex instead.
+     *
+     *
+     * @return Integer
+     */
+    public Integer getTabIndex()  {
+        return getAttributeAsInt("tabIndex");
+    }
+             
+    /**
+     * Alignment of the text / content within this form item. Note that {@link
+     * com.smartgwt.client.widgets.form.fields.FormItem#getAlign align} may be used to control alignment of the entire form
+     * item within its cell. May not apply to all form item types.
+     *
+     * @param textAlign textAlign Default value is Canvas.LEFT
+     */
+    public void setTextAlign(Alignment textAlign) {
+        setAttribute("textAlign", textAlign.getValue());
+    }
+
+    /**
+     * Alignment of the text / content within this form item. Note that {@link
+     * com.smartgwt.client.widgets.form.fields.FormItem#getAlign align} may be used to control alignment of the entire form
+     * item within its cell. May not apply to all form item types.
+     *
+     *
+     * @return Alignment
+     */
+    public Alignment getTextAlign()  {
+        return EnumUtil.getEnum(Alignment.values(), getAttribute("textAlign"));
     }
 
     /**
@@ -1896,564 +1806,409 @@ public class FormItem extends RefDataClass  implements com.smartgwt.client.widge
     public String getTextBoxStyle()  {
         return getAttributeAsString("textBoxStyle");
     }
-
+             
     /**
-     * Base CSS class name for a form item's text box element when getting printable HTML for the form. If unset {@link
-     * com.smartgwt.client.widgets.form.fields.FormItem#getTextBoxStyle textBoxStyle} will be used instead. Note that focused
-     * styling will never be displayed while printing, though error and disabled styling will.
-     *
-     * @param printTextBoxStyle printTextBoxStyle Default value is null
-     */
-    public void setPrintTextBoxStyle(String printTextBoxStyle) {
-        setAttribute("printTextBoxStyle", printTextBoxStyle);
-    }
-
-    /**
-     * Base CSS class name for a form item's text box element when getting printable HTML for the form. If unset {@link
-     * com.smartgwt.client.widgets.form.fields.FormItem#getTextBoxStyle textBoxStyle} will be used instead. Note that focused
-     * styling will never be displayed while printing, though error and disabled styling will.
-     *
-     *
-     * @return String
-     */
-    public String getPrintTextBoxStyle()  {
-        return getAttributeAsString("printTextBoxStyle");
-    }
-
-    /**
-     * If specified, this is the number of milliseconds to wait between the user rolling over  this form item, and triggering
-     * any hover action for it.<br> If not specified <code>this.form.itemHoverDelay</code> will be used instead.
+     * Time-format to apply to date type values within this formItem.  If specified, any dates displayed in this item will be
+     * formatted as times using the appropriate format.<br> Has no effect if {@link
+     * com.smartgwt.client.widgets.form.fields.FormItem#getDateFormatter dateFormatter} is also set.<br> See also {@link
+     * com.smartgwt.client.widgets.form.fields.TimeItem#getDisplayFormat displayFormat} for formatting values displayed in
+     * TimeItems.
      * <p><b>Note : </b> This is an advanced setting</p>
      *
-     * @param hoverDelay hoverDelay Default value is null
+     * @param timeFormatter timeFormatter Default value is null
      */
-    public void setHoverDelay(Integer hoverDelay) {
-        setAttribute("hoverDelay", hoverDelay);
+    public void setTimeFormatter(TimeFormatter timeFormatter) {
+        setAttribute("timeFormatter", timeFormatter.getValue());
     }
 
     /**
-     * If specified, this is the number of milliseconds to wait between the user rolling over  this form item, and triggering
-     * any hover action for it.<br> If not specified <code>this.form.itemHoverDelay</code> will be used instead.
+     * Time-format to apply to date type values within this formItem.  If specified, any dates displayed in this item will be
+     * formatted as times using the appropriate format.<br> Has no effect if {@link
+     * com.smartgwt.client.widgets.form.fields.FormItem#getDateFormatter dateFormatter} is also set.<br> See also {@link
+     * com.smartgwt.client.widgets.form.fields.TimeItem#getDisplayFormat displayFormat} for formatting values displayed in
+     * TimeItems.
      *
      *
-     * @return Integer
+     * @return TimeFormatter
      */
-    public Integer getHoverDelay()  {
-        return getAttributeAsInt("hoverDelay");
+    public TimeFormatter getTimeFormatter()  {
+        return EnumUtil.getEnum(TimeFormatter.values(), getAttribute("timeFormatter"));
     }
 
     /**
-     * Option to specify a width for any hover shown for this item.
+     * User visible title for this form item.
      *
-     * @param hoverWidth hoverWidth Default value is null
+     * @param title title Default value is null
      */
-    public void setHoverWidth(Integer hoverWidth) {
-        setAttribute("hoverWidth", hoverWidth);
+    public void setTitle(String title) {
+        setAttribute("title", title);
     }
 
     /**
-     * Option to specify a width for any hover shown for this item.
+     * User visible title for this form item.
      *
      *
-     * @return Integer
+     * @return Return the title of this formItem
      */
-    public Integer getHoverWidth()  {
-        return getAttributeAsInt("hoverWidth");
-    }
-
-    /**
-     * Option to specify a height for any hover shown for this item.
-     *
-     * @param hoverHeight hoverHeight Default value is null
-     */
-    public void setHoverHeight(Integer hoverHeight) {
-        setAttribute("hoverHeight", hoverHeight);
-    }
-
-    /**
-     * Option to specify a height for any hover shown for this item.
-     *
-     *
-     * @return Integer
-     */
-    public Integer getHoverHeight()  {
-        return getAttributeAsInt("hoverHeight");
+    public String getTitle()  {
+        return getAttributeAsString("title");
     }
              
     /**
-     * Text alignment  for text displayed in this item's hover canvas, if shown.
+     * Alignment of this item's title in its cell. <p> If null, dynamically set according to text direction.
      *
-     * @param hoverAlign hoverAlign Default value is null
+     * @param titleAlign titleAlign Default value is null
      */
-    public void setHoverAlign(Alignment hoverAlign) {
-        setAttribute("hoverAlign", hoverAlign.getValue());
+    public void setTitleAlign(Alignment titleAlign) {
+        setAttribute("titleAlign", titleAlign.getValue());
     }
 
     /**
-     * Text alignment  for text displayed in this item's hover canvas, if shown.
+     * Alignment of this item's title in its cell. <p> If null, dynamically set according to text direction.
      *
      *
      * @return Alignment
      */
-    public Alignment getHoverAlign()  {
-        return EnumUtil.getEnum(Alignment.values(), getAttribute("hoverAlign"));
-    }
-
-    /**
-     * Vertical text alignment  for text displayed in this item's hover canvas, if shown.
-     *
-     * @param hoverVAlign hoverVAlign Default value is null
-     */
-    public void setHoverVAlign(Integer hoverVAlign) {
-        setAttribute("hoverVAlign", hoverVAlign);
-    }
-
-    /**
-     * Vertical text alignment  for text displayed in this item's hover canvas, if shown.
-     *
-     *
-     * @return Integer
-     */
-    public Integer getHoverVAlign()  {
-        return getAttributeAsInt("hoverVAlign");
-    }
-
-    /**
-     * Explicit CSS Style for any hover shown for this item.
-     *
-     * @param hoverStyle hoverStyle Default value is null
-     */
-    public void setHoverStyle(String hoverStyle) {
-        setAttribute("hoverStyle", hoverStyle);
-    }
-
-    /**
-     * Explicit CSS Style for any hover shown for this item.
-     *
-     *
-     * @return String
-     */
-    public String getHoverStyle()  {
-        return getAttributeAsString("hoverStyle");
-    }
-
-    /**
-     * Opacity for any hover shown for this item
-     *
-     * @param hoverOpacity hoverOpacity Default value is null
-     */
-    public void setHoverOpacity(Integer hoverOpacity) {
-        setAttribute("hoverOpacity", hoverOpacity);
-    }
-
-    /**
-     * Opacity for any hover shown for this item
-     *
-     *
-     * @return Integer
-     */
-    public Integer getHoverOpacity()  {
-        return getAttributeAsInt("hoverOpacity");
+    public Alignment getTitleAlign()  {
+        return EnumUtil.getEnum(Alignment.values(), getAttribute("titleAlign"));
     }
              
     /**
-     * {@link com.smartgwt.client.types.OperatorId} to be used when {@link
-     * com.smartgwt.client.widgets.form.DynamicForm#getValuesAsCriteria} is called. <P> <code>item.operator</code> can be used
-     * to create a form that offers search functions such as date range filtering, without the more advanced user interface of
-     * the {@link com.smartgwt.client.widgets.form.FilterBuilder}. <P> When <code>item.operator</code> is set for any FormItem
-     * in a form, <code>form.getValuesAsCriteria()</code> will return an ${isc.DocUtils.linkForRef('object:AdvancedCriteria')}
-     * object instead of a normal {@link com.smartgwt.client.data.Criteria} object.  Each FormItem will produce one
-     * ${isc.DocUtils.linkForRef('object:Criterion')} affecting the DataSource field specified by {@link
-     * com.smartgwt.client.widgets.form.fields.FormItem#getCriteriaField criteriaField}. The criteria produced by the FormItems
-     * will be grouped under the logical operator provided by {@link com.smartgwt.client.widgets.form.DynamicForm#getOperator
-     * operator}. <P> if <code>operator</code> is set for some fields but not others, the default operator is "equals" for
-     * fields with a valueMap or an optionDataSource, and for fields of type "enum" (or of a type that inherits from "enum"). 
-     * The default operator for all other fields is "iContains" (case-insensitive match)  <P> <b>Note:</b> Advanced criteria
-     * will only be created for items in a Databound form. If this item is part of a form with no {@link
-     * com.smartgwt.client.widgets.DataBoundComponent#getDataSource 'dataSource'}, the  <code>operator</code> attribute will
-     * have no effect.
+     * On which side of this item should the title be placed.  {@link com.smartgwt.client.types.TitleOrientation} lists valid
+     * options. <P> Note that titles on the left or right take up a cell in tabular {@link com.smartgwt.client.docs.FormLayout
+     * 'form layouts'}, but titles on top do not.
      *
-     * @param operator operator Default value is null
+     * @param titleOrientation titleOrientation Default value is Canvas.LEFT
      */
-    public void setOperator(OperatorId operator) {
-        setAttribute("operator", operator.getValue());
+    public void setTitleOrientation(TitleOrientation titleOrientation) {
+        setAttribute("titleOrientation", titleOrientation.getValue());
     }
 
     /**
-     * {@link com.smartgwt.client.types.OperatorId} to be used when {@link
-     * com.smartgwt.client.widgets.form.DynamicForm#getValuesAsCriteria} is called. <P> <code>item.operator</code> can be used
-     * to create a form that offers search functions such as date range filtering, without the more advanced user interface of
-     * the {@link com.smartgwt.client.widgets.form.FilterBuilder}. <P> When <code>item.operator</code> is set for any FormItem
-     * in a form, <code>form.getValuesAsCriteria()</code> will return an ${isc.DocUtils.linkForRef('object:AdvancedCriteria')}
-     * object instead of a normal {@link com.smartgwt.client.data.Criteria} object.  Each FormItem will produce one
-     * ${isc.DocUtils.linkForRef('object:Criterion')} affecting the DataSource field specified by {@link
-     * com.smartgwt.client.widgets.form.fields.FormItem#getCriteriaField criteriaField}. The criteria produced by the FormItems
-     * will be grouped under the logical operator provided by {@link com.smartgwt.client.widgets.form.DynamicForm#getOperator
-     * operator}. <P> if <code>operator</code> is set for some fields but not others, the default operator is "equals" for
-     * fields with a valueMap or an optionDataSource, and for fields of type "enum" (or of a type that inherits from "enum"). 
-     * The default operator for all other fields is "iContains" (case-insensitive match)  <P> <b>Note:</b> Advanced criteria
-     * will only be created for items in a Databound form. If this item is part of a form with no {@link
-     * com.smartgwt.client.widgets.DataBoundComponent#getDataSource 'dataSource'}, the  <code>operator</code> attribute will
-     * have no effect.
+     * On which side of this item should the title be placed.  {@link com.smartgwt.client.types.TitleOrientation} lists valid
+     * options. <P> Note that titles on the left or right take up a cell in tabular {@link com.smartgwt.client.docs.FormLayout
+     * 'form layouts'}, but titles on top do not.
      *
      *
-     * @return OperatorId
+     * @return TitleOrientation
      */
-    public OperatorId getOperator()  {
-        return EnumUtil.getEnum(OperatorId.values(), getAttribute("operator"));
+    public TitleOrientation getTitleOrientation()  {
+        return EnumUtil.getEnum(TitleOrientation.values(), getAttribute("titleOrientation"));
     }
 
     /**
-     * When using {@link com.smartgwt.client.widgets.form.fields.FormItem#getOperator operator}, the name of the DataSource
-     * field for the ${isc.DocUtils.linkForRef('object:Criterion')} this FormItem generates.  If not specified, defaults to
-     * {@link com.smartgwt.client.widgets.form.fields.FormItem#getName name}. <P> Generally, because <code>criteriaField</code>
-     * defaults to <code>item.name</code>, you don't need to specify it.  However, if more than one FormItem specifies criteria
-     * for the same DataSource field, they will need unique values for {@link
-     * com.smartgwt.client.widgets.form.fields.FormItem#getName name} but should set {@link
-     * com.smartgwt.client.widgets.form.fields.FormItem#getCriteriaField criteriaField} to the name of DataSource field they
-     * both target. <P> For example, if two DateItems are used to provide a min and max date for a single field called
-     * "joinDate", set {@link com.smartgwt.client.widgets.form.fields.FormItem#getCriteriaField criteriaField} to "joinDate" on
-     * both fields but give the fields distinct names (eg "minDate" and "maxDate") and use those names for any programmatic
-     * access, such as {@link com.smartgwt.client.widgets.form.DynamicForm#setValue}.
+     * Base CSS class name for a form item's title.
      *
-     * @param criteriaField criteriaField Default value is null
+     * @param titleStyle titleStyle Default value is "formTitle"
      */
-    public void setCriteriaField(String criteriaField) {
-        setAttribute("criteriaField", criteriaField);
+    public void setTitleStyle(String titleStyle) {
+        setAttribute("titleStyle", titleStyle);
     }
 
     /**
-     * When using {@link com.smartgwt.client.widgets.form.fields.FormItem#getOperator operator}, the name of the DataSource
-     * field for the ${isc.DocUtils.linkForRef('object:Criterion')} this FormItem generates.  If not specified, defaults to
-     * {@link com.smartgwt.client.widgets.form.fields.FormItem#getName name}. <P> Generally, because <code>criteriaField</code>
-     * defaults to <code>item.name</code>, you don't need to specify it.  However, if more than one FormItem specifies criteria
-     * for the same DataSource field, they will need unique values for {@link
-     * com.smartgwt.client.widgets.form.fields.FormItem#getName name} but should set {@link
-     * com.smartgwt.client.widgets.form.fields.FormItem#getCriteriaField criteriaField} to the name of DataSource field they
-     * both target. <P> For example, if two DateItems are used to provide a min and max date for a single field called
-     * "joinDate", set {@link com.smartgwt.client.widgets.form.fields.FormItem#getCriteriaField criteriaField} to "joinDate" on
-     * both fields but give the fields distinct names (eg "minDate" and "maxDate") and use those names for any programmatic
-     * access, such as {@link com.smartgwt.client.widgets.form.DynamicForm#setValue}.
+     * Base CSS class name for a form item's title.
      *
      *
      * @return String
      */
-    public String getCriteriaField()  {
-        return getAttributeAsString("criteriaField");
+    public String getTitleStyle()  {
+        return getAttributeAsString("titleStyle");
     }
-
+             
     /**
-     * When {@link com.smartgwt.client.widgets.form.DynamicForm#getShowInlineErrors showInlineErrors} and {@link
-     * com.smartgwt.client.widgets.form.fields.FormItem#getShowErrorText showErrorText} are both true and {@link
-     * com.smartgwt.client.widgets.form.fields.FormItem#getErrorOrientation errorOrientation} is "left" or "right",
-     * errorMessageWidth is the amount to reduce the width of the editor to accommodate the error message and icon.
+     * Vertical alignment of this item's title in its cell. Only applies when {@link
+     * com.smartgwt.client.widgets.form.fields.FormItem#getTitleOrientation titleOrientation} is <code>"left"</code> or
+     * <code>"right"</code>.
      *
-     * @param errorMessageWidth errorMessageWidth Default value is 80
+     * @param titleVAlign titleVAlign Default value is Canvas.CENTER
      */
-    public void setErrorMessageWidth(int errorMessageWidth) {
-        setAttribute("errorMessageWidth", errorMessageWidth);
+    public void setTitleVAlign(VerticalAlignment titleVAlign) {
+        setAttribute("titleVAlign", titleVAlign.getValue());
     }
 
     /**
-     * When {@link com.smartgwt.client.widgets.form.DynamicForm#getShowInlineErrors showInlineErrors} and {@link
-     * com.smartgwt.client.widgets.form.fields.FormItem#getShowErrorText showErrorText} are both true and {@link
-     * com.smartgwt.client.widgets.form.fields.FormItem#getErrorOrientation errorOrientation} is "left" or "right",
-     * errorMessageWidth is the amount to reduce the width of the editor to accommodate the error message and icon.
+     * Vertical alignment of this item's title in its cell. Only applies when {@link
+     * com.smartgwt.client.widgets.form.fields.FormItem#getTitleOrientation titleOrientation} is <code>"left"</code> or
+     * <code>"right"</code>.
+     *
+     *
+     * @return VerticalAlignment
+     */
+    public VerticalAlignment getTitleVAlign()  {
+        return EnumUtil.getEnum(VerticalAlignment.values(), getAttribute("titleVAlign"));
+    }
+
+    /**
+     * Top coordinate of this item in pixels.  Applies only when the containing DynamicForm sets
+     * <code>itemLayout:"absolute"</code>.
+     * For a form with {@link com.smartgwt.client.widgets.form.DynamicForm#getItemLayout 'itemLayout'}:"absolute" only, set the top coordinate of this form item. <P> Causes the form to redraw.
+     * <p><b>Note : </b> This is an advanced setting</p>
+     *
+     * @param top top Default value is 0
+     */
+    public void setTop(int top) {
+        setAttribute("top", top);
+    }
+
+    /**
+     * Top coordinate of this item in pixels.  Applies only when the containing DynamicForm sets
+     * <code>itemLayout:"absolute"</code>.
      *
      *
      * @return int
      */
-    public int getErrorMessageWidth()  {
-        return getAttributeAsInt("errorMessageWidth");
+    public int getTop()  {
+        return getAttributeAsInt("top");
     }
 
     /**
-     * Should this item's value be saved in the form's values and hence returned from {@link
-     * com.smartgwt.client.widgets.form.DynamicForm#getValues}? <p> <code>shouldSaveValue:false</code> is used to mark
-     * formItems which do not correspond to the underlying data model and should not save a value into the form's {@link
-     * com.smartgwt.client.widgets.form.DynamicForm#getValues 'values'}.  Example includes visual separators, password re-type
-     * fields, or checkboxes used to show/hide other form items. <p> A <code>shouldSaveValue:false</code> item should be given
-     * a value either via {@link com.smartgwt.client.widgets.form.fields.FormItem#getDefaultValue defaultValue} or by calling
-     * can use {@link com.smartgwt.client.widgets.form.DynamicForm#setValue} or  {@link
-     * com.smartgwt.client.widgets.form.fields.FormItem#setValue}.  Providing a value via {@link
-     * com.smartgwt.client.widgets.form.DynamicForm#getValues 'form.values'} or {@link
-     * com.smartgwt.client.widgets.form.DynamicForm#setValues}  will automatically switch the item to
-     * <code>shouldSaveValue:true</code>. <P> Note that <ul> <li>if an item is shouldSaveValue true, but has no name, a warning
-     * is logged, and      shouldSaveValue will be set to false. </li></ul>
+     * If true, form items will be validated when each item's "change" handler is fired as well as when the entire form is
+     * submitted or validated. <p> Note that this property can also be set at the form level; If true at either level the
+     * validator will be fired on change - displaying errors and rejecting the change on validation failure.
      *
-     * @param shouldSaveValue shouldSaveValue Default value is true
+     * @param validateOnChange validateOnChange Default value is false
      */
-    public void setShouldSaveValue(Boolean shouldSaveValue) {
-        setAttribute("shouldSaveValue", shouldSaveValue);
+    public void setValidateOnChange(Boolean validateOnChange) {
+        setAttribute("validateOnChange", validateOnChange);
     }
 
     /**
-     * Should this item's value be saved in the form's values and hence returned from {@link
-     * com.smartgwt.client.widgets.form.DynamicForm#getValues}? <p> <code>shouldSaveValue:false</code> is used to mark
-     * formItems which do not correspond to the underlying data model and should not save a value into the form's {@link
-     * com.smartgwt.client.widgets.form.DynamicForm#getValues 'values'}.  Example includes visual separators, password re-type
-     * fields, or checkboxes used to show/hide other form items. <p> A <code>shouldSaveValue:false</code> item should be given
-     * a value either via {@link com.smartgwt.client.widgets.form.fields.FormItem#getDefaultValue defaultValue} or by calling
-     * can use {@link com.smartgwt.client.widgets.form.DynamicForm#setValue} or  {@link
-     * com.smartgwt.client.widgets.form.fields.FormItem#setValue}.  Providing a value via {@link
-     * com.smartgwt.client.widgets.form.DynamicForm#getValues 'form.values'} or {@link
-     * com.smartgwt.client.widgets.form.DynamicForm#setValues}  will automatically switch the item to
-     * <code>shouldSaveValue:true</code>. <P> Note that <ul> <li>if an item is shouldSaveValue true, but has no name, a warning
-     * is logged, and      shouldSaveValue will be set to false. </li></ul>
+     * If true, form items will be validated when each item's "change" handler is fired as well as when the entire form is
+     * submitted or validated. <p> Note that this property can also be set at the form level; If true at either level the
+     * validator will be fired on change - displaying errors and rejecting the change on validation failure.
      *
      *
      * @return Boolean
      */
-    public Boolean getShouldSaveValue()  {
-        return getAttributeAsBoolean("shouldSaveValue");
+    public Boolean getValidateOnChange()  {
+        return getAttributeAsBoolean("validateOnChange");
+    }
+
+    /**
+     * If true, form items will be validated when each item's "editorExit" handler is fired as well as when the entire form is
+     * submitted or validated. <p> Note that this property can also be set at the form level. If true at either level the
+     * validator will be fired on editorExit.
+     *
+     * @param validateOnExit validateOnExit Default value is false
+     */
+    public void setValidateOnExit(Boolean validateOnExit) {
+        setAttribute("validateOnExit", validateOnExit);
+    }
+
+    /**
+     * If true, form items will be validated when each item's "editorExit" handler is fired as well as when the entire form is
+     * submitted or validated. <p> Note that this property can also be set at the form level. If true at either level the
+     * validator will be fired on editorExit.
+     *
+     *
+     * @return Boolean
+     */
+    public Boolean getValidateOnExit()  {
+        return getAttributeAsBoolean("validateOnExit");
+    }
+
+    /**
+     * If this form item maps data values to display values by retrieving the  {@link
+     * com.smartgwt.client.widgets.form.fields.FormItem#getDisplayField displayField} values from an  {@link
+     * com.smartgwt.client.widgets.form.fields.FormItem#getOptionDataSource 'optionDataSource'}, this property  denotes the the
+     * field to use as the underlying data value in records from the  optionDataSource.<br> If unset, assumed to be the {@link
+     * com.smartgwt.client.widgets.form.fields.FormItem#getName name} of this form item.
+     *
+     * @param valueField valueField Default value is null
+     */
+    public void setValueField(String valueField) {
+        setAttribute("valueField", valueField);
+    }
+
+    /**
+     * If this form item maps data values to display values by retrieving the  {@link
+     * com.smartgwt.client.widgets.form.fields.FormItem#getDisplayField displayField} values from an  {@link
+     * com.smartgwt.client.widgets.form.fields.FormItem#getOptionDataSource 'optionDataSource'}, this property  denotes the the
+     * field to use as the underlying data value in records from the  optionDataSource.<br> If unset, assumed to be the {@link
+     * com.smartgwt.client.widgets.form.fields.FormItem#getName name} of this form item.
+     *
+     *
+     * @return String
+     */
+    public String getValueField()  {
+        return getAttributeAsString("valueField");
+    }
+
+    /**
+     * If {@link com.smartgwt.client.widgets.form.fields.FormItem#getValueIcons valueIcons} is specified, use this property to
+     * specify a height for the value icon written out.
+     *
+     * @param valueIconHeight valueIconHeight Default value is null
+     */
+    public void setValueIconHeight(Integer valueIconHeight) {
+        setAttribute("valueIconHeight", valueIconHeight);
+    }
+
+    /**
+     * If {@link com.smartgwt.client.widgets.form.fields.FormItem#getValueIcons valueIcons} is specified, use this property to
+     * specify a height for the value icon written out.
+     *
+     *
+     * @return Integer
+     */
+    public Integer getValueIconHeight()  {
+        return getAttributeAsInt("valueIconHeight");
+    }
+
+    /**
+     * If we're showing a value icon, this attribute governs the amount of space between the  icon and the left edge of the
+     * form item cell
+     *
+     * @param valueIconLeftPadding valueIconLeftPadding Default value is 0
+     */
+    public void setValueIconLeftPadding(int valueIconLeftPadding) {
+        setAttribute("valueIconLeftPadding", valueIconLeftPadding);
+    }
+
+    /**
+     * If we're showing a value icon, this attribute governs the amount of space between the  icon and the left edge of the
+     * form item cell
+     *
+     *
+     * @return int
+     */
+    public int getValueIconLeftPadding()  {
+        return getAttributeAsInt("valueIconLeftPadding");
+    }
+
+    /**
+     * If we're showing a value icon, this attribute governs the amount of space between the  icon and the label of the form
+     * item
+     *
+     * @param valueIconRightPadding valueIconRightPadding Default value is 3
+     */
+    public void setValueIconRightPadding(int valueIconRightPadding) {
+        setAttribute("valueIconRightPadding", valueIconRightPadding);
+    }
+
+    /**
+     * If we're showing a value icon, this attribute governs the amount of space between the  icon and the label of the form
+     * item
+     *
+     *
+     * @return int
+     */
+    public int getValueIconRightPadding()  {
+        return getAttributeAsInt("valueIconRightPadding");
+    }
+
+    /**
+     * If {@link com.smartgwt.client.widgets.form.fields.FormItem#getValueIcons valueIcons} is specified, this property may be
+     * used to specify both the width and height of the icon written out. Note that {@link
+     * com.smartgwt.client.widgets.form.fields.FormItem#getValueIconWidth valueIconWidth} and {@link
+     * com.smartgwt.client.widgets.form.fields.FormItem#getValueIconHeight valueIconHeight} take precedence over this value, if
+     * specified.
+     *
+     * @param valueIconSize valueIconSize Default value is 16
+     */
+    public void setValueIconSize(int valueIconSize) {
+        setAttribute("valueIconSize", valueIconSize);
+    }
+
+    /**
+     * If {@link com.smartgwt.client.widgets.form.fields.FormItem#getValueIcons valueIcons} is specified, this property may be
+     * used to specify both the width and height of the icon written out. Note that {@link
+     * com.smartgwt.client.widgets.form.fields.FormItem#getValueIconWidth valueIconWidth} and {@link
+     * com.smartgwt.client.widgets.form.fields.FormItem#getValueIconHeight valueIconHeight} take precedence over this value, if
+     * specified.
+     *
+     *
+     * @return int
+     */
+    public int getValueIconSize()  {
+        return getAttributeAsInt("valueIconSize");
+    }
+
+    /**
+     * If {@link com.smartgwt.client.widgets.form.fields.FormItem#getValueIcons valueIcons} is specified, use this property to
+     * specify a width for the value icon written out.
+     *
+     * @param valueIconWidth valueIconWidth Default value is null
+     */
+    public void setValueIconWidth(Integer valueIconWidth) {
+        setAttribute("valueIconWidth", valueIconWidth);
+    }
+
+    /**
+     * If {@link com.smartgwt.client.widgets.form.fields.FormItem#getValueIcons valueIcons} is specified, use this property to
+     * specify a width for the value icon written out.
+     *
+     *
+     * @return Integer
+     */
+    public Integer getValueIconWidth()  {
+        return getAttributeAsInt("valueIconWidth");
+    }
+
+    /**
+     * Whether this item is currently visible. <P> <code>visible</code> can only be set on creation.  After creation, use
+     * {@link com.smartgwt.client.widgets.form.fields.FormItem#show} and {@link
+     * com.smartgwt.client.widgets.form.fields.FormItem#hide} to manipulate visibility.
+     *
+     * @param visible visible Default value is true
+     */
+    public void setVisible(Boolean visible) {
+        setAttribute("visible", visible);
+    }
+
+    /**
+     * Whether this item is currently visible. <P> <code>visible</code> can only be set on creation.  After creation, use
+     * {@link com.smartgwt.client.widgets.form.fields.FormItem#show} and {@link
+     * com.smartgwt.client.widgets.form.fields.FormItem#hide} to manipulate visibility.
+     *
+     *
+     * @return Boolean
+     */
+    public Boolean getVisible()  {
+        return getAttributeAsBoolean("visible");
+    }
+
+    /**
+     * By default, items take up the entire width of their cell
+     *
+     * @param width width Default value is "*"
+     */
+    public void setWidth(int width) {
+        setAttribute("width", width);
+    }
+
+    /**
+     * By default, items take up the entire width of their cell
+     *
+     *
+     * @return int
+     */
+    public int getWidth()  {
+        return getAttributeAsInt("width");
+    }
+
+    /**
+     * If specified determines whether this items title should wrap. Overrides {@link
+     * com.smartgwt.client.widgets.form.DynamicForm#getWrapItemTitles 'wrapItemTitles'} at the DynamicForm level.
+     *
+     * @param wrapTitle wrapTitle Default value is null
+     */
+    public void setWrapTitle(Boolean wrapTitle) {
+        setAttribute("wrapTitle", wrapTitle);
+    }
+
+    /**
+     * If specified determines whether this items title should wrap. Overrides {@link
+     * com.smartgwt.client.widgets.form.DynamicForm#getWrapItemTitles 'wrapItemTitles'} at the DynamicForm level.
+     *
+     *
+     * @return Boolean
+     */
+    public Boolean getWrapTitle()  {
+        return getAttributeAsBoolean("wrapTitle");
     }
 
     // ********************* Methods ***********************
-            
-    /**
-     * Return the name for the this formItem.
-     *
-     * @return name for this form item
-     */
-    public native String getFieldName() /*-{
-        var self = this.@com.smartgwt.client.core.DataClass::getJsObj()();
-        return self.getFieldName();
-    }-*/;
-            
-    /**
-     * Update the visual state of a FormItem to reflect any changes in state or any changes in style settings (eg {@link
-     * com.smartgwt.client.widgets.form.fields.FormItem#getTextBoxStyle textBoxStyle}).  <P> Calls to
-     * <code>updateState()</code> normally occur automatically as a consequence of focus changes, items becoming disabled, etc.
-     *  This method is advanced and intended only for use in workarounds.
-     */
-    public native void updateState() /*-{
-        var self = this.@com.smartgwt.client.core.DataClass::getJsObj()();
-        self.updateState();
-    }-*/;
-            
-    /**
-     * Returns true if this item has been written out into the DOM.
-     *
-     * @return whether this item is drawn
-     */
-    public native Boolean isDrawn() /*-{
-        var self = this.@com.smartgwt.client.core.DataClass::getJsObj()();
-        var retVal =self.isDrawn();
-        if(retVal == null || retVal === undefined) {
-            return null;
-        } else {
-            return @com.smartgwt.client.util.JSOHelper::toBoolean(Z)(retVal);
-        }
-    }-*/;
-            
-    /**
-     * Show this form item. <BR><BR> This will cause the form to redraw.  If this item had an item.showIf expression, it will
-     * be destroyed.
-     */
-    public native void show() /*-{
-        var self = this.@com.smartgwt.client.core.DataClass::getJsObj()();
-        self.show();
-    }-*/;
-            
-    /**
-     * Hide this form item. <BR><BR> This will cause the form to redraw.  If this item had an item.showIf expression, it will
-     * be destroyed.
-     */
-    public native void hide() /*-{
-        var self = this.@com.smartgwt.client.core.DataClass::getJsObj()();
-        self.hide();
-    }-*/;
-            
-    /**
-     * Getter method to retrieve the {@link com.smartgwt.client.widgets.form.fields.FormItem#getValueField valueField} for this
-     * item. If unset, default behavior will return the {@link com.smartgwt.client.widgets.form.fields.FormItem#getName name}
-     * of this field.
-     *
-     * @return fieldName to use a "value field" in records from this items               {@link
-     * com.smartgwt.client.widgets.form.fields.FormItem#getOptionDataSource optionDataSource}
-     */
-    public native String getValueFieldName() /*-{
-        var self = this.@com.smartgwt.client.core.DataClass::getJsObj()();
-        return self.getValueFieldName();
-    }-*/;
-            
-    /**
-     * Returns the {@link com.smartgwt.client.widgets.form.fields.FormItem#getDisplayField displayField} for this form item. If
-     * unset, and {@link com.smartgwt.client.widgets.form.fields.FormItem#getOptionDataSource optionDataSource} is explicitly
-     * specified, this method will return the title field for the <code>optionDataSource</code>
-     *
-     * @return display field name, or null
-     */
-    public native String getDisplayFieldName() /*-{
-        var self = this.@com.smartgwt.client.core.DataClass::getJsObj()();
-        return self.getDisplayFieldName();
-    }-*/;
-            
-    /**
-     * Clear the value for this form item. <P> Note that if a default value is specified, value will be set to that default
-     * value, otherwise value will be cleared, (and removed from the containing form's values).
-     */
-    public native void clearValue() /*-{
-        var self = this.@com.smartgwt.client.core.DataClass::getJsObj()();
-        self.clearValue();
-    }-*/;
-            
-    /**
-     * Override this method if you need to provide a specialized criterion from this formItem when creating an AdvancedCriteria
-     * via {@link com.smartgwt.client.widgets.form.DynamicForm#getValuesAsCriteria}. <P> This API is provided to allow you to
-     * specify a more complex criterion than the  "field-operator-value" criterions that are built-in.  Note that the built-in
-     * behavior is generally quite flexible and powerful enough for most requirements.  An example of a case where you might
-     * want to override this method is if you wanted to implement a date range  selection (ie, date &gt; x AND date &lt; y) on
-     * a form that was combining its other criteria  fields with an OR.
-     */
-    public native void getCriterion() /*-{
-        var self = this.@com.smartgwt.client.core.DataClass::getJsObj()();
-        self.getCriterion();
-    }-*/;
-            
-    /**
-     * Validate this item.
-     *
-     * @return returns true if validation was successful (no errors encountered), false                   otherwise.
-     */
-    public native Boolean validate() /*-{
-        var self = this.@com.smartgwt.client.core.DataClass::getJsObj()();
-        var retVal =self.validate();
-        if(retVal == null || retVal === undefined) {
-            return null;
-        } else {
-            return @com.smartgwt.client.util.JSOHelper::toBoolean(Z)(retVal);
-        }
-    }-*/;
-            
-    /**
-     * This method is fired when the user rolls off this item (or the title for this item) and will clear any hover canvas
-     * shown by the item.
-     */
-    public native void stopHover() /*-{
-        var self = this.@com.smartgwt.client.core.DataClass::getJsObj()();
-        self.stopHover();
-    }-*/;
-    /**
-     * Add a itemHover handler.
-     * <p>
-     * Optional stringMethod to fire when the user hovers over this item.  Return false to suppress default behavior of showing
-     * a hover canvas containing the  HTML returned by <code>formItem.itemHoverHTML()</code> /  
-     * <code>form.itemHoverHTML()</code>.
-     *
-     * @param handler the itemHover handler
-     * @return {@link HandlerRegistration} used to remove this handler
-     */
-    public HandlerRegistration addItemHoverHandler(com.smartgwt.client.widgets.form.fields.events.ItemHoverHandler handler) {
-        if(getHandlerCount(com.smartgwt.client.widgets.form.fields.events.ItemHoverEvent.getType()) == 0) setupItemHoverEvent();
-        return doAddHandler(handler, com.smartgwt.client.widgets.form.fields.events.ItemHoverEvent.getType());
-    }
-
-    private native void setupItemHoverEvent() /*-{
-        var obj = null;
-            obj = this.@com.smartgwt.client.core.DataClass::getJsObj()();
-            var selfJ = this;
-            obj.itemHover = $entry(function(){
-                var param = {"item" : arguments[0], "form" : arguments[1]};
-                var event = @com.smartgwt.client.widgets.form.fields.events.ItemHoverEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
-                selfJ.@com.smartgwt.client.core.DataClass::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
-            });
-   }-*/;
-    /**
-     * Add a titleHover handler.
-     * <p>
-     * Optional stringMethod to fire when the user hovers over this item's title.  Return false to suppress default behavior of
-     * showing a hover canvas containing the  HTML returned by <code>formItem.titleHoverHTML()</code> /  
-     * <code>form.titleHoverHTML()</code>.
-     *
-     * @param handler the titleHover handler
-     * @return {@link HandlerRegistration} used to remove this handler
-     */
-    public HandlerRegistration addTitleHoverHandler(com.smartgwt.client.widgets.form.fields.events.TitleHoverHandler handler) {
-        if(getHandlerCount(com.smartgwt.client.widgets.form.fields.events.TitleHoverEvent.getType()) == 0) setupTitleHoverEvent();
-        return doAddHandler(handler, com.smartgwt.client.widgets.form.fields.events.TitleHoverEvent.getType());
-    }
-
-    private native void setupTitleHoverEvent() /*-{
-        var obj = null;
-            obj = this.@com.smartgwt.client.core.DataClass::getJsObj()();
-            var selfJ = this;
-            obj.titleHover = $entry(function(){
-                var param = {"item" : arguments[0], "form" : arguments[1]};
-                var event = @com.smartgwt.client.widgets.form.fields.events.TitleHoverEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
-                selfJ.@com.smartgwt.client.core.DataClass::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
-            });
-   }-*/;
-            
-    /**
-     * Is this item disabled?
-     *
-     * @return disabledtrue if this item is be disabled
-     */
-    public native Boolean isDisabled() /*-{
-        var self = this.@com.smartgwt.client.core.DataClass::getJsObj()();
-        var retVal =self.isDisabled();
-        if(retVal == null || retVal === undefined) {
-            return null;
-        } else {
-            return @com.smartgwt.client.util.JSOHelper::toBoolean(Z)(retVal);
-        }
-    }-*/;
-            
-    /**
-     * Set this item to be enabled at runtime.
-     */
-    public native void enable() /*-{
-        var self = this.@com.smartgwt.client.core.DataClass::getJsObj()();
-        self.enable();
-    }-*/;
-            
-    /**
-     * Set this item to be disabled at runtime.
-     */
-    public native void disable() /*-{
-        var self = this.@com.smartgwt.client.core.DataClass::getJsObj()();
-        self.disable();
-    }-*/;
-            
-    /**
-     * Move the keyboard focus into this item's focusable element
-     */
-    public native void focusInItem() /*-{
-        var self = this.@com.smartgwt.client.core.DataClass::getJsObj()();
-        self.focusInItem();
-    }-*/;
-            
-    /**
-     * Takes focus from this form item's focusable element.
-     */
-    public native void blurItem() /*-{
-        var self = this.@com.smartgwt.client.core.DataClass::getJsObj()();
-        self.blurItem();
-    }-*/;
-    /**
-     * Add a focus handler.
-     * <p>
-     * Called when this FormItem receives focus.
-     *
-     * @param handler the focus handler
-     * @return {@link HandlerRegistration} used to remove this handler
-     */
-    public HandlerRegistration addFocusHandler(com.smartgwt.client.widgets.form.fields.events.FocusHandler handler) {
-        if(getHandlerCount(com.smartgwt.client.widgets.form.fields.events.FocusEvent.getType()) == 0) setupFocusEvent();
-        return doAddHandler(handler, com.smartgwt.client.widgets.form.fields.events.FocusEvent.getType());
-    }
-
-    private native void setupFocusEvent() /*-{
-        var obj = null;
-            obj = this.@com.smartgwt.client.core.DataClass::getJsObj()();
-            var selfJ = this;
-            obj.focus = $entry(function(){
-                var param = {"form" : arguments[0], "item" : arguments[1]};
-                var event = @com.smartgwt.client.widgets.form.fields.events.FocusEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
-                selfJ.@com.smartgwt.client.core.DataClass::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
-            });
-   }-*/;
     /**
      * Add a blur handler.
      * <p>
@@ -2477,101 +2232,14 @@ public class FormItem extends RefDataClass  implements com.smartgwt.client.widge
                 selfJ.@com.smartgwt.client.core.DataClass::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
             });
    }-*/;
+            
     /**
-     * Add a click handler.
-     * <p>
-     * Called when this FormItem is clicked on. <P> Note: <code>click()</code> is available on StaticTextItem, BlurbItems,
-     * ButtonItem, and derivatives.  Other form items (such as HiddenItem) do not support <code>click()</code>.
-     *
-     * @param handler the click handler
-     * @return {@link HandlerRegistration} used to remove this handler
+     * Takes focus from this form item's focusable element.
      */
-    public HandlerRegistration addClickHandler(com.smartgwt.client.widgets.form.fields.events.ClickHandler handler) {
-        if(getHandlerCount(com.smartgwt.client.widgets.form.fields.events.ClickEvent.getType()) == 0) setupClickEvent();
-        return doAddHandler(handler, com.smartgwt.client.widgets.form.fields.events.ClickEvent.getType());
-    }
-
-    private native void setupClickEvent() /*-{
-        var obj = null;
-            obj = this.@com.smartgwt.client.core.DataClass::getJsObj()();
-            var selfJ = this;
-            obj.click = $entry(function(){
-                var param = {"form" : arguments[0], "item" : arguments[1]};
-                var event = @com.smartgwt.client.widgets.form.fields.events.ClickEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
-                selfJ.@com.smartgwt.client.core.DataClass::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
-            });
-   }-*/;
-    /**
-     * Add a doubleClick handler.
-     * <p>
-     * Called when this FormItem is double-clicked.
-     *
-     * @param handler the doubleClick handler
-     * @return {@link HandlerRegistration} used to remove this handler
-     */
-    public HandlerRegistration addDoubleClickHandler(com.smartgwt.client.widgets.form.fields.events.DoubleClickHandler handler) {
-        if(getHandlerCount(com.smartgwt.client.widgets.form.fields.events.DoubleClickEvent.getType()) == 0) setupDoubleClickEvent();
-        return doAddHandler(handler, com.smartgwt.client.widgets.form.fields.events.DoubleClickEvent.getType());
-    }
-
-    private native void setupDoubleClickEvent() /*-{
-        var obj = null;
-            obj = this.@com.smartgwt.client.core.DataClass::getJsObj()();
-            var selfJ = this;
-            obj.doubleClick = $entry(function(){
-                var param = {"form" : arguments[0], "item" : arguments[1]};
-                var event = @com.smartgwt.client.widgets.form.fields.events.DoubleClickEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
-                selfJ.@com.smartgwt.client.core.DataClass::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
-            });
-   }-*/;
-    /**
-     * Add a iconClick handler.
-     * <p>
-     * StringMethod.      Default action to fire when the user clicks on a form item icon. May be overridden      by setting
-     * <code>click</code> on the form item icon directly.
-     *
-     * @param handler the iconClick handler
-     * @return {@link HandlerRegistration} used to remove this handler
-     */
-    public HandlerRegistration addIconClickHandler(com.smartgwt.client.widgets.form.fields.events.IconClickHandler handler) {
-        if(getHandlerCount(com.smartgwt.client.widgets.form.fields.events.IconClickEvent.getType()) == 0) setupIconClickEvent();
-        return doAddHandler(handler, com.smartgwt.client.widgets.form.fields.events.IconClickEvent.getType());
-    }
-
-    private native void setupIconClickEvent() /*-{
-        var obj = null;
-            obj = this.@com.smartgwt.client.core.DataClass::getJsObj()();
-            var selfJ = this;
-            obj.iconClick = $entry(function(){
-                var param = {"form" : arguments[0], "item" : arguments[1], "icon" : arguments[2]};
-                var event = @com.smartgwt.client.widgets.form.fields.events.IconClickEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
-                selfJ.@com.smartgwt.client.core.DataClass::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
-            });
-   }-*/;
-    /**
-     * Add a iconKeyPress handler.
-     * <p>
-     * StringMethod.      Default action to fire when an icon has keyboard focus and the user types a key.      May be
-     * overridden by setting <code>keyPress</code> on the form item icon directly.
-     *
-     * @param handler the iconKeyPress handler
-     * @return {@link HandlerRegistration} used to remove this handler
-     */
-    public HandlerRegistration addIconKeyPressHandler(com.smartgwt.client.widgets.form.fields.events.IconKeyPressHandler handler) {
-        if(getHandlerCount(com.smartgwt.client.widgets.form.fields.events.IconKeyPressEvent.getType()) == 0) setupIconKeyPressEvent();
-        return doAddHandler(handler, com.smartgwt.client.widgets.form.fields.events.IconKeyPressEvent.getType());
-    }
-
-    private native void setupIconKeyPressEvent() /*-{
-        var obj = null;
-            obj = this.@com.smartgwt.client.core.DataClass::getJsObj()();
-            var selfJ = this;
-            obj.iconKeyPress = $entry(function(){
-                var param = {"keyName" : arguments[0], "character" : arguments[1], "form" : arguments[2], "item" : arguments[3], "icon" : arguments[4]};
-                var event = @com.smartgwt.client.widgets.form.fields.events.IconKeyPressEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
-                selfJ.@com.smartgwt.client.core.DataClass::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
-            });
-   }-*/;
+    public native void blurItem() /*-{
+        var self = this.@com.smartgwt.client.core.DataClass::getJsObj()();
+        self.blurItem();
+    }-*/;
     /**
      * Add a change handler.
      * <p>
@@ -2629,29 +2297,267 @@ public class FormItem extends RefDataClass  implements com.smartgwt.client.widge
                 selfJ.@com.smartgwt.client.core.DataClass::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
             });
    }-*/;
+            
     /**
-     * Add a keyPress handler.
+     * Clear the value for this form item. <P> Note that if a default value is specified, value will be set to that default
+     * value, otherwise value will be cleared, (and removed from the containing form's values).
+     */
+    public native void clearValue() /*-{
+        var self = this.@com.smartgwt.client.core.DataClass::getJsObj()();
+        self.clearValue();
+    }-*/;
+    /**
+     * Add a click handler.
      * <p>
-     * StringMethod fired when the user presses a key while focused in this form item.
+     * Called when this FormItem is clicked on. <P> Note: <code>click()</code> is available on StaticTextItem, BlurbItems,
+     * ButtonItem, and derivatives.  Other form items (such as HiddenItem) do not support <code>click()</code>.
      *
-     * @param handler the keyPress handler
+     * @param handler the click handler
      * @return {@link HandlerRegistration} used to remove this handler
      */
-    public HandlerRegistration addKeyPressHandler(com.smartgwt.client.widgets.form.fields.events.KeyPressHandler handler) {
-        if(getHandlerCount(com.smartgwt.client.widgets.form.fields.events.KeyPressEvent.getType()) == 0) setupKeyPressEvent();
-        return doAddHandler(handler, com.smartgwt.client.widgets.form.fields.events.KeyPressEvent.getType());
+    public HandlerRegistration addClickHandler(com.smartgwt.client.widgets.form.fields.events.ClickHandler handler) {
+        if(getHandlerCount(com.smartgwt.client.widgets.form.fields.events.ClickEvent.getType()) == 0) setupClickEvent();
+        return doAddHandler(handler, com.smartgwt.client.widgets.form.fields.events.ClickEvent.getType());
     }
 
-    private native void setupKeyPressEvent() /*-{
+    private native void setupClickEvent() /*-{
         var obj = null;
             obj = this.@com.smartgwt.client.core.DataClass::getJsObj()();
             var selfJ = this;
-            obj.keyPress = $entry(function(){
-                var param = {"item" : arguments[0], "form" : arguments[1], "keyName" : arguments[2], "characterValue" : arguments[3]};
-                var event = @com.smartgwt.client.widgets.form.fields.events.KeyPressEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
+            obj.click = $entry(function(){
+                var param = {"form" : arguments[0], "item" : arguments[1]};
+                var event = @com.smartgwt.client.widgets.form.fields.events.ClickEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
                 selfJ.@com.smartgwt.client.core.DataClass::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
-                var ret = event.@com.smartgwt.client.event.Cancellable::isCancelled()();
-                return !ret;
+            });
+   }-*/;
+            
+    /**
+     * Set this item to be disabled at runtime.
+     */
+    public native void disable() /*-{
+        var self = this.@com.smartgwt.client.core.DataClass::getJsObj()();
+        self.disable();
+    }-*/;
+    /**
+     * Add a doubleClick handler.
+     * <p>
+     * Called when this FormItem is double-clicked.
+     *
+     * @param handler the doubleClick handler
+     * @return {@link HandlerRegistration} used to remove this handler
+     */
+    public HandlerRegistration addDoubleClickHandler(com.smartgwt.client.widgets.form.fields.events.DoubleClickHandler handler) {
+        if(getHandlerCount(com.smartgwt.client.widgets.form.fields.events.DoubleClickEvent.getType()) == 0) setupDoubleClickEvent();
+        return doAddHandler(handler, com.smartgwt.client.widgets.form.fields.events.DoubleClickEvent.getType());
+    }
+
+    private native void setupDoubleClickEvent() /*-{
+        var obj = null;
+            obj = this.@com.smartgwt.client.core.DataClass::getJsObj()();
+            var selfJ = this;
+            obj.doubleClick = $entry(function(){
+                var param = {"form" : arguments[0], "item" : arguments[1]};
+                var event = @com.smartgwt.client.widgets.form.fields.events.DoubleClickEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
+                selfJ.@com.smartgwt.client.core.DataClass::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
+            });
+   }-*/;
+            
+    /**
+     * Set this item to be enabled at runtime.
+     */
+    public native void enable() /*-{
+        var self = this.@com.smartgwt.client.core.DataClass::getJsObj()();
+        self.enable();
+    }-*/;
+    /**
+     * Add a focus handler.
+     * <p>
+     * Called when this FormItem receives focus.
+     *
+     * @param handler the focus handler
+     * @return {@link HandlerRegistration} used to remove this handler
+     */
+    public HandlerRegistration addFocusHandler(com.smartgwt.client.widgets.form.fields.events.FocusHandler handler) {
+        if(getHandlerCount(com.smartgwt.client.widgets.form.fields.events.FocusEvent.getType()) == 0) setupFocusEvent();
+        return doAddHandler(handler, com.smartgwt.client.widgets.form.fields.events.FocusEvent.getType());
+    }
+
+    private native void setupFocusEvent() /*-{
+        var obj = null;
+            obj = this.@com.smartgwt.client.core.DataClass::getJsObj()();
+            var selfJ = this;
+            obj.focus = $entry(function(){
+                var param = {"form" : arguments[0], "item" : arguments[1]};
+                var event = @com.smartgwt.client.widgets.form.fields.events.FocusEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
+                selfJ.@com.smartgwt.client.core.DataClass::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
+            });
+   }-*/;
+            
+    /**
+     * Move the keyboard focus into this item's focusable element
+     */
+    public native void focusInItem() /*-{
+        var self = this.@com.smartgwt.client.core.DataClass::getJsObj()();
+        self.focusInItem();
+    }-*/;
+            
+    /**
+     * Override this method if you need to provide a specialized criterion from this formItem when creating an AdvancedCriteria
+     * via {@link com.smartgwt.client.widgets.form.DynamicForm#getValuesAsCriteria}. <P> This API is provided to allow you to
+     * specify a more complex criterion than the  "field-operator-value" criterions that are built-in.  Note that the built-in
+     * behavior is generally quite flexible and powerful enough for most requirements.  An example of a case where you might
+     * want to override this method is if you wanted to implement a date range  selection (ie, date &gt; x AND date &lt; y) on
+     * a form that was combining its other criteria  fields with an OR.
+     */
+    public native void getCriterion() /*-{
+        var self = this.@com.smartgwt.client.core.DataClass::getJsObj()();
+        self.getCriterion();
+    }-*/;
+            
+    /**
+     * Returns the {@link com.smartgwt.client.widgets.form.fields.FormItem#getDisplayField displayField} for this form item. If
+     * unset, and {@link com.smartgwt.client.widgets.form.fields.FormItem#getOptionDataSource optionDataSource} is explicitly
+     * specified, this method will return the title field for the <code>optionDataSource</code>
+     *
+     * @return display field name, or null
+     */
+    public native String getDisplayFieldName() /*-{
+        var self = this.@com.smartgwt.client.core.DataClass::getJsObj()();
+        return self.getDisplayFieldName();
+    }-*/;
+            
+    /**
+     * Return the name for the this formItem.
+     *
+     * @return name for this form item
+     */
+    public native String getFieldName() /*-{
+        var self = this.@com.smartgwt.client.core.DataClass::getJsObj()();
+        return self.getFieldName();
+    }-*/;
+            
+    /**
+     * Getter method to retrieve the {@link com.smartgwt.client.widgets.form.fields.FormItem#getValueField valueField} for this
+     * item. If unset, default behavior will return the {@link com.smartgwt.client.widgets.form.fields.FormItem#getName name}
+     * of this field.
+     *
+     * @return fieldName to use a "value field" in records from this items               {@link
+     * com.smartgwt.client.widgets.form.fields.FormItem#getOptionDataSource optionDataSource}
+     */
+    public native String getValueFieldName() /*-{
+        var self = this.@com.smartgwt.client.core.DataClass::getJsObj()();
+        return self.getValueFieldName();
+    }-*/;
+            
+    /**
+     * Hide this form item. <BR><BR> This will cause the form to redraw.  If this item had an item.showIf expression, it will
+     * be destroyed.
+     */
+    public native void hide() /*-{
+        var self = this.@com.smartgwt.client.core.DataClass::getJsObj()();
+        self.hide();
+    }-*/;
+    /**
+     * Add a iconClick handler.
+     * <p>
+     * StringMethod.      Default action to fire when the user clicks on a form item icon. May be overridden      by setting
+     * <code>click</code> on the form item icon directly.
+     *
+     * @param handler the iconClick handler
+     * @return {@link HandlerRegistration} used to remove this handler
+     */
+    public HandlerRegistration addIconClickHandler(com.smartgwt.client.widgets.form.fields.events.IconClickHandler handler) {
+        if(getHandlerCount(com.smartgwt.client.widgets.form.fields.events.IconClickEvent.getType()) == 0) setupIconClickEvent();
+        return doAddHandler(handler, com.smartgwt.client.widgets.form.fields.events.IconClickEvent.getType());
+    }
+
+    private native void setupIconClickEvent() /*-{
+        var obj = null;
+            obj = this.@com.smartgwt.client.core.DataClass::getJsObj()();
+            var selfJ = this;
+            obj.iconClick = $entry(function(){
+                var param = {"form" : arguments[0], "item" : arguments[1], "icon" : arguments[2]};
+                var event = @com.smartgwt.client.widgets.form.fields.events.IconClickEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
+                selfJ.@com.smartgwt.client.core.DataClass::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
+            });
+   }-*/;
+    /**
+     * Add a iconKeyPress handler.
+     * <p>
+     * StringMethod.      Default action to fire when an icon has keyboard focus and the user types a key.      May be
+     * overridden by setting <code>keyPress</code> on the form item icon directly.
+     *
+     * @param handler the iconKeyPress handler
+     * @return {@link HandlerRegistration} used to remove this handler
+     */
+    public HandlerRegistration addIconKeyPressHandler(com.smartgwt.client.widgets.form.fields.events.IconKeyPressHandler handler) {
+        if(getHandlerCount(com.smartgwt.client.widgets.form.fields.events.IconKeyPressEvent.getType()) == 0) setupIconKeyPressEvent();
+        return doAddHandler(handler, com.smartgwt.client.widgets.form.fields.events.IconKeyPressEvent.getType());
+    }
+
+    private native void setupIconKeyPressEvent() /*-{
+        var obj = null;
+            obj = this.@com.smartgwt.client.core.DataClass::getJsObj()();
+            var selfJ = this;
+            obj.iconKeyPress = $entry(function(){
+                var param = {"keyName" : arguments[0], "character" : arguments[1], "form" : arguments[2], "item" : arguments[3], "icon" : arguments[4]};
+                var event = @com.smartgwt.client.widgets.form.fields.events.IconKeyPressEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
+                selfJ.@com.smartgwt.client.core.DataClass::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
+            });
+   }-*/;
+            
+    /**
+     * Is this item disabled?
+     *
+     * @return disabledtrue if this item is be disabled
+     */
+    public native Boolean isDisabled() /*-{
+        var self = this.@com.smartgwt.client.core.DataClass::getJsObj()();
+        var retVal =self.isDisabled();
+        if(retVal == null || retVal === undefined) {
+            return null;
+        } else {
+            return @com.smartgwt.client.util.JSOHelper::toBoolean(Z)(retVal);
+        }
+    }-*/;
+            
+    /**
+     * Returns true if this item has been written out into the DOM.
+     *
+     * @return whether this item is drawn
+     */
+    public native Boolean isDrawn() /*-{
+        var self = this.@com.smartgwt.client.core.DataClass::getJsObj()();
+        var retVal =self.isDrawn();
+        if(retVal == null || retVal === undefined) {
+            return null;
+        } else {
+            return @com.smartgwt.client.util.JSOHelper::toBoolean(Z)(retVal);
+        }
+    }-*/;
+    /**
+     * Add a itemHover handler.
+     * <p>
+     * Optional stringMethod to fire when the user hovers over this item.  Return false to suppress default behavior of showing
+     * a hover canvas containing the  HTML returned by <code>formItem.itemHoverHTML()</code> /  
+     * <code>form.itemHoverHTML()</code>.
+     *
+     * @param handler the itemHover handler
+     * @return {@link HandlerRegistration} used to remove this handler
+     */
+    public HandlerRegistration addItemHoverHandler(com.smartgwt.client.widgets.form.fields.events.ItemHoverHandler handler) {
+        if(getHandlerCount(com.smartgwt.client.widgets.form.fields.events.ItemHoverEvent.getType()) == 0) setupItemHoverEvent();
+        return doAddHandler(handler, com.smartgwt.client.widgets.form.fields.events.ItemHoverEvent.getType());
+    }
+
+    private native void setupItemHoverEvent() /*-{
+        var obj = null;
+            obj = this.@com.smartgwt.client.core.DataClass::getJsObj()();
+            var selfJ = this;
+            obj.itemHover = $entry(function(){
+                var param = {"item" : arguments[0], "form" : arguments[1]};
+                var event = @com.smartgwt.client.widgets.form.fields.events.ItemHoverEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
+                selfJ.@com.smartgwt.client.core.DataClass::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
             });
    }-*/;
     /**
@@ -2674,6 +2580,31 @@ public class FormItem extends RefDataClass  implements com.smartgwt.client.widge
             obj.keyDown = $entry(function(){
                 var param = {"item" : arguments[0], "form" : arguments[1], "keyName" : arguments[2]};
                 var event = @com.smartgwt.client.widgets.form.fields.events.KeyDownEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
+                selfJ.@com.smartgwt.client.core.DataClass::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
+                var ret = event.@com.smartgwt.client.event.Cancellable::isCancelled()();
+                return !ret;
+            });
+   }-*/;
+    /**
+     * Add a keyPress handler.
+     * <p>
+     * StringMethod fired when the user presses a key while focused in this form item.
+     *
+     * @param handler the keyPress handler
+     * @return {@link HandlerRegistration} used to remove this handler
+     */
+    public HandlerRegistration addKeyPressHandler(com.smartgwt.client.widgets.form.fields.events.KeyPressHandler handler) {
+        if(getHandlerCount(com.smartgwt.client.widgets.form.fields.events.KeyPressEvent.getType()) == 0) setupKeyPressEvent();
+        return doAddHandler(handler, com.smartgwt.client.widgets.form.fields.events.KeyPressEvent.getType());
+    }
+
+    private native void setupKeyPressEvent() /*-{
+        var obj = null;
+            obj = this.@com.smartgwt.client.core.DataClass::getJsObj()();
+            var selfJ = this;
+            obj.keyPress = $entry(function(){
+                var param = {"item" : arguments[0], "form" : arguments[1], "keyName" : arguments[2], "characterValue" : arguments[3]};
+                var event = @com.smartgwt.client.widgets.form.fields.events.KeyPressEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
                 selfJ.@com.smartgwt.client.core.DataClass::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
                 var ret = event.@com.smartgwt.client.event.Cancellable::isCancelled()();
                 return !ret;
@@ -2704,6 +2635,75 @@ public class FormItem extends RefDataClass  implements com.smartgwt.client.widge
                 return !ret;
             });
    }-*/;
+            
+    /**
+     * Show this form item. <BR><BR> This will cause the form to redraw.  If this item had an item.showIf expression, it will
+     * be destroyed.
+     */
+    public native void show() /*-{
+        var self = this.@com.smartgwt.client.core.DataClass::getJsObj()();
+        self.show();
+    }-*/;
+            
+    /**
+     * This method is fired when the user rolls off this item (or the title for this item) and will clear any hover canvas
+     * shown by the item.
+     */
+    public native void stopHover() /*-{
+        var self = this.@com.smartgwt.client.core.DataClass::getJsObj()();
+        self.stopHover();
+    }-*/;
+    /**
+     * Add a titleHover handler.
+     * <p>
+     * Optional stringMethod to fire when the user hovers over this item's title.  Return false to suppress default behavior of
+     * showing a hover canvas containing the  HTML returned by <code>formItem.titleHoverHTML()</code> /  
+     * <code>form.titleHoverHTML()</code>.
+     *
+     * @param handler the titleHover handler
+     * @return {@link HandlerRegistration} used to remove this handler
+     */
+    public HandlerRegistration addTitleHoverHandler(com.smartgwt.client.widgets.form.fields.events.TitleHoverHandler handler) {
+        if(getHandlerCount(com.smartgwt.client.widgets.form.fields.events.TitleHoverEvent.getType()) == 0) setupTitleHoverEvent();
+        return doAddHandler(handler, com.smartgwt.client.widgets.form.fields.events.TitleHoverEvent.getType());
+    }
+
+    private native void setupTitleHoverEvent() /*-{
+        var obj = null;
+            obj = this.@com.smartgwt.client.core.DataClass::getJsObj()();
+            var selfJ = this;
+            obj.titleHover = $entry(function(){
+                var param = {"item" : arguments[0], "form" : arguments[1]};
+                var event = @com.smartgwt.client.widgets.form.fields.events.TitleHoverEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
+                selfJ.@com.smartgwt.client.core.DataClass::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
+            });
+   }-*/;
+            
+    /**
+     * Update the visual state of a FormItem to reflect any changes in state or any changes in style settings (eg {@link
+     * com.smartgwt.client.widgets.form.fields.FormItem#getTextBoxStyle textBoxStyle}).  <P> Calls to
+     * <code>updateState()</code> normally occur automatically as a consequence of focus changes, items becoming disabled, etc.
+     *  This method is advanced and intended only for use in workarounds.
+     */
+    public native void updateState() /*-{
+        var self = this.@com.smartgwt.client.core.DataClass::getJsObj()();
+        self.updateState();
+    }-*/;
+            
+    /**
+     * Validate this item.
+     *
+     * @return returns true if validation was successful (no errors encountered), false                   otherwise.
+     */
+    public native Boolean validate() /*-{
+        var self = this.@com.smartgwt.client.core.DataClass::getJsObj()();
+        var retVal =self.validate();
+        if(retVal == null || retVal === undefined) {
+            return null;
+        } else {
+            return @com.smartgwt.client.util.JSOHelper::toBoolean(Z)(retVal);
+        }
+    }-*/;
 
     // ********************* Static Methods ***********************
 

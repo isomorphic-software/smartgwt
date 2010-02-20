@@ -94,44 +94,47 @@ public class SliderItem extends CanvasItem {
     // ********************* Properties / Attributes ***********************
 
     /**
-     * Indicates whether this is a vertical or horizontal slider.
+     * Should this sliderItem update its value and fire change handlers while the user is actively dragging the slider. Setting
+     * this attribute value to <code>false</code> will suppress any change notifications from the user dragging the slider
+     * thumb until the user releases the mouse at the final position. This can be useful to avoid repeatedly firing expensive
+     * operations such as server fetches while the user drags through a range of values.
      *
-     * @param vertical vertical Default value is false
+     * @param changeOnDrag changeOnDrag Default value is true
      */
-    public void setVertical(Boolean vertical) {
-        setAttribute("vertical", vertical);
+    public void setChangeOnDrag(Boolean changeOnDrag) {
+        setAttribute("changeOnDrag", changeOnDrag);
     }
 
     /**
-     * Indicates whether this is a vertical or horizontal slider.
+     * Should this sliderItem update its value and fire change handlers while the user is actively dragging the slider. Setting
+     * this attribute value to <code>false</code> will suppress any change notifications from the user dragging the slider
+     * thumb until the user releases the mouse at the final position. This can be useful to avoid repeatedly firing expensive
+     * operations such as server fetches while the user drags through a range of values.
      *
      *
      * @return Boolean
      */
-    public Boolean getVertical()  {
-        return getAttributeAsBoolean("vertical");
+    public Boolean getChangeOnDrag()  {
+        return getAttributeAsBoolean("changeOnDrag");
     }
 
     /**
-     * The minimum slider value. The slider value is equal to minValue when the thumb is at the bottom or left of the slider
-     * (unless flipValues is true, in which case the minimum value is at the top/right of the slider)
-     * Sets the {@link com.smartgwt.client.widgets.Slider#getMinValue 'minimum value'} of the slider
+     * Default value for this sliderItems is 1.
      *
-     * @param minValue the new minimum value. Default value is 1
+     * @param defaultValue defaultValue Default value is 1
      */
-    public void setMinValue(float minValue) {
-        setAttribute("minValue", minValue);
+    public void setDefaultValue(int defaultValue) {
+        setAttribute("defaultValue", defaultValue);
     }
 
     /**
-     * The minimum slider value. The slider value is equal to minValue when the thumb is at the bottom or left of the slider
-     * (unless flipValues is true, in which case the minimum value is at the top/right of the slider)
+     * Default value for this sliderItems is 1.
      *
      *
-     * @return float
+     * @return int
      */
-    public float getMinValue()  {
-        return getAttributeAsFloat("minValue");
+    public int getDefaultValue()  {
+        return getAttributeAsInt("defaultValue");
     }
 
     /**
@@ -154,6 +157,28 @@ public class SliderItem extends CanvasItem {
      */
     public float getMaxValue()  {
         return getAttributeAsFloat("maxValue");
+    }
+
+    /**
+     * The minimum slider value. The slider value is equal to minValue when the thumb is at the bottom or left of the slider
+     * (unless flipValues is true, in which case the minimum value is at the top/right of the slider)
+     * Sets the {@link com.smartgwt.client.widgets.Slider#getMinValue 'minimum value'} of the slider
+     *
+     * @param minValue the new minimum value. Default value is 1
+     */
+    public void setMinValue(float minValue) {
+        setAttribute("minValue", minValue);
+    }
+
+    /**
+     * The minimum slider value. The slider value is equal to minValue when the thumb is at the bottom or left of the slider
+     * (unless flipValues is true, in which case the minimum value is at the top/right of the slider)
+     *
+     *
+     * @return float
+     */
+    public float getMinValue()  {
+        return getAttributeAsFloat("minValue");
     }
 
     /**
@@ -181,6 +206,27 @@ public class SliderItem extends CanvasItem {
     }
 
     /**
+     * If {@link com.smartgwt.client.widgets.Slider#getRoundValues roundValues} is false, the slider value will be rounded to
+     * this number of decimal places. If set to null the value will not be rounded
+     *
+     * @param roundPrecision roundPrecision Default value is 1
+     */
+    public void setRoundPrecision(int roundPrecision) {
+        setAttribute("roundPrecision", roundPrecision);
+    }
+
+    /**
+     * If {@link com.smartgwt.client.widgets.Slider#getRoundValues roundValues} is false, the slider value will be rounded to
+     * this number of decimal places. If set to null the value will not be rounded
+     *
+     *
+     * @return int
+     */
+    public int getRoundPrecision()  {
+        return getAttributeAsInt("roundPrecision");
+    }
+
+    /**
      * Specifies whether the slider value should be rounded to the nearest integer.  If set to false, values will be rounded to
      * a fixed number of decimal places controlled by {@link
      * com.smartgwt.client.widgets.form.fields.SliderItem#getRoundPrecision roundPrecision}.
@@ -204,68 +250,22 @@ public class SliderItem extends CanvasItem {
     }
 
     /**
-     * If {@link com.smartgwt.client.widgets.Slider#getRoundValues roundValues} is false, the slider value will be rounded to
-     * this number of decimal places. If set to null the value will not be rounded
+     * Indicates whether this is a vertical or horizontal slider.
      *
-     * @param roundPrecision roundPrecision Default value is 1
+     * @param vertical vertical Default value is false
      */
-    public void setRoundPrecision(int roundPrecision) {
-        setAttribute("roundPrecision", roundPrecision);
+    public void setVertical(Boolean vertical) {
+        setAttribute("vertical", vertical);
     }
 
     /**
-     * If {@link com.smartgwt.client.widgets.Slider#getRoundValues roundValues} is false, the slider value will be rounded to
-     * this number of decimal places. If set to null the value will not be rounded
-     *
-     *
-     * @return int
-     */
-    public int getRoundPrecision()  {
-        return getAttributeAsInt("roundPrecision");
-    }
-
-    /**
-     * Default value for this sliderItems is 1.
-     *
-     * @param defaultValue defaultValue Default value is 1
-     */
-    public void setDefaultValue(int defaultValue) {
-        setAttribute("defaultValue", defaultValue);
-    }
-
-    /**
-     * Default value for this sliderItems is 1.
-     *
-     *
-     * @return int
-     */
-    public int getDefaultValue()  {
-        return getAttributeAsInt("defaultValue");
-    }
-
-    /**
-     * Should this sliderItem update its value and fire change handlers while the user is actively dragging the slider. Setting
-     * this attribute value to <code>false</code> will suppress any change notifications from the user dragging the slider
-     * thumb until the user releases the mouse at the final position. This can be useful to avoid repeatedly firing expensive
-     * operations such as server fetches while the user drags through a range of values.
-     *
-     * @param changeOnDrag changeOnDrag Default value is true
-     */
-    public void setChangeOnDrag(Boolean changeOnDrag) {
-        setAttribute("changeOnDrag", changeOnDrag);
-    }
-
-    /**
-     * Should this sliderItem update its value and fire change handlers while the user is actively dragging the slider. Setting
-     * this attribute value to <code>false</code> will suppress any change notifications from the user dragging the slider
-     * thumb until the user releases the mouse at the final position. This can be useful to avoid repeatedly firing expensive
-     * operations such as server fetches while the user drags through a range of values.
+     * Indicates whether this is a vertical or horizontal slider.
      *
      *
      * @return Boolean
      */
-    public Boolean getChangeOnDrag()  {
-        return getAttributeAsBoolean("changeOnDrag");
+    public Boolean getVertical()  {
+        return getAttributeAsBoolean("vertical");
     }
 
     // ********************* Methods ***********************

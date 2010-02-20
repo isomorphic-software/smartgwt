@@ -90,283 +90,45 @@ public class Button extends StatefulCanvas  implements com.smartgwt.client.widge
         return widget;
     }-*/;
     // ********************* Properties / Attributes ***********************
-
+             
     /**
-     * The text title to display in this button.
-     * Set the title.
+     * Behavior on state changes -- BUTTON, RADIO or CHECKBOX
+     * Update the 'actionType' for this canvas (radio / checkbox / button) If the canvas is currently selected, and the passed in actionType is 'button' this method will deselect the canvas.
      *
-     * @param title new title. Default value is varies
+     * @param actionType actionType Default value is "button"
      */
-    public void setTitle(String title) {
-        setAttribute("title", title, true);
+    public void setActionType(SelectionType actionType) {
+        setAttribute("actionType", actionType.getValue(), true);
     }
 
     /**
-     * The text title to display in this button.
+     * Behavior on state changes -- BUTTON, RADIO or CHECKBOX
      *
      *
-     * @return Return the title - text/HTML drawn inside the component. <p> Default is to simply return this.title.
+     * @return Return the 'actionType' for this canvas (radio / checkbox / button)
      */
-    public String getTitle()  {
-        return getAttributeAsString("title");
+    public SelectionType getActionType()  {
+        return EnumUtil.getEnum(SelectionType.values(), getAttribute("actionType"));
+    }
+             
+    /**
+     * Horizontal alignment of this component's title.
+     * Sets the (horizontal) alignment of this buttons content.
+     *
+     * @param align align Default value is Canvas.CENTER
+     */
+    public void setAlign(Alignment align) {
+        setAttribute("align", align.getValue(), true);
     }
 
     /**
-     * If set to true, if the {@link com.smartgwt.client.widgets.StatefulCanvas#getTitle 'title'} of this button contains the
-     * specified {@link com.smartgwt.client.widgets.Canvas#getAccessKey 'accessKey'}, when the title is displayed to the user
-     * it will be modified to include HTML to underline the accessKey.<br> Note that this property may cause titles that
-     * include HTML (rather than simple strings) to be inappropriately modified, so should be disabled if your title string
-     * includes HTML characters.
+     * Horizontal alignment of this component's title.
      *
-     * @param hiliteAccessKey hiliteAccessKey Default value is null
+     *
+     * @return Alignment
      */
-    public void setHiliteAccessKey(Boolean hiliteAccessKey) {
-        setAttribute("hiliteAccessKey", hiliteAccessKey, true);
-    }
-
-    /**
-     * If set to true, if the {@link com.smartgwt.client.widgets.StatefulCanvas#getTitle 'title'} of this button contains the
-     * specified {@link com.smartgwt.client.widgets.Canvas#getAccessKey 'accessKey'}, when the title is displayed to the user
-     * it will be modified to include HTML to underline the accessKey.<br> Note that this property may cause titles that
-     * include HTML (rather than simple strings) to be inappropriately modified, so should be disabled if your title string
-     * includes HTML characters.
-     *
-     *
-     * @return Boolean
-     */
-    public Boolean getHiliteAccessKey()  {
-        return getAttributeAsBoolean("hiliteAccessKey");
-    }
-
-    /**
-     * Optional icon to be shown with the button title text.   <P> Specify as the partial URL to an image, relative to the
-     * imgDir of this component.
-     * Change the icon being shown next to the title text.
-     *
-     * @param icon URL of new icon. Default value is null
-     */
-    public void setIcon(String icon) {
-        setAttribute("icon", icon, true);
-    }
-
-    /**
-     * Optional icon to be shown with the button title text.   <P> Specify as the partial URL to an image, relative to the
-     * imgDir of this component.
-     *
-     *
-     * @return String
-     */
-    public String getIcon()  {
-        return getAttributeAsString("icon");
-    }
-
-    /**
-     * Size in pixels of the icon image. <P> The <code>iconWidth</code> and <code>iconHeight</code> properties can be used to
-     * configure width and height separately.
-     *
-     * @param iconSize iconSize Default value is 16
-     * @throws IllegalStateException this property cannot be changed after the component has been created
-     */
-    public void setIconSize(int iconSize)  throws IllegalStateException {
-        setAttribute("iconSize", iconSize, false);
-    }
-
-    /**
-     * Size in pixels of the icon image. <P> The <code>iconWidth</code> and <code>iconHeight</code> properties can be used to
-     * configure width and height separately.
-     *
-     *
-     * @return int
-     */
-    public int getIconSize()  {
-        return getAttributeAsInt("iconSize");
-    }
-
-    /**
-     * Width in pixels of the icon image. <P> If unset, defaults to <code>iconSize</code>
-     *
-     * @param iconWidth iconWidth Default value is null
-     * @throws IllegalStateException this property cannot be changed after the component has been created
-     */
-    public void setIconWidth(Integer iconWidth)  throws IllegalStateException {
-        setAttribute("iconWidth", iconWidth, false);
-    }
-
-    /**
-     * Width in pixels of the icon image. <P> If unset, defaults to <code>iconSize</code>
-     *
-     *
-     * @return Integer
-     */
-    public Integer getIconWidth()  {
-        return getAttributeAsInt("iconWidth");
-    }
-
-    /**
-     * Height in pixels of the icon image. <P> If unset, defaults to <code>iconSize</code>
-     *
-     * @param iconHeight iconHeight Default value is null
-     * @throws IllegalStateException this property cannot be changed after the component has been created
-     */
-    public void setIconHeight(Integer iconHeight)  throws IllegalStateException {
-        setAttribute("iconHeight", iconHeight, false);
-    }
-
-    /**
-     * Height in pixels of the icon image. <P> If unset, defaults to <code>iconSize</code>
-     *
-     *
-     * @return Integer
-     */
-    public Integer getIconHeight()  {
-        return getAttributeAsInt("iconHeight");
-    }
-
-    /**
-     * If this button is showing an icon should it appear to the left or right of the title? valid options are
-     * <code>"left"</code> and <code>"right"</code>.
-     * Changes the orientation of the icon relative to the text of the button.
-     *
-     * @param iconOrientation The new orientation of the icon relative to the text of the button.. Default value is "left"
-     * @throws IllegalStateException this property cannot be changed after the component has been created
-     */
-    public void setIconOrientation(String iconOrientation)  throws IllegalStateException {
-        setAttribute("iconOrientation", iconOrientation, false);
-    }
-
-    /**
-     * If this button is showing an icon should it appear to the left or right of the title? valid options are
-     * <code>"left"</code> and <code>"right"</code>.
-     *
-     *
-     * @return String
-     */
-    public String getIconOrientation()  {
-        return getAttributeAsString("iconOrientation");
-    }
-
-    /**
-     * If this button is showing an icon should it be right or left aligned?
-     *
-     * @param iconAlign iconAlign Default value is null
-     * @throws IllegalStateException this property cannot be changed after the component has been created
-     */
-    public void setIconAlign(String iconAlign)  throws IllegalStateException {
-        setAttribute("iconAlign", iconAlign, false);
-    }
-
-    /**
-     * If this button is showing an icon should it be right or left aligned?
-     *
-     *
-     * @return String
-     */
-    public String getIconAlign()  {
-        return getAttributeAsString("iconAlign");
-    }
-
-    /**
-     * If using an icon for this button, whether to switch the icon image if the button becomes disabled.
-     *
-     * @param showDisabledIcon showDisabledIcon Default value is true
-     * @throws IllegalStateException this property cannot be changed after the component has been created
-     */
-    public void setShowDisabledIcon(Boolean showDisabledIcon)  throws IllegalStateException {
-        setAttribute("showDisabledIcon", showDisabledIcon, false);
-    }
-
-    /**
-     * If using an icon for this button, whether to switch the icon image if the button becomes disabled.
-     *
-     *
-     * @return Boolean
-     */
-    public Boolean getShowDisabledIcon()  {
-        return getAttributeAsBoolean("showDisabledIcon");
-    }
-
-    /**
-     * If using an icon for this button, whether to switch the icon image on mouse rollover.
-     *
-     * @param showRollOverIcon showRollOverIcon Default value is false
-     * @throws IllegalStateException this property cannot be changed after the component has been created
-     */
-    public void setShowRollOverIcon(Boolean showRollOverIcon)  throws IllegalStateException {
-        setAttribute("showRollOverIcon", showRollOverIcon, false);
-    }
-
-    /**
-     * If using an icon for this button, whether to switch the icon image on mouse rollover.
-     *
-     *
-     * @return Boolean
-     */
-    public Boolean getShowRollOverIcon()  {
-        return getAttributeAsBoolean("showRollOverIcon");
-    }
-
-    /**
-     * If using an icon for this button, whether to switch the icon image when the button recieves focus. <P> If {@link
-     * com.smartgwt.client.widgets.StatefulCanvas#getShowFocusedAsOver showFocusedAsOver} is true, the <code>"Over"</code> icon
-     * will be displayed when the canvas has focus, otherwise a seperate <code>"Focused"</code> icon will be displayed
-     *
-     * @param showFocusedIcon showFocusedIcon Default value is false
-     * @throws IllegalStateException this property cannot be changed after the component has been created
-     */
-    public void setShowFocusedIcon(Boolean showFocusedIcon)  throws IllegalStateException {
-        setAttribute("showFocusedIcon", showFocusedIcon, false);
-    }
-
-    /**
-     * If using an icon for this button, whether to switch the icon image when the button recieves focus. <P> If {@link
-     * com.smartgwt.client.widgets.StatefulCanvas#getShowFocusedAsOver showFocusedAsOver} is true, the <code>"Over"</code> icon
-     * will be displayed when the canvas has focus, otherwise a seperate <code>"Focused"</code> icon will be displayed
-     *
-     *
-     * @return Boolean
-     */
-    public Boolean getShowFocusedIcon()  {
-        return getAttributeAsBoolean("showFocusedIcon");
-    }
-
-    /**
-     * If using an icon for this button, whether to switch the icon image when the mouse goes down on the button.
-     *
-     * @param showDownIcon showDownIcon Default value is false
-     * @throws IllegalStateException this property cannot be changed after the component has been created
-     */
-    public void setShowDownIcon(Boolean showDownIcon)  throws IllegalStateException {
-        setAttribute("showDownIcon", showDownIcon, false);
-    }
-
-    /**
-     * If using an icon for this button, whether to switch the icon image when the mouse goes down on the button.
-     *
-     *
-     * @return Boolean
-     */
-    public Boolean getShowDownIcon()  {
-        return getAttributeAsBoolean("showDownIcon");
-    }
-
-    /**
-     * If using an icon for this button, whether to switch the icon image when the button becomes selected.
-     *
-     * @param showSelectedIcon showSelectedIcon Default value is false
-     * @throws IllegalStateException this property cannot be changed after the component has been created
-     */
-    public void setShowSelectedIcon(Boolean showSelectedIcon)  throws IllegalStateException {
-        setAttribute("showSelectedIcon", showSelectedIcon, false);
-    }
-
-    /**
-     * If using an icon for this button, whether to switch the icon image when the button becomes selected.
-     *
-     *
-     * @return Boolean
-     */
-    public Boolean getShowSelectedIcon()  {
-        return getAttributeAsBoolean("showSelectedIcon");
+    public Alignment getAlign()  {
+        return EnumUtil.getEnum(Alignment.values(), getAttribute("align"));
     }
 
     /**
@@ -434,23 +196,157 @@ public class Button extends StatefulCanvas  implements com.smartgwt.client.widge
     }
 
     /**
-     * Whether this component is selected.  For some components, selection affects appearance.
-     * Select this object.
+     * If set to true, if the {@link com.smartgwt.client.widgets.StatefulCanvas#getTitle 'title'} of this button contains the
+     * specified {@link com.smartgwt.client.widgets.Canvas#getAccessKey 'accessKey'}, when the title is displayed to the user
+     * it will be modified to include HTML to underline the accessKey.<br> Note that this property may cause titles that
+     * include HTML (rather than simple strings) to be inappropriately modified, so should be disabled if your title string
+     * includes HTML characters.
      *
-     * @param selected selected Default value is false
+     * @param hiliteAccessKey hiliteAccessKey Default value is null
      */
-    public void setSelected(Boolean selected) {
-        setAttribute("selected", selected, true);
+    public void setHiliteAccessKey(Boolean hiliteAccessKey) {
+        setAttribute("hiliteAccessKey", hiliteAccessKey, true);
     }
 
     /**
-     * Whether this component is selected.  For some components, selection affects appearance.
+     * If set to true, if the {@link com.smartgwt.client.widgets.StatefulCanvas#getTitle 'title'} of this button contains the
+     * specified {@link com.smartgwt.client.widgets.Canvas#getAccessKey 'accessKey'}, when the title is displayed to the user
+     * it will be modified to include HTML to underline the accessKey.<br> Note that this property may cause titles that
+     * include HTML (rather than simple strings) to be inappropriately modified, so should be disabled if your title string
+     * includes HTML characters.
      *
      *
      * @return Boolean
      */
-    public Boolean getSelected()  {
-        return getAttributeAsBoolean("selected");
+    public Boolean getHiliteAccessKey()  {
+        return getAttributeAsBoolean("hiliteAccessKey");
+    }
+
+    /**
+     * Optional icon to be shown with the button title text.   <P> Specify as the partial URL to an image, relative to the
+     * imgDir of this component.
+     * Change the icon being shown next to the title text.
+     *
+     * @param icon URL of new icon. Default value is null
+     */
+    public void setIcon(String icon) {
+        setAttribute("icon", icon, true);
+    }
+
+    /**
+     * Optional icon to be shown with the button title text.   <P> Specify as the partial URL to an image, relative to the
+     * imgDir of this component.
+     *
+     *
+     * @return String
+     */
+    public String getIcon()  {
+        return getAttributeAsString("icon");
+    }
+
+    /**
+     * If this button is showing an icon should it be right or left aligned?
+     *
+     * @param iconAlign iconAlign Default value is null
+     * @throws IllegalStateException this property cannot be changed after the component has been created
+     */
+    public void setIconAlign(String iconAlign)  throws IllegalStateException {
+        setAttribute("iconAlign", iconAlign, false);
+    }
+
+    /**
+     * If this button is showing an icon should it be right or left aligned?
+     *
+     *
+     * @return String
+     */
+    public String getIconAlign()  {
+        return getAttributeAsString("iconAlign");
+    }
+
+    /**
+     * Height in pixels of the icon image. <P> If unset, defaults to <code>iconSize</code>
+     *
+     * @param iconHeight iconHeight Default value is null
+     * @throws IllegalStateException this property cannot be changed after the component has been created
+     */
+    public void setIconHeight(Integer iconHeight)  throws IllegalStateException {
+        setAttribute("iconHeight", iconHeight, false);
+    }
+
+    /**
+     * Height in pixels of the icon image. <P> If unset, defaults to <code>iconSize</code>
+     *
+     *
+     * @return Integer
+     */
+    public Integer getIconHeight()  {
+        return getAttributeAsInt("iconHeight");
+    }
+
+    /**
+     * If this button is showing an icon should it appear to the left or right of the title? valid options are
+     * <code>"left"</code> and <code>"right"</code>.
+     * Changes the orientation of the icon relative to the text of the button.
+     *
+     * @param iconOrientation The new orientation of the icon relative to the text of the button.. Default value is "left"
+     * @throws IllegalStateException this property cannot be changed after the component has been created
+     */
+    public void setIconOrientation(String iconOrientation)  throws IllegalStateException {
+        setAttribute("iconOrientation", iconOrientation, false);
+    }
+
+    /**
+     * If this button is showing an icon should it appear to the left or right of the title? valid options are
+     * <code>"left"</code> and <code>"right"</code>.
+     *
+     *
+     * @return String
+     */
+    public String getIconOrientation()  {
+        return getAttributeAsString("iconOrientation");
+    }
+
+    /**
+     * Size in pixels of the icon image. <P> The <code>iconWidth</code> and <code>iconHeight</code> properties can be used to
+     * configure width and height separately.
+     *
+     * @param iconSize iconSize Default value is 16
+     * @throws IllegalStateException this property cannot be changed after the component has been created
+     */
+    public void setIconSize(int iconSize)  throws IllegalStateException {
+        setAttribute("iconSize", iconSize, false);
+    }
+
+    /**
+     * Size in pixels of the icon image. <P> The <code>iconWidth</code> and <code>iconHeight</code> properties can be used to
+     * configure width and height separately.
+     *
+     *
+     * @return int
+     */
+    public int getIconSize()  {
+        return getAttributeAsInt("iconSize");
+    }
+
+    /**
+     * Width in pixels of the icon image. <P> If unset, defaults to <code>iconSize</code>
+     *
+     * @param iconWidth iconWidth Default value is null
+     * @throws IllegalStateException this property cannot be changed after the component has been created
+     */
+    public void setIconWidth(Integer iconWidth)  throws IllegalStateException {
+        setAttribute("iconWidth", iconWidth, false);
+    }
+
+    /**
+     * Width in pixels of the icon image. <P> If unset, defaults to <code>iconSize</code>
+     *
+     *
+     * @return Integer
+     */
+    public Integer getIconWidth()  {
+        return getAttributeAsInt("iconWidth");
     }
 
     /**
@@ -472,25 +368,211 @@ public class Button extends StatefulCanvas  implements com.smartgwt.client.widge
     public String getRadioGroup()  {
         return getAttributeAsString("radioGroup");
     }
-             
+
     /**
-     * Behavior on state changes -- BUTTON, RADIO or CHECKBOX
-     * Update the 'actionType' for this canvas (radio / checkbox / button) If the canvas is currently selected, and the passed in actionType is 'button' this method will deselect the canvas.
+     * Whether this component is selected.  For some components, selection affects appearance.
+     * Select this object.
      *
-     * @param actionType actionType Default value is "button"
+     * @param selected selected Default value is false
      */
-    public void setActionType(SelectionType actionType) {
-        setAttribute("actionType", actionType.getValue(), true);
+    public void setSelected(Boolean selected) {
+        setAttribute("selected", selected, true);
     }
 
     /**
-     * Behavior on state changes -- BUTTON, RADIO or CHECKBOX
+     * Whether this component is selected.  For some components, selection affects appearance.
      *
      *
-     * @return Return the 'actionType' for this canvas (radio / checkbox / button)
+     * @return Boolean
      */
-    public SelectionType getActionType()  {
-        return EnumUtil.getEnum(SelectionType.values(), getAttribute("actionType"));
+    public Boolean getSelected()  {
+        return getAttributeAsBoolean("selected");
+    }
+
+    /**
+     * Should we visibly change state when disabled?
+     *
+     * @param showDisabled showDisabled Default value is true
+     */
+    public void setShowDisabled(Boolean showDisabled) {
+        setAttribute("showDisabled", showDisabled, true);
+    }
+
+    /**
+     * Should we visibly change state when disabled?
+     *
+     *
+     * @return Boolean
+     */
+    public Boolean getShowDisabled()  {
+        return getAttributeAsBoolean("showDisabled");
+    }
+
+    /**
+     * If using an icon for this button, whether to switch the icon image if the button becomes disabled.
+     *
+     * @param showDisabledIcon showDisabledIcon Default value is true
+     * @throws IllegalStateException this property cannot be changed after the component has been created
+     */
+    public void setShowDisabledIcon(Boolean showDisabledIcon)  throws IllegalStateException {
+        setAttribute("showDisabledIcon", showDisabledIcon, false);
+    }
+
+    /**
+     * If using an icon for this button, whether to switch the icon image if the button becomes disabled.
+     *
+     *
+     * @return Boolean
+     */
+    public Boolean getShowDisabledIcon()  {
+        return getAttributeAsBoolean("showDisabledIcon");
+    }
+
+    /**
+     * Should we visibly change state when the mouse goes down in this object?
+     *
+     * @param showDown showDown Default value is false
+     */
+    public void setShowDown(Boolean showDown) {
+        setAttribute("showDown", showDown, true);
+    }
+
+    /**
+     * Should we visibly change state when the mouse goes down in this object?
+     *
+     *
+     * @return Boolean
+     */
+    public Boolean getShowDown()  {
+        return getAttributeAsBoolean("showDown");
+    }
+
+    /**
+     * If using an icon for this button, whether to switch the icon image when the mouse goes down on the button.
+     *
+     * @param showDownIcon showDownIcon Default value is false
+     * @throws IllegalStateException this property cannot be changed after the component has been created
+     */
+    public void setShowDownIcon(Boolean showDownIcon)  throws IllegalStateException {
+        setAttribute("showDownIcon", showDownIcon, false);
+    }
+
+    /**
+     * If using an icon for this button, whether to switch the icon image when the mouse goes down on the button.
+     *
+     *
+     * @return Boolean
+     */
+    public Boolean getShowDownIcon()  {
+        return getAttributeAsBoolean("showDownIcon");
+    }
+
+    /**
+     * Should we visibly change state when the canvas recieves focus?  If {@link
+     * com.smartgwt.client.widgets.StatefulCanvas#getShowFocusedAsOver showFocusedAsOver} is <code>true</code>, the
+     * <b><code>"over"</code></b> will be used to indicate focus. Otherwise a separate <b><code>"focused"</code></b> state will
+     * be used.
+     *
+     * @param showFocused showFocused Default value is false
+     */
+    public void setShowFocused(Boolean showFocused) {
+        setAttribute("showFocused", showFocused, true);
+    }
+
+    /**
+     * Should we visibly change state when the canvas recieves focus?  If {@link
+     * com.smartgwt.client.widgets.StatefulCanvas#getShowFocusedAsOver showFocusedAsOver} is <code>true</code>, the
+     * <b><code>"over"</code></b> will be used to indicate focus. Otherwise a separate <b><code>"focused"</code></b> state will
+     * be used.
+     *
+     *
+     * @return Boolean
+     */
+    public Boolean getShowFocused()  {
+        return getAttributeAsBoolean("showFocused");
+    }
+
+    /**
+     * If using an icon for this button, whether to switch the icon image when the button recieves focus. <P> If {@link
+     * com.smartgwt.client.widgets.StatefulCanvas#getShowFocusedAsOver showFocusedAsOver} is true, the <code>"Over"</code> icon
+     * will be displayed when the canvas has focus, otherwise a seperate <code>"Focused"</code> icon will be displayed
+     *
+     * @param showFocusedIcon showFocusedIcon Default value is false
+     * @throws IllegalStateException this property cannot be changed after the component has been created
+     */
+    public void setShowFocusedIcon(Boolean showFocusedIcon)  throws IllegalStateException {
+        setAttribute("showFocusedIcon", showFocusedIcon, false);
+    }
+
+    /**
+     * If using an icon for this button, whether to switch the icon image when the button recieves focus. <P> If {@link
+     * com.smartgwt.client.widgets.StatefulCanvas#getShowFocusedAsOver showFocusedAsOver} is true, the <code>"Over"</code> icon
+     * will be displayed when the canvas has focus, otherwise a seperate <code>"Focused"</code> icon will be displayed
+     *
+     *
+     * @return Boolean
+     */
+    public Boolean getShowFocusedIcon()  {
+        return getAttributeAsBoolean("showFocusedIcon");
+    }
+
+    /**
+     * Should we visibly change state when the mouse goes over this object?
+     *
+     * @param showRollOver showRollOver Default value is false
+     */
+    public void setShowRollOver(Boolean showRollOver) {
+        setAttribute("showRollOver", showRollOver, true);
+    }
+
+    /**
+     * Should we visibly change state when the mouse goes over this object?
+     *
+     *
+     * @return Boolean
+     */
+    public Boolean getShowRollOver()  {
+        return getAttributeAsBoolean("showRollOver");
+    }
+
+    /**
+     * If using an icon for this button, whether to switch the icon image on mouse rollover.
+     *
+     * @param showRollOverIcon showRollOverIcon Default value is false
+     * @throws IllegalStateException this property cannot be changed after the component has been created
+     */
+    public void setShowRollOverIcon(Boolean showRollOverIcon)  throws IllegalStateException {
+        setAttribute("showRollOverIcon", showRollOverIcon, false);
+    }
+
+    /**
+     * If using an icon for this button, whether to switch the icon image on mouse rollover.
+     *
+     *
+     * @return Boolean
+     */
+    public Boolean getShowRollOverIcon()  {
+        return getAttributeAsBoolean("showRollOverIcon");
+    }
+
+    /**
+     * If using an icon for this button, whether to switch the icon image when the button becomes selected.
+     *
+     * @param showSelectedIcon showSelectedIcon Default value is false
+     * @throws IllegalStateException this property cannot be changed after the component has been created
+     */
+    public void setShowSelectedIcon(Boolean showSelectedIcon)  throws IllegalStateException {
+        setAttribute("showSelectedIcon", showSelectedIcon, false);
+    }
+
+    /**
+     * If using an icon for this button, whether to switch the icon image when the button becomes selected.
+     *
+     *
+     * @return Boolean
+     */
+    public Boolean getShowSelectedIcon()  {
+        return getAttributeAsBoolean("showSelectedIcon");
     }
              
     /**
@@ -527,105 +609,23 @@ public class Button extends StatefulCanvas  implements com.smartgwt.client.widge
     }
 
     /**
-     * Should we visibly change state when disabled?
+     * The text title to display in this button.
+     * Set the title.
      *
-     * @param showDisabled showDisabled Default value is true
+     * @param title new title. Default value is varies
      */
-    public void setShowDisabled(Boolean showDisabled) {
-        setAttribute("showDisabled", showDisabled, true);
+    public void setTitle(String title) {
+        setAttribute("title", title, true);
     }
 
     /**
-     * Should we visibly change state when disabled?
+     * The text title to display in this button.
      *
      *
-     * @return Boolean
+     * @return Return the title - text/HTML drawn inside the component. <p> Default is to simply return this.title.
      */
-    public Boolean getShowDisabled()  {
-        return getAttributeAsBoolean("showDisabled");
-    }
-
-    /**
-     * Should we visibly change state when the mouse goes down in this object?
-     *
-     * @param showDown showDown Default value is false
-     */
-    public void setShowDown(Boolean showDown) {
-        setAttribute("showDown", showDown, true);
-    }
-
-    /**
-     * Should we visibly change state when the mouse goes down in this object?
-     *
-     *
-     * @return Boolean
-     */
-    public Boolean getShowDown()  {
-        return getAttributeAsBoolean("showDown");
-    }
-
-    /**
-     * Should we visibly change state when the canvas recieves focus?  If {@link
-     * com.smartgwt.client.widgets.StatefulCanvas#getShowFocusedAsOver showFocusedAsOver} is <code>true</code>, the
-     * <b><code>"over"</code></b> will be used to indicate focus. Otherwise a separate <b><code>"focused"</code></b> state will
-     * be used.
-     *
-     * @param showFocused showFocused Default value is false
-     */
-    public void setShowFocused(Boolean showFocused) {
-        setAttribute("showFocused", showFocused, true);
-    }
-
-    /**
-     * Should we visibly change state when the canvas recieves focus?  If {@link
-     * com.smartgwt.client.widgets.StatefulCanvas#getShowFocusedAsOver showFocusedAsOver} is <code>true</code>, the
-     * <b><code>"over"</code></b> will be used to indicate focus. Otherwise a separate <b><code>"focused"</code></b> state will
-     * be used.
-     *
-     *
-     * @return Boolean
-     */
-    public Boolean getShowFocused()  {
-        return getAttributeAsBoolean("showFocused");
-    }
-
-    /**
-     * Should we visibly change state when the mouse goes over this object?
-     *
-     * @param showRollOver showRollOver Default value is false
-     */
-    public void setShowRollOver(Boolean showRollOver) {
-        setAttribute("showRollOver", showRollOver, true);
-    }
-
-    /**
-     * Should we visibly change state when the mouse goes over this object?
-     *
-     *
-     * @return Boolean
-     */
-    public Boolean getShowRollOver()  {
-        return getAttributeAsBoolean("showRollOver");
-    }
-             
-    /**
-     * Horizontal alignment of this component's title.
-     * Sets the (horizontal) alignment of this buttons content.
-     *
-     * @param align align Default value is Canvas.CENTER
-     */
-    public void setAlign(Alignment align) {
-        setAttribute("align", align.getValue(), true);
-    }
-
-    /**
-     * Horizontal alignment of this component's title.
-     *
-     *
-     * @return Alignment
-     */
-    public Alignment getAlign()  {
-        return EnumUtil.getEnum(Alignment.values(), getAttribute("align"));
+    public String getTitle()  {
+        return getAttributeAsString("title");
     }
              
     /**
@@ -671,34 +671,11 @@ public class Button extends StatefulCanvas  implements com.smartgwt.client.widge
     // ********************* Methods ***********************
             
     /**
-     * Select this object.
+     * This property contains the default 'action' for the Button to fire when activated.
      */
-    public native void select() /*-{
+    public native void action() /*-{
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
-        self.select();
-    }-*/;
-            
-    /**
-     * Select this object.
-     */
-    public native void deselect() /*-{
-        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
-        self.deselect();
-    }-*/;
-            
-    /**
-     * Find out if this object is selected
-     *
-     * @return 
-     */
-    public native Boolean isSelected() /*-{
-        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
-        var retVal =self.isSelected();
-        if(retVal == null || retVal === undefined) {
-            return null;
-        } else {
-            return @com.smartgwt.client.util.JSOHelper::toBoolean(Z)(retVal);
-        }
+        self.action();
     }-*/;
             
     /**
@@ -713,50 +690,11 @@ public class Button extends StatefulCanvas  implements com.smartgwt.client.widge
     }-*/;
             
     /**
-     * Remove this widget from the specified mutually exclusive selection group with the ID passed in. No-op's if this widget
-     * is not a member of the groupID passed in. If no groupID is passed in, defaults to removing from whatever radioGroup this
-     * widget is a member of.
+     * Select this object.
      */
-    public native void removeFromRadioGroup() /*-{
+    public native void deselect() /*-{
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
-        self.removeFromRadioGroup();
-    }-*/;
-
-    /**
-     * Remove this widget from the specified mutually exclusive selection group with the ID passed in. No-op's if this widget
-     * is not a member of the groupID passed in. If no groupID is passed in, defaults to removing from whatever radioGroup this
-     * widget is a member of.
-     * @param groupID - optional radio group ID (to ensure the widget is removed                                        from the appropriate
-     * group.
-     */
-    public native void removeFromRadioGroup(String groupID) /*-{
-        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
-        self.removeFromRadioGroup(groupID);
-    }-*/;
-            
-    /**
-     * Enable or disable this object
-     * @param disabled true if this widget is to be disabled
-     */
-    public native void setDisabled(boolean disabled) /*-{
-        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
-        self.setDisabled(disabled);
-    }-*/;
-            
-    /**
-     * This property contains the default 'action' for the Button to fire when activated.
-     */
-    public native void action() /*-{
-        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
-        self.action();
-    }-*/;
-            
-    /**
-     * Sets the vertical alignment of this buttons content.
-     */
-    public native void setVAlign() /*-{
-        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
-        self.setVAlign();
+        self.deselect();
     }-*/;
     /**
      * Add a iconClick handler.
@@ -793,6 +731,68 @@ public class Button extends StatefulCanvas  implements com.smartgwt.client.widge
                });
         }
    }-*/;
+            
+    /**
+     * Find out if this object is selected
+     *
+     * @return 
+     */
+    public native Boolean isSelected() /*-{
+        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
+        var retVal =self.isSelected();
+        if(retVal == null || retVal === undefined) {
+            return null;
+        } else {
+            return @com.smartgwt.client.util.JSOHelper::toBoolean(Z)(retVal);
+        }
+    }-*/;
+            
+    /**
+     * Remove this widget from the specified mutually exclusive selection group with the ID passed in. No-op's if this widget
+     * is not a member of the groupID passed in. If no groupID is passed in, defaults to removing from whatever radioGroup this
+     * widget is a member of.
+     */
+    public native void removeFromRadioGroup() /*-{
+        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
+        self.removeFromRadioGroup();
+    }-*/;
+
+    /**
+     * Remove this widget from the specified mutually exclusive selection group with the ID passed in. No-op's if this widget
+     * is not a member of the groupID passed in. If no groupID is passed in, defaults to removing from whatever radioGroup this
+     * widget is a member of.
+     * @param groupID - optional radio group ID (to ensure the widget is removed                                        from the appropriate
+     * group.
+     */
+    public native void removeFromRadioGroup(String groupID) /*-{
+        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
+        self.removeFromRadioGroup(groupID);
+    }-*/;
+            
+    /**
+     * Select this object.
+     */
+    public native void select() /*-{
+        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
+        self.select();
+    }-*/;
+            
+    /**
+     * Enable or disable this object
+     * @param disabled true if this widget is to be disabled
+     */
+    public native void setDisabled(boolean disabled) /*-{
+        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
+        self.setDisabled(disabled);
+    }-*/;
+            
+    /**
+     * Sets the vertical alignment of this buttons content.
+     */
+    public native void setVAlign() /*-{
+        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
+        self.setVAlign();
+    }-*/;
 
     // ********************* Static Methods ***********************
 

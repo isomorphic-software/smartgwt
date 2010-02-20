@@ -93,25 +93,6 @@ public class StaticTextItem extends FormItem {
     // ********************* Properties / Attributes ***********************
 
     /**
-     * If true, item contents can wrap. If false, all the contents should appear on a single line.
-     *
-     * @param wrap wrap Default value is true
-     */
-    public void setWrap(Boolean wrap) {
-        setAttribute("wrap", wrap);
-    }
-
-    /**
-     * If true, item contents can wrap. If false, all the contents should appear on a single line.
-     *
-     *
-     * @return Boolean
-     */
-    public Boolean getWrap()  {
-        return getAttributeAsBoolean("wrap");
-    }
-
-    /**
      * If true, text that exceeds the specified size of the form item will be clipped
      *
      * @param clipValue clipValue Default value is false
@@ -128,25 +109,6 @@ public class StaticTextItem extends FormItem {
      */
     public Boolean getClipValue()  {
         return getAttributeAsBoolean("clipValue");
-    }
-
-    /**
-     * Base CSS class for this item
-     *
-     * @param textBoxStyle textBoxStyle Default value is "staticTextItem"
-     */
-    public void setTextBoxStyle(String textBoxStyle) {
-        setAttribute("textBoxStyle", textBoxStyle);
-    }
-
-    /**
-     * Base CSS class for this item
-     *
-     *
-     * @return String
-     */
-    public String getTextBoxStyle()  {
-        return getAttributeAsString("textBoxStyle");
     }
 
     /**
@@ -170,6 +132,44 @@ public class StaticTextItem extends FormItem {
      */
     public Boolean getOutputAsHTML()  {
         return getAttributeAsBoolean("outputAsHTML");
+    }
+
+    /**
+     * Base CSS class for this item
+     *
+     * @param textBoxStyle textBoxStyle Default value is "staticTextItem"
+     */
+    public void setTextBoxStyle(String textBoxStyle) {
+        setAttribute("textBoxStyle", textBoxStyle);
+    }
+
+    /**
+     * Base CSS class for this item
+     *
+     *
+     * @return String
+     */
+    public String getTextBoxStyle()  {
+        return getAttributeAsString("textBoxStyle");
+    }
+
+    /**
+     * If true, item contents can wrap. If false, all the contents should appear on a single line.
+     *
+     * @param wrap wrap Default value is true
+     */
+    public void setWrap(Boolean wrap) {
+        setAttribute("wrap", wrap);
+    }
+
+    /**
+     * If true, item contents can wrap. If false, all the contents should appear on a single line.
+     *
+     *
+     * @return Boolean
+     */
+    public Boolean getWrap()  {
+        return getAttributeAsBoolean("wrap");
     }
 
     // ********************* Methods ***********************

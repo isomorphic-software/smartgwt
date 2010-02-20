@@ -93,25 +93,6 @@ public class TextAreaItem extends FormItem {
     // ********************* Properties / Attributes ***********************
 
     /**
-     * default width of this item
-     *
-     * @param width width Default value is 150
-     */
-    public void setWidth(int width) {
-        setAttribute("width", width);
-    }
-
-    /**
-     * default width of this item
-     *
-     *
-     * @return int
-     */
-    public int getWidth()  {
-        return getAttributeAsInt("width");
-    }
-
-    /**
      * default height of this item
      *
      * @param height height Default value is 100
@@ -128,27 +109,6 @@ public class TextAreaItem extends FormItem {
      */
     public int getHeight()  {
         return getAttributeAsInt("height");
-    }
-
-    /**
-     * Base CSS class to apply to this item's input element. NOTE: See the CompoundFormItem_skinning discussion for special
-     * skinning considerations.
-     *
-     * @param textBoxStyle textBoxStyle Default value is "textItem"
-     */
-    public void setTextBoxStyle(String textBoxStyle) {
-        setAttribute("textBoxStyle", textBoxStyle);
-    }
-
-    /**
-     * Base CSS class to apply to this item's input element. NOTE: See the CompoundFormItem_skinning discussion for special
-     * skinning considerations.
-     *
-     *
-     * @return String
-     */
-    public String getTextBoxStyle()  {
-        return getAttributeAsString("textBoxStyle");
     }
              
     /**
@@ -217,25 +177,47 @@ public class TextAreaItem extends FormItem {
         return getAttributeAsBoolean("showHintInField");
     }
 
+    /**
+     * Base CSS class to apply to this item's input element. NOTE: See the CompoundFormItem_skinning discussion for special
+     * skinning considerations.
+     *
+     * @param textBoxStyle textBoxStyle Default value is "textItem"
+     */
+    public void setTextBoxStyle(String textBoxStyle) {
+        setAttribute("textBoxStyle", textBoxStyle);
+    }
+
+    /**
+     * Base CSS class to apply to this item's input element. NOTE: See the CompoundFormItem_skinning discussion for special
+     * skinning considerations.
+     *
+     *
+     * @return String
+     */
+    public String getTextBoxStyle()  {
+        return getAttributeAsString("textBoxStyle");
+    }
+
+    /**
+     * default width of this item
+     *
+     * @param width width Default value is 150
+     */
+    public void setWidth(int width) {
+        setAttribute("width", width);
+    }
+
+    /**
+     * default width of this item
+     *
+     *
+     * @return int
+     */
+    public int getWidth()  {
+        return getAttributeAsInt("width");
+    }
+
     // ********************* Methods ***********************
-            
-    /**
-     * Puts focus into this form item and selects characters between the given indices. Only applies to drawn text based items.
-     * @param start selection starting character index
-     * @param end end of selection character index
-     */
-    public native void setSelectionRange(int start, int end) /*-{
-        var self = this.@com.smartgwt.client.core.DataClass::getJsObj()();
-        self.setSelectionRange(start, end);
-    }-*/;
-            
-    /**
-     * Put focus in this item and select the entire value. Only applies to text based items
-     */
-    public native void selectValue() /*-{
-        var self = this.@com.smartgwt.client.core.DataClass::getJsObj()();
-        self.selectValue();
-    }-*/;
             
     /**
      * If this item currently has focus, clear the current selection. leaving focus in the item. Has no effect if the item is
@@ -255,6 +237,24 @@ public class TextAreaItem extends FormItem {
     public native void deselectValue(boolean start) /*-{
         var self = this.@com.smartgwt.client.core.DataClass::getJsObj()();
         self.deselectValue(start);
+    }-*/;
+            
+    /**
+     * Put focus in this item and select the entire value. Only applies to text based items
+     */
+    public native void selectValue() /*-{
+        var self = this.@com.smartgwt.client.core.DataClass::getJsObj()();
+        self.selectValue();
+    }-*/;
+            
+    /**
+     * Puts focus into this form item and selects characters between the given indices. Only applies to drawn text based items.
+     * @param start selection starting character index
+     * @param end end of selection character index
+     */
+    public native void setSelectionRange(int start, int end) /*-{
+        var self = this.@com.smartgwt.client.core.DataClass::getJsObj()();
+        self.setSelectionRange(start, end);
     }-*/;
 
     // ********************* Static Methods ***********************

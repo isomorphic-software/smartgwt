@@ -76,22 +76,43 @@ public class JSONEncoder extends DataClass {
     // ********************* Properties / Attributes ***********************
 
     /**
-     * If false, output all Smart GWT objects with a call to ${isc.DocUtils.linkForRef('isc.echoLeaf')}
+     * The string marker used to represent circular references.  See {@link
+     * com.smartgwt.client.util.JSONEncoder#getCircularReferenceMode circularReferenceMode}.
      *
-     * @param serializeInstances serializeInstances Default value is true
+     * @param circularReferenceMarker circularReferenceMarker Default value is "$$BACKREF$$"
      */
-    public void setSerializeInstances(Boolean serializeInstances) {
-        setAttribute("serializeInstances", serializeInstances);
+    public void setCircularReferenceMarker(String circularReferenceMarker) {
+        setAttribute("circularReferenceMarker", circularReferenceMarker);
     }
 
     /**
-     * If false, output all Smart GWT objects with a call to ${isc.DocUtils.linkForRef('isc.echoLeaf')}
+     * The string marker used to represent circular references.  See {@link
+     * com.smartgwt.client.util.JSONEncoder#getCircularReferenceMode circularReferenceMode}.
      *
      *
-     * @return Boolean
+     * @return String
      */
-    public Boolean getSerializeInstances()  {
-        return getAttributeAsBoolean("serializeInstances");
+    public String getCircularReferenceMarker()  {
+        return getAttributeAsString("circularReferenceMarker");
+    }
+             
+    /**
+     * What the JSONEncoder should do if it encounters a circular reference.
+     *
+     * @param circularReferenceMode circularReferenceMode Default value is "path"
+     */
+    public void setCircularReferenceMode(JSONCircularReferenceMode circularReferenceMode) {
+        setAttribute("circularReferenceMode", circularReferenceMode.getValue());
+    }
+
+    /**
+     * What the JSONEncoder should do if it encounters a circular reference.
+     *
+     *
+     * @return JSONCircularReferenceMode
+     */
+    public JSONCircularReferenceMode getCircularReferenceMode()  {
+        return EnumUtil.getEnum(JSONCircularReferenceMode.values(), getAttribute("circularReferenceMode"));
     }
              
     /**
@@ -113,6 +134,48 @@ public class JSONEncoder extends DataClass {
      */
     public JSONDateFormat getDateFormat()  {
         return EnumUtil.getEnum(JSONDateFormat.values(), getAttribute("dateFormat"));
+    }
+
+    /**
+     * Whether to add indentation to the returned JSON string.  This makes the returned JSON much easier to read but adds size.
+     * Note that when delivering JSON responses compressed, the size difference between prettyPrinted JSON and normal JSON is
+     * negligible.
+     *
+     * @param prettyPrint prettyPrint Default value is true
+     */
+    public void setPrettyPrint(Boolean prettyPrint) {
+        setAttribute("prettyPrint", prettyPrint);
+    }
+
+    /**
+     * Whether to add indentation to the returned JSON string.  This makes the returned JSON much easier to read but adds size.
+     * Note that when delivering JSON responses compressed, the size difference between prettyPrinted JSON and normal JSON is
+     * negligible.
+     *
+     *
+     * @return Boolean
+     */
+    public Boolean getPrettyPrint()  {
+        return getAttributeAsBoolean("prettyPrint");
+    }
+
+    /**
+     * If false, output all Smart GWT objects with a call to ${isc.DocUtils.linkForRef('isc.echoLeaf')}
+     *
+     * @param serializeInstances serializeInstances Default value is true
+     */
+    public void setSerializeInstances(Boolean serializeInstances) {
+        setAttribute("serializeInstances", serializeInstances);
+    }
+
+    /**
+     * If false, output all Smart GWT objects with a call to ${isc.DocUtils.linkForRef('isc.echoLeaf')}
+     *
+     *
+     * @return Boolean
+     */
+    public Boolean getSerializeInstances()  {
+        return getAttributeAsBoolean("serializeInstances");
     }
 
     /**
@@ -140,69 +203,6 @@ public class JSONEncoder extends DataClass {
      */
     public Boolean getStrictQuoting()  {
         return getAttributeAsBoolean("strictQuoting");
-    }
-             
-    /**
-     * What the JSONEncoder should do if it encounters a circular reference.
-     *
-     * @param circularReferenceMode circularReferenceMode Default value is "path"
-     */
-    public void setCircularReferenceMode(JSONCircularReferenceMode circularReferenceMode) {
-        setAttribute("circularReferenceMode", circularReferenceMode.getValue());
-    }
-
-    /**
-     * What the JSONEncoder should do if it encounters a circular reference.
-     *
-     *
-     * @return JSONCircularReferenceMode
-     */
-    public JSONCircularReferenceMode getCircularReferenceMode()  {
-        return EnumUtil.getEnum(JSONCircularReferenceMode.values(), getAttribute("circularReferenceMode"));
-    }
-
-    /**
-     * The string marker used to represent circular references.  See {@link
-     * com.smartgwt.client.util.JSONEncoder#getCircularReferenceMode circularReferenceMode}.
-     *
-     * @param circularReferenceMarker circularReferenceMarker Default value is "$$BACKREF$$"
-     */
-    public void setCircularReferenceMarker(String circularReferenceMarker) {
-        setAttribute("circularReferenceMarker", circularReferenceMarker);
-    }
-
-    /**
-     * The string marker used to represent circular references.  See {@link
-     * com.smartgwt.client.util.JSONEncoder#getCircularReferenceMode circularReferenceMode}.
-     *
-     *
-     * @return String
-     */
-    public String getCircularReferenceMarker()  {
-        return getAttributeAsString("circularReferenceMarker");
-    }
-
-    /**
-     * Whether to add indentation to the returned JSON string.  This makes the returned JSON much easier to read but adds size.
-     * Note that when delivering JSON responses compressed, the size difference between prettyPrinted JSON and normal JSON is
-     * negligible.
-     *
-     * @param prettyPrint prettyPrint Default value is true
-     */
-    public void setPrettyPrint(Boolean prettyPrint) {
-        setAttribute("prettyPrint", prettyPrint);
-    }
-
-    /**
-     * Whether to add indentation to the returned JSON string.  This makes the returned JSON much easier to read but adds size.
-     * Note that when delivering JSON responses compressed, the size difference between prettyPrinted JSON and normal JSON is
-     * negligible.
-     *
-     *
-     * @return Boolean
-     */
-    public Boolean getPrettyPrint()  {
-        return getAttributeAsBoolean("prettyPrint");
     }
 
     // ********************* Methods ***********************

@@ -87,25 +87,6 @@ public class RadioGroupItem extends FormItem {
     // ********************* Properties / Attributes ***********************
 
     /**
-     * True == display options vertically, false == display in a single row
-     *
-     * @param vertical vertical Default value is true
-     */
-    public void setVertical(Boolean vertical) {
-        setAttribute("vertical", vertical);
-    }
-
-    /**
-     * True == display options vertically, false == display in a single row
-     *
-     *
-     * @return Boolean
-     */
-    public Boolean getVertical()  {
-        return getAttributeAsBoolean("vertical");
-    }
-
-    /**
      * Base CSS class applied to the text for items within this radiogroup.
      *
      * @param textBoxStyle textBoxStyle Default value is "labelAnchor"
@@ -122,6 +103,25 @@ public class RadioGroupItem extends FormItem {
      */
     public String getTextBoxStyle()  {
         return getAttributeAsString("textBoxStyle");
+    }
+
+    /**
+     * True == display options vertically, false == display in a single row
+     *
+     * @param vertical vertical Default value is true
+     */
+    public void setVertical(Boolean vertical) {
+        setAttribute("vertical", vertical);
+    }
+
+    /**
+     * True == display options vertically, false == display in a single row
+     *
+     *
+     * @return Boolean
+     */
+    public Boolean getVertical()  {
+        return getAttributeAsBoolean("vertical");
     }
 
     /**

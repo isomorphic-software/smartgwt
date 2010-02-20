@@ -87,27 +87,6 @@ public class Portlet extends Window {
     // ********************* Properties / Attributes ***********************
 
     /**
-     * If true, {@link com.smartgwt.client.widgets.layout.Portlet#getCloseConfirmationMessage closeConfirmationMessage} will be
-     * displayed before portlets are closed
-     *
-     * @param showCloseConfirmationMessage showCloseConfirmationMessage Default value is true
-     */
-    public void setShowCloseConfirmationMessage(Boolean showCloseConfirmationMessage) {
-        setAttribute("showCloseConfirmationMessage", showCloseConfirmationMessage, true);
-    }
-
-    /**
-     * If true, {@link com.smartgwt.client.widgets.layout.Portlet#getCloseConfirmationMessage closeConfirmationMessage} will be
-     * displayed before portlets are closed
-     *
-     *
-     * @return Boolean
-     */
-    public Boolean getShowCloseConfirmationMessage()  {
-        return getAttributeAsBoolean("showCloseConfirmationMessage");
-    }
-
-    /**
      * Confirmation message to show the user when closing portlets if {@link
      * com.smartgwt.client.widgets.layout.Portlet#getShowCloseConfirmationMessage showCloseConfirmationMessage} is true.
      *
@@ -126,6 +105,27 @@ public class Portlet extends Window {
      */
     public String getCloseConfirmationMessage()  {
         return getAttributeAsString("closeConfirmationMessage");
+    }
+
+    /**
+     * If true, {@link com.smartgwt.client.widgets.layout.Portlet#getCloseConfirmationMessage closeConfirmationMessage} will be
+     * displayed before portlets are closed
+     *
+     * @param showCloseConfirmationMessage showCloseConfirmationMessage Default value is true
+     */
+    public void setShowCloseConfirmationMessage(Boolean showCloseConfirmationMessage) {
+        setAttribute("showCloseConfirmationMessage", showCloseConfirmationMessage, true);
+    }
+
+    /**
+     * If true, {@link com.smartgwt.client.widgets.layout.Portlet#getCloseConfirmationMessage closeConfirmationMessage} will be
+     * displayed before portlets are closed
+     *
+     *
+     * @return Boolean
+     */
+    public Boolean getShowCloseConfirmationMessage()  {
+        return getAttributeAsBoolean("showCloseConfirmationMessage");
     }
 
     // ********************* Methods ***********************

@@ -93,6 +93,44 @@ public class ToolbarItem extends CanvasItem {
     // ********************* Properties / Attributes ***********************
 
     /**
+     * If specified this baseStyle will be applied to the buttons in this toolbar.
+     *
+     * @param buttonBaseStyle buttonBaseStyle Default value is null
+     */
+    public void setButtonBaseStyle(String buttonBaseStyle) {
+        setAttribute("buttonBaseStyle", buttonBaseStyle);
+    }
+
+    /**
+     * If specified this baseStyle will be applied to the buttons in this toolbar.
+     *
+     *
+     * @return String
+     */
+    public String getButtonBaseStyle()  {
+        return getAttributeAsString("buttonBaseStyle");
+    }
+
+    /**
+     * these items are in a row by themselves by default
+     *
+     * @param endRow endRow Default value is true
+     */
+    public void setEndRow(Boolean endRow) {
+        setAttribute("endRow", endRow);
+    }
+
+    /**
+     * these items are in a row by themselves by default
+     *
+     *
+     * @return Boolean
+     */
+    public Boolean getEndRow()  {
+        return getAttributeAsBoolean("endRow");
+    }
+
+    /**
      * Don't show a title for toolbars
      *
      * @param showTitle showTitle Default value is false
@@ -131,25 +169,6 @@ public class ToolbarItem extends CanvasItem {
     }
 
     /**
-     * these items are in a row by themselves by default
-     *
-     * @param endRow endRow Default value is true
-     */
-    public void setEndRow(Boolean endRow) {
-        setAttribute("endRow", endRow);
-    }
-
-    /**
-     * these items are in a row by themselves by default
-     *
-     *
-     * @return Boolean
-     */
-    public Boolean getEndRow()  {
-        return getAttributeAsBoolean("endRow");
-    }
-
-    /**
      * Should the toolbar stack its buttons vertically or horizontally?
      * <p><b>Note : </b> This is an advanced setting</p>
      *
@@ -167,25 +186,6 @@ public class ToolbarItem extends CanvasItem {
      */
     public Boolean getVertical()  {
         return getAttributeAsBoolean("vertical");
-    }
-
-    /**
-     * If specified this baseStyle will be applied to the buttons in this toolbar.
-     *
-     * @param buttonBaseStyle buttonBaseStyle Default value is null
-     */
-    public void setButtonBaseStyle(String buttonBaseStyle) {
-        setAttribute("buttonBaseStyle", buttonBaseStyle);
-    }
-
-    /**
-     * If specified this baseStyle will be applied to the buttons in this toolbar.
-     *
-     *
-     * @return String
-     */
-    public String getButtonBaseStyle()  {
-        return getAttributeAsString("buttonBaseStyle");
     }
 
     // ********************* Methods ***********************

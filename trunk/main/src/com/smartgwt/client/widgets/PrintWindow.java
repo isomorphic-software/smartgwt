@@ -88,25 +88,6 @@ public class PrintWindow extends Window {
     // ********************* Properties / Attributes ***********************
 
     /**
-     * Title for the print window
-     *
-     * @param title title Default value is "Print Preview"
-     */
-    public void setTitle(String title) {
-        setAttribute("title", title, true);
-    }
-
-    /**
-     * Title for the print window
-     *
-     *
-     * @return String
-     */
-    public String getTitle()  {
-        return getAttributeAsString("title");
-    }
-
-    /**
      * Title for the print button
      * Setter for title for the print button
      *
@@ -124,6 +105,25 @@ public class PrintWindow extends Window {
      */
     public String getPrintButtonTitle()  {
         return getAttributeAsString("printButtonTitle");
+    }
+
+    /**
+     * Title for the print window
+     *
+     * @param title title Default value is "Print Preview"
+     */
+    public void setTitle(String title) {
+        setAttribute("title", title, true);
+    }
+
+    /**
+     * Title for the print window
+     *
+     *
+     * @return String
+     */
+    public String getTitle()  {
+        return getAttributeAsString("title");
     }
 
     // ********************* Methods ***********************

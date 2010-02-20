@@ -87,6 +87,25 @@ public class ToolStripSeparator extends Img {
     // ********************* Properties / Attributes ***********************
 
     /**
+     * Image for horizontally oriented separator (for vertical toolstrips).
+     *
+     * @param hSrc hSrc Default value is "[SKIN]hseparator.png"
+     */
+    public void setHSrc(String hSrc) {
+        setAttribute("hSrc", hSrc, true);
+    }
+
+    /**
+     * Image for horizontally oriented separator (for vertical toolstrips).
+     *
+     *
+     * @return String
+     */
+    public String getHSrc()  {
+        return getAttributeAsString("hSrc");
+    }
+
+    /**
      * Path to separator image.
      *
      * @param skinImgDir skinImgDir Default value is "images/ToolStrip/"
@@ -123,25 +142,6 @@ public class ToolStripSeparator extends Img {
      */
     public String getVSrc()  {
         return getAttributeAsString("vSrc");
-    }
-
-    /**
-     * Image for horizontally oriented separator (for vertical toolstrips).
-     *
-     * @param hSrc hSrc Default value is "[SKIN]hseparator.png"
-     */
-    public void setHSrc(String hSrc) {
-        setAttribute("hSrc", hSrc, true);
-    }
-
-    /**
-     * Image for horizontally oriented separator (for vertical toolstrips).
-     *
-     *
-     * @return String
-     */
-    public String getHSrc()  {
-        return getAttributeAsString("hSrc");
     }
 
     // ********************* Methods ***********************

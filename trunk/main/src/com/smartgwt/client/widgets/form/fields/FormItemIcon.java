@@ -77,46 +77,70 @@ public class FormItemIcon extends DataClass  implements com.smartgwt.client.widg
     // ********************* Properties / Attributes ***********************
 
     /**
-     * If set, this property determines this icon's image source.      If unset the form item's <code>defaultIconSrc</code>
-     * property will be used      instead.<br>      As with <code>defaultIconSrc</code> this URL will be modified by adding    
-     *  "_Over" or "_Disabled" if appropriate to show the icons over or disabled state.
+     * If set, this property determines the height of this icon in px.      If unset the form item's <code>iconHeight</code>
+     * property will be used instead.
      *
-     * @param src src Default value is null
+     * @param height height Default value is null
      */
-    public void setSrc(String src) {
-        setAttribute("src", src);
+    public void setHeight(Integer height) {
+        setAttribute("height", height);
     }
 
     /**
-     * If set, this property determines this icon's image source.      If unset the form item's <code>defaultIconSrc</code>
-     * property will be used      instead.<br>      As with <code>defaultIconSrc</code> this URL will be modified by adding    
-     *  "_Over" or "_Disabled" if appropriate to show the icons over or disabled state.
+     * If set, this property determines the height of this icon in px.      If unset the form item's <code>iconHeight</code>
+     * property will be used instead.
      *
      *
-     * @return String
+     * @return Integer
      */
-    public String getSrc()  {
-        return getAttributeAsString("src");
+    public Integer getHeight()  {
+        return getAttributeAsInt("height");
     }
 
     /**
-     * Should this icon's image switch to the appropriate "over" source when the user rolls  over or focuses on the icon?
+     * If <code>icon.neverDisable</code> is true, when this form item is disabled, the   icon will remain enabled.   Note that
+     * disabling the entire form will disable all items, together with their   icons including those marked as neverDisable -
+     * this property only has an effect   if the form is enabled and a specific item is disabled within it.
      * <p><b>Note : </b> This is an advanced setting</p>
      *
-     * @param showOver showOver Default value is null
+     * @param neverDisable neverDisable Default value is null
      */
-    public void setShowOver(Boolean showOver) {
-        setAttribute("showOver", showOver);
+    public void setNeverDisable(Boolean neverDisable) {
+        setAttribute("neverDisable", neverDisable);
     }
 
     /**
-     * Should this icon's image switch to the appropriate "over" source when the user rolls  over or focuses on the icon?
+     * If <code>icon.neverDisable</code> is true, when this form item is disabled, the   icon will remain enabled.   Note that
+     * disabling the entire form will disable all items, together with their   icons including those marked as neverDisable -
+     * this property only has an effect   if the form is enabled and a specific item is disabled within it.
      *
      *
      * @return Boolean
      */
-    public Boolean getShowOver()  {
-        return getAttributeAsBoolean("showOver");
+    public Boolean getNeverDisable()  {
+        return getAttributeAsBoolean("neverDisable");
+    }
+
+    /**
+     * If set, this property will be displayed as a prompt (and tooltip text) for this form item icon. <P> If unset the form
+     * item's <code>iconPrompt</code> property will be used instead.
+     * <p><b>Note : </b> This is an advanced setting</p>
+     *
+     * @param prompt prompt Default value is null
+     */
+    public void setPrompt(String prompt) {
+        setAttribute("prompt", prompt);
+    }
+
+    /**
+     * If set, this property will be displayed as a prompt (and tooltip text) for this form item icon. <P> If unset the form
+     * item's <code>iconPrompt</code> property will be used instead.
+     *
+     *
+     * @return String
+     */
+    public String getPrompt()  {
+        return getAttributeAsString("prompt");
     }
 
     /**
@@ -168,27 +192,46 @@ public class FormItemIcon extends DataClass  implements com.smartgwt.client.widg
     }
 
     /**
-     * If <code>icon.neverDisable</code> is true, when this form item is disabled, the   icon will remain enabled.   Note that
-     * disabling the entire form will disable all items, together with their   icons including those marked as neverDisable -
-     * this property only has an effect   if the form is enabled and a specific item is disabled within it.
+     * Should this icon's image switch to the appropriate "over" source when the user rolls  over or focuses on the icon?
      * <p><b>Note : </b> This is an advanced setting</p>
      *
-     * @param neverDisable neverDisable Default value is null
+     * @param showOver showOver Default value is null
      */
-    public void setNeverDisable(Boolean neverDisable) {
-        setAttribute("neverDisable", neverDisable);
+    public void setShowOver(Boolean showOver) {
+        setAttribute("showOver", showOver);
     }
 
     /**
-     * If <code>icon.neverDisable</code> is true, when this form item is disabled, the   icon will remain enabled.   Note that
-     * disabling the entire form will disable all items, together with their   icons including those marked as neverDisable -
-     * this property only has an effect   if the form is enabled and a specific item is disabled within it.
+     * Should this icon's image switch to the appropriate "over" source when the user rolls  over or focuses on the icon?
      *
      *
      * @return Boolean
      */
-    public Boolean getNeverDisable()  {
-        return getAttributeAsBoolean("neverDisable");
+    public Boolean getShowOver()  {
+        return getAttributeAsBoolean("showOver");
+    }
+
+    /**
+     * If set, this property determines this icon's image source.      If unset the form item's <code>defaultIconSrc</code>
+     * property will be used      instead.<br>      As with <code>defaultIconSrc</code> this URL will be modified by adding    
+     *  "_Over" or "_Disabled" if appropriate to show the icons over or disabled state.
+     *
+     * @param src src Default value is null
+     */
+    public void setSrc(String src) {
+        setAttribute("src", src);
+    }
+
+    /**
+     * If set, this property determines this icon's image source.      If unset the form item's <code>defaultIconSrc</code>
+     * property will be used      instead.<br>      As with <code>defaultIconSrc</code> this URL will be modified by adding    
+     *  "_Over" or "_Disabled" if appropriate to show the icons over or disabled state.
+     *
+     *
+     * @return String
+     */
+    public String getSrc()  {
+        return getAttributeAsString("src");
     }
 
     /**
@@ -210,49 +253,6 @@ public class FormItemIcon extends DataClass  implements com.smartgwt.client.widg
      */
     public Integer getWidth()  {
         return getAttributeAsInt("width");
-    }
-
-    /**
-     * If set, this property determines the height of this icon in px.      If unset the form item's <code>iconHeight</code>
-     * property will be used instead.
-     *
-     * @param height height Default value is null
-     */
-    public void setHeight(Integer height) {
-        setAttribute("height", height);
-    }
-
-    /**
-     * If set, this property determines the height of this icon in px.      If unset the form item's <code>iconHeight</code>
-     * property will be used instead.
-     *
-     *
-     * @return Integer
-     */
-    public Integer getHeight()  {
-        return getAttributeAsInt("height");
-    }
-
-    /**
-     * If set, this property will be displayed as a prompt (and tooltip text) for this form item icon. <P> If unset the form
-     * item's <code>iconPrompt</code> property will be used instead.
-     * <p><b>Note : </b> This is an advanced setting</p>
-     *
-     * @param prompt prompt Default value is null
-     */
-    public void setPrompt(String prompt) {
-        setAttribute("prompt", prompt);
-    }
-
-    /**
-     * If set, this property will be displayed as a prompt (and tooltip text) for this form item icon. <P> If unset the form
-     * item's <code>iconPrompt</code> property will be used instead.
-     *
-     *
-     * @return String
-     */
-    public String getPrompt()  {
-        return getAttributeAsString("prompt");
     }
 
     // ********************* Methods ***********************

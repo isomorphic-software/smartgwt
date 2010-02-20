@@ -89,43 +89,25 @@ public class TileGrid extends TileLayout  implements DataBoundComponent, com.sma
     // ********************* Properties / Attributes ***********************
 
     /**
-     * When using the default {@link com.smartgwt.client..SimpleTile}, CSS style for each value shown within a tile.
+     * If set, when the dataset changes due to filtering, sorting or other actions, any tiles that were showing before and
+     * after the change will animate from their old positions to their new positions.
+     * <p><b>Note : </b> This is an advanced setting</p>
      *
-     * @param tileValueStyle tileValueStyle Default value is "tileValue"
-     * @throws IllegalStateException this property cannot be changed after the component has been created
+     * @param animateTileChange animateTileChange Default value is true
      */
-    public void setTileValueStyle(String tileValueStyle)  throws IllegalStateException {
-        setAttribute("tileValueStyle", tileValueStyle, false);
+    public void setAnimateTileChange(Boolean animateTileChange) {
+        setAttribute("animateTileChange", animateTileChange, true);
     }
 
     /**
-     * When using the default {@link com.smartgwt.client..SimpleTile}, CSS style for each value shown within a tile.
+     * If set, when the dataset changes due to filtering, sorting or other actions, any tiles that were showing before and
+     * after the change will animate from their old positions to their new positions.
      *
      *
-     * @return String
+     * @return Boolean
      */
-    public String getTileValueStyle()  {
-        return getAttributeAsString("tileValueStyle");
-    }
-
-    /**
-     * Horizontal alignment for tile values: "left", "right" or "center".
-     *
-     * @param tileValueAlign tileValueAlign Default value is "center"
-     * @throws IllegalStateException this property cannot be changed after the component has been created
-     */
-    public void setTileValueAlign(String tileValueAlign)  throws IllegalStateException {
-        setAttribute("tileValueAlign", tileValueAlign, false);
-    }
-
-    /**
-     * Horizontal alignment for tile values: "left", "right" or "center".
-     *
-     *
-     * @return String
-     */
-    public String getTileValueAlign()  {
-        return getAttributeAsString("tileValueAlign");
+    public Boolean getAnimateTileChange()  {
+        return getAttributeAsBoolean("animateTileChange");
     }
              
     /**
@@ -192,28 +174,6 @@ public class TileGrid extends TileLayout  implements DataBoundComponent, com.sma
     }
 
     /**
-     * If set, when the dataset changes due to filtering, sorting or other actions, any tiles that were showing before and
-     * after the change will animate from their old positions to their new positions.
-     * <p><b>Note : </b> This is an advanced setting</p>
-     *
-     * @param animateTileChange animateTileChange Default value is true
-     */
-    public void setAnimateTileChange(Boolean animateTileChange) {
-        setAttribute("animateTileChange", animateTileChange, true);
-    }
-
-    /**
-     * If set, when the dataset changes due to filtering, sorting or other actions, any tiles that were showing before and
-     * after the change will animate from their old positions to their new positions.
-     *
-     *
-     * @return Boolean
-     */
-    public Boolean getAnimateTileChange()  {
-        return getAttributeAsBoolean("animateTileChange");
-    }
-
-    /**
      * Style for the overall TileGrid component.
      *
      * @param styleName styleName Default value is "tileGrid"
@@ -233,7 +193,120 @@ public class TileGrid extends TileLayout  implements DataBoundComponent, com.sma
         return getAttributeAsString("styleName");
     }
 
+    /**
+     * Horizontal alignment for tile values: "left", "right" or "center".
+     *
+     * @param tileValueAlign tileValueAlign Default value is "center"
+     * @throws IllegalStateException this property cannot be changed after the component has been created
+     */
+    public void setTileValueAlign(String tileValueAlign)  throws IllegalStateException {
+        setAttribute("tileValueAlign", tileValueAlign, false);
+    }
+
+    /**
+     * Horizontal alignment for tile values: "left", "right" or "center".
+     *
+     *
+     * @return String
+     */
+    public String getTileValueAlign()  {
+        return getAttributeAsString("tileValueAlign");
+    }
+
+    /**
+     * When using the default {@link com.smartgwt.client..SimpleTile}, CSS style for each value shown within a tile.
+     *
+     * @param tileValueStyle tileValueStyle Default value is "tileValue"
+     * @throws IllegalStateException this property cannot be changed after the component has been created
+     */
+    public void setTileValueStyle(String tileValueStyle)  throws IllegalStateException {
+        setAttribute("tileValueStyle", tileValueStyle, false);
+    }
+
+    /**
+     * When using the default {@link com.smartgwt.client..SimpleTile}, CSS style for each value shown within a tile.
+     *
+     *
+     * @return String
+     */
+    public String getTileValueStyle()  {
+        return getAttributeAsString("tileValueStyle");
+    }
+
     // ********************* Methods ***********************
+            
+    /**
+     * This is not allowed for tileGrid. Instead, use {@link com.smartgwt.client.widgets.tile.TileGrid#addData}.
+     */
+    public native void addTile() /*-{
+        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
+        self.addTile();
+    }-*/;
+            
+    /**
+     * Notification method fired when new data arrives from the server to be displayed in this tileGrid, (for example in
+     * response to the user scrolling a new set of tiles into view). Only applies to databound tileGrid where the {@link
+     * com.smartgwt.client.widgets.tile.TileGrid#getData 'data'} attribute is a {@link com.smartgwt.client.data.ResultSet}.
+     * This method is fired directly in response to {@link com.smartgwt.client.data.ResultSet#addDataArrivedHandler} firing on
+     * the data object.
+     * @param startRecord starting index of the newly loaded set of records
+     * @param endRecord ending index of the newly loaded set of records (non inclusive).
+     */
+    public native void dataArrived(int startRecord, int endRecord) /*-{
+        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
+        self.dataArrived(startRecord, endRecord);
+    }-*/;
+            
+    /**
+     * Uses a "fetch" operation on the current {@link com.smartgwt.client.widgets.DataBoundComponent#getDataSource
+     * 'DataSource'} to  retrieve data that matches the current filter and sort criteria for this component, then  exports the
+     * resulting data to a file or window in the requested format. <P> For more information on exporting data, see {@link
+     * com.smartgwt.client.data.DataSource#exportData}.
+     */
+    public native void exportData() /*-{
+        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
+        self.exportData();
+    }-*/;
+
+    /**
+     * Uses a "fetch" operation on the current {@link com.smartgwt.client.widgets.DataBoundComponent#getDataSource
+     * 'DataSource'} to  retrieve data that matches the current filter and sort criteria for this component, then  exports the
+     * resulting data to a file or window in the requested format. <P> For more information on exporting data, see {@link
+     * com.smartgwt.client.data.DataSource#exportData}.
+     * @param requestProperties additional properties to set on the DSRequest                                            that will be issued
+     */
+    public native void exportData(DSRequest requestProperties) /*-{
+        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
+        self.exportData(requestProperties.@com.smartgwt.client.core.DataClass::getJsObj()());
+    }-*/;
+            
+    /**
+     * Return "title" HTML to display as a drag tracker when the user drags some record.<br> Default implementation will
+     * display the cell value for the title field (see  {@link com.smartgwt.client.widgets.grid.ListGrid#getTitleField}) for
+     * the record(s) being dragged (including any icons / custom formatting / styling, etc). <p> Note: Only called if {@link
+     * com.smartgwt.client.widgets.grid.ListGrid#getDragTrackerMode dragTrackerMode} is set to <code>"title"</code>.
+     * @param record First selected record being dragged
+     * @param rowNum row index of first record being dragged
+     *
+     * @return Title for the row. Default implementation looks at the value of the                  title-field cell for the row.
+     */
+    public native String getDragTrackerTitle(ListGridRecord record, int rowNum) /*-{
+        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
+        return self.getDragTrackerTitle(record.@com.smartgwt.client.core.DataClass::getJsObj()(), rowNum);
+    }-*/;
+            
+    /**
+     * Returns a snapshot of the current presentation of this grid's fields as  a {@link java.lang.String} object. <P> This
+     * object can be passed to {@link com.smartgwt.client.widgets.tile.TileGrid#setFieldState} to reset this grid's fields to
+     * the current state. <P> Note that the information stored includes the current width and visibility of each of this 
+     * grid's fields.
+     *
+     * @return current state of this grid's fields.
+     */
+    public native String getFieldState() /*-{
+        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
+        return self.getFieldState();
+    }-*/;
             
     /**
      * Return the first selected record in this component
@@ -324,6 +397,14 @@ public class TileGrid extends TileLayout  implements DataBoundComponent, com.sma
                });
         }
    }-*/;
+            
+    /**
+     * This is not allowed for tileGrid. Instead, use {@link com.smartgwt.client.widgets.tile.TileGrid#removeData}.
+     */
+    public native void removeTile() /*-{
+        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
+        self.removeTile();
+    }-*/;
     /**
      * Add a selectionChanged handler.
      * <p>
@@ -361,37 +442,6 @@ public class TileGrid extends TileLayout  implements DataBoundComponent, com.sma
    }-*/;
             
     /**
-     * This is not allowed for tileGrid. Instead, use {@link com.smartgwt.client.widgets.tile.TileGrid#addData}.
-     */
-    public native void addTile() /*-{
-        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
-        self.addTile();
-    }-*/;
-            
-    /**
-     * This is not allowed for tileGrid. Instead, use {@link com.smartgwt.client.widgets.tile.TileGrid#removeData}.
-     */
-    public native void removeTile() /*-{
-        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
-        self.removeTile();
-    }-*/;
-            
-    /**
-     * Return "title" HTML to display as a drag tracker when the user drags some record.<br> Default implementation will
-     * display the cell value for the title field (see  {@link com.smartgwt.client.widgets.grid.ListGrid#getTitleField}) for
-     * the record(s) being dragged (including any icons / custom formatting / styling, etc). <p> Note: Only called if {@link
-     * com.smartgwt.client.widgets.grid.ListGrid#getDragTrackerMode dragTrackerMode} is set to <code>"title"</code>.
-     * @param record First selected record being dragged
-     * @param rowNum row index of first record being dragged
-     *
-     * @return Title for the row. Default implementation looks at the value of the                  title-field cell for the row.
-     */
-    public native String getDragTrackerTitle(ListGridRecord record, int rowNum) /*-{
-        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
-        return self.getDragTrackerTitle(record.@com.smartgwt.client.core.DataClass::getJsObj()(), rowNum);
-    }-*/;
-            
-    /**
      * Sets some presentation properties (visibility, width, userFormula and userSummary) of the  grid fields based on the
      * {@link java.lang.String} object passed in.<br> Used to restore previous state retrieved from the grid by a call to
      * {@link com.smartgwt.client.widgets.tile.TileGrid#getFieldState}.
@@ -400,56 +450,6 @@ public class TileGrid extends TileLayout  implements DataBoundComponent, com.sma
     public native void setFieldState(String fieldState) /*-{
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
         self.setFieldState(fieldState);
-    }-*/;
-            
-    /**
-     * Returns a snapshot of the current presentation of this grid's fields as  a {@link java.lang.String} object. <P> This
-     * object can be passed to {@link com.smartgwt.client.widgets.tile.TileGrid#setFieldState} to reset this grid's fields to
-     * the current state. <P> Note that the information stored includes the current width and visibility of each of this 
-     * grid's fields.
-     *
-     * @return current state of this grid's fields.
-     */
-    public native String getFieldState() /*-{
-        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
-        return self.getFieldState();
-    }-*/;
-            
-    /**
-     * Notification method fired when new data arrives from the server to be displayed in this tileGrid, (for example in
-     * response to the user scrolling a new set of tiles into view). Only applies to databound tileGrid where the {@link
-     * com.smartgwt.client.widgets.tile.TileGrid#getData 'data'} attribute is a {@link com.smartgwt.client.data.ResultSet}.
-     * This method is fired directly in response to {@link com.smartgwt.client.data.ResultSet#addDataArrivedHandler} firing on
-     * the data object.
-     * @param startRecord starting index of the newly loaded set of records
-     * @param endRecord ending index of the newly loaded set of records (non inclusive).
-     */
-    public native void dataArrived(int startRecord, int endRecord) /*-{
-        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
-        self.dataArrived(startRecord, endRecord);
-    }-*/;
-            
-    /**
-     * Uses a "fetch" operation on the current {@link com.smartgwt.client.widgets.DataBoundComponent#getDataSource
-     * 'DataSource'} to  retrieve data that matches the current filter and sort criteria for this component, then  exports the
-     * resulting data to a file or window in the requested format. <P> For more information on exporting data, see {@link
-     * com.smartgwt.client.data.DataSource#exportData}.
-     */
-    public native void exportData() /*-{
-        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
-        self.exportData();
-    }-*/;
-
-    /**
-     * Uses a "fetch" operation on the current {@link com.smartgwt.client.widgets.DataBoundComponent#getDataSource
-     * 'DataSource'} to  retrieve data that matches the current filter and sort criteria for this component, then  exports the
-     * resulting data to a file or window in the requested format. <P> For more information on exporting data, see {@link
-     * com.smartgwt.client.data.DataSource#exportData}.
-     * @param requestProperties additional properties to set on the DSRequest                                            that will be issued
-     */
-    public native void exportData(DSRequest requestProperties) /*-{
-        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
-        self.exportData(requestProperties.@com.smartgwt.client.core.DataClass::getJsObj()());
     }-*/;
 
     // ********************* Static Methods ***********************

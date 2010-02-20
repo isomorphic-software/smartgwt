@@ -99,23 +99,163 @@ public class Slider extends Canvas  implements com.smartgwt.client.widgets.event
     // ********************* Properties / Attributes ***********************
 
     /**
-     * Optional display title for the slider.
-     * Sets the {@link com.smartgwt.client.widgets.Slider#getTitle title} of the slider
+     * Should the thumb be animated to its new position when the value is changed programmatically, or by clicking in the
+     * slider track.
      *
-     * @param title new title for the slider. Default value is "Set Value"
+     * @param animateThumb animateThumb Default value is true
      */
-    public void setTitle(String title) {
-        setAttribute("title", title, true);
+    public void setAnimateThumb(Boolean animateThumb) {
+        setAttribute("animateThumb", animateThumb, true);
     }
 
     /**
-     * Optional display title for the slider.
+     * Should the thumb be animated to its new position when the value is changed programmatically, or by clicking in the
+     * slider track.
      *
      *
-     * @return String
+     * @return Boolean
      */
-    public String getTitle()  {
-        return getAttributeAsString("title");
+    public Boolean getAnimateThumb()  {
+        return getAttributeAsBoolean("animateThumb");
+    }
+
+    /**
+     * If thumb animation is enabled, should the thumb be animated to its initial value?
+     *
+     * @param animateThumbInit animateThumbInit Default value is false
+     */
+    public void setAnimateThumbInit(Boolean animateThumbInit) {
+        setAttribute("animateThumbInit", animateThumbInit, true);
+    }
+
+    /**
+     * If thumb animation is enabled, should the thumb be animated to its initial value?
+     *
+     *
+     * @return Boolean
+     */
+    public Boolean getAnimateThumbInit()  {
+        return getAttributeAsBoolean("animateThumbInit");
+    }
+
+    /**
+     * Duration of thumb animation, in milliseconds.
+     *
+     * @param animateThumbTime animateThumbTime Default value is 250
+     */
+    public void setAnimateThumbTime(int animateThumbTime) {
+        setAttribute("animateThumbTime", animateThumbTime, true);
+    }
+
+    /**
+     * Duration of thumb animation, in milliseconds.
+     *
+     *
+     * @return int
+     */
+    public int getAnimateThumbTime()  {
+        return getAttributeAsInt("animateThumbTime");
+    }
+
+    /**
+     * Indicates whether keyboard manipulation of the slider is allowed.
+     *
+     * @param canFocus canFocus Default value is true
+     */
+    public void setCanFocus(Boolean canFocus) {
+        setAttribute("canFocus", canFocus, true);
+    }
+
+    /**
+     * Indicates whether keyboard manipulation of the slider is allowed.
+     *
+     *
+     * @return Boolean
+     */
+    public Boolean getCanFocus()  {
+        return getAttributeAsBoolean("canFocus");
+    }
+
+    /**
+     * Specifies whether the value range of the slider should be flipped so that values increase as the thumb is moved down
+     * (for a vertical slider) or to the left (for a horizontal slider).
+     * Sets the {@link com.smartgwt.client.widgets.Slider#getFlipValues flipValues} property of the slider
+     *
+     * @param flipValues flip slider values?. Default value is false
+     */
+    public void setFlipValues(Boolean flipValues) {
+        setAttribute("flipValues", flipValues, true);
+    }
+
+    /**
+     * Specifies whether the value range of the slider should be flipped so that values increase as the thumb is moved down
+     * (for a vertical slider) or to the left (for a horizontal slider).
+     *
+     *
+     * @return Boolean
+     */
+    public Boolean getFlipValues()  {
+        return getAttributeAsBoolean("flipValues");
+    }
+
+    /**
+     * The height of the labels used to display the minimum, maximum and current values of the slider.
+     * Sets the {@link com.smartgwt.client.widgets.Slider#getLabelHeight labelHeight} property of the slider
+     *
+     * @param labelHeight new label height. Default value is 20
+     */
+    public void setLabelHeight(int labelHeight) {
+        setAttribute("labelHeight", labelHeight, true);
+    }
+
+    /**
+     * The height of the labels used to display the minimum, maximum and current values of the slider.
+     *
+     *
+     * @return int
+     */
+    public int getLabelHeight()  {
+        return getAttributeAsInt("labelHeight");
+    }
+
+    /**
+     * The space around the labels used to display the minimum, maximum and current values of the slider.
+     * Sets the {@link com.smartgwt.client.widgets.Slider#getLabelSpacing labelSpacing} property of the slider
+     *
+     * @param labelSpacing new label spacing. Default value is 5
+     */
+    public void setLabelSpacing(int labelSpacing) {
+        setAttribute("labelSpacing", labelSpacing, true);
+    }
+
+    /**
+     * The space around the labels used to display the minimum, maximum and current values of the slider.
+     *
+     *
+     * @return int
+     */
+    public int getLabelSpacing()  {
+        return getAttributeAsInt("labelSpacing");
+    }
+
+    /**
+     * The width of the labels used to display the minimum, maximum and current values of the slider.
+     * Sets the {@link com.smartgwt.client.widgets.Slider#getLabelWidth labelWidth} property of the slider
+     *
+     * @param labelWidth new label width. Default value is 50
+     */
+    public void setLabelWidth(int labelWidth) {
+        setAttribute("labelWidth", labelWidth, true);
+    }
+
+    /**
+     * The width of the labels used to display the minimum, maximum and current values of the slider.
+     *
+     *
+     * @return int
+     */
+    public int getLabelWidth()  {
+        return getAttributeAsInt("labelWidth");
     }
 
     /**
@@ -140,23 +280,281 @@ public class Slider extends Canvas  implements com.smartgwt.client.widgets.event
     }
 
     /**
-     * Indicates whether this is a vertical or horizontal slider.
-     * Sets the {@link com.smartgwt.client.widgets.Slider#getVertical vertical} property of the slider
+     * The maximum slider value. The slider value is equal to maxValue when the thumb is at the top or right of the slider
+     * (unless flipValues is true, in which case the maximum value is at the bottom/left of the slider)
+     * Sets the {@link com.smartgwt.client.widgets.Slider#getMaxValue 'maximum value'} of the slider
      *
-     * @param vertical is the slider vertical. Default value is true
+     * @param maxValue the new maximum value. Default value is 100
      */
-    public void setVertical(Boolean vertical) {
-        setAttribute("vertical", vertical, true);
+    public void setMaxValue(float maxValue) {
+        setAttribute("maxValue", maxValue, true);
     }
 
     /**
-     * Indicates whether this is a vertical or horizontal slider.
+     * The maximum slider value. The slider value is equal to maxValue when the thumb is at the top or right of the slider
+     * (unless flipValues is true, in which case the maximum value is at the bottom/left of the slider)
+     *
+     *
+     * @return float
+     */
+    public float getMaxValue()  {
+        return getAttributeAsFloat("maxValue");
+    }
+
+    /**
+     * The text displayed in the label for the maximum value of the slider. If left as null, then slider.maxValue will be
+     * displayed.
+     * Sets the {@link com.smartgwt.client.widgets.Slider#getMaxValueLabel maxValueLabel} property of the slider
+     *
+     * @param maxValueLabel new label text. Default value is null
+     */
+    public void setMaxValueLabel(String maxValueLabel) {
+        setAttribute("maxValueLabel", maxValueLabel, true);
+    }
+
+    /**
+     * The text displayed in the label for the maximum value of the slider. If left as null, then slider.maxValue will be
+     * displayed.
+     *
+     *
+     * @return String
+     */
+    public String getMaxValueLabel()  {
+        return getAttributeAsString("maxValueLabel");
+    }
+
+    /**
+     * The minimum slider value. The slider value is equal to minValue when the thumb is at the bottom or left of the slider
+     * (unless flipValues is true, in which case the minimum value is at the top/right of the slider)
+     * Sets the {@link com.smartgwt.client.widgets.Slider#getMinValue 'minimum value'} of the slider
+     *
+     * @param minValue the new minimum value. Default value is 1
+     */
+    public void setMinValue(float minValue) {
+        setAttribute("minValue", minValue, true);
+    }
+
+    /**
+     * The minimum slider value. The slider value is equal to minValue when the thumb is at the bottom or left of the slider
+     * (unless flipValues is true, in which case the minimum value is at the top/right of the slider)
+     *
+     *
+     * @return float
+     */
+    public float getMinValue()  {
+        return getAttributeAsFloat("minValue");
+    }
+
+    /**
+     * The text displayed in the label for the minimum value of the slider. If left as null, then slider.minValue will be
+     * displayed.
+     *
+     * @param minValueLabel minValueLabel Default value is null
+     */
+    public void setMinValueLabel(String minValueLabel) {
+        setAttribute("minValueLabel", minValueLabel, true);
+    }
+
+    /**
+     * The text displayed in the label for the minimum value of the slider. If left as null, then slider.minValue will be
+     * displayed.
+     *
+     *
+     * @return String
+     */
+    public String getMinValueLabel()  {
+        return getAttributeAsString("minValueLabel");
+    }
+
+    /**
+     * The number of discrete values represented by slider. If specified, the range of valid values (between
+     * <code>minValue</code> and <code>maxValue</code>) will be divided into this many steps. As the thumb is moved along the
+     * track it will only select these values and appear to jump between the steps.
+     * Sets the {@link com.smartgwt.client.widgets.Slider#getNumValues 'number of values'} for the slider
+     *
+     * @param numValues the new number of values. Default value is null
+     */
+    public void setNumValues(Integer numValues) {
+        setAttribute("numValues", numValues, true);
+    }
+
+    /**
+     * The number of discrete values represented by slider. If specified, the range of valid values (between
+     * <code>minValue</code> and <code>maxValue</code>) will be divided into this many steps. As the thumb is moved along the
+     * track it will only select these values and appear to jump between the steps.
+     *
+     *
+     * @return Integer
+     */
+    public Integer getNumValues()  {
+        return getAttributeAsInt("numValues");
+    }
+
+    /**
+     * If {@link com.smartgwt.client.widgets.Slider#getRoundValues roundValues} is false, the slider value will be rounded to
+     * this number of decimal places. If set to null the value will not be rounded
+     * Sets the {@link com.smartgwt.client.widgets.Slider#getRoundPrecision roundPrecision} property of the slider
+     *
+     * @param roundPrecision new round precision. Default value is 1
+     */
+    public void setRoundPrecision(int roundPrecision) {
+        setAttribute("roundPrecision", roundPrecision, true);
+    }
+
+    /**
+     * If {@link com.smartgwt.client.widgets.Slider#getRoundValues roundValues} is false, the slider value will be rounded to
+     * this number of decimal places. If set to null the value will not be rounded
+     *
+     *
+     * @return int
+     */
+    public int getRoundPrecision()  {
+        return getAttributeAsInt("roundPrecision");
+    }
+
+    /**
+     * Specifies whether the slider value should be rounded to the nearest integer.  If set to false, values will be rounded to
+     * a fixed number of decimal places controlled by {@link com.smartgwt.client.widgets.Slider#getRoundPrecision
+     * roundPrecision}.
+     *
+     * @param roundValues roundValues Default value is true
+     */
+    public void setRoundValues(Boolean roundValues) {
+        setAttribute("roundValues", roundValues, true);
+    }
+
+    /**
+     * Specifies whether the slider value should be rounded to the nearest integer.  If set to false, values will be rounded to
+     * a fixed number of decimal places controlled by {@link com.smartgwt.client.widgets.Slider#getRoundPrecision
+     * roundPrecision}.
      *
      *
      * @return Boolean
      */
-    public Boolean getVertical()  {
-        return getAttributeAsBoolean("vertical");
+    public Boolean getRoundValues()  {
+        return getAttributeAsBoolean("roundValues");
+    }
+
+    /**
+     * Indicates whether labels for the min and max values of the slider should be displayed. The default positions for these
+     * labels are below the start/end of a horizontal slider, or to the right of the start/end of a vertical slider.
+     * Sets the {@link com.smartgwt.client.widgets.Slider#getShowRange showRange} property of the slider
+     *
+     * @param showRange show the slider range?. Default value is true
+     */
+    public void setShowRange(Boolean showRange) {
+        setAttribute("showRange", showRange, true);
+    }
+
+    /**
+     * Indicates whether labels for the min and max values of the slider should be displayed. The default positions for these
+     * labels are below the start/end of a horizontal slider, or to the right of the start/end of a vertical slider.
+     *
+     *
+     * @return Boolean
+     */
+    public Boolean getShowRange()  {
+        return getAttributeAsBoolean("showRange");
+    }
+
+    /**
+     * Indicates whether the slider's title should be displayed. The default position for this label is to the left of a
+     * horizontal slider, or above a vertical slider.
+     * Sets the {@link com.smartgwt.client.widgets.Slider#getShowTitle showTitle} property of the slider
+     *
+     * @param showTitle show the slider title?. Default value is true
+     */
+    public void setShowTitle(Boolean showTitle) {
+        setAttribute("showTitle", showTitle, true);
+    }
+
+    /**
+     * Indicates whether the slider's title should be displayed. The default position for this label is to the left of a
+     * horizontal slider, or above a vertical slider.
+     *
+     *
+     * @return Boolean
+     */
+    public Boolean getShowTitle()  {
+        return getAttributeAsBoolean("showTitle");
+    }
+
+    /**
+     * Indicates whether a label for the value of the slider should be displayed. The default position for this label is to the
+     * right of a horizontal slider, or below a vertical slider.
+     * Sets the {@link com.smartgwt.client.widgets.Slider#getShowValue showValue} property of the slider
+     *
+     * @param showValue show the slider value?. Default value is true
+     */
+    public void setShowValue(Boolean showValue) {
+        setAttribute("showValue", showValue, true);
+    }
+
+    /**
+     * Indicates whether a label for the value of the slider should be displayed. The default position for this label is to the
+     * right of a horizontal slider, or below a vertical slider.
+     *
+     *
+     * @return Boolean
+     */
+    public Boolean getShowValue()  {
+        return getAttributeAsBoolean("showValue");
+    }
+
+    /**
+     * The percentage of the total slider that constitutes one discrete step. The slider will move one step when the
+     * appropriate arrow key is pressed.
+     * Sets the {@link com.smartgwt.client.widgets.Slider#getStepPercent stepPercent} property of the slider
+     *
+     * @param stepPercent new slider step percent. Default value is 5
+     */
+    public void setStepPercent(float stepPercent) {
+        setAttribute("stepPercent", stepPercent, true);
+    }
+
+    /**
+     * The percentage of the total slider that constitutes one discrete step. The slider will move one step when the
+     * appropriate arrow key is pressed.
+     *
+     *
+     * @return float
+     */
+    public float getStepPercent()  {
+        return getAttributeAsFloat("stepPercent");
+    }
+
+    /**
+     * The base filename for the slider thumb images. The filenames for the thumb icons are assembled from this base filename
+     * and the state of the thumb, as follows:<br> Assume the thumbSrc is set to <code>{baseName}.{extension}</code><br> The
+     * full set of images to be displayed is:<br> For horizontal sliders: <ul> <li><code>h{baseName}.{extension}</code>:
+     * default enabled appearance. <li><code>h{baseName}_down.{extension}</code>:  appearance when the slider is enabled and
+     * the     thumb is clicked. <li><code>h{baseName}_off.{extension}</code>:  appearance when the slider is disabled. </ul>
+     * For vertical sliders: <ul> <li><code>v{baseName}.{extension}</code>: default enabled appearance.
+     * <li><code>v{baseName}_down.{extension}</code>:  appearance when the slider is enabled and the     thumb is clicked.
+     * <li><code>v{baseName}_off.{extension}</code>:  appearance when the slider is disabled. </ul>
+     * Sets the {@link com.smartgwt.client.widgets.Slider#getThumbSrc thumbSrc} property of the slider
+     *
+     * @param thumbSrc new thumbSrc. Default value is "thumb.gif"
+     */
+    public void setThumbSrc(String thumbSrc) {
+        setAttribute("thumbSrc", thumbSrc, true);
+    }
+
+    /**
+     * The base filename for the slider thumb images. The filenames for the thumb icons are assembled from this base filename
+     * and the state of the thumb, as follows:<br> Assume the thumbSrc is set to <code>{baseName}.{extension}</code><br> The
+     * full set of images to be displayed is:<br> For horizontal sliders: <ul> <li><code>h{baseName}.{extension}</code>:
+     * default enabled appearance. <li><code>h{baseName}_down.{extension}</code>:  appearance when the slider is enabled and
+     * the     thumb is clicked. <li><code>h{baseName}_off.{extension}</code>:  appearance when the slider is disabled. </ul>
+     * For vertical sliders: <ul> <li><code>v{baseName}.{extension}</code>: default enabled appearance.
+     * <li><code>v{baseName}_down.{extension}</code>:  appearance when the slider is enabled and the     thumb is clicked.
+     * <li><code>v{baseName}_off.{extension}</code>:  appearance when the slider is disabled. </ul>
+     *
+     *
+     * @return String
+     */
+    public String getThumbSrc()  {
+        return getAttributeAsString("thumbSrc");
     }
 
     /**
@@ -200,57 +598,63 @@ public class Slider extends Canvas  implements com.smartgwt.client.widgets.event
     }
 
     /**
-     * The thickness of the track. This is the width, for a vertical slider, or the height, for a horizontal slider.
-     * Sets the {@link com.smartgwt.client.widgets.Slider#getTrackWidth trackWidth} property of the slider
+     * Optional display title for the slider.
+     * Sets the {@link com.smartgwt.client.widgets.Slider#getTitle title} of the slider
      *
-     * @param trackWidth new trackWidth. Default value is 7
+     * @param title new title for the slider. Default value is "Set Value"
      */
-    public void setTrackWidth(int trackWidth) {
-        setAttribute("trackWidth", trackWidth, true);
+    public void setTitle(String title) {
+        setAttribute("title", title, true);
     }
 
     /**
-     * The thickness of the track. This is the width, for a vertical slider, or the height, for a horizontal slider.
-     *
-     *
-     * @return int
-     */
-    public int getTrackWidth()  {
-        return getAttributeAsInt("trackWidth");
-    }
-
-    /**
-     * The base filename for the slider thumb images. The filenames for the thumb icons are assembled from this base filename
-     * and the state of the thumb, as follows:<br> Assume the thumbSrc is set to <code>{baseName}.{extension}</code><br> The
-     * full set of images to be displayed is:<br> For horizontal sliders: <ul> <li><code>h{baseName}.{extension}</code>:
-     * default enabled appearance. <li><code>h{baseName}_down.{extension}</code>:  appearance when the slider is enabled and
-     * the     thumb is clicked. <li><code>h{baseName}_off.{extension}</code>:  appearance when the slider is disabled. </ul>
-     * For vertical sliders: <ul> <li><code>v{baseName}.{extension}</code>: default enabled appearance.
-     * <li><code>v{baseName}_down.{extension}</code>:  appearance when the slider is enabled and the     thumb is clicked.
-     * <li><code>v{baseName}_off.{extension}</code>:  appearance when the slider is disabled. </ul>
-     * Sets the {@link com.smartgwt.client.widgets.Slider#getThumbSrc thumbSrc} property of the slider
-     *
-     * @param thumbSrc new thumbSrc. Default value is "thumb.gif"
-     */
-    public void setThumbSrc(String thumbSrc) {
-        setAttribute("thumbSrc", thumbSrc, true);
-    }
-
-    /**
-     * The base filename for the slider thumb images. The filenames for the thumb icons are assembled from this base filename
-     * and the state of the thumb, as follows:<br> Assume the thumbSrc is set to <code>{baseName}.{extension}</code><br> The
-     * full set of images to be displayed is:<br> For horizontal sliders: <ul> <li><code>h{baseName}.{extension}</code>:
-     * default enabled appearance. <li><code>h{baseName}_down.{extension}</code>:  appearance when the slider is enabled and
-     * the     thumb is clicked. <li><code>h{baseName}_off.{extension}</code>:  appearance when the slider is disabled. </ul>
-     * For vertical sliders: <ul> <li><code>v{baseName}.{extension}</code>: default enabled appearance.
-     * <li><code>v{baseName}_down.{extension}</code>:  appearance when the slider is enabled and the     thumb is clicked.
-     * <li><code>v{baseName}_off.{extension}</code>:  appearance when the slider is disabled. </ul>
+     * Optional display title for the slider.
      *
      *
      * @return String
      */
-    public String getThumbSrc()  {
-        return getAttributeAsString("thumbSrc");
+    public String getTitle()  {
+        return getAttributeAsString("title");
+    }
+
+    /**
+     * The height of vertical slider start and end images, or width of horizontal slider start and end images.
+     * Sets the {@link com.smartgwt.client.widgets.Slider#getTrackCapSize trackCapSize} property of the slider
+     *
+     * @param trackCapSize new trackCapSize. Default value is 6
+     */
+    public void setTrackCapSize(int trackCapSize) {
+        setAttribute("trackCapSize", trackCapSize, true);
+    }
+
+    /**
+     * The height of vertical slider start and end images, or width of horizontal slider start and end images.
+     *
+     *
+     * @return int
+     */
+    public int getTrackCapSize()  {
+        return getAttributeAsInt("trackCapSize");
+    }
+             
+    /**
+     * The imageType setting for the slider track.
+     * Sets the {@link com.smartgwt.client.widgets.Slider#getTrackImageType trackImageType} property of the slider
+     *
+     * @param trackImageType new trackImageType. Default value is "stretch"
+     */
+    public void setTrackImageType(ImageStyle trackImageType) {
+        setAttribute("trackImageType", trackImageType.getValue(), true);
+    }
+
+    /**
+     * The imageType setting for the slider track.
+     *
+     *
+     * @return ImageStyle
+     */
+    public ImageStyle getTrackImageType()  {
+        return EnumUtil.getEnum(ImageStyle.values(), getAttribute("trackImageType"));
     }
 
     /**
@@ -304,169 +708,23 @@ public class Slider extends Canvas  implements com.smartgwt.client.widgets.event
     }
 
     /**
-     * The height of vertical slider start and end images, or width of horizontal slider start and end images.
-     * Sets the {@link com.smartgwt.client.widgets.Slider#getTrackCapSize trackCapSize} property of the slider
+     * The thickness of the track. This is the width, for a vertical slider, or the height, for a horizontal slider.
+     * Sets the {@link com.smartgwt.client.widgets.Slider#getTrackWidth trackWidth} property of the slider
      *
-     * @param trackCapSize new trackCapSize. Default value is 6
+     * @param trackWidth new trackWidth. Default value is 7
      */
-    public void setTrackCapSize(int trackCapSize) {
-        setAttribute("trackCapSize", trackCapSize, true);
+    public void setTrackWidth(int trackWidth) {
+        setAttribute("trackWidth", trackWidth, true);
     }
 
     /**
-     * The height of vertical slider start and end images, or width of horizontal slider start and end images.
+     * The thickness of the track. This is the width, for a vertical slider, or the height, for a horizontal slider.
      *
      *
      * @return int
      */
-    public int getTrackCapSize()  {
-        return getAttributeAsInt("trackCapSize");
-    }
-             
-    /**
-     * The imageType setting for the slider track.
-     * Sets the {@link com.smartgwt.client.widgets.Slider#getTrackImageType trackImageType} property of the slider
-     *
-     * @param trackImageType new trackImageType. Default value is "stretch"
-     */
-    public void setTrackImageType(ImageStyle trackImageType) {
-        setAttribute("trackImageType", trackImageType.getValue(), true);
-    }
-
-    /**
-     * The imageType setting for the slider track.
-     *
-     *
-     * @return ImageStyle
-     */
-    public ImageStyle getTrackImageType()  {
-        return EnumUtil.getEnum(ImageStyle.values(), getAttribute("trackImageType"));
-    }
-
-    /**
-     * Indicates whether the slider's title should be displayed. The default position for this label is to the left of a
-     * horizontal slider, or above a vertical slider.
-     * Sets the {@link com.smartgwt.client.widgets.Slider#getShowTitle showTitle} property of the slider
-     *
-     * @param showTitle show the slider title?. Default value is true
-     */
-    public void setShowTitle(Boolean showTitle) {
-        setAttribute("showTitle", showTitle, true);
-    }
-
-    /**
-     * Indicates whether the slider's title should be displayed. The default position for this label is to the left of a
-     * horizontal slider, or above a vertical slider.
-     *
-     *
-     * @return Boolean
-     */
-    public Boolean getShowTitle()  {
-        return getAttributeAsBoolean("showTitle");
-    }
-
-    /**
-     * Indicates whether labels for the min and max values of the slider should be displayed. The default positions for these
-     * labels are below the start/end of a horizontal slider, or to the right of the start/end of a vertical slider.
-     * Sets the {@link com.smartgwt.client.widgets.Slider#getShowRange showRange} property of the slider
-     *
-     * @param showRange show the slider range?. Default value is true
-     */
-    public void setShowRange(Boolean showRange) {
-        setAttribute("showRange", showRange, true);
-    }
-
-    /**
-     * Indicates whether labels for the min and max values of the slider should be displayed. The default positions for these
-     * labels are below the start/end of a horizontal slider, or to the right of the start/end of a vertical slider.
-     *
-     *
-     * @return Boolean
-     */
-    public Boolean getShowRange()  {
-        return getAttributeAsBoolean("showRange");
-    }
-
-    /**
-     * Indicates whether a label for the value of the slider should be displayed. The default position for this label is to the
-     * right of a horizontal slider, or below a vertical slider.
-     * Sets the {@link com.smartgwt.client.widgets.Slider#getShowValue showValue} property of the slider
-     *
-     * @param showValue show the slider value?. Default value is true
-     */
-    public void setShowValue(Boolean showValue) {
-        setAttribute("showValue", showValue, true);
-    }
-
-    /**
-     * Indicates whether a label for the value of the slider should be displayed. The default position for this label is to the
-     * right of a horizontal slider, or below a vertical slider.
-     *
-     *
-     * @return Boolean
-     */
-    public Boolean getShowValue()  {
-        return getAttributeAsBoolean("showValue");
-    }
-
-    /**
-     * The width of the labels used to display the minimum, maximum and current values of the slider.
-     * Sets the {@link com.smartgwt.client.widgets.Slider#getLabelWidth labelWidth} property of the slider
-     *
-     * @param labelWidth new label width. Default value is 50
-     */
-    public void setLabelWidth(int labelWidth) {
-        setAttribute("labelWidth", labelWidth, true);
-    }
-
-    /**
-     * The width of the labels used to display the minimum, maximum and current values of the slider.
-     *
-     *
-     * @return int
-     */
-    public int getLabelWidth()  {
-        return getAttributeAsInt("labelWidth");
-    }
-
-    /**
-     * The height of the labels used to display the minimum, maximum and current values of the slider.
-     * Sets the {@link com.smartgwt.client.widgets.Slider#getLabelHeight labelHeight} property of the slider
-     *
-     * @param labelHeight new label height. Default value is 20
-     */
-    public void setLabelHeight(int labelHeight) {
-        setAttribute("labelHeight", labelHeight, true);
-    }
-
-    /**
-     * The height of the labels used to display the minimum, maximum and current values of the slider.
-     *
-     *
-     * @return int
-     */
-    public int getLabelHeight()  {
-        return getAttributeAsInt("labelHeight");
-    }
-
-    /**
-     * The space around the labels used to display the minimum, maximum and current values of the slider.
-     * Sets the {@link com.smartgwt.client.widgets.Slider#getLabelSpacing labelSpacing} property of the slider
-     *
-     * @param labelSpacing new label spacing. Default value is 5
-     */
-    public void setLabelSpacing(int labelSpacing) {
-        setAttribute("labelSpacing", labelSpacing, true);
-    }
-
-    /**
-     * The space around the labels used to display the minimum, maximum and current values of the slider.
-     *
-     *
-     * @return int
-     */
-    public int getLabelSpacing()  {
-        return getAttributeAsInt("labelSpacing");
+    public int getTrackWidth()  {
+        return getAttributeAsInt("trackWidth");
     }
 
     /**
@@ -492,284 +750,35 @@ public class Slider extends Canvas  implements com.smartgwt.client.widgets.event
     }
 
     /**
-     * The minimum slider value. The slider value is equal to minValue when the thumb is at the bottom or left of the slider
-     * (unless flipValues is true, in which case the minimum value is at the top/right of the slider)
-     * Sets the {@link com.smartgwt.client.widgets.Slider#getMinValue 'minimum value'} of the slider
+     * Indicates whether this is a vertical or horizontal slider.
+     * Sets the {@link com.smartgwt.client.widgets.Slider#getVertical vertical} property of the slider
      *
-     * @param minValue the new minimum value. Default value is 1
+     * @param vertical is the slider vertical. Default value is true
      */
-    public void setMinValue(float minValue) {
-        setAttribute("minValue", minValue, true);
+    public void setVertical(Boolean vertical) {
+        setAttribute("vertical", vertical, true);
     }
 
     /**
-     * The minimum slider value. The slider value is equal to minValue when the thumb is at the bottom or left of the slider
-     * (unless flipValues is true, in which case the minimum value is at the top/right of the slider)
-     *
-     *
-     * @return float
-     */
-    public float getMinValue()  {
-        return getAttributeAsFloat("minValue");
-    }
-
-    /**
-     * The text displayed in the label for the minimum value of the slider. If left as null, then slider.minValue will be
-     * displayed.
-     *
-     * @param minValueLabel minValueLabel Default value is null
-     */
-    public void setMinValueLabel(String minValueLabel) {
-        setAttribute("minValueLabel", minValueLabel, true);
-    }
-
-    /**
-     * The text displayed in the label for the minimum value of the slider. If left as null, then slider.minValue will be
-     * displayed.
-     *
-     *
-     * @return String
-     */
-    public String getMinValueLabel()  {
-        return getAttributeAsString("minValueLabel");
-    }
-
-    /**
-     * The maximum slider value. The slider value is equal to maxValue when the thumb is at the top or right of the slider
-     * (unless flipValues is true, in which case the maximum value is at the bottom/left of the slider)
-     * Sets the {@link com.smartgwt.client.widgets.Slider#getMaxValue 'maximum value'} of the slider
-     *
-     * @param maxValue the new maximum value. Default value is 100
-     */
-    public void setMaxValue(float maxValue) {
-        setAttribute("maxValue", maxValue, true);
-    }
-
-    /**
-     * The maximum slider value. The slider value is equal to maxValue when the thumb is at the top or right of the slider
-     * (unless flipValues is true, in which case the maximum value is at the bottom/left of the slider)
-     *
-     *
-     * @return float
-     */
-    public float getMaxValue()  {
-        return getAttributeAsFloat("maxValue");
-    }
-
-    /**
-     * The text displayed in the label for the maximum value of the slider. If left as null, then slider.maxValue will be
-     * displayed.
-     * Sets the {@link com.smartgwt.client.widgets.Slider#getMaxValueLabel maxValueLabel} property of the slider
-     *
-     * @param maxValueLabel new label text. Default value is null
-     */
-    public void setMaxValueLabel(String maxValueLabel) {
-        setAttribute("maxValueLabel", maxValueLabel, true);
-    }
-
-    /**
-     * The text displayed in the label for the maximum value of the slider. If left as null, then slider.maxValue will be
-     * displayed.
-     *
-     *
-     * @return String
-     */
-    public String getMaxValueLabel()  {
-        return getAttributeAsString("maxValueLabel");
-    }
-
-    /**
-     * The number of discrete values represented by slider. If specified, the range of valid values (between
-     * <code>minValue</code> and <code>maxValue</code>) will be divided into this many steps. As the thumb is moved along the
-     * track it will only select these values and appear to jump between the steps.
-     * Sets the {@link com.smartgwt.client.widgets.Slider#getNumValues 'number of values'} for the slider
-     *
-     * @param numValues the new number of values. Default value is null
-     */
-    public void setNumValues(Integer numValues) {
-        setAttribute("numValues", numValues, true);
-    }
-
-    /**
-     * The number of discrete values represented by slider. If specified, the range of valid values (between
-     * <code>minValue</code> and <code>maxValue</code>) will be divided into this many steps. As the thumb is moved along the
-     * track it will only select these values and appear to jump between the steps.
-     *
-     *
-     * @return Integer
-     */
-    public Integer getNumValues()  {
-        return getAttributeAsInt("numValues");
-    }
-
-    /**
-     * Specifies whether the slider value should be rounded to the nearest integer.  If set to false, values will be rounded to
-     * a fixed number of decimal places controlled by {@link com.smartgwt.client.widgets.Slider#getRoundPrecision
-     * roundPrecision}.
-     *
-     * @param roundValues roundValues Default value is true
-     */
-    public void setRoundValues(Boolean roundValues) {
-        setAttribute("roundValues", roundValues, true);
-    }
-
-    /**
-     * Specifies whether the slider value should be rounded to the nearest integer.  If set to false, values will be rounded to
-     * a fixed number of decimal places controlled by {@link com.smartgwt.client.widgets.Slider#getRoundPrecision
-     * roundPrecision}.
+     * Indicates whether this is a vertical or horizontal slider.
      *
      *
      * @return Boolean
      */
-    public Boolean getRoundValues()  {
-        return getAttributeAsBoolean("roundValues");
-    }
-
-    /**
-     * If {@link com.smartgwt.client.widgets.Slider#getRoundValues roundValues} is false, the slider value will be rounded to
-     * this number of decimal places. If set to null the value will not be rounded
-     * Sets the {@link com.smartgwt.client.widgets.Slider#getRoundPrecision roundPrecision} property of the slider
-     *
-     * @param roundPrecision new round precision. Default value is 1
-     */
-    public void setRoundPrecision(int roundPrecision) {
-        setAttribute("roundPrecision", roundPrecision, true);
-    }
-
-    /**
-     * If {@link com.smartgwt.client.widgets.Slider#getRoundValues roundValues} is false, the slider value will be rounded to
-     * this number of decimal places. If set to null the value will not be rounded
-     *
-     *
-     * @return int
-     */
-    public int getRoundPrecision()  {
-        return getAttributeAsInt("roundPrecision");
-    }
-
-    /**
-     * Specifies whether the value range of the slider should be flipped so that values increase as the thumb is moved down
-     * (for a vertical slider) or to the left (for a horizontal slider).
-     * Sets the {@link com.smartgwt.client.widgets.Slider#getFlipValues flipValues} property of the slider
-     *
-     * @param flipValues flip slider values?. Default value is false
-     */
-    public void setFlipValues(Boolean flipValues) {
-        setAttribute("flipValues", flipValues, true);
-    }
-
-    /**
-     * Specifies whether the value range of the slider should be flipped so that values increase as the thumb is moved down
-     * (for a vertical slider) or to the left (for a horizontal slider).
-     *
-     *
-     * @return Boolean
-     */
-    public Boolean getFlipValues()  {
-        return getAttributeAsBoolean("flipValues");
-    }
-
-    /**
-     * Indicates whether keyboard manipulation of the slider is allowed.
-     *
-     * @param canFocus canFocus Default value is true
-     */
-    public void setCanFocus(Boolean canFocus) {
-        setAttribute("canFocus", canFocus, true);
-    }
-
-    /**
-     * Indicates whether keyboard manipulation of the slider is allowed.
-     *
-     *
-     * @return Boolean
-     */
-    public Boolean getCanFocus()  {
-        return getAttributeAsBoolean("canFocus");
-    }
-
-    /**
-     * The percentage of the total slider that constitutes one discrete step. The slider will move one step when the
-     * appropriate arrow key is pressed.
-     * Sets the {@link com.smartgwt.client.widgets.Slider#getStepPercent stepPercent} property of the slider
-     *
-     * @param stepPercent new slider step percent. Default value is 5
-     */
-    public void setStepPercent(float stepPercent) {
-        setAttribute("stepPercent", stepPercent, true);
-    }
-
-    /**
-     * The percentage of the total slider that constitutes one discrete step. The slider will move one step when the
-     * appropriate arrow key is pressed.
-     *
-     *
-     * @return float
-     */
-    public float getStepPercent()  {
-        return getAttributeAsFloat("stepPercent");
-    }
-
-    /**
-     * Should the thumb be animated to its new position when the value is changed programmatically, or by clicking in the
-     * slider track.
-     *
-     * @param animateThumb animateThumb Default value is true
-     */
-    public void setAnimateThumb(Boolean animateThumb) {
-        setAttribute("animateThumb", animateThumb, true);
-    }
-
-    /**
-     * Should the thumb be animated to its new position when the value is changed programmatically, or by clicking in the
-     * slider track.
-     *
-     *
-     * @return Boolean
-     */
-    public Boolean getAnimateThumb()  {
-        return getAttributeAsBoolean("animateThumb");
-    }
-
-    /**
-     * Duration of thumb animation, in milliseconds.
-     *
-     * @param animateThumbTime animateThumbTime Default value is 250
-     */
-    public void setAnimateThumbTime(int animateThumbTime) {
-        setAttribute("animateThumbTime", animateThumbTime, true);
-    }
-
-    /**
-     * Duration of thumb animation, in milliseconds.
-     *
-     *
-     * @return int
-     */
-    public int getAnimateThumbTime()  {
-        return getAttributeAsInt("animateThumbTime");
-    }
-
-    /**
-     * If thumb animation is enabled, should the thumb be animated to its initial value?
-     *
-     * @param animateThumbInit animateThumbInit Default value is false
-     */
-    public void setAnimateThumbInit(Boolean animateThumbInit) {
-        setAttribute("animateThumbInit", animateThumbInit, true);
-    }
-
-    /**
-     * If thumb animation is enabled, should the thumb be animated to its initial value?
-     *
-     *
-     * @return Boolean
-     */
-    public Boolean getAnimateThumbInit()  {
-        return getAttributeAsBoolean("animateThumbInit");
+    public Boolean getVertical()  {
+        return getAttributeAsBoolean("vertical");
     }
 
     // ********************* Methods ***********************
+            
+    /**
+     * Sets the {@link com.smartgwt.client.widgets.Slider#getRoundValues roundValues} property of the slider
+     * @param roundValues round slider values?
+     */
+    public native void setRoundValue(boolean roundValues) /*-{
+        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
+        self.setRoundValue(roundValues);
+    }-*/;
     /**
      * Add a valueChanged handler.
      * <p>
@@ -821,15 +830,6 @@ public class Slider extends Canvas  implements com.smartgwt.client.widgets.event
         } else {
             return @com.smartgwt.client.util.JSOHelper::toBoolean(Z)(retVal);
         }
-    }-*/;
-            
-    /**
-     * Sets the {@link com.smartgwt.client.widgets.Slider#getRoundValues roundValues} property of the slider
-     * @param roundValues round slider values?
-     */
-    public native void setRoundValue(boolean roundValues) /*-{
-        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
-        self.setRoundValue(roundValues);
     }-*/;
 
     // ********************* Static Methods ***********************

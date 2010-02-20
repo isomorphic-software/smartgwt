@@ -90,238 +90,370 @@ public class Canvas extends BaseWidget  implements com.smartgwt.client.widgets.e
         return widget;
     }-*/;
     // ********************* Properties / Attributes ***********************
-             
+
     /**
-     * If {@link com.smartgwt.client.widgets.Canvas#getHtmlElement htmlElement} is specified, this attribute specifies the
-     * position where  the canvas should be inserted relative to the <code>htmlElement</code> in the DOM.
-     * Setter for the {@link com.smartgwt.client.widgets.Canvas#getHtmlPosition htmlPosition}.
+     * If specified this governs the accessKey for the widget. This should be set to a character - when a user hits
+     * Alt+[accessKey], or in Mozilla Firefox 2.0 and above, Shift+Alt+[accessKey], focus will be given to the widget in
+     * question.
+     * Set the accessKey for this canvas. <P> The accessKey can be set to any alphanumeric character (symbols not supported) Having set an accessKey, the canvas will be given focus when the user hits  Alt+[accessKey], or in Mozilla Firefox 2.0 and above, Shift+Alt+[accessKey].
      * <p><b>Note : </b> This is an advanced setting</p>
      *
-     * @param htmlPosition New htmlPosition for this canvas. Default value is "afterBegin"
+     * @param accessKey Character to use as an accessKey for this widget.  Case Insensitive.. Default value is null
      */
-    public void setHtmlPosition(DrawPosition htmlPosition) {
-        setAttribute("htmlPosition", htmlPosition.getValue(), true);
+    public void setAccessKey(String accessKey) {
+        setAttribute("accessKey", accessKey, true);
     }
 
     /**
-     * If {@link com.smartgwt.client.widgets.Canvas#getHtmlElement htmlElement} is specified, this attribute specifies the
-     * position where  the canvas should be inserted relative to the <code>htmlElement</code> in the DOM.
+     * If specified this governs the accessKey for the widget. This should be set to a character - when a user hits
+     * Alt+[accessKey], or in Mozilla Firefox 2.0 and above, Shift+Alt+[accessKey], focus will be given to the widget in
+     * question.
      *
      *
-     * @return DrawPosition
+     * @return String
      */
-    public DrawPosition getHtmlPosition()  {
-        return EnumUtil.getEnum(DrawPosition.values(), getAttribute("htmlPosition"));
-    }
-
-    /**
-     * If {@link com.smartgwt.client.widgets.Canvas#getHtmlElement htmlElement} is specified, should this canvas initially be
-     * drawn at the same dimensions as the htmlElement?<br> Note: setting this property will not force the canvas to resize if
-     * the element subsequently resizes (for example due to page reflow).
-     * <p><b>Note : </b> This is an advanced setting</p>
-     *
-     * @param matchElement matchElement Default value is null
-     */
-    public void setMatchElement(Boolean matchElement) {
-        setAttribute("matchElement", matchElement, true);
-    }
-
-    /**
-     * If {@link com.smartgwt.client.widgets.Canvas#getHtmlElement htmlElement} is specified, should this canvas initially be
-     * drawn at the same dimensions as the htmlElement?<br> Note: setting this property will not force the canvas to resize if
-     * the element subsequently resizes (for example due to page reflow).
-     *
-     *
-     * @return Boolean
-     */
-    public Boolean getMatchElement()  {
-        return getAttributeAsBoolean("matchElement");
+    public String getAccessKey()  {
+        return getAttributeAsString("accessKey");
     }
              
     /**
-     * Absolute or relative, corresponding to the "absolute" (with respect to parent) or&#010 "relative" (with respect to
-     * document flow) values for the CSS position attribute.&#010 <P>&#010 Setting <code>position:"relative"</code> enables
-     * Smart GWT components to be embedded&#010 directly into the native HTML flow of a page, causing the component to be
-     * rendered &#010 within an existing DOM structure. &#010 This attribute should only be set to <code>"relative"</code> on a
-     * top level component &#010 (a component with no {@link com.smartgwt.client.widgets.Canvas#getParentElement
-     * parentElement}). &#010 <P>&#010 There are 2 ways to embed relatively positioned canvases in the DOM - by default
-     * the&#010 component will be written out inline when it gets {@link com.smartgwt.client.widgets.Canvas#draw}. For
-     * example&#010 to embed a canvas in an HTML table you could use this code: &#010 <pre>&#010 &lt;table&gt;&#010  
-     * &lt;tr&gt;&#010     &lt;td&gt;&#010       &lt;script&gt;&#010         isc.Canvas.create({autoDraw:true,
-     * backgroundColor:"red", position:"relative"});&#010       &lt;/script&gt;&#010     &lt;td&gt;&#010   &lt;/tr&gt;&#010
-     * &lt;/table&gt;&#010 </pre>&#010 Alternatively you can make use of the {@link
-     * com.smartgwt.client.widgets.Canvas#getHtmlElement htmlElement} attribute.&#010 <P>&#010 Relative positioning is intended
-     * as a short-term integration scenario while incrementally&#010 upgrading existing applications.&#010 Note that relative
-     * positioning is not used to manage layout within Smart GWT components -&#010 instead the {@link
-     * com.smartgwt.client.widgets.layout.Layout} class would typically be used.&#010 For best consistency and flexibility
-     * across browsers, all Smart GWT layout managers&#010 use absolute positioning.&#010 <P>&#010 For canvases with a
-     * specified {@link com.smartgwt.client.widgets.Canvas#getHtmlElement htmlElement}, this attribute defaults to&#010
-     * <code>"relative"</code>. In all other cases the default value will be &#010 <code>"absolute"</code>.
+     * Default acceleration effect to apply to all animations on this Canvas. Can be overridden by setting
+     * animationAcceleration for specific animations or by passing an acceleration function directly into the appropriate
+     * method.
      * <p><b>Note : </b> This is an advanced setting</p>
      *
-     * @param position position Default value is null
+     * @param animateAcceleration animateAcceleration Default value is "smoothEnd"
      */
-    public void setPosition(Positioning position) {
-        setAttribute("position", position.getValue(), true);
+    public void setAnimateAcceleration(AnimationAcceleration animateAcceleration) {
+        setAttribute("animateAcceleration", animateAcceleration.getValue(), true);
     }
 
     /**
-     * Absolute or relative, corresponding to the "absolute" (with respect to parent) or&#010 "relative" (with respect to
-     * document flow) values for the CSS position attribute.&#010 <P>&#010 Setting <code>position:"relative"</code> enables
-     * Smart GWT components to be embedded&#010 directly into the native HTML flow of a page, causing the component to be
-     * rendered &#010 within an existing DOM structure. &#010 This attribute should only be set to <code>"relative"</code> on a
-     * top level component &#010 (a component with no {@link com.smartgwt.client.widgets.Canvas#getParentElement
-     * parentElement}). &#010 <P>&#010 There are 2 ways to embed relatively positioned canvases in the DOM - by default
-     * the&#010 component will be written out inline when it gets {@link com.smartgwt.client.widgets.Canvas#draw}. For
-     * example&#010 to embed a canvas in an HTML table you could use this code: &#010 <pre>&#010 &lt;table&gt;&#010  
-     * &lt;tr&gt;&#010     &lt;td&gt;&#010       &lt;script&gt;&#010         isc.Canvas.create({autoDraw:true,
-     * backgroundColor:"red", position:"relative"});&#010       &lt;/script&gt;&#010     &lt;td&gt;&#010   &lt;/tr&gt;&#010
-     * &lt;/table&gt;&#010 </pre>&#010 Alternatively you can make use of the {@link
-     * com.smartgwt.client.widgets.Canvas#getHtmlElement htmlElement} attribute.&#010 <P>&#010 Relative positioning is intended
-     * as a short-term integration scenario while incrementally&#010 upgrading existing applications.&#010 Note that relative
-     * positioning is not used to manage layout within Smart GWT components -&#010 instead the {@link
-     * com.smartgwt.client.widgets.layout.Layout} class would typically be used.&#010 For best consistency and flexibility
-     * across browsers, all Smart GWT layout managers&#010 use absolute positioning.&#010 <P>&#010 For canvases with a
-     * specified {@link com.smartgwt.client.widgets.Canvas#getHtmlElement htmlElement}, this attribute defaults to&#010
-     * <code>"relative"</code>. In all other cases the default value will be &#010 <code>"absolute"</code>.
+     * Default acceleration effect to apply to all animations on this Canvas. Can be overridden by setting
+     * animationAcceleration for specific animations or by passing an acceleration function directly into the appropriate
+     * method.
      *
      *
-     * @return Positioning
+     * @return AnimationAcceleration
      */
-    public Positioning getPosition()  {
-        return EnumUtil.getEnum(Positioning.values(), getAttribute("position"));
+    public AnimationAcceleration getAnimateAcceleration()  {
+        return EnumUtil.getEnum(AnimationAcceleration.values(), getAttribute("animateAcceleration"));
     }
 
     /**
-     * For custom components, establishes a default width for the component. <P> For a component that should potentially be
-     * sized automatically by a Layout, set this property rather than {@link com.smartgwt.client.widgets.Canvas#getWidth width}
-     * directly, because Layouts regard a width setting as an explicit size that shouldn't be changed.
+     * Default time for performing an animated fade.  If unset, <code>this.animateTime</code> will be used by default instead
      * <p><b>Note : </b> This is an advanced setting</p>
      *
-     * @param defaultWidth defaultWidth Default value is 100
+     * @param animateFadeTime animateFadeTime Default value is null
      */
-    public void setDefaultWidth(int defaultWidth) {
-        setAttribute("defaultWidth", defaultWidth, true);
+    public void setAnimateFadeTime(Integer animateFadeTime) {
+        setAttribute("animateFadeTime", animateFadeTime, true);
     }
 
     /**
-     * For custom components, establishes a default width for the component. <P> For a component that should potentially be
-     * sized automatically by a Layout, set this property rather than {@link com.smartgwt.client.widgets.Canvas#getWidth width}
-     * directly, because Layouts regard a width setting as an explicit size that shouldn't be changed.
+     * Default time for performing an animated fade.  If unset, <code>this.animateTime</code> will be used by default instead
+     *
+     *
+     * @return Integer
+     */
+    public Integer getAnimateFadeTime()  {
+        return getAttributeAsInt("animateFadeTime");
+    }
+             
+    /**
+     * Default acceleration function for performing an animated hide.  If unset,  <code>this.animateAcceleration</code> will be
+     * used by default instead
+     * <p><b>Note : </b> This is an advanced setting</p>
+     *
+     * @param animateHideAcceleration animateHideAcceleration Default value is null
+     */
+    public void setAnimateHideAcceleration(AnimationAcceleration animateHideAcceleration) {
+        setAttribute("animateHideAcceleration", animateHideAcceleration.getValue(), true);
+    }
+
+    /**
+     * Default acceleration function for performing an animated hide.  If unset,  <code>this.animateAcceleration</code> will be
+     * used by default instead
+     *
+     *
+     * @return AnimationAcceleration
+     */
+    public AnimationAcceleration getAnimateHideAcceleration()  {
+        return EnumUtil.getEnum(AnimationAcceleration.values(), getAttribute("animateHideAcceleration"));
+    }
+
+    /**
+     * Default time for performing an animated hide.  If unset, <code>this.animateTime</code> will be used by default instead
+     * <p><b>Note : </b> This is an advanced setting</p>
+     *
+     * @param animateHideTime animateHideTime Default value is null
+     */
+    public void setAnimateHideTime(Integer animateHideTime) {
+        setAttribute("animateHideTime", animateHideTime, true);
+    }
+
+    /**
+     * Default time for performing an animated hide.  If unset, <code>this.animateTime</code> will be used by default instead
+     *
+     *
+     * @return Integer
+     */
+    public Integer getAnimateHideTime()  {
+        return getAttributeAsInt("animateHideTime");
+    }
+             
+    /**
+     * Default acceleration effect for performing an animated move.  If unset,  <code>this.animateAcceleration</code> will be
+     * used by default instead
+     * <p><b>Note : </b> This is an advanced setting</p>
+     *
+     * @param animateMoveAcceleration animateMoveAcceleration Default value is null
+     */
+    public void setAnimateMoveAcceleration(AnimationAcceleration animateMoveAcceleration) {
+        setAttribute("animateMoveAcceleration", animateMoveAcceleration.getValue(), true);
+    }
+
+    /**
+     * Default acceleration effect for performing an animated move.  If unset,  <code>this.animateAcceleration</code> will be
+     * used by default instead
+     *
+     *
+     * @return AnimationAcceleration
+     */
+    public AnimationAcceleration getAnimateMoveAcceleration()  {
+        return EnumUtil.getEnum(AnimationAcceleration.values(), getAttribute("animateMoveAcceleration"));
+    }
+
+    /**
+     * Default time for performing an animated move.  If unset, <code>this.animateTime</code> will be used by default instead
+     * <p><b>Note : </b> This is an advanced setting</p>
+     *
+     * @param animateMoveTime animateMoveTime Default value is null
+     */
+    public void setAnimateMoveTime(Integer animateMoveTime) {
+        setAttribute("animateMoveTime", animateMoveTime, true);
+    }
+
+    /**
+     * Default time for performing an animated move.  If unset, <code>this.animateTime</code> will be used by default instead
+     *
+     *
+     * @return Integer
+     */
+    public Integer getAnimateMoveTime()  {
+        return getAttributeAsInt("animateMoveTime");
+    }
+             
+    /**
+     * Default acceleration function for performing an animated move and resize.  If unset, 
+     * <code>this.animateAcceleration</code> will be used by default instead
+     * <p><b>Note : </b> This is an advanced setting</p>
+     *
+     * @param animateRectAcceleration animateRectAcceleration Default value is null
+     */
+    public void setAnimateRectAcceleration(AnimationAcceleration animateRectAcceleration) {
+        setAttribute("animateRectAcceleration", animateRectAcceleration.getValue(), true);
+    }
+
+    /**
+     * Default acceleration function for performing an animated move and resize.  If unset, 
+     * <code>this.animateAcceleration</code> will be used by default instead
+     *
+     *
+     * @return AnimationAcceleration
+     */
+    public AnimationAcceleration getAnimateRectAcceleration()  {
+        return EnumUtil.getEnum(AnimationAcceleration.values(), getAttribute("animateRectAcceleration"));
+    }
+
+    /**
+     * Default time for performing an animated setRect.  If unset, <code>this.animateTime</code> will be used by default
+     * instead
+     * <p><b>Note : </b> This is an advanced setting</p>
+     *
+     * @param animateRectTime animateRectTime Default value is null
+     */
+    public void setAnimateRectTime(Integer animateRectTime) {
+        setAttribute("animateRectTime", animateRectTime, true);
+    }
+
+    /**
+     * Default time for performing an animated setRect.  If unset, <code>this.animateTime</code> will be used by default
+     * instead
+     *
+     *
+     * @return Integer
+     */
+    public Integer getAnimateRectTime()  {
+        return getAttributeAsInt("animateRectTime");
+    }
+             
+    /**
+     * Default acceleration function for performing an animated resize.  If unset,  <code>this.animateAcceleration</code> will
+     * be used by default instead
+     * <p><b>Note : </b> This is an advanced setting</p>
+     *
+     * @param animateResizeAcceleration animateResizeAcceleration Default value is null
+     */
+    public void setAnimateResizeAcceleration(AnimationAcceleration animateResizeAcceleration) {
+        setAttribute("animateResizeAcceleration", animateResizeAcceleration.getValue(), true);
+    }
+
+    /**
+     * Default acceleration function for performing an animated resize.  If unset,  <code>this.animateAcceleration</code> will
+     * be used by default instead
+     *
+     *
+     * @return AnimationAcceleration
+     */
+    public AnimationAcceleration getAnimateResizeAcceleration()  {
+        return EnumUtil.getEnum(AnimationAcceleration.values(), getAttribute("animateResizeAcceleration"));
+    }
+
+    /**
+     * Default time for performing an animated resize.  If unset, <code>this.animateTime</code> will be used by default instead
+     * <p><b>Note : </b> This is an advanced setting</p>
+     *
+     * @param animateResizeTime animateResizeTime Default value is null
+     */
+    public void setAnimateResizeTime(Integer animateResizeTime) {
+        setAttribute("animateResizeTime", animateResizeTime, true);
+    }
+
+    /**
+     * Default time for performing an animated resize.  If unset, <code>this.animateTime</code> will be used by default instead
+     *
+     *
+     * @return Integer
+     */
+    public Integer getAnimateResizeTime()  {
+        return getAttributeAsInt("animateResizeTime");
+    }
+             
+    /**
+     * Default acceleration function for performing an animated scroll.  If unset,  <code>this.animateAcceleration</code> will
+     * be used by default instead
+     * <p><b>Note : </b> This is an advanced setting</p>
+     *
+     * @param animateScrollAcceleration animateScrollAcceleration Default value is null
+     */
+    public void setAnimateScrollAcceleration(AnimationAcceleration animateScrollAcceleration) {
+        setAttribute("animateScrollAcceleration", animateScrollAcceleration.getValue(), true);
+    }
+
+    /**
+     * Default acceleration function for performing an animated scroll.  If unset,  <code>this.animateAcceleration</code> will
+     * be used by default instead
+     *
+     *
+     * @return AnimationAcceleration
+     */
+    public AnimationAcceleration getAnimateScrollAcceleration()  {
+        return EnumUtil.getEnum(AnimationAcceleration.values(), getAttribute("animateScrollAcceleration"));
+    }
+
+    /**
+     * Default time for performing an animated scroll.  If unset, <code>this.animateTime</code> will be used by default instead
+     * <p><b>Note : </b> This is an advanced setting</p>
+     *
+     * @param animateScrollTime animateScrollTime Default value is null
+     */
+    public void setAnimateScrollTime(Integer animateScrollTime) {
+        setAttribute("animateScrollTime", animateScrollTime, true);
+    }
+
+    /**
+     * Default time for performing an animated scroll.  If unset, <code>this.animateTime</code> will be used by default instead
+     *
+     *
+     * @return Integer
+     */
+    public Integer getAnimateScrollTime()  {
+        return getAttributeAsInt("animateScrollTime");
+    }
+             
+    /**
+     * Default acceleration function for performing an animated show.  If unset,  <code>this.animateAcceleration</code> will be
+     * used by default instead
+     * <p><b>Note : </b> This is an advanced setting</p>
+     *
+     * @param animateShowAcceleration animateShowAcceleration Default value is null
+     */
+    public void setAnimateShowAcceleration(AnimationAcceleration animateShowAcceleration) {
+        setAttribute("animateShowAcceleration", animateShowAcceleration.getValue(), true);
+    }
+
+    /**
+     * Default acceleration function for performing an animated show.  If unset,  <code>this.animateAcceleration</code> will be
+     * used by default instead
+     *
+     *
+     * @return AnimationAcceleration
+     */
+    public AnimationAcceleration getAnimateShowAcceleration()  {
+        return EnumUtil.getEnum(AnimationAcceleration.values(), getAttribute("animateShowAcceleration"));
+    }
+
+    /**
+     * Default time for performing an animated show.  If unset, <code>this.animateTime</code> will be used by default instead
+     * <p><b>Note : </b> This is an advanced setting</p>
+     *
+     * @param animateShowTime animateShowTime Default value is null
+     */
+    public void setAnimateShowTime(Integer animateShowTime) {
+        setAttribute("animateShowTime", animateShowTime, true);
+    }
+
+    /**
+     * Default time for performing an animated show.  If unset, <code>this.animateTime</code> will be used by default instead
+     *
+     *
+     * @return Integer
+     */
+    public Integer getAnimateShowTime()  {
+        return getAttributeAsInt("animateShowTime");
+    }
+
+    /**
+     * Default total duration of animations. Can be overridden by setting animation times for specific animations, or by
+     * passing a <code>duration</code> parameter into the appropriate animate...() method.
+     * <p><b>Note : </b> This is an advanced setting</p>
+     *
+     * @param animateTime animateTime Default value is 300
+     */
+    public void setAnimateTime(int animateTime) {
+        setAttribute("animateTime", animateTime, true);
+    }
+
+    /**
+     * Default total duration of animations. Can be overridden by setting animation times for specific animations, or by
+     * passing a <code>duration</code> parameter into the appropriate animate...() method.
      *
      *
      * @return int
      */
-    public int getDefaultWidth()  {
-        return getAttributeAsInt("defaultWidth");
+    public int getAnimateTime()  {
+        return getAttributeAsInt("animateTime");
     }
 
     /**
-     * For custom components, establishes a default height for the component. <P> For a component that should potentially be
-     * sized automatically by a Layout, set this property rather than {@link com.smartgwt.client.widgets.Canvas#getHeight
-     * height} directly, because Layouts regard a height setting as an explicit size that shouldn't be changed.
+     * Default directory for app-specific images, relative to the Page-wide {@link com.smartgwt.client.util.Page#getAppImgDir}.
      * <p><b>Note : </b> This is an advanced setting</p>
      *
-     * @param defaultHeight defaultHeight Default value is 100
+     * @param appImgDir appImgDir Default value is ""
      */
-    public void setDefaultHeight(int defaultHeight) {
-        setAttribute("defaultHeight", defaultHeight, true);
+    public void setAppImgDir(String appImgDir) {
+        setAttribute("appImgDir", appImgDir, true);
     }
 
     /**
-     * For custom components, establishes a default height for the component. <P> For a component that should potentially be
-     * sized automatically by a Layout, set this property rather than {@link com.smartgwt.client.widgets.Canvas#getHeight
-     * height} directly, because Layouts regard a height setting as an explicit size that shouldn't be changed.
+     * Default directory for app-specific images, relative to the Page-wide {@link com.smartgwt.client.util.Page#getAppImgDir}.
      *
      *
-     * @return int
+     * @return String
      */
-    public int getDefaultHeight()  {
-        return getAttributeAsInt("defaultHeight");
-    }
-
-    /**
-     * Minimum width that this Canvas can be resized to. <P> Note that a Canvas with overflow:"visible" has an implicit
-     * minimize size based on it's contents.
-     * <p><b>Note : </b> This is an advanced setting</p>
-     *
-     * @param minWidth minWidth Default value is 10
-     */
-    public void setMinWidth(int minWidth) {
-        setAttribute("minWidth", minWidth, true);
-    }
-
-    /**
-     * Minimum width that this Canvas can be resized to. <P> Note that a Canvas with overflow:"visible" has an implicit
-     * minimize size based on it's contents.
-     *
-     *
-     * @return int
-     */
-    public int getMinWidth()  {
-        return getAttributeAsInt("minWidth");
-    }
-
-    /**
-     * Maximum width that this Canvas can be resized to.
-     * <p><b>Note : </b> This is an advanced setting</p>
-     *
-     * @param maxWidth maxWidth Default value is 10000
-     */
-    public void setMaxWidth(int maxWidth) {
-        setAttribute("maxWidth", maxWidth, true);
-    }
-
-    /**
-     * Maximum width that this Canvas can be resized to.
-     *
-     *
-     * @return int
-     */
-    public int getMaxWidth()  {
-        return getAttributeAsInt("maxWidth");
-    }
-
-    /**
-     * Minimum height that this Canvas can be resized to. <P> Note that a Canvas with overflow:"visible" has an implicit
-     * minimize size based on it's contents.
-     * <p><b>Note : </b> This is an advanced setting</p>
-     *
-     * @param minHeight minHeight Default value is 10
-     */
-    public void setMinHeight(int minHeight) {
-        setAttribute("minHeight", minHeight, true);
-    }
-
-    /**
-     * Minimum height that this Canvas can be resized to. <P> Note that a Canvas with overflow:"visible" has an implicit
-     * minimize size based on it's contents.
-     *
-     *
-     * @return int
-     */
-    public int getMinHeight()  {
-        return getAttributeAsInt("minHeight");
-    }
-
-    /**
-     * Maximum height that this Canvas can be resized to.
-     * <p><b>Note : </b> This is an advanced setting</p>
-     *
-     * @param maxHeight maxHeight Default value is 10000
-     */
-    public void setMaxHeight(int maxHeight) {
-        setAttribute("maxHeight", maxHeight, true);
-    }
-
-    /**
-     * Maximum height that this Canvas can be resized to.
-     *
-     *
-     * @return int
-     */
-    public int getMaxHeight()  {
-        return getAttributeAsInt("maxHeight");
+    public String getAppImgDir()  {
+        return getAttributeAsString("appImgDir");
     }
 
     /**
@@ -343,208 +475,71 @@ public class Canvas extends BaseWidget  implements com.smartgwt.client.widgets.e
     public Boolean getAutoShowParent()  {
         return getAttributeAsBoolean("autoShowParent");
     }
-             
+
     /**
-     * Controls widget visibility when the widget is initialized. See Visibility type for      details.
-     * Sets this widget's visibility to "inherit", so that it becomes visible if all it's parents are visible or it has no parents. <P> If the widget has not yet been drawn (and doesn't have a parent or master), this method calls the draw method as well.
+     * URL for a background image for this widget (corresponding to the CSS "background-image" attribute).
+     * Sets the background to an image file given by newImage. This URL should be given as a          string relative to the image directory for the page (./images by default).
      *
-     * @param visibility visibility Default value is Canvas.INHERIT
+     * @param backgroundImage new URL (local to Page image directory) for background image. Default value is null
      */
-    public void setVisibility(Visibility visibility) {
-        setAttribute("visibility", visibility.getValue(), true);
+    public void setBackgroundImage(String backgroundImage) {
+        setAttribute("backgroundImage", backgroundImage, true);
     }
 
     /**
-     * Controls widget visibility when the widget is initialized. See Visibility type for      details.
-     *
-     *
-     * @return Returns true if the widget is visible, taking all parents into account, so that a widget which is not hidden might still
-     * report itself as not visible if it is within a hidden parent. <P> NOTE: Undrawn widgets will report themselves as
-     * visible if they would be visible if drawn.
-     */
-    public Visibility getVisibility()  {
-        return EnumUtil.getEnum(Visibility.values(), getAttribute("visibility"));
-    }
-
-    /**
-     * Whether native drag selection of contained text is allowed within this Canvas. <P> Note that setting this property to
-     * <code>false</code> will not avoid text selection which is initiated outside this Canvas from continuing into this
-     * Canvas, even if text selection began in another Canvas.
-     * <p><b>Note : </b> This is an advanced setting</p>
-     *
-     * @param canSelectText canSelectText Default value is false
-     */
-    public void setCanSelectText(Boolean canSelectText) {
-        setAttribute("canSelectText", canSelectText, true);
-    }
-
-    /**
-     * Whether native drag selection of contained text is allowed within this Canvas. <P> Note that setting this property to
-     * <code>false</code> will not avoid text selection which is initiated outside this Canvas from continuing into this
-     * Canvas, even if text selection began in another Canvas.
-     *
-     *
-     * @return Boolean
-     */
-    public Boolean getCanSelectText()  {
-        return getAttributeAsBoolean("canSelectText");
-    }
-
-    /**
-     * The CSS class applied to this widget as a whole.
-     * Sets the CSS class for this widget
-     *
-     * @param styleName new CSS class name (must be defined previously). Default value is "normal"
-     */
-    public void setStyleName(String styleName) {
-        setAttribute("styleName", styleName, true);
-    }
-
-    /**
-     * The CSS class applied to this widget as a whole.
+     * URL for a background image for this widget (corresponding to the CSS "background-image" attribute).
      *
      *
      * @return String
      */
-    public String getStyleName()  {
-        return getAttributeAsString("styleName");
+    public String getBackgroundImage()  {
+        return getAttributeAsString("backgroundImage");
     }
 
     /**
-     * The contents of a canvas or label widget. Any HTML string is acceptable.
-     * Changes the contents of a widget to newContents, an HTML string. <P> When {@link com.smartgwt.client.widgets.Canvas#getDynamicContents 'dynamicContents'} is set, <code>setContents()</code> can also be called with no arguments to cause contents to be re-evaluated.
-     * <p><b>Note : </b> This is an advanced setting</p>
+     * Specifies how the background image should be positioned on the widget.      It corresponds to the CSS
+     * background-position attribute. If unset,      no background-position attribute is specified if a background image is    
+     *  specified.
      *
-     * @param contents an HTML string to be set as the contents of this widget. Default value is "&nbsp;"
+     * @param backgroundPosition backgroundPosition Default value is null
+     * @throws IllegalStateException this property cannot be changed after the component has been created
      */
-    public void setContents(String contents) {
-        setAttribute("contents", contents, true);
+    public void setBackgroundPosition(String backgroundPosition)  throws IllegalStateException {
+        setAttribute("backgroundPosition", backgroundPosition, false);
     }
 
     /**
-     * The contents of a canvas or label widget. Any HTML string is acceptable.
+     * Specifies how the background image should be positioned on the widget.      It corresponds to the CSS
+     * background-position attribute. If unset,      no background-position attribute is specified if a background image is    
+     *  specified.
      *
      *
-     * @return Returns the contents of a Canvas. The contents are an HTML string.
+     * @return String
      */
-    public String getContents()  {
-        return getAttributeAsString("contents");
+    public String getBackgroundPosition()  {
+        return getAttributeAsString("backgroundPosition");
+    }
+             
+    /**
+     * Specifies how the background image should be tiled if this widget      is larger than the image. It corresponds to the
+     * CSS background-repeat attribute.      See BkgndRepeat type for details.
+     *
+     * @param backgroundRepeat backgroundRepeat Default value is Canvas.REPEAT
+     * @throws IllegalStateException this property cannot be changed after the component has been created
+     */
+    public void setBackgroundRepeat(BkgndRepeat backgroundRepeat)  throws IllegalStateException {
+        setAttribute("backgroundRepeat", backgroundRepeat.getValue(), false);
     }
 
     /**
-     * Dynamic contents allows the contents string to be treated as a simple, but powerful&#010 template.  When this attribute
-     * is set to true, expressions of the form \${arbitrary JS&#010 here} are replaced by the result of the evaluation of the
-     * JS code inside the curly&#010 brackets.  This evaluation happens at draw time.  If you want to trigger a
-     * re-evaluation&#010 of the expressions in the contents string you can call markForRedraw() on the canvas.&#010 <p>&#010
-     * You can use this feature to build some simple custom components. For example, let's say&#010 you want to show the value
-     * of a Slider in a Canvas somewhere on the screen.  You can do&#010 this by observing the valueChanged() method on the
-     * slider and calling setContents() on&#010 your canvas with the new string or you can set the contents of the canvas to
-     * something&#010 like:&#010 <p><code>&#010 "The slider value is \${sliderInstance.getValue()}."&#010 </code><p>&#010 Next
-     * you set dynamicContents: true on the canvas, observe valueChanged() on the slider&#010 and call canvas.markForRedraw()
-     * in that observation.  This approach is cleaner than&#010 setContents() when the Canvas is aggregating several values or
-     * dynamic expressions.&#010 Like so:&#010 <p>&#010 <pre>&#010 Slider.create({&#010     ID: "mySlider"&#010 });&#010&#010
-     * Canvas.create({&#010     ID: "myCanvas",&#010     dynamicContents: true,&#010     contents: "The slider value is
-     * \${mySlider.getValue()}."&#010 });&#010     &#010 myCanvas.observe(mySlider, "valueChanged", &#010                 
-     * "observer.markForRedraw()");&#010 </pre>&#010 You can embed an arbitrary number of dynamic expressions in the contents
-     * string.  The&#010 search and replace is optimized for speed.&#010 <p>&#010 If an error occurs during the evaluation of
-     * one of the expressions, a warning is logged&#010 to the ISC Developer Console and the error string is embedded in place
-     * of the expected&#010 value in the Canvas.&#010 <p>&#010 The value of a function is its return value.  The value of any
-     * variable is the same as&#010 that returned by its toString() representation.&#010 <p>&#010 Inside the evaluation
-     * contentext, <code>this</code> points to the canvas instance that&#010 has the dynamicContents string as its contents -
-     * in other words the canvas instance on&#010 which the template is declared.
-     * <p><b>Note : </b> This is an advanced setting</p>
+     * Specifies how the background image should be tiled if this widget      is larger than the image. It corresponds to the
+     * CSS background-repeat attribute.      See BkgndRepeat type for details.
      *
-     * @param dynamicContents dynamicContents Default value is false
+     *
+     * @return BkgndRepeat
      */
-    public void setDynamicContents(Boolean dynamicContents) {
-        setAttribute("dynamicContents", dynamicContents, true);
-    }
-
-    /**
-     * Dynamic contents allows the contents string to be treated as a simple, but powerful&#010 template.  When this attribute
-     * is set to true, expressions of the form \${arbitrary JS&#010 here} are replaced by the result of the evaluation of the
-     * JS code inside the curly&#010 brackets.  This evaluation happens at draw time.  If you want to trigger a
-     * re-evaluation&#010 of the expressions in the contents string you can call markForRedraw() on the canvas.&#010 <p>&#010
-     * You can use this feature to build some simple custom components. For example, let's say&#010 you want to show the value
-     * of a Slider in a Canvas somewhere on the screen.  You can do&#010 this by observing the valueChanged() method on the
-     * slider and calling setContents() on&#010 your canvas with the new string or you can set the contents of the canvas to
-     * something&#010 like:&#010 <p><code>&#010 "The slider value is \${sliderInstance.getValue()}."&#010 </code><p>&#010 Next
-     * you set dynamicContents: true on the canvas, observe valueChanged() on the slider&#010 and call canvas.markForRedraw()
-     * in that observation.  This approach is cleaner than&#010 setContents() when the Canvas is aggregating several values or
-     * dynamic expressions.&#010 Like so:&#010 <p>&#010 <pre>&#010 Slider.create({&#010     ID: "mySlider"&#010 });&#010&#010
-     * Canvas.create({&#010     ID: "myCanvas",&#010     dynamicContents: true,&#010     contents: "The slider value is
-     * \${mySlider.getValue()}."&#010 });&#010     &#010 myCanvas.observe(mySlider, "valueChanged", &#010                 
-     * "observer.markForRedraw()");&#010 </pre>&#010 You can embed an arbitrary number of dynamic expressions in the contents
-     * string.  The&#010 search and replace is optimized for speed.&#010 <p>&#010 If an error occurs during the evaluation of
-     * one of the expressions, a warning is logged&#010 to the ISC Developer Console and the error string is embedded in place
-     * of the expected&#010 value in the Canvas.&#010 <p>&#010 The value of a function is its return value.  The value of any
-     * variable is the same as&#010 that returned by its toString() representation.&#010 <p>&#010 Inside the evaluation
-     * contentext, <code>this</code> points to the canvas instance that&#010 has the dynamicContents string as its contents -
-     * in other words the canvas instance on&#010 which the template is declared.
-     *
-     *
-     * @return Boolean
-     */
-    public Boolean getDynamicContents()  {
-        return getAttributeAsBoolean("dynamicContents");
-    }
-
-    /**
-     * Set the CSS Margin, in pixels, for this component.  Margin provides blank space outside of the border. <P> This property
-     * sets the same thickness of margin on every side.  Differing per-side margins can be set in a CSS style and applied via
-     * {@link com.smartgwt.client.widgets.Canvas#getStyleName styleName}. <P> Note that the specified size of the widget will
-     * be the size <b>including</b> the margin thickness on each side.
-     * Set the CSS Margin, in pixels, for this component.  Margin provides blank space outside of the border. <P> This property sets the same thickness of margin on every side.  Differing per-side margins can be set in a CSS style and applied via {@link com.smartgwt.client.widgets.Canvas#getStyleName styleName}. <P> Note that the specified size of the widget will be the size <b>including</b> the margin thickness on each side.
-     *
-     * @param margin new margin in pixels. Default value is null
-     */
-    public void setMargin(Integer margin) {
-        setAttribute("margin", margin, true);
-    }
-
-    /**
-     * Set the CSS Margin, in pixels, for this component.  Margin provides blank space outside of the border. <P> This property
-     * sets the same thickness of margin on every side.  Differing per-side margins can be set in a CSS style and applied via
-     * {@link com.smartgwt.client.widgets.Canvas#getStyleName styleName}. <P> Note that the specified size of the widget will
-     * be the size <b>including</b> the margin thickness on each side.
-     *
-     *
-     * @return Integer
-     */
-    public Integer getMargin()  {
-        return getAttributeAsInt("margin");
-    }
-
-    /**
-     * Set the CSS padding of this component, in pixels.  Padding provides space between the border and the component's
-     * contents. <P> This property sets the same thickness of padding on every side.  Differing per-side padding can be set in
-     * a CSS style and applied via {@link com.smartgwt.client.widgets.Canvas#getStyleName styleName}. <P> Note that CSS padding
-     * does not affect the placement of {@link com.smartgwt.client.widgets.Canvas#getChildren children}.  To provide a blank
-     * area around children, either use {@link com.smartgwt.client.widgets.Canvas#getMargin 'CSS margins'} or use a {@link
-     * com.smartgwt.client.widgets.layout.Layout} as the parent instead, and use properties such as {@link
-     * com.smartgwt.client.widgets.layout.Layout#getLayoutMargin layoutMargin} to create blank space.
-     * Set the CSS padding of this component, in pixels.  Padding provides space between the border and the component's contents. <P> This property sets the same thickness of padding on every side.  Differing per-side padding can be set in a CSS style and applied via {@link com.smartgwt.client.widgets.Canvas#getStyleName styleName}. <P>
-     *
-     * @param padding new padding in pixels. Default value is null
-     */
-    public void setPadding(Integer padding) {
-        setAttribute("padding", padding, true);
-    }
-
-    /**
-     * Set the CSS padding of this component, in pixels.  Padding provides space between the border and the component's
-     * contents. <P> This property sets the same thickness of padding on every side.  Differing per-side padding can be set in
-     * a CSS style and applied via {@link com.smartgwt.client.widgets.Canvas#getStyleName styleName}. <P> Note that CSS padding
-     * does not affect the placement of {@link com.smartgwt.client.widgets.Canvas#getChildren children}.  To provide a blank
-     * area around children, either use {@link com.smartgwt.client.widgets.Canvas#getMargin 'CSS margins'} or use a {@link
-     * com.smartgwt.client.widgets.layout.Layout} as the parent instead, and use properties such as {@link
-     * com.smartgwt.client.widgets.layout.Layout#getLayoutMargin layoutMargin} to create blank space.
-     *
-     *
-     * @return Integer
-     */
-    public Integer getPadding()  {
-        return getAttributeAsInt("padding");
+    public BkgndRepeat getBackgroundRepeat()  {
+        return EnumUtil.getEnum(BkgndRepeat.values(), getAttribute("backgroundRepeat"));
     }
 
     /**
@@ -572,296 +567,151 @@ public class Canvas extends BaseWidget  implements com.smartgwt.client.widgets.e
     }
 
     /**
-     * URL for a background image for this widget (corresponding to the CSS "background-image" attribute).
-     * Sets the background to an image file given by newImage. This URL should be given as a          string relative to the image directory for the page (./images by default).
-     *
-     * @param backgroundImage new URL (local to Page image directory) for background image. Default value is null
-     */
-    public void setBackgroundImage(String backgroundImage) {
-        setAttribute("backgroundImage", backgroundImage, true);
-    }
-
-    /**
-     * URL for a background image for this widget (corresponding to the CSS "background-image" attribute).
-     *
-     *
-     * @return String
-     */
-    public String getBackgroundImage()  {
-        return getAttributeAsString("backgroundImage");
-    }
-             
-    /**
-     * Specifies how the background image should be tiled if this widget      is larger than the image. It corresponds to the
-     * CSS background-repeat attribute.      See BkgndRepeat type for details.
-     *
-     * @param backgroundRepeat backgroundRepeat Default value is Canvas.REPEAT
-     * @throws IllegalStateException this property cannot be changed after the component has been created
-     */
-    public void setBackgroundRepeat(BkgndRepeat backgroundRepeat)  throws IllegalStateException {
-        setAttribute("backgroundRepeat", backgroundRepeat.getValue(), false);
-    }
-
-    /**
-     * Specifies how the background image should be tiled if this widget      is larger than the image. It corresponds to the
-     * CSS background-repeat attribute.      See BkgndRepeat type for details.
-     *
-     *
-     * @return BkgndRepeat
-     */
-    public BkgndRepeat getBackgroundRepeat()  {
-        return EnumUtil.getEnum(BkgndRepeat.values(), getAttribute("backgroundRepeat"));
-    }
-
-    /**
-     * Specifies how the background image should be positioned on the widget.      It corresponds to the CSS
-     * background-position attribute. If unset,      no background-position attribute is specified if a background image is    
-     *  specified.
-     *
-     * @param backgroundPosition backgroundPosition Default value is null
-     * @throws IllegalStateException this property cannot be changed after the component has been created
-     */
-    public void setBackgroundPosition(String backgroundPosition)  throws IllegalStateException {
-        setAttribute("backgroundPosition", backgroundPosition, false);
-    }
-
-    /**
-     * Specifies how the background image should be positioned on the widget.      It corresponds to the CSS
-     * background-position attribute. If unset,      no background-position attribute is specified if a background image is    
-     *  specified.
-     *
-     *
-     * @return String
-     */
-    public String getBackgroundPosition()  {
-        return getAttributeAsString("backgroundPosition");
-    }
-
-    /**
-     * Default directory for app-specific images, relative to the Page-wide {@link com.smartgwt.client.util.Page#getAppImgDir}.
+     * Indicates that this object can receive dropped widgets (i.e. other widgets can be      dropped on top of it).
      * <p><b>Note : </b> This is an advanced setting</p>
      *
-     * @param appImgDir appImgDir Default value is ""
+     * @param canAcceptDrop canAcceptDrop Default value is false
      */
-    public void setAppImgDir(String appImgDir) {
-        setAttribute("appImgDir", appImgDir, true);
+    public void setCanAcceptDrop(Boolean canAcceptDrop) {
+        setAttribute("canAcceptDrop", canAcceptDrop, true);
     }
 
     /**
-     * Default directory for app-specific images, relative to the Page-wide {@link com.smartgwt.client.util.Page#getAppImgDir}.
-     *
-     *
-     * @return String
-     */
-    public String getAppImgDir()  {
-        return getAttributeAsString("appImgDir");
-    }
-
-    /**
-     * Default directory for skin images (those defined by the class), relative to the Page-wide {@link
-     * com.smartgwt.client.util.Page#getSkinDir}.
-     * <p><b>Note : </b> This is an advanced setting</p>
-     *
-     * @param skinImgDir skinImgDir Default value is "images/"
-     */
-    public void setSkinImgDir(String skinImgDir) {
-        setAttribute("skinImgDir", skinImgDir, true);
-    }
-
-    /**
-     * Default directory for skin images (those defined by the class), relative to the Page-wide {@link
-     * com.smartgwt.client.util.Page#getSkinDir}.
-     *
-     *
-     * @return String
-     */
-    public String getSkinImgDir()  {
-        return getAttributeAsString("skinImgDir");
-    }
-             
-    /**
-     * Specifies the cursor image to display when the mouse pointer is      over this widget. It corresponds to the CSS cursor
-     * attribute. See Cursor type for      different cursors.
-     * Sets the cursor for this widget to cursor. See the cursor property          for possible values.
-     * <p><b>Note : </b> This is an advanced setting</p>
-     *
-     * @param cursor new cursor. Default value is Canvas.DEFAULT
-     */
-    public void setCursor(Cursor cursor) {
-        setAttribute("cursor", cursor.getValue(), true);
-    }
-
-    /**
-     * Specifies the cursor image to display when the mouse pointer is      over this widget. It corresponds to the CSS cursor
-     * attribute. See Cursor type for      different cursors.
-     *
-     *
-     * @return Cursor
-     */
-    public Cursor getCursor()  {
-        return EnumUtil.getEnum(Cursor.values(), getAttribute("cursor"));
-    }
-             
-    /**
-     * Specifies the cursor image to display when the mouse pointer is      over this widget if this widget is disabled. It
-     * corresponds to the CSS cursor       attribute. See Cursor type for different cursors.
-     * <p><b>Note : </b> This is an advanced setting</p>
-     *
-     * @param disabledCursor disabledCursor Default value is Canvas.DEFAULT
-     */
-    public void setDisabledCursor(Cursor disabledCursor) {
-        setAttribute("disabledCursor", disabledCursor.getValue(), true);
-    }
-
-    /**
-     * Specifies the cursor image to display when the mouse pointer is      over this widget if this widget is disabled. It
-     * corresponds to the CSS cursor       attribute. See Cursor type for different cursors.
-     *
-     *
-     * @return Cursor
-     */
-    public Cursor getDisabledCursor()  {
-        return EnumUtil.getEnum(Cursor.values(), getAttribute("disabledCursor"));
-    }
-
-    /**
-     * Renders the widget to be partly transparent. A widget's opacity property may      be set to any number between 0
-     * (transparent) to 100 (opaque).  Null means don't specify opacity directly, 100 is fully opaque.  Note that heavy use of
-     * opacity may slow down your browser.  See canvas.setOpacity() for details.
-     * Sets the opacity for the widget to the newOpacity value. This newOpacity          value must be within the range of 0 (transparent) to 100 (opaque). <br>          In Internet Explorer, any other filter effects will be wiped out.
-     * <p><b>Note : </b> This is an advanced setting</p>
-     *
-     * @param opacity new opacity level. Default value is null
-     */
-    public void setOpacity(Integer opacity) {
-        setAttribute("opacity", opacity, true);
-    }
-
-    /**
-     * Renders the widget to be partly transparent. A widget's opacity property may      be set to any number between 0
-     * (transparent) to 100 (opaque).  Null means don't specify opacity directly, 100 is fully opaque.  Note that heavy use of
-     * opacity may slow down your browser.  See canvas.setOpacity() for details.
-     *
-     *
-     * @return Integer
-     */
-    public Integer getOpacity()  {
-        return getAttributeAsInt("opacity");
-    }
-             
-    /**
-     * Controls what happens when the drawn size of the content of a Canvas is either   greater or smaller than the specified
-     * size of the Canvas.  Similar to the CSS   property overflow, but consistent across browsers.  See Overflow type for  
-     * details.
-     * Update the {@link com.smartgwt.client.widgets.Canvas#getOverflow 'overflow'} of a Canvas after it has been created.
-     *
-     * @param overflow New overflow value.. Default value is Canvas.VISIBLE
-     */
-    public void setOverflow(Overflow overflow) {
-        setAttribute("overflow", overflow.getValue(), true);
-    }
-
-    /**
-     * Controls what happens when the drawn size of the content of a Canvas is either   greater or smaller than the specified
-     * size of the Canvas.  Similar to the CSS   property overflow, but consistent across browsers.  See Overflow type for  
-     * details.
-     *
-     *
-     * @return Overflow
-     */
-    public Overflow getOverflow()  {
-        return EnumUtil.getEnum(Overflow.values(), getAttribute("overflow"));
-    }
-
-    /**
-     * Whether to use the browser's native scrollbars or Smart GWT-based scrollbars.&#010 <P>&#010 Smart GWT-based scrollbars
-     * are skinnable, giving you complete control over look and&#010 feel.  Smart GWT-based scrollbars also enable some
-     * interactions not possible with&#010 native scrollbars, such as {@link
-     * com.smartgwt.client.widgets.grid.ListGrid#getFixedRecordHeights 'variable height records'}&#010 in grids in combination
-     * with {@link com.smartgwt.client.widgets.grid.ListGrid#getDataPageSize 'data paging'}.&#010 <P>&#010 Native browser
-     * scrollbars are slightly faster simply because there are less Smart GWT&#010 components that need to be created, drawn
-     * and updated.  Each visible Smart GWT-based&#010 scrollbar on the screen has roughly the impact of two
-     * StretchImgButtons.&#010 <P>&#010 Smart GWT is always aware of the size of the scrollbar, regardless of whether
-     * native&#010 or custom scrollbars are used, and regardless of what operating system and/or operating&#010 system "theme"
-     * or "skin" is in use.  This means Smart GWT will correctly report the&#010 {@link
-     * com.smartgwt.client.widgets.Canvas#getViewportHeight}, that is, the interior area of the&#010 widget excluding space
-     * taken by scrollbars, which is key for exactly filling a component&#010 with content without creating unnecessary
-     * scrolling.&#010 <P>&#010 The <code>showCustomScrollbars</code> setting is typically overridden in load_skin.js in&#010
-     * order to change the default for all Smart GWT components at once, like so:&#010 <pre>&#010    
-     * isc.Canvas.addProperties({ showCustomScrollbars:false });&#010 </pre>
-     * <p><b>Note : </b> This is an advanced setting</p>
-     *
-     * @param showCustomScrollbars showCustomScrollbars Default value is true
-     */
-    public void setShowCustomScrollbars(Boolean showCustomScrollbars) {
-        setAttribute("showCustomScrollbars", showCustomScrollbars, true);
-    }
-
-    /**
-     * Whether to use the browser's native scrollbars or Smart GWT-based scrollbars.&#010 <P>&#010 Smart GWT-based scrollbars
-     * are skinnable, giving you complete control over look and&#010 feel.  Smart GWT-based scrollbars also enable some
-     * interactions not possible with&#010 native scrollbars, such as {@link
-     * com.smartgwt.client.widgets.grid.ListGrid#getFixedRecordHeights 'variable height records'}&#010 in grids in combination
-     * with {@link com.smartgwt.client.widgets.grid.ListGrid#getDataPageSize 'data paging'}.&#010 <P>&#010 Native browser
-     * scrollbars are slightly faster simply because there are less Smart GWT&#010 components that need to be created, drawn
-     * and updated.  Each visible Smart GWT-based&#010 scrollbar on the screen has roughly the impact of two
-     * StretchImgButtons.&#010 <P>&#010 Smart GWT is always aware of the size of the scrollbar, regardless of whether
-     * native&#010 or custom scrollbars are used, and regardless of what operating system and/or operating&#010 system "theme"
-     * or "skin" is in use.  This means Smart GWT will correctly report the&#010 {@link
-     * com.smartgwt.client.widgets.Canvas#getViewportHeight}, that is, the interior area of the&#010 widget excluding space
-     * taken by scrollbars, which is key for exactly filling a component&#010 with content without creating unnecessary
-     * scrolling.&#010 <P>&#010 The <code>showCustomScrollbars</code> setting is typically overridden in load_skin.js in&#010
-     * order to change the default for all Smart GWT components at once, like so:&#010 <pre>&#010    
-     * isc.Canvas.addProperties({ showCustomScrollbars:false });&#010 </pre>
+     * Indicates that this object can receive dropped widgets (i.e. other widgets can be      dropped on top of it).
      *
      *
      * @return Boolean
      */
-    public Boolean getShowCustomScrollbars()  {
-        return getAttributeAsBoolean("showCustomScrollbars");
+    public Boolean getCanAcceptDrop()  {
+        return getAttributeAsBoolean("canAcceptDrop");
     }
 
     /**
-     * How thick should we make the scrollbars for this canvas.<br>   NOTE: has no effect if showCustomScrollbars is false.
+     * Indicates whether this widget can initiate custom drag-and-drop operations (other than      reposition or resize).
+     * Normally canDragReposition or canDragResize would be used      instead of this property.      Note: this property may be
+     * manipulated by higher-level dragging semantics.
      * <p><b>Note : </b> This is an advanced setting</p>
      *
-     * @param scrollbarSize scrollbarSize Default value is 16
+     * @param canDrag canDrag Default value is false
      */
-    public void setScrollbarSize(int scrollbarSize) {
-        setAttribute("scrollbarSize", scrollbarSize, true);
+    public void setCanDrag(Boolean canDrag) {
+        setAttribute("canDrag", canDrag, true);
     }
 
     /**
-     * How thick should we make the scrollbars for this canvas.<br>   NOTE: has no effect if showCustomScrollbars is false.
-     *
-     *
-     * @return Returns the thickness of this widget's scrollbars.<br>  For canvases showing custom scrollbars this is determined from
-     * <code>this.scrollbarSize</code>
-     */
-    public int getScrollbarSize()  {
-        return getAttributeAsInt("scrollbarSize");
-    }
-
-    /**
-     * Should this element be redrawn in response to a resize? <P> Should be set to true for components whose {@link
-     * com.smartgwt.client.widgets.Canvas#getInnerHTML} will not automatically reflow to fit the component's new size.
-     * <p><b>Note : </b> This is an advanced setting</p>
-     *
-     * @param redrawOnResize redrawOnResize Default value is true
-     */
-    public void setRedrawOnResize(Boolean redrawOnResize) {
-        setAttribute("redrawOnResize", redrawOnResize, true);
-    }
-
-    /**
-     * Should this element be redrawn in response to a resize? <P> Should be set to true for components whose {@link
-     * com.smartgwt.client.widgets.Canvas#getInnerHTML} will not automatically reflow to fit the component's new size.
+     * Indicates whether this widget can initiate custom drag-and-drop operations (other than      reposition or resize).
+     * Normally canDragReposition or canDragResize would be used      instead of this property.      Note: this property may be
+     * manipulated by higher-level dragging semantics.
      *
      *
      * @return Boolean
      */
-    public Boolean getRedrawOnResize()  {
-        return getAttributeAsBoolean("redrawOnResize");
+    public Boolean getCanDrag()  {
+        return getAttributeAsBoolean("canDrag");
+    }
+
+    /**
+     * Indicates whether this widget can be moved by a user of your application by simply      dragging with the mouse.
+     * <p><b>Note : </b> This is an advanced setting</p>
+     *
+     * @param canDragReposition canDragReposition Default value is false
+     */
+    public void setCanDragReposition(Boolean canDragReposition) {
+        setAttribute("canDragReposition", canDragReposition, true);
+    }
+
+    /**
+     * Indicates whether this widget can be moved by a user of your application by simply      dragging with the mouse.
+     *
+     *
+     * @return Boolean
+     */
+    public Boolean getCanDragReposition()  {
+        return getAttributeAsBoolean("canDragReposition");
+    }
+
+    /**
+     * Indicates whether this widget can be resized by dragging on the edges and/or corners of      the widget with the mouse.
+     * <p><b>Note : </b> This is an advanced setting</p>
+     *
+     * @param canDragResize canDragResize Default value is false
+     */
+    public void setCanDragResize(Boolean canDragResize) {
+        setAttribute("canDragResize", canDragResize, true);
+    }
+
+    /**
+     * Indicates whether this widget can be resized by dragging on the edges and/or corners of      the widget with the mouse.
+     *
+     *
+     * @return Boolean
+     */
+    public Boolean getCanDragResize()  {
+        return getAttributeAsBoolean("canDragResize");
+    }
+
+    /**
+     * If this Canvas is canAcceptDrop:true, when the user drags a droppable widget over      an edge of the widget, should we
+     * scroll to show the rest of the widget's content?      Returned from canvas.shouldDragScroll().
+     * <p><b>Note : </b> This is an advanced setting</p>
+     *
+     * @param canDragScroll canDragScroll Default value is true
+     */
+    public void setCanDragScroll(Boolean canDragScroll) {
+        setAttribute("canDragScroll", canDragScroll, true);
+    }
+
+    /**
+     * If this Canvas is canAcceptDrop:true, when the user drags a droppable widget over      an edge of the widget, should we
+     * scroll to show the rest of the widget's content?      Returned from canvas.shouldDragScroll().
+     *
+     *
+     * @return Boolean
+     */
+    public Boolean getCanDragScroll()  {
+        return getAttributeAsBoolean("canDragScroll");
+    }
+
+    /**
+     * Indicates that this object can be dropped on top of other widgets. Only valid if       canDrag or canDragReposition is
+     * true.
+     * <p><b>Note : </b> This is an advanced setting</p>
+     *
+     * @param canDrop canDrop Default value is false
+     */
+    public void setCanDrop(Boolean canDrop) {
+        setAttribute("canDrop", canDrop, true);
+    }
+
+    /**
+     * Indicates that this object can be dropped on top of other widgets. Only valid if       canDrag or canDragReposition is
+     * true.
+     *
+     *
+     * @return Boolean
+     */
+    public Boolean getCanDrop()  {
+        return getAttributeAsBoolean("canDrop");
+    }
+
+    /**
+     * When explicitly set to false, disallows drop before this member in the Layout.
+     * <p><b>Note : </b> This is an advanced setting</p>
+     *
+     * @param canDropBefore canDropBefore Default value is null
+     */
+    public void setCanDropBefore(Boolean canDropBefore) {
+        setAttribute("canDropBefore", canDropBefore, true);
+    }
+
+    /**
+     * When explicitly set to false, disallows drop before this member in the Layout.
+     *
+     *
+     * @return Boolean
+     */
+    public Boolean getCanDropBefore()  {
+        return getAttributeAsBoolean("canDropBefore");
     }
 
     /**
@@ -890,271 +740,6 @@ public class Canvas extends BaseWidget  implements com.smartgwt.client.widgets.e
     }
 
     /**
-     * If specified this governs the tabIndex of the widget in the page's tab order. Note that by default Smart GWT
-     * auto-assigns tab-indices, ensuring focusable widgets are reachable by tabbing in the order in which they are drawn on
-     * the page. <code>canvas.tabIndex</code> cannot be set to greater than  {@link
-     * com.smartgwt.client.widgets.Canvas#TAB_INDEX_FLOOR} - as we reserve the values above this range for auto-assigned
-     * tab-indices.
-     * Assign an explicit tabIndex to this widget.
-     * <p><b>Note : </b> This is an advanced setting</p>
-     *
-     * @param tabIndex New tabIndex for this widget. Must be less than                           {@link
-     * com.smartgwt.client.widgets.Canvas#TAB_INDEX_FLOOR} to avoid interfering with auto-assigned                          tab
-     * indices on the page.. Default value is null
-     */
-    public void setTabIndex(Integer tabIndex) {
-        setAttribute("tabIndex", tabIndex, true);
-    }
-
-    /**
-     * If specified this governs the tabIndex of the widget in the page's tab order. Note that by default Smart GWT
-     * auto-assigns tab-indices, ensuring focusable widgets are reachable by tabbing in the order in which they are drawn on
-     * the page. <code>canvas.tabIndex</code> cannot be set to greater than  {@link
-     * com.smartgwt.client.widgets.Canvas#TAB_INDEX_FLOOR} - as we reserve the values above this range for auto-assigned
-     * tab-indices.
-     *
-     *
-     * @return Integer
-     */
-    public Integer getTabIndex()  {
-        return getAttributeAsInt("tabIndex");
-    }
-
-    /**
-     * If specified this governs the accessKey for the widget. This should be set to a character - when a user hits
-     * Alt+[accessKey], or in Mozilla Firefox 2.0 and above, Shift+Alt+[accessKey], focus will be given to the widget in
-     * question.
-     * Set the accessKey for this canvas. <P> The accessKey can be set to any alphanumeric character (symbols not supported) Having set an accessKey, the canvas will be given focus when the user hits  Alt+[accessKey], or in Mozilla Firefox 2.0 and above, Shift+Alt+[accessKey].
-     * <p><b>Note : </b> This is an advanced setting</p>
-     *
-     * @param accessKey Character to use as an accessKey for this widget.  Case Insensitive.. Default value is null
-     */
-    public void setAccessKey(String accessKey) {
-        setAttribute("accessKey", accessKey, true);
-    }
-
-    /**
-     * If specified this governs the accessKey for the widget. This should be set to a character - when a user hits
-     * Alt+[accessKey], or in Mozilla Firefox 2.0 and above, Shift+Alt+[accessKey], focus will be given to the widget in
-     * question.
-     *
-     *
-     * @return String
-     */
-    public String getAccessKey()  {
-        return getAttributeAsString("accessKey");
-    }
-            
-    /**
-     * Context menu to show for this object, an instance of the Menu widget.
-     * <p><b>Note : </b> This is an advanced setting</p>
-     *
-     * @param contextMenu contextMenu Default value is null
-     */
-    public void setContextMenu(Menu contextMenu) {
-        setAttribute("contextMenu", contextMenu.getOrCreateJsObj(), true);
-    }
-
-    /**
-     * Context menu to show for this object, an instance of the Menu widget.
-     *
-     *
-     * @return Menu
-     */
-    public Menu getContextMenu()  {
-            return Menu.getOrCreateRef(getAttributeAsJavaScriptObject("contextMenu"));
-    }
-
-    /**
-     * Prompt displayed in hover canvas if {@link com.smartgwt.client.widgets.Canvas#getShowHover 'showHover'} is true.
-     *
-     * @param prompt prompt Default value is null
-     */
-    public void setPrompt(String prompt) {
-        setAttribute("prompt", prompt, true);
-    }
-
-    /**
-     * Prompt displayed in hover canvas if {@link com.smartgwt.client.widgets.Canvas#getShowHover 'showHover'} is true.
-     *
-     *
-     * @return String
-     */
-    public String getPrompt()  {
-        return getAttributeAsString("prompt");
-    }
-
-    /**
-     * Indicates whether this widget can initiate custom drag-and-drop operations (other than      reposition or resize).
-     * Normally canDragReposition or canDragResize would be used      instead of this property.      Note: this property may be
-     * manipulated by higher-level dragging semantics.
-     * <p><b>Note : </b> This is an advanced setting</p>
-     *
-     * @param canDrag canDrag Default value is false
-     */
-    public void setCanDrag(Boolean canDrag) {
-        setAttribute("canDrag", canDrag, true);
-    }
-
-    /**
-     * Indicates whether this widget can initiate custom drag-and-drop operations (other than      reposition or resize).
-     * Normally canDragReposition or canDragResize would be used      instead of this property.      Note: this property may be
-     * manipulated by higher-level dragging semantics.
-     *
-     *
-     * @return Boolean
-     */
-    public Boolean getCanDrag()  {
-        return getAttributeAsBoolean("canDrag");
-    }
-
-    /**
-     * Number of pixels the cursor needs to move before the EventHandler starts a drag operation.
-     * <p><b>Note : </b> This is an advanced setting</p>
-     *
-     * @param dragStartDistance dragStartDistance Default value is 5
-     */
-    public void setDragStartDistance(int dragStartDistance) {
-        setAttribute("dragStartDistance", dragStartDistance, true);
-    }
-
-    /**
-     * Number of pixels the cursor needs to move before the EventHandler starts a drag operation.
-     *
-     *
-     * @return int
-     */
-    public int getDragStartDistance()  {
-        return getAttributeAsInt("dragStartDistance");
-    }
-
-    /**
-     * If this Canvas is canAcceptDrop:true, when the user drags a droppable widget over      an edge of the widget, should we
-     * scroll to show the rest of the widget's content?      Returned from canvas.shouldDragScroll().
-     * <p><b>Note : </b> This is an advanced setting</p>
-     *
-     * @param canDragScroll canDragScroll Default value is true
-     */
-    public void setCanDragScroll(Boolean canDragScroll) {
-        setAttribute("canDragScroll", canDragScroll, true);
-    }
-
-    /**
-     * If this Canvas is canAcceptDrop:true, when the user drags a droppable widget over      an edge of the widget, should we
-     * scroll to show the rest of the widget's content?      Returned from canvas.shouldDragScroll().
-     *
-     *
-     * @return Boolean
-     */
-    public Boolean getCanDragScroll()  {
-        return getAttributeAsBoolean("canDragScroll");
-    }
-
-    /**
-     * If this widget supports drag-scrolling, This property specifies how many ms the      user must hover over the
-     * drag-scroll threshold before scrolling begins.
-     * <p><b>Note : </b> This is an advanced setting</p>
-     *
-     * @param dragScrollDelay dragScrollDelay Default value is 100
-     */
-    public void setDragScrollDelay(int dragScrollDelay) {
-        setAttribute("dragScrollDelay", dragScrollDelay, true);
-    }
-
-    /**
-     * If this widget supports drag-scrolling, This property specifies how many ms the      user must hover over the
-     * drag-scroll threshold before scrolling begins.
-     *
-     *
-     * @return int
-     */
-    public int getDragScrollDelay()  {
-        return getAttributeAsInt("dragScrollDelay");
-    }
-             
-    /**
-     * This indicates how the system will test for droppable targets: either by intersection with the mouse or intersection
-     * with the rectangle of the dragMoveTarget.
-     * <p><b>Note : </b> This is an advanced setting</p>
-     *
-     * @param dragIntersectStyle dragIntersectStyle Default value is "mouse"
-     */
-    public void setDragIntersectStyle(DragIntersectStyle dragIntersectStyle) {
-        setAttribute("dragIntersectStyle", dragIntersectStyle.getValue(), true);
-    }
-
-    /**
-     * This indicates how the system will test for droppable targets: either by intersection with the mouse or intersection
-     * with the rectangle of the dragMoveTarget.
-     *
-     *
-     * @return DragIntersectStyle
-     */
-    public DragIntersectStyle getDragIntersectStyle()  {
-        return EnumUtil.getEnum(DragIntersectStyle.values(), getAttribute("dragIntersectStyle"));
-    }
-
-    /**
-     * Indicates whether this widget can be moved by a user of your application by simply      dragging with the mouse.
-     * <p><b>Note : </b> This is an advanced setting</p>
-     *
-     * @param canDragReposition canDragReposition Default value is false
-     */
-    public void setCanDragReposition(Boolean canDragReposition) {
-        setAttribute("canDragReposition", canDragReposition, true);
-    }
-
-    /**
-     * Indicates whether this widget can be moved by a user of your application by simply      dragging with the mouse.
-     *
-     *
-     * @return Boolean
-     */
-    public Boolean getCanDragReposition()  {
-        return getAttributeAsBoolean("canDragReposition");
-    }
-             
-    /**
-     * Cursor to switch to if the mouse is over a widget that is drag repositionable.
-     * <p><b>Note : </b> This is an advanced setting</p>
-     *
-     * @param dragRepositionCursor dragRepositionCursor Default value is Canvas.MOVE
-     */
-    public void setDragRepositionCursor(Cursor dragRepositionCursor) {
-        setAttribute("dragRepositionCursor", dragRepositionCursor.getValue(), true);
-    }
-
-    /**
-     * Cursor to switch to if the mouse is over a widget that is drag repositionable.
-     *
-     *
-     * @return Cursor
-     */
-    public Cursor getDragRepositionCursor()  {
-        return EnumUtil.getEnum(Cursor.values(), getAttribute("dragRepositionCursor"));
-    }
-
-    /**
-     * Indicates whether this widget can be resized by dragging on the edges and/or corners of      the widget with the mouse.
-     * <p><b>Note : </b> This is an advanced setting</p>
-     *
-     * @param canDragResize canDragResize Default value is false
-     */
-    public void setCanDragResize(Boolean canDragResize) {
-        setAttribute("canDragResize", canDragResize, true);
-    }
-
-    /**
-     * Indicates whether this widget can be resized by dragging on the edges and/or corners of      the widget with the mouse.
-     *
-     *
-     * @return Boolean
-     */
-    public Boolean getCanDragResize()  {
-        return getAttributeAsBoolean("canDragResize");
-    }
-
-    /**
      * Will this Canvas fire hover events when the user hovers over it, or one of its children?
      *
      * @param canHover canHover Default value is null
@@ -1174,655 +759,27 @@ public class Canvas extends BaseWidget  implements com.smartgwt.client.widgets.e
     }
 
     /**
-     * If <code>this.canHover</code> is true, how long should the mouse be kept over this widget before the hover event is
-     * fired
+     * Whether native drag selection of contained text is allowed within this Canvas. <P> Note that setting this property to
+     * <code>false</code> will not avoid text selection which is initiated outside this Canvas from continuing into this
+     * Canvas, even if text selection began in another Canvas.
+     * <p><b>Note : </b> This is an advanced setting</p>
      *
-     * @param hoverDelay hoverDelay Default value is 300
+     * @param canSelectText canSelectText Default value is false
      */
-    public void setHoverDelay(int hoverDelay) {
-        setAttribute("hoverDelay", hoverDelay, true);
+    public void setCanSelectText(Boolean canSelectText) {
+        setAttribute("canSelectText", canSelectText, true);
     }
 
     /**
-     * If <code>this.canHover</code> is true, how long should the mouse be kept over this widget before the hover event is
-     * fired
-     *
-     *
-     * @return int
-     */
-    public int getHoverDelay()  {
-        return getAttributeAsInt("hoverDelay");
-    }
-
-    /**
-     * If <code>this.canHover</code> is true, should we show the global hover canvas by default when the user hovers over this
-     * canvas?
-     *
-     * @param showHover showHover Default value is true
-     */
-    public void setShowHover(Boolean showHover) {
-        setAttribute("showHover", showHover, true);
-    }
-
-    /**
-     * If <code>this.canHover</code> is true, should we show the global hover canvas by default when the user hovers over this
-     * canvas?
+     * Whether native drag selection of contained text is allowed within this Canvas. <P> Note that setting this property to
+     * <code>false</code> will not avoid text selection which is initiated outside this Canvas from continuing into this
+     * Canvas, even if text selection began in another Canvas.
      *
      *
      * @return Boolean
      */
-    public Boolean getShowHover()  {
-        return getAttributeAsBoolean("showHover");
-    }
-
-    /**
-     * If {@link com.smartgwt.client.widgets.Canvas#getShowHover 'this.showHover'} is true, this property can be used to
-     * customize the width of the hover canvas shown.
-     *
-     * @param hoverWidth hoverWidth Default value is null
-     */
-    public void setHoverWidth(Integer hoverWidth) {
-        setAttribute("hoverWidth", hoverWidth, true);
-    }
-
-    /**
-     * If {@link com.smartgwt.client.widgets.Canvas#getShowHover 'this.showHover'} is true, this property can be used to
-     * customize the width of the hover canvas shown.
-     *
-     *
-     * @return Integer
-     */
-    public Integer getHoverWidth()  {
-        return getAttributeAsInt("hoverWidth");
-    }
-
-    /**
-     * If <code>this.showHover</code> is true, this property can be used to customize the height of the hover canvas shown.
-     *
-     * @param hoverHeight hoverHeight Default value is null
-     */
-    public void setHoverHeight(Integer hoverHeight) {
-        setAttribute("hoverHeight", hoverHeight, true);
-    }
-
-    /**
-     * If <code>this.showHover</code> is true, this property can be used to customize the height of the hover canvas shown.
-     *
-     *
-     * @return Integer
-     */
-    public Integer getHoverHeight()  {
-        return getAttributeAsInt("hoverHeight");
-    }
-             
-    /**
-     * If <code>this.showHover</code> is true, this property can be used to customize the alignment of content in the hover
-     * canvas.
-     *
-     * @param hoverAlign hoverAlign Default value is null
-     */
-    public void setHoverAlign(Alignment hoverAlign) {
-        setAttribute("hoverAlign", hoverAlign.getValue(), true);
-    }
-
-    /**
-     * If <code>this.showHover</code> is true, this property can be used to customize the alignment of content in the hover
-     * canvas.
-     *
-     *
-     * @return Alignment
-     */
-    public Alignment getHoverAlign()  {
-        return EnumUtil.getEnum(Alignment.values(), getAttribute("hoverAlign"));
-    }
-             
-    /**
-     * If <code>this.showHover</code> is true, this property can be used to customize the vertical alignment of content in the
-     * hover canvas.
-     *
-     * @param hoverVAlign hoverVAlign Default value is null
-     */
-    public void setHoverVAlign(VerticalAlignment hoverVAlign) {
-        setAttribute("hoverVAlign", hoverVAlign.getValue(), true);
-    }
-
-    /**
-     * If <code>this.showHover</code> is true, this property can be used to customize the vertical alignment of content in the
-     * hover canvas.
-     *
-     *
-     * @return VerticalAlignment
-     */
-    public VerticalAlignment getHoverVAlign()  {
-        return EnumUtil.getEnum(VerticalAlignment.values(), getAttribute("hoverVAlign"));
-    }
-
-    /**
-     * If <code>this.showHover</code> is true, this property can be used to customize the whether content in the hover canvas
-     * is displayed in a single line, or wraps.
-     *
-     * @param hoverWrap hoverWrap Default value is null
-     */
-    public void setHoverWrap(Boolean hoverWrap) {
-        setAttribute("hoverWrap", hoverWrap, true);
-    }
-
-    /**
-     * If <code>this.showHover</code> is true, this property can be used to customize the whether content in the hover canvas
-     * is displayed in a single line, or wraps.
-     *
-     *
-     * @return Boolean
-     */
-    public Boolean getHoverWrap()  {
-        return getAttributeAsBoolean("hoverWrap");
-    }
-
-    /**
-     * If <code>this.showHover</code> is true, this property can be used to specify the css style to apply to the hover canvas.
-     *
-     * @param hoverStyle hoverStyle Default value is null
-     */
-    public void setHoverStyle(String hoverStyle) {
-        setAttribute("hoverStyle", hoverStyle, true);
-    }
-
-    /**
-     * If <code>this.showHover</code> is true, this property can be used to specify the css style to apply to the hover canvas.
-     *
-     *
-     * @return String
-     */
-    public String getHoverStyle()  {
-        return getAttributeAsString("hoverStyle");
-    }
-
-    /**
-     * If <code>this.showHover</code> is true, should the hover canvas be shown with opacity other than 100?
-     *
-     * @param hoverOpacity hoverOpacity Default value is null
-     */
-    public void setHoverOpacity(Integer hoverOpacity) {
-        setAttribute("hoverOpacity", hoverOpacity, true);
-    }
-
-    /**
-     * If <code>this.showHover</code> is true, should the hover canvas be shown with opacity other than 100?
-     *
-     *
-     * @return Integer
-     */
-    public Integer getHoverOpacity()  {
-        return getAttributeAsInt("hoverOpacity");
-    }
-
-    /**
-     * If <code>this.showHover</code> is true, should this widget's hover canvas be moved with the mouse while visible?
-     *
-     * @param hoverMoveWithMouse hoverMoveWithMouse Default value is null
-     */
-    public void setHoverMoveWithMouse(Boolean hoverMoveWithMouse) {
-        setAttribute("hoverMoveWithMouse", hoverMoveWithMouse, true);
-    }
-
-    /**
-     * If <code>this.showHover</code> is true, should this widget's hover canvas be moved with the mouse while visible?
-     *
-     *
-     * @return Boolean
-     */
-    public Boolean getHoverMoveWithMouse()  {
-        return getAttributeAsBoolean("hoverMoveWithMouse");
-    }
-
-    /**
-     * How far into the edge of an object do we consider the "edge" for drag resize purposes?
-     * <p><b>Note : </b> This is an advanced setting</p>
-     *
-     * @param edgeMarginSize edgeMarginSize Default value is 5
-     */
-    public void setEdgeMarginSize(int edgeMarginSize) {
-        setAttribute("edgeMarginSize", edgeMarginSize, true);
-    }
-
-    /**
-     * How far into the edge of an object do we consider the "edge" for drag resize purposes?
-     *
-     *
-     * @return int
-     */
-    public int getEdgeMarginSize()  {
-        return getAttributeAsInt("edgeMarginSize");
-    }
-             
-    /**
-     * Visual appearance to show when the object is being dragged.
-     * <p><b>Note : </b> This is an advanced setting</p>
-     *
-     * @param dragAppearance dragAppearance Default value is EventHandler.OUTLINE
-     */
-    public void setDragAppearance(DragAppearance dragAppearance) {
-        setAttribute("dragAppearance", dragAppearance.getValue(), true);
-    }
-
-    /**
-     * Visual appearance to show when the object is being dragged.
-     *
-     *
-     * @return DragAppearance
-     */
-    public DragAppearance getDragAppearance()  {
-        return EnumUtil.getEnum(DragAppearance.values(), getAttribute("dragAppearance"));
-    }
-
-    /**
-     * The "type" of thing given as a string that can be dragged from this widget. If      specified, this will be matched up
-     * with the dropTypes of droppable widgets as detailed      in the dropTypes property.
-     * <p><b>Note : </b> This is an advanced setting</p>
-     *
-     * @param dragType dragType Default value is null
-     */
-    public void setDragType(String dragType) {
-        setAttribute("dragType", dragType, true);
-    }
-
-    /**
-     * The "type" of thing given as a string that can be dragged from this widget. If      specified, this will be matched up
-     * with the dropTypes of droppable widgets as detailed      in the dropTypes property.
-     *
-     *
-     * @return String
-     */
-    public String getDragType()  {
-        return getAttributeAsString("dragType");
-    }
-
-    /**
-     * When this widget is dragged, if its dragAppearance is <code>"target"</code>, should we show a shadow behind the canvas
-     * during the drag.
-     * <p><b>Note : </b> This is an advanced setting</p>
-     *
-     * @param showDragShadow showDragShadow Default value is null
-     */
-    public void setShowDragShadow(Boolean showDragShadow) {
-        setAttribute("showDragShadow", showDragShadow, true);
-    }
-
-    /**
-     * When this widget is dragged, if its dragAppearance is <code>"target"</code>, should we show a shadow behind the canvas
-     * during the drag.
-     *
-     *
-     * @return Boolean
-     */
-    public Boolean getShowDragShadow()  {
-        return getAttributeAsBoolean("showDragShadow");
-    }
-
-    /**
-     * If this widget has dragAppearance <code>"target"</code>, this value specifies the opacity to render the target while it
-     * is being dragged. A null value implies we do not modify the opacity.
-     * <p><b>Note : </b> This is an advanced setting</p>
-     *
-     * @param dragOpacity dragOpacity Default value is null
-     */
-    public void setDragOpacity(Integer dragOpacity) {
-        setAttribute("dragOpacity", dragOpacity, true);
-    }
-
-    /**
-     * If this widget has dragAppearance <code>"target"</code>, this value specifies the opacity to render the target while it
-     * is being dragged. A null value implies we do not modify the opacity.
-     *
-     *
-     * @return Integer
-     */
-    public Integer getDragOpacity()  {
-        return getAttributeAsInt("dragOpacity");
-    }
-
-    /**
-     * Indicates that this object can be dropped on top of other widgets. Only valid if       canDrag or canDragReposition is
-     * true.
-     * <p><b>Note : </b> This is an advanced setting</p>
-     *
-     * @param canDrop canDrop Default value is false
-     */
-    public void setCanDrop(Boolean canDrop) {
-        setAttribute("canDrop", canDrop, true);
-    }
-
-    /**
-     * Indicates that this object can be dropped on top of other widgets. Only valid if       canDrag or canDragReposition is
-     * true.
-     *
-     *
-     * @return Boolean
-     */
-    public Boolean getCanDrop()  {
-        return getAttributeAsBoolean("canDrop");
-    }
-
-    /**
-     * Indicates that this object can receive dropped widgets (i.e. other widgets can be      dropped on top of it).
-     * <p><b>Note : </b> This is an advanced setting</p>
-     *
-     * @param canAcceptDrop canAcceptDrop Default value is false
-     */
-    public void setCanAcceptDrop(Boolean canAcceptDrop) {
-        setAttribute("canAcceptDrop", canAcceptDrop, true);
-    }
-
-    /**
-     * Indicates that this object can receive dropped widgets (i.e. other widgets can be      dropped on top of it).
-     *
-     *
-     * @return Boolean
-     */
-    public Boolean getCanAcceptDrop()  {
-        return getAttributeAsBoolean("canAcceptDrop");
-    }
-
-    /**
-     * When explicitly set to false, disallows drop before this member in the Layout.
-     * <p><b>Note : </b> This is an advanced setting</p>
-     *
-     * @param canDropBefore canDropBefore Default value is null
-     */
-    public void setCanDropBefore(Boolean canDropBefore) {
-        setAttribute("canDropBefore", canDropBefore, true);
-    }
-
-    /**
-     * When explicitly set to false, disallows drop before this member in the Layout.
-     *
-     *
-     * @return Boolean
-     */
-    public Boolean getCanDropBefore()  {
-        return getAttributeAsBoolean("canDropBefore");
-    }
-
-    /**
-     * Amount of time (in msec) before mouseStillDown events start to be fired for this object.
-     * <p><b>Note : </b> This is an advanced setting</p>
-     *
-     * @param mouseStillDownInitialDelay mouseStillDownInitialDelay Default value is 400
-     */
-    public void setMouseStillDownInitialDelay(int mouseStillDownInitialDelay) {
-        setAttribute("mouseStillDownInitialDelay", mouseStillDownInitialDelay, true);
-    }
-
-    /**
-     * Amount of time (in msec) before mouseStillDown events start to be fired for this object.
-     *
-     *
-     * @return int
-     */
-    public int getMouseStillDownInitialDelay()  {
-        return getAttributeAsInt("mouseStillDownInitialDelay");
-    }
-
-    /**
-     * Amount of time (in msec) between 'mouseStillDown' events for this object
-     * <p><b>Note : </b> This is an advanced setting</p>
-     *
-     * @param mouseStillDownDelay mouseStillDownDelay Default value is 100
-     */
-    public void setMouseStillDownDelay(int mouseStillDownDelay) {
-        setAttribute("mouseStillDownDelay", mouseStillDownDelay, true);
-    }
-
-    /**
-     * Amount of time (in msec) between 'mouseStillDown' events for this object
-     *
-     *
-     * @return int
-     */
-    public int getMouseStillDownDelay()  {
-        return getAttributeAsInt("mouseStillDownDelay");
-    }
-
-    /**
-     * Amount of time (in msec) between which two clicks are considered a single click
-     * <p><b>Note : </b> This is an advanced setting</p>
-     *
-     * @param doubleClickDelay doubleClickDelay Default value is 250
-     */
-    public void setDoubleClickDelay(int doubleClickDelay) {
-        setAttribute("doubleClickDelay", doubleClickDelay, true);
-    }
-
-    /**
-     * Amount of time (in msec) between which two clicks are considered a single click
-     *
-     *
-     * @return int
-     */
-    public int getDoubleClickDelay()  {
-        return getAttributeAsInt("doubleClickDelay");
-    }
-
-    /**
-     * If true, this canvas will receive all mouse-clicks as single click events rather than doubleClicks.
-     * <p><b>Note : </b> This is an advanced setting</p>
-     *
-     * @param noDoubleClicks noDoubleClicks Default value is null
-     */
-    public void setNoDoubleClicks(Boolean noDoubleClicks) {
-        setAttribute("noDoubleClicks", noDoubleClicks, true);
-    }
-
-    /**
-     * If true, this canvas will receive all mouse-clicks as single click events rather than doubleClicks.
-     *
-     *
-     * @return Boolean
-     */
-    public Boolean getNoDoubleClicks()  {
-        return getAttributeAsBoolean("noDoubleClicks");
-    }
-             
-    /**
-     * Governs the model to be used when sizing canvases with percentage width or height, or  positioning widgets with a
-     * specified {@link com.smartgwt.client.widgets.Canvas#getSnapTo 'snapTo'}. <P> Only affects widgets with a a specified
-     * {@link com.smartgwt.client.widgets.Canvas#getPercentSource 'percentSource'}, or  widgets that have {@link
-     * com.smartgwt.client.widgets.Canvas#getSnapTo snapTo} set and are peers of some  {@link
-     * com.smartgwt.client.widgets.Canvas#getMasterElement 'other canvas'}. <P> Determines whether the coordinates used for
-     * sizing (for percentage sized widgets) and positioning (if <code>snapTo</code> is set) should be relative to the visible
-     * size or the viewport size of the percentSource or masterElement widget.
-     * <p><b>Note : </b> This is an advanced setting</p>
-     *
-     * @param percentBox percentBox Default value is "visible"
-     * @throws IllegalStateException this property cannot be changed after the component has been created
-     */
-    public void setPercentBox(PercentBoxModel percentBox)  throws IllegalStateException {
-        setAttribute("percentBox", percentBox.getValue(), false);
-    }
-
-    /**
-     * Governs the model to be used when sizing canvases with percentage width or height, or  positioning widgets with a
-     * specified {@link com.smartgwt.client.widgets.Canvas#getSnapTo 'snapTo'}. <P> Only affects widgets with a a specified
-     * {@link com.smartgwt.client.widgets.Canvas#getPercentSource 'percentSource'}, or  widgets that have {@link
-     * com.smartgwt.client.widgets.Canvas#getSnapTo snapTo} set and are peers of some  {@link
-     * com.smartgwt.client.widgets.Canvas#getMasterElement 'other canvas'}. <P> Determines whether the coordinates used for
-     * sizing (for percentage sized widgets) and positioning (if <code>snapTo</code> is set) should be relative to the visible
-     * size or the viewport size of the percentSource or masterElement widget.
-     *
-     *
-     * @return PercentBoxModel
-     */
-    public PercentBoxModel getPercentBox()  {
-        return EnumUtil.getEnum(PercentBoxModel.values(), getAttribute("percentBox"));
-    }
-
-    /**
-     * Position this widget such that it is aligned with ("snapped to") an edge of its  {@link
-     * com.smartgwt.client.widgets.Canvas#getMasterElement 'masterElement'} (if specified), or its {@link
-     * com.smartgwt.client.widgets.Canvas#getParentElement 'parentElement'}. <P> Note that this property also impacts the
-     * sizing of this widget. If this widgets size is specified as a percent value, and has no explicit {@link
-     * com.smartgwt.client.widgets.Canvas#getPercentSource percentSource}, sizing will be calculated based on the size of the 
-     * masterElement when snapTo is set. <P> Possible values: BR, BL, TR, TL, R, L, B, T, C where B=Bottom, T=Top, L=Left,
-     * R=right and C=center
-     * Set the snapTo property of this canvas, and handle repositioning.
-     *
-     * @param snapTo new snapTo value. Default value is null
-     */
-    public void setSnapTo(String snapTo) {
-        setAttribute("snapTo", snapTo, true);
-    }
-
-    /**
-     * Position this widget such that it is aligned with ("snapped to") an edge of its  {@link
-     * com.smartgwt.client.widgets.Canvas#getMasterElement 'masterElement'} (if specified), or its {@link
-     * com.smartgwt.client.widgets.Canvas#getParentElement 'parentElement'}. <P> Note that this property also impacts the
-     * sizing of this widget. If this widgets size is specified as a percent value, and has no explicit {@link
-     * com.smartgwt.client.widgets.Canvas#getPercentSource percentSource}, sizing will be calculated based on the size of the 
-     * masterElement when snapTo is set. <P> Possible values: BR, BL, TR, TL, R, L, B, T, C where B=Bottom, T=Top, L=Left,
-     * R=right and C=center
-     *
-     *
-     * @return Return the snapTo value of this object
-     */
-    public String getSnapTo()  {
-        return getAttributeAsString("snapTo");
-    }
-
-    /**
-     * If {@link com.smartgwt.client.widgets.Canvas#getSnapTo 'snapTo'} is defined to this widget, this property can be used to
-     * define which edge of this widget should be snapped to an edge of the master or parent  element. <P> If unspecified the,
-     * default snapTo behavior is set up to align the "snapTo" edge of this  widget with the snapTo edge of the master or
-     * parent.
-     * Set the snapEdge property of this canvas, and handle repositioning.
-     *
-     * @param snapEdge new snapEdge value. Default value is null
-     */
-    public void setSnapEdge(String snapEdge) {
-        setAttribute("snapEdge", snapEdge, true);
-    }
-
-    /**
-     * If {@link com.smartgwt.client.widgets.Canvas#getSnapTo 'snapTo'} is defined to this widget, this property can be used to
-     * define which edge of this widget should be snapped to an edge of the master or parent  element. <P> If unspecified the,
-     * default snapTo behavior is set up to align the "snapTo" edge of this  widget with the snapTo edge of the master or
-     * parent.
-     *
-     *
-     * @return Return the snapEdge value of this object
-     */
-    public String getSnapEdge()  {
-        return getAttributeAsString("snapEdge");
-    }
-
-    /**
-     * If {@link com.smartgwt.client.widgets.Canvas#getSnapTo 'snapTo'} is defined for this widget, this property can be used
-     * to specify an offset in px or percentage for the left coordinate of this widget. <P> For example if <code>snapTo</code>
-     * is specified as <code>"L"</code> and  <code>snapOffsetLeft</code> is set to 6, this widget will be rendered 6px inside
-     * the left edge of its parent or master element.
-     *
-     * @param snapOffsetLeft snapOffsetLeft Default value is null
-     */
-    public void setSnapOffsetLeft(Integer snapOffsetLeft) {
-        setAttribute("snapOffsetLeft", snapOffsetLeft, true);
-    }
-
-    /**
-     * If {@link com.smartgwt.client.widgets.Canvas#getSnapTo 'snapTo'} is defined for this widget, this property can be used
-     * to specify an offset in px or percentage for the left coordinate of this widget. <P> For example if <code>snapTo</code>
-     * is specified as <code>"L"</code> and  <code>snapOffsetLeft</code> is set to 6, this widget will be rendered 6px inside
-     * the left edge of its parent or master element.
-     *
-     *
-     * @return Integer
-     */
-    public Integer getSnapOffsetLeft()  {
-        return getAttributeAsInt("snapOffsetLeft");
-    }
-
-    /**
-     * If {@link com.smartgwt.client.widgets.Canvas#getSnapTo 'snapTo'} is defined for this widget, this property can be used
-     * to specify an offset in px or percentage for the top coordinate of this widget. <P> For example if <code>snapTo</code>
-     * is specified as <code>"T"</code> and  <code>snapOffsetTop</code> is set to 6, this widget will be rendered 6px below the
-     * top edge of its parent or master element.
-     *
-     * @param snapOffsetTop snapOffsetTop Default value is null
-     */
-    public void setSnapOffsetTop(Integer snapOffsetTop) {
-        setAttribute("snapOffsetTop", snapOffsetTop, true);
-    }
-
-    /**
-     * If {@link com.smartgwt.client.widgets.Canvas#getSnapTo 'snapTo'} is defined for this widget, this property can be used
-     * to specify an offset in px or percentage for the top coordinate of this widget. <P> For example if <code>snapTo</code>
-     * is specified as <code>"T"</code> and  <code>snapOffsetTop</code> is set to 6, this widget will be rendered 6px below the
-     * top edge of its parent or master element.
-     *
-     *
-     * @return Integer
-     */
-    public Integer getSnapOffsetTop()  {
-        return getAttributeAsInt("snapOffsetTop");
-    }
-
-    /**
-     * Causes this canvas to snap to its parent's grid when dragging.
-     *
-     * @param snapToGrid snapToGrid Default value is null
-     */
-    public void setSnapToGrid(Boolean snapToGrid) {
-        setAttribute("snapToGrid", snapToGrid, true);
-    }
-
-    /**
-     * Causes this canvas to snap to its parent's grid when dragging.
-     *
-     *
-     * @return Boolean
-     */
-    public Boolean getSnapToGrid()  {
-        return getAttributeAsBoolean("snapToGrid");
-    }
-
-    /**
-     * Causes this canvas to snap to its parent's grid when resizing. Note that this value defaults to the Canvas's  {@link
-     * com.smartgwt.client.widgets.Canvas#getSnapToGrid 'snapToGrid'} value if undefined.
-     *
-     * @param snapResizeToGrid snapResizeToGrid Default value is null
-     */
-    public void setSnapResizeToGrid(Boolean snapResizeToGrid) {
-        setAttribute("snapResizeToGrid", snapResizeToGrid, true);
-    }
-
-    /**
-     * Causes this canvas to snap to its parent's grid when resizing. Note that this value defaults to the Canvas's  {@link
-     * com.smartgwt.client.widgets.Canvas#getSnapToGrid 'snapToGrid'} value if undefined.
-     *
-     *
-     * @return Boolean
-     */
-    public Boolean getSnapResizeToGrid()  {
-        return getAttributeAsBoolean("snapResizeToGrid");
-    }
-
-    /**
-     * If true, causes this canvas's children to snap to its grid when dragging. This behavior can be overridden on a per-child
-     * basis by setting the  {@link com.smartgwt.client.widgets.Canvas#getSnapToGrid 'snapToGrid'} value on the child.
-     *
-     * @param childrenSnapToGrid childrenSnapToGrid Default value is null
-     */
-    public void setChildrenSnapToGrid(Boolean childrenSnapToGrid) {
-        setAttribute("childrenSnapToGrid", childrenSnapToGrid, true);
-    }
-
-    /**
-     * If true, causes this canvas's children to snap to its grid when dragging. This behavior can be overridden on a per-child
-     * basis by setting the  {@link com.smartgwt.client.widgets.Canvas#getSnapToGrid 'snapToGrid'} value on the child.
-     *
-     *
-     * @return Boolean
-     */
-    public Boolean getChildrenSnapToGrid()  {
-        return getAttributeAsBoolean("childrenSnapToGrid");
+    public Boolean getCanSelectText()  {
+        return getAttributeAsBoolean("canSelectText");
     }
 
     /**
@@ -1849,478 +806,88 @@ public class Canvas extends BaseWidget  implements com.smartgwt.client.widgets.e
     }
 
     /**
-     * The horizontal grid size to use, in pixels, when snap-to-grid is enabled.
+     * If true, causes this canvas's children to snap to its grid when dragging. This behavior can be overridden on a per-child
+     * basis by setting the  {@link com.smartgwt.client.widgets.Canvas#getSnapToGrid 'snapToGrid'} value on the child.
      *
-     * @param snapHGap snapHGap Default value is 20
+     * @param childrenSnapToGrid childrenSnapToGrid Default value is null
      */
-    public void setSnapHGap(int snapHGap) {
-        setAttribute("snapHGap", snapHGap, true);
+    public void setChildrenSnapToGrid(Boolean childrenSnapToGrid) {
+        setAttribute("childrenSnapToGrid", childrenSnapToGrid, true);
     }
 
     /**
-     * The horizontal grid size to use, in pixels, when snap-to-grid is enabled.
+     * If true, causes this canvas's children to snap to its grid when dragging. This behavior can be overridden on a per-child
+     * basis by setting the  {@link com.smartgwt.client.widgets.Canvas#getSnapToGrid 'snapToGrid'} value on the child.
      *
      *
-     * @return int
+     * @return Boolean
      */
-    public int getSnapHGap()  {
-        return getAttributeAsInt("snapHGap");
+    public Boolean getChildrenSnapToGrid()  {
+        return getAttributeAsBoolean("childrenSnapToGrid");
     }
 
     /**
-     * The vertical grid size to use, in pixels, when snap-to-grid is enabled.
-     *
-     * @param snapVGap snapVGap Default value is 20
-     */
-    public void setSnapVGap(int snapVGap) {
-        setAttribute("snapVGap", snapVGap, true);
-    }
-
-    /**
-     * The vertical grid size to use, in pixels, when snap-to-grid is enabled.
-     *
-     *
-     * @return int
-     */
-    public int getSnapVGap()  {
-        return getAttributeAsInt("snapVGap");
-    }
-
-    /**
-     * The horizontal snap direction. Set this value to Canvas.BEFORE to snap to the nearest gridpoint to the left; set it to
-     * Canvas.AFTER to snap to the nearest gridpoint to the right; and set it to Canvas.NEAREST to snap to the nearest
-     * gridpoint in either direction.
-     *
-     * @param snapHDirection snapHDirection Default value is Canvas.AFTER
-     */
-    public void setSnapHDirection(String snapHDirection) {
-        setAttribute("snapHDirection", snapHDirection, true);
-    }
-
-    /**
-     * The horizontal snap direction. Set this value to Canvas.BEFORE to snap to the nearest gridpoint to the left; set it to
-     * Canvas.AFTER to snap to the nearest gridpoint to the right; and set it to Canvas.NEAREST to snap to the nearest
-     * gridpoint in either direction.
-     *
-     *
-     * @return String
-     */
-    public String getSnapHDirection()  {
-        return getAttributeAsString("snapHDirection");
-    }
-
-    /**
-     * The vertical snap direction. Set this value to Canvas.BEFORE to snap to the nearest gridpoint above; set it to
-     * Canvas.AFTER to snap to the nearest gridpoint below; and set it to Canvas.NEAREST to snap to the nearest gridpoint in
-     * either direction.
-     *
-     * @param snapVDirection snapVDirection Default value is Canvas.AFTER
-     */
-    public void setSnapVDirection(String snapVDirection) {
-        setAttribute("snapVDirection", snapVDirection, true);
-    }
-
-    /**
-     * The vertical snap direction. Set this value to Canvas.BEFORE to snap to the nearest gridpoint above; set it to
-     * Canvas.AFTER to snap to the nearest gridpoint below; and set it to Canvas.NEAREST to snap to the nearest gridpoint in
-     * either direction.
-     *
-     *
-     * @return String
-     */
-    public String getSnapVDirection()  {
-        return getAttributeAsString("snapVDirection");
-    }
-
-    /**
-     * Describes which axes to apply snap-to-grid to. Valid values are Canvas.HORIZONTAL, Canvas.VERTICAL and Canvas.BOTH
-     *
-     * @param snapAxis snapAxis Default value is Canvas.BOTH
-     */
-    public void setSnapAxis(String snapAxis) {
-        setAttribute("snapAxis", snapAxis, true);
-    }
-
-    /**
-     * Describes which axes to apply snap-to-grid to. Valid values are Canvas.HORIZONTAL, Canvas.VERTICAL and Canvas.BOTH
-     *
-     *
-     * @return String
-     */
-    public String getSnapAxis()  {
-        return getAttributeAsString("snapAxis");
-    }
-
-    /**
-     * When this canvas is dropped onto an object supporting snap-to-grid, should it snap to the grid (true, the default) or
-     * just drop wherever the mouse is (false).
+     * The contents of a canvas or label widget. Any HTML string is acceptable.
+     * Changes the contents of a widget to newContents, an HTML string. <P> When {@link com.smartgwt.client.widgets.Canvas#getDynamicContents 'dynamicContents'} is set, <code>setContents()</code> can also be called with no arguments to cause contents to be re-evaluated.
      * <p><b>Note : </b> This is an advanced setting</p>
      *
-     * @param snapOnDrop snapOnDrop Default value is true
+     * @param contents an HTML string to be set as the contents of this widget. Default value is "&nbsp;"
      */
-    public void setSnapOnDrop(Boolean snapOnDrop) {
-        setAttribute("snapOnDrop", snapOnDrop, true);
+    public void setContents(String contents) {
+        setAttribute("contents", contents, true);
     }
 
     /**
-     * When this canvas is dropped onto an object supporting snap-to-grid, should it snap to the grid (true, the default) or
-     * just drop wherever the mouse is (false).
+     * The contents of a canvas or label widget. Any HTML string is acceptable.
      *
      *
-     * @return Boolean
+     * @return Returns the contents of a Canvas. The contents are an HTML string.
      */
-    public Boolean getSnapOnDrop()  {
-        return getAttributeAsBoolean("snapOnDrop");
-    }
-
-    /**
-     * Whether this canvas should be included in a printable view. <P> Default is to: <ul> <li> omit all peers (edges generated
-     * by showEdges:true, etc) <li> omit anything considered a "control", such as a button or menu (see {@link
-     * com.smartgwt.client.util.PrintProperties#getOmitControls omitControls}) <li> include everything else not marked
-     * shouldPrint:false </ul>
-     *
-     * @param shouldPrint shouldPrint Default value is null
-     */
-    public void setShouldPrint(Boolean shouldPrint) {
-        setAttribute("shouldPrint", shouldPrint, true);
-    }
-
-    /**
-     * Whether this canvas should be included in a printable view. <P> Default is to: <ul> <li> omit all peers (edges generated
-     * by showEdges:true, etc) <li> omit anything considered a "control", such as a button or menu (see {@link
-     * com.smartgwt.client.util.PrintProperties#getOmitControls omitControls}) <li> include everything else not marked
-     * shouldPrint:false </ul>
-     *
-     *
-     * @return Boolean
-     */
-    public Boolean getShouldPrint()  {
-        return getAttributeAsBoolean("shouldPrint");
-    }
-
-
-    /**
-     * If this property is set to <code>true</code>, the {@link com.smartgwt.client.widgets.Canvas#destroy} method has been
-     * called on this canvas. This implies the canvas is no longer valid. Its ID has been removed from global scope, and
-     * calling standard canvas APIs on it is likely to result in  errors.
-     *
-     * <b>Note :</b> This method should be called only after the widget has been rendered.
-     *
-     * @return Boolean
-     * @throws IllegalStateException if widget has not yet been rendered.
-     */
-    public Boolean getDestroyed() throws IllegalStateException {
-        errorIfNotCreated("destroyed");
-        return getAttributeAsBoolean("destroyed");
-    }
-
-
-    /**
-     * This property is set to true when the {@link com.smartgwt.client.widgets.Canvas#destroy} method is called on a widget.
-     * If this property is true, but {@link com.smartgwt.client.widgets.Canvas#getDestroyed destroyed} is not, this indicates
-     * the canvas is in the process of being destroyed.
-     *
-     * <b>Note :</b> This method should be called only after the widget has been rendered.
-     *
-     * @return Boolean
-     * @throws IllegalStateException if widget has not yet been rendered.
-     */
-    public Boolean getDestroying() throws IllegalStateException {
-        errorIfNotCreated("destroying");
-        return getAttributeAsBoolean("destroying");
-    }
-
-    /**
-     * Whether an {@link com.smartgwt.client.widgets.EdgedCanvas} should be used to show image-based edges around this
-     * component.
-     *
-     * @param showEdges showEdges Default value is false
-     * @throws IllegalStateException this property cannot be changed after the component has been created
-     */
-    public void setShowEdges(Boolean showEdges)  throws IllegalStateException {
-        setAttribute("showEdges", showEdges, false);
-    }
-
-    /**
-     * Whether an {@link com.smartgwt.client.widgets.EdgedCanvas} should be used to show image-based edges around this
-     * component.
-     *
-     *
-     * @return Boolean
-     */
-    public Boolean getShowEdges()  {
-        return getAttributeAsBoolean("showEdges");
-    }
-
-    /**
-     * Size in pixels for corners and edges
-     *
-     * @param edgeSize edgeSize Default value is 10
-     * @throws IllegalStateException this property cannot be changed after the component has been created
-     */
-    public void setEdgeSize(int edgeSize)  throws IllegalStateException {
-        setAttribute("edgeSize", edgeSize, false);
-    }
-
-    /**
-     * Size in pixels for corners and edges
-     *
-     *
-     * @return int
-     */
-    public int getEdgeSize()  {
-        return getAttributeAsInt("edgeSize");
-    }
-
-    /**
-     * Amount the contained Canvas should be offset.  Defaults to edgeSize; set to less than edgeSize to allow the contained
-     * Canvas to overlap the edge and corner media.
-     *
-     * @param edgeOffset edgeOffset Default value is null
-     * @throws IllegalStateException this property cannot be changed after the component has been created
-     */
-    public void setEdgeOffset(Integer edgeOffset)  throws IllegalStateException {
-        setAttribute("edgeOffset", edgeOffset, false);
-    }
-
-    /**
-     * Amount the contained Canvas should be offset.  Defaults to edgeSize; set to less than edgeSize to allow the contained
-     * Canvas to overlap the edge and corner media.
-     *
-     *
-     * @return Integer
-     */
-    public Integer getEdgeOffset()  {
-        return getAttributeAsInt("edgeOffset");
-    }
-
-    /**
-     * Base name of images for edges.  Extensions for each corner or edge piece will be added to this image URL, before the
-     * extension.  For example, with the default base name of "edge.gif", the top-left corner image will be "edge_TL.gif". <P>
-     * The full list of extensions is: "_TL", "_TR", "_BL", "_BR", "_T", "_L", "_B", "_R", "_center".
-     *
-     * @param edgeImage edgeImage Default value is "[SKIN]edge.gif"
-     * @throws IllegalStateException this property cannot be changed after the component has been created
-     */
-    public void setEdgeImage(String edgeImage)  throws IllegalStateException {
-        setAttribute("edgeImage", edgeImage, false);
-    }
-
-    /**
-     * Base name of images for edges.  Extensions for each corner or edge piece will be added to this image URL, before the
-     * extension.  For example, with the default base name of "edge.gif", the top-left corner image will be "edge_TL.gif". <P>
-     * The full list of extensions is: "_TL", "_TR", "_BL", "_BR", "_T", "_L", "_B", "_R", "_center".
-     *
-     *
-     * @return String
-     */
-    public String getEdgeImage()  {
-        return getAttributeAsString("edgeImage");
-    }
-
-    /**
-     * Background color for the EdgedCanvas created to decorate this component.  This can be used to provide an underlying
-     * "tint" color for translucent edge media
-     *
-     * @param edgeBackgroundColor edgeBackgroundColor Default value is null
-     * @throws IllegalStateException this property cannot be changed after the component has been created
-     */
-    public void setEdgeBackgroundColor(String edgeBackgroundColor)  throws IllegalStateException {
-        setAttribute("edgeBackgroundColor", edgeBackgroundColor, false);
-    }
-
-    /**
-     * Background color for the EdgedCanvas created to decorate this component.  This can be used to provide an underlying
-     * "tint" color for translucent edge media
-     *
-     *
-     * @return String
-     */
-    public String getEdgeBackgroundColor()  {
-        return getAttributeAsString("edgeBackgroundColor");
-    }
-
-    /**
-     * Opacity of the edges.  Defaults to matching this.opacity. if {@link com.smartgwt.client.widgets.Canvas#setOpacity} is
-     * called on a Canvas where edgeOpacity is set, edgeOpacity will be considered a percentage of the parent's opacity (so 50%
-     * opaque parent plus edgeOpacity 50 means 25% opaque edges)
-     * Set the {@link com.smartgwt.client.widgets.Canvas#getEdgeOpacity edgeOpacity} and mark the canvas for redraw
-     *
-     * @param edgeOpacity new edge-opacity level. Default value is null
-     * @throws IllegalStateException this property cannot be changed after the component has been created
-     */
-    public void setEdgeOpacity(Integer edgeOpacity)  throws IllegalStateException {
-        setAttribute("edgeOpacity", edgeOpacity, false);
-    }
-
-    /**
-     * Opacity of the edges.  Defaults to matching this.opacity. if {@link com.smartgwt.client.widgets.Canvas#setOpacity} is
-     * called on a Canvas where edgeOpacity is set, edgeOpacity will be considered a percentage of the parent's opacity (so 50%
-     * opaque parent plus edgeOpacity 50 means 25% opaque edges)
-     *
-     *
-     * @return Integer
-     */
-    public Integer getEdgeOpacity()  {
-        return getAttributeAsInt("edgeOpacity");
-    }
-
-    /**
-     * Whether to show media in the center section, that is, behind the decorated Canvas.
-     *
-     * @param edgeShowCenter edgeShowCenter Default value is false
-     * @throws IllegalStateException this property cannot be changed after the component has been created
-     */
-    public void setEdgeShowCenter(Boolean edgeShowCenter)  throws IllegalStateException {
-        setAttribute("edgeShowCenter", edgeShowCenter, false);
-    }
-
-    /**
-     * Whether to show media in the center section, that is, behind the decorated Canvas.
-     *
-     *
-     * @return Boolean
-     */
-    public Boolean getEdgeShowCenter()  {
-        return getAttributeAsBoolean("edgeShowCenter");
-    }
-
-    /**
-     * Background color for the center section only.  Can be used as a surrogate background color for the decorated Canvas, if
-     * the Canvas is set to partially overlap the edges and hence can't show a background color itself without occluding media.
-     *
-     * @param edgeCenterBackgroundColor edgeCenterBackgroundColor Default value is null
-     * @throws IllegalStateException this property cannot be changed after the component has been created
-     */
-    public void setEdgeCenterBackgroundColor(String edgeCenterBackgroundColor)  throws IllegalStateException {
-        setAttribute("edgeCenterBackgroundColor", edgeCenterBackgroundColor, false);
-    }
-
-    /**
-     * Background color for the center section only.  Can be used as a surrogate background color for the decorated Canvas, if
-     * the Canvas is set to partially overlap the edges and hence can't show a background color itself without occluding media.
-     *
-     *
-     * @return String
-     */
-    public String getEdgeCenterBackgroundColor()  {
-        return getAttributeAsString("edgeCenterBackgroundColor");
-    }
-
-    /**
-     * Whether to show a drop shadow for this Canvas
-     * Method to update {@link com.smartgwt.client.widgets.Canvas#getShowShadow showShadow}.
-     *
-     * @param showShadow true if the shadow should be visible false if not. Default value is false
-     * @throws IllegalStateException this property cannot be changed after the component has been created
-     */
-    public void setShowShadow(Boolean showShadow)  throws IllegalStateException {
-        setAttribute("showShadow", showShadow, false);
-    }
-
-    /**
-     * Whether to show a drop shadow for this Canvas
-     *
-     *
-     * @return Boolean
-     */
-    public Boolean getShowShadow()  {
-        return getAttributeAsBoolean("showShadow");
-    }
-
-    /**
-     * Depth of the shadow, or the virtual height above the page of the widget throwing the shadow. <P> This is a single
-     * parameter that can be used to control both <code>shadowSoftness</code> and <code>shadowOffset</code>.
-     *
-     * @param shadowDepth shadowDepth Default value is 4
-     * @throws IllegalStateException this property cannot be changed after the component has been created
-     */
-    public void setShadowDepth(int shadowDepth)  throws IllegalStateException {
-        setAttribute("shadowDepth", shadowDepth, false);
-    }
-
-    /**
-     * Depth of the shadow, or the virtual height above the page of the widget throwing the shadow. <P> This is a single
-     * parameter that can be used to control both <code>shadowSoftness</code> and <code>shadowOffset</code>.
-     *
-     *
-     * @return int
-     */
-    public int getShadowDepth()  {
-        return getAttributeAsInt("shadowDepth");
-    }
-
-    /**
-     * Base name of the series of images for the sides, corners, and center of the shadow. <P> The actual image names fetched
-     * for the dropShadow combine the segment name and the <code>shadowDepth</code> setting.  For example, given "ds.png" as
-     * the base name, a depth of 4, and the top-left segment of the shadow, we'd use "ds4_TL.png". <P> The names for segments
-     * are the same as those given for controlling resizable edges; see {@link com.smartgwt.client.widgets.Canvas#getResizeFrom
-     * resizeFrom}.  The center segment has the name "center".  The center segment is the only segment that doesn't include the
-     * depth in the URL, so the final image name for the center given a baseName of "ds.png" would be just "ds_center.png".
-     * <p><b>Note : </b> This is an advanced setting</p>
-     *
-     * @param shadowImage shadowImage Default value is "[SKIN]ds.png"
-     * @throws IllegalStateException this property cannot be changed after the component has been created
-     */
-    public void setShadowImage(String shadowImage)  throws IllegalStateException {
-        setAttribute("shadowImage", shadowImage, false);
-    }
-
-    /**
-     * Base name of the series of images for the sides, corners, and center of the shadow. <P> The actual image names fetched
-     * for the dropShadow combine the segment name and the <code>shadowDepth</code> setting.  For example, given "ds.png" as
-     * the base name, a depth of 4, and the top-left segment of the shadow, we'd use "ds4_TL.png". <P> The names for segments
-     * are the same as those given for controlling resizable edges; see {@link com.smartgwt.client.widgets.Canvas#getResizeFrom
-     * resizeFrom}.  The center segment has the name "center".  The center segment is the only segment that doesn't include the
-     * depth in the URL, so the final image name for the center given a baseName of "ds.png" would be just "ds_center.png".
-     *
-     *
-     * @return String
-     */
-    public String getShadowImage()  {
-        return getAttributeAsString("shadowImage");
+    public String getContents()  {
+        return getAttributeAsString("contents");
     }
             
     /**
-     * {@link com.smartgwt.client.widgets.form.ValuesManager} for managing values displayed in this component. If specified at
-     * initialization time, this component will be added to the valuesManager via {@link
-     * com.smartgwt.client.widgets.form.ValuesManager#addMember}. <P> ValuesManagers allow different fields of a single object
-     * to be displayed or edited across multiple UI components. Given a single values object, a valuesManager will handle
-     * determining the appropriate field values for its member components and displaying them /  responding to edits if the
-     * components support this. <P> Data may be derived simply from the specified fieldNames within the member components, or
-     * for complex nested data structures can be specified by both component and field-level {@link
-     * com.smartgwt.client.widgets.Canvas#getDataPath dataPath}. <P> Note that components may be automatically bound to an
-     * existing valuesManager attached to a  parent component if dataPath is specified. See {@link
-     * com.smartgwt.client.widgets.Canvas#getDataPath dataPath} for more information. Also note that if a databound component
-     * has a specified dataSource and dataPath but no specified valuesManager object one will be automatically generated as
-     * part of the databinding process
+     * Context menu to show for this object, an instance of the Menu widget.
      * <p><b>Note : </b> This is an advanced setting</p>
      *
-     * @param valuesManager valuesManager Default value is null
+     * @param contextMenu contextMenu Default value is null
      */
-    public void setValuesManager(ValuesManager valuesManager) {
-        setAttribute("valuesManager", valuesManager.getOrCreateJsObj(), true);
+    public void setContextMenu(Menu contextMenu) {
+        setAttribute("contextMenu", contextMenu.getOrCreateJsObj(), true);
     }
 
     /**
-     * {@link com.smartgwt.client.widgets.form.ValuesManager} for managing values displayed in this component. If specified at
-     * initialization time, this component will be added to the valuesManager via {@link
-     * com.smartgwt.client.widgets.form.ValuesManager#addMember}. <P> ValuesManagers allow different fields of a single object
-     * to be displayed or edited across multiple UI components. Given a single values object, a valuesManager will handle
-     * determining the appropriate field values for its member components and displaying them /  responding to edits if the
-     * components support this. <P> Data may be derived simply from the specified fieldNames within the member components, or
-     * for complex nested data structures can be specified by both component and field-level {@link
-     * com.smartgwt.client.widgets.Canvas#getDataPath dataPath}. <P> Note that components may be automatically bound to an
-     * existing valuesManager attached to a  parent component if dataPath is specified. See {@link
-     * com.smartgwt.client.widgets.Canvas#getDataPath dataPath} for more information. Also note that if a databound component
-     * has a specified dataSource and dataPath but no specified valuesManager object one will be automatically generated as
-     * part of the databinding process
+     * Context menu to show for this object, an instance of the Menu widget.
      *
      *
-     * @return ValuesManager
+     * @return Menu
      */
-    public ValuesManager getValuesManager()  {
-            return ValuesManager.getOrCreateRef(getAttributeAsJavaScriptObject("valuesManager"));
+    public Menu getContextMenu()  {
+            return Menu.getOrCreateRef(getAttributeAsJavaScriptObject("contextMenu"));
+    }
+             
+    /**
+     * Specifies the cursor image to display when the mouse pointer is      over this widget. It corresponds to the CSS cursor
+     * attribute. See Cursor type for      different cursors.
+     * Sets the cursor for this widget to cursor. See the cursor property          for possible values.
+     * <p><b>Note : </b> This is an advanced setting</p>
+     *
+     * @param cursor new cursor. Default value is Canvas.DEFAULT
+     */
+    public void setCursor(Cursor cursor) {
+        setAttribute("cursor", cursor.getValue(), true);
+    }
+
+    /**
+     * Specifies the cursor image to display when the mouse pointer is      over this widget. It corresponds to the CSS cursor
+     * attribute. See Cursor type for      different cursors.
+     *
+     *
+     * @return Cursor
+     */
+    public Cursor getCursor()  {
+        return EnumUtil.getEnum(Cursor.values(), getAttribute("cursor"));
     }
 
     /**
@@ -2431,350 +998,1135 @@ public class Canvas extends BaseWidget  implements com.smartgwt.client.widgets.e
     }
 
     /**
-     * Default total duration of animations. Can be overridden by setting animation times for specific animations, or by
-     * passing a <code>duration</code> parameter into the appropriate animate...() method.
+     * For custom components, establishes a default height for the component. <P> For a component that should potentially be
+     * sized automatically by a Layout, set this property rather than {@link com.smartgwt.client.widgets.Canvas#getHeight
+     * height} directly, because Layouts regard a height setting as an explicit size that shouldn't be changed.
      * <p><b>Note : </b> This is an advanced setting</p>
      *
-     * @param animateTime animateTime Default value is 300
+     * @param defaultHeight defaultHeight Default value is 100
      */
-    public void setAnimateTime(int animateTime) {
-        setAttribute("animateTime", animateTime, true);
+    public void setDefaultHeight(int defaultHeight) {
+        setAttribute("defaultHeight", defaultHeight, true);
     }
 
     /**
-     * Default total duration of animations. Can be overridden by setting animation times for specific animations, or by
-     * passing a <code>duration</code> parameter into the appropriate animate...() method.
+     * For custom components, establishes a default height for the component. <P> For a component that should potentially be
+     * sized automatically by a Layout, set this property rather than {@link com.smartgwt.client.widgets.Canvas#getHeight
+     * height} directly, because Layouts regard a height setting as an explicit size that shouldn't be changed.
      *
      *
      * @return int
      */
-    public int getAnimateTime()  {
-        return getAttributeAsInt("animateTime");
+    public int getDefaultHeight()  {
+        return getAttributeAsInt("defaultHeight");
+    }
+
+    /**
+     * For custom components, establishes a default width for the component. <P> For a component that should potentially be
+     * sized automatically by a Layout, set this property rather than {@link com.smartgwt.client.widgets.Canvas#getWidth width}
+     * directly, because Layouts regard a width setting as an explicit size that shouldn't be changed.
+     * <p><b>Note : </b> This is an advanced setting</p>
+     *
+     * @param defaultWidth defaultWidth Default value is 100
+     */
+    public void setDefaultWidth(int defaultWidth) {
+        setAttribute("defaultWidth", defaultWidth, true);
+    }
+
+    /**
+     * For custom components, establishes a default width for the component. <P> For a component that should potentially be
+     * sized automatically by a Layout, set this property rather than {@link com.smartgwt.client.widgets.Canvas#getWidth width}
+     * directly, because Layouts regard a width setting as an explicit size that shouldn't be changed.
+     *
+     *
+     * @return int
+     */
+    public int getDefaultWidth()  {
+        return getAttributeAsInt("defaultWidth");
+    }
+
+
+    /**
+     * If this property is set to <code>true</code>, the {@link com.smartgwt.client.widgets.Canvas#destroy} method has been
+     * called on this canvas. This implies the canvas is no longer valid. Its ID has been removed from global scope, and
+     * calling standard canvas APIs on it is likely to result in  errors.
+     *
+     * <b>Note :</b> This method should be called only after the widget has been rendered.
+     *
+     * @return Boolean
+     * @throws IllegalStateException if widget has not yet been rendered.
+     */
+    public Boolean getDestroyed() throws IllegalStateException {
+        errorIfNotCreated("destroyed");
+        return getAttributeAsBoolean("destroyed");
+    }
+
+
+    /**
+     * This property is set to true when the {@link com.smartgwt.client.widgets.Canvas#destroy} method is called on a widget.
+     * If this property is true, but {@link com.smartgwt.client.widgets.Canvas#getDestroyed destroyed} is not, this indicates
+     * the canvas is in the process of being destroyed.
+     *
+     * <b>Note :</b> This method should be called only after the widget has been rendered.
+     *
+     * @return Boolean
+     * @throws IllegalStateException if widget has not yet been rendered.
+     */
+    public Boolean getDestroying() throws IllegalStateException {
+        errorIfNotCreated("destroying");
+        return getAttributeAsBoolean("destroying");
     }
              
     /**
-     * Default acceleration effect to apply to all animations on this Canvas. Can be overridden by setting
-     * animationAcceleration for specific animations or by passing an acceleration function directly into the appropriate
-     * method.
+     * Specifies the cursor image to display when the mouse pointer is      over this widget if this widget is disabled. It
+     * corresponds to the CSS cursor       attribute. See Cursor type for different cursors.
      * <p><b>Note : </b> This is an advanced setting</p>
      *
-     * @param animateAcceleration animateAcceleration Default value is "smoothEnd"
+     * @param disabledCursor disabledCursor Default value is Canvas.DEFAULT
      */
-    public void setAnimateAcceleration(AnimationAcceleration animateAcceleration) {
-        setAttribute("animateAcceleration", animateAcceleration.getValue(), true);
+    public void setDisabledCursor(Cursor disabledCursor) {
+        setAttribute("disabledCursor", disabledCursor.getValue(), true);
     }
 
     /**
-     * Default acceleration effect to apply to all animations on this Canvas. Can be overridden by setting
-     * animationAcceleration for specific animations or by passing an acceleration function directly into the appropriate
-     * method.
+     * Specifies the cursor image to display when the mouse pointer is      over this widget if this widget is disabled. It
+     * corresponds to the CSS cursor       attribute. See Cursor type for different cursors.
      *
      *
-     * @return AnimationAcceleration
+     * @return Cursor
      */
-    public AnimationAcceleration getAnimateAcceleration()  {
-        return EnumUtil.getEnum(AnimationAcceleration.values(), getAttribute("animateAcceleration"));
+    public Cursor getDisabledCursor()  {
+        return EnumUtil.getEnum(Cursor.values(), getAttribute("disabledCursor"));
     }
 
     /**
-     * Default time for performing an animated move.  If unset, <code>this.animateTime</code> will be used by default instead
+     * Amount of time (in msec) between which two clicks are considered a single click
      * <p><b>Note : </b> This is an advanced setting</p>
      *
-     * @param animateMoveTime animateMoveTime Default value is null
+     * @param doubleClickDelay doubleClickDelay Default value is 250
      */
-    public void setAnimateMoveTime(Integer animateMoveTime) {
-        setAttribute("animateMoveTime", animateMoveTime, true);
+    public void setDoubleClickDelay(int doubleClickDelay) {
+        setAttribute("doubleClickDelay", doubleClickDelay, true);
     }
 
     /**
-     * Default time for performing an animated move.  If unset, <code>this.animateTime</code> will be used by default instead
+     * Amount of time (in msec) between which two clicks are considered a single click
+     *
+     *
+     * @return int
+     */
+    public int getDoubleClickDelay()  {
+        return getAttributeAsInt("doubleClickDelay");
+    }
+             
+    /**
+     * Visual appearance to show when the object is being dragged.
+     * <p><b>Note : </b> This is an advanced setting</p>
+     *
+     * @param dragAppearance dragAppearance Default value is EventHandler.OUTLINE
+     */
+    public void setDragAppearance(DragAppearance dragAppearance) {
+        setAttribute("dragAppearance", dragAppearance.getValue(), true);
+    }
+
+    /**
+     * Visual appearance to show when the object is being dragged.
+     *
+     *
+     * @return DragAppearance
+     */
+    public DragAppearance getDragAppearance()  {
+        return EnumUtil.getEnum(DragAppearance.values(), getAttribute("dragAppearance"));
+    }
+             
+    /**
+     * This indicates how the system will test for droppable targets: either by intersection with the mouse or intersection
+     * with the rectangle of the dragMoveTarget.
+     * <p><b>Note : </b> This is an advanced setting</p>
+     *
+     * @param dragIntersectStyle dragIntersectStyle Default value is "mouse"
+     */
+    public void setDragIntersectStyle(DragIntersectStyle dragIntersectStyle) {
+        setAttribute("dragIntersectStyle", dragIntersectStyle.getValue(), true);
+    }
+
+    /**
+     * This indicates how the system will test for droppable targets: either by intersection with the mouse or intersection
+     * with the rectangle of the dragMoveTarget.
+     *
+     *
+     * @return DragIntersectStyle
+     */
+    public DragIntersectStyle getDragIntersectStyle()  {
+        return EnumUtil.getEnum(DragIntersectStyle.values(), getAttribute("dragIntersectStyle"));
+    }
+
+    /**
+     * If this widget has dragAppearance <code>"target"</code>, this value specifies the opacity to render the target while it
+     * is being dragged. A null value implies we do not modify the opacity.
+     * <p><b>Note : </b> This is an advanced setting</p>
+     *
+     * @param dragOpacity dragOpacity Default value is null
+     */
+    public void setDragOpacity(Integer dragOpacity) {
+        setAttribute("dragOpacity", dragOpacity, true);
+    }
+
+    /**
+     * If this widget has dragAppearance <code>"target"</code>, this value specifies the opacity to render the target while it
+     * is being dragged. A null value implies we do not modify the opacity.
      *
      *
      * @return Integer
      */
-    public Integer getAnimateMoveTime()  {
-        return getAttributeAsInt("animateMoveTime");
-    }
-
-    /**
-     * Default time for performing an animated resize.  If unset, <code>this.animateTime</code> will be used by default instead
-     * <p><b>Note : </b> This is an advanced setting</p>
-     *
-     * @param animateResizeTime animateResizeTime Default value is null
-     */
-    public void setAnimateResizeTime(Integer animateResizeTime) {
-        setAttribute("animateResizeTime", animateResizeTime, true);
-    }
-
-    /**
-     * Default time for performing an animated resize.  If unset, <code>this.animateTime</code> will be used by default instead
-     *
-     *
-     * @return Integer
-     */
-    public Integer getAnimateResizeTime()  {
-        return getAttributeAsInt("animateResizeTime");
-    }
-
-    /**
-     * Default time for performing an animated setRect.  If unset, <code>this.animateTime</code> will be used by default
-     * instead
-     * <p><b>Note : </b> This is an advanced setting</p>
-     *
-     * @param animateRectTime animateRectTime Default value is null
-     */
-    public void setAnimateRectTime(Integer animateRectTime) {
-        setAttribute("animateRectTime", animateRectTime, true);
-    }
-
-    /**
-     * Default time for performing an animated setRect.  If unset, <code>this.animateTime</code> will be used by default
-     * instead
-     *
-     *
-     * @return Integer
-     */
-    public Integer getAnimateRectTime()  {
-        return getAttributeAsInt("animateRectTime");
-    }
-
-    /**
-     * Default time for performing an animated fade.  If unset, <code>this.animateTime</code> will be used by default instead
-     * <p><b>Note : </b> This is an advanced setting</p>
-     *
-     * @param animateFadeTime animateFadeTime Default value is null
-     */
-    public void setAnimateFadeTime(Integer animateFadeTime) {
-        setAttribute("animateFadeTime", animateFadeTime, true);
-    }
-
-    /**
-     * Default time for performing an animated fade.  If unset, <code>this.animateTime</code> will be used by default instead
-     *
-     *
-     * @return Integer
-     */
-    public Integer getAnimateFadeTime()  {
-        return getAttributeAsInt("animateFadeTime");
-    }
-
-    /**
-     * Default time for performing an animated scroll.  If unset, <code>this.animateTime</code> will be used by default instead
-     * <p><b>Note : </b> This is an advanced setting</p>
-     *
-     * @param animateScrollTime animateScrollTime Default value is null
-     */
-    public void setAnimateScrollTime(Integer animateScrollTime) {
-        setAttribute("animateScrollTime", animateScrollTime, true);
-    }
-
-    /**
-     * Default time for performing an animated scroll.  If unset, <code>this.animateTime</code> will be used by default instead
-     *
-     *
-     * @return Integer
-     */
-    public Integer getAnimateScrollTime()  {
-        return getAttributeAsInt("animateScrollTime");
-    }
-
-    /**
-     * Default time for performing an animated show.  If unset, <code>this.animateTime</code> will be used by default instead
-     * <p><b>Note : </b> This is an advanced setting</p>
-     *
-     * @param animateShowTime animateShowTime Default value is null
-     */
-    public void setAnimateShowTime(Integer animateShowTime) {
-        setAttribute("animateShowTime", animateShowTime, true);
-    }
-
-    /**
-     * Default time for performing an animated show.  If unset, <code>this.animateTime</code> will be used by default instead
-     *
-     *
-     * @return Integer
-     */
-    public Integer getAnimateShowTime()  {
-        return getAttributeAsInt("animateShowTime");
-    }
-
-    /**
-     * Default time for performing an animated hide.  If unset, <code>this.animateTime</code> will be used by default instead
-     * <p><b>Note : </b> This is an advanced setting</p>
-     *
-     * @param animateHideTime animateHideTime Default value is null
-     */
-    public void setAnimateHideTime(Integer animateHideTime) {
-        setAttribute("animateHideTime", animateHideTime, true);
-    }
-
-    /**
-     * Default time for performing an animated hide.  If unset, <code>this.animateTime</code> will be used by default instead
-     *
-     *
-     * @return Integer
-     */
-    public Integer getAnimateHideTime()  {
-        return getAttributeAsInt("animateHideTime");
+    public Integer getDragOpacity()  {
+        return getAttributeAsInt("dragOpacity");
     }
              
     /**
-     * Default acceleration effect for performing an animated move.  If unset,  <code>this.animateAcceleration</code> will be
-     * used by default instead
+     * Cursor to switch to if the mouse is over a widget that is drag repositionable.
      * <p><b>Note : </b> This is an advanced setting</p>
      *
-     * @param animateMoveAcceleration animateMoveAcceleration Default value is null
+     * @param dragRepositionCursor dragRepositionCursor Default value is Canvas.MOVE
      */
-    public void setAnimateMoveAcceleration(AnimationAcceleration animateMoveAcceleration) {
-        setAttribute("animateMoveAcceleration", animateMoveAcceleration.getValue(), true);
+    public void setDragRepositionCursor(Cursor dragRepositionCursor) {
+        setAttribute("dragRepositionCursor", dragRepositionCursor.getValue(), true);
     }
 
     /**
-     * Default acceleration effect for performing an animated move.  If unset,  <code>this.animateAcceleration</code> will be
-     * used by default instead
+     * Cursor to switch to if the mouse is over a widget that is drag repositionable.
      *
      *
-     * @return AnimationAcceleration
+     * @return Cursor
      */
-    public AnimationAcceleration getAnimateMoveAcceleration()  {
-        return EnumUtil.getEnum(AnimationAcceleration.values(), getAttribute("animateMoveAcceleration"));
+    public Cursor getDragRepositionCursor()  {
+        return EnumUtil.getEnum(Cursor.values(), getAttribute("dragRepositionCursor"));
     }
-             
+
     /**
-     * Default acceleration function for performing an animated resize.  If unset,  <code>this.animateAcceleration</code> will
-     * be used by default instead
+     * If this widget supports drag-scrolling, This property specifies how many ms the      user must hover over the
+     * drag-scroll threshold before scrolling begins.
      * <p><b>Note : </b> This is an advanced setting</p>
      *
-     * @param animateResizeAcceleration animateResizeAcceleration Default value is null
+     * @param dragScrollDelay dragScrollDelay Default value is 100
      */
-    public void setAnimateResizeAcceleration(AnimationAcceleration animateResizeAcceleration) {
-        setAttribute("animateResizeAcceleration", animateResizeAcceleration.getValue(), true);
+    public void setDragScrollDelay(int dragScrollDelay) {
+        setAttribute("dragScrollDelay", dragScrollDelay, true);
     }
 
     /**
-     * Default acceleration function for performing an animated resize.  If unset,  <code>this.animateAcceleration</code> will
-     * be used by default instead
+     * If this widget supports drag-scrolling, This property specifies how many ms the      user must hover over the
+     * drag-scroll threshold before scrolling begins.
      *
      *
-     * @return AnimationAcceleration
+     * @return int
      */
-    public AnimationAcceleration getAnimateResizeAcceleration()  {
-        return EnumUtil.getEnum(AnimationAcceleration.values(), getAttribute("animateResizeAcceleration"));
+    public int getDragScrollDelay()  {
+        return getAttributeAsInt("dragScrollDelay");
     }
-             
+
     /**
-     * Default acceleration function for performing an animated move and resize.  If unset, 
-     * <code>this.animateAcceleration</code> will be used by default instead
+     * Number of pixels the cursor needs to move before the EventHandler starts a drag operation.
      * <p><b>Note : </b> This is an advanced setting</p>
      *
-     * @param animateRectAcceleration animateRectAcceleration Default value is null
+     * @param dragStartDistance dragStartDistance Default value is 5
      */
-    public void setAnimateRectAcceleration(AnimationAcceleration animateRectAcceleration) {
-        setAttribute("animateRectAcceleration", animateRectAcceleration.getValue(), true);
+    public void setDragStartDistance(int dragStartDistance) {
+        setAttribute("dragStartDistance", dragStartDistance, true);
     }
 
     /**
-     * Default acceleration function for performing an animated move and resize.  If unset, 
-     * <code>this.animateAcceleration</code> will be used by default instead
+     * Number of pixels the cursor needs to move before the EventHandler starts a drag operation.
      *
      *
-     * @return AnimationAcceleration
+     * @return int
      */
-    public AnimationAcceleration getAnimateRectAcceleration()  {
-        return EnumUtil.getEnum(AnimationAcceleration.values(), getAttribute("animateRectAcceleration"));
+    public int getDragStartDistance()  {
+        return getAttributeAsInt("dragStartDistance");
     }
-             
+
     /**
-     * Default acceleration function for performing an animated scroll.  If unset,  <code>this.animateAcceleration</code> will
-     * be used by default instead
+     * The "type" of thing given as a string that can be dragged from this widget. If      specified, this will be matched up
+     * with the dropTypes of droppable widgets as detailed      in the dropTypes property.
      * <p><b>Note : </b> This is an advanced setting</p>
      *
-     * @param animateScrollAcceleration animateScrollAcceleration Default value is null
+     * @param dragType dragType Default value is null
      */
-    public void setAnimateScrollAcceleration(AnimationAcceleration animateScrollAcceleration) {
-        setAttribute("animateScrollAcceleration", animateScrollAcceleration.getValue(), true);
+    public void setDragType(String dragType) {
+        setAttribute("dragType", dragType, true);
     }
 
     /**
-     * Default acceleration function for performing an animated scroll.  If unset,  <code>this.animateAcceleration</code> will
-     * be used by default instead
+     * The "type" of thing given as a string that can be dragged from this widget. If      specified, this will be matched up
+     * with the dropTypes of droppable widgets as detailed      in the dropTypes property.
      *
      *
-     * @return AnimationAcceleration
+     * @return String
      */
-    public AnimationAcceleration getAnimateScrollAcceleration()  {
-        return EnumUtil.getEnum(AnimationAcceleration.values(), getAttribute("animateScrollAcceleration"));
+    public String getDragType()  {
+        return getAttributeAsString("dragType");
     }
-             
+
     /**
-     * Default acceleration function for performing an animated show.  If unset,  <code>this.animateAcceleration</code> will be
-     * used by default instead
+     * Dynamic contents allows the contents string to be treated as a simple, but powerful&#010 template.  When this attribute
+     * is set to true, expressions of the form \${arbitrary JS&#010 here} are replaced by the result of the evaluation of the
+     * JS code inside the curly&#010 brackets.  This evaluation happens at draw time.  If you want to trigger a
+     * re-evaluation&#010 of the expressions in the contents string you can call markForRedraw() on the canvas.&#010 <p>&#010
+     * You can use this feature to build some simple custom components. For example, let's say&#010 you want to show the value
+     * of a Slider in a Canvas somewhere on the screen.  You can do&#010 this by observing the valueChanged() method on the
+     * slider and calling setContents() on&#010 your canvas with the new string or you can set the contents of the canvas to
+     * something&#010 like:&#010 <p><code>&#010 "The slider value is \${sliderInstance.getValue()}."&#010 </code><p>&#010 Next
+     * you set dynamicContents: true on the canvas, observe valueChanged() on the slider&#010 and call canvas.markForRedraw()
+     * in that observation.  This approach is cleaner than&#010 setContents() when the Canvas is aggregating several values or
+     * dynamic expressions.&#010 Like so:&#010 <p>&#010 <pre>&#010 Slider.create({&#010     ID: "mySlider"&#010 });&#010&#010
+     * Canvas.create({&#010     ID: "myCanvas",&#010     dynamicContents: true,&#010     contents: "The slider value is
+     * \${mySlider.getValue()}."&#010 });&#010     &#010 myCanvas.observe(mySlider, "valueChanged", &#010                 
+     * "observer.markForRedraw()");&#010 </pre>&#010 You can embed an arbitrary number of dynamic expressions in the contents
+     * string.  The&#010 search and replace is optimized for speed.&#010 <p>&#010 If an error occurs during the evaluation of
+     * one of the expressions, a warning is logged&#010 to the ISC Developer Console and the error string is embedded in place
+     * of the expected&#010 value in the Canvas.&#010 <p>&#010 The value of a function is its return value.  The value of any
+     * variable is the same as&#010 that returned by its toString() representation.&#010 <p>&#010 Inside the evaluation
+     * contentext, <code>this</code> points to the canvas instance that&#010 has the dynamicContents string as its contents -
+     * in other words the canvas instance on&#010 which the template is declared.
      * <p><b>Note : </b> This is an advanced setting</p>
      *
-     * @param animateShowAcceleration animateShowAcceleration Default value is null
+     * @param dynamicContents dynamicContents Default value is false
      */
-    public void setAnimateShowAcceleration(AnimationAcceleration animateShowAcceleration) {
-        setAttribute("animateShowAcceleration", animateShowAcceleration.getValue(), true);
+    public void setDynamicContents(Boolean dynamicContents) {
+        setAttribute("dynamicContents", dynamicContents, true);
     }
 
     /**
-     * Default acceleration function for performing an animated show.  If unset,  <code>this.animateAcceleration</code> will be
-     * used by default instead
-     *
-     *
-     * @return AnimationAcceleration
-     */
-    public AnimationAcceleration getAnimateShowAcceleration()  {
-        return EnumUtil.getEnum(AnimationAcceleration.values(), getAttribute("animateShowAcceleration"));
-    }
-             
-    /**
-     * Default acceleration function for performing an animated hide.  If unset,  <code>this.animateAcceleration</code> will be
-     * used by default instead
-     * <p><b>Note : </b> This is an advanced setting</p>
-     *
-     * @param animateHideAcceleration animateHideAcceleration Default value is null
-     */
-    public void setAnimateHideAcceleration(AnimationAcceleration animateHideAcceleration) {
-        setAttribute("animateHideAcceleration", animateHideAcceleration.getValue(), true);
-    }
-
-    /**
-     * Default acceleration function for performing an animated hide.  If unset,  <code>this.animateAcceleration</code> will be
-     * used by default instead
-     *
-     *
-     * @return AnimationAcceleration
-     */
-    public AnimationAcceleration getAnimateHideAcceleration()  {
-        return EnumUtil.getEnum(AnimationAcceleration.values(), getAttribute("animateHideAcceleration"));
-    }
-
-    /**
-     * When this Canvas is included as a member in a Layout, whether a resizeBar should be shown after this member in the
-     * layout, to allow it to be resized. <p> By default the resize bar acts on the Canvas that it is declared on.  If you want
-     * the resize bar to instead act on the next member of the Layout (e.g. to collapse down or to the right), set {@link
-     * com.smartgwt.client.widgets.Canvas#getResizeBarTarget resizeBarTarget} as well.
-     * When this Canvas is included as a member in a Layout, dynamically updates whether a  resizeBar should be shown after this member in the layout, to allow it to be resized.
-     *
-     * @param showResizeBar setting for this.showResizeBar. Default value is false
-     * @throws IllegalStateException this property cannot be changed after the component has been created
-     */
-    public void setShowResizeBar(Boolean showResizeBar)  throws IllegalStateException {
-        setAttribute("showResizeBar", showResizeBar, false);
-    }
-
-    /**
-     * When this Canvas is included as a member in a Layout, whether a resizeBar should be shown after this member in the
-     * layout, to allow it to be resized. <p> By default the resize bar acts on the Canvas that it is declared on.  If you want
-     * the resize bar to instead act on the next member of the Layout (e.g. to collapse down or to the right), set {@link
-     * com.smartgwt.client.widgets.Canvas#getResizeBarTarget resizeBarTarget} as well.
+     * Dynamic contents allows the contents string to be treated as a simple, but powerful&#010 template.  When this attribute
+     * is set to true, expressions of the form \${arbitrary JS&#010 here} are replaced by the result of the evaluation of the
+     * JS code inside the curly&#010 brackets.  This evaluation happens at draw time.  If you want to trigger a
+     * re-evaluation&#010 of the expressions in the contents string you can call markForRedraw() on the canvas.&#010 <p>&#010
+     * You can use this feature to build some simple custom components. For example, let's say&#010 you want to show the value
+     * of a Slider in a Canvas somewhere on the screen.  You can do&#010 this by observing the valueChanged() method on the
+     * slider and calling setContents() on&#010 your canvas with the new string or you can set the contents of the canvas to
+     * something&#010 like:&#010 <p><code>&#010 "The slider value is \${sliderInstance.getValue()}."&#010 </code><p>&#010 Next
+     * you set dynamicContents: true on the canvas, observe valueChanged() on the slider&#010 and call canvas.markForRedraw()
+     * in that observation.  This approach is cleaner than&#010 setContents() when the Canvas is aggregating several values or
+     * dynamic expressions.&#010 Like so:&#010 <p>&#010 <pre>&#010 Slider.create({&#010     ID: "mySlider"&#010 });&#010&#010
+     * Canvas.create({&#010     ID: "myCanvas",&#010     dynamicContents: true,&#010     contents: "The slider value is
+     * \${mySlider.getValue()}."&#010 });&#010     &#010 myCanvas.observe(mySlider, "valueChanged", &#010                 
+     * "observer.markForRedraw()");&#010 </pre>&#010 You can embed an arbitrary number of dynamic expressions in the contents
+     * string.  The&#010 search and replace is optimized for speed.&#010 <p>&#010 If an error occurs during the evaluation of
+     * one of the expressions, a warning is logged&#010 to the ISC Developer Console and the error string is embedded in place
+     * of the expected&#010 value in the Canvas.&#010 <p>&#010 The value of a function is its return value.  The value of any
+     * variable is the same as&#010 that returned by its toString() representation.&#010 <p>&#010 Inside the evaluation
+     * contentext, <code>this</code> points to the canvas instance that&#010 has the dynamicContents string as its contents -
+     * in other words the canvas instance on&#010 which the template is declared.
      *
      *
      * @return Boolean
      */
-    public Boolean getShowResizeBar()  {
-        return getAttributeAsBoolean("showResizeBar");
+    public Boolean getDynamicContents()  {
+        return getAttributeAsBoolean("dynamicContents");
+    }
+
+    /**
+     * Background color for the EdgedCanvas created to decorate this component.  This can be used to provide an underlying
+     * "tint" color for translucent edge media
+     *
+     * @param edgeBackgroundColor edgeBackgroundColor Default value is null
+     * @throws IllegalStateException this property cannot be changed after the component has been created
+     */
+    public void setEdgeBackgroundColor(String edgeBackgroundColor)  throws IllegalStateException {
+        setAttribute("edgeBackgroundColor", edgeBackgroundColor, false);
+    }
+
+    /**
+     * Background color for the EdgedCanvas created to decorate this component.  This can be used to provide an underlying
+     * "tint" color for translucent edge media
+     *
+     *
+     * @return String
+     */
+    public String getEdgeBackgroundColor()  {
+        return getAttributeAsString("edgeBackgroundColor");
+    }
+
+    /**
+     * Background color for the center section only.  Can be used as a surrogate background color for the decorated Canvas, if
+     * the Canvas is set to partially overlap the edges and hence can't show a background color itself without occluding media.
+     *
+     * @param edgeCenterBackgroundColor edgeCenterBackgroundColor Default value is null
+     * @throws IllegalStateException this property cannot be changed after the component has been created
+     */
+    public void setEdgeCenterBackgroundColor(String edgeCenterBackgroundColor)  throws IllegalStateException {
+        setAttribute("edgeCenterBackgroundColor", edgeCenterBackgroundColor, false);
+    }
+
+    /**
+     * Background color for the center section only.  Can be used as a surrogate background color for the decorated Canvas, if
+     * the Canvas is set to partially overlap the edges and hence can't show a background color itself without occluding media.
+     *
+     *
+     * @return String
+     */
+    public String getEdgeCenterBackgroundColor()  {
+        return getAttributeAsString("edgeCenterBackgroundColor");
+    }
+
+    /**
+     * Base name of images for edges.  Extensions for each corner or edge piece will be added to this image URL, before the
+     * extension.  For example, with the default base name of "edge.gif", the top-left corner image will be "edge_TL.gif". <P>
+     * The full list of extensions is: "_TL", "_TR", "_BL", "_BR", "_T", "_L", "_B", "_R", "_center".
+     *
+     * @param edgeImage edgeImage Default value is "[SKIN]edge.gif"
+     * @throws IllegalStateException this property cannot be changed after the component has been created
+     */
+    public void setEdgeImage(String edgeImage)  throws IllegalStateException {
+        setAttribute("edgeImage", edgeImage, false);
+    }
+
+    /**
+     * Base name of images for edges.  Extensions for each corner or edge piece will be added to this image URL, before the
+     * extension.  For example, with the default base name of "edge.gif", the top-left corner image will be "edge_TL.gif". <P>
+     * The full list of extensions is: "_TL", "_TR", "_BL", "_BR", "_T", "_L", "_B", "_R", "_center".
+     *
+     *
+     * @return String
+     */
+    public String getEdgeImage()  {
+        return getAttributeAsString("edgeImage");
+    }
+
+    /**
+     * How far into the edge of an object do we consider the "edge" for drag resize purposes?
+     * <p><b>Note : </b> This is an advanced setting</p>
+     *
+     * @param edgeMarginSize edgeMarginSize Default value is 5
+     */
+    public void setEdgeMarginSize(int edgeMarginSize) {
+        setAttribute("edgeMarginSize", edgeMarginSize, true);
+    }
+
+    /**
+     * How far into the edge of an object do we consider the "edge" for drag resize purposes?
+     *
+     *
+     * @return int
+     */
+    public int getEdgeMarginSize()  {
+        return getAttributeAsInt("edgeMarginSize");
+    }
+
+    /**
+     * Amount the contained Canvas should be offset.  Defaults to edgeSize; set to less than edgeSize to allow the contained
+     * Canvas to overlap the edge and corner media.
+     *
+     * @param edgeOffset edgeOffset Default value is null
+     * @throws IllegalStateException this property cannot be changed after the component has been created
+     */
+    public void setEdgeOffset(Integer edgeOffset)  throws IllegalStateException {
+        setAttribute("edgeOffset", edgeOffset, false);
+    }
+
+    /**
+     * Amount the contained Canvas should be offset.  Defaults to edgeSize; set to less than edgeSize to allow the contained
+     * Canvas to overlap the edge and corner media.
+     *
+     *
+     * @return Integer
+     */
+    public Integer getEdgeOffset()  {
+        return getAttributeAsInt("edgeOffset");
+    }
+
+    /**
+     * Opacity of the edges.  Defaults to matching this.opacity. if {@link com.smartgwt.client.widgets.Canvas#setOpacity} is
+     * called on a Canvas where edgeOpacity is set, edgeOpacity will be considered a percentage of the parent's opacity (so 50%
+     * opaque parent plus edgeOpacity 50 means 25% opaque edges)
+     * Set the {@link com.smartgwt.client.widgets.Canvas#getEdgeOpacity edgeOpacity} and mark the canvas for redraw
+     *
+     * @param edgeOpacity new edge-opacity level. Default value is null
+     * @throws IllegalStateException this property cannot be changed after the component has been created
+     */
+    public void setEdgeOpacity(Integer edgeOpacity)  throws IllegalStateException {
+        setAttribute("edgeOpacity", edgeOpacity, false);
+    }
+
+    /**
+     * Opacity of the edges.  Defaults to matching this.opacity. if {@link com.smartgwt.client.widgets.Canvas#setOpacity} is
+     * called on a Canvas where edgeOpacity is set, edgeOpacity will be considered a percentage of the parent's opacity (so 50%
+     * opaque parent plus edgeOpacity 50 means 25% opaque edges)
+     *
+     *
+     * @return Integer
+     */
+    public Integer getEdgeOpacity()  {
+        return getAttributeAsInt("edgeOpacity");
+    }
+
+    /**
+     * Whether to show media in the center section, that is, behind the decorated Canvas.
+     *
+     * @param edgeShowCenter edgeShowCenter Default value is false
+     * @throws IllegalStateException this property cannot be changed after the component has been created
+     */
+    public void setEdgeShowCenter(Boolean edgeShowCenter)  throws IllegalStateException {
+        setAttribute("edgeShowCenter", edgeShowCenter, false);
+    }
+
+    /**
+     * Whether to show media in the center section, that is, behind the decorated Canvas.
+     *
+     *
+     * @return Boolean
+     */
+    public Boolean getEdgeShowCenter()  {
+        return getAttributeAsBoolean("edgeShowCenter");
+    }
+
+    /**
+     * Size in pixels for corners and edges
+     *
+     * @param edgeSize edgeSize Default value is 10
+     * @throws IllegalStateException this property cannot be changed after the component has been created
+     */
+    public void setEdgeSize(int edgeSize)  throws IllegalStateException {
+        setAttribute("edgeSize", edgeSize, false);
+    }
+
+    /**
+     * Size in pixels for corners and edges
+     *
+     *
+     * @return int
+     */
+    public int getEdgeSize()  {
+        return getAttributeAsInt("edgeSize");
+    }
+
+    /**
+     * When this Canvas is included as a member in a Layout, extra blank space that should be left after this member in a
+     * Layout.
+     *
+     * @param extraSpace extraSpace Default value is 0
+     * @throws IllegalStateException this property cannot be changed after the component has been created
+     */
+    public void setExtraSpace(int extraSpace)  throws IllegalStateException {
+        setAttribute("extraSpace", extraSpace, false);
+    }
+
+    /**
+     * When this Canvas is included as a member in a Layout, extra blank space that should be left after this member in a
+     * Layout.
+     *
+     *
+     * @return int
+     */
+    public int getExtraSpace()  {
+        return getAttributeAsInt("extraSpace");
+    }
+             
+    /**
+     * If <code>this.showHover</code> is true, this property can be used to customize the alignment of content in the hover
+     * canvas.
+     *
+     * @param hoverAlign hoverAlign Default value is null
+     */
+    public void setHoverAlign(Alignment hoverAlign) {
+        setAttribute("hoverAlign", hoverAlign.getValue(), true);
+    }
+
+    /**
+     * If <code>this.showHover</code> is true, this property can be used to customize the alignment of content in the hover
+     * canvas.
+     *
+     *
+     * @return Alignment
+     */
+    public Alignment getHoverAlign()  {
+        return EnumUtil.getEnum(Alignment.values(), getAttribute("hoverAlign"));
+    }
+
+    /**
+     * If <code>this.canHover</code> is true, how long should the mouse be kept over this widget before the hover event is
+     * fired
+     *
+     * @param hoverDelay hoverDelay Default value is 300
+     */
+    public void setHoverDelay(int hoverDelay) {
+        setAttribute("hoverDelay", hoverDelay, true);
+    }
+
+    /**
+     * If <code>this.canHover</code> is true, how long should the mouse be kept over this widget before the hover event is
+     * fired
+     *
+     *
+     * @return int
+     */
+    public int getHoverDelay()  {
+        return getAttributeAsInt("hoverDelay");
+    }
+
+    /**
+     * If <code>this.showHover</code> is true, this property can be used to customize the height of the hover canvas shown.
+     *
+     * @param hoverHeight hoverHeight Default value is null
+     */
+    public void setHoverHeight(Integer hoverHeight) {
+        setAttribute("hoverHeight", hoverHeight, true);
+    }
+
+    /**
+     * If <code>this.showHover</code> is true, this property can be used to customize the height of the hover canvas shown.
+     *
+     *
+     * @return Integer
+     */
+    public Integer getHoverHeight()  {
+        return getAttributeAsInt("hoverHeight");
+    }
+
+    /**
+     * If <code>this.showHover</code> is true, should this widget's hover canvas be moved with the mouse while visible?
+     *
+     * @param hoverMoveWithMouse hoverMoveWithMouse Default value is null
+     */
+    public void setHoverMoveWithMouse(Boolean hoverMoveWithMouse) {
+        setAttribute("hoverMoveWithMouse", hoverMoveWithMouse, true);
+    }
+
+    /**
+     * If <code>this.showHover</code> is true, should this widget's hover canvas be moved with the mouse while visible?
+     *
+     *
+     * @return Boolean
+     */
+    public Boolean getHoverMoveWithMouse()  {
+        return getAttributeAsBoolean("hoverMoveWithMouse");
+    }
+
+    /**
+     * If <code>this.showHover</code> is true, should the hover canvas be shown with opacity other than 100?
+     *
+     * @param hoverOpacity hoverOpacity Default value is null
+     */
+    public void setHoverOpacity(Integer hoverOpacity) {
+        setAttribute("hoverOpacity", hoverOpacity, true);
+    }
+
+    /**
+     * If <code>this.showHover</code> is true, should the hover canvas be shown with opacity other than 100?
+     *
+     *
+     * @return Integer
+     */
+    public Integer getHoverOpacity()  {
+        return getAttributeAsInt("hoverOpacity");
+    }
+
+    /**
+     * If <code>this.showHover</code> is true, this property can be used to specify the css style to apply to the hover canvas.
+     *
+     * @param hoverStyle hoverStyle Default value is null
+     */
+    public void setHoverStyle(String hoverStyle) {
+        setAttribute("hoverStyle", hoverStyle, true);
+    }
+
+    /**
+     * If <code>this.showHover</code> is true, this property can be used to specify the css style to apply to the hover canvas.
+     *
+     *
+     * @return String
+     */
+    public String getHoverStyle()  {
+        return getAttributeAsString("hoverStyle");
+    }
+             
+    /**
+     * If <code>this.showHover</code> is true, this property can be used to customize the vertical alignment of content in the
+     * hover canvas.
+     *
+     * @param hoverVAlign hoverVAlign Default value is null
+     */
+    public void setHoverVAlign(VerticalAlignment hoverVAlign) {
+        setAttribute("hoverVAlign", hoverVAlign.getValue(), true);
+    }
+
+    /**
+     * If <code>this.showHover</code> is true, this property can be used to customize the vertical alignment of content in the
+     * hover canvas.
+     *
+     *
+     * @return VerticalAlignment
+     */
+    public VerticalAlignment getHoverVAlign()  {
+        return EnumUtil.getEnum(VerticalAlignment.values(), getAttribute("hoverVAlign"));
+    }
+
+    /**
+     * If {@link com.smartgwt.client.widgets.Canvas#getShowHover 'this.showHover'} is true, this property can be used to
+     * customize the width of the hover canvas shown.
+     *
+     * @param hoverWidth hoverWidth Default value is null
+     */
+    public void setHoverWidth(Integer hoverWidth) {
+        setAttribute("hoverWidth", hoverWidth, true);
+    }
+
+    /**
+     * If {@link com.smartgwt.client.widgets.Canvas#getShowHover 'this.showHover'} is true, this property can be used to
+     * customize the width of the hover canvas shown.
+     *
+     *
+     * @return Integer
+     */
+    public Integer getHoverWidth()  {
+        return getAttributeAsInt("hoverWidth");
+    }
+
+    /**
+     * If <code>this.showHover</code> is true, this property can be used to customize the whether content in the hover canvas
+     * is displayed in a single line, or wraps.
+     *
+     * @param hoverWrap hoverWrap Default value is null
+     */
+    public void setHoverWrap(Boolean hoverWrap) {
+        setAttribute("hoverWrap", hoverWrap, true);
+    }
+
+    /**
+     * If <code>this.showHover</code> is true, this property can be used to customize the whether content in the hover canvas
+     * is displayed in a single line, or wraps.
+     *
+     *
+     * @return Boolean
+     */
+    public Boolean getHoverWrap()  {
+        return getAttributeAsBoolean("hoverWrap");
+    }
+             
+    /**
+     * If {@link com.smartgwt.client.widgets.Canvas#getHtmlElement htmlElement} is specified, this attribute specifies the
+     * position where  the canvas should be inserted relative to the <code>htmlElement</code> in the DOM.
+     * Setter for the {@link com.smartgwt.client.widgets.Canvas#getHtmlPosition htmlPosition}.
+     * <p><b>Note : </b> This is an advanced setting</p>
+     *
+     * @param htmlPosition New htmlPosition for this canvas. Default value is "afterBegin"
+     */
+    public void setHtmlPosition(DrawPosition htmlPosition) {
+        setAttribute("htmlPosition", htmlPosition.getValue(), true);
+    }
+
+    /**
+     * If {@link com.smartgwt.client.widgets.Canvas#getHtmlElement htmlElement} is specified, this attribute specifies the
+     * position where  the canvas should be inserted relative to the <code>htmlElement</code> in the DOM.
+     *
+     *
+     * @return DrawPosition
+     */
+    public DrawPosition getHtmlPosition()  {
+        return EnumUtil.getEnum(DrawPosition.values(), getAttribute("htmlPosition"));
+    }
+
+    /**
+     * Set the CSS Margin, in pixels, for this component.  Margin provides blank space outside of the border. <P> This property
+     * sets the same thickness of margin on every side.  Differing per-side margins can be set in a CSS style and applied via
+     * {@link com.smartgwt.client.widgets.Canvas#getStyleName styleName}. <P> Note that the specified size of the widget will
+     * be the size <b>including</b> the margin thickness on each side.
+     * Set the CSS Margin, in pixels, for this component.  Margin provides blank space outside of the border. <P> This property sets the same thickness of margin on every side.  Differing per-side margins can be set in a CSS style and applied via {@link com.smartgwt.client.widgets.Canvas#getStyleName styleName}. <P> Note that the specified size of the widget will be the size <b>including</b> the margin thickness on each side.
+     *
+     * @param margin new margin in pixels. Default value is null
+     */
+    public void setMargin(Integer margin) {
+        setAttribute("margin", margin, true);
+    }
+
+    /**
+     * Set the CSS Margin, in pixels, for this component.  Margin provides blank space outside of the border. <P> This property
+     * sets the same thickness of margin on every side.  Differing per-side margins can be set in a CSS style and applied via
+     * {@link com.smartgwt.client.widgets.Canvas#getStyleName styleName}. <P> Note that the specified size of the widget will
+     * be the size <b>including</b> the margin thickness on each side.
+     *
+     *
+     * @return Integer
+     */
+    public Integer getMargin()  {
+        return getAttributeAsInt("margin");
+    }
+
+    /**
+     * If {@link com.smartgwt.client.widgets.Canvas#getHtmlElement htmlElement} is specified, should this canvas initially be
+     * drawn at the same dimensions as the htmlElement?<br> Note: setting this property will not force the canvas to resize if
+     * the element subsequently resizes (for example due to page reflow).
+     * <p><b>Note : </b> This is an advanced setting</p>
+     *
+     * @param matchElement matchElement Default value is null
+     */
+    public void setMatchElement(Boolean matchElement) {
+        setAttribute("matchElement", matchElement, true);
+    }
+
+    /**
+     * If {@link com.smartgwt.client.widgets.Canvas#getHtmlElement htmlElement} is specified, should this canvas initially be
+     * drawn at the same dimensions as the htmlElement?<br> Note: setting this property will not force the canvas to resize if
+     * the element subsequently resizes (for example due to page reflow).
+     *
+     *
+     * @return Boolean
+     */
+    public Boolean getMatchElement()  {
+        return getAttributeAsBoolean("matchElement");
+    }
+
+    /**
+     * Maximum height that this Canvas can be resized to.
+     * <p><b>Note : </b> This is an advanced setting</p>
+     *
+     * @param maxHeight maxHeight Default value is 10000
+     */
+    public void setMaxHeight(int maxHeight) {
+        setAttribute("maxHeight", maxHeight, true);
+    }
+
+    /**
+     * Maximum height that this Canvas can be resized to.
+     *
+     *
+     * @return int
+     */
+    public int getMaxHeight()  {
+        return getAttributeAsInt("maxHeight");
+    }
+
+    /**
+     * Maximum width that this Canvas can be resized to.
+     * <p><b>Note : </b> This is an advanced setting</p>
+     *
+     * @param maxWidth maxWidth Default value is 10000
+     */
+    public void setMaxWidth(int maxWidth) {
+        setAttribute("maxWidth", maxWidth, true);
+    }
+
+    /**
+     * Maximum width that this Canvas can be resized to.
+     *
+     *
+     * @return int
+     */
+    public int getMaxWidth()  {
+        return getAttributeAsInt("maxWidth");
+    }
+
+    /**
+     * Minimum height that this Canvas can be resized to. <P> Note that a Canvas with overflow:"visible" has an implicit
+     * minimize size based on it's contents.
+     * <p><b>Note : </b> This is an advanced setting</p>
+     *
+     * @param minHeight minHeight Default value is 10
+     */
+    public void setMinHeight(int minHeight) {
+        setAttribute("minHeight", minHeight, true);
+    }
+
+    /**
+     * Minimum height that this Canvas can be resized to. <P> Note that a Canvas with overflow:"visible" has an implicit
+     * minimize size based on it's contents.
+     *
+     *
+     * @return int
+     */
+    public int getMinHeight()  {
+        return getAttributeAsInt("minHeight");
+    }
+
+    /**
+     * Minimum width that this Canvas can be resized to. <P> Note that a Canvas with overflow:"visible" has an implicit
+     * minimize size based on it's contents.
+     * <p><b>Note : </b> This is an advanced setting</p>
+     *
+     * @param minWidth minWidth Default value is 10
+     */
+    public void setMinWidth(int minWidth) {
+        setAttribute("minWidth", minWidth, true);
+    }
+
+    /**
+     * Minimum width that this Canvas can be resized to. <P> Note that a Canvas with overflow:"visible" has an implicit
+     * minimize size based on it's contents.
+     *
+     *
+     * @return int
+     */
+    public int getMinWidth()  {
+        return getAttributeAsInt("minWidth");
+    }
+
+    /**
+     * Amount of time (in msec) between 'mouseStillDown' events for this object
+     * <p><b>Note : </b> This is an advanced setting</p>
+     *
+     * @param mouseStillDownDelay mouseStillDownDelay Default value is 100
+     */
+    public void setMouseStillDownDelay(int mouseStillDownDelay) {
+        setAttribute("mouseStillDownDelay", mouseStillDownDelay, true);
+    }
+
+    /**
+     * Amount of time (in msec) between 'mouseStillDown' events for this object
+     *
+     *
+     * @return int
+     */
+    public int getMouseStillDownDelay()  {
+        return getAttributeAsInt("mouseStillDownDelay");
+    }
+
+    /**
+     * Amount of time (in msec) before mouseStillDown events start to be fired for this object.
+     * <p><b>Note : </b> This is an advanced setting</p>
+     *
+     * @param mouseStillDownInitialDelay mouseStillDownInitialDelay Default value is 400
+     */
+    public void setMouseStillDownInitialDelay(int mouseStillDownInitialDelay) {
+        setAttribute("mouseStillDownInitialDelay", mouseStillDownInitialDelay, true);
+    }
+
+    /**
+     * Amount of time (in msec) before mouseStillDown events start to be fired for this object.
+     *
+     *
+     * @return int
+     */
+    public int getMouseStillDownInitialDelay()  {
+        return getAttributeAsInt("mouseStillDownInitialDelay");
+    }
+
+    /**
+     * If true, this canvas will receive all mouse-clicks as single click events rather than doubleClicks.
+     * <p><b>Note : </b> This is an advanced setting</p>
+     *
+     * @param noDoubleClicks noDoubleClicks Default value is null
+     */
+    public void setNoDoubleClicks(Boolean noDoubleClicks) {
+        setAttribute("noDoubleClicks", noDoubleClicks, true);
+    }
+
+    /**
+     * If true, this canvas will receive all mouse-clicks as single click events rather than doubleClicks.
+     *
+     *
+     * @return Boolean
+     */
+    public Boolean getNoDoubleClicks()  {
+        return getAttributeAsBoolean("noDoubleClicks");
+    }
+
+    /**
+     * Renders the widget to be partly transparent. A widget's opacity property may      be set to any number between 0
+     * (transparent) to 100 (opaque).  Null means don't specify opacity directly, 100 is fully opaque.  Note that heavy use of
+     * opacity may slow down your browser.  See canvas.setOpacity() for details.
+     * Sets the opacity for the widget to the newOpacity value. This newOpacity          value must be within the range of 0 (transparent) to 100 (opaque). <br>          In Internet Explorer, any other filter effects will be wiped out.
+     * <p><b>Note : </b> This is an advanced setting</p>
+     *
+     * @param opacity new opacity level. Default value is null
+     */
+    public void setOpacity(Integer opacity) {
+        setAttribute("opacity", opacity, true);
+    }
+
+    /**
+     * Renders the widget to be partly transparent. A widget's opacity property may      be set to any number between 0
+     * (transparent) to 100 (opaque).  Null means don't specify opacity directly, 100 is fully opaque.  Note that heavy use of
+     * opacity may slow down your browser.  See canvas.setOpacity() for details.
+     *
+     *
+     * @return Integer
+     */
+    public Integer getOpacity()  {
+        return getAttributeAsInt("opacity");
+    }
+             
+    /**
+     * Controls what happens when the drawn size of the content of a Canvas is either   greater or smaller than the specified
+     * size of the Canvas.  Similar to the CSS   property overflow, but consistent across browsers.  See Overflow type for  
+     * details.
+     * Update the {@link com.smartgwt.client.widgets.Canvas#getOverflow 'overflow'} of a Canvas after it has been created.
+     *
+     * @param overflow New overflow value.. Default value is Canvas.VISIBLE
+     */
+    public void setOverflow(Overflow overflow) {
+        setAttribute("overflow", overflow.getValue(), true);
+    }
+
+    /**
+     * Controls what happens when the drawn size of the content of a Canvas is either   greater or smaller than the specified
+     * size of the Canvas.  Similar to the CSS   property overflow, but consistent across browsers.  See Overflow type for  
+     * details.
+     *
+     *
+     * @return Overflow
+     */
+    public Overflow getOverflow()  {
+        return EnumUtil.getEnum(Overflow.values(), getAttribute("overflow"));
+    }
+
+    /**
+     * Set the CSS padding of this component, in pixels.  Padding provides space between the border and the component's
+     * contents. <P> This property sets the same thickness of padding on every side.  Differing per-side padding can be set in
+     * a CSS style and applied via {@link com.smartgwt.client.widgets.Canvas#getStyleName styleName}. <P> Note that CSS padding
+     * does not affect the placement of {@link com.smartgwt.client.widgets.Canvas#getChildren children}.  To provide a blank
+     * area around children, either use {@link com.smartgwt.client.widgets.Canvas#getMargin 'CSS margins'} or use a {@link
+     * com.smartgwt.client.widgets.layout.Layout} as the parent instead, and use properties such as {@link
+     * com.smartgwt.client.widgets.layout.Layout#getLayoutMargin layoutMargin} to create blank space.
+     * Set the CSS padding of this component, in pixels.  Padding provides space between the border and the component's contents. <P> This property sets the same thickness of padding on every side.  Differing per-side padding can be set in a CSS style and applied via {@link com.smartgwt.client.widgets.Canvas#getStyleName styleName}. <P>
+     *
+     * @param padding new padding in pixels. Default value is null
+     */
+    public void setPadding(Integer padding) {
+        setAttribute("padding", padding, true);
+    }
+
+    /**
+     * Set the CSS padding of this component, in pixels.  Padding provides space between the border and the component's
+     * contents. <P> This property sets the same thickness of padding on every side.  Differing per-side padding can be set in
+     * a CSS style and applied via {@link com.smartgwt.client.widgets.Canvas#getStyleName styleName}. <P> Note that CSS padding
+     * does not affect the placement of {@link com.smartgwt.client.widgets.Canvas#getChildren children}.  To provide a blank
+     * area around children, either use {@link com.smartgwt.client.widgets.Canvas#getMargin 'CSS margins'} or use a {@link
+     * com.smartgwt.client.widgets.layout.Layout} as the parent instead, and use properties such as {@link
+     * com.smartgwt.client.widgets.layout.Layout#getLayoutMargin layoutMargin} to create blank space.
+     *
+     *
+     * @return Integer
+     */
+    public Integer getPadding()  {
+        return getAttributeAsInt("padding");
+    }
+             
+    /**
+     * Governs the model to be used when sizing canvases with percentage width or height, or  positioning widgets with a
+     * specified {@link com.smartgwt.client.widgets.Canvas#getSnapTo 'snapTo'}. <P> Only affects widgets with a a specified
+     * {@link com.smartgwt.client.widgets.Canvas#getPercentSource 'percentSource'}, or  widgets that have {@link
+     * com.smartgwt.client.widgets.Canvas#getSnapTo snapTo} set and are peers of some  {@link
+     * com.smartgwt.client.widgets.Canvas#getMasterElement 'other canvas'}. <P> Determines whether the coordinates used for
+     * sizing (for percentage sized widgets) and positioning (if <code>snapTo</code> is set) should be relative to the visible
+     * size or the viewport size of the percentSource or masterElement widget.
+     * <p><b>Note : </b> This is an advanced setting</p>
+     *
+     * @param percentBox percentBox Default value is "visible"
+     * @throws IllegalStateException this property cannot be changed after the component has been created
+     */
+    public void setPercentBox(PercentBoxModel percentBox)  throws IllegalStateException {
+        setAttribute("percentBox", percentBox.getValue(), false);
+    }
+
+    /**
+     * Governs the model to be used when sizing canvases with percentage width or height, or  positioning widgets with a
+     * specified {@link com.smartgwt.client.widgets.Canvas#getSnapTo 'snapTo'}. <P> Only affects widgets with a a specified
+     * {@link com.smartgwt.client.widgets.Canvas#getPercentSource 'percentSource'}, or  widgets that have {@link
+     * com.smartgwt.client.widgets.Canvas#getSnapTo snapTo} set and are peers of some  {@link
+     * com.smartgwt.client.widgets.Canvas#getMasterElement 'other canvas'}. <P> Determines whether the coordinates used for
+     * sizing (for percentage sized widgets) and positioning (if <code>snapTo</code> is set) should be relative to the visible
+     * size or the viewport size of the percentSource or masterElement widget.
+     *
+     *
+     * @return PercentBoxModel
+     */
+    public PercentBoxModel getPercentBox()  {
+        return EnumUtil.getEnum(PercentBoxModel.values(), getAttribute("percentBox"));
+    }
+             
+    /**
+     * Absolute or relative, corresponding to the "absolute" (with respect to parent) or&#010 "relative" (with respect to
+     * document flow) values for the CSS position attribute.&#010 <P>&#010 Setting <code>position:"relative"</code> enables
+     * Smart GWT components to be embedded&#010 directly into the native HTML flow of a page, causing the component to be
+     * rendered &#010 within an existing DOM structure. &#010 This attribute should only be set to <code>"relative"</code> on a
+     * top level component &#010 (a component with no {@link com.smartgwt.client.widgets.Canvas#getParentElement
+     * parentElement}). &#010 <P>&#010 There are 2 ways to embed relatively positioned canvases in the DOM - by default
+     * the&#010 component will be written out inline when it gets {@link com.smartgwt.client.widgets.Canvas#draw}. For
+     * example&#010 to embed a canvas in an HTML table you could use this code: &#010 <pre>&#010 &lt;table&gt;&#010  
+     * &lt;tr&gt;&#010     &lt;td&gt;&#010       &lt;script&gt;&#010         isc.Canvas.create({autoDraw:true,
+     * backgroundColor:"red", position:"relative"});&#010       &lt;/script&gt;&#010     &lt;td&gt;&#010   &lt;/tr&gt;&#010
+     * &lt;/table&gt;&#010 </pre>&#010 Alternatively you can make use of the {@link
+     * com.smartgwt.client.widgets.Canvas#getHtmlElement htmlElement} attribute.&#010 <P>&#010 Relative positioning is intended
+     * as a short-term integration scenario while incrementally&#010 upgrading existing applications.&#010 Note that relative
+     * positioning is not used to manage layout within Smart GWT components -&#010 instead the {@link
+     * com.smartgwt.client.widgets.layout.Layout} class would typically be used.&#010 For best consistency and flexibility
+     * across browsers, all Smart GWT layout managers&#010 use absolute positioning.&#010 <P>&#010 For canvases with a
+     * specified {@link com.smartgwt.client.widgets.Canvas#getHtmlElement htmlElement}, this attribute defaults to&#010
+     * <code>"relative"</code>. In all other cases the default value will be &#010 <code>"absolute"</code>.
+     * <p><b>Note : </b> This is an advanced setting</p>
+     *
+     * @param position position Default value is null
+     */
+    public void setPosition(Positioning position) {
+        setAttribute("position", position.getValue(), true);
+    }
+
+    /**
+     * Absolute or relative, corresponding to the "absolute" (with respect to parent) or&#010 "relative" (with respect to
+     * document flow) values for the CSS position attribute.&#010 <P>&#010 Setting <code>position:"relative"</code> enables
+     * Smart GWT components to be embedded&#010 directly into the native HTML flow of a page, causing the component to be
+     * rendered &#010 within an existing DOM structure. &#010 This attribute should only be set to <code>"relative"</code> on a
+     * top level component &#010 (a component with no {@link com.smartgwt.client.widgets.Canvas#getParentElement
+     * parentElement}). &#010 <P>&#010 There are 2 ways to embed relatively positioned canvases in the DOM - by default
+     * the&#010 component will be written out inline when it gets {@link com.smartgwt.client.widgets.Canvas#draw}. For
+     * example&#010 to embed a canvas in an HTML table you could use this code: &#010 <pre>&#010 &lt;table&gt;&#010  
+     * &lt;tr&gt;&#010     &lt;td&gt;&#010       &lt;script&gt;&#010         isc.Canvas.create({autoDraw:true,
+     * backgroundColor:"red", position:"relative"});&#010       &lt;/script&gt;&#010     &lt;td&gt;&#010   &lt;/tr&gt;&#010
+     * &lt;/table&gt;&#010 </pre>&#010 Alternatively you can make use of the {@link
+     * com.smartgwt.client.widgets.Canvas#getHtmlElement htmlElement} attribute.&#010 <P>&#010 Relative positioning is intended
+     * as a short-term integration scenario while incrementally&#010 upgrading existing applications.&#010 Note that relative
+     * positioning is not used to manage layout within Smart GWT components -&#010 instead the {@link
+     * com.smartgwt.client.widgets.layout.Layout} class would typically be used.&#010 For best consistency and flexibility
+     * across browsers, all Smart GWT layout managers&#010 use absolute positioning.&#010 <P>&#010 For canvases with a
+     * specified {@link com.smartgwt.client.widgets.Canvas#getHtmlElement htmlElement}, this attribute defaults to&#010
+     * <code>"relative"</code>. In all other cases the default value will be &#010 <code>"absolute"</code>.
+     *
+     *
+     * @return Positioning
+     */
+    public Positioning getPosition()  {
+        return EnumUtil.getEnum(Positioning.values(), getAttribute("position"));
+    }
+
+    /**
+     * Prompt displayed in hover canvas if {@link com.smartgwt.client.widgets.Canvas#getShowHover 'showHover'} is true.
+     *
+     * @param prompt prompt Default value is null
+     */
+    public void setPrompt(String prompt) {
+        setAttribute("prompt", prompt, true);
+    }
+
+    /**
+     * Prompt displayed in hover canvas if {@link com.smartgwt.client.widgets.Canvas#getShowHover 'showHover'} is true.
+     *
+     *
+     * @return String
+     */
+    public String getPrompt()  {
+        return getAttributeAsString("prompt");
+    }
+
+    /**
+     * Should this element be redrawn in response to a resize? <P> Should be set to true for components whose {@link
+     * com.smartgwt.client.widgets.Canvas#getInnerHTML} will not automatically reflow to fit the component's new size.
+     * <p><b>Note : </b> This is an advanced setting</p>
+     *
+     * @param redrawOnResize redrawOnResize Default value is true
+     */
+    public void setRedrawOnResize(Boolean redrawOnResize) {
+        setAttribute("redrawOnResize", redrawOnResize, true);
+    }
+
+    /**
+     * Should this element be redrawn in response to a resize? <P> Should be set to true for components whose {@link
+     * com.smartgwt.client.widgets.Canvas#getInnerHTML} will not automatically reflow to fit the component's new size.
+     *
+     *
+     * @return Boolean
+     */
+    public Boolean getRedrawOnResize()  {
+        return getAttributeAsBoolean("redrawOnResize");
     }
 
     /**
@@ -2814,130 +2166,676 @@ public class Canvas extends BaseWidget  implements com.smartgwt.client.widgets.e
     }
 
     /**
-     * When this Canvas is included as a member in a Layout, extra blank space that should be left after this member in a
-     * Layout.
+     * How thick should we make the scrollbars for this canvas.<br>   NOTE: has no effect if showCustomScrollbars is false.
+     * <p><b>Note : </b> This is an advanced setting</p>
      *
-     * @param extraSpace extraSpace Default value is 0
-     * @throws IllegalStateException this property cannot be changed after the component has been created
+     * @param scrollbarSize scrollbarSize Default value is 16
      */
-    public void setExtraSpace(int extraSpace)  throws IllegalStateException {
-        setAttribute("extraSpace", extraSpace, false);
+    public void setScrollbarSize(int scrollbarSize) {
+        setAttribute("scrollbarSize", scrollbarSize, true);
     }
 
     /**
-     * When this Canvas is included as a member in a Layout, extra blank space that should be left after this member in a
-     * Layout.
+     * How thick should we make the scrollbars for this canvas.<br>   NOTE: has no effect if showCustomScrollbars is false.
+     *
+     *
+     * @return Returns the thickness of this widget's scrollbars.<br>  For canvases showing custom scrollbars this is determined from
+     * <code>this.scrollbarSize</code>
+     */
+    public int getScrollbarSize()  {
+        return getAttributeAsInt("scrollbarSize");
+    }
+
+    /**
+     * Depth of the shadow, or the virtual height above the page of the widget throwing the shadow. <P> This is a single
+     * parameter that can be used to control both <code>shadowSoftness</code> and <code>shadowOffset</code>.
+     *
+     * @param shadowDepth shadowDepth Default value is 4
+     * @throws IllegalStateException this property cannot be changed after the component has been created
+     */
+    public void setShadowDepth(int shadowDepth)  throws IllegalStateException {
+        setAttribute("shadowDepth", shadowDepth, false);
+    }
+
+    /**
+     * Depth of the shadow, or the virtual height above the page of the widget throwing the shadow. <P> This is a single
+     * parameter that can be used to control both <code>shadowSoftness</code> and <code>shadowOffset</code>.
      *
      *
      * @return int
      */
-    public int getExtraSpace()  {
-        return getAttributeAsInt("extraSpace");
+    public int getShadowDepth()  {
+        return getAttributeAsInt("shadowDepth");
+    }
+
+    /**
+     * Base name of the series of images for the sides, corners, and center of the shadow. <P> The actual image names fetched
+     * for the dropShadow combine the segment name and the <code>shadowDepth</code> setting.  For example, given "ds.png" as
+     * the base name, a depth of 4, and the top-left segment of the shadow, we'd use "ds4_TL.png". <P> The names for segments
+     * are the same as those given for controlling resizable edges; see {@link com.smartgwt.client.widgets.Canvas#getResizeFrom
+     * resizeFrom}.  The center segment has the name "center".  The center segment is the only segment that doesn't include the
+     * depth in the URL, so the final image name for the center given a baseName of "ds.png" would be just "ds_center.png".
+     * <p><b>Note : </b> This is an advanced setting</p>
+     *
+     * @param shadowImage shadowImage Default value is "[SKIN]ds.png"
+     * @throws IllegalStateException this property cannot be changed after the component has been created
+     */
+    public void setShadowImage(String shadowImage)  throws IllegalStateException {
+        setAttribute("shadowImage", shadowImage, false);
+    }
+
+    /**
+     * Base name of the series of images for the sides, corners, and center of the shadow. <P> The actual image names fetched
+     * for the dropShadow combine the segment name and the <code>shadowDepth</code> setting.  For example, given "ds.png" as
+     * the base name, a depth of 4, and the top-left segment of the shadow, we'd use "ds4_TL.png". <P> The names for segments
+     * are the same as those given for controlling resizable edges; see {@link com.smartgwt.client.widgets.Canvas#getResizeFrom
+     * resizeFrom}.  The center segment has the name "center".  The center segment is the only segment that doesn't include the
+     * depth in the URL, so the final image name for the center given a baseName of "ds.png" would be just "ds_center.png".
+     *
+     *
+     * @return String
+     */
+    public String getShadowImage()  {
+        return getAttributeAsString("shadowImage");
+    }
+
+    /**
+     * Whether this canvas should be included in a printable view. <P> Default is to: <ul> <li> omit all peers (edges generated
+     * by showEdges:true, etc) <li> omit anything considered a "control", such as a button or menu (see {@link
+     * com.smartgwt.client.util.PrintProperties#getOmitControls omitControls}) <li> include everything else not marked
+     * shouldPrint:false </ul>
+     *
+     * @param shouldPrint shouldPrint Default value is null
+     */
+    public void setShouldPrint(Boolean shouldPrint) {
+        setAttribute("shouldPrint", shouldPrint, true);
+    }
+
+    /**
+     * Whether this canvas should be included in a printable view. <P> Default is to: <ul> <li> omit all peers (edges generated
+     * by showEdges:true, etc) <li> omit anything considered a "control", such as a button or menu (see {@link
+     * com.smartgwt.client.util.PrintProperties#getOmitControls omitControls}) <li> include everything else not marked
+     * shouldPrint:false </ul>
+     *
+     *
+     * @return Boolean
+     */
+    public Boolean getShouldPrint()  {
+        return getAttributeAsBoolean("shouldPrint");
+    }
+
+    /**
+     * Whether to use the browser's native scrollbars or Smart GWT-based scrollbars.&#010 <P>&#010 Smart GWT-based scrollbars
+     * are skinnable, giving you complete control over look and&#010 feel.  Smart GWT-based scrollbars also enable some
+     * interactions not possible with&#010 native scrollbars, such as {@link
+     * com.smartgwt.client.widgets.grid.ListGrid#getFixedRecordHeights 'variable height records'}&#010 in grids in combination
+     * with {@link com.smartgwt.client.widgets.grid.ListGrid#getDataPageSize 'data paging'}.&#010 <P>&#010 Native browser
+     * scrollbars are slightly faster simply because there are less Smart GWT&#010 components that need to be created, drawn
+     * and updated.  Each visible Smart GWT-based&#010 scrollbar on the screen has roughly the impact of two
+     * StretchImgButtons.&#010 <P>&#010 Smart GWT is always aware of the size of the scrollbar, regardless of whether
+     * native&#010 or custom scrollbars are used, and regardless of what operating system and/or operating&#010 system "theme"
+     * or "skin" is in use.  This means Smart GWT will correctly report the&#010 {@link
+     * com.smartgwt.client.widgets.Canvas#getViewportHeight}, that is, the interior area of the&#010 widget excluding space
+     * taken by scrollbars, which is key for exactly filling a component&#010 with content without creating unnecessary
+     * scrolling.&#010 <P>&#010 The <code>showCustomScrollbars</code> setting is typically overridden in load_skin.js in&#010
+     * order to change the default for all Smart GWT components at once, like so:&#010 <pre>&#010    
+     * isc.Canvas.addProperties({ showCustomScrollbars:false });&#010 </pre>
+     * <p><b>Note : </b> This is an advanced setting</p>
+     *
+     * @param showCustomScrollbars showCustomScrollbars Default value is true
+     */
+    public void setShowCustomScrollbars(Boolean showCustomScrollbars) {
+        setAttribute("showCustomScrollbars", showCustomScrollbars, true);
+    }
+
+    /**
+     * Whether to use the browser's native scrollbars or Smart GWT-based scrollbars.&#010 <P>&#010 Smart GWT-based scrollbars
+     * are skinnable, giving you complete control over look and&#010 feel.  Smart GWT-based scrollbars also enable some
+     * interactions not possible with&#010 native scrollbars, such as {@link
+     * com.smartgwt.client.widgets.grid.ListGrid#getFixedRecordHeights 'variable height records'}&#010 in grids in combination
+     * with {@link com.smartgwt.client.widgets.grid.ListGrid#getDataPageSize 'data paging'}.&#010 <P>&#010 Native browser
+     * scrollbars are slightly faster simply because there are less Smart GWT&#010 components that need to be created, drawn
+     * and updated.  Each visible Smart GWT-based&#010 scrollbar on the screen has roughly the impact of two
+     * StretchImgButtons.&#010 <P>&#010 Smart GWT is always aware of the size of the scrollbar, regardless of whether
+     * native&#010 or custom scrollbars are used, and regardless of what operating system and/or operating&#010 system "theme"
+     * or "skin" is in use.  This means Smart GWT will correctly report the&#010 {@link
+     * com.smartgwt.client.widgets.Canvas#getViewportHeight}, that is, the interior area of the&#010 widget excluding space
+     * taken by scrollbars, which is key for exactly filling a component&#010 with content without creating unnecessary
+     * scrolling.&#010 <P>&#010 The <code>showCustomScrollbars</code> setting is typically overridden in load_skin.js in&#010
+     * order to change the default for all Smart GWT components at once, like so:&#010 <pre>&#010    
+     * isc.Canvas.addProperties({ showCustomScrollbars:false });&#010 </pre>
+     *
+     *
+     * @return Boolean
+     */
+    public Boolean getShowCustomScrollbars()  {
+        return getAttributeAsBoolean("showCustomScrollbars");
+    }
+
+    /**
+     * When this widget is dragged, if its dragAppearance is <code>"target"</code>, should we show a shadow behind the canvas
+     * during the drag.
+     * <p><b>Note : </b> This is an advanced setting</p>
+     *
+     * @param showDragShadow showDragShadow Default value is null
+     */
+    public void setShowDragShadow(Boolean showDragShadow) {
+        setAttribute("showDragShadow", showDragShadow, true);
+    }
+
+    /**
+     * When this widget is dragged, if its dragAppearance is <code>"target"</code>, should we show a shadow behind the canvas
+     * during the drag.
+     *
+     *
+     * @return Boolean
+     */
+    public Boolean getShowDragShadow()  {
+        return getAttributeAsBoolean("showDragShadow");
+    }
+
+    /**
+     * Whether an {@link com.smartgwt.client.widgets.EdgedCanvas} should be used to show image-based edges around this
+     * component.
+     *
+     * @param showEdges showEdges Default value is false
+     * @throws IllegalStateException this property cannot be changed after the component has been created
+     */
+    public void setShowEdges(Boolean showEdges)  throws IllegalStateException {
+        setAttribute("showEdges", showEdges, false);
+    }
+
+    /**
+     * Whether an {@link com.smartgwt.client.widgets.EdgedCanvas} should be used to show image-based edges around this
+     * component.
+     *
+     *
+     * @return Boolean
+     */
+    public Boolean getShowEdges()  {
+        return getAttributeAsBoolean("showEdges");
+    }
+
+    /**
+     * If <code>this.canHover</code> is true, should we show the global hover canvas by default when the user hovers over this
+     * canvas?
+     *
+     * @param showHover showHover Default value is true
+     */
+    public void setShowHover(Boolean showHover) {
+        setAttribute("showHover", showHover, true);
+    }
+
+    /**
+     * If <code>this.canHover</code> is true, should we show the global hover canvas by default when the user hovers over this
+     * canvas?
+     *
+     *
+     * @return Boolean
+     */
+    public Boolean getShowHover()  {
+        return getAttributeAsBoolean("showHover");
+    }
+
+    /**
+     * When this Canvas is included as a member in a Layout, whether a resizeBar should be shown after this member in the
+     * layout, to allow it to be resized. <p> By default the resize bar acts on the Canvas that it is declared on.  If you want
+     * the resize bar to instead act on the next member of the Layout (e.g. to collapse down or to the right), set {@link
+     * com.smartgwt.client.widgets.Canvas#getResizeBarTarget resizeBarTarget} as well.
+     * When this Canvas is included as a member in a Layout, dynamically updates whether a  resizeBar should be shown after this member in the layout, to allow it to be resized.
+     *
+     * @param showResizeBar setting for this.showResizeBar. Default value is false
+     * @throws IllegalStateException this property cannot be changed after the component has been created
+     */
+    public void setShowResizeBar(Boolean showResizeBar)  throws IllegalStateException {
+        setAttribute("showResizeBar", showResizeBar, false);
+    }
+
+    /**
+     * When this Canvas is included as a member in a Layout, whether a resizeBar should be shown after this member in the
+     * layout, to allow it to be resized. <p> By default the resize bar acts on the Canvas that it is declared on.  If you want
+     * the resize bar to instead act on the next member of the Layout (e.g. to collapse down or to the right), set {@link
+     * com.smartgwt.client.widgets.Canvas#getResizeBarTarget resizeBarTarget} as well.
+     *
+     *
+     * @return Boolean
+     */
+    public Boolean getShowResizeBar()  {
+        return getAttributeAsBoolean("showResizeBar");
+    }
+
+    /**
+     * Whether to show a drop shadow for this Canvas
+     * Method to update {@link com.smartgwt.client.widgets.Canvas#getShowShadow showShadow}.
+     *
+     * @param showShadow true if the shadow should be visible false if not. Default value is false
+     * @throws IllegalStateException this property cannot be changed after the component has been created
+     */
+    public void setShowShadow(Boolean showShadow)  throws IllegalStateException {
+        setAttribute("showShadow", showShadow, false);
+    }
+
+    /**
+     * Whether to show a drop shadow for this Canvas
+     *
+     *
+     * @return Boolean
+     */
+    public Boolean getShowShadow()  {
+        return getAttributeAsBoolean("showShadow");
+    }
+
+    /**
+     * Default directory for skin images (those defined by the class), relative to the Page-wide {@link
+     * com.smartgwt.client.util.Page#getSkinDir}.
+     * <p><b>Note : </b> This is an advanced setting</p>
+     *
+     * @param skinImgDir skinImgDir Default value is "images/"
+     */
+    public void setSkinImgDir(String skinImgDir) {
+        setAttribute("skinImgDir", skinImgDir, true);
+    }
+
+    /**
+     * Default directory for skin images (those defined by the class), relative to the Page-wide {@link
+     * com.smartgwt.client.util.Page#getSkinDir}.
+     *
+     *
+     * @return String
+     */
+    public String getSkinImgDir()  {
+        return getAttributeAsString("skinImgDir");
+    }
+
+    /**
+     * Describes which axes to apply snap-to-grid to. Valid values are Canvas.HORIZONTAL, Canvas.VERTICAL and Canvas.BOTH
+     *
+     * @param snapAxis snapAxis Default value is Canvas.BOTH
+     */
+    public void setSnapAxis(String snapAxis) {
+        setAttribute("snapAxis", snapAxis, true);
+    }
+
+    /**
+     * Describes which axes to apply snap-to-grid to. Valid values are Canvas.HORIZONTAL, Canvas.VERTICAL and Canvas.BOTH
+     *
+     *
+     * @return String
+     */
+    public String getSnapAxis()  {
+        return getAttributeAsString("snapAxis");
+    }
+
+    /**
+     * If {@link com.smartgwt.client.widgets.Canvas#getSnapTo 'snapTo'} is defined to this widget, this property can be used to
+     * define which edge of this widget should be snapped to an edge of the master or parent  element. <P> If unspecified the,
+     * default snapTo behavior is set up to align the "snapTo" edge of this  widget with the snapTo edge of the master or
+     * parent.
+     * Set the snapEdge property of this canvas, and handle repositioning.
+     *
+     * @param snapEdge new snapEdge value. Default value is null
+     */
+    public void setSnapEdge(String snapEdge) {
+        setAttribute("snapEdge", snapEdge, true);
+    }
+
+    /**
+     * If {@link com.smartgwt.client.widgets.Canvas#getSnapTo 'snapTo'} is defined to this widget, this property can be used to
+     * define which edge of this widget should be snapped to an edge of the master or parent  element. <P> If unspecified the,
+     * default snapTo behavior is set up to align the "snapTo" edge of this  widget with the snapTo edge of the master or
+     * parent.
+     *
+     *
+     * @return Return the snapEdge value of this object
+     */
+    public String getSnapEdge()  {
+        return getAttributeAsString("snapEdge");
+    }
+
+    /**
+     * The horizontal snap direction. Set this value to Canvas.BEFORE to snap to the nearest gridpoint to the left; set it to
+     * Canvas.AFTER to snap to the nearest gridpoint to the right; and set it to Canvas.NEAREST to snap to the nearest
+     * gridpoint in either direction.
+     *
+     * @param snapHDirection snapHDirection Default value is Canvas.AFTER
+     */
+    public void setSnapHDirection(String snapHDirection) {
+        setAttribute("snapHDirection", snapHDirection, true);
+    }
+
+    /**
+     * The horizontal snap direction. Set this value to Canvas.BEFORE to snap to the nearest gridpoint to the left; set it to
+     * Canvas.AFTER to snap to the nearest gridpoint to the right; and set it to Canvas.NEAREST to snap to the nearest
+     * gridpoint in either direction.
+     *
+     *
+     * @return String
+     */
+    public String getSnapHDirection()  {
+        return getAttributeAsString("snapHDirection");
+    }
+
+    /**
+     * The horizontal grid size to use, in pixels, when snap-to-grid is enabled.
+     *
+     * @param snapHGap snapHGap Default value is 20
+     */
+    public void setSnapHGap(int snapHGap) {
+        setAttribute("snapHGap", snapHGap, true);
+    }
+
+    /**
+     * The horizontal grid size to use, in pixels, when snap-to-grid is enabled.
+     *
+     *
+     * @return int
+     */
+    public int getSnapHGap()  {
+        return getAttributeAsInt("snapHGap");
+    }
+
+    /**
+     * If {@link com.smartgwt.client.widgets.Canvas#getSnapTo 'snapTo'} is defined for this widget, this property can be used
+     * to specify an offset in px or percentage for the left coordinate of this widget. <P> For example if <code>snapTo</code>
+     * is specified as <code>"L"</code> and  <code>snapOffsetLeft</code> is set to 6, this widget will be rendered 6px inside
+     * the left edge of its parent or master element.
+     *
+     * @param snapOffsetLeft snapOffsetLeft Default value is null
+     */
+    public void setSnapOffsetLeft(Integer snapOffsetLeft) {
+        setAttribute("snapOffsetLeft", snapOffsetLeft, true);
+    }
+
+    /**
+     * If {@link com.smartgwt.client.widgets.Canvas#getSnapTo 'snapTo'} is defined for this widget, this property can be used
+     * to specify an offset in px or percentage for the left coordinate of this widget. <P> For example if <code>snapTo</code>
+     * is specified as <code>"L"</code> and  <code>snapOffsetLeft</code> is set to 6, this widget will be rendered 6px inside
+     * the left edge of its parent or master element.
+     *
+     *
+     * @return Integer
+     */
+    public Integer getSnapOffsetLeft()  {
+        return getAttributeAsInt("snapOffsetLeft");
+    }
+
+    /**
+     * If {@link com.smartgwt.client.widgets.Canvas#getSnapTo 'snapTo'} is defined for this widget, this property can be used
+     * to specify an offset in px or percentage for the top coordinate of this widget. <P> For example if <code>snapTo</code>
+     * is specified as <code>"T"</code> and  <code>snapOffsetTop</code> is set to 6, this widget will be rendered 6px below the
+     * top edge of its parent or master element.
+     *
+     * @param snapOffsetTop snapOffsetTop Default value is null
+     */
+    public void setSnapOffsetTop(Integer snapOffsetTop) {
+        setAttribute("snapOffsetTop", snapOffsetTop, true);
+    }
+
+    /**
+     * If {@link com.smartgwt.client.widgets.Canvas#getSnapTo 'snapTo'} is defined for this widget, this property can be used
+     * to specify an offset in px or percentage for the top coordinate of this widget. <P> For example if <code>snapTo</code>
+     * is specified as <code>"T"</code> and  <code>snapOffsetTop</code> is set to 6, this widget will be rendered 6px below the
+     * top edge of its parent or master element.
+     *
+     *
+     * @return Integer
+     */
+    public Integer getSnapOffsetTop()  {
+        return getAttributeAsInt("snapOffsetTop");
+    }
+
+    /**
+     * When this canvas is dropped onto an object supporting snap-to-grid, should it snap to the grid (true, the default) or
+     * just drop wherever the mouse is (false).
+     * <p><b>Note : </b> This is an advanced setting</p>
+     *
+     * @param snapOnDrop snapOnDrop Default value is true
+     */
+    public void setSnapOnDrop(Boolean snapOnDrop) {
+        setAttribute("snapOnDrop", snapOnDrop, true);
+    }
+
+    /**
+     * When this canvas is dropped onto an object supporting snap-to-grid, should it snap to the grid (true, the default) or
+     * just drop wherever the mouse is (false).
+     *
+     *
+     * @return Boolean
+     */
+    public Boolean getSnapOnDrop()  {
+        return getAttributeAsBoolean("snapOnDrop");
+    }
+
+    /**
+     * Causes this canvas to snap to its parent's grid when resizing. Note that this value defaults to the Canvas's  {@link
+     * com.smartgwt.client.widgets.Canvas#getSnapToGrid 'snapToGrid'} value if undefined.
+     *
+     * @param snapResizeToGrid snapResizeToGrid Default value is null
+     */
+    public void setSnapResizeToGrid(Boolean snapResizeToGrid) {
+        setAttribute("snapResizeToGrid", snapResizeToGrid, true);
+    }
+
+    /**
+     * Causes this canvas to snap to its parent's grid when resizing. Note that this value defaults to the Canvas's  {@link
+     * com.smartgwt.client.widgets.Canvas#getSnapToGrid 'snapToGrid'} value if undefined.
+     *
+     *
+     * @return Boolean
+     */
+    public Boolean getSnapResizeToGrid()  {
+        return getAttributeAsBoolean("snapResizeToGrid");
+    }
+
+    /**
+     * Position this widget such that it is aligned with ("snapped to") an edge of its  {@link
+     * com.smartgwt.client.widgets.Canvas#getMasterElement 'masterElement'} (if specified), or its {@link
+     * com.smartgwt.client.widgets.Canvas#getParentElement 'parentElement'}. <P> Note that this property also impacts the
+     * sizing of this widget. If this widgets size is specified as a percent value, and has no explicit {@link
+     * com.smartgwt.client.widgets.Canvas#getPercentSource percentSource}, sizing will be calculated based on the size of the 
+     * masterElement when snapTo is set. <P> Possible values: BR, BL, TR, TL, R, L, B, T, C where B=Bottom, T=Top, L=Left,
+     * R=right and C=center
+     * Set the snapTo property of this canvas, and handle repositioning.
+     *
+     * @param snapTo new snapTo value. Default value is null
+     */
+    public void setSnapTo(String snapTo) {
+        setAttribute("snapTo", snapTo, true);
+    }
+
+    /**
+     * Position this widget such that it is aligned with ("snapped to") an edge of its  {@link
+     * com.smartgwt.client.widgets.Canvas#getMasterElement 'masterElement'} (if specified), or its {@link
+     * com.smartgwt.client.widgets.Canvas#getParentElement 'parentElement'}. <P> Note that this property also impacts the
+     * sizing of this widget. If this widgets size is specified as a percent value, and has no explicit {@link
+     * com.smartgwt.client.widgets.Canvas#getPercentSource percentSource}, sizing will be calculated based on the size of the 
+     * masterElement when snapTo is set. <P> Possible values: BR, BL, TR, TL, R, L, B, T, C where B=Bottom, T=Top, L=Left,
+     * R=right and C=center
+     *
+     *
+     * @return Return the snapTo value of this object
+     */
+    public String getSnapTo()  {
+        return getAttributeAsString("snapTo");
+    }
+
+    /**
+     * Causes this canvas to snap to its parent's grid when dragging.
+     *
+     * @param snapToGrid snapToGrid Default value is null
+     */
+    public void setSnapToGrid(Boolean snapToGrid) {
+        setAttribute("snapToGrid", snapToGrid, true);
+    }
+
+    /**
+     * Causes this canvas to snap to its parent's grid when dragging.
+     *
+     *
+     * @return Boolean
+     */
+    public Boolean getSnapToGrid()  {
+        return getAttributeAsBoolean("snapToGrid");
+    }
+
+    /**
+     * The vertical snap direction. Set this value to Canvas.BEFORE to snap to the nearest gridpoint above; set it to
+     * Canvas.AFTER to snap to the nearest gridpoint below; and set it to Canvas.NEAREST to snap to the nearest gridpoint in
+     * either direction.
+     *
+     * @param snapVDirection snapVDirection Default value is Canvas.AFTER
+     */
+    public void setSnapVDirection(String snapVDirection) {
+        setAttribute("snapVDirection", snapVDirection, true);
+    }
+
+    /**
+     * The vertical snap direction. Set this value to Canvas.BEFORE to snap to the nearest gridpoint above; set it to
+     * Canvas.AFTER to snap to the nearest gridpoint below; and set it to Canvas.NEAREST to snap to the nearest gridpoint in
+     * either direction.
+     *
+     *
+     * @return String
+     */
+    public String getSnapVDirection()  {
+        return getAttributeAsString("snapVDirection");
+    }
+
+    /**
+     * The vertical grid size to use, in pixels, when snap-to-grid is enabled.
+     *
+     * @param snapVGap snapVGap Default value is 20
+     */
+    public void setSnapVGap(int snapVGap) {
+        setAttribute("snapVGap", snapVGap, true);
+    }
+
+    /**
+     * The vertical grid size to use, in pixels, when snap-to-grid is enabled.
+     *
+     *
+     * @return int
+     */
+    public int getSnapVGap()  {
+        return getAttributeAsInt("snapVGap");
+    }
+
+    /**
+     * The CSS class applied to this widget as a whole.
+     * Sets the CSS class for this widget
+     *
+     * @param styleName new CSS class name (must be defined previously). Default value is "normal"
+     */
+    public void setStyleName(String styleName) {
+        setAttribute("styleName", styleName, true);
+    }
+
+    /**
+     * The CSS class applied to this widget as a whole.
+     *
+     *
+     * @return String
+     */
+    public String getStyleName()  {
+        return getAttributeAsString("styleName");
+    }
+
+    /**
+     * If specified this governs the tabIndex of the widget in the page's tab order. Note that by default Smart GWT
+     * auto-assigns tab-indices, ensuring focusable widgets are reachable by tabbing in the order in which they are drawn on
+     * the page. <code>canvas.tabIndex</code> cannot be set to greater than  {@link
+     * com.smartgwt.client.widgets.Canvas#TAB_INDEX_FLOOR} - as we reserve the values above this range for auto-assigned
+     * tab-indices.
+     * Assign an explicit tabIndex to this widget.
+     * <p><b>Note : </b> This is an advanced setting</p>
+     *
+     * @param tabIndex New tabIndex for this widget. Must be less than                           {@link
+     * com.smartgwt.client.widgets.Canvas#TAB_INDEX_FLOOR} to avoid interfering with auto-assigned                          tab
+     * indices on the page.. Default value is null
+     */
+    public void setTabIndex(Integer tabIndex) {
+        setAttribute("tabIndex", tabIndex, true);
+    }
+
+    /**
+     * If specified this governs the tabIndex of the widget in the page's tab order. Note that by default Smart GWT
+     * auto-assigns tab-indices, ensuring focusable widgets are reachable by tabbing in the order in which they are drawn on
+     * the page. <code>canvas.tabIndex</code> cannot be set to greater than  {@link
+     * com.smartgwt.client.widgets.Canvas#TAB_INDEX_FLOOR} - as we reserve the values above this range for auto-assigned
+     * tab-indices.
+     *
+     *
+     * @return Integer
+     */
+    public Integer getTabIndex()  {
+        return getAttributeAsInt("tabIndex");
+    }
+            
+    /**
+     * {@link com.smartgwt.client.widgets.form.ValuesManager} for managing values displayed in this component. If specified at
+     * initialization time, this component will be added to the valuesManager via {@link
+     * com.smartgwt.client.widgets.form.ValuesManager#addMember}. <P> ValuesManagers allow different fields of a single object
+     * to be displayed or edited across multiple UI components. Given a single values object, a valuesManager will handle
+     * determining the appropriate field values for its member components and displaying them /  responding to edits if the
+     * components support this. <P> Data may be derived simply from the specified fieldNames within the member components, or
+     * for complex nested data structures can be specified by both component and field-level {@link
+     * com.smartgwt.client.widgets.Canvas#getDataPath dataPath}. <P> Note that components may be automatically bound to an
+     * existing valuesManager attached to a  parent component if dataPath is specified. See {@link
+     * com.smartgwt.client.widgets.Canvas#getDataPath dataPath} for more information. Also note that if a databound component
+     * has a specified dataSource and dataPath but no specified valuesManager object one will be automatically generated as
+     * part of the databinding process
+     * <p><b>Note : </b> This is an advanced setting</p>
+     *
+     * @param valuesManager valuesManager Default value is null
+     */
+    public void setValuesManager(ValuesManager valuesManager) {
+        setAttribute("valuesManager", valuesManager.getOrCreateJsObj(), true);
+    }
+
+    /**
+     * {@link com.smartgwt.client.widgets.form.ValuesManager} for managing values displayed in this component. If specified at
+     * initialization time, this component will be added to the valuesManager via {@link
+     * com.smartgwt.client.widgets.form.ValuesManager#addMember}. <P> ValuesManagers allow different fields of a single object
+     * to be displayed or edited across multiple UI components. Given a single values object, a valuesManager will handle
+     * determining the appropriate field values for its member components and displaying them /  responding to edits if the
+     * components support this. <P> Data may be derived simply from the specified fieldNames within the member components, or
+     * for complex nested data structures can be specified by both component and field-level {@link
+     * com.smartgwt.client.widgets.Canvas#getDataPath dataPath}. <P> Note that components may be automatically bound to an
+     * existing valuesManager attached to a  parent component if dataPath is specified. See {@link
+     * com.smartgwt.client.widgets.Canvas#getDataPath dataPath} for more information. Also note that if a databound component
+     * has a specified dataSource and dataPath but no specified valuesManager object one will be automatically generated as
+     * part of the databinding process
+     *
+     *
+     * @return ValuesManager
+     */
+    public ValuesManager getValuesManager()  {
+            return ValuesManager.getOrCreateRef(getAttributeAsJavaScriptObject("valuesManager"));
+    }
+             
+    /**
+     * Controls widget visibility when the widget is initialized. See Visibility type for      details.
+     * Sets this widget's visibility to "inherit", so that it becomes visible if all it's parents are visible or it has no parents. <P> If the widget has not yet been drawn (and doesn't have a parent or master), this method calls the draw method as well.
+     *
+     * @param visibility visibility Default value is Canvas.INHERIT
+     */
+    public void setVisibility(Visibility visibility) {
+        setAttribute("visibility", visibility.getValue(), true);
+    }
+
+    /**
+     * Controls widget visibility when the widget is initialized. See Visibility type for      details.
+     *
+     *
+     * @return Returns true if the widget is visible, taking all parents into account, so that a widget which is not hidden might still
+     * report itself as not visible if it is within a hidden parent. <P> NOTE: Undrawn widgets will report themselves as
+     * visible if they would be visible if drawn.
+     */
+    public Visibility getVisibility()  {
+        return EnumUtil.getEnum(Visibility.values(), getAttribute("visibility"));
     }
 
     // ********************* Methods ***********************
-            
-    /**
-     * Returns the boolean true, if the widget has been completely drawn, and false otherwise.
-     *
-     * @return true if drawn, false if not drawn
-     */
-    public native Boolean isDrawn() /*-{
-        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
-        var retVal =self.isDrawn();
-        if(retVal == null || retVal === undefined) {
-            return null;
-        } else {
-            return @com.smartgwt.client.util.JSOHelper::toBoolean(Z)(retVal);
-        }
-    }-*/;
-            
-    /**
-     * Returns whether a canvas is waiting to be redrawn. Will return true if  {@link
-     * com.smartgwt.client.widgets.Canvas#markForRedraw} has been called, but this canvas has not yet been redrawn.
-     *
-     * @return true is this canvas needs to be redrawn; false otherwise
-     */
-    public native Boolean isDirty() /*-{
-        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
-        var retVal =self.isDirty();
-        if(retVal == null || retVal === undefined) {
-            return null;
-        } else {
-            return @com.smartgwt.client.util.JSOHelper::toBoolean(Z)(retVal);
-        }
-    }-*/;
-            
-    /**
-     * Marks the widget as "dirty" so that it will be added to a queue for redraw. Redraw of dirty components is handled by a
-     * looping timer and will after a very short delay (typically less than 100ms). In most cases it is recommended that
-     * developers use <code>markForRedraw()</code> instead of calling {@link com.smartgwt.client.widgets.Canvas#redraw}
-     * directly. Since this method queues the redraw, multiple calls to markForRedraw() within a single thread of execution
-     * will only lead to a single DOM manipulation which greatly improves application performance.
-     */
-    public native void markForRedraw() /*-{
-        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
-        self.markForRedraw();
-    }-*/;
-
-    /**
-     * Marks the widget as "dirty" so that it will be added to a queue for redraw. Redraw of dirty components is handled by a
-     * looping timer and will after a very short delay (typically less than 100ms). In most cases it is recommended that
-     * developers use <code>markForRedraw()</code> instead of calling {@link com.smartgwt.client.widgets.Canvas#redraw}
-     * directly. Since this method queues the redraw, multiple calls to markForRedraw() within a single thread of execution
-     * will only lead to a single DOM manipulation which greatly improves application performance.
-     * @param reason reason for performing the redraw
-     */
-    public native void markForRedraw(String reason) /*-{
-        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
-        self.markForRedraw(reason);
-    }-*/;
-            
-    /**
-     * Redraws the widget immediately with its current property values.   Generally, if you want a Canvas to redraw, call
-     * markForRedraw() - this will cause the Canvas to be redrawn when current processing ends, so that a series of
-     * modifications made to a Canvas will cause it to redraw only once. Only call redraw() directly if you need immediate
-     * responsiveness, for example you are redrawing in response to continuous mouse motion.
-     */
-    public native void redraw() /*-{
-        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
-        self.redraw();
-    }-*/;
-
-    /**
-     * Redraws the widget immediately with its current property values.   Generally, if you want a Canvas to redraw, call
-     * markForRedraw() - this will cause the Canvas to be redrawn when current processing ends, so that a series of
-     * modifications made to a Canvas will cause it to redraw only once. Only call redraw() directly if you need immediate
-     * responsiveness, for example you are redrawing in response to continuous mouse motion.
-     * @param reason reason for performing the redraw
-     */
-    public native void redraw(String reason) /*-{
-        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
-        self.redraw(reason);
-    }-*/;
-            
-    /**
-     * Remove all visual representation of a Canvas. <P> This is far more expensive than hide(), because in order to become
-     * visible again, the Canvas must be draw()n again.  Generally, application code has no reason to call clear(); if you want
-     * to temporarily hide a Canvas, use hide() and show(), and if you want to permanently destroy a Canvas, use destroy(). <P>
-     * Note: a clear() will happen as part of moving a Canvas to a different parent.  See addChild().
-     */
-    public native void clear() /*-{
-        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
-        self.clear();
-    }-*/;
-            
-    /**
-     * {@link com.smartgwt.client.widgets.Canvas#destroy} this canvas on a timeout. This method should be used instead of
-     * calling <code>canvas.destroy()</code> directly unless there's a reason a the canvas needs to be destroyed synchronously.
-     * By using a timeout, this method ensures the <code>destroy()</code> will occur after the current thread of execution
-     * completes. This allows you to easily mark canvases for destruction while they're handling events, which must complete
-     * before the canvas can be destroyed.
-     */
-    public native void markForDestroy() /*-{
-        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
-        self.markForDestroy();
-    }-*/;
             
     /**
      * Adds newChild as a child of this widget, set up a named object reference (i.e., this[name]) to the new widget if name
@@ -3026,6 +2924,106 @@ public class Canvas extends BaseWidget  implements com.smartgwt.client.widgets.e
     }-*/;
             
     /**
+     * This method tells a component to adjust for size changes made to content by external code. <P> This is for very advanced
+     * use in which the contents of a Canvas are being directly updated by Ajax techniques, which is required for integration
+     * with some third-party libraries. Calling this method is required because browsers do not provide consistent events by
+     * which Smart GWT can be notified of external content changes. <P> Only contents supplied to a widget via {@link
+     * com.smartgwt.client.widgets.Canvas#getContents contents} or via an override of {@link
+     * com.smartgwt.client.widgets.Canvas#getInnerHTML} should be manipulated directly.  Contents automatically generated by
+     * Smart GWT components (such as the basic structure of a Button) should never be manipulated: these structures are
+     * considered internal, differ by platform, and will change without notice.
+     * @param immediate By default the adjustment will occur on a small delay for performance reasons.   Pass in this parameter to force
+     * immediate adjustment.
+     */
+    public native void adjustForContent(boolean immediate) /*-{
+        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
+        self.adjustForContent(immediate);
+    }-*/;
+            
+    /**
+     * If this canvas has keyboard focus, blur it. After this method, the canvas will no longer appear focused and will stop
+     * receiving keyboard events.
+     */
+    public native void blur() /*-{
+        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
+        self.blur();
+    }-*/;
+            
+    /**
+     * Puts this widget at the top of the stacking order, so it appears in front of all other widgets in the same parent.
+     */
+    public native void bringToFront() /*-{
+        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
+        self.bringToFront();
+    }-*/;
+            
+    /**
+     * Remove all visual representation of a Canvas. <P> This is far more expensive than hide(), because in order to become
+     * visible again, the Canvas must be draw()n again.  Generally, application code has no reason to call clear(); if you want
+     * to temporarily hide a Canvas, use hide() and show(), and if you want to permanently destroy a Canvas, use destroy(). <P>
+     * Note: a clear() will happen as part of moving a Canvas to a different parent.  See addChild().
+     */
+    public native void clear() /*-{
+        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
+        self.clear();
+    }-*/;
+    /**
+     * Add a click handler.
+     * <p>
+     * Executed when the left mouse is clicked (pressed and then released) on this widget.  No default implementation.
+     *
+     * @param handler the click handler
+     * @return {@link HandlerRegistration} used to remove this handler
+     */
+    public HandlerRegistration addClickHandler(com.smartgwt.client.widgets.events.ClickHandler handler) {
+        if(getHandlerCount(com.smartgwt.client.widgets.events.ClickEvent.getType()) == 0) setupClickEvent();
+        return doAddHandler(handler, com.smartgwt.client.widgets.events.ClickEvent.getType());
+    }
+
+    private native void setupClickEvent() /*-{
+        var obj = null;
+        var selfJ = this;
+        if(this.@com.smartgwt.client.widgets.BaseWidget::isCreated()()) {
+            obj = this.@com.smartgwt.client.widgets.BaseWidget::getJsObj()();
+            obj.addProperties({click:$entry(function(){
+                        var param = {};
+                        var event = @com.smartgwt.client.widgets.events.ClickEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
+                        selfJ.@com.smartgwt.client.widgets.BaseWidget::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
+                        var ret = event.@com.smartgwt.client.event.Cancellable::isCancelled()();
+                        return !ret;
+                    })
+             });
+        } else {
+            obj = this.@com.smartgwt.client.widgets.BaseWidget::getConfig()();
+            obj.click = $entry(function(){
+                   var param = {};
+                   var event = @com.smartgwt.client.widgets.events.ClickEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
+                   selfJ.@com.smartgwt.client.widgets.BaseWidget::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
+                   var ret = event.@com.smartgwt.client.event.Cancellable::isCancelled()();
+                   return !ret;
+               });
+        }
+   }-*/;
+            
+    /**
+     * Determines whether a clickmask is showing
+     */
+    public native void clickMaskUp() /*-{
+        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
+        self.clickMaskUp();
+    }-*/;
+
+    /**
+     * Determines whether a clickmask is showing
+     * @param ID optional ID of specific clickMask to check. If not passed,                       checks for the click mask associated
+     * with this widget only.
+     */
+    public native void clickMaskUp(String ID) /*-{
+        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
+        self.clickMaskUp(ID);
+    }-*/;
+            
+    /**
      * Returns true if element is a descendant of this widget (i.e., exists below this widget in      the containment
      * hierarchy); and false otherwise.
      * @param canvas the canvas to be tested
@@ -3062,177 +3060,35 @@ public class Canvas extends BaseWidget  implements com.smartgwt.client.widgets.e
     }-*/;
             
     /**
-     * Hides the click mask associated with this canvas.
-     */
-    public native void hideClickMask() /*-{
-        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
-        self.hideClickMask();
-    }-*/;
-
-    /**
-     * Hides the click mask associated with this canvas.
-     * @param ID optional ID of specific clickMask to hide. If not passed,                       defaults to hiding the click mask
-     * associated with this widget only.
-     */
-    public native void hideClickMask(String ID) /*-{
-        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
-        self.hideClickMask(ID);
-    }-*/;
-            
-    /**
-     * Determines whether a clickmask is showing
-     */
-    public native void clickMaskUp() /*-{
-        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
-        self.clickMaskUp();
-    }-*/;
-
-    /**
-     * Determines whether a clickmask is showing
-     * @param ID optional ID of specific clickMask to check. If not passed,                       checks for the click mask associated
-     * with this widget only.
-     */
-    public native void clickMaskUp(String ID) /*-{
-        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
-        self.clickMaskUp(ID);
-    }-*/;
-            
-    /**
-     * Return the right coordinate of this object as rendered, relative to its enclosing context, in pixels.
+     * Return true if the last event's mouse coordinates are within the bounds of this component.  NOTE: Z-ordering is not
+     * considered for the purposes of this test.  If the coordinate you're  testing is occluded by other component, but the X,Y
+     * coordinates are still within the bounds  of that component, this method will return true.
      *
-     * @return right coordinate
+     * @return true if the event occurred within the bounds of this component
      */
-    public native int getRight() /*-{
+    public native Boolean containsEvent() /*-{
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
-        return self.getRight();
+        var retVal =self.containsEvent();
+        if(retVal == null || retVal === undefined) {
+            return null;
+        } else {
+            return @com.smartgwt.client.util.JSOHelper::toBoolean(Z)(retVal);
+        }
     }-*/;
             
     /**
-     * Resizes the widget horizontally to position its right side at the specified coordinate. <P> NOTE: if you're setting
-     * multiple coordinates, use setRect(), moveTo() or resizeTo() instead
-     * @param right new right coordinate
-     */
-    public native void setRight(int right) /*-{
-        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
-        self.setRight(right);
-    }-*/;
-            
-    /**
-     * Return the bottom coordinate of this object as rendered, relative to its enclosing context, in pixels.
+     * Returns true if the keyboard focus is in this Canvas or any child of this Canvas.
      *
-     * @return bottom coordinate
+     * @return whether this Canvas contains the keyboard focus
      */
-    public native int getBottom() /*-{
+    public native Boolean containsFocus() /*-{
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
-        return self.getBottom();
-    }-*/;
-            
-    /**
-     * Resizes the widget vertically to position its bottom edge at the specified coordinate. <P> NOTE: if you're setting
-     * multiple coordinates, use setRect(), moveTo() or resizeTo() instead
-     * @param bottom new bottom coordinate
-     */
-    public native void setBottom(int bottom) /*-{
-        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
-        self.setBottom(bottom);
-    }-*/;
-            
-    /**
-     * Returns the scrollable width of the widget's contents, including children, ignoring clipping.
-     *
-     * @return the scrollable width of the widget's contents
-     */
-    public native int getScrollWidth() /*-{
-        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
-        return self.getScrollWidth();
-    }-*/;
-            
-    /**
-     * Returns the scrollable height of the widget's contents, including children, ignoring          clipping.
-     *
-     * @return height of the element that can scroll
-     */
-    public native int getScrollHeight() /*-{
-        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
-        return self.getScrollHeight();
-    }-*/;
-            
-    /**
-     * Get the number of pixels this Canvas is scrolled from its left edge.
-     *
-     * @return scrollLeft
-     */
-    public native int getScrollLeft() /*-{
-        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
-        return self.getScrollLeft();
-    }-*/;
-            
-    /**
-     * Get the number of pixels this Canvas is scrolled from its top edge.
-     *
-     * @return scrollTop
-     */
-    public native int getScrollTop() /*-{
-        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
-        return self.getScrollTop();
-    }-*/;
-            
-    /**
-     * Set the page-relative left coordinate of this widget.
-     * @param left new left coordinate in pixels
-     */
-    public native void setPageLeft(int left) /*-{
-        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
-        self.setPageLeft(left);
-    }-*/;
-            
-    /**
-     * Set the page-relative top coordinate of this widget.
-     * @param top new top coordinate in pixels
-     */
-    public native void setPageTop(int top) /*-{
-        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
-        self.setPageTop(top);
-    }-*/;
-            
-    /**
-     * Returns the page-relative left coordinate of the widget on the page, in pixels.
-     *
-     * @return global left coordinate
-     */
-    public native int getPageLeft() /*-{
-        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
-        return self.getPageLeft();
-    }-*/;
-            
-    /**
-     * Returns the page-relative top coordinate of the widget on the page, in pixels
-     *
-     * @return GLOBAL top coordinate
-     */
-    public native int getPageTop() /*-{
-        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
-        return self.getPageTop();
-    }-*/;
-            
-    /**
-     * Return the page-relative right coordinate of this object, in pixels.
-     *
-     * @return GLOBAL right coordinate
-     */
-    public native int getPageRight() /*-{
-        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
-        return self.getPageRight();
-    }-*/;
-            
-    /**
-     * Return the page-relative bottom coordinate of this object, in pixels.
-     *
-     * @return GLOBAL bottom coordinate
-     */
-    public native int getPageBottom() /*-{
-        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
-        return self.getPageBottom();
+        var retVal =self.containsFocus();
+        if(retVal == null || retVal === undefined) {
+            return null;
+        } else {
+            return @com.smartgwt.client.util.JSOHelper::toBoolean(Z)(retVal);
+        }
     }-*/;
             
     /**
@@ -3276,1045 +3132,12 @@ public class Canvas extends BaseWidget  implements com.smartgwt.client.widgets.e
     }-*/;
             
     /**
-     * Does this widget contain the specified global (x,y) coordinates, and have no other widgets also at the specified
-     * position, obscuring this one?  This is commonly used for (for example) drag and drop interactions.
-     * @param x GLOBAL x-coordinate
-     * @param y GLOBAL y-coordinate
-     *
-     * @return true if this object contains the specified point; false otherwise
-     */
-    public native Boolean visibleAtPoint(int x, int y) /*-{
-        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
-        var retVal =self.visibleAtPoint(x, y);
-        if(retVal == null || retVal === undefined) {
-            return null;
-        } else {
-            return @com.smartgwt.client.util.JSOHelper::toBoolean(Z)(retVal);
-        }
-    }-*/;
-
-    /**
-     * Does this widget contain the specified global (x,y) coordinates, and have no other widgets also at the specified
-     * position, obscuring this one?  This is commonly used for (for example) drag and drop interactions.
-     * @param x GLOBAL x-coordinate
-     * @param y GLOBAL y-coordinate
-     * @param withinViewport point lies within our viewport rather than                                              just our drawn area
-     * @param ignoreWidgets If passed ignore widget(s), do not check whether                                           those widgets occludes this
-     * one.
-     *
-     * @return true if this object contains the specified point; false otherwise
-     */
-    public native Boolean visibleAtPoint(int x, int y, boolean withinViewport, Canvas ignoreWidgets) /*-{
-        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
-        var retVal =self.visibleAtPoint(x, y, withinViewport, ignoreWidgets.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()());
-        if(retVal == null || retVal === undefined) {
-            return null;
-        } else {
-                return @com.smartgwt.client.util.JSOHelper::toBoolean(Z)(retVal);
-        }
-    }-*/;
-            
-    /**
-     * Returns true if the rectangles of this widget and the specified widget overlap.
-     * @param other other canvas to test for intersection
-     *
-     * @return true if this canvas intersects other; false otherwise
-     */
-    public native Boolean intersects(Canvas other) /*-{
-        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
-        var retVal =self.intersects(other.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()());
-        if(retVal == null || retVal === undefined) {
-            return null;
-        } else {
-            return @com.smartgwt.client.util.JSOHelper::toBoolean(Z)(retVal);
-        }
-    }-*/;
-            
-    /**
-     * Return true if the last event's mouse coordinates are within the bounds of this component.  NOTE: Z-ordering is not
-     * considered for the purposes of this test.  If the coordinate you're  testing is occluded by other component, but the X,Y
-     * coordinates are still within the bounds  of that component, this method will return true.
-     *
-     * @return true if the event occurred within the bounds of this component
-     */
-    public native Boolean containsEvent() /*-{
-        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
-        var retVal =self.containsEvent();
-        if(retVal == null || retVal === undefined) {
-            return null;
-        } else {
-            return @com.smartgwt.client.util.JSOHelper::toBoolean(Z)(retVal);
-        }
-    }-*/;
-            
-    /**
-     * Return the X-coordinate of the last event relative to the left edge of the content of this Canvas.<br><br>  NOTE: To get
-     * a coordinate relative to the <b>viewport</b> of this Canvas, subtract  this.getScrollLeft()
-     *
-     * @return 
-     */
-    public native int getOffsetX() /*-{
-        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
-        return self.getOffsetX();
-    }-*/;
-            
-    /**
-     * Return the Y-coordinate of the last event, relative to the top edge of the content of this Canvas.<br><br>  NOTE: To get
-     * a coordinate relative to the <b>viewport</b> of this Canvas, subtract  this.getScrollTop()
-     *
-     * @return 
-     */
-    public native int getOffsetY() /*-{
-        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
-        return self.getOffsetY();
-    }-*/;
-            
-    /**
-     * Returns the width of the viewport onto the scrollable content.
-     *
-     * @return width of the viewport, in pixels
-     */
-    public native int getViewportWidth() /*-{
-        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
-        return self.getViewportWidth();
-    }-*/;
-            
-    /**
-     * Returns the height of the viewport onto the scrollable content.
-     *
-     * @return height of the viewport, in pixels
-     */
-    public native int getViewportHeight() /*-{
-        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
-        return self.getViewportHeight();
-    }-*/;
-            
-    /**
-     * Returns the amount of space available for (an) absolutely positioned child widget(s) or   HTML content, without
-     * introducing clipping, scrolling or overflow.<br>  This is the space within the viewport of the widget (including
-     * padding, but excluding   margins, borders or scrollbars) rendered at its specified size.
-     *
-     * @return inner height of the widget in pixels
-     */
-    public native int getInnerHeight() /*-{
-        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
-        return self.getInnerHeight();
-    }-*/;
-            
-    /**
-     * Returns the amount of space available for (an) absolutely positioned child widget(s) or   HTML content, without
-     * introducing clipping, scrolling or overflow.<br>  This is the space within the viewport of the widget (including
-     * padding, but excluding   margins, borders or scrollbars) rendered at its specified size.
-     *
-     * @return inner width of the widget in pixels
-     */
-    public native int getInnerWidth() /*-{
-        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
-        return self.getInnerWidth();
-    }-*/;
-            
-    /**
-     * Returns the amount of space available for interior content (or relatively positioned child  widget(s)) without
-     * introducing clipping, scrolling or overflow.<br>  This is the space within the viewport of the widget (not including
-     * padding, and excluding   margins, borders or scrollbars) rendered at its specified size.
-     *
-     * @return inner height of the widget in pixels
-     */
-    public native int getInnerContentHeight() /*-{
-        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
-        return self.getInnerContentHeight();
-    }-*/;
-            
-    /**
-     * Returns the amount of space available for interior content (or relatively positioned child  widget(s)) without
-     * introducing clipping, scrolling or overflow.<br>  This is the space within the viewport of the widget (not including
-     * padding, and excluding   margins, borders or scrollbars) rendered at its specified size.
-     *
-     * @return inner height of the widget in pixels
-     */
-    public native int getInnerContentWidth() /*-{
-        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
-        return self.getInnerContentWidth();
-    }-*/;
-            
-    /**
-     * Return the visible width of the Canvas.
-     *
-     * @return visible width in pixels
-     */
-    public native int getVisibleWidth() /*-{
-        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
-        return self.getVisibleWidth();
-    }-*/;
-            
-    /**
-     * Return the visible height of the Canvas.
-     *
-     * @return visible height in pixels
-     */
-    public native int getVisibleHeight() /*-{
-        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
-        return self.getVisibleHeight();
-    }-*/;
-            
-    /**
-     * Moves the widget deltaX pixels to the right and deltaY pixels down. Pass negative          numbers to move up and/or to
-     * the left.
-     * @param deltaX amount to move horizontally (may be negative)
-     * @param deltaY amount to move vertically (may be negative)
-     *
-     * @return whether the component actually moved
-     */
-    public native Boolean moveBy(int deltaX, int deltaY) /*-{
-        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
-        var retVal =self.moveBy(deltaX, deltaY);
-        if(retVal == null || retVal === undefined) {
-            return null;
-        } else {
-            return @com.smartgwt.client.util.JSOHelper::toBoolean(Z)(retVal);
-        }
-    }-*/;
-            
-    /**
-     * Get an offset to be used when calculating snap positioning. Returns 0 by default.
-     *
-     * @return The offset to use when snapping
-     */
-    public native int getVSnapOrigin() /*-{
-        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
-        return self.getVSnapOrigin();
-    }-*/;
-
-    /**
-     * Get an offset to be used when calculating snap positioning. Returns 0 by default.
-     * @param snapChild the child that is being snapped
-     *
-     * @return The offset to use when snapping
-     */
-    public native int getVSnapOrigin(Canvas snapChild) /*-{
-        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
-        return self.getVSnapOrigin(snapChild.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()());
-    }-*/;
-            
-    /**
-     * Get an offset to be used when calculating snap positioning. Returns 0 by default.
-     *
-     * @return The offset to use when snapping
-     */
-    public native int getHSnapOrigin() /*-{
-        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
-        return self.getHSnapOrigin();
-    }-*/;
-
-    /**
-     * Get an offset to be used when calculating snap positioning. Returns 0 by default.
-     * @param snapChild the child that is being snapped
-     *
-     * @return The offset to use when snapping
-     */
-    public native int getHSnapOrigin(Canvas snapChild) /*-{
-        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
-        return self.getHSnapOrigin(snapChild.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()());
-    }-*/;
-            
-    /**
-     * Show this widget next to another widget.
-     * @param otherWidget Canvas to show next to
-     */
-    public native void showNextTo(Canvas otherWidget) /*-{
-        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
-        self.showNextTo(otherWidget.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()());
-    }-*/;
-
-    /**
-     * Show this widget next to another widget.
-     * @param otherWidget Canvas to show next to
-     * @param side which side to show on, defaults to "right"
-     */
-    public native void showNextTo(Canvas otherWidget, String side) /*-{
-        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
-        self.showNextTo(otherWidget.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()(), side);
-    }-*/;
-    /**
-     * Add a resized handler.
-     * <p>
-     * Observable method called whenever a Canvas changes size. Note that if this canvas is {@link
-     * com.smartgwt.client.widgets.Canvas#getOverflow 'overflow:"visible"'}, and is waiting for a queued redraw (see  {@link
-     * com.smartgwt.client.widgets.Canvas#isDirty}), the value for {@link com.smartgwt.client.widgets.Canvas#getVisibleWidth}
-     * and {@link com.smartgwt.client.widgets.Canvas#getVisibleHeight} will be unreliable until <code>redraw()</code> fires.
-     *
-     * @param handler the resized handler
-     * @return {@link HandlerRegistration} used to remove this handler
-     */
-    public HandlerRegistration addResizedHandler(com.smartgwt.client.widgets.events.ResizedHandler handler) {
-        if(getHandlerCount(com.smartgwt.client.widgets.events.ResizedEvent.getType()) == 0) setupResizedEvent();
-        return doAddHandler(handler, com.smartgwt.client.widgets.events.ResizedEvent.getType());
-    }
-
-    private native void setupResizedEvent() /*-{
-        var obj = null;
-        var selfJ = this;
-        if(this.@com.smartgwt.client.widgets.BaseWidget::isCreated()()) {
-            obj = this.@com.smartgwt.client.widgets.BaseWidget::getJsObj()();
-            obj.addProperties({resized:$entry(function(){
-                        var param = {};
-                        var event = @com.smartgwt.client.widgets.events.ResizedEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
-                        selfJ.@com.smartgwt.client.widgets.BaseWidget::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
-                    })
-             });
-        } else {
-            obj = this.@com.smartgwt.client.widgets.BaseWidget::getConfig()();
-            obj.resized = $entry(function(){
-                   var param = {};
-                   var event = @com.smartgwt.client.widgets.events.ResizedEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
-                   selfJ.@com.smartgwt.client.widgets.BaseWidget::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
-               });
-        }
-   }-*/;
-            
-    /**
-     * <code>layoutChildren()</code> is where a Canvas should implement a sizing policy for it's Canvas children.  Since
-     * <code>layoutChildren</code> calls parentResized() on its children, {@link
-     * com.smartgwt.client.widgets.Canvas#parentResized} is a good place for a child to implement a layout policy that can be
-     * used within any parent. <P> Recommended practice for a Canvas that manages Canvas children is to create those children
-     * without any initial coordinate or size settings and do all sizing when layoutChildren() is called. <P> layoutChildren()
-     * is always called at least once before children are drawn, and is called automatically whenever the viewport size changes
-     * (which includes both resizing and introduction/removal of scrolling).  layoutChildren() can also be manually invoked in
-     * any other component-specific situation which changes the layout. <P> NOTE: layoutChildren() may be called before draw()
-     * if a widget is resized before draw(), so be sure to avoid errors such as assuming that any children you automatically
-     * create have already been created. <P> NOTE: auto-sizing: layoutChildren() is also called once during the initial draw(),
-     * before children are drawn, with a "reason" of "initial draw".  During this invocation of layoutChildren() it is legal to
-     * directly draw children (call child.draw()), which is otherwise never allowed.  This allows a Canvas to implement an
-     * auto-sizing layout policy by drawing some children before deciding on the sizes of remaining children, which is far more
-     * efficient than drawing all children and resizing some of them after they are drawn.
-     * @param reason reason why layoutChildren() is being called, passed when framework                        code invokes layoutChildren()
-     */
-    public native void layoutChildren(String reason) /*-{
-        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
-        self.layoutChildren(reason);
-    }-*/;
-            
-    /**
-     * Fires when the interior size of the parent changes, including parent resize and scrollbar introduction or removal. <p>
-     * This method allows a child to implement a layout policy that can be used within any  parent, such as a Resizer component
-     * that always snaps to the parent's bottom-right corner.  The default implementation of this method applies a child's
-     * percent sizes, if any, or implements layout based on the {@link com.smartgwt.client.widgets.Canvas#getSnapTo snapTo}
-     * property
-     */
-    public native void parentResized() /*-{
-        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
-        self.parentResized();
-    }-*/;
-            
-    /**
-     * If this widget is showing scrollbars, and a user drags close to the edge of the viewport, should we scroll the viewport
-     * in the appropriate direction? Returns this.canDragScroll by default.
-     */
-    public native void shouldDragScroll() /*-{
-        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
-        self.shouldDragScroll();
-    }-*/;
-            
-    /**
-     * This method tells a component to adjust for size changes made to content by external code. <P> This is for very advanced
-     * use in which the contents of a Canvas are being directly updated by Ajax techniques, which is required for integration
-     * with some third-party libraries. Calling this method is required because browsers do not provide consistent events by
-     * which Smart GWT can be notified of external content changes. <P> Only contents supplied to a widget via {@link
-     * com.smartgwt.client.widgets.Canvas#getContents contents} or via an override of {@link
-     * com.smartgwt.client.widgets.Canvas#getInnerHTML} should be manipulated directly.  Contents automatically generated by
-     * Smart GWT components (such as the basic structure of a Button) should never be manipulated: these structures are
-     * considered internal, differ by platform, and will change without notice.
-     * @param immediate By default the adjustment will occur on a small delay for performance reasons.   Pass in this parameter to force
-     * immediate adjustment.
-     */
-    public native void adjustForContent(boolean immediate) /*-{
-        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
-        self.adjustForContent(immediate);
-    }-*/;
-            
-    /**
-     * Vertically scrolls the content of the widget to 0
-     */
-    public native void scrollToTop() /*-{
-        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
-        self.scrollToTop();
-    }-*/;
-            
-    /**
-     * Vertically scrolls the content of the widget to the end of its content
-     */
-    public native void scrollToBottom() /*-{
-        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
-        self.scrollToBottom();
-    }-*/;
-            
-    /**
-     * Horizontally scrolls the content of the widget to 0
-     */
-    public native void scrollToLeft() /*-{
-        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
-        self.scrollToLeft();
-    }-*/;
-            
-    /**
-     * Horizontally scrolls the content of the widget to the end of its content
-     */
-    public native void scrollToRight() /*-{
-        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
-        self.scrollToRight();
-    }-*/;
-            
-    /**
-     * Scroll this widget by some pixel increment in either (or both) direction(s).
-     * @param dX Number of pixels to scroll horizontally
-     * @param dY Number of pixels to scroll vertically
-     */
-    public native void scrollBy(int dX, int dY) /*-{
-        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
-        self.scrollBy(dX, dY);
-    }-*/;
-            
-    /**
-     * Scrolls the content of the widget so that the origin (top-left corner) of the content is left pixels to the left and top
-     * pixels above the widget's top-left corner (but still clipped by the widget's dimensions). <p> This is guaranteed to be
-     * called whenever this Canvas is scrolled, whether scrolling is initiated programmatically, by custom scrollbars, or a by
-     * a native scrollbar.
-     */
-    public native void scrollTo() /*-{
-        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
-        self.scrollTo();
-    }-*/;
-
-    /**
-     * Scrolls the content of the widget so that the origin (top-left corner) of the content is left pixels to the left and top
-     * pixels above the widget's top-left corner (but still clipped by the widget's dimensions). <p> This is guaranteed to be
-     * called whenever this Canvas is scrolled, whether scrolling is initiated programmatically, by custom scrollbars, or a by
-     * a native scrollbar.
-     * @param left the left coordinate
-     * @param top the top coordinate
-     */
-    public native void scrollTo(int left, int top) /*-{
-        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
-        self.scrollTo(left, top);
-    }-*/;
-    /**
-     * Add a scrolled handler.
-     * <p>
-     * Notification that this component has just scrolled.  Use with {@link com.smartgwt.client..Class#observe}. <P> Fires for
-     * both CSS and {@link com.smartgwt.client.widgets.Scrollbar}.
-     *
-     * @param handler the scrolled handler
-     * @return {@link HandlerRegistration} used to remove this handler
-     */
-    public HandlerRegistration addScrolledHandler(com.smartgwt.client.widgets.events.ScrolledHandler handler) {
-        if(getHandlerCount(com.smartgwt.client.widgets.events.ScrolledEvent.getType()) == 0) setupScrolledEvent();
-        return doAddHandler(handler, com.smartgwt.client.widgets.events.ScrolledEvent.getType());
-    }
-
-    private native void setupScrolledEvent() /*-{
-        var obj = null;
-        var selfJ = this;
-        if(this.@com.smartgwt.client.widgets.BaseWidget::isCreated()()) {
-            obj = this.@com.smartgwt.client.widgets.BaseWidget::getJsObj()();
-            obj.addProperties({scrolled:$entry(function(){
-                        var param = {};
-                        var event = @com.smartgwt.client.widgets.events.ScrolledEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
-                        selfJ.@com.smartgwt.client.widgets.BaseWidget::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
-                    })
-             });
-        } else {
-            obj = this.@com.smartgwt.client.widgets.BaseWidget::getConfig()();
-            obj.scrolled = $entry(function(){
-                   var param = {};
-                   var event = @com.smartgwt.client.widgets.events.ScrolledEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
-                   selfJ.@com.smartgwt.client.widgets.BaseWidget::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
-               });
-        }
-   }-*/;
-            
-    /**
-     * Sets this widget's visibility to "inherit", so that it becomes visible if all it's parents are visible or it has no
-     * parents. <P> If the widget has not yet been drawn (and doesn't have a parent or master), this method calls the draw
-     * method as well.
-     */
-    public native void show() /*-{
-        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
-        self.show();
-    }-*/;
-            
-    /**
-     * Sets the widget's CSS visibility attribute to "hidden".
-     */
-    public native void hide() /*-{
-        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
-        self.hide();
-    }-*/;
-            
-    /**
-     * Enables this widget and any children / peers of this widget.
-     */
-    public native void enable() /*-{
-        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
-        self.enable();
-    }-*/;
-            
-    /**
      * Disables this widget and any children and peers of this widget.
      */
     public native void disable() /*-{
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
         self.disable();
     }-*/;
-            
-    /**
-     * Is this canvas disabled? Note that the disabled state is inherited - this method will return true if this widget, or any
-     * of its ancestors are marked disabled.
-     *
-     * @return true if the widget or any widget above it in the containment hierarchy                      are disabled.
-     */
-    public native Boolean isDisabled() /*-{
-        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
-        var retVal =self.isDisabled();
-        if(retVal == null || retVal === undefined) {
-            return null;
-        } else {
-            return @com.smartgwt.client.util.JSOHelper::toBoolean(Z)(retVal);
-        }
-    }-*/;
-            
-    /**
-     * If this canvas can accept focus, give it keyboard focus. After this method, the canvas will appear focused and will
-     * receive keyboard events.
-     */
-    public native void focus() /*-{
-        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
-        self.focus();
-    }-*/;
-            
-    /**
-     * If this canvas has keyboard focus, blur it. After this method, the canvas will no longer appear focused and will stop
-     * receiving keyboard events.
-     */
-    public native void blur() /*-{
-        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
-        self.blur();
-    }-*/;
-            
-    /**
-     * Returns true if the keyboard focus is in this Canvas or any child of this Canvas.
-     *
-     * @return whether this Canvas contains the keyboard focus
-     */
-    public native Boolean containsFocus() /*-{
-        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
-        var retVal =self.containsFocus();
-        if(retVal == null || retVal === undefined) {
-            return null;
-        } else {
-            return @com.smartgwt.client.util.JSOHelper::toBoolean(Z)(retVal);
-        }
-    }-*/;
-            
-    /**
-     * Puts this widget at the top of the stacking order, so it appears in front of all other widgets in the same parent.
-     */
-    public native void bringToFront() /*-{
-        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
-        self.bringToFront();
-    }-*/;
-            
-    /**
-     * Puts this widget at the bottom of the stacking order, so it appears behind all other widgets in the same parent.
-     */
-    public native void sendToBack() /*-{
-        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
-        self.sendToBack();
-    }-*/;
-            
-    /**
-     * Puts this widget just above the specified widget in the stacking order, so it appears in front of the specified widget
-     * if both widgets have the same parent.
-     * @param canvas canvas to move above
-     */
-    public native void moveAbove(Canvas canvas) /*-{
-        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
-        self.moveAbove(canvas.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()());
-    }-*/;
-            
-    /**
-     * Puts this widget just below the specified widget in the stacking order, so it appears behind the specified widget if
-     * both widgets have the same parent.
-     * @param canvas canvas to move below
-     */
-    public native void moveBelow(Canvas canvas) /*-{
-        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
-        self.moveBelow(canvas.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()());
-    }-*/;
-            
-    /**
-     * Handler fired on a delay when the user hovers the mouse over this hover-target. Default implementation will fire
-     * <code>this.hover()</code> (if defined), and handle  showing the hover canvas if <code>this.showHover</code> is true.
-     */
-    public native void handleHover() /*-{
-        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
-        self.handleHover();
-    }-*/;
-            
-    /**
-     * If this canvas is currently showing a hover (see {@link com.smartgwt.client.widgets.Canvas#handleHover}), this method
-     * can be called to update the contents of the hover. Has no effect if the hover canvas is not showing for this widget.
-     */
-    public native void updateHover() /*-{
-        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
-        self.updateHover();
-    }-*/;
-
-    /**
-     * If this canvas is currently showing a hover (see {@link com.smartgwt.client.widgets.Canvas#handleHover}), this method
-     * can be called to update the contents of the hover. Has no effect if the hover canvas is not showing for this widget.
-     * @param hoverHTML Option to specify new HTML for the hover. If not passed, the result   of {@link
-     * com.smartgwt.client.widgets.Canvas#getHoverHTML} will be used instead. Note that if the   hover HTML is empty the hover
-     * will be hidden.
-     */
-    public native void updateHover(String hoverHTML) /*-{
-        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
-        self.updateHover(hoverHTML);
-    }-*/;
-    /**
-     * Add a hoverHidden handler.
-     * <p>
-     * If {@link com.smartgwt.client.widgets.Canvas#getShowHover 'showHover'} is true for this canvas, this notification method
-     * will be fired whenever the hover shown in response to {@link com.smartgwt.client.widgets.Canvas#handleHover} is  hidden.
-     * This method may be observed or overridden.
-     *
-     * @param handler the hoverHidden handler
-     * @return {@link HandlerRegistration} used to remove this handler
-     */
-    public HandlerRegistration addHoverHiddenHandler(com.smartgwt.client.widgets.events.HoverHiddenHandler handler) {
-        if(getHandlerCount(com.smartgwt.client.widgets.events.HoverHiddenEvent.getType()) == 0) setupHoverHiddenEvent();
-        return doAddHandler(handler, com.smartgwt.client.widgets.events.HoverHiddenEvent.getType());
-    }
-
-    private native void setupHoverHiddenEvent() /*-{
-        var obj = null;
-        var selfJ = this;
-        if(this.@com.smartgwt.client.widgets.BaseWidget::isCreated()()) {
-            obj = this.@com.smartgwt.client.widgets.BaseWidget::getJsObj()();
-            obj.addProperties({hoverHidden:$entry(function(){
-                        var param = {};
-                        var event = @com.smartgwt.client.widgets.events.HoverHiddenEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
-                        selfJ.@com.smartgwt.client.widgets.BaseWidget::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
-                    })
-             });
-        } else {
-            obj = this.@com.smartgwt.client.widgets.BaseWidget::getConfig()();
-            obj.hoverHidden = $entry(function(){
-                   var param = {};
-                   var event = @com.smartgwt.client.widgets.events.HoverHiddenEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
-                   selfJ.@com.smartgwt.client.widgets.BaseWidget::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
-               });
-        }
-   }-*/;
-    /**
-     * Add a hover handler.
-     * <p>
-     * If <code>canHover</code> is true for this widget, the <code>hover</code> string method will be fired when the user
-     * hovers over this canvas. If this method returns false, it will suppress the default behavior of showing a hover canvas
-     * if <code>this.showHover</code>  is true.
-     *
-     * @param handler the hover handler
-     * @return {@link HandlerRegistration} used to remove this handler
-     */
-    public HandlerRegistration addHoverHandler(com.smartgwt.client.widgets.events.HoverHandler handler) {
-        if(getHandlerCount(com.smartgwt.client.widgets.events.HoverEvent.getType()) == 0) setupHoverEvent();
-        return doAddHandler(handler, com.smartgwt.client.widgets.events.HoverEvent.getType());
-    }
-
-    private native void setupHoverEvent() /*-{
-        var obj = null;
-        var selfJ = this;
-        if(this.@com.smartgwt.client.widgets.BaseWidget::isCreated()()) {
-            obj = this.@com.smartgwt.client.widgets.BaseWidget::getJsObj()();
-            obj.addProperties({hover:$entry(function(){
-                        var param = {};
-                        var event = @com.smartgwt.client.widgets.events.HoverEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
-                        selfJ.@com.smartgwt.client.widgets.BaseWidget::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
-                    })
-             });
-        } else {
-            obj = this.@com.smartgwt.client.widgets.BaseWidget::getConfig()();
-            obj.hover = $entry(function(){
-                   var param = {};
-                   var event = @com.smartgwt.client.widgets.events.HoverEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
-                   selfJ.@com.smartgwt.client.widgets.BaseWidget::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
-               });
-        }
-   }-*/;
-            
-    /**
-     * If <code>this.showHover</code> is true, when the user holds the mouse over this Canvas for long enough to trigger a
-     * hover event, a hover canvas is shown by default. This method returns the contents of that hover canvas. Default
-     * implementation returns <code>this.prompt</code> - override for custom hover HTML. Note that returning <code>null</code>
-     * or an empty string will suppress the hover canvas altogether.
-     */
-    public native void getHoverHTML() /*-{
-        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
-        self.getHoverHTML();
-    }-*/;
-    /**
-     * Add a showContextMenu handler.
-     * <p>
-     * Executed when the right mouse button is clicked.  The default implementation of this method auto-creates a {@link
-     * com.smartgwt.client.widgets.menu.Menu} from the {@link com.smartgwt.client.widgets.Canvas#getContextMenu contextMenu}
-     * property on this component and then calls {@link com.smartgwt.client.widgets.menu.Menu#showContextMenu} on it to show
-     * it. <p> If you want to show a standard context menu, you can simply define your Menu and set it as the contextMenu
-     * property on your component - you do not need to override this method. <p> If you want to do some other processing before
-     * showing a menu or do something else entirely, then you should override this method.  Note that the return value from
-     * this method controls whether or not the native browser context menu is shown.
-     *
-     * @param handler the showContextMenu handler
-     * @return {@link HandlerRegistration} used to remove this handler
-     */
-    public HandlerRegistration addShowContextMenuHandler(com.smartgwt.client.widgets.events.ShowContextMenuHandler handler) {
-        if(getHandlerCount(com.smartgwt.client.widgets.events.ShowContextMenuEvent.getType()) == 0) setupShowContextMenuEvent();
-        return doAddHandler(handler, com.smartgwt.client.widgets.events.ShowContextMenuEvent.getType());
-    }
-
-    private native void setupShowContextMenuEvent() /*-{
-        var obj = null;
-        var selfJ = this;
-        if(this.@com.smartgwt.client.widgets.BaseWidget::isCreated()()) {
-            obj = this.@com.smartgwt.client.widgets.BaseWidget::getJsObj()();
-            obj.addProperties({showContextMenu:$entry(function(){
-                        var param = {};
-                        var event = @com.smartgwt.client.widgets.events.ShowContextMenuEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
-                        selfJ.@com.smartgwt.client.widgets.BaseWidget::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
-                        var ret = event.@com.smartgwt.client.event.Cancellable::isCancelled()();
-                        return !ret;
-                    })
-             });
-        } else {
-            obj = this.@com.smartgwt.client.widgets.BaseWidget::getConfig()();
-            obj.showContextMenu = $entry(function(){
-                   var param = {};
-                   var event = @com.smartgwt.client.widgets.events.ShowContextMenuEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
-                   selfJ.@com.smartgwt.client.widgets.BaseWidget::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
-                   var ret = event.@com.smartgwt.client.event.Cancellable::isCancelled()();
-                   return !ret;
-               });
-        }
-   }-*/;
-            
-    /**
-     * The default implementation of this method hides the contextMenu currently being shown for this component (which occurs
-     * when the mouse button that toggles the context menu is released). Override if you want some other behavior.
-     */
-    public native void hideContextMenu() /*-{
-        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
-        self.hideContextMenu();
-    }-*/;
-    /**
-     * Add a mouseOver handler.
-     * <p>
-     * Executed when mouse enters this widget.  No default implementation.
-     *
-     * @param handler the mouseOver handler
-     * @return {@link HandlerRegistration} used to remove this handler
-     */
-    public HandlerRegistration addMouseOverHandler(com.smartgwt.client.widgets.events.MouseOverHandler handler) {
-        if(getHandlerCount(com.smartgwt.client.widgets.events.MouseOverEvent.getType()) == 0) setupMouseOverEvent();
-        return doAddHandler(handler, com.smartgwt.client.widgets.events.MouseOverEvent.getType());
-    }
-
-    private native void setupMouseOverEvent() /*-{
-        var obj = null;
-        var selfJ = this;
-        if(this.@com.smartgwt.client.widgets.BaseWidget::isCreated()()) {
-            obj = this.@com.smartgwt.client.widgets.BaseWidget::getJsObj()();
-            obj.addProperties({mouseOver:$entry(function(){
-                        var param = {};
-                        var event = @com.smartgwt.client.widgets.events.MouseOverEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
-                        selfJ.@com.smartgwt.client.widgets.BaseWidget::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
-                        var ret = event.@com.smartgwt.client.event.Cancellable::isCancelled()();
-                        return !ret;
-                    })
-             });
-        } else {
-            obj = this.@com.smartgwt.client.widgets.BaseWidget::getConfig()();
-            obj.mouseOver = $entry(function(){
-                   var param = {};
-                   var event = @com.smartgwt.client.widgets.events.MouseOverEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
-                   selfJ.@com.smartgwt.client.widgets.BaseWidget::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
-                   var ret = event.@com.smartgwt.client.event.Cancellable::isCancelled()();
-                   return !ret;
-               });
-        }
-   }-*/;
-    /**
-     * Add a mouseDown handler.
-     * <p>
-     * Executed when the left mouse down is pressed on this widget.  No default implementation.
-     *
-     * @param handler the mouseDown handler
-     * @return {@link HandlerRegistration} used to remove this handler
-     */
-    public HandlerRegistration addMouseDownHandler(com.smartgwt.client.widgets.events.MouseDownHandler handler) {
-        if(getHandlerCount(com.smartgwt.client.widgets.events.MouseDownEvent.getType()) == 0) setupMouseDownEvent();
-        return doAddHandler(handler, com.smartgwt.client.widgets.events.MouseDownEvent.getType());
-    }
-
-    private native void setupMouseDownEvent() /*-{
-        var obj = null;
-        var selfJ = this;
-        if(this.@com.smartgwt.client.widgets.BaseWidget::isCreated()()) {
-            obj = this.@com.smartgwt.client.widgets.BaseWidget::getJsObj()();
-            obj.addProperties({mouseDown:$entry(function(){
-                        var param = {};
-                        var event = @com.smartgwt.client.widgets.events.MouseDownEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
-                        selfJ.@com.smartgwt.client.widgets.BaseWidget::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
-                        var ret = event.@com.smartgwt.client.event.Cancellable::isCancelled()();
-                        return !ret;
-                    })
-             });
-        } else {
-            obj = this.@com.smartgwt.client.widgets.BaseWidget::getConfig()();
-            obj.mouseDown = $entry(function(){
-                   var param = {};
-                   var event = @com.smartgwt.client.widgets.events.MouseDownEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
-                   selfJ.@com.smartgwt.client.widgets.BaseWidget::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
-                   var ret = event.@com.smartgwt.client.event.Cancellable::isCancelled()();
-                   return !ret;
-               });
-        }
-   }-*/;
-    /**
-     * Add a rightMouseDown handler.
-     * <p>
-     * Executed when the right mouse down is pressed on this widget.  No default implementation.
-     *
-     * @param handler the rightMouseDown handler
-     * @return {@link HandlerRegistration} used to remove this handler
-     */
-    public HandlerRegistration addRightMouseDownHandler(com.smartgwt.client.widgets.events.RightMouseDownHandler handler) {
-        if(getHandlerCount(com.smartgwt.client.widgets.events.RightMouseDownEvent.getType()) == 0) setupRightMouseDownEvent();
-        return doAddHandler(handler, com.smartgwt.client.widgets.events.RightMouseDownEvent.getType());
-    }
-
-    private native void setupRightMouseDownEvent() /*-{
-        var obj = null;
-        var selfJ = this;
-        if(this.@com.smartgwt.client.widgets.BaseWidget::isCreated()()) {
-            obj = this.@com.smartgwt.client.widgets.BaseWidget::getJsObj()();
-            obj.addProperties({rightMouseDown:$entry(function(){
-                        var param = {};
-                        var event = @com.smartgwt.client.widgets.events.RightMouseDownEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
-                        selfJ.@com.smartgwt.client.widgets.BaseWidget::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
-                        var ret = event.@com.smartgwt.client.event.Cancellable::isCancelled()();
-                        return !ret;
-                    })
-             });
-        } else {
-            obj = this.@com.smartgwt.client.widgets.BaseWidget::getConfig()();
-            obj.rightMouseDown = $entry(function(){
-                   var param = {};
-                   var event = @com.smartgwt.client.widgets.events.RightMouseDownEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
-                   selfJ.@com.smartgwt.client.widgets.BaseWidget::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
-                   var ret = event.@com.smartgwt.client.event.Cancellable::isCancelled()();
-                   return !ret;
-               });
-        }
-   }-*/;
-    /**
-     * Add a mouseStillDown handler.
-     * <p>
-     * Executed repeatedly (every {@link com.smartgwt.client.widgets.Canvas#getMouseStillDownDelay mouseStillDownDelay} by
-     * default) when the system is idle - i.e. not busy running other scripts - and the left mouse button is held down after
-     * having been pressed in the object. This event is not native to JavaScript, but is provided by the ISC system. <p> Note:
-     * The event handling system waits {@link com.smartgwt.client.widgets.Canvas#getMouseStillDownInitialDelay
-     * mouseStillDownInitialDelay} before calling mouseStillDown for the first time on the widget.  Subsequently the method is
-     * called every {@link com.smartgwt.client.widgets.Canvas#getMouseStillDownDelay mouseStillDownDelay}.  Both attributes are
-     * configurable per widget instance. <p> This method is called only when the left mouse is held down.
-     *
-     * @param handler the mouseStillDown handler
-     * @return {@link HandlerRegistration} used to remove this handler
-     */
-    public HandlerRegistration addMouseStillDownHandler(com.smartgwt.client.widgets.events.MouseStillDownHandler handler) {
-        if(getHandlerCount(com.smartgwt.client.widgets.events.MouseStillDownEvent.getType()) == 0) setupMouseStillDownEvent();
-        return doAddHandler(handler, com.smartgwt.client.widgets.events.MouseStillDownEvent.getType());
-    }
-
-    private native void setupMouseStillDownEvent() /*-{
-        var obj = null;
-        var selfJ = this;
-        if(this.@com.smartgwt.client.widgets.BaseWidget::isCreated()()) {
-            obj = this.@com.smartgwt.client.widgets.BaseWidget::getJsObj()();
-            obj.addProperties({mouseStillDown:$entry(function(){
-                        var param = {};
-                        var event = @com.smartgwt.client.widgets.events.MouseStillDownEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
-                        selfJ.@com.smartgwt.client.widgets.BaseWidget::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
-                        var ret = event.@com.smartgwt.client.event.Cancellable::isCancelled()();
-                        return !ret;
-                    })
-             });
-        } else {
-            obj = this.@com.smartgwt.client.widgets.BaseWidget::getConfig()();
-            obj.mouseStillDown = $entry(function(){
-                   var param = {};
-                   var event = @com.smartgwt.client.widgets.events.MouseStillDownEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
-                   selfJ.@com.smartgwt.client.widgets.BaseWidget::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
-                   var ret = event.@com.smartgwt.client.event.Cancellable::isCancelled()();
-                   return !ret;
-               });
-        }
-   }-*/;
-    /**
-     * Add a mouseMove handler.
-     * <p>
-     * Executed when the mouse moves within this widget.  No default implementation.
-     *
-     * @param handler the mouseMove handler
-     * @return {@link HandlerRegistration} used to remove this handler
-     */
-    public HandlerRegistration addMouseMoveHandler(com.smartgwt.client.widgets.events.MouseMoveHandler handler) {
-        if(getHandlerCount(com.smartgwt.client.widgets.events.MouseMoveEvent.getType()) == 0) setupMouseMoveEvent();
-        return doAddHandler(handler, com.smartgwt.client.widgets.events.MouseMoveEvent.getType());
-    }
-
-    private native void setupMouseMoveEvent() /*-{
-        var obj = null;
-        var selfJ = this;
-        if(this.@com.smartgwt.client.widgets.BaseWidget::isCreated()()) {
-            obj = this.@com.smartgwt.client.widgets.BaseWidget::getJsObj()();
-            obj.addProperties({mouseMove:$entry(function(){
-                        var param = {};
-                        var event = @com.smartgwt.client.widgets.events.MouseMoveEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
-                        selfJ.@com.smartgwt.client.widgets.BaseWidget::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
-                        var ret = event.@com.smartgwt.client.event.Cancellable::isCancelled()();
-                        return !ret;
-                    })
-             });
-        } else {
-            obj = this.@com.smartgwt.client.widgets.BaseWidget::getConfig()();
-            obj.mouseMove = $entry(function(){
-                   var param = {};
-                   var event = @com.smartgwt.client.widgets.events.MouseMoveEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
-                   selfJ.@com.smartgwt.client.widgets.BaseWidget::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
-                   var ret = event.@com.smartgwt.client.event.Cancellable::isCancelled()();
-                   return !ret;
-               });
-        }
-   }-*/;
-    /**
-     * Add a mouseOut handler.
-     * <p>
-     * Executed when the mouse leaves this widget.  No default implementation.
-     *
-     * @param handler the mouseOut handler
-     * @return {@link HandlerRegistration} used to remove this handler
-     */
-    public HandlerRegistration addMouseOutHandler(com.smartgwt.client.widgets.events.MouseOutHandler handler) {
-        if(getHandlerCount(com.smartgwt.client.widgets.events.MouseOutEvent.getType()) == 0) setupMouseOutEvent();
-        return doAddHandler(handler, com.smartgwt.client.widgets.events.MouseOutEvent.getType());
-    }
-
-    private native void setupMouseOutEvent() /*-{
-        var obj = null;
-        var selfJ = this;
-        if(this.@com.smartgwt.client.widgets.BaseWidget::isCreated()()) {
-            obj = this.@com.smartgwt.client.widgets.BaseWidget::getJsObj()();
-            obj.addProperties({mouseOut:$entry(function(){
-                        var param = {};
-                        var event = @com.smartgwt.client.widgets.events.MouseOutEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
-                        selfJ.@com.smartgwt.client.widgets.BaseWidget::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
-                        var ret = event.@com.smartgwt.client.event.Cancellable::isCancelled()();
-                        return !ret;
-                    })
-             });
-        } else {
-            obj = this.@com.smartgwt.client.widgets.BaseWidget::getConfig()();
-            obj.mouseOut = $entry(function(){
-                   var param = {};
-                   var event = @com.smartgwt.client.widgets.events.MouseOutEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
-                   selfJ.@com.smartgwt.client.widgets.BaseWidget::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
-                   var ret = event.@com.smartgwt.client.event.Cancellable::isCancelled()();
-                   return !ret;
-               });
-        }
-   }-*/;
-    /**
-     * Add a mouseUp handler.
-     * <p>
-     * Executed when the left mouse is released on this widget.  No default implementation.
-     *
-     * @param handler the mouseUp handler
-     * @return {@link HandlerRegistration} used to remove this handler
-     */
-    public HandlerRegistration addMouseUpHandler(com.smartgwt.client.widgets.events.MouseUpHandler handler) {
-        if(getHandlerCount(com.smartgwt.client.widgets.events.MouseUpEvent.getType()) == 0) setupMouseUpEvent();
-        return doAddHandler(handler, com.smartgwt.client.widgets.events.MouseUpEvent.getType());
-    }
-
-    private native void setupMouseUpEvent() /*-{
-        var obj = null;
-        var selfJ = this;
-        if(this.@com.smartgwt.client.widgets.BaseWidget::isCreated()()) {
-            obj = this.@com.smartgwt.client.widgets.BaseWidget::getJsObj()();
-            obj.addProperties({mouseUp:$entry(function(){
-                        var param = {};
-                        var event = @com.smartgwt.client.widgets.events.MouseUpEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
-                        selfJ.@com.smartgwt.client.widgets.BaseWidget::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
-                        var ret = event.@com.smartgwt.client.event.Cancellable::isCancelled()();
-                        return !ret;
-                    })
-             });
-        } else {
-            obj = this.@com.smartgwt.client.widgets.BaseWidget::getConfig()();
-            obj.mouseUp = $entry(function(){
-                   var param = {};
-                   var event = @com.smartgwt.client.widgets.events.MouseUpEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
-                   selfJ.@com.smartgwt.client.widgets.BaseWidget::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
-                   var ret = event.@com.smartgwt.client.event.Cancellable::isCancelled()();
-                   return !ret;
-               });
-        }
-   }-*/;
-    /**
-     * Add a click handler.
-     * <p>
-     * Executed when the left mouse is clicked (pressed and then released) on this widget.  No default implementation.
-     *
-     * @param handler the click handler
-     * @return {@link HandlerRegistration} used to remove this handler
-     */
-    public HandlerRegistration addClickHandler(com.smartgwt.client.widgets.events.ClickHandler handler) {
-        if(getHandlerCount(com.smartgwt.client.widgets.events.ClickEvent.getType()) == 0) setupClickEvent();
-        return doAddHandler(handler, com.smartgwt.client.widgets.events.ClickEvent.getType());
-    }
-
-    private native void setupClickEvent() /*-{
-        var obj = null;
-        var selfJ = this;
-        if(this.@com.smartgwt.client.widgets.BaseWidget::isCreated()()) {
-            obj = this.@com.smartgwt.client.widgets.BaseWidget::getJsObj()();
-            obj.addProperties({click:$entry(function(){
-                        var param = {};
-                        var event = @com.smartgwt.client.widgets.events.ClickEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
-                        selfJ.@com.smartgwt.client.widgets.BaseWidget::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
-                        var ret = event.@com.smartgwt.client.event.Cancellable::isCancelled()();
-                        return !ret;
-                    })
-             });
-        } else {
-            obj = this.@com.smartgwt.client.widgets.BaseWidget::getConfig()();
-            obj.click = $entry(function(){
-                   var param = {};
-                   var event = @com.smartgwt.client.widgets.events.ClickEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
-                   selfJ.@com.smartgwt.client.widgets.BaseWidget::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
-                   var ret = event.@com.smartgwt.client.event.Cancellable::isCancelled()();
-                   return !ret;
-               });
-        }
-   }-*/;
     /**
      * Add a doubleClick handler.
      * <p>
@@ -4354,26 +3177,26 @@ public class Canvas extends BaseWidget  implements com.smartgwt.client.widgets.e
         }
    }-*/;
     /**
-     * Add a mouseWheel handler.
+     * Add a dragMove handler.
      * <p>
-     * Executed when the mouse wheel is actuated.
+     * Executed every time the mouse moves while dragging this canvas.
      *
-     * @param handler the mouseWheel handler
+     * @param handler the dragMove handler
      * @return {@link HandlerRegistration} used to remove this handler
      */
-    public HandlerRegistration addMouseWheelHandler(com.smartgwt.client.widgets.events.MouseWheelHandler handler) {
-        if(getHandlerCount(com.smartgwt.client.widgets.events.MouseWheelEvent.getType()) == 0) setupMouseWheelEvent();
-        return doAddHandler(handler, com.smartgwt.client.widgets.events.MouseWheelEvent.getType());
+    public HandlerRegistration addDragMoveHandler(com.smartgwt.client.widgets.events.DragMoveHandler handler) {
+        if(getHandlerCount(com.smartgwt.client.widgets.events.DragMoveEvent.getType()) == 0) setupDragMoveEvent();
+        return doAddHandler(handler, com.smartgwt.client.widgets.events.DragMoveEvent.getType());
     }
 
-    private native void setupMouseWheelEvent() /*-{
+    private native void setupDragMoveEvent() /*-{
         var obj = null;
         var selfJ = this;
         if(this.@com.smartgwt.client.widgets.BaseWidget::isCreated()()) {
             obj = this.@com.smartgwt.client.widgets.BaseWidget::getJsObj()();
-            obj.addProperties({mouseWheel:$entry(function(){
+            obj.addProperties({dragMove:$entry(function(){
                         var param = {};
-                        var event = @com.smartgwt.client.widgets.events.MouseWheelEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
+                        var event = @com.smartgwt.client.widgets.events.DragMoveEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
                         selfJ.@com.smartgwt.client.widgets.BaseWidget::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
                         var ret = event.@com.smartgwt.client.event.Cancellable::isCancelled()();
                         return !ret;
@@ -4381,47 +3204,9 @@ public class Canvas extends BaseWidget  implements com.smartgwt.client.widgets.e
              });
         } else {
             obj = this.@com.smartgwt.client.widgets.BaseWidget::getConfig()();
-            obj.mouseWheel = $entry(function(){
+            obj.dragMove = $entry(function(){
                    var param = {};
-                   var event = @com.smartgwt.client.widgets.events.MouseWheelEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
-                   selfJ.@com.smartgwt.client.widgets.BaseWidget::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
-                   var ret = event.@com.smartgwt.client.event.Cancellable::isCancelled()();
-                   return !ret;
-               });
-        }
-   }-*/;
-    /**
-     * Add a dragRepositionStart handler.
-     * <p>
-     * Executed when dragging first starts. No default implementation.  Create this handler to set things up for the drag
-     * reposition.
-     *
-     * @param handler the dragRepositionStart handler
-     * @return {@link HandlerRegistration} used to remove this handler
-     */
-    public HandlerRegistration addDragRepositionStartHandler(com.smartgwt.client.widgets.events.DragRepositionStartHandler handler) {
-        if(getHandlerCount(com.smartgwt.client.widgets.events.DragRepositionStartEvent.getType()) == 0) setupDragRepositionStartEvent();
-        return doAddHandler(handler, com.smartgwt.client.widgets.events.DragRepositionStartEvent.getType());
-    }
-
-    private native void setupDragRepositionStartEvent() /*-{
-        var obj = null;
-        var selfJ = this;
-        if(this.@com.smartgwt.client.widgets.BaseWidget::isCreated()()) {
-            obj = this.@com.smartgwt.client.widgets.BaseWidget::getJsObj()();
-            obj.addProperties({dragRepositionStart:$entry(function(){
-                        var param = {};
-                        var event = @com.smartgwt.client.widgets.events.DragRepositionStartEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
-                        selfJ.@com.smartgwt.client.widgets.BaseWidget::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
-                        var ret = event.@com.smartgwt.client.event.Cancellable::isCancelled()();
-                        return !ret;
-                    })
-             });
-        } else {
-            obj = this.@com.smartgwt.client.widgets.BaseWidget::getConfig()();
-            obj.dragRepositionStart = $entry(function(){
-                   var param = {};
-                   var event = @com.smartgwt.client.widgets.events.DragRepositionStartEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
+                   var event = @com.smartgwt.client.widgets.events.DragMoveEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
                    selfJ.@com.smartgwt.client.widgets.BaseWidget::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
                    var ret = event.@com.smartgwt.client.event.Cancellable::isCancelled()();
                    return !ret;
@@ -4462,6 +3247,44 @@ public class Canvas extends BaseWidget  implements com.smartgwt.client.widgets.e
             obj.dragRepositionMove = $entry(function(){
                    var param = {};
                    var event = @com.smartgwt.client.widgets.events.DragRepositionMoveEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
+                   selfJ.@com.smartgwt.client.widgets.BaseWidget::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
+                   var ret = event.@com.smartgwt.client.event.Cancellable::isCancelled()();
+                   return !ret;
+               });
+        }
+   }-*/;
+    /**
+     * Add a dragRepositionStart handler.
+     * <p>
+     * Executed when dragging first starts. No default implementation.  Create this handler to set things up for the drag
+     * reposition.
+     *
+     * @param handler the dragRepositionStart handler
+     * @return {@link HandlerRegistration} used to remove this handler
+     */
+    public HandlerRegistration addDragRepositionStartHandler(com.smartgwt.client.widgets.events.DragRepositionStartHandler handler) {
+        if(getHandlerCount(com.smartgwt.client.widgets.events.DragRepositionStartEvent.getType()) == 0) setupDragRepositionStartEvent();
+        return doAddHandler(handler, com.smartgwt.client.widgets.events.DragRepositionStartEvent.getType());
+    }
+
+    private native void setupDragRepositionStartEvent() /*-{
+        var obj = null;
+        var selfJ = this;
+        if(this.@com.smartgwt.client.widgets.BaseWidget::isCreated()()) {
+            obj = this.@com.smartgwt.client.widgets.BaseWidget::getJsObj()();
+            obj.addProperties({dragRepositionStart:$entry(function(){
+                        var param = {};
+                        var event = @com.smartgwt.client.widgets.events.DragRepositionStartEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
+                        selfJ.@com.smartgwt.client.widgets.BaseWidget::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
+                        var ret = event.@com.smartgwt.client.event.Cancellable::isCancelled()();
+                        return !ret;
+                    })
+             });
+        } else {
+            obj = this.@com.smartgwt.client.widgets.BaseWidget::getConfig()();
+            obj.dragRepositionStart = $entry(function(){
+                   var param = {};
+                   var event = @com.smartgwt.client.widgets.events.DragRepositionStartEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
                    selfJ.@com.smartgwt.client.widgets.BaseWidget::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
                    var ret = event.@com.smartgwt.client.event.Cancellable::isCancelled()();
                    return !ret;
@@ -4510,44 +3333,6 @@ public class Canvas extends BaseWidget  implements com.smartgwt.client.widgets.e
         }
    }-*/;
     /**
-     * Add a dragResizeStart handler.
-     * <p>
-     * Executed when resize dragging first starts. No default implementation.   Create this handler to set things up for the
-     * drag resize.
-     *
-     * @param handler the dragResizeStart handler
-     * @return {@link HandlerRegistration} used to remove this handler
-     */
-    public HandlerRegistration addDragResizeStartHandler(com.smartgwt.client.widgets.events.DragResizeStartHandler handler) {
-        if(getHandlerCount(com.smartgwt.client.widgets.events.DragResizeStartEvent.getType()) == 0) setupDragResizeStartEvent();
-        return doAddHandler(handler, com.smartgwt.client.widgets.events.DragResizeStartEvent.getType());
-    }
-
-    private native void setupDragResizeStartEvent() /*-{
-        var obj = null;
-        var selfJ = this;
-        if(this.@com.smartgwt.client.widgets.BaseWidget::isCreated()()) {
-            obj = this.@com.smartgwt.client.widgets.BaseWidget::getJsObj()();
-            obj.addProperties({dragResizeStart:$entry(function(){
-                        var param = {};
-                        var event = @com.smartgwt.client.widgets.events.DragResizeStartEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
-                        selfJ.@com.smartgwt.client.widgets.BaseWidget::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
-                        var ret = event.@com.smartgwt.client.event.Cancellable::isCancelled()();
-                        return !ret;
-                    })
-             });
-        } else {
-            obj = this.@com.smartgwt.client.widgets.BaseWidget::getConfig()();
-            obj.dragResizeStart = $entry(function(){
-                   var param = {};
-                   var event = @com.smartgwt.client.widgets.events.DragResizeStartEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
-                   selfJ.@com.smartgwt.client.widgets.BaseWidget::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
-                   var ret = event.@com.smartgwt.client.event.Cancellable::isCancelled()();
-                   return !ret;
-               });
-        }
-   }-*/;
-    /**
      * Add a dragResizeMove handler.
      * <p>
      * Executed every time the mouse moves while drag-resizing. If this method does not return false, the {@link
@@ -4581,6 +3366,44 @@ public class Canvas extends BaseWidget  implements com.smartgwt.client.widgets.e
             obj.dragResizeMove = $entry(function(){
                    var param = {};
                    var event = @com.smartgwt.client.widgets.events.DragResizeMoveEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
+                   selfJ.@com.smartgwt.client.widgets.BaseWidget::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
+                   var ret = event.@com.smartgwt.client.event.Cancellable::isCancelled()();
+                   return !ret;
+               });
+        }
+   }-*/;
+    /**
+     * Add a dragResizeStart handler.
+     * <p>
+     * Executed when resize dragging first starts. No default implementation.   Create this handler to set things up for the
+     * drag resize.
+     *
+     * @param handler the dragResizeStart handler
+     * @return {@link HandlerRegistration} used to remove this handler
+     */
+    public HandlerRegistration addDragResizeStartHandler(com.smartgwt.client.widgets.events.DragResizeStartHandler handler) {
+        if(getHandlerCount(com.smartgwt.client.widgets.events.DragResizeStartEvent.getType()) == 0) setupDragResizeStartEvent();
+        return doAddHandler(handler, com.smartgwt.client.widgets.events.DragResizeStartEvent.getType());
+    }
+
+    private native void setupDragResizeStartEvent() /*-{
+        var obj = null;
+        var selfJ = this;
+        if(this.@com.smartgwt.client.widgets.BaseWidget::isCreated()()) {
+            obj = this.@com.smartgwt.client.widgets.BaseWidget::getJsObj()();
+            obj.addProperties({dragResizeStart:$entry(function(){
+                        var param = {};
+                        var event = @com.smartgwt.client.widgets.events.DragResizeStartEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
+                        selfJ.@com.smartgwt.client.widgets.BaseWidget::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
+                        var ret = event.@com.smartgwt.client.event.Cancellable::isCancelled()();
+                        return !ret;
+                    })
+             });
+        } else {
+            obj = this.@com.smartgwt.client.widgets.BaseWidget::getConfig()();
+            obj.dragResizeStart = $entry(function(){
+                   var param = {};
+                   var event = @com.smartgwt.client.widgets.events.DragResizeStartEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
                    selfJ.@com.smartgwt.client.widgets.BaseWidget::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
                    var ret = event.@com.smartgwt.client.event.Cancellable::isCancelled()();
                    return !ret;
@@ -4669,43 +3492,6 @@ public class Canvas extends BaseWidget  implements com.smartgwt.client.widgets.e
         }
    }-*/;
     /**
-     * Add a dragMove handler.
-     * <p>
-     * Executed every time the mouse moves while dragging this canvas.
-     *
-     * @param handler the dragMove handler
-     * @return {@link HandlerRegistration} used to remove this handler
-     */
-    public HandlerRegistration addDragMoveHandler(com.smartgwt.client.widgets.events.DragMoveHandler handler) {
-        if(getHandlerCount(com.smartgwt.client.widgets.events.DragMoveEvent.getType()) == 0) setupDragMoveEvent();
-        return doAddHandler(handler, com.smartgwt.client.widgets.events.DragMoveEvent.getType());
-    }
-
-    private native void setupDragMoveEvent() /*-{
-        var obj = null;
-        var selfJ = this;
-        if(this.@com.smartgwt.client.widgets.BaseWidget::isCreated()()) {
-            obj = this.@com.smartgwt.client.widgets.BaseWidget::getJsObj()();
-            obj.addProperties({dragMove:$entry(function(){
-                        var param = {};
-                        var event = @com.smartgwt.client.widgets.events.DragMoveEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
-                        selfJ.@com.smartgwt.client.widgets.BaseWidget::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
-                        var ret = event.@com.smartgwt.client.event.Cancellable::isCancelled()();
-                        return !ret;
-                    })
-             });
-        } else {
-            obj = this.@com.smartgwt.client.widgets.BaseWidget::getConfig()();
-            obj.dragMove = $entry(function(){
-                   var param = {};
-                   var event = @com.smartgwt.client.widgets.events.DragMoveEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
-                   selfJ.@com.smartgwt.client.widgets.BaseWidget::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
-                   var ret = event.@com.smartgwt.client.event.Cancellable::isCancelled()();
-                   return !ret;
-               });
-        }
-   }-*/;
-    /**
      * Add a dragStop handler.
      * <p>
      * Executed when the mouse button is released at the end of the drag. Your widget can use this opportunity to fire code
@@ -4737,44 +3523,6 @@ public class Canvas extends BaseWidget  implements com.smartgwt.client.widgets.e
             obj.dragStop = $entry(function(){
                    var param = {};
                    var event = @com.smartgwt.client.widgets.events.DragStopEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
-                   selfJ.@com.smartgwt.client.widgets.BaseWidget::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
-                   var ret = event.@com.smartgwt.client.event.Cancellable::isCancelled()();
-                   return !ret;
-               });
-        }
-   }-*/;
-    /**
-     * Add a dropOver handler.
-     * <p>
-     * Executed when the compatible dragged object is first moved over this drop target. Your implementation can use this to
-     * show a custom visual indication that the object can be dropped here.
-     *
-     * @param handler the dropOver handler
-     * @return {@link HandlerRegistration} used to remove this handler
-     */
-    public HandlerRegistration addDropOverHandler(com.smartgwt.client.widgets.events.DropOverHandler handler) {
-        if(getHandlerCount(com.smartgwt.client.widgets.events.DropOverEvent.getType()) == 0) setupDropOverEvent();
-        return doAddHandler(handler, com.smartgwt.client.widgets.events.DropOverEvent.getType());
-    }
-
-    private native void setupDropOverEvent() /*-{
-        var obj = null;
-        var selfJ = this;
-        if(this.@com.smartgwt.client.widgets.BaseWidget::isCreated()()) {
-            obj = this.@com.smartgwt.client.widgets.BaseWidget::getJsObj()();
-            obj.addProperties({dropOver:$entry(function(){
-                        var param = {};
-                        var event = @com.smartgwt.client.widgets.events.DropOverEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
-                        selfJ.@com.smartgwt.client.widgets.BaseWidget::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
-                        var ret = event.@com.smartgwt.client.event.Cancellable::isCancelled()();
-                        return !ret;
-                    })
-             });
-        } else {
-            obj = this.@com.smartgwt.client.widgets.BaseWidget::getConfig()();
-            obj.dropOver = $entry(function(){
-                   var param = {};
-                   var event = @com.smartgwt.client.widgets.events.DropOverEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
                    selfJ.@com.smartgwt.client.widgets.BaseWidget::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
                    var ret = event.@com.smartgwt.client.event.Cancellable::isCancelled()();
                    return !ret;
@@ -4858,6 +3606,607 @@ public class Canvas extends BaseWidget  implements com.smartgwt.client.widgets.e
         }
    }-*/;
     /**
+     * Add a dropOver handler.
+     * <p>
+     * Executed when the compatible dragged object is first moved over this drop target. Your implementation can use this to
+     * show a custom visual indication that the object can be dropped here.
+     *
+     * @param handler the dropOver handler
+     * @return {@link HandlerRegistration} used to remove this handler
+     */
+    public HandlerRegistration addDropOverHandler(com.smartgwt.client.widgets.events.DropOverHandler handler) {
+        if(getHandlerCount(com.smartgwt.client.widgets.events.DropOverEvent.getType()) == 0) setupDropOverEvent();
+        return doAddHandler(handler, com.smartgwt.client.widgets.events.DropOverEvent.getType());
+    }
+
+    private native void setupDropOverEvent() /*-{
+        var obj = null;
+        var selfJ = this;
+        if(this.@com.smartgwt.client.widgets.BaseWidget::isCreated()()) {
+            obj = this.@com.smartgwt.client.widgets.BaseWidget::getJsObj()();
+            obj.addProperties({dropOver:$entry(function(){
+                        var param = {};
+                        var event = @com.smartgwt.client.widgets.events.DropOverEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
+                        selfJ.@com.smartgwt.client.widgets.BaseWidget::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
+                        var ret = event.@com.smartgwt.client.event.Cancellable::isCancelled()();
+                        return !ret;
+                    })
+             });
+        } else {
+            obj = this.@com.smartgwt.client.widgets.BaseWidget::getConfig()();
+            obj.dropOver = $entry(function(){
+                   var param = {};
+                   var event = @com.smartgwt.client.widgets.events.DropOverEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
+                   selfJ.@com.smartgwt.client.widgets.BaseWidget::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
+                   var ret = event.@com.smartgwt.client.event.Cancellable::isCancelled()();
+                   return !ret;
+               });
+        }
+   }-*/;
+            
+    /**
+     * Enables this widget and any children / peers of this widget.
+     */
+    public native void enable() /*-{
+        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
+        self.enable();
+    }-*/;
+            
+    /**
+     * If this canvas can accept focus, give it keyboard focus. After this method, the canvas will appear focused and will
+     * receive keyboard events.
+     */
+    public native void focus() /*-{
+        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
+        self.focus();
+    }-*/;
+    /**
+     * Add a focusChanged handler.
+     * <p>
+     * Notification function fired when this widget receives or loses keyboard focus.
+     *
+     * @param handler the focusChanged handler
+     * @return {@link HandlerRegistration} used to remove this handler
+     */
+    public HandlerRegistration addFocusChangedHandler(com.smartgwt.client.widgets.events.FocusChangedHandler handler) {
+        if(getHandlerCount(com.smartgwt.client.widgets.events.FocusChangedEvent.getType()) == 0) setupFocusChangedEvent();
+        return doAddHandler(handler, com.smartgwt.client.widgets.events.FocusChangedEvent.getType());
+    }
+
+    private native void setupFocusChangedEvent() /*-{
+        var obj = null;
+        var selfJ = this;
+        if(this.@com.smartgwt.client.widgets.BaseWidget::isCreated()()) {
+            obj = this.@com.smartgwt.client.widgets.BaseWidget::getJsObj()();
+            obj.addProperties({focusChanged:$entry(function(){
+                        var param = {"hasFocus" : arguments[0]};
+                        var event = @com.smartgwt.client.widgets.events.FocusChangedEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
+                        selfJ.@com.smartgwt.client.widgets.BaseWidget::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
+                    })
+             });
+        } else {
+            obj = this.@com.smartgwt.client.widgets.BaseWidget::getConfig()();
+            obj.focusChanged = $entry(function(){
+                   var param = {"hasFocus" : arguments[0]};
+                   var event = @com.smartgwt.client.widgets.events.FocusChangedEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
+                   selfJ.@com.smartgwt.client.widgets.BaseWidget::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
+               });
+        }
+   }-*/;
+            
+    /**
+     * Return the bottom coordinate of this object as rendered, relative to its enclosing context, in pixels.
+     *
+     * @return bottom coordinate
+     */
+    public native int getBottom() /*-{
+        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
+        return self.getBottom();
+    }-*/;
+            
+    /**
+     * Returns a fully qualified {@link com.smartgwt.client..dataPath} for this canvas. This is calculated by combining the
+     * canvas' specified {@link com.smartgwt.client.widgets.Canvas#getDataPath dataPath} with the <code>dataPath</code> of any
+     * parent  canvases up to whichever canvas has a specified {@link com.smartgwt.client.widgets.Canvas#getValuesManager
+     * valuesManager} specified to actually manage values from this component.
+     *
+     * @return fully qualified dataPath for this component
+     */
+    public native String getFullDataPath() /*-{
+        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
+        return self.getFullDataPath();
+    }-*/;
+            
+    /**
+     * If <code>this.showHover</code> is true, when the user holds the mouse over this Canvas for long enough to trigger a
+     * hover event, a hover canvas is shown by default. This method returns the contents of that hover canvas. Default
+     * implementation returns <code>this.prompt</code> - override for custom hover HTML. Note that returning <code>null</code>
+     * or an empty string will suppress the hover canvas altogether.
+     */
+    public native void getHoverHTML() /*-{
+        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
+        self.getHoverHTML();
+    }-*/;
+            
+    /**
+     * Get an offset to be used when calculating snap positioning. Returns 0 by default.
+     *
+     * @return The offset to use when snapping
+     */
+    public native int getHSnapOrigin() /*-{
+        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
+        return self.getHSnapOrigin();
+    }-*/;
+
+    /**
+     * Get an offset to be used when calculating snap positioning. Returns 0 by default.
+     * @param snapChild the child that is being snapped
+     *
+     * @return The offset to use when snapping
+     */
+    public native int getHSnapOrigin(Canvas snapChild) /*-{
+        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
+        return self.getHSnapOrigin(snapChild.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()());
+    }-*/;
+            
+    /**
+     * Override this method to provide a custom snap-to grid.  Note that you do not need to do this if your grid is regular
+     * (ie, grid points are every x pixels); regular grids should be  defined using {@link
+     * com.smartgwt.client.widgets.Canvas#getSnapHGap snapHGap} and {@link com.smartgwt.client.widgets.Canvas#getSnapVGap
+     * snapVGap}. You should only override this method if you want to provide support for a grid of  irregularly-placed points
+     * @param coordinate x-coordinate of the drag event relative to the inside of this widget
+     *
+     * @return The horizontal coordinate to snap to
+     */
+    public native int getHSnapPosition(int coordinate) /*-{
+        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
+        return self.getHSnapPosition(coordinate);
+    }-*/;
+
+    /**
+     * Override this method to provide a custom snap-to grid.  Note that you do not need to do this if your grid is regular
+     * (ie, grid points are every x pixels); regular grids should be  defined using {@link
+     * com.smartgwt.client.widgets.Canvas#getSnapHGap snapHGap} and {@link com.smartgwt.client.widgets.Canvas#getSnapVGap
+     * snapVGap}. You should only override this method if you want to provide support for a grid of  irregularly-placed points
+     * @param coordinate x-coordinate of the drag event relative to the inside of this widget
+     * @param direction "before" or "after" denoting whether the returned coordinate should   match the left or right edge of the current
+     * square. If unset {@link com.smartgwt.client.widgets.Canvas#getSnapHDirection snapHDirection} will   be used by default
+     *
+     * @return The horizontal coordinate to snap to
+     */
+    public native int getHSnapPosition(int coordinate, String direction) /*-{
+        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
+        return self.getHSnapPosition(coordinate, direction);
+    }-*/;
+            
+    /**
+     * Returns the amount of space available for interior content (or relatively positioned child  widget(s)) without
+     * introducing clipping, scrolling or overflow.<br>  This is the space within the viewport of the widget (not including
+     * padding, and excluding   margins, borders or scrollbars) rendered at its specified size.
+     *
+     * @return inner height of the widget in pixels
+     */
+    public native int getInnerContentHeight() /*-{
+        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
+        return self.getInnerContentHeight();
+    }-*/;
+            
+    /**
+     * Returns the amount of space available for interior content (or relatively positioned child  widget(s)) without
+     * introducing clipping, scrolling or overflow.<br>  This is the space within the viewport of the widget (not including
+     * padding, and excluding   margins, borders or scrollbars) rendered at its specified size.
+     *
+     * @return inner height of the widget in pixels
+     */
+    public native int getInnerContentWidth() /*-{
+        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
+        return self.getInnerContentWidth();
+    }-*/;
+            
+    /**
+     * Returns the amount of space available for (an) absolutely positioned child widget(s) or   HTML content, without
+     * introducing clipping, scrolling or overflow.<br>  This is the space within the viewport of the widget (including
+     * padding, but excluding   margins, borders or scrollbars) rendered at its specified size.
+     *
+     * @return inner height of the widget in pixels
+     */
+    public native int getInnerHeight() /*-{
+        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
+        return self.getInnerHeight();
+    }-*/;
+            
+    /**
+     * Returns the amount of space available for (an) absolutely positioned child widget(s) or   HTML content, without
+     * introducing clipping, scrolling or overflow.<br>  This is the space within the viewport of the widget (including
+     * padding, but excluding   margins, borders or scrollbars) rendered at its specified size.
+     *
+     * @return inner width of the widget in pixels
+     */
+    public native int getInnerWidth() /*-{
+        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
+        return self.getInnerWidth();
+    }-*/;
+            
+    /**
+     * Return the X-coordinate of the last event relative to the left edge of the content of this Canvas.<br><br>  NOTE: To get
+     * a coordinate relative to the <b>viewport</b> of this Canvas, subtract  this.getScrollLeft()
+     *
+     * @return 
+     */
+    public native int getOffsetX() /*-{
+        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
+        return self.getOffsetX();
+    }-*/;
+            
+    /**
+     * Return the Y-coordinate of the last event, relative to the top edge of the content of this Canvas.<br><br>  NOTE: To get
+     * a coordinate relative to the <b>viewport</b> of this Canvas, subtract  this.getScrollTop()
+     *
+     * @return 
+     */
+    public native int getOffsetY() /*-{
+        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
+        return self.getOffsetY();
+    }-*/;
+            
+    /**
+     * Return the page-relative bottom coordinate of this object, in pixels.
+     *
+     * @return GLOBAL bottom coordinate
+     */
+    public native int getPageBottom() /*-{
+        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
+        return self.getPageBottom();
+    }-*/;
+            
+    /**
+     * Returns the page-relative left coordinate of the widget on the page, in pixels.
+     *
+     * @return global left coordinate
+     */
+    public native int getPageLeft() /*-{
+        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
+        return self.getPageLeft();
+    }-*/;
+            
+    /**
+     * Return the page-relative right coordinate of this object, in pixels.
+     *
+     * @return GLOBAL right coordinate
+     */
+    public native int getPageRight() /*-{
+        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
+        return self.getPageRight();
+    }-*/;
+            
+    /**
+     * Returns the page-relative top coordinate of the widget on the page, in pixels
+     *
+     * @return GLOBAL top coordinate
+     */
+    public native int getPageTop() /*-{
+        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
+        return self.getPageTop();
+    }-*/;
+            
+    /**
+     * Return the right coordinate of this object as rendered, relative to its enclosing context, in pixels.
+     *
+     * @return right coordinate
+     */
+    public native int getRight() /*-{
+        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
+        return self.getRight();
+    }-*/;
+            
+    /**
+     * Returns the scrollable height of the widget's contents, including children, ignoring          clipping.
+     *
+     * @return height of the element that can scroll
+     */
+    public native int getScrollHeight() /*-{
+        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
+        return self.getScrollHeight();
+    }-*/;
+            
+    /**
+     * Get the number of pixels this Canvas is scrolled from its left edge.
+     *
+     * @return scrollLeft
+     */
+    public native int getScrollLeft() /*-{
+        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
+        return self.getScrollLeft();
+    }-*/;
+            
+    /**
+     * Get the number of pixels this Canvas is scrolled from its top edge.
+     *
+     * @return scrollTop
+     */
+    public native int getScrollTop() /*-{
+        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
+        return self.getScrollTop();
+    }-*/;
+            
+    /**
+     * Returns the scrollable width of the widget's contents, including children, ignoring clipping.
+     *
+     * @return the scrollable width of the widget's contents
+     */
+    public native int getScrollWidth() /*-{
+        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
+        return self.getScrollWidth();
+    }-*/;
+            
+    /**
+     * Returns the height of the viewport onto the scrollable content.
+     *
+     * @return height of the viewport, in pixels
+     */
+    public native int getViewportHeight() /*-{
+        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
+        return self.getViewportHeight();
+    }-*/;
+            
+    /**
+     * Returns the width of the viewport onto the scrollable content.
+     *
+     * @return width of the viewport, in pixels
+     */
+    public native int getViewportWidth() /*-{
+        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
+        return self.getViewportWidth();
+    }-*/;
+            
+    /**
+     * Return the visible height of the Canvas.
+     *
+     * @return visible height in pixels
+     */
+    public native int getVisibleHeight() /*-{
+        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
+        return self.getVisibleHeight();
+    }-*/;
+            
+    /**
+     * Return the visible width of the Canvas.
+     *
+     * @return visible width in pixels
+     */
+    public native int getVisibleWidth() /*-{
+        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
+        return self.getVisibleWidth();
+    }-*/;
+            
+    /**
+     * Get an offset to be used when calculating snap positioning. Returns 0 by default.
+     *
+     * @return The offset to use when snapping
+     */
+    public native int getVSnapOrigin() /*-{
+        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
+        return self.getVSnapOrigin();
+    }-*/;
+
+    /**
+     * Get an offset to be used when calculating snap positioning. Returns 0 by default.
+     * @param snapChild the child that is being snapped
+     *
+     * @return The offset to use when snapping
+     */
+    public native int getVSnapOrigin(Canvas snapChild) /*-{
+        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
+        return self.getVSnapOrigin(snapChild.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()());
+    }-*/;
+            
+    /**
+     * Override this method to provide a custom snap-to grid.  Note that you do not need to do this if your grid is regular
+     * (ie, grid points are every x pixels) - regular grids should be  defined using {@link
+     * com.smartgwt.client.widgets.Canvas#getSnapHGap snapHGap} and {@link com.smartgwt.client.widgets.Canvas#getSnapVGap
+     * snapVGap}. You should only override this method if you want to provide support for a grid of  irregularly-placed points
+     * @param coordinate y-coordinate of the drag event relative to the inside of this widget
+     *
+     * @return The vertical coordinate to snap to
+     */
+    public native int getVSnapPosition(int coordinate) /*-{
+        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
+        return self.getVSnapPosition(coordinate);
+    }-*/;
+
+    /**
+     * Override this method to provide a custom snap-to grid.  Note that you do not need to do this if your grid is regular
+     * (ie, grid points are every x pixels) - regular grids should be  defined using {@link
+     * com.smartgwt.client.widgets.Canvas#getSnapHGap snapHGap} and {@link com.smartgwt.client.widgets.Canvas#getSnapVGap
+     * snapVGap}. You should only override this method if you want to provide support for a grid of  irregularly-placed points
+     * @param coordinate y-coordinate of the drag event relative to the inside of this widget
+     * @param direction "before" or "after" denoting whether the returned coordinate should   match the top or bottom edge of the current
+     * square. If unset {@link com.smartgwt.client.widgets.Canvas#getSnapHDirection snapHDirection} will   be used by default
+     *
+     * @return The vertical coordinate to snap to
+     */
+    public native int getVSnapPosition(int coordinate, String direction) /*-{
+        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
+        return self.getVSnapPosition(coordinate, direction);
+    }-*/;
+            
+    /**
+     * Handler fired on a delay when the user hovers the mouse over this hover-target. Default implementation will fire
+     * <code>this.hover()</code> (if defined), and handle  showing the hover canvas if <code>this.showHover</code> is true.
+     */
+    public native void handleHover() /*-{
+        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
+        self.handleHover();
+    }-*/;
+            
+    /**
+     * Sets the widget's CSS visibility attribute to "hidden".
+     */
+    public native void hide() /*-{
+        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
+        self.hide();
+    }-*/;
+            
+    /**
+     * Hides the click mask associated with this canvas.
+     */
+    public native void hideClickMask() /*-{
+        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
+        self.hideClickMask();
+    }-*/;
+
+    /**
+     * Hides the click mask associated with this canvas.
+     * @param ID optional ID of specific clickMask to hide. If not passed,                       defaults to hiding the click mask
+     * associated with this widget only.
+     */
+    public native void hideClickMask(String ID) /*-{
+        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
+        self.hideClickMask(ID);
+    }-*/;
+            
+    /**
+     * The default implementation of this method hides the contextMenu currently being shown for this component (which occurs
+     * when the mouse button that toggles the context menu is released). Override if you want some other behavior.
+     */
+    public native void hideContextMenu() /*-{
+        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
+        self.hideContextMenu();
+    }-*/;
+    /**
+     * Add a hover handler.
+     * <p>
+     * If <code>canHover</code> is true for this widget, the <code>hover</code> string method will be fired when the user
+     * hovers over this canvas. If this method returns false, it will suppress the default behavior of showing a hover canvas
+     * if <code>this.showHover</code>  is true.
+     *
+     * @param handler the hover handler
+     * @return {@link HandlerRegistration} used to remove this handler
+     */
+    public HandlerRegistration addHoverHandler(com.smartgwt.client.widgets.events.HoverHandler handler) {
+        if(getHandlerCount(com.smartgwt.client.widgets.events.HoverEvent.getType()) == 0) setupHoverEvent();
+        return doAddHandler(handler, com.smartgwt.client.widgets.events.HoverEvent.getType());
+    }
+
+    private native void setupHoverEvent() /*-{
+        var obj = null;
+        var selfJ = this;
+        if(this.@com.smartgwt.client.widgets.BaseWidget::isCreated()()) {
+            obj = this.@com.smartgwt.client.widgets.BaseWidget::getJsObj()();
+            obj.addProperties({hover:$entry(function(){
+                        var param = {};
+                        var event = @com.smartgwt.client.widgets.events.HoverEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
+                        selfJ.@com.smartgwt.client.widgets.BaseWidget::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
+                    })
+             });
+        } else {
+            obj = this.@com.smartgwt.client.widgets.BaseWidget::getConfig()();
+            obj.hover = $entry(function(){
+                   var param = {};
+                   var event = @com.smartgwt.client.widgets.events.HoverEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
+                   selfJ.@com.smartgwt.client.widgets.BaseWidget::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
+               });
+        }
+   }-*/;
+    /**
+     * Add a hoverHidden handler.
+     * <p>
+     * If {@link com.smartgwt.client.widgets.Canvas#getShowHover 'showHover'} is true for this canvas, this notification method
+     * will be fired whenever the hover shown in response to {@link com.smartgwt.client.widgets.Canvas#handleHover} is  hidden.
+     * This method may be observed or overridden.
+     *
+     * @param handler the hoverHidden handler
+     * @return {@link HandlerRegistration} used to remove this handler
+     */
+    public HandlerRegistration addHoverHiddenHandler(com.smartgwt.client.widgets.events.HoverHiddenHandler handler) {
+        if(getHandlerCount(com.smartgwt.client.widgets.events.HoverHiddenEvent.getType()) == 0) setupHoverHiddenEvent();
+        return doAddHandler(handler, com.smartgwt.client.widgets.events.HoverHiddenEvent.getType());
+    }
+
+    private native void setupHoverHiddenEvent() /*-{
+        var obj = null;
+        var selfJ = this;
+        if(this.@com.smartgwt.client.widgets.BaseWidget::isCreated()()) {
+            obj = this.@com.smartgwt.client.widgets.BaseWidget::getJsObj()();
+            obj.addProperties({hoverHidden:$entry(function(){
+                        var param = {};
+                        var event = @com.smartgwt.client.widgets.events.HoverHiddenEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
+                        selfJ.@com.smartgwt.client.widgets.BaseWidget::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
+                    })
+             });
+        } else {
+            obj = this.@com.smartgwt.client.widgets.BaseWidget::getConfig()();
+            obj.hoverHidden = $entry(function(){
+                   var param = {};
+                   var event = @com.smartgwt.client.widgets.events.HoverHiddenEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
+                   selfJ.@com.smartgwt.client.widgets.BaseWidget::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
+               });
+        }
+   }-*/;
+            
+    /**
+     * Returns true if the rectangles of this widget and the specified widget overlap.
+     * @param other other canvas to test for intersection
+     *
+     * @return true if this canvas intersects other; false otherwise
+     */
+    public native Boolean intersects(Canvas other) /*-{
+        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
+        var retVal =self.intersects(other.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()());
+        if(retVal == null || retVal === undefined) {
+            return null;
+        } else {
+            return @com.smartgwt.client.util.JSOHelper::toBoolean(Z)(retVal);
+        }
+    }-*/;
+            
+    /**
+     * Returns whether a canvas is waiting to be redrawn. Will return true if  {@link
+     * com.smartgwt.client.widgets.Canvas#markForRedraw} has been called, but this canvas has not yet been redrawn.
+     *
+     * @return true is this canvas needs to be redrawn; false otherwise
+     */
+    public native Boolean isDirty() /*-{
+        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
+        var retVal =self.isDirty();
+        if(retVal == null || retVal === undefined) {
+            return null;
+        } else {
+            return @com.smartgwt.client.util.JSOHelper::toBoolean(Z)(retVal);
+        }
+    }-*/;
+            
+    /**
+     * Is this canvas disabled? Note that the disabled state is inherited - this method will return true if this widget, or any
+     * of its ancestors are marked disabled.
+     *
+     * @return true if the widget or any widget above it in the containment hierarchy                      are disabled.
+     */
+    public native Boolean isDisabled() /*-{
+        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
+        var retVal =self.isDisabled();
+        if(retVal == null || retVal === undefined) {
+            return null;
+        } else {
+            return @com.smartgwt.client.util.JSOHelper::toBoolean(Z)(retVal);
+        }
+    }-*/;
+            
+    /**
+     * Returns the boolean true, if the widget has been completely drawn, and false otherwise.
+     *
+     * @return true if drawn, false if not drawn
+     */
+    public native Boolean isDrawn() /*-{
+        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
+        var retVal =self.isDrawn();
+        if(retVal == null || retVal === undefined) {
+            return null;
+        } else {
+            return @com.smartgwt.client.util.JSOHelper::toBoolean(Z)(retVal);
+        }
+    }-*/;
+    /**
      * Add a keyDown handler.
      * <p>
      * Executed when a key is pressed on a focusable widget ({@link com.smartgwt.client.widgets.Canvas#getCanFocus canFocus}:
@@ -4897,24 +4246,6 @@ public class Canvas extends BaseWidget  implements com.smartgwt.client.widgets.e
                });
         }
    }-*/;
-            
-    /**
-     * Executed when a key is released on a focusable widget ({@link com.smartgwt.client.widgets.Canvas#getCanFocus canFocus}:
-     * true).  <P> Use {@link com.smartgwt.client.util.EventHandler#getKey} to find out the {@link
-     * com.smartgwt.client..KeyName} of the key that was pressed, and use {@link
-     * com.smartgwt.client.util.EventHandler#shiftKeyDown} and related functions to determine whether modifier keys were down.
-     *
-     * @return false to prevent this event from bubbling to this widget's parent, true or undefined to bubble.
-     */
-    public native Boolean keyUp() /*-{
-        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
-        var retVal =self.keyUp();
-        if(retVal == null || retVal === undefined) {
-            return null;
-        } else {
-            return @com.smartgwt.client.util.JSOHelper::toBoolean(Z)(retVal);
-        }
-    }-*/;
     /**
      * Add a keyPress handler.
      * <p>
@@ -4957,86 +4288,43 @@ public class Canvas extends BaseWidget  implements com.smartgwt.client.widgets.e
    }-*/;
             
     /**
-     * Override this method to provide a custom snap-to grid.  Note that you do not need to do this if your grid is regular
-     * (ie, grid points are every x pixels); regular grids should be  defined using {@link
-     * com.smartgwt.client.widgets.Canvas#getSnapHGap snapHGap} and {@link com.smartgwt.client.widgets.Canvas#getSnapVGap
-     * snapVGap}. You should only override this method if you want to provide support for a grid of  irregularly-placed points
-     * @param coordinate x-coordinate of the drag event relative to the inside of this widget
+     * Executed when a key is released on a focusable widget ({@link com.smartgwt.client.widgets.Canvas#getCanFocus canFocus}:
+     * true).  <P> Use {@link com.smartgwt.client.util.EventHandler#getKey} to find out the {@link
+     * com.smartgwt.client..KeyName} of the key that was pressed, and use {@link
+     * com.smartgwt.client.util.EventHandler#shiftKeyDown} and related functions to determine whether modifier keys were down.
      *
-     * @return The horizontal coordinate to snap to
+     * @return false to prevent this event from bubbling to this widget's parent, true or undefined to bubble.
      */
-    public native int getHSnapPosition(int coordinate) /*-{
+    public native Boolean keyUp() /*-{
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
-        return self.getHSnapPosition(coordinate);
-    }-*/;
-
-    /**
-     * Override this method to provide a custom snap-to grid.  Note that you do not need to do this if your grid is regular
-     * (ie, grid points are every x pixels); regular grids should be  defined using {@link
-     * com.smartgwt.client.widgets.Canvas#getSnapHGap snapHGap} and {@link com.smartgwt.client.widgets.Canvas#getSnapVGap
-     * snapVGap}. You should only override this method if you want to provide support for a grid of  irregularly-placed points
-     * @param coordinate x-coordinate of the drag event relative to the inside of this widget
-     * @param direction "before" or "after" denoting whether the returned coordinate should   match the left or right edge of the current
-     * square. If unset {@link com.smartgwt.client.widgets.Canvas#getSnapHDirection snapHDirection} will   be used by default
-     *
-     * @return The horizontal coordinate to snap to
-     */
-    public native int getHSnapPosition(int coordinate, String direction) /*-{
-        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
-        return self.getHSnapPosition(coordinate, direction);
+        var retVal =self.keyUp();
+        if(retVal == null || retVal === undefined) {
+            return null;
+        } else {
+            return @com.smartgwt.client.util.JSOHelper::toBoolean(Z)(retVal);
+        }
     }-*/;
             
     /**
-     * Override this method to provide a custom snap-to grid.  Note that you do not need to do this if your grid is regular
-     * (ie, grid points are every x pixels) - regular grids should be  defined using {@link
-     * com.smartgwt.client.widgets.Canvas#getSnapHGap snapHGap} and {@link com.smartgwt.client.widgets.Canvas#getSnapVGap
-     * snapVGap}. You should only override this method if you want to provide support for a grid of  irregularly-placed points
-     * @param coordinate y-coordinate of the drag event relative to the inside of this widget
-     *
-     * @return The vertical coordinate to snap to
+     * <code>layoutChildren()</code> is where a Canvas should implement a sizing policy for it's Canvas children.  Since
+     * <code>layoutChildren</code> calls parentResized() on its children, {@link
+     * com.smartgwt.client.widgets.Canvas#parentResized} is a good place for a child to implement a layout policy that can be
+     * used within any parent. <P> Recommended practice for a Canvas that manages Canvas children is to create those children
+     * without any initial coordinate or size settings and do all sizing when layoutChildren() is called. <P> layoutChildren()
+     * is always called at least once before children are drawn, and is called automatically whenever the viewport size changes
+     * (which includes both resizing and introduction/removal of scrolling).  layoutChildren() can also be manually invoked in
+     * any other component-specific situation which changes the layout. <P> NOTE: layoutChildren() may be called before draw()
+     * if a widget is resized before draw(), so be sure to avoid errors such as assuming that any children you automatically
+     * create have already been created. <P> NOTE: auto-sizing: layoutChildren() is also called once during the initial draw(),
+     * before children are drawn, with a "reason" of "initial draw".  During this invocation of layoutChildren() it is legal to
+     * directly draw children (call child.draw()), which is otherwise never allowed.  This allows a Canvas to implement an
+     * auto-sizing layout policy by drawing some children before deciding on the sizes of remaining children, which is far more
+     * efficient than drawing all children and resizing some of them after they are drawn.
+     * @param reason reason why layoutChildren() is being called, passed when framework                        code invokes layoutChildren()
      */
-    public native int getVSnapPosition(int coordinate) /*-{
+    public native void layoutChildren(String reason) /*-{
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
-        return self.getVSnapPosition(coordinate);
-    }-*/;
-
-    /**
-     * Override this method to provide a custom snap-to grid.  Note that you do not need to do this if your grid is regular
-     * (ie, grid points are every x pixels) - regular grids should be  defined using {@link
-     * com.smartgwt.client.widgets.Canvas#getSnapHGap snapHGap} and {@link com.smartgwt.client.widgets.Canvas#getSnapVGap
-     * snapVGap}. You should only override this method if you want to provide support for a grid of  irregularly-placed points
-     * @param coordinate y-coordinate of the drag event relative to the inside of this widget
-     * @param direction "before" or "after" denoting whether the returned coordinate should   match the top or bottom edge of the current
-     * square. If unset {@link com.smartgwt.client.widgets.Canvas#getSnapHDirection snapHDirection} will   be used by default
-     *
-     * @return The vertical coordinate to snap to
-     */
-    public native int getVSnapPosition(int coordinate, String direction) /*-{
-        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
-        return self.getVSnapPosition(coordinate, direction);
-    }-*/;
-            
-    /**
-     * Set the URL of an image element by name. <p> The image element must have been created from HTML generated by calling
-     * <code>canvas.imgHTML()</code> on this particular Canvas.
-     * @param identifier name of the image to change, as originally passed to                              <code>imgHTML</code>
-     * @param URL URL for the image
-     */
-    public native void setImage(String identifier, String URL) /*-{
-        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
-        self.setImage(identifier, URL);
-    }-*/;
-
-    /**
-     * Set the URL of an image element by name. <p> The image element must have been created from HTML generated by calling
-     * <code>canvas.imgHTML()</code> on this particular Canvas.
-     * @param identifier name of the image to change, as originally passed to                              <code>imgHTML</code>
-     * @param URL URL for the image
-     * @param imgDir optional image directory, overrides the default for this Canvas
-     */
-    public native void setImage(String identifier, String URL, String imgDir) /*-{
-        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
-        self.setImage(identifier, URL, imgDir);
+        self.layoutChildren(reason);
     }-*/;
             
     /**
@@ -5065,51 +4353,763 @@ public class Canvas extends BaseWidget  implements com.smartgwt.client.widgets.e
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
         return self.linkHTML(href, text, target, ID, tabIndex, accessKey);
     }-*/;
+            
     /**
-     * Add a focusChanged handler.
+     * {@link com.smartgwt.client.widgets.Canvas#destroy} this canvas on a timeout. This method should be used instead of
+     * calling <code>canvas.destroy()</code> directly unless there's a reason a the canvas needs to be destroyed synchronously.
+     * By using a timeout, this method ensures the <code>destroy()</code> will occur after the current thread of execution
+     * completes. This allows you to easily mark canvases for destruction while they're handling events, which must complete
+     * before the canvas can be destroyed.
+     */
+    public native void markForDestroy() /*-{
+        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
+        self.markForDestroy();
+    }-*/;
+            
+    /**
+     * Marks the widget as "dirty" so that it will be added to a queue for redraw. Redraw of dirty components is handled by a
+     * looping timer and will after a very short delay (typically less than 100ms). In most cases it is recommended that
+     * developers use <code>markForRedraw()</code> instead of calling {@link com.smartgwt.client.widgets.Canvas#redraw}
+     * directly. Since this method queues the redraw, multiple calls to markForRedraw() within a single thread of execution
+     * will only lead to a single DOM manipulation which greatly improves application performance.
+     */
+    public native void markForRedraw() /*-{
+        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
+        self.markForRedraw();
+    }-*/;
+
+    /**
+     * Marks the widget as "dirty" so that it will be added to a queue for redraw. Redraw of dirty components is handled by a
+     * looping timer and will after a very short delay (typically less than 100ms). In most cases it is recommended that
+     * developers use <code>markForRedraw()</code> instead of calling {@link com.smartgwt.client.widgets.Canvas#redraw}
+     * directly. Since this method queues the redraw, multiple calls to markForRedraw() within a single thread of execution
+     * will only lead to a single DOM manipulation which greatly improves application performance.
+     * @param reason reason for performing the redraw
+     */
+    public native void markForRedraw(String reason) /*-{
+        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
+        self.markForRedraw(reason);
+    }-*/;
+    /**
+     * Add a mouseDown handler.
      * <p>
-     * Notification function fired when this widget receives or loses keyboard focus.
+     * Executed when the left mouse down is pressed on this widget.  No default implementation.
      *
-     * @param handler the focusChanged handler
+     * @param handler the mouseDown handler
      * @return {@link HandlerRegistration} used to remove this handler
      */
-    public HandlerRegistration addFocusChangedHandler(com.smartgwt.client.widgets.events.FocusChangedHandler handler) {
-        if(getHandlerCount(com.smartgwt.client.widgets.events.FocusChangedEvent.getType()) == 0) setupFocusChangedEvent();
-        return doAddHandler(handler, com.smartgwt.client.widgets.events.FocusChangedEvent.getType());
+    public HandlerRegistration addMouseDownHandler(com.smartgwt.client.widgets.events.MouseDownHandler handler) {
+        if(getHandlerCount(com.smartgwt.client.widgets.events.MouseDownEvent.getType()) == 0) setupMouseDownEvent();
+        return doAddHandler(handler, com.smartgwt.client.widgets.events.MouseDownEvent.getType());
     }
 
-    private native void setupFocusChangedEvent() /*-{
+    private native void setupMouseDownEvent() /*-{
         var obj = null;
         var selfJ = this;
         if(this.@com.smartgwt.client.widgets.BaseWidget::isCreated()()) {
             obj = this.@com.smartgwt.client.widgets.BaseWidget::getJsObj()();
-            obj.addProperties({focusChanged:$entry(function(){
-                        var param = {"hasFocus" : arguments[0]};
-                        var event = @com.smartgwt.client.widgets.events.FocusChangedEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
+            obj.addProperties({mouseDown:$entry(function(){
+                        var param = {};
+                        var event = @com.smartgwt.client.widgets.events.MouseDownEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
+                        selfJ.@com.smartgwt.client.widgets.BaseWidget::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
+                        var ret = event.@com.smartgwt.client.event.Cancellable::isCancelled()();
+                        return !ret;
+                    })
+             });
+        } else {
+            obj = this.@com.smartgwt.client.widgets.BaseWidget::getConfig()();
+            obj.mouseDown = $entry(function(){
+                   var param = {};
+                   var event = @com.smartgwt.client.widgets.events.MouseDownEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
+                   selfJ.@com.smartgwt.client.widgets.BaseWidget::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
+                   var ret = event.@com.smartgwt.client.event.Cancellable::isCancelled()();
+                   return !ret;
+               });
+        }
+   }-*/;
+    /**
+     * Add a mouseMove handler.
+     * <p>
+     * Executed when the mouse moves within this widget.  No default implementation.
+     *
+     * @param handler the mouseMove handler
+     * @return {@link HandlerRegistration} used to remove this handler
+     */
+    public HandlerRegistration addMouseMoveHandler(com.smartgwt.client.widgets.events.MouseMoveHandler handler) {
+        if(getHandlerCount(com.smartgwt.client.widgets.events.MouseMoveEvent.getType()) == 0) setupMouseMoveEvent();
+        return doAddHandler(handler, com.smartgwt.client.widgets.events.MouseMoveEvent.getType());
+    }
+
+    private native void setupMouseMoveEvent() /*-{
+        var obj = null;
+        var selfJ = this;
+        if(this.@com.smartgwt.client.widgets.BaseWidget::isCreated()()) {
+            obj = this.@com.smartgwt.client.widgets.BaseWidget::getJsObj()();
+            obj.addProperties({mouseMove:$entry(function(){
+                        var param = {};
+                        var event = @com.smartgwt.client.widgets.events.MouseMoveEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
+                        selfJ.@com.smartgwt.client.widgets.BaseWidget::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
+                        var ret = event.@com.smartgwt.client.event.Cancellable::isCancelled()();
+                        return !ret;
+                    })
+             });
+        } else {
+            obj = this.@com.smartgwt.client.widgets.BaseWidget::getConfig()();
+            obj.mouseMove = $entry(function(){
+                   var param = {};
+                   var event = @com.smartgwt.client.widgets.events.MouseMoveEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
+                   selfJ.@com.smartgwt.client.widgets.BaseWidget::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
+                   var ret = event.@com.smartgwt.client.event.Cancellable::isCancelled()();
+                   return !ret;
+               });
+        }
+   }-*/;
+    /**
+     * Add a mouseOut handler.
+     * <p>
+     * Executed when the mouse leaves this widget.  No default implementation.
+     *
+     * @param handler the mouseOut handler
+     * @return {@link HandlerRegistration} used to remove this handler
+     */
+    public HandlerRegistration addMouseOutHandler(com.smartgwt.client.widgets.events.MouseOutHandler handler) {
+        if(getHandlerCount(com.smartgwt.client.widgets.events.MouseOutEvent.getType()) == 0) setupMouseOutEvent();
+        return doAddHandler(handler, com.smartgwt.client.widgets.events.MouseOutEvent.getType());
+    }
+
+    private native void setupMouseOutEvent() /*-{
+        var obj = null;
+        var selfJ = this;
+        if(this.@com.smartgwt.client.widgets.BaseWidget::isCreated()()) {
+            obj = this.@com.smartgwt.client.widgets.BaseWidget::getJsObj()();
+            obj.addProperties({mouseOut:$entry(function(){
+                        var param = {};
+                        var event = @com.smartgwt.client.widgets.events.MouseOutEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
+                        selfJ.@com.smartgwt.client.widgets.BaseWidget::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
+                        var ret = event.@com.smartgwt.client.event.Cancellable::isCancelled()();
+                        return !ret;
+                    })
+             });
+        } else {
+            obj = this.@com.smartgwt.client.widgets.BaseWidget::getConfig()();
+            obj.mouseOut = $entry(function(){
+                   var param = {};
+                   var event = @com.smartgwt.client.widgets.events.MouseOutEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
+                   selfJ.@com.smartgwt.client.widgets.BaseWidget::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
+                   var ret = event.@com.smartgwt.client.event.Cancellable::isCancelled()();
+                   return !ret;
+               });
+        }
+   }-*/;
+    /**
+     * Add a mouseOver handler.
+     * <p>
+     * Executed when mouse enters this widget.  No default implementation.
+     *
+     * @param handler the mouseOver handler
+     * @return {@link HandlerRegistration} used to remove this handler
+     */
+    public HandlerRegistration addMouseOverHandler(com.smartgwt.client.widgets.events.MouseOverHandler handler) {
+        if(getHandlerCount(com.smartgwt.client.widgets.events.MouseOverEvent.getType()) == 0) setupMouseOverEvent();
+        return doAddHandler(handler, com.smartgwt.client.widgets.events.MouseOverEvent.getType());
+    }
+
+    private native void setupMouseOverEvent() /*-{
+        var obj = null;
+        var selfJ = this;
+        if(this.@com.smartgwt.client.widgets.BaseWidget::isCreated()()) {
+            obj = this.@com.smartgwt.client.widgets.BaseWidget::getJsObj()();
+            obj.addProperties({mouseOver:$entry(function(){
+                        var param = {};
+                        var event = @com.smartgwt.client.widgets.events.MouseOverEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
+                        selfJ.@com.smartgwt.client.widgets.BaseWidget::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
+                        var ret = event.@com.smartgwt.client.event.Cancellable::isCancelled()();
+                        return !ret;
+                    })
+             });
+        } else {
+            obj = this.@com.smartgwt.client.widgets.BaseWidget::getConfig()();
+            obj.mouseOver = $entry(function(){
+                   var param = {};
+                   var event = @com.smartgwt.client.widgets.events.MouseOverEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
+                   selfJ.@com.smartgwt.client.widgets.BaseWidget::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
+                   var ret = event.@com.smartgwt.client.event.Cancellable::isCancelled()();
+                   return !ret;
+               });
+        }
+   }-*/;
+    /**
+     * Add a mouseStillDown handler.
+     * <p>
+     * Executed repeatedly (every {@link com.smartgwt.client.widgets.Canvas#getMouseStillDownDelay mouseStillDownDelay} by
+     * default) when the system is idle - i.e. not busy running other scripts - and the left mouse button is held down after
+     * having been pressed in the object. This event is not native to JavaScript, but is provided by the ISC system. <p> Note:
+     * The event handling system waits {@link com.smartgwt.client.widgets.Canvas#getMouseStillDownInitialDelay
+     * mouseStillDownInitialDelay} before calling mouseStillDown for the first time on the widget.  Subsequently the method is
+     * called every {@link com.smartgwt.client.widgets.Canvas#getMouseStillDownDelay mouseStillDownDelay}.  Both attributes are
+     * configurable per widget instance. <p> This method is called only when the left mouse is held down.
+     *
+     * @param handler the mouseStillDown handler
+     * @return {@link HandlerRegistration} used to remove this handler
+     */
+    public HandlerRegistration addMouseStillDownHandler(com.smartgwt.client.widgets.events.MouseStillDownHandler handler) {
+        if(getHandlerCount(com.smartgwt.client.widgets.events.MouseStillDownEvent.getType()) == 0) setupMouseStillDownEvent();
+        return doAddHandler(handler, com.smartgwt.client.widgets.events.MouseStillDownEvent.getType());
+    }
+
+    private native void setupMouseStillDownEvent() /*-{
+        var obj = null;
+        var selfJ = this;
+        if(this.@com.smartgwt.client.widgets.BaseWidget::isCreated()()) {
+            obj = this.@com.smartgwt.client.widgets.BaseWidget::getJsObj()();
+            obj.addProperties({mouseStillDown:$entry(function(){
+                        var param = {};
+                        var event = @com.smartgwt.client.widgets.events.MouseStillDownEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
+                        selfJ.@com.smartgwt.client.widgets.BaseWidget::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
+                        var ret = event.@com.smartgwt.client.event.Cancellable::isCancelled()();
+                        return !ret;
+                    })
+             });
+        } else {
+            obj = this.@com.smartgwt.client.widgets.BaseWidget::getConfig()();
+            obj.mouseStillDown = $entry(function(){
+                   var param = {};
+                   var event = @com.smartgwt.client.widgets.events.MouseStillDownEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
+                   selfJ.@com.smartgwt.client.widgets.BaseWidget::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
+                   var ret = event.@com.smartgwt.client.event.Cancellable::isCancelled()();
+                   return !ret;
+               });
+        }
+   }-*/;
+    /**
+     * Add a mouseUp handler.
+     * <p>
+     * Executed when the left mouse is released on this widget.  No default implementation.
+     *
+     * @param handler the mouseUp handler
+     * @return {@link HandlerRegistration} used to remove this handler
+     */
+    public HandlerRegistration addMouseUpHandler(com.smartgwt.client.widgets.events.MouseUpHandler handler) {
+        if(getHandlerCount(com.smartgwt.client.widgets.events.MouseUpEvent.getType()) == 0) setupMouseUpEvent();
+        return doAddHandler(handler, com.smartgwt.client.widgets.events.MouseUpEvent.getType());
+    }
+
+    private native void setupMouseUpEvent() /*-{
+        var obj = null;
+        var selfJ = this;
+        if(this.@com.smartgwt.client.widgets.BaseWidget::isCreated()()) {
+            obj = this.@com.smartgwt.client.widgets.BaseWidget::getJsObj()();
+            obj.addProperties({mouseUp:$entry(function(){
+                        var param = {};
+                        var event = @com.smartgwt.client.widgets.events.MouseUpEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
+                        selfJ.@com.smartgwt.client.widgets.BaseWidget::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
+                        var ret = event.@com.smartgwt.client.event.Cancellable::isCancelled()();
+                        return !ret;
+                    })
+             });
+        } else {
+            obj = this.@com.smartgwt.client.widgets.BaseWidget::getConfig()();
+            obj.mouseUp = $entry(function(){
+                   var param = {};
+                   var event = @com.smartgwt.client.widgets.events.MouseUpEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
+                   selfJ.@com.smartgwt.client.widgets.BaseWidget::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
+                   var ret = event.@com.smartgwt.client.event.Cancellable::isCancelled()();
+                   return !ret;
+               });
+        }
+   }-*/;
+    /**
+     * Add a mouseWheel handler.
+     * <p>
+     * Executed when the mouse wheel is actuated.
+     *
+     * @param handler the mouseWheel handler
+     * @return {@link HandlerRegistration} used to remove this handler
+     */
+    public HandlerRegistration addMouseWheelHandler(com.smartgwt.client.widgets.events.MouseWheelHandler handler) {
+        if(getHandlerCount(com.smartgwt.client.widgets.events.MouseWheelEvent.getType()) == 0) setupMouseWheelEvent();
+        return doAddHandler(handler, com.smartgwt.client.widgets.events.MouseWheelEvent.getType());
+    }
+
+    private native void setupMouseWheelEvent() /*-{
+        var obj = null;
+        var selfJ = this;
+        if(this.@com.smartgwt.client.widgets.BaseWidget::isCreated()()) {
+            obj = this.@com.smartgwt.client.widgets.BaseWidget::getJsObj()();
+            obj.addProperties({mouseWheel:$entry(function(){
+                        var param = {};
+                        var event = @com.smartgwt.client.widgets.events.MouseWheelEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
+                        selfJ.@com.smartgwt.client.widgets.BaseWidget::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
+                        var ret = event.@com.smartgwt.client.event.Cancellable::isCancelled()();
+                        return !ret;
+                    })
+             });
+        } else {
+            obj = this.@com.smartgwt.client.widgets.BaseWidget::getConfig()();
+            obj.mouseWheel = $entry(function(){
+                   var param = {};
+                   var event = @com.smartgwt.client.widgets.events.MouseWheelEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
+                   selfJ.@com.smartgwt.client.widgets.BaseWidget::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
+                   var ret = event.@com.smartgwt.client.event.Cancellable::isCancelled()();
+                   return !ret;
+               });
+        }
+   }-*/;
+            
+    /**
+     * Puts this widget just above the specified widget in the stacking order, so it appears in front of the specified widget
+     * if both widgets have the same parent.
+     * @param canvas canvas to move above
+     */
+    public native void moveAbove(Canvas canvas) /*-{
+        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
+        self.moveAbove(canvas.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()());
+    }-*/;
+            
+    /**
+     * Puts this widget just below the specified widget in the stacking order, so it appears behind the specified widget if
+     * both widgets have the same parent.
+     * @param canvas canvas to move below
+     */
+    public native void moveBelow(Canvas canvas) /*-{
+        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
+        self.moveBelow(canvas.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()());
+    }-*/;
+            
+    /**
+     * Moves the widget deltaX pixels to the right and deltaY pixels down. Pass negative          numbers to move up and/or to
+     * the left.
+     * @param deltaX amount to move horizontally (may be negative)
+     * @param deltaY amount to move vertically (may be negative)
+     *
+     * @return whether the component actually moved
+     */
+    public native Boolean moveBy(int deltaX, int deltaY) /*-{
+        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
+        var retVal =self.moveBy(deltaX, deltaY);
+        if(retVal == null || retVal === undefined) {
+            return null;
+        } else {
+            return @com.smartgwt.client.util.JSOHelper::toBoolean(Z)(retVal);
+        }
+    }-*/;
+            
+    /**
+     * Fires when the interior size of the parent changes, including parent resize and scrollbar introduction or removal. <p>
+     * This method allows a child to implement a layout policy that can be used within any  parent, such as a Resizer component
+     * that always snaps to the parent's bottom-right corner.  The default implementation of this method applies a child's
+     * percent sizes, if any, or implements layout based on the {@link com.smartgwt.client.widgets.Canvas#getSnapTo snapTo}
+     * property
+     */
+    public native void parentResized() /*-{
+        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
+        self.parentResized();
+    }-*/;
+            
+    /**
+     * Redraws the widget immediately with its current property values.   Generally, if you want a Canvas to redraw, call
+     * markForRedraw() - this will cause the Canvas to be redrawn when current processing ends, so that a series of
+     * modifications made to a Canvas will cause it to redraw only once. Only call redraw() directly if you need immediate
+     * responsiveness, for example you are redrawing in response to continuous mouse motion.
+     */
+    public native void redraw() /*-{
+        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
+        self.redraw();
+    }-*/;
+
+    /**
+     * Redraws the widget immediately with its current property values.   Generally, if you want a Canvas to redraw, call
+     * markForRedraw() - this will cause the Canvas to be redrawn when current processing ends, so that a series of
+     * modifications made to a Canvas will cause it to redraw only once. Only call redraw() directly if you need immediate
+     * responsiveness, for example you are redrawing in response to continuous mouse motion.
+     * @param reason reason for performing the redraw
+     */
+    public native void redraw(String reason) /*-{
+        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
+        self.redraw(reason);
+    }-*/;
+    /**
+     * Add a resized handler.
+     * <p>
+     * Observable method called whenever a Canvas changes size. Note that if this canvas is {@link
+     * com.smartgwt.client.widgets.Canvas#getOverflow 'overflow:"visible"'}, and is waiting for a queued redraw (see  {@link
+     * com.smartgwt.client.widgets.Canvas#isDirty}), the value for {@link com.smartgwt.client.widgets.Canvas#getVisibleWidth}
+     * and {@link com.smartgwt.client.widgets.Canvas#getVisibleHeight} will be unreliable until <code>redraw()</code> fires.
+     *
+     * @param handler the resized handler
+     * @return {@link HandlerRegistration} used to remove this handler
+     */
+    public HandlerRegistration addResizedHandler(com.smartgwt.client.widgets.events.ResizedHandler handler) {
+        if(getHandlerCount(com.smartgwt.client.widgets.events.ResizedEvent.getType()) == 0) setupResizedEvent();
+        return doAddHandler(handler, com.smartgwt.client.widgets.events.ResizedEvent.getType());
+    }
+
+    private native void setupResizedEvent() /*-{
+        var obj = null;
+        var selfJ = this;
+        if(this.@com.smartgwt.client.widgets.BaseWidget::isCreated()()) {
+            obj = this.@com.smartgwt.client.widgets.BaseWidget::getJsObj()();
+            obj.addProperties({resized:$entry(function(){
+                        var param = {};
+                        var event = @com.smartgwt.client.widgets.events.ResizedEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
                         selfJ.@com.smartgwt.client.widgets.BaseWidget::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
                     })
              });
         } else {
             obj = this.@com.smartgwt.client.widgets.BaseWidget::getConfig()();
-            obj.focusChanged = $entry(function(){
-                   var param = {"hasFocus" : arguments[0]};
-                   var event = @com.smartgwt.client.widgets.events.FocusChangedEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
+            obj.resized = $entry(function(){
+                   var param = {};
+                   var event = @com.smartgwt.client.widgets.events.ResizedEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
+                   selfJ.@com.smartgwt.client.widgets.BaseWidget::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
+               });
+        }
+   }-*/;
+    /**
+     * Add a rightMouseDown handler.
+     * <p>
+     * Executed when the right mouse down is pressed on this widget.  No default implementation.
+     *
+     * @param handler the rightMouseDown handler
+     * @return {@link HandlerRegistration} used to remove this handler
+     */
+    public HandlerRegistration addRightMouseDownHandler(com.smartgwt.client.widgets.events.RightMouseDownHandler handler) {
+        if(getHandlerCount(com.smartgwt.client.widgets.events.RightMouseDownEvent.getType()) == 0) setupRightMouseDownEvent();
+        return doAddHandler(handler, com.smartgwt.client.widgets.events.RightMouseDownEvent.getType());
+    }
+
+    private native void setupRightMouseDownEvent() /*-{
+        var obj = null;
+        var selfJ = this;
+        if(this.@com.smartgwt.client.widgets.BaseWidget::isCreated()()) {
+            obj = this.@com.smartgwt.client.widgets.BaseWidget::getJsObj()();
+            obj.addProperties({rightMouseDown:$entry(function(){
+                        var param = {};
+                        var event = @com.smartgwt.client.widgets.events.RightMouseDownEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
+                        selfJ.@com.smartgwt.client.widgets.BaseWidget::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
+                        var ret = event.@com.smartgwt.client.event.Cancellable::isCancelled()();
+                        return !ret;
+                    })
+             });
+        } else {
+            obj = this.@com.smartgwt.client.widgets.BaseWidget::getConfig()();
+            obj.rightMouseDown = $entry(function(){
+                   var param = {};
+                   var event = @com.smartgwt.client.widgets.events.RightMouseDownEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
+                   selfJ.@com.smartgwt.client.widgets.BaseWidget::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
+                   var ret = event.@com.smartgwt.client.event.Cancellable::isCancelled()();
+                   return !ret;
+               });
+        }
+   }-*/;
+            
+    /**
+     * Scroll this widget by some pixel increment in either (or both) direction(s).
+     * @param dX Number of pixels to scroll horizontally
+     * @param dY Number of pixels to scroll vertically
+     */
+    public native void scrollBy(int dX, int dY) /*-{
+        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
+        self.scrollBy(dX, dY);
+    }-*/;
+    /**
+     * Add a scrolled handler.
+     * <p>
+     * Notification that this component has just scrolled.  Use with {@link com.smartgwt.client..Class#observe}. <P> Fires for
+     * both CSS and {@link com.smartgwt.client.widgets.Scrollbar}.
+     *
+     * @param handler the scrolled handler
+     * @return {@link HandlerRegistration} used to remove this handler
+     */
+    public HandlerRegistration addScrolledHandler(com.smartgwt.client.widgets.events.ScrolledHandler handler) {
+        if(getHandlerCount(com.smartgwt.client.widgets.events.ScrolledEvent.getType()) == 0) setupScrolledEvent();
+        return doAddHandler(handler, com.smartgwt.client.widgets.events.ScrolledEvent.getType());
+    }
+
+    private native void setupScrolledEvent() /*-{
+        var obj = null;
+        var selfJ = this;
+        if(this.@com.smartgwt.client.widgets.BaseWidget::isCreated()()) {
+            obj = this.@com.smartgwt.client.widgets.BaseWidget::getJsObj()();
+            obj.addProperties({scrolled:$entry(function(){
+                        var param = {};
+                        var event = @com.smartgwt.client.widgets.events.ScrolledEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
+                        selfJ.@com.smartgwt.client.widgets.BaseWidget::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
+                    })
+             });
+        } else {
+            obj = this.@com.smartgwt.client.widgets.BaseWidget::getConfig()();
+            obj.scrolled = $entry(function(){
+                   var param = {};
+                   var event = @com.smartgwt.client.widgets.events.ScrolledEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
                    selfJ.@com.smartgwt.client.widgets.BaseWidget::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
                });
         }
    }-*/;
             
     /**
-     * Returns a fully qualified {@link com.smartgwt.client..dataPath} for this canvas. This is calculated by combining the
-     * canvas' specified {@link com.smartgwt.client.widgets.Canvas#getDataPath dataPath} with the <code>dataPath</code> of any
-     * parent  canvases up to whichever canvas has a specified {@link com.smartgwt.client.widgets.Canvas#getValuesManager
-     * valuesManager} specified to actually manage values from this component.
-     *
-     * @return fully qualified dataPath for this component
+     * Scrolls the content of the widget so that the origin (top-left corner) of the content is left pixels to the left and top
+     * pixels above the widget's top-left corner (but still clipped by the widget's dimensions). <p> This is guaranteed to be
+     * called whenever this Canvas is scrolled, whether scrolling is initiated programmatically, by custom scrollbars, or a by
+     * a native scrollbar.
      */
-    public native String getFullDataPath() /*-{
+    public native void scrollTo() /*-{
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
-        return self.getFullDataPath();
+        self.scrollTo();
+    }-*/;
+
+    /**
+     * Scrolls the content of the widget so that the origin (top-left corner) of the content is left pixels to the left and top
+     * pixels above the widget's top-left corner (but still clipped by the widget's dimensions). <p> This is guaranteed to be
+     * called whenever this Canvas is scrolled, whether scrolling is initiated programmatically, by custom scrollbars, or a by
+     * a native scrollbar.
+     * @param left the left coordinate
+     * @param top the top coordinate
+     */
+    public native void scrollTo(int left, int top) /*-{
+        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
+        self.scrollTo(left, top);
+    }-*/;
+            
+    /**
+     * Vertically scrolls the content of the widget to the end of its content
+     */
+    public native void scrollToBottom() /*-{
+        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
+        self.scrollToBottom();
+    }-*/;
+            
+    /**
+     * Horizontally scrolls the content of the widget to 0
+     */
+    public native void scrollToLeft() /*-{
+        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
+        self.scrollToLeft();
+    }-*/;
+            
+    /**
+     * Horizontally scrolls the content of the widget to the end of its content
+     */
+    public native void scrollToRight() /*-{
+        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
+        self.scrollToRight();
+    }-*/;
+            
+    /**
+     * Vertically scrolls the content of the widget to 0
+     */
+    public native void scrollToTop() /*-{
+        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
+        self.scrollToTop();
+    }-*/;
+            
+    /**
+     * Puts this widget at the bottom of the stacking order, so it appears behind all other widgets in the same parent.
+     */
+    public native void sendToBack() /*-{
+        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
+        self.sendToBack();
+    }-*/;
+            
+    /**
+     * Resizes the widget vertically to position its bottom edge at the specified coordinate. <P> NOTE: if you're setting
+     * multiple coordinates, use setRect(), moveTo() or resizeTo() instead
+     * @param bottom new bottom coordinate
+     */
+    public native void setBottom(int bottom) /*-{
+        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
+        self.setBottom(bottom);
+    }-*/;
+            
+    /**
+     * Set the URL of an image element by name. <p> The image element must have been created from HTML generated by calling
+     * <code>canvas.imgHTML()</code> on this particular Canvas.
+     * @param identifier name of the image to change, as originally passed to                              <code>imgHTML</code>
+     * @param URL URL for the image
+     */
+    public native void setImage(String identifier, String URL) /*-{
+        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
+        self.setImage(identifier, URL);
+    }-*/;
+
+    /**
+     * Set the URL of an image element by name. <p> The image element must have been created from HTML generated by calling
+     * <code>canvas.imgHTML()</code> on this particular Canvas.
+     * @param identifier name of the image to change, as originally passed to                              <code>imgHTML</code>
+     * @param URL URL for the image
+     * @param imgDir optional image directory, overrides the default for this Canvas
+     */
+    public native void setImage(String identifier, String URL, String imgDir) /*-{
+        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
+        self.setImage(identifier, URL, imgDir);
+    }-*/;
+            
+    /**
+     * Set the page-relative left coordinate of this widget.
+     * @param left new left coordinate in pixels
+     */
+    public native void setPageLeft(int left) /*-{
+        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
+        self.setPageLeft(left);
+    }-*/;
+            
+    /**
+     * Set the page-relative top coordinate of this widget.
+     * @param top new top coordinate in pixels
+     */
+    public native void setPageTop(int top) /*-{
+        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
+        self.setPageTop(top);
+    }-*/;
+            
+    /**
+     * Resizes the widget horizontally to position its right side at the specified coordinate. <P> NOTE: if you're setting
+     * multiple coordinates, use setRect(), moveTo() or resizeTo() instead
+     * @param right new right coordinate
+     */
+    public native void setRight(int right) /*-{
+        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
+        self.setRight(right);
+    }-*/;
+            
+    /**
+     * If this widget is showing scrollbars, and a user drags close to the edge of the viewport, should we scroll the viewport
+     * in the appropriate direction? Returns this.canDragScroll by default.
+     */
+    public native void shouldDragScroll() /*-{
+        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
+        self.shouldDragScroll();
+    }-*/;
+            
+    /**
+     * Sets this widget's visibility to "inherit", so that it becomes visible if all it's parents are visible or it has no
+     * parents. <P> If the widget has not yet been drawn (and doesn't have a parent or master), this method calls the draw
+     * method as well.
+     */
+    public native void show() /*-{
+        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
+        self.show();
+    }-*/;
+    /**
+     * Add a showContextMenu handler.
+     * <p>
+     * Executed when the right mouse button is clicked.  The default implementation of this method auto-creates a {@link
+     * com.smartgwt.client.widgets.menu.Menu} from the {@link com.smartgwt.client.widgets.Canvas#getContextMenu contextMenu}
+     * property on this component and then calls {@link com.smartgwt.client.widgets.menu.Menu#showContextMenu} on it to show
+     * it. <p> If you want to show a standard context menu, you can simply define your Menu and set it as the contextMenu
+     * property on your component - you do not need to override this method. <p> If you want to do some other processing before
+     * showing a menu or do something else entirely, then you should override this method.  Note that the return value from
+     * this method controls whether or not the native browser context menu is shown.
+     *
+     * @param handler the showContextMenu handler
+     * @return {@link HandlerRegistration} used to remove this handler
+     */
+    public HandlerRegistration addShowContextMenuHandler(com.smartgwt.client.widgets.events.ShowContextMenuHandler handler) {
+        if(getHandlerCount(com.smartgwt.client.widgets.events.ShowContextMenuEvent.getType()) == 0) setupShowContextMenuEvent();
+        return doAddHandler(handler, com.smartgwt.client.widgets.events.ShowContextMenuEvent.getType());
+    }
+
+    private native void setupShowContextMenuEvent() /*-{
+        var obj = null;
+        var selfJ = this;
+        if(this.@com.smartgwt.client.widgets.BaseWidget::isCreated()()) {
+            obj = this.@com.smartgwt.client.widgets.BaseWidget::getJsObj()();
+            obj.addProperties({showContextMenu:$entry(function(){
+                        var param = {};
+                        var event = @com.smartgwt.client.widgets.events.ShowContextMenuEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
+                        selfJ.@com.smartgwt.client.widgets.BaseWidget::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
+                        var ret = event.@com.smartgwt.client.event.Cancellable::isCancelled()();
+                        return !ret;
+                    })
+             });
+        } else {
+            obj = this.@com.smartgwt.client.widgets.BaseWidget::getConfig()();
+            obj.showContextMenu = $entry(function(){
+                   var param = {};
+                   var event = @com.smartgwt.client.widgets.events.ShowContextMenuEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
+                   selfJ.@com.smartgwt.client.widgets.BaseWidget::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
+                   var ret = event.@com.smartgwt.client.event.Cancellable::isCancelled()();
+                   return !ret;
+               });
+        }
+   }-*/;
+            
+    /**
+     * Show this widget next to another widget.
+     * @param otherWidget Canvas to show next to
+     */
+    public native void showNextTo(Canvas otherWidget) /*-{
+        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
+        self.showNextTo(otherWidget.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()());
+    }-*/;
+
+    /**
+     * Show this widget next to another widget.
+     * @param otherWidget Canvas to show next to
+     * @param side which side to show on, defaults to "right"
+     */
+    public native void showNextTo(Canvas otherWidget, String side) /*-{
+        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
+        self.showNextTo(otherWidget.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()(), side);
+    }-*/;
+            
+    /**
+     * If this canvas is currently showing a hover (see {@link com.smartgwt.client.widgets.Canvas#handleHover}), this method
+     * can be called to update the contents of the hover. Has no effect if the hover canvas is not showing for this widget.
+     */
+    public native void updateHover() /*-{
+        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
+        self.updateHover();
+    }-*/;
+
+    /**
+     * If this canvas is currently showing a hover (see {@link com.smartgwt.client.widgets.Canvas#handleHover}), this method
+     * can be called to update the contents of the hover. Has no effect if the hover canvas is not showing for this widget.
+     * @param hoverHTML Option to specify new HTML for the hover. If not passed, the result   of {@link
+     * com.smartgwt.client.widgets.Canvas#getHoverHTML} will be used instead. Note that if the   hover HTML is empty the hover
+     * will be hidden.
+     */
+    public native void updateHover(String hoverHTML) /*-{
+        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
+        self.updateHover(hoverHTML);
+    }-*/;
+            
+    /**
+     * Does this widget contain the specified global (x,y) coordinates, and have no other widgets also at the specified
+     * position, obscuring this one?  This is commonly used for (for example) drag and drop interactions.
+     * @param x GLOBAL x-coordinate
+     * @param y GLOBAL y-coordinate
+     *
+     * @return true if this object contains the specified point; false otherwise
+     */
+    public native Boolean visibleAtPoint(int x, int y) /*-{
+        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
+        var retVal =self.visibleAtPoint(x, y);
+        if(retVal == null || retVal === undefined) {
+            return null;
+        } else {
+            return @com.smartgwt.client.util.JSOHelper::toBoolean(Z)(retVal);
+        }
+    }-*/;
+
+    /**
+     * Does this widget contain the specified global (x,y) coordinates, and have no other widgets also at the specified
+     * position, obscuring this one?  This is commonly used for (for example) drag and drop interactions.
+     * @param x GLOBAL x-coordinate
+     * @param y GLOBAL y-coordinate
+     * @param withinViewport point lies within our viewport rather than                                              just our drawn area
+     * @param ignoreWidgets If passed ignore widget(s), do not check whether                                           those widgets occludes this
+     * one.
+     *
+     * @return true if this object contains the specified point; false otherwise
+     */
+    public native Boolean visibleAtPoint(int x, int y, boolean withinViewport, Canvas ignoreWidgets) /*-{
+        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
+        var retVal =self.visibleAtPoint(x, y, withinViewport, ignoreWidgets.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()());
+        if(retVal == null || retVal === undefined) {
+            return null;
+        } else {
+                return @com.smartgwt.client.util.JSOHelper::toBoolean(Z)(retVal);
+        }
     }-*/;
 
     // ********************* Static Methods ***********************

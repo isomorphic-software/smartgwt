@@ -94,6 +94,25 @@ public class RichTextItem extends CanvasItem {
     // ********************* Properties / Attributes ***********************
 
     /**
+     * By default RichTextItems take up an entire row
+     *
+     * @param endRow endRow Default value is true
+     */
+    public void setEndRow(Boolean endRow) {
+        setAttribute("endRow", endRow);
+    }
+
+    /**
+     * By default RichTextItems take up an entire row
+     *
+     *
+     * @return Boolean
+     */
+    public Boolean getEndRow()  {
+        return getAttributeAsBoolean("endRow");
+    }
+
+    /**
      * Don't show the title for rich text items by default
      *
      * @param showTitle showTitle Default value is false
@@ -129,25 +148,6 @@ public class RichTextItem extends CanvasItem {
      */
     public Boolean getStartRow()  {
         return getAttributeAsBoolean("startRow");
-    }
-
-    /**
-     * By default RichTextItems take up an entire row
-     *
-     * @param endRow endRow Default value is true
-     */
-    public void setEndRow(Boolean endRow) {
-        setAttribute("endRow", endRow);
-    }
-
-    /**
-     * By default RichTextItems take up an entire row
-     *
-     *
-     * @return Boolean
-     */
-    public Boolean getEndRow()  {
-        return getAttributeAsBoolean("endRow");
     }
 
     // ********************* Methods ***********************

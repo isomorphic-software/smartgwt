@@ -88,27 +88,6 @@ public class StretchImg extends StatefulCanvas {
     // ********************* Properties / Attributes ***********************
 
     /**
-     * Indicates whether the list of images is drawn vertically from top to bottom (true), or horizontally from left to right
-     * (false).
-     *
-     * @param vertical vertical Default value is true
-     */
-    public void setVertical(Boolean vertical) {
-        setAttribute("vertical", vertical, true);
-    }
-
-    /**
-     * Indicates whether the list of images is drawn vertically from top to bottom (true), or horizontally from left to right
-     * (false).
-     *
-     *
-     * @return Boolean
-     */
-    public Boolean getVertical()  {
-        return getAttributeAsBoolean("vertical");
-    }
-
-    /**
      * If the default items are used, capSize is the size in pixels of the first and last          images in this stretchImg.
      *
      * @param capSize capSize Default value is 2
@@ -125,34 +104,6 @@ public class StretchImg extends StatefulCanvas {
      */
     public int getCapSize()  {
         return getAttributeAsInt("capSize");
-    }
-
-    /**
-     * The base URL for the image.  <P> As with {@link com.smartgwt.client.widgets.Img#getSrc src}, the {@link
-     * com.smartgwt.client.types.State} of the component is added to this URL.  Then, the image segment name as specified by
-     * {@link com.smartgwt.client.widgets.StretchImg#getItems items} is added. <P> For example, for a stretchImg in "Over"
-     * state with a <code>src</code> of "button.png" and a segment name of "stretch", the resulting URL would be
-     * "button_Over_stretch.png".
-     * Changes the base {@link com.smartgwt.client.widgets.StretchImg#getSrc src} for this stretchImg, redrawing if necessary.
-     *
-     * @param src new URL for the image. Default value is null
-     */
-    public void setSrc(String src) {
-        setAttribute("src", src, true);
-    }
-
-    /**
-     * The base URL for the image.  <P> As with {@link com.smartgwt.client.widgets.Img#getSrc src}, the {@link
-     * com.smartgwt.client.types.State} of the component is added to this URL.  Then, the image segment name as specified by
-     * {@link com.smartgwt.client.widgets.StretchImg#getItems items} is added. <P> For example, for a stretchImg in "Over"
-     * state with a <code>src</code> of "button.png" and a segment name of "stretch", the resulting URL would be
-     * "button_Over_stretch.png".
-     *
-     *
-     * @return String
-     */
-    public String getSrc()  {
-        return getAttributeAsString("src");
     }
 
     /**
@@ -175,27 +126,6 @@ public class StretchImg extends StatefulCanvas {
     public String getHSrc()  {
         return getAttributeAsString("hSrc");
     }
-
-    /**
-     * Base URL for the image if {@link com.smartgwt.client.widgets.StretchImg#getVertical vertical} is true and  {@link
-     * com.smartgwt.client.widgets.StretchImg#getSrc src} is unset.
-     *
-     * @param vSrc vSrc Default value is null
-     */
-    public void setVSrc(String vSrc) {
-        setAttribute("vSrc", vSrc, true);
-    }
-
-    /**
-     * Base URL for the image if {@link com.smartgwt.client.widgets.StretchImg#getVertical vertical} is true and  {@link
-     * com.smartgwt.client.widgets.StretchImg#getSrc src} is unset.
-     *
-     *
-     * @return String
-     */
-    public String getVSrc()  {
-        return getAttributeAsString("vSrc");
-    }
              
     /**
      * Indicates whether the image should be tiled/cropped, stretched, or centered when the          size of this widget does
@@ -216,6 +146,31 @@ public class StretchImg extends StatefulCanvas {
      */
     public ImageStyle getImageType()  {
         return EnumUtil.getEnum(ImageStyle.values(), getAttribute("imageType"));
+    }
+
+    /**
+     * If specified this css class will be applied to the individual item images within this StretchImg. May be overridden by
+     * specifying item-specific base styles to each object in the {@link com.smartgwt.client.widgets.StretchImg#getItems 'items
+     * array'}. This base style will have standard stateful suffixes appended to indicate the state of this component (as
+     * described in  {@link com.smartgwt.client.widgets.StatefulCanvas#getBaseStyle baseStyle}).
+     *
+     * @param itemBaseStyle itemBaseStyle Default value is null
+     */
+    public void setItemBaseStyle(String itemBaseStyle) {
+        setAttribute("itemBaseStyle", itemBaseStyle, true);
+    }
+
+    /**
+     * If specified this css class will be applied to the individual item images within this StretchImg. May be overridden by
+     * specifying item-specific base styles to each object in the {@link com.smartgwt.client.widgets.StretchImg#getItems 'items
+     * array'}. This base style will have standard stateful suffixes appended to indicate the state of this component (as
+     * described in  {@link com.smartgwt.client.widgets.StatefulCanvas#getBaseStyle baseStyle}).
+     *
+     *
+     * @return String
+     */
+    public String getItemBaseStyle()  {
+        return getAttributeAsString("itemBaseStyle");
     }
 
     /**
@@ -264,28 +219,73 @@ public class StretchImg extends StatefulCanvas {
     }
 
     /**
-     * If specified this css class will be applied to the individual item images within this StretchImg. May be overridden by
-     * specifying item-specific base styles to each object in the {@link com.smartgwt.client.widgets.StretchImg#getItems 'items
-     * array'}. This base style will have standard stateful suffixes appended to indicate the state of this component (as
-     * described in  {@link com.smartgwt.client.widgets.StatefulCanvas#getBaseStyle baseStyle}).
+     * The base URL for the image.  <P> As with {@link com.smartgwt.client.widgets.Img#getSrc src}, the {@link
+     * com.smartgwt.client.types.State} of the component is added to this URL.  Then, the image segment name as specified by
+     * {@link com.smartgwt.client.widgets.StretchImg#getItems items} is added. <P> For example, for a stretchImg in "Over"
+     * state with a <code>src</code> of "button.png" and a segment name of "stretch", the resulting URL would be
+     * "button_Over_stretch.png".
+     * Changes the base {@link com.smartgwt.client.widgets.StretchImg#getSrc src} for this stretchImg, redrawing if necessary.
      *
-     * @param itemBaseStyle itemBaseStyle Default value is null
+     * @param src new URL for the image. Default value is null
      */
-    public void setItemBaseStyle(String itemBaseStyle) {
-        setAttribute("itemBaseStyle", itemBaseStyle, true);
+    public void setSrc(String src) {
+        setAttribute("src", src, true);
     }
 
     /**
-     * If specified this css class will be applied to the individual item images within this StretchImg. May be overridden by
-     * specifying item-specific base styles to each object in the {@link com.smartgwt.client.widgets.StretchImg#getItems 'items
-     * array'}. This base style will have standard stateful suffixes appended to indicate the state of this component (as
-     * described in  {@link com.smartgwt.client.widgets.StatefulCanvas#getBaseStyle baseStyle}).
+     * The base URL for the image.  <P> As with {@link com.smartgwt.client.widgets.Img#getSrc src}, the {@link
+     * com.smartgwt.client.types.State} of the component is added to this URL.  Then, the image segment name as specified by
+     * {@link com.smartgwt.client.widgets.StretchImg#getItems items} is added. <P> For example, for a stretchImg in "Over"
+     * state with a <code>src</code> of "button.png" and a segment name of "stretch", the resulting URL would be
+     * "button_Over_stretch.png".
      *
      *
      * @return String
      */
-    public String getItemBaseStyle()  {
-        return getAttributeAsString("itemBaseStyle");
+    public String getSrc()  {
+        return getAttributeAsString("src");
+    }
+
+    /**
+     * Indicates whether the list of images is drawn vertically from top to bottom (true), or horizontally from left to right
+     * (false).
+     *
+     * @param vertical vertical Default value is true
+     */
+    public void setVertical(Boolean vertical) {
+        setAttribute("vertical", vertical, true);
+    }
+
+    /**
+     * Indicates whether the list of images is drawn vertically from top to bottom (true), or horizontally from left to right
+     * (false).
+     *
+     *
+     * @return Boolean
+     */
+    public Boolean getVertical()  {
+        return getAttributeAsBoolean("vertical");
+    }
+
+    /**
+     * Base URL for the image if {@link com.smartgwt.client.widgets.StretchImg#getVertical vertical} is true and  {@link
+     * com.smartgwt.client.widgets.StretchImg#getSrc src} is unset.
+     *
+     * @param vSrc vSrc Default value is null
+     */
+    public void setVSrc(String vSrc) {
+        setAttribute("vSrc", vSrc, true);
+    }
+
+    /**
+     * Base URL for the image if {@link com.smartgwt.client.widgets.StretchImg#getVertical vertical} is true and  {@link
+     * com.smartgwt.client.widgets.StretchImg#getSrc src} is unset.
+     *
+     *
+     * @return String
+     */
+    public String getVSrc()  {
+        return getAttributeAsString("vSrc");
     }
 
     // ********************* Methods ***********************

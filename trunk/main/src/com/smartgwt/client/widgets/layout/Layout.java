@@ -94,453 +94,6 @@ public class Layout extends Canvas {
         return widget;
     }-*/;
     // ********************* Properties / Attributes ***********************
-             
-    /**
-     * Normal {@link com.smartgwt.client.types.Overflow} settings can be used on layouts, for example, an overflow:auto Layout
-     * will scroll if members exceed its specified size, whereas an overflow:visible Layout will grow to accommodate members.
-     *
-     * @param overflow overflow Default value is "visible"
-     * @throws IllegalStateException this property cannot be changed after the component has been created
-     */
-    public void setOverflow(Overflow overflow)  throws IllegalStateException {
-        setAttribute("overflow", overflow.getValue(), false);
-    }
-
-    /**
-     * Normal {@link com.smartgwt.client.types.Overflow} settings can be used on layouts, for example, an overflow:auto Layout
-     * will scroll if members exceed its specified size, whereas an overflow:visible Layout will grow to accommodate members.
-     *
-     *
-     * @return Overflow
-     */
-    public Overflow getOverflow()  {
-        return EnumUtil.getEnum(Overflow.values(), getAttribute("overflow"));
-    }
-
-    /**
-     * Should this layout appear with members stacked vertically or horizontally. Defaults to  <code>false</code> if
-     * unspecified.
-     *
-     * @param vertical vertical Default value is null
-     */
-    public void setVertical(Boolean vertical) {
-        setAttribute("vertical", vertical, true);
-    }
-
-    /**
-     * Should this layout appear with members stacked vertically or horizontally. Defaults to  <code>false</code> if
-     * unspecified.
-     *
-     *
-     * @return Boolean
-     */
-    public Boolean getVertical()  {
-        return getAttributeAsBoolean("vertical");
-    }
-             
-    /**
-     * Sizing policy applied to members on vertical axis
-     * <p><b>Note : </b> This is an advanced setting</p>
-     *
-     * @param vPolicy vPolicy Default value is "fill"
-     */
-    public void setVPolicy(LayoutPolicy vPolicy) {
-        setAttribute("vPolicy", vPolicy.getValue(), true);
-    }
-
-    /**
-     * Sizing policy applied to members on vertical axis
-     *
-     *
-     * @return LayoutPolicy
-     */
-    public LayoutPolicy getVPolicy()  {
-        return EnumUtil.getEnum(LayoutPolicy.values(), getAttribute("vPolicy"));
-    }
-             
-    /**
-     * Sizing policy applied to members on horizonal axis
-     * <p><b>Note : </b> This is an advanced setting</p>
-     *
-     * @param hPolicy hPolicy Default value is "fill"
-     */
-    public void setHPolicy(LayoutPolicy hPolicy) {
-        setAttribute("hPolicy", hPolicy.getValue(), true);
-    }
-
-    /**
-     * Sizing policy applied to members on horizonal axis
-     *
-     *
-     * @return LayoutPolicy
-     */
-    public LayoutPolicy getHPolicy()  {
-        return EnumUtil.getEnum(LayoutPolicy.values(), getAttribute("hPolicy"));
-    }
-
-    /**
-     * Minimum size, in pixels, below which members should never be shrunk, even if this requires the Layout to overflow.
-     *
-     * @param minMemberSize minMemberSize Default value is 1
-     * @throws IllegalStateException this property cannot be changed after the component has been created
-     */
-    public void setMinMemberSize(int minMemberSize)  throws IllegalStateException {
-        setAttribute("minMemberSize", minMemberSize, false);
-    }
-
-    /**
-     * Minimum size, in pixels, below which members should never be shrunk, even if this requires the Layout to overflow.
-     *
-     *
-     * @return int
-     */
-    public int getMinMemberSize()  {
-        return getAttributeAsInt("minMemberSize");
-    }
-
-    /**
-     * Whether the layout policy is continuously enforced as new members are added or removed and as members are resized. <p>
-     * This setting implies that any member that resizes larger, or any added member, will take space from other members in
-     * order to allow the overall layout to stay the same size.
-     * <p><b>Note : </b> This is an advanced setting</p>
-     *
-     * @param enforcePolicy enforcePolicy Default value is true
-     */
-    public void setEnforcePolicy(Boolean enforcePolicy) {
-        setAttribute("enforcePolicy", enforcePolicy, true);
-    }
-
-    /**
-     * Whether the layout policy is continuously enforced as new members are added or removed and as members are resized. <p>
-     * This setting implies that any member that resizes larger, or any added member, will take space from other members in
-     * order to allow the overall layout to stay the same size.
-     *
-     *
-     * @return Boolean
-     */
-    public Boolean getEnforcePolicy()  {
-        return getAttributeAsBoolean("enforcePolicy");
-    }
-
-    /**
-     * Reverse the order of stacking for this Layout, so that the last member is shown first. <P> Requires a manual call to
-     * <code>reflow()</code> if changed on the fly. <P> In RTL mode, for horizontal Layouts the value of this flag will be
-     * flipped during initialization.
-     *
-     * @param reverseOrder reverseOrder Default value is false
-     */
-    public void setReverseOrder(Boolean reverseOrder) {
-        setAttribute("reverseOrder", reverseOrder, true);
-    }
-
-    /**
-     * Reverse the order of stacking for this Layout, so that the last member is shown first. <P> Requires a manual call to
-     * <code>reflow()</code> if changed on the fly. <P> In RTL mode, for horizontal Layouts the value of this flag will be
-     * flipped during initialization.
-     *
-     *
-     * @return Boolean
-     */
-    public Boolean getReverseOrder()  {
-        return getAttributeAsBoolean("reverseOrder");
-    }
-
-    /**
-     * If this widget has padding specified (as {@link com.smartgwt.client.widgets.Canvas#getPadding 'this.padding'} or in the
-     * CSS style applied to this layout), should it show up as space outside the members, similar to layoutMargin? <P> If this
-     * setting is false, padding will not affect member positioning (as CSS padding normally does not affect absolutely
-     * positioned children).  Leaving this setting true allows a designer to more effectively control layout purely from CSS.
-     * <P> Note that {@link com.smartgwt.client.widgets.layout.Layout#getLayoutMargin layoutMargin} if specified, takes
-     * precedence over this value.
-     * <p><b>Note : </b> This is an advanced setting</p>
-     *
-     * @param paddingAsLayoutMargin paddingAsLayoutMargin Default value is true
-     */
-    public void setPaddingAsLayoutMargin(Boolean paddingAsLayoutMargin) {
-        setAttribute("paddingAsLayoutMargin", paddingAsLayoutMargin, true);
-    }
-
-    /**
-     * If this widget has padding specified (as {@link com.smartgwt.client.widgets.Canvas#getPadding 'this.padding'} or in the
-     * CSS style applied to this layout), should it show up as space outside the members, similar to layoutMargin? <P> If this
-     * setting is false, padding will not affect member positioning (as CSS padding normally does not affect absolutely
-     * positioned children).  Leaving this setting true allows a designer to more effectively control layout purely from CSS.
-     * <P> Note that {@link com.smartgwt.client.widgets.layout.Layout#getLayoutMargin layoutMargin} if specified, takes
-     * precedence over this value.
-     *
-     *
-     * @return Boolean
-     */
-    public Boolean getPaddingAsLayoutMargin()  {
-        return getAttributeAsBoolean("paddingAsLayoutMargin");
-    }
-
-    /**
-     * Space outside of all members. This attribute, along with {@link
-     * com.smartgwt.client.widgets.layout.Layout#getLayoutLeftMargin layoutLeftMargin}  and related properties does not have a
-     * true setter method.<br> It may be assigned directly at runtime. After setting the property,  {@link
-     * com.smartgwt.client.widgets.layout.Layout#setLayoutMargin} may be called with no arguments to reflow the layout.
-     * Method to force a reflow of the layout after directly assigning a value to any of the layout*Margin properties. Takes no arguments.
-     *
-     * @param layoutMargin layoutMargin Default value is null
-     */
-    public void setLayoutMargin(Integer layoutMargin) {
-        setAttribute("layoutMargin", layoutMargin, true);
-    }
-
-    /**
-     * Space outside of all members. This attribute, along with {@link
-     * com.smartgwt.client.widgets.layout.Layout#getLayoutLeftMargin layoutLeftMargin}  and related properties does not have a
-     * true setter method.<br> It may be assigned directly at runtime. After setting the property,  {@link
-     * com.smartgwt.client.widgets.layout.Layout#setLayoutMargin} may be called with no arguments to reflow the layout.
-     *
-     *
-     * @return Integer
-     */
-    public Integer getLayoutMargin()  {
-        return getAttributeAsInt("layoutMargin");
-    }
-
-    /**
-     * Space outside of all members, on the left-hand side.  Defaults to {@link
-     * com.smartgwt.client.widgets.layout.Layout#getLayoutMargin layoutMargin}. <P> Requires a manual call to
-     * <code>setLayoutMargin()</code> if changed on the fly.
-     *
-     * @param layoutLeftMargin layoutLeftMargin Default value is null
-     */
-    public void setLayoutLeftMargin(Integer layoutLeftMargin) {
-        setAttribute("layoutLeftMargin", layoutLeftMargin, true);
-    }
-
-    /**
-     * Space outside of all members, on the left-hand side.  Defaults to {@link
-     * com.smartgwt.client.widgets.layout.Layout#getLayoutMargin layoutMargin}. <P> Requires a manual call to
-     * <code>setLayoutMargin()</code> if changed on the fly.
-     *
-     *
-     * @return Integer
-     */
-    public Integer getLayoutLeftMargin()  {
-        return getAttributeAsInt("layoutLeftMargin");
-    }
-
-    /**
-     * Space outside of all members, on the right-hand side.  Defaults to {@link
-     * com.smartgwt.client.widgets.layout.Layout#getLayoutMargin layoutMargin}. <P> Requires a manual call to
-     * <code>setLayoutMargin()</code> if changed on the fly.
-     *
-     * @param layoutRightMargin layoutRightMargin Default value is null
-     */
-    public void setLayoutRightMargin(Integer layoutRightMargin) {
-        setAttribute("layoutRightMargin", layoutRightMargin, true);
-    }
-
-    /**
-     * Space outside of all members, on the right-hand side.  Defaults to {@link
-     * com.smartgwt.client.widgets.layout.Layout#getLayoutMargin layoutMargin}. <P> Requires a manual call to
-     * <code>setLayoutMargin()</code> if changed on the fly.
-     *
-     *
-     * @return Integer
-     */
-    public Integer getLayoutRightMargin()  {
-        return getAttributeAsInt("layoutRightMargin");
-    }
-
-    /**
-     * Space outside of all members, on the top side.  Defaults to {@link
-     * com.smartgwt.client.widgets.layout.Layout#getLayoutMargin layoutMargin}. <P> Requires a manual call to
-     * <code>setLayoutMargin()</code> if changed on the fly.
-     *
-     * @param layoutTopMargin layoutTopMargin Default value is null
-     */
-    public void setLayoutTopMargin(Integer layoutTopMargin) {
-        setAttribute("layoutTopMargin", layoutTopMargin, true);
-    }
-
-    /**
-     * Space outside of all members, on the top side.  Defaults to {@link
-     * com.smartgwt.client.widgets.layout.Layout#getLayoutMargin layoutMargin}. <P> Requires a manual call to
-     * <code>setLayoutMargin()</code> if changed on the fly.
-     *
-     *
-     * @return Integer
-     */
-    public Integer getLayoutTopMargin()  {
-        return getAttributeAsInt("layoutTopMargin");
-    }
-
-    /**
-     * Space outside of all members, on the bottom side.  Defaults to {@link
-     * com.smartgwt.client.widgets.layout.Layout#getLayoutMargin layoutMargin}. <P> Requires a manual call to
-     * <code>setLayoutMargin()</code> if changed on the fly.
-     *
-     * @param layoutBottomMargin layoutBottomMargin Default value is null
-     */
-    public void setLayoutBottomMargin(Integer layoutBottomMargin) {
-        setAttribute("layoutBottomMargin", layoutBottomMargin, true);
-    }
-
-    /**
-     * Space outside of all members, on the bottom side.  Defaults to {@link
-     * com.smartgwt.client.widgets.layout.Layout#getLayoutMargin layoutMargin}. <P> Requires a manual call to
-     * <code>setLayoutMargin()</code> if changed on the fly.
-     *
-     *
-     * @return Integer
-     */
-    public Integer getLayoutBottomMargin()  {
-        return getAttributeAsInt("layoutBottomMargin");
-    }
-
-    /**
-     * Space between each member of the layout. <P> Requires a manual call to <code>reflow()</code> if changed on the fly.
-     *
-     * @param membersMargin membersMargin Default value is 0
-     */
-    public void setMembersMargin(int membersMargin) {
-        setAttribute("membersMargin", membersMargin, true);
-    }
-
-    /**
-     * Space between each member of the layout. <P> Requires a manual call to <code>reflow()</code> if changed on the fly.
-     *
-     *
-     * @return int
-     */
-    public int getMembersMargin()  {
-        return getAttributeAsInt("membersMargin");
-    }
-
-    /**
-     * Whether to leave a gap for a vertical scrollbar even when one is not actually present. <P> This setting avoids the
-     * layout resizing all members when the vertical scrollbar is introduced or removed, which can avoid unnecessary screen
-     * shifting and improve performance.
-     *
-     * @param leaveScrollbarGap leaveScrollbarGap Default value is false
-     * @throws IllegalStateException this property cannot be changed after the component has been created
-     */
-    public void setLeaveScrollbarGap(Boolean leaveScrollbarGap)  throws IllegalStateException {
-        setAttribute("leaveScrollbarGap", leaveScrollbarGap, false);
-    }
-
-    /**
-     * Whether to leave a gap for a vertical scrollbar even when one is not actually present. <P> This setting avoids the
-     * layout resizing all members when the vertical scrollbar is introduced or removed, which can avoid unnecessary screen
-     * shifting and improve performance.
-     *
-     *
-     * @return Boolean
-     */
-    public Boolean getLeaveScrollbarGap()  {
-        return getAttributeAsBoolean("leaveScrollbarGap");
-    }
-
-    /**
-     * Number of pixels by which each member should overlap the preceding member, used for creating an "stack of cards"
-     * appearance for the members of a Layout. <P> <code>memberOverlap</code> can be used in conjunction with {@link
-     * com.smartgwt.client.widgets.layout.Layout#getStackZIndex stackZIndex} to create a particular visual stacking order. <P>
-     * Note that overlap of individual members can be accomplished with a negative setting for {@link
-     * com.smartgwt.client.widgets.Canvas#getExtraSpace extraSpace}.
-     *
-     * @param memberOverlap memberOverlap Default value is 0
-     * @throws IllegalStateException this property cannot be changed after the component has been created
-     */
-    public void setMemberOverlap(int memberOverlap)  throws IllegalStateException {
-        setAttribute("memberOverlap", memberOverlap, false);
-    }
-
-    /**
-     * Number of pixels by which each member should overlap the preceding member, used for creating an "stack of cards"
-     * appearance for the members of a Layout. <P> <code>memberOverlap</code> can be used in conjunction with {@link
-     * com.smartgwt.client.widgets.layout.Layout#getStackZIndex stackZIndex} to create a particular visual stacking order. <P>
-     * Note that overlap of individual members can be accomplished with a negative setting for {@link
-     * com.smartgwt.client.widgets.Canvas#getExtraSpace extraSpace}.
-     *
-     *
-     * @return int
-     */
-    public int getMemberOverlap()  {
-        return getAttributeAsInt("memberOverlap");
-    }
-             
-    /**
-     * Policy for whether resize bars are shown on members by default.
-     *
-     * @param defaultResizeBars defaultResizeBars Default value is "marked"
-     * @throws IllegalStateException this property cannot be changed after the component has been created
-     */
-    public void setDefaultResizeBars(LayoutResizeBarPolicy defaultResizeBars)  throws IllegalStateException {
-        setAttribute("defaultResizeBars", defaultResizeBars.getValue(), false);
-    }
-
-    /**
-     * Policy for whether resize bars are shown on members by default.
-     *
-     *
-     * @return LayoutResizeBarPolicy
-     */
-    public LayoutResizeBarPolicy getDefaultResizeBars()  {
-        return EnumUtil.getEnum(LayoutResizeBarPolicy.values(), getAttribute("defaultResizeBars"));
-    }
-
-    /**
-     * Class to use for creating resizeBars. <P> A resize bar will be created for any Layout member that specifies {@link
-     * com.smartgwt.client.widgets.Canvas#getShowResizeBar '<code>showResizeBar:true</code>'}. Resize bars will be instances of
-     * the class specified by this property, and will  automatically be sized to the member's breadth and to the thickness
-     * given by {@link com.smartgwt.client.widgets.layout.Layout#getResizeBarSize resizeBarSize}.<br> Classes that are valid by
-     * default are {@link com.smartgwt.client.widgets.Splitbar} and {@link com.smartgwt.client.widgets.ImgSplitbar}. <P> To
-     * customize the appearance or behavior of resizeBars within some layout a custom  resize bar class can be created by
-     * subclassing {@link com.smartgwt.client.widgets.Splitbar} or {@link com.smartgwt.client.widgets.ImgSplitbar} and setting
-     * this property on your layout to use your new class. <P> Resize bars will automatically be sized to the member's breadth
-     * and to the thickness given by <code>layout.resizeBarSize</code>.  The built-in Splitbar class supports drag resizing of
-     * its target member, and clicking on the bar to hide the target member.
-     * <p><b>Note : </b> This is an advanced setting</p>
-     *
-     * @param resizeBarClass resizeBarClass Default value is "Splitbar"
-     */
-    public void setResizeBarClass(String resizeBarClass) {
-        setAttribute("resizeBarClass", resizeBarClass, true);
-    }
-
-    /**
-     * Class to use for creating resizeBars. <P> A resize bar will be created for any Layout member that specifies {@link
-     * com.smartgwt.client.widgets.Canvas#getShowResizeBar '<code>showResizeBar:true</code>'}. Resize bars will be instances of
-     * the class specified by this property, and will  automatically be sized to the member's breadth and to the thickness
-     * given by {@link com.smartgwt.client.widgets.layout.Layout#getResizeBarSize resizeBarSize}.<br> Classes that are valid by
-     * default are {@link com.smartgwt.client.widgets.Splitbar} and {@link com.smartgwt.client.widgets.ImgSplitbar}. <P> To
-     * customize the appearance or behavior of resizeBars within some layout a custom  resize bar class can be created by
-     * subclassing {@link com.smartgwt.client.widgets.Splitbar} or {@link com.smartgwt.client.widgets.ImgSplitbar} and setting
-     * this property on your layout to use your new class. <P> Resize bars will automatically be sized to the member's breadth
-     * and to the thickness given by <code>layout.resizeBarSize</code>.  The built-in Splitbar class supports drag resizing of
-     * its target member, and clicking on the bar to hide the target member.
-     *
-     *
-     * @return String
-     */
-    public String getResizeBarClass()  {
-        return getAttributeAsString("resizeBarClass");
-    }
-
-    /**
-     * Thickness of the resizeBars in pixels
-     * <p><b>Note : </b> This is an advanced setting</p>
-     *
-     * @param resizeBarSize resizeBarSize Default value is 7
-     */
-    public void setResizeBarSize(int resizeBarSize) {
-        setAttribute("resizeBarSize", resizeBarSize, true);
-    }
-
-    /**
-     * Thickness of the resizeBars in pixels
-     *
-     *
-     * @return int
-     */
-    public int getResizeBarSize()  {
-        return getAttributeAsInt("resizeBarSize");
-    }
 
     /**
      * If true when members are added / removed, they should be animated as they are shown or hidden in position
@@ -645,6 +198,26 @@ public class Layout extends Canvas {
     public Boolean getCanDropComponents()  {
         return getAttributeAsBoolean("canDropComponents");
     }
+             
+    /**
+     * Policy for whether resize bars are shown on members by default.
+     *
+     * @param defaultResizeBars defaultResizeBars Default value is "marked"
+     * @throws IllegalStateException this property cannot be changed after the component has been created
+     */
+    public void setDefaultResizeBars(LayoutResizeBarPolicy defaultResizeBars)  throws IllegalStateException {
+        setAttribute("defaultResizeBars", defaultResizeBars.getValue(), false);
+    }
+
+    /**
+     * Policy for whether resize bars are shown on members by default.
+     *
+     *
+     * @return LayoutResizeBarPolicy
+     */
+    public LayoutResizeBarPolicy getDefaultResizeBars()  {
+        return EnumUtil.getEnum(LayoutResizeBarPolicy.values(), getAttribute("defaultResizeBars"));
+    }
 
     /**
      * Thickness, in pixels of the dropLine shown during drag and drop when {@link
@@ -669,6 +242,416 @@ public class Layout extends Canvas {
      */
     public int getDropLineThickness()  {
         return getAttributeAsInt("dropLineThickness");
+    }
+
+    /**
+     * Whether the layout policy is continuously enforced as new members are added or removed and as members are resized. <p>
+     * This setting implies that any member that resizes larger, or any added member, will take space from other members in
+     * order to allow the overall layout to stay the same size.
+     * <p><b>Note : </b> This is an advanced setting</p>
+     *
+     * @param enforcePolicy enforcePolicy Default value is true
+     */
+    public void setEnforcePolicy(Boolean enforcePolicy) {
+        setAttribute("enforcePolicy", enforcePolicy, true);
+    }
+
+    /**
+     * Whether the layout policy is continuously enforced as new members are added or removed and as members are resized. <p>
+     * This setting implies that any member that resizes larger, or any added member, will take space from other members in
+     * order to allow the overall layout to stay the same size.
+     *
+     *
+     * @return Boolean
+     */
+    public Boolean getEnforcePolicy()  {
+        return getAttributeAsBoolean("enforcePolicy");
+    }
+             
+    /**
+     * Sizing policy applied to members on horizonal axis
+     * <p><b>Note : </b> This is an advanced setting</p>
+     *
+     * @param hPolicy hPolicy Default value is "fill"
+     */
+    public void setHPolicy(LayoutPolicy hPolicy) {
+        setAttribute("hPolicy", hPolicy.getValue(), true);
+    }
+
+    /**
+     * Sizing policy applied to members on horizonal axis
+     *
+     *
+     * @return LayoutPolicy
+     */
+    public LayoutPolicy getHPolicy()  {
+        return EnumUtil.getEnum(LayoutPolicy.values(), getAttribute("hPolicy"));
+    }
+
+    /**
+     * Space outside of all members, on the bottom side.  Defaults to {@link
+     * com.smartgwt.client.widgets.layout.Layout#getLayoutMargin layoutMargin}. <P> Requires a manual call to
+     * <code>setLayoutMargin()</code> if changed on the fly.
+     *
+     * @param layoutBottomMargin layoutBottomMargin Default value is null
+     */
+    public void setLayoutBottomMargin(Integer layoutBottomMargin) {
+        setAttribute("layoutBottomMargin", layoutBottomMargin, true);
+    }
+
+    /**
+     * Space outside of all members, on the bottom side.  Defaults to {@link
+     * com.smartgwt.client.widgets.layout.Layout#getLayoutMargin layoutMargin}. <P> Requires a manual call to
+     * <code>setLayoutMargin()</code> if changed on the fly.
+     *
+     *
+     * @return Integer
+     */
+    public Integer getLayoutBottomMargin()  {
+        return getAttributeAsInt("layoutBottomMargin");
+    }
+
+    /**
+     * Space outside of all members, on the left-hand side.  Defaults to {@link
+     * com.smartgwt.client.widgets.layout.Layout#getLayoutMargin layoutMargin}. <P> Requires a manual call to
+     * <code>setLayoutMargin()</code> if changed on the fly.
+     *
+     * @param layoutLeftMargin layoutLeftMargin Default value is null
+     */
+    public void setLayoutLeftMargin(Integer layoutLeftMargin) {
+        setAttribute("layoutLeftMargin", layoutLeftMargin, true);
+    }
+
+    /**
+     * Space outside of all members, on the left-hand side.  Defaults to {@link
+     * com.smartgwt.client.widgets.layout.Layout#getLayoutMargin layoutMargin}. <P> Requires a manual call to
+     * <code>setLayoutMargin()</code> if changed on the fly.
+     *
+     *
+     * @return Integer
+     */
+    public Integer getLayoutLeftMargin()  {
+        return getAttributeAsInt("layoutLeftMargin");
+    }
+
+    /**
+     * Space outside of all members. This attribute, along with {@link
+     * com.smartgwt.client.widgets.layout.Layout#getLayoutLeftMargin layoutLeftMargin}  and related properties does not have a
+     * true setter method.<br> It may be assigned directly at runtime. After setting the property,  {@link
+     * com.smartgwt.client.widgets.layout.Layout#setLayoutMargin} may be called with no arguments to reflow the layout.
+     * Method to force a reflow of the layout after directly assigning a value to any of the layout*Margin properties. Takes no arguments.
+     *
+     * @param layoutMargin layoutMargin Default value is null
+     */
+    public void setLayoutMargin(Integer layoutMargin) {
+        setAttribute("layoutMargin", layoutMargin, true);
+    }
+
+    /**
+     * Space outside of all members. This attribute, along with {@link
+     * com.smartgwt.client.widgets.layout.Layout#getLayoutLeftMargin layoutLeftMargin}  and related properties does not have a
+     * true setter method.<br> It may be assigned directly at runtime. After setting the property,  {@link
+     * com.smartgwt.client.widgets.layout.Layout#setLayoutMargin} may be called with no arguments to reflow the layout.
+     *
+     *
+     * @return Integer
+     */
+    public Integer getLayoutMargin()  {
+        return getAttributeAsInt("layoutMargin");
+    }
+
+    /**
+     * Space outside of all members, on the right-hand side.  Defaults to {@link
+     * com.smartgwt.client.widgets.layout.Layout#getLayoutMargin layoutMargin}. <P> Requires a manual call to
+     * <code>setLayoutMargin()</code> if changed on the fly.
+     *
+     * @param layoutRightMargin layoutRightMargin Default value is null
+     */
+    public void setLayoutRightMargin(Integer layoutRightMargin) {
+        setAttribute("layoutRightMargin", layoutRightMargin, true);
+    }
+
+    /**
+     * Space outside of all members, on the right-hand side.  Defaults to {@link
+     * com.smartgwt.client.widgets.layout.Layout#getLayoutMargin layoutMargin}. <P> Requires a manual call to
+     * <code>setLayoutMargin()</code> if changed on the fly.
+     *
+     *
+     * @return Integer
+     */
+    public Integer getLayoutRightMargin()  {
+        return getAttributeAsInt("layoutRightMargin");
+    }
+
+    /**
+     * Space outside of all members, on the top side.  Defaults to {@link
+     * com.smartgwt.client.widgets.layout.Layout#getLayoutMargin layoutMargin}. <P> Requires a manual call to
+     * <code>setLayoutMargin()</code> if changed on the fly.
+     *
+     * @param layoutTopMargin layoutTopMargin Default value is null
+     */
+    public void setLayoutTopMargin(Integer layoutTopMargin) {
+        setAttribute("layoutTopMargin", layoutTopMargin, true);
+    }
+
+    /**
+     * Space outside of all members, on the top side.  Defaults to {@link
+     * com.smartgwt.client.widgets.layout.Layout#getLayoutMargin layoutMargin}. <P> Requires a manual call to
+     * <code>setLayoutMargin()</code> if changed on the fly.
+     *
+     *
+     * @return Integer
+     */
+    public Integer getLayoutTopMargin()  {
+        return getAttributeAsInt("layoutTopMargin");
+    }
+
+    /**
+     * Whether to leave a gap for a vertical scrollbar even when one is not actually present. <P> This setting avoids the
+     * layout resizing all members when the vertical scrollbar is introduced or removed, which can avoid unnecessary screen
+     * shifting and improve performance.
+     *
+     * @param leaveScrollbarGap leaveScrollbarGap Default value is false
+     * @throws IllegalStateException this property cannot be changed after the component has been created
+     */
+    public void setLeaveScrollbarGap(Boolean leaveScrollbarGap)  throws IllegalStateException {
+        setAttribute("leaveScrollbarGap", leaveScrollbarGap, false);
+    }
+
+    /**
+     * Whether to leave a gap for a vertical scrollbar even when one is not actually present. <P> This setting avoids the
+     * layout resizing all members when the vertical scrollbar is introduced or removed, which can avoid unnecessary screen
+     * shifting and improve performance.
+     *
+     *
+     * @return Boolean
+     */
+    public Boolean getLeaveScrollbarGap()  {
+        return getAttributeAsBoolean("leaveScrollbarGap");
+    }
+
+    /**
+     * If set, a Layout with breadthPolicy:"fill" will specially interpret a percentage breadth on a member as a percentage of
+     * available space excluding the {@link com.smartgwt.client.widgets.layout.Layout#getLayoutMargin layoutMargin}.  If false,
+     * percentages work exactly as for a non-member, with layoutMargins, if any, ignored.
+     *
+     * @param managePercentBreadth managePercentBreadth Default value is true
+     * @throws IllegalStateException this property cannot be changed after the component has been created
+     */
+    public void setManagePercentBreadth(Boolean managePercentBreadth)  throws IllegalStateException {
+        setAttribute("managePercentBreadth", managePercentBreadth, false);
+    }
+
+    /**
+     * If set, a Layout with breadthPolicy:"fill" will specially interpret a percentage breadth on a member as a percentage of
+     * available space excluding the {@link com.smartgwt.client.widgets.layout.Layout#getLayoutMargin layoutMargin}.  If false,
+     * percentages work exactly as for a non-member, with layoutMargins, if any, ignored.
+     *
+     *
+     * @return Boolean
+     */
+    public Boolean getManagePercentBreadth()  {
+        return getAttributeAsBoolean("managePercentBreadth");
+    }
+
+    /**
+     * Number of pixels by which each member should overlap the preceding member, used for creating an "stack of cards"
+     * appearance for the members of a Layout. <P> <code>memberOverlap</code> can be used in conjunction with {@link
+     * com.smartgwt.client.widgets.layout.Layout#getStackZIndex stackZIndex} to create a particular visual stacking order. <P>
+     * Note that overlap of individual members can be accomplished with a negative setting for {@link
+     * com.smartgwt.client.widgets.Canvas#getExtraSpace extraSpace}.
+     *
+     * @param memberOverlap memberOverlap Default value is 0
+     * @throws IllegalStateException this property cannot be changed after the component has been created
+     */
+    public void setMemberOverlap(int memberOverlap)  throws IllegalStateException {
+        setAttribute("memberOverlap", memberOverlap, false);
+    }
+
+    /**
+     * Number of pixels by which each member should overlap the preceding member, used for creating an "stack of cards"
+     * appearance for the members of a Layout. <P> <code>memberOverlap</code> can be used in conjunction with {@link
+     * com.smartgwt.client.widgets.layout.Layout#getStackZIndex stackZIndex} to create a particular visual stacking order. <P>
+     * Note that overlap of individual members can be accomplished with a negative setting for {@link
+     * com.smartgwt.client.widgets.Canvas#getExtraSpace extraSpace}.
+     *
+     *
+     * @return int
+     */
+    public int getMemberOverlap()  {
+        return getAttributeAsInt("memberOverlap");
+    }
+
+    /**
+     * Space between each member of the layout. <P> Requires a manual call to <code>reflow()</code> if changed on the fly.
+     *
+     * @param membersMargin membersMargin Default value is 0
+     */
+    public void setMembersMargin(int membersMargin) {
+        setAttribute("membersMargin", membersMargin, true);
+    }
+
+    /**
+     * Space between each member of the layout. <P> Requires a manual call to <code>reflow()</code> if changed on the fly.
+     *
+     *
+     * @return int
+     */
+    public int getMembersMargin()  {
+        return getAttributeAsInt("membersMargin");
+    }
+
+    /**
+     * Minimum size, in pixels, below which members should never be shrunk, even if this requires the Layout to overflow.
+     *
+     * @param minMemberSize minMemberSize Default value is 1
+     * @throws IllegalStateException this property cannot be changed after the component has been created
+     */
+    public void setMinMemberSize(int minMemberSize)  throws IllegalStateException {
+        setAttribute("minMemberSize", minMemberSize, false);
+    }
+
+    /**
+     * Minimum size, in pixels, below which members should never be shrunk, even if this requires the Layout to overflow.
+     *
+     *
+     * @return int
+     */
+    public int getMinMemberSize()  {
+        return getAttributeAsInt("minMemberSize");
+    }
+             
+    /**
+     * Normal {@link com.smartgwt.client.types.Overflow} settings can be used on layouts, for example, an overflow:auto Layout
+     * will scroll if members exceed its specified size, whereas an overflow:visible Layout will grow to accommodate members.
+     *
+     * @param overflow overflow Default value is "visible"
+     * @throws IllegalStateException this property cannot be changed after the component has been created
+     */
+    public void setOverflow(Overflow overflow)  throws IllegalStateException {
+        setAttribute("overflow", overflow.getValue(), false);
+    }
+
+    /**
+     * Normal {@link com.smartgwt.client.types.Overflow} settings can be used on layouts, for example, an overflow:auto Layout
+     * will scroll if members exceed its specified size, whereas an overflow:visible Layout will grow to accommodate members.
+     *
+     *
+     * @return Overflow
+     */
+    public Overflow getOverflow()  {
+        return EnumUtil.getEnum(Overflow.values(), getAttribute("overflow"));
+    }
+
+    /**
+     * If this widget has padding specified (as {@link com.smartgwt.client.widgets.Canvas#getPadding 'this.padding'} or in the
+     * CSS style applied to this layout), should it show up as space outside the members, similar to layoutMargin? <P> If this
+     * setting is false, padding will not affect member positioning (as CSS padding normally does not affect absolutely
+     * positioned children).  Leaving this setting true allows a designer to more effectively control layout purely from CSS.
+     * <P> Note that {@link com.smartgwt.client.widgets.layout.Layout#getLayoutMargin layoutMargin} if specified, takes
+     * precedence over this value.
+     * <p><b>Note : </b> This is an advanced setting</p>
+     *
+     * @param paddingAsLayoutMargin paddingAsLayoutMargin Default value is true
+     */
+    public void setPaddingAsLayoutMargin(Boolean paddingAsLayoutMargin) {
+        setAttribute("paddingAsLayoutMargin", paddingAsLayoutMargin, true);
+    }
+
+    /**
+     * If this widget has padding specified (as {@link com.smartgwt.client.widgets.Canvas#getPadding 'this.padding'} or in the
+     * CSS style applied to this layout), should it show up as space outside the members, similar to layoutMargin? <P> If this
+     * setting is false, padding will not affect member positioning (as CSS padding normally does not affect absolutely
+     * positioned children).  Leaving this setting true allows a designer to more effectively control layout purely from CSS.
+     * <P> Note that {@link com.smartgwt.client.widgets.layout.Layout#getLayoutMargin layoutMargin} if specified, takes
+     * precedence over this value.
+     *
+     *
+     * @return Boolean
+     */
+    public Boolean getPaddingAsLayoutMargin()  {
+        return getAttributeAsBoolean("paddingAsLayoutMargin");
+    }
+
+    /**
+     * Class to use for creating resizeBars. <P> A resize bar will be created for any Layout member that specifies {@link
+     * com.smartgwt.client.widgets.Canvas#getShowResizeBar '<code>showResizeBar:true</code>'}. Resize bars will be instances of
+     * the class specified by this property, and will  automatically be sized to the member's breadth and to the thickness
+     * given by {@link com.smartgwt.client.widgets.layout.Layout#getResizeBarSize resizeBarSize}.<br> Classes that are valid by
+     * default are {@link com.smartgwt.client.widgets.Splitbar} and {@link com.smartgwt.client.widgets.ImgSplitbar}. <P> To
+     * customize the appearance or behavior of resizeBars within some layout a custom  resize bar class can be created by
+     * subclassing {@link com.smartgwt.client.widgets.Splitbar} or {@link com.smartgwt.client.widgets.ImgSplitbar} and setting
+     * this property on your layout to use your new class. <P> Resize bars will automatically be sized to the member's breadth
+     * and to the thickness given by <code>layout.resizeBarSize</code>.  The built-in Splitbar class supports drag resizing of
+     * its target member, and clicking on the bar to hide the target member.
+     * <p><b>Note : </b> This is an advanced setting</p>
+     *
+     * @param resizeBarClass resizeBarClass Default value is "Splitbar"
+     */
+    public void setResizeBarClass(String resizeBarClass) {
+        setAttribute("resizeBarClass", resizeBarClass, true);
+    }
+
+    /**
+     * Class to use for creating resizeBars. <P> A resize bar will be created for any Layout member that specifies {@link
+     * com.smartgwt.client.widgets.Canvas#getShowResizeBar '<code>showResizeBar:true</code>'}. Resize bars will be instances of
+     * the class specified by this property, and will  automatically be sized to the member's breadth and to the thickness
+     * given by {@link com.smartgwt.client.widgets.layout.Layout#getResizeBarSize resizeBarSize}.<br> Classes that are valid by
+     * default are {@link com.smartgwt.client.widgets.Splitbar} and {@link com.smartgwt.client.widgets.ImgSplitbar}. <P> To
+     * customize the appearance or behavior of resizeBars within some layout a custom  resize bar class can be created by
+     * subclassing {@link com.smartgwt.client.widgets.Splitbar} or {@link com.smartgwt.client.widgets.ImgSplitbar} and setting
+     * this property on your layout to use your new class. <P> Resize bars will automatically be sized to the member's breadth
+     * and to the thickness given by <code>layout.resizeBarSize</code>.  The built-in Splitbar class supports drag resizing of
+     * its target member, and clicking on the bar to hide the target member.
+     *
+     *
+     * @return String
+     */
+    public String getResizeBarClass()  {
+        return getAttributeAsString("resizeBarClass");
+    }
+
+    /**
+     * Thickness of the resizeBars in pixels
+     * <p><b>Note : </b> This is an advanced setting</p>
+     *
+     * @param resizeBarSize resizeBarSize Default value is 7
+     */
+    public void setResizeBarSize(int resizeBarSize) {
+        setAttribute("resizeBarSize", resizeBarSize, true);
+    }
+
+    /**
+     * Thickness of the resizeBars in pixels
+     *
+     *
+     * @return int
+     */
+    public int getResizeBarSize()  {
+        return getAttributeAsInt("resizeBarSize");
+    }
+
+    /**
+     * Reverse the order of stacking for this Layout, so that the last member is shown first. <P> Requires a manual call to
+     * <code>reflow()</code> if changed on the fly. <P> In RTL mode, for horizontal Layouts the value of this flag will be
+     * flipped during initialization.
+     *
+     * @param reverseOrder reverseOrder Default value is false
+     */
+    public void setReverseOrder(Boolean reverseOrder) {
+        setAttribute("reverseOrder", reverseOrder, true);
+    }
+
+    /**
+     * Reverse the order of stacking for this Layout, so that the last member is shown first. <P> Requires a manual call to
+     * <code>reflow()</code> if changed on the fly. <P> In RTL mode, for horizontal Layouts the value of this flag will be
+     * flipped during initialization.
+     *
+     *
+     * @return Boolean
+     */
+    public Boolean getReverseOrder()  {
+        return getAttributeAsBoolean("reverseOrder");
     }
 
     /**
@@ -717,30 +700,72 @@ public class Layout extends Canvas {
     }
 
     /**
-     * If set, a Layout with breadthPolicy:"fill" will specially interpret a percentage breadth on a member as a percentage of
-     * available space excluding the {@link com.smartgwt.client.widgets.layout.Layout#getLayoutMargin layoutMargin}.  If false,
-     * percentages work exactly as for a non-member, with layoutMargins, if any, ignored.
+     * Should this layout appear with members stacked vertically or horizontally. Defaults to  <code>false</code> if
+     * unspecified.
      *
-     * @param managePercentBreadth managePercentBreadth Default value is true
-     * @throws IllegalStateException this property cannot be changed after the component has been created
+     * @param vertical vertical Default value is null
      */
-    public void setManagePercentBreadth(Boolean managePercentBreadth)  throws IllegalStateException {
-        setAttribute("managePercentBreadth", managePercentBreadth, false);
+    public void setVertical(Boolean vertical) {
+        setAttribute("vertical", vertical, true);
     }
 
     /**
-     * If set, a Layout with breadthPolicy:"fill" will specially interpret a percentage breadth on a member as a percentage of
-     * available space excluding the {@link com.smartgwt.client.widgets.layout.Layout#getLayoutMargin layoutMargin}.  If false,
-     * percentages work exactly as for a non-member, with layoutMargins, if any, ignored.
+     * Should this layout appear with members stacked vertically or horizontally. Defaults to  <code>false</code> if
+     * unspecified.
      *
      *
      * @return Boolean
      */
-    public Boolean getManagePercentBreadth()  {
-        return getAttributeAsBoolean("managePercentBreadth");
+    public Boolean getVertical()  {
+        return getAttributeAsBoolean("vertical");
+    }
+             
+    /**
+     * Sizing policy applied to members on vertical axis
+     * <p><b>Note : </b> This is an advanced setting</p>
+     *
+     * @param vPolicy vPolicy Default value is "fill"
+     */
+    public void setVPolicy(LayoutPolicy vPolicy) {
+        setAttribute("vPolicy", vPolicy.getValue(), true);
+    }
+
+    /**
+     * Sizing policy applied to members on vertical axis
+     *
+     *
+     * @return LayoutPolicy
+     */
+    public LayoutPolicy getVPolicy()  {
+        return EnumUtil.getEnum(LayoutPolicy.values(), getAttribute("vPolicy"));
     }
 
     // ********************* Methods ***********************
+            
+    /**
+     * Get the position a new member would be dropped.  This drop position switches in the middle of each member, and both
+     * edges (before beginning, after end) are legal drop positions <p> Use this method to obtain the drop position for e.g. a
+     * custom drop handler.
+     *
+     * @return the position a new member would be dropped
+     */
+    public native int getDropPosition() /*-{
+        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
+        return self.getDropPosition();
+    }-*/;
+            
+    /**
+     * Return the breadth for a member of this layout which either didn't specify a breadth or specified a percent breadth with
+     * {@link com.smartgwt.client.widgets.layout.Layout#getManagePercentBreadth managePercentBreadth}:true. <P> Called only for
+     * Layouts which have a {@link com.smartgwt.client.types.LayoutPolicy} for the breadth axis of "fill", since Layouts with a
+     * breadth policy of "none" leave all member breadths alone.
+     * @param member Component to be sized
+     * @param defaultBreadth Value of the currently calculated member breadth. This      may be returned verbatim or manipulated in this method.
+     */
+    public native void getMemberDefaultBreadth(Canvas member, int defaultBreadth) /*-{
+        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
+        self.getMemberDefaultBreadth(member.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()(), defaultBreadth);
+    }-*/;
             
     /**
      * An optional method that, if it exists, allows the manipulation of the calculated offset for members of this layout. 
@@ -755,16 +780,39 @@ public class Layout extends Canvas {
     }-*/;
             
     /**
-     * Return the breadth for a member of this layout which either didn't specify a breadth or specified a percent breadth with
-     * {@link com.smartgwt.client.widgets.layout.Layout#getManagePercentBreadth managePercentBreadth}:true. <P> Called only for
-     * Layouts which have a {@link com.smartgwt.client.types.LayoutPolicy} for the breadth axis of "fill", since Layouts with a
-     * breadth policy of "none" leave all member breadths alone.
-     * @param member Component to be sized
-     * @param defaultBreadth Value of the currently calculated member breadth. This      may be returned verbatim or manipulated in this method.
+     * Returns true if the layout includes the specified canvas.
+     * @param canvas the canvas to check for
+     *
+     * @return true if the layout includes the specified canvas
      */
-    public native void getMemberDefaultBreadth(Canvas member, int defaultBreadth) /*-{
+    public native Boolean hasMember(Canvas canvas) /*-{
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
-        self.getMemberDefaultBreadth(member.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()(), defaultBreadth);
+        var retVal =self.hasMember(canvas.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()());
+        if(retVal == null || retVal === undefined) {
+            return null;
+        } else {
+            return @com.smartgwt.client.util.JSOHelper::toBoolean(Z)(retVal);
+        }
+    }-*/;
+            
+    /**
+     * Calling this method hides the dropLine shown during a drag and drop interaction with a Layout that has {@link
+     * com.smartgwt.client.widgets.layout.Layout#getCanDropComponents canDropComponents} set to true.  This method is only
+     * useful for custom implementations of {@link com.smartgwt.client.widgets.layout.Layout#drop} as the default
+     * implementation calls this method automatically.
+     */
+    public native void hideDropLine() /*-{
+        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
+        self.hideDropLine();
+    }-*/;
+            
+    /**
+     * Fires once at initialization if the layout has any initial members, and then fires whenever members are added, removed
+     * or reordered.
+     */
+    public native void membersChanged() /*-{
+        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
+        self.membersChanged();
     }-*/;
             
     /**
@@ -799,37 +847,12 @@ public class Layout extends Canvas {
     }-*/;
             
     /**
-     * Returns true if the layout includes the specified canvas.
-     * @param canvas the canvas to check for
-     *
-     * @return true if the layout includes the specified canvas
-     */
-    public native Boolean hasMember(Canvas canvas) /*-{
-        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
-        var retVal =self.hasMember(canvas.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()());
-        if(retVal == null || retVal === undefined) {
-            return null;
-        } else {
-            return @com.smartgwt.client.util.JSOHelper::toBoolean(Z)(retVal);
-        }
-    }-*/;
-            
-    /**
      * Removes the specified member from the layout. If it has a resize bar, the bar will be destroyed.
      * @param member the canvas to be removed from the layout
      */
     public native void removeMember(Canvas member) /*-{
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
         self.removeMember(member.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()());
-    }-*/;
-            
-    /**
-     * Hide all other members and make the single parameter member visible.
-     * @param member member to show
-     */
-    public native void setVisibleMember(Canvas member) /*-{
-        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
-        self.setVisibleMember(member.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()());
     }-*/;
             
     /**
@@ -854,35 +877,12 @@ public class Layout extends Canvas {
     }-*/;
             
     /**
-     * Fires once at initialization if the layout has any initial members, and then fires whenever members are added, removed
-     * or reordered.
+     * Hide all other members and make the single parameter member visible.
+     * @param member member to show
      */
-    public native void membersChanged() /*-{
+    public native void setVisibleMember(Canvas member) /*-{
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
-        self.membersChanged();
-    }-*/;
-            
-    /**
-     * Get the position a new member would be dropped.  This drop position switches in the middle of each member, and both
-     * edges (before beginning, after end) are legal drop positions <p> Use this method to obtain the drop position for e.g. a
-     * custom drop handler.
-     *
-     * @return the position a new member would be dropped
-     */
-    public native int getDropPosition() /*-{
-        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
-        return self.getDropPosition();
-    }-*/;
-            
-    /**
-     * Calling this method hides the dropLine shown during a drag and drop interaction with a Layout that has {@link
-     * com.smartgwt.client.widgets.layout.Layout#getCanDropComponents canDropComponents} set to true.  This method is only
-     * useful for custom implementations of {@link com.smartgwt.client.widgets.layout.Layout#drop} as the default
-     * implementation calls this method automatically.
-     */
-    public native void hideDropLine() /*-{
-        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
-        self.hideDropLine();
+        self.setVisibleMember(member.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()());
     }-*/;
 
     // ********************* Static Methods ***********************

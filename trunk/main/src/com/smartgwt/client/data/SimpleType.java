@@ -91,26 +91,6 @@ public class SimpleType extends BaseClass {
     // ********************* Properties / Attributes ***********************
 
     /**
-     * Name of the type, used to refer to the type from {@link com.smartgwt.client.data.DataSourceField#getName 'field.name'}.
-     *
-     * @param name name Default value is null
-     * @throws IllegalStateException this property cannot be changed after the underlying component has been created
-     */
-    public void setName(String name)  throws IllegalStateException {
-        setAttribute("name", name, false);
-    }
-
-    /**
-     * Name of the type, used to refer to the type from {@link com.smartgwt.client.data.DataSourceField#getName 'field.name'}.
-     *
-     *
-     * @return String
-     */
-    public String getName()  {
-        return getAttributeAsString("name");
-    }
-
-    /**
      * Name of another SimpleType from which this type should inherit. <P> Validators, if any, will be combined.  All other
      * SimpleType properties default to the inherited type's value.
      *
@@ -130,6 +110,26 @@ public class SimpleType extends BaseClass {
      */
     public String getInheritsFrom()  {
         return getAttributeAsString("inheritsFrom");
+    }
+
+    /**
+     * Name of the type, used to refer to the type from {@link com.smartgwt.client.data.DataSourceField#getName 'field.name'}.
+     *
+     * @param name name Default value is null
+     * @throws IllegalStateException this property cannot be changed after the underlying component has been created
+     */
+    public void setName(String name)  throws IllegalStateException {
+        setAttribute("name", name, false);
+    }
+
+    /**
+     * Name of the type, used to refer to the type from {@link com.smartgwt.client.data.DataSourceField#getName 'field.name'}.
+     *
+     *
+     * @return String
+     */
+    public String getName()  {
+        return getAttributeAsString("name");
     }
 
     // ********************* Methods ***********************

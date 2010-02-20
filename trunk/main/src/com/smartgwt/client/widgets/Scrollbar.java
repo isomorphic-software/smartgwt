@@ -92,74 +92,6 @@ public class Scrollbar extends StretchImg {
     // ********************* Properties / Attributes ***********************
 
     /**
-     * The size of the square buttons (arrows) at the ends of this scrollbar. This  overrides the width of a vertical scrollbar
-     * or the height of a horizontal scrollbar to set the scrollbar's thickness.
-     *
-     * @param btnSize btnSize Default value is 16
-     */
-    public void setBtnSize(int btnSize) {
-        setAttribute("btnSize", btnSize, true);
-    }
-
-    /**
-     * The size of the square buttons (arrows) at the ends of this scrollbar. This  overrides the width of a vertical scrollbar
-     * or the height of a horizontal scrollbar to set the scrollbar's thickness.
-     *
-     *
-     * @return int
-     */
-    public int getBtnSize()  {
-        return getAttributeAsInt("btnSize");
-    }
-
-    /**
-     * If true, this scrollbar will automatically enable when the scrollTarget is scrollable (i.e., when the contents of the
-     * scrollTarget exceed its clip size in the direction relevant to this scrollbar), and automatically disable when the
-     * scrollTarget is not scrollable. Set this property to false for full manual control over a scrollbar's enabled state.
-     * <p><b>Note : </b> This is an advanced setting</p>
-     *
-     * @param autoEnable autoEnable Default value is true
-     */
-    public void setAutoEnable(Boolean autoEnable) {
-        setAttribute("autoEnable", autoEnable, true);
-    }
-
-    /**
-     * If true, this scrollbar will automatically enable when the scrollTarget is scrollable (i.e., when the contents of the
-     * scrollTarget exceed its clip size in the direction relevant to this scrollbar), and automatically disable when the
-     * scrollTarget is not scrollable. Set this property to false for full manual control over a scrollbar's enabled state.
-     *
-     *
-     * @return Boolean
-     */
-    public Boolean getAutoEnable()  {
-        return getAttributeAsBoolean("autoEnable");
-    }
-
-    /**
-     * If true, displays a corner piece at the bottom end of a vertical scrollbar, or the right end of a horizontal scrollbar.
-     * This is typically set only when both horizontal and vertical scrollbars are displayed and about the same corner.
-     * <p><b>Note : </b> This is an advanced setting</p>
-     *
-     * @param showCorner showCorner Default value is false
-     * @throws IllegalStateException this property cannot be changed after the component has been created
-     */
-    public void setShowCorner(Boolean showCorner)  throws IllegalStateException {
-        setAttribute("showCorner", showCorner, false);
-    }
-
-    /**
-     * If true, displays a corner piece at the bottom end of a vertical scrollbar, or the right end of a horizontal scrollbar.
-     * This is typically set only when both horizontal and vertical scrollbars are displayed and about the same corner.
-     *
-     *
-     * @return Boolean
-     */
-    public Boolean getShowCorner()  {
-        return getAttributeAsBoolean("showCorner");
-    }
-
-    /**
      * If true, the thumb's appearance changes when it's clicked on.
      * <p><b>Note : </b> This is an advanced setting</p>
      *
@@ -202,208 +134,70 @@ public class Scrollbar extends StretchImg {
     }
 
     /**
-     * If true, the scrollbar uses a 5-segment rather than 3-segment image representation, where the 3 interior image segments
-     * have the same state (Down, Over, etc), independent of the two outermost image segments.   <P> This allows certain
-     * advanced skinning designs where the track-as-such (space in which the thumb may be dragged) has curved endcaps, and is
-     * also visually stateful (that is, changes when the mouse goes down, without affecting the appearance of the outermost
-     * segments).
+     * If true, this scrollbar will automatically enable when the scrollTarget is scrollable (i.e., when the contents of the
+     * scrollTarget exceed its clip size in the direction relevant to this scrollbar), and automatically disable when the
+     * scrollTarget is not scrollable. Set this property to false for full manual control over a scrollbar's enabled state.
      * <p><b>Note : </b> This is an advanced setting</p>
      *
-     * @param showTrackEnds showTrackEnds Default value is false
-     * @throws IllegalStateException this property cannot be changed after the component has been created
+     * @param autoEnable autoEnable Default value is true
      */
-    public void setShowTrackEnds(Boolean showTrackEnds)  throws IllegalStateException {
-        setAttribute("showTrackEnds", showTrackEnds, false);
+    public void setAutoEnable(Boolean autoEnable) {
+        setAttribute("autoEnable", autoEnable, true);
     }
 
     /**
-     * If true, the scrollbar uses a 5-segment rather than 3-segment image representation, where the 3 interior image segments
-     * have the same state (Down, Over, etc), independent of the two outermost image segments.   <P> This allows certain
-     * advanced skinning designs where the track-as-such (space in which the thumb may be dragged) has curved endcaps, and is
-     * also visually stateful (that is, changes when the mouse goes down, without affecting the appearance of the outermost
-     * segments).
+     * If true, this scrollbar will automatically enable when the scrollTarget is scrollable (i.e., when the contents of the
+     * scrollTarget exceed its clip size in the direction relevant to this scrollbar), and automatically disable when the
+     * scrollTarget is not scrollable. Set this property to false for full manual control over a scrollbar's enabled state.
      *
      *
      * @return Boolean
      */
-    public Boolean getShowTrackEnds()  {
-        return getAttributeAsBoolean("showTrackEnds");
+    public Boolean getAutoEnable()  {
+        return getAttributeAsBoolean("autoEnable");
     }
 
     /**
-     * The minimum pixel size of the draggable thumb regardless of how large the scrolling region becomes.
-     * <p><b>Note : </b> This is an advanced setting</p>
+     * The size of the square buttons (arrows) at the ends of this scrollbar. This  overrides the width of a vertical scrollbar
+     * or the height of a horizontal scrollbar to set the scrollbar's thickness.
      *
-     * @param thumbMinSize thumbMinSize Default value is 12
-     * @throws IllegalStateException this property cannot be changed after the component has been created
+     * @param btnSize btnSize Default value is 16
      */
-    public void setThumbMinSize(int thumbMinSize)  throws IllegalStateException {
-        setAttribute("thumbMinSize", thumbMinSize, false);
+    public void setBtnSize(int btnSize) {
+        setAttribute("btnSize", btnSize, true);
     }
 
     /**
-     * The minimum pixel size of the draggable thumb regardless of how large the scrolling region becomes.
+     * The size of the square buttons (arrows) at the ends of this scrollbar. This  overrides the width of a vertical scrollbar
+     * or the height of a horizontal scrollbar to set the scrollbar's thickness.
      *
      *
      * @return int
      */
-    public int getThumbMinSize()  {
-        return getAttributeAsInt("thumbMinSize");
+    public int getBtnSize()  {
+        return getAttributeAsInt("btnSize");
     }
 
     /**
-     * The minimum pixel width of the track end segments (if enabled with showTrackEnds).
-     * <p><b>Note : </b> This is an advanced setting</p>
+     * Allows the size of the corner segment to be set independently of the {@link
+     * com.smartgwt.client.widgets.Scrollbar#getBtnSize btnSize}.
      *
-     * @param trackEndWidth trackEndWidth Default value is 12
+     * @param cornerSize cornerSize Default value is null
      * @throws IllegalStateException this property cannot be changed after the component has been created
      */
-    public void setTrackEndWidth(int trackEndWidth)  throws IllegalStateException {
-        setAttribute("trackEndWidth", trackEndWidth, false);
+    public void setCornerSize(Integer cornerSize)  throws IllegalStateException {
+        setAttribute("cornerSize", cornerSize, false);
     }
 
     /**
-     * The minimum pixel width of the track end segments (if enabled with showTrackEnds).
-     *
-     *
-     * @return int
-     */
-    public int getTrackEndWidth()  {
-        return getAttributeAsInt("trackEndWidth");
-    }
-
-    /**
-     * The minimum pixel height of the track end segments (if enabled with showTrackEnds).
-     * <p><b>Note : </b> This is an advanced setting</p>
-     *
-     * @param trackEndHeight trackEndHeight Default value is 12
-     * @throws IllegalStateException this property cannot be changed after the component has been created
-     */
-    public void setTrackEndHeight(int trackEndHeight)  throws IllegalStateException {
-        setAttribute("trackEndHeight", trackEndHeight, false);
-    }
-
-    /**
-     * The minimum pixel height of the track end segments (if enabled with showTrackEnds).
-     *
-     *
-     * @return int
-     */
-    public int getTrackEndHeight()  {
-        return getAttributeAsInt("trackEndHeight");
-    }
-
-    /**
-     * Number of pixels the thumb is allowed to overlap the buttons at each end of the track. Default prevents doubling of 1px
-     * borders.  Set higher to allow media that shows curved joins between the track button and ScrollThumb.
-     * <p><b>Note : </b> This is an advanced setting</p>
-     *
-     * @param thumbOverlap thumbOverlap Default value is 1
-     * @throws IllegalStateException this property cannot be changed after the component has been created
-     */
-    public void setThumbOverlap(int thumbOverlap)  throws IllegalStateException {
-        setAttribute("thumbOverlap", thumbOverlap, false);
-    }
-
-    /**
-     * Number of pixels the thumb is allowed to overlap the buttons at each end of the track. Default prevents doubling of 1px
-     * borders.  Set higher to allow media that shows curved joins between the track button and ScrollThumb.
-     *
-     *
-     * @return int
-     */
-    public int getThumbOverlap()  {
-        return getAttributeAsInt("thumbOverlap");
-    }
-
-    /**
-     * Number of pixels the thumb is allowed to overlap the buttons at the start of the track. Default prevents doubling of 1px
-     * borders.  Set higher to allow media that shows curved joins between the track button and ScrollThumb.
-     * <p><b>Note : </b> This is an advanced setting</p>
-     *
-     * @param startThumbOverlap startThumbOverlap Default value is null
-     * @throws IllegalStateException this property cannot be changed after the component has been created
-     */
-    public void setStartThumbOverlap(Integer startThumbOverlap)  throws IllegalStateException {
-        setAttribute("startThumbOverlap", startThumbOverlap, false);
-    }
-
-    /**
-     * Number of pixels the thumb is allowed to overlap the buttons at the start of the track. Default prevents doubling of 1px
-     * borders.  Set higher to allow media that shows curved joins between the track button and ScrollThumb.
+     * Allows the size of the corner segment to be set independently of the {@link
+     * com.smartgwt.client.widgets.Scrollbar#getBtnSize btnSize}.
      *
      *
      * @return Integer
      */
-    public Integer getStartThumbOverlap()  {
-        return getAttributeAsInt("startThumbOverlap");
-    }
-
-    /**
-     * Number of pixels the thumb is allowed to overlap the buttons at the end of the track. Default prevents doubling of 1px
-     * borders.  Set higher to allow media that shows curved joins between the track button and ScrollThumb.
-     * <p><b>Note : </b> This is an advanced setting</p>
-     *
-     * @param endThumbOverlap endThumbOverlap Default value is null
-     * @throws IllegalStateException this property cannot be changed after the component has been created
-     */
-    public void setEndThumbOverlap(Integer endThumbOverlap)  throws IllegalStateException {
-        setAttribute("endThumbOverlap", endThumbOverlap, false);
-    }
-
-    /**
-     * Number of pixels the thumb is allowed to overlap the buttons at the end of the track. Default prevents doubling of 1px
-     * borders.  Set higher to allow media that shows curved joins between the track button and ScrollThumb.
-     *
-     *
-     * @return Integer
-     */
-    public Integer getEndThumbOverlap()  {
-        return getAttributeAsInt("endThumbOverlap");
-    }
-
-    /**
-     * Inset of the thumb relative to the track.  An inset of N pixels means the thumb is 2N pixels smaller in breadth than the
-     * track.
-     * <p><b>Note : </b> This is an advanced setting</p>
-     *
-     * @param thumbInset thumbInset Default value is null
-     * @throws IllegalStateException this property cannot be changed after the component has been created
-     */
-    public void setThumbInset(Integer thumbInset)  throws IllegalStateException {
-        setAttribute("thumbInset", thumbInset, false);
-    }
-
-    /**
-     * Inset of the thumb relative to the track.  An inset of N pixels means the thumb is 2N pixels smaller in breadth than the
-     * track.
-     *
-     *
-     * @return Integer
-     */
-    public Integer getThumbInset()  {
-        return getAttributeAsInt("thumbInset");
-    }
-
-    /**
-     * Where are the skin images for the Scrollbar.  This is local to the {@link com.smartgwt.client.util.Page#getSkinDir}.
-     * <p><b>Note : </b> This is an advanced setting</p>
-     *
-     * @param skinImgDir skinImgDir Default value is "images/Scrollbar/"
-     * @throws IllegalStateException this property cannot be changed after the component has been created
-     */
-    public void setSkinImgDir(String skinImgDir)  throws IllegalStateException {
-        setAttribute("skinImgDir", skinImgDir, false);
-    }
-
-    /**
-     * Where are the skin images for the Scrollbar.  This is local to the {@link com.smartgwt.client.util.Page#getSkinDir}.
-     *
-     *
-     * @return String
-     */
-    public String getSkinImgDir()  {
-        return getAttributeAsString("skinImgDir");
+    public Integer getCornerSize()  {
+        return getAttributeAsInt("cornerSize");
     }
 
     /**
@@ -427,25 +221,26 @@ public class Scrollbar extends StretchImg {
     }
 
     /**
-     * Allows the size of the corner segment to be set independently of the {@link
-     * com.smartgwt.client.widgets.Scrollbar#getBtnSize btnSize}.
+     * Number of pixels the thumb is allowed to overlap the buttons at the end of the track. Default prevents doubling of 1px
+     * borders.  Set higher to allow media that shows curved joins between the track button and ScrollThumb.
+     * <p><b>Note : </b> This is an advanced setting</p>
      *
-     * @param cornerSize cornerSize Default value is null
+     * @param endThumbOverlap endThumbOverlap Default value is null
      * @throws IllegalStateException this property cannot be changed after the component has been created
      */
-    public void setCornerSize(Integer cornerSize)  throws IllegalStateException {
-        setAttribute("cornerSize", cornerSize, false);
+    public void setEndThumbOverlap(Integer endThumbOverlap)  throws IllegalStateException {
+        setAttribute("endThumbOverlap", endThumbOverlap, false);
     }
 
     /**
-     * Allows the size of the corner segment to be set independently of the {@link
-     * com.smartgwt.client.widgets.Scrollbar#getBtnSize btnSize}.
+     * Number of pixels the thumb is allowed to overlap the buttons at the end of the track. Default prevents doubling of 1px
+     * borders.  Set higher to allow media that shows curved joins between the track button and ScrollThumb.
      *
      *
      * @return Integer
      */
-    public Integer getCornerSize()  {
-        return getAttributeAsInt("cornerSize");
+    public Integer getEndThumbOverlap()  {
+        return getAttributeAsInt("endThumbOverlap");
     }
 
     /**
@@ -478,6 +273,211 @@ public class Scrollbar extends StretchImg {
      */
     public String getHSrc()  {
         return getAttributeAsString("hSrc");
+    }
+
+    /**
+     * If true, displays a corner piece at the bottom end of a vertical scrollbar, or the right end of a horizontal scrollbar.
+     * This is typically set only when both horizontal and vertical scrollbars are displayed and about the same corner.
+     * <p><b>Note : </b> This is an advanced setting</p>
+     *
+     * @param showCorner showCorner Default value is false
+     * @throws IllegalStateException this property cannot be changed after the component has been created
+     */
+    public void setShowCorner(Boolean showCorner)  throws IllegalStateException {
+        setAttribute("showCorner", showCorner, false);
+    }
+
+    /**
+     * If true, displays a corner piece at the bottom end of a vertical scrollbar, or the right end of a horizontal scrollbar.
+     * This is typically set only when both horizontal and vertical scrollbars are displayed and about the same corner.
+     *
+     *
+     * @return Boolean
+     */
+    public Boolean getShowCorner()  {
+        return getAttributeAsBoolean("showCorner");
+    }
+
+    /**
+     * If true, the scrollbar uses a 5-segment rather than 3-segment image representation, where the 3 interior image segments
+     * have the same state (Down, Over, etc), independent of the two outermost image segments.   <P> This allows certain
+     * advanced skinning designs where the track-as-such (space in which the thumb may be dragged) has curved endcaps, and is
+     * also visually stateful (that is, changes when the mouse goes down, without affecting the appearance of the outermost
+     * segments).
+     * <p><b>Note : </b> This is an advanced setting</p>
+     *
+     * @param showTrackEnds showTrackEnds Default value is false
+     * @throws IllegalStateException this property cannot be changed after the component has been created
+     */
+    public void setShowTrackEnds(Boolean showTrackEnds)  throws IllegalStateException {
+        setAttribute("showTrackEnds", showTrackEnds, false);
+    }
+
+    /**
+     * If true, the scrollbar uses a 5-segment rather than 3-segment image representation, where the 3 interior image segments
+     * have the same state (Down, Over, etc), independent of the two outermost image segments.   <P> This allows certain
+     * advanced skinning designs where the track-as-such (space in which the thumb may be dragged) has curved endcaps, and is
+     * also visually stateful (that is, changes when the mouse goes down, without affecting the appearance of the outermost
+     * segments).
+     *
+     *
+     * @return Boolean
+     */
+    public Boolean getShowTrackEnds()  {
+        return getAttributeAsBoolean("showTrackEnds");
+    }
+
+    /**
+     * Where are the skin images for the Scrollbar.  This is local to the {@link com.smartgwt.client.util.Page#getSkinDir}.
+     * <p><b>Note : </b> This is an advanced setting</p>
+     *
+     * @param skinImgDir skinImgDir Default value is "images/Scrollbar/"
+     * @throws IllegalStateException this property cannot be changed after the component has been created
+     */
+    public void setSkinImgDir(String skinImgDir)  throws IllegalStateException {
+        setAttribute("skinImgDir", skinImgDir, false);
+    }
+
+    /**
+     * Where are the skin images for the Scrollbar.  This is local to the {@link com.smartgwt.client.util.Page#getSkinDir}.
+     *
+     *
+     * @return String
+     */
+    public String getSkinImgDir()  {
+        return getAttributeAsString("skinImgDir");
+    }
+
+    /**
+     * Number of pixels the thumb is allowed to overlap the buttons at the start of the track. Default prevents doubling of 1px
+     * borders.  Set higher to allow media that shows curved joins between the track button and ScrollThumb.
+     * <p><b>Note : </b> This is an advanced setting</p>
+     *
+     * @param startThumbOverlap startThumbOverlap Default value is null
+     * @throws IllegalStateException this property cannot be changed after the component has been created
+     */
+    public void setStartThumbOverlap(Integer startThumbOverlap)  throws IllegalStateException {
+        setAttribute("startThumbOverlap", startThumbOverlap, false);
+    }
+
+    /**
+     * Number of pixels the thumb is allowed to overlap the buttons at the start of the track. Default prevents doubling of 1px
+     * borders.  Set higher to allow media that shows curved joins between the track button and ScrollThumb.
+     *
+     *
+     * @return Integer
+     */
+    public Integer getStartThumbOverlap()  {
+        return getAttributeAsInt("startThumbOverlap");
+    }
+
+    /**
+     * Inset of the thumb relative to the track.  An inset of N pixels means the thumb is 2N pixels smaller in breadth than the
+     * track.
+     * <p><b>Note : </b> This is an advanced setting</p>
+     *
+     * @param thumbInset thumbInset Default value is null
+     * @throws IllegalStateException this property cannot be changed after the component has been created
+     */
+    public void setThumbInset(Integer thumbInset)  throws IllegalStateException {
+        setAttribute("thumbInset", thumbInset, false);
+    }
+
+    /**
+     * Inset of the thumb relative to the track.  An inset of N pixels means the thumb is 2N pixels smaller in breadth than the
+     * track.
+     *
+     *
+     * @return Integer
+     */
+    public Integer getThumbInset()  {
+        return getAttributeAsInt("thumbInset");
+    }
+
+    /**
+     * The minimum pixel size of the draggable thumb regardless of how large the scrolling region becomes.
+     * <p><b>Note : </b> This is an advanced setting</p>
+     *
+     * @param thumbMinSize thumbMinSize Default value is 12
+     * @throws IllegalStateException this property cannot be changed after the component has been created
+     */
+    public void setThumbMinSize(int thumbMinSize)  throws IllegalStateException {
+        setAttribute("thumbMinSize", thumbMinSize, false);
+    }
+
+    /**
+     * The minimum pixel size of the draggable thumb regardless of how large the scrolling region becomes.
+     *
+     *
+     * @return int
+     */
+    public int getThumbMinSize()  {
+        return getAttributeAsInt("thumbMinSize");
+    }
+
+    /**
+     * Number of pixels the thumb is allowed to overlap the buttons at each end of the track. Default prevents doubling of 1px
+     * borders.  Set higher to allow media that shows curved joins between the track button and ScrollThumb.
+     * <p><b>Note : </b> This is an advanced setting</p>
+     *
+     * @param thumbOverlap thumbOverlap Default value is 1
+     * @throws IllegalStateException this property cannot be changed after the component has been created
+     */
+    public void setThumbOverlap(int thumbOverlap)  throws IllegalStateException {
+        setAttribute("thumbOverlap", thumbOverlap, false);
+    }
+
+    /**
+     * Number of pixels the thumb is allowed to overlap the buttons at each end of the track. Default prevents doubling of 1px
+     * borders.  Set higher to allow media that shows curved joins between the track button and ScrollThumb.
+     *
+     *
+     * @return int
+     */
+    public int getThumbOverlap()  {
+        return getAttributeAsInt("thumbOverlap");
+    }
+
+    /**
+     * The minimum pixel height of the track end segments (if enabled with showTrackEnds).
+     * <p><b>Note : </b> This is an advanced setting</p>
+     *
+     * @param trackEndHeight trackEndHeight Default value is 12
+     * @throws IllegalStateException this property cannot be changed after the component has been created
+     */
+    public void setTrackEndHeight(int trackEndHeight)  throws IllegalStateException {
+        setAttribute("trackEndHeight", trackEndHeight, false);
+    }
+
+    /**
+     * The minimum pixel height of the track end segments (if enabled with showTrackEnds).
+     *
+     *
+     * @return int
+     */
+    public int getTrackEndHeight()  {
+        return getAttributeAsInt("trackEndHeight");
+    }
+
+    /**
+     * The minimum pixel width of the track end segments (if enabled with showTrackEnds).
+     * <p><b>Note : </b> This is an advanced setting</p>
+     *
+     * @param trackEndWidth trackEndWidth Default value is 12
+     * @throws IllegalStateException this property cannot be changed after the component has been created
+     */
+    public void setTrackEndWidth(int trackEndWidth)  throws IllegalStateException {
+        setAttribute("trackEndWidth", trackEndWidth, false);
+    }
+
+    /**
+     * The minimum pixel width of the track end segments (if enabled with showTrackEnds).
+     *
+     *
+     * @return int
+     */
+    public int getTrackEndWidth()  {
+        return getAttributeAsInt("trackEndWidth");
     }
 
     /**

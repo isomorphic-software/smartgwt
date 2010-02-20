@@ -103,6 +103,29 @@ public class TreeGridField extends ListGridField {
     // ********************* Properties / Attributes ***********************
 
     /**
+     * Dictates whether the data in this field be exported.  Explicitly set this  to false to prevent exporting.  Has no effect
+     * if the underlying   {@link com.smartgwt.client.data.DataSourceField#getCanExport 'dataSourceField'} is explicitly set to
+     *   canExport: false.
+     *
+     * @param canExport canExport Default value is null
+     */
+    public void setCanExport(Boolean canExport) {
+        setAttribute("canExport", canExport);
+    }
+
+    /**
+     * Dictates whether the data in this field be exported.  Explicitly set this  to false to prevent exporting.  Has no effect
+     * if the underlying   {@link com.smartgwt.client.data.DataSourceField#getCanExport 'dataSourceField'} is explicitly set to
+     *   canExport: false.
+     *
+     *
+     * @return Boolean
+     */
+    public Boolean getCanExport()  {
+        return getAttributeAsBoolean("canExport");
+    }
+
+    /**
      * The field containing <code>treeField: true</code> will display the {@link com.smartgwt.client.widgets.tree.Tree}.  If no
      * field specifies this property, if a field named after the {@link com.smartgwt.client.widgets.tree.Tree#getTitleProperty
      * titleProperty} of the Tree is present in {@link com.smartgwt.client.widgets.tree.TreeGrid#getFields fields}, that field
@@ -133,29 +156,6 @@ public class TreeGridField extends ListGridField {
      */
     public Boolean getTreeField()  {
         return getAttributeAsBoolean("treeField");
-    }
-
-    /**
-     * Dictates whether the data in this field be exported.  Explicitly set this  to false to prevent exporting.  Has no effect
-     * if the underlying   {@link com.smartgwt.client.data.DataSourceField#getCanExport 'dataSourceField'} is explicitly set to
-     *   canExport: false.
-     *
-     * @param canExport canExport Default value is null
-     */
-    public void setCanExport(Boolean canExport) {
-        setAttribute("canExport", canExport);
-    }
-
-    /**
-     * Dictates whether the data in this field be exported.  Explicitly set this  to false to prevent exporting.  Has no effect
-     * if the underlying   {@link com.smartgwt.client.data.DataSourceField#getCanExport 'dataSourceField'} is explicitly set to
-     *   canExport: false.
-     *
-     *
-     * @return Boolean
-     */
-    public Boolean getCanExport()  {
-        return getAttributeAsBoolean("canExport");
     }
 
     // ********************* Methods ***********************

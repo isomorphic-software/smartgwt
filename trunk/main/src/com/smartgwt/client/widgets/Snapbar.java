@@ -88,108 +88,26 @@ public class Snapbar extends Splitbar {
     // ********************* Properties / Attributes ***********************
 
     /**
-     * Snapbars show rollover styling.
-     *
-     * @param showRollOver showRollOver Default value is true
-     */
-    public void setShowRollOver(Boolean showRollOver) {
-        setAttribute("showRollOver", showRollOver, true);
-    }
-
-    /**
-     * Snapbars show rollover styling.
-     *
-     *
-     * @return Boolean
-     */
-    public Boolean getShowRollOver()  {
-        return getAttributeAsBoolean("showRollOver");
-    }
-
-    /**
-     * Snapbars show mouse-down styling.
-     *
-     * @param showDown showDown Default value is true
-     */
-    public void setShowDown(Boolean showDown) {
-        setAttribute("showDown", showDown, true);
-    }
-
-    /**
-     * Snapbars show mouse-down styling.
-     *
-     *
-     * @return Boolean
-     */
-    public Boolean getShowDown()  {
-        return getAttributeAsBoolean("showDown");
-    }
-
-    /**
-     * Should we show a "grip" image floating above the center of this widget?
-     *
-     * @param showGrip showGrip Default value is true
-     */
-    public void setShowGrip(Boolean showGrip) {
-        setAttribute("showGrip", showGrip, true);
-    }
-
-    /**
-     * Should we show a "grip" image floating above the center of this widget?
-     *
-     *
-     * @return Boolean
-     */
-    public Boolean getShowGrip()  {
-        return getAttributeAsBoolean("showGrip");
-    }
-
-    /**
-     * If {@link com.smartgwt.client.widgets.Splitbar#getShowGrip showGrip} is true, this property determines whether to show
-     * the 'Down' state on the grip image when the user mousedown's on this widget.  Has no effect if {@link
-     * com.smartgwt.client.widgets.StatefulCanvas#getShowDown showDown} is false
-     *
-     * @param showDownGrip showDownGrip Default value is true
-     */
-    public void setShowDownGrip(Boolean showDownGrip) {
-        setAttribute("showDownGrip", showDownGrip, true);
-    }
-
-    /**
-     * If {@link com.smartgwt.client.widgets.Splitbar#getShowGrip showGrip} is true, this property determines whether to show
-     * the 'Down' state on the grip image when the user mousedown's on this widget.  Has no effect if {@link
-     * com.smartgwt.client.widgets.StatefulCanvas#getShowDown showDown} is false
-     *
-     *
-     * @return Boolean
-     */
-    public Boolean getShowDownGrip()  {
-        return getAttributeAsBoolean("showDownGrip");
-    }
-
-    /**
-     * If {@link com.smartgwt.client.widgets.Splitbar#getShowGrip showGrip} is true, this property determines whether to show
-     * the 'Over' state on the grip image when the user rolls over on this widget.  Has no effect if {@link
-     * com.smartgwt.client.widgets.StatefulCanvas#getShowRollOver showRollOver} is false
+     * Overridden from {@link com.smartgwt.client.widgets.Splitbar#getGripImgSuffix gripImgSuffix} to simplify providing custom
+     * grip media for this widget.
      * <p><b>Note : </b> This is an advanced setting</p>
      *
-     * @param showRollOverGrip showRollOverGrip Default value is true
+     * @param gripImgSuffix gripImgSuffix Default value is "snap"
      * @throws IllegalStateException this property cannot be changed after the component has been created
      */
-    public void setShowRollOverGrip(Boolean showRollOverGrip)  throws IllegalStateException {
-        setAttribute("showRollOverGrip", showRollOverGrip, false);
+    public void setGripImgSuffix(String gripImgSuffix)  throws IllegalStateException {
+        setAttribute("gripImgSuffix", gripImgSuffix, false);
     }
 
     /**
-     * If {@link com.smartgwt.client.widgets.Splitbar#getShowGrip showGrip} is true, this property determines whether to show
-     * the 'Over' state on the grip image when the user rolls over on this widget.  Has no effect if {@link
-     * com.smartgwt.client.widgets.StatefulCanvas#getShowRollOver showRollOver} is false
+     * Overridden from {@link com.smartgwt.client.widgets.Splitbar#getGripImgSuffix gripImgSuffix} to simplify providing custom
+     * grip media for this widget.
      *
      *
-     * @return Boolean
+     * @return String
      */
-    public Boolean getShowRollOverGrip()  {
-        return getAttributeAsBoolean("showRollOverGrip");
+    public String getGripImgSuffix()  {
+        return getAttributeAsString("gripImgSuffix");
     }
 
     /**
@@ -218,26 +136,108 @@ public class Snapbar extends Splitbar {
     }
 
     /**
-     * Overridden from {@link com.smartgwt.client.widgets.Splitbar#getGripImgSuffix gripImgSuffix} to simplify providing custom
-     * grip media for this widget.
-     * <p><b>Note : </b> This is an advanced setting</p>
+     * Snapbars show mouse-down styling.
      *
-     * @param gripImgSuffix gripImgSuffix Default value is "snap"
-     * @throws IllegalStateException this property cannot be changed after the component has been created
+     * @param showDown showDown Default value is true
      */
-    public void setGripImgSuffix(String gripImgSuffix)  throws IllegalStateException {
-        setAttribute("gripImgSuffix", gripImgSuffix, false);
+    public void setShowDown(Boolean showDown) {
+        setAttribute("showDown", showDown, true);
     }
 
     /**
-     * Overridden from {@link com.smartgwt.client.widgets.Splitbar#getGripImgSuffix gripImgSuffix} to simplify providing custom
-     * grip media for this widget.
+     * Snapbars show mouse-down styling.
      *
      *
-     * @return String
+     * @return Boolean
      */
-    public String getGripImgSuffix()  {
-        return getAttributeAsString("gripImgSuffix");
+    public Boolean getShowDown()  {
+        return getAttributeAsBoolean("showDown");
+    }
+
+    /**
+     * If {@link com.smartgwt.client.widgets.Splitbar#getShowGrip showGrip} is true, this property determines whether to show
+     * the 'Down' state on the grip image when the user mousedown's on this widget.  Has no effect if {@link
+     * com.smartgwt.client.widgets.StatefulCanvas#getShowDown showDown} is false
+     *
+     * @param showDownGrip showDownGrip Default value is true
+     */
+    public void setShowDownGrip(Boolean showDownGrip) {
+        setAttribute("showDownGrip", showDownGrip, true);
+    }
+
+    /**
+     * If {@link com.smartgwt.client.widgets.Splitbar#getShowGrip showGrip} is true, this property determines whether to show
+     * the 'Down' state on the grip image when the user mousedown's on this widget.  Has no effect if {@link
+     * com.smartgwt.client.widgets.StatefulCanvas#getShowDown showDown} is false
+     *
+     *
+     * @return Boolean
+     */
+    public Boolean getShowDownGrip()  {
+        return getAttributeAsBoolean("showDownGrip");
+    }
+
+    /**
+     * Should we show a "grip" image floating above the center of this widget?
+     *
+     * @param showGrip showGrip Default value is true
+     */
+    public void setShowGrip(Boolean showGrip) {
+        setAttribute("showGrip", showGrip, true);
+    }
+
+    /**
+     * Should we show a "grip" image floating above the center of this widget?
+     *
+     *
+     * @return Boolean
+     */
+    public Boolean getShowGrip()  {
+        return getAttributeAsBoolean("showGrip");
+    }
+
+    /**
+     * Snapbars show rollover styling.
+     *
+     * @param showRollOver showRollOver Default value is true
+     */
+    public void setShowRollOver(Boolean showRollOver) {
+        setAttribute("showRollOver", showRollOver, true);
+    }
+
+    /**
+     * Snapbars show rollover styling.
+     *
+     *
+     * @return Boolean
+     */
+    public Boolean getShowRollOver()  {
+        return getAttributeAsBoolean("showRollOver");
+    }
+
+    /**
+     * If {@link com.smartgwt.client.widgets.Splitbar#getShowGrip showGrip} is true, this property determines whether to show
+     * the 'Over' state on the grip image when the user rolls over on this widget.  Has no effect if {@link
+     * com.smartgwt.client.widgets.StatefulCanvas#getShowRollOver showRollOver} is false
+     * <p><b>Note : </b> This is an advanced setting</p>
+     *
+     * @param showRollOverGrip showRollOverGrip Default value is true
+     * @throws IllegalStateException this property cannot be changed after the component has been created
+     */
+    public void setShowRollOverGrip(Boolean showRollOverGrip)  throws IllegalStateException {
+        setAttribute("showRollOverGrip", showRollOverGrip, false);
+    }
+
+    /**
+     * If {@link com.smartgwt.client.widgets.Splitbar#getShowGrip showGrip} is true, this property determines whether to show
+     * the 'Over' state on the grip image when the user rolls over on this widget.  Has no effect if {@link
+     * com.smartgwt.client.widgets.StatefulCanvas#getShowRollOver showRollOver} is false
+     *
+     *
+     * @return Boolean
+     */
+    public Boolean getShowRollOverGrip()  {
+        return getAttributeAsBoolean("showRollOverGrip");
     }
 
     // ********************* Methods ***********************

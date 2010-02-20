@@ -101,144 +101,117 @@ public class RPCRequest extends DataClass {
     public String getActionURL()  {
         return getAttributeAsString("actionURL");
     }
-             
-    /**
-     * Controls the prompt style for this request only.  Defaults to {@link com.smartgwt.client.rpc.RPCManager#promptStyle}.
-     *
-     * @param promptStyle promptStyle Default value is RPCManager.promptStyle
-     */
-    public void setPromptStyle(PromptStyle promptStyle) {
-        setAttribute("promptStyle", promptStyle.getValue());
-    }
 
     /**
-     * Controls the prompt style for this request only.  Defaults to {@link com.smartgwt.client.rpc.RPCManager#promptStyle}.
-     *
-     *
-     * @return PromptStyle
-     */
-    public PromptStyle getPromptStyle()  {
-        return EnumUtil.getEnum(PromptStyle.values(), getAttribute("promptStyle"));
-    }
-
-    /**
-     * Controls the cursor shown when {@link com.smartgwt.client.rpc.RPCManager#promptStyle} is set to <code>"cursor"</code>
-     * for this request only. Defaults to {@link com.smartgwt.client.rpc.RPCManager#promptCursor}. <p> In Safari, IE 5.5 and
-     * Firefox 1.0 the default value is "wait", on all other platforms it is "progress".  The reason for this split is that the
-     * above-mentioned browsers do not support CSS2.1 - which is required for the "progress" cursor type.
-     *
-     * @param promptCursor promptCursor Default value is browser-dependent
-     */
-    public void setPromptCursor(String promptCursor) {
-        setAttribute("promptCursor", promptCursor);
-    }
-
-    /**
-     * Controls the cursor shown when {@link com.smartgwt.client.rpc.RPCManager#promptStyle} is set to <code>"cursor"</code>
-     * for this request only. Defaults to {@link com.smartgwt.client.rpc.RPCManager#promptCursor}. <p> In Safari, IE 5.5 and
-     * Firefox 1.0 the default value is "wait", on all other platforms it is "progress".  The reason for this split is that the
-     * above-mentioned browsers do not support CSS2.1 - which is required for the "progress" cursor type.
-     *
-     *
-     * @return String
-     */
-    public String getPromptCursor()  {
-        return getAttributeAsString("promptCursor");
-    }
-
-    /**
-     * Overrides RPCManager.defaultPrompt for this request only.  If you're using queuing, note that the prompt string from the
-     * first request in the queue is the one that is shown to the user.
-     *
-     * @param prompt prompt Default value is RPCManager.defaultPrompt
-     */
-    public void setPrompt(String prompt) {
-        setAttribute("prompt", prompt);
-    }
-
-    /**
-     * Overrides RPCManager.defaultPrompt for this request only.  If you're using queuing, note that the prompt string from the
-     * first request in the queue is the one that is shown to the user.
-     *
-     *
-     * @return String
-     */
-    public String getPrompt()  {
-        return getAttributeAsString("prompt");
-    }
-
-    /**
-     * Overrides RPCManager.showPrompt for this request only.  If you're using queuing, note that if any of the requests in the
-     * queue specify showPrompt:true, then a prompt will be shown for the entire queue with the prompt text of the first
-     * request in the queue to specify a custom prompt if promptStyle is set to "dialog".  If promptStyle is set to "cursor"
-     * for the request that specified showPrompt: true, then the entire queue uses the "cursor" style for the prompt.
-     *
-     * @param showPrompt showPrompt Default value is RPCManager.showPrompt
-     */
-    public void setShowPrompt(Boolean showPrompt) {
-        setAttribute("showPrompt", showPrompt);
-    }
-
-    /**
-     * Overrides RPCManager.showPrompt for this request only.  If you're using queuing, note that if any of the requests in the
-     * queue specify showPrompt:true, then a prompt will be shown for the entire queue with the prompt text of the first
-     * request in the queue to specify a custom prompt if promptStyle is set to "dialog".  If promptStyle is set to "cursor"
-     * for the request that specified showPrompt: true, then the entire queue uses the "cursor" style for the prompt.
-     *
-     *
-     * @return Boolean
-     */
-    public Boolean getShowPrompt()  {
-        return getAttributeAsBoolean("showPrompt");
-    }
-
-    /**
-     * With willHandleError:false, rpcResponses that indicate an error go through centralized handling in the RPCManager and
-     * rpcRequest.callback is never invoked. <P> Setting willHandleError:true means that your rpcRequest.callback will receive
-     * rpcResponses that have an error status and must handle them. <P> See also the error handling section in the {@link
-     * com.smartgwt.client.rpc.RPCManager} docs.
-     *
-     * @param willHandleError willHandleError Default value is false
-     */
-    public void setWillHandleError(Boolean willHandleError) {
-        setAttribute("willHandleError", willHandleError);
-    }
-
-    /**
-     * With willHandleError:false, rpcResponses that indicate an error go through centralized handling in the RPCManager and
-     * rpcRequest.callback is never invoked. <P> Setting willHandleError:true means that your rpcRequest.callback will receive
-     * rpcResponses that have an error status and must handle them. <P> See also the error handling section in the {@link
-     * com.smartgwt.client.rpc.RPCManager} docs.
-     *
-     *
-     * @return Boolean
-     */
-    public Boolean getWillHandleError()  {
-        return getAttributeAsBoolean("willHandleError");
-    }
-
-    /**
-     * Overrides RPCManager.defaultTimeout for this request only.  If you're using queuing, note that the timeout setting
-     * derived from the last request in the queue is used for the entire queue.  If you want to override the timeout for the
-     * queue, make sure to set your override at least on the last request in the queue.
+     * For xmlHttp transport + httpMethod: "GET" only, set to true to force a conditional GET request even if the browser
+     * thinks it has a current cached response.
      * <p><b>Note : </b> This is an advanced setting</p>
      *
-     * @param timeout timeout Default value is RPCManager.defaultTimeout
+     * @param bypassCache bypassCache Default value is false
      */
-    public void setTimeout(int timeout) {
-        setAttribute("timeout", timeout);
+    public void setBypassCache(Boolean bypassCache) {
+        setAttribute("bypassCache", bypassCache);
     }
 
     /**
-     * Overrides RPCManager.defaultTimeout for this request only.  If you're using queuing, note that the timeout setting
-     * derived from the last request in the queue is used for the entire queue.  If you want to override the timeout for the
-     * queue, make sure to set your override at least on the last request in the queue.
+     * For xmlHttp transport + httpMethod: "GET" only, set to true to force a conditional GET request even if the browser
+     * thinks it has a current cached response.
      *
      *
-     * @return int
+     * @return Boolean
      */
-    public int getTimeout()  {
-        return getAttributeAsInt("timeout");
+    public Boolean getBypassCache()  {
+        return getAttributeAsBoolean("bypassCache");
+    }
+
+    /**
+     * For use only with the {@link com.smartgwt.client.types.RPCTransport} transport, this attribute&#010 specifies the name
+     * of the URL parameter which is used to specify the callback function that&#010 the server is expected to call by writing
+     * out JavaScript code.  The actual function to call&#010 is automatically generated and differs for every request (to
+     * allow concurrency).&#010 <P>&#010 For example, with <code>callbackParam</code> set to it's default value of "callback",
+     * the&#010 server might be contacted with a URL like:&#010 <pre>&#010   
+     * loadData?callback=isc_scriptIncludeCallback_5&#010 </pre>&#010 .. then the server's response should look like:&#010
+     * <pre>&#010    isc_scriptIncludeCallback_5({ .. data .. });&#010 </pre>&#010 The name "isc_scriptIncludeCallback_5" is
+     * automatically generated and will differ each time&#010 the server is contacted.&#010 <P>&#010 Smart GWT makes of this
+     * server-provided callback mechanism, then calls&#010 {@link com.smartgwt.client.rpc.RPCRequest#getCallback callback}
+     * normally.&#010 <p>&#010 <code>rpcRequest.callbackParam</code> is ignored by all transport other than&#010
+     * <code>scriptInclude</code>.
+     *
+     * @param callbackParam callbackParam Default value is "callback"
+     */
+    public void setCallbackParam(String callbackParam) {
+        setAttribute("callbackParam", callbackParam);
+    }
+
+    /**
+     * For use only with the {@link com.smartgwt.client.types.RPCTransport} transport, this attribute&#010 specifies the name
+     * of the URL parameter which is used to specify the callback function that&#010 the server is expected to call by writing
+     * out JavaScript code.  The actual function to call&#010 is automatically generated and differs for every request (to
+     * allow concurrency).&#010 <P>&#010 For example, with <code>callbackParam</code> set to it's default value of "callback",
+     * the&#010 server might be contacted with a URL like:&#010 <pre>&#010   
+     * loadData?callback=isc_scriptIncludeCallback_5&#010 </pre>&#010 .. then the server's response should look like:&#010
+     * <pre>&#010    isc_scriptIncludeCallback_5({ .. data .. });&#010 </pre>&#010 The name "isc_scriptIncludeCallback_5" is
+     * automatically generated and will differ each time&#010 the server is contacted.&#010 <P>&#010 Smart GWT makes of this
+     * server-provided callback mechanism, then calls&#010 {@link com.smartgwt.client.rpc.RPCRequest#getCallback callback}
+     * normally.&#010 <p>&#010 <code>rpcRequest.callbackParam</code> is ignored by all transport other than&#010
+     * <code>scriptInclude</code>.
+     *
+     *
+     * @return String
+     */
+    public String getCallbackParam()  {
+        return getAttributeAsString("callbackParam");
+    }
+
+    /**
+     * For use during {@link com.smartgwt.client.docs.Relogin 'Relogin'}, this property marks this request an attempt to login,
+     * therefore a response containing the <code>loginRequiredMarker</code> is a normal condition and should result in the
+     * status code {@link com.smartgwt.client.rpc.RPCResponse#STATUS_LOGIN_INCORRECT} rather than a call to {@link
+     * com.smartgwt.client.rpc.RPCManager#loginRequired}. <P> It is not required to set <code>containsCredentials</code>,
+     * however, it does typically simplify relogin logic by separating the handling of RPCs that are login attempts from RPCs
+     * that are not.
+     * <p><b>Note : </b> This is an advanced setting</p>
+     *
+     * @param containsCredentials containsCredentials Default value is false
+     */
+    public void setContainsCredentials(Boolean containsCredentials) {
+        setAttribute("containsCredentials", containsCredentials);
+    }
+
+    /**
+     * For use during {@link com.smartgwt.client.docs.Relogin 'Relogin'}, this property marks this request an attempt to login,
+     * therefore a response containing the <code>loginRequiredMarker</code> is a normal condition and should result in the
+     * status code {@link com.smartgwt.client.rpc.RPCResponse#STATUS_LOGIN_INCORRECT} rather than a call to {@link
+     * com.smartgwt.client.rpc.RPCManager#loginRequired}. <P> It is not required to set <code>containsCredentials</code>,
+     * however, it does typically simplify relogin logic by separating the handling of RPCs that are login attempts from RPCs
+     * that are not.
+     *
+     *
+     * @return Boolean
+     */
+    public Boolean getContainsCredentials()  {
+        return getAttributeAsBoolean("containsCredentials");
+    }
+
+    /**
+     * Valid with the xmlHttpRequest transport only and only when {@link com.smartgwt.client.rpc.RPCRequest#getHttpMethod
+     * httpMethod} is set to "POST".
+     *
+     * @param contentType contentType Default value is "application/x-www-form-urlencoded"
+     */
+    public void setContentType(String contentType) {
+        setAttribute("contentType", contentType);
+    }
+
+    /**
+     * Valid with the xmlHttpRequest transport only and only when {@link com.smartgwt.client.rpc.RPCRequest#getHttpMethod
+     * httpMethod} is set to "POST".
+     *
+     *
+     * @return String
+     */
+    public String getContentType()  {
+        return getAttributeAsString("contentType");
     }
 
     /**
@@ -290,42 +263,159 @@ public class RPCRequest extends DataClass {
     }
 
     /**
-     * For use only with the {@link com.smartgwt.client.types.RPCTransport} transport, this attribute&#010 specifies the name
-     * of the URL parameter which is used to specify the callback function that&#010 the server is expected to call by writing
-     * out JavaScript code.  The actual function to call&#010 is automatically generated and differs for every request (to
-     * allow concurrency).&#010 <P>&#010 For example, with <code>callbackParam</code> set to it's default value of "callback",
-     * the&#010 server might be contacted with a URL like:&#010 <pre>&#010   
-     * loadData?callback=isc_scriptIncludeCallback_5&#010 </pre>&#010 .. then the server's response should look like:&#010
-     * <pre>&#010    isc_scriptIncludeCallback_5({ .. data .. });&#010 </pre>&#010 The name "isc_scriptIncludeCallback_5" is
-     * automatically generated and will differ each time&#010 the server is contacted.&#010 <P>&#010 Smart GWT makes of this
-     * server-provided callback mechanism, then calls&#010 {@link com.smartgwt.client.rpc.RPCRequest#getCallback callback}
-     * normally.&#010 <p>&#010 <code>rpcRequest.callbackParam</code> is ignored by all transport other than&#010
-     * <code>scriptInclude</code>.
+     * Selects the HTTP method that will be used for the request.  Typical values are "POST" and "GET". <P> The more obscure
+     * "PUT", "DELETE" and "HEAD" methods are also valid, however, none of these are supported by the Safari browser previous
+     * to version 3.0.
      *
-     * @param callbackParam callbackParam Default value is "callback"
+     * @param httpMethod httpMethod Default value is "POST"
      */
-    public void setCallbackParam(String callbackParam) {
-        setAttribute("callbackParam", callbackParam);
+    public void setHttpMethod(String httpMethod) {
+        setAttribute("httpMethod", httpMethod);
     }
 
     /**
-     * For use only with the {@link com.smartgwt.client.types.RPCTransport} transport, this attribute&#010 specifies the name
-     * of the URL parameter which is used to specify the callback function that&#010 the server is expected to call by writing
-     * out JavaScript code.  The actual function to call&#010 is automatically generated and differs for every request (to
-     * allow concurrency).&#010 <P>&#010 For example, with <code>callbackParam</code> set to it's default value of "callback",
-     * the&#010 server might be contacted with a URL like:&#010 <pre>&#010   
-     * loadData?callback=isc_scriptIncludeCallback_5&#010 </pre>&#010 .. then the server's response should look like:&#010
-     * <pre>&#010    isc_scriptIncludeCallback_5({ .. data .. });&#010 </pre>&#010 The name "isc_scriptIncludeCallback_5" is
-     * automatically generated and will differ each time&#010 the server is contacted.&#010 <P>&#010 Smart GWT makes of this
-     * server-provided callback mechanism, then calls&#010 {@link com.smartgwt.client.rpc.RPCRequest#getCallback callback}
-     * normally.&#010 <p>&#010 <code>rpcRequest.callbackParam</code> is ignored by all transport other than&#010
-     * <code>scriptInclude</code>.
+     * Selects the HTTP method that will be used for the request.  Typical values are "POST" and "GET". <P> The more obscure
+     * "PUT", "DELETE" and "HEAD" methods are also valid, however, none of these are supported by the Safari browser previous
+     * to version 3.0.
      *
      *
      * @return String
      */
-    public String getCallbackParam()  {
-        return getAttributeAsString("callbackParam");
+    public String getHttpMethod()  {
+        return getAttributeAsString("httpMethod");
+    }
+
+    /**
+     * When set to true, no reply is expected from the server.  However, if a reply is received, it will be processed.<p> Note:
+     * setting this to true, forces {@link com.smartgwt.client.rpc.RPCRequest#getSendNoQueue sendNoQueue} to <code>true</code>
+     * for this request.
+     * <p><b>Note : </b> This is an advanced setting</p>
+     *
+     * @param ignoreTimeout ignoreTimeout Default value is false
+     */
+    public void setIgnoreTimeout(Boolean ignoreTimeout) {
+        setAttribute("ignoreTimeout", ignoreTimeout);
+    }
+
+    /**
+     * When set to true, no reply is expected from the server.  However, if a reply is received, it will be processed.<p> Note:
+     * setting this to true, forces {@link com.smartgwt.client.rpc.RPCRequest#getSendNoQueue sendNoQueue} to <code>true</code>
+     * for this request.
+     *
+     *
+     * @return Boolean
+     */
+    public Boolean getIgnoreTimeout()  {
+        return getAttributeAsBoolean("ignoreTimeout");
+    }
+
+    /**
+     * If enabled, the server omits any key/value pairs in map that have null values from the response.  This can reduce the
+     * size of the response when many fields have null values. <p> To enable this globally for all responses you can set
+     * RPCManager.omitNullMapValuesInResponse in server.properties.
+     * <p><b>Note : </b> This is an advanced setting</p>
+     *
+     * @param omitNullMapValuesInResponse omitNullMapValuesInResponse Default value is false
+     */
+    public void setOmitNullMapValuesInResponse(Boolean omitNullMapValuesInResponse) {
+        setAttribute("omitNullMapValuesInResponse", omitNullMapValuesInResponse);
+    }
+
+    /**
+     * If enabled, the server omits any key/value pairs in map that have null values from the response.  This can reduce the
+     * size of the response when many fields have null values. <p> To enable this globally for all responses you can set
+     * RPCManager.omitNullMapValuesInResponse in server.properties.
+     *
+     *
+     * @return Boolean
+     */
+    public Boolean getOmitNullMapValuesInResponse()  {
+        return getAttributeAsBoolean("omitNullMapValuesInResponse");
+    }
+
+    /**
+     * Overrides RPCManager.defaultPrompt for this request only.  If you're using queuing, note that the prompt string from the
+     * first request in the queue is the one that is shown to the user.
+     *
+     * @param prompt prompt Default value is RPCManager.defaultPrompt
+     */
+    public void setPrompt(String prompt) {
+        setAttribute("prompt", prompt);
+    }
+
+    /**
+     * Overrides RPCManager.defaultPrompt for this request only.  If you're using queuing, note that the prompt string from the
+     * first request in the queue is the one that is shown to the user.
+     *
+     *
+     * @return String
+     */
+    public String getPrompt()  {
+        return getAttributeAsString("prompt");
+    }
+
+    /**
+     * Controls the cursor shown when {@link com.smartgwt.client.rpc.RPCManager#promptStyle} is set to <code>"cursor"</code>
+     * for this request only. Defaults to {@link com.smartgwt.client.rpc.RPCManager#promptCursor}. <p> In Safari, IE 5.5 and
+     * Firefox 1.0 the default value is "wait", on all other platforms it is "progress".  The reason for this split is that the
+     * above-mentioned browsers do not support CSS2.1 - which is required for the "progress" cursor type.
+     *
+     * @param promptCursor promptCursor Default value is browser-dependent
+     */
+    public void setPromptCursor(String promptCursor) {
+        setAttribute("promptCursor", promptCursor);
+    }
+
+    /**
+     * Controls the cursor shown when {@link com.smartgwt.client.rpc.RPCManager#promptStyle} is set to <code>"cursor"</code>
+     * for this request only. Defaults to {@link com.smartgwt.client.rpc.RPCManager#promptCursor}. <p> In Safari, IE 5.5 and
+     * Firefox 1.0 the default value is "wait", on all other platforms it is "progress".  The reason for this split is that the
+     * above-mentioned browsers do not support CSS2.1 - which is required for the "progress" cursor type.
+     *
+     *
+     * @return String
+     */
+    public String getPromptCursor()  {
+        return getAttributeAsString("promptCursor");
+    }
+             
+    /**
+     * Controls the prompt style for this request only.  Defaults to {@link com.smartgwt.client.rpc.RPCManager#promptStyle}.
+     *
+     * @param promptStyle promptStyle Default value is RPCManager.promptStyle
+     */
+    public void setPromptStyle(PromptStyle promptStyle) {
+        setAttribute("promptStyle", promptStyle.getValue());
+    }
+
+    /**
+     * Controls the prompt style for this request only.  Defaults to {@link com.smartgwt.client.rpc.RPCManager#promptStyle}.
+     *
+     *
+     * @return PromptStyle
+     */
+    public PromptStyle getPromptStyle()  {
+        return EnumUtil.getEnum(PromptStyle.values(), getAttribute("promptStyle"));
+    }
+
+    /**
+     * When set to true, this request is sent to the server immediately, bypassing any current queue.
+     * <p><b>Note : </b> This is an advanced setting</p>
+     *
+     * @param sendNoQueue sendNoQueue Default value is false
+     */
+    public void setSendNoQueue(Boolean sendNoQueue) {
+        setAttribute("sendNoQueue", sendNoQueue);
+    }
+
+    /**
+     * When set to true, this request is sent to the server immediately, bypassing any current queue.
+     *
+     *
+     * @return Boolean
+     */
+    public Boolean getSendNoQueue()  {
+        return getAttributeAsBoolean("sendNoQueue");
     }
 
     /**
@@ -379,6 +469,55 @@ public class RPCRequest extends DataClass {
     public Boolean getServerOutputAsString()  {
         return getAttributeAsBoolean("serverOutputAsString");
     }
+
+    /**
+     * Overrides RPCManager.showPrompt for this request only.  If you're using queuing, note that if any of the requests in the
+     * queue specify showPrompt:true, then a prompt will be shown for the entire queue with the prompt text of the first
+     * request in the queue to specify a custom prompt if promptStyle is set to "dialog".  If promptStyle is set to "cursor"
+     * for the request that specified showPrompt: true, then the entire queue uses the "cursor" style for the prompt.
+     *
+     * @param showPrompt showPrompt Default value is RPCManager.showPrompt
+     */
+    public void setShowPrompt(Boolean showPrompt) {
+        setAttribute("showPrompt", showPrompt);
+    }
+
+    /**
+     * Overrides RPCManager.showPrompt for this request only.  If you're using queuing, note that if any of the requests in the
+     * queue specify showPrompt:true, then a prompt will be shown for the entire queue with the prompt text of the first
+     * request in the queue to specify a custom prompt if promptStyle is set to "dialog".  If promptStyle is set to "cursor"
+     * for the request that specified showPrompt: true, then the entire queue uses the "cursor" style for the prompt.
+     *
+     *
+     * @return Boolean
+     */
+    public Boolean getShowPrompt()  {
+        return getAttributeAsBoolean("showPrompt");
+    }
+
+    /**
+     * Overrides RPCManager.defaultTimeout for this request only.  If you're using queuing, note that the timeout setting
+     * derived from the last request in the queue is used for the entire queue.  If you want to override the timeout for the
+     * queue, make sure to set your override at least on the last request in the queue.
+     * <p><b>Note : </b> This is an advanced setting</p>
+     *
+     * @param timeout timeout Default value is RPCManager.defaultTimeout
+     */
+    public void setTimeout(int timeout) {
+        setAttribute("timeout", timeout);
+    }
+
+    /**
+     * Overrides RPCManager.defaultTimeout for this request only.  If you're using queuing, note that the timeout setting
+     * derived from the last request in the queue is used for the entire queue.  If you want to override the timeout for the
+     * queue, make sure to set your override at least on the last request in the queue.
+     *
+     *
+     * @return int
+     */
+    public int getTimeout()  {
+        return getAttributeAsInt("timeout");
+    }
              
     /**
      * Selects the transport used for this RPCRequest.  If unset, the value of {@link
@@ -422,124 +561,6 @@ public class RPCRequest extends DataClass {
      */
     public RPCTransport getTransport()  {
         return EnumUtil.getEnum(RPCTransport.values(), getAttribute("transport"));
-    }
-
-    /**
-     * Selects the HTTP method that will be used for the request.  Typical values are "POST" and "GET". <P> The more obscure
-     * "PUT", "DELETE" and "HEAD" methods are also valid, however, none of these are supported by the Safari browser previous
-     * to version 3.0.
-     *
-     * @param httpMethod httpMethod Default value is "POST"
-     */
-    public void setHttpMethod(String httpMethod) {
-        setAttribute("httpMethod", httpMethod);
-    }
-
-    /**
-     * Selects the HTTP method that will be used for the request.  Typical values are "POST" and "GET". <P> The more obscure
-     * "PUT", "DELETE" and "HEAD" methods are also valid, however, none of these are supported by the Safari browser previous
-     * to version 3.0.
-     *
-     *
-     * @return String
-     */
-    public String getHttpMethod()  {
-        return getAttributeAsString("httpMethod");
-    }
-
-    /**
-     * Valid with the xmlHttpRequest transport only and only when {@link com.smartgwt.client.rpc.RPCRequest#getHttpMethod
-     * httpMethod} is set to "POST".
-     *
-     * @param contentType contentType Default value is "application/x-www-form-urlencoded"
-     */
-    public void setContentType(String contentType) {
-        setAttribute("contentType", contentType);
-    }
-
-    /**
-     * Valid with the xmlHttpRequest transport only and only when {@link com.smartgwt.client.rpc.RPCRequest#getHttpMethod
-     * httpMethod} is set to "POST".
-     *
-     *
-     * @return String
-     */
-    public String getContentType()  {
-        return getAttributeAsString("contentType");
-    }
-
-    /**
-     * For use during {@link com.smartgwt.client.docs.Relogin 'Relogin'}, this property marks this request an attempt to login,
-     * therefore a response containing the <code>loginRequiredMarker</code> is a normal condition and should result in the
-     * status code {@link com.smartgwt.client.rpc.RPCResponse#STATUS_LOGIN_INCORRECT} rather than a call to {@link
-     * com.smartgwt.client.rpc.RPCManager#loginRequired}. <P> It is not required to set <code>containsCredentials</code>,
-     * however, it does typically simplify relogin logic by separating the handling of RPCs that are login attempts from RPCs
-     * that are not.
-     * <p><b>Note : </b> This is an advanced setting</p>
-     *
-     * @param containsCredentials containsCredentials Default value is false
-     */
-    public void setContainsCredentials(Boolean containsCredentials) {
-        setAttribute("containsCredentials", containsCredentials);
-    }
-
-    /**
-     * For use during {@link com.smartgwt.client.docs.Relogin 'Relogin'}, this property marks this request an attempt to login,
-     * therefore a response containing the <code>loginRequiredMarker</code> is a normal condition and should result in the
-     * status code {@link com.smartgwt.client.rpc.RPCResponse#STATUS_LOGIN_INCORRECT} rather than a call to {@link
-     * com.smartgwt.client.rpc.RPCManager#loginRequired}. <P> It is not required to set <code>containsCredentials</code>,
-     * however, it does typically simplify relogin logic by separating the handling of RPCs that are login attempts from RPCs
-     * that are not.
-     *
-     *
-     * @return Boolean
-     */
-    public Boolean getContainsCredentials()  {
-        return getAttributeAsBoolean("containsCredentials");
-    }
-
-    /**
-     * When set to true, no reply is expected from the server.  However, if a reply is received, it will be processed.<p> Note:
-     * setting this to true, forces {@link com.smartgwt.client.rpc.RPCRequest#getSendNoQueue sendNoQueue} to <code>true</code>
-     * for this request.
-     * <p><b>Note : </b> This is an advanced setting</p>
-     *
-     * @param ignoreTimeout ignoreTimeout Default value is false
-     */
-    public void setIgnoreTimeout(Boolean ignoreTimeout) {
-        setAttribute("ignoreTimeout", ignoreTimeout);
-    }
-
-    /**
-     * When set to true, no reply is expected from the server.  However, if a reply is received, it will be processed.<p> Note:
-     * setting this to true, forces {@link com.smartgwt.client.rpc.RPCRequest#getSendNoQueue sendNoQueue} to <code>true</code>
-     * for this request.
-     *
-     *
-     * @return Boolean
-     */
-    public Boolean getIgnoreTimeout()  {
-        return getAttributeAsBoolean("ignoreTimeout");
-    }
-
-    /**
-     * When set to true, this request is sent to the server immediately, bypassing any current queue.
-     * <p><b>Note : </b> This is an advanced setting</p>
-     *
-     * @param sendNoQueue sendNoQueue Default value is false
-     */
-    public void setSendNoQueue(Boolean sendNoQueue) {
-        setAttribute("sendNoQueue", sendNoQueue);
-    }
-
-    /**
-     * When set to true, this request is sent to the server immediately, bypassing any current queue.
-     *
-     *
-     * @return Boolean
-     */
-    public Boolean getSendNoQueue()  {
-        return getAttributeAsBoolean("sendNoQueue");
     }
 
     /**
@@ -589,49 +610,28 @@ public class RPCRequest extends DataClass {
     }
 
     /**
-     * For xmlHttp transport + httpMethod: "GET" only, set to true to force a conditional GET request even if the browser
-     * thinks it has a current cached response.
-     * <p><b>Note : </b> This is an advanced setting</p>
+     * With willHandleError:false, rpcResponses that indicate an error go through centralized handling in the RPCManager and
+     * rpcRequest.callback is never invoked. <P> Setting willHandleError:true means that your rpcRequest.callback will receive
+     * rpcResponses that have an error status and must handle them. <P> See also the error handling section in the {@link
+     * com.smartgwt.client.rpc.RPCManager} docs.
      *
-     * @param bypassCache bypassCache Default value is false
+     * @param willHandleError willHandleError Default value is false
      */
-    public void setBypassCache(Boolean bypassCache) {
-        setAttribute("bypassCache", bypassCache);
+    public void setWillHandleError(Boolean willHandleError) {
+        setAttribute("willHandleError", willHandleError);
     }
 
     /**
-     * For xmlHttp transport + httpMethod: "GET" only, set to true to force a conditional GET request even if the browser
-     * thinks it has a current cached response.
+     * With willHandleError:false, rpcResponses that indicate an error go through centralized handling in the RPCManager and
+     * rpcRequest.callback is never invoked. <P> Setting willHandleError:true means that your rpcRequest.callback will receive
+     * rpcResponses that have an error status and must handle them. <P> See also the error handling section in the {@link
+     * com.smartgwt.client.rpc.RPCManager} docs.
      *
      *
      * @return Boolean
      */
-    public Boolean getBypassCache()  {
-        return getAttributeAsBoolean("bypassCache");
-    }
-
-    /**
-     * If enabled, the server omits any key/value pairs in map that have null values from the response.  This can reduce the
-     * size of the response when many fields have null values. <p> To enable this globally for all responses you can set
-     * RPCManager.omitNullMapValuesInResponse in server.properties.
-     * <p><b>Note : </b> This is an advanced setting</p>
-     *
-     * @param omitNullMapValuesInResponse omitNullMapValuesInResponse Default value is false
-     */
-    public void setOmitNullMapValuesInResponse(Boolean omitNullMapValuesInResponse) {
-        setAttribute("omitNullMapValuesInResponse", omitNullMapValuesInResponse);
-    }
-
-    /**
-     * If enabled, the server omits any key/value pairs in map that have null values from the response.  This can reduce the
-     * size of the response when many fields have null values. <p> To enable this globally for all responses you can set
-     * RPCManager.omitNullMapValuesInResponse in server.properties.
-     *
-     *
-     * @return Boolean
-     */
-    public Boolean getOmitNullMapValuesInResponse()  {
-        return getAttributeAsBoolean("omitNullMapValuesInResponse");
+    public Boolean getWillHandleError()  {
+        return getAttributeAsBoolean("willHandleError");
     }
 
     // ********************* Methods ***********************

@@ -91,68 +91,26 @@ public class Menu extends ListGrid  implements com.smartgwt.client.widgets.menu.
         return widget;
     }-*/;
     // ********************* Properties / Attributes ***********************
-            
+
     /**
-     * Optional target canvas for this menu. Available as a parameter to dynamic menuItem configuration methods such as {@link
-     * com.smartgwt.client.widgets.menu.MenuItem#checkIf}. <P> If this item has any {@link
-     * com.smartgwt.client.widgets.menu.MenuItem#getSubmenu 'submenus'} the <code>target</code> will be propogated down to
-     * these child menus.
+     * When true, when a menu item is chosen (via mouse click or keyboard), the menu is not  automatically hidden, staying in
+     * place for further interactivity
      *
-     * @param target target Default value is null
+     * @param autoDismiss autoDismiss Default value is true
      */
-    public void setTarget(Canvas target) {
-        setAttribute("target", target.getOrCreateJsObj(), true);
+    public void setAutoDismiss(Boolean autoDismiss) {
+        setAttribute("autoDismiss", autoDismiss, true);
     }
 
     /**
-     * Optional target canvas for this menu. Available as a parameter to dynamic menuItem configuration methods such as {@link
-     * com.smartgwt.client.widgets.menu.MenuItem#checkIf}. <P> If this item has any {@link
-     * com.smartgwt.client.widgets.menu.MenuItem#getSubmenu 'submenus'} the <code>target</code> will be propogated down to
-     * these child menus.
+     * When true, when a menu item is chosen (via mouse click or keyboard), the menu is not  automatically hidden, staying in
+     * place for further interactivity
      *
      *
-     * @return Canvas
+     * @return Boolean
      */
-    public Canvas getTarget()  {
-            return Canvas.getOrCreateRef(getAttributeAsJavaScriptObject("target"));
-    }
-
-    /**
-     * The default menu width.
-     *
-     * @param defaultWidth defaultWidth Default value is 150
-     */
-    public void setDefaultWidth(int defaultWidth) {
-        setAttribute("defaultWidth", defaultWidth, true);
-    }
-
-    /**
-     * The default menu width.
-     *
-     *
-     * @return int
-     */
-    public int getDefaultWidth()  {
-        return getAttributeAsInt("defaultWidth");
-    }
-
-    /**
-     * The height of each item in the menu, in pixels.
-     *
-     * @param cellHeight cellHeight Default value is 20
-     */
-    public void setCellHeight(int cellHeight) {
-        setAttribute("cellHeight", cellHeight, true);
-    }
-
-    /**
-     * The height of each item in the menu, in pixels.
-     *
-     *
-     * @return int
-     */
-    public int getCellHeight()  {
-        return getAttributeAsInt("cellHeight");
+    public Boolean getAutoDismiss()  {
+        return getAttributeAsBoolean("autoDismiss");
     }
 
     /**
@@ -176,24 +134,193 @@ public class Menu extends ListGrid  implements com.smartgwt.client.widgets.menu.
     }
 
     /**
-     * A boolean indicating whether this menu should use shortcut keys. Set useKeys to false in a menu's initialization block
-     * to explicitly disable shortcut keys.
+     * If true, clicking or pressing Enter on a menu item that has a submenu will  select that item (with standard behavior of
+     * hiding the menus, calling click  handlers, etc) instead of showing the submenu.
      *
-     * @param useKeys useKeys Default value is true
+     * @param canSelectParentItems canSelectParentItems Default value is null
      */
-    public void setUseKeys(Boolean useKeys) {
-        setAttribute("useKeys", useKeys, true);
+    public void setCanSelectParentItems(Boolean canSelectParentItems) {
+        setAttribute("canSelectParentItems", canSelectParentItems, true);
     }
 
     /**
-     * A boolean indicating whether this menu should use shortcut keys. Set useKeys to false in a menu's initialization block
-     * to explicitly disable shortcut keys.
+     * If true, clicking or pressing Enter on a menu item that has a submenu will  select that item (with standard behavior of
+     * hiding the menus, calling click  handlers, etc) instead of showing the submenu.
      *
      *
      * @return Boolean
      */
-    public Boolean getUseKeys()  {
-        return getAttributeAsBoolean("useKeys");
+    public Boolean getCanSelectParentItems()  {
+        return getAttributeAsBoolean("canSelectParentItems");
+    }
+
+    /**
+     * The height of each item in the menu, in pixels.
+     *
+     * @param cellHeight cellHeight Default value is 20
+     */
+    public void setCellHeight(int cellHeight) {
+        setAttribute("cellHeight", cellHeight, true);
+    }
+
+    /**
+     * The height of each item in the menu, in pixels.
+     *
+     *
+     * @return int
+     */
+    public int getCellHeight()  {
+        return getAttributeAsInt("cellHeight");
+    }
+
+    /**
+     * The default menu width.
+     *
+     * @param defaultWidth defaultWidth Default value is 150
+     */
+    public void setDefaultWidth(int defaultWidth) {
+        setAttribute("defaultWidth", defaultWidth, true);
+    }
+
+    /**
+     * The default menu width.
+     *
+     *
+     * @return int
+     */
+    public int getDefaultWidth()  {
+        return getAttributeAsInt("defaultWidth");
+    }
+
+    /**
+     * Message to show when a menu is shown with no items.
+     * <p><b>Note : </b> This is an advanced setting</p>
+     *
+     * @param emptyMessage emptyMessage Default value is "[Empty menu]"
+     */
+    public void setEmptyMessage(String emptyMessage) {
+        setAttribute("emptyMessage", emptyMessage, true);
+    }
+
+    /**
+     * Message to show when a menu is shown with no items.
+     *
+     *
+     * @return String
+     */
+    public String getEmptyMessage()  {
+        return getAttributeAsString("emptyMessage");
+    }
+
+    /**
+     * The default height applied to custom icons in this menu. This is used whenever          item.iconHeight is not
+     * specified.
+     *
+     * @param iconHeight iconHeight Default value is 16
+     */
+    public void setIconHeight(int iconHeight) {
+        setAttribute("iconHeight", iconHeight, true);
+    }
+
+    /**
+     * The default height applied to custom icons in this menu. This is used whenever          item.iconHeight is not
+     * specified.
+     *
+     *
+     * @return int
+     */
+    public int getIconHeight()  {
+        return getAttributeAsInt("iconHeight");
+    }
+
+    /**
+     * The default width applied to custom icons in this menu. This is used whenever          item.iconWidth is not specified.
+     *
+     * @param iconWidth iconWidth Default value is 16
+     */
+    public void setIconWidth(int iconWidth) {
+        setAttribute("iconWidth", iconWidth, true);
+    }
+
+    /**
+     * The default width applied to custom icons in this menu. This is used whenever          item.iconWidth is not specified.
+     *
+     *
+     * @return int
+     */
+    public int getIconWidth()  {
+        return getAttributeAsInt("iconWidth");
+    }
+
+    /**
+     * For a menu that has a {@link com.smartgwt.client.widgets.menu.MenuButton} generated for it automatically (for example
+     * when included in a {@link com.smartgwt.client.widgets.menu.MenuBar}, the width that the MenuButton should have.  If
+     * unset, the MenuButton will be as wide as <code>menu.width</code>.
+     *
+     * @param menuButtonWidth menuButtonWidth Default value is null
+     * @throws IllegalStateException this property cannot be changed after the component has been created
+     */
+    public void setMenuButtonWidth(Integer menuButtonWidth)  throws IllegalStateException {
+        setAttribute("menuButtonWidth", menuButtonWidth, false);
+    }
+
+    /**
+     * For a menu that has a {@link com.smartgwt.client.widgets.menu.MenuButton} generated for it automatically (for example
+     * when included in a {@link com.smartgwt.client.widgets.menu.MenuBar}, the width that the MenuButton should have.  If
+     * unset, the MenuButton will be as wide as <code>menu.width</code>.
+     *
+     *
+     * @return Integer
+     */
+    public Integer getMenuButtonWidth()  {
+        return getAttributeAsInt("menuButtonWidth");
+    }
+
+    /**
+     * When this menu is shown how should it animate into view? By default the menu will just show at the specified
+     * size/position. Options for animated show effects are <code>"fade"</code> to fade from transparent to visible,
+     * <code>"slide"</code> to slide the menu into view, or <code>"wipe"</code> to have the menu grow into view, revealing its
+     * content as it grows. Can be overridden by passing the 'animationEffect' parameter to 'menu.show()'
+     * <p><b>Note : </b> This is an advanced setting</p>
+     *
+     * @param showAnimationEffect showAnimationEffect Default value is null
+     */
+    public void setShowAnimationEffect(String showAnimationEffect) {
+        setAttribute("showAnimationEffect", showAnimationEffect, true);
+    }
+
+    /**
+     * When this menu is shown how should it animate into view? By default the menu will just show at the specified
+     * size/position. Options for animated show effects are <code>"fade"</code> to fade from transparent to visible,
+     * <code>"slide"</code> to slide the menu into view, or <code>"wipe"</code> to have the menu grow into view, revealing its
+     * content as it grows. Can be overridden by passing the 'animationEffect' parameter to 'menu.show()'
+     *
+     *
+     * @return String
+     */
+    public String getShowAnimationEffect()  {
+        return getAttributeAsString("showAnimationEffect");
+    }
+
+    /**
+     * A boolean, indicating whether the checkmark/custom icon column should be displayed. If showIcons is not set, the menu
+     * will show the icon column only if one of its items specifies an icon, checked, checkIf, or dynamicIcon property.
+     *
+     * @param showIcons showIcons Default value is true
+     */
+    public void setShowIcons(Boolean showIcons) {
+        setAttribute("showIcons", showIcons, true);
+    }
+
+    /**
+     * A boolean, indicating whether the checkmark/custom icon column should be displayed. If showIcons is not set, the menu
+     * will show the icon column only if one of its items specifies an icon, checked, checkIf, or dynamicIcon property.
+     *
+     *
+     * @return Boolean
+     */
+    public Boolean getShowIcons()  {
+        return getAttributeAsBoolean("showIcons");
     }
 
     /**
@@ -217,27 +344,6 @@ public class Menu extends ListGrid  implements com.smartgwt.client.widgets.menu.
      */
     public Boolean getShowKeys()  {
         return getAttributeAsBoolean("showKeys");
-    }
-
-    /**
-     * A boolean, indicating whether the checkmark/custom icon column should be displayed. If showIcons is not set, the menu
-     * will show the icon column only if one of its items specifies an icon, checked, checkIf, or dynamicIcon property.
-     *
-     * @param showIcons showIcons Default value is true
-     */
-    public void setShowIcons(Boolean showIcons) {
-        setAttribute("showIcons", showIcons, true);
-    }
-
-    /**
-     * A boolean, indicating whether the checkmark/custom icon column should be displayed. If showIcons is not set, the menu
-     * will show the icon column only if one of its items specifies an icon, checked, checkIf, or dynamicIcon property.
-     *
-     *
-     * @return Boolean
-     */
-    public Boolean getShowIcons()  {
-        return getAttributeAsBoolean("showIcons");
     }
 
     /**
@@ -281,160 +387,79 @@ public class Menu extends ListGrid  implements com.smartgwt.client.widgets.menu.
     public String getSubmenuDirection()  {
         return getAttributeAsString("submenuDirection");
     }
-
+            
     /**
-     * Message to show when a menu is shown with no items.
-     * <p><b>Note : </b> This is an advanced setting</p>
+     * Optional target canvas for this menu. Available as a parameter to dynamic menuItem configuration methods such as {@link
+     * com.smartgwt.client.widgets.menu.MenuItem#checkIf}. <P> If this item has any {@link
+     * com.smartgwt.client.widgets.menu.MenuItem#getSubmenu 'submenus'} the <code>target</code> will be propogated down to
+     * these child menus.
      *
-     * @param emptyMessage emptyMessage Default value is "[Empty menu]"
+     * @param target target Default value is null
      */
-    public void setEmptyMessage(String emptyMessage) {
-        setAttribute("emptyMessage", emptyMessage, true);
+    public void setTarget(Canvas target) {
+        setAttribute("target", target.getOrCreateJsObj(), true);
     }
 
     /**
-     * Message to show when a menu is shown with no items.
+     * Optional target canvas for this menu. Available as a parameter to dynamic menuItem configuration methods such as {@link
+     * com.smartgwt.client.widgets.menu.MenuItem#checkIf}. <P> If this item has any {@link
+     * com.smartgwt.client.widgets.menu.MenuItem#getSubmenu 'submenus'} the <code>target</code> will be propogated down to
+     * these child menus.
      *
      *
-     * @return String
+     * @return Canvas
      */
-    public String getEmptyMessage()  {
-        return getAttributeAsString("emptyMessage");
+    public Canvas getTarget()  {
+            return Canvas.getOrCreateRef(getAttributeAsJavaScriptObject("target"));
     }
 
     /**
-     * The default width applied to custom icons in this menu. This is used whenever          item.iconWidth is not specified.
+     * A boolean indicating whether this menu should use shortcut keys. Set useKeys to false in a menu's initialization block
+     * to explicitly disable shortcut keys.
      *
-     * @param iconWidth iconWidth Default value is 16
+     * @param useKeys useKeys Default value is true
      */
-    public void setIconWidth(int iconWidth) {
-        setAttribute("iconWidth", iconWidth, true);
+    public void setUseKeys(Boolean useKeys) {
+        setAttribute("useKeys", useKeys, true);
     }
 
     /**
-     * The default width applied to custom icons in this menu. This is used whenever          item.iconWidth is not specified.
-     *
-     *
-     * @return int
-     */
-    public int getIconWidth()  {
-        return getAttributeAsInt("iconWidth");
-    }
-
-    /**
-     * The default height applied to custom icons in this menu. This is used whenever          item.iconHeight is not
-     * specified.
-     *
-     * @param iconHeight iconHeight Default value is 16
-     */
-    public void setIconHeight(int iconHeight) {
-        setAttribute("iconHeight", iconHeight, true);
-    }
-
-    /**
-     * The default height applied to custom icons in this menu. This is used whenever          item.iconHeight is not
-     * specified.
-     *
-     *
-     * @return int
-     */
-    public int getIconHeight()  {
-        return getAttributeAsInt("iconHeight");
-    }
-
-    /**
-     * When this menu is shown how should it animate into view? By default the menu will just show at the specified
-     * size/position. Options for animated show effects are <code>"fade"</code> to fade from transparent to visible,
-     * <code>"slide"</code> to slide the menu into view, or <code>"wipe"</code> to have the menu grow into view, revealing its
-     * content as it grows. Can be overridden by passing the 'animationEffect' parameter to 'menu.show()'
-     * <p><b>Note : </b> This is an advanced setting</p>
-     *
-     * @param showAnimationEffect showAnimationEffect Default value is null
-     */
-    public void setShowAnimationEffect(String showAnimationEffect) {
-        setAttribute("showAnimationEffect", showAnimationEffect, true);
-    }
-
-    /**
-     * When this menu is shown how should it animate into view? By default the menu will just show at the specified
-     * size/position. Options for animated show effects are <code>"fade"</code> to fade from transparent to visible,
-     * <code>"slide"</code> to slide the menu into view, or <code>"wipe"</code> to have the menu grow into view, revealing its
-     * content as it grows. Can be overridden by passing the 'animationEffect' parameter to 'menu.show()'
-     *
-     *
-     * @return String
-     */
-    public String getShowAnimationEffect()  {
-        return getAttributeAsString("showAnimationEffect");
-    }
-
-    /**
-     * If true, clicking or pressing Enter on a menu item that has a submenu will  select that item (with standard behavior of
-     * hiding the menus, calling click  handlers, etc) instead of showing the submenu.
-     *
-     * @param canSelectParentItems canSelectParentItems Default value is null
-     */
-    public void setCanSelectParentItems(Boolean canSelectParentItems) {
-        setAttribute("canSelectParentItems", canSelectParentItems, true);
-    }
-
-    /**
-     * If true, clicking or pressing Enter on a menu item that has a submenu will  select that item (with standard behavior of
-     * hiding the menus, calling click  handlers, etc) instead of showing the submenu.
+     * A boolean indicating whether this menu should use shortcut keys. Set useKeys to false in a menu's initialization block
+     * to explicitly disable shortcut keys.
      *
      *
      * @return Boolean
      */
-    public Boolean getCanSelectParentItems()  {
-        return getAttributeAsBoolean("canSelectParentItems");
-    }
-
-    /**
-     * When true, when a menu item is chosen (via mouse click or keyboard), the menu is not  automatically hidden, staying in
-     * place for further interactivity
-     *
-     * @param autoDismiss autoDismiss Default value is true
-     */
-    public void setAutoDismiss(Boolean autoDismiss) {
-        setAttribute("autoDismiss", autoDismiss, true);
-    }
-
-    /**
-     * When true, when a menu item is chosen (via mouse click or keyboard), the menu is not  automatically hidden, staying in
-     * place for further interactivity
-     *
-     *
-     * @return Boolean
-     */
-    public Boolean getAutoDismiss()  {
-        return getAttributeAsBoolean("autoDismiss");
-    }
-
-    /**
-     * For a menu that has a {@link com.smartgwt.client.widgets.menu.MenuButton} generated for it automatically (for example
-     * when included in a {@link com.smartgwt.client.widgets.menu.MenuBar}, the width that the MenuButton should have.  If
-     * unset, the MenuButton will be as wide as <code>menu.width</code>.
-     *
-     * @param menuButtonWidth menuButtonWidth Default value is null
-     * @throws IllegalStateException this property cannot be changed after the component has been created
-     */
-    public void setMenuButtonWidth(Integer menuButtonWidth)  throws IllegalStateException {
-        setAttribute("menuButtonWidth", menuButtonWidth, false);
-    }
-
-    /**
-     * For a menu that has a {@link com.smartgwt.client.widgets.menu.MenuButton} generated for it automatically (for example
-     * when included in a {@link com.smartgwt.client.widgets.menu.MenuBar}, the width that the MenuButton should have.  If
-     * unset, the MenuButton will be as wide as <code>menu.width</code>.
-     *
-     *
-     * @return Integer
-     */
-    public Integer getMenuButtonWidth()  {
-        return getAttributeAsInt("menuButtonWidth");
+    public Boolean getUseKeys()  {
+        return getAttributeAsBoolean("useKeys");
     }
 
     // ********************* Methods ***********************
+            
+    /**
+     * Get a particular MenuItem by index. <P> If passed a MenuItem, returns it.
+     * @param item index of the MenuItem
+     *
+     * @return the MenuItem, Pointer to the item, or null if not defined
+     */
+    public native MenuItem getItem(int item) /*-{
+        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
+        var ret = self.getItem(item);
+        if(ret == null || ret === undefined) return null;
+        var retVal = @com.smartgwt.client.core.RefDataClass::getRef(Lcom/google/gwt/core/client/JavaScriptObject;)(ret);
+        if(retVal == null) {
+            retVal = @com.smartgwt.client.widgets.menu.MenuItem::new(Lcom/google/gwt/core/client/JavaScriptObject;)(ret);
+        }
+        return retVal;
+    }-*/;
+            
+    /**
+     * Hide the context menu - alias for hide()
+     */
+    public native void hideContextMenu() /*-{
+        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
+        self.hideContextMenu();
+    }-*/;
     /**
      * Add a itemClick handler.
      * <p>
@@ -487,31 +512,6 @@ public class Menu extends ListGrid  implements com.smartgwt.client.widgets.menu.
         } else {
             return @com.smartgwt.client.util.JSOHelper::toBoolean(Z)(retVal);
         }
-    }-*/;
-            
-    /**
-     * Hide the context menu - alias for hide()
-     */
-    public native void hideContextMenu() /*-{
-        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
-        self.hideContextMenu();
-    }-*/;
-            
-    /**
-     * Get a particular MenuItem by index. <P> If passed a MenuItem, returns it.
-     * @param item index of the MenuItem
-     *
-     * @return the MenuItem, Pointer to the item, or null if not defined
-     */
-    public native MenuItem getItem(int item) /*-{
-        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
-        var ret = self.getItem(item);
-        if(ret == null || ret === undefined) return null;
-        var retVal = @com.smartgwt.client.core.RefDataClass::getRef(Lcom/google/gwt/core/client/JavaScriptObject;)(ret);
-        if(retVal == null) {
-            retVal = @com.smartgwt.client.widgets.menu.MenuItem::new(Lcom/google/gwt/core/client/JavaScriptObject;)(ret);
-        }
-        return retVal;
     }-*/;
 
     // ********************* Static Methods ***********************

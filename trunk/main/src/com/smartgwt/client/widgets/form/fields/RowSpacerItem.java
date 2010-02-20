@@ -89,25 +89,6 @@ public class RowSpacerItem extends SpacerItem {
     // ********************* Properties / Attributes ***********************
 
     /**
-     * we never show a separate title cell for separators
-     *
-     * @param showTitle showTitle Default value is false
-     */
-    public void setShowTitle(Boolean showTitle) {
-        setAttribute("showTitle", showTitle);
-    }
-
-    /**
-     * we never show a separate title cell for separators
-     *
-     *
-     * @return Boolean
-     */
-    public Boolean getShowTitle()  {
-        return getAttributeAsBoolean("showTitle");
-    }
-
-    /**
      * by default, separators span all remaining columns
      *
      * @param colSpan colSpan Default value is "*"
@@ -129,25 +110,6 @@ public class RowSpacerItem extends SpacerItem {
     /**
      * these items are in a row by themselves by default
      *
-     * @param startRow startRow Default value is true
-     */
-    public void setStartRow(Boolean startRow) {
-        setAttribute("startRow", startRow);
-    }
-
-    /**
-     * these items are in a row by themselves by default
-     *
-     *
-     * @return Boolean
-     */
-    public Boolean getStartRow()  {
-        return getAttributeAsBoolean("startRow");
-    }
-
-    /**
-     * these items are in a row by themselves by default
-     *
      * @param endRow endRow Default value is true
      */
     public void setEndRow(Boolean endRow) {
@@ -162,6 +124,44 @@ public class RowSpacerItem extends SpacerItem {
      */
     public Boolean getEndRow()  {
         return getAttributeAsBoolean("endRow");
+    }
+
+    /**
+     * we never show a separate title cell for separators
+     *
+     * @param showTitle showTitle Default value is false
+     */
+    public void setShowTitle(Boolean showTitle) {
+        setAttribute("showTitle", showTitle);
+    }
+
+    /**
+     * we never show a separate title cell for separators
+     *
+     *
+     * @return Boolean
+     */
+    public Boolean getShowTitle()  {
+        return getAttributeAsBoolean("showTitle");
+    }
+
+    /**
+     * these items are in a row by themselves by default
+     *
+     * @param startRow startRow Default value is true
+     */
+    public void setStartRow(Boolean startRow) {
+        setAttribute("startRow", startRow);
+    }
+
+    /**
+     * these items are in a row by themselves by default
+     *
+     *
+     * @return Boolean
+     */
+    public Boolean getStartRow()  {
+        return getAttributeAsBoolean("startRow");
     }
 
     // ********************* Methods ***********************

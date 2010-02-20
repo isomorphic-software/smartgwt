@@ -83,6 +83,86 @@ public class ImgProperties extends DataClass {
     // ********************* Properties / Attributes ***********************
 
     /**
+     * Specifies the additional attributes to write in the tag.
+     *
+     * @param extraStuff extraStuff Default value is null
+     */
+    public void setExtraStuff(String extraStuff) {
+        setAttribute("extraStuff", extraStuff);
+    }
+
+    /**
+     * Specifies the additional attributes to write in the tag.
+     *
+     *
+     * @return String
+     */
+    public String getExtraStuff()  {
+        return getAttributeAsString("extraStuff");
+    }
+
+    /**
+     * Specifies the height of the image.
+     *
+     * @param height height Default value is null
+     */
+    public void setHeight(Integer height) {
+        setAttribute("height", height);
+    }
+
+    /**
+     * Specifies the height of the image.
+     *
+     *
+     * @return Integer
+     */
+    public Integer getHeight()  {
+        return getAttributeAsInt("height");
+    }
+
+    /**
+     * Specifies the image-specific image directory to override the default.
+     *
+     * @param imgDir imgDir Default value is null
+     */
+    public void setImgDir(String imgDir) {
+        setAttribute("imgDir", imgDir);
+    }
+
+    /**
+     * Specifies the image-specific image directory to override the default.
+     *
+     *
+     * @return String
+     */
+    public String getImgDir()  {
+        return getAttributeAsString("imgDir");
+    }
+
+    /**
+     * Specifies the name of the image. This is an identifier unique to the canvas, and subsequent calls to <code>{@link
+     * com.smartgwt.client.widgets.Canvas#getImage}</code> and <code>{@link com.smartgwt.client.widgets.Canvas#setImage}</code>
+     *  with this name will act on the image object created using this ImgProperties object.
+     *
+     * @param name name Default value is null
+     */
+    public void setName(String name) {
+        setAttribute("name", name);
+    }
+
+    /**
+     * Specifies the name of the image. This is an identifier unique to the canvas, and subsequent calls to <code>{@link
+     * com.smartgwt.client.widgets.Canvas#getImage}</code> and <code>{@link com.smartgwt.client.widgets.Canvas#setImage}</code>
+     *  with this name will act on the image object created using this ImgProperties object.
+     *
+     *
+     * @return String
+     */
+    public String getName()  {
+        return getAttributeAsString("name");
+    }
+
+    /**
      * Specifies the URL of the image local to the skin or application directory.
      *
      * @param src src Default value is null
@@ -118,86 +198,6 @@ public class ImgProperties extends DataClass {
      */
     public Integer getWidth()  {
         return getAttributeAsInt("width");
-    }
-
-    /**
-     * Specifies the height of the image.
-     *
-     * @param height height Default value is null
-     */
-    public void setHeight(Integer height) {
-        setAttribute("height", height);
-    }
-
-    /**
-     * Specifies the height of the image.
-     *
-     *
-     * @return Integer
-     */
-    public Integer getHeight()  {
-        return getAttributeAsInt("height");
-    }
-
-    /**
-     * Specifies the name of the image. This is an identifier unique to the canvas, and subsequent calls to <code>{@link
-     * com.smartgwt.client.widgets.Canvas#getImage}</code> and <code>{@link com.smartgwt.client.widgets.Canvas#setImage}</code>
-     *  with this name will act on the image object created using this ImgProperties object.
-     *
-     * @param name name Default value is null
-     */
-    public void setName(String name) {
-        setAttribute("name", name);
-    }
-
-    /**
-     * Specifies the name of the image. This is an identifier unique to the canvas, and subsequent calls to <code>{@link
-     * com.smartgwt.client.widgets.Canvas#getImage}</code> and <code>{@link com.smartgwt.client.widgets.Canvas#setImage}</code>
-     *  with this name will act on the image object created using this ImgProperties object.
-     *
-     *
-     * @return String
-     */
-    public String getName()  {
-        return getAttributeAsString("name");
-    }
-
-    /**
-     * Specifies the additional attributes to write in the tag.
-     *
-     * @param extraStuff extraStuff Default value is null
-     */
-    public void setExtraStuff(String extraStuff) {
-        setAttribute("extraStuff", extraStuff);
-    }
-
-    /**
-     * Specifies the additional attributes to write in the tag.
-     *
-     *
-     * @return String
-     */
-    public String getExtraStuff()  {
-        return getAttributeAsString("extraStuff");
-    }
-
-    /**
-     * Specifies the image-specific image directory to override the default.
-     *
-     * @param imgDir imgDir Default value is null
-     */
-    public void setImgDir(String imgDir) {
-        setAttribute("imgDir", imgDir);
-    }
-
-    /**
-     * Specifies the image-specific image directory to override the default.
-     *
-     *
-     * @return String
-     */
-    public String getImgDir()  {
-        return getAttributeAsString("imgDir");
     }
 
     // ********************* Methods ***********************

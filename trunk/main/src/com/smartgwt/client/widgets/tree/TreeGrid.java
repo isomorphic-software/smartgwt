@@ -101,6 +101,27 @@ public class TreeGrid extends ListGrid  implements com.smartgwt.client.widgets.t
         return widget;
     }-*/;
     // ********************* Properties / Attributes ***********************
+             
+    /**
+     * When animating folder opening / closing, this property can be set to apply an animated acceleration effect.designates
+     * the speed of the animation in pixels shown (or hidden) per second.
+     *
+     * @param animateFolderEffect animateFolderEffect Default value is null
+     */
+    public void setAnimateFolderEffect(AnimationAcceleration animateFolderEffect) {
+        setAttribute("animateFolderEffect", animateFolderEffect.getValue(), true);
+    }
+
+    /**
+     * When animating folder opening / closing, this property can be set to apply an animated acceleration effect.designates
+     * the speed of the animation in pixels shown (or hidden) per second.
+     *
+     *
+     * @return AnimationAcceleration
+     */
+    public AnimationAcceleration getAnimateFolderEffect()  {
+        return EnumUtil.getEnum(AnimationAcceleration.values(), getAttribute("animateFolderEffect"));
+    }
 
     /**
      * If true, when folders are opened / closed children will be animated into view.
@@ -119,27 +140,6 @@ public class TreeGrid extends ListGrid  implements com.smartgwt.client.widgets.t
      */
     public Boolean getAnimateFolders()  {
         return getAttributeAsBoolean("animateFolders");
-    }
-
-    /**
-     * When animating folder opening / closing, if {@link com.smartgwt.client.widgets.tree.TreeGrid#getAnimateFolderSpeed
-     * animateFolderSpeed} is not set, this property designates the duration of the animation in ms.
-     *
-     * @param animateFolderTime animateFolderTime Default value is 100
-     */
-    public void setAnimateFolderTime(int animateFolderTime) {
-        setAttribute("animateFolderTime", animateFolderTime, true);
-    }
-
-    /**
-     * When animating folder opening / closing, if {@link com.smartgwt.client.widgets.tree.TreeGrid#getAnimateFolderSpeed
-     * animateFolderSpeed} is not set, this property designates the duration of the animation in ms.
-     *
-     *
-     * @return int
-     */
-    public int getAnimateFolderTime()  {
-        return getAttributeAsInt("animateFolderTime");
     }
 
     /**
@@ -164,79 +164,26 @@ public class TreeGrid extends ListGrid  implements com.smartgwt.client.widgets.t
     public int getAnimateFolderSpeed()  {
         return getAttributeAsInt("animateFolderSpeed");
     }
-             
+
     /**
-     * When animating folder opening / closing, this property can be set to apply an animated acceleration effect.designates
-     * the speed of the animation in pixels shown (or hidden) per second.
+     * When animating folder opening / closing, if {@link com.smartgwt.client.widgets.tree.TreeGrid#getAnimateFolderSpeed
+     * animateFolderSpeed} is not set, this property designates the duration of the animation in ms.
      *
-     * @param animateFolderEffect animateFolderEffect Default value is null
+     * @param animateFolderTime animateFolderTime Default value is 100
      */
-    public void setAnimateFolderEffect(AnimationAcceleration animateFolderEffect) {
-        setAttribute("animateFolderEffect", animateFolderEffect.getValue(), true);
+    public void setAnimateFolderTime(int animateFolderTime) {
+        setAttribute("animateFolderTime", animateFolderTime, true);
     }
 
     /**
-     * When animating folder opening / closing, this property can be set to apply an animated acceleration effect.designates
-     * the speed of the animation in pixels shown (or hidden) per second.
+     * When animating folder opening / closing, if {@link com.smartgwt.client.widgets.tree.TreeGrid#getAnimateFolderSpeed
+     * animateFolderSpeed} is not set, this property designates the duration of the animation in ms.
      *
      *
-     * @return AnimationAcceleration
+     * @return int
      */
-    public AnimationAcceleration getAnimateFolderEffect()  {
-        return EnumUtil.getEnum(AnimationAcceleration.values(), getAttribute("animateFolderEffect"));
-    }
-            
-    /**
-     * A {@link com.smartgwt.client.widgets.tree.Tree} object containing of nested {@link
-     * com.smartgwt.client.widgets.tree.TreeNode}s to  display as rows in this TreeGrid.   The <code>data</code> property will
-     * typically not be explicitly specified for  databound TreeGrids, where the data is returned from the server via databound
-     * component methods such as <code>fetchData()</code>
-     * Set the {@link com.smartgwt.client.widgets.tree.Tree} object this TreeGrid will view and manipulate.
-     *
-     * @param data Tree to show. Default value is null
-     */
-    public void setData(Tree data) {
-        setAttribute("data", data.getOrCreateJsObj(), true);
-    }
-
-    /**
-     * A {@link com.smartgwt.client.widgets.tree.Tree} object containing of nested {@link
-     * com.smartgwt.client.widgets.tree.TreeNode}s to  display as rows in this TreeGrid.   The <code>data</code> property will
-     * typically not be explicitly specified for  databound TreeGrids, where the data is returned from the server via databound
-     * component methods such as <code>fetchData()</code>
-     *
-     *
-     * @return Tree
-     */
-    public Tree getData()  {
-            return Tree.getOrCreateRef(getAttributeAsJavaScriptObject("data"));
-    }
-
-    /**
-     * For databound treeGrid instances, should the entire tree of data be loaded on initial  fetch, or should folders load
-     * their children as they are opened. <P> If unset the default {@link com.smartgwt.client..ResultTree#getLoadDataOnDemand
-     * loadDataOnDemand} setting will be used. <P> Note that when using <code>loadDataOnDemand</code>, every node returned by
-     * the server is assumed be a folder which may load further children.  See {@link
-     * com.smartgwt.client..ResultTree#getDefaultIsFolder defaultIsFolder} for how to control this behavior.
-     *
-     * @param loadDataOnDemand loadDataOnDemand Default value is null
-     */
-    public void setLoadDataOnDemand(Boolean loadDataOnDemand) {
-        setAttribute("loadDataOnDemand", loadDataOnDemand, true);
-    }
-
-    /**
-     * For databound treeGrid instances, should the entire tree of data be loaded on initial  fetch, or should folders load
-     * their children as they are opened. <P> If unset the default {@link com.smartgwt.client..ResultTree#getLoadDataOnDemand
-     * loadDataOnDemand} setting will be used. <P> Note that when using <code>loadDataOnDemand</code>, every node returned by
-     * the server is assumed be a folder which may load further children.  See {@link
-     * com.smartgwt.client..ResultTree#getDefaultIsFolder defaultIsFolder} for how to control this behavior.
-     *
-     *
-     * @return Boolean
-     */
-    public Boolean getLoadDataOnDemand()  {
-        return getAttributeAsBoolean("loadDataOnDemand");
+    public int getAnimateFolderTime()  {
+        return getAttributeAsInt("animateFolderTime");
     }
              
     /**
@@ -266,157 +213,6 @@ public class TreeGrid extends ListGrid  implements com.smartgwt.client.widgets.t
     }
 
     /**
-     * Should children be selected when parent is selected? And should parent be selected when any child is selected?
-     *
-     * @param cascadeSelection cascadeSelection Default value is false
-     * @throws IllegalStateException this property cannot be changed after the component has been created
-     */
-    public void setCascadeSelection(Boolean cascadeSelection)  throws IllegalStateException {
-        setAttribute("cascadeSelection", cascadeSelection, false);
-    }
-
-    /**
-     * Should children be selected when parent is selected? And should parent be selected when any child is selected?
-     *
-     *
-     * @return Boolean
-     */
-    public Boolean getCascadeSelection()  {
-        return getAttributeAsBoolean("cascadeSelection");
-    }
-
-    /**
-     * Should partially selected parents be shown with special icon?
-     *
-     * @param showPartialSelection showPartialSelection Default value is false
-     */
-    public void setShowPartialSelection(Boolean showPartialSelection) {
-        setAttribute("showPartialSelection", showPartialSelection, true);
-    }
-
-    /**
-     * Should partially selected parents be shown with special icon?
-     *
-     *
-     * @return Boolean
-     */
-    public Boolean getShowPartialSelection()  {
-        return getAttributeAsBoolean("showPartialSelection");
-    }
-
-    /**
-     * Visible title for the tree column (field).
-     *
-     * @param treeFieldTitle treeFieldTitle Default value is "Name"
-     * @throws IllegalStateException this property cannot be changed after the component has been created
-     */
-    public void setTreeFieldTitle(String treeFieldTitle)  throws IllegalStateException {
-        setAttribute("treeFieldTitle", treeFieldTitle, false);
-    }
-
-    /**
-     * Visible title for the tree column (field).
-     *
-     *
-     * @return String
-     */
-    public String getTreeFieldTitle()  {
-        return getAttributeAsString("treeFieldTitle");
-    }
-
-    /**
-     * Specifies whether the root node should be displayed in the treeGrid. <P> This property is only available for "children"
-     * modelType trees, hence is not allowed for trees that load data from the server dynamically via {@link
-     * com.smartgwt.client.widgets.tree.TreeGrid#fetchData}.   <P> To get the equivalent of a visible "root" node in a tree
-     * that loads data dynamically, add a singular, top-level parent to the data.  However, note that this top-level parent
-     * will technically be the only child of root, and the implicit root object will be returned by {@link
-     * com.smartgwt.client.widgets.tree.Tree#getRoot}.
-     *
-     * @param showRoot showRoot Default value is false
-     * @throws IllegalStateException this property cannot be changed after the component has been created
-     */
-    public void setShowRoot(Boolean showRoot)  throws IllegalStateException {
-        setAttribute("showRoot", showRoot, false);
-    }
-
-    /**
-     * Specifies whether the root node should be displayed in the treeGrid. <P> This property is only available for "children"
-     * modelType trees, hence is not allowed for trees that load data from the server dynamically via {@link
-     * com.smartgwt.client.widgets.tree.TreeGrid#fetchData}.   <P> To get the equivalent of a visible "root" node in a tree
-     * that loads data dynamically, add a singular, top-level parent to the data.  However, note that this top-level parent
-     * will technically be the only child of root, and the implicit root object will be returned by {@link
-     * com.smartgwt.client.widgets.tree.Tree#getRoot}.
-     *
-     *
-     * @return Boolean
-     */
-    public Boolean getShowRoot()  {
-        return getAttributeAsBoolean("showRoot");
-    }
-
-    /**
-     * Specifies whether folders and leaves should be segregated in the treeGrid display.          With separateFolders:true
-     * and sortDirection:"descending", folders are displayed          before their sibling leaves; with
-     * sortDirection:"ascending", leaves are displayed          before their sibling folders.
-     *
-     * @param separateFolders separateFolders Default value is false
-     * @throws IllegalStateException this property cannot be changed after the component has been created
-     */
-    public void setSeparateFolders(Boolean separateFolders)  throws IllegalStateException {
-        setAttribute("separateFolders", separateFolders, false);
-    }
-
-    /**
-     * Specifies whether folders and leaves should be segregated in the treeGrid display.          With separateFolders:true
-     * and sortDirection:"descending", folders are displayed          before their sibling leaves; with
-     * sortDirection:"ascending", leaves are displayed          before their sibling folders.
-     *
-     *
-     * @return Boolean
-     */
-    public Boolean getSeparateFolders()  {
-        return getAttributeAsBoolean("separateFolders");
-    }
-             
-    /**
-     * Specifies the type of nodes displayed in the treeGrid.
-     *
-     * @param displayNodeType displayNodeType Default value is Tree.FOLDERS_AND_LEAVES
-     */
-    public void setDisplayNodeType(DisplayNodeType displayNodeType) {
-        setAttribute("displayNodeType", displayNodeType.getValue(), true);
-    }
-
-    /**
-     * Specifies the type of nodes displayed in the treeGrid.
-     *
-     *
-     * @return DisplayNodeType
-     */
-    public DisplayNodeType getDisplayNodeType()  {
-        return EnumUtil.getEnum(DisplayNodeType.values(), getAttribute("displayNodeType"));
-    }
-
-    /**
-     * Indicates whether records can be dragged from this listGrid and dropped elsewhere.
-     *
-     * @param canDragRecordsOut canDragRecordsOut Default value is false
-     */
-    public void setCanDragRecordsOut(Boolean canDragRecordsOut) {
-        setAttribute("canDragRecordsOut", canDragRecordsOut, true);
-    }
-
-    /**
-     * Indicates whether records can be dragged from this listGrid and dropped elsewhere.
-     *
-     *
-     * @return Boolean
-     */
-    public Boolean getCanDragRecordsOut()  {
-        return getAttributeAsBoolean("canDragRecordsOut");
-    }
-
-    /**
      * Indicates whether records can be dropped into this listGrid.
      *
      * @param canAcceptDroppedRecords canAcceptDroppedRecords Default value is false
@@ -436,23 +232,22 @@ public class TreeGrid extends ListGrid  implements com.smartgwt.client.widgets.t
     }
 
     /**
-     * Indicates whether records can be reordered by dragging within this listGrid.
-     * <p><b>Note : </b> This is an advanced setting</p>
+     * Indicates whether records can be dragged from this listGrid and dropped elsewhere.
      *
-     * @param canReorderRecords canReorderRecords Default value is false
+     * @param canDragRecordsOut canDragRecordsOut Default value is false
      */
-    public void setCanReorderRecords(Boolean canReorderRecords) {
-        setAttribute("canReorderRecords", canReorderRecords, true);
+    public void setCanDragRecordsOut(Boolean canDragRecordsOut) {
+        setAttribute("canDragRecordsOut", canDragRecordsOut, true);
     }
 
     /**
-     * Indicates whether records can be reordered by dragging within this listGrid.
+     * Indicates whether records can be dragged from this listGrid and dropped elsewhere.
      *
      *
      * @return Boolean
      */
-    public Boolean getCanReorderRecords()  {
-        return getAttributeAsBoolean("canReorderRecords");
+    public Boolean getCanDragRecordsOut()  {
+        return getAttributeAsBoolean("canDragRecordsOut");
     }
 
     /**
@@ -490,6 +285,26 @@ public class TreeGrid extends ListGrid  implements com.smartgwt.client.widgets.t
     }
 
     /**
+     * Indicates whether records can be reordered by dragging within this listGrid.
+     * <p><b>Note : </b> This is an advanced setting</p>
+     *
+     * @param canReorderRecords canReorderRecords Default value is false
+     */
+    public void setCanReorderRecords(Boolean canReorderRecords) {
+        setAttribute("canReorderRecords", canReorderRecords, true);
+    }
+
+    /**
+     * Indicates whether records can be reordered by dragging within this listGrid.
+     *
+     *
+     * @return Boolean
+     */
+    public Boolean getCanReorderRecords()  {
+        return getAttributeAsBoolean("canReorderRecords");
+    }
+
+    /**
      * If set this property allows the user to reparent nodes by dragging them from their current folder to a new folder.<br>
      * <b>Backcompat:</b> For backwards compatibility with versions prior to Smart GWT 1.5, if this property is unset, but
      * <code>this.canAcceptDroppedRecords</code> is true, we allow nodes to be dragged to different folders.
@@ -513,23 +328,23 @@ public class TreeGrid extends ListGrid  implements com.smartgwt.client.widgets.t
     }
 
     /**
-     * Message displayed when user attempts to drag a node into a parent that already contains a child of the same name.
+     * Message displayed when user attempts to drop a node into a child of itself.
      *
-     * @param parentAlreadyContainsChildMessage parentAlreadyContainsChildMessage Default value is "This item already contains a child item with that name."
+     * @param cantDragIntoChildMessage cantDragIntoChildMessage Default value is "You can't drag an item into one of it's children."
      * @throws IllegalStateException this property cannot be changed after the component has been created
      */
-    public void setParentAlreadyContainsChildMessage(String parentAlreadyContainsChildMessage)  throws IllegalStateException {
-        setAttribute("parentAlreadyContainsChildMessage", parentAlreadyContainsChildMessage, false);
+    public void setCantDragIntoChildMessage(String cantDragIntoChildMessage)  throws IllegalStateException {
+        setAttribute("cantDragIntoChildMessage", cantDragIntoChildMessage, false);
     }
 
     /**
-     * Message displayed when user attempts to drag a node into a parent that already contains a child of the same name.
+     * Message displayed when user attempts to drop a node into a child of itself.
      *
      *
      * @return String
      */
-    public String getParentAlreadyContainsChildMessage()  {
-        return getAttributeAsString("parentAlreadyContainsChildMessage");
+    public String getCantDragIntoChildMessage()  {
+        return getAttributeAsString("cantDragIntoChildMessage");
     }
 
     /**
@@ -553,165 +368,23 @@ public class TreeGrid extends ListGrid  implements com.smartgwt.client.widgets.t
     }
 
     /**
-     * Message displayed when user attempts to drop a node into a child of itself.
+     * Should children be selected when parent is selected? And should parent be selected when any child is selected?
      *
-     * @param cantDragIntoChildMessage cantDragIntoChildMessage Default value is "You can't drag an item into one of it's children."
+     * @param cascadeSelection cascadeSelection Default value is false
      * @throws IllegalStateException this property cannot be changed after the component has been created
      */
-    public void setCantDragIntoChildMessage(String cantDragIntoChildMessage)  throws IllegalStateException {
-        setAttribute("cantDragIntoChildMessage", cantDragIntoChildMessage, false);
+    public void setCascadeSelection(Boolean cascadeSelection)  throws IllegalStateException {
+        setAttribute("cascadeSelection", cascadeSelection, false);
     }
 
     /**
-     * Message displayed when user attempts to drop a node into a child of itself.
+     * Should children be selected when parent is selected? And should parent be selected when any child is selected?
      *
      *
-     * @return String
+     * @return Boolean
      */
-    public String getCantDragIntoChildMessage()  {
-        return getAttributeAsString("cantDragIntoChildMessage");
-    }
-
-    /**
-     * The amount of indentation (in pixels) to add to a node's icon/title for each level          down in this tree's
-     * hierarchy.
-     *
-     * @param indentSize indentSize Default value is 20
-     */
-    public void setIndentSize(int indentSize) {
-        setAttribute("indentSize", indentSize, true);
-    }
-
-    /**
-     * The amount of indentation (in pixels) to add to a node's icon/title for each level          down in this tree's
-     * hierarchy.
-     *
-     *
-     * @return int
-     */
-    public int getIndentSize()  {
-        return getAttributeAsInt("indentSize");
-    }
-
-    /**
-     * The standard size (same height and width, in pixels) of node icons in this          treeGrid.
-     *
-     * @param iconSize iconSize Default value is 16
-     */
-    public void setIconSize(int iconSize) {
-        setAttribute("iconSize", iconSize, true);
-    }
-
-    /**
-     * The standard size (same height and width, in pixels) of node icons in this          treeGrid.
-     *
-     *
-     * @return int
-     */
-    public int getIconSize()  {
-        return getAttributeAsInt("iconSize");
-    }
-
-    /**
-     * Width and height in pixels of the opener icons, that is, the icons which show the open or closed state of the node,
-     * typically a [+] or [-] symbol. <P> If {@link com.smartgwt.client.widgets.tree.TreeGrid#getShowConnectors showConnectors}
-     * is true, the opener icon includes the connector line, and defaults to {@link
-     * com.smartgwt.client.widgets.grid.ListGrid#getCellHeight 'cellHeight'}. <P> Otherwise, <code>openerIconSize</code>
-     * defaults to {@link com.smartgwt.client.widgets.tree.TreeGrid#getIconSize iconSize}.
-     *
-     * @param openerIconSize openerIconSize Default value is null
-     */
-    public void setOpenerIconSize(Integer openerIconSize) {
-        setAttribute("openerIconSize", openerIconSize, true);
-    }
-
-    /**
-     * Width and height in pixels of the opener icons, that is, the icons which show the open or closed state of the node,
-     * typically a [+] or [-] symbol. <P> If {@link com.smartgwt.client.widgets.tree.TreeGrid#getShowConnectors showConnectors}
-     * is true, the opener icon includes the connector line, and defaults to {@link
-     * com.smartgwt.client.widgets.grid.ListGrid#getCellHeight 'cellHeight'}. <P> Otherwise, <code>openerIconSize</code>
-     * defaults to {@link com.smartgwt.client.widgets.tree.TreeGrid#getIconSize iconSize}.
-     *
-     *
-     * @return Integer
-     */
-    public Integer getOpenerIconSize()  {
-        return getAttributeAsInt("openerIconSize");
-    }
-
-    /**
-     * The URL of the base icon for all folder nodes in this treeGrid. Note that this URL will have {@link
-     * com.smartgwt.client.widgets.tree.TreeGrid#getOpenIconSuffix openIconSuffix}, {@link
-     * com.smartgwt.client.widgets.tree.TreeGrid#getClosedIconSuffix closedIconSuffix} or  {@link
-     * com.smartgwt.client.widgets.tree.TreeGrid#getDropIconSuffix dropIconSuffix} appended to indicate state changes if
-     * appropriate -  see documentation on  {@link com.smartgwt.client.widgets.tree.TreeGrid#getShowOpenIcons showOpenIcons}
-     * and {@link com.smartgwt.client.widgets.tree.TreeGrid#getShowDropIcons showDropIcons}.
-     *
-     * @param folderIcon folderIcon Default value is "[SKIN]folder.gif"
-     */
-    public void setFolderIcon(String folderIcon) {
-        setAttribute("folderIcon", folderIcon, true);
-    }
-
-    /**
-     * The URL of the base icon for all folder nodes in this treeGrid. Note that this URL will have {@link
-     * com.smartgwt.client.widgets.tree.TreeGrid#getOpenIconSuffix openIconSuffix}, {@link
-     * com.smartgwt.client.widgets.tree.TreeGrid#getClosedIconSuffix closedIconSuffix} or  {@link
-     * com.smartgwt.client.widgets.tree.TreeGrid#getDropIconSuffix dropIconSuffix} appended to indicate state changes if
-     * appropriate -  see documentation on  {@link com.smartgwt.client.widgets.tree.TreeGrid#getShowOpenIcons showOpenIcons}
-     * and {@link com.smartgwt.client.widgets.tree.TreeGrid#getShowDropIcons showDropIcons}.
-     *
-     *
-     * @return String
-     */
-    public String getFolderIcon()  {
-        return getAttributeAsString("folderIcon");
-    }
-
-    /**
-     * If {@link com.smartgwt.client.widgets.tree.TreeGrid#getShowDropIcons showDropIcons} is true, this suffix will be
-     * appended to the {@link com.smartgwt.client.widgets.tree.TreeGrid#getFolderIcon folderIcon} when the user drop-hovers
-     * over some folder.
-     *
-     * @param dropIconSuffix dropIconSuffix Default value is "drop"
-     */
-    public void setDropIconSuffix(String dropIconSuffix) {
-        setAttribute("dropIconSuffix", dropIconSuffix, true);
-    }
-
-    /**
-     * If {@link com.smartgwt.client.widgets.tree.TreeGrid#getShowDropIcons showDropIcons} is true, this suffix will be
-     * appended to the {@link com.smartgwt.client.widgets.tree.TreeGrid#getFolderIcon folderIcon} when the user drop-hovers
-     * over some folder.
-     *
-     *
-     * @return String
-     */
-    public String getDropIconSuffix()  {
-        return getAttributeAsString("dropIconSuffix");
-    }
-
-    /**
-     * If {@link com.smartgwt.client.widgets.tree.TreeGrid#getShowOpenIcons showOpenIcons} is true, this suffix will be
-     * appended to the {@link com.smartgwt.client.widgets.tree.TreeGrid#getFolderIcon folderIcon} for open folders in this
-     * grid.
-     *
-     * @param openIconSuffix openIconSuffix Default value is "open"
-     */
-    public void setOpenIconSuffix(String openIconSuffix) {
-        setAttribute("openIconSuffix", openIconSuffix, true);
-    }
-
-    /**
-     * If {@link com.smartgwt.client.widgets.tree.TreeGrid#getShowOpenIcons showOpenIcons} is true, this suffix will be
-     * appended to the {@link com.smartgwt.client.widgets.tree.TreeGrid#getFolderIcon folderIcon} for open folders in this
-     * grid.
-     *
-     *
-     * @return String
-     */
-    public String getOpenIconSuffix()  {
-        return getAttributeAsString("openIconSuffix");
+    public Boolean getCascadeSelection()  {
+        return getAttributeAsBoolean("cascadeSelection");
     }
 
     /**
@@ -735,322 +408,6 @@ public class TreeGrid extends ListGrid  implements com.smartgwt.client.widgets.t
      */
     public String getClosedIconSuffix()  {
         return getAttributeAsString("closedIconSuffix");
-    }
-
-    /**
-     * The filename of the default icon for all leaf nodes in this grid. To specify a  custom image for an individual node, set
-     * the {@link com.smartgwt.client.widgets.tree.TreeGrid#getCustomIconProperty customIconProperty} directly on the node.
-     * Set the icon for a particular treenode to a specified URL
-     *
-     * @param nodeIcon tree node. Default value is "[SKIN]file.gif"
-     */
-    public void setNodeIcon(String nodeIcon) {
-        setAttribute("nodeIcon", nodeIcon, true);
-    }
-
-    /**
-     * The filename of the default icon for all leaf nodes in this grid. To specify a  custom image for an individual node, set
-     * the {@link com.smartgwt.client.widgets.tree.TreeGrid#getCustomIconProperty customIconProperty} directly on the node.
-     *
-     *
-     * @return String
-     */
-    public String getNodeIcon()  {
-        return getAttributeAsString("nodeIcon");
-    }
-
-    /**
-     * If true, show a different icon for <code>open</code> folders than closed folders. This is achieved by appending the
-     * {@link com.smartgwt.client.widgets.tree.TreeGrid#getOpenIconSuffix openIconSuffix} onto the  {@link
-     * com.smartgwt.client.widgets.tree.TreeGrid#getFolderIcon folderIcon} URL [for example <code>"[SKIN]/folder.gif"</code>
-     * might be  replaced by <code>"[SKIN]/folder_open.gif"</code>.<br> <b>Note</b> If this property is set to
-     * <code>false</code> the same icon is shown for open folders as for closed folders, unless a custom folder icon was
-     * specified. This will be determined by {@link com.smartgwt.client.widgets.tree.TreeGrid#getFolderIcon folderIcon} plus
-     * the {@link com.smartgwt.client.widgets.tree.TreeGrid#getClosedIconSuffix closedIconSuffix}.
-     *
-     * @param showOpenIcons showOpenIcons Default value is true
-     */
-    public void setShowOpenIcons(Boolean showOpenIcons) {
-        setAttribute("showOpenIcons", showOpenIcons, true);
-    }
-
-    /**
-     * If true, show a different icon for <code>open</code> folders than closed folders. This is achieved by appending the
-     * {@link com.smartgwt.client.widgets.tree.TreeGrid#getOpenIconSuffix openIconSuffix} onto the  {@link
-     * com.smartgwt.client.widgets.tree.TreeGrid#getFolderIcon folderIcon} URL [for example <code>"[SKIN]/folder.gif"</code>
-     * might be  replaced by <code>"[SKIN]/folder_open.gif"</code>.<br> <b>Note</b> If this property is set to
-     * <code>false</code> the same icon is shown for open folders as for closed folders, unless a custom folder icon was
-     * specified. This will be determined by {@link com.smartgwt.client.widgets.tree.TreeGrid#getFolderIcon folderIcon} plus
-     * the {@link com.smartgwt.client.widgets.tree.TreeGrid#getClosedIconSuffix closedIconSuffix}.
-     *
-     *
-     * @return Boolean
-     */
-    public Boolean getShowOpenIcons()  {
-        return getAttributeAsBoolean("showOpenIcons");
-    }
-
-    /**
-     * If true, when the user drags a droppable target over a folder in this TreeGrid, show  a different icon folder icon. This
-     * is achieved by appending the {@link com.smartgwt.client.widgets.tree.TreeGrid#getDropIconSuffix dropIconSuffix} onto the
-     * {@link com.smartgwt.client.widgets.tree.TreeGrid#getFolderIcon folderIcon} URL (for example
-     * <code>"[SKIN]/folder.gif"</code> may be replaced by <code>"[SKIN]/folder_drop.gif"</code>).
-     *
-     * @param showDropIcons showDropIcons Default value is true
-     */
-    public void setShowDropIcons(Boolean showDropIcons) {
-        setAttribute("showDropIcons", showDropIcons, true);
-    }
-
-    /**
-     * If true, when the user drags a droppable target over a folder in this TreeGrid, show  a different icon folder icon. This
-     * is achieved by appending the {@link com.smartgwt.client.widgets.tree.TreeGrid#getDropIconSuffix dropIconSuffix} onto the
-     * {@link com.smartgwt.client.widgets.tree.TreeGrid#getFolderIcon folderIcon} URL (for example
-     * <code>"[SKIN]/folder.gif"</code> may be replaced by <code>"[SKIN]/folder_drop.gif"</code>).
-     *
-     *
-     * @return Boolean
-     */
-    public Boolean getShowDropIcons()  {
-        return getAttributeAsBoolean("showDropIcons");
-    }
-
-    /**
-     * This property allows the developer to rename the  {@link com.smartgwt.client.widgets.tree.TreeNode#getIcon 'default
-     * node.icon'} property.
-     *
-     * @param customIconProperty customIconProperty Default value is "icon"
-     */
-    public void setCustomIconProperty(String customIconProperty) {
-        setAttribute("customIconProperty", customIconProperty, true);
-    }
-
-    /**
-     * This property allows the developer to rename the  {@link com.smartgwt.client.widgets.tree.TreeNode#getIcon 'default
-     * node.icon'} property.
-     *
-     *
-     * @return String
-     */
-    public String getCustomIconProperty()  {
-        return getAttributeAsString("customIconProperty");
-    }
-
-    /**
-     * This property allows the developer to rename the  {@link com.smartgwt.client.widgets.tree.TreeNode#getShowOpenIcon
-     * 'default node.showOpenIcon'} property.
-     * <p><b>Note : </b> This is an advanced setting</p>
-     *
-     * @param customIconOpenProperty customIconOpenProperty Default value is "showOpenIcon"
-     */
-    public void setCustomIconOpenProperty(String customIconOpenProperty) {
-        setAttribute("customIconOpenProperty", customIconOpenProperty, true);
-    }
-
-    /**
-     * This property allows the developer to rename the  {@link com.smartgwt.client.widgets.tree.TreeNode#getShowOpenIcon
-     * 'default node.showOpenIcon'} property.
-     *
-     *
-     * @return String
-     */
-    public String getCustomIconOpenProperty()  {
-        return getAttributeAsString("customIconOpenProperty");
-    }
-
-    /**
-     * This property allows the developer to rename the  {@link com.smartgwt.client.widgets.tree.TreeNode#getShowDropIcon
-     * 'default node.showDropIcon'} property.
-     * <p><b>Note : </b> This is an advanced setting</p>
-     *
-     * @param customIconDropProperty customIconDropProperty Default value is "showDropIcon"
-     */
-    public void setCustomIconDropProperty(String customIconDropProperty) {
-        setAttribute("customIconDropProperty", customIconDropProperty, true);
-    }
-
-    /**
-     * This property allows the developer to rename the  {@link com.smartgwt.client.widgets.tree.TreeNode#getShowDropIcon
-     * 'default node.showDropIcon'} property.
-     *
-     *
-     * @return String
-     */
-    public String getCustomIconDropProperty()  {
-        return getAttributeAsString("customIconDropProperty");
-    }
-
-    /**
-     * Should folder nodes showing custom icons (set via the {@link
-     * com.smartgwt.client.widgets.tree.TreeGrid#getCustomIconProperty customIconProperty}), show open state images when the
-     * folder is opened. If true, the {@link com.smartgwt.client.widgets.tree.TreeGrid#getOpenIconSuffix openIconSuffix} will
-     * be appended to the image URL (so <code>"customFolder.gif"</code> might be replaced with 
-     * <code>"customFolder_open.gif"</code>).<br> <b>Note</b> that the {@link
-     * com.smartgwt.client.widgets.tree.TreeGrid#getClosedIconSuffix closedIconSuffix} is never appended to custom folder
-     * icons.<br> Can be overridden at the node level via the default property {@link
-     * com.smartgwt.client.widgets.tree.TreeNode#getShowOpenIcon showOpenIcon} and that property can be renamed via {@link
-     * com.smartgwt.client.widgets.tree.TreeGrid#getCustomIconOpenProperty customIconOpenProperty}.
-     * <p><b>Note : </b> This is an advanced setting</p>
-     *
-     * @param showCustomIconOpen showCustomIconOpen Default value is false
-     */
-    public void setShowCustomIconOpen(Boolean showCustomIconOpen) {
-        setAttribute("showCustomIconOpen", showCustomIconOpen, true);
-    }
-
-    /**
-     * Should folder nodes showing custom icons (set via the {@link
-     * com.smartgwt.client.widgets.tree.TreeGrid#getCustomIconProperty customIconProperty}), show open state images when the
-     * folder is opened. If true, the {@link com.smartgwt.client.widgets.tree.TreeGrid#getOpenIconSuffix openIconSuffix} will
-     * be appended to the image URL (so <code>"customFolder.gif"</code> might be replaced with 
-     * <code>"customFolder_open.gif"</code>).<br> <b>Note</b> that the {@link
-     * com.smartgwt.client.widgets.tree.TreeGrid#getClosedIconSuffix closedIconSuffix} is never appended to custom folder
-     * icons.<br> Can be overridden at the node level via the default property {@link
-     * com.smartgwt.client.widgets.tree.TreeNode#getShowOpenIcon showOpenIcon} and that property can be renamed via {@link
-     * com.smartgwt.client.widgets.tree.TreeGrid#getCustomIconOpenProperty customIconOpenProperty}.
-     *
-     *
-     * @return Boolean
-     */
-    public Boolean getShowCustomIconOpen()  {
-        return getAttributeAsBoolean("showCustomIconOpen");
-    }
-
-    /**
-     * Should folder nodes showing custom icons (set via the {@link
-     * com.smartgwt.client.widgets.tree.TreeGrid#getCustomIconProperty customIconProperty}, default {@link
-     * com.smartgwt.client.widgets.tree.TreeNode#getIcon icon}), show drop state images when the user is drop-hovering over the
-     * folder. If true, the {@link com.smartgwt.client.widgets.tree.TreeGrid#getDropIconSuffix dropIconSuffix} will be appended
-     * to the image URL (so <code>"customFolder.gif"</code> might be replaced with  <code>"customFolder_drop.gif"</code>).<br>
-     * Can be overridden at the node level via the default property {@link
-     * com.smartgwt.client.widgets.tree.TreeNode#getShowDropIcon showDropIcon} and that property can be renamed via {@link
-     * com.smartgwt.client.widgets.tree.TreeGrid#getCustomIconDropProperty customIconDropProperty}.
-     * <p><b>Note : </b> This is an advanced setting</p>
-     *
-     * @param showCustomIconDrop showCustomIconDrop Default value is false
-     */
-    public void setShowCustomIconDrop(Boolean showCustomIconDrop) {
-        setAttribute("showCustomIconDrop", showCustomIconDrop, true);
-    }
-
-    /**
-     * Should folder nodes showing custom icons (set via the {@link
-     * com.smartgwt.client.widgets.tree.TreeGrid#getCustomIconProperty customIconProperty}, default {@link
-     * com.smartgwt.client.widgets.tree.TreeNode#getIcon icon}), show drop state images when the user is drop-hovering over the
-     * folder. If true, the {@link com.smartgwt.client.widgets.tree.TreeGrid#getDropIconSuffix dropIconSuffix} will be appended
-     * to the image URL (so <code>"customFolder.gif"</code> might be replaced with  <code>"customFolder_drop.gif"</code>).<br>
-     * Can be overridden at the node level via the default property {@link
-     * com.smartgwt.client.widgets.tree.TreeNode#getShowDropIcon showDropIcon} and that property can be renamed via {@link
-     * com.smartgwt.client.widgets.tree.TreeGrid#getCustomIconDropProperty customIconDropProperty}.
-     *
-     *
-     * @return Boolean
-     */
-    public Boolean getShowCustomIconDrop()  {
-        return getAttributeAsBoolean("showCustomIconDrop");
-    }
-
-    /**
-     * The filename of the icon displayed use as the default drag tracker when for multiple files and/or folders are being
-     * dragged.
-     *
-     * @param manyItemsImage manyItemsImage Default value is "[SKIN]folder_file.gif"
-     */
-    public void setManyItemsImage(String manyItemsImage) {
-        setAttribute("manyItemsImage", manyItemsImage, true);
-    }
-
-    /**
-     * The filename of the icon displayed use as the default drag tracker when for multiple files and/or folders are being
-     * dragged.
-     *
-     *
-     * @return String
-     */
-    public String getManyItemsImage()  {
-        return getAttributeAsString("manyItemsImage");
-    }
-
-    /**
-     * Should this treeGrid show connector lines illustrating the tree's hierarchy? <P> For the set of images used to show
-     * connectors, see {@link com.smartgwt.client.widgets.tree.TreeGrid#getConnectorImage connectorImage}. <P> <b>Note</b>: in
-     * order for connector images to be perfectly connected, all styles for cells must have no top or bottom border or padding.
-     * If you see small gaps in connector lines, check your CSS files.  See the example below for an example of correct
-     * configuration, including example CSS.
-     *
-     * @param showConnectors showConnectors Default value is false
-     */
-    public void setShowConnectors(Boolean showConnectors) {
-        setAttribute("showConnectors", showConnectors, true);
-    }
-
-    /**
-     * Should this treeGrid show connector lines illustrating the tree's hierarchy? <P> For the set of images used to show
-     * connectors, see {@link com.smartgwt.client.widgets.tree.TreeGrid#getConnectorImage connectorImage}. <P> <b>Note</b>: in
-     * order for connector images to be perfectly connected, all styles for cells must have no top or bottom border or padding.
-     * If you see small gaps in connector lines, check your CSS files.  See the example below for an example of correct
-     * configuration, including example CSS.
-     *
-     *
-     * @return Boolean
-     */
-    public Boolean getShowConnectors()  {
-        return getAttributeAsBoolean("showConnectors");
-    }
-
-    /**
-     * If {@link com.smartgwt.client.widgets.tree.TreeGrid#getShowConnectors showConnectors} is true, this property determines
-     * whether we should show showing vertical continuation lines for each level of indenting within the tree. Setting to false
-     * will show only the hierarchy lines are only shown for the most indented path ("sparse" connectors).
-     *
-     * @param showFullConnectors showFullConnectors Default value is true
-     */
-    public void setShowFullConnectors(Boolean showFullConnectors) {
-        setAttribute("showFullConnectors", showFullConnectors, true);
-    }
-
-    /**
-     * If {@link com.smartgwt.client.widgets.tree.TreeGrid#getShowConnectors showConnectors} is true, this property determines
-     * whether we should show showing vertical continuation lines for each level of indenting within the tree. Setting to false
-     * will show only the hierarchy lines are only shown for the most indented path ("sparse" connectors).
-     *
-     *
-     * @return Boolean
-     */
-    public Boolean getShowFullConnectors()  {
-        return getAttributeAsBoolean("showFullConnectors");
-    }
-
-    /**
-     * The base filename of the opener icon for the folder node when 'showConnectors' is false for this TreeGrid.<br> The
-     * opener icon is displayed beside the folder icon in the Tree column for folder nodes. Clicking on this icon will toggle
-     * the open state of the folder.<br> The filenames for these icons are assembled from this base filename and the state of
-     * the node, as follows:<br> If the openerImage is set to <code>{baseName}.{extension}</code>, 
-     * <code>{baseName}_opened.{extension}</code> will be displayed next to opened folders, and
-     * <code>{baseName}_closed.{extension}</code> will be displayed next to closed folders, or if this page is in RTL mode,
-     * <code>{baseName}_opened_rtl.{extension}</code> and <code>{baseName}_closed_rtl.{extension}</code> will be used.
-     *
-     * @param openerImage openerImage Default value is "[SKIN]opener.gif"
-     * @throws IllegalStateException this property cannot be changed after the component has been created
-     */
-    public void setOpenerImage(String openerImage)  throws IllegalStateException {
-        setAttribute("openerImage", openerImage, false);
-    }
-
-    /**
-     * The base filename of the opener icon for the folder node when 'showConnectors' is false for this TreeGrid.<br> The
-     * opener icon is displayed beside the folder icon in the Tree column for folder nodes. Clicking on this icon will toggle
-     * the open state of the folder.<br> The filenames for these icons are assembled from this base filename and the state of
-     * the node, as follows:<br> If the openerImage is set to <code>{baseName}.{extension}</code>, 
-     * <code>{baseName}_opened.{extension}</code> will be displayed next to opened folders, and
-     * <code>{baseName}_closed.{extension}</code> will be displayed next to closed folders, or if this page is in RTL mode,
-     * <code>{baseName}_opened_rtl.{extension}</code> and <code>{baseName}_closed_rtl.{extension}</code> will be used.
-     *
-     *
-     * @return String
-     */
-    public String getOpenerImage()  {
-        return getAttributeAsString("openerImage");
     }
 
     /**
@@ -1157,52 +514,650 @@ public class TreeGrid extends ListGrid  implements com.smartgwt.client.widgets.t
         return getAttributeAsString("connectorImage");
     }
 
+    /**
+     * This property allows the developer to rename the  {@link com.smartgwt.client.widgets.tree.TreeNode#getShowDropIcon
+     * 'default node.showDropIcon'} property.
+     * <p><b>Note : </b> This is an advanced setting</p>
+     *
+     * @param customIconDropProperty customIconDropProperty Default value is "showDropIcon"
+     */
+    public void setCustomIconDropProperty(String customIconDropProperty) {
+        setAttribute("customIconDropProperty", customIconDropProperty, true);
+    }
+
+    /**
+     * This property allows the developer to rename the  {@link com.smartgwt.client.widgets.tree.TreeNode#getShowDropIcon
+     * 'default node.showDropIcon'} property.
+     *
+     *
+     * @return String
+     */
+    public String getCustomIconDropProperty()  {
+        return getAttributeAsString("customIconDropProperty");
+    }
+
+    /**
+     * This property allows the developer to rename the  {@link com.smartgwt.client.widgets.tree.TreeNode#getShowOpenIcon
+     * 'default node.showOpenIcon'} property.
+     * <p><b>Note : </b> This is an advanced setting</p>
+     *
+     * @param customIconOpenProperty customIconOpenProperty Default value is "showOpenIcon"
+     */
+    public void setCustomIconOpenProperty(String customIconOpenProperty) {
+        setAttribute("customIconOpenProperty", customIconOpenProperty, true);
+    }
+
+    /**
+     * This property allows the developer to rename the  {@link com.smartgwt.client.widgets.tree.TreeNode#getShowOpenIcon
+     * 'default node.showOpenIcon'} property.
+     *
+     *
+     * @return String
+     */
+    public String getCustomIconOpenProperty()  {
+        return getAttributeAsString("customIconOpenProperty");
+    }
+
+    /**
+     * This property allows the developer to rename the  {@link com.smartgwt.client.widgets.tree.TreeNode#getIcon 'default
+     * node.icon'} property.
+     *
+     * @param customIconProperty customIconProperty Default value is "icon"
+     */
+    public void setCustomIconProperty(String customIconProperty) {
+        setAttribute("customIconProperty", customIconProperty, true);
+    }
+
+    /**
+     * This property allows the developer to rename the  {@link com.smartgwt.client.widgets.tree.TreeNode#getIcon 'default
+     * node.icon'} property.
+     *
+     *
+     * @return String
+     */
+    public String getCustomIconProperty()  {
+        return getAttributeAsString("customIconProperty");
+    }
+            
+    /**
+     * A {@link com.smartgwt.client.widgets.tree.Tree} object containing of nested {@link
+     * com.smartgwt.client.widgets.tree.TreeNode}s to  display as rows in this TreeGrid.   The <code>data</code> property will
+     * typically not be explicitly specified for  databound TreeGrids, where the data is returned from the server via databound
+     * component methods such as <code>fetchData()</code>
+     * Set the {@link com.smartgwt.client.widgets.tree.Tree} object this TreeGrid will view and manipulate.
+     *
+     * @param data Tree to show. Default value is null
+     */
+    public void setData(Tree data) {
+        setAttribute("data", data.getOrCreateJsObj(), true);
+    }
+
+    /**
+     * A {@link com.smartgwt.client.widgets.tree.Tree} object containing of nested {@link
+     * com.smartgwt.client.widgets.tree.TreeNode}s to  display as rows in this TreeGrid.   The <code>data</code> property will
+     * typically not be explicitly specified for  databound TreeGrids, where the data is returned from the server via databound
+     * component methods such as <code>fetchData()</code>
+     *
+     *
+     * @return Tree
+     */
+    public Tree getData()  {
+            return Tree.getOrCreateRef(getAttributeAsJavaScriptObject("data"));
+    }
+             
+    /**
+     * Specifies the type of nodes displayed in the treeGrid.
+     *
+     * @param displayNodeType displayNodeType Default value is Tree.FOLDERS_AND_LEAVES
+     */
+    public void setDisplayNodeType(DisplayNodeType displayNodeType) {
+        setAttribute("displayNodeType", displayNodeType.getValue(), true);
+    }
+
+    /**
+     * Specifies the type of nodes displayed in the treeGrid.
+     *
+     *
+     * @return DisplayNodeType
+     */
+    public DisplayNodeType getDisplayNodeType()  {
+        return EnumUtil.getEnum(DisplayNodeType.values(), getAttribute("displayNodeType"));
+    }
+
+    /**
+     * If {@link com.smartgwt.client.widgets.tree.TreeGrid#getShowDropIcons showDropIcons} is true, this suffix will be
+     * appended to the {@link com.smartgwt.client.widgets.tree.TreeGrid#getFolderIcon folderIcon} when the user drop-hovers
+     * over some folder.
+     *
+     * @param dropIconSuffix dropIconSuffix Default value is "drop"
+     */
+    public void setDropIconSuffix(String dropIconSuffix) {
+        setAttribute("dropIconSuffix", dropIconSuffix, true);
+    }
+
+    /**
+     * If {@link com.smartgwt.client.widgets.tree.TreeGrid#getShowDropIcons showDropIcons} is true, this suffix will be
+     * appended to the {@link com.smartgwt.client.widgets.tree.TreeGrid#getFolderIcon folderIcon} when the user drop-hovers
+     * over some folder.
+     *
+     *
+     * @return String
+     */
+    public String getDropIconSuffix()  {
+        return getAttributeAsString("dropIconSuffix");
+    }
+
+    /**
+     * The URL of the base icon for all folder nodes in this treeGrid. Note that this URL will have {@link
+     * com.smartgwt.client.widgets.tree.TreeGrid#getOpenIconSuffix openIconSuffix}, {@link
+     * com.smartgwt.client.widgets.tree.TreeGrid#getClosedIconSuffix closedIconSuffix} or  {@link
+     * com.smartgwt.client.widgets.tree.TreeGrid#getDropIconSuffix dropIconSuffix} appended to indicate state changes if
+     * appropriate -  see documentation on  {@link com.smartgwt.client.widgets.tree.TreeGrid#getShowOpenIcons showOpenIcons}
+     * and {@link com.smartgwt.client.widgets.tree.TreeGrid#getShowDropIcons showDropIcons}.
+     *
+     * @param folderIcon folderIcon Default value is "[SKIN]folder.gif"
+     */
+    public void setFolderIcon(String folderIcon) {
+        setAttribute("folderIcon", folderIcon, true);
+    }
+
+    /**
+     * The URL of the base icon for all folder nodes in this treeGrid. Note that this URL will have {@link
+     * com.smartgwt.client.widgets.tree.TreeGrid#getOpenIconSuffix openIconSuffix}, {@link
+     * com.smartgwt.client.widgets.tree.TreeGrid#getClosedIconSuffix closedIconSuffix} or  {@link
+     * com.smartgwt.client.widgets.tree.TreeGrid#getDropIconSuffix dropIconSuffix} appended to indicate state changes if
+     * appropriate -  see documentation on  {@link com.smartgwt.client.widgets.tree.TreeGrid#getShowOpenIcons showOpenIcons}
+     * and {@link com.smartgwt.client.widgets.tree.TreeGrid#getShowDropIcons showDropIcons}.
+     *
+     *
+     * @return String
+     */
+    public String getFolderIcon()  {
+        return getAttributeAsString("folderIcon");
+    }
+
+    /**
+     * The standard size (same height and width, in pixels) of node icons in this          treeGrid.
+     *
+     * @param iconSize iconSize Default value is 16
+     */
+    public void setIconSize(int iconSize) {
+        setAttribute("iconSize", iconSize, true);
+    }
+
+    /**
+     * The standard size (same height and width, in pixels) of node icons in this          treeGrid.
+     *
+     *
+     * @return int
+     */
+    public int getIconSize()  {
+        return getAttributeAsInt("iconSize");
+    }
+
+    /**
+     * The amount of indentation (in pixels) to add to a node's icon/title for each level          down in this tree's
+     * hierarchy.
+     *
+     * @param indentSize indentSize Default value is 20
+     */
+    public void setIndentSize(int indentSize) {
+        setAttribute("indentSize", indentSize, true);
+    }
+
+    /**
+     * The amount of indentation (in pixels) to add to a node's icon/title for each level          down in this tree's
+     * hierarchy.
+     *
+     *
+     * @return int
+     */
+    public int getIndentSize()  {
+        return getAttributeAsInt("indentSize");
+    }
+
+    /**
+     * For databound treeGrid instances, should the entire tree of data be loaded on initial  fetch, or should folders load
+     * their children as they are opened. <P> If unset the default {@link com.smartgwt.client..ResultTree#getLoadDataOnDemand
+     * loadDataOnDemand} setting will be used. <P> Note that when using <code>loadDataOnDemand</code>, every node returned by
+     * the server is assumed be a folder which may load further children.  See {@link
+     * com.smartgwt.client..ResultTree#getDefaultIsFolder defaultIsFolder} for how to control this behavior.
+     *
+     * @param loadDataOnDemand loadDataOnDemand Default value is null
+     */
+    public void setLoadDataOnDemand(Boolean loadDataOnDemand) {
+        setAttribute("loadDataOnDemand", loadDataOnDemand, true);
+    }
+
+    /**
+     * For databound treeGrid instances, should the entire tree of data be loaded on initial  fetch, or should folders load
+     * their children as they are opened. <P> If unset the default {@link com.smartgwt.client..ResultTree#getLoadDataOnDemand
+     * loadDataOnDemand} setting will be used. <P> Note that when using <code>loadDataOnDemand</code>, every node returned by
+     * the server is assumed be a folder which may load further children.  See {@link
+     * com.smartgwt.client..ResultTree#getDefaultIsFolder defaultIsFolder} for how to control this behavior.
+     *
+     *
+     * @return Boolean
+     */
+    public Boolean getLoadDataOnDemand()  {
+        return getAttributeAsBoolean("loadDataOnDemand");
+    }
+
+    /**
+     * The filename of the icon displayed use as the default drag tracker when for multiple files and/or folders are being
+     * dragged.
+     *
+     * @param manyItemsImage manyItemsImage Default value is "[SKIN]folder_file.gif"
+     */
+    public void setManyItemsImage(String manyItemsImage) {
+        setAttribute("manyItemsImage", manyItemsImage, true);
+    }
+
+    /**
+     * The filename of the icon displayed use as the default drag tracker when for multiple files and/or folders are being
+     * dragged.
+     *
+     *
+     * @return String
+     */
+    public String getManyItemsImage()  {
+        return getAttributeAsString("manyItemsImage");
+    }
+
+    /**
+     * The filename of the default icon for all leaf nodes in this grid. To specify a  custom image for an individual node, set
+     * the {@link com.smartgwt.client.widgets.tree.TreeGrid#getCustomIconProperty customIconProperty} directly on the node.
+     * Set the icon for a particular treenode to a specified URL
+     *
+     * @param nodeIcon tree node. Default value is "[SKIN]file.gif"
+     */
+    public void setNodeIcon(String nodeIcon) {
+        setAttribute("nodeIcon", nodeIcon, true);
+    }
+
+    /**
+     * The filename of the default icon for all leaf nodes in this grid. To specify a  custom image for an individual node, set
+     * the {@link com.smartgwt.client.widgets.tree.TreeGrid#getCustomIconProperty customIconProperty} directly on the node.
+     *
+     *
+     * @return String
+     */
+    public String getNodeIcon()  {
+        return getAttributeAsString("nodeIcon");
+    }
+
+    /**
+     * Width and height in pixels of the opener icons, that is, the icons which show the open or closed state of the node,
+     * typically a [+] or [-] symbol. <P> If {@link com.smartgwt.client.widgets.tree.TreeGrid#getShowConnectors showConnectors}
+     * is true, the opener icon includes the connector line, and defaults to {@link
+     * com.smartgwt.client.widgets.grid.ListGrid#getCellHeight 'cellHeight'}. <P> Otherwise, <code>openerIconSize</code>
+     * defaults to {@link com.smartgwt.client.widgets.tree.TreeGrid#getIconSize iconSize}.
+     *
+     * @param openerIconSize openerIconSize Default value is null
+     */
+    public void setOpenerIconSize(Integer openerIconSize) {
+        setAttribute("openerIconSize", openerIconSize, true);
+    }
+
+    /**
+     * Width and height in pixels of the opener icons, that is, the icons which show the open or closed state of the node,
+     * typically a [+] or [-] symbol. <P> If {@link com.smartgwt.client.widgets.tree.TreeGrid#getShowConnectors showConnectors}
+     * is true, the opener icon includes the connector line, and defaults to {@link
+     * com.smartgwt.client.widgets.grid.ListGrid#getCellHeight 'cellHeight'}. <P> Otherwise, <code>openerIconSize</code>
+     * defaults to {@link com.smartgwt.client.widgets.tree.TreeGrid#getIconSize iconSize}.
+     *
+     *
+     * @return Integer
+     */
+    public Integer getOpenerIconSize()  {
+        return getAttributeAsInt("openerIconSize");
+    }
+
+    /**
+     * The base filename of the opener icon for the folder node when 'showConnectors' is false for this TreeGrid.<br> The
+     * opener icon is displayed beside the folder icon in the Tree column for folder nodes. Clicking on this icon will toggle
+     * the open state of the folder.<br> The filenames for these icons are assembled from this base filename and the state of
+     * the node, as follows:<br> If the openerImage is set to <code>{baseName}.{extension}</code>, 
+     * <code>{baseName}_opened.{extension}</code> will be displayed next to opened folders, and
+     * <code>{baseName}_closed.{extension}</code> will be displayed next to closed folders, or if this page is in RTL mode,
+     * <code>{baseName}_opened_rtl.{extension}</code> and <code>{baseName}_closed_rtl.{extension}</code> will be used.
+     *
+     * @param openerImage openerImage Default value is "[SKIN]opener.gif"
+     * @throws IllegalStateException this property cannot be changed after the component has been created
+     */
+    public void setOpenerImage(String openerImage)  throws IllegalStateException {
+        setAttribute("openerImage", openerImage, false);
+    }
+
+    /**
+     * The base filename of the opener icon for the folder node when 'showConnectors' is false for this TreeGrid.<br> The
+     * opener icon is displayed beside the folder icon in the Tree column for folder nodes. Clicking on this icon will toggle
+     * the open state of the folder.<br> The filenames for these icons are assembled from this base filename and the state of
+     * the node, as follows:<br> If the openerImage is set to <code>{baseName}.{extension}</code>, 
+     * <code>{baseName}_opened.{extension}</code> will be displayed next to opened folders, and
+     * <code>{baseName}_closed.{extension}</code> will be displayed next to closed folders, or if this page is in RTL mode,
+     * <code>{baseName}_opened_rtl.{extension}</code> and <code>{baseName}_closed_rtl.{extension}</code> will be used.
+     *
+     *
+     * @return String
+     */
+    public String getOpenerImage()  {
+        return getAttributeAsString("openerImage");
+    }
+
+    /**
+     * If {@link com.smartgwt.client.widgets.tree.TreeGrid#getShowOpenIcons showOpenIcons} is true, this suffix will be
+     * appended to the {@link com.smartgwt.client.widgets.tree.TreeGrid#getFolderIcon folderIcon} for open folders in this
+     * grid.
+     *
+     * @param openIconSuffix openIconSuffix Default value is "open"
+     */
+    public void setOpenIconSuffix(String openIconSuffix) {
+        setAttribute("openIconSuffix", openIconSuffix, true);
+    }
+
+    /**
+     * If {@link com.smartgwt.client.widgets.tree.TreeGrid#getShowOpenIcons showOpenIcons} is true, this suffix will be
+     * appended to the {@link com.smartgwt.client.widgets.tree.TreeGrid#getFolderIcon folderIcon} for open folders in this
+     * grid.
+     *
+     *
+     * @return String
+     */
+    public String getOpenIconSuffix()  {
+        return getAttributeAsString("openIconSuffix");
+    }
+
+    /**
+     * Message displayed when user attempts to drag a node into a parent that already contains a child of the same name.
+     *
+     * @param parentAlreadyContainsChildMessage parentAlreadyContainsChildMessage Default value is "This item already contains a child item with that name."
+     * @throws IllegalStateException this property cannot be changed after the component has been created
+     */
+    public void setParentAlreadyContainsChildMessage(String parentAlreadyContainsChildMessage)  throws IllegalStateException {
+        setAttribute("parentAlreadyContainsChildMessage", parentAlreadyContainsChildMessage, false);
+    }
+
+    /**
+     * Message displayed when user attempts to drag a node into a parent that already contains a child of the same name.
+     *
+     *
+     * @return String
+     */
+    public String getParentAlreadyContainsChildMessage()  {
+        return getAttributeAsString("parentAlreadyContainsChildMessage");
+    }
+
+    /**
+     * Specifies whether folders and leaves should be segregated in the treeGrid display.          With separateFolders:true
+     * and sortDirection:"descending", folders are displayed          before their sibling leaves; with
+     * sortDirection:"ascending", leaves are displayed          before their sibling folders.
+     *
+     * @param separateFolders separateFolders Default value is false
+     * @throws IllegalStateException this property cannot be changed after the component has been created
+     */
+    public void setSeparateFolders(Boolean separateFolders)  throws IllegalStateException {
+        setAttribute("separateFolders", separateFolders, false);
+    }
+
+    /**
+     * Specifies whether folders and leaves should be segregated in the treeGrid display.          With separateFolders:true
+     * and sortDirection:"descending", folders are displayed          before their sibling leaves; with
+     * sortDirection:"ascending", leaves are displayed          before their sibling folders.
+     *
+     *
+     * @return Boolean
+     */
+    public Boolean getSeparateFolders()  {
+        return getAttributeAsBoolean("separateFolders");
+    }
+
+    /**
+     * Should this treeGrid show connector lines illustrating the tree's hierarchy? <P> For the set of images used to show
+     * connectors, see {@link com.smartgwt.client.widgets.tree.TreeGrid#getConnectorImage connectorImage}. <P> <b>Note</b>: in
+     * order for connector images to be perfectly connected, all styles for cells must have no top or bottom border or padding.
+     * If you see small gaps in connector lines, check your CSS files.  See the example below for an example of correct
+     * configuration, including example CSS.
+     *
+     * @param showConnectors showConnectors Default value is false
+     */
+    public void setShowConnectors(Boolean showConnectors) {
+        setAttribute("showConnectors", showConnectors, true);
+    }
+
+    /**
+     * Should this treeGrid show connector lines illustrating the tree's hierarchy? <P> For the set of images used to show
+     * connectors, see {@link com.smartgwt.client.widgets.tree.TreeGrid#getConnectorImage connectorImage}. <P> <b>Note</b>: in
+     * order for connector images to be perfectly connected, all styles for cells must have no top or bottom border or padding.
+     * If you see small gaps in connector lines, check your CSS files.  See the example below for an example of correct
+     * configuration, including example CSS.
+     *
+     *
+     * @return Boolean
+     */
+    public Boolean getShowConnectors()  {
+        return getAttributeAsBoolean("showConnectors");
+    }
+
+    /**
+     * Should folder nodes showing custom icons (set via the {@link
+     * com.smartgwt.client.widgets.tree.TreeGrid#getCustomIconProperty customIconProperty}, default {@link
+     * com.smartgwt.client.widgets.tree.TreeNode#getIcon icon}), show drop state images when the user is drop-hovering over the
+     * folder. If true, the {@link com.smartgwt.client.widgets.tree.TreeGrid#getDropIconSuffix dropIconSuffix} will be appended
+     * to the image URL (so <code>"customFolder.gif"</code> might be replaced with  <code>"customFolder_drop.gif"</code>).<br>
+     * Can be overridden at the node level via the default property {@link
+     * com.smartgwt.client.widgets.tree.TreeNode#getShowDropIcon showDropIcon} and that property can be renamed via {@link
+     * com.smartgwt.client.widgets.tree.TreeGrid#getCustomIconDropProperty customIconDropProperty}.
+     * <p><b>Note : </b> This is an advanced setting</p>
+     *
+     * @param showCustomIconDrop showCustomIconDrop Default value is false
+     */
+    public void setShowCustomIconDrop(Boolean showCustomIconDrop) {
+        setAttribute("showCustomIconDrop", showCustomIconDrop, true);
+    }
+
+    /**
+     * Should folder nodes showing custom icons (set via the {@link
+     * com.smartgwt.client.widgets.tree.TreeGrid#getCustomIconProperty customIconProperty}, default {@link
+     * com.smartgwt.client.widgets.tree.TreeNode#getIcon icon}), show drop state images when the user is drop-hovering over the
+     * folder. If true, the {@link com.smartgwt.client.widgets.tree.TreeGrid#getDropIconSuffix dropIconSuffix} will be appended
+     * to the image URL (so <code>"customFolder.gif"</code> might be replaced with  <code>"customFolder_drop.gif"</code>).<br>
+     * Can be overridden at the node level via the default property {@link
+     * com.smartgwt.client.widgets.tree.TreeNode#getShowDropIcon showDropIcon} and that property can be renamed via {@link
+     * com.smartgwt.client.widgets.tree.TreeGrid#getCustomIconDropProperty customIconDropProperty}.
+     *
+     *
+     * @return Boolean
+     */
+    public Boolean getShowCustomIconDrop()  {
+        return getAttributeAsBoolean("showCustomIconDrop");
+    }
+
+    /**
+     * Should folder nodes showing custom icons (set via the {@link
+     * com.smartgwt.client.widgets.tree.TreeGrid#getCustomIconProperty customIconProperty}), show open state images when the
+     * folder is opened. If true, the {@link com.smartgwt.client.widgets.tree.TreeGrid#getOpenIconSuffix openIconSuffix} will
+     * be appended to the image URL (so <code>"customFolder.gif"</code> might be replaced with 
+     * <code>"customFolder_open.gif"</code>).<br> <b>Note</b> that the {@link
+     * com.smartgwt.client.widgets.tree.TreeGrid#getClosedIconSuffix closedIconSuffix} is never appended to custom folder
+     * icons.<br> Can be overridden at the node level via the default property {@link
+     * com.smartgwt.client.widgets.tree.TreeNode#getShowOpenIcon showOpenIcon} and that property can be renamed via {@link
+     * com.smartgwt.client.widgets.tree.TreeGrid#getCustomIconOpenProperty customIconOpenProperty}.
+     * <p><b>Note : </b> This is an advanced setting</p>
+     *
+     * @param showCustomIconOpen showCustomIconOpen Default value is false
+     */
+    public void setShowCustomIconOpen(Boolean showCustomIconOpen) {
+        setAttribute("showCustomIconOpen", showCustomIconOpen, true);
+    }
+
+    /**
+     * Should folder nodes showing custom icons (set via the {@link
+     * com.smartgwt.client.widgets.tree.TreeGrid#getCustomIconProperty customIconProperty}), show open state images when the
+     * folder is opened. If true, the {@link com.smartgwt.client.widgets.tree.TreeGrid#getOpenIconSuffix openIconSuffix} will
+     * be appended to the image URL (so <code>"customFolder.gif"</code> might be replaced with 
+     * <code>"customFolder_open.gif"</code>).<br> <b>Note</b> that the {@link
+     * com.smartgwt.client.widgets.tree.TreeGrid#getClosedIconSuffix closedIconSuffix} is never appended to custom folder
+     * icons.<br> Can be overridden at the node level via the default property {@link
+     * com.smartgwt.client.widgets.tree.TreeNode#getShowOpenIcon showOpenIcon} and that property can be renamed via {@link
+     * com.smartgwt.client.widgets.tree.TreeGrid#getCustomIconOpenProperty customIconOpenProperty}.
+     *
+     *
+     * @return Boolean
+     */
+    public Boolean getShowCustomIconOpen()  {
+        return getAttributeAsBoolean("showCustomIconOpen");
+    }
+
+    /**
+     * If true, when the user drags a droppable target over a folder in this TreeGrid, show  a different icon folder icon. This
+     * is achieved by appending the {@link com.smartgwt.client.widgets.tree.TreeGrid#getDropIconSuffix dropIconSuffix} onto the
+     * {@link com.smartgwt.client.widgets.tree.TreeGrid#getFolderIcon folderIcon} URL (for example
+     * <code>"[SKIN]/folder.gif"</code> may be replaced by <code>"[SKIN]/folder_drop.gif"</code>).
+     *
+     * @param showDropIcons showDropIcons Default value is true
+     */
+    public void setShowDropIcons(Boolean showDropIcons) {
+        setAttribute("showDropIcons", showDropIcons, true);
+    }
+
+    /**
+     * If true, when the user drags a droppable target over a folder in this TreeGrid, show  a different icon folder icon. This
+     * is achieved by appending the {@link com.smartgwt.client.widgets.tree.TreeGrid#getDropIconSuffix dropIconSuffix} onto the
+     * {@link com.smartgwt.client.widgets.tree.TreeGrid#getFolderIcon folderIcon} URL (for example
+     * <code>"[SKIN]/folder.gif"</code> may be replaced by <code>"[SKIN]/folder_drop.gif"</code>).
+     *
+     *
+     * @return Boolean
+     */
+    public Boolean getShowDropIcons()  {
+        return getAttributeAsBoolean("showDropIcons");
+    }
+
+    /**
+     * If {@link com.smartgwt.client.widgets.tree.TreeGrid#getShowConnectors showConnectors} is true, this property determines
+     * whether we should show showing vertical continuation lines for each level of indenting within the tree. Setting to false
+     * will show only the hierarchy lines are only shown for the most indented path ("sparse" connectors).
+     *
+     * @param showFullConnectors showFullConnectors Default value is true
+     */
+    public void setShowFullConnectors(Boolean showFullConnectors) {
+        setAttribute("showFullConnectors", showFullConnectors, true);
+    }
+
+    /**
+     * If {@link com.smartgwt.client.widgets.tree.TreeGrid#getShowConnectors showConnectors} is true, this property determines
+     * whether we should show showing vertical continuation lines for each level of indenting within the tree. Setting to false
+     * will show only the hierarchy lines are only shown for the most indented path ("sparse" connectors).
+     *
+     *
+     * @return Boolean
+     */
+    public Boolean getShowFullConnectors()  {
+        return getAttributeAsBoolean("showFullConnectors");
+    }
+
+    /**
+     * If true, show a different icon for <code>open</code> folders than closed folders. This is achieved by appending the
+     * {@link com.smartgwt.client.widgets.tree.TreeGrid#getOpenIconSuffix openIconSuffix} onto the  {@link
+     * com.smartgwt.client.widgets.tree.TreeGrid#getFolderIcon folderIcon} URL [for example <code>"[SKIN]/folder.gif"</code>
+     * might be  replaced by <code>"[SKIN]/folder_open.gif"</code>.<br> <b>Note</b> If this property is set to
+     * <code>false</code> the same icon is shown for open folders as for closed folders, unless a custom folder icon was
+     * specified. This will be determined by {@link com.smartgwt.client.widgets.tree.TreeGrid#getFolderIcon folderIcon} plus
+     * the {@link com.smartgwt.client.widgets.tree.TreeGrid#getClosedIconSuffix closedIconSuffix}.
+     *
+     * @param showOpenIcons showOpenIcons Default value is true
+     */
+    public void setShowOpenIcons(Boolean showOpenIcons) {
+        setAttribute("showOpenIcons", showOpenIcons, true);
+    }
+
+    /**
+     * If true, show a different icon for <code>open</code> folders than closed folders. This is achieved by appending the
+     * {@link com.smartgwt.client.widgets.tree.TreeGrid#getOpenIconSuffix openIconSuffix} onto the  {@link
+     * com.smartgwt.client.widgets.tree.TreeGrid#getFolderIcon folderIcon} URL [for example <code>"[SKIN]/folder.gif"</code>
+     * might be  replaced by <code>"[SKIN]/folder_open.gif"</code>.<br> <b>Note</b> If this property is set to
+     * <code>false</code> the same icon is shown for open folders as for closed folders, unless a custom folder icon was
+     * specified. This will be determined by {@link com.smartgwt.client.widgets.tree.TreeGrid#getFolderIcon folderIcon} plus
+     * the {@link com.smartgwt.client.widgets.tree.TreeGrid#getClosedIconSuffix closedIconSuffix}.
+     *
+     *
+     * @return Boolean
+     */
+    public Boolean getShowOpenIcons()  {
+        return getAttributeAsBoolean("showOpenIcons");
+    }
+
+    /**
+     * Should partially selected parents be shown with special icon?
+     *
+     * @param showPartialSelection showPartialSelection Default value is false
+     */
+    public void setShowPartialSelection(Boolean showPartialSelection) {
+        setAttribute("showPartialSelection", showPartialSelection, true);
+    }
+
+    /**
+     * Should partially selected parents be shown with special icon?
+     *
+     *
+     * @return Boolean
+     */
+    public Boolean getShowPartialSelection()  {
+        return getAttributeAsBoolean("showPartialSelection");
+    }
+
+    /**
+     * Specifies whether the root node should be displayed in the treeGrid. <P> This property is only available for "children"
+     * modelType trees, hence is not allowed for trees that load data from the server dynamically via {@link
+     * com.smartgwt.client.widgets.tree.TreeGrid#fetchData}.   <P> To get the equivalent of a visible "root" node in a tree
+     * that loads data dynamically, add a singular, top-level parent to the data.  However, note that this top-level parent
+     * will technically be the only child of root, and the implicit root object will be returned by {@link
+     * com.smartgwt.client.widgets.tree.Tree#getRoot}.
+     *
+     * @param showRoot showRoot Default value is false
+     * @throws IllegalStateException this property cannot be changed after the component has been created
+     */
+    public void setShowRoot(Boolean showRoot)  throws IllegalStateException {
+        setAttribute("showRoot", showRoot, false);
+    }
+
+    /**
+     * Specifies whether the root node should be displayed in the treeGrid. <P> This property is only available for "children"
+     * modelType trees, hence is not allowed for trees that load data from the server dynamically via {@link
+     * com.smartgwt.client.widgets.tree.TreeGrid#fetchData}.   <P> To get the equivalent of a visible "root" node in a tree
+     * that loads data dynamically, add a singular, top-level parent to the data.  However, note that this top-level parent
+     * will technically be the only child of root, and the implicit root object will be returned by {@link
+     * com.smartgwt.client.widgets.tree.Tree#getRoot}.
+     *
+     *
+     * @return Boolean
+     */
+    public Boolean getShowRoot()  {
+        return getAttributeAsBoolean("showRoot");
+    }
+
+    /**
+     * Visible title for the tree column (field).
+     *
+     * @param treeFieldTitle treeFieldTitle Default value is "Name"
+     * @throws IllegalStateException this property cannot be changed after the component has been created
+     */
+    public void setTreeFieldTitle(String treeFieldTitle)  throws IllegalStateException {
+        setAttribute("treeFieldTitle", treeFieldTitle, false);
+    }
+
+    /**
+     * Visible title for the tree column (field).
+     *
+     *
+     * @return String
+     */
+    public String getTreeFieldTitle()  {
+        return getAttributeAsString("treeFieldTitle");
+    }
+
     // ********************* Methods ***********************
-            
-    /**
-     * Returns a snapshot of the current open state of this grid's data as a {@link java.lang.String} object.<br> This object
-     * can be passed to {@link com.smartgwt.client.widgets.tree.TreeGrid#setOpenState} to open the same set of folders within
-     * the treeGrid's data (assuming the nodes are still present in the data).
-     *
-     * @return current sort state for the grid.
-     */
-    public native String getOpenState() /*-{
-        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
-        return self.getOpenState();
-    }-*/;
-            
-    /**
-     * Reset this set of open folders within this grid's data to match the  {@link java.lang.String} object passed in.<br> Used
-     * to restore previous state retrieved from the grid by a call to  {@link
-     * com.smartgwt.client.widgets.tree.TreeGrid#getOpenState}.
-     * @param openState Object describing the desired set of open folders.
-     */
-    public native void setOpenState(String openState) /*-{
-        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
-        self.setOpenState(openState);
-    }-*/;
-            
-    /**
-     * Returns a snapshot of the current selection within this treeGrid as  a {@link java.lang.String} object.<br> This object
-     * can be passed to {@link com.smartgwt.client.widgets.tree.TreeGrid#setSelectedPaths} to reset this grid's selection the
-     * current state (assuming the same data is present in the grid).<br>
-     *
-     * @return current state of this grid's selection
-     */
-    public native String getSelectedPaths() /*-{
-        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
-        return self.getSelectedPaths();
-    }-*/;
-            
-    /**
-     * Reset this grid's selection to match the {@link java.lang.String} object passed in.<br> Used to restore previous state
-     * retrieved from the grid by a call to  {@link com.smartgwt.client.widgets.tree.TreeGrid#getSelectedPaths}.
-     * @param selectedPaths Object describing the desired selection state of                                              the grid
-     */
-    public native void setSelectedPaths(String selectedPaths) /*-{
-        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
-        self.setSelectedPaths(selectedPaths);
-    }-*/;
             
     /**
      * Overridden to disallow editing of the {@link com.smartgwt.client.widgets.tree.TreeNode#getName 'name'} field of this
@@ -1220,96 +1175,73 @@ public class TreeGrid extends ListGrid  implements com.smartgwt.client.widgets.t
             return @com.smartgwt.client.util.JSOHelper::toBoolean(Z)(retVal);
         }
     }-*/;
-            
     /**
-     * Handle a doubleClick on a tree node - override of ListGrid stringMethod of same name.  If the node is a folder, this
-     * implementation calls {@link com.smartgwt.client.widgets.tree.TreeGrid#toggleFolder} on it.  If the node is a leaf, calls
-     * {@link com.smartgwt.client.widgets.tree.TreeGrid#openLeaf} on it.
-     */
-    public native void recordDoubleClick() /*-{
-        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
-        self.recordDoubleClick();
-    }-*/;
-            
-    /**
-     * Returns the row number of the most recent mouse event.
-     *
-     * @return row number, or -2 if beyond last drawn row
-     */
-    public native int getEventRow() /*-{
-        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
-        return self.getEventRow();
-    }-*/;
-
-    /**
-     * Returns the row number of the most recent mouse event.
-     * @param y optional y-coordinate to obtain row number, in lieue of the y                        coordinate of the last mouse event
-     *
-     * @return row number, or -2 if beyond last drawn row
-     */
-    public native int getEventRow(int y) /*-{
-        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
-        return self.getEventRow(y);
-    }-*/;
-            
-    /**
-     * Get the appropriate open/close opener icon for a node.
-     * @param node tree node in question
-     *
-     * @return URL for the icon to show the node's open state
-     */
-    public native String getOpenIcon(TreeNode node) /*-{
-        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
-        return self.getOpenIcon(node.@com.smartgwt.client.core.DataClass::getJsObj()());
-    }-*/;
-            
-    /**
-     * Get an additional icon to show between the open icon and folder/node icon for a particular  node. <P> NOTE: If {@link
-     * com.smartgwt.client.widgets.grid.ListGrid#getSelectionAppearance selectionAppearance} is <code>"checkbox"</code>, this
-     * method will NOT be called. Extra icons cannot be shown for that appearance.
-     * @param node tree node in question
-     *
-     * @return URL for the extra icon (null if none required)
-     */
-    public native String getExtraIcon(TreeNode node) /*-{
-        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
-        return self.getExtraIcon(node.@com.smartgwt.client.core.DataClass::getJsObj()());
-    }-*/;
-    /**
-     * Add a folderOpened handler.
+     * Add a dataArrived handler.
      * <p>
-     * This method is called when a folder is opened either via the user manipulating the expand/collapse control in the UI or
-     * via {@link com.smartgwt.client.widgets.tree.TreeGrid#openFolder}.  You can return <code>false</code> to cancel the open.
+     * Notification method fired whenever this TreeGrid receives new data nodes from the  dataSource. Only applies to databound
+     * TreeGrids where {@link com.smartgwt.client.widgets.tree.TreeGrid#getData data} is a  {@link
+     * com.smartgwt.client..ResultTree} - either explicitly created and applied via {@link
+     * com.smartgwt.client.widgets.tree.TreeGrid#setData} or automatically generated via a {@link
+     * com.smartgwt.client.widgets.tree.TreeGrid#fetchData} call.
      *
-     * @param handler the folderOpened handler
+     * @param handler the dataArrived handler
      * @return {@link HandlerRegistration} used to remove this handler
      */
-    public HandlerRegistration addFolderOpenedHandler(com.smartgwt.client.widgets.tree.events.FolderOpenedHandler handler) {
-        if(getHandlerCount(com.smartgwt.client.widgets.tree.events.FolderOpenedEvent.getType()) == 0) setupFolderOpenedEvent();
-        return doAddHandler(handler, com.smartgwt.client.widgets.tree.events.FolderOpenedEvent.getType());
+    public HandlerRegistration addDataArrivedHandler(com.smartgwt.client.widgets.tree.events.DataArrivedHandler handler) {
+        if(getHandlerCount(com.smartgwt.client.widgets.tree.events.DataArrivedEvent.getType()) == 0) setupDataArrivedEvent();
+        return doAddHandler(handler, com.smartgwt.client.widgets.tree.events.DataArrivedEvent.getType());
     }
 
-    private native void setupFolderOpenedEvent() /*-{
+    private native void setupDataArrivedEvent() /*-{
         var obj = null;
         var selfJ = this;
         if(this.@com.smartgwt.client.widgets.BaseWidget::isCreated()()) {
             obj = this.@com.smartgwt.client.widgets.BaseWidget::getJsObj()();
-            obj.addProperties({folderOpened:$entry(function(){
-                        var param = {"node" : arguments[0]};
-                        var event = @com.smartgwt.client.widgets.tree.events.FolderOpenedEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
+            obj.addProperties({dataArrived:$entry(function(){
+                        var param = {"parentNode" : arguments[0]};
+                        var event = @com.smartgwt.client.widgets.tree.events.DataArrivedEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
                         selfJ.@com.smartgwt.client.widgets.BaseWidget::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
-                        var ret = event.@com.smartgwt.client.event.Cancellable::isCancelled()();
-                        return !ret;
                     })
              });
         } else {
             obj = this.@com.smartgwt.client.widgets.BaseWidget::getConfig()();
-            obj.folderOpened = $entry(function(){
-                   var param = {"node" : arguments[0]};
-                   var event = @com.smartgwt.client.widgets.tree.events.FolderOpenedEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
+            obj.dataArrived = $entry(function(){
+                   var param = {"parentNode" : arguments[0]};
+                   var event = @com.smartgwt.client.widgets.tree.events.DataArrivedEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
                    selfJ.@com.smartgwt.client.widgets.BaseWidget::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
-                   var ret = event.@com.smartgwt.client.event.Cancellable::isCancelled()();
-                   return !ret;
+               });
+        }
+   }-*/;
+    /**
+     * Add a folderClick handler.
+     * <p>
+     * This method is called when a folder record is clicked on.
+     *
+     * @param handler the folderClick handler
+     * @return {@link HandlerRegistration} used to remove this handler
+     */
+    public HandlerRegistration addFolderClickHandler(com.smartgwt.client.widgets.tree.events.FolderClickHandler handler) {
+        if(getHandlerCount(com.smartgwt.client.widgets.tree.events.FolderClickEvent.getType()) == 0) setupFolderClickEvent();
+        return doAddHandler(handler, com.smartgwt.client.widgets.tree.events.FolderClickEvent.getType());
+    }
+
+    private native void setupFolderClickEvent() /*-{
+        var obj = null;
+        var selfJ = this;
+        if(this.@com.smartgwt.client.widgets.BaseWidget::isCreated()()) {
+            obj = this.@com.smartgwt.client.widgets.BaseWidget::getJsObj()();
+            obj.addProperties({folderClick:$entry(function(){
+                        var param = {"viewer" : arguments[0], "folder" : arguments[1], "recordNum" : arguments[2]};
+                        var event = @com.smartgwt.client.widgets.tree.events.FolderClickEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
+                        selfJ.@com.smartgwt.client.widgets.BaseWidget::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
+                    })
+             });
+        } else {
+            obj = this.@com.smartgwt.client.widgets.BaseWidget::getConfig()();
+            obj.folderClick = $entry(function(){
+                   var param = {"viewer" : arguments[0], "folder" : arguments[1], "recordNum" : arguments[2]};
+                   var event = @com.smartgwt.client.widgets.tree.events.FolderClickEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
+                   selfJ.@com.smartgwt.client.widgets.BaseWidget::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
                });
         }
    }-*/;
@@ -1353,107 +1285,6 @@ public class TreeGrid extends ListGrid  implements com.smartgwt.client.widgets.t
         }
    }-*/;
     /**
-     * Add a folderClick handler.
-     * <p>
-     * This method is called when a folder record is clicked on.
-     *
-     * @param handler the folderClick handler
-     * @return {@link HandlerRegistration} used to remove this handler
-     */
-    public HandlerRegistration addFolderClickHandler(com.smartgwt.client.widgets.tree.events.FolderClickHandler handler) {
-        if(getHandlerCount(com.smartgwt.client.widgets.tree.events.FolderClickEvent.getType()) == 0) setupFolderClickEvent();
-        return doAddHandler(handler, com.smartgwt.client.widgets.tree.events.FolderClickEvent.getType());
-    }
-
-    private native void setupFolderClickEvent() /*-{
-        var obj = null;
-        var selfJ = this;
-        if(this.@com.smartgwt.client.widgets.BaseWidget::isCreated()()) {
-            obj = this.@com.smartgwt.client.widgets.BaseWidget::getJsObj()();
-            obj.addProperties({folderClick:$entry(function(){
-                        var param = {"viewer" : arguments[0], "folder" : arguments[1], "recordNum" : arguments[2]};
-                        var event = @com.smartgwt.client.widgets.tree.events.FolderClickEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
-                        selfJ.@com.smartgwt.client.widgets.BaseWidget::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
-                    })
-             });
-        } else {
-            obj = this.@com.smartgwt.client.widgets.BaseWidget::getConfig()();
-            obj.folderClick = $entry(function(){
-                   var param = {"viewer" : arguments[0], "folder" : arguments[1], "recordNum" : arguments[2]};
-                   var event = @com.smartgwt.client.widgets.tree.events.FolderClickEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
-                   selfJ.@com.smartgwt.client.widgets.BaseWidget::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
-               });
-        }
-   }-*/;
-    /**
-     * Add a leafClick handler.
-     * <p>
-     * This method is called when a leaf record is clicked on.
-     *
-     * @param handler the leafClick handler
-     * @return {@link HandlerRegistration} used to remove this handler
-     */
-    public HandlerRegistration addLeafClickHandler(com.smartgwt.client.widgets.tree.events.LeafClickHandler handler) {
-        if(getHandlerCount(com.smartgwt.client.widgets.tree.events.LeafClickEvent.getType()) == 0) setupLeafClickEvent();
-        return doAddHandler(handler, com.smartgwt.client.widgets.tree.events.LeafClickEvent.getType());
-    }
-
-    private native void setupLeafClickEvent() /*-{
-        var obj = null;
-        var selfJ = this;
-        if(this.@com.smartgwt.client.widgets.BaseWidget::isCreated()()) {
-            obj = this.@com.smartgwt.client.widgets.BaseWidget::getJsObj()();
-            obj.addProperties({leafClick:$entry(function(){
-                        var param = {"viewer" : arguments[0], "leaf" : arguments[1], "recordNum" : arguments[2]};
-                        var event = @com.smartgwt.client.widgets.tree.events.LeafClickEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
-                        selfJ.@com.smartgwt.client.widgets.BaseWidget::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
-                    })
-             });
-        } else {
-            obj = this.@com.smartgwt.client.widgets.BaseWidget::getConfig()();
-            obj.leafClick = $entry(function(){
-                   var param = {"viewer" : arguments[0], "leaf" : arguments[1], "recordNum" : arguments[2]};
-                   var event = @com.smartgwt.client.widgets.tree.events.LeafClickEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
-                   selfJ.@com.smartgwt.client.widgets.BaseWidget::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
-               });
-        }
-   }-*/;
-    /**
-     * Add a nodeClick handler.
-     * <p>
-     * This method is called when a leaf or folder record is clicked on.  Note that if you set up a callback for
-     * <code>nodeClick()</code> and e.g. {@link com.smartgwt.client.widgets.tree.TreeGrid#addLeafClickHandler}, then both will
-     * fire (in that order) if a leaf is clicked on.
-     *
-     * @param handler the nodeClick handler
-     * @return {@link HandlerRegistration} used to remove this handler
-     */
-    public HandlerRegistration addNodeClickHandler(com.smartgwt.client.widgets.tree.events.NodeClickHandler handler) {
-        if(getHandlerCount(com.smartgwt.client.widgets.tree.events.NodeClickEvent.getType()) == 0) setupNodeClickEvent();
-        return doAddHandler(handler, com.smartgwt.client.widgets.tree.events.NodeClickEvent.getType());
-    }
-
-    private native void setupNodeClickEvent() /*-{
-        var obj = null;
-        var selfJ = this;
-        if(this.@com.smartgwt.client.widgets.BaseWidget::isCreated()()) {
-            obj = this.@com.smartgwt.client.widgets.BaseWidget::getJsObj()();
-            obj.addProperties({nodeClick:$entry(function(){
-                        var param = {"viewer" : arguments[0], "node" : arguments[1], "recordNum" : arguments[2]};
-                        var event = @com.smartgwt.client.widgets.tree.events.NodeClickEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
-                        selfJ.@com.smartgwt.client.widgets.BaseWidget::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
-                    })
-             });
-        } else {
-            obj = this.@com.smartgwt.client.widgets.BaseWidget::getConfig()();
-            obj.nodeClick = $entry(function(){
-                   var param = {"viewer" : arguments[0], "node" : arguments[1], "recordNum" : arguments[2]};
-                   var event = @com.smartgwt.client.widgets.tree.events.NodeClickEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
-                   selfJ.@com.smartgwt.client.widgets.BaseWidget::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
-               });
-        }
-   }-*/;
-    /**
      * Add a folderContextClick handler.
      * <p>
      * This method is called when a context click occurs on a folder record.
@@ -1491,6 +1322,146 @@ public class TreeGrid extends ListGrid  implements com.smartgwt.client.widgets.t
         }
    }-*/;
     /**
+     * Add a folderOpened handler.
+     * <p>
+     * This method is called when a folder is opened either via the user manipulating the expand/collapse control in the UI or
+     * via {@link com.smartgwt.client.widgets.tree.TreeGrid#openFolder}.  You can return <code>false</code> to cancel the open.
+     *
+     * @param handler the folderOpened handler
+     * @return {@link HandlerRegistration} used to remove this handler
+     */
+    public HandlerRegistration addFolderOpenedHandler(com.smartgwt.client.widgets.tree.events.FolderOpenedHandler handler) {
+        if(getHandlerCount(com.smartgwt.client.widgets.tree.events.FolderOpenedEvent.getType()) == 0) setupFolderOpenedEvent();
+        return doAddHandler(handler, com.smartgwt.client.widgets.tree.events.FolderOpenedEvent.getType());
+    }
+
+    private native void setupFolderOpenedEvent() /*-{
+        var obj = null;
+        var selfJ = this;
+        if(this.@com.smartgwt.client.widgets.BaseWidget::isCreated()()) {
+            obj = this.@com.smartgwt.client.widgets.BaseWidget::getJsObj()();
+            obj.addProperties({folderOpened:$entry(function(){
+                        var param = {"node" : arguments[0]};
+                        var event = @com.smartgwt.client.widgets.tree.events.FolderOpenedEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
+                        selfJ.@com.smartgwt.client.widgets.BaseWidget::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
+                        var ret = event.@com.smartgwt.client.event.Cancellable::isCancelled()();
+                        return !ret;
+                    })
+             });
+        } else {
+            obj = this.@com.smartgwt.client.widgets.BaseWidget::getConfig()();
+            obj.folderOpened = $entry(function(){
+                   var param = {"node" : arguments[0]};
+                   var event = @com.smartgwt.client.widgets.tree.events.FolderOpenedEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
+                   selfJ.@com.smartgwt.client.widgets.BaseWidget::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
+                   var ret = event.@com.smartgwt.client.event.Cancellable::isCancelled()();
+                   return !ret;
+               });
+        }
+   }-*/;
+            
+    /**
+     * Returns the row number of the most recent mouse event.
+     *
+     * @return row number, or -2 if beyond last drawn row
+     */
+    public native int getEventRow() /*-{
+        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
+        return self.getEventRow();
+    }-*/;
+
+    /**
+     * Returns the row number of the most recent mouse event.
+     * @param y optional y-coordinate to obtain row number, in lieue of the y                        coordinate of the last mouse event
+     *
+     * @return row number, or -2 if beyond last drawn row
+     */
+    public native int getEventRow(int y) /*-{
+        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
+        return self.getEventRow(y);
+    }-*/;
+            
+    /**
+     * Get an additional icon to show between the open icon and folder/node icon for a particular  node. <P> NOTE: If {@link
+     * com.smartgwt.client.widgets.grid.ListGrid#getSelectionAppearance selectionAppearance} is <code>"checkbox"</code>, this
+     * method will NOT be called. Extra icons cannot be shown for that appearance.
+     * @param node tree node in question
+     *
+     * @return URL for the extra icon (null if none required)
+     */
+    public native String getExtraIcon(TreeNode node) /*-{
+        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
+        return self.getExtraIcon(node.@com.smartgwt.client.core.DataClass::getJsObj()());
+    }-*/;
+            
+    /**
+     * Get the appropriate open/close opener icon for a node.
+     * @param node tree node in question
+     *
+     * @return URL for the icon to show the node's open state
+     */
+    public native String getOpenIcon(TreeNode node) /*-{
+        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
+        return self.getOpenIcon(node.@com.smartgwt.client.core.DataClass::getJsObj()());
+    }-*/;
+            
+    /**
+     * Returns a snapshot of the current open state of this grid's data as a {@link java.lang.String} object.<br> This object
+     * can be passed to {@link com.smartgwt.client.widgets.tree.TreeGrid#setOpenState} to open the same set of folders within
+     * the treeGrid's data (assuming the nodes are still present in the data).
+     *
+     * @return current sort state for the grid.
+     */
+    public native String getOpenState() /*-{
+        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
+        return self.getOpenState();
+    }-*/;
+            
+    /**
+     * Returns a snapshot of the current selection within this treeGrid as  a {@link java.lang.String} object.<br> This object
+     * can be passed to {@link com.smartgwt.client.widgets.tree.TreeGrid#setSelectedPaths} to reset this grid's selection the
+     * current state (assuming the same data is present in the grid).<br>
+     *
+     * @return current state of this grid's selection
+     */
+    public native String getSelectedPaths() /*-{
+        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
+        return self.getSelectedPaths();
+    }-*/;
+    /**
+     * Add a leafClick handler.
+     * <p>
+     * This method is called when a leaf record is clicked on.
+     *
+     * @param handler the leafClick handler
+     * @return {@link HandlerRegistration} used to remove this handler
+     */
+    public HandlerRegistration addLeafClickHandler(com.smartgwt.client.widgets.tree.events.LeafClickHandler handler) {
+        if(getHandlerCount(com.smartgwt.client.widgets.tree.events.LeafClickEvent.getType()) == 0) setupLeafClickEvent();
+        return doAddHandler(handler, com.smartgwt.client.widgets.tree.events.LeafClickEvent.getType());
+    }
+
+    private native void setupLeafClickEvent() /*-{
+        var obj = null;
+        var selfJ = this;
+        if(this.@com.smartgwt.client.widgets.BaseWidget::isCreated()()) {
+            obj = this.@com.smartgwt.client.widgets.BaseWidget::getJsObj()();
+            obj.addProperties({leafClick:$entry(function(){
+                        var param = {"viewer" : arguments[0], "leaf" : arguments[1], "recordNum" : arguments[2]};
+                        var event = @com.smartgwt.client.widgets.tree.events.LeafClickEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
+                        selfJ.@com.smartgwt.client.widgets.BaseWidget::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
+                    })
+             });
+        } else {
+            obj = this.@com.smartgwt.client.widgets.BaseWidget::getConfig()();
+            obj.leafClick = $entry(function(){
+                   var param = {"viewer" : arguments[0], "leaf" : arguments[1], "recordNum" : arguments[2]};
+                   var event = @com.smartgwt.client.widgets.tree.events.LeafClickEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
+                   selfJ.@com.smartgwt.client.widgets.BaseWidget::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
+               });
+        }
+   }-*/;
+    /**
      * Add a leafContextClick handler.
      * <p>
      * This method is called when a context click occurs on a leaf record.
@@ -1524,6 +1495,41 @@ public class TreeGrid extends ListGrid  implements com.smartgwt.client.widgets.t
                    selfJ.@com.smartgwt.client.widgets.BaseWidget::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
                    var ret = event.@com.smartgwt.client.event.Cancellable::isCancelled()();
                    return !ret;
+               });
+        }
+   }-*/;
+    /**
+     * Add a nodeClick handler.
+     * <p>
+     * This method is called when a leaf or folder record is clicked on.  Note that if you set up a callback for
+     * <code>nodeClick()</code> and e.g. {@link com.smartgwt.client.widgets.tree.TreeGrid#addLeafClickHandler}, then both will
+     * fire (in that order) if a leaf is clicked on.
+     *
+     * @param handler the nodeClick handler
+     * @return {@link HandlerRegistration} used to remove this handler
+     */
+    public HandlerRegistration addNodeClickHandler(com.smartgwt.client.widgets.tree.events.NodeClickHandler handler) {
+        if(getHandlerCount(com.smartgwt.client.widgets.tree.events.NodeClickEvent.getType()) == 0) setupNodeClickEvent();
+        return doAddHandler(handler, com.smartgwt.client.widgets.tree.events.NodeClickEvent.getType());
+    }
+
+    private native void setupNodeClickEvent() /*-{
+        var obj = null;
+        var selfJ = this;
+        if(this.@com.smartgwt.client.widgets.BaseWidget::isCreated()()) {
+            obj = this.@com.smartgwt.client.widgets.BaseWidget::getJsObj()();
+            obj.addProperties({nodeClick:$entry(function(){
+                        var param = {"viewer" : arguments[0], "node" : arguments[1], "recordNum" : arguments[2]};
+                        var event = @com.smartgwt.client.widgets.tree.events.NodeClickEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
+                        selfJ.@com.smartgwt.client.widgets.BaseWidget::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
+                    })
+             });
+        } else {
+            obj = this.@com.smartgwt.client.widgets.BaseWidget::getConfig()();
+            obj.nodeClick = $entry(function(){
+                   var param = {"viewer" : arguments[0], "node" : arguments[1], "recordNum" : arguments[2]};
+                   var event = @com.smartgwt.client.widgets.tree.events.NodeClickEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
+                   selfJ.@com.smartgwt.client.widgets.BaseWidget::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
                });
         }
    }-*/;
@@ -1567,43 +1573,37 @@ public class TreeGrid extends ListGrid  implements com.smartgwt.client.widgets.t
                });
         }
    }-*/;
+            
     /**
-     * Add a dataArrived handler.
-     * <p>
-     * Notification method fired whenever this TreeGrid receives new data nodes from the  dataSource. Only applies to databound
-     * TreeGrids where {@link com.smartgwt.client.widgets.tree.TreeGrid#getData data} is a  {@link
-     * com.smartgwt.client..ResultTree} - either explicitly created and applied via {@link
-     * com.smartgwt.client.widgets.tree.TreeGrid#setData} or automatically generated via a {@link
-     * com.smartgwt.client.widgets.tree.TreeGrid#fetchData} call.
-     *
-     * @param handler the dataArrived handler
-     * @return {@link HandlerRegistration} used to remove this handler
+     * Handle a doubleClick on a tree node - override of ListGrid stringMethod of same name.  If the node is a folder, this
+     * implementation calls {@link com.smartgwt.client.widgets.tree.TreeGrid#toggleFolder} on it.  If the node is a leaf, calls
+     * {@link com.smartgwt.client.widgets.tree.TreeGrid#openLeaf} on it.
      */
-    public HandlerRegistration addDataArrivedHandler(com.smartgwt.client.widgets.tree.events.DataArrivedHandler handler) {
-        if(getHandlerCount(com.smartgwt.client.widgets.tree.events.DataArrivedEvent.getType()) == 0) setupDataArrivedEvent();
-        return doAddHandler(handler, com.smartgwt.client.widgets.tree.events.DataArrivedEvent.getType());
-    }
-
-    private native void setupDataArrivedEvent() /*-{
-        var obj = null;
-        var selfJ = this;
-        if(this.@com.smartgwt.client.widgets.BaseWidget::isCreated()()) {
-            obj = this.@com.smartgwt.client.widgets.BaseWidget::getJsObj()();
-            obj.addProperties({dataArrived:$entry(function(){
-                        var param = {"parentNode" : arguments[0]};
-                        var event = @com.smartgwt.client.widgets.tree.events.DataArrivedEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
-                        selfJ.@com.smartgwt.client.widgets.BaseWidget::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
-                    })
-             });
-        } else {
-            obj = this.@com.smartgwt.client.widgets.BaseWidget::getConfig()();
-            obj.dataArrived = $entry(function(){
-                   var param = {"parentNode" : arguments[0]};
-                   var event = @com.smartgwt.client.widgets.tree.events.DataArrivedEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
-                   selfJ.@com.smartgwt.client.widgets.BaseWidget::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
-               });
-        }
-   }-*/;
+    public native void recordDoubleClick() /*-{
+        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
+        self.recordDoubleClick();
+    }-*/;
+            
+    /**
+     * Reset this set of open folders within this grid's data to match the  {@link java.lang.String} object passed in.<br> Used
+     * to restore previous state retrieved from the grid by a call to  {@link
+     * com.smartgwt.client.widgets.tree.TreeGrid#getOpenState}.
+     * @param openState Object describing the desired set of open folders.
+     */
+    public native void setOpenState(String openState) /*-{
+        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
+        self.setOpenState(openState);
+    }-*/;
+            
+    /**
+     * Reset this grid's selection to match the {@link java.lang.String} object passed in.<br> Used to restore previous state
+     * retrieved from the grid by a call to  {@link com.smartgwt.client.widgets.tree.TreeGrid#getSelectedPaths}.
+     * @param selectedPaths Object describing the desired selection state of                                              the grid
+     */
+    public native void setSelectedPaths(String selectedPaths) /*-{
+        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
+        self.setSelectedPaths(selectedPaths);
+    }-*/;
 
     // ********************* Static Methods ***********************
 

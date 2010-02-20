@@ -93,6 +93,29 @@ public class ButtonItem extends CanvasItem  implements com.smartgwt.client.widge
     // ********************* Properties / Attributes ***********************
 
     /**
+     * Should the button auto fit to its title. Maps to {@link com.smartgwt.client.widgets.Button#getAutoFit autoFit}
+     * attribute. Note that if an explicit width or height is specified for this item, it will be respected, disabling autoFit
+     * behavior
+     *
+     * @param autoFit autoFit Default value is true
+     */
+    public void setAutoFit(Boolean autoFit) {
+        setAttribute("autoFit", autoFit);
+    }
+
+    /**
+     * Should the button auto fit to its title. Maps to {@link com.smartgwt.client.widgets.Button#getAutoFit autoFit}
+     * attribute. Note that if an explicit width or height is specified for this item, it will be respected, disabling autoFit
+     * behavior
+     *
+     *
+     * @return Boolean
+     */
+    public Boolean getAutoFit()  {
+        return getAttributeAsBoolean("autoFit");
+    }
+
+    /**
      * Optional <code>baseStyle</code> will be applied to the button.
      *
      * @param baseStyle baseStyle Default value is null
@@ -109,6 +132,25 @@ public class ButtonItem extends CanvasItem  implements com.smartgwt.client.widge
      */
     public String getBaseStyle()  {
         return getAttributeAsString("baseStyle");
+    }
+
+    /**
+     * These items are in a row by themselves by default
+     *
+     * @param endRow endRow Default value is true
+     */
+    public void setEndRow(Boolean endRow) {
+        setAttribute("endRow", endRow);
+    }
+
+    /**
+     * These items are in a row by themselves by default
+     *
+     *
+     * @return Boolean
+     */
+    public Boolean getEndRow()  {
+        return getAttributeAsBoolean("endRow");
     }
 
     /**
@@ -168,48 +210,6 @@ public class ButtonItem extends CanvasItem  implements com.smartgwt.client.widge
      */
     public Boolean getStartRow()  {
         return getAttributeAsBoolean("startRow");
-    }
-
-    /**
-     * These items are in a row by themselves by default
-     *
-     * @param endRow endRow Default value is true
-     */
-    public void setEndRow(Boolean endRow) {
-        setAttribute("endRow", endRow);
-    }
-
-    /**
-     * These items are in a row by themselves by default
-     *
-     *
-     * @return Boolean
-     */
-    public Boolean getEndRow()  {
-        return getAttributeAsBoolean("endRow");
-    }
-
-    /**
-     * Should the button auto fit to its title. Maps to {@link com.smartgwt.client.widgets.Button#getAutoFit autoFit}
-     * attribute. Note that if an explicit width or height is specified for this item, it will be respected, disabling autoFit
-     * behavior
-     *
-     * @param autoFit autoFit Default value is true
-     */
-    public void setAutoFit(Boolean autoFit) {
-        setAttribute("autoFit", autoFit);
-    }
-
-    /**
-     * Should the button auto fit to its title. Maps to {@link com.smartgwt.client.widgets.Button#getAutoFit autoFit}
-     * attribute. Note that if an explicit width or height is specified for this item, it will be respected, disabling autoFit
-     * behavior
-     *
-     *
-     * @return Boolean
-     */
-    public Boolean getAutoFit()  {
-        return getAttributeAsBoolean("autoFit");
     }
 
     // ********************* Methods ***********************

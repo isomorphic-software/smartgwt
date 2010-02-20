@@ -98,6 +98,52 @@ public class HTMLFlow extends Canvas  implements com.smartgwt.client.widgets.eve
     // ********************* Properties / Attributes ***********************
 
     /**
+     * By default an HTMLFlow will explicitly prevent browser caching. <P> Set to true to allow browser caching <b>if the
+     * browser would normally do so</b>, in other words, if the HTTP headers returned with the response indicate that the
+     * response can be cached.
+     *
+     * @param allowCaching allowCaching Default value is false
+     * @throws IllegalStateException this property cannot be changed after the component has been created
+     */
+    public void setAllowCaching(Boolean allowCaching)  throws IllegalStateException {
+        setAttribute("allowCaching", allowCaching, false);
+    }
+
+    /**
+     * By default an HTMLFlow will explicitly prevent browser caching. <P> Set to true to allow browser caching <b>if the
+     * browser would normally do so</b>, in other words, if the HTTP headers returned with the response indicate that the
+     * response can be cached.
+     *
+     *
+     * @return Boolean
+     */
+    public Boolean getAllowCaching()  {
+        return getAttributeAsBoolean("allowCaching");
+    }
+
+    /**
+     * If true, Smart GWT components created while executing the loaded HTML are captured for rendering inside the HTMLFlow.
+     * <P> Only applies when contentsType is <b>not</b> "page".
+     *
+     * @param captureSCComponents captureSCComponents Default value is true
+     * @throws IllegalStateException this property cannot be changed after the component has been created
+     */
+    public void setCaptureSCComponents(Boolean captureSCComponents)  throws IllegalStateException {
+        setAttribute("captureSCComponents", captureSCComponents, false);
+    }
+
+    /**
+     * If true, Smart GWT components created while executing the loaded HTML are captured for rendering inside the HTMLFlow.
+     * <P> Only applies when contentsType is <b>not</b> "page".
+     *
+     *
+     * @return Boolean
+     */
+    public Boolean getCaptureSCComponents()  {
+        return getAttributeAsBoolean("captureSCComponents");
+    }
+
+    /**
      * The contents of a canvas or label widget. Any HTML string is acceptable.
      *
      * @param contents contents Default value is "&nbsp;"
@@ -114,6 +160,30 @@ public class HTMLFlow extends Canvas  implements com.smartgwt.client.widgets.eve
      */
     public String getContents()  {
         return getAttributeAsString("contents");
+    }
+
+    /**
+     * URL to load content from. <P> If specified, this component will load HTML content from the specified URL when it is
+     * first drawn. <p> This feature relies on the XMLHttpRequest object which can be disabled by end-users in some supported
+     * browsers.  See {@link com.smartgwt.client.docs.PlatformDependencies} for more information.
+     * Change the URL this component loads content from.  Triggers a fetch for content from the new URL. <p> Can also be called with no arguments to reload content from the existing {@link com.smartgwt.client.widgets.HTMLFlow#getContentsURL contentsURL}. <P> This feature relies on the XMLHttpRequest object which can be disabled by end-users in some supported browsers.  See {@link com.smartgwt.client.docs.PlatformDependencies} for more information.
+     *
+     * @param contentsURL URL to retrieve contents from. Default value is null
+     */
+    public void setContentsURL(String contentsURL) {
+        setAttribute("contentsURL", contentsURL, true);
+    }
+
+    /**
+     * URL to load content from. <P> If specified, this component will load HTML content from the specified URL when it is
+     * first drawn. <p> This feature relies on the XMLHttpRequest object which can be disabled by end-users in some supported
+     * browsers.  See {@link com.smartgwt.client.docs.PlatformDependencies} for more information.
+     *
+     *
+     * @return String
+     */
+    public String getContentsURL()  {
+        return getAttributeAsString("contentsURL");
     }
 
     /**
@@ -175,27 +245,50 @@ public class HTMLFlow extends Canvas  implements com.smartgwt.client.widgets.eve
     }
 
     /**
-     * URL to load content from. <P> If specified, this component will load HTML content from the specified URL when it is
-     * first drawn. <p> This feature relies on the XMLHttpRequest object which can be disabled by end-users in some supported
-     * browsers.  See {@link com.smartgwt.client.docs.PlatformDependencies} for more information.
-     * Change the URL this component loads content from.  Triggers a fetch for content from the new URL. <p> Can also be called with no arguments to reload content from the existing {@link com.smartgwt.client.widgets.HTMLFlow#getContentsURL contentsURL}. <P> This feature relies on the XMLHttpRequest object which can be disabled by end-users in some supported browsers.  See {@link com.smartgwt.client.docs.PlatformDependencies} for more information.
+     * If <code>evalScriptBlocks</code> is true, HTMLFlow will pre-process the loaded HTML in order to mimic how the HTML would
+     * execute if it were loaded as an independent page or loaded via an IFRAME.   <P> This feature is intended to assist with
+     * migrating existing applications to Smart GWT. <P> Note that, if evalScriptBlocks is false, &lt;SCRIPT&gt; blocks will
+     * still be detected and disabled to avoid the inconsistent results across different browsers. <P> Only applies when
+     * contentsType is <b>not</b> "page".
      *
-     * @param contentsURL URL to retrieve contents from. Default value is null
+     * @param evalScriptBlocks evalScriptBlocks Default value is true
+     * @throws IllegalStateException this property cannot be changed after the component has been created
      */
-    public void setContentsURL(String contentsURL) {
-        setAttribute("contentsURL", contentsURL, true);
+    public void setEvalScriptBlocks(Boolean evalScriptBlocks)  throws IllegalStateException {
+        setAttribute("evalScriptBlocks", evalScriptBlocks, false);
     }
 
     /**
-     * URL to load content from. <P> If specified, this component will load HTML content from the specified URL when it is
-     * first drawn. <p> This feature relies on the XMLHttpRequest object which can be disabled by end-users in some supported
-     * browsers.  See {@link com.smartgwt.client.docs.PlatformDependencies} for more information.
+     * If <code>evalScriptBlocks</code> is true, HTMLFlow will pre-process the loaded HTML in order to mimic how the HTML would
+     * execute if it were loaded as an independent page or loaded via an IFRAME.   <P> This feature is intended to assist with
+     * migrating existing applications to Smart GWT. <P> Note that, if evalScriptBlocks is false, &lt;SCRIPT&gt; blocks will
+     * still be detected and disabled to avoid the inconsistent results across different browsers. <P> Only applies when
+     * contentsType is <b>not</b> "page".
      *
      *
-     * @return String
+     * @return Boolean
      */
-    public String getContentsURL()  {
-        return getAttributeAsString("contentsURL");
+    public Boolean getEvalScriptBlocks()  {
+        return getAttributeAsBoolean("evalScriptBlocks");
+    }
+             
+    /**
+     * Selects the HTTP method that will be used when fetching content.  Valid values are "POST" and "GET".
+     *
+     * @param httpMethod httpMethod Default value is "GET"
+     */
+    public void setHttpMethod(SendMethod httpMethod) {
+        setAttribute("httpMethod", httpMethod.getValue(), true);
+    }
+
+    /**
+     * Selects the HTTP method that will be used when fetching content.  Valid values are "POST" and "GET".
+     *
+     *
+     * @return SendMethod
+     */
+    public SendMethod getHttpMethod()  {
+        return EnumUtil.getEnum(SendMethod.values(), getAttribute("httpMethod"));
     }
 
     /**
@@ -224,119 +317,8 @@ public class HTMLFlow extends Canvas  implements com.smartgwt.client.widgets.eve
     public String getLoadingMessage()  {
         return getAttributeAsString("loadingMessage");
     }
-             
-    /**
-     * Selects the HTTP method that will be used when fetching content.  Valid values are "POST" and "GET".
-     *
-     * @param httpMethod httpMethod Default value is "GET"
-     */
-    public void setHttpMethod(SendMethod httpMethod) {
-        setAttribute("httpMethod", httpMethod.getValue(), true);
-    }
-
-    /**
-     * Selects the HTTP method that will be used when fetching content.  Valid values are "POST" and "GET".
-     *
-     *
-     * @return SendMethod
-     */
-    public SendMethod getHttpMethod()  {
-        return EnumUtil.getEnum(SendMethod.values(), getAttribute("httpMethod"));
-    }
-
-    /**
-     * By default an HTMLFlow will explicitly prevent browser caching. <P> Set to true to allow browser caching <b>if the
-     * browser would normally do so</b>, in other words, if the HTTP headers returned with the response indicate that the
-     * response can be cached.
-     *
-     * @param allowCaching allowCaching Default value is false
-     * @throws IllegalStateException this property cannot be changed after the component has been created
-     */
-    public void setAllowCaching(Boolean allowCaching)  throws IllegalStateException {
-        setAttribute("allowCaching", allowCaching, false);
-    }
-
-    /**
-     * By default an HTMLFlow will explicitly prevent browser caching. <P> Set to true to allow browser caching <b>if the
-     * browser would normally do so</b>, in other words, if the HTTP headers returned with the response indicate that the
-     * response can be cached.
-     *
-     *
-     * @return Boolean
-     */
-    public Boolean getAllowCaching()  {
-        return getAttributeAsBoolean("allowCaching");
-    }
-
-    /**
-     * If <code>evalScriptBlocks</code> is true, HTMLFlow will pre-process the loaded HTML in order to mimic how the HTML would
-     * execute if it were loaded as an independent page or loaded via an IFRAME.   <P> This feature is intended to assist with
-     * migrating existing applications to Smart GWT. <P> Note that, if evalScriptBlocks is false, &lt;SCRIPT&gt; blocks will
-     * still be detected and disabled to avoid the inconsistent results across different browsers. <P> Only applies when
-     * contentsType is <b>not</b> "page".
-     *
-     * @param evalScriptBlocks evalScriptBlocks Default value is true
-     * @throws IllegalStateException this property cannot be changed after the component has been created
-     */
-    public void setEvalScriptBlocks(Boolean evalScriptBlocks)  throws IllegalStateException {
-        setAttribute("evalScriptBlocks", evalScriptBlocks, false);
-    }
-
-    /**
-     * If <code>evalScriptBlocks</code> is true, HTMLFlow will pre-process the loaded HTML in order to mimic how the HTML would
-     * execute if it were loaded as an independent page or loaded via an IFRAME.   <P> This feature is intended to assist with
-     * migrating existing applications to Smart GWT. <P> Note that, if evalScriptBlocks is false, &lt;SCRIPT&gt; blocks will
-     * still be detected and disabled to avoid the inconsistent results across different browsers. <P> Only applies when
-     * contentsType is <b>not</b> "page".
-     *
-     *
-     * @return Boolean
-     */
-    public Boolean getEvalScriptBlocks()  {
-        return getAttributeAsBoolean("evalScriptBlocks");
-    }
-
-    /**
-     * If true, Smart GWT components created while executing the loaded HTML are captured for rendering inside the HTMLFlow.
-     * <P> Only applies when contentsType is <b>not</b> "page".
-     *
-     * @param captureSCComponents captureSCComponents Default value is true
-     * @throws IllegalStateException this property cannot be changed after the component has been created
-     */
-    public void setCaptureSCComponents(Boolean captureSCComponents)  throws IllegalStateException {
-        setAttribute("captureSCComponents", captureSCComponents, false);
-    }
-
-    /**
-     * If true, Smart GWT components created while executing the loaded HTML are captured for rendering inside the HTMLFlow.
-     * <P> Only applies when contentsType is <b>not</b> "page".
-     *
-     *
-     * @return Boolean
-     */
-    public Boolean getCaptureSCComponents()  {
-        return getAttributeAsBoolean("captureSCComponents");
-    }
 
     // ********************* Methods ***********************
-            
-    /**
-     * Returns true if this htmlFlow is currently loading content from the server.<br> Note: Does not apply to htmlFlows with
-     * {@link com.smartgwt.client.widgets.HTMLFlow#getContentsType 'contentsType'} set to  <code>"page"</code>
-     */
-    public native void loadingContent() /*-{
-        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
-        self.loadingContent();
-    }-*/;
-            
-    /**
-     * Override to modify the loaded HTML before it is rendered.
-     * @param html the html as loaded from the server return (HTML) html to be rendered
-     */
-    public native void transformHTML(String html) /*-{
-        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
-        self.transformHTML(html);
-    }-*/;
     /**
      * Add a contentLoaded handler.
      * <p>
@@ -372,6 +354,24 @@ public class HTMLFlow extends Canvas  implements com.smartgwt.client.widgets.eve
                });
         }
    }-*/;
+            
+    /**
+     * Returns true if this htmlFlow is currently loading content from the server.<br> Note: Does not apply to htmlFlows with
+     * {@link com.smartgwt.client.widgets.HTMLFlow#getContentsType 'contentsType'} set to  <code>"page"</code>
+     */
+    public native void loadingContent() /*-{
+        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
+        self.loadingContent();
+    }-*/;
+            
+    /**
+     * Override to modify the loaded HTML before it is rendered.
+     * @param html the html as loaded from the server return (HTML) html to be rendered
+     */
+    public native void transformHTML(String html) /*-{
+        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
+        self.transformHTML(html);
+    }-*/;
 
     // ********************* Static Methods ***********************
 

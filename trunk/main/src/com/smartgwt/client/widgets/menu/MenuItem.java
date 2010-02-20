@@ -104,44 +104,6 @@ public class MenuItem extends ListGridRecord  implements com.smartgwt.client.wid
     // ********************* Properties / Attributes ***********************
 
     /**
-     * The text displayed for the menu item
-     *
-     * @param title title Default value is null
-     */
-    public void setTitle(String title) {
-        setAttribute("title", title);
-    }
-
-    /**
-     * The text displayed for the menu item
-     *
-     *
-     * @return String
-     */
-    public String getTitle()  {
-        return getAttributeAsString("title");
-    }
-            
-    /**
-     * A reference to another menu, to display as a submenu when the mouse cursor hovers over this menu item.
-     *
-     * @param submenu submenu Default value is null
-     */
-    public void setSubmenu(Menu submenu) {
-        setAttribute("submenu", submenu.getOrCreateJsObj());
-    }
-
-    /**
-     * A reference to another menu, to display as a submenu when the mouse cursor hovers over this menu item.
-     *
-     *
-     * @return Menu
-     */
-    public Menu getSubmenu()  {
-            return Menu.getOrCreateRef(getAttributeAsJavaScriptObject("submenu"));
-    }
-
-    /**
      * A MenuItem that has a submenu normally cannot be selected, instead clicking or hitting Enter while keyboard focus is on
      * the item shows the submenu.  Setting canSelectParent:true allows a menu item with a submenu to be selected directly.
      *
@@ -160,52 +122,6 @@ public class MenuItem extends ListGridRecord  implements com.smartgwt.client.wid
      */
     public Boolean getCanSelectParent()  {
         return getAttributeAsBoolean("canSelectParent");
-    }
-
-    /**
-     * When set to <code>true</code>, this menu item shows a horizontal separator instead of the {@link
-     * com.smartgwt.client.widgets.menu.MenuItem#getTitle title} text.  Typically specified as the only property of a menu
-     * item, since the separator will not respond to mouse events.
-     *
-     * @param isSeparator isSeparator Default value is false
-     */
-    public void setIsSeparator(Boolean isSeparator) {
-        setAttribute("isSeparator", isSeparator);
-    }
-
-    /**
-     * When set to <code>true</code>, this menu item shows a horizontal separator instead of the {@link
-     * com.smartgwt.client.widgets.menu.MenuItem#getTitle title} text.  Typically specified as the only property of a menu
-     * item, since the separator will not respond to mouse events.
-     *
-     *
-     * @return Boolean
-     */
-    public Boolean getIsSeparator()  {
-        return getAttributeAsBoolean("isSeparator");
-    }
-
-    /**
-     * Affects the visual style and interactivity of the menu item.  If set to <code>false</code>, the menu item will not
-     * respond to mouse rollovers or clicks. <p> If you need to set this state dynamically, use {@link
-     * com.smartgwt.client.widgets.menu.MenuItem#enableIf} instead.
-     *
-     * @param enabled enabled Default value is true
-     */
-    public void setEnabled(Boolean enabled) {
-        setAttribute("enabled", enabled);
-    }
-
-    /**
-     * Affects the visual style and interactivity of the menu item.  If set to <code>false</code>, the menu item will not
-     * respond to mouse rollovers or clicks. <p> If you need to set this state dynamically, use {@link
-     * com.smartgwt.client.widgets.menu.MenuItem#enableIf} instead.
-     *
-     *
-     * @return Boolean
-     */
-    public Boolean getEnabled()  {
-        return getAttributeAsBoolean("enabled");
     }
 
     /**
@@ -229,6 +145,29 @@ public class MenuItem extends ListGridRecord  implements com.smartgwt.client.wid
      */
     public Boolean getChecked()  {
         return getAttributeAsBoolean("checked");
+    }
+
+    /**
+     * Affects the visual style and interactivity of the menu item.  If set to <code>false</code>, the menu item will not
+     * respond to mouse rollovers or clicks. <p> If you need to set this state dynamically, use {@link
+     * com.smartgwt.client.widgets.menu.MenuItem#enableIf} instead.
+     *
+     * @param enabled enabled Default value is true
+     */
+    public void setEnabled(Boolean enabled) {
+        setAttribute("enabled", enabled);
+    }
+
+    /**
+     * Affects the visual style and interactivity of the menu item.  If set to <code>false</code>, the menu item will not
+     * respond to mouse rollovers or clicks. <p> If you need to set this state dynamically, use {@link
+     * com.smartgwt.client.widgets.menu.MenuItem#enableIf} instead.
+     *
+     *
+     * @return Boolean
+     */
+    public Boolean getEnabled()  {
+        return getAttributeAsBoolean("enabled");
     }
 
     /**
@@ -259,6 +198,27 @@ public class MenuItem extends ListGridRecord  implements com.smartgwt.client.wid
     }
 
     /**
+     * The height applied to this item's icon.  The default of <code>16</code> can be changed for all MenuItems by overriding
+     * {@link com.smartgwt.client.widgets.menu.Menu#getIconHeight iconHeight}.
+     *
+     * @param iconHeight iconHeight Default value is 16
+     */
+    public void setIconHeight(int iconHeight) {
+        setAttribute("iconHeight", iconHeight);
+    }
+
+    /**
+     * The height applied to this item's icon.  The default of <code>16</code> can be changed for all MenuItems by overriding
+     * {@link com.smartgwt.client.widgets.menu.Menu#getIconHeight iconHeight}.
+     *
+     *
+     * @return int
+     */
+    public int getIconHeight()  {
+        return getAttributeAsInt("iconHeight");
+    }
+
+    /**
      * The width applied to this item's icon.  The default of <code>16</code> can be changed for all MenuItems by overriding
      * {@link com.smartgwt.client.widgets.menu.Menu#getIconWidth iconWidth}.
      *
@@ -280,24 +240,26 @@ public class MenuItem extends ListGridRecord  implements com.smartgwt.client.wid
     }
 
     /**
-     * The height applied to this item's icon.  The default of <code>16</code> can be changed for all MenuItems by overriding
-     * {@link com.smartgwt.client.widgets.menu.Menu#getIconHeight iconHeight}.
+     * When set to <code>true</code>, this menu item shows a horizontal separator instead of the {@link
+     * com.smartgwt.client.widgets.menu.MenuItem#getTitle title} text.  Typically specified as the only property of a menu
+     * item, since the separator will not respond to mouse events.
      *
-     * @param iconHeight iconHeight Default value is 16
+     * @param isSeparator isSeparator Default value is false
      */
-    public void setIconHeight(int iconHeight) {
-        setAttribute("iconHeight", iconHeight);
+    public void setIsSeparator(Boolean isSeparator) {
+        setAttribute("isSeparator", isSeparator);
     }
 
     /**
-     * The height applied to this item's icon.  The default of <code>16</code> can be changed for all MenuItems by overriding
-     * {@link com.smartgwt.client.widgets.menu.Menu#getIconHeight iconHeight}.
+     * When set to <code>true</code>, this menu item shows a horizontal separator instead of the {@link
+     * com.smartgwt.client.widgets.menu.MenuItem#getTitle title} text.  Typically specified as the only property of a menu
+     * item, since the separator will not respond to mouse events.
      *
      *
-     * @return int
+     * @return Boolean
      */
-    public int getIconHeight()  {
-        return getAttributeAsInt("iconHeight");
+    public Boolean getIsSeparator()  {
+        return getAttributeAsBoolean("isSeparator");
     }
 
     /**
@@ -320,29 +282,46 @@ public class MenuItem extends ListGridRecord  implements com.smartgwt.client.wid
     public String getKeyTitle()  {
         return getAttributeAsString("keyTitle");
     }
-
-    // ********************* Methods ***********************
             
     /**
-     * Contains the condition that will enable or disable the curent menuItem. The handler must be specified as a function or
-     * string of script.  Return false to disable the menuItem or true to enable it <p> If you don't need to set this state
-     * dynamically, use {@link com.smartgwt.client.widgets.menu.MenuItem#getEnabled enabled} instead. <p> May be defined as a
-     * {@link com.smartgwt.client.docs.StringMethods 'stringMethod'}. <p>
-     * @param target {@link com.smartgwt.client.widgets.menu.Menu#getTarget 'target'} attribute for the top level menu.
-     * @param menu {@link com.smartgwt.client.widgets.menu.Menu} contains the reference to the menu that contains the current item
-     * @param item contains the reference to the current item
+     * A reference to another menu, to display as a submenu when the mouse cursor hovers over this menu item.
      *
-     * @return Return true to show a checkmark by this menu item
+     * @param submenu submenu Default value is null
      */
-    public native Boolean enableIf(Canvas target, Menu menu, MenuItem item) /*-{
-        var self = this.@com.smartgwt.client.core.DataClass::getJsObj()();
-        var retVal =self.enableIf(target.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()(), menu.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()(), item.@com.smartgwt.client.core.DataClass::getJsObj()());
-        if(retVal == null || retVal === undefined) {
-            return null;
-        } else {
-            return @com.smartgwt.client.util.JSOHelper::toBoolean(Z)(retVal);
-        }
-    }-*/;
+    public void setSubmenu(Menu submenu) {
+        setAttribute("submenu", submenu.getOrCreateJsObj());
+    }
+
+    /**
+     * A reference to another menu, to display as a submenu when the mouse cursor hovers over this menu item.
+     *
+     *
+     * @return Menu
+     */
+    public Menu getSubmenu()  {
+            return Menu.getOrCreateRef(getAttributeAsJavaScriptObject("submenu"));
+    }
+
+    /**
+     * The text displayed for the menu item
+     *
+     * @param title title Default value is null
+     */
+    public void setTitle(String title) {
+        setAttribute("title", title);
+    }
+
+    /**
+     * The text displayed for the menu item
+     *
+     *
+     * @return String
+     */
+    public String getTitle()  {
+        return getAttributeAsString("title");
+    }
+
+    // ********************* Methods ***********************
             
     /**
      * Contains the condition that will check or uncheck the curent menuItem. The handler must be specified as a function or
@@ -389,6 +368,27 @@ public class MenuItem extends ListGridRecord  implements com.smartgwt.client.wid
                 selfJ.@com.smartgwt.client.core.DataClass::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
             });
    }-*/;
+            
+    /**
+     * Contains the condition that will enable or disable the curent menuItem. The handler must be specified as a function or
+     * string of script.  Return false to disable the menuItem or true to enable it <p> If you don't need to set this state
+     * dynamically, use {@link com.smartgwt.client.widgets.menu.MenuItem#getEnabled enabled} instead. <p> May be defined as a
+     * {@link com.smartgwt.client.docs.StringMethods 'stringMethod'}. <p>
+     * @param target {@link com.smartgwt.client.widgets.menu.Menu#getTarget 'target'} attribute for the top level menu.
+     * @param menu {@link com.smartgwt.client.widgets.menu.Menu} contains the reference to the menu that contains the current item
+     * @param item contains the reference to the current item
+     *
+     * @return Return true to show a checkmark by this menu item
+     */
+    public native Boolean enableIf(Canvas target, Menu menu, MenuItem item) /*-{
+        var self = this.@com.smartgwt.client.core.DataClass::getJsObj()();
+        var retVal =self.enableIf(target.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()(), menu.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()(), item.@com.smartgwt.client.core.DataClass::getJsObj()());
+        if(retVal == null || retVal === undefined) {
+            return null;
+        } else {
+            return @com.smartgwt.client.util.JSOHelper::toBoolean(Z)(retVal);
+        }
+    }-*/;
 
     // ********************* Static Methods ***********************
 

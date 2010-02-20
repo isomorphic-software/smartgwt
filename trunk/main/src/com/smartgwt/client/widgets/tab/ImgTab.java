@@ -85,6 +85,45 @@ public class ImgTab extends StretchImgButton {
         return widget;
     }-*/;
     // ********************* Properties / Attributes ***********************
+             
+    /**
+     * Alignment of title text
+     *
+     * @param align align Default value is Canvas.CENTER
+     */
+    public void setAlign(Alignment align) {
+        setAttribute("align", align.getValue(), true);
+    }
+
+    /**
+     * Alignment of title text
+     *
+     *
+     * @return Alignment
+     */
+    public Alignment getAlign()  {
+        return EnumUtil.getEnum(Alignment.values(), getAttribute("align"));
+    }
+
+    /**
+     * 
+     *
+     * @param baseStyle baseStyle Default value is "tab"
+     * @throws IllegalStateException this property cannot be changed after the component has been created
+     */
+    public void setBaseStyle(String baseStyle)  throws IllegalStateException {
+        setAttribute("baseStyle", baseStyle, false);
+    }
+
+    /**
+     * 
+     *
+     *
+     * @return String
+     */
+    public String getBaseStyle()  {
+        return getAttributeAsString("baseStyle");
+    }
 
     /**
      * How big are the end pieces by default
@@ -103,6 +142,44 @@ public class ImgTab extends StretchImgButton {
      */
     public int getCapSize()  {
         return getAttributeAsInt("capSize");
+    }
+
+    /**
+     * Should we visibly change state when the tab recieves keyboard focus?
+     *
+     * @param showFocused showFocused Default value is true
+     */
+    public void setShowFocused(Boolean showFocused) {
+        setAttribute("showFocused", showFocused, true);
+    }
+
+    /**
+     * Should we visibly change state when the tab recieves keyboard focus?
+     *
+     *
+     * @return Boolean
+     */
+    public Boolean getShowFocused()  {
+        return getAttributeAsBoolean("showFocused");
+    }
+
+    /**
+     * Should we visibly change state when the mouse goes over this tab
+     *
+     * @param showRollOver showRollOver Default value is false
+     */
+    public void setShowRollOver(Boolean showRollOver) {
+        setAttribute("showRollOver", showRollOver, true);
+    }
+
+    /**
+     * Should we visibly change state when the mouse goes over this tab
+     *
+     *
+     * @return Boolean
+     */
+    public Boolean getShowRollOver()  {
+        return getAttributeAsBoolean("showRollOver");
     }
 
     /**
@@ -129,23 +206,22 @@ public class ImgTab extends StretchImgButton {
     }
 
     /**
-     * 
+     * Base URL for tab images
      *
-     * @param baseStyle baseStyle Default value is "tab"
-     * @throws IllegalStateException this property cannot be changed after the component has been created
+     * @param src src Default value is "tab.gif"
      */
-    public void setBaseStyle(String baseStyle)  throws IllegalStateException {
-        setAttribute("baseStyle", baseStyle, false);
+    public void setSrc(String src) {
+        setAttribute("src", src, true);
     }
 
     /**
-     * 
+     * Base URL for tab images
      *
      *
      * @return String
      */
-    public String getBaseStyle()  {
-        return getAttributeAsString("baseStyle");
+    public String getSrc()  {
+        return getAttributeAsString("src");
     }
 
     /**
@@ -170,82 +246,6 @@ public class ImgTab extends StretchImgButton {
      */
     public String getTitleStyle()  {
         return getAttributeAsString("titleStyle");
-    }
-
-    /**
-     * Base URL for tab images
-     *
-     * @param src src Default value is "tab.gif"
-     */
-    public void setSrc(String src) {
-        setAttribute("src", src, true);
-    }
-
-    /**
-     * Base URL for tab images
-     *
-     *
-     * @return String
-     */
-    public String getSrc()  {
-        return getAttributeAsString("src");
-    }
-
-    /**
-     * Should we visibly change state when the mouse goes over this tab
-     *
-     * @param showRollOver showRollOver Default value is false
-     */
-    public void setShowRollOver(Boolean showRollOver) {
-        setAttribute("showRollOver", showRollOver, true);
-    }
-
-    /**
-     * Should we visibly change state when the mouse goes over this tab
-     *
-     *
-     * @return Boolean
-     */
-    public Boolean getShowRollOver()  {
-        return getAttributeAsBoolean("showRollOver");
-    }
-
-    /**
-     * Should we visibly change state when the tab recieves keyboard focus?
-     *
-     * @param showFocused showFocused Default value is true
-     */
-    public void setShowFocused(Boolean showFocused) {
-        setAttribute("showFocused", showFocused, true);
-    }
-
-    /**
-     * Should we visibly change state when the tab recieves keyboard focus?
-     *
-     *
-     * @return Boolean
-     */
-    public Boolean getShowFocused()  {
-        return getAttributeAsBoolean("showFocused");
-    }
-             
-    /**
-     * Alignment of title text
-     *
-     * @param align align Default value is Canvas.CENTER
-     */
-    public void setAlign(Alignment align) {
-        setAttribute("align", align.getValue(), true);
-    }
-
-    /**
-     * Alignment of title text
-     *
-     *
-     * @return Alignment
-     */
-    public Alignment getAlign()  {
-        return EnumUtil.getEnum(Alignment.values(), getAttribute("align"));
     }
 
     // ********************* Methods ***********************

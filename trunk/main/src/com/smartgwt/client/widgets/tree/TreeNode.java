@@ -86,24 +86,31 @@ public class TreeNode extends ListGridRecord {
     // ********************* Properties / Attributes ***********************
 
     /**
-     * Default property name denoting whether this record is enabled. Property name may be modified for some grid via {@link
-     * com.smartgwt.client.widgets.grid.ListGrid#getRecordEnabledProperty recordEnabledProperty}.
+     * Governs whether dragged data (typically other <code>treeNode</code>s) may be dropped over this node. Only has an effect
+     * if this node is displayed in a {@link com.smartgwt.client.widgets.tree.TreeGrid} where {@link
+     * com.smartgwt.client.widgets.tree.TreeGrid#getCanAcceptDroppedRecords canAcceptDroppedRecords}, {@link
+     * com.smartgwt.client.widgets.tree.TreeGrid#getCanReorderRecords canReorderRecords} or  {@link
+     * com.smartgwt.client.widgets.tree.TreeGrid#getCanReparentNodes canReparentNodes} is true.
+     * <p><b>Note : </b> This is an advanced setting</p>
      *
-     * @param enabled enabled Default value is null
+     * @param canAcceptDrop canAcceptDrop Default value is null
      */
-    public void setEnabled(Boolean enabled) {
-        setAttribute("enabled", enabled);
+    public void setCanAcceptDrop(Boolean canAcceptDrop) {
+        setAttribute("canAcceptDrop", canAcceptDrop);
     }
 
     /**
-     * Default property name denoting whether this record is enabled. Property name may be modified for some grid via {@link
-     * com.smartgwt.client.widgets.grid.ListGrid#getRecordEnabledProperty recordEnabledProperty}.
+     * Governs whether dragged data (typically other <code>treeNode</code>s) may be dropped over this node. Only has an effect
+     * if this node is displayed in a {@link com.smartgwt.client.widgets.tree.TreeGrid} where {@link
+     * com.smartgwt.client.widgets.tree.TreeGrid#getCanAcceptDroppedRecords canAcceptDroppedRecords}, {@link
+     * com.smartgwt.client.widgets.tree.TreeGrid#getCanReorderRecords canReorderRecords} or  {@link
+     * com.smartgwt.client.widgets.tree.TreeGrid#getCanReparentNodes canReparentNodes} is true.
      *
      *
      * @return Boolean
      */
-    public Boolean getEnabled()  {
-        return getAttributeAsBoolean("enabled");
+    public Boolean getCanAcceptDrop()  {
+        return getAttributeAsBoolean("canAcceptDrop");
     }
 
     /**
@@ -133,31 +140,65 @@ public class TreeNode extends ListGridRecord {
     }
 
     /**
-     * Governs whether dragged data (typically other <code>treeNode</code>s) may be dropped over this node. Only has an effect
-     * if this node is displayed in a {@link com.smartgwt.client.widgets.tree.TreeGrid} where {@link
-     * com.smartgwt.client.widgets.tree.TreeGrid#getCanAcceptDroppedRecords canAcceptDroppedRecords}, {@link
-     * com.smartgwt.client.widgets.tree.TreeGrid#getCanReorderRecords canReorderRecords} or  {@link
-     * com.smartgwt.client.widgets.tree.TreeGrid#getCanReparentNodes canReparentNodes} is true.
-     * <p><b>Note : </b> This is an advanced setting</p>
+     * Default property name denoting whether this record is enabled. Property name may be modified for some grid via {@link
+     * com.smartgwt.client.widgets.grid.ListGrid#getRecordEnabledProperty recordEnabledProperty}.
      *
-     * @param canAcceptDrop canAcceptDrop Default value is null
+     * @param enabled enabled Default value is null
      */
-    public void setCanAcceptDrop(Boolean canAcceptDrop) {
-        setAttribute("canAcceptDrop", canAcceptDrop);
+    public void setEnabled(Boolean enabled) {
+        setAttribute("enabled", enabled);
     }
 
     /**
-     * Governs whether dragged data (typically other <code>treeNode</code>s) may be dropped over this node. Only has an effect
-     * if this node is displayed in a {@link com.smartgwt.client.widgets.tree.TreeGrid} where {@link
-     * com.smartgwt.client.widgets.tree.TreeGrid#getCanAcceptDroppedRecords canAcceptDroppedRecords}, {@link
-     * com.smartgwt.client.widgets.tree.TreeGrid#getCanReorderRecords canReorderRecords} or  {@link
-     * com.smartgwt.client.widgets.tree.TreeGrid#getCanReparentNodes canReparentNodes} is true.
+     * Default property name denoting whether this record is enabled. Property name may be modified for some grid via {@link
+     * com.smartgwt.client.widgets.grid.ListGrid#getRecordEnabledProperty recordEnabledProperty}.
      *
      *
      * @return Boolean
      */
-    public Boolean getCanAcceptDrop()  {
-        return getAttributeAsBoolean("canAcceptDrop");
+    public Boolean getEnabled()  {
+        return getAttributeAsBoolean("enabled");
+    }
+
+    /**
+     * This Property allows the developer to customize the icon displayed next to a node. Set <code>node.icon</code> to the URL
+     * of the desired icon to display and it will be shown instead of the standard {@link
+     * com.smartgwt.client.widgets.tree.TreeGrid#getNodeIcon nodeIcon} for this node.<br> Note that if {@link
+     * com.smartgwt.client.widgets.tree.TreeNode#getShowOpenIcon showOpenIcon} and/or {@link
+     * com.smartgwt.client.widgets.tree.TreeNode#getShowDropIcon showDropIcon}  is true for this node, customized icons for
+     * folder nodes will be appended with the  {@link com.smartgwt.client.widgets.tree.TreeGrid#getOpenIconSuffix
+     * openIconSuffix} or {@link com.smartgwt.client.widgets.tree.TreeGrid#getDropIconSuffix dropIconSuffix} suffixes on state
+     * change  as with the standard {@link com.smartgwt.client.widgets.tree.TreeGrid#getFolderIcon folderIcon} for this
+     * treeGrid.  Also note that for custom folder icons, the {@link
+     * com.smartgwt.client.widgets.tree.TreeGrid#getClosedIconSuffix closedIconSuffix} will never be appended. <P>You can
+     * change the name of this property by setting  {@link com.smartgwt.client.widgets.tree.TreeGrid#getCustomIconProperty
+     * customIconProperty}.
+     *
+     * @param icon icon Default value is null
+     */
+    public void setIcon(String icon) {
+        setAttribute("icon", icon);
+    }
+
+    /**
+     * This Property allows the developer to customize the icon displayed next to a node. Set <code>node.icon</code> to the URL
+     * of the desired icon to display and it will be shown instead of the standard {@link
+     * com.smartgwt.client.widgets.tree.TreeGrid#getNodeIcon nodeIcon} for this node.<br> Note that if {@link
+     * com.smartgwt.client.widgets.tree.TreeNode#getShowOpenIcon showOpenIcon} and/or {@link
+     * com.smartgwt.client.widgets.tree.TreeNode#getShowDropIcon showDropIcon}  is true for this node, customized icons for
+     * folder nodes will be appended with the  {@link com.smartgwt.client.widgets.tree.TreeGrid#getOpenIconSuffix
+     * openIconSuffix} or {@link com.smartgwt.client.widgets.tree.TreeGrid#getDropIconSuffix dropIconSuffix} suffixes on state
+     * change  as with the standard {@link com.smartgwt.client.widgets.tree.TreeGrid#getFolderIcon folderIcon} for this
+     * treeGrid.  Also note that for custom folder icons, the {@link
+     * com.smartgwt.client.widgets.tree.TreeGrid#getClosedIconSuffix closedIconSuffix} will never be appended. <P>You can
+     * change the name of this property by setting  {@link com.smartgwt.client.widgets.tree.TreeGrid#getCustomIconProperty
+     * customIconProperty}.
+     *
+     *
+     * @return String
+     */
+    public String getIcon()  {
+        return getAttributeAsString("icon");
     }
 
     /**
@@ -204,69 +245,35 @@ public class TreeNode extends ListGridRecord {
     }
 
     /**
-     * The title of the node as it should appear next to the node icon in the {@link com.smartgwt.client.widgets.tree.Tree}. 
-     * If left unset, the value of {@link com.smartgwt.client.widgets.tree.TreeNode#getName name} is used by default.  See the
-     * description in {@link com.smartgwt.client.widgets.tree.Tree#getTitle} for full details. <p> Note: the name of this
-     * property can be changed by setting {@link com.smartgwt.client.widgets.tree.Tree#getTitleProperty titleProperty}.
+     * For folder nodes showing custom icons (set via {@link com.smartgwt.client.widgets.tree.TreeNode#getIcon icon}), this
+     * property allows the developer to specify on a per-node basis whether a drop state icon should be displayed when the 
+     * user drop-hovers over this folder.<br> Set <code>node.showDropIcon</code> to true to show the drop state icon, or false
+     * to suppress this.<br> If not specified, this behavior is determined by {@link
+     * com.smartgwt.client.widgets.tree.TreeGrid#getShowCustomIconDrop showCustomIconDrop} for this node. <P>You can change the
+     * name of this property by setting  {@link com.smartgwt.client.widgets.tree.TreeGrid#getCustomIconDropProperty
+     * customIconDropProperty}.
+     * <p><b>Note : </b> This is an advanced setting</p>
      *
-     * @param title title Default value is null
+     * @param showDropIcon showDropIcon Default value is false
      */
-    public void setTitle(String title) {
-        setAttribute("title", title);
+    public void setShowDropIcon(Boolean showDropIcon) {
+        setAttribute("showDropIcon", showDropIcon);
     }
 
     /**
-     * The title of the node as it should appear next to the node icon in the {@link com.smartgwt.client.widgets.tree.Tree}. 
-     * If left unset, the value of {@link com.smartgwt.client.widgets.tree.TreeNode#getName name} is used by default.  See the
-     * description in {@link com.smartgwt.client.widgets.tree.Tree#getTitle} for full details. <p> Note: the name of this
-     * property can be changed by setting {@link com.smartgwt.client.widgets.tree.Tree#getTitleProperty titleProperty}.
+     * For folder nodes showing custom icons (set via {@link com.smartgwt.client.widgets.tree.TreeNode#getIcon icon}), this
+     * property allows the developer to specify on a per-node basis whether a drop state icon should be displayed when the 
+     * user drop-hovers over this folder.<br> Set <code>node.showDropIcon</code> to true to show the drop state icon, or false
+     * to suppress this.<br> If not specified, this behavior is determined by {@link
+     * com.smartgwt.client.widgets.tree.TreeGrid#getShowCustomIconDrop showCustomIconDrop} for this node. <P>You can change the
+     * name of this property by setting  {@link com.smartgwt.client.widgets.tree.TreeGrid#getCustomIconDropProperty
+     * customIconDropProperty}.
      *
      *
-     * @return String
+     * @return Boolean
      */
-    public String getTitle()  {
-        return getAttributeAsString("title");
-    }
-
-    /**
-     * This Property allows the developer to customize the icon displayed next to a node. Set <code>node.icon</code> to the URL
-     * of the desired icon to display and it will be shown instead of the standard {@link
-     * com.smartgwt.client.widgets.tree.TreeGrid#getNodeIcon nodeIcon} for this node.<br> Note that if {@link
-     * com.smartgwt.client.widgets.tree.TreeNode#getShowOpenIcon showOpenIcon} and/or {@link
-     * com.smartgwt.client.widgets.tree.TreeNode#getShowDropIcon showDropIcon}  is true for this node, customized icons for
-     * folder nodes will be appended with the  {@link com.smartgwt.client.widgets.tree.TreeGrid#getOpenIconSuffix
-     * openIconSuffix} or {@link com.smartgwt.client.widgets.tree.TreeGrid#getDropIconSuffix dropIconSuffix} suffixes on state
-     * change  as with the standard {@link com.smartgwt.client.widgets.tree.TreeGrid#getFolderIcon folderIcon} for this
-     * treeGrid.  Also note that for custom folder icons, the {@link
-     * com.smartgwt.client.widgets.tree.TreeGrid#getClosedIconSuffix closedIconSuffix} will never be appended. <P>You can
-     * change the name of this property by setting  {@link com.smartgwt.client.widgets.tree.TreeGrid#getCustomIconProperty
-     * customIconProperty}.
-     *
-     * @param icon icon Default value is null
-     */
-    public void setIcon(String icon) {
-        setAttribute("icon", icon);
-    }
-
-    /**
-     * This Property allows the developer to customize the icon displayed next to a node. Set <code>node.icon</code> to the URL
-     * of the desired icon to display and it will be shown instead of the standard {@link
-     * com.smartgwt.client.widgets.tree.TreeGrid#getNodeIcon nodeIcon} for this node.<br> Note that if {@link
-     * com.smartgwt.client.widgets.tree.TreeNode#getShowOpenIcon showOpenIcon} and/or {@link
-     * com.smartgwt.client.widgets.tree.TreeNode#getShowDropIcon showDropIcon}  is true for this node, customized icons for
-     * folder nodes will be appended with the  {@link com.smartgwt.client.widgets.tree.TreeGrid#getOpenIconSuffix
-     * openIconSuffix} or {@link com.smartgwt.client.widgets.tree.TreeGrid#getDropIconSuffix dropIconSuffix} suffixes on state
-     * change  as with the standard {@link com.smartgwt.client.widgets.tree.TreeGrid#getFolderIcon folderIcon} for this
-     * treeGrid.  Also note that for custom folder icons, the {@link
-     * com.smartgwt.client.widgets.tree.TreeGrid#getClosedIconSuffix closedIconSuffix} will never be appended. <P>You can
-     * change the name of this property by setting  {@link com.smartgwt.client.widgets.tree.TreeGrid#getCustomIconProperty
-     * customIconProperty}.
-     *
-     *
-     * @return String
-     */
-    public String getIcon()  {
-        return getAttributeAsString("icon");
+    public Boolean getShowDropIcon()  {
+        return getAttributeAsBoolean("showDropIcon");
     }
 
     /**
@@ -300,35 +307,28 @@ public class TreeNode extends ListGridRecord {
     }
 
     /**
-     * For folder nodes showing custom icons (set via {@link com.smartgwt.client.widgets.tree.TreeNode#getIcon icon}), this
-     * property allows the developer to specify on a per-node basis whether a drop state icon should be displayed when the 
-     * user drop-hovers over this folder.<br> Set <code>node.showDropIcon</code> to true to show the drop state icon, or false
-     * to suppress this.<br> If not specified, this behavior is determined by {@link
-     * com.smartgwt.client.widgets.tree.TreeGrid#getShowCustomIconDrop showCustomIconDrop} for this node. <P>You can change the
-     * name of this property by setting  {@link com.smartgwt.client.widgets.tree.TreeGrid#getCustomIconDropProperty
-     * customIconDropProperty}.
-     * <p><b>Note : </b> This is an advanced setting</p>
+     * The title of the node as it should appear next to the node icon in the {@link com.smartgwt.client.widgets.tree.Tree}. 
+     * If left unset, the value of {@link com.smartgwt.client.widgets.tree.TreeNode#getName name} is used by default.  See the
+     * description in {@link com.smartgwt.client.widgets.tree.Tree#getTitle} for full details. <p> Note: the name of this
+     * property can be changed by setting {@link com.smartgwt.client.widgets.tree.Tree#getTitleProperty titleProperty}.
      *
-     * @param showDropIcon showDropIcon Default value is false
+     * @param title title Default value is null
      */
-    public void setShowDropIcon(Boolean showDropIcon) {
-        setAttribute("showDropIcon", showDropIcon);
+    public void setTitle(String title) {
+        setAttribute("title", title);
     }
 
     /**
-     * For folder nodes showing custom icons (set via {@link com.smartgwt.client.widgets.tree.TreeNode#getIcon icon}), this
-     * property allows the developer to specify on a per-node basis whether a drop state icon should be displayed when the 
-     * user drop-hovers over this folder.<br> Set <code>node.showDropIcon</code> to true to show the drop state icon, or false
-     * to suppress this.<br> If not specified, this behavior is determined by {@link
-     * com.smartgwt.client.widgets.tree.TreeGrid#getShowCustomIconDrop showCustomIconDrop} for this node. <P>You can change the
-     * name of this property by setting  {@link com.smartgwt.client.widgets.tree.TreeGrid#getCustomIconDropProperty
-     * customIconDropProperty}.
+     * The title of the node as it should appear next to the node icon in the {@link com.smartgwt.client.widgets.tree.Tree}. 
+     * If left unset, the value of {@link com.smartgwt.client.widgets.tree.TreeNode#getName name} is used by default.  See the
+     * description in {@link com.smartgwt.client.widgets.tree.Tree#getTitle} for full details. <p> Note: the name of this
+     * property can be changed by setting {@link com.smartgwt.client.widgets.tree.Tree#getTitleProperty titleProperty}.
      *
      *
-     * @return Boolean
+     * @return String
      */
-    public Boolean getShowDropIcon()  {
-        return getAttributeAsBoolean("showDropIcon");
+    public String getTitle()  {
+        return getAttributeAsString("title");
     }
 
     // ********************* Methods ***********************

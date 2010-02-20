@@ -103,6 +103,49 @@ public class ViewLoader extends Label {
     // ********************* Properties / Attributes ***********************
 
     /**
+     * By default a ViewLoader will explicitly prevent browser caching. <P> Set to true to allow browser caching <b>if the
+     * browser would normally do so</b>, in other words, if the HTTP headers returned with the response indicate that the
+     * response can be cached.
+     *
+     * @param allowCaching allowCaching Default value is false
+     * @throws IllegalStateException this property cannot be changed after the component has been created
+     */
+    public void setAllowCaching(Boolean allowCaching)  throws IllegalStateException {
+        setAttribute("allowCaching", allowCaching, false);
+    }
+
+    /**
+     * By default a ViewLoader will explicitly prevent browser caching. <P> Set to true to allow browser caching <b>if the
+     * browser would normally do so</b>, in other words, if the HTTP headers returned with the response indicate that the
+     * response can be cached.
+     *
+     *
+     * @return Boolean
+     */
+    public Boolean getAllowCaching()  {
+        return getAttributeAsBoolean("allowCaching");
+    }
+
+    /**
+     * Selects the HTTP method that will be used when fetching content.  Valid values are "POST" and "GET".
+     *
+     * @param httpMethod httpMethod Default value is "GET"
+     */
+    public void setHttpMethod(String httpMethod) {
+        setAttribute("httpMethod", httpMethod, true);
+    }
+
+    /**
+     * Selects the HTTP method that will be used when fetching content.  Valid values are "POST" and "GET".
+     *
+     *
+     * @return String
+     */
+    public String getHttpMethod()  {
+        return getAttributeAsString("httpMethod");
+    }
+
+    /**
      * Message to show while the view is loading
      *
      * @param loadingMessage loadingMessage Default value is "Loading View..."
@@ -141,49 +184,6 @@ public class ViewLoader extends Label {
      */
     public String getViewURL()  {
         return getAttributeAsString("viewURL");
-    }
-
-    /**
-     * Selects the HTTP method that will be used when fetching content.  Valid values are "POST" and "GET".
-     *
-     * @param httpMethod httpMethod Default value is "GET"
-     */
-    public void setHttpMethod(String httpMethod) {
-        setAttribute("httpMethod", httpMethod, true);
-    }
-
-    /**
-     * Selects the HTTP method that will be used when fetching content.  Valid values are "POST" and "GET".
-     *
-     *
-     * @return String
-     */
-    public String getHttpMethod()  {
-        return getAttributeAsString("httpMethod");
-    }
-
-    /**
-     * By default a ViewLoader will explicitly prevent browser caching. <P> Set to true to allow browser caching <b>if the
-     * browser would normally do so</b>, in other words, if the HTTP headers returned with the response indicate that the
-     * response can be cached.
-     *
-     * @param allowCaching allowCaching Default value is false
-     * @throws IllegalStateException this property cannot be changed after the component has been created
-     */
-    public void setAllowCaching(Boolean allowCaching)  throws IllegalStateException {
-        setAttribute("allowCaching", allowCaching, false);
-    }
-
-    /**
-     * By default a ViewLoader will explicitly prevent browser caching. <P> Set to true to allow browser caching <b>if the
-     * browser would normally do so</b>, in other words, if the HTTP headers returned with the response indicate that the
-     * response can be cached.
-     *
-     *
-     * @return Boolean
-     */
-    public Boolean getAllowCaching()  {
-        return getAttributeAsBoolean("allowCaching");
     }
 
     // ********************* Methods ***********************

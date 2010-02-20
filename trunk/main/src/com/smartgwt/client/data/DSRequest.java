@@ -78,6 +78,35 @@ public class DSRequest extends RPCRequest {
     // ********************* Properties / Attributes ***********************
 
     /**
+     * For requests submitted by a {@link com.smartgwt.client.widgets.DataBoundComponent}, the {@link
+     * com.smartgwt.client.widgets.Canvas#getID ID} of the submitting component. <P> This ID will be present for operations
+     * including automatic saves by a ListGrid  {@link com.smartgwt.client.docs.Editing 'during editing'}, or calls to {@link
+     * com.smartgwt.client.widgets.form.DynamicForm#saveData}.  It will not be present for a direct call to a DataSource method
+     * such as {@link com.smartgwt.client.data.DataSource#fetchData}. <P> Note this is the component's <b>String</b> ID - you
+     * can retrieve the component itself via {@link com.smartgwt.client.widgets.Canvas#getById}.
+     *
+     * @param componentId componentId Default value is null
+     */
+    public void setComponentId(String componentId) {
+        setAttribute("componentId", componentId);
+    }
+
+    /**
+     * For requests submitted by a {@link com.smartgwt.client.widgets.DataBoundComponent}, the {@link
+     * com.smartgwt.client.widgets.Canvas#getID ID} of the submitting component. <P> This ID will be present for operations
+     * including automatic saves by a ListGrid  {@link com.smartgwt.client.docs.Editing 'during editing'}, or calls to {@link
+     * com.smartgwt.client.widgets.form.DynamicForm#saveData}.  It will not be present for a direct call to a DataSource method
+     * such as {@link com.smartgwt.client.data.DataSource#fetchData}. <P> Note this is the component's <b>String</b> ID - you
+     * can retrieve the component itself via {@link com.smartgwt.client.widgets.Canvas#getById}.
+     *
+     *
+     * @return String
+     */
+    public String getComponentId()  {
+        return getAttributeAsString("componentId");
+    }
+
+    /**
      * DataSource this DSRequest will act on. <P> This property is generally automatically populated, for example when calling
      * {@link com.smartgwt.client.data.DataSource#fetchData} the dataSource property is set to the target DataSource.
      *
@@ -96,52 +125,6 @@ public class DSRequest extends RPCRequest {
      */
     public String getDataSource()  {
         return getAttributeAsString("dataSource");
-    }
-             
-    /**
-     * Type of operation being performed: "fetch", "add", "remove", "update" or "custom". <P> This property is generally
-     * automatically populated, for example when calling <code>fetchData()</code> on a DataSource or DataBound component the
-     * operationType is automatically set to "fetch".  Note that "custom" operations are never generated automatically, they
-     * are always fired by your code.
-     *
-     * @param operationType operationType Default value is null
-     */
-    public void setOperationType(DSOperationType operationType) {
-        setAttribute("operationType", operationType.getValue());
-    }
-
-    /**
-     * Type of operation being performed: "fetch", "add", "remove", "update" or "custom". <P> This property is generally
-     * automatically populated, for example when calling <code>fetchData()</code> on a DataSource or DataBound component the
-     * operationType is automatically set to "fetch".  Note that "custom" operations are never generated automatically, they
-     * are always fired by your code.
-     *
-     *
-     * @return DSOperationType
-     */
-    public DSOperationType getOperationType()  {
-        return EnumUtil.getEnum(DSOperationType.values(), getAttribute("operationType"));
-    }
-
-    /**
-     * Starting row of requested results, used only with fetch operations.  If unset, 0 is assumed. <p> Note that startRow and
-     * endRow are zero-based, so startRow: 0, endRow: 1 is a request for the first two records.
-     *
-     * @param startRow startRow Default value is null
-     */
-    public void setStartRow(Integer startRow) {
-        setAttribute("startRow", startRow);
-    }
-
-    /**
-     * Starting row of requested results, used only with fetch operations.  If unset, 0 is assumed. <p> Note that startRow and
-     * endRow are zero-based, so startRow: 0, endRow: 1 is a request for the first two records.
-     *
-     *
-     * @return Integer
-     */
-    public Integer getStartRow()  {
-        return getAttributeAsInt("startRow");
     }
 
     /**
@@ -166,15 +149,199 @@ public class DSRequest extends RPCRequest {
     }
              
     /**
-     * For "fetch" operations, how search criteria should be interpreted for text fields: either "exact" for exact match,
-     * "startsWith" for matching at the beginning only, or "substring" for case-insensitive substring match. <p> This setting
-     * is respected by the built-in SQLDataSource.  Your custom DataSource implementation can interpret the search criteria
-     * passed into "fetch" operations in arbitrary ways; you can safely ignore this flag and use others of your own devising.
+     * The format in which the data should be exported.  See {@link com.smartgwt.client.types.ExportFormat} for more 
+     * information.
      *
-     * @param textMatchStyle textMatchStyle Default value is "exact"
+     * @param exportAs exportAs Default value is "csv"
      */
-    public void setTextMatchStyle(TextMatchStyle textMatchStyle) {
-        setAttribute("textMatchStyle", textMatchStyle.getValue());
+    public void setExportAs(ExportFormat exportAs) {
+        setAttribute("exportAs", exportAs.getValue());
+    }
+
+    /**
+     * The format in which the data should be exported.  See {@link com.smartgwt.client.types.ExportFormat} for more 
+     * information.
+     *
+     *
+     * @return ExportFormat
+     */
+    public ExportFormat getExportAs()  {
+        return EnumUtil.getEnum(ExportFormat.values(), getAttribute("exportAs"));
+    }
+
+    /**
+     * The character to use as a field-separator in CSV exports.  The default delimiter is comma.
+     *
+     * @param exportDelimiter exportDelimiter Default value is ","
+     */
+    public void setExportDelimiter(String exportDelimiter) {
+        setAttribute("exportDelimiter", exportDelimiter);
+    }
+
+    /**
+     * The character to use as a field-separator in CSV exports.  The default delimiter is comma.
+     *
+     *
+     * @return String
+     */
+    public String getExportDelimiter()  {
+        return getAttributeAsString("exportDelimiter");
+    }
+             
+    /**
+     * Specifies whether the exported data will be downloaded to the file-system or displayed in a  new window. See {@link
+     * com.smartgwt.client.types.ExportDisplay} for more information.
+     *
+     * @param exportDisplay exportDisplay Default value is "download"
+     */
+    public void setExportDisplay(ExportDisplay exportDisplay) {
+        setAttribute("exportDisplay", exportDisplay.getValue());
+    }
+
+    /**
+     * Specifies whether the exported data will be downloaded to the file-system or displayed in a  new window. See {@link
+     * com.smartgwt.client.types.ExportDisplay} for more information.
+     *
+     *
+     * @return ExportDisplay
+     */
+    public ExportDisplay getExportDisplay()  {
+        return EnumUtil.getEnum(ExportDisplay.values(), getAttribute("exportDisplay"));
+    }
+
+    /**
+     * The name of the file to save the exported data into.
+     *
+     * @param exportFilename exportFilename Default value is null
+     */
+    public void setExportFilename(String exportFilename) {
+        setAttribute("exportFilename", exportFilename);
+    }
+
+    /**
+     * The name of the file to save the exported data into.
+     *
+     *
+     * @return String
+     */
+    public String getExportFilename()  {
+        return getAttributeAsString("exportFilename");
+    }
+
+    /**
+     * Optional text to appear at the end of the file.
+     *
+     * @param exportFooter exportFooter Default value is null
+     */
+    public void setExportFooter(String exportFooter) {
+        setAttribute("exportFooter", exportFooter);
+    }
+
+    /**
+     * Optional text to appear at the end of the file.
+     *
+     *
+     * @return String
+     */
+    public String getExportFooter()  {
+        return getAttributeAsString("exportFooter");
+    }
+
+    /**
+     * Optional text to appear at the beginning of the file.
+     *
+     * @param exportHeader exportHeader Default value is null
+     */
+    public void setExportHeader(String exportHeader) {
+        setAttribute("exportHeader", exportHeader);
+    }
+
+    /**
+     * Optional text to appear at the beginning of the file.
+     *
+     *
+     * @return String
+     */
+    public String getExportHeader()  {
+        return getAttributeAsString("exportHeader");
+    }
+
+    /**
+     * When set, causes the results of the DSRequest to be exported to a file, whose name &#010 and format are indicated by
+     * {@link com.smartgwt.client.data.DSRequest#getExportFilename exportFilename} and &#010 {@link
+     * com.smartgwt.client.data.DSRequest#getExportAs exportAs} respectively.  When no exportFilename is provided, the default
+     * is&#010 <i>Results</i> and the default value of exportAs is <i>csv</i>.  &#010 <P>&#010 The export field-list can also
+     * be configured, see {@link com.smartgwt.client.data.DSRequest#getExportFields exportFields}.&#010 <P>&#010 Once the
+     * operation completes, {@link com.smartgwt.client.data.DSRequest#getExportDisplay exportDisplay} specifies whether the
+     * exported&#010 data should be downloaded to the file-system or displayed in a new window.  The default value&#010 of
+     * exportDisplay is "download" which displays the Save As dialog.  See {@link com.smartgwt.client.types.ExportDisplay}
+     * &#010 for more information.&#010 <P>&#010 You can also configure the style of line-breaks to use when generating the
+     * output.  See&#010 {@link com.smartgwt.client..LineBreakStyle} for more information.&#010 <P>&#010 Note that an export
+     * initiated using dsRequest properties does not provide support for JSON&#010 format (see &#010 <a
+     * href="http://forums.smartclient.com/showthread.php?t=235">this post</a> for more detail).&#010 <P>&#010 As well as
+     * setting dsRequest.exportResults and related properties, exports can be initiated&#010 in two other ways, via {@link
+     * com.smartgwt.client.data.OperationBinding}s and via custom server code which sets &#010 export-related properties on the
+     * {@link com.smartgwt.client.data.DSResponse}.  Both of those methods support exporting&#010 to JSON format.&#010 <P>&#010
+     * <b>Format Examples</b>&#010 XML format&#010 <pre>&#010     &lt;List&gt;&#010         &lt;Object&gt;&#010            
+     * &lt;id&gt;10101&lt;/id&gt;&#010             &lt;displayName&gt;Record 10101&lt;/displayName&gt;&#010        
+     * &lt;/Object&gt;&#010    &lt;/List&gt;&#010 </pre>&#010 JSON Format&#010 <pre>&#010     [&#010         { id: 10101,
+     * displayName: "Record 10101" }&#010     ]&#010 </pre>&#010 CSV Format&#010 <pre>&#010     id,displayName&#010    
+     * 10101,"Record 10101"&#010 </pre>
+     *
+     * @param exportResults exportResults Default value is false
+     */
+    public void setExportResults(Boolean exportResults) {
+        setAttribute("exportResults", exportResults);
+    }
+
+    /**
+     * When set, causes the results of the DSRequest to be exported to a file, whose name &#010 and format are indicated by
+     * {@link com.smartgwt.client.data.DSRequest#getExportFilename exportFilename} and &#010 {@link
+     * com.smartgwt.client.data.DSRequest#getExportAs exportAs} respectively.  When no exportFilename is provided, the default
+     * is&#010 <i>Results</i> and the default value of exportAs is <i>csv</i>.  &#010 <P>&#010 The export field-list can also
+     * be configured, see {@link com.smartgwt.client.data.DSRequest#getExportFields exportFields}.&#010 <P>&#010 Once the
+     * operation completes, {@link com.smartgwt.client.data.DSRequest#getExportDisplay exportDisplay} specifies whether the
+     * exported&#010 data should be downloaded to the file-system or displayed in a new window.  The default value&#010 of
+     * exportDisplay is "download" which displays the Save As dialog.  See {@link com.smartgwt.client.types.ExportDisplay}
+     * &#010 for more information.&#010 <P>&#010 You can also configure the style of line-breaks to use when generating the
+     * output.  See&#010 {@link com.smartgwt.client..LineBreakStyle} for more information.&#010 <P>&#010 Note that an export
+     * initiated using dsRequest properties does not provide support for JSON&#010 format (see &#010 <a
+     * href="http://forums.smartclient.com/showthread.php?t=235">this post</a> for more detail).&#010 <P>&#010 As well as
+     * setting dsRequest.exportResults and related properties, exports can be initiated&#010 in two other ways, via {@link
+     * com.smartgwt.client.data.OperationBinding}s and via custom server code which sets &#010 export-related properties on the
+     * {@link com.smartgwt.client.data.DSResponse}.  Both of those methods support exporting&#010 to JSON format.&#010 <P>&#010
+     * <b>Format Examples</b>&#010 XML format&#010 <pre>&#010     &lt;List&gt;&#010         &lt;Object&gt;&#010            
+     * &lt;id&gt;10101&lt;/id&gt;&#010             &lt;displayName&gt;Record 10101&lt;/displayName&gt;&#010        
+     * &lt;/Object&gt;&#010    &lt;/List&gt;&#010 </pre>&#010 JSON Format&#010 <pre>&#010     [&#010         { id: 10101,
+     * displayName: "Record 10101" }&#010     ]&#010 </pre>&#010 CSV Format&#010 <pre>&#010     id,displayName&#010    
+     * 10101,"Record 10101"&#010 </pre>
+     *
+     *
+     * @return Boolean
+     */
+    public Boolean getExportResults()  {
+        return getAttributeAsBoolean("exportResults");
+    }
+
+    /**
+     * The style of line-breaks to use in the exported output.  See {@link com.smartgwt.client..LineBreakStyle} for more
+     * information.
+     *
+     * @param lineBreakStyle lineBreakStyle Default value is null
+     */
+    public void setLineBreakStyle(String lineBreakStyle) {
+        setAttribute("lineBreakStyle", lineBreakStyle);
+    }
+
+    /**
+     * The style of line-breaks to use in the exported output.  See {@link com.smartgwt.client..LineBreakStyle} for more
+     * information.
+     *
+     *
+     * @return String
+     */
+    public String getLineBreakStyle()  {
+        return getAttributeAsString("lineBreakStyle");
     }
             
     /**
@@ -213,35 +380,6 @@ public class DSRequest extends RPCRequest {
     }
 
     /**
-     * For requests submitted by a {@link com.smartgwt.client.widgets.DataBoundComponent}, the {@link
-     * com.smartgwt.client.widgets.Canvas#getID ID} of the submitting component. <P> This ID will be present for operations
-     * including automatic saves by a ListGrid  {@link com.smartgwt.client.docs.Editing 'during editing'}, or calls to {@link
-     * com.smartgwt.client.widgets.form.DynamicForm#saveData}.  It will not be present for a direct call to a DataSource method
-     * such as {@link com.smartgwt.client.data.DataSource#fetchData}. <P> Note this is the component's <b>String</b> ID - you
-     * can retrieve the component itself via {@link com.smartgwt.client.widgets.Canvas#getById}.
-     *
-     * @param componentId componentId Default value is null
-     */
-    public void setComponentId(String componentId) {
-        setAttribute("componentId", componentId);
-    }
-
-    /**
-     * For requests submitted by a {@link com.smartgwt.client.widgets.DataBoundComponent}, the {@link
-     * com.smartgwt.client.widgets.Canvas#getID ID} of the submitting component. <P> This ID will be present for operations
-     * including automatic saves by a ListGrid  {@link com.smartgwt.client.docs.Editing 'during editing'}, or calls to {@link
-     * com.smartgwt.client.widgets.form.DynamicForm#saveData}.  It will not be present for a direct call to a DataSource method
-     * such as {@link com.smartgwt.client.data.DataSource#fetchData}. <P> Note this is the component's <b>String</b> ID - you
-     * can retrieve the component itself via {@link com.smartgwt.client.widgets.Canvas#getById}.
-     *
-     *
-     * @return String
-     */
-    public String getComponentId()  {
-        return getAttributeAsString("componentId");
-    }
-
-    /**
      * When a {@link com.smartgwt.client.widgets.DataBoundComponent} sends a DSRequest, the <code>dsRequest.operationId</code>
      * will be automatically picked up from the <code>fetchOperation</code>, <code>addOperation</code>, etc properties of the
      * DataBoundComponent.   <P> The <code>operationId</code> serves as an identifier that you can use to create variations on
@@ -270,6 +408,31 @@ public class DSRequest extends RPCRequest {
     public void setOperationId(String operationId) {
         setAttribute("operationId", operationId);
     }
+             
+    /**
+     * Type of operation being performed: "fetch", "add", "remove", "update" or "custom". <P> This property is generally
+     * automatically populated, for example when calling <code>fetchData()</code> on a DataSource or DataBound component the
+     * operationType is automatically set to "fetch".  Note that "custom" operations are never generated automatically, they
+     * are always fired by your code.
+     *
+     * @param operationType operationType Default value is null
+     */
+    public void setOperationType(DSOperationType operationType) {
+        setAttribute("operationType", operationType.getValue());
+    }
+
+    /**
+     * Type of operation being performed: "fetch", "add", "remove", "update" or "custom". <P> This property is generally
+     * automatically populated, for example when calling <code>fetchData()</code> on a DataSource or DataBound component the
+     * operationType is automatically set to "fetch".  Note that "custom" operations are never generated automatically, they
+     * are always fired by your code.
+     *
+     *
+     * @return DSOperationType
+     */
+    public DSOperationType getOperationType()  {
+        return EnumUtil.getEnum(DSOperationType.values(), getAttribute("operationType"));
+    }
 
 
     /**
@@ -281,6 +444,39 @@ public class DSRequest extends RPCRequest {
      */
     public String getRequestId()  {
         return getAttributeAsString("requestId");
+    }
+
+    /**
+     * Starting row of requested results, used only with fetch operations.  If unset, 0 is assumed. <p> Note that startRow and
+     * endRow are zero-based, so startRow: 0, endRow: 1 is a request for the first two records.
+     *
+     * @param startRow startRow Default value is null
+     */
+    public void setStartRow(Integer startRow) {
+        setAttribute("startRow", startRow);
+    }
+
+    /**
+     * Starting row of requested results, used only with fetch operations.  If unset, 0 is assumed. <p> Note that startRow and
+     * endRow are zero-based, so startRow: 0, endRow: 1 is a request for the first two records.
+     *
+     *
+     * @return Integer
+     */
+    public Integer getStartRow()  {
+        return getAttributeAsInt("startRow");
+    }
+             
+    /**
+     * For "fetch" operations, how search criteria should be interpreted for text fields: either "exact" for exact match,
+     * "startsWith" for matching at the beginning only, or "substring" for case-insensitive substring match. <p> This setting
+     * is respected by the built-in SQLDataSource.  Your custom DataSource implementation can interpret the search criteria
+     * passed into "fetch" operations in arbitrary ways; you can safely ignore this flag and use others of your own devising.
+     *
+     * @param textMatchStyle textMatchStyle Default value is "exact"
+     */
+    public void setTextMatchStyle(TextMatchStyle textMatchStyle) {
+        setAttribute("textMatchStyle", textMatchStyle.getValue());
     }
 
     /**
@@ -373,202 +569,6 @@ public class DSRequest extends RPCRequest {
      */
     public Boolean getUseFlatHeaderFields()  {
         return getAttributeAsBoolean("useFlatHeaderFields");
-    }
-
-    /**
-     * When set, causes the results of the DSRequest to be exported to a file, whose name &#010 and format are indicated by
-     * {@link com.smartgwt.client.data.DSRequest#getExportFilename exportFilename} and &#010 {@link
-     * com.smartgwt.client.data.DSRequest#getExportAs exportAs} respectively.  When no exportFilename is provided, the default
-     * is&#010 <i>Results</i> and the default value of exportAs is <i>csv</i>.  &#010 <P>&#010 The export field-list can also
-     * be configured, see {@link com.smartgwt.client.data.DSRequest#getExportFields exportFields}.&#010 <P>&#010 Once the
-     * operation completes, {@link com.smartgwt.client.data.DSRequest#getExportDisplay exportDisplay} specifies whether the
-     * exported&#010 data should be downloaded to the file-system or displayed in a new window.  The default value&#010 of
-     * exportDisplay is "download" which displays the Save As dialog.  See {@link com.smartgwt.client.types.ExportDisplay}
-     * &#010 for more information.&#010 <P>&#010 You can also configure the style of line-breaks to use when generating the
-     * output.  See&#010 {@link com.smartgwt.client..LineBreakStyle} for more information.&#010 <P>&#010 Note that an export
-     * initiated using dsRequest properties does not provide support for JSON&#010 format (see &#010 <a
-     * href="http://forums.smartclient.com/showthread.php?t=235">this post</a> for more detail).&#010 <P>&#010 As well as
-     * setting dsRequest.exportResults and related properties, exports can be initiated&#010 in two other ways, via {@link
-     * com.smartgwt.client.data.OperationBinding}s and via custom server code which sets &#010 export-related properties on the
-     * {@link com.smartgwt.client.data.DSResponse}.  Both of those methods support exporting&#010 to JSON format.&#010 <P>&#010
-     * <b>Format Examples</b>&#010 XML format&#010 <pre>&#010     &lt;List&gt;&#010         &lt;Object&gt;&#010            
-     * &lt;id&gt;10101&lt;/id&gt;&#010             &lt;displayName&gt;Record 10101&lt;/displayName&gt;&#010        
-     * &lt;/Object&gt;&#010    &lt;/List&gt;&#010 </pre>&#010 JSON Format&#010 <pre>&#010     [&#010         { id: 10101,
-     * displayName: "Record 10101" }&#010     ]&#010 </pre>&#010 CSV Format&#010 <pre>&#010     id,displayName&#010    
-     * 10101,"Record 10101"&#010 </pre>
-     *
-     * @param exportResults exportResults Default value is false
-     */
-    public void setExportResults(Boolean exportResults) {
-        setAttribute("exportResults", exportResults);
-    }
-
-    /**
-     * When set, causes the results of the DSRequest to be exported to a file, whose name &#010 and format are indicated by
-     * {@link com.smartgwt.client.data.DSRequest#getExportFilename exportFilename} and &#010 {@link
-     * com.smartgwt.client.data.DSRequest#getExportAs exportAs} respectively.  When no exportFilename is provided, the default
-     * is&#010 <i>Results</i> and the default value of exportAs is <i>csv</i>.  &#010 <P>&#010 The export field-list can also
-     * be configured, see {@link com.smartgwt.client.data.DSRequest#getExportFields exportFields}.&#010 <P>&#010 Once the
-     * operation completes, {@link com.smartgwt.client.data.DSRequest#getExportDisplay exportDisplay} specifies whether the
-     * exported&#010 data should be downloaded to the file-system or displayed in a new window.  The default value&#010 of
-     * exportDisplay is "download" which displays the Save As dialog.  See {@link com.smartgwt.client.types.ExportDisplay}
-     * &#010 for more information.&#010 <P>&#010 You can also configure the style of line-breaks to use when generating the
-     * output.  See&#010 {@link com.smartgwt.client..LineBreakStyle} for more information.&#010 <P>&#010 Note that an export
-     * initiated using dsRequest properties does not provide support for JSON&#010 format (see &#010 <a
-     * href="http://forums.smartclient.com/showthread.php?t=235">this post</a> for more detail).&#010 <P>&#010 As well as
-     * setting dsRequest.exportResults and related properties, exports can be initiated&#010 in two other ways, via {@link
-     * com.smartgwt.client.data.OperationBinding}s and via custom server code which sets &#010 export-related properties on the
-     * {@link com.smartgwt.client.data.DSResponse}.  Both of those methods support exporting&#010 to JSON format.&#010 <P>&#010
-     * <b>Format Examples</b>&#010 XML format&#010 <pre>&#010     &lt;List&gt;&#010         &lt;Object&gt;&#010            
-     * &lt;id&gt;10101&lt;/id&gt;&#010             &lt;displayName&gt;Record 10101&lt;/displayName&gt;&#010        
-     * &lt;/Object&gt;&#010    &lt;/List&gt;&#010 </pre>&#010 JSON Format&#010 <pre>&#010     [&#010         { id: 10101,
-     * displayName: "Record 10101" }&#010     ]&#010 </pre>&#010 CSV Format&#010 <pre>&#010     id,displayName&#010    
-     * 10101,"Record 10101"&#010 </pre>
-     *
-     *
-     * @return Boolean
-     */
-    public Boolean getExportResults()  {
-        return getAttributeAsBoolean("exportResults");
-    }
-             
-    /**
-     * The format in which the data should be exported.  See {@link com.smartgwt.client.types.ExportFormat} for more 
-     * information.
-     *
-     * @param exportAs exportAs Default value is "csv"
-     */
-    public void setExportAs(ExportFormat exportAs) {
-        setAttribute("exportAs", exportAs.getValue());
-    }
-
-    /**
-     * The format in which the data should be exported.  See {@link com.smartgwt.client.types.ExportFormat} for more 
-     * information.
-     *
-     *
-     * @return ExportFormat
-     */
-    public ExportFormat getExportAs()  {
-        return EnumUtil.getEnum(ExportFormat.values(), getAttribute("exportAs"));
-    }
-
-    /**
-     * The name of the file to save the exported data into.
-     *
-     * @param exportFilename exportFilename Default value is null
-     */
-    public void setExportFilename(String exportFilename) {
-        setAttribute("exportFilename", exportFilename);
-    }
-
-    /**
-     * The name of the file to save the exported data into.
-     *
-     *
-     * @return String
-     */
-    public String getExportFilename()  {
-        return getAttributeAsString("exportFilename");
-    }
-             
-    /**
-     * Specifies whether the exported data will be downloaded to the file-system or displayed in a  new window. See {@link
-     * com.smartgwt.client.types.ExportDisplay} for more information.
-     *
-     * @param exportDisplay exportDisplay Default value is "download"
-     */
-    public void setExportDisplay(ExportDisplay exportDisplay) {
-        setAttribute("exportDisplay", exportDisplay.getValue());
-    }
-
-    /**
-     * Specifies whether the exported data will be downloaded to the file-system or displayed in a  new window. See {@link
-     * com.smartgwt.client.types.ExportDisplay} for more information.
-     *
-     *
-     * @return ExportDisplay
-     */
-    public ExportDisplay getExportDisplay()  {
-        return EnumUtil.getEnum(ExportDisplay.values(), getAttribute("exportDisplay"));
-    }
-
-    /**
-     * The style of line-breaks to use in the exported output.  See {@link com.smartgwt.client..LineBreakStyle} for more
-     * information.
-     *
-     * @param lineBreakStyle lineBreakStyle Default value is null
-     */
-    public void setLineBreakStyle(String lineBreakStyle) {
-        setAttribute("lineBreakStyle", lineBreakStyle);
-    }
-
-    /**
-     * The style of line-breaks to use in the exported output.  See {@link com.smartgwt.client..LineBreakStyle} for more
-     * information.
-     *
-     *
-     * @return String
-     */
-    public String getLineBreakStyle()  {
-        return getAttributeAsString("lineBreakStyle");
-    }
-
-    /**
-     * The character to use as a field-separator in CSV exports.  The default delimiter is comma.
-     *
-     * @param exportDelimiter exportDelimiter Default value is ","
-     */
-    public void setExportDelimiter(String exportDelimiter) {
-        setAttribute("exportDelimiter", exportDelimiter);
-    }
-
-    /**
-     * The character to use as a field-separator in CSV exports.  The default delimiter is comma.
-     *
-     *
-     * @return String
-     */
-    public String getExportDelimiter()  {
-        return getAttributeAsString("exportDelimiter");
-    }
-
-    /**
-     * Optional text to appear at the beginning of the file.
-     *
-     * @param exportHeader exportHeader Default value is null
-     */
-    public void setExportHeader(String exportHeader) {
-        setAttribute("exportHeader", exportHeader);
-    }
-
-    /**
-     * Optional text to appear at the beginning of the file.
-     *
-     *
-     * @return String
-     */
-    public String getExportHeader()  {
-        return getAttributeAsString("exportHeader");
-    }
-
-    /**
-     * Optional text to appear at the end of the file.
-     *
-     * @param exportFooter exportFooter Default value is null
-     */
-    public void setExportFooter(String exportFooter) {
-        setAttribute("exportFooter", exportFooter);
-    }
-
-    /**
-     * Optional text to appear at the end of the file.
-     *
-     *
-     * @return String
-     */
-    public String getExportFooter()  {
-        return getAttributeAsString("exportFooter");
     }
              
     /**

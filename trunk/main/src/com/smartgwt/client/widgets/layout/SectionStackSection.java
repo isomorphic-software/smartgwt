@@ -88,28 +88,56 @@ public class SectionStackSection extends RefDataClass {
     // ********************* Properties / Attributes ***********************
 
     /**
-     * Identifier for the section.  This can be used later in calls to {@link com.smartgwt.client.widgets.layout.SectionStack}
-     * APIs such as {@link com.smartgwt.client.widgets.layout.SectionStack#expandSection} and {@link
-     * com.smartgwt.client.widgets.layout.SectionStack#collapseSection}. Note that if no name is specified for the section, one
-     * will be auto-generated when the section is created.
+     * This attribute controls whether or not the expand/collapse UI control is shown on the header of this section.  Any
+     * section can still be expanded/collapsed programmatically, regardless of this setting.
      *
-     * @param name name Default value is null
+     * @param canCollapse canCollapse Default value is true
      */
-    public void setName(String name) {
-        setAttribute("name", name);
+    public void setCanCollapse(Boolean canCollapse) {
+        setAttribute("canCollapse", canCollapse);
     }
 
     /**
-     * Identifier for the section.  This can be used later in calls to {@link com.smartgwt.client.widgets.layout.SectionStack}
-     * APIs such as {@link com.smartgwt.client.widgets.layout.SectionStack#expandSection} and {@link
-     * com.smartgwt.client.widgets.layout.SectionStack#collapseSection}. Note that if no name is specified for the section, one
-     * will be auto-generated when the section is created.
+     * When explicitly set to false, disallows drop before this member in the Layout.
      *
-     *
-     * @return String
+     * @param canDropBefore canDropBefore Default value is null
      */
-    public String getName()  {
-        return getAttributeAsString("name");
+    public void setCanDropBefore(Boolean canDropBefore) {
+        setAttribute("canDropBefore", canDropBefore);
+    }
+
+    /**
+     * If set to false, then this sectionHeader will not be able to be dragged to perform a drag reorder, if {@link
+     * com.smartgwt.client.widgets.layout.SectionStack#getCanReorderSections canReorderSections} is true. You can also disable
+     * dropping other sections before this one by setting  {@link com.smartgwt.client.widgets.Canvas#getCanDropBefore
+     * 'canDropBefore'} to false.
+     *
+     * @param canReorder canReorder Default value is null
+     */
+    public void setCanReorder(Boolean canReorder) {
+        setAttribute("canReorder", canReorder);
+    }
+
+    /**
+     * Sections default to the collapsed state unless {@link
+     * com.smartgwt.client.widgets.layout.SectionStackSection#getShowHeader showHeader} is set to <code>false</code> in which
+     * case they default to the expanded state.  This attribute allows you to explicitly control the expand/collapse state of
+     * the section by overriding the above default behavior.
+     *
+     * @param expanded expanded Default value is false
+     */
+    public void setExpanded(Boolean expanded) {
+        setAttribute("expanded", expanded);
+    }
+
+    /**
+     * Sections default to the visible state.  This attribute allows you to explicitly control the visible/hidden state of the
+     * section by overriding the above default behavior.
+     *
+     * @param hidden hidden Default value is false
+     */
+    public void setHidden(Boolean hidden) {
+        setAttribute("hidden", hidden);
     }
 
     /**
@@ -152,6 +180,50 @@ public class SectionStackSection extends RefDataClass {
     }
 
     /**
+     * Identifier for the section.  This can be used later in calls to {@link com.smartgwt.client.widgets.layout.SectionStack}
+     * APIs such as {@link com.smartgwt.client.widgets.layout.SectionStack#expandSection} and {@link
+     * com.smartgwt.client.widgets.layout.SectionStack#collapseSection}. Note that if no name is specified for the section, one
+     * will be auto-generated when the section is created.
+     *
+     * @param name name Default value is null
+     */
+    public void setName(String name) {
+        setAttribute("name", name);
+    }
+
+    /**
+     * Identifier for the section.  This can be used later in calls to {@link com.smartgwt.client.widgets.layout.SectionStack}
+     * APIs such as {@link com.smartgwt.client.widgets.layout.SectionStack#expandSection} and {@link
+     * com.smartgwt.client.widgets.layout.SectionStack#collapseSection}. Note that if no name is specified for the section, one
+     * will be auto-generated when the section is created.
+     *
+     *
+     * @return String
+     */
+    public String getName()  {
+        return getAttributeAsString("name");
+    }
+
+    /**
+     * If set to false, then the items in this section will not be resized by sectionHeader repositioning.  You may also set
+     * this flag directly on any of the items in any section to cause that item to not be resizeable.
+     *
+     * @param resizeable resizeable Default value is null
+     */
+    public void setResizeable(Boolean resizeable) {
+        setAttribute("resizeable", resizeable);
+    }
+
+    /**
+     * If true, a header will be shown for this section.  If false, no header will be shown.
+     *
+     * @param showHeader showHeader Default value is true
+     */
+    public void setShowHeader(Boolean showHeader) {
+        setAttribute("showHeader", showHeader);
+    }
+
+    /**
      * Title to show for the section
      *
      * @param title title Default value is null
@@ -168,78 +240,6 @@ public class SectionStackSection extends RefDataClass {
      */
     public String getTitle()  {
         return getAttributeAsString("title");
-    }
-
-    /**
-     * If true, a header will be shown for this section.  If false, no header will be shown.
-     *
-     * @param showHeader showHeader Default value is true
-     */
-    public void setShowHeader(Boolean showHeader) {
-        setAttribute("showHeader", showHeader);
-    }
-
-    /**
-     * If set to false, then the items in this section will not be resized by sectionHeader repositioning.  You may also set
-     * this flag directly on any of the items in any section to cause that item to not be resizeable.
-     *
-     * @param resizeable resizeable Default value is null
-     */
-    public void setResizeable(Boolean resizeable) {
-        setAttribute("resizeable", resizeable);
-    }
-
-    /**
-     * If set to false, then this sectionHeader will not be able to be dragged to perform a drag reorder, if {@link
-     * com.smartgwt.client.widgets.layout.SectionStack#getCanReorderSections canReorderSections} is true. You can also disable
-     * dropping other sections before this one by setting  {@link com.smartgwt.client.widgets.Canvas#getCanDropBefore
-     * 'canDropBefore'} to false.
-     *
-     * @param canReorder canReorder Default value is null
-     */
-    public void setCanReorder(Boolean canReorder) {
-        setAttribute("canReorder", canReorder);
-    }
-
-    /**
-     * When explicitly set to false, disallows drop before this member in the Layout.
-     *
-     * @param canDropBefore canDropBefore Default value is null
-     */
-    public void setCanDropBefore(Boolean canDropBefore) {
-        setAttribute("canDropBefore", canDropBefore);
-    }
-
-    /**
-     * Sections default to the collapsed state unless {@link
-     * com.smartgwt.client.widgets.layout.SectionStackSection#getShowHeader showHeader} is set to <code>false</code> in which
-     * case they default to the expanded state.  This attribute allows you to explicitly control the expand/collapse state of
-     * the section by overriding the above default behavior.
-     *
-     * @param expanded expanded Default value is false
-     */
-    public void setExpanded(Boolean expanded) {
-        setAttribute("expanded", expanded);
-    }
-
-    /**
-     * Sections default to the visible state.  This attribute allows you to explicitly control the visible/hidden state of the
-     * section by overriding the above default behavior.
-     *
-     * @param hidden hidden Default value is false
-     */
-    public void setHidden(Boolean hidden) {
-        setAttribute("hidden", hidden);
-    }
-
-    /**
-     * This attribute controls whether or not the expand/collapse UI control is shown on the header of this section.  Any
-     * section can still be expanded/collapsed programmatically, regardless of this setting.
-     *
-     * @param canCollapse canCollapse Default value is true
-     */
-    public void setCanCollapse(Boolean canCollapse) {
-        setAttribute("canCollapse", canCollapse);
     }
 
     // ********************* Methods ***********************

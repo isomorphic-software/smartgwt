@@ -109,6 +109,29 @@ public class Validator extends DataClass {
     }
 
     /**
+     * Indicates this validator runs on the client only. <p> Normally, if the server is trying to run validators and finds a
+     * validator that it can't execute, for safety reasons validation is considered to have failed.  Use this flag to
+     * explicitly mark a validator that only needs to run on the client.
+     *
+     * @param clientOnly clientOnly Default value is false
+     */
+    public void setClientOnly(Boolean clientOnly) {
+        setAttribute("clientOnly", clientOnly);
+    }
+
+    /**
+     * Indicates this validator runs on the client only. <p> Normally, if the server is trying to run validators and finds a
+     * validator that it can't execute, for safety reasons validation is considered to have failed.  Use this flag to
+     * explicitly mark a validator that only needs to run on the client.
+     *
+     *
+     * @return Boolean
+     */
+    public Boolean getClientOnly()  {
+        return getAttributeAsBoolean("clientOnly");
+    }
+
+    /**
      * Normally, all validators defined for a field will be run even if one of the validators has already failed.  However, if
      * <code>stopIfFalse</code> is set, validation will not proceed beyond this validator if the check fails. <P> This is
      * useful to prevent expensive validators from being run unnecessarily, or to allow custom validators that don't need to be
@@ -131,29 +154,6 @@ public class Validator extends DataClass {
      */
     public Boolean getStopIfFalse()  {
         return getAttributeAsBoolean("stopIfFalse");
-    }
-
-    /**
-     * Indicates this validator runs on the client only. <p> Normally, if the server is trying to run validators and finds a
-     * validator that it can't execute, for safety reasons validation is considered to have failed.  Use this flag to
-     * explicitly mark a validator that only needs to run on the client.
-     *
-     * @param clientOnly clientOnly Default value is false
-     */
-    public void setClientOnly(Boolean clientOnly) {
-        setAttribute("clientOnly", clientOnly);
-    }
-
-    /**
-     * Indicates this validator runs on the client only. <p> Normally, if the server is trying to run validators and finds a
-     * validator that it can't execute, for safety reasons validation is considered to have failed.  Use this flag to
-     * explicitly mark a validator that only needs to run on the client.
-     *
-     *
-     * @return Boolean
-     */
-    public Boolean getClientOnly()  {
-        return getAttributeAsBoolean("clientOnly");
     }
 
     /**
