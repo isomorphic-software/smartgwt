@@ -110,7 +110,7 @@ public class TextAreaItem extends FormItem {
     public int getHeight()  {
         return getAttributeAsInt("height");
     }
-             
+ 
     /**
      * Align icons with the top edge of text area icons by default.
      *

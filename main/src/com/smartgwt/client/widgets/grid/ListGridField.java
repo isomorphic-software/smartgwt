@@ -428,7 +428,7 @@ public class ListGridField extends DataClass  implements com.smartgwt.client.wid
     public Boolean getCanToggle()  {
         return getAttributeAsBoolean("canToggle");
     }
-             
+ 
     /**
      * Horizontal alignment for cells in this field's column: "left", "right" or "center".<br> If null, alignment is derived
      * from {@link com.smartgwt.client.widgets.grid.ListGridField#getAlign align}. If this field is editable,  the alignment of
@@ -733,7 +733,7 @@ public class ListGridField extends DataClass  implements com.smartgwt.client.wid
     public String getEmptyCellValue()  {
         return getAttributeAsString("emptyCellValue");
     }
-             
+ 
     /**
      * What to do when a user hits enter while editing this field?<br> Overrides the <code>enterKeyEditAction</code> as
      * specified at the listGrid level while  focus is in this field.
@@ -754,7 +754,7 @@ public class ListGridField extends DataClass  implements com.smartgwt.client.wid
     public EnterKeyEditAction getEnterKeyEditAction()  {
         return EnumUtil.getEnum(EnterKeyEditAction.values(), getAttribute("enterKeyEditAction"));
     }
-             
+ 
     /**
      * What to do when a user hits escape while editing this field?<br> Overrides the <code>escapeKeyEditAction</code> as
      * specified at the listGrid level while  focus is in this field.
@@ -797,7 +797,7 @@ public class ListGridField extends DataClass  implements com.smartgwt.client.wid
     public Boolean getFilterOnKeypress()  {
         return getAttributeAsBoolean("filterOnKeypress");
     }
-             
+ 
     /**
      * With the {@link com.smartgwt.client.widgets.grid.ListGrid#getShowFilterEditor 'FilterEditor'} showing, the
      * ${isc.DocUtils.linkForRef('object:Operator')} to  use when matching values for this field. <P> Note that you can set all
@@ -1395,7 +1395,7 @@ public class ListGridField extends DataClass  implements com.smartgwt.client.wid
     public String getOptionOperationId()  {
         return getAttributeAsString("optionOperationId");
     }
-             
+ 
     /**
      * For fields with an {@link com.smartgwt.client.widgets.grid.ListGridField#getOptionDataSource optionDataSource}, where
      * {@link com.smartgwt.client.widgets.grid.ListGridField#getAutoFetchDisplayMap autoFetchDisplayMap} is true, this property
@@ -1838,7 +1838,7 @@ public class ListGridField extends DataClass  implements com.smartgwt.client.wid
     public String getTitle()  {
         return getAttributeAsString("title");
     }
-             
+ 
     /**
      * ListGrids picks a renderer for the view and edit mode of a field based on this attribute.
      *

@@ -144,7 +144,7 @@ public class DetailViewer extends Canvas  implements DataBoundComponent {
     public String getCellStyle()  {
         return getAttributeAsString("cellStyle");
     }
-             
+ 
     /**
      * Display format to use for fields specified as type 'date'.  Default is to use the system-wide default normal date
      * format, configured via {@link com.smartgwt.client..Date#setNormalDisplayFormat}.  Specify any valid {@link
@@ -168,7 +168,7 @@ public class DetailViewer extends Canvas  implements DataBoundComponent {
     public DateDisplayFormat getDateFormatter()  {
         return EnumUtil.getEnum(DateDisplayFormat.values(), getAttribute("dateFormatter"));
     }
-             
+ 
     /**
      * Display format to use for fields specified as type 'datetime'. Default is to use the system-wide default datetime format
      * configured via  {@link com.smartgwt.client..Date#setShortDatetimeDisplayFormat}

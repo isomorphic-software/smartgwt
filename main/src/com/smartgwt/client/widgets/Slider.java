@@ -636,7 +636,7 @@ public class Slider extends Canvas  implements com.smartgwt.client.widgets.event
     public int getTrackCapSize()  {
         return getAttributeAsInt("trackCapSize");
     }
-             
+ 
     /**
      * The imageType setting for the slider track.
      * Sets the {@link com.smartgwt.client.widgets.Slider#getTrackImageType trackImageType} property of the slider

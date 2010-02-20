@@ -91,7 +91,7 @@ public class DateTimeItem extends DateItem {
     }
 
     // ********************* Properties / Attributes ***********************
-             
+ 
     /**
      * This property can be used to customize the format in which datetimes are displayed.<br> Should be set to a standard
      * {@link com.smartgwt.client.types.DateDisplayFormat} or a function which will return a formatted date time string. <P> If

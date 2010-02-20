@@ -101,7 +101,7 @@ public class TreeGrid extends ListGrid  implements com.smartgwt.client.widgets.t
         return widget;
     }-*/;
     // ********************* Properties / Attributes ***********************
-             
+ 
     /**
      * When animating folder opening / closing, this property can be set to apply an animated acceleration effect.designates
      * the speed of the animation in pixels shown (or hidden) per second.
@@ -185,7 +185,7 @@ public class TreeGrid extends ListGrid  implements com.smartgwt.client.widgets.t
     public int getAnimateFolderTime()  {
         return getAttributeAsInt("animateFolderTime");
     }
-             
+ 
     /**
      * With {@link com.smartgwt.client.widgets.tree.TreeGrid#getLoadDataOnDemand loadDataOnDemand}:true, TreeGrids fetch data
      * by selecting the child nodes of each parent, which should be exact match, so we default to
@@ -604,7 +604,7 @@ public class TreeGrid extends ListGrid  implements com.smartgwt.client.widgets.t
     public Tree getData()  {
             return Tree.getOrCreateRef(getAttributeAsJavaScriptObject("data"));
     }
-             
+ 
     /**
      * Specifies the type of nodes displayed in the treeGrid.
      *

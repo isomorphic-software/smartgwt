@@ -378,7 +378,7 @@ public class RPCRequest extends DataClass {
     public String getPromptCursor()  {
         return getAttributeAsString("promptCursor");
     }
-             
+ 
     /**
      * Controls the prompt style for this request only.  Defaults to {@link com.smartgwt.client.rpc.RPCManager#promptStyle}.
      *
@@ -518,7 +518,7 @@ public class RPCRequest extends DataClass {
     public int getTimeout()  {
         return getAttributeAsInt("timeout");
     }
-             
+ 
     /**
      * Selects the transport used for this RPCRequest.  If unset, the value of {@link
      * com.smartgwt.client.rpc.RPCManager#defaultTransport} will be used. <p> If you're using queueing, note that all requests

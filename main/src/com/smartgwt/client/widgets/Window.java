@@ -550,7 +550,7 @@ public class Window extends VLayout  implements com.smartgwt.client.widgets.even
     public Boolean getMaximized()  {
         return getAttributeAsBoolean("maximized");
     }
-             
+ 
     /**
      * Default acceleration function for performing an animated minimize / maximize.  If unset, 
      * <code>this.animateAcceleration</code> will be used by default instead

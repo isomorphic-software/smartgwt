@@ -383,7 +383,7 @@ public class DataSource extends BaseClass  implements com.smartgwt.client.data.e
     public Boolean getClientOnly()  {
         return getAttributeAsBoolean("clientOnly");
     }
-             
+ 
     /**
      * Decides under what conditions the {@link com.smartgwt.client.data.ResultSet} cache should be dropped when the {@link
      * com.smartgwt.client.data.ResultSet#getCriteria criteria} changes.
@@ -405,7 +405,7 @@ public class DataSource extends BaseClass  implements com.smartgwt.client.data.e
     public CriteriaPolicy getCriteriaPolicy()  {
         return EnumUtil.getEnum(CriteriaPolicy.values(), getAttribute("criteriaPolicy"));
     }
-             
+ 
     /**
      * Indicates the format to be used for HTTP requests and responses when fulfilling DSRequests (eg, when {@link
      * com.smartgwt.client.data.DataSource#fetchData} is called).
@@ -427,7 +427,7 @@ public class DataSource extends BaseClass  implements com.smartgwt.client.data.e
     public DSDataFormat getDataFormat()  {
         return EnumUtil.getEnum(DSDataFormat.values(), getAttribute("dataFormat"));
     }
-             
+ 
     /**
      * Transport to use for all operations on this DataSource. Defaults to {@link
      * com.smartgwt.client.rpc.RPCManager#defaultTransport}.  This would typically only be set to enable "scriptInclude"
@@ -569,7 +569,7 @@ public class DataSource extends BaseClass  implements com.smartgwt.client.data.e
     public void setEnumOrdinalProperty(String enumOrdinalProperty)  throws IllegalStateException {
         setAttribute("enumOrdinalProperty", enumOrdinalProperty, false);
     }
-             
+ 
     /**
      * Sets the strategy this DataSource uses to translate Java enumerated types (objects of type enum) to and from Javascript.
      *  This property is only applicable if you are using the Smart GWT server
@@ -1008,7 +1008,7 @@ public class DataSource extends BaseClass  implements com.smartgwt.client.data.e
     public String getServerConstructor()  {
         return getAttributeAsString("serverConstructor");
     }
-             
+ 
     /**
      * For a DataSource stored in .xml format on the ISC server, indicates what server-side connector to use to execute
      * requests, that is, what happens if you call dsRequest.execute() in server code.

@@ -251,7 +251,7 @@ public class Tree extends BaseClass  implements com.smartgwt.client.widgets.tree
     public String getIsFolderProperty()  {
         return getAttributeAsString("isFolderProperty");
     }
-             
+ 
     /**
      * Selects the model used to construct the tree representation.  See {@link com.smartgwt.client.types.TreeModelType} for
      * the available options and their implications. <P> If the "parent" modelType is used, you can provide the initial
