@@ -87,7 +87,8 @@ public class Validator extends DataClass {
     /**
      * Used to create a conditional validator based on client-side criteria. The criteria defines when the validator applies.
      * The form current values or ListGrid record is used as reference for the criteria. If the criteria matches the validator
-     * will be processed. Otherwise the validator is skipped and assumed valid.
+     * will be processed. Otherwise the validator is skipped and assumed valid. <p> To use an <code>applyWhen</code> criteria
+     * the form or grid must use a {@link com.smartgwt.client.data.DataSource}.
      * <p><b>Note : </b> This is an advanced setting</p>
      *
      * @param applyWhen applyWhen Default value is null
@@ -99,7 +100,8 @@ public class Validator extends DataClass {
     /**
      * Used to create a conditional validator based on client-side criteria. The criteria defines when the validator applies.
      * The form current values or ListGrid record is used as reference for the criteria. If the criteria matches the validator
-     * will be processed. Otherwise the validator is skipped and assumed valid.
+     * will be processed. Otherwise the validator is skipped and assumed valid. <p> To use an <code>applyWhen</code> criteria
+     * the form or grid must use a {@link com.smartgwt.client.data.DataSource}.
      *
      *
      * @return AdvancedCriteria

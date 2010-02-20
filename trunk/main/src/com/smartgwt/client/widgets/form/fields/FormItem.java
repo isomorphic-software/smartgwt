@@ -103,7 +103,7 @@ public class FormItem extends RefDataClass  implements com.smartgwt.client.widge
     public String getAccessKey()  {
         return getAttributeAsString("accessKey");
     }
-             
+ 
     /**
      * Alignment of this item in its cell. Note that the alignment of content within this item can be separately controlled via
      * {@link com.smartgwt.client.widgets.form.fields.FormItem#getTextAlign textAlign} (typically only applies to items showing
@@ -209,7 +209,7 @@ public class FormItem extends RefDataClass  implements com.smartgwt.client.widge
     public String getDataPath()  {
         return getAttributeAsString("dataPath");
     }
-             
+ 
     /**
      * Display format to use for date type values within this formItem. Default is to use the system-wide default short date
      * format, configured via {@link com.smartgwt.client..Date#setShortDisplayFormat}.  Specify any valid {@link
@@ -628,7 +628,7 @@ public class FormItem extends RefDataClass  implements com.smartgwt.client.widge
     public String getHintStyle()  {
         return getAttributeAsString("hintStyle");
     }
-             
+ 
     /**
      * Text alignment  for text displayed in this item's hover canvas, if shown.
      *
@@ -804,7 +804,7 @@ public class FormItem extends RefDataClass  implements com.smartgwt.client.widge
     public String getIconPrompt()  {
         return getAttributeAsString("iconPrompt");
     }
-             
+ 
     /**
      * How should icons be aligned vertically for this form item.
      * <p><b>Note : </b> This is an advanced setting</p>
@@ -913,7 +913,7 @@ public class FormItem extends RefDataClass  implements com.smartgwt.client.widge
     public int getLeft()  {
         return getAttributeAsInt("left");
     }
-             
+ 
     /**
      * {@link com.smartgwt.client.types.OperatorId} to be used when {@link
      * com.smartgwt.client.widgets.form.DynamicForm#getValuesAsCriteria} is called. <P> <code>item.operator</code> can be used
@@ -1762,7 +1762,7 @@ public class FormItem extends RefDataClass  implements com.smartgwt.client.widge
     public Integer getTabIndex()  {
         return getAttributeAsInt("tabIndex");
     }
-             
+ 
     /**
      * Alignment of the text / content within this form item. Note that {@link
      * com.smartgwt.client.widgets.form.fields.FormItem#getAlign align} may be used to control alignment of the entire form
@@ -1806,7 +1806,7 @@ public class FormItem extends RefDataClass  implements com.smartgwt.client.widge
     public String getTextBoxStyle()  {
         return getAttributeAsString("textBoxStyle");
     }
-             
+ 
     /**
      * Time-format to apply to date type values within this formItem.  If specified, any dates displayed in this item will be
      * formatted as times using the appropriate format.<br> Has no effect if {@link
@@ -1853,7 +1853,7 @@ public class FormItem extends RefDataClass  implements com.smartgwt.client.widge
     public String getTitle()  {
         return getAttributeAsString("title");
     }
-             
+ 
     /**
      * Alignment of this item's title in its cell. <p> If null, dynamically set according to text direction.
      *
@@ -1872,7 +1872,7 @@ public class FormItem extends RefDataClass  implements com.smartgwt.client.widge
     public Alignment getTitleAlign()  {
         return EnumUtil.getEnum(Alignment.values(), getAttribute("titleAlign"));
     }
-             
+ 
     /**
      * On which side of this item should the title be placed.  {@link com.smartgwt.client.types.TitleOrientation} lists valid
      * options. <P> Note that titles on the left or right take up a cell in tabular {@link com.smartgwt.client.docs.FormLayout
@@ -1914,7 +1914,7 @@ public class FormItem extends RefDataClass  implements com.smartgwt.client.widge
     public String getTitleStyle()  {
         return getAttributeAsString("titleStyle");
     }
-             
+ 
     /**
      * Vertical alignment of this item's title in its cell. Only applies when {@link
      * com.smartgwt.client.widgets.form.fields.FormItem#getTitleOrientation titleOrientation} is <code>"left"</code> or

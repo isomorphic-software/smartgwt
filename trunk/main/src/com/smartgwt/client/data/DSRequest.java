@@ -147,7 +147,7 @@ public class DSRequest extends RPCRequest {
     public Integer getEndRow()  {
         return getAttributeAsInt("endRow");
     }
-             
+ 
     /**
      * The format in which the data should be exported.  See {@link com.smartgwt.client.types.ExportFormat} for more 
      * information.
@@ -187,7 +187,7 @@ public class DSRequest extends RPCRequest {
     public String getExportDelimiter()  {
         return getAttributeAsString("exportDelimiter");
     }
-             
+ 
     /**
      * Specifies whether the exported data will be downloaded to the file-system or displayed in a  new window. See {@link
      * com.smartgwt.client.types.ExportDisplay} for more information.
@@ -408,7 +408,7 @@ public class DSRequest extends RPCRequest {
     public void setOperationId(String operationId) {
         setAttribute("operationId", operationId);
     }
-             
+ 
     /**
      * Type of operation being performed: "fetch", "add", "remove", "update" or "custom". <P> This property is generally
      * automatically populated, for example when calling <code>fetchData()</code> on a DataSource or DataBound component the
@@ -466,7 +466,7 @@ public class DSRequest extends RPCRequest {
     public Integer getStartRow()  {
         return getAttributeAsInt("startRow");
     }
-             
+ 
     /**
      * For "fetch" operations, how search criteria should be interpreted for text fields: either "exact" for exact match,
      * "startsWith" for matching at the beginning only, or "substring" for case-insensitive substring match. <p> This setting
@@ -570,7 +570,7 @@ public class DSRequest extends RPCRequest {
     public Boolean getUseFlatHeaderFields()  {
         return getAttributeAsBoolean("useFlatHeaderFields");
     }
-             
+ 
     /**
      * Mode of validation for entered data.
      *

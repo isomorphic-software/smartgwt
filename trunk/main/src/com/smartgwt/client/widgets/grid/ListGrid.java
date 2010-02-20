@@ -366,7 +366,7 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
     public Boolean getAutoFetchDisplayMap()  {
         return getAttributeAsBoolean("autoFetchDisplayMap");
     }
-             
+ 
     /**
      * When this grid is initially filtered via {@link com.smartgwt.client.widgets.grid.ListGrid#getAutoFetchData
      * autoFetchData}, or filtered by the user  via the {@link com.smartgwt.client.widgets.grid.ListGrid#getShowFilterEditor
@@ -616,7 +616,7 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
     public String getBodyBackgroundColor()  {
         return getAttributeAsString("bodyBackgroundColor");
     }
-             
+ 
     /**
      * Overflow setting for the "body", that is, the area of the grid where data values are rendered. <P> By setting both the
      * grid itself and the body to overflow:visible, it is possible to "auto-fit" to the rendered height or width of the rows. 
@@ -1417,7 +1417,7 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
     public String getCheckboxFieldTrueImage()  {
         return getAttributeAsString("checkboxFieldTrueImage");
     }
-             
+ 
     /**
      * For {@link com.smartgwt.client.types.ExpansionMode} that show another grid or tree, what the  child's expansionMode
      * should be. <P>Default value <code>null</code> means no further expansion.
@@ -1575,7 +1575,7 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
     public String getConfirmDiscardEditsMessage()  {
         return getAttributeAsString("confirmDiscardEditsMessage");
     }
-             
+ 
     /**
      * Display format to use for fields specified as type 'date'.  Default is to use the system-wide default short date format,
      * configured via {@link com.smartgwt.client..Date#setShortDisplayFormat}.  Specify any valid {@link
@@ -1610,7 +1610,7 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
     public DateDisplayFormat getDateFormatter()  {
         return EnumUtil.getEnum(DateDisplayFormat.values(), getAttribute("dateFormatter"));
     }
-             
+ 
     /**
      * Display format to use for fields specified as type 'datetime'.  Default is to use the system-wide default date time
      * format, configured via {@link com.smartgwt.client..Date#setShortDatetimeDisplayFormat}.  Specify any valid {@link
@@ -1690,7 +1690,7 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
     public String getDiscardEditsSaveButtonTitle()  {
         return getAttributeAsString("discardEditsSaveButtonTitle");
     }
-             
+ 
     /**
      * When records are being dragged from within a ListGrid, what sort of drag-tracker should be displayed?<br> Note that if
      * multiple records are being dragged the displayed tracker will be based on the first selected record.
@@ -1801,7 +1801,7 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
     public Boolean getEditByCell()  {
         return getAttributeAsBoolean("editByCell");
     }
-             
+ 
     /**
      * Event that will trigger inline editing, see {@link com.smartgwt.client.types.ListGridEditEvent} for options. <P> Note
      * this setting has no effect unless {@link com.smartgwt.client.widgets.grid.ListGrid#getCanEdit canEdit} has been set to
@@ -2031,7 +2031,7 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
     public Boolean getEnforceVClipping()  {
         return getAttributeAsBoolean("enforceVClipping");
     }
-             
+ 
     /**
      * What to do when a user hits enter while editing a cell: <ul> <li>"nextCell": start editing the next editable cell in
      * this record (or the first     editable cell in the next record if focus is in the last editable cell in the row)
@@ -2058,7 +2058,7 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
     public EnterKeyEditAction getEnterKeyEditAction()  {
         return EnumUtil.getEnum(EnterKeyEditAction.values(), getAttribute("enterKeyEditAction"));
     }
-             
+ 
     /**
      * What to do when a user hits escape while editing a cell:<ul> <li>"cancel": close the editor and discard the current set
      * of edit values <li>"done": just close the editor (the edit is complete, but the edited values are retained). </ul> Note
@@ -2205,7 +2205,7 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
     public String getExpansionFieldTrueImage()  {
         return getAttributeAsString("expansionFieldTrueImage");
     }
-             
+ 
     /**
      * The {@link com.smartgwt.client.types.ExpansionMode} for records in this grid. Default <code>null</code> value means no
      * expansion.
@@ -3292,7 +3292,7 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
     public String getLinkTextProperty()  {
         return getAttributeAsString("linkTextProperty");
     }
-             
+ 
     /**
      * If the user is editing the last record in this listGrid, and attempts to navigate  beyond the last row either by tabbing
      * off the last editable field, or using the down arrow key, this property determines what action to take:<ul> <li>"next":
@@ -3895,7 +3895,7 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
     public Boolean getResizeFieldsInRealTime()  {
         return getAttributeAsBoolean("resizeFieldsInRealTime");
     }
-             
+ 
     /**
      * If the user is editing a record in this listGrid, and attempts to navigate to a field beyond the end of the row, via tab
      * (or shift-tab off the first editable field), this  property determines what action to take:<ul> <li>"next": start
@@ -4037,7 +4037,7 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
     public int getScrollRedrawDelay()  {
         return getAttributeAsInt("scrollRedrawDelay");
     }
-             
+ 
     /**
      * How selection of rows should be presented to the user. <P> For <code>selectionAppearance:"checkbox"</code> with multiple
      * selection allowed, you would typically use {@link com.smartgwt.client.widgets.grid.ListGrid#getSelectionType
@@ -4075,7 +4075,7 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
     public SelectionAppearance getSelectionAppearance()  {
         return EnumUtil.getEnum(SelectionAppearance.values(), getAttribute("selectionAppearance"));
     }
-             
+ 
     /**
      * Defines a listGrid's clickable-selection behavior.   <P> The default selection appearance is governed by {@link
      * com.smartgwt.client.widgets.grid.ListGrid#getSelectionAppearance selectionAppearance}: if selectionAppearance is
@@ -4520,7 +4520,7 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
     public Boolean getShowSelectedStyle()  {
         return getAttributeAsBoolean("showSelectedStyle");
     }
-             
+ 
     /**
      * Indicates whether a sorting arrow should appear for the listGrid, and its          location. See SortArrow type for
      * details.<br>          Clicking the sort arrow reverses the direction of sorting for the current sort          column (if

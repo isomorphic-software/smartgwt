@@ -844,7 +844,7 @@ public class DataSourceField extends DataClass {
     public Boolean getShowFileInline()  {
         return getAttributeAsBoolean("showFileInline");
     }
-             
+ 
     /**
      * If set, causes the field to be securely hashed before saving on an "add" or "update"  operation.
      *
@@ -884,7 +884,7 @@ public class DataSourceField extends DataClass {
     public String getTitle()  {
         return getAttributeAsString("title");
     }
-             
+ 
     /**
      * Type of this field.  Required for all DataSource fields. <P> Field type may imply automatic validators (for example, an
      * integer field cannot accept the value "foo").  Field type also affects the default behaviors of DataBound components,

@@ -135,7 +135,7 @@ public class Splitbar extends StretchImg {
     public Boolean getCanDrag()  {
         return getAttributeAsBoolean("canDrag");
     }
-             
+ 
     /**
      * Splitbars' cursors are set at init time based on whether they are to be used for vertical or horizontal resize.  To
      * customize the cursor for this class, modify  {@link com.smartgwt.client.widgets.Splitbar#getVResizeCursor vResizeCursor}
@@ -179,7 +179,7 @@ public class Splitbar extends StretchImg {
     public String getGripImgSuffix()  {
         return getAttributeAsString("gripImgSuffix");
     }
-             
+ 
     /**
      * Cursor to display if this Splitbar is to be used for horizontal resize of widgets.
      *
@@ -361,7 +361,7 @@ public class Splitbar extends StretchImg {
         errorIfNotCreated("vertical");
         return getAttributeAsBoolean("vertical");
     }
-             
+ 
     /**
      * Cursor to display if this Splitbar is to be used for vertical resize of widgets.
      *

@@ -130,7 +130,7 @@ public class Calendar extends Canvas  implements DataBoundComponent, com.smartgw
     public String getAddEventButtonHoverText()  {
         return getAttributeAsString("addEventButtonHoverText");
     }
-             
+ 
     /**
      * If {@link com.smartgwt.client.widgets.calendar.Calendar#getAutoFetchData autoFetchData} is <code>true</code>, this
      * attribute allows the developer to specify a textMatchStyle for the initial {@link
@@ -337,7 +337,7 @@ public class Calendar extends Canvas  implements DataBoundComponent, com.smartgw
     public java.util.Date getChosenDate()  {
         return getAttributeAsDate("chosenDate");
     }
-             
+ 
     /**
      * The name of the view that should be visible initially by default.
      * Sets the currently visible view
@@ -673,7 +673,6 @@ public class Calendar extends Canvas  implements DataBoundComponent, com.smartgw
     public String getEventTypeField()  {
         return getAttributeAsString("eventTypeField");
     }
- 
 
     /**
      * The base name for the CSS class applied to event windows within calendars. This style will have "Header", "HeaderLabel",

@@ -115,7 +115,7 @@ public class DateItem extends FormItem {
     public int getCenturyThreshold()  {
         return getAttributeAsInt("centuryThreshold");
     }
-             
+ 
     /**
      * If <code>dateFormatter</code> is set at init time, it will be used instead of {@link
      * com.smartgwt.client.widgets.form.fields.DateItem#getDisplayFormat displayFormat} to govern how dates are displayed in
@@ -127,7 +127,7 @@ public class DateItem extends FormItem {
     public void setDateFormatter(DateDisplayFormat dateFormatter) {
         setAttribute("dateFormatter", dateFormatter.getValue());
     }
-             
+ 
     /**
      * If {@link com.smartgwt.client.widgets.form.fields.DateItem#getUseTextField useTextField} is <code>true</code> this
      * property can be used to  customize the format in which dates are displayed.<br> Should be set to a standard {@link
@@ -316,7 +316,7 @@ public class DateItem extends FormItem {
     public String getPickerIconPrompt()  {
         return getAttributeAsString("pickerIconPrompt");
     }
-             
+ 
     /**
      * If showing date selectors rather than the date text field (so when  <code>this.useTextField</code> is false), this
      * property allows customization of the  order of the day, month and year selector fields.  If unset these fields will
@@ -376,7 +376,7 @@ public class DateItem extends FormItem {
     public java.util.Date getStartDate()  {
         return getAttributeAsDate("startDate");
     }
-             
+ 
     /**
      * If {@link com.smartgwt.client.widgets.form.fields.DateItem#getUseTextField useTextField} is <code>true</code> this
      * property governs the alignment of text within the text field.

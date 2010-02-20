@@ -382,7 +382,7 @@ public class FilterBuilder extends Layout  implements com.smartgwt.client.widget
     public String getSubClauseButtonTitle()  {
         return getAttributeAsString("subClauseButtonTitle");
     }
-             
+ 
     /**
      * Default logical operator for all top-level clauses in the FilterBuilder. <P> May be able to be changed by the user via
      * the UI, according to {@link com.smartgwt.client..TopOperatorAppearance}.

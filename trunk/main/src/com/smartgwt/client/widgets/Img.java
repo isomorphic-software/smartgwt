@@ -121,7 +121,7 @@ public class Img extends StatefulCanvas {
     public Integer getImageHeight()  {
         return getAttributeAsInt("imageHeight");
     }
-             
+ 
     /**
      * Indicates whether the image should be tiled/cropped, stretched, or centered when the          size of this widget does
      * not match the size of the image. See ImageStyle for          details

@@ -271,7 +271,7 @@ public class HTMLFlow extends Canvas  implements com.smartgwt.client.widgets.eve
     public Boolean getEvalScriptBlocks()  {
         return getAttributeAsBoolean("evalScriptBlocks");
     }
-             
+ 
     /**
      * Selects the HTTP method that will be used when fetching content.  Valid values are "POST" and "GET".
      *
