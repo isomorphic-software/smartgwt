@@ -87,6 +87,25 @@ public class SpacerItem extends FormItem {
     // ********************* Properties / Attributes ***********************
 
     /**
+     * default height for the spacer
+     *
+     * @param height height Default value is 20
+     */
+    public void setHeight(int height) {
+        setAttribute("height", height);
+    }
+
+    /**
+     * default height for the spacer
+     *
+     *
+     * @return int
+     */
+    public int getHeight()  {
+        return getAttributeAsInt("height");
+    }
+
+    /**
      * we never show a separate title cell for spacers
      *
      * @param showTitle showTitle Default value is false
@@ -122,25 +141,6 @@ public class SpacerItem extends FormItem {
      */
     public int getWidth()  {
         return getAttributeAsInt("width");
-    }
-
-    /**
-     * default height for the spacer
-     *
-     * @param height height Default value is 20
-     */
-    public void setHeight(int height) {
-        setAttribute("height", height);
-    }
-
-    /**
-     * default height for the spacer
-     *
-     *
-     * @return int
-     */
-    public int getHeight()  {
-        return getAttributeAsInt("height");
     }
 
     // ********************* Methods ***********************

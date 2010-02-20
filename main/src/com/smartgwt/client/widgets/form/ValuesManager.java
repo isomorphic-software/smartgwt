@@ -102,25 +102,6 @@ public class ValuesManager extends BaseClass {
     // ********************* Properties / Attributes ***********************
 
     /**
-     * The error message for a failed validator that does not specify its own errorMessage.
-     *
-     * @param unknownErrorMessage unknownErrorMessage Default value is "Invalid value"
-     */
-    public void setUnknownErrorMessage(String unknownErrorMessage) {
-        setAttribute("unknownErrorMessage", unknownErrorMessage, true);
-    }
-
-    /**
-     * The error message for a failed validator that does not specify its own errorMessage.
-     *
-     *
-     * @return String
-     */
-    public String getUnknownErrorMessage()  {
-        return getAttributeAsString("unknownErrorMessage");
-    }
-
-    /**
      * If set to true, client-side validators will not run on the form when validate() is called.  Server-side validators (if
      * any) will still run on attempted save.
      * <p><b>Note : </b> This is an advanced setting</p>
@@ -178,26 +159,54 @@ public class ValuesManager extends BaseClass {
         return EnumUtil.getEnum(DSOperationType.values(), getAttribute("saveOperationType"));
     }
 
+    /**
+     * The error message for a failed validator that does not specify its own errorMessage.
+     *
+     * @param unknownErrorMessage unknownErrorMessage Default value is "Invalid value"
+     */
+    public void setUnknownErrorMessage(String unknownErrorMessage) {
+        setAttribute("unknownErrorMessage", unknownErrorMessage, true);
+    }
+
+    /**
+     * The error message for a failed validator that does not specify its own errorMessage.
+     *
+     *
+     * @return String
+     */
+    public String getUnknownErrorMessage()  {
+        return getAttributeAsString("unknownErrorMessage");
+    }
+
     // ********************* Methods ***********************
             
     /**
-     * Validate the current set of values for this values manager against validators defined in the member forms. For databound
-     * valuesManagers, also perform validation against any validators defined on datasource fields. <P> Note that if validation
-     * errors occur for a value that is not shown in any member forms, those errors will cause a warning and {@link
-     * com.smartgwt.client.widgets.form.ValuesManager#handleHiddenValidationErrors} will be called.  This can occur if:<br> - A
-     * datasource field has no corresponding item in any member form<br> - The item in question is hidden<br> - The member form
-     * containing the item is hidden.
-     *
-     * @return true if all validation passed
+     * &#010 This method exists for clean integration with existing server frameworks that have a 'cancel'&#010 feature which
+     * typically clears session state associated with the form.  When this method is&#010 called, an RPC is sent to the server
+     * with a parameter named&#010 {@link com.smartgwt.client.widgets.form.DynamicForm#getCancelParamName cancelParamName} with
+     * the value&#010 {@link com.smartgwt.client.widgets.form.DynamicForm#getCancelParamValue cancelParamValue}.<p>&#010&#010
+     * Note that no other form data is sent.  By default the current top-level page is replaced with the&#010 reply.  If you
+     * wish to ignore the server reply instead, call this method like this:&#010 <pre>&#010
+     * dynamicFormInstance.cancel({ignoreTimeout: true, target: null});&#010 </pre>&#010&#010
      */
-    public native Boolean validate() /*-{
+    public native void cancel() /*-{
         var self = this.@com.smartgwt.client.core.BaseClass::getOrCreateJsObj()();
-        var retVal =self.validate();
-        if(retVal == null || retVal === undefined) {
-            return null;
-        } else {
-            return @com.smartgwt.client.util.JSOHelper::toBoolean(Z)(retVal);
-        }
+        self.cancel();
+    }-*/;
+
+    /**
+     * &#010 This method exists for clean integration with existing server frameworks that have a 'cancel'&#010 feature which
+     * typically clears session state associated with the form.  When this method is&#010 called, an RPC is sent to the server
+     * with a parameter named&#010 {@link com.smartgwt.client.widgets.form.DynamicForm#getCancelParamName cancelParamName} with
+     * the value&#010 {@link com.smartgwt.client.widgets.form.DynamicForm#getCancelParamValue cancelParamValue}.<p>&#010&#010
+     * Note that no other form data is sent.  By default the current top-level page is replaced with the&#010 reply.  If you
+     * wish to ignore the server reply instead, call this method like this:&#010 <pre>&#010
+     * dynamicFormInstance.cancel({ignoreTimeout: true, target: null});&#010 </pre>&#010&#010
+     * @param requestProperties additional properties to set on the RPCRequest                                          that will be issued
+     */
+    public native void cancel(DSRequest requestProperties) /*-{
+        var self = this.@com.smartgwt.client.core.BaseClass::getOrCreateJsObj()();
+        self.cancel(requestProperties.@com.smartgwt.client.core.DataClass::getJsObj()());
     }-*/;
             
     /**
@@ -218,6 +227,23 @@ public class ValuesManager extends BaseClass {
     public native void clearFieldErrors(String fieldName, boolean show) /*-{
         var self = this.@com.smartgwt.client.core.BaseClass::getOrCreateJsObj()();
         self.clearFieldErrors(fieldName, show);
+    }-*/;
+            
+    /**
+     * Clear the value for some field.
+     * @param fieldName Which field to set the value for
+     */
+    public native void clearValue(String fieldName) /*-{
+        var self = this.@com.smartgwt.client.core.BaseClass::getOrCreateJsObj()();
+        self.clearValue(fieldName);
+    }-*/;
+            
+    /**
+     * Clear out all the values managed by this values manager.
+     */
+    public native void clearValues() /*-{
+        var self = this.@com.smartgwt.client.core.BaseClass::getOrCreateJsObj()();
+        self.clearValues();
     }-*/;
             
     /**
@@ -252,6 +278,30 @@ public class ValuesManager extends BaseClass {
     }-*/;
             
     /**
+     * Returns true if {@link com.smartgwt.client.widgets.form.ValuesManager#getSaveOperationType saveOperationType} is
+     * currently "add".  See {@link com.smartgwt.client.widgets.form.ValuesManager#getSaveOperationType saveOperationType}.
+     *
+     * @return whether this form will use an "add" operation when saving
+     */
+    public native Boolean isNewRecord() /*-{
+        var self = this.@com.smartgwt.client.core.BaseClass::getOrCreateJsObj()();
+        var retVal =self.isNewRecord();
+        if(retVal == null || retVal === undefined) {
+            return null;
+        } else {
+            return @com.smartgwt.client.util.JSOHelper::toBoolean(Z)(retVal);
+        }
+    }-*/;
+            
+    /**
+     * Same as {@link com.smartgwt.client.widgets.form.DynamicForm#reset}.
+     */
+    public native void resetValues() /*-{
+        var self = this.@com.smartgwt.client.core.BaseClass::getOrCreateJsObj()();
+        self.resetValues();
+    }-*/;
+            
+    /**
      * Method to explicitly show the latest set of validation errors present on this  ValuesManager.<br> Will redraw all member
      * forms to display (or clear) currently visible errors, and fire {@link
      * com.smartgwt.client.widgets.form.ValuesManager#handleHiddenValidationErrors} to allow custom handling of hidden errors.
@@ -273,19 +323,23 @@ public class ValuesManager extends BaseClass {
     }-*/;
             
     /**
-     * Clear out all the values managed by this values manager.
+     * Validate the current set of values for this values manager against validators defined in the member forms. For databound
+     * valuesManagers, also perform validation against any validators defined on datasource fields. <P> Note that if validation
+     * errors occur for a value that is not shown in any member forms, those errors will cause a warning and {@link
+     * com.smartgwt.client.widgets.form.ValuesManager#handleHiddenValidationErrors} will be called.  This can occur if:<br> - A
+     * datasource field has no corresponding item in any member form<br> - The item in question is hidden<br> - The member form
+     * containing the item is hidden.
+     *
+     * @return true if all validation passed
      */
-    public native void clearValues() /*-{
+    public native Boolean validate() /*-{
         var self = this.@com.smartgwt.client.core.BaseClass::getOrCreateJsObj()();
-        self.clearValues();
-    }-*/;
-            
-    /**
-     * Same as {@link com.smartgwt.client.widgets.form.DynamicForm#reset}.
-     */
-    public native void resetValues() /*-{
-        var self = this.@com.smartgwt.client.core.BaseClass::getOrCreateJsObj()();
-        self.resetValues();
+        var retVal =self.validate();
+        if(retVal == null || retVal === undefined) {
+            return null;
+        } else {
+            return @com.smartgwt.client.util.JSOHelper::toBoolean(Z)(retVal);
+        }
     }-*/;
             
     /**
@@ -302,60 +356,6 @@ public class ValuesManager extends BaseClass {
         } else {
             return @com.smartgwt.client.util.JSOHelper::toBoolean(Z)(retVal);
         }
-    }-*/;
-            
-    /**
-     * Clear the value for some field.
-     * @param fieldName Which field to set the value for
-     */
-    public native void clearValue(String fieldName) /*-{
-        var self = this.@com.smartgwt.client.core.BaseClass::getOrCreateJsObj()();
-        self.clearValue(fieldName);
-    }-*/;
-            
-    /**
-     * Returns true if {@link com.smartgwt.client.widgets.form.ValuesManager#getSaveOperationType saveOperationType} is
-     * currently "add".  See {@link com.smartgwt.client.widgets.form.ValuesManager#getSaveOperationType saveOperationType}.
-     *
-     * @return whether this form will use an "add" operation when saving
-     */
-    public native Boolean isNewRecord() /*-{
-        var self = this.@com.smartgwt.client.core.BaseClass::getOrCreateJsObj()();
-        var retVal =self.isNewRecord();
-        if(retVal == null || retVal === undefined) {
-            return null;
-        } else {
-            return @com.smartgwt.client.util.JSOHelper::toBoolean(Z)(retVal);
-        }
-    }-*/;
-            
-    /**
-     * &#010 This method exists for clean integration with existing server frameworks that have a 'cancel'&#010 feature which
-     * typically clears session state associated with the form.  When this method is&#010 called, an RPC is sent to the server
-     * with a parameter named&#010 {@link com.smartgwt.client.widgets.form.DynamicForm#getCancelParamName cancelParamName} with
-     * the value&#010 {@link com.smartgwt.client.widgets.form.DynamicForm#getCancelParamValue cancelParamValue}.<p>&#010&#010
-     * Note that no other form data is sent.  By default the current top-level page is replaced with the&#010 reply.  If you
-     * wish to ignore the server reply instead, call this method like this:&#010 <pre>&#010
-     * dynamicFormInstance.cancel({ignoreTimeout: true, target: null});&#010 </pre>&#010&#010
-     */
-    public native void cancel() /*-{
-        var self = this.@com.smartgwt.client.core.BaseClass::getOrCreateJsObj()();
-        self.cancel();
-    }-*/;
-
-    /**
-     * &#010 This method exists for clean integration with existing server frameworks that have a 'cancel'&#010 feature which
-     * typically clears session state associated with the form.  When this method is&#010 called, an RPC is sent to the server
-     * with a parameter named&#010 {@link com.smartgwt.client.widgets.form.DynamicForm#getCancelParamName cancelParamName} with
-     * the value&#010 {@link com.smartgwt.client.widgets.form.DynamicForm#getCancelParamValue cancelParamValue}.<p>&#010&#010
-     * Note that no other form data is sent.  By default the current top-level page is replaced with the&#010 reply.  If you
-     * wish to ignore the server reply instead, call this method like this:&#010 <pre>&#010
-     * dynamicFormInstance.cancel({ignoreTimeout: true, target: null});&#010 </pre>&#010&#010
-     * @param requestProperties additional properties to set on the RPCRequest                                          that will be issued
-     */
-    public native void cancel(DSRequest requestProperties) /*-{
-        var self = this.@com.smartgwt.client.core.BaseClass::getOrCreateJsObj()();
-        self.cancel(requestProperties.@com.smartgwt.client.core.DataClass::getJsObj()());
     }-*/;
 
     // ********************* Static Methods ***********************

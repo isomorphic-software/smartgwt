@@ -89,20 +89,29 @@ public class ImgSplitbar extends Img {
     }-*/;
     // ********************* Properties / Attributes ***********************
 
+    /**
+     * If this property is true, a click on the Splitbar will collapse its  {@link
+     * com.smartgwt.client.widgets.Splitbar#getTarget 'target'}, hiding it and shifting the Splitbar and other members of the
+     * layout across to fill the newly available space. If the target is already hidden a click will expand it again (showing
+     * it at it's normal size).
+     *
+     * @param canCollapse canCollapse Default value is true
+     */
+    public void setCanCollapse(Boolean canCollapse) {
+        setAttribute("canCollapse", canCollapse, true);
+    }
 
     /**
-     * Is this split bar vertically orientated?<br> When a <code>Splitbar</code> is created by a layout to be the resizeBar for
-     * some member of the layout, the <code>vertical</code> property will be set to <code>true</code> if the layout is
-     * horizontal, meaning this resizeBar will be taller than it is wide,  and will allow horizontal resizing of the member.
+     * If this property is true, a click on the Splitbar will collapse its  {@link
+     * com.smartgwt.client.widgets.Splitbar#getTarget 'target'}, hiding it and shifting the Splitbar and other members of the
+     * layout across to fill the newly available space. If the target is already hidden a click will expand it again (showing
+     * it at it's normal size).
      *
-     * <b>Note :</b> This method should be called only after the widget has been rendered.
      *
      * @return Boolean
-     * @throws IllegalStateException if widget has not yet been rendered.
      */
-    public Boolean getVertical() throws IllegalStateException {
-        errorIfNotCreated("vertical");
-        return getAttributeAsBoolean("vertical");
+    public Boolean getCanCollapse()  {
+        return getAttributeAsBoolean("canCollapse");
     }
 
     /**
@@ -127,28 +136,25 @@ public class ImgSplitbar extends Img {
     }
 
     /**
-     * If this property is true, a click on the Splitbar will collapse its  {@link
-     * com.smartgwt.client.widgets.Splitbar#getTarget 'target'}, hiding it and shifting the Splitbar and other members of the
-     * layout across to fill the newly available space. If the target is already hidden a click will expand it again (showing
-     * it at it's normal size).
+     * Default src to display when {@link com.smartgwt.client.widgets.ImgSplitbar#getVertical vertical} is false,  and {@link
+     * com.smartgwt.client.widgets.ImgSplitbar#getSrc src} is unset.
      *
-     * @param canCollapse canCollapse Default value is true
+     * @param hSrc hSrc Default value is [SKIN]hgrip.png
+     * @throws IllegalStateException this property cannot be changed after the component has been created
      */
-    public void setCanCollapse(Boolean canCollapse) {
-        setAttribute("canCollapse", canCollapse, true);
+    public void setHSrc(String hSrc)  throws IllegalStateException {
+        setAttribute("hSrc", hSrc, false);
     }
 
     /**
-     * If this property is true, a click on the Splitbar will collapse its  {@link
-     * com.smartgwt.client.widgets.Splitbar#getTarget 'target'}, hiding it and shifting the Splitbar and other members of the
-     * layout across to fill the newly available space. If the target is already hidden a click will expand it again (showing
-     * it at it's normal size).
+     * Default src to display when {@link com.smartgwt.client.widgets.ImgSplitbar#getVertical vertical} is false,  and {@link
+     * com.smartgwt.client.widgets.ImgSplitbar#getSrc src} is unset.
      *
      *
-     * @return Boolean
+     * @return String
      */
-    public Boolean getCanCollapse()  {
-        return getAttributeAsBoolean("canCollapse");
+    public String getHSrc()  {
+        return getAttributeAsString("hSrc");
     }
 
     /**
@@ -199,26 +205,20 @@ public class ImgSplitbar extends Img {
         return getAttributeAsString("src");
     }
 
-    /**
-     * Default src to display when {@link com.smartgwt.client.widgets.ImgSplitbar#getVertical vertical} is false,  and {@link
-     * com.smartgwt.client.widgets.ImgSplitbar#getSrc src} is unset.
-     *
-     * @param hSrc hSrc Default value is [SKIN]hgrip.png
-     * @throws IllegalStateException this property cannot be changed after the component has been created
-     */
-    public void setHSrc(String hSrc)  throws IllegalStateException {
-        setAttribute("hSrc", hSrc, false);
-    }
 
     /**
-     * Default src to display when {@link com.smartgwt.client.widgets.ImgSplitbar#getVertical vertical} is false,  and {@link
-     * com.smartgwt.client.widgets.ImgSplitbar#getSrc src} is unset.
+     * Is this split bar vertically orientated?<br> When a <code>Splitbar</code> is created by a layout to be the resizeBar for
+     * some member of the layout, the <code>vertical</code> property will be set to <code>true</code> if the layout is
+     * horizontal, meaning this resizeBar will be taller than it is wide,  and will allow horizontal resizing of the member.
      *
+     * <b>Note :</b> This method should be called only after the widget has been rendered.
      *
-     * @return String
+     * @return Boolean
+     * @throws IllegalStateException if widget has not yet been rendered.
      */
-    public String getHSrc()  {
-        return getAttributeAsString("hSrc");
+    public Boolean getVertical() throws IllegalStateException {
+        errorIfNotCreated("vertical");
+        return getAttributeAsBoolean("vertical");
     }
 
     /**

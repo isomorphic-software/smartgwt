@@ -97,6 +97,25 @@ public class SectionItem extends CanvasItem {
     // ********************* Properties / Attributes ***********************
 
     /**
+     * Whether this section header can be collapsed.  If set false, suppresses open/close state icon
+     *
+     * @param canCollapse canCollapse Default value is true
+     */
+    public void setCanCollapse(Boolean canCollapse) {
+        setAttribute("canCollapse", canCollapse);
+    }
+
+    /**
+     * Whether this section header can be collapsed.  If set false, suppresses open/close state icon
+     *
+     *
+     * @return Boolean
+     */
+    public Boolean getCanCollapse()  {
+        return getAttributeAsBoolean("canCollapse");
+    }
+
+    /**
      * Whether this form section should be initially collapsed. Can be set programatically via {@link
      * com.smartgwt.client.widgets.form.fields.SectionItem#expandSection} and {@link
      * com.smartgwt.client.widgets.form.fields.SectionItem#collapseSection}.
@@ -143,26 +162,23 @@ public class SectionItem extends CanvasItem {
         return getAttributeAsString("sectionHeaderClass");
     }
 
-    /**
-     * Whether this section header can be collapsed.  If set false, suppresses open/close state icon
-     *
-     * @param canCollapse canCollapse Default value is true
-     */
-    public void setCanCollapse(Boolean canCollapse) {
-        setAttribute("canCollapse", canCollapse);
-    }
-
-    /**
-     * Whether this section header can be collapsed.  If set false, suppresses open/close state icon
-     *
-     *
-     * @return Boolean
-     */
-    public Boolean getCanCollapse()  {
-        return getAttributeAsBoolean("canCollapse");
-    }
-
     // ********************* Methods ***********************
+            
+    /**
+     * Collapse a sectionItem, and hide all the items within the section (not including the header).
+     */
+    public native void collapseSection() /*-{
+        var self = this.@com.smartgwt.client.core.DataClass::getJsObj()();
+        self.collapseSection();
+    }-*/;
+            
+    /**
+     * Expands a section, showing all the items contained within the section.
+     */
+    public native void expandSection() /*-{
+        var self = this.@com.smartgwt.client.core.DataClass::getJsObj()();
+        self.expandSection();
+    }-*/;
             
     /**
      * Returns a boolean indicating whether this SectionItem is expanded.
@@ -177,22 +193,6 @@ public class SectionItem extends CanvasItem {
         } else {
             return @com.smartgwt.client.util.JSOHelper::toBoolean(Z)(retVal);
         }
-    }-*/;
-            
-    /**
-     * Expands a section, showing all the items contained within the section.
-     */
-    public native void expandSection() /*-{
-        var self = this.@com.smartgwt.client.core.DataClass::getJsObj()();
-        self.expandSection();
-    }-*/;
-            
-    /**
-     * Collapse a sectionItem, and hide all the items within the section (not including the header).
-     */
-    public native void collapseSection() /*-{
-        var self = this.@com.smartgwt.client.core.DataClass::getJsObj()();
-        self.collapseSection();
     }-*/;
 
     // ********************* Static Methods ***********************

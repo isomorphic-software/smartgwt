@@ -106,198 +106,6 @@ public class DataSourceField extends DataClass {
     // ********************* Properties / Attributes ***********************
 
     /**
-     * Name for this field.   <p> The field name is also the property in each DataSource record which holds the value for this
-     * field. <P> Must be unique across all fields within the DataSource.
-     *
-     * @param name name Default value is null
-     */
-    public void setName(String name) {
-        setAttribute("name", name);
-    }
-
-    /**
-     * Name for this field.   <p> The field name is also the property in each DataSource record which holds the value for this
-     * field. <P> Must be unique across all fields within the DataSource.
-     *
-     *
-     * @return String
-     */
-    public String getName()  {
-        return getAttributeAsString("name");
-    }
-             
-    /**
-     * Type of this field.  Required for all DataSource fields. <P> Field type may imply automatic validators (for example, an
-     * integer field cannot accept the value "foo").  Field type also affects the default behaviors of DataBound components,
-     * for example, if a field is declared as type "date", components that edit that field will automatically choose a
-     * date-editing interface with pop-up date picker.
-     *
-     * @param type type Default value is null
-     */
-    public void setType(FieldType type) {
-        setAttribute("type", type.getValue());
-    }
-
-    /**
-     * Type of this field.  Required for all DataSource fields. <P> Field type may imply automatic validators (for example, an
-     * integer field cannot accept the value "foo").  Field type also affects the default behaviors of DataBound components,
-     * for example, if a field is declared as type "date", components that edit that field will automatically choose a
-     * date-editing interface with pop-up date picker.
-     *
-     *
-     * @return FieldType
-     */
-    public FieldType getType()  {
-        return EnumUtil.getEnum(FieldType.values(), getAttribute("type"));
-    }
-
-    /**
-     * Indicates this field must be non-null in order for a record to pass validation. <P> Note that <code>required</code>
-     * should not be set for a server-generated field, such as a sequence, or validation will fail on the client.
-     *
-     * @param required required Default value is null
-     */
-    public void setRequired(Boolean required) {
-        setAttribute("required", required);
-    }
-
-    /**
-     * Indicates this field must be non-null in order for a record to pass validation. <P> Note that <code>required</code>
-     * should not be set for a server-generated field, such as a sequence, or validation will fail on the client.
-     *
-     *
-     * @return Boolean
-     */
-    public Boolean getRequired()  {
-        return getAttributeAsBoolean("required");
-    }
-
-    /**
-     * Maximum number of characters allowed.  Applicable only to fields of text type.
-     *
-     * @param length length Default value is null
-     */
-    public void setLength(Integer length) {
-        setAttribute("length", length);
-    }
-
-    /**
-     * Maximum number of characters allowed.  Applicable only to fields of text type.
-     *
-     *
-     * @return Integer
-     */
-    public Integer getLength()  {
-        return getAttributeAsInt("length");
-    }
-
-    /**
-     * XPath expression used to retrieve the field's value.&#010 <P>&#010 This XPath expression will be evaluated in the scope
-     * of the record objects selected by &#010 the {@link com.smartgwt.client.data.DataSource#getRecordXPath recordXPath}.  For
-     * XML data &#010 ({@link com.smartgwt.client.data.DataSource#getDataFormat 'dataFormat:"xml"'}) this means a call to&#010
-     * {@link com.smartgwt.client.data.XMLTools#selectString} passing the selected XML element.  For JSON data&#010 ({@link
-     * com.smartgwt.client.data.DataSource#getDataFormat 'dataFormat:"json"'}), this means a call to &#010 {@link
-     * com.smartgwt.client.data.XMLTools#selectObjects} passing the selected JSON object.&#010 <P>&#010 In the absence of a
-     * <code>valueXPath</code>, for JSON data the value for the field will&#010 be the value of the same-named property in the
-     * record object selected by&#010 {@link com.smartgwt.client.data.DataSource#getRecordXPath 'recordXPath'}.  &#010 <P>&#010
-     * For XML data, the value will be the attribute or subelement named after the field name.&#010 For example, for a field
-     * "author" on a record element &lt;book&gt;, the following structures&#010 require no valueXPath:&#010 <pre>&#010   
-     * &lt;book author="Mark Jones"/&gt;&#010&#010    &lt;book&gt;&#010        &lt;author&gt;Mark Jones&lt;/author&gt;&#010   
-     * &lt;/book&gt;&#010 </pre>&#010 <P>&#010 If <code>valueXPath</code> is not required for your field because of the default
-     * handling&#010 described above, don't specify it, as it's slightly slower.&#010 <p>&#010 To learn about XPath, try the
-     * following search:&#010 <a href="http://www.google.com/search?q=xpath+tutorial" target="_blank"&#010
-     * >http://www.google.com/search?q=xpath+tutorial</a>&#010 <P>&#010 <B>Using valueXPath with the Smart GWT server</B>&#010
-     * <p>&#010 If you're using the Smart GWT server to return data via the DSResponse object (or&#010 indirectly doing so
-     * using DataSource DMI), the valueXPath you specify on the DataSource&#010 fields will be applied to the data you return
-     * via the &#010 <a href='http://jakarta.apache.org/commons/jxpath/'
-     * onclick="window.open('http://jakarta.apache.org/commons/jxpath/');return false;">JXPath</a> library.&#010 <P>&#010 If
-     * you are returning Java Beans as your DSResponse data, normally each dataSource field&#010 receives the value of the
-     * same-named Java Bean property, that is, a field "zipCode" is&#010 populated by looking for "getZipCode()" on the objects
-     * passed as DSResponse data.  You can&#010 use <code>valueXPath</code> to retrieve properties from subobjects, so long as
-     * a chain of&#010 getter methods exists that corresponds to the valueXPath.  For example, a valueXPath of&#010
-     * "address/zipCode" expects to call "getAddress()" on the bean(s) passed to&#010 DSResponse.setData(), followed by
-     * "getZipCode()" on whatever object "getAddress()" returns.&#010 <P>&#010 When you are saving data, the inbound DSRequest
-     * values, available as a Java Map, will use &#010 just dataSource field names as Map keys, not the valueXPath used to
-     * derive them.  However,&#010 to achieve bidirectional valueXPath binding, you can use the server-side method&#010
-     * dataSource.setProperties() to use the valueXPath when setting properties on your server&#010 object model.  When applied
-     * as a setter, an XPath like "address/zipCode" attempts&#010 "getAddress()" followed by "setZipCode()" on the returned
-     * object.  JXPath also has some&#010 ability to auto-create intervening objects if they are missing, such as auto-creating
-     * an&#010 "address" subobject when applying "address/zipCode" as a valueXPath.&#010 <P>&#010 See the&#010 <a
-     * href='http://jakarta.apache.org/commons/jxpath/'
-     * onclick="window.open('http://jakarta.apache.org/commons/jxpath/');return false;">JXPath</a> library documentation
-     * for&#010 complete details, including other types of server object models supported, such as&#010 server-side XML.
-     *
-     * @param valueXPath valueXPath Default value is null
-     */
-    public void setValueXPath(String valueXPath) {
-        setAttribute("valueXPath", valueXPath);
-    }
-
-    /**
-     * XPath expression used to retrieve the field's value.&#010 <P>&#010 This XPath expression will be evaluated in the scope
-     * of the record objects selected by &#010 the {@link com.smartgwt.client.data.DataSource#getRecordXPath recordXPath}.  For
-     * XML data &#010 ({@link com.smartgwt.client.data.DataSource#getDataFormat 'dataFormat:"xml"'}) this means a call to&#010
-     * {@link com.smartgwt.client.data.XMLTools#selectString} passing the selected XML element.  For JSON data&#010 ({@link
-     * com.smartgwt.client.data.DataSource#getDataFormat 'dataFormat:"json"'}), this means a call to &#010 {@link
-     * com.smartgwt.client.data.XMLTools#selectObjects} passing the selected JSON object.&#010 <P>&#010 In the absence of a
-     * <code>valueXPath</code>, for JSON data the value for the field will&#010 be the value of the same-named property in the
-     * record object selected by&#010 {@link com.smartgwt.client.data.DataSource#getRecordXPath 'recordXPath'}.  &#010 <P>&#010
-     * For XML data, the value will be the attribute or subelement named after the field name.&#010 For example, for a field
-     * "author" on a record element &lt;book&gt;, the following structures&#010 require no valueXPath:&#010 <pre>&#010   
-     * &lt;book author="Mark Jones"/&gt;&#010&#010    &lt;book&gt;&#010        &lt;author&gt;Mark Jones&lt;/author&gt;&#010   
-     * &lt;/book&gt;&#010 </pre>&#010 <P>&#010 If <code>valueXPath</code> is not required for your field because of the default
-     * handling&#010 described above, don't specify it, as it's slightly slower.&#010 <p>&#010 To learn about XPath, try the
-     * following search:&#010 <a href="http://www.google.com/search?q=xpath+tutorial" target="_blank"&#010
-     * >http://www.google.com/search?q=xpath+tutorial</a>&#010 <P>&#010 <B>Using valueXPath with the Smart GWT server</B>&#010
-     * <p>&#010 If you're using the Smart GWT server to return data via the DSResponse object (or&#010 indirectly doing so
-     * using DataSource DMI), the valueXPath you specify on the DataSource&#010 fields will be applied to the data you return
-     * via the &#010 <a href='http://jakarta.apache.org/commons/jxpath/'
-     * onclick="window.open('http://jakarta.apache.org/commons/jxpath/');return false;">JXPath</a> library.&#010 <P>&#010 If
-     * you are returning Java Beans as your DSResponse data, normally each dataSource field&#010 receives the value of the
-     * same-named Java Bean property, that is, a field "zipCode" is&#010 populated by looking for "getZipCode()" on the objects
-     * passed as DSResponse data.  You can&#010 use <code>valueXPath</code> to retrieve properties from subobjects, so long as
-     * a chain of&#010 getter methods exists that corresponds to the valueXPath.  For example, a valueXPath of&#010
-     * "address/zipCode" expects to call "getAddress()" on the bean(s) passed to&#010 DSResponse.setData(), followed by
-     * "getZipCode()" on whatever object "getAddress()" returns.&#010 <P>&#010 When you are saving data, the inbound DSRequest
-     * values, available as a Java Map, will use &#010 just dataSource field names as Map keys, not the valueXPath used to
-     * derive them.  However,&#010 to achieve bidirectional valueXPath binding, you can use the server-side method&#010
-     * dataSource.setProperties() to use the valueXPath when setting properties on your server&#010 object model.  When applied
-     * as a setter, an XPath like "address/zipCode" attempts&#010 "getAddress()" followed by "setZipCode()" on the returned
-     * object.  JXPath also has some&#010 ability to auto-create intervening objects if they are missing, such as auto-creating
-     * an&#010 "address" subobject when applying "address/zipCode" as a valueXPath.&#010 <P>&#010 See the&#010 <a
-     * href='http://jakarta.apache.org/commons/jxpath/'
-     * onclick="window.open('http://jakarta.apache.org/commons/jxpath/');return false;">JXPath</a> library documentation
-     * for&#010 complete details, including other types of server object models supported, such as&#010 server-side XML.
-     *
-     *
-     * @return String
-     */
-    public String getValueXPath()  {
-        return getAttributeAsString("valueXPath");
-    }
-
-    /**
-     * Default user-visible title for this field. <p> This will be picked up by DataBound components and other views over this
-     * DataSource.
-     *
-     * @param title title Default value is null
-     */
-    public void setTitle(String title) {
-        setAttribute("title", title);
-    }
-
-    /**
-     * Default user-visible title for this field. <p> This will be picked up by DataBound components and other views over this
-     * DataSource.
-     *
-     *
-     * @return String
-     */
-    public String getTitle()  {
-        return getAttributeAsString("title");
-    }
-
-    /**
      * Whether this field can ever be edited by the user.  If set to <code>false</code>, no DataBound component will ever try
      * to offer an editing interface for this field.
      *
@@ -316,6 +124,50 @@ public class DataSourceField extends DataClass {
      */
     public Boolean getCanEdit()  {
         return getAttributeAsBoolean("canEdit");
+    }
+
+    /**
+     * Dictates whether the data in this field be exported.  Explicitly setting  <i>canExport</i> to false overrides the
+     * setting on any component-fields, such as {@link com.smartgwt.client.widgets.grid.ListGridField#getCanExport 'ListGrid
+     * fields'}.
+     *
+     * @param canExport canExport Default value is null
+     */
+    public void setCanExport(Boolean canExport) {
+        setAttribute("canExport", canExport);
+    }
+
+    /**
+     * Dictates whether the data in this field be exported.  Explicitly setting  <i>canExport</i> to false overrides the
+     * setting on any component-fields, such as {@link com.smartgwt.client.widgets.grid.ListGridField#getCanExport 'ListGrid
+     * fields'}.
+     *
+     *
+     * @return Boolean
+     */
+    public Boolean getCanExport()  {
+        return getAttributeAsBoolean("canExport");
+    }
+
+    /**
+     * Should the user be able to filter data by this field. Effects whether this field will show up in dataBoundComponents
+     * with UI for filtering data.
+     *
+     * @param canFilter canFilter Default value is null
+     */
+    public void setCanFilter(Boolean canFilter) {
+        setAttribute("canFilter", canFilter);
+    }
+
+    /**
+     * Should the user be able to filter data by this field. Effects whether this field will show up in dataBoundComponents
+     * with UI for filtering data.
+     *
+     *
+     * @return Boolean
+     */
+    public Boolean getCanFilter()  {
+        return getAttributeAsBoolean("canFilter");
     }
 
     /**
@@ -350,24 +202,182 @@ public class DataSourceField extends DataClass {
     }
 
     /**
-     * Should the user be able to filter data by this field. Effects whether this field will show up in dataBoundComponents
-     * with UI for filtering data.
+     * When true, this field can only be used for sorting if the data is entirely client-side.
      *
-     * @param canFilter canFilter Default value is null
+     * @param canSortClientOnly canSortClientOnly Default value is false
      */
-    public void setCanFilter(Boolean canFilter) {
-        setAttribute("canFilter", canFilter);
+    public void setCanSortClientOnly(Boolean canSortClientOnly) {
+        setAttribute("canSortClientOnly", canSortClientOnly);
     }
 
     /**
-     * Should the user be able to filter data by this field. Effects whether this field will show up in dataBoundComponents
-     * with UI for filtering data.
+     * When true, this field can only be used for sorting if the data is entirely client-side.
      *
      *
      * @return Boolean
      */
-    public Boolean getCanFilter()  {
-        return getAttributeAsBoolean("canFilter");
+    public Boolean getCanSortClientOnly()  {
+        return getAttributeAsBoolean("canSortClientOnly");
+    }
+
+    /**
+     * If true, this property indicates that this field will hold an explicit array of child nodes  for the current node. This
+     * has the same effect as specifying {@link com.smartgwt.client.data.DataSource#getChildrenField childrenField} to this
+     * field's  name.
+     *
+     * @param childrenProperty childrenProperty Default value is false
+     */
+    public void setChildrenProperty(Boolean childrenProperty) {
+        setAttribute("childrenProperty", childrenProperty);
+    }
+
+    /**
+     * If true, this property indicates that this field will hold an explicit array of child nodes  for the current node. This
+     * has the same effect as specifying {@link com.smartgwt.client.data.DataSource#getChildrenField childrenField} to this
+     * field's  name.
+     *
+     *
+     * @return Boolean
+     */
+    public Boolean getChildrenProperty()  {
+        return getAttributeAsBoolean("childrenProperty");
+    }
+
+    /**
+     * For a field that is {@link com.smartgwt.client.data.DataSourceField#getMultiple 'multiple:"true"'}, controls the name of
+     * the XML tag used for each subelement during {@link com.smartgwt.client.data.DataSource#xmlSerialize}. <P> If unset, the
+     * default tag name is "value" for a field of simple type, and for a field of DataSource type, is the tagName or ID of the
+     * DataSource (as though <code>xmlSerialize()</code> were called on the child DataSource).
+     *
+     * @param childTagName childTagName Default value is null
+     */
+    public void setChildTagName(String childTagName) {
+        setAttribute("childTagName", childTagName);
+    }
+
+    /**
+     * For a field that is {@link com.smartgwt.client.data.DataSourceField#getMultiple 'multiple:"true"'}, controls the name of
+     * the XML tag used for each subelement during {@link com.smartgwt.client.data.DataSource#xmlSerialize}. <P> If unset, the
+     * default tag name is "value" for a field of simple type, and for a field of DataSource type, is the tagName or ID of the
+     * DataSource (as though <code>xmlSerialize()</code> were called on the child DataSource).
+     *
+     *
+     * @return String
+     */
+    public String getChildTagName()  {
+        return getAttributeAsString("childTagName");
+    }
+
+    /**
+     * Whether this field should be considered a "detail" field by a {@link com.smartgwt.client.widgets.DataBoundComponent}.
+     * <P> Detail fields won't be shown by default in a DataBoundComponent where  {@link
+     * com.smartgwt.client.widgets.DataBoundComponent#getShowDetailFields showDetailFields} is false.  This allows for some
+     * DataBound components, like a {@link com.smartgwt.client.widgets.grid.ListGrid}, to show a summary view of records which
+     * displays only  the most commonly viewed fields by default, while other DataBoundComponents, like a {@link
+     * com.smartgwt.client.widgets.viewer.DetailViewer}, show all fields by default. <P> In addition, the {@link
+     * com.smartgwt.client.widgets.form.fields.FormItem#showIf} property is supported in multiple components for conditional
+     * visibility - see for example {@link com.smartgwt.client.widgets.grid.ListGridField#showIf} and {@link
+     * com.smartgwt.client.widgets.form.fields.FormItem#showIf}).
+     *
+     * @param detail detail Default value is false
+     */
+    public void setDetail(Boolean detail) {
+        setAttribute("detail", detail);
+    }
+
+    /**
+     * Whether this field should be considered a "detail" field by a {@link com.smartgwt.client.widgets.DataBoundComponent}.
+     * <P> Detail fields won't be shown by default in a DataBoundComponent where  {@link
+     * com.smartgwt.client.widgets.DataBoundComponent#getShowDetailFields showDetailFields} is false.  This allows for some
+     * DataBound components, like a {@link com.smartgwt.client.widgets.grid.ListGrid}, to show a summary view of records which
+     * displays only  the most commonly viewed fields by default, while other DataBoundComponents, like a {@link
+     * com.smartgwt.client.widgets.viewer.DetailViewer}, show all fields by default. <P> In addition, the {@link
+     * com.smartgwt.client.widgets.form.fields.FormItem#showIf} property is supported in multiple components for conditional
+     * visibility - see for example {@link com.smartgwt.client.widgets.grid.ListGridField#showIf} and {@link
+     * com.smartgwt.client.widgets.form.fields.FormItem#showIf}).
+     *
+     *
+     * @return Boolean
+     */
+    public Boolean getDetail()  {
+        return getAttributeAsBoolean("detail");
+    }
+
+    /**
+     * Optional different field-title used for exports.
+     *
+     * @param exportTitle exportTitle Default value is null
+     */
+    public void setExportTitle(String exportTitle) {
+        setAttribute("exportTitle", exportTitle);
+    }
+
+    /**
+     * Optional different field-title used for exports.
+     *
+     *
+     * @return String
+     */
+    public String getExportTitle()  {
+        return getAttributeAsString("exportTitle");
+    }
+
+    /**
+     * Declares that this field holds values that can be matched to values from another DataSource&#010 field, to create a
+     * relationship between records from different DataSources or even records&#010 within the same DataSource.&#010 <p>&#010
+     * The format of <code>foreignKey</code> is&#010 <code>&lt;dataSourceId&gt;.&lt;fieldName&gt;</code>.<br>&#010 For a
+     * foreignKey within the same dataSource, you can omit the <code>dataSourceId</code>&#010 and just specify
+     * <code>&lt;fieldName&gt;</code>.<br>&#010 For example, to create a tree relationship within a DataSource:&#010 <pre>&#010
+     * DataSource.create({&#010     ID:"supplyItem",&#010     fields : [&#010       {name:"itemId", type:"sequence",
+     * primaryKey:true},&#010       {name:"parentId", type:"integer", foreignKey:"itemId"},&#010       ...&#010     ]&#010  
+     * });&#010 </pre>&#010 <P>&#010 <code>foreignKey</code> declarations also allow other automatic behaviors by&#010 {@link
+     * com.smartgwt.client.widgets.DataBoundComponent}, such as {@link
+     * com.smartgwt.client.widgets.grid.ListGrid#fetchRelatedData}.
+     *
+     * @param foreignKey foreignKey Default value is false
+     */
+    public void setForeignKey(String foreignKey) {
+        setAttribute("foreignKey", foreignKey);
+    }
+
+    /**
+     * Declares that this field holds values that can be matched to values from another DataSource&#010 field, to create a
+     * relationship between records from different DataSources or even records&#010 within the same DataSource.&#010 <p>&#010
+     * The format of <code>foreignKey</code> is&#010 <code>&lt;dataSourceId&gt;.&lt;fieldName&gt;</code>.<br>&#010 For a
+     * foreignKey within the same dataSource, you can omit the <code>dataSourceId</code>&#010 and just specify
+     * <code>&lt;fieldName&gt;</code>.<br>&#010 For example, to create a tree relationship within a DataSource:&#010 <pre>&#010
+     * DataSource.create({&#010     ID:"supplyItem",&#010     fields : [&#010       {name:"itemId", type:"sequence",
+     * primaryKey:true},&#010       {name:"parentId", type:"integer", foreignKey:"itemId"},&#010       ...&#010     ]&#010  
+     * });&#010 </pre>&#010 <P>&#010 <code>foreignKey</code> declarations also allow other automatic behaviors by&#010 {@link
+     * com.smartgwt.client.widgets.DataBoundComponent}, such as {@link
+     * com.smartgwt.client.widgets.grid.ListGrid#fetchRelatedData}.
+     *
+     *
+     * @return String
+     */
+    public String getForeignKey()  {
+        return getAttributeAsString("foreignKey");
+    }
+
+    /**
+     * For use in {@link com.smartgwt.client.docs.ComponentSchema}, indicates what group to place the property in when editing
+     * in Visual Builder.
+     *
+     * @param group group Default value is null
+     */
+    public void setGroup(String group) {
+        setAttribute("group", group);
+    }
+
+    /**
+     * For use in {@link com.smartgwt.client.docs.ComponentSchema}, indicates what group to place the property in when editing
+     * in Visual Builder.
+     *
+     *
+     * @return String
+     */
+    public String getGroup()  {
+        return getAttributeAsString("group");
     }
 
     /**
@@ -415,315 +425,6 @@ public class DataSourceField extends DataClass {
     }
 
     /**
-     * Whether this field should be considered a "detail" field by a {@link com.smartgwt.client.widgets.DataBoundComponent}.
-     * <P> Detail fields won't be shown by default in a DataBoundComponent where  {@link
-     * com.smartgwt.client.widgets.DataBoundComponent#getShowDetailFields showDetailFields} is false.  This allows for some
-     * DataBound components, like a {@link com.smartgwt.client.widgets.grid.ListGrid}, to show a summary view of records which
-     * displays only  the most commonly viewed fields by default, while other DataBoundComponents, like a {@link
-     * com.smartgwt.client.widgets.viewer.DetailViewer}, show all fields by default. <P> In addition, the {@link
-     * com.smartgwt.client.widgets.form.fields.FormItem#showIf} property is supported in multiple components for conditional
-     * visibility - see for example {@link com.smartgwt.client.widgets.grid.ListGridField#showIf} and {@link
-     * com.smartgwt.client.widgets.form.fields.FormItem#showIf}).
-     *
-     * @param detail detail Default value is false
-     */
-    public void setDetail(Boolean detail) {
-        setAttribute("detail", detail);
-    }
-
-    /**
-     * Whether this field should be considered a "detail" field by a {@link com.smartgwt.client.widgets.DataBoundComponent}.
-     * <P> Detail fields won't be shown by default in a DataBoundComponent where  {@link
-     * com.smartgwt.client.widgets.DataBoundComponent#getShowDetailFields showDetailFields} is false.  This allows for some
-     * DataBound components, like a {@link com.smartgwt.client.widgets.grid.ListGrid}, to show a summary view of records which
-     * displays only  the most commonly viewed fields by default, while other DataBoundComponents, like a {@link
-     * com.smartgwt.client.widgets.viewer.DetailViewer}, show all fields by default. <P> In addition, the {@link
-     * com.smartgwt.client.widgets.form.fields.FormItem#showIf} property is supported in multiple components for conditional
-     * visibility - see for example {@link com.smartgwt.client.widgets.grid.ListGridField#showIf} and {@link
-     * com.smartgwt.client.widgets.form.fields.FormItem#showIf}).
-     *
-     *
-     * @return Boolean
-     */
-    public Boolean getDetail()  {
-        return getAttributeAsBoolean("detail");
-    }
-
-    /**
-     * Whether this field holds a value unique across all records in this DataSource.&#010 <p>&#010 A DataSource that can
-     * <i>only</i> perform the "fetch" operation does not require a&#010 primaryKey.  If a DataSource allows modification of
-     * DataSource records through add, update&#010 and remove DataSource operations, exactly one field must be marked as the
-     * primary key.&#010 <P>&#010 Smart GWT requires a primary key value to uniquely identify records when communicating&#010
-     * updates or deletions to the server.  There is no requirement that the primaryKey field be&#010 mapped to an actual
-     * "primary key" in your object model, web service, or database.  The only&#010 requirement is that values of the
-     * primaryKey field be unique for a given browser instance&#010 for the lifetime of the page.  &#010 <P>&#010 If your
-     * underlying data model has no primaryKey or has multiple primaryKey(s), you can&#010 generate unique values or combine
-     * multiple values into a single field that serves as a&#010 unique key, and declare that field as the single primary key
-     * instead.  For example, if your&#010 underlying data model has two primary keys "firstName" and "lastName", you can
-     * use&#010 {@link com.smartgwt.client.data.DataSource#transformResponse} to combine them to into a new field
-     * "name_key":&#010 <pre>&#010 isc.DataSource.create({&#010    fields:[&#010        {name:"name_key",
-     * primaryKey:true},&#010        {name:"firstName"},&#010        {name:"lastName"},&#010        ... other fields ...&#010  
-     * ],&#010    transformResponse : function (dsResponse) {&#010        var data = dsResponse.data;&#010        for (var i =
-     * 0 ; i &lt; data.length; i++) {&#010            data[i].name_key = data[i].firstName + ":" +&#010                        
-     * data[i].lastName;&#010        }&#010    }&#010 });&#010 </pre>&#010 <P>&#010 Here it is assumed that ":" is not a legal
-     * character in either the firstName or lastName&#010 field.  Updates to records from this DataSource will then be sent
-     * with name_key as the&#010 primary key value, and the server can split the value to obtain the separate key values.&#010
-     * <P>&#010 If using ISC's {@link com.smartgwt.client.docs.SqlDataSource 'SQL engine'} and generating SQL tables using
-     * the&#010 "Databases" tab of the Developer Console, the table column generated from a primaryKey field&#010 will have a
-     * unique constraint applied in the database table.
-     *
-     * @param primaryKey primaryKey Default value is false
-     */
-    public void setPrimaryKey(Boolean primaryKey) {
-        setAttribute("primaryKey", primaryKey);
-    }
-
-    /**
-     * Whether this field holds a value unique across all records in this DataSource.&#010 <p>&#010 A DataSource that can
-     * <i>only</i> perform the "fetch" operation does not require a&#010 primaryKey.  If a DataSource allows modification of
-     * DataSource records through add, update&#010 and remove DataSource operations, exactly one field must be marked as the
-     * primary key.&#010 <P>&#010 Smart GWT requires a primary key value to uniquely identify records when communicating&#010
-     * updates or deletions to the server.  There is no requirement that the primaryKey field be&#010 mapped to an actual
-     * "primary key" in your object model, web service, or database.  The only&#010 requirement is that values of the
-     * primaryKey field be unique for a given browser instance&#010 for the lifetime of the page.  &#010 <P>&#010 If your
-     * underlying data model has no primaryKey or has multiple primaryKey(s), you can&#010 generate unique values or combine
-     * multiple values into a single field that serves as a&#010 unique key, and declare that field as the single primary key
-     * instead.  For example, if your&#010 underlying data model has two primary keys "firstName" and "lastName", you can
-     * use&#010 {@link com.smartgwt.client.data.DataSource#transformResponse} to combine them to into a new field
-     * "name_key":&#010 <pre>&#010 isc.DataSource.create({&#010    fields:[&#010        {name:"name_key",
-     * primaryKey:true},&#010        {name:"firstName"},&#010        {name:"lastName"},&#010        ... other fields ...&#010  
-     * ],&#010    transformResponse : function (dsResponse) {&#010        var data = dsResponse.data;&#010        for (var i =
-     * 0 ; i &lt; data.length; i++) {&#010            data[i].name_key = data[i].firstName + ":" +&#010                        
-     * data[i].lastName;&#010        }&#010    }&#010 });&#010 </pre>&#010 <P>&#010 Here it is assumed that ":" is not a legal
-     * character in either the firstName or lastName&#010 field.  Updates to records from this DataSource will then be sent
-     * with name_key as the&#010 primary key value, and the server can split the value to obtain the separate key values.&#010
-     * <P>&#010 If using ISC's {@link com.smartgwt.client.docs.SqlDataSource 'SQL engine'} and generating SQL tables using
-     * the&#010 "Databases" tab of the Developer Console, the table column generated from a primaryKey field&#010 will have a
-     * unique constraint applied in the database table.
-     *
-     *
-     * @return Boolean
-     */
-    public Boolean getPrimaryKey()  {
-        return getAttributeAsBoolean("primaryKey");
-    }
-
-    /**
-     * Declares that this field holds values that can be matched to values from another DataSource&#010 field, to create a
-     * relationship between records from different DataSources or even records&#010 within the same DataSource.&#010 <p>&#010
-     * The format of <code>foreignKey</code> is&#010 <code>&lt;dataSourceId&gt;.&lt;fieldName&gt;</code>.<br>&#010 For a
-     * foreignKey within the same dataSource, you can omit the <code>dataSourceId</code>&#010 and just specify
-     * <code>&lt;fieldName&gt;</code>.<br>&#010 For example, to create a tree relationship within a DataSource:&#010 <pre>&#010
-     * DataSource.create({&#010     ID:"supplyItem",&#010     fields : [&#010       {name:"itemId", type:"sequence",
-     * primaryKey:true},&#010       {name:"parentId", type:"integer", foreignKey:"itemId"},&#010       ...&#010     ]&#010  
-     * });&#010 </pre>&#010 <P>&#010 <code>foreignKey</code> declarations also allow other automatic behaviors by&#010 {@link
-     * com.smartgwt.client.widgets.DataBoundComponent}, such as {@link
-     * com.smartgwt.client.widgets.grid.ListGrid#fetchRelatedData}.
-     *
-     * @param foreignKey foreignKey Default value is false
-     */
-    public void setForeignKey(String foreignKey) {
-        setAttribute("foreignKey", foreignKey);
-    }
-
-    /**
-     * Declares that this field holds values that can be matched to values from another DataSource&#010 field, to create a
-     * relationship between records from different DataSources or even records&#010 within the same DataSource.&#010 <p>&#010
-     * The format of <code>foreignKey</code> is&#010 <code>&lt;dataSourceId&gt;.&lt;fieldName&gt;</code>.<br>&#010 For a
-     * foreignKey within the same dataSource, you can omit the <code>dataSourceId</code>&#010 and just specify
-     * <code>&lt;fieldName&gt;</code>.<br>&#010 For example, to create a tree relationship within a DataSource:&#010 <pre>&#010
-     * DataSource.create({&#010     ID:"supplyItem",&#010     fields : [&#010       {name:"itemId", type:"sequence",
-     * primaryKey:true},&#010       {name:"parentId", type:"integer", foreignKey:"itemId"},&#010       ...&#010     ]&#010  
-     * });&#010 </pre>&#010 <P>&#010 <code>foreignKey</code> declarations also allow other automatic behaviors by&#010 {@link
-     * com.smartgwt.client.widgets.DataBoundComponent}, such as {@link
-     * com.smartgwt.client.widgets.grid.ListGrid#fetchRelatedData}.
-     *
-     *
-     * @return String
-     */
-    public String getForeignKey()  {
-        return getAttributeAsString("foreignKey");
-    }
-
-    /**
-     * If true, this property indicates that this field will hold an explicit array of child nodes  for the current node. This
-     * has the same effect as specifying {@link com.smartgwt.client.data.DataSource#getChildrenField childrenField} to this
-     * field's  name.
-     *
-     * @param childrenProperty childrenProperty Default value is false
-     */
-    public void setChildrenProperty(Boolean childrenProperty) {
-        setAttribute("childrenProperty", childrenProperty);
-    }
-
-    /**
-     * If true, this property indicates that this field will hold an explicit array of child nodes  for the current node. This
-     * has the same effect as specifying {@link com.smartgwt.client.data.DataSource#getChildrenField childrenField} to this
-     * field's  name.
-     *
-     *
-     * @return Boolean
-     */
-    public Boolean getChildrenProperty()  {
-        return getAttributeAsBoolean("childrenProperty");
-    }
-
-    /**
-     * For a DataSource with {@link com.smartgwt.client.data.DataSource#getServerType 'serverType:"sql"'} with a field of type
-     * "sequence", the name of the SQL sequence that should be used when inserting new records into this table. <P> Note that
-     * this is never required for SQL tables that are generated from Smart GWT DataSources (a default sequence name of
-     * tableName + "_" + columnName is chosen), and is  never required for databases where inserting null into a sequence
-     * column is sufficient (MySQL, SQL Server, DB2 and others).   <P> You would only need to set sequenceName if you are
-     * integrating with a pre-existing table stored in a database where the sequence must be named for insertion to work
-     * (Oracle, Postgres) OR you are trying to use the same sequence across multiple DataSources.
-     *
-     * @param sequenceName sequenceName Default value is null
-     */
-    public void setSequenceName(String sequenceName) {
-        setAttribute("sequenceName", sequenceName);
-    }
-
-    /**
-     * For a DataSource with {@link com.smartgwt.client.data.DataSource#getServerType 'serverType:"sql"'} with a field of type
-     * "sequence", the name of the SQL sequence that should be used when inserting new records into this table. <P> Note that
-     * this is never required for SQL tables that are generated from Smart GWT DataSources (a default sequence name of
-     * tableName + "_" + columnName is chosen), and is  never required for databases where inserting null into a sequence
-     * column is sufficient (MySQL, SQL Server, DB2 and others).   <P> You would only need to set sequenceName if you are
-     * integrating with a pre-existing table stored in a database where the sequence must be named for insertion to work
-     * (Oracle, Postgres) OR you are trying to use the same sequence across multiple DataSources.
-     *
-     *
-     * @return String
-     */
-    public String getSequenceName()  {
-        return getAttributeAsString("sequenceName");
-    }
-
-    /**
-     * Indicates that {@link com.smartgwt.client.data.DataSource#xmlSerialize} should serialize this value as an XML attribute.
-     * <P> Note this does not need to be declared in order for DataSource records to be derived from XML data: a field will be
-     * populated with either an attribute or subelement with matching name.
-     *
-     * @param xmlAttribute xmlAttribute Default value is null
-     */
-    public void setXmlAttribute(Boolean xmlAttribute) {
-        setAttribute("xmlAttribute", xmlAttribute);
-    }
-
-    /**
-     * Indicates that {@link com.smartgwt.client.data.DataSource#xmlSerialize} should serialize this value as an XML attribute.
-     * <P> Note this does not need to be declared in order for DataSource records to be derived from XML data: a field will be
-     * populated with either an attribute or subelement with matching name.
-     *
-     *
-     * @return Boolean
-     */
-    public Boolean getXmlAttribute()  {
-        return getAttributeAsBoolean("xmlAttribute");
-    }
-
-    /**
-     * Indicates that this field should always be Array-valued.  If the value derived from&#010 {@link
-     * com.smartgwt.client.data.DataSource#getDataFormat 'XML or JSON data'} is singular, it will be wrapped in an Array.&#010
-     * <P>&#010 Specifically for XML serialization and deserialization, <code>multiple:true</code> behaves&#010 similarly to
-     * the &#010 <a href='http://www.google.com/search?hl=en&q=soap+array'
-     * onclick="window.open('http://www.google.com/search?hl=en&q=soap+array');return false;">SOAP array idiom</a>, that
-     * is,&#010 there will be a "wrapper element" named after the field name, whose contents will be several&#010 elements of
-     * the specified {@link com.smartgwt.client.data.DataSourceField#getType 'field.type'}.  &#010 <P>&#010 For example, {@link
-     * com.smartgwt.client.widgets.layout.Layout#getMembers members} is declared with <code>type:"Canvas",&#010
-     * multiple:true</code>.  The correct XML format is thus:&#010 <pre>&#010 &lt;VLayout&gt;&#010     &lt;members&gt;&#010    
-     * &lt;Canvas ID="myCanvas" ... /&gt;&#010         &lt;ListGrid ID="myGrid" .../&gt;&#010         &lt;Toolstrip
-     * ID="myToolStrip" ... /&gt;&#010     &lt;/members&gt;&#010 &lt;/VLayout&gt;&#010 </pre>&#010 <P>&#010 See {@link
-     * com.smartgwt.client.data.DataSourceField#getChildTagName childTagName} for customizing the tagName used for subelements.
-     *
-     * @param multiple multiple Default value is null
-     */
-    public void setMultiple(Boolean multiple) {
-        setAttribute("multiple", multiple);
-    }
-
-    /**
-     * Indicates that this field should always be Array-valued.  If the value derived from&#010 {@link
-     * com.smartgwt.client.data.DataSource#getDataFormat 'XML or JSON data'} is singular, it will be wrapped in an Array.&#010
-     * <P>&#010 Specifically for XML serialization and deserialization, <code>multiple:true</code> behaves&#010 similarly to
-     * the &#010 <a href='http://www.google.com/search?hl=en&q=soap+array'
-     * onclick="window.open('http://www.google.com/search?hl=en&q=soap+array');return false;">SOAP array idiom</a>, that
-     * is,&#010 there will be a "wrapper element" named after the field name, whose contents will be several&#010 elements of
-     * the specified {@link com.smartgwt.client.data.DataSourceField#getType 'field.type'}.  &#010 <P>&#010 For example, {@link
-     * com.smartgwt.client.widgets.layout.Layout#getMembers members} is declared with <code>type:"Canvas",&#010
-     * multiple:true</code>.  The correct XML format is thus:&#010 <pre>&#010 &lt;VLayout&gt;&#010     &lt;members&gt;&#010    
-     * &lt;Canvas ID="myCanvas" ... /&gt;&#010         &lt;ListGrid ID="myGrid" .../&gt;&#010         &lt;Toolstrip
-     * ID="myToolStrip" ... /&gt;&#010     &lt;/members&gt;&#010 &lt;/VLayout&gt;&#010 </pre>&#010 <P>&#010 See {@link
-     * com.smartgwt.client.data.DataSourceField#getChildTagName childTagName} for customizing the tagName used for subelements.
-     *
-     *
-     * @return Boolean
-     */
-    public Boolean getMultiple()  {
-        return getAttributeAsBoolean("multiple");
-    }
-
-    /**
-     * For a field that is {@link com.smartgwt.client.data.DataSourceField#getMultiple 'multiple:"true"'}, controls the name of
-     * the XML tag used for each subelement during {@link com.smartgwt.client.data.DataSource#xmlSerialize}. <P> If unset, the
-     * default tag name is "value" for a field of simple type, and for a field of DataSource type, is the tagName or ID of the
-     * DataSource (as though <code>xmlSerialize()</code> were called on the child DataSource).
-     *
-     * @param childTagName childTagName Default value is null
-     */
-    public void setChildTagName(String childTagName) {
-        setAttribute("childTagName", childTagName);
-    }
-
-    /**
-     * For a field that is {@link com.smartgwt.client.data.DataSourceField#getMultiple 'multiple:"true"'}, controls the name of
-     * the XML tag used for each subelement during {@link com.smartgwt.client.data.DataSource#xmlSerialize}. <P> If unset, the
-     * default tag name is "value" for a field of simple type, and for a field of DataSource type, is the tagName or ID of the
-     * DataSource (as though <code>xmlSerialize()</code> were called on the child DataSource).
-     *
-     *
-     * @return String
-     */
-    public String getChildTagName()  {
-        return getAttributeAsString("childTagName");
-    }
-
-    /**
-     * For use in {@link com.smartgwt.client.docs.ComponentSchema} for fields that contain other components, this flag&#010
-     * suppresses auto-construction for subcomponents that appear under this field.&#010 <P>&#010 For example, the {@link
-     * com.smartgwt.client.widgets.layout.VLayout} schema sets this for its {@link
-     * com.smartgwt.client.widgets.layout.Layout#getMembers 'members'}&#010 property, so that when a VLayout is constructed via
-     * XML as follows:&#010 <pre>&#010 &lt;VLayout&gt;&#010     &lt;members&gt;&#010         &lt;ListGrid ID="myGrid"
-     * .../&gt;&#010         &lt;Toolstrip ID="myToolStrip" ... /&gt;&#010     &lt;/members&gt;&#010 &lt;/VLayout&gt;&#010
-     * </pre>&#010 The ListGrid and ToolStrip do not construct themselves automatically.  Instead, the VLayout&#010 receives
-     * the properties of the ListGrid and ToolStrip as ordinary JavaScript Objects, with&#010 the special property
-     * <code>_constructor</code> set to the name of the class that should be&#010 constructed.
-     *
-     * @param propertiesOnly propertiesOnly Default value is null
-     */
-    public void setPropertiesOnly(Boolean propertiesOnly) {
-        setAttribute("propertiesOnly", propertiesOnly);
-    }
-
-    /**
-     * For use in {@link com.smartgwt.client.docs.ComponentSchema} for fields that contain other components, this flag&#010
-     * suppresses auto-construction for subcomponents that appear under this field.&#010 <P>&#010 For example, the {@link
-     * com.smartgwt.client.widgets.layout.VLayout} schema sets this for its {@link
-     * com.smartgwt.client.widgets.layout.Layout#getMembers 'members'}&#010 property, so that when a VLayout is constructed via
-     * XML as follows:&#010 <pre>&#010 &lt;VLayout&gt;&#010     &lt;members&gt;&#010         &lt;ListGrid ID="myGrid"
-     * .../&gt;&#010         &lt;Toolstrip ID="myToolStrip" ... /&gt;&#010     &lt;/members&gt;&#010 &lt;/VLayout&gt;&#010
-     * </pre>&#010 The ListGrid and ToolStrip do not construct themselves automatically.  Instead, the VLayout&#010 receives
-     * the properties of the ListGrid and ToolStrip as ordinary JavaScript Objects, with&#010 the special property
-     * <code>_constructor</code> set to the name of the class that should be&#010 constructed.
-     *
-     *
-     * @return Boolean
-     */
-    public Boolean getPropertiesOnly()  {
-        return getAttributeAsBoolean("propertiesOnly");
-    }
-
-    /**
      * For use in {@link com.smartgwt.client.docs.ComponentSchema}, a field {@link
      * com.smartgwt.client.data.DataSource#getInheritsFrom 'inherited'} from another schema can be redeclared with this
      * property set in order to indicate that the property should not be used. <P> This is primarily used to influence {@link
@@ -756,27 +457,6 @@ public class DataSourceField extends DataClass {
      */
     public Boolean getInapplicable()  {
         return getAttributeAsBoolean("inapplicable");
-    }
-
-    /**
-     * For use in {@link com.smartgwt.client.docs.ComponentSchema}, indicates what group to place the property in when editing
-     * in Visual Builder.
-     *
-     * @param group group Default value is null
-     */
-    public void setGroup(String group) {
-        setAttribute("group", group);
-    }
-
-    /**
-     * For use in {@link com.smartgwt.client.docs.ComponentSchema}, indicates what group to place the property in when editing
-     * in Visual Builder.
-     *
-     *
-     * @return String
-     */
-    public String getGroup()  {
-        return getAttributeAsString("group");
     }
 
     /**
@@ -897,45 +577,251 @@ public class DataSourceField extends DataClass {
     }
 
     /**
-     * Optional different field-title used for exports.
+     * Maximum number of characters allowed.  Applicable only to fields of text type.
      *
-     * @param exportTitle exportTitle Default value is null
+     * @param length length Default value is null
      */
-    public void setExportTitle(String exportTitle) {
-        setAttribute("exportTitle", exportTitle);
+    public void setLength(Integer length) {
+        setAttribute("length", length);
     }
 
     /**
-     * Optional different field-title used for exports.
+     * Maximum number of characters allowed.  Applicable only to fields of text type.
      *
      *
-     * @return String
+     * @return Integer
      */
-    public String getExportTitle()  {
-        return getAttributeAsString("exportTitle");
+    public Integer getLength()  {
+        return getAttributeAsInt("length");
     }
 
     /**
-     * Dictates whether the data in this field be exported.  Explicitly setting  <i>canExport</i> to false overrides the
-     * setting on any component-fields, such as {@link com.smartgwt.client.widgets.grid.ListGridField#getCanExport 'ListGrid
-     * fields'}.
+     * For fields of a type that are represented by binary data initially uploaded from a file (currently "binary" and
+     * "imageFile", see {@link com.smartgwt.client.types.FieldType}), this sets the maximum  file size allowed, in bytes.
      *
-     * @param canExport canExport Default value is null
+     * @param maxFileSize maxFileSize Default value is null
      */
-    public void setCanExport(Boolean canExport) {
-        setAttribute("canExport", canExport);
+    public void setMaxFileSize(Integer maxFileSize) {
+        setAttribute("maxFileSize", maxFileSize);
     }
 
     /**
-     * Dictates whether the data in this field be exported.  Explicitly setting  <i>canExport</i> to false overrides the
-     * setting on any component-fields, such as {@link com.smartgwt.client.widgets.grid.ListGridField#getCanExport 'ListGrid
-     * fields'}.
+     * For fields of a type that are represented by binary data initially uploaded from a file (currently "binary" and
+     * "imageFile", see {@link com.smartgwt.client.types.FieldType}), this sets the maximum  file size allowed, in bytes.
+     *
+     *
+     * @return Integer
+     */
+    public Integer getMaxFileSize()  {
+        return getAttributeAsInt("maxFileSize");
+    }
+
+    /**
+     * Indicates that this field should always be Array-valued.  If the value derived from&#010 {@link
+     * com.smartgwt.client.data.DataSource#getDataFormat 'XML or JSON data'} is singular, it will be wrapped in an Array.&#010
+     * <P>&#010 Specifically for XML serialization and deserialization, <code>multiple:true</code> behaves&#010 similarly to
+     * the &#010 <a href='http://www.google.com/search?hl=en&q=soap+array'
+     * onclick="window.open('http://www.google.com/search?hl=en&q=soap+array');return false;">SOAP array idiom</a>, that
+     * is,&#010 there will be a "wrapper element" named after the field name, whose contents will be several&#010 elements of
+     * the specified {@link com.smartgwt.client.data.DataSourceField#getType 'field.type'}.  &#010 <P>&#010 For example, {@link
+     * com.smartgwt.client.widgets.layout.Layout#getMembers members} is declared with <code>type:"Canvas",&#010
+     * multiple:true</code>.  The correct XML format is thus:&#010 <pre>&#010 &lt;VLayout&gt;&#010     &lt;members&gt;&#010    
+     * &lt;Canvas ID="myCanvas" ... /&gt;&#010         &lt;ListGrid ID="myGrid" .../&gt;&#010         &lt;Toolstrip
+     * ID="myToolStrip" ... /&gt;&#010     &lt;/members&gt;&#010 &lt;/VLayout&gt;&#010 </pre>&#010 <P>&#010 See {@link
+     * com.smartgwt.client.data.DataSourceField#getChildTagName childTagName} for customizing the tagName used for subelements.
+     *
+     * @param multiple multiple Default value is null
+     */
+    public void setMultiple(Boolean multiple) {
+        setAttribute("multiple", multiple);
+    }
+
+    /**
+     * Indicates that this field should always be Array-valued.  If the value derived from&#010 {@link
+     * com.smartgwt.client.data.DataSource#getDataFormat 'XML or JSON data'} is singular, it will be wrapped in an Array.&#010
+     * <P>&#010 Specifically for XML serialization and deserialization, <code>multiple:true</code> behaves&#010 similarly to
+     * the &#010 <a href='http://www.google.com/search?hl=en&q=soap+array'
+     * onclick="window.open('http://www.google.com/search?hl=en&q=soap+array');return false;">SOAP array idiom</a>, that
+     * is,&#010 there will be a "wrapper element" named after the field name, whose contents will be several&#010 elements of
+     * the specified {@link com.smartgwt.client.data.DataSourceField#getType 'field.type'}.  &#010 <P>&#010 For example, {@link
+     * com.smartgwt.client.widgets.layout.Layout#getMembers members} is declared with <code>type:"Canvas",&#010
+     * multiple:true</code>.  The correct XML format is thus:&#010 <pre>&#010 &lt;VLayout&gt;&#010     &lt;members&gt;&#010    
+     * &lt;Canvas ID="myCanvas" ... /&gt;&#010         &lt;ListGrid ID="myGrid" .../&gt;&#010         &lt;Toolstrip
+     * ID="myToolStrip" ... /&gt;&#010     &lt;/members&gt;&#010 &lt;/VLayout&gt;&#010 </pre>&#010 <P>&#010 See {@link
+     * com.smartgwt.client.data.DataSourceField#getChildTagName childTagName} for customizing the tagName used for subelements.
      *
      *
      * @return Boolean
      */
-    public Boolean getCanExport()  {
-        return getAttributeAsBoolean("canExport");
+    public Boolean getMultiple()  {
+        return getAttributeAsBoolean("multiple");
+    }
+
+    /**
+     * Name for this field.   <p> The field name is also the property in each DataSource record which holds the value for this
+     * field. <P> Must be unique across all fields within the DataSource.
+     *
+     * @param name name Default value is null
+     */
+    public void setName(String name) {
+        setAttribute("name", name);
+    }
+
+    /**
+     * Name for this field.   <p> The field name is also the property in each DataSource record which holds the value for this
+     * field. <P> Must be unique across all fields within the DataSource.
+     *
+     *
+     * @return String
+     */
+    public String getName()  {
+        return getAttributeAsString("name");
+    }
+
+    /**
+     * Whether this field holds a value unique across all records in this DataSource.&#010 <p>&#010 A DataSource that can
+     * <i>only</i> perform the "fetch" operation does not require a&#010 primaryKey.  If a DataSource allows modification of
+     * DataSource records through add, update&#010 and remove DataSource operations, exactly one field must be marked as the
+     * primary key.&#010 <P>&#010 Smart GWT requires a primary key value to uniquely identify records when communicating&#010
+     * updates or deletions to the server.  There is no requirement that the primaryKey field be&#010 mapped to an actual
+     * "primary key" in your object model, web service, or database.  The only&#010 requirement is that values of the
+     * primaryKey field be unique for a given browser instance&#010 for the lifetime of the page.  &#010 <P>&#010 If your
+     * underlying data model has no primaryKey or has multiple primaryKey(s), you can&#010 generate unique values or combine
+     * multiple values into a single field that serves as a&#010 unique key, and declare that field as the single primary key
+     * instead.  For example, if your&#010 underlying data model has two primary keys "firstName" and "lastName", you can
+     * use&#010 {@link com.smartgwt.client.data.DataSource#transformResponse} to combine them to into a new field
+     * "name_key":&#010 <pre>&#010 isc.DataSource.create({&#010    fields:[&#010        {name:"name_key",
+     * primaryKey:true},&#010        {name:"firstName"},&#010        {name:"lastName"},&#010        ... other fields ...&#010  
+     * ],&#010    transformResponse : function (dsResponse) {&#010        var data = dsResponse.data;&#010        for (var i =
+     * 0 ; i &lt; data.length; i++) {&#010            data[i].name_key = data[i].firstName + ":" +&#010                        
+     * data[i].lastName;&#010        }&#010    }&#010 });&#010 </pre>&#010 <P>&#010 Here it is assumed that ":" is not a legal
+     * character in either the firstName or lastName&#010 field.  Updates to records from this DataSource will then be sent
+     * with name_key as the&#010 primary key value, and the server can split the value to obtain the separate key values.&#010
+     * <P>&#010 If using ISC's {@link com.smartgwt.client.docs.SqlDataSource 'SQL engine'} and generating SQL tables using
+     * the&#010 "Databases" tab of the Developer Console, the table column generated from a primaryKey field&#010 will have a
+     * unique constraint applied in the database table.
+     *
+     * @param primaryKey primaryKey Default value is false
+     */
+    public void setPrimaryKey(Boolean primaryKey) {
+        setAttribute("primaryKey", primaryKey);
+    }
+
+    /**
+     * Whether this field holds a value unique across all records in this DataSource.&#010 <p>&#010 A DataSource that can
+     * <i>only</i> perform the "fetch" operation does not require a&#010 primaryKey.  If a DataSource allows modification of
+     * DataSource records through add, update&#010 and remove DataSource operations, exactly one field must be marked as the
+     * primary key.&#010 <P>&#010 Smart GWT requires a primary key value to uniquely identify records when communicating&#010
+     * updates or deletions to the server.  There is no requirement that the primaryKey field be&#010 mapped to an actual
+     * "primary key" in your object model, web service, or database.  The only&#010 requirement is that values of the
+     * primaryKey field be unique for a given browser instance&#010 for the lifetime of the page.  &#010 <P>&#010 If your
+     * underlying data model has no primaryKey or has multiple primaryKey(s), you can&#010 generate unique values or combine
+     * multiple values into a single field that serves as a&#010 unique key, and declare that field as the single primary key
+     * instead.  For example, if your&#010 underlying data model has two primary keys "firstName" and "lastName", you can
+     * use&#010 {@link com.smartgwt.client.data.DataSource#transformResponse} to combine them to into a new field
+     * "name_key":&#010 <pre>&#010 isc.DataSource.create({&#010    fields:[&#010        {name:"name_key",
+     * primaryKey:true},&#010        {name:"firstName"},&#010        {name:"lastName"},&#010        ... other fields ...&#010  
+     * ],&#010    transformResponse : function (dsResponse) {&#010        var data = dsResponse.data;&#010        for (var i =
+     * 0 ; i &lt; data.length; i++) {&#010            data[i].name_key = data[i].firstName + ":" +&#010                        
+     * data[i].lastName;&#010        }&#010    }&#010 });&#010 </pre>&#010 <P>&#010 Here it is assumed that ":" is not a legal
+     * character in either the firstName or lastName&#010 field.  Updates to records from this DataSource will then be sent
+     * with name_key as the&#010 primary key value, and the server can split the value to obtain the separate key values.&#010
+     * <P>&#010 If using ISC's {@link com.smartgwt.client.docs.SqlDataSource 'SQL engine'} and generating SQL tables using
+     * the&#010 "Databases" tab of the Developer Console, the table column generated from a primaryKey field&#010 will have a
+     * unique constraint applied in the database table.
+     *
+     *
+     * @return Boolean
+     */
+    public Boolean getPrimaryKey()  {
+        return getAttributeAsBoolean("primaryKey");
+    }
+
+    /**
+     * For use in {@link com.smartgwt.client.docs.ComponentSchema} for fields that contain other components, this flag&#010
+     * suppresses auto-construction for subcomponents that appear under this field.&#010 <P>&#010 For example, the {@link
+     * com.smartgwt.client.widgets.layout.VLayout} schema sets this for its {@link
+     * com.smartgwt.client.widgets.layout.Layout#getMembers 'members'}&#010 property, so that when a VLayout is constructed via
+     * XML as follows:&#010 <pre>&#010 &lt;VLayout&gt;&#010     &lt;members&gt;&#010         &lt;ListGrid ID="myGrid"
+     * .../&gt;&#010         &lt;Toolstrip ID="myToolStrip" ... /&gt;&#010     &lt;/members&gt;&#010 &lt;/VLayout&gt;&#010
+     * </pre>&#010 The ListGrid and ToolStrip do not construct themselves automatically.  Instead, the VLayout&#010 receives
+     * the properties of the ListGrid and ToolStrip as ordinary JavaScript Objects, with&#010 the special property
+     * <code>_constructor</code> set to the name of the class that should be&#010 constructed.
+     *
+     * @param propertiesOnly propertiesOnly Default value is null
+     */
+    public void setPropertiesOnly(Boolean propertiesOnly) {
+        setAttribute("propertiesOnly", propertiesOnly);
+    }
+
+    /**
+     * For use in {@link com.smartgwt.client.docs.ComponentSchema} for fields that contain other components, this flag&#010
+     * suppresses auto-construction for subcomponents that appear under this field.&#010 <P>&#010 For example, the {@link
+     * com.smartgwt.client.widgets.layout.VLayout} schema sets this for its {@link
+     * com.smartgwt.client.widgets.layout.Layout#getMembers 'members'}&#010 property, so that when a VLayout is constructed via
+     * XML as follows:&#010 <pre>&#010 &lt;VLayout&gt;&#010     &lt;members&gt;&#010         &lt;ListGrid ID="myGrid"
+     * .../&gt;&#010         &lt;Toolstrip ID="myToolStrip" ... /&gt;&#010     &lt;/members&gt;&#010 &lt;/VLayout&gt;&#010
+     * </pre>&#010 The ListGrid and ToolStrip do not construct themselves automatically.  Instead, the VLayout&#010 receives
+     * the properties of the ListGrid and ToolStrip as ordinary JavaScript Objects, with&#010 the special property
+     * <code>_constructor</code> set to the name of the class that should be&#010 constructed.
+     *
+     *
+     * @return Boolean
+     */
+    public Boolean getPropertiesOnly()  {
+        return getAttributeAsBoolean("propertiesOnly");
+    }
+
+    /**
+     * Indicates this field must be non-null in order for a record to pass validation. <P> Note that <code>required</code>
+     * should not be set for a server-generated field, such as a sequence, or validation will fail on the client.
+     *
+     * @param required required Default value is null
+     */
+    public void setRequired(Boolean required) {
+        setAttribute("required", required);
+    }
+
+    /**
+     * Indicates this field must be non-null in order for a record to pass validation. <P> Note that <code>required</code>
+     * should not be set for a server-generated field, such as a sequence, or validation will fail on the client.
+     *
+     *
+     * @return Boolean
+     */
+    public Boolean getRequired()  {
+        return getAttributeAsBoolean("required");
+    }
+
+    /**
+     * For a DataSource with {@link com.smartgwt.client.data.DataSource#getServerType 'serverType:"sql"'} with a field of type
+     * "sequence", the name of the SQL sequence that should be used when inserting new records into this table. <P> Note that
+     * this is never required for SQL tables that are generated from Smart GWT DataSources (a default sequence name of
+     * tableName + "_" + columnName is chosen), and is  never required for databases where inserting null into a sequence
+     * column is sufficient (MySQL, SQL Server, DB2 and others).   <P> You would only need to set sequenceName if you are
+     * integrating with a pre-existing table stored in a database where the sequence must be named for insertion to work
+     * (Oracle, Postgres) OR you are trying to use the same sequence across multiple DataSources.
+     *
+     * @param sequenceName sequenceName Default value is null
+     */
+    public void setSequenceName(String sequenceName) {
+        setAttribute("sequenceName", sequenceName);
+    }
+
+    /**
+     * For a DataSource with {@link com.smartgwt.client.data.DataSource#getServerType 'serverType:"sql"'} with a field of type
+     * "sequence", the name of the SQL sequence that should be used when inserting new records into this table. <P> Note that
+     * this is never required for SQL tables that are generated from Smart GWT DataSources (a default sequence name of
+     * tableName + "_" + columnName is chosen), and is  never required for databases where inserting null into a sequence
+     * column is sufficient (MySQL, SQL Server, DB2 and others).   <P> You would only need to set sequenceName if you are
+     * integrating with a pre-existing table stored in a database where the sequence must be named for insertion to work
+     * (Oracle, Postgres) OR you are trying to use the same sequence across multiple DataSources.
+     *
+     *
+     * @return String
+     */
+    public String getSequenceName()  {
+        return getAttributeAsString("sequenceName");
     }
 
     /**
@@ -958,25 +844,6 @@ public class DataSourceField extends DataClass {
     public Boolean getShowFileInline()  {
         return getAttributeAsBoolean("showFileInline");
     }
-
-    /**
-     * When true, this field can only be used for sorting if the data is entirely client-side.
-     *
-     * @param canSortClientOnly canSortClientOnly Default value is false
-     */
-    public void setCanSortClientOnly(Boolean canSortClientOnly) {
-        setAttribute("canSortClientOnly", canSortClientOnly);
-    }
-
-    /**
-     * When true, this field can only be used for sorting if the data is entirely client-side.
-     *
-     *
-     * @return Boolean
-     */
-    public Boolean getCanSortClientOnly()  {
-        return getAttributeAsBoolean("canSortClientOnly");
-    }
              
     /**
      * If set, causes the field to be securely hashed before saving on an "add" or "update"  operation.
@@ -998,24 +865,157 @@ public class DataSourceField extends DataClass {
     }
 
     /**
-     * For fields of a type that are represented by binary data initially uploaded from a file (currently "binary" and
-     * "imageFile", see {@link com.smartgwt.client.types.FieldType}), this sets the maximum  file size allowed, in bytes.
+     * Default user-visible title for this field. <p> This will be picked up by DataBound components and other views over this
+     * DataSource.
      *
-     * @param maxFileSize maxFileSize Default value is null
+     * @param title title Default value is null
      */
-    public void setMaxFileSize(Integer maxFileSize) {
-        setAttribute("maxFileSize", maxFileSize);
+    public void setTitle(String title) {
+        setAttribute("title", title);
     }
 
     /**
-     * For fields of a type that are represented by binary data initially uploaded from a file (currently "binary" and
-     * "imageFile", see {@link com.smartgwt.client.types.FieldType}), this sets the maximum  file size allowed, in bytes.
+     * Default user-visible title for this field. <p> This will be picked up by DataBound components and other views over this
+     * DataSource.
      *
      *
-     * @return Integer
+     * @return String
      */
-    public Integer getMaxFileSize()  {
-        return getAttributeAsInt("maxFileSize");
+    public String getTitle()  {
+        return getAttributeAsString("title");
+    }
+             
+    /**
+     * Type of this field.  Required for all DataSource fields. <P> Field type may imply automatic validators (for example, an
+     * integer field cannot accept the value "foo").  Field type also affects the default behaviors of DataBound components,
+     * for example, if a field is declared as type "date", components that edit that field will automatically choose a
+     * date-editing interface with pop-up date picker.
+     *
+     * @param type type Default value is null
+     */
+    public void setType(FieldType type) {
+        setAttribute("type", type.getValue());
+    }
+
+    /**
+     * Type of this field.  Required for all DataSource fields. <P> Field type may imply automatic validators (for example, an
+     * integer field cannot accept the value "foo").  Field type also affects the default behaviors of DataBound components,
+     * for example, if a field is declared as type "date", components that edit that field will automatically choose a
+     * date-editing interface with pop-up date picker.
+     *
+     *
+     * @return FieldType
+     */
+    public FieldType getType()  {
+        return EnumUtil.getEnum(FieldType.values(), getAttribute("type"));
+    }
+
+    /**
+     * XPath expression used to retrieve the field's value.&#010 <P>&#010 This XPath expression will be evaluated in the scope
+     * of the record objects selected by &#010 the {@link com.smartgwt.client.data.DataSource#getRecordXPath recordXPath}.  For
+     * XML data &#010 ({@link com.smartgwt.client.data.DataSource#getDataFormat 'dataFormat:"xml"'}) this means a call to&#010
+     * {@link com.smartgwt.client.data.XMLTools#selectString} passing the selected XML element.  For JSON data&#010 ({@link
+     * com.smartgwt.client.data.DataSource#getDataFormat 'dataFormat:"json"'}), this means a call to &#010 {@link
+     * com.smartgwt.client.data.XMLTools#selectObjects} passing the selected JSON object.&#010 <P>&#010 In the absence of a
+     * <code>valueXPath</code>, for JSON data the value for the field will&#010 be the value of the same-named property in the
+     * record object selected by&#010 {@link com.smartgwt.client.data.DataSource#getRecordXPath 'recordXPath'}.  &#010 <P>&#010
+     * For XML data, the value will be the attribute or subelement named after the field name.&#010 For example, for a field
+     * "author" on a record element &lt;book&gt;, the following structures&#010 require no valueXPath:&#010 <pre>&#010   
+     * &lt;book author="Mark Jones"/&gt;&#010&#010    &lt;book&gt;&#010        &lt;author&gt;Mark Jones&lt;/author&gt;&#010   
+     * &lt;/book&gt;&#010 </pre>&#010 <P>&#010 If <code>valueXPath</code> is not required for your field because of the default
+     * handling&#010 described above, don't specify it, as it's slightly slower.&#010 <p>&#010 To learn about XPath, try the
+     * following search:&#010 <a href="http://www.google.com/search?q=xpath+tutorial" target="_blank"&#010
+     * >http://www.google.com/search?q=xpath+tutorial</a>&#010 <P>&#010 <B>Using valueXPath with the Smart GWT server</B>&#010
+     * <p>&#010 If you're using the Smart GWT server to return data via the DSResponse object (or&#010 indirectly doing so
+     * using DataSource DMI), the valueXPath you specify on the DataSource&#010 fields will be applied to the data you return
+     * via the &#010 <a href='http://jakarta.apache.org/commons/jxpath/'
+     * onclick="window.open('http://jakarta.apache.org/commons/jxpath/');return false;">JXPath</a> library.&#010 <P>&#010 If
+     * you are returning Java Beans as your DSResponse data, normally each dataSource field&#010 receives the value of the
+     * same-named Java Bean property, that is, a field "zipCode" is&#010 populated by looking for "getZipCode()" on the objects
+     * passed as DSResponse data.  You can&#010 use <code>valueXPath</code> to retrieve properties from subobjects, so long as
+     * a chain of&#010 getter methods exists that corresponds to the valueXPath.  For example, a valueXPath of&#010
+     * "address/zipCode" expects to call "getAddress()" on the bean(s) passed to&#010 DSResponse.setData(), followed by
+     * "getZipCode()" on whatever object "getAddress()" returns.&#010 <P>&#010 When you are saving data, the inbound DSRequest
+     * values, available as a Java Map, will use &#010 just dataSource field names as Map keys, not the valueXPath used to
+     * derive them.  However,&#010 to achieve bidirectional valueXPath binding, you can use the server-side method&#010
+     * dataSource.setProperties() to use the valueXPath when setting properties on your server&#010 object model.  When applied
+     * as a setter, an XPath like "address/zipCode" attempts&#010 "getAddress()" followed by "setZipCode()" on the returned
+     * object.  JXPath also has some&#010 ability to auto-create intervening objects if they are missing, such as auto-creating
+     * an&#010 "address" subobject when applying "address/zipCode" as a valueXPath.&#010 <P>&#010 See the&#010 <a
+     * href='http://jakarta.apache.org/commons/jxpath/'
+     * onclick="window.open('http://jakarta.apache.org/commons/jxpath/');return false;">JXPath</a> library documentation
+     * for&#010 complete details, including other types of server object models supported, such as&#010 server-side XML.
+     *
+     * @param valueXPath valueXPath Default value is null
+     */
+    public void setValueXPath(String valueXPath) {
+        setAttribute("valueXPath", valueXPath);
+    }
+
+    /**
+     * XPath expression used to retrieve the field's value.&#010 <P>&#010 This XPath expression will be evaluated in the scope
+     * of the record objects selected by &#010 the {@link com.smartgwt.client.data.DataSource#getRecordXPath recordXPath}.  For
+     * XML data &#010 ({@link com.smartgwt.client.data.DataSource#getDataFormat 'dataFormat:"xml"'}) this means a call to&#010
+     * {@link com.smartgwt.client.data.XMLTools#selectString} passing the selected XML element.  For JSON data&#010 ({@link
+     * com.smartgwt.client.data.DataSource#getDataFormat 'dataFormat:"json"'}), this means a call to &#010 {@link
+     * com.smartgwt.client.data.XMLTools#selectObjects} passing the selected JSON object.&#010 <P>&#010 In the absence of a
+     * <code>valueXPath</code>, for JSON data the value for the field will&#010 be the value of the same-named property in the
+     * record object selected by&#010 {@link com.smartgwt.client.data.DataSource#getRecordXPath 'recordXPath'}.  &#010 <P>&#010
+     * For XML data, the value will be the attribute or subelement named after the field name.&#010 For example, for a field
+     * "author" on a record element &lt;book&gt;, the following structures&#010 require no valueXPath:&#010 <pre>&#010   
+     * &lt;book author="Mark Jones"/&gt;&#010&#010    &lt;book&gt;&#010        &lt;author&gt;Mark Jones&lt;/author&gt;&#010   
+     * &lt;/book&gt;&#010 </pre>&#010 <P>&#010 If <code>valueXPath</code> is not required for your field because of the default
+     * handling&#010 described above, don't specify it, as it's slightly slower.&#010 <p>&#010 To learn about XPath, try the
+     * following search:&#010 <a href="http://www.google.com/search?q=xpath+tutorial" target="_blank"&#010
+     * >http://www.google.com/search?q=xpath+tutorial</a>&#010 <P>&#010 <B>Using valueXPath with the Smart GWT server</B>&#010
+     * <p>&#010 If you're using the Smart GWT server to return data via the DSResponse object (or&#010 indirectly doing so
+     * using DataSource DMI), the valueXPath you specify on the DataSource&#010 fields will be applied to the data you return
+     * via the &#010 <a href='http://jakarta.apache.org/commons/jxpath/'
+     * onclick="window.open('http://jakarta.apache.org/commons/jxpath/');return false;">JXPath</a> library.&#010 <P>&#010 If
+     * you are returning Java Beans as your DSResponse data, normally each dataSource field&#010 receives the value of the
+     * same-named Java Bean property, that is, a field "zipCode" is&#010 populated by looking for "getZipCode()" on the objects
+     * passed as DSResponse data.  You can&#010 use <code>valueXPath</code> to retrieve properties from subobjects, so long as
+     * a chain of&#010 getter methods exists that corresponds to the valueXPath.  For example, a valueXPath of&#010
+     * "address/zipCode" expects to call "getAddress()" on the bean(s) passed to&#010 DSResponse.setData(), followed by
+     * "getZipCode()" on whatever object "getAddress()" returns.&#010 <P>&#010 When you are saving data, the inbound DSRequest
+     * values, available as a Java Map, will use &#010 just dataSource field names as Map keys, not the valueXPath used to
+     * derive them.  However,&#010 to achieve bidirectional valueXPath binding, you can use the server-side method&#010
+     * dataSource.setProperties() to use the valueXPath when setting properties on your server&#010 object model.  When applied
+     * as a setter, an XPath like "address/zipCode" attempts&#010 "getAddress()" followed by "setZipCode()" on the returned
+     * object.  JXPath also has some&#010 ability to auto-create intervening objects if they are missing, such as auto-creating
+     * an&#010 "address" subobject when applying "address/zipCode" as a valueXPath.&#010 <P>&#010 See the&#010 <a
+     * href='http://jakarta.apache.org/commons/jxpath/'
+     * onclick="window.open('http://jakarta.apache.org/commons/jxpath/');return false;">JXPath</a> library documentation
+     * for&#010 complete details, including other types of server object models supported, such as&#010 server-side XML.
+     *
+     *
+     * @return String
+     */
+    public String getValueXPath()  {
+        return getAttributeAsString("valueXPath");
+    }
+
+    /**
+     * Indicates that {@link com.smartgwt.client.data.DataSource#xmlSerialize} should serialize this value as an XML attribute.
+     * <P> Note this does not need to be declared in order for DataSource records to be derived from XML data: a field will be
+     * populated with either an attribute or subelement with matching name.
+     *
+     * @param xmlAttribute xmlAttribute Default value is null
+     */
+    public void setXmlAttribute(Boolean xmlAttribute) {
+        setAttribute("xmlAttribute", xmlAttribute);
+    }
+
+    /**
+     * Indicates that {@link com.smartgwt.client.data.DataSource#xmlSerialize} should serialize this value as an XML attribute.
+     * <P> Note this does not need to be declared in order for DataSource records to be derived from XML data: a field will be
+     * populated with either an attribute or subelement with matching name.
+     *
+     *
+     * @return Boolean
+     */
+    public Boolean getXmlAttribute()  {
+        return getAttributeAsBoolean("xmlAttribute");
     }
 
     // ********************* Methods ***********************

@@ -89,15 +89,67 @@ public class EventHandler {
     // ********************* Static Methods ***********************
             
     /**
-     * Applies to {@link com.smartgwt.client.widgets.Canvas#addMouseWheelHandler} events only. Returns an integer indicating
-     * how far the mouse wheel was rotated. This value will be positive if the user scrolled the mousewheel forward or up, or
-     * negative if scrolled in the other direction and will be a multiple of 1 where 1 indicates the smallest possible rotation
-     * of the wheel.
+     * Return true if the alt (option) key is being held down.   Note that this is only set reliably for keyboard events.
      *
-     * @return integer indicating how far the mouse wheel was rotated.
+     * @return true == alt key is down
      */
-    public static native int getWheelDelta() /*-{
-        return $wnd.isc.EventHandler.getWheelDelta();
+    public static native Boolean altKeyDown() /*-{
+        var retVal =$wnd.isc.EventHandler.altKeyDown();
+        if(retVal == null || retVal === undefined) {
+            return null;
+        } else {
+            return @com.smartgwt.client.util.JSOHelper::toBoolean(Z)(retVal);
+        }
+    }-*/;
+            
+    /**
+     * Return true if the control key is being held down.   Note that this is only set reliably for keyboard events.
+     *
+     * @return true == control key is down
+     */
+    public static native Boolean ctrlKeyDown() /*-{
+        var retVal =$wnd.isc.EventHandler.ctrlKeyDown();
+        if(retVal == null || retVal === undefined) {
+            return null;
+        } else {
+            return @com.smartgwt.client.util.JSOHelper::toBoolean(Z)(retVal);
+        }
+    }-*/;
+            
+    /**
+     * Returns the current dragTarget.  This is the component on which the drag and drop interaction was initiated.  This only
+     * returns something meaningful during a drag and drop interaction.
+     *
+     * @return The dragTarget.
+     */
+    public static native Canvas getDragTarget() /*-{
+        var ret = $wnd.isc.EventHandler.getDragTarget();
+        if(ret == null || ret === undefined) return null;
+        var retVal = @com.smartgwt.client.widgets.BaseWidget::getRef(Lcom/google/gwt/core/client/JavaScriptObject;)(ret);
+        if(retVal == null) {
+            retVal = @com.smartgwt.client.widgets.Canvas::new(Lcom/google/gwt/core/client/JavaScriptObject;)(ret);
+        }
+        return retVal;
+    }-*/;
+            
+    /**
+     * Return the character for the current key being pressed.   Note that this is only set reliably for keyPress events on
+     * character keys.
+     *
+     * @return Character the user entered. May be null for non-character keys.
+     */
+    public static native String getKeyEventCharacter() /*-{
+        return $wnd.isc.EventHandler.getKeyEventCharacter();
+    }-*/;
+            
+    /**
+     * Returns the numeric characterValue reported by the browser.          Only available on keyPress events, and only for
+     * character (or ascii control) keys
+     *
+     * @return Numeric character value reported by the browser                   (ASCII value of the key pressed)
+     */
+    public static native int getKeyEventCharacterValue() /*-{
+        return $wnd.isc.EventHandler.getKeyEventCharacterValue();
     }-*/;
             
     /**
@@ -116,19 +168,15 @@ public class EventHandler {
     }-*/;
             
     /**
-     * Returns the current dragTarget.  This is the component on which the drag and drop interaction was initiated.  This only
-     * returns something meaningful during a drag and drop interaction.
+     * Applies to {@link com.smartgwt.client.widgets.Canvas#addMouseWheelHandler} events only. Returns an integer indicating
+     * how far the mouse wheel was rotated. This value will be positive if the user scrolled the mousewheel forward or up, or
+     * negative if scrolled in the other direction and will be a multiple of 1 where 1 indicates the smallest possible rotation
+     * of the wheel.
      *
-     * @return The dragTarget.
+     * @return integer indicating how far the mouse wheel was rotated.
      */
-    public static native Canvas getDragTarget() /*-{
-        var ret = $wnd.isc.EventHandler.getDragTarget();
-        if(ret == null || ret === undefined) return null;
-        var retVal = @com.smartgwt.client.widgets.BaseWidget::getRef(Lcom/google/gwt/core/client/JavaScriptObject;)(ret);
-        if(retVal == null) {
-            retVal = @com.smartgwt.client.widgets.Canvas::new(Lcom/google/gwt/core/client/JavaScriptObject;)(ret);
-        }
-        return retVal;
+    public static native int getWheelDelta() /*-{
+        return $wnd.isc.EventHandler.getWheelDelta();
     }-*/;
             
     /**
@@ -178,60 +226,12 @@ public class EventHandler {
     }-*/;
             
     /**
-     * Returns the numeric characterValue reported by the browser.          Only available on keyPress events, and only for
-     * character (or ascii control) keys
-     *
-     * @return Numeric character value reported by the browser                   (ASCII value of the key pressed)
-     */
-    public static native int getKeyEventCharacterValue() /*-{
-        return $wnd.isc.EventHandler.getKeyEventCharacterValue();
-    }-*/;
-            
-    /**
-     * Return the character for the current key being pressed.   Note that this is only set reliably for keyPress events on
-     * character keys.
-     *
-     * @return Character the user entered. May be null for non-character keys.
-     */
-    public static native String getKeyEventCharacter() /*-{
-        return $wnd.isc.EventHandler.getKeyEventCharacter();
-    }-*/;
-            
-    /**
      * Return true if the shift key is being held down.   Note that this is only set reliably for keyboard events.
      *
      * @return true == shift key is down
      */
     public static native Boolean shiftKeyDown() /*-{
         var retVal =$wnd.isc.EventHandler.shiftKeyDown();
-        if(retVal == null || retVal === undefined) {
-            return null;
-        } else {
-            return @com.smartgwt.client.util.JSOHelper::toBoolean(Z)(retVal);
-        }
-    }-*/;
-            
-    /**
-     * Return true if the control key is being held down.   Note that this is only set reliably for keyboard events.
-     *
-     * @return true == control key is down
-     */
-    public static native Boolean ctrlKeyDown() /*-{
-        var retVal =$wnd.isc.EventHandler.ctrlKeyDown();
-        if(retVal == null || retVal === undefined) {
-            return null;
-        } else {
-            return @com.smartgwt.client.util.JSOHelper::toBoolean(Z)(retVal);
-        }
-    }-*/;
-            
-    /**
-     * Return true if the alt (option) key is being held down.   Note that this is only set reliably for keyboard events.
-     *
-     * @return true == alt key is down
-     */
-    public static native Boolean altKeyDown() /*-{
-        var retVal =$wnd.isc.EventHandler.altKeyDown();
         if(retVal == null || retVal === undefined) {
             return null;
         } else {

@@ -97,99 +97,53 @@ public class Tab extends RefDataClass {
     // ********************* Properties / Attributes ***********************
 
     /**
-     * Specifies the title of the this tab.  To change the title after the TabSet has been created, call {@link
-     * com.smartgwt.client.widgets.tab.TabSet#setTabTitle}.
+     * Determines whether this tab should show an icon allowing the user to dismiss the tab by clicking on it directly. The URL
+     * for this icon's image will be derived from  {@link com.smartgwt.client.widgets.tab.TabSet#getCloseTabIcon closeTabIcon}
+     * by default, but may be overridden by explicitly specifying {@link com.smartgwt.client.widgets.tab.Tab#getCloseIcon
+     * closeIcon}. <P> If unset, this property is derived from {@link com.smartgwt.client.widgets.tab.TabSet#getCanCloseTabs
+     * canCloseTabs}
      *
-     * @param title title Default value is null
+     * @param canClose canClose Default value is null
      */
-    public void setTitle(String title) {
-        setAttribute("title", title);
+    public void setCanClose(Boolean canClose) {
+        setAttribute("canClose", canClose);
     }
 
     /**
-     * Specifies the title of the this tab.  To change the title after the TabSet has been created, call {@link
-     * com.smartgwt.client.widgets.tab.TabSet#setTabTitle}.
+     * Determines whether this tab should show an icon allowing the user to dismiss the tab by clicking on it directly. The URL
+     * for this icon's image will be derived from  {@link com.smartgwt.client.widgets.tab.TabSet#getCloseTabIcon closeTabIcon}
+     * by default, but may be overridden by explicitly specifying {@link com.smartgwt.client.widgets.tab.Tab#getCloseIcon
+     * closeIcon}. <P> If unset, this property is derived from {@link com.smartgwt.client.widgets.tab.TabSet#getCanCloseTabs
+     * canCloseTabs}
+     *
+     *
+     * @return Boolean
+     */
+    public Boolean getCanClose()  {
+        return getAttributeAsBoolean("canClose");
+    }
+
+    /**
+     * Custom src for the close icon for this tab to display if it is closeable. See {@link
+     * com.smartgwt.client.widgets.tab.Tab#getCanClose canClose} and {@link
+     * com.smartgwt.client.widgets.tab.TabSet#getCanCloseTabs canCloseTabs}.
+     *
+     * @param closeIcon closeIcon Default value is null
+     */
+    public void setCloseIcon(String closeIcon) {
+        setAttribute("closeIcon", closeIcon);
+    }
+
+    /**
+     * Custom src for the close icon for this tab to display if it is closeable. See {@link
+     * com.smartgwt.client.widgets.tab.Tab#getCanClose canClose} and {@link
+     * com.smartgwt.client.widgets.tab.TabSet#getCanCloseTabs canCloseTabs}.
      *
      *
      * @return String
      */
-    public String getTitle()  {
-        return getAttributeAsString("title");
-    }
-
-    /**
-     * If {@link com.smartgwt.client.widgets.tab.TabSet#getShowTabPicker showTabPicker} is true for this TabSet, if set this
-     * property will determine the title of the picker menu item for this tab. If unset, {@link
-     * com.smartgwt.client.widgets.tab.Tab#getTitle title} will be used instead
-     *
-     * @param pickerTitle pickerTitle Default value is null
-     */
-    public void setPickerTitle(String pickerTitle) {
-        setAttribute("pickerTitle", pickerTitle);
-    }
-
-    /**
-     * If {@link com.smartgwt.client.widgets.tab.TabSet#getShowTabPicker showTabPicker} is true for this TabSet, if set this
-     * property will determine the title of the picker menu item for this tab. If unset, {@link
-     * com.smartgwt.client.widgets.tab.Tab#getTitle title} will be used instead
-     *
-     *
-     * @return String
-     */
-    public String getPickerTitle()  {
-        return getAttributeAsString("pickerTitle");
-    }
-
-    /**
-     * Optional ID for the tab, which can later be used to reference the tab. APIs requiring a referenct a tab will accept the
-     * tabs ID  [including  {@link com.smartgwt.client.widgets.tab.TabSet#selectTab}, {@link
-     * com.smartgwt.client.widgets.tab.TabSet#updateTab}, {@link com.smartgwt.client.widgets.tab.TabSet#removeTab}].<br> The ID
-     * will also be passed to the {@link com.smartgwt.client.widgets.tab.TabSet#addTabSelectedHandler} and {@link
-     * com.smartgwt.client.widgets.tab.TabSet#addTabDeselectedHandler} handler functions, if specified. <p> Note that if you
-     * provide an ID, it must be globally unique.
-     *
-     * @param ID ID Default value is null
-     */
-    public void setID(String ID) {
-        setAttribute("ID", ID);
-    }
-
-    /**
-     * Optional ID for the tab, which can later be used to reference the tab. APIs requiring a referenct a tab will accept the
-     * tabs ID  [including  {@link com.smartgwt.client.widgets.tab.TabSet#selectTab}, {@link
-     * com.smartgwt.client.widgets.tab.TabSet#updateTab}, {@link com.smartgwt.client.widgets.tab.TabSet#removeTab}].<br> The ID
-     * will also be passed to the {@link com.smartgwt.client.widgets.tab.TabSet#addTabSelectedHandler} and {@link
-     * com.smartgwt.client.widgets.tab.TabSet#addTabDeselectedHandler} handler functions, if specified. <p> Note that if you
-     * provide an ID, it must be globally unique.
-     *
-     *
-     * @return String
-     */
-    public String getID()  {
-        return getAttributeAsString("ID");
-    }
-
-    /**
-     * You can specify an explicit width for the tab using this property.  Note that tabs automatically size to make room for
-     * the full title, but if you want to e.g. specify a uniform width for all tabs in a TabSet, this property enables you to
-     * do so.
-     *
-     * @param width width Default value is 100
-     */
-    public void setWidth(int width) {
-        setAttribute("width", width);
-    }
-
-    /**
-     * You can specify an explicit width for the tab using this property.  Note that tabs automatically size to make room for
-     * the full title, but if you want to e.g. specify a uniform width for all tabs in a TabSet, this property enables you to
-     * do so.
-     *
-     *
-     * @return int
-     */
-    public int getWidth()  {
-        return getAttributeAsInt("width");
+    public String getCloseIcon()  {
+        return getAttributeAsString("closeIcon");
     }
 
     /**
@@ -241,53 +195,99 @@ public class Tab extends RefDataClass {
     }
 
     /**
-     * Determines whether this tab should show an icon allowing the user to dismiss the tab by clicking on it directly. The URL
-     * for this icon's image will be derived from  {@link com.smartgwt.client.widgets.tab.TabSet#getCloseTabIcon closeTabIcon}
-     * by default, but may be overridden by explicitly specifying {@link com.smartgwt.client.widgets.tab.Tab#getCloseIcon
-     * closeIcon}. <P> If unset, this property is derived from {@link com.smartgwt.client.widgets.tab.TabSet#getCanCloseTabs
-     * canCloseTabs}
+     * Optional ID for the tab, which can later be used to reference the tab. APIs requiring a referenct a tab will accept the
+     * tabs ID  [including  {@link com.smartgwt.client.widgets.tab.TabSet#selectTab}, {@link
+     * com.smartgwt.client.widgets.tab.TabSet#updateTab}, {@link com.smartgwt.client.widgets.tab.TabSet#removeTab}].<br> The ID
+     * will also be passed to the {@link com.smartgwt.client.widgets.tab.TabSet#addTabSelectedHandler} and {@link
+     * com.smartgwt.client.widgets.tab.TabSet#addTabDeselectedHandler} handler functions, if specified. <p> Note that if you
+     * provide an ID, it must be globally unique.
      *
-     * @param canClose canClose Default value is null
+     * @param ID ID Default value is null
      */
-    public void setCanClose(Boolean canClose) {
-        setAttribute("canClose", canClose);
+    public void setID(String ID) {
+        setAttribute("ID", ID);
     }
 
     /**
-     * Determines whether this tab should show an icon allowing the user to dismiss the tab by clicking on it directly. The URL
-     * for this icon's image will be derived from  {@link com.smartgwt.client.widgets.tab.TabSet#getCloseTabIcon closeTabIcon}
-     * by default, but may be overridden by explicitly specifying {@link com.smartgwt.client.widgets.tab.Tab#getCloseIcon
-     * closeIcon}. <P> If unset, this property is derived from {@link com.smartgwt.client.widgets.tab.TabSet#getCanCloseTabs
-     * canCloseTabs}
-     *
-     *
-     * @return Boolean
-     */
-    public Boolean getCanClose()  {
-        return getAttributeAsBoolean("canClose");
-    }
-
-    /**
-     * Custom src for the close icon for this tab to display if it is closeable. See {@link
-     * com.smartgwt.client.widgets.tab.Tab#getCanClose canClose} and {@link
-     * com.smartgwt.client.widgets.tab.TabSet#getCanCloseTabs canCloseTabs}.
-     *
-     * @param closeIcon closeIcon Default value is null
-     */
-    public void setCloseIcon(String closeIcon) {
-        setAttribute("closeIcon", closeIcon);
-    }
-
-    /**
-     * Custom src for the close icon for this tab to display if it is closeable. See {@link
-     * com.smartgwt.client.widgets.tab.Tab#getCanClose canClose} and {@link
-     * com.smartgwt.client.widgets.tab.TabSet#getCanCloseTabs canCloseTabs}.
+     * Optional ID for the tab, which can later be used to reference the tab. APIs requiring a referenct a tab will accept the
+     * tabs ID  [including  {@link com.smartgwt.client.widgets.tab.TabSet#selectTab}, {@link
+     * com.smartgwt.client.widgets.tab.TabSet#updateTab}, {@link com.smartgwt.client.widgets.tab.TabSet#removeTab}].<br> The ID
+     * will also be passed to the {@link com.smartgwt.client.widgets.tab.TabSet#addTabSelectedHandler} and {@link
+     * com.smartgwt.client.widgets.tab.TabSet#addTabDeselectedHandler} handler functions, if specified. <p> Note that if you
+     * provide an ID, it must be globally unique.
      *
      *
      * @return String
      */
-    public String getCloseIcon()  {
-        return getAttributeAsString("closeIcon");
+    public String getID()  {
+        return getAttributeAsString("ID");
+    }
+
+    /**
+     * If {@link com.smartgwt.client.widgets.tab.TabSet#getShowTabPicker showTabPicker} is true for this TabSet, if set this
+     * property will determine the title of the picker menu item for this tab. If unset, {@link
+     * com.smartgwt.client.widgets.tab.Tab#getTitle title} will be used instead
+     *
+     * @param pickerTitle pickerTitle Default value is null
+     */
+    public void setPickerTitle(String pickerTitle) {
+        setAttribute("pickerTitle", pickerTitle);
+    }
+
+    /**
+     * If {@link com.smartgwt.client.widgets.tab.TabSet#getShowTabPicker showTabPicker} is true for this TabSet, if set this
+     * property will determine the title of the picker menu item for this tab. If unset, {@link
+     * com.smartgwt.client.widgets.tab.Tab#getTitle title} will be used instead
+     *
+     *
+     * @return String
+     */
+    public String getPickerTitle()  {
+        return getAttributeAsString("pickerTitle");
+    }
+
+    /**
+     * Specifies the title of the this tab.  To change the title after the TabSet has been created, call {@link
+     * com.smartgwt.client.widgets.tab.TabSet#setTabTitle}.
+     *
+     * @param title title Default value is null
+     */
+    public void setTitle(String title) {
+        setAttribute("title", title);
+    }
+
+    /**
+     * Specifies the title of the this tab.  To change the title after the TabSet has been created, call {@link
+     * com.smartgwt.client.widgets.tab.TabSet#setTabTitle}.
+     *
+     *
+     * @return String
+     */
+    public String getTitle()  {
+        return getAttributeAsString("title");
+    }
+
+    /**
+     * You can specify an explicit width for the tab using this property.  Note that tabs automatically size to make room for
+     * the full title, but if you want to e.g. specify a uniform width for all tabs in a TabSet, this property enables you to
+     * do so.
+     *
+     * @param width width Default value is 100
+     */
+    public void setWidth(int width) {
+        setAttribute("width", width);
+    }
+
+    /**
+     * You can specify an explicit width for the tab using this property.  Note that tabs automatically size to make room for
+     * the full title, but if you want to e.g. specify a uniform width for all tabs in a TabSet, this property enables you to
+     * do so.
+     *
+     *
+     * @return int
+     */
+    public int getWidth()  {
+        return getAttributeAsInt("width");
     }
 
     // ********************* Methods ***********************

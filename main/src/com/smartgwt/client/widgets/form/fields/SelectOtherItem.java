@@ -93,48 +93,22 @@ public class SelectOtherItem extends SelectItem {
     // ********************* Properties / Attributes ***********************
 
     /**
-     * Title for the separator between normal items and the <code>Other...</code> item in the drop down list.  Selecting this
-     * item will not change the FormItem's value.
+     * Width for the "other value" prompt dialog.
      *
-     * @param separatorTitle separatorTitle Default value is "--------------------"
+     * @param dialogWidth dialogWidth Default value is 250
      */
-    public void setSeparatorTitle(String separatorTitle) {
-        setAttribute("separatorTitle", separatorTitle);
+    public void setDialogWidth(int dialogWidth) {
+        setAttribute("dialogWidth", dialogWidth);
     }
 
     /**
-     * Title for the separator between normal items and the <code>Other...</code> item in the drop down list.  Selecting this
-     * item will not change the FormItem's value.
+     * Width for the "other value" prompt dialog.
      *
      *
-     * @return String
+     * @return int
      */
-    public String getSeparatorTitle()  {
-        return getAttributeAsString("separatorTitle");
-    }
-
-    /**
-     * Value for the separator item between normal items and the <code>Other...</code> value.  If necessary the value may be
-     * changed to ensure it doesn't collide with any data values in this item's {@link
-     * com.smartgwt.client.widgets.form.fields.FormItem#getValueMap 'valueMap'}.
-     * <p><b>Note : </b> This is an advanced setting</p>
-     *
-     * @param separatorValue separatorValue Default value is "----"
-     */
-    public void setSeparatorValue(String separatorValue) {
-        setAttribute("separatorValue", separatorValue);
-    }
-
-    /**
-     * Value for the separator item between normal items and the <code>Other...</code> value.  If necessary the value may be
-     * changed to ensure it doesn't collide with any data values in this item's {@link
-     * com.smartgwt.client.widgets.form.fields.FormItem#getValueMap 'valueMap'}.
-     *
-     *
-     * @return String
-     */
-    public String getSeparatorValue()  {
-        return getAttributeAsString("separatorValue");
+    public int getDialogWidth()  {
+        return getAttributeAsInt("dialogWidth");
     }
 
     /**
@@ -204,22 +178,48 @@ public class SelectOtherItem extends SelectItem {
     }
 
     /**
-     * Width for the "other value" prompt dialog.
+     * Title for the separator between normal items and the <code>Other...</code> item in the drop down list.  Selecting this
+     * item will not change the FormItem's value.
      *
-     * @param dialogWidth dialogWidth Default value is 250
+     * @param separatorTitle separatorTitle Default value is "--------------------"
      */
-    public void setDialogWidth(int dialogWidth) {
-        setAttribute("dialogWidth", dialogWidth);
+    public void setSeparatorTitle(String separatorTitle) {
+        setAttribute("separatorTitle", separatorTitle);
     }
 
     /**
-     * Width for the "other value" prompt dialog.
+     * Title for the separator between normal items and the <code>Other...</code> item in the drop down list.  Selecting this
+     * item will not change the FormItem's value.
      *
      *
-     * @return int
+     * @return String
      */
-    public int getDialogWidth()  {
-        return getAttributeAsInt("dialogWidth");
+    public String getSeparatorTitle()  {
+        return getAttributeAsString("separatorTitle");
+    }
+
+    /**
+     * Value for the separator item between normal items and the <code>Other...</code> value.  If necessary the value may be
+     * changed to ensure it doesn't collide with any data values in this item's {@link
+     * com.smartgwt.client.widgets.form.fields.FormItem#getValueMap 'valueMap'}.
+     * <p><b>Note : </b> This is an advanced setting</p>
+     *
+     * @param separatorValue separatorValue Default value is "----"
+     */
+    public void setSeparatorValue(String separatorValue) {
+        setAttribute("separatorValue", separatorValue);
+    }
+
+    /**
+     * Value for the separator item between normal items and the <code>Other...</code> value.  If necessary the value may be
+     * changed to ensure it doesn't collide with any data values in this item's {@link
+     * com.smartgwt.client.widgets.form.fields.FormItem#getValueMap 'valueMap'}.
+     *
+     *
+     * @return String
+     */
+    public String getSeparatorValue()  {
+        return getAttributeAsString("separatorValue");
     }
 
     // ********************* Methods ***********************

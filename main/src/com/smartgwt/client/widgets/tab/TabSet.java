@@ -87,72 +87,27 @@ public class TabSet extends Canvas  implements com.smartgwt.client.widgets.tab.e
         return widget;
     }-*/;
     // ********************* Properties / Attributes ***********************
-             
+
     /**
-     * Which side of the TabSet the TabBar should appear on.
+     * If {@link com.smartgwt.client.widgets.tab.TabSet#getShowTabScroller showTabScroller} is true, should tabs be scrolled
+     * into view via an  animation when the user interacts with the scroller buttons?
      *
-     * @param tabBarPosition tabBarPosition Default value is Canvas.TOP
+     * @param animateTabScrolling animateTabScrolling Default value is true
      * @throws IllegalStateException this property cannot be changed after the component has been created
      */
-    public void setTabBarPosition(Side tabBarPosition)  throws IllegalStateException {
-        setAttribute("tabBarPosition", tabBarPosition.getValue(), false);
+    public void setAnimateTabScrolling(Boolean animateTabScrolling)  throws IllegalStateException {
+        setAttribute("animateTabScrolling", animateTabScrolling, false);
     }
 
     /**
-     * Which side of the TabSet the TabBar should appear on.
+     * If {@link com.smartgwt.client.widgets.tab.TabSet#getShowTabScroller showTabScroller} is true, should tabs be scrolled
+     * into view via an  animation when the user interacts with the scroller buttons?
      *
      *
-     * @return Side
+     * @return Boolean
      */
-    public Side getTabBarPosition()  {
-        return EnumUtil.getEnum(Side.values(), getAttribute("tabBarPosition"));
-    }
-             
-    /**
-     * Alignment of the tabBar. <P> If the position of the tabBar is "top" or "bottom", then alignment must be "left" or
-     * "right" and defaults to "left". <P> If the position of the tabBar is "left" or "right", then the alignment must be "top"
-     * or "bottom" and defaults to "top".
-     *
-     * @param tabBarAlign tabBarAlign Default value is see below
-     * @throws IllegalStateException this property cannot be changed after the component has been created
-     */
-    public void setTabBarAlign(Side tabBarAlign)  throws IllegalStateException {
-        setAttribute("tabBarAlign", tabBarAlign.getValue(), false);
-    }
-
-    /**
-     * Alignment of the tabBar. <P> If the position of the tabBar is "top" or "bottom", then alignment must be "left" or
-     * "right" and defaults to "left". <P> If the position of the tabBar is "left" or "right", then the alignment must be "top"
-     * or "bottom" and defaults to "top".
-     *
-     *
-     * @return Side
-     */
-    public Side getTabBarAlign()  {
-        return EnumUtil.getEnum(Side.values(), getAttribute("tabBarAlign"));
-    }
-
-    /**
-     * Thickness of tabBar, applies to either orientation (specifies height for horizontal, width for vertical orientation). 
-     * Note that overriding this value for TabSets that are skinned with images generally means providing new media for the
-     * borders.
-     *
-     * @param tabBarThickness tabBarThickness Default value is 21
-     */
-    public void setTabBarThickness(int tabBarThickness) {
-        setAttribute("tabBarThickness", tabBarThickness, true);
-    }
-
-    /**
-     * Thickness of tabBar, applies to either orientation (specifies height for horizontal, width for vertical orientation). 
-     * Note that overriding this value for TabSets that are skinned with images generally means providing new media for the
-     * borders.
-     *
-     *
-     * @return int
-     */
-    public int getTabBarThickness()  {
-        return getAttributeAsInt("tabBarThickness");
+    public Boolean getAnimateTabScrolling()  {
+        return getAttributeAsBoolean("animateTabScrolling");
     }
 
     /**
@@ -235,95 +190,107 @@ public class TabSet extends Canvas  implements com.smartgwt.client.widgets.tab.e
     }
 
     /**
-     * If there is not enough space to display all the tab-buttons in this tabSet, should  scroller buttons be displayed to
-     * allow access to tabs that are clipped?
+     * Whether {@link com.smartgwt.client.widgets.Canvas#destroy} should be called on {@link
+     * com.smartgwt.client.widgets.tab.Tab#getPane pane} when it a tab is removed via {@link
+     * com.smartgwt.client.widgets.tab.TabSet#removeTab}}.   <P> An application might set this to false in order to re-use
+     * panes in different tabs or in different parts of the application.
      *
-     * @param showTabScroller showTabScroller Default value is true
+     * @param destroyPanes destroyPanes Default value is null
      * @throws IllegalStateException this property cannot be changed after the component has been created
      */
-    public void setShowTabScroller(Boolean showTabScroller)  throws IllegalStateException {
-        setAttribute("showTabScroller", showTabScroller, false);
+    public void setDestroyPanes(Boolean destroyPanes)  throws IllegalStateException {
+        setAttribute("destroyPanes", destroyPanes, false);
     }
 
     /**
-     * If there is not enough space to display all the tab-buttons in this tabSet, should  scroller buttons be displayed to
-     * allow access to tabs that are clipped?
+     * Whether {@link com.smartgwt.client.widgets.Canvas#destroy} should be called on {@link
+     * com.smartgwt.client.widgets.tab.Tab#getPane pane} when it a tab is removed via {@link
+     * com.smartgwt.client.widgets.tab.TabSet#removeTab}}.   <P> An application might set this to false in order to re-use
+     * panes in different tabs or in different parts of the application.
      *
      *
      * @return Boolean
      */
-    public Boolean getShowTabScroller()  {
-        return getAttributeAsBoolean("showTabScroller");
+    public Boolean getDestroyPanes()  {
+        return getAttributeAsBoolean("destroyPanes");
     }
 
     /**
-     * If there is not enough space to display all the tab-buttons in this tabSet, should a drop-down "picker" be displayed to
-     * allow selection of tabs that are clipped?
+     * CSS style used for the paneContainer.
      *
-     * @param showTabPicker showTabPicker Default value is true
+     * @param paneContainerClassName paneContainerClassName Default value is null
+     */
+    public void setPaneContainerClassName(String paneContainerClassName) {
+        setAttribute("paneContainerClassName", paneContainerClassName, true);
+    }
+
+    /**
+     * CSS style used for the paneContainer.
+     *
+     *
+     * @return String
+     */
+    public String getPaneContainerClassName()  {
+        return getAttributeAsString("paneContainerClassName");
+    }
+             
+    /**
+     * Specifies the overflow of the pane container (the component that holds the pane contents for all tabs).  By default this
+     * is set to "auto", meaning the pane container will automatically introduce scrolling when the pane contents exceed the
+     * TabSet's specified size. <p> For other values and their meaning, see {@link com.smartgwt.client.types.Overflow}
+     * Update {@link com.smartgwt.client.widgets.tab.TabSet#getPaneContainerOverflow paneContainerOverflow} after creation.
+     * <p><b>Note : </b> This is an advanced setting</p>
+     *
+     * @param paneContainerOverflow new overflow setting. Default value is Canvas.AUTO
+     */
+    public void setPaneContainerOverflow(Overflow paneContainerOverflow) {
+        setAttribute("paneContainerOverflow", paneContainerOverflow.getValue(), true);
+    }
+
+    /**
+     * Specifies the overflow of the pane container (the component that holds the pane contents for all tabs).  By default this
+     * is set to "auto", meaning the pane container will automatically introduce scrolling when the pane contents exceed the
+     * TabSet's specified size. <p> For other values and their meaning, see {@link com.smartgwt.client.types.Overflow}
+     *
+     *
+     * @return Overflow
+     */
+    public Overflow getPaneContainerOverflow()  {
+        return EnumUtil.getEnum(Overflow.values(), getAttribute("paneContainerOverflow"));
+    }
+
+    /**
+     * If {@link com.smartgwt.client.widgets.tab.TabSet#getShowTabPicker showTabPicker} is true, and {@link
+     * com.smartgwt.client.widgets.tab.TabSet#getSymmetricPickerButton symmetricPickerButton} is  set to true, this property
+     * governs the base URL for the picker button image, when displayed in a horizontal tab-bar [IE {@link
+     * com.smartgwt.client.widgets.tab.TabSet#getTabBarPosition tabBarPosition} is set to <code>"top"</code> or
+     * <code>"bottom"</code>]. <P> Note that if <code>symmetricPickerButton</code> is false, the {@link
+     * com.smartgwt.client.widgets.tab.TabSet#getPickerButtonSrc pickerButtonSrc} property will be used instead. <P> This base
+     * URL will have a suffix of <code>"Down"</code> appended when the user holds the mouse down over the button, and
+     * <code>"Disabled"</code> if the tabset as a whole is  disabled.
+     *
+     * @param pickerButtonHSrc pickerButtonHSrc Default value is "[SKIN]hpicker.gif"
      * @throws IllegalStateException this property cannot be changed after the component has been created
      */
-    public void setShowTabPicker(Boolean showTabPicker)  throws IllegalStateException {
-        setAttribute("showTabPicker", showTabPicker, false);
+    public void setPickerButtonHSrc(String pickerButtonHSrc)  throws IllegalStateException {
+        setAttribute("pickerButtonHSrc", pickerButtonHSrc, false);
     }
 
     /**
-     * If there is not enough space to display all the tab-buttons in this tabSet, should a drop-down "picker" be displayed to
-     * allow selection of tabs that are clipped?
+     * If {@link com.smartgwt.client.widgets.tab.TabSet#getShowTabPicker showTabPicker} is true, and {@link
+     * com.smartgwt.client.widgets.tab.TabSet#getSymmetricPickerButton symmetricPickerButton} is  set to true, this property
+     * governs the base URL for the picker button image, when displayed in a horizontal tab-bar [IE {@link
+     * com.smartgwt.client.widgets.tab.TabSet#getTabBarPosition tabBarPosition} is set to <code>"top"</code> or
+     * <code>"bottom"</code>]. <P> Note that if <code>symmetricPickerButton</code> is false, the {@link
+     * com.smartgwt.client.widgets.tab.TabSet#getPickerButtonSrc pickerButtonSrc} property will be used instead. <P> This base
+     * URL will have a suffix of <code>"Down"</code> appended when the user holds the mouse down over the button, and
+     * <code>"Disabled"</code> if the tabset as a whole is  disabled.
      *
      *
-     * @return Boolean
+     * @return String
      */
-    public Boolean getShowTabPicker()  {
-        return getAttributeAsBoolean("showTabPicker");
-    }
-
-    /**
-     * If {@link com.smartgwt.client.widgets.tab.TabSet#getShowTabScroller showTabScroller} is true, should tabs be scrolled
-     * into view via an  animation when the user interacts with the scroller buttons?
-     *
-     * @param animateTabScrolling animateTabScrolling Default value is true
-     * @throws IllegalStateException this property cannot be changed after the component has been created
-     */
-    public void setAnimateTabScrolling(Boolean animateTabScrolling)  throws IllegalStateException {
-        setAttribute("animateTabScrolling", animateTabScrolling, false);
-    }
-
-    /**
-     * If {@link com.smartgwt.client.widgets.tab.TabSet#getShowTabScroller showTabScroller} is true, should tabs be scrolled
-     * into view via an  animation when the user interacts with the scroller buttons?
-     *
-     *
-     * @return Boolean
-     */
-    public Boolean getAnimateTabScrolling()  {
-        return getAttributeAsBoolean("animateTabScrolling");
-    }
-
-    /**
-     * If {@link com.smartgwt.client.widgets.tab.TabSet#getShowTabScroller showTabScroller} is true, this property governs the
-     * size of scroller buttons. Applied as the width of buttons if the tabBar is horizontal, or the height if tabBar is
-     * vertical. Note that the other dimension is determined by  {@link
-     * com.smartgwt.client.widgets.tab.TabSet#getTabBarThickness 'this.tabBarThickness'}
-     *
-     * @param scrollerButtonSize scrollerButtonSize Default value is 16
-     * @throws IllegalStateException this property cannot be changed after the component has been created
-     */
-    public void setScrollerButtonSize(int scrollerButtonSize)  throws IllegalStateException {
-        setAttribute("scrollerButtonSize", scrollerButtonSize, false);
-    }
-
-    /**
-     * If {@link com.smartgwt.client.widgets.tab.TabSet#getShowTabScroller showTabScroller} is true, this property governs the
-     * size of scroller buttons. Applied as the width of buttons if the tabBar is horizontal, or the height if tabBar is
-     * vertical. Note that the other dimension is determined by  {@link
-     * com.smartgwt.client.widgets.tab.TabSet#getTabBarThickness 'this.tabBarThickness'}
-     *
-     *
-     * @return int
-     */
-    public int getScrollerButtonSize()  {
-        return getAttributeAsInt("scrollerButtonSize");
+    public String getPickerButtonHSrc()  {
+        return getAttributeAsString("pickerButtonHSrc");
     }
 
     /**
@@ -353,55 +320,145 @@ public class TabSet extends Canvas  implements com.smartgwt.client.widgets.tab.e
     }
 
     /**
-     * Default directory for skin images (those defined by the class), relative to the Page-wide {@link
-     * com.smartgwt.client.util.Page#getSkinDir}.
+     * If {@link com.smartgwt.client.widgets.tab.TabSet#getShowTabPicker showTabPicker} is true, this property governs the base
+     * URL for the picker button image, when {@link com.smartgwt.client.widgets.tab.TabSet#getSymmetricPickerButton
+     * symmetricPickerButton} is set to false <P> Note that if <code>symmetricPickerButton</code> is true, the {@link
+     * com.smartgwt.client.widgets.tab.TabSet#getPickerButtonHSrc pickerButtonHSrc}  and {@link
+     * com.smartgwt.client.widgets.tab.TabSet#getPickerButtonVSrc pickerButtonVSrc} properties will be used instead. <P> To get
+     * the path to the image to display, this base URL will be modified as follows: <ul> <li>If appropriate a state suffix of
+     * <code>"Down"</code> or <code>"Disabled"</code> will be     appended.</li> <li>The {@link
+     * com.smartgwt.client.widgets.tab.TabSet#getTabBarPosition 'tabBarPosition'} for this tabSet will be appended.</li> </ul>
      *
-     * @param skinImgDir skinImgDir Default value is "images/TabSet/"
+     * @param pickerButtonSrc pickerButtonSrc Default value is "[SKIN]/picker.gif"
      * @throws IllegalStateException this property cannot be changed after the component has been created
      */
-    public void setSkinImgDir(String skinImgDir)  throws IllegalStateException {
-        setAttribute("skinImgDir", skinImgDir, false);
+    public void setPickerButtonSrc(String pickerButtonSrc)  throws IllegalStateException {
+        setAttribute("pickerButtonSrc", pickerButtonSrc, false);
     }
 
     /**
-     * Default directory for skin images (those defined by the class), relative to the Page-wide {@link
-     * com.smartgwt.client.util.Page#getSkinDir}.
+     * If {@link com.smartgwt.client.widgets.tab.TabSet#getShowTabPicker showTabPicker} is true, this property governs the base
+     * URL for the picker button image, when {@link com.smartgwt.client.widgets.tab.TabSet#getSymmetricPickerButton
+     * symmetricPickerButton} is set to false <P> Note that if <code>symmetricPickerButton</code> is true, the {@link
+     * com.smartgwt.client.widgets.tab.TabSet#getPickerButtonHSrc pickerButtonHSrc}  and {@link
+     * com.smartgwt.client.widgets.tab.TabSet#getPickerButtonVSrc pickerButtonVSrc} properties will be used instead. <P> To get
+     * the path to the image to display, this base URL will be modified as follows: <ul> <li>If appropriate a state suffix of
+     * <code>"Down"</code> or <code>"Disabled"</code> will be     appended.</li> <li>The {@link
+     * com.smartgwt.client.widgets.tab.TabSet#getTabBarPosition 'tabBarPosition'} for this tabSet will be appended.</li> </ul>
      *
      *
      * @return String
      */
-    public String getSkinImgDir()  {
-        return getAttributeAsString("skinImgDir");
+    public String getPickerButtonSrc()  {
+        return getAttributeAsString("pickerButtonSrc");
     }
 
     /**
-     * If this TabSet is showing {@link com.smartgwt.client.widgets.tab.TabSet#getShowTabScroller 'tab scroller buttons'}, this
-     * property  determines whether the {@link com.smartgwt.client.widgets.tab.TabSet#getScrollerHSrc scrollerHSrc} and {@link
-     * com.smartgwt.client.widgets.tab.TabSet#getScrollerVSrc scrollerVSrc} media will be used for vertical and horizontal
-     * tab-bar scroller buttons, or whether separate media should be used for each possible {@link
-     * com.smartgwt.client.widgets.tab.TabSet#getTabBarPosition 'tabBarPosition'} based on the {@link
-     * com.smartgwt.client.widgets.tab.TabSet#getScrollerSrc scrollerSrc} property for this tabSet.
+     * If {@link com.smartgwt.client.widgets.tab.TabSet#getShowTabPicker showTabPicker} is true, and {@link
+     * com.smartgwt.client.widgets.tab.TabSet#getSymmetricPickerButton symmetricPickerButton} is  set to true, this property
+     * governs the base URL for the picker button image, when displayed in a verricaL tab-bar [IE {@link
+     * com.smartgwt.client.widgets.tab.TabSet#getTabBarPosition tabBarPosition} is set to <code>"LEFT"</code> or
+     * <code>"right"</code>]. <P> Note that if <code>symmetricPickerButton</code> is false, the {@link
+     * com.smartgwt.client.widgets.tab.TabSet#getPickerButtonSrc pickerButtonSrc} property will be used instead. <P> This base
+     * URL will have a suffix of <code>"Down"</code> appended when the user holds the mouse down over the button, and
+     * <code>"Disabled"</code> if the tabset as a whole is  disabled.
      *
-     * @param symmetricScroller symmetricScroller Default value is true
+     * @param pickerButtonVSrc pickerButtonVSrc Default value is "[SKIN]vpicker.gif"
      * @throws IllegalStateException this property cannot be changed after the component has been created
      */
-    public void setSymmetricScroller(Boolean symmetricScroller)  throws IllegalStateException {
-        setAttribute("symmetricScroller", symmetricScroller, false);
+    public void setPickerButtonVSrc(String pickerButtonVSrc)  throws IllegalStateException {
+        setAttribute("pickerButtonVSrc", pickerButtonVSrc, false);
     }
 
     /**
-     * If this TabSet is showing {@link com.smartgwt.client.widgets.tab.TabSet#getShowTabScroller 'tab scroller buttons'}, this
-     * property  determines whether the {@link com.smartgwt.client.widgets.tab.TabSet#getScrollerHSrc scrollerHSrc} and {@link
-     * com.smartgwt.client.widgets.tab.TabSet#getScrollerVSrc scrollerVSrc} media will be used for vertical and horizontal
-     * tab-bar scroller buttons, or whether separate media should be used for each possible {@link
-     * com.smartgwt.client.widgets.tab.TabSet#getTabBarPosition 'tabBarPosition'} based on the {@link
-     * com.smartgwt.client.widgets.tab.TabSet#getScrollerSrc scrollerSrc} property for this tabSet.
+     * If {@link com.smartgwt.client.widgets.tab.TabSet#getShowTabPicker showTabPicker} is true, and {@link
+     * com.smartgwt.client.widgets.tab.TabSet#getSymmetricPickerButton symmetricPickerButton} is  set to true, this property
+     * governs the base URL for the picker button image, when displayed in a verricaL tab-bar [IE {@link
+     * com.smartgwt.client.widgets.tab.TabSet#getTabBarPosition tabBarPosition} is set to <code>"LEFT"</code> or
+     * <code>"right"</code>]. <P> Note that if <code>symmetricPickerButton</code> is false, the {@link
+     * com.smartgwt.client.widgets.tab.TabSet#getPickerButtonSrc pickerButtonSrc} property will be used instead. <P> This base
+     * URL will have a suffix of <code>"Down"</code> appended when the user holds the mouse down over the button, and
+     * <code>"Disabled"</code> if the tabset as a whole is  disabled.
      *
      *
-     * @return Boolean
+     * @return String
      */
-    public Boolean getSymmetricScroller()  {
-        return getAttributeAsBoolean("symmetricScroller");
+    public String getPickerButtonVSrc()  {
+        return getAttributeAsString("pickerButtonVSrc");
+    }
+
+    /**
+     * If {@link com.smartgwt.client.widgets.tab.TabSet#getShowTabScroller showTabScroller} is true, this property governs the
+     * size of scroller buttons. Applied as the width of buttons if the tabBar is horizontal, or the height if tabBar is
+     * vertical. Note that the other dimension is determined by  {@link
+     * com.smartgwt.client.widgets.tab.TabSet#getTabBarThickness 'this.tabBarThickness'}
+     *
+     * @param scrollerButtonSize scrollerButtonSize Default value is 16
+     * @throws IllegalStateException this property cannot be changed after the component has been created
+     */
+    public void setScrollerButtonSize(int scrollerButtonSize)  throws IllegalStateException {
+        setAttribute("scrollerButtonSize", scrollerButtonSize, false);
+    }
+
+    /**
+     * If {@link com.smartgwt.client.widgets.tab.TabSet#getShowTabScroller showTabScroller} is true, this property governs the
+     * size of scroller buttons. Applied as the width of buttons if the tabBar is horizontal, or the height if tabBar is
+     * vertical. Note that the other dimension is determined by  {@link
+     * com.smartgwt.client.widgets.tab.TabSet#getTabBarThickness 'this.tabBarThickness'}
+     *
+     *
+     * @return int
+     */
+    public int getScrollerButtonSize()  {
+        return getAttributeAsInt("scrollerButtonSize");
+    }
+
+    /**
+     * If this TabSet is showing {@link com.smartgwt.client.widgets.tab.TabSet#getShowTabScroller 'tab scroller buttons'}, and 
+     * {@link com.smartgwt.client.widgets.tab.TabSet#getSymmetricScroller 'symmetricScroller'} is true, this property governs
+     * the base URL for the tab bar back and forward scroller button images for horizontal tab bars [IE for tab sets with
+     * {@link com.smartgwt.client.widgets.tab.TabSet#getTabBarPosition 'tabBarPosition'} set to "top" or "bottom"]. <P> Note
+     * that if {@link com.smartgwt.client.widgets.tab.TabSet#getSymmetricScroller 'symmetricScroller'} is false,  {@link
+     * com.smartgwt.client.widgets.tab.TabSet#getScrollerSrc scrollerSrc} will be used instead. <P> To get the path to the
+     * image to display, this base URL will be modified as follows: <ul> <li>If appropriate a state suffix of
+     * <code>"Down"</code> or <code>"Disabled"</code> will be     appended.</li> <li>A suffix of <code>"forward"</code> or
+     * <code>"back"</code> will be appended for the     forward or backward scrolling button.</li> </ul> For example - if the
+     * scrollerHSrc is set to <code>"[SKIN]hscroll.gif"</code>, the image displayed for the back-scroller button on a tabSet
+     * with <code>tabBarPosition</code> set to "top" and <code>symmetricScroller</code> set to true would be one of 
+     * <code>"[SKIN]hscroll_back.gif"</code>, <code>"[SKIN]hscroll_Down_back.gif"</code>, and
+     * <code>"[SKIN]hscroll_Disabled_back.gif"</code>. <P> Note that for best results the media should be sized to match the
+     * scroller button sizes,  determined by {@link com.smartgwt.client.widgets.tab.TabSet#getTabBarThickness tabBarThickness}
+     * and {@link com.smartgwt.client.widgets.tab.TabSet#getScrollerButtonSize scrollerButtonSize}.
+     *
+     * @param scrollerHSrc scrollerHSrc Default value is "[SKIN]hscroll.gif"
+     * @throws IllegalStateException this property cannot be changed after the component has been created
+     */
+    public void setScrollerHSrc(String scrollerHSrc)  throws IllegalStateException {
+        setAttribute("scrollerHSrc", scrollerHSrc, false);
+    }
+
+    /**
+     * If this TabSet is showing {@link com.smartgwt.client.widgets.tab.TabSet#getShowTabScroller 'tab scroller buttons'}, and 
+     * {@link com.smartgwt.client.widgets.tab.TabSet#getSymmetricScroller 'symmetricScroller'} is true, this property governs
+     * the base URL for the tab bar back and forward scroller button images for horizontal tab bars [IE for tab sets with
+     * {@link com.smartgwt.client.widgets.tab.TabSet#getTabBarPosition 'tabBarPosition'} set to "top" or "bottom"]. <P> Note
+     * that if {@link com.smartgwt.client.widgets.tab.TabSet#getSymmetricScroller 'symmetricScroller'} is false,  {@link
+     * com.smartgwt.client.widgets.tab.TabSet#getScrollerSrc scrollerSrc} will be used instead. <P> To get the path to the
+     * image to display, this base URL will be modified as follows: <ul> <li>If appropriate a state suffix of
+     * <code>"Down"</code> or <code>"Disabled"</code> will be     appended.</li> <li>A suffix of <code>"forward"</code> or
+     * <code>"back"</code> will be appended for the     forward or backward scrolling button.</li> </ul> For example - if the
+     * scrollerHSrc is set to <code>"[SKIN]hscroll.gif"</code>, the image displayed for the back-scroller button on a tabSet
+     * with <code>tabBarPosition</code> set to "top" and <code>symmetricScroller</code> set to true would be one of 
+     * <code>"[SKIN]hscroll_back.gif"</code>, <code>"[SKIN]hscroll_Down_back.gif"</code>, and
+     * <code>"[SKIN]hscroll_Disabled_back.gif"</code>. <P> Note that for best results the media should be sized to match the
+     * scroller button sizes,  determined by {@link com.smartgwt.client.widgets.tab.TabSet#getTabBarThickness tabBarThickness}
+     * and {@link com.smartgwt.client.widgets.tab.TabSet#getScrollerButtonSize scrollerButtonSize}.
+     *
+     *
+     * @return String
+     */
+    public String getScrollerHSrc()  {
+        return getAttributeAsString("scrollerHSrc");
     }
 
     /**
@@ -457,54 +514,6 @@ public class TabSet extends Canvas  implements com.smartgwt.client.widgets.tab.e
     /**
      * If this TabSet is showing {@link com.smartgwt.client.widgets.tab.TabSet#getShowTabScroller 'tab scroller buttons'}, and 
      * {@link com.smartgwt.client.widgets.tab.TabSet#getSymmetricScroller 'symmetricScroller'} is true, this property governs
-     * the base URL for the tab bar back and forward scroller button images for horizontal tab bars [IE for tab sets with
-     * {@link com.smartgwt.client.widgets.tab.TabSet#getTabBarPosition 'tabBarPosition'} set to "top" or "bottom"]. <P> Note
-     * that if {@link com.smartgwt.client.widgets.tab.TabSet#getSymmetricScroller 'symmetricScroller'} is false,  {@link
-     * com.smartgwt.client.widgets.tab.TabSet#getScrollerSrc scrollerSrc} will be used instead. <P> To get the path to the
-     * image to display, this base URL will be modified as follows: <ul> <li>If appropriate a state suffix of
-     * <code>"Down"</code> or <code>"Disabled"</code> will be     appended.</li> <li>A suffix of <code>"forward"</code> or
-     * <code>"back"</code> will be appended for the     forward or backward scrolling button.</li> </ul> For example - if the
-     * scrollerHSrc is set to <code>"[SKIN]hscroll.gif"</code>, the image displayed for the back-scroller button on a tabSet
-     * with <code>tabBarPosition</code> set to "top" and <code>symmetricScroller</code> set to true would be one of 
-     * <code>"[SKIN]hscroll_back.gif"</code>, <code>"[SKIN]hscroll_Down_back.gif"</code>, and
-     * <code>"[SKIN]hscroll_Disabled_back.gif"</code>. <P> Note that for best results the media should be sized to match the
-     * scroller button sizes,  determined by {@link com.smartgwt.client.widgets.tab.TabSet#getTabBarThickness tabBarThickness}
-     * and {@link com.smartgwt.client.widgets.tab.TabSet#getScrollerButtonSize scrollerButtonSize}.
-     *
-     * @param scrollerHSrc scrollerHSrc Default value is "[SKIN]hscroll.gif"
-     * @throws IllegalStateException this property cannot be changed after the component has been created
-     */
-    public void setScrollerHSrc(String scrollerHSrc)  throws IllegalStateException {
-        setAttribute("scrollerHSrc", scrollerHSrc, false);
-    }
-
-    /**
-     * If this TabSet is showing {@link com.smartgwt.client.widgets.tab.TabSet#getShowTabScroller 'tab scroller buttons'}, and 
-     * {@link com.smartgwt.client.widgets.tab.TabSet#getSymmetricScroller 'symmetricScroller'} is true, this property governs
-     * the base URL for the tab bar back and forward scroller button images for horizontal tab bars [IE for tab sets with
-     * {@link com.smartgwt.client.widgets.tab.TabSet#getTabBarPosition 'tabBarPosition'} set to "top" or "bottom"]. <P> Note
-     * that if {@link com.smartgwt.client.widgets.tab.TabSet#getSymmetricScroller 'symmetricScroller'} is false,  {@link
-     * com.smartgwt.client.widgets.tab.TabSet#getScrollerSrc scrollerSrc} will be used instead. <P> To get the path to the
-     * image to display, this base URL will be modified as follows: <ul> <li>If appropriate a state suffix of
-     * <code>"Down"</code> or <code>"Disabled"</code> will be     appended.</li> <li>A suffix of <code>"forward"</code> or
-     * <code>"back"</code> will be appended for the     forward or backward scrolling button.</li> </ul> For example - if the
-     * scrollerHSrc is set to <code>"[SKIN]hscroll.gif"</code>, the image displayed for the back-scroller button on a tabSet
-     * with <code>tabBarPosition</code> set to "top" and <code>symmetricScroller</code> set to true would be one of 
-     * <code>"[SKIN]hscroll_back.gif"</code>, <code>"[SKIN]hscroll_Down_back.gif"</code>, and
-     * <code>"[SKIN]hscroll_Disabled_back.gif"</code>. <P> Note that for best results the media should be sized to match the
-     * scroller button sizes,  determined by {@link com.smartgwt.client.widgets.tab.TabSet#getTabBarThickness tabBarThickness}
-     * and {@link com.smartgwt.client.widgets.tab.TabSet#getScrollerButtonSize scrollerButtonSize}.
-     *
-     *
-     * @return String
-     */
-    public String getScrollerHSrc()  {
-        return getAttributeAsString("scrollerHSrc");
-    }
-
-    /**
-     * If this TabSet is showing {@link com.smartgwt.client.widgets.tab.TabSet#getShowTabScroller 'tab scroller buttons'}, and 
-     * {@link com.smartgwt.client.widgets.tab.TabSet#getSymmetricScroller 'symmetricScroller'} is true, this property governs
      * the base URL for the tab bar back and forward scroller button images for vertical tab bars [IE for tab sets with {@link
      * com.smartgwt.client.widgets.tab.TabSet#getTabBarPosition 'tabBarPosition'} set to "left" or "right"]. <P> Note that if
      * {@link com.smartgwt.client.widgets.tab.TabSet#getSymmetricScroller 'symmetricScroller'} is false,  {@link
@@ -548,216 +557,6 @@ public class TabSet extends Canvas  implements com.smartgwt.client.widgets.tab.e
      */
     public String getScrollerVSrc()  {
         return getAttributeAsString("scrollerVSrc");
-    }
-
-    /**
-     * If this TabSet is showing a {@link com.smartgwt.client.widgets.tab.TabSet#getShowTabPicker 'tab picker button'}, this
-     * property determines whether the {@link com.smartgwt.client.widgets.tab.TabSet#getPickerButtonHSrc pickerButtonHSrc} and
-     * {@link com.smartgwt.client.widgets.tab.TabSet#getPickerButtonVSrc pickerButtonVSrc} media will be used for vertical and
-     * horizontal tab-bar picker buttons, or whether separate media should be used for each possible  {@link
-     * com.smartgwt.client.widgets.tab.TabSet#getTabBarPosition 'tabBarPosition'} based on the {@link
-     * com.smartgwt.client.widgets.tab.TabSet#getPickerButtonSrc pickerButtonSrc} property  for this tabSet.
-     *
-     * @param symmetricPickerButton symmetricPickerButton Default value is true
-     * @throws IllegalStateException this property cannot be changed after the component has been created
-     */
-    public void setSymmetricPickerButton(Boolean symmetricPickerButton)  throws IllegalStateException {
-        setAttribute("symmetricPickerButton", symmetricPickerButton, false);
-    }
-
-    /**
-     * If this TabSet is showing a {@link com.smartgwt.client.widgets.tab.TabSet#getShowTabPicker 'tab picker button'}, this
-     * property determines whether the {@link com.smartgwt.client.widgets.tab.TabSet#getPickerButtonHSrc pickerButtonHSrc} and
-     * {@link com.smartgwt.client.widgets.tab.TabSet#getPickerButtonVSrc pickerButtonVSrc} media will be used for vertical and
-     * horizontal tab-bar picker buttons, or whether separate media should be used for each possible  {@link
-     * com.smartgwt.client.widgets.tab.TabSet#getTabBarPosition 'tabBarPosition'} based on the {@link
-     * com.smartgwt.client.widgets.tab.TabSet#getPickerButtonSrc pickerButtonSrc} property  for this tabSet.
-     *
-     *
-     * @return Boolean
-     */
-    public Boolean getSymmetricPickerButton()  {
-        return getAttributeAsBoolean("symmetricPickerButton");
-    }
-
-    /**
-     * If {@link com.smartgwt.client.widgets.tab.TabSet#getShowTabPicker showTabPicker} is true, this property governs the base
-     * URL for the picker button image, when {@link com.smartgwt.client.widgets.tab.TabSet#getSymmetricPickerButton
-     * symmetricPickerButton} is set to false <P> Note that if <code>symmetricPickerButton</code> is true, the {@link
-     * com.smartgwt.client.widgets.tab.TabSet#getPickerButtonHSrc pickerButtonHSrc}  and {@link
-     * com.smartgwt.client.widgets.tab.TabSet#getPickerButtonVSrc pickerButtonVSrc} properties will be used instead. <P> To get
-     * the path to the image to display, this base URL will be modified as follows: <ul> <li>If appropriate a state suffix of
-     * <code>"Down"</code> or <code>"Disabled"</code> will be     appended.</li> <li>The {@link
-     * com.smartgwt.client.widgets.tab.TabSet#getTabBarPosition 'tabBarPosition'} for this tabSet will be appended.</li> </ul>
-     *
-     * @param pickerButtonSrc pickerButtonSrc Default value is "[SKIN]/picker.gif"
-     * @throws IllegalStateException this property cannot be changed after the component has been created
-     */
-    public void setPickerButtonSrc(String pickerButtonSrc)  throws IllegalStateException {
-        setAttribute("pickerButtonSrc", pickerButtonSrc, false);
-    }
-
-    /**
-     * If {@link com.smartgwt.client.widgets.tab.TabSet#getShowTabPicker showTabPicker} is true, this property governs the base
-     * URL for the picker button image, when {@link com.smartgwt.client.widgets.tab.TabSet#getSymmetricPickerButton
-     * symmetricPickerButton} is set to false <P> Note that if <code>symmetricPickerButton</code> is true, the {@link
-     * com.smartgwt.client.widgets.tab.TabSet#getPickerButtonHSrc pickerButtonHSrc}  and {@link
-     * com.smartgwt.client.widgets.tab.TabSet#getPickerButtonVSrc pickerButtonVSrc} properties will be used instead. <P> To get
-     * the path to the image to display, this base URL will be modified as follows: <ul> <li>If appropriate a state suffix of
-     * <code>"Down"</code> or <code>"Disabled"</code> will be     appended.</li> <li>The {@link
-     * com.smartgwt.client.widgets.tab.TabSet#getTabBarPosition 'tabBarPosition'} for this tabSet will be appended.</li> </ul>
-     *
-     *
-     * @return String
-     */
-    public String getPickerButtonSrc()  {
-        return getAttributeAsString("pickerButtonSrc");
-    }
-
-    /**
-     * If {@link com.smartgwt.client.widgets.tab.TabSet#getShowTabPicker showTabPicker} is true, and {@link
-     * com.smartgwt.client.widgets.tab.TabSet#getSymmetricPickerButton symmetricPickerButton} is  set to true, this property
-     * governs the base URL for the picker button image, when displayed in a horizontal tab-bar [IE {@link
-     * com.smartgwt.client.widgets.tab.TabSet#getTabBarPosition tabBarPosition} is set to <code>"top"</code> or
-     * <code>"bottom"</code>]. <P> Note that if <code>symmetricPickerButton</code> is false, the {@link
-     * com.smartgwt.client.widgets.tab.TabSet#getPickerButtonSrc pickerButtonSrc} property will be used instead. <P> This base
-     * URL will have a suffix of <code>"Down"</code> appended when the user holds the mouse down over the button, and
-     * <code>"Disabled"</code> if the tabset as a whole is  disabled.
-     *
-     * @param pickerButtonHSrc pickerButtonHSrc Default value is "[SKIN]hpicker.gif"
-     * @throws IllegalStateException this property cannot be changed after the component has been created
-     */
-    public void setPickerButtonHSrc(String pickerButtonHSrc)  throws IllegalStateException {
-        setAttribute("pickerButtonHSrc", pickerButtonHSrc, false);
-    }
-
-    /**
-     * If {@link com.smartgwt.client.widgets.tab.TabSet#getShowTabPicker showTabPicker} is true, and {@link
-     * com.smartgwt.client.widgets.tab.TabSet#getSymmetricPickerButton symmetricPickerButton} is  set to true, this property
-     * governs the base URL for the picker button image, when displayed in a horizontal tab-bar [IE {@link
-     * com.smartgwt.client.widgets.tab.TabSet#getTabBarPosition tabBarPosition} is set to <code>"top"</code> or
-     * <code>"bottom"</code>]. <P> Note that if <code>symmetricPickerButton</code> is false, the {@link
-     * com.smartgwt.client.widgets.tab.TabSet#getPickerButtonSrc pickerButtonSrc} property will be used instead. <P> This base
-     * URL will have a suffix of <code>"Down"</code> appended when the user holds the mouse down over the button, and
-     * <code>"Disabled"</code> if the tabset as a whole is  disabled.
-     *
-     *
-     * @return String
-     */
-    public String getPickerButtonHSrc()  {
-        return getAttributeAsString("pickerButtonHSrc");
-    }
-
-    /**
-     * If {@link com.smartgwt.client.widgets.tab.TabSet#getShowTabPicker showTabPicker} is true, and {@link
-     * com.smartgwt.client.widgets.tab.TabSet#getSymmetricPickerButton symmetricPickerButton} is  set to true, this property
-     * governs the base URL for the picker button image, when displayed in a verricaL tab-bar [IE {@link
-     * com.smartgwt.client.widgets.tab.TabSet#getTabBarPosition tabBarPosition} is set to <code>"LEFT"</code> or
-     * <code>"right"</code>]. <P> Note that if <code>symmetricPickerButton</code> is false, the {@link
-     * com.smartgwt.client.widgets.tab.TabSet#getPickerButtonSrc pickerButtonSrc} property will be used instead. <P> This base
-     * URL will have a suffix of <code>"Down"</code> appended when the user holds the mouse down over the button, and
-     * <code>"Disabled"</code> if the tabset as a whole is  disabled.
-     *
-     * @param pickerButtonVSrc pickerButtonVSrc Default value is "[SKIN]vpicker.gif"
-     * @throws IllegalStateException this property cannot be changed after the component has been created
-     */
-    public void setPickerButtonVSrc(String pickerButtonVSrc)  throws IllegalStateException {
-        setAttribute("pickerButtonVSrc", pickerButtonVSrc, false);
-    }
-
-    /**
-     * If {@link com.smartgwt.client.widgets.tab.TabSet#getShowTabPicker showTabPicker} is true, and {@link
-     * com.smartgwt.client.widgets.tab.TabSet#getSymmetricPickerButton symmetricPickerButton} is  set to true, this property
-     * governs the base URL for the picker button image, when displayed in a verricaL tab-bar [IE {@link
-     * com.smartgwt.client.widgets.tab.TabSet#getTabBarPosition tabBarPosition} is set to <code>"LEFT"</code> or
-     * <code>"right"</code>]. <P> Note that if <code>symmetricPickerButton</code> is false, the {@link
-     * com.smartgwt.client.widgets.tab.TabSet#getPickerButtonSrc pickerButtonSrc} property will be used instead. <P> This base
-     * URL will have a suffix of <code>"Down"</code> appended when the user holds the mouse down over the button, and
-     * <code>"Disabled"</code> if the tabset as a whole is  disabled.
-     *
-     *
-     * @return String
-     */
-    public String getPickerButtonVSrc()  {
-        return getAttributeAsString("pickerButtonVSrc");
-    }
-
-    /**
-     * CSS style used for the paneContainer.
-     *
-     * @param paneContainerClassName paneContainerClassName Default value is null
-     */
-    public void setPaneContainerClassName(String paneContainerClassName) {
-        setAttribute("paneContainerClassName", paneContainerClassName, true);
-    }
-
-    /**
-     * CSS style used for the paneContainer.
-     *
-     *
-     * @return String
-     */
-    public String getPaneContainerClassName()  {
-        return getAttributeAsString("paneContainerClassName");
-    }
-             
-    /**
-     * Specifies the overflow of the pane container (the component that holds the pane contents for all tabs).  By default this
-     * is set to "auto", meaning the pane container will automatically introduce scrolling when the pane contents exceed the
-     * TabSet's specified size. <p> For other values and their meaning, see {@link com.smartgwt.client.types.Overflow}
-     * Update {@link com.smartgwt.client.widgets.tab.TabSet#getPaneContainerOverflow paneContainerOverflow} after creation.
-     * <p><b>Note : </b> This is an advanced setting</p>
-     *
-     * @param paneContainerOverflow new overflow setting. Default value is Canvas.AUTO
-     */
-    public void setPaneContainerOverflow(Overflow paneContainerOverflow) {
-        setAttribute("paneContainerOverflow", paneContainerOverflow.getValue(), true);
-    }
-
-    /**
-     * Specifies the overflow of the pane container (the component that holds the pane contents for all tabs).  By default this
-     * is set to "auto", meaning the pane container will automatically introduce scrolling when the pane contents exceed the
-     * TabSet's specified size. <p> For other values and their meaning, see {@link com.smartgwt.client.types.Overflow}
-     *
-     *
-     * @return Overflow
-     */
-    public Overflow getPaneContainerOverflow()  {
-        return EnumUtil.getEnum(Overflow.values(), getAttribute("paneContainerOverflow"));
-    }
-
-    /**
-     * If this tabSet will {@link com.smartgwt.client.widgets.tab.TabSet#getShowPaneContainerEdges 'show edges'} for the
-     * paneContainer, this property determines whether the same edge media will be used regardless of the tab bar position, or
-     * whether different media should be used (necessary if the edge appearance is not symmetrical on all sides). <P> If this
-     * property is set to false the paneContainer edge image URLs will be prefixed with the tabBarPosition of the tabSet - for
-     * example <code>"[SKIN]edge_top_T.gif"</code> rather than just <code>"[SKIN]edge_T.gif"</code>. <P> When
-     * <code>symmetricEdges</code> is false, custom edge sizes for the pane container may be specified via {@link
-     * com.smartgwt.client.widgets.tab.TabSet#getTopEdgeSizes topEdgeSizes} et al, and custom edge offsets via  {@link
-     * com.smartgwt.client.widgets.tab.TabSet#getTopEdgeOffsets topEdgeOffsets} et al.
-     *
-     * @param symmetricEdges symmetricEdges Default value is true
-     * @throws IllegalStateException this property cannot be changed after the component has been created
-     */
-    public void setSymmetricEdges(Boolean symmetricEdges)  throws IllegalStateException {
-        setAttribute("symmetricEdges", symmetricEdges, false);
-    }
-
-    /**
-     * If this tabSet will {@link com.smartgwt.client.widgets.tab.TabSet#getShowPaneContainerEdges 'show edges'} for the
-     * paneContainer, this property determines whether the same edge media will be used regardless of the tab bar position, or
-     * whether different media should be used (necessary if the edge appearance is not symmetrical on all sides). <P> If this
-     * property is set to false the paneContainer edge image URLs will be prefixed with the tabBarPosition of the tabSet - for
-     * example <code>"[SKIN]edge_top_T.gif"</code> rather than just <code>"[SKIN]edge_T.gif"</code>. <P> When
-     * <code>symmetricEdges</code> is false, custom edge sizes for the pane container may be specified via {@link
-     * com.smartgwt.client.widgets.tab.TabSet#getTopEdgeSizes topEdgeSizes} et al, and custom edge offsets via  {@link
-     * com.smartgwt.client.widgets.tab.TabSet#getTopEdgeOffsets topEdgeOffsets} et al.
-     *
-     *
-     * @return Boolean
-     */
-    public Boolean getSymmetricEdges()  {
-        return getAttributeAsBoolean("symmetricEdges");
     }
 
     /**
@@ -806,32 +605,294 @@ public class TabSet extends Canvas  implements com.smartgwt.client.widgets.tab.e
     }
 
     /**
-     * Whether {@link com.smartgwt.client.widgets.Canvas#destroy} should be called on {@link
-     * com.smartgwt.client.widgets.tab.Tab#getPane pane} when it a tab is removed via {@link
-     * com.smartgwt.client.widgets.tab.TabSet#removeTab}}.   <P> An application might set this to false in order to re-use
-     * panes in different tabs or in different parts of the application.
+     * If there is not enough space to display all the tab-buttons in this tabSet, should a drop-down "picker" be displayed to
+     * allow selection of tabs that are clipped?
      *
-     * @param destroyPanes destroyPanes Default value is null
+     * @param showTabPicker showTabPicker Default value is true
      * @throws IllegalStateException this property cannot be changed after the component has been created
      */
-    public void setDestroyPanes(Boolean destroyPanes)  throws IllegalStateException {
-        setAttribute("destroyPanes", destroyPanes, false);
+    public void setShowTabPicker(Boolean showTabPicker)  throws IllegalStateException {
+        setAttribute("showTabPicker", showTabPicker, false);
     }
 
     /**
-     * Whether {@link com.smartgwt.client.widgets.Canvas#destroy} should be called on {@link
-     * com.smartgwt.client.widgets.tab.Tab#getPane pane} when it a tab is removed via {@link
-     * com.smartgwt.client.widgets.tab.TabSet#removeTab}}.   <P> An application might set this to false in order to re-use
-     * panes in different tabs or in different parts of the application.
+     * If there is not enough space to display all the tab-buttons in this tabSet, should a drop-down "picker" be displayed to
+     * allow selection of tabs that are clipped?
      *
      *
      * @return Boolean
      */
-    public Boolean getDestroyPanes()  {
-        return getAttributeAsBoolean("destroyPanes");
+    public Boolean getShowTabPicker()  {
+        return getAttributeAsBoolean("showTabPicker");
+    }
+
+    /**
+     * If there is not enough space to display all the tab-buttons in this tabSet, should  scroller buttons be displayed to
+     * allow access to tabs that are clipped?
+     *
+     * @param showTabScroller showTabScroller Default value is true
+     * @throws IllegalStateException this property cannot be changed after the component has been created
+     */
+    public void setShowTabScroller(Boolean showTabScroller)  throws IllegalStateException {
+        setAttribute("showTabScroller", showTabScroller, false);
+    }
+
+    /**
+     * If there is not enough space to display all the tab-buttons in this tabSet, should  scroller buttons be displayed to
+     * allow access to tabs that are clipped?
+     *
+     *
+     * @return Boolean
+     */
+    public Boolean getShowTabScroller()  {
+        return getAttributeAsBoolean("showTabScroller");
+    }
+
+    /**
+     * Default directory for skin images (those defined by the class), relative to the Page-wide {@link
+     * com.smartgwt.client.util.Page#getSkinDir}.
+     *
+     * @param skinImgDir skinImgDir Default value is "images/TabSet/"
+     * @throws IllegalStateException this property cannot be changed after the component has been created
+     */
+    public void setSkinImgDir(String skinImgDir)  throws IllegalStateException {
+        setAttribute("skinImgDir", skinImgDir, false);
+    }
+
+    /**
+     * Default directory for skin images (those defined by the class), relative to the Page-wide {@link
+     * com.smartgwt.client.util.Page#getSkinDir}.
+     *
+     *
+     * @return String
+     */
+    public String getSkinImgDir()  {
+        return getAttributeAsString("skinImgDir");
+    }
+
+    /**
+     * If this tabSet will {@link com.smartgwt.client.widgets.tab.TabSet#getShowPaneContainerEdges 'show edges'} for the
+     * paneContainer, this property determines whether the same edge media will be used regardless of the tab bar position, or
+     * whether different media should be used (necessary if the edge appearance is not symmetrical on all sides). <P> If this
+     * property is set to false the paneContainer edge image URLs will be prefixed with the tabBarPosition of the tabSet - for
+     * example <code>"[SKIN]edge_top_T.gif"</code> rather than just <code>"[SKIN]edge_T.gif"</code>. <P> When
+     * <code>symmetricEdges</code> is false, custom edge sizes for the pane container may be specified via {@link
+     * com.smartgwt.client.widgets.tab.TabSet#getTopEdgeSizes topEdgeSizes} et al, and custom edge offsets via  {@link
+     * com.smartgwt.client.widgets.tab.TabSet#getTopEdgeOffsets topEdgeOffsets} et al.
+     *
+     * @param symmetricEdges symmetricEdges Default value is true
+     * @throws IllegalStateException this property cannot be changed after the component has been created
+     */
+    public void setSymmetricEdges(Boolean symmetricEdges)  throws IllegalStateException {
+        setAttribute("symmetricEdges", symmetricEdges, false);
+    }
+
+    /**
+     * If this tabSet will {@link com.smartgwt.client.widgets.tab.TabSet#getShowPaneContainerEdges 'show edges'} for the
+     * paneContainer, this property determines whether the same edge media will be used regardless of the tab bar position, or
+     * whether different media should be used (necessary if the edge appearance is not symmetrical on all sides). <P> If this
+     * property is set to false the paneContainer edge image URLs will be prefixed with the tabBarPosition of the tabSet - for
+     * example <code>"[SKIN]edge_top_T.gif"</code> rather than just <code>"[SKIN]edge_T.gif"</code>. <P> When
+     * <code>symmetricEdges</code> is false, custom edge sizes for the pane container may be specified via {@link
+     * com.smartgwt.client.widgets.tab.TabSet#getTopEdgeSizes topEdgeSizes} et al, and custom edge offsets via  {@link
+     * com.smartgwt.client.widgets.tab.TabSet#getTopEdgeOffsets topEdgeOffsets} et al.
+     *
+     *
+     * @return Boolean
+     */
+    public Boolean getSymmetricEdges()  {
+        return getAttributeAsBoolean("symmetricEdges");
+    }
+
+    /**
+     * If this TabSet is showing a {@link com.smartgwt.client.widgets.tab.TabSet#getShowTabPicker 'tab picker button'}, this
+     * property determines whether the {@link com.smartgwt.client.widgets.tab.TabSet#getPickerButtonHSrc pickerButtonHSrc} and
+     * {@link com.smartgwt.client.widgets.tab.TabSet#getPickerButtonVSrc pickerButtonVSrc} media will be used for vertical and
+     * horizontal tab-bar picker buttons, or whether separate media should be used for each possible  {@link
+     * com.smartgwt.client.widgets.tab.TabSet#getTabBarPosition 'tabBarPosition'} based on the {@link
+     * com.smartgwt.client.widgets.tab.TabSet#getPickerButtonSrc pickerButtonSrc} property  for this tabSet.
+     *
+     * @param symmetricPickerButton symmetricPickerButton Default value is true
+     * @throws IllegalStateException this property cannot be changed after the component has been created
+     */
+    public void setSymmetricPickerButton(Boolean symmetricPickerButton)  throws IllegalStateException {
+        setAttribute("symmetricPickerButton", symmetricPickerButton, false);
+    }
+
+    /**
+     * If this TabSet is showing a {@link com.smartgwt.client.widgets.tab.TabSet#getShowTabPicker 'tab picker button'}, this
+     * property determines whether the {@link com.smartgwt.client.widgets.tab.TabSet#getPickerButtonHSrc pickerButtonHSrc} and
+     * {@link com.smartgwt.client.widgets.tab.TabSet#getPickerButtonVSrc pickerButtonVSrc} media will be used for vertical and
+     * horizontal tab-bar picker buttons, or whether separate media should be used for each possible  {@link
+     * com.smartgwt.client.widgets.tab.TabSet#getTabBarPosition 'tabBarPosition'} based on the {@link
+     * com.smartgwt.client.widgets.tab.TabSet#getPickerButtonSrc pickerButtonSrc} property  for this tabSet.
+     *
+     *
+     * @return Boolean
+     */
+    public Boolean getSymmetricPickerButton()  {
+        return getAttributeAsBoolean("symmetricPickerButton");
+    }
+
+    /**
+     * If this TabSet is showing {@link com.smartgwt.client.widgets.tab.TabSet#getShowTabScroller 'tab scroller buttons'}, this
+     * property  determines whether the {@link com.smartgwt.client.widgets.tab.TabSet#getScrollerHSrc scrollerHSrc} and {@link
+     * com.smartgwt.client.widgets.tab.TabSet#getScrollerVSrc scrollerVSrc} media will be used for vertical and horizontal
+     * tab-bar scroller buttons, or whether separate media should be used for each possible {@link
+     * com.smartgwt.client.widgets.tab.TabSet#getTabBarPosition 'tabBarPosition'} based on the {@link
+     * com.smartgwt.client.widgets.tab.TabSet#getScrollerSrc scrollerSrc} property for this tabSet.
+     *
+     * @param symmetricScroller symmetricScroller Default value is true
+     * @throws IllegalStateException this property cannot be changed after the component has been created
+     */
+    public void setSymmetricScroller(Boolean symmetricScroller)  throws IllegalStateException {
+        setAttribute("symmetricScroller", symmetricScroller, false);
+    }
+
+    /**
+     * If this TabSet is showing {@link com.smartgwt.client.widgets.tab.TabSet#getShowTabScroller 'tab scroller buttons'}, this
+     * property  determines whether the {@link com.smartgwt.client.widgets.tab.TabSet#getScrollerHSrc scrollerHSrc} and {@link
+     * com.smartgwt.client.widgets.tab.TabSet#getScrollerVSrc scrollerVSrc} media will be used for vertical and horizontal
+     * tab-bar scroller buttons, or whether separate media should be used for each possible {@link
+     * com.smartgwt.client.widgets.tab.TabSet#getTabBarPosition 'tabBarPosition'} based on the {@link
+     * com.smartgwt.client.widgets.tab.TabSet#getScrollerSrc scrollerSrc} property for this tabSet.
+     *
+     *
+     * @return Boolean
+     */
+    public Boolean getSymmetricScroller()  {
+        return getAttributeAsBoolean("symmetricScroller");
+    }
+             
+    /**
+     * Alignment of the tabBar. <P> If the position of the tabBar is "top" or "bottom", then alignment must be "left" or
+     * "right" and defaults to "left". <P> If the position of the tabBar is "left" or "right", then the alignment must be "top"
+     * or "bottom" and defaults to "top".
+     *
+     * @param tabBarAlign tabBarAlign Default value is see below
+     * @throws IllegalStateException this property cannot be changed after the component has been created
+     */
+    public void setTabBarAlign(Side tabBarAlign)  throws IllegalStateException {
+        setAttribute("tabBarAlign", tabBarAlign.getValue(), false);
+    }
+
+    /**
+     * Alignment of the tabBar. <P> If the position of the tabBar is "top" or "bottom", then alignment must be "left" or
+     * "right" and defaults to "left". <P> If the position of the tabBar is "left" or "right", then the alignment must be "top"
+     * or "bottom" and defaults to "top".
+     *
+     *
+     * @return Side
+     */
+    public Side getTabBarAlign()  {
+        return EnumUtil.getEnum(Side.values(), getAttribute("tabBarAlign"));
+    }
+             
+    /**
+     * Which side of the TabSet the TabBar should appear on.
+     *
+     * @param tabBarPosition tabBarPosition Default value is Canvas.TOP
+     * @throws IllegalStateException this property cannot be changed after the component has been created
+     */
+    public void setTabBarPosition(Side tabBarPosition)  throws IllegalStateException {
+        setAttribute("tabBarPosition", tabBarPosition.getValue(), false);
+    }
+
+    /**
+     * Which side of the TabSet the TabBar should appear on.
+     *
+     *
+     * @return Side
+     */
+    public Side getTabBarPosition()  {
+        return EnumUtil.getEnum(Side.values(), getAttribute("tabBarPosition"));
+    }
+
+    /**
+     * Thickness of tabBar, applies to either orientation (specifies height for horizontal, width for vertical orientation). 
+     * Note that overriding this value for TabSets that are skinned with images generally means providing new media for the
+     * borders.
+     *
+     * @param tabBarThickness tabBarThickness Default value is 21
+     */
+    public void setTabBarThickness(int tabBarThickness) {
+        setAttribute("tabBarThickness", tabBarThickness, true);
+    }
+
+    /**
+     * Thickness of tabBar, applies to either orientation (specifies height for horizontal, width for vertical orientation). 
+     * Note that overriding this value for TabSets that are skinned with images generally means providing new media for the
+     * borders.
+     *
+     *
+     * @return int
+     */
+    public int getTabBarThickness()  {
+        return getAttributeAsInt("tabBarThickness");
     }
 
     // ********************* Methods ***********************
+            
+    /**
+     * Returns the index of the currently selected tab object.
+     *
+     * @return the index of the currently selected tab object
+     */
+    public native int getSelectedTabNumber() /*-{
+        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
+        return self.getSelectedTabNumber();
+    }-*/;
+            
+    /**
+     * If there is not enough space to display all the tabs in this tabSet, this method will  scroll the previous tab (that
+     * first tab that is clipped at the beginning of the tab-bar)  into view.
+     */
+    public native void scrollBack() /*-{
+        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
+        self.scrollBack();
+    }-*/;
+            
+    /**
+     * If there is not enough space to display all the tabs in this tabSet, this method will  scroll the next tab (that first
+     * tab that is clipped at the end of the tab-bar) into view.
+     */
+    public native void scrollForward() /*-{
+        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
+        self.scrollForward();
+    }-*/;
+    /**
+     * Add a tabDeselected handler.
+     * <p>
+     * Notification fired when a tab is deselected.
+     *
+     * @param handler the tabDeselected handler
+     * @return {@link HandlerRegistration} used to remove this handler
+     */
+    public HandlerRegistration addTabDeselectedHandler(com.smartgwt.client.widgets.tab.events.TabDeselectedHandler handler) {
+        if(getHandlerCount(com.smartgwt.client.widgets.tab.events.TabDeselectedEvent.getType()) == 0) setupTabDeselectedEvent();
+        return doAddHandler(handler, com.smartgwt.client.widgets.tab.events.TabDeselectedEvent.getType());
+    }
+
+    private native void setupTabDeselectedEvent() /*-{
+        var obj = null;
+        var selfJ = this;
+        if(this.@com.smartgwt.client.widgets.BaseWidget::isCreated()()) {
+            obj = this.@com.smartgwt.client.widgets.BaseWidget::getJsObj()();
+            obj.addProperties({tabDeselected:$entry(function(){
+                        var param = {"tabNum" : arguments[0], "tabPane" : arguments[1], "ID" : arguments[2], "tab" : arguments[3]};
+                        var event = @com.smartgwt.client.widgets.tab.events.TabDeselectedEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
+                        selfJ.@com.smartgwt.client.widgets.BaseWidget::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
+                    })
+             });
+        } else {
+            obj = this.@com.smartgwt.client.widgets.BaseWidget::getConfig()();
+            obj.tabDeselected = $entry(function(){
+                   var param = {"tabNum" : arguments[0], "tabPane" : arguments[1], "ID" : arguments[2], "tab" : arguments[3]};
+                   var event = @com.smartgwt.client.widgets.tab.events.TabDeselectedEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
+                   selfJ.@com.smartgwt.client.widgets.BaseWidget::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
+               });
+        }
+   }-*/;
     /**
      * Add a tabIconClick handler.
      * <p>
@@ -868,34 +929,6 @@ public class TabSet extends Canvas  implements com.smartgwt.client.widgets.tab.e
                });
         }
    }-*/;
-            
-    /**
-     * If there is not enough space to display all the tabs in this tabSet, this method will  scroll the next tab (that first
-     * tab that is clipped at the end of the tab-bar) into view.
-     */
-    public native void scrollForward() /*-{
-        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
-        self.scrollForward();
-    }-*/;
-            
-    /**
-     * If there is not enough space to display all the tabs in this tabSet, this method will  scroll the previous tab (that
-     * first tab that is clipped at the beginning of the tab-bar)  into view.
-     */
-    public native void scrollBack() /*-{
-        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
-        self.scrollBack();
-    }-*/;
-            
-    /**
-     * Returns the index of the currently selected tab object.
-     *
-     * @return the index of the currently selected tab object
-     */
-    public native int getSelectedTabNumber() /*-{
-        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
-        return self.getSelectedTabNumber();
-    }-*/;
     /**
      * Add a tabSelected handler.
      * <p>
@@ -927,39 +960,6 @@ public class TabSet extends Canvas  implements com.smartgwt.client.widgets.tab.e
             obj.tabSelected = $entry(function(){
                    var param = {"tabNum" : arguments[0], "tabPane" : arguments[1], "ID" : arguments[2], "tab" : arguments[3]};
                    var event = @com.smartgwt.client.widgets.tab.events.TabSelectedEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
-                   selfJ.@com.smartgwt.client.widgets.BaseWidget::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
-               });
-        }
-   }-*/;
-    /**
-     * Add a tabDeselected handler.
-     * <p>
-     * Notification fired when a tab is deselected.
-     *
-     * @param handler the tabDeselected handler
-     * @return {@link HandlerRegistration} used to remove this handler
-     */
-    public HandlerRegistration addTabDeselectedHandler(com.smartgwt.client.widgets.tab.events.TabDeselectedHandler handler) {
-        if(getHandlerCount(com.smartgwt.client.widgets.tab.events.TabDeselectedEvent.getType()) == 0) setupTabDeselectedEvent();
-        return doAddHandler(handler, com.smartgwt.client.widgets.tab.events.TabDeselectedEvent.getType());
-    }
-
-    private native void setupTabDeselectedEvent() /*-{
-        var obj = null;
-        var selfJ = this;
-        if(this.@com.smartgwt.client.widgets.BaseWidget::isCreated()()) {
-            obj = this.@com.smartgwt.client.widgets.BaseWidget::getJsObj()();
-            obj.addProperties({tabDeselected:$entry(function(){
-                        var param = {"tabNum" : arguments[0], "tabPane" : arguments[1], "ID" : arguments[2], "tab" : arguments[3]};
-                        var event = @com.smartgwt.client.widgets.tab.events.TabDeselectedEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
-                        selfJ.@com.smartgwt.client.widgets.BaseWidget::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
-                    })
-             });
-        } else {
-            obj = this.@com.smartgwt.client.widgets.BaseWidget::getConfig()();
-            obj.tabDeselected = $entry(function(){
-                   var param = {"tabNum" : arguments[0], "tabPane" : arguments[1], "ID" : arguments[2], "tab" : arguments[3]};
-                   var event = @com.smartgwt.client.widgets.tab.events.TabDeselectedEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
                    selfJ.@com.smartgwt.client.widgets.BaseWidget::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
                });
         }

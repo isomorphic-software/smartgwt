@@ -98,24 +98,44 @@ public class ComboBoxItem extends FormItem  implements PickList, com.smartgwt.cl
     // ********************* Properties / Attributes ***********************
 
     /**
-     * Static default value for this ComboBoxItem. To default to the first option use {@link
-     * com.smartgwt.client.widgets.form.fields.ComboBoxItem#getDefaultToFirstOption defaultToFirstOption} instead.
+     * If this combo box retrieves its options from a <code>dataSource</code>, should options be fetched from the server when
+     * the item is first written out, or should this fetch be delayed until the user opens the pickList.
+     * <p><b>Note : </b> This is an advanced setting</p>
      *
-     * @param defaultValue defaultValue Default value is null
+     * @param autoFetchData autoFetchData Default value is false
      */
-    public void setDefaultValue(Boolean defaultValue) {
-        setAttribute("defaultValue", defaultValue);
+    public void setAutoFetchData(Boolean autoFetchData) {
+        setAttribute("autoFetchData", autoFetchData);
     }
 
     /**
-     * Static default value for this ComboBoxItem. To default to the first option use {@link
-     * com.smartgwt.client.widgets.form.fields.ComboBoxItem#getDefaultToFirstOption defaultToFirstOption} instead.
+     * If this combo box retrieves its options from a <code>dataSource</code>, should options be fetched from the server when
+     * the item is first written out, or should this fetch be delayed until the user opens the pickList.
      *
      *
      * @return Boolean
      */
-    public Boolean getDefaultValue()  {
-        return getAttributeAsBoolean("defaultValue");
+    public Boolean getAutoFetchData()  {
+        return getAttributeAsBoolean("autoFetchData");
+    }
+
+    /**
+     * If true, when the pickList is showing, the user can select the current value by hitting the <code>Tab</code> key.
+     *
+     * @param completeOnTab completeOnTab Default value is null
+     */
+    public void setCompleteOnTab(Boolean completeOnTab) {
+        setAttribute("completeOnTab", completeOnTab);
+    }
+
+    /**
+     * If true, when the pickList is showing, the user can select the current value by hitting the <code>Tab</code> key.
+     *
+     *
+     * @return Boolean
+     */
+    public Boolean getCompleteOnTab()  {
+        return getAttributeAsBoolean("completeOnTab");
     }
 
     /**
@@ -144,152 +164,24 @@ public class ComboBoxItem extends FormItem  implements PickList, com.smartgwt.cl
     }
 
     /**
-     * If showing a hint for this form item, should it be shown within the field? <P>CSS style for the hint is {@link
-     * com.smartgwt.client.widgets.form.fields.SelectItem#getTextBoxStyle textBoxStyle} with the suffix "Hint" appended to it.
-     * <p><b>Note : </b> This is an advanced setting</p>
+     * Static default value for this ComboBoxItem. To default to the first option use {@link
+     * com.smartgwt.client.widgets.form.fields.ComboBoxItem#getDefaultToFirstOption defaultToFirstOption} instead.
      *
-     * @param showHintInField showHintInField Default value is null
+     * @param defaultValue defaultValue Default value is null
      */
-    public void setShowHintInField(Boolean showHintInField) {
-        setAttribute("showHintInField", showHintInField);
+    public void setDefaultValue(Boolean defaultValue) {
+        setAttribute("defaultValue", defaultValue);
     }
 
     /**
-     * If showing a hint for this form item, should it be shown within the field? <P>CSS style for the hint is {@link
-     * com.smartgwt.client.widgets.form.fields.SelectItem#getTextBoxStyle textBoxStyle} with the suffix "Hint" appended to it.
+     * Static default value for this ComboBoxItem. To default to the first option use {@link
+     * com.smartgwt.client.widgets.form.fields.ComboBoxItem#getDefaultToFirstOption defaultToFirstOption} instead.
      *
      *
      * @return Boolean
      */
-    public Boolean getShowHintInField()  {
-        return getAttributeAsBoolean("showHintInField");
-    }
- 
- 
- 
- 
- 
-
-    /**
-     * Show the picker icon for the ComboBox.
-     * <p><b>Note : </b> This is an advanced setting</p>
-     *
-     * @param showPickerIcon showPickerIcon Default value is true
-     */
-    public void setShowPickerIcon(Boolean showPickerIcon) {
-        setAttribute("showPickerIcon", showPickerIcon);
-    }
-
-    /**
-     * Show the picker icon for the ComboBox.
-     *
-     *
-     * @return Boolean
-     */
-    public Boolean getShowPickerIcon()  {
-        return getAttributeAsBoolean("showPickerIcon");
-    }
-
-    /**
-     * Don't specify an explicit height for the picker icon - instead have it size to match the height of the combo box item.
-     *
-     * @param pickerIconHeight pickerIconHeight Default value is null
-     */
-    public void setPickerIconHeight(Integer pickerIconHeight) {
-        setAttribute("pickerIconHeight", pickerIconHeight);
-    }
-
-    /**
-     * Don't specify an explicit height for the picker icon - instead have it size to match the height of the combo box item.
-     *
-     *
-     * @return Integer
-     */
-    public Integer getPickerIconHeight()  {
-        return getAttributeAsInt("pickerIconHeight");
-    }
-
-    /**
-     * Src for the picker icon.
-     * <p><b>Note : </b> This is an advanced setting</p>
-     *
-     * @param pickerIconSrc pickerIconSrc Default value is "[SKIN]/DynamicForm/ComboBoxItem_PickButton_icon.gif"
-     */
-    public void setPickerIconSrc(String pickerIconSrc) {
-        setAttribute("pickerIconSrc", pickerIconSrc);
-    }
-
-    /**
-     * Src for the picker icon.
-     *
-     *
-     * @return String
-     */
-    public String getPickerIconSrc()  {
-        return getAttributeAsString("pickerIconSrc");
-    }
-
-    /**
-     * Should the list of options be displayed whenever the user types into the  the combo-box textArea, or only when the user
-     * clicks on the pick button or uses the  explicit <code>Alt+Arrow Down</code> key combination?
-     *
-     * @param showPickListOnKeypress showPickListOnKeypress Default value is true
-     */
-    public void setShowPickListOnKeypress(Boolean showPickListOnKeypress) {
-        setAttribute("showPickListOnKeypress", showPickListOnKeypress);
-    }
-
-    /**
-     * Should the list of options be displayed whenever the user types into the  the combo-box textArea, or only when the user
-     * clicks on the pick button or uses the  explicit <code>Alt+Arrow Down</code> key combination?
-     *
-     *
-     * @return Boolean
-     */
-    public Boolean getShowPickListOnKeypress()  {
-        return getAttributeAsBoolean("showPickListOnKeypress");
-    }
-
-    /**
-     * If true, when the pickList is showing, the user can select the current value by hitting the <code>Tab</code> key.
-     *
-     * @param completeOnTab completeOnTab Default value is null
-     */
-    public void setCompleteOnTab(Boolean completeOnTab) {
-        setAttribute("completeOnTab", completeOnTab);
-    }
-
-    /**
-     * If true, when the pickList is showing, the user can select the current value by hitting the <code>Tab</code> key.
-     *
-     *
-     * @return Boolean
-     */
-    public Boolean getCompleteOnTab()  {
-        return getAttributeAsBoolean("completeOnTab");
-    }
-
-    /**
-     * If this item has a specified <code>optionDataSource</code>, this attribute may be set to specify an explicit {@link
-     * com.smartgwt.client.data.DSRequest#getOperationId operationId} when performing a fetch against the option dataSource to
-     * pick up display value mapping.
-     *
-     * @param optionOperationId optionOperationId Default value is null
-     */
-    public void setOptionOperationId(String optionOperationId) {
-        setAttribute("optionOperationId", optionOperationId);
-    }
-
-    /**
-     * If this item has a specified <code>optionDataSource</code>, this attribute may be set to specify an explicit {@link
-     * com.smartgwt.client.data.DSRequest#getOperationId operationId} when performing a fetch against the option dataSource to
-     * pick up display value mapping.
-     *
-     *
-     * @return String
-     */
-    public String getOptionOperationId()  {
-        return getAttributeAsString("optionOperationId");
+    public Boolean getDefaultValue()  {
+        return getAttributeAsBoolean("defaultValue");
     }
 
     /**
@@ -339,33 +231,6 @@ public class ComboBoxItem extends FormItem  implements PickList, com.smartgwt.cl
     }
 
     /**
-     * If this form item maps data values to display values by retrieving the  {@link
-     * com.smartgwt.client.widgets.form.fields.FormItem#getDisplayField displayField} values from an  {@link
-     * com.smartgwt.client.widgets.form.fields.FormItem#getOptionDataSource 'optionDataSource'}, this property  denotes the the
-     * field to use as the underlying data value in records from the  optionDataSource.<br> If unset, assumed to be the {@link
-     * com.smartgwt.client.widgets.form.fields.FormItem#getName name} of this form item.
-     *
-     * @param valueField valueField Default value is null
-     */
-    public void setValueField(String valueField) {
-        setAttribute("valueField", valueField);
-    }
-
-    /**
-     * If this form item maps data values to display values by retrieving the  {@link
-     * com.smartgwt.client.widgets.form.fields.FormItem#getDisplayField displayField} values from an  {@link
-     * com.smartgwt.client.widgets.form.fields.FormItem#getOptionDataSource 'optionDataSource'}, this property  denotes the the
-     * field to use as the underlying data value in records from the  optionDataSource.<br> If unset, assumed to be the {@link
-     * com.smartgwt.client.widgets.form.fields.FormItem#getName name} of this form item.
-     *
-     *
-     * @return String
-     */
-    public String getValueField()  {
-        return getAttributeAsString("valueField");
-    }
-
-    /**
      * If <code>filterLocally</code> is set for this item, and this item is showing options  from a dataSource, fetch the
      * entire set of options from the server, and use these values to map the item value to the appropriate display value. Also
      * use <code>"local"</code> type filtering on drop down list of options. <P> This means data will only be fetched once from
@@ -389,6 +254,132 @@ public class ComboBoxItem extends FormItem  implements PickList, com.smartgwt.cl
      */
     public Boolean getFilterLocally()  {
         return getAttributeAsBoolean("filterLocally");
+    }
+
+
+    /**
+     * Read-only property set by the ComboBoxItem to indicate whether we should use the  current typed-in value as part of the
+     * filter criteria returned by  {@link com.smartgwt.client.widgets.form.fields.ComboBoxItem#getPickListFilterCriteria}. 
+     * You can check this flag in order to mimic the ComboBoxItem's default behavior if you provide a custom implementation of
+     * <code>getPickListFilterCriteria()</code>.
+     *
+     *
+     * @return Boolean
+     */
+    public Boolean getFilterWithValue()  {
+        return getAttributeAsBoolean("filterWithValue");
+    }
+ 
+ 
+ 
+ 
+ 
+
+    /**
+     * If this item has a specified <code>optionDataSource</code>, this attribute may be set to specify an explicit {@link
+     * com.smartgwt.client.data.DSRequest#getOperationId operationId} when performing a fetch against the option dataSource to
+     * pick up display value mapping.
+     *
+     * @param optionOperationId optionOperationId Default value is null
+     */
+    public void setOptionOperationId(String optionOperationId) {
+        setAttribute("optionOperationId", optionOperationId);
+    }
+
+    /**
+     * If this item has a specified <code>optionDataSource</code>, this attribute may be set to specify an explicit {@link
+     * com.smartgwt.client.data.DSRequest#getOperationId operationId} when performing a fetch against the option dataSource to
+     * pick up display value mapping.
+     *
+     *
+     * @return String
+     */
+    public String getOptionOperationId()  {
+        return getAttributeAsString("optionOperationId");
+    }
+
+    /**
+     * Don't specify an explicit height for the picker icon - instead have it size to match the height of the combo box item.
+     *
+     * @param pickerIconHeight pickerIconHeight Default value is null
+     */
+    public void setPickerIconHeight(Integer pickerIconHeight) {
+        setAttribute("pickerIconHeight", pickerIconHeight);
+    }
+
+    /**
+     * Don't specify an explicit height for the picker icon - instead have it size to match the height of the combo box item.
+     *
+     *
+     * @return Integer
+     */
+    public Integer getPickerIconHeight()  {
+        return getAttributeAsInt("pickerIconHeight");
+    }
+
+    /**
+     * Src for the picker icon.
+     * <p><b>Note : </b> This is an advanced setting</p>
+     *
+     * @param pickerIconSrc pickerIconSrc Default value is "[SKIN]/DynamicForm/ComboBoxItem_PickButton_icon.gif"
+     */
+    public void setPickerIconSrc(String pickerIconSrc) {
+        setAttribute("pickerIconSrc", pickerIconSrc);
+    }
+
+    /**
+     * Src for the picker icon.
+     *
+     *
+     * @return String
+     */
+    public String getPickerIconSrc()  {
+        return getAttributeAsString("pickerIconSrc");
+    }
+
+    /**
+     * If true, even non-matching options will be shown, with configurable  {@link
+     * com.smartgwt.client.widgets.form.fields.ComboBoxItem#getSeparatorRows 'separator rows'} in between.  Not valid for
+     * {@link com.smartgwt.client.widgets.form.fields.ComboBoxItem#getOptionDataSource 'databound pickLists'}.
+     *
+     * @param showAllOptions showAllOptions Default value is null
+     */
+    public void setShowAllOptions(Boolean showAllOptions) {
+        setAttribute("showAllOptions", showAllOptions);
+    }
+
+    /**
+     * If true, even non-matching options will be shown, with configurable  {@link
+     * com.smartgwt.client.widgets.form.fields.ComboBoxItem#getSeparatorRows 'separator rows'} in between.  Not valid for
+     * {@link com.smartgwt.client.widgets.form.fields.ComboBoxItem#getOptionDataSource 'databound pickLists'}.
+     *
+     *
+     * @return Boolean
+     */
+    public Boolean getShowAllOptions()  {
+        return getAttributeAsBoolean("showAllOptions");
+    }
+
+    /**
+     * If showing a hint for this form item, should it be shown within the field? <P>CSS style for the hint is {@link
+     * com.smartgwt.client.widgets.form.fields.SelectItem#getTextBoxStyle textBoxStyle} with the suffix "Hint" appended to it.
+     * <p><b>Note : </b> This is an advanced setting</p>
+     *
+     * @param showHintInField showHintInField Default value is null
+     */
+    public void setShowHintInField(Boolean showHintInField) {
+        setAttribute("showHintInField", showHintInField);
+    }
+
+    /**
+     * If showing a hint for this form item, should it be shown within the field? <P>CSS style for the hint is {@link
+     * com.smartgwt.client.widgets.form.fields.SelectItem#getTextBoxStyle textBoxStyle} with the suffix "Hint" appended to it.
+     *
+     *
+     * @return Boolean
+     */
+    public Boolean getShowHintInField()  {
+        return getAttributeAsBoolean("showHintInField");
     }
 
     /**
@@ -416,65 +407,98 @@ public class ComboBoxItem extends FormItem  implements PickList, com.smartgwt.cl
     }
 
     /**
-     * If this combo box retrieves its options from a <code>dataSource</code>, should options be fetched from the server when
-     * the item is first written out, or should this fetch be delayed until the user opens the pickList.
+     * Show the picker icon for the ComboBox.
      * <p><b>Note : </b> This is an advanced setting</p>
      *
-     * @param autoFetchData autoFetchData Default value is false
+     * @param showPickerIcon showPickerIcon Default value is true
      */
-    public void setAutoFetchData(Boolean autoFetchData) {
-        setAttribute("autoFetchData", autoFetchData);
+    public void setShowPickerIcon(Boolean showPickerIcon) {
+        setAttribute("showPickerIcon", showPickerIcon);
     }
 
     /**
-     * If this combo box retrieves its options from a <code>dataSource</code>, should options be fetched from the server when
-     * the item is first written out, or should this fetch be delayed until the user opens the pickList.
+     * Show the picker icon for the ComboBox.
      *
      *
      * @return Boolean
      */
-    public Boolean getAutoFetchData()  {
-        return getAttributeAsBoolean("autoFetchData");
+    public Boolean getShowPickerIcon()  {
+        return getAttributeAsBoolean("showPickerIcon");
     }
 
+    /**
+     * Should the list of options be displayed whenever the user types into the  the combo-box textArea, or only when the user
+     * clicks on the pick button or uses the  explicit <code>Alt+Arrow Down</code> key combination?
+     *
+     * @param showPickListOnKeypress showPickListOnKeypress Default value is true
+     */
+    public void setShowPickListOnKeypress(Boolean showPickListOnKeypress) {
+        setAttribute("showPickListOnKeypress", showPickListOnKeypress);
+    }
 
     /**
-     * Read-only property set by the ComboBoxItem to indicate whether we should use the  current typed-in value as part of the
-     * filter criteria returned by  {@link com.smartgwt.client.widgets.form.fields.ComboBoxItem#getPickListFilterCriteria}. 
-     * You can check this flag in order to mimic the ComboBoxItem's default behavior if you provide a custom implementation of
-     * <code>getPickListFilterCriteria()</code>.
+     * Should the list of options be displayed whenever the user types into the  the combo-box textArea, or only when the user
+     * clicks on the pick button or uses the  explicit <code>Alt+Arrow Down</code> key combination?
      *
      *
      * @return Boolean
      */
-    public Boolean getFilterWithValue()  {
-        return getAttributeAsBoolean("filterWithValue");
+    public Boolean getShowPickListOnKeypress()  {
+        return getAttributeAsBoolean("showPickListOnKeypress");
     }
 
     /**
-     * If true, even non-matching options will be shown, with configurable  {@link
-     * com.smartgwt.client.widgets.form.fields.ComboBoxItem#getSeparatorRows 'separator rows'} in between.  Not valid for
-     * {@link com.smartgwt.client.widgets.form.fields.ComboBoxItem#getOptionDataSource 'databound pickLists'}.
+     * If this form item maps data values to display values by retrieving the  {@link
+     * com.smartgwt.client.widgets.form.fields.FormItem#getDisplayField displayField} values from an  {@link
+     * com.smartgwt.client.widgets.form.fields.FormItem#getOptionDataSource 'optionDataSource'}, this property  denotes the the
+     * field to use as the underlying data value in records from the  optionDataSource.<br> If unset, assumed to be the {@link
+     * com.smartgwt.client.widgets.form.fields.FormItem#getName name} of this form item.
      *
-     * @param showAllOptions showAllOptions Default value is null
+     * @param valueField valueField Default value is null
      */
-    public void setShowAllOptions(Boolean showAllOptions) {
-        setAttribute("showAllOptions", showAllOptions);
+    public void setValueField(String valueField) {
+        setAttribute("valueField", valueField);
     }
 
     /**
-     * If true, even non-matching options will be shown, with configurable  {@link
-     * com.smartgwt.client.widgets.form.fields.ComboBoxItem#getSeparatorRows 'separator rows'} in between.  Not valid for
-     * {@link com.smartgwt.client.widgets.form.fields.ComboBoxItem#getOptionDataSource 'databound pickLists'}.
+     * If this form item maps data values to display values by retrieving the  {@link
+     * com.smartgwt.client.widgets.form.fields.FormItem#getDisplayField displayField} values from an  {@link
+     * com.smartgwt.client.widgets.form.fields.FormItem#getOptionDataSource 'optionDataSource'}, this property  denotes the the
+     * field to use as the underlying data value in records from the  optionDataSource.<br> If unset, assumed to be the {@link
+     * com.smartgwt.client.widgets.form.fields.FormItem#getName name} of this form item.
      *
      *
-     * @return Boolean
+     * @return String
      */
-    public Boolean getShowAllOptions()  {
-        return getAttributeAsBoolean("showAllOptions");
+    public String getValueField()  {
+        return getAttributeAsString("valueField");
     }
 
     // ********************* Methods ***********************
+    /**
+     * Add a dataArrived handler.
+     * <p>
+     * If this item is showing a dataBound pickList, this notification method will be fired  when new data arrives from the
+     * server.
+     *
+     * @param handler the dataArrived handler
+     * @return {@link HandlerRegistration} used to remove this handler
+     */
+    public HandlerRegistration addDataArrivedHandler(com.smartgwt.client.widgets.form.fields.events.DataArrivedHandler handler) {
+        if(getHandlerCount(com.smartgwt.client.widgets.form.fields.events.DataArrivedEvent.getType()) == 0) setupDataArrivedEvent();
+        return doAddHandler(handler, com.smartgwt.client.widgets.form.fields.events.DataArrivedEvent.getType());
+    }
+
+    private native void setupDataArrivedEvent() /*-{
+        var obj = null;
+            obj = this.@com.smartgwt.client.core.DataClass::getJsObj()();
+            var selfJ = this;
+            obj.dataArrived = $entry(function(){
+                var param = {"startRow" : arguments[0], "endRow" : arguments[1], "data" : arguments[2]};
+                var event = @com.smartgwt.client.widgets.form.fields.events.DataArrivedEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
+                selfJ.@com.smartgwt.client.core.DataClass::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
+            });
+   }-*/;
             
     /**
      * Expression evaluated to determine the {@link com.smartgwt.client.widgets.form.fields.ComboBoxItem#getDefaultValue
@@ -510,30 +534,6 @@ public class ComboBoxItem extends FormItem  implements PickList, com.smartgwt.cl
         var self = this.@com.smartgwt.client.core.DataClass::getJsObj()();
         return self.getValueFieldName();
     }-*/;
-    /**
-     * Add a dataArrived handler.
-     * <p>
-     * If this item is showing a dataBound pickList, this notification method will be fired  when new data arrives from the
-     * server.
-     *
-     * @param handler the dataArrived handler
-     * @return {@link HandlerRegistration} used to remove this handler
-     */
-    public HandlerRegistration addDataArrivedHandler(com.smartgwt.client.widgets.form.fields.events.DataArrivedHandler handler) {
-        if(getHandlerCount(com.smartgwt.client.widgets.form.fields.events.DataArrivedEvent.getType()) == 0) setupDataArrivedEvent();
-        return doAddHandler(handler, com.smartgwt.client.widgets.form.fields.events.DataArrivedEvent.getType());
-    }
-
-    private native void setupDataArrivedEvent() /*-{
-        var obj = null;
-            obj = this.@com.smartgwt.client.core.DataClass::getJsObj()();
-            var selfJ = this;
-            obj.dataArrived = $entry(function(){
-                var param = {"startRow" : arguments[0], "endRow" : arguments[1], "data" : arguments[2]};
-                var event = @com.smartgwt.client.widgets.form.fields.events.DataArrivedEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
-                selfJ.@com.smartgwt.client.core.DataClass::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
-            });
-   }-*/;
 
     // ********************* Static Methods ***********************
 

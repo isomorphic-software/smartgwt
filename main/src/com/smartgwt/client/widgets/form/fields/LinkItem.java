@@ -87,6 +87,28 @@ public class LinkItem extends StaticTextItem {
     // ********************* Properties / Attributes ***********************
 
     /**
+     * Optional title text to display for this item's link. If unspecified the value of the item will be the title text as well
+     * as the target of the link.
+     * Method to set the linkTitle for this item
+     *
+     * @param linkTitle new linkTitle for this item. Default value is null
+     */
+    public void setLinkTitle(String linkTitle) {
+        setAttribute("linkTitle", linkTitle);
+    }
+
+    /**
+     * Optional title text to display for this item's link. If unspecified the value of the item will be the title text as well
+     * as the target of the link.
+     *
+     *
+     * @return String
+     */
+    public String getLinkTitle()  {
+        return getAttributeAsString("linkTitle");
+    }
+
+    /**
      * By default, clicking a link rendered by this item opens it in a new browser window.  You  can alter this behavior by
      * setting this property.  The value of this property will be  passed as the value to the <code>target</code> attribute of
      * the anchor tag used to render  the link. <P> If you set linkItem.target to "javascript", the default behaviour is to
@@ -111,28 +133,6 @@ public class LinkItem extends StaticTextItem {
      */
     public String getTarget()  {
         return getAttributeAsString("target");
-    }
-
-    /**
-     * Optional title text to display for this item's link. If unspecified the value of the item will be the title text as well
-     * as the target of the link.
-     * Method to set the linkTitle for this item
-     *
-     * @param linkTitle new linkTitle for this item. Default value is null
-     */
-    public void setLinkTitle(String linkTitle) {
-        setAttribute("linkTitle", linkTitle);
-    }
-
-    /**
-     * Optional title text to display for this item's link. If unspecified the value of the item will be the title text as well
-     * as the target of the link.
-     *
-     *
-     * @return String
-     */
-    public String getLinkTitle()  {
-        return getAttributeAsString("linkTitle");
     }
 
     // ********************* Methods ***********************

@@ -88,49 +88,47 @@ public class DetailViewerField extends DataClass {
     // ********************* Properties / Attributes ***********************
 
     /**
-     * Size of images shown for fieldTypes image in this field. <P> If set to a String, assumed to be a property on each record
-     * that specifies the image height.  For example, if <code>field.imageSize</code> is "logoSize",
-     * <code>record.logoSize</code> will control the size of the image.
+     * Dictates whether the data in this field be exported.  Explicitly set this  to false to prevent exporting.  Has no effect
+     * if the underlying   {@link com.smartgwt.client.data.DataSourceField#getCanExport 'dataSourceField'} is explicitly set to
+     *   canExport: false.
      *
-     * @param imageSize imageSize Default value is null
+     * @param canExport canExport Default value is null
      */
-    public void setImageSize(Integer imageSize) {
-        setAttribute("imageSize", imageSize);
+    public void setCanExport(Boolean canExport) {
+        setAttribute("canExport", canExport);
     }
 
     /**
-     * Size of images shown for fieldTypes image in this field. <P> If set to a String, assumed to be a property on each record
-     * that specifies the image height.  For example, if <code>field.imageSize</code> is "logoSize",
-     * <code>record.logoSize</code> will control the size of the image.
+     * Dictates whether the data in this field be exported.  Explicitly set this  to false to prevent exporting.  Has no effect
+     * if the underlying   {@link com.smartgwt.client.data.DataSourceField#getCanExport 'dataSourceField'} is explicitly set to
+     *   canExport: false.
+     *
+     *
+     * @return Boolean
+     */
+    public Boolean getCanExport()  {
+        return getAttributeAsBoolean("canExport");
+    }
+
+    /**
+     * For {@link com.smartgwt.client.widgets.viewer.DetailViewerField#getType type}: <code>"separator"</code>, this attribute
+     * specifies the height of the separator.
+     *
+     * @param height height Default value is null
+     */
+    public void setHeight(Integer height) {
+        setAttribute("height", height);
+    }
+
+    /**
+     * For {@link com.smartgwt.client.widgets.viewer.DetailViewerField#getType type}: <code>"separator"</code>, this attribute
+     * specifies the height of the separator.
      *
      *
      * @return Integer
      */
-    public Integer getImageSize()  {
-        return getAttributeAsInt("imageSize");
-    }
-
-    /**
-     * Width of images shown for fieldTypes image in this field. <P> If set to a String, assumed to be a property on each
-     * record that specifies the image width.  For example, if <code>field.imageWidth</code> is "logoWidth",
-     * <code>record.logoWidth</code> will control the width of the image.
-     *
-     * @param imageWidth imageWidth Default value is null
-     */
-    public void setImageWidth(Integer imageWidth) {
-        setAttribute("imageWidth", imageWidth);
-    }
-
-    /**
-     * Width of images shown for fieldTypes image in this field. <P> If set to a String, assumed to be a property on each
-     * record that specifies the image width.  For example, if <code>field.imageWidth</code> is "logoWidth",
-     * <code>record.logoWidth</code> will control the width of the image.
-     *
-     *
-     * @return Integer
-     */
-    public Integer getImageWidth()  {
-        return getAttributeAsInt("imageWidth");
+    public Integer getHeight()  {
+        return getAttributeAsInt("height");
     }
 
     /**
@@ -157,6 +155,29 @@ public class DetailViewerField extends DataClass {
     }
 
     /**
+     * Size of images shown for fieldTypes image in this field. <P> If set to a String, assumed to be a property on each record
+     * that specifies the image height.  For example, if <code>field.imageSize</code> is "logoSize",
+     * <code>record.logoSize</code> will control the size of the image.
+     *
+     * @param imageSize imageSize Default value is null
+     */
+    public void setImageSize(Integer imageSize) {
+        setAttribute("imageSize", imageSize);
+    }
+
+    /**
+     * Size of images shown for fieldTypes image in this field. <P> If set to a String, assumed to be a property on each record
+     * that specifies the image height.  For example, if <code>field.imageSize</code> is "logoSize",
+     * <code>record.logoSize</code> will control the size of the image.
+     *
+     *
+     * @return Integer
+     */
+    public Integer getImageSize()  {
+        return getAttributeAsInt("imageSize");
+    }
+
+    /**
      * If this field has type set to <code>"image"</code> and the URL for the image displayed is not absolute, the path of the
      * URL will be relative to this string<br>
      * <p><b>Note : </b> This is an advanced setting</p>
@@ -176,6 +197,73 @@ public class DetailViewerField extends DataClass {
      */
     public String getImageURLPrefix()  {
         return getAttributeAsString("imageURLPrefix");
+    }
+
+    /**
+     * Width of images shown for fieldTypes image in this field. <P> If set to a String, assumed to be a property on each
+     * record that specifies the image width.  For example, if <code>field.imageWidth</code> is "logoWidth",
+     * <code>record.logoWidth</code> will control the width of the image.
+     *
+     * @param imageWidth imageWidth Default value is null
+     */
+    public void setImageWidth(Integer imageWidth) {
+        setAttribute("imageWidth", imageWidth);
+    }
+
+    /**
+     * Width of images shown for fieldTypes image in this field. <P> If set to a String, assumed to be a property on each
+     * record that specifies the image width.  For example, if <code>field.imageWidth</code> is "logoWidth",
+     * <code>record.logoWidth</code> will control the width of the image.
+     *
+     *
+     * @return Integer
+     */
+    public Integer getImageWidth()  {
+        return getAttributeAsInt("imageWidth");
+    }
+
+    /**
+     * For a field of type:"imageFile", indicates whether to stream the image and display it inline or to display the View and
+     * Download icons.
+     *
+     * @param showFileInline showFileInline Default value is null
+     */
+    public void setShowFileInline(Boolean showFileInline) {
+        setAttribute("showFileInline", showFileInline);
+    }
+
+    /**
+     * For a field of type:"imageFile", indicates whether to stream the image and display it inline or to display the View and
+     * Download icons.
+     *
+     *
+     * @return Boolean
+     */
+    public Boolean getShowFileInline()  {
+        return getAttributeAsBoolean("showFileInline");
+    }
+
+    /**
+     * The title of the field as displayed on the left-hand side.  If left unspecified, the title of the field is derived by
+     * looking up the value of {@link com.smartgwt.client.widgets.viewer.DetailViewer#getFieldIdProperty fieldIdProperty} on
+     * this field.  So, by default, the title of a field is the value of its "name" property.
+     *
+     * @param title title Default value is null
+     */
+    public void setTitle(String title) {
+        setAttribute("title", title);
+    }
+
+    /**
+     * The title of the field as displayed on the left-hand side.  If left unspecified, the title of the field is derived by
+     * looking up the value of {@link com.smartgwt.client.widgets.viewer.DetailViewer#getFieldIdProperty fieldIdProperty} on
+     * this field.  So, by default, the title of a field is the value of its "name" property.
+     *
+     *
+     * @return String
+     */
+    public String getTitle()  {
+        return getAttributeAsString("title");
     }
 
     /**
@@ -224,29 +312,6 @@ public class DetailViewerField extends DataClass {
     }
 
     /**
-     * The title of the field as displayed on the left-hand side.  If left unspecified, the title of the field is derived by
-     * looking up the value of {@link com.smartgwt.client.widgets.viewer.DetailViewer#getFieldIdProperty fieldIdProperty} on
-     * this field.  So, by default, the title of a field is the value of its "name" property.
-     *
-     * @param title title Default value is null
-     */
-    public void setTitle(String title) {
-        setAttribute("title", title);
-    }
-
-    /**
-     * The title of the field as displayed on the left-hand side.  If left unspecified, the title of the field is derived by
-     * looking up the value of {@link com.smartgwt.client.widgets.viewer.DetailViewer#getFieldIdProperty fieldIdProperty} on
-     * this field.  So, by default, the title of a field is the value of its "name" property.
-     *
-     *
-     * @return String
-     */
-    public String getTitle()  {
-        return getAttributeAsString("title");
-    }
-
-    /**
      * When a field specifies its {@link com.smartgwt.client.widgets.viewer.DetailViewerField#getType type} to be "header", the
      * value of this attribute specifies the header text.
      *
@@ -265,71 +330,6 @@ public class DetailViewerField extends DataClass {
      */
     public String getValue()  {
         return getAttributeAsString("value");
-    }
-
-    /**
-     * For {@link com.smartgwt.client.widgets.viewer.DetailViewerField#getType type}: <code>"separator"</code>, this attribute
-     * specifies the height of the separator.
-     *
-     * @param height height Default value is null
-     */
-    public void setHeight(Integer height) {
-        setAttribute("height", height);
-    }
-
-    /**
-     * For {@link com.smartgwt.client.widgets.viewer.DetailViewerField#getType type}: <code>"separator"</code>, this attribute
-     * specifies the height of the separator.
-     *
-     *
-     * @return Integer
-     */
-    public Integer getHeight()  {
-        return getAttributeAsInt("height");
-    }
-
-    /**
-     * For a field of type:"imageFile", indicates whether to stream the image and display it inline or to display the View and
-     * Download icons.
-     *
-     * @param showFileInline showFileInline Default value is null
-     */
-    public void setShowFileInline(Boolean showFileInline) {
-        setAttribute("showFileInline", showFileInline);
-    }
-
-    /**
-     * For a field of type:"imageFile", indicates whether to stream the image and display it inline or to display the View and
-     * Download icons.
-     *
-     *
-     * @return Boolean
-     */
-    public Boolean getShowFileInline()  {
-        return getAttributeAsBoolean("showFileInline");
-    }
-
-    /**
-     * Dictates whether the data in this field be exported.  Explicitly set this  to false to prevent exporting.  Has no effect
-     * if the underlying   {@link com.smartgwt.client.data.DataSourceField#getCanExport 'dataSourceField'} is explicitly set to
-     *   canExport: false.
-     *
-     * @param canExport canExport Default value is null
-     */
-    public void setCanExport(Boolean canExport) {
-        setAttribute("canExport", canExport);
-    }
-
-    /**
-     * Dictates whether the data in this field be exported.  Explicitly set this  to false to prevent exporting.  Has no effect
-     * if the underlying   {@link com.smartgwt.client.data.DataSourceField#getCanExport 'dataSourceField'} is explicitly set to
-     *   canExport: false.
-     *
-     *
-     * @return Boolean
-     */
-    public Boolean getCanExport()  {
-        return getAttributeAsBoolean("canExport");
     }
 
     // ********************* Methods ***********************

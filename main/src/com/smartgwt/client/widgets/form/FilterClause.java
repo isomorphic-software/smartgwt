@@ -112,6 +112,26 @@ public class FilterClause extends HStack {
     }
 
     /**
+     * The hover prompt text for the remove button.
+     *
+     * @param removeButtonPrompt removeButtonPrompt Default value is "Remove"
+     * @throws IllegalStateException this property cannot be changed after the component has been created
+     */
+    public void setRemoveButtonPrompt(String removeButtonPrompt)  throws IllegalStateException {
+        setAttribute("removeButtonPrompt", removeButtonPrompt, false);
+    }
+
+    /**
+     * The hover prompt text for the remove button.
+     *
+     *
+     * @return String
+     */
+    public String getRemoveButtonPrompt()  {
+        return getAttributeAsString("removeButtonPrompt");
+    }
+
+    /**
      * If true (the default), show field titles in the drop-down box used to select a field for querying. If false, show actual
      * field names instead.
      *
@@ -131,6 +151,26 @@ public class FilterClause extends HStack {
      */
     public Boolean getShowFieldTitles()  {
         return getAttributeAsBoolean("showFieldTitles");
+    }
+
+    /**
+     * If set, show a button for this clause allowing it to be removed.
+     *
+     * @param showRemoveButton showRemoveButton Default value is true
+     * @throws IllegalStateException this property cannot be changed after the component has been created
+     */
+    public void setShowRemoveButton(Boolean showRemoveButton)  throws IllegalStateException {
+        setAttribute("showRemoveButton", showRemoveButton, false);
+    }
+
+    /**
+     * If set, show a button for this clause allowing it to be removed.
+     *
+     *
+     * @return Boolean
+     */
+    public Boolean getShowRemoveButton()  {
+        return getAttributeAsBoolean("showRemoveButton");
     }
 
     /**
@@ -157,46 +197,6 @@ public class FilterClause extends HStack {
      */
     public Boolean getValidateOnChange()  {
         return getAttributeAsBoolean("validateOnChange");
-    }
-
-    /**
-     * If set, show a button for this clause allowing it to be removed.
-     *
-     * @param showRemoveButton showRemoveButton Default value is true
-     * @throws IllegalStateException this property cannot be changed after the component has been created
-     */
-    public void setShowRemoveButton(Boolean showRemoveButton)  throws IllegalStateException {
-        setAttribute("showRemoveButton", showRemoveButton, false);
-    }
-
-    /**
-     * If set, show a button for this clause allowing it to be removed.
-     *
-     *
-     * @return Boolean
-     */
-    public Boolean getShowRemoveButton()  {
-        return getAttributeAsBoolean("showRemoveButton");
-    }
-
-    /**
-     * The hover prompt text for the remove button.
-     *
-     * @param removeButtonPrompt removeButtonPrompt Default value is "Remove"
-     * @throws IllegalStateException this property cannot be changed after the component has been created
-     */
-    public void setRemoveButtonPrompt(String removeButtonPrompt)  throws IllegalStateException {
-        setAttribute("removeButtonPrompt", removeButtonPrompt, false);
-    }
-
-    /**
-     * The hover prompt text for the remove button.
-     *
-     *
-     * @return String
-     */
-    public String getRemoveButtonPrompt()  {
-        return getAttributeAsString("removeButtonPrompt");
     }
 
     // ********************* Methods ***********************

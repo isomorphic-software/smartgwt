@@ -87,25 +87,6 @@ public class NativeCheckboxItem extends FormItem {
     // ********************* Properties / Attributes ***********************
 
     /**
-     * Base CSS class applied to this item's title text (rendered next to the checkbox element).
-     *
-     * @param textBoxStyle textBoxStyle Default value is "labelAnchor"
-     */
-    public void setTextBoxStyle(String textBoxStyle) {
-        setAttribute("textBoxStyle", textBoxStyle);
-    }
-
-    /**
-     * Base CSS class applied to this item's title text (rendered next to the checkbox element).
-     *
-     *
-     * @return String
-     */
-    public String getTextBoxStyle()  {
-        return getAttributeAsString("textBoxStyle");
-    }
-
-    /**
      * Should we should the label text next to the checkbox item.
      *
      * @param showLabel showLabel Default value is true
@@ -122,6 +103,25 @@ public class NativeCheckboxItem extends FormItem {
      */
     public Boolean getShowLabel()  {
         return getAttributeAsBoolean("showLabel");
+    }
+
+    /**
+     * Base CSS class applied to this item's title text (rendered next to the checkbox element).
+     *
+     * @param textBoxStyle textBoxStyle Default value is "labelAnchor"
+     */
+    public void setTextBoxStyle(String textBoxStyle) {
+        setAttribute("textBoxStyle", textBoxStyle);
+    }
+
+    /**
+     * Base CSS class applied to this item's title text (rendered next to the checkbox element).
+     *
+     *
+     * @return String
+     */
+    public String getTextBoxStyle()  {
+        return getAttributeAsString("textBoxStyle");
     }
 
     // ********************* Methods ***********************

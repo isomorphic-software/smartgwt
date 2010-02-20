@@ -93,68 +93,49 @@ public class CheckboxItem extends FormItem {
     // ********************* Properties / Attributes ***********************
 
     /**
-     * Base CSS class for this item's title cell. <P> <B>Note:</B> This styling applies to the standard form item title cell
-     * for this item - it does not apply to item's {@link com.smartgwt.client.widgets.form.fields.CheckboxItem#getShowLabel
-     * 'label'}. To modify the styling for that text, use {@link
-     * com.smartgwt.client.widgets.form.fields.CheckboxItem#getTextBoxStyle textBoxStyle} instead.
+     * By default checkboxes allow the user to toggle between true and false values only. Setting this property to true will
+     * allow the user to toggle between three values -  <code>true</code>, <code>false</code> and unset.
      *
-     * @param titleStyle titleStyle Default value is null
+     * @param allowEmptyValue allowEmptyValue Default value is false
      */
-    public void setTitleStyle(String titleStyle) {
-        setAttribute("titleStyle", titleStyle);
+    public void setAllowEmptyValue(Boolean allowEmptyValue) {
+        setAttribute("allowEmptyValue", allowEmptyValue);
     }
 
     /**
-     * Base CSS class for this item's title cell. <P> <B>Note:</B> This styling applies to the standard form item title cell
-     * for this item - it does not apply to item's {@link com.smartgwt.client.widgets.form.fields.CheckboxItem#getShowLabel
-     * 'label'}. To modify the styling for that text, use {@link
-     * com.smartgwt.client.widgets.form.fields.CheckboxItem#getTextBoxStyle textBoxStyle} instead.
-     *
-     *
-     * @return String
-     */
-    public String getTitleStyle()  {
-        return getAttributeAsString("titleStyle");
-    }
-
-    /**
-     * Base CSS class for this item's title text
-     *
-     * @param textBoxStyle textBoxStyle Default value is "labelAnchor"
-     */
-    public void setTextBoxStyle(String textBoxStyle) {
-        setAttribute("textBoxStyle", textBoxStyle);
-    }
-
-    /**
-     * Base CSS class for this item's title text
-     *
-     *
-     * @return String
-     */
-    public String getTextBoxStyle()  {
-        return getAttributeAsString("textBoxStyle");
-    }
-
-    /**
-     * CheckboxItem has special behavior for titles, see {@link
-     * com.smartgwt.client.widgets.form.fields.CheckboxItem#getLabelAsTitle labelAsTitle}.
-     *
-     * @param showTitle showTitle Default value is true
-     */
-    public void setShowTitle(Boolean showTitle) {
-        setAttribute("showTitle", showTitle);
-    }
-
-    /**
-     * CheckboxItem has special behavior for titles, see {@link
-     * com.smartgwt.client.widgets.form.fields.CheckboxItem#getLabelAsTitle labelAsTitle}.
+     * By default checkboxes allow the user to toggle between true and false values only. Setting this property to true will
+     * allow the user to toggle between three values -  <code>true</code>, <code>false</code> and unset.
      *
      *
      * @return Boolean
      */
-    public Boolean getShowTitle()  {
-        return getAttributeAsBoolean("showTitle");
+    public Boolean getAllowEmptyValue()  {
+        return getAttributeAsBoolean("allowEmptyValue");
+    }
+
+    /**
+     * URL for the image to display when this checkbox is selected, or checked. This is the base image name - if
+     * <code>showValueIconOver</code> et al are set, the state (<code>"Over"</code>, <code>"Down"</code> and
+     * <code>"Disabled"</code>) will be added to this name as the user interacts with the checkbox, as well as the 
+     * <code>".gif"</code> extension
+     *
+     * @param checkedImage checkedImage Default value is "[SKIN]/DynamicForm/checked.gif"
+     */
+    public void setCheckedImage(String checkedImage) {
+        setAttribute("checkedImage", checkedImage);
+    }
+
+    /**
+     * URL for the image to display when this checkbox is selected, or checked. This is the base image name - if
+     * <code>showValueIconOver</code> et al are set, the state (<code>"Over"</code>, <code>"Down"</code> and
+     * <code>"Disabled"</code>) will be added to this name as the user interacts with the checkbox, as well as the 
+     * <code>".gif"</code> extension
+     *
+     *
+     * @return String
+     */
+    public String getCheckedImage()  {
+        return getAttributeAsString("checkedImage");
     }
 
     /**
@@ -191,6 +172,25 @@ public class CheckboxItem extends FormItem {
     }
 
     /**
+     * URL for the image to display when this checkbox is partially selected
+     *
+     * @param partialSelectedImage partialSelectedImage Default value is "[SKIN]/DynamicForm/partialcheck.gif"
+     */
+    public void setPartialSelectedImage(String partialSelectedImage) {
+        setAttribute("partialSelectedImage", partialSelectedImage);
+    }
+
+    /**
+     * URL for the image to display when this checkbox is partially selected
+     *
+     *
+     * @return String
+     */
+    public String getPartialSelectedImage()  {
+        return getAttributeAsString("partialSelectedImage");
+    }
+
+    /**
      * Should we should the label text next to the checkbox item.
      *
      * @param showLabel showLabel Default value is true
@@ -210,28 +210,68 @@ public class CheckboxItem extends FormItem {
     }
 
     /**
-     * URL for the image to display when this checkbox is selected, or checked. This is the base image name - if
-     * <code>showValueIconOver</code> et al are set, the state (<code>"Over"</code>, <code>"Down"</code> and
-     * <code>"Disabled"</code>) will be added to this name as the user interacts with the checkbox, as well as the 
-     * <code>".gif"</code> extension
+     * CheckboxItem has special behavior for titles, see {@link
+     * com.smartgwt.client.widgets.form.fields.CheckboxItem#getLabelAsTitle labelAsTitle}.
      *
-     * @param checkedImage checkedImage Default value is "[SKIN]/DynamicForm/checked.gif"
+     * @param showTitle showTitle Default value is true
      */
-    public void setCheckedImage(String checkedImage) {
-        setAttribute("checkedImage", checkedImage);
+    public void setShowTitle(Boolean showTitle) {
+        setAttribute("showTitle", showTitle);
     }
 
     /**
-     * URL for the image to display when this checkbox is selected, or checked. This is the base image name - if
-     * <code>showValueIconOver</code> et al are set, the state (<code>"Over"</code>, <code>"Down"</code> and
-     * <code>"Disabled"</code>) will be added to this name as the user interacts with the checkbox, as well as the 
-     * <code>".gif"</code> extension
+     * CheckboxItem has special behavior for titles, see {@link
+     * com.smartgwt.client.widgets.form.fields.CheckboxItem#getLabelAsTitle labelAsTitle}.
+     *
+     *
+     * @return Boolean
+     */
+    public Boolean getShowTitle()  {
+        return getAttributeAsBoolean("showTitle");
+    }
+
+    /**
+     * Base CSS class for this item's title text
+     *
+     * @param textBoxStyle textBoxStyle Default value is "labelAnchor"
+     */
+    public void setTextBoxStyle(String textBoxStyle) {
+        setAttribute("textBoxStyle", textBoxStyle);
+    }
+
+    /**
+     * Base CSS class for this item's title text
      *
      *
      * @return String
      */
-    public String getCheckedImage()  {
-        return getAttributeAsString("checkedImage");
+    public String getTextBoxStyle()  {
+        return getAttributeAsString("textBoxStyle");
+    }
+
+    /**
+     * Base CSS class for this item's title cell. <P> <B>Note:</B> This styling applies to the standard form item title cell
+     * for this item - it does not apply to item's {@link com.smartgwt.client.widgets.form.fields.CheckboxItem#getShowLabel
+     * 'label'}. To modify the styling for that text, use {@link
+     * com.smartgwt.client.widgets.form.fields.CheckboxItem#getTextBoxStyle textBoxStyle} instead.
+     *
+     * @param titleStyle titleStyle Default value is null
+     */
+    public void setTitleStyle(String titleStyle) {
+        setAttribute("titleStyle", titleStyle);
+    }
+
+    /**
+     * Base CSS class for this item's title cell. <P> <B>Note:</B> This styling applies to the standard form item title cell
+     * for this item - it does not apply to item's {@link com.smartgwt.client.widgets.form.fields.CheckboxItem#getShowLabel
+     * 'label'}. To modify the styling for that text, use {@link
+     * com.smartgwt.client.widgets.form.fields.CheckboxItem#getTextBoxStyle textBoxStyle} instead.
+     *
+     *
+     * @return String
+     */
+    public String getTitleStyle()  {
+        return getAttributeAsString("titleStyle");
     }
 
     /**
@@ -251,25 +291,6 @@ public class CheckboxItem extends FormItem {
      */
     public String getUncheckedImage()  {
         return getAttributeAsString("uncheckedImage");
-    }
-
-    /**
-     * URL for the image to display when this checkbox is partially selected
-     *
-     * @param partialSelectedImage partialSelectedImage Default value is "[SKIN]/DynamicForm/partialcheck.gif"
-     */
-    public void setPartialSelectedImage(String partialSelectedImage) {
-        setAttribute("partialSelectedImage", partialSelectedImage);
-    }
-
-    /**
-     * URL for the image to display when this checkbox is partially selected
-     *
-     *
-     * @return String
-     */
-    public String getPartialSelectedImage()  {
-        return getAttributeAsString("partialSelectedImage");
     }
 
     /**
@@ -297,27 +318,6 @@ public class CheckboxItem extends FormItem {
      */
     public String getUnsetImage()  {
         return getAttributeAsString("unsetImage");
-    }
-
-    /**
-     * By default checkboxes allow the user to toggle between true and false values only. Setting this property to true will
-     * allow the user to toggle between three values -  <code>true</code>, <code>false</code> and unset.
-     *
-     * @param allowEmptyValue allowEmptyValue Default value is false
-     */
-    public void setAllowEmptyValue(Boolean allowEmptyValue) {
-        setAttribute("allowEmptyValue", allowEmptyValue);
-    }
-
-    /**
-     * By default checkboxes allow the user to toggle between true and false values only. Setting this property to true will
-     * allow the user to toggle between three values -  <code>true</code>, <code>false</code> and unset.
-     *
-     *
-     * @return Boolean
-     */
-    public Boolean getAllowEmptyValue()  {
-        return getAttributeAsBoolean("allowEmptyValue");
     }
 
     // ********************* Methods ***********************

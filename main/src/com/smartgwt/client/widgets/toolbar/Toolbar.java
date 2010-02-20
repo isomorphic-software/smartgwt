@@ -82,24 +82,25 @@ public abstract class Toolbar extends Layout  implements com.smartgwt.client.wid
     // ********************* Properties / Attributes ***********************
 
     /**
-     * Indicates whether the buttons are drawn horizontally from left to right (false), or vertically from top to bottom
-     * (true).
+     * If true, items (buttons) can be dropped into this toolbar, and the toolbar will show a drop line at the drop location. 
+     * Override drop() to decide what happens when the item is dropped.
+     * <p><b>Note : </b> This is an advanced setting</p>
      *
-     * @param vertical vertical Default value is false
+     * @param canAcceptDrop canAcceptDrop Default value is false
      */
-    public void setVertical(Boolean vertical) {
-        setAttribute("vertical", vertical, true);
+    public void setCanAcceptDrop(Boolean canAcceptDrop) {
+        setAttribute("canAcceptDrop", canAcceptDrop, true);
     }
 
     /**
-     * Indicates whether the buttons are drawn horizontally from left to right (false), or vertically from top to bottom
-     * (true).
+     * If true, items (buttons) can be dropped into this toolbar, and the toolbar will show a drop line at the drop location. 
+     * Override drop() to decide what happens when the item is dropped.
      *
      *
      * @return Boolean
      */
-    public Boolean getVertical()  {
-        return getAttributeAsBoolean("vertical");
+    public Boolean getCanAcceptDrop()  {
+        return getAttributeAsBoolean("canAcceptDrop");
     }
 
     /**
@@ -144,25 +145,24 @@ public abstract class Toolbar extends Layout  implements com.smartgwt.client.wid
     }
 
     /**
-     * If true, items (buttons) can be dropped into this toolbar, and the toolbar will show a drop line at the drop location. 
-     * Override drop() to decide what happens when the item is dropped.
-     * <p><b>Note : </b> This is an advanced setting</p>
+     * Indicates whether the buttons are drawn horizontally from left to right (false), or vertically from top to bottom
+     * (true).
      *
-     * @param canAcceptDrop canAcceptDrop Default value is false
+     * @param vertical vertical Default value is false
      */
-    public void setCanAcceptDrop(Boolean canAcceptDrop) {
-        setAttribute("canAcceptDrop", canAcceptDrop, true);
+    public void setVertical(Boolean vertical) {
+        setAttribute("vertical", vertical, true);
     }
 
     /**
-     * If true, items (buttons) can be dropped into this toolbar, and the toolbar will show a drop line at the drop location. 
-     * Override drop() to decide what happens when the item is dropped.
+     * Indicates whether the buttons are drawn horizontally from left to right (false), or vertically from top to bottom
+     * (true).
      *
      *
      * @return Boolean
      */
-    public Boolean getCanAcceptDrop()  {
-        return getAttributeAsBoolean("canAcceptDrop");
+    public Boolean getVertical()  {
+        return getAttributeAsBoolean("vertical");
     }
 
     // ********************* Methods ***********************

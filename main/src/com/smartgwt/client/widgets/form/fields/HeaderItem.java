@@ -94,6 +94,25 @@ public class HeaderItem extends FormItem {
     // ********************* Properties / Attributes ***********************
 
     /**
+     * by default, headers span all remaining columns
+     *
+     * @param colSpan colSpan Default value is "*"
+     */
+    public void setColSpan(int colSpan) {
+        setAttribute("colSpan", colSpan);
+    }
+
+    /**
+     * by default, headers span all remaining columns
+     *
+     *
+     * @return int
+     */
+    public int getColSpan()  {
+        return getAttributeAsInt("colSpan");
+    }
+
+    /**
      * Header text
      *
      * @param defaultValue defaultValue Default value is "Header"
@@ -110,6 +129,25 @@ public class HeaderItem extends FormItem {
      */
     public String getDefaultValue()  {
         return getAttributeAsString("defaultValue");
+    }
+
+    /**
+     * these items are in a row by themselves by default
+     *
+     * @param endRow endRow Default value is true
+     */
+    public void setEndRow(Boolean endRow) {
+        setAttribute("endRow", endRow);
+    }
+
+    /**
+     * these items are in a row by themselves by default
+     *
+     *
+     * @return Boolean
+     */
+    public Boolean getEndRow()  {
+        return getAttributeAsBoolean("endRow");
     }
 
     /**
@@ -132,44 +170,6 @@ public class HeaderItem extends FormItem {
     }
 
     /**
-     * Base CSS class for this item
-     *
-     * @param textBoxStyle textBoxStyle Default value is "headerItem"
-     */
-    public void setTextBoxStyle(String textBoxStyle) {
-        setAttribute("textBoxStyle", textBoxStyle);
-    }
-
-    /**
-     * Base CSS class for this item
-     *
-     *
-     * @return String
-     */
-    public String getTextBoxStyle()  {
-        return getAttributeAsString("textBoxStyle");
-    }
-
-    /**
-     * by default, headers span all remaining columns
-     *
-     * @param colSpan colSpan Default value is "*"
-     */
-    public void setColSpan(int colSpan) {
-        setAttribute("colSpan", colSpan);
-    }
-
-    /**
-     * by default, headers span all remaining columns
-     *
-     *
-     * @return int
-     */
-    public int getColSpan()  {
-        return getAttributeAsInt("colSpan");
-    }
-
-    /**
      * these items are in a row by themselves by default
      *
      * @param startRow startRow Default value is true
@@ -189,22 +189,22 @@ public class HeaderItem extends FormItem {
     }
 
     /**
-     * these items are in a row by themselves by default
+     * Base CSS class for this item
      *
-     * @param endRow endRow Default value is true
+     * @param textBoxStyle textBoxStyle Default value is "headerItem"
      */
-    public void setEndRow(Boolean endRow) {
-        setAttribute("endRow", endRow);
+    public void setTextBoxStyle(String textBoxStyle) {
+        setAttribute("textBoxStyle", textBoxStyle);
     }
 
     /**
-     * these items are in a row by themselves by default
+     * Base CSS class for this item
      *
      *
-     * @return Boolean
+     * @return String
      */
-    public Boolean getEndRow()  {
-        return getAttributeAsBoolean("endRow");
+    public String getTextBoxStyle()  {
+        return getAttributeAsString("textBoxStyle");
     }
 
     // ********************* Methods ***********************

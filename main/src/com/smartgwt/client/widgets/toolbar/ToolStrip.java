@@ -96,46 +96,6 @@ public class ToolStrip extends Layout {
     // ********************* Properties / Attributes ***********************
 
     /**
-     * The CSS class applied to this widget as a whole.
-     *
-     * @param styleName styleName Default value is "toolStrip"
-     */
-    public void setStyleName(String styleName) {
-        setAttribute("styleName", styleName, true);
-    }
-
-    /**
-     * The CSS class applied to this widget as a whole.
-     *
-     *
-     * @return String
-     */
-    public String getStyleName()  {
-        return getAttributeAsString("styleName");
-    }
-
-    /**
-     * Indicates whether the components are drawn horizontally from left to right (false), or vertically from top to bottom
-     * (true).
-     *
-     * @param vertical vertical Default value is false
-     */
-    public void setVertical(Boolean vertical) {
-        setAttribute("vertical", vertical, true);
-    }
-
-    /**
-     * Indicates whether the components are drawn horizontally from left to right (false), or vertically from top to bottom
-     * (true).
-     *
-     *
-     * @return Boolean
-     */
-    public Boolean getVertical()  {
-        return getAttributeAsBoolean("vertical");
-    }
-
-    /**
      * Customized resizeBar with typical appearance for a ToolStrip
      *
      * @param resizeBarClass resizeBarClass Default value is "ToolStripResizer"
@@ -214,6 +174,46 @@ public class ToolStrip extends Layout {
      */
     public int getSeparatorSize()  {
         return getAttributeAsInt("separatorSize");
+    }
+
+    /**
+     * The CSS class applied to this widget as a whole.
+     *
+     * @param styleName styleName Default value is "toolStrip"
+     */
+    public void setStyleName(String styleName) {
+        setAttribute("styleName", styleName, true);
+    }
+
+    /**
+     * The CSS class applied to this widget as a whole.
+     *
+     *
+     * @return String
+     */
+    public String getStyleName()  {
+        return getAttributeAsString("styleName");
+    }
+
+    /**
+     * Indicates whether the components are drawn horizontally from left to right (false), or vertically from top to bottom
+     * (true).
+     *
+     * @param vertical vertical Default value is false
+     */
+    public void setVertical(Boolean vertical) {
+        setAttribute("vertical", vertical, true);
+    }
+
+    /**
+     * Indicates whether the components are drawn horizontally from left to right (false), or vertically from top to bottom
+     * (true).
+     *
+     *
+     * @return Boolean
+     */
+    public Boolean getVertical()  {
+        return getAttributeAsBoolean("vertical");
     }
 
     // ********************* Methods ***********************

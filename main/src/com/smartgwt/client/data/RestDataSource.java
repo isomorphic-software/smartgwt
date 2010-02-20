@@ -216,110 +216,23 @@ public class RestDataSource extends DataSource {
     // ********************* Properties / Attributes ***********************
 
     /**
-     * <code>recordXPath</code> mapping to the data node of XML returned by the server.&#010 Applies if this.dataFormat is set
-     * to <code>"xml"</code>.<br>&#010 The default value will pick up data from a response structured as follows:<br>&#010
-     * <pre>&#010 &lt;response&gt;&#010    &lt;status&gt;0&lt;/status&gt;&#010    &lt;data&gt;&#010      &lt;record&gt;&#010   
-     * &lt;field1&gt;value&lt;/field1&gt;&#010          &lt;field2&gt;value&lt;/field2&gt;&#010      &lt;/record&gt;&#010     
-     * &lt;record&gt;&#010          &lt;field1&gt;value&lt;/field1&gt;&#010          &lt;field2&gt;value&lt;/field2&gt;&#010   
-     *   &lt;/record&gt;&#010    &lt;/data&gt;&#010 &lt;/response&gt;&#010 </pre>
+     * Custom dataURL for add type operations
      *
-     * @param xmlRecordXPath xmlRecordXPath Default value is "/response/data/*"
+     * @param addDataURL addDataURL Default value is null
      * @throws IllegalStateException this property cannot be changed after the underlying component has been created
      */
-    public void setXmlRecordXPath(String xmlRecordXPath)  throws IllegalStateException {
-        setAttribute("xmlRecordXPath", xmlRecordXPath, false);
+    public void setAddDataURL(String addDataURL)  throws IllegalStateException {
+        setAttribute("addDataURL", addDataURL, false);
     }
 
     /**
-     * <code>recordXPath</code> mapping to the data node of XML returned by the server.&#010 Applies if this.dataFormat is set
-     * to <code>"xml"</code>.<br>&#010 The default value will pick up data from a response structured as follows:<br>&#010
-     * <pre>&#010 &lt;response&gt;&#010    &lt;status&gt;0&lt;/status&gt;&#010    &lt;data&gt;&#010      &lt;record&gt;&#010   
-     * &lt;field1&gt;value&lt;/field1&gt;&#010          &lt;field2&gt;value&lt;/field2&gt;&#010      &lt;/record&gt;&#010     
-     * &lt;record&gt;&#010          &lt;field1&gt;value&lt;/field1&gt;&#010          &lt;field2&gt;value&lt;/field2&gt;&#010   
-     *   &lt;/record&gt;&#010    &lt;/data&gt;&#010 &lt;/response&gt;&#010 </pre>
+     * Custom dataURL for add type operations
      *
      *
      * @return String
      */
-    public String getXmlRecordXPath()  {
-        return getAttributeAsString("xmlRecordXPath");
-    }
-
-    /**
-     * <code>recordXPath</code> mapping to the data node of json returned by the server.&#010 Applies if this.dataFormat is set
-     * to <code>"json"</code><br>&#010 The default value will pick up data from a response structured as follows:<br>&#010
-     * <pre>&#010 {response:&#010  {status:0,&#010   data:[&#010      {field1:"value", field2:"value"},&#010     
-     * {field1:"value", field2:"value"}&#010   ]&#010 }&#010 </pre>
-     *
-     * @param jsonRecordXPath jsonRecordXPath Default value is "/response/data"
-     * @throws IllegalStateException this property cannot be changed after the underlying component has been created
-     */
-    public void setJsonRecordXPath(String jsonRecordXPath)  throws IllegalStateException {
-        setAttribute("jsonRecordXPath", jsonRecordXPath, false);
-    }
-
-    /**
-     * <code>recordXPath</code> mapping to the data node of json returned by the server.&#010 Applies if this.dataFormat is set
-     * to <code>"json"</code><br>&#010 The default value will pick up data from a response structured as follows:<br>&#010
-     * <pre>&#010 {response:&#010  {status:0,&#010   data:[&#010      {field1:"value", field2:"value"},&#010     
-     * {field1:"value", field2:"value"}&#010   ]&#010 }&#010 </pre>
-     *
-     *
-     * @return String
-     */
-    public String getJsonRecordXPath()  {
-        return getAttributeAsString("jsonRecordXPath");
-    }
-
-    /**
-     * For RestDataSources, by default, either the {@link com.smartgwt.client.data.RestDataSource#getXmlRecordXPath
-     * xmlRecordXPath} or  {@link com.smartgwt.client.data.RestDataSource#getJsonRecordXPath jsonRecordXPath} is used based on
-     * the {@link com.smartgwt.client.data.RestDataSource#getDataFormat dataFormat} setting. <P> Note that you can also apply
-     * record xpath binding via {@link com.smartgwt.client.data.OperationBinding#getRecordXPath recordXPath}.
-     *
-     * @param recordXPath recordXPath Default value is null
-     */
-    public void setRecordXPath(String recordXPath) {
-        setAttribute("recordXPath", recordXPath, true);
-    }
-
-    /**
-     * For RestDataSources, by default, either the {@link com.smartgwt.client.data.RestDataSource#getXmlRecordXPath
-     * xmlRecordXPath} or  {@link com.smartgwt.client.data.RestDataSource#getJsonRecordXPath jsonRecordXPath} is used based on
-     * the {@link com.smartgwt.client.data.RestDataSource#getDataFormat dataFormat} setting. <P> Note that you can also apply
-     * record xpath binding via {@link com.smartgwt.client.data.OperationBinding#getRecordXPath recordXPath}.
-     *
-     *
-     * @return String
-     */
-    public String getRecordXPath()  {
-        return getAttributeAsString("recordXPath");
-    }
-
-    /**
-     * When using dataFormat:"json" and dataProtocol:"postMessage" should we use the {@link
-     * com.smartgwt.client.util.JSONEncoder#getPrettyPrint prettyPrint} feature to enable indented, highly readable JSON
-     * messages. <P> True by default because the bandwidth involved is generally neglible and the benefits for troubleshooting
-     * are key.
-     *
-     * @param prettyPrintJSON prettyPrintJSON Default value is true
-     * @throws IllegalStateException this property cannot be changed after the underlying component has been created
-     */
-    public void setPrettyPrintJSON(Boolean prettyPrintJSON)  throws IllegalStateException {
-        setAttribute("prettyPrintJSON", prettyPrintJSON, false);
-    }
-
-    /**
-     * When using dataFormat:"json" and dataProtocol:"postMessage" should we use the {@link
-     * com.smartgwt.client.util.JSONEncoder#getPrettyPrint prettyPrint} feature to enable indented, highly readable JSON
-     * messages. <P> True by default because the bandwidth involved is generally neglible and the benefits for troubleshooting
-     * are key.
-     *
-     *
-     * @return Boolean
-     */
-    public Boolean getPrettyPrintJSON()  {
-        return getAttributeAsBoolean("prettyPrintJSON");
+    public String getAddDataURL()  {
+        return getAttributeAsString("addDataURL");
     }
 
     /**
@@ -371,43 +284,104 @@ public class RestDataSource extends DataSource {
     }
 
     /**
-     * Custom dataURL for update type operations
+     * <code>recordXPath</code> mapping to the data node of json returned by the server.&#010 Applies if this.dataFormat is set
+     * to <code>"json"</code><br>&#010 The default value will pick up data from a response structured as follows:<br>&#010
+     * <pre>&#010 {response:&#010  {status:0,&#010   data:[&#010      {field1:"value", field2:"value"},&#010     
+     * {field1:"value", field2:"value"}&#010   ]&#010 }&#010 </pre>
      *
-     * @param updateDataURL updateDataURL Default value is null
+     * @param jsonRecordXPath jsonRecordXPath Default value is "/response/data"
      * @throws IllegalStateException this property cannot be changed after the underlying component has been created
      */
-    public void setUpdateDataURL(String updateDataURL)  throws IllegalStateException {
-        setAttribute("updateDataURL", updateDataURL, false);
+    public void setJsonRecordXPath(String jsonRecordXPath)  throws IllegalStateException {
+        setAttribute("jsonRecordXPath", jsonRecordXPath, false);
     }
 
     /**
-     * Custom dataURL for update type operations
+     * <code>recordXPath</code> mapping to the data node of json returned by the server.&#010 Applies if this.dataFormat is set
+     * to <code>"json"</code><br>&#010 The default value will pick up data from a response structured as follows:<br>&#010
+     * <pre>&#010 {response:&#010  {status:0,&#010   data:[&#010      {field1:"value", field2:"value"},&#010     
+     * {field1:"value", field2:"value"}&#010   ]&#010 }&#010 </pre>
      *
      *
      * @return String
      */
-    public String getUpdateDataURL()  {
-        return getAttributeAsString("updateDataURL");
+    public String getJsonRecordXPath()  {
+        return getAttributeAsString("jsonRecordXPath");
     }
 
     /**
-     * Custom dataURL for add type operations
+     * If {@link com.smartgwt.client.data.RestDataSource#getSendMetaData sendMetaData} is true, this attribute is used to
+     * specify the prefix to apply to 'meta data' properties when assembling parameters to send to the  server.  Applies to
+     * operations where OperationBinding.dataProtocol is set to  <code>"getParams"</code> or <code>"postParams"</code> only.
      *
-     * @param addDataURL addDataURL Default value is null
+     * @param metaDataPrefix metaDataPrefix Default value is "_"
      * @throws IllegalStateException this property cannot be changed after the underlying component has been created
      */
-    public void setAddDataURL(String addDataURL)  throws IllegalStateException {
-        setAttribute("addDataURL", addDataURL, false);
+    public void setMetaDataPrefix(String metaDataPrefix)  throws IllegalStateException {
+        setAttribute("metaDataPrefix", metaDataPrefix, false);
     }
 
     /**
-     * Custom dataURL for add type operations
+     * If {@link com.smartgwt.client.data.RestDataSource#getSendMetaData sendMetaData} is true, this attribute is used to
+     * specify the prefix to apply to 'meta data' properties when assembling parameters to send to the  server.  Applies to
+     * operations where OperationBinding.dataProtocol is set to  <code>"getParams"</code> or <code>"postParams"</code> only.
      *
      *
      * @return String
      */
-    public String getAddDataURL()  {
-        return getAttributeAsString("addDataURL");
+    public String getMetaDataPrefix()  {
+        return getAttributeAsString("metaDataPrefix");
+    }
+
+    /**
+     * When using dataFormat:"json" and dataProtocol:"postMessage" should we use the {@link
+     * com.smartgwt.client.util.JSONEncoder#getPrettyPrint prettyPrint} feature to enable indented, highly readable JSON
+     * messages. <P> True by default because the bandwidth involved is generally neglible and the benefits for troubleshooting
+     * are key.
+     *
+     * @param prettyPrintJSON prettyPrintJSON Default value is true
+     * @throws IllegalStateException this property cannot be changed after the underlying component has been created
+     */
+    public void setPrettyPrintJSON(Boolean prettyPrintJSON)  throws IllegalStateException {
+        setAttribute("prettyPrintJSON", prettyPrintJSON, false);
+    }
+
+    /**
+     * When using dataFormat:"json" and dataProtocol:"postMessage" should we use the {@link
+     * com.smartgwt.client.util.JSONEncoder#getPrettyPrint prettyPrint} feature to enable indented, highly readable JSON
+     * messages. <P> True by default because the bandwidth involved is generally neglible and the benefits for troubleshooting
+     * are key.
+     *
+     *
+     * @return Boolean
+     */
+    public Boolean getPrettyPrintJSON()  {
+        return getAttributeAsBoolean("prettyPrintJSON");
+    }
+
+    /**
+     * For RestDataSources, by default, either the {@link com.smartgwt.client.data.RestDataSource#getXmlRecordXPath
+     * xmlRecordXPath} or  {@link com.smartgwt.client.data.RestDataSource#getJsonRecordXPath jsonRecordXPath} is used based on
+     * the {@link com.smartgwt.client.data.RestDataSource#getDataFormat dataFormat} setting. <P> Note that you can also apply
+     * record xpath binding via {@link com.smartgwt.client.data.OperationBinding#getRecordXPath recordXPath}.
+     *
+     * @param recordXPath recordXPath Default value is null
+     */
+    public void setRecordXPath(String recordXPath) {
+        setAttribute("recordXPath", recordXPath, true);
+    }
+
+    /**
+     * For RestDataSources, by default, either the {@link com.smartgwt.client.data.RestDataSource#getXmlRecordXPath
+     * xmlRecordXPath} or  {@link com.smartgwt.client.data.RestDataSource#getJsonRecordXPath jsonRecordXPath} is used based on
+     * the {@link com.smartgwt.client.data.RestDataSource#getDataFormat dataFormat} setting. <P> Note that you can also apply
+     * record xpath binding via {@link com.smartgwt.client.data.OperationBinding#getRecordXPath recordXPath}.
+     *
+     *
+     * @return String
+     */
+    public String getRecordXPath()  {
+        return getAttributeAsString("recordXPath");
     }
 
     /**
@@ -455,27 +429,53 @@ public class RestDataSource extends DataSource {
     }
 
     /**
-     * If {@link com.smartgwt.client.data.RestDataSource#getSendMetaData sendMetaData} is true, this attribute is used to
-     * specify the prefix to apply to 'meta data' properties when assembling parameters to send to the  server.  Applies to
-     * operations where OperationBinding.dataProtocol is set to  <code>"getParams"</code> or <code>"postParams"</code> only.
+     * Custom dataURL for update type operations
      *
-     * @param metaDataPrefix metaDataPrefix Default value is "_"
+     * @param updateDataURL updateDataURL Default value is null
      * @throws IllegalStateException this property cannot be changed after the underlying component has been created
      */
-    public void setMetaDataPrefix(String metaDataPrefix)  throws IllegalStateException {
-        setAttribute("metaDataPrefix", metaDataPrefix, false);
+    public void setUpdateDataURL(String updateDataURL)  throws IllegalStateException {
+        setAttribute("updateDataURL", updateDataURL, false);
     }
 
     /**
-     * If {@link com.smartgwt.client.data.RestDataSource#getSendMetaData sendMetaData} is true, this attribute is used to
-     * specify the prefix to apply to 'meta data' properties when assembling parameters to send to the  server.  Applies to
-     * operations where OperationBinding.dataProtocol is set to  <code>"getParams"</code> or <code>"postParams"</code> only.
+     * Custom dataURL for update type operations
      *
      *
      * @return String
      */
-    public String getMetaDataPrefix()  {
-        return getAttributeAsString("metaDataPrefix");
+    public String getUpdateDataURL()  {
+        return getAttributeAsString("updateDataURL");
+    }
+
+    /**
+     * <code>recordXPath</code> mapping to the data node of XML returned by the server.&#010 Applies if this.dataFormat is set
+     * to <code>"xml"</code>.<br>&#010 The default value will pick up data from a response structured as follows:<br>&#010
+     * <pre>&#010 &lt;response&gt;&#010    &lt;status&gt;0&lt;/status&gt;&#010    &lt;data&gt;&#010      &lt;record&gt;&#010   
+     * &lt;field1&gt;value&lt;/field1&gt;&#010          &lt;field2&gt;value&lt;/field2&gt;&#010      &lt;/record&gt;&#010     
+     * &lt;record&gt;&#010          &lt;field1&gt;value&lt;/field1&gt;&#010          &lt;field2&gt;value&lt;/field2&gt;&#010   
+     *   &lt;/record&gt;&#010    &lt;/data&gt;&#010 &lt;/response&gt;&#010 </pre>
+     *
+     * @param xmlRecordXPath xmlRecordXPath Default value is "/response/data/*"
+     * @throws IllegalStateException this property cannot be changed after the underlying component has been created
+     */
+    public void setXmlRecordXPath(String xmlRecordXPath)  throws IllegalStateException {
+        setAttribute("xmlRecordXPath", xmlRecordXPath, false);
+    }
+
+    /**
+     * <code>recordXPath</code> mapping to the data node of XML returned by the server.&#010 Applies if this.dataFormat is set
+     * to <code>"xml"</code>.<br>&#010 The default value will pick up data from a response structured as follows:<br>&#010
+     * <pre>&#010 &lt;response&gt;&#010    &lt;status&gt;0&lt;/status&gt;&#010    &lt;data&gt;&#010      &lt;record&gt;&#010   
+     * &lt;field1&gt;value&lt;/field1&gt;&#010          &lt;field2&gt;value&lt;/field2&gt;&#010      &lt;/record&gt;&#010     
+     * &lt;record&gt;&#010          &lt;field1&gt;value&lt;/field1&gt;&#010          &lt;field2&gt;value&lt;/field2&gt;&#010   
+     *   &lt;/record&gt;&#010    &lt;/data&gt;&#010 &lt;/response&gt;&#010 </pre>
+     *
+     *
+     * @return String
+     */
+    public String getXmlRecordXPath()  {
+        return getAttributeAsString("xmlRecordXPath");
     }
 
     // ********************* Methods ***********************

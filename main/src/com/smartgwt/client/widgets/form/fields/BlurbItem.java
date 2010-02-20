@@ -88,22 +88,22 @@ public class BlurbItem extends FormItem {
     // ********************* Properties / Attributes ***********************
 
     /**
-     * Blurb items show no title by default.
+     * If true, text that exceeds the specified size of the form item will be clipped
      *
-     * @param showTitle showTitle Default value is false
+     * @param clipValue clipValue Default value is false
      */
-    public void setShowTitle(Boolean showTitle) {
-        setAttribute("showTitle", showTitle);
+    public void setClipValue(Boolean clipValue) {
+        setAttribute("clipValue", clipValue);
     }
 
     /**
-     * Blurb items show no title by default.
+     * If true, text that exceeds the specified size of the form item will be clipped
      *
      *
      * @return Boolean
      */
-    public Boolean getShowTitle()  {
-        return getAttributeAsBoolean("showTitle");
+    public Boolean getClipValue()  {
+        return getAttributeAsBoolean("clipValue");
     }
 
     /**
@@ -123,6 +123,25 @@ public class BlurbItem extends FormItem {
      */
     public int getColSpan()  {
         return getAttributeAsInt("colSpan");
+    }
+
+    /**
+     * Blurb items show no title by default.
+     *
+     * @param showTitle showTitle Default value is false
+     */
+    public void setShowTitle(Boolean showTitle) {
+        setAttribute("showTitle", showTitle);
+    }
+
+    /**
+     * Blurb items show no title by default.
+     *
+     *
+     * @return Boolean
+     */
+    public Boolean getShowTitle()  {
+        return getAttributeAsBoolean("showTitle");
     }
 
     /**
@@ -161,25 +180,6 @@ public class BlurbItem extends FormItem {
      */
     public Boolean getWrap()  {
         return getAttributeAsBoolean("wrap");
-    }
-
-    /**
-     * If true, text that exceeds the specified size of the form item will be clipped
-     *
-     * @param clipValue clipValue Default value is false
-     */
-    public void setClipValue(Boolean clipValue) {
-        setAttribute("clipValue", clipValue);
-    }
-
-    /**
-     * If true, text that exceeds the specified size of the form item will be clipped
-     *
-     *
-     * @return Boolean
-     */
-    public Boolean getClipValue()  {
-        return getAttributeAsBoolean("clipValue");
     }
 
     // ********************* Methods ***********************

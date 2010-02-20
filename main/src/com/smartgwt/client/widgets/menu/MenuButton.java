@@ -98,43 +98,66 @@ public class MenuButton extends Button {
     // ********************* Properties / Attributes ***********************
 
     /**
-     * Default title for the button.
+     * If this MenuButton has a specified {@link com.smartgwt.client.widgets.Canvas#getAccessKey 'accessKey'}, underline it in
+     * the title of the button by default
      *
-     * @param title title Default value is "Show Menu"
-     */
-    public void setTitle(String title) {
-        setAttribute("title", title, true);
-    }
-
-    /**
-     * Default title for the button.
-     *
-     *
-     * @return String
-     */
-    public String getTitle()  {
-        return getAttributeAsString("title");
-    }
-
-    /**
-     * show menu button image (up / down arrowhead) for this menu button
-     * Setter for the 'showMenuButtonImage' property - shows/hides the menu button image at runtime
-     *
-     * @param showMenuButtonImage Should the image be shown. Default value is true
+     * @param hiliteAccessKey hiliteAccessKey Default value is true
      * @throws IllegalStateException this property cannot be changed after the component has been created
      */
-    public void setShowMenuButtonImage(Boolean showMenuButtonImage)  throws IllegalStateException {
-        setAttribute("showMenuButtonImage", showMenuButtonImage, false);
+    public void setHiliteAccessKey(Boolean hiliteAccessKey)  throws IllegalStateException {
+        setAttribute("hiliteAccessKey", hiliteAccessKey, false);
     }
 
     /**
-     * show menu button image (up / down arrowhead) for this menu button
+     * If this MenuButton has a specified {@link com.smartgwt.client.widgets.Canvas#getAccessKey 'accessKey'}, underline it in
+     * the title of the button by default
      *
      *
      * @return Boolean
      */
-    public Boolean getShowMenuButtonImage()  {
-        return getAttributeAsBoolean("showMenuButtonImage");
+    public Boolean getHiliteAccessKey()  {
+        return getAttributeAsBoolean("hiliteAccessKey");
+    }
+            
+    /**
+     * The menu to show.
+     *
+     * @param menu menu Default value is null
+     */
+    public void setMenu(Menu menu) {
+        setAttribute("menu", menu.getOrCreateJsObj(), true);
+    }
+
+    /**
+     * The menu to show.
+     *
+     *
+     * @return Menu
+     */
+    public Menu getMenu()  {
+            return Menu.getOrCreateRef(getAttributeAsJavaScriptObject("menu"));
+    }
+
+    /**
+     * Allows you to specify an animation effect to apply to the menu when it is being shown. Valid options are "none" (no
+     * animation), "fade", "slide" and "wipe". If unspecified falls through to <code>menu.showAnimationEffect</code>
+     * <p><b>Note : </b> This is an advanced setting</p>
+     *
+     * @param menuAnimationEffect menuAnimationEffect Default value is null
+     */
+    public void setMenuAnimationEffect(String menuAnimationEffect) {
+        setAttribute("menuAnimationEffect", menuAnimationEffect, true);
+    }
+
+    /**
+     * Allows you to specify an animation effect to apply to the menu when it is being shown. Valid options are "none" (no
+     * animation), "fade", "slide" and "wipe". If unspecified falls through to <code>menu.showAnimationEffect</code>
+     *
+     *
+     * @return String
+     */
+    public String getMenuAnimationEffect()  {
+        return getAttributeAsString("menuAnimationEffect");
     }
 
     /**
@@ -188,28 +211,6 @@ public class MenuButton extends Button {
     }
 
     /**
-     * If this MenuButton has a specified {@link com.smartgwt.client.widgets.Canvas#getAccessKey 'accessKey'}, underline it in
-     * the title of the button by default
-     *
-     * @param hiliteAccessKey hiliteAccessKey Default value is true
-     * @throws IllegalStateException this property cannot be changed after the component has been created
-     */
-    public void setHiliteAccessKey(Boolean hiliteAccessKey)  throws IllegalStateException {
-        setAttribute("hiliteAccessKey", hiliteAccessKey, false);
-    }
-
-    /**
-     * If this MenuButton has a specified {@link com.smartgwt.client.widgets.Canvas#getAccessKey 'accessKey'}, underline it in
-     * the title of the button by default
-     *
-     *
-     * @return Boolean
-     */
-    public Boolean getHiliteAccessKey()  {
-        return getAttributeAsBoolean("hiliteAccessKey");
-    }
-
-    /**
      * The menu drops down below the menu button.   Set to false if the menu should appear above the menu button.
      * Setter for the 'showMenuButtonBelow' property - determines whether the menu will be shown above or below the menubutton.
      *
@@ -228,46 +229,45 @@ public class MenuButton extends Button {
     public Boolean getShowMenuBelow()  {
         return getAttributeAsBoolean("showMenuBelow");
     }
-            
+
     /**
-     * The menu to show.
+     * show menu button image (up / down arrowhead) for this menu button
+     * Setter for the 'showMenuButtonImage' property - shows/hides the menu button image at runtime
      *
-     * @param menu menu Default value is null
+     * @param showMenuButtonImage Should the image be shown. Default value is true
+     * @throws IllegalStateException this property cannot be changed after the component has been created
      */
-    public void setMenu(Menu menu) {
-        setAttribute("menu", menu.getOrCreateJsObj(), true);
+    public void setShowMenuButtonImage(Boolean showMenuButtonImage)  throws IllegalStateException {
+        setAttribute("showMenuButtonImage", showMenuButtonImage, false);
     }
 
     /**
-     * The menu to show.
+     * show menu button image (up / down arrowhead) for this menu button
      *
      *
-     * @return Menu
+     * @return Boolean
      */
-    public Menu getMenu()  {
-            return Menu.getOrCreateRef(getAttributeAsJavaScriptObject("menu"));
+    public Boolean getShowMenuButtonImage()  {
+        return getAttributeAsBoolean("showMenuButtonImage");
     }
 
     /**
-     * Allows you to specify an animation effect to apply to the menu when it is being shown. Valid options are "none" (no
-     * animation), "fade", "slide" and "wipe". If unspecified falls through to <code>menu.showAnimationEffect</code>
-     * <p><b>Note : </b> This is an advanced setting</p>
+     * Default title for the button.
      *
-     * @param menuAnimationEffect menuAnimationEffect Default value is null
+     * @param title title Default value is "Show Menu"
      */
-    public void setMenuAnimationEffect(String menuAnimationEffect) {
-        setAttribute("menuAnimationEffect", menuAnimationEffect, true);
+    public void setTitle(String title) {
+        setAttribute("title", title, true);
     }
 
     /**
-     * Allows you to specify an animation effect to apply to the menu when it is being shown. Valid options are "none" (no
-     * animation), "fade", "slide" and "wipe". If unspecified falls through to <code>menu.showAnimationEffect</code>
+     * Default title for the button.
      *
      *
      * @return String
      */
-    public String getMenuAnimationEffect()  {
-        return getAttributeAsString("menuAnimationEffect");
+    public String getTitle()  {
+        return getAttributeAsString("title");
     }
 
     // ********************* Methods ***********************

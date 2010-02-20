@@ -93,25 +93,24 @@ public class PickTreeItem extends CanvasItem {
     // ********************* Properties / Attributes ***********************
 
     /**
-     * If this is a databound item, should the load our set of possible options be loaded on demand (as submenus are
-     * displayed), or upfront?
-     * <p><b>Note : </b> This is an advanced setting</p>
+     * If true, clicking or pressing Enter on a menu item that has a submenu will  select that item (with standard behavior of
+     * hiding the menus, calling click  handlers, etc) instead of showing the submenu.
      *
-     * @param loadDataOnDemand loadDataOnDemand Default value is null
+     * @param canSelectParentItems canSelectParentItems Default value is null
      */
-    public void setLoadDataOnDemand(Boolean loadDataOnDemand) {
-        setAttribute("loadDataOnDemand", loadDataOnDemand);
+    public void setCanSelectParentItems(Boolean canSelectParentItems) {
+        setAttribute("canSelectParentItems", canSelectParentItems);
     }
 
     /**
-     * If this is a databound item, should the load our set of possible options be loaded on demand (as submenus are
-     * displayed), or upfront?
+     * If true, clicking or pressing Enter on a menu item that has a submenu will  select that item (with standard behavior of
+     * hiding the menus, calling click  handlers, etc) instead of showing the submenu.
      *
      *
      * @return Boolean
      */
-    public Boolean getLoadDataOnDemand()  {
-        return getAttributeAsBoolean("loadDataOnDemand");
+    public Boolean getCanSelectParentItems()  {
+        return getAttributeAsBoolean("canSelectParentItems");
     }
 
     /**
@@ -148,25 +147,6 @@ public class PickTreeItem extends CanvasItem {
     }
 
     /**
-     * Which field in the tree-data should be returned as this item's value? If unspecified, the path will be used
-     *
-     * @param valueField valueField Default value is null
-     */
-    public void setValueField(String valueField) {
-        setAttribute("valueField", valueField);
-    }
-
-    /**
-     * Which field in the tree-data should be returned as this item's value? If unspecified, the path will be used
-     *
-     *
-     * @return String
-     */
-    public String getValueField()  {
-        return getAttributeAsString("valueField");
-    }
-
-    /**
      * This message will be displayed as a single, disabled option in any empty menu/submenu created from this item's data
      * tree.
      * <p><b>Note : </b> This is an advanced setting</p>
@@ -189,24 +169,44 @@ public class PickTreeItem extends CanvasItem {
     }
 
     /**
-     * If true, clicking or pressing Enter on a menu item that has a submenu will  select that item (with standard behavior of
-     * hiding the menus, calling click  handlers, etc) instead of showing the submenu.
+     * If this is a databound item, should the load our set of possible options be loaded on demand (as submenus are
+     * displayed), or upfront?
+     * <p><b>Note : </b> This is an advanced setting</p>
      *
-     * @param canSelectParentItems canSelectParentItems Default value is null
+     * @param loadDataOnDemand loadDataOnDemand Default value is null
      */
-    public void setCanSelectParentItems(Boolean canSelectParentItems) {
-        setAttribute("canSelectParentItems", canSelectParentItems);
+    public void setLoadDataOnDemand(Boolean loadDataOnDemand) {
+        setAttribute("loadDataOnDemand", loadDataOnDemand);
     }
 
     /**
-     * If true, clicking or pressing Enter on a menu item that has a submenu will  select that item (with standard behavior of
-     * hiding the menus, calling click  handlers, etc) instead of showing the submenu.
+     * If this is a databound item, should the load our set of possible options be loaded on demand (as submenus are
+     * displayed), or upfront?
      *
      *
      * @return Boolean
      */
-    public Boolean getCanSelectParentItems()  {
-        return getAttributeAsBoolean("canSelectParentItems");
+    public Boolean getLoadDataOnDemand()  {
+        return getAttributeAsBoolean("loadDataOnDemand");
+    }
+
+    /**
+     * Which field in the tree-data should be returned as this item's value? If unspecified, the path will be used
+     *
+     * @param valueField valueField Default value is null
+     */
+    public void setValueField(String valueField) {
+        setAttribute("valueField", valueField);
+    }
+
+    /**
+     * Which field in the tree-data should be returned as this item's value? If unspecified, the path will be used
+     *
+     *
+     * @return String
+     */
+    public String getValueField()  {
+        return getAttributeAsString("valueField");
     }
 
     // ********************* Methods ***********************

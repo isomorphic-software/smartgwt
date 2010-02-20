@@ -87,53 +87,6 @@ public class DetailViewer extends Canvas  implements DataBoundComponent {
     // ********************* Properties / Attributes ***********************
 
     /**
-     * Name of the field in the DetailViewerRecord which specifies the data property for that record.
-     * <p><b>Note : </b> This is an advanced setting</p>
-     *
-     * @param fieldIdProperty fieldIdProperty Default value is "name"
-     */
-    public void setFieldIdProperty(String fieldIdProperty) {
-        setAttribute("fieldIdProperty", fieldIdProperty, true);
-    }
-
-    /**
-     * Name of the field in the DetailViewerRecord which specifies the data property for that record.
-     *
-     *
-     * @return String
-     */
-    public String getFieldIdProperty()  {
-        return getAttributeAsString("fieldIdProperty");
-    }
-
-    /**
-     * The number of records to display in a block. A block is a horizontal row on a page          containing one or more
-     * records, as specified by the value of recordsPerBlock. The          height of a block is equal to the height of a single
-     * record. The default setting of          1 causes each record to appear by itself in a vertical row. Setting
-     * recordsPerBlock          to 2 would cause records to appear side by side in groups of two.          Use a value of "*"
-     * to indicate all records.
-     *
-     * @param recordsPerBlock recordsPerBlock Default value is 1
-     */
-    public void setRecordsPerBlock(int recordsPerBlock) {
-        setAttribute("recordsPerBlock", recordsPerBlock, true);
-    }
-
-    /**
-     * The number of records to display in a block. A block is a horizontal row on a page          containing one or more
-     * records, as specified by the value of recordsPerBlock. The          height of a block is equal to the height of a single
-     * record. The default setting of          1 causes each record to appear by itself in a vertical row. Setting
-     * recordsPerBlock          to 2 would cause records to appear side by side in groups of two.          Use a value of "*"
-     * to indicate all records.
-     *
-     *
-     * @return int
-     */
-    public int getRecordsPerBlock()  {
-        return getAttributeAsInt("recordsPerBlock");
-    }
-
-    /**
      * A string (HTML acceptable) that will be written to a page to separate blocks.
      *
      * @param blockSeparator blockSeparator Default value is "<BR><BR>"
@@ -150,142 +103,6 @@ public class DetailViewer extends Canvas  implements DataBoundComponent {
      */
     public String getBlockSeparator()  {
         return getAttributeAsString("blockSeparator");
-    }
-
-    /**
-     * Whether to show the field when the value is null
-     * <p><b>Note : </b> This is an advanced setting</p>
-     *
-     * @param showEmptyField showEmptyField Default value is true
-     */
-    public void setShowEmptyField(Boolean showEmptyField) {
-        setAttribute("showEmptyField", showEmptyField, true);
-    }
-
-    /**
-     * Whether to show the field when the value is null
-     *
-     *
-     * @return Boolean
-     */
-    public Boolean getShowEmptyField()  {
-        return getAttributeAsBoolean("showEmptyField");
-    }
-
-    /**
-     * Text to show for an empty cell
-     * <p><b>Note : </b> This is an advanced setting</p>
-     *
-     * @param emptyCellValue emptyCellValue Default value is "&nbsp;"
-     */
-    public void setEmptyCellValue(String emptyCellValue) {
-        setAttribute("emptyCellValue", emptyCellValue, true);
-    }
-
-    /**
-     * Text to show for an empty cell
-     *
-     *
-     * @return String
-     */
-    public String getEmptyCellValue()  {
-        return getAttributeAsString("emptyCellValue");
-    }
-
-    /**
-     * text to put before a label
-     *
-     * @param labelPrefix labelPrefix Default value is ""
-     */
-    public void setLabelPrefix(String labelPrefix) {
-        setAttribute("labelPrefix", labelPrefix, true);
-    }
-
-    /**
-     * text to put before a label
-     *
-     *
-     * @return String
-     */
-    public String getLabelPrefix()  {
-        return getAttributeAsString("labelPrefix");
-    }
-
-    /**
-     * text to put after a label
-     *
-     * @param labelSuffix labelSuffix Default value is ":"
-     */
-    public void setLabelSuffix(String labelSuffix) {
-        setAttribute("labelSuffix", labelSuffix, true);
-    }
-
-    /**
-     * text to put after a label
-     *
-     *
-     * @return String
-     */
-    public String getLabelSuffix()  {
-        return getAttributeAsString("labelSuffix");
-    }
-
-    /**
-     * Should the label be allowed to wrap, or be fixed to one line no matter how long
-     *
-     * @param wrapLabel wrapLabel Default value is false
-     */
-    public void setWrapLabel(Boolean wrapLabel) {
-        setAttribute("wrapLabel", wrapLabel, true);
-    }
-
-    /**
-     * Should the label be allowed to wrap, or be fixed to one line no matter how long
-     *
-     *
-     * @return Boolean
-     */
-    public Boolean getWrapLabel()  {
-        return getAttributeAsBoolean("wrapLabel");
-    }
-
-    /**
-     * Whether values should be allowed to wrap by default, or should be shown on one line regardless of length.
-     *
-     * @param wrapValues wrapValues Default value is true
-     * @throws IllegalStateException this property cannot be changed after the component has been created
-     */
-    public void setWrapValues(Boolean wrapValues)  throws IllegalStateException {
-        setAttribute("wrapValues", wrapValues, false);
-    }
-
-    /**
-     * Whether values should be allowed to wrap by default, or should be shown on one line regardless of length.
-     *
-     *
-     * @return Boolean
-     */
-    public Boolean getWrapValues()  {
-        return getAttributeAsBoolean("wrapValues");
-    }
-
-    /**
-     * CSS style for the component as a whole.
-     *
-     * @param styleName styleName Default value is "detailViewer"
-     */
-    public void setStyleName(String styleName) {
-        setAttribute("styleName", styleName, true);
-    }
-
-    /**
-     * CSS style for the component as a whole.
-     *
-     *
-     * @return String
-     */
-    public String getStyleName()  {
-        return getAttributeAsString("styleName");
     }
 
     /**
@@ -308,25 +125,6 @@ public class DetailViewer extends Canvas  implements DataBoundComponent {
     }
 
     /**
-     * CSS style for a normal detail label
-     *
-     * @param labelStyle labelStyle Default value is "detailLabel"
-     */
-    public void setLabelStyle(String labelStyle) {
-        setAttribute("labelStyle", labelStyle, true);
-    }
-
-    /**
-     * CSS style for a normal detail label
-     *
-     *
-     * @return String
-     */
-    public String getLabelStyle()  {
-        return getAttributeAsString("labelStyle");
-    }
-
-    /**
      * CSS style for a normal value
      *
      * @param cellStyle cellStyle Default value is "detail"
@@ -345,113 +143,6 @@ public class DetailViewer extends Canvas  implements DataBoundComponent {
      */
     public String getCellStyle()  {
         return getAttributeAsString("cellStyle");
-    }
-
-    /**
-     * CSS style for a header
-     *
-     * @param headerStyle headerStyle Default value is "detailHeader"
-     */
-    public void setHeaderStyle(String headerStyle) {
-        setAttribute("headerStyle", headerStyle, true);
-    }
-
-    /**
-     * CSS style for a header
-     *
-     *
-     * @return String
-     */
-    public String getHeaderStyle()  {
-        return getAttributeAsString("headerStyle");
-    }
-
-    /**
-     * Optional CSS style for a cell in printable HTML for this component. If unset {@link
-     * com.smartgwt.client.widgets.viewer.DetailViewer#getCellStyle cellStyle} will be used for printing as well as normal
-     * presentation.
-     *
-     * @param printCellStyle printCellStyle Default value is null
-     */
-    public void setPrintCellStyle(String printCellStyle) {
-        setAttribute("printCellStyle", printCellStyle, true);
-    }
-
-    /**
-     * Optional CSS style for a cell in printable HTML for this component. If unset {@link
-     * com.smartgwt.client.widgets.viewer.DetailViewer#getCellStyle cellStyle} will be used for printing as well as normal
-     * presentation.
-     *
-     *
-     * @return String
-     */
-    public String getPrintCellStyle()  {
-        return getAttributeAsString("printCellStyle");
-    }
-
-    /**
-     * Optional CSS style for a label cell in printable HTML for this component. If unset {@link
-     * com.smartgwt.client.widgets.viewer.DetailViewer#getLabelStyle labelStyle} will be used for printing as well as normal
-     * presentation.
-     *
-     * @param printLabelStyle printLabelStyle Default value is null
-     */
-    public void setPrintLabelStyle(String printLabelStyle) {
-        setAttribute("printLabelStyle", printLabelStyle, true);
-    }
-
-    /**
-     * Optional CSS style for a label cell in printable HTML for this component. If unset {@link
-     * com.smartgwt.client.widgets.viewer.DetailViewer#getLabelStyle labelStyle} will be used for printing as well as normal
-     * presentation.
-     *
-     *
-     * @return String
-     */
-    public String getPrintLabelStyle()  {
-        return getAttributeAsString("printLabelStyle");
-    }
-
-    /**
-     * Optional CSS style for a header in printable HTML for this component. If unset {@link
-     * com.smartgwt.client.widgets.viewer.DetailViewer#getHeaderStyle headerStyle} will be used for printing as well as normal
-     * presentation.
-     *
-     * @param printHeaderStyle printHeaderStyle Default value is null
-     */
-    public void setPrintHeaderStyle(String printHeaderStyle) {
-        setAttribute("printHeaderStyle", printHeaderStyle, true);
-    }
-
-    /**
-     * Optional CSS style for a header in printable HTML for this component. If unset {@link
-     * com.smartgwt.client.widgets.viewer.DetailViewer#getHeaderStyle headerStyle} will be used for printing as well as normal
-     * presentation.
-     *
-     *
-     * @return String
-     */
-    public String getPrintHeaderStyle()  {
-        return getAttributeAsString("printHeaderStyle");
-    }
-
-    /**
-     * CSS style for a separator
-     *
-     * @param separatorStyle separatorStyle Default value is "detail"
-     */
-    public void setSeparatorStyle(String separatorStyle) {
-        setAttribute("separatorStyle", separatorStyle, true);
-    }
-
-    /**
-     * CSS style for a separator
-     *
-     *
-     * @return String
-     */
-    public String getSeparatorStyle()  {
-        return getAttributeAsString("separatorStyle");
     }
              
     /**
@@ -501,25 +192,23 @@ public class DetailViewer extends Canvas  implements DataBoundComponent {
     }
 
     /**
-     * Show {@link com.smartgwt.client.widgets.viewer.DetailViewer#getEmptyMessage emptyMessage} when there is no data to
-     * display?
+     * Text to show for an empty cell
      * <p><b>Note : </b> This is an advanced setting</p>
      *
-     * @param showEmptyMessage showEmptyMessage Default value is true
+     * @param emptyCellValue emptyCellValue Default value is "&nbsp;"
      */
-    public void setShowEmptyMessage(Boolean showEmptyMessage) {
-        setAttribute("showEmptyMessage", showEmptyMessage, true);
+    public void setEmptyCellValue(String emptyCellValue) {
+        setAttribute("emptyCellValue", emptyCellValue, true);
     }
 
     /**
-     * Show {@link com.smartgwt.client.widgets.viewer.DetailViewer#getEmptyMessage emptyMessage} when there is no data to
-     * display?
+     * Text to show for an empty cell
      *
      *
-     * @return Boolean
+     * @return String
      */
-    public Boolean getShowEmptyMessage()  {
-        return getAttributeAsBoolean("showEmptyMessage");
+    public String getEmptyCellValue()  {
+        return getAttributeAsString("emptyCellValue");
     }
 
     /**
@@ -562,6 +251,102 @@ public class DetailViewer extends Canvas  implements DataBoundComponent {
     }
 
     /**
+     * Name of the field in the DetailViewerRecord which specifies the data property for that record.
+     * <p><b>Note : </b> This is an advanced setting</p>
+     *
+     * @param fieldIdProperty fieldIdProperty Default value is "name"
+     */
+    public void setFieldIdProperty(String fieldIdProperty) {
+        setAttribute("fieldIdProperty", fieldIdProperty, true);
+    }
+
+    /**
+     * Name of the field in the DetailViewerRecord which specifies the data property for that record.
+     *
+     *
+     * @return String
+     */
+    public String getFieldIdProperty()  {
+        return getAttributeAsString("fieldIdProperty");
+    }
+
+    /**
+     * CSS style for a header
+     *
+     * @param headerStyle headerStyle Default value is "detailHeader"
+     */
+    public void setHeaderStyle(String headerStyle) {
+        setAttribute("headerStyle", headerStyle, true);
+    }
+
+    /**
+     * CSS style for a header
+     *
+     *
+     * @return String
+     */
+    public String getHeaderStyle()  {
+        return getAttributeAsString("headerStyle");
+    }
+
+    /**
+     * text to put before a label
+     *
+     * @param labelPrefix labelPrefix Default value is ""
+     */
+    public void setLabelPrefix(String labelPrefix) {
+        setAttribute("labelPrefix", labelPrefix, true);
+    }
+
+    /**
+     * text to put before a label
+     *
+     *
+     * @return String
+     */
+    public String getLabelPrefix()  {
+        return getAttributeAsString("labelPrefix");
+    }
+
+    /**
+     * CSS style for a normal detail label
+     *
+     * @param labelStyle labelStyle Default value is "detailLabel"
+     */
+    public void setLabelStyle(String labelStyle) {
+        setAttribute("labelStyle", labelStyle, true);
+    }
+
+    /**
+     * CSS style for a normal detail label
+     *
+     *
+     * @return String
+     */
+    public String getLabelStyle()  {
+        return getAttributeAsString("labelStyle");
+    }
+
+    /**
+     * text to put after a label
+     *
+     * @param labelSuffix labelSuffix Default value is ":"
+     */
+    public void setLabelSuffix(String labelSuffix) {
+        setAttribute("labelSuffix", labelSuffix, true);
+    }
+
+    /**
+     * text to put after a label
+     *
+     *
+     * @return String
+     */
+    public String getLabelSuffix()  {
+        return getAttributeAsString("labelSuffix");
+    }
+
+    /**
      * The string to display in the body of a detailViewer which is loading records.
      *
      * @param loadingMessage loadingMessage Default value is "&nbsp;"
@@ -598,6 +383,221 @@ public class DetailViewer extends Canvas  implements DataBoundComponent {
      */
     public String getLoadingMessageStyle()  {
         return getAttributeAsString("loadingMessageStyle");
+    }
+
+    /**
+     * Optional CSS style for a cell in printable HTML for this component. If unset {@link
+     * com.smartgwt.client.widgets.viewer.DetailViewer#getCellStyle cellStyle} will be used for printing as well as normal
+     * presentation.
+     *
+     * @param printCellStyle printCellStyle Default value is null
+     */
+    public void setPrintCellStyle(String printCellStyle) {
+        setAttribute("printCellStyle", printCellStyle, true);
+    }
+
+    /**
+     * Optional CSS style for a cell in printable HTML for this component. If unset {@link
+     * com.smartgwt.client.widgets.viewer.DetailViewer#getCellStyle cellStyle} will be used for printing as well as normal
+     * presentation.
+     *
+     *
+     * @return String
+     */
+    public String getPrintCellStyle()  {
+        return getAttributeAsString("printCellStyle");
+    }
+
+    /**
+     * Optional CSS style for a header in printable HTML for this component. If unset {@link
+     * com.smartgwt.client.widgets.viewer.DetailViewer#getHeaderStyle headerStyle} will be used for printing as well as normal
+     * presentation.
+     *
+     * @param printHeaderStyle printHeaderStyle Default value is null
+     */
+    public void setPrintHeaderStyle(String printHeaderStyle) {
+        setAttribute("printHeaderStyle", printHeaderStyle, true);
+    }
+
+    /**
+     * Optional CSS style for a header in printable HTML for this component. If unset {@link
+     * com.smartgwt.client.widgets.viewer.DetailViewer#getHeaderStyle headerStyle} will be used for printing as well as normal
+     * presentation.
+     *
+     *
+     * @return String
+     */
+    public String getPrintHeaderStyle()  {
+        return getAttributeAsString("printHeaderStyle");
+    }
+
+    /**
+     * Optional CSS style for a label cell in printable HTML for this component. If unset {@link
+     * com.smartgwt.client.widgets.viewer.DetailViewer#getLabelStyle labelStyle} will be used for printing as well as normal
+     * presentation.
+     *
+     * @param printLabelStyle printLabelStyle Default value is null
+     */
+    public void setPrintLabelStyle(String printLabelStyle) {
+        setAttribute("printLabelStyle", printLabelStyle, true);
+    }
+
+    /**
+     * Optional CSS style for a label cell in printable HTML for this component. If unset {@link
+     * com.smartgwt.client.widgets.viewer.DetailViewer#getLabelStyle labelStyle} will be used for printing as well as normal
+     * presentation.
+     *
+     *
+     * @return String
+     */
+    public String getPrintLabelStyle()  {
+        return getAttributeAsString("printLabelStyle");
+    }
+
+    /**
+     * The number of records to display in a block. A block is a horizontal row on a page          containing one or more
+     * records, as specified by the value of recordsPerBlock. The          height of a block is equal to the height of a single
+     * record. The default setting of          1 causes each record to appear by itself in a vertical row. Setting
+     * recordsPerBlock          to 2 would cause records to appear side by side in groups of two.          Use a value of "*"
+     * to indicate all records.
+     *
+     * @param recordsPerBlock recordsPerBlock Default value is 1
+     */
+    public void setRecordsPerBlock(int recordsPerBlock) {
+        setAttribute("recordsPerBlock", recordsPerBlock, true);
+    }
+
+    /**
+     * The number of records to display in a block. A block is a horizontal row on a page          containing one or more
+     * records, as specified by the value of recordsPerBlock. The          height of a block is equal to the height of a single
+     * record. The default setting of          1 causes each record to appear by itself in a vertical row. Setting
+     * recordsPerBlock          to 2 would cause records to appear side by side in groups of two.          Use a value of "*"
+     * to indicate all records.
+     *
+     *
+     * @return int
+     */
+    public int getRecordsPerBlock()  {
+        return getAttributeAsInt("recordsPerBlock");
+    }
+
+    /**
+     * CSS style for a separator
+     *
+     * @param separatorStyle separatorStyle Default value is "detail"
+     */
+    public void setSeparatorStyle(String separatorStyle) {
+        setAttribute("separatorStyle", separatorStyle, true);
+    }
+
+    /**
+     * CSS style for a separator
+     *
+     *
+     * @return String
+     */
+    public String getSeparatorStyle()  {
+        return getAttributeAsString("separatorStyle");
+    }
+
+    /**
+     * Whether to show the field when the value is null
+     * <p><b>Note : </b> This is an advanced setting</p>
+     *
+     * @param showEmptyField showEmptyField Default value is true
+     */
+    public void setShowEmptyField(Boolean showEmptyField) {
+        setAttribute("showEmptyField", showEmptyField, true);
+    }
+
+    /**
+     * Whether to show the field when the value is null
+     *
+     *
+     * @return Boolean
+     */
+    public Boolean getShowEmptyField()  {
+        return getAttributeAsBoolean("showEmptyField");
+    }
+
+    /**
+     * Show {@link com.smartgwt.client.widgets.viewer.DetailViewer#getEmptyMessage emptyMessage} when there is no data to
+     * display?
+     * <p><b>Note : </b> This is an advanced setting</p>
+     *
+     * @param showEmptyMessage showEmptyMessage Default value is true
+     */
+    public void setShowEmptyMessage(Boolean showEmptyMessage) {
+        setAttribute("showEmptyMessage", showEmptyMessage, true);
+    }
+
+    /**
+     * Show {@link com.smartgwt.client.widgets.viewer.DetailViewer#getEmptyMessage emptyMessage} when there is no data to
+     * display?
+     *
+     *
+     * @return Boolean
+     */
+    public Boolean getShowEmptyMessage()  {
+        return getAttributeAsBoolean("showEmptyMessage");
+    }
+
+    /**
+     * CSS style for the component as a whole.
+     *
+     * @param styleName styleName Default value is "detailViewer"
+     */
+    public void setStyleName(String styleName) {
+        setAttribute("styleName", styleName, true);
+    }
+
+    /**
+     * CSS style for the component as a whole.
+     *
+     *
+     * @return String
+     */
+    public String getStyleName()  {
+        return getAttributeAsString("styleName");
+    }
+
+    /**
+     * Should the label be allowed to wrap, or be fixed to one line no matter how long
+     *
+     * @param wrapLabel wrapLabel Default value is false
+     */
+    public void setWrapLabel(Boolean wrapLabel) {
+        setAttribute("wrapLabel", wrapLabel, true);
+    }
+
+    /**
+     * Should the label be allowed to wrap, or be fixed to one line no matter how long
+     *
+     *
+     * @return Boolean
+     */
+    public Boolean getWrapLabel()  {
+        return getAttributeAsBoolean("wrapLabel");
+    }
+
+    /**
+     * Whether values should be allowed to wrap by default, or should be shown on one line regardless of length.
+     *
+     * @param wrapValues wrapValues Default value is true
+     * @throws IllegalStateException this property cannot be changed after the component has been created
+     */
+    public void setWrapValues(Boolean wrapValues)  throws IllegalStateException {
+        setAttribute("wrapValues", wrapValues, false);
+    }
+
+    /**
+     * Whether values should be allowed to wrap by default, or should be shown on one line regardless of length.
+     *
+     *
+     * @return Boolean
+     */
+    public Boolean getWrapValues()  {
+        return getAttributeAsBoolean("wrapValues");
     }
 
     // ********************* Methods ***********************

@@ -95,32 +95,6 @@ public class ColumnTree extends Layout  implements DataBoundComponent, com.smart
         return widget;
     }-*/;
     // ********************* Properties / Attributes ***********************
-            
-    /**
-     * A {@link com.smartgwt.client.widgets.tree.Tree} object consisting of nested {@link
-     * com.smartgwt.client.widgets.tree.TreeNode}s to  display in this ColumnTree.   The <code>data</code> property will
-     * typically not be explicitly specified for  databound ColumnTrees, where the data is returned from the server via
-     * databound component methods such as <code>fetchData()</code>
-     * Set the {@link com.smartgwt.client.widgets.tree.Tree} object this ColumnTree will view
-     *
-     * @param data Tree to show. Default value is null
-     */
-    public void setData(Tree data) {
-        setAttribute("data", data.getOrCreateJsObj(), true);
-    }
-
-    /**
-     * A {@link com.smartgwt.client.widgets.tree.Tree} object consisting of nested {@link
-     * com.smartgwt.client.widgets.tree.TreeNode}s to  display in this ColumnTree.   The <code>data</code> property will
-     * typically not be explicitly specified for  databound ColumnTrees, where the data is returned from the server via
-     * databound component methods such as <code>fetchData()</code>
-     *
-     *
-     * @return Returns the {@link com.smartgwt.client.widgets.tree.Tree} object this ColumnTree is viewing
-     */
-    public Tree getData()  {
-            return Tree.getOrCreateRef(getAttributeAsJavaScriptObject("data"));
-    }
              
     /**
      * If {@link com.smartgwt.client.widgets.grid.ColumnTree#getAutoFetchData autoFetchData} is <code>true</code>, this
@@ -147,28 +121,48 @@ public class ColumnTree extends Layout  implements DataBoundComponent, com.smart
     }
 
     /**
-     * The URL of the base icon for all folder nodes in this columnTree. Note that this URL will have {@link
-     * com.smartgwt.client.widgets.grid.ColumnTree#getOpenIconSuffix openIconSuffix} or {@link
-     * com.smartgwt.client.widgets.grid.ColumnTree#getClosedIconSuffix closedIconSuffix} appended to  indicate state changes if
-     * appropriate - see documentation on  {@link com.smartgwt.client.widgets.grid.ColumnTree#getShowOpenIcons showOpenIcons}
+     * This suffix will be appended to the {@link com.smartgwt.client.widgets.grid.ColumnTree#getFolderIcon folderIcon} for
+     * closed folders. If {@link com.smartgwt.client.widgets.grid.ColumnTree#getShowOpenIcons showOpenIcons} is set to
+     * <code>false</code> this suffix will also be appended to open folders' icons.
      *
-     * @param folderIcon folderIcon Default value is "[SKIN]folder.gif"
+     * @param closedIconSuffix closedIconSuffix Default value is "closed"
      */
-    public void setFolderIcon(String folderIcon) {
-        setAttribute("folderIcon", folderIcon, true);
+    public void setClosedIconSuffix(String closedIconSuffix) {
+        setAttribute("closedIconSuffix", closedIconSuffix, true);
     }
 
     /**
-     * The URL of the base icon for all folder nodes in this columnTree. Note that this URL will have {@link
-     * com.smartgwt.client.widgets.grid.ColumnTree#getOpenIconSuffix openIconSuffix} or {@link
-     * com.smartgwt.client.widgets.grid.ColumnTree#getClosedIconSuffix closedIconSuffix} appended to  indicate state changes if
-     * appropriate - see documentation on  {@link com.smartgwt.client.widgets.grid.ColumnTree#getShowOpenIcons showOpenIcons}
+     * This suffix will be appended to the {@link com.smartgwt.client.widgets.grid.ColumnTree#getFolderIcon folderIcon} for
+     * closed folders. If {@link com.smartgwt.client.widgets.grid.ColumnTree#getShowOpenIcons showOpenIcons} is set to
+     * <code>false</code> this suffix will also be appended to open folders' icons.
      *
      *
      * @return String
      */
-    public String getFolderIcon()  {
-        return getAttributeAsString("folderIcon");
+    public String getClosedIconSuffix()  {
+        return getAttributeAsString("closedIconSuffix");
+    }
+
+    /**
+     * This property allows the developer to rename the  {@link com.smartgwt.client.widgets.tree.TreeNode#getShowOpenIcon
+     * 'default node.showOpenIcon'} property.
+     * <p><b>Note : </b> This is an advanced setting</p>
+     *
+     * @param customIconOpenProperty customIconOpenProperty Default value is "showOpenIcon"
+     */
+    public void setCustomIconOpenProperty(String customIconOpenProperty) {
+        setAttribute("customIconOpenProperty", customIconOpenProperty, true);
+    }
+
+    /**
+     * This property allows the developer to rename the  {@link com.smartgwt.client.widgets.tree.TreeNode#getShowOpenIcon
+     * 'default node.showOpenIcon'} property.
+     *
+     *
+     * @return String
+     */
+    public String getCustomIconOpenProperty()  {
+        return getAttributeAsString("customIconOpenProperty");
     }
 
     /**
@@ -202,6 +196,107 @@ public class ColumnTree extends Layout  implements DataBoundComponent, com.smart
      */
     public String getCustomIconProperty()  {
         return getAttributeAsString("customIconProperty");
+    }
+            
+    /**
+     * A {@link com.smartgwt.client.widgets.tree.Tree} object consisting of nested {@link
+     * com.smartgwt.client.widgets.tree.TreeNode}s to  display in this ColumnTree.   The <code>data</code> property will
+     * typically not be explicitly specified for  databound ColumnTrees, where the data is returned from the server via
+     * databound component methods such as <code>fetchData()</code>
+     * Set the {@link com.smartgwt.client.widgets.tree.Tree} object this ColumnTree will view
+     *
+     * @param data Tree to show. Default value is null
+     */
+    public void setData(Tree data) {
+        setAttribute("data", data.getOrCreateJsObj(), true);
+    }
+
+    /**
+     * A {@link com.smartgwt.client.widgets.tree.Tree} object consisting of nested {@link
+     * com.smartgwt.client.widgets.tree.TreeNode}s to  display in this ColumnTree.   The <code>data</code> property will
+     * typically not be explicitly specified for  databound ColumnTrees, where the data is returned from the server via
+     * databound component methods such as <code>fetchData()</code>
+     *
+     *
+     * @return Returns the {@link com.smartgwt.client.widgets.tree.Tree} object this ColumnTree is viewing
+     */
+    public Tree getData()  {
+            return Tree.getOrCreateRef(getAttributeAsJavaScriptObject("data"));
+    }
+
+    /**
+     * A title for the leftmost column if {@link com.smartgwt.client.widgets.grid.ColumnTree#getShowHeaders showHeaders} is set
+     * (the remaining columns have their titles derived from the item selected in the column to the left). Ignored if {@link
+     * com.smartgwt.client.widgets.grid.ColumnTree#getShowHeaders showHeaders} is not set.<br><br> Note: if you do not want a
+     * heading for the first column leave this attribute at its  default value of " ". If you set it to null or the empty
+     * string, Smart GWT will fall back to displaying the field's name in the heading.
+     *
+     * @param firstColumnTitle firstColumnTitle Default value is " "
+     * @throws IllegalStateException this property cannot be changed after the component has been created
+     */
+    public void setFirstColumnTitle(String firstColumnTitle)  throws IllegalStateException {
+        setAttribute("firstColumnTitle", firstColumnTitle, false);
+    }
+
+    /**
+     * A title for the leftmost column if {@link com.smartgwt.client.widgets.grid.ColumnTree#getShowHeaders showHeaders} is set
+     * (the remaining columns have their titles derived from the item selected in the column to the left). Ignored if {@link
+     * com.smartgwt.client.widgets.grid.ColumnTree#getShowHeaders showHeaders} is not set.<br><br> Note: if you do not want a
+     * heading for the first column leave this attribute at its  default value of " ". If you set it to null or the empty
+     * string, Smart GWT will fall back to displaying the field's name in the heading.
+     *
+     *
+     * @return String
+     */
+    public String getFirstColumnTitle()  {
+        return getAttributeAsString("firstColumnTitle");
+    }
+
+    /**
+     * The URL of the base icon for all folder nodes in this columnTree. Note that this URL will have {@link
+     * com.smartgwt.client.widgets.grid.ColumnTree#getOpenIconSuffix openIconSuffix} or {@link
+     * com.smartgwt.client.widgets.grid.ColumnTree#getClosedIconSuffix closedIconSuffix} appended to  indicate state changes if
+     * appropriate - see documentation on  {@link com.smartgwt.client.widgets.grid.ColumnTree#getShowOpenIcons showOpenIcons}
+     *
+     * @param folderIcon folderIcon Default value is "[SKIN]folder.gif"
+     */
+    public void setFolderIcon(String folderIcon) {
+        setAttribute("folderIcon", folderIcon, true);
+    }
+
+    /**
+     * The URL of the base icon for all folder nodes in this columnTree. Note that this URL will have {@link
+     * com.smartgwt.client.widgets.grid.ColumnTree#getOpenIconSuffix openIconSuffix} or {@link
+     * com.smartgwt.client.widgets.grid.ColumnTree#getClosedIconSuffix closedIconSuffix} appended to  indicate state changes if
+     * appropriate - see documentation on  {@link com.smartgwt.client.widgets.grid.ColumnTree#getShowOpenIcons showOpenIcons}
+     *
+     *
+     * @return String
+     */
+    public String getFolderIcon()  {
+        return getAttributeAsString("folderIcon");
+    }
+
+    /**
+     * For databound columnTree instances, should the entire tree of data be loaded on initial  fetch, or should each coluimn
+     * be loaded as needed. If unset the default  ResultTree.loadDataOnDemand setting will be used.
+     *
+     * @param loadDataOnDemand loadDataOnDemand Default value is null
+     * @throws IllegalStateException this property cannot be changed after the component has been created
+     */
+    public void setLoadDataOnDemand(Boolean loadDataOnDemand)  throws IllegalStateException {
+        setAttribute("loadDataOnDemand", loadDataOnDemand, false);
+    }
+
+    /**
+     * For databound columnTree instances, should the entire tree of data be loaded on initial  fetch, or should each coluimn
+     * be loaded as needed. If unset the default  ResultTree.loadDataOnDemand setting will be used.
+     *
+     *
+     * @return Boolean
+     */
+    public Boolean getLoadDataOnDemand()  {
+        return getAttributeAsBoolean("loadDataOnDemand");
     }
 
     /**
@@ -249,60 +344,6 @@ public class ColumnTree extends Layout  implements DataBoundComponent, com.smart
     }
 
     /**
-     * This suffix will be appended to the {@link com.smartgwt.client.widgets.grid.ColumnTree#getFolderIcon folderIcon} for
-     * closed folders. If {@link com.smartgwt.client.widgets.grid.ColumnTree#getShowOpenIcons showOpenIcons} is set to
-     * <code>false</code> this suffix will also be appended to open folders' icons.
-     *
-     * @param closedIconSuffix closedIconSuffix Default value is "closed"
-     */
-    public void setClosedIconSuffix(String closedIconSuffix) {
-        setAttribute("closedIconSuffix", closedIconSuffix, true);
-    }
-
-    /**
-     * This suffix will be appended to the {@link com.smartgwt.client.widgets.grid.ColumnTree#getFolderIcon folderIcon} for
-     * closed folders. If {@link com.smartgwt.client.widgets.grid.ColumnTree#getShowOpenIcons showOpenIcons} is set to
-     * <code>false</code> this suffix will also be appended to open folders' icons.
-     *
-     *
-     * @return String
-     */
-    public String getClosedIconSuffix()  {
-        return getAttributeAsString("closedIconSuffix");
-    }
-
-    /**
-     * If true, show a different icon for <code>open</code> folders than closed folders. This is achieved by appending the
-     * {@link com.smartgwt.client.widgets.grid.ColumnTree#getOpenIconSuffix openIconSuffix} onto the  {@link
-     * com.smartgwt.client.widgets.grid.ColumnTree#getFolderIcon folderIcon} URL [for example <code>"[SKIN]/folder.gif"</code>
-     * might be  replaced by <code>"[SKIN]/folder_open.gif"</code>.<br> <b>Note</b> If this property is set to
-     * <code>false</code> the same icon is shown for open folders as for closed folders, unless a custom folder icon was
-     * specified. This will be determined by {@link com.smartgwt.client.widgets.grid.ColumnTree#getFolderIcon folderIcon} plus
-     * the {@link com.smartgwt.client.widgets.grid.ColumnTree#getClosedIconSuffix closedIconSuffix}.
-     *
-     * @param showOpenIcons showOpenIcons Default value is true
-     */
-    public void setShowOpenIcons(Boolean showOpenIcons) {
-        setAttribute("showOpenIcons", showOpenIcons, true);
-    }
-
-    /**
-     * If true, show a different icon for <code>open</code> folders than closed folders. This is achieved by appending the
-     * {@link com.smartgwt.client.widgets.grid.ColumnTree#getOpenIconSuffix openIconSuffix} onto the  {@link
-     * com.smartgwt.client.widgets.grid.ColumnTree#getFolderIcon folderIcon} URL [for example <code>"[SKIN]/folder.gif"</code>
-     * might be  replaced by <code>"[SKIN]/folder_open.gif"</code>.<br> <b>Note</b> If this property is set to
-     * <code>false</code> the same icon is shown for open folders as for closed folders, unless a custom folder icon was
-     * specified. This will be determined by {@link com.smartgwt.client.widgets.grid.ColumnTree#getFolderIcon folderIcon} plus
-     * the {@link com.smartgwt.client.widgets.grid.ColumnTree#getClosedIconSuffix closedIconSuffix}.
-     *
-     *
-     * @return Boolean
-     */
-    public Boolean getShowOpenIcons()  {
-        return getAttributeAsBoolean("showOpenIcons");
-    }
-
-    /**
      * Should folder nodes showing custom icons (set via the {@link
      * com.smartgwt.client.widgets.grid.ColumnTree#getCustomIconProperty customIconProperty}), show open state images when the
      * folder is opened. If true, the {@link com.smartgwt.client.widgets.grid.ColumnTree#getOpenIconSuffix openIconSuffix} will
@@ -339,50 +380,6 @@ public class ColumnTree extends Layout  implements DataBoundComponent, com.smart
     }
 
     /**
-     * This property allows the developer to rename the  {@link com.smartgwt.client.widgets.tree.TreeNode#getShowOpenIcon
-     * 'default node.showOpenIcon'} property.
-     * <p><b>Note : </b> This is an advanced setting</p>
-     *
-     * @param customIconOpenProperty customIconOpenProperty Default value is "showOpenIcon"
-     */
-    public void setCustomIconOpenProperty(String customIconOpenProperty) {
-        setAttribute("customIconOpenProperty", customIconOpenProperty, true);
-    }
-
-    /**
-     * This property allows the developer to rename the  {@link com.smartgwt.client.widgets.tree.TreeNode#getShowOpenIcon
-     * 'default node.showOpenIcon'} property.
-     *
-     *
-     * @return String
-     */
-    public String getCustomIconOpenProperty()  {
-        return getAttributeAsString("customIconOpenProperty");
-    }
-
-    /**
-     * For databound columnTree instances, should the entire tree of data be loaded on initial  fetch, or should each coluimn
-     * be loaded as needed. If unset the default  ResultTree.loadDataOnDemand setting will be used.
-     *
-     * @param loadDataOnDemand loadDataOnDemand Default value is null
-     * @throws IllegalStateException this property cannot be changed after the component has been created
-     */
-    public void setLoadDataOnDemand(Boolean loadDataOnDemand)  throws IllegalStateException {
-        setAttribute("loadDataOnDemand", loadDataOnDemand, false);
-    }
-
-    /**
-     * For databound columnTree instances, should the entire tree of data be loaded on initial  fetch, or should each coluimn
-     * be loaded as needed. If unset the default  ResultTree.loadDataOnDemand setting will be used.
-     *
-     *
-     * @return Boolean
-     */
-    public Boolean getLoadDataOnDemand()  {
-        return getAttributeAsBoolean("loadDataOnDemand");
-    }
-
-    /**
      * If set, each column in the ColumnTree will show a header with the title of the selected node from the column to the
      * left.
      *
@@ -402,34 +399,6 @@ public class ColumnTree extends Layout  implements DataBoundComponent, com.smart
      */
     public Boolean getShowHeaders()  {
         return getAttributeAsBoolean("showHeaders");
-    }
-
-    /**
-     * A title for the leftmost column if {@link com.smartgwt.client.widgets.grid.ColumnTree#getShowHeaders showHeaders} is set
-     * (the remaining columns have their titles derived from the item selected in the column to the left). Ignored if {@link
-     * com.smartgwt.client.widgets.grid.ColumnTree#getShowHeaders showHeaders} is not set.<br><br> Note: if you do not want a
-     * heading for the first column leave this attribute at its  default value of " ". If you set it to null or the empty
-     * string, Smart GWT will fall back to displaying the field's name in the heading.
-     *
-     * @param firstColumnTitle firstColumnTitle Default value is " "
-     * @throws IllegalStateException this property cannot be changed after the component has been created
-     */
-    public void setFirstColumnTitle(String firstColumnTitle)  throws IllegalStateException {
-        setAttribute("firstColumnTitle", firstColumnTitle, false);
-    }
-
-    /**
-     * A title for the leftmost column if {@link com.smartgwt.client.widgets.grid.ColumnTree#getShowHeaders showHeaders} is set
-     * (the remaining columns have their titles derived from the item selected in the column to the left). Ignored if {@link
-     * com.smartgwt.client.widgets.grid.ColumnTree#getShowHeaders showHeaders} is not set.<br><br> Note: if you do not want a
-     * heading for the first column leave this attribute at its  default value of " ". If you set it to null or the empty
-     * string, Smart GWT will fall back to displaying the field's name in the heading.
-     *
-     *
-     * @return String
-     */
-    public String getFirstColumnTitle()  {
-        return getAttributeAsString("firstColumnTitle");
     }
 
     /**
@@ -454,18 +423,38 @@ public class ColumnTree extends Layout  implements DataBoundComponent, com.smart
         return getAttributeAsBoolean("showNodeCount");
     }
 
-    // ********************* Methods ***********************
-            
     /**
-     * Whether the indicated column should show a header.  Returns this.showHeaders by default, override for different
-     * behavior.
-     * @param node parent node for the nodes to be shown in the column
-     * @param colNum index of the column
+     * If true, show a different icon for <code>open</code> folders than closed folders. This is achieved by appending the
+     * {@link com.smartgwt.client.widgets.grid.ColumnTree#getOpenIconSuffix openIconSuffix} onto the  {@link
+     * com.smartgwt.client.widgets.grid.ColumnTree#getFolderIcon folderIcon} URL [for example <code>"[SKIN]/folder.gif"</code>
+     * might be  replaced by <code>"[SKIN]/folder_open.gif"</code>.<br> <b>Note</b> If this property is set to
+     * <code>false</code> the same icon is shown for open folders as for closed folders, unless a custom folder icon was
+     * specified. This will be determined by {@link com.smartgwt.client.widgets.grid.ColumnTree#getFolderIcon folderIcon} plus
+     * the {@link com.smartgwt.client.widgets.grid.ColumnTree#getClosedIconSuffix closedIconSuffix}.
+     *
+     * @param showOpenIcons showOpenIcons Default value is true
      */
-    public native void shouldShowHeader(TreeNode node, int colNum) /*-{
-        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
-        self.shouldShowHeader(node.@com.smartgwt.client.core.DataClass::getJsObj()(), colNum);
-    }-*/;
+    public void setShowOpenIcons(Boolean showOpenIcons) {
+        setAttribute("showOpenIcons", showOpenIcons, true);
+    }
+
+    /**
+     * If true, show a different icon for <code>open</code> folders than closed folders. This is achieved by appending the
+     * {@link com.smartgwt.client.widgets.grid.ColumnTree#getOpenIconSuffix openIconSuffix} onto the  {@link
+     * com.smartgwt.client.widgets.grid.ColumnTree#getFolderIcon folderIcon} URL [for example <code>"[SKIN]/folder.gif"</code>
+     * might be  replaced by <code>"[SKIN]/folder_open.gif"</code>.<br> <b>Note</b> If this property is set to
+     * <code>false</code> the same icon is shown for open folders as for closed folders, unless a custom folder icon was
+     * specified. This will be determined by {@link com.smartgwt.client.widgets.grid.ColumnTree#getFolderIcon folderIcon} plus
+     * the {@link com.smartgwt.client.widgets.grid.ColumnTree#getClosedIconSuffix closedIconSuffix}.
+     *
+     *
+     * @return Boolean
+     */
+    public Boolean getShowOpenIcons()  {
+        return getAttributeAsBoolean("showOpenIcons");
+    }
+
+    // ********************* Methods ***********************
             
     /**
      * Returns the title to show for the header of indicated column.  Only called if {@link
@@ -479,6 +468,23 @@ public class ColumnTree extends Layout  implements DataBoundComponent, com.smart
     public native void getColumnTitle(TreeNode node, int colNum) /*-{
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
         self.getColumnTitle(node.@com.smartgwt.client.core.DataClass::getJsObj()(), colNum);
+    }-*/;
+            
+    /**
+     * Get the appropriate icon for a node. <P> By default icons are derived from {@link
+     * com.smartgwt.client.widgets.grid.ColumnTree#getFolderIcon folderIcon} and {@link
+     * com.smartgwt.client.widgets.grid.ColumnTree#getNodeIcon nodeIcon}. Custom icons for individual nodes can be overridden
+     * by setting the {@link com.smartgwt.client.widgets.grid.ColumnTree#getCustomIconProperty customIconProperty} on a node.
+     * <p> If you want to suppress icons altogether, provide an override of this method that simply returns null. <p>  Note
+     * that the full icon URL will be derived by applying {@link com.smartgwt.client.widgets.Canvas#getImgURL} to the value
+     * returned from this method.
+     * @param node tree node in question
+     *
+     * @return URL for the icon to show for this node
+     */
+    public native String getIcon(TreeNode node) /*-{
+        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
+        return self.getIcon(node.@com.smartgwt.client.core.DataClass::getJsObj()());
     }-*/;
             
     /**
@@ -519,20 +525,14 @@ public class ColumnTree extends Layout  implements DataBoundComponent, com.smart
     }-*/;
             
     /**
-     * Get the appropriate icon for a node. <P> By default icons are derived from {@link
-     * com.smartgwt.client.widgets.grid.ColumnTree#getFolderIcon folderIcon} and {@link
-     * com.smartgwt.client.widgets.grid.ColumnTree#getNodeIcon nodeIcon}. Custom icons for individual nodes can be overridden
-     * by setting the {@link com.smartgwt.client.widgets.grid.ColumnTree#getCustomIconProperty customIconProperty} on a node.
-     * <p> If you want to suppress icons altogether, provide an override of this method that simply returns null. <p>  Note
-     * that the full icon URL will be derived by applying {@link com.smartgwt.client.widgets.Canvas#getImgURL} to the value
-     * returned from this method.
-     * @param node tree node in question
-     *
-     * @return URL for the icon to show for this node
+     * Whether the indicated column should show a header.  Returns this.showHeaders by default, override for different
+     * behavior.
+     * @param node parent node for the nodes to be shown in the column
+     * @param colNum index of the column
      */
-    public native String getIcon(TreeNode node) /*-{
+    public native void shouldShowHeader(TreeNode node, int colNum) /*-{
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
-        return self.getIcon(node.@com.smartgwt.client.core.DataClass::getJsObj()());
+        self.shouldShowHeader(node.@com.smartgwt.client.core.DataClass::getJsObj()(), colNum);
     }-*/;
 
     // ********************* Static Methods ***********************

@@ -91,25 +91,6 @@ public class HiddenItem extends FormItem {
     // ********************* Properties / Attributes ***********************
 
     /**
-     * we never show a separate title cell for hidden fields
-     *
-     * @param showTitle showTitle Default value is false
-     */
-    public void setShowTitle(Boolean showTitle) {
-        setAttribute("showTitle", showTitle);
-    }
-
-    /**
-     * we never show a separate title cell for hidden fields
-     *
-     *
-     * @return Boolean
-     */
-    public Boolean getShowTitle()  {
-        return getAttributeAsBoolean("showTitle");
-    }
-
-    /**
      * hidden fields don't take up any columns
      *
      * @param colSpan colSpan Default value is 0
@@ -145,6 +126,25 @@ public class HiddenItem extends FormItem {
      */
     public int getRowSpan()  {
         return getAttributeAsInt("rowSpan");
+    }
+
+    /**
+     * we never show a separate title cell for hidden fields
+     *
+     * @param showTitle showTitle Default value is false
+     */
+    public void setShowTitle(Boolean showTitle) {
+        setAttribute("showTitle", showTitle);
+    }
+
+    /**
+     * we never show a separate title cell for hidden fields
+     *
+     *
+     * @return Boolean
+     */
+    public Boolean getShowTitle()  {
+        return getAttributeAsBoolean("showTitle");
     }
 
     // ********************* Methods ***********************

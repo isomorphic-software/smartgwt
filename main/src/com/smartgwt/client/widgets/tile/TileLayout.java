@@ -87,208 +87,6 @@ public class TileLayout extends Canvas {
     // ********************* Properties / Attributes ***********************
 
     /**
-     * Size of each tile in pixels.  Depending on the {@link com.smartgwt.client.types.LayoutPolicy}, <code>tileSize</code> may
-     * be taken as a maximum, minimum or exact size of tiles, or may be irrelevant. <P> Width and height may be separately set
-     * via {@link com.smartgwt.client.widgets.tile.TileLayout#getTileHeight tileHeight} and {@link
-     * com.smartgwt.client.widgets.tile.TileLayout#getTileWidth tileWidth}.
-     * sets the height and width of tiles
-     *
-     * @param tileSize size. Default value is 50
-     * @throws IllegalStateException this property cannot be changed after the component has been created
-     */
-    public void setTileSize(int tileSize)  throws IllegalStateException {
-        setAttribute("tileSize", tileSize, false);
-    }
-
-    /**
-     * Size of each tile in pixels.  Depending on the {@link com.smartgwt.client.types.LayoutPolicy}, <code>tileSize</code> may
-     * be taken as a maximum, minimum or exact size of tiles, or may be irrelevant. <P> Width and height may be separately set
-     * via {@link com.smartgwt.client.widgets.tile.TileLayout#getTileHeight tileHeight} and {@link
-     * com.smartgwt.client.widgets.tile.TileLayout#getTileWidth tileWidth}.
-     *
-     *
-     * @return int
-     */
-    public int getTileSize()  {
-        return getAttributeAsInt("tileSize");
-    }
-
-    /**
-     * Width of each tile in pixels.  See {@link com.smartgwt.client.widgets.tile.TileLayout#getTileSize tileSize}. If {@link
-     * com.smartgwt.client.types.LayoutPolicy} is "fit", {@link com.smartgwt.client.widgets.tile.TileLayout#getExpandMargins
-     * expandMargins} is false, {@link com.smartgwt.client.widgets.tile.TileLayout#getTilesPerLine tilesPerLine} is set, {@link
-     * com.smartgwt.client.types.Orientation} is "horizontal", and tileWidth is not set, tileWidth will be computed
-     * automatically based on {@link com.smartgwt.client.widgets.tile.TileLayout#getTilesPerLine tilesPerLine}.
-     * sets the width of tiles
-     *
-     * @param tileWidth width. Default value is null
-     * @throws IllegalStateException this property cannot be changed after the component has been created
-     */
-    public void setTileWidth(Integer tileWidth)  throws IllegalStateException {
-        setAttribute("tileWidth", tileWidth, false);
-    }
-
-    /**
-     * Width of each tile in pixels.  See {@link com.smartgwt.client.widgets.tile.TileLayout#getTileSize tileSize}. If {@link
-     * com.smartgwt.client.types.LayoutPolicy} is "fit", {@link com.smartgwt.client.widgets.tile.TileLayout#getExpandMargins
-     * expandMargins} is false, {@link com.smartgwt.client.widgets.tile.TileLayout#getTilesPerLine tilesPerLine} is set, {@link
-     * com.smartgwt.client.types.Orientation} is "horizontal", and tileWidth is not set, tileWidth will be computed
-     * automatically based on {@link com.smartgwt.client.widgets.tile.TileLayout#getTilesPerLine tilesPerLine}.
-     *
-     *
-     * @return Integer
-     */
-    public Integer getTileWidth()  {
-        return getAttributeAsInt("tileWidth");
-    }
-
-    /**
-     * Height of each tile in pixels.  See {@link com.smartgwt.client.widgets.tile.TileLayout#getTileSize tileSize}. If {@link
-     * com.smartgwt.client.types.LayoutPolicy} is "fit", {@link com.smartgwt.client.widgets.tile.TileLayout#getExpandMargins
-     * expandMargins} is false, {@link com.smartgwt.client.widgets.tile.TileLayout#getTilesPerLine tilesPerLine} is set, 
-     * {@link com.smartgwt.client.types.Orientation} is "vertical", and tileHeight is not set, tileHeight will be computed
-     * automatically based on {@link com.smartgwt.client.widgets.tile.TileLayout#getTilesPerLine tilesPerLine}.
-     * sets the height of tiles
-     *
-     * @param tileHeight height. Default value is null
-     * @throws IllegalStateException this property cannot be changed after the component has been created
-     */
-    public void setTileHeight(Integer tileHeight)  throws IllegalStateException {
-        setAttribute("tileHeight", tileHeight, false);
-    }
-
-    /**
-     * Height of each tile in pixels.  See {@link com.smartgwt.client.widgets.tile.TileLayout#getTileSize tileSize}. If {@link
-     * com.smartgwt.client.types.LayoutPolicy} is "fit", {@link com.smartgwt.client.widgets.tile.TileLayout#getExpandMargins
-     * expandMargins} is false, {@link com.smartgwt.client.widgets.tile.TileLayout#getTilesPerLine tilesPerLine} is set, 
-     * {@link com.smartgwt.client.types.Orientation} is "vertical", and tileHeight is not set, tileHeight will be computed
-     * automatically based on {@link com.smartgwt.client.widgets.tile.TileLayout#getTilesPerLine tilesPerLine}.
-     *
-     *
-     * @return Integer
-     */
-    public Integer getTileHeight()  {
-        return getAttributeAsInt("tileHeight");
-    }
-
-    /**
-     * Margin in between tiles.  Can be set on a per-axis basis with {@link
-     * com.smartgwt.client.widgets.tile.TileLayout#getTileHMargin tileHMargin} and {@link
-     * com.smartgwt.client.widgets.tile.TileLayout#getTileVMargin tileVMargin}.
-     * sets the vertical and horizontal margin of tiles
-     *
-     * @param tileMargin margin. Default value is 10
-     * @throws IllegalStateException this property cannot be changed after the component has been created
-     */
-    public void setTileMargin(int tileMargin)  throws IllegalStateException {
-        setAttribute("tileMargin", tileMargin, false);
-    }
-
-    /**
-     * Margin in between tiles.  Can be set on a per-axis basis with {@link
-     * com.smartgwt.client.widgets.tile.TileLayout#getTileHMargin tileHMargin} and {@link
-     * com.smartgwt.client.widgets.tile.TileLayout#getTileVMargin tileVMargin}.
-     *
-     *
-     * @return int
-     */
-    public int getTileMargin()  {
-        return getAttributeAsInt("tileMargin");
-    }
-
-    /**
-     * Horizontal margin in between tiles.  See {@link com.smartgwt.client.widgets.tile.TileLayout#getTileMargin tileMargin}.
-     * sets the horizontal margin of tiles
-     *
-     * @param tileHMargin width. Default value is null
-     * @throws IllegalStateException this property cannot be changed after the component has been created
-     */
-    public void setTileHMargin(Integer tileHMargin)  throws IllegalStateException {
-        setAttribute("tileHMargin", tileHMargin, false);
-    }
-
-    /**
-     * Horizontal margin in between tiles.  See {@link com.smartgwt.client.widgets.tile.TileLayout#getTileMargin tileMargin}.
-     *
-     *
-     * @return Integer
-     */
-    public Integer getTileHMargin()  {
-        return getAttributeAsInt("tileHMargin");
-    }
-
-    /**
-     * Vertical margin in between tiles.  See {@link com.smartgwt.client.widgets.tile.TileLayout#getTileMargin tileMargin}.
-     * sets the vertical margin of tiles
-     *
-     * @param tileVMargin width. Default value is null
-     * @throws IllegalStateException this property cannot be changed after the component has been created
-     */
-    public void setTileVMargin(Integer tileVMargin)  throws IllegalStateException {
-        setAttribute("tileVMargin", tileVMargin, false);
-    }
-
-    /**
-     * Vertical margin in between tiles.  See {@link com.smartgwt.client.widgets.tile.TileLayout#getTileMargin tileMargin}.
-     *
-     *
-     * @return Integer
-     */
-    public Integer getTileVMargin()  {
-        return getAttributeAsInt("tileVMargin");
-    }
-
-    /**
-     * A margin left around the outside of all tiles.
-     *
-     * @param layoutMargin layoutMargin Default value is 5
-     * @throws IllegalStateException this property cannot be changed after the component has been created
-     */
-    public void setLayoutMargin(int layoutMargin)  throws IllegalStateException {
-        setAttribute("layoutMargin", layoutMargin, false);
-    }
-
-    /**
-     * A margin left around the outside of all tiles.
-     *
-     *
-     * @return int
-     */
-    public int getLayoutMargin()  {
-        return getAttributeAsInt("layoutMargin");
-    }
-
-    /**
-     * If this widget has padding specified (as {@link com.smartgwt.client.widgets.Canvas#getPadding 'this.padding'} or in the
-     * CSS style applied to this layout), should it show up as space outside the members, similar to layoutMargin? <P> If this
-     * setting is false, padding will not affect member positioning (as CSS padding normally does not affect absolutely
-     * positioned children).  Leaving this setting true allows a designer to more effectively control layout purely from CSS.
-     * <P> Note that {@link com.smartgwt.client.widgets.layout.Layout#getLayoutMargin layoutMargin} if specified, takes
-     * precedence over this value.
-     * <p><b>Note : </b> This is an advanced setting</p>
-     *
-     * @param paddingAsLayoutMargin paddingAsLayoutMargin Default value is true
-     */
-    public void setPaddingAsLayoutMargin(Boolean paddingAsLayoutMargin) {
-        setAttribute("paddingAsLayoutMargin", paddingAsLayoutMargin, true);
-    }
-
-    /**
-     * If this widget has padding specified (as {@link com.smartgwt.client.widgets.Canvas#getPadding 'this.padding'} or in the
-     * CSS style applied to this layout), should it show up as space outside the members, similar to layoutMargin? <P> If this
-     * setting is false, padding will not affect member positioning (as CSS padding normally does not affect absolutely
-     * positioned children).  Leaving this setting true allows a designer to more effectively control layout purely from CSS.
-     * <P> Note that {@link com.smartgwt.client.widgets.layout.Layout#getLayoutMargin layoutMargin} if specified, takes
-     * precedence over this value.
-     *
-     *
-     * @return Boolean
-     */
-    public Boolean getPaddingAsLayoutMargin()  {
-        return getAttributeAsBoolean("paddingAsLayoutMargin");
-    }
-
-    /**
      * If set, tiles animate to their new positions when a tile is added, removed, or reordered via drag and drop.
      * <p><b>Note : </b> This is an advanced setting</p>
      *
@@ -306,102 +104,6 @@ public class TileLayout extends Canvas {
      */
     public Boolean getAnimateTileChange()  {
         return getAttributeAsBoolean("animateTileChange");
-    }
-             
-    /**
-     * Direction of tiling.  See also {@link com.smartgwt.client..TileLayoutPolicy}.
-     *
-     * @param orientation orientation Default value is "horizontal"
-     * @throws IllegalStateException this property cannot be changed after the component has been created
-     */
-    public void setOrientation(Orientation orientation)  throws IllegalStateException {
-        setAttribute("orientation", orientation.getValue(), false);
-    }
-
-    /**
-     * Direction of tiling.  See also {@link com.smartgwt.client..TileLayoutPolicy}.
-     *
-     *
-     * @return Orientation
-     */
-    public Orientation getOrientation()  {
-        return EnumUtil.getEnum(Orientation.values(), getAttribute("orientation"));
-    }
-
-    /**
-     * Number of tiles to show in each line.  Auto-derived from {@link com.smartgwt.client.widgets.tile.TileLayout#getTileSize
-     * tileSize} for some layout modes.  See {@link com.smartgwt.client..TileLayoutPolicy}. This can also affect {@link
-     * com.smartgwt.client.widgets.tile.TileLayout#getTileWidth tileWidth} or {@link
-     * com.smartgwt.client.widgets.tile.TileLayout#getTileHeight tileHeight}. See those properties for details.
-     *
-     * @param tilesPerLine tilesPerLine Default value is null
-     * @throws IllegalStateException this property cannot be changed after the component has been created
-     */
-    public void setTilesPerLine(Integer tilesPerLine)  throws IllegalStateException {
-        setAttribute("tilesPerLine", tilesPerLine, false);
-    }
-
-    /**
-     * Number of tiles to show in each line.  Auto-derived from {@link com.smartgwt.client.widgets.tile.TileLayout#getTileSize
-     * tileSize} for some layout modes.  See {@link com.smartgwt.client..TileLayoutPolicy}. This can also affect {@link
-     * com.smartgwt.client.widgets.tile.TileLayout#getTileWidth tileWidth} or {@link
-     * com.smartgwt.client.widgets.tile.TileLayout#getTileHeight tileHeight}. See those properties for details.
-     *
-     *
-     * @return Integer
-     */
-    public Integer getTilesPerLine()  {
-        return getAttributeAsInt("tilesPerLine");
-    }
-             
-    /**
-     * Normal {@link com.smartgwt.client.types.Overflow} settings can be used on TileLayouts, for example, an overflow:auto
-     * TileLayout will scroll if members exceed its specified size, whereas an overflow:visible TileLayout will grow to
-     * accomodate members.
-     *
-     * @param overflow overflow Default value is "auto"
-     * @throws IllegalStateException this property cannot be changed after the component has been created
-     */
-    public void setOverflow(Overflow overflow)  throws IllegalStateException {
-        setAttribute("overflow", overflow.getValue(), false);
-    }
-
-    /**
-     * Normal {@link com.smartgwt.client.types.Overflow} settings can be used on TileLayouts, for example, an overflow:auto
-     * TileLayout will scroll if members exceed its specified size, whereas an overflow:visible TileLayout will grow to
-     * accomodate members.
-     *
-     *
-     * @return Overflow
-     */
-    public Overflow getOverflow()  {
-        return EnumUtil.getEnum(Overflow.values(), getAttribute("overflow"));
-    }
-
-    /**
-     * With {@link com.smartgwt.client.types.LayoutPolicy}:"fit", should margins be expanded so that tiles fill the available
-     * space in the TileLayout on the breadth axis? This can also affect {@link
-     * com.smartgwt.client.widgets.tile.TileLayout#getTileWidth tileWidth} or {@link
-     * com.smartgwt.client.widgets.tile.TileLayout#getTileHeight tileHeight}. See those properties for details.
-     *
-     * @param expandMargins expandMargins Default value is true
-     * @throws IllegalStateException this property cannot be changed after the component has been created
-     */
-    public void setExpandMargins(Boolean expandMargins)  throws IllegalStateException {
-        setAttribute("expandMargins", expandMargins, false);
-    }
-
-    /**
-     * With {@link com.smartgwt.client.types.LayoutPolicy}:"fit", should margins be expanded so that tiles fill the available
-     * space in the TileLayout on the breadth axis? This can also affect {@link
-     * com.smartgwt.client.widgets.tile.TileLayout#getTileWidth tileWidth} or {@link
-     * com.smartgwt.client.widgets.tile.TileLayout#getTileHeight tileHeight}. See those properties for details.
-     *
-     *
-     * @return Boolean
-     */
-    public Boolean getExpandMargins()  {
-        return getAttributeAsBoolean("expandMargins");
     }
 
     /**
@@ -447,25 +149,305 @@ public class TileLayout extends Canvas {
         return EnumUtil.getEnum(DragDataAction.values(), getAttribute("dragDataAction"));
     }
 
-    // ********************* Methods ***********************
-            
     /**
-     * Retrieve a tile by index.   <P> The TileLayout consistently uses this method to access tiles, in order to allow
-     * subclasses to create tiles on demand.
-     * @param index index of the tile
+     * With {@link com.smartgwt.client.types.LayoutPolicy}:"fit", should margins be expanded so that tiles fill the available
+     * space in the TileLayout on the breadth axis? This can also affect {@link
+     * com.smartgwt.client.widgets.tile.TileLayout#getTileWidth tileWidth} or {@link
+     * com.smartgwt.client.widgets.tile.TileLayout#getTileHeight tileHeight}. See those properties for details.
      *
-     * @return the tile
+     * @param expandMargins expandMargins Default value is true
+     * @throws IllegalStateException this property cannot be changed after the component has been created
      */
-    public native Canvas getTile(int index) /*-{
-        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
-        var ret = self.getTile(index);
-        if(ret == null || ret === undefined) return null;
-        var retVal = @com.smartgwt.client.widgets.BaseWidget::getRef(Lcom/google/gwt/core/client/JavaScriptObject;)(ret);
-        if(retVal == null) {
-            retVal = @com.smartgwt.client.widgets.Canvas::new(Lcom/google/gwt/core/client/JavaScriptObject;)(ret);
-        }
-        return retVal;
-    }-*/;
+    public void setExpandMargins(Boolean expandMargins)  throws IllegalStateException {
+        setAttribute("expandMargins", expandMargins, false);
+    }
+
+    /**
+     * With {@link com.smartgwt.client.types.LayoutPolicy}:"fit", should margins be expanded so that tiles fill the available
+     * space in the TileLayout on the breadth axis? This can also affect {@link
+     * com.smartgwt.client.widgets.tile.TileLayout#getTileWidth tileWidth} or {@link
+     * com.smartgwt.client.widgets.tile.TileLayout#getTileHeight tileHeight}. See those properties for details.
+     *
+     *
+     * @return Boolean
+     */
+    public Boolean getExpandMargins()  {
+        return getAttributeAsBoolean("expandMargins");
+    }
+
+    /**
+     * A margin left around the outside of all tiles.
+     *
+     * @param layoutMargin layoutMargin Default value is 5
+     * @throws IllegalStateException this property cannot be changed after the component has been created
+     */
+    public void setLayoutMargin(int layoutMargin)  throws IllegalStateException {
+        setAttribute("layoutMargin", layoutMargin, false);
+    }
+
+    /**
+     * A margin left around the outside of all tiles.
+     *
+     *
+     * @return int
+     */
+    public int getLayoutMargin()  {
+        return getAttributeAsInt("layoutMargin");
+    }
+             
+    /**
+     * Direction of tiling.  See also {@link com.smartgwt.client..TileLayoutPolicy}.
+     *
+     * @param orientation orientation Default value is "horizontal"
+     * @throws IllegalStateException this property cannot be changed after the component has been created
+     */
+    public void setOrientation(Orientation orientation)  throws IllegalStateException {
+        setAttribute("orientation", orientation.getValue(), false);
+    }
+
+    /**
+     * Direction of tiling.  See also {@link com.smartgwt.client..TileLayoutPolicy}.
+     *
+     *
+     * @return Orientation
+     */
+    public Orientation getOrientation()  {
+        return EnumUtil.getEnum(Orientation.values(), getAttribute("orientation"));
+    }
+             
+    /**
+     * Normal {@link com.smartgwt.client.types.Overflow} settings can be used on TileLayouts, for example, an overflow:auto
+     * TileLayout will scroll if members exceed its specified size, whereas an overflow:visible TileLayout will grow to
+     * accomodate members.
+     *
+     * @param overflow overflow Default value is "auto"
+     * @throws IllegalStateException this property cannot be changed after the component has been created
+     */
+    public void setOverflow(Overflow overflow)  throws IllegalStateException {
+        setAttribute("overflow", overflow.getValue(), false);
+    }
+
+    /**
+     * Normal {@link com.smartgwt.client.types.Overflow} settings can be used on TileLayouts, for example, an overflow:auto
+     * TileLayout will scroll if members exceed its specified size, whereas an overflow:visible TileLayout will grow to
+     * accomodate members.
+     *
+     *
+     * @return Overflow
+     */
+    public Overflow getOverflow()  {
+        return EnumUtil.getEnum(Overflow.values(), getAttribute("overflow"));
+    }
+
+    /**
+     * If this widget has padding specified (as {@link com.smartgwt.client.widgets.Canvas#getPadding 'this.padding'} or in the
+     * CSS style applied to this layout), should it show up as space outside the members, similar to layoutMargin? <P> If this
+     * setting is false, padding will not affect member positioning (as CSS padding normally does not affect absolutely
+     * positioned children).  Leaving this setting true allows a designer to more effectively control layout purely from CSS.
+     * <P> Note that {@link com.smartgwt.client.widgets.layout.Layout#getLayoutMargin layoutMargin} if specified, takes
+     * precedence over this value.
+     * <p><b>Note : </b> This is an advanced setting</p>
+     *
+     * @param paddingAsLayoutMargin paddingAsLayoutMargin Default value is true
+     */
+    public void setPaddingAsLayoutMargin(Boolean paddingAsLayoutMargin) {
+        setAttribute("paddingAsLayoutMargin", paddingAsLayoutMargin, true);
+    }
+
+    /**
+     * If this widget has padding specified (as {@link com.smartgwt.client.widgets.Canvas#getPadding 'this.padding'} or in the
+     * CSS style applied to this layout), should it show up as space outside the members, similar to layoutMargin? <P> If this
+     * setting is false, padding will not affect member positioning (as CSS padding normally does not affect absolutely
+     * positioned children).  Leaving this setting true allows a designer to more effectively control layout purely from CSS.
+     * <P> Note that {@link com.smartgwt.client.widgets.layout.Layout#getLayoutMargin layoutMargin} if specified, takes
+     * precedence over this value.
+     *
+     *
+     * @return Boolean
+     */
+    public Boolean getPaddingAsLayoutMargin()  {
+        return getAttributeAsBoolean("paddingAsLayoutMargin");
+    }
+
+    /**
+     * Height of each tile in pixels.  See {@link com.smartgwt.client.widgets.tile.TileLayout#getTileSize tileSize}. If {@link
+     * com.smartgwt.client.types.LayoutPolicy} is "fit", {@link com.smartgwt.client.widgets.tile.TileLayout#getExpandMargins
+     * expandMargins} is false, {@link com.smartgwt.client.widgets.tile.TileLayout#getTilesPerLine tilesPerLine} is set, 
+     * {@link com.smartgwt.client.types.Orientation} is "vertical", and tileHeight is not set, tileHeight will be computed
+     * automatically based on {@link com.smartgwt.client.widgets.tile.TileLayout#getTilesPerLine tilesPerLine}.
+     * sets the height of tiles
+     *
+     * @param tileHeight height. Default value is null
+     * @throws IllegalStateException this property cannot be changed after the component has been created
+     */
+    public void setTileHeight(Integer tileHeight)  throws IllegalStateException {
+        setAttribute("tileHeight", tileHeight, false);
+    }
+
+    /**
+     * Height of each tile in pixels.  See {@link com.smartgwt.client.widgets.tile.TileLayout#getTileSize tileSize}. If {@link
+     * com.smartgwt.client.types.LayoutPolicy} is "fit", {@link com.smartgwt.client.widgets.tile.TileLayout#getExpandMargins
+     * expandMargins} is false, {@link com.smartgwt.client.widgets.tile.TileLayout#getTilesPerLine tilesPerLine} is set, 
+     * {@link com.smartgwt.client.types.Orientation} is "vertical", and tileHeight is not set, tileHeight will be computed
+     * automatically based on {@link com.smartgwt.client.widgets.tile.TileLayout#getTilesPerLine tilesPerLine}.
+     *
+     *
+     * @return Integer
+     */
+    public Integer getTileHeight()  {
+        return getAttributeAsInt("tileHeight");
+    }
+
+    /**
+     * Horizontal margin in between tiles.  See {@link com.smartgwt.client.widgets.tile.TileLayout#getTileMargin tileMargin}.
+     * sets the horizontal margin of tiles
+     *
+     * @param tileHMargin width. Default value is null
+     * @throws IllegalStateException this property cannot be changed after the component has been created
+     */
+    public void setTileHMargin(Integer tileHMargin)  throws IllegalStateException {
+        setAttribute("tileHMargin", tileHMargin, false);
+    }
+
+    /**
+     * Horizontal margin in between tiles.  See {@link com.smartgwt.client.widgets.tile.TileLayout#getTileMargin tileMargin}.
+     *
+     *
+     * @return Integer
+     */
+    public Integer getTileHMargin()  {
+        return getAttributeAsInt("tileHMargin");
+    }
+
+    /**
+     * Margin in between tiles.  Can be set on a per-axis basis with {@link
+     * com.smartgwt.client.widgets.tile.TileLayout#getTileHMargin tileHMargin} and {@link
+     * com.smartgwt.client.widgets.tile.TileLayout#getTileVMargin tileVMargin}.
+     * sets the vertical and horizontal margin of tiles
+     *
+     * @param tileMargin margin. Default value is 10
+     * @throws IllegalStateException this property cannot be changed after the component has been created
+     */
+    public void setTileMargin(int tileMargin)  throws IllegalStateException {
+        setAttribute("tileMargin", tileMargin, false);
+    }
+
+    /**
+     * Margin in between tiles.  Can be set on a per-axis basis with {@link
+     * com.smartgwt.client.widgets.tile.TileLayout#getTileHMargin tileHMargin} and {@link
+     * com.smartgwt.client.widgets.tile.TileLayout#getTileVMargin tileVMargin}.
+     *
+     *
+     * @return int
+     */
+    public int getTileMargin()  {
+        return getAttributeAsInt("tileMargin");
+    }
+
+    /**
+     * Size of each tile in pixels.  Depending on the {@link com.smartgwt.client.types.LayoutPolicy}, <code>tileSize</code> may
+     * be taken as a maximum, minimum or exact size of tiles, or may be irrelevant. <P> Width and height may be separately set
+     * via {@link com.smartgwt.client.widgets.tile.TileLayout#getTileHeight tileHeight} and {@link
+     * com.smartgwt.client.widgets.tile.TileLayout#getTileWidth tileWidth}.
+     * sets the height and width of tiles
+     *
+     * @param tileSize size. Default value is 50
+     * @throws IllegalStateException this property cannot be changed after the component has been created
+     */
+    public void setTileSize(int tileSize)  throws IllegalStateException {
+        setAttribute("tileSize", tileSize, false);
+    }
+
+    /**
+     * Size of each tile in pixels.  Depending on the {@link com.smartgwt.client.types.LayoutPolicy}, <code>tileSize</code> may
+     * be taken as a maximum, minimum or exact size of tiles, or may be irrelevant. <P> Width and height may be separately set
+     * via {@link com.smartgwt.client.widgets.tile.TileLayout#getTileHeight tileHeight} and {@link
+     * com.smartgwt.client.widgets.tile.TileLayout#getTileWidth tileWidth}.
+     *
+     *
+     * @return int
+     */
+    public int getTileSize()  {
+        return getAttributeAsInt("tileSize");
+    }
+
+    /**
+     * Number of tiles to show in each line.  Auto-derived from {@link com.smartgwt.client.widgets.tile.TileLayout#getTileSize
+     * tileSize} for some layout modes.  See {@link com.smartgwt.client..TileLayoutPolicy}. This can also affect {@link
+     * com.smartgwt.client.widgets.tile.TileLayout#getTileWidth tileWidth} or {@link
+     * com.smartgwt.client.widgets.tile.TileLayout#getTileHeight tileHeight}. See those properties for details.
+     *
+     * @param tilesPerLine tilesPerLine Default value is null
+     * @throws IllegalStateException this property cannot be changed after the component has been created
+     */
+    public void setTilesPerLine(Integer tilesPerLine)  throws IllegalStateException {
+        setAttribute("tilesPerLine", tilesPerLine, false);
+    }
+
+    /**
+     * Number of tiles to show in each line.  Auto-derived from {@link com.smartgwt.client.widgets.tile.TileLayout#getTileSize
+     * tileSize} for some layout modes.  See {@link com.smartgwt.client..TileLayoutPolicy}. This can also affect {@link
+     * com.smartgwt.client.widgets.tile.TileLayout#getTileWidth tileWidth} or {@link
+     * com.smartgwt.client.widgets.tile.TileLayout#getTileHeight tileHeight}. See those properties for details.
+     *
+     *
+     * @return Integer
+     */
+    public Integer getTilesPerLine()  {
+        return getAttributeAsInt("tilesPerLine");
+    }
+
+    /**
+     * Vertical margin in between tiles.  See {@link com.smartgwt.client.widgets.tile.TileLayout#getTileMargin tileMargin}.
+     * sets the vertical margin of tiles
+     *
+     * @param tileVMargin width. Default value is null
+     * @throws IllegalStateException this property cannot be changed after the component has been created
+     */
+    public void setTileVMargin(Integer tileVMargin)  throws IllegalStateException {
+        setAttribute("tileVMargin", tileVMargin, false);
+    }
+
+    /**
+     * Vertical margin in between tiles.  See {@link com.smartgwt.client.widgets.tile.TileLayout#getTileMargin tileMargin}.
+     *
+     *
+     * @return Integer
+     */
+    public Integer getTileVMargin()  {
+        return getAttributeAsInt("tileVMargin");
+    }
+
+    /**
+     * Width of each tile in pixels.  See {@link com.smartgwt.client.widgets.tile.TileLayout#getTileSize tileSize}. If {@link
+     * com.smartgwt.client.types.LayoutPolicy} is "fit", {@link com.smartgwt.client.widgets.tile.TileLayout#getExpandMargins
+     * expandMargins} is false, {@link com.smartgwt.client.widgets.tile.TileLayout#getTilesPerLine tilesPerLine} is set, {@link
+     * com.smartgwt.client.types.Orientation} is "horizontal", and tileWidth is not set, tileWidth will be computed
+     * automatically based on {@link com.smartgwt.client.widgets.tile.TileLayout#getTilesPerLine tilesPerLine}.
+     * sets the width of tiles
+     *
+     * @param tileWidth width. Default value is null
+     * @throws IllegalStateException this property cannot be changed after the component has been created
+     */
+    public void setTileWidth(Integer tileWidth)  throws IllegalStateException {
+        setAttribute("tileWidth", tileWidth, false);
+    }
+
+    /**
+     * Width of each tile in pixels.  See {@link com.smartgwt.client.widgets.tile.TileLayout#getTileSize tileSize}. If {@link
+     * com.smartgwt.client.types.LayoutPolicy} is "fit", {@link com.smartgwt.client.widgets.tile.TileLayout#getExpandMargins
+     * expandMargins} is false, {@link com.smartgwt.client.widgets.tile.TileLayout#getTilesPerLine tilesPerLine} is set, {@link
+     * com.smartgwt.client.types.Orientation} is "horizontal", and tileWidth is not set, tileWidth will be computed
+     * automatically based on {@link com.smartgwt.client.widgets.tile.TileLayout#getTilesPerLine tilesPerLine}.
+     *
+     *
+     * @return Integer
+     */
+    public Integer getTileWidth()  {
+        return getAttributeAsInt("tileWidth");
+    }
+
+    // ********************* Methods ***********************
             
     /**
      * Add a tile to the layout, dynamically.
@@ -484,6 +466,24 @@ public class TileLayout extends Canvas {
     public native void addTile(Canvas tile, int index) /*-{
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
         self.addTile(tile.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()(), index);
+    }-*/;
+            
+    /**
+     * Retrieve a tile by index.   <P> The TileLayout consistently uses this method to access tiles, in order to allow
+     * subclasses to create tiles on demand.
+     * @param index index of the tile
+     *
+     * @return the tile
+     */
+    public native Canvas getTile(int index) /*-{
+        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
+        var ret = self.getTile(index);
+        if(ret == null || ret === undefined) return null;
+        var retVal = @com.smartgwt.client.widgets.BaseWidget::getRef(Lcom/google/gwt/core/client/JavaScriptObject;)(ret);
+        if(retVal == null) {
+            retVal = @com.smartgwt.client.widgets.Canvas::new(Lcom/google/gwt/core/client/JavaScriptObject;)(ret);
+        }
+        return retVal;
     }-*/;
 
     // ********************* Static Methods ***********************

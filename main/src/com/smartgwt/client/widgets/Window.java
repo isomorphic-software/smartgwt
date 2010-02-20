@@ -94,6 +94,107 @@ public class Window extends VLayout  implements com.smartgwt.client.widgets.even
     // ********************* Properties / Attributes ***********************
 
     /**
+     * Should this window minimize, maximize, and restore as an animation, or as a  simple 1-step transition?
+     * <p><b>Note : </b> This is an advanced setting</p>
+     *
+     * @param animateMinimize animateMinimize Default value is null
+     */
+    public void setAnimateMinimize(Boolean animateMinimize) {
+        setAttribute("animateMinimize", animateMinimize, true);
+    }
+
+    /**
+     * Should this window minimize, maximize, and restore as an animation, or as a  simple 1-step transition?
+     *
+     *
+     * @return Boolean
+     */
+    public Boolean getAnimateMinimize()  {
+        return getAttributeAsBoolean("animateMinimize");
+    }
+
+    /**
+     * If true, this Window widget will automatically be centered on the page when shown.      If false, it will show up in the
+     * last position it was placed (either programatically,      or by user interaction).
+     *
+     * @param autoCenter autoCenter Default value is autoCenter
+     */
+    public void setAutoCenter(Boolean autoCenter) {
+        setAttribute("autoCenter", autoCenter, true);
+    }
+
+    /**
+     * If true, this Window widget will automatically be centered on the page when shown.      If false, it will show up in the
+     * last position it was placed (either programatically,      or by user interaction).
+     *
+     *
+     * @return Boolean
+     */
+    public Boolean getAutoCenter()  {
+        return getAttributeAsBoolean("autoCenter");
+    }
+
+    /**
+     * If true, the window is resized automatically to accommodate the contents   of the body, if they would otherwise require
+     * scrolling.
+     * Setter for {@link com.smartgwt.client.widgets.Window#getAutoSize autoSize}
+     *
+     * @param autoSize true if the window should auto-size to its content. Default value is false
+     */
+    public void setAutoSize(Boolean autoSize) {
+        setAttribute("autoSize", autoSize, true);
+    }
+
+    /**
+     * If true, the window is resized automatically to accommodate the contents   of the body, if they would otherwise require
+     * scrolling.
+     *
+     *
+     * @return Boolean
+     */
+    public Boolean getAutoSize()  {
+        return getAttributeAsBoolean("autoSize");
+    }
+
+    /**
+     * Color of the Window body. Overrides the background color specified in the style.
+     *
+     * @param bodyColor bodyColor Default value is "#FFFFFF"
+     */
+    public void setBodyColor(String bodyColor) {
+        setAttribute("bodyColor", bodyColor, true);
+    }
+
+    /**
+     * Color of the Window body. Overrides the background color specified in the style.
+     *
+     *
+     * @return String
+     */
+    public String getBodyColor()  {
+        return getAttributeAsString("bodyColor");
+    }
+
+    /**
+     * Style of the Window body.
+     *
+     * @param bodyStyle bodyStyle Default value is "windowBody"
+     */
+    public void setBodyStyle(String bodyStyle) {
+        setAttribute("bodyStyle", bodyStyle, true);
+    }
+
+    /**
+     * Style of the Window body.
+     *
+     *
+     * @return String
+     */
+    public String getBodyStyle()  {
+        return getAttributeAsString("bodyStyle");
+    }
+
+    /**
      * If true, this Window may be moved around by the user by dragging on the Window header.   Note that if the header is not
      * showing, the Window can't be drag-repositioned regardless of this setting.
      *
@@ -136,6 +237,273 @@ public class Window extends VLayout  implements com.smartgwt.client.widgets.even
     }
 
     /**
+     * If true, the user can give the header buttons keyboard focus (by clicking on      them and including them in the
+     * tabOrder)
+     * <p><b>Note : </b> This is an advanced setting</p>
+     *
+     * @param canFocusInHeaderButtons canFocusInHeaderButtons Default value is false
+     */
+    public void setCanFocusInHeaderButtons(Boolean canFocusInHeaderButtons) {
+        setAttribute("canFocusInHeaderButtons", canFocusInHeaderButtons, true);
+    }
+
+    /**
+     * If true, the user can give the header buttons keyboard focus (by clicking on      them and including them in the
+     * tabOrder)
+     *
+     *
+     * @return Boolean
+     */
+    public Boolean getCanFocusInHeaderButtons()  {
+        return getAttributeAsBoolean("canFocusInHeaderButtons");
+    }
+
+    /**
+     * The layout policy that should be used for widgets within the Window body. <P> Valid values are "vertical", "horizontal",
+     * "none".  If the body is a Layout, this controls how the items are stacked in the body by setting {@link
+     * com.smartgwt.client.widgets.layout.Layout#getVertical vertical}.   See {@link
+     * com.smartgwt.client.widgets.Window#getBodyConstructor bodyConstructor} for details.
+     * <p><b>Note : </b> This is an advanced setting</p>
+     *
+     * @param contentLayout contentLayout Default value is "vertical"
+     */
+    public void setContentLayout(String contentLayout) {
+        setAttribute("contentLayout", contentLayout, true);
+    }
+
+    /**
+     * The layout policy that should be used for widgets within the Window body. <P> Valid values are "vertical", "horizontal",
+     * "none".  If the body is a Layout, this controls how the items are stacked in the body by setting {@link
+     * com.smartgwt.client.widgets.layout.Layout#getVertical vertical}.   See {@link
+     * com.smartgwt.client.widgets.Window#getBodyConstructor bodyConstructor} for details.
+     *
+     *
+     * @return String
+     */
+    public String getContentLayout()  {
+        return getAttributeAsString("contentLayout");
+    }
+
+    /**
+     * If this window has {@link com.smartgwt.client.widgets.Window#getSrc src} specified, this property can be used to
+     * indicate whether the source is a standalone HTML page or an HTML fragment. <P> This is similar to the {@link
+     * com.smartgwt.client.widgets.HTMLFlow#getContentsType contentsType} property - be sure to read the HTMLFlow documentation
+     * to understand circumstances where contentsType:"page" is <b>unsafe and not recommended</b>.
+     *
+     * @param contentsType contentsType Default value is "page"
+     * @throws IllegalStateException this property cannot be changed after the component has been created
+     */
+    public void setContentsType(String contentsType)  throws IllegalStateException {
+        setAttribute("contentsType", contentsType, false);
+    }
+
+    /**
+     * If this window has {@link com.smartgwt.client.widgets.Window#getSrc src} specified, this property can be used to
+     * indicate whether the source is a standalone HTML page or an HTML fragment. <P> This is similar to the {@link
+     * com.smartgwt.client.widgets.HTMLFlow#getContentsType contentsType} property - be sure to read the HTMLFlow documentation
+     * to understand circumstances where contentsType:"page" is <b>unsafe and not recommended</b>.
+     *
+     *
+     * @return String
+     */
+    public String getContentsType()  {
+        return getAttributeAsString("contentsType");
+    }
+
+    /**
+     * If {@link com.smartgwt.client.widgets.Window#getMinimizeHeight minimizeHeight} is unset, by the window will shrink to
+     * the height of the header when minimized. <BR> If there is no header, the <code>defaultMinimizeHeight</code> will be used
+     * instead.
+     * <p><b>Note : </b> This is an advanced setting</p>
+     *
+     * @param defaultMinimizeHeight defaultMinimizeHeight Default value is 16
+     */
+    public void setDefaultMinimizeHeight(int defaultMinimizeHeight) {
+        setAttribute("defaultMinimizeHeight", defaultMinimizeHeight, true);
+    }
+
+    /**
+     * If {@link com.smartgwt.client.widgets.Window#getMinimizeHeight minimizeHeight} is unset, by the window will shrink to
+     * the height of the header when minimized. <BR> If there is no header, the <code>defaultMinimizeHeight</code> will be used
+     * instead.
+     *
+     *
+     * @return int
+     */
+    public int getDefaultMinimizeHeight()  {
+        return getAttributeAsInt("defaultMinimizeHeight");
+    }
+
+    /**
+     * Should this window be dismissed (same effect as pressing the "Cancel" button) when the  user presses the "Escape" key?
+     * Behavior will only occur while the window or one of its descendants has focus, and does not cancel the Escape keypress.
+     * <P> If unset default behavior depends on whether a close / cancel button is visible for this item.
+     *
+     * @param dismissOnEscape dismissOnEscape Default value is null
+     */
+    public void setDismissOnEscape(Boolean dismissOnEscape) {
+        setAttribute("dismissOnEscape", dismissOnEscape, true);
+    }
+
+    /**
+     * Should this window be dismissed (same effect as pressing the "Cancel" button) when the  user presses the "Escape" key?
+     * Behavior will only occur while the window or one of its descendants has focus, and does not cancel the Escape keypress.
+     * <P> If unset default behavior depends on whether a close / cancel button is visible for this item.
+     *
+     *
+     * @return Boolean
+     */
+    public Boolean getDismissOnEscape()  {
+        return getAttributeAsBoolean("dismissOnEscape");
+    }
+
+    /**
+     * If true, a click outside the bounds of the Window will have the same effect as      pressing its cancel button.<br>     
+     * <b>Note:</b> Applies only to modal windows.
+     *
+     * @param dismissOnOutsideClick dismissOnOutsideClick Default value is false
+     */
+    public void setDismissOnOutsideClick(Boolean dismissOnOutsideClick) {
+        setAttribute("dismissOnOutsideClick", dismissOnOutsideClick, true);
+    }
+
+    /**
+     * If true, a click outside the bounds of the Window will have the same effect as      pressing its cancel button.<br>     
+     * <b>Note:</b> Applies only to modal windows.
+     *
+     *
+     * @return Boolean
+     */
+    public Boolean getDismissOnOutsideClick()  {
+        return getAttributeAsBoolean("dismissOnOutsideClick");
+    }
+
+    /**
+     * The height of the footer, in pixels.
+     *
+     * @param footerHeight footerHeight Default value is 18
+     * @throws IllegalStateException this property cannot be changed after the component has been created
+     */
+    public void setFooterHeight(int footerHeight)  throws IllegalStateException {
+        setAttribute("footerHeight", footerHeight, false);
+    }
+
+    /**
+     * The height of the footer, in pixels.
+     *
+     *
+     * @return int
+     */
+    public int getFooterHeight()  {
+        return getAttributeAsInt("footerHeight");
+    }
+
+    /**
+     * If {@link com.smartgwt.client.widgets.Window#getShowHeaderBackground showHeaderBackground} is <code>true</code>, this
+     * property provides the URL of the background image for the header.
+     * <p><b>Note : </b> This is an advanced setting</p>
+     *
+     * @param headerSrc headerSrc Default value is "[SKIN]Window/headerGradient.gif" | null
+     */
+    public void setHeaderSrc(String headerSrc) {
+        setAttribute("headerSrc", headerSrc, true);
+    }
+
+    /**
+     * If {@link com.smartgwt.client.widgets.Window#getShowHeaderBackground showHeaderBackground} is <code>true</code>, this
+     * property provides the URL of the background image for the header.
+     *
+     *
+     * @return String
+     */
+    public String getHeaderSrc()  {
+        return getAttributeAsString("headerSrc");
+    }
+
+    /**
+     * Style for the Window header.
+     * <p><b>Note : </b> This is an advanced setting</p>
+     *
+     * @param headerStyle headerStyle Default value is "WindowHeader"
+     */
+    public void setHeaderStyle(String headerStyle) {
+        setAttribute("headerStyle", headerStyle, true);
+    }
+
+    /**
+     * Style for the Window header.
+     *
+     *
+     * @return String
+     */
+    public String getHeaderStyle()  {
+        return getAttributeAsString("headerStyle");
+    }
+
+    /**
+     * Highlight color for the Window body (shown when the body is flashed).
+     *
+     * @param hiliteBodyColor hiliteBodyColor Default value is "#EEEEEE"
+     */
+    public void setHiliteBodyColor(String hiliteBodyColor) {
+        setAttribute("hiliteBodyColor", hiliteBodyColor, true);
+    }
+
+    /**
+     * Highlight color for the Window body (shown when the body is flashed).
+     *
+     *
+     * @return String
+     */
+    public String getHiliteBodyColor()  {
+        return getAttributeAsString("hiliteBodyColor");
+    }
+
+    /**
+     * If {@link com.smartgwt.client.widgets.Window#getShowHeaderBackground showHeaderBackground} is true, this governs the URL
+     * of the image to  use in the header's highlighted state when the window is {@link
+     * com.smartgwt.client.widgets.Window#flash}
+     * <p><b>Note : </b> This is an advanced setting</p>
+     *
+     * @param hiliteHeaderSrc hiliteHeaderSrc Default value is "[SKIN]Window/headerGradient_hilite.gif" | null
+     */
+    public void setHiliteHeaderSrc(String hiliteHeaderSrc) {
+        setAttribute("hiliteHeaderSrc", hiliteHeaderSrc, true);
+    }
+
+    /**
+     * If {@link com.smartgwt.client.widgets.Window#getShowHeaderBackground showHeaderBackground} is true, this governs the URL
+     * of the image to  use in the header's highlighted state when the window is {@link
+     * com.smartgwt.client.widgets.Window#flash}
+     *
+     *
+     * @return String
+     */
+    public String getHiliteHeaderSrc()  {
+        return getAttributeAsString("hiliteHeaderSrc");
+    }
+
+    /**
+     * Highlight style for the Window header. Displayed when a window  is {@link com.smartgwt.client.widgets.Window#flash}
+     * <p><b>Note : </b> This is an advanced setting</p>
+     *
+     * @param hiliteHeaderStyle hiliteHeaderStyle Default value is "WindowHeader"
+     */
+    public void setHiliteHeaderStyle(String hiliteHeaderStyle) {
+        setAttribute("hiliteHeaderStyle", hiliteHeaderStyle, true);
+    }
+
+    /**
+     * Highlight style for the Window header. Displayed when a window  is {@link com.smartgwt.client.widgets.Window#flash}
+     *
+     *
+     * @return String
+     */
+    public String getHiliteHeaderStyle()  {
+        return getAttributeAsString("hiliteHeaderStyle");
+    }
+
+    /**
      * If true, when shown this Window will intercept and block events to all other existing components on the page. <P> Use
      * {@link com.smartgwt.client.widgets.Window#getShowModalMask showModalMask} to darken all other elements on the screen
      * when a modal dialog is showing. <P> Chained modal windows - that is, modal windows that launch other modal windows - are
@@ -163,23 +531,111 @@ public class Window extends VLayout  implements com.smartgwt.client.widgets.even
     }
 
     /**
-     * If true, displays a translucent mask over the rest of the page when a modal window is displayed.
+     * Is this window maximized. If true at init time, the window will be drawn maximized. To set this property at runtime use
+     * {@link com.smartgwt.client.widgets.Window#maximize} or {@link com.smartgwt.client.widgets.Window#restore}.
      *
-     * @param showModalMask showModalMask Default value is null
-     * @throws IllegalStateException this property cannot be changed after the component has been created
+     * @param maximized maximized Default value is false
      */
-    public void setShowModalMask(Boolean showModalMask)  throws IllegalStateException {
-        setAttribute("showModalMask", showModalMask, false);
+    public void setMaximized(Boolean maximized) {
+        setAttribute("maximized", maximized, true);
     }
 
     /**
-     * If true, displays a translucent mask over the rest of the page when a modal window is displayed.
+     * Is this window maximized. If true at init time, the window will be drawn maximized. To set this property at runtime use
+     * {@link com.smartgwt.client.widgets.Window#maximize} or {@link com.smartgwt.client.widgets.Window#restore}.
      *
      *
      * @return Boolean
      */
-    public Boolean getShowModalMask()  {
-        return getAttributeAsBoolean("showModalMask");
+    public Boolean getMaximized()  {
+        return getAttributeAsBoolean("maximized");
+    }
+             
+    /**
+     * Default acceleration function for performing an animated minimize / maximize.  If unset, 
+     * <code>this.animateAcceleration</code> will be used by default instead
+     * <p><b>Note : </b> This is an advanced setting</p>
+     *
+     * @param minimizeAcceleration minimizeAcceleration Default value is null
+     */
+    public void setMinimizeAcceleration(AnimationAcceleration minimizeAcceleration) {
+        setAttribute("minimizeAcceleration", minimizeAcceleration.getValue(), true);
+    }
+
+    /**
+     * Default acceleration function for performing an animated minimize / maximize.  If unset, 
+     * <code>this.animateAcceleration</code> will be used by default instead
+     *
+     *
+     * @return AnimationAcceleration
+     */
+    public AnimationAcceleration getMinimizeAcceleration()  {
+        return EnumUtil.getEnum(AnimationAcceleration.values(), getAttribute("minimizeAcceleration"));
+    }
+
+    /**
+     * Is this window minimized. If true at init time, the window will be drawn minimized. To set this property at runtime use
+     * {@link com.smartgwt.client.widgets.Window#minimize} or {@link com.smartgwt.client.widgets.Window#restore}.
+     *
+     * @param minimized minimized Default value is false
+     */
+    public void setMinimized(Boolean minimized) {
+        setAttribute("minimized", minimized, true);
+    }
+
+    /**
+     * Is this window minimized. If true at init time, the window will be drawn minimized. To set this property at runtime use
+     * {@link com.smartgwt.client.widgets.Window#minimize} or {@link com.smartgwt.client.widgets.Window#restore}.
+     *
+     *
+     * @return Boolean
+     */
+    public Boolean getMinimized()  {
+        return getAttributeAsBoolean("minimized");
+    }
+
+    /**
+     * Height for the window when minimized. If unset the window will shrink to the height of the header, if present, otherwise
+     * {@link com.smartgwt.client.widgets.Window#getDefaultMinimizeHeight 'this.defaultMinimizeHeight'}
+     * <p><b>Note : </b> This is an advanced setting</p>
+     *
+     * @param minimizeHeight minimizeHeight Default value is null
+     */
+    public void setMinimizeHeight(Integer minimizeHeight) {
+        setAttribute("minimizeHeight", minimizeHeight, true);
+    }
+
+    /**
+     * Height for the window when minimized. If unset the window will shrink to the height of the header, if present, otherwise
+     * {@link com.smartgwt.client.widgets.Window#getDefaultMinimizeHeight 'this.defaultMinimizeHeight'}
+     *
+     *
+     * @return Integer
+     */
+    public Integer getMinimizeHeight()  {
+        return getAttributeAsInt("minimizeHeight");
+    }
+
+    /**
+     * If this window is minimizeable, and animateMinimize is true, what should the duration of  the minize / maximize be (in
+     * ms)? If unset defaults to <code>canvas.animationTime</code>.
+     * <p><b>Note : </b> This is an advanced setting</p>
+     *
+     * @param minimizeTime minimizeTime Default value is null
+     */
+    public void setMinimizeTime(Integer minimizeTime) {
+        setAttribute("minimizeTime", minimizeTime, true);
+    }
+
+    /**
+     * If this window is minimizeable, and animateMinimize is true, what should the duration of  the minize / maximize be (in
+     * ms)? If unset defaults to <code>canvas.animationTime</code>.
+     *
+     *
+     * @return Integer
+     */
+    public Integer getMinimizeTime()  {
+        return getAttributeAsInt("minimizeTime");
     }
 
     /**
@@ -223,71 +679,6 @@ public class Window extends VLayout  implements com.smartgwt.client.widgets.even
     }
 
     /**
-     * If true, this Window widget will automatically be centered on the page when shown.      If false, it will show up in the
-     * last position it was placed (either programatically,      or by user interaction).
-     *
-     * @param autoCenter autoCenter Default value is autoCenter
-     */
-    public void setAutoCenter(Boolean autoCenter) {
-        setAttribute("autoCenter", autoCenter, true);
-    }
-
-    /**
-     * If true, this Window widget will automatically be centered on the page when shown.      If false, it will show up in the
-     * last position it was placed (either programatically,      or by user interaction).
-     *
-     *
-     * @return Boolean
-     */
-    public Boolean getAutoCenter()  {
-        return getAttributeAsBoolean("autoCenter");
-    }
-
-    /**
-     * If true, a click outside the bounds of the Window will have the same effect as      pressing its cancel button.<br>     
-     * <b>Note:</b> Applies only to modal windows.
-     *
-     * @param dismissOnOutsideClick dismissOnOutsideClick Default value is false
-     */
-    public void setDismissOnOutsideClick(Boolean dismissOnOutsideClick) {
-        setAttribute("dismissOnOutsideClick", dismissOnOutsideClick, true);
-    }
-
-    /**
-     * If true, a click outside the bounds of the Window will have the same effect as      pressing its cancel button.<br>     
-     * <b>Note:</b> Applies only to modal windows.
-     *
-     *
-     * @return Boolean
-     */
-    public Boolean getDismissOnOutsideClick()  {
-        return getAttributeAsBoolean("dismissOnOutsideClick");
-    }
-
-    /**
-     * Should this window be dismissed (same effect as pressing the "Cancel" button) when the  user presses the "Escape" key?
-     * Behavior will only occur while the window or one of its descendants has focus, and does not cancel the Escape keypress.
-     * <P> If unset default behavior depends on whether a close / cancel button is visible for this item.
-     *
-     * @param dismissOnEscape dismissOnEscape Default value is null
-     */
-    public void setDismissOnEscape(Boolean dismissOnEscape) {
-        setAttribute("dismissOnEscape", dismissOnEscape, true);
-    }
-
-    /**
-     * Should this window be dismissed (same effect as pressing the "Cancel" button) when the  user presses the "Escape" key?
-     * Behavior will only occur while the window or one of its descendants has focus, and does not cancel the Escape keypress.
-     * <P> If unset default behavior depends on whether a close / cancel button is visible for this item.
-     *
-     *
-     * @return Boolean
-     */
-    public Boolean getDismissOnEscape()  {
-        return getAttributeAsBoolean("dismissOnEscape");
-    }
-
-    /**
      * If true, draw the body contents when this Window is drawn.
      * <p><b>Note : </b> This is an advanced setting</p>
      *
@@ -308,160 +699,46 @@ public class Window extends VLayout  implements com.smartgwt.client.widgets.even
     }
 
     /**
-     * Style of the Window body.
+     * If true, show a close button in the header, which will dismiss this window by  calling {@link
+     * com.smartgwt.client.widgets.Window#addCloseClickHandler}.
+     * Dynamically update {@link com.smartgwt.client.widgets.Window#getShowCloseButton showCloseButton} to show / hide the closeButton
      *
-     * @param bodyStyle bodyStyle Default value is "windowBody"
+     * @param showCloseButton showCloseButton Default value is true
      */
-    public void setBodyStyle(String bodyStyle) {
-        setAttribute("bodyStyle", bodyStyle, true);
+    public void setShowCloseButton(Boolean showCloseButton) {
+        setAttribute("showCloseButton", showCloseButton, true);
     }
 
     /**
-     * Style of the Window body.
-     *
-     *
-     * @return String
-     */
-    public String getBodyStyle()  {
-        return getAttributeAsString("bodyStyle");
-    }
-
-    /**
-     * Color of the Window body. Overrides the background color specified in the style.
-     *
-     * @param bodyColor bodyColor Default value is "#FFFFFF"
-     */
-    public void setBodyColor(String bodyColor) {
-        setAttribute("bodyColor", bodyColor, true);
-    }
-
-    /**
-     * Color of the Window body. Overrides the background color specified in the style.
-     *
-     *
-     * @return String
-     */
-    public String getBodyColor()  {
-        return getAttributeAsString("bodyColor");
-    }
-
-    /**
-     * Highlight color for the Window body (shown when the body is flashed).
-     *
-     * @param hiliteBodyColor hiliteBodyColor Default value is "#EEEEEE"
-     */
-    public void setHiliteBodyColor(String hiliteBodyColor) {
-        setAttribute("hiliteBodyColor", hiliteBodyColor, true);
-    }
-
-    /**
-     * Highlight color for the Window body (shown when the body is flashed).
-     *
-     *
-     * @return String
-     */
-    public String getHiliteBodyColor()  {
-        return getAttributeAsString("hiliteBodyColor");
-    }
-
-    /**
-     * A URL to load as content for the Window's body.  If specified, this attribute will take precedence over the items
-     * attribute. <P> Note that setting window.src is essentially a shortcut for setting {@link
-     * com.smartgwt.client.widgets.Window#getItems items} to a single HTMLflow with a specified {@link
-     * com.smartgwt.client.widgets.HTMLFlow#getContentsURL 'contentsURL'}.
-     * Sets the URL of the contents to display in the body of the window, redrawing if necessary.
-     *
-     * @param src URL of new contents to be displayed in the window body. Default value is null
-     */
-    public void setSrc(String src) {
-        setAttribute("src", src, true);
-    }
-
-    /**
-     * A URL to load as content for the Window's body.  If specified, this attribute will take precedence over the items
-     * attribute. <P> Note that setting window.src is essentially a shortcut for setting {@link
-     * com.smartgwt.client.widgets.Window#getItems items} to a single HTMLflow with a specified {@link
-     * com.smartgwt.client.widgets.HTMLFlow#getContentsURL 'contentsURL'}.
-     *
-     *
-     * @return String
-     */
-    public String getSrc()  {
-        return getAttributeAsString("src");
-    }
-
-    /**
-     * If this window has {@link com.smartgwt.client.widgets.Window#getSrc src} specified, this property can be used to
-     * indicate whether the source is a standalone HTML page or an HTML fragment. <P> This is similar to the {@link
-     * com.smartgwt.client.widgets.HTMLFlow#getContentsType contentsType} property - be sure to read the HTMLFlow documentation
-     * to understand circumstances where contentsType:"page" is <b>unsafe and not recommended</b>.
-     *
-     * @param contentsType contentsType Default value is "page"
-     * @throws IllegalStateException this property cannot be changed after the component has been created
-     */
-    public void setContentsType(String contentsType)  throws IllegalStateException {
-        setAttribute("contentsType", contentsType, false);
-    }
-
-    /**
-     * If this window has {@link com.smartgwt.client.widgets.Window#getSrc src} specified, this property can be used to
-     * indicate whether the source is a standalone HTML page or an HTML fragment. <P> This is similar to the {@link
-     * com.smartgwt.client.widgets.HTMLFlow#getContentsType contentsType} property - be sure to read the HTMLFlow documentation
-     * to understand circumstances where contentsType:"page" is <b>unsafe and not recommended</b>.
-     *
-     *
-     * @return String
-     */
-    public String getContentsType()  {
-        return getAttributeAsString("contentsType");
-    }
-
-    /**
-     * The layout policy that should be used for widgets within the Window body. <P> Valid values are "vertical", "horizontal",
-     * "none".  If the body is a Layout, this controls how the items are stacked in the body by setting {@link
-     * com.smartgwt.client.widgets.layout.Layout#getVertical vertical}.   See {@link
-     * com.smartgwt.client.widgets.Window#getBodyConstructor bodyConstructor} for details.
-     * <p><b>Note : </b> This is an advanced setting</p>
-     *
-     * @param contentLayout contentLayout Default value is "vertical"
-     */
-    public void setContentLayout(String contentLayout) {
-        setAttribute("contentLayout", contentLayout, true);
-    }
-
-    /**
-     * The layout policy that should be used for widgets within the Window body. <P> Valid values are "vertical", "horizontal",
-     * "none".  If the body is a Layout, this controls how the items are stacked in the body by setting {@link
-     * com.smartgwt.client.widgets.layout.Layout#getVertical vertical}.   See {@link
-     * com.smartgwt.client.widgets.Window#getBodyConstructor bodyConstructor} for details.
-     *
-     *
-     * @return String
-     */
-    public String getContentLayout()  {
-        return getAttributeAsString("contentLayout");
-    }
-
-    /**
-     * If true, the window is resized automatically to accommodate the contents   of the body, if they would otherwise require
-     * scrolling.
-     * Setter for {@link com.smartgwt.client.widgets.Window#getAutoSize autoSize}
-     *
-     * @param autoSize true if the window should auto-size to its content. Default value is false
-     */
-    public void setAutoSize(Boolean autoSize) {
-        setAttribute("autoSize", autoSize, true);
-    }
-
-    /**
-     * If true, the window is resized automatically to accommodate the contents   of the body, if they would otherwise require
-     * scrolling.
+     * If true, show a close button in the header, which will dismiss this window by  calling {@link
+     * com.smartgwt.client.widgets.Window#addCloseClickHandler}.
      *
      *
      * @return Boolean
      */
-    public Boolean getAutoSize()  {
-        return getAttributeAsBoolean("autoSize");
+    public Boolean getShowCloseButton()  {
+        return getAttributeAsBoolean("showCloseButton");
+    }
+
+    /**
+     * If true, show a footer for this Window, including resizer, statusBar, etc. This setting is commonly overridden for
+     * skinning purposes.
+     *
+     * @param showFooter showFooter Default value is true
+     */
+    public void setShowFooter(Boolean showFooter) {
+        setAttribute("showFooter", showFooter, true);
+    }
+
+    /**
+     * If true, show a footer for this Window, including resizer, statusBar, etc. This setting is commonly overridden for
+     * skinning purposes.
+     *
+     *
+     * @return Boolean
+     */
+    public Boolean getShowFooter()  {
+        return getAttributeAsBoolean("showFooter");
     }
 
     /**
@@ -530,131 +807,6 @@ public class Window extends VLayout  implements com.smartgwt.client.widgets.even
     }
 
     /**
-     * Style for the Window header.
-     * <p><b>Note : </b> This is an advanced setting</p>
-     *
-     * @param headerStyle headerStyle Default value is "WindowHeader"
-     */
-    public void setHeaderStyle(String headerStyle) {
-        setAttribute("headerStyle", headerStyle, true);
-    }
-
-    /**
-     * Style for the Window header.
-     *
-     *
-     * @return String
-     */
-    public String getHeaderStyle()  {
-        return getAttributeAsString("headerStyle");
-    }
-
-    /**
-     * If {@link com.smartgwt.client.widgets.Window#getShowHeaderBackground showHeaderBackground} is <code>true</code>, this
-     * property provides the URL of the background image for the header.
-     * <p><b>Note : </b> This is an advanced setting</p>
-     *
-     * @param headerSrc headerSrc Default value is "[SKIN]Window/headerGradient.gif" | null
-     */
-    public void setHeaderSrc(String headerSrc) {
-        setAttribute("headerSrc", headerSrc, true);
-    }
-
-    /**
-     * If {@link com.smartgwt.client.widgets.Window#getShowHeaderBackground showHeaderBackground} is <code>true</code>, this
-     * property provides the URL of the background image for the header.
-     *
-     *
-     * @return String
-     */
-    public String getHeaderSrc()  {
-        return getAttributeAsString("headerSrc");
-    }
-
-    /**
-     * Highlight style for the Window header. Displayed when a window  is {@link com.smartgwt.client.widgets.Window#flash}
-     * <p><b>Note : </b> This is an advanced setting</p>
-     *
-     * @param hiliteHeaderStyle hiliteHeaderStyle Default value is "WindowHeader"
-     */
-    public void setHiliteHeaderStyle(String hiliteHeaderStyle) {
-        setAttribute("hiliteHeaderStyle", hiliteHeaderStyle, true);
-    }
-
-    /**
-     * Highlight style for the Window header. Displayed when a window  is {@link com.smartgwt.client.widgets.Window#flash}
-     *
-     *
-     * @return String
-     */
-    public String getHiliteHeaderStyle()  {
-        return getAttributeAsString("hiliteHeaderStyle");
-    }
-
-    /**
-     * If {@link com.smartgwt.client.widgets.Window#getShowHeaderBackground showHeaderBackground} is true, this governs the URL
-     * of the image to  use in the header's highlighted state when the window is {@link
-     * com.smartgwt.client.widgets.Window#flash}
-     * <p><b>Note : </b> This is an advanced setting</p>
-     *
-     * @param hiliteHeaderSrc hiliteHeaderSrc Default value is "[SKIN]Window/headerGradient_hilite.gif" | null
-     */
-    public void setHiliteHeaderSrc(String hiliteHeaderSrc) {
-        setAttribute("hiliteHeaderSrc", hiliteHeaderSrc, true);
-    }
-
-    /**
-     * If {@link com.smartgwt.client.widgets.Window#getShowHeaderBackground showHeaderBackground} is true, this governs the URL
-     * of the image to  use in the header's highlighted state when the window is {@link
-     * com.smartgwt.client.widgets.Window#flash}
-     *
-     *
-     * @return String
-     */
-    public String getHiliteHeaderSrc()  {
-        return getAttributeAsString("hiliteHeaderSrc");
-    }
-
-    /**
-     * Show a title (typically just text) on the header for this window.
-     *
-     * @param showTitle showTitle Default value is true
-     */
-    public void setShowTitle(Boolean showTitle) {
-        setAttribute("showTitle", showTitle, true);
-    }
-
-    /**
-     * Show a title (typically just text) on the header for this window.
-     *
-     *
-     * @return Boolean
-     */
-    public Boolean getShowTitle()  {
-        return getAttributeAsBoolean("showTitle");
-    }
-
-    /**
-     * title for this Window, shown in the header (if drawn)
-     * Sets the title text that appears in the window header; the header will be redrawn          if necessary.
-     *
-     * @param title new title. Default value is "Untitled Window"
-     */
-    public void setTitle(String title) {
-        setAttribute("title", title, true);
-    }
-
-    /**
-     * title for this Window, shown in the header (if drawn)
-     *
-     *
-     * @return String
-     */
-    public String getTitle()  {
-        return getAttributeAsString("title");
-    }
-
-    /**
      * If true, we show an icon on the left in the header.
      * Dynamically update {@link com.smartgwt.client.widgets.Window#getShowHeaderIcon showHeaderIcon} to show / hide the headerIcon
      *
@@ -672,222 +824,6 @@ public class Window extends VLayout  implements com.smartgwt.client.widgets.even
      */
     public Boolean getShowHeaderIcon()  {
         return getAttributeAsBoolean("showHeaderIcon");
-    }
-
-    /**
-     * If true, the user can give the header buttons keyboard focus (by clicking on      them and including them in the
-     * tabOrder)
-     * <p><b>Note : </b> This is an advanced setting</p>
-     *
-     * @param canFocusInHeaderButtons canFocusInHeaderButtons Default value is false
-     */
-    public void setCanFocusInHeaderButtons(Boolean canFocusInHeaderButtons) {
-        setAttribute("canFocusInHeaderButtons", canFocusInHeaderButtons, true);
-    }
-
-    /**
-     * If true, the user can give the header buttons keyboard focus (by clicking on      them and including them in the
-     * tabOrder)
-     *
-     *
-     * @return Boolean
-     */
-    public Boolean getCanFocusInHeaderButtons()  {
-        return getAttributeAsBoolean("canFocusInHeaderButtons");
-    }
-
-    /**
-     * If true, show a close button in the header, which will dismiss this window by  calling {@link
-     * com.smartgwt.client.widgets.Window#addCloseClickHandler}.
-     * Dynamically update {@link com.smartgwt.client.widgets.Window#getShowCloseButton showCloseButton} to show / hide the closeButton
-     *
-     * @param showCloseButton showCloseButton Default value is true
-     */
-    public void setShowCloseButton(Boolean showCloseButton) {
-        setAttribute("showCloseButton", showCloseButton, true);
-    }
-
-    /**
-     * If true, show a close button in the header, which will dismiss this window by  calling {@link
-     * com.smartgwt.client.widgets.Window#addCloseClickHandler}.
-     *
-     *
-     * @return Boolean
-     */
-    public Boolean getShowCloseButton()  {
-        return getAttributeAsBoolean("showCloseButton");
-    }
-
-    /**
-     * If true, show a minimize button in the header--clicking it minimizes the Window.
-     * Dynamically update {@link com.smartgwt.client.widgets.Window#getShowMinimizeButton showMinimizeButton} to show / hide the minimizeButton
-     *
-     * @param showMinimizeButton showMinimizeButton Default value is true
-     */
-    public void setShowMinimizeButton(Boolean showMinimizeButton) {
-        setAttribute("showMinimizeButton", showMinimizeButton, true);
-    }
-
-    /**
-     * If true, show a minimize button in the header--clicking it minimizes the Window.
-     *
-     *
-     * @return Boolean
-     */
-    public Boolean getShowMinimizeButton()  {
-        return getAttributeAsBoolean("showMinimizeButton");
-    }
-
-    /**
-     * Is this window minimized. If true at init time, the window will be drawn minimized. To set this property at runtime use
-     * {@link com.smartgwt.client.widgets.Window#minimize} or {@link com.smartgwt.client.widgets.Window#restore}.
-     *
-     * @param minimized minimized Default value is false
-     */
-    public void setMinimized(Boolean minimized) {
-        setAttribute("minimized", minimized, true);
-    }
-
-    /**
-     * Is this window minimized. If true at init time, the window will be drawn minimized. To set this property at runtime use
-     * {@link com.smartgwt.client.widgets.Window#minimize} or {@link com.smartgwt.client.widgets.Window#restore}.
-     *
-     *
-     * @return Boolean
-     */
-    public Boolean getMinimized()  {
-        return getAttributeAsBoolean("minimized");
-    }
-
-    /**
-     * If {@link com.smartgwt.client.widgets.Window#getMinimizeHeight minimizeHeight} is unset, by the window will shrink to
-     * the height of the header when minimized. <BR> If there is no header, the <code>defaultMinimizeHeight</code> will be used
-     * instead.
-     * <p><b>Note : </b> This is an advanced setting</p>
-     *
-     * @param defaultMinimizeHeight defaultMinimizeHeight Default value is 16
-     */
-    public void setDefaultMinimizeHeight(int defaultMinimizeHeight) {
-        setAttribute("defaultMinimizeHeight", defaultMinimizeHeight, true);
-    }
-
-    /**
-     * If {@link com.smartgwt.client.widgets.Window#getMinimizeHeight minimizeHeight} is unset, by the window will shrink to
-     * the height of the header when minimized. <BR> If there is no header, the <code>defaultMinimizeHeight</code> will be used
-     * instead.
-     *
-     *
-     * @return int
-     */
-    public int getDefaultMinimizeHeight()  {
-        return getAttributeAsInt("defaultMinimizeHeight");
-    }
-
-    /**
-     * Height for the window when minimized. If unset the window will shrink to the height of the header, if present, otherwise
-     * {@link com.smartgwt.client.widgets.Window#getDefaultMinimizeHeight 'this.defaultMinimizeHeight'}
-     * <p><b>Note : </b> This is an advanced setting</p>
-     *
-     * @param minimizeHeight minimizeHeight Default value is null
-     */
-    public void setMinimizeHeight(Integer minimizeHeight) {
-        setAttribute("minimizeHeight", minimizeHeight, true);
-    }
-
-    /**
-     * Height for the window when minimized. If unset the window will shrink to the height of the header, if present, otherwise
-     * {@link com.smartgwt.client.widgets.Window#getDefaultMinimizeHeight 'this.defaultMinimizeHeight'}
-     *
-     *
-     * @return Integer
-     */
-    public Integer getMinimizeHeight()  {
-        return getAttributeAsInt("minimizeHeight");
-    }
-
-    /**
-     * Should this window minimize, maximize, and restore as an animation, or as a  simple 1-step transition?
-     * <p><b>Note : </b> This is an advanced setting</p>
-     *
-     * @param animateMinimize animateMinimize Default value is null
-     */
-    public void setAnimateMinimize(Boolean animateMinimize) {
-        setAttribute("animateMinimize", animateMinimize, true);
-    }
-
-    /**
-     * Should this window minimize, maximize, and restore as an animation, or as a  simple 1-step transition?
-     *
-     *
-     * @return Boolean
-     */
-    public Boolean getAnimateMinimize()  {
-        return getAttributeAsBoolean("animateMinimize");
-    }
-
-    /**
-     * If this window is minimizeable, and animateMinimize is true, what should the duration of  the minize / maximize be (in
-     * ms)? If unset defaults to <code>canvas.animationTime</code>.
-     * <p><b>Note : </b> This is an advanced setting</p>
-     *
-     * @param minimizeTime minimizeTime Default value is null
-     */
-    public void setMinimizeTime(Integer minimizeTime) {
-        setAttribute("minimizeTime", minimizeTime, true);
-    }
-
-    /**
-     * If this window is minimizeable, and animateMinimize is true, what should the duration of  the minize / maximize be (in
-     * ms)? If unset defaults to <code>canvas.animationTime</code>.
-     *
-     *
-     * @return Integer
-     */
-    public Integer getMinimizeTime()  {
-        return getAttributeAsInt("minimizeTime");
-    }
-             
-    /**
-     * Default acceleration function for performing an animated minimize / maximize.  If unset, 
-     * <code>this.animateAcceleration</code> will be used by default instead
-     * <p><b>Note : </b> This is an advanced setting</p>
-     *
-     * @param minimizeAcceleration minimizeAcceleration Default value is null
-     */
-    public void setMinimizeAcceleration(AnimationAcceleration minimizeAcceleration) {
-        setAttribute("minimizeAcceleration", minimizeAcceleration.getValue(), true);
-    }
-
-    /**
-     * Default acceleration function for performing an animated minimize / maximize.  If unset, 
-     * <code>this.animateAcceleration</code> will be used by default instead
-     *
-     *
-     * @return AnimationAcceleration
-     */
-    public AnimationAcceleration getMinimizeAcceleration()  {
-        return EnumUtil.getEnum(AnimationAcceleration.values(), getAttribute("minimizeAcceleration"));
-    }
-
-    /**
-     * Is this window maximized. If true at init time, the window will be drawn maximized. To set this property at runtime use
-     * {@link com.smartgwt.client.widgets.Window#maximize} or {@link com.smartgwt.client.widgets.Window#restore}.
-     *
-     * @param maximized maximized Default value is false
-     */
-    public void setMaximized(Boolean maximized) {
-        setAttribute("maximized", maximized, true);
-    }
-
-    /**
-     * Is this window maximized. If true at init time, the window will be drawn maximized. To set this property at runtime use
-     * {@link com.smartgwt.client.widgets.Window#maximize} or {@link com.smartgwt.client.widgets.Window#restore}.
-     *
-     *
-     * @return Boolean
-     */
-    public Boolean getMaximized()  {
-        return getAttributeAsBoolean("maximized");
     }
 
     /**
@@ -911,63 +847,43 @@ public class Window extends VLayout  implements com.smartgwt.client.widgets.even
     }
 
     /**
-     * If true, show a footer for this Window, including resizer, statusBar, etc. This setting is commonly overridden for
-     * skinning purposes.
+     * If true, show a minimize button in the header--clicking it minimizes the Window.
+     * Dynamically update {@link com.smartgwt.client.widgets.Window#getShowMinimizeButton showMinimizeButton} to show / hide the minimizeButton
      *
-     * @param showFooter showFooter Default value is true
+     * @param showMinimizeButton showMinimizeButton Default value is true
      */
-    public void setShowFooter(Boolean showFooter) {
-        setAttribute("showFooter", showFooter, true);
+    public void setShowMinimizeButton(Boolean showMinimizeButton) {
+        setAttribute("showMinimizeButton", showMinimizeButton, true);
     }
 
     /**
-     * If true, show a footer for this Window, including resizer, statusBar, etc. This setting is commonly overridden for
-     * skinning purposes.
+     * If true, show a minimize button in the header--clicking it minimizes the Window.
      *
      *
      * @return Boolean
      */
-    public Boolean getShowFooter()  {
-        return getAttributeAsBoolean("showFooter");
+    public Boolean getShowMinimizeButton()  {
+        return getAttributeAsBoolean("showMinimizeButton");
     }
 
     /**
-     * The height of the footer, in pixels.
+     * If true, displays a translucent mask over the rest of the page when a modal window is displayed.
      *
-     * @param footerHeight footerHeight Default value is 18
+     * @param showModalMask showModalMask Default value is null
      * @throws IllegalStateException this property cannot be changed after the component has been created
      */
-    public void setFooterHeight(int footerHeight)  throws IllegalStateException {
-        setAttribute("footerHeight", footerHeight, false);
+    public void setShowModalMask(Boolean showModalMask)  throws IllegalStateException {
+        setAttribute("showModalMask", showModalMask, false);
     }
 
     /**
-     * The height of the footer, in pixels.
-     *
-     *
-     * @return int
-     */
-    public int getFooterHeight()  {
-        return getAttributeAsInt("footerHeight");
-    }
-
-    /**
-     * If true, show a statusBar for this Window, including resizer.
-     *
-     * @param showStatusBar showStatusBar Default value is true
-     */
-    public void setShowStatusBar(Boolean showStatusBar) {
-        setAttribute("showStatusBar", showStatusBar, true);
-    }
-
-    /**
-     * If true, show a statusBar for this Window, including resizer.
+     * If true, displays a translucent mask over the rest of the page when a modal window is displayed.
      *
      *
      * @return Boolean
      */
-    public Boolean getShowStatusBar()  {
-        return getAttributeAsBoolean("showStatusBar");
+    public Boolean getShowModalMask()  {
+        return getAttributeAsBoolean("showModalMask");
     }
 
     /**
@@ -994,6 +910,70 @@ public class Window extends VLayout  implements com.smartgwt.client.widgets.even
     }
 
     /**
+     * If true, show a statusBar for this Window, including resizer.
+     *
+     * @param showStatusBar showStatusBar Default value is true
+     */
+    public void setShowStatusBar(Boolean showStatusBar) {
+        setAttribute("showStatusBar", showStatusBar, true);
+    }
+
+    /**
+     * If true, show a statusBar for this Window, including resizer.
+     *
+     *
+     * @return Boolean
+     */
+    public Boolean getShowStatusBar()  {
+        return getAttributeAsBoolean("showStatusBar");
+    }
+
+    /**
+     * Show a title (typically just text) on the header for this window.
+     *
+     * @param showTitle showTitle Default value is true
+     */
+    public void setShowTitle(Boolean showTitle) {
+        setAttribute("showTitle", showTitle, true);
+    }
+
+    /**
+     * Show a title (typically just text) on the header for this window.
+     *
+     *
+     * @return Boolean
+     */
+    public Boolean getShowTitle()  {
+        return getAttributeAsBoolean("showTitle");
+    }
+
+    /**
+     * A URL to load as content for the Window's body.  If specified, this attribute will take precedence over the items
+     * attribute. <P> Note that setting window.src is essentially a shortcut for setting {@link
+     * com.smartgwt.client.widgets.Window#getItems items} to a single HTMLflow with a specified {@link
+     * com.smartgwt.client.widgets.HTMLFlow#getContentsURL 'contentsURL'}.
+     * Sets the URL of the contents to display in the body of the window, redrawing if necessary.
+     *
+     * @param src URL of new contents to be displayed in the window body. Default value is null
+     */
+    public void setSrc(String src) {
+        setAttribute("src", src, true);
+    }
+
+    /**
+     * A URL to load as content for the Window's body.  If specified, this attribute will take precedence over the items
+     * attribute. <P> Note that setting window.src is essentially a shortcut for setting {@link
+     * com.smartgwt.client.widgets.Window#getItems items} to a single HTMLflow with a specified {@link
+     * com.smartgwt.client.widgets.HTMLFlow#getContentsURL 'contentsURL'}.
+     *
+     *
+     * @return String
+     */
+    public String getSrc()  {
+        return getAttributeAsString("src");
+    }
+
+    /**
      * Text to show in the status bar of the window (if one is visible)
      * Sets the text in the status bar of the window, redrawing if necessary.
      *
@@ -1011,6 +991,26 @@ public class Window extends VLayout  implements com.smartgwt.client.widgets.even
      */
     public String getStatus()  {
         return getAttributeAsString("status");
+    }
+
+    /**
+     * title for this Window, shown in the header (if drawn)
+     * Sets the title text that appears in the window header; the header will be redrawn          if necessary.
+     *
+     * @param title new title. Default value is "Untitled Window"
+     */
+    public void setTitle(String title) {
+        setAttribute("title", title, true);
+    }
+
+    /**
+     * title for this Window, shown in the header (if drawn)
+     *
+     *
+     * @return String
+     */
+    public String getTitle()  {
+        return getAttributeAsString("title");
     }
 
     // ********************* Methods ***********************
@@ -1036,77 +1036,12 @@ public class Window extends VLayout  implements com.smartgwt.client.widgets.even
     }-*/;
             
     /**
-     * Should this window be dismissed (same effect as pressing the "Cancel" button) when the  user presses the "Escape"
-     * key?<br> Default behavior: if {@link com.smartgwt.client.widgets.Window#getDismissOnEscape dismissOnEscape} is set, just
-     * return it. Otherwise return true if this window is showing a "close" control in the header  (see {@link
-     * com.smartgwt.client.widgets.Window#getHeaderControls headerControls}).
-     *
-     * @return true if the window should be dismissed when the user hits escape
-     */
-    public native Boolean shouldDismissOnEscape() /*-{
-        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
-        var retVal =self.shouldDismissOnEscape();
-        if(retVal == null || retVal === undefined) {
-            return null;
-        } else {
-            return @com.smartgwt.client.util.JSOHelper::toBoolean(Z)(retVal);
-        }
-    }-*/;
-            
-    /**
      * Centers the Window in the page. This is called automatically in window.show() if Window.autoCenter is true. Note - if
      * the Window is a child of another widget, we center in the parent widget rather than centering in the page.
      */
     public native void centerInPage() /*-{
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
         self.centerInPage();
-    }-*/;
-            
-    /**
-     * Makes the window header flash if it's visible; if there's no header, or the header          is hidden, makes the window
-     * body flash instead.          <p>   This method is executed when users click outside the bounds of a modal window   so
-     * they'll notice that they have to do something with the window.
-     */
-    public native void flash() /*-{
-        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
-        self.flash();
-    }-*/;
-            
-    /**
-     * Minimize the window. Fired when the user clicks the minimize button if  {@link
-     * com.smartgwt.client.widgets.Window#getShowMinimizeButton 'this.showMinimizeButton'} is true.<br> Default implementation
-     * shrinks the window to just the height of the header bar, hiding the body. If {@link
-     * com.smartgwt.client.widgets.Window#getAnimateMinimize 'animateMinimize'} is true, the resize will be animated. A restore
-     * button will be displayed in place of the minimize button when the window is  minimized.
-     */
-    public native void minimize() /*-{
-        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
-        self.minimize();
-    }-*/;
-            
-    /**
-     * Restores the window to its specified height and width after a call to {@link
-     * com.smartgwt.client.widgets.Window#minimize} or  {@link com.smartgwt.client.widgets.Window#maximize}. Called from a
-     * click on the restore button shown in place of the  minimize or maximize button when the window is minimized or
-     * maximized.<br> Resizing will occur as an animation if {@link com.smartgwt.client.widgets.Window#getAnimateMinimize
-     * animateMinimize} is true.
-     */
-    public native void restore() /*-{
-        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
-        self.restore();
-    }-*/;
-            
-    /**
-     * Maximize the window. Fired when the user clicks the maximize button if  {@link
-     * com.smartgwt.client.widgets.Window#getShowMaximizeButton 'this.showMaximizeButton'} is true.<br> Default implementation
-     * moves the window to <code>0, 0</code> and resizes the window to  <code>"100%"</code> on both axes, so it will fill the
-     * browser window (or the parentElement of the Window instance, if appropriate).<br> If {@link
-     * com.smartgwt.client.widgets.Window#getAnimateMinimize 'animateMinimize'} is true, the maximize will be animated. A
-     * restore button will be displayed in place of the maximize button when the window is  maximized.
-     */
-    public native void maximize() /*-{
-        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
-        self.maximize();
     }-*/;
     /**
      * Add a closeClick handler.
@@ -1142,6 +1077,71 @@ public class Window extends VLayout  implements com.smartgwt.client.widgets.even
                });
         }
    }-*/;
+            
+    /**
+     * Makes the window header flash if it's visible; if there's no header, or the header          is hidden, makes the window
+     * body flash instead.          <p>   This method is executed when users click outside the bounds of a modal window   so
+     * they'll notice that they have to do something with the window.
+     */
+    public native void flash() /*-{
+        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
+        self.flash();
+    }-*/;
+            
+    /**
+     * Maximize the window. Fired when the user clicks the maximize button if  {@link
+     * com.smartgwt.client.widgets.Window#getShowMaximizeButton 'this.showMaximizeButton'} is true.<br> Default implementation
+     * moves the window to <code>0, 0</code> and resizes the window to  <code>"100%"</code> on both axes, so it will fill the
+     * browser window (or the parentElement of the Window instance, if appropriate).<br> If {@link
+     * com.smartgwt.client.widgets.Window#getAnimateMinimize 'animateMinimize'} is true, the maximize will be animated. A
+     * restore button will be displayed in place of the maximize button when the window is  maximized.
+     */
+    public native void maximize() /*-{
+        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
+        self.maximize();
+    }-*/;
+            
+    /**
+     * Minimize the window. Fired when the user clicks the minimize button if  {@link
+     * com.smartgwt.client.widgets.Window#getShowMinimizeButton 'this.showMinimizeButton'} is true.<br> Default implementation
+     * shrinks the window to just the height of the header bar, hiding the body. If {@link
+     * com.smartgwt.client.widgets.Window#getAnimateMinimize 'animateMinimize'} is true, the resize will be animated. A restore
+     * button will be displayed in place of the minimize button when the window is  minimized.
+     */
+    public native void minimize() /*-{
+        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
+        self.minimize();
+    }-*/;
+            
+    /**
+     * Restores the window to its specified height and width after a call to {@link
+     * com.smartgwt.client.widgets.Window#minimize} or  {@link com.smartgwt.client.widgets.Window#maximize}. Called from a
+     * click on the restore button shown in place of the  minimize or maximize button when the window is minimized or
+     * maximized.<br> Resizing will occur as an animation if {@link com.smartgwt.client.widgets.Window#getAnimateMinimize
+     * animateMinimize} is true.
+     */
+    public native void restore() /*-{
+        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
+        self.restore();
+    }-*/;
+            
+    /**
+     * Should this window be dismissed (same effect as pressing the "Cancel" button) when the  user presses the "Escape"
+     * key?<br> Default behavior: if {@link com.smartgwt.client.widgets.Window#getDismissOnEscape dismissOnEscape} is set, just
+     * return it. Otherwise return true if this window is showing a "close" control in the header  (see {@link
+     * com.smartgwt.client.widgets.Window#getHeaderControls headerControls}).
+     *
+     * @return true if the window should be dismissed when the user hits escape
+     */
+    public native Boolean shouldDismissOnEscape() /*-{
+        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
+        var retVal =self.shouldDismissOnEscape();
+        if(retVal == null || retVal === undefined) {
+            return null;
+        } else {
+            return @com.smartgwt.client.util.JSOHelper::toBoolean(Z)(retVal);
+        }
+    }-*/;
 
     // ********************* Static Methods ***********************
 

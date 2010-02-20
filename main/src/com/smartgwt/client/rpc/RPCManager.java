@@ -110,22 +110,6 @@ public class RPCManager {
     // ********************* Static Methods ***********************
             
     /**
-     * Returns true if the XMLHttpRequest object is available, false otherwise.  See {@link
-     * com.smartgwt.client.docs.PlatformDependencies} for more information on when XMLHttpRequest parser may not available and
-     * what features are impacted as a result.
-     *
-     * @return true if XMLHttpRequest is available, false otherwise.
-     */
-    public static native Boolean xmlHttpRequestAvailable() /*-{
-        var retVal =$wnd.isc.RPCManager.xmlHttpRequestAvailable();
-        if(retVal == null || retVal === undefined) {
-            return null;
-        } else {
-            return @com.smartgwt.client.util.JSOHelper::toBoolean(Z)(retVal);
-        }
-    }-*/;
-            
-    /**
      * Cancel a queue of requests (also called a transaction). <P> If a transactionId is passed, that transaction will be
      * cancelled, otherwise, the current  (not yet sent) transaction is cancelled.  You can retrieve the id of the current 
      * transaction, if there is one, by calling  {@link com.smartgwt.client.rpc.RPCManager#getCurrentTransactionId} before the
@@ -186,6 +170,22 @@ public class RPCManager {
      */
     public static native void resendTransaction(String transactionNum) /*-{
         $wnd.isc.RPCManager.resendTransaction(transactionNum);
+    }-*/;
+            
+    /**
+     * Returns true if the XMLHttpRequest object is available, false otherwise.  See {@link
+     * com.smartgwt.client.docs.PlatformDependencies} for more information on when XMLHttpRequest parser may not available and
+     * what features are impacted as a result.
+     *
+     * @return true if XMLHttpRequest is available, false otherwise.
+     */
+    public static native Boolean xmlHttpRequestAvailable() /*-{
+        var retVal =$wnd.isc.RPCManager.xmlHttpRequestAvailable();
+        if(retVal == null || retVal === undefined) {
+            return null;
+        } else {
+            return @com.smartgwt.client.util.JSOHelper::toBoolean(Z)(retVal);
+        }
     }-*/;
 
 

@@ -78,6 +78,24 @@ public class RPCResponse extends DataClass {
 
 
     /**
+     * This attribute (available when using the the <code>xmlHttpRequest</code> transport) contains the HTTP response code sent
+     * by the server. <p> Note that this is different from {@link com.smartgwt.client.rpc.RPCResponse#getStatus status} - that
+     * attribute is used to indicate a status code for the RPC itself whereas httpResponseCode is the raw HTTP response code
+     * for the HTTP request that contained the RPCRequest. <p> This feature relies on the XMLHttpRequest object which can be
+     * disabled by end-users in some supported browsers.  See {@link com.smartgwt.client.docs.PlatformDependencies} for more
+     * information. <p> If you're using this attribute, you'll typically want to avoid the default error handling response of
+     * RPCManager.  To do so, set {@link com.smartgwt.client.rpc.RPCRequest#getWillHandleError willHandleError} to
+     * <code>true</code>.
+     *
+     *
+     * @return Integer
+     */
+    public Integer getHttpResponseCode()  {
+        return getAttributeAsInt("httpResponseCode");
+    }
+
+
+    /**
      * Status code for this response.  Status codes less than zero are considered errors by the RPCManager, those greater than
      * or equal to zero are considered successes.  Please see the error handling section the {@link
      * com.smartgwt.client.rpc.RPCManager} for more information on what the RPCManager does with the status code and how you
@@ -98,24 +116,6 @@ public class RPCResponse extends DataClass {
      */
     public int getStatus()  {
         return getAttributeAsInt("status");
-    }
-
-
-    /**
-     * This attribute (available when using the the <code>xmlHttpRequest</code> transport) contains the HTTP response code sent
-     * by the server. <p> Note that this is different from {@link com.smartgwt.client.rpc.RPCResponse#getStatus status} - that
-     * attribute is used to indicate a status code for the RPC itself whereas httpResponseCode is the raw HTTP response code
-     * for the HTTP request that contained the RPCRequest. <p> This feature relies on the XMLHttpRequest object which can be
-     * disabled by end-users in some supported browsers.  See {@link com.smartgwt.client.docs.PlatformDependencies} for more
-     * information. <p> If you're using this attribute, you'll typically want to avoid the default error handling response of
-     * RPCManager.  To do so, set {@link com.smartgwt.client.rpc.RPCRequest#getWillHandleError willHandleError} to
-     * <code>true</code>.
-     *
-     *
-     * @return Integer
-     */
-    public Integer getHttpResponseCode()  {
-        return getAttributeAsInt("httpResponseCode");
     }
 
 

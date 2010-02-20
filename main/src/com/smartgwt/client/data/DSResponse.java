@@ -78,18 +78,6 @@ public class DSResponse extends RPCResponse {
 
 
     /**
-     * Starting row of returned server results, when using paged result fetching <p> Note that startRow and endRow are
-     * zero-based - the first record is row zero.
-     *
-     *
-     * @return Integer
-     */
-    public Integer getStartRow()  {
-        return getAttributeAsInt("startRow");
-    }
-
-
-    /**
      * End row of returned server results, when using paged result fetching <p> Note that startRow and endRow are zero-based -
      * the first record is row zero.
      *
@@ -102,17 +90,6 @@ public class DSResponse extends RPCResponse {
 
 
     /**
-     * Total number of rows available from the server that match the current filter criteria, when using paged result fetching.
-     *
-     *
-     * @return Integer
-     */
-    public Integer getTotalRows()  {
-        return getAttributeAsInt("totalRows");
-    }
-
-
-    /**
      * Optional flag that can be set by the server to force ResultSets to drop any caches of records from the DataSource that
      * was the target of the operation.
      *
@@ -121,6 +98,29 @@ public class DSResponse extends RPCResponse {
      */
     public Boolean getInvalidateCache()  {
         return getAttributeAsBoolean("invalidateCache");
+    }
+
+
+    /**
+     * Starting row of returned server results, when using paged result fetching <p> Note that startRow and endRow are
+     * zero-based - the first record is row zero.
+     *
+     *
+     * @return Integer
+     */
+    public Integer getStartRow()  {
+        return getAttributeAsInt("startRow");
+    }
+
+
+    /**
+     * Total number of rows available from the server that match the current filter criteria, when using paged result fetching.
+     *
+     *
+     * @return Integer
+     */
+    public Integer getTotalRows()  {
+        return getAttributeAsInt("totalRows");
     }
 
     // ********************* Methods ***********************

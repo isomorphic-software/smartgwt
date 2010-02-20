@@ -91,25 +91,6 @@ public class DateTimeItem extends DateItem {
     }
 
     // ********************* Properties / Attributes ***********************
-
-    /**
-     * DateTimeItems show datetime values in a freeform text entry area.
-     *
-     * @param useTextField useTextField Default value is true
-     */
-    public void setUseTextField(Boolean useTextField) {
-        setAttribute("useTextField", useTextField);
-    }
-
-    /**
-     * DateTimeItems show datetime values in a freeform text entry area.
-     *
-     *
-     * @return Boolean
-     */
-    public Boolean getUseTextField()  {
-        return getAttributeAsBoolean("useTextField");
-    }
              
     /**
      * This property can be used to customize the format in which datetimes are displayed.<br> Should be set to a standard
@@ -169,6 +150,25 @@ public class DateTimeItem extends DateItem {
      */
     public String getInputFormat()  {
         return getAttributeAsString("inputFormat");
+    }
+
+    /**
+     * DateTimeItems show datetime values in a freeform text entry area.
+     *
+     * @param useTextField useTextField Default value is true
+     */
+    public void setUseTextField(Boolean useTextField) {
+        setAttribute("useTextField", useTextField);
+    }
+
+    /**
+     * DateTimeItems show datetime values in a freeform text entry area.
+     *
+     *
+     * @return Boolean
+     */
+    public Boolean getUseTextField()  {
+        return getAttributeAsBoolean("useTextField");
     }
 
     // ********************* Methods ***********************

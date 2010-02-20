@@ -91,129 +91,6 @@ public class TextItem extends FormItem {
     }
 
     // ********************* Properties / Attributes ***********************
-
-    /**
-     * Default width for fields.
-     *
-     * @param width width Default value is 150
-     */
-    public void setWidth(int width) {
-        setAttribute("width", width);
-    }
-
-    /**
-     * Default width for fields.
-     *
-     *
-     * @return int
-     */
-    public int getWidth()  {
-        return getAttributeAsInt("width");
-    }
-
-    /**
-     * Default height for text items.
-     *
-     * @param height height Default value is 19
-     */
-    public void setHeight(int height) {
-        setAttribute("height", height);
-    }
-
-    /**
-     * Default height for text items.
-     *
-     *
-     * @return int
-     */
-    public int getHeight()  {
-        return getAttributeAsInt("height");
-    }
-
-    /**
-     * Base CSS class name for this item's input element. NOTE: See the CompoundFormItem_skinning discussion for special
-     * skinning considerations.
-     *
-     * @param textBoxStyle textBoxStyle Default value is "textItem"
-     */
-    public void setTextBoxStyle(String textBoxStyle) {
-        setAttribute("textBoxStyle", textBoxStyle);
-    }
-
-    /**
-     * Base CSS class name for this item's input element. NOTE: See the CompoundFormItem_skinning discussion for special
-     * skinning considerations.
-     *
-     *
-     * @return String
-     */
-    public String getTextBoxStyle()  {
-        return getAttributeAsString("textBoxStyle");
-    }
-
-    /**
-     * if set, maximum number of characters for this field
-     *
-     * @param length length Default value is null
-     */
-    public void setLength(Integer length) {
-        setAttribute("length", length);
-    }
-
-    /**
-     * if set, maximum number of characters for this field
-     *
-     *
-     * @return Integer
-     */
-    public Integer getLength()  {
-        return getAttributeAsInt("length");
-    }
-
-    /**
-     * Allows the {@link com.smartgwt.client.widgets.form.DynamicForm#getSelectOnFocus 'selectOnFocus'} behavior to be
-     * configured on a per-FormItem basis.  Normally all items in a form default to the value of {@link
-     * com.smartgwt.client.widgets.form.DynamicForm#getSelectOnFocus selectOnFocus}.
-     *
-     * @param selectOnFocus selectOnFocus Default value is null
-     */
-    public void setSelectOnFocus(Boolean selectOnFocus) {
-        setAttribute("selectOnFocus", selectOnFocus);
-    }
-
-    /**
-     * Allows the {@link com.smartgwt.client.widgets.form.DynamicForm#getSelectOnFocus 'selectOnFocus'} behavior to be
-     * configured on a per-FormItem basis.  Normally all items in a form default to the value of {@link
-     * com.smartgwt.client.widgets.form.DynamicForm#getSelectOnFocus selectOnFocus}.
-     *
-     *
-     * @return Boolean
-     */
-    public Boolean getSelectOnFocus()  {
-        return getAttributeAsBoolean("selectOnFocus");
-    }
-
-    /**
-     * If showing hint for this form item, should it be shown within the field? <P>CSS style for the hint is {@link
-     * com.smartgwt.client.widgets.form.fields.TextItem#getTextBoxStyle textBoxStyle} with the suffix "Hint" appended to it.
-     * <p><b>Note : </b> This is an advanced setting</p>
-     *
-     * @param showHintInField showHintInField Default value is null
-     */
-    public void setShowHintInField(Boolean showHintInField) {
-        setAttribute("showHintInField", showHintInField);
-    }
-
-    /**
-     * If showing hint for this form item, should it be shown within the field? <P>CSS style for the hint is {@link
-     * com.smartgwt.client.widgets.form.fields.TextItem#getTextBoxStyle textBoxStyle} with the suffix "Hint" appended to it.
-     *
-     *
-     * @return Boolean
-     */
-    public Boolean getShowHintInField()  {
-        return getAttributeAsBoolean("showHintInField");
-    }
              
     /**
      * Should entered characters be converted to upper or lowercase? Also applies to values applied with {@link
@@ -237,6 +114,25 @@ public class TextItem extends FormItem {
      */
     public CharacterCasing getCharacterCasing()  {
         return EnumUtil.getEnum(CharacterCasing.values(), getAttribute("characterCasing"));
+    }
+
+    /**
+     * Default height for text items.
+     *
+     * @param height height Default value is 19
+     */
+    public void setHeight(int height) {
+        setAttribute("height", height);
+    }
+
+    /**
+     * Default height for text items.
+     *
+     *
+     * @return int
+     */
+    public int getHeight()  {
+        return getAttributeAsInt("height");
     }
 
     /**
@@ -264,6 +160,25 @@ public class TextItem extends FormItem {
      */
     public String getKeyPressFilter()  {
         return getAttributeAsString("keyPressFilter");
+    }
+
+    /**
+     * if set, maximum number of characters for this field
+     *
+     * @param length length Default value is null
+     */
+    public void setLength(Integer length) {
+        setAttribute("length", length);
+    }
+
+    /**
+     * if set, maximum number of characters for this field
+     *
+     *
+     * @return Integer
+     */
+    public Integer getLength()  {
+        return getAttributeAsInt("length");
     }
 
     /**
@@ -336,26 +251,6 @@ public class TextItem extends FormItem {
     }
 
     /**
-     * Should entered mask value be saved with embedded literals?
-     * <p><b>Note : </b> This is an advanced setting</p>
-     *
-     * @param maskSaveLiterals maskSaveLiterals Default value is null
-     */
-    public void setMaskSaveLiterals(Boolean maskSaveLiterals) {
-        setAttribute("maskSaveLiterals", maskSaveLiterals);
-    }
-
-    /**
-     * Should entered mask value be saved with embedded literals?
-     *
-     *
-     * @return Boolean
-     */
-    public Boolean getMaskSaveLiterals()  {
-        return getAttributeAsBoolean("maskSaveLiterals");
-    }
-
-    /**
      * Character that is used to fill required empty mask positions to display text while control has no focus.
      * <p><b>Note : </b> This is an advanced setting</p>
      *
@@ -395,36 +290,112 @@ public class TextItem extends FormItem {
         return getAttributeAsString("maskPromptChar");
     }
 
-    // ********************* Methods ***********************
-            
     /**
-     * Returns the hint text for this item. Default implementation returns {@link
-     * com.smartgwt.client.widgets.form.fields.FormItem#getHint hint}, or  null if there is no hint to show.
+     * Should entered mask value be saved with embedded literals?
+     * <p><b>Note : </b> This is an advanced setting</p>
      *
-     * @return HTML to show as the hint for the item
+     * @param maskSaveLiterals maskSaveLiterals Default value is null
      */
-    public native String getHint() /*-{
-        var self = this.@com.smartgwt.client.core.DataClass::getJsObj()();
-        return self.getHint();
-    }-*/;
-            
+    public void setMaskSaveLiterals(Boolean maskSaveLiterals) {
+        setAttribute("maskSaveLiterals", maskSaveLiterals);
+    }
+
     /**
-     * Puts focus into this form item and selects characters between the given indices. Only applies to drawn text based items.
-     * @param start selection starting character index
-     * @param end end of selection character index
+     * Should entered mask value be saved with embedded literals?
+     *
+     *
+     * @return Boolean
      */
-    public native void setSelectionRange(int start, int end) /*-{
-        var self = this.@com.smartgwt.client.core.DataClass::getJsObj()();
-        self.setSelectionRange(start, end);
-    }-*/;
-            
+    public Boolean getMaskSaveLiterals()  {
+        return getAttributeAsBoolean("maskSaveLiterals");
+    }
+
     /**
-     * Put focus in this item and select the entire value. Only applies to text based items
+     * Allows the {@link com.smartgwt.client.widgets.form.DynamicForm#getSelectOnFocus 'selectOnFocus'} behavior to be
+     * configured on a per-FormItem basis.  Normally all items in a form default to the value of {@link
+     * com.smartgwt.client.widgets.form.DynamicForm#getSelectOnFocus selectOnFocus}.
+     *
+     * @param selectOnFocus selectOnFocus Default value is null
      */
-    public native void selectValue() /*-{
-        var self = this.@com.smartgwt.client.core.DataClass::getJsObj()();
-        self.selectValue();
-    }-*/;
+    public void setSelectOnFocus(Boolean selectOnFocus) {
+        setAttribute("selectOnFocus", selectOnFocus);
+    }
+
+    /**
+     * Allows the {@link com.smartgwt.client.widgets.form.DynamicForm#getSelectOnFocus 'selectOnFocus'} behavior to be
+     * configured on a per-FormItem basis.  Normally all items in a form default to the value of {@link
+     * com.smartgwt.client.widgets.form.DynamicForm#getSelectOnFocus selectOnFocus}.
+     *
+     *
+     * @return Boolean
+     */
+    public Boolean getSelectOnFocus()  {
+        return getAttributeAsBoolean("selectOnFocus");
+    }
+
+    /**
+     * If showing hint for this form item, should it be shown within the field? <P>CSS style for the hint is {@link
+     * com.smartgwt.client.widgets.form.fields.TextItem#getTextBoxStyle textBoxStyle} with the suffix "Hint" appended to it.
+     * <p><b>Note : </b> This is an advanced setting</p>
+     *
+     * @param showHintInField showHintInField Default value is null
+     */
+    public void setShowHintInField(Boolean showHintInField) {
+        setAttribute("showHintInField", showHintInField);
+    }
+
+    /**
+     * If showing hint for this form item, should it be shown within the field? <P>CSS style for the hint is {@link
+     * com.smartgwt.client.widgets.form.fields.TextItem#getTextBoxStyle textBoxStyle} with the suffix "Hint" appended to it.
+     *
+     *
+     * @return Boolean
+     */
+    public Boolean getShowHintInField()  {
+        return getAttributeAsBoolean("showHintInField");
+    }
+
+    /**
+     * Base CSS class name for this item's input element. NOTE: See the CompoundFormItem_skinning discussion for special
+     * skinning considerations.
+     *
+     * @param textBoxStyle textBoxStyle Default value is "textItem"
+     */
+    public void setTextBoxStyle(String textBoxStyle) {
+        setAttribute("textBoxStyle", textBoxStyle);
+    }
+
+    /**
+     * Base CSS class name for this item's input element. NOTE: See the CompoundFormItem_skinning discussion for special
+     * skinning considerations.
+     *
+     *
+     * @return String
+     */
+    public String getTextBoxStyle()  {
+        return getAttributeAsString("textBoxStyle");
+    }
+
+    /**
+     * Default width for fields.
+     *
+     * @param width width Default value is 150
+     */
+    public void setWidth(int width) {
+        setAttribute("width", width);
+    }
+
+    /**
+     * Default width for fields.
+     *
+     *
+     * @return int
+     */
+    public int getWidth()  {
+        return getAttributeAsInt("width");
+    }
+
+    // ********************* Methods ***********************
             
     /**
      * If this item currently has focus, clear the current selection. leaving focus in the item. Has no effect if the item is
@@ -444,6 +415,35 @@ public class TextItem extends FormItem {
     public native void deselectValue(boolean start) /*-{
         var self = this.@com.smartgwt.client.core.DataClass::getJsObj()();
         self.deselectValue(start);
+    }-*/;
+            
+    /**
+     * Returns the hint text for this item. Default implementation returns {@link
+     * com.smartgwt.client.widgets.form.fields.FormItem#getHint hint}, or  null if there is no hint to show.
+     *
+     * @return HTML to show as the hint for the item
+     */
+    public native String getHint() /*-{
+        var self = this.@com.smartgwt.client.core.DataClass::getJsObj()();
+        return self.getHint();
+    }-*/;
+            
+    /**
+     * Put focus in this item and select the entire value. Only applies to text based items
+     */
+    public native void selectValue() /*-{
+        var self = this.@com.smartgwt.client.core.DataClass::getJsObj()();
+        self.selectValue();
+    }-*/;
+            
+    /**
+     * Puts focus into this form item and selects characters between the given indices. Only applies to drawn text based items.
+     * @param start selection starting character index
+     * @param end end of selection character index
+     */
+    public native void setSelectionRange(int start, int end) /*-{
+        var self = this.@com.smartgwt.client.core.DataClass::getJsObj()();
+        self.setSelectionRange(start, end);
     }-*/;
 
     // ********************* Static Methods ***********************

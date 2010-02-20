@@ -87,111 +87,24 @@ public class SectionStack extends VLayout  implements com.smartgwt.client.widget
         return widget;
     }-*/;
     // ********************* Properties / Attributes ***********************
-             
+
     /**
-     * Normal {@link com.smartgwt.client.types.Overflow} settings can be used on layouts, for example, an overflow:auto Layout
-     * will scroll if sections are resized to exceed the specified size, whereas an overflow:visible Layout will grow to
-     * accomodate the resized sections.
+     * If true, sections are animated during expand/collapse and addition/removal of SectionItems is likewise animated.
      *
-     * @param overflow overflow Default value is "hidden"
-     * @throws IllegalStateException this property cannot be changed after the component has been created
+     * @param animateSections animateSections Default value is null
      */
-    public void setOverflow(Overflow overflow)  throws IllegalStateException {
-        setAttribute("overflow", overflow.getValue(), false);
+    public void setAnimateSections(Boolean animateSections) {
+        setAttribute("animateSections", animateSections, true);
     }
 
     /**
-     * Normal {@link com.smartgwt.client.types.Overflow} settings can be used on layouts, for example, an overflow:auto Layout
-     * will scroll if sections are resized to exceed the specified size, whereas an overflow:visible Layout will grow to
-     * accomodate the resized sections.
-     *
-     *
-     * @return Overflow
-     */
-    public Overflow getOverflow()  {
-        return EnumUtil.getEnum(Overflow.values(), getAttribute("overflow"));
-    }
-
-    /**
-     * Name of the Canvas subclass to use as a header that labels the section and allows showing and hiding.  The default class
-     * can be skinned, or trivial subclasses created to allow different appearances for headers in different SectionStacks. <P>
-     * Very advanced developers can use the following information to create custom header classes. <P> The SectionStack will
-     * instantiate this class, giving the following properties on init: <ul> <li><code>layout</code>: the SectionStack
-     * <li><code>expanded</code>: true or false <li><code>hidden</code>: true or false <li><code>title</code>: section title
-     * </ul> From then on, when the sectionHeader is clicked on, it should call {@link
-     * com.smartgwt.client.widgets.layout.SectionStack#sectionHeaderClick}. <br> Whenever the section is hidden or shown,
-     * sectionHeader.setExpanded(true|false) will be called if implemented.
-     * <p><b>Note : </b> This is an advanced setting</p>
-     *
-     * @param sectionHeaderClass sectionHeaderClass Default value is "SectionHeader"
-     * @throws IllegalStateException this property cannot be changed after the component has been created
-     */
-    public void setSectionHeaderClass(String sectionHeaderClass)  throws IllegalStateException {
-        setAttribute("sectionHeaderClass", sectionHeaderClass, false);
-    }
-
-    /**
-     * Name of the Canvas subclass to use as a header that labels the section and allows showing and hiding.  The default class
-     * can be skinned, or trivial subclasses created to allow different appearances for headers in different SectionStacks. <P>
-     * Very advanced developers can use the following information to create custom header classes. <P> The SectionStack will
-     * instantiate this class, giving the following properties on init: <ul> <li><code>layout</code>: the SectionStack
-     * <li><code>expanded</code>: true or false <li><code>hidden</code>: true or false <li><code>title</code>: section title
-     * </ul> From then on, when the sectionHeader is clicked on, it should call {@link
-     * com.smartgwt.client.widgets.layout.SectionStack#sectionHeaderClick}. <br> Whenever the section is hidden or shown,
-     * sectionHeader.setExpanded(true|false) will be called if implemented.
-     *
-     *
-     * @return String
-     */
-    public String getSectionHeaderClass()  {
-        return getAttributeAsString("sectionHeaderClass");
-    }
-
-    /**
-     * Height of headers for sections.
-     *
-     * @param headerHeight headerHeight Default value is 20
-     * @throws IllegalStateException this property cannot be changed after the component has been created
-     */
-    public void setHeaderHeight(int headerHeight)  throws IllegalStateException {
-        setAttribute("headerHeight", headerHeight, false);
-    }
-
-    /**
-     * Height of headers for sections.
-     *
-     *
-     * @return int
-     */
-    public int getHeaderHeight()  {
-        return getAttributeAsInt("headerHeight");
-    }
-
-    /**
-     * Whether sections can be drag resized by the user dragging the section header. <P> Note that, with
-     * <code>canResizeSections:true</code>, not all sections can be resized: sections that contain only {@link
-     * com.smartgwt.client.widgets.Button#getAutoFit 'autofitting'} components or that are marked with {@link
-     * com.smartgwt.client.widgets.layout.SectionStackSection#getResizeable 'section.resizeable:false'} will not be resizeable.
-     * <p><b>Note : </b> This is an advanced setting</p>
-     *
-     * @param canResizeSections canResizeSections Default value is true
-     * @throws IllegalStateException this property cannot be changed after the component has been created
-     */
-    public void setCanResizeSections(Boolean canResizeSections)  throws IllegalStateException {
-        setAttribute("canResizeSections", canResizeSections, false);
-    }
-
-    /**
-     * Whether sections can be drag resized by the user dragging the section header. <P> Note that, with
-     * <code>canResizeSections:true</code>, not all sections can be resized: sections that contain only {@link
-     * com.smartgwt.client.widgets.Button#getAutoFit 'autofitting'} components or that are marked with {@link
-     * com.smartgwt.client.widgets.layout.SectionStackSection#getResizeable 'section.resizeable:false'} will not be resizeable.
+     * If true, sections are animated during expand/collapse and addition/removal of SectionItems is likewise animated.
      *
      *
      * @return Boolean
      */
-    public Boolean getCanResizeSections()  {
-        return getAttributeAsBoolean("canResizeSections");
+    public Boolean getAnimateSections()  {
+        return getAttributeAsBoolean("animateSections");
     }
 
     /**
@@ -224,6 +137,33 @@ public class SectionStack extends VLayout  implements com.smartgwt.client.widget
     }
 
     /**
+     * Whether sections can be drag resized by the user dragging the section header. <P> Note that, with
+     * <code>canResizeSections:true</code>, not all sections can be resized: sections that contain only {@link
+     * com.smartgwt.client.widgets.Button#getAutoFit 'autofitting'} components or that are marked with {@link
+     * com.smartgwt.client.widgets.layout.SectionStackSection#getResizeable 'section.resizeable:false'} will not be resizeable.
+     * <p><b>Note : </b> This is an advanced setting</p>
+     *
+     * @param canResizeSections canResizeSections Default value is true
+     * @throws IllegalStateException this property cannot be changed after the component has been created
+     */
+    public void setCanResizeSections(Boolean canResizeSections)  throws IllegalStateException {
+        setAttribute("canResizeSections", canResizeSections, false);
+    }
+
+    /**
+     * Whether sections can be drag resized by the user dragging the section header. <P> Note that, with
+     * <code>canResizeSections:true</code>, not all sections can be resized: sections that contain only {@link
+     * com.smartgwt.client.widgets.Button#getAutoFit 'autofitting'} components or that are marked with {@link
+     * com.smartgwt.client.widgets.layout.SectionStackSection#getResizeable 'section.resizeable:false'} will not be resizeable.
+     *
+     *
+     * @return Boolean
+     */
+    public Boolean getCanResizeSections()  {
+        return getAttributeAsBoolean("canResizeSections");
+    }
+
+    /**
      * If true, the headers for the sections (if shown) will be included in the page's tab order for accessibility.
      * <p><b>Note : </b> This is an advanced setting</p>
      *
@@ -245,89 +185,44 @@ public class SectionStack extends VLayout  implements com.smartgwt.client.widget
     }
 
     /**
-     * If an expanded or shown section expands past the current viewport and this property is true, then the viewport will
-     * auto-scroll to fit as much of the section content into the viewport without scrolling the top of the section out of the
-     * viewport.
+     * Height of headers for sections.
      *
-     * @param scrollSectionIntoView scrollSectionIntoView Default value is true
+     * @param headerHeight headerHeight Default value is 20
      * @throws IllegalStateException this property cannot be changed after the component has been created
      */
-    public void setScrollSectionIntoView(Boolean scrollSectionIntoView)  throws IllegalStateException {
-        setAttribute("scrollSectionIntoView", scrollSectionIntoView, false);
+    public void setHeaderHeight(int headerHeight)  throws IllegalStateException {
+        setAttribute("headerHeight", headerHeight, false);
     }
 
     /**
-     * If an expanded or shown section expands past the current viewport and this property is true, then the viewport will
-     * auto-scroll to fit as much of the section content into the viewport without scrolling the top of the section out of the
-     * viewport.
+     * Height of headers for sections.
      *
      *
-     * @return Boolean
+     * @return int
      */
-    public Boolean getScrollSectionIntoView()  {
-        return getAttributeAsBoolean("scrollSectionIntoView");
+    public int getHeaderHeight()  {
+        return getAttributeAsInt("headerHeight");
     }
 
     /**
-     * Should any specified {@link com.smartgwt.client.widgets.layout.SectionStackSection#getID ID} be applied to the generated
-     * SectionHeader widget for the section as a widget ID? If set to false, SectionStackSection.ID will behave as a synonym
-     * for SectionStackSection.name.
+     * Size, in pixels, of indentation of all member items relative to the end of the alignment axis. For instance, for
+     * left-aligned members,  itemStartIndent specifies indentation for every item from the right side of the section stack.
      *
-     * @param useGlobalSectionIDs useGlobalSectionIDs Default value is true
-     * @throws IllegalStateException this property cannot be changed after the component has been created
+     * @param itemEndIndent itemEndIndent Default value is undefined
      */
-    public void setUseGlobalSectionIDs(Boolean useGlobalSectionIDs)  throws IllegalStateException {
-        setAttribute("useGlobalSectionIDs", useGlobalSectionIDs, false);
+    public void setItemEndIndent(int itemEndIndent) {
+        setAttribute("itemEndIndent", itemEndIndent, true);
     }
 
     /**
-     * Should any specified {@link com.smartgwt.client.widgets.layout.SectionStackSection#getID ID} be applied to the generated
-     * SectionHeader widget for the section as a widget ID? If set to false, SectionStackSection.ID will behave as a synonym
-     * for SectionStackSection.name.
+     * Size, in pixels, of indentation of all member items relative to the end of the alignment axis. For instance, for
+     * left-aligned members,  itemStartIndent specifies indentation for every item from the right side of the section stack.
      *
      *
-     * @return Boolean
+     * @return int
      */
-    public Boolean getUseGlobalSectionIDs()  {
-        return getAttributeAsBoolean("useGlobalSectionIDs");
-    }
-
-    /**
-     * If true, sections are animated during expand/collapse and addition/removal of SectionItems is likewise animated.
-     *
-     * @param animateSections animateSections Default value is null
-     */
-    public void setAnimateSections(Boolean animateSections) {
-        setAttribute("animateSections", animateSections, true);
-    }
-
-    /**
-     * If true, sections are animated during expand/collapse and addition/removal of SectionItems is likewise animated.
-     *
-     *
-     * @return Boolean
-     */
-    public Boolean getAnimateSections()  {
-        return getAttributeAsBoolean("animateSections");
-    }
-             
-    /**
-     * Whether multiple sections can be visible at once
-     *
-     * @param visibilityMode visibilityMode Default value is "mutex"
-     */
-    public void setVisibilityMode(VisibilityMode visibilityMode) {
-        setAttribute("visibilityMode", visibilityMode.getValue(), true);
-    }
-
-    /**
-     * Whether multiple sections can be visible at once
-     *
-     *
-     * @return VisibilityMode
-     */
-    public VisibilityMode getVisibilityMode()  {
-        return EnumUtil.getEnum(VisibilityMode.values(), getAttribute("visibilityMode"));
+    public int getItemEndIndent()  {
+        return getAttributeAsInt("itemEndIndent");
     }
 
     /**
@@ -377,26 +272,88 @@ public class SectionStack extends VLayout  implements com.smartgwt.client.widget
     public int getItemStartIndent()  {
         return getAttributeAsInt("itemStartIndent");
     }
-
+             
     /**
-     * Size, in pixels, of indentation of all member items relative to the end of the alignment axis. For instance, for
-     * left-aligned members,  itemStartIndent specifies indentation for every item from the right side of the section stack.
+     * Normal {@link com.smartgwt.client.types.Overflow} settings can be used on layouts, for example, an overflow:auto Layout
+     * will scroll if sections are resized to exceed the specified size, whereas an overflow:visible Layout will grow to
+     * accomodate the resized sections.
      *
-     * @param itemEndIndent itemEndIndent Default value is undefined
+     * @param overflow overflow Default value is "hidden"
+     * @throws IllegalStateException this property cannot be changed after the component has been created
      */
-    public void setItemEndIndent(int itemEndIndent) {
-        setAttribute("itemEndIndent", itemEndIndent, true);
+    public void setOverflow(Overflow overflow)  throws IllegalStateException {
+        setAttribute("overflow", overflow.getValue(), false);
     }
 
     /**
-     * Size, in pixels, of indentation of all member items relative to the end of the alignment axis. For instance, for
-     * left-aligned members,  itemStartIndent specifies indentation for every item from the right side of the section stack.
+     * Normal {@link com.smartgwt.client.types.Overflow} settings can be used on layouts, for example, an overflow:auto Layout
+     * will scroll if sections are resized to exceed the specified size, whereas an overflow:visible Layout will grow to
+     * accomodate the resized sections.
      *
      *
-     * @return int
+     * @return Overflow
      */
-    public int getItemEndIndent()  {
-        return getAttributeAsInt("itemEndIndent");
+    public Overflow getOverflow()  {
+        return EnumUtil.getEnum(Overflow.values(), getAttribute("overflow"));
+    }
+
+    /**
+     * If an expanded or shown section expands past the current viewport and this property is true, then the viewport will
+     * auto-scroll to fit as much of the section content into the viewport without scrolling the top of the section out of the
+     * viewport.
+     *
+     * @param scrollSectionIntoView scrollSectionIntoView Default value is true
+     * @throws IllegalStateException this property cannot be changed after the component has been created
+     */
+    public void setScrollSectionIntoView(Boolean scrollSectionIntoView)  throws IllegalStateException {
+        setAttribute("scrollSectionIntoView", scrollSectionIntoView, false);
+    }
+
+    /**
+     * If an expanded or shown section expands past the current viewport and this property is true, then the viewport will
+     * auto-scroll to fit as much of the section content into the viewport without scrolling the top of the section out of the
+     * viewport.
+     *
+     *
+     * @return Boolean
+     */
+    public Boolean getScrollSectionIntoView()  {
+        return getAttributeAsBoolean("scrollSectionIntoView");
+    }
+
+    /**
+     * Name of the Canvas subclass to use as a header that labels the section and allows showing and hiding.  The default class
+     * can be skinned, or trivial subclasses created to allow different appearances for headers in different SectionStacks. <P>
+     * Very advanced developers can use the following information to create custom header classes. <P> The SectionStack will
+     * instantiate this class, giving the following properties on init: <ul> <li><code>layout</code>: the SectionStack
+     * <li><code>expanded</code>: true or false <li><code>hidden</code>: true or false <li><code>title</code>: section title
+     * </ul> From then on, when the sectionHeader is clicked on, it should call {@link
+     * com.smartgwt.client.widgets.layout.SectionStack#sectionHeaderClick}. <br> Whenever the section is hidden or shown,
+     * sectionHeader.setExpanded(true|false) will be called if implemented.
+     * <p><b>Note : </b> This is an advanced setting</p>
+     *
+     * @param sectionHeaderClass sectionHeaderClass Default value is "SectionHeader"
+     * @throws IllegalStateException this property cannot be changed after the component has been created
+     */
+    public void setSectionHeaderClass(String sectionHeaderClass)  throws IllegalStateException {
+        setAttribute("sectionHeaderClass", sectionHeaderClass, false);
+    }
+
+    /**
+     * Name of the Canvas subclass to use as a header that labels the section and allows showing and hiding.  The default class
+     * can be skinned, or trivial subclasses created to allow different appearances for headers in different SectionStacks. <P>
+     * Very advanced developers can use the following information to create custom header classes. <P> The SectionStack will
+     * instantiate this class, giving the following properties on init: <ul> <li><code>layout</code>: the SectionStack
+     * <li><code>expanded</code>: true or false <li><code>hidden</code>: true or false <li><code>title</code>: section title
+     * </ul> From then on, when the sectionHeader is clicked on, it should call {@link
+     * com.smartgwt.client.widgets.layout.SectionStack#sectionHeaderClick}. <br> Whenever the section is hidden or shown,
+     * sectionHeader.setExpanded(true|false) will be called if implemented.
+     *
+     *
+     * @return String
+     */
+    public String getSectionHeaderClass()  {
+        return getAttributeAsString("sectionHeaderClass");
     }
 
     /**
@@ -418,6 +375,49 @@ public class SectionStack extends VLayout  implements com.smartgwt.client.widget
      */
     public Boolean getShowExpandControls()  {
         return getAttributeAsBoolean("showExpandControls");
+    }
+
+    /**
+     * Should any specified {@link com.smartgwt.client.widgets.layout.SectionStackSection#getID ID} be applied to the generated
+     * SectionHeader widget for the section as a widget ID? If set to false, SectionStackSection.ID will behave as a synonym
+     * for SectionStackSection.name.
+     *
+     * @param useGlobalSectionIDs useGlobalSectionIDs Default value is true
+     * @throws IllegalStateException this property cannot be changed after the component has been created
+     */
+    public void setUseGlobalSectionIDs(Boolean useGlobalSectionIDs)  throws IllegalStateException {
+        setAttribute("useGlobalSectionIDs", useGlobalSectionIDs, false);
+    }
+
+    /**
+     * Should any specified {@link com.smartgwt.client.widgets.layout.SectionStackSection#getID ID} be applied to the generated
+     * SectionHeader widget for the section as a widget ID? If set to false, SectionStackSection.ID will behave as a synonym
+     * for SectionStackSection.name.
+     *
+     *
+     * @return Boolean
+     */
+    public Boolean getUseGlobalSectionIDs()  {
+        return getAttributeAsBoolean("useGlobalSectionIDs");
+    }
+             
+    /**
+     * Whether multiple sections can be visible at once
+     *
+     * @param visibilityMode visibilityMode Default value is "mutex"
+     */
+    public void setVisibilityMode(VisibilityMode visibilityMode) {
+        setAttribute("visibilityMode", visibilityMode.getValue(), true);
+    }
+
+    /**
+     * Whether multiple sections can be visible at once
+     *
+     *
+     * @return VisibilityMode
+     */
+    public VisibilityMode getVisibilityMode()  {
+        return EnumUtil.getEnum(VisibilityMode.values(), getAttribute("visibilityMode"));
     }
 
     // ********************* Methods ***********************

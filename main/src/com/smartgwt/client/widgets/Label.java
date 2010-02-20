@@ -93,6 +93,52 @@ public class Label extends Button {
         return widget;
     }-*/;
     // ********************* Properties / Attributes ***********************
+             
+    /**
+     * Horizontal alignment of label text. See Alignment type for details.
+     *
+     * @param align align Default value is Canvas.LEFT
+     */
+    public void setAlign(Alignment align) {
+        setAttribute("align", align.getValue(), true);
+    }
+
+    /**
+     * Horizontal alignment of label text. See Alignment type for details.
+     *
+     *
+     * @return Alignment
+     */
+    public Alignment getAlign()  {
+        return EnumUtil.getEnum(Alignment.values(), getAttribute("align"));
+    }
+
+    /**
+     * If true, ignore the specified size of this widget and always size just large enough to accomodate the title.  If
+     * <code>setWidth()</code> is explicitly called on an autoFit:true button, autoFit will be reset to <code>false</code>. <P>
+     * Note that for StretchImgButton instances, autoFit will occur horizontally only, as  unpredictable vertical sizing is
+     * likely to distort the media. If you do want vertical  auto-fit, this can be achieved by simply setting a small height,
+     * and having  overflow:"visible"
+     *
+     * @param autoFit autoFit Default value is null
+     */
+    public void setAutoFit(Boolean autoFit) {
+        setAttribute("autoFit", autoFit, true);
+    }
+
+    /**
+     * If true, ignore the specified size of this widget and always size just large enough to accomodate the title.  If
+     * <code>setWidth()</code> is explicitly called on an autoFit:true button, autoFit will be reset to <code>false</code>. <P>
+     * Note that for StretchImgButton instances, autoFit will occur horizontally only, as  unpredictable vertical sizing is
+     * likely to distort the media. If you do want vertical  auto-fit, this can be achieved by simply setting a small height,
+     * and having  overflow:"visible"
+     *
+     *
+     * @return Boolean
+     */
+    public Boolean getAutoFit()  {
+        return getAttributeAsBoolean("autoFit");
+    }
 
     /**
      * The contents of a canvas or label widget. Any HTML string is acceptable.
@@ -171,90 +217,6 @@ public class Label extends Button {
     public Boolean getDynamicContents()  {
         return getAttributeAsBoolean("dynamicContents");
     }
-             
-    /**
-     * Horizontal alignment of label text. See Alignment type for details.
-     *
-     * @param align align Default value is Canvas.LEFT
-     */
-    public void setAlign(Alignment align) {
-        setAttribute("align", align.getValue(), true);
-    }
-
-    /**
-     * Horizontal alignment of label text. See Alignment type for details.
-     *
-     *
-     * @return Alignment
-     */
-    public Alignment getAlign()  {
-        return EnumUtil.getEnum(Alignment.values(), getAttribute("align"));
-    }
-             
-    /**
-     * Vertical alignment of label text. See VerticalAlignment type for details.
-     *
-     * @param valign valign Default value is Canvas.CENTER
-     */
-    public void setValign(VerticalAlignment valign) {
-        setAttribute("valign", valign.getValue(), true);
-    }
-
-    /**
-     * Vertical alignment of label text. See VerticalAlignment type for details.
-     *
-     *
-     * @return VerticalAlignment
-     */
-    public VerticalAlignment getValign()  {
-        return EnumUtil.getEnum(VerticalAlignment.values(), getAttribute("valign"));
-    }
-
-    /**
-     * If false, the label text will not be wrapped to the next line.
-     *
-     * @param wrap wrap Default value is true
-     */
-    public void setWrap(Boolean wrap) {
-        setAttribute("wrap", wrap, true);
-    }
-
-    /**
-     * If false, the label text will not be wrapped to the next line.
-     *
-     *
-     * @return Boolean
-     */
-    public Boolean getWrap()  {
-        return getAttributeAsBoolean("wrap");
-    }
-
-    /**
-     * If true, ignore the specified size of this widget and always size just large enough to accomodate the title.  If
-     * <code>setWidth()</code> is explicitly called on an autoFit:true button, autoFit will be reset to <code>false</code>. <P>
-     * Note that for StretchImgButton instances, autoFit will occur horizontally only, as  unpredictable vertical sizing is
-     * likely to distort the media. If you do want vertical  auto-fit, this can be achieved by simply setting a small height,
-     * and having  overflow:"visible"
-     *
-     * @param autoFit autoFit Default value is null
-     */
-    public void setAutoFit(Boolean autoFit) {
-        setAttribute("autoFit", autoFit, true);
-    }
-
-    /**
-     * If true, ignore the specified size of this widget and always size just large enough to accomodate the title.  If
-     * <code>setWidth()</code> is explicitly called on an autoFit:true button, autoFit will be reset to <code>false</code>. <P>
-     * Note that for StretchImgButton instances, autoFit will occur horizontally only, as  unpredictable vertical sizing is
-     * likely to distort the media. If you do want vertical  auto-fit, this can be achieved by simply setting a small height,
-     * and having  overflow:"visible"
-     *
-     *
-     * @return Boolean
-     */
-    public Boolean getAutoFit()  {
-        return getAttributeAsBoolean("autoFit");
-    }
 
     /**
      * Optional icon to be shown with the button title text.   <P> Specify as the partial URL to an image, relative to the
@@ -279,45 +241,23 @@ public class Label extends Button {
     }
 
     /**
-     * Size in pixels of the icon image. <P> The <code>iconWidth</code> and <code>iconHeight</code> properties can be used to
-     * configure width and height separately.
+     * If this button is showing an icon should it be right or left aligned?
      *
-     * @param iconSize iconSize Default value is 16
+     * @param iconAlign iconAlign Default value is null
      * @throws IllegalStateException this property cannot be changed after the component has been created
      */
-    public void setIconSize(int iconSize)  throws IllegalStateException {
-        setAttribute("iconSize", iconSize, false);
+    public void setIconAlign(String iconAlign)  throws IllegalStateException {
+        setAttribute("iconAlign", iconAlign, false);
     }
 
     /**
-     * Size in pixels of the icon image. <P> The <code>iconWidth</code> and <code>iconHeight</code> properties can be used to
-     * configure width and height separately.
+     * If this button is showing an icon should it be right or left aligned?
      *
      *
-     * @return int
+     * @return String
      */
-    public int getIconSize()  {
-        return getAttributeAsInt("iconSize");
-    }
-
-    /**
-     * Width in pixels of the icon image. <P> If unset, defaults to <code>iconSize</code>
-     *
-     * @param iconWidth iconWidth Default value is null
-     * @throws IllegalStateException this property cannot be changed after the component has been created
-     */
-    public void setIconWidth(Integer iconWidth)  throws IllegalStateException {
-        setAttribute("iconWidth", iconWidth, false);
-    }
-
-    /**
-     * Width in pixels of the icon image. <P> If unset, defaults to <code>iconSize</code>
-     *
-     *
-     * @return Integer
-     */
-    public Integer getIconWidth()  {
-        return getAttributeAsInt("iconWidth");
+    public String getIconAlign()  {
+        return getAttributeAsString("iconAlign");
     }
 
     /**
@@ -364,23 +304,25 @@ public class Label extends Button {
     }
 
     /**
-     * If this button is showing an icon should it be right or left aligned?
+     * Size in pixels of the icon image. <P> The <code>iconWidth</code> and <code>iconHeight</code> properties can be used to
+     * configure width and height separately.
      *
-     * @param iconAlign iconAlign Default value is null
+     * @param iconSize iconSize Default value is 16
      * @throws IllegalStateException this property cannot be changed after the component has been created
      */
-    public void setIconAlign(String iconAlign)  throws IllegalStateException {
-        setAttribute("iconAlign", iconAlign, false);
+    public void setIconSize(int iconSize)  throws IllegalStateException {
+        setAttribute("iconSize", iconSize, false);
     }
 
     /**
-     * If this button is showing an icon should it be right or left aligned?
+     * Size in pixels of the icon image. <P> The <code>iconWidth</code> and <code>iconHeight</code> properties can be used to
+     * configure width and height separately.
      *
      *
-     * @return String
+     * @return int
      */
-    public String getIconAlign()  {
-        return getAttributeAsString("iconAlign");
+    public int getIconSize()  {
+        return getAttributeAsInt("iconSize");
     }
 
     /**
@@ -404,6 +346,26 @@ public class Label extends Button {
     }
 
     /**
+     * Width in pixels of the icon image. <P> If unset, defaults to <code>iconSize</code>
+     *
+     * @param iconWidth iconWidth Default value is null
+     * @throws IllegalStateException this property cannot be changed after the component has been created
+     */
+    public void setIconWidth(Integer iconWidth)  throws IllegalStateException {
+        setAttribute("iconWidth", iconWidth, false);
+    }
+
+    /**
+     * Width in pixels of the icon image. <P> If unset, defaults to <code>iconSize</code>
+     *
+     *
+     * @return Integer
+     */
+    public Integer getIconWidth()  {
+        return getAttributeAsInt("iconWidth");
+    }
+
+    /**
      * If using an icon for this button, whether to switch the icon image if the button becomes disabled.
      *
      * @param showDisabledIcon showDisabledIcon Default value is true
@@ -424,23 +386,23 @@ public class Label extends Button {
     }
 
     /**
-     * If using an icon for this button, whether to switch the icon image on mouse rollover.
+     * If using an icon for this button, whether to switch the icon image when the mouse goes down on the button.
      *
-     * @param showRollOverIcon showRollOverIcon Default value is false
+     * @param showDownIcon showDownIcon Default value is false
      * @throws IllegalStateException this property cannot be changed after the component has been created
      */
-    public void setShowRollOverIcon(Boolean showRollOverIcon)  throws IllegalStateException {
-        setAttribute("showRollOverIcon", showRollOverIcon, false);
+    public void setShowDownIcon(Boolean showDownIcon)  throws IllegalStateException {
+        setAttribute("showDownIcon", showDownIcon, false);
     }
 
     /**
-     * If using an icon for this button, whether to switch the icon image on mouse rollover.
+     * If using an icon for this button, whether to switch the icon image when the mouse goes down on the button.
      *
      *
      * @return Boolean
      */
-    public Boolean getShowRollOverIcon()  {
-        return getAttributeAsBoolean("showRollOverIcon");
+    public Boolean getShowDownIcon()  {
+        return getAttributeAsBoolean("showDownIcon");
     }
 
     /**
@@ -468,23 +430,23 @@ public class Label extends Button {
     }
 
     /**
-     * If using an icon for this button, whether to switch the icon image when the mouse goes down on the button.
+     * If using an icon for this button, whether to switch the icon image on mouse rollover.
      *
-     * @param showDownIcon showDownIcon Default value is false
+     * @param showRollOverIcon showRollOverIcon Default value is false
      * @throws IllegalStateException this property cannot be changed after the component has been created
      */
-    public void setShowDownIcon(Boolean showDownIcon)  throws IllegalStateException {
-        setAttribute("showDownIcon", showDownIcon, false);
+    public void setShowRollOverIcon(Boolean showRollOverIcon)  throws IllegalStateException {
+        setAttribute("showRollOverIcon", showRollOverIcon, false);
     }
 
     /**
-     * If using an icon for this button, whether to switch the icon image when the mouse goes down on the button.
+     * If using an icon for this button, whether to switch the icon image on mouse rollover.
      *
      *
      * @return Boolean
      */
-    public Boolean getShowDownIcon()  {
-        return getAttributeAsBoolean("showDownIcon");
+    public Boolean getShowRollOverIcon()  {
+        return getAttributeAsBoolean("showRollOverIcon");
     }
 
     /**
@@ -505,6 +467,44 @@ public class Label extends Button {
      */
     public Boolean getShowSelectedIcon()  {
         return getAttributeAsBoolean("showSelectedIcon");
+    }
+             
+    /**
+     * Vertical alignment of label text. See VerticalAlignment type for details.
+     *
+     * @param valign valign Default value is Canvas.CENTER
+     */
+    public void setValign(VerticalAlignment valign) {
+        setAttribute("valign", valign.getValue(), true);
+    }
+
+    /**
+     * Vertical alignment of label text. See VerticalAlignment type for details.
+     *
+     *
+     * @return VerticalAlignment
+     */
+    public VerticalAlignment getValign()  {
+        return EnumUtil.getEnum(VerticalAlignment.values(), getAttribute("valign"));
+    }
+
+    /**
+     * If false, the label text will not be wrapped to the next line.
+     *
+     * @param wrap wrap Default value is true
+     */
+    public void setWrap(Boolean wrap) {
+        setAttribute("wrap", wrap, true);
+    }
+
+    /**
+     * If false, the label text will not be wrapped to the next line.
+     *
+     *
+     * @return Boolean
+     */
+    public Boolean getWrap()  {
+        return getAttributeAsBoolean("wrap");
     }
 
     // ********************* Methods ***********************

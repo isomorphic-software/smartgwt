@@ -95,71 +95,6 @@ public class PortalLayout extends Layout {
     // ********************* Properties / Attributes ***********************
 
     /**
-     * Initial number of columns to show in this PortalLayout. Note that after initialization columns should be added / removed
-     * via {@link com.smartgwt.client.widgets.layout.PortalLayout#addColumn} and {@link
-     * com.smartgwt.client.widgets.layout.PortalLayout#removeColumn}
-     *
-     * @param numColumns numColumns Default value is 2
-     * @throws IllegalStateException this property cannot be changed after the component has been created
-     */
-    public void setNumColumns(int numColumns)  throws IllegalStateException {
-        setAttribute("numColumns", numColumns, false);
-    }
-
-    /**
-     * Initial number of columns to show in this PortalLayout. Note that after initialization columns should be added / removed
-     * via {@link com.smartgwt.client.widgets.layout.PortalLayout#addColumn} and {@link
-     * com.smartgwt.client.widgets.layout.PortalLayout#removeColumn}
-     *
-     *
-     * @return int
-     */
-    public int getNumColumns()  {
-        return getAttributeAsInt("numColumns");
-    }
- 
-
-    /**
-     * Should a menu be shown within each column with options to add / remove columns?
-     *
-     * @param showColumnMenus showColumnMenus Default value is true
-     * @throws IllegalStateException this property cannot be changed after the component has been created
-     */
-    public void setShowColumnMenus(Boolean showColumnMenus)  throws IllegalStateException {
-        setAttribute("showColumnMenus", showColumnMenus, false);
-    }
-
-    /**
-     * Should a menu be shown within each column with options to add / remove columns?
-     *
-     *
-     * @return Boolean
-     */
-    public Boolean getShowColumnMenus()  {
-        return getAttributeAsBoolean("showColumnMenus");
-    }
-
-    /**
-     * Border to show around columns in this PortalLayout
-     * Sets the columnBorder for to the specified value and updates any drawn columns to reflect this.
-     *
-     * @param columnBorder New border to show around columns. Default value is "1px solid gray"
-     */
-    public void setColumnBorder(String columnBorder) {
-        setAttribute("columnBorder", columnBorder, true);
-    }
-
-    /**
-     * Border to show around columns in this PortalLayout
-     *
-     *
-     * @return String
-     */
-    public String getColumnBorder()  {
-        return getAttributeAsString("columnBorder");
-    }
-
-    /**
      * Are columns in this portalLayout drag-resizeable?
      *
      * @param canResizeColumns canResizeColumns Default value is false
@@ -199,6 +134,71 @@ public class PortalLayout extends Layout {
         return getAttributeAsBoolean("canResizeRows");
     }
 
+    /**
+     * Border to show around columns in this PortalLayout
+     * Sets the columnBorder for to the specified value and updates any drawn columns to reflect this.
+     *
+     * @param columnBorder New border to show around columns. Default value is "1px solid gray"
+     */
+    public void setColumnBorder(String columnBorder) {
+        setAttribute("columnBorder", columnBorder, true);
+    }
+
+    /**
+     * Border to show around columns in this PortalLayout
+     *
+     *
+     * @return String
+     */
+    public String getColumnBorder()  {
+        return getAttributeAsString("columnBorder");
+    }
+ 
+
+    /**
+     * Initial number of columns to show in this PortalLayout. Note that after initialization columns should be added / removed
+     * via {@link com.smartgwt.client.widgets.layout.PortalLayout#addColumn} and {@link
+     * com.smartgwt.client.widgets.layout.PortalLayout#removeColumn}
+     *
+     * @param numColumns numColumns Default value is 2
+     * @throws IllegalStateException this property cannot be changed after the component has been created
+     */
+    public void setNumColumns(int numColumns)  throws IllegalStateException {
+        setAttribute("numColumns", numColumns, false);
+    }
+
+    /**
+     * Initial number of columns to show in this PortalLayout. Note that after initialization columns should be added / removed
+     * via {@link com.smartgwt.client.widgets.layout.PortalLayout#addColumn} and {@link
+     * com.smartgwt.client.widgets.layout.PortalLayout#removeColumn}
+     *
+     *
+     * @return int
+     */
+    public int getNumColumns()  {
+        return getAttributeAsInt("numColumns");
+    }
+
+    /**
+     * Should a menu be shown within each column with options to add / remove columns?
+     *
+     * @param showColumnMenus showColumnMenus Default value is true
+     * @throws IllegalStateException this property cannot be changed after the component has been created
+     */
+    public void setShowColumnMenus(Boolean showColumnMenus)  throws IllegalStateException {
+        setAttribute("showColumnMenus", showColumnMenus, false);
+    }
+
+    /**
+     * Should a menu be shown within each column with options to add / remove columns?
+     *
+     *
+     * @return Boolean
+     */
+    public Boolean getShowColumnMenus()  {
+        return getAttributeAsBoolean("showColumnMenus");
+    }
+
     // ********************* Methods ***********************
             
     /**
@@ -208,16 +208,6 @@ public class PortalLayout extends Layout {
     public native void addColumn(int index) /*-{
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
         self.addColumn(index);
-    }-*/;
-            
-    /**
-     * Removes the specified column from this layout. All portlets displayed within this column will be destroyed when the
-     * column is removed.
-     * @param index column number to remove
-     */
-    public native void removeColumn(int index) /*-{
-        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
-        self.removeColumn(index);
     }-*/;
             
     /**
@@ -238,6 +228,16 @@ public class PortalLayout extends Layout {
     public native void addPortlet(Portlet portlet, int colNum, int rowNum) /*-{
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
         self.addPortlet(portlet.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()(), colNum, rowNum);
+    }-*/;
+            
+    /**
+     * Removes the specified column from this layout. All portlets displayed within this column will be destroyed when the
+     * column is removed.
+     * @param index column number to remove
+     */
+    public native void removeColumn(int index) /*-{
+        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
+        self.removeColumn(index);
     }-*/;
             
     /**

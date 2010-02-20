@@ -88,23 +88,26 @@ public class Progressbar extends StretchImg  implements com.smartgwt.client.widg
     // ********************* Properties / Attributes ***********************
 
     /**
-     * Number from 0 to 100, inclusive, for the percentage to be displayed graphically in this progressbar.
-     * Sets percentDone to newPercent.
+     * Thickness of the progressbar in pixels. This is effectively width for a vertical progressbar, or height for a horizontal
+     * progressbar. <P> This property must be set instead of setting <code>width</code> or <code>height</code>.
+     * Sets the breadth of the progressbar to newLength. This is the height of a horizontal progressbar, or the width of a vertical progressbar.
      *
-     * @param percentDone percent to show as done (0-100). Default value is 0
+     * @param breadth the new breadth of the progressbar. Default value is 20
+     * @throws IllegalStateException this property cannot be changed after the component has been created
      */
-    public void setPercentDone(int percentDone) {
-        setAttribute("percentDone", percentDone, true);
+    public void setBreadth(int breadth)  throws IllegalStateException {
+        setAttribute("breadth", breadth, false);
     }
 
     /**
-     * Number from 0 to 100, inclusive, for the percentage to be displayed graphically in this progressbar.
+     * Thickness of the progressbar in pixels. This is effectively width for a vertical progressbar, or height for a horizontal
+     * progressbar. <P> This property must be set instead of setting <code>width</code> or <code>height</code>.
      *
      *
-     * @return int
+     * @return Returns the current height of a horizontal progressbar, or width of a vertical progressbar.
      */
-    public int getPercentDone()  {
-        return getAttributeAsInt("percentDone");
+    public int getBreadth()  {
+        return getAttributeAsInt("breadth");
     }
 
     /**
@@ -131,45 +134,23 @@ public class Progressbar extends StretchImg  implements com.smartgwt.client.widg
     }
 
     /**
-     * Thickness of the progressbar in pixels. This is effectively width for a vertical progressbar, or height for a horizontal
-     * progressbar. <P> This property must be set instead of setting <code>width</code> or <code>height</code>.
-     * Sets the breadth of the progressbar to newLength. This is the height of a horizontal progressbar, or the width of a vertical progressbar.
+     * Number from 0 to 100, inclusive, for the percentage to be displayed graphically in this progressbar.
+     * Sets percentDone to newPercent.
      *
-     * @param breadth the new breadth of the progressbar. Default value is 20
-     * @throws IllegalStateException this property cannot be changed after the component has been created
+     * @param percentDone percent to show as done (0-100). Default value is 0
      */
-    public void setBreadth(int breadth)  throws IllegalStateException {
-        setAttribute("breadth", breadth, false);
+    public void setPercentDone(int percentDone) {
+        setAttribute("percentDone", percentDone, true);
     }
 
     /**
-     * Thickness of the progressbar in pixels. This is effectively width for a vertical progressbar, or height for a horizontal
-     * progressbar. <P> This property must be set instead of setting <code>width</code> or <code>height</code>.
+     * Number from 0 to 100, inclusive, for the percentage to be displayed graphically in this progressbar.
      *
      *
-     * @return Returns the current height of a horizontal progressbar, or width of a vertical progressbar.
+     * @return int
      */
-    public int getBreadth()  {
-        return getAttributeAsInt("breadth");
-    }
-
-    /**
-     * Indicates whether this is a vertical or horizontal progressbar.
-     *
-     * @param vertical vertical Default value is false
-     */
-    public void setVertical(Boolean vertical) {
-        setAttribute("vertical", vertical, true);
-    }
-
-    /**
-     * Indicates whether this is a vertical or horizontal progressbar.
-     *
-     *
-     * @return Boolean
-     */
-    public Boolean getVertical()  {
-        return getAttributeAsBoolean("vertical");
+    public int getPercentDone()  {
+        return getAttributeAsInt("percentDone");
     }
 
     /**
@@ -189,6 +170,25 @@ public class Progressbar extends StretchImg  implements com.smartgwt.client.widg
      */
     public String getSrc()  {
         return getAttributeAsString("src");
+    }
+
+    /**
+     * Indicates whether this is a vertical or horizontal progressbar.
+     *
+     * @param vertical vertical Default value is false
+     */
+    public void setVertical(Boolean vertical) {
+        setAttribute("vertical", vertical, true);
+    }
+
+    /**
+     * Indicates whether this is a vertical or horizontal progressbar.
+     *
+     *
+     * @return Boolean
+     */
+    public Boolean getVertical()  {
+        return getAttributeAsBoolean("vertical");
     }
 
     // ********************* Methods ***********************
