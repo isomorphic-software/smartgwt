@@ -712,7 +712,7 @@ public class SelectItem extends FormItem  implements PickList, com.smartgwt.clie
         $wnd.isc.SelectItem.getPrototype().getPickListFilterCriteria = $entry(function() {
             var jObj = this.__ref;
             //if widget was not created in java via smartgwt, fallback to old behavior
-            if(jObj) {
+            if(jObj && @com.smartgwt.client.widgets.form.fields.SelectItem::isSelectItem(Lcom/smartgwt/client/widgets/form/fields/FormItem;)(jObj)) {
                 jObj.@com.smartgwt.client.widgets.form.fields.SelectItem::setJsObj(Lcom/google/gwt/core/client/JavaScriptObject;)(this);
                 var critJ = jObj.@com.smartgwt.client.widgets.form.fields.SelectItem::getPickListFilterCriteria()();
                 return critJ == null ? {} : critJ.@com.smartgwt.client.data.Criteria::getJsObj()();
@@ -722,6 +722,9 @@ public class SelectItem extends FormItem  implements PickList, com.smartgwt.clie
         });
     }-*/;
 
+    private static boolean isSelectItem(FormItem formItem) {
+        return formItem instanceof SelectItem;
+    }
 
     /**
      * Returns a set of filter criteria to be applied to the data displayed in the pickList when it is shown.
