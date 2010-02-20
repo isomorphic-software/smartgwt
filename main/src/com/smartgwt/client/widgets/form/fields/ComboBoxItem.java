@@ -546,8 +546,8 @@ public class ComboBoxItem extends FormItem  implements PickList, com.smartgwt.cl
         $wnd.isc.ComboBoxItem.getPrototype().__getPickListFilterCriteria = $wnd.isc.ComboBoxItem.getPrototype().getPickListFilterCriteria;
         $wnd.isc.ComboBoxItem.getPrototype().getPickListFilterCriteria = $entry(function() {
             var jObj = this.__ref;
-            //if widget was not creatind in java via smartgwt, fallback to old behavior
-            if(jObj) {
+            //if widget was not created in in java via smartgwt, fallback to old behavior
+            if(jObj && @com.smartgwt.client.widgets.form.fields.ComboBoxItem::isComboBoxItem(Lcom/smartgwt/client/widgets/form/fields/FormItem;)(jObj)) {
                 jObj.@com.smartgwt.client.widgets.form.fields.ComboBoxItem::setJsObj(Lcom/google/gwt/core/client/JavaScriptObject;)(this);
                 var critJ = jObj.@com.smartgwt.client.widgets.form.fields.ComboBoxItem::getPickListFilterCriteria()();
                 return critJ == null ? {} : critJ.@com.smartgwt.client.data.Criteria::getJsObj()();
@@ -557,6 +557,10 @@ public class ComboBoxItem extends FormItem  implements PickList, com.smartgwt.cl
         });
     }-*/;
 
+    private static boolean isComboBoxItem(FormItem formItem) {
+        return formItem instanceof ComboBoxItem;
+    }
+    
     /**
      * Returns filter criteria for options displayed for this item.
      * <br>
