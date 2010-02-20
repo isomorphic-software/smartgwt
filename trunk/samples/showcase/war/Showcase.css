@@ -315,6 +315,19 @@ grid cell styles sample
     background-color:#f0f0e8;
 }
 
+.simpleCell,
+.simpleCellSelected,
+.simpleCellOver,
+.simpleCellSelectedOver {
+    font-family:Verdana,Bitstream Vera Sans,sans-serif; font-size:11px;
+    color:black;
+}
+
+.simpleCellDisabled {
+    font-family:Verdana,Bitstream Vera Sans,sans-serif; font-size:11px;
+    color:#808080;
+}
+
 /*
 hilite cells replace
 */
