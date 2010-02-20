@@ -610,6 +610,16 @@ public class FilterBuilder extends Layout  implements com.smartgwt.client.widget
         return @com.smartgwt.client.data.AdvancedCriteria::new(Lcom/google/gwt/core/client/JavaScriptObject;)(critJS);
     }-*/;
 
+    /**
+     * Properties to combine with the fieldPicker FormItem.
+     *
+     * @param fieldPickerProperties the fieldPicker FormItem properties
+     * @throws IllegalStateException this property cannot be changed after the component has been created
+     */
+    public void setFieldPickerProperties(FormItem fieldPickerProperties) throws IllegalStateException {
+        setAttribute("fieldPickerProperties", fieldPickerProperties.getConfig(), false);
+    }
+
 }
 
 

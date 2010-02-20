@@ -7860,6 +7860,37 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
     }
 
     /**
+     * The Selection Under Canvas properties when {@link #setShowSelectionCanvas(Boolean) showSelectionCanvas} is true.
+     *
+     * @param selectionUnderCanvasProperties the selection under Canvas properties
+     * @throws IllegalStateException this property cannot be changed after the component has been created
+     */
+    public void setSelectionUnderCanvasProperties(Canvas selectionUnderCanvasProperties) throws IllegalStateException {
+        setAttribute("selectionUnderCanvasProperties", selectionUnderCanvasProperties.getConfig(), false);
+    }
+
+    //TODO : remove once SC docs are updated.
+    public void setShowSelectionCanvas(boolean showSelectionCanvas) {
+        setAttribute("showSelectionCanvas", showSelectionCanvas, true);
+    }
+
+    public void setAnimateSelectionUnder(Boolean animateSelectionUnder) {
+        setAttribute("animateSelectionUnder", animateSelectionUnder, true);
+    }
+    
+    /**
+     * The RollUnder Canvas properties when {@link #setShowRollOver(Boolean) showRollover} is true and
+     * {@link #setShowRollOverCanvas(Boolean) showRollOverCanvas} is true. This canvas will be created and displayed behind the current rollOver 
+     * cell in the page's z-order, meaning it will only be visible if the cell styling is transparent.
+     *
+     * @param rollUnderCanvasProperties the roll under Canvas properties
+     * @throws IllegalStateException this property cannot be changed after the component has been created
+     */
+    public void setRollUnderCanvasProperties(Canvas rollUnderCanvasProperties) throws IllegalStateException {
+        setAttribute("rollUnderCanvasProperties", rollUnderCanvasProperties.getConfig(), false);
+    }
+    
+    /**
      * An array of listGrid field configuration objects.  When a listGrid is initialized, if this property is set and there is
      * no value for the <code>fields</code> attribute, this.fields will be defaulted to a generated array of field objects
      * duplicated from this array. <P> This property is useful for cases where a standard set of fields will be displayed in

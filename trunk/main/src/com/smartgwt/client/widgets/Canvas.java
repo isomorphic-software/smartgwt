@@ -5429,6 +5429,24 @@ public class Canvas extends BaseWidget  implements com.smartgwt.client.widgets.e
     }
 
     /**
+     * Default animation effect to use if {@link Canvas#animateShow()} is called without an explicit effect parameter.
+     *
+     * @param animateShowEffect the animate show effect. Default is "wipe"
+     */
+    public void setAnimateShowEffect(AnimationEffect animateShowEffect) {
+        setAttribute("animateShowEffect", animateShowEffect, true);
+    }
+
+    /**
+     * Default animation effect to use if {@link Canvas#animateShow()} is called without an explicit effect parameter.
+     *
+     * @return animation effect. Default value is "wipe"
+     */
+    public AnimationEffect getAnimateShowEffect() {
+        return EnumUtil.getEnum(AnimationEffect.values(), getAttribute("animateShowEffect"));
+    }
+    
+    /**
      * If set to true, the widget will be disabled. A widget is only considered enabled       if it is individually enabled and
      * all parents above it in the containment hierarchy       are enabled. This allows you to enable or disable all components
      * of a complex       nested widget by enabling or disabling the top-level parent only.
