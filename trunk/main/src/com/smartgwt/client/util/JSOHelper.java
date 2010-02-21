@@ -90,7 +90,7 @@ public class JSOHelper {
     }
     private static native JavaScriptObject resultSetToArray(JavaScriptObject rs) /*-{
     	if (!rs.lengthIsKnown() || !rs.allMatchingRowsCached()) return $wnd.Array.create();
-    	return rs.getRange(0, rs.getLength()-1);
+    	return rs.getRange(0, rs.getLength());
     	
     }-*/;
 
