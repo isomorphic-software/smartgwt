@@ -221,6 +221,86 @@ public class ToolStrip extends Layout {
     // ********************* Static Methods ***********************
 
 
+
+    /**
+     * Add a FormItem to the ToolStrip.
+     *
+     * @param formItem the formItem
+     */
+    public void addFormItem(FormItem formItem) {
+        DynamicForm dynamicForm = new DynamicForm();
+        dynamicForm.setWidth(formItem.getWidth());
+        dynamicForm.setCellPadding(3);
+        dynamicForm.setWidth("*");
+        dynamicForm.setMinWidth(50);
+        dynamicForm.setNumCols(1);
+        dynamicForm.setFields(formItem);
+
+        addMember(dynamicForm);
+    }
+
+    /**
+     * Add a FormItem to the ToolStrip.
+     *
+     * @param formItem the FormItem
+     * @param position the position in the layout to place newMember (starts with 0); if omitted, it will be added at
+     *                  the last position
+     */
+    public void addFormItem(FormItem formItem, int position) {
+        DynamicForm dynamicForm = new DynamicForm();
+        dynamicForm.setWidth(formItem.getWidth());
+        dynamicForm.setCellPadding(3);
+        dynamicForm.setWidth(formItem.getWidth());
+        dynamicForm.setMinWidth(50);
+        dynamicForm.setNumCols(1);
+        dynamicForm.setFields(formItem);
+        addMember(dynamicForm, position);
+    }
+
+    /**
+     * Add a button to the ToolStrip.
+     *
+     * @param button the toolstrip button
+     */
+    public void addButton(ToolStripButton button) {
+        addMember(button);
+    }
+
+    /**
+     * Add a button to the ToolStrip.
+     *
+     * @param button the button
+     * @param position the position in the layout to place newMember (starts with 0); if omitted, it will be added at
+     *                  the last position
+     */
+    public void addButton(ToolStripButton button, int position) {
+        addMember(button, position);
+    }
+
+    /**
+     * Add an extra space to the right of the previously added ToolStrip element.
+     *
+     * @param toolStripSpacer the toolstip spacer.
+     */
+    public void addSpacer(ToolStripSpacer toolStripSpacer) {
+        Canvas canvas = new Canvas();
+        canvas.setWidth(1);
+        canvas.setHeight(1);
+        canvas.setBorder("none");
+        canvas.setExtraSpace(toolStripSpacer.getSpace());
+        addMember(canvas);
+    }
+
+    /**
+     * Adds a LayoutSpacer to the ToolStrip to take up space such like a normal member, without actually drawing anything.
+     * This causes the "next" member added to the toolstip to be right / bottom justified depending on the
+     * {@link com.smartgwt.client.widgets.toolbar.ToolStrip#setAlign(com.smartgwt.client.types.VerticalAlignment) alignment}
+     * of the ToolStrip.
+     */
+    public void addFill() {
+        addMember(new LayoutSpacer());
+    }
+
     /**
      * Add a canvas to the layout, optionally at a specific position.
      *

@@ -6,6 +6,8 @@ import com.smartgwt.client.widgets.ImgButton;
 import com.smartgwt.client.widgets.form.DynamicForm;
 import com.smartgwt.client.widgets.form.fields.SelectItem;
 import com.smartgwt.client.widgets.toolbar.ToolStrip;
+import com.smartgwt.client.widgets.toolbar.ToolStripButton;
+import com.smartgwt.client.widgets.toolbar.ToolStripResizer;
 import com.smartgwt.client.widgets.toolbar.ToolStripSeparator;
 import com.smartgwt.sample.showcase.client.PanelFactory;
 import com.smartgwt.sample.showcase.client.ShowcasePanel;
@@ -36,95 +38,73 @@ public class ToolStripsSample extends ShowcasePanel {
     public Canvas getViewPanel() {
         ToolStrip toolStrip = new ToolStrip();
         toolStrip.setWidth(450);
-        toolStrip.setHeight(24);
 
-        ImgButton boldButton = new ImgButton();
-        boldButton.setSize(24);
-        boldButton.setShowRollOver(false);
-        boldButton.setSrc("icons/24/text_bold.png");
+        ToolStripButton boldButton = new ToolStripButton();
+        boldButton.setIcon("[SKIN]/RichTextEditor/text_bold.png");
         boldButton.setActionType(SelectionType.CHECKBOX);
         toolStrip.addMember(boldButton);
         
-        ImgButton italicsButton = new ImgButton();
-        italicsButton.setSize(24);
-        italicsButton.setShowRollOver(false);
-        italicsButton.setSrc("icons/24/text_italics.png");
+        ToolStripButton italicsButton = new ToolStripButton();
+        italicsButton.setIcon("[SKIN]/RichTextEditor/text_italic.png");
         italicsButton.setActionType(SelectionType.CHECKBOX);
         toolStrip.addMember(italicsButton);
         
-        ImgButton underlineButton = new ImgButton();
-        underlineButton.setSize(24);
-        underlineButton.setShowRollOver(false);
-        underlineButton.setSrc("icons/24/text_underlined.png");
+        ToolStripButton underlineButton = new ToolStripButton();
+        underlineButton.setIcon("[SKIN]/RichTextEditor/text_underlined.png");
         underlineButton.setActionType(SelectionType.CHECKBOX);
         toolStrip.addMember(underlineButton);
 
         ToolStripSeparator stripSeparator = new ToolStripSeparator();
-        stripSeparator.setHeight(8);
 
         toolStrip.addMember(stripSeparator);
         
-        ImgButton alignLeftButton = new ImgButton();
-        alignLeftButton.setSize(24);
-        alignLeftButton.setShowRollOver(false);
-        alignLeftButton.setSrc("icons/24/text_align_left.png");
+        ToolStripButton alignLeftButton = new ToolStripButton();
+        alignLeftButton.setIcon("[SKIN]/RichTextEditor/text_align_left.png");
         alignLeftButton.setActionType(SelectionType.RADIO);
         alignLeftButton.setRadioGroup("textAlign");
         toolStrip.addMember(alignLeftButton);
         
-        ImgButton alignRightButton = new ImgButton();
-        alignRightButton.setSize(24);
-        alignRightButton.setShowRollOver(false);
-        alignRightButton.setSrc("icons/24/text_align_right.png");
+        ToolStripButton alignRightButton = new ToolStripButton();
+        alignRightButton.setIcon("[SKIN]/RichTextEditor/text_align_right.png");
         alignRightButton.setActionType(SelectionType.RADIO);
         alignRightButton.setRadioGroup("textAlign");
         toolStrip.addMember(alignRightButton);
         
-        ImgButton alignCenterButton = new ImgButton();
-        alignCenterButton.setSize(24);
-        alignCenterButton.setShowRollOver(false);
-        alignCenterButton.setSrc("icons/24/text_align_center.png");
+        ToolStripButton alignCenterButton = new ToolStripButton();
+        alignCenterButton.setIcon("[SKIN]/RichTextEditor/text_align_center.png");
         alignCenterButton.setActionType(SelectionType.RADIO);
         alignCenterButton.setRadioGroup("textAlign");
         toolStrip.addMember(alignCenterButton);
 
         toolStrip.addMember(stripSeparator);
 
-        DynamicForm fontForm = new DynamicForm();
-        fontForm.setShowResizeBar(true);
-        fontForm.setWidth("*");
-        fontForm.setMinWidth(50);
-        fontForm.setNumCols(1);
 
         SelectItem fontItem = new SelectItem();
         fontItem.setShowTitle(false);
-        fontItem.setWidth("*");
+        fontItem.setWidth(50);
 
         LinkedHashMap<String, String> valueMap = new LinkedHashMap<String, String>();
         valueMap.put("courier", "<span style='font-family:courier'>Courier</span>");
         valueMap.put("verdana", "<span style='font-family:verdana'>Verdana</span>");
         valueMap.put("times", "<span style='font-family:times'>Times</span>");
         fontItem.setValueMap(valueMap);
-        fontForm.setItems(fontItem);
         fontItem.setDefaultValue("courier");
-        toolStrip.addMember(fontForm);
 
-        //toolStrip.addMember(new ToolStripResizer());
-        
-        DynamicForm zoomForm = new DynamicForm();
-        zoomForm.setWidth("*");
-        zoomForm.setMinWidth(50);
-        zoomForm.setNumCols(1);
+        toolStrip.addFormItem(fontItem);
+
+        toolStrip.addMember(new ToolStripResizer());
+
+        //push the "rest" of the members to the right
+        toolStrip.addFill();
 
         SelectItem zoomItems = new SelectItem();
         zoomItems.setName("selectName");
         zoomItems.setShowTitle(false);
-        zoomItems.setWidth("*");
+        zoomItems.setWidth("60");
         zoomItems.setValueMap("50%", "75%", "100%", "200%", "Fit");
         zoomItems.setDefaultValue("100%");
-        zoomForm.setItems(zoomItems);
 
-        toolStrip.addMember(zoomForm);
+        toolStrip.addFormItem(zoomItems);
         
         return toolStrip;
     }
