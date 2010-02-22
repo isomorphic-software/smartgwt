@@ -221,7 +221,6 @@ public class ToolStrip extends Layout {
     // ********************* Static Methods ***********************
 
 
-
     /**
      * Add a FormItem to the ToolStrip.
      *
@@ -231,7 +230,6 @@ public class ToolStrip extends Layout {
         DynamicForm dynamicForm = new DynamicForm();
         dynamicForm.setWidth(formItem.getWidth());
         dynamicForm.setCellPadding(3);
-        dynamicForm.setWidth("*");
         dynamicForm.setMinWidth(50);
         dynamicForm.setNumCols(1);
         dynamicForm.setFields(formItem);
@@ -250,7 +248,6 @@ public class ToolStrip extends Layout {
         DynamicForm dynamicForm = new DynamicForm();
         dynamicForm.setWidth(formItem.getWidth());
         dynamicForm.setCellPadding(3);
-        dynamicForm.setWidth(formItem.getWidth());
         dynamicForm.setMinWidth(50);
         dynamicForm.setNumCols(1);
         dynamicForm.setFields(formItem);
