@@ -63,6 +63,24 @@ public abstract class BaseClass {
         setAttribute("ID", id, false);
     }
 
+    /**
+     * Get the name of the underlying SmartClient class
+     *
+     * @return the SmartClient class name
+     */
+    public String getScClassName() {
+        return scClassName;
+    }
+
+    /**
+     * Set the name of the underlying SmartClient class. This is an advanced setting.
+     *
+     * @param scClassName the SmartClient class
+     */
+    public void setScClassName(String scClassName) {
+        this.scClassName = scClassName;
+    }
+
     public JavaScriptObject getConfig() {
         return config;
     }

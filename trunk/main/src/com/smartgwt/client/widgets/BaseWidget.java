@@ -126,6 +126,24 @@ public abstract class BaseWidget extends Widget implements HasHandlers {
         isElementSet = true;
     }
 
+    /**
+     * Get the name of the underlying SmartClient class
+     *
+     * @return the SmartClient class name
+     */
+    public String getScClassName() {
+        return scClassName;
+    }
+
+    /**
+     * Set the name of the underlying SmartClient class. This is an advanced setting.
+     *
+     * @param scClassName the SmartClient class
+     */
+    public void setScClassName(String scClassName) {
+        this.scClassName = scClassName;
+    }
+
     protected final native void doInit()/*-{
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
         self.__setDragTracker = self.setDragTracker;
@@ -351,7 +369,7 @@ public abstract class BaseWidget extends Widget implements HasHandlers {
                 ret = config[property];
             } else {
                var scClassName = this.@com.smartgwt.client.widgets.BaseWidget::scClassName;
-               ret = eval("($wnd.isc." + scClassName + ".getInstanceProperty('" + property + "'))")
+               ret = $wnd.isc[scClassName].getInstanceProperty(property);
             }
         }
         return ret == null || ret === undefined ? null : String(ret) ;
@@ -368,7 +386,7 @@ public abstract class BaseWidget extends Widget implements HasHandlers {
                 ret = config[property];
             } else {
                var scClassName = this.@com.smartgwt.client.widgets.BaseWidget::scClassName;
-               ret = eval("($wnd.isc." + scClassName + ".getInstanceProperty('" + property + "'))")
+               ret = $wnd.isc[scClassName].getInstanceProperty(property);
             }
         }
         return ret === undefined ? null : @com.smartgwt.client.util.JSOHelper::convertToJavaStringArray(Lcom/google/gwt/core/client/JavaScriptObject;)(ret);
@@ -385,7 +403,7 @@ public abstract class BaseWidget extends Widget implements HasHandlers {
                 ret = config[property];
             } else {
                var scClassName = this.@com.smartgwt.client.widgets.BaseWidget::scClassName;
-               ret = eval("($wnd.isc." + scClassName + ".getInstanceProperty('" + property + "'))")
+               ret = $wnd.isc[scClassName].getInstanceProperty(property);
             }
         }
         return ret == null || ret === undefined ? null : @com.smartgwt.client.util.JSOHelper::toDate(D)(ret.getTime());
@@ -402,7 +420,7 @@ public abstract class BaseWidget extends Widget implements HasHandlers {
                 ret = config[property];
             } else {
                var scClassName = this.@com.smartgwt.client.widgets.BaseWidget::scClassName;
-               ret = eval("($wnd.isc." + scClassName + ".getInstanceProperty('" + property + "'))")
+               ret = $wnd.isc[scClassName].getInstanceProperty(property);
             }
         }
         return ret == null || ret === undefined ? null : @com.smartgwt.client.util.JSOHelper::toInteger(I)(ret);
@@ -419,7 +437,7 @@ public abstract class BaseWidget extends Widget implements HasHandlers {
                 ret = config[property];
             } else {
                var scClassName = this.@com.smartgwt.client.widgets.BaseWidget::scClassName;
-               ret = eval("($wnd.isc." + scClassName + ".getInstanceProperty('" + property + "'))")
+               ret = $wnd.isc[scClassName].getInstanceProperty(property);
             }
         }
         return ret == null || ret === undefined ? null : @com.smartgwt.client.util.JSOHelper::toDouble(D)(ret);
@@ -436,7 +454,7 @@ public abstract class BaseWidget extends Widget implements HasHandlers {
                 ret = config[property];
             } else {
                var scClassName = this.@com.smartgwt.client.widgets.BaseWidget::scClassName;
-               ret = eval("($wnd.isc." + scClassName + ".getInstanceProperty('" + property + "'))")
+               ret = $wnd.isc[scClassName].getInstanceProperty(property);
             }
         }
         return ret === undefined ? null : ret;
@@ -453,7 +471,7 @@ public abstract class BaseWidget extends Widget implements HasHandlers {
                 ret = config[property];
             } else {
                var scClassName = this.@com.smartgwt.client.widgets.BaseWidget::scClassName;
-               ret = eval("($wnd.isc." + scClassName + ".getInstanceProperty('" + property + "'))")
+               ret = $wnd.isc[scClassName].getInstanceProperty(property);
             }
         }
         return ret === undefined ? null : ret;
@@ -470,7 +488,7 @@ public abstract class BaseWidget extends Widget implements HasHandlers {
                 ret = config[property];
             } else {
                var scClassName = this.@com.smartgwt.client.widgets.BaseWidget::scClassName;
-               ret = eval("($wnd.isc." + scClassName + ".getInstanceProperty('" + property + "'))")
+               ret = $wnd.isc[scClassName].getInstanceProperty(property);
             }
         }
         return ret == null || ret === undefined ? null : @com.smartgwt.client.util.JSOHelper::toFloat(F)(ret);
@@ -487,7 +505,7 @@ public abstract class BaseWidget extends Widget implements HasHandlers {
                 ret = config[property];
             } else {
                var scClassName = this.@com.smartgwt.client.widgets.BaseWidget::scClassName;
-               ret = eval("($wnd.isc." + scClassName + ".getInstanceProperty('" + property + "'))")
+               ret = $wnd.isc[scClassName].getInstanceProperty(property);
             }
         }
         return ret == null || ret === undefined ? null : @com.smartgwt.client.util.JSOHelper::toBoolean(Z)(ret);
@@ -504,7 +522,7 @@ public abstract class BaseWidget extends Widget implements HasHandlers {
                 ret = config[property];
             } else {
                var scClassName = this.@com.smartgwt.client.widgets.BaseWidget::scClassName;
-               ret = eval("($wnd.isc." + scClassName + ".getInstanceProperty('" + property + "'))")
+               ret = $wnd.isc[scClassName].getInstanceProperty(property);
             }
         }
         return ret == null || ret === undefined ? null : @com.smartgwt.client.util.JSOHelper::convertToMap(Lcom/google/gwt/core/client/JavaScriptObject;)(ret);
