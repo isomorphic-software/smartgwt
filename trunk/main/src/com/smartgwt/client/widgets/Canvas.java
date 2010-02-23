@@ -6547,7 +6547,14 @@ public class Canvas extends BaseWidget  implements com.smartgwt.client.widgets.e
      * @param children children Default value is null
      */
     public void setChildren(Canvas... children) {
-        setAttribute("children", children, true);
+        if(!isDrawn()) {
+            setAttribute("children", children, false);
+        } else {
+            for (int i = 0; i < children.length; i++) {
+                Canvas child = children[i];
+                addChild(child);
+            }
+        }
     }
 
     /**
