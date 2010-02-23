@@ -1,27 +1,23 @@
-package com.smartgwt.sample.showcase.client.other;
+package com.smartgwt.sample.showcase.client.toolstrip;
 
 import com.smartgwt.client.types.SelectionType;
 import com.smartgwt.client.widgets.Canvas;
-import com.smartgwt.client.widgets.ImgButton;
-import com.smartgwt.client.widgets.form.DynamicForm;
 import com.smartgwt.client.widgets.form.fields.SelectItem;
 import com.smartgwt.client.widgets.toolbar.ToolStrip;
 import com.smartgwt.client.widgets.toolbar.ToolStripButton;
-import com.smartgwt.client.widgets.toolbar.ToolStripResizer;
-import com.smartgwt.client.widgets.toolbar.ToolStripSeparator;
 import com.smartgwt.sample.showcase.client.PanelFactory;
 import com.smartgwt.sample.showcase.client.ShowcasePanel;
 
 import java.util.LinkedHashMap;
 
-public class ToolStripsSample extends ShowcasePanel {
+public class ToolStripSample extends ShowcasePanel {
     private static final String DESCRIPTION = "Click the icons at left to see \"radio\"-style selection. Click the drop-down to see font options.";
 
     public static class Factory implements PanelFactory {
         private String id;
 
         public Canvas create() {
-            ToolStripsSample panel = new ToolStripsSample();
+            ToolStripSample panel = new ToolStripSample();
             id = panel.getID();
             return panel;
         }
@@ -37,70 +33,74 @@ public class ToolStripsSample extends ShowcasePanel {
 
     public Canvas getViewPanel() {
         ToolStrip toolStrip = new ToolStrip();
-        toolStrip.setWidth(450);
+        toolStrip.setWidth(500);
+
+        //push all buttons to the right
+        toolStrip.addFill();
+
+        ToolStripButton iconButton = new ToolStripButton();
+        iconButton.setIcon("silk/printer.png");
+        iconButton.setTitle("Print");
+        toolStrip.addButton(iconButton);
+
+        toolStrip.addResizer();
 
         ToolStripButton boldButton = new ToolStripButton();
         boldButton.setIcon("[SKIN]/RichTextEditor/text_bold.png");
         boldButton.setActionType(SelectionType.CHECKBOX);
-        toolStrip.addMember(boldButton);
+        toolStrip.addButton(boldButton);
         
         ToolStripButton italicsButton = new ToolStripButton();
         italicsButton.setIcon("[SKIN]/RichTextEditor/text_italic.png");
         italicsButton.setActionType(SelectionType.CHECKBOX);
-        toolStrip.addMember(italicsButton);
+        toolStrip.addButton(italicsButton);
         
         ToolStripButton underlineButton = new ToolStripButton();
-        underlineButton.setIcon("[SKIN]/RichTextEditor/text_underlined.png");
+        underlineButton.setIcon("[SKIN]/RichTextEditor/text_underline.png");
         underlineButton.setActionType(SelectionType.CHECKBOX);
-        toolStrip.addMember(underlineButton);
+        toolStrip.addButton(underlineButton);
 
-        ToolStripSeparator stripSeparator = new ToolStripSeparator();
-
-        toolStrip.addMember(stripSeparator);
+        toolStrip.addSeparator();
         
         ToolStripButton alignLeftButton = new ToolStripButton();
         alignLeftButton.setIcon("[SKIN]/RichTextEditor/text_align_left.png");
         alignLeftButton.setActionType(SelectionType.RADIO);
         alignLeftButton.setRadioGroup("textAlign");
-        toolStrip.addMember(alignLeftButton);
+        toolStrip.addButton(alignLeftButton);
         
         ToolStripButton alignRightButton = new ToolStripButton();
         alignRightButton.setIcon("[SKIN]/RichTextEditor/text_align_right.png");
         alignRightButton.setActionType(SelectionType.RADIO);
         alignRightButton.setRadioGroup("textAlign");
-        toolStrip.addMember(alignRightButton);
+        toolStrip.addButton(alignRightButton);
         
         ToolStripButton alignCenterButton = new ToolStripButton();
         alignCenterButton.setIcon("[SKIN]/RichTextEditor/text_align_center.png");
         alignCenterButton.setActionType(SelectionType.RADIO);
         alignCenterButton.setRadioGroup("textAlign");
-        toolStrip.addMember(alignCenterButton);
+        toolStrip.addButton(alignCenterButton);
 
-        toolStrip.addMember(stripSeparator);
-
+        toolStrip.addSeparator();
 
         SelectItem fontItem = new SelectItem();
         fontItem.setShowTitle(false);
-        fontItem.setWidth(50);
+        fontItem.setWidth(120);
 
         LinkedHashMap<String, String> valueMap = new LinkedHashMap<String, String>();
         valueMap.put("courier", "<span style='font-family:courier'>Courier</span>");
         valueMap.put("verdana", "<span style='font-family:verdana'>Verdana</span>");
         valueMap.put("times", "<span style='font-family:times'>Times</span>");
         fontItem.setValueMap(valueMap);
-        fontItem.setDefaultValue("courier");
+        fontItem.setDefaultValue("verdana");
 
         toolStrip.addFormItem(fontItem);
 
-        toolStrip.addMember(new ToolStripResizer());
-
-        //push the "rest" of the members to the right
-        toolStrip.addFill();
+        toolStrip.addResizer();
 
         SelectItem zoomItems = new SelectItem();
         zoomItems.setName("selectName");
         zoomItems.setShowTitle(false);
-        zoomItems.setWidth("60");
+        zoomItems.setWidth(100);
         zoomItems.setValueMap("50%", "75%", "100%", "200%", "Fit");
         zoomItems.setDefaultValue("100%");
 

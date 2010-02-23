@@ -72,6 +72,8 @@ import com.smartgwt.sample.showcase.client.tiling.BasicTilingSample;
 import com.smartgwt.sample.showcase.client.tiling.FilterSortTilingSample;
 import com.smartgwt.sample.showcase.client.tiling.LoadOnDemandTilingSample;
 import com.smartgwt.sample.showcase.client.tiling.TileEditingSample;
+import com.smartgwt.sample.showcase.client.toolstrip.ToolStripSample;
+import com.smartgwt.sample.showcase.client.toolstrip.ToolStripVerticalSample;
 import com.smartgwt.sample.showcase.client.tree.*;
 import com.smartgwt.sample.showcase.client.tree.appearance.MultipleColumnsSample;
 import com.smartgwt.sample.showcase.client.tree.appearance.NodeTitlesTreeSample;
@@ -131,6 +133,8 @@ public class ShowcaseData {
                     new ExplorerTreeNode("Big Filter", "grid-big-filter-new-category", "new-category", null, new GridBigFilterSample.Factory(), true, idSuffix),
                     new ExplorerTreeNode("Animated Selection", "grid-appearance-animated-selection-new-category", "new-category", null, new AnimatedSelectionSample.Factory(), true, idSuffix),
                     new ExplorerTreeNode("RollOver Controls", "grid-appearance-rollover-controls-new-category", "new-category", null, new RollOverControlsSample.Factory(), true, idSuffix),
+                    new ExplorerTreeNode("ToolStrip", "toolstrip-new-category", "new-category", null, new ToolStripSample.Factory(), true, idSuffix),
+                    new ExplorerTreeNode("ToolStrip (Vertical)", "toolstrip-vertical-new-category", "new-category", null, new ToolStripVerticalSample.Factory(), true, idSuffix),
 
                     new CommandTreeNode("Enterprise Showcase", "smartgwtee-category", "root", "pieces/16/cube_yellow.png", new com.smartgwt.sample.showcase.client.SmartGwtEECommand(), true, idSuffix),
 
@@ -412,8 +416,11 @@ public class ShowcaseData {
                     //new ExplorerTreeNode("Custom Columns", "menus-category-customcolumns", "menus-category", null, new MenuCustomColumnsSample.Factory(), true, idSuffix),
                     new ExplorerTreeNode("Tree Binding", "menus-category-treebinding", "menus-category", null, new MenuTreeBindingSample.Factory(), true, idSuffix),
 
+                    new ExplorerTreeNode("ToolStrip", "toolstrip-category", "root",null, null, true, idSuffix),
+                    new ExplorerTreeNode("ToolStrip", "toolstrip", "toolstrip-category", null, new ToolStripSample.Factory(), true, idSuffix),
+                    new ExplorerTreeNode("ToolStrip", "toolstrip-vertical", "toolstrip-category", null, new ToolStripVerticalSample.Factory(), true, idSuffix),
+
                     new ExplorerTreeNode("Other Controls", "controls-category", "root", "silk/timeline_marker.png", null, true, idSuffix),
-                    new ExplorerTreeNode("ToolStrips", "controls-category-toolstrip", "controls-category", null, new ToolStripsSample.Factory(), true, idSuffix),
                     new ExplorerTreeNode("Dialogs", "controls-category-dialogs", "controls-category", null, new DialogsSample.Factory(), true, idSuffix),
                     new ExplorerTreeNode("Slider", "controls-category-slider", "controls-category", null, new SliderSample.Factory(), true, idSuffix),
                     new ExplorerTreeNode("Progressbar", "controls-category-progressbar", "controls-category", null, new ProgressBarSample.Factory(), true, idSuffix),

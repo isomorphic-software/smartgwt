@@ -228,12 +228,11 @@ public class ToolStrip extends Layout {
      */
     public void addFormItem(FormItem formItem) {
         DynamicForm dynamicForm = new DynamicForm();
-        dynamicForm.setWidth(formItem.getWidth());
         dynamicForm.setCellPadding(3);
         dynamicForm.setMinWidth(50);
         dynamicForm.setNumCols(1);
         dynamicForm.setFields(formItem);
-
+        applyWidth(dynamicForm.getConfig(), formItem.getJsObj());
         addMember(dynamicForm);
     }
 
@@ -246,13 +245,18 @@ public class ToolStrip extends Layout {
      */
     public void addFormItem(FormItem formItem, int position) {
         DynamicForm dynamicForm = new DynamicForm();
-        dynamicForm.setWidth(formItem.getWidth());
         dynamicForm.setCellPadding(3);
         dynamicForm.setMinWidth(50);
         dynamicForm.setNumCols(1);
         dynamicForm.setFields(formItem);
+        applyWidth(dynamicForm.getConfig(), formItem.getJsObj());
         addMember(dynamicForm, position);
     }
+
+    //set the width of the form to match that of the form item. using native method because width can be int or String
+    private static native void applyWidth(JavaScriptObject formJS, JavaScriptObject itemJS)/*-{
+        formJS.width = itemJS.width;
+    }-*/;
 
     /**
      * Add a button to the ToolStrip.
@@ -260,6 +264,13 @@ public class ToolStrip extends Layout {
      * @param button the toolstrip button
      */
     public void addButton(ToolStripButton button) {
+        if(button.getTitle() == null) {
+            button.setIconSpacing(0);
+            button.setLabelHPad(3);
+        } else if (button.getIcon() == null) {
+            button.setLabelHPad(7);
+        }
+
         addMember(button);
     }
 
@@ -298,6 +309,19 @@ public class ToolStrip extends Layout {
         addMember(new LayoutSpacer());
     }
 
+    /**
+     * Add a {@link com.smartgwt.client.widgets.toolbar.ToolStripSeparator separator}.
+     */
+    public void addSeparator() {
+        addMember(new ToolStripSeparator());
+    }
+
+    /**
+     * Add a {@link com.smartgwt.client.widgets.toolbar.ToolStripResizer resizer}
+     */
+    public void addResizer() {
+        addMember(new ToolStripResizer());
+    }
     /**
      * Add a canvas to the layout, optionally at a specific position.
      *

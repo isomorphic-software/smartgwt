@@ -17,11 +17,10 @@
 package com.smartgwt.sample.showcase.client.grid.appearance;
 
 import com.smartgwt.client.types.Alignment;
+import com.smartgwt.client.types.LayoutPolicy;
 import com.smartgwt.client.types.ListGridFieldType;
 import com.smartgwt.client.util.SC;
-import com.smartgwt.client.widgets.Button;
-import com.smartgwt.client.widgets.Canvas;
-import com.smartgwt.client.widgets.IButton;
+import com.smartgwt.client.widgets.*;
 import com.smartgwt.client.widgets.events.ClickEvent;
 import com.smartgwt.client.widgets.events.ClickHandler;
 import com.smartgwt.client.widgets.grid.ListGrid;
@@ -54,30 +53,53 @@ public class RollOverControlsSample extends ShowcasePanel {
         }
     }
 
+    private HLayout rollOverCanvas;
+    private ListGridRecord rollOverRecord;
+
     public Canvas getViewPanel() {
 
         final ListGrid countryGrid = new ListGrid() {
             protected Canvas getRollOverCanvas(Integer rowNum, Integer colNum) {
-                final ListGridRecord record = this.getRecord(rowNum);
+                rollOverRecord = this.getRecord(rowNum);
 
-                HLayout canvas = new HLayout();
-                canvas.setSnapTo("TR");
-                canvas.setWidth(40);
-                canvas.setHeight(20);
+                if(rollOverCanvas == null) {
+                    rollOverCanvas = new HLayout(3);
+                    rollOverCanvas.setSnapTo("TR");
+                    rollOverCanvas.setWidth(40);
+                    rollOverCanvas.setHeight(22);
 
-                IButton mapButton = new IButton();
-                mapButton.setIcon("silk/world.png");
-                mapButton.setPrompt("View Map");
-                mapButton.setHeight(20);
-                mapButton.setWidth(25);
-                mapButton.addClickHandler(new ClickHandler() {
-                    public void onClick(ClickEvent event) {
-                        SC.say("View Map Button Clicked for country : " + record.getAttribute("countryName"));
-                    }
-                });
+                    ImgButton editImg = new ImgButton();
+                    editImg.setShowDown(false);
+                    editImg.setShowRollOver(false);
+                    editImg.setLayoutAlign(Alignment.CENTER);
+                    editImg.setSrc("silk/comment_edit.png");
+                    editImg.setPrompt("View Map");
+                    editImg.setHeight(16);
+                    editImg.setWidth(16);
+                    editImg.addClickHandler(new ClickHandler() {
+                        public void onClick(ClickEvent event) {
+                            SC.say("Edit Comment Icon Clicked for country : " + rollOverRecord.getAttribute("countryName"));
+                        }
+                    });
 
-                canvas.addMember(mapButton);
-                return canvas;
+                    ImgButton chartImg = new ImgButton();
+                    chartImg.setShowDown(false);
+                    chartImg.setShowRollOver(false);                    
+                    chartImg.setLayoutAlign(Alignment.CENTER);
+                    chartImg.setSrc("silk/chart_bar.png");
+                    chartImg.setPrompt("View Map");
+                    chartImg.setHeight(16);
+                    chartImg.setWidth(16);
+                    chartImg.addClickHandler(new ClickHandler() {
+                        public void onClick(ClickEvent event) {
+                            SC.say("Chart Icon Clicked for country : " + rollOverRecord.getAttribute("countryName"));
+                        }
+                    });
+
+                    rollOverCanvas.addMember(editImg);
+                    rollOverCanvas.addMember(chartImg);
+                }
+                return rollOverCanvas;
             }
         };
         countryGrid.setShowRollOverCanvas(true);
