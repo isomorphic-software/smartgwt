@@ -69,9 +69,9 @@ package com.smartgwt.client.docs;
  * @see com.smartgwt.client.widgets.Img#getSize
  * @see com.smartgwt.client.widgets.Label#getWrap
  * @see com.smartgwt.client.widgets.Label#getAutoFit
- * @see com.smartgwt.client.widgets.toolbar.ToolStrip#getHeight
  * @see com.smartgwt.client.widgets.ImgButton#getAutoFit
  * @see com.smartgwt.client.widgets.StretchImgButton#getAutoFit
+ * @see com.smartgwt.client.widgets.toolbar.ToolStrip#getHeight
  * @see com.smartgwt.client.types.Overflow
  */
 public interface Sizing {

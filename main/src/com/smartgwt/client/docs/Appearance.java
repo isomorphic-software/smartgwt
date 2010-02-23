@@ -286,8 +286,6 @@ package com.smartgwt.client.docs;
  * @see com.smartgwt.client.widgets.toolbar.Toolbar#getVertical
  * @see com.smartgwt.client.widgets.toolbar.Toolbar#getButtonConstructor
  * @see com.smartgwt.client.widgets.toolbar.Toolbar#getButtonDefaults
- * @see com.smartgwt.client.widgets.toolbar.ToolStrip#getStyleName
- * @see com.smartgwt.client.widgets.toolbar.ToolStrip#getVertical
  * @see com.smartgwt.client.widgets.ImgButton#getAlign
  * @see com.smartgwt.client.widgets.ImgButton#getValign
  * @see com.smartgwt.client.widgets.ImgButton#getSrc
@@ -295,6 +293,8 @@ package com.smartgwt.client.docs;
  * @see com.smartgwt.client.widgets.StretchImgButton#getValign
  * @see com.smartgwt.client.widgets.StretchImgButton#getVertical
  * @see com.smartgwt.client.widgets.StretchImgButton#getCapSize
+ * @see com.smartgwt.client.widgets.toolbar.ToolStrip#getStyleName
+ * @see com.smartgwt.client.widgets.toolbar.ToolStrip#getVertical
  * @see com.smartgwt.client.widgets.Splitbar#getSrc
  * @see com.smartgwt.client.widgets.Splitbar#getHSrc
  * @see com.smartgwt.client.widgets.Splitbar#getVSrc
