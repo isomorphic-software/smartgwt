@@ -65,7 +65,7 @@ public class RollOverControlsSample extends ShowcasePanel {
                 if(rollOverCanvas == null) {
                     rollOverCanvas = new HLayout(3);
                     rollOverCanvas.setSnapTo("TR");
-                    rollOverCanvas.setWidth(40);
+                    rollOverCanvas.setWidth(200);
                     rollOverCanvas.setHeight(22);
 
                     ImgButton editImg = new ImgButton();
@@ -73,7 +73,7 @@ public class RollOverControlsSample extends ShowcasePanel {
                     editImg.setShowRollOver(false);
                     editImg.setLayoutAlign(Alignment.CENTER);
                     editImg.setSrc("silk/comment_edit.png");
-                    editImg.setPrompt("View Map");
+                    editImg.setPrompt("Edit Comments");
                     editImg.setHeight(16);
                     editImg.setWidth(16);
                     editImg.addClickHandler(new ClickHandler() {
@@ -87,7 +87,7 @@ public class RollOverControlsSample extends ShowcasePanel {
                     chartImg.setShowRollOver(false);                    
                     chartImg.setLayoutAlign(Alignment.CENTER);
                     chartImg.setSrc("silk/chart_bar.png");
-                    chartImg.setPrompt("View Map");
+                    chartImg.setPrompt("View Chart");
                     chartImg.setHeight(16);
                     chartImg.setWidth(16);
                     chartImg.addClickHandler(new ClickHandler() {
