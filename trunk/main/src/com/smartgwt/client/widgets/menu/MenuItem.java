@@ -171,6 +171,27 @@ public class MenuItem extends ListGridRecord  implements com.smartgwt.client.wid
     }
 
     /**
+     * If false, no submenus will be fetched for this MenuItem. This can be set globally via {@link
+     * com.smartgwt.client.widgets.menu.Menu#getFetchSubmenus fetchSubmenus}.
+     *
+     * @param fetchSubmenus fetchSubmenus Default value is true
+     */
+    public void setFetchSubmenus(Boolean fetchSubmenus) {
+        setAttribute("fetchSubmenus", fetchSubmenus);
+    }
+
+    /**
+     * If false, no submenus will be fetched for this MenuItem. This can be set globally via {@link
+     * com.smartgwt.client.widgets.menu.Menu#getFetchSubmenus fetchSubmenus}.
+     *
+     *
+     * @return Boolean
+     */
+    public Boolean getFetchSubmenus()  {
+        return getAttributeAsBoolean("fetchSubmenus");
+    }
+
+    /**
      * The base filename for this item's custom icon. If both this property and {@link
      * com.smartgwt.client.widgets.menu.MenuItem#getChecked checked} are both specified, only icon specified by this property
      * will be displayed. The path to the loaded skin directory and the skinImgDir are prepended to this filename to form the
