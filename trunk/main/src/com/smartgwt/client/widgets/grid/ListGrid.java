@@ -309,6 +309,36 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
     }
 
     /**
+     * If {@link com.smartgwt.client.widgets.grid.ListGrid#getShowSelectionCanvas showSelectionCanvas} is <code>true</code>
+     * setting this property to true ensures that when the selectionUnder canvas is displayed it animates into view via an
+     * {@link com.smartgwt.client.widgets.Canvas#animateShow}. Note that the animation effect may be customized via the
+     * standard {@link com.smartgwt.client.widgets.Canvas#getAnimateShowEffect animateShowEffect}, {@link
+     * com.smartgwt.client.widgets.Canvas#getAnimateShowTime animateShowTime} and  {@link
+     * com.smartgwt.client.widgets.Canvas#getAnimateShowAcceleration animateShowAcceleration}.
+     * <p><b>Note : </b> This is an advanced setting</p>
+     *
+     * @param animateSelectionUnder animateSelectionUnder Default value is false
+     */
+    public void setAnimateSelectionUnder(Boolean animateSelectionUnder) {
+        setAttribute("animateSelectionUnder", animateSelectionUnder, true);
+    }
+
+    /**
+     * If {@link com.smartgwt.client.widgets.grid.ListGrid#getShowSelectionCanvas showSelectionCanvas} is <code>true</code>
+     * setting this property to true ensures that when the selectionUnder canvas is displayed it animates into view via an
+     * {@link com.smartgwt.client.widgets.Canvas#animateShow}. Note that the animation effect may be customized via the
+     * standard {@link com.smartgwt.client.widgets.Canvas#getAnimateShowEffect animateShowEffect}, {@link
+     * com.smartgwt.client.widgets.Canvas#getAnimateShowTime animateShowTime} and  {@link
+     * com.smartgwt.client.widgets.Canvas#getAnimateShowAcceleration animateShowAcceleration}.
+     *
+     *
+     * @return Boolean
+     */
+    public Boolean getAnimateSelectionUnder()  {
+        return getAttributeAsBoolean("animateSelectionUnder");
+    }
+
+    /**
      * Action to perform when the listGrid has keyboard focus (but not editing focus) and a user presses the up or down arrow
      * key. Possible values are: <ul> <li><code>select</code> : select the next row in the list (calls <code>recordClick</code>
      * handler)</li> <li><code>focus</code> : move focus to the next row in the list without changing the selection</li>
@@ -4520,6 +4550,32 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
     public Boolean getShowSelectedStyle()  {
         return getAttributeAsBoolean("showSelectedStyle");
     }
+
+    /**
+     * If {@link com.smartgwt.client.widgets.grid.ListGrid#getSelectionType selectionType} is set to <code>"single"</code>,
+     * setting this property to true means selection will be displayed to the user with the {@link
+     * com.smartgwt.client.widgets.grid.ListGrid#getSelectionCanvas selectionCanvas}  and {@link
+     * com.smartgwt.client.widgets.grid.ListGrid#getSelectionUnderCanvas selectionUnderCanvas} rather than using css styling.
+     * <p><b>Note : </b> This is an advanced setting</p>
+     *
+     * @param showSelectionCanvas showSelectionCanvas Default value is null
+     */
+    public void setShowSelectionCanvas(Boolean showSelectionCanvas) {
+        setAttribute("showSelectionCanvas", showSelectionCanvas, true);
+    }
+
+    /**
+     * If {@link com.smartgwt.client.widgets.grid.ListGrid#getSelectionType selectionType} is set to <code>"single"</code>,
+     * setting this property to true means selection will be displayed to the user with the {@link
+     * com.smartgwt.client.widgets.grid.ListGrid#getSelectionCanvas selectionCanvas}  and {@link
+     * com.smartgwt.client.widgets.grid.ListGrid#getSelectionUnderCanvas selectionUnderCanvas} rather than using css styling.
+     *
+     *
+     * @return Boolean
+     */
+    public Boolean getShowSelectionCanvas()  {
+        return getAttributeAsBoolean("showSelectionCanvas");
+    }
  
     /**
      * Indicates whether a sorting arrow should appear for the listGrid, and its          location. See SortArrow type for
@@ -7874,10 +7930,6 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
         setAttribute("showSelectionCanvas", showSelectionCanvas, true);
     }
 
-    public void setAnimateSelectionUnder(Boolean animateSelectionUnder) {
-        setAttribute("animateSelectionUnder", animateSelectionUnder, true);
-    }
-    
     /**
      * The RollUnder Canvas properties when {@link #setShowRollOver(Boolean) showRollover} is true and
      * {@link #setShowRollOverCanvas(Boolean) showRollOverCanvas} is true. This canvas will be created and displayed behind the current rollOver 

@@ -62,7 +62,7 @@ import com.google.gwt.event.shared.HasHandlers;
  * expandable/collapsible format. </ul> For information on DataBinding Trees, see {@link
  * com.smartgwt.client.docs.TreeDataBinding}. <p> A TreeGrid works just like a {@link
  * com.smartgwt.client.widgets.grid.ListGrid}, except one column (specified by {@link
- * com.smartgwt.client.widgets.tree.TreeGridField#getTreeField treeField} shows a heirarchical {@link
+ * com.smartgwt.client.widgets.tree.TreeGridField#getTreeField treeField} shows a hierarchical {@link
  * com.smartgwt.client.widgets.tree.Tree}.  A TreeGrid is not limited to displaying just the {@link
  * com.smartgwt.client.widgets.tree.Tree} column - you can define additional columns (via {@link
  * com.smartgwt.client.widgets.tree.TreeGrid#getFields fields}) which will render just like the columns of a {@link
@@ -257,7 +257,7 @@ public class TreeGrid extends ListGrid  implements com.smartgwt.client.widgets.t
      * com.smartgwt.client.widgets.tree.TreeGrid#folderDrop}. <P> Note that enabling <code>canDropOnLeaves</code> is usually
      * only appropriate where you intend to add a custom {@link com.smartgwt.client.widgets.tree.TreeGrid#folderDrop}
      * implementation that <b>does not</b> add a child node under the leaf.  If you want to add a child nodes to a leaf,
-     * instead of enabling canDropOnLeaves, use empty folders isntead - see {@link
+     * instead of enabling canDropOnLeaves, use empty folders instead - see {@link
      * com.smartgwt.client.widgets.tree.Tree#isFolder} for how to control whether a node is considered a folder.
      * <p><b>Note : </b> This is an advanced setting</p>
      *
@@ -274,7 +274,7 @@ public class TreeGrid extends ListGrid  implements com.smartgwt.client.widgets.t
      * com.smartgwt.client.widgets.tree.TreeGrid#folderDrop}. <P> Note that enabling <code>canDropOnLeaves</code> is usually
      * only appropriate where you intend to add a custom {@link com.smartgwt.client.widgets.tree.TreeGrid#folderDrop}
      * implementation that <b>does not</b> add a child node under the leaf.  If you want to add a child nodes to a leaf,
-     * instead of enabling canDropOnLeaves, use empty folders isntead - see {@link
+     * instead of enabling canDropOnLeaves, use empty folders instead - see {@link
      * com.smartgwt.client.widgets.tree.Tree#isFolder} for how to control whether a node is considered a folder.
      *
      *

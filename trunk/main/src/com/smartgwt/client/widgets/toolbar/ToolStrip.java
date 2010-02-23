@@ -99,9 +99,10 @@ public class ToolStrip extends Layout {
      * Customized resizeBar with typical appearance for a ToolStrip
      *
      * @param resizeBarClass resizeBarClass Default value is "ToolStripResizer"
+     * @throws IllegalStateException this property cannot be changed after the component has been created
      */
-    public void setResizeBarClass(String resizeBarClass) {
-        setAttribute("resizeBarClass", resizeBarClass, true);
+    public void setResizeBarClass(String resizeBarClass)  throws IllegalStateException {
+        setAttribute("resizeBarClass", resizeBarClass, false);
     }
 
     /**
@@ -140,9 +141,10 @@ public class ToolStrip extends Layout {
      * members}.
      *
      * @param separatorClass separatorClass Default value is "ToolStripSeparator"
+     * @throws IllegalStateException this property cannot be changed after the component has been created
      */
-    public void setSeparatorClass(String separatorClass) {
-        setAttribute("separatorClass", separatorClass, true);
+    public void setSeparatorClass(String separatorClass)  throws IllegalStateException {
+        setAttribute("separatorClass", separatorClass, false);
     }
 
     /**
@@ -200,9 +202,10 @@ public class ToolStrip extends Layout {
      * (true).
      *
      * @param vertical vertical Default value is false
+     * @throws IllegalStateException this property cannot be changed after the component has been created
      */
-    public void setVertical(Boolean vertical) {
-        setAttribute("vertical", vertical, true);
+    public void setVertical(Boolean vertical)  throws IllegalStateException {
+        setAttribute("vertical", vertical, false);
     }
 
     /**
