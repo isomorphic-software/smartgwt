@@ -103,7 +103,8 @@ public class Calendar extends Canvas  implements DataBoundComponent, com.smartgw
 
     protected native JavaScriptObject create()/*-{
         var config = this.@com.smartgwt.client.widgets.BaseWidget::getConfig()();
-        var widget = $wnd.isc.Calendar.create(config);
+        var scClassName = this.@com.smartgwt.client.widgets.BaseWidget::scClassName;
+        var widget = $wnd.isc[scClassName].create(config);
         this.@com.smartgwt.client.widgets.BaseWidget::doInit()();
         return widget;
     }-*/;

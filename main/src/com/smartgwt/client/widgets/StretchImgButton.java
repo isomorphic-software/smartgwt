@@ -82,7 +82,8 @@ public class StretchImgButton extends StretchImg  implements com.smartgwt.client
 
     protected native JavaScriptObject create()/*-{
         var config = this.@com.smartgwt.client.widgets.BaseWidget::getConfig()();
-        var widget = $wnd.isc.StretchImgButton.create(config);
+        var scClassName = this.@com.smartgwt.client.widgets.BaseWidget::scClassName;
+        var widget = $wnd.isc[scClassName].create(config);
         this.@com.smartgwt.client.widgets.BaseWidget::doInit()();
         return widget;
     }-*/;

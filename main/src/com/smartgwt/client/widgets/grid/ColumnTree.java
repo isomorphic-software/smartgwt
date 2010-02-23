@@ -90,7 +90,8 @@ public class ColumnTree extends Layout  implements DataBoundComponent, com.smart
 
     protected native JavaScriptObject create()/*-{
         var config = this.@com.smartgwt.client.widgets.BaseWidget::getConfig()();
-        var widget = $wnd.isc.ColumnTree.create(config);
+        var scClassName = this.@com.smartgwt.client.widgets.BaseWidget::scClassName;
+        var widget = $wnd.isc[scClassName].create(config);
         this.@com.smartgwt.client.widgets.BaseWidget::doInit()();
         return widget;
     }-*/;

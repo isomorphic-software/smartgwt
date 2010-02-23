@@ -80,7 +80,8 @@ public class Flashlet extends BrowserPlugin {
 
     protected native JavaScriptObject create()/*-{
         var config = this.@com.smartgwt.client.widgets.BaseWidget::getConfig()();
-        var widget = $wnd.isc.Flashlet.create(config);
+        var scClassName = this.@com.smartgwt.client.widgets.BaseWidget::scClassName;
+        var widget = $wnd.isc[scClassName].create(config);
         this.@com.smartgwt.client.widgets.BaseWidget::doInit()();
         return widget;
     }-*/;

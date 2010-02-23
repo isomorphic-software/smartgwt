@@ -100,7 +100,8 @@ public class XJSONDataSource extends DataSource {
 
     public native JavaScriptObject create()/*-{
         var config = this.@com.smartgwt.client.core.BaseClass::getConfig()();
-        return $wnd.isc.XJSONDataSource.create(config);
+        var scClassName = this.@com.smartgwt.client.core.BaseClass::scClassName;
+        return $wnd.isc[scClassName].create(config);
     }-*/;
     // ********************* Properties / Attributes ***********************
 

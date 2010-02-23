@@ -88,7 +88,8 @@ public class Tree extends BaseClass  implements com.smartgwt.client.widgets.tree
 
     public native JavaScriptObject create()/*-{
         var config = this.@com.smartgwt.client.core.BaseClass::getConfig()();
-        return $wnd.isc.Tree.create(config);
+        var scClassName = this.@com.smartgwt.client.core.BaseClass::scClassName;
+        return $wnd.isc[scClassName].create(config);
     }-*/;
     // ********************* Properties / Attributes ***********************
 

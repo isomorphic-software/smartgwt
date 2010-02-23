@@ -121,7 +121,8 @@ public class DataSource extends BaseClass  implements com.smartgwt.client.data.e
 
     public native JavaScriptObject create()/*-{
         var config = this.@com.smartgwt.client.core.BaseClass::getConfig()();
-        return $wnd.isc.DataSource.create(config);
+        var scClassName = this.@com.smartgwt.client.core.BaseClass::scClassName;
+        return $wnd.isc[scClassName].create(config);
     }-*/;
     // ********************* Properties / Attributes ***********************
 
