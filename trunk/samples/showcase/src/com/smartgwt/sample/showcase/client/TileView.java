@@ -120,9 +120,8 @@ public class TileView extends VLayout {
             }
         });
 
-
         filterForm = new DynamicForm();
-        filterForm.setShowEdges(true);
+        filterForm.setBorder("1px solid #9C9C9C");
         filterForm.setNumCols(8);
         filterForm.setAutoFocus(false);
         filterForm.setPadding(5);
