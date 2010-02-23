@@ -130,11 +130,12 @@ public class ShowcaseData {
 
                     new ExplorerTreeNode("New Samples", "new-category", "root", "crystal/16/actions/irc_online.png", null, true, idSuffix),
                     new ExplorerTreeNode("Checkbox Tree", "tree-checkbox-new-category", "new-category", null, new CheckboxTreeSample.Factory(), true, idSuffix),
-                    new ExplorerTreeNode("Big Filter", "grid-big-filter-new-category", "new-category", null, new GridBigFilterSample.Factory(), true, idSuffix),
-                    new ExplorerTreeNode("Animated Selection", "grid-appearance-animated-selection-new-category", "new-category", null, new AnimatedSelectionSample.Factory(), true, idSuffix),
                     new ExplorerTreeNode("RollOver Controls", "grid-appearance-rollover-controls-new-category", "new-category", null, new RollOverControlsSample.Factory(), true, idSuffix),
+                    new ExplorerTreeNode("Grid Cell Widgets", "grid-cell-widgets-new-category", "new-category", null, new GridCellWidgetsSample.Factory(), true, idSuffix),
                     new ExplorerTreeNode("ToolStrip", "toolstrip-new-category", "new-category", null, new ToolStripSample.Factory(), true, idSuffix),
                     new ExplorerTreeNode("ToolStrip (Vertical)", "toolstrip-vertical-new-category", "new-category", null, new ToolStripVerticalSample.Factory(), true, idSuffix),
+                    new ExplorerTreeNode("Big Filter", "grid-big-filter-new-category", "new-category", null, new GridBigFilterSample.Factory(), true, idSuffix),
+                    new ExplorerTreeNode("Animated Selection", "grid-appearance-animated-selection-new-category", "new-category", null, new AnimatedSelectionSample.Factory(), true, idSuffix),
 
                     new CommandTreeNode("Enterprise Showcase", "smartgwtee-category", "root", "pieces/16/cube_yellow.png", new com.smartgwt.sample.showcase.client.SmartGwtEECommand(), true, idSuffix),
 
@@ -285,6 +286,7 @@ public class ShowcaseData {
                     new ExplorerTreeNode("Databound Dragging", "grid-db-dragging", "grid-category", "silk/database_link.png", new GridDataBoundDragDropSample.Factory(), true, idSuffix),
                     new ExplorerTreeNode("Grid Summaries", "grid-summaries", "grid-category", "crystal/16/apps/tooloptions.png", new GridSummariesSample.Factory(), true, idSuffix),
                     new ExplorerTreeNode("Printing", "grid-print-grid", "grid-category", "silk/printer.png", new PrintingSample.Factory(), true, idSuffix),
+                    new ExplorerTreeNode("Grid Cell Widgets", "grid-cell-widgets", "grid-category", null, new GridCellWidgetsSample.Factory(), true, idSuffix),
 
                     new ExplorerTreeNode("Tree", "tree-category", "root", "silk/chart_organisation.png", null, true, idSuffix),
                     new ExplorerTreeNode("Dragging", "tree-appearance-category", "tree-category", "pieces/16/cube_blue.png", null, true, idSuffix),
