@@ -19,6 +19,8 @@ package com.smartgwt.client.core;
 import com.google.gwt.core.client.JavaScriptObject;
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.user.client.Window;
+import com.smartgwt.client.rpc.RPCManager;
+import com.smartgwt.client.types.PromptStyle;
 import com.smartgwt.client.util.LogUtil;
 import com.smartgwt.client.util.I18nUtil;
 
@@ -28,6 +30,8 @@ public class JsObject {
         LogUtil.setJSNIErrorHandler();
         init();
         I18nUtil.init();
+        //set the default prompt style to a cursor
+        RPCManager.setPromptStyle(PromptStyle.CURSOR);
         //install a default UEH that displays the error message in an alert when in development mode so that
         //is is not overlooked by the user during development
         GWT.setUncaughtExceptionHandler(new GWT.UncaughtExceptionHandler() {
