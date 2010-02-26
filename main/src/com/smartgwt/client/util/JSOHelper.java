@@ -442,12 +442,52 @@ public class JSOHelper {
         return dateJS;
     }
 
+    /**
+     * @param obj the object
+     * @return true if object is a Java Date
+     */
     public static boolean isJavaDate(Object obj) {
         return obj instanceof Date;
     }
 
+    /**
+     * @param obj the object
+     * @return true if object is a Java Number
+     */
     public static boolean isJavaNumber(Object obj) {
         return obj instanceof Number;
+    }
+
+    /**
+     * @param obj the object
+     * @return true if object is a Java Integer
+     */
+    public static boolean isJavaInteger(Object obj) {
+        return obj instanceof Integer;
+    }
+
+    /**
+     * @param obj the object
+     * @return true if object is a Java Float
+     */
+    public static boolean isJavaFloat(Object obj) {
+        return obj instanceof Float;
+    }
+
+    /**
+     * @param obj the object
+     * @return true if object is a Java Double
+     */
+    public static boolean isJavaDouble(Object obj) {
+        return obj instanceof Double;
+    }
+
+    /**
+     * @param obj the object
+     * @return true if object is a Java String
+     */
+    public static boolean isJavaString(Object obj) {
+        return obj instanceof String;
     }
 
     private static native JavaScriptObject doConvertToJavaScriptDate(double time) /*-{

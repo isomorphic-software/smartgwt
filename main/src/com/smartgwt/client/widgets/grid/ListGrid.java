@@ -7259,6 +7259,11 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
             var jObj = this.__ref;
             var fieldJ = @com.smartgwt.client.widgets.grid.ListGridField::getOrCreateRef(Lcom/google/gwt/core/client/JavaScriptObject;)(field);
             var val = jObj.@com.smartgwt.client.widgets.grid.ListGrid::getGridSummary(Lcom/smartgwt/client/widgets/grid/ListGridField;)(fieldJ);
+            if(val == null || @com.smartgwt.client.util.JSOHelper::isJavaString(Ljava/lang/Object;)(val) ) return val;
+            if(@com.smartgwt.client.util.JSOHelper::isJavaInteger(Ljava/lang/Object;)(val)) return val.@java.lang.Integer::intValue()();
+            if(@com.smartgwt.client.util.JSOHelper::isJavaNumber(Ljava/lang/Object;)(val)) return val.@java.lang.Number::floatValue()();
+            if(@com.smartgwt.client.util.JSOHelper::isJavaDate(Ljava/lang/Object;)(val)) return @com.smartgwt.client.util.JSOHelper::convertToJavaScriptDate(Ljava/util/Date;)(val);
+            $wnd.isc.logWarn('Unrecognized type of value ' + val + ' returned by the getGridSummary');
             return val;
         });
 
@@ -7502,6 +7507,7 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
     protected native Object getGridSummary(ListGridField field) /*-{
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
         var value = self.__getGridSummary(field.@com.smartgwt.client.core.DataClass::getJsObj()());
+        if(value == null || value === undefined) return null;
         var valueJ = $wnd.SmartGWT.convertToJavaType(value);
         return valueJ;
     }-*/;
