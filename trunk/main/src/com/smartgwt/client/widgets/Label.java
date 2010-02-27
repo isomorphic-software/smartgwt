@@ -115,7 +115,7 @@ public class Label extends Button {
     }
 
     /**
-     * If true, ignore the specified size of this widget and always size just large enough to accomodate the title.  If
+     * If true, ignore the specified size of this widget and always size just large enough to accommodate the title.  If
      * <code>setWidth()</code> is explicitly called on an autoFit:true button, autoFit will be reset to <code>false</code>. <P>
      * Note that for StretchImgButton instances, autoFit will occur horizontally only, as  unpredictable vertical sizing is
      * likely to distort the media. If you do want vertical  auto-fit, this can be achieved by simply setting a small height,
@@ -128,7 +128,7 @@ public class Label extends Button {
     }
 
     /**
-     * If true, ignore the specified size of this widget and always size just large enough to accomodate the title.  If
+     * If true, ignore the specified size of this widget and always size just large enough to accommodate the title.  If
      * <code>setWidth()</code> is explicitly called on an autoFit:true button, autoFit will be reset to <code>false</code>. <P>
      * Note that for StretchImgButton instances, autoFit will occur horizontally only, as  unpredictable vertical sizing is
      * likely to distort the media. If you do want vertical  auto-fit, this can be achieved by simply setting a small height,
@@ -407,9 +407,9 @@ public class Label extends Button {
     }
 
     /**
-     * If using an icon for this button, whether to switch the icon image when the button recieves focus. <P> If {@link
+     * If using an icon for this button, whether to switch the icon image when the button receives focus. <P> If {@link
      * com.smartgwt.client.widgets.StatefulCanvas#getShowFocusedAsOver showFocusedAsOver} is true, the <code>"Over"</code> icon
-     * will be displayed when the canvas has focus, otherwise a seperate <code>"Focused"</code> icon will be displayed
+     * will be displayed when the canvas has focus, otherwise a separate <code>"Focused"</code> icon will be displayed
      *
      * @param showFocusedIcon showFocusedIcon Default value is false
      * @throws IllegalStateException this property cannot be changed after the component has been created
@@ -419,9 +419,9 @@ public class Label extends Button {
     }
 
     /**
-     * If using an icon for this button, whether to switch the icon image when the button recieves focus. <P> If {@link
+     * If using an icon for this button, whether to switch the icon image when the button receives focus. <P> If {@link
      * com.smartgwt.client.widgets.StatefulCanvas#getShowFocusedAsOver showFocusedAsOver} is true, the <code>"Over"</code> icon
-     * will be displayed when the canvas has focus, otherwise a seperate <code>"Focused"</code> icon will be displayed
+     * will be displayed when the canvas has focus, otherwise a separate <code>"Focused"</code> icon will be displayed
      *
      *
      * @return Boolean

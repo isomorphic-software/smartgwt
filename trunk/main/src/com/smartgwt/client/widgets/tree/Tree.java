@@ -615,7 +615,10 @@ public class Tree extends BaseClass  implements com.smartgwt.client.widgets.tree
             
     /**
      * &#010 Return the number of levels deep this node is in the tree.  For example, for this tree:&#010 <pre>&#010 root&#010 
-     *  foo&#010     bar&#010 </pre>&#010 Calling <code>tree.getLevel(bar)</code> will return <code>2</code>. &#010&#010
+     * foo&#010     bar&#010 </pre>&#010 Calling <code>tree.getLevel(bar)</code> will return <code>2</code>. &#010 <P>&#010
+     * Note {@link com.smartgwt.client.widgets.tree.Tree#getShowRoot showRoot} defaults to false so that multiple nodes can be
+     * shown at top level.  In&#010 this case, the top-level nodes still have root as a parent, so have level 1, even
+     * though&#010 they have no visible parents.&#010&#010
      * @param node node in question
      *
      * @return number of parents the node has

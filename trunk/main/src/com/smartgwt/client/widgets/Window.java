@@ -116,7 +116,7 @@ public class Window extends VLayout  implements com.smartgwt.client.widgets.even
 
     /**
      * If true, this Window widget will automatically be centered on the page when shown.      If false, it will show up in the
-     * last position it was placed (either programatically,      or by user interaction).
+     * last position it was placed (either programmatically,      or by user interaction).
      *
      * @param autoCenter autoCenter Default value is autoCenter
      */
@@ -126,7 +126,7 @@ public class Window extends VLayout  implements com.smartgwt.client.widgets.even
 
     /**
      * If true, this Window widget will automatically be centered on the page when shown.      If false, it will show up in the
-     * last position it was placed (either programatically,      or by user interaction).
+     * last position it was placed (either programmatically,      or by user interaction).
      *
      *
      * @return Boolean
@@ -217,7 +217,7 @@ public class Window extends VLayout  implements com.smartgwt.client.widgets.even
     }
 
     /**
-     * Can the window be drag-resized? If true the window may be drag resized from its edges, and if showing, via the resiszer
+     * Can the window be drag-resized? If true the window may be drag resized from its edges, and if showing, via the resizer
      * icon in the footer.
      *
      * @param canDragResize canDragResize Default value is false
@@ -227,7 +227,7 @@ public class Window extends VLayout  implements com.smartgwt.client.widgets.even
     }
 
     /**
-     * Can the window be drag-resized? If true the window may be drag resized from its edges, and if showing, via the resiszer
+     * Can the window be drag-resized? If true the window may be drag resized from its edges, and if showing, via the resizer
      * icon in the footer.
      *
      *
@@ -618,7 +618,7 @@ public class Window extends VLayout  implements com.smartgwt.client.widgets.even
     }
 
     /**
-     * If this window is minimizeable, and animateMinimize is true, what should the duration of  the minize / maximize be (in
+     * If this window is minimizeable, and animateMinimize is true, what should the duration of  the minimize / maximize be (in
      * ms)? If unset defaults to <code>canvas.animationTime</code>.
      * <p><b>Note : </b> This is an advanced setting</p>
      *
@@ -629,7 +629,7 @@ public class Window extends VLayout  implements com.smartgwt.client.widgets.even
     }
 
     /**
-     * If this window is minimizeable, and animateMinimize is true, what should the duration of  the minize / maximize be (in
+     * If this window is minimizeable, and animateMinimize is true, what should the duration of  the minimize / maximize be (in
      * ms)? If unset defaults to <code>canvas.animationTime</code>.
      *
      *

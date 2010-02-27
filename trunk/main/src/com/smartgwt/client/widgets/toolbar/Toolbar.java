@@ -170,7 +170,7 @@ public abstract class Toolbar extends Layout  implements com.smartgwt.client.wid
     /**
      * Add a itemClick handler.
      * <p>
-     * Called when one of the buttons recieved a click event
+     * Called when one of the buttons receives a click event
      *
      * @param handler the itemClick handler
      * @return {@link HandlerRegistration} used to remove this handler

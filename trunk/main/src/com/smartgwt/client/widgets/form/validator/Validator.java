@@ -85,10 +85,10 @@ public class Validator extends DataClass {
     // ********************* Properties / Attributes ***********************
 
     /**
-     * Used to create a conditional validator based on client-side criteria. The criteria defines when the validator applies.
-     * The form current values or ListGrid record is used as reference for the criteria. If the criteria matches the validator
-     * will be processed. Otherwise the validator is skipped and assumed valid. <p> To use an <code>applyWhen</code> criteria
-     * the form or grid must use a {@link com.smartgwt.client.data.DataSource}.
+     * Used to create a conditional validator based on ${isc.DocUtils.linkForRef('object:AdvancedCriteria','criteria')}. The
+     * criteria defines when the validator applies. The form current values or ListGrid record is used as reference for the
+     * criteria. If the criteria matches the validator will be processed. Otherwise the validator is skipped and assumed valid.
+     * <p> To use an <code>applyWhen</code> criteria the form or grid must use a {@link com.smartgwt.client.data.DataSource}.
      * <p><b>Note : </b> This is an advanced setting</p>
      *
      * @param applyWhen applyWhen Default value is null
@@ -98,10 +98,10 @@ public class Validator extends DataClass {
     }
 
     /**
-     * Used to create a conditional validator based on client-side criteria. The criteria defines when the validator applies.
-     * The form current values or ListGrid record is used as reference for the criteria. If the criteria matches the validator
-     * will be processed. Otherwise the validator is skipped and assumed valid. <p> To use an <code>applyWhen</code> criteria
-     * the form or grid must use a {@link com.smartgwt.client.data.DataSource}.
+     * Used to create a conditional validator based on ${isc.DocUtils.linkForRef('object:AdvancedCriteria','criteria')}. The
+     * criteria defines when the validator applies. The form current values or ListGrid record is used as reference for the
+     * criteria. If the criteria matches the validator will be processed. Otherwise the validator is skipped and assumed valid.
+     * <p> To use an <code>applyWhen</code> criteria the form or grid must use a {@link com.smartgwt.client.data.DataSource}.
      *
      *
      * @return AdvancedCriteria
@@ -159,11 +159,41 @@ public class Validator extends DataClass {
     }
 
     /**
-     * If true, validator will be validated when each item's "change" handler is fired as well as when the entire form is
-     * submitted or validated. <p> Note that this property can also be set at the form/grid or field level; If true at any
-     * level the validator will be fired on change - displaying errors and rejecting the change on validation failure.
+     * Indicates that if this validator is not passed, the user should not be allowed to exit the field - focus will be forced
+     * back into the field until the error is corrected. <p> This property defaults to {@link
+     * com.smartgwt.client.widgets.form.fields.FormItem#getStopOnError stopOnError} if unset. <p> Enabling this property also
+     * implies {@link com.smartgwt.client.widgets.form.fields.FormItem#getValidateOnExit validateOnExit} is automatically
+     * enabled. If this is a server-based validator, setting this property also implies that {@link
+     * com.smartgwt.client.widgets.form.fields.FormItem#getSynchronousValidation synchronousValidation} is forced on.
      *
-     * @param validateOnChange validateOnChange Default value is false
+     * @param stopOnError stopOnError Default value is null
+     */
+    public void setStopOnError(Boolean stopOnError) {
+        setAttribute("stopOnError", stopOnError);
+    }
+
+    /**
+     * Indicates that if this validator is not passed, the user should not be allowed to exit the field - focus will be forced
+     * back into the field until the error is corrected. <p> This property defaults to {@link
+     * com.smartgwt.client.widgets.form.fields.FormItem#getStopOnError stopOnError} if unset. <p> Enabling this property also
+     * implies {@link com.smartgwt.client.widgets.form.fields.FormItem#getValidateOnExit validateOnExit} is automatically
+     * enabled. If this is a server-based validator, setting this property also implies that {@link
+     * com.smartgwt.client.widgets.form.fields.FormItem#getSynchronousValidation synchronousValidation} is forced on.
+     *
+     *
+     * @return Boolean
+     */
+    public Boolean getStopOnError()  {
+        return getAttributeAsBoolean("stopOnError");
+    }
+
+    /**
+     * If true, validator will be validated when each item's "change" handler is fired as well as when the entire form is
+     * submitted or validated. If false, this validator will not fire on the item's "change" handler. <p> Note that this
+     * property can also be set at the form/grid or field level; If true at any level and not explicitly false on the
+     * validator, the validator will be fired on change - displaying errors and rejecting the change on validation failure.
+     *
+     * @param validateOnChange validateOnChange Default value is null
      */
     public void setValidateOnChange(Boolean validateOnChange) {
         setAttribute("validateOnChange", validateOnChange);
@@ -171,8 +201,9 @@ public class Validator extends DataClass {
 
     /**
      * If true, validator will be validated when each item's "change" handler is fired as well as when the entire form is
-     * submitted or validated. <p> Note that this property can also be set at the form/grid or field level; If true at any
-     * level the validator will be fired on change - displaying errors and rejecting the change on validation failure.
+     * submitted or validated. If false, this validator will not fire on the item's "change" handler. <p> Note that this
+     * property can also be set at the form/grid or field level; If true at any level and not explicitly false on the
+     * validator, the validator will be fired on change - displaying errors and rejecting the change on validation failure.
      *
      *
      * @return Boolean

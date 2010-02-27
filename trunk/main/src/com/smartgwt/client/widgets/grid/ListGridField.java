@@ -1569,9 +1569,9 @@ public class ListGridField extends DataClass  implements com.smartgwt.client.wid
     }
 
     /**
-     * If using an icon for this button, whether to switch the icon image when the button recieves focus. <P> If {@link
+     * If using an icon for this button, whether to switch the icon image when the button receives focus. <P> If {@link
      * com.smartgwt.client.widgets.StatefulCanvas#getShowFocusedAsOver showFocusedAsOver} is true, the <code>"Over"</code> icon
-     * will be displayed when the canvas has focus, otherwise a seperate <code>"Focused"</code> icon will be displayed
+     * will be displayed when the canvas has focus, otherwise a separate <code>"Focused"</code> icon will be displayed
      *
      * @param showFocusedIcon showFocusedIcon Default value is false
      */
@@ -1580,9 +1580,9 @@ public class ListGridField extends DataClass  implements com.smartgwt.client.wid
     }
 
     /**
-     * If using an icon for this button, whether to switch the icon image when the button recieves focus. <P> If {@link
+     * If using an icon for this button, whether to switch the icon image when the button receives focus. <P> If {@link
      * com.smartgwt.client.widgets.StatefulCanvas#getShowFocusedAsOver showFocusedAsOver} is true, the <code>"Over"</code> icon
-     * will be displayed when the canvas has focus, otherwise a seperate <code>"Focused"</code> icon will be displayed
+     * will be displayed when the canvas has focus, otherwise a separate <code>"Focused"</code> icon will be displayed
      *
      *
      * @return Boolean

@@ -146,7 +146,26 @@ public class ImgTab extends StretchImgButton {
     }
 
     /**
-     * Should we visibly change state when the tab recieves keyboard focus?
+     * Base path for images shown within this ImgTab's label. This will be used for icons (such as the close icon) by default.
+     *
+     * @param labelSkinImgDir labelSkinImgDir Default value is "images/"
+     */
+    public void setLabelSkinImgDir(String labelSkinImgDir) {
+        setAttribute("labelSkinImgDir", labelSkinImgDir, true);
+    }
+
+    /**
+     * Base path for images shown within this ImgTab's label. This will be used for icons (such as the close icon) by default.
+     *
+     *
+     * @return String
+     */
+    public String getLabelSkinImgDir()  {
+        return getAttributeAsString("labelSkinImgDir");
+    }
+
+    /**
+     * Should we visibly change state when the tab receives keyboard focus?
      *
      * @param showFocused showFocused Default value is true
      */
@@ -155,7 +174,7 @@ public class ImgTab extends StretchImgButton {
     }
 
     /**
-     * Should we visibly change state when the tab recieves keyboard focus?
+     * Should we visibly change state when the tab receives keyboard focus?
      *
      *
      * @return Boolean

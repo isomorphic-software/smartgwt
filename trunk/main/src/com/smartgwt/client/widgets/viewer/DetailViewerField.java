@@ -270,7 +270,7 @@ public class DetailViewerField extends DataClass {
      * Specifies the type of this DetailViewerField.  By default (value is <code>null</code>) the field shows a field title on
      * the left and the field value on the right.  There are two special values for this attribute: <ul> <li>"header" - If you
      * specify type "header", the field spans both the field name and field value columns and contains text defined in the
-     * {@link com.smartgwt.client.widgets.viewer.DetailViewerField#getValue value} attribute with the style specifed by {@link
+     * {@link com.smartgwt.client.widgets.viewer.DetailViewerField#getValue value} attribute with the style specified by {@link
      * com.smartgwt.client.widgets.viewer.DetailViewer#getHeaderStyle headerStyle}.  You can use this field type as a titled
      * separator. <li>"separator" - If you specify type "separator", the field spans both the field name and the field value
      * columns with no text, and is styled using the style specified via {@link
@@ -292,7 +292,7 @@ public class DetailViewerField extends DataClass {
      * Specifies the type of this DetailViewerField.  By default (value is <code>null</code>) the field shows a field title on
      * the left and the field value on the right.  There are two special values for this attribute: <ul> <li>"header" - If you
      * specify type "header", the field spans both the field name and field value columns and contains text defined in the
-     * {@link com.smartgwt.client.widgets.viewer.DetailViewerField#getValue value} attribute with the style specifed by {@link
+     * {@link com.smartgwt.client.widgets.viewer.DetailViewerField#getValue value} attribute with the style specified by {@link
      * com.smartgwt.client.widgets.viewer.DetailViewer#getHeaderStyle headerStyle}.  You can use this field type as a titled
      * separator. <li>"separator" - If you specify type "separator", the field spans both the field name and the field value
      * columns with no text, and is styled using the style specified via {@link
