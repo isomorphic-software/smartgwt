@@ -100,9 +100,10 @@ public class ToolStrip extends Layout {
      * Customized resizeBar with typical appearance for a ToolStrip
      *
      * @param resizeBarClass resizeBarClass Default value is "ToolStripResizer"
+     * @throws IllegalStateException this property cannot be changed after the component has been created
      */
-    public void setResizeBarClass(String resizeBarClass) {
-        setAttribute("resizeBarClass", resizeBarClass, true);
+    public void setResizeBarClass(String resizeBarClass)  throws IllegalStateException {
+        setAttribute("resizeBarClass", resizeBarClass, false);
     }
 
     /**
@@ -141,9 +142,10 @@ public class ToolStrip extends Layout {
      * members}.
      *
      * @param separatorClass separatorClass Default value is "ToolStripSeparator"
+     * @throws IllegalStateException this property cannot be changed after the component has been created
      */
-    public void setSeparatorClass(String separatorClass) {
-        setAttribute("separatorClass", separatorClass, true);
+    public void setSeparatorClass(String separatorClass)  throws IllegalStateException {
+        setAttribute("separatorClass", separatorClass, false);
     }
 
     /**
@@ -178,32 +180,14 @@ public class ToolStrip extends Layout {
     }
 
     /**
-     * The CSS class applied to this widget as a whole.
-     *
-     * @param styleName styleName Default value is "toolStrip"
-     */
-    public void setStyleName(String styleName) {
-        setAttribute("styleName", styleName, true);
-    }
-
-    /**
-     * The CSS class applied to this widget as a whole.
-     *
-     *
-     * @return String
-     */
-    public String getStyleName()  {
-        return getAttributeAsString("styleName");
-    }
-
-    /**
      * Indicates whether the components are drawn horizontally from left to right (false), or vertically from top to bottom
      * (true).
      *
      * @param vertical vertical Default value is false
+     * @throws IllegalStateException this property cannot be changed after the component has been created
      */
-    public void setVertical(Boolean vertical) {
-        setAttribute("vertical", vertical, true);
+    public void setVertical(Boolean vertical)  throws IllegalStateException {
+        setAttribute("vertical", vertical, false);
     }
 
     /**
@@ -215,6 +199,34 @@ public class ToolStrip extends Layout {
      */
     public Boolean getVertical()  {
         return getAttributeAsBoolean("vertical");
+    }
+
+    /**
+     * Default stylename to use if {@link com.smartgwt.client.widgets.toolbar.ToolStrip#getVertical 'this.vertical'} is true.
+     * If unset, the standard {@link com.smartgwt.client.widgets.toolbar.ToolStrip#getStyleName styleName} will be used for
+     * both vertical and horizontal toolstrips. <P> Note that this property only applies to the widget at init time. To modify
+     * the  styleName after this widget has been initialized, you should simply call {@link
+     * com.smartgwt.client.widgets.Canvas#setStyleName} rather than updating this  property.
+     *
+     * @param verticalStyleName verticalStyleName Default value is null
+     * @throws IllegalStateException this property cannot be changed after the component has been created
+     */
+    public void setVerticalStyleName(String verticalStyleName)  throws IllegalStateException {
+        setAttribute("verticalStyleName", verticalStyleName, false);
+    }
+
+    /**
+     * Default stylename to use if {@link com.smartgwt.client.widgets.toolbar.ToolStrip#getVertical 'this.vertical'} is true.
+     * If unset, the standard {@link com.smartgwt.client.widgets.toolbar.ToolStrip#getStyleName styleName} will be used for
+     * both vertical and horizontal toolstrips. <P> Note that this property only applies to the widget at init time. To modify
+     * the  styleName after this widget has been initialized, you should simply call {@link
+     * com.smartgwt.client.widgets.Canvas#setStyleName} rather than updating this  property.
+     *
+     *
+     * @return String
+     */
+    public String getVerticalStyleName()  {
+        return getAttributeAsString("verticalStyleName");
     }
 
     // ********************* Methods ***********************
