@@ -273,7 +273,7 @@ public class SectionStack extends VLayout  implements com.smartgwt.client.widget
     public int getItemStartIndent()  {
         return getAttributeAsInt("itemStartIndent");
     }
- 
+
     /**
      * Normal {@link com.smartgwt.client.types.Overflow} settings can be used on layouts, for example, an overflow:auto Layout
      * will scroll if sections are resized to exceed the specified size, whereas an overflow:visible Layout will grow to
@@ -401,7 +401,7 @@ public class SectionStack extends VLayout  implements com.smartgwt.client.widget
     public Boolean getUseGlobalSectionIDs()  {
         return getAttributeAsBoolean("useGlobalSectionIDs");
     }
- 
+
     /**
      * Whether multiple sections can be visible at once
      *

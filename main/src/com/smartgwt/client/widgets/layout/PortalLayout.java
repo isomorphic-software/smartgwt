@@ -154,7 +154,7 @@ public class PortalLayout extends Layout {
     public String getColumnBorder()  {
         return getAttributeAsString("columnBorder");
     }
- 
+
 
     /**
      * Initial number of columns to show in this PortalLayout. Note that after initialization columns should be added / removed

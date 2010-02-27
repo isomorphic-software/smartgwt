@@ -119,7 +119,7 @@ public class MenuButton extends Button {
     public Boolean getHiliteAccessKey()  {
         return getAttributeAsBoolean("hiliteAccessKey");
     }
-            
+
     /**
      * The menu to show.
      *

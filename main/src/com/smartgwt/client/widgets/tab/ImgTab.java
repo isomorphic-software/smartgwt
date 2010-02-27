@@ -86,7 +86,7 @@ public class ImgTab extends StretchImgButton {
         return widget;
     }-*/;
     // ********************* Properties / Attributes ***********************
- 
+
     /**
      * Alignment of title text
      *

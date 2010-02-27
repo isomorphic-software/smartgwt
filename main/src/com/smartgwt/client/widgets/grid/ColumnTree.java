@@ -96,7 +96,7 @@ public class ColumnTree extends Layout  implements DataBoundComponent, com.smart
         return widget;
     }-*/;
     // ********************* Properties / Attributes ***********************
- 
+
     /**
      * If {@link com.smartgwt.client.widgets.grid.ColumnTree#getAutoFetchData autoFetchData} is <code>true</code>, this
      * attribute allows the developer to specify a textMatchStyle for the initial {@link
@@ -198,7 +198,7 @@ public class ColumnTree extends Layout  implements DataBoundComponent, com.smart
     public String getCustomIconProperty()  {
         return getAttributeAsString("customIconProperty");
     }
-            
+
     /**
      * A {@link com.smartgwt.client.widgets.tree.Tree} object consisting of nested {@link
      * com.smartgwt.client.widgets.tree.TreeNode}s to  display in this ColumnTree.   The <code>data</code> property will

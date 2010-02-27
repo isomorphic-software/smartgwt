@@ -199,7 +199,7 @@ public class Layout extends Canvas {
     public Boolean getCanDropComponents()  {
         return getAttributeAsBoolean("canDropComponents");
     }
- 
+
     /**
      * Policy for whether resize bars are shown on members by default.
      *
@@ -268,7 +268,7 @@ public class Layout extends Canvas {
     public Boolean getEnforcePolicy()  {
         return getAttributeAsBoolean("enforcePolicy");
     }
- 
+
     /**
      * Sizing policy applied to members on horizonal axis
      * <p><b>Note : </b> This is an advanced setting</p>
@@ -521,7 +521,7 @@ public class Layout extends Canvas {
     public int getMinMemberSize()  {
         return getAttributeAsInt("minMemberSize");
     }
- 
+
     /**
      * Normal {@link com.smartgwt.client.types.Overflow} settings can be used on layouts, for example, an overflow:auto Layout
      * will scroll if members exceed its specified size, whereas an overflow:visible Layout will grow to accommodate members.
@@ -720,7 +720,7 @@ public class Layout extends Canvas {
     public Boolean getVertical()  {
         return getAttributeAsBoolean("vertical");
     }
- 
+
     /**
      * Sizing policy applied to members on vertical axis
      * <p><b>Note : </b> This is an advanced setting</p>

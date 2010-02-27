@@ -108,27 +108,6 @@ public class StretchImg extends StatefulCanvas {
     }
 
     /**
-     * Suffix used the 'grip' image if {@link com.smartgwt.client.widgets.StretchImg#getShowGrip showGrip} is true.
-     * <p><b>Note : </b> This is an advanced setting</p>
-     *
-     * @param gripImgSuffix gripImgSuffix Default value is "grip"
-     * @throws IllegalStateException this property cannot be changed after the component has been created
-     */
-    public void setGripImgSuffix(String gripImgSuffix)  throws IllegalStateException {
-        setAttribute("gripImgSuffix", gripImgSuffix, false);
-    }
-
-    /**
-     * Suffix used the 'grip' image if {@link com.smartgwt.client.widgets.StretchImg#getShowGrip showGrip} is true.
-     *
-     *
-     * @return String
-     */
-    public String getGripImgSuffix()  {
-        return getAttributeAsString("gripImgSuffix");
-    }
-
-    /**
      * Base URL for the image if {@link com.smartgwt.client.widgets.StretchImg#getVertical vertical} is false and  {@link
      * com.smartgwt.client.widgets.StretchImg#getSrc src} is unset.
      *
@@ -148,7 +127,7 @@ public class StretchImg extends StatefulCanvas {
     public String getHSrc()  {
         return getAttributeAsString("hSrc");
     }
- 
+
     /**
      * Indicates whether the image should be tiled/cropped, stretched, or centered when the          size of this widget does
      * not match the size of the image. See ImageStyle for          details.
@@ -196,31 +175,6 @@ public class StretchImg extends StatefulCanvas {
     }
 
     /**
-     * If {@link com.smartgwt.client.widgets.StretchImg#getShowGrip showGrip} is true, this property determines whether to show
-     * the 'Down' state on the grip image when the user mousedown's on this widget.  Has no effect if {@link
-     * com.smartgwt.client.widgets.StatefulCanvas#getShowDown showDown} is false.
-     * <p><b>Note : </b> This is an advanced setting</p>
-     *
-     * @param showDownGrip showDownGrip Default value is null
-     * @throws IllegalStateException this property cannot be changed after the component has been created
-     */
-    public void setShowDownGrip(Boolean showDownGrip)  throws IllegalStateException {
-        setAttribute("showDownGrip", showDownGrip, false);
-    }
-
-    /**
-     * If {@link com.smartgwt.client.widgets.StretchImg#getShowGrip showGrip} is true, this property determines whether to show
-     * the 'Down' state on the grip image when the user mousedown's on this widget.  Has no effect if {@link
-     * com.smartgwt.client.widgets.StatefulCanvas#getShowDown showDown} is false.
-     *
-     *
-     * @return Boolean
-     */
-    public Boolean getShowDownGrip()  {
-        return getAttributeAsBoolean("showDownGrip");
-    }
-
-    /**
      * Should we show a "grip" image floating above the center of this widget?
      * <p><b>Note : </b> This is an advanced setting</p>
      *
@@ -239,31 +193,6 @@ public class StretchImg extends StatefulCanvas {
      */
     public Boolean getShowGrip()  {
         return getAttributeAsBoolean("showGrip");
-    }
-
-    /**
-     * If {@link com.smartgwt.client.widgets.StretchImg#getShowGrip showGrip} is true, this property determines whether to show
-     * the 'Over' state on the grip image when the user rolls over on this widget.  Has no effect if {@link
-     * com.smartgwt.client.widgets.StatefulCanvas#getShowRollOver showRollOver} is false.
-     * <p><b>Note : </b> This is an advanced setting</p>
-     *
-     * @param showRollOverGrip showRollOverGrip Default value is null
-     * @throws IllegalStateException this property cannot be changed after the component has been created
-     */
-    public void setShowRollOverGrip(Boolean showRollOverGrip)  throws IllegalStateException {
-        setAttribute("showRollOverGrip", showRollOverGrip, false);
-    }
-
-    /**
-     * If {@link com.smartgwt.client.widgets.StretchImg#getShowGrip showGrip} is true, this property determines whether to show
-     * the 'Over' state on the grip image when the user rolls over on this widget.  Has no effect if {@link
-     * com.smartgwt.client.widgets.StatefulCanvas#getShowRollOver showRollOver} is false.
-     *
-     *
-     * @return Boolean
-     */
-    public Boolean getShowRollOverGrip()  {
-        return getAttributeAsBoolean("showRollOverGrip");
     }
 
     /**

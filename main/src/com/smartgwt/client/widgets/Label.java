@@ -94,7 +94,7 @@ public class Label extends Button {
         return widget;
     }-*/;
     // ********************* Properties / Attributes ***********************
- 
+
     /**
      * Horizontal alignment of label text. See Alignment type for details.
      *
@@ -469,7 +469,7 @@ public class Label extends Button {
     public Boolean getShowSelectedIcon()  {
         return getAttributeAsBoolean("showSelectedIcon");
     }
- 
+
     /**
      * Vertical alignment of label text. See VerticalAlignment type for details.
      *

@@ -88,7 +88,7 @@ public class StretchImgButton extends StretchImg  implements com.smartgwt.client
         return widget;
     }-*/;
     // ********************* Properties / Attributes ***********************
- 
+
     /**
      * Behavior on state changes -- BUTTON, RADIO or CHECKBOX
      * Update the 'actionType' for this canvas (radio / checkbox / button) If the canvas is currently selected, and the passed in actionType is 'button' this method will deselect the canvas.
@@ -108,7 +108,7 @@ public class StretchImgButton extends StretchImg  implements com.smartgwt.client
     public SelectionType getActionType()  {
         return EnumUtil.getEnum(SelectionType.values(), getAttribute("actionType"));
     }
- 
+
     /**
      * Horizontal alignment of this component's title.
      *
@@ -822,7 +822,7 @@ public class StretchImgButton extends StretchImg  implements com.smartgwt.client
     public String getSrc()  {
         return getAttributeAsString("src");
     }
- 
+
     /**
      * Current "state" of this widget. StatefulCanvases will have a different appearance based on their current state. By
      * default this is handled by changing the css className applied to the StatefulCanvas - see {@link
@@ -905,7 +905,7 @@ public class StretchImgButton extends StretchImg  implements com.smartgwt.client
     public String getTitleStyle()  {
         return getAttributeAsString("titleStyle");
     }
- 
+
     /**
      * Vertical alignment of this component's title.
      *

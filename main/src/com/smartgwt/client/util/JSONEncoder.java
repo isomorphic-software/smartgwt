@@ -95,7 +95,7 @@ public class JSONEncoder extends DataClass {
     public String getCircularReferenceMarker()  {
         return getAttributeAsString("circularReferenceMarker");
     }
- 
+
     /**
      * What the JSONEncoder should do if it encounters a circular reference.
      *
@@ -114,7 +114,7 @@ public class JSONEncoder extends DataClass {
     public JSONCircularReferenceMode getCircularReferenceMode()  {
         return EnumUtil.getEnum(JSONCircularReferenceMode.values(), getAttribute("circularReferenceMode"));
     }
- 
+
     /**
      * Format for encoding JavaScript Date values in JSON.  See {@link com.smartgwt.client.types.JSONDateFormat} for valid
      * options, or override {@link com.smartgwt.client.util.JSONEncoder#encodeDate} to do something custom.

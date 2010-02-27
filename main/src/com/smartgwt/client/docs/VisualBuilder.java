@@ -153,14 +153,13 @@ package com.smartgwt.client.docs;
  * definition, you'll need to place it&#010 into a JavaScript file being loaded by the Visual Builder.  If you do not
  * already have&#010 such a file, you can create one and add it to the list of Visual Builder dependencies by&#010 adding
  * an entry in /tools/visualBuilder/globalDependencies.xml.  See examples in that file&#010 for specifics.&#010 <P>&#010
- * <h4>Deploying Visual Builder for Functional Designers</h4>&#010 <P>&#010 The normal {@link
- * com.smartgwt.client.docs.IscInstall} deployment instructions apply to Visual Builder <b>except&#010 that</b> the
- * "BuiltinRPCs", which are configured via server.properties, must be enabled&#010 in order for Visual Builder to load and
- * save files to the Smart GWT server.  This also&#010 means that Visual Builder should only be deployed within trusted
- * environments.  &#010 <P>&#010 Note that the Visual Builder provides a "live" interface to the provided DataSources. 
- * In&#010 other words, if a DataSource supports saving and a designer enables inline editing in a grid,&#010 real saves
- * will be initiated.  The Visual Builder tool should be configured to use the same&#010 sample data that developers use
- * during development.
+ * <h4>Deploying Visual Builder for Functional Designers</h4>&#010 <P>&#010 The normal iscInstall deployment instructions
+ * apply to Visual Builder <b>except&#010 that</b> the "BuiltinRPCs", which are configured via server.properties, must be
+ * enabled&#010 in order for Visual Builder to load and save files to the Smart GWT server.  This also&#010 means that
+ * Visual Builder should only be deployed within trusted environments.  &#010 <P>&#010 Note that the Visual Builder
+ * provides a "live" interface to the provided DataSources.  In&#010 other words, if a DataSource supports saving and a
+ * designer enables inline editing in a grid,&#010 real saves will be initiated.  The Visual Builder tool should be
+ * configured to use the same&#010 sample data that developers use during development.
  */
 public interface VisualBuilder {
 }

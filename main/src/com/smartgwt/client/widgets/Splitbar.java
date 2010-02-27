@@ -136,7 +136,7 @@ public class Splitbar extends StretchImg {
     public Boolean getCanDrag()  {
         return getAttributeAsBoolean("canDrag");
     }
- 
+
     /**
      * Splitbars' cursors are set at init time based on whether they are to be used for vertical or horizontal resize.  To
      * customize the cursor for this class, modify  {@link com.smartgwt.client.widgets.Splitbar#getVResizeCursor vResizeCursor}
@@ -161,7 +161,7 @@ public class Splitbar extends StretchImg {
     }
 
     /**
-     * Suffix used the 'grip' image if {@link com.smartgwt.client.widgets.StretchImg#getShowGrip showGrip} is true.
+     * part name for the 'grip' image if {@link com.smartgwt.client.widgets.Splitbar#getShowGrip showGrip} is true
      * <p><b>Note : </b> This is an advanced setting</p>
      *
      * @param gripImgSuffix gripImgSuffix Default value is "grip"
@@ -172,7 +172,7 @@ public class Splitbar extends StretchImg {
     }
 
     /**
-     * Suffix used the 'grip' image if {@link com.smartgwt.client.widgets.StretchImg#getShowGrip showGrip} is true.
+     * part name for the 'grip' image if {@link com.smartgwt.client.widgets.Splitbar#getShowGrip showGrip} is true
      *
      *
      * @return String
@@ -180,7 +180,7 @@ public class Splitbar extends StretchImg {
     public String getGripImgSuffix()  {
         return getAttributeAsString("gripImgSuffix");
     }
- 
+
     /**
      * Cursor to display if this Splitbar is to be used for horizontal resize of widgets.
      *
@@ -249,9 +249,9 @@ public class Splitbar extends StretchImg {
     }
 
     /**
-     * If {@link com.smartgwt.client.widgets.StretchImg#getShowGrip showGrip} is true, this property determines whether to show
+     * If {@link com.smartgwt.client.widgets.Splitbar#getShowGrip showGrip} is true, this property determines whether to show
      * the 'Down' state on the grip image when the user mousedown's on this widget.  Has no effect if {@link
-     * com.smartgwt.client.widgets.StatefulCanvas#getShowDown showDown} is false.
+     * com.smartgwt.client.widgets.StatefulCanvas#getShowDown showDown} is false
      * <p><b>Note : </b> This is an advanced setting</p>
      *
      * @param showDownGrip showDownGrip Default value is null
@@ -262,9 +262,9 @@ public class Splitbar extends StretchImg {
     }
 
     /**
-     * If {@link com.smartgwt.client.widgets.StretchImg#getShowGrip showGrip} is true, this property determines whether to show
+     * If {@link com.smartgwt.client.widgets.Splitbar#getShowGrip showGrip} is true, this property determines whether to show
      * the 'Down' state on the grip image when the user mousedown's on this widget.  Has no effect if {@link
-     * com.smartgwt.client.widgets.StatefulCanvas#getShowDown showDown} is false.
+     * com.smartgwt.client.widgets.StatefulCanvas#getShowDown showDown} is false
      *
      *
      * @return Boolean
@@ -295,9 +295,9 @@ public class Splitbar extends StretchImg {
     }
 
     /**
-     * If {@link com.smartgwt.client.widgets.StretchImg#getShowGrip showGrip} is true, this property determines whether to show
+     * If {@link com.smartgwt.client.widgets.Splitbar#getShowGrip showGrip} is true, this property determines whether to show
      * the 'Over' state on the grip image when the user rolls over on this widget.  Has no effect if {@link
-     * com.smartgwt.client.widgets.StatefulCanvas#getShowRollOver showRollOver} is false.
+     * com.smartgwt.client.widgets.StatefulCanvas#getShowRollOver showRollOver} is false
      * <p><b>Note : </b> This is an advanced setting</p>
      *
      * @param showRollOverGrip showRollOverGrip Default value is null
@@ -308,9 +308,9 @@ public class Splitbar extends StretchImg {
     }
 
     /**
-     * If {@link com.smartgwt.client.widgets.StretchImg#getShowGrip showGrip} is true, this property determines whether to show
+     * If {@link com.smartgwt.client.widgets.Splitbar#getShowGrip showGrip} is true, this property determines whether to show
      * the 'Over' state on the grip image when the user rolls over on this widget.  Has no effect if {@link
-     * com.smartgwt.client.widgets.StatefulCanvas#getShowRollOver showRollOver} is false.
+     * com.smartgwt.client.widgets.StatefulCanvas#getShowRollOver showRollOver} is false
      *
      *
      * @return Boolean
@@ -362,7 +362,7 @@ public class Splitbar extends StretchImg {
         errorIfNotCreated("vertical");
         return getAttributeAsBoolean("vertical");
     }
- 
+
     /**
      * Cursor to display if this Splitbar is to be used for vertical resize of widgets.
      *

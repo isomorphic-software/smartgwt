@@ -62,7 +62,7 @@ import com.google.gwt.event.shared.HasHandlers;
  * expandable/collapsible format. </ul> For information on DataBinding Trees, see {@link
  * com.smartgwt.client.docs.TreeDataBinding}. <p> A TreeGrid works just like a {@link
  * com.smartgwt.client.widgets.grid.ListGrid}, except one column (specified by {@link
- * com.smartgwt.client.widgets.tree.TreeGridField#getTreeField treeField} shows a hierarchical {@link
+ * com.smartgwt.client.widgets.tree.TreeGridField#getTreeField treeField} shows a heirarchical {@link
  * com.smartgwt.client.widgets.tree.Tree}.  A TreeGrid is not limited to displaying just the {@link
  * com.smartgwt.client.widgets.tree.Tree} column - you can define additional columns (via {@link
  * com.smartgwt.client.widgets.tree.TreeGrid#getFields fields}) which will render just like the columns of a {@link
@@ -102,7 +102,7 @@ public class TreeGrid extends ListGrid  implements com.smartgwt.client.widgets.t
         return widget;
     }-*/;
     // ********************* Properties / Attributes ***********************
- 
+
     /**
      * When animating folder opening / closing, this property can be set to apply an animated acceleration effect.designates
      * the speed of the animation in pixels shown (or hidden) per second.
@@ -186,7 +186,7 @@ public class TreeGrid extends ListGrid  implements com.smartgwt.client.widgets.t
     public int getAnimateFolderTime()  {
         return getAttributeAsInt("animateFolderTime");
     }
- 
+
     /**
      * With {@link com.smartgwt.client.widgets.tree.TreeGrid#getLoadDataOnDemand loadDataOnDemand}:true, TreeGrids fetch data
      * by selecting the child nodes of each parent, which should be exact match, so we default to
@@ -258,7 +258,7 @@ public class TreeGrid extends ListGrid  implements com.smartgwt.client.widgets.t
      * com.smartgwt.client.widgets.tree.TreeGrid#folderDrop}. <P> Note that enabling <code>canDropOnLeaves</code> is usually
      * only appropriate where you intend to add a custom {@link com.smartgwt.client.widgets.tree.TreeGrid#folderDrop}
      * implementation that <b>does not</b> add a child node under the leaf.  If you want to add a child nodes to a leaf,
-     * instead of enabling canDropOnLeaves, use empty folders instead - see {@link
+     * instead of enabling canDropOnLeaves, use empty folders isntead - see {@link
      * com.smartgwt.client.widgets.tree.Tree#isFolder} for how to control whether a node is considered a folder.
      * <p><b>Note : </b> This is an advanced setting</p>
      *
@@ -275,7 +275,7 @@ public class TreeGrid extends ListGrid  implements com.smartgwt.client.widgets.t
      * com.smartgwt.client.widgets.tree.TreeGrid#folderDrop}. <P> Note that enabling <code>canDropOnLeaves</code> is usually
      * only appropriate where you intend to add a custom {@link com.smartgwt.client.widgets.tree.TreeGrid#folderDrop}
      * implementation that <b>does not</b> add a child node under the leaf.  If you want to add a child nodes to a leaf,
-     * instead of enabling canDropOnLeaves, use empty folders instead - see {@link
+     * instead of enabling canDropOnLeaves, use empty folders isntead - see {@link
      * com.smartgwt.client.widgets.tree.Tree#isFolder} for how to control whether a node is considered a folder.
      *
      *
@@ -579,7 +579,7 @@ public class TreeGrid extends ListGrid  implements com.smartgwt.client.widgets.t
     public String getCustomIconProperty()  {
         return getAttributeAsString("customIconProperty");
     }
-            
+
     /**
      * A {@link com.smartgwt.client.widgets.tree.Tree} object containing of nested {@link
      * com.smartgwt.client.widgets.tree.TreeNode}s to  display as rows in this TreeGrid.   The <code>data</code> property will
@@ -605,7 +605,7 @@ public class TreeGrid extends ListGrid  implements com.smartgwt.client.widgets.t
     public Tree getData()  {
             return Tree.getOrCreateRef(getAttributeAsJavaScriptObject("data"));
     }
- 
+
     /**
      * Specifies the type of nodes displayed in the treeGrid.
      *

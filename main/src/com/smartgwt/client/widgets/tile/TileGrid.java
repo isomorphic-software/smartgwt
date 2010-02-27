@@ -110,7 +110,7 @@ public class TileGrid extends TileLayout  implements DataBoundComponent, com.sma
     public Boolean getAnimateTileChange()  {
         return getAttributeAsBoolean("animateTileChange");
     }
- 
+
     /**
      * If {@link com.smartgwt.client.widgets.tile.TileGrid#getAutoFetchData autoFetchData} is <code>true</code>, this attribute
      * allows the developer to specify a textMatchStyle for the initial {@link
@@ -134,7 +134,7 @@ public class TileGrid extends TileLayout  implements DataBoundComponent, com.sma
     public TextMatchStyle getAutoFetchTextMatchStyle()  {
         return EnumUtil.getEnum(TextMatchStyle.values(), getAttribute("autoFetchTextMatchStyle"));
     }
- 
+
     /**
      * Defines a tileGrid's clickable-selection behavior.
      *
