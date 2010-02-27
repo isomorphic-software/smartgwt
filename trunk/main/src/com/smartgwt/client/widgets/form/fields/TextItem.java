@@ -91,7 +91,7 @@ public class TextItem extends FormItem {
     }
 
     // ********************* Properties / Attributes ***********************
- 
+
     /**
      * Should entered characters be converted to upper or lowercase? Also applies to values applied with {@link
      * com.smartgwt.client.widgets.form.fields.FormItem#setValue}. <P> Note: character casing cannot be used at the same time

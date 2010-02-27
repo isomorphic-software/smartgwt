@@ -91,7 +91,7 @@ public class CanvasItem extends FormItem {
     }
 
     // ********************* Properties / Attributes ***********************
-            
+
     /**
      * The canvas that will be displayed inside this item.  You can pass an instance you've  already created, or its global ID
      * as a String.  If none is passed, one will be  auto-created using the overrideable defaults: {@link

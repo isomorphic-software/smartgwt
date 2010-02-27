@@ -88,7 +88,7 @@ public class ImgButton extends Img {
         return widget;
     }-*/;
     // ********************* Properties / Attributes ***********************
- 
+
     /**
      * Behavior on state changes -- BUTTON, RADIO or CHECKBOX
      * Update the 'actionType' for this canvas (radio / checkbox / button) If the canvas is currently selected, and the passed in actionType is 'button' this method will deselect the canvas.
@@ -108,7 +108,7 @@ public class ImgButton extends Img {
     public SelectionType getActionType()  {
         return EnumUtil.getEnum(SelectionType.values(), getAttribute("actionType"));
     }
- 
+
     /**
      * Horizontal alignment of this component's title.
      *
@@ -686,7 +686,7 @@ public class ImgButton extends Img {
     public String getSrc()  {
         return getAttributeAsString("src");
     }
- 
+
     /**
      * Current "state" of this widget. StatefulCanvases will have a different appearance based on their current state. By
      * default this is handled by changing the css className applied to the StatefulCanvas - see {@link
@@ -739,7 +739,7 @@ public class ImgButton extends Img {
     public String getTitle()  {
         return getAttributeAsString("title");
     }
- 
+
     /**
      * Vertical alignment of this component's title.
      *

@@ -116,7 +116,7 @@ public class Canvas extends BaseWidget  implements com.smartgwt.client.widgets.e
     public String getAccessKey()  {
         return getAttributeAsString("accessKey");
     }
- 
+
     /**
      * Default acceleration effect to apply to all animations on this Canvas. Can be overridden by setting
      * animationAcceleration for specific animations or by passing an acceleration function directly into the appropriate
@@ -160,7 +160,7 @@ public class Canvas extends BaseWidget  implements com.smartgwt.client.widgets.e
     public Integer getAnimateFadeTime()  {
         return getAttributeAsInt("animateFadeTime");
     }
- 
+
     /**
      * Default acceleration function for performing an animated hide.  If unset,  <code>this.animateAcceleration</code> will be
      * used by default instead
@@ -202,7 +202,7 @@ public class Canvas extends BaseWidget  implements com.smartgwt.client.widgets.e
     public Integer getAnimateHideTime()  {
         return getAttributeAsInt("animateHideTime");
     }
- 
+
     /**
      * Default acceleration effect for performing an animated move.  If unset,  <code>this.animateAcceleration</code> will be
      * used by default instead
@@ -244,7 +244,7 @@ public class Canvas extends BaseWidget  implements com.smartgwt.client.widgets.e
     public Integer getAnimateMoveTime()  {
         return getAttributeAsInt("animateMoveTime");
     }
- 
+
     /**
      * Default acceleration function for performing an animated move and resize.  If unset, 
      * <code>this.animateAcceleration</code> will be used by default instead
@@ -288,7 +288,7 @@ public class Canvas extends BaseWidget  implements com.smartgwt.client.widgets.e
     public Integer getAnimateRectTime()  {
         return getAttributeAsInt("animateRectTime");
     }
- 
+
     /**
      * Default acceleration function for performing an animated resize.  If unset,  <code>this.animateAcceleration</code> will
      * be used by default instead
@@ -330,7 +330,7 @@ public class Canvas extends BaseWidget  implements com.smartgwt.client.widgets.e
     public Integer getAnimateResizeTime()  {
         return getAttributeAsInt("animateResizeTime");
     }
- 
+
     /**
      * Default acceleration function for performing an animated scroll.  If unset,  <code>this.animateAcceleration</code> will
      * be used by default instead
@@ -372,7 +372,7 @@ public class Canvas extends BaseWidget  implements com.smartgwt.client.widgets.e
     public Integer getAnimateScrollTime()  {
         return getAttributeAsInt("animateScrollTime");
     }
- 
+
     /**
      * Default acceleration function for performing an animated show.  If unset,  <code>this.animateAcceleration</code> will be
      * used by default instead
@@ -520,7 +520,7 @@ public class Canvas extends BaseWidget  implements com.smartgwt.client.widgets.e
     public String getBackgroundPosition()  {
         return getAttributeAsString("backgroundPosition");
     }
- 
+
     /**
      * Specifies how the background image should be tiled if this widget      is larger than the image. It corresponds to the
      * CSS background-repeat attribute.      See BkgndRepeat type for details.
@@ -847,7 +847,7 @@ public class Canvas extends BaseWidget  implements com.smartgwt.client.widgets.e
     public String getContents()  {
         return getAttributeAsString("contents");
     }
-            
+
     /**
      * Context menu to show for this object, an instance of the Menu widget.
      * <p><b>Note : </b> This is an advanced setting</p>
@@ -867,7 +867,7 @@ public class Canvas extends BaseWidget  implements com.smartgwt.client.widgets.e
     public Menu getContextMenu()  {
             return Menu.getOrCreateRef(getAttributeAsJavaScriptObject("contextMenu"));
     }
- 
+
     /**
      * Specifies the cursor image to display when the mouse pointer is      over this widget. It corresponds to the CSS cursor
      * attribute. See Cursor type for      different cursors.
@@ -1077,7 +1077,7 @@ public class Canvas extends BaseWidget  implements com.smartgwt.client.widgets.e
         errorIfNotCreated("destroying");
         return getAttributeAsBoolean("destroying");
     }
- 
+
     /**
      * Specifies the cursor image to display when the mouse pointer is      over this widget if this widget is disabled. It
      * corresponds to the CSS cursor       attribute. See Cursor type for different cursors.
@@ -1119,7 +1119,7 @@ public class Canvas extends BaseWidget  implements com.smartgwt.client.widgets.e
     public int getDoubleClickDelay()  {
         return getAttributeAsInt("doubleClickDelay");
     }
- 
+
     /**
      * Visual appearance to show when the object is being dragged.
      * <p><b>Note : </b> This is an advanced setting</p>
@@ -1139,7 +1139,7 @@ public class Canvas extends BaseWidget  implements com.smartgwt.client.widgets.e
     public DragAppearance getDragAppearance()  {
         return EnumUtil.getEnum(DragAppearance.values(), getAttribute("dragAppearance"));
     }
- 
+
     /**
      * This indicates how the system will test for droppable targets: either by intersection with the mouse or intersection
      * with the rectangle of the dragMoveTarget.
@@ -1183,7 +1183,7 @@ public class Canvas extends BaseWidget  implements com.smartgwt.client.widgets.e
     public Integer getDragOpacity()  {
         return getAttributeAsInt("dragOpacity");
     }
- 
+
     /**
      * Cursor to switch to if the mouse is over a widget that is drag repositionable.
      * <p><b>Note : </b> This is an advanced setting</p>
@@ -1522,7 +1522,7 @@ public class Canvas extends BaseWidget  implements com.smartgwt.client.widgets.e
     public int getExtraSpace()  {
         return getAttributeAsInt("extraSpace");
     }
- 
+
     /**
      * If <code>this.showHover</code> is true, this property can be used to customize the alignment of content in the hover
      * canvas.
@@ -1640,7 +1640,7 @@ public class Canvas extends BaseWidget  implements com.smartgwt.client.widgets.e
     public String getHoverStyle()  {
         return getAttributeAsString("hoverStyle");
     }
- 
+
     /**
      * If <code>this.showHover</code> is true, this property can be used to customize the vertical alignment of content in the
      * hover canvas.
@@ -1703,7 +1703,7 @@ public class Canvas extends BaseWidget  implements com.smartgwt.client.widgets.e
     public Boolean getHoverWrap()  {
         return getAttributeAsBoolean("hoverWrap");
     }
- 
+
     /**
      * If {@link com.smartgwt.client.widgets.Canvas#getHtmlElement htmlElement} is specified, this attribute specifies the
      * position where  the canvas should be inserted relative to the <code>htmlElement</code> in the DOM.
@@ -1945,7 +1945,7 @@ public class Canvas extends BaseWidget  implements com.smartgwt.client.widgets.e
     public Integer getOpacity()  {
         return getAttributeAsInt("opacity");
     }
- 
+
     /**
      * Controls what happens when the drawn size of the content of a Canvas is either   greater or smaller than the specified
      * size of the Canvas.  Similar to the CSS   property overflow, but consistent across browsers.  See Overflow type for  
@@ -2001,7 +2001,7 @@ public class Canvas extends BaseWidget  implements com.smartgwt.client.widgets.e
     public Integer getPadding()  {
         return getAttributeAsInt("padding");
     }
- 
+
     /**
      * Governs the model to be used when sizing canvases with percentage width or height, or  positioning widgets with a
      * specified {@link com.smartgwt.client.widgets.Canvas#getSnapTo 'snapTo'}. <P> Only affects widgets with a a specified
@@ -2034,7 +2034,7 @@ public class Canvas extends BaseWidget  implements com.smartgwt.client.widgets.e
     public PercentBoxModel getPercentBox()  {
         return EnumUtil.getEnum(PercentBoxModel.values(), getAttribute("percentBox"));
     }
- 
+
     /**
      * Absolute or relative, corresponding to the "absolute" (with respect to parent) or&#010 "relative" (with respect to
      * document flow) values for the CSS position attribute.&#010 <P>&#010 Setting <code>position:"relative"</code> enables
@@ -2771,7 +2771,7 @@ public class Canvas extends BaseWidget  implements com.smartgwt.client.widgets.e
     public Integer getTabIndex()  {
         return getAttributeAsInt("tabIndex");
     }
-            
+
     /**
      * {@link com.smartgwt.client.widgets.form.ValuesManager} for managing values displayed in this component. If specified at
      * initialization time, this component will be added to the valuesManager via {@link
@@ -2813,7 +2813,7 @@ public class Canvas extends BaseWidget  implements com.smartgwt.client.widgets.e
     public ValuesManager getValuesManager()  {
             return ValuesManager.getOrCreateRef(getAttributeAsJavaScriptObject("valuesManager"));
     }
- 
+
     /**
      * Controls widget visibility when the widget is initialized. See Visibility type for      details.
      * Sets this widget's visibility to "inherit", so that it becomes visible if all it's parents are visible or it has no parents. <P> If the widget has not yet been drawn (and doesn't have a parent or master), this method calls the draw method as well.

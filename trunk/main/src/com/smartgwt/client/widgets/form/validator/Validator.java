@@ -83,7 +83,7 @@ public class Validator extends DataClass {
     }
 
     // ********************* Properties / Attributes ***********************
-            
+
     /**
      * Used to create a conditional validator based on client-side criteria. The criteria defines when the validator applies.
      * The form current values or ListGrid record is used as reference for the criteria. If the criteria matches the validator
@@ -156,35 +156,6 @@ public class Validator extends DataClass {
      */
     public Boolean getStopIfFalse()  {
         return getAttributeAsBoolean("stopIfFalse");
-    }
-
-    /**
-     * Indicates that if this validator is not passed, the user should not be allowed to exit the field - focus will be forced
-     * back into the field until the error is corrected. <p> This property defaults to {@link
-     * com.smartgwt.client.widgets.form.fields.FormItem#getStopOnError stopOnError} if unset. <p> Enabling this property also
-     * implies {@link com.smartgwt.client.widgets.form.fields.FormItem#getValidateOnExit validateOnExit} is automatically
-     * enabled. If this is a server-based validator, setting this property also implies that {@link
-     * com.smartgwt.client.widgets.form.fields.FormItem#getSynchronousValidation synchronousValidation} is forced on.
-     *
-     * @param stopOnError stopOnError Default value is null
-     */
-    public void setStopOnError(Boolean stopOnError) {
-        setAttribute("stopOnError", stopOnError);
-    }
-
-    /**
-     * Indicates that if this validator is not passed, the user should not be allowed to exit the field - focus will be forced
-     * back into the field until the error is corrected. <p> This property defaults to {@link
-     * com.smartgwt.client.widgets.form.fields.FormItem#getStopOnError stopOnError} if unset. <p> Enabling this property also
-     * implies {@link com.smartgwt.client.widgets.form.fields.FormItem#getValidateOnExit validateOnExit} is automatically
-     * enabled. If this is a server-based validator, setting this property also implies that {@link
-     * com.smartgwt.client.widgets.form.fields.FormItem#getSynchronousValidation synchronousValidation} is forced on.
-     *
-     *
-     * @return Boolean
-     */
-    public Boolean getStopOnError()  {
-        return getAttributeAsBoolean("stopOnError");
     }
 
     /**

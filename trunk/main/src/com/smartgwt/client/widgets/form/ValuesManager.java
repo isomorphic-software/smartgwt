@@ -123,7 +123,7 @@ public class ValuesManager extends BaseClass {
     public Boolean getDisableValidation()  {
         return getAttributeAsBoolean("disableValidation");
     }
- 
+
     /**
      * Default {@link com.smartgwt.client.types.DSOperationType} to be performed when {@link
      * com.smartgwt.client.widgets.form.DynamicForm#saveData} is called. This property is automatically set on a call to {@link

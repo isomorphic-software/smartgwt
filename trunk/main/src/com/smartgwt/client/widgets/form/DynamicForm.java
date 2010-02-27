@@ -129,7 +129,7 @@ public class DynamicForm extends Canvas  implements DataBoundComponent, com.smar
     public String getAction()  {
         return getAttributeAsString("action");
     }
- 
+
     /**
      * If {@link com.smartgwt.client.widgets.form.DynamicForm#getAutoFetchData autoFetchData} is <code>true</code>, this
      * attribute allows the developer to specify a textMatchStyle for the initial {@link
@@ -325,7 +325,7 @@ public class DynamicForm extends Canvas  implements DataBoundComponent, com.smar
     public Boolean getDisableValidation()  {
         return getAttributeAsBoolean("disableValidation");
     }
- 
+
     /**
      * encoding for the form, use MULTIPART_ENCODING for file upload forms
      * <p><b>Note : </b> This is an advanced setting</p>
@@ -463,7 +463,7 @@ public class DynamicForm extends Canvas  implements DataBoundComponent, com.smar
     public Boolean getHiliteRequiredFields()  {
         return getAttributeAsBoolean("hiliteRequiredFields");
     }
- 
+
     /**
      * Text alignment for hovers shown for items
      *
@@ -596,7 +596,7 @@ public class DynamicForm extends Canvas  implements DataBoundComponent, com.smar
     public Integer getItemHoverWidth()  {
         return getAttributeAsInt("itemHoverWidth");
     }
- 
+
     /**
      * Layout style to use with this form.   <P> The default of "table" uses a tabular layout similar to HTML tables, but with
      * much more powerful control over sizing, item visibility and reflow, overflow handling, etc. <P>
@@ -676,7 +676,7 @@ public class DynamicForm extends Canvas  implements DataBoundComponent, com.smar
     public String getLongTextEditorType()  {
         return getAttributeAsString("longTextEditorType");
     }
- 
+
     /**
      * The mechanism by which form data is sent to the action URL. See FormMethod type for details. <p> <b>NOTE:</b> this is
      * used only in the very rare case that a form is used to submit data directly to a URL.  Normal server contact is through 
@@ -920,7 +920,7 @@ public class DynamicForm extends Canvas  implements DataBoundComponent, com.smar
     public Boolean getSaveOnEnter()  {
         return getAttributeAsBoolean("saveOnEnter");
     }
- 
+
     /**
      * Default {@link com.smartgwt.client.types.DSOperationType} to be performed when {@link
      * com.smartgwt.client.widgets.form.DynamicForm#saveData} is called. This property is automatically set on a call to {@link
@@ -956,7 +956,7 @@ public class DynamicForm extends Canvas  implements DataBoundComponent, com.smar
     public DSOperationType getSaveOperationType()  {
         return EnumUtil.getEnum(DSOperationType.values(), getAttribute("saveOperationType"));
     }
- 
+
     /**
      * If the form has sections, [implemented as {@link com.smartgwt.client.widgets.form.fields.SectionItem}s], this attribute
      * controls whether multiple sections can be expanded at once.
@@ -1299,60 +1299,6 @@ public class DynamicForm extends Canvas  implements DataBoundComponent, com.smar
     }
 
     /**
-     * Indicates that if validation fails, the user should not be allowed to exit the field - focus will be forced back into
-     * the field until the error is corrected. <p> Enabling this property also implies {@link
-     * com.smartgwt.client.widgets.form.fields.FormItem#getValidateOnExit validateOnExit} is automatically enabled. If there
-     * are server-based validators on this item, setting this property also implies that {@link
-     * com.smartgwt.client.widgets.form.fields.FormItem#getSynchronousValidation synchronousValidation} is forced on.
-     *
-     * @param stopOnError stopOnError Default value is null
-     * @throws IllegalStateException this property cannot be changed after the component has been created
-     */
-    public void setStopOnError(Boolean stopOnError)  throws IllegalStateException {
-        setAttribute("stopOnError", stopOnError, false);
-    }
-
-    /**
-     * Indicates that if validation fails, the user should not be allowed to exit the field - focus will be forced back into
-     * the field until the error is corrected. <p> Enabling this property also implies {@link
-     * com.smartgwt.client.widgets.form.fields.FormItem#getValidateOnExit validateOnExit} is automatically enabled. If there
-     * are server-based validators on this item, setting this property also implies that {@link
-     * com.smartgwt.client.widgets.form.fields.FormItem#getSynchronousValidation synchronousValidation} is forced on.
-     *
-     *
-     * @return Boolean
-     */
-    public Boolean getStopOnError()  {
-        return getAttributeAsBoolean("stopOnError");
-    }
-
-    /**
-     * If enabled, whenever validation is triggered and a request to the server is required, user interactivity will be blocked
-     * until the request returns. Can be set for the entire form or individual FormItems. <p> If false, the form will try to
-     * avoid blocking user interaction until it is strictly required. That is until the user attempts to use a FormItem whose
-     * state could be affected by a server request that has not yet returned.
-     *
-     * @param synchronousValidation synchronousValidation Default value is false
-     * @throws IllegalStateException this property cannot be changed after the component has been created
-     */
-    public void setSynchronousValidation(Boolean synchronousValidation)  throws IllegalStateException {
-        setAttribute("synchronousValidation", synchronousValidation, false);
-    }
-
-    /**
-     * If enabled, whenever validation is triggered and a request to the server is required, user interactivity will be blocked
-     * until the request returns. Can be set for the entire form or individual FormItems. <p> If false, the form will try to
-     * avoid blocking user interaction until it is strictly required. That is until the user attempts to use a FormItem whose
-     * state could be affected by a server request that has not yet returned.
-     *
-     *
-     * @return Boolean
-     */
-    public Boolean getSynchronousValidation()  {
-        return getAttributeAsBoolean("synchronousValidation");
-    }
-
-    /**
      * The name of a window or frame that will receive the results returned by the form's action. The default null indicates to
      * use the current frame. <p> <b>NOTE:</b> this is used only in the very rare case that a form is used to submit data
      * directly to a URL.  Normal server contact is through {@link com.smartgwt.client.docs.DataBoundComponentMethods
@@ -1378,7 +1324,7 @@ public class DynamicForm extends Canvas  implements DataBoundComponent, com.smar
     public String getTarget()  {
         return getAttributeAsString("target");
     }
- 
+
     /**
      * Default orientation for titles for items in this form.  {@link com.smartgwt.client.types.TitleOrientation} lists valid
      * options. <P> Note that titles on the left or right take up a cell in tabular {@link com.smartgwt.client.docs.FormLayout

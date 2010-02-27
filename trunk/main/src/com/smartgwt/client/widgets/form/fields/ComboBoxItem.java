@@ -269,11 +269,11 @@ public class ComboBoxItem extends FormItem  implements PickList, com.smartgwt.cl
     public Boolean getFilterWithValue()  {
         return getAttributeAsBoolean("filterWithValue");
     }
- 
- 
- 
- 
- 
+
+
+
+
+
 
     /**
      * If this item has a specified <code>optionDataSource</code>, this attribute may be set to specify an explicit {@link

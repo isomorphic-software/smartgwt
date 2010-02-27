@@ -139,7 +139,7 @@ public class ListGridRecord extends Record {
     public String get_baseStyle()  {
         return getAttributeAsString("_baseStyle");
     }
-            
+
     /**
      * Canvas created and embedded in the body behind a given record.   When set, either as a Canvas or Canvas Properties, will
      * be constructed if necessary, combined with the  autoChild properties specified for {@link
@@ -262,7 +262,7 @@ public class ListGridRecord extends Record {
     public String getCustomStyle()  {
         return getAttributeAsString("customStyle");
     }
-            
+
     /**
      * The default value of {@link com.smartgwt.client.widgets.grid.ListGrid#getRecordDetailDSProperty recordDetailDSProperty}.
      * <p><b>Note : </b> This is an advanced setting</p>

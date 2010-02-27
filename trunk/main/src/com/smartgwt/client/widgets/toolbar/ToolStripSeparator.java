@@ -91,10 +91,9 @@ public class ToolStripSeparator extends Img {
      * Image for horizontally oriented separator (for vertical toolstrips).
      *
      * @param hSrc hSrc Default value is "[SKIN]hseparator.png"
-     * @throws IllegalStateException this property cannot be changed after the component has been created
      */
-    public void setHSrc(String hSrc)  throws IllegalStateException {
-        setAttribute("hSrc", hSrc, false);
+    public void setHSrc(String hSrc) {
+        setAttribute("hSrc", hSrc, true);
     }
 
     /**
@@ -131,10 +130,9 @@ public class ToolStripSeparator extends Img {
      * Image for vertically oriented separator (for horizontal toolstrips).
      *
      * @param vSrc vSrc Default value is "[SKIN]separator.png"
-     * @throws IllegalStateException this property cannot be changed after the component has been created
      */
-    public void setVSrc(String vSrc)  throws IllegalStateException {
-        setAttribute("vSrc", vSrc, false);
+    public void setVSrc(String vSrc) {
+        setAttribute("vSrc", vSrc, true);
     }
 
     /**

@@ -86,7 +86,7 @@ public class FilterClause extends HStack {
         return widget;
     }-*/;
     // ********************* Properties / Attributes ***********************
-            
+
     /**
      * Initial criterion for this FilterClause. <P> When initialized with a criterion, the clause will be automatically set up
      * for editing the supplied criterion. <P> Note that an empty or partial criterion is allowed, for example, it may specify

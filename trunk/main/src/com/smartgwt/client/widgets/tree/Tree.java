@@ -252,7 +252,7 @@ public class Tree extends BaseClass  implements com.smartgwt.client.widgets.tree
     public String getIsFolderProperty()  {
         return getAttributeAsString("isFolderProperty");
     }
- 
+
     /**
      * Selects the model used to construct the tree representation.  See {@link com.smartgwt.client.types.TreeModelType} for
      * the available options and their implications. <P> If the "parent" modelType is used, you can provide the initial
@@ -434,7 +434,7 @@ public class Tree extends BaseClass  implements com.smartgwt.client.widgets.tree
     public Boolean getReportCollisions()  {
         return getAttributeAsBoolean("reportCollisions");
     }
-            
+
     /**
      * If you're using the "parent" modelType, you can provide the root node configuration via this&#010 property.  If you
      * don't provide it, one will be auto-created for you with an empty name.&#010 Read on for a description of what omitting

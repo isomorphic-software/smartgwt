@@ -130,7 +130,7 @@ public class TileLayout extends Canvas {
     public Boolean getAutoWrapLines()  {
         return getAttributeAsBoolean("autoWrapLines");
     }
- 
+
     /**
      * Indicates what to do with data dragged into another DataBoundComponent. See          DragDataAction type for details.
      *
@@ -195,7 +195,7 @@ public class TileLayout extends Canvas {
     public int getLayoutMargin()  {
         return getAttributeAsInt("layoutMargin");
     }
- 
+
     /**
      * Direction of tiling.  See also {@link com.smartgwt.client..TileLayoutPolicy}.
      *
@@ -215,7 +215,7 @@ public class TileLayout extends Canvas {
     public Orientation getOrientation()  {
         return EnumUtil.getEnum(Orientation.values(), getAttribute("orientation"));
     }
- 
+
     /**
      * Normal {@link com.smartgwt.client.types.Overflow} settings can be used on TileLayouts, for example, an overflow:auto
      * TileLayout will scroll if members exceed its specified size, whereas an overflow:visible TileLayout will grow to

@@ -129,7 +129,7 @@ public class OperationBinding extends DataClass {
     public String getCallbackParam()  {
         return getAttributeAsString("callbackParam");
     }
- 
+
     /**
      * Format for response data for this operation. <P> Typically set once for the DataSource as a whole via {@link
      * com.smartgwt.client.data.DataSource#getDataFormat dataFormat}.
@@ -150,7 +150,7 @@ public class OperationBinding extends DataClass {
     public DSDataFormat getDataFormat()  {
         return EnumUtil.getEnum(DSDataFormat.values(), getAttribute("dataFormat"));
     }
- 
+
     /**
      * Controls the format in which inputs are sent to the dataURL. <p> When a DataSource operation such as fetchData() is
      * invoked on this DataSource or a component bound to this DataSource, the data passed to the operation, if any, will be
@@ -197,7 +197,7 @@ public class OperationBinding extends DataClass {
     public DSProtocol getDataProtocol()  {
         return EnumUtil.getEnum(DSProtocol.values(), getAttribute("dataProtocol"));
     }
- 
+
     /**
      * Transport to use for this operation.  Defaults to {@link com.smartgwt.client.data.DataSource#getDataTransport
      * dataTransport}, which in turn defaults to {@link com.smartgwt.client.rpc.RPCManager#defaultTransport}.  This would
@@ -253,7 +253,7 @@ public class OperationBinding extends DataClass {
     public String getDataURL()  {
         return getAttributeAsString("dataURL");
     }
- 
+
     /**
      * The format in which the data should be exported.  Default is "csv". See {@link com.smartgwt.client.types.ExportFormat}
      * for more information.
@@ -415,7 +415,7 @@ public class OperationBinding extends DataClass {
     public String getOperationId()  {
         return getAttributeAsString("operationId");
     }
- 
+
     /**
      * Which operationType this operationBinding is for.  This property is only settable on an operationBinding, not a
      * DataSource as a whole.

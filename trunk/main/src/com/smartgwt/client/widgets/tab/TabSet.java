@@ -234,7 +234,7 @@ public class TabSet extends Canvas  implements com.smartgwt.client.widgets.tab.e
     public String getPaneContainerClassName()  {
         return getAttributeAsString("paneContainerClassName");
     }
- 
+
     /**
      * Specifies the overflow of the pane container (the component that holds the pane contents for all tabs).  By default this
      * is set to "auto", meaning the pane container will automatically introduce scrolling when the pane contents exceed the
@@ -764,7 +764,7 @@ public class TabSet extends Canvas  implements com.smartgwt.client.widgets.tab.e
     public Boolean getSymmetricScroller()  {
         return getAttributeAsBoolean("symmetricScroller");
     }
- 
+
     /**
      * Alignment of the tabBar. <P> If the position of the tabBar is "top" or "bottom", then alignment must be "left" or
      * "right" and defaults to "left". <P> If the position of the tabBar is "left" or "right", then the alignment must be "top"
@@ -788,7 +788,7 @@ public class TabSet extends Canvas  implements com.smartgwt.client.widgets.tab.e
     public Side getTabBarAlign()  {
         return EnumUtil.getEnum(Side.values(), getAttribute("tabBarAlign"));
     }
- 
+
     /**
      * Which side of the TabSet the TabBar should appear on.
      *
