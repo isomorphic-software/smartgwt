@@ -26,7 +26,7 @@ package com.smartgwt.client.docs;
  * Visual Builder and successfully&#010 reloaded, however, as with any design tool that provides a drag and drop,
  * dialog-driven&#010 approach to screen creation, Visual Builder cannot work with entirely free-form code.  In&#010
  * particular, when a screen is loaded and then re-saved:&#010 <ul>&#010 <li> any indenting or spacing changes are not
- * preserved &#010 <li> order of property or method defintions will revert to Visual Builder's default&#010 <li> while
+ * preserved &#010 <li> order of property or method definitions will revert to Visual Builder's default&#010 <li> while
  * method definitions on components are preserved, any code <b>outside of</b>&#010      component definitions will be
  * dropped (in some cases adding such code will cause&#010      loading to fail)&#010 <li> each Canvas-based component will
  * be output separately, in the order these components&#010      appear in the project tree, deepest first&#010 </ul>&#010
@@ -75,7 +75,7 @@ package com.smartgwt.client.docs;
  * ("iconSize" sets&#010 both)&#010 <li> <code>showDropIcon</code>: for components that allow children, whether to show
  * a&#010 special drop icon on valid drop (like {@link com.smartgwt.client.widgets.tree.TreeGrid#getShowDropIcons
  * showDropIcons}).&#010 </ul>&#010 <P>&#010 In order to use custom classes in Visual Builder, you must modify&#010
- * <code>[webroot]/tools/visualBuilder/globalDependences.xml</code> to include:&#010 <ul>&#010 <li> the JavaScript class
+ * <code>[webroot]/tools/visualBuilder/globalDependencies.xml</code> to include:&#010 <ul>&#010 <li> the JavaScript class
  * definition for the custom class (in other words, the&#010 {@link com.smartgwt.client.util.isc#defineClass} call)&#010
  * <li> a {@link com.smartgwt.client.docs.ComponentSchema 'component schema'} for the custom component&#010 </ul>&#010 See
  * globalDependencies.xml for examples.&#010 <P>&#010 <h4>Component Schema and Visual Builder</h4>&#010 <P>&#010 When you
@@ -106,20 +106,20 @@ package com.smartgwt.client.docs;
  * parameters of the action are bound.&#010 <li>For each non-optional parameter of the action method, every parameter of
  * the&#010 event method is inspected in order to either directly match the type (for non-object types)&#010 or to match an
  * isAssignableFrom type check via a Smart GWT schema inheritance check.&#010 <li>The 'type' of a parameter is determined
- * from the type documented in the Smart GWT&#010 reference for built-in components, or from the <code>type</code> atribute
- * on the method&#010 param in the {@link com.smartgwt.client.docs.ComponentSchema 'component schema'} definition of a
- * custom component.&#010 <li>When a matching parameter is found, it is assigned to the current slot of the action and&#010
- * not considered for further parameter matching.&#010 <li>The above pattern is repeated until all non-optional parameters
- * are exhausted, all&#010 event parameters are exhausted, or until no further type matches can be inferred.&#010
- * </ul>&#010 The "actionBinding" log category can be enabled in the Developer Console to troubleshoot&#010 issues with
- * automatic binding for custom methods.&#010 <P>&#010 <b>Component Drag and Drop</b>&#010 <P>&#010 Visual Builder uses
- * component schema to determine whether a given drop is allowed and what&#010 methods should be called to accomplish the
- * drop.  For example, any Canvas-based component&#010 can be dropped on a VLayout because VLayout has a "members" field of
- * type "Canvas", and an &#010 {@link com.smartgwt.client.widgets.layout.Layout#addMember} function.&#010 <P>&#010 Because
- * of these rules, any subclass of Canvas will be automatically eligible to be dropped&#010 into any container that accepts
- * a Canvas (eg, a Layout or Tab).  Any subclass of a FormItem&#010 will be, likewise, automatically eligible to be dropped
- * into a DynamicForm.&#010 <P>&#010 You can declare custom containment relations, such as a custom class "Wizard" that
- * accepts&#010 instances of the custom class "Pane" by simply declaring a&#010 {@link
+ * from the type documented in the Smart GWT&#010 reference for built-in components, or from the <code>type</code>
+ * attribute on the method&#010 param in the {@link com.smartgwt.client.docs.ComponentSchema 'component schema'} definition
+ * of a custom component.&#010 <li>When a matching parameter is found, it is assigned to the current slot of the action
+ * and&#010 not considered for further parameter matching.&#010 <li>The above pattern is repeated until all non-optional
+ * parameters are exhausted, all&#010 event parameters are exhausted, or until no further type matches can be
+ * inferred.&#010 </ul>&#010 The "actionBinding" log category can be enabled in the Developer Console to troubleshoot&#010
+ * issues with automatic binding for custom methods.&#010 <P>&#010 <b>Component Drag and Drop</b>&#010 <P>&#010 Visual
+ * Builder uses component schema to determine whether a given drop is allowed and what&#010 methods should be called to
+ * accomplish the drop.  For example, any Canvas-based component&#010 can be dropped on a VLayout because VLayout has a
+ * "members" field of type "Canvas", and an &#010 {@link com.smartgwt.client.widgets.layout.Layout#addMember}
+ * function.&#010 <P>&#010 Because of these rules, any subclass of Canvas will be automatically eligible to be dropped&#010
+ * into any container that accepts a Canvas (eg, a Layout or Tab).  Any subclass of a FormItem&#010 will be, likewise,
+ * automatically eligible to be dropped into a DynamicForm.&#010 <P>&#010 You can declare custom containment relations,
+ * such as a custom class "Wizard" that accepts&#010 instances of the custom class "Pane" by simply declaring a&#010 {@link
  * com.smartgwt.client.docs.ComponentSchema 'component schema'} that says that Wizard has a property called&#010 "panes" of
  * type "Pane".  Then, provide methods that allow components to be added and removed:&#010 <ul>&#010 <li> for a {@link
  * com.smartgwt.client.data.DataSourceField#getMultiple 'multiple'} field, provide "add" and "remove"&#010 functions based

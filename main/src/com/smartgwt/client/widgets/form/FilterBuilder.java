@@ -130,7 +130,7 @@ public class FilterBuilder extends Layout  implements com.smartgwt.client.widget
     public Boolean getAllowEmpty()  {
         return getAttributeAsBoolean("allowEmpty");
     }
-            
+
     /**
      * If specified, the FilterBuilder will dynamically fetch DataSourceField definitions from  this DataSource rather than
      * using {@link com.smartgwt.client.widgets.form.FilterBuilder#getDataSource dataSource}.  The {@link
@@ -171,6 +171,28 @@ public class FilterBuilder extends Layout  implements com.smartgwt.client.widget
      */
     public DataSource getFieldDataSource()  {
             return DataSource.getOrCreateRef(getAttributeAsJavaScriptObject("fieldDataSource"));
+    }
+
+    /**
+     * Properties to combine with the {@link com.smartgwt.client.widgets.form.FilterBuilder#getFieldPicker fieldPicker}
+     * autoChild FormItem.
+     *
+     * @param fieldPickerProperties fieldPickerProperties Default value is null
+     * @throws IllegalStateException this property cannot be changed after the component has been created
+     */
+    public void setFieldPickerProperties(FormItem fieldPickerProperties)  throws IllegalStateException {
+        setAttribute("fieldPickerProperties", fieldPickerProperties.getJsObj(), false);
+    }
+
+    /**
+     * Properties to combine with the {@link com.smartgwt.client.widgets.form.FilterBuilder#getFieldPicker fieldPicker}
+     * autoChild FormItem.
+     *
+     *
+     * @return FormItem
+     */
+    public FormItem getFieldPickerProperties()  {
+        return FormItem.getOrCreateRef(getAttributeAsJavaScriptObject("fieldPickerProperties"));
     }
 
     /**
@@ -383,7 +405,7 @@ public class FilterBuilder extends Layout  implements com.smartgwt.client.widget
     public String getSubClauseButtonTitle()  {
         return getAttributeAsString("subClauseButtonTitle");
     }
- 
+
     /**
      * Default logical operator for all top-level clauses in the FilterBuilder. <P> May be able to be changed by the user via
      * the UI, according to {@link com.smartgwt.client..TopOperatorAppearance}.
@@ -610,16 +632,6 @@ public class FilterBuilder extends Layout  implements com.smartgwt.client.widget
         var critJS = self.getCriteria();
         return @com.smartgwt.client.data.AdvancedCriteria::new(Lcom/google/gwt/core/client/JavaScriptObject;)(critJS);
     }-*/;
-
-    /**
-     * Properties to combine with the fieldPicker FormItem.
-     *
-     * @param fieldPickerProperties the fieldPicker FormItem properties
-     * @throws IllegalStateException this property cannot be changed after the component has been created
-     */
-    public void setFieldPickerProperties(FormItem fieldPickerProperties) throws IllegalStateException {
-        setAttribute("fieldPickerProperties", fieldPickerProperties.getConfig(), false);
-    }
 
 }
 

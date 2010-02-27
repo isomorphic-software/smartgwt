@@ -44,9 +44,9 @@ package com.smartgwt.client.docs;
  * to dynamically set data values at transaction-processing time, using        built-in {@link
  * com.smartgwt.client.docs.VelocitySupport 'Velocity support'}</li>   <li>Override the <code>execute()</code> method of
  * the DataSource to add extra processing       before and/or after the Smart GWT processing</li>   <li>Use {@link
- * com.smartgwt.client.data.DataSource#getValue 'Transaction Chaining'} to dynamically set data values        according to
- * the results of earlier transactions   <li>For SQL DataSources, use {@link com.smartgwt.client.docs.CustomQuerying 'SQL
- * Templating'} to change, add        to or even completely replace the SQL sent to the database, including calling      
+ * com.smartgwt.client..DSRequestModifier#getValue 'Transaction Chaining'} to dynamically set data values        according
+ * to the results of earlier transactions   <li>For SQL DataSources, use {@link com.smartgwt.client.docs.CustomQuerying
+ * 'SQL Templating'} to change, add        to or even completely replace the SQL sent to the database, including calling   
  * stored procedures</li>   <li>Use {@link com.smartgwt.client..DMI} to call directly into your own Java        classes. 
  * As described in the DMI discussion linked to above, DMI calls can be used        in conjunction with normal
  * <code>DSRequest</code> process flow, thus enabling you       to add custom logic to built-in DataSources without having

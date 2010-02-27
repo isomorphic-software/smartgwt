@@ -270,7 +270,7 @@ public class Layout extends Canvas {
     }
 
     /**
-     * Sizing policy applied to members on horizonal axis
+     * Sizing policy applied to members on horizontal axis
      * <p><b>Note : </b> This is an advanced setting</p>
      *
      * @param hPolicy hPolicy Default value is "fill"
@@ -280,7 +280,7 @@ public class Layout extends Canvas {
     }
 
     /**
-     * Sizing policy applied to members on horizonal axis
+     * Sizing policy applied to members on horizontal axis
      *
      *
      * @return LayoutPolicy

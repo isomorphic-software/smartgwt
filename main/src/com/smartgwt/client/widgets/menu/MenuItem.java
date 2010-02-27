@@ -171,6 +171,27 @@ public class MenuItem extends ListGridRecord  implements com.smartgwt.client.wid
     }
 
     /**
+     * If false, no submenus will be fetched for this MenuItem. This can be set globally via {@link
+     * com.smartgwt.client.widgets.menu.Menu#getFetchSubmenus fetchSubmenus}.
+     *
+     * @param fetchSubmenus fetchSubmenus Default value is true
+     */
+    public void setFetchSubmenus(Boolean fetchSubmenus) {
+        setAttribute("fetchSubmenus", fetchSubmenus);
+    }
+
+    /**
+     * If false, no submenus will be fetched for this MenuItem. This can be set globally via {@link
+     * com.smartgwt.client.widgets.menu.Menu#getFetchSubmenus fetchSubmenus}.
+     *
+     *
+     * @return Boolean
+     */
+    public Boolean getFetchSubmenus()  {
+        return getAttributeAsBoolean("fetchSubmenus");
+    }
+
+    /**
      * The base filename for this item's custom icon. If both this property and {@link
      * com.smartgwt.client.widgets.menu.MenuItem#getChecked checked} are both specified, only icon specified by this property
      * will be displayed. The path to the loaded skin directory and the skinImgDir are prepended to this filename to form the
@@ -324,7 +345,7 @@ public class MenuItem extends ListGridRecord  implements com.smartgwt.client.wid
     // ********************* Methods ***********************
             
     /**
-     * Contains the condition that will check or uncheck the curent menuItem. The handler must be specified as a function or
+     * Contains the condition that will check or uncheck the current menuItem. The handler must be specified as a function or
      * string of script.  Return false to uncheck the menuItem or true to check it <p> If you don't need to set this state
      * dynamically, use {@link com.smartgwt.client.widgets.menu.MenuItem#getChecked checked} instead. <p> May be defined as a
      * {@link com.smartgwt.client.docs.StringMethods 'stringMethod'}. <p>
@@ -370,7 +391,7 @@ public class MenuItem extends ListGridRecord  implements com.smartgwt.client.wid
    }-*/;
             
     /**
-     * Contains the condition that will enable or disable the curent menuItem. The handler must be specified as a function or
+     * Contains the condition that will enable or disable the current menuItem. The handler must be specified as a function or
      * string of script.  Return false to disable the menuItem or true to enable it <p> If you don't need to set this state
      * dynamically, use {@link com.smartgwt.client.widgets.menu.MenuItem#getEnabled enabled} instead. <p> May be defined as a
      * {@link com.smartgwt.client.docs.StringMethods 'stringMethod'}. <p>

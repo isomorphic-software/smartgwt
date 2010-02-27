@@ -195,8 +195,8 @@ public class Tab extends RefDataClass {
     }
 
     /**
-     * Optional ID for the tab, which can later be used to reference the tab. APIs requiring a referenct a tab will accept the
-     * tabs ID  [including  {@link com.smartgwt.client.widgets.tab.TabSet#selectTab}, {@link
+     * Optional ID for the tab, which can later be used to reference the tab. APIs requiring a reference to a tab will accept
+     * the tabs ID  [including  {@link com.smartgwt.client.widgets.tab.TabSet#selectTab}, {@link
      * com.smartgwt.client.widgets.tab.TabSet#updateTab}, {@link com.smartgwt.client.widgets.tab.TabSet#removeTab}].<br> The ID
      * will also be passed to the {@link com.smartgwt.client.widgets.tab.TabSet#addTabSelectedHandler} and {@link
      * com.smartgwt.client.widgets.tab.TabSet#addTabDeselectedHandler} handler functions, if specified. <p> Note that if you
@@ -209,8 +209,8 @@ public class Tab extends RefDataClass {
     }
 
     /**
-     * Optional ID for the tab, which can later be used to reference the tab. APIs requiring a referenct a tab will accept the
-     * tabs ID  [including  {@link com.smartgwt.client.widgets.tab.TabSet#selectTab}, {@link
+     * Optional ID for the tab, which can later be used to reference the tab. APIs requiring a reference to a tab will accept
+     * the tabs ID  [including  {@link com.smartgwt.client.widgets.tab.TabSet#selectTab}, {@link
      * com.smartgwt.client.widgets.tab.TabSet#updateTab}, {@link com.smartgwt.client.widgets.tab.TabSet#removeTab}].<br> The ID
      * will also be passed to the {@link com.smartgwt.client.widgets.tab.TabSet#addTabSelectedHandler} and {@link
      * com.smartgwt.client.widgets.tab.TabSet#addTabDeselectedHandler} handler functions, if specified. <p> Note that if you

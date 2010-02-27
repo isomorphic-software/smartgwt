@@ -279,8 +279,8 @@ public class ColumnTree extends Layout  implements DataBoundComponent, com.smart
     }
 
     /**
-     * For databound columnTree instances, should the entire tree of data be loaded on initial  fetch, or should each coluimn
-     * be loaded as needed. If unset the default  ResultTree.loadDataOnDemand setting will be used.
+     * For databound columnTree instances, should the entire tree of data be loaded on initial  fetch, or should each column be
+     * loaded as needed. If unset the default  ResultTree.loadDataOnDemand setting will be used.
      *
      * @param loadDataOnDemand loadDataOnDemand Default value is null
      * @throws IllegalStateException this property cannot be changed after the component has been created
@@ -290,8 +290,8 @@ public class ColumnTree extends Layout  implements DataBoundComponent, com.smart
     }
 
     /**
-     * For databound columnTree instances, should the entire tree of data be loaded on initial  fetch, or should each coluimn
-     * be loaded as needed. If unset the default  ResultTree.loadDataOnDemand setting will be used.
+     * For databound columnTree instances, should the entire tree of data be loaded on initial  fetch, or should each column be
+     * loaded as needed. If unset the default  ResultTree.loadDataOnDemand setting will be used.
      *
      *
      * @return Boolean

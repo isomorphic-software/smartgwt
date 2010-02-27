@@ -397,7 +397,7 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
     public Boolean getAutoFetchDisplayMap()  {
         return getAttributeAsBoolean("autoFetchDisplayMap");
     }
- 
+
     /**
      * When this grid is initially filtered via {@link com.smartgwt.client.widgets.grid.ListGrid#getAutoFetchData
      * autoFetchData}, or filtered by the user  via the {@link com.smartgwt.client.widgets.grid.ListGrid#getShowFilterEditor
@@ -594,7 +594,7 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
     public Boolean getAutoSaveEdits()  {
         return getAttributeAsBoolean("autoSaveEdits");
     }
-            
+
     /**
      * Canvas created and embedded in the body behind a given record.   When  {@link
      * com.smartgwt.client.widgets.grid.ListGridRecord#getBackgroundComponent backgroundComponent} is set, this autoChild
@@ -647,7 +647,7 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
     public String getBodyBackgroundColor()  {
         return getAttributeAsString("bodyBackgroundColor");
     }
- 
+
     /**
      * Overflow setting for the "body", that is, the area of the grid where data values are rendered. <P> By setting both the
      * grid itself and the body to overflow:visible, it is possible to "auto-fit" to the rendered height or width of the rows. 
@@ -1448,7 +1448,7 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
     public String getCheckboxFieldTrueImage()  {
         return getAttributeAsString("checkboxFieldTrueImage");
     }
- 
+
     /**
      * For {@link com.smartgwt.client.types.ExpansionMode} that show another grid or tree, what the  child's expansionMode
      * should be. <P>Default value <code>null</code> means no further expansion.
@@ -1541,6 +1541,31 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
     }
 
     /**
+     * If we're showing a {@link com.smartgwt.client.widgets.grid.ListGrid#getShowHeaderContextMenu 'headerContextMenu'} for
+     * this grid,  and multi-sorting is enabled, this attribute will be shown as the menu item title to show a  {@link
+     * com.smartgwt.client..MultiSortDialog} to configure the sort-specification for this grid.  This menu-item is displayed
+     * only in the context menu for the sorter button.
+     *
+     * @param configureSortText configureSortText Default value is "Configure Sort"
+     */
+    public void setConfigureSortText(String configureSortText) {
+        setAttribute("configureSortText", configureSortText, true);
+    }
+
+    /**
+     * If we're showing a {@link com.smartgwt.client.widgets.grid.ListGrid#getShowHeaderContextMenu 'headerContextMenu'} for
+     * this grid,  and multi-sorting is enabled, this attribute will be shown as the menu item title to show a  {@link
+     * com.smartgwt.client..MultiSortDialog} to configure the sort-specification for this grid.  This menu-item is displayed
+     * only in the context menu for the sorter button.
+     *
+     *
+     * @return String
+     */
+    public String getConfigureSortText()  {
+        return getAttributeAsString("configureSortText");
+    }
+
+    /**
      * If this is an editable listGrid, when the user attempts to cancel an edit, should we display a confirmation prompt
      * before discarding the edited values for the record?
      *
@@ -1606,7 +1631,7 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
     public String getConfirmDiscardEditsMessage()  {
         return getAttributeAsString("confirmDiscardEditsMessage");
     }
- 
+
     /**
      * Display format to use for fields specified as type 'date'.  Default is to use the system-wide default short date format,
      * configured via {@link com.smartgwt.client..Date#setShortDisplayFormat}.  Specify any valid {@link
@@ -1641,7 +1666,7 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
     public DateDisplayFormat getDateFormatter()  {
         return EnumUtil.getEnum(DateDisplayFormat.values(), getAttribute("dateFormatter"));
     }
- 
+
     /**
      * Display format to use for fields specified as type 'datetime'.  Default is to use the system-wide default date time
      * format, configured via {@link com.smartgwt.client..Date#setShortDatetimeDisplayFormat}.  Specify any valid {@link
@@ -1721,7 +1746,7 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
     public String getDiscardEditsSaveButtonTitle()  {
         return getAttributeAsString("discardEditsSaveButtonTitle");
     }
- 
+
     /**
      * When records are being dragged from within a ListGrid, what sort of drag-tracker should be displayed?<br> Note that if
      * multiple records are being dragged the displayed tracker will be based on the first selected record.
@@ -1778,7 +1803,7 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
      * incremental rendering from being used in situations where it's really unnecessary, such as a 40 row, 5 column dataset
      * (only 200 cells) which happens to be in a grid with a viewport showing only 20 or so rows. Incremental rendering causes
      * a brief "flash" during scrolling as the visible portion of the dataset is redrawn, and a better scrolling experience can
-     * be obtained in this situation by drawing the entire dataset up front, which in this example would have neglible effect
+     * be obtained in this situation by drawing the entire dataset up front, which in this example would have negligable effect
      * on initial draw time. <P> <code>drawAllMaxCells:0</code> disables this features.  You may want to disable this feature
      * if performance is an issue and: <ul> <li> you are very frequently redraw a grid <li> you do a lot of computation when
      * rendering each cell (eg formulas) <li> you are showing many grids on one screen and the user won't scroll most of them
@@ -1799,7 +1824,7 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
      * incremental rendering from being used in situations where it's really unnecessary, such as a 40 row, 5 column dataset
      * (only 200 cells) which happens to be in a grid with a viewport showing only 20 or so rows. Incremental rendering causes
      * a brief "flash" during scrolling as the visible portion of the dataset is redrawn, and a better scrolling experience can
-     * be obtained in this situation by drawing the entire dataset up front, which in this example would have neglible effect
+     * be obtained in this situation by drawing the entire dataset up front, which in this example would have negligable effect
      * on initial draw time. <P> <code>drawAllMaxCells:0</code> disables this features.  You may want to disable this feature
      * if performance is an issue and: <ul> <li> you are very frequently redraw a grid <li> you do a lot of computation when
      * rendering each cell (eg formulas) <li> you are showing many grids on one screen and the user won't scroll most of them
@@ -1832,7 +1857,7 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
     public Boolean getEditByCell()  {
         return getAttributeAsBoolean("editByCell");
     }
- 
+
     /**
      * Event that will trigger inline editing, see {@link com.smartgwt.client.types.ListGridEditEvent} for options. <P> Note
      * this setting has no effect unless {@link com.smartgwt.client.widgets.grid.ListGrid#getCanEdit canEdit} has been set to
@@ -2062,7 +2087,7 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
     public Boolean getEnforceVClipping()  {
         return getAttributeAsBoolean("enforceVClipping");
     }
- 
+
     /**
      * What to do when a user hits enter while editing a cell: <ul> <li>"nextCell": start editing the next editable cell in
      * this record (or the first     editable cell in the next record if focus is in the last editable cell in the row)
@@ -2089,7 +2114,7 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
     public EnterKeyEditAction getEnterKeyEditAction()  {
         return EnumUtil.getEnum(EnterKeyEditAction.values(), getAttribute("enterKeyEditAction"));
     }
- 
+
     /**
      * What to do when a user hits escape while editing a cell:<ul> <li>"cancel": close the editor and discard the current set
      * of edit values <li>"done": just close the editor (the edit is complete, but the edited values are retained). </ul> Note
@@ -2236,7 +2261,7 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
     public String getExpansionFieldTrueImage()  {
         return getAttributeAsString("expansionFieldTrueImage");
     }
- 
+
     /**
      * The {@link com.smartgwt.client.types.ExpansionMode} for records in this grid. Default <code>null</code> value means no
      * expansion.
@@ -3323,7 +3348,7 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
     public String getLinkTextProperty()  {
         return getAttributeAsString("linkTextProperty");
     }
- 
+
     /**
      * If the user is editing the last record in this listGrid, and attempts to navigate  beyond the last row either by tabbing
      * off the last editable field, or using the down arrow key, this property determines what action to take:<ul> <li>"next":
@@ -3755,13 +3780,13 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
     }
 
     /**
-     * The method of component-pooling to employ for recordComponents.  Options are  <ul> <li> "data":  components are cleared
-     * when not in the viewport, but stay with a record         until the record is dropped from cache.  Best for guaranteed
-     * small datasets.</li> <li> "viewport": components are destroyed when the record is not being rendered.  Best         for
-     * large datasets where embedded components differ greatly per record.</li> <li> "recycle": components are pooled and will
-     * be passed to getEmbeddedComponent() with        "recordChanged" set to true.  Best for large datasets where embedded
-     * components        are uniform across different records and can be efficiently reconfigured to work        with a new
-     * record</li> </ul>
+     * The method of component-pooling to employ for ${isc.DocUtils.linkForRef('showRecordComonents','recordComponents')}.
+     * Options are  <ul> <li> "data":  components are cleared when not in the viewport, but stay with a record         until
+     * the record is dropped from cache.  Best for guaranteed small datasets.</li> <li> "viewport": components are destroyed
+     * when the record is not being rendered.  Best         for large datasets where embedded components differ greatly per
+     * record.</li> <li> "recycle": components are pooled and will be passed to getEmbeddedComponent() with       
+     * "recordChanged" set to true.  Best for large datasets where embedded components        are uniform across different
+     * records and can be efficiently reconfigured to work        with a new record</li> </ul>
      * <p><b>Note : </b> This is an advanced setting</p>
      *
      * @param recordComponentPoolingMode recordComponentPoolingMode Default value is null
@@ -3771,19 +3796,46 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
     }
 
     /**
-     * The method of component-pooling to employ for recordComponents.  Options are  <ul> <li> "data":  components are cleared
-     * when not in the viewport, but stay with a record         until the record is dropped from cache.  Best for guaranteed
-     * small datasets.</li> <li> "viewport": components are destroyed when the record is not being rendered.  Best         for
-     * large datasets where embedded components differ greatly per record.</li> <li> "recycle": components are pooled and will
-     * be passed to getEmbeddedComponent() with        "recordChanged" set to true.  Best for large datasets where embedded
-     * components        are uniform across different records and can be efficiently reconfigured to work        with a new
-     * record</li> </ul>
+     * The method of component-pooling to employ for ${isc.DocUtils.linkForRef('showRecordComonents','recordComponents')}.
+     * Options are  <ul> <li> "data":  components are cleared when not in the viewport, but stay with a record         until
+     * the record is dropped from cache.  Best for guaranteed small datasets.</li> <li> "viewport": components are destroyed
+     * when the record is not being rendered.  Best         for large datasets where embedded components differ greatly per
+     * record.</li> <li> "recycle": components are pooled and will be passed to getEmbeddedComponent() with       
+     * "recordChanged" set to true.  Best for large datasets where embedded components        are uniform across different
+     * records and can be efficiently reconfigured to work        with a new record</li> </ul>
      *
      *
      * @return String
      */
     public String getRecordComponentPoolingMode()  {
         return getAttributeAsString("recordComponentPoolingMode");
+    }
+
+    /**
+     * if {@link com.smartgwt.client.widgets.grid.ListGrid#getShowRecordComponents showRecordComponents} is true, how should
+     * the component appear within the cell. Valid options are  <ul><li><code>"within"</code>: the component will be rendered
+     * inside the record / cell.  By default it will appear at the top / left edge of the cell, though this may be  overridden
+     * by setting a 'snapTo' value on the embedded component.</li> <li><code>"expand"</code>: the component will be written
+     * into the cell below the  normal cell contant, causing the cell to expand vertically to accomodate it. </ul>
+     *
+     * @param recordComponentPosition recordComponentPosition Default value is "expand"
+     */
+    public void setRecordComponentPosition(String recordComponentPosition) {
+        setAttribute("recordComponentPosition", recordComponentPosition, true);
+    }
+
+    /**
+     * if {@link com.smartgwt.client.widgets.grid.ListGrid#getShowRecordComponents showRecordComponents} is true, how should
+     * the component appear within the cell. Valid options are  <ul><li><code>"within"</code>: the component will be rendered
+     * inside the record / cell.  By default it will appear at the top / left edge of the cell, though this may be  overridden
+     * by setting a 'snapTo' value on the embedded component.</li> <li><code>"expand"</code>: the component will be written
+     * into the cell below the  normal cell contant, causing the cell to expand vertically to accomodate it. </ul>
+     *
+     *
+     * @return String
+     */
+    public String getRecordComponentPosition()  {
+        return getAttributeAsString("recordComponentPosition");
     }
 
     /**
@@ -3859,8 +3911,8 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
     }
 
     /**
-     * The title to use for the ${isc.DocUtils.linkForRef('listGrid.removeField','remove field')}.  Note that this text will
-     * appear in the column-picker but the not in the field-header because the removeField has
+     * The title to use for the {@link com.smartgwt.client.widgets.grid.ListGrid#getRemoveFieldDefaults 'remove field'}.  Note
+     * that this text will appear in the column-picker but the not in the field-header because the removeField has
      * ${isc.DocUtils.linkForRef('listGridField.showTitle','showTitle')} set to false by default.  This can be changed via
      * {@link com.smartgwt.client.widgets.grid.ListGrid#getRemoveFieldProperties removeFieldProperties}.
      *
@@ -3871,8 +3923,8 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
     }
 
     /**
-     * The title to use for the ${isc.DocUtils.linkForRef('listGrid.removeField','remove field')}.  Note that this text will
-     * appear in the column-picker but the not in the field-header because the removeField has
+     * The title to use for the {@link com.smartgwt.client.widgets.grid.ListGrid#getRemoveFieldDefaults 'remove field'}.  Note
+     * that this text will appear in the column-picker but the not in the field-header because the removeField has
      * ${isc.DocUtils.linkForRef('listGridField.showTitle','showTitle')} set to false by default.  This can be changed via
      * {@link com.smartgwt.client.widgets.grid.ListGrid#getRemoveFieldProperties removeFieldProperties}.
      *
@@ -3926,7 +3978,7 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
     public Boolean getResizeFieldsInRealTime()  {
         return getAttributeAsBoolean("resizeFieldsInRealTime");
     }
- 
+
     /**
      * If the user is editing a record in this listGrid, and attempts to navigate to a field beyond the end of the row, via tab
      * (or shift-tab off the first editable field), this  property determines what action to take:<ul> <li>"next": start
@@ -4068,7 +4120,7 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
     public int getScrollRedrawDelay()  {
         return getAttributeAsInt("scrollRedrawDelay");
     }
- 
+
     /**
      * How selection of rows should be presented to the user. <P> For <code>selectionAppearance:"checkbox"</code> with multiple
      * selection allowed, you would typically use {@link com.smartgwt.client.widgets.grid.ListGrid#getSelectionType
@@ -4106,7 +4158,7 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
     public SelectionAppearance getSelectionAppearance()  {
         return EnumUtil.getEnum(SelectionAppearance.values(), getAttribute("selectionAppearance"));
     }
- 
+
     /**
      * Defines a listGrid's clickable-selection behavior.   <P> The default selection appearance is governed by {@link
      * com.smartgwt.client.widgets.grid.ListGrid#getSelectionAppearance selectionAppearance}: if selectionAppearance is
@@ -4410,13 +4462,20 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
     }
 
     /**
-     * If true, shows embeddedComponents on a per-record basis - see  {@link
-     * com.smartgwt.client.widgets.grid.ListGrid#createRecordComponent} and {@link
-     * com.smartgwt.client.widgets.grid.ListGrid#updateRecordComponent}. <P> If record components will always be the same
-     * height, set the  {@link com.smartgwt.client.widgets.grid.ListGrid#getCellHeight 'cellHeight'} on this grid to an
-     * appropriate height to ensure that scrolling works as expected.  If recordComponents will be variable height, or not all
-     * records will have embeddedComponents (see {@link com.smartgwt.client.widgets.grid.ListGrid#showRecordComponent}), you
-     * should switch on {@link com.smartgwt.client.widgets.grid.ListGrid#getVirtualScrolling 'virtualScrolling'}.
+     * If set to true, this listGrid should create and show an embedded component in every row of the grid. <P> Developers
+     * using this feature should implement the  {@link com.smartgwt.client.widgets.grid.ListGrid#createRecordComponent} and
+     * {@link com.smartgwt.client.widgets.grid.ListGrid#updateRecordComponent} methods. <P> createRecordComponent() will be
+     * called by the grid to create the record components to use per record.  Your implementation should return a component to
+     * embed in the  record passed in. Note that this method should create and return a new component each time it is called.
+     * <P> This feature also supports reusing components in different rows in the grid. If  {@link
+     * com.smartgwt.client.widgets.grid.ListGrid#getRecordComponentPoolingMode recordComponentPoolingMode} is set to
+     * <code>"recycle"</code> or  <code>"data"</code>, components created by the <code>createRecordComponent</code> method will
+     * become available for reuse when they are no longer associated with a record. The system will automatically store these
+     * in a pool. When a record with no associated component is rendered, if there are any recordComponents in this pool,  the
+     * system will call {@link com.smartgwt.client.widgets.grid.ListGrid#updateRecordComponent}, and pass in the component.
+     * This allows the developer to apply record-specific attributes to an already created component and render it out into the
+     * new cell. This greatly improves performance for  large grids as it allows a small number of components to be created and
+     * reused rather  than maintaining potentially one record component for every cell in the grid.
      * Setter for the {@link com.smartgwt.client.widgets.grid.ListGrid#getShowRecordComponents showRecordComponents} attribute
      * <p><b>Note : </b> This is an advanced setting</p>
      *
@@ -4427,13 +4486,20 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
     }
 
     /**
-     * If true, shows embeddedComponents on a per-record basis - see  {@link
-     * com.smartgwt.client.widgets.grid.ListGrid#createRecordComponent} and {@link
-     * com.smartgwt.client.widgets.grid.ListGrid#updateRecordComponent}. <P> If record components will always be the same
-     * height, set the  {@link com.smartgwt.client.widgets.grid.ListGrid#getCellHeight 'cellHeight'} on this grid to an
-     * appropriate height to ensure that scrolling works as expected.  If recordComponents will be variable height, or not all
-     * records will have embeddedComponents (see {@link com.smartgwt.client.widgets.grid.ListGrid#showRecordComponent}), you
-     * should switch on {@link com.smartgwt.client.widgets.grid.ListGrid#getVirtualScrolling 'virtualScrolling'}.
+     * If set to true, this listGrid should create and show an embedded component in every row of the grid. <P> Developers
+     * using this feature should implement the  {@link com.smartgwt.client.widgets.grid.ListGrid#createRecordComponent} and
+     * {@link com.smartgwt.client.widgets.grid.ListGrid#updateRecordComponent} methods. <P> createRecordComponent() will be
+     * called by the grid to create the record components to use per record.  Your implementation should return a component to
+     * embed in the  record passed in. Note that this method should create and return a new component each time it is called.
+     * <P> This feature also supports reusing components in different rows in the grid. If  {@link
+     * com.smartgwt.client.widgets.grid.ListGrid#getRecordComponentPoolingMode recordComponentPoolingMode} is set to
+     * <code>"recycle"</code> or  <code>"data"</code>, components created by the <code>createRecordComponent</code> method will
+     * become available for reuse when they are no longer associated with a record. The system will automatically store these
+     * in a pool. When a record with no associated component is rendered, if there are any recordComponents in this pool,  the
+     * system will call {@link com.smartgwt.client.widgets.grid.ListGrid#updateRecordComponent}, and pass in the component.
+     * This allows the developer to apply record-specific attributes to an already created component and render it out into the
+     * new cell. This greatly improves performance for  large grids as it allows a small number of components to be created and
+     * reused rather  than maintaining potentially one record component for every cell in the grid.
      *
      *
      * @return Boolean
@@ -4577,7 +4643,7 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
     public Boolean getShowSelectionCanvas()  {
         return getAttributeAsBoolean("showSelectionCanvas");
     }
- 
+
     /**
      * Indicates whether a sorting arrow should appear for the listGrid, and its          location. See SortArrow type for
      * details.<br>          Clicking the sort arrow reverses the direction of sorting for the current sort          column (if
@@ -4701,7 +4767,7 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
     public String getSkinImgDir()  {
         return getAttributeAsString("skinImgDir");
     }
-            
+
     /**
      * Image to show when sorting ascending. See ${isc.DocUtils.linkForRef('object:ImgProperties')} for format.
      * <p><b>Note : </b> This is an advanced setting</p>
@@ -4721,7 +4787,7 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
     public ImgProperties getSortAscendingImage()  {
         return new ImgProperties(getAttributeAsJavaScriptObject("sortAscendingImage"));
     }
-            
+
     /**
      * Image to show when sorting descending. See ${isc.DocUtils.linkForRef('object:ImgProperties')} for format.
      * <p><b>Note : </b> This is an advanced setting</p>
@@ -4854,7 +4920,7 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
     public String getStyleName()  {
         return getAttributeAsString("styleName");
     }
-            
+
     /**
      * If {@link com.smartgwt.client.widgets.grid.ListGrid#getShowGridSummary showGridSummary} is true, and a {@link
      * com.smartgwt.client.widgets.grid.ListGrid#getSummaryRowDataSource summaryRowDataSource} is specified this property may
@@ -4880,7 +4946,7 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
     public Criteria getSummaryRowCriteria()  {
         return new Criteria(getAttributeAsJavaScriptObject("summaryRowCriteria"));
     }
-            
+
     /**
      * If {@link com.smartgwt.client.widgets.grid.ListGrid#getShowGridSummary showGridSummary} is true, by default summary
      * values are calculated on the  client based on the current data-set for the grid (see {@link
@@ -4961,7 +5027,7 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
     public String getSummaryRowStyle()  {
         return getAttributeAsString("summaryRowStyle");
     }
-            
+
     /**
      * Default image to use for the dragTracker when things are dragged within or out of this  list. See
      * ${isc.DocUtils.linkForRef('object:ImgProperties')} for format.
@@ -5291,7 +5357,7 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
      * will appear to be embedded within the record, underneath the field values. <P> Embedded components become children of
      * the grid and will stay attached to a record through scrolling, sorting and other operations that cause records to shift
      * position. <P> If <code>position</code> is set to <code>"expand"</code>, embedded components may offer a resize
-     * interface, eg, by setting ${isc.DocUtils.linkForRef('canDragResize:true')}, and the grid will react accordingly, growing
+     * interface, eg, by setting ${isc.DocUtils.linkForRef('canDragResize')}:true, and the grid will react accordingly, growing
      * or shrinking the record to match the embedded component's new extents. <P> Embedded components can be explicitly removed
      * with {@link com.smartgwt.client.widgets.grid.ListGrid#removeEmbeddedComponent}. <P> If a record is removed from the
      * dataset or is replaced in the dataset, for example, it is eliminated through filtering (removes record) or is
@@ -5314,7 +5380,7 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
      * will appear to be embedded within the record, underneath the field values. <P> Embedded components become children of
      * the grid and will stay attached to a record through scrolling, sorting and other operations that cause records to shift
      * position. <P> If <code>position</code> is set to <code>"expand"</code>, embedded components may offer a resize
-     * interface, eg, by setting ${isc.DocUtils.linkForRef('canDragResize:true')}, and the grid will react accordingly, growing
+     * interface, eg, by setting ${isc.DocUtils.linkForRef('canDragResize')}:true, and the grid will react accordingly, growing
      * or shrinking the record to match the embedded component's new extents. <P> Embedded components can be explicitly removed
      * with {@link com.smartgwt.client.widgets.grid.ListGrid#removeEmbeddedComponent}. <P> If a record is removed from the
      * dataset or is replaced in the dataset, for example, it is eliminated through filtering (removes record) or is
@@ -6122,7 +6188,7 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
 
     /**
      * Returns the column number of the most recent mouse event.
-     * @param x optional x-coordinate to obtain column number for, in lieue of the x                        coordinate of the last mouse
+     * @param x optional x-coordinate to obtain column number for, in lieu of the x                        coordinate of the last mouse
      * event
      *
      * @return column number, or -2 if beyond last drawn column
@@ -6144,7 +6210,7 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
 
     /**
      * Returns the row number of the most recent mouse event.
-     * @param y optional y-coordinate to obtain row number, in lieue of the y                        coordinate of the last mouse event
+     * @param y optional y-coordinate to obtain row number, in lieu of the y                        coordinate of the last mouse event
      *
      * @return row number, or -2 if beyond last drawn row
      */
@@ -7228,7 +7294,7 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
 
             var componentJ = jObj.@com.smartgwt.client.widgets.grid.ListGrid::createRecordComponent(Lcom/smartgwt/client/data/Record;Ljava/lang/Integer;)(recordJ, colNumJ);
             return componentJ == null ? null : componentJ.@com.smartgwt.client.widgets.Canvas::getOrCreateJsObj()();
-        })
+        });
         
         self.__updateRecordComponent = self.updateRecordComponent;
         if (self.__updateRecordComponent == null) {
@@ -7244,7 +7310,7 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
                @com.smartgwt.client.widgets.Canvas::getOrCreateRef(Lcom/google/gwt/core/client/JavaScriptObject;)(component);
             componentJ = jObj.@com.smartgwt.client.widgets.grid.ListGrid::updateRecordComponent(Lcom/smartgwt/client/data/Record;Ljava/lang/Integer;Lcom/smartgwt/client/widgets/Canvas;Z)(recordJ, colNumJ, componentJ, recordChanged);
             return componentJ == null ? null : componentJ.@com.smartgwt.client.widgets.Canvas::getOrCreateJsObj()();        	
-        })
+        });
 
         self.__getExpansionComponent = self.getExpansionComponent;
         self.getExpansionComponent = $entry(function(record) {
@@ -7263,7 +7329,7 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
             if(@com.smartgwt.client.util.JSOHelper::isJavaInteger(Ljava/lang/Object;)(val)) return val.@java.lang.Integer::intValue()();
             if(@com.smartgwt.client.util.JSOHelper::isJavaNumber(Ljava/lang/Object;)(val)) return val.@java.lang.Number::floatValue()();
             if(@com.smartgwt.client.util.JSOHelper::isJavaDate(Ljava/lang/Object;)(val)) return @com.smartgwt.client.util.JSOHelper::convertToJavaScriptDate(Ljava/util/Date;)(val);
-            $wnd.isc.logWarn('Unrecognized type of value ' + val + ' returned by the getGridSummary');
+            $wnd.isc.logWarn('Unrecognized type of value ' + val + ' returned by the getGridSummary');            
             return val;
         });
 
@@ -7507,7 +7573,6 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
     protected native Object getGridSummary(ListGridField field) /*-{
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
         var value = self.__getGridSummary(field.@com.smartgwt.client.core.DataClass::getJsObj()());
-        if(value == null || value === undefined) return null;
         var valueJ = $wnd.SmartGWT.convertToJavaType(value);
         return valueJ;
     }-*/;

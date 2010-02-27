@@ -24,13 +24,14 @@ package com.smartgwt.client.docs;
  * simply&#010 returning it from your method, or via creating a DSResponse and calling DSResponse.setData()&#010
  * (server-side method). &#010 <P>&#010 This is the easiest method and produces the best result.  A Collection of Java
  * Beans, such&#010 as EJB or Hibernate-managed beans, can be directly returned to Smart GWT as the result of&#010 a DMI
- * method, without the need to create an intervening&#010 +link{http://en.wikipedia.org/wiki/Data_transfer_object,Data
- * Transfer Object} to express&#010 which fields should be delivered to the browser - instead, only the fields declared on
- * the&#010 DataSource are returned to the browser (see&#010 {@link com.smartgwt.client.data.DataSource#getDropExtraFields
- * 'dropExtraFields'}.  In this integration scenario, the&#010 majority of the features of the Smart GWT Server framework
- * still apply - see this&#010 {@link com.smartgwt.client.docs.FeaturesCustomPersistence 'overview'}.&#010 <P>&#010 <li>
- * <b>configure Spring to return XML or JSON responses</b>: create variants&#010 on existing Spring workflows that use a
- * different type of View in order to output XML or&#010 JSON data instead of complete HTML pages.  The Smart GWT {@link
+ * method, without the need to create an intervening&#010 <a href='http://en.wikipedia.org/wiki/Data_transfer_object'
+ * onclick="window.open('http://en.wikipedia.org/wiki/Data_transfer_object');return false;">Data Transfer Object</a> to
+ * express&#010 which fields should be delivered to the browser - instead, only the fields declared on the&#010 DataSource
+ * are returned to the browser (see&#010 {@link com.smartgwt.client.data.DataSource#getDropExtraFields 'dropExtraFields'}. 
+ * In this integration scenario, the&#010 majority of the features of the Smart GWT Server framework still apply - see
+ * this&#010 {@link com.smartgwt.client.docs.FeaturesCustomPersistence 'overview'}.&#010 <P>&#010 <li> <b>configure Spring
+ * to return XML or JSON responses</b>: create variants&#010 on existing Spring workflows that use a different type of View
+ * in order to output XML or&#010 JSON data instead of complete HTML pages.  The Smart GWT {@link
  * com.smartgwt.client.data.RestDataSource} provides a&#010 standard "REST" XML or JSON-based protocol you can implement,
  * or you can adapt generic&#010 {@link com.smartgwt.client.data.DataSource} to existing formats.&#010 <P>&#010 In some
  * Spring applications, all existing Spring workflows can be made callable by&#010 Smart GWT with a generic View class

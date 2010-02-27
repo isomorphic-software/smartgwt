@@ -57,7 +57,7 @@ import com.google.gwt.event.shared.HasHandlers;
 
 /**
  * A StretchImg that behaves like a button, going through up/down/over state transitions in response to user events. 
- * Supports an optional title, and will auto-size to accomodate the title text if <code>overflow</code> is set to
+ * Supports an optional title, and will auto-size to accommodate the title text if <code>overflow</code> is set to
  * "visible". <P> Examples of use include fancy buttons, poplist headers, and tabs.
  */
 public class StretchImgButton extends StretchImg  implements com.smartgwt.client.widgets.events.HasIconClickHandlers {
@@ -129,7 +129,7 @@ public class StretchImgButton extends StretchImg  implements com.smartgwt.client
     }
 
     /**
-     * If true, ignore the specified size of this widget and always size just large enough to accomodate the title.  If
+     * If true, ignore the specified size of this widget and always size just large enough to accommodate the title.  If
      * <code>setWidth()</code> is explicitly called on an autoFit:true button, autoFit will be reset to <code>false</code>. <P>
      * Note that for StretchImgButton instances, autoFit will occur horizontally only, as  unpredictable vertical sizing is
      * likely to distort the media. If you do want vertical  auto-fit, this can be achieved by simply setting a small height,
@@ -143,7 +143,7 @@ public class StretchImgButton extends StretchImg  implements com.smartgwt.client
     }
 
     /**
-     * If true, ignore the specified size of this widget and always size just large enough to accomodate the title.  If
+     * If true, ignore the specified size of this widget and always size just large enough to accommodate the title.  If
      * <code>setWidth()</code> is explicitly called on an autoFit:true button, autoFit will be reset to <code>false</code>. <P>
      * Note that for StretchImgButton instances, autoFit will occur horizontally only, as  unpredictable vertical sizing is
      * likely to distort the media. If you do want vertical  auto-fit, this can be achieved by simply setting a small height,
@@ -497,6 +497,31 @@ public class StretchImgButton extends StretchImg  implements com.smartgwt.client
     }
 
     /**
+     * Specifies a skinImgDir to apply to the label containing the title of this  StretchImgButton. May be null in which case
+     * <code>this.skinImgDir</code> will be applied to the label as well. <P> Note that icons displayed in the title may make
+     * use of the skin img dir set here
+     * setter for {@link com.smartgwt.client.widgets.StretchImgButton#getLabelSkinImgDir labelSkinImgDir}.
+     * <p><b>Note : </b> This is an advanced setting</p>
+     *
+     * @param labelSkinImgDir new skin img dir to apply to the label holding title text for   this widget.. Default value is null
+     */
+    public void setLabelSkinImgDir(String labelSkinImgDir) {
+        setAttribute("labelSkinImgDir", labelSkinImgDir, true);
+    }
+
+    /**
+     * Specifies a skinImgDir to apply to the label containing the title of this  StretchImgButton. May be null in which case
+     * <code>this.skinImgDir</code> will be applied to the label as well. <P> Note that icons displayed in the title may make
+     * use of the skin img dir set here
+     *
+     *
+     * @return String
+     */
+    public String getLabelSkinImgDir()  {
+        return getAttributeAsString("labelSkinImgDir");
+    }
+
+    /**
      * The padding for a StretchImgButton's label is determined as follows. <P> If <code>labelHPad</code> is set it will
      * specify the horizontal padding applied to the label. Similarly if <code>labelVPad</code> is set it will specify the
      * vertical padding for the label, regardless of the button's {@link
@@ -652,7 +677,7 @@ public class StretchImgButton extends StretchImg  implements com.smartgwt.client
     }
 
     /**
-     * Should we visibly change state when the canvas recieves focus?  If {@link
+     * Should we visibly change state when the canvas receives focus?  If {@link
      * com.smartgwt.client.widgets.StatefulCanvas#getShowFocusedAsOver showFocusedAsOver} is <code>true</code>, the
      * <b><code>"over"</code></b> will be used to indicate focus. Otherwise a separate <b><code>"focused"</code></b> state will
      * be used.
@@ -664,7 +689,7 @@ public class StretchImgButton extends StretchImg  implements com.smartgwt.client
     }
 
     /**
-     * Should we visibly change state when the canvas recieves focus?  If {@link
+     * Should we visibly change state when the canvas receives focus?  If {@link
      * com.smartgwt.client.widgets.StatefulCanvas#getShowFocusedAsOver showFocusedAsOver} is <code>true</code>, the
      * <b><code>"over"</code></b> will be used to indicate focus. Otherwise a separate <b><code>"focused"</code></b> state will
      * be used.
@@ -677,9 +702,9 @@ public class StretchImgButton extends StretchImg  implements com.smartgwt.client
     }
 
     /**
-     * If using an icon for this button, whether to switch the icon image when the button recieves focus. <P> If {@link
+     * If using an icon for this button, whether to switch the icon image when the button receives focus. <P> If {@link
      * com.smartgwt.client.widgets.StatefulCanvas#getShowFocusedAsOver showFocusedAsOver} is true, the <code>"Over"</code> icon
-     * will be displayed when the canvas has focus, otherwise a seperate <code>"Focused"</code> icon will be displayed
+     * will be displayed when the canvas has focus, otherwise a separate <code>"Focused"</code> icon will be displayed
      *
      * @param showFocusedIcon showFocusedIcon Default value is false
      * @throws IllegalStateException this property cannot be changed after the component has been created
@@ -689,9 +714,9 @@ public class StretchImgButton extends StretchImg  implements com.smartgwt.client
     }
 
     /**
-     * If using an icon for this button, whether to switch the icon image when the button recieves focus. <P> If {@link
+     * If using an icon for this button, whether to switch the icon image when the button receives focus. <P> If {@link
      * com.smartgwt.client.widgets.StatefulCanvas#getShowFocusedAsOver showFocusedAsOver} is true, the <code>"Over"</code> icon
-     * will be displayed when the canvas has focus, otherwise a seperate <code>"Focused"</code> icon will be displayed
+     * will be displayed when the canvas has focus, otherwise a separate <code>"Focused"</code> icon will be displayed
      *
      *
      * @return Boolean
@@ -784,7 +809,7 @@ public class StretchImgButton extends StretchImg  implements com.smartgwt.client
 
     /**
      * Base URL for the image.  By default, StretchImgButtons consist of three image parts: A start image (displayed at the top
-     * or left), a scaleable central image and an end image displayed at the bottom or right. <P> The images displayed in the
+     * or left), a scalable central image and an end image displayed at the bottom or right. <P> The images displayed in the
      * stretchImgButton are derived from this property in the  following way: <P> <ul> <li> When the button is in its standard
      * state the suffixes "_start", "_end" and       "_stretch" are applied to the src (before the file extension), so by
      * default       the images displayed will be "button_start.gif" (sized to be       <code>this.capSize</code> by the
@@ -804,7 +829,7 @@ public class StretchImgButton extends StretchImg  implements com.smartgwt.client
 
     /**
      * Base URL for the image.  By default, StretchImgButtons consist of three image parts: A start image (displayed at the top
-     * or left), a scaleable central image and an end image displayed at the bottom or right. <P> The images displayed in the
+     * or left), a scalable central image and an end image displayed at the bottom or right. <P> The images displayed in the
      * stretchImgButton are derived from this property in the  following way: <P> <ul> <li> When the button is in its standard
      * state the suffixes "_start", "_end" and       "_stretch" are applied to the src (before the file extension), so by
      * default       the images displayed will be "button_start.gif" (sized to be       <code>this.capSize</code> by the

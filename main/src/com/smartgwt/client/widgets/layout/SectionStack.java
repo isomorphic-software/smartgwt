@@ -277,7 +277,7 @@ public class SectionStack extends VLayout  implements com.smartgwt.client.widget
     /**
      * Normal {@link com.smartgwt.client.types.Overflow} settings can be used on layouts, for example, an overflow:auto Layout
      * will scroll if sections are resized to exceed the specified size, whereas an overflow:visible Layout will grow to
-     * accomodate the resized sections.
+     * accommodate the resized sections.
      *
      * @param overflow overflow Default value is "hidden"
      * @throws IllegalStateException this property cannot be changed after the component has been created
@@ -289,7 +289,7 @@ public class SectionStack extends VLayout  implements com.smartgwt.client.widget
     /**
      * Normal {@link com.smartgwt.client.types.Overflow} settings can be used on layouts, for example, an overflow:auto Layout
      * will scroll if sections are resized to exceed the specified size, whereas an overflow:visible Layout will grow to
-     * accomodate the resized sections.
+     * accommodate the resized sections.
      *
      *
      * @return Overflow

@@ -214,6 +214,28 @@ public class Menu extends ListGrid  implements com.smartgwt.client.widgets.menu.
     }
 
     /**
+     * If false, submenus will not be fetched for this menu. This can be set on a per-item basis via {@link
+     * com.smartgwt.client.widgets.menu.MenuItem#getFetchSubmenus fetchSubmenus}.
+     *
+     * @param fetchSubmenus fetchSubmenus Default value is true
+     * @throws IllegalStateException this property cannot be changed after the component has been created
+     */
+    public void setFetchSubmenus(Boolean fetchSubmenus)  throws IllegalStateException {
+        setAttribute("fetchSubmenus", fetchSubmenus, false);
+    }
+
+    /**
+     * If false, submenus will not be fetched for this menu. This can be set on a per-item basis via {@link
+     * com.smartgwt.client.widgets.menu.MenuItem#getFetchSubmenus fetchSubmenus}.
+     *
+     *
+     * @return Boolean
+     */
+    public Boolean getFetchSubmenus()  {
+        return getAttributeAsBoolean("fetchSubmenus");
+    }
+
+    /**
      * The default height applied to custom icons in this menu. This is used whenever          item.iconHeight is not
      * specified.
      *
@@ -392,7 +414,7 @@ public class Menu extends ListGrid  implements com.smartgwt.client.widgets.menu.
     /**
      * Optional target canvas for this menu. Available as a parameter to dynamic menuItem configuration methods such as {@link
      * com.smartgwt.client.widgets.menu.MenuItem#checkIf}. <P> If this item has any {@link
-     * com.smartgwt.client.widgets.menu.MenuItem#getSubmenu 'submenus'} the <code>target</code> will be propogated down to
+     * com.smartgwt.client.widgets.menu.MenuItem#getSubmenu 'submenus'} the <code>target</code> will be propagated down to
      * these child menus.
      *
      * @param target target Default value is null
@@ -404,7 +426,7 @@ public class Menu extends ListGrid  implements com.smartgwt.client.widgets.menu.
     /**
      * Optional target canvas for this menu. Available as a parameter to dynamic menuItem configuration methods such as {@link
      * com.smartgwt.client.widgets.menu.MenuItem#checkIf}. <P> If this item has any {@link
-     * com.smartgwt.client.widgets.menu.MenuItem#getSubmenu 'submenus'} the <code>target</code> will be propogated down to
+     * com.smartgwt.client.widgets.menu.MenuItem#getSubmenu 'submenus'} the <code>target</code> will be propagated down to
      * these child menus.
      *
      *

@@ -2,6 +2,8 @@
 package com.smartgwt.client.docs;
 
 /**
+ * @see com.smartgwt.client.widgets.tree.TreeGrid#shouldAnimateFolder
+ * @see com.smartgwt.client.widgets.tree.TreeGrid#getAnimateFolderMaxRows
  * @see com.smartgwt.client.widgets.Canvas#animateMove
  * @see com.smartgwt.client.widgets.Canvas#animateResize
  * @see com.smartgwt.client.widgets.Canvas#animateRect
@@ -13,6 +15,7 @@ package com.smartgwt.client.docs;
  * @see com.smartgwt.client.widgets.Slider#getAnimateThumbTime
  * @see com.smartgwt.client.widgets.Slider#getAnimateThumbInit
  * @see com.smartgwt.client.widgets.tree.TreeGrid#getAnimateFolders
+ * @see com.smartgwt.client.widgets.tree.TreeGrid#getAnimateFolderMaxRows
  * @see com.smartgwt.client.widgets.tree.TreeGrid#getAnimateFolderTime
  * @see com.smartgwt.client.widgets.tree.TreeGrid#getAnimateFolderSpeed
  * @see com.smartgwt.client.widgets.tree.TreeGrid#getAnimateFolderEffect

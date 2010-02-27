@@ -3,6 +3,9 @@ package com.smartgwt.client.docs;
 
 /**
  * @see com.smartgwt.client.widgets.StretchImg#getShowGrip
+ * @see com.smartgwt.client.widgets.StretchImg#getGripImgSuffix
+ * @see com.smartgwt.client.widgets.StretchImg#getShowDownGrip
+ * @see com.smartgwt.client.widgets.StretchImg#getShowRollOverGrip
  * @see com.smartgwt.client.widgets.Splitbar#getShowGrip
  * @see com.smartgwt.client.widgets.Splitbar#getGripImgSuffix
  * @see com.smartgwt.client.widgets.Splitbar#getShowDownGrip

@@ -219,7 +219,7 @@ public class TileLayout extends Canvas {
     /**
      * Normal {@link com.smartgwt.client.types.Overflow} settings can be used on TileLayouts, for example, an overflow:auto
      * TileLayout will scroll if members exceed its specified size, whereas an overflow:visible TileLayout will grow to
-     * accomodate members.
+     * accommodate members.
      *
      * @param overflow overflow Default value is "auto"
      * @throws IllegalStateException this property cannot be changed after the component has been created
@@ -231,7 +231,7 @@ public class TileLayout extends Canvas {
     /**
      * Normal {@link com.smartgwt.client.types.Overflow} settings can be used on TileLayouts, for example, an overflow:auto
      * TileLayout will scroll if members exceed its specified size, whereas an overflow:visible TileLayout will grow to
-     * accomodate members.
+     * accommodate members.
      *
      *
      * @return Overflow
