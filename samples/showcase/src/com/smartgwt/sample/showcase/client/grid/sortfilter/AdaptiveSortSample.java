@@ -77,6 +77,7 @@ public class AdaptiveSortSample extends ShowcasePanel {
         //when working with a server that dynamically returns the response based on start row, end row,
         //use can override transformResponse instead of getClientOnlyResponse
         /*
+        @Override 
         protected void transformResponse(DSResponse response, DSRequest request, Object data) {
             int totalRows = response.getTotalRows();
             int startRow = response.getStartRow();

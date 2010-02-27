@@ -55,8 +55,4 @@ public class ItemSupplyLocalDS extends DataSource {
         setClientOnly(true);
         setTestData(ItemData.getRecords());
     }
-
-    protected Object transformRequest(DSRequest dsRequest) {
-        return super.transformRequest(dsRequest);
-    }
 }

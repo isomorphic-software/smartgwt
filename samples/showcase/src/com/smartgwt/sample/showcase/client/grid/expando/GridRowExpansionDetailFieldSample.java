@@ -37,7 +37,7 @@ public class GridRowExpansionDetailFieldSample extends ShowcasePanel {
 
         ListGrid listGrid = new ListGrid() {
             @Override
-            protected Canvas getExpansionComponent(Record record) {
+            protected Canvas getExpansionComponent(ListGridRecord record) {
                 Canvas canvas = super.getExpansionComponent(record);
                 canvas.setPadding(5);
                 return canvas;

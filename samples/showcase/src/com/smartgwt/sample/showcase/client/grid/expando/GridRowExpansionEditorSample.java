@@ -49,7 +49,7 @@ public class GridRowExpansionEditorSample extends ShowcasePanel {
 
         final ListGrid listGrid = new ListGrid() {
             @Override
-            protected Canvas getExpansionComponent(final Record record) {
+            protected Canvas getExpansionComponent(final ListGridRecord record) {
 
                 final ListGrid grid = this;
                 VLayout layout = new VLayout(5);
@@ -74,7 +74,7 @@ public class GridRowExpansionEditorSample extends ShowcasePanel {
                 IButton cancelButton = new IButton("Done");
                 cancelButton.addClickHandler(new ClickHandler() {
                     public void onClick(ClickEvent event) {
-                        grid.collapseRecord(ListGridRecord.getOrCreateRef(record.getJsObj()));
+                        grid.collapseRecord(record);
                     }
                 });
 

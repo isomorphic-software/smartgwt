@@ -40,6 +40,7 @@ public class HiliteCellsReplaceStyleSample extends ShowcasePanel {
     public Canvas getViewPanel() {
 
         final ListGrid countryGrid = new ListGrid() {
+            @Override
             protected String getBaseStyle(ListGridRecord record, int rowNum, int colNum) {
                 if (getFieldName(colNum).equals("population")) {
                     CountryRecord countryRecord = (CountryRecord) record;

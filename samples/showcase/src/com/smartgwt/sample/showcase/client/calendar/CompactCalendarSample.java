@@ -56,6 +56,7 @@ public class CompactCalendarSample extends ShowcasePanel {
         eventDS.setTestData(CalendarData.getRecords());
 
         Calendar calendar = new Calendar() {
+            @Override 
             protected String getDayBodyHTML(Date date, CalendarEvent[] events, Calendar calendar, int rowNum, int colNum) {
                 String returnStr = date.getDate() + "";
                 if(events != null && events.length > 0) {

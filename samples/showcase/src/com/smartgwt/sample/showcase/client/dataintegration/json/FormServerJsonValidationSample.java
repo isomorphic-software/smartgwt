@@ -46,6 +46,7 @@ public class FormServerJsonValidationSample extends ShowcasePanel {
     public Canvas getViewPanel() {
 
         DataSource dataSource = new DataSource() {
+            @Override
             protected void transformResponse(DSResponse response, DSRequest request, Object jsonData) {
                 JSONArray value = XMLTools.selectObjects(jsonData, "/response/status");
                 String status = ((JSONString)value.get(0)).stringValue();

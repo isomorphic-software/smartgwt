@@ -39,6 +39,7 @@ public class HiliteCellsAddStyleSample extends ShowcasePanel {
     public Canvas getViewPanel() {
 
         final ListGrid countryGrid = new ListGrid() {
+            @Override
             protected String getCellCSSText(ListGridRecord record, int rowNum, int colNum) {
                 if (getFieldName(colNum).equals("population")) {
                     CountryRecord countryRecord = (CountryRecord) record;

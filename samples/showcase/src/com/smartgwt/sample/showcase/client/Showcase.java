@@ -50,6 +50,7 @@ public class Showcase implements EntryPoint, HistoryListener {
 
         //setup overall layout / viewport
         VLayout main = new VLayout() {
+            @Override 
             protected void onInit() {
                 super.onInit();
                 if (initToken.length() != 0) {

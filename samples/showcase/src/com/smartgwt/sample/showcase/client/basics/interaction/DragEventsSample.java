@@ -38,6 +38,7 @@ public class DragEventsSample extends ShowcasePanel {
         Canvas canvas = new Canvas();
 
         final Img img = new Img("pieces/48/pawn_green.png", 48, 48) {
+            @Override
             protected boolean setDragTracker() {
                 Canvas c = new Canvas();
                 String html = Canvas.imgHTML("pieces/24/pawn_green.png", 24, 24, null, null, null);
@@ -73,6 +74,7 @@ public class DragEventsSample extends ShowcasePanel {
         private Canvas crossHairX;
         private Canvas crossHairY;
 
+        @Override 
         protected void onInit() {
             crossHairX = createCrossHair();
             crossHairY = createCrossHair();

@@ -71,6 +71,7 @@ public class DragCreateSample extends ShowcasePanel {
             setDragType(dragType);
             setDragAppearance(DragAppearance.TRACKER);
         }
+        @Override
         protected boolean setDragTracker() {
             EventHandler.setDragTracker(Canvas.imgHTML("pieces/24/" + getSrc(), 24, 24), 24, 24, 15, 15);
             return false;
