@@ -62,7 +62,7 @@ import com.google.gwt.event.shared.HasHandlers;
  * expandable/collapsible format. </ul> For information on DataBinding Trees, see {@link
  * com.smartgwt.client.docs.TreeDataBinding}. <p> A TreeGrid works just like a {@link
  * com.smartgwt.client.widgets.grid.ListGrid}, except one column (specified by {@link
- * com.smartgwt.client.widgets.tree.TreeGridField#getTreeField treeField} shows a heirarchical {@link
+ * com.smartgwt.client.widgets.tree.TreeGridField#getTreeField treeField} shows a hierarchical {@link
  * com.smartgwt.client.widgets.tree.Tree}.  A TreeGrid is not limited to displaying just the {@link
  * com.smartgwt.client.widgets.tree.Tree} column - you can define additional columns (via {@link
  * com.smartgwt.client.widgets.tree.TreeGrid#getFields fields}) which will render just like the columns of a {@link
@@ -104,8 +104,9 @@ public class TreeGrid extends ListGrid  implements com.smartgwt.client.widgets.t
     // ********************* Properties / Attributes ***********************
 
     /**
-     * When animating folder opening / closing, this property can be set to apply an animated acceleration effect.designates
-     * the speed of the animation in pixels shown (or hidden) per second.
+     * When animating folder opening / closing, this property can be set to apply an animated acceleration effect. This allows
+     * the animation speed to be "weighted", for example expanding or collapsing at a faster rate toward the beginning of the
+     * animation than at the end.
      *
      * @param animateFolderEffect animateFolderEffect Default value is null
      */
@@ -114,14 +115,39 @@ public class TreeGrid extends ListGrid  implements com.smartgwt.client.widgets.t
     }
 
     /**
-     * When animating folder opening / closing, this property can be set to apply an animated acceleration effect.designates
-     * the speed of the animation in pixels shown (or hidden) per second.
+     * When animating folder opening / closing, this property can be set to apply an animated acceleration effect. This allows
+     * the animation speed to be "weighted", for example expanding or collapsing at a faster rate toward the beginning of the
+     * animation than at the end.
      *
      *
      * @return AnimationAcceleration
      */
     public AnimationAcceleration getAnimateFolderEffect()  {
         return EnumUtil.getEnum(AnimationAcceleration.values(), getAttribute("animateFolderEffect"));
+    }
+
+    /**
+     * If {@link com.smartgwt.client.widgets.tree.TreeGrid#getAnimateFolders animateFolders} is true for this treeGrid, this
+     * number can be set to designate the maximum number of rows to animate at a time when opening / closing a folder.
+     *
+     * @param animateFolderMaxRows animateFolderMaxRows Default value is null
+     */
+    public void setAnimateFolderMaxRows(Integer animateFolderMaxRows) {
+        setAttribute("animateFolderMaxRows", animateFolderMaxRows, true);
+    }
+
+    /**
+     * If {@link com.smartgwt.client.widgets.tree.TreeGrid#getAnimateFolders animateFolders} is true for this treeGrid, this
+     * number can be set to designate the maximum number of rows to animate at a time when opening / closing a folder.
+     *
+     *
+     * @return If {@link com.smartgwt.client.widgets.tree.TreeGrid#getAnimateFolders animateFolders} is true for this treeGrid, this
+     * method returns the  the maximum number of rows to animate at a time when opening / closing a folder. This method will
+     * return {@link com.smartgwt.client.widgets.tree.TreeGrid#getAnimateFolderMaxRows animateFolderMaxRows} if set. Otherwise
+     * the value will be calculated as 3x the number of rows required to fill a viewport, capped at a maximum value of 75.
+     */
+    public Integer getAnimateFolderMaxRows()  {
+        return getAttributeAsInt("animateFolderMaxRows");
     }
 
     /**
@@ -258,7 +284,7 @@ public class TreeGrid extends ListGrid  implements com.smartgwt.client.widgets.t
      * com.smartgwt.client.widgets.tree.TreeGrid#folderDrop}. <P> Note that enabling <code>canDropOnLeaves</code> is usually
      * only appropriate where you intend to add a custom {@link com.smartgwt.client.widgets.tree.TreeGrid#folderDrop}
      * implementation that <b>does not</b> add a child node under the leaf.  If you want to add a child nodes to a leaf,
-     * instead of enabling canDropOnLeaves, use empty folders isntead - see {@link
+     * instead of enabling canDropOnLeaves, use empty folders instead - see {@link
      * com.smartgwt.client.widgets.tree.Tree#isFolder} for how to control whether a node is considered a folder.
      * <p><b>Note : </b> This is an advanced setting</p>
      *
@@ -275,7 +301,7 @@ public class TreeGrid extends ListGrid  implements com.smartgwt.client.widgets.t
      * com.smartgwt.client.widgets.tree.TreeGrid#folderDrop}. <P> Note that enabling <code>canDropOnLeaves</code> is usually
      * only appropriate where you intend to add a custom {@link com.smartgwt.client.widgets.tree.TreeGrid#folderDrop}
      * implementation that <b>does not</b> add a child node under the leaf.  If you want to add a child nodes to a leaf,
-     * instead of enabling canDropOnLeaves, use empty folders isntead - see {@link
+     * instead of enabling canDropOnLeaves, use empty folders instead - see {@link
      * com.smartgwt.client.widgets.tree.Tree#isFolder} for how to control whether a node is considered a folder.
      *
      *
@@ -1373,7 +1399,7 @@ public class TreeGrid extends ListGrid  implements com.smartgwt.client.widgets.t
 
     /**
      * Returns the row number of the most recent mouse event.
-     * @param y optional y-coordinate to obtain row number, in lieue of the y                        coordinate of the last mouse event
+     * @param y optional y-coordinate to obtain row number, in lieu of the y                        coordinate of the last mouse event
      *
      * @return row number, or -2 if beyond last drawn row
      */
