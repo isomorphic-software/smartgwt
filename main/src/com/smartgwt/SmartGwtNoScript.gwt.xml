@@ -1,5 +1,5 @@
 <!--
-Inheriting this modules only packages the SmartClient JavaScript files. You will need to
+Inheriting this module only packages the SmartClient JavaScript files. You will need to
 include them yourself in your host html file as follows :
 
 <script src=[module-name]/sc/modules/ISC_Core.js></script>
