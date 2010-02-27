@@ -179,6 +179,25 @@ public class JSONEncoder extends DataClass {
     }
 
     /**
+     * If true, don't show isc internal properties when encoding and object
+     *
+     * @param skipInternalProperties skipInternalProperties Default value is false
+     */
+    public void setSkipInternalProperties(Boolean skipInternalProperties) {
+        setAttribute("skipInternalProperties", skipInternalProperties);
+    }
+
+    /**
+     * If true, don't show isc internal properties when encoding and object
+     *
+     *
+     * @return Boolean
+     */
+    public Boolean getSkipInternalProperties()  {
+        return getAttributeAsBoolean("skipInternalProperties");
+    }
+
+    /**
      * Whether all property names should be quoted, or only those property names that are not valid&#010 identifiers or are
      * JavaScript reserved words (such as "true").&#010 <P>&#010 Encoding only where required produces slightly shorter, more
      * readable output which is still&#010 compatible with JavaScript's eval():&#010 <pre>&#010 {&#010     someProp :
