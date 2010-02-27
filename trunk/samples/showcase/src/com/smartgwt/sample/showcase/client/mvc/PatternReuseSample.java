@@ -95,6 +95,7 @@ public class PatternReuseSample extends ShowcasePanel {
             this.datasource = datasource;
         }
 
+        @Override 
         protected void onInit() {
             super.onInit();
             this.form = new DynamicForm();

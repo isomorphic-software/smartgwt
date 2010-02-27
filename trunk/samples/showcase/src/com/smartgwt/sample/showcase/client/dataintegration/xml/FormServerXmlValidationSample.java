@@ -45,6 +45,7 @@ public class FormServerXmlValidationSample extends ShowcasePanel {
     public Canvas getViewPanel() {
 
         DataSource dataSource = new DataSource() {
+            @Override
             protected void transformResponse(DSResponse response, DSRequest request, Object xmlData) {
                 String status = XMLTools.selectString(xmlData, "/response/status");
                 if(!status.equals("success")) {

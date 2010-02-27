@@ -1,6 +1,7 @@
 package com.smartgwt.sample.showcase.client.data;
 
 import com.smartgwt.client.data.DSRequest;
+import com.smartgwt.client.data.DSResponse;
 import com.smartgwt.client.data.DataSource;
 import com.smartgwt.client.data.fields.DataSourceImageField;
 import com.smartgwt.client.data.fields.DataSourceIntegerField;
@@ -47,6 +48,14 @@ public class AnimalXmlDS extends DataSource {
         setClientOnly(true);
     }
 
+    /**
+     * Override transformRequest. Here for illustration purposes only and this override implementation simply calls
+     * super.transformReRequest
+     *
+     * @param dsRequest the DSRequest being processed
+     * @return the transformed request
+     */
+    @Override
     protected Object transformRequest(DSRequest dsRequest) {
         return super.transformRequest(dsRequest);
     }

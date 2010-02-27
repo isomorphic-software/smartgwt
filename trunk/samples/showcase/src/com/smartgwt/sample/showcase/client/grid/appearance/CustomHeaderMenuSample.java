@@ -37,6 +37,7 @@ public class CustomHeaderMenuSample extends ShowcasePanel {
     public Canvas getViewPanel() {
 
         final ListGrid countryGrid = new ListGrid() {
+            @Override
             protected MenuItem[] getHeaderContextMenuItems(final Integer fieldNum) {
                 final MenuItem[] items = super.getHeaderContextMenuItems(fieldNum);
                 MenuItem customItem = new MenuItem("Hello + " + fieldNum);

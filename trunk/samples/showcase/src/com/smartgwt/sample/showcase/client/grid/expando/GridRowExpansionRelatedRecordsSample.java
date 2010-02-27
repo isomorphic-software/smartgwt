@@ -52,7 +52,7 @@ public class GridRowExpansionRelatedRecordsSample extends ShowcasePanel {
             }
 
             @Override
-            protected Canvas getExpansionComponent(final Record record) {
+            protected Canvas getExpansionComponent(final ListGridRecord record) {
 
                 final ListGrid grid = this;
 
@@ -98,7 +98,7 @@ public class GridRowExpansionRelatedRecordsSample extends ShowcasePanel {
                 IButton closeButton = new IButton("Close");
                 closeButton.addClickHandler(new ClickHandler() {
                     public void onClick(ClickEvent event) {
-                        grid.collapseRecord(ListGridRecord.getOrCreateRef(record.getJsObj()));
+                        grid.collapseRecord(record);
                     }
                 });
                 hLayout.addMember(closeButton);

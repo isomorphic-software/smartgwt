@@ -36,6 +36,7 @@ public class DragTrackerSample extends ShowcasePanel {
     public Canvas getViewPanel() {
 
     	DragPiece blue = new DragPiece("pawn_blue.png") {
+            @Override
 			protected boolean setDragTracker() {
 				EventHandler.setDragTracker("Blue Piece");
 				return false;
@@ -47,6 +48,7 @@ public class DragTrackerSample extends ShowcasePanel {
     	blue.setTop(50);
     	    	
     	DragPiece green = new DragPiece("pawn_green.png"){
+            @Override
 			protected boolean setDragTracker() {
                 String html = Canvas.imgHTML("pieces/24/pawn_green.png", 24, 24);
 				EventHandler.setDragTracker(html);

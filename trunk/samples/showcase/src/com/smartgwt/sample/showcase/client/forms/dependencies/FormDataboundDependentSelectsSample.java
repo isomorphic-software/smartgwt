@@ -58,6 +58,7 @@ public class FormDataboundDependentSelectsSample extends ShowcasePanel {
         });
 
         SelectItem itemName = new SelectItem() {
+            @Override
             protected Criteria getPickListFilterCriteria() {
                 String category = (String) categoryItem.getValue();
                 Criteria criteria = new Criteria("category", category);

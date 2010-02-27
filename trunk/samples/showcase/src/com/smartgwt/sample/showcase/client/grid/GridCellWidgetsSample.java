@@ -57,7 +57,8 @@ public class GridCellWidgetsSample extends ShowcasePanel {
     public Canvas getViewPanel() {
 
         final ListGrid countryGrid = new ListGrid() {
-            protected Canvas createRecordComponent(final Record record, Integer colNum) {
+            @Override
+            protected Canvas createRecordComponent(final ListGridRecord record, Integer colNum) {
 
                 String fieldName = this.getFieldName(colNum);
 

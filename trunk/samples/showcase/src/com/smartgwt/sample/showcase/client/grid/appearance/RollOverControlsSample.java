@@ -59,6 +59,7 @@ public class RollOverControlsSample extends ShowcasePanel {
     public Canvas getViewPanel() {
 
         final ListGrid countryGrid = new ListGrid() {
+            @Override
             protected Canvas getRollOverCanvas(Integer rowNum, Integer colNum) {
                 rollOverRecord = this.getRecord(rowNum);
 
