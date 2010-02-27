@@ -1,7 +1,7 @@
 <!--
 Inheriting this module injects all the SmartClient JavaScript files along with the Enterprise theme.
-Inheriting this module might result in you injecting mode files that you need for example the Calendar.js
-If you want mode control over what JavaScript files are included, inherit SmartGwtNoScript instead
+Inheriting this module might result in you injecting more files that you need for example the Calendar.js
+If you want more control over what JavaScript files are included, inherit SmartGwtNoScript instead
 and manually add the script includes in your host html file.
 -->        
 
