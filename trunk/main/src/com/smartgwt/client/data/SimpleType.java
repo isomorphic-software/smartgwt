@@ -161,7 +161,8 @@ public class SimpleType extends BaseClass {
      * @param name the name of the simple type
      * @param inheritsFrom the type it inherits from
      */
-    public SimpleType(String name, FieldType inheritsFrom){
+    public SimpleType(String name, FieldType inheritsFrom) {
+        scClassName = "SimpleType";
         setName(name);
         setInheritsFrom(inheritsFrom);
     }
@@ -172,11 +173,19 @@ public class SimpleType extends BaseClass {
      * @param name the name of the simple type
      * @param inheritsFrom the type it inherits from
      */
-    public SimpleType(String name, SimpleType inheritsFrom){
+    public SimpleType(String name, SimpleType inheritsFrom) {
+        scClassName = "SimpleType";
         setName(name);
         //ensure the type being inherited from is registered
         inheritsFrom.getOrCreateJsObj();
         setAttribute("inheritsFrom", inheritsFrom.getName(), true);
+    }
+
+    /**
+     * Explicitly register this SimpleType with the system so that it can be used / referenced by remote DataSources.
+     */
+    public void register() {
+        create();
     }
 
     /**
@@ -245,6 +254,50 @@ public class SimpleType extends BaseClass {
      */
     public void setInheritsFrom(FieldType inheritsFrom)  throws IllegalStateException {
         setAttribute("inheritsFrom", inheritsFrom.getValue(), false);
+    }
+
+    /**
+     * Normal formatter for values of this type used in a {@link com.smartgwt.client.widgets.form.fields.StaticTextItem} or {@link com.smartgwt.client.widgets.viewer.DetailViewer}.
+     * <p>
+     * A formatter can make itself configurable on a per-component or per-field basis by checking properties on the component or field. For example, a formatter for account IDs may want
+     * to omit a prefix in views where it is redundant, and could check a flag detailViewer.omitAccountIdPrefix for this purpose.
+     *
+     * @param formatter the formatter
+     */
+    public native void setNormalDisplayFormatter(SimpleTypeFormatter formatter)/*-{
+        var self = this.@com.smartgwt.client.core.BaseClass::isCreated()() ? this.@com.smartgwt.client.core.BaseClass::getJsObj()() : this.@com.smartgwt.client.core.BaseClass::getConfig()();
+        self.normalDisplayFormatter = $entry(function(value, field, component, record) {
+            var valueJ = $wnd.SmartGWT.convertToJavaType(value);
+            var fieldJ = @com.smartgwt.client.data.SimpleType::toDataClass(Lcom/google/gwt/core/client/JavaScriptObject;)(field);
+            var componentJ = (component == null || component === undefined) ? null : @com.smartgwt.client.widgets.Canvas::getOrCreateRef(Lcom/google/gwt/core/client/JavaScriptObject;)(component);
+            var recordJ = (record == null || record === undefined) ? null : @com.smartgwt.client.data.Record::getOrCreateRef(Lcom/google/gwt/core/client/JavaScriptObject;)(record);
+            return formatter.@com.smartgwt.client.data.SimpleTypeFormatter::format(Ljava/lang/Object;Lcom/smartgwt/client/core/DataClass;Lcom/smartgwt/client/widgets/DataBoundComponent;Lcom/smartgwt/client/data/Record;)(valueJ, fieldJ, componentJ, recordJ);
+        });
+    }-*/;
+
+    /**
+     * Formatter for values of this type when compact display is required, for example, in a {@link com.smartgwt.client.widgets.grid.ListGrid} or
+     * {@link com.smartgwt.client.widgets.tree.TreeGrid}.
+     * <p>
+     * A formatter can make itself configurable on a per-component or per-field basis by checking properties on the component or field.
+     * For example, a formatter for account IDs may want to omit a prefix in views where it is redundant, and could check a flag listGridField.omitAccountIdPrefix for this purpose.
+     *
+     * @param formatter the formatter
+     */
+    public native void setShortDisplayFormatter(SimpleTypeFormatter formatter)/*-{
+        var self = this.@com.smartgwt.client.core.BaseClass::isCreated()() ? this.@com.smartgwt.client.core.BaseClass::getJsObj()() : this.@com.smartgwt.client.core.BaseClass::getConfig()();
+        self.shortDisplayFormatter = $entry(function(value, field, component, record) {
+            var valueJ = $wnd.SmartGWT.convertToJavaType(value);
+            var fieldJ = @com.smartgwt.client.data.SimpleType::toDataClass(Lcom/google/gwt/core/client/JavaScriptObject;)(field);
+            var componentJ = (component == null || component === undefined) ? null : @com.smartgwt.client.widgets.Canvas::getOrCreateRef(Lcom/google/gwt/core/client/JavaScriptObject;)(component);
+            var recordJ = (record == null || record === undefined) ? null : @com.smartgwt.client.data.Record::getOrCreateRef(Lcom/google/gwt/core/client/JavaScriptObject;)(record);
+            return formatter.@com.smartgwt.client.data.SimpleTypeFormatter::format(Ljava/lang/Object;Lcom/smartgwt/client/core/DataClass;Lcom/smartgwt/client/widgets/DataBoundComponent;Lcom/smartgwt/client/data/Record;)(valueJ, fieldJ, componentJ, recordJ);
+        });
+    }-*/;
+
+    private static DataClass toDataClass(JavaScriptObject jsObj) {
+        Object ref = JSOHelper.getAttributeAsObject((JavaScriptObject) jsObj, SC.REF);
+        return ref == null ? new DataClass(jsObj) : (RefDataClass) ref;
     }
 
 }
