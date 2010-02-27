@@ -384,7 +384,7 @@ public class DataSource extends BaseClass  implements com.smartgwt.client.data.e
     public Boolean getClientOnly()  {
         return getAttributeAsBoolean("clientOnly");
     }
- 
+
     /**
      * Decides under what conditions the {@link com.smartgwt.client.data.ResultSet} cache should be dropped when the {@link
      * com.smartgwt.client.data.ResultSet#getCriteria criteria} changes.
@@ -406,7 +406,7 @@ public class DataSource extends BaseClass  implements com.smartgwt.client.data.e
     public CriteriaPolicy getCriteriaPolicy()  {
         return EnumUtil.getEnum(CriteriaPolicy.values(), getAttribute("criteriaPolicy"));
     }
- 
+
     /**
      * Indicates the format to be used for HTTP requests and responses when fulfilling DSRequests (eg, when {@link
      * com.smartgwt.client.data.DataSource#fetchData} is called).
@@ -428,7 +428,7 @@ public class DataSource extends BaseClass  implements com.smartgwt.client.data.e
     public DSDataFormat getDataFormat()  {
         return EnumUtil.getEnum(DSDataFormat.values(), getAttribute("dataFormat"));
     }
- 
+
     /**
      * Transport to use for all operations on this DataSource. Defaults to {@link
      * com.smartgwt.client.rpc.RPCManager#defaultTransport}.  This would typically only be set to enable "scriptInclude"
@@ -570,7 +570,7 @@ public class DataSource extends BaseClass  implements com.smartgwt.client.data.e
     public void setEnumOrdinalProperty(String enumOrdinalProperty)  throws IllegalStateException {
         setAttribute("enumOrdinalProperty", enumOrdinalProperty, false);
     }
- 
+
     /**
      * Sets the strategy this DataSource uses to translate Java enumerated types (objects of type enum) to and from Javascript.
      *  This property is only applicable if you are using the Smart GWT server
@@ -1009,7 +1009,7 @@ public class DataSource extends BaseClass  implements com.smartgwt.client.data.e
     public String getServerConstructor()  {
         return getAttributeAsString("serverConstructor");
     }
- 
+
     /**
      * For a DataSource stored in .xml format on the ISC server, indicates what server-side connector to use to execute
      * requests, that is, what happens if you call dsRequest.execute() in server code.
@@ -1501,8 +1501,8 @@ public class DataSource extends BaseClass  implements com.smartgwt.client.data.e
             
     /**
      * Contacts the server to run server-side validation on a DSRequest and either returns {@link
-     * com.smartgwt.client.data.DSResponse#getErrors errors} validation errors or a
-     * ${isc.DocUtils.linkForRef('dsRequest.status')} code of 0. <p> A "validate" dsRequest is effectively always {@link
+     * com.smartgwt.client.data.DSResponse#getErrors errors} validation errors or a {@link
+     * com.smartgwt.client.data.DSResponse#getStatus status} code of 0. <p> A "validate" dsRequest is effectively always {@link
      * com.smartgwt.client.rpc.RPCRequest#getWillHandleError willHandleError}:true. It is a normal condition for a "validate"
      * DSResponse to have validation errors and the response will never go to system-wide handling for unexpected errors
      * ({@link com.smartgwt.client.rpc.RPCManager#handleError}).
@@ -1547,8 +1547,6 @@ public class DataSource extends BaseClass  implements com.smartgwt.client.data.e
     }-*/;
 
 
-
-
     protected native void onInit() /*-{
         var self = this.@com.smartgwt.client.core.BaseClass::getOrCreateJsObj()();
 
@@ -1561,9 +1559,13 @@ public class DataSource extends BaseClass  implements com.smartgwt.client.data.e
             }
             var dsRequestJ = @com.smartgwt.client.data.DSRequest::new(Lcom/google/gwt/core/client/JavaScriptObject;)(dsRequest);
             var data = jObj.@com.smartgwt.client.data.DataSource::transformRequest(Lcom/smartgwt/client/data/DSRequest;)(dsRequestJ);
+            if(@com.smartgwt.client.data.DataSource::isRecord(Ljava/lang/Object;)(data)) {
+                data = data.@com.smartgwt.client.data.Record::getJsObj()();
+            } else if (@com.smartgwt.client.data.DataSource::isRecordArray(Ljava/lang/Object;)(data)) {
+                data = @com.smartgwt.client.util.JSOHelper::convertToJavaScriptArray([Ljava/lang/Object;)(data);
+            }
             return data;
         });
-
 
         self.__transformResponse = self.transformResponse;
         self.transformResponse = $entry(function(dsResponse, dsRequest, data) {
@@ -1590,6 +1592,13 @@ public class DataSource extends BaseClass  implements com.smartgwt.client.data.e
         });
     }-*/;
 
+    private static boolean isRecord(Object data) {
+        return data instanceof Record;
+    }
+
+    private static boolean isRecordArray(Object data) {
+        return data instanceof Record[];
+    }
 
     /**
      * Controls the format in which inputs are sent to the dataURL when fulfilling DSRequests. May be overridden for
@@ -1652,7 +1661,7 @@ public class DataSource extends BaseClass  implements com.smartgwt.client.data.e
      * <br><b>Note: This is an override point</b>
      *
      * @param dsRequest the DSRequest being processed
-     * @return data to be sent to the dataURL (JavaScriptObject or String)
+     * @return data to be sent to the dataURL (JavaScriptObject, String or Record)
      */
     protected native Object transformRequest(DSRequest dsRequest) /*-{
         var self = this.@com.smartgwt.client.core.BaseClass::getOrCreateJsObj()();
