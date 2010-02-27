@@ -19,7 +19,7 @@ public class GridBigFilterSample extends ShowcasePanel {
             "In this mode, the FieldPickers are represented by ComboBoxItems, rather than SelectItems, and have default settings " +
             "that provide type-ahead auto-completion.<p>" +
             "<p>Note also that, when fieldDataSource is specified and the operator for a clause is of a type that uses a field-lookup, " +
-            "\"matches other field\" and \"differs from field\", the valueField is also populated dynamically by the fieldDataSource.</p>";
+            "the valueField is also populated dynamically by the fieldDataSource.</p>";
 
     public static class Factory implements PanelFactory {
         private String id;
