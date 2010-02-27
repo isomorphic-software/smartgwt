@@ -7,6 +7,24 @@ package com.smartgwt.client.i18n;
 public interface SmartGwtMessages extends com.google.gwt.i18n.client.Messages {
   
   /**
+   * Translated "Either enter valid criteria or hit &#39;Cancel&#39; to abandon changes.".
+   * 
+   * @return translated "Either enter valid criteria or hit &#39;Cancel&#39; to abandon changes."
+   */
+  @DefaultMessage("Either enter valid criteria or hit &#39;Cancel&#39; to abandon changes.")
+  @Key("advancedHiliteEditor_invalidCriteriaPrompt")
+  String advancedHiliteEditor_invalidCriteriaPrompt();
+
+  /**
+   * Translated "Untitled Button".
+   * 
+   * @return translated "Untitled Button"
+   */
+  @DefaultMessage("Untitled Button")
+  @Key("button_title")
+  String button_title();
+
+  /**
    * Translated "Add an event".
    * 
    * @return translated "Add an event"
@@ -421,6 +439,15 @@ public interface SmartGwtMessages extends com.google.gwt.i18n.client.Messages {
   String dialog_ConfirmTitle();
 
   /**
+   * Translated "Done".
+   * 
+   * @return translated "Done"
+   */
+  @DefaultMessage("Done")
+  @Key("dialog_DoneButtonTitle")
+  String dialog_DoneButtonTitle();
+
+  /**
    * Translated "Log in".
    * 
    * @return translated "Log in"
@@ -518,6 +545,15 @@ public interface SmartGwtMessages extends com.google.gwt.i18n.client.Messages {
   @DefaultMessage("The following errors were found")
   @Key("dynamicForm_errorsPreamble")
   String dynamicForm_errorsPreamble();
+
+  /**
+   * Translated "Form was unable to be submitted. The most likely cause for this is an invalid value in an upload field.".
+   * 
+   * @return translated "Form was unable to be submitted. The most likely cause for this is an invalid value in an upload field."
+   */
+  @DefaultMessage("Form was unable to be submitted. The most likely cause for this is an invalid value in an upload field.")
+  @Key("dynamicForm_formSubmitFailedWarning")
+  String dynamicForm_formSubmitFailedWarning();
 
   /**
    * Translated "Invalid value".
@@ -628,6 +664,15 @@ public interface SmartGwtMessages extends com.google.gwt.i18n.client.Messages {
   String formulaBuilder_instructionsTextStart();
 
   /**
+   * Translated "<nobr>For Record: $title</nobr><br><nobr>Output: $output</nobr>".
+   * 
+   * @return translated "<nobr>For Record: $title</nobr><br><nobr>Output: $output</nobr>"
+   */
+  @DefaultMessage("<nobr>For Record: $title</nobr><br><nobr>Output: $output</nobr>")
+  @Key("formulaBuilder_samplePrompt")
+  String formulaBuilder_samplePrompt();
+
+  /**
    * Translated "For record:".
    * 
    * @return translated "For record:"
@@ -644,6 +689,168 @@ public interface SmartGwtMessages extends com.google.gwt.i18n.client.Messages {
   @DefaultMessage("Output:")
   @Key("formulaBuilder_samplePromptOutput")
   String formulaBuilder_samplePromptOutput();
+
+  /**
+   * Translated "by Day of Month".
+   * 
+   * @return translated "by Day of Month"
+   */
+  @DefaultMessage("by Day of Month")
+  @Key("groupingMessages_byDayOfMonthTitle")
+  String groupingMessages_byDayOfMonthTitle();
+
+  /**
+   * Translated "by Day".
+   * 
+   * @return translated "by Day"
+   */
+  @DefaultMessage("by Day")
+  @Key("groupingMessages_byDayTitle")
+  String groupingMessages_byDayTitle();
+
+  /**
+   * Translated "by Hours".
+   * 
+   * @return translated "by Hours"
+   */
+  @DefaultMessage("by Hours")
+  @Key("groupingMessages_byHoursTitle")
+  String groupingMessages_byHoursTitle();
+
+  /**
+   * Translated "by Milliseconds".
+   * 
+   * @return translated "by Milliseconds"
+   */
+  @DefaultMessage("by Milliseconds")
+  @Key("groupingMessages_byMillisecondsTitle")
+  String groupingMessages_byMillisecondsTitle();
+
+  /**
+   * Translated "by Minutes".
+   * 
+   * @return translated "by Minutes"
+   */
+  @DefaultMessage("by Minutes")
+  @Key("groupingMessages_byMinutesTitle")
+  String groupingMessages_byMinutesTitle();
+
+  /**
+   * Translated "by Month".
+   * 
+   * @return translated "by Month"
+   */
+  @DefaultMessage("by Month")
+  @Key("groupingMessages_byMonthTitle")
+  String groupingMessages_byMonthTitle();
+
+  /**
+   * Translated "by Quarter".
+   * 
+   * @return translated "by Quarter"
+   */
+  @DefaultMessage("by Quarter")
+  @Key("groupingMessages_byQuarterTitle")
+  String groupingMessages_byQuarterTitle();
+
+  /**
+   * Translated "by Seconds".
+   * 
+   * @return translated "by Seconds"
+   */
+  @DefaultMessage("by Seconds")
+  @Key("groupingMessages_bySecondsTitle")
+  String groupingMessages_bySecondsTitle();
+
+  /**
+   * Translated "by Upcoming".
+   * 
+   * @return translated "by Upcoming"
+   */
+  @DefaultMessage("by Upcoming")
+  @Key("groupingMessages_byUpcomingTitle")
+  String groupingMessages_byUpcomingTitle();
+
+  /**
+   * Translated "by Week".
+   * 
+   * @return translated "by Week"
+   */
+  @DefaultMessage("by Week")
+  @Key("groupingMessages_byWeekTitle")
+  String groupingMessages_byWeekTitle();
+
+  /**
+   * Translated "by Year".
+   * 
+   * @return translated "by Year"
+   */
+  @DefaultMessage("by Year")
+  @Key("groupingMessages_byYearTitle")
+  String groupingMessages_byYearTitle();
+
+  /**
+   * Translated "Before".
+   * 
+   * @return translated "Before"
+   */
+  @DefaultMessage("Before")
+  @Key("groupingMessages_upcomingBeforeTitle")
+  String groupingMessages_upcomingBeforeTitle();
+
+  /**
+   * Translated "Later".
+   * 
+   * @return translated "Later"
+   */
+  @DefaultMessage("Later")
+  @Key("groupingMessages_upcomingLaterTitle")
+  String groupingMessages_upcomingLaterTitle();
+
+  /**
+   * Translated "Next Month".
+   * 
+   * @return translated "Next Month"
+   */
+  @DefaultMessage("Next Month")
+  @Key("groupingMessages_upcomingNextMonthTitle")
+  String groupingMessages_upcomingNextMonthTitle();
+
+  /**
+   * Translated "Next Week".
+   * 
+   * @return translated "Next Week"
+   */
+  @DefaultMessage("Next Week")
+  @Key("groupingMessages_upcomingNextWeekTitle")
+  String groupingMessages_upcomingNextWeekTitle();
+
+  /**
+   * Translated "This Week".
+   * 
+   * @return translated "This Week"
+   */
+  @DefaultMessage("This Week")
+  @Key("groupingMessages_upcomingThisWeekTitle")
+  String groupingMessages_upcomingThisWeekTitle();
+
+  /**
+   * Translated "Today".
+   * 
+   * @return translated "Today"
+   */
+  @DefaultMessage("Today")
+  @Key("groupingMessages_upcomingTodayTitle")
+  String groupingMessages_upcomingTodayTitle();
+
+  /**
+   * Translated "Tomorrow".
+   * 
+   * @return translated "Tomorrow"
+   */
+  @DefaultMessage("Tomorrow")
+  @Key("groupingMessages_upcomingTomorrowTitle")
+  String groupingMessages_upcomingTomorrowTitle();
 
   /**
    * Translated "by Day of Month".
@@ -808,6 +1015,15 @@ public interface SmartGwtMessages extends com.google.gwt.i18n.client.Messages {
   String grouping_upcomingTomorrowTitle();
 
   /**
+   * Translated "Remove".
+   * 
+   * @return translated "Remove"
+   */
+  @DefaultMessage("Remove")
+  @Key("hiliteRule_removeButtonPrompt")
+  String hiliteRule_removeButtonPrompt();
+
+  /**
    * Translated "Cancelling this edit will clear unsaved edit values for this record. Continue?".
    * 
    * @return translated "Cancelling this edit will clear unsaved edit values for this record. Continue?"
@@ -844,6 +1060,15 @@ public interface SmartGwtMessages extends com.google.gwt.i18n.client.Messages {
   String listGrid_clearSortFieldText();
 
   /**
+   * Translated "Configure Sort".
+   * 
+   * @return translated "Configure Sort"
+   */
+  @DefaultMessage("Configure Sort")
+  @Key("listGrid_configureSortText")
+  String listGrid_configureSortText();
+
+  /**
    * Translated "This action will discard all unsaved edited values for this list.".
    * 
    * @return translated "This action will discard all unsaved edited values for this list."
@@ -853,6 +1078,15 @@ public interface SmartGwtMessages extends com.google.gwt.i18n.client.Messages {
   String listGrid_confirmDiscardEditsMessage();
 
   /**
+   * Translated "Delete".
+   * 
+   * @return translated "Delete"
+   */
+  @DefaultMessage("Delete")
+  @Key("listGrid_deleteRecordContextMenuItemTitle")
+  String listGrid_deleteRecordContextMenuItemTitle();
+
+  /**
    * Translated "Save".
    * 
    * @return translated "Save"
@@ -860,6 +1094,15 @@ public interface SmartGwtMessages extends com.google.gwt.i18n.client.Messages {
   @DefaultMessage("Save")
   @Key("listGrid_discardEditsSaveButtonTitle")
   String listGrid_discardEditsSaveButtonTitle();
+
+  /**
+   * Translated "Dismiss".
+   * 
+   * @return translated "Dismiss"
+   */
+  @DefaultMessage("Dismiss")
+  @Key("listGrid_dismissEmbeddedComponentContextMenuItemTitle")
+  String listGrid_dismissEmbeddedComponentContextMenuItemTitle();
 
   /**
    * Translated "No items to show.".
@@ -925,6 +1168,60 @@ public interface SmartGwtMessages extends com.google.gwt.i18n.client.Messages {
   String listGrid_loadingDataMessage();
 
   /**
+   * Translated "This grid is limited to $count simultaneously expanded records.  Please collapse some expanded records and retry.".
+   * 
+   * @return translated "This grid is limited to $count simultaneously expanded records.  Please collapse some expanded records and retry."
+   */
+  @DefaultMessage("This grid is limited to $count simultaneously expanded records.  Please collapse some expanded records and retry.")
+  @Key("listGrid_maxExpandedRecordsPrompt")
+  String listGrid_maxExpandedRecordsPrompt();
+
+  /**
+   * Translated "-- Add New Row --".
+   * 
+   * @return translated "-- Add New Row --"
+   */
+  @DefaultMessage("-- Add New Row --")
+  @Key("listGrid_newRecordRowMessage")
+  String listGrid_newRecordRowMessage();
+
+  /**
+   * Translated "Edit".
+   * 
+   * @return translated "Edit"
+   */
+  @DefaultMessage("Edit")
+  @Key("listGrid_openRecordEditorContextMenuItemTitle")
+  String listGrid_openRecordEditorContextMenuItemTitle();
+
+  /**
+   * Translated "Cancel".
+   * 
+   * @return translated "Cancel"
+   */
+  @DefaultMessage("Cancel")
+  @Key("listGrid_recordEditorCancelButtonTitle")
+  String listGrid_recordEditorCancelButtonTitle();
+
+  /**
+   * Translated "Save".
+   * 
+   * @return translated "Save"
+   */
+  @DefaultMessage("Save")
+  @Key("listGrid_recordEditorSaveButtonTitle")
+  String listGrid_recordEditorSaveButtonTitle();
+
+  /**
+   * Translated "[Remove record]".
+   * 
+   * @return translated "[Remove record]"
+   */
+  @DefaultMessage("[Remove record]")
+  @Key("listGrid_removeFieldTitle")
+  String listGrid_removeFieldTitle();
+
+  /**
    * Translated "Sort Ascending".
    * 
    * @return translated "Sort Ascending"
@@ -988,6 +1285,15 @@ public interface SmartGwtMessages extends com.google.gwt.i18n.client.Messages {
   String multiSortDialog_applyButtonTitle();
 
   /**
+   * Translated "Ascending".
+   * 
+   * @return translated "Ascending"
+   */
+  @DefaultMessage("Ascending")
+  @Key("multiSortDialog_ascendingTitle")
+  String multiSortDialog_ascendingTitle();
+
+  /**
    * Translated "Cancel".
    * 
    * @return translated "Cancel"
@@ -1013,6 +1319,33 @@ public interface SmartGwtMessages extends com.google.gwt.i18n.client.Messages {
   @DefaultMessage("Delete Level")
   @Key("multiSortDialog_deleteLevelButtonTitle")
   String multiSortDialog_deleteLevelButtonTitle();
+
+  /**
+   * Translated "Descending".
+   * 
+   * @return translated "Descending"
+   */
+  @DefaultMessage("Descending")
+  @Key("multiSortDialog_descendingTitle")
+  String multiSortDialog_descendingTitle();
+
+  /**
+   * Translated "Order".
+   * 
+   * @return translated "Order"
+   */
+  @DefaultMessage("Order")
+  @Key("multiSortDialog_directionFieldTitle")
+  String multiSortDialog_directionFieldTitle();
+
+  /**
+   * Translated "Sort by".
+   * 
+   * @return translated "Sort by"
+   */
+  @DefaultMessage("Sort by")
+  @Key("multiSortDialog_firstSortLevelTitle")
+  String multiSortDialog_firstSortLevelTitle();
 
   /**
    * Translated "Columns may only be used once: $title is used multiple times.".
@@ -1042,6 +1375,24 @@ public interface SmartGwtMessages extends com.google.gwt.i18n.client.Messages {
   String multiSortDialog_levelUpPrompt();
 
   /**
+   * Translated "Then by".
+   * 
+   * @return translated "Then by"
+   */
+  @DefaultMessage("Then by")
+  @Key("multiSortDialog_otherSortLevelTitle")
+  String multiSortDialog_otherSortLevelTitle();
+
+  /**
+   * Translated "Column".
+   * 
+   * @return translated "Column"
+   */
+  @DefaultMessage("Column")
+  @Key("multiSortDialog_propertyFieldTitle")
+  String multiSortDialog_propertyFieldTitle();
+
+  /**
    * Translated "Match All".
    * 
    * @return translated "Match All"
@@ -1069,6 +1420,15 @@ public interface SmartGwtMessages extends com.google.gwt.i18n.client.Messages {
   String operators_betweenTitle();
 
   /**
+   * Translated "contains (match case) another field value".
+   * 
+   * @return translated "contains (match case) another field value"
+   */
+  @DefaultMessage("contains (match case) another field value")
+  @Key("operators_containsFieldTitle")
+  String operators_containsFieldTitle();
+
+  /**
    * Translated "contains (match case)".
    * 
    * @return translated "contains (match case)"
@@ -1076,6 +1436,15 @@ public interface SmartGwtMessages extends com.google.gwt.i18n.client.Messages {
   @DefaultMessage("contains (match case)")
   @Key("operators_containsTitle")
   String operators_containsTitle();
+
+  /**
+   * Translated "ends with (match case) another field value".
+   * 
+   * @return translated "ends with (match case) another field value"
+   */
+  @DefaultMessage("ends with (match case) another field value")
+  @Key("operators_endsWithFieldTitle")
+  String operators_endsWithFieldTitle();
 
   /**
    * Translated "ends with (match case)".
@@ -1105,6 +1474,15 @@ public interface SmartGwtMessages extends com.google.gwt.i18n.client.Messages {
   String operators_equalsTitle();
 
   /**
+   * Translated "greater than or equal to field".
+   * 
+   * @return translated "greater than or equal to field"
+   */
+  @DefaultMessage("greater than or equal to field")
+  @Key("operators_greaterOrEqualFieldTitle")
+  String operators_greaterOrEqualFieldTitle();
+
+  /**
    * Translated "greater than or equal to".
    * 
    * @return translated "greater than or equal to"
@@ -1112,6 +1490,15 @@ public interface SmartGwtMessages extends com.google.gwt.i18n.client.Messages {
   @DefaultMessage("greater than or equal to")
   @Key("operators_greaterOrEqualTitle")
   String operators_greaterOrEqualTitle();
+
+  /**
+   * Translated "greater than field".
+   * 
+   * @return translated "greater than field"
+   */
+  @DefaultMessage("greater than field")
+  @Key("operators_greaterThanFieldTitle")
+  String operators_greaterThanFieldTitle();
 
   /**
    * Translated "greater than".
@@ -1204,6 +1591,15 @@ public interface SmartGwtMessages extends com.google.gwt.i18n.client.Messages {
   String operators_isNullTitle();
 
   /**
+   * Translated "less than or equal to field".
+   * 
+   * @return translated "less than or equal to field"
+   */
+  @DefaultMessage("less than or equal to field")
+  @Key("operators_lessOrEqualFieldTitle")
+  String operators_lessOrEqualFieldTitle();
+
+  /**
    * Translated "less than or equal to".
    * 
    * @return translated "less than or equal to"
@@ -1211,6 +1607,15 @@ public interface SmartGwtMessages extends com.google.gwt.i18n.client.Messages {
   @DefaultMessage("less than or equal to")
   @Key("operators_lessOrEqualTitle")
   String operators_lessOrEqualTitle();
+
+  /**
+   * Translated "less than field".
+   * 
+   * @return translated "less than field"
+   */
+  @DefaultMessage("less than field")
+  @Key("operators_lessThanFieldTitle")
+  String operators_lessThanFieldTitle();
 
   /**
    * Translated "less than".
@@ -1312,6 +1717,15 @@ public interface SmartGwtMessages extends com.google.gwt.i18n.client.Messages {
   String operators_regexpTitle();
 
   /**
+   * Translated "starts with (match case) another field value".
+   * 
+   * @return translated "starts with (match case) another field value"
+   */
+  @DefaultMessage("starts with (match case) another field value")
+  @Key("operators_startsWithFieldTitle")
+  String operators_startsWithFieldTitle();
+
+  /**
    * Translated "starts with (match case)".
    * 
    * @return translated "starts with (match case)"
@@ -1328,6 +1742,15 @@ public interface SmartGwtMessages extends com.google.gwt.i18n.client.Messages {
   @DefaultMessage("No items to display")
   @Key("pickTreeItem_emptyMenuMessage")
   String pickTreeItem_emptyMenuMessage();
+
+  /**
+   * Translated "Close portlet?".
+   * 
+   * @return translated "Close portlet?"
+   */
+  @DefaultMessage("Close portlet?")
+  @Key("portlet_closeConfirmationMessage")
+  String portlet_closeConfirmationMessage();
 
   /**
    * Translated "Print".
@@ -1391,6 +1814,15 @@ public interface SmartGwtMessages extends com.google.gwt.i18n.client.Messages {
   @DefaultMessage("Operation timed out")
   @Key("rpcManager_timeoutErrorMessage")
   String rpcManager_timeoutErrorMessage();
+
+  /**
+   * Translated "Validating...".
+   * 
+   * @return translated "Validating..."
+   */
+  @DefaultMessage("Validating...")
+  @Key("rpcManager_validateDataPrompt")
+  String rpcManager_validateDataPrompt();
 
   /**
    * Translated "Other...".
@@ -1555,6 +1987,15 @@ public interface SmartGwtMessages extends com.google.gwt.i18n.client.Messages {
   String validator_notABoolean();
 
   /**
+   * Translated "Must be a CSS color identifier.".
+   * 
+   * @return translated "Must be a CSS color identifier."
+   */
+  @DefaultMessage("Must be a CSS color identifier.")
+  @Key("validator_notAColor")
+  String validator_notAColor();
+
+  /**
    * Translated "Must be a date.".
    * 
    * @return translated "Must be a date."
@@ -1573,6 +2014,24 @@ public interface SmartGwtMessages extends com.google.gwt.i18n.client.Messages {
   String validator_notADecimal();
 
   /**
+   * Translated "Must be a function.".
+   * 
+   * @return translated "Must be a function."
+   */
+  @DefaultMessage("Must be a function.")
+  @Key("validator_notAFunction")
+  String validator_notAFunction();
+
+  /**
+   * Translated "Must be a valid regular expression.".
+   * 
+   * @return translated "Must be a valid regular expression."
+   */
+  @DefaultMessage("Must be a valid regular expression.")
+  @Key("validator_notARegex")
+  String validator_notARegex();
+
+  /**
    * Translated "Must be a String.".
    * 
    * @return translated "Must be a String."
@@ -1580,6 +2039,24 @@ public interface SmartGwtMessages extends com.google.gwt.i18n.client.Messages {
   @DefaultMessage("Must be a String.")
   @Key("validator_notAString")
   String validator_notAString();
+
+  /**
+   * Translated "Must be a time.".
+   * 
+   * @return translated "Must be a time."
+   */
+  @DefaultMessage("Must be a time.")
+  @Key("validator_notATime")
+  String validator_notATime();
+
+  /**
+   * Translated "Identifiers must start with a letter, underscore or $ character, and may contain only letters, numbers, underscores or $ characters.".
+   * 
+   * @return translated "Identifiers must start with a letter, underscore or $ character, and may contain only letters, numbers, underscores or $ characters."
+   */
+  @DefaultMessage("Identifiers must start with a letter, underscore or $ character, and may contain only letters, numbers, underscores or $ characters.")
+  @Key("validator_notAnIdentifier")
+  String validator_notAnIdentifier();
 
   /**
    * Translated "Must be a whole number.".

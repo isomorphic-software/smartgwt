@@ -42,6 +42,7 @@ public class I18nUtil {
             $wnd.isc.Dialog.addClassProperties({YES_BUTTON_TITLE: messages.@com.smartgwt.client.i18n.SmartGwtMessages::dialog_YesButtonTitle()()});
             $wnd.isc.Dialog.addClassProperties({NO_BUTTON_TITLE: messages.@com.smartgwt.client.i18n.SmartGwtMessages::dialog_NoButtonTitle()()});
             $wnd.isc.Dialog.addClassProperties({CANCEL_BUTTON_TITLE: messages.@com.smartgwt.client.i18n.SmartGwtMessages::dialog_CancelButtonTitle()()});
+            $wnd.isc.Dialog.addClassProperties({DONE_BUTTON_TITLE: messages.@com.smartgwt.client.i18n.SmartGwtMessages::dialog_DoneButtonTitle()()});
             $wnd.isc.Dialog.addClassProperties({CONFIRM_TITLE: messages.@com.smartgwt.client.i18n.SmartGwtMessages::dialog_ConfirmTitle()()});
             $wnd.isc.Dialog.addClassProperties({SAY_TITLE: messages.@com.smartgwt.client.i18n.SmartGwtMessages::dialog_SayTitle()()});
             $wnd.isc.Dialog.addClassProperties({WARN_TITLE: messages.@com.smartgwt.client.i18n.SmartGwtMessages::dialog_WarnTitle()()});
@@ -59,6 +60,7 @@ public class I18nUtil {
             $wnd.isc.RPCManager.addClassProperties({timeoutErrorMessage: messages.@com.smartgwt.client.i18n.SmartGwtMessages::rpcManager_timeoutErrorMessage()()});
             $wnd.isc.RPCManager.addClassProperties({removeDataPrompt: messages.@com.smartgwt.client.i18n.SmartGwtMessages::rpcManager_removeDataPrompt()()});
             $wnd.isc.RPCManager.addClassProperties({saveDataPrompt: messages.@com.smartgwt.client.i18n.SmartGwtMessages::rpcManager_saveDataPrompt()()});
+            $wnd.isc.RPCManager.addClassProperties({validateDataPrompt: messages.@com.smartgwt.client.i18n.SmartGwtMessages::rpcManager_validateDataPrompt()()});
             $wnd.isc.RPCManager.addClassProperties({fetchDataPrompt: messages.@com.smartgwt.client.i18n.SmartGwtMessages::rpcManager_fetchDataPrompt()()});
         }
 
@@ -94,6 +96,13 @@ public class I18nUtil {
             $wnd.isc.Operators.addClassProperties({notInSetTitle: messages.@com.smartgwt.client.i18n.SmartGwtMessages::operators_notInSetTitle()()});
             $wnd.isc.Operators.addClassProperties({equalsFieldTitle: messages.@com.smartgwt.client.i18n.SmartGwtMessages::operators_equalsFieldTitle()()});
             $wnd.isc.Operators.addClassProperties({notEqualFieldTitle: messages.@com.smartgwt.client.i18n.SmartGwtMessages::operators_notEqualFieldTitle()()});
+            $wnd.isc.Operators.addClassProperties({greaterThanFieldTitle: messages.@com.smartgwt.client.i18n.SmartGwtMessages::operators_greaterThanFieldTitle()()});
+            $wnd.isc.Operators.addClassProperties({lessThanFieldTitle: messages.@com.smartgwt.client.i18n.SmartGwtMessages::operators_lessThanFieldTitle()()});
+            $wnd.isc.Operators.addClassProperties({greaterOrEqualFieldTitle: messages.@com.smartgwt.client.i18n.SmartGwtMessages::operators_greaterOrEqualFieldTitle()()});
+            $wnd.isc.Operators.addClassProperties({lessOrEqualFieldTitle: messages.@com.smartgwt.client.i18n.SmartGwtMessages::operators_lessOrEqualFieldTitle()()});
+            $wnd.isc.Operators.addClassProperties({containsFieldTitle: messages.@com.smartgwt.client.i18n.SmartGwtMessages::operators_containsFieldTitle()()});
+            $wnd.isc.Operators.addClassProperties({startsWithFieldTitle: messages.@com.smartgwt.client.i18n.SmartGwtMessages::operators_startsWithFieldTitle()()});
+            $wnd.isc.Operators.addClassProperties({endsWithFieldTitle: messages.@com.smartgwt.client.i18n.SmartGwtMessages::operators_endsWithFieldTitle()()});
             $wnd.isc.Operators.addClassProperties({andTitle: messages.@com.smartgwt.client.i18n.SmartGwtMessages::operators_andTitle()()});
             $wnd.isc.Operators.addClassProperties({notTitle: messages.@com.smartgwt.client.i18n.SmartGwtMessages::operators_notTitle()()});
             $wnd.isc.Operators.addClassProperties({orTitle: messages.@com.smartgwt.client.i18n.SmartGwtMessages::operators_orTitle()()});
@@ -126,6 +135,10 @@ public class I18nUtil {
             $wnd.isc.Validator.addClassProperties({notAnInteger: messages.@com.smartgwt.client.i18n.SmartGwtMessages::validator_notAnInteger()()});
             $wnd.isc.Validator.addClassProperties({notADecimal: messages.@com.smartgwt.client.i18n.SmartGwtMessages::validator_notADecimal()()});
             $wnd.isc.Validator.addClassProperties({notADate: messages.@com.smartgwt.client.i18n.SmartGwtMessages::validator_notADate()()});
+            $wnd.isc.Validator.addClassProperties({notATime: messages.@com.smartgwt.client.i18n.SmartGwtMessages::validator_notATime()()});
+            $wnd.isc.Validator.addClassProperties({notAnIdentifier: messages.@com.smartgwt.client.i18n.SmartGwtMessages::validator_notAnIdentifier()()});
+            $wnd.isc.Validator.addClassProperties({notARegex: messages.@com.smartgwt.client.i18n.SmartGwtMessages::validator_notARegex()()});
+            $wnd.isc.Validator.addClassProperties({notAColor: messages.@com.smartgwt.client.i18n.SmartGwtMessages::validator_notAColor()()});
             $wnd.isc.Validator.addClassProperties({mustBeLessThan: messages.@com.smartgwt.client.i18n.SmartGwtMessages::validator_mustBeLessThan()() + ' ${max}'});
             $wnd.isc.Validator.addClassProperties({mustBeGreaterThan: messages.@com.smartgwt.client.i18n.SmartGwtMessages::validator_mustBeGreaterThan()() + ' ${min}'});
             $wnd.isc.Validator.addClassProperties({mustBeLaterThan: messages.@com.smartgwt.client.i18n.SmartGwtMessages::validator_mustBeLaterThan()() + ' ${min.toShortDate()}'});
@@ -135,6 +148,7 @@ public class I18nUtil {
             $wnd.isc.Validator.addClassProperties({mustBeExactLength: (messages.@com.smartgwt.client.i18n.SmartGwtMessages::validator_mustBeExactLength()()).replace('$max', '${max}')});
             $wnd.isc.Validator.addClassProperties({requiredField: messages.@com.smartgwt.client.i18n.SmartGwtMessages::validator_requiredField()()});
             $wnd.isc.Validator.addClassProperties({notOneOf: messages.@com.smartgwt.client.i18n.SmartGwtMessages::validator_notOneOf()()});
+            $wnd.isc.Validator.addClassProperties({notAFunction: messages.@com.smartgwt.client.i18n.SmartGwtMessages::validator_notAFunction()()});
         }
 
         if($wnd.isc.Time) {
@@ -154,6 +168,7 @@ public class I18nUtil {
         if($wnd.isc.DynamicForm) {
             $wnd.isc.DynamicForm.addProperties({errorsPreamble: messages.@com.smartgwt.client.i18n.SmartGwtMessages::dynamicForm_errorsPreamble()()});
             $wnd.isc.DynamicForm.addProperties({unknownErrorMessage: messages.@com.smartgwt.client.i18n.SmartGwtMessages::dynamicForm_unknownErrorMessage()()});
+            $wnd.isc.DynamicForm.addProperties({formSubmitFailedWarning: messages.@com.smartgwt.client.i18n.SmartGwtMessages::dynamicForm_formSubmitFailedWarning()()});
             $wnd.isc.ValuesManager.addProperties({unknownErrorMessage: messages.@com.smartgwt.client.i18n.SmartGwtMessages::valuesManager_unknownErrorMessage()()});
         }
 
@@ -174,9 +189,17 @@ public class I18nUtil {
         if($wnd.isc.ListGrid) {
             $wnd.isc.ListGrid.addProperties({emptyMessage: messages.@com.smartgwt.client.i18n.SmartGwtMessages::listGrid_emptyMessage()()});
             $wnd.isc.ListGrid.addProperties({loadingDataMessage: messages.@com.smartgwt.client.i18n.SmartGwtMessages::listGrid_loadingDataMessage()()});
+            $wnd.isc.ListGrid.addProperties({removeFieldTitle: messages.@com.smartgwt.client.i18n.SmartGwtMessages::listGrid_removeFieldTitle()()});
             $wnd.isc.ListGrid.addProperties({cancelEditingConfirmationMessage: messages.@com.smartgwt.client.i18n.SmartGwtMessages::listGrid_cancelEditingConfirmationMessage()()});
             $wnd.isc.ListGrid.addProperties({confirmDiscardEditsMessage: messages.@com.smartgwt.client.i18n.SmartGwtMessages::listGrid_confirmDiscardEditsMessage()()});
             $wnd.isc.ListGrid.addProperties({discardEditsSaveButtonTitle: messages.@com.smartgwt.client.i18n.SmartGwtMessages::listGrid_discardEditsSaveButtonTitle()()});
+            $wnd.isc.ListGrid.addProperties({newRecordRowMessage: messages.@com.smartgwt.client.i18n.SmartGwtMessages::listGrid_newRecordRowMessage()()});
+            $wnd.isc.ListGrid.addProperties({openRecordEditorContextMenuItemTitle: messages.@com.smartgwt.client.i18n.SmartGwtMessages::listGrid_openRecordEditorContextMenuItemTitle()()});
+            $wnd.isc.ListGrid.addProperties({dismissEmbeddedComponentContextMenuItemTitle: messages.@com.smartgwt.client.i18n.SmartGwtMessages::listGrid_dismissEmbeddedComponentContextMenuItemTitle()()});
+            $wnd.isc.ListGrid.addProperties({deleteRecordContextMenuItemTitle: messages.@com.smartgwt.client.i18n.SmartGwtMessages::listGrid_deleteRecordContextMenuItemTitle()()});
+            $wnd.isc.ListGrid.addProperties({recordEditorSaveButtonTitle: messages.@com.smartgwt.client.i18n.SmartGwtMessages::listGrid_recordEditorSaveButtonTitle()()});
+            $wnd.isc.ListGrid.addProperties({recordEditorCancelButtonTitle: messages.@com.smartgwt.client.i18n.SmartGwtMessages::listGrid_recordEditorCancelButtonTitle()()});
+            $wnd.isc.ListGrid.addProperties({maxExpandedRecordsPrompt: (messages.@com.smartgwt.client.i18n.SmartGwtMessages::listGrid_maxExpandedRecordsPrompt()()).replace('$count', '\\${count}')});
             $wnd.isc.ListGrid.addProperties({freezeOnRightText: messages.@com.smartgwt.client.i18n.SmartGwtMessages::listGrid_freezeOnRightText()()});
             $wnd.isc.ListGrid.addProperties({freezeOnLeftText: messages.@com.smartgwt.client.i18n.SmartGwtMessages::listGrid_freezeOnLeftText()()});
             $wnd.isc.ListGrid.addProperties({sortFieldAscendingText: messages.@com.smartgwt.client.i18n.SmartGwtMessages::listGrid_sortFieldAscendingText()()});
@@ -184,6 +207,7 @@ public class I18nUtil {
             $wnd.isc.ListGrid.addProperties({clearSortFieldText: messages.@com.smartgwt.client.i18n.SmartGwtMessages::listGrid_clearSortFieldText()()});
             $wnd.isc.ListGrid.addProperties({clearAllSortingText: messages.@com.smartgwt.client.i18n.SmartGwtMessages::listGrid_clearAllSortingText()()});
             $wnd.isc.ListGrid.addProperties({clearFilterText: messages.@com.smartgwt.client.i18n.SmartGwtMessages::listGrid_clearFilterText()()});
+            $wnd.isc.ListGrid.addProperties({configureSortText: messages.@com.smartgwt.client.i18n.SmartGwtMessages::listGrid_configureSortText()()});
             $wnd.isc.ListGrid.addProperties({fieldVisibilitySubmenuTitle: messages.@com.smartgwt.client.i18n.SmartGwtMessages::listGrid_fieldVisibilitySubmenuTitle()()});
             $wnd.isc.ListGrid.addProperties({freezeFieldText: messages.@com.smartgwt.client.i18n.SmartGwtMessages::listGrid_freezeFieldText()() + ' ${viewer.getSummaryTitle(field)}'});
             $wnd.isc.ListGrid.addProperties({unfreezeFieldText: messages.@com.smartgwt.client.i18n.SmartGwtMessages::listGrid_unfreezeFieldText()() + ' ${viewer.getSummaryTitle(field)}'});
@@ -248,6 +272,21 @@ public class I18nUtil {
             $wnd.isc.MultiSortDialog.addProperties({copyLevelButtonTitle: messages.@com.smartgwt.client.i18n.SmartGwtMessages::multiSortDialog_copyLevelButtonTitle()()});
             $wnd.isc.MultiSortDialog.addProperties({applyButtonTitle: messages.@com.smartgwt.client.i18n.SmartGwtMessages::multiSortDialog_applyButtonTitle()()});
             $wnd.isc.MultiSortDialog.addProperties({cancelButtonTitle: messages.@com.smartgwt.client.i18n.SmartGwtMessages::multiSortDialog_cancelButtonTitle()()});
+            $wnd.isc.MultiSortDialog.addProperties({invalidListPrompt: messages.@com.smartgwt.client.i18n.SmartGwtMessages::multiSortDialog_invalidListPrompt()()});
+            $wnd.isc.MultiSortDialog.addProperties({levelUpPrompt: messages.@com.smartgwt.client.i18n.SmartGwtMessages::multiSortDialog_levelUpPrompt()()});
+            $wnd.isc.MultiSortDialog.addProperties({levelDownPrompt: messages.@com.smartgwt.client.i18n.SmartGwtMessages::multiSortDialog_levelDownPrompt()()});
+            $wnd.isc.MultiSortDialog.addProperties({propertyFieldTitle: messages.@com.smartgwt.client.i18n.SmartGwtMessages::multiSortDialog_propertyFieldTitle()()});
+            $wnd.isc.MultiSortDialog.addProperties({directionFieldTitle: messages.@com.smartgwt.client.i18n.SmartGwtMessages::multiSortDialog_directionFieldTitle()()});
+            $wnd.isc.MultiSortDialog.addProperties({ascendingTitle: messages.@com.smartgwt.client.i18n.SmartGwtMessages::multiSortDialog_ascendingTitle()()});
+            $wnd.isc.MultiSortDialog.addProperties({descendingTitle: messages.@com.smartgwt.client.i18n.SmartGwtMessages::multiSortDialog_descendingTitle()()});
+            $wnd.isc.MultiSortDialog.addProperties({firstSortLevelTitle: messages.@com.smartgwt.client.i18n.SmartGwtMessages::multiSortDialog_firstSortLevelTitle()()});
+            $wnd.isc.MultiSortDialog.addProperties({otherSortLevelTitle: messages.@com.smartgwt.client.i18n.SmartGwtMessages::multiSortDialog_otherSortLevelTitle()()});
+        }
+        if($wnd.isc.HiliteRule) {
+            $wnd.isc.HiliteRule.addProperties({removeButtonPrompt: messages.@com.smartgwt.client.i18n.SmartGwtMessages::hiliteRule_removeButtonPrompt()()});
+        }
+        if($wnd.AdvancedHiliteEditor) {
+            $wnd.isc.AdvancedHiliteEditor.addProperties({invalidCriteriaPrompt: messages.@com.smartgwt.client.i18n.SmartGwtMessages::advancedHiliteEditor_invalidCriteriaPrompt()()});
         }
         $wnd.isc.addProperties($wnd.Date, {shortDayNames: [
             messages.@com.smartgwt.client.i18n.SmartGwtMessages::date_shortDayNames_1()(),
