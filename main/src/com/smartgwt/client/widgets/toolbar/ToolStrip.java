@@ -283,6 +283,7 @@ public class ToolStrip extends Layout {
         } else if (button.getIcon() == null) {
             button.setLabelHPad(7);
         }
+
         addMember(button);
     }
 
@@ -335,6 +336,15 @@ public class ToolStrip extends Layout {
         addMember(button, position);
     }
 
+    /**
+     * Add an extra space to the right of the previously added ToolStrip element. This is a shortcut for {@link #addSpacer(ToolStripSpacer)}.
+     *
+     * @param space space
+     */
+    public void addSpacer(int space) {
+        addSpacer(new ToolStripSpacer(space));
+    }
+    
     /**
      * Add an extra space to the right of the previously added ToolStrip element.
      *
