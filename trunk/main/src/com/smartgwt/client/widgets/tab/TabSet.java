@@ -985,6 +985,16 @@ public class TabSet extends Canvas  implements com.smartgwt.client.widgets.tab.e
     }
 
     /**
+     * Properties of the container where the component specified by Tab.pane is shown.
+     *
+     * @param paneContainerProperties the pane container properties
+     * @throws IllegalStateException this property cannot be changed after the component has been created
+     */
+    public void setPaneContainerProperties(Canvas paneContainerProperties) {
+        setAttribute("paneContainerProperties", paneContainerProperties.getConfig(), false);
+    }
+
+    /**
      * Select a tab.
      *
      * @param tabIndex the tab index
@@ -1163,7 +1173,7 @@ public class TabSet extends Canvas  implements com.smartgwt.client.widgets.tab.e
      * To avoid this, call {@link com.smartgwt.client.widgets.tab.TabSet#updateTab} with <code>null</code> as the new
      * pane immediately before removing the tab.
      *
-     * @param tabs list of tabs, tabIDs, or tab numbers
+     * @param tabIndex the tab index
      */
     public native void removeTab(int tabIndex) /*-{
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
@@ -1175,7 +1185,7 @@ public class TabSet extends Canvas  implements com.smartgwt.client.widgets.tab.e
      * To avoid this, call {@link com.smartgwt.client.widgets.tab.TabSet#updateTab} with <code>null</code> as the new
      * pane immediately before removing the tab.
      *
-     * @param tabs list of tabs, tabIDs, or tab numbers
+     * @param ID the tabID
      */
     public native void removeTab(String ID) /*-{
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
@@ -1187,7 +1197,7 @@ public class TabSet extends Canvas  implements com.smartgwt.client.widgets.tab.e
      * To avoid this, call {@link com.smartgwt.client.widgets.tab.TabSet#updateTab} with <code>null</code> as the new
      * pane immediately before removing the tab.
      *
-     * @param tabs list of tabs, tabIDs, or tab numbers
+     * @param tab the tab
      */
     public native void removeTab(Tab tab) /*-{
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
@@ -1199,7 +1209,7 @@ public class TabSet extends Canvas  implements com.smartgwt.client.widgets.tab.e
      * Remove one or more tabs.  The pane(s) associated with the removed tab(s) is automatically destroyed when you call
      * this method.
      *
-     * @param tabs list of tabs, tabIDs, or tab numbers
+     * @param tabIndexes the tab indexes
      */
     public native void removeTabs(int[] tabIndexes) /*-{
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
@@ -1211,7 +1221,7 @@ public class TabSet extends Canvas  implements com.smartgwt.client.widgets.tab.e
      * Remove one or more tabs.  The pane(s) associated with the removed tab(s) is automatically destroyed when you call
      * this method.
      *
-     * @param tabs list of tabs, tabIDs, or tab numbers
+     * @param ids the tabIDs
      */
     public native void removeTabs(String[] ids) /*-{
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
