@@ -283,7 +283,6 @@ public class ToolStrip extends Layout {
         } else if (button.getIcon() == null) {
             button.setLabelHPad(7);
         }
-
         addMember(button);
     }
 
@@ -295,6 +294,44 @@ public class ToolStrip extends Layout {
      *                  the last position
      */
     public void addButton(ToolStripButton button, int position) {
+        if(button.getTitle() == null) {
+            button.setIconSpacing(0);
+            button.setLabelHPad(3);
+        } else if (button.getIcon() == null) {
+            button.setLabelHPad(7);
+        }
+        addMember(button, position);
+    }
+
+    /**
+     * Add a menu button to the ToolStrip.
+     *
+     * @param button the toolstrip menu button
+     */
+    public void addMenuButton(ToolStripMenuButton button) {
+        if(button.getTitle() == null) {
+            button.setIconSpacing(0);
+            button.setLabelHPad(3);
+        } else if (button.getIcon() == null) {
+            button.setLabelHPad(7);
+        }
+        addMember(button);
+    }
+
+    /**
+     * Add a menu button to the ToolStrip.
+     *
+     * @param button the menu button
+     * @param position the position in the layout to place newMember (starts with 0); if omitted, it will be added at
+     *                  the last position
+     */
+    public void addMenuButton(ToolStripMenuButton button, int position) {
+        if(button.getTitle() == null) {
+            button.setIconSpacing(0);
+            button.setLabelHPad(3);
+        } else if (button.getIcon() == null) {
+            button.setLabelHPad(7);
+        }
         addMember(button, position);
     }
 
