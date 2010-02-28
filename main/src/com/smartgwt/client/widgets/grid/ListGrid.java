@@ -4509,28 +4509,6 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
     }
 
     /**
-     * If true, shows {@link com.smartgwt.client.widgets.grid.ListGrid#getShowRecordComponents 'recordComponents'} in cells,
-     * rather  than just in records.
-     * <p><b>Note : </b> This is an advanced setting</p>
-     *
-     * @param showRecordComponentsByCell showRecordComponentsByCell Default value is null
-     */
-    public void setShowRecordComponentsByCell(Boolean showRecordComponentsByCell) {
-        setAttribute("showRecordComponentsByCell", showRecordComponentsByCell, true);
-    }
-
-    /**
-     * If true, shows {@link com.smartgwt.client.widgets.grid.ListGrid#getShowRecordComponents 'recordComponents'} in cells,
-     * rather  than just in records.
-     *
-     *
-     * @return Boolean
-     */
-    public Boolean getShowRecordComponentsByCell()  {
-        return getAttributeAsBoolean("showRecordComponentsByCell");
-    }
-
-    /**
      * Should we show different styling for the cell the mouse is over? <br> If true, the cell style will have the suffix
      * "Over" appended.
      *
@@ -9799,7 +9777,29 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
         return self.getFieldWidth(fieldName);
     }-*/;
-    
+
+    /**
+     * If true, shows {@link com.smartgwt.client.widgets.grid.ListGrid#getShowRecordComponents 'recordComponents'} in cells,
+     * rather  than just in records.
+     * <p><b>Note : </b> This is an advanced setting</p>
+     *
+     * @param showRecordComponentsByCell showRecordComponentsByCell Default value is null
+     */
+    public void setShowRecordComponentsByCell(Boolean showRecordComponentsByCell) {
+        setAttribute("showRecordComponentsByCell", showRecordComponentsByCell, true);
+        if(showRecordComponentsByCell) setRecordComponentPosition("within");
+    }
+
+    /**
+     * If true, shows {@link com.smartgwt.client.widgets.grid.ListGrid#getShowRecordComponents 'recordComponents'} in cells,
+     * rather  than just in records.
+     *
+     *
+     * @return Boolean
+     */
+    public Boolean getShowRecordComponentsByCell()  {
+        return getAttributeAsBoolean("showRecordComponentsByCell");
+    }
 
 
 
