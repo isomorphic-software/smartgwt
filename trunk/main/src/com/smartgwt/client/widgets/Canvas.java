@@ -6405,10 +6405,37 @@ public class Canvas extends BaseWidget  implements com.smartgwt.client.widgets.e
     public static native void showPrintPreview(Object[] components, PrintProperties printProperties, String title, PrintPreviewCallback callback) /*-{
         var componentsJS = @com.smartgwt.client.util.JSOHelper::convertToJavaScriptArray([Ljava/lang/Object;)(components);
         var ppJS = printProperties == null ? null : printProperties.@com.smartgwt.client.util.PrintProperties::getJsObj()();
-        var pvpJS = {title:title};
-        
+        var pvpJS = {};
+        if(title != null) $wnd.isc.addProperties(pvpJS, {title:title});
         $wnd.isc.Canvas.showPrintPreview(componentsJS, ppJS, pvpJS,
-        callback == null ? null : 
+        callback == null ? null :
+	        $entry(function (printCanvas, printWindow) {
+	        	var canvasJ = @com.smartgwt.client.widgets.PrintCanvas::getOrCreateRef(Lcom/google/gwt/core/client/JavaScriptObject;)(printCanvas);
+	        	var windowJ = @com.smartgwt.client.widgets.PrintWindow::getOrCreateRef(Lcom/google/gwt/core/client/JavaScriptObject;)(printWindow);
+	        	callback.@com.smartgwt.client.util.PrintPreviewCallback::execute(Lcom/smartgwt/client/widgets/PrintCanvas;Lcom/smartgwt/client/widgets/PrintWindow;)(canvasJ, windowJ);
+	        })
+         );
+    }-*/;
+
+    /**
+     * Show a Print containing a printable view of the components passed in.
+     * @param components components to get the print HTML for. May also include  raw HTML strings which will be folded into the generated print
+     * output
+     * @param printProperties for customizing the print HTML output. If this parameter is passed as null, it will be ignored.
+     * @param title for the print window
+     * @param callback to fire when the print preview window has been created and shown
+     * @param printWindowProperties the print window properties
+     * @param printButtonTitle the brint button title
+     */
+    public static native void showPrintPreview(Object[] components, PrintProperties printProperties, String title, PrintPreviewCallback callback, Window printWindowProperties, String printButtonTitle) /*-{
+        var componentsJS = @com.smartgwt.client.util.JSOHelper::convertToJavaScriptArray([Ljava/lang/Object;)(components);
+        var ppJS = printProperties == null ? null : printProperties.@com.smartgwt.client.util.PrintProperties::getJsObj()();
+        var pvpJS = printWindowProperties == null ? {} : printWindowProperties.@com.smartgwt.client.widgets.Window::getConfig()();
+        if(title != null) $wnd.isc.addProperties(pvpJS, {title:title});
+        if(printButtonTitle != null) $wnd.isc.addProperties(pvpJS, {printButtonTitle:printButtonTitle});
+
+        $wnd.isc.Canvas.showPrintPreview(componentsJS, ppJS, pvpJS,
+        callback == null ? null :
 	        $entry(function (printCanvas, printWindow) {
 	        	var canvasJ = @com.smartgwt.client.widgets.PrintCanvas::getOrCreateRef(Lcom/google/gwt/core/client/JavaScriptObject;)(printCanvas);
 	        	var windowJ = @com.smartgwt.client.widgets.PrintWindow::getOrCreateRef(Lcom/google/gwt/core/client/JavaScriptObject;)(printWindow);
