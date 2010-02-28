@@ -56,73 +56,43 @@ import com.google.gwt.event.shared.*;
 import com.google.gwt.event.shared.HasHandlers;
 
 /**
- * A checkbox for manipulating 2-valued fields based on the native checkbox element.
+ * Subclass of {@link com.smartgwt.client.widgets.form.fields.PickTreeItem} which shows an {@link
+ * com.smartgwt.client.widgets.menu.IMenuButton} rather than a simple {@link com.smartgwt.client.widgets.menu.MenuButton}
+ * as it's main button.
  */
-public class NativeCheckboxItem extends FormItem {
+public class IPickTreeItem extends PickTreeItem {
 
-    public static NativeCheckboxItem getOrCreateRef(JavaScriptObject jsObj) {
+    public static IPickTreeItem getOrCreateRef(JavaScriptObject jsObj) {
         if(jsObj == null) return null;
         RefDataClass obj = RefDataClass.getRef(jsObj);
         if(obj != null) {
             obj.setJsObj(jsObj);
-            return (NativeCheckboxItem) obj;
+            return (IPickTreeItem) obj;
         } else {
-            return new NativeCheckboxItem(jsObj);
+            return new IPickTreeItem(jsObj);
         }
     }
 
-    public NativeCheckboxItem(){
-        setType("NativeCheckboxItem");
+    public IPickTreeItem(){
+        setType("IPickTreeItem");
     }
 
-    public NativeCheckboxItem(JavaScriptObject jsObj){
+    public IPickTreeItem(JavaScriptObject jsObj){
         super(jsObj);
     }
 
-    public NativeCheckboxItem(String name) {
+    public IPickTreeItem(String name) {
         setName(name);
-        setType("NativeCheckboxItem");
+        setType("IPickTreeItem");
+    }
+
+    public IPickTreeItem(String name, String title) {
+        setName(name);
+		setTitle(title);
+        setType("IPickTreeItem");
     }
 
     // ********************* Properties / Attributes ***********************
-
-    /**
-     * Should we should the label text next to the checkbox item.
-     *
-     * @param showLabel showLabel Default value is true
-     */
-    public void setShowLabel(Boolean showLabel) {
-        setAttribute("showLabel", showLabel);
-    }
-
-    /**
-     * Should we should the label text next to the checkbox item.
-     *
-     *
-     * @return Boolean
-     */
-    public Boolean getShowLabel()  {
-        return getAttributeAsBoolean("showLabel");
-    }
-
-    /**
-     * Base CSS class applied to this item's title text (rendered next to the checkbox element).
-     *
-     * @param textBoxStyle textBoxStyle Default value is "labelAnchor"
-     */
-    public void setTextBoxStyle(String textBoxStyle) {
-        setAttribute("textBoxStyle", textBoxStyle);
-    }
-
-    /**
-     * Base CSS class applied to this item's title text (rendered next to the checkbox element).
-     *
-     *
-     * @return String
-     */
-    public String getTextBoxStyle()  {
-        return getAttributeAsString("textBoxStyle");
-    }
 
     // ********************* Methods ***********************
 
