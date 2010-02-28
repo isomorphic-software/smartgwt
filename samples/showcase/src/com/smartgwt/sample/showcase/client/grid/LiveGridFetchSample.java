@@ -1,7 +1,9 @@
 package com.smartgwt.sample.showcase.client.grid;
 
 import com.smartgwt.client.data.DataSource;
+import com.smartgwt.client.rpc.RPCManager;
 import com.smartgwt.client.types.ListGridFieldType;
+import com.smartgwt.client.types.PromptStyle;
 import com.smartgwt.client.widgets.Canvas;
 import com.smartgwt.client.widgets.grid.CellFormatter;
 import com.smartgwt.client.widgets.grid.ListGrid;
@@ -40,6 +42,8 @@ public class LiveGridFetchSample extends ShowcasePanel {
     }
 
     public Canvas getViewPanel() {
+
+        RPCManager.setPromptStyle(PromptStyle.CURSOR);
         DataSource dataSource = ItemSupplyXmlDS.getInstance();
 
         ListGridField rowNum = new ListGridField("itemNum", "Item No.");

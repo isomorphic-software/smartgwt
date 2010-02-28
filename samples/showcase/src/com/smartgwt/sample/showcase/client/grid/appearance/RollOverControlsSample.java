@@ -17,10 +17,10 @@
 package com.smartgwt.sample.showcase.client.grid.appearance;
 
 import com.smartgwt.client.types.Alignment;
-import com.smartgwt.client.types.LayoutPolicy;
 import com.smartgwt.client.types.ListGridFieldType;
 import com.smartgwt.client.util.SC;
-import com.smartgwt.client.widgets.*;
+import com.smartgwt.client.widgets.Canvas;
+import com.smartgwt.client.widgets.ImgButton;
 import com.smartgwt.client.widgets.events.ClickEvent;
 import com.smartgwt.client.widgets.events.ClickHandler;
 import com.smartgwt.client.widgets.grid.ListGrid;
@@ -66,7 +66,7 @@ public class RollOverControlsSample extends ShowcasePanel {
                 if(rollOverCanvas == null) {
                     rollOverCanvas = new HLayout(3);
                     rollOverCanvas.setSnapTo("TR");
-                    rollOverCanvas.setWidth(200);
+                    rollOverCanvas.setWidth(50);
                     rollOverCanvas.setHeight(22);
 
                     ImgButton editImg = new ImgButton();
@@ -85,7 +85,7 @@ public class RollOverControlsSample extends ShowcasePanel {
 
                     ImgButton chartImg = new ImgButton();
                     chartImg.setShowDown(false);
-                    chartImg.setShowRollOver(false);                    
+                    chartImg.setShowRollOver(false);
                     chartImg.setLayoutAlign(Alignment.CENTER);
                     chartImg.setSrc("silk/chart_bar.png");
                     chartImg.setPrompt("View Chart");
@@ -101,6 +101,7 @@ public class RollOverControlsSample extends ShowcasePanel {
                     rollOverCanvas.addMember(chartImg);
                 }
                 return rollOverCanvas;
+
             }
         };
         countryGrid.setShowRollOverCanvas(true);

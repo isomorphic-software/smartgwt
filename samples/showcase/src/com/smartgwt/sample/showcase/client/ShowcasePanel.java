@@ -57,7 +57,7 @@ public abstract class ShowcasePanel extends VLayout {
             });
             topBar.addMember(sourceButton);
 
-            topBar.addSpacer(new ToolStripSpacer(10));
+            topBar.addSpacer(new ToolStripSpacer(6));
             addMember(topBar);
         }
 
@@ -172,7 +172,7 @@ public abstract class ShowcasePanel extends VLayout {
         tabs.setWidth100();
         tabs.setHeight100();
 
-        tabs.addTab(buildSourceTab("Source", "silk/script_go.png", sourceURL));
+        tabs.addTab(buildSourceTab("Source", "silk/page_white_cup.png", sourceURL));
         int lastPeriodIndex = getClass().getName().lastIndexOf('.');
         String simpleClassName = getClass().getName().substring(lastPeriodIndex + 1);
         String[] dataURLs = DataURLRecords.getDataURLs(simpleClassName);
@@ -182,7 +182,7 @@ public abstract class ShowcasePanel extends VLayout {
                 int lastSlashIndex = dataURL.lastIndexOf('/');
                 String tabTitle;
                 tabTitle = lastSlashIndex >= 0 ? dataURL.substring(lastSlashIndex + 1) : dataURL;
-                tabs.addTab(buildSourceTab(tabTitle, "silk/script_go.png", url));
+                tabs.addTab(buildSourceTab(tabTitle, "silk/page_white_cup.png", url));
             }
         }
 
