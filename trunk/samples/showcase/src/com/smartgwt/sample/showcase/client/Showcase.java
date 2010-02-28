@@ -14,11 +14,13 @@ import com.smartgwt.client.widgets.events.ClickEvent;
 import com.smartgwt.client.widgets.events.ShowContextMenuEvent;
 import com.smartgwt.client.widgets.events.ShowContextMenuHandler;
 import com.smartgwt.client.widgets.form.DynamicForm;
+import com.smartgwt.client.widgets.form.fields.LinkItem;
 import com.smartgwt.client.widgets.form.fields.SelectItem;
 import com.smartgwt.client.widgets.form.fields.events.ChangeEvent;
 import com.smartgwt.client.widgets.form.fields.events.ChangeHandler;
 import com.smartgwt.client.widgets.grid.ListGrid;
 import com.smartgwt.client.widgets.layout.HLayout;
+import com.smartgwt.client.widgets.layout.Layout;
 import com.smartgwt.client.widgets.layout.LayoutSpacer;
 import com.smartgwt.client.widgets.layout.VLayout;
 import com.smartgwt.client.widgets.menu.Menu;
@@ -30,6 +32,9 @@ import com.smartgwt.client.widgets.tab.Tab;
 import com.smartgwt.client.widgets.tab.TabSet;
 import com.smartgwt.client.widgets.tab.events.TabSelectedEvent;
 import com.smartgwt.client.widgets.tab.events.TabSelectedHandler;
+import com.smartgwt.client.widgets.toolbar.ToolStrip;
+import com.smartgwt.client.widgets.toolbar.ToolStripButton;
+import com.smartgwt.client.widgets.toolbar.ToolStripSpacer;
 import com.smartgwt.client.widgets.tree.Tree;
 import com.smartgwt.client.widgets.tree.TreeNode;
 import com.smartgwt.client.widgets.tree.events.LeafClickEvent;
@@ -59,82 +64,48 @@ public class Showcase implements EntryPoint, HistoryListener {
             }
         };
 
-        main.setWidth100();
-        main.setHeight100();
-        main.setLayoutMargin(5);
-        main.setStyleName("tabSetContainer");
+        ToolStrip topBar = new ToolStrip();
+        topBar.setBackgroundImage("blue_bg.png");
+        topBar.setHeight(33);
+        topBar.setWidth100();
 
-        HLayout hLayout = new HLayout();
-        hLayout.setWidth100();
-        hLayout.setHeight100();
+        topBar.addSpacer(6);
+        ImgButton sgwtHomeButton = new ImgButton();
+        sgwtHomeButton.setSrc("pieces/24/cube_green.png");
+        sgwtHomeButton.setWidth(24);
+        sgwtHomeButton.setHeight(24);
+        sgwtHomeButton.setPrompt("Smart GWT Project Page");
+        sgwtHomeButton.setHoverStyle("interactImageHover");
+        sgwtHomeButton.setShowRollOver(false);
+        sgwtHomeButton.setShowDownIcon(false);
+        sgwtHomeButton.setShowDown(false);
+        sgwtHomeButton.addClickHandler(new com.smartgwt.client.widgets.events.ClickHandler() {
+            public void onClick(ClickEvent event) {
+                com.google.gwt.user.client.Window.open("http://code.google.com/p/smartgwt/", "sgwt", null);
+            }
+        });
+        topBar.addMember(sgwtHomeButton);
+        topBar.addSpacer(6);
 
-        VLayout sideNavLayout = new VLayout();
-        sideNavLayout.setHeight100();
-        sideNavLayout.setWidth(185);
-        sideNavLayout.setShowResizeBar(true);
+        Label title = new Label("Smart GWT Showcase");
+        title.setStyleName("sgwtTitle");
+        title.setWidth(300);
+        topBar.addMember(title);
 
-        sideNav = new SideNavTree();
+        topBar.addFill();
 
-
-        sideNav.addLeafClickHandler(new LeafClickHandler() {
-            public void onLeafClick(LeafClickEvent event) {
-                TreeNode node = event.getLeaf();
-                showSample(node);
+        ToolStripButton devConsoleButton = new ToolStripButton();
+        devConsoleButton.setTitle("Developer Console");
+        devConsoleButton.setIcon("silk/bug.png");
+        devConsoleButton.addClickHandler(new com.smartgwt.client.widgets.events.ClickHandler() {
+            public void onClick(ClickEvent event) {
+                SC.showConsole();
             }
         });
 
-        sideNavLayout.addMember(sideNav);
-        hLayout.addMember(sideNavLayout);
+        topBar.addButton(devConsoleButton);
 
-        mainTabSet = new TabSet();
-
-        mainTabSet.setWidth100();
-        mainTabSet.setHeight100();
-        mainTabSet.addTabSelectedHandler(new TabSelectedHandler() {
-            public void onTabSelected(TabSelectedEvent event) {
-                Tab selectedTab = event.getTab();
-                String historyToken = selectedTab.getAttribute("historyToken");
-                if(historyToken != null) {
-                    History.newItem(historyToken, false);
-                } else {
-                    History.newItem("main", false);
-                }
-            }
-        });
-
-        LayoutSpacer layoutSpacer = new LayoutSpacer();
-        layoutSpacer.setWidth(5);
-
-        SelectItem selectItem = new SelectItem();
-        selectItem.setHeight(21);
-        selectItem.setWidth(130);
-        LinkedHashMap<String, String> valueMap = new LinkedHashMap<String, String>();
-        valueMap.put("EnterpriseBlue", "Enterprise Blue");
-        valueMap.put("Enterprise", "Enterprise Gray");
-	valueMap.put("Graphite", "Graphite");
-
-
-        selectItem.setValueMap(valueMap);
-
-        String currentSkin = Cookies.getCookie("skin_name");
-        if (currentSkin == null) {
-            currentSkin = "EnterpriseBlue";
-        }
-        selectItem.setDefaultValue(currentSkin);
-        selectItem.setShowTitle(false);
-        selectItem.addChangeHandler(new ChangeHandler() {
-            public void onChange(ChangeEvent event) {
-                Cookies.setCookie("skin_name", (String) event.getValue());
-                com.google.gwt.user.client.Window.Location.reload();
-            }
-        });
-
-        DynamicForm form = new DynamicForm();
-        form.setPadding(0);
-        form.setMargin(0);
-        form.setCellPadding(1);
-        form.setNumCols(1);
-        form.setFields(selectItem);
+        topBar.addSeparator();
 
         ImgButton imgButton = new ImgButton();
         imgButton.setWidth(18);
@@ -161,7 +132,97 @@ public class Showcase implements EntryPoint, HistoryListener {
             }
         });
 
-        mainTabSet.setTabBarControls(TabBarControls.TAB_SCROLLER, TabBarControls.TAB_PICKER, layoutSpacer, form, imgButton);
+        topBar.addMember(imgButton);
+        
+        topBar.addSpacer(6);
+
+        main.addMember(topBar);
+
+
+        main.setWidth100();
+        main.setHeight100();
+        //main.setLayoutMargin(5);
+        main.setStyleName("tabSetContainer");
+
+        HLayout hLayout = new HLayout();
+        hLayout.setLayoutMargin(5);
+        hLayout.setWidth100();
+        hLayout.setHeight100();
+
+        VLayout sideNavLayout = new VLayout();
+        sideNavLayout.setHeight100();
+        sideNavLayout.setWidth(185);
+        sideNavLayout.setShowResizeBar(true);
+
+        sideNav = new SideNavTree();
+
+
+        sideNav.addLeafClickHandler(new LeafClickHandler() {
+            public void onLeafClick(LeafClickEvent event) {
+                TreeNode node = event.getLeaf();
+                showSample(node);
+            }
+        });
+
+        sideNavLayout.addMember(sideNav);
+        hLayout.addMember(sideNavLayout);
+
+        mainTabSet = new TabSet();
+        
+        Layout paneContainerProperties = new Layout();
+        paneContainerProperties.setLayoutMargin(0);
+        paneContainerProperties.setLayoutTopMargin(1);
+        mainTabSet.setPaneContainerProperties(paneContainerProperties);
+
+        mainTabSet.setWidth100();
+        mainTabSet.setHeight100();
+        mainTabSet.addTabSelectedHandler(new TabSelectedHandler() {
+            public void onTabSelected(TabSelectedEvent event) {
+                Tab selectedTab = event.getTab();
+                String historyToken = selectedTab.getAttribute("historyToken");
+                if(historyToken != null) {
+                    History.newItem(historyToken, false);
+                } else {
+                    History.newItem("main", false);
+                }
+            }
+        });
+
+        LayoutSpacer layoutSpacer = new LayoutSpacer();
+        layoutSpacer.setWidth(5);
+
+        SelectItem selectItem = new SelectItem();
+        selectItem.setHeight(21);
+        selectItem.setWidth(130);
+        LinkedHashMap<String, String> valueMap = new LinkedHashMap<String, String>();
+        valueMap.put("EnterpriseBlue", "Enterprise Blue");
+        valueMap.put("Enterprise", "Enterprise Gray");
+	    valueMap.put("Graphite", "Graphite");
+
+
+        selectItem.setValueMap(valueMap);
+
+        String currentSkin = Cookies.getCookie("skin_name");
+        if (currentSkin == null) {
+            currentSkin = "EnterpriseBlue";
+        }
+        selectItem.setDefaultValue(currentSkin);
+        selectItem.setShowTitle(false);
+        selectItem.addChangeHandler(new ChangeHandler() {
+            public void onChange(ChangeEvent event) {
+                Cookies.setCookie("skin_name", (String) event.getValue());
+                com.google.gwt.user.client.Window.Location.reload();
+            }
+        });
+
+        DynamicForm form = new DynamicForm();
+        form.setPadding(0);
+        form.setMargin(0);
+        form.setCellPadding(1);
+        form.setNumCols(1);
+        form.setFields(selectItem);
+
+        mainTabSet.setTabBarControls(TabBarControls.TAB_SCROLLER, TabBarControls.TAB_PICKER, layoutSpacer, form);
 
         final Menu contextMenu = createContextMenu();
         mainTabSet.addShowContextMenuHandler(new ShowContextMenuHandler() {
@@ -175,9 +236,9 @@ public class Showcase implements EntryPoint, HistoryListener {
         });
 
         Tab tab = new Tab();
-        tab.setTitle("Smart GWT Showcase&nbsp;&nbsp;");
+        tab.setTitle("Home&nbsp;&nbsp;");
         tab.setIcon("pieces/16/cube_green.png");
-        tab.setWidth(155);
+        tab.setWidth(80);
 
         HLayout mainPanel = new HLayout();
         mainPanel.setHeight100();

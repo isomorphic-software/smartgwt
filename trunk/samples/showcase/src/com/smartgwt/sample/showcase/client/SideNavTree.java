@@ -46,7 +46,7 @@ public class SideNavTree extends TreeGrid {
         TreeGridField field = new TreeGridField();
         field.setCanFilter(true);
         field.setName("name");
-        field.setTitle("<b>Smart GWT Showcase</b>");
+        field.setTitle("<b>Samples</b>");
         setFields(field);
 
         Tree tree = new Tree();

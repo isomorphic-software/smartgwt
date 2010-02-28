@@ -11,7 +11,7 @@ import com.smartgwt.sample.showcase.client.ShowcasePanel;
 import java.util.LinkedHashMap;
 
 public class ToolStripVerticalSample extends ShowcasePanel {
-    private static final String DESCRIPTION = "This is an example of a Vretical ToolStrip.";
+    private static final String DESCRIPTION = "This is an example of a Vertical ToolStrip.";
 
     public static class Factory implements PanelFactory {
         private String id;

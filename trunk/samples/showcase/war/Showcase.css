@@ -1,3 +1,9 @@
+.sgwtTitle {
+    font-family:Arial,Verdana,tahoma,serif;
+    color:#ffffff;
+    font-size:18px;
+}
+
 /* Buttons*/
 .cssButton {
     padding:2px;
