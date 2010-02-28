@@ -14,7 +14,7 @@ import com.smartgwt.sample.showcase.client.data.CountryData;
 
 public class RowNumberingSample extends ShowcasePanel {
 
-    private static final String DESCRIPTION = "This sample illustrates the display of row numbers. This is done by calling ListGrid.setShowRowNumbers(true)";
+    private static final String DESCRIPTION = "This sample illustrates the display of row numbers. This is done by calling setShowRowNumbers(true)";
 
     public static class Factory implements PanelFactory {
         private String id;

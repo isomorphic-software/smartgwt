@@ -149,7 +149,7 @@ public class ContextMenuSample extends ShowcasePanel {
 
         mainMenu.setItems(visibleItem, separator, sizeItem, moveItem, separator, resetItem);
 
-        MenuButton mainMenuButton = new MenuButton("Widget", mainMenu);
+        IMenuButton mainMenuButton = new IMenuButton("Widget", mainMenu);
         mainMenuButton.setWidth(150);
 
         canvas.addChild(mainMenuButton);

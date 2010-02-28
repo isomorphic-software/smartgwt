@@ -8,8 +8,8 @@ import com.smartgwt.client.widgets.Canvas;
 import com.smartgwt.client.widgets.grid.ListGrid;
 import com.smartgwt.client.widgets.grid.ListGridField;
 import com.smartgwt.client.widgets.layout.HStack;
+import com.smartgwt.client.widgets.menu.IMenuButton;
 import com.smartgwt.client.widgets.menu.Menu;
-import com.smartgwt.client.widgets.menu.MenuButton;
 import com.smartgwt.sample.showcase.client.PanelFactory;
 import com.smartgwt.sample.showcase.client.ShowcasePanel;
 import com.smartgwt.sample.showcase.client.data.PartData;
@@ -52,7 +52,7 @@ public class DragMenuGridSample extends ShowcasePanel {
         menu.setCanDragRecordsOut(true);
         menu.setDragDataAction(DragDataAction.MOVE);
 
-        MenuButton menuButton = new MenuButton();
+        IMenuButton menuButton = new IMenuButton();
         menuButton.setTitle("Parts");
         menuButton.setMenu(menu);
 

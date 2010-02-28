@@ -85,7 +85,7 @@ public class MenuAppearanceSample extends ShowcasePanel {
         menu.setItems(activateMenu, newItem, openItem, separator, saveItem, saveAsItem,
                 separator, recentDocItem, separator, exportItem, separator, printItem);
 
-        return new MenuButton("File", menu);
+        return new IMenuButton("File", menu);
     }
 
     public String getIntro() {

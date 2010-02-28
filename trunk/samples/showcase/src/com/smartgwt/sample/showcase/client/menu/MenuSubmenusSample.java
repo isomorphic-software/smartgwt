@@ -1,10 +1,7 @@
 package com.smartgwt.sample.showcase.client.menu;
 
 import com.smartgwt.client.widgets.Canvas;
-import com.smartgwt.client.widgets.menu.Menu;
-import com.smartgwt.client.widgets.menu.MenuButton;
-import com.smartgwt.client.widgets.menu.MenuItem;
-import com.smartgwt.client.widgets.menu.MenuItemSeparator;
+import com.smartgwt.client.widgets.menu.*;
 import com.smartgwt.sample.showcase.client.PanelFactory;
 import com.smartgwt.sample.showcase.client.ShowcasePanel;
 
@@ -69,7 +66,7 @@ public class MenuSubmenusSample extends ShowcasePanel {
         menu.setItems(newItem, openItem, separator, saveItem, saveAsItem,
                 separator, recentDocItem, separator, exportItem, separator, printItem);
 
-        return new MenuButton("File", menu);
+        return new IMenuButton("File", menu);
     }
 
     public String getIntro() {
