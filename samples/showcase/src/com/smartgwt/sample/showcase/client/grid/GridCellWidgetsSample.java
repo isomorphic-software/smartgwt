@@ -33,8 +33,9 @@ import com.smartgwt.sample.showcase.client.ShowcasePanel;
 import com.smartgwt.sample.showcase.client.data.CountryData;
 
 public class GridCellWidgetsSample extends ShowcasePanel {
-    private static final String DESCRIPTION = "RollOver the rows in the grid to row-level controls buttons appear embedded in the row. " +
-            "This example utilizes the rollOverCanvas subsystem to achieve this effect.";
+    private static final String DESCRIPTION = "<p>This example illustrates embedding arbitrary widgets in ListGrid cells. Smart GWT users widget pooling to " +
+            "maximize efficiency however for better performance consider using one or more fields of type ListGridFieldType.ICON</p>."; 
+
 
     public static class Factory implements PanelFactory {
         private String id;
@@ -83,7 +84,7 @@ public class GridCellWidgetsSample extends ShowcasePanel {
                     ImgButton chartImg = new ImgButton();
                     chartImg.setShowDown(false);
                     chartImg.setShowRollOver(false);
-                    chartImg.setLayoutAlign(Alignment.CENTER);
+                    chartImg.setAlign(Alignment.CENTER);
                     chartImg.setSrc("silk/chart_bar.png");
                     chartImg.setPrompt("View Chart");
                     chartImg.setHeight(16);
@@ -99,12 +100,14 @@ public class GridCellWidgetsSample extends ShowcasePanel {
                     return recordCanvas;
                 } else if (fieldName.equals("buttonField")) {
                     IButton button = new IButton();
-                    button.setWidth(100);
+                    button.setHeight(18);
+                    button.setWidth(65);
+                    button.setSnapTo("C");
                     button.setIcon("flags/16/" + record.getAttribute("countryCode") + ".png");
                     button.setTitle("Info");
                     button.addClickHandler(new ClickHandler() {
                         public void onClick(ClickEvent event) {
-                            SC.say(record.getAttribute("countryName") + " clicked.");
+                            SC.say(record.getAttribute("countryName") + " info button clicked.");
                         }
                     });
                     return button;
@@ -114,7 +117,7 @@ public class GridCellWidgetsSample extends ShowcasePanel {
 
             }
         };
-        countryGrid.setShowRecordComponents(true);
+        countryGrid.setShowRecordComponents(true);        
         countryGrid.setShowRecordComponentsByCell(true);
 
         countryGrid.setWidth(550);
@@ -132,7 +135,12 @@ public class GridCellWidgetsSample extends ShowcasePanel {
         ListGridField continentField = new ListGridField("continent", "Continent");
 
         ListGridField buttonField = new ListGridField("buttonField", "Info");
-        ListGridField iconField = new ListGridField("iconField", "Comments / Stats");
+        buttonField.setAlign(Alignment.CENTER);
+        buttonField.setCanReorder(false);
+        
+        ListGridField iconField = new ListGridField("iconField", "Comments/Stats");
+        iconField.setCanReorder(false);
+        iconField.setWidth(100);
 
         countryGrid.setFields(countryCodeField, nameField, capitalField, continentField, buttonField, iconField);
         countryGrid.setCanResizeFields(true);

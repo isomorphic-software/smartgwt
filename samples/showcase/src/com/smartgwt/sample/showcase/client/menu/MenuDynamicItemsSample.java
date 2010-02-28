@@ -79,7 +79,7 @@ public class MenuDynamicItemsSample extends ShowcasePanel {
         menu.addItem(separator);
         menu.addItem(projectItem);
                 
-        MenuButton menuButton = new MenuButton("File", menu);
+        IMenuButton menuButton = new IMenuButton("File", menu);
 
         VLayout hLayout = new VLayout();
         hLayout.addMember(listGrid);

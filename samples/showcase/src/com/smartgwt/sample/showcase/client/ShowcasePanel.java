@@ -2,6 +2,7 @@ package com.smartgwt.sample.showcase.client;
 
 import com.smartgwt.client.types.ContentsType;
 import com.smartgwt.client.types.Side;
+import com.smartgwt.client.util.PrintProperties;
 import com.smartgwt.client.widgets.Canvas;
 import com.smartgwt.client.widgets.HTMLPane;
 import com.smartgwt.client.widgets.IButton;
@@ -14,8 +15,13 @@ import com.smartgwt.client.widgets.layout.LayoutSpacer;
 import com.smartgwt.client.widgets.layout.VLayout;
 import com.smartgwt.client.widgets.tab.Tab;
 import com.smartgwt.client.widgets.tab.TabSet;
+import com.smartgwt.client.widgets.toolbar.ToolStrip;
+import com.smartgwt.client.widgets.toolbar.ToolStripButton;
+import com.smartgwt.client.widgets.toolbar.ToolStripSpacer;
 
 public abstract class ShowcasePanel extends VLayout {
+
+    private Canvas viewPanel;
 
     public ShowcasePanel() {
 
@@ -25,19 +31,25 @@ public abstract class ShowcasePanel extends VLayout {
         final String sourceURL = (getSourceUrl() == null) ? getSourceGenUrl() : getSourceUrl();
         if (sourceURL != null) {
 
-            HLayout topBar = new HLayout();
-            topBar.setHeight(30);
+            ToolStrip topBar = new ToolStrip();
             topBar.setWidth100();
+            topBar.addFill();
 
-            LayoutSpacer spacer = new LayoutSpacer();
-            spacer.setWidth100();
-            topBar.addMember(spacer);
+            ToolStripButton printButton = new ToolStripButton();
+            printButton.setTitle("Print");
+            printButton.setIcon("silk/printer.png");
+            printButton.addClickHandler(new ClickHandler() {
+                public void onClick(ClickEvent event) {
+                    Canvas.showPrintPreview(viewPanel);
+                }
+            });
+            topBar.addMember(printButton);
 
-            IButton sourceButton = new IButton();
-            sourceButton.setHeight(25);
-            sourceButton.setWidth(110);
+            topBar.addSeparator();
+
+            ToolStripButton sourceButton = new ToolStripButton();
             sourceButton.setTitle("View Source");
-            sourceButton.setIcon("silk/script_go.png");
+            sourceButton.setIcon("silk/page_white_cup.png");
             sourceButton.addClickHandler(new ClickHandler() {
                 public void onClick(ClickEvent event) {
                     showSource(sourceURL, 640, 600);
@@ -45,10 +57,7 @@ public abstract class ShowcasePanel extends VLayout {
             });
             topBar.addMember(sourceButton);
 
-            spacer = new LayoutSpacer();
-            spacer.setWidth(10);
-            topBar.addMember(spacer);
-
+            topBar.addSpacer(new ToolStripSpacer(10));
             addMember(topBar);
         }
 
@@ -59,10 +68,10 @@ public abstract class ShowcasePanel extends VLayout {
         layout.setMargin(10);
         layout.setMembersMargin(10);
 
-        Canvas panel = getViewPanel();
+        viewPanel = getViewPanel();
         HLayout wrapper = new HLayout();
         wrapper.setWidth100();
-        wrapper.addMember(panel);
+        wrapper.addMember(viewPanel);
 
         String intro = getIntro();
         if (intro != null) {

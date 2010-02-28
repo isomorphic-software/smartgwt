@@ -2,6 +2,7 @@ package com.smartgwt.sample.showcase.client.menu;
 
 import com.smartgwt.client.util.SC;
 import com.smartgwt.client.widgets.Canvas;
+import com.smartgwt.client.widgets.menu.IMenuButton;
 import com.smartgwt.client.widgets.menu.Menu;
 import com.smartgwt.client.widgets.menu.MenuButton;
 import com.smartgwt.client.widgets.menu.MenuItem;
@@ -49,7 +50,7 @@ public class MenuTreeBindingSample extends ShowcasePanel {
 			}
 		});
 
-		MenuButton bDepartment = new MenuButton("Go to department", mDepartment);
+		IMenuButton bDepartment = new IMenuButton("Go to department", mDepartment);
 		bDepartment.setWidth(130);
 
 		main.addChild(bDepartment);
@@ -68,7 +69,7 @@ public class MenuTreeBindingSample extends ShowcasePanel {
 			}
 		});
 
-		MenuButton bCategory = new MenuButton("Go to category", mCategory);
+		IMenuButton bCategory = new IMenuButton("Go to category", mCategory);
 		bCategory.setTop(30);
 		bCategory.setWidth(140);
 
