@@ -243,29 +243,27 @@ public class Showcase implements EntryPoint, HistoryListener {
         HLayout mainPanel = new HLayout();
         mainPanel.setHeight100();
         mainPanel.setWidth100();
-
-        if(SC.hasFirebug()) {
-            Label label = new Label();
-            label.setContents("<p>Firebug can make the Showcase run slow.</p><p>For the best performance, we suggest disabling Firebug for this site.</p>");
-            label.setWidth100();
-            label.setHeight("auto");
-            label.setMargin(20);
-            Window fbWindow = new Window();
-            fbWindow.setShowHeader(false);
-            fbWindow.addItem(label);
-            fbWindow.setWidth(220);
-            fbWindow.setHeight(130);
-
-            LayoutSpacer spacer = new LayoutSpacer();
-            spacer.setWidth100();
-            mainPanel.addMember(spacer);
-            mainPanel.addMember(fbWindow);
-        }
-
         TileView tileView = new TileView(mainPanel);
         mainPanel.addMember(tileView);
+                
+        if(SC.hasFirebug()) {
+            Label label = new Label();
+            label.setContents("<b>Firebug can make the Showcase run slow. For the best performance, we suggest disabling Firebug for this site.</b>");
+            label.setWidth100();
+            label.setHeight("auto");
+            label.setMargin(5);
+            label.setHeight(10);
 
-        tab.setPane(mainPanel);
+            VLayout vLayout = new VLayout();
+            vLayout.setHeight100();
+            vLayout.setWidth100();
+
+            vLayout.addMember(label);
+            vLayout.addMember(mainPanel);
+            tab.setPane(vLayout);
+        } else {
+            tab.setPane(mainPanel);
+        }
 
         mainTabSet.addTab(tab);
 
