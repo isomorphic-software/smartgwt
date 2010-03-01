@@ -60,6 +60,11 @@ public class JsObject {
         }
 
         if(!@com.google.gwt.core.client.GWT::isScript()()){
+            $wnd.isc.Log.addClassMethods({
+              warningLogged : function (message) {
+                  @com.google.gwt.core.client.GWT::log(Ljava/lang/String;Ljava/lang/Throwable;)(message, @com.smartgwt.client.core.JsObject.SGWT_WARN::new(Ljava/lang/String;)(message));
+              }
+            });
             //support option of triggering JS debugger by default in hosted mode if JS error is encountered            
             @com.smartgwt.client.util.SC::setEnableJSDebugger(Z)(true);
 
@@ -153,5 +158,16 @@ public class JsObject {
 
     public void setJsObj(JavaScriptObject jsObj) {
         this.jsObj = jsObj;
+    }
+
+    /**
+     * Simple Exception class for the sole purpose of having SmartClient logs being
+     * also logged to the GWT Development Console as an ERROR log in red rather
+     * than an INFO log which does not stand out as a warning.
+     */
+    private static class SGWT_WARN extends Exception {
+        public SGWT_WARN(String message) {
+            super(message);
+        }
     }
 }
