@@ -7,7 +7,7 @@
     <inherits name="com.google.gwt.core.Core"/>
     <inherits name="com.google.gwt.user.History"/>
 
-    <inherits name="com.smartgwt.debug.SmartGwtDebugNoScript"/>
+    <inherits name="com.smartgwt.SmartGwtNoScript"/>
     <inherits name="com.smartgwt.tools.SmartGwtTools"/>
     <inherits name="com.smartclient.theme.enterprise.EnterpriseResources"/>
     <inherits name="com.smartclient.theme.enterpriseblue.EnterpriseBlueResources"/>
