@@ -7,7 +7,7 @@ This example illustrates various 'easy to follow' examples illustrating some of 
 
 Setup
 -----
- - set the GWT_HOME environment variable to point to your GWT 1.6 SDK directory
+ - set the GWT_HOME environment variable to point to your GWT SDK directory
 
 - This example users ant to build the war. You will need to have the Ant 'bin' in your PATH. If you do not have Ant, you can either download it 
   from http://ant.apache.org/ or simply point to the Ant distribution bundled in your SmartGWT distribution. It is located under the
