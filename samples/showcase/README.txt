@@ -1,24 +1,37 @@
-Showcase Explorer
+SmartGWT Showcase
 -----------------
+The SmartGWT Showcase contains many easy-to-follow illustrations of SmartGWT's
+capabilities.
 
-Introduction
-------------
-This example illustrates various 'easy to follow' examples illustrating some of SmartGWT capabilities.
 
-Setup
------
- - set the GWT_HOME environment variable to point to your GWT SDK directory
+Prerequisites
+-------------
+- Google Web Toolkit, 1.5.3 or later (2.0 or later recommended)
+  http://code.google.com/webtoolkit/download.html
 
-- This example users ant to build the war. You will need to have the Ant 'bin' in your PATH. If you do not have Ant, you can either download it 
-  from http://ant.apache.org/ or simply point to the Ant distribution bundled in your SmartGWT distribution. It is located under the
-  'apache-ant-1.7.1' directory.  The following assumes 'ant' is on your command line path.
-    
-      o To run hosted mode, just type 'ant hosted'.
-      o To compile your project for deployment, just type 'ant'.      
-      o To compile and also bundle into a .war file, type 'ant war'.
+  Ensure GWT_HOME to the location of your Google Web Toolkit SDK directory.
 
   
-- The command 'ant war' build a war. Deploy in in your web container and access the sample by hitting the URL
+- Apache Ant, 1.6.5 or later (1.7.1 or later recommended)
+  http://ant.apache.org/
+  
+  Ensure ANT_HOME to the location of your Apache Ant directory, and the
+  'ant' command is in your PATH.
+
+  
+Build and Deployment Instructions
+---------------------------------
+- 'ant hosted'
+  Run Showcase in GWT Hosted Mode.
+
+  
+- 'ant'
+  Compile Showcase for deployment.
+
+  
+- 'ant war'
+  Compile Showcase for deployment and bundle into showcase.war file.
+
+  If you have a web container operating on localhost:8080, you can deploy
+  showcase.war into the web container and access the Showcase at:
   http://localhost:8080/showcase/index.html
-
-
