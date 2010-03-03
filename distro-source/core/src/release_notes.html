@@ -28,6 +28,7 @@
    <body>
       <h1>Smart GWT Release Notes</h1>
       <ul>
+            <li><a href="#2_1">2.1</a></li>
             <li><a href="#2_0">2.0</a></li>
             <li><a href="#1_3">1.3</a></li>
             <li><a href="#1_2">1.2</a></li>
@@ -36,22 +37,111 @@
       </ul>
       <hr/>
 
+    <a name="2_1"></a>
+      <h2>Release Notes for Smart GWT 2.1</h2>
+        <ul>
+            <li><div><b>GWT 2.0.3 compatible</b></div></li>
+            <li><div><b>New Graphite theme</b></div></li>
+            <li>
+                <div><b>ListGrid enhancements</b>
+                    <ul>
+                        <li>Record RollOver controls</li>
+                        <li>RollUnder Canvas support</li>
+                        <li>Background components</li>
+                        <li>Support for arbitrary widgets in cells</li>
+                        <li>Ability to display row numbers</li>
+                        <li>setMaxExpandedRecords(..) to control max. number of simultaneous expanded records</li>
+                        <li>ListGridField.setCanDragResize(), setCanReorder(), setAutoFreeze(), setShouldPrint() API's</li>
+                        <li>Checkbox selection with grouping</li>
+                        <li>MultiColumn sort enhancements</li>
+                    </ul>
+                </div>
+            </li>
+            <li>
+                <div><b>TreeGrid enhancements</b>
+                    <ul>
+                        <li>Support for Checkbox tree with Cascade selection</li>
+                        <li>Support for tri-state checkboxes (selected, unselected, partial)</li>
+                        <li>Performance enhancements</li>
+                    </ul>
+                </div>
+            </li>
+            <li>
+                <div><b>ToolStrip enhancements</b>
+                    <ul>
+                        <li>Significant improvement in appearance</li>
+                        <li>Added ToolStripButton and ToolStripMenuButton classes</li>
+                        <li>Vertical ToolStrips</li>
+                    </ul>
+                </div>
+            </li>
+            <li>
+                <div><b>Print support enhancements</b>
+                    <ul>
+                        <li>ability to control which components display in print view</li>
+                        <li>print styling on a per-component basis</li>
+                        <li>support print window customizations</li>
+                        <li>API for the number of records displayed in print view (can be different from UI view)</li>
+                    </ul>
+                </div>
+            </li>
+            <li>
+                <div><b>Browser Plugins as widgets</b>
+                    <ul>
+                        <li>Flashlet widget</li>
+                        <li>Applet widget</li>
+                        <li>ActiveXControl widget</li>
+                        <li>SVG widget</li>
+                    </ul>
+                </div>
+            </li>
+            <li>
+                <div><b>Other Widget enhancements</b>
+                    <ul>
+                        <li>Window : support for footer controls</li>
+                        <li>Calendar : control dragability of events</li>
+                        <li>New IMenuButton &amp; IPickTreeItem classes with improved appearance</li>
+                        <li>AdvancedCriteria enhancements and support for programmatic construction</li>
+                        <li>SectionStack drag reordering support</li>
+                        <li>FilterBuilder support for working with very large number of fields</li>
+                        <li>Convenience FormItem.setRequiredMessage(..) API</li>
+                        <li>TileGrids now automatically relayout if a tile resizes</li>
+                        <li>Added support for grouping for formula and summary fields</li>
+                    </ul>
+                </div>
+            </li>
+            <li>
+                <div><b>Performance enhancements</b>
+                    <ul>
+                        <li>Snappier TreeGrid expand / collapse</li>
+                        <li>Faster Canvas resize</li>
+                        <li>Faster Tab close (deferred destroy)</li>
+                    </ul>
+                </div>
+            </li>
+            <li><div>Logging of warnings and error to the GWT Developer Console in addition to the Smart GWT Dev. Console.</div></li>
+            <li><div>Improved exception handling and reporting.</div></li>
+            <li><div>i18n enhancements</div></li>
+            <li><div><a href="http://www.smartclient.com/smartgwt/showcase/" target="_blank">Showcase</a> enhancements and several new samples under the "New Samples" side nav</div></li>
+            <li><div>27 <a href="http://code.google.com/p/smartgwt/issues/list?can=1&q=label:SmartGWT-2.1">additional enhancements and bug fixes</a> that were logged in tracker</div></li>
+        </ul>
+
     <a name="2_0"></a>
       <h2>Release Notes for Smart GWT 2.0</h2>
         <div>- GWT 2.0 support</div>
         <div>- New Enterprise Blue theme, and significant improvements to Enterprise Gray Skin. Other skins deprecated and will have replacements in a future release.</div>
         <div>- Theme specific collection of standard Window Icons, Picker Icons and Transfer Button icons as part of the core library.</div>
-        <div>- MS Excel like MultiColumn sort capabilities for ListGrid</div>      
+        <div>- MS Excel like MultiColumn sort capabilities for ListGrid</div>
         <div>- Support for ListGrid row expansions with in built expansion modes like details, editable form, related records as well
             as allowing the user to display a custom widget via the override point ListGrid.getExpansionComponent(record)</div>
         <div>- Exposed getGridSummary(field) as an override point. This allows you to return an entirely custom summary row value for any field</div>
-        <div>- Added the following methods to FormItem: setValueFormatter , setEditorValueFormatter and setEditorValueParser. These allow the user to customize the 
+        <div>- Added the following methods to FormItem: setValueFormatter , setEditorValueFormatter and setEditorValueParser. These allow the user to customize the
             display and parsing of input in a FormItem.</div>
         <div>- Enhancements to DetailViewer and TileGrid so better support working interchangeably with the Records from any other DataBoundComponent</div>
         <div>- Disabled state of all components fully supported. Missing media added.</div>
         <div>- Various enhancements to support IE8 and Safari strict mode</div>
         <div>- Support for "center" Layout alignment setting.</div>
-        <div>- Added DateTimeItem form field type.</div>      
+        <div>- Added DateTimeItem form field type.</div>
         <div>- Support for masking DateItem, DateTimeItem and TimeItem input fields.</div>
         <div>- Added Canvas.showClickMask(..) to do an 'auto-dismiss on outside click' type behavior on a component</div>
         <div>- Fixed overflow issue with ListGrid.addData() under certain circumstances</div>
@@ -72,7 +162,7 @@
             (ie SC.showConsole() ), you will now need to inherit the following module : <b>&lt;inherits name="com.smartgwt.tools.SmartGwtTools"/&gt;</b></p>
 
             <p>Users that happen be using <b>com.smartgwt.SmartGwtDebug</b> will need to inherit <b>com.smartgwt.debug.SmartGwtDebug</b> instead.</p>
-        <hr/>        
+        <hr/>
         <div>- Grid Summary support from group and columns</div>
         <div>- Masking support for form text fields</div>
         <div>- Support for user-defined reusable SimpleTypes for use in DataSources (eg ZipCode type)</div>
@@ -162,7 +252,7 @@
             <div>- ability to customize grid groupings by record values and also group title</div>
             <div>- support for adding custom formula and summary fields on the fly</div>
             <div>- ability to register custom handler to control visibility of a ListGridField</div>
-            <div>- added ListGridField.setCanFreeze, ListGridField.setCanSort</div>            
+            <div>- added ListGridField.setCanFreeze, ListGridField.setCanSort</div>
 
         <h4>SectionStack (Accordion)</h4>
             <div>- added section header click event</div>
