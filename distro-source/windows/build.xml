@@ -7,8 +7,8 @@
 		<!-- TODO: figure out how to share most of this across platforms -->
 
 		<copy file="${smartgwt.tools.lib}/css/javadoc/stylesheet.css" todir="${smartgwt.build.out}/doc/javadoc" overwrite="true"/>
-		<copy file="${smartgwt.root}/samples/showcase/build-distro.xml" tofile="${smartgwt.build.out}/Samples/showcase/build.xml" overwrite="true"/>
-		<copy file="${smartgwt.root}/samples/showcase/README.txt" todir="${smartgwt.build.out}/Samples/showcase/" overwrite="true"/>
+		<copy file="${smartgwt.root}/samples/showcase/build-distro.xml" tofile="${smartgwt.build.out}/samples/showcase/build.xml" overwrite="true"/>
+		<copy file="${smartgwt.root}/samples/showcase/README.txt" todir="${smartgwt.build.out}/samples/showcase/" overwrite="true"/>
 
 
 		<mkdir dir="${smartgwt.build.dist}" />
