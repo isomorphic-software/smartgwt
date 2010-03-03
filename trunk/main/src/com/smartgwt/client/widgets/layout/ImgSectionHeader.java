@@ -119,6 +119,18 @@ public class ImgSectionHeader extends HLayout {
         setAttribute("controls", controls, false);
     }
 
+    /**
+     * Retrieve the SectionStackSection associated with this header
+     * @return the SectionStackSection for the section header
+     */
+    public native SectionStackSection getSection () /*-{
+    	var jsObj = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
+    	if (jsObj == null) return null;
+    	var section = jsObj.getSectionConfig != null ? jsObj.getSectionConfig() : null;
+	    if (section == null) return null;
+	    return @com.smartgwt.client.widgets.layout.SectionStackSection::getOrCreateRef(Lcom/google/gwt/core/client/JavaScriptObject;)(section);
+    }-*/;
+
 }
 
 

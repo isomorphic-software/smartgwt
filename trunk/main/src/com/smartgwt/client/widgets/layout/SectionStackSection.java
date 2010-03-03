@@ -300,6 +300,20 @@ public class SectionStackSection extends RefDataClass {
     	return stack;
     }
     
+    /**
+     * Once a SectionStackSection has been applied to a SectionStack, this method may be used to return  a pointer to the 
+     * SectionHeader for this section
+     * @return the SectionHeader for the section
+     */
+    public native SectionHeader getSectionHeader () /*-{
+    	var jsObj = this.@com.smartgwt.client.core.DataClass::getJsObj()();
+    	if (jsObj == null) return null;
+    	
+    	var sectionHeader = jsObj.getSectionHeader != null ? jsObj.getSectionHeader() : null;
+	    if (sectionHeader == null) return null;
+	    
+	    return @com.smartgwt.client.widgets.layout.SectionHeader::getOrCreateRef(Lcom/google/gwt/core/client/JavaScriptObject;)(sectionHeader);
+    }-*/;
 
 }
 
