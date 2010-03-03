@@ -448,18 +448,6 @@ public class SectionStack extends VLayout  implements com.smartgwt.client.widget
 
 
 
-	  protected void onInit() {
-		  updateSectionJsObjects(this.getJsObj());
-		  super.onInit();
-	  }
-	  protected native void updateSectionJsObjects(JavaScriptObject stack) /*-{
-	  	  if (stack.sections == null) return;
-		  for (var i = 0; i < stack.sections.length; i++) {
-		    var section = stack.sections[i];
-			@com.smartgwt.client.widgets.layout.SectionStackSection::getOrCreateRef(Lcom/google/gwt/core/client/JavaScriptObject;)(section);
-		  }
-	  }-*/;
-
 	  public void setSections(SectionStackSection... sections) {
         for (SectionStackSection section : sections) {
             addSection(section);
@@ -514,10 +502,6 @@ public class SectionStack extends VLayout  implements com.smartgwt.client.widget
         var container = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
         container.addSection(componentJS);
         
-        var sectionHeaderJS = container.sections[container.sections.length-1];
-        @com.smartgwt.client.widgets.layout.SectionStackSection::getOrCreateRef(Lcom/google/gwt/core/client/JavaScriptObject;)(sectionHeaderJS);
-            
-    
     }-*/;
 
     private native void addSectionPreCreate(JavaScriptObject componentJS, int position) /*-{
@@ -534,9 +518,6 @@ public class SectionStack extends VLayout  implements com.smartgwt.client.widget
         if (position < 0 || container.sections == null) position = 0;
         else if (position > container.sections.length) position = container.sections.length;
         container.addSection(componentJS, position);
-        
-        var sectionHeaderJS = container.sections[position];
-        @com.smartgwt.client.widgets.layout.SectionStackSection::getOrCreateRef(Lcom/google/gwt/core/client/JavaScriptObject;)(sectionHeaderJS);
         
     }-*/;
     
@@ -754,21 +735,21 @@ public class SectionStack extends VLayout  implements com.smartgwt.client.widget
      */
     public native SectionStackSection getSection(String sectionID) /*-{
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
-        var ret = self.getSectionHeader(sectionID);
+        var ret = self.getSectionConfig(sectionID);
         if(ret == null || ret === undefined) return null;
         var retVal = @com.smartgwt.client.widgets.layout.SectionStackSection::getOrCreateRef(Lcom/google/gwt/core/client/JavaScriptObject;)(ret);
         return retVal;
     }-*/;
 
     /**
-     * Return the SectionHeader for a section.
+     * Return the SectionStackSection for a section.
      * @param index index of the section for which you want the header
      *
      * @return the section header indicated
      */
     public native SectionStackSection getSection(int index) /*-{
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
-        var ret = self.getSectionHeader(index);
+        var ret = self.getSectionConfig(index);
         if(ret == null || ret === undefined) return null;
         var retVal = @com.smartgwt.client.widgets.layout.SectionStackSection::getOrCreateRef(Lcom/google/gwt/core/client/JavaScriptObject;)(ret);
         return retVal;
@@ -778,7 +759,12 @@ public class SectionStack extends VLayout  implements com.smartgwt.client.widget
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
         var ret = self.sections;
         if(ret == null || ret === undefined) return null;
-        return  this.@com.smartgwt.client.widgets.layout.SectionStack::convertToSectionArray(Lcom/google/gwt/core/client/JavaScriptObject;)(ret);
+        var sectionsArr = @com.smartgwt.client.util.JSOHelper::createJavaScriptArray()();
+        for (var i = 0; i < ret.length; i++) {
+            var jsSectionHeader = ret[i];
+            sectionsArr[i] = jsSectionHeader.getSectionConfig ? jsSectionHeader.getSectionConfig() : jsSectionHeader;
+        }
+        return  this.@com.smartgwt.client.widgets.layout.SectionStack::convertToSectionArray(Lcom/google/gwt/core/client/JavaScriptObject;)(sectionsArr);
 
     }-*/;
 
