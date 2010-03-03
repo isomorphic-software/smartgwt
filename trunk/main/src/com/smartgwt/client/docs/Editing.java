@@ -178,6 +178,7 @@ package com.smartgwt.client.docs;
  * @see com.smartgwt.client.widgets.grid.ListGrid#getEditOnFocus
  * @see com.smartgwt.client.widgets.grid.ListGrid#getSelectOnEdit
  * @see com.smartgwt.client.widgets.grid.ListGridField#getCanToggle
+ * @see com.smartgwt.client.widgets.grid.ListGrid#getEnumCriteriaAsInitialValues
  * @see com.smartgwt.client.widgets.grid.ListGrid#getLongTextEditorThreshold
  * @see com.smartgwt.client.widgets.grid.ListGrid#getLongTextEditorType
  * @see com.smartgwt.client.types.RowEndEditAction
