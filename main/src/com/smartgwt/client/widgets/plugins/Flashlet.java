@@ -199,14 +199,6 @@ public class Flashlet extends BrowserPlugin {
     }
 
     // ********************* Methods ***********************
-            
-    /**
-     * Returns a handle to the flashlet DOM element (valid only after the component has been drawn).
-     */
-    public native void getPluginHandle() /*-{
-        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
-        self.getPluginHandle();
-    }-*/;
 
     // ********************* Static Methods ***********************
             
@@ -260,6 +252,16 @@ public class Flashlet extends BrowserPlugin {
 	    return paramsJS == null ? null : @com.smartgwt.client.util.JSOHelper::convertToMap(Lcom/google/gwt/core/client/JavaScriptObject;)(paramsJS);
 	    
 	}-*/;
+    
+    /**
+     * Returns a handle to the flashlet DOM element (valid only after the component has been drawn).
+     *
+     * @return pointer to the plugin element in the DOM
+     */
+    public native Element getPluginHandle() /*-{
+        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
+        return self.getPluginHandle();
+    }-*/;
 
 
 }

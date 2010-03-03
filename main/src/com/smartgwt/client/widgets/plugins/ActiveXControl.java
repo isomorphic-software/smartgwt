@@ -178,14 +178,6 @@ public class ActiveXControl extends BrowserPlugin {
     // ********************* Methods ***********************
             
     /**
-     * Returns a handle to the element for this ISC ActiveX control object.
-     */
-    public native void getPluginHandle() /*-{
-        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
-        self.getPluginHandle();
-    }-*/;
-            
-    /**
      * Returns the ID for this ISC ActiveX control object.  If the <code>id</code> property was specified for the object, that
      * will be used, otherwise   the ID will be auto-generated.
      */
@@ -221,6 +213,17 @@ public class ActiveXControl extends BrowserPlugin {
         return paramsJS == null ? null : @com.smartgwt.client.util.JSOHelper::convertToMap(Lcom/google/gwt/core/client/JavaScriptObject;)(paramsJS);
         
     }-*/;
+    
+    /**
+     * Returns a handle to the element for this ISC ActiveX control object.
+     *
+     * @return pointer to the plugin element in the DOM
+     */
+    public native Element getPluginHandle() /*-{
+        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
+        return self.getPluginHandle();
+    }-*/;
+            
 
 }
 
