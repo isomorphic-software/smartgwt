@@ -16,10 +16,22 @@
 <li>
 <nobr><code>SmartGWT</code></nobr>
 </li>
-
 <h3>Modified Classes:</h3>
 <blockquote>
-
+<h4>
+<code>com.smartgwt.client.core.BaseClass</code>
+</h4>
+<blockquote>
+<h5>New Methods:</h5>
+<ul>
+<li>
+<nobr><code>public java.lang.String getScClassName()</code></nobr>
+</li>
+<li>
+<nobr><code>public void setScClassName(java.lang.String)</code></nobr>
+</li>
+</ul>
+</blockquote>
 <h4>
 <code>com.smartgwt.client.data.AdvancedCriteria</code>
 </h4>
@@ -40,6 +52,7 @@
 <h4>
 <code>com.smartgwt.client.data.DSRequest</code>
 </h4>
+<blockquote>
 <h5>New Methods:</h5>
 <ul>
 <li>
@@ -63,7 +76,7 @@
 <h5>New Methods:</h5>
 <ul>
 <li>
-<nobr><code>public java.lang.Object getDisplayValue(java.lang.String, java.lang.Object)</code></nobr>
+<nobr><code>public native java.lang.Object getDisplayValue(java.lang.String, java.lang.Object)</code></nobr>
 </li>
 <li>
 <nobr><code>public java.lang.String getRequiredMessage()</code></nobr>
@@ -72,16 +85,17 @@
 <nobr><code>public void setRequiredMessage(java.lang.String)</code></nobr>
 </li>
 <li>
-<nobr><code>public void updateCaches(com.smartgwt.client.data.DSResponse)</code></nobr>
+<nobr><code>public native void updateCaches(com.smartgwt.client.data.DSResponse)</code></nobr>
 </li>
 <li>
-<nobr><code>public void updateCaches(com.smartgwt.client.data.DSResponse, com.smartgwt.client.data.DSRequest)</code></nobr>
+<nobr><code>public native void updateCaches(com.smartgwt.client.data.DSResponse, com.smartgwt.client.data.DSRequest)</code></nobr>
 </li>
 <li>
-<nobr><code>public void validateData()</code></nobr>
+<nobr><code>public native void validateData()</code></nobr>
 </li>
 </ul>
 </blockquote>
+
 <h4>
 <code>com.smartgwt.client.data.XMLTools</code>
 </h4>
@@ -89,7 +103,7 @@
 <h5>New Methods:</h5>
 <ul>
 <li>
-<nobr><code>public static void loadXMLSchema(java.lang.String, com.smartgwt.client.data.XSDLoadCallback, com.smartgwt.client.rpc.RPCRequest, boolean)</code></nobr>
+<nobr><code>public static native void loadXMLSchema(java.lang.String, com.smartgwt.client.data.XSDLoadCallback, com.smartgwt.client.rpc.RPCRequest, boolean)</code></nobr>
 </li>
 </ul>
 </blockquote>
@@ -115,23 +129,12 @@
 
 <h5>New Methods:</h5>
 <ul>
-<li>
-<nobr><code>public com.smartgwt.client.types.AnimationEffect getAnimateShowEffect()</code></nobr>
-</li>
-<li>
-<nobr><code>public int getEdgeMarginSize()</code></nobr>
-</li>
-<li>
-<nobr><code>public void getPrintHTML(com.smartgwt.client.util.PrintProperties, com.smartgwt.client.util.PrintHTMLCallback)</code></nobr>
-</li>
-<li>
-<nobr><code>public static void getPrintHTML(java.lang.Object[], com.smartgwt.client.util.PrintProperties, com.smartgwt.client.util.PrintHTMLCallback)</code></nobr>
-</li>
+
 <li>
 <nobr><code>public java.lang.Boolean getShouldPrint()</code></nobr>
 </li>
 <li>
-<nobr><code>public static void printComponents(java.lang.Object[])</code></nobr>
+<nobr><code>public static native void printComponents(java.lang.Object[])</code></nobr>
 </li>
 <li>
 <nobr><code>public void setAnimateShowEffect(com.smartgwt.client.types.AnimationEffect)</code></nobr>
@@ -140,10 +143,10 @@
 <nobr><code>public void setShouldPrint(java.lang.Boolean)</code></nobr>
 </li>
 <li>
-<nobr><code>public static void showPrintPreview(java.lang.Object[])</code></nobr>
+<nobr><code>public static native void showPrintPreview(java.lang.Object[])</code></nobr>
 </li>
 <li>
-<nobr><code>public static void showPrintPreview(java.lang.Object[], com.smartgwt.client.util.PrintProperties, java.lang.String, com.smartgwt.client.util.PrintPreviewCallback)</code></nobr>
+<nobr><code>public static native void showPrintPreview(java.lang.Object[], com.smartgwt.client.util.PrintProperties, java.lang.String, com.smartgwt.client.util.PrintPreviewCallback)</code></nobr>
 </li>
 </ul>
 </blockquote>
@@ -154,7 +157,7 @@
 <h5>New Methods:</h5>
 <ul>
 <li>
-<nobr><code>public void setRoundValue(boolean)</code></nobr>
+<nobr><code>public native void setRoundValue(boolean)</code></nobr>
 </li>
 </ul>
 </blockquote>
@@ -257,7 +260,7 @@
 <h5>New Methods:</h5>
 <ul>
 <li>
-<nobr><code>public void addClause(com.smartgwt.client.widgets.form.FilterClause)</code></nobr>
+<nobr><code>public native void addClause(com.smartgwt.client.widgets.form.FilterClause)</code></nobr>
 </li>
 <li>
 <nobr><code>public com.smartgwt.client.data.DataSource getFieldDataSource()</code></nobr>
@@ -275,7 +278,7 @@
 <nobr><code>public void setRetainValuesAcrossFields(java.lang.Boolean)</code></nobr>
 </li>
 <li>
-<nobr><code>public java.lang.Boolean validate()</code></nobr>
+<nobr><code>public native java.lang.Boolean validate()</code></nobr>
 </li>
 </ul>
 </blockquote>
@@ -293,7 +296,17 @@
 </li>
 </ul>
 </blockquote>
-
+<h4>
+<code>com.smartgwt.client.widgets.form.fields.ComboBoxItem</code>
+</h4>
+<blockquote>
+<h5>New Methods:</h5>
+<ul>
+<li>
+<nobr><code>private static boolean isComboBoxItem(com.smartgwt.client.widgets.form.fields.FormItem)</code></nobr>
+</li>
+</ul>
+</blockquote>
 <h4>
 <code>com.smartgwt.client.widgets.form.fields.FormItem</code>
 </h4>
@@ -343,7 +356,18 @@
 <nobr><code>public void setValidateOnExit(java.lang.Boolean)</code></nobr>
 </li>
 <li>
-<nobr><code>public java.lang.Boolean validate()</code></nobr>
+<nobr><code>public native java.lang.Boolean validate()</code></nobr>
+</li>
+</ul>
+</blockquote>
+<h4>
+<code>com.smartgwt.client.widgets.form.fields.SelectItem</code>
+</h4>
+<blockquote>
+<h5>New Methods:</h5>
+<ul>
+<li>
+<nobr><code>private static boolean isSelectItem(com.smartgwt.client.widgets.form.fields.FormItem)</code></nobr>
 </li>
 </ul>
 </blockquote>
@@ -365,6 +389,15 @@
 <code>com.smartgwt.client.widgets.form.validator.Validator</code>
 </h4>
 <blockquote>
+<h5>Removed Methods:</h5>
+<ul>
+<li>
+<nobr><code>public java.lang.Boolean getServerOnly()</code></nobr>
+</li>
+<li>
+<nobr><code>public void setServerOnly(java.lang.Boolean)</code></nobr>
+</li>
+</ul>
 <h5>New Methods:</h5>
 <ul>
 <li>
@@ -397,17 +430,54 @@
 <code>com.smartgwt.client.widgets.grid.ListGrid</code>
 </h4>
 <blockquote>
-
+<h5>Declaration Changes:</h5>
+<blockquote>
+<p>
+<nobr><code><b>old:</b>public class com.smartgwt.client.widgets.grid.ListGrid extends com.smartgwt.client.widgets.Canvas implements com.smartgwt.client.widgets.DataBoundComponent, com.smartgwt.client.widgets.grid.events.HasCellClickHandlers, com.smartgwt.client.widgets.grid.events.HasCellContextClickHandlers, com.smartgwt.client.widgets.grid.events.HasCellDoubleClickHandlers, com.smartgwt.client.widgets.grid.events.HasCellHoverHandlers, com.smartgwt.client.widgets.grid.events.HasCellMouseDownHandlers, com.smartgwt.client.widgets.grid.events.HasCellMouseUpHandlers, com.smartgwt.client.widgets.grid.events.HasCellOutHandlers, com.smartgwt.client.widgets.grid.events.HasCellOverHandlers, com.smartgwt.client.widgets.grid.events.HasCellSavedHandlers, com.smartgwt.client.widgets.grid.events.HasDataArrivedHandlers, com.smartgwt.client.widgets.grid.events.HasEditCompleteHandlers, com.smartgwt.client.widgets.grid.events.HasEditFailedHandlers, com.smartgwt.client.widgets.grid.events.HasEditorEnterHandlers, com.smartgwt.client.widgets.grid.events.HasEditorExitHandlers, com.smartgwt.client.widgets.grid.events.HasFieldStateChangedHandlers, com.smartgwt.client.widgets.grid.events.HasHeaderClickHandlers, com.smartgwt.client.widgets.grid.events.HasRecordClickHandlers, com.smartgwt.client.widgets.grid.events.HasRecordDoubleClickHandlers, com.smartgwt.client.widgets.grid.events.HasRecordDropHandlers, com.smartgwt.client.widgets.grid.events.HasRowContextClickHandlers, com.smartgwt.client.widgets.grid.events.HasRowEditorEnterHandlers, com.smartgwt.client.widgets.grid.events.HasRowEditorExitHandlers, com.smartgwt.client.widgets.grid.events.HasRowHoverHandlers, com.smartgwt.client.widgets.grid.events.HasRowMouseDownHandlers, com.smartgwt.client.widgets.grid.events.HasRowMouseUpHandlers, com.smartgwt.client.widgets.grid.events.HasRowOutHandlers, com.smartgwt.client.widgets.grid.events.HasRowOverHandlers, com.smartgwt.client.widgets.grid.events.HasSelectionChangedHandlers<br>
+<b>new:</b>public class com.smartgwt.client.widgets.grid.ListGrid extends com.smartgwt.client.widgets.Canvas implements com.smartgwt.client.widgets.DataBoundComponent, com.smartgwt.client.widgets.grid.events.HasCellClickHandlers, com.smartgwt.client.widgets.grid.events.HasCellContextClickHandlers, com.smartgwt.client.widgets.grid.events.HasCellDoubleClickHandlers, com.smartgwt.client.widgets.grid.events.HasCellHoverHandlers, com.smartgwt.client.widgets.grid.events.HasCellMouseDownHandlers, com.smartgwt.client.widgets.grid.events.HasCellMouseUpHandlers, com.smartgwt.client.widgets.grid.events.HasCellOutHandlers, com.smartgwt.client.widgets.grid.events.HasCellOverHandlers, com.smartgwt.client.widgets.grid.events.HasCellSavedHandlers, com.smartgwt.client.widgets.grid.events.HasDataArrivedHandlers, com.smartgwt.client.widgets.grid.events.HasDrawAreaChangedHandlers, com.smartgwt.client.widgets.grid.events.HasEditCompleteHandlers, com.smartgwt.client.widgets.grid.events.HasEditFailedHandlers, com.smartgwt.client.widgets.grid.events.HasEditorEnterHandlers, com.smartgwt.client.widgets.grid.events.HasEditorExitHandlers, com.smartgwt.client.widgets.grid.events.HasFieldStateChangedHandlers, com.smartgwt.client.widgets.grid.events.HasHeaderClickHandlers, com.smartgwt.client.widgets.grid.events.HasRecordClickHandlers, com.smartgwt.client.widgets.grid.events.HasRecordCollapseHandlers, com.smartgwt.client.widgets.grid.events.HasRecordDoubleClickHandlers, com.smartgwt.client.widgets.grid.events.HasRecordDropHandlers, com.smartgwt.client.widgets.grid.events.HasRecordExpandHandlers, com.smartgwt.client.widgets.grid.events.HasRowContextClickHandlers, com.smartgwt.client.widgets.grid.events.HasRowEditorEnterHandlers, com.smartgwt.client.widgets.grid.events.HasRowEditorExitHandlers, com.smartgwt.client.widgets.grid.events.HasRowHoverHandlers, com.smartgwt.client.widgets.grid.events.HasRowMouseDownHandlers, com.smartgwt.client.widgets.grid.events.HasRowMouseUpHandlers, com.smartgwt.client.widgets.grid.events.HasRowOutHandlers, com.smartgwt.client.widgets.grid.events.HasRowOverHandlers, com.smartgwt.client.widgets.grid.events.HasSelectionChangedHandlers</code></nobr>
+</p>
+</blockquote>
+<h5>Removed Methods:</h5>
+<ul>
+<li>
+<nobr><code>public native boolean canExpandRecord(com.smartgwt.client.widgets.grid.ListGridRecord, int)</code></nobr>
+</li>
+<li>
+<nobr><code>protected native java.lang.String getBaseStyle(com.smartgwt.client.widgets.grid.ListGridRecord, int, int)</code></nobr>
+</li>
+<li>
+<nobr><code>protected native java.lang.String getCellCSSText(com.smartgwt.client.widgets.grid.ListGridRecord, int, int)</code></nobr>
+</li>
+<li>
+<nobr><code>protected native com.smartgwt.client.widgets.Canvas getExpansionComponent(com.smartgwt.client.widgets.grid.ListGridRecord)</code></nobr>
+</li>
+<li>
+<nobr><code>public native com.smartgwt.client.data.DataSource getRelatedDataSource(com.smartgwt.client.widgets.grid.ListGridRecord)</code></nobr>
+</li>
+</ul>
+<h5>Method Changes:</h5>
+<blockquote>
+<p>
+<nobr><code><b>old:</b>protected native java.lang.String getGridSummary(com.smartgwt.client.widgets.grid.ListGridField)<br>
+<b>new:</b>protected native java.lang.Object getGridSummary(com.smartgwt.client.widgets.grid.ListGridField)</code></nobr>
+</p>
+</blockquote>
+<blockquote>
+<p>
+<nobr><code><b>old:</b>public native java.lang.Boolean willAcceptDrop()<br>
+<b>new:</b>public java.lang.Boolean willAcceptDrop()</code></nobr>
+</p>
+</blockquote>
 <h5>New Methods:</h5>
 <ul>
 <li>
 <nobr><code>public com.google.gwt.event.shared.HandlerRegistration addDrawAreaChangedHandler(com.smartgwt.client.widgets.grid.events.DrawAreaChangedHandler)</code></nobr>
 </li>
 <li>
-<nobr><code>public void addEmbeddedComponent(com.smartgwt.client.widgets.Canvas, com.smartgwt.client.widgets.grid.ListGridRecord)</code></nobr>
+<nobr><code>public native void addEmbeddedComponent(com.smartgwt.client.widgets.Canvas, com.smartgwt.client.widgets.grid.ListGridRecord)</code></nobr>
 </li>
 <li>
-<nobr><code>public void addEmbeddedComponent(com.smartgwt.client.widgets.Canvas, com.smartgwt.client.widgets.grid.ListGridRecord, int, int, java.lang.String)</code></nobr>
+<nobr><code>public native void addEmbeddedComponent(com.smartgwt.client.widgets.Canvas, com.smartgwt.client.widgets.grid.ListGridRecord, int, int, java.lang.String)</code></nobr>
 </li>
 <li>
 <nobr><code>public com.google.gwt.event.shared.HandlerRegistration addRecordCollapseHandler(com.smartgwt.client.widgets.grid.events.RecordCollapseHandler)</code></nobr>
@@ -416,13 +486,13 @@
 <nobr><code>public com.google.gwt.event.shared.HandlerRegistration addRecordExpandHandler(com.smartgwt.client.widgets.grid.events.RecordExpandHandler)</code></nobr>
 </li>
 <li>
-<nobr><code>public boolean canExpandRecord(com.smartgwt.client.data.Record, int)</code></nobr>
+<nobr><code>public native boolean canExpandRecord(com.smartgwt.client.data.Record, int)</code></nobr>
 </li>
 <li>
-<nobr><code>public void clearSort()</code></nobr>
+<nobr><code>public native void clearSort()</code></nobr>
 </li>
 <li>
-<nobr><code>protected com.smartgwt.client.widgets.Canvas createRecordComponent(com.smartgwt.client.data.Record, java.lang.Integer)</code></nobr>
+<nobr><code>protected native com.smartgwt.client.widgets.Canvas createRecordComponent(com.smartgwt.client.data.Record, java.lang.Integer)</code></nobr>
 </li>
 <li>
 <nobr><code>public java.lang.Boolean getAnimateRollOver()</code></nobr>
@@ -437,25 +507,31 @@
 <nobr><code>public com.smartgwt.client.widgets.Canvas getBackgroundComponent()</code></nobr>
 </li>
 <li>
+<nobr><code>protected native java.lang.String getBaseStyle(com.smartgwt.client.data.Record, int, int)</code></nobr>
+</li>
+<li>
 <nobr><code>public java.lang.String getBooleanPartialImage()</code></nobr>
 </li>
 <li>
 <nobr><code>public java.lang.Boolean getCanExpandMultipleRecords()</code></nobr>
 </li>
 <li>
+<nobr><code>protected native java.lang.String getCellCSSText(com.smartgwt.client.data.Record, int, int)</code></nobr>
+</li>
+<li>
 <nobr><code>public java.lang.String getCheckboxFieldPartialImage()</code></nobr>
 </li>
 <li>
-<nobr><code>public java.lang.Integer[] getDrawArea()</code></nobr>
+<nobr><code>public native java.lang.Integer[] getDrawArea()</code></nobr>
 </li>
 <li>
-<nobr><code>protected com.smartgwt.client.widgets.Canvas getExpansionComponent(com.smartgwt.client.data.Record)</code></nobr>
+<nobr><code>protected native com.smartgwt.client.widgets.Canvas getExpansionComponent(com.smartgwt.client.data.Record)</code></nobr>
 </li>
 <li>
-<nobr><code>public int getFieldWidth(java.lang.Number)</code></nobr>
+<nobr><code>public native int getFieldWidth(java.lang.Number)</code></nobr>
 </li>
 <li>
-<nobr><code>public int getFieldWidth(java.lang.String)</code></nobr>
+<nobr><code>public native int getFieldWidth(java.lang.String)</code></nobr>
 </li>
 <li>
 <nobr><code>public java.lang.String getGroupTitleField()</code></nobr>
@@ -485,16 +561,16 @@
 <nobr><code>public java.lang.String getRecordComponentPoolingMode()</code></nobr>
 </li>
 <li>
-<nobr><code>public com.smartgwt.client.data.DataSource getRelatedDataSource(com.smartgwt.client.data.Record)</code></nobr>
+<nobr><code>public native com.smartgwt.client.data.DataSource getRelatedDataSource(com.smartgwt.client.data.Record)</code></nobr>
 </li>
 <li>
 <nobr><code>public java.lang.String getRemoveFieldTitle()</code></nobr>
 </li>
 <li>
-<nobr><code>protected com.smartgwt.client.widgets.Canvas getRollOverCanvas(java.lang.Integer, java.lang.Integer)</code></nobr>
+<nobr><code>protected native com.smartgwt.client.widgets.Canvas getRollOverCanvas(java.lang.Integer, java.lang.Integer)</code></nobr>
 </li>
 <li>
-<nobr><code>protected com.smartgwt.client.widgets.Canvas getRollUnderCanvas(java.lang.Integer, java.lang.Integer)</code></nobr>
+<nobr><code>protected native com.smartgwt.client.widgets.Canvas getRollUnderCanvas(java.lang.Integer, java.lang.Integer)</code></nobr>
 </li>
 <li>
 <nobr><code>public int getRowNumberStart()</code></nobr>
@@ -530,16 +606,16 @@
 <nobr><code>public java.lang.Boolean getVirtualScrolling()</code></nobr>
 </li>
 <li>
-<nobr><code>public java.lang.Boolean isRowNumberField(com.smartgwt.client.widgets.grid.ListGridField)</code></nobr>
+<nobr><code>public native java.lang.Boolean isRowNumberField(com.smartgwt.client.widgets.grid.ListGridField)</code></nobr>
 </li>
 <li>
-<nobr><code>public void removeEmbeddedComponent(com.smartgwt.client.data.Record)</code></nobr>
+<nobr><code>public native void removeEmbeddedComponent(com.smartgwt.client.data.Record)</code></nobr>
 </li>
 <li>
-<nobr><code>public void removeEmbeddedComponent(com.smartgwt.client.data.Record, java.lang.Integer)</code></nobr>
+<nobr><code>public native void removeEmbeddedComponent(com.smartgwt.client.data.Record, java.lang.Integer)</code></nobr>
 </li>
 <li>
-<nobr><code>public void removeEmbeddedComponent(com.smartgwt.client.widgets.Canvas)</code></nobr>
+<nobr><code>public native void removeEmbeddedComponent(com.smartgwt.client.widgets.Canvas)</code></nobr>
 </li>
 <li>
 <nobr><code>public void setAnimateRollOver(java.lang.Boolean)</code></nobr>
@@ -635,10 +711,19 @@
 <nobr><code>public void setVirtualScrolling(java.lang.Boolean) throws java.lang.IllegalStateException</code></nobr>
 </li>
 <li>
-<nobr><code>public java.lang.Boolean showRecordComponent(com.smartgwt.client.widgets.grid.ListGridRecord)</code></nobr>
+<nobr><code>private native void setupDrawAreaChangedEvent()</code></nobr>
 </li>
 <li>
-<nobr><code>public com.smartgwt.client.widgets.Canvas updateRecordComponent(com.smartgwt.client.data.Record, java.lang.Integer, com.smartgwt.client.widgets.Canvas, boolean)</code></nobr>
+<nobr><code>private native void setupRecordCollapseEvent()</code></nobr>
+</li>
+<li>
+<nobr><code>private native void setupRecordExpandEvent()</code></nobr>
+</li>
+<li>
+<nobr><code>public native java.lang.Boolean showRecordComponent(com.smartgwt.client.widgets.grid.ListGridRecord)</code></nobr>
+</li>
+<li>
+<nobr><code>public native com.smartgwt.client.widgets.Canvas updateRecordComponent(com.smartgwt.client.data.Record, java.lang.Integer, com.smartgwt.client.widgets.Canvas, boolean)</code></nobr>
 </li>
 </ul>
 </blockquote>
@@ -701,7 +786,7 @@
 <h5>New Methods:</h5>
 <ul>
 <li>
-<nobr><code>public com.smartgwt.client.widgets.layout.SectionStack getSectionStack()</code></nobr>
+<nobr><code>public native com.smartgwt.client.widgets.layout.SectionStack getSectionStack()</code></nobr>
 </li>
 </ul>
 </blockquote>
@@ -712,7 +797,7 @@
 <h5>New Methods:</h5>
 <ul>
 <li>
-<nobr><code>public com.smartgwt.client.widgets.layout.SectionStack getSectionStack()</code></nobr>
+<nobr><code>public native com.smartgwt.client.widgets.layout.SectionStack getSectionStack()</code></nobr>
 </li>
 </ul>
 </blockquote>
@@ -726,7 +811,19 @@
 <nobr><code>public java.lang.Boolean getCanReorderSections()</code></nobr>
 </li>
 <li>
+<nobr><code>public java.lang.Boolean getUseGlobalSectionIDs()</code></nobr>
+</li>
+<li>
+<nobr><code>protected void onInit()</code></nobr>
+</li>
+<li>
 <nobr><code>public void setCanReorderSections(java.lang.Boolean) throws java.lang.IllegalStateException</code></nobr>
+</li>
+<li>
+<nobr><code>public void setUseGlobalSectionIDs(java.lang.Boolean) throws java.lang.IllegalStateException</code></nobr>
+</li>
+<li>
+<nobr><code>protected native void updateSectionJsObjects(com.google.gwt.core.client.JavaScriptObject)</code></nobr>
 </li>
 </ul>
 </blockquote>
@@ -836,6 +933,9 @@
 <li>
 <nobr><code>public void addSpacer(com.smartgwt.client.widgets.toolbar.ToolStripSpacer)</code></nobr>
 </li>
+<li>
+<nobr><code>private static native void applyWidth(com.google.gwt.core.client.JavaScriptObject, com.google.gwt.core.client.JavaScriptObject)</code></nobr>
+</li>
 </ul>
 </blockquote>
 <h4>
@@ -859,6 +959,14 @@
 <h4>
 <code>com.smartgwt.client.widgets.tree.TreeGrid</code>
 </h4>
+<blockquote>
+<h5>Method Changes:</h5>
+<blockquote>
+<p>
+<nobr><code><b>old:</b>public native java.lang.Boolean willAcceptDrop()<br>
+<b>new:</b>public java.lang.Boolean willAcceptDrop()</code></nobr>
+</p>
+</blockquote>
 <h5>New Methods:</h5>
 <ul>
 <li>
@@ -902,6 +1010,15 @@
 </ul>
 </blockquote>
 </blockquote>
+<h3>New Packages:</h3>
+<ul>
+<li>
+<nobr><code>com.smartgwt.client.docs.serverds</code></nobr>
+</li>
+<li>
+<nobr><code>com.smartgwt.client.widgets.plugins</code></nobr>
+</li>
+</ul>
 <h3>New Interfaces:</h3>
 <ul>
 <li>
@@ -917,10 +1034,19 @@
 <nobr><code>com.smartgwt.client.docs.FeaturesCustomPersistence</code></nobr>
 </li>
 <li>
+<nobr><code>com.smartgwt.client.docs.IscInstall</code></nobr>
+</li>
+<li>
+<nobr><code>com.smartgwt.client.docs.JavaModuleDependencies</code></nobr>
+</li>
+<li>
 <nobr><code>com.smartgwt.client.docs.RowNumberField</code></nobr>
 </li>
 <li>
 <nobr><code>com.smartgwt.client.docs.ServletDetails</code></nobr>
+</li>
+<li>
+<nobr><code>com.smartgwt.client.docs.StringMethods</code></nobr>
 </li>
 <li>
 <nobr><code>com.smartgwt.client.docs.VelocitySupport</code></nobr>
@@ -962,6 +1088,9 @@
 <h3>New Classes:</h3>
 <ul>
 <li>
+<nobr><code>com.smartgwt.client.core.JsObject$1</code></nobr>
+</li>
+<li>
 <nobr><code>com.smartgwt.client.types.FooterControls</code></nobr>
 </li>
 <li>
@@ -969,6 +1098,9 @@
 </li>
 <li>
 <nobr><code>com.smartgwt.client.util.PrintProperties</code></nobr>
+</li>
+<li>
+<nobr><code>com.smartgwt.client.widgets.Canvas$1</code></nobr>
 </li>
 <li>
 <nobr><code>com.smartgwt.client.widgets.PrintCanvas</code></nobr>
@@ -989,10 +1121,13 @@
 <nobr><code>com.smartgwt.client.widgets.grid.events.RecordExpandEvent</code></nobr>
 </li>
 <li>
-<nobr><code>com.smartgwt.client.widgets.toolbar.ToolStripButton</code></nobr>
+<nobr><code>com.smartgwt.client.widgets.layout.PortalLayout</code></nobr>
 </li>
 <li>
-<nobr><code>com.smartgwt.client.widgets.toolbar.ToolStripMenuButton</code></nobr>
+<nobr><code>com.smartgwt.client.widgets.layout.Portlet</code></nobr>
+</li>
+<li>
+<nobr><code>com.smartgwt.client.widgets.toolbar.ToolStripButton</code></nobr>
 </li>
 <li>
 <nobr><code>com.smartgwt.client.widgets.toolbar.ToolStripSpacer</code></nobr>
