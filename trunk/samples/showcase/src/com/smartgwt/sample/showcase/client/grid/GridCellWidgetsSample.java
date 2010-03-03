@@ -33,8 +33,8 @@ import com.smartgwt.sample.showcase.client.ShowcasePanel;
 import com.smartgwt.sample.showcase.client.data.CountryData;
 
 public class GridCellWidgetsSample extends ShowcasePanel {
-    private static final String DESCRIPTION = "<p>This example illustrates embedding arbitrary widgets in ListGrid cells. Smart GWT users widget pooling to " +
-            "maximize efficiency however for better performance consider using one or more fields of type ListGridFieldType.ICON</p>."; 
+    private static final String DESCRIPTION = "<p>This example illustrates embedding arbitrary widgets in ListGrid cells. Notice how reordering the column with widgets " +
+            "works as any other column. Smart GWT users widget pooling to maximize efficiency however for better performance consider using one or more fields of type ListGridFieldType.ICON</p>."; 
 
 
     public static class Factory implements PanelFactory {
@@ -101,8 +101,7 @@ public class GridCellWidgetsSample extends ShowcasePanel {
                 } else if (fieldName.equals("buttonField")) {
                     IButton button = new IButton();
                     button.setHeight(18);
-                    button.setWidth(65);
-                    button.setSnapTo("C");
+                    button.setWidth(65);                    
                     button.setIcon("flags/16/" + record.getAttribute("countryCode") + ".png");
                     button.setTitle("Info");
                     button.addClickHandler(new ClickHandler() {
@@ -136,10 +135,8 @@ public class GridCellWidgetsSample extends ShowcasePanel {
 
         ListGridField buttonField = new ListGridField("buttonField", "Info");
         buttonField.setAlign(Alignment.CENTER);
-        buttonField.setCanReorder(false);
         
         ListGridField iconField = new ListGridField("iconField", "Comments/Stats");
-        iconField.setCanReorder(false);
         iconField.setWidth(100);
 
         countryGrid.setFields(countryCodeField, nameField, capitalField, continentField, buttonField, iconField);

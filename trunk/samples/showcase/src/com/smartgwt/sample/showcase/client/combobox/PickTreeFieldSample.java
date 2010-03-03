@@ -2,7 +2,7 @@ package com.smartgwt.sample.showcase.client.combobox;
 
 import com.smartgwt.client.widgets.Canvas;
 import com.smartgwt.client.widgets.form.DynamicForm;
-import com.smartgwt.client.widgets.form.fields.PickTreeItem;
+import com.smartgwt.client.widgets.form.fields.IPickTreeItem;
 import com.smartgwt.client.widgets.tree.Tree;
 import com.smartgwt.client.widgets.tree.TreeNode;
 import com.smartgwt.sample.showcase.client.PanelFactory;
@@ -57,14 +57,14 @@ public class PickTreeFieldSample extends ShowcasePanel {
         Tree tree = new Tree();
         tree.setRoot(departmentRoot);
 
-        PickTreeItem departmentItem = new PickTreeItem();
+        IPickTreeItem departmentItem = new IPickTreeItem();
         departmentItem.setTitle("Department");
         departmentItem.setValueField("name");
         departmentItem.setValueTree(tree);
 
         SupplyCategoryXmlDS dataSource = SupplyCategoryXmlDS.getInstance();
 
-        PickTreeItem categoryItem = new PickTreeItem();
+        IPickTreeItem categoryItem = new IPickTreeItem();
         categoryItem.setTitle("Category");
 
         categoryItem.setDataSource(dataSource);

@@ -64,6 +64,7 @@ public class SimplePortalSample extends ShowcasePanel {
         }
 
         VLayout vLayout = new VLayout(15);
+        vLayout.setMargin(10);
 
         final DynamicForm form = new DynamicForm();
         form.setAutoWidth();
