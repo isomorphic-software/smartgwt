@@ -21,14 +21,6 @@
 
   <fail unless="gwt.sdk" message="You must set the GWT_HOME environment variable to point to your GWT SDK"/>
 
-  <!-- Mac GWT requires -XstartOnFirstThread -->	 
-  <condition property="mac">
-  	<os name="Mac OS X"/>
-  </condition>	
-  <condition property="macJvmArgs" value="-XstartOnFirstThread" else="-Dgwt.dummy.arg1=">
-   <isset property="mac"/>	
-  </condition>
-
   <path id="project.class.path">
     <pathelement location="war/WEB-INF/classes"/>
     <pathelement location="${gwt.sdk}/gwt-user.jar"/>
@@ -67,7 +59,6 @@
       </classpath>
       <!-- add jvmarg -Xss16M or similar if you see a StackOverflowError -->
       <jvmarg value="-Xmx600M"/>
-      <jvmarg value="${macJvmArgs}"/>
       <!-- Additional arguments like -style PRETTY or -logLevel DEBUG -->
       <arg value="com.smartgwt.sample.showcase.Showcase"/>
     </java>
@@ -80,7 +71,6 @@
         <path refid="project.class.path"/>
       </classpath>
       <jvmarg value="-Xmx600M"/>
-      <jvmarg value="${macJvmArgs}"/>
       <arg value="-startupUrl"/>
       <arg value="index.html"/>
       <!-- Additional arguments like -style PRETTY or -logLevel DEBUG -->
