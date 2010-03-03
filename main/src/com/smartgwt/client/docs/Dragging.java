@@ -3,17 +3,13 @@ package com.smartgwt.client.docs;
 
 /**
  * @see com.smartgwt.client.widgets.grid.ListGrid#willAcceptDrop
- * @see com.smartgwt.client.widgets.grid.ListGrid#transferSelectedData
  * @see com.smartgwt.client.widgets.grid.ListGrid#getDragData
  * @see com.smartgwt.client.widgets.tree.TreeGrid#transferSelectedData
  * @see com.smartgwt.client.widgets.tile.TileLayout#getDragData
  * @see com.smartgwt.client.widgets.tile.TileGrid#getDragData
- * @see com.smartgwt.client.widgets.tile.TileGrid#transferSelectedData
- * @see com.smartgwt.client.widgets.Canvas#shouldDragScroll
  * @see com.smartgwt.client.widgets.DataBoundComponent#dragComplete
  * @see com.smartgwt.client.widgets.DataBoundComponent#dropComplete
  * @see com.smartgwt.client.widgets.DataBoundComponent#getDragData
- * @see com.smartgwt.client.widgets.DataBoundComponent#transferSelectedData
  * @see com.smartgwt.client.widgets.grid.ListGrid#getCanDragRecordsOut
  * @see com.smartgwt.client.widgets.grid.ListGrid#getCanAcceptDroppedRecords
  * @see com.smartgwt.client.widgets.grid.ListGrid#getCanReorderRecords
@@ -31,7 +27,6 @@ package com.smartgwt.client.docs;
  * @see com.smartgwt.client.widgets.Window#getCanDragReposition
  * @see com.smartgwt.client.widgets.Window#getCanDragResize
  * @see com.smartgwt.client.widgets.Window#getShowResizer
- * @see com.smartgwt.client..ReorderPosition
  */
 public interface Dragging {
 }

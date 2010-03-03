@@ -2,13 +2,18 @@
 package com.smartgwt.client.docs;
 
 /**
+ * <h3>Drag and Drop</h3>
  * Dragging objects and dropping them onto other objects
+ * @see com.smartgwt.client.widgets.grid.ListGrid#transferSelectedData
+ * @see com.smartgwt.client.widgets.tile.TileGrid#transferSelectedData
  * @see com.smartgwt.client.widgets.Canvas#setDragTracker
+ * @see com.smartgwt.client.widgets.Canvas#shouldDragScroll
  * @see com.smartgwt.client.widgets.Canvas#willAcceptDrop
  * @see com.smartgwt.client.widgets.Canvas#getHSnapPosition
  * @see com.smartgwt.client.widgets.Canvas#getVSnapPosition
  * @see com.smartgwt.client.widgets.Canvas#shouldSnapOnDrop
  * @see com.smartgwt.client.widgets.DataBoundComponent#transferRecords
+ * @see com.smartgwt.client.widgets.DataBoundComponent#transferSelectedData
  * @see com.smartgwt.client.util.EventHandler#getDragRect
  * @see com.smartgwt.client.widgets.Canvas#getEventEdge
  * @see com.smartgwt.client.grid.GridRenderer#getSnapToCells
@@ -52,6 +57,7 @@ package com.smartgwt.client.docs;
  * @see com.smartgwt.client.widgets.layout.Layout#getShowDragPlaceHolder
  * @see com.smartgwt.client.widgets.layout.Layout#getPlaceHolderProperties
  * @see com.smartgwt.client.widgets.layout.Layout#getPlaceHolderDefaults
+ * @see com.smartgwt.client..ReorderPosition
  * @see com.smartgwt.client.types.DragAppearance
  * @see com.smartgwt.client.types.DragIntersectStyle
  */
