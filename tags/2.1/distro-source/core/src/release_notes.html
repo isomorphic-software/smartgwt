@@ -1,0 +1,289 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"><head>
+      <meta http-equiv="content-type" content="text/html; charset=utf-8">
+      <title>Smart GWT Release Notes</title>
+
+      <style>
+         body {
+            background-color: white;
+            color: #333333;
+            font-family: arial,helvetica,sans-serif;
+            font-size: 12px;
+            margin: 20px;
+         }
+
+         li {
+            margin-bottom: 0.5em;
+         }
+
+         li div {
+            margin-top: 0.2em;
+         }
+
+         code {
+            font-size: medium;
+         }
+      </style></head>
+
+   <body>
+      <h1>Smart GWT Release Notes</h1>
+      <ul>
+            <li><a href="#2_1">2.1</a></li>
+            <li><a href="#2_0">2.0</a></li>
+            <li><a href="#1_3">1.3</a></li>
+            <li><a href="#1_2">1.2</a></li>
+            <li><a href="#1_1">1.1</a></li>
+            <li><a href="#1_0_b2">1.0 b2</a></li>
+      </ul>
+      <hr/>
+
+    <a name="2_1"></a>
+      <h2>Release Notes for Smart GWT 2.1</h2>
+        <ul>
+            <li><div><b>GWT 2.0.3 compatible</b></div></li>
+            <li><div><b>New Graphite theme</b></div></li>
+            <li>
+                <div><b>ListGrid enhancements</b>
+                    <ul>
+                        <li>Record RollOver controls</li>
+                        <li>RollUnder Canvas support</li>
+                        <li>Background components</li>
+                        <li>Support for arbitrary widgets in cells</li>
+                        <li>Ability to display row numbers</li>
+                        <li>setMaxExpandedRecords(..) to control max. number of simultaneous expanded records</li>
+                        <li>ListGridField.setCanDragResize(), setCanReorder(), setAutoFreeze(), setShouldPrint() API's</li>
+                        <li>Checkbox selection with grouping</li>
+                        <li>MultiColumn sort enhancements</li>
+                    </ul>
+                </div>
+            </li>
+            <li>
+                <div><b>TreeGrid enhancements</b>
+                    <ul>
+                        <li>Support for Checkbox tree with Cascade selection</li>
+                        <li>Support for tri-state checkboxes (selected, unselected, partial)</li>
+                        <li>Performance enhancements</li>
+                    </ul>
+                </div>
+            </li>
+            <li>
+                <div><b>ToolStrip enhancements</b>
+                    <ul>
+                        <li>Significant improvement in appearance</li>
+                        <li>Added ToolStripButton and ToolStripMenuButton classes</li>
+                        <li>Vertical ToolStrips</li>
+                    </ul>
+                </div>
+            </li>
+            <li>
+                <div><b>Print support enhancements</b>
+                    <ul>
+                        <li>ability to control which components display in print view</li>
+                        <li>print styling on a per-component basis</li>
+                        <li>support print window customizations</li>
+                        <li>API for the number of records displayed in print view (can be different from UI view)</li>
+                    </ul>
+                </div>
+            </li>
+            <li>
+                <div><b>Browser Plugins as widgets</b>
+                    <ul>
+                        <li>Flashlet widget</li>
+                        <li>Applet widget</li>
+                        <li>ActiveXControl widget</li>
+                        <li>SVG widget</li>
+                    </ul>
+                </div>
+            </li>
+            <li>
+                <div><b>Other Widget enhancements</b>
+                    <ul>
+                        <li>Window : support for footer controls</li>
+                        <li>Calendar : control dragability of events</li>
+                        <li>New IMenuButton &amp; IPickTreeItem classes with improved appearance</li>
+                        <li>AdvancedCriteria enhancements and support for programmatic construction</li>
+                        <li>SectionStack drag reordering support</li>
+                        <li>FilterBuilder support for working with very large number of fields</li>
+                        <li>Convenience FormItem.setRequiredMessage(..) API</li>
+                        <li>TileGrids now automatically relayout if a tile resizes</li>
+                        <li>Added support for grouping for formula and summary fields</li>
+                    </ul>
+                </div>
+            </li>
+            <li>
+                <div><b>Performance enhancements</b>
+                    <ul>
+                        <li>Snappier TreeGrid expand / collapse</li>
+                        <li>Faster Canvas resize</li>
+                        <li>Faster Tab close (deferred destroy)</li>
+                    </ul>
+                </div>
+            </li>
+            <li><div>Logging of warnings and error to the GWT Developer Console in addition to the Smart GWT Dev. Console.</div></li>
+            <li><div>Improved exception handling and reporting.</div></li>
+            <li><div>i18n enhancements</div></li>
+            <li><div><a href="http://www.smartclient.com/smartgwt/showcase/" target="_blank">Showcase</a> enhancements and several new samples under the "New Samples" side nav</div></li>
+            <li><div>27 <a href="http://code.google.com/p/smartgwt/issues/list?can=1&q=label:SmartGWT-2.1">additional enhancements and bug fixes</a> that were logged in tracker</div></li>
+        </ul>
+
+    <a name="2_0"></a>
+      <h2>Release Notes for Smart GWT 2.0</h2>
+        <div>- GWT 2.0 support</div>
+        <div>- New Enterprise Blue theme, and significant improvements to Enterprise Gray Skin. Other skins deprecated and will have replacements in a future release.</div>
+        <div>- Theme specific collection of standard Window Icons, Picker Icons and Transfer Button icons as part of the core library.</div>
+        <div>- MS Excel like MultiColumn sort capabilities for ListGrid</div>
+        <div>- Support for ListGrid row expansions with in built expansion modes like details, editable form, related records as well
+            as allowing the user to display a custom widget via the override point ListGrid.getExpansionComponent(record)</div>
+        <div>- Exposed getGridSummary(field) as an override point. This allows you to return an entirely custom summary row value for any field</div>
+        <div>- Added the following methods to FormItem: setValueFormatter , setEditorValueFormatter and setEditorValueParser. These allow the user to customize the
+            display and parsing of input in a FormItem.</div>
+        <div>- Enhancements to DetailViewer and TileGrid so better support working interchangeably with the Records from any other DataBoundComponent</div>
+        <div>- Disabled state of all components fully supported. Missing media added.</div>
+        <div>- Various enhancements to support IE8 and Safari strict mode</div>
+        <div>- Support for "center" Layout alignment setting.</div>
+        <div>- Added DateTimeItem form field type.</div>
+        <div>- Support for masking DateItem, DateTimeItem and TimeItem input fields.</div>
+        <div>- Added Canvas.showClickMask(..) to do an 'auto-dismiss on outside click' type behavior on a component</div>
+        <div>- Fixed overflow issue with ListGrid.addData() under certain circumstances</div>
+        <div>- Fixed XSD support regression on Chrome / Safari</div>
+        <div>- Fixed "Too much recursion" issue with ValuesManager</div>
+        <div>- Fixed WSDL regression</div>
+        <div>- Javadoc improvements to link to GWT and JDK Javadoc APIs respectively</div>
+        <div>- Numerous new samples and improvements to the Showcase demo main page</div>
+        <div>- <a href="http://code.google.com/p/smartgwt/issues/list?can=1&q=label%3ASmartGWT-2.0">Various</a> additional enhancements and bug fixes that were logged in tracker</div>
+        <div>- See the detailed <a href="api-changes.html">API Changes</a> document</div>
+      <hr/>
+      <a name="1_3"></a>
+      <h2>Release Notes for Smart GWT 1.3</h2>
+        <p>In this release the SmartGwt modules have been slightly refactored so that by default the compile output does not include debug sources, unused resources, developer tools etc.
+            Some users were getting the wrong impression that the size of the compiled output was the size of their application. Most users are probably using either
+            <b>com.smartgwt.SmartGwt</b> or <b>com.smartgwt.SmartGwtNoScript</b> and will be unaffected by this refactoring. You will only notice that the compile output is a lot
+            smaller as it does not include the debug / readable source js files, and the developer console files. The most important change to keep in mind is that in order to use the Developer Console
+            (ie SC.showConsole() ), you will now need to inherit the following module : <b>&lt;inherits name="com.smartgwt.tools.SmartGwtTools"/&gt;</b></p>
+
+            <p>Users that happen be using <b>com.smartgwt.SmartGwtDebug</b> will need to inherit <b>com.smartgwt.debug.SmartGwtDebug</b> instead.</p>
+        <hr/>
+        <div>- Grid Summary support from group and columns</div>
+        <div>- Masking support for form text fields</div>
+        <div>- Support for user-defined reusable SimpleTypes for use in DataSources (eg ZipCode type)</div>
+        <div>- In-field hints support for SelectItem, ComboBoxItem and TextAreaItem</div>
+        <div>- Support for Finnish locale and other i18n enhancements</div>
+        <div>- TextAreaItem.getSelectedText() support</div>
+        <div>- Improved support for use of Smart GWT and MVP pattern</div>
+        <div>- FilterBuilder fixes</div>
+        <div>- RPCManager enhancements</div>
+        <div>- Ability to control order of month day and year selector in DateItem</div>
+        <div>- <a href="http://code.google.com/p/smartgwt/issues/list?can=1&q=label%3ASmartGWT-1.3">Various</a> additional enhancements and bug fixes that were logged in tracker</div>
+        <div>- New examples including a Grid Summary example in the Smart GWT Showcase (see "New Samples" side nav item in the Showcase)</div>
+      <hr/>
+
+      <a name="1_2"></a>
+      <h2>Release Notes for Smart GWT 1.2</h2>
+        <div>- Significant improvement in integration with core GWT widgets</div>
+        <div>- Hosted mode performance improvements</div>
+        <div>- GWT 1.7 support</div>
+        <div>- Updated Showcase sample to new GWT project structure</div>
+        <div>- Fully implemented the ResultSet API</div>
+        <div>- ListGrid performance enhancements</div>
+        <div>- Full support for Safari 4.0</div>
+        <div>- I18n enhancements.</div>
+        <div>- Support for Grid editing with all editors shown</div>
+        <div>- Auto-loading of dependent XML schema for loadWSDL() and loadXMLSchema()</div>
+        <div>- Extended WebService APIs to allow simplified input data and allow setting SOAP headers</div>
+        <div>- Numerous enhancements. See the detailed <a href="api-changes.html">API Changes</a> document</div>
+        <div>- enhancements to RPC Tab in Developer Console (shows component that initiated request, if applicable)</div>
+        <div>- <a href="http://code.google.com/p/smartgwt/issues/list?can=1&q=label%3ASmartGWT-1.2">Around 35</a> additional enhancements and bug fixes that were logged in tracker</div>
+        <div>- New examples including a mini-app in the Smart GWT Showcase (see "New Samples" side nav item in the Showcase)</div>
+
+      <hr/>
+      <a name="1_1"></a>
+      <h2>Release Notes for Smart GWT 1.1</h2>
+        <div>- <b>Unified DataBoundComponent</b> interface which is implemented by DynamicForm, ListGrid, TreeGrid, Menu, ColumnTree, TileGrid, DetailViewer and Calendar.</div>
+        <div>- Consistent representation of a Record which can be used by any DataBoundComponent</div>
+        <div>- Support for <b>GWT-RPC DataSource</b> with DataBoundComponents</div>
+        <div>- Various component and skin <b>performance improvements</b></div>
+        <div>- <b>Formula and Summary fields</b>: built-in wizards for end users to define formula fields that can compute values using other fields, or summary fields
+            that can combine other fields with intervening / surrounding text. Available in all DataBoundComponents, easy to persist as preferences</div>
+        <div>- <b>I18n support</b> with resource bundles from 14 locales</div>
+        <div>- Significant <b>improvements to Javadocs</b> with tons of documentation on various concepts. (over 30MB on disk)</div>
+        <div>- API's to save and restore the display and selection state of various components to/from the server</div>
+        <div>- <b>Automatic databound dragging</b> behaviors: grids and trees will now inspect data relations declared in DataSources and automatically “do the right thing” for a databound drag</div>
+        <div>- Numerous enhancements. See the detailed <a href="api-changes.html">API Changes</a> document</div>
+        <div>- <a href="http://code.google.com/p/smartgwt/issues/list?can=1&q=label%3ASmartGWT-1.0b3">Over 50</a> additional enhancements and bug fixes that were logged in tracker</div>
+        <div>- Several new events and extension points on various components to allow advanced usage</div>
+        <div>- A helloworld-1.6 starter project for Smart GWT with GWT 1.6</div>
+        <div>- Several new examples in the Smart GWT Showcase (see "New Samples" side nav item in the Showcase)</div>
+
+      <h3>Key API's added</h3>
+
+      <h4>DateUtil</h4>
+        <div>- Ability to globally set the Date input and rendered formats across the application</div>
+
+      <h4>DataBoundComponent</h4>
+        <div>- ability to select / deselect records, fetch / filter data and carry out various other operations on any DataBoundComponent</div>
+
+      <h4>DataSource and DataSourceField</h4>
+        <div>- ability to specify custom field value extractor logic for a given DataSourceField</div>
+        <div>- API's to control http caching and result batch size</div>
+        <div>- DataSourceField.setCanSortClientOnly</div>
+
+       <h4>Window</h4>
+        <div>- listeners for minimize, maximize, restore and close</div>
+
+        <h4>Calendar</h4>
+        <div>- support for customizing event edit dialog fields</div>
+        <div>- event remove listener</div>
+
+      <h4>Forms</h4>
+        <div>- convenience constructors for various FormItems</div>
+        <div>- support for customizing form field and title tooltips</div>
+        <div>- TextItem : support for character casing and entry restrictions (regexp based)</div>
+        <div>- TextItem : support for hints displayed in-field</div>
+        <div>- ComboBoxItem : fetchDelay setting</div>
+        <div>- AutoFitTextAreaItem: autofits to contained text as the user types</div>
+
+       <h4>Column Tree (Miller Columns)</h4>
+        <div>- added node selected listener</div>
+
+        <h4>ListGrid</h4>
+            <div>- Grouping modes: built-in and custom grouping modes, such as the ability to group a date column by week, day, month or year</div>
+            <div>- added header click listener</div>
+            <div>- added record drop listener</div>
+            <div>- ability to customize grid groupings by record values and also group title</div>
+            <div>- support for adding custom formula and summary fields on the fly</div>
+            <div>- ability to register custom handler to control visibility of a ListGridField</div>
+            <div>- added ListGridField.setCanFreeze, ListGridField.setCanSort</div>
+
+        <h4>SectionStack (Accordion)</h4>
+            <div>- added section header click event</div>
+
+        <h4>TreeGrid</h4>
+            <div>- added folder drop listener</div>
+            <div>- ability to override getIcon() / getNodeTitle() to allow users to have custom node icon / title logic</div>
+      <hr/>
+
+      <a name="1_0_b2"></a>
+      <h2>Release Notes for Smart GWT 1.0 b2</h2>
+        <div>- GWT 1.6 M1 and M2 support. GWT 1.5.3 continues to be fully supported.</div>
+        <div>- New lightweight <b>Enterprise Gray</b> skin</div>
+        <div>- Performance improvements</div>
+        <div>- various API enhancements and bug fixes</div>
+        <div>- complete support for WebServices (WSDL)</div>
+        <div>- Additional Developer Tools (Inspect DOM and monitor RPC calls from hosted mode)</div>
+        <div>- <b>Portal</b> support and samples</div>
+        <div>- HTML based <b>Print Preview</b> support. No longer requires JSP.</div>
+        <div>- Support for auto-arranging and overlapping <b>Calendar</b> events</div>
+        <div>- Support for checkbox selection for ListGrids</div>
+        <div>- improved support for users to wire DataSource's with GWT-RPC calls</div>
+        <div>- Improved javadocs</div>
+        <div>- Separated additional skins into a smartgwt-skins.jar</div>
+        <div>- Chrome, Firefox 3.1, and OSX hosted mode support</div>
+
+      <hr/>
+      <a name="1_0_b1"></a>
+      <h2>Release Notes for Smart GWT 1.0 b1</h2>
+
+      <p>Initial Release</p>
+        <div><b>GWT 1.5.3</b> (or greater) required</div>
+   </body></html>
+
