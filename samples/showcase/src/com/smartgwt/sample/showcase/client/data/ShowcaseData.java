@@ -103,6 +103,7 @@ public class ShowcaseData {
                     new ExplorerTreeNode("Featured Samples", "featured-category", "root", "silk/house.png", null, true, idSuffix),
                     new ExplorerTreeNode("Demo Application", "featured-complete-app", "featured-category", "silk/layout_content.png", new MiniAppSample.Factory(), true, idSuffix),
                     new ExplorerTreeNode("Smart GWT MVC", "featured-smartgwt-mvc", "featured-category", "silk/arrow_join.png", new TreeEditingSample.Factory(), true, idSuffix),
+                    new ExplorerTreeNode("Grid Cell Widgets", "featured-grid-cell-widgets", "featured-category", null, new GridCellWidgetsSample.Factory(), true, idSuffix),
                     new ExplorerTreeNode("Miller Columns", "featured-miller-columns", "featured-category", "silk/ipod.png", new MillerColumnsSample.Factory(), true, idSuffix),
                     new ExplorerTreeNode("Nested Grid", "featured-nested-grid", "featured-category", "crystal/16/mimetypes/widget_doc.png", new GridRowExpansionRelatedRecordsSample.Factory(), true, idSuffix),
                     new ExplorerTreeNode("Tile Sort &amp; Filtering", "featured-tile-filtering", "featured-category", "silk/application_view_tile.png", new FilterSortTilingSample.Factory(), true, idSuffix),
@@ -128,14 +129,16 @@ public class ShowcaseData {
                     new ExplorerTreeNode("Formula &amp; Summary Builder", "formula-sumamry-builder-featured-category", "featured-category", "crystal/oo/sc_insertformula.png", new FormulaSummaryBuilderSample.Factory(), true, idSuffix),
                     new ExplorerTreeNode("Grid Summaries", "grid-summaries-featured-category", "featured-category", "crystal/16/apps/tooloptions.png", new GridSummariesSample.Factory(), true, idSuffix),
 
-                    new ExplorerTreeNode("New Samples", "new-category", "root", "crystal/16/actions/irc_online.png", null, true, idSuffix),
+                    new ExplorerTreeNode("New Samples", "new-category", "root", "silk/new.png", null, true, idSuffix),
                     new ExplorerTreeNode("Checkbox Tree", "tree-checkbox-new-category", "new-category", null, new CheckboxTreeSample.Factory(), true, idSuffix),
-                    new ExplorerTreeNode("RollOver Controls", "grid-appearance-rollover-controls-new-category", "new-category", null, new RollOverControlsSample.Factory(), true, idSuffix),
                     new ExplorerTreeNode("Grid Cell Widgets", "grid-cell-widgets-new-category", "new-category", null, new GridCellWidgetsSample.Factory(), true, idSuffix),
+                    new ExplorerTreeNode("RollOver Controls", "grid-appearance-rollover-controls-new-category", "new-category", null, new RollOverControlsSample.Factory(), true, idSuffix),
                     new ExplorerTreeNode("ToolStrip", "toolstrip-new-category", "new-category", null, new ToolStripSample.Factory(), true, idSuffix),
                     new ExplorerTreeNode("ToolStrip (Vertical)", "toolstrip-vertical-new-category", "new-category", null, new ToolStripVerticalSample.Factory(), true, idSuffix),
                     new ExplorerTreeNode("Big Filter", "grid-big-filter-new-category", "new-category", null, new GridBigFilterSample.Factory(), true, idSuffix),
                     new ExplorerTreeNode("Animated Selection", "grid-appearance-animated-selection-new-category", "new-category", null, new AnimatedSelectionSample.Factory(), true, idSuffix),
+                    new ExplorerTreeNode("Sections Drag Reroder", "sections-drag-reorder-new-category", "new-category", null, new SectionsReorderSample.Factory(), true, idSuffix),
+                    new ExplorerTreeNode("Row Numbering", "grid-row-numbering-new-category", "new-category", null, new RowNumberingSample.Factory(), true, idSuffix),
 
                     new CommandTreeNode("Enterprise Showcase", "smartgwtee-category", "root", "pieces/16/cube_yellow.png", new com.smartgwt.sample.showcase.client.SmartGwtEECommand(), true, idSuffix),
 
@@ -172,6 +175,7 @@ public class ShowcaseData {
                     new ExplorerTreeNode("Empty Grid", "grid-appearance-empty-grid", "grid-appearance-category", null, new EmptyGridSample.Factory(), true, idSuffix),
                     new ExplorerTreeNode("Custom Header Context Menu", "grid-appearance-custom-menu", "grid-appearance-category", null, new CustomHeaderMenuSample.Factory(), true, idSuffix),
                     new ExplorerTreeNode("Grid Top Header", "grid-top-header", "grid-appearance-category", null, new GridTopHeaderSample.Factory(), true, idSuffix),
+                    new ExplorerTreeNode("Row Numbering", "grid-row-numbering", "grid-appearance-category", null, new RowNumberingSample.Factory(), true, idSuffix),
 
                     new ExplorerTreeNode("Interaction", "grid-interaction-category", "grid-category", "pieces/16/cube_blue.png", null, true, idSuffix),
                     new ExplorerTreeNode("Rollover", "grid-interaction-rollover", "grid-interaction-category", null, new RolloverSample.Factory(), true, idSuffix),
@@ -403,6 +407,7 @@ public class ShowcaseData {
                     new ExplorerTreeNode("Custom Controls", "layout-sections-custom-controls", "layout-sections-category", null, new SectionsCustomControlsSample.Factory(), true, idSuffix),
                     new ExplorerTreeNode("Add & Remove", "layout-sections-add-remove", "layout-sections-category", null, new SectionsAddRemoveSample.Factory(), true, idSuffix),
                     new ExplorerTreeNode("Show & Hide", "layout-sections-show-hide", "layout-sections-category", null, new SectionsShowHideSample.Factory(), true, idSuffix),
+                    new ExplorerTreeNode("Drag Reroder", "layout-sections-drag-reorder", "layout-sections-category", null, new SectionsReorderSample.Factory(), true, idSuffix),
 
                     new ExplorerTreeNode("Buttons", "buttons-category", "root", "silk/brick.png", null, true, idSuffix),
                     new ExplorerTreeNode("Appearance", "buttons-category-appearance", "buttons-category", null, new ButtonAppearanceSample.Factory(), true, idSuffix),
@@ -418,9 +423,9 @@ public class ShowcaseData {
                     //new ExplorerTreeNode("Custom Columns", "menus-category-customcolumns", "menus-category", null, new MenuCustomColumnsSample.Factory(), true, idSuffix),
                     new ExplorerTreeNode("Tree Binding", "menus-category-treebinding", "menus-category", null, new MenuTreeBindingSample.Factory(), true, idSuffix),
 
-                    new ExplorerTreeNode("ToolStrip", "toolstrip-category", "root",null, null, true, idSuffix),
+                    new ExplorerTreeNode("ToolStrip", "toolstrip-category", "root", "silk/application_view_list.png", null, true, idSuffix),
                     new ExplorerTreeNode("ToolStrip", "toolstrip", "toolstrip-category", null, new ToolStripSample.Factory(), true, idSuffix),
-                    new ExplorerTreeNode("ToolStrip", "toolstrip-vertical", "toolstrip-category", null, new ToolStripVerticalSample.Factory(), true, idSuffix),
+                    new ExplorerTreeNode("ToolStrip (Vertical)", "toolstrip-vertical", "toolstrip-category", null, new ToolStripVerticalSample.Factory(), true, idSuffix),
 
                     new ExplorerTreeNode("Other Controls", "controls-category", "root", "silk/timeline_marker.png", null, true, idSuffix),
                     new ExplorerTreeNode("Dialogs", "controls-category-dialogs", "controls-category", null, new DialogsSample.Factory(), true, idSuffix),

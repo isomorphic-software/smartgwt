@@ -3,7 +3,7 @@ package com.smartgwt.sample.showcase.client.tree;
 import com.smartgwt.client.data.Criteria;
 import com.smartgwt.client.widgets.Canvas;
 import com.smartgwt.client.widgets.form.SearchForm;
-import com.smartgwt.client.widgets.form.fields.PickTreeItem;
+import com.smartgwt.client.widgets.form.fields.IPickTreeItem;
 import com.smartgwt.client.widgets.form.fields.events.ChangedEvent;
 import com.smartgwt.client.widgets.form.fields.events.ChangedHandler;
 import com.smartgwt.client.widgets.grid.ListGrid;
@@ -71,7 +71,7 @@ public class TreeEditingSample extends ShowcasePanel {
 		employeeGrid.setCanEdit(true);
 		employeeGrid.setFields(new TreeGridField("Name", 150), new TreeGridField("Job", 150), new TreeGridField("Salary"));
 
-		PickTreeItem searchPickTree = new PickTreeItem();
+		IPickTreeItem searchPickTree = new IPickTreeItem();
 		searchPickTree.setCanSelectParentItems(true);
 		searchPickTree.setShowTitle(false);
 		searchPickTree.setDataSource(EmployeeXmlDS.getInstance());

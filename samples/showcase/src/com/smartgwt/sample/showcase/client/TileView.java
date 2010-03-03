@@ -1,10 +1,13 @@
 package com.smartgwt.sample.showcase.client;
 
+import com.google.gwt.user.client.History;
 import com.smartgwt.client.data.Record;
 import com.smartgwt.client.types.OperatorId;
 import com.smartgwt.client.types.TreeModelType;
 import com.smartgwt.client.widgets.Canvas;
 import com.smartgwt.client.widgets.Window;
+import com.smartgwt.client.widgets.events.CloseClickHandler;
+import com.smartgwt.client.widgets.events.CloseClientEvent;
 import com.smartgwt.client.widgets.events.DrawEvent;
 import com.smartgwt.client.widgets.events.DrawHandler;
 import com.smartgwt.client.widgets.form.DynamicForm;
@@ -67,7 +70,7 @@ public class TileView extends VLayout {
 
 
     public TileView(Canvas parentPanel) {
-        setMargin(2);
+        setMargin(3);
         tree = new Tree();
         tree.setModelType(TreeModelType.PARENT);
         tree.setNameProperty("name");
@@ -277,7 +280,16 @@ public class TileView extends VLayout {
                 window.setCanDragResize(false);
                 window.setShowShadow(false);
                 window.addItem(panel);
-                window.setParentElement(parentPanel);                               
+                window.setParentElement(parentPanel);
+                String nodeID = explorerTreeNode.getNodeID();
+                String historyToken = nodeID.substring(0, nodeID.indexOf(idSuffix));
+                History.newItem(historyToken, false);
+                window.addCloseClickHandler(new CloseClickHandler() {
+                    public void onCloseClick(CloseClientEvent event) {
+                        History.newItem("", false);
+                        window.destroy();
+                    }
+                });
                 window.show();
             }
         }

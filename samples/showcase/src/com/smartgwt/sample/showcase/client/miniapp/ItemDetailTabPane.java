@@ -67,7 +67,8 @@ public class ItemDetailTabPane extends TabSet {
         description.setWidth(300);
         description.setRowSpan(3);
 
-        PickTreeItem category = new PickTreeItem("category");
+        IPickTreeItem category = new IPickTreeItem("category");
+        category.setWidth(140);
         category.setDataSource(supplyCategoryDS);
         category.setEmptyMenuMessage("No Sub Categories");
         category.setCanSelectParentItems(true);

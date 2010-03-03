@@ -40,13 +40,13 @@ public class ButtonAppearanceSample extends ShowcasePanel {
         stretchButton.setShowDisabled(true);
         stretchButton.setShowDown(true);
         stretchButton.setTitleStyle("stretchTitle");
-        stretchButton.setIcon("[SKINIMG]/actions/search.png");
+        stretchButton.setIcon("silk/printer.png");
 
         final Button cssButton = new Button("CSS Button");
         cssButton.setShowRollOver(true);
         cssButton.setShowDisabled(true);
         cssButton.setShowDown(true);
-        cssButton.setIcon("icons/16/icon_add_files.png");
+        cssButton.setIcon("silk/printer.png");
 
         final ImgButton imgButton = new ImgButton();
         imgButton.setWidth(18);

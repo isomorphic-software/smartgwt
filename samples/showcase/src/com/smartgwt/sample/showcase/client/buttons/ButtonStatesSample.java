@@ -42,7 +42,7 @@ public class ButtonStatesSample extends ShowcasePanel {
         stretchButton.setShowDisabled(true);
         stretchButton.setShowDown(true);
         stretchButton.setTitleStyle("stretchTitle");
-        stretchButton.setIcon("[SKINIMG]/actions/search.png");
+        stretchButton.setIcon("[SKINIMG]/headerIcons/arrow_right.png");
 
         final Button cssButton = new Button("CSS Button");
         cssButton.setShowRollOver(true);
@@ -55,7 +55,7 @@ public class ButtonStatesSample extends ShowcasePanel {
         imgButton.setHeight(18);
         imgButton.setShowRollOver(true);
         imgButton.setShowDown(false);
-        imgButton.setSrc("[SKIN]/Window/minimize.png");
+        imgButton.setSrc("[SKIN]/headerIcons/minimize.png");
 
         final IButton button = new IButton("Disable All");
         button.setWidth(120);

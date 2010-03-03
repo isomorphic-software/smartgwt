@@ -2,23 +2,23 @@ package com.smartgwt.sample.showcase.client;
 
 import com.google.gwt.core.client.EntryPoint;
 import com.google.gwt.user.client.Cookies;
-import com.google.gwt.user.client.DeferredCommand;
 import com.google.gwt.user.client.History;
 import com.google.gwt.user.client.HistoryListener;
 import com.google.gwt.user.client.ui.RootPanel;
 import com.smartgwt.client.core.KeyIdentifier;
 import com.smartgwt.client.types.TabBarControls;
 import com.smartgwt.client.util.SC;
-import com.smartgwt.client.widgets.*;
+import com.smartgwt.client.widgets.Canvas;
+import com.smartgwt.client.widgets.ImgButton;
+import com.smartgwt.client.widgets.Label;
+import com.smartgwt.client.widgets.Window;
 import com.smartgwt.client.widgets.events.ClickEvent;
 import com.smartgwt.client.widgets.events.ShowContextMenuEvent;
 import com.smartgwt.client.widgets.events.ShowContextMenuHandler;
 import com.smartgwt.client.widgets.form.DynamicForm;
-import com.smartgwt.client.widgets.form.fields.LinkItem;
 import com.smartgwt.client.widgets.form.fields.SelectItem;
 import com.smartgwt.client.widgets.form.fields.events.ChangeEvent;
 import com.smartgwt.client.widgets.form.fields.events.ChangeHandler;
-import com.smartgwt.client.widgets.grid.ListGrid;
 import com.smartgwt.client.widgets.layout.HLayout;
 import com.smartgwt.client.widgets.layout.Layout;
 import com.smartgwt.client.widgets.layout.LayoutSpacer;
@@ -34,7 +34,6 @@ import com.smartgwt.client.widgets.tab.events.TabSelectedEvent;
 import com.smartgwt.client.widgets.tab.events.TabSelectedHandler;
 import com.smartgwt.client.widgets.toolbar.ToolStrip;
 import com.smartgwt.client.widgets.toolbar.ToolStripButton;
-import com.smartgwt.client.widgets.toolbar.ToolStripSpacer;
 import com.smartgwt.client.widgets.tree.Tree;
 import com.smartgwt.client.widgets.tree.TreeNode;
 import com.smartgwt.client.widgets.tree.events.LeafClickEvent;
@@ -55,7 +54,7 @@ public class Showcase implements EntryPoint, HistoryListener {
 
         //setup overall layout / viewport
         VLayout main = new VLayout() {
-            @Override 
+            @Override
             protected void onInit() {
                 super.onInit();
                 if (initToken.length() != 0) {
@@ -65,7 +64,6 @@ public class Showcase implements EntryPoint, HistoryListener {
         };
 
         ToolStrip topBar = new ToolStrip();
-        topBar.setBackgroundImage("blue_bg.png");
         topBar.setHeight(33);
         topBar.setWidth100();
 
@@ -133,15 +131,13 @@ public class Showcase implements EntryPoint, HistoryListener {
         });
 
         topBar.addMember(imgButton);
-        
+
         topBar.addSpacer(6);
 
         main.addMember(topBar);
 
-
         main.setWidth100();
         main.setHeight100();
-        //main.setLayoutMargin(5);
         main.setStyleName("tabSetContainer");
 
         HLayout hLayout = new HLayout();
@@ -155,8 +151,6 @@ public class Showcase implements EntryPoint, HistoryListener {
         sideNavLayout.setShowResizeBar(true);
 
         sideNav = new SideNavTree();
-
-
         sideNav.addLeafClickHandler(new LeafClickHandler() {
             public void onLeafClick(LeafClickEvent event) {
                 TreeNode node = event.getLeaf();
@@ -168,7 +162,7 @@ public class Showcase implements EntryPoint, HistoryListener {
         hLayout.addMember(sideNavLayout);
 
         mainTabSet = new TabSet();
-        
+
         Layout paneContainerProperties = new Layout();
         paneContainerProperties.setLayoutMargin(0);
         paneContainerProperties.setLayoutTopMargin(1);
@@ -243,27 +237,29 @@ public class Showcase implements EntryPoint, HistoryListener {
         HLayout mainPanel = new HLayout();
         mainPanel.setHeight100();
         mainPanel.setWidth100();
-        TileView tileView = new TileView(mainPanel);
-        mainPanel.addMember(tileView);
-                
+
         if(SC.hasFirebug()) {
             Label label = new Label();
-            label.setContents("<b>Firebug can make the Showcase run slow. For the best performance, we suggest disabling Firebug for this site.</b>");
+            label.setContents("<p>Firebug can make the Showcase run slow.</p><p>For the best performance, we suggest disabling Firebug for this site.</p>");
             label.setWidth100();
             label.setHeight("auto");
-            label.setMargin(5);
-            label.setHeight(10);
+            label.setMargin(20);
+            Window fbWindow = new Window();
+            fbWindow.setShowHeader(false);
+            fbWindow.addItem(label);
+            fbWindow.setWidth(220);
+            fbWindow.setHeight(130);
 
-            VLayout vLayout = new VLayout();
-            vLayout.setHeight100();
-            vLayout.setWidth100();
-
-            vLayout.addMember(label);
-            vLayout.addMember(mainPanel);
-            tab.setPane(vLayout);
-        } else {
-            tab.setPane(mainPanel);
+            LayoutSpacer spacer = new LayoutSpacer();
+            spacer.setWidth100();
+            mainPanel.addMember(spacer);
+            mainPanel.addMember(fbWindow);
         }
+
+        TileView tileView = new TileView(mainPanel);
+        mainPanel.addMember(tileView);
+
+        tab.setPane(mainPanel);
 
         mainTabSet.addTab(tab);
 
@@ -347,8 +343,6 @@ public class Showcase implements EntryPoint, HistoryListener {
     }
 
     private void showSample(TreeNode node) {
-
-
         boolean isExplorerTreeNode = node instanceof ExplorerTreeNode;
         if (node instanceof CommandTreeNode) {
             CommandTreeNode commandTreeNode = (CommandTreeNode) node;
@@ -382,7 +376,7 @@ public class Showcase implements EntryPoint, HistoryListener {
                     tab.setPane(panel);
                     tab.setCanClose(true);
                     mainTabSet.addTab(tab);
-                    mainTabSet.selectTab(tab);                    
+                    mainTabSet.selectTab(tab);
                 } else {
                     mainTabSet.selectTab(tab);
                 }
@@ -410,6 +404,4 @@ public class Showcase implements EntryPoint, HistoryListener {
             }
         }
     }
-
-
 }

@@ -38,11 +38,11 @@ public class ButtonAutoFitSample extends ShowcasePanel {
 
         final IButton findButton = new IButton("Find Related");
         findButton.setAutoFit(true);
-        findButton.setIcon("icons/16/find.png");
+        findButton.setIcon("silk/printer.png");
 
         final IButton searchButton = new IButton("Search within results");
         searchButton.setAutoFit(true);
-        searchButton.setIcon("icons/16/icon_add_files.png");
+        searchButton.setIcon("silk/printer.png");
         
         HStack stack = new HStack();
         stack.setMembersMargin(20);
