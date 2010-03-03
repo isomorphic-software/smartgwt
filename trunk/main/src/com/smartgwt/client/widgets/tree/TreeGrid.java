@@ -87,7 +87,7 @@ public class TreeGrid extends ListGrid  implements com.smartgwt.client.widgets.t
     }
 
     public TreeGrid(){
-        scClassName = "TreeGrid";
+        setAnimateFolderSpeed(3000);scClassName = "TreeGrid";
     }
 
     public TreeGrid(JavaScriptObject jsObj){
