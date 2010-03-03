@@ -1186,7 +1186,7 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
     }
 
     /**
-     * Indicates whether fields in this listGrid can be reordered by dragging and          dropping header fields.
+     * Indicates whether fields in this listGrid can be reordered by dragging and dropping header fields.
      *
      * @param canReorderFields canReorderFields Default value is true
      */
@@ -1195,7 +1195,7 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
     }
 
     /**
-     * Indicates whether fields in this listGrid can be reordered by dragging and          dropping header fields.
+     * Indicates whether fields in this listGrid can be reordered by dragging and dropping header fields.
      *
      *
      * @return Boolean
@@ -1224,7 +1224,7 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
     }
 
     /**
-     * Indicates whether fields in this listGrid can be resized by dragging header          fields.
+     * Indicates whether fields in this listGrid can be resized by dragging header fields.
      * Setter method for updating {@link com.smartgwt.client.widgets.grid.ListGrid#getCanResizeFields canResizeFields} at runtime.
      *
      * @param canResizeFields new value for this.canResizeFields. Default value is true
@@ -1234,7 +1234,7 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
     }
 
     /**
-     * Indicates whether fields in this listGrid can be resized by dragging header          fields.
+     * Indicates whether fields in this listGrid can be resized by dragging header fields.
      *
      *
      * @return Boolean
@@ -1265,8 +1265,8 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
     }
 
     /**
-     * Enables or disables interactive sorting behavior for this listGrid. Does not          affect sorting by direct calls to
-     * the sort method.
+     * Enables or disables interactive sorting behavior for this listGrid. Does not affect sorting by direct calls to the sort
+     * method.
      *
      * @param canSort canSort Default value is true
      */
@@ -1275,8 +1275,8 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
     }
 
     /**
-     * Enables or disables interactive sorting behavior for this listGrid. Does not          affect sorting by direct calls to
-     * the sort method.
+     * Enables or disables interactive sorting behavior for this listGrid. Does not affect sorting by direct calls to the sort
+     * method.
      *
      *
      * @return Boolean
@@ -2113,6 +2113,32 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
      */
     public EnterKeyEditAction getEnterKeyEditAction()  {
         return EnumUtil.getEnum(EnterKeyEditAction.values(), getAttribute("enterKeyEditAction"));
+    }
+
+    /**
+     * In a ListGrid that has a DataSource and has filter criteria that include values for fields declared as
+     * ${isc.DocUtils.linkForRef('DSFieldType','type "enum"')} in the DataSource, by default a newly edited row will use those
+     * filter criteria as initial values. <P> For example, if a ListGrid is showing all Accounts that have status:"Active" and
+     * a new row is created, the new row will default to status:"Active" unless this flag is set to false.
+     *
+     * @param enumCriteriaAsInitialValues enumCriteriaAsInitialValues Default value is true
+     * @throws IllegalStateException this property cannot be changed after the component has been created
+     */
+    public void setEnumCriteriaAsInitialValues(Boolean enumCriteriaAsInitialValues)  throws IllegalStateException {
+        setAttribute("enumCriteriaAsInitialValues", enumCriteriaAsInitialValues, false);
+    }
+
+    /**
+     * In a ListGrid that has a DataSource and has filter criteria that include values for fields declared as
+     * ${isc.DocUtils.linkForRef('DSFieldType','type "enum"')} in the DataSource, by default a newly edited row will use those
+     * filter criteria as initial values. <P> For example, if a ListGrid is showing all Accounts that have status:"Active" and
+     * a new row is created, the new row will default to status:"Active" unless this flag is set to false.
+     *
+     *
+     * @return Boolean
+     */
+    public Boolean getEnumCriteriaAsInitialValues()  {
+        return getAttributeAsBoolean("enumCriteriaAsInitialValues");
     }
 
     /**
@@ -3780,29 +3806,29 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
     }
 
     /**
-     * The method of component-pooling to employ for ${isc.DocUtils.linkForRef('showRecordComonents','recordComponents')}.
-     * Options are  <ul> <li> "data":  components are cleared when not in the viewport, but stay with a record         until
-     * the record is dropped from cache.  Best for guaranteed small datasets.</li> <li> "viewport": components are destroyed
-     * when the record is not being rendered.  Best         for large datasets where embedded components differ greatly per
-     * record.</li> <li> "recycle": components are pooled and will be passed to getEmbeddedComponent() with       
-     * "recordChanged" set to true.  Best for large datasets where embedded components        are uniform across different
-     * records and can be efficiently reconfigured to work        with a new record</li> </ul>
+     * The method of component-pooling to employ for {@link com.smartgwt.client.widgets.grid.ListGrid#getShowRecordComponents
+     * 'recordComponents'}. Options are  <ul> <li> "data":  components are cleared when not in the viewport, but stay with a
+     * record         until the record is dropped from cache.  Best for guaranteed small datasets.</li> <li> "viewport":
+     * components are destroyed when the record is not being rendered.  Best         for large datasets where embedded
+     * components differ greatly per record.</li> <li> "recycle": components are pooled and will be passed to
+     * getEmbeddedComponent() with        "recordChanged" set to true.  Best for large datasets where embedded components      
+     *  are uniform across different records and can be efficiently reconfigured to work        with a new record</li> </ul>
      * <p><b>Note : </b> This is an advanced setting</p>
      *
-     * @param recordComponentPoolingMode recordComponentPoolingMode Default value is null
+     * @param recordComponentPoolingMode recordComponentPoolingMode Default value is "recycle"
      */
     public void setRecordComponentPoolingMode(String recordComponentPoolingMode) {
         setAttribute("recordComponentPoolingMode", recordComponentPoolingMode, true);
     }
 
     /**
-     * The method of component-pooling to employ for ${isc.DocUtils.linkForRef('showRecordComonents','recordComponents')}.
-     * Options are  <ul> <li> "data":  components are cleared when not in the viewport, but stay with a record         until
-     * the record is dropped from cache.  Best for guaranteed small datasets.</li> <li> "viewport": components are destroyed
-     * when the record is not being rendered.  Best         for large datasets where embedded components differ greatly per
-     * record.</li> <li> "recycle": components are pooled and will be passed to getEmbeddedComponent() with       
-     * "recordChanged" set to true.  Best for large datasets where embedded components        are uniform across different
-     * records and can be efficiently reconfigured to work        with a new record</li> </ul>
+     * The method of component-pooling to employ for {@link com.smartgwt.client.widgets.grid.ListGrid#getShowRecordComponents
+     * 'recordComponents'}. Options are  <ul> <li> "data":  components are cleared when not in the viewport, but stay with a
+     * record         until the record is dropped from cache.  Best for guaranteed small datasets.</li> <li> "viewport":
+     * components are destroyed when the record is not being rendered.  Best         for large datasets where embedded
+     * components differ greatly per record.</li> <li> "recycle": components are pooled and will be passed to
+     * getEmbeddedComponent() with        "recordChanged" set to true.  Best for large datasets where embedded components      
+     *  are uniform across different records and can be efficiently reconfigured to work        with a new record</li> </ul>
      *
      *
      * @return String
@@ -3814,28 +3840,38 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
     /**
      * if {@link com.smartgwt.client.widgets.grid.ListGrid#getShowRecordComponents showRecordComponents} is true, how should
      * the component appear within the cell. Valid options are  <ul><li><code>"within"</code>: the component will be rendered
-     * inside the record / cell.  By default it will appear at the top / left edge of the cell, though this may be  overridden
-     * by setting a 'snapTo' value on the embedded component.</li> <li><code>"expand"</code>: the component will be written
-     * into the cell below the  normal cell contant, causing the cell to expand vertically to accomodate it. </ul>
+     * inside the record / cell.  {@link com.smartgwt.client.widgets.Canvas#getSnapTo snapTo} may be set to specify where the
+     * component should render within  the row or cell. Note that if unset, the component will show up at the top/left edge 
+     * for components embedded within an entire row, or for per-cell components, cell  align and valign will be respected.</li>
+     * <li><code>"expand"</code>: the component will be written into the cell below the  normal cell contant, causing the cell
+     * to expand vertically to accomodate it. <li><code>null</code>: If this attribute is unset, we will default to showing 
+     * recordComponents with position <code>"within"</code> if   {@link
+     * com.smartgwt.client.widgets.grid.ListGrid#getShowRecordComponentsByCell showRecordComponentsByCell} is true, otherwise
+     * using <code>"expand"</code>  logic. </ul>
      *
-     * @param recordComponentPosition recordComponentPosition Default value is "expand"
+     * @param recordComponentPosition recordComponentPosition Default value is null
      */
-    public void setRecordComponentPosition(String recordComponentPosition) {
-        setAttribute("recordComponentPosition", recordComponentPosition, true);
+    public void setRecordComponentPosition(EmbeddedPosition recordComponentPosition) {
+        setAttribute("recordComponentPosition", recordComponentPosition.getValue(), true);
     }
 
     /**
      * if {@link com.smartgwt.client.widgets.grid.ListGrid#getShowRecordComponents showRecordComponents} is true, how should
      * the component appear within the cell. Valid options are  <ul><li><code>"within"</code>: the component will be rendered
-     * inside the record / cell.  By default it will appear at the top / left edge of the cell, though this may be  overridden
-     * by setting a 'snapTo' value on the embedded component.</li> <li><code>"expand"</code>: the component will be written
-     * into the cell below the  normal cell contant, causing the cell to expand vertically to accomodate it. </ul>
+     * inside the record / cell.  {@link com.smartgwt.client.widgets.Canvas#getSnapTo snapTo} may be set to specify where the
+     * component should render within  the row or cell. Note that if unset, the component will show up at the top/left edge 
+     * for components embedded within an entire row, or for per-cell components, cell  align and valign will be respected.</li>
+     * <li><code>"expand"</code>: the component will be written into the cell below the  normal cell contant, causing the cell
+     * to expand vertically to accomodate it. <li><code>null</code>: If this attribute is unset, we will default to showing 
+     * recordComponents with position <code>"within"</code> if   {@link
+     * com.smartgwt.client.widgets.grid.ListGrid#getShowRecordComponentsByCell showRecordComponentsByCell} is true, otherwise
+     * using <code>"expand"</code>  logic. </ul>
      *
      *
-     * @return String
+     * @return EmbeddedPosition
      */
-    public String getRecordComponentPosition()  {
-        return getAttributeAsString("recordComponentPosition");
+    public EmbeddedPosition getRecordComponentPosition()  {
+        return EnumUtil.getEnum(EmbeddedPosition.values(), getAttribute("recordComponentPosition"));
     }
 
     /**
@@ -4253,6 +4289,26 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
     }
 
     /**
+     * When set to false, don't apply alternate-row styling to this field.
+     * <p><b>Note : </b> This is an advanced setting</p>
+     *
+     * @param showAlternateStyle showAlternateStyle Default value is null
+     */
+    public void setShowAlternateStyle(Boolean showAlternateStyle) {
+        setAttribute("showAlternateStyle", showAlternateStyle, true);
+    }
+
+    /**
+     * When set to false, don't apply alternate-row styling to this field.
+     *
+     *
+     * @return Boolean
+     */
+    public Boolean getShowAlternateStyle()  {
+        return getAttributeAsBoolean("showAlternateStyle");
+    }
+
+    /**
      * Indicates whether the text of the emptyMessage property should be displayed if no data is available.
      *
      * @param showEmptyMessage showEmptyMessage Default value is true
@@ -4623,11 +4679,11 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
     }
 
     /**
-     * Indicates whether a sorting arrow should appear for the listGrid, and its          location. See SortArrow type for
-     * details.<br>          Clicking the sort arrow reverses the direction of sorting for the current sort          column (if
-     * any), or sorts the listGrid by its first sortable column. The arrow          image on the button indicates the current
-     * direction of sorting.          If undefined, the sort arrow will show up in the sorted field, and the          corner
-     * sort button will be displayed if a vertical scrollbar is being displayed
+     * Indicates whether a sorting arrow should appear for the listGrid, and its location. See SortArrow type for details.<br>
+     * Clicking the sort arrow reverses the direction of sorting for the current sort column (if any), or sorts the listGrid by
+     * its first sortable column. The arrow image on the button indicates the current direction of sorting. If undefined, the
+     * sort arrow will show up in the sorted field, and the corner sort button will be displayed if a vertical scrollbar is
+     * being displayed
      *
      * @param showSortArrow showSortArrow Default value is null
      */
@@ -4636,11 +4692,11 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
     }
 
     /**
-     * Indicates whether a sorting arrow should appear for the listGrid, and its          location. See SortArrow type for
-     * details.<br>          Clicking the sort arrow reverses the direction of sorting for the current sort          column (if
-     * any), or sorts the listGrid by its first sortable column. The arrow          image on the button indicates the current
-     * direction of sorting.          If undefined, the sort arrow will show up in the sorted field, and the          corner
-     * sort button will be displayed if a vertical scrollbar is being displayed
+     * Indicates whether a sorting arrow should appear for the listGrid, and its location. See SortArrow type for details.<br>
+     * Clicking the sort arrow reverses the direction of sorting for the current sort column (if any), or sorts the listGrid by
+     * its first sortable column. The arrow image on the button indicates the current direction of sorting. If undefined, the
+     * sort arrow will show up in the sorted field, and the corner sort button will be displayed if a vertical scrollbar is
+     * being displayed
      *
      *
      * @return SortArrow
@@ -5329,19 +5385,21 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
     // ********************* Methods ***********************
             
     /**
-     * Attaches the component to the provided record. If <code>position</code> is specified as  <code>"within"</code> the
-     * component will be rendered at the top/left edge of the record (may be overridden by setting a 'snapTo' on the canvas to
-     * align with a different edge), and any  percentage sizing will be interpreted as percentage of row size. Otherwise it
-     * will appear to be embedded within the record, underneath the field values. <P> Embedded components become children of
-     * the grid and will stay attached to a record through scrolling, sorting and other operations that cause records to shift
-     * position. <P> If <code>position</code> is set to <code>"expand"</code>, embedded components may offer a resize
-     * interface, eg, by setting ${isc.DocUtils.linkForRef('canDragResize')}:true, and the grid will react accordingly, growing
-     * or shrinking the record to match the embedded component's new extents. <P> Embedded components can be explicitly removed
-     * with {@link com.smartgwt.client.widgets.grid.ListGrid#removeEmbeddedComponent}. <P> If a record is removed from the
-     * dataset or is replaced in the dataset, for example, it is eliminated through filtering (removes record) or is
-     * successfully edited in a databound grid (replaces record), the component is cleared but not logically removed from the
-     * grid. It is the responsibility of code that sets up the embedded component to remove it if the record is removed from
-     * the dataSet.  <P> When embedding components will result in variable height records, you should switch on {@link
+     * Attaches the component to the provided record. If <code>position</code> is specified as  <code>"within"</code> {@link
+     * com.smartgwt.client.widgets.Canvas#getSnapTo snapTo} may be set to specify where the component will render within the
+     * cell or record. If unset, for components embedded within a record we will default to embedding at the top/left
+     * coordinate, and for components embedded within a cell, we will respect the align / valign properties for the cell in
+     * question. Any  percentage sizing will be interpreted as percentage of row size. <P> Otherwise it will appear to be
+     * embedded within the record, underneath the field values. <P> Embedded components become children of the grid and will
+     * stay attached to a record through scrolling, sorting and other operations that cause records to shift position. <P> If
+     * <code>position</code> is set to <code>"expand"</code>, embedded components may offer a resize interface, eg, by setting
+     * ${isc.DocUtils.linkForRef('canDragResize')}:true, and the grid will react accordingly, growing or shrinking the record
+     * to match the embedded component's new extents. <P> Embedded components can be explicitly removed with {@link
+     * com.smartgwt.client.widgets.grid.ListGrid#removeEmbeddedComponent}. <P> If a record is removed from the dataset or is
+     * replaced in the dataset, for example, it is eliminated through filtering (removes record) or is successfully edited in a
+     * databound grid (replaces record), the component is cleared but not logically removed from the grid. It is the
+     * responsibility of code that sets up the embedded component to remove it if the record is removed from the dataSet.  <P>
+     * When embedding components will result in variable height records, you should switch on {@link
      * com.smartgwt.client.widgets.grid.ListGrid#getVirtualScrolling 'virtualScrolling'}.
      * @param component component to embed
      * @param record record to attach the component to
@@ -5352,29 +5410,31 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
     }-*/;
 
     /**
-     * Attaches the component to the provided record. If <code>position</code> is specified as  <code>"within"</code> the
-     * component will be rendered at the top/left edge of the record (may be overridden by setting a 'snapTo' on the canvas to
-     * align with a different edge), and any  percentage sizing will be interpreted as percentage of row size. Otherwise it
-     * will appear to be embedded within the record, underneath the field values. <P> Embedded components become children of
-     * the grid and will stay attached to a record through scrolling, sorting and other operations that cause records to shift
-     * position. <P> If <code>position</code> is set to <code>"expand"</code>, embedded components may offer a resize
-     * interface, eg, by setting ${isc.DocUtils.linkForRef('canDragResize')}:true, and the grid will react accordingly, growing
-     * or shrinking the record to match the embedded component's new extents. <P> Embedded components can be explicitly removed
-     * with {@link com.smartgwt.client.widgets.grid.ListGrid#removeEmbeddedComponent}. <P> If a record is removed from the
-     * dataset or is replaced in the dataset, for example, it is eliminated through filtering (removes record) or is
-     * successfully edited in a databound grid (replaces record), the component is cleared but not logically removed from the
-     * grid. It is the responsibility of code that sets up the embedded component to remove it if the record is removed from
-     * the dataSet.  <P> When embedding components will result in variable height records, you should switch on {@link
+     * Attaches the component to the provided record. If <code>position</code> is specified as  <code>"within"</code> {@link
+     * com.smartgwt.client.widgets.Canvas#getSnapTo snapTo} may be set to specify where the component will render within the
+     * cell or record. If unset, for components embedded within a record we will default to embedding at the top/left
+     * coordinate, and for components embedded within a cell, we will respect the align / valign properties for the cell in
+     * question. Any  percentage sizing will be interpreted as percentage of row size. <P> Otherwise it will appear to be
+     * embedded within the record, underneath the field values. <P> Embedded components become children of the grid and will
+     * stay attached to a record through scrolling, sorting and other operations that cause records to shift position. <P> If
+     * <code>position</code> is set to <code>"expand"</code>, embedded components may offer a resize interface, eg, by setting
+     * ${isc.DocUtils.linkForRef('canDragResize')}:true, and the grid will react accordingly, growing or shrinking the record
+     * to match the embedded component's new extents. <P> Embedded components can be explicitly removed with {@link
+     * com.smartgwt.client.widgets.grid.ListGrid#removeEmbeddedComponent}. <P> If a record is removed from the dataset or is
+     * replaced in the dataset, for example, it is eliminated through filtering (removes record) or is successfully edited in a
+     * databound grid (replaces record), the component is cleared but not logically removed from the grid. It is the
+     * responsibility of code that sets up the embedded component to remove it if the record is removed from the dataSet.  <P>
+     * When embedding components will result in variable height records, you should switch on {@link
      * com.smartgwt.client.widgets.grid.ListGrid#getVirtualScrolling 'virtualScrolling'}.
      * @param component component to embed
      * @param record record to attach the component to
      * @param rowNum rowNum of the record to attach the component to
      * @param colNum colNum in which to embed the component
-     * @param position "expand" or "within" (Defaults to "expand").
+     * @param position positioning with respect to the record or cell (Defaults to "expand").
      */
-    public native void addEmbeddedComponent(Canvas component, ListGridRecord record, int rowNum, int colNum, String position) /*-{
+    public native void addEmbeddedComponent(Canvas component, ListGridRecord record, int rowNum, int colNum, EmbeddedPosition position) /*-{
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
-        self.addEmbeddedComponent(component.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()(), record.@com.smartgwt.client.core.DataClass::getJsObj()(), rowNum, colNum, position);
+        self.addEmbeddedComponent(component.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()(), record.@com.smartgwt.client.core.DataClass::getJsObj()(), rowNum, colNum, position.@com.smartgwt.client.types.EmbeddedPosition::getValue()());
     }-*/;
             
     /**
@@ -7050,7 +7110,9 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
             
     /**
      * When {@link com.smartgwt.client.widgets.grid.ListGrid#getShowRecordComponents showRecordComponents} is true, return
-     * false from this method  to prevent showRecordComponent behavior for the passed record.
+     * false from this method  to prevent showRecordComponent behavior for the passed record. Second paramter will only be
+     * passed if {@link com.smartgwt.client.widgets.grid.ListGrid#getShowRecordComponentsByCell showRecordComponentsByCell} is
+     * true.
      * @param record record being processed
      *
      * @return return false to cancel showRecordComponent behavior
@@ -7062,6 +7124,27 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
             return null;
         } else {
             return @com.smartgwt.client.util.JSOHelper::toBoolean(Z)(retVal);
+        }
+    }-*/;
+
+    /**
+     * When {@link com.smartgwt.client.widgets.grid.ListGrid#getShowRecordComponents showRecordComponents} is true, return
+     * false from this method  to prevent showRecordComponent behavior for the passed record. Second paramter will only be
+     * passed if {@link com.smartgwt.client.widgets.grid.ListGrid#getShowRecordComponentsByCell showRecordComponentsByCell} is
+     * true.
+     * @param record record being processed
+     * @param colNum column index of the cell in which the record component   may be shown. Will be null unless showRecordComponentsByCell is
+     * true.
+     *
+     * @return return false to cancel showRecordComponent behavior
+     */
+    public native Boolean showRecordComponent(ListGridRecord record, int colNum) /*-{
+        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
+        var retVal =self.showRecordComponent(record.@com.smartgwt.client.core.DataClass::getJsObj()(), colNum);
+        if(retVal == null || retVal === undefined) {
+            return null;
+        } else {
+                return @com.smartgwt.client.util.JSOHelper::toBoolean(Z)(retVal);
         }
     }-*/;
             
@@ -9787,7 +9870,7 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
      */
     public void setShowRecordComponentsByCell(Boolean showRecordComponentsByCell) {
         setAttribute("showRecordComponentsByCell", showRecordComponentsByCell, true);
-        if(showRecordComponentsByCell) setRecordComponentPosition("within");
+        if(showRecordComponentsByCell) setRecordComponentPosition(EmbeddedPosition.WITHIN);
     }
 
     /**
