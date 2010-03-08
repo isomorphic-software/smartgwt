@@ -54,11 +54,8 @@
 
     <target name="smartclient-jar" depends="setup-smartclient-jar" description="make smartclient.jar">
         <property environment="env"/>
-        <property name="SC_HOME" value="${env.SC_HOME}"/>
-        <property name="SC_VER" value="${env.SC_VER}"/>
 
         <fail unless="SC_HOME" message="You must pass the SC_HOME environment variable"/>
-        <fail unless="SC_VER" message="You must pass the SC_VER environment variable"/>
 
         <available file="${SC_HOME}/smartclientSDK" type="dir" property="smartclient.sdk.exists"/>
 

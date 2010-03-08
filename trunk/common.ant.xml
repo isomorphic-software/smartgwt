@@ -24,7 +24,10 @@
 
 	<!-- Global Properties -->
 	<property environment="env" />
-
+    <property name="SC_HOME" value="${env.SC_HOME}"/>
+    <condition property="SC_VER" value="${env.SC_VER}" else="trunk">
+		<isset property="${env.SC_VER}" />
+    </condition>
 	
 	<property name="smartgwt.version" value="2.1" />
 	<property name="smartgwt.version.major" value="2" />
