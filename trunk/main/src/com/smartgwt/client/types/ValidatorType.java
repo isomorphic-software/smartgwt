@@ -32,9 +32,7 @@ package com.smartgwt.client.types;
  * the client by adding them to the global validator list, via the {@link
  * com.smartgwt.client.widgets.form.validator.Validator#addValidatorDefinition} method.
  */
-import com.google.gwt.core.client.JavaScriptObject;
-
-public enum ValidatorType {
+public enum ValidatorType implements ValueEnum {
     /**
      * Validation will fail if this field is non-empty and has a non-boolean value.
      */

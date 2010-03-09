@@ -19,9 +19,7 @@ package com.smartgwt.client.types;
 /**
  * Mode of validation used for running validation on partially entered data.
  */
-import com.google.gwt.core.client.JavaScriptObject;
-
-public enum ValidationMode {
+public enum ValidationMode implements ValueEnum {
     /**
      * Assume provided data is complete and run all validation rules
      */
