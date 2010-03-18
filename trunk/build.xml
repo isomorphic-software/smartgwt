@@ -73,9 +73,9 @@
             <zipfileset dir="${SC_HOME}/smartclientSDK/isomorphic/system/development"                        includes="ISC_DBConsole.js,ISC_DeveloperConsole.js,ISC_DocViewer.js,ISC_FileViewer.js,ISC_FileLoader.js,ISC_SyntaxHiliter.js,ISC_Tools.js,ISC_Core.js,ISC_Foundation.js,ISC_Containers.js,ISC_Grids.js,ISC_Forms.js,ISC_DataBinding.js"
                         prefix="com/smartclient/tools/public/sc/system/development"/>
 
-            <zipfileset dir="${SC_HOME}/smartclientSDK/isomorphic/system/helpers" includes="printFrame.*,empty.html,*.css,*.svg"
+            <zipfileset dir="${SC_HOME}/smartclientSDK/isomorphic/system/helpers" includes="printFrame.*,empty.html,*.css,*.svg,isomorphic_applets.jar"
                         prefix="com/smartclient/debug/public/sc/system/helpers"/>
-		    <zipfileset dir="${SC_HOME}/smartclientSDK/isomorphic/system/helpers" includes="printFrame.*,empty.html,*.css,*.svg"
+		    <zipfileset dir="${SC_HOME}/smartclientSDK/isomorphic/system/helpers" includes="printFrame.*,empty.html,*.css,*.svg,isomorphic_applets.jar"
 			            prefix="com/smartclient/public/sc/system/helpers"/>
 
             <zipfileset dir="${SC_HOME}/smartclientSDK/source/client/modules" includes="*.js"
