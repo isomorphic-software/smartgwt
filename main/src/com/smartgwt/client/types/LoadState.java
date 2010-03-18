@@ -35,7 +35,7 @@ public enum LoadState implements ValueEnum {
     /**
      * folders only are already loaded
      */
-    FOLDERS_LOADED("folders"),
+    FOLDERS_LOADED("foldersLoaded"),
 
     /**
      * already fully loaded
