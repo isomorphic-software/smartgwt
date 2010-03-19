@@ -137,7 +137,7 @@ public class ShowcaseData {
                     new ExplorerTreeNode("ToolStrip (Vertical)", "toolstrip-vertical-new-category", "new-category", null, new ToolStripVerticalSample.Factory(), true, idSuffix),
                     new ExplorerTreeNode("Big Filter", "grid-big-filter-new-category", "new-category", null, new GridBigFilterSample.Factory(), true, idSuffix),
                     new ExplorerTreeNode("Animated Selection", "grid-appearance-animated-selection-new-category", "new-category", null, new AnimatedSelectionSample.Factory(), true, idSuffix),
-                    new ExplorerTreeNode("Sections Drag Reroder", "sections-drag-reorder-new-category", "new-category", null, new SectionsReorderSample.Factory(), true, idSuffix),
+                    new ExplorerTreeNode("Sections Drag Reorder", "sections-drag-reorder-new-category", "new-category", null, new SectionsReorderSample.Factory(), true, idSuffix),
                     new ExplorerTreeNode("Row Numbering", "grid-row-numbering-new-category", "new-category", null, new RowNumberingSample.Factory(), true, idSuffix),
 
                     new CommandTreeNode("Enterprise Showcase", "smartgwtee-category", "root", "pieces/16/cube_yellow.png", new com.smartgwt.sample.showcase.client.SmartGwtEECommand(), true, idSuffix),
@@ -407,7 +407,7 @@ public class ShowcaseData {
                     new ExplorerTreeNode("Custom Controls", "layout-sections-custom-controls", "layout-sections-category", null, new SectionsCustomControlsSample.Factory(), true, idSuffix),
                     new ExplorerTreeNode("Add & Remove", "layout-sections-add-remove", "layout-sections-category", null, new SectionsAddRemoveSample.Factory(), true, idSuffix),
                     new ExplorerTreeNode("Show & Hide", "layout-sections-show-hide", "layout-sections-category", null, new SectionsShowHideSample.Factory(), true, idSuffix),
-                    new ExplorerTreeNode("Drag Reroder", "layout-sections-drag-reorder", "layout-sections-category", null, new SectionsReorderSample.Factory(), true, idSuffix),
+                    new ExplorerTreeNode("Drag Reorder", "layout-sections-drag-reorder", "layout-sections-category", null, new SectionsReorderSample.Factory(), true, idSuffix),
 
                     new ExplorerTreeNode("Buttons", "buttons-category", "root", "silk/brick.png", null, true, idSuffix),
                     new ExplorerTreeNode("Appearance", "buttons-category-appearance", "buttons-category", null, new ButtonAppearanceSample.Factory(), true, idSuffix),
