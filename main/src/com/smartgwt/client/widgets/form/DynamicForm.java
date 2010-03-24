@@ -3003,7 +3003,7 @@ public class DynamicForm extends Canvas  implements DataBoundComponent, com.smar
 
     public native void deselectRecord(int record)/*-{
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
-        self.selectRecord(record);
+        self.deselectRecord(record);
      }-*/;
 
     public native void deselectRecords(int[] records)/*-{

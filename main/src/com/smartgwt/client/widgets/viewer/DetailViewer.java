@@ -991,7 +991,7 @@ public class DetailViewer extends Canvas  implements DataBoundComponent {
 
     public native void deselectRecord(int record)/*-{
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
-        self.selectRecord(record);
+        self.deselectRecord(record);
      }-*/;
 
     public native void deselectRecords(int[] records)/*-{
