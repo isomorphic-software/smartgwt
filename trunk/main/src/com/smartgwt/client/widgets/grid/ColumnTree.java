@@ -1065,7 +1065,7 @@ public class ColumnTree extends Layout  implements DataBoundComponent, com.smart
 
     public native void deselectRecord(int record)/*-{
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
-        self.selectRecord(record);
+        self.deselectRecord(record);
      }-*/;
 
     public native void deselectRecords(int[] records)/*-{
