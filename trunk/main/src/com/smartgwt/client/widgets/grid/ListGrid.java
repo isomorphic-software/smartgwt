@@ -8134,8 +8134,9 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
     public native void scrollBodyTo(Integer left, Integer top)/*-{
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
         var body = self.body;
-
-        body.scrollTo(left, top);
+        var leftJS = left == null ? null : left.@java.lang.Integer::intValue()();
+        var topJS = top == null ? null : top.@java.lang.Integer::intValue()();
+        body.scrollTo(leftJS, topJS);
      }-*/;
 
     /**
