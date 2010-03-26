@@ -1528,7 +1528,7 @@ public class Tree extends BaseClass  implements com.smartgwt.client.widgets.tree
      *
      * @return all the nodes that exist in the tree
      */
-    public native TreeNode getAllNodes(TreeNode node) /*-{
+    public native TreeNode[] getAllNodes(TreeNode node) /*-{
         var self = this.@com.smartgwt.client.core.BaseClass::getOrCreateJsObj()();
         var nodesJS = self.getAllNodes(node.@com.smartgwt.client.core.DataClass::getJsObj()());
         return @com.smartgwt.client.widgets.tree.Tree::convertToTreeNodeArray(Lcom/google/gwt/core/client/JavaScriptObject;)(nodesJS);
