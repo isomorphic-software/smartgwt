@@ -569,7 +569,9 @@ public class FormItem extends RefDataClass  implements com.smartgwt.client.widge
     }
 
     /**
-     * Default height of this item.
+     * Height of the FormItem.  Can be either a number indicating a fixed height in pixels, a percentage indicating a
+     * percentage of the overall form's height, or "*" indicating take whatever remaining space is available.  <P> See the
+     * {@link com.smartgwt.client.docs.FormLayout} overview for details.
      *
      * @param height height Default value is 20
      */
@@ -578,7 +580,9 @@ public class FormItem extends RefDataClass  implements com.smartgwt.client.widge
     }
 
     /**
-     * Default height of this item.
+     * Height of the FormItem.  Can be either a number indicating a fixed height in pixels, a percentage indicating a
+     * percentage of the overall form's height, or "*" indicating take whatever remaining space is available.  <P> See the
+     * {@link com.smartgwt.client.docs.FormLayout} overview for details.
      *
      *
      * @return int
@@ -1007,6 +1011,28 @@ public class FormItem extends RefDataClass  implements com.smartgwt.client.widge
      */
     public Integer getPickerIconHeight()  {
         return getAttributeAsInt("pickerIconHeight");
+    }
+
+    /**
+     * If {@link com.smartgwt.client.widgets.form.fields.FormItem#getShowPickerIcon showPickerIcon} is true, this attribute
+     * specifies the  {@link com.smartgwt.client.widgets.form.fields.FormItemIcon#getName name} applied to the picker icon
+     * <p><b>Note : </b> This is an advanced setting</p>
+     *
+     * @param pickerIconName pickerIconName Default value is "picker"
+     */
+    public void setPickerIconName(String pickerIconName) {
+        setAttribute("pickerIconName", pickerIconName);
+    }
+
+    /**
+     * If {@link com.smartgwt.client.widgets.form.fields.FormItem#getShowPickerIcon showPickerIcon} is true, this attribute
+     * specifies the  {@link com.smartgwt.client.widgets.form.fields.FormItemIcon#getName name} applied to the picker icon
+     *
+     *
+     * @return String
+     */
+    public String getPickerIconName()  {
+        return getAttributeAsString("pickerIconName");
     }
 
     /**
@@ -2225,7 +2251,9 @@ public class FormItem extends RefDataClass  implements com.smartgwt.client.widge
     }
 
     /**
-     * By default, items take up the entire width of their cell
+     * Width of the FormItem.  Can be either a number indicating a fixed width in pixels, or "*" indicating the FormItem fills
+     * the space allocated to it's column (or columns, for a {@link com.smartgwt.client.widgets.form.fields.FormItem#getColSpan
+     * 'column spanning'} item). <P> See the {@link com.smartgwt.client.docs.FormLayout} overview for details.
      *
      * @param width width Default value is "*"
      */
@@ -2234,7 +2262,9 @@ public class FormItem extends RefDataClass  implements com.smartgwt.client.widge
     }
 
     /**
-     * By default, items take up the entire width of their cell
+     * Width of the FormItem.  Can be either a number indicating a fixed width in pixels, or "*" indicating the FormItem fills
+     * the space allocated to it's column (or columns, for a {@link com.smartgwt.client.widgets.form.fields.FormItem#getColSpan
+     * 'column spanning'} item). <P> See the {@link com.smartgwt.client.docs.FormLayout} overview for details.
      *
      *
      * @return int
@@ -2490,6 +2520,38 @@ public class FormItem extends RefDataClass  implements com.smartgwt.client.widge
     public native String getFieldName() /*-{
         var self = this.@com.smartgwt.client.core.DataClass::getJsObj()();
         return self.getFieldName();
+    }-*/;
+            
+    /**
+     * Given an {@link com.smartgwt.client.widgets.form.fields.FormItemIcon#getName name} return a pointer to the icon
+     * definition
+     * @param name specified {@link com.smartgwt.client.widgets.form.fields.FormItemIcon#getName name}
+     *
+     * @return form item icon matching the specified name
+     */
+    public native FormItemIcon getIcon(String name) /*-{
+        var self = this.@com.smartgwt.client.core.DataClass::getJsObj()();
+        var ret = self.getIcon(name);
+        if(ret == null || ret === undefined) return null;
+        return @com.smartgwt.client.widgets.form.fields.FormItemIcon::new(Lcom/google/gwt/core/client/JavaScriptObject;)(ret);
+    }-*/;
+            
+    /**
+     * get the record returned from the {@link com.smartgwt.client.widgets.form.fields.FormItem#getOptionDataSource
+     * optionDataSource} when {@link com.smartgwt.client.widgets.form.fields.FormItem#getFetchMissingValues fetchMissingValues}
+     * is true, and the missing value is fetched. Note: If the item is initialized with a value,  this will return null.
+     *
+     * @return selected record
+     */
+    public native ListGridRecord getSelectedRecord() /*-{
+        var self = this.@com.smartgwt.client.core.DataClass::getJsObj()();
+        var ret = self.getSelectedRecord();
+        if(ret == null || ret === undefined) return null;
+        var retVal = @com.smartgwt.client.core.RefDataClass::getRef(Lcom/google/gwt/core/client/JavaScriptObject;)(ret);
+        if(retVal == null) {
+            retVal = @com.smartgwt.client.widgets.grid.ListGridRecord::new(Lcom/google/gwt/core/client/JavaScriptObject;)(ret);
+        }
+        return retVal;
     }-*/;
             
     /**
@@ -3331,6 +3393,34 @@ public class FormItem extends RefDataClass  implements com.smartgwt.client.widge
             return self.getDisplayValue(value);
         } else {
             return '';
+        }
+    }-*/;
+
+    /**
+     * Output the drawn height for this item in pixels. Note: this is only reliable after this item has been written out into the DOM.
+     *
+     * @return height of the form item. returns 0 if the parent form has not been rendered.
+     */
+    public native int getVisibleHeight() /*-{
+        var self = this.@com.smartgwt.client.core.DataClass::getJsObj()();
+        if(self.setValue) {
+            return self.getVisibleHeight();
+        } else {
+            return 0;
+        }
+    }-*/;
+
+    /**
+     * Output the drawn width for this item in pixels. Note: this is only reliable after this item has been written out into the DOM.
+     *
+     * @return height of the form item. returns 0 if the parent form has not been rendered.
+     */
+    public native int getVisibleWidth() /*-{
+        var self = this.@com.smartgwt.client.core.DataClass::getJsObj()();
+        if(self.setValue) {
+            return self.getVisibleWidth();
+        } else {
+            return 0;
         }
     }-*/;
 
