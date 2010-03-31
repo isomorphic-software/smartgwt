@@ -136,7 +136,7 @@ public class MenuButton extends Button {
      * @return Menu
      */
     public Menu getMenu()  {
-            return Menu.getOrCreateRef(getAttributeAsJavaScriptObject("menu"));
+        return Menu.getOrCreateRef(getAttributeAsJavaScriptObject("menu"));
     }
 
     /**
@@ -274,6 +274,15 @@ public class MenuButton extends Button {
     // ********************* Methods ***********************
 
     // ********************* Static Methods ***********************
+
+
+    /**
+     * Shows the Menu associated with the MenuButton. Lazily creates the menu if necessary.
+     */
+    public native void showMenu() /*-{
+        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
+        self.showMenu();
+    }-*/;
 
 }
 
