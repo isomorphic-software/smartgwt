@@ -629,6 +629,20 @@ public class Tree extends BaseClass  implements com.smartgwt.client.widgets.tree
     }-*/;
             
     /**
+     * What is the loadState of a given folder?
+     * @param node folder in question
+     *
+     * @return state of the node
+     */
+    public native LoadState getLoadState(TreeNode node) /*-{
+        var self = this.@com.smartgwt.client.core.BaseClass::getOrCreateJsObj()();
+        var ret = self.getLoadState(node.@com.smartgwt.client.core.DataClass::getJsObj()());
+        if(ret == null || ret === undefined) return null;
+        var enumValues = @com.smartgwt.client.types.LoadState::values()();
+        return @com.smartgwt.client.util.EnumUtil::getEnum([Lcom/smartgwt/client/types/ValueEnum;Ljava/lang/String;)(enumValues, ret);
+    }-*/;
+            
+    /**
      * Get the 'name' of a node.  This is node[{@link com.smartgwt.client.widgets.tree.Tree#getNameProperty nameProperty}].  If
      * that value has not been set on the node, a unique value (within this parent) will be auto-generated and returned.
      * @param node node in question
@@ -792,6 +806,22 @@ public class Tree extends BaseClass  implements com.smartgwt.client.widgets.tree
     }-*/;
             
     /**
+     * For a databound tree, has this folder either already loaded its children or is it in the process of loading them.
+     * @param node folder in question
+     *
+     * @return folder is loaded or is currently loading
+     */
+    public native Boolean isLoaded(TreeNode node) /*-{
+        var self = this.@com.smartgwt.client.core.BaseClass::getOrCreateJsObj()();
+        var retVal =self.isLoaded(node.@com.smartgwt.client.core.DataClass::getJsObj()());
+        if(retVal == null || retVal === undefined) {
+            return null;
+        } else {
+            return @com.smartgwt.client.util.JSOHelper::toBoolean(Z)(retVal);
+        }
+    }-*/;
+            
+    /**
      * Whether a particular node is open or closed (works for leaves and folders).
      * @param node node in question
      *
@@ -863,7 +893,7 @@ public class Tree extends BaseClass  implements com.smartgwt.client.widgets.tree
     }-*/;
             
     /**
-     * Reload the children of a node
+     * Reload the children of a folder.
      * @param node node in question
      */
     public native void reloadChildren(TreeNode node) /*-{
@@ -888,8 +918,8 @@ public class Tree extends BaseClass  implements com.smartgwt.client.widgets.tree
     }-*/;
             
     /**
-     * Unload the children of a node
-     * @param node node in question
+     * Unload the children of a folder, returning the folder to the "unloaded" state.
+     * @param node folder in question
      */
     public native void unloadChildren(TreeNode node) /*-{
         var self = this.@com.smartgwt.client.core.BaseClass::getOrCreateJsObj()();
