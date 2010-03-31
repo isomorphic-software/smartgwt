@@ -148,6 +148,29 @@ public class DataSource extends BaseClass  implements com.smartgwt.client.data.e
     }
 
     /**
+     * When a DataSource is not {@link com.smartgwt.client.data.DataSource#getCacheAllData cacheAllData}:true and a fetch
+     * results in the entire dataset being retrieved, this attribute being set to true causes the DataSource to automatically
+     * switch to cacheAllData:true and prevent further server-trips for fetch  requests.
+     *
+     * @param autoCacheAllData autoCacheAllData Default value is false
+     */
+    public void setAutoCacheAllData(Boolean autoCacheAllData) {
+        setAttribute("autoCacheAllData", autoCacheAllData, true);
+    }
+
+    /**
+     * When a DataSource is not {@link com.smartgwt.client.data.DataSource#getCacheAllData cacheAllData}:true and a fetch
+     * results in the entire dataset being retrieved, this attribute being set to true causes the DataSource to automatically
+     * switch to cacheAllData:true and prevent further server-trips for fetch  requests.
+     *
+     *
+     * @return Boolean
+     */
+    public Boolean getAutoCacheAllData()  {
+        return getAttributeAsBoolean("autoCacheAllData");
+    }
+
+    /**
      * For a DataSource with serverType: "sql" or serverType: "hibernate", automatically derive the dataSource's schema (field
      * definitions) from the SQL table specified in  {@link com.smartgwt.client.data.DataSource#getTableName tableName}.  This
      * causes Smart GWT to create a "super" DataSource, which this dataSource then automatically {@link
@@ -278,6 +301,86 @@ public class DataSource extends BaseClass  implements com.smartgwt.client.data.e
     }
 
     /**
+     * Set this property to true to have a DataSource fetch all of it's data client-side on the  first fetch request.  However,
+     * unlike a {@link com.smartgwt.client.data.DataSource#getClientOnly clientOnly} DataSource, this DataSource  will still
+     * save changes normally, sending remote requests. <P> You can manually set this attribute after initialization by calling 
+     * {@link com.smartgwt.client.data.DataSource#setCacheAllData} and setting {@link
+     * com.smartgwt.client.data.DataSource#getAutoCacheAllData autoCacheAllData}:true causes a DataSource to  automatically
+     * switch to <code>cacheAllData:true</> when a fetch results in the entire  dataset being brought client-side. <P> To cause
+     * automatic cache updates, you can set {@link com.smartgwt.client.data.DataSource#getCacheMaxAge cacheMaxAge} to a number
+     * of seconds and once data has been client-side for that length of time, the next fetch causes the cache to be dropped and
+     * a new cache retrieved.
+     * Call this method to switch cacheAllData on or off after initialization.  Passing a  <code>shouldCache</code> value of false clears any existing client-side cache, cancels any outstanding requests for a full cache and issues any other pending requests normally.
+     *
+     * @param cacheAllData New value for {@link com.smartgwt.client.data.DataSource#getCacheAllData cacheAllData}. Default value is null
+     */
+    public void setCacheAllData(Boolean cacheAllData) {
+        setAttribute("cacheAllData", cacheAllData, true);
+    }
+
+    /**
+     * Set this property to true to have a DataSource fetch all of it's data client-side on the  first fetch request.  However,
+     * unlike a {@link com.smartgwt.client.data.DataSource#getClientOnly clientOnly} DataSource, this DataSource  will still
+     * save changes normally, sending remote requests. <P> You can manually set this attribute after initialization by calling 
+     * {@link com.smartgwt.client.data.DataSource#setCacheAllData} and setting {@link
+     * com.smartgwt.client.data.DataSource#getAutoCacheAllData autoCacheAllData}:true causes a DataSource to  automatically
+     * switch to <code>cacheAllData:true</> when a fetch results in the entire  dataset being brought client-side. <P> To cause
+     * automatic cache updates, you can set {@link com.smartgwt.client.data.DataSource#getCacheMaxAge cacheMaxAge} to a number
+     * of seconds and once data has been client-side for that length of time, the next fetch causes the cache to be dropped and
+     * a new cache retrieved.
+     *
+     *
+     * @return Boolean
+     */
+    public Boolean getCacheAllData()  {
+        return getAttributeAsBoolean("cacheAllData");
+    }
+
+    /**
+     * For a {@link com.smartgwt.client.data.DataSource#getCacheAllData cacheAllData} or client-only DataSource, a set of
+     * records to use as a dataset,  specified as an Array of JavaScript Objects representing records.
+     * Call this method to set the data in the client-side cache after initialization.
+     *
+     * @param cacheData Array of records to apply as the client-side cache. Default value is null
+     * @throws IllegalStateException this property cannot be changed after the underlying component has been created
+     */
+    public void setCacheData(Record[] cacheData)  throws IllegalStateException {
+        setAttribute("cacheData", cacheData, false);
+    }
+
+    /**
+     * For a {@link com.smartgwt.client.data.DataSource#getCacheAllData cacheAllData} or client-only DataSource, a set of
+     * records to use as a dataset,  specified as an Array of JavaScript Objects representing records.
+     *
+     *
+     * @return Record
+     */
+    public Record[] getCacheData()  {
+        return Record.convertToRecordArray(getAttributeAsJavaScriptObject("cacheData"));
+    }
+
+    /**
+     * The maximum time, in seconds, to maintain the client-side cache.  If a fetch occurs after the cacheMaxAge has expired,
+     * the current cache will be dropped and another complete cache fetched.
+     *
+     * @param cacheMaxAge cacheMaxAge Default value is 60
+     */
+    public void setCacheMaxAge(int cacheMaxAge) {
+        setAttribute("cacheMaxAge", cacheMaxAge, true);
+    }
+
+    /**
+     * The maximum time, in seconds, to maintain the client-side cache.  If a fetch occurs after the cacheMaxAge has expired,
+     * the current cache will be dropped and another complete cache fetched.
+     *
+     *
+     * @return int
+     */
+    public int getCacheMaxAge()  {
+        return getAttributeAsInt("cacheMaxAge");
+    }
+
+    /**
      * Applies only to dataFormat: "json".  Specifies the name of the query parameter that tells your JSON service what
      * function to call as part of the response.
      *
@@ -361,9 +464,12 @@ public class DataSource extends BaseClass  implements com.smartgwt.client.data.e
 
     /**
      * Whether to act as a "client-only" DataSource, which has no permanent storage and never contacts the server, instead
-     * using a set of test data to respond to requests in the same manner as a server-based DataSource might. <P> See {@link
-     * com.smartgwt.client.docs.ClientOnlyDataSources 'this discussion'} for ways to populate a client-only DataSource with
-     * test data.
+     * using a set of test data to respond to requests in the same manner as a server-based DataSource might. <P> Note that a
+     * client-only DataSource is an entirely client-side variant of a {@link
+     * com.smartgwt.client.data.DataSource#getCacheAllData cacheAllData} DataSource, where all operations are performed on
+     * client-side data, not just fetches. <P> See {@link com.smartgwt.client.docs.ClientOnlyDataSources 'this discussion'} for
+     * ways to populate a client-only DataSource with test data.
+     * Switch into clientOnly mode, taking the cache from the cacheAllData ResultSet if it  exists.
      *
      * @param clientOnly clientOnly Default value is false
      * @throws IllegalStateException this property cannot be changed after the underlying component has been created
@@ -374,9 +480,11 @@ public class DataSource extends BaseClass  implements com.smartgwt.client.data.e
 
     /**
      * Whether to act as a "client-only" DataSource, which has no permanent storage and never contacts the server, instead
-     * using a set of test data to respond to requests in the same manner as a server-based DataSource might. <P> See {@link
-     * com.smartgwt.client.docs.ClientOnlyDataSources 'this discussion'} for ways to populate a client-only DataSource with
-     * test data.
+     * using a set of test data to respond to requests in the same manner as a server-based DataSource might. <P> Note that a
+     * client-only DataSource is an entirely client-side variant of a {@link
+     * com.smartgwt.client.data.DataSource#getCacheAllData cacheAllData} DataSource, where all operations are performed on
+     * client-side data, not just fetches. <P> See {@link com.smartgwt.client.docs.ClientOnlyDataSources 'this discussion'} for
+     * ways to populate a client-only DataSource with test data.
      *
      *
      * @return Boolean
@@ -825,80 +933,6 @@ public class DataSource extends BaseClass  implements com.smartgwt.client.data.e
     }
 
     /**
-     * Whether a user must be authenticated in order to access this DataSource.  This establishes a default for the DataSource
-     * as a whole; individual {@link com.smartgwt.client.data.DataSource#getOperationBindings operationBindings} within the
-     * DataSource may still override this setting by explicitly setting {@link
-     * com.smartgwt.client.docs.serverds.OperationBinding#requiresAuthentication requiresAuthentication}. <P> Whether the user
-     * is authenticated is determined by calling <code>httpServletRequest.getRemoteUser()</code>, hence works with both simple
-     * J2EE security (realms and form-based authentication) and JAAS (Java Authentication & Authorization Service). <P> If you
-     * wish to use an authentication scheme that does not make use of the servlet API's  standards, Smart GWT Server also
-     * implements the <code>setAuthenticated</code> method on <code>RPCManager</code>.  You can use this API to tell Smart GWT
-     * that all the  requests in the queue currently being processed are associated with an authenticated user; in this case,
-     * Smart GWT will not attempt to authenticate the user via  <code>httpServletRequest.getRemoteUser()</code> <P> You can set
-     * the default value for this property via setting "authentication.defaultRequired" in server.properties.  This allows you
-     * to, for example, cause all DataSources to require authentication for all operations by default. <P> Note that setting
-     * this property does not automatically cause an authentication mechanism to appear - you still need to separately
-     * configure an authentication system.  Likewise, setting requiresAuthentication="false" does not automatically allow users
-     * to bypass your authentication mechanism - you need to set up a URL that will accept DSRequests and process them similar
-     * to the default "IDACall" servlet, and which is not protected by the authentication system.  See {@link
-     * com.smartgwt.client.docs.ServletDetails 'Deploying Smart GWT'} for details on the IDACall servlet.
-     *
-     * @param requiresAuthentication requiresAuthentication Default value is null
-     * @throws IllegalStateException this property cannot be changed after the underlying component has been created
-     */
-    public void setRequiresAuthentication(Boolean requiresAuthentication)  throws IllegalStateException {
-        setAttribute("requiresAuthentication", requiresAuthentication, false);
-    }
-
-    /**
-     * Whether a user must be authenticated in order to access this DataSource.  This establishes a default for the DataSource
-     * as a whole; individual {@link com.smartgwt.client.data.DataSource#getOperationBindings operationBindings} within the
-     * DataSource may still override this setting by explicitly setting {@link
-     * com.smartgwt.client.docs.serverds.OperationBinding#requiresAuthentication requiresAuthentication}. <P> Whether the user
-     * is authenticated is determined by calling <code>httpServletRequest.getRemoteUser()</code>, hence works with both simple
-     * J2EE security (realms and form-based authentication) and JAAS (Java Authentication & Authorization Service). <P> If you
-     * wish to use an authentication scheme that does not make use of the servlet API's  standards, Smart GWT Server also
-     * implements the <code>setAuthenticated</code> method on <code>RPCManager</code>.  You can use this API to tell Smart GWT
-     * that all the  requests in the queue currently being processed are associated with an authenticated user; in this case,
-     * Smart GWT will not attempt to authenticate the user via  <code>httpServletRequest.getRemoteUser()</code> <P> You can set
-     * the default value for this property via setting "authentication.defaultRequired" in server.properties.  This allows you
-     * to, for example, cause all DataSources to require authentication for all operations by default. <P> Note that setting
-     * this property does not automatically cause an authentication mechanism to appear - you still need to separately
-     * configure an authentication system.  Likewise, setting requiresAuthentication="false" does not automatically allow users
-     * to bypass your authentication mechanism - you need to set up a URL that will accept DSRequests and process them similar
-     * to the default "IDACall" servlet, and which is not protected by the authentication system.  See {@link
-     * com.smartgwt.client.docs.ServletDetails 'Deploying Smart GWT'} for details on the IDACall servlet.
-     *
-     *
-     * @return Boolean
-     */
-    public Boolean getRequiresAuthentication()  {
-        return getAttributeAsBoolean("requiresAuthentication");
-    }
-
-    /**
-     * Similar to {@link com.smartgwt.client.docs.serverds.OperationBinding#requiresRole requiresRole}, but controls access to
-     * the DataSource as a whole.
-     *
-     * @param requiresRole requiresRole Default value is null
-     * @throws IllegalStateException this property cannot be changed after the underlying component has been created
-     */
-    public void setRequiresRole(String requiresRole)  throws IllegalStateException {
-        setAttribute("requiresRole", requiresRole, false);
-    }
-
-    /**
-     * Similar to {@link com.smartgwt.client.docs.serverds.OperationBinding#requiresRole requiresRole}, but controls access to
-     * the DataSource as a whole.
-     *
-     *
-     * @return String
-     */
-    public String getRequiresRole()  {
-        return getAttributeAsString("requiresRole");
-    }
-
-    /**
      * Very advanced: for servers that do not support paging, and must return large numbers of XML records in one HTTP
      * response, Smart GWT breaks up the processing of the response in order to avoid the "script running slowly" dialog
      * appearing for an end user. <P> If you have a relatively small number of records with a great deal of properties or
@@ -1326,8 +1360,33 @@ public class DataSource extends BaseClass  implements com.smartgwt.client.data.e
     }
 
     /**
-     * If true, indicates that the Smart GWT Server should automatically apply a  {@link com.smartgwt.client..ValidatorType} of
-     * "hasRelatedRecord" to every field  on this dataSource that has a {@link
+     * When set, causes a {@link com.smartgwt.client.data.DataSource#getClientOnly 'client-only'} or {@link
+     * com.smartgwt.client.data.DataSource#getCacheAllData cacheAllData} DataSource to  create a second DataSource to perform
+     * it's one-time fetch.  By default, this atttribute will be considered true when clientOnly is true, cacheAllData is false
+     * or unset and a dataURL or testDataFileName is specified on the DataSource.
+     *
+     * @param useTestDataFetch useTestDataFetch Default value is null
+     */
+    public void setUseTestDataFetch(Boolean useTestDataFetch) {
+        setAttribute("useTestDataFetch", useTestDataFetch, true);
+    }
+
+    /**
+     * When set, causes a {@link com.smartgwt.client.data.DataSource#getClientOnly 'client-only'} or {@link
+     * com.smartgwt.client.data.DataSource#getCacheAllData cacheAllData} DataSource to  create a second DataSource to perform
+     * it's one-time fetch.  By default, this atttribute will be considered true when clientOnly is true, cacheAllData is false
+     * or unset and a dataURL or testDataFileName is specified on the DataSource.
+     *
+     *
+     * @return Boolean
+     */
+    public Boolean getUseTestDataFetch()  {
+        return getAttributeAsBoolean("useTestDataFetch");
+    }
+
+    /**
+     * If true, indicates that the Smart GWT Server should automatically apply a  {@link
+     * com.smartgwt.client.types.ValidatorType} of "hasRelatedRecord" to every field  on this dataSource that has a {@link
      * com.smartgwt.client.data.DataSourceField#getForeignKey 'foreignKey'} defined.
      *
      * @param validateRelatedRecords validateRelatedRecords Default value is null
@@ -1338,8 +1397,8 @@ public class DataSource extends BaseClass  implements com.smartgwt.client.data.e
     }
 
     /**
-     * If true, indicates that the Smart GWT Server should automatically apply a  {@link com.smartgwt.client..ValidatorType} of
-     * "hasRelatedRecord" to every field  on this dataSource that has a {@link
+     * If true, indicates that the Smart GWT Server should automatically apply a  {@link
+     * com.smartgwt.client.types.ValidatorType} of "hasRelatedRecord" to every field  on this dataSource that has a {@link
      * com.smartgwt.client.data.DataSourceField#getForeignKey 'foreignKey'} defined.
      *
      *
@@ -1438,6 +1497,59 @@ public class DataSource extends BaseClass  implements com.smartgwt.client.data.e
    }-*/;
             
     /**
+     * When {@link com.smartgwt.client.data.DataSource#getCacheAllData cacheAllData} is true, has all the data been retrieved
+     * to the client?
+     *
+     * @return All data has been fetched from the server and is available client-side
+     */
+    public native Boolean hasAllData() /*-{
+        var self = this.@com.smartgwt.client.core.BaseClass::getOrCreateJsObj()();
+        var retVal =self.hasAllData();
+        if(retVal == null || retVal === undefined) {
+            return null;
+        } else {
+            return @com.smartgwt.client.util.JSOHelper::toBoolean(Z)(retVal);
+        }
+    }-*/;
+            
+    /**
+     * Invalidate the cache when {@link com.smartgwt.client.data.DataSource#getCacheAllData cacheAllData} or {@link
+     * com.smartgwt.client.data.DataSource#getClientOnly clientOnly} are true.
+     */
+    public native void invalidateCache() /*-{
+        var self = this.@com.smartgwt.client.core.BaseClass::getOrCreateJsObj()();
+        self.invalidateCache();
+    }-*/;
+            
+    /**
+     * Perform a custom DataSource operation against this DataSource.  A custom operation is anything that is not one of the 4
+     * CRUD operations - generally, something that is more  complex than a fetch or an update to a single record. 
+     * <code>customOperation</code>s  are an alternative to using {@link com.smartgwt.client.rpc.RPCRequest}; anything that can
+     * be sent to the server as a plain RPC can instead be framed as a DataSource  <code>customOperation</code>.
+     * @param operationId the operation ID
+     * @param data data to pass to the server
+     */
+    public native void performCustomOperation(String operationId, Record data) /*-{
+        var self = this.@com.smartgwt.client.core.BaseClass::getOrCreateJsObj()();
+        self.performCustomOperation(operationId, data.@com.smartgwt.client.core.DataClass::getJsObj()());
+    }-*/;
+
+    /**
+     * Perform a custom DataSource operation against this DataSource.  A custom operation is anything that is not one of the 4
+     * CRUD operations - generally, something that is more  complex than a fetch or an update to a single record. 
+     * <code>customOperation</code>s  are an alternative to using {@link com.smartgwt.client.rpc.RPCRequest}; anything that can
+     * be sent to the server as a plain RPC can instead be framed as a DataSource  <code>customOperation</code>.
+     * @param operationId the operation ID
+     * @param data data to pass to the server
+     * @param callback callback to invoke on completion
+     * @param requestProperties additional properties to set on                                                       the DSRequest that will be issued
+     */
+    public native void performCustomOperation(String operationId, Record data, DSCallback callback, DSRequest requestProperties) /*-{
+        var self = this.@com.smartgwt.client.core.BaseClass::getOrCreateJsObj()();
+        self.performCustomOperation(operationId, data.@com.smartgwt.client.core.DataClass::getJsObj()(), callback, requestProperties.@com.smartgwt.client.core.DataClass::getJsObj()());
+    }-*/;
+            
+    /**
      * Does this dataSource support the specified "textMatchStyle" when performing a filter operation against a text field.
      * @param textMatchStyle textMatchStyle to check. If passed a null value,      assume an exact match is being requested.
      */
@@ -1462,9 +1574,10 @@ public class DataSource extends BaseClass  implements com.smartgwt.client.data.e
      * com.smartgwt.client.data.DataSource#getClientOnly clientOnly} DataSource, because in this case, the "remote dataset" is
      * actually within the browser.  Instead,  {@link com.smartgwt.client.data.DataSource#updateData}, addData() or
      * removeData() can be called in order to both change the dataset stored inside the browser and notify all cache managers.
-     * <P> Note that this DSResponse will <b>not</b> go through {@link com.smartgwt.client.data.DataSource#transformResponse}
-     * or other processing that would normally occur for a DSResponse resulting from a DSRequest sent by the application in
-     * this page.
+     * <P> If a DataSource has {@link com.smartgwt.client.data.DataSource#getCacheAllData cacheAllData} set and a full cache
+     * has been obtained, calling <code>updateCaches</code> will automatically update the cache. <P> Note that this DSResponse
+     * will <b>not</b> go through {@link com.smartgwt.client.data.DataSource#transformResponse} or other processing that would
+     * normally occur for a DSResponse resulting from a DSRequest sent by  the application in this page.
      * @param dsResponse 
      */
     public native void updateCaches(DSResponse dsResponse) /*-{
@@ -1488,9 +1601,10 @@ public class DataSource extends BaseClass  implements com.smartgwt.client.data.e
      * com.smartgwt.client.data.DataSource#getClientOnly clientOnly} DataSource, because in this case, the "remote dataset" is
      * actually within the browser.  Instead,  {@link com.smartgwt.client.data.DataSource#updateData}, addData() or
      * removeData() can be called in order to both change the dataset stored inside the browser and notify all cache managers.
-     * <P> Note that this DSResponse will <b>not</b> go through {@link com.smartgwt.client.data.DataSource#transformResponse}
-     * or other processing that would normally occur for a DSResponse resulting from a DSRequest sent by the application in
-     * this page.
+     * <P> If a DataSource has {@link com.smartgwt.client.data.DataSource#getCacheAllData cacheAllData} set and a full cache
+     * has been obtained, calling <code>updateCaches</code> will automatically update the cache. <P> Note that this DSResponse
+     * will <b>not</b> go through {@link com.smartgwt.client.data.DataSource#transformResponse} or other processing that would
+     * normally occur for a DSResponse resulting from a DSRequest sent by  the application in this page.
      * @param dsResponse 
      * @param dsRequest 
      */
@@ -2603,6 +2717,19 @@ public class DataSource extends BaseClass  implements com.smartgwt.client.data.e
         return @com.smartgwt.client.util.JSOHelper::convertToJavaStringArray(Lcom/google/gwt/core/client/JavaScriptObject;)(sortSpecJS);
     }-*/;
 
+    /**
+     * Exports arbitrary client-side data, with client-side formatters applied, so is suitable  for direct display to users. 
+     * This method can be used to export data formatted outside of any kind of visual component. <P> Requires the Smart GWT
+     * server, but does not rely on any server-side DataSources. <P> To export unformatted data, see {@link
+     * com.smartgwt.client.data.DataSource#exportData} which does not include client-side formatters, but requires both the
+     * Smart GWT server and the  presence of server-side DataSources.
+     * @param data Records to export, similar to ListGrid.data
+     * @param requestProperties Request properties for the export
+     */
+    public native void exportClientData(Object[] data, DSRequest requestProperties) /*-{
+        var self = this.@com.smartgwt.client.core.BaseClass::getOrCreateJsObj()();
+        self.exportClientData(@com.smartgwt.client.util.JSOHelper::convertToJavaScriptArray([Ljava/lang/Object;)(data), requestProperties.@com.smartgwt.client.core.DataClass::getJsObj()());
+    }-*/;
 
 }
 
