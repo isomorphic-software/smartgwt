@@ -222,7 +222,7 @@ public class ColumnTree extends Layout  implements DataBoundComponent, com.smart
      * @return Returns the {@link com.smartgwt.client.widgets.tree.Tree} object this ColumnTree is viewing
      */
     public Tree getData()  {
-            return Tree.getOrCreateRef(getAttributeAsJavaScriptObject("data"));
+        return Tree.getOrCreateRef(getAttributeAsJavaScriptObject("data"));
     }
 
     /**

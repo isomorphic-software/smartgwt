@@ -84,7 +84,7 @@ package com.smartgwt.client.docs;
  * wsOperation:"update", recordName: "SaveResult" },&#010        { operationType:"add", wsOperation:"create", recordName:
  * "SaveResult" },&#010        { operationType:"remove", wsOperation:"delete", recordName: "DeleteResult" }&#010    ],&#010
  * ...&#010 }); &#010 </pre>&#010 NOTE: additional code is required to handle authentication and other details, see
- * the&#010 complete code in isomorphicSDK/examples/databinding/SalesForce.&#010 <P>&#010 In this usage, any DSRequest
+ * the&#010 complete code in smartclientSDK/examples/databinding/SalesForce.&#010 <P>&#010 In this usage, any DSRequest
  * performed on this DataSource invokes the web service operation&#010 named by the <code>wsOperation</code> property on
  * the corresponding operationBinding, and&#010 {@link com.smartgwt.client.data.DSRequest#getData data} is serialized via
  * {@link com.smartgwt.client.data.DataSource#xmlSerialize} to form the input&#010 message to send to the web service.  For

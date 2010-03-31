@@ -94,6 +94,7 @@ package com.smartgwt.client.docs;
  * @see com.smartgwt.client.widgets.grid.ListGrid#getSelection
  * @see com.smartgwt.client.widgets.grid.ListGrid#getSelectedRecord
  * @see com.smartgwt.client.widgets.DataBoundComponent#selectRecord
+ * @see com.smartgwt.client.widgets.DataBoundComponent#selectSingleRecord
  * @see com.smartgwt.client.widgets.DataBoundComponent#deselectRecord
  * @see com.smartgwt.client.widgets.DataBoundComponent#selectRecords
  * @see com.smartgwt.client.widgets.DataBoundComponent#deselectRecords

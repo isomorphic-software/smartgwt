@@ -160,26 +160,51 @@ public class JSONEncoder extends DataClass {
     }
 
     /**
-     * If false, output all Smart GWT objects with a call to ${isc.DocUtils.linkForRef('isc.echoLeaf')}
+     * Controls the output of the JSONEncoder when instances of Smart GWT classes (eg a ListGrid) are included in the data to
+     * be serialized.  See {@link com.smartgwt.client.types.JSONInstanceSerializationMode}. <P> Note that the JSONEncoder does
+     * not support a format that will recreate the instance if passed to decode() or eval().
      *
-     * @param serializeInstances serializeInstances Default value is true
+     * @param serializeInstances serializeInstances Default value is "long"
      */
-    public void setSerializeInstances(Boolean serializeInstances) {
-        setAttribute("serializeInstances", serializeInstances);
+    public void setSerializeInstances(JSONInstanceSerializationMode serializeInstances) {
+        setAttribute("serializeInstances", serializeInstances.getValue());
     }
 
     /**
-     * If false, output all Smart GWT objects with a call to ${isc.DocUtils.linkForRef('isc.echoLeaf')}
+     * Controls the output of the JSONEncoder when instances of Smart GWT classes (eg a ListGrid) are included in the data to
+     * be serialized.  See {@link com.smartgwt.client.types.JSONInstanceSerializationMode}. <P> Note that the JSONEncoder does
+     * not support a format that will recreate the instance if passed to decode() or eval().
+     *
+     *
+     * @return JSONInstanceSerializationMode
+     */
+    public JSONInstanceSerializationMode getSerializeInstances()  {
+        return EnumUtil.getEnum(JSONInstanceSerializationMode.values(), getAttribute("serializeInstances"));
+    }
+
+    /**
+     * If objects that cannot be serialized to JSON are encountered during serialization, show a placeholder rather than just
+     * omitting them.  <P> The resulting String will not be valid JSON and so cannot be decoded/eval()'d
+     *
+     * @param showDebugOutput showDebugOutput Default value is false
+     */
+    public void setShowDebugOutput(Boolean showDebugOutput) {
+        setAttribute("showDebugOutput", showDebugOutput);
+    }
+
+    /**
+     * If objects that cannot be serialized to JSON are encountered during serialization, show a placeholder rather than just
+     * omitting them.  <P> The resulting String will not be valid JSON and so cannot be decoded/eval()'d
      *
      *
      * @return Boolean
      */
-    public Boolean getSerializeInstances()  {
-        return getAttributeAsBoolean("serializeInstances");
+    public Boolean getShowDebugOutput()  {
+        return getAttributeAsBoolean("showDebugOutput");
     }
 
     /**
-     * If true, don't show isc internal properties when encoding and object
+     * If true, don't show isc internal properties when encoding and object.
      *
      * @param skipInternalProperties skipInternalProperties Default value is false
      */
@@ -188,7 +213,7 @@ public class JSONEncoder extends DataClass {
     }
 
     /**
-     * If true, don't show isc internal properties when encoding and object
+     * If true, don't show isc internal properties when encoding and object.
      *
      *
      * @return Boolean

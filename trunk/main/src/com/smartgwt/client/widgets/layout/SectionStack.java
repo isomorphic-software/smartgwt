@@ -383,7 +383,7 @@ public class SectionStack extends VLayout  implements com.smartgwt.client.widget
      * SectionHeader widget for the section as a widget ID? If set to false, SectionStackSection.ID will behave as a synonym
      * for SectionStackSection.name.
      *
-     * @param useGlobalSectionIDs useGlobalSectionIDs Default value is true
+     * @param useGlobalSectionIDs useGlobalSectionIDs Default value is false
      * @throws IllegalStateException this property cannot be changed after the component has been created
      */
     public void setUseGlobalSectionIDs(Boolean useGlobalSectionIDs)  throws IllegalStateException {

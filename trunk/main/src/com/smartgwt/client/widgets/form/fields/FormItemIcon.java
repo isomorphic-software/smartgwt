@@ -98,6 +98,27 @@ public class FormItemIcon extends DataClass  implements com.smartgwt.client.widg
     }
 
     /**
+     * Identifier for this form item icon. This identifier (if set) should be unique within this form item and may be used to
+     * get a pointer to the icon object via {@link com.smartgwt.client.widgets.form.fields.FormItem#getIcon}.
+     *
+     * @param name name Default value is null
+     */
+    public void setName(String name) {
+        setAttribute("name", name);
+    }
+
+    /**
+     * Identifier for this form item icon. This identifier (if set) should be unique within this form item and may be used to
+     * get a pointer to the icon object via {@link com.smartgwt.client.widgets.form.fields.FormItem#getIcon}.
+     *
+     *
+     * @return String
+     */
+    public String getName()  {
+        return getAttributeAsString("name");
+    }
+
+    /**
      * If <code>icon.neverDisable</code> is true, when this form item is disabled, the   icon will remain enabled.   Note that
      * disabling the entire form will disable all items, together with their   icons including those marked as neverDisable -
      * this property only has an effect   if the form is enabled and a specific item is disabled within it.

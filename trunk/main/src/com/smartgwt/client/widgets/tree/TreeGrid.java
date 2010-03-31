@@ -629,7 +629,7 @@ public class TreeGrid extends ListGrid  implements com.smartgwt.client.widgets.t
      * @return Tree
      */
     public Tree getData()  {
-            return Tree.getOrCreateRef(getAttributeAsJavaScriptObject("data"));
+        return Tree.getOrCreateRef(getAttributeAsJavaScriptObject("data"));
     }
 
     /**
@@ -745,8 +745,10 @@ public class TreeGrid extends ListGrid  implements com.smartgwt.client.widgets.t
 
     /**
      * For databound treeGrid instances, should the entire tree of data be loaded on initial  fetch, or should folders load
-     * their children as they are opened. <P> If unset the default {@link com.smartgwt.client..ResultTree#getLoadDataOnDemand
-     * loadDataOnDemand} setting will be used. <P> Note that when using <code>loadDataOnDemand</code>, every node returned by
+     * their children as they are opened. <P> If unset, calling {@link com.smartgwt.client.widgets.tree.TreeGrid#fetchData}
+     * will default it to true, otherwise, if a ResultTree is passed to {@link
+     * com.smartgwt.client.widgets.tree.TreeGrid#setData}, the {@link com.smartgwt.client..ResultTree#getLoadDataOnDemand
+     * loadDataOnDemand} setting is respected. <P> Note that when using <code>loadDataOnDemand</code>, every node returned by
      * the server is assumed be a folder which may load further children.  See {@link
      * com.smartgwt.client..ResultTree#getDefaultIsFolder defaultIsFolder} for how to control this behavior.
      *
@@ -758,8 +760,10 @@ public class TreeGrid extends ListGrid  implements com.smartgwt.client.widgets.t
 
     /**
      * For databound treeGrid instances, should the entire tree of data be loaded on initial  fetch, or should folders load
-     * their children as they are opened. <P> If unset the default {@link com.smartgwt.client..ResultTree#getLoadDataOnDemand
-     * loadDataOnDemand} setting will be used. <P> Note that when using <code>loadDataOnDemand</code>, every node returned by
+     * their children as they are opened. <P> If unset, calling {@link com.smartgwt.client.widgets.tree.TreeGrid#fetchData}
+     * will default it to true, otherwise, if a ResultTree is passed to {@link
+     * com.smartgwt.client.widgets.tree.TreeGrid#setData}, the {@link com.smartgwt.client..ResultTree#getLoadDataOnDemand
+     * loadDataOnDemand} setting is respected. <P> Note that when using <code>loadDataOnDemand</code>, every node returned by
      * the server is assumed be a folder which may load further children.  See {@link
      * com.smartgwt.client..ResultTree#getDefaultIsFolder defaultIsFolder} for how to control this behavior.
      *

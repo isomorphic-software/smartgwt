@@ -865,7 +865,7 @@ public class Canvas extends BaseWidget  implements com.smartgwt.client.widgets.e
      * @return Menu
      */
     public Menu getContextMenu()  {
-            return Menu.getOrCreateRef(getAttributeAsJavaScriptObject("contextMenu"));
+        return Menu.getOrCreateRef(getAttributeAsJavaScriptObject("contextMenu"));
     }
 
     /**
@@ -2811,7 +2811,7 @@ public class Canvas extends BaseWidget  implements com.smartgwt.client.widgets.e
      * @return ValuesManager
      */
     public ValuesManager getValuesManager()  {
-            return ValuesManager.getOrCreateRef(getAttributeAsJavaScriptObject("valuesManager"));
+        return ValuesManager.getOrCreateRef(getAttributeAsJavaScriptObject("valuesManager"));
     }
 
     /**

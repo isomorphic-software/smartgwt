@@ -62,6 +62,7 @@ package com.smartgwt.client.docs;
  * @see com.smartgwt.client.widgets.tree.TreeGrid#filterData
  * @see com.smartgwt.client.widgets.tile.TileGrid#exportData
  * @see com.smartgwt.client.widgets.viewer.DetailViewer#exportData
+ * @see com.smartgwt.client.widgets.DataBoundComponent#exportData
  */
 public interface DataBoundComponentMethods {
 }

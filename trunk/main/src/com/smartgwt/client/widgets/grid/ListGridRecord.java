@@ -162,7 +162,7 @@ public class ListGridRecord extends Record {
      * @return Canvas
      */
     public Canvas getBackgroundComponent()  {
-            return Canvas.getOrCreateRef(getAttributeAsJavaScriptObject("backgroundComponent"));
+        return Canvas.getOrCreateRef(getAttributeAsJavaScriptObject("backgroundComponent"));
     }
 
     /**
@@ -280,7 +280,7 @@ public class ListGridRecord extends Record {
      * @return DataSource
      */
     public DataSource getDetailDS()  {
-            return DataSource.getOrCreateRef(getAttributeAsJavaScriptObject("detailDS"));
+        return DataSource.getOrCreateRef(getAttributeAsJavaScriptObject("detailDS"));
     }
 
     /**

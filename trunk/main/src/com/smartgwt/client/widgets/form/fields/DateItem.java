@@ -415,6 +415,31 @@ public class DateItem extends FormItem {
     }
 
     /**
+     * When set to true (the default), use a single shared date-picker across all widgets that use one.  When false, create a
+     * new picker using the autoChild system.  See  ${isc.DocUtils.linkForRef('dateItem.pickerDefaults','picker')} and  {@link
+     * com.smartgwt.client.widgets.form.fields.DateItem#getPickerProperties 'pickerProperties'} for details on setting up an
+     * unshared picker.
+     *
+     * @param useSharedPicker useSharedPicker Default value is true
+     */
+    public void setUseSharedPicker(Boolean useSharedPicker) {
+        setAttribute("useSharedPicker", useSharedPicker);
+    }
+
+    /**
+     * When set to true (the default), use a single shared date-picker across all widgets that use one.  When false, create a
+     * new picker using the autoChild system.  See  ${isc.DocUtils.linkForRef('dateItem.pickerDefaults','picker')} and  {@link
+     * com.smartgwt.client.widgets.form.fields.DateItem#getPickerProperties 'pickerProperties'} for details on setting up an
+     * unshared picker.
+     *
+     *
+     * @return Boolean
+     */
+    public Boolean getUseSharedPicker()  {
+        return getAttributeAsBoolean("useSharedPicker");
+    }
+
+    /**
      * Should we show the date in a text field, or as 3 select boxes?
      *
      * @param useTextField useTextField Default value is null

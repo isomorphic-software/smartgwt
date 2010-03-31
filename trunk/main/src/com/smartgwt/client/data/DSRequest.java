@@ -275,9 +275,14 @@ public class DSRequest extends RPCRequest {
      * operation completes, {@link com.smartgwt.client.data.DSRequest#getExportDisplay exportDisplay} specifies whether the
      * exported&#010 data should be downloaded to the file-system or displayed in a new window.  The default value&#010 of
      * exportDisplay is "download" which displays the Save As dialog.  See {@link com.smartgwt.client.types.ExportDisplay}
-     * &#010 for more information.&#010 <P>&#010 You can also configure the style of line-breaks to use when generating the
-     * output.  See&#010 {@link com.smartgwt.client..LineBreakStyle} for more information.&#010 <P>&#010 Note that an export
-     * initiated using dsRequest properties does not provide support for JSON&#010 format (see &#010 <a
+     * &#010 for more information.&#010 <P>&#010 You can configure the style of {@link com.smartgwt.client..LineBreakStyle} to
+     * use when &#010 generating the output, the {@link com.smartgwt.client.data.DSRequest#getExportDelimiter 'delimiter'} to
+     * use when exporting&#010 to CSV and the {@link com.smartgwt.client.data.DSRequest#getExportTitleSeparatorChar
+     * 'separator-character'} to use in &#010 field-titles when exporting to XML.&#010 <P>&#010 Additionaly, you can output
+     * arbitrary text before and after the exported data by setting &#010 {@link
+     * com.smartgwt.client.data.DSRequest#getExportHeader 'exportHeader'} and {@link
+     * com.smartgwt.client.data.DSRequest#getExportFooter 'exportFooter'}.&#010 <P>&#010 Note that an export initiated using
+     * dsRequest properties does not provide support for JSON&#010 format (see &#010 <a
      * href="http://forums.smartclient.com/showthread.php?t=235">this post</a> for more detail).&#010 <P>&#010 As well as
      * setting dsRequest.exportResults and related properties, exports can be initiated&#010 in two other ways, via {@link
      * com.smartgwt.client.data.OperationBinding}s and via custom server code which sets &#010 export-related properties on the
@@ -303,9 +308,14 @@ public class DSRequest extends RPCRequest {
      * operation completes, {@link com.smartgwt.client.data.DSRequest#getExportDisplay exportDisplay} specifies whether the
      * exported&#010 data should be downloaded to the file-system or displayed in a new window.  The default value&#010 of
      * exportDisplay is "download" which displays the Save As dialog.  See {@link com.smartgwt.client.types.ExportDisplay}
-     * &#010 for more information.&#010 <P>&#010 You can also configure the style of line-breaks to use when generating the
-     * output.  See&#010 {@link com.smartgwt.client..LineBreakStyle} for more information.&#010 <P>&#010 Note that an export
-     * initiated using dsRequest properties does not provide support for JSON&#010 format (see &#010 <a
+     * &#010 for more information.&#010 <P>&#010 You can configure the style of {@link com.smartgwt.client..LineBreakStyle} to
+     * use when &#010 generating the output, the {@link com.smartgwt.client.data.DSRequest#getExportDelimiter 'delimiter'} to
+     * use when exporting&#010 to CSV and the {@link com.smartgwt.client.data.DSRequest#getExportTitleSeparatorChar
+     * 'separator-character'} to use in &#010 field-titles when exporting to XML.&#010 <P>&#010 Additionaly, you can output
+     * arbitrary text before and after the exported data by setting &#010 {@link
+     * com.smartgwt.client.data.DSRequest#getExportHeader 'exportHeader'} and {@link
+     * com.smartgwt.client.data.DSRequest#getExportFooter 'exportFooter'}.&#010 <P>&#010 Note that an export initiated using
+     * dsRequest properties does not provide support for JSON&#010 format (see &#010 <a
      * href="http://forums.smartclient.com/showthread.php?t=235">this post</a> for more detail).&#010 <P>&#010 As well as
      * setting dsRequest.exportResults and related properties, exports can be initiated&#010 in two other ways, via {@link
      * com.smartgwt.client.data.OperationBinding}s and via custom server code which sets &#010 export-related properties on the
@@ -321,6 +331,25 @@ public class DSRequest extends RPCRequest {
      */
     public Boolean getExportResults()  {
         return getAttributeAsBoolean("exportResults");
+    }
+
+    /**
+     * The character with which to replace spaces in field-titles when exporting to XML.
+     *
+     * @param exportTitleSeparatorChar exportTitleSeparatorChar Default value is null
+     */
+    public void setExportTitleSeparatorChar(String exportTitleSeparatorChar) {
+        setAttribute("exportTitleSeparatorChar", exportTitleSeparatorChar);
+    }
+
+    /**
+     * The character with which to replace spaces in field-titles when exporting to XML.
+     *
+     *
+     * @return String
+     */
+    public String getExportTitleSeparatorChar()  {
+        return getAttributeAsString("exportTitleSeparatorChar");
     }
 
     /**

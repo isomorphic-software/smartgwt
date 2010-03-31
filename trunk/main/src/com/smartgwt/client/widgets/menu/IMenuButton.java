@@ -136,7 +136,7 @@ public class IMenuButton extends StretchImgButton {
      * @return Menu
      */
     public Menu getMenu()  {
-            return Menu.getOrCreateRef(getAttributeAsJavaScriptObject("menu"));
+        return Menu.getOrCreateRef(getAttributeAsJavaScriptObject("menu"));
     }
 
     /**
