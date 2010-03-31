@@ -433,7 +433,7 @@ public class Menu extends ListGrid  implements com.smartgwt.client.widgets.menu.
      * @return Canvas
      */
     public Canvas getTarget()  {
-            return Canvas.getOrCreateRef(getAttributeAsJavaScriptObject("target"));
+        return Canvas.getOrCreateRef(getAttributeAsJavaScriptObject("target"));
     }
 
     /**

@@ -320,7 +320,7 @@ public class MenuItem extends ListGridRecord  implements com.smartgwt.client.wid
      * @return Menu
      */
     public Menu getSubmenu()  {
-            return Menu.getOrCreateRef(getAttributeAsJavaScriptObject("submenu"));
+        return Menu.getOrCreateRef(getAttributeAsJavaScriptObject("submenu"));
     }
 
     /**

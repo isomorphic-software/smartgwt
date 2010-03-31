@@ -5,9 +5,16 @@ package com.smartgwt.client.docs;
  * <h3>Java Module Dependencies</h3>
  * The following is a description of what functionality is contained in each Smart GWT JAR file, and which other Smart GWT
  * JARs and third party libraries are required to enable that functionality.  Note that actual filenames in WEB-INF/lib
- * will typically contain the version number of the library, whereas the library names below simply list the base name.
- * <ul> <li><b>isomorphic_core_rpc</b>: This is the core Smart GWT module.  It provides the RPC, DMI, and DataSource
- * support.<br> &nbsp;&nbsp;<u>Requires</u>:<br> &nbsp;&nbsp;&nbsp;&nbsp;commons-cli<br>
+ * will typically contain the version number of the library, whereas the library names below simply list the base name. <P>
+ * Note that all of the libraries that Smart GWT depends upon have either an Apache 1.0 or Apache 2.0 license, with the
+ * exception of Hibernate, which has an LGPL license but is never required by Smart GWT; it is only required if you wish to
+ * use Hibernate. <P> If you are using GWT, GWT itself also has an Apache 2.0 license, however tools and test environments
+ * that you may use during development have different license (such as Eclipse - Eclipse Public License).  Also, specific
+ * GWT widgets, not required by Smart GWT,  have licenses different from core GWT (such as JFreeChart's LGPL license).  See
+ * <a href='http://code.google.com/webtoolkit/terms.html'
+ * onclick="window.open('http://code.google.com/webtoolkit/terms.html');return false;">Google's summary of terms</a> for
+ * details. <ul> <li><b>isomorphic_core_rpc</b>: This is the core Smart GWT module.  It provides the RPC, DMI, and
+ * DataSource support.<br> &nbsp;&nbsp;<u>Requires</u>:<br> &nbsp;&nbsp;&nbsp;&nbsp;commons-cli<br>
  * &nbsp;&nbsp;&nbsp;&nbsp;commons-lang<br> &nbsp;&nbsp;&nbsp;&nbsp;commons-collections<br>
  * &nbsp;&nbsp;&nbsp;&nbsp;commons-pool<br> &nbsp;&nbsp;&nbsp;&nbsp;commons-codec<br>
  * &nbsp;&nbsp;&nbsp;&nbsp;isc-jakarta-oro<br> &nbsp;&nbsp;&nbsp;&nbsp;log4j<br> &nbsp;&nbsp;&nbsp;&nbsp;commons-jxpath<br>

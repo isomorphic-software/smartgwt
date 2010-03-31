@@ -114,7 +114,7 @@ public class CanvasItem extends FormItem {
      * @return Canvas
      */
     public Canvas getCanvas()  {
-            return Canvas.getOrCreateRef(getAttributeAsJavaScriptObject("canvas"));
+        return Canvas.getOrCreateRef(getAttributeAsJavaScriptObject("canvas"));
     }
 
     // ********************* Methods ***********************

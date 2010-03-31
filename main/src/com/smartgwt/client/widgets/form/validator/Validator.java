@@ -60,7 +60,7 @@ import com.google.gwt.event.shared.HasHandlers;
  * specified for DataSource fields via the {@link com.smartgwt.client.data.DataSourceField#getValidators validators}
  * property.  Validators that need not be run on the server can also be specified for a specific {@link
  * com.smartgwt.client.widgets.form.fields.FormItem} or ${isc.DocUtils.linkForRef('object:ListGridField')}. <p> Smart GWT
- * supports a powerful library of {@link com.smartgwt.client..ValidatorType} which have identical behavior on both the
+ * supports a powerful library of {@link com.smartgwt.client.types.ValidatorType} which have identical behavior on both the
  * client and the server.   <p>  Beyond this, custom validators can be defined on the client and custom validation logic
  * added on the server.  Note that the <code>regexp</code> and <code>mask</code> validator types are very flexible and can
  * be used to perform virtually any kind of formatting check that doesn't involve some large external dataset. <p> Custom
@@ -83,32 +83,6 @@ public class Validator extends DataClass {
     }
 
     // ********************* Properties / Attributes ***********************
-
-    /**
-     * Used to create a conditional validator based on ${isc.DocUtils.linkForRef('object:AdvancedCriteria','criteria')}. The
-     * criteria defines when the validator applies. The form current values or ListGrid record is used as reference for the
-     * criteria. If the criteria matches the validator will be processed. Otherwise the validator is skipped and assumed valid.
-     * <p> To use an <code>applyWhen</code> criteria the form or grid must use a {@link com.smartgwt.client.data.DataSource}.
-     * <p><b>Note : </b> This is an advanced setting</p>
-     *
-     * @param applyWhen applyWhen Default value is null
-     */
-    public void setApplyWhen(AdvancedCriteria applyWhen) {
-        setAttribute("applyWhen", applyWhen.getJsObj());
-    }
-
-    /**
-     * Used to create a conditional validator based on ${isc.DocUtils.linkForRef('object:AdvancedCriteria','criteria')}. The
-     * criteria defines when the validator applies. The form current values or ListGrid record is used as reference for the
-     * criteria. If the criteria matches the validator will be processed. Otherwise the validator is skipped and assumed valid.
-     * <p> To use an <code>applyWhen</code> criteria the form or grid must use a {@link com.smartgwt.client.data.DataSource}.
-     *
-     *
-     * @return AdvancedCriteria
-     */
-    public AdvancedCriteria getApplyWhen()  {
-        return new AdvancedCriteria(getAttributeAsJavaScriptObject("applyWhen"));
-    }
 
     /**
      * Indicates this validator runs on the client only. <p> Normally, if the server is trying to run validators and finds a
@@ -188,6 +162,27 @@ public class Validator extends DataClass {
     }
 
     /**
+     * Type of the validator. <p> This can be one of the built-in {@link com.smartgwt.client.types.ValidatorType}, the string
+     * "custom" to define a custom validator, or the string "serverCustom" to define a server-only custom validator.
+     *
+     * @param type type Default value is null
+     */
+    public void setType(ValidatorType type) {
+        setAttribute("type", type.getValue());
+    }
+
+    /**
+     * Type of the validator. <p> This can be one of the built-in {@link com.smartgwt.client.types.ValidatorType}, the string
+     * "custom" to define a custom validator, or the string "serverCustom" to define a server-only custom validator.
+     *
+     *
+     * @return ValidatorType
+     */
+    public ValidatorType getType()  {
+        return EnumUtil.getEnum(ValidatorType.values(), getAttribute("type"));
+    }
+
+    /**
      * If true, validator will be validated when each item's "change" handler is fired as well as when the entire form is
      * submitted or validated. If false, this validator will not fire on the item's "change" handler. <p> Note that this
      * property can also be set at the form/grid or field level; If true at any level and not explicitly false on the
@@ -216,24 +211,6 @@ public class Validator extends DataClass {
 
     // ********************* Static Methods ***********************
 
-
-    /**
-     * An expression in the Velocity Template Language that will run on the server.  Unlike most &#010 other Smart GWT Server features involving Velocity, server-side custom validators do not&#010 have access to the standard set of context variables.  This is deliberate, to ensure that &#010 custom validators can run in the widest possible variety of circumstances, without being &#010 tied to operating in the context of, say, an <code>HttpSession</code> or a &#010 <code>DSRequest</code>.  Server-side custom validators only have the following variables &#010 available:&#010 <ul>&#010 <li><b>dataSources</b> - The list of all DataSources, accessible by name (so, for example, &#010     <code>$dataSources.supplyItem</code> refers to the <code>supplyItem</code> DataSource&#010     object).</li>&#010 <li><b>dataSource</b> - The current DataSource</li>&#010 <li><b>record</b> - The DataSource record being validated, if available</li>&#010 <li><b>value</b> - The value of the field</li>&#010 <li><b>validator</b> - The config of this validator, presented as a <code>Map</code></li>&#010 <li><b>field</b> - The field (as a <code>DSField</code> object)</li>&#010 <li><b>util</b> - A <code>DataTools</code> object, giving you access to all of that&#010     class's useful helper functions</li>&#010 </ul>
-     *
-     * @param serverCondition Velocity Expression serverCondition Default value is null
-     */
-    public void setServerCondition(String serverCondition) {
-        setAttribute("serverCondition", serverCondition);
-    }
-
-    /**
-     * An expression in the Velocity Template Language that will run on the server.  Unlike most &#010 other Smart GWT Server features involving Velocity, server-side custom validators do not&#010 have access to the standard set of context variables.  This is deliberate, to ensure that &#010 custom validators can run in the widest possible variety of circumstances, without being &#010 tied to operating in the context of, say, an <code>HttpSession</code> or a &#010 <code>DSRequest</code>.  Server-side custom validators only have the following variables &#010 available:&#010 <ul>&#010 <li><b>dataSources</b> - The list of all DataSources, accessible by name (so, for example, &#010     <code>$dataSources.supplyItem</code> refers to the <code>supplyItem</code> DataSource&#010     object).</li>&#010 <li><b>dataSource</b> - The current DataSource</li>&#010 <li><b>record</b> - The DataSource record being validated, if available</li>&#010 <li><b>value</b> - The value of the field</li>&#010 <li><b>validator</b> - The config of this validator, presented as a <code>Map</code></li>&#010 <li><b>field</b> - The field (as a <code>DSField</code> object)</li>&#010 <li><b>util</b> - A <code>DataTools</code> object, giving you access to all of that&#010     class's useful helper functions</li>&#010 </ul>
-     *
-     * @return Velocity Expression serverCondition
-     */
-    public String getServerCondition() {
-        return getAttribute("serverCondition");
-    }
 
     /**
      * Text to display if the value does not pass this validation check. <P> If unspecified, default error messages

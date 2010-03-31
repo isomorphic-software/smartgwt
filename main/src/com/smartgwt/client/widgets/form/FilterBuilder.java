@@ -170,7 +170,7 @@ public class FilterBuilder extends Layout  implements com.smartgwt.client.widget
      * @return DataSource
      */
     public DataSource getFieldDataSource()  {
-            return DataSource.getOrCreateRef(getAttributeAsJavaScriptObject("fieldDataSource"));
+        return DataSource.getOrCreateRef(getAttributeAsJavaScriptObject("fieldDataSource"));
     }
 
     /**

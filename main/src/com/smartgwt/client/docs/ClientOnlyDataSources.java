@@ -23,12 +23,15 @@ package com.smartgwt.client.docs;
  * DataSource and its test data into a SQL Database.  An idiom for accomplishing this is:&#010 <pre>&#010  
  * &lt;isomorphic:loadDS name="solutions"/&gt;&#010   isc.DataSource.getDataSource("solutions").addProperties({&#010    
  * clientOnly : true,&#010     testData : &#010        &lt;isomorphic:XML
- * filename="shared/ds/test_data/solutions.data.xml"/&gt;&#010   });&#010 </pre>&#010 Finally, if you specify your
- * DataSource as <code>clientOnly: true</code>, omit testData&#010 entirely, and provide either a {@link
+ * filename="shared/ds/test_data/solutions.data.xml"/&gt;&#010   });&#010 </pre>&#010 If you specify your DataSource as
+ * <code>clientOnly: true</code>, omit testData&#010 entirely, and provide either a {@link
  * com.smartgwt.client.data.DataSource#getDataURL dataURL} or a <code>testFileName</code>, the&#010 DataSource will lazily
  * make a one-time fetch against the specified data file the first time&#010 an operation is called on it.  From then on,
  * the DataSource will work against the local&#010 cache created from this initial request.  This is a quick way to
- * prototype against some test&#010 data that may eventually be returned from an arbitrary back-end.
+ * prototype against some test&#010 data that may eventually be returned from an arbitrary back-end.&#010 <P>&#010 Finally,
+ * it is possible to have a DataSource which intially fetches the entire dataset and&#010 performs all subsequent fetching
+ * locally, while still visiting the server to perform all &#010 other operations.  See
+ * ${isc.DocUtils.linkForRef('cacheAllData')}.
  * @see com.smartgwt.client.data.DataSource#getClientOnly
  * @see com.smartgwt.client.data.DataSource#getTestData
  */
