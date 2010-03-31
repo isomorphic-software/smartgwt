@@ -115,6 +115,15 @@ public class MenuBar extends Toolbar {
         self.addMenus(menusJS, position);
     }-*/;
 
+    /**
+     * Shows (opens) a menu.
+     * @param menuNum the menu to show
+     */
+    public native void showMenu(int menuNum) /*-{
+        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
+        self.showMenu(menuNum);
+    }-*/;
+
 }
 
 
