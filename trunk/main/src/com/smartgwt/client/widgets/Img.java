@@ -125,7 +125,9 @@ public class Img extends StatefulCanvas {
 
     /**
      * Indicates whether the image should be tiled/cropped, stretched, or centered when the          size of this widget does
-     * not match the size of the image. See ImageStyle for          details
+     * not match the size of the image.           CENTER shows the image in it's natural size, but can't do so while the       
+     * transparency fix is active for IE. The transparency fix can be manually disabled          by setting {@link
+     * com.smartgwt.client.widgets.Img#getUsePNGFix usePNGFix} to false.          See ImageStyle for further details.
      * Change the style of image rendering.
      *
      * @param imageType new style of image rendering. Default value is Img.STRETCH
@@ -136,7 +138,9 @@ public class Img extends StatefulCanvas {
 
     /**
      * Indicates whether the image should be tiled/cropped, stretched, or centered when the          size of this widget does
-     * not match the size of the image. See ImageStyle for          details
+     * not match the size of the image.           CENTER shows the image in it's natural size, but can't do so while the       
+     * transparency fix is active for IE. The transparency fix can be manually disabled          by setting {@link
+     * com.smartgwt.client.widgets.Img#getUsePNGFix usePNGFix} to false.          See ImageStyle for further details.
      *
      *
      * @return ImageStyle
@@ -249,6 +253,26 @@ public class Img extends StatefulCanvas {
      */
     public String getSrc()  {
         return getAttributeAsString("src");
+    }
+
+    /**
+     * If false, never apply the png fix needed in Internet Explorer to make png transparency work correctly.
+     *
+     * @param usePNGFix usePNGFix Default value is true
+     * @throws IllegalStateException this property cannot be changed after the component has been created
+     */
+    public void setUsePNGFix(Boolean usePNGFix)  throws IllegalStateException {
+        setAttribute("usePNGFix", usePNGFix, false);
+    }
+
+    /**
+     * If false, never apply the png fix needed in Internet Explorer to make png transparency work correctly.
+     *
+     *
+     * @return Boolean
+     */
+    public Boolean getUsePNGFix()  {
+        return getAttributeAsBoolean("usePNGFix");
     }
 
     // ********************* Methods ***********************
