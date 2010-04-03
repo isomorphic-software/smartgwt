@@ -66,6 +66,10 @@
         
 		<replace dir="${SC_HOME}/smartclientSDK/isomorphic/skins" includes="**/load_skin.js" token="showShadow:true" value="showShadow:false"/>
 		
+        <replace file="${SC_HOME}/smartclientSDK/isomorphic/system/development/ISC_DeveloperConsole.js/"
+                 token="../../system/reference/skin/images/"
+                 value="../../system/helpers/skin/images/"/>
+		
         <zip destfile="${smartgwt.tools.lib}/sc/${SC_VER}/smartclient.jar">
             <zipfileset dir="${SC_HOME}/smartclientSDK/isomorphic/system/modules" includes="*.js"
                         prefix="com/smartclient/public/sc/modules"/>
@@ -76,6 +80,11 @@
             <zipfileset dir="${SC_HOME}/smartclientSDK/isomorphic/system/helpers" includes="printFrame.*,empty.html,*.css,*.svg,isomorphic_applets.jar"
                         prefix="com/smartclient/debug/public/sc/system/helpers"/>
 		    <zipfileset dir="${SC_HOME}/smartclientSDK/isomorphic/system/helpers" includes="printFrame.*,empty.html,*.css,*.svg,isomorphic_applets.jar"
+
+            <zipfileset dir="${SC_HOME}/smartclientSDK/isomorphic/system/reference"
+                        includes="skin/images/server_client_exchange.png"
+                        prefix="com/smartclient/debug/public/sc/system/helpers"/>
+
 			            prefix="com/smartclient/public/sc/system/helpers"/>
 
             <zipfileset dir="${SC_HOME}/smartclientSDK/source/client/modules" includes="*.js"
