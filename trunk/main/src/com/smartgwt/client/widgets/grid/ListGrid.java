@@ -8350,6 +8350,18 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
         return @com.smartgwt.client.widgets.grid.ListGrid::convertToListGridRecordArray(Lcom/google/gwt/core/client/JavaScriptObject;)(selectionJS);
     }-*/;
 
+    /**
+     * The selection associated with the listGrid.
+     *
+     * @param excludePartialSelections when true, partially selected records will not be returned. Otherwise, both fully and partially selected records are returned.
+     * @return the selection
+     */
+    public native ListGridRecord[] getSelection(boolean excludePartialSelections) /*-{
+        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
+        var selectionJS =  self.getSelection(excludePartialSelections);
+        return @com.smartgwt.client.widgets.grid.ListGrid::convertToListGridRecordArray(Lcom/google/gwt/core/client/JavaScriptObject;)(selectionJS);
+    }-*/;
+
     private static ListGridRecord[] convertToListGridRecordArray(JavaScriptObject nativeArray) {
         if (nativeArray == null) {
             return new ListGridRecord[]{};
