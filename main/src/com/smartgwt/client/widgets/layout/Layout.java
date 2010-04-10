@@ -897,7 +897,7 @@ public class Layout extends Canvas {
             var jObj = this.__ref;
             var dragTargetJ = @com.smartgwt.client.widgets.Canvas::getOrCreateRef(Lcom/google/gwt/core/client/JavaScriptObject;)(dragTarget);
             var dragTarget2J = jObj.@com.smartgwt.client.widgets.layout.Layout::getDropComponent(Lcom/smartgwt/client/widgets/Canvas;I)(dragTargetJ, dropPosition);
-            return dragTarget2J == null ? false : dragTarget2J.@com.smartgwt.client.widgets.Canvas::getOrCreateJsObj()();
+            return dragTarget2J == null ? null : dragTarget2J.@com.smartgwt.client.widgets.Canvas::getOrCreateJsObj()();
         });
     }-*/;
 
