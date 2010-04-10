@@ -9930,6 +9930,48 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
     }
 
 
+    /**
+     * Return the underlying, ungrouped data of this ListGrid as a {@link com.smartgwt.client.data.ResultSet}.
+     * Use this method to access the data when the grid is grouped.
+     * <p>
+     * Note that this method should only be called after initial data has been fetched by this DataBoundComponent.
+     *
+     * @return ResultSet, or null if the underlying ungrouped data is not a ResultSet
+     * @see #fetchData()
+     */
+    public ResultSet getOriginalResultSet() {
+        JavaScriptObject dataJS = getAttributeAsJavaScriptObject("originalData");
+        if(dataJS == null) return null;
+        if(!ResultSet.isResultSet(dataJS)) {
+            SC.logWarn("getOriginalResultSet(): data is not a ResultSet; returning null " +
+                "(if ungrouped, use getOriginalResultSet(); if unbound, use getOriginalRecordList(); " +
+                "can only be called on DataBoundComponents after initial data has been fetched)");
+            return null;
+        }
+        return new ResultSet(dataJS);
+    }
+
+    /**
+     * Return the underlying, ungrouped data of this DataBoundComponent as a {@link com.smartgwt.client.data.RecordList}.
+     * <p>
+     * If this grid {@link #isGrouped is grouped}, 
+     * {@link com.smartgwt.client.widgets.DataBoundComponent#getRecordList} will return the 
+     * grouped data as a Tree.
+     * Use this method to return the underlying Array of Records or 
+     * {@link com.smartgwt.client.data.ResultSet}, as if
+     * the grid was ungrouped:
+     * <pre>isGrouped() ? getOriginalRecordList() : getRecordList()</pre>
+     * @return the RecordList
+     */
+    public RecordList getOriginalRecordList() {
+        JavaScriptObject dataJS = getAttributeAsJavaScriptObject("originalData");
+        if(dataJS == null) return null;
+
+        if(ResultSet.isResultSet(dataJS)) {
+            return getOriginalResultSet();
+        }
+        return new RecordList(dataJS);
+    }
 
     // ********************* DataBoundComponent Properties / Attributes ***********************
 
@@ -10406,11 +10448,14 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
         self.invalidateCache();
     }-*/;
 
-    public ResultSet getResultSet() throws IllegalStateException {
+    public ResultSet getResultSet() {
         JavaScriptObject dataJS = getAttributeAsJavaScriptObject("data");
         if(dataJS == null) return null;
         if(!ResultSet.isResultSet(dataJS)) {
-            throw new IllegalStateException("getResultSet() can only be called on DataBoundComponents after initial data has been fetched");
+            SC.logWarn("getResultSet(): data is not a ResultSet; returning null " +
+                "(if grouped, use getOriginalResultSet(); if unbound, use getRecordList(); " +
+                "can only be called on DataBoundComponents after initial data has been fetched)");
+            return null;
         }
         return new ResultSet(dataJS);
     }
