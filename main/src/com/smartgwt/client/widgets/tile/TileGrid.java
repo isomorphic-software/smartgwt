@@ -1198,11 +1198,14 @@ public class TileGrid extends TileLayout  implements DataBoundComponent, com.sma
         self.invalidateCache();
     }-*/;
 
-    public ResultSet getResultSet() throws IllegalStateException {
+    public ResultSet getResultSet() {
         JavaScriptObject dataJS = getAttributeAsJavaScriptObject("data");
         if(dataJS == null) return null;
         if(!ResultSet.isResultSet(dataJS)) {
-            throw new IllegalStateException("getResultSet() can only be called on DataBoundComponents after initial data has been fetched");
+            SC.logWarn("getResultSet(): data is not a ResultSet; returning null " +
+                "(if grouped, use getOriginalResultSet(); if unbound, use getRecordList(); " +
+                "can only be called on DataBoundComponents after initial data has been fetched)");
+            return null;
         }
         return new ResultSet(dataJS);
     }

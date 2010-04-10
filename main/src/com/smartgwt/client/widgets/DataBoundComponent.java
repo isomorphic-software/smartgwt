@@ -857,18 +857,29 @@ public interface DataBoundComponent {
      * <p>
      * Note that this method should only be called after initial data has been fetched by this DataBoundComponent.
      *
-     * @return the ResultSet
-     * @throws IllegalStateException if called on a component with local array data, or a DataBoundComponent before the
-     * initial data is fetched.
+     * @return ResultSet, or null if the underlying data is not a ResultSet
      * @see #fetchData()
      */
-    ResultSet getResultSet() throws IllegalStateException;
+    ResultSet getResultSet();
 
     /**
      * Return the underlying data of this DataBoundComponent as a {@link com.smartgwt.client.data.RecordList}.
      * <p>
-     * If the underlying data in not local data, and the component is bound to a {@link com.smartgwt.client.data.DataSource},
-     * then the actual instance of the RecordList will be of type {@link com.smartgwt.client.data.ResultSet}.
+     * Depending on the component configuration, the actual JavaScript instance of the returned
+     * RecordList may be one of several types: <ul>
+     * <li>If the component is not bound to a {@link com.smartgwt.client.data.DataSource}, 
+     *     the instance is generally an Array of {@link com.smartgwt.client.data.Record}.</li>
+     * <li>If the component is bound to a DataSource, the instance is a 
+     *     {@link com.smartgwt.client.data.ResultSet}.</li>
+     * <li>If the component is a grouped ListGrid, the instance is a 
+     *     {@link com.smartgwt.client.widgets.tree.Tree}.
+     * To access the ungrouped record list regardless of grouping status, use
+     * <pre>isGrouped() ? getOriginalRecordList() : getRecordList()</pre></li>
+     * <li>If the component is a {@link com.smartgwt.client.widgets.tree.TreeGrid}, 
+     *     the instance is a ResultTree.</li>
+     * </ul>The underlying type determines the structure of the returned data.
+     * An Array or ResultSet represents a list of records, but a Tree or ResultTree represents
+     * a list of open rows in the tree, including groups or other nodes which contain no records.
      *
      * @return the RecordList
      */
