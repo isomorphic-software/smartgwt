@@ -47,11 +47,7 @@ public abstract class BaseWidget extends Widget implements HasHandlers {
     }
 
     private static native void init()/*-{
-        if(typeof $entry === "undefined") {
-            $entry = function(jsFunction) {
-                        return jsFunction;
-                     };
-        }   
+        @com.smartgwt.client.core.JsObject::initialize()();
         $wnd.isc.setAutoDraw(false);
     }-*/;
 
