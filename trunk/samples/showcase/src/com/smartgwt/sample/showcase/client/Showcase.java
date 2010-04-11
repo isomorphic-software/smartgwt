@@ -198,7 +198,7 @@ public class Showcase implements EntryPoint, HistoryListener {
 
         String currentSkin = Cookies.getCookie("skin_name");
         if (currentSkin == null) {
-            currentSkin = "EnterpriseBlue";
+            currentSkin = "Graphite";
         }
         selectItem.setDefaultValue(currentSkin);
         selectItem.setShowTitle(false);
