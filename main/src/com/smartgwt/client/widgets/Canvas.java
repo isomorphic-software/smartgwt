@@ -6625,6 +6625,7 @@ public class Canvas extends BaseWidget  implements com.smartgwt.client.widgets.e
      */
     public Canvas getParentElement() {
         JavaScriptObject parentJS = getAttributeAsJavaScriptObject("parentElement");
+        if(parentJS == null) return null;
         Canvas canvas = (Canvas) BaseWidget.getRef(parentJS);
         if (canvas == null) {
             canvas = new Canvas(parentJS);
