@@ -29,7 +29,7 @@ package com.smartgwt.client.docs;
  * make a one-time fetch against the specified data file the first time&#010 an operation is called on it.  From then on,
  * the DataSource will work against the local&#010 cache created from this initial request.  This is a quick way to
  * prototype against some test&#010 data that may eventually be returned from an arbitrary back-end.&#010 <P>&#010 Finally,
- * it is possible to have a DataSource which intially fetches the entire dataset and&#010 performs all subsequent fetching
+ * it is possible to have a DataSource which initially fetches the entire dataset and&#010 performs all subsequent fetching
  * locally, while still visiting the server to perform all &#010 other operations.  See
  * ${isc.DocUtils.linkForRef('cacheAllData')}.
  * @see com.smartgwt.client.data.DataSource#getClientOnly

@@ -369,6 +369,27 @@ public class SelectItem extends FormItem  implements PickList, com.smartgwt.clie
     }
 
     /**
+     * How should items with {@link com.smartgwt.client.widgets.form.fields.SelectItem#getMultiple multiple} set to 'true' be
+     * displayed?
+     *
+     * @param multipleAppearance multipleAppearance Default value is "picklist"
+     */
+    public void setMultipleAppearance(MultipleAppearance multipleAppearance) {
+        setAttribute("multipleAppearance", multipleAppearance.getValue());
+    }
+
+    /**
+     * How should items with {@link com.smartgwt.client.widgets.form.fields.SelectItem#getMultiple multiple} set to 'true' be
+     * displayed?
+     *
+     *
+     * @return MultipleAppearance
+     */
+    public MultipleAppearance getMultipleAppearance()  {
+        return EnumUtil.getEnum(MultipleAppearance.values(), getAttribute("multipleAppearance"));
+    }
+
+    /**
      * If this item has a specified <code>optionDataSource</code>, this attribute may be set to specify an explicit {@link
      * com.smartgwt.client.data.DSRequest#getOperationId operationId} when performing a fetch against the option dataSource to
      * pick up display value mapping.

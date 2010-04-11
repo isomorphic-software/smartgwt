@@ -473,14 +473,14 @@ public class TileGrid extends TileLayout  implements DataBoundComponent, com.sma
     protected native void onInit() /*-{
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
         self._getTileHTML = self.getTileHTML;
-        self.getTileHTML = $entry(function(record) {
+        self.getTileHTML = $debox($entry(function(record) {
             var jObj = this.__ref;
             var recordJ = @com.smartgwt.client.data.Record::getOrCreateRef(Lcom/google/gwt/core/client/JavaScriptObject;)(record);
             return jObj.@com.smartgwt.client.widgets.tile.TileGrid::getTileHTML(Lcom/smartgwt/client/data/Record;)(recordJ);
-        });
+        }));
 
         self._getTile = self.getTile;
-        self.getTile = $entry(function(record) {
+        self.getTile = $debox($entry(function(record) {
             var jObj = this.__ref;
             if(!$wnd.isc.isA.Number(record)) {
                 var recordJ = @com.smartgwt.client.data.Record::getOrCreateRef(Lcom/google/gwt/core/client/JavaScriptObject;)(record);
@@ -490,7 +490,7 @@ public class TileGrid extends TileLayout  implements DataBoundComponent, com.sma
                 var tile =  jObj.@com.smartgwt.client.widgets.tile.TileGrid::getTile(I)(record);
                 return tile == null ? null : tile.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
             }
-        });
+        }));
     }-*/;
 
     /**

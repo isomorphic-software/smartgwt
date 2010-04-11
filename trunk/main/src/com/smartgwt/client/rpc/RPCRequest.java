@@ -215,6 +215,54 @@ public class RPCRequest extends DataClass {
     }
 
     /**
+     * If enabled, causes the RPCRequest to download the requested resource as a file, either  showing the browser's Save
+     * dialog or displaying the file-content in  {@link com.smartgwt.client.rpc.RPCRequest#getDownloadToNewWindow 'a new
+     * browser window'}. <P> Setting this attribute to true means that no callback will be fired and implies that the  request
+     * will silently use {@link com.smartgwt.client.rpc.RPCRequest#getTransport 'transport'}: "hiddenFrame".
+     * <p><b>Note : </b> This is an advanced setting</p>
+     *
+     * @param downloadResult downloadResult Default value is false
+     */
+    public void setDownloadResult(Boolean downloadResult) {
+        setAttribute("downloadResult", downloadResult);
+    }
+
+    /**
+     * If enabled, causes the RPCRequest to download the requested resource as a file, either  showing the browser's Save
+     * dialog or displaying the file-content in  {@link com.smartgwt.client.rpc.RPCRequest#getDownloadToNewWindow 'a new
+     * browser window'}. <P> Setting this attribute to true means that no callback will be fired and implies that the  request
+     * will silently use {@link com.smartgwt.client.rpc.RPCRequest#getTransport 'transport'}: "hiddenFrame".
+     *
+     *
+     * @return Boolean
+     */
+    public Boolean getDownloadResult()  {
+        return getAttributeAsBoolean("downloadResult");
+    }
+
+    /**
+     * When {@link com.smartgwt.client.rpc.RPCRequest#getDownloadResult 'downloadResult'} is true, setting this attribute to
+     * true causes the content of the downloaded file to be displayed in a new browser window.
+     * <p><b>Note : </b> This is an advanced setting</p>
+     *
+     * @param downloadToNewWindow downloadToNewWindow Default value is false
+     */
+    public void setDownloadToNewWindow(Boolean downloadToNewWindow) {
+        setAttribute("downloadToNewWindow", downloadToNewWindow);
+    }
+
+    /**
+     * When {@link com.smartgwt.client.rpc.RPCRequest#getDownloadResult 'downloadResult'} is true, setting this attribute to
+     * true causes the content of the downloaded file to be displayed in a new browser window.
+     *
+     *
+     * @return Boolean
+     */
+    public Boolean getDownloadToNewWindow()  {
+        return getAttributeAsBoolean("downloadToNewWindow");
+    }
+
+    /**
      * This works similarly to {@link com.smartgwt.client.rpc.RPCRequest#getServerOutputAsString serverOutputAsString} except
      * the resulting String&#010 is automatically evaluated as JavaScript.  The result of the evaluation is then passed to&#010
      * any specified {@link com.smartgwt.client.rpc.RPCRequest#getCallback callback} as {@link

@@ -432,6 +432,46 @@ public class Layout extends Canvas {
     }
 
     /**
+     * Strategy to use when locating members from within this Layout's members array.
+     * <p><b>Note : </b> This is an advanced setting</p>
+     *
+     * @param locateMembersBy locateMembersBy Default value is null
+     */
+    public void setLocateMembersBy(LocatorStrategy locateMembersBy) {
+        setAttribute("locateMembersBy", locateMembersBy.getValue(), true);
+    }
+
+    /**
+     * Strategy to use when locating members from within this Layout's members array.
+     *
+     *
+     * @return LocatorStrategy
+     */
+    public LocatorStrategy getLocateMembersBy()  {
+        return EnumUtil.getEnum(LocatorStrategy.values(), getAttribute("locateMembersBy"));
+    }
+
+    /**
+     * {@link com.smartgwt.client.types.LocatorTypeStrategy} to use when finding members within this layout.
+     * <p><b>Note : </b> This is an advanced setting</p>
+     *
+     * @param locateMembersType locateMembersType Default value is null
+     */
+    public void setLocateMembersType(LocatorTypeStrategy locateMembersType) {
+        setAttribute("locateMembersType", locateMembersType.getValue(), true);
+    }
+
+    /**
+     * {@link com.smartgwt.client.types.LocatorTypeStrategy} to use when finding members within this layout.
+     *
+     *
+     * @return LocatorTypeStrategy
+     */
+    public LocatorTypeStrategy getLocateMembersType()  {
+        return EnumUtil.getEnum(LocatorTypeStrategy.values(), getAttribute("locateMembersType"));
+    }
+
+    /**
      * If set, a Layout with breadthPolicy:"fill" will specially interpret a percentage breadth on a member as a percentage of
      * available space excluding the {@link com.smartgwt.client.widgets.layout.Layout#getLayoutMargin layoutMargin}.  If false,
      * percentages work exactly as for a non-member, with layoutMargins, if any, ignored.

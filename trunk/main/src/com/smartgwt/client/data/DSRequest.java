@@ -278,7 +278,7 @@ public class DSRequest extends RPCRequest {
      * &#010 for more information.&#010 <P>&#010 You can configure the style of {@link com.smartgwt.client..LineBreakStyle} to
      * use when &#010 generating the output, the {@link com.smartgwt.client.data.DSRequest#getExportDelimiter 'delimiter'} to
      * use when exporting&#010 to CSV and the {@link com.smartgwt.client.data.DSRequest#getExportTitleSeparatorChar
-     * 'separator-character'} to use in &#010 field-titles when exporting to XML.&#010 <P>&#010 Additionaly, you can output
+     * 'separator-character'} to use in &#010 field-titles when exporting to XML.&#010 <P>&#010 Additionally, you can output
      * arbitrary text before and after the exported data by setting &#010 {@link
      * com.smartgwt.client.data.DSRequest#getExportHeader 'exportHeader'} and {@link
      * com.smartgwt.client.data.DSRequest#getExportFooter 'exportFooter'}.&#010 <P>&#010 Note that an export initiated using
@@ -311,7 +311,7 @@ public class DSRequest extends RPCRequest {
      * &#010 for more information.&#010 <P>&#010 You can configure the style of {@link com.smartgwt.client..LineBreakStyle} to
      * use when &#010 generating the output, the {@link com.smartgwt.client.data.DSRequest#getExportDelimiter 'delimiter'} to
      * use when exporting&#010 to CSV and the {@link com.smartgwt.client.data.DSRequest#getExportTitleSeparatorChar
-     * 'separator-character'} to use in &#010 field-titles when exporting to XML.&#010 <P>&#010 Additionaly, you can output
+     * 'separator-character'} to use in &#010 field-titles when exporting to XML.&#010 <P>&#010 Additionally, you can output
      * arbitrary text before and after the exported data by setting &#010 {@link
      * com.smartgwt.client.data.DSRequest#getExportHeader 'exportHeader'} and {@link
      * com.smartgwt.client.data.DSRequest#getExportFooter 'exportFooter'}.&#010 <P>&#010 Note that an export initiated using

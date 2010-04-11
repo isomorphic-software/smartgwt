@@ -383,11 +383,11 @@ public class DetailViewerField extends DataClass {
      */
     public native void setShowIfCondition(DetailViewerFieldIfFunction showIf) /*-{
         var self = this.@com.smartgwt.client.core.DataClass::getJsObj()();
-        self.showIf = $entry(function(viewer, records) {
+        self.showIf = $debox($entry(function(viewer, records) {
             var viewerJ = @com.smartgwt.client.widgets.BaseWidget::getRef(Lcom/google/gwt/core/client/JavaScriptObject;)(viewer);
             var recordsJ = @com.smartgwt.client.widgets.viewer.DetailViewerField::convertToDetailViewerRecordArray(Lcom/google/gwt/core/client/JavaScriptObject;)(records);
             return showIf.@com.smartgwt.client.widgets.viewer.DetailViewerFieldIfFunction::execute(Lcom/smartgwt/client/widgets/viewer/DetailViewer;[Lcom/smartgwt/client/widgets/viewer/DetailViewerRecord;)(viewerJ, recordsJ);
-        });
+        }));
     }-*/;
 
     private static DetailViewerRecord[] convertToDetailViewerRecordArray(JavaScriptObject nativeArray) {
@@ -407,12 +407,12 @@ public class DetailViewerField extends DataClass {
 
     public native void setDetailFormatter(DetailFormatter formatter) /*-{
             var self = this.@com.smartgwt.client.core.DataClass::getJsObj()();
-            self.formatCellValue = $entry(function(value, record, field) {
+            self.formatCellValue = $debox($entry(function(value, record, field) {
                 var recordJ = @com.smartgwt.client.data.Record::getOrCreateRef(Lcom/google/gwt/core/client/JavaScriptObject;)(record);
                 var valueJ = $wnd.SmartGWT.convertToJavaType(value);
                 var fieldJ = @com.smartgwt.client.widgets.viewer.DetailViewerField::new(Lcom/google/gwt/core/client/JavaScriptObject;)(field);
                 return formatter.@com.smartgwt.client.widgets.viewer.DetailFormatter::format(Ljava/lang/Object;Lcom/smartgwt/client/data/Record;Lcom/smartgwt/client/widgets/viewer/DetailViewerField;)(valueJ, recordJ, fieldJ);
-            });
+            }));
     }-*/;
 
     /**
@@ -427,12 +427,12 @@ public class DetailViewerField extends DataClass {
      */
     public native void setCellStyleHandler(CellStyleHandler handler) /*-{
         var self = this.@com.smartgwt.client.core.DataClass::getJsObj()();
-        self.getCellStyle = $entry(function(value, field, record, viewer) {
+        self.getCellStyle = $debox($entry(function(value, field, record, viewer) {
             var valueJ = $wnd.SmartGWT.convertToJavaType(value);
             var fieldJ = @com.smartgwt.client.widgets.viewer.DetailViewerField::new(Lcom/google/gwt/core/client/JavaScriptObject;)(field);
             var recordJ = @com.smartgwt.client.widgets.viewer.DetailViewerRecord::getOrCreateRef(Lcom/google/gwt/core/client/JavaScriptObject;)(record);
             return handler.@com.smartgwt.client.widgets.viewer.CellStyleHandler::execute(Ljava/lang/Object;Lcom/smartgwt/client/widgets/viewer/DetailViewerField;Lcom/smartgwt/client/data/Record;)(valueJ, fieldJ, recordJ);
-        });
+        }));
     }-*/;
 
 }

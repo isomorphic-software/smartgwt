@@ -93,6 +93,7 @@ package com.smartgwt.client.docs;
  * @see com.smartgwt.client..CellSelection#selectSingleCell
  * @see com.smartgwt.client.widgets.grid.ListGrid#getSelection
  * @see com.smartgwt.client.widgets.grid.ListGrid#getSelectedRecord
+ * @see com.smartgwt.client.widgets.grid.ListGrid#isPartiallySelected
  * @see com.smartgwt.client.widgets.DataBoundComponent#selectRecord
  * @see com.smartgwt.client.widgets.DataBoundComponent#selectSingleRecord
  * @see com.smartgwt.client.widgets.DataBoundComponent#deselectRecord
