@@ -26,27 +26,35 @@ import com.smartgwt.client.util.I18nUtil;
 
 public class JsObject {
 
+    private static boolean initialized = false;
+
     static {
-        LogUtil.setJSNIErrorHandler();
-        init();
-        I18nUtil.init();
-        //set the default prompt style to a cursor
-        RPCManager.setPromptStyle(PromptStyle.CURSOR);
-        //install a default UEH that displays the error message in an alert when in development mode so that
-        //is is not overlooked by the user during development
-        GWT.setUncaughtExceptionHandler(new GWT.UncaughtExceptionHandler() {
-            public void onUncaughtException(Throwable e) {
-                if (!GWT.isScript()) {
-                    Window.alert("Uncaught exception escaped : " + e.getClass().getName() + "\n" + e.getMessage() +
-                            "\nSee the Development console log for details." +
-                            "\nRegister a GWT.setUncaughtExceptionHandler(..) for custom uncaught exception handling."
-                    );
-                }
-                GWT.log("Uncaught exception escaped", e);
-            }
-        });
+        initialize();
     }
 
+    private static void initialize() {
+        if(!initialized) {
+            LogUtil.setJSNIErrorHandler();
+            init();
+            I18nUtil.init();
+            //set the default prompt style to a cursor
+            RPCManager.setPromptStyle(PromptStyle.CURSOR);
+            //install a default UEH that displays the error message in an alert when in development mode so that
+            //is is not overlooked by the user during development
+            GWT.setUncaughtExceptionHandler(new GWT.UncaughtExceptionHandler() {
+                public void onUncaughtException(Throwable e) {
+                    if (!GWT.isScript()) {
+                        Window.alert("Uncaught exception escaped : " + e.getClass().getName() + "\n" + e.getMessage() +
+                                "\nSee the Development console log for details." +
+                                "\nRegister a GWT.setUncaughtExceptionHandler(..) for custom uncaught exception handling."
+                        );
+                    }
+                    GWT.log("Uncaught exception escaped", e);
+                }
+            });
+           initialized = true;
+        }
+    }
     private static native void init() /*-{
 
         //pre GWT 2.0 fallback
@@ -58,6 +66,12 @@ public class JsObject {
         if ($wnd.isc.Browser.isIE && $wnd.isc.Browser.version >= 7) {
             $wnd.isc.EventHandler._IECanSetKeyCode = {};
         }
+        //debox Java primitive values for Javascript in hosted mode.
+        $debox = function(val) {
+            return @com.google.gwt.core.client.GWT::isScript()() ? val : function() {
+            var v = val.apply(this, arguments);
+            return v == undefined || v == null ? null : v.valueOf();
+        }};
 
         if(!@com.google.gwt.core.client.GWT::isScript()()){
             $wnd.isc.Log.addClassMethods({
