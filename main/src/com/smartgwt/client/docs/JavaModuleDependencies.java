@@ -22,9 +22,12 @@ package com.smartgwt.client.docs;
  * Requires</u>:<br> &nbsp;&nbsp;&nbsp;&nbsp;xercesImpl - if you're using JDK &lt; 1.5<br> &nbsp;&nbsp;&nbsp;&nbsp;xml-apis
  * - if you're using JDK &lt; 1.5<br> &nbsp;&nbsp;&nbsp;&nbsp;commons-fileupload - if you plan to use the upload form item
  * with Smart GWT processing.<br> &nbsp;&nbsp;&nbsp;&nbsp;mail - if you plan to use the Mail messaging feature<br>
- * &nbsp;&nbsp;&nbsp;&nbsp;activation - if you plan to use the Mail messaging feature and you are using a JDK &lt; 1.6<br>
- * </li> <li><b>isomorphic_web_services</b>: Web services examples only.  Contains code backing the Smart
- * GWTOperations.wsdl example.  Do not deploy in production.<br> &nbsp;&nbsp;<u>Requires</u>:<br>
+ * &nbsp;&nbsp;&nbsp;&nbsp;activation - if you plan to use the Mail messaging feature and you are using a JDK &lt;
+ * 1.6<br><br> &nbsp;&nbsp;&nbsp;&nbsp;poi - if you plan to export datasets in Microsoft Excel 97 (xls)   or 2007 (xlsx)
+ * formats.  Additionally, if you plan to export data in Excel 2007 (xlsx)  format, you will need the following
+ * libraries:<br> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;poi-ooxml, poi-ooxml-schemas, xbean, jsr173_1.0_api </li> <p>
+ * <li><b>isomorphic_web_services</b>: Web services examples only.  Contains code backing the Smart GWTOperations.wsdl
+ * example.  Do not deploy in production.<br> &nbsp;&nbsp;<u>Requires</u>:<br>
  * &nbsp;&nbsp;&nbsp;&nbsp;isomorphic_core_rpc<br> &nbsp;&nbsp;&nbsp;&nbsp;axis<br> &nbsp;&nbsp;&nbsp;&nbsp;axis-schema<br>
  * &nbsp;&nbsp;&nbsp;&nbsp;commons-discovery<br> &nbsp;&nbsp;&nbsp;&nbsp;commons-logging<br>
  * &nbsp;&nbsp;&nbsp;&nbsp;jaxrpc<br> &nbsp;&nbsp;&nbsp;&nbsp;saaj<br> &nbsp;&nbsp;&nbsp;&nbsp;wsdl4j<br> </li>

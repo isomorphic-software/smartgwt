@@ -1772,23 +1772,23 @@ public class DynamicForm extends Canvas  implements DataBoundComponent, com.smar
         var selfJ = this;
         if(this.@com.smartgwt.client.widgets.BaseWidget::isCreated()()) {
             obj = this.@com.smartgwt.client.widgets.BaseWidget::getJsObj()();
-            obj.addProperties({itemChange:$entry(function(){
+            obj.addProperties({itemChange:$debox($entry(function(){
                         var param = {"item" : arguments[0], "newValue" : arguments[1], "oldValue" : arguments[2]};
                         var event = @com.smartgwt.client.widgets.form.events.ItemChangeEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
                         selfJ.@com.smartgwt.client.widgets.BaseWidget::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
                         var ret = event.@com.smartgwt.client.event.Cancellable::isCancelled()();
                         return !ret;
-                    })
+                    }))
              });
         } else {
             obj = this.@com.smartgwt.client.widgets.BaseWidget::getConfig()();
-            obj.itemChange = $entry(function(){
+            obj.itemChange = $debox($entry(function(){
                    var param = {"item" : arguments[0], "newValue" : arguments[1], "oldValue" : arguments[2]};
                    var event = @com.smartgwt.client.widgets.form.events.ItemChangeEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
                    selfJ.@com.smartgwt.client.widgets.BaseWidget::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
                    var ret = event.@com.smartgwt.client.event.Cancellable::isCancelled()();
                    return !ret;
-               });
+               }));
         }
    }-*/;
     /**
@@ -1846,23 +1846,23 @@ public class DynamicForm extends Canvas  implements DataBoundComponent, com.smar
         var selfJ = this;
         if(this.@com.smartgwt.client.widgets.BaseWidget::isCreated()()) {
             obj = this.@com.smartgwt.client.widgets.BaseWidget::getJsObj()();
-            obj.addProperties({itemKeyPress:$entry(function(){
+            obj.addProperties({itemKeyPress:$debox($entry(function(){
                         var param = {"item" : arguments[0], "keyName" : arguments[1], "characterValue" : arguments[2]};
                         var event = @com.smartgwt.client.widgets.form.events.ItemKeyPressEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
                         selfJ.@com.smartgwt.client.widgets.BaseWidget::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
                         var ret = event.@com.smartgwt.client.event.Cancellable::isCancelled()();
                         return !ret;
-                    })
+                    }))
              });
         } else {
             obj = this.@com.smartgwt.client.widgets.BaseWidget::getConfig()();
-            obj.itemKeyPress = $entry(function(){
+            obj.itemKeyPress = $debox($entry(function(){
                    var param = {"item" : arguments[0], "keyName" : arguments[1], "characterValue" : arguments[2]};
                    var event = @com.smartgwt.client.widgets.form.events.ItemKeyPressEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
                    selfJ.@com.smartgwt.client.widgets.BaseWidget::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
                    var ret = event.@com.smartgwt.client.event.Cancellable::isCancelled()();
                    return !ret;
-               });
+               }));
         }
    }-*/;
             
@@ -2023,7 +2023,7 @@ public class DynamicForm extends Canvas  implements DataBoundComponent, com.smar
         self._showErrors = self.showErrors;
         self.showErrors = $entry(function() {
             var jObj = this.__ref;
-            return jObj.@com.smartgwt.client.widgets.form.DynamicForm::showErrors()();
+            jObj.@com.smartgwt.client.widgets.form.DynamicForm::showErrors()();
         });
     }-*/;
 
@@ -2040,7 +2040,7 @@ public class DynamicForm extends Canvas  implements DataBoundComponent, com.smar
      */
     public native void showErrors() /*-{
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
-        return self._showErrors();
+        self._showErrors();
     }-*/;
 
     private void linkFields() {
@@ -2703,10 +2703,10 @@ public class DynamicForm extends Canvas  implements DataBoundComponent, com.smar
     public native void setItemHoverFormatter(FormItemHoverFormatter hoverFormatter) /*-{
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
         var formJ = this;
-        self.itemHoverHTML = $entry(function(item) {
+        self.itemHoverHTML = $debox($entry(function(item) {
             var itemJ = @com.smartgwt.client.widgets.form.fields.FormItem::getOrCreateRef(Lcom/google/gwt/core/client/JavaScriptObject;)(item);
             return hoverFormatter.@com.smartgwt.client.widgets.form.FormItemHoverFormatter::getHoverHTML(Lcom/smartgwt/client/widgets/form/fields/FormItem;Lcom/smartgwt/client/widgets/form/DynamicForm;)(itemJ, formJ);
-        });
+        }));
     }-*/;
 
    /**
@@ -2718,10 +2718,10 @@ public class DynamicForm extends Canvas  implements DataBoundComponent, com.smar
     public native void setItemTitleHoverFormatter(FormItemHoverFormatter hoverFormatter) /*-{
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
         var formJ = this;
-        self.titleHoverHTML = $entry(function(item) {
+        self.titleHoverHTML = $debox($entry(function(item) {
             var itemJ = @com.smartgwt.client.widgets.form.fields.FormItem::getOrCreateRef(Lcom/google/gwt/core/client/JavaScriptObject;)(item);
             return hoverFormatter.@com.smartgwt.client.widgets.form.FormItemHoverFormatter::getHoverHTML(Lcom/smartgwt/client/widgets/form/fields/FormItem;Lcom/smartgwt/client/widgets/form/DynamicForm;)(itemJ, formJ);
-        });
+        }));
     }-*/;
 
 

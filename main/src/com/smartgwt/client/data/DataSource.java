@@ -1362,7 +1362,7 @@ public class DataSource extends BaseClass  implements com.smartgwt.client.data.e
     /**
      * When set, causes a {@link com.smartgwt.client.data.DataSource#getClientOnly 'client-only'} or {@link
      * com.smartgwt.client.data.DataSource#getCacheAllData cacheAllData} DataSource to  create a second DataSource to perform
-     * it's one-time fetch.  By default, this atttribute will be considered true when clientOnly is true, cacheAllData is false
+     * it's one-time fetch.  By default, this attribute will be considered true when clientOnly is true, cacheAllData is false
      * or unset and a dataURL or testDataFileName is specified on the DataSource.
      *
      * @param useTestDataFetch useTestDataFetch Default value is null
@@ -1374,7 +1374,7 @@ public class DataSource extends BaseClass  implements com.smartgwt.client.data.e
     /**
      * When set, causes a {@link com.smartgwt.client.data.DataSource#getClientOnly 'client-only'} or {@link
      * com.smartgwt.client.data.DataSource#getCacheAllData cacheAllData} DataSource to  create a second DataSource to perform
-     * it's one-time fetch.  By default, this atttribute will be considered true when clientOnly is true, cacheAllData is false
+     * it's one-time fetch.  By default, this attribute will be considered true when clientOnly is true, cacheAllData is false
      * or unset and a dataURL or testDataFileName is specified on the DataSource.
      *
      *
@@ -1476,23 +1476,23 @@ public class DataSource extends BaseClass  implements com.smartgwt.client.data.e
         var selfJ = this;
             if(this.@com.smartgwt.client.core.BaseClass::isCreated()()) {
                 obj = this.@com.smartgwt.client.core.BaseClass::getJsObj()();
-                obj.addProperties({handleError:$entry(function(){
+                obj.addProperties({handleError:$debox($entry(function(){
                         var param = {"response" : arguments[0], "request" : arguments[1]};
                         var event = @com.smartgwt.client.data.events.ErrorEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
                         selfJ.@com.smartgwt.client.core.BaseClass::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
                         var ret = event.@com.smartgwt.client.event.Cancellable::isCancelled()();
                         return !ret;
-                    })
+                    }))
                 });
             } else {
                 obj = this.@com.smartgwt.client.core.BaseClass::getConfig()();
-                obj.handleError = $entry(function(){
+                obj.handleError = $debox($entry(function(){
                     var param = {"response" : arguments[0], "request" : arguments[1]};
                     var event = @com.smartgwt.client.data.events.ErrorEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
                     selfJ.@com.smartgwt.client.core.BaseClass::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
                     var ret = event.@com.smartgwt.client.event.Cancellable::isCancelled()();
                     return !ret;
-                });
+                }));
             }
    }-*/;
             
@@ -1627,6 +1627,39 @@ public class DataSource extends BaseClass  implements com.smartgwt.client.data.e
     }-*/;
 
     // ********************* Static Methods ***********************
+            
+    /**
+     * Combines two criteria (either simple criteria objects or AdvancedCriteria) using the  "outerOperator".  Note that the
+     * combined criteria object will be an AdvancedCriteria unless <ul> <li>both input criteria objects are simple, and</li>
+     * <li>the "outerOperator" is "and", and</li> <li>there is no collision of key names on the two criteria</li> </ul>
+     * @param criteria1 first criteria object
+     * @param criteria2 second criteria object
+     *
+     * @return The combined criteria
+     */
+    public static native Criteria combineCriteria(Criteria criteria1, Criteria criteria2) /*-{
+        var ret = $wnd.isc.DataSource.combineCriteria(criteria1.@com.smartgwt.client.core.DataClass::getJsObj()(), criteria2.@com.smartgwt.client.core.DataClass::getJsObj()());
+        if(ret == null || ret === undefined) return null;
+        return @com.smartgwt.client.data.Criteria::new(Lcom/google/gwt/core/client/JavaScriptObject;)(ret);
+    }-*/;
+
+    /**
+     * Combines two criteria (either simple criteria objects or AdvancedCriteria) using the  "outerOperator".  Note that the
+     * combined criteria object will be an AdvancedCriteria unless <ul> <li>both input criteria objects are simple, and</li>
+     * <li>the "outerOperator" is "and", and</li> <li>there is no collision of key names on the two criteria</li> </ul>
+     * @param criteria1 first criteria object
+     * @param criteria2 second criteria object
+     * @param outerOperator operator to use to combine the criteria.                                           Defaults to "and"
+     * @param textMatchStyle style of matching text, if it is necessary to                                          convert a simple criteria object
+     * to an                                           AdvancedCriteria.  Defaults to "substring"
+     *
+     * @return The combined criteria
+     */
+    public static native Criteria combineCriteria(Criteria criteria1, Criteria criteria2, CriteriaCombineOperator outerOperator, TextMatchStyle textMatchStyle) /*-{
+        var ret = $wnd.isc.DataSource.combineCriteria(criteria1.@com.smartgwt.client.core.DataClass::getJsObj()(), criteria2.@com.smartgwt.client.core.DataClass::getJsObj()(), outerOperator, textMatchStyle.@com.smartgwt.client.types.TextMatchStyle::getValue()());
+        if(ret == null || ret === undefined) return null;
+        return @com.smartgwt.client.data.Criteria::new(Lcom/google/gwt/core/client/JavaScriptObject;)(ret);
+    }-*/;
             
     /**
      * Synonym of {@link com.smartgwt.client.data.DataSource#getDataSource}: Lookup a DataSource by ID.

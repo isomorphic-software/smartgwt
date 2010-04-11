@@ -42,6 +42,7 @@ package com.smartgwt.client.docs;
  * @see com.smartgwt.client.widgets.StretchImgButton#setState
  * @see com.smartgwt.client..CubeGrid#getStyleName
  * @see com.smartgwt.client..CubeGrid#getBodyStyleName
+ * @see com.smartgwt.client..CubeGrid#getBaseStyle
  * @see com.smartgwt.client..CubeGrid#getAlternateRecordStyles
  * @see com.smartgwt.client..CubeGrid#getInnerHeaderBaseStyle
  * @see com.smartgwt.client..CubeGrid#getColHeaderBaseStyle
@@ -178,6 +179,7 @@ package com.smartgwt.client.docs;
  * @see com.smartgwt.client.widgets.grid.ListGrid#getDateFormatter
  * @see com.smartgwt.client.widgets.grid.ListGrid#getDatetimeFormatter
  * @see com.smartgwt.client.widgets.grid.ListGrid#getTimeFormatter
+ * @see com.smartgwt.client.widgets.grid.ListGrid#getBaseStyle
  * @see com.smartgwt.client.widgets.grid.ListGrid#getEditFailedBaseStyle
  * @see com.smartgwt.client.widgets.grid.ListGrid#getEditFailedCSSText
  * @see com.smartgwt.client.widgets.grid.ListGrid#getEditPendingBaseStyle
@@ -204,6 +206,7 @@ package com.smartgwt.client.docs;
  * @see com.smartgwt.client.widgets.grid.ListGrid#getSortAscendingImage
  * @see com.smartgwt.client.widgets.grid.ListGrid#getSortDescendingImage
  * @see com.smartgwt.client.widgets.tree.TreeGrid#getIndentSize
+ * @see com.smartgwt.client.widgets.tree.TreeGrid#getExtraIconGap
  * @see com.smartgwt.client.widgets.tile.TileLayout#getAnimateTileChange
  * @see com.smartgwt.client.widgets.tile.TileGrid#getSelectionType
  * @see com.smartgwt.client.widgets.tile.TileGrid#getAnimateTileChange

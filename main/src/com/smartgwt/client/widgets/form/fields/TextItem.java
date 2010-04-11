@@ -93,6 +93,33 @@ public class TextItem extends FormItem {
     // ********************* Properties / Attributes ***********************
 
     /**
+     * Should this form item fire its {@link com.smartgwt.client.widgets.form.fields.FormItem#addChangeHandler} handler (and
+     * store its value in the form) on every keypress? Set to <code>false</code> to suppress the 'change' handler firing (and
+     * the value stored) on every keypress. <p> Note: If <code>false</code>, the value returned by {@link
+     * com.smartgwt.client.widgets.form.fields.FormItem#getValue} will not reflect the value displayed in the form item element
+     * as long as focus is in the form item element.
+     *
+     * @param changeOnKeypress changeOnKeypress Default value is true
+     */
+    public void setChangeOnKeypress(Boolean changeOnKeypress) {
+        setAttribute("changeOnKeypress", changeOnKeypress);
+    }
+
+    /**
+     * Should this form item fire its {@link com.smartgwt.client.widgets.form.fields.FormItem#addChangeHandler} handler (and
+     * store its value in the form) on every keypress? Set to <code>false</code> to suppress the 'change' handler firing (and
+     * the value stored) on every keypress. <p> Note: If <code>false</code>, the value returned by {@link
+     * com.smartgwt.client.widgets.form.fields.FormItem#getValue} will not reflect the value displayed in the form item element
+     * as long as focus is in the form item element.
+     *
+     *
+     * @return Boolean
+     */
+    public Boolean getChangeOnKeypress()  {
+        return getAttributeAsBoolean("changeOnKeypress");
+    }
+
+    /**
      * Should entered characters be converted to upper or lowercase? Also applies to values applied with {@link
      * com.smartgwt.client.widgets.form.fields.FormItem#setValue}. <P> Note: character casing cannot be used at the same time
      * as a {@link com.smartgwt.client.widgets.form.fields.TextItem#getMask mask}.

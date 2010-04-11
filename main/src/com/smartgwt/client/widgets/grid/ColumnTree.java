@@ -766,23 +766,23 @@ public class ColumnTree extends Layout  implements DataBoundComponent, com.smart
         var selfJ = this;
         if(this.@com.smartgwt.client.widgets.BaseWidget::isCreated()()) {
             obj = this.@com.smartgwt.client.widgets.BaseWidget::getJsObj()();
-            obj.addProperties({onNodeSelected:$entry(function(){
+            obj.addProperties({onNodeSelected:$debox($entry(function(){
                     var param = {"column" : arguments[0], "node" : arguments[1]};
                     var event = @com.smartgwt.client.widgets.grid.events.NodeSelectedEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
                     selfJ.@com.smartgwt.client.widgets.BaseWidget::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
                     var ret = event.@com.smartgwt.client.event.Cancellable::isCancelled()();
                     return !ret;
-                })
+                }))
             });
         } else {
             obj = this.@com.smartgwt.client.widgets.BaseWidget::getConfig()();
-            obj.onNodeSelected = $entry(function(){
+            obj.onNodeSelected = $debox($entry(function(){
                 var param = {"column" : arguments[0], "node" : arguments[1]};
                 var event = @com.smartgwt.client.widgets.grid.events.NodeSelectedEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
                 selfJ.@com.smartgwt.client.widgets.BaseWidget::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
                 var ret = event.@com.smartgwt.client.event.Cancellable::isCancelled()();
                 return !ret;
-            });
+            }));
         }
     }-*/;
 

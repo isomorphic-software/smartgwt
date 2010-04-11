@@ -1349,23 +1349,23 @@ public class Window extends VLayout  implements com.smartgwt.client.widgets.even
         var selfJ = this;
         if(this.@com.smartgwt.client.widgets.BaseWidget::isCreated()()) {
             obj = this.@com.smartgwt.client.widgets.BaseWidget::getJsObj()();
-            obj.addProperties({onMaximizeClick:$entry(function(){
+            obj.addProperties({onMaximizeClick:$debox($entry(function(){
                     var param = {};
                     var event = @com.smartgwt.client.widgets.events.MaximizeClickEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
                     selfJ.@com.smartgwt.client.widgets.BaseWidget::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
                     var ret = event.@com.smartgwt.client.event.Cancellable::isCancelled()();
                     return !ret;
-                })
+                }))
             });
         } else {
             obj = this.@com.smartgwt.client.widgets.BaseWidget::getConfig()();
-            obj.onMaximizeClick = $entry(function(){
+            obj.onMaximizeClick = $debox($entry(function(){
                 var param = {};
                 var event = @com.smartgwt.client.widgets.events.MaximizeClickEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
                 selfJ.@com.smartgwt.client.widgets.BaseWidget::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
                 var ret = event.@com.smartgwt.client.event.Cancellable::isCancelled()();
                 return !ret;
-            });
+            }));
         }
     }-*/;
 
@@ -1386,23 +1386,23 @@ public class Window extends VLayout  implements com.smartgwt.client.widgets.even
         var selfJ = this;
         if(this.@com.smartgwt.client.widgets.BaseWidget::isCreated()()) {
             obj = this.@com.smartgwt.client.widgets.BaseWidget::getJsObj()();
-            obj.addProperties({onMinimizeClick:$entry(function(){
+            obj.addProperties({onMinimizeClick:$debox($entry(function(){
                     var param = {};
                     var event = @com.smartgwt.client.widgets.events.MinimizeClickEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
                     selfJ.@com.smartgwt.client.widgets.BaseWidget::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
                     var ret = event.@com.smartgwt.client.event.Cancellable::isCancelled()();
                     return !ret;
-                })
+                }))
             });
         } else {
             obj = this.@com.smartgwt.client.widgets.BaseWidget::getConfig()();
-            obj.onMinimizeClick = $entry(function(){
+            obj.onMinimizeClick = $debox($entry(function(){
                 var param = {};
                 var event = @com.smartgwt.client.widgets.events.MinimizeClickEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
                 selfJ.@com.smartgwt.client.widgets.BaseWidget::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
                 var ret = event.@com.smartgwt.client.event.Cancellable::isCancelled()();
                 return !ret;
-            });
+            }));
         }
     }-*/;
 
@@ -1424,23 +1424,23 @@ public class Window extends VLayout  implements com.smartgwt.client.widgets.even
         var selfJ = this;
         if(this.@com.smartgwt.client.widgets.BaseWidget::isCreated()()) {
             obj = this.@com.smartgwt.client.widgets.BaseWidget::getJsObj()();
-            obj.addProperties({onRestoreClick:$entry(function(){
+            obj.addProperties({onRestoreClick:$debox($entry(function(){
                     var param = {};
                     var event = @com.smartgwt.client.widgets.events.RestoreClickEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
                     selfJ.@com.smartgwt.client.widgets.BaseWidget::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
                     var ret = event.@com.smartgwt.client.event.Cancellable::isCancelled()();
                     return !ret;
-                })
+                }))
             });
         } else {
             obj = this.@com.smartgwt.client.widgets.BaseWidget::getConfig()();
-            obj.onRestoreClick = $entry(function(){
+            obj.onRestoreClick = $debox($entry(function(){
                 var param = {};
                 var event = @com.smartgwt.client.widgets.events.RestoreClickEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
                 selfJ.@com.smartgwt.client.widgets.BaseWidget::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
                 var ret = event.@com.smartgwt.client.event.Cancellable::isCancelled()();
                 return !ret;
-            });
+            }));
         }
     }-*/;
 

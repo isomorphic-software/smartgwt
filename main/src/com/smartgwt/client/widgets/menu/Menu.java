@@ -502,23 +502,23 @@ public class Menu extends ListGrid  implements com.smartgwt.client.widgets.menu.
         var selfJ = this;
         if(this.@com.smartgwt.client.widgets.BaseWidget::isCreated()()) {
             obj = this.@com.smartgwt.client.widgets.BaseWidget::getJsObj()();
-            obj.addProperties({itemClick:$entry(function(){
+            obj.addProperties({itemClick:$debox($entry(function(){
                         var param = {"item" : arguments[0], "colNum" : arguments[1]};
                         var event = @com.smartgwt.client.widgets.menu.events.ItemClickEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
                         selfJ.@com.smartgwt.client.widgets.BaseWidget::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
                         var ret = event.@com.smartgwt.client.event.Cancellable::isCancelled()();
                         return !ret;
-                    })
+                    }))
              });
         } else {
             obj = this.@com.smartgwt.client.widgets.BaseWidget::getConfig()();
-            obj.itemClick = $entry(function(){
+            obj.itemClick = $debox($entry(function(){
                    var param = {"item" : arguments[0], "colNum" : arguments[1]};
                    var event = @com.smartgwt.client.widgets.menu.events.ItemClickEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
                    selfJ.@com.smartgwt.client.widgets.BaseWidget::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
                    var ret = event.@com.smartgwt.client.event.Cancellable::isCancelled()();
                    return !ret;
-               });
+               }));
         }
    }-*/;
             
