@@ -142,6 +142,8 @@
 
              <zipfileset dir="${SC_HOME}/smartclientSDK/isomorphic/skins/Graphite" includes="**/*.*" excludes="*.gz,*.psd"
 					                        prefix="com/smartclient/theme/graphite/public/sc/skins/Graphite"/>
+			<zipfileset dir="${SC_HOME}/smartclientSDK/tools/selenium" includes="**/*.*"
+						prefix="com/smartclient/tools/public/tools/selenium"/>
         </zip>
 		
 		<zip destfile="${smartgwt.tools.lib}/sc/${SC_VER}/smartgwt-skins.jar">
