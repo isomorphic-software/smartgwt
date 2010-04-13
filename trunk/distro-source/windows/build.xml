@@ -18,6 +18,11 @@
 			<zipfileset file="${smartgwt.build.lib}/smartgwt.jar" prefix="${project.distname}" />
 			<zipfileset file="${smartgwt.build.lib}/smartgwt-skins.jar" prefix="${project.distname}" />
 
+			<zipfileset dirmode="755" filemode="644" src="${smartgwt.tools.lib}/sc/${smartclient.version}/smartclient.jar"  includes="**/selenium/user-extensions.js" fullpath="${project.distname}/selenium/user-extensions.js"/>			
+			<zipfileset dirmode="755" filemode="644" src="${smartgwt.tools.lib}/sc/${smartclient.version}/smartclient.jar"  includes="**/selenium/user-extensions-ide.js" fullpath="${project.distname}/selenium/user-extensions-ide.js"/>	
+			<zipfileset dirmode="755" filemode="644" src="${smartgwt.tools.lib}/sc/${smartclient.version}/smartclient.jar"  includes="**/selenium/user-guide.html" fullpath="${project.distname}/selenium/user-guide.html"/>	
+			<zipfileset dirmode="755" filemode="644" src="${smartgwt.tools.lib}/sc/${smartclient.version}/smartclient.jar"  includes="**/selenium/selenium-ide-example.png" fullpath="${project.distname}/selenium/selenium-ide-example.png"/>				
+						
 			<!-- raw files -->
 			<zipfileset dir="${project.build}" prefix="${project.distname}" />
 			<zipfileset dir="src" prefix="${project.distname}" />
