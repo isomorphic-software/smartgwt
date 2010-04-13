@@ -1701,7 +1701,8 @@ public class TreeGrid extends ListGrid  implements com.smartgwt.client.widgets.t
      */
     protected native String getNodeTitle(Record node, int recordNum, ListGridField field) /*-{
             var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
-            return self._getNodeTitle(node.@com.smartgwt.client.core.DataClass::getJsObj()(), recordNum, field.@com.smartgwt.client.core.DataClass::getJsObj()());
+            var title = self._getNodeTitle(node.@com.smartgwt.client.core.DataClass::getJsObj()(), recordNum, field.@com.smartgwt.client.core.DataClass::getJsObj()());
+            return title == null ? "" : title.toString();
     }-*/;
 
     /**
