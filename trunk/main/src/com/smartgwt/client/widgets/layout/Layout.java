@@ -930,7 +930,11 @@ public class Layout extends Canvas {
 
 
 
-    protected native void onInit() /*-{
+	protected void onInit() {
+		super.onInit();
+		onInit_Layout();
+	}
+    protected native void onInit_Layout() /*-{
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
         self.__getDropComponent = self.getDropComponent;
         self.getDropComponent = $entry(function(dragTarget, dropPosition) {

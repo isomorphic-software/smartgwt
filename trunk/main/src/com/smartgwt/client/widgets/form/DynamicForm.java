@@ -2017,7 +2017,11 @@ public class DynamicForm extends Canvas  implements DataBoundComponent, com.smar
 
     private FormItem[] fields;
 
-    protected native void onInit() /*-{
+    protected void onInit() {
+    	super.onInit();
+    	onInit_DynamicForm();
+    }
+    protected native void onInit_DynamicForm() /*-{
         this.@com.smartgwt.client.widgets.form.DynamicForm::linkFields()();
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
         self._showErrors = self.showErrors;

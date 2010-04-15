@@ -1791,7 +1791,11 @@ public class Calendar extends Canvas  implements DataBoundComponent, com.smartgw
     // ********************* Static Methods ***********************
 
 
-    protected native void onInit() /*-{
+	protected void onInit() {
+		super.onInit();
+		onInit_Calendar();
+	}
+    protected native void onInit_Calendar() /*-{
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
         self._getDayBodyHTML = self.getDayBodyHTML;
 

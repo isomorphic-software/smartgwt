@@ -1665,10 +1665,10 @@ public class TreeGrid extends ListGrid  implements com.smartgwt.client.widgets.t
 
     protected void onInit() {
         super.onInit();
-        onInit2();
+        onInit_TreeGrid();
     }
 
-    private native void onInit2() /*-{
+    private native void onInit_TreeGrid() /*-{
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
         self._getNodeTitle = self.getNodeTitle;
         self.getNodeTitle = $debox($entry(function(node, recordNum, field) {

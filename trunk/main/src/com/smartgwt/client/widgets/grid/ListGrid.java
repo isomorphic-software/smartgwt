@@ -7526,7 +7526,11 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
     // ********************* Static Methods ***********************
 
 
-    protected native void onInit() /*-{
+	protected void onInit () {
+		super.onInit();
+		onInit_ListGrid();
+	}
+    protected native void onInit_ListGrid() /*-{
 
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
         self._getCellCSSText = self.getCellCSSText;

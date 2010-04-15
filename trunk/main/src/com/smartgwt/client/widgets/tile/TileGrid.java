@@ -470,7 +470,11 @@ public class TileGrid extends TileLayout  implements DataBoundComponent, com.sma
     // ********************* Static Methods ***********************
 
 
-    protected native void onInit() /*-{
+	protected void onInit () {
+		super.onInit();
+		onInit_TileGrid();
+	}
+    protected native void onInit_TileGrid() /*-{
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
         self._getTileHTML = self.getTileHTML;
         self.getTileHTML = $debox($entry(function(record) {
