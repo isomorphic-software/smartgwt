@@ -6581,7 +6581,7 @@ public class Canvas extends BaseWidget  implements com.smartgwt.client.widgets.e
 					executeJS(HTML, jscallback, getOrCreateJsObj());
 				}
 				private native void executeJS (String HTML, JavaScriptObject jscallback, JavaScriptObject canvas) /*-{
-					canvas.fireCallback(jscallback, ["HTML"], [HTML]);
+					canvas.fireCallback(jscallback, ["HTML", "callback"], [HTML,jscallback]);
 				}-*/;
 			};
 			getPrintHTML(printProperties, jcb);
