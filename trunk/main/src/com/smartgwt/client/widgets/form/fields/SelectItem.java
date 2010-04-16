@@ -1231,7 +1231,7 @@ public class SelectItem extends FormItem  implements PickList, com.smartgwt.clie
         var self = this.@com.smartgwt.client.core.DataClass::getJsObj()();
         var valuesJS = @com.smartgwt.client.util.JSOHelper::convertToJavaScriptArray([Ljava/lang/Object;)(values);
         if(self.setValue) {
-            self.setValue(valuesJS);
+            self.setValueMap(valuesJS);
         } else {
             self.defaultValue = valuesJS;
         }
