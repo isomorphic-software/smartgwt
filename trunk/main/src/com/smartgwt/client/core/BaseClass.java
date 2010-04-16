@@ -33,6 +33,14 @@ import java.util.Map;
 
 public abstract class BaseClass {
 
+    static {
+        init();
+    }
+
+    private static native void init()/*-{
+        @com.smartgwt.client.core.JsObject::initialize()();
+    }-*/;
+
     protected String id;
     protected JavaScriptObject config = JSOHelper.createObject();
     protected String scClassName;
