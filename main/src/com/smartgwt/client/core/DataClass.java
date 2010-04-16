@@ -30,6 +30,14 @@ import java.util.Map;
 
 public class DataClass extends JsObject {
 
+    static {
+        init();
+    }
+
+    private static native void init()/*-{
+        @com.smartgwt.client.core.JsObject::initialize()();
+    }-*/;
+
     public DataClass() {
         super(JSOHelper.createObject());
     }
