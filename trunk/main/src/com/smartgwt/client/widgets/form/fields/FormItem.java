@@ -3664,7 +3664,7 @@ public class FormItem extends RefDataClass  implements com.smartgwt.client.widge
     public native DynamicForm getForm() /*-{
         var self = this.@com.smartgwt.client.core.DataClass::getJsObj()();
         if(self.form) {
-            @com.smartgwt.client.widgets.form.DynamicForm::getOrCreateRef(Lcom/google/gwt/core/client/JavaScriptObject;)(self.form);
+            return @com.smartgwt.client.widgets.form.DynamicForm::getOrCreateRef(Lcom/google/gwt/core/client/JavaScriptObject;)(self.form);
         } else {
             return null;
         }
