@@ -1,34 +1,41 @@
 package com.smartgwt.client.data;
 
 import com.google.gwt.core.client.JavaScriptObject;
+import com.smartgwt.client.util.SC;
 import com.smartgwt.client.types.OperatorId;
 import java.util.Date;
+import java.util.LinkedList;
+import java.util.Map;
+import java.util.Iterator;
 import com.smartgwt.client.util.JSOHelper;
 
 public class AdvancedCriteria extends Criteria {
+    public AdvancedCriteria(AdvancedCriteria c) {
+        declareAdvancedCriteria();
+        JavaScriptObject o;
+        o = c.getAttributeAsJavaScriptObject("operator");
+        if (o != null) setAttribute("operator", o);
+        o = c.getAttributeAsJavaScriptObject("fieldName");
+        if (o != null) setAttribute("fieldName", o);
+        o = c.getAttributeAsJavaScriptObject("criteria");
+        if (o != null) setAttribute("criteria", o);
+        o = c.getAttributeAsJavaScriptObject("value");
+        if (o != null) setAttribute("value", o);
+    }
+
     public AdvancedCriteria(JavaScriptObject jsObj) {
         super(jsObj);
+        declareAdvancedCriteria();
     }
-    
-    private void setIsAdvancedCriteria(boolean isAdvanced) {
-        if (isAdvanced) setAttribute("_constructor", "AdvancedCriteria");
-        else JSOHelper.setNullAttribute(jsObj, "_constructor");
-    }
-    
-    private void buildAdvancedCriteria(OperatorId operator, Criteria[] criterias) {
-        JavaScriptObject criteriaJS = JSOHelper.createJavaScriptArray();
 
-        for (int i = 0; i < criterias.length; i++) {
-            Criteria criteria = criterias[i];
-            // This is a Criterion list - AdvancedCriteria has _constructor set;
-            // Criterion doesn't
-            if (criteria.getAttributeAsObject("_constructor") != null) {
-                JSOHelper.deleteAttribute(criteria.getJsObj(), "_constructor");
-            }
-            JSOHelper.setArrayValue(criteriaJS, i, criteria.getJsObj());
-        }
+    public AdvancedCriteria(OperatorId operator, AdvancedCriteria[] criterias) {
+        declareAdvancedCriteria();
+        buildAdvancedCriteriaFromList(operator, criterias);
+    }
+    
+    public AdvancedCriteria(OperatorId operator) {
+        declareAdvancedCriteria();
         setAttribute("operator", operator.getValue());
-        setAttribute("criteria", criteriaJS);
     }
     
     private AdvancedCriteria() {
@@ -41,57 +48,12 @@ public class AdvancedCriteria extends Criteria {
     }
     
     public AdvancedCriteria(String fieldName, OperatorId operator) {
-        this();
+        declareAdvancedCriteria();
         setAttribute("fieldName", fieldName);
         setAttribute("operator", operator.getValue());
     }
     
-    public AdvancedCriteria(String fieldName, OperatorId operator, String value) {
-        this(fieldName, operator);
-        if(value != null) setAttribute("value", value);
-    }
-    
-    public AdvancedCriteria(String fieldName, OperatorId operator, Integer value) {
-        this(fieldName, operator);
-        if(value != null) setAttribute("value", value);
-    }
-    
-    public AdvancedCriteria(String fieldName, OperatorId operator, Boolean value) {
-        this(fieldName, operator);
-        if(value != null) setAttribute("value", value);
-    }
-    
-    public AdvancedCriteria(String fieldName, OperatorId operator, Date value) {
-        this(fieldName, operator);
-        if(value != null) setAttribute("value", value);
-    }
-    
-    public AdvancedCriteria(String fieldName, OperatorId operator, Float value) {
-        this(fieldName, operator);
-        if(value != null) setAttribute("value", value);
-    }
-    
-    public AdvancedCriteria(String fieldName, OperatorId operator, String[] value) {
-        this(fieldName, operator);
-        if(value != null) setAttribute("value", value);
-    }
-    
-    public AdvancedCriteria(String fieldName, OperatorId operator, Integer[] value) {
-        this(fieldName, operator);
-        if(value != null) setAttribute("value", value);
-    }
-    
-    public AdvancedCriteria(String fieldName, OperatorId operator, Boolean[] value) {
-        this(fieldName, operator);
-        if(value != null) setAttribute("value", value);
-    }
-    
-    public AdvancedCriteria(String fieldName, OperatorId operator, Date[] value) {
-        this(fieldName, operator);
-        if(value != null) setAttribute("value", value);
-    }
-    
-    public AdvancedCriteria(String fieldName, OperatorId operator, Float[] value) {
+    public <T> AdvancedCriteria(String fieldName, OperatorId operator, T value) {
         this(fieldName, operator);
         if(value != null) setAttribute("value", value);
     }
@@ -105,156 +67,56 @@ public class AdvancedCriteria extends Criteria {
      *
      * @param otherCriteria the passed criteria object
      */
-    public void addCriteria(Criteria otherCriteria) {
+    public void addCriteria(AdvancedCriteria c) {
         if (this.getAttributeAsString("operator") == OperatorId.AND.getValue()) {
-            JavaScriptObject criteriaJS = getAttributeAsJavaScriptObject("operator");
-            JSOHelper.setArrayValue(criteriaJS, JSOHelper.getArrayLength(criteriaJS), 
-                otherCriteria.getJsObj());
+            appendToCriterionList(c);
         } else {
-            AdvancedCriteria thisCopy = new AdvancedCriteria(jsObj);
-            JSOHelper.deleteAttribute(jsObj, "fieldName");
-            Criteria[] criteriaList = { (Criteria) thisCopy, otherCriteria };
-            buildAdvancedCriteria(OperatorId.AND, criteriaList);
+            AdvancedCriteria thisCopy = new AdvancedCriteria(this);
+            
+            JavaScriptObject o;
+            o = getAttributeAsJavaScriptObject("fieldName");
+            if (o != null) JSOHelper.deleteAttribute(jsObj, "fieldName");
+            o = getAttributeAsJavaScriptObject("value");
+            if (o != null) JSOHelper.deleteAttribute(jsObj, "value");
+            
+            AdvancedCriteria[] criteriaList = { thisCopy, c };
+            buildAdvancedCriteriaFromList(OperatorId.AND, criteriaList);
         }
     }
     
     /**
-     * @see #addCriteria(Criteria)
+     * @see #addCriteria(AdvancedCriteria)
      */
-    public void addCriteria(String field, String value) {
+    public <T> void addCriteria(String field, T value) {
         addCriteria(field, OperatorId.EQUALS, value);
     }
-
     /**
-     * @see #addCriteria(Criteria)
+     * @see #addCriteria(AdvancedCriteria)
      */
-    public void addCriteria(String field, OperatorId op, String value) {
+    public <T> void addCriteria(String field, OperatorId op, T value) {
         addCriteria(new AdvancedCriteria(field, op, value));
     }
 
-    /**
-     * @see #addCriteria(Criteria)
-     */
-    public void addCriteria(String field, Integer value) {
-        addCriteria(field, OperatorId.EQUALS, value);
+    private void declareAdvancedCriteria() {
+        setAttribute("_constructor", "AdvancedCriteria");
     }
-
-    /**
-     * @see #addCriteria(Criteria)
-     */
-    public void addCriteria(String field, OperatorId op, Integer value) {
-        addCriteria(new AdvancedCriteria(field, op, value));
+    
+    private void buildAdvancedCriteriaFromList(OperatorId operator, AdvancedCriteria[] criterias) {
+        setAttribute("operator", operator.getValue());
+        setAttribute("criteria", JSOHelper.createJavaScriptArray());
+        for (int i = 0; i < criterias.length; i++) appendToCriterionList(criterias[i]);
     }
-
-    /**
-     * @see #addCriteria(Criteria)
-     */
-    public void addCriteria(String field, Boolean value) {
-        addCriteria(field, OperatorId.EQUALS, value);
-    }
-
-    /**
-     * @see #addCriteria(Criteria)
-     */
-    public void addCriteria(String field, OperatorId op, Boolean value) {
-        addCriteria(new AdvancedCriteria(field, op, value));
-    }
-
-    /**
-     * @see #addCriteria(Criteria)
-     */
-    public void addCriteria(String field, Date value) {
-        addCriteria(field, OperatorId.EQUALS, value);
-    }
-
-    /**
-     * @see #addCriteria(Criteria)
-     */
-    public void addCriteria(String field, OperatorId op, Date value) {
-        addCriteria(new AdvancedCriteria(field, op, value));
-    }
-
-    /**
-     * @see #addCriteria(Criteria)
-     */
-    public void addCriteria(String field, Float value) {
-        addCriteria(field, OperatorId.EQUALS, value);
-    }
-
-    /**
-     * @see #addCriteria(Criteria)
-     */
-    public void addCriteria(String field, OperatorId op, Float value) {
-        addCriteria(new AdvancedCriteria(field, op, value));
-    }
-
-    /**
-     * @see #addCriteria(Criteria)
-     */
-    public void addCriteria(String field, String[] value) {
-        addCriteria(field, OperatorId.EQUALS, value);
-    }
-
-    /**
-     * @see #addCriteria(Criteria)
-     */
-    public void addCriteria(String field, OperatorId op, String[] value) {
-        addCriteria(new AdvancedCriteria(field, op, value));
-    }
-
-    /**
-     * @see #addCriteria(Criteria)
-     */
-    public void addCriteria(String field, Integer[] value) {
-        addCriteria(field, OperatorId.EQUALS, value);
-    }
-
-    /**
-     * @see #addCriteria(Criteria)
-     */
-    public void addCriteria(String field, OperatorId op, Integer[] value) {
-        addCriteria(new AdvancedCriteria(field, op, value));
-    }
-
-    /**
-     * @see #addCriteria(Criteria)
-     */
-    public void addCriteria(String field, Boolean[] value) {
-        addCriteria(field, OperatorId.EQUALS, value);
-    }
-
-    /**
-     * @see #addCriteria(Criteria)
-     */
-    public void addCriteria(String field, OperatorId op, Boolean[] value) {
-        addCriteria(new AdvancedCriteria(field, op, value));
-    }
-
-    /**
-     * @see #addCriteria(Criteria)
-     */
-    public void addCriteria(String field, Date[] value) {
-        addCriteria(field, OperatorId.EQUALS, value);
-    }
-
-    /**
-     * @see #addCriteria(Criteria)
-     */
-    public void addCriteria(String field, OperatorId op, Date[] value) {
-        addCriteria(new AdvancedCriteria(field, op, value));
-    }
-
-    /**
-     * @see #addCriteria(Criteria)
-     */
-    public void addCriteria(String field, Float[] value) {
-        addCriteria(field, OperatorId.EQUALS, value);
-    }
-
-    /**
-     * @see #addCriteria(Criteria)
-     */
-    public void addCriteria(String field, OperatorId op, Float[] value) {
-        addCriteria(new AdvancedCriteria(field, op, value));
+    
+    public void appendToCriterionList(AdvancedCriteria c) {
+        // This is a Criterion list - AdvancedCriteria has _constructor set; Criterion doesn't
+        JavaScriptObject o;
+        o = getAttributeAsJavaScriptObject("_constructor");
+        if (o != null) JSOHelper.deleteAttribute(jsObj, "_constructor");
+        
+        JavaScriptObject listJS = getAttributeAsJavaScriptObject("criteria");
+        if (!JSOHelper.isArray(listJS)) 
+            SC.logWarn("appendToCriterionList called when no criterion list exists");
+        
+        JSOHelper.setArrayValue(listJS, JSOHelper.getArrayLength(listJS), c.getJsObj());
     }
 }
