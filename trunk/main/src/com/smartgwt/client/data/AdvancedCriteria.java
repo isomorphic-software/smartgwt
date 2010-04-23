@@ -12,14 +12,14 @@ import com.smartgwt.client.util.JSOHelper;
 public class AdvancedCriteria extends Criteria {
     public AdvancedCriteria(AdvancedCriteria c) {
         declareAdvancedCriteria();
-        JavaScriptObject o;
-        o = c.getAttributeAsJavaScriptObject("operator");
+        Object o;
+        o = c.getAttributeAsObject("operator");
         if (o != null) setAttribute("operator", o);
-        o = c.getAttributeAsJavaScriptObject("fieldName");
+        o = c.getAttributeAsObject("fieldName");
         if (o != null) setAttribute("fieldName", o);
-        o = c.getAttributeAsJavaScriptObject("criteria");
+        o = c.getAttributeAsObject("criteria");
         if (o != null) setAttribute("criteria", o);
-        o = c.getAttributeAsJavaScriptObject("value");
+        o = c.getAttributeAsObject("value");
         if (o != null) setAttribute("value", o);
     }
 
@@ -39,12 +39,7 @@ public class AdvancedCriteria extends Criteria {
     }
     
     private AdvancedCriteria() {
-        setIsAdvancedCriteria(true);
-    }
-    
-    public AdvancedCriteria(OperatorId operator, Criteria[] criterias) {
-        this();
-        buildAdvancedCriteria(operator, criterias);
+        declareAdvancedCriteria();
     }
     
     public AdvancedCriteria(String fieldName, OperatorId operator) {
@@ -53,11 +48,56 @@ public class AdvancedCriteria extends Criteria {
         setAttribute("operator", operator.getValue());
     }
     
-    public <T> AdvancedCriteria(String fieldName, OperatorId operator, T value) {
+    public AdvancedCriteria(String fieldName, OperatorId operator, Integer value) {
         this(fieldName, operator);
-        if(value != null) setAttribute("value", value);
+        setAttribute("value", value);
     }
     
+    public AdvancedCriteria(String fieldName, OperatorId operator, String value) {
+        this(fieldName, operator);
+        setAttribute("value", value);
+    }
+
+    public AdvancedCriteria(String fieldName, OperatorId operator, Float value) {
+        this(fieldName, operator);
+        setAttribute("value", value);
+    }
+
+    public AdvancedCriteria(String fieldName, OperatorId operator, Date value) {
+        this(fieldName, operator);
+        setAttribute("value", value);
+    }
+
+    public AdvancedCriteria(String fieldName, OperatorId operator, Boolean value) {
+        this(fieldName, operator);
+        setAttribute("value", value);
+    }
+
+    public AdvancedCriteria(String fieldName, OperatorId operator, Integer[] value) {
+        this(fieldName, operator);
+        setAttribute("value", value);
+    }
+    
+    public AdvancedCriteria(String fieldName, OperatorId operator, String[] value) {
+        this(fieldName, operator);
+        setAttribute("value", value);
+    }
+
+    public AdvancedCriteria(String fieldName, OperatorId operator, Float[] value) {
+        this(fieldName, operator);
+        setAttribute("value", value);
+    }
+
+    public AdvancedCriteria(String fieldName, OperatorId operator, Date[] value) {
+        this(fieldName, operator);
+        setAttribute("value", value);
+    }
+
+    public AdvancedCriteria(String fieldName, OperatorId operator, Boolean[] value) {
+        this(fieldName, operator);
+        setAttribute("value", value);
+    }
+
     /**
      * Adds a new criteria.
      * <p>If the present criteria operation is "and",
@@ -68,15 +108,15 @@ public class AdvancedCriteria extends Criteria {
      * @param otherCriteria the passed criteria object
      */
     public void addCriteria(AdvancedCriteria c) {
-        if (this.getAttributeAsString("operator") == OperatorId.AND.getValue()) {
+        if (this.getAttributeAsString("operator").equals(OperatorId.AND.getValue())) {
             appendToCriterionList(c);
         } else {
             AdvancedCriteria thisCopy = new AdvancedCriteria(this);
             
-            JavaScriptObject o;
-            o = getAttributeAsJavaScriptObject("fieldName");
+            Object o;
+            o = getAttributeAsObject("fieldName");
             if (o != null) JSOHelper.deleteAttribute(jsObj, "fieldName");
-            o = getAttributeAsJavaScriptObject("value");
+            o = getAttributeAsObject("value");
             if (o != null) JSOHelper.deleteAttribute(jsObj, "value");
             
             AdvancedCriteria[] criteriaList = { thisCopy, c };
@@ -87,13 +127,68 @@ public class AdvancedCriteria extends Criteria {
     /**
      * @see #addCriteria(AdvancedCriteria)
      */
-    public <T> void addCriteria(String field, T value) {
+    public void addCriteria(String field, String value) {
         addCriteria(field, OperatorId.EQUALS, value);
     }
+    public void addCriteria(String field, Integer value) {
+        addCriteria(field, OperatorId.EQUALS, value);
+    }
+    public void addCriteria(String field, Float value) {
+        addCriteria(field, OperatorId.EQUALS, value);
+    }
+    public void addCriteria(String field, Date value) {
+        addCriteria(field, OperatorId.EQUALS, value);
+    }
+    public void addCriteria(String field, Boolean value) {
+        addCriteria(field, OperatorId.EQUALS, value);
+    }
+    public void addCriteria(String field, String[] value) {
+        addCriteria(field, OperatorId.EQUALS, value);
+    }
+    public void addCriteria(String field, Integer[] value) {
+        addCriteria(field, OperatorId.EQUALS, value);
+    }
+    public void addCriteria(String field, Float[] value) {
+        addCriteria(field, OperatorId.EQUALS, value);
+    }
+    public void addCriteria(String field, Date[] value) {
+        addCriteria(field, OperatorId.EQUALS, value);
+    }
+    public void addCriteria(String field, Boolean[] value) {
+        addCriteria(field, OperatorId.EQUALS, value);
+    }
+    
     /**
      * @see #addCriteria(AdvancedCriteria)
      */
-    public <T> void addCriteria(String field, OperatorId op, T value) {
+    public void addCriteria(String field, OperatorId op, String value) {
+        addCriteria(new AdvancedCriteria(field, op, value));
+    }
+    public void addCriteria(String field, OperatorId op, Integer value) {
+        addCriteria(new AdvancedCriteria(field, op, value));
+    }
+    public void addCriteria(String field, OperatorId op, Float value) {
+        addCriteria(new AdvancedCriteria(field, op, value));
+    }
+    public void addCriteria(String field, OperatorId op, Date value) {
+        addCriteria(new AdvancedCriteria(field, op, value));
+    }
+    public void addCriteria(String field, OperatorId op, Boolean value) {
+        addCriteria(new AdvancedCriteria(field, op, value));
+    }
+    public void addCriteria(String field, OperatorId op, String[] value) {
+        addCriteria(new AdvancedCriteria(field, op, value));
+    }
+    public void addCriteria(String field, OperatorId op, Integer[] value) {
+        addCriteria(new AdvancedCriteria(field, op, value));
+    }
+    public void addCriteria(String field, OperatorId op, Float[] value) {
+        addCriteria(new AdvancedCriteria(field, op, value));
+    }
+    public void addCriteria(String field, OperatorId op, Date[] value) {
+        addCriteria(new AdvancedCriteria(field, op, value));
+    }
+    public void addCriteria(String field, OperatorId op, Boolean[] value) {
         addCriteria(new AdvancedCriteria(field, op, value));
     }
 
@@ -109,13 +204,15 @@ public class AdvancedCriteria extends Criteria {
     
     public void appendToCriterionList(AdvancedCriteria c) {
         // This is a Criterion list - AdvancedCriteria has _constructor set; Criterion doesn't
-        JavaScriptObject o;
-        o = getAttributeAsJavaScriptObject("_constructor");
-        if (o != null) JSOHelper.deleteAttribute(jsObj, "_constructor");
+        Object o;
+        o = c.getAttributeAsObject("_constructor");
+        if (o != null) JSOHelper.deleteAttribute(c.getJsObj(), "_constructor");
         
         JavaScriptObject listJS = getAttributeAsJavaScriptObject("criteria");
-        if (!JSOHelper.isArray(listJS)) 
+        if (!JSOHelper.isArray(listJS)) {
             SC.logWarn("appendToCriterionList called when no criterion list exists");
+            return;
+        }
         
         JSOHelper.setArrayValue(listJS, JSOHelper.getArrayLength(listJS), c.getJsObj());
     }
