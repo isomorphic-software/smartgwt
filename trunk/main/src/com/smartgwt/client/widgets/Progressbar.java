@@ -95,6 +95,7 @@ public class Progressbar extends StretchImg  implements com.smartgwt.client.widg
      *
      * @param breadth the new breadth of the progressbar. Default value is 20
      * @throws IllegalStateException this property cannot be changed after the component has been created
+     * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
     public void setBreadth(int breadth)  throws IllegalStateException {
         setAttribute("breadth", breadth, false);
@@ -106,6 +107,7 @@ public class Progressbar extends StretchImg  implements com.smartgwt.client.widg
      *
      *
      * @return Returns the current height of a horizontal progressbar, or width of a vertical progressbar.
+     * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
     public int getBreadth()  {
         return getAttributeAsInt("breadth");
@@ -118,6 +120,7 @@ public class Progressbar extends StretchImg  implements com.smartgwt.client.widg
      *
      * @param length the new length of the progressbar. Default value is 100
      * @throws IllegalStateException this property cannot be changed after the component has been created
+     * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
     public void setLength(int length)  throws IllegalStateException {
         setAttribute("length", length, false);
@@ -129,6 +132,7 @@ public class Progressbar extends StretchImg  implements com.smartgwt.client.widg
      *
      *
      * @return Returns the current width of a horizontal progressbar, or height of a vertical progressbar.
+     * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
     public int getLength()  {
         return getAttributeAsInt("length");
@@ -139,6 +143,7 @@ public class Progressbar extends StretchImg  implements com.smartgwt.client.widg
      * Sets percentDone to newPercent.
      *
      * @param percentDone percent to show as done (0-100). Default value is 0
+     * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
     public void setPercentDone(int percentDone) {
         setAttribute("percentDone", percentDone, true);
@@ -149,6 +154,7 @@ public class Progressbar extends StretchImg  implements com.smartgwt.client.widg
      *
      *
      * @return int
+     * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
     public int getPercentDone()  {
         return getAttributeAsInt("percentDone");
@@ -158,6 +164,7 @@ public class Progressbar extends StretchImg  implements com.smartgwt.client.widg
      * The base file name for the progressbar image.
      *
      * @param src src Default value is "[SKIN]progressbar.gif"
+     * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
     public void setSrc(String src) {
         setAttribute("src", src, true);
@@ -168,6 +175,7 @@ public class Progressbar extends StretchImg  implements com.smartgwt.client.widg
      *
      *
      * @return String
+     * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
     public String getSrc()  {
         return getAttributeAsString("src");
@@ -177,6 +185,7 @@ public class Progressbar extends StretchImg  implements com.smartgwt.client.widg
      * Indicates whether this is a vertical or horizontal progressbar.
      *
      * @param vertical vertical Default value is false
+     * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
     public void setVertical(Boolean vertical) {
         setAttribute("vertical", vertical, true);
@@ -187,6 +196,7 @@ public class Progressbar extends StretchImg  implements com.smartgwt.client.widg
      *
      *
      * @return Boolean
+     * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
     public Boolean getVertical()  {
         return getAttributeAsBoolean("vertical");

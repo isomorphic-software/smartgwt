@@ -61,11 +61,11 @@ import com.google.gwt.event.shared.HasHandlers;
  * com.smartgwt.client.data.DataSourceField#getType 'field type'} in {@link com.smartgwt.client.data.DataSource} and {@link
  * com.smartgwt.client.widgets.DataBoundComponent}.  This allows you to define {@link
  * com.smartgwt.client.data.SimpleType#getValidators 'validation'}, {@link
- * com.smartgwt.client.data.SimpleType#normalDisplayFormatter} and {@link com.smartgwt.client.data.SimpleType#getEditorType
- * 'editing'} behaviors for a type to be reused across all {@link com.smartgwt.client.widgets.DataBoundComponent}. <P> Note
- * that the term "simpleType" is used in the same sense as in <a href='XML Schema' onclick="window.open('XML
- * Schema');return false;">http://www.w3.org/TR/xmlschema-0/</a>, and {@link
- * com.smartgwt.client.data.XMLTools#loadXMLSchema} will create new SimpleType definitions. <P> An
+ * com.smartgwt.client.data.SimpleType#normalDisplayFormatter SimpleType.normalDisplayFormatter} and {@link
+ * com.smartgwt.client.data.SimpleType#getEditorType 'editing'} behaviors for a type to be reused across all {@link
+ * com.smartgwt.client.widgets.DataBoundComponent}. <P> Note that the term "simpleType" is used in the same sense as in <a
+ * href='XML Schema' onclick="window.open('XML Schema');return false;">http://www.w3.org/TR/xmlschema-0/</a>, and {@link
+ * com.smartgwt.client.data.XMLTools#loadXMLSchema XMLTools.loadXMLSchema} will create new SimpleType definitions. <P> An
  * ${isc.DocUtils.linkForExampleId('customSimpleType', 'example')} is here.
  */
 public class SimpleType extends BaseClass {

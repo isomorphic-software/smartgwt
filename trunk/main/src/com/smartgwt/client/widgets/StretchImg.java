@@ -92,6 +92,7 @@ public class StretchImg extends StatefulCanvas {
      * If the default items are used, capSize is the size in pixels of the first and last          images in this stretchImg.
      *
      * @param capSize capSize Default value is 2
+     * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
     public void setCapSize(int capSize) {
         setAttribute("capSize", capSize, true);
@@ -102,6 +103,7 @@ public class StretchImg extends StatefulCanvas {
      *
      *
      * @return int
+     * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
     public int getCapSize()  {
         return getAttributeAsInt("capSize");
@@ -133,6 +135,7 @@ public class StretchImg extends StatefulCanvas {
      * com.smartgwt.client.widgets.StretchImg#getSrc src} is unset.
      *
      * @param hSrc hSrc Default value is null
+     * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
     public void setHSrc(String hSrc) {
         setAttribute("hSrc", hSrc, true);
@@ -144,6 +147,7 @@ public class StretchImg extends StatefulCanvas {
      *
      *
      * @return String
+     * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
     public String getHSrc()  {
         return getAttributeAsString("hSrc");
@@ -154,6 +158,7 @@ public class StretchImg extends StatefulCanvas {
      * not match the size of the image. See ImageStyle for          details.
      *
      * @param imageType imageType Default value is Img.STRETCH
+     * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
     public void setImageType(ImageStyle imageType) {
         setAttribute("imageType", imageType.getValue(), true);
@@ -165,6 +170,7 @@ public class StretchImg extends StatefulCanvas {
      *
      *
      * @return ImageStyle
+     * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
     public ImageStyle getImageType()  {
         return EnumUtil.getEnum(ImageStyle.values(), getAttribute("imageType"));
@@ -267,9 +273,9 @@ public class StretchImg extends StatefulCanvas {
     }
 
     /**
-     * Determines whether any specified {@link com.smartgwt.client.widgets.StatefulCanvas#getTitle} will be  displayed for this
-     * component.<br> Applies to Image-based components only, where the title will be rendered out in a label floating over the
-     * component
+     * Determines whether any specified {@link com.smartgwt.client.widgets.StatefulCanvas#getTitle StatefulCanvas.getTitle}
+     * will be  displayed for this component.<br> Applies to Image-based components only, where the title will be rendered out
+     * in a label floating over the component
      * <p><b>Note : </b> This is an advanced setting</p>
      *
      * @param showTitle showTitle Default value is false
@@ -279,9 +285,9 @@ public class StretchImg extends StatefulCanvas {
     }
 
     /**
-     * Determines whether any specified {@link com.smartgwt.client.widgets.StatefulCanvas#getTitle} will be  displayed for this
-     * component.<br> Applies to Image-based components only, where the title will be rendered out in a label floating over the
-     * component
+     * Determines whether any specified {@link com.smartgwt.client.widgets.StatefulCanvas#getTitle StatefulCanvas.getTitle}
+     * will be  displayed for this component.<br> Applies to Image-based components only, where the title will be rendered out
+     * in a label floating over the component
      *
      *
      * @return Boolean
@@ -299,6 +305,7 @@ public class StretchImg extends StatefulCanvas {
      * Changes the base {@link com.smartgwt.client.widgets.StretchImg#getSrc src} for this stretchImg, redrawing if necessary.
      *
      * @param src new URL for the image. Default value is null
+     * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
     public void setSrc(String src) {
         setAttribute("src", src, true);
@@ -313,6 +320,7 @@ public class StretchImg extends StatefulCanvas {
      *
      *
      * @return String
+     * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
     public String getSrc()  {
         return getAttributeAsString("src");
@@ -323,6 +331,7 @@ public class StretchImg extends StatefulCanvas {
      * (false).
      *
      * @param vertical vertical Default value is true
+     * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
     public void setVertical(Boolean vertical) {
         setAttribute("vertical", vertical, true);
@@ -334,6 +343,7 @@ public class StretchImg extends StatefulCanvas {
      *
      *
      * @return Boolean
+     * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
     public Boolean getVertical()  {
         return getAttributeAsBoolean("vertical");
@@ -344,6 +354,7 @@ public class StretchImg extends StatefulCanvas {
      * com.smartgwt.client.widgets.StretchImg#getSrc src} is unset.
      *
      * @param vSrc vSrc Default value is null
+     * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
     public void setVSrc(String vSrc) {
         setAttribute("vSrc", vSrc, true);
@@ -355,6 +366,7 @@ public class StretchImg extends StatefulCanvas {
      *
      *
      * @return String
+     * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
     public String getVSrc()  {
         return getAttributeAsString("vSrc");
@@ -377,6 +389,7 @@ public class StretchImg extends StatefulCanvas {
      * images to newState and update the displayed images if whichPart is not provided.
      * @param newState name for the new state ("off", "down", etc)
      * @param whichPart name of the piece to set ("start", "stretch" or "end")           if not specified, sets them all
+     * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
     public native void setState(String newState, String whichPart) /*-{
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();

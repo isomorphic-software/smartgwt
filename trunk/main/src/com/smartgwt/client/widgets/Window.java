@@ -63,7 +63,7 @@ import com.google.gwt.event.shared.HasHandlers;
  * and skinnable {@link com.smartgwt.client..AutoChild} including a header, various header controls, footer, and corner
  * resizer. <P> The more specialized {@link com.smartgwt.client.widgets.Dialog} subclass of Window has additional
  * functionality targetted at simple prompts and confirmations, such as buttons with default actions, and single-method
- * {@link com.smartgwt.client.util.isc#warn} for common application dialogs.
+ * {@link com.smartgwt.client.util.isc#warn isc.warn} for common application dialogs.
  */
 public class Window extends VLayout  implements com.smartgwt.client.widgets.events.HasMaximizeClickHandlers, com.smartgwt.client.widgets.events.HasMinimizeClickHandlers, com.smartgwt.client.widgets.events.HasRestoreClickHandlers, com.smartgwt.client.widgets.events.HasCloseClickHandlers {
 
@@ -99,6 +99,7 @@ public class Window extends VLayout  implements com.smartgwt.client.widgets.even
      * <p><b>Note : </b> This is an advanced setting</p>
      *
      * @param animateMinimize animateMinimize Default value is null
+     * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
     public void setAnimateMinimize(Boolean animateMinimize) {
         setAttribute("animateMinimize", animateMinimize, true);
@@ -109,6 +110,7 @@ public class Window extends VLayout  implements com.smartgwt.client.widgets.even
      *
      *
      * @return Boolean
+     * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
     public Boolean getAnimateMinimize()  {
         return getAttributeAsBoolean("animateMinimize");
@@ -119,6 +121,7 @@ public class Window extends VLayout  implements com.smartgwt.client.widgets.even
      * last position it was placed (either programmatically,      or by user interaction).
      *
      * @param autoCenter autoCenter Default value is autoCenter
+     * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
     public void setAutoCenter(Boolean autoCenter) {
         setAttribute("autoCenter", autoCenter, true);
@@ -130,6 +133,7 @@ public class Window extends VLayout  implements com.smartgwt.client.widgets.even
      *
      *
      * @return Boolean
+     * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
     public Boolean getAutoCenter()  {
         return getAttributeAsBoolean("autoCenter");
@@ -141,6 +145,7 @@ public class Window extends VLayout  implements com.smartgwt.client.widgets.even
      * Setter for {@link com.smartgwt.client.widgets.Window#getAutoSize autoSize}
      *
      * @param autoSize true if the window should auto-size to its content. Default value is false
+     * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
     public void setAutoSize(Boolean autoSize) {
         setAttribute("autoSize", autoSize, true);
@@ -152,6 +157,7 @@ public class Window extends VLayout  implements com.smartgwt.client.widgets.even
      *
      *
      * @return Boolean
+     * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
     public Boolean getAutoSize()  {
         return getAttributeAsBoolean("autoSize");
@@ -161,6 +167,7 @@ public class Window extends VLayout  implements com.smartgwt.client.widgets.even
      * Color of the Window body. Overrides the background color specified in the style.
      *
      * @param bodyColor bodyColor Default value is "#FFFFFF"
+     * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
     public void setBodyColor(String bodyColor) {
         setAttribute("bodyColor", bodyColor, true);
@@ -171,6 +178,7 @@ public class Window extends VLayout  implements com.smartgwt.client.widgets.even
      *
      *
      * @return String
+     * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
     public String getBodyColor()  {
         return getAttributeAsString("bodyColor");
@@ -180,6 +188,7 @@ public class Window extends VLayout  implements com.smartgwt.client.widgets.even
      * Style of the Window body.
      *
      * @param bodyStyle bodyStyle Default value is "windowBody"
+     * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
     public void setBodyStyle(String bodyStyle) {
         setAttribute("bodyStyle", bodyStyle, true);
@@ -190,6 +199,7 @@ public class Window extends VLayout  implements com.smartgwt.client.widgets.even
      *
      *
      * @return String
+     * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
     public String getBodyStyle()  {
         return getAttributeAsString("bodyStyle");
@@ -243,6 +253,7 @@ public class Window extends VLayout  implements com.smartgwt.client.widgets.even
      * <p><b>Note : </b> This is an advanced setting</p>
      *
      * @param canFocusInHeaderButtons canFocusInHeaderButtons Default value is false
+     * @see com.smartgwt.client.docs.Focus Focus overview and related methods
      */
     public void setCanFocusInHeaderButtons(Boolean canFocusInHeaderButtons) {
         setAttribute("canFocusInHeaderButtons", canFocusInHeaderButtons, true);
@@ -254,6 +265,7 @@ public class Window extends VLayout  implements com.smartgwt.client.widgets.even
      *
      *
      * @return Boolean
+     * @see com.smartgwt.client.docs.Focus Focus overview and related methods
      */
     public Boolean getCanFocusInHeaderButtons()  {
         return getAttributeAsBoolean("canFocusInHeaderButtons");
@@ -267,6 +279,7 @@ public class Window extends VLayout  implements com.smartgwt.client.widgets.even
      * <p><b>Note : </b> This is an advanced setting</p>
      *
      * @param contentLayout contentLayout Default value is "vertical"
+     * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
     public void setContentLayout(String contentLayout) {
         setAttribute("contentLayout", contentLayout, true);
@@ -280,6 +293,7 @@ public class Window extends VLayout  implements com.smartgwt.client.widgets.even
      *
      *
      * @return String
+     * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
     public String getContentLayout()  {
         return getAttributeAsString("contentLayout");
@@ -293,6 +307,7 @@ public class Window extends VLayout  implements com.smartgwt.client.widgets.even
      *
      * @param contentsType contentsType Default value is "page"
      * @throws IllegalStateException this property cannot be changed after the component has been created
+     * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
     public void setContentsType(String contentsType)  throws IllegalStateException {
         setAttribute("contentsType", contentsType, false);
@@ -306,6 +321,7 @@ public class Window extends VLayout  implements com.smartgwt.client.widgets.even
      *
      *
      * @return String
+     * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
     public String getContentsType()  {
         return getAttributeAsString("contentsType");
@@ -318,6 +334,7 @@ public class Window extends VLayout  implements com.smartgwt.client.widgets.even
      * <p><b>Note : </b> This is an advanced setting</p>
      *
      * @param defaultMinimizeHeight defaultMinimizeHeight Default value is 16
+     * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
     public void setDefaultMinimizeHeight(int defaultMinimizeHeight) {
         setAttribute("defaultMinimizeHeight", defaultMinimizeHeight, true);
@@ -330,6 +347,7 @@ public class Window extends VLayout  implements com.smartgwt.client.widgets.even
      *
      *
      * @return int
+     * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
     public int getDefaultMinimizeHeight()  {
         return getAttributeAsInt("defaultMinimizeHeight");
@@ -384,6 +402,7 @@ public class Window extends VLayout  implements com.smartgwt.client.widgets.even
      *
      * @param footerHeight footerHeight Default value is 18
      * @throws IllegalStateException this property cannot be changed after the component has been created
+     * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
     public void setFooterHeight(int footerHeight)  throws IllegalStateException {
         setAttribute("footerHeight", footerHeight, false);
@@ -394,6 +413,7 @@ public class Window extends VLayout  implements com.smartgwt.client.widgets.even
      *
      *
      * @return int
+     * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
     public int getFooterHeight()  {
         return getAttributeAsInt("footerHeight");
@@ -405,6 +425,7 @@ public class Window extends VLayout  implements com.smartgwt.client.widgets.even
      * <p><b>Note : </b> This is an advanced setting</p>
      *
      * @param headerSrc headerSrc Default value is "[SKIN]Window/headerGradient.gif" | null
+     * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
     public void setHeaderSrc(String headerSrc) {
         setAttribute("headerSrc", headerSrc, true);
@@ -416,6 +437,7 @@ public class Window extends VLayout  implements com.smartgwt.client.widgets.even
      *
      *
      * @return String
+     * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
     public String getHeaderSrc()  {
         return getAttributeAsString("headerSrc");
@@ -426,6 +448,7 @@ public class Window extends VLayout  implements com.smartgwt.client.widgets.even
      * <p><b>Note : </b> This is an advanced setting</p>
      *
      * @param headerStyle headerStyle Default value is "WindowHeader"
+     * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
     public void setHeaderStyle(String headerStyle) {
         setAttribute("headerStyle", headerStyle, true);
@@ -436,6 +459,7 @@ public class Window extends VLayout  implements com.smartgwt.client.widgets.even
      *
      *
      * @return String
+     * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
     public String getHeaderStyle()  {
         return getAttributeAsString("headerStyle");
@@ -445,6 +469,7 @@ public class Window extends VLayout  implements com.smartgwt.client.widgets.even
      * Highlight color for the Window body (shown when the body is flashed).
      *
      * @param hiliteBodyColor hiliteBodyColor Default value is "#EEEEEE"
+     * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
     public void setHiliteBodyColor(String hiliteBodyColor) {
         setAttribute("hiliteBodyColor", hiliteBodyColor, true);
@@ -455,6 +480,7 @@ public class Window extends VLayout  implements com.smartgwt.client.widgets.even
      *
      *
      * @return String
+     * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
     public String getHiliteBodyColor()  {
         return getAttributeAsString("hiliteBodyColor");
@@ -463,10 +489,11 @@ public class Window extends VLayout  implements com.smartgwt.client.widgets.even
     /**
      * If {@link com.smartgwt.client.widgets.Window#getShowHeaderBackground showHeaderBackground} is true, this governs the URL
      * of the image to  use in the header's highlighted state when the window is {@link
-     * com.smartgwt.client.widgets.Window#flash}
+     * com.smartgwt.client.widgets.Window#flash Window.flash}
      * <p><b>Note : </b> This is an advanced setting</p>
      *
      * @param hiliteHeaderSrc hiliteHeaderSrc Default value is "[SKIN]Window/headerGradient_hilite.gif" | null
+     * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
     public void setHiliteHeaderSrc(String hiliteHeaderSrc) {
         setAttribute("hiliteHeaderSrc", hiliteHeaderSrc, true);
@@ -475,30 +502,35 @@ public class Window extends VLayout  implements com.smartgwt.client.widgets.even
     /**
      * If {@link com.smartgwt.client.widgets.Window#getShowHeaderBackground showHeaderBackground} is true, this governs the URL
      * of the image to  use in the header's highlighted state when the window is {@link
-     * com.smartgwt.client.widgets.Window#flash}
+     * com.smartgwt.client.widgets.Window#flash Window.flash}
      *
      *
      * @return String
+     * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
     public String getHiliteHeaderSrc()  {
         return getAttributeAsString("hiliteHeaderSrc");
     }
 
     /**
-     * Highlight style for the Window header. Displayed when a window  is {@link com.smartgwt.client.widgets.Window#flash}
+     * Highlight style for the Window header. Displayed when a window  is {@link com.smartgwt.client.widgets.Window#flash
+     * Window.flash}
      * <p><b>Note : </b> This is an advanced setting</p>
      *
      * @param hiliteHeaderStyle hiliteHeaderStyle Default value is "WindowHeader"
+     * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
     public void setHiliteHeaderStyle(String hiliteHeaderStyle) {
         setAttribute("hiliteHeaderStyle", hiliteHeaderStyle, true);
     }
 
     /**
-     * Highlight style for the Window header. Displayed when a window  is {@link com.smartgwt.client.widgets.Window#flash}
+     * Highlight style for the Window header. Displayed when a window  is {@link com.smartgwt.client.widgets.Window#flash
+     * Window.flash}
      *
      *
      * @return String
+     * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
     public String getHiliteHeaderStyle()  {
         return getAttributeAsString("hiliteHeaderStyle");
@@ -533,9 +565,11 @@ public class Window extends VLayout  implements com.smartgwt.client.widgets.even
 
     /**
      * Is this window maximized. If true at init time, the window will be drawn maximized. To set this property at runtime use
-     * {@link com.smartgwt.client.widgets.Window#maximize} or {@link com.smartgwt.client.widgets.Window#restore}.
+     * {@link com.smartgwt.client.widgets.Window#maximize Window.maximize} or {@link com.smartgwt.client.widgets.Window#restore
+     * Window.restore}.
      *
      * @param maximized maximized Default value is false
+     * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
     public void setMaximized(Boolean maximized) {
         setAttribute("maximized", maximized, true);
@@ -543,10 +577,12 @@ public class Window extends VLayout  implements com.smartgwt.client.widgets.even
 
     /**
      * Is this window maximized. If true at init time, the window will be drawn maximized. To set this property at runtime use
-     * {@link com.smartgwt.client.widgets.Window#maximize} or {@link com.smartgwt.client.widgets.Window#restore}.
+     * {@link com.smartgwt.client.widgets.Window#maximize Window.maximize} or {@link com.smartgwt.client.widgets.Window#restore
+     * Window.restore}.
      *
      *
      * @return Boolean
+     * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
     public Boolean getMaximized()  {
         return getAttributeAsBoolean("maximized");
@@ -558,6 +594,7 @@ public class Window extends VLayout  implements com.smartgwt.client.widgets.even
      * <p><b>Note : </b> This is an advanced setting</p>
      *
      * @param minimizeAcceleration minimizeAcceleration Default value is null
+     * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
     public void setMinimizeAcceleration(AnimationAcceleration minimizeAcceleration) {
         setAttribute("minimizeAcceleration", minimizeAcceleration.getValue(), true);
@@ -569,6 +606,7 @@ public class Window extends VLayout  implements com.smartgwt.client.widgets.even
      *
      *
      * @return AnimationAcceleration
+     * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
     public AnimationAcceleration getMinimizeAcceleration()  {
         return EnumUtil.getEnum(AnimationAcceleration.values(), getAttribute("minimizeAcceleration"));
@@ -576,9 +614,11 @@ public class Window extends VLayout  implements com.smartgwt.client.widgets.even
 
     /**
      * Is this window minimized. If true at init time, the window will be drawn minimized. To set this property at runtime use
-     * {@link com.smartgwt.client.widgets.Window#minimize} or {@link com.smartgwt.client.widgets.Window#restore}.
+     * {@link com.smartgwt.client.widgets.Window#minimize Window.minimize} or {@link com.smartgwt.client.widgets.Window#restore
+     * Window.restore}.
      *
      * @param minimized minimized Default value is false
+     * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
     public void setMinimized(Boolean minimized) {
         setAttribute("minimized", minimized, true);
@@ -586,10 +626,12 @@ public class Window extends VLayout  implements com.smartgwt.client.widgets.even
 
     /**
      * Is this window minimized. If true at init time, the window will be drawn minimized. To set this property at runtime use
-     * {@link com.smartgwt.client.widgets.Window#minimize} or {@link com.smartgwt.client.widgets.Window#restore}.
+     * {@link com.smartgwt.client.widgets.Window#minimize Window.minimize} or {@link com.smartgwt.client.widgets.Window#restore
+     * Window.restore}.
      *
      *
      * @return Boolean
+     * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
     public Boolean getMinimized()  {
         return getAttributeAsBoolean("minimized");
@@ -601,6 +643,7 @@ public class Window extends VLayout  implements com.smartgwt.client.widgets.even
      * <p><b>Note : </b> This is an advanced setting</p>
      *
      * @param minimizeHeight minimizeHeight Default value is null
+     * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
     public void setMinimizeHeight(Integer minimizeHeight) {
         setAttribute("minimizeHeight", minimizeHeight, true);
@@ -612,6 +655,7 @@ public class Window extends VLayout  implements com.smartgwt.client.widgets.even
      *
      *
      * @return Integer
+     * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
     public Integer getMinimizeHeight()  {
         return getAttributeAsInt("minimizeHeight");
@@ -623,6 +667,7 @@ public class Window extends VLayout  implements com.smartgwt.client.widgets.even
      * <p><b>Note : </b> This is an advanced setting</p>
      *
      * @param minimizeTime minimizeTime Default value is null
+     * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
     public void setMinimizeTime(Integer minimizeTime) {
         setAttribute("minimizeTime", minimizeTime, true);
@@ -634,6 +679,7 @@ public class Window extends VLayout  implements com.smartgwt.client.widgets.even
      *
      *
      * @return Integer
+     * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
     public Integer getMinimizeTime()  {
         return getAttributeAsInt("minimizeTime");
@@ -644,6 +690,7 @@ public class Window extends VLayout  implements com.smartgwt.client.widgets.even
      *
      * @param modalMaskOpacity modalMaskOpacity Default value is 50
      * @throws IllegalStateException this property cannot be changed after the component has been created
+     * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
     public void setModalMaskOpacity(int modalMaskOpacity)  throws IllegalStateException {
         setAttribute("modalMaskOpacity", modalMaskOpacity, false);
@@ -654,6 +701,7 @@ public class Window extends VLayout  implements com.smartgwt.client.widgets.even
      *
      *
      * @return int
+     * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
     public int getModalMaskOpacity()  {
         return getAttributeAsInt("modalMaskOpacity");
@@ -664,6 +712,7 @@ public class Window extends VLayout  implements com.smartgwt.client.widgets.even
      *
      * @param modalMaskStyle modalMaskStyle Default value is "modalMask"
      * @throws IllegalStateException this property cannot be changed after the component has been created
+     * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
     public void setModalMaskStyle(String modalMaskStyle)  throws IllegalStateException {
         setAttribute("modalMaskStyle", modalMaskStyle, false);
@@ -674,6 +723,7 @@ public class Window extends VLayout  implements com.smartgwt.client.widgets.even
      *
      *
      * @return String
+     * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
     public String getModalMaskStyle()  {
         return getAttributeAsString("modalMaskStyle");
@@ -684,6 +734,7 @@ public class Window extends VLayout  implements com.smartgwt.client.widgets.even
      * <p><b>Note : </b> This is an advanced setting</p>
      *
      * @param showBody showBody Default value is true
+     * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
     public void setShowBody(Boolean showBody) {
         setAttribute("showBody", showBody, true);
@@ -694,6 +745,7 @@ public class Window extends VLayout  implements com.smartgwt.client.widgets.even
      *
      *
      * @return Boolean
+     * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
     public Boolean getShowBody()  {
         return getAttributeAsBoolean("showBody");
@@ -701,10 +753,11 @@ public class Window extends VLayout  implements com.smartgwt.client.widgets.even
 
     /**
      * If true, show a close button in the header, which will dismiss this window by  calling {@link
-     * com.smartgwt.client.widgets.Window#addCloseClickHandler}.
+     * com.smartgwt.client.widgets.Window#addCloseClickHandler Window.addCloseClickHandler}.
      * Dynamically update {@link com.smartgwt.client.widgets.Window#getShowCloseButton showCloseButton} to show / hide the closeButton
      *
      * @param showCloseButton showCloseButton Default value is true
+     * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
     public void setShowCloseButton(Boolean showCloseButton) {
         setAttribute("showCloseButton", showCloseButton, true);
@@ -712,10 +765,11 @@ public class Window extends VLayout  implements com.smartgwt.client.widgets.even
 
     /**
      * If true, show a close button in the header, which will dismiss this window by  calling {@link
-     * com.smartgwt.client.widgets.Window#addCloseClickHandler}.
+     * com.smartgwt.client.widgets.Window#addCloseClickHandler Window.addCloseClickHandler}.
      *
      *
      * @return Boolean
+     * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
     public Boolean getShowCloseButton()  {
         return getAttributeAsBoolean("showCloseButton");
@@ -726,6 +780,7 @@ public class Window extends VLayout  implements com.smartgwt.client.widgets.even
      * skinning purposes.
      *
      * @param showFooter showFooter Default value is true
+     * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
     public void setShowFooter(Boolean showFooter) {
         setAttribute("showFooter", showFooter, true);
@@ -737,6 +792,7 @@ public class Window extends VLayout  implements com.smartgwt.client.widgets.even
      *
      *
      * @return Boolean
+     * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
     public Boolean getShowFooter()  {
         return getAttributeAsBoolean("showFooter");
@@ -755,6 +811,7 @@ public class Window extends VLayout  implements com.smartgwt.client.widgets.even
      * <p><b>Note : </b> This is an advanced setting</p>
      *
      * @param showHeader showHeader Default value is true
+     * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
     public void setShowHeader(Boolean showHeader) {
         setAttribute("showHeader", showHeader, true);
@@ -773,6 +830,7 @@ public class Window extends VLayout  implements com.smartgwt.client.widgets.even
      *
      *
      * @return Boolean
+     * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
     public Boolean getShowHeader()  {
         return getAttributeAsBoolean("showHeader");
@@ -788,6 +846,7 @@ public class Window extends VLayout  implements com.smartgwt.client.widgets.even
      *
      * @param showHeaderBackground showHeaderBackground Default value is varies
      * @throws IllegalStateException this property cannot be changed after the component has been created
+     * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
     public void setShowHeaderBackground(Boolean showHeaderBackground)  throws IllegalStateException {
         setAttribute("showHeaderBackground", showHeaderBackground, false);
@@ -802,6 +861,7 @@ public class Window extends VLayout  implements com.smartgwt.client.widgets.even
      *
      *
      * @return Boolean
+     * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
     public Boolean getShowHeaderBackground()  {
         return getAttributeAsBoolean("showHeaderBackground");
@@ -812,6 +872,7 @@ public class Window extends VLayout  implements com.smartgwt.client.widgets.even
      * Dynamically update {@link com.smartgwt.client.widgets.Window#getShowHeaderIcon showHeaderIcon} to show / hide the headerIcon
      *
      * @param showHeaderIcon showHeaderIcon Default value is true
+     * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
     public void setShowHeaderIcon(Boolean showHeaderIcon) {
         setAttribute("showHeaderIcon", showHeaderIcon, true);
@@ -822,6 +883,7 @@ public class Window extends VLayout  implements com.smartgwt.client.widgets.even
      *
      *
      * @return Boolean
+     * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
     public Boolean getShowHeaderIcon()  {
         return getAttributeAsBoolean("showHeaderIcon");
@@ -832,6 +894,7 @@ public class Window extends VLayout  implements com.smartgwt.client.widgets.even
      * Dynamically update {@link com.smartgwt.client.widgets.Window#getShowMaximizeButton showMaximizeButton} to show / hide the maximizeButton
      *
      * @param showMaximizeButton showMaximizeButton Default value is false
+     * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
     public void setShowMaximizeButton(Boolean showMaximizeButton) {
         setAttribute("showMaximizeButton", showMaximizeButton, true);
@@ -842,6 +905,7 @@ public class Window extends VLayout  implements com.smartgwt.client.widgets.even
      *
      *
      * @return Boolean
+     * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
     public Boolean getShowMaximizeButton()  {
         return getAttributeAsBoolean("showMaximizeButton");
@@ -852,6 +916,7 @@ public class Window extends VLayout  implements com.smartgwt.client.widgets.even
      * Dynamically update {@link com.smartgwt.client.widgets.Window#getShowMinimizeButton showMinimizeButton} to show / hide the minimizeButton
      *
      * @param showMinimizeButton showMinimizeButton Default value is true
+     * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
     public void setShowMinimizeButton(Boolean showMinimizeButton) {
         setAttribute("showMinimizeButton", showMinimizeButton, true);
@@ -862,6 +927,7 @@ public class Window extends VLayout  implements com.smartgwt.client.widgets.even
      *
      *
      * @return Boolean
+     * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
     public Boolean getShowMinimizeButton()  {
         return getAttributeAsBoolean("showMinimizeButton");
@@ -872,6 +938,7 @@ public class Window extends VLayout  implements com.smartgwt.client.widgets.even
      *
      * @param showModalMask showModalMask Default value is null
      * @throws IllegalStateException this property cannot be changed after the component has been created
+     * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
     public void setShowModalMask(Boolean showModalMask)  throws IllegalStateException {
         setAttribute("showModalMask", showModalMask, false);
@@ -882,6 +949,7 @@ public class Window extends VLayout  implements com.smartgwt.client.widgets.even
      *
      *
      * @return Boolean
+     * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
     public Boolean getShowModalMask()  {
         return getAttributeAsBoolean("showModalMask");
@@ -893,6 +961,7 @@ public class Window extends VLayout  implements com.smartgwt.client.widgets.even
      * showFooter}) and {@link com.smartgwt.client.widgets.Window#getCanDragResize canDragResize} is true.
      *
      * @param showResizer showResizer Default value is true
+     * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
     public void setShowResizer(Boolean showResizer) {
         setAttribute("showResizer", showResizer, true);
@@ -905,6 +974,7 @@ public class Window extends VLayout  implements com.smartgwt.client.widgets.even
      *
      *
      * @return Boolean
+     * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
     public Boolean getShowResizer()  {
         return getAttributeAsBoolean("showResizer");
@@ -914,6 +984,7 @@ public class Window extends VLayout  implements com.smartgwt.client.widgets.even
      * If true, show a statusBar for this Window, including resizer.
      *
      * @param showStatusBar showStatusBar Default value is true
+     * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
     public void setShowStatusBar(Boolean showStatusBar) {
         setAttribute("showStatusBar", showStatusBar, true);
@@ -924,6 +995,7 @@ public class Window extends VLayout  implements com.smartgwt.client.widgets.even
      *
      *
      * @return Boolean
+     * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
     public Boolean getShowStatusBar()  {
         return getAttributeAsBoolean("showStatusBar");
@@ -933,6 +1005,7 @@ public class Window extends VLayout  implements com.smartgwt.client.widgets.even
      * Show a title (typically just text) on the header for this window.
      *
      * @param showTitle showTitle Default value is true
+     * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
     public void setShowTitle(Boolean showTitle) {
         setAttribute("showTitle", showTitle, true);
@@ -943,6 +1016,7 @@ public class Window extends VLayout  implements com.smartgwt.client.widgets.even
      *
      *
      * @return Boolean
+     * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
     public Boolean getShowTitle()  {
         return getAttributeAsBoolean("showTitle");
@@ -956,6 +1030,7 @@ public class Window extends VLayout  implements com.smartgwt.client.widgets.even
      * Sets the URL of the contents to display in the body of the window, redrawing if necessary.
      *
      * @param src URL of new contents to be displayed in the window body. Default value is null
+     * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
     public void setSrc(String src) {
         setAttribute("src", src, true);
@@ -969,6 +1044,7 @@ public class Window extends VLayout  implements com.smartgwt.client.widgets.even
      *
      *
      * @return String
+     * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
     public String getSrc()  {
         return getAttributeAsString("src");
@@ -979,6 +1055,7 @@ public class Window extends VLayout  implements com.smartgwt.client.widgets.even
      * Sets the text in the status bar of the window, redrawing if necessary.
      *
      * @param status new text for the status bar. Default value is null
+     * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
     public void setStatus(String status) {
         setAttribute("status", status, true);
@@ -989,6 +1066,7 @@ public class Window extends VLayout  implements com.smartgwt.client.widgets.even
      *
      *
      * @return String
+     * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
     public String getStatus()  {
         return getAttributeAsString("status");
@@ -999,6 +1077,7 @@ public class Window extends VLayout  implements com.smartgwt.client.widgets.even
      * Sets the title text that appears in the window header; the header will be redrawn          if necessary.
      *
      * @param title new title. Default value is "Untitled Window"
+     * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
     public void setTitle(String title) {
         setAttribute("title", title, true);
@@ -1009,6 +1088,7 @@ public class Window extends VLayout  implements com.smartgwt.client.widgets.even
      *
      *
      * @return String
+     * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
     public String getTitle()  {
         return getAttributeAsString("title");
@@ -1115,11 +1195,11 @@ public class Window extends VLayout  implements com.smartgwt.client.widgets.even
     }-*/;
             
     /**
-     * Restores the window to its specified height and width after a call to {@link
-     * com.smartgwt.client.widgets.Window#minimize} or  {@link com.smartgwt.client.widgets.Window#maximize}. Called from a
-     * click on the restore button shown in place of the  minimize or maximize button when the window is minimized or
-     * maximized.<br> Resizing will occur as an animation if {@link com.smartgwt.client.widgets.Window#getAnimateMinimize
-     * animateMinimize} is true.
+     * Restores the window to its specified height and width after a call to {@link com.smartgwt.client.widgets.Window#minimize
+     * Window.minimize} or  {@link com.smartgwt.client.widgets.Window#maximize Window.maximize}. Called from a click on the
+     * restore button shown in place of the  minimize or maximize button when the window is minimized or maximized.<br>
+     * Resizing will occur as an animation if {@link com.smartgwt.client.widgets.Window#getAnimateMinimize animateMinimize} is
+     * true.
      */
     public native void restore() /*-{
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();

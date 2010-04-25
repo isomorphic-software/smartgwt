@@ -72,9 +72,9 @@ public class Page {
      * com.smartgwt.client.util.Page#unsupportedBrowserAction}: <ul> <li><code>"continue"</code> Load the page without
      * notifying the user of potential issues</li> <li><code>"confirm"</code> Notify the user via a standard confirm dialog
      * that their browser is  not supported. Provide options to continue anyway, or redirect to another page. Text of the 
-     * confirm dialog is retrieved by calling {@link com.smartgwt.client.util.Page#getUnsupportedBrowserPromptString}.</li>
-     * <li><code>"redirect"</code> Automatically redirect to the another URL</li> </ul> If redirecting to another page is
-     * necessary, and no explicit URL is provided we will use {@link
+     * confirm dialog is retrieved by calling {@link com.smartgwt.client.util.Page#getUnsupportedBrowserPromptString
+     * Page.getUnsupportedBrowserPromptString}.</li> <li><code>"redirect"</code> Automatically redirect to the another URL</li>
+     * </ul> If redirecting to another page is necessary, and no explicit URL is provided we will use {@link
      * com.smartgwt.client.util.Page#defaultUnsupportedBrowserURL}. <p> This method is commonly called as part of the {@link
      * com.smartgwt.client.docs.Skinning 'skinning'} logic after page load.
      */
@@ -87,9 +87,9 @@ public class Page {
      * com.smartgwt.client.util.Page#unsupportedBrowserAction}: <ul> <li><code>"continue"</code> Load the page without
      * notifying the user of potential issues</li> <li><code>"confirm"</code> Notify the user via a standard confirm dialog
      * that their browser is  not supported. Provide options to continue anyway, or redirect to another page. Text of the 
-     * confirm dialog is retrieved by calling {@link com.smartgwt.client.util.Page#getUnsupportedBrowserPromptString}.</li>
-     * <li><code>"redirect"</code> Automatically redirect to the another URL</li> </ul> If redirecting to another page is
-     * necessary, and no explicit URL is provided we will use {@link
+     * confirm dialog is retrieved by calling {@link com.smartgwt.client.util.Page#getUnsupportedBrowserPromptString
+     * Page.getUnsupportedBrowserPromptString}.</li> <li><code>"redirect"</code> Automatically redirect to the another URL</li>
+     * </ul> If redirecting to another page is necessary, and no explicit URL is provided we will use {@link
      * com.smartgwt.client.util.Page#defaultUnsupportedBrowserURL}. <p> This method is commonly called as part of the {@link
      * com.smartgwt.client.docs.Skinning 'skinning'} logic after page load.
      * @param URL URL of redirect page. May include Isomorphic special directories      such as [SKIN].
@@ -102,8 +102,8 @@ public class Page {
      * Returns the base URL of the application, which is the page URL minus the last non-directory  path component.  For
      * example, if the page is loaded from <code>http://foo.com/bar/zoo.jsp</code>, appDir will be
      * <code>http://foo.com/bar/</code>. <P> If other page-wide URLs such as {@link
-     * com.smartgwt.client.util.Page#setIsomorphicDir} are specified as relative paths, they are considered relative to this
-     * URL.
+     * com.smartgwt.client.util.Page#setIsomorphicDir Page.setIsomorphicDir} are specified as relative paths, they are
+     * considered relative to this URL.
      *
      * @return URL for page-specific files.
      */
@@ -137,7 +137,7 @@ public class Page {
             
     /**
      * Return the full URL for app-specific or skin image. <P> To use a skin image, start the URL with "[SKIN]".  Any other
-     * relative URL is assumed relative to the {@link com.smartgwt.client.util.Page#getAppImgDir}.
+     * relative URL is assumed relative to the {@link com.smartgwt.client.util.Page#getAppImgDir Page.getAppImgDir}.
      * @param src Local file name for the image.
      *
      * @return URL for the image.
@@ -148,7 +148,7 @@ public class Page {
 
     /**
      * Return the full URL for app-specific or skin image. <P> To use a skin image, start the URL with "[SKIN]".  Any other
-     * relative URL is assumed relative to the {@link com.smartgwt.client.util.Page#getAppImgDir}.
+     * relative URL is assumed relative to the {@link com.smartgwt.client.util.Page#getAppImgDir Page.getAppImgDir}.
      * @param src Local file name for the image.
      * @param imgDir User-specified image directory,          local to
      *
@@ -234,9 +234,10 @@ public class Page {
     }-*/;
             
     /**
-     * Returns the text for the prompt shown to user from {@link com.smartgwt.client.util.Page#checkBrowserAndRedirect} if they
-     * are accessing this page in an unsupported browser and {@link com.smartgwt.client.util.Page#unsupportedBrowserAction} is
-     * set to <code>"confirm"</code>. May be overridden to return a different message.
+     * Returns the text for the prompt shown to user from {@link com.smartgwt.client.util.Page#checkBrowserAndRedirect
+     * Page.checkBrowserAndRedirect} if they are accessing this page in an unsupported browser and {@link
+     * com.smartgwt.client.util.Page#unsupportedBrowserAction} is set to <code>"confirm"</code>. May be overridden to return a
+     * different message.
      *
      * @return Unsupported browser message.
      */
@@ -246,7 +247,7 @@ public class Page {
             
     /**
      * Return a full URL for a relative path that uses a special prefix such as "[APPFILES]" or "[SKIN]". <P> For images, use
-     * {@link com.smartgwt.client.util.Page#getImgURL} instead.
+     * {@link com.smartgwt.client.util.Page#getImgURL Page.getImgURL} instead.
      * @param fileName Local file name for the image.
      *
      * @return URL for the image.
@@ -328,7 +329,7 @@ public class Page {
      * com.smartgwt.client.widgets.HTMLFlow#getContentsURL 'HTML fragments'}, {@link com.smartgwt.client.widgets.ViewLoader}, 
      * XML or JSON flat data files, videos, etc. <P> This URL also becomes available via the prefix "[APPFILES]" for {@link
      * com.smartgwt.client.rpc.RPCRequest#getActionURL actionURL}. <P> Defaults to the value of {@link
-     * com.smartgwt.client.util.Page#getAppDir}, that is, the current directory.
+     * com.smartgwt.client.util.Page#getAppDir Page.getAppDir}, that is, the current directory.
      */
     public static native void setAppFilesDir() /*-{
         $wnd.isc.Page.setAppFilesDir();
@@ -339,7 +340,7 @@ public class Page {
      * com.smartgwt.client.widgets.HTMLFlow#getContentsURL 'HTML fragments'}, {@link com.smartgwt.client.widgets.ViewLoader}, 
      * XML or JSON flat data files, videos, etc. <P> This URL also becomes available via the prefix "[APPFILES]" for {@link
      * com.smartgwt.client.rpc.RPCRequest#getActionURL actionURL}. <P> Defaults to the value of {@link
-     * com.smartgwt.client.util.Page#getAppDir}, that is, the current directory.
+     * com.smartgwt.client.util.Page#getAppDir Page.getAppDir}, that is, the current directory.
      * @param URL New app files URL.
      */
     public static native void setAppFilesDir(String URL) /*-{

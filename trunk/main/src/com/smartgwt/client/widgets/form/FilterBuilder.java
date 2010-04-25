@@ -57,10 +57,10 @@ import com.google.gwt.event.shared.HasHandlers;
 
 /**
  * A form that allows the user to input advanced search criteria, including operators on field values such as "less than",
- * and sub-clauses using "AND" and "OR" operators. <P> A FilterBuilder produces an
- * ${isc.DocUtils.linkForRef('object:AdvancedCriteria')} object, which the {@link com.smartgwt.client.data.DataSource}
- * subsystem can use to filter datasets, including the ability to perform such filtering within the browser for datasets
- * that are completely loaded.
+ * and sub-clauses using "AND" and "OR" operators. <P> A FilterBuilder produces an {@link
+ * com.smartgwt.client.data.AdvancedCriteria} object, which the {@link com.smartgwt.client.data.DataSource} subsystem can
+ * use to filter datasets, including the ability to perform such filtering within the browser for datasets that are
+ * completely loaded.
  */
 public class FilterBuilder extends Layout  implements com.smartgwt.client.widgets.form.events.HasFilterChangedHandlers, com.smartgwt.client.widgets.form.events.HasSearchHandlers {
 
@@ -143,7 +143,8 @@ public class FilterBuilder extends Layout  implements com.smartgwt.client.widget
      * '"type"'}.  Any property  legal on a DataSourceField is legal on the returned records, including  {@link
      * com.smartgwt.client.data.DataSourceField#getValueMap 'valueMap'}. <P> Even when a <code>fieldDataSource</code> is
      * specified, {@link com.smartgwt.client.widgets.form.FilterBuilder#getDataSource dataSource} may still be specified in
-     * order to control the list of  {@link com.smartgwt.client.data.DataSource#setTypeOperators} for each field.
+     * order to control the list of  {@link com.smartgwt.client.data.DataSource#setTypeOperators DataSource.setTypeOperators}
+     * for each field.
      *
      * @param fieldDataSource fieldDataSource Default value is null
      * @throws IllegalStateException this property cannot be changed after the component has been created
@@ -164,7 +165,8 @@ public class FilterBuilder extends Layout  implements com.smartgwt.client.widget
      * '"type"'}.  Any property  legal on a DataSourceField is legal on the returned records, including  {@link
      * com.smartgwt.client.data.DataSourceField#getValueMap 'valueMap'}. <P> Even when a <code>fieldDataSource</code> is
      * specified, {@link com.smartgwt.client.widgets.form.FilterBuilder#getDataSource dataSource} may still be specified in
-     * order to control the list of  {@link com.smartgwt.client.data.DataSource#setTypeOperators} for each field.
+     * order to control the list of  {@link com.smartgwt.client.data.DataSource#setTypeOperators DataSource.setTypeOperators}
+     * for each field.
      *
      *
      * @return DataSource
@@ -262,7 +264,8 @@ public class FilterBuilder extends Layout  implements com.smartgwt.client.widget
 
     /**
      * If true, when the user hits the Enter key while focussed in a text-item in this  FilterBuilder, we automatically invoke
-     * the user-supplied {@link com.smartgwt.client.widgets.form.FilterBuilder#addSearchHandler} method.
+     * the user-supplied {@link com.smartgwt.client.widgets.form.FilterBuilder#addSearchHandler FilterBuilder.addSearchHandler}
+     * method.
      *
      * @param saveOnEnter saveOnEnter Default value is null
      * @throws IllegalStateException this property cannot be changed after the component has been created
@@ -273,7 +276,8 @@ public class FilterBuilder extends Layout  implements com.smartgwt.client.widget
 
     /**
      * If true, when the user hits the Enter key while focussed in a text-item in this  FilterBuilder, we automatically invoke
-     * the user-supplied {@link com.smartgwt.client.widgets.form.FilterBuilder#addSearchHandler} method.
+     * the user-supplied {@link com.smartgwt.client.widgets.form.FilterBuilder#addSearchHandler FilterBuilder.addSearchHandler}
+     * method.
      *
      *
      * @return Boolean
@@ -432,7 +436,7 @@ public class FilterBuilder extends Layout  implements com.smartgwt.client.widget
      * If true (the default), validates each entered value when it changes, to make sure it is a  a valid value of its type
      * (valid string, number, and so on).  No other validation is  carried out.  If you switch this property off, it is still
      * possible to validate the  <code>FilterBuilder</code> by calling {@link
-     * com.smartgwt.client.widgets.form.FilterBuilder#validate} from your own code.
+     * com.smartgwt.client.widgets.form.FilterBuilder#validate FilterBuilder.validate} from your own code.
      *
      * @param validateOnChange validateOnChange Default value is true
      * @throws IllegalStateException this property cannot be changed after the component has been created
@@ -445,7 +449,7 @@ public class FilterBuilder extends Layout  implements com.smartgwt.client.widget
      * If true (the default), validates each entered value when it changes, to make sure it is a  a valid value of its type
      * (valid string, number, and so on).  No other validation is  carried out.  If you switch this property off, it is still
      * possible to validate the  <code>FilterBuilder</code> by calling {@link
-     * com.smartgwt.client.widgets.form.FilterBuilder#validate} from your own code.
+     * com.smartgwt.client.widgets.form.FilterBuilder#validate FilterBuilder.validate} from your own code.
      *
      *
      * @return Boolean
@@ -505,6 +509,21 @@ public class FilterBuilder extends Layout  implements com.smartgwt.client.widget
                });
         }
    }-*/;
+            
+    /**
+     * Returns the type of editor to use for the field. <P> Default behavior is to use the {@link
+     * com.smartgwt.client..Operator#getEditorType editorType} for a custom operator, otherwise,  use {@link
+     * com.smartgwt.client..RelativeDateItem} for before/after/between operators on date fields, otherwise,  use the same
+     * editor as would be chosen by a {@link com.smartgwt.client.widgets.form.SearchForm}.
+     * @param fieldName DataSourceField definition
+     * @param operatorId {@link com.smartgwt.client.types.OperatorId} for the chosen operator
+     *
+     * @return Smart GWT class to use (must be subclass of FormItem)
+     */
+    public native String getEditorType(DataSourceField fieldName, OperatorId operatorId) /*-{
+        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
+        return self.getEditorType(fieldName.@com.smartgwt.client.core.DataClass::getJsObj()(), operatorId.@com.smartgwt.client.types.OperatorId::getValue()());
+    }-*/;
     /**
      * Add a search handler.
      * <p>
@@ -634,6 +653,7 @@ public class FilterBuilder extends Layout  implements com.smartgwt.client.widget
     }-*/;
 
 }
+
 
 
 

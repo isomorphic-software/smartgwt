@@ -68,7 +68,7 @@ public class Hover {
     // ********************* Static Methods ***********************
             
     /**
-     * Hide hover hover Canvas shown via {@link com.smartgwt.client.widgets.Hover#show}
+     * Hide hover hover Canvas shown via {@link com.smartgwt.client.widgets.Hover#show Hover.show}
      */
     public static native void hide() /*-{
         $wnd.isc.Hover.hide();

@@ -160,10 +160,11 @@ public class ImgSplitbar extends Img {
 
     /**
      * Default directory for skin images (those defined by the class), relative to the Page-wide {@link
-     * com.smartgwt.client.util.Page#getSkinDir}.
+     * com.smartgwt.client.util.Page#getSkinDir Page.getSkinDir}.
      *
      * @param skinImgDir skinImgDir Default value is "images/SplitBar/"
      * @throws IllegalStateException this property cannot be changed after the component has been created
+     * @see com.smartgwt.client.docs.Images Images overview and related methods
      */
     public void setSkinImgDir(String skinImgDir)  throws IllegalStateException {
         setAttribute("skinImgDir", skinImgDir, false);
@@ -171,10 +172,11 @@ public class ImgSplitbar extends Img {
 
     /**
      * Default directory for skin images (those defined by the class), relative to the Page-wide {@link
-     * com.smartgwt.client.util.Page#getSkinDir}.
+     * com.smartgwt.client.util.Page#getSkinDir Page.getSkinDir}.
      *
      *
      * @return String
+     * @see com.smartgwt.client.docs.Images Images overview and related methods
      */
     public String getSkinImgDir()  {
         return getAttributeAsString("skinImgDir");
@@ -188,6 +190,7 @@ public class ImgSplitbar extends Img {
      *
      * @param src src Default value is null
      * @throws IllegalStateException this property cannot be changed after the component has been created
+     * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
     public void setSrc(String src)  throws IllegalStateException {
         setAttribute("src", src, false);
@@ -201,6 +204,7 @@ public class ImgSplitbar extends Img {
      *
      *
      * @return String
+     * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
     public String getSrc()  {
         return getAttributeAsString("src");

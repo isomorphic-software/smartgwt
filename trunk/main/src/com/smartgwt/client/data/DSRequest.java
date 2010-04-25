@@ -81,9 +81,10 @@ public class DSRequest extends RPCRequest {
      * For requests submitted by a {@link com.smartgwt.client.widgets.DataBoundComponent}, the {@link
      * com.smartgwt.client.widgets.Canvas#getID ID} of the submitting component. <P> This ID will be present for operations
      * including automatic saves by a ListGrid  {@link com.smartgwt.client.docs.Editing 'during editing'}, or calls to {@link
-     * com.smartgwt.client.widgets.form.DynamicForm#saveData}.  It will not be present for a direct call to a DataSource method
-     * such as {@link com.smartgwt.client.data.DataSource#fetchData}. <P> Note this is the component's <b>String</b> ID - you
-     * can retrieve the component itself via {@link com.smartgwt.client.widgets.Canvas#getById}.
+     * com.smartgwt.client.widgets.form.DynamicForm#saveData DynamicForm.saveData}.  It will not be present for a direct call
+     * to a DataSource method such as {@link com.smartgwt.client.data.DataSource#fetchData DataSource.fetchData}. <P> Note this
+     * is the component's <b>String</b> ID - you can retrieve the component itself via {@link
+     * com.smartgwt.client.widgets.Canvas#getById Canvas.getById}.
      *
      * @param componentId componentId Default value is null
      */
@@ -95,9 +96,10 @@ public class DSRequest extends RPCRequest {
      * For requests submitted by a {@link com.smartgwt.client.widgets.DataBoundComponent}, the {@link
      * com.smartgwt.client.widgets.Canvas#getID ID} of the submitting component. <P> This ID will be present for operations
      * including automatic saves by a ListGrid  {@link com.smartgwt.client.docs.Editing 'during editing'}, or calls to {@link
-     * com.smartgwt.client.widgets.form.DynamicForm#saveData}.  It will not be present for a direct call to a DataSource method
-     * such as {@link com.smartgwt.client.data.DataSource#fetchData}. <P> Note this is the component's <b>String</b> ID - you
-     * can retrieve the component itself via {@link com.smartgwt.client.widgets.Canvas#getById}.
+     * com.smartgwt.client.widgets.form.DynamicForm#saveData DynamicForm.saveData}.  It will not be present for a direct call
+     * to a DataSource method such as {@link com.smartgwt.client.data.DataSource#fetchData DataSource.fetchData}. <P> Note this
+     * is the component's <b>String</b> ID - you can retrieve the component itself via {@link
+     * com.smartgwt.client.widgets.Canvas#getById Canvas.getById}.
      *
      *
      * @return String
@@ -108,7 +110,8 @@ public class DSRequest extends RPCRequest {
 
     /**
      * DataSource this DSRequest will act on. <P> This property is generally automatically populated, for example when calling
-     * {@link com.smartgwt.client.data.DataSource#fetchData} the dataSource property is set to the target DataSource.
+     * {@link com.smartgwt.client.data.DataSource#fetchData DataSource.fetchData} the dataSource property is set to the target
+     * DataSource.
      *
      * @param dataSource dataSource Default value is null
      */
@@ -118,7 +121,8 @@ public class DSRequest extends RPCRequest {
 
     /**
      * DataSource this DSRequest will act on. <P> This property is generally automatically populated, for example when calling
-     * {@link com.smartgwt.client.data.DataSource#fetchData} the dataSource property is set to the target DataSource.
+     * {@link com.smartgwt.client.data.DataSource#fetchData DataSource.fetchData} the dataSource property is set to the target
+     * DataSource.
      *
      *
      * @return String
@@ -429,10 +433,11 @@ public class DSRequest extends RPCRequest {
      * <code>operationId</code> can be accessed via dsRequest.getOperationId().  The {@link
      * com.smartgwt.client.data.RestDataSource} will also send the <code>operationId</code> to the server as part of the {@link
      * com.smartgwt.client.data.RestDataSource#getMetaDataPrefix 'request metadata'}.   <P> Note that if you {@link
-     * com.smartgwt.client.data.DataSource#fetchData} a DataSource operation, you can also specify operationId via the
-     * <code>requestProperties</code> parameter.
+     * com.smartgwt.client.data.DataSource#fetchData DataSource.fetchData} a DataSource operation, you can also specify
+     * operationId via the <code>requestProperties</code> parameter.
      *
      * @param operationId operationId Default value is null
+     * @see com.smartgwt.client.docs.Operations Operations overview and related methods
      */
     public void setOperationId(String operationId) {
         setAttribute("operationId", operationId);

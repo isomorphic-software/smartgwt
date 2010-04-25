@@ -77,9 +77,9 @@ import com.google.gwt.event.shared.HasHandlers;
  * com.smartgwt.client.widgets.calendar.Calendar#getEventEditor 'EventEditor'} provides  an interface for editing all
  * possible properties of an event, including custom  properties.  The EventEditor is used whenever a pre-existing event is
  * being  edited, and can also be invoked by the user wherever the simpler EventDialog appears. <P> Events can also be
- * programmatically {@link com.smartgwt.client.widgets.calendar.Calendar#addEvent}, {@link
- * com.smartgwt.client.widgets.calendar.Calendar#removeEvent}, or {@link
- * com.smartgwt.client.widgets.calendar.Calendar#updateEvent}.
+ * programmatically {@link com.smartgwt.client.widgets.calendar.Calendar#addEvent Calendar.addEvent}, {@link
+ * com.smartgwt.client.widgets.calendar.Calendar#removeEvent Calendar.removeEvent}, or {@link
+ * com.smartgwt.client.widgets.calendar.Calendar#updateEvent Calendar.updateEvent}.
  */
 public class Calendar extends Canvas  implements DataBoundComponent, com.smartgwt.client.widgets.calendar.events.HasDayBodyClickHandlers, com.smartgwt.client.widgets.calendar.events.HasDayHeaderClickHandlers, com.smartgwt.client.widgets.calendar.events.HasEventChangedHandlers, com.smartgwt.client.widgets.calendar.events.HasEventClickHandlers, com.smartgwt.client.widgets.calendar.events.HasEventRemoveClickHandlers, com.smartgwt.client.widgets.calendar.events.HasEventMovedHandlers, com.smartgwt.client.widgets.calendar.events.HasEventAddedHandlers, com.smartgwt.client.widgets.calendar.events.HasEventRemovedHandlers, com.smartgwt.client.widgets.calendar.events.HasEventResizedHandlers, com.smartgwt.client.widgets.calendar.events.HasDateChangedHandlers {
 
@@ -135,10 +135,11 @@ public class Calendar extends Canvas  implements DataBoundComponent, com.smartgw
     /**
      * If {@link com.smartgwt.client.widgets.calendar.Calendar#getAutoFetchData autoFetchData} is <code>true</code>, this
      * attribute allows the developer to specify a textMatchStyle for the initial {@link
-     * com.smartgwt.client.widgets.calendar.Calendar#fetchData} call.
+     * com.smartgwt.client.widgets.calendar.Calendar#fetchData Calendar.fetchData} call.
      *
      * @param autoFetchTextMatchStyle autoFetchTextMatchStyle Default value is null
      * @throws IllegalStateException this property cannot be changed after the component has been created
+     * @see com.smartgwt.client.docs.Databinding Databinding overview and related methods
      */
     public void setAutoFetchTextMatchStyle(TextMatchStyle autoFetchTextMatchStyle)  throws IllegalStateException {
         setAttribute("autoFetchTextMatchStyle", autoFetchTextMatchStyle.getValue(), false);
@@ -147,10 +148,11 @@ public class Calendar extends Canvas  implements DataBoundComponent, com.smartgw
     /**
      * If {@link com.smartgwt.client.widgets.calendar.Calendar#getAutoFetchData autoFetchData} is <code>true</code>, this
      * attribute allows the developer to specify a textMatchStyle for the initial {@link
-     * com.smartgwt.client.widgets.calendar.Calendar#fetchData} call.
+     * com.smartgwt.client.widgets.calendar.Calendar#fetchData Calendar.fetchData} call.
      *
      *
      * @return TextMatchStyle
+     * @see com.smartgwt.client.docs.Databinding Databinding overview and related methods
      */
     public TextMatchStyle getAutoFetchTextMatchStyle()  {
         return EnumUtil.getEnum(TextMatchStyle.values(), getAttribute("autoFetchTextMatchStyle"));
@@ -161,6 +163,7 @@ public class Calendar extends Canvas  implements DataBoundComponent, com.smartgw
      * have "Dark", "Over", "Selected", or "Disabled" appended to it according to the state of the cell.
      *
      * @param baseStyle baseStyle Default value is "calendar"
+     * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
     public void setBaseStyle(String baseStyle) {
         setAttribute("baseStyle", baseStyle, true);
@@ -172,6 +175,7 @@ public class Calendar extends Canvas  implements DataBoundComponent, com.smartgw
      *
      *
      * @return String
+     * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
     public String getBaseStyle()  {
         return getAttributeAsString("baseStyle");
@@ -386,6 +390,7 @@ public class Calendar extends Canvas  implements DataBoundComponent, com.smartgw
      * "Over", "Selected", or "Disabled" appended to it according to the state of the cell.
      *
      * @param dayBodyBaseStyle dayBodyBaseStyle Default value is "calMonthDayBody"
+     * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
     public void setDayBodyBaseStyle(String dayBodyBaseStyle) {
         setAttribute("dayBodyBaseStyle", dayBodyBaseStyle, true);
@@ -397,6 +402,7 @@ public class Calendar extends Canvas  implements DataBoundComponent, com.smartgw
      *
      *
      * @return String
+     * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
     public String getDayBodyBaseStyle()  {
         return getAttributeAsString("dayBodyBaseStyle");
@@ -407,6 +413,7 @@ public class Calendar extends Canvas  implements DataBoundComponent, com.smartgw
      * "Selected", or "Disabled" appended to it according to the state of the cell.
      *
      * @param dayHeaderBaseStyle dayHeaderBaseStyle Default value is "calMonthDayHeader"
+     * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
     public void setDayHeaderBaseStyle(String dayHeaderBaseStyle) {
         setAttribute("dayHeaderBaseStyle", dayHeaderBaseStyle, true);
@@ -418,6 +425,7 @@ public class Calendar extends Canvas  implements DataBoundComponent, com.smartgw
      *
      *
      * @return String
+     * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
     public String getDayHeaderBaseStyle()  {
         return getAttributeAsString("dayHeaderBaseStyle");
@@ -489,6 +497,7 @@ public class Calendar extends Canvas  implements DataBoundComponent, com.smartgw
      *
      * @param disableWeekends disableWeekends Default value is true
      * @throws IllegalStateException this property cannot be changed after the component has been created
+     * @see com.smartgwt.client.docs.Visibility Visibility overview and related methods
      */
     public void setDisableWeekends(Boolean disableWeekends)  throws IllegalStateException {
         setAttribute("disableWeekends", disableWeekends, false);
@@ -500,6 +509,7 @@ public class Calendar extends Canvas  implements DataBoundComponent, com.smartgw
      *
      *
      * @return Boolean
+     * @see com.smartgwt.client.docs.Visibility Visibility overview and related methods
      */
     public Boolean getDisableWeekends()  {
         return getAttributeAsBoolean("disableWeekends");
@@ -638,6 +648,7 @@ public class Calendar extends Canvas  implements DataBoundComponent, com.smartgw
      *
      * @param eventSnapGap eventSnapGap Default value is 30
      * @throws IllegalStateException this property cannot be changed after the component has been created
+     * @see com.smartgwt.client.docs.Editing Editing overview and related methods
      */
     public void setEventSnapGap(int eventSnapGap)  throws IllegalStateException {
         setAttribute("eventSnapGap", eventSnapGap, false);
@@ -648,6 +659,7 @@ public class Calendar extends Canvas  implements DataBoundComponent, com.smartgw
      *
      *
      * @return int
+     * @see com.smartgwt.client.docs.Editing Editing overview and related methods
      */
     public int getEventSnapGap()  {
         return getAttributeAsInt("eventSnapGap");
@@ -681,6 +693,7 @@ public class Calendar extends Canvas  implements DataBoundComponent, com.smartgw
      * header, define a css class called 'eventWindowHeader'.
      *
      * @param eventWindowStyle eventWindowStyle Default value is "eventWindow"
+     * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
     public void setEventWindowStyle(String eventWindowStyle) {
         setAttribute("eventWindowStyle", eventWindowStyle, true);
@@ -693,6 +706,7 @@ public class Calendar extends Canvas  implements DataBoundComponent, com.smartgw
      *
      *
      * @return String
+     * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
     public String getEventWindowStyle()  {
         return getAttributeAsString("eventWindowStyle");
@@ -705,6 +719,7 @@ public class Calendar extends Canvas  implements DataBoundComponent, com.smartgw
      *
      * @param eventWindowStyleField eventWindowStyleField Default value is "eventWindowStyle"
      * @throws IllegalStateException this property cannot be changed after the component has been created
+     * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
     public void setEventWindowStyleField(String eventWindowStyleField)  throws IllegalStateException {
         setAttribute("eventWindowStyleField", eventWindowStyleField, false);
@@ -717,6 +732,7 @@ public class Calendar extends Canvas  implements DataBoundComponent, com.smartgw
      *
      *
      * @return String
+     * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
     public String getEventWindowStyleField()  {
         return getAttributeAsString("eventWindowStyleField");
@@ -851,6 +867,7 @@ public class Calendar extends Canvas  implements DataBoundComponent, com.smartgw
      *
      * @param otherDayBlankStyle otherDayBlankStyle Default value is "calMonthOtherDayBlank"
      * @throws IllegalStateException this property cannot be changed after the component has been created
+     * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
     public void setOtherDayBlankStyle(String otherDayBlankStyle)  throws IllegalStateException {
         setAttribute("otherDayBlankStyle", otherDayBlankStyle, false);
@@ -862,6 +879,7 @@ public class Calendar extends Canvas  implements DataBoundComponent, com.smartgw
      *
      *
      * @return String
+     * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
     public String getOtherDayBlankStyle()  {
         return getAttributeAsString("otherDayBlankStyle");
@@ -872,6 +890,7 @@ public class Calendar extends Canvas  implements DataBoundComponent, com.smartgw
      * "Over", "Selected", or "Disabled" appended to it according to the state of the cell.
      *
      * @param otherDayBodyBaseStyle otherDayBodyBaseStyle Default value is "calMonthDayBody"
+     * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
     public void setOtherDayBodyBaseStyle(String otherDayBodyBaseStyle) {
         setAttribute("otherDayBodyBaseStyle", otherDayBodyBaseStyle, true);
@@ -883,6 +902,7 @@ public class Calendar extends Canvas  implements DataBoundComponent, com.smartgw
      *
      *
      * @return String
+     * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
     public String getOtherDayBodyBaseStyle()  {
         return getAttributeAsString("otherDayBodyBaseStyle");
@@ -893,6 +913,7 @@ public class Calendar extends Canvas  implements DataBoundComponent, com.smartgw
      * "Selected", or "Disabled" appended to it according to the state of the cell.
      *
      * @param otherDayHeaderBaseStyle otherDayHeaderBaseStyle Default value is "calMonthDayHeader"
+     * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
     public void setOtherDayHeaderBaseStyle(String otherDayHeaderBaseStyle) {
         setAttribute("otherDayHeaderBaseStyle", otherDayHeaderBaseStyle, true);
@@ -904,6 +925,7 @@ public class Calendar extends Canvas  implements DataBoundComponent, com.smartgw
      *
      *
      * @return String
+     * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
     public String getOtherDayHeaderBaseStyle()  {
         return getAttributeAsString("otherDayHeaderBaseStyle");
@@ -979,6 +1001,7 @@ public class Calendar extends Canvas  implements DataBoundComponent, com.smartgw
      * The base name for the CSS class applied to a cell that is selected via a mouse drag.
      *
      * @param selectedCellStyle selectedCellStyle Default value is "calendarCellSelected"
+     * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
     public void setSelectedCellStyle(String selectedCellStyle) {
         setAttribute("selectedCellStyle", selectedCellStyle, true);
@@ -989,6 +1012,7 @@ public class Calendar extends Canvas  implements DataBoundComponent, com.smartgw
      *
      *
      * @return String
+     * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
     public String getSelectedCellStyle()  {
         return getAttributeAsString("selectedCellStyle");
@@ -1027,6 +1051,7 @@ public class Calendar extends Canvas  implements DataBoundComponent, com.smartgw
      *
      * @param showDateChooser showDateChooser Default value is true
      * @throws IllegalStateException this property cannot be changed after the component has been created
+     * @see com.smartgwt.client.docs.Visibility Visibility overview and related methods
      */
     public void setShowDateChooser(Boolean showDateChooser)  throws IllegalStateException {
         setAttribute("showDateChooser", showDateChooser, false);
@@ -1037,6 +1062,7 @@ public class Calendar extends Canvas  implements DataBoundComponent, com.smartgw
      *
      *
      * @return Boolean
+     * @see com.smartgwt.client.docs.Visibility Visibility overview and related methods
      */
     public Boolean getShowDateChooser()  {
         return getAttributeAsBoolean("showDateChooser");
@@ -1047,6 +1073,7 @@ public class Calendar extends Canvas  implements DataBoundComponent, com.smartgw
      *
      * @param showDayHeaders showDayHeaders Default value is true
      * @throws IllegalStateException this property cannot be changed after the component has been created
+     * @see com.smartgwt.client.docs.Visibility Visibility overview and related methods
      */
     public void setShowDayHeaders(Boolean showDayHeaders)  throws IllegalStateException {
         setAttribute("showDayHeaders", showDayHeaders, false);
@@ -1057,6 +1084,7 @@ public class Calendar extends Canvas  implements DataBoundComponent, com.smartgw
      *
      *
      * @return Boolean
+     * @see com.smartgwt.client.docs.Visibility Visibility overview and related methods
      */
     public Boolean getShowDayHeaders()  {
         return getAttributeAsBoolean("showDayHeaders");
@@ -1069,6 +1097,7 @@ public class Calendar extends Canvas  implements DataBoundComponent, com.smartgw
      *
      * @param showOtherDays showOtherDays Default value is true
      * @throws IllegalStateException this property cannot be changed after the component has been created
+     * @see com.smartgwt.client.docs.Visibility Visibility overview and related methods
      */
     public void setShowOtherDays(Boolean showOtherDays)  throws IllegalStateException {
         setAttribute("showOtherDays", showOtherDays, false);
@@ -1081,6 +1110,7 @@ public class Calendar extends Canvas  implements DataBoundComponent, com.smartgw
      *
      *
      * @return Boolean
+     * @see com.smartgwt.client.docs.Visibility Visibility overview and related methods
      */
     public Boolean getShowOtherDays()  {
         return getAttributeAsBoolean("showOtherDays");
@@ -1092,6 +1122,7 @@ public class Calendar extends Canvas  implements DataBoundComponent, com.smartgw
      *
      * @param showQuickEventDialog showQuickEventDialog Default value is true
      * @throws IllegalStateException this property cannot be changed after the component has been created
+     * @see com.smartgwt.client.docs.Editing Editing overview and related methods
      */
     public void setShowQuickEventDialog(Boolean showQuickEventDialog)  throws IllegalStateException {
         setAttribute("showQuickEventDialog", showQuickEventDialog, false);
@@ -1103,6 +1134,7 @@ public class Calendar extends Canvas  implements DataBoundComponent, com.smartgw
      *
      *
      * @return Boolean
+     * @see com.smartgwt.client.docs.Editing Editing overview and related methods
      */
     public Boolean getShowQuickEventDialog()  {
         return getAttributeAsBoolean("showQuickEventDialog");
@@ -1115,6 +1147,7 @@ public class Calendar extends Canvas  implements DataBoundComponent, com.smartgw
      *
      * @param showWeekends showWeekends Default value is true
      * @throws IllegalStateException this property cannot be changed after the component has been created
+     * @see com.smartgwt.client.docs.Visibility Visibility overview and related methods
      */
     public void setShowWeekends(Boolean showWeekends)  throws IllegalStateException {
         setAttribute("showWeekends", showWeekends, false);
@@ -1126,6 +1159,7 @@ public class Calendar extends Canvas  implements DataBoundComponent, com.smartgw
      *
      *
      * @return Boolean
+     * @see com.smartgwt.client.docs.Visibility Visibility overview and related methods
      */
     public Boolean getShowWeekends()  {
         return getAttributeAsBoolean("showWeekends");
@@ -1226,6 +1260,7 @@ public class Calendar extends Canvas  implements DataBoundComponent, com.smartgw
      *
      * @param weekEventBorderOverlap weekEventBorderOverlap Default value is false
      * @throws IllegalStateException this property cannot be changed after the component has been created
+     * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
     public void setWeekEventBorderOverlap(Boolean weekEventBorderOverlap)  throws IllegalStateException {
         setAttribute("weekEventBorderOverlap", weekEventBorderOverlap, false);
@@ -1236,6 +1271,7 @@ public class Calendar extends Canvas  implements DataBoundComponent, com.smartgw
      *
      *
      * @return Boolean
+     * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
     public Boolean getWeekEventBorderOverlap()  {
         return getAttributeAsBoolean("weekEventBorderOverlap");
@@ -1268,6 +1304,7 @@ public class Calendar extends Canvas  implements DataBoundComponent, com.smartgw
      *
      * @param workdayBaseStyle workdayBaseStyle Default value is "calendarWorkday"
      * @throws IllegalStateException this property cannot be changed after the component has been created
+     * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
     public void setWorkdayBaseStyle(String workdayBaseStyle)  throws IllegalStateException {
         setAttribute("workdayBaseStyle", workdayBaseStyle, false);
@@ -1280,6 +1317,7 @@ public class Calendar extends Canvas  implements DataBoundComponent, com.smartgw
      *
      *
      * @return String
+     * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
     public String getWorkdayBaseStyle()  {
         return getAttributeAsString("workdayBaseStyle");
@@ -1288,8 +1326,8 @@ public class Calendar extends Canvas  implements DataBoundComponent, com.smartgw
     /**
      * When using {@link com.smartgwt.client.widgets.calendar.Calendar#getShowWorkday showWorkday}:true,
      * <code>workdayStart</code> and <code>workdayEnd</code> specify the time of day when the workday starts and ends,
-     * specified as a String acceptable to {@link com.smartgwt.client..Time#parseInput}. <P> Both start and end time must fall
-     * on a 30 minute increment (eg 9:30, but not 9:45).
+     * specified as a String acceptable to {@link com.smartgwt.client..Time#parseInput Time.parseInput}. <P> Both start and end
+     * time must fall on a 30 minute increment (eg 9:30, but not 9:45).
      *
      * @param workdayEnd workdayEnd Default value is "5:00pm"
      * @throws IllegalStateException this property cannot be changed after the component has been created
@@ -1301,8 +1339,8 @@ public class Calendar extends Canvas  implements DataBoundComponent, com.smartgw
     /**
      * When using {@link com.smartgwt.client.widgets.calendar.Calendar#getShowWorkday showWorkday}:true,
      * <code>workdayStart</code> and <code>workdayEnd</code> specify the time of day when the workday starts and ends,
-     * specified as a String acceptable to {@link com.smartgwt.client..Time#parseInput}. <P> Both start and end time must fall
-     * on a 30 minute increment (eg 9:30, but not 9:45).
+     * specified as a String acceptable to {@link com.smartgwt.client..Time#parseInput Time.parseInput}. <P> Both start and end
+     * time must fall on a 30 minute increment (eg 9:30, but not 9:45).
      *
      *
      * @return String
@@ -1314,8 +1352,8 @@ public class Calendar extends Canvas  implements DataBoundComponent, com.smartgw
     /**
      * When using {@link com.smartgwt.client.widgets.calendar.Calendar#getShowWorkday showWorkday}:true,
      * <code>workdayStart</code> and <code>workdayEnd</code> specify the time of day when the workday starts and ends,
-     * specified as a String acceptable to {@link com.smartgwt.client..Time#parseInput}. <P> Both start and end time must fall
-     * on a 30 minute increment (eg 9:30, but not 9:45).
+     * specified as a String acceptable to {@link com.smartgwt.client..Time#parseInput Time.parseInput}. <P> Both start and end
+     * time must fall on a 30 minute increment (eg 9:30, but not 9:45).
      *
      * @param workdayStart workdayStart Default value is "9:00am"
      * @throws IllegalStateException this property cannot be changed after the component has been created
@@ -1327,8 +1365,8 @@ public class Calendar extends Canvas  implements DataBoundComponent, com.smartgw
     /**
      * When using {@link com.smartgwt.client.widgets.calendar.Calendar#getShowWorkday showWorkday}:true,
      * <code>workdayStart</code> and <code>workdayEnd</code> specify the time of day when the workday starts and ends,
-     * specified as a String acceptable to {@link com.smartgwt.client..Time#parseInput}. <P> Both start and end time must fall
-     * on a 30 minute increment (eg 9:30, but not 9:45).
+     * specified as a String acceptable to {@link com.smartgwt.client..Time#parseInput Time.parseInput}. <P> Both start and end
+     * time must fall on a 30 minute increment (eg 9:30, but not 9:45).
      *
      *
      * @return String

@@ -203,18 +203,17 @@ public class TreeNode extends ListGridRecord {
 
     /**
      * Provides a name for the node that is unique among it's immediate siblings, thus allowing a unique path to be used to
-     * identify the node, similar to a file system.  See {@link com.smartgwt.client.widgets.tree.Tree#getPath}. <p> If the
-     * nameProperty is not set on a given node, the {@link com.smartgwt.client.widgets.tree.TreeNode#getId id} will be used
-     * instead.  If this is also missing, {@link com.smartgwt.client.widgets.tree.Tree#getName} and {@link
-     * com.smartgwt.client.widgets.tree.Tree#getPath} will auto-generate a unique name for you.  Thus names are not required,
-     * but if the dataset you are using already has usable names for each node, using them can make APIs such as {@link
-     * com.smartgwt.client.widgets.tree.Tree#find} more useful.  Alternatively, if your dataset has unique ids consider
-     * providing those as {@link com.smartgwt.client.widgets.tree.TreeNode#getId id}. <P> If a value provided for the
+     * identify the node, similar to a file system.  See {@link com.smartgwt.client.widgets.tree.Tree#getPath Tree.getPath}.
+     * <p> If the nameProperty is not set on a given node, the {@link com.smartgwt.client.widgets.tree.TreeNode#getId id} will
+     * be used instead.  If this is also missing, {@link com.smartgwt.client.widgets.tree.Tree#getName Tree.getName} and {@link
+     * com.smartgwt.client.widgets.tree.Tree#getPath Tree.getPath} will auto-generate a unique name for you.  Thus names are
+     * not required, but if the dataset you are using already has usable names for each node, using them can make APIs such as
+     * {@link com.smartgwt.client.widgets.tree.Tree#find Tree.find} more useful.  Alternatively, if your dataset has unique ids
+     * consider providing those as {@link com.smartgwt.client.widgets.tree.TreeNode#getId id}. <P> If a value provided for the
      * nameProperty of a node (e.g. node.name) is not a string, it will be converted to a string by the Tree via ""+value. <p>
-     * This property is also used as the default title for the node (see {@link
-     * com.smartgwt.client.widgets.tree.Tree#getTitle}) if {@link com.smartgwt.client.widgets.tree.TreeNode#getTitle title} is
-     * not specified. <p> Note: the name of this property can be changed by setting {@link
-     * com.smartgwt.client.widgets.tree.Tree#getNameProperty nameProperty}.
+     * This property is also used as the default title for the node (see {@link com.smartgwt.client.widgets.tree.Tree#getTitle
+     * Tree.getTitle}) if {@link com.smartgwt.client.widgets.tree.TreeNode#getTitle title} is not specified. <p> Note: the name
+     * of this property can be changed by setting {@link com.smartgwt.client.widgets.tree.Tree#getNameProperty nameProperty}.
      *
      * @param name name Default value is null, but see below
      */
@@ -224,18 +223,17 @@ public class TreeNode extends ListGridRecord {
 
     /**
      * Provides a name for the node that is unique among it's immediate siblings, thus allowing a unique path to be used to
-     * identify the node, similar to a file system.  See {@link com.smartgwt.client.widgets.tree.Tree#getPath}. <p> If the
-     * nameProperty is not set on a given node, the {@link com.smartgwt.client.widgets.tree.TreeNode#getId id} will be used
-     * instead.  If this is also missing, {@link com.smartgwt.client.widgets.tree.Tree#getName} and {@link
-     * com.smartgwt.client.widgets.tree.Tree#getPath} will auto-generate a unique name for you.  Thus names are not required,
-     * but if the dataset you are using already has usable names for each node, using them can make APIs such as {@link
-     * com.smartgwt.client.widgets.tree.Tree#find} more useful.  Alternatively, if your dataset has unique ids consider
-     * providing those as {@link com.smartgwt.client.widgets.tree.TreeNode#getId id}. <P> If a value provided for the
+     * identify the node, similar to a file system.  See {@link com.smartgwt.client.widgets.tree.Tree#getPath Tree.getPath}.
+     * <p> If the nameProperty is not set on a given node, the {@link com.smartgwt.client.widgets.tree.TreeNode#getId id} will
+     * be used instead.  If this is also missing, {@link com.smartgwt.client.widgets.tree.Tree#getName Tree.getName} and {@link
+     * com.smartgwt.client.widgets.tree.Tree#getPath Tree.getPath} will auto-generate a unique name for you.  Thus names are
+     * not required, but if the dataset you are using already has usable names for each node, using them can make APIs such as
+     * {@link com.smartgwt.client.widgets.tree.Tree#find Tree.find} more useful.  Alternatively, if your dataset has unique ids
+     * consider providing those as {@link com.smartgwt.client.widgets.tree.TreeNode#getId id}. <P> If a value provided for the
      * nameProperty of a node (e.g. node.name) is not a string, it will be converted to a string by the Tree via ""+value. <p>
-     * This property is also used as the default title for the node (see {@link
-     * com.smartgwt.client.widgets.tree.Tree#getTitle}) if {@link com.smartgwt.client.widgets.tree.TreeNode#getTitle title} is
-     * not specified. <p> Note: the name of this property can be changed by setting {@link
-     * com.smartgwt.client.widgets.tree.Tree#getNameProperty nameProperty}.
+     * This property is also used as the default title for the node (see {@link com.smartgwt.client.widgets.tree.Tree#getTitle
+     * Tree.getTitle}) if {@link com.smartgwt.client.widgets.tree.TreeNode#getTitle title} is not specified. <p> Note: the name
+     * of this property can be changed by setting {@link com.smartgwt.client.widgets.tree.Tree#getNameProperty nameProperty}.
      *
      *
      * @return String
@@ -309,8 +307,8 @@ public class TreeNode extends ListGridRecord {
     /**
      * The title of the node as it should appear next to the node icon in the {@link com.smartgwt.client.widgets.tree.Tree}. 
      * If left unset, the value of {@link com.smartgwt.client.widgets.tree.TreeNode#getName name} is used by default.  See the
-     * description in {@link com.smartgwt.client.widgets.tree.Tree#getTitle} for full details. <p> Note: the name of this
-     * property can be changed by setting {@link com.smartgwt.client.widgets.tree.Tree#getTitleProperty titleProperty}.
+     * description in {@link com.smartgwt.client.widgets.tree.Tree#getTitle Tree.getTitle} for full details. <p> Note: the name
+     * of this property can be changed by setting {@link com.smartgwt.client.widgets.tree.Tree#getTitleProperty titleProperty}.
      *
      * @param title title Default value is null
      */
@@ -321,8 +319,8 @@ public class TreeNode extends ListGridRecord {
     /**
      * The title of the node as it should appear next to the node icon in the {@link com.smartgwt.client.widgets.tree.Tree}. 
      * If left unset, the value of {@link com.smartgwt.client.widgets.tree.TreeNode#getName name} is used by default.  See the
-     * description in {@link com.smartgwt.client.widgets.tree.Tree#getTitle} for full details. <p> Note: the name of this
-     * property can be changed by setting {@link com.smartgwt.client.widgets.tree.Tree#getTitleProperty titleProperty}.
+     * description in {@link com.smartgwt.client.widgets.tree.Tree#getTitle Tree.getTitle} for full details. <p> Note: the name
+     * of this property can be changed by setting {@link com.smartgwt.client.widgets.tree.Tree#getTitleProperty titleProperty}.
      *
      *
      * @return String

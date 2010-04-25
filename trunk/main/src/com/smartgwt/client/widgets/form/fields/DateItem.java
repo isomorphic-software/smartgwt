@@ -99,6 +99,7 @@ public class DateItem extends FormItem {
      * according to default browser behaviour, which will consider it to be 19xx.
      *
      * @param centuryThreshold centuryThreshold Default value is 25
+     * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
     public void setCenturyThreshold(int centuryThreshold) {
         setAttribute("centuryThreshold", centuryThreshold);
@@ -111,6 +112,7 @@ public class DateItem extends FormItem {
      *
      *
      * @return int
+     * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
     public int getCenturyThreshold()  {
         return getAttributeAsInt("centuryThreshold");
@@ -132,9 +134,10 @@ public class DateItem extends FormItem {
      * If {@link com.smartgwt.client.widgets.form.fields.DateItem#getUseTextField useTextField} is <code>true</code> this
      * property can be used to  customize the format in which dates are displayed.<br> Should be set to a standard {@link
      * com.smartgwt.client.types.DateDisplayFormat} or a function which will return a formatted date string. <P> If unset, the
-     * standard shortDate format as set up via {@link com.smartgwt.client..Date#setShortDisplayFormat} will be used. <P>
-     * <B>NOTE: you may need to update the {@link com.smartgwt.client.widgets.form.fields.DateItem#getInputFormat
-     * 'inputFormat'} to ensure the DateItem is able to parse user-entered date strings back into Dates</B>
+     * standard shortDate format as set up via {@link com.smartgwt.client..Date#setShortDisplayFormat
+     * Date.setShortDisplayFormat} will be used. <P> <B>NOTE: you may need to update the {@link
+     * com.smartgwt.client.widgets.form.fields.DateItem#getInputFormat 'inputFormat'} to ensure the DateItem is able to parse
+     * user-entered date strings back into Dates</B>
      *
      * @param displayFormat displayFormat Default value is null
      */
@@ -146,9 +149,10 @@ public class DateItem extends FormItem {
      * If {@link com.smartgwt.client.widgets.form.fields.DateItem#getUseTextField useTextField} is <code>true</code> this
      * property can be used to  customize the format in which dates are displayed.<br> Should be set to a standard {@link
      * com.smartgwt.client.types.DateDisplayFormat} or a function which will return a formatted date string. <P> If unset, the
-     * standard shortDate format as set up via {@link com.smartgwt.client..Date#setShortDisplayFormat} will be used. <P>
-     * <B>NOTE: you may need to update the {@link com.smartgwt.client.widgets.form.fields.DateItem#getInputFormat
-     * 'inputFormat'} to ensure the DateItem is able to parse user-entered date strings back into Dates</B>
+     * standard shortDate format as set up via {@link com.smartgwt.client..Date#setShortDisplayFormat
+     * Date.setShortDisplayFormat} will be used. <P> <B>NOTE: you may need to update the {@link
+     * com.smartgwt.client.widgets.form.fields.DateItem#getInputFormat 'inputFormat'} to ensure the DateItem is able to parse
+     * user-entered date strings back into Dates</B>
      *
      *
      * @return DateDisplayFormat
@@ -162,6 +166,7 @@ public class DateItem extends FormItem {
      * com.smartgwt.client.widgets.form.fields.DateItem#getStartDate startDate} for details on how this restriction works.
      *
      * @param endDate endDate Default value is 12/31/2015
+     * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
     public void setEndDate(java.util.Date endDate) {
         setAttribute("endDate", endDate);
@@ -173,6 +178,7 @@ public class DateItem extends FormItem {
      *
      *
      * @return java.util.Date
+     * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
     public java.util.Date getEndDate()  {
         return getAttributeAsDate("endDate");
@@ -180,20 +186,20 @@ public class DateItem extends FormItem {
 
     /**
      * Can this field be set to a non-date value [other than null]?&#010 <P>&#010 When set to true, {@link
-     * com.smartgwt.client.widgets.form.fields.FormItem#setValue} will return false without setting the item value&#010 and log
-     * a warning if passed something other than a valid date value.&#010 If the dateItem is showing a {@link
+     * com.smartgwt.client.widgets.form.fields.FormItem#setValue FormItem.setValue} will return false without setting the item
+     * value&#010 and log a warning if passed something other than a valid date value.&#010 If the dateItem is showing a {@link
      * com.smartgwt.client.widgets.form.fields.DateItem#getUseTextField 'free-form text entry field'},&#010 and a user enters a
      * text value which cannot be parsed into a valid date, the item will&#010 automatically redraw and display the {@link
      * com.smartgwt.client.widgets.form.fields.DateItem#getInvalidDateStringMessage invalidDateStringMessage} (though at
-     * this&#010 point calling {@link com.smartgwt.client.widgets.form.fields.FormItem#getValue} will return the string entered
-     * by the user).&#010 <P>&#010 When set to false, a user may enter value that is not a valid date (for example, "Not&#010
-     * applicable") and the value will not immediately be flagged as an error.  However note&#010 that for the value to
-     * actually pass validation you would need to declare the field as&#010 not of "date" type, for example:&#010 <pre>&#010   
-     * {name:"startDate", type:"dateOrOther", editorType:"DateItem", useTextField:true },&#010 </pre>&#010 The type
-     * "dateOrOther" could be declared as a {@link com.smartgwt.client.data.SimpleType}, with validators that&#010 will accept
-     * either a valid date or certain special Strings (like "Not Available").&#010 <P>&#010 Only applies to dateItems where
-     * {@link com.smartgwt.client.widgets.form.fields.DateItem#getUseTextField useTextField} is true. Non-Date values&#010 are
-     * never supported in items where useTextField is false.
+     * this&#010 point calling {@link com.smartgwt.client.widgets.form.fields.FormItem#getValue FormItem.getValue} will return
+     * the string entered by the user).&#010 <P>&#010 When set to false, a user may enter value that is not a valid date (for
+     * example, "Not&#010 applicable") and the value will not immediately be flagged as an error.  However note&#010 that for
+     * the value to actually pass validation you would need to declare the field as&#010 not of "date" type, for example:&#010
+     * <pre>&#010     {name:"startDate", type:"dateOrOther", editorType:"DateItem", useTextField:true },&#010 </pre>&#010 The
+     * type "dateOrOther" could be declared as a {@link com.smartgwt.client.data.SimpleType}, with validators that&#010 will
+     * accept either a valid date or certain special Strings (like "Not Available").&#010 <P>&#010 Only applies to dateItems
+     * where {@link com.smartgwt.client.widgets.form.fields.DateItem#getUseTextField useTextField} is true. Non-Date
+     * values&#010 are never supported in items where useTextField is false.
      * <p><b>Note : </b> This is an advanced setting</p>
      *
      * @param enforceDate enforceDate Default value is false
@@ -204,20 +210,20 @@ public class DateItem extends FormItem {
 
     /**
      * Can this field be set to a non-date value [other than null]?&#010 <P>&#010 When set to true, {@link
-     * com.smartgwt.client.widgets.form.fields.FormItem#setValue} will return false without setting the item value&#010 and log
-     * a warning if passed something other than a valid date value.&#010 If the dateItem is showing a {@link
+     * com.smartgwt.client.widgets.form.fields.FormItem#setValue FormItem.setValue} will return false without setting the item
+     * value&#010 and log a warning if passed something other than a valid date value.&#010 If the dateItem is showing a {@link
      * com.smartgwt.client.widgets.form.fields.DateItem#getUseTextField 'free-form text entry field'},&#010 and a user enters a
      * text value which cannot be parsed into a valid date, the item will&#010 automatically redraw and display the {@link
      * com.smartgwt.client.widgets.form.fields.DateItem#getInvalidDateStringMessage invalidDateStringMessage} (though at
-     * this&#010 point calling {@link com.smartgwt.client.widgets.form.fields.FormItem#getValue} will return the string entered
-     * by the user).&#010 <P>&#010 When set to false, a user may enter value that is not a valid date (for example, "Not&#010
-     * applicable") and the value will not immediately be flagged as an error.  However note&#010 that for the value to
-     * actually pass validation you would need to declare the field as&#010 not of "date" type, for example:&#010 <pre>&#010   
-     * {name:"startDate", type:"dateOrOther", editorType:"DateItem", useTextField:true },&#010 </pre>&#010 The type
-     * "dateOrOther" could be declared as a {@link com.smartgwt.client.data.SimpleType}, with validators that&#010 will accept
-     * either a valid date or certain special Strings (like "Not Available").&#010 <P>&#010 Only applies to dateItems where
-     * {@link com.smartgwt.client.widgets.form.fields.DateItem#getUseTextField useTextField} is true. Non-Date values&#010 are
-     * never supported in items where useTextField is false.
+     * this&#010 point calling {@link com.smartgwt.client.widgets.form.fields.FormItem#getValue FormItem.getValue} will return
+     * the string entered by the user).&#010 <P>&#010 When set to false, a user may enter value that is not a valid date (for
+     * example, "Not&#010 applicable") and the value will not immediately be flagged as an error.  However note&#010 that for
+     * the value to actually pass validation you would need to declare the field as&#010 not of "date" type, for example:&#010
+     * <pre>&#010     {name:"startDate", type:"dateOrOther", editorType:"DateItem", useTextField:true },&#010 </pre>&#010 The
+     * type "dateOrOther" could be declared as a {@link com.smartgwt.client.data.SimpleType}, with validators that&#010 will
+     * accept either a valid date or certain special Strings (like "Not Available").&#010 <P>&#010 Only applies to dateItems
+     * where {@link com.smartgwt.client.widgets.form.fields.DateItem#getUseTextField useTextField} is true. Non-Date
+     * values&#010 are never supported in items where useTextField is false.
      *
      *
      * @return Boolean
@@ -230,10 +236,10 @@ public class DateItem extends FormItem {
      * If {@link com.smartgwt.client.widgets.form.fields.DateItem#getUseTextField useTextField} is <code>true</code> this
      * property can be used to specify the input format for date strings.  If unset, the input format will be determined based
      * on the specified {@link com.smartgwt.client.widgets.form.fields.DateItem#getDisplayFormat displayFormat} if possible
-     * (see {@link com.smartgwt.client.widgets.form.fields.DateItem#getInputFormat}), otherwise picked up from the Date class
-     * (see {@link com.smartgwt.client..Date#setInputFormat}). <P> Should be set to a standard {@link
-     * com.smartgwt.client..DateInputFormat} or a function which will take a date string as a parameter and return a Javascript
-     * Date object.
+     * (see {@link com.smartgwt.client.widgets.form.fields.DateItem#getInputFormat DateItem.getInputFormat}), otherwise picked
+     * up from the Date class (see {@link com.smartgwt.client..Date#setInputFormat Date.setInputFormat}). <P> Should be set to
+     * a standard {@link com.smartgwt.client..DateInputFormat} or a function which will take a date string as a parameter and
+     * return a Javascript Date object.
      *
      * @param inputFormat inputFormat Default value is null
      */
@@ -245,10 +251,10 @@ public class DateItem extends FormItem {
      * If {@link com.smartgwt.client.widgets.form.fields.DateItem#getUseTextField useTextField} is <code>true</code> this
      * property can be used to specify the input format for date strings.  If unset, the input format will be determined based
      * on the specified {@link com.smartgwt.client.widgets.form.fields.DateItem#getDisplayFormat displayFormat} if possible
-     * (see {@link com.smartgwt.client.widgets.form.fields.DateItem#getInputFormat}), otherwise picked up from the Date class
-     * (see {@link com.smartgwt.client..Date#setInputFormat}). <P> Should be set to a standard {@link
-     * com.smartgwt.client..DateInputFormat} or a function which will take a date string as a parameter and return a Javascript
-     * Date object.
+     * (see {@link com.smartgwt.client.widgets.form.fields.DateItem#getInputFormat DateItem.getInputFormat}), otherwise picked
+     * up from the Date class (see {@link com.smartgwt.client..Date#setInputFormat Date.setInputFormat}). <P> Should be set to
+     * a standard {@link com.smartgwt.client..DateInputFormat} or a function which will take a date string as a parameter and
+     * return a Javascript Date object.
      *
      *
      * @return If {@link com.smartgwt.client.widgets.form.fields.DateItem#getUseTextField useTextField} is <code>true</code> this
@@ -259,7 +265,7 @@ public class DateItem extends FormItem {
      * been specified as one of <code>toUSShortDate</code>, <code>toEuropeanShortDate</code> or <code>toJapanShortDate</code>
      * this method will return the appropriate DateInputFormat to parse strings entered in the specified displayFormat. <P> If
      * no inputFormat can be derived, the method will return null, meaning the standard input format for Date objects
-     * (specified via {@link com.smartgwt.client..Date#setInputFormat}) will be used.
+     * (specified via {@link com.smartgwt.client..Date#setInputFormat Date.setInputFormat}) will be used.
      */
     public String getInputFormat()  {
         return getAttributeAsString("inputFormat");
@@ -291,6 +297,7 @@ public class DateItem extends FormItem {
      * <p><b>Note : </b> This is an advanced setting</p>
      *
      * @param maskDateSeparator maskDateSeparator Default value is "/"
+     * @see com.smartgwt.client.docs.Basics Basics overview and related methods
      */
     public void setMaskDateSeparator(String maskDateSeparator) {
         setAttribute("maskDateSeparator", maskDateSeparator);
@@ -356,6 +363,7 @@ public class DateItem extends FormItem {
      * com.smartgwt.client.widgets.form.validator.Validator} of type "dateRange" should always be declared.
      *
      * @param startDate startDate Default value is 1/1/1995
+     * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
     public void setStartDate(java.util.Date startDate) {
         setAttribute("startDate", startDate);
@@ -372,6 +380,7 @@ public class DateItem extends FormItem {
      *
      *
      * @return java.util.Date
+     * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
     public java.util.Date getStartDate()  {
         return getAttributeAsDate("startDate");
@@ -382,6 +391,7 @@ public class DateItem extends FormItem {
      * property governs the alignment of text within the text field.
      *
      * @param textAlign textAlign Default value is Canvas.RIGHT
+     * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
     public void setTextAlign(Alignment textAlign) {
         setAttribute("textAlign", textAlign.getValue());
@@ -393,6 +403,7 @@ public class DateItem extends FormItem {
      *
      *
      * @return Alignment
+     * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
     public Alignment getTextAlign()  {
         return EnumUtil.getEnum(Alignment.values(), getAttribute("textAlign"));
@@ -409,6 +420,7 @@ public class DateItem extends FormItem {
      * <p><b>Note : </b> This is an advanced setting</p>
      *
      * @param useMask useMask Default value is null
+     * @see com.smartgwt.client.docs.Basics Basics overview and related methods
      */
     public void setUseMask(Boolean useMask) {
         setAttribute("useMask", useMask);
@@ -443,6 +455,7 @@ public class DateItem extends FormItem {
      * Should we show the date in a text field, or as 3 select boxes?
      *
      * @param useTextField useTextField Default value is null
+     * @see com.smartgwt.client.docs.Basics Basics overview and related methods
      */
     public void setUseTextField(Boolean useTextField) {
         setAttribute("useTextField", useTextField);
@@ -453,6 +466,7 @@ public class DateItem extends FormItem {
      *
      *
      * @return Boolean
+     * @see com.smartgwt.client.docs.Basics Basics overview and related methods
      */
     public Boolean getUseTextField()  {
         return getAttributeAsBoolean("useTextField");
@@ -462,8 +476,8 @@ public class DateItem extends FormItem {
             
     /**
      * If {@link com.smartgwt.client.widgets.form.fields.DateItem#getUseTextField useTextField} is true, falls through to
-     * standard {@link com.smartgwt.client.widgets.form.fields.FormItem#deselectValue} implementation on this items freeform
-     * text entry field. Otherwise has no effect.
+     * standard {@link com.smartgwt.client.widgets.form.fields.FormItem#deselectValue FormItem.deselectValue} implementation on
+     * this items freeform text entry field. Otherwise has no effect.
      */
     public native void deselectValue() /*-{
         var self = this.@com.smartgwt.client.core.DataClass::getJsObj()();
@@ -472,8 +486,8 @@ public class DateItem extends FormItem {
 
     /**
      * If {@link com.smartgwt.client.widgets.form.fields.DateItem#getUseTextField useTextField} is true, falls through to
-     * standard {@link com.smartgwt.client.widgets.form.fields.FormItem#deselectValue} implementation on this items freeform
-     * text entry field. Otherwise has no effect.
+     * standard {@link com.smartgwt.client.widgets.form.fields.FormItem#deselectValue FormItem.deselectValue} implementation on
+     * this items freeform text entry field. Otherwise has no effect.
      * @param start If this parameter is passed, new cursor insertion position will be   moved to the start, rather than the end of this
      * item's value.
      */
@@ -484,8 +498,8 @@ public class DateItem extends FormItem {
             
     /**
      * If {@link com.smartgwt.client.widgets.form.fields.DateItem#getUseTextField useTextField} is true, falls through to
-     * standard {@link com.smartgwt.client.widgets.form.fields.FormItem#selectValue} implementation on this items freeform text
-     * entry field. Otherwise has no effect.
+     * standard {@link com.smartgwt.client.widgets.form.fields.FormItem#selectValue FormItem.selectValue} implementation on
+     * this items freeform text entry field. Otherwise has no effect.
      */
     public native void selectValue() /*-{
         var self = this.@com.smartgwt.client.core.DataClass::getJsObj()();
@@ -494,8 +508,8 @@ public class DateItem extends FormItem {
             
     /**
      * If {@link com.smartgwt.client.widgets.form.fields.DateItem#getUseTextField useTextField} is true, falls through to
-     * standard {@link com.smartgwt.client.widgets.form.fields.FormItem#setSelectionRange} implementation on this items
-     * freeform text entry field. Otherwise has no effect.
+     * standard {@link com.smartgwt.client.widgets.form.fields.FormItem#setSelectionRange FormItem.setSelectionRange}
+     * implementation on this items freeform text entry field. Otherwise has no effect.
      * @param start character index for start of new selection
      * @param end character index for end of new selection
      */

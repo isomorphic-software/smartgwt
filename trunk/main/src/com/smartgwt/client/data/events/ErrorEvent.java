@@ -111,7 +111,7 @@ public class ErrorEvent extends AbstractSmartEvent<HandleErrorHandler>  implemen
 
 
     /**
-     * false to suppress {@link com.smartgwt.client.rpc.RPCManager#handleError}
+     * false to suppress {@link com.smartgwt.client.rpc.RPCManager#handleError RPCManager.handleError}
      */
     public void cancel() {
         cancel = true;

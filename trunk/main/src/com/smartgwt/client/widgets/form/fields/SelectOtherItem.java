@@ -116,6 +116,7 @@ public class SelectOtherItem extends SelectItem {
      * enter a new value for the item.
      *
      * @param otherTitle otherTitle Default value is "Other..."
+     * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
     public void setOtherTitle(String otherTitle) {
         setAttribute("otherTitle", otherTitle);
@@ -127,6 +128,7 @@ public class SelectOtherItem extends SelectItem {
      *
      *
      * @return String
+     * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
     public String getOtherTitle()  {
         return getAttributeAsString("otherTitle");
@@ -138,6 +140,7 @@ public class SelectOtherItem extends SelectItem {
      * <p><b>Note : </b> This is an advanced setting</p>
      *
      * @param otherValue otherValue Default value is "***other***"
+     * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
     public void setOtherValue(String otherValue) {
         setAttribute("otherValue", otherValue);
@@ -149,6 +152,7 @@ public class SelectOtherItem extends SelectItem {
      *
      *
      * @return String
+     * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
     public String getOtherValue()  {
         return getAttributeAsString("otherValue");
@@ -182,6 +186,7 @@ public class SelectOtherItem extends SelectItem {
      * item will not change the FormItem's value.
      *
      * @param separatorTitle separatorTitle Default value is "--------------------"
+     * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
     public void setSeparatorTitle(String separatorTitle) {
         setAttribute("separatorTitle", separatorTitle);
@@ -193,6 +198,7 @@ public class SelectOtherItem extends SelectItem {
      *
      *
      * @return String
+     * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
     public String getSeparatorTitle()  {
         return getAttributeAsString("separatorTitle");
@@ -205,6 +211,7 @@ public class SelectOtherItem extends SelectItem {
      * <p><b>Note : </b> This is an advanced setting</p>
      *
      * @param separatorValue separatorValue Default value is "----"
+     * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
     public void setSeparatorValue(String separatorValue) {
         setAttribute("separatorValue", separatorValue);
@@ -217,6 +224,7 @@ public class SelectOtherItem extends SelectItem {
      *
      *
      * @return String
+     * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
     public String getSeparatorValue()  {
         return getAttributeAsString("separatorValue");

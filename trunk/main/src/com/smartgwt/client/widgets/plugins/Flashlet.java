@@ -134,7 +134,7 @@ public class Flashlet extends BrowserPlugin {
     /**
      * Sets the 'name' attribute on the flashlet object.  If a name is not provided it will be  auto-generated.  Note that in
      * general you don't need to set this.  If you have a handle to  your ISC Flashlet object you can simply call {@link
-     * com.smartgwt.client.widgets.plugins.Flashlet#getPluginHandle} to get a  handle to the element.
+     * com.smartgwt.client.widgets.plugins.Flashlet#getPluginHandle Flashlet.getPluginHandle} to get a  handle to the element.
      *
      * @param name name Default value is null
      * @throws IllegalStateException this property cannot be changed after the component has been created
@@ -146,7 +146,7 @@ public class Flashlet extends BrowserPlugin {
     /**
      * Sets the 'name' attribute on the flashlet object.  If a name is not provided it will be  auto-generated.  Note that in
      * general you don't need to set this.  If you have a handle to  your ISC Flashlet object you can simply call {@link
-     * com.smartgwt.client.widgets.plugins.Flashlet#getPluginHandle} to get a  handle to the element.
+     * com.smartgwt.client.widgets.plugins.Flashlet#getPluginHandle Flashlet.getPluginHandle} to get a  handle to the element.
      *
      *
      * @return String

@@ -91,6 +91,7 @@ public class BlurbItem extends FormItem {
      * If true, text that exceeds the specified size of the form item will be clipped
      *
      * @param clipValue clipValue Default value is false
+     * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
     public void setClipValue(Boolean clipValue) {
         setAttribute("clipValue", clipValue);
@@ -101,6 +102,7 @@ public class BlurbItem extends FormItem {
      *
      *
      * @return Boolean
+     * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
     public Boolean getClipValue()  {
         return getAttributeAsBoolean("clipValue");
@@ -110,6 +112,7 @@ public class BlurbItem extends FormItem {
      * By default, texts span all remaining columns
      *
      * @param colSpan colSpan Default value is "*"
+     * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
     public void setColSpan(int colSpan) {
         setAttribute("colSpan", colSpan);
@@ -120,6 +123,7 @@ public class BlurbItem extends FormItem {
      *
      *
      * @return int
+     * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
     public int getColSpan()  {
         return getAttributeAsInt("colSpan");
@@ -129,6 +133,7 @@ public class BlurbItem extends FormItem {
      * Blurb items show no title by default.
      *
      * @param showTitle showTitle Default value is false
+     * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
     public void setShowTitle(Boolean showTitle) {
         setAttribute("showTitle", showTitle);
@@ -139,6 +144,7 @@ public class BlurbItem extends FormItem {
      *
      *
      * @return Boolean
+     * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
     public Boolean getShowTitle()  {
         return getAttributeAsBoolean("showTitle");
@@ -148,6 +154,7 @@ public class BlurbItem extends FormItem {
      * Base css style for this item.
      *
      * @param textBoxStyle textBoxStyle Default value is "staticTextItem"
+     * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
     public void setTextBoxStyle(String textBoxStyle) {
         setAttribute("textBoxStyle", textBoxStyle);
@@ -158,6 +165,7 @@ public class BlurbItem extends FormItem {
      *
      *
      * @return String
+     * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
     public String getTextBoxStyle()  {
         return getAttributeAsString("textBoxStyle");
@@ -167,6 +175,7 @@ public class BlurbItem extends FormItem {
      * If true, item contents can wrap. If false, all the contents should appear on a single line.
      *
      * @param wrap wrap Default value is null
+     * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
     public void setWrap(Boolean wrap) {
         setAttribute("wrap", wrap);
@@ -177,6 +186,7 @@ public class BlurbItem extends FormItem {
      *
      *
      * @return Boolean
+     * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
     public Boolean getWrap()  {
         return getAttributeAsBoolean("wrap");

@@ -99,6 +99,7 @@ public class Label extends Button {
      * Horizontal alignment of label text. See Alignment type for details.
      *
      * @param align align Default value is Canvas.LEFT
+     * @see com.smartgwt.client.docs.Positioning Positioning overview and related methods
      */
     public void setAlign(Alignment align) {
         setAttribute("align", align.getValue(), true);
@@ -109,6 +110,7 @@ public class Label extends Button {
      *
      *
      * @return Alignment
+     * @see com.smartgwt.client.docs.Positioning Positioning overview and related methods
      */
     public Alignment getAlign()  {
         return EnumUtil.getEnum(Alignment.values(), getAttribute("align"));
@@ -122,6 +124,7 @@ public class Label extends Button {
      * and having  overflow:"visible"
      *
      * @param autoFit autoFit Default value is null
+     * @see com.smartgwt.client.docs.Sizing Sizing overview and related methods
      */
     public void setAutoFit(Boolean autoFit) {
         setAttribute("autoFit", autoFit, true);
@@ -136,6 +139,7 @@ public class Label extends Button {
      *
      *
      * @return Boolean
+     * @see com.smartgwt.client.docs.Sizing Sizing overview and related methods
      */
     public Boolean getAutoFit()  {
         return getAttributeAsBoolean("autoFit");
@@ -225,6 +229,7 @@ public class Label extends Button {
      * Change the icon being shown next to the title text.
      *
      * @param icon URL of new icon. Default value is null
+     * @see com.smartgwt.client.docs.ButtonIcon ButtonIcon overview and related methods
      */
     public void setIcon(String icon) {
         setAttribute("icon", icon, true);
@@ -236,6 +241,7 @@ public class Label extends Button {
      *
      *
      * @return String
+     * @see com.smartgwt.client.docs.ButtonIcon ButtonIcon overview and related methods
      */
     public String getIcon()  {
         return getAttributeAsString("icon");
@@ -246,6 +252,7 @@ public class Label extends Button {
      *
      * @param iconAlign iconAlign Default value is null
      * @throws IllegalStateException this property cannot be changed after the component has been created
+     * @see com.smartgwt.client.docs.ButtonIcon ButtonIcon overview and related methods
      */
     public void setIconAlign(String iconAlign)  throws IllegalStateException {
         setAttribute("iconAlign", iconAlign, false);
@@ -256,6 +263,7 @@ public class Label extends Button {
      *
      *
      * @return String
+     * @see com.smartgwt.client.docs.ButtonIcon ButtonIcon overview and related methods
      */
     public String getIconAlign()  {
         return getAttributeAsString("iconAlign");
@@ -266,6 +274,7 @@ public class Label extends Button {
      *
      * @param iconHeight iconHeight Default value is null
      * @throws IllegalStateException this property cannot be changed after the component has been created
+     * @see com.smartgwt.client.docs.ButtonIcon ButtonIcon overview and related methods
      */
     public void setIconHeight(Integer iconHeight)  throws IllegalStateException {
         setAttribute("iconHeight", iconHeight, false);
@@ -276,6 +285,7 @@ public class Label extends Button {
      *
      *
      * @return Integer
+     * @see com.smartgwt.client.docs.ButtonIcon ButtonIcon overview and related methods
      */
     public Integer getIconHeight()  {
         return getAttributeAsInt("iconHeight");
@@ -288,6 +298,7 @@ public class Label extends Button {
      *
      * @param iconOrientation The new orientation of the icon relative to the text of the button.. Default value is "left"
      * @throws IllegalStateException this property cannot be changed after the component has been created
+     * @see com.smartgwt.client.docs.ButtonIcon ButtonIcon overview and related methods
      */
     public void setIconOrientation(String iconOrientation)  throws IllegalStateException {
         setAttribute("iconOrientation", iconOrientation, false);
@@ -299,6 +310,7 @@ public class Label extends Button {
      *
      *
      * @return String
+     * @see com.smartgwt.client.docs.ButtonIcon ButtonIcon overview and related methods
      */
     public String getIconOrientation()  {
         return getAttributeAsString("iconOrientation");
@@ -310,6 +322,7 @@ public class Label extends Button {
      *
      * @param iconSize iconSize Default value is 16
      * @throws IllegalStateException this property cannot be changed after the component has been created
+     * @see com.smartgwt.client.docs.ButtonIcon ButtonIcon overview and related methods
      */
     public void setIconSize(int iconSize)  throws IllegalStateException {
         setAttribute("iconSize", iconSize, false);
@@ -321,6 +334,7 @@ public class Label extends Button {
      *
      *
      * @return int
+     * @see com.smartgwt.client.docs.ButtonIcon ButtonIcon overview and related methods
      */
     public int getIconSize()  {
         return getAttributeAsInt("iconSize");
@@ -331,6 +345,7 @@ public class Label extends Button {
      *
      * @param iconSpacing iconSpacing Default value is 6
      * @throws IllegalStateException this property cannot be changed after the component has been created
+     * @see com.smartgwt.client.docs.ButtonIcon ButtonIcon overview and related methods
      */
     public void setIconSpacing(int iconSpacing)  throws IllegalStateException {
         setAttribute("iconSpacing", iconSpacing, false);
@@ -341,6 +356,7 @@ public class Label extends Button {
      *
      *
      * @return int
+     * @see com.smartgwt.client.docs.ButtonIcon ButtonIcon overview and related methods
      */
     public int getIconSpacing()  {
         return getAttributeAsInt("iconSpacing");
@@ -351,6 +367,7 @@ public class Label extends Button {
      *
      * @param iconWidth iconWidth Default value is null
      * @throws IllegalStateException this property cannot be changed after the component has been created
+     * @see com.smartgwt.client.docs.ButtonIcon ButtonIcon overview and related methods
      */
     public void setIconWidth(Integer iconWidth)  throws IllegalStateException {
         setAttribute("iconWidth", iconWidth, false);
@@ -361,6 +378,7 @@ public class Label extends Button {
      *
      *
      * @return Integer
+     * @see com.smartgwt.client.docs.ButtonIcon ButtonIcon overview and related methods
      */
     public Integer getIconWidth()  {
         return getAttributeAsInt("iconWidth");
@@ -371,6 +389,7 @@ public class Label extends Button {
      *
      * @param showDisabledIcon showDisabledIcon Default value is true
      * @throws IllegalStateException this property cannot be changed after the component has been created
+     * @see com.smartgwt.client.docs.ButtonIcon ButtonIcon overview and related methods
      */
     public void setShowDisabledIcon(Boolean showDisabledIcon)  throws IllegalStateException {
         setAttribute("showDisabledIcon", showDisabledIcon, false);
@@ -381,6 +400,7 @@ public class Label extends Button {
      *
      *
      * @return Boolean
+     * @see com.smartgwt.client.docs.ButtonIcon ButtonIcon overview and related methods
      */
     public Boolean getShowDisabledIcon()  {
         return getAttributeAsBoolean("showDisabledIcon");
@@ -391,6 +411,7 @@ public class Label extends Button {
      *
      * @param showDownIcon showDownIcon Default value is false
      * @throws IllegalStateException this property cannot be changed after the component has been created
+     * @see com.smartgwt.client.docs.ButtonIcon ButtonIcon overview and related methods
      */
     public void setShowDownIcon(Boolean showDownIcon)  throws IllegalStateException {
         setAttribute("showDownIcon", showDownIcon, false);
@@ -401,6 +422,7 @@ public class Label extends Button {
      *
      *
      * @return Boolean
+     * @see com.smartgwt.client.docs.ButtonIcon ButtonIcon overview and related methods
      */
     public Boolean getShowDownIcon()  {
         return getAttributeAsBoolean("showDownIcon");
@@ -413,6 +435,7 @@ public class Label extends Button {
      *
      * @param showFocusedIcon showFocusedIcon Default value is false
      * @throws IllegalStateException this property cannot be changed after the component has been created
+     * @see com.smartgwt.client.docs.ButtonIcon ButtonIcon overview and related methods
      */
     public void setShowFocusedIcon(Boolean showFocusedIcon)  throws IllegalStateException {
         setAttribute("showFocusedIcon", showFocusedIcon, false);
@@ -425,6 +448,7 @@ public class Label extends Button {
      *
      *
      * @return Boolean
+     * @see com.smartgwt.client.docs.ButtonIcon ButtonIcon overview and related methods
      */
     public Boolean getShowFocusedIcon()  {
         return getAttributeAsBoolean("showFocusedIcon");
@@ -435,6 +459,7 @@ public class Label extends Button {
      *
      * @param showRollOverIcon showRollOverIcon Default value is false
      * @throws IllegalStateException this property cannot be changed after the component has been created
+     * @see com.smartgwt.client.docs.ButtonIcon ButtonIcon overview and related methods
      */
     public void setShowRollOverIcon(Boolean showRollOverIcon)  throws IllegalStateException {
         setAttribute("showRollOverIcon", showRollOverIcon, false);
@@ -445,6 +470,7 @@ public class Label extends Button {
      *
      *
      * @return Boolean
+     * @see com.smartgwt.client.docs.ButtonIcon ButtonIcon overview and related methods
      */
     public Boolean getShowRollOverIcon()  {
         return getAttributeAsBoolean("showRollOverIcon");
@@ -455,6 +481,7 @@ public class Label extends Button {
      *
      * @param showSelectedIcon showSelectedIcon Default value is false
      * @throws IllegalStateException this property cannot be changed after the component has been created
+     * @see com.smartgwt.client.docs.ButtonIcon ButtonIcon overview and related methods
      */
     public void setShowSelectedIcon(Boolean showSelectedIcon)  throws IllegalStateException {
         setAttribute("showSelectedIcon", showSelectedIcon, false);
@@ -465,6 +492,7 @@ public class Label extends Button {
      *
      *
      * @return Boolean
+     * @see com.smartgwt.client.docs.ButtonIcon ButtonIcon overview and related methods
      */
     public Boolean getShowSelectedIcon()  {
         return getAttributeAsBoolean("showSelectedIcon");
@@ -474,6 +502,7 @@ public class Label extends Button {
      * Vertical alignment of label text. See VerticalAlignment type for details.
      *
      * @param valign valign Default value is Canvas.CENTER
+     * @see com.smartgwt.client.docs.Positioning Positioning overview and related methods
      */
     public void setValign(VerticalAlignment valign) {
         setAttribute("valign", valign.getValue(), true);
@@ -484,6 +513,7 @@ public class Label extends Button {
      *
      *
      * @return VerticalAlignment
+     * @see com.smartgwt.client.docs.Positioning Positioning overview and related methods
      */
     public VerticalAlignment getValign()  {
         return EnumUtil.getEnum(VerticalAlignment.values(), getAttribute("valign"));
@@ -493,6 +523,7 @@ public class Label extends Button {
      * If false, the label text will not be wrapped to the next line.
      *
      * @param wrap wrap Default value is true
+     * @see com.smartgwt.client.docs.Sizing Sizing overview and related methods
      */
     public void setWrap(Boolean wrap) {
         setAttribute("wrap", wrap, true);
@@ -503,6 +534,7 @@ public class Label extends Button {
      *
      *
      * @return Boolean
+     * @see com.smartgwt.client.docs.Sizing Sizing overview and related methods
      */
     public Boolean getWrap()  {
         return getAttributeAsBoolean("wrap");

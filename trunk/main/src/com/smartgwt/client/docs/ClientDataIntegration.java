@@ -27,8 +27,8 @@ package com.smartgwt.client.docs;
  * onclick="window.open('/examples/databinding/dotNET/temperatureConvert.jsp');return false;">temperature conversion
  * service</a>,&#010 and <a href='/examples/databinding/dotNET/customerSearch.jsp'
  * onclick="window.open('/examples/databinding/dotNET/customerSearch.jsp');return false;">customer search service</a>.&#010
- * Both use the {@link com.smartgwt.client.data.WebService#callOperation} method to query the web service.
- * <b>Note:</b>&#010 These examples will only work if there's a web service running at the WSDL URLs used in the
+ * Both use the {@link com.smartgwt.client.data.WebService#callOperation WebService.callOperation} method to query the web
+ * service. <b>Note:</b>&#010 These examples will only work if there's a web service running at the WSDL URLs used in the
  * examples.&#010 <P>&#010 <B>REST integration (PHP and others)</B>&#010 <P>&#010 For PHP and other server technologies
  * (Cold Fusion, Ruby, Python, Perl..), integration&#010 is based on simple XML or JSON delivered over HTTP, sometimes
  * called the&#010 <a href='http://www.google.com/search?hl=en&q=REST+HTTP'
@@ -79,11 +79,12 @@ package com.smartgwt.client.docs;
  * <P>&#010 <b>Controlling how DSRequests are sent</b>&#010 <P>&#010 According to the {@link
  * com.smartgwt.client.data.OperationBinding#getDataProtocol 'protocol'} being used, the&#010 {@link
  * com.smartgwt.client.docs.DataSourceOperations 'DataSource request data'}, if any, either becomes HTTP&#010 params (sent
- * by GET or POST), or an XML message as put together by&#010 {@link com.smartgwt.client.data.DataSource#xmlSerialize}. 
- * For a DataSource invoking a WSDL-described web&#010 service, XML serialization automatically handles namespacing and
- * SOAP encoding.&#010 <P>&#010 Note that, by default, just {@link com.smartgwt.client.data.DSRequest#getData data} is
- * sent, not any of the metadata such&#010 as {@link com.smartgwt.client.data.DSRequest#getStartRow startRow}.  This can be
- * customized via&#010 {@link com.smartgwt.client.data.DataSource#transformRequest}.&#010 <P>&#010 The URL to contact is
+ * by GET or POST), or an XML message as put together by&#010 {@link com.smartgwt.client.data.DataSource#xmlSerialize
+ * DataSource.xmlSerialize}.  For a DataSource invoking a WSDL-described web&#010 service, XML serialization automatically
+ * handles namespacing and SOAP encoding.&#010 <P>&#010 Note that, by default, just {@link
+ * com.smartgwt.client.data.DSRequest#getData data} is sent, not any of the metadata such&#010 as {@link
+ * com.smartgwt.client.data.DSRequest#getStartRow startRow}.  This can be customized via&#010 {@link
+ * com.smartgwt.client.data.DataSource#transformRequest DataSource.transformRequest}.&#010 <P>&#010 The URL to contact is
  * set via the {@link com.smartgwt.client.data.OperationBinding#getDataURL 'dataURL'}&#010 property.  If using a Web
  * Service, the <code>dataURL</code> defaults to the service location&#010 URL embedded in the WSDL file.&#010 <P>&#010 For
  * example, in the default configuration for non-WSDL binding, since&#010 {@link
@@ -100,9 +101,9 @@ package com.smartgwt.client.docs;
  * Save"')} example for sample XML responses for&#010 all four operationTypes.  &#010 <P>&#010 Similar to input processing,
  * by default DataSource layer metadata, such as&#010 {@link com.smartgwt.client.data.DSResponse#getStartRow startRow}, is
  * not extracted from the response data.  You can&#010 implement {@link
- * com.smartgwt.client.data.DataSource#transformResponse} to fill out the metadata fields of&#010 the {@link
- * com.smartgwt.client.data.DSResponse}, in order to allow more DataSource features, such as paging and&#010 validation
- * errors, to be used with a web service that supports such features.  &#010 <P>&#010 See the
+ * com.smartgwt.client.data.DataSource#transformResponse DataSource.transformResponse} to fill out the metadata fields
+ * of&#010 the {@link com.smartgwt.client.data.DSResponse}, in order to allow more DataSource features, such as paging
+ * and&#010 validation errors, to be used with a web service that supports such features.  &#010 <P>&#010 See the
  * ${isc.DocUtils.linkForExampleId('xmlServerValidationErrors', 'XML')} and &#010
  * ${isc.DocUtils.linkForExampleId('jsonServerValidationErrors', 'JSON')} versions of the transformResponse()&#010 example
  * for an example of providing validation errors in XML or JSON responses.

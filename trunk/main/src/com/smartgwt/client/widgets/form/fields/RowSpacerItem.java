@@ -92,6 +92,7 @@ public class RowSpacerItem extends SpacerItem {
      * by default, separators span all remaining columns
      *
      * @param colSpan colSpan Default value is "*"
+     * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
     public void setColSpan(int colSpan) {
         setAttribute("colSpan", colSpan);
@@ -102,6 +103,7 @@ public class RowSpacerItem extends SpacerItem {
      *
      *
      * @return int
+     * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
     public int getColSpan()  {
         return getAttributeAsInt("colSpan");
@@ -111,6 +113,7 @@ public class RowSpacerItem extends SpacerItem {
      * these items are in a row by themselves by default
      *
      * @param endRow endRow Default value is true
+     * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
     public void setEndRow(Boolean endRow) {
         setAttribute("endRow", endRow);
@@ -121,6 +124,7 @@ public class RowSpacerItem extends SpacerItem {
      *
      *
      * @return Boolean
+     * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
     public Boolean getEndRow()  {
         return getAttributeAsBoolean("endRow");
@@ -130,6 +134,7 @@ public class RowSpacerItem extends SpacerItem {
      * we never show a separate title cell for separators
      *
      * @param showTitle showTitle Default value is false
+     * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
     public void setShowTitle(Boolean showTitle) {
         setAttribute("showTitle", showTitle);
@@ -140,6 +145,7 @@ public class RowSpacerItem extends SpacerItem {
      *
      *
      * @return Boolean
+     * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
     public Boolean getShowTitle()  {
         return getAttributeAsBoolean("showTitle");
@@ -149,6 +155,7 @@ public class RowSpacerItem extends SpacerItem {
      * these items are in a row by themselves by default
      *
      * @param startRow startRow Default value is true
+     * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
     public void setStartRow(Boolean startRow) {
         setAttribute("startRow", startRow);
@@ -159,6 +166,7 @@ public class RowSpacerItem extends SpacerItem {
      *
      *
      * @return Boolean
+     * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
     public Boolean getStartRow()  {
         return getAttributeAsBoolean("startRow");

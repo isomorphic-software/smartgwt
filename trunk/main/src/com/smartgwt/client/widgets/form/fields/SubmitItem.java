@@ -56,9 +56,9 @@ import com.google.gwt.event.shared.*;
 import com.google.gwt.event.shared.HasHandlers;
 
 /**
- * Button that saves the data in the form, by calling {@link com.smartgwt.client.widgets.form.DynamicForm#submit} when
- * clicked. {@link com.smartgwt.client.widgets.form.DynamicForm#submit} for details on how to control what happens when a
- * form is submitted.
+ * Button that saves the data in the form, by calling {@link com.smartgwt.client.widgets.form.DynamicForm#submit
+ * DynamicForm.submit} when clicked. {@link com.smartgwt.client.widgets.form.DynamicForm#submit DynamicForm.submit} for
+ * details on how to control what happens when a form is submitted.
  */
 public class SubmitItem extends ButtonItem {
 

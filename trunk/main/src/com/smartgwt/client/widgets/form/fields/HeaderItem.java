@@ -97,6 +97,7 @@ public class HeaderItem extends FormItem {
      * by default, headers span all remaining columns
      *
      * @param colSpan colSpan Default value is "*"
+     * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
     public void setColSpan(int colSpan) {
         setAttribute("colSpan", colSpan);
@@ -107,6 +108,7 @@ public class HeaderItem extends FormItem {
      *
      *
      * @return int
+     * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
     public int getColSpan()  {
         return getAttributeAsInt("colSpan");
@@ -116,6 +118,7 @@ public class HeaderItem extends FormItem {
      * Header text
      *
      * @param defaultValue defaultValue Default value is "Header"
+     * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
     public void setDefaultValue(String defaultValue) {
         setAttribute("defaultValue", defaultValue);
@@ -126,6 +129,7 @@ public class HeaderItem extends FormItem {
      *
      *
      * @return String
+     * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
     public String getDefaultValue()  {
         return getAttributeAsString("defaultValue");
@@ -135,6 +139,7 @@ public class HeaderItem extends FormItem {
      * these items are in a row by themselves by default
      *
      * @param endRow endRow Default value is true
+     * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
     public void setEndRow(Boolean endRow) {
         setAttribute("endRow", endRow);
@@ -145,6 +150,7 @@ public class HeaderItem extends FormItem {
      *
      *
      * @return Boolean
+     * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
     public Boolean getEndRow()  {
         return getAttributeAsBoolean("endRow");
@@ -154,6 +160,7 @@ public class HeaderItem extends FormItem {
      * Don't show a separate title cell for headers
      *
      * @param showTitle showTitle Default value is false
+     * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
     public void setShowTitle(Boolean showTitle) {
         setAttribute("showTitle", showTitle);
@@ -164,6 +171,7 @@ public class HeaderItem extends FormItem {
      *
      *
      * @return Boolean
+     * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
     public Boolean getShowTitle()  {
         return getAttributeAsBoolean("showTitle");
@@ -173,6 +181,7 @@ public class HeaderItem extends FormItem {
      * these items are in a row by themselves by default
      *
      * @param startRow startRow Default value is true
+     * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
     public void setStartRow(Boolean startRow) {
         setAttribute("startRow", startRow);
@@ -183,6 +192,7 @@ public class HeaderItem extends FormItem {
      *
      *
      * @return Boolean
+     * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
     public Boolean getStartRow()  {
         return getAttributeAsBoolean("startRow");
@@ -192,6 +202,7 @@ public class HeaderItem extends FormItem {
      * Base CSS class for this item
      *
      * @param textBoxStyle textBoxStyle Default value is "headerItem"
+     * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
     public void setTextBoxStyle(String textBoxStyle) {
         setAttribute("textBoxStyle", textBoxStyle);
@@ -202,6 +213,7 @@ public class HeaderItem extends FormItem {
      *
      *
      * @return String
+     * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
     public String getTextBoxStyle()  {
         return getAttributeAsString("textBoxStyle");

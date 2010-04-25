@@ -141,6 +141,9 @@ package com.smartgwt.client.docs;
  * @see com.smartgwt.client.widgets.form.fields.ToolbarItem#getColSpan
  * @see com.smartgwt.client.widgets.form.fields.ToolbarItem#getButtonBaseStyle
  * @see com.smartgwt.client.widgets.form.fields.ComboBoxItem#getShowHintInField
+ * @see com.smartgwt.client..RelativeDateItem#getStartDate
+ * @see com.smartgwt.client..RelativeDateItem#getEndDate
+ * @see com.smartgwt.client..RelativeDateItem#getCenturyThreshold
  * @see com.smartgwt.client.widgets.calendar.Calendar#getBaseStyle
  * @see com.smartgwt.client.widgets.calendar.Calendar#getDayHeaderBaseStyle
  * @see com.smartgwt.client.widgets.calendar.Calendar#getDayBodyBaseStyle

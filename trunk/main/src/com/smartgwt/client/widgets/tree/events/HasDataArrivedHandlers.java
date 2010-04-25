@@ -25,8 +25,8 @@ public interface HasDataArrivedHandlers extends HasHandlers {
      * Notification method fired whenever this TreeGrid receives new data nodes from the  dataSource. Only applies to databound
      * TreeGrids where {@link com.smartgwt.client.widgets.tree.TreeGrid#getData data} is a  {@link
      * com.smartgwt.client..ResultTree} - either explicitly created and applied via {@link
-     * com.smartgwt.client.widgets.tree.TreeGrid#setData} or automatically generated via a {@link
-     * com.smartgwt.client.widgets.tree.TreeGrid#fetchData} call.
+     * com.smartgwt.client.widgets.tree.TreeGrid#setData TreeGrid.setData} or automatically generated via a {@link
+     * com.smartgwt.client.widgets.tree.TreeGrid#fetchData TreeGrid.fetchData} call.
      *
      * @param handler the dataArrived handler
      * @return {@link HandlerRegistration} used to remove this handler

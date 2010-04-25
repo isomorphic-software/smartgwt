@@ -70,15 +70,16 @@ import com.google.gwt.event.shared.HasHandlers;
  * but which may be accessed by custom logic.&#010 <P>&#010 After a ListGrid is created and has loaded data, records may be
  * accessed via&#010 {@link com.smartgwt.client.widgets.grid.ListGrid#getData data}, for example, listGrid.data.get(0)
  * retrieves the first record.&#010 ListGridRecords are also passed to many events, such as&#010 {@link
- * com.smartgwt.client.widgets.grid.ListGrid#addCellClickHandler}.&#010 <P>&#010 A ListGridRecord is always an ordinary
- * JavaScript Object regardless of how the grid's&#010 dataset is loaded (static data, java server, XML web service, etc),
- * and so supports the&#010 normal behaviors of JavaScript Objects, including accessing and assigning to properties&#010
- * via dot notation:&#010 <pre>&#010     var fieldValue = record.<i>fieldName</i>;&#010     record.<i>fieldName</i> =
- * newValue;&#010 </pre>&#010 <P>&#010 Note however that simply assigning a value to a record won't cause the display to
- * be&#010 automatically refreshed - {@link com.smartgwt.client.widgets.grid.ListGrid#refreshCell} needs to be called. 
- * Also,&#010 consider {@link com.smartgwt.client.docs.Editing 'editValues vs saved values'} when directly modifying&#010
- * ListGridRecords.&#010 <P>&#010 See the attributes in the API tab for the full list of special properties on&#010
- * ListGridRecords that will affect the grid's behavior.
+ * com.smartgwt.client.widgets.grid.ListGrid#addCellClickHandler ListGrid.addCellClickHandler}.&#010 <P>&#010 A
+ * ListGridRecord is always an ordinary JavaScript Object regardless of how the grid's&#010 dataset is loaded (static data,
+ * java server, XML web service, etc), and so supports the&#010 normal behaviors of JavaScript Objects, including accessing
+ * and assigning to properties&#010 via dot notation:&#010 <pre>&#010     var fieldValue = record.<i>fieldName</i>;&#010   
+ * record.<i>fieldName</i> = newValue;&#010 </pre>&#010 <P>&#010 Note however that simply assigning a value to a record
+ * won't cause the display to be&#010 automatically refreshed - {@link
+ * com.smartgwt.client.widgets.grid.ListGrid#refreshCell ListGrid.refreshCell} needs to be called.  Also,&#010 consider
+ * {@link com.smartgwt.client.docs.Editing 'editValues vs saved values'} when directly modifying&#010 ListGridRecords.&#010
+ * <P>&#010 See the attributes in the API tab for the full list of special properties on&#010 ListGridRecords that will
+ * affect the grid's behavior.
  */
 public class ListGridRecord extends Record {
 
@@ -106,14 +107,15 @@ public class ListGridRecord extends Record {
     /**
      * Name of a CSS style to use as the {@link com.smartgwt.client.widgets.grid.ListGrid#getBaseStyle baseStyle} for all cells
      * for this particular record.   <P> The styleName specified with have suffixes appended to it as the record changes state
-     * ("Over", "Selected" and so forth) as described by {@link com.smartgwt.client.widgets.grid.ListGrid#getCellStyle}.  For a
-     * single, fixed style for a record, use {@link com.smartgwt.client.widgets.grid.ListGridRecord#getCustomStyle customStyle}
-     * instead. <P> See {@link com.smartgwt.client.widgets.grid.ListGrid#getCellStyle} for an overview of various ways to
+     * ("Over", "Selected" and so forth) as described by {@link com.smartgwt.client.widgets.grid.ListGrid#getCellStyle
+     * ListGrid.getCellStyle}.  For a single, fixed style for a record, use {@link
+     * com.smartgwt.client.widgets.grid.ListGridRecord#getCustomStyle customStyle} instead. <P> See {@link
+     * com.smartgwt.client.widgets.grid.ListGrid#getCellStyle ListGrid.getCellStyle} for an overview of various ways to
      * customize styling, both declarative and programmatic. <P> If this property is changed after draw(), to refresh the grid
-     * call {@link com.smartgwt.client.widgets.grid.ListGrid#refreshRow} (or {@link
-     * com.smartgwt.client.widgets.grid.ListGrid#markForRedraw} if several rows are being refreshed). <P> If your application's
-     * data uses the "_baseStyle" attribute for something else, the property name can be changed via {@link
-     * com.smartgwt.client.widgets.grid.ListGrid#getRecordBaseStyleProperty recordBaseStyleProperty}.
+     * call {@link com.smartgwt.client.widgets.grid.ListGrid#refreshRow ListGrid.refreshRow} (or {@link
+     * com.smartgwt.client.widgets.grid.ListGrid#markForRedraw ListGrid.markForRedraw} if several rows are being refreshed).
+     * <P> If your application's data uses the "_baseStyle" attribute for something else, the property name can be changed via
+     * {@link com.smartgwt.client.widgets.grid.ListGrid#getRecordBaseStyleProperty recordBaseStyleProperty}.
      *
      * @param _baseStyle _baseStyle Default value is null
      */
@@ -124,14 +126,15 @@ public class ListGridRecord extends Record {
     /**
      * Name of a CSS style to use as the {@link com.smartgwt.client.widgets.grid.ListGrid#getBaseStyle baseStyle} for all cells
      * for this particular record.   <P> The styleName specified with have suffixes appended to it as the record changes state
-     * ("Over", "Selected" and so forth) as described by {@link com.smartgwt.client.widgets.grid.ListGrid#getCellStyle}.  For a
-     * single, fixed style for a record, use {@link com.smartgwt.client.widgets.grid.ListGridRecord#getCustomStyle customStyle}
-     * instead. <P> See {@link com.smartgwt.client.widgets.grid.ListGrid#getCellStyle} for an overview of various ways to
+     * ("Over", "Selected" and so forth) as described by {@link com.smartgwt.client.widgets.grid.ListGrid#getCellStyle
+     * ListGrid.getCellStyle}.  For a single, fixed style for a record, use {@link
+     * com.smartgwt.client.widgets.grid.ListGridRecord#getCustomStyle customStyle} instead. <P> See {@link
+     * com.smartgwt.client.widgets.grid.ListGrid#getCellStyle ListGrid.getCellStyle} for an overview of various ways to
      * customize styling, both declarative and programmatic. <P> If this property is changed after draw(), to refresh the grid
-     * call {@link com.smartgwt.client.widgets.grid.ListGrid#refreshRow} (or {@link
-     * com.smartgwt.client.widgets.grid.ListGrid#markForRedraw} if several rows are being refreshed). <P> If your application's
-     * data uses the "_baseStyle" attribute for something else, the property name can be changed via {@link
-     * com.smartgwt.client.widgets.grid.ListGrid#getRecordBaseStyleProperty recordBaseStyleProperty}.
+     * call {@link com.smartgwt.client.widgets.grid.ListGrid#refreshRow ListGrid.refreshRow} (or {@link
+     * com.smartgwt.client.widgets.grid.ListGrid#markForRedraw ListGrid.markForRedraw} if several rows are being refreshed).
+     * <P> If your application's data uses the "_baseStyle" attribute for something else, the property name can be changed via
+     * {@link com.smartgwt.client.widgets.grid.ListGrid#getRecordBaseStyleProperty recordBaseStyleProperty}.
      *
      *
      * @return String
@@ -232,12 +235,12 @@ public class ListGridRecord extends Record {
      * Name of a CSS style to use for all cells for this particular record.   <P> Note that using this property assigns a
      * single, fixed style to the record, so rollover and selection styling are disabled.  To provide a series of stateful
      * styles for a record use {@link com.smartgwt.client.widgets.grid.ListGridRecord#get_baseStyle _baseStyle} instead. <P>
-     * See {@link com.smartgwt.client.widgets.grid.ListGrid#getCellStyle} for an overview of various ways to customize styling,
-     * both declarative and programmatic. <P> If this property is changed after draw(), to refresh the grid call {@link
-     * com.smartgwt.client.widgets.grid.ListGrid#refreshRow} (or {@link
-     * com.smartgwt.client.widgets.grid.ListGrid#markForRedraw} if several rows are being refreshed). <P> If your application's
-     * data uses the "customStyle" attribute for something else, the property name can be changed via {@link
-     * com.smartgwt.client.widgets.grid.ListGrid#getRecordCustomStyleProperty recordCustomStyleProperty}.
+     * See {@link com.smartgwt.client.widgets.grid.ListGrid#getCellStyle ListGrid.getCellStyle} for an overview of various ways
+     * to customize styling, both declarative and programmatic. <P> If this property is changed after draw(), to refresh the
+     * grid call {@link com.smartgwt.client.widgets.grid.ListGrid#refreshRow ListGrid.refreshRow} (or {@link
+     * com.smartgwt.client.widgets.grid.ListGrid#markForRedraw ListGrid.markForRedraw} if several rows are being refreshed).
+     * <P> If your application's data uses the "customStyle" attribute for something else, the property name can be changed via
+     * {@link com.smartgwt.client.widgets.grid.ListGrid#getRecordCustomStyleProperty recordCustomStyleProperty}.
      *
      * @param customStyle customStyle Default value is null
      */
@@ -249,12 +252,12 @@ public class ListGridRecord extends Record {
      * Name of a CSS style to use for all cells for this particular record.   <P> Note that using this property assigns a
      * single, fixed style to the record, so rollover and selection styling are disabled.  To provide a series of stateful
      * styles for a record use {@link com.smartgwt.client.widgets.grid.ListGridRecord#get_baseStyle _baseStyle} instead. <P>
-     * See {@link com.smartgwt.client.widgets.grid.ListGrid#getCellStyle} for an overview of various ways to customize styling,
-     * both declarative and programmatic. <P> If this property is changed after draw(), to refresh the grid call {@link
-     * com.smartgwt.client.widgets.grid.ListGrid#refreshRow} (or {@link
-     * com.smartgwt.client.widgets.grid.ListGrid#markForRedraw} if several rows are being refreshed). <P> If your application's
-     * data uses the "customStyle" attribute for something else, the property name can be changed via {@link
-     * com.smartgwt.client.widgets.grid.ListGrid#getRecordCustomStyleProperty recordCustomStyleProperty}.
+     * See {@link com.smartgwt.client.widgets.grid.ListGrid#getCellStyle ListGrid.getCellStyle} for an overview of various ways
+     * to customize styling, both declarative and programmatic. <P> If this property is changed after draw(), to refresh the
+     * grid call {@link com.smartgwt.client.widgets.grid.ListGrid#refreshRow ListGrid.refreshRow} (or {@link
+     * com.smartgwt.client.widgets.grid.ListGrid#markForRedraw ListGrid.markForRedraw} if several rows are being refreshed).
+     * <P> If your application's data uses the "customStyle" attribute for something else, the property name can be changed via
+     * {@link com.smartgwt.client.widgets.grid.ListGrid#getRecordCustomStyleProperty recordCustomStyleProperty}.
      *
      *
      * @return String

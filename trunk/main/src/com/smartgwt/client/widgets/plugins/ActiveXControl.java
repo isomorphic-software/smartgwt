@@ -134,7 +134,8 @@ public class ActiveXControl extends BrowserPlugin {
     /**
      * Sets the 'id' attribute on the object.  If a name is not provided it will be  auto-generated.  Note that in general you
      * don't need to set this.  If you have a reference to  your ISC ActiveX control object you can simply call  {@link
-     * com.smartgwt.client.widgets.plugins.ActiveXControl#getPluginHandle} to get a handle to the element.
+     * com.smartgwt.client.widgets.plugins.ActiveXControl#getPluginHandle ActiveXControl.getPluginHandle} to get a handle to
+     * the element.
      *
      * @param id id Default value is null
      * @throws IllegalStateException this property cannot be changed after the component has been created
@@ -146,7 +147,8 @@ public class ActiveXControl extends BrowserPlugin {
     /**
      * Sets the 'id' attribute on the object.  If a name is not provided it will be  auto-generated.  Note that in general you
      * don't need to set this.  If you have a reference to  your ISC ActiveX control object you can simply call  {@link
-     * com.smartgwt.client.widgets.plugins.ActiveXControl#getPluginHandle} to get a handle to the element.
+     * com.smartgwt.client.widgets.plugins.ActiveXControl#getPluginHandle ActiveXControl.getPluginHandle} to get a handle to
+     * the element.
      *
      *
      * @return String

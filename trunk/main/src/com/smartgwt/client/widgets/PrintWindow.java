@@ -58,6 +58,7 @@ import com.google.gwt.event.shared.HasHandlers;
 /**
  * Subclass of {@link com.smartgwt.client.widgets.Window} used for displaying a printable view. Includes a "Print" button
  * header control to trigger printing of content.
+ * @see com.smartgwt.client.docs.Printing Printing overview and related methods
  */
 public class PrintWindow extends Window {
 

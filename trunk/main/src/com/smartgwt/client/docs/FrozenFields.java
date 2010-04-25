@@ -7,11 +7,11 @@ package com.smartgwt.client.docs;
  * may be scrolled off.  This feature is typically used to allow basic identifying information (like an "accountId") to
  * remain on screen while the user scrolls through a large number of related fields. <P> Fields can be programmatically
  * frozen via setting {@link com.smartgwt.client.widgets.grid.ListGridField#getFrozen 'field.frozen'} to true when the grid
- * is created, or dynamically frozen and unfrozen via {@link com.smartgwt.client.widgets.grid.ListGrid#freezeField} and
- * {@link com.smartgwt.client.widgets.grid.ListGrid#unfreezeField}. The setting {@link
- * com.smartgwt.client.widgets.grid.ListGrid#getCanFreezeFields 'canFreezeFields'} enables a user interface to allow end
- * users to dynamically freeze and unfreeze fields. <P> The frozen fields feature is not compatible with the following
- * features: <ul> <li> variable height auto-sizing records      ({@link
+ * is created, or dynamically frozen and unfrozen via {@link com.smartgwt.client.widgets.grid.ListGrid#freezeField
+ * ListGrid.freezeField} and {@link com.smartgwt.client.widgets.grid.ListGrid#unfreezeField ListGrid.unfreezeField}. The
+ * setting {@link com.smartgwt.client.widgets.grid.ListGrid#getCanFreezeFields 'canFreezeFields'} enables a user interface
+ * to allow end users to dynamically freeze and unfreeze fields. <P> The frozen fields feature is not compatible with the
+ * following features: <ul> <li> variable height auto-sizing records      ({@link
  * com.smartgwt.client.widgets.grid.ListGrid#getFixedRecordHeights 'fixedRecordHeights:false'}) <li> {@link
  * com.smartgwt.client.docs.AutoFitData}:"horizontal", as well as headers that autoFit to titles      (normally enabled via
  * <code>field.overflow:"visible"</code>) <li> the {@link com.smartgwt.client..CubeGrid} subclass of ListGrid <li> nested

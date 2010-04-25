@@ -61,10 +61,10 @@ import com.google.gwt.event.shared.HasHandlers;
  * page-specific events ('load', 'unload', 'idle' and 'resize'), events are processed in the following sequence: <p> 1. The
  * event is sent to any global (page-level) event handlers. These handlers can cancel further propagation of the event by
  * returning false.  You can register to listen for any of the events linked in the seeAlso section (below) by calling
- * {@link com.smartgwt.client.util.Page#setEvent} method. <p> 2. If the event occurred on a form element or a link, it is
- * passed on to the browser so that the element will perform its default action. No widget receives the event. <p> 3. If
- * the event occurred on an enabled widget (but not on a form element or link inside the widget), it is sent to that
- * widget's event handler, if any. This handler can cancel further propagation of the event by returning false.  An
+ * {@link com.smartgwt.client.util.Page#setEvent Page.setEvent} method. <p> 2. If the event occurred on a form element or a
+ * link, it is passed on to the browser so that the element will perform its default action. No widget receives the event.
+ * <p> 3. If the event occurred on an enabled widget (but not on a form element or link inside the widget), it is sent to
+ * that widget's event handler, if any. This handler can cancel further propagation of the event by returning false.  An
  * "enabled" widget is any widget that defines an event handler for one of the supported events.  Interceptable events are
  * defined in the {@link com.smartgwt.client..Canvas#methods#events}. <p> 4. The event is "bubbled" up to the widget's
  * parent in the containment hierarchy, if any. Again, the parent's handler for the event can cancel further propagation by
@@ -168,10 +168,10 @@ public class EventHandler {
     }-*/;
             
     /**
-     * Applies to {@link com.smartgwt.client.widgets.Canvas#addMouseWheelHandler} events only. Returns an integer indicating
-     * how far the mouse wheel was rotated. This value will be positive if the user scrolled the mousewheel forward or up, or
-     * negative if scrolled in the other direction and will be a multiple of 1 where 1 indicates the smallest possible rotation
-     * of the wheel.
+     * Applies to {@link com.smartgwt.client.widgets.Canvas#addMouseWheelHandler Canvas.addMouseWheelHandler} events only.
+     * Returns an integer indicating how far the mouse wheel was rotated. This value will be positive if the user scrolled the
+     * mousewheel forward or up, or negative if scrolled in the other direction and will be a multiple of 1 where 1 indicates
+     * the smallest possible rotation of the wheel.
      *
      * @return integer indicating how far the mouse wheel was rotated.
      */

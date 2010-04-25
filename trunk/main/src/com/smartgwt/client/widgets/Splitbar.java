@@ -207,6 +207,7 @@ public class Splitbar extends StretchImg {
      *
      * @param hSrc hSrc Default value is null
      * @throws IllegalStateException this property cannot be changed after the component has been created
+     * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
     public void setHSrc(String hSrc)  throws IllegalStateException {
         setAttribute("hSrc", hSrc, false);
@@ -218,6 +219,7 @@ public class Splitbar extends StretchImg {
      *
      *
      * @return String
+     * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
     public String getHSrc()  {
         return getAttributeAsString("hSrc");
@@ -328,6 +330,7 @@ public class Splitbar extends StretchImg {
      *
      * @param src src Default value is null
      * @throws IllegalStateException this property cannot be changed after the component has been created
+     * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
     public void setSrc(String src)  throws IllegalStateException {
         setAttribute("src", src, false);
@@ -342,6 +345,7 @@ public class Splitbar extends StretchImg {
      *
      *
      * @return String
+     * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
     public String getSrc()  {
         return getAttributeAsString("src");
@@ -389,6 +393,7 @@ public class Splitbar extends StretchImg {
      *
      * @param vSrc vSrc Default value is null
      * @throws IllegalStateException this property cannot be changed after the component has been created
+     * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
     public void setVSrc(String vSrc)  throws IllegalStateException {
         setAttribute("vSrc", vSrc, false);
@@ -400,6 +405,7 @@ public class Splitbar extends StretchImg {
      *
      *
      * @return String
+     * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
     public String getVSrc()  {
         return getAttributeAsString("vSrc");

@@ -142,11 +142,12 @@ public class Layout extends Canvas {
      * com.smartgwt.client.widgets.Canvas#getCanAcceptDrop 'canAcceptDrop'}:true and <code>canDropComponents:true</code>&#010
      * on a Layout, when a droppable Canvas ({@link com.smartgwt.client.widgets.Canvas#getCanDrop 'canDrop:true'} is dragged
      * over&#010 the layout will show a dropLine (a simple insertion line) at the drop location.  &#010 <P>&#010 When the drop
-     * occurs, the dragTarget (obtained using&#010 {@link com.smartgwt.client.util.EventHandler#getDragTarget}) is added as a
-     * member of this layout at the location&#010 shown by the dropLine (calculated by {@link
-     * com.smartgwt.client.widgets.layout.Layout#getDropPosition}).  This default&#010 behavior allows either members or
-     * external components that have&#010 {@link com.smartgwt.client.widgets.Canvas#getCanDragReposition canDragReposition} (or
-     * {@link com.smartgwt.client.widgets.Canvas#getCanDrag canDrag}) and {@link com.smartgwt.client.widgets.Canvas#getCanDrop
+     * occurs, the dragTarget (obtained using&#010 {@link com.smartgwt.client.util.EventHandler#getDragTarget
+     * EventHandler.getDragTarget}) is added as a member of this layout at the location&#010 shown by the dropLine (calculated
+     * by {@link com.smartgwt.client.widgets.layout.Layout#getDropPosition Layout.getDropPosition}).  This default&#010
+     * behavior allows either members or external components that have&#010 {@link
+     * com.smartgwt.client.widgets.Canvas#getCanDragReposition canDragReposition} (or {@link
+     * com.smartgwt.client.widgets.Canvas#getCanDrag canDrag}) and {@link com.smartgwt.client.widgets.Canvas#getCanDrop
      * canDrop} set&#010 to <code>true</code> to be added to or reordered within the Layout.&#010 <P>&#010 You can control the
      * thickness of the dropLine via {@link com.smartgwt.client.widgets.layout.Layout#getDropLineThickness dropLineThickness}
      * and&#010 you can customize the style using css styling in the skin file (look for .layoutDropLine in&#010
@@ -164,6 +165,7 @@ public class Layout extends Canvas {
      *
      * @param canDropComponents canDropComponents Default value is true
      * @throws IllegalStateException this property cannot be changed after the component has been created
+     * @see com.smartgwt.client.docs.Dragdrop Dragdrop overview and related methods
      */
     public void setCanDropComponents(Boolean canDropComponents)  throws IllegalStateException {
         setAttribute("canDropComponents", canDropComponents, false);
@@ -174,11 +176,12 @@ public class Layout extends Canvas {
      * com.smartgwt.client.widgets.Canvas#getCanAcceptDrop 'canAcceptDrop'}:true and <code>canDropComponents:true</code>&#010
      * on a Layout, when a droppable Canvas ({@link com.smartgwt.client.widgets.Canvas#getCanDrop 'canDrop:true'} is dragged
      * over&#010 the layout will show a dropLine (a simple insertion line) at the drop location.  &#010 <P>&#010 When the drop
-     * occurs, the dragTarget (obtained using&#010 {@link com.smartgwt.client.util.EventHandler#getDragTarget}) is added as a
-     * member of this layout at the location&#010 shown by the dropLine (calculated by {@link
-     * com.smartgwt.client.widgets.layout.Layout#getDropPosition}).  This default&#010 behavior allows either members or
-     * external components that have&#010 {@link com.smartgwt.client.widgets.Canvas#getCanDragReposition canDragReposition} (or
-     * {@link com.smartgwt.client.widgets.Canvas#getCanDrag canDrag}) and {@link com.smartgwt.client.widgets.Canvas#getCanDrop
+     * occurs, the dragTarget (obtained using&#010 {@link com.smartgwt.client.util.EventHandler#getDragTarget
+     * EventHandler.getDragTarget}) is added as a member of this layout at the location&#010 shown by the dropLine (calculated
+     * by {@link com.smartgwt.client.widgets.layout.Layout#getDropPosition Layout.getDropPosition}).  This default&#010
+     * behavior allows either members or external components that have&#010 {@link
+     * com.smartgwt.client.widgets.Canvas#getCanDragReposition canDragReposition} (or {@link
+     * com.smartgwt.client.widgets.Canvas#getCanDrag canDrag}) and {@link com.smartgwt.client.widgets.Canvas#getCanDrop
      * canDrop} set&#010 to <code>true</code> to be added to or reordered within the Layout.&#010 <P>&#010 You can control the
      * thickness of the dropLine via {@link com.smartgwt.client.widgets.layout.Layout#getDropLineThickness dropLineThickness}
      * and&#010 you can customize the style using css styling in the skin file (look for .layoutDropLine in&#010
@@ -195,6 +198,7 @@ public class Layout extends Canvas {
      *
      *
      * @return Boolean
+     * @see com.smartgwt.client.docs.Dragdrop Dragdrop overview and related methods
      */
     public Boolean getCanDropComponents()  {
         return getAttributeAsBoolean("canDropComponents");
@@ -228,6 +232,7 @@ public class Layout extends Canvas {
      *
      * @param dropLineThickness dropLineThickness Default value is 2
      * @throws IllegalStateException this property cannot be changed after the component has been created
+     * @see com.smartgwt.client.docs.Dragdrop Dragdrop overview and related methods
      */
     public void setDropLineThickness(int dropLineThickness)  throws IllegalStateException {
         setAttribute("dropLineThickness", dropLineThickness, false);
@@ -240,6 +245,7 @@ public class Layout extends Canvas {
      *
      *
      * @return int
+     * @see com.smartgwt.client.docs.Dragdrop Dragdrop overview and related methods
      */
     public int getDropLineThickness()  {
         return getAttributeAsInt("dropLineThickness");
@@ -339,7 +345,8 @@ public class Layout extends Canvas {
      * Space outside of all members. This attribute, along with {@link
      * com.smartgwt.client.widgets.layout.Layout#getLayoutLeftMargin layoutLeftMargin}  and related properties does not have a
      * true setter method.<br> It may be assigned directly at runtime. After setting the property,  {@link
-     * com.smartgwt.client.widgets.layout.Layout#setLayoutMargin} may be called with no arguments to reflow the layout.
+     * com.smartgwt.client.widgets.layout.Layout#setLayoutMargin Layout.setLayoutMargin} may be called with no arguments to
+     * reflow the layout.
      * Method to force a reflow of the layout after directly assigning a value to any of the layout*Margin properties. Takes no arguments.
      *
      * @param layoutMargin layoutMargin Default value is null
@@ -352,7 +359,8 @@ public class Layout extends Canvas {
      * Space outside of all members. This attribute, along with {@link
      * com.smartgwt.client.widgets.layout.Layout#getLayoutLeftMargin layoutLeftMargin}  and related properties does not have a
      * true setter method.<br> It may be assigned directly at runtime. After setting the property,  {@link
-     * com.smartgwt.client.widgets.layout.Layout#setLayoutMargin} may be called with no arguments to reflow the layout.
+     * com.smartgwt.client.widgets.layout.Layout#setLayoutMargin Layout.setLayoutMargin} may be called with no arguments to
+     * reflow the layout.
      *
      *
      * @return Integer
@@ -504,6 +512,7 @@ public class Layout extends Canvas {
      *
      * @param memberOverlap memberOverlap Default value is 0
      * @throws IllegalStateException this property cannot be changed after the component has been created
+     * @see com.smartgwt.client.docs.LayoutMember LayoutMember overview and related methods
      */
     public void setMemberOverlap(int memberOverlap)  throws IllegalStateException {
         setAttribute("memberOverlap", memberOverlap, false);
@@ -518,6 +527,7 @@ public class Layout extends Canvas {
      *
      *
      * @return int
+     * @see com.smartgwt.client.docs.LayoutMember LayoutMember overview and related methods
      */
     public int getMemberOverlap()  {
         return getAttributeAsInt("memberOverlap");
@@ -700,6 +710,7 @@ public class Layout extends Canvas {
      * dragged widget for the duration of the drag and drop interaction.
      *
      * @param showDragPlaceHolder showDragPlaceHolder Default value is null
+     * @see com.smartgwt.client.docs.Dragdrop Dragdrop overview and related methods
      */
     public void setShowDragPlaceHolder(Boolean showDragPlaceHolder) {
         setAttribute("showDragPlaceHolder", showDragPlaceHolder, true);
@@ -711,6 +722,7 @@ public class Layout extends Canvas {
      *
      *
      * @return Boolean
+     * @see com.smartgwt.client.docs.Dragdrop Dragdrop overview and related methods
      */
     public Boolean getShowDragPlaceHolder()  {
         return getAttributeAsBoolean("showDragPlaceHolder");
@@ -839,7 +851,7 @@ public class Layout extends Canvas {
     /**
      * Calling this method hides the dropLine shown during a drag and drop interaction with a Layout that has {@link
      * com.smartgwt.client.widgets.layout.Layout#getCanDropComponents canDropComponents} set to true.  This method is only
-     * useful for custom implementations of {@link com.smartgwt.client.widgets.layout.Layout#drop} as the default
+     * useful for custom implementations of {@link com.smartgwt.client.widgets.layout.Layout#drop Layout.drop} as the default
      * implementation calls this method automatically.
      */
     public native void hideDropLine() /*-{

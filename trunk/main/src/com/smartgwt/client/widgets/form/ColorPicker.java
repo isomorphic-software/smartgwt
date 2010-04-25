@@ -486,8 +486,9 @@ public class ColorPicker extends Window  implements com.smartgwt.client.widgets.
     /**
      * Override this method to be kept informed when the ColorPicker changes in real-time  (for example, if you need to update
      * your own GUI accordingly). Then use the  getXxxx() methods (for example, {@link
-     * com.smartgwt.client.widgets.form.ColorPicker#getBlue} or  {@link
-     * com.smartgwt.client.widgets.form.ColorPicker#getLuminosity})to obtain current state as required.
+     * com.smartgwt.client.widgets.form.ColorPicker#getBlue ColorPicker.getBlue} or  {@link
+     * com.smartgwt.client.widgets.form.ColorPicker#getLuminosity ColorPicker.getLuminosity})to obtain current state as
+     * required.
      */
     public native void colorChanged() /*-{
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();

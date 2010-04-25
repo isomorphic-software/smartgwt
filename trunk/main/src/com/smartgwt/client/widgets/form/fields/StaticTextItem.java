@@ -96,6 +96,7 @@ public class StaticTextItem extends FormItem {
      * If true, text that exceeds the specified size of the form item will be clipped
      *
      * @param clipValue clipValue Default value is false
+     * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
     public void setClipValue(Boolean clipValue) {
         setAttribute("clipValue", clipValue);
@@ -106,6 +107,7 @@ public class StaticTextItem extends FormItem {
      *
      *
      * @return Boolean
+     * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
     public Boolean getClipValue()  {
         return getAttributeAsBoolean("clipValue");
@@ -117,6 +119,7 @@ public class StaticTextItem extends FormItem {
      * displayed to the user rather than the interpreted HTML (for example <code>"<b>AAA</b>"</code>)
      *
      * @param outputAsHTML outputAsHTML Default value is false
+     * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
     public void setOutputAsHTML(Boolean outputAsHTML) {
         setAttribute("outputAsHTML", outputAsHTML);
@@ -129,6 +132,7 @@ public class StaticTextItem extends FormItem {
      *
      *
      * @return Boolean
+     * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
     public Boolean getOutputAsHTML()  {
         return getAttributeAsBoolean("outputAsHTML");
@@ -138,6 +142,7 @@ public class StaticTextItem extends FormItem {
      * Base CSS class for this item
      *
      * @param textBoxStyle textBoxStyle Default value is "staticTextItem"
+     * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
     public void setTextBoxStyle(String textBoxStyle) {
         setAttribute("textBoxStyle", textBoxStyle);
@@ -148,6 +153,7 @@ public class StaticTextItem extends FormItem {
      *
      *
      * @return String
+     * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
     public String getTextBoxStyle()  {
         return getAttributeAsString("textBoxStyle");
@@ -157,6 +163,7 @@ public class StaticTextItem extends FormItem {
      * If true, item contents can wrap. If false, all the contents should appear on a single line.
      *
      * @param wrap wrap Default value is true
+     * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
     public void setWrap(Boolean wrap) {
         setAttribute("wrap", wrap);
@@ -167,6 +174,7 @@ public class StaticTextItem extends FormItem {
      *
      *
      * @return Boolean
+     * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
     public Boolean getWrap()  {
         return getAttributeAsBoolean("wrap");

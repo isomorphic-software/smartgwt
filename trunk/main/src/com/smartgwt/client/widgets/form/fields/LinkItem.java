@@ -113,7 +113,7 @@ public class LinkItem extends StaticTextItem {
      * setting this property.  The value of this property will be  passed as the value to the <code>target</code> attribute of
      * the anchor tag used to render  the link. <P> If you set linkItem.target to "javascript", the default behaviour is to
      * catch and consume mouse-clicks that would result in the link being followed.  Instead, the {@link
-     * com.smartgwt.client.widgets.form.fields.FormItem#addClickHandler} event is fired.
+     * com.smartgwt.client.widgets.form.fields.FormItem#addClickHandler FormItem.addClickHandler} event is fired.
      *
      * @param target target Default value is "_blank"
      */
@@ -126,7 +126,7 @@ public class LinkItem extends StaticTextItem {
      * setting this property.  The value of this property will be  passed as the value to the <code>target</code> attribute of
      * the anchor tag used to render  the link. <P> If you set linkItem.target to "javascript", the default behaviour is to
      * catch and consume mouse-clicks that would result in the link being followed.  Instead, the {@link
-     * com.smartgwt.client.widgets.form.fields.FormItem#addClickHandler} event is fired.
+     * com.smartgwt.client.widgets.form.fields.FormItem#addClickHandler FormItem.addClickHandler} event is fired.
      *
      *
      * @return String

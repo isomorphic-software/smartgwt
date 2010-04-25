@@ -178,7 +178,7 @@ public class FilterClause extends HStack {
      * If true (the default), validates the entered value when it changes, to make sure it is a  a valid value of its type
      * (valid string, number, and so on).  No other validation is  carried out.  If you switch this property off, it is still
      * possible to validate the  <code>FilterClause</code> by calling {@link
-     * com.smartgwt.client.widgets.form.FilterClause#validate} from your own code.
+     * com.smartgwt.client.widgets.form.FilterClause#validate FilterClause.validate} from your own code.
      *
      * @param validateOnChange validateOnChange Default value is true
      * @throws IllegalStateException this property cannot be changed after the component has been created
@@ -191,7 +191,7 @@ public class FilterClause extends HStack {
      * If true (the default), validates the entered value when it changes, to make sure it is a  a valid value of its type
      * (valid string, number, and so on).  No other validation is  carried out.  If you switch this property off, it is still
      * possible to validate the  <code>FilterClause</code> by calling {@link
-     * com.smartgwt.client.widgets.form.FilterClause#validate} from your own code.
+     * com.smartgwt.client.widgets.form.FilterClause#validate FilterClause.validate} from your own code.
      *
      *
      * @return Boolean

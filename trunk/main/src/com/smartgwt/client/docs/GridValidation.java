@@ -8,8 +8,8 @@ package com.smartgwt.client.docs;
  * committed to the server for saving.  Standard validation can also be triggered for a cell or row programmatically at any
  * time.<br> When standard validation occurs, {@link com.smartgwt.client.widgets.grid.ListGridField#getValidators
  * validators} will be run on each cell to be validated.<br> In addition to this standard behavior developers can add
- * custom errors to fields via {@link com.smartgwt.client.widgets.grid.ListGrid#setFieldError} / {@link
- * com.smartgwt.client.widgets.grid.ListGrid#setFieldError}.
+ * custom errors to fields via {@link com.smartgwt.client.widgets.grid.ListGrid#setFieldError ListGrid.setFieldError} /
+ * {@link com.smartgwt.client.widgets.grid.ListGrid#setFieldError ListGrid.setFieldError}.
  * @see com.smartgwt.client.widgets.grid.ListGrid#validateRow
  * @see com.smartgwt.client.widgets.grid.ListGrid#validateCell
  * @see com.smartgwt.client.widgets.grid.ListGrid#getRequiredFieldMessage

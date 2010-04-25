@@ -14,9 +14,9 @@ package com.smartgwt.client.docs;
  * com.smartgwt.client.data.DataSourceField#getType 'type'} "binary".  By default, a DynamicForm bound to a DataSource with
  * a field of type "binary" will use the {@link com.smartgwt.client.widgets.form.fields.FileItem}, which displays a
  * standard HTML &lt;input type="upload"&gt; form control. <P> When you call {@link
- * com.smartgwt.client.widgets.form.DynamicForm#saveData} on a DynamicForm containing a FileItem, Smart GWT processes the
- * save identically to a saveData() call that did not include a file upload: <ul> <li> if you are using the built-in SQL
- * connectors via serverType:"sql", the file will be saved to SQL as described under {@link
+ * com.smartgwt.client.widgets.form.DynamicForm#saveData DynamicForm.saveData} on a DynamicForm containing a FileItem,
+ * Smart GWT processes the save identically to a saveData() call that did not include a file upload: <ul> <li> if you are
+ * using the built-in SQL connectors via serverType:"sql", the file will be saved to SQL as described under {@link
  * com.smartgwt.client.types.FieldType}. <li> if you have server-side business logic, the inbound request may be routed to
  * your business logic via RPCManager dispatch or DMI declarations as normal, your business logic will receive a normal
  * DSRequest, and you are expected to provide a normal DSResponse. </ul> <P> Client-side callbacks, such as the callback
@@ -43,9 +43,9 @@ package com.smartgwt.client.docs;
  * {@link com.smartgwt.client.widgets.form.DynamicForm#getEncoding encoding} to "multipart" <li> include an {@link
  * com.smartgwt.client.widgets.form.fields.UploadItem} to get a basic HTML upload control <li> set {@link
  * com.smartgwt.client.widgets.form.DynamicForm#getAction action} to a URL where you have deployed server-side code to
- * handle the upload <li> call {@link com.smartgwt.client.widgets.form.DynamicForm#submitForm} to cause the form to be
- * submitted </ul> This cause the DynamicForm component to submit to the form.action URL like an ordinary HTML &lt;form&gt;
- * element.  Many  <a href='http://www.google.com/search?q=html+file+upload+example'
+ * handle the upload <li> call {@link com.smartgwt.client.widgets.form.DynamicForm#submitForm DynamicForm.submitForm} to
+ * cause the form to be submitted </ul> This cause the DynamicForm component to submit to the form.action URL like an
+ * ordinary HTML &lt;form&gt; element.  Many  <a href='http://www.google.com/search?q=html+file+upload+example'
  * onclick="window.open('http://www.google.com/search?q=html+file+upload+example');return false;">online tutorials</a> are
  * available which explain how to handle HTML form file upload in various server-side technologies. <P> Note that when you
  * submitForm(), the only values that will be sent to your actionURL are  values for which actual FormItems exist.  This

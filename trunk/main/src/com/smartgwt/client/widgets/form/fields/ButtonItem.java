@@ -119,6 +119,7 @@ public class ButtonItem extends CanvasItem  implements com.smartgwt.client.widge
      * Optional <code>baseStyle</code> will be applied to the button.
      *
      * @param baseStyle baseStyle Default value is null
+     * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
     public void setBaseStyle(String baseStyle) {
         setAttribute("baseStyle", baseStyle);
@@ -129,6 +130,7 @@ public class ButtonItem extends CanvasItem  implements com.smartgwt.client.widge
      *
      *
      * @return String
+     * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
     public String getBaseStyle()  {
         return getAttributeAsString("baseStyle");
@@ -138,6 +140,7 @@ public class ButtonItem extends CanvasItem  implements com.smartgwt.client.widge
      * These items are in a row by themselves by default
      *
      * @param endRow endRow Default value is true
+     * @see com.smartgwt.client.docs.FormLayout FormLayout overview and related methods
      */
     public void setEndRow(Boolean endRow) {
         setAttribute("endRow", endRow);
@@ -148,6 +151,7 @@ public class ButtonItem extends CanvasItem  implements com.smartgwt.client.widge
      *
      *
      * @return Boolean
+     * @see com.smartgwt.client.docs.FormLayout FormLayout overview and related methods
      */
     public Boolean getEndRow()  {
         return getAttributeAsBoolean("endRow");
@@ -178,6 +182,7 @@ public class ButtonItem extends CanvasItem  implements com.smartgwt.client.widge
      * Buttons do not show a title by default.
      *
      * @param showTitle showTitle Default value is false
+     * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
     public void setShowTitle(Boolean showTitle) {
         setAttribute("showTitle", showTitle);
@@ -188,6 +193,7 @@ public class ButtonItem extends CanvasItem  implements com.smartgwt.client.widge
      *
      *
      * @return Boolean
+     * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
     public Boolean getShowTitle()  {
         return getAttributeAsBoolean("showTitle");
@@ -197,6 +203,7 @@ public class ButtonItem extends CanvasItem  implements com.smartgwt.client.widge
      * These items are in a row by themselves by default
      *
      * @param startRow startRow Default value is true
+     * @see com.smartgwt.client.docs.FormLayout FormLayout overview and related methods
      */
     public void setStartRow(Boolean startRow) {
         setAttribute("startRow", startRow);
@@ -207,6 +214,7 @@ public class ButtonItem extends CanvasItem  implements com.smartgwt.client.widge
      *
      *
      * @return Boolean
+     * @see com.smartgwt.client.docs.FormLayout FormLayout overview and related methods
      */
     public Boolean getStartRow()  {
         return getAttributeAsBoolean("startRow");

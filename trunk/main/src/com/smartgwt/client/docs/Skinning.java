@@ -11,14 +11,14 @@ package com.smartgwt.client.docs;
  * contains CSS style names and URLs to&#010 images&#010&#010 <li> Smart GWT components can be skinned by replacing the CSS
  * styles and images that&#010 the components use by default, or by using JavaScript properties to configure&#010
  * components to use new CSS styles and new image URLs.&#010&#010 <li> You can change the appearance of an individual Smart
- * GWT component by passing &#010 properties to {@link com.smartgwt.client..Class#create}, or you can skin all components
- * of the&#010 same class at once, by using {@link com.smartgwt.client..Class#addProperties} and &#010 {@link
- * com.smartgwt.client..Class#changeDefaults} to change the defaults for the class.&#010&#010 <li> A "skin" consists
- * of:&#010 <ul>&#010 <li> a single CSS stylesheet containing all CSS styles used by Smart GWT components&#010
- * (<code>skin_styles.css</code>)&#010 <li> a single JavaScript file that sets component defaults
- * (<code>load_skin.js</code>)&#010 <li> a directory tree of images organized by component&#010 </ul>&#010 &#010 <li>&#010
- * The example skins that come with Smart GWT are in&#010 <code>smartclientSDK/isomorphic/skins</code>.  The standard
- * filesystem layout for a skin is:&#010 <pre>&#010    isomorphic/skins&#010        skin_styles.css&#010       
+ * GWT component by passing &#010 properties to {@link com.smartgwt.client..Class#create Class.create}, or you can skin all
+ * components of the&#010 same class at once, by using {@link com.smartgwt.client..Class#addProperties Class.addProperties}
+ * and &#010 {@link com.smartgwt.client..Class#changeDefaults Class.changeDefaults} to change the defaults for the
+ * class.&#010&#010 <li> A "skin" consists of:&#010 <ul>&#010 <li> a single CSS stylesheet containing all CSS styles used
+ * by Smart GWT components&#010 (<code>skin_styles.css</code>)&#010 <li> a single JavaScript file that sets component
+ * defaults (<code>load_skin.js</code>)&#010 <li> a directory tree of images organized by component&#010 </ul>&#010 &#010
+ * <li>&#010 The example skins that come with Smart GWT are in&#010 <code>smartclientSDK/isomorphic/skins</code>.  The
+ * standard filesystem layout for a skin is:&#010 <pre>&#010    isomorphic/skins&#010        skin_styles.css&#010       
  * load_skin.js&#010        images/&#010            ListGrid/&#010                sort_ascending.gif&#010               
  * ...&#010            Tab/&#010            ... other directories containing&#010                component or shared media
  * ...&#010 </pre>&#010 <li> A skin is loaded via a &lt;SCRIPT SRC=&gt; tag that loads load_skin.js, or, if using&#010 the
@@ -61,31 +61,31 @@ package com.smartgwt.client.docs;
  * for a&#010 full explanation of the default application image directory, and the meaning of the "[SKIN]"&#010
  * prefix.&#010 <P>&#010 <h4>Specifying Image URLs</h4>&#010 <P>&#010 Default image URLs for Smart GWT components are
  * specified in <code>load_skin.js</code> via&#010 JavaScript, using calls to {@link
- * com.smartgwt.client..Class#addProperties} and&#010 {@link com.smartgwt.client..Class#changeDefaults}.  For example, the
- * <code>load_skin.js</code> file&#010 from the "Smart GWT" sample skin includes the following code to establish the media
- * used by&#010 {@link com.smartgwt.client.widgets.Window#getMinimizeButton minimizeButton}:&#010 <pre>&#010   
- * isc.Window.changeDefaults("minimizeButtonDefaults", { &#010         src:"[SKIN]/Window/minimize.png"&#010    });&#010
- * </pre>&#010 <P>&#010 <h4>Specifying Image Sizes</h4>&#010 <P>&#010 Many Smart GWT components must know some image sizes
- * in advance, in order to allow those&#010 components to autosize to data or content.&#010 <P>&#010 For example, the
- * {@link com.smartgwt.client.widgets.tab.ImgTab}s used in {@link com.smartgwt.client.widgets.tab.TabSet}s are capable of
- * automatically sizing&#010 to a variable length {@link com.smartgwt.client.widgets.tab.Tab#getTitle title}.  To make this
- * possible, Smart GWT must know the&#010 sizes of the images used as "endcaps" on each tab in advance.&#010 <P>&#010 Like
- * image URLs, image sizes are specified in <code>load_skin.js</code>.  The following code&#010 sample establishes the
- * default size of the "endcaps" for tabs, by setting a default value&#010 for {@link
- * com.smartgwt.client.widgets.tab.ImgTab#getCapSize capSize}:&#010 <pre>&#010     isc.ImgTab.addProperties({&#010        
- * capSize:4&#010     })&#010 </pre>&#010 <P>&#010 <h4>CSS usage in Smart GWT</h4>&#010 <P>&#010 In Smart GWT, screen
- * layout and sizing are controlled via JavaScript, and appearance via&#010 CSS and images.  &#010 <P>&#010 CSS borders,
- * margins and padding applied to Smart GWT components can be treated as purely&#010 visual properties with no effect on
- * sizing or layout.  Unlike HTML elements, a Smart GWT&#010 component will always have the exact size you specify via
- * JavaScript, regardless of browser&#010 platform, browser compatibility mode, or borders, margins, or padding, all of
- * which normally&#010 affect the final size of an HTML element. &#010 <P>&#010 For this reason, Smart GWT skinning
- * requires only novice-level familiarity with CSS, as CSS&#010 is used principally for colors and fonts.  See {@link
- * com.smartgwt.client..CSSStyleName} for&#010 further details on what properties should be set via CSS vs via
- * JavaScript.&#010 <P>&#010 <h4>Statefulness and Suffixes</h4>&#010 <P>&#010 Some components or areas within components,
- * including buttons and the cells within a grid, are&#010 "stateful", meaning that they can be in one of a set of states
- * each of which has a distinct&#010 visual appearance.&#010 <P>&#010 Stateful components switch the CSS styles or image
- * URLs they are using as they transition&#010 from state to state, appending state information as suffixes on the style
- * names or URL.&#010 See {@link com.smartgwt.client.widgets.Img#getSrc src} and {@link
+ * com.smartgwt.client..Class#addProperties Class.addProperties} and&#010 {@link com.smartgwt.client..Class#changeDefaults
+ * Class.changeDefaults}.  For example, the <code>load_skin.js</code> file&#010 from the "Smart GWT" sample skin includes
+ * the following code to establish the media used by&#010 {@link com.smartgwt.client.widgets.Window#getMinimizeButton
+ * minimizeButton}:&#010 <pre>&#010    isc.Window.changeDefaults("minimizeButtonDefaults", { &#010        
+ * src:"[SKIN]/Window/minimize.png"&#010    });&#010 </pre>&#010 <P>&#010 <h4>Specifying Image Sizes</h4>&#010 <P>&#010
+ * Many Smart GWT components must know some image sizes in advance, in order to allow those&#010 components to autosize to
+ * data or content.&#010 <P>&#010 For example, the {@link com.smartgwt.client.widgets.tab.ImgTab}s used in {@link
+ * com.smartgwt.client.widgets.tab.TabSet}s are capable of automatically sizing&#010 to a variable length {@link
+ * com.smartgwt.client.widgets.tab.Tab#getTitle title}.  To make this possible, Smart GWT must know the&#010 sizes of the
+ * images used as "endcaps" on each tab in advance.&#010 <P>&#010 Like image URLs, image sizes are specified in
+ * <code>load_skin.js</code>.  The following code&#010 sample establishes the default size of the "endcaps" for tabs, by
+ * setting a default value&#010 for {@link com.smartgwt.client.widgets.tab.ImgTab#getCapSize capSize}:&#010 <pre>&#010    
+ * isc.ImgTab.addProperties({&#010         capSize:4&#010     })&#010 </pre>&#010 <P>&#010 <h4>CSS usage in Smart
+ * GWT</h4>&#010 <P>&#010 In Smart GWT, screen layout and sizing are controlled via JavaScript, and appearance via&#010 CSS
+ * and images.  &#010 <P>&#010 CSS borders, margins and padding applied to Smart GWT components can be treated as
+ * purely&#010 visual properties with no effect on sizing or layout.  Unlike HTML elements, a Smart GWT&#010 component will
+ * always have the exact size you specify via JavaScript, regardless of browser&#010 platform, browser compatibility mode,
+ * or borders, margins, or padding, all of which normally&#010 affect the final size of an HTML element. &#010 <P>&#010 For
+ * this reason, Smart GWT skinning requires only novice-level familiarity with CSS, as CSS&#010 is used principally for
+ * colors and fonts.  See {@link com.smartgwt.client..CSSStyleName} for&#010 further details on what properties should be
+ * set via CSS vs via JavaScript.&#010 <P>&#010 <h4>Statefulness and Suffixes</h4>&#010 <P>&#010 Some components or areas
+ * within components, including buttons and the cells within a grid, are&#010 "stateful", meaning that they can be in one
+ * of a set of states each of which has a distinct&#010 visual appearance.&#010 <P>&#010 Stateful components switch the CSS
+ * styles or image URLs they are using as they transition&#010 from state to state, appending state information as suffixes
+ * on the style names or URL.&#010 See {@link com.smartgwt.client.widgets.Img#getSrc src} and {@link
  * com.smartgwt.client.widgets.Button#getBaseStyle baseStyle} for details and examples.&#010 <P>&#010 Smart GWT has
  * built-in logic to manage a series of state transitions, such as:&#010 <ul>&#010 <li> "rollover": showing a different
  * appearance when the mouse is over a component&#010 <li> "button down": showing a different appearance when the mouse is
@@ -106,7 +106,7 @@ package com.smartgwt.client.docs;
  * component type</h4>&#010 <P>&#010 In some cases you need to create two variations in appearance for a component with the
  * same&#010 behavior.  For example, you may want to create a specialized Window, called "PaletteWindow",&#010 that behaves
  * like a normal Window but has a very compact look & feel.  To create a&#010 separately skinnable component for
- * PaletteWindow, use {@link com.smartgwt.client.util.isc#defineClass}.  For&#010 example:&#010 <pre>&#010   
+ * PaletteWindow, use {@link com.smartgwt.client.util.isc#defineClass isc.defineClass}.  For&#010 example:&#010 <pre>&#010 
  * isc.defineClass("PaletteWindow", "Window");&#010    isc.PaletteWindow.addProperties({&#010        showFooter:false,&#010
  *        ...&#010    })&#010 </pre>
  */

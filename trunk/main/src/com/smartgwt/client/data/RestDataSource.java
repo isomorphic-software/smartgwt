@@ -79,21 +79,22 @@ import com.google.gwt.event.shared.HasHandlers;
  * &&#010 sorting, {@link com.smartgwt.client.data.DSRequest#getOldValues 'long transactions'}, &#010 {@link
  * com.smartgwt.client.data.ResultSet} and {@link com.smartgwt.client.docs.Relogin 'relogin'}.  However advanced&#010
  * features such as {@link com.smartgwt.client.docs.Upload 'uploading / binary fields'},&#010 {@link
- * com.smartgwt.client.rpc.RPCManager#startQueue} and transaction chaining,&#010 {@link
- * com.smartgwt.client.widgets.grid.ListGrid#exportData} and all {@link com.smartgwt.client.docs.IscServer 'server-based
- * features'} aren't&#010 available with RestDataSource and need to be re-implemented as needed.&#010 <P>&#010 <span
- * style="font-weight:bold;font-size:16px;">Examples</span>&#010 <p>&#010 <b>XML formatted responses:</b>&#010 <P>&#010
- * RestDataSource expects a response like the following in response to a "fetch" request:&#010 <pre>&#010
- * &lt;response&gt;&#010    &lt;status&gt;0&lt;/status&gt;&#010    &lt;startRow&gt;0&lt;/startRow&gt;&#010   
- * &lt;endRow&gt;76&lt;/endRow&gt;&#010    &lt;totalRows&gt;546&lt;/totalRows&gt;&#010    &lt;data&gt;&#010     
+ * com.smartgwt.client.rpc.RPCManager#startQueue RPCManager.startQueue} and transaction chaining,&#010 {@link
+ * com.smartgwt.client.widgets.grid.ListGrid#exportData ListGrid.exportData} and all {@link
+ * com.smartgwt.client.docs.IscServer 'server-based features'} aren't&#010 available with RestDataSource and need to be
+ * re-implemented as needed.&#010 <P>&#010 <span style="font-weight:bold;font-size:16px;">Examples</span>&#010 <p>&#010
+ * <b>XML formatted responses:</b>&#010 <P>&#010 RestDataSource expects a response like the following in response to a
+ * "fetch" request:&#010 <pre>&#010 &lt;response&gt;&#010    &lt;status&gt;0&lt;/status&gt;&#010   
+ * &lt;startRow&gt;0&lt;/startRow&gt;&#010    &lt;endRow&gt;76&lt;/endRow&gt;&#010   
+ * &lt;totalRows&gt;546&lt;/totalRows&gt;&#010    &lt;data&gt;&#010      &lt;record&gt;&#010         
+ * &lt;field1&gt;value&lt;/field1&gt;&#010          &lt;field2&gt;value&lt;/field2&gt;&#010      &lt;/record&gt;&#010     
  * &lt;record&gt;&#010          &lt;field1&gt;value&lt;/field1&gt;&#010          &lt;field2&gt;value&lt;/field2&gt;&#010   
- * &lt;/record&gt;&#010      &lt;record&gt;&#010          &lt;field1&gt;value&lt;/field1&gt;&#010         
- * &lt;field2&gt;value&lt;/field2&gt;&#010      &lt;/record&gt;&#010      <i>... 75 total records ... </i>&#010   
- * &lt;/data&gt;&#010 &lt;/response&gt;&#010 </pre>&#010 The &lt;status&gt; element indicates whether the fetch operation
- * was successful &#010 (see {@link com.smartgwt.client.docs.StatusCodes}).&#010 <P>&#010 The &lt;data&gt; element contains
- * a list of record nodes, each of which represents a record&#010 returned by the server.  The optional &lt;startRow&gt;,
- * &lt;endRow&gt; and &lt;totalRows&gt;&#010 elements are needed only if data paging is in use, and populate the&#010
- * {@link com.smartgwt.client.data.DSResponse#getStartRow 'startRow'}, {@link com.smartgwt.client.data.DSResponse#getEndRow
+ * &lt;/record&gt;&#010      <i>... 75 total records ... </i>&#010    &lt;/data&gt;&#010 &lt;/response&gt;&#010 </pre>&#010
+ * The &lt;status&gt; element indicates whether the fetch operation was successful &#010 (see {@link
+ * com.smartgwt.client.docs.StatusCodes}).&#010 <P>&#010 The &lt;data&gt; element contains a list of record nodes, each of
+ * which represents a record&#010 returned by the server.  The optional &lt;startRow&gt;, &lt;endRow&gt; and
+ * &lt;totalRows&gt;&#010 elements are needed only if data paging is in use, and populate the&#010 {@link
+ * com.smartgwt.client.data.DSResponse#getStartRow 'startRow'}, {@link com.smartgwt.client.data.DSResponse#getEndRow
  * 'endRow'} and&#010 {@link com.smartgwt.client.data.DSResponse#getTotalRows 'totalRows'} properties of the {@link
  * com.smartgwt.client.data.DSResponse}.&#010 <P>&#010 Note: for a more compact format, simple field values may be
  * specified on record &#010 nodes directly as attributes - in this case a record element might be structured like
@@ -113,10 +114,10 @@ import com.google.gwt.event.shared.HasHandlers;
  * &lt;/errors&gt;&#010 &lt;/response&gt;&#010 </pre>&#010 <P>&#010 An unrecoverable error, such as an unexpected server
  * failure, can be flagged by setting&#010 &lt;status&gt; to -1 and setting &lt;data&gt; to an error message.  In this case
  * the&#010 &lt;errors&gt; element is not used (it's specific to validation errors).  An unrecoverable&#010 error causes
- * all response processing to be skipped and {@link com.smartgwt.client.rpc.RPCManager#handleError} to be&#010 invoked,
- * which by default will show the provided error message as an alert using&#010 {@link
- * com.smartgwt.client.util.isc#warn}.&#010 <p>&#010 <b>JSON formatted responses:</b>&#010 <P>&#010 JSON format responses
- * are expected to contain the same data / meta-data as XMLresponses,&#010 encapsulated a simple object with a
+ * all response processing to be skipped and {@link com.smartgwt.client.rpc.RPCManager#handleError RPCManager.handleError}
+ * to be&#010 invoked, which by default will show the provided error message as an alert using&#010 {@link
+ * com.smartgwt.client.util.isc#warn isc.warn}.&#010 <p>&#010 <b>JSON formatted responses:</b>&#010 <P>&#010 JSON format
+ * responses are expected to contain the same data / meta-data as XMLresponses,&#010 encapsulated a simple object with a
  * <code>"response"</code> attribute.<br>&#010 The response to a "fetch" request would therefore have this format:<br>&#010
  * <pre>&#010 {    &#010    response:{&#010       status:0,&#010       startRows:0,&#010       endRow:76,&#010      
  * totalRows:546,&#010       data:[&#010           {field1:"value", field2:"value"},&#010           {field1:"value",
@@ -150,9 +151,9 @@ import com.google.gwt.event.shared.HasHandlers;
  * dataProtocol, the data will&#010 be serialized as an XML or JSON message according to the <code>dataFormat</code>
  * setting.&#010 Both XML and JSON messages will contain request metadata such as startRow and endRow, and&#010 will appear
  * exactly as though the subset of the {@link com.smartgwt.client.data.DSRequest} that is meaningful to the&#010 server had
- * been passed to {@link com.smartgwt.client.data.DataSource#xmlSerialize} or {@link
- * com.smartgwt.client.util.JSON#encode}&#010 respectively.&#010 <P>&#010 An example of an XML message might look like
- * this:&#010 <pre>&#010    &lt;request&gt;&#010        &lt;data&gt;&#010            &lt;countryDS&gt;&#010               
+ * been passed to {@link com.smartgwt.client.data.DataSource#xmlSerialize DataSource.xmlSerialize} or {@link
+ * com.smartgwt.client.util.JSON#encode JSON.encode}&#010 respectively.&#010 <P>&#010 An example of an XML message might
+ * look like this:&#010 <pre>&#010    &lt;request&gt;&#010        &lt;data&gt;&#010            &lt;countryDS&gt;&#010      
  * &lt;countryCode&gt;US&lt;/countryCode&gt;&#010                &lt;countryName&gt;Edited Value&lt;/countryName&gt;&#010  
  * &lt;capital&gt;Edited Value&lt;/capital&gt;&#010                &lt;continent&gt;Edited Value&lt;/continent&gt;&#010    
  * &lt;/countryDS&gt;&#010        &lt;/data&gt;&#010        &lt;dataSource&gt;countryDS&lt;/dataSource&gt;&#010       
@@ -484,7 +485,6 @@ public class RestDataSource extends DataSource {
     // ********************* Static Methods ***********************
 
 }
-
 
 
 

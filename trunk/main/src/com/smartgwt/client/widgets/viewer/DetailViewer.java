@@ -91,6 +91,7 @@ public class DetailViewer extends Canvas  implements DataBoundComponent {
      * A string (HTML acceptable) that will be written to a page to separate blocks.
      *
      * @param blockSeparator blockSeparator Default value is "<BR><BR>"
+     * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
     public void setBlockSeparator(String blockSeparator) {
         setAttribute("blockSeparator", blockSeparator, true);
@@ -101,6 +102,7 @@ public class DetailViewer extends Canvas  implements DataBoundComponent {
      *
      *
      * @return String
+     * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
     public String getBlockSeparator()  {
         return getAttributeAsString("blockSeparator");
@@ -110,6 +112,7 @@ public class DetailViewer extends Canvas  implements DataBoundComponent {
      * CSS style for each block (one record's worth of data).
      *
      * @param blockStyle blockStyle Default value is "detailBlock"
+     * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
     public void setBlockStyle(String blockStyle) {
         setAttribute("blockStyle", blockStyle, true);
@@ -120,6 +123,7 @@ public class DetailViewer extends Canvas  implements DataBoundComponent {
      *
      *
      * @return String
+     * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
     public String getBlockStyle()  {
         return getAttributeAsString("blockStyle");
@@ -129,6 +133,7 @@ public class DetailViewer extends Canvas  implements DataBoundComponent {
      * CSS style for a normal value
      *
      * @param cellStyle cellStyle Default value is "detail"
+     * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
     public void setCellStyle(String cellStyle) {
         setAttribute("cellStyle", cellStyle, true);
@@ -139,8 +144,9 @@ public class DetailViewer extends Canvas  implements DataBoundComponent {
      *
      *
      * @return Return the CSS class for a cell. Default implementation calls {@link
-     * com.smartgwt.client.widgets.viewer.DetailViewerField#getCellStyle} on the field if defined, otherwise returns {@link
-     * com.smartgwt.client.widgets.viewer.DetailViewer#getCellStyle 'this.cellStyle'}
+     * com.smartgwt.client.widgets.viewer.DetailViewerField#getCellStyle DetailViewerField.getCellStyle} on the field if
+     * defined, otherwise returns {@link com.smartgwt.client.widgets.viewer.DetailViewer#getCellStyle 'this.cellStyle'}
+     * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
     public String getCellStyle()  {
         return getAttributeAsString("cellStyle");
@@ -148,8 +154,8 @@ public class DetailViewer extends Canvas  implements DataBoundComponent {
 
     /**
      * Display format to use for fields specified as type 'date'.  Default is to use the system-wide default normal date
-     * format, configured via {@link com.smartgwt.client..Date#setNormalDisplayFormat}.  Specify any valid {@link
-     * com.smartgwt.client.types.DateDisplayFormat} to change the format used by this detailViewer.
+     * format, configured via {@link com.smartgwt.client..Date#setNormalDisplayFormat Date.setNormalDisplayFormat}.  Specify
+     * any valid {@link com.smartgwt.client.types.DateDisplayFormat} to change the format used by this detailViewer.
      *
      * @param dateFormatter dateFormatter Default value is null
      * @throws IllegalStateException this property cannot be changed after the component has been created
@@ -160,8 +166,8 @@ public class DetailViewer extends Canvas  implements DataBoundComponent {
 
     /**
      * Display format to use for fields specified as type 'date'.  Default is to use the system-wide default normal date
-     * format, configured via {@link com.smartgwt.client..Date#setNormalDisplayFormat}.  Specify any valid {@link
-     * com.smartgwt.client.types.DateDisplayFormat} to change the format used by this detailViewer.
+     * format, configured via {@link com.smartgwt.client..Date#setNormalDisplayFormat Date.setNormalDisplayFormat}.  Specify
+     * any valid {@link com.smartgwt.client.types.DateDisplayFormat} to change the format used by this detailViewer.
      *
      *
      * @return DateDisplayFormat
@@ -172,7 +178,7 @@ public class DetailViewer extends Canvas  implements DataBoundComponent {
 
     /**
      * Display format to use for fields specified as type 'datetime'. Default is to use the system-wide default datetime format
-     * configured via  {@link com.smartgwt.client..Date#setShortDatetimeDisplayFormat}
+     * configured via  {@link com.smartgwt.client..Date#setShortDatetimeDisplayFormat Date.setShortDatetimeDisplayFormat}
      *
      * @param datetimeFormatter datetimeFormatter Default value is null
      * @throws IllegalStateException this property cannot be changed after the component has been created
@@ -183,7 +189,7 @@ public class DetailViewer extends Canvas  implements DataBoundComponent {
 
     /**
      * Display format to use for fields specified as type 'datetime'. Default is to use the system-wide default datetime format
-     * configured via  {@link com.smartgwt.client..Date#setShortDatetimeDisplayFormat}
+     * configured via  {@link com.smartgwt.client..Date#setShortDatetimeDisplayFormat Date.setShortDatetimeDisplayFormat}
      *
      *
      * @return DateDisplayFormat
@@ -197,6 +203,7 @@ public class DetailViewer extends Canvas  implements DataBoundComponent {
      * <p><b>Note : </b> This is an advanced setting</p>
      *
      * @param emptyCellValue emptyCellValue Default value is "&nbsp;"
+     * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
     public void setEmptyCellValue(String emptyCellValue) {
         setAttribute("emptyCellValue", emptyCellValue, true);
@@ -207,6 +214,7 @@ public class DetailViewer extends Canvas  implements DataBoundComponent {
      *
      *
      * @return String
+     * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
     public String getEmptyCellValue()  {
         return getAttributeAsString("emptyCellValue");
@@ -275,6 +283,7 @@ public class DetailViewer extends Canvas  implements DataBoundComponent {
      * CSS style for a header
      *
      * @param headerStyle headerStyle Default value is "detailHeader"
+     * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
     public void setHeaderStyle(String headerStyle) {
         setAttribute("headerStyle", headerStyle, true);
@@ -285,6 +294,7 @@ public class DetailViewer extends Canvas  implements DataBoundComponent {
      *
      *
      * @return String
+     * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
     public String getHeaderStyle()  {
         return getAttributeAsString("headerStyle");
@@ -313,6 +323,7 @@ public class DetailViewer extends Canvas  implements DataBoundComponent {
      * CSS style for a normal detail label
      *
      * @param labelStyle labelStyle Default value is "detailLabel"
+     * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
     public void setLabelStyle(String labelStyle) {
         setAttribute("labelStyle", labelStyle, true);
@@ -323,6 +334,7 @@ public class DetailViewer extends Canvas  implements DataBoundComponent {
      *
      *
      * @return String
+     * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
     public String getLabelStyle()  {
         return getAttributeAsString("labelStyle");
@@ -392,6 +404,7 @@ public class DetailViewer extends Canvas  implements DataBoundComponent {
      * presentation.
      *
      * @param printCellStyle printCellStyle Default value is null
+     * @see com.smartgwt.client.docs.Printing Printing overview and related methods
      */
     public void setPrintCellStyle(String printCellStyle) {
         setAttribute("printCellStyle", printCellStyle, true);
@@ -404,6 +417,7 @@ public class DetailViewer extends Canvas  implements DataBoundComponent {
      *
      *
      * @return String
+     * @see com.smartgwt.client.docs.Printing Printing overview and related methods
      */
     public String getPrintCellStyle()  {
         return getAttributeAsString("printCellStyle");
@@ -415,6 +429,7 @@ public class DetailViewer extends Canvas  implements DataBoundComponent {
      * presentation.
      *
      * @param printHeaderStyle printHeaderStyle Default value is null
+     * @see com.smartgwt.client.docs.Printing Printing overview and related methods
      */
     public void setPrintHeaderStyle(String printHeaderStyle) {
         setAttribute("printHeaderStyle", printHeaderStyle, true);
@@ -427,6 +442,7 @@ public class DetailViewer extends Canvas  implements DataBoundComponent {
      *
      *
      * @return String
+     * @see com.smartgwt.client.docs.Printing Printing overview and related methods
      */
     public String getPrintHeaderStyle()  {
         return getAttributeAsString("printHeaderStyle");
@@ -438,6 +454,7 @@ public class DetailViewer extends Canvas  implements DataBoundComponent {
      * presentation.
      *
      * @param printLabelStyle printLabelStyle Default value is null
+     * @see com.smartgwt.client.docs.Printing Printing overview and related methods
      */
     public void setPrintLabelStyle(String printLabelStyle) {
         setAttribute("printLabelStyle", printLabelStyle, true);
@@ -450,6 +467,7 @@ public class DetailViewer extends Canvas  implements DataBoundComponent {
      *
      *
      * @return String
+     * @see com.smartgwt.client.docs.Printing Printing overview and related methods
      */
     public String getPrintLabelStyle()  {
         return getAttributeAsString("printLabelStyle");
@@ -463,6 +481,7 @@ public class DetailViewer extends Canvas  implements DataBoundComponent {
      * to indicate all records.
      *
      * @param recordsPerBlock recordsPerBlock Default value is 1
+     * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
     public void setRecordsPerBlock(int recordsPerBlock) {
         setAttribute("recordsPerBlock", recordsPerBlock, true);
@@ -477,6 +496,7 @@ public class DetailViewer extends Canvas  implements DataBoundComponent {
      *
      *
      * @return int
+     * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
     public int getRecordsPerBlock()  {
         return getAttributeAsInt("recordsPerBlock");
@@ -486,6 +506,7 @@ public class DetailViewer extends Canvas  implements DataBoundComponent {
      * CSS style for a separator
      *
      * @param separatorStyle separatorStyle Default value is "detail"
+     * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
     public void setSeparatorStyle(String separatorStyle) {
         setAttribute("separatorStyle", separatorStyle, true);
@@ -496,6 +517,7 @@ public class DetailViewer extends Canvas  implements DataBoundComponent {
      *
      *
      * @return String
+     * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
     public String getSeparatorStyle()  {
         return getAttributeAsString("separatorStyle");
@@ -506,6 +528,7 @@ public class DetailViewer extends Canvas  implements DataBoundComponent {
      * <p><b>Note : </b> This is an advanced setting</p>
      *
      * @param showEmptyField showEmptyField Default value is true
+     * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
     public void setShowEmptyField(Boolean showEmptyField) {
         setAttribute("showEmptyField", showEmptyField, true);
@@ -516,6 +539,7 @@ public class DetailViewer extends Canvas  implements DataBoundComponent {
      *
      *
      * @return Boolean
+     * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
     public Boolean getShowEmptyField()  {
         return getAttributeAsBoolean("showEmptyField");
@@ -547,6 +571,7 @@ public class DetailViewer extends Canvas  implements DataBoundComponent {
      * CSS style for the component as a whole.
      *
      * @param styleName styleName Default value is "detailViewer"
+     * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
     public void setStyleName(String styleName) {
         setAttribute("styleName", styleName, true);
@@ -557,6 +582,7 @@ public class DetailViewer extends Canvas  implements DataBoundComponent {
      *
      *
      * @return String
+     * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
     public String getStyleName()  {
         return getAttributeAsString("styleName");
@@ -612,9 +638,9 @@ public class DetailViewer extends Canvas  implements DataBoundComponent {
      * com.smartgwt.client.data.DSRequest#getExportResults 'exportResults'} for further detail. <P> Note that data exported via
      * this method does not include any client-side formatting and relies on both the Smart GWT server and server-side
      * DataSources.  To export client-data  with formatters applied,  see {@link
-     * com.smartgwt.client.widgets.DataBoundComponent#exportClientData}, which still requires the Smart GWT server but does not
-     * rely on server-side DataSources. <P> For more information on exporting data, see {@link
-     * com.smartgwt.client.data.DataSource#exportData}.
+     * com.smartgwt.client.widgets.DataBoundComponent#exportClientData DataBoundComponent.exportClientData}, which still
+     * requires the Smart GWT server but does not rely on server-side DataSources. <P> For more information on exporting data,
+     * see {@link com.smartgwt.client.data.DataSource#exportData DataSource.exportData}.
      */
     public native void exportData() /*-{
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
@@ -630,10 +656,11 @@ public class DetailViewer extends Canvas  implements DataBoundComponent {
      * com.smartgwt.client.data.DSRequest#getExportResults 'exportResults'} for further detail. <P> Note that data exported via
      * this method does not include any client-side formatting and relies on both the Smart GWT server and server-side
      * DataSources.  To export client-data  with formatters applied,  see {@link
-     * com.smartgwt.client.widgets.DataBoundComponent#exportClientData}, which still requires the Smart GWT server but does not
-     * rely on server-side DataSources. <P> For more information on exporting data, see {@link
-     * com.smartgwt.client.data.DataSource#exportData}.
+     * com.smartgwt.client.widgets.DataBoundComponent#exportClientData DataBoundComponent.exportClientData}, which still
+     * requires the Smart GWT server but does not rely on server-side DataSources. <P> For more information on exporting data,
+     * see {@link com.smartgwt.client.data.DataSource#exportData DataSource.exportData}.
      * @param requestProperties additional properties to set on the DSRequest                                            that will be issued
+     * @see com.smartgwt.client.docs.DataBoundComponentMethods DataBoundComponentMethods overview and related methods
      */
     public native void exportData(DSRequest requestProperties) /*-{
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();

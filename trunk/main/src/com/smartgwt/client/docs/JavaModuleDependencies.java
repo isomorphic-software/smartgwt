@@ -39,18 +39,8 @@ package com.smartgwt.client.docs;
  * <li><b>isomorphic_embedded_tomcat</b>: This contains the bootstrap class for the Embedded Tomcat engine shipped with the
  * Smart GWT SDK.  It is not intended to be used in any way other than via the start_embedded_tomcat.bat|sh|command scripts
  * in the webRoot of the SDK.<br> &nbsp;&nbsp;<u>Requires</u>:<br> &nbsp;&nbsp;&nbsp;&nbsp;isomorphic_core_rpc<br>
- * &nbsp;&nbsp;&nbsp;&nbsp;All JARs under WEB-INF/embeddedTomcat/lib<br> </li> <li><b>isomorphic_struts</b>: Contains the
- * ValidationAction and ValidationFailureAction classes that implement RPC-based validation of DynamicForms using the
- * Struts ValidatorPlugIn.  If you're not using Struts or if you don't need this particular feature of Smart GWT, you do
- * not need this module or its dependencies.  An example of this style of validation is available here: <a
- * href='/examples/struts/forms/welcome.do' onclick="window.open('/examples/struts/forms/welcome.do');return
- * false;">/examples/struts/forms/welcome.do</a> - read the info on this page, and follow the "Dynamic Form (With RPC-based
- * Validation)" Link for the actual example.<br> &nbsp;&nbsp;<u>Requires</u>:<br>
- * &nbsp;&nbsp;&nbsp;&nbsp;isomorphic_core_rpc<br> &nbsp;&nbsp;&nbsp;&nbsp;struts<br>
- * &nbsp;&nbsp;&nbsp;&nbsp;commons-digester<br> &nbsp;&nbsp;&nbsp;&nbsp;commons-beanutils<br>
- * &nbsp;&nbsp;&nbsp;&nbsp;commons-fileupload<br> &nbsp;&nbsp;&nbsp;&nbsp;commons-logging<br>
- * &nbsp;&nbsp;&nbsp;&nbsp;commons-validator<br> &nbsp;&nbsp;&nbsp;&nbsp;jakarta-oro<br> </li>
- * <li><b>isomorphic_spring</b>: Required for {@link com.smartgwt.client..DMI} dispatches to Spring beans (via {@link
+ * &nbsp;&nbsp;&nbsp;&nbsp;All JARs under WEB-INF/embeddedTomcat/lib<br> </li> <li><b>isomorphic_spring</b>: Required for
+ * {@link com.smartgwt.client..DMI} dispatches to Spring beans (via {@link
  * com.smartgwt.client.docs.serverds.ServerObject#lookupStyle lookupStyle} : "spring").<br>
  * &nbsp;&nbsp;<u>Requires</u>:<br> &nbsp;&nbsp;&nbsp;&nbsp;isomorphic_core_rpc<br> &nbsp;&nbsp;&nbsp;&nbsp;spring<br>
  * &nbsp;&nbsp;&nbsp;&nbsp;commons-logging<br> </li> <li><b>isomorphic_examples</b>: Contains code for various Smart GWT
@@ -89,7 +79,19 @@ package com.smartgwt.client.docs;
  * &nbsp;&nbsp;&nbsp;&nbsp;isomorphic_obfuscation - for code obfuscation<br>  </li> <li><b>isomorphic_obfuscation</b>: This
  * is part of the Network Performance Module.  The isomorphic_obfuscation module is required to enable obfuscation of code
  * assembled by the File Assembly system.  For more information, see:  {@link com.smartgwt.client.docs.Compression}.<br>
- * &nbsp;&nbsp;<u>Requires</u>:<br> &nbsp;&nbsp;&nbsp;&nbsp;isomorphic_core_rpc<br>  </li> </ul>
+ * &nbsp;&nbsp;<u>Requires</u>:<br> &nbsp;&nbsp;&nbsp;&nbsp;isomorphic_core_rpc<br>  </li> <li><b>isomorphic_struts</b>:
+ * Contains the ValidationAction and ValidationFailureAction classes that implement RPC-based validation of DynamicForms
+ * using the Struts ValidatorPlugIn.  If you're not using Struts or if you don't need this particular feature of Smart GWT,
+ * you do not need this module or its dependencies (also see the important note  below).  An example of this style of
+ * validation is available here:  <a href='/examples/struts/forms/welcome.do'
+ * onclick="window.open('/examples/struts/forms/welcome.do');return false;">/examples/struts/forms/welcome.do</a> - read
+ * the info on this page, and follow  the "Dynamic Form (With RPC-based Validation)" Link for the actual example.<br><br>
+ * <b>NOTE:</b> This support is for Struts 1.0 only, and is only intended to be used in certain edge cases of incremental
+ * migration to Smart GWT.  You should only use it if directed to  do so by Isomorphic Support.<br><br>
+ * &nbsp;&nbsp;<u>Requires</u>:<br> &nbsp;&nbsp;&nbsp;&nbsp;isomorphic_core_rpc<br> &nbsp;&nbsp;&nbsp;&nbsp;struts<br>
+ * &nbsp;&nbsp;&nbsp;&nbsp;commons-digester<br> &nbsp;&nbsp;&nbsp;&nbsp;commons-beanutils<br>
+ * &nbsp;&nbsp;&nbsp;&nbsp;commons-fileupload<br> &nbsp;&nbsp;&nbsp;&nbsp;commons-logging<br>
+ * &nbsp;&nbsp;&nbsp;&nbsp;commons-validator<br> &nbsp;&nbsp;&nbsp;&nbsp;jakarta-oro<br> </li> </ul>
  */
 public interface JavaModuleDependencies {
 }

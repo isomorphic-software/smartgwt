@@ -58,13 +58,14 @@ import com.google.gwt.event.shared.HasHandlers;
 /**
  * FormItem that creates an HTML &lt;input type="upload"&gt; control, with an interface that allows a user to pick a file
  * from his machine to upload to the server. <P> See the {@link com.smartgwt.client.docs.Upload 'Uploading Files'} overview
- * for details. <P> Note: if a form containing an UploadItem is {@link com.smartgwt.client.widgets.Canvas#redraw} (which
- * may happen if other form items are shown or hidden, the form is {@link
+ * for details. <P> Note: if a form containing an UploadItem is {@link com.smartgwt.client.widgets.Canvas#redraw
+ * Canvas.redraw} (which may happen if other form items are shown or hidden, the form is {@link
  * com.smartgwt.client.widgets.Canvas#getRedrawOnResize 'resized'}, or other items show validation errors) then the value
  * in the upload item is lost (because an HTML upload field may not be created with a value). For this reason, if you are
  * building a form that combines an UploadItem with other FormItems that could trigger redraw()s, recommended practice is
  * to place each UploadItem in a distinct DynamicForm instance and create the visual appearance of a single logical form
  * via combining the DynamicForms in a {@link com.smartgwt.client.widgets.layout.Layout}.
+ * @see com.smartgwt.client.docs.Upload Upload overview and related methods
  */
 public class UploadItem extends TextItem {
 
@@ -80,7 +81,7 @@ public class UploadItem extends TextItem {
     }
 
     public UploadItem(){
-        setType("UploadItem");
+        setType("upload");
     }
 
     public UploadItem(JavaScriptObject jsObj){
@@ -89,13 +90,13 @@ public class UploadItem extends TextItem {
 
     public UploadItem(String name) {
         setName(name);
-        setType("UploadItem");
+        setType("upload");
     }
 
     public UploadItem(String name, String title) {
         setName(name);
 		setTitle(title);
-        setType("UploadItem");
+        setType("upload");
     }
 
     // ********************* Properties / Attributes ***********************

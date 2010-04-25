@@ -99,7 +99,7 @@ public class FormItemIcon extends DataClass  implements com.smartgwt.client.widg
 
     /**
      * Identifier for this form item icon. This identifier (if set) should be unique within this form item and may be used to
-     * get a pointer to the icon object via {@link com.smartgwt.client.widgets.form.fields.FormItem#getIcon}.
+     * get a pointer to the icon object via {@link com.smartgwt.client.widgets.form.fields.FormItem#getIcon FormItem.getIcon}.
      *
      * @param name name Default value is null
      */
@@ -109,7 +109,7 @@ public class FormItemIcon extends DataClass  implements com.smartgwt.client.widg
 
     /**
      * Identifier for this form item icon. This identifier (if set) should be unique within this form item and may be used to
-     * get a pointer to the icon object via {@link com.smartgwt.client.widgets.form.fields.FormItem#getIcon}.
+     * get a pointer to the icon object via {@link com.smartgwt.client.widgets.form.fields.FormItem#getIcon FormItem.getIcon}.
      *
      *
      * @return String

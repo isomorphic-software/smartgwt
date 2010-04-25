@@ -185,6 +185,7 @@ public class ToolStrip extends Layout {
      *
      * @param vertical vertical Default value is false
      * @throws IllegalStateException this property cannot be changed after the component has been created
+     * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
     public void setVertical(Boolean vertical)  throws IllegalStateException {
         setAttribute("vertical", vertical, false);
@@ -196,6 +197,7 @@ public class ToolStrip extends Layout {
      *
      *
      * @return Boolean
+     * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
     public Boolean getVertical()  {
         return getAttributeAsBoolean("vertical");
@@ -206,10 +208,11 @@ public class ToolStrip extends Layout {
      * If unset, the standard {@link com.smartgwt.client.widgets.toolbar.ToolStrip#getStyleName styleName} will be used for
      * both vertical and horizontal toolstrips. <P> Note that this property only applies to the widget at init time. To modify
      * the  styleName after this widget has been initialized, you should simply call {@link
-     * com.smartgwt.client.widgets.Canvas#setStyleName} rather than updating this  property.
+     * com.smartgwt.client.widgets.Canvas#setStyleName Canvas.setStyleName} rather than updating this  property.
      *
      * @param verticalStyleName verticalStyleName Default value is null
      * @throws IllegalStateException this property cannot be changed after the component has been created
+     * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
     public void setVerticalStyleName(String verticalStyleName)  throws IllegalStateException {
         setAttribute("verticalStyleName", verticalStyleName, false);
@@ -220,10 +223,11 @@ public class ToolStrip extends Layout {
      * If unset, the standard {@link com.smartgwt.client.widgets.toolbar.ToolStrip#getStyleName styleName} will be used for
      * both vertical and horizontal toolstrips. <P> Note that this property only applies to the widget at init time. To modify
      * the  styleName after this widget has been initialized, you should simply call {@link
-     * com.smartgwt.client.widgets.Canvas#setStyleName} rather than updating this  property.
+     * com.smartgwt.client.widgets.Canvas#setStyleName Canvas.setStyleName} rather than updating this  property.
      *
      *
      * @return String
+     * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
     public String getVerticalStyleName()  {
         return getAttributeAsString("verticalStyleName");

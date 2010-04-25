@@ -131,6 +131,7 @@ public class Img extends StatefulCanvas {
      * Change the style of image rendering.
      *
      * @param imageType new style of image rendering. Default value is Img.STRETCH
+     * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
     public void setImageType(ImageStyle imageType) {
         setAttribute("imageType", imageType.getValue(), true);
@@ -144,6 +145,7 @@ public class Img extends StatefulCanvas {
      *
      *
      * @return ImageStyle
+     * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
     public ImageStyle getImageType()  {
         return EnumUtil.getEnum(ImageStyle.values(), getAttribute("imageType"));
@@ -186,9 +188,9 @@ public class Img extends StatefulCanvas {
     }
 
     /**
-     * Determines whether any specified {@link com.smartgwt.client.widgets.StatefulCanvas#getTitle} will be  displayed for this
-     * component.<br> Applies to Image-based components only, where the title will be rendered out in a label floating over the
-     * component
+     * Determines whether any specified {@link com.smartgwt.client.widgets.StatefulCanvas#getTitle StatefulCanvas.getTitle}
+     * will be  displayed for this component.<br> Applies to Image-based components only, where the title will be rendered out
+     * in a label floating over the component
      * <p><b>Note : </b> This is an advanced setting</p>
      *
      * @param showTitle showTitle Default value is false
@@ -198,9 +200,9 @@ public class Img extends StatefulCanvas {
     }
 
     /**
-     * Determines whether any specified {@link com.smartgwt.client.widgets.StatefulCanvas#getTitle} will be  displayed for this
-     * component.<br> Applies to Image-based components only, where the title will be rendered out in a label floating over the
-     * component
+     * Determines whether any specified {@link com.smartgwt.client.widgets.StatefulCanvas#getTitle StatefulCanvas.getTitle}
+     * will be  displayed for this component.<br> Applies to Image-based components only, where the title will be rendered out
+     * in a label floating over the component
      *
      *
      * @return Boolean
@@ -214,6 +216,7 @@ public class Img extends StatefulCanvas {
      *
      * @param size size Default value is null
      * @throws IllegalStateException this property cannot be changed after the component has been created
+     * @see com.smartgwt.client.docs.Sizing Sizing overview and related methods
      */
     public void setSize(Integer size)  throws IllegalStateException {
         setAttribute("size", size, false);
@@ -224,6 +227,7 @@ public class Img extends StatefulCanvas {
      *
      *
      * @return Integer
+     * @see com.smartgwt.client.docs.Sizing Sizing overview and related methods
      */
     public Integer getSize()  {
         return getAttributeAsInt("size");
@@ -234,9 +238,10 @@ public class Img extends StatefulCanvas {
      * file extension.   <P> For example, given an <code>src</code> of "findIcon.gif" and a state of "Disabled", the resulting
      * image name would be "findIcon_Disabled.gif".  Compound states such as "Selected", "Focused" and "Over" or "Down" will
      * have an intervening underscore, resulting in, for example, <code>"findIcon_Selected_Down.gif"</code>.
-     * Changes the URL of this image and redraws it. <P> Does nothing if the src has not changed - if <code>src</code> has not changed but other state has changed such that the image needs updating, call {@link com.smartgwt.client.widgets.Img#resetSrc} instead.
+     * Changes the URL of this image and redraws it. <P> Does nothing if the src has not changed - if <code>src</code> has not changed but other state has changed such that the image needs updating, call {@link com.smartgwt.client.widgets.Img#resetSrc Img.resetSrc} instead.
      *
      * @param src new URL for the image. Default value is "blank.gif"
+     * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
     public void setSrc(String src) {
         setAttribute("src", src, true);
@@ -250,6 +255,7 @@ public class Img extends StatefulCanvas {
      *
      *
      * @return String
+     * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
     public String getSrc()  {
         return getAttributeAsString("src");

@@ -93,11 +93,11 @@ public class TextAreaItem extends FormItem {
     // ********************* Properties / Attributes ***********************
 
     /**
-     * Should this form item fire its {@link com.smartgwt.client.widgets.form.fields.FormItem#addChangeHandler} handler (and
-     * store its value in the form) on every keypress? Set to <code>false</code> to suppress the 'change' handler firing (and
-     * the value stored) on every keypress. <p> Note: If <code>false</code>, the value returned by {@link
-     * com.smartgwt.client.widgets.form.fields.FormItem#getValue} will not reflect the value displayed in the form item element
-     * as long as focus is in the form item element.
+     * Should this form item fire its {@link com.smartgwt.client.widgets.form.fields.FormItem#addChangeHandler
+     * FormItem.addChangeHandler} handler (and store its value in the form) on every keypress? Set to <code>false</code> to
+     * suppress the 'change' handler firing (and the value stored) on every keypress. <p> Note: If <code>false</code>, the
+     * value returned by {@link com.smartgwt.client.widgets.form.fields.FormItem#getValue FormItem.getValue} will not reflect
+     * the value displayed in the form item element as long as focus is in the form item element.
      *
      * @param changeOnKeypress changeOnKeypress Default value is true
      */
@@ -106,11 +106,11 @@ public class TextAreaItem extends FormItem {
     }
 
     /**
-     * Should this form item fire its {@link com.smartgwt.client.widgets.form.fields.FormItem#addChangeHandler} handler (and
-     * store its value in the form) on every keypress? Set to <code>false</code> to suppress the 'change' handler firing (and
-     * the value stored) on every keypress. <p> Note: If <code>false</code>, the value returned by {@link
-     * com.smartgwt.client.widgets.form.fields.FormItem#getValue} will not reflect the value displayed in the form item element
-     * as long as focus is in the form item element.
+     * Should this form item fire its {@link com.smartgwt.client.widgets.form.fields.FormItem#addChangeHandler
+     * FormItem.addChangeHandler} handler (and store its value in the form) on every keypress? Set to <code>false</code> to
+     * suppress the 'change' handler firing (and the value stored) on every keypress. <p> Note: If <code>false</code>, the
+     * value returned by {@link com.smartgwt.client.widgets.form.fields.FormItem#getValue FormItem.getValue} will not reflect
+     * the value displayed in the form item element as long as focus is in the form item element.
      *
      *
      * @return Boolean
@@ -123,6 +123,7 @@ public class TextAreaItem extends FormItem {
      * default height of this item
      *
      * @param height height Default value is 100
+     * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
     public void setHeight(int height) {
         setAttribute("height", height);
@@ -133,6 +134,7 @@ public class TextAreaItem extends FormItem {
      *
      *
      * @return int
+     * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
     public int getHeight()  {
         return getAttributeAsInt("height");
@@ -163,6 +165,7 @@ public class TextAreaItem extends FormItem {
      * com.smartgwt.client.widgets.form.DynamicForm#getSelectOnFocus selectOnFocus}.
      *
      * @param selectOnFocus selectOnFocus Default value is null
+     * @see com.smartgwt.client.docs.Focus Focus overview and related methods
      */
     public void setSelectOnFocus(Boolean selectOnFocus) {
         setAttribute("selectOnFocus", selectOnFocus);
@@ -175,6 +178,7 @@ public class TextAreaItem extends FormItem {
      *
      *
      * @return Boolean
+     * @see com.smartgwt.client.docs.Focus Focus overview and related methods
      */
     public Boolean getSelectOnFocus()  {
         return getAttributeAsBoolean("selectOnFocus");
@@ -187,6 +191,7 @@ public class TextAreaItem extends FormItem {
      * <p><b>Note : </b> This is an advanced setting</p>
      *
      * @param showHintInField showHintInField Default value is null
+     * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
     public void setShowHintInField(Boolean showHintInField) {
         setAttribute("showHintInField", showHintInField);
@@ -199,6 +204,7 @@ public class TextAreaItem extends FormItem {
      *
      *
      * @return Boolean
+     * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
     public Boolean getShowHintInField()  {
         return getAttributeAsBoolean("showHintInField");
@@ -209,6 +215,7 @@ public class TextAreaItem extends FormItem {
      * skinning considerations.
      *
      * @param textBoxStyle textBoxStyle Default value is "textItem"
+     * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
     public void setTextBoxStyle(String textBoxStyle) {
         setAttribute("textBoxStyle", textBoxStyle);
@@ -220,6 +227,7 @@ public class TextAreaItem extends FormItem {
      *
      *
      * @return String
+     * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
     public String getTextBoxStyle()  {
         return getAttributeAsString("textBoxStyle");
@@ -229,6 +237,7 @@ public class TextAreaItem extends FormItem {
      * default width of this item
      *
      * @param width width Default value is 150
+     * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
     public void setWidth(int width) {
         setAttribute("width", width);
@@ -239,6 +248,7 @@ public class TextAreaItem extends FormItem {
      *
      *
      * @return int
+     * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
     public int getWidth()  {
         return getAttributeAsInt("width");

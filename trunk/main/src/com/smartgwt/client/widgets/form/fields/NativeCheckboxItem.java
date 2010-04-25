@@ -109,6 +109,7 @@ public class NativeCheckboxItem extends FormItem {
      * Base CSS class applied to this item's title text (rendered next to the checkbox element).
      *
      * @param textBoxStyle textBoxStyle Default value is "labelAnchor"
+     * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
     public void setTextBoxStyle(String textBoxStyle) {
         setAttribute("textBoxStyle", textBoxStyle);
@@ -119,6 +120,7 @@ public class NativeCheckboxItem extends FormItem {
      *
      *
      * @return String
+     * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
     public String getTextBoxStyle()  {
         return getAttributeAsString("textBoxStyle");

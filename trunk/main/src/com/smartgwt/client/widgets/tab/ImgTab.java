@@ -91,6 +91,7 @@ public class ImgTab extends StretchImgButton {
      * Alignment of title text
      *
      * @param align align Default value is Canvas.CENTER
+     * @see com.smartgwt.client.docs.Positioning Positioning overview and related methods
      */
     public void setAlign(Alignment align) {
         setAttribute("align", align.getValue(), true);
@@ -101,6 +102,7 @@ public class ImgTab extends StretchImgButton {
      *
      *
      * @return Alignment
+     * @see com.smartgwt.client.docs.Positioning Positioning overview and related methods
      */
     public Alignment getAlign()  {
         return EnumUtil.getEnum(Alignment.values(), getAttribute("align"));
@@ -130,6 +132,7 @@ public class ImgTab extends StretchImgButton {
      * How big are the end pieces by default
      *
      * @param capSize capSize Default value is 2
+     * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
     public void setCapSize(int capSize) {
         setAttribute("capSize", capSize, true);
@@ -140,6 +143,7 @@ public class ImgTab extends StretchImgButton {
      *
      *
      * @return int
+     * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
     public int getCapSize()  {
         return getAttributeAsInt("capSize");

@@ -158,8 +158,8 @@ public class PortalLayout extends Layout {
 
     /**
      * Initial number of columns to show in this PortalLayout. Note that after initialization columns should be added / removed
-     * via {@link com.smartgwt.client.widgets.layout.PortalLayout#addColumn} and {@link
-     * com.smartgwt.client.widgets.layout.PortalLayout#removeColumn}
+     * via {@link com.smartgwt.client.widgets.layout.PortalLayout#addColumn PortalLayout.addColumn} and {@link
+     * com.smartgwt.client.widgets.layout.PortalLayout#removeColumn PortalLayout.removeColumn}
      *
      * @param numColumns numColumns Default value is 2
      * @throws IllegalStateException this property cannot be changed after the component has been created
@@ -170,8 +170,8 @@ public class PortalLayout extends Layout {
 
     /**
      * Initial number of columns to show in this PortalLayout. Note that after initialization columns should be added / removed
-     * via {@link com.smartgwt.client.widgets.layout.PortalLayout#addColumn} and {@link
-     * com.smartgwt.client.widgets.layout.PortalLayout#removeColumn}
+     * via {@link com.smartgwt.client.widgets.layout.PortalLayout#addColumn PortalLayout.addColumn} and {@link
+     * com.smartgwt.client.widgets.layout.PortalLayout#removeColumn PortalLayout.removeColumn}
      *
      *
      * @return int

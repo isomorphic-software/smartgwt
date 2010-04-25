@@ -24,10 +24,11 @@ public interface HasCellSavedHandlers extends HasHandlers {
     /**
      * Fires after user edits have been successfully saved to the server, when the new value doesn't match the value before
      * editing. <p> If you want immediate notification of a changes <b>before</b> changes has been saved to the server,
-     * implement {@link com.smartgwt.client.widgets.grid.ListGridField#addChangeHandler} or {@link
-     * com.smartgwt.client.widgets.grid.ListGridField#addChangedHandler} instead. <P> You can supply this method on the
-     * listGrid instance or on the listGridField(s) that you want to receive cellChanged events for.  If both a field and the
-     * listGrid define a cellChanged method and that field receives an edit save, only the one defined on the field is called.
+     * implement {@link com.smartgwt.client.widgets.grid.ListGridField#addChangeHandler ListGridField.addChangeHandler} or
+     * {@link com.smartgwt.client.widgets.grid.ListGridField#addChangedHandler ListGridField.addChangedHandler} instead. <P>
+     * You can supply this method on the listGrid instance or on the listGridField(s) that you want to receive cellChanged
+     * events for.  If both a field and the listGrid define a cellChanged method and that field receives an edit save, only the
+     * one defined on the field is called.
      *
      * @param handler the cellSaved handler
      * @return {@link HandlerRegistration} used to remove this handler

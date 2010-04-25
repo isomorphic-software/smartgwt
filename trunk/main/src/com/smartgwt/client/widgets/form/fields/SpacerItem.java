@@ -90,6 +90,7 @@ public class SpacerItem extends FormItem {
      * default height for the spacer
      *
      * @param height height Default value is 20
+     * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
     public void setHeight(int height) {
         setAttribute("height", height);
@@ -100,6 +101,7 @@ public class SpacerItem extends FormItem {
      *
      *
      * @return int
+     * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
     public int getHeight()  {
         return getAttributeAsInt("height");
@@ -109,6 +111,7 @@ public class SpacerItem extends FormItem {
      * we never show a separate title cell for spacers
      *
      * @param showTitle showTitle Default value is false
+     * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
     public void setShowTitle(Boolean showTitle) {
         setAttribute("showTitle", showTitle);
@@ -119,6 +122,7 @@ public class SpacerItem extends FormItem {
      *
      *
      * @return Boolean
+     * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
     public Boolean getShowTitle()  {
         return getAttributeAsBoolean("showTitle");
@@ -128,6 +132,7 @@ public class SpacerItem extends FormItem {
      * default width for the spacer
      *
      * @param width width Default value is 20
+     * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
     public void setWidth(int width) {
         setAttribute("width", width);
@@ -138,6 +143,7 @@ public class SpacerItem extends FormItem {
      *
      *
      * @return int
+     * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
     public int getWidth()  {
         return getAttributeAsInt("width");
