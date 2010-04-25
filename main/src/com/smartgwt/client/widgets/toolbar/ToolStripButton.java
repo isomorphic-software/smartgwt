@@ -25,7 +25,7 @@ import com.smartgwt.client.widgets.StretchImgButton;
  * Can be used to create an icon-only button, and icon with text, or a text only button by setting the
  * icon and title attibutes as required.
  *
- * @see com.smartgwt.client.widgets.toolbar.ToolStrip#addButton(com.smartgwt.client.widgets.ToolStripButton)
+ * @see ToolStrip#addButton(ToolStripButton)
  */
 public class ToolStripButton extends StretchImgButton {
 
@@ -40,7 +40,7 @@ public class ToolStripButton extends StretchImgButton {
     }
 
     public ToolStripButton(){
-        scClassName = "ToolStrip";
+        scClassName = "ToolStripButton";
     }
 
     public ToolStripButton(JavaScriptObject jsObj){
