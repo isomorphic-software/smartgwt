@@ -88,8 +88,8 @@ import com.google.gwt.event.shared.HasHandlers;
  * interactions without the need to configure how each individual component loads and saves data. <P> These interactions
  * include {@link com.smartgwt.client.widgets.grid.ListGrid}, {@link com.smartgwt.client.widgets.tree.TreeGrid},  {@link
  * com.smartgwt.client.widgets.viewer.DetailViewer}, {@link com.smartgwt.client.widgets.form.DynamicForm}-based  {@link
- * com.smartgwt.client.widgets.form.DynamicForm#editRecord} and {@link
- * com.smartgwt.client.widgets.form.DynamicForm#saveData}, grid-based {@link
+ * com.smartgwt.client.widgets.form.DynamicForm#editRecord DynamicForm.editRecord} and {@link
+ * com.smartgwt.client.widgets.form.DynamicForm#saveData DynamicForm.saveData}, grid-based {@link
  * com.smartgwt.client.widgets.grid.ListGrid#getCanEdit 'editing'} and {@link
  * com.smartgwt.client.widgets.grid.ListGrid#getSaveByCell 'saving'}, and custom interactions provided by
  * ${isc.DocUtils.linkForExampleId('patternReuse')} custom databinding-capable components.
@@ -171,6 +171,30 @@ public class DataSource extends BaseClass  implements com.smartgwt.client.data.e
     }
 
     /**
+     * Whether to convert relative date values to concrete date values before sending to the  server.  Default value is true,
+     * which means that the server does not need to understand  how to filter using relative dates - it receives all date
+     * values as absolute dates.
+     *
+     * @param autoConvertRelativeDates autoConvertRelativeDates Default value is true
+     * @throws IllegalStateException this property cannot be changed after the underlying component has been created
+     */
+    public void setAutoConvertRelativeDates(Boolean autoConvertRelativeDates)  throws IllegalStateException {
+        setAttribute("autoConvertRelativeDates", autoConvertRelativeDates, false);
+    }
+
+    /**
+     * Whether to convert relative date values to concrete date values before sending to the  server.  Default value is true,
+     * which means that the server does not need to understand  how to filter using relative dates - it receives all date
+     * values as absolute dates.
+     *
+     *
+     * @return Boolean
+     */
+    public Boolean getAutoConvertRelativeDates()  {
+        return getAttributeAsBoolean("autoConvertRelativeDates");
+    }
+
+    /**
      * For a DataSource with serverType: "sql" or serverType: "hibernate", automatically derive the dataSource's schema (field
      * definitions) from the SQL table specified in  {@link com.smartgwt.client.data.DataSource#getTableName tableName}.  This
      * causes Smart GWT to create a "super" DataSource, which this dataSource then automatically {@link
@@ -202,7 +226,7 @@ public class DataSource extends BaseClass  implements com.smartgwt.client.data.e
      * If set, titles are automatically derived from {@link com.smartgwt.client.data.DataSourceField#getName 'field.name'} for
      * any  field that does not have a {@link com.smartgwt.client.data.DataSourceField#getTitle 'field.title'} and is not
      * marked {@link com.smartgwt.client.data.DataSourceField#getHidden 'hidden'}:true, by calling the method {@link
-     * com.smartgwt.client.data.DataSource#getAutoTitle}.
+     * com.smartgwt.client.data.DataSource#getAutoTitle DataSource.getAutoTitle}.
      *
      * @param autoDeriveTitles autoDeriveTitles Default value is true
      * @throws IllegalStateException this property cannot be changed after the underlying component has been created
@@ -215,7 +239,7 @@ public class DataSource extends BaseClass  implements com.smartgwt.client.data.e
      * If set, titles are automatically derived from {@link com.smartgwt.client.data.DataSourceField#getName 'field.name'} for
      * any  field that does not have a {@link com.smartgwt.client.data.DataSourceField#getTitle 'field.title'} and is not
      * marked {@link com.smartgwt.client.data.DataSourceField#getHidden 'hidden'}:true, by calling the method {@link
-     * com.smartgwt.client.data.DataSource#getAutoTitle}.
+     * com.smartgwt.client.data.DataSource#getAutoTitle DataSource.getAutoTitle}.
      *
      *
      * @return Boolean
@@ -304,7 +328,7 @@ public class DataSource extends BaseClass  implements com.smartgwt.client.data.e
      * Set this property to true to have a DataSource fetch all of it's data client-side on the  first fetch request.  However,
      * unlike a {@link com.smartgwt.client.data.DataSource#getClientOnly clientOnly} DataSource, this DataSource  will still
      * save changes normally, sending remote requests. <P> You can manually set this attribute after initialization by calling 
-     * {@link com.smartgwt.client.data.DataSource#setCacheAllData} and setting {@link
+     * {@link com.smartgwt.client.data.DataSource#setCacheAllData DataSource.setCacheAllData} and setting {@link
      * com.smartgwt.client.data.DataSource#getAutoCacheAllData autoCacheAllData}:true causes a DataSource to  automatically
      * switch to <code>cacheAllData:true</> when a fetch results in the entire  dataset being brought client-side. <P> To cause
      * automatic cache updates, you can set {@link com.smartgwt.client.data.DataSource#getCacheMaxAge cacheMaxAge} to a number
@@ -322,7 +346,7 @@ public class DataSource extends BaseClass  implements com.smartgwt.client.data.e
      * Set this property to true to have a DataSource fetch all of it's data client-side on the  first fetch request.  However,
      * unlike a {@link com.smartgwt.client.data.DataSource#getClientOnly clientOnly} DataSource, this DataSource  will still
      * save changes normally, sending remote requests. <P> You can manually set this attribute after initialization by calling 
-     * {@link com.smartgwt.client.data.DataSource#setCacheAllData} and setting {@link
+     * {@link com.smartgwt.client.data.DataSource#setCacheAllData DataSource.setCacheAllData} and setting {@link
      * com.smartgwt.client.data.DataSource#getAutoCacheAllData autoCacheAllData}:true causes a DataSource to  automatically
      * switch to <code>cacheAllData:true</> when a fetch results in the entire  dataset being brought client-side. <P> To cause
      * automatic cache updates, you can set {@link com.smartgwt.client.data.DataSource#getCacheMaxAge cacheMaxAge} to a number
@@ -386,6 +410,7 @@ public class DataSource extends BaseClass  implements com.smartgwt.client.data.e
      *
      * @param callbackParam callbackParam Default value is "callback"
      * @throws IllegalStateException this property cannot be changed after the underlying component has been created
+     * @see com.smartgwt.client.docs.ClientDataIntegration ClientDataIntegration overview and related methods
      */
     public void setCallbackParam(String callbackParam)  throws IllegalStateException {
         setAttribute("callbackParam", callbackParam, false);
@@ -397,6 +422,7 @@ public class DataSource extends BaseClass  implements com.smartgwt.client.data.e
      *
      *
      * @return String
+     * @see com.smartgwt.client.docs.ClientDataIntegration ClientDataIntegration overview and related methods
      */
     public String getCallbackParam()  {
         return getAttributeAsString("callbackParam");
@@ -437,6 +463,7 @@ public class DataSource extends BaseClass  implements com.smartgwt.client.data.e
      *
      * @param childrenField childrenField Default value is null
      * @throws IllegalStateException this property cannot be changed after the underlying component has been created
+     * @see com.smartgwt.client.docs.DataSourceRelations DataSourceRelations overview and related methods
      */
     public void setChildrenField(String childrenField)  throws IllegalStateException {
         setAttribute("childrenField", childrenField, false);
@@ -457,6 +484,7 @@ public class DataSource extends BaseClass  implements com.smartgwt.client.data.e
      *
      *
      * @return String
+     * @see com.smartgwt.client.docs.DataSourceRelations DataSourceRelations overview and related methods
      */
     public String getChildrenField()  {
         return getAttributeAsString("childrenField");
@@ -473,6 +501,7 @@ public class DataSource extends BaseClass  implements com.smartgwt.client.data.e
      *
      * @param clientOnly clientOnly Default value is false
      * @throws IllegalStateException this property cannot be changed after the underlying component has been created
+     * @see com.smartgwt.client.docs.ClientOnlyDataSources ClientOnlyDataSources overview and related methods
      */
     public void setClientOnly(Boolean clientOnly)  throws IllegalStateException {
         setAttribute("clientOnly", clientOnly, false);
@@ -488,6 +517,7 @@ public class DataSource extends BaseClass  implements com.smartgwt.client.data.e
      *
      *
      * @return Boolean
+     * @see com.smartgwt.client.docs.ClientOnlyDataSources ClientOnlyDataSources overview and related methods
      */
     public Boolean getClientOnly()  {
         return getAttributeAsBoolean("clientOnly");
@@ -517,10 +547,11 @@ public class DataSource extends BaseClass  implements com.smartgwt.client.data.e
 
     /**
      * Indicates the format to be used for HTTP requests and responses when fulfilling DSRequests (eg, when {@link
-     * com.smartgwt.client.data.DataSource#fetchData} is called).
+     * com.smartgwt.client.data.DataSource#fetchData DataSource.fetchData} is called).
      *
      * @param dataFormat dataFormat Default value is "iscServer"
      * @throws IllegalStateException this property cannot be changed after the underlying component has been created
+     * @see com.smartgwt.client.docs.ServerDataIntegration ServerDataIntegration overview and related methods
      */
     public void setDataFormat(DSDataFormat dataFormat)  throws IllegalStateException {
         setAttribute("dataFormat", dataFormat.getValue(), false);
@@ -528,10 +559,11 @@ public class DataSource extends BaseClass  implements com.smartgwt.client.data.e
 
     /**
      * Indicates the format to be used for HTTP requests and responses when fulfilling DSRequests (eg, when {@link
-     * com.smartgwt.client.data.DataSource#fetchData} is called).
+     * com.smartgwt.client.data.DataSource#fetchData DataSource.fetchData} is called).
      *
      *
      * @return DSDataFormat
+     * @see com.smartgwt.client.docs.ServerDataIntegration ServerDataIntegration overview and related methods
      */
     public DSDataFormat getDataFormat()  {
         return EnumUtil.getEnum(DSDataFormat.values(), getAttribute("dataFormat"));
@@ -548,6 +580,7 @@ public class DataSource extends BaseClass  implements com.smartgwt.client.data.e
      *
      * @param dataTransport dataTransport Default value is RPCManager.defaultTransport
      * @throws IllegalStateException this property cannot be changed after the underlying component has been created
+     * @see com.smartgwt.client.docs.ClientDataIntegration ClientDataIntegration overview and related methods
      */
     public void setDataTransport(RPCTransport dataTransport)  throws IllegalStateException {
         setAttribute("dataTransport", dataTransport.getValue(), false);
@@ -564,6 +597,7 @@ public class DataSource extends BaseClass  implements com.smartgwt.client.data.e
      *
      *
      * @return RPCTransport
+     * @see com.smartgwt.client.docs.ClientDataIntegration ClientDataIntegration overview and related methods
      */
     public RPCTransport getDataTransport()  {
         return EnumUtil.getEnum(RPCTransport.values(), getAttribute("dataTransport"));
@@ -573,10 +607,11 @@ public class DataSource extends BaseClass  implements com.smartgwt.client.data.e
      * Default URL to contact to fulfill all DSRequests.  Can also be set on a per-operationType basis via {@link
      * com.smartgwt.client.data.OperationBinding#getDataURL dataURL}. <P> NOTE: Best practice is to use the same
      * <code>dataURL</code> for all DataSources which fulfill DSRequests via the server-side RPCManager API.  Otherwise,
-     * cross-DataSource {@link com.smartgwt.client.rpc.RPCManager#startQueue} will not be possible.
+     * cross-DataSource {@link com.smartgwt.client.rpc.RPCManager#startQueue RPCManager.startQueue} will not be possible.
      *
      * @param dataURL dataURL Default value is null
      * @throws IllegalStateException this property cannot be changed after the underlying component has been created
+     * @see com.smartgwt.client.docs.ClientDataIntegration ClientDataIntegration overview and related methods
      */
     public void setDataURL(String dataURL)  throws IllegalStateException {
         setAttribute("dataURL", dataURL, false);
@@ -586,10 +621,11 @@ public class DataSource extends BaseClass  implements com.smartgwt.client.data.e
      * Default URL to contact to fulfill all DSRequests.  Can also be set on a per-operationType basis via {@link
      * com.smartgwt.client.data.OperationBinding#getDataURL dataURL}. <P> NOTE: Best practice is to use the same
      * <code>dataURL</code> for all DataSources which fulfill DSRequests via the server-side RPCManager API.  Otherwise,
-     * cross-DataSource {@link com.smartgwt.client.rpc.RPCManager#startQueue} will not be possible.
+     * cross-DataSource {@link com.smartgwt.client.rpc.RPCManager#startQueue RPCManager.startQueue} will not be possible.
      *
      *
      * @return String
+     * @see com.smartgwt.client.docs.ClientDataIntegration ClientDataIntegration overview and related methods
      */
     public String getDataURL()  {
         return getAttributeAsString("dataURL");
@@ -602,6 +638,7 @@ public class DataSource extends BaseClass  implements com.smartgwt.client.data.e
      *
      * @param dbName dbName Default value is null
      * @throws IllegalStateException this property cannot be changed after the underlying component has been created
+     * @see com.smartgwt.client.docs.ServerDataIntegration ServerDataIntegration overview and related methods
      */
     public void setDbName(String dbName)  throws IllegalStateException {
         setAttribute("dbName", dbName, false);
@@ -614,6 +651,7 @@ public class DataSource extends BaseClass  implements com.smartgwt.client.data.e
      *
      *
      * @return String
+     * @see com.smartgwt.client.docs.ServerDataIntegration ServerDataIntegration overview and related methods
      */
     public String getDbName()  {
         return getAttributeAsString("dbName");
@@ -631,6 +669,7 @@ public class DataSource extends BaseClass  implements com.smartgwt.client.data.e
      *
      * @param dropExtraFields dropExtraFields Default value is null
      * @throws IllegalStateException this property cannot be changed after the underlying component has been created
+     * @see com.smartgwt.client.docs.ClientDataIntegration ClientDataIntegration overview and related methods
      */
     public void setDropExtraFields(Boolean dropExtraFields)  throws IllegalStateException {
         setAttribute("dropExtraFields", dropExtraFields, false);
@@ -648,6 +687,7 @@ public class DataSource extends BaseClass  implements com.smartgwt.client.data.e
      *
      *
      * @return Boolean
+     * @see com.smartgwt.client.docs.ClientDataIntegration ClientDataIntegration overview and related methods
      */
     public Boolean getDropExtraFields()  {
         return getAttributeAsBoolean("dropExtraFields");
@@ -729,7 +769,7 @@ public class DataSource extends BaseClass  implements com.smartgwt.client.data.e
      * <br> Only applies to responses formatted as json objects. Does not apply to responses returned via scriptInclude type
      * transport.<br> Note: If the prefix / suffix served by your backend is not a constant, you can use  {@link
      * com.smartgwt.client.data.OperationBinding#getDataFormat 'dataFormat:"custom"'} instead and explicitly parse the prefix
-     * out as part of {@link com.smartgwt.client.data.DataSource#transformResponse}.
+     * out as part of {@link com.smartgwt.client.data.DataSource#transformResponse DataSource.transformResponse}.
      * <p><b>Note : </b> This is an advanced setting</p>
      *
      * @param jsonPrefix jsonPrefix Default value is null
@@ -747,7 +787,7 @@ public class DataSource extends BaseClass  implements com.smartgwt.client.data.e
      * <br> Only applies to responses formatted as json objects. Does not apply to responses returned via scriptInclude type
      * transport.<br> Note: If the prefix / suffix served by your backend is not a constant, you can use  {@link
      * com.smartgwt.client.data.OperationBinding#getDataFormat 'dataFormat:"custom"'} instead and explicitly parse the prefix
-     * out as part of {@link com.smartgwt.client.data.DataSource#transformResponse}.
+     * out as part of {@link com.smartgwt.client.data.DataSource#transformResponse DataSource.transformResponse}.
      *
      *
      * @return String
@@ -897,6 +937,7 @@ public class DataSource extends BaseClass  implements com.smartgwt.client.data.e
      *
      * @param recordXPath recordXPath Default value is null
      * @throws IllegalStateException this property cannot be changed after the underlying component has been created
+     * @see com.smartgwt.client.docs.ClientDataIntegration ClientDataIntegration overview and related methods
      */
     public void setRecordXPath(String recordXPath)  throws IllegalStateException {
         setAttribute("recordXPath", recordXPath, false);
@@ -908,6 +949,7 @@ public class DataSource extends BaseClass  implements com.smartgwt.client.data.e
      *
      *
      * @return String
+     * @see com.smartgwt.client.docs.ClientDataIntegration ClientDataIntegration overview and related methods
      */
     public String getRecordXPath()  {
         return getAttributeAsString("recordXPath");
@@ -917,6 +959,7 @@ public class DataSource extends BaseClass  implements com.smartgwt.client.data.e
      * The required message for required field errors.
      *
      * @param requiredMessage requiredMessage Default value is null
+     * @see com.smartgwt.client.docs.FormTitles FormTitles overview and related methods
      */
     public void setRequiredMessage(String requiredMessage) {
         setAttribute("requiredMessage", requiredMessage, true);
@@ -927,6 +970,7 @@ public class DataSource extends BaseClass  implements com.smartgwt.client.data.e
      *
      *
      * @return String
+     * @see com.smartgwt.client.docs.FormTitles FormTitles overview and related methods
      */
     public String getRequiredMessage()  {
         return getAttributeAsString("requiredMessage");
@@ -965,13 +1009,14 @@ public class DataSource extends BaseClass  implements com.smartgwt.client.data.e
 
     /**
      * For a DataSource derived from WSDL or XML schema, the XML namespace this schema belongs to.  This is a read-only
-     * attribute automatically present on DataSources returned from {@link com.smartgwt.client..SchemaSet#getSchema} and {@link
-     * com.smartgwt.client.data.WebService#getSchema}.
+     * attribute automatically present on DataSources returned from {@link com.smartgwt.client..SchemaSet#getSchema
+     * SchemaSet.getSchema} and {@link com.smartgwt.client.data.WebService#getSchema WebService.getSchema}.
      *
      * <b>Note :</b> This method should be called only after the underlying component has been created.
      *
      * @return String
      * @throws IllegalStateException if underlying component has not yet been created.
+     * @see com.smartgwt.client.docs.WsdlBinding WsdlBinding overview and related methods
      */
     public String getSchemaNamespace() throws IllegalStateException {
         errorIfNotCreated("schemaNamespace");
@@ -982,10 +1027,11 @@ public class DataSource extends BaseClass  implements com.smartgwt.client.data.e
      * Analogous to {@link com.smartgwt.client.data.DataSource#getDropExtraFields dropExtraFields}, for data sent to the
      * server.  Setting this attribute to false ensures that for any records in the data object, only fields that correspond to
      * declared dataSource fields will be present on the dsRequest data object passed to {@link
-     * com.smartgwt.client.data.DataSource#transformRequest} and ultimately sent to the server.
+     * com.smartgwt.client.data.DataSource#transformRequest DataSource.transformRequest} and ultimately sent to the server.
      *
      * @param sendExtraFields sendExtraFields Default value is true
      * @throws IllegalStateException this property cannot be changed after the underlying component has been created
+     * @see com.smartgwt.client.docs.ClientDataIntegration ClientDataIntegration overview and related methods
      */
     public void setSendExtraFields(Boolean sendExtraFields)  throws IllegalStateException {
         setAttribute("sendExtraFields", sendExtraFields, false);
@@ -995,10 +1041,11 @@ public class DataSource extends BaseClass  implements com.smartgwt.client.data.e
      * Analogous to {@link com.smartgwt.client.data.DataSource#getDropExtraFields dropExtraFields}, for data sent to the
      * server.  Setting this attribute to false ensures that for any records in the data object, only fields that correspond to
      * declared dataSource fields will be present on the dsRequest data object passed to {@link
-     * com.smartgwt.client.data.DataSource#transformRequest} and ultimately sent to the server.
+     * com.smartgwt.client.data.DataSource#transformRequest DataSource.transformRequest} and ultimately sent to the server.
      *
      *
      * @return Boolean
+     * @see com.smartgwt.client.docs.ClientDataIntegration ClientDataIntegration overview and related methods
      */
     public Boolean getSendExtraFields()  {
         return getAttributeAsBoolean("sendExtraFields");
@@ -1050,6 +1097,7 @@ public class DataSource extends BaseClass  implements com.smartgwt.client.data.e
      *
      * @param serverType serverType Default value is "generic"
      * @throws IllegalStateException this property cannot be changed after the underlying component has been created
+     * @see com.smartgwt.client.docs.ServerDataIntegration ServerDataIntegration overview and related methods
      */
     public void setServerType(DSServerType serverType)  throws IllegalStateException {
         setAttribute("serverType", serverType.getValue(), false);
@@ -1061,6 +1109,7 @@ public class DataSource extends BaseClass  implements com.smartgwt.client.data.e
      *
      *
      * @return DSServerType
+     * @see com.smartgwt.client.docs.ServerDataIntegration ServerDataIntegration overview and related methods
      */
     public DSServerType getServerType()  {
         return EnumUtil.getEnum(DSServerType.values(), getAttribute("serverType"));
@@ -1070,16 +1119,17 @@ public class DataSource extends BaseClass  implements com.smartgwt.client.data.e
      * For an XML DataSource, URN of the WebService to use to invoke operations.  This URN comes from the "targetNamespace"
      * attribute of the &lt;wsdl:definitions&gt; element in a WSDL (Web Service Description Language) document, and serves as
      * the unique identifier of the service. <P> Having loaded a WebService using {@link
-     * com.smartgwt.client.data.XMLTools#loadWSDL}, setting <code>serviceNamespace</code> combined with specifying  {@link
-     * com.smartgwt.client.data.OperationBinding} that set {@link com.smartgwt.client.data.OperationBinding#getWsOperation
-     * wsOperation} will cause a DataSource to invoke web service operations to fulfill DataSource requests ({@link
-     * com.smartgwt.client.data.DSRequest}). <P> Setting <code>serviceNamespace</code> also defaults {@link
-     * com.smartgwt.client.data.DataSource#getDataURL 'dataURL'} to the service's location, {@link
-     * com.smartgwt.client.data.DataSource#getDataFormat 'dataFormat'} to "xml" and {@link
+     * com.smartgwt.client.data.XMLTools#loadWSDL XMLTools.loadWSDL}, setting <code>serviceNamespace</code> combined with
+     * specifying  {@link com.smartgwt.client.data.OperationBinding} that set {@link
+     * com.smartgwt.client.data.OperationBinding#getWsOperation wsOperation} will cause a DataSource to invoke web service
+     * operations to fulfill DataSource requests ({@link com.smartgwt.client.data.DSRequest}). <P> Setting
+     * <code>serviceNamespace</code> also defaults {@link com.smartgwt.client.data.DataSource#getDataURL 'dataURL'} to the
+     * service's location, {@link com.smartgwt.client.data.DataSource#getDataFormat 'dataFormat'} to "xml" and {@link
      * com.smartgwt.client.data.OperationBinding#getDataProtocol 'dataProtocol'} to "soap".
      *
      * @param serviceNamespace serviceNamespace Default value is null
      * @throws IllegalStateException this property cannot be changed after the underlying component has been created
+     * @see com.smartgwt.client.docs.WsdlBinding WsdlBinding overview and related methods
      */
     public void setServiceNamespace(String serviceNamespace)  throws IllegalStateException {
         setAttribute("serviceNamespace", serviceNamespace, false);
@@ -1089,16 +1139,17 @@ public class DataSource extends BaseClass  implements com.smartgwt.client.data.e
      * For an XML DataSource, URN of the WebService to use to invoke operations.  This URN comes from the "targetNamespace"
      * attribute of the &lt;wsdl:definitions&gt; element in a WSDL (Web Service Description Language) document, and serves as
      * the unique identifier of the service. <P> Having loaded a WebService using {@link
-     * com.smartgwt.client.data.XMLTools#loadWSDL}, setting <code>serviceNamespace</code> combined with specifying  {@link
-     * com.smartgwt.client.data.OperationBinding} that set {@link com.smartgwt.client.data.OperationBinding#getWsOperation
-     * wsOperation} will cause a DataSource to invoke web service operations to fulfill DataSource requests ({@link
-     * com.smartgwt.client.data.DSRequest}). <P> Setting <code>serviceNamespace</code> also defaults {@link
-     * com.smartgwt.client.data.DataSource#getDataURL 'dataURL'} to the service's location, {@link
-     * com.smartgwt.client.data.DataSource#getDataFormat 'dataFormat'} to "xml" and {@link
+     * com.smartgwt.client.data.XMLTools#loadWSDL XMLTools.loadWSDL}, setting <code>serviceNamespace</code> combined with
+     * specifying  {@link com.smartgwt.client.data.OperationBinding} that set {@link
+     * com.smartgwt.client.data.OperationBinding#getWsOperation wsOperation} will cause a DataSource to invoke web service
+     * operations to fulfill DataSource requests ({@link com.smartgwt.client.data.DSRequest}). <P> Setting
+     * <code>serviceNamespace</code> also defaults {@link com.smartgwt.client.data.DataSource#getDataURL 'dataURL'} to the
+     * service's location, {@link com.smartgwt.client.data.DataSource#getDataFormat 'dataFormat'} to "xml" and {@link
      * com.smartgwt.client.data.OperationBinding#getDataProtocol 'dataProtocol'} to "soap".
      *
      *
      * @return String
+     * @see com.smartgwt.client.docs.WsdlBinding WsdlBinding overview and related methods
      */
     public String getServiceNamespace()  {
         return getAttributeAsString("serviceNamespace");
@@ -1183,6 +1234,7 @@ public class DataSource extends BaseClass  implements com.smartgwt.client.data.e
      *
      * @param tableName tableName Default value is null
      * @throws IllegalStateException this property cannot be changed after the underlying component has been created
+     * @see com.smartgwt.client.docs.ServerDataIntegration ServerDataIntegration overview and related methods
      */
     public void setTableName(String tableName)  throws IllegalStateException {
         setAttribute("tableName", tableName, false);
@@ -1194,6 +1246,7 @@ public class DataSource extends BaseClass  implements com.smartgwt.client.data.e
      *
      *
      * @return String
+     * @see com.smartgwt.client.docs.ServerDataIntegration ServerDataIntegration overview and related methods
      */
     public String getTableName()  {
         return getAttributeAsString("tableName");
@@ -1205,6 +1258,7 @@ public class DataSource extends BaseClass  implements com.smartgwt.client.data.e
      *
      * @param tagName tagName Default value is null
      * @throws IllegalStateException this property cannot be changed after the underlying component has been created
+     * @see com.smartgwt.client.docs.ClientDataIntegration ClientDataIntegration overview and related methods
      */
     public void setTagName(String tagName)  throws IllegalStateException {
         setAttribute("tagName", tagName, false);
@@ -1215,6 +1269,7 @@ public class DataSource extends BaseClass  implements com.smartgwt.client.data.e
      *
      *
      * @return String
+     * @see com.smartgwt.client.docs.ClientDataIntegration ClientDataIntegration overview and related methods
      */
     public String getTagName()  {
         return getAttributeAsString("tagName");
@@ -1295,6 +1350,7 @@ public class DataSource extends BaseClass  implements com.smartgwt.client.data.e
      *
      * @param useHttpProxy useHttpProxy Default value is null
      * @throws IllegalStateException this property cannot be changed after the underlying component has been created
+     * @see com.smartgwt.client.docs.ClientDataIntegration ClientDataIntegration overview and related methods
      */
     public void setUseHttpProxy(Boolean useHttpProxy)  throws IllegalStateException {
         setAttribute("useHttpProxy", useHttpProxy, false);
@@ -1306,6 +1362,7 @@ public class DataSource extends BaseClass  implements com.smartgwt.client.data.e
      *
      *
      * @return Boolean
+     * @see com.smartgwt.client.docs.ClientDataIntegration ClientDataIntegration overview and related methods
      */
     public Boolean getUseHttpProxy()  {
         return getAttributeAsBoolean("useHttpProxy");
@@ -1317,6 +1374,7 @@ public class DataSource extends BaseClass  implements com.smartgwt.client.data.e
      * <p><b>Note : </b> This is an advanced setting</p>
      *
      * @param useLocalValidators useLocalValidators Default value is null
+     * @see com.smartgwt.client.docs.Validation Validation overview and related methods
      */
     public void setUseLocalValidators(Boolean useLocalValidators) {
         setAttribute("useLocalValidators", useLocalValidators, true);
@@ -1328,6 +1386,7 @@ public class DataSource extends BaseClass  implements com.smartgwt.client.data.e
      *
      *
      * @return Boolean
+     * @see com.smartgwt.client.docs.Validation Validation overview and related methods
      */
     public Boolean getUseLocalValidators()  {
         return getAttributeAsBoolean("useLocalValidators");
@@ -1411,6 +1470,37 @@ public class DataSource extends BaseClass  implements com.smartgwt.client.data.e
     // ********************* Methods ***********************
             
     /**
+     * Takes all relative date values found anywhere within a Criteria / AdvancedCriteria object and converts them to concrete
+     * date values, returning the new criteria object.
+     * @param criteria criteria to convert
+     *
+     * @return new copy of the criteria with all relative dates converted
+     */
+    public native Criteria convertRelativeDates(Criteria criteria) /*-{
+        var self = this.@com.smartgwt.client.core.BaseClass::getOrCreateJsObj()();
+        var ret = self.convertRelativeDates(criteria.@com.smartgwt.client.core.DataClass::getJsObj()());
+        if(ret == null || ret === undefined) return null;
+        return @com.smartgwt.client.data.Criteria::new(Lcom/google/gwt/core/client/JavaScriptObject;)(ret);
+    }-*/;
+
+    /**
+     * Takes all relative date values found anywhere within a Criteria / AdvancedCriteria object and converts them to concrete
+     * date values, returning the new criteria object.
+     * @param criteria criteria to convert
+     * @param timezoneOffset optional timezone offset.  Defaults to the current timezone
+     * @param firstDayOfWeek first day of the week (zero is Sunday).  Defaults to                               {@link
+     * com.smartgwt.client.widgets.DateChooser#getFirstDayOfWeek firstDayOfWeek}
+     *
+     * @return new copy of the criteria with all relative dates converted
+     */
+    public native Criteria convertRelativeDates(Criteria criteria, String timezoneOffset, int firstDayOfWeek) /*-{
+        var self = this.@com.smartgwt.client.core.BaseClass::getOrCreateJsObj()();
+        var ret = self.convertRelativeDates(criteria.@com.smartgwt.client.core.DataClass::getJsObj()(), timezoneOffset, firstDayOfWeek);
+        if(ret == null || ret === undefined) return null;
+        return @com.smartgwt.client.data.Criteria::new(Lcom/google/gwt/core/client/JavaScriptObject;)(ret);
+    }-*/;
+            
+    /**
      * Return the field definition object.
      * @param fieldName Name of the field to retrieve
      *
@@ -1461,7 +1551,8 @@ public class DataSource extends BaseClass  implements com.smartgwt.client.data.e
      * If you define this method on a DataSource, it will be called whenever the server returns a DSResponse with a status
      * other than {@link com.smartgwt.client.rpc.RPCResponse#STATUS_SUCCESS}.  You can use this hook to do DataSource-specific
      * error handling.  Unless you return <code>false</code> from this method, {@link
-     * com.smartgwt.client.rpc.RPCManager#handleError} will be called by Smart GWT right after this method completes.
+     * com.smartgwt.client.rpc.RPCManager#handleError RPCManager.handleError} will be called by Smart GWT right after this
+     * method completes.
      *
      * @param handler the handleError handler
      * @return {@link HandlerRegistration} used to remove this handler
@@ -1543,6 +1634,7 @@ public class DataSource extends BaseClass  implements com.smartgwt.client.data.e
      * @param data data to pass to the server
      * @param callback callback to invoke on completion
      * @param requestProperties additional properties to set on                                                       the DSRequest that will be issued
+     * @see com.smartgwt.client.docs.Operations Operations overview and related methods
      */
     public native void performCustomOperation(String operationId, Record data, DSCallback callback, DSRequest requestProperties) /*-{
         var self = this.@com.smartgwt.client.core.BaseClass::getOrCreateJsObj()();
@@ -1572,12 +1664,13 @@ public class DataSource extends BaseClass  implements com.smartgwt.client.data.e
      * <P> Cache updates of this kind can also be driven from server-side code - see the related server-side API
      * <code>DSResponse.addRelatedUpdate()</code>. <P> <b>NOTE:</b>: this API should <b>not</b> be used with a {@link
      * com.smartgwt.client.data.DataSource#getClientOnly clientOnly} DataSource, because in this case, the "remote dataset" is
-     * actually within the browser.  Instead,  {@link com.smartgwt.client.data.DataSource#updateData}, addData() or
-     * removeData() can be called in order to both change the dataset stored inside the browser and notify all cache managers.
-     * <P> If a DataSource has {@link com.smartgwt.client.data.DataSource#getCacheAllData cacheAllData} set and a full cache
-     * has been obtained, calling <code>updateCaches</code> will automatically update the cache. <P> Note that this DSResponse
-     * will <b>not</b> go through {@link com.smartgwt.client.data.DataSource#transformResponse} or other processing that would
-     * normally occur for a DSResponse resulting from a DSRequest sent by  the application in this page.
+     * actually within the browser.  Instead,  {@link com.smartgwt.client.data.DataSource#updateData DataSource.updateData},
+     * addData() or removeData() can be called in order to both change the dataset stored inside the browser and notify all
+     * cache managers. <P> If a DataSource has {@link com.smartgwt.client.data.DataSource#getCacheAllData cacheAllData} set and
+     * a full cache has been obtained, calling <code>updateCaches</code> will automatically update the cache. <P> Note that
+     * this DSResponse will <b>not</b> go through {@link com.smartgwt.client.data.DataSource#transformResponse
+     * DataSource.transformResponse} or other processing that would normally occur for a DSResponse resulting from a DSRequest
+     * sent by  the application in this page.
      * @param dsResponse 
      */
     public native void updateCaches(DSResponse dsResponse) /*-{
@@ -1599,12 +1692,13 @@ public class DataSource extends BaseClass  implements com.smartgwt.client.data.e
      * <P> Cache updates of this kind can also be driven from server-side code - see the related server-side API
      * <code>DSResponse.addRelatedUpdate()</code>. <P> <b>NOTE:</b>: this API should <b>not</b> be used with a {@link
      * com.smartgwt.client.data.DataSource#getClientOnly clientOnly} DataSource, because in this case, the "remote dataset" is
-     * actually within the browser.  Instead,  {@link com.smartgwt.client.data.DataSource#updateData}, addData() or
-     * removeData() can be called in order to both change the dataset stored inside the browser and notify all cache managers.
-     * <P> If a DataSource has {@link com.smartgwt.client.data.DataSource#getCacheAllData cacheAllData} set and a full cache
-     * has been obtained, calling <code>updateCaches</code> will automatically update the cache. <P> Note that this DSResponse
-     * will <b>not</b> go through {@link com.smartgwt.client.data.DataSource#transformResponse} or other processing that would
-     * normally occur for a DSResponse resulting from a DSRequest sent by  the application in this page.
+     * actually within the browser.  Instead,  {@link com.smartgwt.client.data.DataSource#updateData DataSource.updateData},
+     * addData() or removeData() can be called in order to both change the dataset stored inside the browser and notify all
+     * cache managers. <P> If a DataSource has {@link com.smartgwt.client.data.DataSource#getCacheAllData cacheAllData} set and
+     * a full cache has been obtained, calling <code>updateCaches</code> will automatically update the cache. <P> Note that
+     * this DSResponse will <b>not</b> go through {@link com.smartgwt.client.data.DataSource#transformResponse
+     * DataSource.transformResponse} or other processing that would normally occur for a DSResponse resulting from a DSRequest
+     * sent by  the application in this page.
      * @param dsResponse 
      * @param dsRequest 
      */
@@ -1619,7 +1713,7 @@ public class DataSource extends BaseClass  implements com.smartgwt.client.data.e
      * com.smartgwt.client.data.DSResponse#getStatus status} code of 0. <p> A "validate" dsRequest is effectively always {@link
      * com.smartgwt.client.rpc.RPCRequest#getWillHandleError willHandleError}:true. It is a normal condition for a "validate"
      * DSResponse to have validation errors and the response will never go to system-wide handling for unexpected errors
-     * ({@link com.smartgwt.client.rpc.RPCManager#handleError}).
+     * ({@link com.smartgwt.client.rpc.RPCManager#handleError RPCManager.handleError}).
      */
     public native void validateData() /*-{
         var self = this.@com.smartgwt.client.core.BaseClass::getOrCreateJsObj()();
@@ -1662,7 +1756,8 @@ public class DataSource extends BaseClass  implements com.smartgwt.client.data.e
     }-*/;
             
     /**
-     * Synonym of {@link com.smartgwt.client.data.DataSource#getDataSource}: Lookup a DataSource by ID.
+     * Synonym of {@link com.smartgwt.client.data.DataSource#getDataSource DataSource.getDataSource}: Lookup a DataSource by
+     * ID.
      * @param ID DataSource ID
      *
      * @return the DataSource with this ID, if loaded, otherwise null.
