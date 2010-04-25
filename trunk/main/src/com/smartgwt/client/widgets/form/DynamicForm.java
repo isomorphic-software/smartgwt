@@ -613,6 +613,7 @@ public class DynamicForm extends Canvas  implements DataBoundComponent, com.smar
      * A default width for hovers shown for items
      *
      * @param itemHoverWidth itemHoverWidth Default value is null
+     * @see <a href="http://www.smartclient.com/smartgwt/showcase/#form_details_hovers" target="examples">Hovers Example</a>
      */
     public void setItemHoverWidth(Integer itemHoverWidth) {
         setAttribute("itemHoverWidth", itemHoverWidth, true);
@@ -623,6 +624,7 @@ public class DynamicForm extends Canvas  implements DataBoundComponent, com.smar
      *
      *
      * @return Integer
+     * @see <a href="http://www.smartclient.com/smartgwt/showcase/#form_details_hovers" target="examples">Hovers Example</a>
      */
     public Integer getItemHoverWidth()  {
         return getAttributeAsInt("itemHoverWidth");
@@ -1463,6 +1465,7 @@ public class DynamicForm extends Canvas  implements DataBoundComponent, com.smar
      *
      * @param titleOrientation titleOrientation Default value is "left"
      * @see com.smartgwt.client.docs.FormTitles FormTitles overview and related methods
+     * @see <a href="http://www.smartclient.com/smartgwt/showcase/#layout_form_titles" target="examples">Titles Example</a>
      */
     public void setTitleOrientation(TitleOrientation titleOrientation) {
         setAttribute("titleOrientation", titleOrientation.getValue(), true);
@@ -1476,6 +1479,7 @@ public class DynamicForm extends Canvas  implements DataBoundComponent, com.smar
      *
      * @return Return the orientation of the title for a specific item or the default title orientation if no item is passed.
      * @see com.smartgwt.client.docs.FormTitles FormTitles overview and related methods
+     * @see <a href="http://www.smartclient.com/smartgwt/showcase/#layout_form_titles" target="examples">Titles Example</a>
      */
     public TitleOrientation getTitleOrientation()  {
         return EnumUtil.getEnum(TitleOrientation.values(), getAttribute("titleOrientation"));
@@ -2073,6 +2077,7 @@ public class DynamicForm extends Canvas  implements DataBoundComponent, com.smar
      *
      * @return true if validation succeeds, or false if validation fails.
      * @see com.smartgwt.client.docs.Validation Validation overview and related methods
+     * @see <a href="http://www.smartclient.com/smartgwt/showcase/#form_validation_type" target="examples">Type Example</a>
      */
     public native Boolean validate(boolean validateHiddenFields) /*-{
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();

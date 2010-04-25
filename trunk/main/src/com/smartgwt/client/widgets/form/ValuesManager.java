@@ -340,6 +340,7 @@ public class ValuesManager extends BaseClass {
      * in question is hidden<br> - The member form containing the item is hidden.
      *
      * @return true if all validation passed
+     * @see <a href="http://www.smartclient.com/smartgwt/showcase/#layout_form_splitting" target="examples">Splitting Example</a>
      */
     public native Boolean validate() /*-{
         var self = this.@com.smartgwt.client.core.BaseClass::getOrCreateJsObj()();

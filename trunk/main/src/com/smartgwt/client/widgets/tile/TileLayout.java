@@ -137,6 +137,8 @@ public class TileLayout extends Canvas {
      * Indicates what to do with data dragged into another DataBoundComponent. See          DragDataAction type for details.
      *
      * @param dragDataAction dragDataAction Default value is Canvas.MOVE
+     * @see <a href="http://www.smartclient.com/smartgwt/showcase/#grid_interaction_drag_move" target="examples">Drag move Example</a>
+     * @see <a href="http://www.smartclient.com/smartgwt/showcase/#grid_interaction_drag_copy" target="examples">Drag copy Example</a>
      */
     public void setDragDataAction(DragDataAction dragDataAction) {
         setAttribute("dragDataAction", dragDataAction.getValue(), true);
@@ -147,6 +149,8 @@ public class TileLayout extends Canvas {
      *
      *
      * @return DragDataAction
+     * @see <a href="http://www.smartclient.com/smartgwt/showcase/#grid_interaction_drag_move" target="examples">Drag move Example</a>
+     * @see <a href="http://www.smartclient.com/smartgwt/showcase/#grid_interaction_drag_copy" target="examples">Drag copy Example</a>
      */
     public DragDataAction getDragDataAction()  {
         return EnumUtil.getEnum(DragDataAction.values(), getAttribute("dragDataAction"));

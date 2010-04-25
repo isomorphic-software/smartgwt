@@ -93,6 +93,7 @@ public class SectionStack extends VLayout  implements com.smartgwt.client.widget
      * If true, sections are animated during expand/collapse and addition/removal of SectionItems is likewise animated.
      *
      * @param animateSections animateSections Default value is null
+     * @see <a href="http://www.smartclient.com/smartgwt/showcase/#effects_animation_sections" target="examples">Section Reveal Example</a>
      */
     public void setAnimateSections(Boolean animateSections) {
         setAttribute("animateSections", animateSections, true);
@@ -103,6 +104,7 @@ public class SectionStack extends VLayout  implements com.smartgwt.client.widget
      *
      *
      * @return Boolean
+     * @see <a href="http://www.smartclient.com/smartgwt/showcase/#effects_animation_sections" target="examples">Section Reveal Example</a>
      */
     public Boolean getAnimateSections()  {
         return getAttributeAsBoolean("animateSections");
@@ -462,6 +464,7 @@ public class SectionStack extends VLayout  implements com.smartgwt.client.widget
      * Whether multiple sections can be visible at once
      *
      * @param visibilityMode visibilityMode Default value is "mutex"
+     * @see <a href="http://www.smartclient.com/smartgwt/showcase/#layout_sections_expand_collapse" target="examples">Expand / Collapse Example</a>
      */
     public void setVisibilityMode(VisibilityMode visibilityMode) {
         setAttribute("visibilityMode", visibilityMode.getValue(), true);
@@ -472,6 +475,7 @@ public class SectionStack extends VLayout  implements com.smartgwt.client.widget
      *
      *
      * @return VisibilityMode
+     * @see <a href="http://www.smartclient.com/smartgwt/showcase/#layout_sections_expand_collapse" target="examples">Expand / Collapse Example</a>
      */
     public VisibilityMode getVisibilityMode()  {
         return EnumUtil.getEnum(VisibilityMode.values(), getAttribute("visibilityMode"));

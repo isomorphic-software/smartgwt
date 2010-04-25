@@ -238,6 +238,7 @@ public class FormItemIcon extends DataClass  implements com.smartgwt.client.widg
      *  "_Over" or "_Disabled" if appropriate to show the icons over or disabled state.
      *
      * @param src src Default value is null
+     * @see <a href="http://www.smartclient.com/smartgwt/showcase/#form_details_icons" target="examples">Icons Example</a>
      */
     public void setSrc(String src) {
         setAttribute("src", src);
@@ -250,6 +251,7 @@ public class FormItemIcon extends DataClass  implements com.smartgwt.client.widg
      *
      *
      * @return String
+     * @see <a href="http://www.smartclient.com/smartgwt/showcase/#form_details_icons" target="examples">Icons Example</a>
      */
     public String getSrc()  {
         return getAttributeAsString("src");

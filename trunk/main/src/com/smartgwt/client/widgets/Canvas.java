@@ -423,6 +423,7 @@ public class Canvas extends BaseWidget  implements com.smartgwt.client.widgets.e
      * <p><b>Note : </b> This is an advanced setting</p>
      *
      * @param animateTime animateTime Default value is 300
+     * @see <a href="http://www.smartclient.com/smartgwt/showcase/#effects_animation_move" target="examples">Fly Onscreen Example</a>
      */
     public void setAnimateTime(int animateTime) {
         setAttribute("animateTime", animateTime, true);
@@ -434,6 +435,7 @@ public class Canvas extends BaseWidget  implements com.smartgwt.client.widgets.e
      *
      *
      * @return int
+     * @see <a href="http://www.smartclient.com/smartgwt/showcase/#effects_animation_move" target="examples">Fly Onscreen Example</a>
      */
     public int getAnimateTime()  {
         return getAttributeAsInt("animateTime");
@@ -589,6 +591,7 @@ public class Canvas extends BaseWidget  implements com.smartgwt.client.widgets.e
      *
      * @param canAcceptDrop canAcceptDrop Default value is false
      * @see com.smartgwt.client.docs.Dragdrop Dragdrop overview and related methods
+     * @see <a href="http://www.smartclient.com/smartgwt/showcase/#effects_dd_create" target="examples">Drag create Example</a>
      */
     public void setCanAcceptDrop(Boolean canAcceptDrop) {
         setAttribute("canAcceptDrop", canAcceptDrop, true);
@@ -600,6 +603,7 @@ public class Canvas extends BaseWidget  implements com.smartgwt.client.widgets.e
      *
      * @return Boolean
      * @see com.smartgwt.client.docs.Dragdrop Dragdrop overview and related methods
+     * @see <a href="http://www.smartclient.com/smartgwt/showcase/#effects_dd_create" target="examples">Drag create Example</a>
      */
     public Boolean getCanAcceptDrop()  {
         return getAttributeAsBoolean("canAcceptDrop");
@@ -613,6 +617,7 @@ public class Canvas extends BaseWidget  implements com.smartgwt.client.widgets.e
      *
      * @param canDrag canDrag Default value is false
      * @see com.smartgwt.client.docs.Dragdrop Dragdrop overview and related methods
+     * @see <a href="http://www.smartclient.com/smartgwt/showcase/#effects_dd_create" target="examples">Drag create Example</a>
      */
     public void setCanDrag(Boolean canDrag) {
         setAttribute("canDrag", canDrag, true);
@@ -626,6 +631,7 @@ public class Canvas extends BaseWidget  implements com.smartgwt.client.widgets.e
      *
      * @return Boolean
      * @see com.smartgwt.client.docs.Dragdrop Dragdrop overview and related methods
+     * @see <a href="http://www.smartclient.com/smartgwt/showcase/#effects_dd_create" target="examples">Drag create Example</a>
      */
     public Boolean getCanDrag()  {
         return getAttributeAsBoolean("canDrag");
@@ -637,6 +643,7 @@ public class Canvas extends BaseWidget  implements com.smartgwt.client.widgets.e
      *
      * @param canDragReposition canDragReposition Default value is false
      * @see com.smartgwt.client.docs.Dragdrop Dragdrop overview and related methods
+     * @see <a href="http://www.smartclient.com/smartgwt/showcase/#effects_dd_effects" target="examples">Drag effects Example</a>
      */
     public void setCanDragReposition(Boolean canDragReposition) {
         setAttribute("canDragReposition", canDragReposition, true);
@@ -648,6 +655,7 @@ public class Canvas extends BaseWidget  implements com.smartgwt.client.widgets.e
      *
      * @return Boolean
      * @see com.smartgwt.client.docs.Dragdrop Dragdrop overview and related methods
+     * @see <a href="http://www.smartclient.com/smartgwt/showcase/#effects_dd_effects" target="examples">Drag effects Example</a>
      */
     public Boolean getCanDragReposition()  {
         return getAttributeAsBoolean("canDragReposition");
@@ -659,6 +667,7 @@ public class Canvas extends BaseWidget  implements com.smartgwt.client.widgets.e
      *
      * @param canDragResize canDragResize Default value is false
      * @see com.smartgwt.client.docs.Dragdrop Dragdrop overview and related methods
+     * @see <a href="http://www.smartclient.com/smartgwt/showcase/#effects_dd_resize" target="examples">Drag resize Example</a>
      */
     public void setCanDragResize(Boolean canDragResize) {
         setAttribute("canDragResize", canDragResize, true);
@@ -670,6 +679,7 @@ public class Canvas extends BaseWidget  implements com.smartgwt.client.widgets.e
      *
      * @return Boolean
      * @see com.smartgwt.client.docs.Dragdrop Dragdrop overview and related methods
+     * @see <a href="http://www.smartclient.com/smartgwt/showcase/#effects_dd_resize" target="examples">Drag resize Example</a>
      */
     public Boolean getCanDragResize()  {
         return getAttributeAsBoolean("canDragResize");
@@ -704,6 +714,7 @@ public class Canvas extends BaseWidget  implements com.smartgwt.client.widgets.e
      *
      * @param canDrop canDrop Default value is false
      * @see com.smartgwt.client.docs.Dragdrop Dragdrop overview and related methods
+     * @see <a href="http://www.smartclient.com/smartgwt/showcase/#effects_dd_create" target="examples">Drag create Example</a>
      */
     public void setCanDrop(Boolean canDrop) {
         setAttribute("canDrop", canDrop, true);
@@ -716,6 +727,7 @@ public class Canvas extends BaseWidget  implements com.smartgwt.client.widgets.e
      *
      * @return Boolean
      * @see com.smartgwt.client.docs.Dragdrop Dragdrop overview and related methods
+     * @see <a href="http://www.smartclient.com/smartgwt/showcase/#effects_dd_create" target="examples">Drag create Example</a>
      */
     public Boolean getCanDrop()  {
         return getAttributeAsBoolean("canDrop");
@@ -752,6 +764,7 @@ public class Canvas extends BaseWidget  implements com.smartgwt.client.widgets.e
      *
      * @param canFocus whether the widget should now accept focus. Default value is null
      * @see com.smartgwt.client.docs.Focus Focus overview and related methods
+     * @see <a href="http://www.smartclient.com/smartgwt/showcase/#basics_interaction_focus_tabbing" target="examples">Focus & Tabbing Example</a>
      */
     public void setCanFocus(Boolean canFocus) {
         setAttribute("canFocus", canFocus, true);
@@ -765,6 +778,7 @@ public class Canvas extends BaseWidget  implements com.smartgwt.client.widgets.e
      *
      * @return Boolean
      * @see com.smartgwt.client.docs.Focus Focus overview and related methods
+     * @see <a href="http://www.smartclient.com/smartgwt/showcase/#basics_interaction_focus_tabbing" target="examples">Focus & Tabbing Example</a>
      */
     public Boolean getCanFocus()  {
         return getAttributeAsBoolean("canFocus");
@@ -888,6 +902,7 @@ public class Canvas extends BaseWidget  implements com.smartgwt.client.widgets.e
      *
      * @param contextMenu contextMenu Default value is null
      * @see com.smartgwt.client.docs.Cues Cues overview and related methods
+     * @see <a href="http://www.smartclient.com/smartgwt/showcase/#basics_interaction_contextmenu" target="examples">Context menus Example</a>
      */
     public void setContextMenu(Menu contextMenu) {
         setAttribute("contextMenu", contextMenu.getOrCreateJsObj(), true);
@@ -899,6 +914,7 @@ public class Canvas extends BaseWidget  implements com.smartgwt.client.widgets.e
      *
      * @return Menu
      * @see com.smartgwt.client.docs.Cues Cues overview and related methods
+     * @see <a href="http://www.smartclient.com/smartgwt/showcase/#basics_interaction_contextmenu" target="examples">Context menus Example</a>
      */
     public Menu getContextMenu()  {
         return Menu.getOrCreateRef(getAttributeAsJavaScriptObject("contextMenu"));
@@ -912,6 +928,8 @@ public class Canvas extends BaseWidget  implements com.smartgwt.client.widgets.e
      *
      * @param cursor new cursor. Default value is Canvas.DEFAULT
      * @see com.smartgwt.client.docs.Cues Cues overview and related methods
+     * @see <a href="http://www.smartclient.com/smartgwt/showcase/#effects_dd_create" target="examples">Drag create Example</a>
+     * @see <a href="http://www.smartclient.com/smartgwt/showcase/#basics_interaction_cursors" target="examples">Cursors Example</a>
      */
     public void setCursor(Cursor cursor) {
         setAttribute("cursor", cursor.getValue(), true);
@@ -924,6 +942,8 @@ public class Canvas extends BaseWidget  implements com.smartgwt.client.widgets.e
      *
      * @return Cursor
      * @see com.smartgwt.client.docs.Cues Cues overview and related methods
+     * @see <a href="http://www.smartclient.com/smartgwt/showcase/#effects_dd_create" target="examples">Drag create Example</a>
+     * @see <a href="http://www.smartclient.com/smartgwt/showcase/#basics_interaction_cursors" target="examples">Cursors Example</a>
      */
     public Cursor getCursor()  {
         return EnumUtil.getEnum(Cursor.values(), getAttribute("cursor"));
@@ -1217,6 +1237,7 @@ public class Canvas extends BaseWidget  implements com.smartgwt.client.widgets.e
      *
      * @param dragOpacity dragOpacity Default value is null
      * @see com.smartgwt.client.docs.Dragdrop Dragdrop overview and related methods
+     * @see <a href="http://www.smartclient.com/smartgwt/showcase/#effects_dd_effects" target="examples">Drag effects Example</a>
      */
     public void setDragOpacity(Integer dragOpacity) {
         setAttribute("dragOpacity", dragOpacity, true);
@@ -1229,6 +1250,7 @@ public class Canvas extends BaseWidget  implements com.smartgwt.client.widgets.e
      *
      * @return Integer
      * @see com.smartgwt.client.docs.Dragdrop Dragdrop overview and related methods
+     * @see <a href="http://www.smartclient.com/smartgwt/showcase/#effects_dd_effects" target="examples">Drag effects Example</a>
      */
     public Integer getDragOpacity()  {
         return getAttributeAsInt("dragOpacity");
@@ -1348,6 +1370,7 @@ public class Canvas extends BaseWidget  implements com.smartgwt.client.widgets.e
      * <p><b>Note : </b> This is an advanced setting</p>
      *
      * @param dynamicContents dynamicContents Default value is false
+     * 
      */
     public void setDynamicContents(Boolean dynamicContents) {
         setAttribute("dynamicContents", dynamicContents, true);
@@ -1377,6 +1400,7 @@ public class Canvas extends BaseWidget  implements com.smartgwt.client.widgets.e
      *
      *
      * @return Boolean
+     * 
      */
     public Boolean getDynamicContents()  {
         return getAttributeAsBoolean("dynamicContents");
@@ -1433,6 +1457,7 @@ public class Canvas extends BaseWidget  implements com.smartgwt.client.widgets.e
      *
      * @param edgeImage edgeImage Default value is "[SKIN]edge.gif"
      * @throws IllegalStateException this property cannot be changed after the component has been created
+     * @see <a href="http://www.smartclient.com/smartgwt/showcase/#effects_lf_edges" target="examples">Edges Example</a>
      */
     public void setEdgeImage(String edgeImage)  throws IllegalStateException {
         setAttribute("edgeImage", edgeImage, false);
@@ -1445,6 +1470,7 @@ public class Canvas extends BaseWidget  implements com.smartgwt.client.widgets.e
      *
      *
      * @return String
+     * @see <a href="http://www.smartclient.com/smartgwt/showcase/#effects_lf_edges" target="examples">Edges Example</a>
      */
     public String getEdgeImage()  {
         return getAttributeAsString("edgeImage");
@@ -1456,6 +1482,7 @@ public class Canvas extends BaseWidget  implements com.smartgwt.client.widgets.e
      *
      * @param edgeMarginSize edgeMarginSize Default value is 5
      * @see com.smartgwt.client.docs.Dragdrop Dragdrop overview and related methods
+     * @see <a href="http://www.smartclient.com/smartgwt/showcase/#effects_dd_resize" target="examples">Drag resize Example</a>
      */
     public void setEdgeMarginSize(int edgeMarginSize) {
         setAttribute("edgeMarginSize", edgeMarginSize, true);
@@ -1467,6 +1494,7 @@ public class Canvas extends BaseWidget  implements com.smartgwt.client.widgets.e
      *
      * @return int
      * @see com.smartgwt.client.docs.Dragdrop Dragdrop overview and related methods
+     * @see <a href="http://www.smartclient.com/smartgwt/showcase/#effects_dd_resize" target="examples">Drag resize Example</a>
      */
     public int getEdgeMarginSize()  {
         return getAttributeAsInt("edgeMarginSize");
@@ -1478,6 +1506,7 @@ public class Canvas extends BaseWidget  implements com.smartgwt.client.widgets.e
      *
      * @param edgeOffset edgeOffset Default value is null
      * @throws IllegalStateException this property cannot be changed after the component has been created
+     * @see <a href="http://www.smartclient.com/smartgwt/showcase/#effects_lf_corners" target="examples">Corners Example</a>
      */
     public void setEdgeOffset(Integer edgeOffset)  throws IllegalStateException {
         setAttribute("edgeOffset", edgeOffset, false);
@@ -1489,6 +1518,7 @@ public class Canvas extends BaseWidget  implements com.smartgwt.client.widgets.e
      *
      *
      * @return Integer
+     * @see <a href="http://www.smartclient.com/smartgwt/showcase/#effects_lf_corners" target="examples">Corners Example</a>
      */
     public Integer getEdgeOffset()  {
         return getAttributeAsInt("edgeOffset");
@@ -1502,6 +1532,7 @@ public class Canvas extends BaseWidget  implements com.smartgwt.client.widgets.e
      *
      * @param edgeOpacity new edge-opacity level. Default value is null
      * @throws IllegalStateException this property cannot be changed after the component has been created
+     * @see <a href="http://www.smartclient.com/smartgwt/showcase/#effects_lf_edges" target="examples">Edges Example</a>
      */
     public void setEdgeOpacity(Integer edgeOpacity)  throws IllegalStateException {
         setAttribute("edgeOpacity", edgeOpacity, false);
@@ -1514,6 +1545,7 @@ public class Canvas extends BaseWidget  implements com.smartgwt.client.widgets.e
      *
      *
      * @return Integer
+     * @see <a href="http://www.smartclient.com/smartgwt/showcase/#effects_lf_edges" target="examples">Edges Example</a>
      */
     public Integer getEdgeOpacity()  {
         return getAttributeAsInt("edgeOpacity");
@@ -1524,6 +1556,7 @@ public class Canvas extends BaseWidget  implements com.smartgwt.client.widgets.e
      *
      * @param edgeShowCenter edgeShowCenter Default value is false
      * @throws IllegalStateException this property cannot be changed after the component has been created
+     * @see <a href="http://www.smartclient.com/smartgwt/showcase/#effects_lf_corners" target="examples">Corners Example</a>
      */
     public void setEdgeShowCenter(Boolean edgeShowCenter)  throws IllegalStateException {
         setAttribute("edgeShowCenter", edgeShowCenter, false);
@@ -1534,6 +1567,7 @@ public class Canvas extends BaseWidget  implements com.smartgwt.client.widgets.e
      *
      *
      * @return Boolean
+     * @see <a href="http://www.smartclient.com/smartgwt/showcase/#effects_lf_corners" target="examples">Corners Example</a>
      */
     public Boolean getEdgeShowCenter()  {
         return getAttributeAsBoolean("edgeShowCenter");
@@ -1544,6 +1578,7 @@ public class Canvas extends BaseWidget  implements com.smartgwt.client.widgets.e
      *
      * @param edgeSize edgeSize Default value is 10
      * @throws IllegalStateException this property cannot be changed after the component has been created
+     * @see <a href="http://www.smartclient.com/smartgwt/showcase/#effects_lf_edges" target="examples">Edges Example</a>
      */
     public void setEdgeSize(int edgeSize)  throws IllegalStateException {
         setAttribute("edgeSize", edgeSize, false);
@@ -1554,6 +1589,7 @@ public class Canvas extends BaseWidget  implements com.smartgwt.client.widgets.e
      *
      *
      * @return int
+     * @see <a href="http://www.smartclient.com/smartgwt/showcase/#effects_lf_edges" target="examples">Edges Example</a>
      */
     public int getEdgeSize()  {
         return getAttributeAsInt("edgeSize");
@@ -1667,6 +1703,7 @@ public class Canvas extends BaseWidget  implements com.smartgwt.client.widgets.e
      * If <code>this.showHover</code> is true, should the hover canvas be shown with opacity other than 100?
      *
      * @param hoverOpacity hoverOpacity Default value is null
+     * @see <a href="http://www.smartclient.com/smartgwt/showcase/#basics_interaction_hovers" target="examples">Hovers / Tooltips Example</a>
      */
     public void setHoverOpacity(Integer hoverOpacity) {
         setAttribute("hoverOpacity", hoverOpacity, true);
@@ -1677,6 +1714,7 @@ public class Canvas extends BaseWidget  implements com.smartgwt.client.widgets.e
      *
      *
      * @return Integer
+     * @see <a href="http://www.smartclient.com/smartgwt/showcase/#basics_interaction_hovers" target="examples">Hovers / Tooltips Example</a>
      */
     public Integer getHoverOpacity()  {
         return getAttributeAsInt("hoverOpacity");
@@ -1686,6 +1724,7 @@ public class Canvas extends BaseWidget  implements com.smartgwt.client.widgets.e
      * If <code>this.showHover</code> is true, this property can be used to specify the css style to apply to the hover canvas.
      *
      * @param hoverStyle hoverStyle Default value is null
+     * @see <a href="http://www.smartclient.com/smartgwt/showcase/#basics_interaction_hovers" target="examples">Hovers / Tooltips Example</a>
      */
     public void setHoverStyle(String hoverStyle) {
         setAttribute("hoverStyle", hoverStyle, true);
@@ -1696,6 +1735,7 @@ public class Canvas extends BaseWidget  implements com.smartgwt.client.widgets.e
      *
      *
      * @return String
+     * @see <a href="http://www.smartclient.com/smartgwt/showcase/#basics_interaction_hovers" target="examples">Hovers / Tooltips Example</a>
      */
     public String getHoverStyle()  {
         return getAttributeAsString("hoverStyle");
@@ -1727,6 +1767,7 @@ public class Canvas extends BaseWidget  implements com.smartgwt.client.widgets.e
      * customize the width of the hover canvas shown.
      *
      * @param hoverWidth hoverWidth Default value is null
+     * @see <a href="http://www.smartclient.com/smartgwt/showcase/#basics_interaction_hovers" target="examples">Hovers / Tooltips Example</a>
      */
     public void setHoverWidth(Integer hoverWidth) {
         setAttribute("hoverWidth", hoverWidth, true);
@@ -1738,6 +1779,7 @@ public class Canvas extends BaseWidget  implements com.smartgwt.client.widgets.e
      *
      *
      * @return Integer
+     * @see <a href="http://www.smartclient.com/smartgwt/showcase/#basics_interaction_hovers" target="examples">Hovers / Tooltips Example</a>
      */
     public Integer getHoverWidth()  {
         return getAttributeAsInt("hoverWidth");
@@ -2218,6 +2260,7 @@ public class Canvas extends BaseWidget  implements com.smartgwt.client.widgets.e
      *
      * @param position position Default value is null
      * @see com.smartgwt.client.docs.Positioning Positioning overview and related methods
+     * 
      */
     public void setPosition(Positioning position) {
         setAttribute("position", position.getValue(), true);
@@ -2246,6 +2289,7 @@ public class Canvas extends BaseWidget  implements com.smartgwt.client.widgets.e
      *
      * @return Positioning
      * @see com.smartgwt.client.docs.Positioning Positioning overview and related methods
+     * 
      */
     public Positioning getPosition()  {
         return EnumUtil.getEnum(Positioning.values(), getAttribute("position"));
@@ -2255,6 +2299,7 @@ public class Canvas extends BaseWidget  implements com.smartgwt.client.widgets.e
      * Prompt displayed in hover canvas if {@link com.smartgwt.client.widgets.Canvas#getShowHover 'showHover'} is true.
      *
      * @param prompt prompt Default value is null
+     * @see <a href="http://www.smartclient.com/smartgwt/showcase/#basics_interaction_hovers" target="examples">Hovers / Tooltips Example</a>
      */
     public void setPrompt(String prompt) {
         setAttribute("prompt", prompt, true);
@@ -2265,6 +2310,7 @@ public class Canvas extends BaseWidget  implements com.smartgwt.client.widgets.e
      *
      *
      * @return String
+     * @see <a href="http://www.smartclient.com/smartgwt/showcase/#basics_interaction_hovers" target="examples">Hovers / Tooltips Example</a>
      */
     public String getPrompt()  {
         return getAttributeAsString("prompt");
@@ -2494,6 +2540,7 @@ public class Canvas extends BaseWidget  implements com.smartgwt.client.widgets.e
      *
      * @param showDragShadow showDragShadow Default value is null
      * @see com.smartgwt.client.docs.Dragdrop Dragdrop overview and related methods
+     * @see <a href="http://www.smartclient.com/smartgwt/showcase/#effects_dd_effects" target="examples">Drag effects Example</a>
      */
     public void setShowDragShadow(Boolean showDragShadow) {
         setAttribute("showDragShadow", showDragShadow, true);
@@ -2506,6 +2553,7 @@ public class Canvas extends BaseWidget  implements com.smartgwt.client.widgets.e
      *
      * @return Boolean
      * @see com.smartgwt.client.docs.Dragdrop Dragdrop overview and related methods
+     * @see <a href="http://www.smartclient.com/smartgwt/showcase/#effects_dd_effects" target="examples">Drag effects Example</a>
      */
     public Boolean getShowDragShadow()  {
         return getAttributeAsBoolean("showDragShadow");
@@ -2517,6 +2565,7 @@ public class Canvas extends BaseWidget  implements com.smartgwt.client.widgets.e
      *
      * @param showEdges showEdges Default value is false
      * @throws IllegalStateException this property cannot be changed after the component has been created
+     * @see <a href="http://www.smartclient.com/smartgwt/showcase/#effects_lf_edges" target="examples">Edges Example</a>
      */
     public void setShowEdges(Boolean showEdges)  throws IllegalStateException {
         setAttribute("showEdges", showEdges, false);
@@ -2528,6 +2577,7 @@ public class Canvas extends BaseWidget  implements com.smartgwt.client.widgets.e
      *
      *
      * @return Boolean
+     * @see <a href="http://www.smartclient.com/smartgwt/showcase/#effects_lf_edges" target="examples">Edges Example</a>
      */
     public Boolean getShowEdges()  {
         return getAttributeAsBoolean("showEdges");
@@ -2563,6 +2613,7 @@ public class Canvas extends BaseWidget  implements com.smartgwt.client.widgets.e
      *
      * @param showResizeBar setting for this.showResizeBar. Default value is false
      * @see com.smartgwt.client.docs.LayoutMember LayoutMember overview and related methods
+     * @see <a href="http://www.smartclient.com/smartgwt/showcase/#layout_nesting" target="examples">Nesting Example</a>
      */
     public void setShowResizeBar(Boolean showResizeBar) {
         setAttribute("showResizeBar", showResizeBar, true);
@@ -2577,6 +2628,7 @@ public class Canvas extends BaseWidget  implements com.smartgwt.client.widgets.e
      *
      * @return Boolean
      * @see com.smartgwt.client.docs.LayoutMember LayoutMember overview and related methods
+     * @see <a href="http://www.smartclient.com/smartgwt/showcase/#layout_nesting" target="examples">Nesting Example</a>
      */
     public Boolean getShowResizeBar()  {
         return getAttributeAsBoolean("showResizeBar");
@@ -2588,6 +2640,7 @@ public class Canvas extends BaseWidget  implements com.smartgwt.client.widgets.e
      *
      * @param showShadow true if the shadow should be visible false if not. Default value is false
      * @throws IllegalStateException this property cannot be changed after the component has been created
+     * @see <a href="http://www.smartclient.com/smartgwt/showcase/#effects_lf_shadows" target="examples">Shadows Example</a>
      */
     public void setShowShadow(Boolean showShadow)  throws IllegalStateException {
         setAttribute("showShadow", showShadow, false);
@@ -2598,6 +2651,7 @@ public class Canvas extends BaseWidget  implements com.smartgwt.client.widgets.e
      *
      *
      * @return Boolean
+     * @see <a href="http://www.smartclient.com/smartgwt/showcase/#effects_lf_shadows" target="examples">Shadows Example</a>
      */
     public Boolean getShowShadow()  {
         return getAttributeAsBoolean("showShadow");
@@ -2930,6 +2984,7 @@ public class Canvas extends BaseWidget  implements com.smartgwt.client.widgets.e
      *
      * @param styleName new CSS class name (must be defined previously). Default value is "normal"
      * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
+     * @see <a href="http://www.smartclient.com/smartgwt/showcase/#effects_lf_css" target="examples">CSS styles Example</a>
      */
     public void setStyleName(String styleName) {
         setAttribute("styleName", styleName, true);
@@ -2941,6 +2996,7 @@ public class Canvas extends BaseWidget  implements com.smartgwt.client.widgets.e
      *
      * @return String
      * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
+     * @see <a href="http://www.smartclient.com/smartgwt/showcase/#effects_lf_css" target="examples">CSS styles Example</a>
      */
     public String getStyleName()  {
         return getAttributeAsString("styleName");
@@ -4942,6 +4998,7 @@ public class Canvas extends BaseWidget  implements com.smartgwt.client.widgets.e
      *
      * @return whether the component actually moved
      * @see com.smartgwt.client.docs.Positioning Positioning overview and related methods
+     * @see <a href="http://www.smartclient.com/smartgwt/showcase/#basics_components_move" target="examples">Move Example</a>
      */
     public native Boolean moveBy(int deltaX, int deltaY) /*-{
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();

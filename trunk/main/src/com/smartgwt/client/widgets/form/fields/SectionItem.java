@@ -121,6 +121,7 @@ public class SectionItem extends CanvasItem {
      * com.smartgwt.client.widgets.form.fields.SectionItem#collapseSection SectionItem.collapseSection}.
      *
      * @param sectionExpanded sectionExpanded Default value is true
+     * @see <a href="http://www.smartclient.com/smartgwt/showcase/#layout_form_sections" target="examples">Sections Example</a>
      */
     public void setSectionExpanded(Boolean sectionExpanded) {
         setAttribute("sectionExpanded", sectionExpanded);
@@ -133,6 +134,7 @@ public class SectionItem extends CanvasItem {
      *
      *
      * @return Boolean
+     * @see <a href="http://www.smartclient.com/smartgwt/showcase/#layout_form_sections" target="examples">Sections Example</a>
      */
     public Boolean getSectionExpanded()  {
         return getAttributeAsBoolean("sectionExpanded");

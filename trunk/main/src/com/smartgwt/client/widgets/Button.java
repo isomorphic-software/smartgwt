@@ -98,6 +98,7 @@ public class Button extends StatefulCanvas  implements com.smartgwt.client.widge
      *
      * @param actionType actionType Default value is "button"
      * @see com.smartgwt.client.docs.State State overview and related methods
+     * @see <a href="http://www.smartclient.com/smartgwt/showcase/#buttons_category_toggle" target="examples">Radio / Toggle Behavior Example</a>
      */
     public void setActionType(SelectionType actionType) {
         setAttribute("actionType", actionType.getValue(), true);
@@ -109,6 +110,7 @@ public class Button extends StatefulCanvas  implements com.smartgwt.client.widge
      *
      * @return Return the 'actionType' for this canvas (radio / checkbox / button)
      * @see com.smartgwt.client.docs.State State overview and related methods
+     * @see <a href="http://www.smartclient.com/smartgwt/showcase/#buttons_category_toggle" target="examples">Radio / Toggle Behavior Example</a>
      */
     public SelectionType getActionType()  {
         return EnumUtil.getEnum(SelectionType.values(), getAttribute("actionType"));
@@ -146,6 +148,7 @@ public class Button extends StatefulCanvas  implements com.smartgwt.client.widge
      *
      * @param autoFit New autoFit setting.. Default value is null
      * @see com.smartgwt.client.docs.Sizing Sizing overview and related methods
+     * @see <a href="http://www.smartclient.com/smartgwt/showcase/#buttons_category_autofit" target="examples">Auto Fit Example</a>
      */
     public void setAutoFit(Boolean autoFit) {
         setAttribute("autoFit", autoFit, true);
@@ -161,6 +164,7 @@ public class Button extends StatefulCanvas  implements com.smartgwt.client.widge
      *
      * @return Boolean
      * @see com.smartgwt.client.docs.Sizing Sizing overview and related methods
+     * @see <a href="http://www.smartclient.com/smartgwt/showcase/#buttons_category_autofit" target="examples">Auto Fit Example</a>
      */
     public Boolean getAutoFit()  {
         return getAttributeAsBoolean("autoFit");
@@ -236,6 +240,7 @@ public class Button extends StatefulCanvas  implements com.smartgwt.client.widge
      *
      * @param icon URL of new icon. Default value is null
      * @see com.smartgwt.client.docs.ButtonIcon ButtonIcon overview and related methods
+     * @see <a href="http://www.smartclient.com/smartgwt/showcase/#form_details_icons" target="examples">Icons Example</a>
      */
     public void setIcon(String icon) {
         setAttribute("icon", icon, true);
@@ -248,6 +253,7 @@ public class Button extends StatefulCanvas  implements com.smartgwt.client.widge
      *
      * @return String
      * @see com.smartgwt.client.docs.ButtonIcon ButtonIcon overview and related methods
+     * @see <a href="http://www.smartclient.com/smartgwt/showcase/#form_details_icons" target="examples">Icons Example</a>
      */
     public String getIcon()  {
         return getAttributeAsString("icon");
@@ -305,6 +311,7 @@ public class Button extends StatefulCanvas  implements com.smartgwt.client.widge
      * @param iconOrientation The new orientation of the icon relative to the text of the button.. Default value is "left"
      * @throws IllegalStateException this property cannot be changed after the component has been created
      * @see com.smartgwt.client.docs.ButtonIcon ButtonIcon overview and related methods
+     * @see <a href="http://www.smartclient.com/smartgwt/showcase/#form_details_icons" target="examples">Icons Example</a>
      */
     public void setIconOrientation(String iconOrientation)  throws IllegalStateException {
         setAttribute("iconOrientation", iconOrientation, false);
@@ -317,6 +324,7 @@ public class Button extends StatefulCanvas  implements com.smartgwt.client.widge
      *
      * @return String
      * @see com.smartgwt.client.docs.ButtonIcon ButtonIcon overview and related methods
+     * @see <a href="http://www.smartclient.com/smartgwt/showcase/#form_details_icons" target="examples">Icons Example</a>
      */
     public String getIconOrientation()  {
         return getAttributeAsString("iconOrientation");
@@ -374,6 +382,7 @@ public class Button extends StatefulCanvas  implements com.smartgwt.client.widge
      *
      * @param radioGroup radioGroup Default value is null
      * @see com.smartgwt.client.docs.State State overview and related methods
+     * @see <a href="http://www.smartclient.com/smartgwt/showcase/#buttons_category_toggle" target="examples">Radio / Toggle Behavior Example</a>
      */
     public void setRadioGroup(String radioGroup) {
         setAttribute("radioGroup", radioGroup, true);
@@ -385,6 +394,7 @@ public class Button extends StatefulCanvas  implements com.smartgwt.client.widge
      *
      * @return String
      * @see com.smartgwt.client.docs.State State overview and related methods
+     * @see <a href="http://www.smartclient.com/smartgwt/showcase/#buttons_category_toggle" target="examples">Radio / Toggle Behavior Example</a>
      */
     public String getRadioGroup()  {
         return getAttributeAsString("radioGroup");
@@ -417,6 +427,7 @@ public class Button extends StatefulCanvas  implements com.smartgwt.client.widge
      *
      * @param showDisabled showDisabled Default value is true
      * @see com.smartgwt.client.docs.State State overview and related methods
+     * @see <a href="http://www.smartclient.com/smartgwt/showcase/#buttons_category_states" target="examples">States Example</a>
      */
     public void setShowDisabled(Boolean showDisabled) {
         setAttribute("showDisabled", showDisabled, true);
@@ -428,6 +439,7 @@ public class Button extends StatefulCanvas  implements com.smartgwt.client.widge
      *
      * @return Boolean
      * @see com.smartgwt.client.docs.State State overview and related methods
+     * @see <a href="http://www.smartclient.com/smartgwt/showcase/#buttons_category_states" target="examples">States Example</a>
      */
     public Boolean getShowDisabled()  {
         return getAttributeAsBoolean("showDisabled");
@@ -460,6 +472,7 @@ public class Button extends StatefulCanvas  implements com.smartgwt.client.widge
      *
      * @param showDown showDown Default value is false
      * @see com.smartgwt.client.docs.State State overview and related methods
+     * @see <a href="http://www.smartclient.com/smartgwt/showcase/#buttons_category_states" target="examples">States Example</a>
      */
     public void setShowDown(Boolean showDown) {
         setAttribute("showDown", showDown, true);
@@ -471,6 +484,7 @@ public class Button extends StatefulCanvas  implements com.smartgwt.client.widge
      *
      * @return Boolean
      * @see com.smartgwt.client.docs.State State overview and related methods
+     * @see <a href="http://www.smartclient.com/smartgwt/showcase/#buttons_category_states" target="examples">States Example</a>
      */
     public Boolean getShowDown()  {
         return getAttributeAsBoolean("showDown");
@@ -482,6 +496,7 @@ public class Button extends StatefulCanvas  implements com.smartgwt.client.widge
      * @param showDownIcon showDownIcon Default value is false
      * @throws IllegalStateException this property cannot be changed after the component has been created
      * @see com.smartgwt.client.docs.ButtonIcon ButtonIcon overview and related methods
+     * @see <a href="http://www.smartclient.com/smartgwt/showcase/#form_details_icons" target="examples">Icons Example</a>
      */
     public void setShowDownIcon(Boolean showDownIcon)  throws IllegalStateException {
         setAttribute("showDownIcon", showDownIcon, false);
@@ -493,6 +508,7 @@ public class Button extends StatefulCanvas  implements com.smartgwt.client.widge
      *
      * @return Boolean
      * @see com.smartgwt.client.docs.ButtonIcon ButtonIcon overview and related methods
+     * @see <a href="http://www.smartclient.com/smartgwt/showcase/#form_details_icons" target="examples">Icons Example</a>
      */
     public Boolean getShowDownIcon()  {
         return getAttributeAsBoolean("showDownIcon");
@@ -556,6 +572,7 @@ public class Button extends StatefulCanvas  implements com.smartgwt.client.widge
      *
      * @param showRollOver showRollOver Default value is false
      * @see com.smartgwt.client.docs.State State overview and related methods
+     * @see <a href="http://www.smartclient.com/smartgwt/showcase/#buttons_category_states" target="examples">States Example</a>
      */
     public void setShowRollOver(Boolean showRollOver) {
         setAttribute("showRollOver", showRollOver, true);
@@ -567,6 +584,7 @@ public class Button extends StatefulCanvas  implements com.smartgwt.client.widge
      *
      * @return Boolean
      * @see com.smartgwt.client.docs.State State overview and related methods
+     * @see <a href="http://www.smartclient.com/smartgwt/showcase/#buttons_category_states" target="examples">States Example</a>
      */
     public Boolean getShowRollOver()  {
         return getAttributeAsBoolean("showRollOver");
@@ -657,6 +675,7 @@ public class Button extends StatefulCanvas  implements com.smartgwt.client.widge
      *
      * @param title new title. Default value is varies
      * @see com.smartgwt.client.docs.Basics Basics overview and related methods
+     * @see <a href="http://www.smartclient.com/smartgwt/showcase/#buttons_category_states" target="examples">States Example</a>
      */
     public void setTitle(String title) {
         setAttribute("title", title, true);
@@ -668,6 +687,7 @@ public class Button extends StatefulCanvas  implements com.smartgwt.client.widge
      *
      * @return Return the title - text/HTML drawn inside the component. <p> Default is to simply return this.title.
      * @see com.smartgwt.client.docs.Basics Basics overview and related methods
+     * @see <a href="http://www.smartclient.com/smartgwt/showcase/#buttons_category_states" target="examples">States Example</a>
      */
     public String getTitle()  {
         return getAttributeAsString("title");

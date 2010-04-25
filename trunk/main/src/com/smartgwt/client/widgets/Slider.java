@@ -286,6 +286,7 @@ public class Slider extends Canvas  implements com.smartgwt.client.widgets.event
      * Sets the {@link com.smartgwt.client.widgets.Slider#getMaxValue 'maximum value'} of the slider
      *
      * @param maxValue the new maximum value. Default value is 100
+     * @see <a href="http://www.smartclient.com/smartgwt/showcase/#controls_category_slider" target="examples">Slider Example</a>
      */
     public void setMaxValue(float maxValue) {
         setAttribute("maxValue", maxValue, true);
@@ -297,6 +298,7 @@ public class Slider extends Canvas  implements com.smartgwt.client.widgets.event
      *
      *
      * @return float
+     * @see <a href="http://www.smartclient.com/smartgwt/showcase/#controls_category_slider" target="examples">Slider Example</a>
      */
     public float getMaxValue()  {
         return getAttributeAsFloat("maxValue");
@@ -330,6 +332,7 @@ public class Slider extends Canvas  implements com.smartgwt.client.widgets.event
      * Sets the {@link com.smartgwt.client.widgets.Slider#getMinValue 'minimum value'} of the slider
      *
      * @param minValue the new minimum value. Default value is 1
+     * @see <a href="http://www.smartclient.com/smartgwt/showcase/#controls_category_slider" target="examples">Slider Example</a>
      */
     public void setMinValue(float minValue) {
         setAttribute("minValue", minValue, true);
@@ -341,6 +344,7 @@ public class Slider extends Canvas  implements com.smartgwt.client.widgets.event
      *
      *
      * @return float
+     * @see <a href="http://www.smartclient.com/smartgwt/showcase/#controls_category_slider" target="examples">Slider Example</a>
      */
     public float getMinValue()  {
         return getAttributeAsFloat("minValue");
@@ -374,6 +378,7 @@ public class Slider extends Canvas  implements com.smartgwt.client.widgets.event
      * Sets the {@link com.smartgwt.client.widgets.Slider#getNumValues 'number of values'} for the slider
      *
      * @param numValues the new number of values. Default value is null
+     * @see <a href="http://www.smartclient.com/smartgwt/showcase/#controls_category_slider" target="examples">Slider Example</a>
      */
     public void setNumValues(Integer numValues) {
         setAttribute("numValues", numValues, true);
@@ -386,6 +391,7 @@ public class Slider extends Canvas  implements com.smartgwt.client.widgets.event
      *
      *
      * @return Integer
+     * @see <a href="http://www.smartclient.com/smartgwt/showcase/#controls_category_slider" target="examples">Slider Example</a>
      */
     public Integer getNumValues()  {
         return getAttributeAsInt("numValues");
@@ -755,6 +761,7 @@ public class Slider extends Canvas  implements com.smartgwt.client.widgets.event
      * Sets the {@link com.smartgwt.client.widgets.Slider#getVertical vertical} property of the slider
      *
      * @param vertical is the slider vertical. Default value is true
+     * @see <a href="http://www.smartclient.com/smartgwt/showcase/#controls_category_slider" target="examples">Slider Example</a>
      */
     public void setVertical(Boolean vertical) {
         setAttribute("vertical", vertical, true);
@@ -765,6 +772,7 @@ public class Slider extends Canvas  implements com.smartgwt.client.widgets.event
      *
      *
      * @return Boolean
+     * @see <a href="http://www.smartclient.com/smartgwt/showcase/#controls_category_slider" target="examples">Slider Example</a>
      */
     public Boolean getVertical()  {
         return getAttributeAsBoolean("vertical");

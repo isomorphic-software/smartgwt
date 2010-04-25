@@ -140,6 +140,7 @@ public class Menu extends ListGrid  implements com.smartgwt.client.widgets.menu.
      *
      * @param canSelectParentItems canSelectParentItems Default value is null
      * @see com.smartgwt.client.docs.Selection Selection overview and related methods
+     * @see <a href="http://www.smartclient.com/smartgwt/showcase/#menus_category_treebinding" target="examples">Tree Binding Example</a>
      */
     public void setCanSelectParentItems(Boolean canSelectParentItems) {
         setAttribute("canSelectParentItems", canSelectParentItems, true);
@@ -152,6 +153,7 @@ public class Menu extends ListGrid  implements com.smartgwt.client.widgets.menu.
      *
      * @return Boolean
      * @see com.smartgwt.client.docs.Selection Selection overview and related methods
+     * @see <a href="http://www.smartclient.com/smartgwt/showcase/#menus_category_treebinding" target="examples">Tree Binding Example</a>
      */
     public Boolean getCanSelectParentItems()  {
         return getAttributeAsBoolean("canSelectParentItems");

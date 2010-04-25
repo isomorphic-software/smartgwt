@@ -95,6 +95,7 @@ public class ImgButton extends Img {
      *
      * @param actionType actionType Default value is "button"
      * @see com.smartgwt.client.docs.State State overview and related methods
+     * @see <a href="http://www.smartclient.com/smartgwt/showcase/#buttons_category_toggle" target="examples">Radio / Toggle Behavior Example</a>
      */
     public void setActionType(SelectionType actionType) {
         setAttribute("actionType", actionType.getValue(), true);
@@ -106,6 +107,7 @@ public class ImgButton extends Img {
      *
      * @return Return the 'actionType' for this canvas (radio / checkbox / button)
      * @see com.smartgwt.client.docs.State State overview and related methods
+     * @see <a href="http://www.smartclient.com/smartgwt/showcase/#buttons_category_toggle" target="examples">Radio / Toggle Behavior Example</a>
      */
     public SelectionType getActionType()  {
         return EnumUtil.getEnum(SelectionType.values(), getAttribute("actionType"));
@@ -438,6 +440,7 @@ public class ImgButton extends Img {
      *
      * @param radioGroup radioGroup Default value is null
      * @see com.smartgwt.client.docs.State State overview and related methods
+     * @see <a href="http://www.smartclient.com/smartgwt/showcase/#buttons_category_toggle" target="examples">Radio / Toggle Behavior Example</a>
      */
     public void setRadioGroup(String radioGroup) {
         setAttribute("radioGroup", radioGroup, true);
@@ -449,6 +452,7 @@ public class ImgButton extends Img {
      *
      * @return String
      * @see com.smartgwt.client.docs.State State overview and related methods
+     * @see <a href="http://www.smartclient.com/smartgwt/showcase/#buttons_category_toggle" target="examples">Radio / Toggle Behavior Example</a>
      */
     public String getRadioGroup()  {
         return getAttributeAsString("radioGroup");
@@ -712,6 +716,7 @@ public class ImgButton extends Img {
      *
      * @param src src Default value is "[SKIN]/ImgButton/button.png"
      * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
+     * @see <a href="http://www.smartclient.com/smartgwt/showcase/#grid_appearance_category" target="examples">Appearance Example</a>
      */
     public void setSrc(String src) {
         setAttribute("src", src, true);
@@ -726,6 +731,7 @@ public class ImgButton extends Img {
      *
      * @return String
      * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
+     * @see <a href="http://www.smartclient.com/smartgwt/showcase/#grid_appearance_category" target="examples">Appearance Example</a>
      */
     public String getSrc()  {
         return getAttributeAsString("src");

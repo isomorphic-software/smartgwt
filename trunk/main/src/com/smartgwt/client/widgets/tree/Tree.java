@@ -119,6 +119,7 @@ public class Tree extends BaseClass  implements com.smartgwt.client.widgets.tree
      * children for a node.
      *
      * @param childrenProperty childrenProperty Default value is "children"
+     * @see <a href="http://www.smartclient.com/smartgwt/showcase/#tree_databinding_children_arrays" target="examples">Children Arrays Example</a>
      */
     public void setChildrenProperty(String childrenProperty) {
         setAttribute("childrenProperty", childrenProperty, true);
@@ -130,6 +131,7 @@ public class Tree extends BaseClass  implements com.smartgwt.client.widgets.tree
      *
      *
      * @return String
+     * @see <a href="http://www.smartclient.com/smartgwt/showcase/#tree_databinding_children_arrays" target="examples">Children Arrays Example</a>
      */
     public String getChildrenProperty()  {
         return getAttributeAsString("childrenProperty");
@@ -215,6 +217,7 @@ public class Tree extends BaseClass  implements com.smartgwt.client.widgets.tree
      *
      * @param idField idField Default value is "id"
      * @throws IllegalStateException this property cannot be changed after the underlying component has been created
+     * @see <a href="http://www.smartclient.com/smartgwt/showcase/#tree_appearance_node_titles" target="examples">Node Titles Example</a>
      */
     public void setIdField(String idField)  throws IllegalStateException {
         setAttribute("idField", idField, false);
@@ -227,6 +230,7 @@ public class Tree extends BaseClass  implements com.smartgwt.client.widgets.tree
      *
      *
      * @return String
+     * @see <a href="http://www.smartclient.com/smartgwt/showcase/#tree_appearance_node_titles" target="examples">Node Titles Example</a>
      */
     public String getIdField()  {
         return getAttributeAsString("idField");
@@ -262,6 +266,7 @@ public class Tree extends BaseClass  implements com.smartgwt.client.widgets.tree
      * <p><b>Note : </b> This is an advanced setting</p>
      *
      * @param modelType modelType Default value is "children"
+     * @see <a href="http://www.smartclient.com/smartgwt/showcase/#tree_appearance_node_titles" target="examples">Node Titles Example</a>
      */
     public void setModelType(TreeModelType modelType) {
         setAttribute("modelType", modelType.getValue(), true);
@@ -276,6 +281,7 @@ public class Tree extends BaseClass  implements com.smartgwt.client.widgets.tree
      *
      *
      * @return TreeModelType
+     * @see <a href="http://www.smartclient.com/smartgwt/showcase/#tree_appearance_node_titles" target="examples">Node Titles Example</a>
      */
     public TreeModelType getModelType()  {
         return EnumUtil.getEnum(TreeModelType.values(), getAttribute("modelType"));
@@ -287,6 +293,7 @@ public class Tree extends BaseClass  implements com.smartgwt.client.widgets.tree
      * system.  Default value is "name".  See {@link com.smartgwt.client.widgets.tree.TreeNode#getName name} for usage.
      *
      * @param nameProperty nameProperty Default value is "name"
+     * @see <a href="http://www.smartclient.com/smartgwt/showcase/#tree_appearance_node_titles" target="examples">Node Titles Example</a>
      */
     public void setNameProperty(String nameProperty) {
         setAttribute("nameProperty", nameProperty, true);
@@ -299,6 +306,7 @@ public class Tree extends BaseClass  implements com.smartgwt.client.widgets.tree
      *
      *
      * @return String
+     * @see <a href="http://www.smartclient.com/smartgwt/showcase/#tree_appearance_node_titles" target="examples">Node Titles Example</a>
      */
     public String getNameProperty()  {
         return getAttributeAsString("nameProperty");
@@ -313,6 +321,7 @@ public class Tree extends BaseClass  implements com.smartgwt.client.widgets.tree
      * <p><b>Note : </b> This is an advanced setting</p>
      *
      * @param openProperty openProperty Default value is null
+     * @see <a href="http://www.smartclient.com/smartgwt/showcase/#tree_databinding_init_ondemand" target="examples">Initial Data & Load on Demand Example</a>
      */
     public void setOpenProperty(String openProperty) {
         setAttribute("openProperty", openProperty, true);
@@ -327,6 +336,7 @@ public class Tree extends BaseClass  implements com.smartgwt.client.widgets.tree
      *
      *
      * @return String
+     * @see <a href="http://www.smartclient.com/smartgwt/showcase/#tree_databinding_init_ondemand" target="examples">Initial Data & Load on Demand Example</a>
      */
     public String getOpenProperty()  {
         return getAttributeAsString("openProperty");
@@ -340,6 +350,7 @@ public class Tree extends BaseClass  implements com.smartgwt.client.widgets.tree
      *
      * @param parentIdField parentIdField Default value is "parentId"
      * @throws IllegalStateException this property cannot be changed after the underlying component has been created
+     * @see <a href="http://www.smartclient.com/smartgwt/showcase/#tree_appearance_node_titles" target="examples">Node Titles Example</a>
      */
     public void setParentIdField(String parentIdField)  throws IllegalStateException {
         setAttribute("parentIdField", parentIdField, false);
@@ -352,6 +363,7 @@ public class Tree extends BaseClass  implements com.smartgwt.client.widgets.tree
      *
      *
      * @return String
+     * @see <a href="http://www.smartclient.com/smartgwt/showcase/#tree_appearance_node_titles" target="examples">Node Titles Example</a>
      */
     public String getParentIdField()  {
         return getAttributeAsString("parentIdField");
@@ -454,6 +466,7 @@ public class Tree extends BaseClass  implements com.smartgwt.client.widgets.tree
      * Set the root node of the tree.
      *
      * @param root new root node. Default value is null
+     * @see <a href="http://www.smartclient.com/smartgwt/showcase/#tree_databinding_children_arrays" target="examples">Children Arrays Example</a>
      */
     public void setRoot(TreeNode root) {
         setAttribute("root", root.getJsObj(), true);
@@ -478,6 +491,7 @@ public class Tree extends BaseClass  implements com.smartgwt.client.widgets.tree
      *
      *
      * @return Returns the root node of the tree.
+     * @see <a href="http://www.smartclient.com/smartgwt/showcase/#tree_databinding_children_arrays" target="examples">Children Arrays Example</a>
      */
     public TreeNode getRoot()  {
         return TreeNode.getOrCreateRef(getAttributeAsJavaScriptObject("root"));
@@ -931,6 +945,7 @@ public class Tree extends BaseClass  implements com.smartgwt.client.widgets.tree
     /**
      * Open all nodes under a particular node.
      * @param node node from which to open folders (if not specified, the root                              node is used)
+     * @see <a href="http://www.smartclient.com/smartgwt/showcase/#tree_databinding_parentlinking" target="examples">Parent Linking Example</a>
      */
     public native void openAll(TreeNode node) /*-{
         var self = this.@com.smartgwt.client.core.BaseClass::getOrCreateJsObj()();

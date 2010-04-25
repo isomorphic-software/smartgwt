@@ -154,6 +154,7 @@ public class TreeGrid extends ListGrid  implements com.smartgwt.client.widgets.t
      * If true, when folders are opened / closed children will be animated into view.
      *
      * @param animateFolders animateFolders Default value is true
+     * @see <a href="http://www.smartclient.com/smartgwt/showcase/#effects_animation_tree" target="examples">Tree Folders Example</a>
      */
     public void setAnimateFolders(Boolean animateFolders) {
         setAttribute("animateFolders", animateFolders, true);
@@ -164,6 +165,7 @@ public class TreeGrid extends ListGrid  implements com.smartgwt.client.widgets.t
      *
      *
      * @return Boolean
+     * @see <a href="http://www.smartclient.com/smartgwt/showcase/#effects_animation_tree" target="examples">Tree Folders Example</a>
      */
     public Boolean getAnimateFolders()  {
         return getAttributeAsBoolean("animateFolders");
@@ -175,6 +177,7 @@ public class TreeGrid extends ListGrid  implements com.smartgwt.client.widgets.t
      * animateFolderTime} property, which allows the developer to specify a duration for the animation rather than a speed.
      *
      * @param animateFolderSpeed animateFolderSpeed Default value is 1000
+     * @see <a href="http://www.smartclient.com/smartgwt/showcase/#effects_animation_tree" target="examples">Tree Folders Example</a>
      */
     public void setAnimateFolderSpeed(int animateFolderSpeed) {
         setAttribute("animateFolderSpeed", animateFolderSpeed, true);
@@ -187,6 +190,7 @@ public class TreeGrid extends ListGrid  implements com.smartgwt.client.widgets.t
      *
      *
      * @return int
+     * @see <a href="http://www.smartclient.com/smartgwt/showcase/#effects_animation_tree" target="examples">Tree Folders Example</a>
      */
     public int getAnimateFolderSpeed()  {
         return getAttributeAsInt("animateFolderSpeed");
@@ -244,6 +248,7 @@ public class TreeGrid extends ListGrid  implements com.smartgwt.client.widgets.t
      *
      * @param canAcceptDroppedRecords canAcceptDroppedRecords Default value is false
      * @see com.smartgwt.client.docs.Dragdrop Dragdrop overview and related methods
+     * @see <a href="http://www.smartclient.com/smartgwtee/showcase/#tree_reparent_sql" target="examples">Tree Reparent Example</a>
      */
     public void setCanAcceptDroppedRecords(Boolean canAcceptDroppedRecords) {
         setAttribute("canAcceptDroppedRecords", canAcceptDroppedRecords, true);
@@ -255,6 +260,7 @@ public class TreeGrid extends ListGrid  implements com.smartgwt.client.widgets.t
      *
      * @return Boolean
      * @see com.smartgwt.client.docs.Dragdrop Dragdrop overview and related methods
+     * @see <a href="http://www.smartclient.com/smartgwtee/showcase/#tree_reparent_sql" target="examples">Tree Reparent Example</a>
      */
     public Boolean getCanAcceptDroppedRecords()  {
         return getAttributeAsBoolean("canAcceptDroppedRecords");
@@ -265,6 +271,7 @@ public class TreeGrid extends ListGrid  implements com.smartgwt.client.widgets.t
      *
      * @param canDragRecordsOut canDragRecordsOut Default value is false
      * @see com.smartgwt.client.docs.Dragdrop Dragdrop overview and related methods
+     * @see <a href="http://www.smartclient.com/smartgwt/showcase/#tree_interaction_drop_events" target="examples">Drop Events Example</a>
      */
     public void setCanDragRecordsOut(Boolean canDragRecordsOut) {
         setAttribute("canDragRecordsOut", canDragRecordsOut, true);
@@ -276,6 +283,7 @@ public class TreeGrid extends ListGrid  implements com.smartgwt.client.widgets.t
      *
      * @return Boolean
      * @see com.smartgwt.client.docs.Dragdrop Dragdrop overview and related methods
+     * @see <a href="http://www.smartclient.com/smartgwt/showcase/#tree_interaction_drop_events" target="examples">Drop Events Example</a>
      */
     public Boolean getCanDragRecordsOut()  {
         return getAttributeAsBoolean("canDragRecordsOut");
@@ -323,6 +331,7 @@ public class TreeGrid extends ListGrid  implements com.smartgwt.client.widgets.t
      *
      * @param canReorderRecords canReorderRecords Default value is false
      * @see com.smartgwt.client.docs.Dragdrop Dragdrop overview and related methods
+     * @see <a href="http://www.smartclient.com/smartgwtee/showcase/#tree_reparent_sql" target="examples">Tree Reparent Example</a>
      */
     public void setCanReorderRecords(Boolean canReorderRecords) {
         setAttribute("canReorderRecords", canReorderRecords, true);
@@ -334,6 +343,7 @@ public class TreeGrid extends ListGrid  implements com.smartgwt.client.widgets.t
      *
      * @return Boolean
      * @see com.smartgwt.client.docs.Dragdrop Dragdrop overview and related methods
+     * @see <a href="http://www.smartclient.com/smartgwtee/showcase/#tree_reparent_sql" target="examples">Tree Reparent Example</a>
      */
     public Boolean getCanReorderRecords()  {
         return getAttributeAsBoolean("canReorderRecords");
@@ -719,6 +729,7 @@ public class TreeGrid extends ListGrid  implements com.smartgwt.client.widgets.t
      * and {@link com.smartgwt.client.widgets.tree.TreeGrid#getShowDropIcons showDropIcons}.
      *
      * @param folderIcon folderIcon Default value is "[SKIN]folder.gif"
+     * @see <a href="http://www.smartclient.com/smartgwt/showcase/#tree_appearance_node_titles" target="examples">Node Titles Example</a>
      */
     public void setFolderIcon(String folderIcon) {
         setAttribute("folderIcon", folderIcon, true);
@@ -734,6 +745,7 @@ public class TreeGrid extends ListGrid  implements com.smartgwt.client.widgets.t
      *
      *
      * @return String
+     * @see <a href="http://www.smartclient.com/smartgwt/showcase/#tree_appearance_node_titles" target="examples">Node Titles Example</a>
      */
     public String getFolderIcon()  {
         return getAttributeAsString("folderIcon");
@@ -792,6 +804,7 @@ public class TreeGrid extends ListGrid  implements com.smartgwt.client.widgets.t
      *
      * @param loadDataOnDemand loadDataOnDemand Default value is null
      * @see com.smartgwt.client.docs.Databinding Databinding overview and related methods
+     * @see <a href="http://www.smartclient.com/smartgwt/showcase/#tree_databinding_init_ondemand" target="examples">Initial Data & Load on Demand Example</a>
      */
     public void setLoadDataOnDemand(Boolean loadDataOnDemand) {
         setAttribute("loadDataOnDemand", loadDataOnDemand, true);
@@ -809,6 +822,7 @@ public class TreeGrid extends ListGrid  implements com.smartgwt.client.widgets.t
      *
      * @return Boolean
      * @see com.smartgwt.client.docs.Databinding Databinding overview and related methods
+     * @see <a href="http://www.smartclient.com/smartgwt/showcase/#tree_databinding_init_ondemand" target="examples">Initial Data & Load on Demand Example</a>
      */
     public Boolean getLoadDataOnDemand()  {
         return getAttributeAsBoolean("loadDataOnDemand");
@@ -843,6 +857,7 @@ public class TreeGrid extends ListGrid  implements com.smartgwt.client.widgets.t
      * Set the icon for a particular treenode to a specified URL
      *
      * @param nodeIcon tree node. Default value is "[SKIN]file.gif"
+     * @see <a href="http://www.smartclient.com/smartgwt/showcase/#tree_appearance_node_titles" target="examples">Node Titles Example</a>
      */
     public void setNodeIcon(String nodeIcon) {
         setAttribute("nodeIcon", nodeIcon, true);
@@ -854,6 +869,7 @@ public class TreeGrid extends ListGrid  implements com.smartgwt.client.widgets.t
      *
      *
      * @return String
+     * @see <a href="http://www.smartclient.com/smartgwt/showcase/#tree_appearance_node_titles" target="examples">Node Titles Example</a>
      */
     public String getNodeIcon()  {
         return getAttributeAsString("nodeIcon");
@@ -1001,6 +1017,7 @@ public class TreeGrid extends ListGrid  implements com.smartgwt.client.widgets.t
      * configuration, including example CSS.
      *
      * @param showConnectors showConnectors Default value is false
+     * @see <a href="http://www.smartclient.com/smartgwt/showcase/#tree_appearance_connectors" target="examples">Connectors Example</a>
      */
     public void setShowConnectors(Boolean showConnectors) {
         setAttribute("showConnectors", showConnectors, true);
@@ -1015,6 +1032,7 @@ public class TreeGrid extends ListGrid  implements com.smartgwt.client.widgets.t
      *
      *
      * @return Boolean
+     * @see <a href="http://www.smartclient.com/smartgwt/showcase/#tree_appearance_connectors" target="examples">Connectors Example</a>
      */
     public Boolean getShowConnectors()  {
         return getAttributeAsBoolean("showConnectors");
@@ -1097,6 +1115,7 @@ public class TreeGrid extends ListGrid  implements com.smartgwt.client.widgets.t
      * <code>"[SKIN]/folder.gif"</code> may be replaced by <code>"[SKIN]/folder_drop.gif"</code>).
      *
      * @param showDropIcons showDropIcons Default value is true
+     * @see <a href="http://www.smartclient.com/smartgwt/showcase/#tree_appearance_node_titles" target="examples">Node Titles Example</a>
      */
     public void setShowDropIcons(Boolean showDropIcons) {
         setAttribute("showDropIcons", showDropIcons, true);
@@ -1110,6 +1129,7 @@ public class TreeGrid extends ListGrid  implements com.smartgwt.client.widgets.t
      *
      *
      * @return Boolean
+     * @see <a href="http://www.smartclient.com/smartgwt/showcase/#tree_appearance_node_titles" target="examples">Node Titles Example</a>
      */
     public Boolean getShowDropIcons()  {
         return getAttributeAsBoolean("showDropIcons");
@@ -1148,6 +1168,7 @@ public class TreeGrid extends ListGrid  implements com.smartgwt.client.widgets.t
      * the {@link com.smartgwt.client.widgets.tree.TreeGrid#getClosedIconSuffix closedIconSuffix}.
      *
      * @param showOpenIcons showOpenIcons Default value is true
+     * @see <a href="http://www.smartclient.com/smartgwt/showcase/#tree_appearance_node_titles" target="examples">Node Titles Example</a>
      */
     public void setShowOpenIcons(Boolean showOpenIcons) {
         setAttribute("showOpenIcons", showOpenIcons, true);
@@ -1164,6 +1185,7 @@ public class TreeGrid extends ListGrid  implements com.smartgwt.client.widgets.t
      *
      *
      * @return Boolean
+     * @see <a href="http://www.smartclient.com/smartgwt/showcase/#tree_appearance_node_titles" target="examples">Node Titles Example</a>
      */
     public Boolean getShowOpenIcons()  {
         return getAttributeAsBoolean("showOpenIcons");

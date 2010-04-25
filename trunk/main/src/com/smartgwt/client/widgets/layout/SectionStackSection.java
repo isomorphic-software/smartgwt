@@ -92,6 +92,7 @@ public class SectionStackSection extends RefDataClass {
      * section can still be expanded/collapsed programmatically, regardless of this setting.
      *
      * @param canCollapse canCollapse Default value is true
+     * @see <a href="http://www.smartclient.com/smartgwt/showcase/#layout_sections_expand_collapse" target="examples">Expand / Collapse Example</a>
      */
     public void setCanCollapse(Boolean canCollapse) {
         setAttribute("canCollapse", canCollapse);
@@ -210,6 +211,7 @@ public class SectionStackSection extends RefDataClass {
      * this flag directly on any of the items in any section to cause that item to not be resizeable.
      *
      * @param resizeable resizeable Default value is null
+     * @see <a href="http://www.smartclient.com/smartgwt/showcase/#layout_sections_resize" target="examples">Resize Sections Example</a>
      */
     public void setResizeable(Boolean resizeable) {
         setAttribute("resizeable", resizeable);

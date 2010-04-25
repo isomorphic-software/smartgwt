@@ -144,6 +144,7 @@ public class TileGrid extends TileLayout  implements DataBoundComponent, com.sma
      *
      * @param selectionType selectionType Default value is Selection.MULTIPLE
      * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
+     * @see <a href="http://www.smartclient.com/smartgwt/showcase/#grid_editing_category" target="examples">Editing Example</a>
      */
     public void setSelectionType(SelectionStyle selectionType) {
         setAttribute("selectionType", selectionType.getValue(), true);
@@ -155,6 +156,7 @@ public class TileGrid extends TileLayout  implements DataBoundComponent, com.sma
      *
      * @return SelectionStyle
      * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
+     * @see <a href="http://www.smartclient.com/smartgwt/showcase/#grid_editing_category" target="examples">Editing Example</a>
      */
     public SelectionStyle getSelectionType()  {
         return EnumUtil.getEnum(SelectionStyle.values(), getAttribute("selectionType"));
@@ -341,6 +343,7 @@ public class TileGrid extends TileLayout  implements DataBoundComponent, com.sma
      *
      * @return first selected record, or null if nothing selected
      * @see com.smartgwt.client.docs.Selection Selection overview and related methods
+     * @see <a href="http://www.smartclient.com/smartgwt/showcase/#grid_dataoperations_remove" target="examples">Databound remove Example</a>
      */
     public native TileRecord getSelectedRecord() /*-{
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();

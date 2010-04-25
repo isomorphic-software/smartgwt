@@ -231,6 +231,7 @@ public class DataSourceField extends DataClass {
      *
      * @param childrenProperty childrenProperty Default value is false
      * @see com.smartgwt.client.docs.DataSourceRelations DataSourceRelations overview and related methods
+     * 
      */
     public void setChildrenProperty(Boolean childrenProperty) {
         setAttribute("childrenProperty", childrenProperty);
@@ -244,6 +245,7 @@ public class DataSourceField extends DataClass {
      *
      * @return Boolean
      * @see com.smartgwt.client.docs.DataSourceRelations DataSourceRelations overview and related methods
+     * 
      */
     public Boolean getChildrenProperty()  {
         return getAttributeAsBoolean("childrenProperty");
@@ -602,6 +604,7 @@ public class DataSourceField extends DataClass {
      * Maximum number of characters allowed.  Applicable only to fields of text type.
      *
      * @param length length Default value is null
+     * @see <a href="http://www.smartclient.com/smartgwt/showcase/#grid_datatypes_longtext" target="examples">Long Text Example</a>
      */
     public void setLength(Integer length) {
         setAttribute("length", length);
@@ -612,6 +615,7 @@ public class DataSourceField extends DataClass {
      *
      *
      * @return Integer
+     * @see <a href="http://www.smartclient.com/smartgwt/showcase/#grid_datatypes_longtext" target="examples">Long Text Example</a>
      */
     public Integer getLength()  {
         return getAttributeAsInt("length");
@@ -985,6 +989,7 @@ public class DataSourceField extends DataClass {
      *
      * @param valueXPath valueXPath Default value is null
      * @see com.smartgwt.client.docs.ClientDataIntegration ClientDataIntegration overview and related methods
+     * @see <a href="http://www.smartclient.com/smartgwt/showcase/#xpath_xml_integration_category" target="examples">XPath Binding Example</a>
      */
     public void setValueXPath(String valueXPath) {
         setAttribute("valueXPath", valueXPath);
@@ -1030,6 +1035,7 @@ public class DataSourceField extends DataClass {
      *
      * @return String
      * @see com.smartgwt.client.docs.ClientDataIntegration ClientDataIntegration overview and related methods
+     * @see <a href="http://www.smartclient.com/smartgwt/showcase/#xpath_xml_integration_category" target="examples">XPath Binding Example</a>
      */
     public String getValueXPath()  {
         return getAttributeAsString("valueXPath");

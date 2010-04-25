@@ -804,6 +804,7 @@ public class TabSet extends Canvas  implements com.smartgwt.client.widgets.tab.e
      *
      * @param tabBarAlign tabBarAlign Default value is see below
      * @throws IllegalStateException this property cannot be changed after the component has been created
+     * @see <a href="http://www.smartclient.com/smartgwt/showcase/#layout_tabs_align" target="examples">Align Example</a>
      */
     public void setTabBarAlign(Side tabBarAlign)  throws IllegalStateException {
         setAttribute("tabBarAlign", tabBarAlign.getValue(), false);
@@ -816,6 +817,7 @@ public class TabSet extends Canvas  implements com.smartgwt.client.widgets.tab.e
      *
      *
      * @return Side
+     * @see <a href="http://www.smartclient.com/smartgwt/showcase/#layout_tabs_align" target="examples">Align Example</a>
      */
     public Side getTabBarAlign()  {
         return EnumUtil.getEnum(Side.values(), getAttribute("tabBarAlign"));
@@ -826,6 +828,7 @@ public class TabSet extends Canvas  implements com.smartgwt.client.widgets.tab.e
      *
      * @param tabBarPosition tabBarPosition Default value is Canvas.TOP
      * @throws IllegalStateException this property cannot be changed after the component has been created
+     * @see <a href="http://www.smartclient.com/smartgwt/showcase/#layout_tabs_orientation" target="examples">Orientation Example</a>
      */
     public void setTabBarPosition(Side tabBarPosition)  throws IllegalStateException {
         setAttribute("tabBarPosition", tabBarPosition.getValue(), false);
@@ -836,6 +839,7 @@ public class TabSet extends Canvas  implements com.smartgwt.client.widgets.tab.e
      *
      *
      * @return Side
+     * @see <a href="http://www.smartclient.com/smartgwt/showcase/#layout_tabs_orientation" target="examples">Orientation Example</a>
      */
     public Side getTabBarPosition()  {
         return EnumUtil.getEnum(Side.values(), getAttribute("tabBarPosition"));

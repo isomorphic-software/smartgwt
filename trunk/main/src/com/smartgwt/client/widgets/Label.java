@@ -189,6 +189,7 @@ public class Label extends Button {
      * <p><b>Note : </b> This is an advanced setting</p>
      *
      * @param dynamicContents dynamicContents Default value is false
+     * 
      */
     public void setDynamicContents(Boolean dynamicContents) {
         setAttribute("dynamicContents", dynamicContents, true);
@@ -218,6 +219,7 @@ public class Label extends Button {
      *
      *
      * @return Boolean
+     * 
      */
     public Boolean getDynamicContents()  {
         return getAttributeAsBoolean("dynamicContents");

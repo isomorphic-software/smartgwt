@@ -65,7 +65,8 @@ import com.google.gwt.event.shared.HasHandlers;
  * form a ToolStrip.  Note that the {@link com.smartgwt.client.widgets.form.fields.FormItem} mentioned above (ComboBox and
  * drop-down selects) need to be placed within a {@link com.smartgwt.client.widgets.form.DynamicForm} as usual. <P> The
  * special strings "separator" and "resizer" can be placed in the members array to create separators and resizers
- * respectively. <P> Also see the ${isc.DocUtils.linkForExampleId('toolstrip')} example in the Feature Explorer.
+ * respectively. <P> Also see the <a href="http://www.smartclient.com/smartgwt/showcase/#toolstrip"
+ * target="examples">ToolStrips</a> example in the Feature Explorer.
  */
 public class ToolStrip extends Layout {
 
