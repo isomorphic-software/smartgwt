@@ -98,6 +98,7 @@ public class PickTreeItem extends CanvasItem {
      *
      * @param canSelectParentItems canSelectParentItems Default value is null
      * @see com.smartgwt.client.docs.Selection Selection overview and related methods
+     * @see <a href="http://www.smartclient.com/smartgwt/showcase/#grid_editing_category" target="examples">Editing Example</a>
      */
     public void setCanSelectParentItems(Boolean canSelectParentItems) {
         setAttribute("canSelectParentItems", canSelectParentItems);
@@ -110,6 +111,7 @@ public class PickTreeItem extends CanvasItem {
      *
      * @return Boolean
      * @see com.smartgwt.client.docs.Selection Selection overview and related methods
+     * @see <a href="http://www.smartclient.com/smartgwt/showcase/#grid_editing_category" target="examples">Editing Example</a>
      */
     public Boolean getCanSelectParentItems()  {
         return getAttributeAsBoolean("canSelectParentItems");
@@ -154,6 +156,7 @@ public class PickTreeItem extends CanvasItem {
      * <p><b>Note : </b> This is an advanced setting</p>
      *
      * @param emptyMenuMessage emptyMenuMessage Default value is "No items to display"
+     * @see <a href="http://www.smartclient.com/smartgwt/showcase/#tree_category" target="examples">Tree Example</a>
      */
     public void setEmptyMenuMessage(String emptyMenuMessage) {
         setAttribute("emptyMenuMessage", emptyMenuMessage);
@@ -165,6 +168,7 @@ public class PickTreeItem extends CanvasItem {
      *
      *
      * @return String
+     * @see <a href="http://www.smartclient.com/smartgwt/showcase/#tree_category" target="examples">Tree Example</a>
      */
     public String getEmptyMenuMessage()  {
         return getAttributeAsString("emptyMenuMessage");
@@ -196,6 +200,7 @@ public class PickTreeItem extends CanvasItem {
      * Which field in the tree-data should be returned as this item's value? If unspecified, the path will be used
      *
      * @param valueField valueField Default value is null
+     * @see <a href="http://www.smartclient.com/smartgwt/showcase/#tree_category" target="examples">Tree Example</a>
      */
     public void setValueField(String valueField) {
         setAttribute("valueField", valueField);
@@ -206,6 +211,7 @@ public class PickTreeItem extends CanvasItem {
      *
      *
      * @return String
+     * @see <a href="http://www.smartclient.com/smartgwt/showcase/#tree_category" target="examples">Tree Example</a>
      */
     public String getValueField()  {
         return getAttributeAsString("valueField");

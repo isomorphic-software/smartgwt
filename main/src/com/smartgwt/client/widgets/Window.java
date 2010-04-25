@@ -100,6 +100,7 @@ public class Window extends VLayout  implements com.smartgwt.client.widgets.even
      *
      * @param animateMinimize animateMinimize Default value is null
      * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
+     * @see <a href="http://www.smartclient.com/smartgwt/showcase/#effects_animation_minimize" target="examples">Window Minimize Example</a>
      */
     public void setAnimateMinimize(Boolean animateMinimize) {
         setAttribute("animateMinimize", animateMinimize, true);
@@ -111,6 +112,7 @@ public class Window extends VLayout  implements com.smartgwt.client.widgets.even
      *
      * @return Boolean
      * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
+     * @see <a href="http://www.smartclient.com/smartgwt/showcase/#effects_animation_minimize" target="examples">Window Minimize Example</a>
      */
     public Boolean getAnimateMinimize()  {
         return getAttributeAsBoolean("animateMinimize");
@@ -146,6 +148,7 @@ public class Window extends VLayout  implements com.smartgwt.client.widgets.even
      *
      * @param autoSize true if the window should auto-size to its content. Default value is false
      * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
+     * @see <a href="http://www.smartclient.com/smartgwt/showcase/#layout_windows_autosize" target="examples">Auto Size Example</a>
      */
     public void setAutoSize(Boolean autoSize) {
         setAttribute("autoSize", autoSize, true);
@@ -158,6 +161,7 @@ public class Window extends VLayout  implements com.smartgwt.client.widgets.even
      *
      * @return Boolean
      * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
+     * @see <a href="http://www.smartclient.com/smartgwt/showcase/#layout_windows_autosize" target="examples">Auto Size Example</a>
      */
     public Boolean getAutoSize()  {
         return getAttributeAsBoolean("autoSize");
@@ -544,6 +548,7 @@ public class Window extends VLayout  implements com.smartgwt.client.widgets.even
      * only top-level Windows (Windows without parents) can be modal.
      *
      * @param isModal isModal Default value is false
+     * @see <a href="http://www.smartclient.com/smartgwt/showcase/#layout_windows_modality" target="examples">Modality Example</a>
      */
     public void setIsModal(Boolean isModal) {
         setAttribute("isModal", isModal, true);
@@ -558,6 +563,7 @@ public class Window extends VLayout  implements com.smartgwt.client.widgets.even
      *
      *
      * @return Boolean
+     * @see <a href="http://www.smartclient.com/smartgwt/showcase/#layout_windows_modality" target="examples">Modality Example</a>
      */
     public Boolean getIsModal()  {
         return getAttributeAsBoolean("isModal");
@@ -668,6 +674,7 @@ public class Window extends VLayout  implements com.smartgwt.client.widgets.even
      *
      * @param minimizeTime minimizeTime Default value is null
      * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
+     * @see <a href="http://www.smartclient.com/smartgwt/showcase/#effects_animation_minimize" target="examples">Window Minimize Example</a>
      */
     public void setMinimizeTime(Integer minimizeTime) {
         setAttribute("minimizeTime", minimizeTime, true);
@@ -680,6 +687,7 @@ public class Window extends VLayout  implements com.smartgwt.client.widgets.even
      *
      * @return Integer
      * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
+     * @see <a href="http://www.smartclient.com/smartgwt/showcase/#effects_animation_minimize" target="examples">Window Minimize Example</a>
      */
     public Integer getMinimizeTime()  {
         return getAttributeAsInt("minimizeTime");
@@ -781,6 +789,7 @@ public class Window extends VLayout  implements com.smartgwt.client.widgets.even
      *
      * @param showFooter showFooter Default value is true
      * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
+     * @see <a href="http://www.smartclient.com/smartgwt/showcase/#layout_windows_footer" target="examples">Footer Example</a>
      */
     public void setShowFooter(Boolean showFooter) {
         setAttribute("showFooter", showFooter, true);
@@ -793,6 +802,7 @@ public class Window extends VLayout  implements com.smartgwt.client.widgets.even
      *
      * @return Boolean
      * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
+     * @see <a href="http://www.smartclient.com/smartgwt/showcase/#layout_windows_footer" target="examples">Footer Example</a>
      */
     public Boolean getShowFooter()  {
         return getAttributeAsBoolean("showFooter");

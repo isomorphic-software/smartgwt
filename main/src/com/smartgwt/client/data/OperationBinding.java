@@ -509,6 +509,7 @@ public class OperationBinding extends DataClass {
      *
      * @param recordName recordName Default value is null
      * @see com.smartgwt.client.docs.ClientDataIntegration ClientDataIntegration overview and related methods
+     * @see <a href="http://www.smartclient.com/smartgwtee/showcase/#data_integration_server_wsdl_generic" target="examples">Weather SOAP Search Example</a>
      */
     public void setRecordName(String recordName) {
         setAttribute("recordName", recordName);
@@ -523,6 +524,7 @@ public class OperationBinding extends DataClass {
      *
      * @return String
      * @see com.smartgwt.client.docs.ClientDataIntegration ClientDataIntegration overview and related methods
+     * @see <a href="http://www.smartclient.com/smartgwtee/showcase/#data_integration_server_wsdl_generic" target="examples">Weather SOAP Search Example</a>
      */
     public String getRecordName()  {
         return getAttributeAsString("recordName");
@@ -691,6 +693,7 @@ public class OperationBinding extends DataClass {
      *
      * @param wsOperation wsOperation Default value is null
      * @see com.smartgwt.client.docs.ClientDataIntegration ClientDataIntegration overview and related methods
+     * @see <a href="http://www.smartclient.com/smartgwtee/showcase/#data_integration_server_wsdl_generic" target="examples">Weather SOAP Search Example</a>
      */
     public void setWsOperation(String wsOperation) {
         setAttribute("wsOperation", wsOperation);
@@ -708,6 +711,7 @@ public class OperationBinding extends DataClass {
      *
      * @return String
      * @see com.smartgwt.client.docs.ClientDataIntegration ClientDataIntegration overview and related methods
+     * @see <a href="http://www.smartclient.com/smartgwtee/showcase/#data_integration_server_wsdl_generic" target="examples">Weather SOAP Search Example</a>
      */
     public String getWsOperation()  {
         return getAttributeAsString("wsOperation");

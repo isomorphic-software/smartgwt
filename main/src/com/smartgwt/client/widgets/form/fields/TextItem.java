@@ -126,6 +126,7 @@ public class TextItem extends FormItem {
      * <p><b>Note : </b> This is an advanced setting</p>
      *
      * @param characterCasing characterCasing Default value is TextItem.DEFAULT
+     * @see <a href="http://www.smartclient.com/smartgwt/showcase/#form_keypress_filter" target="examples">KeyPress Filters Example</a>
      */
     public void setCharacterCasing(CharacterCasing characterCasing) {
         setAttribute("characterCasing", characterCasing.getValue());
@@ -138,6 +139,7 @@ public class TextItem extends FormItem {
      *
      *
      * @return CharacterCasing
+     * @see <a href="http://www.smartclient.com/smartgwt/showcase/#form_keypress_filter" target="examples">KeyPress Filters Example</a>
      */
     public CharacterCasing getCharacterCasing()  {
         return EnumUtil.getEnum(CharacterCasing.values(), getAttribute("characterCasing"));
@@ -173,6 +175,7 @@ public class TextItem extends FormItem {
      * <p><b>Note : </b> This is an advanced setting</p>
      *
      * @param keyPressFilter new keyPress filter for the item. Default value is null
+     * @see <a href="http://www.smartclient.com/smartgwt/showcase/#form_keypress_filter" target="examples">KeyPress Filters Example</a>
      */
     public void setKeyPressFilter(String keyPressFilter) {
         setAttribute("keyPressFilter", keyPressFilter);
@@ -186,6 +189,7 @@ public class TextItem extends FormItem {
      *
      *
      * @return String
+     * @see <a href="http://www.smartclient.com/smartgwt/showcase/#form_keypress_filter" target="examples">KeyPress Filters Example</a>
      */
     public String getKeyPressFilter()  {
         return getAttributeAsString("keyPressFilter");
@@ -231,6 +235,7 @@ public class TextItem extends FormItem {
      * <p><b>Note : </b> This is an advanced setting</p>
      *
      * @param mask mask to apply to text item. Default value is null
+     * @see <a href="http://www.smartclient.com/smartgwt/showcase/#form_masking" target="examples">Text - Masked Example</a>
      */
     public void setMask(String mask) {
         setAttribute("mask", mask);
@@ -254,6 +259,7 @@ public class TextItem extends FormItem {
      *
      *
      * @return String
+     * @see <a href="http://www.smartclient.com/smartgwt/showcase/#form_masking" target="examples">Text - Masked Example</a>
      */
     public String getMask()  {
         return getAttributeAsString("mask");

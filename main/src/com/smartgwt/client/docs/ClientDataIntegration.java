@@ -63,15 +63,16 @@ package com.smartgwt.client.docs;
  * recordXPath selects a list of &lt;item&gt; elements.  Since the intended values&#010 for each DataSource field appear as
  * simple subelements of each &lt;item&gt; element (eg&#010 &lt;description&gt;), the field name is sufficient to select
  * the correct values, and no&#010 explicit valueXPath needs to be specified.&#010 <P>&#010 A running version of this
- * example is available here: ${isc.DocUtils.linkForExampleId('rssFeed')}.  Further&#010 examples of simple XML or JSON
- * data loading using files stored on disk as the&#010 "service" to contact: the
- * ${isc.DocUtils.linkForExampleId('simpleJSON', 'Simple JSON')} example shows loading&#010 data from a JSON file into a
- * databound grid, and the&#010 ${isc.DocUtils.linkForExampleId('xpathBinding', 'XPath Binding example')} shows loading XML
- * and processing it with&#010 XPaths.&#010 <P>&#010 <H4>Round Tripping: Loading, Editing and Saving</H4>&#010 <P>&#010 For
- * WSDL web services, see the {@link com.smartgwt.client.docs.WsdlBinding 'WSDL binding topic'} first.&#010 <P>&#010 When a
- * user triggers a DSRequest (eg, completes an inline edit in a grid), the request&#010 data will be sent to the dataURL. 
- * The {@link com.smartgwt.client.docs.DataSourceOperations 'DataSource protocol'}&#010 describes request and response data
- * expected for each operation type.  &#010 <P>&#010 By using settings such as {@link
+ * example is available here: <a href="http://www.smartclient.com/smartgwt/showcase/#rss_xml_integration_category"
+ * target="examples">RSS Feed</a>.  Further&#010 examples of simple XML or JSON data loading using files stored on disk as
+ * the&#010 "service" to contact: the ${isc.DocUtils.linkForExampleId('simpleJSON', 'Simple JSON')} example shows
+ * loading&#010 data from a JSON file into a databound grid, and the&#010 ${isc.DocUtils.linkForExampleId('xpathBinding',
+ * 'XPath Binding example')} shows loading XML and processing it with&#010 XPaths.&#010 <P>&#010 <H4>Round Tripping:
+ * Loading, Editing and Saving</H4>&#010 <P>&#010 For WSDL web services, see the {@link
+ * com.smartgwt.client.docs.WsdlBinding 'WSDL binding topic'} first.&#010 <P>&#010 When a user triggers a DSRequest (eg,
+ * completes an inline edit in a grid), the request&#010 data will be sent to the dataURL.  The {@link
+ * com.smartgwt.client.docs.DataSourceOperations 'DataSource protocol'}&#010 describes request and response data expected
+ * for each operation type.  &#010 <P>&#010 By using settings such as {@link
  * com.smartgwt.client.data.OperationBinding#getDataProtocol dataProtocol}, you can control how&#010 DSRequests are sent to
  * your backend so that you can handle them most easily.  By using the&#010 same properties used to initially load data
  * (eg&#010 {@link com.smartgwt.client.data.OperationBinding#getRecordXPath 'recordXPath'}), you can control how Smart GWT

@@ -104,6 +104,7 @@ public class SelectItem extends FormItem  implements PickList, com.smartgwt.clie
      * <p><b>Note : </b> This is an advanced setting</p>
      *
      * @param addUnknownValues addUnknownValues Default value is true
+     * @see <a href="http://www.smartclient.com/smartgwt/showcase/#form_dep_dep_selects" target="examples">Dependent Selects Example</a>
      */
     public void setAddUnknownValues(Boolean addUnknownValues) {
         setAttribute("addUnknownValues", addUnknownValues);
@@ -118,6 +119,7 @@ public class SelectItem extends FormItem  implements PickList, com.smartgwt.clie
      *
      *
      * @return Boolean
+     * @see <a href="http://www.smartclient.com/smartgwt/showcase/#form_dep_dep_selects" target="examples">Dependent Selects Example</a>
      */
     public Boolean getAddUnknownValues()  {
         return getAttributeAsBoolean("addUnknownValues");
@@ -268,6 +270,7 @@ public class SelectItem extends FormItem  implements PickList, com.smartgwt.clie
      * to be used as a server based valueMap.
      *
      * @param displayField displayField Default value is null
+     * @see <a href="http://www.smartclient.com/smartgwt/showcase/#selected_value_combobox_category" target="examples">List - Related Records Example</a>
      */
     public void setDisplayField(String displayField) {
         setAttribute("displayField", displayField);
@@ -291,6 +294,7 @@ public class SelectItem extends FormItem  implements PickList, com.smartgwt.clie
      *
      *
      * @return String
+     * @see <a href="http://www.smartclient.com/smartgwt/showcase/#selected_value_combobox_category" target="examples">List - Related Records Example</a>
      */
     public String getDisplayField()  {
         return getAttributeAsString("displayField");
@@ -659,6 +663,7 @@ public class SelectItem extends FormItem  implements PickList, com.smartgwt.clie
      * com.smartgwt.client.widgets.form.fields.FormItem#getName name} of this form item.
      *
      * @param valueField valueField Default value is null
+     * @see <a href="http://www.smartclient.com/smartgwt/showcase/#selected_value_combobox_category" target="examples">List - Related Records Example</a>
      */
     public void setValueField(String valueField) {
         setAttribute("valueField", valueField);
@@ -673,6 +678,7 @@ public class SelectItem extends FormItem  implements PickList, com.smartgwt.clie
      *
      *
      * @return String
+     * @see <a href="http://www.smartclient.com/smartgwt/showcase/#selected_value_combobox_category" target="examples">List - Related Records Example</a>
      */
     public String getValueField()  {
         return getAttributeAsString("valueField");

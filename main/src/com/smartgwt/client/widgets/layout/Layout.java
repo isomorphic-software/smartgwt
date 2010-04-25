@@ -100,6 +100,7 @@ public class Layout extends Canvas {
      * If true when members are added / removed, they should be animated as they are shown or hidden in position
      *
      * @param animateMembers animateMembers Default value is null
+     * @see <a href="http://www.smartclient.com/smartgwt/showcase/#effects_animation_layout" target="examples">Layout Add & Remove Example</a>
      */
     public void setAnimateMembers(Boolean animateMembers) {
         setAttribute("animateMembers", animateMembers, true);
@@ -110,6 +111,7 @@ public class Layout extends Canvas {
      *
      *
      * @return Boolean
+     * @see <a href="http://www.smartclient.com/smartgwt/showcase/#effects_animation_layout" target="examples">Layout Add & Remove Example</a>
      */
     public Boolean getAnimateMembers()  {
         return getAttributeAsBoolean("animateMembers");
@@ -233,6 +235,7 @@ public class Layout extends Canvas {
      * @param dropLineThickness dropLineThickness Default value is 2
      * @throws IllegalStateException this property cannot be changed after the component has been created
      * @see com.smartgwt.client.docs.Dragdrop Dragdrop overview and related methods
+     * @see <a href="http://www.smartclient.com/smartgwt/showcase/#grid_interaction_drag_move" target="examples">Drag move Example</a>
      */
     public void setDropLineThickness(int dropLineThickness)  throws IllegalStateException {
         setAttribute("dropLineThickness", dropLineThickness, false);
@@ -246,6 +249,7 @@ public class Layout extends Canvas {
      *
      * @return int
      * @see com.smartgwt.client.docs.Dragdrop Dragdrop overview and related methods
+     * @see <a href="http://www.smartclient.com/smartgwt/showcase/#grid_interaction_drag_move" target="examples">Drag move Example</a>
      */
     public int getDropLineThickness()  {
         return getAttributeAsInt("dropLineThickness");
@@ -350,6 +354,7 @@ public class Layout extends Canvas {
      * Method to force a reflow of the layout after directly assigning a value to any of the layout*Margin properties. Takes no arguments.
      *
      * @param layoutMargin layoutMargin Default value is null
+     * @see <a href="http://www.smartclient.com/smartgwt/showcase/#layout_user_sizing" target="examples">User Sizing Example</a>
      */
     public void setLayoutMargin(Integer layoutMargin) {
         setAttribute("layoutMargin", layoutMargin, true);
@@ -364,6 +369,7 @@ public class Layout extends Canvas {
      *
      *
      * @return Integer
+     * @see <a href="http://www.smartclient.com/smartgwt/showcase/#layout_user_sizing" target="examples">User Sizing Example</a>
      */
     public Integer getLayoutMargin()  {
         return getAttributeAsInt("layoutMargin");
@@ -537,6 +543,7 @@ public class Layout extends Canvas {
      * Space between each member of the layout. <P> Requires a manual call to <code>reflow()</code> if changed on the fly.
      *
      * @param membersMargin membersMargin Default value is 0
+     * @see <a href="http://www.smartclient.com/smartgwt/showcase/#layout_user_sizing" target="examples">User Sizing Example</a>
      */
     public void setMembersMargin(int membersMargin) {
         setAttribute("membersMargin", membersMargin, true);
@@ -547,6 +554,7 @@ public class Layout extends Canvas {
      *
      *
      * @return int
+     * @see <a href="http://www.smartclient.com/smartgwt/showcase/#layout_user_sizing" target="examples">User Sizing Example</a>
      */
     public int getMembersMargin()  {
         return getAttributeAsInt("membersMargin");
@@ -711,6 +719,7 @@ public class Layout extends Canvas {
      *
      * @param showDragPlaceHolder showDragPlaceHolder Default value is null
      * @see com.smartgwt.client.docs.Dragdrop Dragdrop overview and related methods
+     * @see <a href="http://www.smartclient.com/smartgwt/showcase/#grid_interaction_drag_move" target="examples">Drag move Example</a>
      */
     public void setShowDragPlaceHolder(Boolean showDragPlaceHolder) {
         setAttribute("showDragPlaceHolder", showDragPlaceHolder, true);
@@ -723,6 +732,7 @@ public class Layout extends Canvas {
      *
      * @return Boolean
      * @see com.smartgwt.client.docs.Dragdrop Dragdrop overview and related methods
+     * @see <a href="http://www.smartclient.com/smartgwt/showcase/#grid_interaction_drag_move" target="examples">Drag move Example</a>
      */
     public Boolean getShowDragPlaceHolder()  {
         return getAttributeAsBoolean("showDragPlaceHolder");

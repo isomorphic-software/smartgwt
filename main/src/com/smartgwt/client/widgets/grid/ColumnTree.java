@@ -309,6 +309,7 @@ public class ColumnTree extends Layout  implements DataBoundComponent, com.smart
      * the {@link com.smartgwt.client.widgets.grid.ColumnTree#getCustomIconProperty customIconProperty} directly on the node.
      *
      * @param nodeIcon nodeIcon Default value is "[SKIN]file.gif"
+     * @see <a href="http://www.smartclient.com/smartgwt/showcase/#tree_miller_columns" target="examples">Miller Columns Example</a>
      */
     public void setNodeIcon(String nodeIcon) {
         setAttribute("nodeIcon", nodeIcon, true);
@@ -320,6 +321,7 @@ public class ColumnTree extends Layout  implements DataBoundComponent, com.smart
      *
      *
      * @return String
+     * @see <a href="http://www.smartclient.com/smartgwt/showcase/#tree_miller_columns" target="examples">Miller Columns Example</a>
      */
     public String getNodeIcon()  {
         return getAttributeAsString("nodeIcon");
@@ -438,6 +440,7 @@ public class ColumnTree extends Layout  implements DataBoundComponent, com.smart
      * the {@link com.smartgwt.client.widgets.grid.ColumnTree#getClosedIconSuffix closedIconSuffix}.
      *
      * @param showOpenIcons showOpenIcons Default value is true
+     * @see <a href="http://www.smartclient.com/smartgwt/showcase/#tree_miller_columns" target="examples">Miller Columns Example</a>
      */
     public void setShowOpenIcons(Boolean showOpenIcons) {
         setAttribute("showOpenIcons", showOpenIcons, true);
@@ -454,6 +457,7 @@ public class ColumnTree extends Layout  implements DataBoundComponent, com.smart
      *
      *
      * @return Boolean
+     * @see <a href="http://www.smartclient.com/smartgwt/showcase/#tree_miller_columns" target="examples">Miller Columns Example</a>
      */
     public Boolean getShowOpenIcons()  {
         return getAttributeAsBoolean("showOpenIcons");

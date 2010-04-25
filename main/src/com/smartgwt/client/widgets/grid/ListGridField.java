@@ -164,6 +164,7 @@ public class ListGridField extends DataClass  implements com.smartgwt.client.wid
      *
      * @param baseStyle baseStyle Default value is null
      * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
+     * @see <a href="http://www.smartclient.com/smartgwt/showcase/#effects_lf_grid_cells" target="examples">Grid cells Example</a>
      */
     public void setBaseStyle(String baseStyle) {
         setAttribute("baseStyle", baseStyle);
@@ -178,6 +179,7 @@ public class ListGridField extends DataClass  implements com.smartgwt.client.wid
      *
      * @return String
      * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
+     * @see <a href="http://www.smartclient.com/smartgwt/showcase/#effects_lf_grid_cells" target="examples">Grid cells Example</a>
      */
     public String getBaseStyle()  {
         return getAttributeAsString("baseStyle");
@@ -209,6 +211,7 @@ public class ListGridField extends DataClass  implements com.smartgwt.client.wid
      *
      * @param canEdit canEdit Default value is null
      * @see com.smartgwt.client.docs.Editing Editing overview and related methods
+     * @see <a href="http://www.smartclient.com/smartgwt/showcase/#grid_editing_disable" target="examples">Disable editing Example</a>
      */
     public void setCanEdit(Boolean canEdit) {
         setAttribute("canEdit", canEdit);
@@ -220,6 +223,7 @@ public class ListGridField extends DataClass  implements com.smartgwt.client.wid
      *
      * @return Boolean
      * @see com.smartgwt.client.docs.Editing Editing overview and related methods
+     * @see <a href="http://www.smartclient.com/smartgwt/showcase/#grid_editing_disable" target="examples">Disable editing Example</a>
      */
     public Boolean getCanEdit()  {
         return getAttributeAsBoolean("canEdit");
@@ -252,6 +256,7 @@ public class ListGridField extends DataClass  implements com.smartgwt.client.wid
      * If showing a filter row for this ListGrid, should the filter criteria for this       field be editable
      *
      * @param canFilter canFilter Default value is null
+     * @see <a href="http://www.smartclient.com/smartgwt/showcase/#grid_sortfilter_disable_filter" target="examples">Disable filter Example</a>
      */
     public void setCanFilter(Boolean canFilter) {
         setAttribute("canFilter", canFilter);
@@ -262,6 +267,7 @@ public class ListGridField extends DataClass  implements com.smartgwt.client.wid
      *
      *
      * @return Boolean
+     * @see <a href="http://www.smartclient.com/smartgwt/showcase/#grid_sortfilter_disable_filter" target="examples">Disable filter Example</a>
      */
     public Boolean getCanFilter()  {
         return getAttributeAsBoolean("canFilter");
@@ -745,6 +751,7 @@ public class ListGridField extends DataClass  implements com.smartgwt.client.wid
      * emptyCellValue for all empty fields in the grid.
      *
      * @param emptyCellValue emptyCellValue Default value is "&amp;nbsp;"
+     * @see <a href="http://www.smartclient.com/smartgwt/showcase/#grid_appearance_empty_values" target="examples">Empty values Example</a>
      */
     public void setEmptyCellValue(String emptyCellValue) {
         setAttribute("emptyCellValue", emptyCellValue);
@@ -757,6 +764,7 @@ public class ListGridField extends DataClass  implements com.smartgwt.client.wid
      *
      *
      * @return String
+     * @see <a href="http://www.smartclient.com/smartgwt/showcase/#grid_appearance_empty_values" target="examples">Empty values Example</a>
      */
     public String getEmptyCellValue()  {
         return getAttributeAsString("emptyCellValue");
@@ -1248,6 +1256,7 @@ public class ListGridField extends DataClass  implements com.smartgwt.client.wid
      *
      * @param imageURLPrefix imageURLPrefix Default value is null
      * @see com.smartgwt.client.docs.ImageColumns ImageColumns overview and related methods
+     * @see <a href="http://www.smartclient.com/smartgwt/showcase/#grid_datatypes_image" target="examples">Image Example</a>
      */
     public void setImageURLPrefix(String imageURLPrefix) {
         setAttribute("imageURLPrefix", imageURLPrefix);
@@ -1262,6 +1271,7 @@ public class ListGridField extends DataClass  implements com.smartgwt.client.wid
      *
      * @return String
      * @see com.smartgwt.client.docs.ImageColumns ImageColumns overview and related methods
+     * @see <a href="http://www.smartclient.com/smartgwt/showcase/#grid_datatypes_image" target="examples">Image Example</a>
      */
     public String getImageURLPrefix()  {
         return getAttributeAsString("imageURLPrefix");
@@ -1278,6 +1288,7 @@ public class ListGridField extends DataClass  implements com.smartgwt.client.wid
      *
      * @param imageURLSuffix imageURLSuffix Default value is null
      * @see com.smartgwt.client.docs.ImageColumns ImageColumns overview and related methods
+     * @see <a href="http://www.smartclient.com/smartgwt/showcase/#grid_datatypes_image" target="examples">Image Example</a>
      */
     public void setImageURLSuffix(String imageURLSuffix) {
         setAttribute("imageURLSuffix", imageURLSuffix);
@@ -1294,6 +1305,7 @@ public class ListGridField extends DataClass  implements com.smartgwt.client.wid
      *
      * @return String
      * @see com.smartgwt.client.docs.ImageColumns ImageColumns overview and related methods
+     * @see <a href="http://www.smartclient.com/smartgwt/showcase/#grid_datatypes_image" target="examples">Image Example</a>
      */
     public String getImageURLSuffix()  {
         return getAttributeAsString("imageURLSuffix");
@@ -1380,6 +1392,7 @@ public class ListGridField extends DataClass  implements com.smartgwt.client.wid
      * com.smartgwt.client.widgets.grid.ListGridRecord#getLinkText linkText}.
      *
      * @param linkText linkText Default value is null
+     * @see <a href="http://www.smartclient.com/smartgwt/showcase/#grid_datatypes_link_image" target="examples">Link (image) Example</a>
      */
     public void setLinkText(String linkText) {
         setAttribute("linkText", linkText);
@@ -1391,6 +1404,7 @@ public class ListGridField extends DataClass  implements com.smartgwt.client.wid
      *
      *
      * @return String
+     * @see <a href="http://www.smartclient.com/smartgwt/showcase/#grid_datatypes_link_image" target="examples">Link (image) Example</a>
      */
     public String getLinkText()  {
         return getAttributeAsString("linkText");
@@ -1778,6 +1792,7 @@ public class ListGridField extends DataClass  implements com.smartgwt.client.wid
      * com.smartgwt.client.widgets.grid.ListGrid#getShowHover showHover} to false.
      *
      * @param showHover showHover Default value is null
+     * @see <a href="http://www.smartclient.com/smartgwt/showcase/#grid_interaction_value_hover" target="examples">Value hover tips Example</a>
      */
     public void setShowHover(Boolean showHover) {
         setAttribute("showHover", showHover);
@@ -1793,6 +1808,7 @@ public class ListGridField extends DataClass  implements com.smartgwt.client.wid
      *
      *
      * @return Boolean
+     * @see <a href="http://www.smartclient.com/smartgwt/showcase/#grid_interaction_value_hover" target="examples">Value hover tips Example</a>
      */
     public Boolean getShowHover()  {
         return getAttributeAsBoolean("showHover");

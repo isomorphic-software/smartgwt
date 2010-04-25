@@ -104,6 +104,7 @@ public class Tab extends RefDataClass {
      * canCloseTabs}
      *
      * @param canClose canClose Default value is null
+     * @see <a href="http://www.smartclient.com/smartgwt/showcase/#layout_tabs_closeable" target="examples">Closeable Tabs Example</a>
      */
     public void setCanClose(Boolean canClose) {
         setAttribute("canClose", canClose);
@@ -118,6 +119,7 @@ public class Tab extends RefDataClass {
      *
      *
      * @return Boolean
+     * @see <a href="http://www.smartclient.com/smartgwt/showcase/#layout_tabs_closeable" target="examples">Closeable Tabs Example</a>
      */
     public Boolean getCanClose()  {
         return getAttributeAsBoolean("canClose");
@@ -176,6 +178,7 @@ public class Tab extends RefDataClass {
      * takes a single parameter <code>tab</code>, a pointer to the tab object.
      *
      * @param icon icon Default value is null
+     * @see <a href="http://www.smartclient.com/smartgwt/showcase/#layout_tabs_orientation" target="examples">Orientation Example</a>
      */
     public void setIcon(String icon) {
         setAttribute("icon", icon);
@@ -189,6 +192,7 @@ public class Tab extends RefDataClass {
      *
      *
      * @return String
+     * @see <a href="http://www.smartclient.com/smartgwt/showcase/#layout_tabs_orientation" target="examples">Orientation Example</a>
      */
     public String getIcon()  {
         return getAttributeAsString("icon");

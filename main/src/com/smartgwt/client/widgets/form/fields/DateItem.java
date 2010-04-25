@@ -456,6 +456,7 @@ public class DateItem extends FormItem {
      *
      * @param useTextField useTextField Default value is null
      * @see com.smartgwt.client.docs.Basics Basics overview and related methods
+     * @see <a href="http://www.smartclient.com/smartgwt/showcase/#grid_datatypes_date" target="examples">Date Example</a>
      */
     public void setUseTextField(Boolean useTextField) {
         setAttribute("useTextField", useTextField);
@@ -467,6 +468,7 @@ public class DateItem extends FormItem {
      *
      * @return Boolean
      * @see com.smartgwt.client.docs.Basics Basics overview and related methods
+     * @see <a href="http://www.smartclient.com/smartgwt/showcase/#grid_datatypes_date" target="examples">Date Example</a>
      */
     public Boolean getUseTextField()  {
         return getAttributeAsBoolean("useTextField");

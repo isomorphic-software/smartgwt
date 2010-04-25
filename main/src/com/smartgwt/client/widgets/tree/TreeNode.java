@@ -144,6 +144,7 @@ public class TreeNode extends ListGridRecord {
      * com.smartgwt.client.widgets.grid.ListGrid#getRecordEnabledProperty recordEnabledProperty}.
      *
      * @param enabled enabled Default value is null
+     * @see <a href="http://www.smartclient.com/smartgwt/showcase/#grid_interaction_disabled_rows" target="examples">Disabled rows Example</a>
      */
     public void setEnabled(Boolean enabled) {
         setAttribute("enabled", enabled);
@@ -155,6 +156,7 @@ public class TreeNode extends ListGridRecord {
      *
      *
      * @return Boolean
+     * @see <a href="http://www.smartclient.com/smartgwt/showcase/#grid_interaction_disabled_rows" target="examples">Disabled rows Example</a>
      */
     public Boolean getEnabled()  {
         return getAttributeAsBoolean("enabled");

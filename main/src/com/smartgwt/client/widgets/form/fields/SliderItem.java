@@ -143,6 +143,7 @@ public class SliderItem extends CanvasItem {
      * Sets the {@link com.smartgwt.client.widgets.Slider#getMaxValue 'maximum value'} of the slider
      *
      * @param maxValue the new maximum value. Default value is 100
+     * @see <a href="http://www.smartclient.com/smartgwt/showcase/#form_controls_various" target="examples">Number - Slider Example</a>
      */
     public void setMaxValue(float maxValue) {
         setAttribute("maxValue", maxValue);
@@ -154,6 +155,7 @@ public class SliderItem extends CanvasItem {
      *
      *
      * @return float
+     * @see <a href="http://www.smartclient.com/smartgwt/showcase/#form_controls_various" target="examples">Number - Slider Example</a>
      */
     public float getMaxValue()  {
         return getAttributeAsFloat("maxValue");
@@ -165,6 +167,7 @@ public class SliderItem extends CanvasItem {
      * Sets the {@link com.smartgwt.client.widgets.Slider#getMinValue 'minimum value'} of the slider
      *
      * @param minValue the new minimum value. Default value is 1
+     * @see <a href="http://www.smartclient.com/smartgwt/showcase/#form_controls_various" target="examples">Number - Slider Example</a>
      */
     public void setMinValue(float minValue) {
         setAttribute("minValue", minValue);
@@ -176,6 +179,7 @@ public class SliderItem extends CanvasItem {
      *
      *
      * @return float
+     * @see <a href="http://www.smartclient.com/smartgwt/showcase/#form_controls_various" target="examples">Number - Slider Example</a>
      */
     public float getMinValue()  {
         return getAttributeAsFloat("minValue");
@@ -188,6 +192,7 @@ public class SliderItem extends CanvasItem {
      * Sets the {@link com.smartgwt.client.widgets.Slider#getNumValues 'number of values'} for the slider
      *
      * @param numValues the new number of values. Default value is null
+     * @see <a href="http://www.smartclient.com/smartgwt/showcase/#form_controls_various" target="examples">Number - Slider Example</a>
      */
     public void setNumValues(Integer numValues) {
         setAttribute("numValues", numValues);
@@ -200,6 +205,7 @@ public class SliderItem extends CanvasItem {
      *
      *
      * @return Integer
+     * @see <a href="http://www.smartclient.com/smartgwt/showcase/#form_controls_various" target="examples">Number - Slider Example</a>
      */
     public Integer getNumValues()  {
         return getAttributeAsInt("numValues");
@@ -210,6 +216,7 @@ public class SliderItem extends CanvasItem {
      * this number of decimal places. If set to null the value will not be rounded
      *
      * @param roundPrecision roundPrecision Default value is 1
+     * @see <a href="http://www.smartclient.com/smartgwt/showcase/#form_controls_various" target="examples">Number - Slider Example</a>
      */
     public void setRoundPrecision(int roundPrecision) {
         setAttribute("roundPrecision", roundPrecision);
@@ -221,6 +228,7 @@ public class SliderItem extends CanvasItem {
      *
      *
      * @return int
+     * @see <a href="http://www.smartclient.com/smartgwt/showcase/#form_controls_various" target="examples">Number - Slider Example</a>
      */
     public int getRoundPrecision()  {
         return getAttributeAsInt("roundPrecision");
@@ -232,6 +240,7 @@ public class SliderItem extends CanvasItem {
      * com.smartgwt.client.widgets.form.fields.SliderItem#getRoundPrecision roundPrecision}.
      *
      * @param roundValues roundValues Default value is true
+     * @see <a href="http://www.smartclient.com/smartgwt/showcase/#form_controls_various" target="examples">Number - Slider Example</a>
      */
     public void setRoundValues(Boolean roundValues) {
         setAttribute("roundValues", roundValues);
@@ -244,6 +253,7 @@ public class SliderItem extends CanvasItem {
      *
      *
      * @return Boolean
+     * @see <a href="http://www.smartclient.com/smartgwt/showcase/#form_controls_various" target="examples">Number - Slider Example</a>
      */
     public Boolean getRoundValues()  {
         return getAttributeAsBoolean("roundValues");
@@ -253,6 +263,7 @@ public class SliderItem extends CanvasItem {
      * Indicates whether this is a vertical or horizontal slider.
      *
      * @param vertical vertical Default value is false
+     * @see <a href="http://www.smartclient.com/smartgwt/showcase/#controls_category_slider" target="examples">Slider Example</a>
      */
     public void setVertical(Boolean vertical) {
         setAttribute("vertical", vertical);
@@ -263,6 +274,7 @@ public class SliderItem extends CanvasItem {
      *
      *
      * @return Boolean
+     * @see <a href="http://www.smartclient.com/smartgwt/showcase/#controls_category_slider" target="examples">Slider Example</a>
      */
     public Boolean getVertical()  {
         return getAttributeAsBoolean("vertical");

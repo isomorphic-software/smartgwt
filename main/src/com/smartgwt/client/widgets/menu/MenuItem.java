@@ -130,6 +130,7 @@ public class MenuItem extends ListGridRecord  implements com.smartgwt.client.wid
      * state dynamically, use {@link com.smartgwt.client.widgets.menu.MenuItem#checkIf MenuItem.checkIf} instead.
      *
      * @param checked checked Default value is null
+     * @see <a href="http://www.smartclient.com/smartgwt/showcase/#grid_appearance_category" target="examples">Appearance Example</a>
      */
     public void setChecked(Boolean checked) {
         setAttribute("checked", checked);
@@ -142,6 +143,7 @@ public class MenuItem extends ListGridRecord  implements com.smartgwt.client.wid
      *
      *
      * @return Boolean
+     * @see <a href="http://www.smartclient.com/smartgwt/showcase/#grid_appearance_category" target="examples">Appearance Example</a>
      */
     public Boolean getChecked()  {
         return getAttributeAsBoolean("checked");
@@ -199,6 +201,7 @@ public class MenuItem extends ListGridRecord  implements com.smartgwt.client.wid
      * com.smartgwt.client.widgets.menu.MenuItem#dynamicIcon MenuItem.dynamicIcon} instead.
      *
      * @param icon icon Default value is null
+     * @see <a href="http://www.smartclient.com/smartgwt/showcase/#grid_appearance_category" target="examples">Appearance Example</a>
      */
     public void setIcon(String icon) {
         setAttribute("icon", icon);
@@ -213,6 +216,7 @@ public class MenuItem extends ListGridRecord  implements com.smartgwt.client.wid
      *
      *
      * @return String
+     * @see <a href="http://www.smartclient.com/smartgwt/showcase/#grid_appearance_category" target="examples">Appearance Example</a>
      */
     public String getIcon()  {
         return getAttributeAsString("icon");
@@ -266,6 +270,7 @@ public class MenuItem extends ListGridRecord  implements com.smartgwt.client.wid
      * item, since the separator will not respond to mouse events.
      *
      * @param isSeparator isSeparator Default value is false
+     * @see <a href="http://www.smartclient.com/smartgwt/showcase/#grid_appearance_category" target="examples">Appearance Example</a>
      */
     public void setIsSeparator(Boolean isSeparator) {
         setAttribute("isSeparator", isSeparator);
@@ -278,6 +283,7 @@ public class MenuItem extends ListGridRecord  implements com.smartgwt.client.wid
      *
      *
      * @return Boolean
+     * @see <a href="http://www.smartclient.com/smartgwt/showcase/#grid_appearance_category" target="examples">Appearance Example</a>
      */
     public Boolean getIsSeparator()  {
         return getAttributeAsBoolean("isSeparator");
@@ -288,6 +294,7 @@ public class MenuItem extends ListGridRecord  implements com.smartgwt.client.wid
      * com.smartgwt.client.widgets.menu.MenuItem#getKeys keys} will be used by default.
      *
      * @param keyTitle keyTitle Default value is see below
+     * @see <a href="http://www.smartclient.com/smartgwt/showcase/#grid_appearance_category" target="examples">Appearance Example</a>
      */
     public void setKeyTitle(String keyTitle) {
         setAttribute("keyTitle", keyTitle);
@@ -299,6 +306,7 @@ public class MenuItem extends ListGridRecord  implements com.smartgwt.client.wid
      *
      *
      * @return String
+     * @see <a href="http://www.smartclient.com/smartgwt/showcase/#grid_appearance_category" target="examples">Appearance Example</a>
      */
     public String getKeyTitle()  {
         return getAttributeAsString("keyTitle");
@@ -308,6 +316,7 @@ public class MenuItem extends ListGridRecord  implements com.smartgwt.client.wid
      * A reference to another menu, to display as a submenu when the mouse cursor hovers over this menu item.
      *
      * @param submenu submenu Default value is null
+     * @see <a href="http://www.smartclient.com/smartgwt/showcase/#menus_category_submenus" target="examples">Sub Menus Example</a>
      */
     public void setSubmenu(Menu submenu) {
         setAttribute("submenu", submenu.getOrCreateJsObj());
@@ -318,6 +327,7 @@ public class MenuItem extends ListGridRecord  implements com.smartgwt.client.wid
      *
      *
      * @return Menu
+     * @see <a href="http://www.smartclient.com/smartgwt/showcase/#menus_category_submenus" target="examples">Sub Menus Example</a>
      */
     public Menu getSubmenu()  {
         return Menu.getOrCreateRef(getAttributeAsJavaScriptObject("submenu"));
@@ -354,6 +364,7 @@ public class MenuItem extends ListGridRecord  implements com.smartgwt.client.wid
      * @param item contains the reference to the current item
      *
      * @return Return true to show a checkmark by this menu item
+     * @see <a href="http://www.smartclient.com/smartgwt/showcase/#menus_category_dynamic" target="examples">Dynamic Items Example</a>
      */
     public native Boolean checkIf(Canvas target, Menu menu, MenuItem item) /*-{
         var self = this.@com.smartgwt.client.core.DataClass::getJsObj()();
@@ -400,6 +411,7 @@ public class MenuItem extends ListGridRecord  implements com.smartgwt.client.wid
      * @param item contains the reference to the current item
      *
      * @return Return true to show a checkmark by this menu item
+     * @see <a href="http://www.smartclient.com/smartgwt/showcase/#menus_category_dynamic" target="examples">Dynamic Items Example</a>
      */
     public native Boolean enableIf(Canvas target, Menu menu, MenuItem item) /*-{
         var self = this.@com.smartgwt.client.core.DataClass::getJsObj()();

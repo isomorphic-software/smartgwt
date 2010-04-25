@@ -172,6 +172,7 @@ public class ViewLoader extends Label {
      *
      * @param viewURL URL to retrieve view from. Default value is null
      * @throws IllegalStateException this property cannot be changed after the component has been created
+     * 
      */
     public void setViewURL(String viewURL)  throws IllegalStateException {
         setAttribute("viewURL", viewURL, false);
@@ -182,6 +183,7 @@ public class ViewLoader extends Label {
      *
      *
      * @return String
+     * 
      */
     public String getViewURL()  {
         return getAttributeAsString("viewURL");

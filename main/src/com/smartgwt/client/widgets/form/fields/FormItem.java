@@ -285,6 +285,7 @@ public class FormItem extends RefDataClass  implements com.smartgwt.client.widge
      *
      * @param disabled true if this item should be disabled. Default value is false
      * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
+     * @see <a href="http://www.smartclient.com/smartgwt/showcase/#form_dep_enable_disable" target="examples">Enable & Disable Example</a>
      */
     public void setDisabled(Boolean disabled) {
         setAttribute("disabled", disabled);
@@ -299,6 +300,7 @@ public class FormItem extends RefDataClass  implements com.smartgwt.client.widge
      *
      * @return Boolean
      * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
+     * @see <a href="http://www.smartclient.com/smartgwt/showcase/#form_dep_enable_disable" target="examples">Enable & Disable Example</a>
      */
     public Boolean getDisabled()  {
         return getAttributeAsBoolean("disabled");
@@ -593,6 +595,7 @@ public class FormItem extends RefDataClass  implements com.smartgwt.client.widge
      *
      * @param height height Default value is 20
      * @see com.smartgwt.client.docs.FormLayout FormLayout overview and related methods
+     * @see <a href="http://www.smartclient.com/smartgwt/showcase/#layout_form_filling" target="examples">Filling Example</a>
      */
     public void setHeight(int height) {
         setAttribute("height", height);
@@ -606,6 +609,7 @@ public class FormItem extends RefDataClass  implements com.smartgwt.client.widge
      *
      * @return int
      * @see com.smartgwt.client.docs.FormLayout FormLayout overview and related methods
+     * @see <a href="http://www.smartclient.com/smartgwt/showcase/#layout_form_filling" target="examples">Filling Example</a>
      */
     public int getHeight()  {
         return getAttributeAsInt("height");
@@ -618,6 +622,7 @@ public class FormItem extends RefDataClass  implements com.smartgwt.client.widge
      *
      * @param hint new hint for the item. Default value is null
      * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
+     * @see <a href="http://www.smartclient.com/smartgwt/showcase/#form_details_hints" target="examples">Hints Example</a>
      */
     public void setHint(String hint) {
         setAttribute("hint", hint);
@@ -630,6 +635,7 @@ public class FormItem extends RefDataClass  implements com.smartgwt.client.widge
      *
      * @return String
      * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
+     * @see <a href="http://www.smartclient.com/smartgwt/showcase/#form_details_hints" target="examples">Hints Example</a>
      */
     public String getHint()  {
         return getAttributeAsString("hint");
@@ -1261,6 +1267,7 @@ public class FormItem extends RefDataClass  implements com.smartgwt.client.widge
      *
      * @param required required Default value is null
      * @see com.smartgwt.client.docs.Validation Validation overview and related methods
+     * @see <a href="http://www.smartclient.com/smartgwt/showcase/#form_dep_show_hide" target="examples">Show & Hide Example</a>
      */
     public void setRequired(Boolean required) {
         setAttribute("required", required);
@@ -1279,6 +1286,7 @@ public class FormItem extends RefDataClass  implements com.smartgwt.client.widge
      *
      * @return Boolean
      * @see com.smartgwt.client.docs.Validation Validation overview and related methods
+     * @see <a href="http://www.smartclient.com/smartgwt/showcase/#form_dep_show_hide" target="examples">Show & Hide Example</a>
      */
     public Boolean getRequired()  {
         return getAttributeAsBoolean("required");
@@ -2374,6 +2382,7 @@ public class FormItem extends RefDataClass  implements com.smartgwt.client.widge
      *
      * @param width width Default value is "*"
      * @see com.smartgwt.client.docs.FormLayout FormLayout overview and related methods
+     * @see <a href="http://www.smartclient.com/smartgwt/showcase/#layout_form_spanning" target="examples">Spanning Example</a>
      */
     public void setWidth(int width) {
         setAttribute("width", width);
@@ -2387,6 +2396,7 @@ public class FormItem extends RefDataClass  implements com.smartgwt.client.widge
      *
      * @return int
      * @see com.smartgwt.client.docs.FormLayout FormLayout overview and related methods
+     * @see <a href="http://www.smartclient.com/smartgwt/showcase/#layout_form_spanning" target="examples">Spanning Example</a>
      */
     public int getWidth()  {
         return getAttributeAsInt("width");

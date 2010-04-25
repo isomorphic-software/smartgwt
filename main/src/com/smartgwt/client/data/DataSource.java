@@ -91,8 +91,9 @@ import com.google.gwt.event.shared.HasHandlers;
  * com.smartgwt.client.widgets.form.DynamicForm#editRecord DynamicForm.editRecord} and {@link
  * com.smartgwt.client.widgets.form.DynamicForm#saveData DynamicForm.saveData}, grid-based {@link
  * com.smartgwt.client.widgets.grid.ListGrid#getCanEdit 'editing'} and {@link
- * com.smartgwt.client.widgets.grid.ListGrid#getSaveByCell 'saving'}, and custom interactions provided by
- * ${isc.DocUtils.linkForExampleId('patternReuse')} custom databinding-capable components.
+ * com.smartgwt.client.widgets.grid.ListGrid#getSaveByCell 'saving'}, and custom interactions provided by <a
+ * href="http://www.smartclient.com/smartgwt/showcase/#pattern_reuse_grid_form_category" target="examples">Pattern
+ * Reuse</a> custom databinding-capable components.
  */
 public class DataSource extends BaseClass  implements com.smartgwt.client.data.events.HasHandleErrorHandlers {
 
@@ -411,6 +412,7 @@ public class DataSource extends BaseClass  implements com.smartgwt.client.data.e
      * @param callbackParam callbackParam Default value is "callback"
      * @throws IllegalStateException this property cannot be changed after the underlying component has been created
      * @see com.smartgwt.client.docs.ClientDataIntegration ClientDataIntegration overview and related methods
+     * @see <a href="http://www.smartclient.com/smartgwt/showcase/#edit_save_xml_integration_category" target="examples">Edit and Save Example</a>
      */
     public void setCallbackParam(String callbackParam)  throws IllegalStateException {
         setAttribute("callbackParam", callbackParam, false);
@@ -423,6 +425,7 @@ public class DataSource extends BaseClass  implements com.smartgwt.client.data.e
      *
      * @return String
      * @see com.smartgwt.client.docs.ClientDataIntegration ClientDataIntegration overview and related methods
+     * @see <a href="http://www.smartclient.com/smartgwt/showcase/#edit_save_xml_integration_category" target="examples">Edit and Save Example</a>
      */
     public String getCallbackParam()  {
         return getAttributeAsString("callbackParam");
@@ -502,6 +505,7 @@ public class DataSource extends BaseClass  implements com.smartgwt.client.data.e
      * @param clientOnly clientOnly Default value is false
      * @throws IllegalStateException this property cannot be changed after the underlying component has been created
      * @see com.smartgwt.client.docs.ClientOnlyDataSources ClientOnlyDataSources overview and related methods
+     * @see <a href="http://www.smartclient.com/smartgwt/showcase/#grid_databinding_local_datasource" target="examples">Local DataSource Example</a>
      */
     public void setClientOnly(Boolean clientOnly)  throws IllegalStateException {
         setAttribute("clientOnly", clientOnly, false);
@@ -518,6 +522,7 @@ public class DataSource extends BaseClass  implements com.smartgwt.client.data.e
      *
      * @return Boolean
      * @see com.smartgwt.client.docs.ClientOnlyDataSources ClientOnlyDataSources overview and related methods
+     * @see <a href="http://www.smartclient.com/smartgwt/showcase/#grid_databinding_local_datasource" target="examples">Local DataSource Example</a>
      */
     public Boolean getClientOnly()  {
         return getAttributeAsBoolean("clientOnly");
@@ -552,6 +557,8 @@ public class DataSource extends BaseClass  implements com.smartgwt.client.data.e
      * @param dataFormat dataFormat Default value is "iscServer"
      * @throws IllegalStateException this property cannot be changed after the underlying component has been created
      * @see com.smartgwt.client.docs.ServerDataIntegration ServerDataIntegration overview and related methods
+     * @see <a href="http://www.smartclient.com/smartgwt/showcase/#grid_databinding_json_datasource" target="examples">JSON DataSource Example</a>
+     * @see <a href="http://www.smartclient.com/smartgwt/showcase/#json_integration_category_simple" target="examples">Simple JSON Example</a>
      */
     public void setDataFormat(DSDataFormat dataFormat)  throws IllegalStateException {
         setAttribute("dataFormat", dataFormat.getValue(), false);
@@ -564,6 +571,8 @@ public class DataSource extends BaseClass  implements com.smartgwt.client.data.e
      *
      * @return DSDataFormat
      * @see com.smartgwt.client.docs.ServerDataIntegration ServerDataIntegration overview and related methods
+     * @see <a href="http://www.smartclient.com/smartgwt/showcase/#grid_databinding_json_datasource" target="examples">JSON DataSource Example</a>
+     * @see <a href="http://www.smartclient.com/smartgwt/showcase/#json_integration_category_simple" target="examples">Simple JSON Example</a>
      */
     public DSDataFormat getDataFormat()  {
         return EnumUtil.getEnum(DSDataFormat.values(), getAttribute("dataFormat"));
@@ -612,6 +621,7 @@ public class DataSource extends BaseClass  implements com.smartgwt.client.data.e
      * @param dataURL dataURL Default value is null
      * @throws IllegalStateException this property cannot be changed after the underlying component has been created
      * @see com.smartgwt.client.docs.ClientDataIntegration ClientDataIntegration overview and related methods
+     * @see <a href="http://www.smartclient.com/smartgwt/showcase/#grid_databinding_json_datasource" target="examples">JSON DataSource Example</a>
      */
     public void setDataURL(String dataURL)  throws IllegalStateException {
         setAttribute("dataURL", dataURL, false);
@@ -626,6 +636,7 @@ public class DataSource extends BaseClass  implements com.smartgwt.client.data.e
      *
      * @return String
      * @see com.smartgwt.client.docs.ClientDataIntegration ClientDataIntegration overview and related methods
+     * @see <a href="http://www.smartclient.com/smartgwt/showcase/#grid_databinding_json_datasource" target="examples">JSON DataSource Example</a>
      */
     public String getDataURL()  {
         return getAttributeAsString("dataURL");
@@ -938,6 +949,8 @@ public class DataSource extends BaseClass  implements com.smartgwt.client.data.e
      * @param recordXPath recordXPath Default value is null
      * @throws IllegalStateException this property cannot be changed after the underlying component has been created
      * @see com.smartgwt.client.docs.ClientDataIntegration ClientDataIntegration overview and related methods
+     * @see <a href="http://www.smartclient.com/smartgwt/showcase/#grid_databinding_xml_datasource" target="examples">XML DataSource Example</a>
+     * @see <a href="http://www.smartclient.com/smartgwt/showcase/#json_integration_category_xpath" target="examples">JSON XPath Binding Example</a>
      */
     public void setRecordXPath(String recordXPath)  throws IllegalStateException {
         setAttribute("recordXPath", recordXPath, false);
@@ -950,6 +963,8 @@ public class DataSource extends BaseClass  implements com.smartgwt.client.data.e
      *
      * @return String
      * @see com.smartgwt.client.docs.ClientDataIntegration ClientDataIntegration overview and related methods
+     * @see <a href="http://www.smartclient.com/smartgwt/showcase/#grid_databinding_xml_datasource" target="examples">XML DataSource Example</a>
+     * @see <a href="http://www.smartclient.com/smartgwt/showcase/#json_integration_category_xpath" target="examples">JSON XPath Binding Example</a>
      */
     public String getRecordXPath()  {
         return getAttributeAsString("recordXPath");
@@ -1130,6 +1145,7 @@ public class DataSource extends BaseClass  implements com.smartgwt.client.data.e
      * @param serviceNamespace serviceNamespace Default value is null
      * @throws IllegalStateException this property cannot be changed after the underlying component has been created
      * @see com.smartgwt.client.docs.WsdlBinding WsdlBinding overview and related methods
+     * @see <a href="http://www.smartclient.com/smartgwtee/showcase/#data_integration_server_wsdl_generic" target="examples">Weather SOAP Search Example</a>
      */
     public void setServiceNamespace(String serviceNamespace)  throws IllegalStateException {
         setAttribute("serviceNamespace", serviceNamespace, false);
@@ -1150,6 +1166,7 @@ public class DataSource extends BaseClass  implements com.smartgwt.client.data.e
      *
      * @return String
      * @see com.smartgwt.client.docs.WsdlBinding WsdlBinding overview and related methods
+     * @see <a href="http://www.smartclient.com/smartgwtee/showcase/#data_integration_server_wsdl_generic" target="examples">Weather SOAP Search Example</a>
      */
     public String getServiceNamespace()  {
         return getAttributeAsString("serviceNamespace");
@@ -1400,6 +1417,7 @@ public class DataSource extends BaseClass  implements com.smartgwt.client.data.e
      *
      * @param useParentFieldOrder useParentFieldOrder Default value is null
      * @throws IllegalStateException this property cannot be changed after the underlying component has been created
+     * @see <a href="http://www.smartclient.com/smartgwt/showcase/#featured-xsd-ds" target="examples">Schema Chaining Example</a>
      */
     public void setUseParentFieldOrder(Boolean useParentFieldOrder)  throws IllegalStateException {
         setAttribute("useParentFieldOrder", useParentFieldOrder, false);
@@ -1413,6 +1431,7 @@ public class DataSource extends BaseClass  implements com.smartgwt.client.data.e
      *
      *
      * @return Boolean
+     * @see <a href="http://www.smartclient.com/smartgwt/showcase/#featured-xsd-ds" target="examples">Schema Chaining Example</a>
      */
     public Boolean getUseParentFieldOrder()  {
         return getAttributeAsBoolean("useParentFieldOrder");
@@ -1730,6 +1749,7 @@ public class DataSource extends BaseClass  implements com.smartgwt.client.data.e
      * @param criteria2 second criteria object
      *
      * @return The combined criteria
+     * @see <a href="http://www.smartclient.com/smartgwtee/showcase/#sql_dynamic_reporting" target="examples">Dynamic Reporting Example</a>
      */
     public static native Criteria combineCriteria(Criteria criteria1, Criteria criteria2) /*-{
         var ret = $wnd.isc.DataSource.combineCriteria(criteria1.@com.smartgwt.client.core.DataClass::getJsObj()(), criteria2.@com.smartgwt.client.core.DataClass::getJsObj()());
@@ -1748,6 +1768,7 @@ public class DataSource extends BaseClass  implements com.smartgwt.client.data.e
      * to an                                           AdvancedCriteria.  Defaults to "substring"
      *
      * @return The combined criteria
+     * @see <a href="http://www.smartclient.com/smartgwtee/showcase/#sql_dynamic_reporting" target="examples">Dynamic Reporting Example</a>
      */
     public static native Criteria combineCriteria(Criteria criteria1, Criteria criteria2, CriteriaCombineOperator outerOperator, TextMatchStyle textMatchStyle) /*-{
         var ret = $wnd.isc.DataSource.combineCriteria(criteria1.@com.smartgwt.client.core.DataClass::getJsObj()(), criteria2.@com.smartgwt.client.core.DataClass::getJsObj()(), outerOperator, textMatchStyle.@com.smartgwt.client.types.TextMatchStyle::getValue()());

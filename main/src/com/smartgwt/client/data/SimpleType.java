@@ -97,6 +97,7 @@ public class SimpleType extends BaseClass {
      *
      * @param inheritsFrom inheritsFrom Default value is null
      * @throws IllegalStateException this property cannot be changed after the underlying component has been created
+     * @see <a href="http://www.smartclient.com/smartgwt/showcase/#form_validation_custom_types" target="examples">Custom Types Example</a>
      */
     public void setInheritsFrom(String inheritsFrom)  throws IllegalStateException {
         setAttribute("inheritsFrom", inheritsFrom, false);
@@ -108,6 +109,7 @@ public class SimpleType extends BaseClass {
      *
      *
      * @return String
+     * @see <a href="http://www.smartclient.com/smartgwt/showcase/#form_validation_custom_types" target="examples">Custom Types Example</a>
      */
     public String getInheritsFrom()  {
         return getAttributeAsString("inheritsFrom");

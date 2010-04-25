@@ -211,6 +211,7 @@ public class HTMLFlow extends Canvas  implements com.smartgwt.client.widgets.eve
      * <p><b>Note : </b> This is an advanced setting</p>
      *
      * @param dynamicContents dynamicContents Default value is false
+     * 
      */
     public void setDynamicContents(Boolean dynamicContents) {
         setAttribute("dynamicContents", dynamicContents, true);
@@ -240,6 +241,7 @@ public class HTMLFlow extends Canvas  implements com.smartgwt.client.widgets.eve
      *
      *
      * @return Boolean
+     * 
      */
     public Boolean getDynamicContents()  {
         return getAttributeAsBoolean("dynamicContents");
