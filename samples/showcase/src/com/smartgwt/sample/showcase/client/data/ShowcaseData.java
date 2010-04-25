@@ -190,8 +190,8 @@ public class ShowcaseData {
                     new ExplorerTreeNode("Drag Move", "grid-interaction-drag-move", "grid-interaction-category", null, new DragMoveSample.Factory(), true, idSuffix),
                     new ExplorerTreeNode("Drag Copy", "grid-interaction-drag-copy", "grid-interaction-category", null, new DragCopySample.Factory(), true, idSuffix),
                     new ExplorerTreeNode("Disabled Rows", "grid-interaction-disabled-rows", "grid-interaction-category", null, new DisabledRowsSample.Factory(), true, idSuffix),
-                    new ExplorerTreeNode("Record Click", "grid-interaction-record-click", "grid-interaction-category", null, new RecordClicksSample.Factory(), true, idSuffix),
-                    new ExplorerTreeNode("Cell Click", "grid-interaction-cell-click", "grid-interaction-category", null, new CellClicksSample.Factory(), true, idSuffix),
+                    new ExplorerTreeNode("Record Clicks", "grid-interaction-record-click", "grid-interaction-category", null, new RecordClicksSample.Factory(), true, idSuffix),
+                    new ExplorerTreeNode("Cell Clicks", "grid-interaction-cell-click", "grid-interaction-category", null, new CellClicksSample.Factory(), true, idSuffix),
 
                     new ExplorerTreeNode("Autofit", "grid-autofit-category", "grid-category", "pieces/16/cube_blue.png", null, true, idSuffix),
                     new ExplorerTreeNode("Free Space", "grid-autofit-space", "grid-autofit-category", null, new FreeSpaceSample.Factory(), true, idSuffix),
@@ -317,7 +317,7 @@ public class ShowcaseData {
                     new ExplorerTreeNode("Editing", "tree-editing", "tree-category", null, new TreeEditingSample.Factory(), true, idSuffix),
                     new ExplorerTreeNode("Frozen Columns", "tree-frozen-columns", "tree-category", null, new FrozenColumnsSample.Factory(), true, idSuffix),
                     new ExplorerTreeNode("Miller Columns", "tree-miller-columns", "tree-category", null, new MillerColumnsSample.Factory(), true, idSuffix),
-                    new ExplorerTreeNode("Checkbox Tree", "tree-checkboxy", "tree-category", null, new CheckboxTreeSample.Factory(), true, idSuffix),
+                    new ExplorerTreeNode("Checkbox Tree", "tree-checkbox", "tree-category", null, new CheckboxTreeSample.Factory(), true, idSuffix),
 
                     new ExplorerTreeNode("Calendar", "calendar-category", "root", "crystal/16/apps/cal.png", null, true, idSuffix),
                     new ExplorerTreeNode("Simple Calendar", "simple-calendar-category", "calendar-category", "silk/calendar_view_day.png", new SimpleCalendarSample.Factory(), true, idSuffix),
@@ -356,7 +356,7 @@ public class ShowcaseData {
 
                     new ExplorerTreeNode("Validation", "form-validation-category", "form-category", "silk/vcard_edit.png", null, true, idSuffix),
                     new ExplorerTreeNode("Type", "form-validation-type", "form-validation-category", null, new FormTypeSample.Factory(), true, idSuffix),
-                    new ExplorerTreeNode("Build-ins", "form-validation-builtins", "form-validation-category", null, new FormBuiltinsSample.Factory(), true, idSuffix),
+                    new ExplorerTreeNode("Built-ins", "form-validation-builtins", "form-validation-category", null, new FormBuiltinsSample.Factory(), true, idSuffix),
                     new ExplorerTreeNode("Regular Expression", "form-validation-regexp", "form-validation-category", null, new FormRegularExpressionSample.Factory(), true, idSuffix),
                     new ExplorerTreeNode("Value Transform", "form-validation-value-transform", "form-validation-category", null, new FormValueTransformSample.Factory(), true, idSuffix),
                     //new ExplorerTreeNode("Custom Types", "form-validation-custom-types", "form-validation-category", null, null, false, idSuffix),
@@ -402,7 +402,7 @@ public class ShowcaseData {
                     new ExplorerTreeNode("Custom Controls", "layout-tabs-custom-controls", "layout-tabs-category", null, new TabsCustomControlSample.Factory(), true, idSuffix),
 
                     new ExplorerTreeNode("Accordion / Sections", "layout-sections-category", "root", "widgets/stack_panel.gif", null, true, idSuffix),
-                    new ExplorerTreeNode("Expand & Collapse", "layout-sections-expand-collapse", "layout-sections-category", null, new ExpandCollapseSample.Factory(), true, idSuffix),
+                    new ExplorerTreeNode("Expand / Collapse", "layout-sections-expand-collapse", "layout-sections-category", null, new ExpandCollapseSample.Factory(), true, idSuffix),
                     new ExplorerTreeNode("Resize Sections", "layout-sections-resize", "layout-sections-category", null, new SectionsResizeSample.Factory(), true, idSuffix),
                     new ExplorerTreeNode("Custom Controls", "layout-sections-custom-controls", "layout-sections-category", null, new SectionsCustomControlsSample.Factory(), true, idSuffix),
                     new ExplorerTreeNode("Add & Remove", "layout-sections-add-remove", "layout-sections-category", null, new SectionsAddRemoveSample.Factory(), true, idSuffix),
@@ -527,10 +527,6 @@ public class ShowcaseData {
                     new ExplorerTreeNode("CSS Styles", "effects-lf-css", "effects-lf-category", null, new CssStylesSample.Factory(), true, idSuffix),
                     //new ExplorerTreeNode("Consistent Sizing", "effects-lf-sizing", "effects-lf-category", null, null, false, idSuffix),
                     //new ExplorerTreeNode("Grid Cells", "effects-lf-grid-cells", "effects-lf-category", null, null, false, idSuffix),
-
-                    //new ExplorerTreeNode("GWT Integration", "gwt-category", "root", "gwt/icon16.png", null, true, idSuffix),
-                    //new ExplorerTreeNode("Composite Widget", "gwt-category-composite", "gwt-category", null, new CompositeWidgetSample.Factory(), true, idSuffix),
-                    //new ExplorerTreeNode("GWT Integration", "gwt-category-tab", "gwt-category", null, new GwtShowcaseSample.Factory(), true, idSuffix),
 
                     new CommandTreeNode("Developer Console", "debug-category", "root", "silk/bug.png", new DebugConsoleCommand(), true, idSuffix)
             };
