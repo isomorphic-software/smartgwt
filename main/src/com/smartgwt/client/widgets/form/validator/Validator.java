@@ -65,7 +65,7 @@ import com.google.gwt.event.shared.HasHandlers;
  * added on the server.  Note that the <code>regexp</code> and <code>mask</code> validator types are very flexible and can
  * be used to perform virtually any kind of formatting check that doesn't involve some large external dataset. <p> Custom
  * validators can be reused on the client by adding them to the global validator list, via the {@link
- * com.smartgwt.client.widgets.form.validator.Validator#addValidator} method.
+ * com.smartgwt.client.widgets.form.validator.Validator#addValidator Validator.addValidator} method.
  */
 public class Validator extends DataClass {
 

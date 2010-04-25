@@ -120,6 +120,7 @@ public class CheckboxItem extends FormItem {
      * <code>".gif"</code> extension
      *
      * @param checkedImage checkedImage Default value is "[SKIN]/DynamicForm/checked.gif"
+     * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
     public void setCheckedImage(String checkedImage) {
         setAttribute("checkedImage", checkedImage);
@@ -133,6 +134,7 @@ public class CheckboxItem extends FormItem {
      *
      *
      * @return String
+     * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
     public String getCheckedImage()  {
         return getAttributeAsString("checkedImage");
@@ -175,6 +177,7 @@ public class CheckboxItem extends FormItem {
      * URL for the image to display when this checkbox is partially selected
      *
      * @param partialSelectedImage partialSelectedImage Default value is "[SKIN]/DynamicForm/partialcheck.gif"
+     * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
     public void setPartialSelectedImage(String partialSelectedImage) {
         setAttribute("partialSelectedImage", partialSelectedImage);
@@ -185,6 +188,7 @@ public class CheckboxItem extends FormItem {
      *
      *
      * @return String
+     * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
     public String getPartialSelectedImage()  {
         return getAttributeAsString("partialSelectedImage");
@@ -234,6 +238,7 @@ public class CheckboxItem extends FormItem {
      * Base CSS class for this item's title text
      *
      * @param textBoxStyle textBoxStyle Default value is "labelAnchor"
+     * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
     public void setTextBoxStyle(String textBoxStyle) {
         setAttribute("textBoxStyle", textBoxStyle);
@@ -244,6 +249,7 @@ public class CheckboxItem extends FormItem {
      *
      *
      * @return String
+     * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
     public String getTextBoxStyle()  {
         return getAttributeAsString("textBoxStyle");
@@ -256,6 +262,7 @@ public class CheckboxItem extends FormItem {
      * com.smartgwt.client.widgets.form.fields.CheckboxItem#getTextBoxStyle textBoxStyle} instead.
      *
      * @param titleStyle titleStyle Default value is null
+     * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
     public void setTitleStyle(String titleStyle) {
         setAttribute("titleStyle", titleStyle);
@@ -269,6 +276,7 @@ public class CheckboxItem extends FormItem {
      *
      *
      * @return String
+     * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
     public String getTitleStyle()  {
         return getAttributeAsString("titleStyle");
@@ -278,6 +286,7 @@ public class CheckboxItem extends FormItem {
      * URL for the image to display when this checkbox is not selected, or unchecked
      *
      * @param uncheckedImage uncheckedImage Default value is "[SKIN]/DynamicForm/unchecked.gif"
+     * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
     public void setUncheckedImage(String uncheckedImage) {
         setAttribute("uncheckedImage", uncheckedImage);
@@ -288,6 +297,7 @@ public class CheckboxItem extends FormItem {
      *
      *
      * @return String
+     * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
     public String getUncheckedImage()  {
         return getAttributeAsString("uncheckedImage");
@@ -301,6 +311,7 @@ public class CheckboxItem extends FormItem {
      * rather than this image.
      *
      * @param unsetImage unsetImage Default value is "[SKIN]/DynamicForm/unsetcheck.gif"
+     * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
     public void setUnsetImage(String unsetImage) {
         setAttribute("unsetImage", unsetImage);
@@ -315,6 +326,7 @@ public class CheckboxItem extends FormItem {
      *
      *
      * @return String
+     * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
     public String getUnsetImage()  {
         return getAttributeAsString("unsetImage");

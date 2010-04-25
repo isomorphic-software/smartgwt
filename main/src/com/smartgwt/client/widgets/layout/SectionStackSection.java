@@ -101,6 +101,7 @@ public class SectionStackSection extends RefDataClass {
      * When explicitly set to false, disallows drop before this member in the Layout.
      *
      * @param canDropBefore canDropBefore Default value is null
+     * @see com.smartgwt.client.docs.LayoutMember LayoutMember overview and related methods
      */
     public void setCanDropBefore(Boolean canDropBefore) {
         setAttribute("canDropBefore", canDropBefore);
@@ -181,9 +182,9 @@ public class SectionStackSection extends RefDataClass {
 
     /**
      * Identifier for the section.  This can be used later in calls to {@link com.smartgwt.client.widgets.layout.SectionStack}
-     * APIs such as {@link com.smartgwt.client.widgets.layout.SectionStack#expandSection} and {@link
-     * com.smartgwt.client.widgets.layout.SectionStack#collapseSection}. Note that if no name is specified for the section, one
-     * will be auto-generated when the section is created.
+     * APIs such as {@link com.smartgwt.client.widgets.layout.SectionStack#expandSection SectionStack.expandSection} and {@link
+     * com.smartgwt.client.widgets.layout.SectionStack#collapseSection SectionStack.collapseSection}. Note that if no name is
+     * specified for the section, one will be auto-generated when the section is created.
      *
      * @param name name Default value is null
      */
@@ -193,9 +194,9 @@ public class SectionStackSection extends RefDataClass {
 
     /**
      * Identifier for the section.  This can be used later in calls to {@link com.smartgwt.client.widgets.layout.SectionStack}
-     * APIs such as {@link com.smartgwt.client.widgets.layout.SectionStack#expandSection} and {@link
-     * com.smartgwt.client.widgets.layout.SectionStack#collapseSection}. Note that if no name is specified for the section, one
-     * will be auto-generated when the section is created.
+     * APIs such as {@link com.smartgwt.client.widgets.layout.SectionStack#expandSection SectionStack.expandSection} and {@link
+     * com.smartgwt.client.widgets.layout.SectionStack#collapseSection SectionStack.collapseSection}. Note that if no name is
+     * specified for the section, one will be auto-generated when the section is created.
      *
      *
      * @return String

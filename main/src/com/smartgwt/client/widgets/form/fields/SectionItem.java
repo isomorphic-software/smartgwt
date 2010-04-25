@@ -117,8 +117,8 @@ public class SectionItem extends CanvasItem {
 
     /**
      * Whether this form section should be initially collapsed. Can be set programatically via {@link
-     * com.smartgwt.client.widgets.form.fields.SectionItem#expandSection} and {@link
-     * com.smartgwt.client.widgets.form.fields.SectionItem#collapseSection}.
+     * com.smartgwt.client.widgets.form.fields.SectionItem#expandSection SectionItem.expandSection} and {@link
+     * com.smartgwt.client.widgets.form.fields.SectionItem#collapseSection SectionItem.collapseSection}.
      *
      * @param sectionExpanded sectionExpanded Default value is true
      */
@@ -128,8 +128,8 @@ public class SectionItem extends CanvasItem {
 
     /**
      * Whether this form section should be initially collapsed. Can be set programatically via {@link
-     * com.smartgwt.client.widgets.form.fields.SectionItem#expandSection} and {@link
-     * com.smartgwt.client.widgets.form.fields.SectionItem#collapseSection}.
+     * com.smartgwt.client.widgets.form.fields.SectionItem#expandSection SectionItem.expandSection} and {@link
+     * com.smartgwt.client.widgets.form.fields.SectionItem#collapseSection SectionItem.collapseSection}.
      *
      *
      * @return Boolean

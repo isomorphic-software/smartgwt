@@ -62,9 +62,9 @@ import com.google.gwt.event.shared.HasHandlers;
  * data} or {@link com.smartgwt.client.widgets.grid.ColumnTree#getData data}. <P> A Tree can be constructed out of a List
  * of objects interlinked by IDs or via explicitly specified Arrays of child objects.  See {@link
  * com.smartgwt.client.widgets.tree.Tree#getModelType modelType} for an explanation of how to pass data to a Tree. <P>
- * Typical usage is to call {@link com.smartgwt.client.widgets.tree.TreeGrid#fetchData} to cause automatic creation of a 
- * {@link com.smartgwt.client..ResultTree}, which is a type of Tree that automatically handles loading data on  demand. 
- * For information on DataBinding Trees, see {@link com.smartgwt.client.docs.TreeDataBinding}.
+ * Typical usage is to call {@link com.smartgwt.client.widgets.tree.TreeGrid#fetchData TreeGrid.fetchData} to cause
+ * automatic creation of a  {@link com.smartgwt.client..ResultTree}, which is a type of Tree that automatically handles
+ * loading data on  demand.  For information on DataBinding Trees, see {@link com.smartgwt.client.docs.TreeDataBinding}.
  */
 public class Tree extends BaseClass  implements com.smartgwt.client.widgets.tree.HasDataChangedHandlers {
 
@@ -95,7 +95,7 @@ public class Tree extends BaseClass  implements com.smartgwt.client.widgets.tree
 
     /**
      * If true, the root node is automatically opened when the tree is created or {@link
-     * com.smartgwt.client.widgets.tree.Tree#setRoot} is called.
+     * com.smartgwt.client.widgets.tree.Tree#setRoot Tree.setRoot} is called.
      *
      * @param autoOpenRoot autoOpenRoot Default value is true
      */
@@ -105,7 +105,7 @@ public class Tree extends BaseClass  implements com.smartgwt.client.widgets.tree
 
     /**
      * If true, the root node is automatically opened when the tree is created or {@link
-     * com.smartgwt.client.widgets.tree.Tree#setRoot} is called.
+     * com.smartgwt.client.widgets.tree.Tree#setRoot Tree.setRoot} is called.
      *
      *
      * @return Boolean
@@ -305,8 +305,8 @@ public class Tree extends BaseClass  implements com.smartgwt.client.widgets.tree
     }
 
     /**
-     * The property consulted by the default implementation of {@link com.smartgwt.client.widgets.tree.Tree#isOpen} to
-     * determine if the node is open or not.  By default, this property is auto-generated for you, but you can set it to a
+     * The property consulted by the default implementation of {@link com.smartgwt.client.widgets.tree.Tree#isOpen Tree.isOpen}
+     * to determine if the node is open or not.  By default, this property is auto-generated for you, but you can set it to a
      * custom value if you want to declaratively specify this state, but be careful - if you display this Tree in multiple
      * TreeGrids at the same time, the open state will not be tracked independently - see {@link
      * com.smartgwt.client.docs.SharingNodes} for more info on this.
@@ -319,8 +319,8 @@ public class Tree extends BaseClass  implements com.smartgwt.client.widgets.tree
     }
 
     /**
-     * The property consulted by the default implementation of {@link com.smartgwt.client.widgets.tree.Tree#isOpen} to
-     * determine if the node is open or not.  By default, this property is auto-generated for you, but you can set it to a
+     * The property consulted by the default implementation of {@link com.smartgwt.client.widgets.tree.Tree#isOpen Tree.isOpen}
+     * to determine if the node is open or not.  By default, this property is auto-generated for you, but you can set it to a
      * custom value if you want to declaratively specify this state, but be careful - if you display this Tree in multiple
      * TreeGrids at the same time, the open state will not be tracked independently - see {@link
      * com.smartgwt.client.docs.SharingNodes} for more info on this.
@@ -359,21 +359,21 @@ public class Tree extends BaseClass  implements com.smartgwt.client.widgets.tree
 
     /**
      * Specifies the delimiter between node names.  The pathDelim is used to construct a unique&#010 path to each node. A path
-     * can be obtained for any node by calling&#010 {@link com.smartgwt.client.widgets.tree.Tree#getPath} and can be used to
-     * find any node in the tree by calling&#010 {@link com.smartgwt.client.widgets.tree.Tree#find}.  Note that you can also
-     * hand-construct a path - in other words&#010 you are not required to call {@link
-     * com.smartgwt.client.widgets.tree.Tree#getPath} in order to later use&#010 {@link
-     * com.smartgwt.client.widgets.tree.Tree#find} to retrieve it.&#010 <br><br>&#010 The pathDelim can be any character or
-     * sequence of characters, but must be a unique string&#010 with respect to the text that can appear in the {@link
-     * com.smartgwt.client.widgets.tree.Tree#getNameProperty nameProperty} that's used&#010 for naming the nodes.  So for
-     * example, if you have the following tree:&#010 <pre>&#010 one&#010   two&#010     three/four&#010 </pre>&#010 Then you
-     * will be unable to find the <code>three/four</code> node using&#010 {@link com.smartgwt.client.widgets.tree.Tree#find} if
-     * your tree is using the default pathDelim of /.&#010 In such a case, you can use a different pathDelim for the tree.  For
-     * example if you used |&#010 for the path delim, then you can find the <code>three/four</code> node in the tree above
-     * by&#010 calling <code>tree.find("one|two|three/four")</code>.&#010 <br><br>&#010 The pathDelim is used only by {@link
-     * com.smartgwt.client.widgets.tree.Tree#getPath} and {@link com.smartgwt.client.widgets.tree.Tree#find} and&#010 does not
-     * affect any aspect of the tree structure or other forms of tree navigation (such as&#010 via {@link
-     * com.smartgwt.client.widgets.tree.Tree#getChildren}).
+     * can be obtained for any node by calling&#010 {@link com.smartgwt.client.widgets.tree.Tree#getPath Tree.getPath} and can
+     * be used to find any node in the tree by calling&#010 {@link com.smartgwt.client.widgets.tree.Tree#find Tree.find}.  Note
+     * that you can also hand-construct a path - in other words&#010 you are not required to call {@link
+     * com.smartgwt.client.widgets.tree.Tree#getPath Tree.getPath} in order to later use&#010 {@link
+     * com.smartgwt.client.widgets.tree.Tree#find Tree.find} to retrieve it.&#010 <br><br>&#010 The pathDelim can be any
+     * character or sequence of characters, but must be a unique string&#010 with respect to the text that can appear in the
+     * {@link com.smartgwt.client.widgets.tree.Tree#getNameProperty nameProperty} that's used&#010 for naming the nodes.  So
+     * for example, if you have the following tree:&#010 <pre>&#010 one&#010   two&#010     three/four&#010 </pre>&#010 Then
+     * you will be unable to find the <code>three/four</code> node using&#010 {@link com.smartgwt.client.widgets.tree.Tree#find
+     * Tree.find} if your tree is using the default pathDelim of /.&#010 In such a case, you can use a different pathDelim for
+     * the tree.  For example if you used |&#010 for the path delim, then you can find the <code>three/four</code> node in the
+     * tree above by&#010 calling <code>tree.find("one|two|three/four")</code>.&#010 <br><br>&#010 The pathDelim is used only
+     * by {@link com.smartgwt.client.widgets.tree.Tree#getPath Tree.getPath} and {@link
+     * com.smartgwt.client.widgets.tree.Tree#find Tree.find} and&#010 does not affect any aspect of the tree structure or other
+     * forms of tree navigation (such as&#010 via {@link com.smartgwt.client.widgets.tree.Tree#getChildren Tree.getChildren}).
      * <p><b>Note : </b> This is an advanced setting</p>
      *
      * @param pathDelim pathDelim Default value is "/"
@@ -384,21 +384,21 @@ public class Tree extends BaseClass  implements com.smartgwt.client.widgets.tree
 
     /**
      * Specifies the delimiter between node names.  The pathDelim is used to construct a unique&#010 path to each node. A path
-     * can be obtained for any node by calling&#010 {@link com.smartgwt.client.widgets.tree.Tree#getPath} and can be used to
-     * find any node in the tree by calling&#010 {@link com.smartgwt.client.widgets.tree.Tree#find}.  Note that you can also
-     * hand-construct a path - in other words&#010 you are not required to call {@link
-     * com.smartgwt.client.widgets.tree.Tree#getPath} in order to later use&#010 {@link
-     * com.smartgwt.client.widgets.tree.Tree#find} to retrieve it.&#010 <br><br>&#010 The pathDelim can be any character or
-     * sequence of characters, but must be a unique string&#010 with respect to the text that can appear in the {@link
-     * com.smartgwt.client.widgets.tree.Tree#getNameProperty nameProperty} that's used&#010 for naming the nodes.  So for
-     * example, if you have the following tree:&#010 <pre>&#010 one&#010   two&#010     three/four&#010 </pre>&#010 Then you
-     * will be unable to find the <code>three/four</code> node using&#010 {@link com.smartgwt.client.widgets.tree.Tree#find} if
-     * your tree is using the default pathDelim of /.&#010 In such a case, you can use a different pathDelim for the tree.  For
-     * example if you used |&#010 for the path delim, then you can find the <code>three/four</code> node in the tree above
-     * by&#010 calling <code>tree.find("one|two|three/four")</code>.&#010 <br><br>&#010 The pathDelim is used only by {@link
-     * com.smartgwt.client.widgets.tree.Tree#getPath} and {@link com.smartgwt.client.widgets.tree.Tree#find} and&#010 does not
-     * affect any aspect of the tree structure or other forms of tree navigation (such as&#010 via {@link
-     * com.smartgwt.client.widgets.tree.Tree#getChildren}).
+     * can be obtained for any node by calling&#010 {@link com.smartgwt.client.widgets.tree.Tree#getPath Tree.getPath} and can
+     * be used to find any node in the tree by calling&#010 {@link com.smartgwt.client.widgets.tree.Tree#find Tree.find}.  Note
+     * that you can also hand-construct a path - in other words&#010 you are not required to call {@link
+     * com.smartgwt.client.widgets.tree.Tree#getPath Tree.getPath} in order to later use&#010 {@link
+     * com.smartgwt.client.widgets.tree.Tree#find Tree.find} to retrieve it.&#010 <br><br>&#010 The pathDelim can be any
+     * character or sequence of characters, but must be a unique string&#010 with respect to the text that can appear in the
+     * {@link com.smartgwt.client.widgets.tree.Tree#getNameProperty nameProperty} that's used&#010 for naming the nodes.  So
+     * for example, if you have the following tree:&#010 <pre>&#010 one&#010   two&#010     three/four&#010 </pre>&#010 Then
+     * you will be unable to find the <code>three/four</code> node using&#010 {@link com.smartgwt.client.widgets.tree.Tree#find
+     * Tree.find} if your tree is using the default pathDelim of /.&#010 In such a case, you can use a different pathDelim for
+     * the tree.  For example if you used |&#010 for the path delim, then you can find the <code>three/four</code> node in the
+     * tree above by&#010 calling <code>tree.find("one|two|three/four")</code>.&#010 <br><br>&#010 The pathDelim is used only
+     * by {@link com.smartgwt.client.widgets.tree.Tree#getPath Tree.getPath} and {@link
+     * com.smartgwt.client.widgets.tree.Tree#find Tree.find} and&#010 does not affect any aspect of the tree structure or other
+     * forms of tree navigation (such as&#010 via {@link com.smartgwt.client.widgets.tree.Tree#getChildren Tree.getChildren}).
      *
      *
      * @return String
@@ -450,7 +450,7 @@ public class Tree extends BaseClass  implements com.smartgwt.client.widgets.tree
      * com.smartgwt.client.widgets.tree.Tree#getPathDelim pathDelim} value.  So in the example above, if&#010 you omitted
      * <code>name:"root"</code>, then the path to the <code>bar</code> node would be&#010 <code>/foo/bar</code>.&#010
      * <br><br>&#010 Note: if you initialize a Tree with no <code>root</code> value, a root node will be&#010 auto-created for
-     * you.  You can then call {@link com.smartgwt.client.widgets.tree.Tree#add} to construct the tree.
+     * you.  You can then call {@link com.smartgwt.client.widgets.tree.Tree#add Tree.add} to construct the tree.
      * Set the root node of the tree.
      *
      * @param root new root node. Default value is null
@@ -474,7 +474,7 @@ public class Tree extends BaseClass  implements com.smartgwt.client.widgets.tree
      * com.smartgwt.client.widgets.tree.Tree#getPathDelim pathDelim} value.  So in the example above, if&#010 you omitted
      * <code>name:"root"</code>, then the path to the <code>bar</code> node would be&#010 <code>/foo/bar</code>.&#010
      * <br><br>&#010 Note: if you initialize a Tree with no <code>root</code> value, a root node will be&#010 auto-created for
-     * you.  You can then call {@link com.smartgwt.client.widgets.tree.Tree#add} to construct the tree.
+     * you.  You can then call {@link com.smartgwt.client.widgets.tree.Tree#add Tree.add} to construct the tree.
      *
      *
      * @return Returns the root node of the tree.
@@ -484,10 +484,31 @@ public class Tree extends BaseClass  implements com.smartgwt.client.widgets.tree
     }
 
     /**
-     * Controls whether a call to {@link com.smartgwt.client.widgets.tree.Tree#getOpenList} includes the root node.  Since view
-     * components such as {@link com.smartgwt.client.widgets.tree.TreeGrid} use <code>getOpenList()</code> to display the
-     * currently visible tree, <code>showRoot</code> controls whether the root node is shown to the user. <P> All Trees must
-     * have a single, logical root, however, most applications want to show multiple nodes at the top level. 
+     * Should folders be sorted separately from leaves or should nodes be ordered according to their sort field value
+     * regardless of whether the node is a leaf or folder?
+     *
+     * @param separateFolders separateFolders Default value is false
+     */
+    public void setSeparateFolders(Boolean separateFolders) {
+        setAttribute("separateFolders", separateFolders, true);
+    }
+
+    /**
+     * Should folders be sorted separately from leaves or should nodes be ordered according to their sort field value
+     * regardless of whether the node is a leaf or folder?
+     *
+     *
+     * @return Boolean
+     */
+    public Boolean getSeparateFolders()  {
+        return getAttributeAsBoolean("separateFolders");
+    }
+
+    /**
+     * Controls whether a call to {@link com.smartgwt.client.widgets.tree.Tree#getOpenList Tree.getOpenList} includes the root
+     * node.  Since view components such as {@link com.smartgwt.client.widgets.tree.TreeGrid} use <code>getOpenList()</code> to
+     * display the currently visible tree, <code>showRoot</code> controls whether the root node is shown to the user. <P> All
+     * Trees must have a single, logical root, however, most applications want to show multiple nodes at the top level. 
      * <code>showRoot:false</code>, the default setting, prevents the logical root from being shown, so that the displayed tree
      * begins with the children of root. <P> You can set <code>showRoot:true</code> to show the single, logical root node as
      * the only top-level node.  This property is only meaningful for Trees where you supplied a value for {@link
@@ -501,10 +522,10 @@ public class Tree extends BaseClass  implements com.smartgwt.client.widgets.tree
     }
 
     /**
-     * Controls whether a call to {@link com.smartgwt.client.widgets.tree.Tree#getOpenList} includes the root node.  Since view
-     * components such as {@link com.smartgwt.client.widgets.tree.TreeGrid} use <code>getOpenList()</code> to display the
-     * currently visible tree, <code>showRoot</code> controls whether the root node is shown to the user. <P> All Trees must
-     * have a single, logical root, however, most applications want to show multiple nodes at the top level. 
+     * Controls whether a call to {@link com.smartgwt.client.widgets.tree.Tree#getOpenList Tree.getOpenList} includes the root
+     * node.  Since view components such as {@link com.smartgwt.client.widgets.tree.TreeGrid} use <code>getOpenList()</code> to
+     * display the currently visible tree, <code>showRoot</code> controls whether the root node is shown to the user. <P> All
+     * Trees must have a single, logical root, however, most applications want to show multiple nodes at the top level. 
      * <code>showRoot:false</code>, the default setting, prevents the logical root from being shown, so that the displayed tree
      * begins with the children of root. <P> You can set <code>showRoot:true</code> to show the single, logical root node as
      * the only top-level node.  This property is only meaningful for Trees where you supplied a value for {@link
@@ -516,6 +537,29 @@ public class Tree extends BaseClass  implements com.smartgwt.client.widgets.tree
      */
     public Boolean getShowRoot()  {
         return getAttributeAsBoolean("showRoot");
+    }
+
+    /**
+     * If {@link com.smartgwt.client.widgets.tree.Tree#getSeparateFolders separateFolders} is true, should folders be displayed
+     * above or below leaves? When set to <code>true</code> folders will appear above leaves when the
+     * <code>sortDirection</code> applied to the tree is ${isc.DocUtils.linkForRef('Array.ASCENDING')}
+     *
+     * @param sortFoldersBeforeLeaves sortFoldersBeforeLeaves Default value is true
+     */
+    public void setSortFoldersBeforeLeaves(Boolean sortFoldersBeforeLeaves) {
+        setAttribute("sortFoldersBeforeLeaves", sortFoldersBeforeLeaves, true);
+    }
+
+    /**
+     * If {@link com.smartgwt.client.widgets.tree.Tree#getSeparateFolders separateFolders} is true, should folders be displayed
+     * above or below leaves? When set to <code>true</code> folders will appear above leaves when the
+     * <code>sortDirection</code> applied to the tree is ${isc.DocUtils.linkForRef('Array.ASCENDING')}
+     *
+     *
+     * @return Boolean
+     */
+    public Boolean getSortFoldersBeforeLeaves()  {
+        return getAttributeAsBoolean("sortFoldersBeforeLeaves");
     }
 
     /**
@@ -655,8 +699,8 @@ public class Tree extends BaseClass  implements com.smartgwt.client.widgets.tree
     }-*/;
             
     /**
-     * Given a node, return the path to it's parent.  This works just like {@link
-     * com.smartgwt.client.widgets.tree.Tree#getPath} except the node itself is not reported as part of the path.
+     * Given a node, return the path to it's parent.  This works just like {@link com.smartgwt.client.widgets.tree.Tree#getPath
+     * Tree.getPath} except the node itself is not reported as part of the path.
      * @param node node in question
      *
      * @return path to the node's parent
@@ -690,7 +734,8 @@ public class Tree extends BaseClass  implements com.smartgwt.client.widgets.tree
      * pathDelim}. <li> Finally, if none of the above yielded a title, the value of {@link
      * com.smartgwt.client.widgets.tree.Tree#getDefaultNodeTitle defaultNodeTitle} is returned. </ul> You can override this
      * method to return the title of your choice for a given node. <br><br> To override the title for an auto-constructed tree
-     * (for example, in a databound TreeGrid), override {@link com.smartgwt.client.widgets.tree.TreeGrid#getNodeTitle} instead.
+     * (for example, in a databound TreeGrid), override {@link com.smartgwt.client.widgets.tree.TreeGrid#getNodeTitle
+     * TreeGrid.getNodeTitle} instead.
      * @param node node for which the title is being requested
      *
      * @return title to display

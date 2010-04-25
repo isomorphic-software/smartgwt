@@ -70,12 +70,13 @@ package com.smartgwt.client.docs;
  * </ul> <p><br> <b>RPCs: Unstructured Server Communication</b> <P> Smart GWT also supports "unstructured" client-server
  * operations.  These  {@link com.smartgwt.client.rpc.RPCRequest}s (Remote Procedure Call Requests) are a low-level, very
  * flexible  mechanism for custom client-server communications.  In an nutshell, RPCRequests: <ul> <li> may contain
- * arbitrary data <li> are always initiated by custom code (a call to {@link com.smartgwt.client.rpc.RPCManager#send}), and
- * have their responses handled by custom code (the callback passed to <code>send()</code>) </ul> <P> RPCRequests are
- * relatively rare.  Most client-server communications are better done in a  structured fashion using a {@link
- * com.smartgwt.client.data.DSRequest} (DataSource Request).  Note that <em>any</em> RPCRequest can alternatively be framed
- * as a {@link com.smartgwt.client.data.DataSource#fetchData};  depending on the circumstances, this may be more
- * convenient. <P> See the {@link com.smartgwt.client.rpc.RPCManager} documentation for further information on RPCRequests.
+ * arbitrary data <li> are always initiated by custom code (a call to {@link com.smartgwt.client.rpc.RPCManager#send
+ * RPCManager.send}), and have their responses handled by custom code (the callback passed to <code>send()</code>) </ul>
+ * <P> RPCRequests are relatively rare.  Most client-server communications are better done in a  structured fashion using a
+ * {@link com.smartgwt.client.data.DSRequest} (DataSource Request).  Note that <em>any</em> RPCRequest can alternatively be
+ * framed as a {@link com.smartgwt.client.data.DataSource#fetchData DataSource.fetchData};  depending on the circumstances,
+ * this may be more convenient. <P> See the {@link com.smartgwt.client.rpc.RPCManager} documentation for further
+ * information on RPCRequests.
  */
 public interface ClientServerIntegration {
 }

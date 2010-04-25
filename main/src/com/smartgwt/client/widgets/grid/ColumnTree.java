@@ -100,10 +100,11 @@ public class ColumnTree extends Layout  implements DataBoundComponent, com.smart
     /**
      * If {@link com.smartgwt.client.widgets.grid.ColumnTree#getAutoFetchData autoFetchData} is <code>true</code>, this
      * attribute allows the developer to specify a textMatchStyle for the initial {@link
-     * com.smartgwt.client.widgets.grid.ColumnTree#fetchData} call.
+     * com.smartgwt.client.widgets.grid.ColumnTree#fetchData ColumnTree.fetchData} call.
      *
      * @param autoFetchTextMatchStyle autoFetchTextMatchStyle Default value is null
      * @throws IllegalStateException this property cannot be changed after the component has been created
+     * @see com.smartgwt.client.docs.Databinding Databinding overview and related methods
      */
     public void setAutoFetchTextMatchStyle(TextMatchStyle autoFetchTextMatchStyle)  throws IllegalStateException {
         setAttribute("autoFetchTextMatchStyle", autoFetchTextMatchStyle.getValue(), false);
@@ -112,10 +113,11 @@ public class ColumnTree extends Layout  implements DataBoundComponent, com.smart
     /**
      * If {@link com.smartgwt.client.widgets.grid.ColumnTree#getAutoFetchData autoFetchData} is <code>true</code>, this
      * attribute allows the developer to specify a textMatchStyle for the initial {@link
-     * com.smartgwt.client.widgets.grid.ColumnTree#fetchData} call.
+     * com.smartgwt.client.widgets.grid.ColumnTree#fetchData ColumnTree.fetchData} call.
      *
      *
      * @return TextMatchStyle
+     * @see com.smartgwt.client.docs.Databinding Databinding overview and related methods
      */
     public TextMatchStyle getAutoFetchTextMatchStyle()  {
         return EnumUtil.getEnum(TextMatchStyle.values(), getAttribute("autoFetchTextMatchStyle"));
@@ -284,6 +286,7 @@ public class ColumnTree extends Layout  implements DataBoundComponent, com.smart
      *
      * @param loadDataOnDemand loadDataOnDemand Default value is null
      * @throws IllegalStateException this property cannot be changed after the component has been created
+     * @see com.smartgwt.client.docs.Databinding Databinding overview and related methods
      */
     public void setLoadDataOnDemand(Boolean loadDataOnDemand)  throws IllegalStateException {
         setAttribute("loadDataOnDemand", loadDataOnDemand, false);
@@ -295,6 +298,7 @@ public class ColumnTree extends Layout  implements DataBoundComponent, com.smart
      *
      *
      * @return Boolean
+     * @see com.smartgwt.client.docs.Databinding Databinding overview and related methods
      */
     public Boolean getLoadDataOnDemand()  {
         return getAttributeAsBoolean("loadDataOnDemand");
@@ -459,10 +463,10 @@ public class ColumnTree extends Layout  implements DataBoundComponent, com.smart
             
     /**
      * Returns the title to show for the header of indicated column.  Only called if {@link
-     * com.smartgwt.client.widgets.grid.ColumnTree#shouldShowHeader} returns true for this column. <P> By default, returns
-     * {@link com.smartgwt.client.widgets.grid.ColumnTree#getFirstColumnTitle firstColumnTitle} for the first column, and for
-     * subsequent columns, the result of {@link com.smartgwt.client.widgets.tree.Tree#getTitle} called on the <code>node</code>
-     * passed to this function.
+     * com.smartgwt.client.widgets.grid.ColumnTree#shouldShowHeader ColumnTree.shouldShowHeader} returns true for this column.
+     * <P> By default, returns {@link com.smartgwt.client.widgets.grid.ColumnTree#getFirstColumnTitle firstColumnTitle} for the
+     * first column, and for subsequent columns, the result of {@link com.smartgwt.client.widgets.tree.Tree#getTitle
+     * Tree.getTitle} called on the <code>node</code> passed to this function.
      * @param node parent node for the nodes to be shown in the column
      * @param colNum index of the column
      */
@@ -477,8 +481,8 @@ public class ColumnTree extends Layout  implements DataBoundComponent, com.smart
      * com.smartgwt.client.widgets.grid.ColumnTree#getNodeIcon nodeIcon}. Custom icons for individual nodes can be overridden
      * by setting the {@link com.smartgwt.client.widgets.grid.ColumnTree#getCustomIconProperty customIconProperty} on a node.
      * <p> If you want to suppress icons altogether, provide an override of this method that simply returns null. <p>  Note
-     * that the full icon URL will be derived by applying {@link com.smartgwt.client.widgets.Canvas#getImgURL} to the value
-     * returned from this method.
+     * that the full icon URL will be derived by applying {@link com.smartgwt.client.widgets.Canvas#getImgURL Canvas.getImgURL}
+     * to the value returned from this method.
      * @param node tree node in question
      *
      * @return URL for the icon to show for this node

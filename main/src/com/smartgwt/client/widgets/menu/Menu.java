@@ -139,6 +139,7 @@ public class Menu extends ListGrid  implements com.smartgwt.client.widgets.menu.
      * hiding the menus, calling click  handlers, etc) instead of showing the submenu.
      *
      * @param canSelectParentItems canSelectParentItems Default value is null
+     * @see com.smartgwt.client.docs.Selection Selection overview and related methods
      */
     public void setCanSelectParentItems(Boolean canSelectParentItems) {
         setAttribute("canSelectParentItems", canSelectParentItems, true);
@@ -150,6 +151,7 @@ public class Menu extends ListGrid  implements com.smartgwt.client.widgets.menu.
      *
      *
      * @return Boolean
+     * @see com.smartgwt.client.docs.Selection Selection overview and related methods
      */
     public Boolean getCanSelectParentItems()  {
         return getAttributeAsBoolean("canSelectParentItems");
@@ -159,6 +161,7 @@ public class Menu extends ListGrid  implements com.smartgwt.client.widgets.menu.
      * The height of each item in the menu, in pixels.
      *
      * @param cellHeight cellHeight Default value is 20
+     * @see com.smartgwt.client.docs.Sizing Sizing overview and related methods
      */
     public void setCellHeight(int cellHeight) {
         setAttribute("cellHeight", cellHeight, true);
@@ -169,6 +172,7 @@ public class Menu extends ListGrid  implements com.smartgwt.client.widgets.menu.
      *
      *
      * @return int
+     * @see com.smartgwt.client.docs.Sizing Sizing overview and related methods
      */
     public int getCellHeight()  {
         return getAttributeAsInt("cellHeight");
@@ -178,6 +182,7 @@ public class Menu extends ListGrid  implements com.smartgwt.client.widgets.menu.
      * The default menu width.
      *
      * @param defaultWidth defaultWidth Default value is 150
+     * @see com.smartgwt.client.docs.Sizing Sizing overview and related methods
      */
     public void setDefaultWidth(int defaultWidth) {
         setAttribute("defaultWidth", defaultWidth, true);
@@ -188,6 +193,7 @@ public class Menu extends ListGrid  implements com.smartgwt.client.widgets.menu.
      *
      *
      * @return int
+     * @see com.smartgwt.client.docs.Sizing Sizing overview and related methods
      */
     public int getDefaultWidth()  {
         return getAttributeAsInt("defaultWidth");
@@ -413,7 +419,7 @@ public class Menu extends ListGrid  implements com.smartgwt.client.widgets.menu.
 
     /**
      * Optional target canvas for this menu. Available as a parameter to dynamic menuItem configuration methods such as {@link
-     * com.smartgwt.client.widgets.menu.MenuItem#checkIf}. <P> If this item has any {@link
+     * com.smartgwt.client.widgets.menu.MenuItem#checkIf MenuItem.checkIf}. <P> If this item has any {@link
      * com.smartgwt.client.widgets.menu.MenuItem#getSubmenu 'submenus'} the <code>target</code> will be propagated down to
      * these child menus.
      *
@@ -425,7 +431,7 @@ public class Menu extends ListGrid  implements com.smartgwt.client.widgets.menu.
 
     /**
      * Optional target canvas for this menu. Available as a parameter to dynamic menuItem configuration methods such as {@link
-     * com.smartgwt.client.widgets.menu.MenuItem#checkIf}. <P> If this item has any {@link
+     * com.smartgwt.client.widgets.menu.MenuItem#checkIf MenuItem.checkIf}. <P> If this item has any {@link
      * com.smartgwt.client.widgets.menu.MenuItem#getSubmenu 'submenus'} the <code>target</code> will be propagated down to
      * these child menus.
      *
@@ -526,6 +532,7 @@ public class Menu extends ListGrid  implements com.smartgwt.client.widgets.menu.
      * Show this menu as a context menu, that is, immediately adjacent to the current mouse position.
      *
      * @return false == stop processing this event
+     * @see com.smartgwt.client.docs.Visibility Visibility overview and related methods
      */
     public native Boolean showContextMenu() /*-{
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();

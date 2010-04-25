@@ -24,11 +24,11 @@ public interface HasShowContextMenuHandlers extends HasHandlers {
     /**
      * Executed when the right mouse button is clicked.  The default implementation of this method auto-creates a {@link
      * com.smartgwt.client.widgets.menu.Menu} from the {@link com.smartgwt.client.widgets.Canvas#getContextMenu contextMenu}
-     * property on this component and then calls {@link com.smartgwt.client.widgets.menu.Menu#showContextMenu} on it to show
-     * it. <p> If you want to show a standard context menu, you can simply define your Menu and set it as the contextMenu
-     * property on your component - you do not need to override this method. <p> If you want to do some other processing before
-     * showing a menu or do something else entirely, then you should override this method.  Note that the return value from
-     * this method controls whether or not the native browser context menu is shown.
+     * property on this component and then calls {@link com.smartgwt.client.widgets.menu.Menu#showContextMenu
+     * Menu.showContextMenu} on it to show it. <p> If you want to show a standard context menu, you can simply define your Menu
+     * and set it as the contextMenu property on your component - you do not need to override this method. <p> If you want to
+     * do some other processing before showing a menu or do something else entirely, then you should override this method. 
+     * Note that the return value from this method controls whether or not the native browser context menu is shown.
      *
      * @param handler the showContextMenu handler
      * @return {@link HandlerRegistration} used to remove this handler

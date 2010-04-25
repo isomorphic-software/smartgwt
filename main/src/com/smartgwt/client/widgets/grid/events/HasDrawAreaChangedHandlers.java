@@ -23,8 +23,8 @@ import com.google.gwt.event.shared.HasHandlers;
 public interface HasDrawAreaChangedHandlers extends HasHandlers {
     /**
      * Notification method that fires when the drawArea changes due to scrolling.  Receives   the previous drawArea
-     * co-ordinates as parameters.  Call {@link com.smartgwt.client.widgets.grid.ListGrid#getDrawArea} to   get the new
-     * drawArea co-ordinates.
+     * co-ordinates as parameters.  Call {@link com.smartgwt.client.widgets.grid.ListGrid#getDrawArea ListGrid.getDrawArea} to 
+     *  get the new drawArea co-ordinates.
      *
      * @param handler the drawAreaChanged handler
      * @return {@link HandlerRegistration} used to remove this handler

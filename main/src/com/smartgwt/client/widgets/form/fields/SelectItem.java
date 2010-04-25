@@ -183,6 +183,7 @@ public class SelectItem extends FormItem  implements PickList, com.smartgwt.clie
      * CompoundFormItem_skinning discussion for special skinning considerations.
      *
      * @param controlStyle controlStyle Default value is "selectItemControl", [IRA]
+     * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
     public void setControlStyle(String controlStyle) {
         setAttribute("controlStyle", controlStyle);
@@ -194,6 +195,7 @@ public class SelectItem extends FormItem  implements PickList, com.smartgwt.clie
      *
      *
      * @return String
+     * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
     public String getControlStyle()  {
         return getAttributeAsString("controlStyle");
@@ -205,7 +207,7 @@ public class SelectItem extends FormItem  implements PickList, com.smartgwt.clie
      * property to true will trigger a fetch at soon as the form is created, because the form will try to establish a default
      * value at that time. <P> If enabled, this setting overrides {@link
      * com.smartgwt.client.widgets.form.fields.SelectItem#getDefaultValue defaultValue} and {@link
-     * com.smartgwt.client.widgets.form.fields.SelectItem#defaultDynamicValue}.
+     * com.smartgwt.client.widgets.form.fields.SelectItem#defaultDynamicValue SelectItem.defaultDynamicValue}.
      *
      * @param defaultToFirstOption defaultToFirstOption Default value is false
      */
@@ -219,7 +221,7 @@ public class SelectItem extends FormItem  implements PickList, com.smartgwt.clie
      * property to true will trigger a fetch at soon as the form is created, because the form will try to establish a default
      * value at that time. <P> If enabled, this setting overrides {@link
      * com.smartgwt.client.widgets.form.fields.SelectItem#getDefaultValue defaultValue} and {@link
-     * com.smartgwt.client.widgets.form.fields.SelectItem#defaultDynamicValue}.
+     * com.smartgwt.client.widgets.form.fields.SelectItem#defaultDynamicValue SelectItem.defaultDynamicValue}.
      *
      *
      * @return Boolean
@@ -255,15 +257,15 @@ public class SelectItem extends FormItem  implements PickList, com.smartgwt.clie
      * com.smartgwt.client.widgets.form.fields.FormItem#getOptionDataSource 'optionDataSource'}. <P> If this item is not
      * databound ({@link com.smartgwt.client.widgets.form.fields.FormItem#getOptionDataSource optionDataSource} is unset), or
      * bound  to the same dataSource as the form as a whole, this item will call {@link
-     * com.smartgwt.client.widgets.form.DynamicForm#getValue}  the form named after is implemented by picking up the value of
-     * the specified field from the Form's values object. <P> Otherwise this item will attempt to map its underlying value to a
-     * display value by retrieving a record from the {@link
+     * com.smartgwt.client.widgets.form.DynamicForm#getValue DynamicForm.getValue}  the form named after is implemented by
+     * picking up the value of the specified field from the Form's values object. <P> Otherwise this item will attempt to map
+     * its underlying value to a display value by retrieving a record from the {@link
      * com.smartgwt.client.widgets.form.fields.FormItem#getOptionDataSource optionDataSource} where the  {@link
      * com.smartgwt.client.widgets.form.fields.FormItem#getValueField valueField} matches this item's value, and displaying the
      * <code>displayField</code> value from that record. Note that if <code>optionDataSource</code> is set and this value is
-     * not set, {@link com.smartgwt.client.widgets.form.fields.FormItem#getDisplayFieldName} will return the dataSource title
-     * field by default. <P> This essentially enables the specified <code>optionDataSource</code> to be used as a server based
-     * valueMap.
+     * not set, {@link com.smartgwt.client.widgets.form.fields.FormItem#getDisplayFieldName FormItem.getDisplayFieldName} will
+     * return the dataSource title field by default. <P> This essentially enables the specified <code>optionDataSource</code>
+     * to be used as a server based valueMap.
      *
      * @param displayField displayField Default value is null
      */
@@ -277,15 +279,15 @@ public class SelectItem extends FormItem  implements PickList, com.smartgwt.clie
      * com.smartgwt.client.widgets.form.fields.FormItem#getOptionDataSource 'optionDataSource'}. <P> If this item is not
      * databound ({@link com.smartgwt.client.widgets.form.fields.FormItem#getOptionDataSource optionDataSource} is unset), or
      * bound  to the same dataSource as the form as a whole, this item will call {@link
-     * com.smartgwt.client.widgets.form.DynamicForm#getValue}  the form named after is implemented by picking up the value of
-     * the specified field from the Form's values object. <P> Otherwise this item will attempt to map its underlying value to a
-     * display value by retrieving a record from the {@link
+     * com.smartgwt.client.widgets.form.DynamicForm#getValue DynamicForm.getValue}  the form named after is implemented by
+     * picking up the value of the specified field from the Form's values object. <P> Otherwise this item will attempt to map
+     * its underlying value to a display value by retrieving a record from the {@link
      * com.smartgwt.client.widgets.form.fields.FormItem#getOptionDataSource optionDataSource} where the  {@link
      * com.smartgwt.client.widgets.form.fields.FormItem#getValueField valueField} matches this item's value, and displaying the
      * <code>displayField</code> value from that record. Note that if <code>optionDataSource</code> is set and this value is
-     * not set, {@link com.smartgwt.client.widgets.form.fields.FormItem#getDisplayFieldName} will return the dataSource title
-     * field by default. <P> This essentially enables the specified <code>optionDataSource</code> to be used as a server based
-     * valueMap.
+     * not set, {@link com.smartgwt.client.widgets.form.fields.FormItem#getDisplayFieldName FormItem.getDisplayFieldName} will
+     * return the dataSource title field by default. <P> This essentially enables the specified <code>optionDataSource</code>
+     * to be used as a server based valueMap.
      *
      *
      * @return String
@@ -324,6 +326,7 @@ public class SelectItem extends FormItem  implements PickList, com.smartgwt.clie
      * Default height for select items is 19px.
      *
      * @param height height Default value is 19
+     * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
     public void setHeight(int height) {
         setAttribute("height", height);
@@ -334,6 +337,7 @@ public class SelectItem extends FormItem  implements PickList, com.smartgwt.clie
      *
      *
      * @return int
+     * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
     public int getHeight()  {
         return getAttributeAsInt("height");
@@ -342,12 +346,14 @@ public class SelectItem extends FormItem  implements PickList, com.smartgwt.clie
     /**
      * If true, this selectItem will be displayed as a tall list of options, and the user will be able to select multiple
      * options. <P> In this case the logical value of the formItem, as retrieved by  {@link
-     * com.smartgwt.client.widgets.form.fields.FormItem#getValue} and set via {@link
-     * com.smartgwt.client.widgets.form.fields.FormItem#setValue}, is  an Array of Strings reflecting the selected values. <P>
-     * Note: <code>multiple:true</code> SelectItems do not currently support optionDataSource binding.  You can get around this
-     * by calling DataSource.fetchData() directly and creating a valueMap for the item from the resulting array.
+     * com.smartgwt.client.widgets.form.fields.FormItem#getValue FormItem.getValue} and set via {@link
+     * com.smartgwt.client.widgets.form.fields.FormItem#setValue FormItem.setValue}, is  an Array of Strings reflecting the
+     * selected values. <P> Note: <code>multiple:true</code> SelectItems do not currently support optionDataSource binding. 
+     * You can get around this by calling DataSource.fetchData() directly and creating a valueMap for the item from the
+     * resulting array.
      *
      * @param multiple multiple Default value is false
+     * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
     public void setMultiple(Boolean multiple) {
         setAttribute("multiple", multiple);
@@ -356,13 +362,15 @@ public class SelectItem extends FormItem  implements PickList, com.smartgwt.clie
     /**
      * If true, this selectItem will be displayed as a tall list of options, and the user will be able to select multiple
      * options. <P> In this case the logical value of the formItem, as retrieved by  {@link
-     * com.smartgwt.client.widgets.form.fields.FormItem#getValue} and set via {@link
-     * com.smartgwt.client.widgets.form.fields.FormItem#setValue}, is  an Array of Strings reflecting the selected values. <P>
-     * Note: <code>multiple:true</code> SelectItems do not currently support optionDataSource binding.  You can get around this
-     * by calling DataSource.fetchData() directly and creating a valueMap for the item from the resulting array.
+     * com.smartgwt.client.widgets.form.fields.FormItem#getValue FormItem.getValue} and set via {@link
+     * com.smartgwt.client.widgets.form.fields.FormItem#setValue FormItem.setValue}, is  an Array of Strings reflecting the
+     * selected values. <P> Note: <code>multiple:true</code> SelectItems do not currently support optionDataSource binding. 
+     * You can get around this by calling DataSource.fetchData() directly and creating a valueMap for the item from the
+     * resulting array.
      *
      *
      * @return Boolean
+     * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
     public Boolean getMultiple()  {
         return getAttributeAsBoolean("multiple");
@@ -462,6 +470,7 @@ public class SelectItem extends FormItem  implements PickList, com.smartgwt.clie
      * Base CSS class name for a form item's picker icon cell. If unset inherits from  this items <code>controlStyle</code>.
      *
      * @param pickerIconStyle pickerIconStyle Default value is "selectItemPickerIcon", [IRA]
+     * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
     public void setPickerIconStyle(String pickerIconStyle) {
         setAttribute("pickerIconStyle", pickerIconStyle);
@@ -472,6 +481,7 @@ public class SelectItem extends FormItem  implements PickList, com.smartgwt.clie
      *
      *
      * @return String
+     * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
     public String getPickerIconStyle()  {
         return getAttributeAsString("pickerIconStyle");
@@ -506,6 +516,7 @@ public class SelectItem extends FormItem  implements PickList, com.smartgwt.clie
      * <p><b>Note : </b> This is an advanced setting</p>
      *
      * @param showFocused showFocused Default value is true, [IRWA]
+     * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
     public void setShowFocused(Boolean showFocused) {
         setAttribute("showFocused", showFocused);
@@ -516,6 +527,7 @@ public class SelectItem extends FormItem  implements PickList, com.smartgwt.clie
      *
      *
      * @return Boolean
+     * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
     public Boolean getShowFocused()  {
         return getAttributeAsBoolean("showFocused");
@@ -527,6 +539,7 @@ public class SelectItem extends FormItem  implements PickList, com.smartgwt.clie
      * <p><b>Note : </b> This is an advanced setting</p>
      *
      * @param showHintInField showHintInField Default value is null
+     * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
     public void setShowHintInField(Boolean showHintInField) {
         setAttribute("showHintInField", showHintInField);
@@ -538,6 +551,7 @@ public class SelectItem extends FormItem  implements PickList, com.smartgwt.clie
      *
      *
      * @return Boolean
+     * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
     public Boolean getShowHintInField()  {
         return getAttributeAsBoolean("showHintInField");
@@ -550,6 +564,7 @@ public class SelectItem extends FormItem  implements PickList, com.smartgwt.clie
      * <p><b>Note : </b> This is an advanced setting</p>
      *
      * @param showOptionsFromDataSource showOptionsFromDataSource Default value is null
+     * @see com.smartgwt.client.docs.Databinding Databinding overview and related methods
      */
     public void setShowOptionsFromDataSource(Boolean showOptionsFromDataSource) {
         setAttribute("showOptionsFromDataSource", showOptionsFromDataSource);
@@ -562,6 +577,7 @@ public class SelectItem extends FormItem  implements PickList, com.smartgwt.clie
      *
      *
      * @return Boolean
+     * @see com.smartgwt.client.docs.Databinding Databinding overview and related methods
      */
     public Boolean getShowOptionsFromDataSource()  {
         return getAttributeAsBoolean("showOptionsFromDataSource");
@@ -591,7 +607,7 @@ public class SelectItem extends FormItem  implements PickList, com.smartgwt.clie
      * Should we show a special 'picker' icon for this form item. Picker icons are customizeable via {@link
      * com.smartgwt.client.widgets.form.fields.SelectItem#getPickerIconProperties pickerIconProperties}. By default they will
      * be rendered inside the  Form Item's "control box" area, and will call {@link
-     * com.smartgwt.client.widgets.form.fields.SelectItem#showPicker} when clicked.
+     * com.smartgwt.client.widgets.form.fields.SelectItem#showPicker SelectItem.showPicker} when clicked.
      *
      * @param showPickerIcon showPickerIcon Default value is true
      */
@@ -603,7 +619,7 @@ public class SelectItem extends FormItem  implements PickList, com.smartgwt.clie
      * Should we show a special 'picker' icon for this form item. Picker icons are customizeable via {@link
      * com.smartgwt.client.widgets.form.fields.SelectItem#getPickerIconProperties pickerIconProperties}. By default they will
      * be rendered inside the  Form Item's "control box" area, and will call {@link
-     * com.smartgwt.client.widgets.form.fields.SelectItem#showPicker} when clicked.
+     * com.smartgwt.client.widgets.form.fields.SelectItem#showPicker SelectItem.showPicker} when clicked.
      *
      *
      * @return Boolean
@@ -617,6 +633,7 @@ public class SelectItem extends FormItem  implements PickList, com.smartgwt.clie
      * special skinning considerations.
      *
      * @param textBoxStyle textBoxStyle Default value is "selectItemText", [IRA]
+     * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
     public void setTextBoxStyle(String textBoxStyle) {
         setAttribute("textBoxStyle", textBoxStyle);
@@ -628,6 +645,7 @@ public class SelectItem extends FormItem  implements PickList, com.smartgwt.clie
      *
      *
      * @return String
+     * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
     public String getTextBoxStyle()  {
         return getAttributeAsString("textBoxStyle");

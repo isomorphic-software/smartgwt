@@ -96,6 +96,7 @@ public class ToolbarItem extends CanvasItem {
      * If specified this baseStyle will be applied to the buttons in this toolbar.
      *
      * @param buttonBaseStyle buttonBaseStyle Default value is null
+     * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
     public void setButtonBaseStyle(String buttonBaseStyle) {
         setAttribute("buttonBaseStyle", buttonBaseStyle);
@@ -106,6 +107,7 @@ public class ToolbarItem extends CanvasItem {
      *
      *
      * @return String
+     * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
     public String getButtonBaseStyle()  {
         return getAttributeAsString("buttonBaseStyle");
@@ -115,6 +117,7 @@ public class ToolbarItem extends CanvasItem {
      * these items are in a row by themselves by default
      *
      * @param endRow endRow Default value is true
+     * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
     public void setEndRow(Boolean endRow) {
         setAttribute("endRow", endRow);
@@ -125,6 +128,7 @@ public class ToolbarItem extends CanvasItem {
      *
      *
      * @return Boolean
+     * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
     public Boolean getEndRow()  {
         return getAttributeAsBoolean("endRow");
@@ -134,6 +138,7 @@ public class ToolbarItem extends CanvasItem {
      * Don't show a title for toolbars
      *
      * @param showTitle showTitle Default value is false
+     * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
     public void setShowTitle(Boolean showTitle) {
         setAttribute("showTitle", showTitle);
@@ -144,6 +149,7 @@ public class ToolbarItem extends CanvasItem {
      *
      *
      * @return Boolean
+     * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
     public Boolean getShowTitle()  {
         return getAttributeAsBoolean("showTitle");
@@ -153,6 +159,7 @@ public class ToolbarItem extends CanvasItem {
      * these items are in a row by themselves by default
      *
      * @param startRow startRow Default value is true
+     * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
     public void setStartRow(Boolean startRow) {
         setAttribute("startRow", startRow);
@@ -163,6 +170,7 @@ public class ToolbarItem extends CanvasItem {
      *
      *
      * @return Boolean
+     * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
     public Boolean getStartRow()  {
         return getAttributeAsBoolean("startRow");

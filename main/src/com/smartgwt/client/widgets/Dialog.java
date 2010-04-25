@@ -59,8 +59,8 @@ import com.google.gwt.event.shared.HasHandlers;
  * Dialogs are a specialized version of {@link com.smartgwt.client.widgets.Window} used for small windows such as alerts,
  * prompts, and confirmations.  They can be modal or modeless (via the {@link com.smartgwt.client.widgets.Window#getIsModal
  * 'isModal'} property) and will contain various children by default ("titlebar", "resizer", etc). <P> NOTE: If you are
- * building a custom component that will add components to the Window via {@link
- * com.smartgwt.client.widgets.Window#addItem}, in most cases it makes sense
+ * building a custom component that will add components to the Window via {@link com.smartgwt.client.widgets.Window#addItem
+ * Window.addItem}, in most cases it makes sense
  */
 public class Dialog extends Window {
 
@@ -95,6 +95,7 @@ public class Dialog extends Window {
      * Whether to show a toolbar of buttons at the bottom of the Dialog.
      *
      * @param showToolbar showToolbar Default value is false
+     * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
     public void setShowToolbar(Boolean showToolbar) {
         setAttribute("showToolbar", showToolbar, true);
@@ -105,6 +106,7 @@ public class Dialog extends Window {
      *
      *
      * @return Boolean
+     * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
     public Boolean getShowToolbar()  {
         return getAttributeAsBoolean("showToolbar");
@@ -114,6 +116,7 @@ public class Dialog extends Window {
      * Style of the Dialog background
      *
      * @param styleName styleName Default value is "dialogBackground"
+     * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
     public void setStyleName(String styleName) {
         setAttribute("styleName", styleName, true);
@@ -124,6 +127,7 @@ public class Dialog extends Window {
      *
      *
      * @return String
+     * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
     public String getStyleName()  {
         return getAttributeAsString("styleName");

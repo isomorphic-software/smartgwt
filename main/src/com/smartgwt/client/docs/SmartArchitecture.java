@@ -75,10 +75,10 @@ package com.smartgwt.client.docs;
  * &#010 <b>Batching Operations</b>&#010 <br>&#010 A view may incorporate multiple components, each of which requires data.
  * In the following&#010 example, a DataBound ListGrid has been incorporated into the wizard, and we'd like to fetch&#010
  * the user's name and the beginning dataset for the grid in the same batch.  We use &#010 {@link
- * com.smartgwt.client.rpc.RPCManager#startQueue} to do so.&#010 <pre>&#010    function showNewUserWizard() {&#010       
- * if (!window.myWindow) {&#010            Window.create({&#010                ID:"myWindow",&#010               
- * autoDraw:false,&#010                items:[&#010                    Canvas.create({ ID: "welcomeCanvas" }),&#010        
- * <b>ListGrid.create({ &#010                        ID: "myGrid",&#010                       
+ * com.smartgwt.client.rpc.RPCManager#startQueue RPCManager.startQueue} to do so.&#010 <pre>&#010    function
+ * showNewUserWizard() {&#010        if (!window.myWindow) {&#010            Window.create({&#010               
+ * ID:"myWindow",&#010                autoDraw:false,&#010                items:[&#010                    Canvas.create({
+ * ID: "welcomeCanvas" }),&#010                    <b>ListGrid.create({ &#010                        ID: "myGrid",&#010    
  * dataSource:"myDataSource"&#010                    }),</b>&#010                    DynamicForm.create({ ... })&#010      
  * ]&#010            });&#010            <b>RPCManager.startQueue();&#010            myGrid.fetchData();</b>&#010          
  * RPCManager.sendRequest({&#010                actionURL:"getUserName.jsp",&#010               
@@ -88,9 +88,10 @@ package com.smartgwt.client.docs;
  * </pre>&#010&#010 <b>Segmenting very large Applications</b>&#010 <P>&#010 If an application has many hundreds of views,
  * but only a handful of views are used by a&#010 given user in a typical session, for the fastest loading performance you
  * should consider&#010 loading only the most commonly used views initially then loading further views on demand.&#010
- * <P>&#010 You can use {@link com.smartgwt.client..FileLoader#loadJSFiles} to load a set of JavaScript files&#010
- * compromising an application module that defines a set of related views.  The loaded&#010 JavaScript files may define new
- * component classes and new DataSources in addition to&#010 defining new views and their associated logic.
+ * <P>&#010 You can use {@link com.smartgwt.client..FileLoader#loadJSFiles FileLoader.loadJSFiles} to load a set of
+ * JavaScript files&#010 compromising an application module that defines a set of related views.  The loaded&#010
+ * JavaScript files may define new component classes and new DataSources in addition to&#010 defining new views and their
+ * associated logic.
  */
 public interface SmartArchitecture {
 }

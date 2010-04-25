@@ -55,10 +55,10 @@ package com.smartgwt.client.docs;
  * com.smartgwt.client.widgets.tree.Tree#getData data}.   <P> Note that when receiving multiple levels of children, the
  * ResultTree's assumption is that if any children are loaded for a parent, then that parent is considered fully loaded.
  * <P> When loading children for a given parent node, the ResultTree calls {@link
- * com.smartgwt.client.data.DataSource#fetchData} on its DataSource.  For custom code that may need to reference the
- * parentNode or tree in some way, the parent node whose children are being loaded is available on the dsRequest instance
- * in the DataSource flow as dsRequest.parentNode, where it can be inspected during {@link
- * com.smartgwt.client.data.DataSource#transformRequest}.
+ * com.smartgwt.client.data.DataSource#fetchData DataSource.fetchData} on its DataSource.  For custom code that may need to
+ * reference the parentNode or tree in some way, the parent node whose children are being loaded is available on the
+ * dsRequest instance in the DataSource flow as dsRequest.parentNode, where it can be inspected during {@link
+ * com.smartgwt.client.data.DataSource#transformRequest DataSource.transformRequest}.
  */
 public interface TreeDataBinding {
 }

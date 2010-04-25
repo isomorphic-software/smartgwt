@@ -58,6 +58,7 @@ import com.google.gwt.event.shared.HasHandlers;
 /**
  * PrintCanvas is a subclass of canvas which renders printable content HTML and  provides APIs for printing this content as
  * a separate document.
+ * @see com.smartgwt.client.docs.Printing Printing overview and related methods
  */
 public class PrintCanvas extends Canvas {
 

@@ -110,6 +110,7 @@ public class DataSourceField extends DataClass {
      * to offer an editing interface for this field.
      *
      * @param canEdit canEdit Default value is null
+     * @see com.smartgwt.client.docs.ComponentBinding ComponentBinding overview and related methods
      */
     public void setCanEdit(Boolean canEdit) {
         setAttribute("canEdit", canEdit);
@@ -121,6 +122,7 @@ public class DataSourceField extends DataClass {
      *
      *
      * @return Boolean
+     * @see com.smartgwt.client.docs.ComponentBinding ComponentBinding overview and related methods
      */
     public Boolean getCanEdit()  {
         return getAttributeAsBoolean("canEdit");
@@ -180,6 +182,7 @@ public class DataSourceField extends DataClass {
      * behavior.
      *
      * @param canSave canSave Default value is null
+     * @see com.smartgwt.client.docs.ComponentBinding ComponentBinding overview and related methods
      */
     public void setCanSave(Boolean canSave) {
         setAttribute("canSave", canSave);
@@ -196,6 +199,7 @@ public class DataSourceField extends DataClass {
      *
      *
      * @return Boolean
+     * @see com.smartgwt.client.docs.ComponentBinding ComponentBinding overview and related methods
      */
     public Boolean getCanSave()  {
         return getAttributeAsBoolean("canSave");
@@ -226,6 +230,7 @@ public class DataSourceField extends DataClass {
      * field's  name.
      *
      * @param childrenProperty childrenProperty Default value is false
+     * @see com.smartgwt.client.docs.DataSourceRelations DataSourceRelations overview and related methods
      */
     public void setChildrenProperty(Boolean childrenProperty) {
         setAttribute("childrenProperty", childrenProperty);
@@ -238,6 +243,7 @@ public class DataSourceField extends DataClass {
      *
      *
      * @return Boolean
+     * @see com.smartgwt.client.docs.DataSourceRelations DataSourceRelations overview and related methods
      */
     public Boolean getChildrenProperty()  {
         return getAttributeAsBoolean("childrenProperty");
@@ -245,11 +251,13 @@ public class DataSourceField extends DataClass {
 
     /**
      * For a field that is {@link com.smartgwt.client.data.DataSourceField#getMultiple 'multiple:"true"'}, controls the name of
-     * the XML tag used for each subelement during {@link com.smartgwt.client.data.DataSource#xmlSerialize}. <P> If unset, the
-     * default tag name is "value" for a field of simple type, and for a field of DataSource type, is the tagName or ID of the
-     * DataSource (as though <code>xmlSerialize()</code> were called on the child DataSource).
+     * the XML tag used for each subelement during {@link com.smartgwt.client.data.DataSource#xmlSerialize
+     * DataSource.xmlSerialize}. <P> If unset, the default tag name is "value" for a field of simple type, and for a field of
+     * DataSource type, is the tagName or ID of the DataSource (as though <code>xmlSerialize()</code> were called on the child
+     * DataSource).
      *
      * @param childTagName childTagName Default value is null
+     * @see com.smartgwt.client.docs.ComponentSchema ComponentSchema overview and related methods
      */
     public void setChildTagName(String childTagName) {
         setAttribute("childTagName", childTagName);
@@ -257,12 +265,14 @@ public class DataSourceField extends DataClass {
 
     /**
      * For a field that is {@link com.smartgwt.client.data.DataSourceField#getMultiple 'multiple:"true"'}, controls the name of
-     * the XML tag used for each subelement during {@link com.smartgwt.client.data.DataSource#xmlSerialize}. <P> If unset, the
-     * default tag name is "value" for a field of simple type, and for a field of DataSource type, is the tagName or ID of the
-     * DataSource (as though <code>xmlSerialize()</code> were called on the child DataSource).
+     * the XML tag used for each subelement during {@link com.smartgwt.client.data.DataSource#xmlSerialize
+     * DataSource.xmlSerialize}. <P> If unset, the default tag name is "value" for a field of simple type, and for a field of
+     * DataSource type, is the tagName or ID of the DataSource (as though <code>xmlSerialize()</code> were called on the child
+     * DataSource).
      *
      *
      * @return String
+     * @see com.smartgwt.client.docs.ComponentSchema ComponentSchema overview and related methods
      */
     public String getChildTagName()  {
         return getAttributeAsString("childTagName");
@@ -275,11 +285,12 @@ public class DataSourceField extends DataClass {
      * DataBound components, like a {@link com.smartgwt.client.widgets.grid.ListGrid}, to show a summary view of records which
      * displays only  the most commonly viewed fields by default, while other DataBoundComponents, like a {@link
      * com.smartgwt.client.widgets.viewer.DetailViewer}, show all fields by default. <P> In addition, the {@link
-     * com.smartgwt.client.widgets.form.fields.FormItem#showIf} property is supported in multiple components for conditional
-     * visibility - see for example {@link com.smartgwt.client.widgets.grid.ListGridField#showIf} and {@link
-     * com.smartgwt.client.widgets.form.fields.FormItem#showIf}).
+     * com.smartgwt.client.widgets.form.fields.FormItem#showIf FormItem.showIf} property is supported in multiple components
+     * for conditional visibility - see for example {@link com.smartgwt.client.widgets.grid.ListGridField#showIf
+     * ListGridField.showIf} and {@link com.smartgwt.client.widgets.form.fields.FormItem#showIf FormItem.showIf}).
      *
      * @param detail detail Default value is false
+     * @see com.smartgwt.client.docs.ComponentBinding ComponentBinding overview and related methods
      */
     public void setDetail(Boolean detail) {
         setAttribute("detail", detail);
@@ -292,12 +303,13 @@ public class DataSourceField extends DataClass {
      * DataBound components, like a {@link com.smartgwt.client.widgets.grid.ListGrid}, to show a summary view of records which
      * displays only  the most commonly viewed fields by default, while other DataBoundComponents, like a {@link
      * com.smartgwt.client.widgets.viewer.DetailViewer}, show all fields by default. <P> In addition, the {@link
-     * com.smartgwt.client.widgets.form.fields.FormItem#showIf} property is supported in multiple components for conditional
-     * visibility - see for example {@link com.smartgwt.client.widgets.grid.ListGridField#showIf} and {@link
-     * com.smartgwt.client.widgets.form.fields.FormItem#showIf}).
+     * com.smartgwt.client.widgets.form.fields.FormItem#showIf FormItem.showIf} property is supported in multiple components
+     * for conditional visibility - see for example {@link com.smartgwt.client.widgets.grid.ListGridField#showIf
+     * ListGridField.showIf} and {@link com.smartgwt.client.widgets.form.fields.FormItem#showIf FormItem.showIf}).
      *
      *
      * @return Boolean
+     * @see com.smartgwt.client.docs.ComponentBinding ComponentBinding overview and related methods
      */
     public Boolean getDetail()  {
         return getAttributeAsBoolean("detail");
@@ -332,9 +344,10 @@ public class DataSourceField extends DataClass {
      * primaryKey:true},&#010       {name:"parentId", type:"integer", foreignKey:"itemId"},&#010       ...&#010     ]&#010  
      * });&#010 </pre>&#010 <P>&#010 <code>foreignKey</code> declarations also allow other automatic behaviors by&#010 {@link
      * com.smartgwt.client.widgets.DataBoundComponent}, such as {@link
-     * com.smartgwt.client.widgets.grid.ListGrid#fetchRelatedData}.
+     * com.smartgwt.client.widgets.grid.ListGrid#fetchRelatedData ListGrid.fetchRelatedData}.
      *
      * @param foreignKey foreignKey Default value is false
+     * @see com.smartgwt.client.docs.DataSourceRelations DataSourceRelations overview and related methods
      */
     public void setForeignKey(String foreignKey) {
         setAttribute("foreignKey", foreignKey);
@@ -350,10 +363,11 @@ public class DataSourceField extends DataClass {
      * primaryKey:true},&#010       {name:"parentId", type:"integer", foreignKey:"itemId"},&#010       ...&#010     ]&#010  
      * });&#010 </pre>&#010 <P>&#010 <code>foreignKey</code> declarations also allow other automatic behaviors by&#010 {@link
      * com.smartgwt.client.widgets.DataBoundComponent}, such as {@link
-     * com.smartgwt.client.widgets.grid.ListGrid#fetchRelatedData}.
+     * com.smartgwt.client.widgets.grid.ListGrid#fetchRelatedData ListGrid.fetchRelatedData}.
      *
      *
      * @return String
+     * @see com.smartgwt.client.docs.DataSourceRelations DataSourceRelations overview and related methods
      */
     public String getForeignKey()  {
         return getAttributeAsString("foreignKey");
@@ -364,6 +378,7 @@ public class DataSourceField extends DataClass {
      * in Visual Builder.
      *
      * @param group group Default value is null
+     * @see com.smartgwt.client.docs.ComponentSchema ComponentSchema overview and related methods
      */
     public void setGroup(String group) {
         setAttribute("group", group);
@@ -375,6 +390,7 @@ public class DataSourceField extends DataClass {
      *
      *
      * @return String
+     * @see com.smartgwt.client.docs.ComponentSchema ComponentSchema overview and related methods
      */
     public String getGroup()  {
         return getAttributeAsString("group");
@@ -387,6 +403,7 @@ public class DataSourceField extends DataClass {
      * but still available to the user.
      *
      * @param hidden hidden Default value is false
+     * @see com.smartgwt.client.docs.ComponentBinding ComponentBinding overview and related methods
      */
     public void setHidden(Boolean hidden) {
         setAttribute("hidden", hidden);
@@ -400,6 +417,7 @@ public class DataSourceField extends DataClass {
      *
      *
      * @return Boolean
+     * @see com.smartgwt.client.docs.ComponentBinding ComponentBinding overview and related methods
      */
     public Boolean getHidden()  {
         return getAttributeAsBoolean("hidden");
@@ -409,6 +427,7 @@ public class DataSourceField extends DataClass {
      * Whether this field should be completely excluded from this dataSource, as if it had never been defined.
      *
      * @param ignore ignore Default value is false
+     * @see com.smartgwt.client.docs.ComponentBinding ComponentBinding overview and related methods
      */
     public void setIgnore(Boolean ignore) {
         setAttribute("ignore", ignore);
@@ -419,6 +438,7 @@ public class DataSourceField extends DataClass {
      *
      *
      * @return Boolean
+     * @see com.smartgwt.client.docs.ComponentBinding ComponentBinding overview and related methods
      */
     public Boolean getIgnore()  {
         return getAttributeAsBoolean("ignore");
@@ -436,6 +456,7 @@ public class DataSourceField extends DataClass {
      * <code>MyDialog</code> instance.
      *
      * @param inapplicable inapplicable Default value is null
+     * @see com.smartgwt.client.docs.ComponentSchema ComponentSchema overview and related methods
      */
     public void setInapplicable(Boolean inapplicable) {
         setAttribute("inapplicable", inapplicable);
@@ -454,6 +475,7 @@ public class DataSourceField extends DataClass {
      *
      *
      * @return Boolean
+     * @see com.smartgwt.client.docs.ComponentSchema ComponentSchema overview and related methods
      */
     public Boolean getInapplicable()  {
         return getAttributeAsBoolean("inapplicable");
@@ -631,6 +653,7 @@ public class DataSourceField extends DataClass {
      * com.smartgwt.client.data.DataSourceField#getChildTagName childTagName} for customizing the tagName used for subelements.
      *
      * @param multiple multiple Default value is null
+     * @see com.smartgwt.client.docs.ComponentSchema ComponentSchema overview and related methods
      */
     public void setMultiple(Boolean multiple) {
         setAttribute("multiple", multiple);
@@ -652,6 +675,7 @@ public class DataSourceField extends DataClass {
      *
      *
      * @return Boolean
+     * @see com.smartgwt.client.docs.ComponentSchema ComponentSchema overview and related methods
      */
     public Boolean getMultiple()  {
         return getAttributeAsBoolean("multiple");
@@ -662,6 +686,7 @@ public class DataSourceField extends DataClass {
      * field. <P> Must be unique across all fields within the DataSource.
      *
      * @param name name Default value is null
+     * @see com.smartgwt.client.docs.Basics Basics overview and related methods
      */
     public void setName(String name) {
         setAttribute("name", name);
@@ -673,6 +698,7 @@ public class DataSourceField extends DataClass {
      *
      *
      * @return String
+     * @see com.smartgwt.client.docs.Basics Basics overview and related methods
      */
     public String getName()  {
         return getAttributeAsString("name");
@@ -689,8 +715,8 @@ public class DataSourceField extends DataClass {
      * underlying data model has no primaryKey or has multiple primaryKey(s), you can&#010 generate unique values or combine
      * multiple values into a single field that serves as a&#010 unique key, and declare that field as the single primary key
      * instead.  For example, if your&#010 underlying data model has two primary keys "firstName" and "lastName", you can
-     * use&#010 {@link com.smartgwt.client.data.DataSource#transformResponse} to combine them to into a new field
-     * "name_key":&#010 <pre>&#010 isc.DataSource.create({&#010    fields:[&#010        {name:"name_key",
+     * use&#010 {@link com.smartgwt.client.data.DataSource#transformResponse DataSource.transformResponse} to combine them to
+     * into a new field "name_key":&#010 <pre>&#010 isc.DataSource.create({&#010    fields:[&#010        {name:"name_key",
      * primaryKey:true},&#010        {name:"firstName"},&#010        {name:"lastName"},&#010        ... other fields ...&#010  
      * ],&#010    transformResponse : function (dsResponse) {&#010        var data = dsResponse.data;&#010        for (var i =
      * 0 ; i &lt; data.length; i++) {&#010            data[i].name_key = data[i].firstName + ":" +&#010                        
@@ -702,6 +728,7 @@ public class DataSourceField extends DataClass {
      * unique constraint applied in the database table.
      *
      * @param primaryKey primaryKey Default value is false
+     * @see com.smartgwt.client.docs.DataSourceRelations DataSourceRelations overview and related methods
      */
     public void setPrimaryKey(Boolean primaryKey) {
         setAttribute("primaryKey", primaryKey);
@@ -718,8 +745,8 @@ public class DataSourceField extends DataClass {
      * underlying data model has no primaryKey or has multiple primaryKey(s), you can&#010 generate unique values or combine
      * multiple values into a single field that serves as a&#010 unique key, and declare that field as the single primary key
      * instead.  For example, if your&#010 underlying data model has two primary keys "firstName" and "lastName", you can
-     * use&#010 {@link com.smartgwt.client.data.DataSource#transformResponse} to combine them to into a new field
-     * "name_key":&#010 <pre>&#010 isc.DataSource.create({&#010    fields:[&#010        {name:"name_key",
+     * use&#010 {@link com.smartgwt.client.data.DataSource#transformResponse DataSource.transformResponse} to combine them to
+     * into a new field "name_key":&#010 <pre>&#010 isc.DataSource.create({&#010    fields:[&#010        {name:"name_key",
      * primaryKey:true},&#010        {name:"firstName"},&#010        {name:"lastName"},&#010        ... other fields ...&#010  
      * ],&#010    transformResponse : function (dsResponse) {&#010        var data = dsResponse.data;&#010        for (var i =
      * 0 ; i &lt; data.length; i++) {&#010            data[i].name_key = data[i].firstName + ":" +&#010                        
@@ -732,6 +759,7 @@ public class DataSourceField extends DataClass {
      *
      *
      * @return Boolean
+     * @see com.smartgwt.client.docs.DataSourceRelations DataSourceRelations overview and related methods
      */
     public Boolean getPrimaryKey()  {
         return getAttributeAsBoolean("primaryKey");
@@ -749,6 +777,7 @@ public class DataSourceField extends DataClass {
      * <code>_constructor</code> set to the name of the class that should be&#010 constructed.
      *
      * @param propertiesOnly propertiesOnly Default value is null
+     * @see com.smartgwt.client.docs.ComponentSchema ComponentSchema overview and related methods
      */
     public void setPropertiesOnly(Boolean propertiesOnly) {
         setAttribute("propertiesOnly", propertiesOnly);
@@ -767,6 +796,7 @@ public class DataSourceField extends DataClass {
      *
      *
      * @return Boolean
+     * @see com.smartgwt.client.docs.ComponentSchema ComponentSchema overview and related methods
      */
     public Boolean getPropertiesOnly()  {
         return getAttributeAsBoolean("propertiesOnly");
@@ -803,6 +833,7 @@ public class DataSourceField extends DataClass {
      * (Oracle, Postgres) OR you are trying to use the same sequence across multiple DataSources.
      *
      * @param sequenceName sequenceName Default value is null
+     * @see com.smartgwt.client.docs.SqlDataSource SqlDataSource overview and related methods
      */
     public void setSequenceName(String sequenceName) {
         setAttribute("sequenceName", sequenceName);
@@ -819,6 +850,7 @@ public class DataSourceField extends DataClass {
      *
      *
      * @return String
+     * @see com.smartgwt.client.docs.SqlDataSource SqlDataSource overview and related methods
      */
     public String getSequenceName()  {
         return getAttributeAsString("sequenceName");
@@ -869,6 +901,7 @@ public class DataSourceField extends DataClass {
      * DataSource.
      *
      * @param title title Default value is null
+     * @see com.smartgwt.client.docs.ComponentBinding ComponentBinding overview and related methods
      */
     public void setTitle(String title) {
         setAttribute("title", title);
@@ -880,6 +913,7 @@ public class DataSourceField extends DataClass {
      *
      *
      * @return String
+     * @see com.smartgwt.client.docs.ComponentBinding ComponentBinding overview and related methods
      */
     public String getTitle()  {
         return getAttributeAsString("title");
@@ -892,6 +926,7 @@ public class DataSourceField extends DataClass {
      * date-editing interface with pop-up date picker.
      *
      * @param type type Default value is null
+     * @see com.smartgwt.client.docs.Basics Basics overview and related methods
      */
     public void setType(FieldType type) {
         setAttribute("type", type.getValue());
@@ -905,6 +940,7 @@ public class DataSourceField extends DataClass {
      *
      *
      * @return FieldType
+     * @see com.smartgwt.client.docs.Basics Basics overview and related methods
      */
     public FieldType getType()  {
         return EnumUtil.getEnum(FieldType.values(), getAttribute("type"));
@@ -914,17 +950,18 @@ public class DataSourceField extends DataClass {
      * XPath expression used to retrieve the field's value.&#010 <P>&#010 This XPath expression will be evaluated in the scope
      * of the record objects selected by &#010 the {@link com.smartgwt.client.data.DataSource#getRecordXPath recordXPath}.  For
      * XML data &#010 ({@link com.smartgwt.client.data.DataSource#getDataFormat 'dataFormat:"xml"'}) this means a call to&#010
-     * {@link com.smartgwt.client.data.XMLTools#selectString} passing the selected XML element.  For JSON data&#010 ({@link
-     * com.smartgwt.client.data.DataSource#getDataFormat 'dataFormat:"json"'}), this means a call to &#010 {@link
-     * com.smartgwt.client.data.XMLTools#selectObjects} passing the selected JSON object.&#010 <P>&#010 In the absence of a
-     * <code>valueXPath</code>, for JSON data the value for the field will&#010 be the value of the same-named property in the
-     * record object selected by&#010 {@link com.smartgwt.client.data.DataSource#getRecordXPath 'recordXPath'}.  &#010 <P>&#010
-     * For XML data, the value will be the attribute or subelement named after the field name.&#010 For example, for a field
-     * "author" on a record element &lt;book&gt;, the following structures&#010 require no valueXPath:&#010 <pre>&#010   
-     * &lt;book author="Mark Jones"/&gt;&#010&#010    &lt;book&gt;&#010        &lt;author&gt;Mark Jones&lt;/author&gt;&#010   
-     * &lt;/book&gt;&#010 </pre>&#010 <P>&#010 If <code>valueXPath</code> is not required for your field because of the default
-     * handling&#010 described above, don't specify it, as it's slightly slower.&#010 <p>&#010 To learn about XPath, try the
-     * following search:&#010 <a href="http://www.google.com/search?q=xpath+tutorial" target="_blank"&#010
+     * {@link com.smartgwt.client.data.XMLTools#selectString XMLTools.selectString} passing the selected XML element.  For JSON
+     * data&#010 ({@link com.smartgwt.client.data.DataSource#getDataFormat 'dataFormat:"json"'}), this means a call to &#010
+     * {@link com.smartgwt.client.data.XMLTools#selectObjects XMLTools.selectObjects} passing the selected JSON object.&#010
+     * <P>&#010 In the absence of a <code>valueXPath</code>, for JSON data the value for the field will&#010 be the value of
+     * the same-named property in the record object selected by&#010 {@link com.smartgwt.client.data.DataSource#getRecordXPath
+     * 'recordXPath'}.  &#010 <P>&#010 For XML data, the value will be the attribute or subelement named after the field
+     * name.&#010 For example, for a field "author" on a record element &lt;book&gt;, the following structures&#010 require no
+     * valueXPath:&#010 <pre>&#010    &lt;book author="Mark Jones"/&gt;&#010&#010    &lt;book&gt;&#010       
+     * &lt;author&gt;Mark Jones&lt;/author&gt;&#010    &lt;/book&gt;&#010 </pre>&#010 <P>&#010 If <code>valueXPath</code> is
+     * not required for your field because of the default handling&#010 described above, don't specify it, as it's slightly
+     * slower.&#010 <p>&#010 To learn about XPath, try the following search:&#010 <a
+     * href="http://www.google.com/search?q=xpath+tutorial" target="_blank"&#010
      * >http://www.google.com/search?q=xpath+tutorial</a>&#010 <P>&#010 <B>Using valueXPath with the Smart GWT server</B>&#010
      * <p>&#010 If you're using the Smart GWT server to return data via the DSResponse object (or&#010 indirectly doing so
      * using DataSource DMI), the valueXPath you specify on the DataSource&#010 fields will be applied to the data you return
@@ -947,6 +984,7 @@ public class DataSourceField extends DataClass {
      * for&#010 complete details, including other types of server object models supported, such as&#010 server-side XML.
      *
      * @param valueXPath valueXPath Default value is null
+     * @see com.smartgwt.client.docs.ClientDataIntegration ClientDataIntegration overview and related methods
      */
     public void setValueXPath(String valueXPath) {
         setAttribute("valueXPath", valueXPath);
@@ -956,17 +994,18 @@ public class DataSourceField extends DataClass {
      * XPath expression used to retrieve the field's value.&#010 <P>&#010 This XPath expression will be evaluated in the scope
      * of the record objects selected by &#010 the {@link com.smartgwt.client.data.DataSource#getRecordXPath recordXPath}.  For
      * XML data &#010 ({@link com.smartgwt.client.data.DataSource#getDataFormat 'dataFormat:"xml"'}) this means a call to&#010
-     * {@link com.smartgwt.client.data.XMLTools#selectString} passing the selected XML element.  For JSON data&#010 ({@link
-     * com.smartgwt.client.data.DataSource#getDataFormat 'dataFormat:"json"'}), this means a call to &#010 {@link
-     * com.smartgwt.client.data.XMLTools#selectObjects} passing the selected JSON object.&#010 <P>&#010 In the absence of a
-     * <code>valueXPath</code>, for JSON data the value for the field will&#010 be the value of the same-named property in the
-     * record object selected by&#010 {@link com.smartgwt.client.data.DataSource#getRecordXPath 'recordXPath'}.  &#010 <P>&#010
-     * For XML data, the value will be the attribute or subelement named after the field name.&#010 For example, for a field
-     * "author" on a record element &lt;book&gt;, the following structures&#010 require no valueXPath:&#010 <pre>&#010   
-     * &lt;book author="Mark Jones"/&gt;&#010&#010    &lt;book&gt;&#010        &lt;author&gt;Mark Jones&lt;/author&gt;&#010   
-     * &lt;/book&gt;&#010 </pre>&#010 <P>&#010 If <code>valueXPath</code> is not required for your field because of the default
-     * handling&#010 described above, don't specify it, as it's slightly slower.&#010 <p>&#010 To learn about XPath, try the
-     * following search:&#010 <a href="http://www.google.com/search?q=xpath+tutorial" target="_blank"&#010
+     * {@link com.smartgwt.client.data.XMLTools#selectString XMLTools.selectString} passing the selected XML element.  For JSON
+     * data&#010 ({@link com.smartgwt.client.data.DataSource#getDataFormat 'dataFormat:"json"'}), this means a call to &#010
+     * {@link com.smartgwt.client.data.XMLTools#selectObjects XMLTools.selectObjects} passing the selected JSON object.&#010
+     * <P>&#010 In the absence of a <code>valueXPath</code>, for JSON data the value for the field will&#010 be the value of
+     * the same-named property in the record object selected by&#010 {@link com.smartgwt.client.data.DataSource#getRecordXPath
+     * 'recordXPath'}.  &#010 <P>&#010 For XML data, the value will be the attribute or subelement named after the field
+     * name.&#010 For example, for a field "author" on a record element &lt;book&gt;, the following structures&#010 require no
+     * valueXPath:&#010 <pre>&#010    &lt;book author="Mark Jones"/&gt;&#010&#010    &lt;book&gt;&#010       
+     * &lt;author&gt;Mark Jones&lt;/author&gt;&#010    &lt;/book&gt;&#010 </pre>&#010 <P>&#010 If <code>valueXPath</code> is
+     * not required for your field because of the default handling&#010 described above, don't specify it, as it's slightly
+     * slower.&#010 <p>&#010 To learn about XPath, try the following search:&#010 <a
+     * href="http://www.google.com/search?q=xpath+tutorial" target="_blank"&#010
      * >http://www.google.com/search?q=xpath+tutorial</a>&#010 <P>&#010 <B>Using valueXPath with the Smart GWT server</B>&#010
      * <p>&#010 If you're using the Smart GWT server to return data via the DSResponse object (or&#010 indirectly doing so
      * using DataSource DMI), the valueXPath you specify on the DataSource&#010 fields will be applied to the data you return
@@ -990,29 +1029,32 @@ public class DataSourceField extends DataClass {
      *
      *
      * @return String
+     * @see com.smartgwt.client.docs.ClientDataIntegration ClientDataIntegration overview and related methods
      */
     public String getValueXPath()  {
         return getAttributeAsString("valueXPath");
     }
 
     /**
-     * Indicates that {@link com.smartgwt.client.data.DataSource#xmlSerialize} should serialize this value as an XML attribute.
-     * <P> Note this does not need to be declared in order for DataSource records to be derived from XML data: a field will be
-     * populated with either an attribute or subelement with matching name.
+     * Indicates that {@link com.smartgwt.client.data.DataSource#xmlSerialize DataSource.xmlSerialize} should serialize this
+     * value as an XML attribute. <P> Note this does not need to be declared in order for DataSource records to be derived from
+     * XML data: a field will be populated with either an attribute or subelement with matching name.
      *
      * @param xmlAttribute xmlAttribute Default value is null
+     * @see com.smartgwt.client.docs.ComponentSchema ComponentSchema overview and related methods
      */
     public void setXmlAttribute(Boolean xmlAttribute) {
         setAttribute("xmlAttribute", xmlAttribute);
     }
 
     /**
-     * Indicates that {@link com.smartgwt.client.data.DataSource#xmlSerialize} should serialize this value as an XML attribute.
-     * <P> Note this does not need to be declared in order for DataSource records to be derived from XML data: a field will be
-     * populated with either an attribute or subelement with matching name.
+     * Indicates that {@link com.smartgwt.client.data.DataSource#xmlSerialize DataSource.xmlSerialize} should serialize this
+     * value as an XML attribute. <P> Note this does not need to be declared in order for DataSource records to be derived from
+     * XML data: a field will be populated with either an attribute or subelement with matching name.
      *
      *
      * @return Boolean
+     * @see com.smartgwt.client.docs.ComponentSchema ComponentSchema overview and related methods
      */
     public Boolean getXmlAttribute()  {
         return getAttributeAsBoolean("xmlAttribute");

@@ -285,7 +285,7 @@ public class Applet extends BrowserPlugin {
     /**
      * Sets the 'name' attribute on the applet object.  If a name is not provided it will be  auto-generated.  Note that in
      * general you don't need to set this.  If you have a handle to  your ISC Applet object you can simply call {@link
-     * com.smartgwt.client.widgets.plugins.Applet#getPluginHandle} to get a  handle to the element.
+     * com.smartgwt.client.widgets.plugins.Applet#getPluginHandle Applet.getPluginHandle} to get a  handle to the element.
      *
      * @param name name Default value is null
      * @throws IllegalStateException this property cannot be changed after the component has been created
@@ -297,7 +297,7 @@ public class Applet extends BrowserPlugin {
     /**
      * Sets the 'name' attribute on the applet object.  If a name is not provided it will be  auto-generated.  Note that in
      * general you don't need to set this.  If you have a handle to  your ISC Applet object you can simply call {@link
-     * com.smartgwt.client.widgets.plugins.Applet#getPluginHandle} to get a  handle to the element.
+     * com.smartgwt.client.widgets.plugins.Applet#getPluginHandle Applet.getPluginHandle} to get a  handle to the element.
      *
      *
      * @return String

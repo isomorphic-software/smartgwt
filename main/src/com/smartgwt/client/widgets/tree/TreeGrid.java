@@ -67,9 +67,9 @@ import com.google.gwt.event.shared.HasHandlers;
  * com.smartgwt.client.widgets.tree.Tree} column - you can define additional columns (via {@link
  * com.smartgwt.client.widgets.tree.TreeGrid#getFields fields}) which will render just like the columns of a {@link
  * com.smartgwt.client.widgets.grid.ListGrid}, and support all of the functionality of ListGrid columns, such as {@link
- * com.smartgwt.client.widgets.grid.ListGridField#formatCellValue}. <p> Except where explicitly overridden, {@link
- * com.smartgwt.client.widgets.grid.ListGrid} methods, callbacks, and properties apply to TreeGrids as well.  The {@link
- * com.smartgwt.client.widgets.grid.ListGrid} defines some methods as taking/returning
+ * com.smartgwt.client.widgets.grid.ListGridField#formatCellValue ListGridField.formatCellValue}. <p> Except where
+ * explicitly overridden, {@link com.smartgwt.client.widgets.grid.ListGrid} methods, callbacks, and properties apply to
+ * TreeGrids as well.  The {@link com.smartgwt.client.widgets.grid.ListGrid} defines some methods as taking/returning
  * ${isc.DocUtils.linkForRef('object:ListGridField')} and {@link com.smartgwt.client.widgets.grid.ListGridRecord}.  When
  * using those methods in a TreeGrid, those types will be ${isc.DocUtils.linkForRef('object:TreeGridField')} and {@link
  * com.smartgwt.client.widgets.tree.TreeNode}, respectively.
@@ -243,6 +243,7 @@ public class TreeGrid extends ListGrid  implements com.smartgwt.client.widgets.t
      * Indicates whether records can be dropped into this listGrid.
      *
      * @param canAcceptDroppedRecords canAcceptDroppedRecords Default value is false
+     * @see com.smartgwt.client.docs.Dragdrop Dragdrop overview and related methods
      */
     public void setCanAcceptDroppedRecords(Boolean canAcceptDroppedRecords) {
         setAttribute("canAcceptDroppedRecords", canAcceptDroppedRecords, true);
@@ -253,6 +254,7 @@ public class TreeGrid extends ListGrid  implements com.smartgwt.client.widgets.t
      *
      *
      * @return Boolean
+     * @see com.smartgwt.client.docs.Dragdrop Dragdrop overview and related methods
      */
     public Boolean getCanAcceptDroppedRecords()  {
         return getAttributeAsBoolean("canAcceptDroppedRecords");
@@ -262,6 +264,7 @@ public class TreeGrid extends ListGrid  implements com.smartgwt.client.widgets.t
      * Indicates whether records can be dragged from this listGrid and dropped elsewhere.
      *
      * @param canDragRecordsOut canDragRecordsOut Default value is false
+     * @see com.smartgwt.client.docs.Dragdrop Dragdrop overview and related methods
      */
     public void setCanDragRecordsOut(Boolean canDragRecordsOut) {
         setAttribute("canDragRecordsOut", canDragRecordsOut, true);
@@ -272,6 +275,7 @@ public class TreeGrid extends ListGrid  implements com.smartgwt.client.widgets.t
      *
      *
      * @return Boolean
+     * @see com.smartgwt.client.docs.Dragdrop Dragdrop overview and related methods
      */
     public Boolean getCanDragRecordsOut()  {
         return getAttributeAsBoolean("canDragRecordsOut");
@@ -281,11 +285,12 @@ public class TreeGrid extends ListGrid  implements com.smartgwt.client.widgets.t
      * Whether drops are allowed on leaf nodes. <P> Dropping is ordinarily not allowed on leaf nodes unless {@link
      * com.smartgwt.client.widgets.tree.TreeGrid#getCanReorderRecords canReorderRecords} is set.   <P> The default action for a
      * drop on a leaf node is to place the node in that leaf's parent folder.  This can be customized by overriding {@link
-     * com.smartgwt.client.widgets.tree.TreeGrid#folderDrop}. <P> Note that enabling <code>canDropOnLeaves</code> is usually
-     * only appropriate where you intend to add a custom {@link com.smartgwt.client.widgets.tree.TreeGrid#folderDrop}
-     * implementation that <b>does not</b> add a child node under the leaf.  If you want to add a child nodes to a leaf,
-     * instead of enabling canDropOnLeaves, use empty folders instead - see {@link
-     * com.smartgwt.client.widgets.tree.Tree#isFolder} for how to control whether a node is considered a folder.
+     * com.smartgwt.client.widgets.tree.TreeGrid#folderDrop TreeGrid.folderDrop}. <P> Note that enabling
+     * <code>canDropOnLeaves</code> is usually only appropriate where you intend to add a custom {@link
+     * com.smartgwt.client.widgets.tree.TreeGrid#folderDrop TreeGrid.folderDrop} implementation that <b>does not</b> add a
+     * child node under the leaf.  If you want to add a child nodes to a leaf, instead of enabling canDropOnLeaves, use empty
+     * folders instead - see {@link com.smartgwt.client.widgets.tree.Tree#isFolder Tree.isFolder} for how to control whether a
+     * node is considered a folder.
      * <p><b>Note : </b> This is an advanced setting</p>
      *
      * @param canDropOnLeaves canDropOnLeaves Default value is false
@@ -298,11 +303,12 @@ public class TreeGrid extends ListGrid  implements com.smartgwt.client.widgets.t
      * Whether drops are allowed on leaf nodes. <P> Dropping is ordinarily not allowed on leaf nodes unless {@link
      * com.smartgwt.client.widgets.tree.TreeGrid#getCanReorderRecords canReorderRecords} is set.   <P> The default action for a
      * drop on a leaf node is to place the node in that leaf's parent folder.  This can be customized by overriding {@link
-     * com.smartgwt.client.widgets.tree.TreeGrid#folderDrop}. <P> Note that enabling <code>canDropOnLeaves</code> is usually
-     * only appropriate where you intend to add a custom {@link com.smartgwt.client.widgets.tree.TreeGrid#folderDrop}
-     * implementation that <b>does not</b> add a child node under the leaf.  If you want to add a child nodes to a leaf,
-     * instead of enabling canDropOnLeaves, use empty folders instead - see {@link
-     * com.smartgwt.client.widgets.tree.Tree#isFolder} for how to control whether a node is considered a folder.
+     * com.smartgwt.client.widgets.tree.TreeGrid#folderDrop TreeGrid.folderDrop}. <P> Note that enabling
+     * <code>canDropOnLeaves</code> is usually only appropriate where you intend to add a custom {@link
+     * com.smartgwt.client.widgets.tree.TreeGrid#folderDrop TreeGrid.folderDrop} implementation that <b>does not</b> add a
+     * child node under the leaf.  If you want to add a child nodes to a leaf, instead of enabling canDropOnLeaves, use empty
+     * folders instead - see {@link com.smartgwt.client.widgets.tree.Tree#isFolder Tree.isFolder} for how to control whether a
+     * node is considered a folder.
      *
      *
      * @return Boolean
@@ -316,6 +322,7 @@ public class TreeGrid extends ListGrid  implements com.smartgwt.client.widgets.t
      * <p><b>Note : </b> This is an advanced setting</p>
      *
      * @param canReorderRecords canReorderRecords Default value is false
+     * @see com.smartgwt.client.docs.Dragdrop Dragdrop overview and related methods
      */
     public void setCanReorderRecords(Boolean canReorderRecords) {
         setAttribute("canReorderRecords", canReorderRecords, true);
@@ -326,6 +333,7 @@ public class TreeGrid extends ListGrid  implements com.smartgwt.client.widgets.t
      *
      *
      * @return Boolean
+     * @see com.smartgwt.client.docs.Dragdrop Dragdrop overview and related methods
      */
     public Boolean getCanReorderRecords()  {
         return getAttributeAsBoolean("canReorderRecords");
@@ -337,6 +345,7 @@ public class TreeGrid extends ListGrid  implements com.smartgwt.client.widgets.t
      * <code>this.canAcceptDroppedRecords</code> is true, we allow nodes to be dragged to different folders.
      *
      * @param canReparentNodes canReparentNodes Default value is null
+     * @see com.smartgwt.client.docs.Dragdrop Dragdrop overview and related methods
      */
     public void setCanReparentNodes(Boolean canReparentNodes) {
         setAttribute("canReparentNodes", canReparentNodes, true);
@@ -349,6 +358,7 @@ public class TreeGrid extends ListGrid  implements com.smartgwt.client.widgets.t
      *
      *
      * @return Boolean
+     * @see com.smartgwt.client.docs.Dragdrop Dragdrop overview and related methods
      */
     public Boolean getCanReparentNodes()  {
         return getAttributeAsBoolean("canReparentNodes");
@@ -675,24 +685,26 @@ public class TreeGrid extends ListGrid  implements com.smartgwt.client.widgets.t
     }
 
     /**
-     * The amount of gap (in pixels) between the extraIcon (see {@link com.smartgwt.client.widgets.tree.TreeGrid#getExtraIcon})
-     * or checkbox icon and the {@link com.smartgwt.client.widgets.tree.TreeGrid#getNodeIcon 'nodeIcon'}/ {@link
-     * com.smartgwt.client.widgets.tree.TreeGrid#getFolderIcon 'folderIcon'} or node text.
+     * The amount of gap (in pixels) between the extraIcon (see {@link com.smartgwt.client.widgets.tree.TreeGrid#getExtraIcon
+     * TreeGrid.getExtraIcon}) or checkbox icon and the {@link com.smartgwt.client.widgets.tree.TreeGrid#getNodeIcon
+     * 'nodeIcon'}/ {@link com.smartgwt.client.widgets.tree.TreeGrid#getFolderIcon 'folderIcon'} or node text.
      *
      * @param extraIconGap extraIconGap Default value is 2
      * @throws IllegalStateException this property cannot be changed after the component has been created
+     * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
     public void setExtraIconGap(int extraIconGap)  throws IllegalStateException {
         setAttribute("extraIconGap", extraIconGap, false);
     }
 
     /**
-     * The amount of gap (in pixels) between the extraIcon (see {@link com.smartgwt.client.widgets.tree.TreeGrid#getExtraIcon})
-     * or checkbox icon and the {@link com.smartgwt.client.widgets.tree.TreeGrid#getNodeIcon 'nodeIcon'}/ {@link
-     * com.smartgwt.client.widgets.tree.TreeGrid#getFolderIcon 'folderIcon'} or node text.
+     * The amount of gap (in pixels) between the extraIcon (see {@link com.smartgwt.client.widgets.tree.TreeGrid#getExtraIcon
+     * TreeGrid.getExtraIcon}) or checkbox icon and the {@link com.smartgwt.client.widgets.tree.TreeGrid#getNodeIcon
+     * 'nodeIcon'}/ {@link com.smartgwt.client.widgets.tree.TreeGrid#getFolderIcon 'folderIcon'} or node text.
      *
      *
      * @return int
+     * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
     public int getExtraIconGap()  {
         return getAttributeAsInt("extraIconGap");
@@ -751,6 +763,7 @@ public class TreeGrid extends ListGrid  implements com.smartgwt.client.widgets.t
      * hierarchy.
      *
      * @param indentSize indentSize Default value is 20
+     * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
     public void setIndentSize(int indentSize) {
         setAttribute("indentSize", indentSize, true);
@@ -762,6 +775,7 @@ public class TreeGrid extends ListGrid  implements com.smartgwt.client.widgets.t
      *
      *
      * @return int
+     * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
     public int getIndentSize()  {
         return getAttributeAsInt("indentSize");
@@ -769,14 +783,15 @@ public class TreeGrid extends ListGrid  implements com.smartgwt.client.widgets.t
 
     /**
      * For databound treeGrid instances, should the entire tree of data be loaded on initial  fetch, or should folders load
-     * their children as they are opened. <P> If unset, calling {@link com.smartgwt.client.widgets.tree.TreeGrid#fetchData}
-     * will default it to true, otherwise, if a ResultTree is passed to {@link
-     * com.smartgwt.client.widgets.tree.TreeGrid#setData}, the {@link com.smartgwt.client..ResultTree#getLoadDataOnDemand
-     * loadDataOnDemand} setting is respected. <P> Note that when using <code>loadDataOnDemand</code>, every node returned by
-     * the server is assumed be a folder which may load further children.  See {@link
-     * com.smartgwt.client..ResultTree#getDefaultIsFolder defaultIsFolder} for how to control this behavior.
+     * their children as they are opened. <P> If unset, calling {@link com.smartgwt.client.widgets.tree.TreeGrid#fetchData
+     * TreeGrid.fetchData} will default it to true, otherwise, if a ResultTree is passed to {@link
+     * com.smartgwt.client.widgets.tree.TreeGrid#setData TreeGrid.setData}, the {@link
+     * com.smartgwt.client..ResultTree#getLoadDataOnDemand loadDataOnDemand} setting is respected. <P> Note that when using
+     * <code>loadDataOnDemand</code>, every node returned by the server is assumed be a folder which may load further children.
+     *  See {@link com.smartgwt.client..ResultTree#getDefaultIsFolder defaultIsFolder} for how to control this behavior.
      *
      * @param loadDataOnDemand loadDataOnDemand Default value is null
+     * @see com.smartgwt.client.docs.Databinding Databinding overview and related methods
      */
     public void setLoadDataOnDemand(Boolean loadDataOnDemand) {
         setAttribute("loadDataOnDemand", loadDataOnDemand, true);
@@ -784,15 +799,16 @@ public class TreeGrid extends ListGrid  implements com.smartgwt.client.widgets.t
 
     /**
      * For databound treeGrid instances, should the entire tree of data be loaded on initial  fetch, or should folders load
-     * their children as they are opened. <P> If unset, calling {@link com.smartgwt.client.widgets.tree.TreeGrid#fetchData}
-     * will default it to true, otherwise, if a ResultTree is passed to {@link
-     * com.smartgwt.client.widgets.tree.TreeGrid#setData}, the {@link com.smartgwt.client..ResultTree#getLoadDataOnDemand
-     * loadDataOnDemand} setting is respected. <P> Note that when using <code>loadDataOnDemand</code>, every node returned by
-     * the server is assumed be a folder which may load further children.  See {@link
-     * com.smartgwt.client..ResultTree#getDefaultIsFolder defaultIsFolder} for how to control this behavior.
+     * their children as they are opened. <P> If unset, calling {@link com.smartgwt.client.widgets.tree.TreeGrid#fetchData
+     * TreeGrid.fetchData} will default it to true, otherwise, if a ResultTree is passed to {@link
+     * com.smartgwt.client.widgets.tree.TreeGrid#setData TreeGrid.setData}, the {@link
+     * com.smartgwt.client..ResultTree#getLoadDataOnDemand loadDataOnDemand} setting is respected. <P> Note that when using
+     * <code>loadDataOnDemand</code>, every node returned by the server is assumed be a folder which may load further children.
+     *  See {@link com.smartgwt.client..ResultTree#getDefaultIsFolder defaultIsFolder} for how to control this behavior.
      *
      *
      * @return Boolean
+     * @see com.smartgwt.client.docs.Databinding Databinding overview and related methods
      */
     public Boolean getLoadDataOnDemand()  {
         return getAttributeAsBoolean("loadDataOnDemand");
@@ -803,6 +819,7 @@ public class TreeGrid extends ListGrid  implements com.smartgwt.client.widgets.t
      * dragged.
      *
      * @param manyItemsImage manyItemsImage Default value is "[SKIN]folder_file.gif"
+     * @see com.smartgwt.client.docs.Dragdrop Dragdrop overview and related methods
      */
     public void setManyItemsImage(String manyItemsImage) {
         setAttribute("manyItemsImage", manyItemsImage, true);
@@ -814,6 +831,7 @@ public class TreeGrid extends ListGrid  implements com.smartgwt.client.widgets.t
      *
      *
      * @return String
+     * @see com.smartgwt.client.docs.Dragdrop Dragdrop overview and related methods
      */
     public String getManyItemsImage()  {
         return getAttributeAsString("manyItemsImage");
@@ -944,11 +962,15 @@ public class TreeGrid extends ListGrid  implements com.smartgwt.client.widgets.t
     }
 
     /**
-     * Specifies whether folders and leaves should be segregated in the treeGrid display.          With separateFolders:true
-     * and sortDirection:"descending", folders are displayed          before their sibling leaves; with
-     * sortDirection:"ascending", leaves are displayed          before their sibling folders.
+     * If specified, this attribute will override {@link com.smartgwt.client.widgets.tree.Tree#getSeparateFolders
+     * separateFolders} on the data for this treeGrid. <P> Specifies whether folders and leaves should be segregated in the
+     * treeGrid display. Use {@link com.smartgwt.client.widgets.tree.TreeGrid#getSortFoldersBeforeLeaves
+     * sortFoldersBeforeLeaves} to customize whether folders appear before  or after their sibling leaves. <P> If unset, at the
+     * treeGrid level, the property can be set directly on {@link com.smartgwt.client.widgets.tree.TreeGrid#getData 'the tree
+     * data object'} or for dataBound TreeGrids on the ${isc.DocUtils.linkForRef('treeGrid.dataProperties','dataProperties
+     * configuration object')}.
      *
-     * @param separateFolders separateFolders Default value is false
+     * @param separateFolders separateFolders Default value is null
      * @throws IllegalStateException this property cannot be changed after the component has been created
      */
     public void setSeparateFolders(Boolean separateFolders)  throws IllegalStateException {
@@ -956,9 +978,13 @@ public class TreeGrid extends ListGrid  implements com.smartgwt.client.widgets.t
     }
 
     /**
-     * Specifies whether folders and leaves should be segregated in the treeGrid display.          With separateFolders:true
-     * and sortDirection:"descending", folders are displayed          before their sibling leaves; with
-     * sortDirection:"ascending", leaves are displayed          before their sibling folders.
+     * If specified, this attribute will override {@link com.smartgwt.client.widgets.tree.Tree#getSeparateFolders
+     * separateFolders} on the data for this treeGrid. <P> Specifies whether folders and leaves should be segregated in the
+     * treeGrid display. Use {@link com.smartgwt.client.widgets.tree.TreeGrid#getSortFoldersBeforeLeaves
+     * sortFoldersBeforeLeaves} to customize whether folders appear before  or after their sibling leaves. <P> If unset, at the
+     * treeGrid level, the property can be set directly on {@link com.smartgwt.client.widgets.tree.TreeGrid#getData 'the tree
+     * data object'} or for dataBound TreeGrids on the ${isc.DocUtils.linkForRef('treeGrid.dataProperties','dataProperties
+     * configuration object')}.
      *
      *
      * @return Boolean
@@ -1165,10 +1191,10 @@ public class TreeGrid extends ListGrid  implements com.smartgwt.client.widgets.t
     /**
      * Specifies whether the root node should be displayed in the treeGrid. <P> This property is only available for "children"
      * modelType trees, hence is not allowed for trees that load data from the server dynamically via {@link
-     * com.smartgwt.client.widgets.tree.TreeGrid#fetchData}.   <P> To get the equivalent of a visible "root" node in a tree
-     * that loads data dynamically, add a singular, top-level parent to the data.  However, note that this top-level parent
-     * will technically be the only child of root, and the implicit root object will be returned by {@link
-     * com.smartgwt.client.widgets.tree.Tree#getRoot}.
+     * com.smartgwt.client.widgets.tree.TreeGrid#fetchData TreeGrid.fetchData}.   <P> To get the equivalent of a visible "root"
+     * node in a tree that loads data dynamically, add a singular, top-level parent to the data.  However, note that this
+     * top-level parent will technically be the only child of root, and the implicit root object will be returned by {@link
+     * com.smartgwt.client.widgets.tree.Tree#getRoot Tree.getRoot}.
      *
      * @param showRoot showRoot Default value is false
      * @throws IllegalStateException this property cannot be changed after the component has been created
@@ -1180,16 +1206,46 @@ public class TreeGrid extends ListGrid  implements com.smartgwt.client.widgets.t
     /**
      * Specifies whether the root node should be displayed in the treeGrid. <P> This property is only available for "children"
      * modelType trees, hence is not allowed for trees that load data from the server dynamically via {@link
-     * com.smartgwt.client.widgets.tree.TreeGrid#fetchData}.   <P> To get the equivalent of a visible "root" node in a tree
-     * that loads data dynamically, add a singular, top-level parent to the data.  However, note that this top-level parent
-     * will technically be the only child of root, and the implicit root object will be returned by {@link
-     * com.smartgwt.client.widgets.tree.Tree#getRoot}.
+     * com.smartgwt.client.widgets.tree.TreeGrid#fetchData TreeGrid.fetchData}.   <P> To get the equivalent of a visible "root"
+     * node in a tree that loads data dynamically, add a singular, top-level parent to the data.  However, note that this
+     * top-level parent will technically be the only child of root, and the implicit root object will be returned by {@link
+     * com.smartgwt.client.widgets.tree.Tree#getRoot Tree.getRoot}.
      *
      *
      * @return Boolean
      */
     public Boolean getShowRoot()  {
         return getAttributeAsBoolean("showRoot");
+    }
+
+    /**
+     * If specified, this attribute will override {@link com.smartgwt.client.widgets.tree.Tree#getSortFoldersBeforeLeaves
+     * sortFoldersBeforeLeaves} on the data for this treeGrid. <P> Specifies whether when {@link
+     * com.smartgwt.client.widgets.tree.Tree#getSeparateFolders separateFolders} is true, folders should be displayed before or
+     * after their sibling leaves in a sorted tree. If set to true, with sortDirection set to Array.ASCENDING, folders are
+     * displayed before their sibling leaves and with sort direction set to Array.DESCENDING they are displayed after. To
+     * invert this behavior, set this property to false.
+     *
+     * @param sortFoldersBeforeLeaves sortFoldersBeforeLeaves Default value is null
+     * @throws IllegalStateException this property cannot be changed after the component has been created
+     */
+    public void setSortFoldersBeforeLeaves(Boolean sortFoldersBeforeLeaves)  throws IllegalStateException {
+        setAttribute("sortFoldersBeforeLeaves", sortFoldersBeforeLeaves, false);
+    }
+
+    /**
+     * If specified, this attribute will override {@link com.smartgwt.client.widgets.tree.Tree#getSortFoldersBeforeLeaves
+     * sortFoldersBeforeLeaves} on the data for this treeGrid. <P> Specifies whether when {@link
+     * com.smartgwt.client.widgets.tree.Tree#getSeparateFolders separateFolders} is true, folders should be displayed before or
+     * after their sibling leaves in a sorted tree. If set to true, with sortDirection set to Array.ASCENDING, folders are
+     * displayed before their sibling leaves and with sort direction set to Array.DESCENDING they are displayed after. To
+     * invert this behavior, set this property to false.
+     *
+     *
+     * @return Boolean
+     */
+    public Boolean getSortFoldersBeforeLeaves()  {
+        return getAttributeAsBoolean("sortFoldersBeforeLeaves");
     }
 
     /**
@@ -1217,7 +1273,7 @@ public class TreeGrid extends ListGrid  implements com.smartgwt.client.widgets.t
     /**
      * Overridden to disallow editing of the {@link com.smartgwt.client.widgets.tree.TreeNode#getName 'name'} field of this
      * grid's data tree. Also disallows editing of the auto-generated tree field, which displays the result of {@link
-     * com.smartgwt.client.widgets.tree.Tree#getTitle} on the node.
+     * com.smartgwt.client.widgets.tree.Tree#getTitle Tree.getTitle} on the node.
      *
      * @return Whether to allow editing this cell
      */
@@ -1236,8 +1292,8 @@ public class TreeGrid extends ListGrid  implements com.smartgwt.client.widgets.t
      * Notification method fired whenever this TreeGrid receives new data nodes from the  dataSource. Only applies to databound
      * TreeGrids where {@link com.smartgwt.client.widgets.tree.TreeGrid#getData data} is a  {@link
      * com.smartgwt.client..ResultTree} - either explicitly created and applied via {@link
-     * com.smartgwt.client.widgets.tree.TreeGrid#setData} or automatically generated via a {@link
-     * com.smartgwt.client.widgets.tree.TreeGrid#fetchData} call.
+     * com.smartgwt.client.widgets.tree.TreeGrid#setData TreeGrid.setData} or automatically generated via a {@link
+     * com.smartgwt.client.widgets.tree.TreeGrid#fetchData TreeGrid.fetchData} call.
      *
      * @param handler the dataArrived handler
      * @return {@link HandlerRegistration} used to remove this handler
@@ -1304,8 +1360,8 @@ public class TreeGrid extends ListGrid  implements com.smartgwt.client.widgets.t
      * Add a folderClosed handler.
      * <p>
      * This method is called when a folder is closed either via the user manipulating the expand/collapse control in the UI or
-     * via {@link com.smartgwt.client.widgets.tree.TreeGrid#closeFolder}.  You can return <code>false</code> to cancel the
-     * close.
+     * via {@link com.smartgwt.client.widgets.tree.TreeGrid#closeFolder TreeGrid.closeFolder}.  You can return
+     * <code>false</code> to cancel the close.
      *
      * @param handler the folderClosed handler
      * @return {@link HandlerRegistration} used to remove this handler
@@ -1380,7 +1436,8 @@ public class TreeGrid extends ListGrid  implements com.smartgwt.client.widgets.t
      * Add a folderOpened handler.
      * <p>
      * This method is called when a folder is opened either via the user manipulating the expand/collapse control in the UI or
-     * via {@link com.smartgwt.client.widgets.tree.TreeGrid#openFolder}.  You can return <code>false</code> to cancel the open.
+     * via {@link com.smartgwt.client.widgets.tree.TreeGrid#openFolder TreeGrid.openFolder}.  You can return <code>false</code>
+     * to cancel the open.
      *
      * @param handler the folderOpened handler
      * @return {@link HandlerRegistration} used to remove this handler
@@ -1462,8 +1519,8 @@ public class TreeGrid extends ListGrid  implements com.smartgwt.client.widgets.t
             
     /**
      * Returns a snapshot of the current open state of this grid's data as a {@link java.lang.String} object.<br> This object
-     * can be passed to {@link com.smartgwt.client.widgets.tree.TreeGrid#setOpenState} to open the same set of folders within
-     * the treeGrid's data (assuming the nodes are still present in the data).
+     * can be passed to {@link com.smartgwt.client.widgets.tree.TreeGrid#setOpenState TreeGrid.setOpenState} to open the same
+     * set of folders within the treeGrid's data (assuming the nodes are still present in the data).
      *
      * @return current sort state for the grid.
      */
@@ -1474,8 +1531,8 @@ public class TreeGrid extends ListGrid  implements com.smartgwt.client.widgets.t
             
     /**
      * Returns a snapshot of the current selection within this treeGrid as  a {@link java.lang.String} object.<br> This object
-     * can be passed to {@link com.smartgwt.client.widgets.tree.TreeGrid#setSelectedPaths} to reset this grid's selection the
-     * current state (assuming the same data is present in the grid).<br>
+     * can be passed to {@link com.smartgwt.client.widgets.tree.TreeGrid#setSelectedPaths TreeGrid.setSelectedPaths} to reset
+     * this grid's selection the current state (assuming the same data is present in the grid).<br>
      *
      * @return current state of this grid's selection
      */
@@ -1557,8 +1614,8 @@ public class TreeGrid extends ListGrid  implements com.smartgwt.client.widgets.t
      * Add a nodeClick handler.
      * <p>
      * This method is called when a leaf or folder record is clicked on.  Note that if you set up a callback for
-     * <code>nodeClick()</code> and e.g. {@link com.smartgwt.client.widgets.tree.TreeGrid#addLeafClickHandler}, then both will
-     * fire (in that order) if a leaf is clicked on.
+     * <code>nodeClick()</code> and e.g. {@link com.smartgwt.client.widgets.tree.TreeGrid#addLeafClickHandler
+     * TreeGrid.addLeafClickHandler}, then both will fire (in that order) if a leaf is clicked on.
      *
      * @param handler the nodeClick handler
      * @return {@link HandlerRegistration} used to remove this handler
@@ -1592,9 +1649,9 @@ public class TreeGrid extends ListGrid  implements com.smartgwt.client.widgets.t
      * Add a nodeContextClick handler.
      * <p>
      * This method is called when a context click occurs on a leaf or folder record.  Note that if you set up a callback for
-     * <code>nodeContextClick()</code> and e.g. {@link com.smartgwt.client.widgets.tree.TreeGrid#addLeafContextClickHandler},
-     * then both will fire (in that order) if a leaf is contextclicked - unless <code>nodeContextClick()</code> returns false,
-     * in which case no further contextClick callbacks will be called.
+     * <code>nodeContextClick()</code> and e.g. {@link com.smartgwt.client.widgets.tree.TreeGrid#addLeafContextClickHandler
+     * TreeGrid.addLeafContextClickHandler}, then both will fire (in that order) if a leaf is contextclicked - unless
+     * <code>nodeContextClick()</code> returns false, in which case no further contextClick callbacks will be called.
      *
      * @param handler the nodeContextClick handler
      * @return {@link HandlerRegistration} used to remove this handler
@@ -1631,8 +1688,8 @@ public class TreeGrid extends ListGrid  implements com.smartgwt.client.widgets.t
             
     /**
      * Handle a doubleClick on a tree node - override of ListGrid stringMethod of same name.  If the node is a folder, this
-     * implementation calls {@link com.smartgwt.client.widgets.tree.TreeGrid#toggleFolder} on it.  If the node is a leaf, calls
-     * {@link com.smartgwt.client.widgets.tree.TreeGrid#openLeaf} on it.
+     * implementation calls {@link com.smartgwt.client.widgets.tree.TreeGrid#toggleFolder TreeGrid.toggleFolder} on it.  If the
+     * node is a leaf, calls {@link com.smartgwt.client.widgets.tree.TreeGrid#openLeaf TreeGrid.openLeaf} on it.
      */
     public native void recordDoubleClick() /*-{
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
@@ -1642,7 +1699,7 @@ public class TreeGrid extends ListGrid  implements com.smartgwt.client.widgets.t
     /**
      * Reset this set of open folders within this grid's data to match the  {@link java.lang.String} object passed in.<br> Used
      * to restore previous state retrieved from the grid by a call to  {@link
-     * com.smartgwt.client.widgets.tree.TreeGrid#getOpenState}.
+     * com.smartgwt.client.widgets.tree.TreeGrid#getOpenState TreeGrid.getOpenState}.
      * @param openState Object describing the desired set of open folders.
      */
     public native void setOpenState(String openState) /*-{
@@ -1652,7 +1709,8 @@ public class TreeGrid extends ListGrid  implements com.smartgwt.client.widgets.t
             
     /**
      * Reset this grid's selection to match the {@link java.lang.String} object passed in.<br> Used to restore previous state
-     * retrieved from the grid by a call to  {@link com.smartgwt.client.widgets.tree.TreeGrid#getSelectedPaths}.
+     * retrieved from the grid by a call to  {@link com.smartgwt.client.widgets.tree.TreeGrid#getSelectedPaths
+     * TreeGrid.getSelectedPaths}.
      * @param selectedPaths Object describing the desired selection state of                                              the grid
      */
     public native void setSelectedPaths(String selectedPaths) /*-{

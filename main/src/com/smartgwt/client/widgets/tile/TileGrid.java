@@ -95,6 +95,7 @@ public class TileGrid extends TileLayout  implements DataBoundComponent, com.sma
      * <p><b>Note : </b> This is an advanced setting</p>
      *
      * @param animateTileChange animateTileChange Default value is true
+     * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
     public void setAnimateTileChange(Boolean animateTileChange) {
         setAttribute("animateTileChange", animateTileChange, true);
@@ -106,6 +107,7 @@ public class TileGrid extends TileLayout  implements DataBoundComponent, com.sma
      *
      *
      * @return Boolean
+     * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
     public Boolean getAnimateTileChange()  {
         return getAttributeAsBoolean("animateTileChange");
@@ -114,10 +116,11 @@ public class TileGrid extends TileLayout  implements DataBoundComponent, com.sma
     /**
      * If {@link com.smartgwt.client.widgets.tile.TileGrid#getAutoFetchData autoFetchData} is <code>true</code>, this attribute
      * allows the developer to specify a textMatchStyle for the initial {@link
-     * com.smartgwt.client.widgets.tile.TileGrid#fetchData} call.
+     * com.smartgwt.client.widgets.tile.TileGrid#fetchData TileGrid.fetchData} call.
      *
      * @param autoFetchTextMatchStyle autoFetchTextMatchStyle Default value is "substring"
      * @throws IllegalStateException this property cannot be changed after the component has been created
+     * @see com.smartgwt.client.docs.Databinding Databinding overview and related methods
      */
     public void setAutoFetchTextMatchStyle(TextMatchStyle autoFetchTextMatchStyle)  throws IllegalStateException {
         setAttribute("autoFetchTextMatchStyle", autoFetchTextMatchStyle.getValue(), false);
@@ -126,10 +129,11 @@ public class TileGrid extends TileLayout  implements DataBoundComponent, com.sma
     /**
      * If {@link com.smartgwt.client.widgets.tile.TileGrid#getAutoFetchData autoFetchData} is <code>true</code>, this attribute
      * allows the developer to specify a textMatchStyle for the initial {@link
-     * com.smartgwt.client.widgets.tile.TileGrid#fetchData} call.
+     * com.smartgwt.client.widgets.tile.TileGrid#fetchData TileGrid.fetchData} call.
      *
      *
      * @return TextMatchStyle
+     * @see com.smartgwt.client.docs.Databinding Databinding overview and related methods
      */
     public TextMatchStyle getAutoFetchTextMatchStyle()  {
         return EnumUtil.getEnum(TextMatchStyle.values(), getAttribute("autoFetchTextMatchStyle"));
@@ -139,6 +143,7 @@ public class TileGrid extends TileLayout  implements DataBoundComponent, com.sma
      * Defines a tileGrid's clickable-selection behavior.
      *
      * @param selectionType selectionType Default value is Selection.MULTIPLE
+     * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
     public void setSelectionType(SelectionStyle selectionType) {
         setAttribute("selectionType", selectionType.getValue(), true);
@@ -149,6 +154,7 @@ public class TileGrid extends TileLayout  implements DataBoundComponent, com.sma
      *
      *
      * @return SelectionStyle
+     * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
     public SelectionStyle getSelectionType()  {
         return EnumUtil.getEnum(SelectionStyle.values(), getAttribute("selectionType"));
@@ -159,6 +165,7 @@ public class TileGrid extends TileLayout  implements DataBoundComponent, com.sma
      *
      * @param showAllRecords showAllRecords Default value is false
      * @throws IllegalStateException this property cannot be changed after the component has been created
+     * @see com.smartgwt.client.docs.Basics Basics overview and related methods
      */
     public void setShowAllRecords(Boolean showAllRecords)  throws IllegalStateException {
         setAttribute("showAllRecords", showAllRecords, false);
@@ -169,6 +176,7 @@ public class TileGrid extends TileLayout  implements DataBoundComponent, com.sma
      *
      *
      * @return Boolean
+     * @see com.smartgwt.client.docs.Basics Basics overview and related methods
      */
     public Boolean getShowAllRecords()  {
         return getAttributeAsBoolean("showAllRecords");
@@ -179,6 +187,7 @@ public class TileGrid extends TileLayout  implements DataBoundComponent, com.sma
      *
      * @param styleName styleName Default value is "tileGrid"
      * @throws IllegalStateException this property cannot be changed after the component has been created
+     * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
     public void setStyleName(String styleName)  throws IllegalStateException {
         setAttribute("styleName", styleName, false);
@@ -189,6 +198,7 @@ public class TileGrid extends TileLayout  implements DataBoundComponent, com.sma
      *
      *
      * @return String
+     * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
     public String getStyleName()  {
         return getAttributeAsString("styleName");
@@ -237,7 +247,8 @@ public class TileGrid extends TileLayout  implements DataBoundComponent, com.sma
     // ********************* Methods ***********************
             
     /**
-     * This is not allowed for tileGrid. Instead, use {@link com.smartgwt.client.widgets.tile.TileGrid#addData}.
+     * This is not allowed for tileGrid. Instead, use {@link com.smartgwt.client.widgets.tile.TileGrid#addData
+     * TileGrid.addData}.
      */
     public native void addTile() /*-{
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
@@ -248,8 +259,8 @@ public class TileGrid extends TileLayout  implements DataBoundComponent, com.sma
      * Notification method fired when new data arrives from the server to be displayed in this tileGrid, (for example in
      * response to the user scrolling a new set of tiles into view). Only applies to databound tileGrid where the {@link
      * com.smartgwt.client.widgets.tile.TileGrid#getData 'data'} attribute is a {@link com.smartgwt.client.data.ResultSet}.
-     * This method is fired directly in response to {@link com.smartgwt.client.data.ResultSet#addDataArrivedHandler} firing on
-     * the data object.
+     * This method is fired directly in response to {@link com.smartgwt.client.data.ResultSet#addDataArrivedHandler
+     * ResultSet.addDataArrivedHandler} firing on the data object.
      * @param startRecord starting index of the newly loaded set of records
      * @param endRecord ending index of the newly loaded set of records (non inclusive).
      */
@@ -267,9 +278,9 @@ public class TileGrid extends TileLayout  implements DataBoundComponent, com.sma
      * com.smartgwt.client.data.DSRequest#getExportResults 'exportResults'} for further detail. <P> Note that data exported via
      * this method does not include any client-side formatting and relies on both the Smart GWT server and server-side
      * DataSources.  To export client-data  with formatters applied,  see {@link
-     * com.smartgwt.client.widgets.DataBoundComponent#exportClientData}, which still requires the Smart GWT server but does not
-     * rely on server-side DataSources. <P> For more information on exporting data, see {@link
-     * com.smartgwt.client.data.DataSource#exportData}.
+     * com.smartgwt.client.widgets.DataBoundComponent#exportClientData DataBoundComponent.exportClientData}, which still
+     * requires the Smart GWT server but does not rely on server-side DataSources. <P> For more information on exporting data,
+     * see {@link com.smartgwt.client.data.DataSource#exportData DataSource.exportData}.
      */
     public native void exportData() /*-{
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
@@ -285,10 +296,11 @@ public class TileGrid extends TileLayout  implements DataBoundComponent, com.sma
      * com.smartgwt.client.data.DSRequest#getExportResults 'exportResults'} for further detail. <P> Note that data exported via
      * this method does not include any client-side formatting and relies on both the Smart GWT server and server-side
      * DataSources.  To export client-data  with formatters applied,  see {@link
-     * com.smartgwt.client.widgets.DataBoundComponent#exportClientData}, which still requires the Smart GWT server but does not
-     * rely on server-side DataSources. <P> For more information on exporting data, see {@link
-     * com.smartgwt.client.data.DataSource#exportData}.
+     * com.smartgwt.client.widgets.DataBoundComponent#exportClientData DataBoundComponent.exportClientData}, which still
+     * requires the Smart GWT server but does not rely on server-side DataSources. <P> For more information on exporting data,
+     * see {@link com.smartgwt.client.data.DataSource#exportData DataSource.exportData}.
      * @param requestProperties additional properties to set on the DSRequest                                            that will be issued
+     * @see com.smartgwt.client.docs.DataBoundComponentMethods DataBoundComponentMethods overview and related methods
      */
     public native void exportData(DSRequest requestProperties) /*-{
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
@@ -297,9 +309,10 @@ public class TileGrid extends TileLayout  implements DataBoundComponent, com.sma
             
     /**
      * Return "title" HTML to display as a drag tracker when the user drags some record.<br> Default implementation will
-     * display the cell value for the title field (see  {@link com.smartgwt.client.widgets.grid.ListGrid#getTitleField}) for
-     * the record(s) being dragged (including any icons / custom formatting / styling, etc). <p> Note: Only called if {@link
-     * com.smartgwt.client.widgets.grid.ListGrid#getDragTrackerMode dragTrackerMode} is set to <code>"title"</code>.
+     * display the cell value for the title field (see  {@link com.smartgwt.client.widgets.grid.ListGrid#getTitleField
+     * ListGrid.getTitleField}) for the record(s) being dragged (including any icons / custom formatting / styling, etc). <p>
+     * Note: Only called if {@link com.smartgwt.client.widgets.grid.ListGrid#getDragTrackerMode dragTrackerMode} is set to
+     * <code>"title"</code>.
      * @param record First selected record being dragged
      * @param rowNum row index of first record being dragged
      *
@@ -312,9 +325,9 @@ public class TileGrid extends TileLayout  implements DataBoundComponent, com.sma
             
     /**
      * Returns a snapshot of the current presentation of this grid's fields as  a {@link java.lang.String} object. <P> This
-     * object can be passed to {@link com.smartgwt.client.widgets.tile.TileGrid#setFieldState} to reset this grid's fields to
-     * the current state. <P> Note that the information stored includes the current width and visibility of each of this 
-     * grid's fields.
+     * object can be passed to {@link com.smartgwt.client.widgets.tile.TileGrid#setFieldState TileGrid.setFieldState} to reset
+     * this grid's fields to the current state. <P> Note that the information stored includes the current width and visibility
+     * of each of this  grid's fields.
      *
      * @return current state of this grid's fields.
      */
@@ -327,6 +340,7 @@ public class TileGrid extends TileLayout  implements DataBoundComponent, com.sma
      * Return the first selected record in this component
      *
      * @return first selected record, or null if nothing selected
+     * @see com.smartgwt.client.docs.Selection Selection overview and related methods
      */
     public native TileRecord getSelectedRecord() /*-{
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
@@ -414,7 +428,8 @@ public class TileGrid extends TileLayout  implements DataBoundComponent, com.sma
    }-*/;
             
     /**
-     * This is not allowed for tileGrid. Instead, use {@link com.smartgwt.client.widgets.tile.TileGrid#removeData}.
+     * This is not allowed for tileGrid. Instead, use {@link com.smartgwt.client.widgets.tile.TileGrid#removeData
+     * TileGrid.removeData}.
      */
     public native void removeTile() /*-{
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
@@ -459,7 +474,7 @@ public class TileGrid extends TileLayout  implements DataBoundComponent, com.sma
     /**
      * Sets some presentation properties (visibility, width, userFormula and userSummary) of the  grid fields based on the
      * {@link java.lang.String} object passed in.<br> Used to restore previous state retrieved from the grid by a call to
-     * {@link com.smartgwt.client.widgets.tile.TileGrid#getFieldState}.
+     * {@link com.smartgwt.client.widgets.tile.TileGrid#getFieldState TileGrid.getFieldState}.
      * @param fieldState state to apply to the grid's fields.
      */
     public native void setFieldState(String fieldState) /*-{

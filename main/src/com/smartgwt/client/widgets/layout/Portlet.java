@@ -134,7 +134,7 @@ public class Portlet extends Window {
     /**
      * closeClick overridden to show {@link com.smartgwt.client.widgets.layout.Portlet#getCloseConfirmationMessage
      * closeConfirmationMessage} to the user before removing the portlet from the PortalLayout via {@link
-     * com.smartgwt.client.widgets.layout.PortalLayout#removePortlet}
+     * com.smartgwt.client.widgets.layout.PortalLayout#removePortlet PortalLayout.removePortlet}
      */
     public native void closeClick() /*-{
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();

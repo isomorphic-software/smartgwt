@@ -59,8 +59,9 @@ import com.google.gwt.event.shared.HasHandlers;
  * HiddenItems track a value but have no visible appearance and do not take up space in the form layout. <P> When using
  * Smart GWT databinding it is usually not necessary to use a HiddenItem, since the DynamicForm will track values for which
  * no actual form control exists, and will submit these 'extra' values when {@link
- * com.smartgwt.client.widgets.form.DynamicForm#saveData} is called.  HiddenItems only apply to forms that are submitted
- * like ordinary HTML forms, via the {@link com.smartgwt.client.widgets.form.DynamicForm#submitForm} method.
+ * com.smartgwt.client.widgets.form.DynamicForm#saveData DynamicForm.saveData} is called.  HiddenItems only apply to forms
+ * that are submitted like ordinary HTML forms, via the {@link com.smartgwt.client.widgets.form.DynamicForm#submitForm
+ * DynamicForm.submitForm} method.
  */
 public class HiddenItem extends FormItem {
 
@@ -94,6 +95,7 @@ public class HiddenItem extends FormItem {
      * hidden fields don't take up any columns
      *
      * @param colSpan colSpan Default value is 0
+     * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
     public void setColSpan(int colSpan) {
         setAttribute("colSpan", colSpan);
@@ -104,6 +106,7 @@ public class HiddenItem extends FormItem {
      *
      *
      * @return int
+     * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
     public int getColSpan()  {
         return getAttributeAsInt("colSpan");
@@ -113,6 +116,7 @@ public class HiddenItem extends FormItem {
      * hidden fields don't take up any rows
      *
      * @param rowSpan rowSpan Default value is 0
+     * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
     public void setRowSpan(int rowSpan) {
         setAttribute("rowSpan", rowSpan);
@@ -123,6 +127,7 @@ public class HiddenItem extends FormItem {
      *
      *
      * @return int
+     * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
     public int getRowSpan()  {
         return getAttributeAsInt("rowSpan");
@@ -132,6 +137,7 @@ public class HiddenItem extends FormItem {
      * we never show a separate title cell for hidden fields
      *
      * @param showTitle showTitle Default value is false
+     * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
     public void setShowTitle(Boolean showTitle) {
         setAttribute("showTitle", showTitle);
@@ -142,6 +148,7 @@ public class HiddenItem extends FormItem {
      *
      *
      * @return Boolean
+     * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
     public Boolean getShowTitle()  {
         return getAttributeAsBoolean("showTitle");
@@ -152,6 +159,7 @@ public class HiddenItem extends FormItem {
     // ********************* Static Methods ***********************
 
 }
+
 
 
 

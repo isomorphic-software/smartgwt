@@ -120,8 +120,8 @@ public class RPCResponse extends DataClass {
 
 
     /**
-     * ID of the transaction sent to the server via {@link com.smartgwt.client.rpc.RPCManager#sendQueue} containing the {@link
-     * com.smartgwt.client.rpc.RPCRequest} associated with this response.
+     * ID of the transaction sent to the server via {@link com.smartgwt.client.rpc.RPCManager#sendQueue RPCManager.sendQueue}
+     * containing the {@link com.smartgwt.client.rpc.RPCRequest} associated with this response.
      *
      *
      * @return Integer

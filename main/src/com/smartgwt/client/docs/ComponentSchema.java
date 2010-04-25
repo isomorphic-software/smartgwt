@@ -21,16 +21,16 @@ package com.smartgwt.client.docs;
  * the filename (ID="MyListGrid" means the&#010 filename must be MyListGrid.ds.xml) and typically also matches the name of
  * the class.&#010 <li>{@link com.smartgwt.client.data.DataSource#getInheritsFrom inheritsFrom}="ListGrid" inherits the
  * ListGrid property definitions via&#010 {@link com.smartgwt.client.data.DataSource#getInheritsFrom inheritsFrom}.  &#010
- * <li>instanceConstructor="MyListGrid" indicates the Smart GWT class that&#010 {@link com.smartgwt.client..Class#create}
- * should be called on to construct an instance.&#010 <li>showLocalFieldsOnly is a boolean that, when set to true, tells
- * the {@link com.smartgwt.client..VisualBuilder}&#010 to show only the fields declared in this schema in the component
- * editor.  Otherwise fields&#010 inherited via {@link com.smartgwt.client.data.DataSource#getInheritsFrom inheritsFrom}
- * (all the way up the chain) are also included.&#010 <li>showSuperClassEvents is a boolean that, like showLocalFieldsOnly,
- * optionally restricts&#010 the list of events shown in the Events tab of the {@link com.smartgwt.client..VisualBuilder}
- * to those defined in&#010 this schema only.&#010 <li>showSuperClassActions is a boolean that optionally restricts the
- * list of actions shown&#010 in the menu when you map a component Event to a component Action within {@link
- * com.smartgwt.client..VisualBuilder}&#010 to those defined in this schema only.&#010 </ul>&#010 <P>&#010 <b>Declaring
- * custom properties</b>&#010 <P>&#010 Custom properties are declared via {@link
+ * <li>instanceConstructor="MyListGrid" indicates the Smart GWT class that&#010 {@link com.smartgwt.client..Class#create
+ * Class.create} should be called on to construct an instance.&#010 <li>showLocalFieldsOnly is a boolean that, when set to
+ * true, tells the {@link com.smartgwt.client..VisualBuilder}&#010 to show only the fields declared in this schema in the
+ * component editor.  Otherwise fields&#010 inherited via {@link com.smartgwt.client.data.DataSource#getInheritsFrom
+ * inheritsFrom} (all the way up the chain) are also included.&#010 <li>showSuperClassEvents is a boolean that, like
+ * showLocalFieldsOnly, optionally restricts&#010 the list of events shown in the Events tab of the {@link
+ * com.smartgwt.client..VisualBuilder} to those defined in&#010 this schema only.&#010 <li>showSuperClassActions is a
+ * boolean that optionally restricts the list of actions shown&#010 in the menu when you map a component Event to a
+ * component Action within {@link com.smartgwt.client..VisualBuilder}&#010 to those defined in this schema only.&#010
+ * </ul>&#010 <P>&#010 <b>Declaring custom properties</b>&#010 <P>&#010 Custom properties are declared via {@link
  * com.smartgwt.client.data.DataSource#getFields 'fields'} as for an ordinary&#010 {@link
  * com.smartgwt.client.data.DataSource}.  As with ordinary DataSources, it is legal to redeclare inherited fields&#010 in
  * order to modify properties such as {@link com.smartgwt.client.data.DataSourceField#getEditorType
@@ -59,24 +59,24 @@ package com.smartgwt.client.docs;
  * Actions</b>&#010 <P>&#010 Events and Actions are declared via a methods array.  In order for a method to be
  * considered&#010 an event, it needs to have a method definition in the methods array (or be publicly&#010 documented in
  * the Smart GWT reference) and have been added to&#010 the class as a {@link com.smartgwt.client.docs.StringMethods
- * 'StringMethod'} via {@link com.smartgwt.client..Class#registerStringMethods}.&#010 <p>&#010 In order for a method to be
- * considered an action, it needs to have a method definition in&#010 the methods array and have the <code>action</code>
- * property set to <code>true</code>.  For&#010 example, the following is a definition of the 'hide' action available on
- * any Canvas, as&#010 copied from Canvas.ds.xml:&#010 <pre>&#010     &lt;methods&gt;&#010         &lt;method name="hide"
- * title="Hide" action="true"/&gt;&#010     &lt;/methods&gt;&#010 </pre>&#010 For custom component actions, an array of
- * expected parameters may be specified using the&#010 <code>params</code> attribute. Each entry in this array should have
- * a specified type.&#010 By doing this, you allow the visual builder to pass parameters through to actions when setting
- * &#010 up events that call actions (possibly on another component).&#010 For example if you had a component with a custom
- * action that expected to be passed a single&#010 parameter of type {@link
+ * 'StringMethod'} via {@link com.smartgwt.client..Class#registerStringMethods Class.registerStringMethods}.&#010 <p>&#010
+ * In order for a method to be considered an action, it needs to have a method definition in&#010 the methods array and
+ * have the <code>action</code> property set to <code>true</code>.  For&#010 example, the following is a definition of the
+ * 'hide' action available on any Canvas, as&#010 copied from Canvas.ds.xml:&#010 <pre>&#010     &lt;methods&gt;&#010      
+ * &lt;method name="hide" title="Hide" action="true"/&gt;&#010     &lt;/methods&gt;&#010 </pre>&#010 For custom component
+ * actions, an array of expected parameters may be specified using the&#010 <code>params</code> attribute. Each entry in
+ * this array should have a specified type.&#010 By doing this, you allow the visual builder to pass parameters through to
+ * actions when setting &#010 up events that call actions (possibly on another component).&#010 For example if you had a
+ * component with a custom action that expected to be passed a single&#010 parameter of type {@link
  * com.smartgwt.client.widgets.grid.ListGridRecord} you could define it as follows:&#010 <pre>&#010     &lt;method
  * name="showRecordDetails" title="Show Record Details" action="true"&gt;&#010         &lt;params&gt;&#010            
  * &lt;param type="ListGridRecord"/&gt;&#010         &lt;params&gt;&#010     &lt;/method&gt;&#010 </pre>&#010 If a user
  * working within the visualBuilder then added ListGrid to the page and used the "+" icon&#010 to associate the {@link
- * com.smartgwt.client.widgets.grid.ListGrid#addRecordClickHandler} event with this custom method, the&#010 Visual Builder
- * logic would automatically associate the parameters available in the fired event&#010 (in this case
- * <code>recordClick</code>) with the expected parameters for the action to fire &#010 by type. So the <code>record</code>
- * parameter of the event (known to be of type &#010 <code>ListGridRecord</code>) would be passed through to this custom
- * <i>showRecordDetails</i>&#010 action as the first parameter.
+ * com.smartgwt.client.widgets.grid.ListGrid#addRecordClickHandler ListGrid.addRecordClickHandler} event with this custom
+ * method, the&#010 Visual Builder logic would automatically associate the parameters available in the fired event&#010 (in
+ * this case <code>recordClick</code>) with the expected parameters for the action to fire &#010 by type. So the
+ * <code>record</code> parameter of the event (known to be of type &#010 <code>ListGridRecord</code>) would be passed
+ * through to this custom <i>showRecordDetails</i>&#010 action as the first parameter.
  * @see com.smartgwt.client.data.DataSourceField#getXmlAttribute
  * @see com.smartgwt.client.data.DataSourceField#getMultiple
  * @see com.smartgwt.client.data.DataSourceField#getChildTagName

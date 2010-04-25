@@ -60,6 +60,7 @@ import com.google.gwt.event.shared.HasHandlers;
  * value of  {@link com.smartgwt.client.widgets.form.fields.ViewFileItem#getShowFileInline 'showFileInline'}.  If
  * showFileInline is false, this Item displays the View and Download icons and the filename.  Otherwise, it streams the
  * image-file  and displays it inline.
+ * @see com.smartgwt.client.docs.Upload Upload overview and related methods
  */
 public class ViewFileItem extends CanvasItem {
 

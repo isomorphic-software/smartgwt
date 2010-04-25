@@ -148,8 +148,8 @@ public class Tab extends RefDataClass {
 
     /**
      * If specified, this tab will initially be rendered in a disabled state. To enable or disable tabs on the fly use the
-     * {@link com.smartgwt.client.widgets.tab.TabSet#enableTab}, and {@link com.smartgwt.client.widgets.tab.TabSet#disableTab}
-     * methods.
+     * {@link com.smartgwt.client.widgets.tab.TabSet#enableTab TabSet.enableTab}, and {@link
+     * com.smartgwt.client.widgets.tab.TabSet#disableTab TabSet.disableTab} methods.
      *
      * @param disabled disabled Default value is null
      */
@@ -159,8 +159,8 @@ public class Tab extends RefDataClass {
 
     /**
      * If specified, this tab will initially be rendered in a disabled state. To enable or disable tabs on the fly use the
-     * {@link com.smartgwt.client.widgets.tab.TabSet#enableTab}, and {@link com.smartgwt.client.widgets.tab.TabSet#disableTab}
-     * methods.
+     * {@link com.smartgwt.client.widgets.tab.TabSet#enableTab TabSet.enableTab}, and {@link
+     * com.smartgwt.client.widgets.tab.TabSet#disableTab TabSet.disableTab} methods.
      *
      *
      * @return Boolean
@@ -196,11 +196,12 @@ public class Tab extends RefDataClass {
 
     /**
      * Optional ID for the tab, which can later be used to reference the tab. APIs requiring a reference to a tab will accept
-     * the tabs ID  [including  {@link com.smartgwt.client.widgets.tab.TabSet#selectTab}, {@link
-     * com.smartgwt.client.widgets.tab.TabSet#updateTab}, {@link com.smartgwt.client.widgets.tab.TabSet#removeTab}].<br> The ID
-     * will also be passed to the {@link com.smartgwt.client.widgets.tab.TabSet#addTabSelectedHandler} and {@link
-     * com.smartgwt.client.widgets.tab.TabSet#addTabDeselectedHandler} handler functions, if specified. <p> Note that if you
-     * provide an ID, it must be globally unique.
+     * the tabs ID  [including  {@link com.smartgwt.client.widgets.tab.TabSet#selectTab TabSet.selectTab}, {@link
+     * com.smartgwt.client.widgets.tab.TabSet#updateTab TabSet.updateTab}, {@link
+     * com.smartgwt.client.widgets.tab.TabSet#removeTab TabSet.removeTab}].<br> The ID will also be passed to the {@link
+     * com.smartgwt.client.widgets.tab.TabSet#addTabSelectedHandler TabSet.addTabSelectedHandler} and {@link
+     * com.smartgwt.client.widgets.tab.TabSet#addTabDeselectedHandler TabSet.addTabDeselectedHandler} handler functions, if
+     * specified. <p> Note that if you provide an ID, it must be globally unique.
      *
      * @param ID ID Default value is null
      */
@@ -210,11 +211,12 @@ public class Tab extends RefDataClass {
 
     /**
      * Optional ID for the tab, which can later be used to reference the tab. APIs requiring a reference to a tab will accept
-     * the tabs ID  [including  {@link com.smartgwt.client.widgets.tab.TabSet#selectTab}, {@link
-     * com.smartgwt.client.widgets.tab.TabSet#updateTab}, {@link com.smartgwt.client.widgets.tab.TabSet#removeTab}].<br> The ID
-     * will also be passed to the {@link com.smartgwt.client.widgets.tab.TabSet#addTabSelectedHandler} and {@link
-     * com.smartgwt.client.widgets.tab.TabSet#addTabDeselectedHandler} handler functions, if specified. <p> Note that if you
-     * provide an ID, it must be globally unique.
+     * the tabs ID  [including  {@link com.smartgwt.client.widgets.tab.TabSet#selectTab TabSet.selectTab}, {@link
+     * com.smartgwt.client.widgets.tab.TabSet#updateTab TabSet.updateTab}, {@link
+     * com.smartgwt.client.widgets.tab.TabSet#removeTab TabSet.removeTab}].<br> The ID will also be passed to the {@link
+     * com.smartgwt.client.widgets.tab.TabSet#addTabSelectedHandler TabSet.addTabSelectedHandler} and {@link
+     * com.smartgwt.client.widgets.tab.TabSet#addTabDeselectedHandler TabSet.addTabDeselectedHandler} handler functions, if
+     * specified. <p> Note that if you provide an ID, it must be globally unique.
      *
      *
      * @return String
@@ -248,7 +250,7 @@ public class Tab extends RefDataClass {
 
     /**
      * Specifies the title of the this tab.  To change the title after the TabSet has been created, call {@link
-     * com.smartgwt.client.widgets.tab.TabSet#setTabTitle}.
+     * com.smartgwt.client.widgets.tab.TabSet#setTabTitle TabSet.setTabTitle}.
      *
      * @param title title Default value is null
      */
@@ -258,7 +260,7 @@ public class Tab extends RefDataClass {
 
     /**
      * Specifies the title of the this tab.  To change the title after the TabSet has been created, call {@link
-     * com.smartgwt.client.widgets.tab.TabSet#setTabTitle}.
+     * com.smartgwt.client.widgets.tab.TabSet#setTabTitle TabSet.setTabTitle}.
      *
      *
      * @return String

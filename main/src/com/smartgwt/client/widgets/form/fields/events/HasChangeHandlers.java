@@ -26,11 +26,11 @@ public interface HasChangeHandlers extends HasHandlers {
      * performed an action that would change the value of this field, but before the element itself is changed.   <P> Returning
      * false cancels the change.  Note that if what you want to do is <b>transform</b> the user's input, for example,
      * automatically change separator characters to a standard separator character, you should implement {@link
-     * com.smartgwt.client.widgets.form.fields.FormItem#setInputTransformer} rather than using a combination of change() and
-     * setValue() to accomplish the same thing.  Returning false from <code>change</code> is intended for rejecting input
-     * entirely, such as typing invalid characters. <p> Note that if you ask the form for the current value in this handler,
-     * you will get the old value because the change has not yet been committed.  The new value is available as a parameter to
-     * this method.
+     * com.smartgwt.client.widgets.form.fields.FormItem#setInputTransformer FormItem.setInputTransformer} rather than using a
+     * combination of change() and setValue() to accomplish the same thing.  Returning false from <code>change</code> is
+     * intended for rejecting input entirely, such as typing invalid characters. <p> Note that if you ask the form for the
+     * current value in this handler, you will get the old value because the change has not yet been committed.  The new value
+     * is available as a parameter to this method.
      *
      * @param handler the change handler
      * @return {@link HandlerRegistration} used to remove this handler

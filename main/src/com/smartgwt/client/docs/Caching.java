@@ -17,14 +17,14 @@ package com.smartgwt.client.docs;
  * into the dynamic page, but would&#010 instead pick up the value of a variable, such that you can simply bump up the
  * value in one&#010 configuration file and have all versioned URLs change dynamically.&#010 <p>&#010 Because Smart GWT
  * performs the assembly of image URLs dynamically, versioning of&#010 Smart GWT skins must be done with a path component. 
- * You can do this by changing the base&#010 skinDir using {@link com.smartgwt.client.util.Page#setSkinDir} - e.g:&#010
- * <pre>&#010 isc.Page.setSkinDir('/version/5.6/isomorphic/skins/Smart GWT/');&#010 </pre>&#010 You can then either deploy
- * the new skins under the versioned directory above or use a URL&#010 rewriting engine such as mod_rewrite for Apache to
- * map all such versions into a single&#010 deploy directory.&#010 <p>&#010 To actually tell the browser to cache images
- * for a longer length of time than the browser&#010 session, you need to set the HTTP 'Expires' header.&#010 If you're not
- * using the Smart GWT Java back-end there are several caching solutions&#010 available, depending on your server of
- * choice.  Microsoft's IIS has built-in caching&#010 capability, please check the reference manual for details.  If you're
- * using Apache, you can&#010 use <a href='http://httpd.apache.org/docs/2.0/mod/mod_expires.html'
+ * You can do this by changing the base&#010 skinDir using {@link com.smartgwt.client.util.Page#setSkinDir Page.setSkinDir}
+ * - e.g:&#010 <pre>&#010 isc.Page.setSkinDir('/version/5.6/isomorphic/skins/Smart GWT/');&#010 </pre>&#010 You can then
+ * either deploy the new skins under the versioned directory above or use a URL&#010 rewriting engine such as mod_rewrite
+ * for Apache to map all such versions into a single&#010 deploy directory.&#010 <p>&#010 To actually tell the browser to
+ * cache images for a longer length of time than the browser&#010 session, you need to set the HTTP 'Expires' header.&#010
+ * If you're not using the Smart GWT Java back-end there are several caching solutions&#010 available, depending on your
+ * server of choice.  Microsoft's IIS has built-in caching&#010 capability, please check the reference manual for details. 
+ * If you're using Apache, you can&#010 use <a href='http://httpd.apache.org/docs/2.0/mod/mod_expires.html'
  * onclick="window.open('http://httpd.apache.org/docs/2.0/mod/mod_expires.html');return false;">mod_expires</a>.  Some
  * servlet&#010 containers also natively support the setting of caching headers.&#010 <p>&#010 The Smart GWT Java back-end
  * supports setting caching headers via the FileDownload service&#010 on a per-mimetype basis.  To use it, first register

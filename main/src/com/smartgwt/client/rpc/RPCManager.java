@@ -112,12 +112,12 @@ public class RPCManager {
     /**
      * Cancel a queue of requests (also called a transaction). <P> If a transactionId is passed, that transaction will be
      * cancelled, otherwise, the current  (not yet sent) transaction is cancelled.  You can retrieve the id of the current 
-     * transaction, if there is one, by calling  {@link com.smartgwt.client.rpc.RPCManager#getCurrentTransactionId} before the
-     * transaction has been sent. <P> Note that cancelQueue() calls {@link com.smartgwt.client.rpc.RPCManager#clearTransaction}
-     * and attempts to abort the request.  However, note also that whilst cancelling a  transaction that has already been sent
-     * will not necessarily stop the HTTP request that  has been issued - this is only possible on some browsers and with some
-     * transports - it  will reliably cause Smart GWT to ignore any response returned by the server and not  fire any callbacks
-     * that have been passed in.
+     * transaction, if there is one, by calling  {@link com.smartgwt.client.rpc.RPCManager#getCurrentTransactionId
+     * RPCManager.getCurrentTransactionId} before the transaction has been sent. <P> Note that cancelQueue() calls {@link
+     * com.smartgwt.client.rpc.RPCManager#clearTransaction RPCManager.clearTransaction} and attempts to abort the request. 
+     * However, note also that whilst cancelling a  transaction that has already been sent will not necessarily stop the HTTP
+     * request that  has been issued - this is only possible on some browsers and with some transports - it  will reliably
+     * cause Smart GWT to ignore any response returned by the server and not  fire any callbacks that have been passed in.
      */
     public static native void cancelQueue() /*-{
         $wnd.isc.RPCManager.cancelQueue();
@@ -126,12 +126,12 @@ public class RPCManager {
     /**
      * Cancel a queue of requests (also called a transaction). <P> If a transactionId is passed, that transaction will be
      * cancelled, otherwise, the current  (not yet sent) transaction is cancelled.  You can retrieve the id of the current 
-     * transaction, if there is one, by calling  {@link com.smartgwt.client.rpc.RPCManager#getCurrentTransactionId} before the
-     * transaction has been sent. <P> Note that cancelQueue() calls {@link com.smartgwt.client.rpc.RPCManager#clearTransaction}
-     * and attempts to abort the request.  However, note also that whilst cancelling a  transaction that has already been sent
-     * will not necessarily stop the HTTP request that  has been issued - this is only possible on some browsers and with some
-     * transports - it  will reliably cause Smart GWT to ignore any response returned by the server and not  fire any callbacks
-     * that have been passed in.
+     * transaction, if there is one, by calling  {@link com.smartgwt.client.rpc.RPCManager#getCurrentTransactionId
+     * RPCManager.getCurrentTransactionId} before the transaction has been sent. <P> Note that cancelQueue() calls {@link
+     * com.smartgwt.client.rpc.RPCManager#clearTransaction RPCManager.clearTransaction} and attempts to abort the request. 
+     * However, note also that whilst cancelling a  transaction that has already been sent will not necessarily stop the HTTP
+     * request that  has been issued - this is only possible on some browsers and with some transports - it  will reliably
+     * cause Smart GWT to ignore any response returned by the server and not  fire any callbacks that have been passed in.
      * @param transactionNum transactionId of the queue.
      */
     public static native void cancelQueue(String transactionNum) /*-{
@@ -141,8 +141,9 @@ public class RPCManager {
     /**
      * Erase all client-side record of a transaction, such that any response from the server will be ignored. <P> A transaction
      * means a batch of one or more RPCRequests that have already been sent to the server via {@link
-     * com.smartgwt.client.rpc.RPCManager#sendQueue}. <P> You can retrieve the id of the current transaction, if there is one,
-     * by  {@link com.smartgwt.client.rpc.RPCManager#getCurrentTransactionId} before the  transaction is sent.
+     * com.smartgwt.client.rpc.RPCManager#sendQueue RPCManager.sendQueue}. <P> You can retrieve the id of the current
+     * transaction, if there is one, by  {@link com.smartgwt.client.rpc.RPCManager#getCurrentTransactionId
+     * RPCManager.getCurrentTransactionId} before the  transaction is sent.
      * @param transactionNum id of the transaction to be cleared
      */
     public static native void clearTransaction(String transactionNum) /*-{
@@ -150,22 +151,24 @@ public class RPCManager {
     }-*/;
             
     /**
-     * Resend a suspended transaction to the server.  See {@link com.smartgwt.client.rpc.RPCManager#suspendTransaction} for
-     * context.   <P> Note that the transaction must have been previously suspended, and in particular suspended validly
-     * according to the rules described in the docs for {@link com.smartgwt.client.rpc.RPCManager#suspendTransaction}, or
-     * undefined results will occur. <P> You can resend <b>all</b> suspended transactions by calling {@link
-     * com.smartgwt.client.rpc.RPCManager#resendTransaction} with no arguments.
+     * Resend a suspended transaction to the server.  See {@link com.smartgwt.client.rpc.RPCManager#suspendTransaction
+     * RPCManager.suspendTransaction} for context.   <P> Note that the transaction must have been previously suspended, and in
+     * particular suspended validly according to the rules described in the docs for {@link
+     * com.smartgwt.client.rpc.RPCManager#suspendTransaction RPCManager.suspendTransaction}, or undefined results will occur.
+     * <P> You can resend <b>all</b> suspended transactions by calling {@link
+     * com.smartgwt.client.rpc.RPCManager#resendTransaction RPCManager.resendTransaction} with no arguments.
      */
     public static native void resendTransaction() /*-{
         $wnd.isc.RPCManager.resendTransaction();
     }-*/;
 
     /**
-     * Resend a suspended transaction to the server.  See {@link com.smartgwt.client.rpc.RPCManager#suspendTransaction} for
-     * context.   <P> Note that the transaction must have been previously suspended, and in particular suspended validly
-     * according to the rules described in the docs for {@link com.smartgwt.client.rpc.RPCManager#suspendTransaction}, or
-     * undefined results will occur. <P> You can resend <b>all</b> suspended transactions by calling {@link
-     * com.smartgwt.client.rpc.RPCManager#resendTransaction} with no arguments.
+     * Resend a suspended transaction to the server.  See {@link com.smartgwt.client.rpc.RPCManager#suspendTransaction
+     * RPCManager.suspendTransaction} for context.   <P> Note that the transaction must have been previously suspended, and in
+     * particular suspended validly according to the rules described in the docs for {@link
+     * com.smartgwt.client.rpc.RPCManager#suspendTransaction RPCManager.suspendTransaction}, or undefined results will occur.
+     * <P> You can resend <b>all</b> suspended transactions by calling {@link
+     * com.smartgwt.client.rpc.RPCManager#resendTransaction RPCManager.resendTransaction} with no arguments.
      * @param transactionNum id of the transaction to be re-sent, or null to resend all                              suspended transactions
      */
     public static native void resendTransaction(String transactionNum) /*-{

@@ -281,6 +281,7 @@ public class DateChooser extends Canvas  implements com.smartgwt.client.widgets.
      *
      * @param firstDayOfWeek firstDayOfWeek Default value is 0
      * @throws IllegalStateException this property cannot be changed after the component has been created
+     * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
     public void setFirstDayOfWeek(int firstDayOfWeek)  throws IllegalStateException {
         setAttribute("firstDayOfWeek", firstDayOfWeek, false);
@@ -291,6 +292,7 @@ public class DateChooser extends Canvas  implements com.smartgwt.client.widgets.
      *
      *
      * @return int
+     * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
     public int getFirstDayOfWeek()  {
         return getAttributeAsInt("firstDayOfWeek");
@@ -790,7 +792,8 @@ public class DateChooser extends Canvas  implements com.smartgwt.client.widgets.
      * Add a dataChanged handler.
      * <p>
      * Method to override or observe in order to be notified when a user picks a date value. <P> Has no default behavior (so no
-     * need to call Super). <P> Use {@link com.smartgwt.client.widgets.DateChooser#getData} to get the current date value.
+     * need to call Super). <P> Use {@link com.smartgwt.client.widgets.DateChooser#getData DateChooser.getData} to get the
+     * current date value.
      *
      * @param handler the dataChanged handler
      * @return {@link HandlerRegistration} used to remove this handler
@@ -822,8 +825,8 @@ public class DateChooser extends Canvas  implements com.smartgwt.client.widgets.
    }-*/;
             
     /**
-     * Get the current value of the picker. <P> See {@link com.smartgwt.client.widgets.DateChooser#addDataChangedHandler} for
-     * how to respond to the user picking a date.
+     * Get the current value of the picker. <P> See {@link com.smartgwt.client.widgets.DateChooser#addDataChangedHandler
+     * DateChooser.addDataChangedHandler} for how to respond to the user picking a date.
      *
      * @return current date
      */

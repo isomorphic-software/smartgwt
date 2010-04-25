@@ -97,6 +97,7 @@ public class PickTreeItem extends CanvasItem {
      * hiding the menus, calling click  handlers, etc) instead of showing the submenu.
      *
      * @param canSelectParentItems canSelectParentItems Default value is null
+     * @see com.smartgwt.client.docs.Selection Selection overview and related methods
      */
     public void setCanSelectParentItems(Boolean canSelectParentItems) {
         setAttribute("canSelectParentItems", canSelectParentItems);
@@ -108,6 +109,7 @@ public class PickTreeItem extends CanvasItem {
      *
      *
      * @return Boolean
+     * @see com.smartgwt.client.docs.Selection Selection overview and related methods
      */
     public Boolean getCanSelectParentItems()  {
         return getAttributeAsBoolean("canSelectParentItems");

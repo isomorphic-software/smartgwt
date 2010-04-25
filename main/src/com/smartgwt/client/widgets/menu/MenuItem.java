@@ -127,7 +127,7 @@ public class MenuItem extends ListGridRecord  implements com.smartgwt.client.wid
     /**
      * If true, this item displays a standard checkmark image to the left of its title.  You can set the checkmark image URL by
      * setting {@link com.smartgwt.client.widgets.menu.Menu#getCheckmarkImage checkmarkImage}. <p> If you need to set this
-     * state dynamically, use {@link com.smartgwt.client.widgets.menu.MenuItem#checkIf} instead.
+     * state dynamically, use {@link com.smartgwt.client.widgets.menu.MenuItem#checkIf MenuItem.checkIf} instead.
      *
      * @param checked checked Default value is null
      */
@@ -138,7 +138,7 @@ public class MenuItem extends ListGridRecord  implements com.smartgwt.client.wid
     /**
      * If true, this item displays a standard checkmark image to the left of its title.  You can set the checkmark image URL by
      * setting {@link com.smartgwt.client.widgets.menu.Menu#getCheckmarkImage checkmarkImage}. <p> If you need to set this
-     * state dynamically, use {@link com.smartgwt.client.widgets.menu.MenuItem#checkIf} instead.
+     * state dynamically, use {@link com.smartgwt.client.widgets.menu.MenuItem#checkIf MenuItem.checkIf} instead.
      *
      *
      * @return Boolean
@@ -150,7 +150,7 @@ public class MenuItem extends ListGridRecord  implements com.smartgwt.client.wid
     /**
      * Affects the visual style and interactivity of the menu item.  If set to <code>false</code>, the menu item will not
      * respond to mouse rollovers or clicks. <p> If you need to set this state dynamically, use {@link
-     * com.smartgwt.client.widgets.menu.MenuItem#enableIf} instead.
+     * com.smartgwt.client.widgets.menu.MenuItem#enableIf MenuItem.enableIf} instead.
      *
      * @param enabled enabled Default value is true
      */
@@ -161,7 +161,7 @@ public class MenuItem extends ListGridRecord  implements com.smartgwt.client.wid
     /**
      * Affects the visual style and interactivity of the menu item.  If set to <code>false</code>, the menu item will not
      * respond to mouse rollovers or clicks. <p> If you need to set this state dynamically, use {@link
-     * com.smartgwt.client.widgets.menu.MenuItem#enableIf} instead.
+     * com.smartgwt.client.widgets.menu.MenuItem#enableIf MenuItem.enableIf} instead.
      *
      *
      * @return Boolean
@@ -196,7 +196,7 @@ public class MenuItem extends ListGridRecord  implements com.smartgwt.client.wid
      * com.smartgwt.client.widgets.menu.MenuItem#getChecked checked} are both specified, only icon specified by this property
      * will be displayed. The path to the loaded skin directory and the skinImgDir are prepended to this filename to form the
      * full URL. <p> If you need to set this state dynamically, use {@link
-     * com.smartgwt.client.widgets.menu.MenuItem#dynamicIcon} instead.
+     * com.smartgwt.client.widgets.menu.MenuItem#dynamicIcon MenuItem.dynamicIcon} instead.
      *
      * @param icon icon Default value is null
      */
@@ -209,7 +209,7 @@ public class MenuItem extends ListGridRecord  implements com.smartgwt.client.wid
      * com.smartgwt.client.widgets.menu.MenuItem#getChecked checked} are both specified, only icon specified by this property
      * will be displayed. The path to the loaded skin directory and the skinImgDir are prepended to this filename to form the
      * full URL. <p> If you need to set this state dynamically, use {@link
-     * com.smartgwt.client.widgets.menu.MenuItem#dynamicIcon} instead.
+     * com.smartgwt.client.widgets.menu.MenuItem#dynamicIcon MenuItem.dynamicIcon} instead.
      *
      *
      * @return String
@@ -368,8 +368,8 @@ public class MenuItem extends ListGridRecord  implements com.smartgwt.client.wid
      * Add a click handler.
      * <p>
      * Executed when this menu item is clicked by the user. The click handler must be specified as a function or string of
-     * script.  Return false to suppress the {@link com.smartgwt.client.widgets.menu.Menu#addItemClickHandler} handler if
-     * specified.
+     * script.  Return false to suppress the {@link com.smartgwt.client.widgets.menu.Menu#addItemClickHandler
+     * Menu.addItemClickHandler} handler if specified.
      *
      * @param handler the click handler
      * @return {@link HandlerRegistration} used to remove this handler

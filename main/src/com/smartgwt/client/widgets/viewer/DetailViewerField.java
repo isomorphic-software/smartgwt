@@ -137,6 +137,7 @@ public class DetailViewerField extends DataClass {
      * <code>record.logoHeight</code> will control the height of the image.
      *
      * @param imageHeight imageHeight Default value is null
+     * @see com.smartgwt.client.docs.ImageColumns ImageColumns overview and related methods
      */
     public void setImageHeight(Integer imageHeight) {
         setAttribute("imageHeight", imageHeight);
@@ -149,6 +150,7 @@ public class DetailViewerField extends DataClass {
      *
      *
      * @return Integer
+     * @see com.smartgwt.client.docs.ImageColumns ImageColumns overview and related methods
      */
     public Integer getImageHeight()  {
         return getAttributeAsInt("imageHeight");
@@ -160,6 +162,7 @@ public class DetailViewerField extends DataClass {
      * <code>record.logoSize</code> will control the size of the image.
      *
      * @param imageSize imageSize Default value is null
+     * @see com.smartgwt.client.docs.ImageColumns ImageColumns overview and related methods
      */
     public void setImageSize(Integer imageSize) {
         setAttribute("imageSize", imageSize);
@@ -172,6 +175,7 @@ public class DetailViewerField extends DataClass {
      *
      *
      * @return Integer
+     * @see com.smartgwt.client.docs.ImageColumns ImageColumns overview and related methods
      */
     public Integer getImageSize()  {
         return getAttributeAsInt("imageSize");
@@ -183,6 +187,7 @@ public class DetailViewerField extends DataClass {
      * <p><b>Note : </b> This is an advanced setting</p>
      *
      * @param imageURLPrefix imageURLPrefix Default value is null
+     * @see com.smartgwt.client.docs.ImageColumns ImageColumns overview and related methods
      */
     public void setImageURLPrefix(String imageURLPrefix) {
         setAttribute("imageURLPrefix", imageURLPrefix);
@@ -194,6 +199,7 @@ public class DetailViewerField extends DataClass {
      *
      *
      * @return String
+     * @see com.smartgwt.client.docs.ImageColumns ImageColumns overview and related methods
      */
     public String getImageURLPrefix()  {
         return getAttributeAsString("imageURLPrefix");
@@ -205,6 +211,7 @@ public class DetailViewerField extends DataClass {
      * <code>record.logoWidth</code> will control the width of the image.
      *
      * @param imageWidth imageWidth Default value is null
+     * @see com.smartgwt.client.docs.ImageColumns ImageColumns overview and related methods
      */
     public void setImageWidth(Integer imageWidth) {
         setAttribute("imageWidth", imageWidth);
@@ -217,6 +224,7 @@ public class DetailViewerField extends DataClass {
      *
      *
      * @return Integer
+     * @see com.smartgwt.client.docs.ImageColumns ImageColumns overview and related methods
      */
     public Integer getImageWidth()  {
         return getAttributeAsInt("imageWidth");

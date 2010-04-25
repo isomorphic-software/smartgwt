@@ -206,6 +206,7 @@ public class Scrollbar extends StretchImg {
      *
      * @param cornerSrc cornerSrc Default value is "[SKIN]corner.gif"
      * @throws IllegalStateException this property cannot be changed after the component has been created
+     * @see com.smartgwt.client.docs.Images Images overview and related methods
      */
     public void setCornerSrc(String cornerSrc)  throws IllegalStateException {
         setAttribute("cornerSrc", cornerSrc, false);
@@ -216,6 +217,7 @@ public class Scrollbar extends StretchImg {
      *
      *
      * @return String
+     * @see com.smartgwt.client.docs.Images Images overview and related methods
      */
     public String getCornerSrc()  {
         return getAttributeAsString("cornerSrc");
@@ -255,6 +257,7 @@ public class Scrollbar extends StretchImg {
      *
      * @param hSrc hSrc Default value is "[SKIN]hscroll.gif"
      * @throws IllegalStateException this property cannot be changed after the component has been created
+     * @see com.smartgwt.client.docs.Images Images overview and related methods
      */
     public void setHSrc(String hSrc)  throws IllegalStateException {
         setAttribute("hSrc", hSrc, false);
@@ -271,6 +274,7 @@ public class Scrollbar extends StretchImg {
      *
      *
      * @return String
+     * @see com.smartgwt.client.docs.Images Images overview and related methods
      */
     public String getHSrc()  {
         return getAttributeAsString("hSrc");
@@ -329,21 +333,25 @@ public class Scrollbar extends StretchImg {
     }
 
     /**
-     * Where are the skin images for the Scrollbar.  This is local to the {@link com.smartgwt.client.util.Page#getSkinDir}.
+     * Where are the skin images for the Scrollbar.  This is local to the {@link com.smartgwt.client.util.Page#getSkinDir
+     * Page.getSkinDir}.
      * <p><b>Note : </b> This is an advanced setting</p>
      *
      * @param skinImgDir skinImgDir Default value is "images/Scrollbar/"
      * @throws IllegalStateException this property cannot be changed after the component has been created
+     * @see com.smartgwt.client.docs.Images Images overview and related methods
      */
     public void setSkinImgDir(String skinImgDir)  throws IllegalStateException {
         setAttribute("skinImgDir", skinImgDir, false);
     }
 
     /**
-     * Where are the skin images for the Scrollbar.  This is local to the {@link com.smartgwt.client.util.Page#getSkinDir}.
+     * Where are the skin images for the Scrollbar.  This is local to the {@link com.smartgwt.client.util.Page#getSkinDir
+     * Page.getSkinDir}.
      *
      *
      * @return String
+     * @see com.smartgwt.client.docs.Images Images overview and related methods
      */
     public String getSkinImgDir()  {
         return getAttributeAsString("skinImgDir");
@@ -487,6 +495,7 @@ public class Scrollbar extends StretchImg {
      *
      * @param vSrc vSrc Default value is "[SKIN]vscroll.gif"
      * @throws IllegalStateException this property cannot be changed after the component has been created
+     * @see com.smartgwt.client.docs.Images Images overview and related methods
      */
     public void setVSrc(String vSrc)  throws IllegalStateException {
         setAttribute("vSrc", vSrc, false);
@@ -498,6 +507,7 @@ public class Scrollbar extends StretchImg {
      *
      *
      * @return String
+     * @see com.smartgwt.client.docs.Images Images overview and related methods
      */
     public String getVSrc()  {
         return getAttributeAsString("vSrc");

@@ -90,6 +90,7 @@ public class RadioGroupItem extends FormItem {
      * Base CSS class applied to the text for items within this radiogroup.
      *
      * @param textBoxStyle textBoxStyle Default value is "labelAnchor"
+     * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
     public void setTextBoxStyle(String textBoxStyle) {
         setAttribute("textBoxStyle", textBoxStyle);
@@ -100,6 +101,7 @@ public class RadioGroupItem extends FormItem {
      *
      *
      * @return String
+     * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
     public String getTextBoxStyle()  {
         return getAttributeAsString("textBoxStyle");
@@ -109,6 +111,7 @@ public class RadioGroupItem extends FormItem {
      * True == display options vertically, false == display in a single row
      *
      * @param vertical vertical Default value is true
+     * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
     public void setVertical(Boolean vertical) {
         setAttribute("vertical", vertical);
@@ -119,6 +122,7 @@ public class RadioGroupItem extends FormItem {
      *
      *
      * @return Boolean
+     * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
     public Boolean getVertical()  {
         return getAttributeAsBoolean("vertical");
@@ -128,6 +132,7 @@ public class RadioGroupItem extends FormItem {
      * Should the text for items within this radio group wrap?
      *
      * @param wrap wrap Default value is null
+     * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
     public void setWrap(Boolean wrap) {
         setAttribute("wrap", wrap);
@@ -138,6 +143,7 @@ public class RadioGroupItem extends FormItem {
      *
      *
      * @return Boolean
+     * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
     public Boolean getWrap()  {
         return getAttributeAsBoolean("wrap");

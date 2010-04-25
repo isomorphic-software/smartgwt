@@ -142,7 +142,7 @@ public class ComboBoxItem extends FormItem  implements PickList, com.smartgwt.cl
      * Select the first option as the default value for this ComboBoxItem. If options are derived from a dataSource, the first
      * value returned by the server will be used, otherwise the first value in the valueMap. If enabled, this setting overrides
      * {@link com.smartgwt.client.widgets.form.fields.ComboBoxItem#getDefaultValue defaultValue} and {@link
-     * com.smartgwt.client.widgets.form.fields.ComboBoxItem#defaultDynamicValue}.
+     * com.smartgwt.client.widgets.form.fields.ComboBoxItem#defaultDynamicValue ComboBoxItem.defaultDynamicValue}.
      *
      * @param defaultToFirstOption defaultToFirstOption Default value is false
      */
@@ -154,7 +154,7 @@ public class ComboBoxItem extends FormItem  implements PickList, com.smartgwt.cl
      * Select the first option as the default value for this ComboBoxItem. If options are derived from a dataSource, the first
      * value returned by the server will be used, otherwise the first value in the valueMap. If enabled, this setting overrides
      * {@link com.smartgwt.client.widgets.form.fields.ComboBoxItem#getDefaultValue defaultValue} and {@link
-     * com.smartgwt.client.widgets.form.fields.ComboBoxItem#defaultDynamicValue}.
+     * com.smartgwt.client.widgets.form.fields.ComboBoxItem#defaultDynamicValue ComboBoxItem.defaultDynamicValue}.
      *
      *
      * @return Boolean
@@ -190,15 +190,15 @@ public class ComboBoxItem extends FormItem  implements PickList, com.smartgwt.cl
      * com.smartgwt.client.widgets.form.fields.FormItem#getOptionDataSource 'optionDataSource'}. <P> If this item is not
      * databound ({@link com.smartgwt.client.widgets.form.fields.FormItem#getOptionDataSource optionDataSource} is unset), or
      * bound  to the same dataSource as the form as a whole, this item will call {@link
-     * com.smartgwt.client.widgets.form.DynamicForm#getValue}  the form named after is implemented by picking up the value of
-     * the specified field from the Form's values object. <P> Otherwise this item will attempt to map its underlying value to a
-     * display value by retrieving a record from the {@link
+     * com.smartgwt.client.widgets.form.DynamicForm#getValue DynamicForm.getValue}  the form named after is implemented by
+     * picking up the value of the specified field from the Form's values object. <P> Otherwise this item will attempt to map
+     * its underlying value to a display value by retrieving a record from the {@link
      * com.smartgwt.client.widgets.form.fields.FormItem#getOptionDataSource optionDataSource} where the  {@link
      * com.smartgwt.client.widgets.form.fields.FormItem#getValueField valueField} matches this item's value, and displaying the
      * <code>displayField</code> value from that record. Note that if <code>optionDataSource</code> is set and this value is
-     * not set, {@link com.smartgwt.client.widgets.form.fields.FormItem#getDisplayFieldName} will return the dataSource title
-     * field by default. <P> This essentially enables the specified <code>optionDataSource</code> to be used as a server based
-     * valueMap.
+     * not set, {@link com.smartgwt.client.widgets.form.fields.FormItem#getDisplayFieldName FormItem.getDisplayFieldName} will
+     * return the dataSource title field by default. <P> This essentially enables the specified <code>optionDataSource</code>
+     * to be used as a server based valueMap.
      * <p><b>Note : </b> This is an advanced setting</p>
      *
      * @param displayField displayField Default value is null
@@ -213,15 +213,15 @@ public class ComboBoxItem extends FormItem  implements PickList, com.smartgwt.cl
      * com.smartgwt.client.widgets.form.fields.FormItem#getOptionDataSource 'optionDataSource'}. <P> If this item is not
      * databound ({@link com.smartgwt.client.widgets.form.fields.FormItem#getOptionDataSource optionDataSource} is unset), or
      * bound  to the same dataSource as the form as a whole, this item will call {@link
-     * com.smartgwt.client.widgets.form.DynamicForm#getValue}  the form named after is implemented by picking up the value of
-     * the specified field from the Form's values object. <P> Otherwise this item will attempt to map its underlying value to a
-     * display value by retrieving a record from the {@link
+     * com.smartgwt.client.widgets.form.DynamicForm#getValue DynamicForm.getValue}  the form named after is implemented by
+     * picking up the value of the specified field from the Form's values object. <P> Otherwise this item will attempt to map
+     * its underlying value to a display value by retrieving a record from the {@link
      * com.smartgwt.client.widgets.form.fields.FormItem#getOptionDataSource optionDataSource} where the  {@link
      * com.smartgwt.client.widgets.form.fields.FormItem#getValueField valueField} matches this item's value, and displaying the
      * <code>displayField</code> value from that record. Note that if <code>optionDataSource</code> is set and this value is
-     * not set, {@link com.smartgwt.client.widgets.form.fields.FormItem#getDisplayFieldName} will return the dataSource title
-     * field by default. <P> This essentially enables the specified <code>optionDataSource</code> to be used as a server based
-     * valueMap.
+     * not set, {@link com.smartgwt.client.widgets.form.fields.FormItem#getDisplayFieldName FormItem.getDisplayFieldName} will
+     * return the dataSource title field by default. <P> This essentially enables the specified <code>optionDataSource</code>
+     * to be used as a server based valueMap.
      *
      *
      * @return String
@@ -259,9 +259,9 @@ public class ComboBoxItem extends FormItem  implements PickList, com.smartgwt.cl
 
     /**
      * Read-only property set by the ComboBoxItem to indicate whether we should use the  current typed-in value as part of the
-     * filter criteria returned by  {@link com.smartgwt.client.widgets.form.fields.ComboBoxItem#getPickListFilterCriteria}. 
-     * You can check this flag in order to mimic the ComboBoxItem's default behavior if you provide a custom implementation of
-     * <code>getPickListFilterCriteria()</code>.
+     * filter criteria returned by  {@link com.smartgwt.client.widgets.form.fields.ComboBoxItem#getPickListFilterCriteria
+     * ComboBoxItem.getPickListFilterCriteria}.  You can check this flag in order to mimic the ComboBoxItem's default behavior
+     * if you provide a custom implementation of <code>getPickListFilterCriteria()</code>.
      *
      *
      * @return Boolean
@@ -366,6 +366,7 @@ public class ComboBoxItem extends FormItem  implements PickList, com.smartgwt.cl
      * <p><b>Note : </b> This is an advanced setting</p>
      *
      * @param showHintInField showHintInField Default value is null
+     * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
     public void setShowHintInField(Boolean showHintInField) {
         setAttribute("showHintInField", showHintInField);
@@ -377,6 +378,7 @@ public class ComboBoxItem extends FormItem  implements PickList, com.smartgwt.cl
      *
      *
      * @return Boolean
+     * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
     public Boolean getShowHintInField()  {
         return getAttributeAsBoolean("showHintInField");
@@ -389,6 +391,7 @@ public class ComboBoxItem extends FormItem  implements PickList, com.smartgwt.cl
      * <p><b>Note : </b> This is an advanced setting</p>
      *
      * @param showOptionsFromDataSource showOptionsFromDataSource Default value is null
+     * @see com.smartgwt.client.docs.Databinding Databinding overview and related methods
      */
     public void setShowOptionsFromDataSource(Boolean showOptionsFromDataSource) {
         setAttribute("showOptionsFromDataSource", showOptionsFromDataSource);
@@ -401,6 +404,7 @@ public class ComboBoxItem extends FormItem  implements PickList, com.smartgwt.cl
      *
      *
      * @return Boolean
+     * @see com.smartgwt.client.docs.Databinding Databinding overview and related methods
      */
     public Boolean getShowOptionsFromDataSource()  {
         return getAttributeAsBoolean("showOptionsFromDataSource");

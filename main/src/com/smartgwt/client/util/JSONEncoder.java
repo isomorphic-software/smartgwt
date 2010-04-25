@@ -117,7 +117,8 @@ public class JSONEncoder extends DataClass {
 
     /**
      * Format for encoding JavaScript Date values in JSON.  See {@link com.smartgwt.client.types.JSONDateFormat} for valid
-     * options, or override {@link com.smartgwt.client.util.JSONEncoder#encodeDate} to do something custom.
+     * options, or override {@link com.smartgwt.client.util.JSONEncoder#encodeDate JSONEncoder.encodeDate} to do something
+     * custom.
      *
      * @param dateFormat dateFormat Default value is "xmlSchema"
      */
@@ -127,7 +128,8 @@ public class JSONEncoder extends DataClass {
 
     /**
      * Format for encoding JavaScript Date values in JSON.  See {@link com.smartgwt.client.types.JSONDateFormat} for valid
-     * options, or override {@link com.smartgwt.client.util.JSONEncoder#encodeDate} to do something custom.
+     * options, or override {@link com.smartgwt.client.util.JSONEncoder#encodeDate JSONEncoder.encodeDate} to do something
+     * custom.
      *
      *
      * @return JSONDateFormat

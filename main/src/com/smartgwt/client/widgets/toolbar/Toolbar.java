@@ -150,6 +150,7 @@ public abstract class Toolbar extends Layout  implements com.smartgwt.client.wid
      * (true).
      *
      * @param vertical vertical Default value is false
+     * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
     public void setVertical(Boolean vertical) {
         setAttribute("vertical", vertical, true);
@@ -161,6 +162,7 @@ public abstract class Toolbar extends Layout  implements com.smartgwt.client.wid
      *
      *
      * @return Boolean
+     * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
     public Boolean getVertical()  {
         return getAttributeAsBoolean("vertical");

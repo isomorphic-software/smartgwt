@@ -32,21 +32,21 @@ package com.smartgwt.client.docs;
  * server as Java InputStreams accessible from the DSRequest object, and can optionally be automatically stored via Smart
  * GWT's SQL subsystem. <P> <h4>Transparent Queuing / "Batch" Operations</h4> <P> Any request transmitted to the Smart GWT
  * Server can be combined into a "queue" transmitted as a single HTTP request, with in-order execution for all queued
- * operations.  {@link com.smartgwt.client.rpc.RPCManager#startQueue} starts a queue and {@link
- * com.smartgwt.client.rpc.RPCManager#sendQueue} transmits it; queuing is transparent to the code that initiates the
- * individual requests.  This enables: <ul> <li> re-use of data access operations across different screens <li> easy
- * implementation of transaction boundaries <li> simplified saving and loading of screens with complex, master-detail views
- * <li> guaranteed in-order processing of operations <li> more efficient network usage </ul> <P> <h4>Visual Builder</h4>
- * <P> {@link com.smartgwt.client.docs.VisualBuilder 'Visual Builder'} is included with the Smart GWT Server, and uses
- * server features such as automatic SQL binding to provide a rapid prototyping environment. <P> <h4>Automatic
- * Bi-directional Java &lt; - &gt; JavaScript serialization and translation</h4> <P> Provides a powerful, type-safe {@link
- * com.smartgwt.client.rpc.RPCRequest#getData 'data transmission mechanism'} for moving data between a Java server and the
- * browser.  <P> Any Java objects, including Java Beans, POJOs, Java Collections, XML DOMs and all Java primitives, with
- * any level of nesting, can be automatically serialized and delivered as JavaScript Objects to the Smart GWT client-side
- * components. <P> JavaScript Objects existing in the browser can likewise be automatically transmitted to a Java Server
- * and translated to Java Objects, with any level of nesting and automatic preservation of primitive types. <P> <h4>SQL and
- * Hibernate connectors</h4> <P> DataSources of serverType:"sql" or serverType:"hibernate" can generate and execute queries
- * against popular SQL engines or against the Hibernate ORM system, providing Smart GWT's {@link
+ * operations.  {@link com.smartgwt.client.rpc.RPCManager#startQueue RPCManager.startQueue} starts a queue and {@link
+ * com.smartgwt.client.rpc.RPCManager#sendQueue RPCManager.sendQueue} transmits it; queuing is transparent to the code that
+ * initiates the individual requests.  This enables: <ul> <li> re-use of data access operations across different screens
+ * <li> easy implementation of transaction boundaries <li> simplified saving and loading of screens with complex,
+ * master-detail views <li> guaranteed in-order processing of operations <li> more efficient network usage </ul> <P>
+ * <h4>Visual Builder</h4> <P> {@link com.smartgwt.client.docs.VisualBuilder 'Visual Builder'} is included with the Smart
+ * GWT Server, and uses server features such as automatic SQL binding to provide a rapid prototyping environment. <P>
+ * <h4>Automatic Bi-directional Java &lt; - &gt; JavaScript serialization and translation</h4> <P> Provides a powerful,
+ * type-safe {@link com.smartgwt.client.rpc.RPCRequest#getData 'data transmission mechanism'} for moving data between a
+ * Java server and the browser.  <P> Any Java objects, including Java Beans, POJOs, Java Collections, XML DOMs and all Java
+ * primitives, with any level of nesting, can be automatically serialized and delivered as JavaScript Objects to the Smart
+ * GWT client-side components. <P> JavaScript Objects existing in the browser can likewise be automatically transmitted to
+ * a Java Server and translated to Java Objects, with any level of nesting and automatic preservation of primitive types.
+ * <P> <h4>SQL and Hibernate connectors</h4> <P> DataSources of serverType:"sql" or serverType:"hibernate" can generate and
+ * execute queries against popular SQL engines or against the Hibernate ORM system, providing Smart GWT's {@link
  * com.smartgwt.client.widgets.DataBoundComponent}s with the four standard CRUD operations (create, retrieve, update,
  * delete) without writing any server-side code.  For rapid prototyping, these DataSources can even generate SQL tables
  * based on the DataSource declaration, using the {@link com.smartgwt.client.docs.AdminConsole} visual tool. <P>
@@ -72,15 +72,16 @@ package com.smartgwt.client.docs;
  * support</h4> <P> The Smart GWT Server can compensate for facilities  {@link
  * com.smartgwt.client.docs.PlatformDependencies 'missing or disabled in certain browsers'}, including ActiveX being
  * disabled in IE6 and missing XML support in some versions of Apple's Safari browser. <P> <h4>Transparent Proxying</h4>
- * <P> {@link com.smartgwt.client.rpc.RPCManager#sendProxied} allows Smart GWT applications to access web services, RSS
- * feeds, HTML content and other data services in a secure manner regardless of where they are located: across the
- * enterprise or publicly available. <P> <h4>Optional {@link com.smartgwt.client.docs.NetworkPerformance 'Network
- * Performance'} Module</h4> <P> Provides: <ul> <li> compressed delivery of Smart GWT runtime, application logic and other
- * assets such as CSS <li> {@link com.smartgwt.client..FileLoader} of Smart GWT and other assets for zero user-perceived
- * load time <li> on-the-fly stripping, combining and obfuscation of JavaScript (application code and data) <li> browser
- * cache control </ul> <P> <h4>Optional Messaging Module (aka server push)</h4> <P> The
- * ${isc.DocUtils.linkForDocNode('messaging', 'Messaging')} module allows the server to "push" messages to the client,
- * without client polling, for real-time monitoring/dashboarding applications.
+ * <P> {@link com.smartgwt.client.rpc.RPCManager#sendProxied RPCManager.sendProxied} allows Smart GWT applications to
+ * access web services, RSS feeds, HTML content and other data services in a secure manner regardless of where they are
+ * located: across the enterprise or publicly available. <P> <h4>Optional {@link
+ * com.smartgwt.client.docs.NetworkPerformance 'Network Performance'} Module</h4> <P> Provides: <ul> <li> compressed
+ * delivery of Smart GWT runtime, application logic and other assets such as CSS <li> {@link
+ * com.smartgwt.client..FileLoader} of Smart GWT and other assets for zero user-perceived load time <li> on-the-fly
+ * stripping, combining and obfuscation of JavaScript (application code and data) <li> browser cache control </ul> <P>
+ * <h4>Optional Messaging Module (aka server push)</h4> <P> The ${isc.DocUtils.linkForDocNode('messaging', 'Messaging')}
+ * module allows the server to "push" messages to the client, without client polling, for real-time monitoring/dashboarding
+ * applications.
  */
 public interface IscServer {
 }

@@ -95,8 +95,8 @@ public class DateTimeItem extends DateItem {
     /**
      * This property can be used to customize the format in which datetimes are displayed.<br> Should be set to a standard
      * {@link com.smartgwt.client.types.DateDisplayFormat} or a function which will return a formatted date time string. <P> If
-     * unset, the standard shortDateTime format as set up in  {@link com.smartgwt.client..Date#setShortDatetimeDisplayFormat}
-     * will be used. <P> <B>NOTE: you may need to update the {@link
+     * unset, the standard shortDateTime format as set up in  {@link com.smartgwt.client..Date#setShortDatetimeDisplayFormat
+     * Date.setShortDatetimeDisplayFormat} will be used. <P> <B>NOTE: you may need to update the {@link
      * com.smartgwt.client.widgets.form.fields.DateTimeItem#getInputFormat 'inputFormat'} to ensure the DateItem is able to
      * parse user-entered date strings back into Dates</B>
      *
@@ -109,8 +109,8 @@ public class DateTimeItem extends DateItem {
     /**
      * This property can be used to customize the format in which datetimes are displayed.<br> Should be set to a standard
      * {@link com.smartgwt.client.types.DateDisplayFormat} or a function which will return a formatted date time string. <P> If
-     * unset, the standard shortDateTime format as set up in  {@link com.smartgwt.client..Date#setShortDatetimeDisplayFormat}
-     * will be used. <P> <B>NOTE: you may need to update the {@link
+     * unset, the standard shortDateTime format as set up in  {@link com.smartgwt.client..Date#setShortDatetimeDisplayFormat
+     * Date.setShortDatetimeDisplayFormat} will be used. <P> <B>NOTE: you may need to update the {@link
      * com.smartgwt.client.widgets.form.fields.DateTimeItem#getInputFormat 'inputFormat'} to ensure the DateItem is able to
      * parse user-entered date strings back into Dates</B>
      *
@@ -125,10 +125,10 @@ public class DateTimeItem extends DateItem {
      * If {@link com.smartgwt.client.widgets.form.fields.DateItem#getUseTextField useTextField} is <code>true</code> this
      * property can be used to specify the input format for date strings.  If unset, the input format will be determined based
      * on the specified {@link com.smartgwt.client.widgets.form.fields.DateItem#getDisplayFormat displayFormat} if possible
-     * (see {@link com.smartgwt.client.widgets.form.fields.DateItem#getInputFormat}), otherwise picked up from the Date class
-     * (see {@link com.smartgwt.client..Date#setInputFormat}). <P> Should be set to a standard {@link
-     * com.smartgwt.client..DateInputFormat} or a function which will take a date string as a parameter and return a Javascript
-     * Date object.
+     * (see {@link com.smartgwt.client.widgets.form.fields.DateItem#getInputFormat DateItem.getInputFormat}), otherwise picked
+     * up from the Date class (see {@link com.smartgwt.client..Date#setInputFormat Date.setInputFormat}). <P> Should be set to
+     * a standard {@link com.smartgwt.client..DateInputFormat} or a function which will take a date string as a parameter and
+     * return a Javascript Date object.
      *
      * @param inputFormat inputFormat Default value is null
      */
@@ -140,10 +140,10 @@ public class DateTimeItem extends DateItem {
      * If {@link com.smartgwt.client.widgets.form.fields.DateItem#getUseTextField useTextField} is <code>true</code> this
      * property can be used to specify the input format for date strings.  If unset, the input format will be determined based
      * on the specified {@link com.smartgwt.client.widgets.form.fields.DateItem#getDisplayFormat displayFormat} if possible
-     * (see {@link com.smartgwt.client.widgets.form.fields.DateItem#getInputFormat}), otherwise picked up from the Date class
-     * (see {@link com.smartgwt.client..Date#setInputFormat}). <P> Should be set to a standard {@link
-     * com.smartgwt.client..DateInputFormat} or a function which will take a date string as a parameter and return a Javascript
-     * Date object.
+     * (see {@link com.smartgwt.client.widgets.form.fields.DateItem#getInputFormat DateItem.getInputFormat}), otherwise picked
+     * up from the Date class (see {@link com.smartgwt.client..Date#setInputFormat Date.setInputFormat}). <P> Should be set to
+     * a standard {@link com.smartgwt.client..DateInputFormat} or a function which will take a date string as a parameter and
+     * return a Javascript Date object.
      *
      *
      * @return String
@@ -156,6 +156,7 @@ public class DateTimeItem extends DateItem {
      * DateTimeItems show datetime values in a freeform text entry area.
      *
      * @param useTextField useTextField Default value is true
+     * @see com.smartgwt.client.docs.Basics Basics overview and related methods
      */
     public void setUseTextField(Boolean useTextField) {
         setAttribute("useTextField", useTextField);
@@ -166,6 +167,7 @@ public class DateTimeItem extends DateItem {
      *
      *
      * @return Boolean
+     * @see com.smartgwt.client.docs.Basics Basics overview and related methods
      */
     public Boolean getUseTextField()  {
         return getAttributeAsBoolean("useTextField");

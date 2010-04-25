@@ -92,6 +92,7 @@ public class TileLayout extends Canvas {
      * <p><b>Note : </b> This is an advanced setting</p>
      *
      * @param animateTileChange animateTileChange Default value is true
+     * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
     public void setAnimateTileChange(Boolean animateTileChange) {
         setAttribute("animateTileChange", animateTileChange, true);
@@ -102,6 +103,7 @@ public class TileLayout extends Canvas {
      *
      *
      * @return Boolean
+     * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
     public Boolean getAnimateTileChange()  {
         return getAttributeAsBoolean("animateTileChange");
@@ -223,6 +225,7 @@ public class TileLayout extends Canvas {
      *
      * @param overflow overflow Default value is "auto"
      * @throws IllegalStateException this property cannot be changed after the component has been created
+     * @see com.smartgwt.client.docs.Sizing Sizing overview and related methods
      */
     public void setOverflow(Overflow overflow)  throws IllegalStateException {
         setAttribute("overflow", overflow.getValue(), false);
@@ -235,6 +238,7 @@ public class TileLayout extends Canvas {
      *
      *
      * @return Overflow
+     * @see com.smartgwt.client.docs.Sizing Sizing overview and related methods
      */
     public Overflow getOverflow()  {
         return EnumUtil.getEnum(Overflow.values(), getAttribute("overflow"));
@@ -280,6 +284,7 @@ public class TileLayout extends Canvas {
      *
      * @param tileHeight height. Default value is null
      * @throws IllegalStateException this property cannot be changed after the component has been created
+     * @see com.smartgwt.client.docs.Sizing Sizing overview and related methods
      */
     public void setTileHeight(Integer tileHeight)  throws IllegalStateException {
         setAttribute("tileHeight", tileHeight, false);
@@ -294,6 +299,7 @@ public class TileLayout extends Canvas {
      *
      *
      * @return Integer
+     * @see com.smartgwt.client.docs.Sizing Sizing overview and related methods
      */
     public Integer getTileHeight()  {
         return getAttributeAsInt("tileHeight");
@@ -354,6 +360,7 @@ public class TileLayout extends Canvas {
      *
      * @param tileSize size. Default value is 50
      * @throws IllegalStateException this property cannot be changed after the component has been created
+     * @see com.smartgwt.client.docs.Sizing Sizing overview and related methods
      */
     public void setTileSize(int tileSize)  throws IllegalStateException {
         setAttribute("tileSize", tileSize, false);
@@ -367,6 +374,7 @@ public class TileLayout extends Canvas {
      *
      *
      * @return int
+     * @see com.smartgwt.client.docs.Sizing Sizing overview and related methods
      */
     public int getTileSize()  {
         return getAttributeAsInt("tileSize");
@@ -429,6 +437,7 @@ public class TileLayout extends Canvas {
      *
      * @param tileWidth width. Default value is null
      * @throws IllegalStateException this property cannot be changed after the component has been created
+     * @see com.smartgwt.client.docs.Sizing Sizing overview and related methods
      */
     public void setTileWidth(Integer tileWidth)  throws IllegalStateException {
         setAttribute("tileWidth", tileWidth, false);
@@ -443,6 +452,7 @@ public class TileLayout extends Canvas {
      *
      *
      * @return Integer
+     * @see com.smartgwt.client.docs.Sizing Sizing overview and related methods
      */
     public Integer getTileWidth()  {
         return getAttributeAsInt("tileWidth");
