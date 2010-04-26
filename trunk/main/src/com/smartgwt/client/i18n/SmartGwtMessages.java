@@ -223,6 +223,33 @@ public interface SmartGwtMessages extends com.google.gwt.i18n.client.Messages {
   String dateItem_pickerIconPrompt();
 
   /**
+   * Translated "Select Date Range".
+   * 
+   * @return translated "Select Date Range"
+   */
+  @DefaultMessage("Select Date Range")
+  @Key("dateRangeDialog_headerTitle")
+  String dateRangeDialog_headerTitle();
+
+  /**
+   * Translated "From".
+   * 
+   * @return translated "From"
+   */
+  @DefaultMessage("From")
+  @Key("dateRangeItem_fromTitle")
+  String dateRangeItem_fromTitle();
+
+  /**
+   * Translated "To".
+   * 
+   * @return translated "To"
+   */
+  @DefaultMessage("To")
+  @Key("dateRangeItem_toTitle")
+  String dateRangeItem_toTitle();
+
+  /**
    * Translated "Sun".
    * 
    * @return translated "Sun"
@@ -662,15 +689,6 @@ public interface SmartGwtMessages extends com.google.gwt.i18n.client.Messages {
   @DefaultMessage("The following fields are available for use in this")
   @Key("formulaBuilder_instructionsTextStart")
   String formulaBuilder_instructionsTextStart();
-
-  /**
-   * Translated "<nobr>For Record: $title</nobr><br><nobr>Output: $output</nobr>".
-   * 
-   * @return translated "<nobr>For Record: $title</nobr><br><nobr>Output: $output</nobr>"
-   */
-  @DefaultMessage("<nobr>For Record: $title</nobr><br><nobr>Output: $output</nobr>")
-  @Key("formulaBuilder_samplePrompt")
-  String formulaBuilder_samplePrompt();
 
   /**
    * Translated "For record:".
@@ -1769,6 +1787,168 @@ public interface SmartGwtMessages extends com.google.gwt.i18n.client.Messages {
   @DefaultMessage("Print Preview")
   @Key("printWindow_title")
   String printWindow_title();
+
+  /**
+   * Translated "N days ago".
+   * 
+   * @return translated "N days ago"
+   */
+  @DefaultMessage("N days ago")
+  @Key("relativeDateItem_daysAgoTitle")
+  String relativeDateItem_daysAgoTitle();
+
+  /**
+   * Translated "N days from now".
+   * 
+   * @return translated "N days from now"
+   */
+  @DefaultMessage("N days from now")
+  @Key("relativeDateItem_daysFromNowTitle")
+  String relativeDateItem_daysFromNowTitle();
+
+  /**
+   * Translated "N hours ago".
+   * 
+   * @return translated "N hours ago"
+   */
+  @DefaultMessage("N hours ago")
+  @Key("relativeDateItem_hoursAgoTitle")
+  String relativeDateItem_hoursAgoTitle();
+
+  /**
+   * Translated "N hours from now".
+   * 
+   * @return translated "N hours from now"
+   */
+  @DefaultMessage("N hours from now")
+  @Key("relativeDateItem_hoursFromNowTitle")
+  String relativeDateItem_hoursFromNowTitle();
+
+  /**
+   * Translated "N milliseconds ago".
+   * 
+   * @return translated "N milliseconds ago"
+   */
+  @DefaultMessage("N milliseconds ago")
+  @Key("relativeDateItem_millisecondsAgoTitle")
+  String relativeDateItem_millisecondsAgoTitle();
+
+  /**
+   * Translated "N milliseconds from now".
+   * 
+   * @return translated "N milliseconds from now"
+   */
+  @DefaultMessage("N milliseconds from now")
+  @Key("relativeDateItem_millisecondsFromNowTitle")
+  String relativeDateItem_millisecondsFromNowTitle();
+
+  /**
+   * Translated "N minutes ago".
+   * 
+   * @return translated "N minutes ago"
+   */
+  @DefaultMessage("N minutes ago")
+  @Key("relativeDateItem_minutesAgoTitle")
+  String relativeDateItem_minutesAgoTitle();
+
+  /**
+   * Translated "N minutes from now".
+   * 
+   * @return translated "N minutes from now"
+   */
+  @DefaultMessage("N minutes from now")
+  @Key("relativeDateItem_minutesFromNowTitle")
+  String relativeDateItem_minutesFromNowTitle();
+
+  /**
+   * Translated "N months ago".
+   * 
+   * @return translated "N months ago"
+   */
+  @DefaultMessage("N months ago")
+  @Key("relativeDateItem_monthsAgoTitle")
+  String relativeDateItem_monthsAgoTitle();
+
+  /**
+   * Translated "N months from now".
+   * 
+   * @return translated "N months from now"
+   */
+  @DefaultMessage("N months from now")
+  @Key("relativeDateItem_monthsFromNowTitle")
+  String relativeDateItem_monthsFromNowTitle();
+
+  /**
+   * Translated "Show Date Chooser".
+   * 
+   * @return translated "Show Date Chooser"
+   */
+  @DefaultMessage("Show Date Chooser")
+  @Key("relativeDateItem_pickerIconPrompt")
+  String relativeDateItem_pickerIconPrompt();
+
+  /**
+   * Translated "N seconds ago".
+   * 
+   * @return translated "N seconds ago"
+   */
+  @DefaultMessage("N seconds ago")
+  @Key("relativeDateItem_secondsAgoTitle")
+  String relativeDateItem_secondsAgoTitle();
+
+  /**
+   * Translated "N seconds from now".
+   * 
+   * @return translated "N seconds from now"
+   */
+  @DefaultMessage("N seconds from now")
+  @Key("relativeDateItem_secondsFromNowTitle")
+  String relativeDateItem_secondsFromNowTitle();
+
+  /**
+   * Translated "Today".
+   * 
+   * @return translated "Today"
+   */
+  @DefaultMessage("Today")
+  @Key("relativeDateItem_todayTitle")
+  String relativeDateItem_todayTitle();
+
+  /**
+   * Translated "N weeks ago".
+   * 
+   * @return translated "N weeks ago"
+   */
+  @DefaultMessage("N weeks ago")
+  @Key("relativeDateItem_weeksAgoTitle")
+  String relativeDateItem_weeksAgoTitle();
+
+  /**
+   * Translated "N weeks from now".
+   * 
+   * @return translated "N weeks from now"
+   */
+  @DefaultMessage("N weeks from now")
+  @Key("relativeDateItem_weeksFromNowTitle")
+  String relativeDateItem_weeksFromNowTitle();
+
+  /**
+   * Translated "N years ago".
+   * 
+   * @return translated "N years ago"
+   */
+  @DefaultMessage("N years ago")
+  @Key("relativeDateItem_yearsAgoTitle")
+  String relativeDateItem_yearsAgoTitle();
+
+  /**
+   * Translated "N years from now".
+   * 
+   * @return translated "N years from now"
+   */
+  @DefaultMessage("N years from now")
+  @Key("relativeDateItem_yearsFromNowTitle")
+  String relativeDateItem_yearsFromNowTitle();
 
   /**
    * Translated "Contacting Server...".
