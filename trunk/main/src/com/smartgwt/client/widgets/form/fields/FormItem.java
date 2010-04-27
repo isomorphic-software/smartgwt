@@ -74,7 +74,7 @@ public class FormItem extends RefDataClass  implements com.smartgwt.client.widge
     }
 
     public FormItem(){
-        setType("FormItem");setName(com.smartgwt.client.util.SC.generateID());
+        setType("FormItem");setName(com.smartgwt.client.util.SC.generateID(getClass().getName()));
     }
 
     public FormItem(JavaScriptObject jsObj){

@@ -76,7 +76,7 @@ public class Tab extends RefDataClass {
     }
 
     public Tab(){
-        setID(com.smartgwt.client.util.SC.generateID());
+        setID(com.smartgwt.client.util.SC.generateID(getClass().getName()));
     }
 
     public Tab(JavaScriptObject jsObj){
@@ -85,13 +85,13 @@ public class Tab extends RefDataClass {
 
     public Tab(String title) {
         setTitle(title);
-        setID(com.smartgwt.client.util.SC.generateID());
+        setID(com.smartgwt.client.util.SC.generateID(getClass().getName()));
     }
 
     public Tab(String title, String icon) {
         setTitle(title);
 		setIcon(icon);
-        setID(com.smartgwt.client.util.SC.generateID());
+        setID(com.smartgwt.client.util.SC.generateID(getClass().getName()));
     }
 
     // ********************* Properties / Attributes ***********************

@@ -46,7 +46,7 @@ public abstract class BaseClass {
     protected String scClassName;
 
     public BaseClass() {
-        id = SC.generateID();
+        id = SC.generateID(getClass().getName());
         setAttribute("ID", id, false);
     }
 
