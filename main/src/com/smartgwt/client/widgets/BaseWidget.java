@@ -99,8 +99,8 @@ public abstract class BaseWidget extends Widget implements HasHandlers {
         return manager == null ? 0 : manager.getHandlerCount(type);
     }
 
-    public BaseWidget() {
-        id = SC.generateID();
+    public BaseWidget() {        
+        id = SC.generateID(getClass().getName());
         setAttribute("ID", id, false);
     }
 
