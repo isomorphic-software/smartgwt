@@ -7623,46 +7623,6 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
     }-*/;
             
     /**
-     * When {@link com.smartgwt.client.widgets.grid.ListGrid#getShowRecordComponents showRecordComponents} is true, return
-     * false from this method  to prevent showRecordComponent behavior for the passed record. Second parameter will only be
-     * passed if {@link com.smartgwt.client.widgets.grid.ListGrid#getShowRecordComponentsByCell showRecordComponentsByCell} is
-     * true.
-     * @param record record being processed
-     *
-     * @return return false to cancel showRecordComponent behavior
-     */
-    public native Boolean showRecordComponent(ListGridRecord record) /*-{
-        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
-        var retVal =self.showRecordComponent(record.@com.smartgwt.client.core.DataClass::getJsObj()());
-        if(retVal == null || retVal === undefined) {
-            return null;
-        } else {
-            return @com.smartgwt.client.util.JSOHelper::toBoolean(Z)(retVal);
-        }
-    }-*/;
-
-    /**
-     * When {@link com.smartgwt.client.widgets.grid.ListGrid#getShowRecordComponents showRecordComponents} is true, return
-     * false from this method  to prevent showRecordComponent behavior for the passed record. Second parameter will only be
-     * passed if {@link com.smartgwt.client.widgets.grid.ListGrid#getShowRecordComponentsByCell showRecordComponentsByCell} is
-     * true.
-     * @param record record being processed
-     * @param colNum column index of the cell in which the record component   may be shown. Will be null unless showRecordComponentsByCell is
-     * true.
-     *
-     * @return return false to cancel showRecordComponent behavior
-     */
-    public native Boolean showRecordComponent(ListGridRecord record, int colNum) /*-{
-        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
-        var retVal =self.showRecordComponent(record.@com.smartgwt.client.core.DataClass::getJsObj()(), colNum);
-        if(retVal == null || retVal === undefined) {
-            return null;
-        } else {
-                return @com.smartgwt.client.util.JSOHelper::toBoolean(Z)(retVal);
-        }
-    }-*/;
-            
-    /**
      * Start inline editing at the provided coordinates. <p> Invoked when a cell is editable and the <code>editEvent</code>
      * occurs on that cell.  Can also be invoked explicitly. <P> If this method is called while editing is already in progress,
      * the value from the current editCell will either be stored locally as a temporary edit value, or saved via 'saveEdits()'
@@ -7880,6 +7840,18 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
             var componentJ = jObj.@com.smartgwt.client.widgets.grid.ListGrid::createRecordComponent(Lcom/smartgwt/client/widgets/grid/ListGridRecord;Ljava/lang/Integer;)(recordJ, colNumJ);
             return componentJ == null ? null : componentJ.@com.smartgwt.client.widgets.Canvas::getOrCreateJsObj()();
         });
+
+        self.__showRecordComponent = self.showRecordComponent;
+
+        self.showRecordComponent = $entry(function (record, colNum) {
+    		var jObj = this.__ref;
+    		var recordJ =  @com.smartgwt.client.widgets.grid.ListGridRecord::getOrCreateRef(Lcom/google/gwt/core/client/JavaScriptObject;)(record);
+            var colNumJ = colNum == null ? null : @com.smartgwt.client.util.JSOHelper::toInteger(I)(colNum);
+
+            var ret = jObj.@com.smartgwt.client.widgets.grid.ListGrid::showRecordComponent(Lcom/smartgwt/client/widgets/grid/ListGridRecord;Ljava/lang/Integer;)(recordJ, colNumJ);
+            return ret;
+        });
+
         
         self.__updateRecordComponent = self.updateRecordComponent;
         if (self.__updateRecordComponent == null) {
@@ -8037,7 +8009,31 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
         return component == null ? null : 
                @com.smartgwt.client.widgets.Canvas::getOrCreateRef(Lcom/google/gwt/core/client/JavaScriptObject;)(component);
     }-*/;
-    
+
+    /**
+     * When {@link com.smartgwt.client.widgets.grid.ListGrid#getShowRecordComponents showRecordComponents} is true, return
+     * false from this method  to prevent showRecordComponent behavior for the passed record. Second parameter will only be
+     * passed if {@link com.smartgwt.client.widgets.grid.ListGrid#getShowRecordComponentsByCell showRecordComponentsByCell} is
+     * true.
+     * <br><b>Note: This is an override point</b>
+     * 
+     * @param record record being processed
+     * @param colNum column index of the cell in which the record component   may be shown. Will be null unless showRecordComponentsByCell is
+     * true.
+     *
+     * @return return false to cancel showRecordComponent behavior
+     */
+    protected native boolean showRecordComponent(ListGridRecord record, Integer colNum) /*-{
+        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
+        colNum = colNum == null ? null : colNum.@java.lang.Integer::intValue()();
+        var retVal =self.__showRecordComponent(record.@com.smartgwt.client.core.DataClass::getJsObj()(), colNum);
+        if(retVal == null || retVal === undefined) {
+            return false;
+        } else {
+            return retVal;
+        }
+    }-*/;
+
     /**
      * When {@link com.smartgwt.client.widgets.grid.ListGrid#getShowRecordComponents showRecordComponents} is true, this method
      * is called for a row/cell  that has already been rendered.  The colNum parameter is applicable only when  {@link
