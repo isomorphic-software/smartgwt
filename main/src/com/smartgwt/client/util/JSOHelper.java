@@ -196,6 +196,11 @@ public class JSOHelper {
 	      delete elem[attr];
     }-*/;
 
+    public static native void deleteAttributeIfExists(JavaScriptObject elem, String attr) /*-{
+          var undef;
+	      if (elem[attr] !== undef) delete elem[attr];
+    }-*/;
+
     public static native void setAttribute(JavaScriptObject elem, String attr, boolean value) /*-{
 	    elem[attr] = value;
     }-*/;
