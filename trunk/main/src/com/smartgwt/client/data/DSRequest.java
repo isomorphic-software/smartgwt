@@ -56,7 +56,7 @@ import com.google.gwt.event.shared.*;
 import com.google.gwt.event.shared.HasHandlers;
 
 /**
- * Request sent to the server to initiate a  {@link com.smartgwt.client.docs.DataSourceOperations 'DataSource operation'}. 
+ * Request sent to the server to initiate a  {@link com.smartgwt.client.docs.DataSourceOperations DataSource operation}. 
  * All properties which are legal on {@link com.smartgwt.client.rpc.RPCRequest} are legal, in addition to the properties
  * listed here.
  */
@@ -80,10 +80,10 @@ public class DSRequest extends RPCRequest {
     /**
      * For requests submitted by a {@link com.smartgwt.client.widgets.DataBoundComponent}, the {@link
      * com.smartgwt.client.widgets.Canvas#getID ID} of the submitting component. <P> This ID will be present for operations
-     * including automatic saves by a ListGrid  {@link com.smartgwt.client.docs.Editing 'during editing'}, or calls to {@link
-     * com.smartgwt.client.widgets.form.DynamicForm#saveData DynamicForm.saveData}.  It will not be present for a direct call
-     * to a DataSource method such as {@link com.smartgwt.client.data.DataSource#fetchData DataSource.fetchData}. <P> Note this
-     * is the component's <b>String</b> ID - you can retrieve the component itself via {@link
+     * including automatic saves by a ListGrid  {@link com.smartgwt.client.docs.Editing during editing}, or calls to {@link
+     * com.smartgwt.client.widgets.form.DynamicForm#saveData form.saveData()}.  It will not be present for a direct call to a
+     * DataSource method such as {@link com.smartgwt.client.data.DataSource#fetchData DataSource.fetchData}. <P> Note this is
+     * the component's <b>String</b> ID - you can retrieve the component itself via {@link
      * com.smartgwt.client.widgets.Canvas#getById Canvas.getById}.
      *
      * @param componentId componentId Default value is null
@@ -95,10 +95,10 @@ public class DSRequest extends RPCRequest {
     /**
      * For requests submitted by a {@link com.smartgwt.client.widgets.DataBoundComponent}, the {@link
      * com.smartgwt.client.widgets.Canvas#getID ID} of the submitting component. <P> This ID will be present for operations
-     * including automatic saves by a ListGrid  {@link com.smartgwt.client.docs.Editing 'during editing'}, or calls to {@link
-     * com.smartgwt.client.widgets.form.DynamicForm#saveData DynamicForm.saveData}.  It will not be present for a direct call
-     * to a DataSource method such as {@link com.smartgwt.client.data.DataSource#fetchData DataSource.fetchData}. <P> Note this
-     * is the component's <b>String</b> ID - you can retrieve the component itself via {@link
+     * including automatic saves by a ListGrid  {@link com.smartgwt.client.docs.Editing during editing}, or calls to {@link
+     * com.smartgwt.client.widgets.form.DynamicForm#saveData form.saveData()}.  It will not be present for a direct call to a
+     * DataSource method such as {@link com.smartgwt.client.data.DataSource#fetchData DataSource.fetchData}. <P> Note this is
+     * the component's <b>String</b> ID - you can retrieve the component itself via {@link
      * com.smartgwt.client.widgets.Canvas#getById Canvas.getById}.
      *
      *
@@ -279,13 +279,12 @@ public class DSRequest extends RPCRequest {
      * operation completes, {@link com.smartgwt.client.data.DSRequest#getExportDisplay exportDisplay} specifies whether the
      * exported&#010 data should be downloaded to the file-system or displayed in a new window.  The default value&#010 of
      * exportDisplay is "download" which displays the Save As dialog.  See {@link com.smartgwt.client.types.ExportDisplay}
-     * &#010 for more information.&#010 <P>&#010 You can configure the style of {@link com.smartgwt.client..LineBreakStyle} to
-     * use when &#010 generating the output, the {@link com.smartgwt.client.data.DSRequest#getExportDelimiter 'delimiter'} to
-     * use when exporting&#010 to CSV and the {@link com.smartgwt.client.data.DSRequest#getExportTitleSeparatorChar
-     * 'separator-character'} to use in &#010 field-titles when exporting to XML.&#010 <P>&#010 Additionally, you can output
-     * arbitrary text before and after the exported data by setting &#010 {@link
-     * com.smartgwt.client.data.DSRequest#getExportHeader 'exportHeader'} and {@link
-     * com.smartgwt.client.data.DSRequest#getExportFooter 'exportFooter'}.&#010 <P>&#010 Note that an export initiated using
+     * &#010 for more information.&#010 <P>&#010 You can configure the style of  line-breaks to use when &#010 generating the
+     * output, the {@link com.smartgwt.client.data.DSRequest#getExportDelimiter delimiter} to use when exporting&#010 to CSV
+     * and the {@link com.smartgwt.client.data.DSRequest#getExportTitleSeparatorChar separator-character} to use in &#010
+     * field-titles when exporting to XML.&#010 <P>&#010 Additionally, you can output arbitrary text before and after the
+     * exported data by setting &#010 {@link com.smartgwt.client.data.DSRequest#getExportHeader exportHeader} and {@link
+     * com.smartgwt.client.data.DSRequest#getExportFooter exportFooter}.&#010 <P>&#010 Note that an export initiated using
      * dsRequest properties does not provide support for JSON&#010 format (see &#010 <a
      * href="http://forums.smartclient.com/showthread.php?t=235">this post</a> for more detail).&#010 <P>&#010 As well as
      * setting dsRequest.exportResults and related properties, exports can be initiated&#010 in two other ways, via {@link
@@ -312,13 +311,12 @@ public class DSRequest extends RPCRequest {
      * operation completes, {@link com.smartgwt.client.data.DSRequest#getExportDisplay exportDisplay} specifies whether the
      * exported&#010 data should be downloaded to the file-system or displayed in a new window.  The default value&#010 of
      * exportDisplay is "download" which displays the Save As dialog.  See {@link com.smartgwt.client.types.ExportDisplay}
-     * &#010 for more information.&#010 <P>&#010 You can configure the style of {@link com.smartgwt.client..LineBreakStyle} to
-     * use when &#010 generating the output, the {@link com.smartgwt.client.data.DSRequest#getExportDelimiter 'delimiter'} to
-     * use when exporting&#010 to CSV and the {@link com.smartgwt.client.data.DSRequest#getExportTitleSeparatorChar
-     * 'separator-character'} to use in &#010 field-titles when exporting to XML.&#010 <P>&#010 Additionally, you can output
-     * arbitrary text before and after the exported data by setting &#010 {@link
-     * com.smartgwt.client.data.DSRequest#getExportHeader 'exportHeader'} and {@link
-     * com.smartgwt.client.data.DSRequest#getExportFooter 'exportFooter'}.&#010 <P>&#010 Note that an export initiated using
+     * &#010 for more information.&#010 <P>&#010 You can configure the style of  line-breaks to use when &#010 generating the
+     * output, the {@link com.smartgwt.client.data.DSRequest#getExportDelimiter delimiter} to use when exporting&#010 to CSV
+     * and the {@link com.smartgwt.client.data.DSRequest#getExportTitleSeparatorChar separator-character} to use in &#010
+     * field-titles when exporting to XML.&#010 <P>&#010 Additionally, you can output arbitrary text before and after the
+     * exported data by setting &#010 {@link com.smartgwt.client.data.DSRequest#getExportHeader exportHeader} and {@link
+     * com.smartgwt.client.data.DSRequest#getExportFooter exportFooter}.&#010 <P>&#010 Note that an export initiated using
      * dsRequest properties does not provide support for JSON&#010 format (see &#010 <a
      * href="http://forums.smartclient.com/showthread.php?t=235">this post</a> for more detail).&#010 <P>&#010 As well as
      * setting dsRequest.exportResults and related properties, exports can be initiated&#010 in two other ways, via {@link
@@ -357,8 +355,7 @@ public class DSRequest extends RPCRequest {
     }
 
     /**
-     * The style of line-breaks to use in the exported output.  See {@link com.smartgwt.client..LineBreakStyle} for more
-     * information.
+     * The style of line-breaks to use in the exported output.  See LineBreakStyle for more information.
      *
      * @param lineBreakStyle lineBreakStyle Default value is null
      */
@@ -367,8 +364,7 @@ public class DSRequest extends RPCRequest {
     }
 
     /**
-     * The style of line-breaks to use in the exported output.  See {@link com.smartgwt.client..LineBreakStyle} for more
-     * information.
+     * The style of line-breaks to use in the exported output.  See LineBreakStyle for more information.
      *
      *
      * @return String
@@ -421,26 +417,58 @@ public class DSRequest extends RPCRequest {
      * screen you want to perform a <code>fetch</code> operation on the same DataSource but interpret search criteria
      * differently (eg full text search).   <P> If you declare more than one {@link com.smartgwt.client.data.OperationBinding}
      * for the same {@link com.smartgwt.client.data.OperationBinding#getOperationType operationType}, you can specify an
-     * <code>operationId</code> {@link com.smartgwt.client.data.OperationBinding#getOperationId 'on the operationBinding'}
-     * which will cause that operationBinding to be used for dsRequests containing a matching <code>operationId</code>. This
-     * allows all the possible settings of an <code>operationBinding</code>, including {@link
-     * com.smartgwt.client.data.OperationBinding#getWsOperation 'wsOperation'} or {@link com.smartgwt.client..DMI} settings, to
-     * be switched on a per-component or per-request basis.   <P> For example, by setting the <code>fetchOperation</code> on a
-     * particular ListGrid, you could cause it to invoke a different server method via DMI, different {@link
-     * com.smartgwt.client.data.OperationBinding#getDataURL 'dataURL'} or different {@link
-     * com.smartgwt.client.data.OperationBinding#getWsOperation 'web service operation'}. <P> The <code>operationId</code> can
+     * <code>operationId</code> {@link com.smartgwt.client.data.OperationBinding#getOperationId on the operationBinding} which
+     * will cause that operationBinding to be used for dsRequests containing a matching <code>operationId</code>. This allows
+     * all the possible settings of an <code>operationBinding</code>, including {@link
+     * com.smartgwt.client.data.OperationBinding#getWsOperation wsOperation} or DMI settings, to be switched on a per-component
+     * or per-request basis.   <P> For example, by setting the <code>fetchOperation</code> on a particular ListGrid, you could
+     * cause it to invoke a different server method via DMI, different {@link
+     * com.smartgwt.client.data.OperationBinding#getDataURL dataURL} or different {@link
+     * com.smartgwt.client.data.OperationBinding#getWsOperation web service operation}. <P> The <code>operationId</code> can
      * also be directly received by the server in order to affect behavior.  When using the Smart GWT Server,
      * <code>operationId</code> can be accessed via dsRequest.getOperationId().  The {@link
      * com.smartgwt.client.data.RestDataSource} will also send the <code>operationId</code> to the server as part of the {@link
-     * com.smartgwt.client.data.RestDataSource#getMetaDataPrefix 'request metadata'}.   <P> Note that if you {@link
-     * com.smartgwt.client.data.DataSource#fetchData DataSource.fetchData} a DataSource operation, you can also specify
-     * operationId via the <code>requestProperties</code> parameter.
+     * com.smartgwt.client.data.RestDataSource#getMetaDataPrefix request metadata}.   <P> Note that if you {@link
+     * com.smartgwt.client.data.DataSource#fetchData manually invoke} a DataSource operation, you can also specify operationId
+     * via the <code>requestProperties</code> parameter.
      *
      * @param operationId operationId Default value is null
      * @see com.smartgwt.client.docs.Operations Operations overview and related methods
      */
     public void setOperationId(String operationId) {
         setAttribute("operationId", operationId);
+    }
+
+    /**
+     * When a {@link com.smartgwt.client.widgets.DataBoundComponent} sends a DSRequest, the <code>dsRequest.operationId</code>
+     * will be automatically picked up from the <code>fetchOperation</code>, <code>addOperation</code>, etc properties of the
+     * DataBoundComponent.   <P> The <code>operationId</code> serves as an identifier that you can use to create variations on
+     * the 4 basic DataSource operations that are used by different components in different parts of your application.  For
+     * example, you may be using a standard <code>fetch</code> operation in one part of your application, however on another
+     * screen you want to perform a <code>fetch</code> operation on the same DataSource but interpret search criteria
+     * differently (eg full text search).   <P> If you declare more than one {@link com.smartgwt.client.data.OperationBinding}
+     * for the same {@link com.smartgwt.client.data.OperationBinding#getOperationType operationType}, you can specify an
+     * <code>operationId</code> {@link com.smartgwt.client.data.OperationBinding#getOperationId on the operationBinding} which
+     * will cause that operationBinding to be used for dsRequests containing a matching <code>operationId</code>. This allows
+     * all the possible settings of an <code>operationBinding</code>, including {@link
+     * com.smartgwt.client.data.OperationBinding#getWsOperation wsOperation} or DMI settings, to be switched on a per-component
+     * or per-request basis.   <P> For example, by setting the <code>fetchOperation</code> on a particular ListGrid, you could
+     * cause it to invoke a different server method via DMI, different {@link
+     * com.smartgwt.client.data.OperationBinding#getDataURL dataURL} or different {@link
+     * com.smartgwt.client.data.OperationBinding#getWsOperation web service operation}. <P> The <code>operationId</code> can
+     * also be directly received by the server in order to affect behavior.  When using the Smart GWT Server,
+     * <code>operationId</code> can be accessed via dsRequest.getOperationId().  The {@link
+     * com.smartgwt.client.data.RestDataSource} will also send the <code>operationId</code> to the server as part of the {@link
+     * com.smartgwt.client.data.RestDataSource#getMetaDataPrefix request metadata}.   <P> Note that if you {@link
+     * com.smartgwt.client.data.DataSource#fetchData manually invoke} a DataSource operation, you can also specify operationId
+     * via the <code>requestProperties</code> parameter.
+     *
+     *
+     * @return String
+     * @see com.smartgwt.client.docs.Operations Operations overview and related methods
+     */
+    public String getOperationId()  {
+        return getAttributeAsString("operationId");
     }
 
     /**
@@ -471,7 +499,7 @@ public class DSRequest extends RPCRequest {
 
     /**
      * Automatically generated unique ID for this request. This ID will be required by developers  making use of the {@link
-     * com.smartgwt.client.types.DSProtocol}.
+     * com.smartgwt.client.types.DSProtocol "clientCustom" dataProtocol}.
      *
      *
      * @return String
@@ -514,8 +542,21 @@ public class DSRequest extends RPCRequest {
     }
 
     /**
+     * For "fetch" operations, how search criteria should be interpreted for text fields: either "exact" for exact match,
+     * "startsWith" for matching at the beginning only, or "substring" for case-insensitive substring match. <p> This setting
+     * is respected by the built-in SQLDataSource.  Your custom DataSource implementation can interpret the search criteria
+     * passed into "fetch" operations in arbitrary ways; you can safely ignore this flag and use others of your own devising.
+     *
+     *
+     * @return TextMatchStyle
+     */
+    public TextMatchStyle getTextMatchStyle()  {
+        return EnumUtil.getEnum(TextMatchStyle.values(), getAttribute("textMatchStyle"));
+    }
+
+    /**
      * When <code>useFlatFields</code> is set for a request to be sent to a WSDL web service, when&#010 creating the input XML
-     * message to send to the web service, properties in&#010 {@link com.smartgwt.client.data.DSRequest#getData 'request.data'}
+     * message to send to the web service, properties in&#010 {@link com.smartgwt.client.data.DSRequest#getData request.data}
      * will be used as the values for XML elements of the same name, at&#010 any level of nesting.&#010 <P>&#010
      * <code>useFlatFields</code> allows you to ignore gratuitous XML message structure, such as&#010 extra levels of nested
      * elements, and provides some insulation against changes in the&#010 required structure of the input message.&#010
@@ -533,13 +574,12 @@ public class DSRequest extends RPCRequest {
      * com.smartgwt.client.widgets.form.DynamicForm}&#010 to avoid the cumbersome and fragile process of mapping input fields
      * to an XML structure.&#010 <P>&#010 {@link com.smartgwt.client.data.OperationBinding#getUseFlatFields useFlatFields} can
      * also be set to cause <b>all</b> dsRequests of a&#010 particular type to <code>useFlatFields</code> automatically.&#010
-     * <P>&#010 For {@link com.smartgwt.client.widgets.DataBoundComponent}, &#010 {@link
-     * com.smartgwt.client.widgets.DataBoundComponent#getUseFlatFields 'component.useFlatFields'} can be set use
-     * "flattened"&#010 binding to fields of a WSDL message or XML Schema.&#010 <P>&#010 Note that <code>useFlatFields</code>
-     * is not generally recommended for use with XML input&#010 messages where multiple simple type fields exist with the same
-     * name, however if used in this&#010 way, the first field to use a given name wins.  "first" means the first field
-     * encountered in a&#010 depth first search.  "wins" means only the first field will be populated in the generated&#010 XML
-     * message.
+     * <P>&#010 For {@link com.smartgwt.client.widgets.DataBoundComponent DataBoundComponents}, &#010 {@link
+     * com.smartgwt.client.widgets.DataBoundComponent#getUseFlatFields component.useFlatFields} can be set use "flattened"&#010
+     * binding to fields of a WSDL message or XML Schema.&#010 <P>&#010 Note that <code>useFlatFields</code> is not generally
+     * recommended for use with XML input&#010 messages where multiple simple type fields exist with the same name, however if
+     * used in this&#010 way, the first field to use a given name wins.  "first" means the first field encountered in a&#010
+     * depth first search.  "wins" means only the first field will be populated in the generated&#010 XML message.
      *
      * @param useFlatFields useFlatFields Default value is null
      */
@@ -549,7 +589,7 @@ public class DSRequest extends RPCRequest {
 
     /**
      * When <code>useFlatFields</code> is set for a request to be sent to a WSDL web service, when&#010 creating the input XML
-     * message to send to the web service, properties in&#010 {@link com.smartgwt.client.data.DSRequest#getData 'request.data'}
+     * message to send to the web service, properties in&#010 {@link com.smartgwt.client.data.DSRequest#getData request.data}
      * will be used as the values for XML elements of the same name, at&#010 any level of nesting.&#010 <P>&#010
      * <code>useFlatFields</code> allows you to ignore gratuitous XML message structure, such as&#010 extra levels of nested
      * elements, and provides some insulation against changes in the&#010 required structure of the input message.&#010
@@ -567,13 +607,12 @@ public class DSRequest extends RPCRequest {
      * com.smartgwt.client.widgets.form.DynamicForm}&#010 to avoid the cumbersome and fragile process of mapping input fields
      * to an XML structure.&#010 <P>&#010 {@link com.smartgwt.client.data.OperationBinding#getUseFlatFields useFlatFields} can
      * also be set to cause <b>all</b> dsRequests of a&#010 particular type to <code>useFlatFields</code> automatically.&#010
-     * <P>&#010 For {@link com.smartgwt.client.widgets.DataBoundComponent}, &#010 {@link
-     * com.smartgwt.client.widgets.DataBoundComponent#getUseFlatFields 'component.useFlatFields'} can be set use
-     * "flattened"&#010 binding to fields of a WSDL message or XML Schema.&#010 <P>&#010 Note that <code>useFlatFields</code>
-     * is not generally recommended for use with XML input&#010 messages where multiple simple type fields exist with the same
-     * name, however if used in this&#010 way, the first field to use a given name wins.  "first" means the first field
-     * encountered in a&#010 depth first search.  "wins" means only the first field will be populated in the generated&#010 XML
-     * message.
+     * <P>&#010 For {@link com.smartgwt.client.widgets.DataBoundComponent DataBoundComponents}, &#010 {@link
+     * com.smartgwt.client.widgets.DataBoundComponent#getUseFlatFields component.useFlatFields} can be set use "flattened"&#010
+     * binding to fields of a WSDL message or XML Schema.&#010 <P>&#010 Note that <code>useFlatFields</code> is not generally
+     * recommended for use with XML input&#010 messages where multiple simple type fields exist with the same name, however if
+     * used in this&#010 way, the first field to use a given name wins.  "first" means the first field encountered in a&#010
+     * depth first search.  "wins" means only the first field will be populated in the generated&#010 XML message.
      *
      *
      * @return Boolean
@@ -583,7 +622,7 @@ public class DSRequest extends RPCRequest {
     }
 
     /**
-     * Cause the {@link com.smartgwt.client.data.DSRequest#getUseFlatFields 'useFlatFields'} XML serialization behavior to be
+     * Cause the {@link com.smartgwt.client.data.DSRequest#getUseFlatFields useFlatFields} XML serialization behavior to be
      * used for <b>all</b> soap headers in the request.  See also {@link com.smartgwt.client.data.DSRequest#getHeaderData
      * headerData}.
      *
@@ -594,7 +633,7 @@ public class DSRequest extends RPCRequest {
     }
 
     /**
-     * Cause the {@link com.smartgwt.client.data.DSRequest#getUseFlatFields 'useFlatFields'} XML serialization behavior to be
+     * Cause the {@link com.smartgwt.client.data.DSRequest#getUseFlatFields useFlatFields} XML serialization behavior to be
      * used for <b>all</b> soap headers in the request.  See also {@link com.smartgwt.client.data.DSRequest#getHeaderData
      * headerData}.
      *
