@@ -3,6 +3,7 @@ package com.smartgwt.client.docs;
 
 /**
  * Horizontal and vertical location on the page
+ * @see com.smartgwt.client.widgets.grid.ListGrid#getDrawnRowHeight
  * @see com.smartgwt.client.widgets.Canvas#setSnapTo
  * @see com.smartgwt.client.widgets.Canvas#getSnapTo
  * @see com.smartgwt.client.widgets.Canvas#setSnapEdge

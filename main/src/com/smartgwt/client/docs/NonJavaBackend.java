@@ -5,13 +5,13 @@ package com.smartgwt.client.docs;
  * <h3>.NET, PHP, Serverless Integration</h3>
  * Smart GWT is fully functional without installation of the Java server included in the SDK,&#010 and can be integrated
  * with any server technology.  This topic provides pointers to&#010 documentation that is most relevant for this type of
- * integration.&#010 <P>&#010 <h4>Installation</h4>&#010 <P>&#010 As described in {@link
- * com.smartgwt.client.docs.IscInstall '<i>Deploying Smart GWT</i>'}, for a client-only&#010 integration, installation
- * consists of just copying a directory of JavaScript and media files&#010 to your webserver.&#010 <P>&#010 <h4>Creating
- * Components</h4>&#010 <P>&#010 Smart GWT components can be included in any .html page, including dynamically generated
- * pages&#010 produced by .php or .asp files.  The Smart GWT libraries can be included in the page as&#010 follows:&#010
- * <pre>&#010 &lt;HTML&gt;&lt;HEAD&gt;&#010 &lt;SCRIPT&gt;var isomorphicDir="../isomorphic/";&lt;/SCRIPT&gt;&#010
- * &lt;SCRIPT SRC=../isomorphic/system/modules/ISC_Core.js&gt;&lt;/SCRIPT&gt;&#010 &lt;SCRIPT
+ * integration.&#010 <P>&#010 <h4>Installation</h4>&#010 <P>&#010 As described in {@link iscInstall <i>Deploying Smart
+ * GWT</i>}, for a client-only&#010 integration, installation consists of just copying a directory of JavaScript and media
+ * files&#010 to your webserver.&#010 <P>&#010 <h4>Creating Components</h4>&#010 <P>&#010 Smart GWT components can be
+ * included in any .html page, including dynamically generated pages&#010 produced by .php or .asp files.  The Smart GWT
+ * libraries can be included in the page as&#010 follows:&#010 <pre>&#010 &lt;HTML&gt;&lt;HEAD&gt;&#010 &lt;SCRIPT&gt;var
+ * isomorphicDir="../isomorphic/";&lt;/SCRIPT&gt;&#010 &lt;SCRIPT
+ * SRC=../isomorphic/system/modules/ISC_Core.js&gt;&lt;/SCRIPT&gt;&#010 &lt;SCRIPT
  * SRC=../isomorphic/system/modules/ISC_Foundation.js&gt;&lt;/SCRIPT&gt;&#010 &lt;SCRIPT
  * SRC=../isomorphic/system/modules/ISC_Containers.js&gt;&lt;/SCRIPT&gt;&#010 &lt;SCRIPT
  * SRC=../isomorphic/system/modules/ISC_Grids.js&gt;&lt;/SCRIPT&gt;&#010 &lt;SCRIPT
@@ -25,7 +25,7 @@ package com.smartgwt.client.docs;
  * JavaScript-based component instantiation is currently the recommended approach, and&#010 most examples are provided in
  * the JavaScript format.&#010 <P>&#010 <h4>Data Loading / Data Binding</h4>&#010 <P>&#010 The primary focus of Smart GWT
  * integration is connecting DataSource operations to your&#010 server.  The {@link
- * com.smartgwt.client.docs.ClientDataIntegration 'Client-side Data Integration'} chapter covers&#010 the key approaches,
+ * com.smartgwt.client.docs.ClientDataIntegration Client-side Data Integration} chapter covers&#010 the key approaches,
  * including cookbook approaches for REST-based integration with any server&#010 that can return XML or JSON over
  * HTTP.&#010 <P>&#010 <h4>Simple RPCs (non-DataSource requests)</h4>&#010 <P>&#010 You can implement simple RPCs as web
  * service operations: use&#010 {@link com.smartgwt.client.data.XMLTools#loadWSDL XMLTools.loadWSDL} to load the service

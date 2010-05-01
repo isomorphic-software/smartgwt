@@ -143,7 +143,7 @@ public class CheckboxItem extends FormItem {
     /**
      * By default a checkboxItem sets {@link com.smartgwt.client.widgets.form.fields.CheckboxItem#getShowTitle showTitle}:true,
      * and so takes up two cells with the default {@link com.smartgwt.client.types.TitleOrientation} of "left" (see {@link
-     * com.smartgwt.client.docs.FormLayout 'form layout overview'}).  However, the title cell is left blank by default, and the
+     * com.smartgwt.client.docs.FormLayout form layout overview}).  However, the title cell is left blank by default, and the
      * title specified by {@link com.smartgwt.client.widgets.form.fields.FormItem#getTitle title} is shown inside the
      * formItem's cell instead, in an element called the "label". <P> To instead show the title in it's original location, set
      * <code>labelAsTitle:true</code>. You can also set {@link
@@ -159,7 +159,7 @@ public class CheckboxItem extends FormItem {
     /**
      * By default a checkboxItem sets {@link com.smartgwt.client.widgets.form.fields.CheckboxItem#getShowTitle showTitle}:true,
      * and so takes up two cells with the default {@link com.smartgwt.client.types.TitleOrientation} of "left" (see {@link
-     * com.smartgwt.client.docs.FormLayout 'form layout overview'}).  However, the title cell is left blank by default, and the
+     * com.smartgwt.client.docs.FormLayout form layout overview}).  However, the title cell is left blank by default, and the
      * title specified by {@link com.smartgwt.client.widgets.form.fields.FormItem#getTitle title} is shown inside the
      * formItem's cell instead, in an element called the "label". <P> To instead show the title in it's original location, set
      * <code>labelAsTitle:true</code>. You can also set {@link
@@ -258,7 +258,7 @@ public class CheckboxItem extends FormItem {
     /**
      * Base CSS class for this item's title cell. <P> <B>Note:</B> This styling applies to the standard form item title cell
      * for this item - it does not apply to item's {@link com.smartgwt.client.widgets.form.fields.CheckboxItem#getShowLabel
-     * 'label'}. To modify the styling for that text, use {@link
+     * label}. To modify the styling for that text, use {@link
      * com.smartgwt.client.widgets.form.fields.CheckboxItem#getTextBoxStyle textBoxStyle} instead.
      *
      * @param titleStyle titleStyle Default value is null
@@ -271,7 +271,7 @@ public class CheckboxItem extends FormItem {
     /**
      * Base CSS class for this item's title cell. <P> <B>Note:</B> This styling applies to the standard form item title cell
      * for this item - it does not apply to item's {@link com.smartgwt.client.widgets.form.fields.CheckboxItem#getShowLabel
-     * 'label'}. To modify the styling for that text, use {@link
+     * label}. To modify the styling for that text, use {@link
      * com.smartgwt.client.widgets.form.fields.CheckboxItem#getTextBoxStyle textBoxStyle} instead.
      *
      *

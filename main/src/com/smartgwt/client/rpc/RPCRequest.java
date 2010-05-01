@@ -125,11 +125,11 @@ public class RPCRequest extends DataClass {
     }
 
     /**
-     * For use only with the {@link com.smartgwt.client.types.RPCTransport} transport, this attribute&#010 specifies the name
-     * of the URL parameter which is used to specify the callback function that&#010 the server is expected to call by writing
-     * out JavaScript code.  The actual function to call&#010 is automatically generated and differs for every request (to
-     * allow concurrency).&#010 <P>&#010 For example, with <code>callbackParam</code> set to it's default value of "callback",
-     * the&#010 server might be contacted with a URL like:&#010 <pre>&#010   
+     * For use only with the {@link com.smartgwt.client.types.RPCTransport scriptInclude} transport, this attribute&#010
+     * specifies the name of the URL parameter which is used to specify the callback function that&#010 the server is expected
+     * to call by writing out JavaScript code.  The actual function to call&#010 is automatically generated and differs for
+     * every request (to allow concurrency).&#010 <P>&#010 For example, with <code>callbackParam</code> set to it's default
+     * value of "callback", the&#010 server might be contacted with a URL like:&#010 <pre>&#010   
      * loadData?callback=isc_scriptIncludeCallback_5&#010 </pre>&#010 .. then the server's response should look like:&#010
      * <pre>&#010    isc_scriptIncludeCallback_5({ .. data .. });&#010 </pre>&#010 The name "isc_scriptIncludeCallback_5" is
      * automatically generated and will differ each time&#010 the server is contacted.&#010 <P>&#010 Smart GWT makes of this
@@ -144,11 +144,11 @@ public class RPCRequest extends DataClass {
     }
 
     /**
-     * For use only with the {@link com.smartgwt.client.types.RPCTransport} transport, this attribute&#010 specifies the name
-     * of the URL parameter which is used to specify the callback function that&#010 the server is expected to call by writing
-     * out JavaScript code.  The actual function to call&#010 is automatically generated and differs for every request (to
-     * allow concurrency).&#010 <P>&#010 For example, with <code>callbackParam</code> set to it's default value of "callback",
-     * the&#010 server might be contacted with a URL like:&#010 <pre>&#010   
+     * For use only with the {@link com.smartgwt.client.types.RPCTransport scriptInclude} transport, this attribute&#010
+     * specifies the name of the URL parameter which is used to specify the callback function that&#010 the server is expected
+     * to call by writing out JavaScript code.  The actual function to call&#010 is automatically generated and differs for
+     * every request (to allow concurrency).&#010 <P>&#010 For example, with <code>callbackParam</code> set to it's default
+     * value of "callback", the&#010 server might be contacted with a URL like:&#010 <pre>&#010   
      * loadData?callback=isc_scriptIncludeCallback_5&#010 </pre>&#010 .. then the server's response should look like:&#010
      * <pre>&#010    isc_scriptIncludeCallback_5({ .. data .. });&#010 </pre>&#010 The name "isc_scriptIncludeCallback_5" is
      * automatically generated and will differ each time&#010 the server is contacted.&#010 <P>&#010 Smart GWT makes of this
@@ -164,10 +164,10 @@ public class RPCRequest extends DataClass {
     }
 
     /**
-     * For use during {@link com.smartgwt.client.docs.Relogin 'Relogin'}, this property marks this request an attempt to login,
+     * For use during {@link com.smartgwt.client.docs.Relogin Relogin}, this property marks this request an attempt to login,
      * therefore a response containing the <code>loginRequiredMarker</code> is a normal condition and should result in the
-     * status code {@link com.smartgwt.client.rpc.RPCResponse#STATUS_LOGIN_INCORRECT} rather than a call to {@link
-     * com.smartgwt.client.rpc.RPCManager#loginRequired RPCManager.loginRequired}. <P> It is not required to set
+     * status code {@link com.smartgwt.client.rpc.RPCResponse#STATUS_LOGIN_INCORRECT STATUS_LOGIN_INCORRECT} rather than a call
+     * to {@link com.smartgwt.client.rpc.RPCManager#loginRequired loginRequired()}. <P> It is not required to set
      * <code>containsCredentials</code>, however, it does typically simplify relogin logic by separating the handling of RPCs
      * that are login attempts from RPCs that are not.
      * <p><b>Note : </b> This is an advanced setting</p>
@@ -180,10 +180,10 @@ public class RPCRequest extends DataClass {
     }
 
     /**
-     * For use during {@link com.smartgwt.client.docs.Relogin 'Relogin'}, this property marks this request an attempt to login,
+     * For use during {@link com.smartgwt.client.docs.Relogin Relogin}, this property marks this request an attempt to login,
      * therefore a response containing the <code>loginRequiredMarker</code> is a normal condition and should result in the
-     * status code {@link com.smartgwt.client.rpc.RPCResponse#STATUS_LOGIN_INCORRECT} rather than a call to {@link
-     * com.smartgwt.client.rpc.RPCManager#loginRequired RPCManager.loginRequired}. <P> It is not required to set
+     * status code {@link com.smartgwt.client.rpc.RPCResponse#STATUS_LOGIN_INCORRECT STATUS_LOGIN_INCORRECT} rather than a call
+     * to {@link com.smartgwt.client.rpc.RPCManager#loginRequired loginRequired()}. <P> It is not required to set
      * <code>containsCredentials</code>, however, it does typically simplify relogin logic by separating the handling of RPCs
      * that are login attempts from RPCs that are not.
      *
@@ -218,9 +218,9 @@ public class RPCRequest extends DataClass {
 
     /**
      * If enabled, causes the RPCRequest to download the requested resource as a file, either  showing the browser's Save
-     * dialog or displaying the file-content in  {@link com.smartgwt.client.rpc.RPCRequest#getDownloadToNewWindow 'a new
-     * browser window'}. <P> Setting this attribute to true means that no callback will be fired and implies that the  request
-     * will silently use {@link com.smartgwt.client.rpc.RPCRequest#getTransport 'transport'}: "hiddenFrame".
+     * dialog or displaying the file-content in  {@link com.smartgwt.client.rpc.RPCRequest#getDownloadToNewWindow a new browser
+     * window}. <P> Setting this attribute to true means that no callback will be fired and implies that the  request will
+     * silently use {@link com.smartgwt.client.rpc.RPCRequest#getTransport transport}: "hiddenFrame".
      * <p><b>Note : </b> This is an advanced setting</p>
      *
      * @param downloadResult downloadResult Default value is false
@@ -231,9 +231,9 @@ public class RPCRequest extends DataClass {
 
     /**
      * If enabled, causes the RPCRequest to download the requested resource as a file, either  showing the browser's Save
-     * dialog or displaying the file-content in  {@link com.smartgwt.client.rpc.RPCRequest#getDownloadToNewWindow 'a new
-     * browser window'}. <P> Setting this attribute to true means that no callback will be fired and implies that the  request
-     * will silently use {@link com.smartgwt.client.rpc.RPCRequest#getTransport 'transport'}: "hiddenFrame".
+     * dialog or displaying the file-content in  {@link com.smartgwt.client.rpc.RPCRequest#getDownloadToNewWindow a new browser
+     * window}. <P> Setting this attribute to true means that no callback will be fired and implies that the  request will
+     * silently use {@link com.smartgwt.client.rpc.RPCRequest#getTransport transport}: "hiddenFrame".
      *
      *
      * @return Boolean
@@ -243,8 +243,8 @@ public class RPCRequest extends DataClass {
     }
 
     /**
-     * When {@link com.smartgwt.client.rpc.RPCRequest#getDownloadResult 'downloadResult'} is true, setting this attribute to
-     * true causes the content of the downloaded file to be displayed in a new browser window.
+     * When {@link com.smartgwt.client.rpc.RPCRequest#getDownloadResult downloadResult} is true, setting this attribute to true
+     * causes the content of the downloaded file to be displayed in a new browser window.
      * <p><b>Note : </b> This is an advanced setting</p>
      *
      * @param downloadToNewWindow downloadToNewWindow Default value is false
@@ -254,8 +254,8 @@ public class RPCRequest extends DataClass {
     }
 
     /**
-     * When {@link com.smartgwt.client.rpc.RPCRequest#getDownloadResult 'downloadResult'} is true, setting this attribute to
-     * true causes the content of the downloaded file to be displayed in a new browser window.
+     * When {@link com.smartgwt.client.rpc.RPCRequest#getDownloadResult downloadResult} is true, setting this attribute to true
+     * causes the content of the downloaded file to be displayed in a new browser window.
      *
      *
      * @return Boolean
@@ -407,10 +407,11 @@ public class RPCRequest extends DataClass {
     }
 
     /**
-     * Controls the cursor shown when {@link com.smartgwt.client.rpc.RPCManager#promptStyle} is set to <code>"cursor"</code>
-     * for this request only. Defaults to {@link com.smartgwt.client.rpc.RPCManager#promptCursor}. <p> In Safari, IE 5.5 and
-     * Firefox 1.0 the default value is "wait", on all other platforms it is "progress".  The reason for this split is that the
-     * above-mentioned browsers do not support CSS2.1 - which is required for the "progress" cursor type.
+     * Controls the cursor shown when {@link com.smartgwt.client.rpc.RPCManager#promptStyle promptStyle} is set to
+     * <code>"cursor"</code> for this request only. Defaults to {@link com.smartgwt.client.rpc.RPCManager#promptCursor
+     * promptCursor}. <p> In Safari, IE 5.5 and Firefox 1.0 the default value is "wait", on all other platforms it is
+     * "progress".  The reason for this split is that the above-mentioned browsers do not support CSS2.1 - which is required
+     * for the "progress" cursor type.
      *
      * @param promptCursor promptCursor Default value is browser-dependent
      * @see com.smartgwt.client.docs.RpcPrompt RpcPrompt overview and related methods
@@ -420,10 +421,11 @@ public class RPCRequest extends DataClass {
     }
 
     /**
-     * Controls the cursor shown when {@link com.smartgwt.client.rpc.RPCManager#promptStyle} is set to <code>"cursor"</code>
-     * for this request only. Defaults to {@link com.smartgwt.client.rpc.RPCManager#promptCursor}. <p> In Safari, IE 5.5 and
-     * Firefox 1.0 the default value is "wait", on all other platforms it is "progress".  The reason for this split is that the
-     * above-mentioned browsers do not support CSS2.1 - which is required for the "progress" cursor type.
+     * Controls the cursor shown when {@link com.smartgwt.client.rpc.RPCManager#promptStyle promptStyle} is set to
+     * <code>"cursor"</code> for this request only. Defaults to {@link com.smartgwt.client.rpc.RPCManager#promptCursor
+     * promptCursor}. <p> In Safari, IE 5.5 and Firefox 1.0 the default value is "wait", on all other platforms it is
+     * "progress".  The reason for this split is that the above-mentioned browsers do not support CSS2.1 - which is required
+     * for the "progress" cursor type.
      *
      *
      * @return String
@@ -434,7 +436,8 @@ public class RPCRequest extends DataClass {
     }
 
     /**
-     * Controls the prompt style for this request only.  Defaults to {@link com.smartgwt.client.rpc.RPCManager#promptStyle}.
+     * Controls the prompt style for this request only.  Defaults to {@link com.smartgwt.client.rpc.RPCManager#promptStyle
+     * promptStyle}.
      *
      * @param promptStyle promptStyle Default value is RPCManager.promptStyle
      * @see com.smartgwt.client.docs.RpcPrompt RpcPrompt overview and related methods
@@ -444,7 +447,8 @@ public class RPCRequest extends DataClass {
     }
 
     /**
-     * Controls the prompt style for this request only.  Defaults to {@link com.smartgwt.client.rpc.RPCManager#promptStyle}.
+     * Controls the prompt style for this request only.  Defaults to {@link com.smartgwt.client.rpc.RPCManager#promptStyle
+     * promptStyle}.
      *
      *
      * @return PromptStyle
@@ -484,11 +488,11 @@ public class RPCRequest extends DataClass {
      * server support.  The {@link com.smartgwt.client.rpc.RPCRequest#getActionURL actionURL} must be in the same domain as the
      * current page for this to work. <p> This feature relies on the XMLHttpRequest object which can be disabled by end-users
      * in some supported browsers.  See {@link com.smartgwt.client.docs.PlatformDependencies} for more information. <p>
-     * Generally this API is used for either {@link com.smartgwt.client.docs.NonJavaBackend 'non-Java backends'}  or for
-     * advanced usage such as content that requires processing before it can be used in Smart GWT components (such as
-     * client-side web scraping).  Note that Smart GWT provides higher-level APIs for loading common types of data, see eg
-     * {@link com.smartgwt.client.widgets.HTMLFlow} for HTML content, {@link com.smartgwt.client.widgets.ViewLoader} for
-     * loading Smart GWT components, {@link com.smartgwt.client.data.XMLTools#loadXML XMLTools.loadXML} for loading XML, {@link
+     * Generally this API is used for either {@link com.smartgwt.client.docs.NonJavaBackend non-Java backends}  or for advanced
+     * usage such as content that requires processing before it can be used in Smart GWT components (such as client-side web
+     * scraping).  Note that Smart GWT provides higher-level APIs for loading common types of data, see eg {@link
+     * com.smartgwt.client.widgets.HTMLFlow} for HTML content, {@link com.smartgwt.client.widgets.ViewLoader} for loading Smart
+     * GWT components, {@link com.smartgwt.client.data.XMLTools#loadXML XMLTools.loadXML} for loading XML, {@link
      * com.smartgwt.client.rpc.RPCRequest#getEvalResult evalResult} for loading <a href='http://www.json.org/'
      * onclick="window.open('http://www.json.org/');return false;">JSON</a>, and {@link com.smartgwt.client.data.DataSource}
      * for loading structured data in various formats.
@@ -510,11 +514,11 @@ public class RPCRequest extends DataClass {
      * server support.  The {@link com.smartgwt.client.rpc.RPCRequest#getActionURL actionURL} must be in the same domain as the
      * current page for this to work. <p> This feature relies on the XMLHttpRequest object which can be disabled by end-users
      * in some supported browsers.  See {@link com.smartgwt.client.docs.PlatformDependencies} for more information. <p>
-     * Generally this API is used for either {@link com.smartgwt.client.docs.NonJavaBackend 'non-Java backends'}  or for
-     * advanced usage such as content that requires processing before it can be used in Smart GWT components (such as
-     * client-side web scraping).  Note that Smart GWT provides higher-level APIs for loading common types of data, see eg
-     * {@link com.smartgwt.client.widgets.HTMLFlow} for HTML content, {@link com.smartgwt.client.widgets.ViewLoader} for
-     * loading Smart GWT components, {@link com.smartgwt.client.data.XMLTools#loadXML XMLTools.loadXML} for loading XML, {@link
+     * Generally this API is used for either {@link com.smartgwt.client.docs.NonJavaBackend non-Java backends}  or for advanced
+     * usage such as content that requires processing before it can be used in Smart GWT components (such as client-side web
+     * scraping).  Note that Smart GWT provides higher-level APIs for loading common types of data, see eg {@link
+     * com.smartgwt.client.widgets.HTMLFlow} for HTML content, {@link com.smartgwt.client.widgets.ViewLoader} for loading Smart
+     * GWT components, {@link com.smartgwt.client.data.XMLTools#loadXML XMLTools.loadXML} for loading XML, {@link
      * com.smartgwt.client.rpc.RPCRequest#getEvalResult evalResult} for loading <a href='http://www.json.org/'
      * onclick="window.open('http://www.json.org/');return false;">JSON</a>, and {@link com.smartgwt.client.data.DataSource}
      * for loading structured data in various formats.
@@ -579,18 +583,18 @@ public class RPCRequest extends DataClass {
 
     /**
      * Selects the transport used for this RPCRequest.  If unset, the value of {@link
-     * com.smartgwt.client.rpc.RPCManager#defaultTransport} will be used. <p> If you're using queueing, note that all requests
-     * in the queue must use the same transport. If you attempt to send a request via a different transport than those that are
-     * currently on the queue, it will be sent to the server separately, ahead of the queue, and a warning will be logged to
-     * the Developer Console. <p> If you specify an unknown transport, an error will be logged to the DeveloperConsole and
-     * {@link com.smartgwt.client.rpc.RPCManager#defaultTransport} will be used instead. <p> If you specify the
-     * <code>xmlHttpRequest</code> transport and it is not available, a warning will be logged to the Developer Console and the
-     * RPCManager will attempt to use the <code>hiddenFrame</code> transport instead for this request.  Note that some features
-     * like {@link com.smartgwt.client.rpc.RPCRequest#getServerOutputAsString serverOutputAsString} require the
-     * <code>xmlHttpRequest</code> transport and will not work if the <code>xmlHttpRequest</code> transport is unavailable
-     * (this can happen if the end user is using Internet Explorer and has disabled ActiveX).  You can check whether or not the
-     * <code>xmlHttpRequest</code> transport is currently available by calling {@link
-     * com.smartgwt.client.rpc.RPCManager#xmlHttpRequestAvailable RPCManager.xmlHttpRequestAvailable}.
+     * com.smartgwt.client.rpc.RPCManager#defaultTransport defaultTransport} will be used. <p> If you're using queueing, note
+     * that all requests in the queue must use the same transport. If you attempt to send a request via a different transport
+     * than those that are currently on the queue, it will be sent to the server separately, ahead of the queue, and a warning
+     * will be logged to the Developer Console. <p> If you specify an unknown transport, an error will be logged to the
+     * DeveloperConsole and {@link com.smartgwt.client.rpc.RPCManager#defaultTransport defaultTransport} will be used instead.
+     * <p> If you specify the <code>xmlHttpRequest</code> transport and it is not available, a warning will be logged to the
+     * Developer Console and the RPCManager will attempt to use the <code>hiddenFrame</code> transport instead for this
+     * request.  Note that some features like {@link com.smartgwt.client.rpc.RPCRequest#getServerOutputAsString
+     * serverOutputAsString} require the <code>xmlHttpRequest</code> transport and will not work if the
+     * <code>xmlHttpRequest</code> transport is unavailable (this can happen if the end user is using Internet Explorer and has
+     * disabled ActiveX).  You can check whether or not the <code>xmlHttpRequest</code> transport is currently available by
+     * calling {@link com.smartgwt.client.rpc.RPCManager#xmlHttpRequestAvailable RPCManager.xmlHttpRequestAvailable}.
      * <p><b>Note : </b> This is an advanced setting</p>
      *
      * @param transport transport Default value is RPCManager.defaultTransport
@@ -601,18 +605,18 @@ public class RPCRequest extends DataClass {
 
     /**
      * Selects the transport used for this RPCRequest.  If unset, the value of {@link
-     * com.smartgwt.client.rpc.RPCManager#defaultTransport} will be used. <p> If you're using queueing, note that all requests
-     * in the queue must use the same transport. If you attempt to send a request via a different transport than those that are
-     * currently on the queue, it will be sent to the server separately, ahead of the queue, and a warning will be logged to
-     * the Developer Console. <p> If you specify an unknown transport, an error will be logged to the DeveloperConsole and
-     * {@link com.smartgwt.client.rpc.RPCManager#defaultTransport} will be used instead. <p> If you specify the
-     * <code>xmlHttpRequest</code> transport and it is not available, a warning will be logged to the Developer Console and the
-     * RPCManager will attempt to use the <code>hiddenFrame</code> transport instead for this request.  Note that some features
-     * like {@link com.smartgwt.client.rpc.RPCRequest#getServerOutputAsString serverOutputAsString} require the
-     * <code>xmlHttpRequest</code> transport and will not work if the <code>xmlHttpRequest</code> transport is unavailable
-     * (this can happen if the end user is using Internet Explorer and has disabled ActiveX).  You can check whether or not the
-     * <code>xmlHttpRequest</code> transport is currently available by calling {@link
-     * com.smartgwt.client.rpc.RPCManager#xmlHttpRequestAvailable RPCManager.xmlHttpRequestAvailable}.
+     * com.smartgwt.client.rpc.RPCManager#defaultTransport defaultTransport} will be used. <p> If you're using queueing, note
+     * that all requests in the queue must use the same transport. If you attempt to send a request via a different transport
+     * than those that are currently on the queue, it will be sent to the server separately, ahead of the queue, and a warning
+     * will be logged to the Developer Console. <p> If you specify an unknown transport, an error will be logged to the
+     * DeveloperConsole and {@link com.smartgwt.client.rpc.RPCManager#defaultTransport defaultTransport} will be used instead.
+     * <p> If you specify the <code>xmlHttpRequest</code> transport and it is not available, a warning will be logged to the
+     * Developer Console and the RPCManager will attempt to use the <code>hiddenFrame</code> transport instead for this
+     * request.  Note that some features like {@link com.smartgwt.client.rpc.RPCRequest#getServerOutputAsString
+     * serverOutputAsString} require the <code>xmlHttpRequest</code> transport and will not work if the
+     * <code>xmlHttpRequest</code> transport is unavailable (this can happen if the end user is using Internet Explorer and has
+     * disabled ActiveX).  You can check whether or not the <code>xmlHttpRequest</code> transport is currently available by
+     * calling {@link com.smartgwt.client.rpc.RPCManager#xmlHttpRequestAvailable RPCManager.xmlHttpRequestAvailable}.
      *
      *
      * @return RPCTransport
@@ -697,7 +701,7 @@ public class RPCRequest extends DataClass {
     // ********************* Static Methods ***********************
             
     /**
-     * RPCRequest shouldn't be created directly. Instead, pass {@link com.smartgwt.client..Properties} to  {@link
+     * RPCRequest shouldn't be created directly. Instead, pass Properties to  {@link
      * com.smartgwt.client.rpc.RPCManager#sendRequest RPCManager.sendRequest} and {@link
      * com.smartgwt.client.rpc.RPCManager#send RPCManager.send}.
      */

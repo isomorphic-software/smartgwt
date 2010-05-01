@@ -15,8 +15,8 @@ package com.smartgwt.client.docs;
  * that, like all component XML properties, the <code>width</code> property can be&#010 specified either as an XML
  * attribute or as a subelement.  Expressing it as a subelement, as&#010 shown above, allows the &lt;JS&gt; tag to be
  * used.&#010 <P>&#010 <b>Embedding Methods</b>&#010 <P>&#010 For {@link com.smartgwt.client.docs.StringMethods
- * 'StringMethods'} such as {@link com.smartgwt.client.widgets.grid.ListGrid#addRecordClickHandler
- * ListGrid.addRecordClickHandler},&#010 JavaScript code can be used as an ordinary element value:&#010 <pre>&#010
+ * StringMethods} such as {@link com.smartgwt.client.widgets.grid.ListGrid#addRecordClickHandler
+ * ListGrid.recordClick},&#010 JavaScript code can be used as an ordinary element value:&#010 <pre>&#010
  * &lt;ListGrid&gt;&#010     &lt;recordClick&gt;if (record.age > 65) doSomething()&lt;/recordClick&gt;&#010
  * &lt;/ListGrid&gt;&#010 </pre>&#010 To embed an actual function definition, use the &lt;JS&gt; tag described above. 
  * For&#010 example:&#010 <pre>&#010 &lt;ListGrid&gt;&#010     &lt;recordClick&gt;&lt;JS&gt;function (viewer, record,
@@ -60,16 +60,15 @@ package com.smartgwt.client.docs;
  * <pre>&#010 &lt;Canvas&gt;&#010     &lt;listGridProperties xsi:type="ListGrid" propertiesOnly="true" &#010               
  * width="500" height="600"/&gt;&#010 &lt;/Canvas&gt;&#010 </pre>&#010 For your reference: "xsi" stands for "XML Schema
  * Instance"; this notation derives from XML&#010 Schema standards for explicitly specifying type inline.&#010 <P>&#010
- * <B>Custom Components</B>&#010 <P>&#010 If you use {@link com.smartgwt.client..ClassFactory#defineClass
- * ClassFactory.defineClass} to define a new component class&#010 "MyListGrid" which is a subclass of the built-in
- * component ListGrid, you can create it in&#010 XML as shown below:&#010 <pre>&#010 &lt;ListGrid constructor="MyListGrid"
- * width="500"/&gt;&#010 </pre>&#010 By using the &lt;ListGrid&gt; tag you advertise that properties should be interpreted
- * &#010 as <code>ListGrid</code> properties.  By specifying <code>constructor</code>&#010 you tell Smart GWT what class to
- * {@link com.smartgwt.client..Class#create Class.create}.&#010 <P>&#010 <b>Component Schema</b>&#010 <P>&#010 Instead of
- * using the <code>constructor</code> and <code>xsi:type</code> attributes for&#010 custom components and custom
- * properties, you can create a {@link com.smartgwt.client.docs.ComponentSchema} that&#010 describes the custom component. 
- * Declaring a component schema allows you to use your&#010 component just like the built-in Smart GWT components, and also
- * allows your component to&#010 be used within {@link com.smartgwt.client.docs.VisualBuilder}.
+ * <B>Custom Components</B>&#010 <P>&#010 If you use  defineClass() to define a new component class&#010 "MyListGrid" which
+ * is a subclass of the built-in component ListGrid, you can create it in&#010 XML as shown below:&#010 <pre>&#010
+ * &lt;ListGrid constructor="MyListGrid" width="500"/&gt;&#010 </pre>&#010 By using the &lt;ListGrid&gt; tag you advertise
+ * that properties should be interpreted &#010 as <code>ListGrid</code> properties.  By specifying
+ * <code>constructor</code>&#010 you tell Smart GWT what class to  create().&#010 <P>&#010 <b>Component Schema</b>&#010
+ * <P>&#010 Instead of using the <code>constructor</code> and <code>xsi:type</code> attributes for&#010 custom components
+ * and custom properties, you can create a {@link com.smartgwt.client.docs.ComponentSchema} that&#010 describes the custom
+ * component.  Declaring a component schema allows you to use your&#010 component just like the built-in Smart GWT
+ * components, and also allows your component to&#010 be used within {@link com.smartgwt.client.docs.VisualBuilder}.
  */
 public interface ComponentXML {
 }

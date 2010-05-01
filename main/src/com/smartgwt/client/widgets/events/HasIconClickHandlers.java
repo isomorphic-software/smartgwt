@@ -22,7 +22,7 @@ import com.google.gwt.event.shared.HasHandlers;
 
 public interface HasIconClickHandlers extends HasHandlers {
     /**
-     * If this button is showing an {@link com.smartgwt.client.widgets.Button#getIcon 'icon'}, a separate click handler for the
+     * If this button is showing an {@link com.smartgwt.client.widgets.Button#getIcon icon}, a separate click handler for the
      * icon may be defined as <code>this.iconClick</code>. Returning false will suppress the standard button click handling
      * code.
      *

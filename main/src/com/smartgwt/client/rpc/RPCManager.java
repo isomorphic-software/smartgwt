@@ -60,46 +60,46 @@ import com.google.gwt.event.shared.HasHandlers;
  * provides a generic, low-level client/server communication integration point.  You can use it to send arbitrary data to a
  * URL of your choosing on the server and optionally be called back with server-returned data when the server replies.  
  * You can process the RPC request in a JSP, Servlet or Filter on the server. <P> Smart GWT's powerful {@link
- * com.smartgwt.client.widgets.DataBoundComponent} automatically issue RPCs as necessary, based on the  {@link
- * com.smartgwt.client.docs.DataSourceOperations 'DataSource protocol'}.  To integrate DataBoundComponents with your
- * server, {@link com.smartgwt.client.docs.ClientServerIntegration 'start here'}. <P> <u>Simple example (client code):</u>
+ * com.smartgwt.client.widgets.DataBoundComponent DataBoundComponents} automatically issue RPCs as necessary, based on the 
+ * {@link com.smartgwt.client.docs.DataSourceOperations DataSource protocol}.  To integrate DataBoundComponents with your
+ * server, {@link com.smartgwt.client.docs.ClientServerIntegration start here}. <P> <u>Simple example (client code):</u>
  * <P><code> var data = { here: "is some data", to: ["send to the server"]};<br> RPCManager.sendRequest({ data: data,
  * callback: "myCallback(data)", actionURL: "/rpcHandler.jsp"});<br> function myCallback(data) { alert("response from the
  * server: " + data); } </code><br><br> <u>Simple example (server code: /rpcHandler.jsp):</u> <br><br><code> RPCManager rpc
  * = new RPCManager(request, response, out);<br> Object data = rpc.getData();<br> System.out.println("client sent: " +
  * data.toString());<br> rpc.send("here's a response");<br> </code> <P> Note that, while the example above uses the Smart
  * GWT Java Server, the RPCManager is also capable of issuing RPCs that do not require a Smart GWT server.  See {@link
- * com.smartgwt.client.docs.ClientDataIntegration 'Client-Side Data Integration'} for details. <P> <u><b>Queuing</b></u>
- * <br> Because of browser limitations on the total number of simultaneous HTTP connections to a given server, batching
- * multiple RPC requests into a single HTTP request is highly advisable whenever possible.  The RPCManager provides a
- * queuing mechanism that allows this. <br><br> <u>Queuing example (client code):</u> <br><br><code>
- * RPCManager.startQueue();<br> RPCManager.send("a string of data", "myCallback(data)", {actionURL:
- * "/rpcHandler.jsp"});<br> RPCManager.sendRequest({ data: ["some", "more data", 2], callback: "myCallback(data)",
- * actionURL: "/rpcHandler.jsp"});<br> RPCManager.sendRequest({ data: "different callback", callback: "myCallback2(data)",
- * actionURL: "/rpcHandler.jsp"});<br> RPCManager.sendQueue()<br> function myCallback(data) { alert("response from the
- * server: " + data); }<br> function myCallback2(data) { alert("response from the server (other callback): " + data); }
- * </code><br><br> <u>Queuing example (server code: /rpcHandler.jsp):</u> <br><br><code> RPCManager rpc = new
- * RPCManager(request, response, out);<br> for(Iterator i = rpc.getRequests().iterator(); i.hasNext();) {<br>
- * &nbsp;&nbsp;&nbsp;&nbsp;RPCRequest rpcRequest = (RPCRequest)i.next();<br> &nbsp;&nbsp;&nbsp;&nbsp;Object data =
- * rpcRequest.getData();<br> &nbsp;&nbsp;&nbsp;&nbsp;System.out.println("client sent:" + data.toString());<br>
- * &nbsp;&nbsp;&nbsp;&nbsp;//send back the data sent to us by the client<br> &nbsp;&nbsp;&nbsp;&nbsp;rpc.send(rpcRequest,
- * new RPCResponse(data));<br> }<br> </code> <br><br> <u><b>Error Handling</b></u> <br> The {@link
- * com.smartgwt.client.rpc.RPCResponse} object has an integer status field that the RPCManager inspects when the response
- * is received from the server. If the value of this field is less than zero, the request is considered to have failed. 
- * Otherwise it is considered to have succeeded.  This value is settable via the setStatus() method call on the RPCResponse
- * server-side object. <br><br> If the status field shows a failure, the RPCManager will, by default, show a dialog with
- * the contents of the {@link com.smartgwt.client.rpc.RPCRequest#getData data} field (which is assumed to contain a 
- * meaningful description of the error that occurred).  If you specified a callback in your RPCRequest, it will <b>not</b>
- * be called if the status shows a failure (see below for how to change this). <br><br> If the status field shows success,
- * the RPCManager takes no special action. <br><br> The built-in status codes and default behavior are there for
- * convenience.  You can choose to completely ignore it and handle errors as you see fit (for example by encoding them into
- * the data field returned by the server, and always setting the RPCResponse status field to a success value).  In fact,
- * the status field is automatically set to a success code (RPCResponse.STATUS_SUCCESS) by the constructor of the
- * RPCResponse object on the server.  <br><br> If you choose to use the status field, but want to handle the errors
- * yourself in your callback (and suppress the default error dialog popped up by the RPCManager), simply specify the {@link
- * com.smartgwt.client.rpc.RPCRequest#getWillHandleError 'willHandleError:true'} on your RPCRequest object.  This allows
- * you to use the RPCManager.sendError() convenience methods on the server without the default error handling behavior on
- * the client.
+ * com.smartgwt.client.docs.ClientDataIntegration Client-Side Data Integration} for details. <P> <u><b>Queuing</b></u> <br>
+ * Because of browser limitations on the total number of simultaneous HTTP connections to a given server, batching multiple
+ * RPC requests into a single HTTP request is highly advisable whenever possible.  The RPCManager provides a queuing
+ * mechanism that allows this. <br><br> <u>Queuing example (client code):</u> <br><br><code> RPCManager.startQueue();<br>
+ * RPCManager.send("a string of data", "myCallback(data)", {actionURL: "/rpcHandler.jsp"});<br> RPCManager.sendRequest({
+ * data: ["some", "more data", 2], callback: "myCallback(data)", actionURL: "/rpcHandler.jsp"});<br>
+ * RPCManager.sendRequest({ data: "different callback", callback: "myCallback2(data)", actionURL: "/rpcHandler.jsp"});<br>
+ * RPCManager.sendQueue()<br> function myCallback(data) { alert("response from the server: " + data); }<br> function
+ * myCallback2(data) { alert("response from the server (other callback): " + data); } </code><br><br> <u>Queuing example
+ * (server code: /rpcHandler.jsp):</u> <br><br><code> RPCManager rpc = new RPCManager(request, response, out);<br>
+ * for(Iterator i = rpc.getRequests().iterator(); i.hasNext();) {<br> &nbsp;&nbsp;&nbsp;&nbsp;RPCRequest rpcRequest =
+ * (RPCRequest)i.next();<br> &nbsp;&nbsp;&nbsp;&nbsp;Object data = rpcRequest.getData();<br>
+ * &nbsp;&nbsp;&nbsp;&nbsp;System.out.println("client sent:" + data.toString());<br> &nbsp;&nbsp;&nbsp;&nbsp;//send back
+ * the data sent to us by the client<br> &nbsp;&nbsp;&nbsp;&nbsp;rpc.send(rpcRequest, new RPCResponse(data));<br> }<br>
+ * </code> <br><br> <u><b>Error Handling</b></u> <br> The {@link com.smartgwt.client.rpc.RPCResponse} object has an integer
+ * status field that the RPCManager inspects when the response is received from the server. If the value of this field is
+ * less than zero, the request is considered to have failed.  Otherwise it is considered to have succeeded.  This value is
+ * settable via the setStatus() method call on the RPCResponse server-side object. <br><br> If the status field shows a
+ * failure, the RPCManager will, by default, show a dialog with the contents of the {@link
+ * com.smartgwt.client.rpc.RPCRequest#getData data} field (which is assumed to contain a  meaningful description of the
+ * error that occurred).  If you specified a callback in your RPCRequest, it will <b>not</b> be called if the status shows
+ * a failure (see below for how to change this). <br><br> If the status field shows success, the RPCManager takes no
+ * special action. <br><br> The built-in status codes and default behavior are there for convenience.  You can choose to
+ * completely ignore it and handle errors as you see fit (for example by encoding them into the data field returned by the
+ * server, and always setting the RPCResponse status field to a success value).  In fact, the status field is automatically
+ * set to a success code (RPCResponse.STATUS_SUCCESS) by the constructor of the RPCResponse object on the server.  <br><br>
+ * If you choose to use the status field, but want to handle the errors yourself in your callback (and suppress the default
+ * error dialog popped up by the RPCManager), simply specify the {@link
+ * com.smartgwt.client.rpc.RPCRequest#getWillHandleError willHandleError:true} on your RPCRequest object.  This allows you
+ * to use the RPCManager.sendError() convenience methods on the server without the default error handling behavior on the
+ * client.
  */
 public class RPCManager {
 
@@ -113,11 +113,11 @@ public class RPCManager {
      * Cancel a queue of requests (also called a transaction). <P> If a transactionId is passed, that transaction will be
      * cancelled, otherwise, the current  (not yet sent) transaction is cancelled.  You can retrieve the id of the current 
      * transaction, if there is one, by calling  {@link com.smartgwt.client.rpc.RPCManager#getCurrentTransactionId
-     * RPCManager.getCurrentTransactionId} before the transaction has been sent. <P> Note that cancelQueue() calls {@link
-     * com.smartgwt.client.rpc.RPCManager#clearTransaction RPCManager.clearTransaction} and attempts to abort the request. 
-     * However, note also that whilst cancelling a  transaction that has already been sent will not necessarily stop the HTTP
-     * request that  has been issued - this is only possible on some browsers and with some transports - it  will reliably
-     * cause Smart GWT to ignore any response returned by the server and not  fire any callbacks that have been passed in.
+     * getCurrentTransactionId()} before the transaction has been sent. <P> Note that cancelQueue() calls {@link
+     * com.smartgwt.client.rpc.RPCManager#clearTransaction clearTransaction()} and attempts to abort the request.  However,
+     * note also that whilst cancelling a  transaction that has already been sent will not necessarily stop the HTTP request
+     * that  has been issued - this is only possible on some browsers and with some transports - it  will reliably cause Smart
+     * GWT to ignore any response returned by the server and not  fire any callbacks that have been passed in.
      */
     public static native void cancelQueue() /*-{
         $wnd.isc.RPCManager.cancelQueue();
@@ -127,11 +127,11 @@ public class RPCManager {
      * Cancel a queue of requests (also called a transaction). <P> If a transactionId is passed, that transaction will be
      * cancelled, otherwise, the current  (not yet sent) transaction is cancelled.  You can retrieve the id of the current 
      * transaction, if there is one, by calling  {@link com.smartgwt.client.rpc.RPCManager#getCurrentTransactionId
-     * RPCManager.getCurrentTransactionId} before the transaction has been sent. <P> Note that cancelQueue() calls {@link
-     * com.smartgwt.client.rpc.RPCManager#clearTransaction RPCManager.clearTransaction} and attempts to abort the request. 
-     * However, note also that whilst cancelling a  transaction that has already been sent will not necessarily stop the HTTP
-     * request that  has been issued - this is only possible on some browsers and with some transports - it  will reliably
-     * cause Smart GWT to ignore any response returned by the server and not  fire any callbacks that have been passed in.
+     * getCurrentTransactionId()} before the transaction has been sent. <P> Note that cancelQueue() calls {@link
+     * com.smartgwt.client.rpc.RPCManager#clearTransaction clearTransaction()} and attempts to abort the request.  However,
+     * note also that whilst cancelling a  transaction that has already been sent will not necessarily stop the HTTP request
+     * that  has been issued - this is only possible on some browsers and with some transports - it  will reliably cause Smart
+     * GWT to ignore any response returned by the server and not  fire any callbacks that have been passed in.
      * @param transactionNum transactionId of the queue.
      */
     public static native void cancelQueue(String transactionNum) /*-{
@@ -143,7 +143,7 @@ public class RPCManager {
      * means a batch of one or more RPCRequests that have already been sent to the server via {@link
      * com.smartgwt.client.rpc.RPCManager#sendQueue RPCManager.sendQueue}. <P> You can retrieve the id of the current
      * transaction, if there is one, by  {@link com.smartgwt.client.rpc.RPCManager#getCurrentTransactionId
-     * RPCManager.getCurrentTransactionId} before the  transaction is sent.
+     * getCurrentTransactionId()} before the  transaction is sent.
      * @param transactionNum id of the transaction to be cleared
      */
     public static native void clearTransaction(String transactionNum) /*-{

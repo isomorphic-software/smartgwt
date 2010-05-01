@@ -58,14 +58,15 @@ import com.google.gwt.event.shared.HasHandlers;
 /**
  * An atomic type such as a string or number, that is generally stored, displayed and manipulated as a single value. <P>
  * SimpleTypes can be created at any time, and subsequently referred to as a  {@link
- * com.smartgwt.client.data.DataSourceField#getType 'field type'} in {@link com.smartgwt.client.data.DataSource} and {@link
- * com.smartgwt.client.widgets.DataBoundComponent}.  This allows you to define {@link
- * com.smartgwt.client.data.SimpleType#getValidators 'validation'}, {@link
- * com.smartgwt.client.data.SimpleType#normalDisplayFormatter SimpleType.normalDisplayFormatter} and {@link
- * com.smartgwt.client.data.SimpleType#getEditorType 'editing'} behaviors for a type to be reused across all {@link
- * com.smartgwt.client.widgets.DataBoundComponent}. <P> Note that the term "simpleType" is used in the same sense as in <a
- * href='XML Schema' onclick="window.open('XML Schema');return false;">http://www.w3.org/TR/xmlschema-0/</a>, and {@link
- * com.smartgwt.client.data.XMLTools#loadXMLSchema XMLTools.loadXMLSchema} will create new SimpleType definitions. <P> An
+ * com.smartgwt.client.data.DataSourceField#getType field type} in {@link com.smartgwt.client.data.DataSource DataSources}
+ * and {@link com.smartgwt.client.widgets.DataBoundComponent DataBoundComponents}.  This allows you to define {@link
+ * com.smartgwt.client.data.SimpleType#getValidators validation}, {@link
+ * com.smartgwt.client.data.SimpleType#normalDisplayFormatter formatting} and {@link
+ * com.smartgwt.client.data.SimpleType#getEditorType editing} behaviors for a type to be reused across all {@link
+ * com.smartgwt.client.widgets.DataBoundComponent DataBoundComponents}. <P> Note that the term "simpleType" is used in the
+ * same sense as in <a href='XML Schema' onclick="window.open('XML Schema');return
+ * false;">http://www.w3.org/TR/xmlschema-0/</a>, and {@link com.smartgwt.client.data.XMLTools#loadXMLSchema
+ * XMLTools.loadXMLSchema} will create new SimpleType definitions. <P> An
  * ${isc.DocUtils.linkForExampleId('customSimpleType', 'example')} is here.
  */
 public class SimpleType extends BaseClass {
@@ -116,7 +117,7 @@ public class SimpleType extends BaseClass {
     }
 
     /**
-     * Name of the type, used to refer to the type from {@link com.smartgwt.client.data.DataSourceField#getName 'field.name'}.
+     * Name of the type, used to refer to the type from {@link com.smartgwt.client.data.DataSourceField#getName field.name}.
      *
      * @param name name Default value is null
      * @throws IllegalStateException this property cannot be changed after the underlying component has been created
@@ -126,7 +127,7 @@ public class SimpleType extends BaseClass {
     }
 
     /**
-     * Name of the type, used to refer to the type from {@link com.smartgwt.client.data.DataSourceField#getName 'field.name'}.
+     * Name of the type, used to refer to the type from {@link com.smartgwt.client.data.DataSourceField#getName field.name}.
      *
      *
      * @return String

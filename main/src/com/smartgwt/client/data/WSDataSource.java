@@ -62,7 +62,7 @@ import com.google.gwt.event.shared.HasHandlers;
  * ListGrids, DynamicForms and other {@link com.smartgwt.client.widgets.DataBoundComponent}s just like other DataSources.
  * <P> Note that WSDataSource is specifically designed for use with Smart GWTOperations.wsdl.  If you are trying to connect
  * to a pre-existing WSDL service, start with just {@link com.smartgwt.client.data.DataSource},  not WSDataSource, and see
- * the {@link com.smartgwt.client.docs.WsdlBinding 'WSDL Integration'} chapter for an overview.
+ * the {@link com.smartgwt.client.docs.WsdlBinding WSDL Integration} chapter for an overview.
  */
 public class WSDataSource extends DataSource {
 

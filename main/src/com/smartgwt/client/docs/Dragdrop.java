@@ -57,7 +57,7 @@ package com.smartgwt.client.docs;
  * @see com.smartgwt.client.widgets.layout.Layout#getShowDragPlaceHolder
  * @see com.smartgwt.client.widgets.layout.Layout#getPlaceHolderProperties
  * @see com.smartgwt.client.widgets.layout.Layout#getPlaceHolderDefaults
- * @see com.smartgwt.client..ReorderPosition
+ * @see 
  * @see com.smartgwt.client.types.DragAppearance
  * @see com.smartgwt.client.types.DragIntersectStyle
  */

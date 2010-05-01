@@ -37,34 +37,34 @@ package com.smartgwt.client.docs;
  * <h4>Inspecting application state</h4>&#010 <P>&#010 The "Evaluate JS Expression" area of the Results Pane in the
  * Developer Console can be used&#010 to inspect the current state of a Smart GWT application.  Any Smart GWT or
  * browser&#010 built-in API can be called from the "Evaluate JS Expression" area, and the results will&#010 be
- * intelligently summarized (via {@link com.smartgwt.client..Log#echo Log.echo}).  For example, simply typing a&#010
- * component's ID and pressing the "Eval JS" button will give you a dump of it's current&#010 property values.  &#010
- * <P>&#010 Many, many Smart GWT APIs can be usefully called while troubleshooting, eg, &#010 {@link
- * com.smartgwt.client.widgets.grid.ListGrid#getData data} is a {@link com.smartgwt.client.data.ResultSet} when a grid is
- * DataBound and &#010 {@link com.smartgwt.client.data.ResultSet#get ResultSet.get} can be called to inspect the current
- * values on records.  In addition,&#010 new application code can be tried out, for example, you might repeatedly
- * instantiate a new&#010 component, trying variants on the properties you could give it.&#010 <P>&#010 <b>Inspecting
- * transient application state with logs</b>&#010 <P>&#010 Transient state, such as the values of local variables in a
- * method that is crashing, can be&#010 sent to the Developer Console via using the {@link com.smartgwt.client..Log} class.
- * For example, to dump the&#010 value of the local variable "request": &#010 <pre>&#010     isc.logWarn("request is: " +
- * isc.echo(request));&#010 </pre>&#010 <P>&#010 It's a good idea to dump the values of local variables in any method that
- * is crashing or&#010 behaving unexpectedly.&#010 <P>&#010 Note the use of {@link com.smartgwt.client.util.isc#logWarn
- * isc.logWarn} above: in typical debugging sessions,&#010 it's best&#010 to simply use <code>logWarn</code> method to
- * output diagnostics to ensure your message will&#010 not be suppressed by log priority settings.&#010 <P>&#010 NOTE:
- * never use the native <code>alert()</code> method to output diagnostics.  Among other&#010 issues, <code>alert()</code>
- * can affect timing, masking or altering the behavior you were&#010 trying to debug.  Smart GWT's logging system doesn't
- * suffer from these problems and&#010 provides much more control.&#010 <P>&#010 <h4>Issue Reports</h4>&#010 <P>&#010 If
- * you believe you've discovered a bug in Smart GWT or you are having trouble using&#010 Smart GWT APIs, you can report it
- * at <a href='http://forums.smartclient.com/' onclick="window.open('http://forums.smartclient.com/');return
- * false;">http://forums.smartclient.com/</a>, or, if&#010 you have Enterprise Support, at the &#010 <a
- * href='http://support.isomorphic.com/' onclick="window.open('http://support.isomorphic.com/');return false;">Customer
- * Support Extranet</a>.&#010 <P>&#010 <b>How quickly your issue is resolved is entirely up to you</b>.  If you follow the
- * steps&#010 below and submit an appropriate issue report, you will generally receive a rapid solution&#010 from
- * Isomorphic Support, regardless of what support level you have, because Isomorphic&#010 aggressively corrects bugs and
- * legitimate usage issues.  If you skip steps you are likely to&#010 be directed back to this document and asked to submit
- * a more complete issue report.&#010 <P>&#010 Before reporting an issue, ensure that you:&#010 <ul>&#010 <li> Have read
- * the ${isc.DocUtils.linkForDocNode('QuickStartGuide', 'QuickStart Guide')} cover to&#010 cover.  Later chapters cover
- * more advanced topics and provide links to further examples and&#010 reference.&#010 <li> Have searched the
+ * intelligently summarized (via  Log.echo).  For example, simply typing a&#010 component's ID and pressing the "Eval JS"
+ * button will give you a dump of it's current&#010 property values.  &#010 <P>&#010 Many, many Smart GWT APIs can be
+ * usefully called while troubleshooting, eg, &#010 {@link com.smartgwt.client.widgets.grid.ListGrid#getData data} is a
+ * {@link com.smartgwt.client.data.ResultSet} when a grid is DataBound and &#010 {@link
+ * com.smartgwt.client.data.ResultSet#get ResultSet.get} can be called to inspect the current values on records.  In
+ * addition,&#010 new application code can be tried out, for example, you might repeatedly instantiate a new&#010
+ * component, trying variants on the properties you could give it.&#010 <P>&#010 <b>Inspecting transient application state
+ * with logs</b>&#010 <P>&#010 Transient state, such as the values of local variables in a method that is crashing, can
+ * be&#010 sent to the Developer Console via using the Log class.  For example, to dump the&#010 value of the local
+ * variable "request": &#010 <pre>&#010     isc.logWarn("request is: " + isc.echo(request));&#010 </pre>&#010 <P>&#010 It's
+ * a good idea to dump the values of local variables in any method that is crashing or&#010 behaving unexpectedly.&#010
+ * <P>&#010 Note the use of {@link com.smartgwt.client.util.isc#logWarn logWarn()} above: in typical debugging
+ * sessions,&#010 it's best&#010 to simply use <code>logWarn</code> method to output diagnostics to ensure your message
+ * will&#010 not be suppressed by log priority settings.&#010 <P>&#010 NOTE: never use the native <code>alert()</code>
+ * method to output diagnostics.  Among other&#010 issues, <code>alert()</code> can affect timing, masking or altering the
+ * behavior you were&#010 trying to debug.  Smart GWT's logging system doesn't suffer from these problems and&#010 provides
+ * much more control.&#010 <P>&#010 <h4>Issue Reports</h4>&#010 <P>&#010 If you believe you've discovered a bug in Smart
+ * GWT or you are having trouble using&#010 Smart GWT APIs, you can report it at <a href='http://forums.smartclient.com/'
+ * onclick="window.open('http://forums.smartclient.com/');return false;">http://forums.smartclient.com/</a>, or, if&#010
+ * you have Enterprise Support, at the &#010 <a href='http://support.isomorphic.com/'
+ * onclick="window.open('http://support.isomorphic.com/');return false;">Customer Support Extranet</a>.&#010 <P>&#010
+ * <b>How quickly your issue is resolved is entirely up to you</b>.  If you follow the steps&#010 below and submit an
+ * appropriate issue report, you will generally receive a rapid solution&#010 from Isomorphic Support, regardless of what
+ * support level you have, because Isomorphic&#010 aggressively corrects bugs and legitimate usage issues.  If you skip
+ * steps you are likely to&#010 be directed back to this document and asked to submit a more complete issue report.&#010
+ * <P>&#010 Before reporting an issue, ensure that you:&#010 <ul>&#010 <li> Have read the
+ * ${isc.DocUtils.linkForDocNode('QuickStartGuide', 'QuickStart Guide')} cover to&#010 cover.  Later chapters cover more
+ * advanced topics and provide links to further examples and&#010 reference.&#010 <li> Have searched the
  * ${isc.DocUtils.linkForDocNode('FeatureExplorer', 'Feature Explorer')} for examples that show&#010 what you are trying to
  * do&#010 <li> Have searched this reference, trying multiple searches using different, common and&#010 related terms for
  * what you are trying to do (eg for search, try "search", "filter",&#010 "criteria", "find", "match", etc)&#010 <li> Have
@@ -77,7 +77,7 @@ package com.smartgwt.client.docs;
  * or the Developer Console (for&#010 IE), as covered under "Debugging JavaScript Errors" above&#010 <li> Results of
  * calling <code>echo()</code> on local variables or other application&#010 state you think is relevant (see "Inspecting
  * Application State" above)&#010 <li> What server platform and {@link com.smartgwt.client.docs.ClientServerIntegration
- * 'databinding approach'} you&#010 are using, if applicable&#010 <li> contents of the Smart GWT Developer Console "Log
+ * databinding approach} you&#010 are using, if applicable&#010 <li> contents of the Smart GWT Developer Console "Log
  * messages" area, with appropriate&#010 diagnostic categories set the DEBUG or INFO level (see "Built-in Diagnostics"
  * above)&#010 <li> sample code and sample data&#010 </ul>&#010 <b>Preparing a standalone test case</b>&#010 <P>&#010 A
  * standalone test case is one of:&#010 <ol>&#010 <li> a chunk of JavaScript code that can be executed from the "Eval JS"
@@ -109,7 +109,7 @@ package com.smartgwt.client.docs;
  * approaches:&#010 <ul>&#010 <li> switch any DataSources to one of the sample DataSources from the SDK (eg
  * "supplyItem")&#010 if your issue can still be reproduced in this case.&#010 <li> create a small sample dataset in
  * JavaScript directly in the .html file, and use a&#010 {@link com.smartgwt.client.data.DataSource#getClientOnly
- * 'clientOnly DataSource'} with that dataset.&#010 <li> capture server responses verbatim by setting the RPCManager log
+ * clientOnly DataSource} with that dataset.&#010 <li> capture server responses verbatim by setting the RPCManager log
  * category to DEBUG, save&#010 the responses as flat files, and set {@link com.smartgwt.client.data.DataSource#getDataURL
  * dataURL} to point at them.&#010 <li> for RPCs, instead of calling the RPCManager, directly call your own callback
  * function,&#010 passing a spoofed RPCResponse that includes just the fields your code depends upon&#010 </ul>&#010 <li>
@@ -141,17 +141,16 @@ package com.smartgwt.client.docs;
  * al.  For example:&#010 <pre>&#010     Canvas.create({&#010        ID:"canvasExample",&#010        contents:"Hello
  * World!",&#010        click:"this.logWarn('the Canvas is: ' + this.echo(this))"&#010     });&#010 </pre>&#010 The special
  * value "this" is not always set to a Smart GWT component, for example, in some&#010 kinds of callbacks (eg {@link
- * com.smartgwt.client.widgets.grid.ListGrid#fetchData ListGrid.fetchData}).  When in doubt, use these&#010 methods via the
- * Log class as <code>isc.Log.logWarn()</code>.&#010 <P>&#010 <b>Logging performance</b>&#010 <P>&#010 Because the log
- * message is actually formed <i>before</i> the call to the log system, logs&#010 that are suppressed can still carry a
- * performance penalty.  This is particularly true of&#010 logs that output a lot of data or occur frequently.  To avoid
- * this penalty, you can check in&#010 advance whether a message will be suppressed using &#010 {@link
- * com.smartgwt.client..Class#logIsDebugEnabled Class.logIsDebugEnabled} and&#010 {@link
- * com.smartgwt.client..Class#logIsInfoEnabled Class.logIsInfoEnabled}.  For example:&#010 <pre>&#010   if
- * (isc.Log.logIsInfoEnabled("myGridLoading")) {&#010      isc.Log.logInfo("first record is: " +&#010                     
- * isc.Log.echo(myGrid.data.get(0)),&#010                      "myGridLoading");&#010   }&#010 </pre>&#010 Generally, it is
- * only important to do this for logs that will occur multiple times during a&#010 given user interaction (eg a mousedown
- * or keypress) and/or that call <code>echo()</code> on&#010 objects with many properties.
+ * com.smartgwt.client.widgets.grid.ListGrid#fetchData fetchData()}).  When in doubt, use these&#010 methods via the Log
+ * class as <code>isc.Log.logWarn()</code>.&#010 <P>&#010 <b>Logging performance</b>&#010 <P>&#010 Because the log message
+ * is actually formed <i>before</i> the call to the log system, logs&#010 that are suppressed can still carry a performance
+ * penalty.  This is particularly true of&#010 logs that output a lot of data or occur frequently.  To avoid this penalty,
+ * you can check in&#010 advance whether a message will be suppressed using &#010  isc.Log.logIsDebugEnabled() and&#010 
+ * isc.Log.logIsInfoEnabled().  For example:&#010 <pre>&#010   if (isc.Log.logIsInfoEnabled("myGridLoading")) {&#010     
+ * isc.Log.logInfo("first record is: " +&#010                      isc.Log.echo(myGrid.data.get(0)),&#010                  
+ * "myGridLoading");&#010   }&#010 </pre>&#010 Generally, it is only important to do this for logs that will occur multiple
+ * times during a&#010 given user interaction (eg a mousedown or keypress) and/or that call <code>echo()</code> on&#010
+ * objects with many properties.
  */
 public interface Debugging {
 }

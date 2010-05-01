@@ -3,10 +3,10 @@ package com.smartgwt.client.docs;
 
 /**
  * <h3>Keyboard Events</h3>
- * Smart GWT allows keybaord events to be captured at the page level via  {@link com.smartgwt.client.util.Page#registerKey
+ * Smart GWT allows keyboard events to be captured at the page level via  {@link com.smartgwt.client.util.Page#registerKey
  * Page.registerKey} or {@link com.smartgwt.client.util.Page#setEvent Page.setEvent} or at the widget level via {@link
- * com.smartgwt.client.widgets.Canvas#addKeyDownHandler Canvas.addKeyDownHandler}, {@link
- * com.smartgwt.client.widgets.Canvas#addKeyPressHandler Canvas.addKeyPressHandler}, and {@link
+ * com.smartgwt.client.widgets.Canvas#addKeyDownHandler Canvas.keyDown}, {@link
+ * com.smartgwt.client.widgets.Canvas#addKeyPressHandler Canvas.keyPress}, and {@link
  * com.smartgwt.client.widgets.Canvas#keyUp Canvas.keyUp}. <P> Details about the key events can be retrieved via static
  * methods on the EventHandler class including {@link com.smartgwt.client.util.EventHandler#getKey EventHandler.getKey},
  * {@link com.smartgwt.client.util.EventHandler#getKeyEventCharacter EventHandler.getKeyEventCharacter} and {@link

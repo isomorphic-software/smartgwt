@@ -2,8 +2,8 @@
 package com.smartgwt.client.docs;
 
 /**
- * @see com.smartgwt.client..Operator#condition
- * @see com.smartgwt.client..Operator#compareCriteria
+ * @see #condition
+ * @see #compareCriteria
  * @see com.smartgwt.client.data.DataSource#addSearchOperator
  * @see com.smartgwt.client.data.DataSource#getSearchOperator
  * @see com.smartgwt.client.data.DataSource#getTypeOperators
@@ -14,7 +14,7 @@ package com.smartgwt.client.docs;
  * @see com.smartgwt.client.data.DataSource#evaluateCriterion
  * @see com.smartgwt.client.data.AdvancedCriteria
  * @see com.smartgwt.client.data.Criterion
- * @see com.smartgwt.client..Operator
+ * @see 
  * @see com.smartgwt.client.data.DataSource#addSearchOperator
  * @see com.smartgwt.client.data.DataSource#setTypeOperators
  * @see com.smartgwt.client.data.Criterion#getOperator
@@ -23,14 +23,14 @@ package com.smartgwt.client.docs;
  * @see com.smartgwt.client.data.Criterion#getCriteria
  * @see com.smartgwt.client.data.Criterion#getStart
  * @see com.smartgwt.client.data.Criterion#getEnd
- * @see com.smartgwt.client..Operator#getID
- * @see com.smartgwt.client..Operator#getTitle
- * @see com.smartgwt.client..Operator#getTitleProperty
- * @see com.smartgwt.client..Operator#getFieldTypes
- * @see com.smartgwt.client..Operator#getRequiresServer
- * @see com.smartgwt.client..Operator#getHidden
- * @see com.smartgwt.client..Operator#getValueType
- * @see com.smartgwt.client..Operator#getEditorType
+ * @see #getID
+ * @see #getTitle
+ * @see #getTitleProperty
+ * @see #getFieldTypes
+ * @see #getRequiresServer
+ * @see #getHidden
+ * @see #getValueType
+ * @see #getEditorType
  * @see com.smartgwt.client.data.DataSourceField#getValidOperators
  * @see com.smartgwt.client.data.SimpleType#getValidOperators
  * @see com.smartgwt.client.types.OperatorValueType

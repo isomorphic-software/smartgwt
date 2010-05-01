@@ -136,7 +136,7 @@ public class SelectOtherItem extends SelectItem {
 
     /**
      * Data value for the <code>Other...</code> item. If necessary this value may be changed to ensure it doesn't collide with
-     * any data values in this item's {@link com.smartgwt.client.widgets.form.fields.FormItem#getValueMap 'valueMap'}.
+     * any data values in this item's {@link com.smartgwt.client.widgets.form.fields.FormItem#getValueMap valueMap}.
      * <p><b>Note : </b> This is an advanced setting</p>
      *
      * @param otherValue otherValue Default value is "***other***"
@@ -148,7 +148,7 @@ public class SelectOtherItem extends SelectItem {
 
     /**
      * Data value for the <code>Other...</code> item. If necessary this value may be changed to ensure it doesn't collide with
-     * any data values in this item's {@link com.smartgwt.client.widgets.form.fields.FormItem#getValueMap 'valueMap'}.
+     * any data values in this item's {@link com.smartgwt.client.widgets.form.fields.FormItem#getValueMap valueMap}.
      *
      *
      * @return String
@@ -207,7 +207,7 @@ public class SelectOtherItem extends SelectItem {
     /**
      * Value for the separator item between normal items and the <code>Other...</code> value.  If necessary the value may be
      * changed to ensure it doesn't collide with any data values in this item's {@link
-     * com.smartgwt.client.widgets.form.fields.FormItem#getValueMap 'valueMap'}.
+     * com.smartgwt.client.widgets.form.fields.FormItem#getValueMap valueMap}.
      * <p><b>Note : </b> This is an advanced setting</p>
      *
      * @param separatorValue separatorValue Default value is "----"
@@ -220,7 +220,7 @@ public class SelectOtherItem extends SelectItem {
     /**
      * Value for the separator item between normal items and the <code>Other...</code> value.  If necessary the value may be
      * changed to ensure it doesn't collide with any data values in this item's {@link
-     * com.smartgwt.client.widgets.form.fields.FormItem#getValueMap 'valueMap'}.
+     * com.smartgwt.client.widgets.form.fields.FormItem#getValueMap valueMap}.
      *
      *
      * @return String

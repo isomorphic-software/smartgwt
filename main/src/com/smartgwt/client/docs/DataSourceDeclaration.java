@@ -8,7 +8,7 @@ package com.smartgwt.client.docs;
  * specified in XML or JS, identical requests will ultimately be&#010 submitted to the server, so the server integration
  * pattern is the same.  However,&#010 DataSources created in XML can be loaded and used by the Smart GWT Server,&#010
  * enabling many features including synchronized client-server validation, request bundling, &#010 file upload, and
- * optional automatic SQL/Hibernate connectivity (see the&#010 {@link com.smartgwt.client.docs.IscServer 'Server Summary'}
+ * optional automatic SQL/Hibernate connectivity (see the&#010 {@link com.smartgwt.client.docs.IscServer Server Summary}
  * for details).&#010 <P>&#010 DataSources created on the client use the same style of creation as DataBound
  * components:&#010 <pre>&#010    isc.DataSource.create({&#010        ID:"supplyItem",&#010        fields:[&#010           
  * {name:"itemName", ... }&#010            ...&#010        ]&#010    });&#010 </pre>&#010 Reference for all properties that

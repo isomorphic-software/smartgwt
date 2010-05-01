@@ -8,11 +8,11 @@ package com.smartgwt.client.docs;
  * @see com.smartgwt.client.widgets.grid.ListGrid#headerClick
  * @see com.smartgwt.client.widgets.grid.ListGrid#unsort
  * @see com.smartgwt.client.widgets.grid.ListGrid#sort
- * @see com.smartgwt.client..Array#sortByProperty
- * @see com.smartgwt.client..Array#unsort
- * @see com.smartgwt.client..Array#compareAscending
- * @see com.smartgwt.client..Array#compareDescending
- * @see com.smartgwt.client..PickList#getSortField
+ * @see #sortByProperty
+ * @see #unsort
+ * @see #compareAscending
+ * @see #compareDescending
+ * @see #getSortField
  * @see com.smartgwt.client.widgets.form.fields.SelectItem#getSortField
  * @see com.smartgwt.client.widgets.form.fields.ComboBoxItem#getSortField
  * @see com.smartgwt.client.widgets.grid.ListGridField#getCanSort

@@ -4,7 +4,7 @@ package com.smartgwt.client.docs;
 /**
  * <h3>Admin Console</h3>
  * The Admin Console allows you to configure database access for DataSources that use&#010 Smart GWT's built-in {@link
- * com.smartgwt.client.docs.SqlDataSource 'SQL engine'}.&#010 <P>&#010 NOTE: You must have the Isomorphic Smart GWT package
+ * com.smartgwt.client.docs.SqlDataSource SQL engine}.&#010 <P>&#010 NOTE: You must have the Isomorphic Smart GWT package
  * installed and your servlet engine&#010 started. &#010 <p>&#010 Direct your browser to the following URL to access the
  * Admin Console: &#010 <p>&#010 &nbsp;&nbsp;<a href='http://localhost:8080/tools/adminConsole.jsp'
  * onclick="window.open('http://localhost:8080/tools/adminConsole.jsp');return

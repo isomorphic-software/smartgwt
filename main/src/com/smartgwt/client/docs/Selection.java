@@ -7,49 +7,49 @@ package com.smartgwt.client.docs;
  * Only applicable to a {@link com.smartgwt.client.widgets.DataBoundComponent} that manages a list of Records, or manages a
  * data model that can be viewed as a list (for example, the current list of visible nodes on a tree can be treated as a
  * list for selection purposes).
- * @see com.smartgwt.client..CubeGrid#getEventRow
- * @see com.smartgwt.client..CubeGrid#getEventColumn
- * @see com.smartgwt.client..CubeGrid#facetValueSelectionChanged
- * @see com.smartgwt.client..CubeGrid#getSelectedCells
- * @see com.smartgwt.client..CubeGrid#getSelectedCellIds
- * @see com.smartgwt.client..CubeGrid#anyCellSelected
- * @see com.smartgwt.client..CubeGrid#cellIsSelected
- * @see com.smartgwt.client..CubeGrid#selectCell
- * @see com.smartgwt.client..CubeGrid#deselectCell
- * @see com.smartgwt.client..CubeGrid#selectCells
- * @see com.smartgwt.client..CubeGrid#deselectCells
- * @see com.smartgwt.client..CubeGrid#selectAllCells
- * @see com.smartgwt.client..CubeGrid#deselectAllCells
- * @see com.smartgwt.client..CubeGrid#getSelectedFacetValues
- * @see com.smartgwt.client..CubeGrid#facetValuesSelected
- * @see com.smartgwt.client..CubeGrid#facetHasSelection
- * @see com.smartgwt.client..CubeGrid#getFacetsHavingSelection
- * @see com.smartgwt.client..CubeGrid#selectFacetValues
- * @see com.smartgwt.client..CubeGrid#deselectFacetValues
- * @see com.smartgwt.client..CubeGrid#selectFacetValue
- * @see com.smartgwt.client..CubeGrid#deselectFacetValue
- * @see com.smartgwt.client..CubeGrid#selectAllFacetValues
- * @see com.smartgwt.client..CubeGrid#deselectAllFacetValues
- * @see com.smartgwt.client..CubeGrid#deselectAll
- * @see com.smartgwt.client..CubeGrid#cellSelectionChanged
- * @see com.smartgwt.client..Selection#isSelected
- * @see com.smartgwt.client..Selection#isPartiallySelected
- * @see com.smartgwt.client..Selection#anySelected
- * @see com.smartgwt.client..Selection#multipleSelected
- * @see com.smartgwt.client..Selection#getSelection
- * @see com.smartgwt.client..Selection#getSelectedRecord
- * @see com.smartgwt.client..Selection#setSelected
- * @see com.smartgwt.client..Selection#select
- * @see com.smartgwt.client..Selection#deselect
- * @see com.smartgwt.client..Selection#selectSingle
- * @see com.smartgwt.client..Selection#selectList
- * @see com.smartgwt.client..Selection#deselectList
- * @see com.smartgwt.client..Selection#selectAll
- * @see com.smartgwt.client..Selection#deselectAll
- * @see com.smartgwt.client..Selection#selectItem
- * @see com.smartgwt.client..Selection#deselectItem
- * @see com.smartgwt.client..Selection#selectRange
- * @see com.smartgwt.client..Selection#deselectRange
+ * @see #getEventRow
+ * @see #getEventColumn
+ * @see #facetValueSelectionChanged
+ * @see #getSelectedCells
+ * @see #getSelectedCellIds
+ * @see #anyCellSelected
+ * @see #cellIsSelected
+ * @see #selectCell
+ * @see #deselectCell
+ * @see #selectCells
+ * @see #deselectCells
+ * @see #selectAllCells
+ * @see #deselectAllCells
+ * @see #getSelectedFacetValues
+ * @see #facetValuesSelected
+ * @see #facetHasSelection
+ * @see #getFacetsHavingSelection
+ * @see #selectFacetValues
+ * @see #deselectFacetValues
+ * @see #selectFacetValue
+ * @see #deselectFacetValue
+ * @see #selectAllFacetValues
+ * @see #deselectAllFacetValues
+ * @see #deselectAll
+ * @see #cellSelectionChanged
+ * @see #isSelected
+ * @see #isPartiallySelected
+ * @see #anySelected
+ * @see #multipleSelected
+ * @see #getSelection
+ * @see #getSelectedRecord
+ * @see #setSelected
+ * @see #select
+ * @see #deselect
+ * @see #selectSingle
+ * @see #selectList
+ * @see #deselectList
+ * @see #selectAll
+ * @see #deselectAll
+ * @see #selectItem
+ * @see #deselectItem
+ * @see #selectRange
+ * @see #deselectRange
  * @see com.smartgwt.client.grid.GridRenderer#cellIsEnabled
  * @see com.smartgwt.client.grid.GridRenderer#getEventRow
  * @see com.smartgwt.client.grid.GridRenderer#getEventColumn
@@ -83,16 +83,17 @@ package com.smartgwt.client.docs;
  * @see com.smartgwt.client.widgets.grid.ColumnTree#selectAllRecords
  * @see com.smartgwt.client.widgets.grid.ColumnTree#deselectAllRecords
  * @see com.smartgwt.client.widgets.grid.ColumnTree#anySelected
- * @see com.smartgwt.client..CellSelection#cellIsSelected
- * @see com.smartgwt.client..CellSelection#anySelected
- * @see com.smartgwt.client..CellSelection#getSelectedCells
- * @see com.smartgwt.client..CellSelection#selectCell
- * @see com.smartgwt.client..CellSelection#deselectCell
- * @see com.smartgwt.client..CellSelection#selectCellList
- * @see com.smartgwt.client..CellSelection#deselectCellList
- * @see com.smartgwt.client..CellSelection#selectSingleCell
+ * @see #cellIsSelected
+ * @see #anySelected
+ * @see #getSelectedCells
+ * @see #selectCell
+ * @see #deselectCell
+ * @see #selectCellList
+ * @see #deselectCellList
+ * @see #selectSingleCell
  * @see com.smartgwt.client.widgets.grid.ListGrid#getSelection
  * @see com.smartgwt.client.widgets.grid.ListGrid#getSelectedRecord
+ * @see com.smartgwt.client.widgets.grid.ListGrid#isSelected
  * @see com.smartgwt.client.widgets.grid.ListGrid#isPartiallySelected
  * @see com.smartgwt.client.widgets.DataBoundComponent#selectRecord
  * @see com.smartgwt.client.widgets.DataBoundComponent#selectSingleRecord

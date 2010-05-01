@@ -14,8 +14,8 @@ package com.smartgwt.client.docs;
  * ${isc.DocUtils.linkForExampleId('ormDataSource', 'Custom DataSource example')},  ${isc.DocUtils.linkForExampleId('DMI',
  * 'DMI example')} <p> <b>Data Selection (No DTOs):</b> When using a DataSource, Java data you return in your
  * <code>DSResponse</code> is automatically trimmed to just the fields declared in the DataSource before delivery to the
- * browser (see {@link com.smartgwt.client.data.DataSource#getDropExtraFields 'dropExtraFields'}).  This eliminates the
- * need to create  redundant <a href='http://en.wikipedia.org/wiki/Data_transfer_object'
+ * browser (see {@link com.smartgwt.client.data.DataSource#getDropExtraFields dropExtraFields}).  This eliminates the need
+ * to create  redundant <a href='http://en.wikipedia.org/wiki/Data_transfer_object'
  * onclick="window.open('http://en.wikipedia.org/wiki/Data_transfer_object');return false;">Data Transfer Objects</a>  to
  * express the list of fields that need to be delivered to the UI - the DataSource already has this information, and can
  * serve two purposes by both configuring UI components and trimming relevant data, from a single definition. <P>

@@ -24,12 +24,12 @@ public interface HasDataArrivedHandlers extends HasHandlers {
     /**
      * Notification method fired when new data arrives from the server to be displayed in this ListGrid, (for example in
      * response to the user scrolling a new set of rows into view). Only applies to databound listGrids where the {@link
-     * com.smartgwt.client.widgets.grid.ListGrid#getData 'data'} attribute is a {@link com.smartgwt.client.data.ResultSet}.
-     * This ResultSet may have been created manually and applied to the grid via a call to {@link
+     * com.smartgwt.client.widgets.grid.ListGrid#getData data} attribute is a {@link com.smartgwt.client.data.ResultSet}. This
+     * ResultSet may have been created manually and applied to the grid via a call to {@link
      * com.smartgwt.client.widgets.grid.ListGrid#setData ListGrid.setData} or may have been created and automatically assigned
      * if {@link com.smartgwt.client.widgets.grid.ListGrid#fetchData ListGrid.fetchData} was used to populate the grid.  This
-     * method is fired directly in response to {@link com.smartgwt.client.data.ResultSet#addDataArrivedHandler
-     * ResultSet.addDataArrivedHandler} firing on the data object.
+     * method is fired directly in response to {@link com.smartgwt.client.data.ResultSet#addDataArrivedHandler dataArrived()}
+     * firing on the data object.
      *
      * @param handler the dataArrived handler
      * @return {@link HandlerRegistration} used to remove this handler

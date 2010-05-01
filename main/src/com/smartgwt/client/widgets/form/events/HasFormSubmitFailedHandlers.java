@@ -22,8 +22,8 @@ import com.google.gwt.event.shared.HasHandlers;
 
 public interface HasFormSubmitFailedHandlers extends HasHandlers {
     /**
-     * Method called when an attempt to {@link com.smartgwt.client.widgets.form.DynamicForm#submitForm DynamicForm.submitForm}
-     * a form is unable to submit to the server. Default behavior is to display the {@link
+     * Method called when an attempt to {@link com.smartgwt.client.widgets.form.DynamicForm#submitForm natively submit} a form
+     * is unable to submit to the server. Default behavior is to display the {@link
      * com.smartgwt.client.widgets.form.DynamicForm#getFormSubmitFailedWarning formSubmitFailedWarning} in a warning dialog.
      * The most common cause for this failure is that the user has typed an invalid file-path into an upload type field.
      *
