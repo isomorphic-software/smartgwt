@@ -422,8 +422,8 @@ public class Menu extends ListGrid  implements com.smartgwt.client.widgets.menu.
     /**
      * Optional target canvas for this menu. Available as a parameter to dynamic menuItem configuration methods such as {@link
      * com.smartgwt.client.widgets.menu.MenuItem#checkIf MenuItem.checkIf}. <P> If this item has any {@link
-     * com.smartgwt.client.widgets.menu.MenuItem#getSubmenu 'submenus'} the <code>target</code> will be propagated down to
-     * these child menus.
+     * com.smartgwt.client.widgets.menu.MenuItem#getSubmenu submenus} the <code>target</code> will be propagated down to these
+     * child menus.
      *
      * @param target target Default value is null
      */
@@ -434,8 +434,8 @@ public class Menu extends ListGrid  implements com.smartgwt.client.widgets.menu.
     /**
      * Optional target canvas for this menu. Available as a parameter to dynamic menuItem configuration methods such as {@link
      * com.smartgwt.client.widgets.menu.MenuItem#checkIf MenuItem.checkIf}. <P> If this item has any {@link
-     * com.smartgwt.client.widgets.menu.MenuItem#getSubmenu 'submenus'} the <code>target</code> will be propagated down to
-     * these child menus.
+     * com.smartgwt.client.widgets.menu.MenuItem#getSubmenu submenus} the <code>target</code> will be propagated down to these
+     * child menus.
      *
      *
      * @return Canvas

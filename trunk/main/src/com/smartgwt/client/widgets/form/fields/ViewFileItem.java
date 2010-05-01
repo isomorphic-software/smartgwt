@@ -57,7 +57,7 @@ import com.google.gwt.event.shared.HasHandlers;
 
 /**
  * Item for displaying the contents of "imageFile" fields in DynamicForms.  <P> Displays one of two UIs, according to the
- * value of  {@link com.smartgwt.client.widgets.form.fields.ViewFileItem#getShowFileInline 'showFileInline'}.  If
+ * value of  {@link com.smartgwt.client.widgets.form.fields.ViewFileItem#getShowFileInline showFileInline}.  If
  * showFileInline is false, this Item displays the View and Download icons and the filename.  Otherwise, it streams the
  * image-file  and displays it inline.
  * @see com.smartgwt.client.docs.Upload Upload overview and related methods

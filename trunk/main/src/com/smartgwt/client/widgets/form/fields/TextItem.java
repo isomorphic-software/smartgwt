@@ -93,11 +93,11 @@ public class TextItem extends FormItem {
     // ********************* Properties / Attributes ***********************
 
     /**
-     * Should this form item fire its {@link com.smartgwt.client.widgets.form.fields.FormItem#addChangeHandler
-     * FormItem.addChangeHandler} handler (and store its value in the form) on every keypress? Set to <code>false</code> to
-     * suppress the 'change' handler firing (and the value stored) on every keypress. <p> Note: If <code>false</code>, the
-     * value returned by {@link com.smartgwt.client.widgets.form.fields.FormItem#getValue FormItem.getValue} will not reflect
-     * the value displayed in the form item element as long as focus is in the form item element.
+     * Should this form item fire its {@link com.smartgwt.client.widgets.form.fields.FormItem#addChangeHandler change} handler
+     * (and store its value in the form) on every keypress? Set to <code>false</code> to suppress the 'change' handler firing
+     * (and the value stored) on every keypress. <p> Note: If <code>false</code>, the value returned by {@link
+     * com.smartgwt.client.widgets.form.fields.FormItem#getValue getValue} will not reflect the value displayed in the form
+     * item element as long as focus is in the form item element.
      *
      * @param changeOnKeypress changeOnKeypress Default value is true
      */
@@ -106,11 +106,11 @@ public class TextItem extends FormItem {
     }
 
     /**
-     * Should this form item fire its {@link com.smartgwt.client.widgets.form.fields.FormItem#addChangeHandler
-     * FormItem.addChangeHandler} handler (and store its value in the form) on every keypress? Set to <code>false</code> to
-     * suppress the 'change' handler firing (and the value stored) on every keypress. <p> Note: If <code>false</code>, the
-     * value returned by {@link com.smartgwt.client.widgets.form.fields.FormItem#getValue FormItem.getValue} will not reflect
-     * the value displayed in the form item element as long as focus is in the form item element.
+     * Should this form item fire its {@link com.smartgwt.client.widgets.form.fields.FormItem#addChangeHandler change} handler
+     * (and store its value in the form) on every keypress? Set to <code>false</code> to suppress the 'change' handler firing
+     * (and the value stored) on every keypress. <p> Note: If <code>false</code>, the value returned by {@link
+     * com.smartgwt.client.widgets.form.fields.FormItem#getValue getValue} will not reflect the value displayed in the form
+     * item element as long as focus is in the form item element.
      *
      *
      * @return Boolean
@@ -348,8 +348,8 @@ public class TextItem extends FormItem {
     }
 
     /**
-     * Allows the {@link com.smartgwt.client.widgets.form.DynamicForm#getSelectOnFocus 'selectOnFocus'} behavior to be
-     * configured on a per-FormItem basis.  Normally all items in a form default to the value of {@link
+     * Allows the {@link com.smartgwt.client.widgets.form.DynamicForm#getSelectOnFocus selectOnFocus} behavior to be configured
+     * on a per-FormItem basis.  Normally all items in a form default to the value of {@link
      * com.smartgwt.client.widgets.form.DynamicForm#getSelectOnFocus selectOnFocus}.
      *
      * @param selectOnFocus selectOnFocus Default value is null
@@ -360,8 +360,8 @@ public class TextItem extends FormItem {
     }
 
     /**
-     * Allows the {@link com.smartgwt.client.widgets.form.DynamicForm#getSelectOnFocus 'selectOnFocus'} behavior to be
-     * configured on a per-FormItem basis.  Normally all items in a form default to the value of {@link
+     * Allows the {@link com.smartgwt.client.widgets.form.DynamicForm#getSelectOnFocus selectOnFocus} behavior to be configured
+     * on a per-FormItem basis.  Normally all items in a form default to the value of {@link
      * com.smartgwt.client.widgets.form.DynamicForm#getSelectOnFocus selectOnFocus}.
      *
      *
@@ -397,8 +397,8 @@ public class TextItem extends FormItem {
     }
 
     /**
-     * Base CSS class name for this item's input element. NOTE: See the CompoundFormItem_skinning discussion for special
-     * skinning considerations.
+     * Base CSS class name for this item's input element. NOTE: See the {@link CompoundFormItem_skinning} discussion for
+     * special skinning considerations.
      *
      * @param textBoxStyle textBoxStyle Default value is "textItem"
      * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
@@ -408,8 +408,8 @@ public class TextItem extends FormItem {
     }
 
     /**
-     * Base CSS class name for this item's input element. NOTE: See the CompoundFormItem_skinning discussion for special
-     * skinning considerations.
+     * Base CSS class name for this item's input element. NOTE: See the {@link CompoundFormItem_skinning} discussion for
+     * special skinning considerations.
      *
      *
      * @return String

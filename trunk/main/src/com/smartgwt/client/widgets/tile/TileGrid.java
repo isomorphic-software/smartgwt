@@ -227,7 +227,7 @@ public class TileGrid extends TileLayout  implements DataBoundComponent, com.sma
     }
 
     /**
-     * When using the default {@link com.smartgwt.client..SimpleTile}, CSS style for each value shown within a tile.
+     * When using the default SimpleTile, CSS style for each value shown within a tile.
      *
      * @param tileValueStyle tileValueStyle Default value is "tileValue"
      * @throws IllegalStateException this property cannot be changed after the component has been created
@@ -237,7 +237,7 @@ public class TileGrid extends TileLayout  implements DataBoundComponent, com.sma
     }
 
     /**
-     * When using the default {@link com.smartgwt.client..SimpleTile}, CSS style for each value shown within a tile.
+     * When using the default SimpleTile, CSS style for each value shown within a tile.
      *
      *
      * @return String
@@ -260,9 +260,9 @@ public class TileGrid extends TileLayout  implements DataBoundComponent, com.sma
     /**
      * Notification method fired when new data arrives from the server to be displayed in this tileGrid, (for example in
      * response to the user scrolling a new set of tiles into view). Only applies to databound tileGrid where the {@link
-     * com.smartgwt.client.widgets.tile.TileGrid#getData 'data'} attribute is a {@link com.smartgwt.client.data.ResultSet}.
-     * This method is fired directly in response to {@link com.smartgwt.client.data.ResultSet#addDataArrivedHandler
-     * ResultSet.addDataArrivedHandler} firing on the data object.
+     * com.smartgwt.client.widgets.tile.TileGrid#getData data} attribute is a {@link com.smartgwt.client.data.ResultSet}. This
+     * method is fired directly in response to {@link com.smartgwt.client.data.ResultSet#addDataArrivedHandler dataArrived()}
+     * firing on the data object.
      * @param startRecord starting index of the newly loaded set of records
      * @param endRecord ending index of the newly loaded set of records (non inclusive).
      */
@@ -272,15 +272,14 @@ public class TileGrid extends TileLayout  implements DataBoundComponent, com.sma
     }-*/;
             
     /**
-     * Uses a "fetch" operation on the current {@link com.smartgwt.client.widgets.DataBoundComponent#getDataSource
-     * 'DataSource'} to  retrieve data that matches the current filter and sort criteria for this component, then  exports the
-     * resulting data to a file or window in the requested format. <P> A variety of DSRequest settings, such as  {@link
-     * com.smartgwt.client.data.DSRequest#getExportAs 'exportAs'} and {@link
-     * com.smartgwt.client.data.DSRequest#getExportFilename exportFilename}, affect the  exporting process: see {@link
-     * com.smartgwt.client.data.DSRequest#getExportResults 'exportResults'} for further detail. <P> Note that data exported via
-     * this method does not include any client-side formatting and relies on both the Smart GWT server and server-side
-     * DataSources.  To export client-data  with formatters applied,  see {@link
-     * com.smartgwt.client.widgets.DataBoundComponent#exportClientData DataBoundComponent.exportClientData}, which still
+     * Uses a "fetch" operation on the current {@link com.smartgwt.client.widgets.DataBoundComponent#getDataSource DataSource}
+     * to  retrieve data that matches the current filter and sort criteria for this component, then  exports the resulting data
+     * to a file or window in the requested format. <P> A variety of DSRequest settings, such as  {@link
+     * com.smartgwt.client.data.DSRequest#getExportAs exportAs} and {@link com.smartgwt.client.data.DSRequest#getExportFilename
+     * exportFilename}, affect the  exporting process: see {@link com.smartgwt.client.data.DSRequest#getExportResults
+     * exportResults} for further detail. <P> Note that data exported via this method does not include any client-side
+     * formatting and relies on both the Smart GWT server and server-side DataSources.  To export client-data  with formatters
+     * applied,  see {@link com.smartgwt.client.widgets.DataBoundComponent#exportClientData exportClientData}, which still
      * requires the Smart GWT server but does not rely on server-side DataSources. <P> For more information on exporting data,
      * see {@link com.smartgwt.client.data.DataSource#exportData DataSource.exportData}.
      */
@@ -290,15 +289,14 @@ public class TileGrid extends TileLayout  implements DataBoundComponent, com.sma
     }-*/;
 
     /**
-     * Uses a "fetch" operation on the current {@link com.smartgwt.client.widgets.DataBoundComponent#getDataSource
-     * 'DataSource'} to  retrieve data that matches the current filter and sort criteria for this component, then  exports the
-     * resulting data to a file or window in the requested format. <P> A variety of DSRequest settings, such as  {@link
-     * com.smartgwt.client.data.DSRequest#getExportAs 'exportAs'} and {@link
-     * com.smartgwt.client.data.DSRequest#getExportFilename exportFilename}, affect the  exporting process: see {@link
-     * com.smartgwt.client.data.DSRequest#getExportResults 'exportResults'} for further detail. <P> Note that data exported via
-     * this method does not include any client-side formatting and relies on both the Smart GWT server and server-side
-     * DataSources.  To export client-data  with formatters applied,  see {@link
-     * com.smartgwt.client.widgets.DataBoundComponent#exportClientData DataBoundComponent.exportClientData}, which still
+     * Uses a "fetch" operation on the current {@link com.smartgwt.client.widgets.DataBoundComponent#getDataSource DataSource}
+     * to  retrieve data that matches the current filter and sort criteria for this component, then  exports the resulting data
+     * to a file or window in the requested format. <P> A variety of DSRequest settings, such as  {@link
+     * com.smartgwt.client.data.DSRequest#getExportAs exportAs} and {@link com.smartgwt.client.data.DSRequest#getExportFilename
+     * exportFilename}, affect the  exporting process: see {@link com.smartgwt.client.data.DSRequest#getExportResults
+     * exportResults} for further detail. <P> Note that data exported via this method does not include any client-side
+     * formatting and relies on both the Smart GWT server and server-side DataSources.  To export client-data  with formatters
+     * applied,  see {@link com.smartgwt.client.widgets.DataBoundComponent#exportClientData exportClientData}, which still
      * requires the Smart GWT server but does not rely on server-side DataSources. <P> For more information on exporting data,
      * see {@link com.smartgwt.client.data.DataSource#exportData DataSource.exportData}.
      * @param requestProperties additional properties to set on the DSRequest                                            that will be issued

@@ -99,7 +99,7 @@ public class MenuButton extends Button {
     // ********************* Properties / Attributes ***********************
 
     /**
-     * If this MenuButton has a specified {@link com.smartgwt.client.widgets.Canvas#getAccessKey 'accessKey'}, underline it in
+     * If this MenuButton has a specified {@link com.smartgwt.client.widgets.Canvas#getAccessKey accessKey}, underline it in
      * the title of the button by default
      *
      * @param hiliteAccessKey hiliteAccessKey Default value is true
@@ -110,7 +110,7 @@ public class MenuButton extends Button {
     }
 
     /**
-     * If this MenuButton has a specified {@link com.smartgwt.client.widgets.Canvas#getAccessKey 'accessKey'}, underline it in
+     * If this MenuButton has a specified {@link com.smartgwt.client.widgets.Canvas#getAccessKey accessKey}, underline it in
      * the title of the button by default
      *
      *

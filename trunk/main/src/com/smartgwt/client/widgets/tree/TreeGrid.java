@@ -67,11 +67,11 @@ import com.google.gwt.event.shared.HasHandlers;
  * com.smartgwt.client.widgets.tree.Tree} column - you can define additional columns (via {@link
  * com.smartgwt.client.widgets.tree.TreeGrid#getFields fields}) which will render just like the columns of a {@link
  * com.smartgwt.client.widgets.grid.ListGrid}, and support all of the functionality of ListGrid columns, such as {@link
- * com.smartgwt.client.widgets.grid.ListGridField#formatCellValue ListGridField.formatCellValue}. <p> Except where
- * explicitly overridden, {@link com.smartgwt.client.widgets.grid.ListGrid} methods, callbacks, and properties apply to
- * TreeGrids as well.  The {@link com.smartgwt.client.widgets.grid.ListGrid} defines some methods as taking/returning
- * ${isc.DocUtils.linkForRef('object:ListGridField')} and {@link com.smartgwt.client.widgets.grid.ListGridRecord}.  When
- * using those methods in a TreeGrid, those types will be ${isc.DocUtils.linkForRef('object:TreeGridField')} and {@link
+ * com.smartgwt.client.widgets.grid.ListGridField#formatCellValue formatters}. <p> Except where explicitly overridden,
+ * {@link com.smartgwt.client.widgets.grid.ListGrid} methods, callbacks, and properties apply to TreeGrids as well.  The
+ * {@link com.smartgwt.client.widgets.grid.ListGrid} defines some methods as taking/returning {@link
+ * com.smartgwt.client.widgets.grid.ListGridField} and {@link com.smartgwt.client.widgets.grid.ListGridRecord}.  When using
+ * those methods in a TreeGrid, those types will be {@link com.smartgwt.client.widgets.tree.TreeGridField} and {@link
  * com.smartgwt.client.widgets.tree.TreeNode}, respectively.
  */
 public class TreeGrid extends ListGrid  implements com.smartgwt.client.widgets.tree.events.HasFolderDropHandlers, com.smartgwt.client.widgets.tree.events.HasDataArrivedHandlers, com.smartgwt.client.widgets.tree.events.HasFolderOpenedHandlers, com.smartgwt.client.widgets.tree.events.HasFolderClosedHandlers, com.smartgwt.client.widgets.tree.events.HasFolderClickHandlers, com.smartgwt.client.widgets.tree.events.HasLeafClickHandlers, com.smartgwt.client.widgets.tree.events.HasNodeClickHandlers, com.smartgwt.client.widgets.tree.events.HasFolderContextClickHandlers, com.smartgwt.client.widgets.tree.events.HasLeafContextClickHandlers, com.smartgwt.client.widgets.tree.events.HasNodeContextClickHandlers {
@@ -474,7 +474,7 @@ public class TreeGrid extends ListGrid  implements com.smartgwt.client.widgets.t
      * vertical continuation image to be displayed at the  appropriate indent levels for ancestor nodes with subsequent
      * children. <P> For nodes with no children: <ul> <li><code>{baseName}_single[_rtl].{extension}</code>: Shown when there is
      * no connector line  attached to the parent or previous sibling, and no connector line to the next sibling. For  {@link
-     * com.smartgwt.client.widgets.tree.TreeGrid#getShowFullConnectors 'showFullConnectors:true'} trees, there will always be a
+     * com.smartgwt.client.widgets.tree.TreeGrid#getShowFullConnectors showFullConnectors:true} trees, there will always be a 
      * connector leading to the parent or previous sibling if its present in the tree so this  icon can only be displayed for
      * the first row.</li> <li><code>{baseName}_start[_rtl].{extension}</code>:  Shown when the there is no connector  line
      * attached to the parent or previous sibling, but there is a connector to the next  sibling. As with <code>_single</code>
@@ -526,7 +526,7 @@ public class TreeGrid extends ListGrid  implements com.smartgwt.client.widgets.t
      * vertical continuation image to be displayed at the  appropriate indent levels for ancestor nodes with subsequent
      * children. <P> For nodes with no children: <ul> <li><code>{baseName}_single[_rtl].{extension}</code>: Shown when there is
      * no connector line  attached to the parent or previous sibling, and no connector line to the next sibling. For  {@link
-     * com.smartgwt.client.widgets.tree.TreeGrid#getShowFullConnectors 'showFullConnectors:true'} trees, there will always be a
+     * com.smartgwt.client.widgets.tree.TreeGrid#getShowFullConnectors showFullConnectors:true} trees, there will always be a 
      * connector leading to the parent or previous sibling if its present in the tree so this  icon can only be displayed for
      * the first row.</li> <li><code>{baseName}_start[_rtl].{extension}</code>:  Shown when the there is no connector  line
      * attached to the parent or previous sibling, but there is a connector to the next  sibling. As with <code>_single</code>
@@ -563,7 +563,7 @@ public class TreeGrid extends ListGrid  implements com.smartgwt.client.widgets.t
 
     /**
      * This property allows the developer to rename the  {@link com.smartgwt.client.widgets.tree.TreeNode#getShowDropIcon
-     * 'default node.showDropIcon'} property.
+     * default node.showDropIcon} property.
      * <p><b>Note : </b> This is an advanced setting</p>
      *
      * @param customIconDropProperty customIconDropProperty Default value is "showDropIcon"
@@ -574,7 +574,7 @@ public class TreeGrid extends ListGrid  implements com.smartgwt.client.widgets.t
 
     /**
      * This property allows the developer to rename the  {@link com.smartgwt.client.widgets.tree.TreeNode#getShowDropIcon
-     * 'default node.showDropIcon'} property.
+     * default node.showDropIcon} property.
      *
      *
      * @return String
@@ -585,7 +585,7 @@ public class TreeGrid extends ListGrid  implements com.smartgwt.client.widgets.t
 
     /**
      * This property allows the developer to rename the  {@link com.smartgwt.client.widgets.tree.TreeNode#getShowOpenIcon
-     * 'default node.showOpenIcon'} property.
+     * default node.showOpenIcon} property.
      * <p><b>Note : </b> This is an advanced setting</p>
      *
      * @param customIconOpenProperty customIconOpenProperty Default value is "showOpenIcon"
@@ -596,7 +596,7 @@ public class TreeGrid extends ListGrid  implements com.smartgwt.client.widgets.t
 
     /**
      * This property allows the developer to rename the  {@link com.smartgwt.client.widgets.tree.TreeNode#getShowOpenIcon
-     * 'default node.showOpenIcon'} property.
+     * default node.showOpenIcon} property.
      *
      *
      * @return String
@@ -606,8 +606,8 @@ public class TreeGrid extends ListGrid  implements com.smartgwt.client.widgets.t
     }
 
     /**
-     * This property allows the developer to rename the  {@link com.smartgwt.client.widgets.tree.TreeNode#getIcon 'default
-     * node.icon'} property.
+     * This property allows the developer to rename the  {@link com.smartgwt.client.widgets.tree.TreeNode#getIcon default
+     * node.icon} property.
      *
      * @param customIconProperty customIconProperty Default value is "icon"
      */
@@ -616,8 +616,8 @@ public class TreeGrid extends ListGrid  implements com.smartgwt.client.widgets.t
     }
 
     /**
-     * This property allows the developer to rename the  {@link com.smartgwt.client.widgets.tree.TreeNode#getIcon 'default
-     * node.icon'} property.
+     * This property allows the developer to rename the  {@link com.smartgwt.client.widgets.tree.TreeNode#getIcon default
+     * node.icon} property.
      *
      *
      * @return String
@@ -696,8 +696,8 @@ public class TreeGrid extends ListGrid  implements com.smartgwt.client.widgets.t
 
     /**
      * The amount of gap (in pixels) between the extraIcon (see {@link com.smartgwt.client.widgets.tree.TreeGrid#getExtraIcon
-     * TreeGrid.getExtraIcon}) or checkbox icon and the {@link com.smartgwt.client.widgets.tree.TreeGrid#getNodeIcon
-     * 'nodeIcon'}/ {@link com.smartgwt.client.widgets.tree.TreeGrid#getFolderIcon 'folderIcon'} or node text.
+     * TreeGrid.getExtraIcon}) or checkbox icon and the {@link com.smartgwt.client.widgets.tree.TreeGrid#getNodeIcon nodeIcon}/
+     * {@link com.smartgwt.client.widgets.tree.TreeGrid#getFolderIcon folderIcon} or node text.
      *
      * @param extraIconGap extraIconGap Default value is 2
      * @throws IllegalStateException this property cannot be changed after the component has been created
@@ -709,8 +709,8 @@ public class TreeGrid extends ListGrid  implements com.smartgwt.client.widgets.t
 
     /**
      * The amount of gap (in pixels) between the extraIcon (see {@link com.smartgwt.client.widgets.tree.TreeGrid#getExtraIcon
-     * TreeGrid.getExtraIcon}) or checkbox icon and the {@link com.smartgwt.client.widgets.tree.TreeGrid#getNodeIcon
-     * 'nodeIcon'}/ {@link com.smartgwt.client.widgets.tree.TreeGrid#getFolderIcon 'folderIcon'} or node text.
+     * TreeGrid.getExtraIcon}) or checkbox icon and the {@link com.smartgwt.client.widgets.tree.TreeGrid#getNodeIcon nodeIcon}/
+     * {@link com.smartgwt.client.widgets.tree.TreeGrid#getFolderIcon folderIcon} or node text.
      *
      *
      * @return int
@@ -797,10 +797,9 @@ public class TreeGrid extends ListGrid  implements com.smartgwt.client.widgets.t
      * For databound treeGrid instances, should the entire tree of data be loaded on initial  fetch, or should folders load
      * their children as they are opened. <P> If unset, calling {@link com.smartgwt.client.widgets.tree.TreeGrid#fetchData
      * TreeGrid.fetchData} will default it to true, otherwise, if a ResultTree is passed to {@link
-     * com.smartgwt.client.widgets.tree.TreeGrid#setData TreeGrid.setData}, the {@link
-     * com.smartgwt.client..ResultTree#getLoadDataOnDemand loadDataOnDemand} setting is respected. <P> Note that when using
-     * <code>loadDataOnDemand</code>, every node returned by the server is assumed be a folder which may load further children.
-     *  See {@link com.smartgwt.client..ResultTree#getDefaultIsFolder defaultIsFolder} for how to control this behavior.
+     * com.smartgwt.client.widgets.tree.TreeGrid#setData TreeGrid.setData}, the  loadDataOnDemand setting is respected. <P>
+     * Note that when using <code>loadDataOnDemand</code>, every node returned by the server is assumed be a folder which may
+     * load further children.  See  defaultIsFolder for how to control this behavior.
      *
      * @param loadDataOnDemand loadDataOnDemand Default value is null
      * @see com.smartgwt.client.docs.Databinding Databinding overview and related methods
@@ -814,10 +813,9 @@ public class TreeGrid extends ListGrid  implements com.smartgwt.client.widgets.t
      * For databound treeGrid instances, should the entire tree of data be loaded on initial  fetch, or should folders load
      * their children as they are opened. <P> If unset, calling {@link com.smartgwt.client.widgets.tree.TreeGrid#fetchData
      * TreeGrid.fetchData} will default it to true, otherwise, if a ResultTree is passed to {@link
-     * com.smartgwt.client.widgets.tree.TreeGrid#setData TreeGrid.setData}, the {@link
-     * com.smartgwt.client..ResultTree#getLoadDataOnDemand loadDataOnDemand} setting is respected. <P> Note that when using
-     * <code>loadDataOnDemand</code>, every node returned by the server is assumed be a folder which may load further children.
-     *  See {@link com.smartgwt.client..ResultTree#getDefaultIsFolder defaultIsFolder} for how to control this behavior.
+     * com.smartgwt.client.widgets.tree.TreeGrid#setData TreeGrid.setData}, the  loadDataOnDemand setting is respected. <P>
+     * Note that when using <code>loadDataOnDemand</code>, every node returned by the server is assumed be a folder which may
+     * load further children.  See  defaultIsFolder for how to control this behavior.
      *
      *
      * @return Boolean
@@ -879,8 +877,8 @@ public class TreeGrid extends ListGrid  implements com.smartgwt.client.widgets.t
      * Width and height in pixels of the opener icons, that is, the icons which show the open or closed state of the node,
      * typically a [+] or [-] symbol. <P> If {@link com.smartgwt.client.widgets.tree.TreeGrid#getShowConnectors showConnectors}
      * is true, the opener icon includes the connector line, and defaults to {@link
-     * com.smartgwt.client.widgets.grid.ListGrid#getCellHeight 'cellHeight'}. <P> Otherwise, <code>openerIconSize</code>
-     * defaults to {@link com.smartgwt.client.widgets.tree.TreeGrid#getIconSize iconSize}.
+     * com.smartgwt.client.widgets.grid.ListGrid#getCellHeight cellHeight}. <P> Otherwise, <code>openerIconSize</code> defaults
+     * to {@link com.smartgwt.client.widgets.tree.TreeGrid#getIconSize iconSize}.
      *
      * @param openerIconSize openerIconSize Default value is null
      */
@@ -892,8 +890,8 @@ public class TreeGrid extends ListGrid  implements com.smartgwt.client.widgets.t
      * Width and height in pixels of the opener icons, that is, the icons which show the open or closed state of the node,
      * typically a [+] or [-] symbol. <P> If {@link com.smartgwt.client.widgets.tree.TreeGrid#getShowConnectors showConnectors}
      * is true, the opener icon includes the connector line, and defaults to {@link
-     * com.smartgwt.client.widgets.grid.ListGrid#getCellHeight 'cellHeight'}. <P> Otherwise, <code>openerIconSize</code>
-     * defaults to {@link com.smartgwt.client.widgets.tree.TreeGrid#getIconSize iconSize}.
+     * com.smartgwt.client.widgets.grid.ListGrid#getCellHeight cellHeight}. <P> Otherwise, <code>openerIconSize</code> defaults
+     * to {@link com.smartgwt.client.widgets.tree.TreeGrid#getIconSize iconSize}.
      *
      *
      * @return Integer
@@ -982,9 +980,9 @@ public class TreeGrid extends ListGrid  implements com.smartgwt.client.widgets.t
      * separateFolders} on the data for this treeGrid. <P> Specifies whether folders and leaves should be segregated in the
      * treeGrid display. Use {@link com.smartgwt.client.widgets.tree.TreeGrid#getSortFoldersBeforeLeaves
      * sortFoldersBeforeLeaves} to customize whether folders appear before  or after their sibling leaves. <P> If unset, at the
-     * treeGrid level, the property can be set directly on {@link com.smartgwt.client.widgets.tree.TreeGrid#getData 'the tree
-     * data object'} or for dataBound TreeGrids on the ${isc.DocUtils.linkForRef('treeGrid.dataProperties','dataProperties
-     * configuration object')}.
+     * treeGrid level, the property can be set directly on {@link com.smartgwt.client.widgets.tree.TreeGrid#getData the tree
+     * data object} or for dataBound TreeGrids on the {@link com.smartgwt.client.widgets.tree.TreeGrid#getDataProperties
+     * dataProperties configuration object}.
      *
      * @param separateFolders separateFolders Default value is null
      * @throws IllegalStateException this property cannot be changed after the component has been created
@@ -998,9 +996,9 @@ public class TreeGrid extends ListGrid  implements com.smartgwt.client.widgets.t
      * separateFolders} on the data for this treeGrid. <P> Specifies whether folders and leaves should be segregated in the
      * treeGrid display. Use {@link com.smartgwt.client.widgets.tree.TreeGrid#getSortFoldersBeforeLeaves
      * sortFoldersBeforeLeaves} to customize whether folders appear before  or after their sibling leaves. <P> If unset, at the
-     * treeGrid level, the property can be set directly on {@link com.smartgwt.client.widgets.tree.TreeGrid#getData 'the tree
-     * data object'} or for dataBound TreeGrids on the ${isc.DocUtils.linkForRef('treeGrid.dataProperties','dataProperties
-     * configuration object')}.
+     * treeGrid level, the property can be set directly on {@link com.smartgwt.client.widgets.tree.TreeGrid#getData the tree
+     * data object} or for dataBound TreeGrids on the {@link com.smartgwt.client.widgets.tree.TreeGrid#getDataProperties
+     * dataProperties configuration object}.
      *
      *
      * @return Boolean
@@ -1216,7 +1214,7 @@ public class TreeGrid extends ListGrid  implements com.smartgwt.client.widgets.t
      * com.smartgwt.client.widgets.tree.TreeGrid#fetchData TreeGrid.fetchData}.   <P> To get the equivalent of a visible "root"
      * node in a tree that loads data dynamically, add a singular, top-level parent to the data.  However, note that this
      * top-level parent will technically be the only child of root, and the implicit root object will be returned by {@link
-     * com.smartgwt.client.widgets.tree.Tree#getRoot Tree.getRoot}.
+     * com.smartgwt.client.widgets.tree.Tree#getRoot this.data.getRoot()}.
      *
      * @param showRoot showRoot Default value is false
      * @throws IllegalStateException this property cannot be changed after the component has been created
@@ -1231,7 +1229,7 @@ public class TreeGrid extends ListGrid  implements com.smartgwt.client.widgets.t
      * com.smartgwt.client.widgets.tree.TreeGrid#fetchData TreeGrid.fetchData}.   <P> To get the equivalent of a visible "root"
      * node in a tree that loads data dynamically, add a singular, top-level parent to the data.  However, note that this
      * top-level parent will technically be the only child of root, and the implicit root object will be returned by {@link
-     * com.smartgwt.client.widgets.tree.Tree#getRoot Tree.getRoot}.
+     * com.smartgwt.client.widgets.tree.Tree#getRoot this.data.getRoot()}.
      *
      *
      * @return Boolean
@@ -1293,7 +1291,7 @@ public class TreeGrid extends ListGrid  implements com.smartgwt.client.widgets.t
     // ********************* Methods ***********************
             
     /**
-     * Overridden to disallow editing of the {@link com.smartgwt.client.widgets.tree.TreeNode#getName 'name'} field of this
+     * Overridden to disallow editing of the {@link com.smartgwt.client.widgets.tree.TreeNode#getName name} field of this
      * grid's data tree. Also disallows editing of the auto-generated tree field, which displays the result of {@link
      * com.smartgwt.client.widgets.tree.Tree#getTitle Tree.getTitle} on the node.
      *
@@ -1312,10 +1310,9 @@ public class TreeGrid extends ListGrid  implements com.smartgwt.client.widgets.t
      * Add a dataArrived handler.
      * <p>
      * Notification method fired whenever this TreeGrid receives new data nodes from the  dataSource. Only applies to databound
-     * TreeGrids where {@link com.smartgwt.client.widgets.tree.TreeGrid#getData data} is a  {@link
-     * com.smartgwt.client..ResultTree} - either explicitly created and applied via {@link
-     * com.smartgwt.client.widgets.tree.TreeGrid#setData TreeGrid.setData} or automatically generated via a {@link
-     * com.smartgwt.client.widgets.tree.TreeGrid#fetchData TreeGrid.fetchData} call.
+     * TreeGrids where {@link com.smartgwt.client.widgets.tree.TreeGrid#getData data} is a  ResultTree - either explicitly
+     * created and applied via {@link com.smartgwt.client.widgets.tree.TreeGrid#setData TreeGrid.setData} or automatically
+     * generated via a {@link com.smartgwt.client.widgets.tree.TreeGrid#fetchData fetchData()} call.
      *
      * @param handler the dataArrived handler
      * @return {@link HandlerRegistration} used to remove this handler
@@ -1637,7 +1634,7 @@ public class TreeGrid extends ListGrid  implements com.smartgwt.client.widgets.t
      * <p>
      * This method is called when a leaf or folder record is clicked on.  Note that if you set up a callback for
      * <code>nodeClick()</code> and e.g. {@link com.smartgwt.client.widgets.tree.TreeGrid#addLeafClickHandler
-     * TreeGrid.addLeafClickHandler}, then both will fire (in that order) if a leaf is clicked on.
+     * TreeGrid.leafClick}, then both will fire (in that order) if a leaf is clicked on.
      *
      * @param handler the nodeClick handler
      * @return {@link HandlerRegistration} used to remove this handler
@@ -1672,7 +1669,7 @@ public class TreeGrid extends ListGrid  implements com.smartgwt.client.widgets.t
      * <p>
      * This method is called when a context click occurs on a leaf or folder record.  Note that if you set up a callback for
      * <code>nodeContextClick()</code> and e.g. {@link com.smartgwt.client.widgets.tree.TreeGrid#addLeafContextClickHandler
-     * TreeGrid.addLeafContextClickHandler}, then both will fire (in that order) if a leaf is contextclicked - unless
+     * TreeGrid.leafContextClick}, then both will fire (in that order) if a leaf is contextclicked - unless
      * <code>nodeContextClick()</code> returns false, in which case no further contextClick callbacks will be called.
      *
      * @param handler the nodeContextClick handler
@@ -1826,7 +1823,7 @@ public class TreeGrid extends ListGrid  implements com.smartgwt.client.widgets.t
      * An array of field objects, specifying the order, layout, dynamic calculation, and sorting behavior of each field
      * in the treeGrid object. In TreeGrids, the fields array specifies columns. Each field in the fields array is
      * TreeGridField object. <p> If {@link com.smartgwt.client.widgets.tree.TreeGrid#getDataSource dataSource} is also
-     * set, this value acts as a set of overrides as explained in {@link com.smartgwt.client..DataBoundComponent#getFields
+     * set, this value acts as a set of overrides as explained in {@link com.smartgwt.client.widgets.DataBoundComponent#getFields
      * fields}.
      *
      * @param fields fields Default value is null
@@ -1896,20 +1893,20 @@ public class TreeGrid extends ListGrid  implements com.smartgwt.client.widgets.t
     /**
      * Uses a "fetch" operation on the current {@link com.smartgwt.client.data.DataSource} to retrieve data that matches
      * the provided criteria, and displays the matching data in this component as a tree. <P> This method will create a
-     * {@link com.smartgwt.client..ResultTree} to manage tree data, which will subsequently be available as
+     * {@link com.smartgwt.client.data.ResultTree} to manage tree data, which will subsequently be available as
      * <code>treeGrid.data</code>.  DataSource records returned by the "fetch" operation are linked into a tree
      * structure according to {@link com.smartgwt.client.data.DataSourceField#getPrimaryKey primaryKey} and {@link
      * com.smartgwt.client.data.DataSourceField#getForeignKey foreignKey} declarations on DataSource fields.  See the
      * {@link com.smartgwt.client.docs.TreeDataBinding} topic for complete details. <P> By default, the created
      * ResultTree will use folder-by-folder load on demand, asking the server for the children of each folder as the
-     * user opens it. <P> The {@link com.smartgwt.client..ResultTree} created by <code>fetchData()</code> can be
+     * user opens it. <P> The {@link com.smartgwt.client.data.ResultTree} created by <code>fetchData()</code> can be
      * customized by setting {@link com.smartgwt.client.widgets.grid.ListGrid#getDataProperties dataProperties} to an
      * Object containing properties and methods to apply to the created ResultTree.  For example, the property that
      * determines whether a node is a folder ({@link com.smartgwt.client.widgets.tree.Tree#getIsFolderProperty
      * isFolderProperty}) can be customized, or level-by-level loading can be disabled via {@link
-     * com.smartgwt.client..ResultTree#getLoadDataOnDemand loadDataOnDemand}. <P> The callback passed to
+     * com.smartgwt.client.data.ResultTree#getLoadDataOnDemand loadDataOnDemand}. <P> The callback passed to
      * <code>fetchData</code> will fire once, the first time that data is loaded from the server.  If using
-     * folder-by-folder load on demand, use the {@link com.smartgwt.client..ResultTree#dataArrived} notification to be
+     * folder-by-folder load on demand, use the {@link com.smartgwt.client.data.ResultTree#dataArrived} notification to be
      * notified each time new nodes are loaded. <P> Note that, if criteria are passed to <code>fetchData()</code>, they
      * will be passed every time a new "fetch" operation is sent to the server.  This allows you to retrieve multiple
      * different tree structures from the same DataSource.  However note that the server is expected to always respond
@@ -1923,20 +1920,20 @@ public class TreeGrid extends ListGrid  implements com.smartgwt.client.widgets.t
     /**
      * Uses a "fetch" operation on the current {@link com.smartgwt.client.data.DataSource} to retrieve data that matches
      * the provided criteria, and displays the matching data in this component as a tree. <P> This method will create a
-     * {@link com.smartgwt.client..ResultTree} to manage tree data, which will subsequently be available as
+     * {@link com.smartgwt.client.data.ResultTree} to manage tree data, which will subsequently be available as
      * <code>treeGrid.data</code>.  DataSource records returned by the "fetch" operation are linked into a tree
      * structure according to {@link com.smartgwt.client.data.DataSourceField#getPrimaryKey primaryKey} and {@link
      * com.smartgwt.client.data.DataSourceField#getForeignKey foreignKey} declarations on DataSource fields.  See the
      * {@link com.smartgwt.client.docs.TreeDataBinding} topic for complete details. <P> By default, the created
      * ResultTree will use folder-by-folder load on demand, asking the server for the children of each folder as the
-     * user opens it. <P> The {@link com.smartgwt.client..ResultTree} created by <code>fetchData()</code> can be
+     * user opens it. <P> The {@link com.smartgwt.client.data.ResultTree} created by <code>fetchData()</code> can be
      * customized by setting {@link com.smartgwt.client.widgets.grid.ListGrid#getDataProperties dataProperties} to an
      * Object containing properties and methods to apply to the created ResultTree.  For example, the property that
      * determines whether a node is a folder ({@link com.smartgwt.client.widgets.tree.Tree#getIsFolderProperty
      * isFolderProperty}) can be customized, or level-by-level loading can be disabled via {@link
-     * com.smartgwt.client..ResultTree#getLoadDataOnDemand loadDataOnDemand}. <P> The callback passed to
+     * com.smartgwt.client.data.ResultTree#getLoadDataOnDemand loadDataOnDemand}. <P> The callback passed to
      * <code>fetchData</code> will fire once, the first time that data is loaded from the server.  If using
-     * folder-by-folder load on demand, use the {@link com.smartgwt.client..ResultTree#dataArrived} notification to be
+     * folder-by-folder load on demand, use the {@link com.smartgwt.client.data.ResultTree#dataArrived} notification to be
      * notified each time new nodes are loaded. <P> Note that, if criteria are passed to <code>fetchData()</code>, they
      * will be passed every time a new "fetch" operation is sent to the server.  This allows you to retrieve multiple
      * different tree structures from the same DataSource.  However note that the server is expected to always respond
@@ -1954,20 +1951,20 @@ public class TreeGrid extends ListGrid  implements com.smartgwt.client.widgets.t
     /**
      * Uses a "fetch" operation on the current {@link com.smartgwt.client.data.DataSource} to retrieve data that matches
      * the provided criteria, and displays the matching data in this component as a tree. <P> This method will create a
-     * {@link com.smartgwt.client..ResultTree} to manage tree data, which will subsequently be available as
+     * {@link com.smartgwt.client.data.ResultTree} to manage tree data, which will subsequently be available as
      * <code>treeGrid.data</code>.  DataSource records returned by the "fetch" operation are linked into a tree
      * structure according to {@link com.smartgwt.client.data.DataSourceField#getPrimaryKey primaryKey} and {@link
      * com.smartgwt.client.data.DataSourceField#getForeignKey foreignKey} declarations on DataSource fields.  See the
      * {@link com.smartgwt.client.docs.TreeDataBinding} topic for complete details. <P> By default, the created
      * ResultTree will use folder-by-folder load on demand, asking the server for the children of each folder as the
-     * user opens it. <P> The {@link com.smartgwt.client..ResultTree} created by <code>fetchData()</code> can be
+     * user opens it. <P> The {@link com.smartgwt.client.data.ResultTree} created by <code>fetchData()</code> can be
      * customized by setting {@link com.smartgwt.client.widgets.grid.ListGrid#getDataProperties dataProperties} to an
      * Object containing properties and methods to apply to the created ResultTree.  For example, the property that
      * determines whether a node is a folder ({@link com.smartgwt.client.widgets.tree.Tree#getIsFolderProperty
      * isFolderProperty}) can be customized, or level-by-level loading can be disabled via {@link
-     * com.smartgwt.client..ResultTree#getLoadDataOnDemand loadDataOnDemand}. <P> The callback passed to
+     * com.smartgwt.client.data.ResultTree#getLoadDataOnDemand loadDataOnDemand}. <P> The callback passed to
      * <code>fetchData</code> will fire once, the first time that data is loaded from the server.  If using
-     * folder-by-folder load on demand, use the {@link com.smartgwt.client..ResultTree#dataArrived} notification to be
+     * folder-by-folder load on demand, use the {@link com.smartgwt.client.data.ResultTree#dataArrived} notification to be
      * notified each time new nodes are loaded. <P> Note that, if criteria are passed to <code>fetchData()</code>, they
      * will be passed every time a new "fetch" operation is sent to the server.  This allows you to retrieve multiple
      * different tree structures from the same DataSource.  However note that the server is expected to always respond
@@ -1992,20 +1989,20 @@ public class TreeGrid extends ListGrid  implements com.smartgwt.client.widgets.t
     /**
      * Uses a "fetch" operation on the current {@link com.smartgwt.client.data.DataSource} to retrieve data that matches
      * the provided criteria, and displays the matching data in this component as a tree. <P> This method will create a
-     * {@link com.smartgwt.client..ResultTree} to manage tree data, which will subsequently be available as
+     * {@link com.smartgwt.client.data.ResultTree} to manage tree data, which will subsequently be available as
      * <code>treeGrid.data</code>.  DataSource records returned by the "fetch" operation are linked into a tree
      * structure according to {@link com.smartgwt.client.data.DataSourceField#getPrimaryKey primaryKey} and {@link
      * com.smartgwt.client.data.DataSourceField#getForeignKey foreignKey} declarations on DataSource fields.  See the
      * {@link com.smartgwt.client.docs.TreeDataBinding} topic for complete details. <P> By default, the created
      * ResultTree will use folder-by-folder load on demand, asking the server for the children of each folder as the
-     * user opens it. <P> The {@link com.smartgwt.client..ResultTree} created by <code>fetchData()</code> can be
+     * user opens it. <P> The {@link com.smartgwt.client.data.ResultTree} created by <code>fetchData()</code> can be
      * customized by setting {@link com.smartgwt.client.widgets.grid.ListGrid#getDataProperties dataProperties} to an
      * Object containing properties and methods to apply to the created ResultTree.  For example, the property that
      * determines whether a node is a folder ({@link com.smartgwt.client.widgets.tree.Tree#getIsFolderProperty
      * isFolderProperty}) can be customized, or level-by-level loading can be disabled via {@link
-     * com.smartgwt.client..ResultTree#getLoadDataOnDemand loadDataOnDemand}. <P> The callback passed to
+     * com.smartgwt.client.data.ResultTree#getLoadDataOnDemand loadDataOnDemand}. <P> The callback passed to
      * <code>fetchData</code> will fire once, the first time that data is loaded from the server.  If using
-     * folder-by-folder load on demand, use the {@link com.smartgwt.client..ResultTree#dataArrived} notification to be
+     * folder-by-folder load on demand, use the {@link com.smartgwt.client.data.ResultTree#dataArrived} notification to be
      * notified each time new nodes are loaded. <P> Note that, if criteria are passed to <code>fetchData()</code>, they
      * will be passed every time a new "fetch" operation is sent to the server.  This allows you to retrieve multiple
      * different tree structures from the same DataSource.  However note that the server is expected to always respond
@@ -2056,7 +2053,7 @@ public class TreeGrid extends ListGrid  implements com.smartgwt.client.widgets.t
      *                 derived by calling                      {@link com.smartgwt.client.widgets.form.DynamicForm#getValuesAsCriteria}
      * @param callback callback to invoke when a fetch is complete.  Fires                                          only
      *                 if server contact was required; see                                          {@link
-     *                 com.smartgwt.client..DataBoundComponent#fetchData} for details
+     *                 com.smartgwt.client.widgets.DataBoundComponent#fetchData} for details
      */
     public native void filterData(Criteria criteria, DSCallback callback) /*-{
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
@@ -2079,7 +2076,7 @@ public class TreeGrid extends ListGrid  implements com.smartgwt.client.widgets.t
      *                          will be derived by calling                      {@link com.smartgwt.client.widgets.form.DynamicForm#getValuesAsCriteria}
      * @param callback          callback to invoke when a fetch is complete.  Fires
      *                              only if server contact was required; see
-     *                          {@link com.smartgwt.client..DataBoundComponent#fetchData} for details
+     *                          {@link com.smartgwt.client.widgets.DataBoundComponent#fetchData} for details
      * @param requestProperties for databound components only - optional                            additional
      *                          properties to set on the DSRequest that will be issued
      */

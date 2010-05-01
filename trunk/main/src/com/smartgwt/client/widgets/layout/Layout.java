@@ -60,9 +60,9 @@ import com.google.gwt.event.shared.HasHandlers;
  * a set of "member" Canvases initialized via the "members" property.  Layouts can have both "members", which are managed
  * by the Layout, and normal Canvas children, which are unmanaged. <br><br> Rather than using the Layout class directly,
  * use the HLayout, VLayout, HStack and VStack classes, which are subclasses of Layout preconfigured for horizontal or
- * vertical stacking, with the "fill" (VLayout) or "none" (VStack) {@link com.smartgwt.client.types.LayoutPolicy} already
- * set. <br><br> Layouts and Stacks may be nested to create arbitrarily complex layouts. <br><br> To show a resizer bar
- * after (to the right or bottom of) a layout member, set showResizeBar to true on that member component (not on the
+ * vertical stacking, with the "fill" (VLayout) or "none" (VStack) {@link com.smartgwt.client.types.LayoutPolicy policies}
+ * already set. <br><br> Layouts and Stacks may be nested to create arbitrarily complex layouts. <br><br> To show a resizer
+ * bar after (to the right or bottom of) a layout member, set showResizeBar to true on that member component (not on the
  * HLayout or VLayout).  Resizer bars override membersMargin spacing. <br><br>  Like other Canvas subclasses, Layout and
  * Stack components may have % width and height values. To create a dynamically-resizing layout that occupies the entire
  * page (or entire parent component), set width and height to "100%".
@@ -141,8 +141,8 @@ public class Layout extends Canvas {
 
     /**
      * Layouts provide a default implementation of a drag and drop interaction.  If you set&#010 {@link
-     * com.smartgwt.client.widgets.Canvas#getCanAcceptDrop 'canAcceptDrop'}:true and <code>canDropComponents:true</code>&#010
-     * on a Layout, when a droppable Canvas ({@link com.smartgwt.client.widgets.Canvas#getCanDrop 'canDrop:true'} is dragged
+     * com.smartgwt.client.widgets.Canvas#getCanAcceptDrop canAcceptDrop}:true and <code>canDropComponents:true</code>&#010 on
+     * a Layout, when a droppable Canvas ({@link com.smartgwt.client.widgets.Canvas#getCanDrop canDrop:true} is dragged
      * over&#010 the layout will show a dropLine (a simple insertion line) at the drop location.  &#010 <P>&#010 When the drop
      * occurs, the dragTarget (obtained using&#010 {@link com.smartgwt.client.util.EventHandler#getDragTarget
      * EventHandler.getDragTarget}) is added as a member of this layout at the location&#010 shown by the dropLine (calculated
@@ -175,8 +175,8 @@ public class Layout extends Canvas {
 
     /**
      * Layouts provide a default implementation of a drag and drop interaction.  If you set&#010 {@link
-     * com.smartgwt.client.widgets.Canvas#getCanAcceptDrop 'canAcceptDrop'}:true and <code>canDropComponents:true</code>&#010
-     * on a Layout, when a droppable Canvas ({@link com.smartgwt.client.widgets.Canvas#getCanDrop 'canDrop:true'} is dragged
+     * com.smartgwt.client.widgets.Canvas#getCanAcceptDrop canAcceptDrop}:true and <code>canDropComponents:true</code>&#010 on
+     * a Layout, when a droppable Canvas ({@link com.smartgwt.client.widgets.Canvas#getCanDrop canDrop:true} is dragged
      * over&#010 the layout will show a dropLine (a simple insertion line) at the drop location.  &#010 <P>&#010 When the drop
      * occurs, the dragTarget (obtained using&#010 {@link com.smartgwt.client.util.EventHandler#getDragTarget
      * EventHandler.getDragTarget}) is added as a member of this layout at the location&#010 shown by the dropLine (calculated
@@ -603,7 +603,7 @@ public class Layout extends Canvas {
     }
 
     /**
-     * If this widget has padding specified (as {@link com.smartgwt.client.widgets.Canvas#getPadding 'this.padding'} or in the
+     * If this widget has padding specified (as {@link com.smartgwt.client.widgets.Canvas#getPadding this.padding} or in the
      * CSS style applied to this layout), should it show up as space outside the members, similar to layoutMargin? <P> If this
      * setting is false, padding will not affect member positioning (as CSS padding normally does not affect absolutely
      * positioned children).  Leaving this setting true allows a designer to more effectively control layout purely from CSS.
@@ -618,7 +618,7 @@ public class Layout extends Canvas {
     }
 
     /**
-     * If this widget has padding specified (as {@link com.smartgwt.client.widgets.Canvas#getPadding 'this.padding'} or in the
+     * If this widget has padding specified (as {@link com.smartgwt.client.widgets.Canvas#getPadding this.padding} or in the
      * CSS style applied to this layout), should it show up as space outside the members, similar to layoutMargin? <P> If this
      * setting is false, padding will not affect member positioning (as CSS padding normally does not affect absolutely
      * positioned children).  Leaving this setting true allows a designer to more effectively control layout purely from CSS.
@@ -634,7 +634,7 @@ public class Layout extends Canvas {
 
     /**
      * Class to use for creating resizeBars. <P> A resize bar will be created for any Layout member that specifies {@link
-     * com.smartgwt.client.widgets.Canvas#getShowResizeBar '<code>showResizeBar:true</code>'}. Resize bars will be instances of
+     * com.smartgwt.client.widgets.Canvas#getShowResizeBar <code>showResizeBar:true</code>}. Resize bars will be instances of
      * the class specified by this property, and will  automatically be sized to the member's breadth and to the thickness
      * given by {@link com.smartgwt.client.widgets.layout.Layout#getResizeBarSize resizeBarSize}.<br> Classes that are valid by
      * default are {@link com.smartgwt.client.widgets.Splitbar} and {@link com.smartgwt.client.widgets.ImgSplitbar}. <P> To
@@ -653,7 +653,7 @@ public class Layout extends Canvas {
 
     /**
      * Class to use for creating resizeBars. <P> A resize bar will be created for any Layout member that specifies {@link
-     * com.smartgwt.client.widgets.Canvas#getShowResizeBar '<code>showResizeBar:true</code>'}. Resize bars will be instances of
+     * com.smartgwt.client.widgets.Canvas#getShowResizeBar <code>showResizeBar:true</code>}. Resize bars will be instances of
      * the class specified by this property, and will  automatically be sized to the member's breadth and to the thickness
      * given by {@link com.smartgwt.client.widgets.layout.Layout#getResizeBarSize resizeBarSize}.<br> Classes that are valid by
      * default are {@link com.smartgwt.client.widgets.Splitbar} and {@link com.smartgwt.client.widgets.ImgSplitbar}. <P> To
@@ -820,8 +820,8 @@ public class Layout extends Canvas {
     /**
      * Return the breadth for a member of this layout which either didn't specify a breadth or specified a percent breadth with
      * {@link com.smartgwt.client.widgets.layout.Layout#getManagePercentBreadth managePercentBreadth}:true. <P> Called only for
-     * Layouts which have a {@link com.smartgwt.client.types.LayoutPolicy} for the breadth axis of "fill", since Layouts with a
-     * breadth policy of "none" leave all member breadths alone.
+     * Layouts which have a {@link com.smartgwt.client.types.LayoutPolicy layout policy} for the breadth axis of "fill", since
+     * Layouts with a breadth policy of "none" leave all member breadths alone.
      * @param member Component to be sized
      * @param defaultBreadth Value of the currently calculated member breadth. This      may be returned verbatim or manipulated in this method.
      */
