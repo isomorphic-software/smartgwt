@@ -58,12 +58,12 @@ import com.google.gwt.event.shared.HasHandlers;
 /**
  * A DataSource is data-provider-independent description of a set of objects that will be loaded, edited and saved within
  * the user interface of your application. <P> Each DataSource consists of a list of {@link
- * com.smartgwt.client.data.DataSource#getFields 'fields'} that make up a DataSource <code>record</code>, along with {@link
- * com.smartgwt.client.data.DataSourceField#getType 'field types'},  {@link
- * com.smartgwt.client.data.DataSourceField#getValidators 'validation rules'},  {@link
- * com.smartgwt.client.data.DataSourceField#getForeignKey 'relationships'} to other DataSources, and other metadata. <P>
- * The abstract object description provided by a DataSource is easily mapped to a variety of backend object models and
- * storage schemes.  The following table shows analogous terminology across systems. <table border=1 class="normal"> <tr>  
+ * com.smartgwt.client.data.DataSource#getFields fields} that make up a DataSource <code>record</code>, along with {@link
+ * com.smartgwt.client.data.DataSourceField#getType field types},  {@link
+ * com.smartgwt.client.data.DataSourceField#getValidators validation rules},  {@link
+ * com.smartgwt.client.data.DataSourceField#getForeignKey relationships} to other DataSources, and other metadata. <P> The
+ * abstract object description provided by a DataSource is easily mapped to a variety of backend object models and storage
+ * schemes.  The following table shows analogous terminology across systems. <table border=1 class="normal"> <tr>  
  * <td>Isomorphic Smart GWT</td>   <td>Relational Database</td>   <td>Enterprise Java Beans (EJB)</td>  
  * <td>Entity/Relationship Modeling</td>   <td>OO/UML</td>   <td>XML Schema/WSDL</td>   <td>LDAP</td> </tr><tr>  
  * <td>DataSource</td>   <td>Table</td>   <td>EJB class</td>   <td>Entity</td>   <td>Class</td>   <td>Element Schema
@@ -71,27 +71,27 @@ import com.google.gwt.event.shared.HasHandlers;
  * <td>Entity instance</td>   <td>Class instance/Object</td>   <td>Element instance (ComplexType)</td>   <td>Entry</td>
  * </tr><tr>   <td>Field</td>   <td>Column</td>   <td>Property</td>   <td>Attribute</td>   <td>Property/Attribute</td>  
  * <td>Attribute or Element (SimpleType)</td>   <td>Attribute</td> </tr></table> <P> DataSources can be {@link
- * com.smartgwt.client.docs.DataSourceDeclaration 'declared'} in either JavaScript or XML format, and can also be {@link
- * com.smartgwt.client.docs.MetadataImport 'imported'} from existing metadata formats, including XML Schema. <P> <i>Data
- * Binding</i> is the process by which {@link com.smartgwt.client.widgets.DataBoundComponent} can automatically configure
- * themselves for viewing, editing and saving data described by DataSources.  DataBinding is covered in the
+ * com.smartgwt.client.docs.DataSourceDeclaration declared} in either JavaScript or XML format, and can also be {@link
+ * metadataImport imported} from existing metadata formats, including XML Schema. <P> <i>Data Binding</i> is the process by
+ * which {@link com.smartgwt.client.widgets.DataBoundComponent Data Binding-capable UI components} can automatically
+ * configure themselves for viewing, editing and saving data described by DataSources.  DataBinding is covered in the
  * ${isc.DocUtils.linkForDocNode('QuickStartGuide', 'QuickStart Guide')}, Chapter 6, <i>Data Binding</i>. <P> {@link
- * com.smartgwt.client.docs.ClientServerIntegration 'Data Integration'} is the process by which a DataSource can be
- * connected to server systems such as SQL DataBases, Java Object models, WSDL web services and other data providers.  Data
+ * com.smartgwt.client.docs.ClientServerIntegration Data Integration} is the process by which a DataSource can be connected
+ * to server systems such as SQL DataBases, Java Object models, WSDL web services and other data providers.  Data
  * Integration comes in two variants: client-side and server-side.  {@link com.smartgwt.client.docs.ServerDataIntegration
- * 'Server-side integration'} uses the Smart GWT Java-based server to connect to data represented by Java Objects or
- * JDBC-accessible databases.  {@link com.smartgwt.client.docs.ClientDataIntegration 'Client-side integration'} connects
+ * Server-side integration} uses the Smart GWT Java-based server to connect to data represented by Java Objects or
+ * JDBC-accessible databases.  {@link com.smartgwt.client.docs.ClientDataIntegration Client-side integration} connects
  * Smart GWT DataSources to XML, JSON or other formats accessible via HTTP. <P> DataSources have a concept of {@link
- * com.smartgwt.client.docs.DataSourceOperations '4 core operations'} ("fetch", "add", "update" and "remove") that can be
+ * com.smartgwt.client.docs.DataSourceOperations 4 core operations} ("fetch", "add", "update" and "remove") that can be
  * performed on the set of objects represented by a DataSource.  Once a DataSource has been integrated with your data
  * store, databinding-capable  UI components can leverage the 4 core DataSource operations to provide many complete user
  * interactions without the need to configure how each individual component loads and saves data. <P> These interactions
- * include {@link com.smartgwt.client.widgets.grid.ListGrid}, {@link com.smartgwt.client.widgets.tree.TreeGrid},  {@link
- * com.smartgwt.client.widgets.viewer.DetailViewer}, {@link com.smartgwt.client.widgets.form.DynamicForm}-based  {@link
- * com.smartgwt.client.widgets.form.DynamicForm#editRecord DynamicForm.editRecord} and {@link
- * com.smartgwt.client.widgets.form.DynamicForm#saveData DynamicForm.saveData}, grid-based {@link
- * com.smartgwt.client.widgets.grid.ListGrid#getCanEdit 'editing'} and {@link
- * com.smartgwt.client.widgets.grid.ListGrid#getSaveByCell 'saving'}, and custom interactions provided by <a
+ * include {@link com.smartgwt.client.widgets.grid.ListGrid grid views}, {@link com.smartgwt.client.widgets.tree.TreeGrid
+ * tree views},  {@link com.smartgwt.client.widgets.viewer.DetailViewer detail views}, {@link
+ * com.smartgwt.client.widgets.form.DynamicForm form}-based  {@link com.smartgwt.client.widgets.form.DynamicForm#editRecord
+ * editing} and {@link com.smartgwt.client.widgets.form.DynamicForm#saveData saving}, grid-based {@link
+ * com.smartgwt.client.widgets.grid.ListGrid#getCanEdit editing} and {@link
+ * com.smartgwt.client.widgets.grid.ListGrid#getSaveByCell saving}, and custom interactions provided by <a
  * href="http://www.smartclient.com/smartgwt/showcase/#pattern_reuse_grid_form_category" target="examples">Pattern
  * Reuse</a> custom databinding-capable components.
  */
@@ -199,8 +199,8 @@ public class DataSource extends BaseClass  implements com.smartgwt.client.data.e
      * For a DataSource with serverType: "sql" or serverType: "hibernate", automatically derive the dataSource's schema (field
      * definitions) from the SQL table specified in  {@link com.smartgwt.client.data.DataSource#getTableName tableName}.  This
      * causes Smart GWT to create a "super" DataSource, which this dataSource then automatically {@link
-     * com.smartgwt.client.data.DataSource#getInheritsFrom 'inheritsFrom'}.  This allows you to  override auto-derived schema
-     * as required. <p> This property is only applicable if you are using the Smart GWT server.
+     * com.smartgwt.client.data.DataSource#getInheritsFrom inheritsFrom}.  This allows you to  override auto-derived schema as
+     * required. <p> This property is only applicable if you are using the Smart GWT server.
      *
      * @param autoDeriveSchema autoDeriveSchema Default value is null
      * @throws IllegalStateException this property cannot be changed after the underlying component has been created
@@ -213,8 +213,8 @@ public class DataSource extends BaseClass  implements com.smartgwt.client.data.e
      * For a DataSource with serverType: "sql" or serverType: "hibernate", automatically derive the dataSource's schema (field
      * definitions) from the SQL table specified in  {@link com.smartgwt.client.data.DataSource#getTableName tableName}.  This
      * causes Smart GWT to create a "super" DataSource, which this dataSource then automatically {@link
-     * com.smartgwt.client.data.DataSource#getInheritsFrom 'inheritsFrom'}.  This allows you to  override auto-derived schema
-     * as required. <p> This property is only applicable if you are using the Smart GWT server.
+     * com.smartgwt.client.data.DataSource#getInheritsFrom inheritsFrom}.  This allows you to  override auto-derived schema as
+     * required. <p> This property is only applicable if you are using the Smart GWT server.
      *
      *
      * @return Boolean
@@ -224,9 +224,9 @@ public class DataSource extends BaseClass  implements com.smartgwt.client.data.e
     }
 
     /**
-     * If set, titles are automatically derived from {@link com.smartgwt.client.data.DataSourceField#getName 'field.name'} for
-     * any  field that does not have a {@link com.smartgwt.client.data.DataSourceField#getTitle 'field.title'} and is not
-     * marked {@link com.smartgwt.client.data.DataSourceField#getHidden 'hidden'}:true, by calling the method {@link
+     * If set, titles are automatically derived from {@link com.smartgwt.client.data.DataSourceField#getName field.name} for
+     * any  field that does not have a {@link com.smartgwt.client.data.DataSourceField#getTitle field.title} and is not marked
+     * {@link com.smartgwt.client.data.DataSourceField#getHidden hidden}:true, by calling the method {@link
      * com.smartgwt.client.data.DataSource#getAutoTitle DataSource.getAutoTitle}.
      *
      * @param autoDeriveTitles autoDeriveTitles Default value is true
@@ -237,9 +237,9 @@ public class DataSource extends BaseClass  implements com.smartgwt.client.data.e
     }
 
     /**
-     * If set, titles are automatically derived from {@link com.smartgwt.client.data.DataSourceField#getName 'field.name'} for
-     * any  field that does not have a {@link com.smartgwt.client.data.DataSourceField#getTitle 'field.title'} and is not
-     * marked {@link com.smartgwt.client.data.DataSourceField#getHidden 'hidden'}:true, by calling the method {@link
+     * If set, titles are automatically derived from {@link com.smartgwt.client.data.DataSourceField#getName field.name} for
+     * any  field that does not have a {@link com.smartgwt.client.data.DataSourceField#getTitle field.title} and is not marked
+     * {@link com.smartgwt.client.data.DataSourceField#getHidden hidden}:true, by calling the method {@link
      * com.smartgwt.client.data.DataSource#getAutoTitle DataSource.getAutoTitle}.
      *
      *
@@ -251,22 +251,22 @@ public class DataSource extends BaseClass  implements com.smartgwt.client.data.e
 
     /**
      * This property has different meanings depending on the {@link com.smartgwt.client.data.DataSource#getServerType
-     * 'serverType'}: <p> <b>For DataSources with serverType "hibernate"</b><br> The name of the Java bean or POJO class that
-     * is mapped in Hibernate.  This will typically  be the fully-qualified class name - eg <code>com.foo.MyClass</code> - but
-     * it may be the  simple class name - just <code>MyClass</code> - or it may be some other value.  It all  depends on how
-     * your classes have been mapped in Hibernate. <p> Note:  If you are intending to use Hibernate as a data-access layer
-     * only,  you do not need to create Hibernate mappings or Java objects: Smart GWT will generate everything it needs on the
-     * fly. <p> <b>For DataSources with serverType "sql"</b><br> If set, results from the database will be used to create one
+     * serverType}: <p> <b>For DataSources with serverType "hibernate"</b><br> The name of the Java bean or POJO class that is
+     * mapped in Hibernate.  This will typically  be the fully-qualified class name - eg <code>com.foo.MyClass</code> - but it
+     * may be the  simple class name - just <code>MyClass</code> - or it may be some other value.  It all  depends on how your
+     * classes have been mapped in Hibernate. <p> Note:  If you are intending to use Hibernate as a data-access layer only, 
+     * you do not need to create Hibernate mappings or Java objects: Smart GWT will generate everything it needs on the fly.
+     * <p> <b>For DataSources with serverType "sql"</b><br> If set, results from the database will be used to create one
      * instance of the indicated Java bean per database row.  Otherwise a Map is used to represent each row retrieved from SQL.
      * <P> With this feature active, a DSResponse from this DataSource will contain a Collection of instances of the indicated
      * <code>beanClassName</code>, available via DSResponse.getData(). This creates a couple of possibilities: <P> <dl> <dt>Add
      * business logic for derived properties, such as computed formulas</dt> <dd>For example, declare a DataSourceField named
      * "revenueProjection".  By default this field will call getRevenueProjection() on your bean to retrieve the value to send
      * to the client.  Your implementation of getRevenueProjection() could apply some kind of formula to other values loaded
-     * from the database.</dd> <dt>Call business logic on retrieved beans via DMI</dt> <dd>By adding a {@link
-     * com.smartgwt.client..DMI} method that calls DSRequest.execute() to retrieve a DSResponse, you have an opportunity to
-     * call business logic methods on the beans representing each row affected by the DSRequest.  For example, notify a related
-     * BPEL process of changes to certain fields.</dd> </dl> <P> By using <code>beanClassName</code> on a specific {@link
+     * from the database.</dd> <dt>Call business logic on retrieved beans via DMI</dt> <dd>By adding a DMI method that calls
+     * DSRequest.execute() to retrieve a DSResponse, you have an opportunity to call business logic methods on the beans
+     * representing each row affected by the DSRequest.  For example, notify a related BPEL process of changes to certain
+     * fields.</dd> </dl> <P> By using <code>beanClassName</code> on a specific {@link
      * com.smartgwt.client.data.OperationBinding}, you can: <ul> <li>Use a bean to represent your data only when it matters;
      * for example, avoid the overhead     of using a bean for "fetch" operations, but do use a bean for "update" operations so
      * that you can execute relevant business logic after the update completes.</li> <li>Skip the use of beans for complex
@@ -274,11 +274,11 @@ public class DataSource extends BaseClass  implements com.smartgwt.client.data.e
      * on a specific     operationBinding to override DataSource.beanClassName for that specific operation.</li> <li>For SQL
      * joins that produce additional data fields, use a special, operation-specific     bean that represents a join of multiple
      * entities and contains business logic specific     to that joined dataset</li> </ul> <P> Note that setting
-     * <code>beanClassName</code> has no effect on the DSRequest.  However, {@link com.smartgwt.client..DMI} has a built-in
-     * facility for populating a bean with the inbound {@link com.smartgwt.client.data.DSRequest#getData data} - just declare
-     * the bean as a method argument. <p> <b>For DataSources with serverType "generic"</b><br> {@link
-     * com.smartgwt.client.docs.VisualBuilder 'Visual Builder'} sets this property when it creates a generic  DataSource using
-     * the Javabean Wizard.  It has no built-in server-side effects.
+     * <code>beanClassName</code> has no effect on the DSRequest.  However, DMI has a built-in facility for populating a bean
+     * with the inbound {@link com.smartgwt.client.data.DSRequest#getData data} - just declare the bean as a method argument.
+     * <p> <b>For DataSources with serverType "generic"</b><br> {@link com.smartgwt.client.docs.VisualBuilder Visual Builder}
+     * sets this property when it creates a generic  DataSource using the Javabean Wizard.  It has no built-in server-side
+     * effects.
      *
      * @param beanClassName beanClassName Default value is null
      * @throws IllegalStateException this property cannot be changed after the underlying component has been created
@@ -289,22 +289,22 @@ public class DataSource extends BaseClass  implements com.smartgwt.client.data.e
 
     /**
      * This property has different meanings depending on the {@link com.smartgwt.client.data.DataSource#getServerType
-     * 'serverType'}: <p> <b>For DataSources with serverType "hibernate"</b><br> The name of the Java bean or POJO class that
-     * is mapped in Hibernate.  This will typically  be the fully-qualified class name - eg <code>com.foo.MyClass</code> - but
-     * it may be the  simple class name - just <code>MyClass</code> - or it may be some other value.  It all  depends on how
-     * your classes have been mapped in Hibernate. <p> Note:  If you are intending to use Hibernate as a data-access layer
-     * only,  you do not need to create Hibernate mappings or Java objects: Smart GWT will generate everything it needs on the
-     * fly. <p> <b>For DataSources with serverType "sql"</b><br> If set, results from the database will be used to create one
+     * serverType}: <p> <b>For DataSources with serverType "hibernate"</b><br> The name of the Java bean or POJO class that is
+     * mapped in Hibernate.  This will typically  be the fully-qualified class name - eg <code>com.foo.MyClass</code> - but it
+     * may be the  simple class name - just <code>MyClass</code> - or it may be some other value.  It all  depends on how your
+     * classes have been mapped in Hibernate. <p> Note:  If you are intending to use Hibernate as a data-access layer only, 
+     * you do not need to create Hibernate mappings or Java objects: Smart GWT will generate everything it needs on the fly.
+     * <p> <b>For DataSources with serverType "sql"</b><br> If set, results from the database will be used to create one
      * instance of the indicated Java bean per database row.  Otherwise a Map is used to represent each row retrieved from SQL.
      * <P> With this feature active, a DSResponse from this DataSource will contain a Collection of instances of the indicated
      * <code>beanClassName</code>, available via DSResponse.getData(). This creates a couple of possibilities: <P> <dl> <dt>Add
      * business logic for derived properties, such as computed formulas</dt> <dd>For example, declare a DataSourceField named
      * "revenueProjection".  By default this field will call getRevenueProjection() on your bean to retrieve the value to send
      * to the client.  Your implementation of getRevenueProjection() could apply some kind of formula to other values loaded
-     * from the database.</dd> <dt>Call business logic on retrieved beans via DMI</dt> <dd>By adding a {@link
-     * com.smartgwt.client..DMI} method that calls DSRequest.execute() to retrieve a DSResponse, you have an opportunity to
-     * call business logic methods on the beans representing each row affected by the DSRequest.  For example, notify a related
-     * BPEL process of changes to certain fields.</dd> </dl> <P> By using <code>beanClassName</code> on a specific {@link
+     * from the database.</dd> <dt>Call business logic on retrieved beans via DMI</dt> <dd>By adding a DMI method that calls
+     * DSRequest.execute() to retrieve a DSResponse, you have an opportunity to call business logic methods on the beans
+     * representing each row affected by the DSRequest.  For example, notify a related BPEL process of changes to certain
+     * fields.</dd> </dl> <P> By using <code>beanClassName</code> on a specific {@link
      * com.smartgwt.client.data.OperationBinding}, you can: <ul> <li>Use a bean to represent your data only when it matters;
      * for example, avoid the overhead     of using a bean for "fetch" operations, but do use a bean for "update" operations so
      * that you can execute relevant business logic after the update completes.</li> <li>Skip the use of beans for complex
@@ -312,11 +312,11 @@ public class DataSource extends BaseClass  implements com.smartgwt.client.data.e
      * on a specific     operationBinding to override DataSource.beanClassName for that specific operation.</li> <li>For SQL
      * joins that produce additional data fields, use a special, operation-specific     bean that represents a join of multiple
      * entities and contains business logic specific     to that joined dataset</li> </ul> <P> Note that setting
-     * <code>beanClassName</code> has no effect on the DSRequest.  However, {@link com.smartgwt.client..DMI} has a built-in
-     * facility for populating a bean with the inbound {@link com.smartgwt.client.data.DSRequest#getData data} - just declare
-     * the bean as a method argument. <p> <b>For DataSources with serverType "generic"</b><br> {@link
-     * com.smartgwt.client.docs.VisualBuilder 'Visual Builder'} sets this property when it creates a generic  DataSource using
-     * the Javabean Wizard.  It has no built-in server-side effects.
+     * <code>beanClassName</code> has no effect on the DSRequest.  However, DMI has a built-in facility for populating a bean
+     * with the inbound {@link com.smartgwt.client.data.DSRequest#getData data} - just declare the bean as a method argument.
+     * <p> <b>For DataSources with serverType "generic"</b><br> {@link com.smartgwt.client.docs.VisualBuilder Visual Builder}
+     * sets this property when it creates a generic  DataSource using the Javabean Wizard.  It has no built-in server-side
+     * effects.
      *
      *
      * @return String
@@ -456,8 +456,8 @@ public class DataSource extends BaseClass  implements com.smartgwt.client.data.e
      * databound tree as a hierarchical data structure, rather than a flat list of&#010 nodes linked by foreignKey.<br>&#010
      * Note this is an alternative to setting {@link com.smartgwt.client.data.DataSourceField#getChildrenProperty
      * childrenProperty} directly on&#010 the childrenField object.<P>&#010 By default the children field will be assumed to be
-     * {@link com.smartgwt.client.data.DataSourceField#getMultiple 'multiple'},&#010 for XML databinding. This implies that
-     * child data should be delivered in the format:&#010 <pre>&#010      &lt;childrenFieldName&gt;&#010          &lt;item
+     * {@link com.smartgwt.client.data.DataSourceField#getMultiple multiple},&#010 for XML databinding. This implies that child
+     * data should be delivered in the format:&#010 <pre>&#010      &lt;childrenFieldName&gt;&#010          &lt;item
      * name="firstChild" ...&gt;&#010          &lt;item name="secondChild" ...&gt;&#010      &lt;/childrenFieldName&gt;&#010
      * </pre>&#010 However data may also be delivered as a direct list of <code>childrenFieldName</code> &#010 elements:&#010
      * <pre>&#010      &lt;childrenFieldName name="firstChild" ...&gt;&#010      &lt;childrenFieldName name="secondChild"
@@ -477,8 +477,8 @@ public class DataSource extends BaseClass  implements com.smartgwt.client.data.e
      * databound tree as a hierarchical data structure, rather than a flat list of&#010 nodes linked by foreignKey.<br>&#010
      * Note this is an alternative to setting {@link com.smartgwt.client.data.DataSourceField#getChildrenProperty
      * childrenProperty} directly on&#010 the childrenField object.<P>&#010 By default the children field will be assumed to be
-     * {@link com.smartgwt.client.data.DataSourceField#getMultiple 'multiple'},&#010 for XML databinding. This implies that
-     * child data should be delivered in the format:&#010 <pre>&#010      &lt;childrenFieldName&gt;&#010          &lt;item
+     * {@link com.smartgwt.client.data.DataSourceField#getMultiple multiple},&#010 for XML databinding. This implies that child
+     * data should be delivered in the format:&#010 <pre>&#010      &lt;childrenFieldName&gt;&#010          &lt;item
      * name="firstChild" ...&gt;&#010          &lt;item name="secondChild" ...&gt;&#010      &lt;/childrenFieldName&gt;&#010
      * </pre>&#010 However data may also be delivered as a direct list of <code>childrenFieldName</code> &#010 elements:&#010
      * <pre>&#010      &lt;childrenFieldName name="firstChild" ...&gt;&#010      &lt;childrenFieldName name="secondChild"
@@ -498,7 +498,7 @@ public class DataSource extends BaseClass  implements com.smartgwt.client.data.e
      * using a set of test data to respond to requests in the same manner as a server-based DataSource might. <P> Note that a
      * client-only DataSource is an entirely client-side variant of a {@link
      * com.smartgwt.client.data.DataSource#getCacheAllData cacheAllData} DataSource, where all operations are performed on
-     * client-side data, not just fetches. <P> See {@link com.smartgwt.client.docs.ClientOnlyDataSources 'this discussion'} for
+     * client-side data, not just fetches. <P> See {@link com.smartgwt.client.docs.ClientOnlyDataSources this discussion} for
      * ways to populate a client-only DataSource with test data.
      * Switch into clientOnly mode, taking the cache from the cacheAllData ResultSet if it  exists.
      *
@@ -516,7 +516,7 @@ public class DataSource extends BaseClass  implements com.smartgwt.client.data.e
      * using a set of test data to respond to requests in the same manner as a server-based DataSource might. <P> Note that a
      * client-only DataSource is an entirely client-side variant of a {@link
      * com.smartgwt.client.data.DataSource#getCacheAllData cacheAllData} DataSource, where all operations are performed on
-     * client-side data, not just fetches. <P> See {@link com.smartgwt.client.docs.ClientOnlyDataSources 'this discussion'} for
+     * client-side data, not just fetches. <P> See {@link com.smartgwt.client.docs.ClientOnlyDataSources this discussion} for
      * ways to populate a client-only DataSource with test data.
      *
      *
@@ -580,9 +580,9 @@ public class DataSource extends BaseClass  implements com.smartgwt.client.data.e
 
     /**
      * Transport to use for all operations on this DataSource. Defaults to {@link
-     * com.smartgwt.client.rpc.RPCManager#defaultTransport}.  This would typically only be set to enable "scriptInclude"
-     * transport for contacting {@link com.smartgwt.client.data.DataSource#getDataFormat 'JSON'} web services hosted on servers
-     * other than the origin server. <p> When using the "scriptInclude" transport, be sure to set {@link
+     * com.smartgwt.client.rpc.RPCManager#defaultTransport defaultTransport}.  This would typically only be set to enable
+     * "scriptInclude" transport for contacting {@link com.smartgwt.client.data.DataSource#getDataFormat JSON} web services
+     * hosted on servers other than the origin server. <p> When using the "scriptInclude" transport, be sure to set {@link
      * com.smartgwt.client.data.DataSource#getCallbackParam callbackParam} or {@link
      * com.smartgwt.client.data.OperationBinding#getCallbackParam callbackParam} to match the name of the query parameter name
      * expected by your JSON service provider.
@@ -597,9 +597,9 @@ public class DataSource extends BaseClass  implements com.smartgwt.client.data.e
 
     /**
      * Transport to use for all operations on this DataSource. Defaults to {@link
-     * com.smartgwt.client.rpc.RPCManager#defaultTransport}.  This would typically only be set to enable "scriptInclude"
-     * transport for contacting {@link com.smartgwt.client.data.DataSource#getDataFormat 'JSON'} web services hosted on servers
-     * other than the origin server. <p> When using the "scriptInclude" transport, be sure to set {@link
+     * com.smartgwt.client.rpc.RPCManager#defaultTransport defaultTransport}.  This would typically only be set to enable
+     * "scriptInclude" transport for contacting {@link com.smartgwt.client.data.DataSource#getDataFormat JSON} web services
+     * hosted on servers other than the origin server. <p> When using the "scriptInclude" transport, be sure to set {@link
      * com.smartgwt.client.data.DataSource#getCallbackParam callbackParam} or {@link
      * com.smartgwt.client.data.OperationBinding#getCallbackParam callbackParam} to match the name of the query parameter name
      * expected by your JSON service provider.
@@ -616,7 +616,7 @@ public class DataSource extends BaseClass  implements com.smartgwt.client.data.e
      * Default URL to contact to fulfill all DSRequests.  Can also be set on a per-operationType basis via {@link
      * com.smartgwt.client.data.OperationBinding#getDataURL dataURL}. <P> NOTE: Best practice is to use the same
      * <code>dataURL</code> for all DataSources which fulfill DSRequests via the server-side RPCManager API.  Otherwise,
-     * cross-DataSource {@link com.smartgwt.client.rpc.RPCManager#startQueue RPCManager.startQueue} will not be possible.
+     * cross-DataSource {@link com.smartgwt.client.rpc.RPCManager#startQueue operation queuing} will not be possible.
      *
      * @param dataURL dataURL Default value is null
      * @throws IllegalStateException this property cannot be changed after the underlying component has been created
@@ -631,7 +631,7 @@ public class DataSource extends BaseClass  implements com.smartgwt.client.data.e
      * Default URL to contact to fulfill all DSRequests.  Can also be set on a per-operationType basis via {@link
      * com.smartgwt.client.data.OperationBinding#getDataURL dataURL}. <P> NOTE: Best practice is to use the same
      * <code>dataURL</code> for all DataSources which fulfill DSRequests via the server-side RPCManager API.  Otherwise,
-     * cross-DataSource {@link com.smartgwt.client.rpc.RPCManager#startQueue RPCManager.startQueue} will not be possible.
+     * cross-DataSource {@link com.smartgwt.client.rpc.RPCManager#startQueue operation queuing} will not be possible.
      *
      *
      * @return String
@@ -643,7 +643,7 @@ public class DataSource extends BaseClass  implements com.smartgwt.client.data.e
     }
 
     /**
-     * For DataSources using the {@link com.smartgwt.client.docs.SqlDataSource 'Smart GWT SQL engine'} for persistence, which
+     * For DataSources using the {@link com.smartgwt.client.docs.SqlDataSource Smart GWT SQL engine} for persistence, which
      * database configuration to use.  Database configurations can be created using the "Databases" tab in the Developer
      * Console.  If unset, the default database configuration is used (which is also settable using the "Databases" tab).
      *
@@ -656,7 +656,7 @@ public class DataSource extends BaseClass  implements com.smartgwt.client.data.e
     }
 
     /**
-     * For DataSources using the {@link com.smartgwt.client.docs.SqlDataSource 'Smart GWT SQL engine'} for persistence, which
+     * For DataSources using the {@link com.smartgwt.client.docs.SqlDataSource Smart GWT SQL engine} for persistence, which
      * database configuration to use.  Database configurations can be created using the "Databases" tab in the Developer
      * Console.  If unset, the default database configuration is used (which is also settable using the "Databases" tab).
      *
@@ -671,12 +671,12 @@ public class DataSource extends BaseClass  implements com.smartgwt.client.data.e
     /**
      * Indicates that for server responses, for any data being interpreted as DataSource records,  only data that corresponds
      * to declared fields should be retained; any extra fields should be discarded. <P> For {@link
-     * com.smartgwt.client.data.DataSource#getDataFormat 'JSON'} data, this means extra properties in selected objects are
+     * com.smartgwt.client.data.DataSource#getDataFormat JSON} data, this means extra properties in selected objects are
      * dropped. <P> By default, for DMI DSResponses, DSResponse.data is filtered on the server to just the set of fields
      * defined on the DataSource.  This type of filtering can also be enabled for non-DMI DSResponses (see the overview in
-     * {@link com.smartgwt.client..DMI}).  Setting this property to <code>false</code> disables this filtering for this
-     * DataSource only.  This setting overrides the configuration in <code>server.properties</code>.  This setting can be
-     * overridden by {@link com.smartgwt.client.docs.serverds.ServerObject#dropExtraFields dropExtraFields}.
+     * DMI).  Setting this property to <code>false</code> disables this filtering for this DataSource only.  This setting
+     * overrides the configuration in <code>server.properties</code>.  This setting can be overridden by {@link
+     * com.smartgwt.client.docs.serverds.ServerObject#dropExtraFields dropExtraFields}.
      *
      * @param dropExtraFields dropExtraFields Default value is null
      * @throws IllegalStateException this property cannot be changed after the underlying component has been created
@@ -689,12 +689,12 @@ public class DataSource extends BaseClass  implements com.smartgwt.client.data.e
     /**
      * Indicates that for server responses, for any data being interpreted as DataSource records,  only data that corresponds
      * to declared fields should be retained; any extra fields should be discarded. <P> For {@link
-     * com.smartgwt.client.data.DataSource#getDataFormat 'JSON'} data, this means extra properties in selected objects are
+     * com.smartgwt.client.data.DataSource#getDataFormat JSON} data, this means extra properties in selected objects are
      * dropped. <P> By default, for DMI DSResponses, DSResponse.data is filtered on the server to just the set of fields
      * defined on the DataSource.  This type of filtering can also be enabled for non-DMI DSResponses (see the overview in
-     * {@link com.smartgwt.client..DMI}).  Setting this property to <code>false</code> disables this filtering for this
-     * DataSource only.  This setting overrides the configuration in <code>server.properties</code>.  This setting can be
-     * overridden by {@link com.smartgwt.client.docs.serverds.ServerObject#dropExtraFields dropExtraFields}.
+     * DMI).  Setting this property to <code>false</code> disables this filtering for this DataSource only.  This setting
+     * overrides the configuration in <code>server.properties</code>.  This setting can be overridden by {@link
+     * com.smartgwt.client.docs.serverds.ServerObject#dropExtraFields dropExtraFields}.
      *
      *
      * @return Boolean
@@ -743,12 +743,12 @@ public class DataSource extends BaseClass  implements com.smartgwt.client.data.e
     }
 
     /**
-     * Designates a field of {@link com.smartgwt.client.types.FieldType}:"image" as the field to use when rendering a record as
-     * an image, for example, in a {@link com.smartgwt.client.widgets.tile.TileGrid}. <p> For example, for a DataSource of
-     * employees, a "photo" field of type "image" should be designated as the iconField. <p> If not explicitly set, iconField
-     * looks for fields named "picture", "thumbnail", "icon", "image" and "img", in that order, and will use any of these
-     * fields as the iconField if it exists and has type "image".  <P> To avoid any field being used as the iconField, set
-     * iconField to <code>null</code>.
+     * Designates a field of {@link com.smartgwt.client.types.FieldType type}:"image" as the field to use when rendering a
+     * record as an image, for example, in a {@link com.smartgwt.client.widgets.tile.TileGrid}. <p> For example, for a
+     * DataSource of employees, a "photo" field of type "image" should be designated as the iconField. <p> If not explicitly
+     * set, iconField looks for fields named "picture", "thumbnail", "icon", "image" and "img", in that order, and will use any
+     * of these fields as the iconField if it exists and has type "image".  <P> To avoid any field being used as the iconField,
+     * set iconField to <code>null</code>.
      *
      * @param iconField iconField Default value is see below
      * @throws IllegalStateException this property cannot be changed after the underlying component has been created
@@ -758,12 +758,12 @@ public class DataSource extends BaseClass  implements com.smartgwt.client.data.e
     }
 
     /**
-     * Designates a field of {@link com.smartgwt.client.types.FieldType}:"image" as the field to use when rendering a record as
-     * an image, for example, in a {@link com.smartgwt.client.widgets.tile.TileGrid}. <p> For example, for a DataSource of
-     * employees, a "photo" field of type "image" should be designated as the iconField. <p> If not explicitly set, iconField
-     * looks for fields named "picture", "thumbnail", "icon", "image" and "img", in that order, and will use any of these
-     * fields as the iconField if it exists and has type "image".  <P> To avoid any field being used as the iconField, set
-     * iconField to <code>null</code>.
+     * Designates a field of {@link com.smartgwt.client.types.FieldType type}:"image" as the field to use when rendering a
+     * record as an image, for example, in a {@link com.smartgwt.client.widgets.tile.TileGrid}. <p> For example, for a
+     * DataSource of employees, a "photo" field of type "image" should be designated as the iconField. <p> If not explicitly
+     * set, iconField looks for fields named "picture", "thumbnail", "icon", "image" and "img", in that order, and will use any
+     * of these fields as the iconField if it exists and has type "image".  <P> To avoid any field being used as the iconField,
+     * set iconField to <code>null</code>.
      *
      *
      * @return String
@@ -779,8 +779,8 @@ public class DataSource extends BaseClass  implements com.smartgwt.client.data.e
      * onclick="window.open('http://www.google.com/search?q=javascript+hijacking');return false;">javascript hijacking</a>.
      * <br> Only applies to responses formatted as json objects. Does not apply to responses returned via scriptInclude type
      * transport.<br> Note: If the prefix / suffix served by your backend is not a constant, you can use  {@link
-     * com.smartgwt.client.data.OperationBinding#getDataFormat 'dataFormat:"custom"'} instead and explicitly parse the prefix
-     * out as part of {@link com.smartgwt.client.data.DataSource#transformResponse DataSource.transformResponse}.
+     * com.smartgwt.client.data.OperationBinding#getDataFormat dataFormat:"custom"} instead and explicitly parse the prefix out
+     * as part of {@link com.smartgwt.client.data.DataSource#transformResponse transformResponse()}.
      * <p><b>Note : </b> This is an advanced setting</p>
      *
      * @param jsonPrefix jsonPrefix Default value is null
@@ -797,8 +797,8 @@ public class DataSource extends BaseClass  implements com.smartgwt.client.data.e
      * onclick="window.open('http://www.google.com/search?q=javascript+hijacking');return false;">javascript hijacking</a>.
      * <br> Only applies to responses formatted as json objects. Does not apply to responses returned via scriptInclude type
      * transport.<br> Note: If the prefix / suffix served by your backend is not a constant, you can use  {@link
-     * com.smartgwt.client.data.OperationBinding#getDataFormat 'dataFormat:"custom"'} instead and explicitly parse the prefix
-     * out as part of {@link com.smartgwt.client.data.DataSource#transformResponse DataSource.transformResponse}.
+     * com.smartgwt.client.data.OperationBinding#getDataFormat dataFormat:"custom"} instead and explicitly parse the prefix out
+     * as part of {@link com.smartgwt.client.data.DataSource#transformResponse transformResponse()}.
      *
      *
      * @return String
@@ -885,7 +885,7 @@ public class DataSource extends BaseClass  implements com.smartgwt.client.data.e
     }
 
     /**
-     * For dataSources of {@link com.smartgwt.client.data.DataSource#getServerType 'serverType'} "sql", determines whether we
+     * For dataSources of {@link com.smartgwt.client.data.DataSource#getServerType serverType} "sql", determines whether we
      * qualify column names with table names in any SQL we generate.  This property can be overridden on specific
      * operationBindings.
      *
@@ -897,7 +897,7 @@ public class DataSource extends BaseClass  implements com.smartgwt.client.data.e
     }
 
     /**
-     * For dataSources of {@link com.smartgwt.client.data.DataSource#getServerType 'serverType'} "sql", determines whether we
+     * For dataSources of {@link com.smartgwt.client.data.DataSource#getServerType serverType} "sql", determines whether we
      * qualify column names with table names in any SQL we generate.  This property can be overridden on specific
      * operationBindings.
      *
@@ -916,7 +916,7 @@ public class DataSource extends BaseClass  implements com.smartgwt.client.data.e
      * you do this, you will not need to worry about  quoting column names when querying.  However, if you are dealing with
      * pre-existing  tables, or do not have control over the database naming conventions used, this property may become
      * necessary. <p> <b>Note:</b> Only applicable to dataSources of {@link com.smartgwt.client.data.DataSource#getServerType
-     * 'serverType'} "sql".
+     * serverType} "sql".
      *
      * @param quoteColumnNames quoteColumnNames Default value is true
      * @throws IllegalStateException this property cannot be changed after the underlying component has been created
@@ -933,7 +933,7 @@ public class DataSource extends BaseClass  implements com.smartgwt.client.data.e
      * you do this, you will not need to worry about  quoting column names when querying.  However, if you are dealing with
      * pre-existing  tables, or do not have control over the database naming conventions used, this property may become
      * necessary. <p> <b>Note:</b> Only applicable to dataSources of {@link com.smartgwt.client.data.DataSource#getServerType
-     * 'serverType'} "sql".
+     * serverType} "sql".
      *
      *
      * @return Boolean
@@ -1024,8 +1024,8 @@ public class DataSource extends BaseClass  implements com.smartgwt.client.data.e
 
     /**
      * For a DataSource derived from WSDL or XML schema, the XML namespace this schema belongs to.  This is a read-only
-     * attribute automatically present on DataSources returned from {@link com.smartgwt.client..SchemaSet#getSchema
-     * SchemaSet.getSchema} and {@link com.smartgwt.client.data.WebService#getSchema WebService.getSchema}.
+     * attribute automatically present on DataSources returned from  SchemaSet.getSchema and {@link
+     * com.smartgwt.client.data.WebService#getSchema WebService.getSchema}.
      *
      * <b>Note :</b> This method should be called only after the underlying component has been created.
      *
@@ -1135,12 +1135,12 @@ public class DataSource extends BaseClass  implements com.smartgwt.client.data.e
      * attribute of the &lt;wsdl:definitions&gt; element in a WSDL (Web Service Description Language) document, and serves as
      * the unique identifier of the service. <P> Having loaded a WebService using {@link
      * com.smartgwt.client.data.XMLTools#loadWSDL XMLTools.loadWSDL}, setting <code>serviceNamespace</code> combined with
-     * specifying  {@link com.smartgwt.client.data.OperationBinding} that set {@link
+     * specifying  {@link com.smartgwt.client.data.OperationBinding operationBindings} that set {@link
      * com.smartgwt.client.data.OperationBinding#getWsOperation wsOperation} will cause a DataSource to invoke web service
-     * operations to fulfill DataSource requests ({@link com.smartgwt.client.data.DSRequest}). <P> Setting
-     * <code>serviceNamespace</code> also defaults {@link com.smartgwt.client.data.DataSource#getDataURL 'dataURL'} to the
-     * service's location, {@link com.smartgwt.client.data.DataSource#getDataFormat 'dataFormat'} to "xml" and {@link
-     * com.smartgwt.client.data.OperationBinding#getDataProtocol 'dataProtocol'} to "soap".
+     * operations to fulfill DataSource requests ({@link com.smartgwt.client.data.DSRequest DSRequests}). <P> Setting
+     * <code>serviceNamespace</code> also defaults {@link com.smartgwt.client.data.DataSource#getDataURL dataURL} to the
+     * service's location, {@link com.smartgwt.client.data.DataSource#getDataFormat dataFormat} to "xml" and {@link
+     * com.smartgwt.client.data.OperationBinding#getDataProtocol dataProtocol} to "soap".
      *
      * @param serviceNamespace serviceNamespace Default value is null
      * @throws IllegalStateException this property cannot be changed after the underlying component has been created
@@ -1156,12 +1156,12 @@ public class DataSource extends BaseClass  implements com.smartgwt.client.data.e
      * attribute of the &lt;wsdl:definitions&gt; element in a WSDL (Web Service Description Language) document, and serves as
      * the unique identifier of the service. <P> Having loaded a WebService using {@link
      * com.smartgwt.client.data.XMLTools#loadWSDL XMLTools.loadWSDL}, setting <code>serviceNamespace</code> combined with
-     * specifying  {@link com.smartgwt.client.data.OperationBinding} that set {@link
+     * specifying  {@link com.smartgwt.client.data.OperationBinding operationBindings} that set {@link
      * com.smartgwt.client.data.OperationBinding#getWsOperation wsOperation} will cause a DataSource to invoke web service
-     * operations to fulfill DataSource requests ({@link com.smartgwt.client.data.DSRequest}). <P> Setting
-     * <code>serviceNamespace</code> also defaults {@link com.smartgwt.client.data.DataSource#getDataURL 'dataURL'} to the
-     * service's location, {@link com.smartgwt.client.data.DataSource#getDataFormat 'dataFormat'} to "xml" and {@link
-     * com.smartgwt.client.data.OperationBinding#getDataProtocol 'dataProtocol'} to "soap".
+     * operations to fulfill DataSource requests ({@link com.smartgwt.client.data.DSRequest DSRequests}). <P> Setting
+     * <code>serviceNamespace</code> also defaults {@link com.smartgwt.client.data.DataSource#getDataURL dataURL} to the
+     * service's location, {@link com.smartgwt.client.data.DataSource#getDataFormat dataFormat} to "xml" and {@link
+     * com.smartgwt.client.data.OperationBinding#getDataProtocol dataProtocol} to "soap".
      *
      *
      * @return String
@@ -1246,7 +1246,7 @@ public class DataSource extends BaseClass  implements com.smartgwt.client.data.e
     }
 
     /**
-     * For DataSources using the {@link com.smartgwt.client.docs.SqlDataSource 'Smart GWT SQL engine'} for persistence, what
+     * For DataSources using the {@link com.smartgwt.client.docs.SqlDataSource Smart GWT SQL engine} for persistence, what
      * database table name to use.  The default is to use the DataSource ID as the table name.
      *
      * @param tableName tableName Default value is null
@@ -1258,7 +1258,7 @@ public class DataSource extends BaseClass  implements com.smartgwt.client.data.e
     }
 
     /**
-     * For DataSources using the {@link com.smartgwt.client.docs.SqlDataSource 'Smart GWT SQL engine'} for persistence, what
+     * For DataSources using the {@link com.smartgwt.client.docs.SqlDataSource Smart GWT SQL engine} for persistence, what
      * database table name to use.  The default is to use the DataSource ID as the table name.
      *
      *
@@ -1438,7 +1438,7 @@ public class DataSource extends BaseClass  implements com.smartgwt.client.data.e
     }
 
     /**
-     * When set, causes a {@link com.smartgwt.client.data.DataSource#getClientOnly 'client-only'} or {@link
+     * When set, causes a {@link com.smartgwt.client.data.DataSource#getClientOnly client-only} or {@link
      * com.smartgwt.client.data.DataSource#getCacheAllData cacheAllData} DataSource to  create a second DataSource to perform
      * it's one-time fetch.  By default, this attribute will be considered true when clientOnly is true, cacheAllData is false
      * or unset and a dataURL or testDataFileName is specified on the DataSource.
@@ -1450,7 +1450,7 @@ public class DataSource extends BaseClass  implements com.smartgwt.client.data.e
     }
 
     /**
-     * When set, causes a {@link com.smartgwt.client.data.DataSource#getClientOnly 'client-only'} or {@link
+     * When set, causes a {@link com.smartgwt.client.data.DataSource#getClientOnly client-only} or {@link
      * com.smartgwt.client.data.DataSource#getCacheAllData cacheAllData} DataSource to  create a second DataSource to perform
      * it's one-time fetch.  By default, this attribute will be considered true when clientOnly is true, cacheAllData is false
      * or unset and a dataURL or testDataFileName is specified on the DataSource.
@@ -1465,7 +1465,7 @@ public class DataSource extends BaseClass  implements com.smartgwt.client.data.e
     /**
      * If true, indicates that the Smart GWT Server should automatically apply a  {@link
      * com.smartgwt.client.types.ValidatorType} of "hasRelatedRecord" to every field  on this dataSource that has a {@link
-     * com.smartgwt.client.data.DataSourceField#getForeignKey 'foreignKey'} defined.
+     * com.smartgwt.client.data.DataSourceField#getForeignKey foreignKey} defined.
      *
      * @param validateRelatedRecords validateRelatedRecords Default value is null
      * @throws IllegalStateException this property cannot be changed after the underlying component has been created
@@ -1477,7 +1477,7 @@ public class DataSource extends BaseClass  implements com.smartgwt.client.data.e
     /**
      * If true, indicates that the Smart GWT Server should automatically apply a  {@link
      * com.smartgwt.client.types.ValidatorType} of "hasRelatedRecord" to every field  on this dataSource that has a {@link
-     * com.smartgwt.client.data.DataSourceField#getForeignKey 'foreignKey'} defined.
+     * com.smartgwt.client.data.DataSourceField#getForeignKey foreignKey} defined.
      *
      *
      * @return Boolean
@@ -1568,8 +1568,8 @@ public class DataSource extends BaseClass  implements com.smartgwt.client.data.e
      * Add a handleError handler.
      * <p>
      * If you define this method on a DataSource, it will be called whenever the server returns a DSResponse with a status
-     * other than {@link com.smartgwt.client.rpc.RPCResponse#STATUS_SUCCESS}.  You can use this hook to do DataSource-specific
-     * error handling.  Unless you return <code>false</code> from this method, {@link
+     * other than {@link com.smartgwt.client.rpc.RPCResponse#STATUS_SUCCESS STATUS_SUCCESS}.  You can use this hook to do
+     * DataSource-specific error handling.  Unless you return <code>false</code> from this method, {@link
      * com.smartgwt.client.rpc.RPCManager#handleError RPCManager.handleError} will be called by Smart GWT right after this
      * method completes.
      *
@@ -1634,8 +1634,8 @@ public class DataSource extends BaseClass  implements com.smartgwt.client.data.e
     /**
      * Perform a custom DataSource operation against this DataSource.  A custom operation is anything that is not one of the 4
      * CRUD operations - generally, something that is more  complex than a fetch or an update to a single record. 
-     * <code>customOperation</code>s  are an alternative to using {@link com.smartgwt.client.rpc.RPCRequest}; anything that can
-     * be sent to the server as a plain RPC can instead be framed as a DataSource  <code>customOperation</code>.
+     * <code>customOperation</code>s  are an alternative to using {@link com.smartgwt.client.rpc.RPCRequest RPCs}; anything
+     * that can be sent to the server as a plain RPC can instead be framed as a DataSource  <code>customOperation</code>.
      * @param operationId the operation ID
      * @param data data to pass to the server
      */
@@ -1647,8 +1647,8 @@ public class DataSource extends BaseClass  implements com.smartgwt.client.data.e
     /**
      * Perform a custom DataSource operation against this DataSource.  A custom operation is anything that is not one of the 4
      * CRUD operations - generally, something that is more  complex than a fetch or an update to a single record. 
-     * <code>customOperation</code>s  are an alternative to using {@link com.smartgwt.client.rpc.RPCRequest}; anything that can
-     * be sent to the server as a plain RPC can instead be framed as a DataSource  <code>customOperation</code>.
+     * <code>customOperation</code>s  are an alternative to using {@link com.smartgwt.client.rpc.RPCRequest RPCs}; anything
+     * that can be sent to the server as a plain RPC can instead be framed as a DataSource  <code>customOperation</code>.
      * @param operationId the operation ID
      * @param data data to pass to the server
      * @param callback callback to invoke on completion
@@ -1672,24 +1672,24 @@ public class DataSource extends BaseClass  implements com.smartgwt.client.data.e
     /**
      * Causes any components using this DataSource to be notified of changes that have been made to the remote dataset accessed
      * via this DataSource, as though the provided DSResponse had just successfully completed.  This will cause cache managers
-     * such as {@link com.smartgwt.client.data.ResultSet} or  {@link com.smartgwt.client..ResultTree} to automatically update
-     * their caches, and components using such cache managers to visually update to show modified data. <P> This API should be
-     * used when you have found out about changes made by other users or by automatic processes.  For example, using the Smart
-     * GWT ${isc.DocUtils.linkForRef('Messaging')} system to receive real-time updates via HTTP streaming, you may get updates
-     * that should affect a ListGrid which is using a ResultSet to view a portion of a large dataset.   <P> Alternatively, an
-     * operation that removes a record from one DataSource may cause a new record to be added to another DataSource (such as
-     * Lead -> Account conversion in CRM applications). This could be accomplished by using the callback from the "remove"
-     * operation to call <code>updateCaches</code> with a DSResponse representing an "add" operation on the related DataSource.
-     * <P> Cache updates of this kind can also be driven from server-side code - see the related server-side API
-     * <code>DSResponse.addRelatedUpdate()</code>. <P> <b>NOTE:</b>: this API should <b>not</b> be used with a {@link
-     * com.smartgwt.client.data.DataSource#getClientOnly clientOnly} DataSource, because in this case, the "remote dataset" is
-     * actually within the browser.  Instead,  {@link com.smartgwt.client.data.DataSource#updateData DataSource.updateData},
-     * addData() or removeData() can be called in order to both change the dataset stored inside the browser and notify all
-     * cache managers. <P> If a DataSource has {@link com.smartgwt.client.data.DataSource#getCacheAllData cacheAllData} set and
-     * a full cache has been obtained, calling <code>updateCaches</code> will automatically update the cache. <P> Note that
-     * this DSResponse will <b>not</b> go through {@link com.smartgwt.client.data.DataSource#transformResponse
-     * DataSource.transformResponse} or other processing that would normally occur for a DSResponse resulting from a DSRequest
-     * sent by  the application in this page.
+     * such as {@link com.smartgwt.client.data.ResultSet} or  ResultTree to automatically update their caches, and components
+     * using such cache managers to visually update to show modified data. <P> This API should be used when you have found out
+     * about changes made by other users or by automatic processes.  For example, using the Smart GWT {@link
+     * com.smartgwt.client.data.DataSource#getMessaging Messaging} system to receive real-time updates via HTTP streaming, you
+     * may get updates that should affect a ListGrid which is using a ResultSet to view a portion of a large dataset.   <P>
+     * Alternatively, an operation that removes a record from one DataSource may cause a new record to be added to another
+     * DataSource (such as Lead -> Account conversion in CRM applications). This could be accomplished by using the callback
+     * from the "remove" operation to call <code>updateCaches</code> with a DSResponse representing an "add" operation on the
+     * related DataSource. <P> Cache updates of this kind can also be driven from server-side code - see the related
+     * server-side API <code>DSResponse.addRelatedUpdate()</code>. <P> <b>NOTE:</b>: this API should <b>not</b> be used with a
+     * {@link com.smartgwt.client.data.DataSource#getClientOnly clientOnly} DataSource, because in this case, the "remote
+     * dataset" is actually within the browser.  Instead,  {@link com.smartgwt.client.data.DataSource#updateData
+     * DataSource.updateData}, addData() or removeData() can be called in order to both change the dataset stored inside the
+     * browser and notify all cache managers. <P> If a DataSource has {@link
+     * com.smartgwt.client.data.DataSource#getCacheAllData cacheAllData} set and a full cache has been obtained, calling
+     * <code>updateCaches</code> will automatically update the cache. <P> Note that this DSResponse will <b>not</b> go through
+     * {@link com.smartgwt.client.data.DataSource#transformResponse DataSource.transformResponse} or other processing that
+     * would normally occur for a DSResponse resulting from a DSRequest sent by  the application in this page.
      * @param dsResponse 
      */
     public native void updateCaches(DSResponse dsResponse) /*-{
@@ -1700,24 +1700,24 @@ public class DataSource extends BaseClass  implements com.smartgwt.client.data.e
     /**
      * Causes any components using this DataSource to be notified of changes that have been made to the remote dataset accessed
      * via this DataSource, as though the provided DSResponse had just successfully completed.  This will cause cache managers
-     * such as {@link com.smartgwt.client.data.ResultSet} or  {@link com.smartgwt.client..ResultTree} to automatically update
-     * their caches, and components using such cache managers to visually update to show modified data. <P> This API should be
-     * used when you have found out about changes made by other users or by automatic processes.  For example, using the Smart
-     * GWT ${isc.DocUtils.linkForRef('Messaging')} system to receive real-time updates via HTTP streaming, you may get updates
-     * that should affect a ListGrid which is using a ResultSet to view a portion of a large dataset.   <P> Alternatively, an
-     * operation that removes a record from one DataSource may cause a new record to be added to another DataSource (such as
-     * Lead -> Account conversion in CRM applications). This could be accomplished by using the callback from the "remove"
-     * operation to call <code>updateCaches</code> with a DSResponse representing an "add" operation on the related DataSource.
-     * <P> Cache updates of this kind can also be driven from server-side code - see the related server-side API
-     * <code>DSResponse.addRelatedUpdate()</code>. <P> <b>NOTE:</b>: this API should <b>not</b> be used with a {@link
-     * com.smartgwt.client.data.DataSource#getClientOnly clientOnly} DataSource, because in this case, the "remote dataset" is
-     * actually within the browser.  Instead,  {@link com.smartgwt.client.data.DataSource#updateData DataSource.updateData},
-     * addData() or removeData() can be called in order to both change the dataset stored inside the browser and notify all
-     * cache managers. <P> If a DataSource has {@link com.smartgwt.client.data.DataSource#getCacheAllData cacheAllData} set and
-     * a full cache has been obtained, calling <code>updateCaches</code> will automatically update the cache. <P> Note that
-     * this DSResponse will <b>not</b> go through {@link com.smartgwt.client.data.DataSource#transformResponse
-     * DataSource.transformResponse} or other processing that would normally occur for a DSResponse resulting from a DSRequest
-     * sent by  the application in this page.
+     * such as {@link com.smartgwt.client.data.ResultSet} or  ResultTree to automatically update their caches, and components
+     * using such cache managers to visually update to show modified data. <P> This API should be used when you have found out
+     * about changes made by other users or by automatic processes.  For example, using the Smart GWT {@link
+     * com.smartgwt.client.data.DataSource#getMessaging Messaging} system to receive real-time updates via HTTP streaming, you
+     * may get updates that should affect a ListGrid which is using a ResultSet to view a portion of a large dataset.   <P>
+     * Alternatively, an operation that removes a record from one DataSource may cause a new record to be added to another
+     * DataSource (such as Lead -> Account conversion in CRM applications). This could be accomplished by using the callback
+     * from the "remove" operation to call <code>updateCaches</code> with a DSResponse representing an "add" operation on the
+     * related DataSource. <P> Cache updates of this kind can also be driven from server-side code - see the related
+     * server-side API <code>DSResponse.addRelatedUpdate()</code>. <P> <b>NOTE:</b>: this API should <b>not</b> be used with a
+     * {@link com.smartgwt.client.data.DataSource#getClientOnly clientOnly} DataSource, because in this case, the "remote
+     * dataset" is actually within the browser.  Instead,  {@link com.smartgwt.client.data.DataSource#updateData
+     * DataSource.updateData}, addData() or removeData() can be called in order to both change the dataset stored inside the
+     * browser and notify all cache managers. <P> If a DataSource has {@link
+     * com.smartgwt.client.data.DataSource#getCacheAllData cacheAllData} set and a full cache has been obtained, calling
+     * <code>updateCaches</code> will automatically update the cache. <P> Note that this DSResponse will <b>not</b> go through
+     * {@link com.smartgwt.client.data.DataSource#transformResponse DataSource.transformResponse} or other processing that
+     * would normally occur for a DSResponse resulting from a DSRequest sent by  the application in this page.
      * @param dsResponse 
      * @param dsRequest 
      */
@@ -2284,7 +2284,7 @@ public class DataSource extends BaseClass  implements com.smartgwt.client.data.e
      * ${isc.DocUtils.linkForDocNode('javaServerReference', 'Java Server Reference')} for other, similar approaches
      * involving dumping data into the page during initial page load.  <b>Note:</b> care should be taken when using this
      * approach.  Large datasets degrade the basic performance of some browsers, so use {@link
-     * com.smartgwt.client..PickList#getOptionDataSource optionDataSource} and similar facilities to manage datasets
+     * com.smartgwt.client.widgets.form.fields.PickList#getOptionDataSource optionDataSource} and similar facilities to manage datasets
      * that may become very large. <P> <b>Data-Driven Visual Component Creation</b> <P>
      * <code>DataSource.fetchData()</code> can also be used to create Smart GWT components in a data-driven way.  Many
      * properties on Smart GWT visual components are configured via an Array of Objects - the same data format that
@@ -2336,7 +2336,7 @@ public class DataSource extends BaseClass  implements com.smartgwt.client.data.e
      * ${isc.DocUtils.linkForDocNode('javaServerReference', 'Java Server Reference')} for other, similar approaches
      * involving dumping data into the page during initial page load.  <b>Note:</b> care should be taken when using this
      * approach.  Large datasets degrade the basic performance of some browsers, so use {@link
-     * com.smartgwt.client..PickList#getOptionDataSource optionDataSource} and similar facilities to manage datasets
+     * com.smartgwt.client.widgets.form.fields.PickList#getOptionDataSource optionDataSource} and similar facilities to manage datasets
      * that may become very large. <P> <b>Data-Driven Visual Component Creation</b> <P>
      * <code>DataSource.fetchData()</code> can also be used to create Smart GWT components in a data-driven way.  Many
      * properties on Smart GWT visual components are configured via an Array of Objects - the same data format that
@@ -2390,7 +2390,7 @@ public class DataSource extends BaseClass  implements com.smartgwt.client.data.e
      * ${isc.DocUtils.linkForDocNode('javaServerReference', 'Java Server Reference')} for other, similar approaches
      * involving dumping data into the page during initial page load.  <b>Note:</b> care should be taken when using this
      * approach.  Large datasets degrade the basic performance of some browsers, so use {@link
-     * com.smartgwt.client..PickList#getOptionDataSource optionDataSource} and similar facilities to manage datasets
+     * com.smartgwt.client.widgets.form.fields.PickList#getOptionDataSource optionDataSource} and similar facilities to manage datasets
      * that may become very large. <P> <b>Data-Driven Visual Component Creation</b> <P>
      * <code>DataSource.fetchData()</code> can also be used to create Smart GWT components in a data-driven way.  Many
      * properties on Smart GWT visual components are configured via an Array of Objects - the same data format that
@@ -2450,7 +2450,7 @@ public class DataSource extends BaseClass  implements com.smartgwt.client.data.e
      * ${isc.DocUtils.linkForDocNode('javaServerReference', 'Java Server Reference')} for other, similar approaches
      * involving dumping data into the page during initial page load.  <b>Note:</b> care should be taken when using this
      * approach.  Large datasets degrade the basic performance of some browsers, so use {@link
-     * com.smartgwt.client..PickList#getOptionDataSource optionDataSource} and similar facilities to manage datasets
+     * com.smartgwt.client.widgets.form.fields.PickList#getOptionDataSource optionDataSource} and similar facilities to manage datasets
      * that may become very large. <P> <b>Data-Driven Visual Component Creation</b> <P>
      * <code>DataSource.fetchData()</code> can also be used to create Smart GWT components in a data-driven way.  Many
      * properties on Smart GWT visual components are configured via an Array of Objects - the same data format that

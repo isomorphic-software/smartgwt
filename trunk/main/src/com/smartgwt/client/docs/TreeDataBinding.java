@@ -4,23 +4,23 @@ package com.smartgwt.client.docs;
 /**
  * <h3>Tree DataBinding</h3>
  * The Smart GWT {@link com.smartgwt.client.widgets.tree.TreeGrid} component is a visual representation of a tree and
- * requires a {@link com.smartgwt.client.widgets.tree.Tree} or {@link com.smartgwt.client..ResultTree} datatype passed via
- * the {@link com.smartgwt.client.widgets.tree.TreeGrid#getData data} attribute to initialize the tree view.  The {@link
+ * requires a {@link com.smartgwt.client.widgets.tree.Tree} or ResultTree datatype passed via the {@link
+ * com.smartgwt.client.widgets.tree.TreeGrid#getData data} attribute to initialize the tree view.  The {@link
  * com.smartgwt.client.widgets.tree.Tree} datatype is used when you want to provide all of the tree nodes in one shot at
- * initialization time.  The {@link com.smartgwt.client..ResultTree} datatype is used when you want portions of the tree to
- * be loaded on demand from the server. <p> <b><u>Providing all data to the Tree at creation</u></b> <p> The simplest
- * mechanism by which to initialize a Tree is to simply provide all the data up-front when the Tree itself is created. 
- * Depending on the format of your tree data, this can be done by setting {@link
- * com.smartgwt.client.widgets.tree.Tree#getRoot root} or {@link com.smartgwt.client.widgets.tree.Tree#getData data}.  This
- * functionality is provided by the {@link com.smartgwt.client.widgets.tree.Tree} class. <p> For examples of this type of
- * databinding, see the following SDK examples: <ul> <li><a href='/examples/components/treeGrid_init.html'
+ * initialization time.  The ResultTree datatype is used when you want portions of the tree to be loaded on demand from the
+ * server. <p> <b><u>Providing all data to the Tree at creation</u></b> <p> The simplest mechanism by which to initialize a
+ * Tree is to simply provide all the data up-front when the Tree itself is created.  Depending on the format of your tree
+ * data, this can be done by setting {@link com.smartgwt.client.widgets.tree.Tree#getRoot root} or {@link
+ * com.smartgwt.client.widgets.tree.Tree#getData data}.  This functionality is provided by the {@link
+ * com.smartgwt.client.widgets.tree.Tree} class. <p> For examples of this type of databinding, see the following SDK
+ * examples: <ul> <li><a href='/examples/components/treeGrid_init.html'
  * onclick="window.open('/examples/components/treeGrid_init.html');return false;">TreeGrid Initialization Example</a>
  * <li><a href='/examples/server_integration/#jstlTree'
  * onclick="window.open('/examples/server_integration/#jstlTree');return false;">TreeGrid Initialization with JSTL</a>
  * </ul> <p> <b><u>Loading Tree nodes on demand</u></b> <p> In this mode, tree nodes are loaded on-demand the first time a
- * user expands a folder.  This approach is necessary for large trees.  This functionality is provided by the {@link
- * com.smartgwt.client..ResultTree} class. <p> ResultTrees require that every node in the tree have an {@link
- * com.smartgwt.client.widgets.tree.Tree#getIdField 'id'} that is unique tree-wide.  When the user expands a folder whose
+ * user expands a folder.  This approach is necessary for large trees.  This functionality is provided by the ResultTree
+ * class. <p> ResultTrees require that every node in the tree have an {@link
+ * com.smartgwt.client.widgets.tree.Tree#getIdField id} that is unique tree-wide.  When the user expands a folder whose
  * contents have not yet been loaded from the server (or you programmatically call openFolder() on such a node), the client
  * automatically sends a {@link com.smartgwt.client.data.DSRequest} to the server to ask for all immediate children of that
  * node.  The {@link com.smartgwt.client.data.DSRequest} criteria will specify the id of the node for which children are
@@ -31,10 +31,9 @@ package com.smartgwt.client.docs;
  * node id should contain whatever information is required to fetch the node and it's children on the server.  One typical
  * approach is to use the path to the node as a node id.  For XML datasets in particular, the path may be a valid XPath, so
  * that server-side lookup of child nodes is just a matter of applying the node id as an XPath to a server-side
- * XMLDocument. <P> {@link com.smartgwt.client..ResultTree}s are created for you by the {@link
- * com.smartgwt.client.widgets.tree.TreeGrid} when you set {@link com.smartgwt.client.widgets.tree.TreeGrid#getDataSource
- * dataSource}, but you can pass an initial dataset to a databound TreeGrid by setting {@link
- * com.smartgwt.client.widgets.tree.TreeGrid#getInitialData initialData}.  The {@link
+ * XMLDocument. <P> ResultTrees are created for you by the {@link com.smartgwt.client.widgets.tree.TreeGrid} when you set
+ * {@link com.smartgwt.client.widgets.tree.TreeGrid#getDataSource dataSource}, but you can pass an initial dataset to a
+ * databound TreeGrid by setting {@link com.smartgwt.client.widgets.tree.TreeGrid#getInitialData initialData}.  The {@link
  * com.smartgwt.client.widgets.tree.Tree#getIdField idField} is derived from the dataSource you provide to the TreeGrid -
  * the first field marked as {@link com.smartgwt.client.data.DataSourceField#getPrimaryKey primaryKey}:true becomes the
  * idField of the ResultTree. The {@link com.smartgwt.client.widgets.tree.Tree#getParentIdField parentIdField} is found by

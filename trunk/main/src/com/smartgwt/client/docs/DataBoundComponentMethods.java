@@ -4,22 +4,22 @@ package com.smartgwt.client.docs;
 /**
  * <h3>DataBound Component Methods</h3>
  * An Action Method initiates an orchestrated client-server flow that stores or retrieves data and updates one or more
- * components. <P> For example, the {@link com.smartgwt.client.widgets.form.DynamicForm#saveData DynamicForm.saveData}
- * Action Method saves the record currently being edited in the form, transparently handling the trip to the server,
- * standard error conditions such as validation errors (whether the validation error happens on the client or server), and
- * update of client-side caches. <P> Action Methods are available on DataBoundComponents.
- * @see com.smartgwt.client..MultiView#fetchData
- * @see com.smartgwt.client..MultiView#filterData
- * @see com.smartgwt.client..MultiView#fetchRelatedData
- * @see com.smartgwt.client..MultiView#removeSelectedData
- * @see com.smartgwt.client..MultiView#anySelected
- * @see com.smartgwt.client..MultiView#getSelection
- * @see com.smartgwt.client..MultiView#selectRecord
- * @see com.smartgwt.client..MultiView#selectRecords
- * @see com.smartgwt.client..MultiView#selectAllRecords
- * @see com.smartgwt.client..MultiView#deselectRecord
- * @see com.smartgwt.client..MultiView#deselectRecords
- * @see com.smartgwt.client..MultiView#deselectAllRecords
+ * components. <P> For example, the {@link com.smartgwt.client.widgets.form.DynamicForm#saveData editor.saveData()} Action
+ * Method saves the record currently being edited in the form, transparently handling the trip to the server, standard
+ * error conditions such as validation errors (whether the validation error happens on the client or server), and update of
+ * client-side caches. <P> Action Methods are available on DataBoundComponents.
+ * @see #fetchData
+ * @see #filterData
+ * @see #fetchRelatedData
+ * @see #removeSelectedData
+ * @see #anySelected
+ * @see #getSelection
+ * @see #selectRecord
+ * @see #selectRecords
+ * @see #selectAllRecords
+ * @see #deselectRecord
+ * @see #deselectRecords
+ * @see #deselectAllRecords
  * @see com.smartgwt.client.widgets.form.DynamicForm#editNewRecord
  * @see com.smartgwt.client.widgets.form.DynamicForm#editRecord
  * @see com.smartgwt.client.widgets.form.DynamicForm#editSelectedData

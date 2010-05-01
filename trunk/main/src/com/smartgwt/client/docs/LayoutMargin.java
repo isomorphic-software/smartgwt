@@ -9,7 +9,7 @@ package com.smartgwt.client.docs;
  * @see com.smartgwt.client.widgets.tile.TileLayout#getLayoutMargin
  * @see com.smartgwt.client.widgets.tile.TileLayout#getPaddingAsLayoutMargin
  * @see com.smartgwt.client.widgets.tile.TileLayout#getExpandMargins
- * @see com.smartgwt.client..PortalColumn#getLayoutMargin
+ * @see #getLayoutMargin
  * @see com.smartgwt.client.widgets.layout.Layout#getPaddingAsLayoutMargin
  * @see com.smartgwt.client.widgets.layout.Layout#getLayoutMargin
  * @see com.smartgwt.client.widgets.layout.Layout#getLayoutLeftMargin

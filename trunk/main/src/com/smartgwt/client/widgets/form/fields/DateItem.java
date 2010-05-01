@@ -134,10 +134,9 @@ public class DateItem extends FormItem {
      * If {@link com.smartgwt.client.widgets.form.fields.DateItem#getUseTextField useTextField} is <code>true</code> this
      * property can be used to  customize the format in which dates are displayed.<br> Should be set to a standard {@link
      * com.smartgwt.client.types.DateDisplayFormat} or a function which will return a formatted date string. <P> If unset, the
-     * standard shortDate format as set up via {@link com.smartgwt.client..Date#setShortDisplayFormat
-     * Date.setShortDisplayFormat} will be used. <P> <B>NOTE: you may need to update the {@link
-     * com.smartgwt.client.widgets.form.fields.DateItem#getInputFormat 'inputFormat'} to ensure the DateItem is able to parse
-     * user-entered date strings back into Dates</B>
+     * standard shortDate format as set up via  Date.setShortDisplayFormat will be used. <P> <B>NOTE: you may need to update
+     * the {@link com.smartgwt.client.widgets.form.fields.DateItem#getInputFormat inputFormat} to ensure the DateItem is able
+     * to parse user-entered date strings back into Dates</B>
      *
      * @param displayFormat displayFormat Default value is null
      */
@@ -149,10 +148,9 @@ public class DateItem extends FormItem {
      * If {@link com.smartgwt.client.widgets.form.fields.DateItem#getUseTextField useTextField} is <code>true</code> this
      * property can be used to  customize the format in which dates are displayed.<br> Should be set to a standard {@link
      * com.smartgwt.client.types.DateDisplayFormat} or a function which will return a formatted date string. <P> If unset, the
-     * standard shortDate format as set up via {@link com.smartgwt.client..Date#setShortDisplayFormat
-     * Date.setShortDisplayFormat} will be used. <P> <B>NOTE: you may need to update the {@link
-     * com.smartgwt.client.widgets.form.fields.DateItem#getInputFormat 'inputFormat'} to ensure the DateItem is able to parse
-     * user-entered date strings back into Dates</B>
+     * standard shortDate format as set up via  Date.setShortDisplayFormat will be used. <P> <B>NOTE: you may need to update
+     * the {@link com.smartgwt.client.widgets.form.fields.DateItem#getInputFormat inputFormat} to ensure the DateItem is able
+     * to parse user-entered date strings back into Dates</B>
      *
      *
      * @return DateDisplayFormat
@@ -188,7 +186,7 @@ public class DateItem extends FormItem {
      * Can this field be set to a non-date value [other than null]?&#010 <P>&#010 When set to true, {@link
      * com.smartgwt.client.widgets.form.fields.FormItem#setValue FormItem.setValue} will return false without setting the item
      * value&#010 and log a warning if passed something other than a valid date value.&#010 If the dateItem is showing a {@link
-     * com.smartgwt.client.widgets.form.fields.DateItem#getUseTextField 'free-form text entry field'},&#010 and a user enters a
+     * com.smartgwt.client.widgets.form.fields.DateItem#getUseTextField free-form text entry field},&#010 and a user enters a
      * text value which cannot be parsed into a valid date, the item will&#010 automatically redraw and display the {@link
      * com.smartgwt.client.widgets.form.fields.DateItem#getInvalidDateStringMessage invalidDateStringMessage} (though at
      * this&#010 point calling {@link com.smartgwt.client.widgets.form.fields.FormItem#getValue FormItem.getValue} will return
@@ -212,7 +210,7 @@ public class DateItem extends FormItem {
      * Can this field be set to a non-date value [other than null]?&#010 <P>&#010 When set to true, {@link
      * com.smartgwt.client.widgets.form.fields.FormItem#setValue FormItem.setValue} will return false without setting the item
      * value&#010 and log a warning if passed something other than a valid date value.&#010 If the dateItem is showing a {@link
-     * com.smartgwt.client.widgets.form.fields.DateItem#getUseTextField 'free-form text entry field'},&#010 and a user enters a
+     * com.smartgwt.client.widgets.form.fields.DateItem#getUseTextField free-form text entry field},&#010 and a user enters a
      * text value which cannot be parsed into a valid date, the item will&#010 automatically redraw and display the {@link
      * com.smartgwt.client.widgets.form.fields.DateItem#getInvalidDateStringMessage invalidDateStringMessage} (though at
      * this&#010 point calling {@link com.smartgwt.client.widgets.form.fields.FormItem#getValue FormItem.getValue} will return
@@ -237,9 +235,8 @@ public class DateItem extends FormItem {
      * property can be used to specify the input format for date strings.  If unset, the input format will be determined based
      * on the specified {@link com.smartgwt.client.widgets.form.fields.DateItem#getDisplayFormat displayFormat} if possible
      * (see {@link com.smartgwt.client.widgets.form.fields.DateItem#getInputFormat DateItem.getInputFormat}), otherwise picked
-     * up from the Date class (see {@link com.smartgwt.client..Date#setInputFormat Date.setInputFormat}). <P> Should be set to
-     * a standard {@link com.smartgwt.client..DateInputFormat} or a function which will take a date string as a parameter and
-     * return a Javascript Date object.
+     * up from the Date class (see  Date.setInputFormat). <P> Should be set to a standard {@link java.lang.String} or a
+     * function which will take a date string as a parameter and return a Javascript Date object.
      *
      * @param inputFormat inputFormat Default value is null
      */
@@ -252,20 +249,19 @@ public class DateItem extends FormItem {
      * property can be used to specify the input format for date strings.  If unset, the input format will be determined based
      * on the specified {@link com.smartgwt.client.widgets.form.fields.DateItem#getDisplayFormat displayFormat} if possible
      * (see {@link com.smartgwt.client.widgets.form.fields.DateItem#getInputFormat DateItem.getInputFormat}), otherwise picked
-     * up from the Date class (see {@link com.smartgwt.client..Date#setInputFormat Date.setInputFormat}). <P> Should be set to
-     * a standard {@link com.smartgwt.client..DateInputFormat} or a function which will take a date string as a parameter and
-     * return a Javascript Date object.
+     * up from the Date class (see  Date.setInputFormat). <P> Should be set to a standard {@link java.lang.String} or a
+     * function which will take a date string as a parameter and return a Javascript Date object.
      *
      *
      * @return If {@link com.smartgwt.client.widgets.form.fields.DateItem#getUseTextField useTextField} is <code>true</code> this
-     * method returns a standard {@link com.smartgwt.client..DateInputFormat}, or parsing function, determining how values
-     * entered by the user are to be converted to Javascript Date objects. <P> If an explicit {@link
+     * method returns a standard {@link java.lang.String}, or parsing function, determining how values entered by the user are
+     * to be converted to Javascript Date objects. <P> If an explicit {@link
      * com.smartgwt.client.widgets.form.fields.DateItem#getInputFormat inputFormat} has been specified it will be returned. <P>
      * Otherwise, if an explicit {@link com.smartgwt.client.widgets.form.fields.DateItem#getDisplayFormat displayFormat} has
      * been specified as one of <code>toUSShortDate</code>, <code>toEuropeanShortDate</code> or <code>toJapanShortDate</code>
      * this method will return the appropriate DateInputFormat to parse strings entered in the specified displayFormat. <P> If
      * no inputFormat can be derived, the method will return null, meaning the standard input format for Date objects
-     * (specified via {@link com.smartgwt.client..Date#setInputFormat Date.setInputFormat}) will be used.
+     * (specified via  Date.setInputFormat) will be used.
      */
     public String getInputFormat()  {
         return getAttributeAsString("inputFormat");
@@ -328,9 +324,9 @@ public class DateItem extends FormItem {
      * If showing date selectors rather than the date text field (so when  <code>this.useTextField</code> is false), this
      * property allows customization of the  order of the day, month and year selector fields.  If unset these fields will
      * match the specified inputFormat for this item. <P> Note: selectors may be ommitted entirely by setting selectorFormat to
-     * (for example)  <code>"MD"</code>. In this case the value for the omitted selector will match the
-     * ${isc.DocUtils.linkForRef('defaultValue')} specified for the item.  For example, if the selector format is "MD" (month
-     * and day only), the year comes from the Date specified as the defaultValue.
+     * (for example)  <code>"MD"</code>. In this case the value for the omitted selector will match the {@link
+     * com.smartgwt.client.widgets.form.fields.DateItem#getDefaultValue defaultValue} specified for the item.  For example, if
+     * the selector format is "MD" (month and day only), the year comes from the Date specified as the defaultValue.
      *
      * @param selectorFormat selectorFormat Default value is null
      */
@@ -342,9 +338,9 @@ public class DateItem extends FormItem {
      * If showing date selectors rather than the date text field (so when  <code>this.useTextField</code> is false), this
      * property allows customization of the  order of the day, month and year selector fields.  If unset these fields will
      * match the specified inputFormat for this item. <P> Note: selectors may be ommitted entirely by setting selectorFormat to
-     * (for example)  <code>"MD"</code>. In this case the value for the omitted selector will match the
-     * ${isc.DocUtils.linkForRef('defaultValue')} specified for the item.  For example, if the selector format is "MD" (month
-     * and day only), the year comes from the Date specified as the defaultValue.
+     * (for example)  <code>"MD"</code>. In this case the value for the omitted selector will match the {@link
+     * com.smartgwt.client.widgets.form.fields.DateItem#getDefaultValue defaultValue} specified for the item.  For example, if
+     * the selector format is "MD" (month and day only), the year comes from the Date specified as the defaultValue.
      *
      *
      * @return DateItemSelectorFormat
@@ -428,9 +424,9 @@ public class DateItem extends FormItem {
 
     /**
      * When set to true (the default), use a single shared date-picker across all widgets that use one.  When false, create a
-     * new picker using the autoChild system.  See  ${isc.DocUtils.linkForRef('dateItem.pickerDefaults','picker')} and  {@link
-     * com.smartgwt.client.widgets.form.fields.DateItem#getPickerProperties 'pickerProperties'} for details on setting up an
-     * unshared picker.
+     * new picker using the autoChild system.  See  {@link com.smartgwt.client.widgets.form.fields.DateItem#getPickerDefaults
+     * picker} and  {@link com.smartgwt.client.widgets.form.fields.DateItem#getPickerProperties pickerProperties} for details
+     * on setting up an unshared picker.
      *
      * @param useSharedPicker useSharedPicker Default value is true
      */
@@ -440,9 +436,9 @@ public class DateItem extends FormItem {
 
     /**
      * When set to true (the default), use a single shared date-picker across all widgets that use one.  When false, create a
-     * new picker using the autoChild system.  See  ${isc.DocUtils.linkForRef('dateItem.pickerDefaults','picker')} and  {@link
-     * com.smartgwt.client.widgets.form.fields.DateItem#getPickerProperties 'pickerProperties'} for details on setting up an
-     * unshared picker.
+     * new picker using the autoChild system.  See  {@link com.smartgwt.client.widgets.form.fields.DateItem#getPickerDefaults
+     * picker} and  {@link com.smartgwt.client.widgets.form.fields.DateItem#getPickerProperties pickerProperties} for details
+     * on setting up an unshared picker.
      *
      *
      * @return Boolean

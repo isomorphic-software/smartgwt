@@ -40,13 +40,12 @@ package com.smartgwt.client.docs;
  * Smart GWT SDK.  It is not intended to be used in any way other than via the start_embedded_tomcat.bat|sh|command scripts
  * in the webRoot of the SDK.<br> &nbsp;&nbsp;<u>Requires</u>:<br> &nbsp;&nbsp;&nbsp;&nbsp;isomorphic_core_rpc<br>
  * &nbsp;&nbsp;&nbsp;&nbsp;All JARs under WEB-INF/embeddedTomcat/lib<br> </li> <li><b>isomorphic_spring</b>: Required for
- * {@link com.smartgwt.client..DMI} dispatches to Spring beans (via {@link
- * com.smartgwt.client.docs.serverds.ServerObject#lookupStyle lookupStyle} : "spring").<br>
- * &nbsp;&nbsp;<u>Requires</u>:<br> &nbsp;&nbsp;&nbsp;&nbsp;isomorphic_core_rpc<br> &nbsp;&nbsp;&nbsp;&nbsp;spring<br>
- * &nbsp;&nbsp;&nbsp;&nbsp;commons-logging<br> </li> <li><b>isomorphic_examples</b>: Contains code for various Smart GWT
- * examples shown in the SDK.  Do not deploy to production.  The source code for the compiled classes in this module are
- * present in the SDK in various locations and typically linked to directly from the examples that use them.<br>
- * &nbsp;&nbsp;<u>Requires</u>:<br> &nbsp;&nbsp;&nbsp;&nbsp;isomorphic_core_rpc<br>
+ * DMI dispatches to Spring beans (via {@link com.smartgwt.client.docs.serverds.ServerObject#lookupStyle lookupStyle} :
+ * "spring").<br> &nbsp;&nbsp;<u>Requires</u>:<br> &nbsp;&nbsp;&nbsp;&nbsp;isomorphic_core_rpc<br>
+ * &nbsp;&nbsp;&nbsp;&nbsp;spring<br> &nbsp;&nbsp;&nbsp;&nbsp;commons-logging<br> </li> <li><b>isomorphic_examples</b>:
+ * Contains code for various Smart GWT examples shown in the SDK.  Do not deploy to production.  The source code for the
+ * compiled classes in this module are present in the SDK in various locations and typically linked to directly from the
+ * examples that use them.<br> &nbsp;&nbsp;<u>Requires</u>:<br> &nbsp;&nbsp;&nbsp;&nbsp;isomorphic_core_rpc<br>
  * &nbsp;&nbsp;&nbsp;&nbsp;isomorphic_sql<br> &nbsp;&nbsp;&nbsp;&nbsp;isomorphic_struts<br>
  * &nbsp;&nbsp;&nbsp;&nbsp;isomorphic_spring<br> &nbsp;&nbsp;&nbsp;&nbsp;isomorphic_hibernate<br>
  * &nbsp;&nbsp;&nbsp;&nbsp;commons-logging<br> &nbsp;&nbsp;&nbsp;&nbsp;jstl<br>

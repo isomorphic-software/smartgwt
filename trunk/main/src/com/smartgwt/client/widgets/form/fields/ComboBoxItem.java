@@ -59,9 +59,8 @@ import com.google.gwt.event.shared.HasHandlers;
  * The Combobox is a text input field which can show a list of options via a drop-down PickList. <p> The set of options
  * will be filtered based on the current value in the text field, so only options that match what has been typed so far
  * will be displayed. The set of options can be derived from a ValueMap or dynamically retrieved from a dataSource.  See
- * the {@link com.smartgwt.client..PickList} interface for further settings. <P> Note that to select the first option as a
- * default value for the item, {@link com.smartgwt.client.widgets.form.fields.ComboBoxItem#getDefaultToFirstOption
- * defaultToFirstOption} may be set.
+ * the PickList interface for further settings. <P> Note that to select the first option as a default value for the item,
+ * {@link com.smartgwt.client.widgets.form.fields.ComboBoxItem#getDefaultToFirstOption defaultToFirstOption} may be set.
  */
 public class ComboBoxItem extends FormItem  implements PickList, com.smartgwt.client.widgets.form.fields.events.HasDataArrivedHandlers {
 
@@ -187,18 +186,18 @@ public class ComboBoxItem extends FormItem  implements PickList, com.smartgwt.cl
     /**
      * Specifies an alternative field from which display values should be retrieved for this item. <P> The display field can be
      * either another field value in the same record or a field that must be retrieved from a related {@link
-     * com.smartgwt.client.widgets.form.fields.FormItem#getOptionDataSource 'optionDataSource'}. <P> If this item is not
+     * com.smartgwt.client.widgets.form.fields.FormItem#getOptionDataSource optionDataSource}. <P> If this item is not
      * databound ({@link com.smartgwt.client.widgets.form.fields.FormItem#getOptionDataSource optionDataSource} is unset), or
      * bound  to the same dataSource as the form as a whole, this item will call {@link
-     * com.smartgwt.client.widgets.form.DynamicForm#getValue DynamicForm.getValue}  the form named after is implemented by
-     * picking up the value of the specified field from the Form's values object. <P> Otherwise this item will attempt to map
-     * its underlying value to a display value by retrieving a record from the {@link
+     * com.smartgwt.client.widgets.form.DynamicForm#getValue form.getValue()}  the form named after is implemented by picking
+     * up the value of the specified field from the Form's values object. <P> Otherwise this item will attempt to map its
+     * underlying value to a display value by retrieving a record from the {@link
      * com.smartgwt.client.widgets.form.fields.FormItem#getOptionDataSource optionDataSource} where the  {@link
      * com.smartgwt.client.widgets.form.fields.FormItem#getValueField valueField} matches this item's value, and displaying the
      * <code>displayField</code> value from that record. Note that if <code>optionDataSource</code> is set and this value is
      * not set, {@link com.smartgwt.client.widgets.form.fields.FormItem#getDisplayFieldName FormItem.getDisplayFieldName} will
      * return the dataSource title field by default. <P> This essentially enables the specified <code>optionDataSource</code>
-     * to be used as a server based valueMap.
+     * to be used as a server based {@link valueMap}.
      * <p><b>Note : </b> This is an advanced setting</p>
      *
      * @param displayField displayField Default value is null
@@ -210,18 +209,18 @@ public class ComboBoxItem extends FormItem  implements PickList, com.smartgwt.cl
     /**
      * Specifies an alternative field from which display values should be retrieved for this item. <P> The display field can be
      * either another field value in the same record or a field that must be retrieved from a related {@link
-     * com.smartgwt.client.widgets.form.fields.FormItem#getOptionDataSource 'optionDataSource'}. <P> If this item is not
+     * com.smartgwt.client.widgets.form.fields.FormItem#getOptionDataSource optionDataSource}. <P> If this item is not
      * databound ({@link com.smartgwt.client.widgets.form.fields.FormItem#getOptionDataSource optionDataSource} is unset), or
      * bound  to the same dataSource as the form as a whole, this item will call {@link
-     * com.smartgwt.client.widgets.form.DynamicForm#getValue DynamicForm.getValue}  the form named after is implemented by
-     * picking up the value of the specified field from the Form's values object. <P> Otherwise this item will attempt to map
-     * its underlying value to a display value by retrieving a record from the {@link
+     * com.smartgwt.client.widgets.form.DynamicForm#getValue form.getValue()}  the form named after is implemented by picking
+     * up the value of the specified field from the Form's values object. <P> Otherwise this item will attempt to map its
+     * underlying value to a display value by retrieving a record from the {@link
      * com.smartgwt.client.widgets.form.fields.FormItem#getOptionDataSource optionDataSource} where the  {@link
      * com.smartgwt.client.widgets.form.fields.FormItem#getValueField valueField} matches this item's value, and displaying the
      * <code>displayField</code> value from that record. Note that if <code>optionDataSource</code> is set and this value is
      * not set, {@link com.smartgwt.client.widgets.form.fields.FormItem#getDisplayFieldName FormItem.getDisplayFieldName} will
      * return the dataSource title field by default. <P> This essentially enables the specified <code>optionDataSource</code>
-     * to be used as a server based valueMap.
+     * to be used as a server based {@link valueMap}.
      *
      *
      * @return String
@@ -339,8 +338,8 @@ public class ComboBoxItem extends FormItem  implements PickList, com.smartgwt.cl
 
     /**
      * If true, even non-matching options will be shown, with configurable  {@link
-     * com.smartgwt.client.widgets.form.fields.ComboBoxItem#getSeparatorRows 'separator rows'} in between.  Not valid for
-     * {@link com.smartgwt.client.widgets.form.fields.ComboBoxItem#getOptionDataSource 'databound pickLists'}.
+     * com.smartgwt.client.widgets.form.fields.ComboBoxItem#getSeparatorRows separator rows} in between.  Not valid for {@link
+     * com.smartgwt.client.widgets.form.fields.ComboBoxItem#getOptionDataSource databound pickLists}.
      *
      * @param showAllOptions showAllOptions Default value is null
      */
@@ -350,8 +349,8 @@ public class ComboBoxItem extends FormItem  implements PickList, com.smartgwt.cl
 
     /**
      * If true, even non-matching options will be shown, with configurable  {@link
-     * com.smartgwt.client.widgets.form.fields.ComboBoxItem#getSeparatorRows 'separator rows'} in between.  Not valid for
-     * {@link com.smartgwt.client.widgets.form.fields.ComboBoxItem#getOptionDataSource 'databound pickLists'}.
+     * com.smartgwt.client.widgets.form.fields.ComboBoxItem#getSeparatorRows separator rows} in between.  Not valid for {@link
+     * com.smartgwt.client.widgets.form.fields.ComboBoxItem#getOptionDataSource databound pickLists}.
      *
      *
      * @return Boolean
@@ -454,7 +453,7 @@ public class ComboBoxItem extends FormItem  implements PickList, com.smartgwt.cl
     /**
      * If this form item maps data values to display values by retrieving the  {@link
      * com.smartgwt.client.widgets.form.fields.FormItem#getDisplayField displayField} values from an  {@link
-     * com.smartgwt.client.widgets.form.fields.FormItem#getOptionDataSource 'optionDataSource'}, this property  denotes the the
+     * com.smartgwt.client.widgets.form.fields.FormItem#getOptionDataSource optionDataSource}, this property  denotes the the
      * field to use as the underlying data value in records from the  optionDataSource.<br> If unset, assumed to be the {@link
      * com.smartgwt.client.widgets.form.fields.FormItem#getName name} of this form item.
      *
@@ -467,7 +466,7 @@ public class ComboBoxItem extends FormItem  implements PickList, com.smartgwt.cl
     /**
      * If this form item maps data values to display values by retrieving the  {@link
      * com.smartgwt.client.widgets.form.fields.FormItem#getDisplayField displayField} values from an  {@link
-     * com.smartgwt.client.widgets.form.fields.FormItem#getOptionDataSource 'optionDataSource'}, this property  denotes the the
+     * com.smartgwt.client.widgets.form.fields.FormItem#getOptionDataSource optionDataSource}, this property  denotes the the
      * field to use as the underlying data value in records from the  optionDataSource.<br> If unset, assumed to be the {@link
      * com.smartgwt.client.widgets.form.fields.FormItem#getName name} of this form item.
      *

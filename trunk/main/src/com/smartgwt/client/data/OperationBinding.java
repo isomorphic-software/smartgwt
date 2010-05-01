@@ -78,7 +78,7 @@ public class OperationBinding extends DataClass {
 
     /**
      * Ordinarily, "update" and "remove" operations are only allowed for {@link com.smartgwt.client.data.DataSource}s that have
-     * a {@link com.smartgwt.client.data.DataSourceField#getPrimaryKey 'primaryKey'}, and all primary key values are present in
+     * a {@link com.smartgwt.client.data.DataSourceField#getPrimaryKey primaryKey}, and all primary key values are present in
      * the request.  This is because an update of a DataSource with no primary key,  or an update request that has missing
      * primary key values, cannot be guaranteed to affect  only one record. <p> Setting this property on an operationBinding
      * circumvents this restriction for that operation only. <p> <b>Warning:</b> Be aware that this is a potentially dangerous
@@ -93,7 +93,7 @@ public class OperationBinding extends DataClass {
 
     /**
      * Ordinarily, "update" and "remove" operations are only allowed for {@link com.smartgwt.client.data.DataSource}s that have
-     * a {@link com.smartgwt.client.data.DataSourceField#getPrimaryKey 'primaryKey'}, and all primary key values are present in
+     * a {@link com.smartgwt.client.data.DataSourceField#getPrimaryKey primaryKey}, and all primary key values are present in
      * the request.  This is because an update of a DataSource with no primary key,  or an update request that has missing
      * primary key values, cannot be guaranteed to affect  only one record. <p> Setting this property on an operationBinding
      * circumvents this restriction for that operation only. <p> <b>Warning:</b> Be aware that this is a potentially dangerous
@@ -206,10 +206,10 @@ public class OperationBinding extends DataClass {
 
     /**
      * Transport to use for this operation.  Defaults to {@link com.smartgwt.client.data.DataSource#getDataTransport
-     * dataTransport}, which in turn defaults to {@link com.smartgwt.client.rpc.RPCManager#defaultTransport}.  This would
-     * typically only be set to enable "scriptInclude" transport for contacting {@link
-     * com.smartgwt.client.data.DataSource#getDataFormat 'JSON'} web services hosted on servers other than the origin server.
-     * <p> When using the "scriptInclude" transport, be sure to set {@link com.smartgwt.client.data.DataSource#getCallbackParam
+     * dataTransport}, which in turn defaults to {@link com.smartgwt.client.rpc.RPCManager#defaultTransport defaultTransport}. 
+     * This would typically only be set to enable "scriptInclude" transport for contacting {@link
+     * com.smartgwt.client.data.DataSource#getDataFormat JSON} web services hosted on servers other than the origin server. <p>
+     * When using the "scriptInclude" transport, be sure to set {@link com.smartgwt.client.data.DataSource#getCallbackParam
      * callbackParam} or {@link com.smartgwt.client.data.OperationBinding#getCallbackParam callbackParam} to match the name of
      * the query parameter name expected by your JSON service provider.
      *
@@ -222,10 +222,10 @@ public class OperationBinding extends DataClass {
 
     /**
      * Transport to use for this operation.  Defaults to {@link com.smartgwt.client.data.DataSource#getDataTransport
-     * dataTransport}, which in turn defaults to {@link com.smartgwt.client.rpc.RPCManager#defaultTransport}.  This would
-     * typically only be set to enable "scriptInclude" transport for contacting {@link
-     * com.smartgwt.client.data.DataSource#getDataFormat 'JSON'} web services hosted on servers other than the origin server.
-     * <p> When using the "scriptInclude" transport, be sure to set {@link com.smartgwt.client.data.DataSource#getCallbackParam
+     * dataTransport}, which in turn defaults to {@link com.smartgwt.client.rpc.RPCManager#defaultTransport defaultTransport}. 
+     * This would typically only be set to enable "scriptInclude" transport for contacting {@link
+     * com.smartgwt.client.data.DataSource#getDataFormat JSON} web services hosted on servers other than the origin server. <p>
+     * When using the "scriptInclude" transport, be sure to set {@link com.smartgwt.client.data.DataSource#getCallbackParam
      * callbackParam} or {@link com.smartgwt.client.data.OperationBinding#getCallbackParam callbackParam} to match the name of
      * the query parameter name expected by your JSON service provider.
      *
@@ -314,17 +314,17 @@ public class OperationBinding extends DataClass {
      * which displays the Save As dialog.  See &#010 {@link com.smartgwt.client.types.ExportDisplay} for more information.&#010
      * <P>&#010 The export field-list can also be configured, see {@link com.smartgwt.client.data.DSRequest#getExportFields
      * exportFields}.&#010 <P>&#010 You can also configure the style of line-breaks to use when generating the output. 
-     * See&#010 {@link com.smartgwt.client..LineBreakStyle} for more information.&#010 <P>&#010 As well as setting this and
-     * other properties on the {@link com.smartgwt.client.data.OperationBinding}, Exports can be &#010 initiated in two other
-     * ways.  You can set properties on the dsRequest by passing &#010 <i>requestProperties</i> into {@link
-     * com.smartgwt.client.data.DataSource#exportData DataSource.exportData}.  Note that this method does&#010 not support
-     * exporting to JSON format (see &#010 <a href="http://forums.smartclient.com/showthread.php?t=235">this post</a> for more
-     * detail).&#010 Additionally, custom server code may set export-related properties on the &#010 {@link
-     * com.smartgwt.client.data.DSResponse}.&#010 <P>&#010 <b>Format Examples</b>&#010 <P>&#010 XML format&#010 <pre>&#010    
-     * &lt;List&gt;&#010         &lt;Object&gt;&#010             &lt;id&gt;10101&lt;/id&gt;&#010            
-     * &lt;displayName&gt;Record 10101&lt;/displayName&gt;&#010         &lt;/Object&gt;&#010    &lt;/List&gt;&#010 </pre>&#010
-     * JSON Format&#010 <pre>&#010     [&#010         { id: 10101, displayName: "Record 10101" }&#010     ]&#010 </pre>&#010
-     * CSV Format&#010 <pre>&#010     id,displayName&#010     10101,"Record 10101"&#010 </pre>
+     * See&#010 LineBreakStyle for more information.&#010 <P>&#010 As well as setting this and other properties on the {@link
+     * com.smartgwt.client.data.OperationBinding}, Exports can be &#010 initiated in two other ways.  You can set properties on
+     * the dsRequest by passing &#010 <i>requestProperties</i> into {@link com.smartgwt.client.data.DataSource#exportData
+     * DataSource.exportData}.  Note that this method does&#010 not support exporting to JSON format (see &#010 <a
+     * href="http://forums.smartclient.com/showthread.php?t=235">this post</a> for more detail).&#010 Additionally, custom
+     * server code may set export-related properties on the &#010 {@link com.smartgwt.client.data.DSResponse}.&#010 <P>&#010
+     * <b>Format Examples</b>&#010 <P>&#010 XML format&#010 <pre>&#010     &lt;List&gt;&#010         &lt;Object&gt;&#010       
+     * &lt;id&gt;10101&lt;/id&gt;&#010             &lt;displayName&gt;Record 10101&lt;/displayName&gt;&#010        
+     * &lt;/Object&gt;&#010    &lt;/List&gt;&#010 </pre>&#010 JSON Format&#010 <pre>&#010     [&#010         { id: 10101,
+     * displayName: "Record 10101" }&#010     ]&#010 </pre>&#010 CSV Format&#010 <pre>&#010     id,displayName&#010    
+     * 10101,"Record 10101"&#010 </pre>
      *
      * @param exportResults exportResults Default value is false
      */
@@ -342,17 +342,17 @@ public class OperationBinding extends DataClass {
      * which displays the Save As dialog.  See &#010 {@link com.smartgwt.client.types.ExportDisplay} for more information.&#010
      * <P>&#010 The export field-list can also be configured, see {@link com.smartgwt.client.data.DSRequest#getExportFields
      * exportFields}.&#010 <P>&#010 You can also configure the style of line-breaks to use when generating the output. 
-     * See&#010 {@link com.smartgwt.client..LineBreakStyle} for more information.&#010 <P>&#010 As well as setting this and
-     * other properties on the {@link com.smartgwt.client.data.OperationBinding}, Exports can be &#010 initiated in two other
-     * ways.  You can set properties on the dsRequest by passing &#010 <i>requestProperties</i> into {@link
-     * com.smartgwt.client.data.DataSource#exportData DataSource.exportData}.  Note that this method does&#010 not support
-     * exporting to JSON format (see &#010 <a href="http://forums.smartclient.com/showthread.php?t=235">this post</a> for more
-     * detail).&#010 Additionally, custom server code may set export-related properties on the &#010 {@link
-     * com.smartgwt.client.data.DSResponse}.&#010 <P>&#010 <b>Format Examples</b>&#010 <P>&#010 XML format&#010 <pre>&#010    
-     * &lt;List&gt;&#010         &lt;Object&gt;&#010             &lt;id&gt;10101&lt;/id&gt;&#010            
-     * &lt;displayName&gt;Record 10101&lt;/displayName&gt;&#010         &lt;/Object&gt;&#010    &lt;/List&gt;&#010 </pre>&#010
-     * JSON Format&#010 <pre>&#010     [&#010         { id: 10101, displayName: "Record 10101" }&#010     ]&#010 </pre>&#010
-     * CSV Format&#010 <pre>&#010     id,displayName&#010     10101,"Record 10101"&#010 </pre>
+     * See&#010 LineBreakStyle for more information.&#010 <P>&#010 As well as setting this and other properties on the {@link
+     * com.smartgwt.client.data.OperationBinding}, Exports can be &#010 initiated in two other ways.  You can set properties on
+     * the dsRequest by passing &#010 <i>requestProperties</i> into {@link com.smartgwt.client.data.DataSource#exportData
+     * DataSource.exportData}.  Note that this method does&#010 not support exporting to JSON format (see &#010 <a
+     * href="http://forums.smartclient.com/showthread.php?t=235">this post</a> for more detail).&#010 Additionally, custom
+     * server code may set export-related properties on the &#010 {@link com.smartgwt.client.data.DSResponse}.&#010 <P>&#010
+     * <b>Format Examples</b>&#010 <P>&#010 XML format&#010 <pre>&#010     &lt;List&gt;&#010         &lt;Object&gt;&#010       
+     * &lt;id&gt;10101&lt;/id&gt;&#010             &lt;displayName&gt;Record 10101&lt;/displayName&gt;&#010        
+     * &lt;/Object&gt;&#010    &lt;/List&gt;&#010 </pre>&#010 JSON Format&#010 <pre>&#010     [&#010         { id: 10101,
+     * displayName: "Record 10101" }&#010     ]&#010 </pre>&#010 CSV Format&#010 <pre>&#010     id,displayName&#010    
+     * 10101,"Record 10101"&#010 </pre>
      *
      *
      * @return Boolean
@@ -383,8 +383,7 @@ public class OperationBinding extends DataClass {
     }
 
     /**
-     * The style of line-breaks to use in the exported output.  See {@link com.smartgwt.client..LineBreakStyle} for more
-     * information.
+     * The style of line-breaks to use in the exported output.  See LineBreakStyle for more information.
      *
      * @param lineBreakStyle lineBreakStyle Default value is null
      */
@@ -393,8 +392,7 @@ public class OperationBinding extends DataClass {
     }
 
     /**
-     * The style of line-breaks to use in the exported output.  See {@link com.smartgwt.client..LineBreakStyle} for more
-     * information.
+     * The style of line-breaks to use in the exported output.  See LineBreakStyle for more information.
      *
      *
      * @return String
@@ -536,13 +534,12 @@ public class OperationBinding extends DataClass {
      * Items that one might want to display in a grid.  An XPath expression like "/Results/Items" could be used to retrieve
      * just the Items, which would then become DataSource records. <p> For a JSON web service, the <code>recordXPath</code> is
      * applied to the returned JSON data via {@link com.smartgwt.client.data.XMLTools#selectObjects XMLTools.selectObjects}. 
-     * Only limited XPath syntax is allowed; see  {@link com.smartgwt.client.data.XMLTools#selectObjects
-     * XMLTools.selectObjects} for details. <P> For processing XML results, see {@link
-     * com.smartgwt.client.data.OperationBinding#getXmlNamespaces xmlNamespaces} for information on the namespaces that are
-     * available in this XPath expression.  If you are contacting a WSDL web service, note that {@link
-     * com.smartgwt.client.data.OperationBinding#getRecordName recordName} is an alternative way to specify which records
-     * should be selected by their tagName or type, and this is usually simpler. <P> To learn about XPath, try the following
-     * search: <a href="http://www.google.com/search?q=xpath+tutorial" target="_blank"
+     * Only limited XPath syntax is allowed; see  {@link com.smartgwt.client.data.XMLTools#selectObjects selectObjects()} for
+     * details. <P> For processing XML results, see {@link com.smartgwt.client.data.OperationBinding#getXmlNamespaces
+     * xmlNamespaces} for information on the namespaces that are available in this XPath expression.  If you are contacting a
+     * WSDL web service, note that {@link com.smartgwt.client.data.OperationBinding#getRecordName recordName} is an alternative
+     * way to specify which records should be selected by their tagName or type, and this is usually simpler. <P> To learn
+     * about XPath, try the following search: <a href="http://www.google.com/search?q=xpath+tutorial" target="_blank"
      * >http://www.google.com/search?q=xpath+tutorial</a>
      *
      * @param recordXPath recordXPath Default value is null
@@ -558,13 +555,12 @@ public class OperationBinding extends DataClass {
      * Items that one might want to display in a grid.  An XPath expression like "/Results/Items" could be used to retrieve
      * just the Items, which would then become DataSource records. <p> For a JSON web service, the <code>recordXPath</code> is
      * applied to the returned JSON data via {@link com.smartgwt.client.data.XMLTools#selectObjects XMLTools.selectObjects}. 
-     * Only limited XPath syntax is allowed; see  {@link com.smartgwt.client.data.XMLTools#selectObjects
-     * XMLTools.selectObjects} for details. <P> For processing XML results, see {@link
-     * com.smartgwt.client.data.OperationBinding#getXmlNamespaces xmlNamespaces} for information on the namespaces that are
-     * available in this XPath expression.  If you are contacting a WSDL web service, note that {@link
-     * com.smartgwt.client.data.OperationBinding#getRecordName recordName} is an alternative way to specify which records
-     * should be selected by their tagName or type, and this is usually simpler. <P> To learn about XPath, try the following
-     * search: <a href="http://www.google.com/search?q=xpath+tutorial" target="_blank"
+     * Only limited XPath syntax is allowed; see  {@link com.smartgwt.client.data.XMLTools#selectObjects selectObjects()} for
+     * details. <P> For processing XML results, see {@link com.smartgwt.client.data.OperationBinding#getXmlNamespaces
+     * xmlNamespaces} for information on the namespaces that are available in this XPath expression.  If you are contacting a
+     * WSDL web service, note that {@link com.smartgwt.client.data.OperationBinding#getRecordName recordName} is an alternative
+     * way to specify which records should be selected by their tagName or type, and this is usually simpler. <P> To learn
+     * about XPath, try the following search: <a href="http://www.google.com/search?q=xpath+tutorial" target="_blank"
      * >http://www.google.com/search?q=xpath+tutorial</a>
      *
      *
@@ -576,9 +572,9 @@ public class OperationBinding extends DataClass {
     }
 
     /**
-     * For a DataSource contacting a {@link com.smartgwt.client.data.DataSource#getServiceNamespace 'WSDL web service'},
-     * setting this flag means the DataSource doesn't actually attempt to contact the server but generates a sample response
-     * instead, based on the XML Schema of the response message embedded in the WSDL. <P> The spoofed response will include all
+     * For a DataSource contacting a {@link com.smartgwt.client.data.DataSource#getServiceNamespace WSDL web service}, setting
+     * this flag means the DataSource doesn't actually attempt to contact the server but generates a sample response instead,
+     * based on the XML Schema of the response message embedded in the WSDL. <P> The spoofed response will include all
      * complexType elements and will fill in appropriate values by type for all simpleType elements, although the spoofed data
      * will not conform to all xs:restriction declarations (eg xs:pattern). <P> Note that if your WSDL does not fully describe
      * the response format (some WSDL services just have a placeholder &lt;xs:any&gt; element), Smart GWT can only produce a
@@ -593,9 +589,9 @@ public class OperationBinding extends DataClass {
     }
 
     /**
-     * For a DataSource contacting a {@link com.smartgwt.client.data.DataSource#getServiceNamespace 'WSDL web service'},
-     * setting this flag means the DataSource doesn't actually attempt to contact the server but generates a sample response
-     * instead, based on the XML Schema of the response message embedded in the WSDL. <P> The spoofed response will include all
+     * For a DataSource contacting a {@link com.smartgwt.client.data.DataSource#getServiceNamespace WSDL web service}, setting
+     * this flag means the DataSource doesn't actually attempt to contact the server but generates a sample response instead,
+     * based on the XML Schema of the response message embedded in the WSDL. <P> The spoofed response will include all
      * complexType elements and will fill in appropriate values by type for all simpleType elements, although the spoofed data
      * will not conform to all xs:restriction declarations (eg xs:pattern). <P> Note that if your WSDL does not fully describe
      * the response format (some WSDL services just have a placeholder &lt;xs:any&gt; element), Smart GWT can only produce a
@@ -615,15 +611,14 @@ public class OperationBinding extends DataClass {
      * com.smartgwt.client.data.DSRequest#getUseFlatFields useFlatFields} on all DataSource requests with the same {@link
      * com.smartgwt.client.data.OperationBinding#getOperationType operationType} as this <code>operationBinding</code>. <P>
      * Typical usage is to combine operationBinding.useFlatFields with  {@link
-     * com.smartgwt.client.widgets.DataBoundComponent#getUseFlatFields 'searchForm.useFlatFields'}, with the {@link
-     * com.smartgwt.client.widgets.form.SearchForm} bound to the {@link com.smartgwt.client.data.WebService#getInputDS
-     * WebService.getInputDS} of the web service operation set as {@link
-     * com.smartgwt.client.data.OperationBinding#getWsOperation wsOperation}.  This allows gratuitous nesting to be
-     * consistently bypassed in both the user presentation and in the actual XML messaging. <P> Note that
-     * <code>useFlatFields</code> is not generally recommended for use with input messages where multiple simple type fields
-     * exist with the same name, however if used in this way, the first field to use a given name wins.  "first" means the
-     * first field encountered in a depth first search.  "wins" means only the first field will be available in data binding,
-     * and only the first field will be populated in the generated XML message.
+     * com.smartgwt.client.widgets.DataBoundComponent#getUseFlatFields searchForm.useFlatFields}, with the {@link
+     * com.smartgwt.client.widgets.form.SearchForm} bound to the {@link com.smartgwt.client.data.WebService#getInputDS input
+     * message} of the web service operation set as {@link com.smartgwt.client.data.OperationBinding#getWsOperation
+     * wsOperation}.  This allows gratuitous nesting to be consistently bypassed in both the user presentation and in the
+     * actual XML messaging. <P> Note that <code>useFlatFields</code> is not generally recommended for use with input messages
+     * where multiple simple type fields exist with the same name, however if used in this way, the first field to use a given
+     * name wins.  "first" means the first field encountered in a depth first search.  "wins" means only the first field will
+     * be available in data binding, and only the first field will be populated in the generated XML message.
      *
      * @param useFlatFields useFlatFields Default value is false
      * @see com.smartgwt.client.docs.ClientDataIntegration ClientDataIntegration overview and related methods
@@ -637,15 +632,14 @@ public class OperationBinding extends DataClass {
      * com.smartgwt.client.data.DSRequest#getUseFlatFields useFlatFields} on all DataSource requests with the same {@link
      * com.smartgwt.client.data.OperationBinding#getOperationType operationType} as this <code>operationBinding</code>. <P>
      * Typical usage is to combine operationBinding.useFlatFields with  {@link
-     * com.smartgwt.client.widgets.DataBoundComponent#getUseFlatFields 'searchForm.useFlatFields'}, with the {@link
-     * com.smartgwt.client.widgets.form.SearchForm} bound to the {@link com.smartgwt.client.data.WebService#getInputDS
-     * WebService.getInputDS} of the web service operation set as {@link
-     * com.smartgwt.client.data.OperationBinding#getWsOperation wsOperation}.  This allows gratuitous nesting to be
-     * consistently bypassed in both the user presentation and in the actual XML messaging. <P> Note that
-     * <code>useFlatFields</code> is not generally recommended for use with input messages where multiple simple type fields
-     * exist with the same name, however if used in this way, the first field to use a given name wins.  "first" means the
-     * first field encountered in a depth first search.  "wins" means only the first field will be available in data binding,
-     * and only the first field will be populated in the generated XML message.
+     * com.smartgwt.client.widgets.DataBoundComponent#getUseFlatFields searchForm.useFlatFields}, with the {@link
+     * com.smartgwt.client.widgets.form.SearchForm} bound to the {@link com.smartgwt.client.data.WebService#getInputDS input
+     * message} of the web service operation set as {@link com.smartgwt.client.data.OperationBinding#getWsOperation
+     * wsOperation}.  This allows gratuitous nesting to be consistently bypassed in both the user presentation and in the
+     * actual XML messaging. <P> Note that <code>useFlatFields</code> is not generally recommended for use with input messages
+     * where multiple simple type fields exist with the same name, however if used in this way, the first field to use a given
+     * name wins.  "first" means the first field encountered in a depth first search.  "wins" means only the first field will
+     * be available in data binding, and only the first field will be populated in the generated XML message.
      *
      *
      * @return Boolean
@@ -656,10 +650,10 @@ public class OperationBinding extends DataClass {
     }
 
     /**
-     * Whether to use the {@link com.smartgwt.client.rpc.RPCManager#sendProxied RPCManager.sendProxied} servlet to send
-     * requests described by this operationBinding.  If unset, automatically detects whether using the HttpProxy is necessary
-     * based on the same-origin policy. <P> Valid only with {@link com.smartgwt.client.data.OperationBinding#getDataProtocol
-     * dataProtocol} settings other than ISCServer.
+     * Whether to use the {@link com.smartgwt.client.rpc.RPCManager#sendProxied HttpProxy} servlet to send requests described
+     * by this operationBinding.  If unset, automatically detects whether using the HttpProxy is necessary based on the
+     * same-origin policy. <P> Valid only with {@link com.smartgwt.client.data.OperationBinding#getDataProtocol dataProtocol}
+     * settings other than ISCServer.
      *
      * @param useHttpProxy useHttpProxy Default value is null
      * @see com.smartgwt.client.docs.ClientDataIntegration ClientDataIntegration overview and related methods
@@ -669,10 +663,10 @@ public class OperationBinding extends DataClass {
     }
 
     /**
-     * Whether to use the {@link com.smartgwt.client.rpc.RPCManager#sendProxied RPCManager.sendProxied} servlet to send
-     * requests described by this operationBinding.  If unset, automatically detects whether using the HttpProxy is necessary
-     * based on the same-origin policy. <P> Valid only with {@link com.smartgwt.client.data.OperationBinding#getDataProtocol
-     * dataProtocol} settings other than ISCServer.
+     * Whether to use the {@link com.smartgwt.client.rpc.RPCManager#sendProxied HttpProxy} servlet to send requests described
+     * by this operationBinding.  If unset, automatically detects whether using the HttpProxy is necessary based on the
+     * same-origin policy. <P> Valid only with {@link com.smartgwt.client.data.OperationBinding#getDataProtocol dataProtocol}
+     * settings other than ISCServer.
      *
      *
      * @return Boolean

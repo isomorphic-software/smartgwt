@@ -56,14 +56,14 @@ import com.google.gwt.event.shared.*;
 import com.google.gwt.event.shared.HasHandlers;
 
 /**
- * A DataSource preconfigured to use the {@link com.smartgwt.client.types.RPCTransport} transport&#010 for cross-domain
- * calls to JSON services, such as those provided by Yahoo!.  &#010 <P>&#010 To use this DataSource, provide the URL of the
- * service as {@link com.smartgwt.client.data.DataSource#getDataURL dataURL}, and&#010 provide {@link
- * com.smartgwt.client.data.DataSource#getFields 'fields'} that describe the structure of the data you want to&#010 extract
+ * A DataSource preconfigured to use the {@link com.smartgwt.client.types.RPCTransport "scriptInclude"} transport&#010 for
+ * cross-domain calls to JSON services, such as those provided by Yahoo!.  &#010 <P>&#010 To use this DataSource, provide
+ * the URL of the service as {@link com.smartgwt.client.data.DataSource#getDataURL dataURL}, and&#010 provide {@link
+ * com.smartgwt.client.data.DataSource#getFields fields} that describe the structure of the data you want to&#010 extract
  * from the service's response.&#010 <P>&#010 {@link com.smartgwt.client.data.DataSource#getRecordXPath recordXPath} and
  * {@link com.smartgwt.client.data.DataSourceField#getValueXPath valueXPath} can be used to extract&#010 data from the JSON
- * structure returned by the service.  See&#010 {@link com.smartgwt.client.docs.ClientDataIntegration 'Client-Side Data
- * Integration'} for an overview of how to&#010 control what parts of the JSON structure are included in the {@link
+ * structure returned by the service.  See&#010 {@link com.smartgwt.client.docs.ClientDataIntegration Client-Side Data
+ * Integration} for an overview of how to&#010 control what parts of the JSON structure are included in the {@link
  * com.smartgwt.client.data.DSResponse} object, and&#010 hence provided to {@link
  * com.smartgwt.client.widgets.DataBoundComponent}s that are bound to this DataSource.&#010 <P>&#010 This XJSONDataSource
  * is really a subclass of DataSource with just a few property settings:&#010 <pre>&#010    dataFormat : "json",&#010   

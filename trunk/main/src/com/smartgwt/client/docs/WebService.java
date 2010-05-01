@@ -10,7 +10,7 @@ package com.smartgwt.client.docs;
  * @see com.smartgwt.client.data.WebService#setLocation
  * @see com.smartgwt.client.data.WebService#get
  * @see com.smartgwt.client.data.WebService#getByName
- * @see com.smartgwt.client..SchemaSet#getSchemaNamespace
+ * @see #getSchemaNamespace
  * @see com.smartgwt.client.data.WebService#getServiceNamespace
  */
 public interface WebService {

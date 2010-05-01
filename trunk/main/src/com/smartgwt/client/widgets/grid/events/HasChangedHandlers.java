@@ -22,8 +22,8 @@ import com.google.gwt.event.shared.HasHandlers;
 
 public interface HasChangedHandlers extends HasHandlers {
     /**
-     * If this field is editable, any {@link com.smartgwt.client.widgets.form.fields.FormItem#addChangedHandler
-     * FormItem.addChangedHandler} handler specified on the ListGridField will be passed onto the editors for this field.
+     * If this field is editable, any {@link com.smartgwt.client.widgets.form.fields.FormItem#addChangedHandler changed}
+     * handler specified on the ListGridField will be passed onto the editors for this field.
      *
      * @param handler the changed handler
      * @return {@link HandlerRegistration} used to remove this handler

@@ -66,19 +66,19 @@ import com.google.gwt.event.shared.HasHandlers;
  * <p> 3. If the event occurred on an enabled widget (but not on a form element or link inside the widget), it is sent to
  * that widget's event handler, if any. This handler can cancel further propagation of the event by returning false.  An
  * "enabled" widget is any widget that defines an event handler for one of the supported events.  Interceptable events are
- * defined in the {@link com.smartgwt.client..Canvas#methods#events}. <p> 4. The event is "bubbled" up to the widget's
- * parent in the containment hierarchy, if any. Again, the parent's handler for the event can cancel further propagation by
- * returning false. This step is repeated, with the event "bubbling" up through the containment hierarchy, until a
- * top-level widget is reached or the event is explicitly canceled. In brief, the ISC event model offers the best features
- * of browser event models: <ul> <li> Page-first event handling allows you to reliably process or cancel any event before
- * it      affects the objects on the page. <li> Event "bubbling" ensures that parent widgets receive events sent to their
- * children,      and allows you to create generalized parent-level handlers rather than duplicating      code in each
- * child. </ul> Note: Canceling propagation of an event may cancel its side effects as well, including the generation of
- * other (synthetic) events. For example, if a global mouseDown handler returns false, drag-and-drop events will not be
- * generated. Specific effects are discussed in the descriptions of the various events in the following sections. <p> Smart
- * GWT libraries will not interfere with native event handling when events occur outside of a target widget. You can
- * therefore have HTML that is not ISC-based on the same page as widget objects that will react to native events as you
- * would expect. <p> You can use isc.Event as an alias for isc.EventHandler.
+ * defined in the  "widgetEvents" section of Canvas. <p> 4. The event is "bubbled" up to the widget's parent in the
+ * containment hierarchy, if any. Again, the parent's handler for the event can cancel further propagation by returning
+ * false. This step is repeated, with the event "bubbling" up through the containment hierarchy, until a top-level widget
+ * is reached or the event is explicitly canceled. In brief, the ISC event model offers the best features of browser event
+ * models: <ul> <li> Page-first event handling allows you to reliably process or cancel any event before it      affects
+ * the objects on the page. <li> Event "bubbling" ensures that parent widgets receive events sent to their children,     
+ * and allows you to create generalized parent-level handlers rather than duplicating      code in each child. </ul> Note:
+ * Canceling propagation of an event may cancel its side effects as well, including the generation of other (synthetic)
+ * events. For example, if a global mouseDown handler returns false, drag-and-drop events will not be generated. Specific
+ * effects are discussed in the descriptions of the various events in the following sections. <p> Smart GWT libraries will
+ * not interfere with native event handling when events occur outside of a target widget. You can therefore have HTML that
+ * is not ISC-based on the same page as widget objects that will react to native events as you would expect. <p> You can
+ * use isc.Event as an alias for isc.EventHandler.
  */
 public class EventHandler {
 
@@ -168,10 +168,10 @@ public class EventHandler {
     }-*/;
             
     /**
-     * Applies to {@link com.smartgwt.client.widgets.Canvas#addMouseWheelHandler Canvas.addMouseWheelHandler} events only.
-     * Returns an integer indicating how far the mouse wheel was rotated. This value will be positive if the user scrolled the
-     * mousewheel forward or up, or negative if scrolled in the other direction and will be a multiple of 1 where 1 indicates
-     * the smallest possible rotation of the wheel.
+     * Applies to {@link com.smartgwt.client.widgets.Canvas#addMouseWheelHandler mouseWheel} events only. Returns an integer
+     * indicating how far the mouse wheel was rotated. This value will be positive if the user scrolled the mousewheel forward
+     * or up, or negative if scrolled in the other direction and will be a multiple of 1 where 1 indicates the smallest
+     * possible rotation of the wheel.
      *
      * @return integer indicating how far the mouse wheel was rotated.
      */

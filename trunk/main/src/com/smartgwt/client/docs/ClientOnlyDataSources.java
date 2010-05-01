@@ -14,12 +14,12 @@ package com.smartgwt.client.docs;
  * test dataset, as an Array of Objects,&#010 one per DataSource record.  For example:&#010 <pre>&#010  
  * isc.DataSource.create({&#010       ID:"supplyItem",&#010       fields: ...,&#010       clientOnly:true,&#010      
  * testData:[&#010          {itemName:"Pencil", cost:5.50},&#010          ...&#010       ]&#010   });&#010 </pre>&#010 If
- * you have existing test data in XML (see the {@link com.smartgwt.client.docs.AdminConsole 'Admin Console'} for&#010
+ * you have existing test data in XML (see the {@link com.smartgwt.client.docs.AdminConsole Admin Console} for&#010
  * expected format),&#010 you can use the XML->JS translation engine to load it into a client-only DataSource, like
  * so:&#010 <pre>&#010   isc.DataSource.create({&#010     ID:"solutions",&#010     fields: ...,&#010     clientOnly :
  * true,&#010     testData : &#010         &lt;isomorphic:XML filename="shared/ds/test_data/solutions.data.xml"/&gt;&#010  
  * });&#010 </pre>&#010 Another useful practice is to specify both the clientOnly DataSource and it's test data in&#010
- * XML, so that the {@link com.smartgwt.client.docs.AdminConsole 'Admin Console'} can later be used to import the&#010
+ * XML, so that the {@link com.smartgwt.client.docs.AdminConsole Admin Console} can later be used to import the&#010
  * DataSource and its test data into a SQL Database.  An idiom for accomplishing this is:&#010 <pre>&#010  
  * &lt;isomorphic:loadDS name="solutions"/&gt;&#010   isc.DataSource.getDataSource("solutions").addProperties({&#010    
  * clientOnly : true,&#010     testData : &#010        &lt;isomorphic:XML
@@ -30,8 +30,8 @@ package com.smartgwt.client.docs;
  * the DataSource will work against the local&#010 cache created from this initial request.  This is a quick way to
  * prototype against some test&#010 data that may eventually be returned from an arbitrary back-end.&#010 <P>&#010 Finally,
  * it is possible to have a DataSource which initially fetches the entire dataset and&#010 performs all subsequent fetching
- * locally, while still visiting the server to perform all &#010 other operations.  See
- * ${isc.DocUtils.linkForRef('cacheAllData')}.
+ * locally, while still visiting the server to perform all &#010 other operations.  See {@link
+ * com.smartgwt.client.data.DataSource#getCacheAllData cacheAllData}.
  * @see com.smartgwt.client.data.DataSource#getClientOnly
  * @see com.smartgwt.client.data.DataSource#getTestData
  */

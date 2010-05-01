@@ -4,7 +4,7 @@ package com.smartgwt.client.docs;
 /**
  * <h3>File Assembly</h3>
  * File assembly concatenates multiple files into a single response, reducing the number&#010 of HTTP fetches required to
- * load a page. This concatenation also improves the&#010 compressability of responses, since the compression algorithm may
+ * load a page. This concatenation also improves the&#010 compressibility of responses, since the compression algorithm may
  * reduce redundancy across a&#010 larger data set.&#010 <p>&#010 The ISC FileAssembly service provides
  * configuration-driven file assembly, with integrated&#010 compression and JavaScript stripping services.  Assemblies are
  * specified in an xml format&#010 and map a URI to a set of files to concatenate together.  There also additional flags
@@ -62,7 +62,7 @@ package com.smartgwt.client.docs;
  * command line&#010 tool provided as part of the SDK.  This is a Java-based command line tool located in&#010
  * smartclientSDK/WEB-INF/bin.  There are three versions of the tool in that directory -&#010 fileAssembler.bat is for
  * Windows platforms, fileAssembler.command is for MacOS platforms, and&#010 fileAssembler.sh is for *nix platforms. 
- * Running this tool with the --help argument will show&#010 you the command line switches available.  Typicaly, you'll
+ * Running this tool with the --help argument will show&#010 you the command line switches available.  Typically, you'll
  * need to specify:&#010 <ul>&#010 <li>--config &lt;file&gt; - location of the fileAssembly.xml configuration file&#010
  * <li>--webRoot &lt;dir&gt; - location of the webRoot that the fileAssembler uses to access the&#010 component files.&#010
  * <li>--outputDir &lt;dir&gt; - location of directory where you want output files to go - typically&#010 this is the

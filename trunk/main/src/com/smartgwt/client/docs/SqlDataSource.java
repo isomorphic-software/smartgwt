@@ -5,12 +5,12 @@ package com.smartgwt.client.docs;
  * <h3>SQL DataSources</h3>
  * The Smart GWT Server supports comprehensive, codeless SQL connectivity for DataSources defined in XML.  Our SQL
  * connectivity is mature, feature-rich, protected against injection attacks and easily customizable to support
- * user-written SQL and additional business logic of any complexity.  {@link com.smartgwt.client.docs.SqlVsJPA 'This
- * article'} compares the built-in SQL DataSource to other persistence approaches based on Javabeans. <P> To use the
+ * user-written SQL and additional business logic of any complexity.  {@link com.smartgwt.client.docs.SqlVsJPA This
+ * article} compares the built-in SQL DataSource to other persistence approaches based on Javabeans. <P> To use the
  * built-in SQL engine, declare a {@link com.smartgwt.client.data.DataSource} in XML format with {@link
  * com.smartgwt.client.data.DataSource#getServerType serverType} set to "sql", and place it in the shared dataSources
  * directory ([webroot]/shared/ds by default) in a file called "[dataSourceId].ds.xml". <p> You can then use the {@link
- * com.smartgwt.client.docs.AdminConsole 'Admin Console'} to configure database access, as well as to automatically create
+ * com.smartgwt.client.docs.AdminConsole Admin Console} to configure database access, as well as to automatically create
  * and populate a database table based on your DataSource. By default, DataSources will use the "default database" from the
  * admin console, however you can set {@link com.smartgwt.client.data.DataSource#getDbName dbName} to the name of a
  * specific database configuration you have configured via the Admin Console. <P> The list of databases known to work with
@@ -27,11 +27,12 @@ package com.smartgwt.client.docs;
  * tool will allow you to generate DataSources for any number of SQL DataSources, and customize the process so that
  * organization-specific rules are applied (eg ignoring certain columns, or using naming conventions to generate more
  * complete DataSources). <P> Once you have your SQL DataSource connected to a table, in a default SDK installation,
- * DSRequests for your DataSource will be sent to the default {@link com.smartgwt.client.rpc.RPCManager#actionURL}, and
- * hence handled automatically, without you having to write any Java code, by the {@link com.smartgwt.client.docs.Xml}.
- * IDACall is a very simple servlet that just calls the server-side method dsRequest.execute() for all inbound requests. 
- * For more details on how DataSource requests are processed by Smart GWT Server, and how you can alter and add to this
- * processing, see this description of {@link com.smartgwt.client.docs.ServerDataIntegration 'server data integration'}.
+ * DSRequests for your DataSource will be sent to the default {@link com.smartgwt.client.rpc.RPCManager#actionURL
+ * actionURL}, and hence handled automatically, without you having to write any Java code, by the {@link
+ * com.smartgwt.client.docs.ServletDetails IDACall servlet registered in web.xml}. IDACall is a very simple servlet that
+ * just calls the server-side method dsRequest.execute() for all inbound requests.  For more details on how DataSource
+ * requests are processed by Smart GWT Server, and how you can alter and add to this processing, see this description of
+ * {@link com.smartgwt.client.docs.ServerDataIntegration server data integration}.
  * @see com.smartgwt.client.data.DataSourceField#getSequenceName
  */
 public interface SqlDataSource {

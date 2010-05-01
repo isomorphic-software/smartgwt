@@ -45,13 +45,13 @@ package com.smartgwt.client.docs;
  * &lt;url-pattern&gt;/*&lt;/url-pattern&gt;&#010     &lt;/filter-mapping&gt;&#010 </pre>&#010 You can register the
  * CompressionFilter anywhere in your filter chain, but be aware that&#010 if any filters in front wrap and inspect the
  * HttpServletResponse output stream, they will&#010 be inspecting the compressed response.  Filters are typically applied
- * in the order in which&#010 they are listed in web.xml. &#010 <p>&#010 <u>Compressable mime types and
+ * in the order in which&#010 they are listed in web.xml. &#010 <p>&#010 <u>Compressible mime types and
  * compatibility</u>&#010 <p>&#010 The FileDownload servlet and CompressionFilter filter can serve the following
  * mime-types&#010 compressed: text/html, text/xml, application/x-javascript, text/javascript, text/ecmascript,&#010
  * image/svg+xml.  If your files are not being compressed, make sure your servlet container&#010 has a mime type mapping
  * that identifies it as one of the above file types.&#010 <p>&#010 Compression for the mime types listed above is
  * supported on all browsers supported by&#010 Smart GWT.  There is one exception: compression of javascript files for IE
- * versions older&#010 than IE6 Service Pack 2 requires that the CompressionFilter be registerd to dynamically&#010
+ * versions older&#010 than IE6 Service Pack 2 requires that the CompressionFilter be registered to dynamically&#010
  * compress the page that loads these javascript files.
  */
 public interface Compression {

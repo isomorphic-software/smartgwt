@@ -3,7 +3,7 @@ package com.smartgwt.client.docs;
 
 /**
  * Properties defining an object's appearance
- * @see com.smartgwt.client..CubeGrid#getCellStyle
+ * @see #getCellStyle
  * @see com.smartgwt.client.widgets.form.fields.TextItem#getHint
  * @see com.smartgwt.client.widgets.form.fields.ButtonItem#setTitle
  * @see com.smartgwt.client.widgets.viewer.DetailViewerField#getCellStyle
@@ -40,13 +40,13 @@ package com.smartgwt.client.docs;
  * @see com.smartgwt.client.widgets.ImgButton#setState
  * @see com.smartgwt.client.widgets.StretchImgButton#setTitle
  * @see com.smartgwt.client.widgets.StretchImgButton#setState
- * @see com.smartgwt.client..CubeGrid#getStyleName
- * @see com.smartgwt.client..CubeGrid#getBodyStyleName
- * @see com.smartgwt.client..CubeGrid#getBaseStyle
- * @see com.smartgwt.client..CubeGrid#getAlternateRecordStyles
- * @see com.smartgwt.client..CubeGrid#getInnerHeaderBaseStyle
- * @see com.smartgwt.client..CubeGrid#getColHeaderBaseStyle
- * @see com.smartgwt.client..CubeGrid#getRowHeaderBaseStyle
+ * @see #getStyleName
+ * @see #getBodyStyleName
+ * @see #getBaseStyle
+ * @see #getAlternateRecordStyles
+ * @see #getInnerHeaderBaseStyle
+ * @see #getColHeaderBaseStyle
+ * @see #getRowHeaderBaseStyle
  * @see com.smartgwt.client.widgets.DateChooser#getFirstDayOfWeek
  * @see com.smartgwt.client.widgets.form.DynamicForm#getLongTextEditorThreshold
  * @see com.smartgwt.client.widgets.form.DynamicForm#getLongTextEditorType
@@ -86,6 +86,7 @@ package com.smartgwt.client.docs;
  * @see com.smartgwt.client.widgets.form.fields.ButtonItem#getBaseStyle
  * @see com.smartgwt.client.widgets.form.fields.ButtonItem#getShowTitle
  * @see com.smartgwt.client.widgets.form.fields.SelectItem#getHeight
+ * @see com.smartgwt.client.widgets.form.fields.SelectItem#getMultiple
  * @see com.smartgwt.client.widgets.form.fields.SelectOtherItem#getSeparatorTitle
  * @see com.smartgwt.client.widgets.form.fields.SelectOtherItem#getSeparatorValue
  * @see com.smartgwt.client.widgets.form.fields.SelectOtherItem#getOtherTitle
@@ -95,7 +96,6 @@ package com.smartgwt.client.docs;
  * @see com.smartgwt.client.widgets.form.fields.SelectItem#getPickerIconStyle
  * @see com.smartgwt.client.widgets.form.fields.SelectItem#getShowFocused
  * @see com.smartgwt.client.widgets.form.fields.SelectItem#getShowHintInField
- * @see com.smartgwt.client.widgets.form.fields.SelectItem#getMultiple
  * @see com.smartgwt.client.widgets.form.fields.CheckboxItem#getTitleStyle
  * @see com.smartgwt.client.widgets.form.fields.CheckboxItem#getTextBoxStyle
  * @see com.smartgwt.client.widgets.form.fields.CheckboxItem#getCheckedImage
@@ -141,9 +141,9 @@ package com.smartgwt.client.docs;
  * @see com.smartgwt.client.widgets.form.fields.ToolbarItem#getColSpan
  * @see com.smartgwt.client.widgets.form.fields.ToolbarItem#getButtonBaseStyle
  * @see com.smartgwt.client.widgets.form.fields.ComboBoxItem#getShowHintInField
- * @see com.smartgwt.client..RelativeDateItem#getStartDate
- * @see com.smartgwt.client..RelativeDateItem#getEndDate
- * @see com.smartgwt.client..RelativeDateItem#getCenturyThreshold
+ * @see #getStartDate
+ * @see #getEndDate
+ * @see #getCenturyThreshold
  * @see com.smartgwt.client.widgets.calendar.Calendar#getBaseStyle
  * @see com.smartgwt.client.widgets.calendar.Calendar#getDayHeaderBaseStyle
  * @see com.smartgwt.client.widgets.calendar.Calendar#getDayBodyBaseStyle
@@ -306,13 +306,13 @@ package com.smartgwt.client.docs;
  * @see com.smartgwt.client.widgets.Splitbar#getVSrc
  * @see com.smartgwt.client.widgets.Splitbar#getCapSize
  * @see com.smartgwt.client.widgets.ImgSplitbar#getSrc
- * @see com.smartgwt.client..FormItemBaseStyle
+ * @see java.lang.String
  * @see com.smartgwt.client.types.SortArrow
  * @see com.smartgwt.client.types.Alignment
  * @see com.smartgwt.client.types.VerticalAlignment
  * @see com.smartgwt.client.types.Direction
  * @see com.smartgwt.client.types.ImageStyle
- * @see com.smartgwt.client..CSSStyleName
+ * @see java.lang.String
  */
 public interface Appearance {
 }
