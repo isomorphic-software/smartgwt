@@ -186,9 +186,9 @@ public class I18nUtil {
         }
     
         if($wnd.isc.RichTextEditor) {
-            $wnd.sc.RichTextEditor.changeDefaults("copySelectionDefaults", {prompt:messages.@com.smartgwt.client.i18n.SmartGwtMessages::richTextEditor_copySelectionPrompt()()});
-            $wnd.sc.RichTextEditor.changeDefaults("cutSelectionDefaults", {prompt:messages.@com.smartgwt.client.i18n.SmartGwtMessages::richTextEditor_cutSelectionPrompt()()});
-            $wnd.sc.RichTextEditor.changeDefaults("pasteSelectionDefaults", {prompt:messages.@com.smartgwt.client.i18n.SmartGwtMessages::richTextEditor_pasteSelectionPrompt()()});
+            $wnd.isc.RichTextEditor.changeDefaults("copySelectionDefaults", {prompt:messages.@com.smartgwt.client.i18n.SmartGwtMessages::richTextEditor_copySelectionPrompt()()});
+            $wnd.isc.RichTextEditor.changeDefaults("cutSelectionDefaults", {prompt:messages.@com.smartgwt.client.i18n.SmartGwtMessages::richTextEditor_cutSelectionPrompt()()});
+            $wnd.isc.RichTextEditor.changeDefaults("pasteSelectionDefaults", {prompt:messages.@com.smartgwt.client.i18n.SmartGwtMessages::richTextEditor_pasteSelectionPrompt()()});
         }
 
         if($wnd.isc.Selection) {
