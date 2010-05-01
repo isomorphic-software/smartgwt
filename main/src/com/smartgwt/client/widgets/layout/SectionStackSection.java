@@ -112,7 +112,7 @@ public class SectionStackSection extends RefDataClass {
      * If set to false, then this sectionHeader will not be able to be dragged to perform a drag reorder, if {@link
      * com.smartgwt.client.widgets.layout.SectionStack#getCanReorderSections canReorderSections} is true. You can also disable
      * dropping other sections before this one by setting  {@link com.smartgwt.client.widgets.Canvas#getCanDropBefore
-     * 'canDropBefore'} to false.
+     * canDropBefore} to false.
      *
      * @param canReorder canReorder Default value is null
      */
@@ -144,16 +144,16 @@ public class SectionStackSection extends RefDataClass {
 
     /**
      * Optional ID for the section. By default this will be applied to the generated  SectionStackHeader widget as a standard
-     * widget ID, meaning it should be unique within a page. To disable this behavior, set
-     * ${isc.DocUtils.linkForRef('SectionStackSection.useGlobalSectionIDs')} to false. <P> <b>Backcompat Note</b>: Section
-     * stack sections may be uniquely identified within a stack via the {@link
+     * widget ID, meaning it should be unique within a page. To disable this behavior, set {@link
+     * com.smartgwt.client.widgets.layout.SectionStackSection#getUseGlobalSectionIDs useGlobalSectionIDs} to false. <P>
+     * <b>Backcompat Note</b>: Section stack sections may be uniquely identified within a stack via the {@link
      * com.smartgwt.client.widgets.layout.SectionStackSection#getName name} attribute (introduced in Jan 2010). Prior to this,
      * the section ID attribute was used in this way (and would not be applied to the section header  as a widget ID). For
      * backwards compatibility this is still supported: If  <code>section.name</code> is unspecified for a section but
      * <code>section.ID</code> is set, the ID will be used as a default name attribute for the section. You can also disable
      * the standard behavior of having the <code>section.ID</code> being applied to the generated section header (thereby
-     * avoiding the page-level uniqueness requirement) by setting 
-     * ${isc.DocUtils.linkForRef('SectionStackSection.useGlobalSectionIDs')} to false.
+     * avoiding the page-level uniqueness requirement) by setting  {@link
+     * com.smartgwt.client.widgets.layout.SectionStackSection#getUseGlobalSectionIDs useGlobalSectionIDs} to false.
      *
      * @param ID ID Default value is null
      */
@@ -163,16 +163,16 @@ public class SectionStackSection extends RefDataClass {
 
     /**
      * Optional ID for the section. By default this will be applied to the generated  SectionStackHeader widget as a standard
-     * widget ID, meaning it should be unique within a page. To disable this behavior, set
-     * ${isc.DocUtils.linkForRef('SectionStackSection.useGlobalSectionIDs')} to false. <P> <b>Backcompat Note</b>: Section
-     * stack sections may be uniquely identified within a stack via the {@link
+     * widget ID, meaning it should be unique within a page. To disable this behavior, set {@link
+     * com.smartgwt.client.widgets.layout.SectionStackSection#getUseGlobalSectionIDs useGlobalSectionIDs} to false. <P>
+     * <b>Backcompat Note</b>: Section stack sections may be uniquely identified within a stack via the {@link
      * com.smartgwt.client.widgets.layout.SectionStackSection#getName name} attribute (introduced in Jan 2010). Prior to this,
      * the section ID attribute was used in this way (and would not be applied to the section header  as a widget ID). For
      * backwards compatibility this is still supported: If  <code>section.name</code> is unspecified for a section but
      * <code>section.ID</code> is set, the ID will be used as a default name attribute for the section. You can also disable
      * the standard behavior of having the <code>section.ID</code> being applied to the generated section header (thereby
-     * avoiding the page-level uniqueness requirement) by setting 
-     * ${isc.DocUtils.linkForRef('SectionStackSection.useGlobalSectionIDs')} to false.
+     * avoiding the page-level uniqueness requirement) by setting  {@link
+     * com.smartgwt.client.widgets.layout.SectionStackSection#getUseGlobalSectionIDs useGlobalSectionIDs} to false.
      *
      *
      * @return String

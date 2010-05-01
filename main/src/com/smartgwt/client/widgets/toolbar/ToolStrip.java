@@ -57,15 +57,16 @@ import com.google.gwt.event.shared.HasHandlers;
 
 /**
  * Base class for creating toolstrips like those found in browsers and office applications: a mixed set of controls
- * including {@link com.smartgwt.client.widgets.ImgButton},  {@link com.smartgwt.client.widgets.Button#getRadioGroup 'radio
- * button groups'}, {@link com.smartgwt.client.widgets.menu.MenuButton}, {@link
- * com.smartgwt.client.widgets.form.fields.ComboBoxItem}, {@link com.smartgwt.client.widgets.layout.LayoutSpacer}, {@link
- * com.smartgwt.client.widgets.Label} and  {@link com.smartgwt.client.widgets.form.fields.SelectItem}.   <P> All of the
- * above components are placed in the {@link com.smartgwt.client.widgets.toolbar.ToolStrip#getMembers 'members array'} to
- * form a ToolStrip.  Note that the {@link com.smartgwt.client.widgets.form.fields.FormItem} mentioned above (ComboBox and
- * drop-down selects) need to be placed within a {@link com.smartgwt.client.widgets.form.DynamicForm} as usual. <P> The
- * special strings "separator" and "resizer" can be placed in the members array to create separators and resizers
- * respectively. <P> Also see the <a href="http://www.smartclient.com/smartgwt/showcase/#toolstrip"
+ * including {@link com.smartgwt.client.widgets.ImgButton icon buttons},  {@link
+ * com.smartgwt.client.widgets.Button#getRadioGroup radio button groups}, {@link
+ * com.smartgwt.client.widgets.menu.MenuButton menus}, {@link com.smartgwt.client.widgets.form.fields.ComboBoxItem
+ * comboBoxes}, {@link com.smartgwt.client.widgets.layout.LayoutSpacer spacers}, {@link com.smartgwt.client.widgets.Label
+ * status displays} and  {@link com.smartgwt.client.widgets.form.fields.SelectItem drop-down selects}.   <P> All of the
+ * above components are placed in the {@link com.smartgwt.client.widgets.toolbar.ToolStrip#getMembers members array} to
+ * form a ToolStrip.  Note that the {@link com.smartgwt.client.widgets.form.fields.FormItem FormItems} mentioned above
+ * (ComboBox and drop-down selects) need to be placed within a {@link com.smartgwt.client.widgets.form.DynamicForm} as
+ * usual. <P> The special strings "separator" and "resizer" can be placed in the members array to create separators and
+ * resizers respectively. <P> Also see the <a href="http://www.smartclient.com/smartgwt/showcase/#toolstrip"
  * target="examples">ToolStrips</a> example in the Feature Explorer.
  */
 public class ToolStrip extends Layout {
@@ -205,11 +206,11 @@ public class ToolStrip extends Layout {
     }
 
     /**
-     * Default stylename to use if {@link com.smartgwt.client.widgets.toolbar.ToolStrip#getVertical 'this.vertical'} is true.
-     * If unset, the standard {@link com.smartgwt.client.widgets.toolbar.ToolStrip#getStyleName styleName} will be used for
-     * both vertical and horizontal toolstrips. <P> Note that this property only applies to the widget at init time. To modify
-     * the  styleName after this widget has been initialized, you should simply call {@link
-     * com.smartgwt.client.widgets.Canvas#setStyleName Canvas.setStyleName} rather than updating this  property.
+     * Default stylename to use if {@link com.smartgwt.client.widgets.toolbar.ToolStrip#getVertical this.vertical} is true. If
+     * unset, the standard {@link com.smartgwt.client.widgets.toolbar.ToolStrip#getStyleName styleName} will be used for both
+     * vertical and horizontal toolstrips. <P> Note that this property only applies to the widget at init time. To modify the 
+     * styleName after this widget has been initialized, you should simply call {@link
+     * com.smartgwt.client.widgets.Canvas#setStyleName setStyleName()} rather than updating this  property.
      *
      * @param verticalStyleName verticalStyleName Default value is null
      * @throws IllegalStateException this property cannot be changed after the component has been created
@@ -220,11 +221,11 @@ public class ToolStrip extends Layout {
     }
 
     /**
-     * Default stylename to use if {@link com.smartgwt.client.widgets.toolbar.ToolStrip#getVertical 'this.vertical'} is true.
-     * If unset, the standard {@link com.smartgwt.client.widgets.toolbar.ToolStrip#getStyleName styleName} will be used for
-     * both vertical and horizontal toolstrips. <P> Note that this property only applies to the widget at init time. To modify
-     * the  styleName after this widget has been initialized, you should simply call {@link
-     * com.smartgwt.client.widgets.Canvas#setStyleName Canvas.setStyleName} rather than updating this  property.
+     * Default stylename to use if {@link com.smartgwt.client.widgets.toolbar.ToolStrip#getVertical this.vertical} is true. If
+     * unset, the standard {@link com.smartgwt.client.widgets.toolbar.ToolStrip#getStyleName styleName} will be used for both
+     * vertical and horizontal toolstrips. <P> Note that this property only applies to the widget at init time. To modify the 
+     * styleName after this widget has been initialized, you should simply call {@link
+     * com.smartgwt.client.widgets.Canvas#setStyleName setStyleName()} rather than updating this  property.
      *
      *
      * @return String

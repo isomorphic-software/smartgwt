@@ -60,10 +60,10 @@ import com.google.gwt.event.shared.HasHandlers;
  * of a {@link com.smartgwt.client.widgets.tree.TreeGrid}. {@link com.smartgwt.client.widgets.tree.TreeGrid} is a subclass
  * of {@link com.smartgwt.client.widgets.grid.ListGrid} and as a result, for all fields except the field containing the
  * {@link com.smartgwt.client.widgets.tree.Tree} itself (specified by {@link
- * com.smartgwt.client.widgets.tree.TreeGridField#getTreeField treeField}, all properties settable on
- * ${isc.DocUtils.linkForRef('object:ListGridField')} apply to TreeGridField as well. <p> This class documents just those
- * properties that are specific to TreeGridFields - see ${isc.DocUtils.linkForRef('object:ListGridField')} for the set of
- * inherited properties.
+ * com.smartgwt.client.widgets.tree.TreeGridField#getTreeField treeField}, all properties settable on {@link
+ * com.smartgwt.client.widgets.grid.ListGridField} apply to TreeGridField as well. <p> This class documents just those
+ * properties that are specific to TreeGridFields - see {@link com.smartgwt.client.widgets.grid.ListGridField} for the set
+ * of inherited properties.
  */
 public class TreeGridField extends ListGridField {
 
@@ -104,8 +104,8 @@ public class TreeGridField extends ListGridField {
 
     /**
      * Dictates whether the data in this field be exported.  Explicitly set this  to false to prevent exporting.  Has no effect
-     * if the underlying   {@link com.smartgwt.client.data.DataSourceField#getCanExport 'dataSourceField'} is explicitly set to
-     *   canExport: false.
+     * if the underlying   {@link com.smartgwt.client.data.DataSourceField#getCanExport dataSourceField} is explicitly set to  
+     * canExport: false.
      *
      * @param canExport canExport Default value is null
      */
@@ -115,8 +115,8 @@ public class TreeGridField extends ListGridField {
 
     /**
      * Dictates whether the data in this field be exported.  Explicitly set this  to false to prevent exporting.  Has no effect
-     * if the underlying   {@link com.smartgwt.client.data.DataSourceField#getCanExport 'dataSourceField'} is explicitly set to
-     *   canExport: false.
+     * if the underlying   {@link com.smartgwt.client.data.DataSourceField#getCanExport dataSourceField} is explicitly set to  
+     * canExport: false.
      *
      *
      * @return Boolean
@@ -130,10 +130,9 @@ public class TreeGridField extends ListGridField {
      * field specifies this property, if a field named after the {@link com.smartgwt.client.widgets.tree.Tree#getTitleProperty
      * titleProperty} of the Tree is present in {@link com.smartgwt.client.widgets.tree.TreeGrid#getFields fields}, that field
      * will show the tree.  Note that when using a DataSource, you typically define the title field via {@link
-     * com.smartgwt.client.data.DataSource#getTitleField titleField} and the generated {@link com.smartgwt.client..ResultTree}
-     * automatically uses this field. If none of the above rules apply, the first field in {@link
-     * com.smartgwt.client.widgets.tree.TreeGrid#getFields fields} is assigned to display the {@link
-     * com.smartgwt.client.widgets.tree.Tree}.
+     * com.smartgwt.client.data.DataSource#getTitleField titleField} and the generated ResultTree automatically uses this
+     * field. If none of the above rules apply, the first field in {@link com.smartgwt.client.widgets.tree.TreeGrid#getFields
+     * fields} is assigned to display the {@link com.smartgwt.client.widgets.tree.Tree}.
      *
      * @param treeField treeField Default value is see below
      */
@@ -146,10 +145,9 @@ public class TreeGridField extends ListGridField {
      * field specifies this property, if a field named after the {@link com.smartgwt.client.widgets.tree.Tree#getTitleProperty
      * titleProperty} of the Tree is present in {@link com.smartgwt.client.widgets.tree.TreeGrid#getFields fields}, that field
      * will show the tree.  Note that when using a DataSource, you typically define the title field via {@link
-     * com.smartgwt.client.data.DataSource#getTitleField titleField} and the generated {@link com.smartgwt.client..ResultTree}
-     * automatically uses this field. If none of the above rules apply, the first field in {@link
-     * com.smartgwt.client.widgets.tree.TreeGrid#getFields fields} is assigned to display the {@link
-     * com.smartgwt.client.widgets.tree.Tree}.
+     * com.smartgwt.client.data.DataSource#getTitleField titleField} and the generated ResultTree automatically uses this
+     * field. If none of the above rules apply, the first field in {@link com.smartgwt.client.widgets.tree.TreeGrid#getFields
+     * fields} is assigned to display the {@link com.smartgwt.client.widgets.tree.Tree}.
      *
      *
      * @return Boolean

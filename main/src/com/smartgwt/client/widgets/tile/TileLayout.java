@@ -203,7 +203,7 @@ public class TileLayout extends Canvas {
     }
 
     /**
-     * Direction of tiling.  See also {@link com.smartgwt.client..TileLayoutPolicy}.
+     * Direction of tiling.  See also TileLayoutPolicy.
      *
      * @param orientation orientation Default value is "horizontal"
      * @throws IllegalStateException this property cannot be changed after the component has been created
@@ -213,7 +213,7 @@ public class TileLayout extends Canvas {
     }
 
     /**
-     * Direction of tiling.  See also {@link com.smartgwt.client..TileLayoutPolicy}.
+     * Direction of tiling.  See also TileLayoutPolicy.
      *
      *
      * @return Orientation
@@ -249,7 +249,7 @@ public class TileLayout extends Canvas {
     }
 
     /**
-     * If this widget has padding specified (as {@link com.smartgwt.client.widgets.Canvas#getPadding 'this.padding'} or in the
+     * If this widget has padding specified (as {@link com.smartgwt.client.widgets.Canvas#getPadding this.padding} or in the
      * CSS style applied to this layout), should it show up as space outside the members, similar to layoutMargin? <P> If this
      * setting is false, padding will not affect member positioning (as CSS padding normally does not affect absolutely
      * positioned children).  Leaving this setting true allows a designer to more effectively control layout purely from CSS.
@@ -264,7 +264,7 @@ public class TileLayout extends Canvas {
     }
 
     /**
-     * If this widget has padding specified (as {@link com.smartgwt.client.widgets.Canvas#getPadding 'this.padding'} or in the
+     * If this widget has padding specified (as {@link com.smartgwt.client.widgets.Canvas#getPadding this.padding} or in the
      * CSS style applied to this layout), should it show up as space outside the members, similar to layoutMargin? <P> If this
      * setting is false, padding will not affect member positioning (as CSS padding normally does not affect absolutely
      * positioned children).  Leaving this setting true allows a designer to more effectively control layout purely from CSS.
@@ -386,7 +386,7 @@ public class TileLayout extends Canvas {
 
     /**
      * Number of tiles to show in each line.  Auto-derived from {@link com.smartgwt.client.widgets.tile.TileLayout#getTileSize
-     * tileSize} for some layout modes.  See {@link com.smartgwt.client..TileLayoutPolicy}. This can also affect {@link
+     * tileSize} for some layout modes.  See TileLayoutPolicy. This can also affect {@link
      * com.smartgwt.client.widgets.tile.TileLayout#getTileWidth tileWidth} or {@link
      * com.smartgwt.client.widgets.tile.TileLayout#getTileHeight tileHeight}. See those properties for details.
      *
@@ -399,7 +399,7 @@ public class TileLayout extends Canvas {
 
     /**
      * Number of tiles to show in each line.  Auto-derived from {@link com.smartgwt.client.widgets.tile.TileLayout#getTileSize
-     * tileSize} for some layout modes.  See {@link com.smartgwt.client..TileLayoutPolicy}. This can also affect {@link
+     * tileSize} for some layout modes.  See TileLayoutPolicy. This can also affect {@link
      * com.smartgwt.client.widgets.tile.TileLayout#getTileWidth tileWidth} or {@link
      * com.smartgwt.client.widgets.tile.TileLayout#getTileHeight tileHeight}. See those properties for details.
      *

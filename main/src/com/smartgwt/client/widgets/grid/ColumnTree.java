@@ -148,7 +148,7 @@ public class ColumnTree extends Layout  implements DataBoundComponent, com.smart
 
     /**
      * This property allows the developer to rename the  {@link com.smartgwt.client.widgets.tree.TreeNode#getShowOpenIcon
-     * 'default node.showOpenIcon'} property.
+     * default node.showOpenIcon} property.
      * <p><b>Note : </b> This is an advanced setting</p>
      *
      * @param customIconOpenProperty customIconOpenProperty Default value is "showOpenIcon"
@@ -159,7 +159,7 @@ public class ColumnTree extends Layout  implements DataBoundComponent, com.smart
 
     /**
      * This property allows the developer to rename the  {@link com.smartgwt.client.widgets.tree.TreeNode#getShowOpenIcon
-     * 'default node.showOpenIcon'} property.
+     * default node.showOpenIcon} property.
      *
      *
      * @return String
@@ -470,7 +470,7 @@ public class ColumnTree extends Layout  implements DataBoundComponent, com.smart
      * com.smartgwt.client.widgets.grid.ColumnTree#shouldShowHeader ColumnTree.shouldShowHeader} returns true for this column.
      * <P> By default, returns {@link com.smartgwt.client.widgets.grid.ColumnTree#getFirstColumnTitle firstColumnTitle} for the
      * first column, and for subsequent columns, the result of {@link com.smartgwt.client.widgets.tree.Tree#getTitle
-     * Tree.getTitle} called on the <code>node</code> passed to this function.
+     * this.data.getTitle()} called on the <code>node</code> passed to this function.
      * @param node parent node for the nodes to be shown in the column
      * @param colNum index of the column
      */

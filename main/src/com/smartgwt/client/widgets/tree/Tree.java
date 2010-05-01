@@ -63,8 +63,8 @@ import com.google.gwt.event.shared.HasHandlers;
  * of objects interlinked by IDs or via explicitly specified Arrays of child objects.  See {@link
  * com.smartgwt.client.widgets.tree.Tree#getModelType modelType} for an explanation of how to pass data to a Tree. <P>
  * Typical usage is to call {@link com.smartgwt.client.widgets.tree.TreeGrid#fetchData TreeGrid.fetchData} to cause
- * automatic creation of a  {@link com.smartgwt.client..ResultTree}, which is a type of Tree that automatically handles
- * loading data on  demand.  For information on DataBinding Trees, see {@link com.smartgwt.client.docs.TreeDataBinding}.
+ * automatic creation of a  ResultTree, which is a type of Tree that automatically handles loading data on  demand.  For
+ * information on DataBinding Trees, see {@link com.smartgwt.client.docs.TreeDataBinding}.
  */
 public class Tree extends BaseClass  implements com.smartgwt.client.widgets.tree.HasDataChangedHandlers {
 
@@ -183,8 +183,8 @@ public class Tree extends BaseClass  implements com.smartgwt.client.widgets.tree
     }
 
     /**
-     * If this tree has {@link com.smartgwt.client.widgets.tree.Tree#getModelType 'modelType:"parent"'}, should nodes in the
-     * data array for the tree be dropped if they have an explicitly specified value for the {@link
+     * If this tree has {@link com.smartgwt.client.widgets.tree.Tree#getModelType modelType:"parent"}, should nodes in the data
+     * array for the tree be dropped if they have an explicitly specified value for the {@link
      * com.smartgwt.client.widgets.tree.Tree#getParentIdField parentIdField} which doesn't match any other nodes in the tree.
      * If set to false these nodes will be added as children of the root node.
      * <p><b>Note : </b> This is an advanced setting</p>
@@ -197,8 +197,8 @@ public class Tree extends BaseClass  implements com.smartgwt.client.widgets.tree
     }
 
     /**
-     * If this tree has {@link com.smartgwt.client.widgets.tree.Tree#getModelType 'modelType:"parent"'}, should nodes in the
-     * data array for the tree be dropped if they have an explicitly specified value for the {@link
+     * If this tree has {@link com.smartgwt.client.widgets.tree.Tree#getModelType modelType:"parent"}, should nodes in the data
+     * array for the tree be dropped if they have an explicitly specified value for the {@link
      * com.smartgwt.client.widgets.tree.Tree#getParentIdField parentIdField} which doesn't match any other nodes in the tree.
      * If set to false these nodes will be added as children of the root node.
      *
@@ -421,10 +421,10 @@ public class Tree extends BaseClass  implements com.smartgwt.client.widgets.tree
 
     /**
      * If new nodes are added to a tree with modelType:"parent" which have the same {@link
-     * com.smartgwt.client.widgets.tree.Tree#getIdField 'id field value'} as existing nodes, the existing nodes are removed
-     * when the new nodes are added. <P> If reportCollisions is true, the Tree will log a warning in the developer console
-     * about this. <P> Note that if an id collision occurs between a new node and its ancestor, the ancestor will be removed
-     * and the new node will not be added to the tree.
+     * com.smartgwt.client.widgets.tree.Tree#getIdField id field value} as existing nodes, the existing nodes are removed when
+     * the new nodes are added. <P> If reportCollisions is true, the Tree will log a warning in the developer console about
+     * this. <P> Note that if an id collision occurs between a new node and its ancestor, the ancestor will be removed and the
+     * new node will not be added to the tree.
      *
      * @param reportCollisions reportCollisions Default value is true
      * @throws IllegalStateException this property cannot be changed after the underlying component has been created
@@ -435,10 +435,10 @@ public class Tree extends BaseClass  implements com.smartgwt.client.widgets.tree
 
     /**
      * If new nodes are added to a tree with modelType:"parent" which have the same {@link
-     * com.smartgwt.client.widgets.tree.Tree#getIdField 'id field value'} as existing nodes, the existing nodes are removed
-     * when the new nodes are added. <P> If reportCollisions is true, the Tree will log a warning in the developer console
-     * about this. <P> Note that if an id collision occurs between a new node and its ancestor, the ancestor will be removed
-     * and the new node will not be added to the tree.
+     * com.smartgwt.client.widgets.tree.Tree#getIdField id field value} as existing nodes, the existing nodes are removed when
+     * the new nodes are added. <P> If reportCollisions is true, the Tree will log a warning in the developer console about
+     * this. <P> Note that if an id collision occurs between a new node and its ancestor, the ancestor will be removed and the
+     * new node will not be added to the tree.
      *
      *
      * @return Boolean
@@ -556,7 +556,7 @@ public class Tree extends BaseClass  implements com.smartgwt.client.widgets.tree
     /**
      * If {@link com.smartgwt.client.widgets.tree.Tree#getSeparateFolders separateFolders} is true, should folders be displayed
      * above or below leaves? When set to <code>true</code> folders will appear above leaves when the
-     * <code>sortDirection</code> applied to the tree is ${isc.DocUtils.linkForRef('Array.ASCENDING')}
+     * <code>sortDirection</code> applied to the tree is  ASCENDING
      *
      * @param sortFoldersBeforeLeaves sortFoldersBeforeLeaves Default value is true
      */
@@ -567,7 +567,7 @@ public class Tree extends BaseClass  implements com.smartgwt.client.widgets.tree
     /**
      * If {@link com.smartgwt.client.widgets.tree.Tree#getSeparateFolders separateFolders} is true, should folders be displayed
      * above or below leaves? When set to <code>true</code> folders will appear above leaves when the
-     * <code>sortDirection</code> applied to the tree is ${isc.DocUtils.linkForRef('Array.ASCENDING')}
+     * <code>sortDirection</code> applied to the tree is  ASCENDING
      *
      *
      * @return Boolean

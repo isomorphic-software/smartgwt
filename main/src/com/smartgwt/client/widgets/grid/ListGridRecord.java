@@ -56,12 +56,12 @@ import com.google.gwt.event.shared.*;
 import com.google.gwt.event.shared.HasHandlers;
 
 /**
- * A ListGridRecord is a JavaScript Object whose properties contain values for each&#010
- * ${isc.DocUtils.linkForRef('object:ListGridField')}.  A ListGridRecord may have additional properties which affect
- * the&#010 record's appearance or behavior, or which hold data for use by custom logic or other,&#010 related
- * components.&#010 <p>&#010 For example a ListGrid that defines the following fields:&#010 <pre>&#010 fields : [&#010    
- * {name: "field1"},&#010     {name: "field2"}&#010 ],&#010 </pre>&#010 Might have the following data:&#010 <pre>&#010 data
- * : [&#010     {field1: "foo", field2: "bar", customProperty:5},&#010     {field1: "field1 value", field2: "field2 value",
+ * A ListGridRecord is a JavaScript Object whose properties contain values for each&#010 {@link
+ * com.smartgwt.client.widgets.grid.ListGridField}.  A ListGridRecord may have additional properties which affect the&#010
+ * record's appearance or behavior, or which hold data for use by custom logic or other,&#010 related components.&#010
+ * <p>&#010 For example a ListGrid that defines the following fields:&#010 <pre>&#010 fields : [&#010     {name:
+ * "field1"},&#010     {name: "field2"}&#010 ],&#010 </pre>&#010 Might have the following data:&#010 <pre>&#010 data :
+ * [&#010     {field1: "foo", field2: "bar", customProperty:5},&#010     {field1: "field1 value", field2: "field2 value",
  * enabled:false}&#010 ]&#010 </pre>&#010 Each line of code in the <code>data</code> array above creates one JavaScript
  * Object via&#010 JavaScript {type:ObjectLiteral,object literal} notation.  These JavaScript Objects are&#010 used as
  * ListGridRecords.&#010 <P>&#010 Both records shown above have properties whose names match the name property of a&#010
@@ -70,14 +70,14 @@ import com.google.gwt.event.shared.HasHandlers;
  * but which may be accessed by custom logic.&#010 <P>&#010 After a ListGrid is created and has loaded data, records may be
  * accessed via&#010 {@link com.smartgwt.client.widgets.grid.ListGrid#getData data}, for example, listGrid.data.get(0)
  * retrieves the first record.&#010 ListGridRecords are also passed to many events, such as&#010 {@link
- * com.smartgwt.client.widgets.grid.ListGrid#addCellClickHandler ListGrid.addCellClickHandler}.&#010 <P>&#010 A
- * ListGridRecord is always an ordinary JavaScript Object regardless of how the grid's&#010 dataset is loaded (static data,
- * java server, XML web service, etc), and so supports the&#010 normal behaviors of JavaScript Objects, including accessing
- * and assigning to properties&#010 via dot notation:&#010 <pre>&#010     var fieldValue = record.<i>fieldName</i>;&#010   
+ * com.smartgwt.client.widgets.grid.ListGrid#addCellClickHandler cellClick()}.&#010 <P>&#010 A ListGridRecord is always an
+ * ordinary JavaScript Object regardless of how the grid's&#010 dataset is loaded (static data, java server, XML web
+ * service, etc), and so supports the&#010 normal behaviors of JavaScript Objects, including accessing and assigning to
+ * properties&#010 via dot notation:&#010 <pre>&#010     var fieldValue = record.<i>fieldName</i>;&#010    
  * record.<i>fieldName</i> = newValue;&#010 </pre>&#010 <P>&#010 Note however that simply assigning a value to a record
  * won't cause the display to be&#010 automatically refreshed - {@link
  * com.smartgwt.client.widgets.grid.ListGrid#refreshCell ListGrid.refreshCell} needs to be called.  Also,&#010 consider
- * {@link com.smartgwt.client.docs.Editing 'editValues vs saved values'} when directly modifying&#010 ListGridRecords.&#010
+ * {@link com.smartgwt.client.docs.Editing editValues vs saved values} when directly modifying&#010 ListGridRecords.&#010
  * <P>&#010 See the attributes in the API tab for the full list of special properties on&#010 ListGridRecords that will
  * affect the grid's behavior.
  */
@@ -311,7 +311,7 @@ public class ListGridRecord extends Record {
 
     /**
      * If specified as false this record should be ignored when calculating summary totals  to be shown in the {@link
-     * com.smartgwt.client.widgets.grid.ListGrid#getShowGridSummary 'summary row'} for this grid. <P> Note that
+     * com.smartgwt.client.widgets.grid.ListGrid#getShowGridSummary summary row} for this grid. <P> Note that
      * <code>includeInSummary</code> is the default property name for this attribute, but it may be modified via {@link
      * com.smartgwt.client.widgets.grid.ListGrid#getIncludeInSummaryProperty includeInSummaryProperty}.
      *
@@ -323,7 +323,7 @@ public class ListGridRecord extends Record {
 
     /**
      * If specified as false this record should be ignored when calculating summary totals  to be shown in the {@link
-     * com.smartgwt.client.widgets.grid.ListGrid#getShowGridSummary 'summary row'} for this grid. <P> Note that
+     * com.smartgwt.client.widgets.grid.ListGrid#getShowGridSummary summary row} for this grid. <P> Note that
      * <code>includeInSummary</code> is the default property name for this attribute, but it may be modified via {@link
      * com.smartgwt.client.widgets.grid.ListGrid#getIncludeInSummaryProperty includeInSummaryProperty}.
      *

@@ -203,9 +203,9 @@ public class Tab extends RefDataClass {
      * the tabs ID  [including  {@link com.smartgwt.client.widgets.tab.TabSet#selectTab TabSet.selectTab}, {@link
      * com.smartgwt.client.widgets.tab.TabSet#updateTab TabSet.updateTab}, {@link
      * com.smartgwt.client.widgets.tab.TabSet#removeTab TabSet.removeTab}].<br> The ID will also be passed to the {@link
-     * com.smartgwt.client.widgets.tab.TabSet#addTabSelectedHandler TabSet.addTabSelectedHandler} and {@link
-     * com.smartgwt.client.widgets.tab.TabSet#addTabDeselectedHandler TabSet.addTabDeselectedHandler} handler functions, if
-     * specified. <p> Note that if you provide an ID, it must be globally unique.
+     * com.smartgwt.client.widgets.tab.TabSet#addTabSelectedHandler TabSet.tabSelected} and {@link
+     * com.smartgwt.client.widgets.tab.TabSet#addTabDeselectedHandler TabSet.tabDeselected} handler functions, if specified.
+     * <p> Note that if you provide an ID, it must be globally unique.
      *
      * @param ID ID Default value is null
      */
@@ -218,9 +218,9 @@ public class Tab extends RefDataClass {
      * the tabs ID  [including  {@link com.smartgwt.client.widgets.tab.TabSet#selectTab TabSet.selectTab}, {@link
      * com.smartgwt.client.widgets.tab.TabSet#updateTab TabSet.updateTab}, {@link
      * com.smartgwt.client.widgets.tab.TabSet#removeTab TabSet.removeTab}].<br> The ID will also be passed to the {@link
-     * com.smartgwt.client.widgets.tab.TabSet#addTabSelectedHandler TabSet.addTabSelectedHandler} and {@link
-     * com.smartgwt.client.widgets.tab.TabSet#addTabDeselectedHandler TabSet.addTabDeselectedHandler} handler functions, if
-     * specified. <p> Note that if you provide an ID, it must be globally unique.
+     * com.smartgwt.client.widgets.tab.TabSet#addTabSelectedHandler TabSet.tabSelected} and {@link
+     * com.smartgwt.client.widgets.tab.TabSet#addTabDeselectedHandler TabSet.tabDeselected} handler functions, if specified.
+     * <p> Note that if you provide an ID, it must be globally unique.
      *
      *
      * @return String

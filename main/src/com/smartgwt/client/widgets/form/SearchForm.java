@@ -90,9 +90,9 @@ public class SearchForm extends DynamicForm {
     // ********************* Properties / Attributes ***********************
 
     /**
-     * If this attribute is true any {@link com.smartgwt.client.data.DataSourceField#getCanFilter 'canFilter:false'} fields
+     * If this attribute is true any {@link com.smartgwt.client.data.DataSourceField#getCanFilter canFilter:false} fields
      * specified on the dataSource will not be shown unless explicitly included in this component's {@link
-     * com.smartgwt.client.widgets.DataBoundComponent#getFields 'fields array'}
+     * com.smartgwt.client.widgets.DataBoundComponent#getFields fields array}
      * <p><b>Note : </b> This is an advanced setting</p>
      *
      * @param showFilterFieldsOnly showFilterFieldsOnly Default value is true
@@ -102,9 +102,9 @@ public class SearchForm extends DynamicForm {
     }
 
     /**
-     * If this attribute is true any {@link com.smartgwt.client.data.DataSourceField#getCanFilter 'canFilter:false'} fields
+     * If this attribute is true any {@link com.smartgwt.client.data.DataSourceField#getCanFilter canFilter:false} fields
      * specified on the dataSource will not be shown unless explicitly included in this component's {@link
-     * com.smartgwt.client.widgets.DataBoundComponent#getFields 'fields array'}
+     * com.smartgwt.client.widgets.DataBoundComponent#getFields fields array}
      *
      *
      * @return Boolean
