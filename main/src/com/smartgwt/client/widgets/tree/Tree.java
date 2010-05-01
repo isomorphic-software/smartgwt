@@ -1624,6 +1624,110 @@ public class Tree extends BaseClass  implements com.smartgwt.client.widgets.tree
         return @com.smartgwt.client.widgets.tree.Tree::convertToTreeNodeArray(Lcom/google/gwt/core/client/JavaScriptObject;)(nodesJS);
     }-*/;
 
+    // override getProperty / setProperty logic for ResultTree type only
+
+    private native boolean isResultSetTree() /*-{
+        var scObj = this.@com.smartgwt.client.core.BaseClass::getJsObj()();
+        return $wnd.isc.isA.ResultTree(scObj) ;
+    }-*/;
+
+    //getters
+    protected String getAttributeAsString(String property) {
+        if(isCreated() && isResultSetTree()) {
+            return JSOHelper.getAttribute(getJsObj(), property);
+        } else {
+            return super.getAttributeAsString(property);
+        }
+    }
+
+    protected Date getAttributeAsDate(String property) {
+        if(isCreated() && isResultSetTree()) {
+            return JSOHelper.getAttributeAsDate(getJsObj(), property);
+        } else {
+            return super.getAttributeAsDate(property);
+        }
+    }
+
+    protected Integer getAttributeAsInt(String property) {
+        if(isCreated() && isResultSetTree()) {
+            return JSOHelper.getAttributeAsInt(getJsObj(), property);
+        } else {
+            return super.getAttributeAsInt(property);
+        }
+    }
+
+    protected Double getAttributeAsDouble(String property) {
+        if(isCreated() && isResultSetTree()) {
+            return JSOHelper.getAttributeAsDouble(getJsObj(), property);
+        } else {
+            return super.getAttributeAsDouble(property);
+        }
+    }
+
+    protected Element getAttributeAsElement(String property) {
+        if(isCreated() && isResultSetTree()) {
+            return JSOHelper.getAttributeAsElement(getJsObj(), property);
+        } else {
+            return super.getAttributeAsElement(property);
+        }
+    }
+
+    protected JavaScriptObject getAttributeAsJavaScriptObject(String property) {
+        if(isCreated() && isResultSetTree()) {
+            return JSOHelper.getAttributeAsJavaScriptObject(getJsObj(), property);
+        } else {
+            return super.getAttributeAsJavaScriptObject(property);
+        }
+    }
+
+    protected Float getAttributeAsFloat(String property) {
+        if(isCreated() && isResultSetTree()) {
+            return JSOHelper.getAttributeAsFloat(getJsObj(), property);
+        } else {
+            return super.getAttributeAsFloat(property);
+        }
+    }
+
+    protected Boolean getAttributeAsBoolean(String property) {
+        if(isCreated() && isResultSetTree()) {
+            return JSOHelper.getAttributeAsBoolean(getJsObj(), property);
+        } else {
+            return super.getAttributeAsBoolean(property);
+        }
+    }
+
+    //setters
+    public void setProperty(String property, String value){
+        if(isCreated() && isResultSetTree()) {
+            JSOHelper.setAttribute(getJsObj(), property, value);
+        } else {
+            super.setProperty(property, value);
+        }
+    }
+
+    public void setProperty(String property, boolean value) {
+        if(isCreated() && isResultSetTree()) {
+            JSOHelper.setAttribute(getJsObj(), property, value);
+        } else {
+            super.setProperty(property, value);
+        }
+    }
+
+    public void setProperty(String property, double value){
+        if(isCreated() && isResultSetTree()) {
+            JSOHelper.setAttribute(getJsObj(), property, value);
+        } else {
+            super.setProperty(property, value);
+        }
+    }
+
+    public void setProperty(String property, JavaScriptObject value) {
+        if(isCreated() && isResultSetTree()) {
+            JSOHelper.setAttribute(getJsObj(), property, value);
+        } else {
+            super.setProperty(property, value);
+        }
+    }
 }
 
 
