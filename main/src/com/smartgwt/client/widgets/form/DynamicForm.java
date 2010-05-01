@@ -64,15 +64,15 @@ import com.google.gwt.event.shared.HasHandlers;
  * SelectItem&#010        ]&#010    })&#010 </pre>&#010 The item <code>name</code> is an identifier for the item that must
  * be unique just within&#010 this form.  It is used:&#010 <ul>&#010 <li> as the property name under which the item's value
  * is stored in the form (the form's&#010      current values are accessible as {@link
- * com.smartgwt.client.widgets.form.DynamicForm#getValues DynamicForm.getValues}&#010 <li> when retrieving the FormItem's
- * current value (via&#010      {@link com.smartgwt.client.widgets.form.DynamicForm#getValue DynamicForm.getValue}) &#010
- * <li> to retrieve the item itself via {@link com.smartgwt.client.widgets.form.DynamicForm#getItem
- * DynamicForm.getItem}&#010 </ul>&#010 The item <code>type</code> controls what kind of FormItem is created.  See&#010
- * {@link com.smartgwt.client.types.FormItemType}.&#010 <P>&#010 The {@link
- * com.smartgwt.client.widgets.form.fields.FormItem#getTitle 'title'} and {@link
- * com.smartgwt.client.widgets.form.fields.FormItem#getDefaultValue 'defaultValue'} are also&#010 commonly specified.  All
- * FormItems share a common set of properties for controlling&#010 {@link com.smartgwt.client.docs.FormLayout 'form
- * layout'}.  Other properties common to all FormItems are&#010 documented on the {@link
+ * com.smartgwt.client.widgets.form.DynamicForm#getValues form.getValues()}&#010 <li> when retrieving the FormItem's
+ * current value (via&#010      {@link com.smartgwt.client.widgets.form.DynamicForm#getValue form.getValue()}) &#010 <li>
+ * to retrieve the item itself via {@link com.smartgwt.client.widgets.form.DynamicForm#getItem form.getItem()}&#010
+ * </ul>&#010 The item <code>type</code> controls what kind of FormItem is created.  See&#010 {@link
+ * com.smartgwt.client.types.FormItemType}.&#010 <P>&#010 The {@link
+ * com.smartgwt.client.widgets.form.fields.FormItem#getTitle title} and {@link
+ * com.smartgwt.client.widgets.form.fields.FormItem#getDefaultValue defaultValue} are also&#010 commonly specified.  All
+ * FormItems share a common set of properties for controlling&#010 {@link com.smartgwt.client.docs.FormLayout form layout}.
+ * Other properties common to all FormItems are&#010 documented on the {@link
  * com.smartgwt.client.widgets.form.fields.FormItem} class, and properties specific to particular FormItems are&#010
  * documented on the respective FormItems.  &#010 <P>&#010 NOTE: For very simple forms consisting of exactly one item, you
  * still use a DynamicForm.&#010 See the "fontSelector" form in the ${isc.DocUtils.linkForExampleId('toolstrip', 'Toolstrip
@@ -111,7 +111,7 @@ public class DynamicForm extends Canvas  implements DataBoundComponent, com.smar
      * The URL to which the form will submit its values. <p> <b>NOTE:</b> this is used only in the very rare case that a form
      * is used to submit data directly to a URL.  Normal server contact is through RPCManager.<br> See {@link
      * com.smartgwt.client.widgets.form.DynamicForm#getCanSubmit canSubmit} for more on this.
-     * Sets the {@link com.smartgwt.client.widgets.form.DynamicForm#getAction 'action'} for this form.
+     * Sets the {@link com.smartgwt.client.widgets.form.DynamicForm#getAction action} for this form.
      *
      * @param action New action URL. Default value is "#"
      * @see com.smartgwt.client.docs.Submitting Submitting overview and related methods
@@ -254,9 +254,9 @@ public class DynamicForm extends Canvas  implements DataBoundComponent, com.smar
      * Governs whether this form will be used to perform a standard HTML form submission. Note that if true, {@link
      * com.smartgwt.client.widgets.form.DynamicForm#submit DynamicForm.submit} will perform a native HTML submission to the
      * specified {@link com.smartgwt.client.widgets.form.DynamicForm#getAction action} URL.<br> Wherever possible we strongly
-     * recommend using the  {@link com.smartgwt.client.docs.DataBoundComponentMethods 'DataBound Component Methods'} to send
-     * data to the server as they provide a far more sophisticated interface, with built in  options for server validation,
-     * required fields, etc.<br>
+     * recommend using the  {@link com.smartgwt.client.docs.DataBoundComponentMethods DataBound Component Methods} to send data
+     * to the server as they provide a far more sophisticated interface, with built in  options for server validation, required
+     * fields, etc.<br>
      * <p><b>Note : </b> This is an advanced setting</p>
      *
      * @param canSubmit canSubmit Default value is false
@@ -270,9 +270,9 @@ public class DynamicForm extends Canvas  implements DataBoundComponent, com.smar
      * Governs whether this form will be used to perform a standard HTML form submission. Note that if true, {@link
      * com.smartgwt.client.widgets.form.DynamicForm#submit DynamicForm.submit} will perform a native HTML submission to the
      * specified {@link com.smartgwt.client.widgets.form.DynamicForm#getAction action} URL.<br> Wherever possible we strongly
-     * recommend using the  {@link com.smartgwt.client.docs.DataBoundComponentMethods 'DataBound Component Methods'} to send
-     * data to the server as they provide a far more sophisticated interface, with built in  options for server validation,
-     * required fields, etc.<br>
+     * recommend using the  {@link com.smartgwt.client.docs.DataBoundComponentMethods DataBound Component Methods} to send data
+     * to the server as they provide a far more sophisticated interface, with built in  options for server validation, required
+     * fields, etc.<br>
      *
      *
      * @return Boolean
@@ -449,9 +449,9 @@ public class DynamicForm extends Canvas  implements DataBoundComponent, com.smar
     }
 
     /**
-     * Warning to display to the user if an attempt to {@link com.smartgwt.client.widgets.form.DynamicForm#submitForm
-     * DynamicForm.submitForm} a form is unable to submit to the server. The most common cause for this failure is that the
-     * user has typed an invalid file-path into an upload type field.
+     * Warning to display to the user if an attempt to {@link com.smartgwt.client.widgets.form.DynamicForm#submitForm natively
+     * submit} a form is unable to submit to the server. The most common cause for this failure is that the user has typed an
+     * invalid file-path into an upload type field.
      * <p><b>Note : </b> This is an advanced setting</p>
      *
      * @param formSubmitFailedWarning formSubmitFailedWarning Default value is "Form was unable to be submitted. The most likely cause for this is an invalid value in an upload field."
@@ -461,9 +461,9 @@ public class DynamicForm extends Canvas  implements DataBoundComponent, com.smar
     }
 
     /**
-     * Warning to display to the user if an attempt to {@link com.smartgwt.client.widgets.form.DynamicForm#submitForm
-     * DynamicForm.submitForm} a form is unable to submit to the server. The most common cause for this failure is that the
-     * user has typed an invalid file-path into an upload type field.
+     * Warning to display to the user if an attempt to {@link com.smartgwt.client.widgets.form.DynamicForm#submitForm natively
+     * submit} a form is unable to submit to the server. The most common cause for this failure is that the user has typed an
+     * invalid file-path into an upload type field.
      *
      *
      * @return String
@@ -719,8 +719,8 @@ public class DynamicForm extends Canvas  implements DataBoundComponent, com.smar
     /**
      * The mechanism by which form data is sent to the action URL. See FormMethod type for details. <p> <b>NOTE:</b> this is
      * used only in the very rare case that a form is used to submit data directly to a URL.  Normal server contact is through 
-     * {@link com.smartgwt.client.docs.DataBoundComponentMethods 'DataBound Component Methods'}.
-     * Sets the {@link com.smartgwt.client.widgets.form.DynamicForm#getMethod 'method'} for this form.
+     * {@link com.smartgwt.client.docs.DataBoundComponentMethods DataBound Component Methods}.
+     * Sets the {@link com.smartgwt.client.widgets.form.DynamicForm#getMethod method} for this form.
      *
      * @param method html form submission method (get or post). Default value is DynamicForm.POST
      * @see com.smartgwt.client.docs.Submitting Submitting overview and related methods
@@ -732,7 +732,7 @@ public class DynamicForm extends Canvas  implements DataBoundComponent, com.smar
     /**
      * The mechanism by which form data is sent to the action URL. See FormMethod type for details. <p> <b>NOTE:</b> this is
      * used only in the very rare case that a form is used to submit data directly to a URL.  Normal server contact is through 
-     * {@link com.smartgwt.client.docs.DataBoundComponentMethods 'DataBound Component Methods'}.
+     * {@link com.smartgwt.client.docs.DataBoundComponentMethods DataBound Component Methods}.
      *
      *
      * @return FormMethod
@@ -1084,11 +1084,11 @@ public class DynamicForm extends Canvas  implements DataBoundComponent, com.smar
 
     /**
      * If set, this <code>DynamicForm</code> will set both  {@link
-     * com.smartgwt.client.widgets.DataBoundComponent#getShowComplexFields 'showComplexFields'} and 
+     * com.smartgwt.client.widgets.DataBoundComponent#getShowComplexFields showComplexFields} and 
      * <code>showComplexFieldsRecursively</code> on any nested component used for showing/editing a complex field.  Thus any of
      * this form's items that handle complex fields will themselves also show complex fields.  This allows for handling of
      * field structures of any complexity. <p> If set, this value automatically sets {@link
-     * com.smartgwt.client.widgets.DataBoundComponent#getShowComplexFields 'showComplexFields'} as well.
+     * com.smartgwt.client.widgets.DataBoundComponent#getShowComplexFields showComplexFields} as well.
      *
      * @param showComplexFieldsRecursively showComplexFieldsRecursively Default value is null
      * @throws IllegalStateException this property cannot be changed after the component has been created
@@ -1099,11 +1099,11 @@ public class DynamicForm extends Canvas  implements DataBoundComponent, com.smar
 
     /**
      * If set, this <code>DynamicForm</code> will set both  {@link
-     * com.smartgwt.client.widgets.DataBoundComponent#getShowComplexFields 'showComplexFields'} and 
+     * com.smartgwt.client.widgets.DataBoundComponent#getShowComplexFields showComplexFields} and 
      * <code>showComplexFieldsRecursively</code> on any nested component used for showing/editing a complex field.  Thus any of
      * this form's items that handle complex fields will themselves also show complex fields.  This allows for handling of
      * field structures of any complexity. <p> If set, this value automatically sets {@link
-     * com.smartgwt.client.widgets.DataBoundComponent#getShowComplexFields 'showComplexFields'} as well.
+     * com.smartgwt.client.widgets.DataBoundComponent#getShowComplexFields showComplexFields} as well.
      *
      *
      * @return Boolean
@@ -1113,11 +1113,12 @@ public class DynamicForm extends Canvas  implements DataBoundComponent, com.smar
     }
 
     /**
-     * {@link com.smartgwt.client.widgets.form.DynamicForm#getShowErrorIcons 'showErrorIcons'},  {@link
-     * com.smartgwt.client.widgets.form.DynamicForm#getShowErrorText 'showErrorText'}, and {@link
-     * com.smartgwt.client.widgets.form.DynamicForm#getShowErrorStyle 'showErrorStyle'} control how validation errors are
+     * {@link com.smartgwt.client.widgets.form.DynamicForm#getShowErrorIcons showErrorIcons},  {@link
+     * com.smartgwt.client.widgets.form.DynamicForm#getShowErrorText showErrorText}, and {@link
+     * com.smartgwt.client.widgets.form.DynamicForm#getShowErrorStyle showErrorStyle} control how validation errors are
      * displayed when they are displayed inline in the form (next to the form item where there is a validation error).  To
-     * instead display all errors at the top of the form, set ${isc.DocUtils.linkForRef('showInlineErrors:false')}. <P>
+     * instead display all errors at the top of the form, set {@link
+     * com.smartgwt.client.widgets.form.DynamicForm#getShowInlineErrors showInlineErrors}:false. <P>
      * <code>showErrorIcons</code>, <code>showErrorText</code> and <code>showErrorStyle</code> are all boolean properties, and
      * can be set on a DynamicForm to control the behavior form-wide, or set on individual FormItems.   <P> The HTML displayed
      * next to a form item with errors is generated by  {@link com.smartgwt.client.widgets.form.fields.FormItem#getErrorHTML
@@ -1138,7 +1139,7 @@ public class DynamicForm extends Canvas  implements DataBoundComponent, com.smar
      * validation error display consisting of just an icon, to the left of the item with the error message available via a
      * hover (similar appearance to ListGrid validation error display).   <P> In addition to this, <code>showErrorStyle</code>
      * determines whether fields  with validation errors should have special styling applied to them. See {@link
-     * com.smartgwt.client..FormItemBaseStyle} for a  discussion for how error styling is calculated.
+     * java.lang.String} for a  discussion for how error styling is calculated.
      *
      * @param showErrorIcons showErrorIcons Default value is true
      * @see com.smartgwt.client.docs.Validation Validation overview and related methods
@@ -1148,11 +1149,12 @@ public class DynamicForm extends Canvas  implements DataBoundComponent, com.smar
     }
 
     /**
-     * {@link com.smartgwt.client.widgets.form.DynamicForm#getShowErrorIcons 'showErrorIcons'},  {@link
-     * com.smartgwt.client.widgets.form.DynamicForm#getShowErrorText 'showErrorText'}, and {@link
-     * com.smartgwt.client.widgets.form.DynamicForm#getShowErrorStyle 'showErrorStyle'} control how validation errors are
+     * {@link com.smartgwt.client.widgets.form.DynamicForm#getShowErrorIcons showErrorIcons},  {@link
+     * com.smartgwt.client.widgets.form.DynamicForm#getShowErrorText showErrorText}, and {@link
+     * com.smartgwt.client.widgets.form.DynamicForm#getShowErrorStyle showErrorStyle} control how validation errors are
      * displayed when they are displayed inline in the form (next to the form item where there is a validation error).  To
-     * instead display all errors at the top of the form, set ${isc.DocUtils.linkForRef('showInlineErrors:false')}. <P>
+     * instead display all errors at the top of the form, set {@link
+     * com.smartgwt.client.widgets.form.DynamicForm#getShowInlineErrors showInlineErrors}:false. <P>
      * <code>showErrorIcons</code>, <code>showErrorText</code> and <code>showErrorStyle</code> are all boolean properties, and
      * can be set on a DynamicForm to control the behavior form-wide, or set on individual FormItems.   <P> The HTML displayed
      * next to a form item with errors is generated by  {@link com.smartgwt.client.widgets.form.fields.FormItem#getErrorHTML
@@ -1173,7 +1175,7 @@ public class DynamicForm extends Canvas  implements DataBoundComponent, com.smar
      * validation error display consisting of just an icon, to the left of the item with the error message available via a
      * hover (similar appearance to ListGrid validation error display).   <P> In addition to this, <code>showErrorStyle</code>
      * determines whether fields  with validation errors should have special styling applied to them. See {@link
-     * com.smartgwt.client..FormItemBaseStyle} for a  discussion for how error styling is calculated.
+     * java.lang.String} for a  discussion for how error styling is calculated.
      *
      *
      * @return Boolean
@@ -1184,11 +1186,12 @@ public class DynamicForm extends Canvas  implements DataBoundComponent, com.smar
     }
 
     /**
-     * {@link com.smartgwt.client.widgets.form.DynamicForm#getShowErrorIcons 'showErrorIcons'},  {@link
-     * com.smartgwt.client.widgets.form.DynamicForm#getShowErrorText 'showErrorText'}, and {@link
-     * com.smartgwt.client.widgets.form.DynamicForm#getShowErrorStyle 'showErrorStyle'} control how validation errors are
+     * {@link com.smartgwt.client.widgets.form.DynamicForm#getShowErrorIcons showErrorIcons},  {@link
+     * com.smartgwt.client.widgets.form.DynamicForm#getShowErrorText showErrorText}, and {@link
+     * com.smartgwt.client.widgets.form.DynamicForm#getShowErrorStyle showErrorStyle} control how validation errors are
      * displayed when they are displayed inline in the form (next to the form item where there is a validation error).  To
-     * instead display all errors at the top of the form, set ${isc.DocUtils.linkForRef('showInlineErrors:false')}. <P>
+     * instead display all errors at the top of the form, set {@link
+     * com.smartgwt.client.widgets.form.DynamicForm#getShowInlineErrors showInlineErrors}:false. <P>
      * <code>showErrorIcons</code>, <code>showErrorText</code> and <code>showErrorStyle</code> are all boolean properties, and
      * can be set on a DynamicForm to control the behavior form-wide, or set on individual FormItems.   <P> The HTML displayed
      * next to a form item with errors is generated by  {@link com.smartgwt.client.widgets.form.fields.FormItem#getErrorHTML
@@ -1209,7 +1212,7 @@ public class DynamicForm extends Canvas  implements DataBoundComponent, com.smar
      * validation error display consisting of just an icon, to the left of the item with the error message available via a
      * hover (similar appearance to ListGrid validation error display).   <P> In addition to this, <code>showErrorStyle</code>
      * determines whether fields  with validation errors should have special styling applied to them. See {@link
-     * com.smartgwt.client..FormItemBaseStyle} for a  discussion for how error styling is calculated.
+     * java.lang.String} for a  discussion for how error styling is calculated.
      *
      * @param showErrorStyle showErrorStyle Default value is true
      * @see com.smartgwt.client.docs.Validation Validation overview and related methods
@@ -1219,11 +1222,12 @@ public class DynamicForm extends Canvas  implements DataBoundComponent, com.smar
     }
 
     /**
-     * {@link com.smartgwt.client.widgets.form.DynamicForm#getShowErrorIcons 'showErrorIcons'},  {@link
-     * com.smartgwt.client.widgets.form.DynamicForm#getShowErrorText 'showErrorText'}, and {@link
-     * com.smartgwt.client.widgets.form.DynamicForm#getShowErrorStyle 'showErrorStyle'} control how validation errors are
+     * {@link com.smartgwt.client.widgets.form.DynamicForm#getShowErrorIcons showErrorIcons},  {@link
+     * com.smartgwt.client.widgets.form.DynamicForm#getShowErrorText showErrorText}, and {@link
+     * com.smartgwt.client.widgets.form.DynamicForm#getShowErrorStyle showErrorStyle} control how validation errors are
      * displayed when they are displayed inline in the form (next to the form item where there is a validation error).  To
-     * instead display all errors at the top of the form, set ${isc.DocUtils.linkForRef('showInlineErrors:false')}. <P>
+     * instead display all errors at the top of the form, set {@link
+     * com.smartgwt.client.widgets.form.DynamicForm#getShowInlineErrors showInlineErrors}:false. <P>
      * <code>showErrorIcons</code>, <code>showErrorText</code> and <code>showErrorStyle</code> are all boolean properties, and
      * can be set on a DynamicForm to control the behavior form-wide, or set on individual FormItems.   <P> The HTML displayed
      * next to a form item with errors is generated by  {@link com.smartgwt.client.widgets.form.fields.FormItem#getErrorHTML
@@ -1244,7 +1248,7 @@ public class DynamicForm extends Canvas  implements DataBoundComponent, com.smar
      * validation error display consisting of just an icon, to the left of the item with the error message available via a
      * hover (similar appearance to ListGrid validation error display).   <P> In addition to this, <code>showErrorStyle</code>
      * determines whether fields  with validation errors should have special styling applied to them. See {@link
-     * com.smartgwt.client..FormItemBaseStyle} for a  discussion for how error styling is calculated.
+     * java.lang.String} for a  discussion for how error styling is calculated.
      *
      *
      * @return Boolean
@@ -1255,11 +1259,12 @@ public class DynamicForm extends Canvas  implements DataBoundComponent, com.smar
     }
 
     /**
-     * {@link com.smartgwt.client.widgets.form.DynamicForm#getShowErrorIcons 'showErrorIcons'},  {@link
-     * com.smartgwt.client.widgets.form.DynamicForm#getShowErrorText 'showErrorText'}, and {@link
-     * com.smartgwt.client.widgets.form.DynamicForm#getShowErrorStyle 'showErrorStyle'} control how validation errors are
+     * {@link com.smartgwt.client.widgets.form.DynamicForm#getShowErrorIcons showErrorIcons},  {@link
+     * com.smartgwt.client.widgets.form.DynamicForm#getShowErrorText showErrorText}, and {@link
+     * com.smartgwt.client.widgets.form.DynamicForm#getShowErrorStyle showErrorStyle} control how validation errors are
      * displayed when they are displayed inline in the form (next to the form item where there is a validation error).  To
-     * instead display all errors at the top of the form, set ${isc.DocUtils.linkForRef('showInlineErrors:false')}. <P>
+     * instead display all errors at the top of the form, set {@link
+     * com.smartgwt.client.widgets.form.DynamicForm#getShowInlineErrors showInlineErrors}:false. <P>
      * <code>showErrorIcons</code>, <code>showErrorText</code> and <code>showErrorStyle</code> are all boolean properties, and
      * can be set on a DynamicForm to control the behavior form-wide, or set on individual FormItems.   <P> The HTML displayed
      * next to a form item with errors is generated by  {@link com.smartgwt.client.widgets.form.fields.FormItem#getErrorHTML
@@ -1280,7 +1285,7 @@ public class DynamicForm extends Canvas  implements DataBoundComponent, com.smar
      * validation error display consisting of just an icon, to the left of the item with the error message available via a
      * hover (similar appearance to ListGrid validation error display).   <P> In addition to this, <code>showErrorStyle</code>
      * determines whether fields  with validation errors should have special styling applied to them. See {@link
-     * com.smartgwt.client..FormItemBaseStyle} for a  discussion for how error styling is calculated.
+     * java.lang.String} for a  discussion for how error styling is calculated.
      *
      * @param showErrorText showErrorText Default value is false
      * @see com.smartgwt.client.docs.Validation Validation overview and related methods
@@ -1290,11 +1295,12 @@ public class DynamicForm extends Canvas  implements DataBoundComponent, com.smar
     }
 
     /**
-     * {@link com.smartgwt.client.widgets.form.DynamicForm#getShowErrorIcons 'showErrorIcons'},  {@link
-     * com.smartgwt.client.widgets.form.DynamicForm#getShowErrorText 'showErrorText'}, and {@link
-     * com.smartgwt.client.widgets.form.DynamicForm#getShowErrorStyle 'showErrorStyle'} control how validation errors are
+     * {@link com.smartgwt.client.widgets.form.DynamicForm#getShowErrorIcons showErrorIcons},  {@link
+     * com.smartgwt.client.widgets.form.DynamicForm#getShowErrorText showErrorText}, and {@link
+     * com.smartgwt.client.widgets.form.DynamicForm#getShowErrorStyle showErrorStyle} control how validation errors are
      * displayed when they are displayed inline in the form (next to the form item where there is a validation error).  To
-     * instead display all errors at the top of the form, set ${isc.DocUtils.linkForRef('showInlineErrors:false')}. <P>
+     * instead display all errors at the top of the form, set {@link
+     * com.smartgwt.client.widgets.form.DynamicForm#getShowInlineErrors showInlineErrors}:false. <P>
      * <code>showErrorIcons</code>, <code>showErrorText</code> and <code>showErrorStyle</code> are all boolean properties, and
      * can be set on a DynamicForm to control the behavior form-wide, or set on individual FormItems.   <P> The HTML displayed
      * next to a form item with errors is generated by  {@link com.smartgwt.client.widgets.form.fields.FormItem#getErrorHTML
@@ -1315,7 +1321,7 @@ public class DynamicForm extends Canvas  implements DataBoundComponent, com.smar
      * validation error display consisting of just an icon, to the left of the item with the error message available via a
      * hover (similar appearance to ListGrid validation error display).   <P> In addition to this, <code>showErrorStyle</code>
      * determines whether fields  with validation errors should have special styling applied to them. See {@link
-     * com.smartgwt.client..FormItemBaseStyle} for a  discussion for how error styling is calculated.
+     * java.lang.String} for a  discussion for how error styling is calculated.
      *
      *
      * @return Boolean
@@ -1432,9 +1438,9 @@ public class DynamicForm extends Canvas  implements DataBoundComponent, com.smar
     /**
      * The name of a window or frame that will receive the results returned by the form's action. The default null indicates to
      * use the current frame. <p> <b>NOTE:</b> this is used only in the very rare case that a form is used to submit data
-     * directly to a URL.  Normal server contact is through {@link com.smartgwt.client.docs.DataBoundComponentMethods
-     * 'DataBound Component Methods'}.
-     * Sets the {@link com.smartgwt.client.widgets.form.DynamicForm#getTarget 'target'} for this form.
+     * directly to a URL.  Normal server contact is through {@link com.smartgwt.client.docs.DataBoundComponentMethods DataBound
+     * Component Methods}.
+     * Sets the {@link com.smartgwt.client.widgets.form.DynamicForm#getTarget target} for this form.
      * <p><b>Note : </b> This is an advanced setting</p>
      *
      * @param target New submission target. Default value is null
@@ -1447,8 +1453,8 @@ public class DynamicForm extends Canvas  implements DataBoundComponent, com.smar
     /**
      * The name of a window or frame that will receive the results returned by the form's action. The default null indicates to
      * use the current frame. <p> <b>NOTE:</b> this is used only in the very rare case that a form is used to submit data
-     * directly to a URL.  Normal server contact is through {@link com.smartgwt.client.docs.DataBoundComponentMethods
-     * 'DataBound Component Methods'}.
+     * directly to a URL.  Normal server contact is through {@link com.smartgwt.client.docs.DataBoundComponentMethods DataBound
+     * Component Methods}.
      *
      *
      * @return String
@@ -1461,7 +1467,7 @@ public class DynamicForm extends Canvas  implements DataBoundComponent, com.smar
     /**
      * Default orientation for titles for items in this form.  {@link com.smartgwt.client.types.TitleOrientation} lists valid
      * options. <P> Note that titles on the left or right take up a cell in tabular {@link com.smartgwt.client.docs.FormLayout
-     * 'form layouts'}, but titles on top do not.
+     * form layouts}, but titles on top do not.
      *
      * @param titleOrientation titleOrientation Default value is "left"
      * @see com.smartgwt.client.docs.FormTitles FormTitles overview and related methods
@@ -1474,7 +1480,7 @@ public class DynamicForm extends Canvas  implements DataBoundComponent, com.smar
     /**
      * Default orientation for titles for items in this form.  {@link com.smartgwt.client.types.TitleOrientation} lists valid
      * options. <P> Note that titles on the left or right take up a cell in tabular {@link com.smartgwt.client.docs.FormLayout
-     * 'form layouts'}, but titles on top do not.
+     * form layouts}, but titles on top do not.
      *
      *
      * @return Return the orientation of the title for a specific item or the default title orientation if no item is passed.
@@ -1722,8 +1728,7 @@ public class DynamicForm extends Canvas  implements DataBoundComponent, com.smar
      * Clears the value for some field via a call to {@link com.smartgwt.client.widgets.form.fields.FormItem#clearValue
      * FormItem.clearValue} if appropriate. If there is no item associated with the field name, the field will just be cleared
      * within our stored set of values.
-     * @param fieldName Name of the field being cleared. A {@link com.smartgwt.client..dataPath} may be used for  clearing details of nested
-     * data structures.
+     * @param fieldName Name of the field being cleared. A {@link java.lang.String} may be used for  clearing details of nested data structures.
      */
     public native void clearValue(String fieldName) /*-{
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
@@ -1740,8 +1745,8 @@ public class DynamicForm extends Canvas  implements DataBoundComponent, com.smar
     /**
      * Add a formSubmitFailed handler.
      * <p>
-     * Method called when an attempt to {@link com.smartgwt.client.widgets.form.DynamicForm#submitForm DynamicForm.submitForm}
-     * a form is unable to submit to the server. Default behavior is to display the {@link
+     * Method called when an attempt to {@link com.smartgwt.client.widgets.form.DynamicForm#submitForm natively submit} a form
+     * is unable to submit to the server. Default behavior is to display the {@link
      * com.smartgwt.client.widgets.form.DynamicForm#getFormSubmitFailedWarning formSubmitFailedWarning} in a warning dialog.
      * The most common cause for this failure is that the user has typed an invalid file-path into an upload type field.
      *
@@ -1781,6 +1786,7 @@ public class DynamicForm extends Canvas  implements DataBoundComponent, com.smar
      * com.smartgwt.client.widgets.form.fields.FormItem#getOperator operator}
      *
      * @return a {@link com.smartgwt.client.data.AdvancedCriteria} based on the form's current values
+     * @see com.smartgwt.client.docs.CriteriaEditing CriteriaEditing overview and related methods
      */
     public native AdvancedCriteria getValuesAsAdvancedCriteria() /*-{
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
@@ -1985,13 +1991,36 @@ public class DynamicForm extends Canvas  implements DataBoundComponent, com.smar
             
     /**
      * Sets the value for some field
-     * @param fieldName Name of the field being updated. A {@link com.smartgwt.client..dataPath} may                           be passed to set
-     * nested values
+     * @param fieldName Name of the field being updated. A {@link java.lang.String} may                           be passed to set nested values
      * @param value New value.
      */
     public native void setValue(String fieldName, String value) /*-{
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
         self.setValue(fieldName, value);
+    }-*/;
+            
+    /**
+     * This method will display the specified criteria in this form for editing. The criteria parameter may be a simple {@link
+     * com.smartgwt.client.data.Criterion} object or an {@link com.smartgwt.client.data.AdvancedCriteria} object. <P> For
+     * simple criteria, the specified fieldName will be used to apply criteria to form items, as with a standard setValues()
+     * call. <P> For AdvancedCriteria, behavior is as follows: <ul> <li>If the top level operator doesn't match the {@link
+     * com.smartgwt.client.widgets.form.DynamicForm#getOperator operator} for  this form, the entire criteria will be nested in
+     * an outer advanced criteria object with  the appropriate operator.</li> <li>Each criterion within AdvancedCriteria will
+     * be applied to a form item if  {@link com.smartgwt.client.widgets.form.fields.FormItem#getShouldSaveValue
+     * shouldSaveValue} is true for the item and   {@link com.smartgwt.client.widgets.form.fields.FormItem#canEditCriterion
+     * FormItem.canEditCriterion} returns true for the criterion in question. By default  this method checks for a match with
+     * both the <code>fieldName</code> and <code>operator</code>  of the criterion. The criterion is actually passed to the
+     * item for editing via  {@link com.smartgwt.client.widgets.form.fields.FormItem#setCriterion FormItem.setCriterion}. Note
+     * that these methods may be overridden for custom   handling. Also note that the default {@link
+     * com.smartgwt.client.widgets.form.fields.CanvasItem#setCriterion CanvasItem.setCriterion} implementation  handles editing
+     * nested criteria via embedded dynamicForms.</li> <li>Criteria which don't map to any form item will be stored directly on
+     * the form and  recombined with the edited values from each item when {@link
+     * com.smartgwt.client.widgets.form.DynamicForm#getValuesAsCriteria DynamicForm.getValuesAsCriteria} is  called.</li> </ul>
+     * @param criteria criteria to edit.
+     */
+    public native void setValuesAsCriteria(Criterion criteria) /*-{
+        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
+        self.setValuesAsCriteria(criteria.@com.smartgwt.client.core.DataClass::getJsObj()());
     }-*/;
             
     /**
@@ -2021,7 +2050,7 @@ public class DynamicForm extends Canvas  implements DataBoundComponent, com.smar
      * identically to how a plain HTML &lt;form&gt; element would submit data, as either an HTTP GET or POST as specified by
      * {@link com.smartgwt.client.widgets.form.DynamicForm#getMethod method}. <P> <b>Notes:</b> <ul> <li>this is used only in
      * the very rare case that a form is used to submit data directly to a URL.  Normal server contact is through  {@link
-     * com.smartgwt.client.docs.DataBoundComponentMethods 'DataBound Component Methods'}.</li> <li>For this method to reliably
+     * com.smartgwt.client.docs.DataBoundComponentMethods DataBound Component Methods}.</li> <li>For this method to reliably
      * include values for every field in the grid,       {@link com.smartgwt.client.widgets.form.DynamicForm#getCanSubmit
      * canSubmit} must be set to <code>true</code></li> <li>To submit values for fields that do not have an editor, use {@link
      * com.smartgwt.client.widgets.form.fields.HiddenItem}  with a {@link
@@ -2348,7 +2377,7 @@ public class DynamicForm extends Canvas  implements DataBoundComponent, com.smar
      * When {@link com.smartgwt.client.widgets.form.fields.FormItem#getOperator operator} has been set for any {@link
      * com.smartgwt.client.widgets.form.fields.FormItem} in this form, what logical operator should be applied across
      * the ${isc.DocUtils.linkForRef('object:Criterion','criteria')} produced by the form items?  Only applicable to
-     * forms that have a {@link com.smartgwt.client..DataBoundComponent#getDataSource dataSource}.
+     * forms that have a {@link com.smartgwt.client.widgets.DataBoundComponent#getDataSource dataSource}.
      *
      * @param operator operator Default value is "and"
      * @throws IllegalStateException this property cannot be changed after the component has been created
@@ -2361,7 +2390,7 @@ public class DynamicForm extends Canvas  implements DataBoundComponent, com.smar
      * When {@link com.smartgwt.client.widgets.form.fields.FormItem#getOperator operator} has been set for any {@link
      * com.smartgwt.client.widgets.form.fields.FormItem} in this form, what logical operator should be applied across
      * the ${isc.DocUtils.linkForRef('object:Criterion','criteria')} produced by the form items?  Only applicable to
-     * forms that have a {@link com.smartgwt.client..DataBoundComponent#getDataSource dataSource}.
+     * forms that have a {@link com.smartgwt.client.widgets.DataBoundComponent#getDataSource dataSource}.
      *
      * @return OperationId
      */
