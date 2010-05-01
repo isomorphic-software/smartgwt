@@ -109,8 +109,8 @@ public class FormItem extends RefDataClass  implements com.smartgwt.client.widge
     /**
      * Alignment of this item in its cell. Note that the alignment of content within this item can be separately controlled via
      * {@link com.smartgwt.client.widgets.form.fields.FormItem#getTextAlign textAlign} (typically only applies to items showing
-     * a "textBox", such as {@link com.smartgwt.client.widgets.form.fields.TextItem} or {@link
-     * com.smartgwt.client.widgets.form.fields.SelectItem}).
+     * a "textBox", such as {@link com.smartgwt.client.widgets.form.fields.TextItem textItems} or {@link
+     * com.smartgwt.client.widgets.form.fields.SelectItem selectItems}).
      *
      * @param align align Default value is Canvas.LEFT
      * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
@@ -122,8 +122,8 @@ public class FormItem extends RefDataClass  implements com.smartgwt.client.widge
     /**
      * Alignment of this item in its cell. Note that the alignment of content within this item can be separately controlled via
      * {@link com.smartgwt.client.widgets.form.fields.FormItem#getTextAlign textAlign} (typically only applies to items showing
-     * a "textBox", such as {@link com.smartgwt.client.widgets.form.fields.TextItem} or {@link
-     * com.smartgwt.client.widgets.form.fields.SelectItem}).
+     * a "textBox", such as {@link com.smartgwt.client.widgets.form.fields.TextItem textItems} or {@link
+     * com.smartgwt.client.widgets.form.fields.SelectItem selectItems}).
      *
      *
      * @return Alignment
@@ -134,8 +134,29 @@ public class FormItem extends RefDataClass  implements com.smartgwt.client.widge
     }
 
     /**
+     * If specified, this property will govern the height of the cell in which this form item is rendered. Will not apply when
+     * the containing DynamicForm sets <code>itemLayout:"absolute"</code>.
+     *
+     * @param cellHeight cellHeight Default value is null
+     */
+    public void setCellHeight(Integer cellHeight) {
+        setAttribute("cellHeight", cellHeight);
+    }
+
+    /**
+     * If specified, this property will govern the height of the cell in which this form item is rendered. Will not apply when
+     * the containing DynamicForm sets <code>itemLayout:"absolute"</code>.
+     *
+     *
+     * @return Integer
+     */
+    public Integer getCellHeight()  {
+        return getAttributeAsInt("cellHeight");
+    }
+
+    /**
      * CSS style applied to the form item as a whole, including the text element, any icons, and any hint text for the item.
-     * Applied to the cell containing the form item. <P> NOTE: See the CompoundFormItem_skinning discussion for special
+     * Applied to the cell containing the form item. <P> NOTE: See the {@link CompoundFormItem_skinning} discussion for special
      * skinning considerations.
      *
      * @param cellStyle cellStyle Default value is "formCell"
@@ -147,7 +168,7 @@ public class FormItem extends RefDataClass  implements com.smartgwt.client.widge
 
     /**
      * CSS style applied to the form item as a whole, including the text element, any icons, and any hint text for the item.
-     * Applied to the cell containing the form item. <P> NOTE: See the CompoundFormItem_skinning discussion for special
+     * Applied to the cell containing the form item. <P> NOTE: See the {@link CompoundFormItem_skinning} discussion for special
      * skinning considerations.
      *
      *
@@ -160,8 +181,8 @@ public class FormItem extends RefDataClass  implements com.smartgwt.client.widge
 
     /**
      * When using {@link com.smartgwt.client.widgets.form.fields.FormItem#getOperator operator}, the name of the DataSource
-     * field for the ${isc.DocUtils.linkForRef('object:Criterion')} this FormItem generates.  If not specified, defaults to
-     * {@link com.smartgwt.client.widgets.form.fields.FormItem#getName name}. <P> Generally, because <code>criteriaField</code>
+     * field for the {@link com.smartgwt.client.data.Criterion} this FormItem generates.  If not specified, defaults to {@link
+     * com.smartgwt.client.widgets.form.fields.FormItem#getName name}. <P> Generally, because <code>criteriaField</code>
      * defaults to <code>item.name</code>, you don't need to specify it.  However, if more than one FormItem specifies criteria
      * for the same DataSource field, they will need unique values for {@link
      * com.smartgwt.client.widgets.form.fields.FormItem#getName name} but should set {@link
@@ -179,8 +200,8 @@ public class FormItem extends RefDataClass  implements com.smartgwt.client.widge
 
     /**
      * When using {@link com.smartgwt.client.widgets.form.fields.FormItem#getOperator operator}, the name of the DataSource
-     * field for the ${isc.DocUtils.linkForRef('object:Criterion')} this FormItem generates.  If not specified, defaults to
-     * {@link com.smartgwt.client.widgets.form.fields.FormItem#getName name}. <P> Generally, because <code>criteriaField</code>
+     * field for the {@link com.smartgwt.client.data.Criterion} this FormItem generates.  If not specified, defaults to {@link
+     * com.smartgwt.client.widgets.form.fields.FormItem#getName name}. <P> Generally, because <code>criteriaField</code>
      * defaults to <code>item.name</code>, you don't need to specify it.  However, if more than one FormItem specifies criteria
      * for the same DataSource field, they will need unique values for {@link
      * com.smartgwt.client.widgets.form.fields.FormItem#getName name} but should set {@link
@@ -218,9 +239,9 @@ public class FormItem extends RefDataClass  implements com.smartgwt.client.widge
 
     /**
      * Display format to use for date type values within this formItem. Default is to use the system-wide default short date
-     * format, configured via {@link com.smartgwt.client..Date#setShortDisplayFormat Date.setShortDisplayFormat}.  Specify any
-     * valid {@link com.smartgwt.client.types.DateDisplayFormat} to  change the format used by this item.<br> Note: if both
-     * <code>dateFormatter</code> and {@link com.smartgwt.client.widgets.form.fields.FormItem#getTimeFormatter 'timeFormatter'}
+     * format, configured via  Date.setShortDisplayFormat.  Specify any valid {@link
+     * com.smartgwt.client.types.DateDisplayFormat} to  change the format used by this item.<br> Note: if both
+     * <code>dateFormatter</code> and {@link com.smartgwt.client.widgets.form.fields.FormItem#getTimeFormatter timeFormatter}
      * are specified on an item, Date type values will be formatted as dates using  <code>dateFormatter</code>.<br> See also
      * {@link com.smartgwt.client.widgets.form.fields.DateItem#getDisplayFormat displayFormat} for formatting dates displayed
      * in DateItems.
@@ -235,9 +256,9 @@ public class FormItem extends RefDataClass  implements com.smartgwt.client.widge
 
     /**
      * Display format to use for date type values within this formItem. Default is to use the system-wide default short date
-     * format, configured via {@link com.smartgwt.client..Date#setShortDisplayFormat Date.setShortDisplayFormat}.  Specify any
-     * valid {@link com.smartgwt.client.types.DateDisplayFormat} to  change the format used by this item.<br> Note: if both
-     * <code>dateFormatter</code> and {@link com.smartgwt.client.widgets.form.fields.FormItem#getTimeFormatter 'timeFormatter'}
+     * format, configured via  Date.setShortDisplayFormat.  Specify any valid {@link
+     * com.smartgwt.client.types.DateDisplayFormat} to  change the format used by this item.<br> Note: if both
+     * <code>dateFormatter</code> and {@link com.smartgwt.client.widgets.form.fields.FormItem#getTimeFormatter timeFormatter}
      * are specified on an item, Date type values will be formatted as dates using  <code>dateFormatter</code>.<br> See also
      * {@link com.smartgwt.client.widgets.form.fields.DateItem#getDisplayFormat displayFormat} for formatting dates displayed
      * in DateItems.
@@ -309,18 +330,18 @@ public class FormItem extends RefDataClass  implements com.smartgwt.client.widge
     /**
      * Specifies an alternative field from which display values should be retrieved for this item. <P> The display field can be
      * either another field value in the same record or a field that must be retrieved from a related {@link
-     * com.smartgwt.client.widgets.form.fields.FormItem#getOptionDataSource 'optionDataSource'}. <P> If this item is not
+     * com.smartgwt.client.widgets.form.fields.FormItem#getOptionDataSource optionDataSource}. <P> If this item is not
      * databound ({@link com.smartgwt.client.widgets.form.fields.FormItem#getOptionDataSource optionDataSource} is unset), or
      * bound  to the same dataSource as the form as a whole, this item will call {@link
-     * com.smartgwt.client.widgets.form.DynamicForm#getValue DynamicForm.getValue}  the form named after is implemented by
-     * picking up the value of the specified field from the Form's values object. <P> Otherwise this item will attempt to map
-     * its underlying value to a display value by retrieving a record from the {@link
+     * com.smartgwt.client.widgets.form.DynamicForm#getValue form.getValue()}  the form named after is implemented by picking
+     * up the value of the specified field from the Form's values object. <P> Otherwise this item will attempt to map its
+     * underlying value to a display value by retrieving a record from the {@link
      * com.smartgwt.client.widgets.form.fields.FormItem#getOptionDataSource optionDataSource} where the  {@link
      * com.smartgwt.client.widgets.form.fields.FormItem#getValueField valueField} matches this item's value, and displaying the
      * <code>displayField</code> value from that record. Note that if <code>optionDataSource</code> is set and this value is
      * not set, {@link com.smartgwt.client.widgets.form.fields.FormItem#getDisplayFieldName FormItem.getDisplayFieldName} will
      * return the dataSource title field by default. <P> This essentially enables the specified <code>optionDataSource</code>
-     * to be used as a server based valueMap.
+     * to be used as a server based {@link valueMap}.
      *
      * @param displayField displayField Default value is null
      */
@@ -331,18 +352,18 @@ public class FormItem extends RefDataClass  implements com.smartgwt.client.widge
     /**
      * Specifies an alternative field from which display values should be retrieved for this item. <P> The display field can be
      * either another field value in the same record or a field that must be retrieved from a related {@link
-     * com.smartgwt.client.widgets.form.fields.FormItem#getOptionDataSource 'optionDataSource'}. <P> If this item is not
+     * com.smartgwt.client.widgets.form.fields.FormItem#getOptionDataSource optionDataSource}. <P> If this item is not
      * databound ({@link com.smartgwt.client.widgets.form.fields.FormItem#getOptionDataSource optionDataSource} is unset), or
      * bound  to the same dataSource as the form as a whole, this item will call {@link
-     * com.smartgwt.client.widgets.form.DynamicForm#getValue DynamicForm.getValue}  the form named after is implemented by
-     * picking up the value of the specified field from the Form's values object. <P> Otherwise this item will attempt to map
-     * its underlying value to a display value by retrieving a record from the {@link
+     * com.smartgwt.client.widgets.form.DynamicForm#getValue form.getValue()}  the form named after is implemented by picking
+     * up the value of the specified field from the Form's values object. <P> Otherwise this item will attempt to map its
+     * underlying value to a display value by retrieving a record from the {@link
      * com.smartgwt.client.widgets.form.fields.FormItem#getOptionDataSource optionDataSource} where the  {@link
      * com.smartgwt.client.widgets.form.fields.FormItem#getValueField valueField} matches this item's value, and displaying the
      * <code>displayField</code> value from that record. Note that if <code>optionDataSource</code> is set and this value is
      * not set, {@link com.smartgwt.client.widgets.form.fields.FormItem#getDisplayFieldName FormItem.getDisplayFieldName} will
      * return the dataSource title field by default. <P> This essentially enables the specified <code>optionDataSource</code>
-     * to be used as a server based valueMap.
+     * to be used as a server based {@link valueMap}.
      *
      *
      * @return String
@@ -503,8 +524,7 @@ public class FormItem extends RefDataClass  implements com.smartgwt.client.widge
      * com.smartgwt.client.widgets.form.fields.FormItem#setValue FormItem.setValue} is called with a value for which we do not
      * already have a mapped display value? <P> As noted under {@link
      * com.smartgwt.client.widgets.form.fields.FormItem#getOptionDataSource optionDataSource}, you may <b>also</b> specify a
-     * {@link com.smartgwt.client..ValueMap} and it will be consulted first before fetching from the
-     * <code>optionDataSource</code>.
+     * ValueMap and it will be consulted first before fetching from the <code>optionDataSource</code>.
      * <p><b>Note : </b> This is an advanced setting</p>
      *
      * @param fetchMissingValues fetchMissingValues Default value is true
@@ -520,8 +540,7 @@ public class FormItem extends RefDataClass  implements com.smartgwt.client.widge
      * com.smartgwt.client.widgets.form.fields.FormItem#setValue FormItem.setValue} is called with a value for which we do not
      * already have a mapped display value? <P> As noted under {@link
      * com.smartgwt.client.widgets.form.fields.FormItem#getOptionDataSource optionDataSource}, you may <b>also</b> specify a
-     * {@link com.smartgwt.client..ValueMap} and it will be consulted first before fetching from the
-     * <code>optionDataSource</code>.
+     * ValueMap and it will be consulted first before fetching from the <code>optionDataSource</code>.
      *
      *
      * @return Boolean
@@ -537,8 +556,8 @@ public class FormItem extends RefDataClass  implements com.smartgwt.client.widge
      * com.smartgwt.client.widgets.form.fields.FormItem#getFetchMissingValues fetchMissingValues}), setting this property to
      * true ensures that when the form item value is set, entire data-set from the dataSource is loaded at once and  used as a
      * valueMap, rather than just loading the display value for the current value. This avoids the need to perform fetches each
-     * time setValue() is called with a new value. <P> See also {@link com.smartgwt.client..PickList#getFilterLocally
-     * filterLocally} for behavior on form items such as SelectItems that show pick-lists.
+     * time setValue() is called with a new value. <P> See also  filterLocally for behavior on form items such as SelectItems
+     * that show pick-lists.
      * <p><b>Note : </b> This is an advanced setting</p>
      *
      * @param filterLocally filterLocally Default value is null
@@ -554,8 +573,8 @@ public class FormItem extends RefDataClass  implements com.smartgwt.client.widge
      * com.smartgwt.client.widgets.form.fields.FormItem#getFetchMissingValues fetchMissingValues}), setting this property to
      * true ensures that when the form item value is set, entire data-set from the dataSource is loaded at once and  used as a
      * valueMap, rather than just loading the display value for the current value. This avoids the need to perform fetches each
-     * time setValue() is called with a new value. <P> See also {@link com.smartgwt.client..PickList#getFilterLocally
-     * filterLocally} for behavior on form items such as SelectItems that show pick-lists.
+     * time setValue() is called with a new value. <P> See also  filterLocally for behavior on form items such as SelectItems
+     * that show pick-lists.
      *
      *
      * @return Boolean
@@ -566,7 +585,7 @@ public class FormItem extends RefDataClass  implements com.smartgwt.client.widge
 
     /**
      * TabIndex for the form item within the page. Takes precedence over any local tab index specified as {@link
-     * com.smartgwt.client.widgets.form.fields.FormItem#getTabIndex 'item.tabIndex'}.
+     * com.smartgwt.client.widgets.form.fields.FormItem#getTabIndex item.tabIndex}.
      * <p><b>Note : </b> This is an advanced setting</p>
      *
      * @param globalTabIndex globalTabIndex Default value is null
@@ -578,7 +597,7 @@ public class FormItem extends RefDataClass  implements com.smartgwt.client.widge
 
     /**
      * TabIndex for the form item within the page. Takes precedence over any local tab index specified as {@link
-     * com.smartgwt.client.widgets.form.fields.FormItem#getTabIndex 'item.tabIndex'}.
+     * com.smartgwt.client.widgets.form.fields.FormItem#getTabIndex item.tabIndex}.
      *
      *
      * @return Integer
@@ -928,7 +947,7 @@ public class FormItem extends RefDataClass  implements com.smartgwt.client.widge
     /**
      * Left coordinate of this item in pixels.  Applies only when the containing DynamicForm sets
      * <code>itemLayout:"absolute"</code>.
-     * For a form with {@link com.smartgwt.client.widgets.form.DynamicForm#getItemLayout 'itemLayout'}:"absolute" only, set the left coordinate of this form item. <P> Causes the form to redraw.
+     * For a form with {@link com.smartgwt.client.widgets.form.DynamicForm#getItemLayout itemLayout}:"absolute" only, set the left coordinate of this form item. <P> Causes the form to redraw.
      * <p><b>Note : </b> This is an advanced setting</p>
      *
      * @param left left Default value is 0
@@ -949,13 +968,12 @@ public class FormItem extends RefDataClass  implements com.smartgwt.client.widge
     }
 
     /**
-     * When {@link com.smartgwt.client..AutoTest#getElement AutoTest.getElement} is used to parse locator strings generated by
-     * link{isc.AutoTest.getLocator()} for this form item, should the item be identified? By default if the item has a name
-     * this will always be used, however for items with no name, the following options are available: <ul>
-     * <li><code>"title"</code> use the title as an identifier within this form</li> <li><code>"value"</code> use the value of
-     * the item to identify it (often used  for items with a static defaultValue such as HeaderItems</li>
-     * <li><code>"index"</code> use the index within the form's items array. </ul>  If unset, and the item has no specified
-     * name, default behavior is to identify by title (if available), otherwise by index.
+     * When  AutoTest.getElement is used to parse locator strings generated by link{isc.AutoTest.getLocator()} for this form
+     * item, should the item be identified? By default if the item has a name this will always be used, however for items with
+     * no name, the following options are available: <ul> <li><code>"title"</code> use the title as an identifier within this
+     * form</li> <li><code>"value"</code> use the value of the item to identify it (often used  for items with a static
+     * defaultValue such as HeaderItems</li> <li><code>"index"</code> use the index within the form's items array. </ul>  If
+     * unset, and the item has no specified name, default behavior is to identify by title (if available), otherwise by index.
      * <p><b>Note : </b> This is an advanced setting</p>
      *
      * @param locateItemBy locateItemBy Default value is null
@@ -965,13 +983,12 @@ public class FormItem extends RefDataClass  implements com.smartgwt.client.widge
     }
 
     /**
-     * When {@link com.smartgwt.client..AutoTest#getElement AutoTest.getElement} is used to parse locator strings generated by
-     * link{isc.AutoTest.getLocator()} for this form item, should the item be identified? By default if the item has a name
-     * this will always be used, however for items with no name, the following options are available: <ul>
-     * <li><code>"title"</code> use the title as an identifier within this form</li> <li><code>"value"</code> use the value of
-     * the item to identify it (often used  for items with a static defaultValue such as HeaderItems</li>
-     * <li><code>"index"</code> use the index within the form's items array. </ul>  If unset, and the item has no specified
-     * name, default behavior is to identify by title (if available), otherwise by index.
+     * When  AutoTest.getElement is used to parse locator strings generated by link{isc.AutoTest.getLocator()} for this form
+     * item, should the item be identified? By default if the item has a name this will always be used, however for items with
+     * no name, the following options are available: <ul> <li><code>"title"</code> use the title as an identifier within this
+     * form</li> <li><code>"value"</code> use the value of the item to identify it (often used  for items with a static
+     * defaultValue such as HeaderItems</li> <li><code>"index"</code> use the index within the form's items array. </ul>  If
+     * unset, and the item has no specified name, default behavior is to identify by title (if available), otherwise by index.
      *
      *
      * @return String
@@ -1008,17 +1025,18 @@ public class FormItem extends RefDataClass  implements com.smartgwt.client.widge
      * without the more advanced user interface of the {@link com.smartgwt.client.widgets.form.FilterBuilder}. <P> When
      * <code>item.operator</code> is set for any FormItem in a form, <code>form.getValuesAsCriteria()</code> will return an
      * {@link com.smartgwt.client.data.AdvancedCriteria} object instead of a normal {@link com.smartgwt.client.data.Criteria}
-     * object.  Each FormItem will produce one ${isc.DocUtils.linkForRef('object:Criterion')} affecting the DataSource field
+     * object.  Each FormItem will produce one {@link com.smartgwt.client.data.Criterion} affecting the DataSource field
      * specified by {@link com.smartgwt.client.widgets.form.fields.FormItem#getCriteriaField criteriaField}. The criteria
      * produced by the FormItems will be grouped under the logical operator provided by {@link
      * com.smartgwt.client.widgets.form.DynamicForm#getOperator operator}. <P> if <code>operator</code> is set for some fields
      * but not others, the default operator is "equals" for fields with a valueMap or an optionDataSource, and for fields of
      * type "enum" (or of a type that inherits from "enum").  The default operator for all other fields is "iContains"
      * (case-insensitive match)  <P> <b>Note:</b> Advanced criteria will only be created for items in a Databound form. If this
-     * item is part of a form with no {@link com.smartgwt.client.widgets.DataBoundComponent#getDataSource 'dataSource'}, the 
+     * item is part of a form with no {@link com.smartgwt.client.widgets.DataBoundComponent#getDataSource dataSource}, the 
      * <code>operator</code> attribute will have no effect.
      *
      * @param operator operator Default value is null
+     * @see com.smartgwt.client.docs.CriteriaEditing CriteriaEditing overview and related methods
      */
     public void setOperator(OperatorId operator) {
         setAttribute("operator", operator.getValue());
@@ -1031,18 +1049,19 @@ public class FormItem extends RefDataClass  implements com.smartgwt.client.widge
      * without the more advanced user interface of the {@link com.smartgwt.client.widgets.form.FilterBuilder}. <P> When
      * <code>item.operator</code> is set for any FormItem in a form, <code>form.getValuesAsCriteria()</code> will return an
      * {@link com.smartgwt.client.data.AdvancedCriteria} object instead of a normal {@link com.smartgwt.client.data.Criteria}
-     * object.  Each FormItem will produce one ${isc.DocUtils.linkForRef('object:Criterion')} affecting the DataSource field
+     * object.  Each FormItem will produce one {@link com.smartgwt.client.data.Criterion} affecting the DataSource field
      * specified by {@link com.smartgwt.client.widgets.form.fields.FormItem#getCriteriaField criteriaField}. The criteria
      * produced by the FormItems will be grouped under the logical operator provided by {@link
      * com.smartgwt.client.widgets.form.DynamicForm#getOperator operator}. <P> if <code>operator</code> is set for some fields
      * but not others, the default operator is "equals" for fields with a valueMap or an optionDataSource, and for fields of
      * type "enum" (or of a type that inherits from "enum").  The default operator for all other fields is "iContains"
      * (case-insensitive match)  <P> <b>Note:</b> Advanced criteria will only be created for items in a Databound form. If this
-     * item is part of a form with no {@link com.smartgwt.client.widgets.DataBoundComponent#getDataSource 'dataSource'}, the 
+     * item is part of a form with no {@link com.smartgwt.client.widgets.DataBoundComponent#getDataSource dataSource}, the 
      * <code>operator</code> attribute will have no effect.
      *
      *
      * @return OperatorId
+     * @see com.smartgwt.client.docs.CriteriaEditing CriteriaEditing overview and related methods
      */
     public OperatorId getOperator()  {
         return EnumUtil.getEnum(OperatorId.values(), getAttribute("operator"));
@@ -1261,9 +1280,9 @@ public class FormItem extends RefDataClass  implements com.smartgwt.client.widge
      * com.smartgwt.client.widgets.form.fields.FormItem#getRequiredMessage requiredMessage}, {@link
      * com.smartgwt.client.widgets.form.DynamicForm#getRequiredMessage requiredMessage}, {@link
      * com.smartgwt.client.data.DataSource#getRequiredMessage requiredMessage},  {@link
-     * com.smartgwt.client.widgets.form.validator.Validator#requiredField}. <P> <b>Note:</b> if specified on a FormItem,
-     * <code>required</code> is only enforced on the client.  <code>required</code> should generally be specified on a {@link
-     * com.smartgwt.client.data.DataSourceField}.
+     * com.smartgwt.client.widgets.form.validator.Validator#requiredField requiredField}. <P> <b>Note:</b> if specified on a
+     * FormItem, <code>required</code> is only enforced on the client.  <code>required</code> should generally be specified on
+     * a {@link com.smartgwt.client.data.DataSourceField}.
      *
      * @param required required Default value is null
      * @see com.smartgwt.client.docs.Validation Validation overview and related methods
@@ -1279,9 +1298,9 @@ public class FormItem extends RefDataClass  implements com.smartgwt.client.widge
      * com.smartgwt.client.widgets.form.fields.FormItem#getRequiredMessage requiredMessage}, {@link
      * com.smartgwt.client.widgets.form.DynamicForm#getRequiredMessage requiredMessage}, {@link
      * com.smartgwt.client.data.DataSource#getRequiredMessage requiredMessage},  {@link
-     * com.smartgwt.client.widgets.form.validator.Validator#requiredField}. <P> <b>Note:</b> if specified on a FormItem,
-     * <code>required</code> is only enforced on the client.  <code>required</code> should generally be specified on a {@link
-     * com.smartgwt.client.data.DataSourceField}.
+     * com.smartgwt.client.widgets.form.validator.Validator#requiredField requiredField}. <P> <b>Note:</b> if specified on a
+     * FormItem, <code>required</code> is only enforced on the client.  <code>required</code> should generally be specified on
+     * a {@link com.smartgwt.client.data.DataSourceField}.
      *
      *
      * @return Boolean
@@ -1335,8 +1354,8 @@ public class FormItem extends RefDataClass  implements com.smartgwt.client.widge
     }
 
     /**
-     * Allows the {@link com.smartgwt.client.widgets.form.DynamicForm#getSelectOnFocus 'selectOnFocus'} behavior to be
-     * configured on a per-FormItem basis.  Normally all items in a form default to the value of {@link
+     * Allows the {@link com.smartgwt.client.widgets.form.DynamicForm#getSelectOnFocus selectOnFocus} behavior to be configured
+     * on a per-FormItem basis.  Normally all items in a form default to the value of {@link
      * com.smartgwt.client.widgets.form.DynamicForm#getSelectOnFocus selectOnFocus}.
      *
      * @param selectOnFocus selectOnFocus Default value is null
@@ -1347,8 +1366,8 @@ public class FormItem extends RefDataClass  implements com.smartgwt.client.widge
     }
 
     /**
-     * Allows the {@link com.smartgwt.client.widgets.form.DynamicForm#getSelectOnFocus 'selectOnFocus'} behavior to be
-     * configured on a per-FormItem basis.  Normally all items in a form default to the value of {@link
+     * Allows the {@link com.smartgwt.client.widgets.form.DynamicForm#getSelectOnFocus selectOnFocus} behavior to be configured
+     * on a per-FormItem basis.  Normally all items in a form default to the value of {@link
      * com.smartgwt.client.widgets.form.DynamicForm#getSelectOnFocus selectOnFocus}.
      *
      *
@@ -1361,15 +1380,15 @@ public class FormItem extends RefDataClass  implements com.smartgwt.client.widge
 
     /**
      * Should this item's value be saved in the form's values and hence returned from {@link
-     * com.smartgwt.client.widgets.form.DynamicForm#getValues DynamicForm.getValues}? <p> <code>shouldSaveValue:false</code> is
-     * used to mark formItems which do not correspond to the underlying data model and should not save a value into the form's
-     * {@link com.smartgwt.client.widgets.form.DynamicForm#getValues 'values'}.  Example includes visual separators, password
+     * com.smartgwt.client.widgets.form.DynamicForm#getValues form.getValues()}? <p> <code>shouldSaveValue:false</code> is used
+     * to mark formItems which do not correspond to the underlying data model and should not save a value into the form's
+     * {@link com.smartgwt.client.widgets.form.DynamicForm#getValues values}.  Example includes visual separators, password
      * re-type fields, or checkboxes used to show/hide other form items. <p> A <code>shouldSaveValue:false</code> item should
      * be given a value either via {@link com.smartgwt.client.widgets.form.fields.FormItem#getDefaultValue defaultValue} or by
-     * calling {@link com.smartgwt.client.widgets.form.DynamicForm#setValue DynamicForm.setValue} or  {@link
-     * com.smartgwt.client.widgets.form.fields.FormItem#setValue FormItem.setValue}.  Providing a value via {@link
-     * com.smartgwt.client.widgets.form.DynamicForm#getValues 'form.values'} or {@link
-     * com.smartgwt.client.widgets.form.DynamicForm#setValues DynamicForm.setValues}  will automatically switch the item to
+     * calling {@link com.smartgwt.client.widgets.form.DynamicForm#setValue form.setValue(item, value)} or  {@link
+     * com.smartgwt.client.widgets.form.fields.FormItem#setValue formItem.setValue(value)}.  Providing a value via {@link
+     * com.smartgwt.client.widgets.form.DynamicForm#getValues form.values} or {@link
+     * com.smartgwt.client.widgets.form.DynamicForm#setValues form.setValues()}  will automatically switch the item to
      * <code>shouldSaveValue:true</code>. <P> Note that <ul> <li>if an item is shouldSaveValue true, but has no name, a warning
      * is logged, and      shouldSaveValue will be set to false. </li></ul>
      *
@@ -1381,15 +1400,15 @@ public class FormItem extends RefDataClass  implements com.smartgwt.client.widge
 
     /**
      * Should this item's value be saved in the form's values and hence returned from {@link
-     * com.smartgwt.client.widgets.form.DynamicForm#getValues DynamicForm.getValues}? <p> <code>shouldSaveValue:false</code> is
-     * used to mark formItems which do not correspond to the underlying data model and should not save a value into the form's
-     * {@link com.smartgwt.client.widgets.form.DynamicForm#getValues 'values'}.  Example includes visual separators, password
+     * com.smartgwt.client.widgets.form.DynamicForm#getValues form.getValues()}? <p> <code>shouldSaveValue:false</code> is used
+     * to mark formItems which do not correspond to the underlying data model and should not save a value into the form's
+     * {@link com.smartgwt.client.widgets.form.DynamicForm#getValues values}.  Example includes visual separators, password
      * re-type fields, or checkboxes used to show/hide other form items. <p> A <code>shouldSaveValue:false</code> item should
      * be given a value either via {@link com.smartgwt.client.widgets.form.fields.FormItem#getDefaultValue defaultValue} or by
-     * calling {@link com.smartgwt.client.widgets.form.DynamicForm#setValue DynamicForm.setValue} or  {@link
-     * com.smartgwt.client.widgets.form.fields.FormItem#setValue FormItem.setValue}.  Providing a value via {@link
-     * com.smartgwt.client.widgets.form.DynamicForm#getValues 'form.values'} or {@link
-     * com.smartgwt.client.widgets.form.DynamicForm#setValues DynamicForm.setValues}  will automatically switch the item to
+     * calling {@link com.smartgwt.client.widgets.form.DynamicForm#setValue form.setValue(item, value)} or  {@link
+     * com.smartgwt.client.widgets.form.fields.FormItem#setValue formItem.setValue(value)}.  Providing a value via {@link
+     * com.smartgwt.client.widgets.form.DynamicForm#getValues form.values} or {@link
+     * com.smartgwt.client.widgets.form.DynamicForm#setValues form.setValues()}  will automatically switch the item to
      * <code>shouldSaveValue:true</code>. <P> Note that <ul> <li>if an item is shouldSaveValue true, but has no name, a warning
      * is logged, and      shouldSaveValue will be set to false. </li></ul>
      *
@@ -1423,11 +1442,12 @@ public class FormItem extends RefDataClass  implements com.smartgwt.client.widge
     }
 
     /**
-     * {@link com.smartgwt.client.widgets.form.DynamicForm#getShowErrorIcons 'showErrorIcons'},  {@link
-     * com.smartgwt.client.widgets.form.DynamicForm#getShowErrorText 'showErrorText'}, and {@link
-     * com.smartgwt.client.widgets.form.DynamicForm#getShowErrorStyle 'showErrorStyle'} control how validation errors are
+     * {@link com.smartgwt.client.widgets.form.DynamicForm#getShowErrorIcons showErrorIcons},  {@link
+     * com.smartgwt.client.widgets.form.DynamicForm#getShowErrorText showErrorText}, and {@link
+     * com.smartgwt.client.widgets.form.DynamicForm#getShowErrorStyle showErrorStyle} control how validation errors are
      * displayed when they are displayed inline in the form (next to the form item where there is a validation error).  To
-     * instead display all errors at the top of the form, set ${isc.DocUtils.linkForRef('showInlineErrors:false')}. <P>
+     * instead display all errors at the top of the form, set {@link
+     * com.smartgwt.client.widgets.form.fields.FormItem#getShowInlineErrors showInlineErrors}:false. <P>
      * <code>showErrorIcons</code>, <code>showErrorText</code> and <code>showErrorStyle</code> are all boolean properties, and
      * can be set on a DynamicForm to control the behavior form-wide, or set on individual FormItems.   <P> The HTML displayed
      * next to a form item with errors is generated by  {@link com.smartgwt.client.widgets.form.fields.FormItem#getErrorHTML
@@ -1448,7 +1468,7 @@ public class FormItem extends RefDataClass  implements com.smartgwt.client.widge
      * compact validation error display consisting of just an icon, to the left of the item with the error message available
      * via a hover (similar appearance to ListGrid validation error display).   <P> In addition to this,
      * <code>showErrorStyle</code> determines whether fields  with validation errors should have special styling applied to
-     * them. See {@link com.smartgwt.client..FormItemBaseStyle} for a  discussion for how error styling is calculated.
+     * them. See {@link java.lang.String} for a  discussion for how error styling is calculated.
      *
      * @param showErrorIcon showErrorIcon Default value is null
      * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
@@ -1458,11 +1478,12 @@ public class FormItem extends RefDataClass  implements com.smartgwt.client.widge
     }
 
     /**
-     * {@link com.smartgwt.client.widgets.form.DynamicForm#getShowErrorIcons 'showErrorIcons'},  {@link
-     * com.smartgwt.client.widgets.form.DynamicForm#getShowErrorText 'showErrorText'}, and {@link
-     * com.smartgwt.client.widgets.form.DynamicForm#getShowErrorStyle 'showErrorStyle'} control how validation errors are
+     * {@link com.smartgwt.client.widgets.form.DynamicForm#getShowErrorIcons showErrorIcons},  {@link
+     * com.smartgwt.client.widgets.form.DynamicForm#getShowErrorText showErrorText}, and {@link
+     * com.smartgwt.client.widgets.form.DynamicForm#getShowErrorStyle showErrorStyle} control how validation errors are
      * displayed when they are displayed inline in the form (next to the form item where there is a validation error).  To
-     * instead display all errors at the top of the form, set ${isc.DocUtils.linkForRef('showInlineErrors:false')}. <P>
+     * instead display all errors at the top of the form, set {@link
+     * com.smartgwt.client.widgets.form.fields.FormItem#getShowInlineErrors showInlineErrors}:false. <P>
      * <code>showErrorIcons</code>, <code>showErrorText</code> and <code>showErrorStyle</code> are all boolean properties, and
      * can be set on a DynamicForm to control the behavior form-wide, or set on individual FormItems.   <P> The HTML displayed
      * next to a form item with errors is generated by  {@link com.smartgwt.client.widgets.form.fields.FormItem#getErrorHTML
@@ -1483,7 +1504,7 @@ public class FormItem extends RefDataClass  implements com.smartgwt.client.widge
      * compact validation error display consisting of just an icon, to the left of the item with the error message available
      * via a hover (similar appearance to ListGrid validation error display).   <P> In addition to this,
      * <code>showErrorStyle</code> determines whether fields  with validation errors should have special styling applied to
-     * them. See {@link com.smartgwt.client..FormItemBaseStyle} for a  discussion for how error styling is calculated.
+     * them. See {@link java.lang.String} for a  discussion for how error styling is calculated.
      *
      *
      * @return Boolean
@@ -1494,11 +1515,12 @@ public class FormItem extends RefDataClass  implements com.smartgwt.client.widge
     }
 
     /**
-     * {@link com.smartgwt.client.widgets.form.DynamicForm#getShowErrorIcons 'showErrorIcons'},  {@link
-     * com.smartgwt.client.widgets.form.DynamicForm#getShowErrorText 'showErrorText'}, and {@link
-     * com.smartgwt.client.widgets.form.DynamicForm#getShowErrorStyle 'showErrorStyle'} control how validation errors are
+     * {@link com.smartgwt.client.widgets.form.DynamicForm#getShowErrorIcons showErrorIcons},  {@link
+     * com.smartgwt.client.widgets.form.DynamicForm#getShowErrorText showErrorText}, and {@link
+     * com.smartgwt.client.widgets.form.DynamicForm#getShowErrorStyle showErrorStyle} control how validation errors are
      * displayed when they are displayed inline in the form (next to the form item where there is a validation error).  To
-     * instead display all errors at the top of the form, set ${isc.DocUtils.linkForRef('showInlineErrors:false')}. <P>
+     * instead display all errors at the top of the form, set {@link
+     * com.smartgwt.client.widgets.form.fields.FormItem#getShowInlineErrors showInlineErrors}:false. <P>
      * <code>showErrorIcons</code>, <code>showErrorText</code> and <code>showErrorStyle</code> are all boolean properties, and
      * can be set on a DynamicForm to control the behavior form-wide, or set on individual FormItems.   <P> The HTML displayed
      * next to a form item with errors is generated by  {@link com.smartgwt.client.widgets.form.fields.FormItem#getErrorHTML
@@ -1519,7 +1541,7 @@ public class FormItem extends RefDataClass  implements com.smartgwt.client.widge
      * compact validation error display consisting of just an icon, to the left of the item with the error message available
      * via a hover (similar appearance to ListGrid validation error display).   <P> In addition to this,
      * <code>showErrorStyle</code> determines whether fields  with validation errors should have special styling applied to
-     * them. See {@link com.smartgwt.client..FormItemBaseStyle} for a  discussion for how error styling is calculated.
+     * them. See {@link java.lang.String} for a  discussion for how error styling is calculated.
      *
      * @param showErrorStyle showErrorStyle Default value is null
      * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
@@ -1529,11 +1551,12 @@ public class FormItem extends RefDataClass  implements com.smartgwt.client.widge
     }
 
     /**
-     * {@link com.smartgwt.client.widgets.form.DynamicForm#getShowErrorIcons 'showErrorIcons'},  {@link
-     * com.smartgwt.client.widgets.form.DynamicForm#getShowErrorText 'showErrorText'}, and {@link
-     * com.smartgwt.client.widgets.form.DynamicForm#getShowErrorStyle 'showErrorStyle'} control how validation errors are
+     * {@link com.smartgwt.client.widgets.form.DynamicForm#getShowErrorIcons showErrorIcons},  {@link
+     * com.smartgwt.client.widgets.form.DynamicForm#getShowErrorText showErrorText}, and {@link
+     * com.smartgwt.client.widgets.form.DynamicForm#getShowErrorStyle showErrorStyle} control how validation errors are
      * displayed when they are displayed inline in the form (next to the form item where there is a validation error).  To
-     * instead display all errors at the top of the form, set ${isc.DocUtils.linkForRef('showInlineErrors:false')}. <P>
+     * instead display all errors at the top of the form, set {@link
+     * com.smartgwt.client.widgets.form.fields.FormItem#getShowInlineErrors showInlineErrors}:false. <P>
      * <code>showErrorIcons</code>, <code>showErrorText</code> and <code>showErrorStyle</code> are all boolean properties, and
      * can be set on a DynamicForm to control the behavior form-wide, or set on individual FormItems.   <P> The HTML displayed
      * next to a form item with errors is generated by  {@link com.smartgwt.client.widgets.form.fields.FormItem#getErrorHTML
@@ -1554,7 +1577,7 @@ public class FormItem extends RefDataClass  implements com.smartgwt.client.widge
      * compact validation error display consisting of just an icon, to the left of the item with the error message available
      * via a hover (similar appearance to ListGrid validation error display).   <P> In addition to this,
      * <code>showErrorStyle</code> determines whether fields  with validation errors should have special styling applied to
-     * them. See {@link com.smartgwt.client..FormItemBaseStyle} for a  discussion for how error styling is calculated.
+     * them. See {@link java.lang.String} for a  discussion for how error styling is calculated.
      *
      *
      * @return Boolean
@@ -1565,11 +1588,12 @@ public class FormItem extends RefDataClass  implements com.smartgwt.client.widge
     }
 
     /**
-     * {@link com.smartgwt.client.widgets.form.DynamicForm#getShowErrorIcons 'showErrorIcons'},  {@link
-     * com.smartgwt.client.widgets.form.DynamicForm#getShowErrorText 'showErrorText'}, and {@link
-     * com.smartgwt.client.widgets.form.DynamicForm#getShowErrorStyle 'showErrorStyle'} control how validation errors are
+     * {@link com.smartgwt.client.widgets.form.DynamicForm#getShowErrorIcons showErrorIcons},  {@link
+     * com.smartgwt.client.widgets.form.DynamicForm#getShowErrorText showErrorText}, and {@link
+     * com.smartgwt.client.widgets.form.DynamicForm#getShowErrorStyle showErrorStyle} control how validation errors are
      * displayed when they are displayed inline in the form (next to the form item where there is a validation error).  To
-     * instead display all errors at the top of the form, set ${isc.DocUtils.linkForRef('showInlineErrors:false')}. <P>
+     * instead display all errors at the top of the form, set {@link
+     * com.smartgwt.client.widgets.form.fields.FormItem#getShowInlineErrors showInlineErrors}:false. <P>
      * <code>showErrorIcons</code>, <code>showErrorText</code> and <code>showErrorStyle</code> are all boolean properties, and
      * can be set on a DynamicForm to control the behavior form-wide, or set on individual FormItems.   <P> The HTML displayed
      * next to a form item with errors is generated by  {@link com.smartgwt.client.widgets.form.fields.FormItem#getErrorHTML
@@ -1590,7 +1614,7 @@ public class FormItem extends RefDataClass  implements com.smartgwt.client.widge
      * compact validation error display consisting of just an icon, to the left of the item with the error message available
      * via a hover (similar appearance to ListGrid validation error display).   <P> In addition to this,
      * <code>showErrorStyle</code> determines whether fields  with validation errors should have special styling applied to
-     * them. See {@link com.smartgwt.client..FormItemBaseStyle} for a  discussion for how error styling is calculated.
+     * them. See {@link java.lang.String} for a  discussion for how error styling is calculated.
      *
      * @param showErrorText showErrorText Default value is null
      * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
@@ -1600,11 +1624,12 @@ public class FormItem extends RefDataClass  implements com.smartgwt.client.widge
     }
 
     /**
-     * {@link com.smartgwt.client.widgets.form.DynamicForm#getShowErrorIcons 'showErrorIcons'},  {@link
-     * com.smartgwt.client.widgets.form.DynamicForm#getShowErrorText 'showErrorText'}, and {@link
-     * com.smartgwt.client.widgets.form.DynamicForm#getShowErrorStyle 'showErrorStyle'} control how validation errors are
+     * {@link com.smartgwt.client.widgets.form.DynamicForm#getShowErrorIcons showErrorIcons},  {@link
+     * com.smartgwt.client.widgets.form.DynamicForm#getShowErrorText showErrorText}, and {@link
+     * com.smartgwt.client.widgets.form.DynamicForm#getShowErrorStyle showErrorStyle} control how validation errors are
      * displayed when they are displayed inline in the form (next to the form item where there is a validation error).  To
-     * instead display all errors at the top of the form, set ${isc.DocUtils.linkForRef('showInlineErrors:false')}. <P>
+     * instead display all errors at the top of the form, set {@link
+     * com.smartgwt.client.widgets.form.fields.FormItem#getShowInlineErrors showInlineErrors}:false. <P>
      * <code>showErrorIcons</code>, <code>showErrorText</code> and <code>showErrorStyle</code> are all boolean properties, and
      * can be set on a DynamicForm to control the behavior form-wide, or set on individual FormItems.   <P> The HTML displayed
      * next to a form item with errors is generated by  {@link com.smartgwt.client.widgets.form.fields.FormItem#getErrorHTML
@@ -1625,7 +1650,7 @@ public class FormItem extends RefDataClass  implements com.smartgwt.client.widge
      * compact validation error display consisting of just an icon, to the left of the item with the error message available
      * via a hover (similar appearance to ListGrid validation error display).   <P> In addition to this,
      * <code>showErrorStyle</code> determines whether fields  with validation errors should have special styling applied to
-     * them. See {@link com.smartgwt.client..FormItemBaseStyle} for a  discussion for how error styling is calculated.
+     * them. See {@link java.lang.String} for a  discussion for how error styling is calculated.
      *
      *
      * @return Boolean
@@ -1984,8 +2009,8 @@ public class FormItem extends RefDataClass  implements com.smartgwt.client.widge
     }
 
     /**
-     * Base CSS class name for a form item's text box element. <P> NOTE: See the CompoundFormItem_skinning discussion for
-     * special skinning considerations.
+     * Base CSS class name for a form item's text box element. <P> NOTE: See the {@link CompoundFormItem_skinning} discussion
+     * for special skinning considerations.
      *
      * @param textBoxStyle textBoxStyle Default value is null
      * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
@@ -1995,8 +2020,8 @@ public class FormItem extends RefDataClass  implements com.smartgwt.client.widge
     }
 
     /**
-     * Base CSS class name for a form item's text box element. <P> NOTE: See the CompoundFormItem_skinning discussion for
-     * special skinning considerations.
+     * Base CSS class name for a form item's text box element. <P> NOTE: See the {@link CompoundFormItem_skinning} discussion
+     * for special skinning considerations.
      *
      *
      * @return String
@@ -2079,7 +2104,7 @@ public class FormItem extends RefDataClass  implements com.smartgwt.client.widge
     /**
      * On which side of this item should the title be placed.  {@link com.smartgwt.client.types.TitleOrientation} lists valid
      * options. <P> Note that titles on the left or right take up a cell in tabular {@link com.smartgwt.client.docs.FormLayout
-     * 'form layouts'}, but titles on top do not.
+     * form layouts}, but titles on top do not.
      *
      * @param titleOrientation titleOrientation Default value is Canvas.LEFT
      */
@@ -2090,7 +2115,7 @@ public class FormItem extends RefDataClass  implements com.smartgwt.client.widge
     /**
      * On which side of this item should the title be placed.  {@link com.smartgwt.client.types.TitleOrientation} lists valid
      * options. <P> Note that titles on the left or right take up a cell in tabular {@link com.smartgwt.client.docs.FormLayout
-     * 'form layouts'}, but titles on top do not.
+     * form layouts}, but titles on top do not.
      *
      *
      * @return TitleOrientation
@@ -2144,7 +2169,7 @@ public class FormItem extends RefDataClass  implements com.smartgwt.client.widge
     /**
      * Top coordinate of this item in pixels.  Applies only when the containing DynamicForm sets
      * <code>itemLayout:"absolute"</code>.
-     * For a form with {@link com.smartgwt.client.widgets.form.DynamicForm#getItemLayout 'itemLayout'}:"absolute" only, set the top coordinate of this form item. <P> Causes the form to redraw.
+     * For a form with {@link com.smartgwt.client.widgets.form.DynamicForm#getItemLayout itemLayout}:"absolute" only, set the top coordinate of this form item. <P> Causes the form to redraw.
      * <p><b>Note : </b> This is an advanced setting</p>
      *
      * @param top top Default value is 0
@@ -2215,7 +2240,7 @@ public class FormItem extends RefDataClass  implements com.smartgwt.client.widge
     /**
      * If this form item maps data values to display values by retrieving the  {@link
      * com.smartgwt.client.widgets.form.fields.FormItem#getDisplayField displayField} values from an  {@link
-     * com.smartgwt.client.widgets.form.fields.FormItem#getOptionDataSource 'optionDataSource'}, this property  denotes the the
+     * com.smartgwt.client.widgets.form.fields.FormItem#getOptionDataSource optionDataSource}, this property  denotes the the
      * field to use as the underlying data value in records from the  optionDataSource.<br> If unset, assumed to be the {@link
      * com.smartgwt.client.widgets.form.fields.FormItem#getName name} of this form item.
      *
@@ -2228,7 +2253,7 @@ public class FormItem extends RefDataClass  implements com.smartgwt.client.widge
     /**
      * If this form item maps data values to display values by retrieving the  {@link
      * com.smartgwt.client.widgets.form.fields.FormItem#getDisplayField displayField} values from an  {@link
-     * com.smartgwt.client.widgets.form.fields.FormItem#getOptionDataSource 'optionDataSource'}, this property  denotes the the
+     * com.smartgwt.client.widgets.form.fields.FormItem#getOptionDataSource optionDataSource}, this property  denotes the the
      * field to use as the underlying data value in records from the  optionDataSource.<br> If unset, assumed to be the {@link
      * com.smartgwt.client.widgets.form.fields.FormItem#getName name} of this form item.
      *
@@ -2378,7 +2403,7 @@ public class FormItem extends RefDataClass  implements com.smartgwt.client.widge
     /**
      * Width of the FormItem.  Can be either a number indicating a fixed width in pixels, or "*" indicating the FormItem fills
      * the space allocated to it's column (or columns, for a {@link com.smartgwt.client.widgets.form.fields.FormItem#getColSpan
-     * 'column spanning'} item). <P> See the {@link com.smartgwt.client.docs.FormLayout} overview for details.
+     * column spanning} item). <P> See the {@link com.smartgwt.client.docs.FormLayout} overview for details.
      *
      * @param width width Default value is "*"
      * @see com.smartgwt.client.docs.FormLayout FormLayout overview and related methods
@@ -2391,7 +2416,7 @@ public class FormItem extends RefDataClass  implements com.smartgwt.client.widge
     /**
      * Width of the FormItem.  Can be either a number indicating a fixed width in pixels, or "*" indicating the FormItem fills
      * the space allocated to it's column (or columns, for a {@link com.smartgwt.client.widgets.form.fields.FormItem#getColSpan
-     * 'column spanning'} item). <P> See the {@link com.smartgwt.client.docs.FormLayout} overview for details.
+     * column spanning} item). <P> See the {@link com.smartgwt.client.docs.FormLayout} overview for details.
      *
      *
      * @return int
@@ -2404,7 +2429,7 @@ public class FormItem extends RefDataClass  implements com.smartgwt.client.widge
 
     /**
      * If specified determines whether this items title should wrap. Overrides {@link
-     * com.smartgwt.client.widgets.form.DynamicForm#getWrapItemTitles 'wrapItemTitles'} at the DynamicForm level.
+     * com.smartgwt.client.widgets.form.DynamicForm#getWrapItemTitles wrapItemTitles} at the DynamicForm level.
      *
      * @param wrapTitle wrapTitle Default value is null
      */
@@ -2414,7 +2439,7 @@ public class FormItem extends RefDataClass  implements com.smartgwt.client.widge
 
     /**
      * If specified determines whether this items title should wrap. Overrides {@link
-     * com.smartgwt.client.widgets.form.DynamicForm#getWrapItemTitles 'wrapItemTitles'} at the DynamicForm level.
+     * com.smartgwt.client.widgets.form.DynamicForm#getWrapItemTitles wrapItemTitles} at the DynamicForm level.
      *
      *
      * @return Boolean
@@ -2455,6 +2480,33 @@ public class FormItem extends RefDataClass  implements com.smartgwt.client.widge
         var self = this.@com.smartgwt.client.core.DataClass::getJsObj()();
         self.blurItem();
     }-*/;
+            
+    /**
+     * When a dynamic form is editing an advanced criteria object via {@link
+     * com.smartgwt.client.widgets.form.DynamicForm#setValuesAsCriteria DynamicForm.setValuesAsCriteria}, this method is used
+     * to to determine which sub-criteria apply to which form item(s). <P> This method will be called on each item, and passed
+     * the sub-criterion of the AdvancedCriteria object. It should return true if the item can edit the criterion, otherwise
+     * false. If it returns true, setValuesAsCriteria() will call  {@link
+     * com.smartgwt.client.widgets.form.fields.FormItem#setCriterion FormItem.setCriterion} to actually apply the criterion to
+     * the form item, and {@link com.smartgwt.client.widgets.form.DynamicForm#getValuesAsCriteria
+     * DynamicForm.getValuesAsCriteria} can subsequently retrieve the edited criterion by calling {@link
+     * com.smartgwt.client.widgets.form.fields.FormItem#getCriterion FormItem.getCriterion}. <P> Default implementation will
+     * return true if the criterion <code>fieldName</code> and <code>operator</code> match the fieldName and operator (or
+     * default operator) for this item.
+     * @param criterion sub-criterion from an AdvancedCriteria object
+     *
+     * @return return true if this item can edit the criterion in question.
+     * @see com.smartgwt.client.docs.CriteriaEditing CriteriaEditing overview and related methods
+     */
+    public native Boolean canEditCriterion(Criterion criterion) /*-{
+        var self = this.@com.smartgwt.client.core.DataClass::getJsObj()();
+        var retVal =self.canEditCriterion(criterion.@com.smartgwt.client.core.DataClass::getJsObj()());
+        if(retVal == null || retVal === undefined) {
+            return null;
+        } else {
+            return @com.smartgwt.client.util.JSOHelper::toBoolean(Z)(retVal);
+        }
+    }-*/;
     /**
      * Add a change handler.
      * <p>
@@ -2462,11 +2514,11 @@ public class FormItem extends RefDataClass  implements com.smartgwt.client.widge
      * performed an action that would change the value of this field, but before the element itself is changed.   <P> Returning
      * false cancels the change.  Note that if what you want to do is <b>transform</b> the user's input, for example,
      * automatically change separator characters to a standard separator character, you should implement {@link
-     * com.smartgwt.client.widgets.form.fields.FormItem#setInputTransformer FormItem.setInputTransformer} rather than using a
-     * combination of change() and setValue() to accomplish the same thing.  Returning false from <code>change</code> is
-     * intended for rejecting input entirely, such as typing invalid characters. <p> Note that if you ask the form for the
-     * current value in this handler, you will get the old value because the change has not yet been committed.  The new value
-     * is available as a parameter to this method.
+     * com.smartgwt.client.widgets.form.fields.FormItem#setInputTransformer transformInput} rather than using a combination of
+     * change() and setValue() to accomplish the same thing.  Returning false from <code>change</code> is intended for
+     * rejecting input entirely, such as typing invalid characters. <p> Note that if you ask the form for the current value in
+     * this handler, you will get the old value because the change has not yet been committed.  The new value is available as a
+     * parameter to this method.
      *
      * @param handler the change handler
      * @return {@link HandlerRegistration} used to remove this handler
@@ -2622,11 +2674,24 @@ public class FormItem extends RefDataClass  implements com.smartgwt.client.widge
      * API is provided to allow you to specify a more complex criterion than the  "field-operator-value" criterions that are
      * built-in.  Note that the built-in behavior is generally quite flexible and powerful enough for most requirements.  An
      * example of a case where you might want to override this method is if you wanted to implement a date range  selection
-     * (ie, date &gt; x AND date &lt; y) on a form that was combining its other criteria  fields with an "or" operator.
+     * (ie, date &gt; x AND date &lt; y) on a form that was combining its other criteria  fields with an "or" operator. <P>
+     * Note that this method is part of the criteria editing subsystem: if overridden, it is likely that you will want to also
+     * override {@link com.smartgwt.client.widgets.form.fields.FormItem#hasAdvancedCriteria FormItem.hasAdvancedCriteria} to
+     * ensure this method is called by the form, and to support editing of existing advanced criteria you may also need to
+     * override {@link com.smartgwt.client.widgets.form.fields.FormItem#canEditCriterion FormItem.canEditCriterion} and  {@link
+     * com.smartgwt.client.widgets.form.fields.FormItem#setCriterion FormItem.setCriterion}. <P> The default implementation
+     * will return a criterion including the form item value, fieldName and specified {@link
+     * com.smartgwt.client.widgets.form.fields.FormItem#getOperator operator}, or a default operator derived from the form item
+     * data type if no explicit operator is specified.
+     *
+     * @return criterion object based on this fields current edited value(s).
+     * @see com.smartgwt.client.docs.CriteriaEditing CriteriaEditing overview and related methods
      */
-    public native void getCriterion() /*-{
+    public native Criterion getCriterion() /*-{
         var self = this.@com.smartgwt.client.core.DataClass::getJsObj()();
-        self.getCriterion();
+        var ret = self.getCriterion();
+        if(ret == null || ret === undefined) return null;
+        return @com.smartgwt.client.data.Criterion::new(Lcom/google/gwt/core/client/JavaScriptObject;)(ret);
     }-*/;
             
     /**
@@ -2685,10 +2750,9 @@ public class FormItem extends RefDataClass  implements com.smartgwt.client.widge
     }-*/;
             
     /**
-     * Return the value tracked by this form item. <P> Note that for FormItems that have a {@link
-     * com.smartgwt.client..ValueMap} or where a {@link com.smartgwt.client.widgets.form.fields.FormItem#formatValue
-     * FormItem.formatValue} has been defined, <code>getValue()</code> returns the underlying value of the FormItem, not the
-     * displayed value.
+     * Return the value tracked by this form item. <P> Note that for FormItems that have a ValueMap or where a {@link
+     * com.smartgwt.client.widgets.form.fields.FormItem#formatValue formatter} has been defined, <code>getValue()</code>
+     * returns the underlying value of the FormItem, not the displayed value.
      *
      * @return value of this element
      */
@@ -2709,6 +2773,27 @@ public class FormItem extends RefDataClass  implements com.smartgwt.client.widge
     public native String getValueFieldName() /*-{
         var self = this.@com.smartgwt.client.core.DataClass::getJsObj()();
         return self.getValueFieldName();
+    }-*/;
+            
+    /**
+     * Does this form item produce an {@link com.smartgwt.client.data.AdvancedCriteria} sub criterion object? If this method
+     * returns true, {@link com.smartgwt.client.widgets.form.DynamicForm#getValuesAsCriteria DynamicForm.getValuesAsCriteria}
+     * on the form containing this item will always return an {@link com.smartgwt.client.data.AdvancedCriteria} object, calling
+     * {@link com.smartgwt.client.widgets.form.fields.FormItem#getCriterion FormItem.getCriterion} on each item to retrieve the
+     * individual criteria. <P> Default implementation will return <code>true</code> if {@link
+     * com.smartgwt.client.widgets.form.fields.FormItem#getOperator operator} is explicitly specified.
+     *
+     * @return true if this item will return an AdvancedCriteria sub-criterion.
+     * @see com.smartgwt.client.docs.CriteriaEditing CriteriaEditing overview and related methods
+     */
+    public native Boolean hasAdvancedCriteria() /*-{
+        var self = this.@com.smartgwt.client.core.DataClass::getJsObj()();
+        var retVal =self.hasAdvancedCriteria();
+        if(retVal == null || retVal === undefined) {
+            return null;
+        } else {
+            return @com.smartgwt.client.util.JSOHelper::toBoolean(Z)(retVal);
+        }
     }-*/;
             
     /**
@@ -2899,6 +2984,19 @@ public class FormItem extends RefDataClass  implements com.smartgwt.client.widge
                 return !ret;
             }));
    }-*/;
+            
+    /**
+     * Update this form item to reflect a criterion object from within an AdvancedCriteria. Called by {@link
+     * com.smartgwt.client.widgets.form.DynamicForm#setValuesAsCriteria DynamicForm.setValuesAsCriteria} when {@link
+     * com.smartgwt.client.widgets.form.fields.FormItem#canEditCriterion FormItem.canEditCriterion} returns true for this item.
+     * <P> Default implementation simply calls {@link com.smartgwt.client.widgets.form.fields.FormItem#setValue
+     * FormItem.setValue} with the <code>value</code> of the criterion passed in
+     * @param criterion criterion to edit
+     */
+    public native void setCriterion(Criterion criterion) /*-{
+        var self = this.@com.smartgwt.client.core.DataClass::getJsObj()();
+        self.setCriterion(criterion.@com.smartgwt.client.core.DataClass::getJsObj()());
+    }-*/;
             
     /**
      * Show this form item. <BR><BR> This will cause the form to redraw.  If this item had an item.showIf expression, it will
