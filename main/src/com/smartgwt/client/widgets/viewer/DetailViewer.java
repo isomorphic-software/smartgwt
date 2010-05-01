@@ -144,8 +144,8 @@ public class DetailViewer extends Canvas  implements DataBoundComponent {
      *
      *
      * @return Return the CSS class for a cell. Default implementation calls {@link
-     * com.smartgwt.client.widgets.viewer.DetailViewerField#getCellStyle DetailViewerField.getCellStyle} on the field if
-     * defined, otherwise returns {@link com.smartgwt.client.widgets.viewer.DetailViewer#getCellStyle 'this.cellStyle'}
+     * com.smartgwt.client.widgets.viewer.DetailViewerField#getCellStyle getCellStyle()} on the field if defined, otherwise
+     * returns {@link com.smartgwt.client.widgets.viewer.DetailViewer#getCellStyle this.cellStyle}
      * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
     public String getCellStyle()  {
@@ -154,8 +154,8 @@ public class DetailViewer extends Canvas  implements DataBoundComponent {
 
     /**
      * Display format to use for fields specified as type 'date'.  Default is to use the system-wide default normal date
-     * format, configured via {@link com.smartgwt.client..Date#setNormalDisplayFormat Date.setNormalDisplayFormat}.  Specify
-     * any valid {@link com.smartgwt.client.types.DateDisplayFormat} to change the format used by this detailViewer.
+     * format, configured via  Date.setNormalDisplayFormat.  Specify any valid {@link
+     * com.smartgwt.client.types.DateDisplayFormat} to change the format used by this detailViewer.
      *
      * @param dateFormatter dateFormatter Default value is null
      * @throws IllegalStateException this property cannot be changed after the component has been created
@@ -166,8 +166,8 @@ public class DetailViewer extends Canvas  implements DataBoundComponent {
 
     /**
      * Display format to use for fields specified as type 'date'.  Default is to use the system-wide default normal date
-     * format, configured via {@link com.smartgwt.client..Date#setNormalDisplayFormat Date.setNormalDisplayFormat}.  Specify
-     * any valid {@link com.smartgwt.client.types.DateDisplayFormat} to change the format used by this detailViewer.
+     * format, configured via  Date.setNormalDisplayFormat.  Specify any valid {@link
+     * com.smartgwt.client.types.DateDisplayFormat} to change the format used by this detailViewer.
      *
      *
      * @return DateDisplayFormat
@@ -178,7 +178,7 @@ public class DetailViewer extends Canvas  implements DataBoundComponent {
 
     /**
      * Display format to use for fields specified as type 'datetime'. Default is to use the system-wide default datetime format
-     * configured via  {@link com.smartgwt.client..Date#setShortDatetimeDisplayFormat Date.setShortDatetimeDisplayFormat}
+     * configured via   Date.setShortDatetimeDisplayFormat
      *
      * @param datetimeFormatter datetimeFormatter Default value is null
      * @throws IllegalStateException this property cannot be changed after the component has been created
@@ -189,7 +189,7 @@ public class DetailViewer extends Canvas  implements DataBoundComponent {
 
     /**
      * Display format to use for fields specified as type 'datetime'. Default is to use the system-wide default datetime format
-     * configured via  {@link com.smartgwt.client..Date#setShortDatetimeDisplayFormat Date.setShortDatetimeDisplayFormat}
+     * configured via   Date.setShortDatetimeDisplayFormat
      *
      *
      * @return DateDisplayFormat
@@ -630,15 +630,14 @@ public class DetailViewer extends Canvas  implements DataBoundComponent {
     // ********************* Methods ***********************
             
     /**
-     * Uses a "fetch" operation on the current {@link com.smartgwt.client.widgets.DataBoundComponent#getDataSource
-     * 'DataSource'} to  retrieve data that matches the current filter and sort criteria for this component, then  exports the
-     * resulting data to a file or window in the requested format. <P> A variety of DSRequest settings, such as  {@link
-     * com.smartgwt.client.data.DSRequest#getExportAs 'exportAs'} and {@link
-     * com.smartgwt.client.data.DSRequest#getExportFilename exportFilename}, affect the  exporting process: see {@link
-     * com.smartgwt.client.data.DSRequest#getExportResults 'exportResults'} for further detail. <P> Note that data exported via
-     * this method does not include any client-side formatting and relies on both the Smart GWT server and server-side
-     * DataSources.  To export client-data  with formatters applied,  see {@link
-     * com.smartgwt.client.widgets.DataBoundComponent#exportClientData DataBoundComponent.exportClientData}, which still
+     * Uses a "fetch" operation on the current {@link com.smartgwt.client.widgets.DataBoundComponent#getDataSource DataSource}
+     * to  retrieve data that matches the current filter and sort criteria for this component, then  exports the resulting data
+     * to a file or window in the requested format. <P> A variety of DSRequest settings, such as  {@link
+     * com.smartgwt.client.data.DSRequest#getExportAs exportAs} and {@link com.smartgwt.client.data.DSRequest#getExportFilename
+     * exportFilename}, affect the  exporting process: see {@link com.smartgwt.client.data.DSRequest#getExportResults
+     * exportResults} for further detail. <P> Note that data exported via this method does not include any client-side
+     * formatting and relies on both the Smart GWT server and server-side DataSources.  To export client-data  with formatters
+     * applied,  see {@link com.smartgwt.client.widgets.DataBoundComponent#exportClientData exportClientData}, which still
      * requires the Smart GWT server but does not rely on server-side DataSources. <P> For more information on exporting data,
      * see {@link com.smartgwt.client.data.DataSource#exportData DataSource.exportData}.
      */
@@ -648,15 +647,14 @@ public class DetailViewer extends Canvas  implements DataBoundComponent {
     }-*/;
 
     /**
-     * Uses a "fetch" operation on the current {@link com.smartgwt.client.widgets.DataBoundComponent#getDataSource
-     * 'DataSource'} to  retrieve data that matches the current filter and sort criteria for this component, then  exports the
-     * resulting data to a file or window in the requested format. <P> A variety of DSRequest settings, such as  {@link
-     * com.smartgwt.client.data.DSRequest#getExportAs 'exportAs'} and {@link
-     * com.smartgwt.client.data.DSRequest#getExportFilename exportFilename}, affect the  exporting process: see {@link
-     * com.smartgwt.client.data.DSRequest#getExportResults 'exportResults'} for further detail. <P> Note that data exported via
-     * this method does not include any client-side formatting and relies on both the Smart GWT server and server-side
-     * DataSources.  To export client-data  with formatters applied,  see {@link
-     * com.smartgwt.client.widgets.DataBoundComponent#exportClientData DataBoundComponent.exportClientData}, which still
+     * Uses a "fetch" operation on the current {@link com.smartgwt.client.widgets.DataBoundComponent#getDataSource DataSource}
+     * to  retrieve data that matches the current filter and sort criteria for this component, then  exports the resulting data
+     * to a file or window in the requested format. <P> A variety of DSRequest settings, such as  {@link
+     * com.smartgwt.client.data.DSRequest#getExportAs exportAs} and {@link com.smartgwt.client.data.DSRequest#getExportFilename
+     * exportFilename}, affect the  exporting process: see {@link com.smartgwt.client.data.DSRequest#getExportResults
+     * exportResults} for further detail. <P> Note that data exported via this method does not include any client-side
+     * formatting and relies on both the Smart GWT server and server-side DataSources.  To export client-data  with formatters
+     * applied,  see {@link com.smartgwt.client.widgets.DataBoundComponent#exportClientData exportClientData}, which still
      * requires the Smart GWT server but does not rely on server-side DataSources. <P> For more information on exporting data,
      * see {@link com.smartgwt.client.data.DataSource#exportData DataSource.exportData}.
      * @param requestProperties additional properties to set on the DSRequest                                            that will be issued

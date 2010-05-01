@@ -60,8 +60,8 @@ import com.google.gwt.event.shared.HasHandlers;
  * widgets.  Scrollbar widgets are created and displayed automatically for widgets that require them, based on settings for
  * {@link com.smartgwt.client.widgets.Canvas#getOverflow overflow}. <P> The scrollbar's appearance is based on a {@link
  * com.smartgwt.client.widgets.StretchImg} for the "track", which consists of two fixed size buttons and a stretchable
- * center segment, and the {@link com.smartgwt.client..ScrollThumb}, the draggable portion of the scrollbar, also a
- * StretchImg, with an optional {@link com.smartgwt.client.widgets.StretchImg#getShowGrip 'grip'}.
+ * center segment, and the ScrollThumb, the draggable portion of the scrollbar, also a StretchImg, with an optional {@link
+ * com.smartgwt.client.widgets.StretchImg#getShowGrip grip}.
  */
 public class Scrollbar extends StretchImg {
 
@@ -334,7 +334,7 @@ public class Scrollbar extends StretchImg {
 
     /**
      * Where are the skin images for the Scrollbar.  This is local to the {@link com.smartgwt.client.util.Page#getSkinDir
-     * Page.getSkinDir}.
+     * overall skin directory}.
      * <p><b>Note : </b> This is an advanced setting</p>
      *
      * @param skinImgDir skinImgDir Default value is "images/Scrollbar/"
@@ -347,7 +347,7 @@ public class Scrollbar extends StretchImg {
 
     /**
      * Where are the skin images for the Scrollbar.  This is local to the {@link com.smartgwt.client.util.Page#getSkinDir
-     * Page.getSkinDir}.
+     * overall skin directory}.
      *
      *
      * @return String

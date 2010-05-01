@@ -93,7 +93,7 @@ public class Splitbar extends StretchImg {
 
     /**
      * If this property is true, a click on the Splitbar will collapse its  {@link
-     * com.smartgwt.client.widgets.Splitbar#getTarget 'target'}, hiding it and shifting the Splitbar and other members of the
+     * com.smartgwt.client.widgets.Splitbar#getTarget target}, hiding it and shifting the Splitbar and other members of the
      * layout across to fill the newly available space. If the target is already hidden a click will expand it again (showing
      * it at it's normal size).
      *
@@ -105,7 +105,7 @@ public class Splitbar extends StretchImg {
 
     /**
      * If this property is true, a click on the Splitbar will collapse its  {@link
-     * com.smartgwt.client.widgets.Splitbar#getTarget 'target'}, hiding it and shifting the Splitbar and other members of the
+     * com.smartgwt.client.widgets.Splitbar#getTarget target}, hiding it and shifting the Splitbar and other members of the
      * layout across to fill the newly available space. If the target is already hidden a click will expand it again (showing
      * it at it's normal size).
      *
@@ -118,7 +118,7 @@ public class Splitbar extends StretchImg {
 
     /**
      * <code>canDrag</code> set to true to allow dragging of the split bar. Dragging the Splitbar will resize it's {@link
-     * com.smartgwt.client.widgets.Splitbar#getTarget 'target'}
+     * com.smartgwt.client.widgets.Splitbar#getTarget target}
      *
      * @param canDrag canDrag Default value is true
      */
@@ -128,7 +128,7 @@ public class Splitbar extends StretchImg {
 
     /**
      * <code>canDrag</code> set to true to allow dragging of the split bar. Dragging the Splitbar will resize it's {@link
-     * com.smartgwt.client.widgets.Splitbar#getTarget 'target'}
+     * com.smartgwt.client.widgets.Splitbar#getTarget target}
      *
      *
      * @return Boolean

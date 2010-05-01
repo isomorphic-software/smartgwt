@@ -92,7 +92,7 @@ public class ImgSplitbar extends Img {
 
     /**
      * If this property is true, a click on the Splitbar will collapse its  {@link
-     * com.smartgwt.client.widgets.Splitbar#getTarget 'target'}, hiding it and shifting the Splitbar and other members of the
+     * com.smartgwt.client.widgets.Splitbar#getTarget target}, hiding it and shifting the Splitbar and other members of the
      * layout across to fill the newly available space. If the target is already hidden a click will expand it again (showing
      * it at it's normal size).
      *
@@ -104,7 +104,7 @@ public class ImgSplitbar extends Img {
 
     /**
      * If this property is true, a click on the Splitbar will collapse its  {@link
-     * com.smartgwt.client.widgets.Splitbar#getTarget 'target'}, hiding it and shifting the Splitbar and other members of the
+     * com.smartgwt.client.widgets.Splitbar#getTarget target}, hiding it and shifting the Splitbar and other members of the
      * layout across to fill the newly available space. If the target is already hidden a click will expand it again (showing
      * it at it's normal size).
      *
@@ -117,7 +117,7 @@ public class ImgSplitbar extends Img {
 
     /**
      * <code>canDrag</code> set to true to allow dragging of the split bar. Dragging the Splitbar will resize it's {@link
-     * com.smartgwt.client.widgets.Splitbar#getTarget 'target'}
+     * com.smartgwt.client.widgets.Splitbar#getTarget target}
      *
      * @param canDrag canDrag Default value is true
      */
@@ -127,7 +127,7 @@ public class ImgSplitbar extends Img {
 
     /**
      * <code>canDrag</code> set to true to allow dragging of the split bar. Dragging the Splitbar will resize it's {@link
-     * com.smartgwt.client.widgets.Splitbar#getTarget 'target'}
+     * com.smartgwt.client.widgets.Splitbar#getTarget target}
      *
      *
      * @return Boolean
@@ -160,7 +160,7 @@ public class ImgSplitbar extends Img {
 
     /**
      * Default directory for skin images (those defined by the class), relative to the Page-wide {@link
-     * com.smartgwt.client.util.Page#getSkinDir Page.getSkinDir}.
+     * com.smartgwt.client.util.Page#getSkinDir skinDir}.
      *
      * @param skinImgDir skinImgDir Default value is "images/SplitBar/"
      * @throws IllegalStateException this property cannot be changed after the component has been created
@@ -172,7 +172,7 @@ public class ImgSplitbar extends Img {
 
     /**
      * Default directory for skin images (those defined by the class), relative to the Page-wide {@link
-     * com.smartgwt.client.util.Page#getSkinDir Page.getSkinDir}.
+     * com.smartgwt.client.util.Page#getSkinDir skinDir}.
      *
      *
      * @return String

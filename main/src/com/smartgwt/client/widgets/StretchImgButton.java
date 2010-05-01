@@ -170,8 +170,8 @@ public class StretchImgButton extends StretchImg  implements com.smartgwt.client
      * showFocused} is true, and {@link com.smartgwt.client.widgets.StatefulCanvas#getShowFocusedAsOver showFocusedAsOver} is
      * false, the suffixes will be "Focused", "FocusedOver", etc, or if the widget is both selected and focused,
      * "SelectedFocused", "SelectedFocusedOver", etc. <P> For example, if <code>baseStyle</code> is set to "button", this
-     * component is {@link com.smartgwt.client.widgets.StretchImgButton#isSelected StretchImgButton.isSelected} and the mouse
-     * cursor is over this component, the style "buttonSelectedOver" will be used.
+     * component is {@link com.smartgwt.client.widgets.StretchImgButton#isSelected selected} and the mouse cursor is over this
+     * component, the style "buttonSelectedOver" will be used.
      * Sets the base CSS style.  As the component changes state and/or is selected, suffixes will be added to the base style.
      *
      * @param baseStyle new base style. Default value is "stretchImgButton"
@@ -188,8 +188,8 @@ public class StretchImgButton extends StretchImg  implements com.smartgwt.client
      * showFocused} is true, and {@link com.smartgwt.client.widgets.StatefulCanvas#getShowFocusedAsOver showFocusedAsOver} is
      * false, the suffixes will be "Focused", "FocusedOver", etc, or if the widget is both selected and focused,
      * "SelectedFocused", "SelectedFocusedOver", etc. <P> For example, if <code>baseStyle</code> is set to "button", this
-     * component is {@link com.smartgwt.client.widgets.StretchImgButton#isSelected StretchImgButton.isSelected} and the mouse
-     * cursor is over this component, the style "buttonSelectedOver" will be used.
+     * component is {@link com.smartgwt.client.widgets.StretchImgButton#isSelected selected} and the mouse cursor is over this
+     * component, the style "buttonSelectedOver" will be used.
      *
      *
      * @return String
@@ -220,11 +220,11 @@ public class StretchImgButton extends StretchImg  implements com.smartgwt.client
     }
 
     /**
-     * If set to true, if the {@link com.smartgwt.client.widgets.StatefulCanvas#getTitle 'title'} of this button contains the
-     * specified {@link com.smartgwt.client.widgets.Canvas#getAccessKey 'accessKey'}, when the title is displayed to the user
-     * it will be modified to include HTML to underline the accessKey.<br> Note that this property may cause titles that
-     * include HTML (rather than simple strings) to be inappropriately modified, so should be disabled if your title string
-     * includes HTML characters.
+     * If set to true, if the {@link com.smartgwt.client.widgets.StatefulCanvas#getTitle title} of this button contains the
+     * specified {@link com.smartgwt.client.widgets.Canvas#getAccessKey accessKey}, when the title is displayed to the user it
+     * will be modified to include HTML to underline the accessKey.<br> Note that this property may cause titles that include
+     * HTML (rather than simple strings) to be inappropriately modified, so should be disabled if your title string includes
+     * HTML characters.
      *
      * @param hiliteAccessKey hiliteAccessKey Default value is true
      */
@@ -233,11 +233,11 @@ public class StretchImgButton extends StretchImg  implements com.smartgwt.client
     }
 
     /**
-     * If set to true, if the {@link com.smartgwt.client.widgets.StatefulCanvas#getTitle 'title'} of this button contains the
-     * specified {@link com.smartgwt.client.widgets.Canvas#getAccessKey 'accessKey'}, when the title is displayed to the user
-     * it will be modified to include HTML to underline the accessKey.<br> Note that this property may cause titles that
-     * include HTML (rather than simple strings) to be inappropriately modified, so should be disabled if your title string
-     * includes HTML characters.
+     * If set to true, if the {@link com.smartgwt.client.widgets.StatefulCanvas#getTitle title} of this button contains the
+     * specified {@link com.smartgwt.client.widgets.Canvas#getAccessKey accessKey}, when the title is displayed to the user it
+     * will be modified to include HTML to underline the accessKey.<br> Note that this property may cause titles that include
+     * HTML (rather than simple strings) to be inappropriately modified, so should be disabled if your title string includes
+     * HTML characters.
      *
      *
      * @return Boolean
@@ -411,7 +411,7 @@ public class StretchImgButton extends StretchImg  implements com.smartgwt.client
      * The padding for a StretchImgButton's label is determined as follows. <P> If <code>labelHPad</code> is set it will
      * specify the horizontal padding applied to the label. Similarly if <code>labelVPad</code> is set it will specify the
      * vertical padding for the label, regardless of the button's {@link
-     * com.smartgwt.client.widgets.StretchImgButton#getVertical 'vertical'} setting. <P> Otherwise <code>labelLengthPad</code>
+     * com.smartgwt.client.widgets.StretchImgButton#getVertical vertical} setting. <P> Otherwise <code>labelLengthPad</code>
      * can be set to specify the label padding along the length axis (ie: horizontal padding if {@link
      * com.smartgwt.client.widgets.StretchImgButton#getVertical vertical} is false, otherwise vertical padding), and 
      * <code>labelBreadthPad</code> can be set to specify the label padding along the other axis. <P> Otherwise the padding on
@@ -429,7 +429,7 @@ public class StretchImgButton extends StretchImg  implements com.smartgwt.client
      * The padding for a StretchImgButton's label is determined as follows. <P> If <code>labelHPad</code> is set it will
      * specify the horizontal padding applied to the label. Similarly if <code>labelVPad</code> is set it will specify the
      * vertical padding for the label, regardless of the button's {@link
-     * com.smartgwt.client.widgets.StretchImgButton#getVertical 'vertical'} setting. <P> Otherwise <code>labelLengthPad</code>
+     * com.smartgwt.client.widgets.StretchImgButton#getVertical vertical} setting. <P> Otherwise <code>labelLengthPad</code>
      * can be set to specify the label padding along the length axis (ie: horizontal padding if {@link
      * com.smartgwt.client.widgets.StretchImgButton#getVertical vertical} is false, otherwise vertical padding), and 
      * <code>labelBreadthPad</code> can be set to specify the label padding along the other axis. <P> Otherwise the padding on
@@ -448,7 +448,7 @@ public class StretchImgButton extends StretchImg  implements com.smartgwt.client
      * The padding for a StretchImgButton's label is determined as follows. <P> If <code>labelHPad</code> is set it will
      * specify the horizontal padding applied to the label. Similarly if <code>labelVPad</code> is set it will specify the
      * vertical padding for the label, regardless of the button's {@link
-     * com.smartgwt.client.widgets.StretchImgButton#getVertical 'vertical'} setting. <P> Otherwise <code>labelLengthPad</code>
+     * com.smartgwt.client.widgets.StretchImgButton#getVertical vertical} setting. <P> Otherwise <code>labelLengthPad</code>
      * can be set to specify the label padding along the length axis (ie: horizontal padding if {@link
      * com.smartgwt.client.widgets.StretchImgButton#getVertical vertical} is false, otherwise vertical padding), and 
      * <code>labelBreadthPad</code> can be set to specify the label padding along the other axis. <P> Otherwise the padding on
@@ -466,7 +466,7 @@ public class StretchImgButton extends StretchImg  implements com.smartgwt.client
      * The padding for a StretchImgButton's label is determined as follows. <P> If <code>labelHPad</code> is set it will
      * specify the horizontal padding applied to the label. Similarly if <code>labelVPad</code> is set it will specify the
      * vertical padding for the label, regardless of the button's {@link
-     * com.smartgwt.client.widgets.StretchImgButton#getVertical 'vertical'} setting. <P> Otherwise <code>labelLengthPad</code>
+     * com.smartgwt.client.widgets.StretchImgButton#getVertical vertical} setting. <P> Otherwise <code>labelLengthPad</code>
      * can be set to specify the label padding along the length axis (ie: horizontal padding if {@link
      * com.smartgwt.client.widgets.StretchImgButton#getVertical vertical} is false, otherwise vertical padding), and 
      * <code>labelBreadthPad</code> can be set to specify the label padding along the other axis. <P> Otherwise the padding on
@@ -485,7 +485,7 @@ public class StretchImgButton extends StretchImg  implements com.smartgwt.client
      * The padding for a StretchImgButton's label is determined as follows. <P> If <code>labelHPad</code> is set it will
      * specify the horizontal padding applied to the label. Similarly if <code>labelVPad</code> is set it will specify the
      * vertical padding for the label, regardless of the button's {@link
-     * com.smartgwt.client.widgets.StretchImgButton#getVertical 'vertical'} setting. <P> Otherwise <code>labelLengthPad</code>
+     * com.smartgwt.client.widgets.StretchImgButton#getVertical vertical} setting. <P> Otherwise <code>labelLengthPad</code>
      * can be set to specify the label padding along the length axis (ie: horizontal padding if {@link
      * com.smartgwt.client.widgets.StretchImgButton#getVertical vertical} is false, otherwise vertical padding), and 
      * <code>labelBreadthPad</code> can be set to specify the label padding along the other axis. <P> Otherwise the padding on
@@ -503,7 +503,7 @@ public class StretchImgButton extends StretchImg  implements com.smartgwt.client
      * The padding for a StretchImgButton's label is determined as follows. <P> If <code>labelHPad</code> is set it will
      * specify the horizontal padding applied to the label. Similarly if <code>labelVPad</code> is set it will specify the
      * vertical padding for the label, regardless of the button's {@link
-     * com.smartgwt.client.widgets.StretchImgButton#getVertical 'vertical'} setting. <P> Otherwise <code>labelLengthPad</code>
+     * com.smartgwt.client.widgets.StretchImgButton#getVertical vertical} setting. <P> Otherwise <code>labelLengthPad</code>
      * can be set to specify the label padding along the length axis (ie: horizontal padding if {@link
      * com.smartgwt.client.widgets.StretchImgButton#getVertical vertical} is false, otherwise vertical padding), and 
      * <code>labelBreadthPad</code> can be set to specify the label padding along the other axis. <P> Otherwise the padding on
@@ -547,7 +547,7 @@ public class StretchImgButton extends StretchImg  implements com.smartgwt.client
      * The padding for a StretchImgButton's label is determined as follows. <P> If <code>labelHPad</code> is set it will
      * specify the horizontal padding applied to the label. Similarly if <code>labelVPad</code> is set it will specify the
      * vertical padding for the label, regardless of the button's {@link
-     * com.smartgwt.client.widgets.StretchImgButton#getVertical 'vertical'} setting. <P> Otherwise <code>labelLengthPad</code>
+     * com.smartgwt.client.widgets.StretchImgButton#getVertical vertical} setting. <P> Otherwise <code>labelLengthPad</code>
      * can be set to specify the label padding along the length axis (ie: horizontal padding if {@link
      * com.smartgwt.client.widgets.StretchImgButton#getVertical vertical} is false, otherwise vertical padding), and 
      * <code>labelBreadthPad</code> can be set to specify the label padding along the other axis. <P> Otherwise the padding on
@@ -565,7 +565,7 @@ public class StretchImgButton extends StretchImg  implements com.smartgwt.client
      * The padding for a StretchImgButton's label is determined as follows. <P> If <code>labelHPad</code> is set it will
      * specify the horizontal padding applied to the label. Similarly if <code>labelVPad</code> is set it will specify the
      * vertical padding for the label, regardless of the button's {@link
-     * com.smartgwt.client.widgets.StretchImgButton#getVertical 'vertical'} setting. <P> Otherwise <code>labelLengthPad</code>
+     * com.smartgwt.client.widgets.StretchImgButton#getVertical vertical} setting. <P> Otherwise <code>labelLengthPad</code>
      * can be set to specify the label padding along the length axis (ie: horizontal padding if {@link
      * com.smartgwt.client.widgets.StretchImgButton#getVertical vertical} is false, otherwise vertical padding), and 
      * <code>labelBreadthPad</code> can be set to specify the label padding along the other axis. <P> Otherwise the padding on
@@ -829,9 +829,9 @@ public class StretchImgButton extends StretchImg  implements com.smartgwt.client
     }
 
     /**
-     * Determines whether any specified {@link com.smartgwt.client.widgets.StatefulCanvas#getTitle StatefulCanvas.getTitle}
-     * will be  displayed for this component.<br> Applies to Image-based components only, where the title will be rendered out
-     * in a label floating over the component
+     * Determines whether any specified {@link com.smartgwt.client.widgets.StatefulCanvas#getTitle title} will be  displayed
+     * for this component.<br> Applies to Image-based components only, where the title will be rendered out in a label floating
+     * over the component
      *
      * @param showTitle showTitle Default value is true
      */
@@ -840,9 +840,9 @@ public class StretchImgButton extends StretchImg  implements com.smartgwt.client
     }
 
     /**
-     * Determines whether any specified {@link com.smartgwt.client.widgets.StatefulCanvas#getTitle StatefulCanvas.getTitle}
-     * will be  displayed for this component.<br> Applies to Image-based components only, where the title will be rendered out
-     * in a label floating over the component
+     * Determines whether any specified {@link com.smartgwt.client.widgets.StatefulCanvas#getTitle title} will be  displayed
+     * for this component.<br> Applies to Image-based components only, where the title will be rendered out in a label floating
+     * over the component
      *
      *
      * @return Boolean
@@ -1075,9 +1075,9 @@ public class StretchImgButton extends StretchImg  implements com.smartgwt.client
     /**
      * Add a iconClick handler.
      * <p>
-     * If this button is showing an {@link com.smartgwt.client.widgets.StretchImgButton#getIcon 'icon'}, a separate click
-     * handler for the icon may be defined as <code>this.iconClick</code>. Returning false will suppress the standard button
-     * click handling code.
+     * If this button is showing an {@link com.smartgwt.client.widgets.StretchImgButton#getIcon icon}, a separate click handler
+     * for the icon may be defined as <code>this.iconClick</code>. Returning false will suppress the standard button click
+     * handling code.
      *
      * @param handler the iconClick handler
      * @return {@link HandlerRegistration} used to remove this handler

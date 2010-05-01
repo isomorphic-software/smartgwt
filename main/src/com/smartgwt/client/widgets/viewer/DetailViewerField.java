@@ -89,8 +89,8 @@ public class DetailViewerField extends DataClass {
 
     /**
      * Dictates whether the data in this field be exported.  Explicitly set this  to false to prevent exporting.  Has no effect
-     * if the underlying   {@link com.smartgwt.client.data.DataSourceField#getCanExport 'dataSourceField'} is explicitly set to
-     *   canExport: false.
+     * if the underlying   {@link com.smartgwt.client.data.DataSourceField#getCanExport dataSourceField} is explicitly set to  
+     * canExport: false.
      *
      * @param canExport canExport Default value is null
      */
@@ -100,8 +100,8 @@ public class DetailViewerField extends DataClass {
 
     /**
      * Dictates whether the data in this field be exported.  Explicitly set this  to false to prevent exporting.  Has no effect
-     * if the underlying   {@link com.smartgwt.client.data.DataSourceField#getCanExport 'dataSourceField'} is explicitly set to
-     *   canExport: false.
+     * if the underlying   {@link com.smartgwt.client.data.DataSourceField#getCanExport dataSourceField} is explicitly set to  
+     * canExport: false.
      *
      *
      * @return Boolean
