@@ -205,6 +205,15 @@ public interface SmartGwtMessages extends com.google.gwt.i18n.client.Messages {
   String dateChooser_todayButtonTitle();
 
   /**
+   * Translated "Choose a day".
+   * 
+   * @return translated "Choose a day"
+   */
+  @DefaultMessage("Choose a day")
+  @Key("dateItem_daySelectorPrompt")
+  String dateItem_daySelectorPrompt();
+
+  /**
    * Translated "Invalid date".
    * 
    * @return translated "Invalid date"
@@ -214,6 +223,15 @@ public interface SmartGwtMessages extends com.google.gwt.i18n.client.Messages {
   String dateItem_invalidDateStringMessage();
 
   /**
+   * Translated "Choose a month".
+   * 
+   * @return translated "Choose a month"
+   */
+  @DefaultMessage("Choose a month")
+  @Key("dateItem_monthSelectorPrompt")
+  String dateItem_monthSelectorPrompt();
+
+  /**
    * Translated "Show Date Chooser".
    * 
    * @return translated "Show Date Chooser"
@@ -221,6 +239,15 @@ public interface SmartGwtMessages extends com.google.gwt.i18n.client.Messages {
   @DefaultMessage("Show Date Chooser")
   @Key("dateItem_pickerIconPrompt")
   String dateItem_pickerIconPrompt();
+
+  /**
+   * Translated "Choose a year".
+   * 
+   * @return translated "Choose a year"
+   */
+  @DefaultMessage("Choose a year")
+  @Key("dateItem_yearSelectorPrompt")
+  String dateItem_yearSelectorPrompt();
 
   /**
    * Translated "Select Date Range".
@@ -599,6 +626,15 @@ public interface SmartGwtMessages extends com.google.gwt.i18n.client.Messages {
   @DefaultMessage("Add")
   @Key("filterBuilder_addButtonPrompt")
   String filterBuilder_addButtonPrompt();
+
+  /**
+   * Translated "[missing field definition]".
+   * 
+   * @return translated "[missing field definition]"
+   */
+  @DefaultMessage("[missing field definition]")
+  @Key("filterBuilder_missingFieldPrompt")
+  String filterBuilder_missingFieldPrompt();
 
   /**
    * Translated "and".
@@ -1285,6 +1321,15 @@ public interface SmartGwtMessages extends com.google.gwt.i18n.client.Messages {
   String menuButton_title();
 
   /**
+   * Translated "Show Date Chooser".
+   * 
+   * @return translated "Show Date Chooser"
+   */
+  @DefaultMessage("Show Date Chooser")
+  @Key("miniDateRangeItem_pickerIconPrompt")
+  String miniDateRangeItem_pickerIconPrompt();
+
+  /**
    * Translated "Add Level".
    * 
    * @return translated "Add Level"
@@ -1949,6 +1994,33 @@ public interface SmartGwtMessages extends com.google.gwt.i18n.client.Messages {
   @DefaultMessage("N years from now")
   @Key("relativeDateItem_yearsFromNowTitle")
   String relativeDateItem_yearsFromNowTitle();
+
+  /**
+   * Translated "Copy Selection".
+   * 
+   * @return translated "Copy Selection"
+   */
+  @DefaultMessage("Copy Selection")
+  @Key("richTextEditor_copySelectionPrompt")
+  String richTextEditor_copySelectionPrompt();
+
+  /**
+   * Translated "Cut Selection".
+   * 
+   * @return translated "Cut Selection"
+   */
+  @DefaultMessage("Cut Selection")
+  @Key("richTextEditor_cutSelectionPrompt")
+  String richTextEditor_cutSelectionPrompt();
+
+  /**
+   * Translated "Paste Selection".
+   * 
+   * @return translated "Paste Selection"
+   */
+  @DefaultMessage("Paste Selection")
+  @Key("richTextEditor_pasteSelectionPrompt")
+  String richTextEditor_pasteSelectionPrompt();
 
   /**
    * Translated "Contacting Server...".
