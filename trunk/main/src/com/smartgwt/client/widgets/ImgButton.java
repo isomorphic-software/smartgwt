@@ -172,8 +172,8 @@ public class ImgButton extends Img {
      * showFocused} is true, and {@link com.smartgwt.client.widgets.StatefulCanvas#getShowFocusedAsOver showFocusedAsOver} is
      * false, the suffixes will be "Focused", "FocusedOver", etc, or if the widget is both selected and focused,
      * "SelectedFocused", "SelectedFocusedOver", etc. <P> For example, if <code>baseStyle</code> is set to "button", this
-     * component is {@link com.smartgwt.client.widgets.ImgButton#isSelected ImgButton.isSelected} and the mouse cursor is over
-     * this component, the style "buttonSelectedOver" will be used.
+     * component is {@link com.smartgwt.client.widgets.ImgButton#isSelected selected} and the mouse cursor is over this
+     * component, the style "buttonSelectedOver" will be used.
      * Sets the base CSS style.  As the component changes state and/or is selected, suffixes will be added to the base style.
      *
      * @param baseStyle new base style. Default value is "imgButton"
@@ -190,8 +190,8 @@ public class ImgButton extends Img {
      * showFocused} is true, and {@link com.smartgwt.client.widgets.StatefulCanvas#getShowFocusedAsOver showFocusedAsOver} is
      * false, the suffixes will be "Focused", "FocusedOver", etc, or if the widget is both selected and focused,
      * "SelectedFocused", "SelectedFocusedOver", etc. <P> For example, if <code>baseStyle</code> is set to "button", this
-     * component is {@link com.smartgwt.client.widgets.ImgButton#isSelected ImgButton.isSelected} and the mouse cursor is over
-     * this component, the style "buttonSelectedOver" will be used.
+     * component is {@link com.smartgwt.client.widgets.ImgButton#isSelected selected} and the mouse cursor is over this
+     * component, the style "buttonSelectedOver" will be used.
      *
      *
      * @return String
@@ -201,11 +201,11 @@ public class ImgButton extends Img {
     }
 
     /**
-     * If set to true, if the {@link com.smartgwt.client.widgets.StatefulCanvas#getTitle 'title'} of this button contains the
-     * specified {@link com.smartgwt.client.widgets.Canvas#getAccessKey 'accessKey'}, when the title is displayed to the user
-     * it will be modified to include HTML to underline the accessKey.<br> Note that this property may cause titles that
-     * include HTML (rather than simple strings) to be inappropriately modified, so should be disabled if your title string
-     * includes HTML characters.
+     * If set to true, if the {@link com.smartgwt.client.widgets.StatefulCanvas#getTitle title} of this button contains the
+     * specified {@link com.smartgwt.client.widgets.Canvas#getAccessKey accessKey}, when the title is displayed to the user it
+     * will be modified to include HTML to underline the accessKey.<br> Note that this property may cause titles that include
+     * HTML (rather than simple strings) to be inappropriately modified, so should be disabled if your title string includes
+     * HTML characters.
      *
      * @param hiliteAccessKey hiliteAccessKey Default value is null
      */
@@ -214,11 +214,11 @@ public class ImgButton extends Img {
     }
 
     /**
-     * If set to true, if the {@link com.smartgwt.client.widgets.StatefulCanvas#getTitle 'title'} of this button contains the
-     * specified {@link com.smartgwt.client.widgets.Canvas#getAccessKey 'accessKey'}, when the title is displayed to the user
-     * it will be modified to include HTML to underline the accessKey.<br> Note that this property may cause titles that
-     * include HTML (rather than simple strings) to be inappropriately modified, so should be disabled if your title string
-     * includes HTML characters.
+     * If set to true, if the {@link com.smartgwt.client.widgets.StatefulCanvas#getTitle title} of this button contains the
+     * specified {@link com.smartgwt.client.widgets.Canvas#getAccessKey accessKey}, when the title is displayed to the user it
+     * will be modified to include HTML to underline the accessKey.<br> Note that this property may cause titles that include
+     * HTML (rather than simple strings) to be inappropriately modified, so should be disabled if your title string includes
+     * HTML characters.
      *
      *
      * @return Boolean
@@ -685,9 +685,9 @@ public class ImgButton extends Img {
     }
 
     /**
-     * Determines whether any specified {@link com.smartgwt.client.widgets.StatefulCanvas#getTitle StatefulCanvas.getTitle}
-     * will be  displayed for this component.<br> Applies to Image-based components only, where the title will be rendered out
-     * in a label floating over the component
+     * Determines whether any specified {@link com.smartgwt.client.widgets.StatefulCanvas#getTitle title} will be  displayed
+     * for this component.<br> Applies to Image-based components only, where the title will be rendered out in a label floating
+     * over the component
      * <p><b>Note : </b> This is an advanced setting</p>
      *
      * @param showTitle showTitle Default value is false
@@ -697,9 +697,9 @@ public class ImgButton extends Img {
     }
 
     /**
-     * Determines whether any specified {@link com.smartgwt.client.widgets.StatefulCanvas#getTitle StatefulCanvas.getTitle}
-     * will be  displayed for this component.<br> Applies to Image-based components only, where the title will be rendered out
-     * in a label floating over the component
+     * Determines whether any specified {@link com.smartgwt.client.widgets.StatefulCanvas#getTitle title} will be  displayed
+     * for this component.<br> Applies to Image-based components only, where the title will be rendered out in a label floating
+     * over the component
      *
      *
      * @return Boolean

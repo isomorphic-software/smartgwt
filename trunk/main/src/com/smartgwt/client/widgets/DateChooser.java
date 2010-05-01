@@ -256,7 +256,7 @@ public class DateChooser extends Canvas  implements com.smartgwt.client.widgets.
 
     /**
      * Whether it should be valid to pick a weekend day.  If set to true, weekend days appear in disabled style and cannot be
-     * picked.  <P> Which days are considered weekends is controlled by {@link com.smartgwt.client..Date#weekendDays}.
+     * picked.  <P> Which days are considered weekends is controlled by  weekendDays.
      *
      * @param disableWeekends disableWeekends Default value is false
      * @throws IllegalStateException this property cannot be changed after the component has been created
@@ -267,7 +267,7 @@ public class DateChooser extends Canvas  implements com.smartgwt.client.widgets.
 
     /**
      * Whether it should be valid to pick a weekend day.  If set to true, weekend days appear in disabled style and cannot be
-     * picked.  <P> Which days are considered weekends is controlled by {@link com.smartgwt.client..Date#weekendDays}.
+     * picked.  <P> Which days are considered weekends is controlled by  weekendDays.
      *
      *
      * @return Boolean
@@ -659,8 +659,7 @@ public class DateChooser extends Canvas  implements com.smartgwt.client.widgets.
     }
 
     /**
-     * Whether weekend days should be shown.  Which days are considered weekends is controlled by {@link
-     * com.smartgwt.client..Date#weekendDays}.
+     * Whether weekend days should be shown.  Which days are considered weekends is controlled by  weekendDays.
      *
      * @param showWeekends showWeekends Default value is true
      * @throws IllegalStateException this property cannot be changed after the component has been created
@@ -670,8 +669,7 @@ public class DateChooser extends Canvas  implements com.smartgwt.client.widgets.
     }
 
     /**
-     * Whether weekend days should be shown.  Which days are considered weekends is controlled by {@link
-     * com.smartgwt.client..Date#weekendDays}.
+     * Whether weekend days should be shown.  Which days are considered weekends is controlled by  weekendDays.
      *
      *
      * @return Boolean
@@ -826,7 +824,7 @@ public class DateChooser extends Canvas  implements com.smartgwt.client.widgets.
             
     /**
      * Get the current value of the picker. <P> See {@link com.smartgwt.client.widgets.DateChooser#addDataChangedHandler
-     * DateChooser.addDataChangedHandler} for how to respond to the user picking a date.
+     * DateChooser.dataChanged} for how to respond to the user picking a date.
      *
      * @return current date
      */

@@ -58,16 +58,16 @@ import com.google.gwt.event.shared.HasHandlers;
 /**
  * The ViewLoader component can be used to load new Smart GWT-based user interfaces into a running application. <P>
  * <b>NOTE:</b> before using a ViewLoader, be sure that you have read about and understood the {@link
- * com.smartgwt.client.docs.SmartArchitecture 'Smart GWT Architecture'}.  The most responsive and scalable application
+ * com.smartgwt.client.docs.SmartArchitecture Smart GWT Architecture}.  The most responsive and scalable application
  * architecture preloads views rather than using ViewLoaders. <P> A ViewLoader is a Canvas, and can be provided anywhere a
  * Canvas can be provided: as a Tab pane, and Layout member, etc.  When a ViewLoader draws, it shows a {@link
- * com.smartgwt.client.widgets.ViewLoader#getLoadingMessage 'loading message'}, then performs an RPC to the {@link
- * com.smartgwt.client.widgets.ViewLoader#getViewURL 'viewURL'} to load components. <P> The response from the viewURL
- * should be Smart GWT components defined in JavaScript, with no surrounding &lt;SCRIPT&gt; tags or other HTML framing. 
- * The returned script can be dynamically generated, for example, it may be the result of a JSP containing an XML view
- * description enclosed in {@link com.smartgwt.client.docs.XmlTag '&lt;isomorphicXML&gt;'} tags. <P> In the returned
- * script, the special variable "viewLoader" is available to refer to the ViewLoader instance that is loading components. 
- * The intended usage is that the returned script creates a view consisting of Smart GWT components, then calls
+ * com.smartgwt.client.widgets.ViewLoader#getLoadingMessage loading message}, then performs an RPC to the {@link
+ * com.smartgwt.client.widgets.ViewLoader#getViewURL viewURL} to load components. <P> The response from the viewURL should
+ * be Smart GWT components defined in JavaScript, with no surrounding &lt;SCRIPT&gt; tags or other HTML framing.  The
+ * returned script can be dynamically generated, for example, it may be the result of a JSP containing an XML view
+ * description enclosed in {@link com.smartgwt.client.docs.XmlTag &lt;isomorphicXML&gt;} tags. <P> In the returned script,
+ * the special variable "viewLoader" is available to refer to the ViewLoader instance that is loading components.  The
+ * intended usage is that the returned script creates a view consisting of Smart GWT components, then calls
  * <code>viewLoader.setView(myView)</code> to place the loaded view into the ViewLoader. If the view does not call
  * setView() explicitly, the viewLoader will find the last top-level UI component (Canvas subclass) created by the view and
  * set that as the current view. Top-level in this case means that the UI component is not contained in another UI

@@ -188,9 +188,9 @@ public class Img extends StatefulCanvas {
     }
 
     /**
-     * Determines whether any specified {@link com.smartgwt.client.widgets.StatefulCanvas#getTitle StatefulCanvas.getTitle}
-     * will be  displayed for this component.<br> Applies to Image-based components only, where the title will be rendered out
-     * in a label floating over the component
+     * Determines whether any specified {@link com.smartgwt.client.widgets.StatefulCanvas#getTitle title} will be  displayed
+     * for this component.<br> Applies to Image-based components only, where the title will be rendered out in a label floating
+     * over the component
      * <p><b>Note : </b> This is an advanced setting</p>
      *
      * @param showTitle showTitle Default value is false
@@ -200,9 +200,9 @@ public class Img extends StatefulCanvas {
     }
 
     /**
-     * Determines whether any specified {@link com.smartgwt.client.widgets.StatefulCanvas#getTitle StatefulCanvas.getTitle}
-     * will be  displayed for this component.<br> Applies to Image-based components only, where the title will be rendered out
-     * in a label floating over the component
+     * Determines whether any specified {@link com.smartgwt.client.widgets.StatefulCanvas#getTitle title} will be  displayed
+     * for this component.<br> Applies to Image-based components only, where the title will be rendered out in a label floating
+     * over the component
      *
      *
      * @return Boolean

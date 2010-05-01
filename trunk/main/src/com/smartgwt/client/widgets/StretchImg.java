@@ -178,8 +178,8 @@ public class StretchImg extends StatefulCanvas {
 
     /**
      * If specified this css class will be applied to the individual item images within this StretchImg. May be overridden by
-     * specifying item-specific base styles to each object in the {@link com.smartgwt.client.widgets.StretchImg#getItems 'items
-     * array'}. This base style will have standard stateful suffixes appended to indicate the state of this component (as
+     * specifying item-specific base styles to each object in the {@link com.smartgwt.client.widgets.StretchImg#getItems items
+     * array}. This base style will have standard stateful suffixes appended to indicate the state of this component (as
      * described in  {@link com.smartgwt.client.widgets.StatefulCanvas#getBaseStyle baseStyle}).
      *
      * @param itemBaseStyle itemBaseStyle Default value is null
@@ -190,8 +190,8 @@ public class StretchImg extends StatefulCanvas {
 
     /**
      * If specified this css class will be applied to the individual item images within this StretchImg. May be overridden by
-     * specifying item-specific base styles to each object in the {@link com.smartgwt.client.widgets.StretchImg#getItems 'items
-     * array'}. This base style will have standard stateful suffixes appended to indicate the state of this component (as
+     * specifying item-specific base styles to each object in the {@link com.smartgwt.client.widgets.StretchImg#getItems items
+     * array}. This base style will have standard stateful suffixes appended to indicate the state of this component (as
      * described in  {@link com.smartgwt.client.widgets.StatefulCanvas#getBaseStyle baseStyle}).
      *
      *
@@ -273,9 +273,9 @@ public class StretchImg extends StatefulCanvas {
     }
 
     /**
-     * Determines whether any specified {@link com.smartgwt.client.widgets.StatefulCanvas#getTitle StatefulCanvas.getTitle}
-     * will be  displayed for this component.<br> Applies to Image-based components only, where the title will be rendered out
-     * in a label floating over the component
+     * Determines whether any specified {@link com.smartgwt.client.widgets.StatefulCanvas#getTitle title} will be  displayed
+     * for this component.<br> Applies to Image-based components only, where the title will be rendered out in a label floating
+     * over the component
      * <p><b>Note : </b> This is an advanced setting</p>
      *
      * @param showTitle showTitle Default value is false
@@ -285,9 +285,9 @@ public class StretchImg extends StatefulCanvas {
     }
 
     /**
-     * Determines whether any specified {@link com.smartgwt.client.widgets.StatefulCanvas#getTitle StatefulCanvas.getTitle}
-     * will be  displayed for this component.<br> Applies to Image-based components only, where the title will be rendered out
-     * in a label floating over the component
+     * Determines whether any specified {@link com.smartgwt.client.widgets.StatefulCanvas#getTitle title} will be  displayed
+     * for this component.<br> Applies to Image-based components only, where the title will be rendered out in a label floating
+     * over the component
      *
      *
      * @return Boolean

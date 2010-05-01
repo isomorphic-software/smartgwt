@@ -283,7 +283,7 @@ public class Slider extends Canvas  implements com.smartgwt.client.widgets.event
     /**
      * The maximum slider value. The slider value is equal to maxValue when the thumb is at the top or right of the slider
      * (unless flipValues is true, in which case the maximum value is at the bottom/left of the slider)
-     * Sets the {@link com.smartgwt.client.widgets.Slider#getMaxValue 'maximum value'} of the slider
+     * Sets the {@link com.smartgwt.client.widgets.Slider#getMaxValue maximum value} of the slider
      *
      * @param maxValue the new maximum value. Default value is 100
      * @see <a href="http://www.smartclient.com/smartgwt/showcase/#controls_category_slider" target="examples">Slider Example</a>
@@ -329,7 +329,7 @@ public class Slider extends Canvas  implements com.smartgwt.client.widgets.event
     /**
      * The minimum slider value. The slider value is equal to minValue when the thumb is at the bottom or left of the slider
      * (unless flipValues is true, in which case the minimum value is at the top/right of the slider)
-     * Sets the {@link com.smartgwt.client.widgets.Slider#getMinValue 'minimum value'} of the slider
+     * Sets the {@link com.smartgwt.client.widgets.Slider#getMinValue minimum value} of the slider
      *
      * @param minValue the new minimum value. Default value is 1
      * @see <a href="http://www.smartclient.com/smartgwt/showcase/#controls_category_slider" target="examples">Slider Example</a>
@@ -375,7 +375,7 @@ public class Slider extends Canvas  implements com.smartgwt.client.widgets.event
      * The number of discrete values represented by slider. If specified, the range of valid values (between
      * <code>minValue</code> and <code>maxValue</code>) will be divided into this many steps. As the thumb is moved along the
      * track it will only select these values and appear to jump between the steps.
-     * Sets the {@link com.smartgwt.client.widgets.Slider#getNumValues 'number of values'} for the slider
+     * Sets the {@link com.smartgwt.client.widgets.Slider#getNumValues number of values} for the slider
      *
      * @param numValues the new number of values. Default value is null
      * @see <a href="http://www.smartclient.com/smartgwt/showcase/#controls_category_slider" target="examples">Slider Example</a>
@@ -824,10 +824,10 @@ public class Slider extends Canvas  implements com.smartgwt.client.widgets.event
    }-*/;
             
     /**
-     * Call this method in your {@link com.smartgwt.client.widgets.Slider#addValueChangedHandler Slider.addValueChangedHandler}
-     * handler to determine whether the value change is due to an ongoing drag interaction (true) or due to a thumb-release,
-     * mouse click, keypress, or programmatic event (false). You may choose to execute temporary or partial updates while the
-     * slider thumb is dragged, and final updates or persistence of the value in response to the other events.
+     * Call this method in your {@link com.smartgwt.client.widgets.Slider#addValueChangedHandler Slider.valueChanged} handler
+     * to determine whether the value change is due to an ongoing drag interaction (true) or due to a thumb-release, mouse
+     * click, keypress, or programmatic event (false). You may choose to execute temporary or partial updates while the slider
+     * thumb is dragged, and final updates or persistence of the value in response to the other events.
      *
      * @return true if user is still dragging the slider thumb, false otherwise
      */

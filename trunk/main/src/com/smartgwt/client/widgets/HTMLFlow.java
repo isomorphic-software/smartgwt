@@ -327,7 +327,7 @@ public class HTMLFlow extends Canvas  implements com.smartgwt.client.widgets.eve
      * <p>
      * StringMethod fired when content is completely loaded in this htmlFlow. Has no default  implementation. May be observed
      * or overridden as a notification type method to fire custom logic when loading completes. <P> Note: Does not apply to
-     * htmlFlows with {@link com.smartgwt.client.widgets.HTMLFlow#getContentsType 'contentsType'} set  to <code>"page"</code>
+     * htmlFlows with {@link com.smartgwt.client.widgets.HTMLFlow#getContentsType contentsType} set  to <code>"page"</code>
      *
      * @param handler the contentLoaded handler
      * @return {@link HandlerRegistration} used to remove this handler
@@ -360,7 +360,7 @@ public class HTMLFlow extends Canvas  implements com.smartgwt.client.widgets.eve
             
     /**
      * Returns true if this htmlFlow is currently loading content from the server.<br> Note: Does not apply to htmlFlows with
-     * {@link com.smartgwt.client.widgets.HTMLFlow#getContentsType 'contentsType'} set to  <code>"page"</code>
+     * {@link com.smartgwt.client.widgets.HTMLFlow#getContentsType contentsType} set to  <code>"page"</code>
      */
     public native void loadingContent() /*-{
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();

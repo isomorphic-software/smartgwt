@@ -169,8 +169,8 @@ public class StatefulCanvas extends Canvas {
      * showFocused} is true, and {@link com.smartgwt.client.widgets.StatefulCanvas#getShowFocusedAsOver showFocusedAsOver} is
      * false, the suffixes will be "Focused", "FocusedOver", etc, or if the widget is both selected and focused,
      * "SelectedFocused", "SelectedFocusedOver", etc. <P> For example, if <code>baseStyle</code> is set to "button", this
-     * component is {@link com.smartgwt.client.widgets.StatefulCanvas#isSelected StatefulCanvas.isSelected} and the mouse
-     * cursor is over this component, the style "buttonSelectedOver" will be used.
+     * component is {@link com.smartgwt.client.widgets.StatefulCanvas#isSelected selected} and the mouse cursor is over this
+     * component, the style "buttonSelectedOver" will be used.
      * Sets the base CSS style.  As the component changes state and/or is selected, suffixes will be added to the base style.
      *
      * @param baseStyle new base style. Default value is null
@@ -187,8 +187,8 @@ public class StatefulCanvas extends Canvas {
      * showFocused} is true, and {@link com.smartgwt.client.widgets.StatefulCanvas#getShowFocusedAsOver showFocusedAsOver} is
      * false, the suffixes will be "Focused", "FocusedOver", etc, or if the widget is both selected and focused,
      * "SelectedFocused", "SelectedFocusedOver", etc. <P> For example, if <code>baseStyle</code> is set to "button", this
-     * component is {@link com.smartgwt.client.widgets.StatefulCanvas#isSelected StatefulCanvas.isSelected} and the mouse
-     * cursor is over this component, the style "buttonSelectedOver" will be used.
+     * component is {@link com.smartgwt.client.widgets.StatefulCanvas#isSelected selected} and the mouse cursor is over this
+     * component, the style "buttonSelectedOver" will be used.
      *
      *
      * @return String
@@ -315,7 +315,7 @@ public class StatefulCanvas extends Canvas {
     }
 
     /**
-     * Constructor class name for this widgets {@link com.smartgwt.client.widgets.StatefulCanvas#getOverCanvas 'overCanvas'}
+     * Constructor class name for this widgets {@link com.smartgwt.client.widgets.StatefulCanvas#getOverCanvas overCanvas}
      * <p><b>Note : </b> This is an advanced setting</p>
      *
      * @param overCanvasConstructor overCanvasConstructor Default value is "Canvas"
@@ -325,7 +325,7 @@ public class StatefulCanvas extends Canvas {
     }
 
     /**
-     * Constructor class name for this widgets {@link com.smartgwt.client.widgets.StatefulCanvas#getOverCanvas 'overCanvas'}
+     * Constructor class name for this widgets {@link com.smartgwt.client.widgets.StatefulCanvas#getOverCanvas overCanvas}
      *
      *
      * @return String
@@ -514,7 +514,7 @@ public class StatefulCanvas extends Canvas {
     }
 
     /**
-     * If {@link com.smartgwt.client.widgets.StatefulCanvas#getShowFocused 'showFocused'} is true for this widget, should the
+     * If {@link com.smartgwt.client.widgets.StatefulCanvas#getShowFocused showFocused} is true for this widget, should the
      * <code>"over"</code> state be used to indicate the widget as focused. If set to false, a separate <code>"focused"</code>
      * state will be used.
      *
@@ -526,7 +526,7 @@ public class StatefulCanvas extends Canvas {
     }
 
     /**
-     * If {@link com.smartgwt.client.widgets.StatefulCanvas#getShowFocused 'showFocused'} is true for this widget, should the
+     * If {@link com.smartgwt.client.widgets.StatefulCanvas#getShowFocused showFocused} is true for this widget, should the
      * <code>"over"</code> state be used to indicate the widget as focused. If set to false, a separate <code>"focused"</code>
      * state will be used.
      *
@@ -759,8 +759,8 @@ public class StatefulCanvas extends Canvas {
      * com.smartgwt.client.widgets.StatefulCanvas#getShowFocusedAsOver showFocusedAsOver} is false, the suffixes will be
      * "Focused", "FocusedOver", etc, or if the widget is both selected and focused, "SelectedFocused", "SelectedFocusedOver",
      * etc. <P> For example, if <code>baseStyle</code> is set to "button", this component is {@link
-     * com.smartgwt.client.widgets.StatefulCanvas#isSelected StatefulCanvas.isSelected} and the mouse cursor is over this
-     * component, the style "buttonSelectedOver" will be used.
+     * com.smartgwt.client.widgets.StatefulCanvas#isSelected selected} and the mouse cursor is over this component, the style
+     * "buttonSelectedOver" will be used.
      */
     public native void getStateSuffix() /*-{
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();

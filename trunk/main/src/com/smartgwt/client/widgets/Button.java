@@ -178,8 +178,8 @@ public class Button extends StatefulCanvas  implements com.smartgwt.client.widge
      * showFocused} is true, and {@link com.smartgwt.client.widgets.StatefulCanvas#getShowFocusedAsOver showFocusedAsOver} is
      * false, the suffixes will be "Focused", "FocusedOver", etc, or if the widget is both selected and focused,
      * "SelectedFocused", "SelectedFocusedOver", etc. <P> For example, if <code>baseStyle</code> is set to "button", this
-     * component is {@link com.smartgwt.client.widgets.Button#isSelected Button.isSelected} and the mouse cursor is over this
-     * component, the style "buttonSelectedOver" will be used.
+     * component is {@link com.smartgwt.client.widgets.Button#isSelected selected} and the mouse cursor is over this component,
+     * the style "buttonSelectedOver" will be used.
      * Sets the base CSS style.  As the component changes state and/or is selected, suffixes will be added to the base style.
      *
      * @param baseStyle new base style. Default value is "button"
@@ -196,8 +196,8 @@ public class Button extends StatefulCanvas  implements com.smartgwt.client.widge
      * showFocused} is true, and {@link com.smartgwt.client.widgets.StatefulCanvas#getShowFocusedAsOver showFocusedAsOver} is
      * false, the suffixes will be "Focused", "FocusedOver", etc, or if the widget is both selected and focused,
      * "SelectedFocused", "SelectedFocusedOver", etc. <P> For example, if <code>baseStyle</code> is set to "button", this
-     * component is {@link com.smartgwt.client.widgets.Button#isSelected Button.isSelected} and the mouse cursor is over this
-     * component, the style "buttonSelectedOver" will be used.
+     * component is {@link com.smartgwt.client.widgets.Button#isSelected selected} and the mouse cursor is over this component,
+     * the style "buttonSelectedOver" will be used.
      *
      *
      * @return String
@@ -207,11 +207,11 @@ public class Button extends StatefulCanvas  implements com.smartgwt.client.widge
     }
 
     /**
-     * If set to true, if the {@link com.smartgwt.client.widgets.StatefulCanvas#getTitle 'title'} of this button contains the
-     * specified {@link com.smartgwt.client.widgets.Canvas#getAccessKey 'accessKey'}, when the title is displayed to the user
-     * it will be modified to include HTML to underline the accessKey.<br> Note that this property may cause titles that
-     * include HTML (rather than simple strings) to be inappropriately modified, so should be disabled if your title string
-     * includes HTML characters.
+     * If set to true, if the {@link com.smartgwt.client.widgets.StatefulCanvas#getTitle title} of this button contains the
+     * specified {@link com.smartgwt.client.widgets.Canvas#getAccessKey accessKey}, when the title is displayed to the user it
+     * will be modified to include HTML to underline the accessKey.<br> Note that this property may cause titles that include
+     * HTML (rather than simple strings) to be inappropriately modified, so should be disabled if your title string includes
+     * HTML characters.
      *
      * @param hiliteAccessKey hiliteAccessKey Default value is null
      */
@@ -220,11 +220,11 @@ public class Button extends StatefulCanvas  implements com.smartgwt.client.widge
     }
 
     /**
-     * If set to true, if the {@link com.smartgwt.client.widgets.StatefulCanvas#getTitle 'title'} of this button contains the
-     * specified {@link com.smartgwt.client.widgets.Canvas#getAccessKey 'accessKey'}, when the title is displayed to the user
-     * it will be modified to include HTML to underline the accessKey.<br> Note that this property may cause titles that
-     * include HTML (rather than simple strings) to be inappropriately modified, so should be disabled if your title string
-     * includes HTML characters.
+     * If set to true, if the {@link com.smartgwt.client.widgets.StatefulCanvas#getTitle title} of this button contains the
+     * specified {@link com.smartgwt.client.widgets.Canvas#getAccessKey accessKey}, when the title is displayed to the user it
+     * will be modified to include HTML to underline the accessKey.<br> Note that this property may cause titles that include
+     * HTML (rather than simple strings) to be inappropriately modified, so should be disabled if your title string includes
+     * HTML characters.
      *
      *
      * @return Boolean
@@ -768,7 +768,7 @@ public class Button extends StatefulCanvas  implements com.smartgwt.client.widge
     /**
      * Add a iconClick handler.
      * <p>
-     * If this button is showing an {@link com.smartgwt.client.widgets.Button#getIcon 'icon'}, a separate click handler for the
+     * If this button is showing an {@link com.smartgwt.client.widgets.Button#getIcon icon}, a separate click handler for the
      * icon may be defined as <code>this.iconClick</code>. Returning false will suppress the standard button click handling
      * code.
      *
