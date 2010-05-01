@@ -306,7 +306,7 @@ public class ResultSet extends RecordList implements com.smartgwt.client.data.ev
      * @param criteria the filter criteria. Default value is null
      */
     public void setCriteria(Criteria criteria) {
-        setAttribute("criteria", criteria.getJsObj(), true);
+        setAttribute("criteria", criteria == null ? null : criteria.getJsObj(), true);
     }
 
     /**
