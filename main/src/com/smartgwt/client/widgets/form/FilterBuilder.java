@@ -138,13 +138,13 @@ public class FilterBuilder extends Layout  implements com.smartgwt.client.widget
      * com.smartgwt.client.widgets.form.fields.ComboBoxItem} rather than a {@link
      * com.smartgwt.client.widgets.form.fields.SelectItem} so that the user  will have type-ahead auto-completion. <P> The
      * records returned from the <code>fieldDataSource</code> must have properties  corresponding to a {@link
-     * com.smartgwt.client.data.DataSourceField} defintion, at a minimum,  {@link
-     * com.smartgwt.client.data.DataSourceField#getName '"name"'} and {@link com.smartgwt.client.data.DataSourceField#getType
-     * '"type"'}.  Any property  legal on a DataSourceField is legal on the returned records, including  {@link
-     * com.smartgwt.client.data.DataSourceField#getValueMap 'valueMap'}. <P> Even when a <code>fieldDataSource</code> is
+     * com.smartgwt.client.data.DataSourceField} definition, at a minimum,  {@link
+     * com.smartgwt.client.data.DataSourceField#getName "name"} and {@link com.smartgwt.client.data.DataSourceField#getType
+     * "type"}.  Any property  legal on a DataSourceField is legal on the returned records, including  {@link
+     * com.smartgwt.client.data.DataSourceField#getValueMap valueMap}. <P> Even when a <code>fieldDataSource</code> is
      * specified, {@link com.smartgwt.client.widgets.form.FilterBuilder#getDataSource dataSource} may still be specified in
-     * order to control the list of  {@link com.smartgwt.client.data.DataSource#setTypeOperators DataSource.setTypeOperators}
-     * for each field.
+     * order to control the list of  {@link com.smartgwt.client.data.DataSource#setTypeOperators valid operators} for each
+     * field.
      *
      * @param fieldDataSource fieldDataSource Default value is null
      * @throws IllegalStateException this property cannot be changed after the component has been created
@@ -160,13 +160,13 @@ public class FilterBuilder extends Layout  implements com.smartgwt.client.widget
      * com.smartgwt.client.widgets.form.fields.ComboBoxItem} rather than a {@link
      * com.smartgwt.client.widgets.form.fields.SelectItem} so that the user  will have type-ahead auto-completion. <P> The
      * records returned from the <code>fieldDataSource</code> must have properties  corresponding to a {@link
-     * com.smartgwt.client.data.DataSourceField} defintion, at a minimum,  {@link
-     * com.smartgwt.client.data.DataSourceField#getName '"name"'} and {@link com.smartgwt.client.data.DataSourceField#getType
-     * '"type"'}.  Any property  legal on a DataSourceField is legal on the returned records, including  {@link
-     * com.smartgwt.client.data.DataSourceField#getValueMap 'valueMap'}. <P> Even when a <code>fieldDataSource</code> is
+     * com.smartgwt.client.data.DataSourceField} definition, at a minimum,  {@link
+     * com.smartgwt.client.data.DataSourceField#getName "name"} and {@link com.smartgwt.client.data.DataSourceField#getType
+     * "type"}.  Any property  legal on a DataSourceField is legal on the returned records, including  {@link
+     * com.smartgwt.client.data.DataSourceField#getValueMap valueMap}. <P> Even when a <code>fieldDataSource</code> is
      * specified, {@link com.smartgwt.client.widgets.form.FilterBuilder#getDataSource dataSource} may still be specified in
-     * order to control the list of  {@link com.smartgwt.client.data.DataSource#setTypeOperators DataSource.setTypeOperators}
-     * for each field.
+     * order to control the list of  {@link com.smartgwt.client.data.DataSource#setTypeOperators valid operators} for each
+     * field.
      *
      *
      * @return DataSource
@@ -195,6 +195,26 @@ public class FilterBuilder extends Layout  implements com.smartgwt.client.widget
      */
     public FormItem getFieldPickerProperties()  {
         return FormItem.getOrCreateRef(getAttributeAsJavaScriptObject("fieldPickerProperties"));
+    }
+
+    /**
+     * The message to display next to fieldNames that do not exist in the available dataSource.
+     *
+     * @param missingFieldPrompt missingFieldPrompt Default value is "[missing field definition]"
+     * @throws IllegalStateException this property cannot be changed after the component has been created
+     */
+    public void setMissingFieldPrompt(String missingFieldPrompt)  throws IllegalStateException {
+        setAttribute("missingFieldPrompt", missingFieldPrompt, false);
+    }
+
+    /**
+     * The message to display next to fieldNames that do not exist in the available dataSource.
+     *
+     *
+     * @return String
+     */
+    public String getMissingFieldPrompt()  {
+        return getAttributeAsString("missingFieldPrompt");
     }
 
     /**
@@ -263,9 +283,8 @@ public class FilterBuilder extends Layout  implements com.smartgwt.client.widget
     }
 
     /**
-     * If true, when the user hits the Enter key while focussed in a text-item in this  FilterBuilder, we automatically invoke
-     * the user-supplied {@link com.smartgwt.client.widgets.form.FilterBuilder#addSearchHandler FilterBuilder.addSearchHandler}
-     * method.
+     * If true, when the user hits the Enter key while focused in a text-item in this  FilterBuilder, we automatically invoke
+     * the user-supplied {@link com.smartgwt.client.widgets.form.FilterBuilder#addSearchHandler FilterBuilder.search} method.
      *
      * @param saveOnEnter saveOnEnter Default value is null
      * @throws IllegalStateException this property cannot be changed after the component has been created
@@ -275,9 +294,8 @@ public class FilterBuilder extends Layout  implements com.smartgwt.client.widget
     }
 
     /**
-     * If true, when the user hits the Enter key while focussed in a text-item in this  FilterBuilder, we automatically invoke
-     * the user-supplied {@link com.smartgwt.client.widgets.form.FilterBuilder#addSearchHandler FilterBuilder.addSearchHandler}
-     * method.
+     * If true, when the user hits the Enter key while focused in a text-item in this  FilterBuilder, we automatically invoke
+     * the user-supplied {@link com.smartgwt.client.widgets.form.FilterBuilder#addSearchHandler FilterBuilder.search} method.
      *
      *
      * @return Boolean
@@ -349,8 +367,8 @@ public class FilterBuilder extends Layout  implements com.smartgwt.client.widget
     }
 
     /**
-     * Whether to show a button that allows the user to add subclauses.  Defaults to false if  the {@link
-     * com.smartgwt.client..TopOperatorAppearance} is "radio", true in all other cases.
+     * Whether to show a button that allows the user to add subclauses.  Defaults to false if  the TopOperatorAppearance is
+     * "radio", true in all other cases.
      *
      * @param showSubClauseButton showSubClauseButton Default value is See Description
      * @throws IllegalStateException this property cannot be changed after the component has been created
@@ -360,8 +378,8 @@ public class FilterBuilder extends Layout  implements com.smartgwt.client.widget
     }
 
     /**
-     * Whether to show a button that allows the user to add subclauses.  Defaults to false if  the {@link
-     * com.smartgwt.client..TopOperatorAppearance} is "radio", true in all other cases.
+     * Whether to show a button that allows the user to add subclauses.  Defaults to false if  the TopOperatorAppearance is
+     * "radio", true in all other cases.
      *
      *
      * @return Boolean
@@ -412,7 +430,7 @@ public class FilterBuilder extends Layout  implements com.smartgwt.client.widget
 
     /**
      * Default logical operator for all top-level clauses in the FilterBuilder. <P> May be able to be changed by the user via
-     * the UI, according to {@link com.smartgwt.client..TopOperatorAppearance}.
+     * the UI, according to TopOperatorAppearance.
      * Programmatically change the {@link com.smartgwt.client.widgets.form.FilterBuilder#getTopOperator topOperator} for this FilterBuilder.
      *
      * @param topOperator new top-level operator. Default value is "and"
@@ -423,7 +441,7 @@ public class FilterBuilder extends Layout  implements com.smartgwt.client.widget
 
     /**
      * Default logical operator for all top-level clauses in the FilterBuilder. <P> May be able to be changed by the user via
-     * the UI, according to {@link com.smartgwt.client..TopOperatorAppearance}.
+     * the UI, according to TopOperatorAppearance.
      *
      *
      * @return LogicalOperator
@@ -511,10 +529,9 @@ public class FilterBuilder extends Layout  implements com.smartgwt.client.widget
    }-*/;
             
     /**
-     * Returns the type of editor to use for the field. <P> Default behavior is to use the {@link
-     * com.smartgwt.client..Operator#getEditorType editorType} for a custom operator, otherwise,  use {@link
-     * com.smartgwt.client..RelativeDateItem} for before/after/between operators on date fields, otherwise,  use the same
-     * editor as would be chosen by a {@link com.smartgwt.client.widgets.form.SearchForm}.
+     * Returns the type of editor to use for the field. <P> Default behavior is to use the  editorType for a custom operator,
+     * otherwise,  use RelativeDateItem for before/after/between operators on date fields, otherwise,  use the same editor as
+     * would be chosen by a {@link com.smartgwt.client.widgets.form.SearchForm}.
      * @param fieldName DataSourceField definition
      * @param operatorId {@link com.smartgwt.client.types.OperatorId} for the chosen operator
      *
@@ -621,7 +638,7 @@ public class FilterBuilder extends Layout  implements com.smartgwt.client.widget
     /**
      * Initial criteria. <P> When initialized with criteria, appropriate clauses for editing the provided criteria will
      * be automatically generated. <P> Note that empty or partial criteria are allowed, for example, criteria that
-     * specify {@link com.smartgwt.client..Criterion#getFieldName fieldName} only will generate an expression with the
+     * specify {@link com.smartgwt.client.data.Criterion#getFieldName fieldName} only will generate an expression with the
      * operator not chosen yet, and a ${isc.DocUtils.linkForRef('object:Criterion')} with a logical operator ("and" or
      * "or") but not ${isc.DocUtils.linkForRef('criteria.criteria','subcriteria')} defined will generate an empty
      * subclause. Set new criteria for editing.   <P> An interface for editing the provided criteria will be generated
@@ -639,7 +656,7 @@ public class FilterBuilder extends Layout  implements com.smartgwt.client.widget
     /**
      * Initial criteria. <P> When initialized with criteria, appropriate clauses for editing the provided criteria will
      * be automatically generated. <P> Note that empty or partial criteria are allowed, for example, criteria that
-     * specify {@link com.smartgwt.client..Criterion#getFieldName fieldName} only will generate an expression with the
+     * specify {@link com.smartgwt.client.data.Criterion#getFieldName fieldName} only will generate an expression with the
      * operator not chosen yet, and a ${isc.DocUtils.linkForRef('object:Criterion')} with a logical operator ("and" or
      * "or") but not ${isc.DocUtils.linkForRef('criteria.criteria','subcriteria')} defined will generate an empty
      * subclause.
