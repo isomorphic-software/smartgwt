@@ -836,7 +836,7 @@ public class ComboBoxItem extends FormItem  implements PickList, com.smartgwt.cl
      * @param pickListCriteria pickListCriteria Default value is null
      */
     public void setPickListCriteria(Criteria pickListCriteria) {
-        setAttribute("pickListCriteria", pickListCriteria.getJsObj());
+        setAttribute("pickListCriteria", pickListCriteria == null ? null : pickListCriteria.getJsObj());
     }
 
     /**

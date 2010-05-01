@@ -9927,7 +9927,7 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
      */
     public native void setCriteria(Criteria criteria) /*-{
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
-        self.setCriteria(criteria.@com.smartgwt.client.data.Criteria::getJsObj()());
+        self.setCriteria(criteria == null ? null : criteria.@com.smartgwt.client.data.Criteria::getJsObj()());
     }-*/;
 
     /**
@@ -9936,7 +9936,7 @@ public class ListGrid extends Canvas  implements DataBoundComponent, com.smartgw
      */
     public native void setFilterEditorCriteria(Criteria criteria) /*-{
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
-        self.setFilterEditorCriteria(criteria.@com.smartgwt.client.data.Criteria::getJsObj()());
+        self.setFilterEditorCriteria(criteria == null ? null : criteria.@com.smartgwt.client.data.Criteria::getJsObj()());
     }-*/;
 
     /**
