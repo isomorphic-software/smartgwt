@@ -57,7 +57,7 @@ import com.google.gwt.event.shared.HasHandlers;
 
 /**
  * Provides a compact interface for editing a date range, by providing a read-only display of  the current selected date
- * range with an icon to launch a {@link com.smartgwt.client..DateRangeDialog} to edit the  range.
+ * range with an icon to launch a DateRangeDialog to edit the  range.
  */
 public class MiniDateRangeItem extends StaticTextItem {
 
@@ -93,7 +93,104 @@ public class MiniDateRangeItem extends StaticTextItem {
 
     // ********************* Properties / Attributes ***********************
 
+    /**
+     * Icon that launches a {@link com.smartgwt.client.widgets.DateChooser} for choosing an absolute date.
+     *
+     * @param pickerIcon pickerIcon Default value is null
+     */
+    public void setPickerIcon(FormItemIcon pickerIcon) {
+        setAttribute("pickerIcon", pickerIcon.getJsObj());
+    }
+
+    /**
+     * Icon that launches a {@link com.smartgwt.client.widgets.DateChooser} for choosing an absolute date.
+     *
+     *
+     * @return FormItemIcon
+     */
+    public FormItemIcon getPickerIcon()  {
+        return new FormItemIcon(getAttributeAsJavaScriptObject("pickerIcon"));
+    }
+
+    /**
+     * The prompt to show when the mouse is hovered over the {@link
+     * com.smartgwt.client.widgets.form.fields.MiniDateRangeItem#getPickerIcon pickerIcon}.
+     *
+     * @param pickerIconPrompt pickerIconPrompt Default value is "Show Date Chooser"
+     */
+    public void setPickerIconPrompt(String pickerIconPrompt) {
+        setAttribute("pickerIconPrompt", pickerIconPrompt);
+    }
+
+    /**
+     * The prompt to show when the mouse is hovered over the {@link
+     * com.smartgwt.client.widgets.form.fields.MiniDateRangeItem#getPickerIcon pickerIcon}.
+     *
+     *
+     * @return String
+     */
+    public String getPickerIconPrompt()  {
+        return getAttributeAsString("pickerIconPrompt");
+    }
+
+    /**
+     * Allow miniDateRangeItems' values to show up in the form's values array, or if  {@link
+     * com.smartgwt.client.widgets.form.DynamicForm#getValuesAsCriteria DynamicForm.getValuesAsCriteria} is called, for the
+     * criterion to be included in the returned AdvancedCriteria object
+     *
+     * @param shouldSaveValue shouldSaveValue Default value is true
+     */
+    public void setShouldSaveValue(Boolean shouldSaveValue) {
+        setAttribute("shouldSaveValue", shouldSaveValue);
+    }
+
+    /**
+     * Allow miniDateRangeItems' values to show up in the form's values array, or if  {@link
+     * com.smartgwt.client.widgets.form.DynamicForm#getValuesAsCriteria DynamicForm.getValuesAsCriteria} is called, for the
+     * criterion to be included in the returned AdvancedCriteria object
+     *
+     *
+     * @return Boolean
+     */
+    public Boolean getShouldSaveValue()  {
+        return getAttributeAsBoolean("shouldSaveValue");
+    }
+
     // ********************* Methods ***********************
+            
+    /**
+     * Whether the DateRangeDialog opened when the  {@link
+     * com.smartgwt.client.widgets.form.fields.MiniDateRangeItem#getPickerIcon pickerIcon} is clicked should display 
+     * RelativeDateItems or {@link com.smartgwt.client.widgets.form.fields.DateItem}s.
+     *
+     * @return true
+     */
+    public native Boolean allowRelativeDates() /*-{
+        var self = this.@com.smartgwt.client.core.DataClass::getJsObj()();
+        var retVal =self.allowRelativeDates();
+        if(retVal == null || retVal === undefined) {
+            return null;
+        } else {
+            return @com.smartgwt.client.util.JSOHelper::toBoolean(Z)(retVal);
+        }
+    }-*/;
+            
+    /**
+     * Returns the Criterion entered in the fields shown in the  {@link
+     * com.smartgwt.client.widgets.form.fields.MiniDateRangeItem#getRangeDialog rangeDialog}. <P> If both dates are entered, a
+     * Criterion with an "and" {@link com.smartgwt.client.types.OperatorId operator} will be returned with both a "greaterThan"
+     * and "lessThan" sub-criteria.  If either date is omitted, only the "greaterThan" (from date) or "lessThan" (to date)
+     * Criterion is returned.
+     *
+     * @return 
+     * @see com.smartgwt.client.docs.CriteriaEditing CriteriaEditing overview and related methods
+     */
+    public native Criterion getCriterion() /*-{
+        var self = this.@com.smartgwt.client.core.DataClass::getJsObj()();
+        var ret = self.getCriterion();
+        if(ret == null || ret === undefined) return null;
+        return @com.smartgwt.client.data.Criterion::new(Lcom/google/gwt/core/client/JavaScriptObject;)(ret);
+    }-*/;
 
     // ********************* Static Methods ***********************
 
