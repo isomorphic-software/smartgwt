@@ -650,7 +650,7 @@ public class FilterBuilder extends Layout  implements com.smartgwt.client.widget
      *                 specified. Default value is null
      */
     public void setCriteria(AdvancedCriteria criteria) {
-        setAttribute("criteria", criteria, true);
+        setAttribute("criteria", criteria == null ? null : criteria, true);
     }
 
     /**
