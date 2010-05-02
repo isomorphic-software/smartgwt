@@ -196,6 +196,15 @@ public interface SmartGwtMessages extends com.google.gwt.i18n.client.Messages {
   String dateChooser_cancelButtonTitle();
 
   /**
+   * Translated "1".
+   * 
+   * @return translated "1"
+   */
+  @DefaultMessage("1")
+  @Key("dateChooser_firstDayOfWeek")
+  String dateChooser_firstDayOfWeek();
+
+  /**
    * Translated "Today".
    * 
    * @return translated "Today"
@@ -239,6 +248,15 @@ public interface SmartGwtMessages extends com.google.gwt.i18n.client.Messages {
   @DefaultMessage("Show Date Chooser")
   @Key("dateItem_pickerIconPrompt")
   String dateItem_pickerIconPrompt();
+
+  /**
+   * Translated "YMD".
+   * 
+   * @return translated "YMD"
+   */
+  @DefaultMessage("YMD")
+  @Key("dateItem_selectorFormat")
+  String dateItem_selectorFormat();
 
   /**
    * Translated "Choose a year".
@@ -1996,6 +2014,51 @@ public interface SmartGwtMessages extends com.google.gwt.i18n.client.Messages {
   String relativeDateItem_yearsFromNowTitle();
 
   /**
+   * Translated "Center selection".
+   * 
+   * @return translated "Center selection"
+   */
+  @DefaultMessage("Center selection")
+  @Key("richTextEditor_alignCenterPrompt")
+  String richTextEditor_alignCenterPrompt();
+
+  /**
+   * Translated "Left align selection".
+   * 
+   * @return translated "Left align selection"
+   */
+  @DefaultMessage("Left align selection")
+  @Key("richTextEditor_alignLeftPrompt")
+  String richTextEditor_alignLeftPrompt();
+
+  /**
+   * Translated "Right align selection".
+   * 
+   * @return translated "Right align selection"
+   */
+  @DefaultMessage("Right align selection")
+  @Key("richTextEditor_alignRightPrompt")
+  String richTextEditor_alignRightPrompt();
+
+  /**
+   * Translated "Make selection bold".
+   * 
+   * @return translated "Make selection bold"
+   */
+  @DefaultMessage("Make selection bold")
+  @Key("richTextEditor_boldSelectionPrompt")
+  String richTextEditor_boldSelectionPrompt();
+
+  /**
+   * Translated "Set selection color".
+   * 
+   * @return translated "Set selection color"
+   */
+  @DefaultMessage("Set selection color")
+  @Key("richTextEditor_colorPrompt")
+  String richTextEditor_colorPrompt();
+
+  /**
    * Translated "Copy Selection".
    * 
    * @return translated "Copy Selection"
@@ -2014,6 +2077,78 @@ public interface SmartGwtMessages extends com.google.gwt.i18n.client.Messages {
   String richTextEditor_cutSelectionPrompt();
 
   /**
+   * Translated "Set Font ...".
+   * 
+   * @return translated "Set Font ..."
+   */
+  @DefaultMessage("Set Font ...")
+  @Key("richTextEditor_fontPrompt")
+  String richTextEditor_fontPrompt();
+
+  /**
+   * Translated "Set Font Size ...".
+   * 
+   * @return translated "Set Font Size ..."
+   */
+  @DefaultMessage("Set Font Size ...")
+  @Key("richTextEditor_fontSizePrompt")
+  String richTextEditor_fontSizePrompt();
+
+  /**
+   * Translated "Indent selection".
+   * 
+   * @return translated "Indent selection"
+   */
+  @DefaultMessage("Indent selection")
+  @Key("richTextEditor_indentSelectionPrompt")
+  String richTextEditor_indentSelectionPrompt();
+
+  /**
+   * Translated "Make selection italic".
+   * 
+   * @return translated "Make selection italic"
+   */
+  @DefaultMessage("Make selection italic")
+  @Key("richTextEditor_italicSelectionPrompt")
+  String richTextEditor_italicSelectionPrompt();
+
+  /**
+   * Translated "Full justify selection".
+   * 
+   * @return translated "Full justify selection"
+   */
+  @DefaultMessage("Full justify selection")
+  @Key("richTextEditor_justifyPrompt")
+  String richTextEditor_justifyPrompt();
+
+  /**
+   * Translated "Edit hyperlink".
+   * 
+   * @return translated "Edit hyperlink"
+   */
+  @DefaultMessage("Edit hyperlink")
+  @Key("richTextEditor_linkPrompt")
+  String richTextEditor_linkPrompt();
+
+  /**
+   * Translated "Hyperlink URL:".
+   * 
+   * @return translated "Hyperlink URL:"
+   */
+  @DefaultMessage("Hyperlink URL:")
+  @Key("richTextEditor_linkUrlTitle")
+  String richTextEditor_linkUrlTitle();
+
+  /**
+   * Translated "Decrease selection indent".
+   * 
+   * @return translated "Decrease selection indent"
+   */
+  @DefaultMessage("Decrease selection indent")
+  @Key("richTextEditor_outdentSelectionPrompt")
+  String richTextEditor_outdentSelectionPrompt();
+
+  /**
    * Translated "Paste Selection".
    * 
    * @return translated "Paste Selection"
@@ -2021,6 +2156,15 @@ public interface SmartGwtMessages extends com.google.gwt.i18n.client.Messages {
   @DefaultMessage("Paste Selection")
   @Key("richTextEditor_pasteSelectionPrompt")
   String richTextEditor_pasteSelectionPrompt();
+
+  /**
+   * Translated "Make selection underlined".
+   * 
+   * @return translated "Make selection underlined"
+   */
+  @DefaultMessage("Make selection underlined")
+  @Key("richTextEditor_underlineSelectionPrompt")
+  String richTextEditor_underlineSelectionPrompt();
 
   /**
    * Translated "Contacting Server...".
