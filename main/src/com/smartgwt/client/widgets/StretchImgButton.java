@@ -1153,7 +1153,7 @@ public class StretchImgButton extends StretchImg  implements com.smartgwt.client
     public native void select() /*-{
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
         self.select();
-    }-*/;            
+    }-*/;
 
     // ********************* Static Methods ***********************
 
