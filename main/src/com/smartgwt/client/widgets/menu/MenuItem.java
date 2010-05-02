@@ -444,7 +444,12 @@ public class MenuItem extends ListGridRecord  implements com.smartgwt.client.wid
     public native void setEnableIfCondition(MenuItemIfFunction enableIf) /*-{
         var self = this.@com.smartgwt.client.core.DataClass::getJsObj()();
         self.enableIf = $debox($entry(function(target, menu, item) {
-            var targetJ = @com.smartgwt.client.widgets.BaseWidget::getRef(Lcom/google/gwt/core/client/JavaScriptObject;)(target);
+            var targetJ;
+            if(@com.smartgwt.client.widgets.tab.Tab::isTab(Lcom/google/gwt/core/client/JavaScriptObject;)(target)) {
+                targetJ = @com.smartgwt.client.widgets.tab.Tab::getTabSet(Lcom/google/gwt/core/client/JavaScriptObject;)(target);
+            } else {
+                targetJ = @com.smartgwt.client.widgets.BaseWidget::getRef(Lcom/google/gwt/core/client/JavaScriptObject;)(target);
+            }
             var menuJ = @com.smartgwt.client.widgets.BaseWidget::getRef(Lcom/google/gwt/core/client/JavaScriptObject;)(menu);
             var itemJ = @com.smartgwt.client.widgets.menu.MenuItem::getRef(Lcom/google/gwt/core/client/JavaScriptObject;)(item);
             return enableIf.@com.smartgwt.client.widgets.menu.MenuItemIfFunction::execute(Lcom/smartgwt/client/widgets/Canvas;Lcom/smartgwt/client/widgets/menu/Menu;Lcom/smartgwt/client/widgets/menu/MenuItem;)(targetJ, menuJ, itemJ);
@@ -459,7 +464,12 @@ public class MenuItem extends ListGridRecord  implements com.smartgwt.client.wid
     public native void setCheckIfCondition(MenuItemIfFunction checkIf) /*-{
         var self = this.@com.smartgwt.client.core.DataClass::getJsObj()();
         self.checkIf = $debox($entry(function(target, menu, item) {
-            var targetJ = @com.smartgwt.client.widgets.BaseWidget::getRef(Lcom/google/gwt/core/client/JavaScriptObject;)(target);
+            var targetJ;
+            if(@com.smartgwt.client.widgets.tab.Tab::isTab(Lcom/google/gwt/core/client/JavaScriptObject;)(target)) {
+                targetJ = @com.smartgwt.client.widgets.tab.Tab::getTabSet(Lcom/google/gwt/core/client/JavaScriptObject;)(target);
+            } else {
+                targetJ = @com.smartgwt.client.widgets.BaseWidget::getRef(Lcom/google/gwt/core/client/JavaScriptObject;)(target);
+            }
             var menuJ = @com.smartgwt.client.widgets.BaseWidget::getRef(Lcom/google/gwt/core/client/JavaScriptObject;)(menu);
             var itemJ = @com.smartgwt.client.widgets.menu.MenuItem::getRef(Lcom/google/gwt/core/client/JavaScriptObject;)(item);
             return checkIf.@com.smartgwt.client.widgets.menu.MenuItemIfFunction::execute(Lcom/smartgwt/client/widgets/Canvas;Lcom/smartgwt/client/widgets/menu/Menu;Lcom/smartgwt/client/widgets/menu/MenuItem;)(targetJ, menuJ, itemJ);
@@ -474,7 +484,12 @@ public class MenuItem extends ListGridRecord  implements com.smartgwt.client.wid
     public native void setDynamicTitleFunction(MenuItemStringFunction handler) /*-{
         var self = this.@com.smartgwt.client.core.DataClass::getJsObj()();
         self.dynamicTitle = $debox($entry(function(target, menu, item) {
-            var targetJ = @com.smartgwt.client.widgets.BaseWidget::getRef(Lcom/google/gwt/core/client/JavaScriptObject;)(target);
+            var targetJ;
+            if(@com.smartgwt.client.widgets.tab.Tab::isTab(Lcom/google/gwt/core/client/JavaScriptObject;)(target)) {
+                targetJ = @com.smartgwt.client.widgets.tab.Tab::getTabSet(Lcom/google/gwt/core/client/JavaScriptObject;)(target);
+            } else {
+                targetJ = @com.smartgwt.client.widgets.BaseWidget::getRef(Lcom/google/gwt/core/client/JavaScriptObject;)(target);
+            }
             var menuJ = @com.smartgwt.client.widgets.BaseWidget::getRef(Lcom/google/gwt/core/client/JavaScriptObject;)(menu);
             var itemJ = @com.smartgwt.client.widgets.menu.MenuItem::getRef(Lcom/google/gwt/core/client/JavaScriptObject;)(item);
             return handler.@com.smartgwt.client.widgets.menu.MenuItemStringFunction::execute(Lcom/smartgwt/client/widgets/Canvas;Lcom/smartgwt/client/widgets/menu/Menu;Lcom/smartgwt/client/widgets/menu/MenuItem;)(targetJ, menuJ, itemJ);
@@ -489,7 +504,12 @@ public class MenuItem extends ListGridRecord  implements com.smartgwt.client.wid
     public native void setDynamicIconFunction(MenuItemStringFunction handler) /*-{
         var self = this.@com.smartgwt.client.core.DataClass::getJsObj()();
         self.dynamicIcon = $debox($entry(function(target, menu, item) {
-            var targetJ = @com.smartgwt.client.widgets.BaseWidget::getRef(Lcom/google/gwt/core/client/JavaScriptObject;)(target);
+            var targetJ;
+            if(@com.smartgwt.client.widgets.tab.Tab::isTab(Lcom/google/gwt/core/client/JavaScriptObject;)(target)) {
+                targetJ = @com.smartgwt.client.widgets.tab.Tab::getTabSet(Lcom/google/gwt/core/client/JavaScriptObject;)(target);
+            } else {
+                targetJ = @com.smartgwt.client.widgets.BaseWidget::getRef(Lcom/google/gwt/core/client/JavaScriptObject;)(target);
+            }
             var menuJ = @com.smartgwt.client.widgets.BaseWidget::getRef(Lcom/google/gwt/core/client/JavaScriptObject;)(menu);
             var itemJ = @com.smartgwt.client.widgets.menu.MenuItem::getRef(Lcom/google/gwt/core/client/JavaScriptObject;)(item);
             return handler.@com.smartgwt.client.widgets.menu.MenuItemStringFunction::execute(Lcom/smartgwt/client/widgets/Canvas;Lcom/smartgwt/client/widgets/menu/Menu;Lcom/smartgwt/client/widgets/menu/MenuItem;)(targetJ, menuJ, itemJ);

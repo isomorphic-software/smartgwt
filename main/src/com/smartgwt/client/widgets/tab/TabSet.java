@@ -1316,6 +1316,7 @@ public class TabSet extends Canvas  implements com.smartgwt.client.widgets.tab.e
      * @param tab new tab
      */
     public void addTab(Tab tab) {
+        tab.setTabSet(this);
         JavaScriptObject tabJS = tab.getJsObj();
 
         if (isCreated()) {

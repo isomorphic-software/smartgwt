@@ -149,56 +149,6 @@ public class Tab extends RefDataClass {
     }
 
     /**
-     * If specified, this tab will initially be rendered in a disabled state. To enable or disable tabs on the fly use the
-     * {@link com.smartgwt.client.widgets.tab.TabSet#enableTab TabSet.enableTab}, and {@link
-     * com.smartgwt.client.widgets.tab.TabSet#disableTab TabSet.disableTab} methods.
-     *
-     * @param disabled disabled Default value is null
-     */
-    public void setDisabled(Boolean disabled) {
-        setAttribute("disabled", disabled);
-    }
-
-    /**
-     * If specified, this tab will initially be rendered in a disabled state. To enable or disable tabs on the fly use the
-     * {@link com.smartgwt.client.widgets.tab.TabSet#enableTab TabSet.enableTab}, and {@link
-     * com.smartgwt.client.widgets.tab.TabSet#disableTab TabSet.disableTab} methods.
-     *
-     *
-     * @return Boolean
-     */
-    public Boolean getDisabled()  {
-        return getAttributeAsBoolean("disabled");
-    }
-
-    /**
-     * If specified, this tab will show an icon next to the tab title.  Note that as with  {@link
-     * com.smartgwt.client.widgets.Button#getIcon icon}, the URL of a tabs icon will be updated to reflect disabled state.<br>
-     * If desired a click handler may be assigned to the icon, which will be fired when the user clicks the tab. This method
-     * takes a single parameter <code>tab</code>, a pointer to the tab object.
-     *
-     * @param icon icon Default value is null
-     * @see <a href="http://www.smartclient.com/smartgwt/showcase/#layout_tabs_orientation" target="examples">Orientation Example</a>
-     */
-    public void setIcon(String icon) {
-        setAttribute("icon", icon);
-    }
-
-    /**
-     * If specified, this tab will show an icon next to the tab title.  Note that as with  {@link
-     * com.smartgwt.client.widgets.Button#getIcon icon}, the URL of a tabs icon will be updated to reflect disabled state.<br>
-     * If desired a click handler may be assigned to the icon, which will be fired when the user clicks the tab. This method
-     * takes a single parameter <code>tab</code>, a pointer to the tab object.
-     *
-     *
-     * @return String
-     * @see <a href="http://www.smartclient.com/smartgwt/showcase/#layout_tabs_orientation" target="examples">Orientation Example</a>
-     */
-    public String getIcon()  {
-        return getAttributeAsString("icon");
-    }
-
-    /**
      * Optional ID for the tab, which can later be used to reference the tab. APIs requiring a reference to a tab will accept
      * the tabs ID  [including  {@link com.smartgwt.client.widgets.tab.TabSet#selectTab TabSet.selectTab}, {@link
      * com.smartgwt.client.widgets.tab.TabSet#updateTab TabSet.updateTab}, {@link
@@ -253,27 +203,6 @@ public class Tab extends RefDataClass {
     }
 
     /**
-     * Specifies the title of the this tab.  To change the title after the TabSet has been created, call {@link
-     * com.smartgwt.client.widgets.tab.TabSet#setTabTitle TabSet.setTabTitle}.
-     *
-     * @param title title Default value is null
-     */
-    public void setTitle(String title) {
-        setAttribute("title", title);
-    }
-
-    /**
-     * Specifies the title of the this tab.  To change the title after the TabSet has been created, call {@link
-     * com.smartgwt.client.widgets.tab.TabSet#setTabTitle TabSet.setTabTitle}.
-     *
-     *
-     * @return String
-     */
-    public String getTitle()  {
-        return getAttributeAsString("title");
-    }
-
-    /**
      * You can specify an explicit width for the tab using this property.  Note that tabs automatically size to make room for
      * the full title, but if you want to e.g. specify a uniform width for all tabs in a TabSet, this property enables you to
      * do so.
@@ -301,14 +230,104 @@ public class Tab extends RefDataClass {
     // ********************* Static Methods ***********************
 
 
+    /**
+     * Specifies the title of the this tab.  To change the title after the TabSet has been created, call {@link
+     * com.smartgwt.client.widgets.tab.TabSet#setTabTitle TabSet.setTabTitle}.
+     *
+     * @param title title Default value is null
+     */
+    public void setTitle(String title) {
+        if(tabSet == null || !tabSet.isDrawn()) {
+            setAttribute("title", title);
+        } else {
+            tabSet.setTabTitle(this, title);
+        }
+    }
+
+    /**
+     * Specifies the title of the this tab.
+     *
+     * @return String
+     */
+    public String getTitle()  {
+        if(tabSet == null || !tabSet.isDrawn()) {
+            return getAttributeAsString("title");
+        } else {
+            return tabSet.getTab(getID()).getAttributeAsString("title");
+        }
+    }
+    
+    /**
+     * If specified, this tab will initially be rendered in a disabled state.
+     *
+     * @param disabled disabled Default value is null
+     */
+    public void setDisabled(boolean disabled) {
+        if(tabSet == null || !tabSet.isDrawn()) {
+            setAttribute("disabled", disabled);
+        } else {
+            if(disabled) {
+                tabSet.disableTab(getID());
+            } else {
+                tabSet.enableTab(getID());
+            }
+        }
+    }
+
+    /**
+     * If specified, this tab will initially be rendered in a disabled state. To enable or disable tabs on the fly use the
+     * {@link com.smartgwt.client.widgets.tab.TabSet#enableTab TabSet.enableTab}, and {@link
+     * com.smartgwt.client.widgets.tab.TabSet#disableTab TabSet.disableTab} methods.
+     *
+     *
+     * @return Boolean
+     */
+    public Boolean getDisabled()  {
+        if(tabSet == null || !tabSet.isDrawn()) {
+            return getAttributeAsBoolean("disabled");
+        } else {
+            return tabSet.getTab(getID()).getAttributeAsBoolean("disabled");
+        }
+    }
+
+    /**
+     * If specified, this tab will show an icon next to the tab title.  Note that as with  {@link
+     * com.smartgwt.client.widgets.Button#getIcon icon}, the URL of a tabs icon will be updated to reflect disabled state.<br>
+     * If desired a click handler may be assigned to the icon, which will be fired when the user clicks the tab. This method
+     * takes a single parameter <code>tab</code>, a pointer to the tab object.
+     *
+     * @param icon icon Default value is null
+     * @see <a href="http://www.smartclient.com/smartgwt/showcase/#layout_tabs_orientation" target="examples">Orientation Example</a>
+     */
+    public void setIcon(String icon) {
+        if(tabSet == null || !tabSet.isDrawn()) {
+            setAttribute("icon", icon);
+        } else {
+            tabSet.setTabIcon(getID(), icon);
+        }
+    }
+
+    /**
+     * If specified, this tab will show an icon next to the tab title.  Note that as with  {@link
+     * com.smartgwt.client.widgets.Button#getIcon icon}, the URL of a tabs icon will be updated to reflect disabled state.<br>
+     * If desired a click handler may be assigned to the icon, which will be fired when the user clicks the tab. This method
+     * takes a single parameter <code>tab</code>, a pointer to the tab object.
+     *
+     *
+     * @return String
+     * @see <a href="http://www.smartclient.com/smartgwt/showcase/#layout_tabs_orientation" target="examples">Orientation Example</a>
+     */
+    public String getIcon()  {
+        if(tabSet == null || !tabSet.isDrawn()) {
+            return getAttributeAsString("icon");
+        } else {
+            return tabSet.getTab(getID()).getAttributeAsString("icon");
+        }
+    }
+    
     public void setCanClose(boolean canClose) {
         setAttribute("canClose", canClose);
     }
-
-    public void setDisabled(boolean disabled) {
-        setAttribute("disabled", disabled);
-    }
-
 
     public void setPaneID(String paneID) {
         setAttribute("pane", paneID);
@@ -358,6 +377,30 @@ public class Tab extends RefDataClass {
      */
     public Menu getContextMenu()  {
         return Menu.getOrCreateRef(getAttributeAsJavaScriptObject("contextMenu"));
+    }
+
+    private TabSet tabSet;
+
+    public TabSet getTabSet() {
+        return tabSet;
+    }
+
+    public void setTabSet(TabSet tabSet) {
+        this.tabSet = tabSet;
+    }
+
+    private static boolean isTab(JavaScriptObject jsObj) {
+        Object ref = JSOHelper.getAttributeAsObject((JavaScriptObject) jsObj, SC.REF);
+        return ref instanceof Tab;
+    }
+
+    private static TabSet getTabSet(JavaScriptObject jsObj) {
+        Object ref = JSOHelper.getAttributeAsObject((JavaScriptObject) jsObj, SC.REF);
+        if(ref instanceof Tab) {
+            return ((Tab) ref).getTabSet();
+        } else {
+            return null;
+        }
     }
 
 }

@@ -121,28 +121,6 @@ public class SectionStackSection extends RefDataClass {
     }
 
     /**
-     * Sections default to the collapsed state unless {@link
-     * com.smartgwt.client.widgets.layout.SectionStackSection#getShowHeader showHeader} is set to <code>false</code> in which
-     * case they default to the expanded state.  This attribute allows you to explicitly control the expand/collapse state of
-     * the section by overriding the above default behavior.
-     *
-     * @param expanded expanded Default value is false
-     */
-    public void setExpanded(Boolean expanded) {
-        setAttribute("expanded", expanded);
-    }
-
-    /**
-     * Sections default to the visible state.  This attribute allows you to explicitly control the visible/hidden state of the
-     * section by overriding the above default behavior.
-     *
-     * @param hidden hidden Default value is false
-     */
-    public void setHidden(Boolean hidden) {
-        setAttribute("hidden", hidden);
-    }
-
-    /**
      * Optional ID for the section. By default this will be applied to the generated  SectionStackHeader widget as a standard
      * widget ID, meaning it should be unique within a page. To disable this behavior, set {@link
      * com.smartgwt.client.widgets.layout.SectionStackSection#getUseGlobalSectionIDs useGlobalSectionIDs} to false. <P>
@@ -226,29 +204,75 @@ public class SectionStackSection extends RefDataClass {
         setAttribute("showHeader", showHeader);
     }
 
+    // ********************* Methods ***********************
+
+    // ********************* Static Methods ***********************
+
+
+
     /**
      * Title to show for the section
      *
      * @param title title Default value is null
      */
     public void setTitle(String title) {
-        setAttribute("title", title);
+        if(stack == null || !stack.isDrawn()) {
+            setAttribute("title", title);
+        } else {
+            stack.setSectionTitle(getID(), title);
+        }
     }
 
     /**
      * Title to show for the section
      *
-     *
      * @return String
      */
     public String getTitle()  {
-        return getAttributeAsString("title");
+        if(stack == null || !stack.isDrawn()) {
+            return getAttributeAsString("title");
+        } else {
+            return stack.getSection(getID()).getAttribute("title");
+        }
     }
 
-    // ********************* Methods ***********************
+    /**
+     * Sections default to the collapsed state unless {@link
+     * com.smartgwt.client.widgets.layout.SectionStackSection#getShowHeader showHeader} is set to <code>false</code> in which
+     * case they default to the expanded state.  This attribute allows you to explicitly control the expand/collapse state of
+     * the section by overriding the above default behavior.
+     *
+     * @param expanded expanded Default value is false
+     */
+    public void setExpanded(Boolean expanded) {
+        if(stack == null || !stack.isDrawn()) {
+            setAttribute("expanded", expanded);
+        } else {
+            if(expanded) {
+                stack.expandSection(getID());
+            } else {
+                stack.collapseSection(getID());
+            }
+        }
+    }
 
-    // ********************* Static Methods ***********************
-
+    /**
+     * Sections default to the visible state.  This attribute allows you to explicitly control the visible/hidden state of the
+     * section by overriding the above default behavior.
+     *
+     * @param hidden hidden Default value is false
+     */
+    public void setHidden(Boolean hidden) {
+        if(stack == null || !stack.isDrawn()) {
+            setAttribute("hidden", hidden);
+        } else {
+            if(hidden) {
+                stack.hideSection(getID());
+            } else {
+                stack.showSection(getID());
+            }
+        }
+    }
 
     /**
      * List of Canvases that constitute the section. These Canvases will be shown and hidden together.
