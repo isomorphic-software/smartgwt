@@ -812,7 +812,7 @@ public class StatefulCanvas extends Canvas {
     public native void select() /*-{
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
         self.select();
-    }-*/;           
+    }-*/;
 
     // ********************* Static Methods ***********************
 
