@@ -47,6 +47,7 @@ public class Showcase implements EntryPoint, HistoryListener {
 
     private TabSet mainTabSet;
     private SideNavTree sideNav;
+    private Menu contextMenu;
 
     public void onModuleLoad() {
 
@@ -218,16 +219,7 @@ public class Showcase implements EntryPoint, HistoryListener {
 
         mainTabSet.setTabBarControls(TabBarControls.TAB_SCROLLER, TabBarControls.TAB_PICKER, layoutSpacer, form);
 
-        final Menu contextMenu = createContextMenu();
-        mainTabSet.addShowContextMenuHandler(new ShowContextMenuHandler() {
-            public void onShowContextMenu(ShowContextMenuEvent event) {
-                int selectedTab = mainTabSet.getSelectedTabNumber();
-                if (selectedTab != 0) {
-                    contextMenu.showContextMenu();
-                }
-                event.cancel();
-            }
-        });
+        contextMenu = createContextMenu();
 
         Tab tab = new Tab();
         tab.setTitle("Home&nbsp;&nbsp;");
@@ -364,6 +356,7 @@ public class Showcase implements EntryPoint, HistoryListener {
                     //store history token on tab so that when an already open is selected, one can retrieve the
                     //history token and update the URL
                     tab.setAttribute("historyToken", explorerTreeNode.getNodeID());
+                    tab.setContextMenu(contextMenu);
 
                     String sampleName = explorerTreeNode.getName();
 

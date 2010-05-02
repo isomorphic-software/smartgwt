@@ -268,7 +268,6 @@ public class TileView extends VLayout {
                 }
 
                 final Window window = new Window();
-                window.setMembersMargin(10);
                 window.setKeepInParentRect(true);
                 window.setHeaderIcon(icon, 16, 16);
                 window.setTitle(sampleName);
