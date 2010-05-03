@@ -38,7 +38,7 @@ public enum DSOperationType implements ValueEnum {
     /**
      * Remove (delete) an existing record
      */
-    REMOVE("remove");
+    REMOVE("remove"),
     
     /**
      * Run server-side validation for add or update without actually performing the operation
