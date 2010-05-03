@@ -1,8 +1,11 @@
 <!--inheriting this module will result in the SmartClient artifacts (js, skins etc)
-to not being copied over into the compiled output. You will need to include the SmartClient
+ not being copied over into the compiled output. You will need to include the SmartClient
 JavaScript files, and load the appropriate skin yourself when inheriting this module.
 This module is useful if you already have the SmartClient resources available in a known / shared
  location like a CDN and will include them in your host html file yourself.
+
+ In such deployment situations users are expected to explicitly add the following in their host html file
+ <script> var isomorphicDir = "MODULE_NAME/sc/"; </script>
  -->
 
 <module>

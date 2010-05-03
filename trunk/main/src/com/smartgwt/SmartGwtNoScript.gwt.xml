@@ -23,5 +23,8 @@ include them yourself in your host html file as follows :
     <inherits name="com.google.gwt.http.HTTP"/>
     <inherits name="com.google.gwt.event.Event"/>
 
-    <inherits name='com.smartclient.SmartClientNoScript'/>    
+    <inherits name='com.smartclient.SmartClientNoScript'/>
+    
+	<define-linker name="smartgwt" class="com.smartgwt.linker.SmartGwtLinker" />
+  	<add-linker name="smartgwt" />
 </module>
