@@ -16,4 +16,7 @@ and manually add the script includes in your host html file.
     <inherits name="com.smartclient.SmartClientDefault"/>
     <inherits name="com.smartclient.theme.enterprise.Enterprise"/>
 
+	<define-linker name="smartgwt" class="com.smartgwt.linker.SmartGwtLinker" />
+  	<add-linker name="smartgwt" />
+
 </module>
