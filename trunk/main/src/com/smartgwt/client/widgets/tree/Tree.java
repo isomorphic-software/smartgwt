@@ -1624,7 +1624,7 @@ public class Tree extends BaseClass  implements com.smartgwt.client.widgets.tree
         return @com.smartgwt.client.widgets.tree.Tree::convertToTreeNodeArray(Lcom/google/gwt/core/client/JavaScriptObject;)(nodesJS);
     }-*/;
 
-    // override getProperty / setProperty logic for ResultTree type only
+       // override getProperty / setProperty logic for ResultTree type only
 
     //getters
 
