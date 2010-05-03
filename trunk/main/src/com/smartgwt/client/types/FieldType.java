@@ -78,19 +78,19 @@ public enum FieldType implements ValueEnum {
     INTENUM("intEnum"),
     /**
      * If you are using the SmartGWT SQL datasource connector, a <code>sequence</code> is a
-     * unique, increasing whole number, incremented&#010                    whenever a new record is added. Otherwise,
-     * <code>sequence</code> behaves&#010                    identically to <code>integer</code>. This type is typically
-     * used with&#010                    <code>field.primaryKey</code> to auto-generate unique primary keys.
+     * unique, increasing whole number, incremented whenever a new record is added. Otherwise,
+     * <code>sequence</code> behaves identically to <code>integer</code>. This type is typically
+     * used with <code>field.primaryKey</code> to auto-generate unique primary keys.
      */
     SEQUENCE("sequence"),
     /**
-     * A string representing a well-formed URL.  Some components                    will render this as an HTML link
+     * A string representing a well-formed URL.  Some components will render this as an HTML link
      * (using an anchor tag for example).
      */
     LINK("link"),
     /**
-     * A string representing a well-formed URL that points to an                    image.  Some components will render
-     * an IMG tag with the value of this field&#010                    as the 'src' attribute to render the image.
+     * A string representing a well-formed URL that points to an image.  Some components will render
+     * an IMG tag with the value of this field as the 'src' attribute to render the image.
      */
     IMAGE("image"),
     /**
@@ -102,14 +102,47 @@ public enum FieldType implements ValueEnum {
      * <code>hidden:false</code>&#010 override in the fields array of the databound component.
      */
     BINARY("binary"),
+    
     /**
      * Binary data comprising an image.
      */
     IMAGEFILE("imageFile"),
 
     /**
-     * Password field type
+     * Fields of this type are automatically populated by the Smart GWT Server                
+     * with the current authenticated userId as part of add and update operations.
+     * By default, fields of this type are hidden and not editable; the server
+     * ignores any value that the client sends in a field of this type.
      */
+    MODIFIER("modifier"),
+
+     /**
+     * Fields of this type are automatically populated by the Smart GWT Server with
+     * the current date and time as part of add and update operations.  By
+     * default, fields of this type are hidden and not editable; the server ignores
+     * any value that the client sends in a field of this type.
+      */
+    MODIFIERTIMESTAMP("modifiertimestamp"),
+
+    /**
+     * Fields of this type are automatically populated by the Smart GWT Server                
+     * with the current authenticated userId as part of add operations. By default,
+     * fields of this type are hidden and not editable; the server ignores any
+     * value that the client sends in a field of this type.
+     */
+    CREATOR("creator"),
+
+    /**
+     * Fields of this type are automatically populated by the Smart GWT Server with
+     * the current date and time as part of add and update operations.  By
+     * default, fields of this type are hidden and not editable; the server ignores
+     * any value that the client sends in a field of this type.
+     */
+    CREATORTIMESTAMP("creatortimestamp"),
+
+    /**
+      * Password field type
+      */
     PASSWORD("password");
 
     private String value;

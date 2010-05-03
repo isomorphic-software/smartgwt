@@ -35,6 +35,16 @@ public enum ExportFormat implements ValueEnum {
      */
     CSV("csv");
 
+    /**
+     * Export data in native Microsoft Excel 97 format
+     */
+    XLS("xls"),
+
+    /**
+     * Export data in native Microsoft Excel 2007 format (also called XLSX)
+     */
+    OOXML("ooxml");
+
     private String value;
 
     ExportFormat(String value) {
