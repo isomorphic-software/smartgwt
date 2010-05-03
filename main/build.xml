@@ -36,6 +36,8 @@
                 <pathelement location="${smartgwt.tools.lib}/tomcat/servlet-api-2.4.jar"/>
                 <pathelement location="${smartgwt.tools.lib}/junit/junit-3.8.1.jar"/>
                 <pathelement location="${gwt.user.jar}"/>
+				<pathelement location="${gwt.dev.jar}"/>
+				<pathelement location="${gwt.dev2.jar}"/>
             </classpath>
         </gwt.javac>
     </target>
