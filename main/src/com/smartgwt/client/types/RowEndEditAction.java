@@ -38,6 +38,12 @@ public enum RowEndEditAction implements ValueEnum {
      * Leave focus in the cell being edited (take no action)
      */
     STOP("stop");
+
+    /**
+     * take no action
+     */
+    NONE("none");
+    
     private String value;
 
     RowEndEditAction(String value) {
