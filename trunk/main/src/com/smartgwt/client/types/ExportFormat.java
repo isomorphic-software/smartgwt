@@ -33,7 +33,7 @@ public enum ExportFormat implements ValueEnum {
     /**
      * Export data in comma-seperated format
      */
-    CSV("csv");
+    CSV("csv"),
 
     /**
      * Export data in native Microsoft Excel 97 format

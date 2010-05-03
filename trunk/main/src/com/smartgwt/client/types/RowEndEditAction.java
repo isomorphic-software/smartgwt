@@ -37,7 +37,7 @@ public enum RowEndEditAction implements ValueEnum {
     /**
      * Leave focus in the cell being edited (take no action)
      */
-    STOP("stop");
+    STOP("stop"),
 
     /**
      * take no action
