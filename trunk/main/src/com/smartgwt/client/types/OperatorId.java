@@ -1,10 +1,10 @@
 /*
- * SmartGWT (GWT for SmartClient)
+ * Smart GWT (GWT for SmartClient)
  * Copyright 2008 and beyond, Isomorphic Software, Inc.
  *
- * SmartGWT is free software; you can redistribute it and/or modify it
+ * Smart GWT is free software; you can redistribute it and/or modify it
  * under the terms of the GNU Lesser General Public License version 3
- * as published by the Free Software Foundation.  SmartGWT is also
+ * as published by the Free Software Foundation.  Smart GWT is also
  * available under typical commercial license terms - see
  * http://smartclient.com/license
  *
@@ -13,20 +13,34 @@
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU
  * Lesser General Public License for more details.
  */
-
+ 
 package com.smartgwt.client.types;
 
-
+/**
+ * An operator is used as part of a {@link com.smartgwt.client.data.Criterion} when specifying
+ * {@link com.smartgwt.client.data.AdvancedCriteria}. <P> This list of operators indicates the set
+ * of operators built into Smart GWT DataSources, which can be used for both client and
+ * server-side filtering.   You can extend the list of operators with {@link
+ * com.smartgwt.client.data.DataSource#addSearchOperator DataSource.addSearchOperator}.
+ */
 public enum OperatorId implements ValueEnum {
     /**
      * exactly equal to
      */
     EQUALS("equals"),
-
+    
     /**
      * not equal to
      */
     NOT_EQUAL("notEqual"),
+    /**
+     * exactly equal to, if case is disregarded
+     */
+    IEQUALS("iEquals"),
+    /**
+     * not equal to, if case is disregarded
+     */
+    INOT_EQUAL("iNotEqual"),
     /**
      * Greater than
      */
@@ -59,7 +73,7 @@ public enum OperatorId implements ValueEnum {
      * Contains as sub-string (case insensitive)
      */
     ICONTAINS("iContains"),
-
+    
     /**
      * Starts with (case insensitive)
      */
@@ -105,15 +119,15 @@ public enum OperatorId implements ValueEnum {
      */
     IS_NULL("isNull"),
     /**
-     * value is non-null. Note empty string ("") is non-null
+     * value is non-null.  Note empty string ("") is non-null
      */
     NOT_NULL("notNull"),
     /**
-     * value is in a set of values. Specify criterion.value as an Array
+     * value is in a set of values.  Specify criterion.value as an Array
      */
     IN_SET("inSet"),
     /**
-     * value is not in a set of values. Specify criterion.value as an Array
+     * value is not in a set of values.  Specify criterion.value as an Array
      */
     NOT_IN_SET("notInSet"),
     /**
@@ -121,9 +135,38 @@ public enum OperatorId implements ValueEnum {
      */
     EQUALS_FIELD("equalsField"),
     /**
-     * does not match another field (specified fieldName as criterion.value)
+     * does not match another field (specify fieldName as criterion.value)
      */
     NOT_EQUAL_FIELD("notEqualField"),
+    /**
+     * Greater than another field (specify fieldName as criterion.value)
+     */
+    GREATER_THAN_FIELD("greaterThanField"),
+    /**
+     * Less than another field (specify fieldName as criterion.value)
+     */
+    LESS_THAN_FIELD("lessThanField"),
+    /**
+     * Greater than or equal to another field (specify fieldName as criterion.value)
+     */
+    GREATER_OR_EQUAL_FIELD("greaterOrEqualField"),
+    /**
+     * Less than or equal to another field (specify fieldName as criterion.value)
+     */
+    LESS_OR_EQUAL_FIELD("lessOrEqualField"),
+    /**
+     * Contains as sub-string (match case) another field value (specify fieldName as
+     * criterion.value)
+     */
+    CONTAINS_FIELD("containsField"),
+    /**
+     * Starts with (match case) another field value (specify fieldName as criterion.value)
+     */
+    STARTS_WITH_FIELD("startsWithField"),
+    /**
+     * Ends with (match case) another field value (specify fieldName as criterion.value)
+     */
+    ENDS_WITH_FIELD("endsWithField"),
     /**
      * all subcriteria (criterion.criteria) are true
      */
@@ -137,22 +180,23 @@ public enum OperatorId implements ValueEnum {
      */
     OR("or"),
     /**
-     * shortcut for "greaterThan" + "lessThan" + "and". Specify criterion.start and criterion.end
+     * shortcut for greaterThan + lessThan + and. Specify criterion.start and criterion.end
      */
     BETWEEN("between"),
-
     /**
-     * shortcut for "greaterOrEqual" + "lessOrEqual" + "and". Specify criterion.start and criterion.end
+     * shortcut for greaterOrEqual + lessOrEqual + and. 
+     * Specify criterion.start and criterion.end
      */
     BETWEEN_INCLUSIVE("betweenInclusive");
-
+    
     private String value;
-
+    
     OperatorId(String value) {
         this.value = value;
     }
-
+    
     public String getValue() {
         return this.value;
     }
 }
+
