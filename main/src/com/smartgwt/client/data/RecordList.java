@@ -834,7 +834,7 @@ public class RecordList extends BaseClass implements com.smartgwt.client.data.ev
         var obj = null;
             obj = this.@com.smartgwt.client.core.BaseClass::getOrCreateJsObj()();
             var selfJ = this;
-            obj.dataChanged = function(){
+            obj.onDataChanged = function(){
                 var param = {};
                 var event = @com.smartgwt.client.data.events.DataChangedEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
                 selfJ.@com.smartgwt.client.core.BaseClass::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
