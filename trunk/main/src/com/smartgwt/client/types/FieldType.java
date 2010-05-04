@@ -122,7 +122,7 @@ public enum FieldType implements ValueEnum {
      * default, fields of this type are hidden and not editable; the server ignores
      * any value that the client sends in a field of this type.
       */
-    MODIFIERTIMESTAMP("modifiertimestamp"),
+    MODIFIERTIMESTAMP("modifierTimestamp"),
 
     /**
      * Fields of this type are automatically populated by the Smart GWT Server                
@@ -138,7 +138,7 @@ public enum FieldType implements ValueEnum {
      * default, fields of this type are hidden and not editable; the server ignores
      * any value that the client sends in a field of this type.
      */
-    CREATORTIMESTAMP("creatortimestamp"),
+    CREATORTIMESTAMP("creatorTimestamp"),
 
     /**
       * Password field type

@@ -36,27 +36,27 @@ public enum ValidatorType implements ValueEnum {
     /**
      * Validation will fail if this field is non-empty and has a non-boolean value.
      */
-    ISBOOLEAN("isboolean"),
+    ISBOOLEAN("isBoolean"),
     /**
      * Validation will fail if the value is not a string value.
      */
-    ISSTRING("isstring"),
+    ISSTRING("isString"),
     /**
      * Tests whether the value for this field is a whole number. If
      * <code>validator.convertToInteger</code> is true, float values will be converted into
      * integers and validation will succeed.
      */
-    ISINTEGER("isinteger"),
+    ISINTEGER("isInteger"),
     /**
      * Tests whether the value for this field is a valid floating point number.
      */
-    ISFLOAT("isfloat"),
+    ISFLOAT("isFloat"),
     /**
      * Tests whether the value for this field is a valid expression or function; if it is valid,
      * creates a {@link com.smartgwt.client.docs.StringMethods 'stringMethod'} object with the
      * value and set the resultingValue to the StringMethod.
      */
-    ISFUNCTION("isfunction"),
+    ISFUNCTION("isFunction"),
     /**
      * RequiredIf type validators should be specified with an <code>expression</code> property
      * set to a {@link com.smartgwt.client.docs.StringMethods 'stringMethod'}, which takes three
@@ -68,12 +68,12 @@ public enum ValidatorType implements ValueEnum {
      * <code>required</code> validator can be used instead. Conditional criteria can be specified
      * with the <code>applyWhen</code> property.
      */
-    REQUIREDIF("requiredif"),
+    REQUIREDIF("requiredIf"),
     /**
      * Tests whether the value for this field matches the value of some other field. The field to
      * compare against is specified via the <code>otherField</code> property on the validator
      * object (should be set to a field name).     */
-    MATCHESFIELD("matchesfield"),
+    MATCHESFIELD("matchesField"),
     /**
      * Tests whether the value for this field matches any value from an arbitrary list of
      * acceptable values. The set of acceptable values is specified via the <code>list</code>
@@ -81,13 +81,13 @@ public enum ValidatorType implements ValueEnum {
      * not supplied, the valueMap for the field will be used. If there is no valueMap, not
      * providing validator.list is an error.
      */
-    ISONEOF("isoneof"),
+    ISONEOF("isOneOf"),
     /**
      * Tests whether the value for this field is a whole number within the range specified. The
      * <code>max</code> and <code>min</code> properties on the validator are used to determine
      * the acceptable range.
      */
-    INTEGERRANGE("integerrange"),
+    INTEGERRANGE("integerRange"),
     /**
      * This validator type applies to string values only. If the value is a string value
      * validation will fail if the string's length falls outside the range specified by
@@ -98,7 +98,7 @@ public enum ValidatorType implements ValueEnum {
      * with <code>max</code> and <code>min</code> available as variables mapped to
      * <code>validator.max</code> and <code>validator.min</code>.
      */
-    LENGTHRANGE("lengthrange"),
+    LENGTHRANGE("lengthRange"),
     /**
      * Determine whether a string value contains some substring specified via
      * <code>validator.substring</code>.
@@ -108,7 +108,7 @@ public enum ValidatorType implements ValueEnum {
      * Determine whether a string value does <b>not</b> contain some substring specified via
      * <code>validator.substring</code>.
      */
-    DOESNTCONTAIN("doesntcontain"),
+    DOESNTCONTAIN("doesntContain"),
     /**
      * Determine whether a string value contains some substring multiple times. The substring to
      * check for is specified via <code>validator.substring</code>. The
@@ -118,7 +118,7 @@ public enum ValidatorType implements ValueEnum {
      * <code>&gt;=</code>. <p> The number of matches to check for is specified via
      * <code>validator.count</code>.
      */
-    SUBSTRINGCOUNT("substringcount"),
+    SUBSTRINGCOUNT("substringCount"),
     /**
      * <code>regexp</code> type validators will determine whether the value specified matches a
      * given regular expression. The expression should be specified on the <code>validator</code>
@@ -144,7 +144,7 @@ public enum ValidatorType implements ValueEnum {
      * with <code>max</code> and <code>min</code> available as variables mapped to
      * <code>validator.max</code> and <code>validator.min</code>.
      */
-    DATERANGE("daterange"),
+    DATERANGE("dateRange"),
     /**
      * Validate a field as a valid floating point value within a value range. Range is specified
      * via <code>validator.min</code> and <code>validator.max</code>. Also checks precision,
@@ -153,7 +153,7 @@ public enum ValidatorType implements ValueEnum {
      * number of decimal places will be rounded to the nearest value that does. <p> For backwards
      * compatibility only. Use "floatRange" and/or "floatPrecision" instead.
      */
-    FLOATLIMIT("floatlimit"),
+    FLOATLIMIT("floatLimit"),
     /**
      * Tests whether the value for this field is a floating point number within the range
      * specified. The <code>max</code> and <code>min</code> properties on the validator are used
@@ -163,7 +163,7 @@ public enum ValidatorType implements ValueEnum {
      * <code>min</code> available as variables mapped to <code>validator.max</code> and
      * <code>validator.min</code>.
      */
-    FLOATRANGE("floatrange"),
+    FLOATRANGE("floatRange"),
     /**
      * Tests whether the value for this field is a floating point number with the appropriate
      * number of decimal places - specified in <code>validator.precision</code> If the value is
@@ -171,7 +171,7 @@ public enum ValidatorType implements ValueEnum {
      * will be rounded to the specified number of decimal places and validation will pass,
      * otherwise validation will fail.
      */
-    FLOATPRECISION("floatprecision"),
+    FLOATPRECISION("floatPrecision"),
     /**
      * A non-empty value is required for this field to pass validation.
      */
@@ -182,14 +182,14 @@ public enum ValidatorType implements ValueEnum {
      * com.smartgwt.client..FieldAppearance} type for choices. <p> If
      * <code>fieldAppearance</code> is not specified, the default is "readOnly".
      */
-    READONLY("readonly"),
+    READONLY("readOnly"),
     /**
      * Returns true if the value for this field is unique across the whole DataSource. <p>
      * Validators of this type have {@link
      * com.smartgwt.client..validatorDefinition#getRequiresServer 'requiresServer'} set to
      * <code>true</code> and do not run on the client.
      */
-    ISUNIQUE("isunique"),
+    ISUNIQUE("isUnique"),
     /**
      * Returns true if the record implied by a relation exists. The relation can be derived
      * automatically from the {@link com.smartgwt.client.data.DataSourceField#getForeignKey
@@ -212,7 +212,7 @@ public enum ValidatorType implements ValueEnum {
      * {@link com.smartgwt.client.widgets.BatchUploader}, where values aren't individually chosen
      * by the user.
      */
-    HASRELATEDRECORD("hasrelatedrecord"),
+    HASRELATEDRECORD("hasRelatedRecord"),
     /**
      * Custom server-side validator that either evaluates the Velocity expression provided in
      * {@link com.smartgwt.client.docs.serverds.Validator#serverCondition 'serverCondition'} 
@@ -221,7 +221,7 @@ public enum ValidatorType implements ValueEnum {
      * type have {@link com.smartgwt.client..validatorDefinition#getRequiresServer
      * 'requiresServer'} set to <code>true</code> and do not run on the client.
      */
-    SERVERCUSTOM("servercustom");
+    SERVERCUSTOM("serverCustom");
     private String value;
 
     ValidatorType(String value) {
