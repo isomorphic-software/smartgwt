@@ -1331,6 +1331,11 @@ public class DataSourceField extends DataClass {
         });
     }-*/;
 
+    private static boolean isDataSourceField(JavaScriptObject jsObj) {
+        Object ref = JSOHelper.getAttributeAsObject(jsObj, SC.REF);
+        return ref != null && ref instanceof DataSourceField;
+    }
+
 }
 
 
