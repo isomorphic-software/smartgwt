@@ -184,22 +184,25 @@ public class I18nUtil {
             $wnd.isc.DateItem.changeDefaults("daySelectorDefaults", {prompt: messages.@com.smartgwt.client.i18n.SmartGwtMessages::dateItem_daySelectorPrompt()()});
             $wnd.isc.DateItem.changeDefaults("monthSelectorDefaults", {prompt: messages.@com.smartgwt.client.i18n.SmartGwtMessages::dateItem_monthSelectorPrompt()()});
             $wnd.isc.DateItem.changeDefaults("yearSelectorDefaults", {prompt: messages.@com.smartgwt.client.i18n.SmartGwtMessages::dateItem_yearSelectorPrompt()()});
-            $wnd.isc.DateItem.changeDefaults("selectorFormat", messages.@com.smartgwt.client.i18n.SmartGwtMessages::dateItem_selectorFormat()())
+            var selectorFormat = messages.@com.smartgwt.client.i18n.SmartGwtMessages::dateItem_selectorFormat()();
+            if(selectorFormat != 'null') $wnd.isc.DateItem.changeDefaults("selectorFormat", selectorFormat);
         }
 
         if($wnd.isc.RichTextEditor) {
             $wnd.isc.RichTextEditor.changeDefaults("boldSelectionDefaults", {prompt:messages.@com.smartgwt.client.i18n.SmartGwtMessages::richTextEditor_boldSelectionPrompt()()});
             $wnd.isc.RichTextEditor.changeDefaults("italicSelectionDefaults", {prompt:messages.@com.smartgwt.client.i18n.SmartGwtMessages::richTextEditor_italicSelectionPrompt()()});
-            $wnd.isc.RichTextEditor.changeDefaults("underlineSelectionPDefaults", {prompt:messages.@com.smartgwt.client.i18n.SmartGwtMessages::richTextEditor_underlineSelectionPrompt()()});
+            $wnd.isc.RichTextEditor.changeDefaults("underlineSelectionDefaults", {prompt:messages.@com.smartgwt.client.i18n.SmartGwtMessages::richTextEditor_underlineSelectionPrompt()()});
             $wnd.isc.RichTextEditor.changeDefaults("copySelectionDefaults", {prompt:messages.@com.smartgwt.client.i18n.SmartGwtMessages::richTextEditor_copySelectionPrompt()()});
             $wnd.isc.RichTextEditor.changeDefaults("cutSelectionDefaults", {prompt:messages.@com.smartgwt.client.i18n.SmartGwtMessages::richTextEditor_cutSelectionPrompt()()});
             $wnd.isc.RichTextEditor.changeDefaults("pasteSelectionDefaults", {prompt:messages.@com.smartgwt.client.i18n.SmartGwtMessages::richTextEditor_pasteSelectionPrompt()()});
             $wnd.isc.RichTextEditor.changeDefaults("alignLeftDefaults", {prompt:messages.@com.smartgwt.client.i18n.SmartGwtMessages::richTextEditor_alignLeftPrompt()()});
             $wnd.isc.RichTextEditor.changeDefaults("alignRightDefaults", {prompt:messages.@com.smartgwt.client.i18n.SmartGwtMessages::richTextEditor_alignRightPrompt()()});
+            $wnd.isc.RichTextEditor.changeDefaults("alignCenterDefaults", {prompt:messages.@com.smartgwt.client.i18n.SmartGwtMessages::richTextEditor_alignCenterPrompt()()});
             $wnd.isc.RichTextEditor.changeDefaults("justifyDefaults", {prompt:messages.@com.smartgwt.client.i18n.SmartGwtMessages::richTextEditor_justifyPrompt()()});
             $wnd.isc.RichTextEditor.changeDefaults("indentSelectionDefaults", {prompt:messages.@com.smartgwt.client.i18n.SmartGwtMessages::richTextEditor_indentSelectionPrompt()()});
             $wnd.isc.RichTextEditor.changeDefaults("outdentSelectionDefaults", {prompt:messages.@com.smartgwt.client.i18n.SmartGwtMessages::richTextEditor_outdentSelectionPrompt()()});
             $wnd.isc.RichTextEditor.changeDefaults("colorDefaults", {prompt:messages.@com.smartgwt.client.i18n.SmartGwtMessages::richTextEditor_colorPrompt()()});
+            $wnd.isc.RichTextEditor.changeDefaults("backgroundColorDefaults", {prompt:messages.@com.smartgwt.client.i18n.SmartGwtMessages::richTextEditor_backgroundColorPrompt()()});
             $wnd.isc.RichTextEditor.changeDefaults("linkDefaults", {prompt:messages.@com.smartgwt.client.i18n.SmartGwtMessages::richTextEditor_linkPrompt()()});
             $wnd.isc.RichTextEditor.addProperties({fontPrompt:messages.@com.smartgwt.client.i18n.SmartGwtMessages::richTextEditor_fontPrompt()()});
             $wnd.isc.RichTextEditor.addProperties({fontSizePrompt:messages.@com.smartgwt.client.i18n.SmartGwtMessages::richTextEditor_fontSizePrompt()()});
