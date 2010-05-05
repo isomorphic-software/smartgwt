@@ -14,8 +14,8 @@ package com.smartgwt.client.docs;
  * @see #save
  * @see com.smartgwt.client.widgets.DataBoundComponent#addFormulaField
  * @see com.smartgwt.client.widgets.DataBoundComponent#editFormulaField
- * @see com.smartgwt.client.widgets.DataBoundComponent#editFormulaField
- * @see com.smartgwt.client.widgets.DataBoundComponent#editFormulaField
+ * @see 
+ * @see 
  * @see 
  * @see #registerFunction
  * @see #getRegisteredFunctionIndex

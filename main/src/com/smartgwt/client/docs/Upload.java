@@ -58,11 +58,11 @@ package com.smartgwt.client.docs;
  * receive a callback notification when the upload completes, after processing the file upload, your server should output
  * HTML content for the IFRAME that includes a &lt;SCRIPT&gt; block which will navigate out of the IFRAME (generally via
  * the JavaScript global "top") and call a global method you have declared as a callback.
- * @see com.smartgwt.client.widgets.grid.ListGrid#getAutoFitMaxColumns
- * @see com.smartgwt.client.widgets.grid.ListGrid#getAutoFitMaxColumns
- * @see com.smartgwt.client.widgets.grid.ListGrid#getAutoFitMaxColumns
- * @see com.smartgwt.client.widgets.grid.ListGrid#getAutoFitMaxColumns
- * @see com.smartgwt.client.widgets.grid.ListGrid#getAutoFitMaxColumns
+ * @see com.smartgwt.client.widgets.form.fields.UploadItem
+ * @see com.smartgwt.client.widgets.form.fields.FileItem
+ * @see 
+ * @see com.smartgwt.client.widgets.MultiFilePicker
+ * @see com.smartgwt.client.widgets.form.fields.ViewFileItem
  */
 public interface Upload {
 }

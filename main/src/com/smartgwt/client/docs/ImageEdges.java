@@ -2,7 +2,7 @@
 package com.smartgwt.client.docs;
 
 /**
- * @see com.smartgwt.client.widgets.grid.ListGrid#getHeaderMenuButtonHeight
+ * @see com.smartgwt.client.widgets.EdgedCanvas
  * @see com.smartgwt.client.widgets.Canvas#getShowEdges
  * @see com.smartgwt.client.widgets.Canvas#getEdgeSize
  * @see com.smartgwt.client.widgets.Canvas#getEdgeOffset
